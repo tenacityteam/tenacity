@@ -753,6 +753,8 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
    // Require at least 3 pixels per sample for drawing the draggable points.
    const double threshold2 = 3 * rate;
 
+   auto &clipCache = WaveClipWaveformCache::Get(*clip);
+
    {
       bool showIndividualSamples = false;
       for (unsigned ii = 0; !showIndividualSamples && ii < nPortions; ++ii) {
@@ -766,7 +768,13 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
          // there's a serious error, like some of the waveform data can't
          // be loaded.  So if the function returns false, we can just exit.
 
-         if (!clip->GetWaveDisplay(display,t0, pps))
+         // Note that we compute the full width display even if there is a
+         // fisheye hiding part of it, because of the caching.  If the
+         // fisheye moves over the background, there is then less to do when
+         // redrawing.
+
+         if (!clipCache.GetWaveDisplay( *clip, display,
+            t0, pps))
             return;
       }
    }
@@ -781,9 +789,15 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
       rectPortion.Intersect(mid);
       wxASSERT(rectPortion.width >= 0);
 
-      float *useMin = display.min,
-            *useMax = display.max,
-            *useRms = display.rms;
+      float *useMin = 0, *useMax = 0, *useRms = 0;
+      WaveDisplay fisheyeDisplay(rectPortion.width);
+      int skipped = 0, skippedLeft = 0, skippedRight = 0;
+      const int pos = leftOffset;
+      useMin = display.min + pos;
+      useMax = display.max + pos;
+      useRms = display.rms + pos;
+
+      leftOffset += skippedLeft;
 
       if (rectPortion.width > 0) {
          if (!showIndividualSamples) {

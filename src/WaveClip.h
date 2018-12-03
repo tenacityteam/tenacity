@@ -14,8 +14,9 @@
 
 // Tenacity libraries
 #include <lib-math/SampleFormat.h>
-#include <lib-xml/XMLTagHandler.h>
 #include <lib-math/SampleCount.h>
+#include <lib-registries/ClientData.h>
+#include <lib-xml/XMLTagHandler.h>
 
 #include <wx/longlong.h>
 
@@ -167,7 +168,15 @@ public:
    }
 };
 
+struct TENACITY_DLL_API WaveClipListener
+{
+   virtual ~WaveClipListener() = 0;
+   virtual void MarkChanged() = 0;
+   virtual void Invalidate() = 0;
+};
+
 class TENACITY_DLL_API WaveClip final : public XMLTagHandler
+   , public ClientData::Site< WaveClip, WaveClipListener >
 {
 private:
    // It is an error to copy a WaveClip without specifying the
@@ -177,6 +186,8 @@ private:
    WaveClip& operator= (const WaveClip&) = delete;
 
 public:
+   using Caches = Site< WaveClip, WaveClipListener >;
+
    // typical constructor
    WaveClip(const SampleBlockFactoryPtr &factory, sampleFormat format,
       int rate, int colourIndex);
@@ -285,18 +296,10 @@ public:
     * called automatically when WaveClip has a chance to know that something
     * has changed, like when member functions SetSamples() etc. are called. */
    /*! @excsafety{No-fail} */
-   void MarkChanged()
-      { mDirty++; }
+   void MarkChanged();
 
    /** Getting high-level data for screen display and clipping
     * calculations and Contrast */
-   bool GetWaveDisplay(WaveDisplay &display,
-                       double t0, double pixelsPerSecond) const;
-   bool GetSpectrogram(SampleTrackCache &cache,
-                       const float *& spectrogram,
-                       const sampleCount *& where,
-                       size_t numPixels,
-                       double t0, double pixelsPerSecond) const;
    std::pair<float, float> GetMinMax(
       double t0, double t1, bool mayThrow = true) const;
    float GetRMS(double t0, double t1, bool mayThrow = true) const;
@@ -400,9 +403,8 @@ public:
    //! Silences the 'length' amount of samples starting from 'offset'(relative to the play start)
    void SetSilence(sampleCount offset, sampleCount length);
 
-public:
-   // Cache of values to colour pixels of Spectrogram - used by TrackArtist
-   mutable std::unique_ptr<SpecPxCache> mSpecPxCache;
+   const SampleBuffer &GetAppendBuffer() const { return mAppendBuffer; }
+   size_t GetAppendBufferLen() const { return mAppendBufferLen; }
 
 protected:
    /// This name is consistent with WaveTrack::Clear. It performs a "Cut"
@@ -416,14 +418,11 @@ protected:
    double mTrimRight{ 0 };
 
    int mRate;
-   int mDirty { 0 };
    int mColourIndex;
 
    std::unique_ptr<Sequence> mSequence;
    std::unique_ptr<Envelope> mEnvelope;
 
-   mutable std::unique_ptr<WaveCache> mWaveCache;
-   mutable std::unique_ptr<SpecCache> mSpecCache;
    SampleBuffer  mAppendBuffer {};
    size_t        mAppendBufferLen { 0 };
 
@@ -436,6 +435,51 @@ protected:
 
 private:
    wxString mName;
+};
+
+struct WaveClipSpectrumCache final : WaveClipListener
+{
+   WaveClipSpectrumCache();
+   ~WaveClipSpectrumCache() override;
+
+   // Cache of values to colour pixels of Spectrogram - used by TrackArtist
+   std::unique_ptr<SpecPxCache> mSpecPxCache;
+   std::unique_ptr<SpecCache> mSpecCache;
+   int mDirty { 0 };
+
+   static WaveClipSpectrumCache &Get( const WaveClip &clip );
+
+   void MarkChanged() override; // NOFAIL-GUARANTEE
+   void Invalidate() override; // NOFAIL-GUARANTEE
+
+   /** Getting high-level data for screen display */
+   bool GetSpectrogram(const WaveClip &clip, SampleTrackCache &cache,
+                       const float *& spectrogram,
+                       const sampleCount *& where,
+                       size_t numPixels,
+                       double t0, double pixelsPerSecond);
+};
+
+struct WaveClipWaveformCache final : WaveClipListener
+{
+   WaveClipWaveformCache();
+   ~WaveClipWaveformCache() override;
+
+   // Cache of values for drawing the waveform
+   std::unique_ptr<WaveCache> mWaveCache;
+   int mDirty { 0 };
+
+   static WaveClipWaveformCache &Get( const WaveClip &clip );
+
+   void MarkChanged() override; // NOFAIL-GUARANTEE
+   void Invalidate() override; // NOFAIL-GUARANTEE
+
+   ///Delete the wave cache - force redraw.  Thread-safe
+   void Clear();
+
+   /** Getting high-level data for screen display */
+   bool GetWaveDisplay(const WaveClip &clip, WaveDisplay &display,
+                       double t0, double pixelsPerSecond);
 };
 
 #endif

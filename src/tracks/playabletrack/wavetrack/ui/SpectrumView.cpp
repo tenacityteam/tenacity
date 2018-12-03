@@ -272,8 +272,9 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    bool updated;
    {
       const double pps = averagePixelsPerSample * rate;
-      updated = clip->GetSpectrogram(waveTrackCache, freq, where,
-                                     (size_t)mid.width,
+      updated = WaveClipSpectrumCache::Get( *clip ).GetSpectrogram( *clip,
+         waveTrackCache, freq, where,
+         (size_t)mid.width,
          t0, pps);
    }
    auto nBins = settings.NBins();
@@ -323,13 +324,14 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    }
 #endif //EXPERIMENTAL_FFT_Y_GRID
 
-   if (!updated && clip->mSpecPxCache->valid &&
-      ((int)clip->mSpecPxCache->len == mid.height * mid.width)
-      && scaleType == clip->mSpecPxCache->scaleType
-      && gain == clip->mSpecPxCache->gain
-      && range == clip->mSpecPxCache->range
-      && minFreq == clip->mSpecPxCache->minFreq
-      && maxFreq == clip->mSpecPxCache->maxFreq
+   auto &clipCache = WaveClipSpectrumCache::Get( *clip );
+   if (!updated && clipCache.mSpecPxCache->valid &&
+      ((int)clipCache.mSpecPxCache->len == mid.height * mid.width)
+      && scaleType == clipCache.mSpecPxCache->scaleType
+      && gain == clipCache.mSpecPxCache->gain
+      && range == clipCache.mSpecPxCache->range
+      && minFreq == clipCache.mSpecPxCache->minFreq
+      && maxFreq == clipCache.mSpecPxCache->maxFreq
 #ifdef EXPERIMENTAL_FFT_Y_GRID
    && fftYGrid==fftYGridOld
 #endif //EXPERIMENTAL_FFT_Y_GRID
@@ -345,13 +347,13 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    }
    else {
       // Update the spectrum pixel cache
-      clip->mSpecPxCache = std::make_unique<SpecPxCache>(mid.width * mid.height);
-      clip->mSpecPxCache->valid = true;
-      clip->mSpecPxCache->scaleType = scaleType;
-      clip->mSpecPxCache->gain = gain;
-      clip->mSpecPxCache->range = range;
-      clip->mSpecPxCache->minFreq = minFreq;
-      clip->mSpecPxCache->maxFreq = maxFreq;
+      clipCache.mSpecPxCache = std::make_unique<SpecPxCache>(mid.width * mid.height);
+      clipCache.mSpecPxCache->valid = true;
+      clipCache.mSpecPxCache->scaleType = scaleType;
+      clipCache.mSpecPxCache->gain = gain;
+      clipCache.mSpecPxCache->range = range;
+      clipCache.mSpecPxCache->minFreq = minFreq;
+      clipCache.mSpecPxCache->maxFreq = maxFreq;
 #ifdef EXPERIMENTAL_FIND_NOTES
       artist->fftFindNotesOld = fftFindNotes;
       artist->findNotesMinAOld = findNotesMinA;
@@ -455,7 +457,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
             if (settings.scaleType != SpectrogramSettings::stLogarithmic) {
                const float value = findValue
                   (freq + nBins * xx, bin, nextBin, nBins, autocorrelation, gain, range);
-               clip->mSpecPxCache->values[xx * mid.height + yy] = value;
+               clipCache.mSpecPxCache->values[xx * mid.height + yy] = value;
             }
             else {
                float value;
@@ -493,7 +495,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
                   value = findValue
                      (freq + nBins * xx, bin, nextBin, nBins, autocorrelation, gain, range);
                }
-               clip->mSpecPxCache->values[xx * mid.height + yy] = value;
+               clipCache.mSpecPxCache->values[xx * mid.height + yy] = value;
             } // logF
          } // each yy
       } // each xx
@@ -575,7 +577,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
                );
          }
 
-         const float value = clip->mSpecPxCache->values[xx * mid.height + yy];
+         const float value = clipCache.mSpecPxCache->values[selectedX * mid.height + yy];
 
          unsigned char rv, gv, bv;
          GetColorGradient(value, selected, colorScheme, &rv, &gv, &bv);
