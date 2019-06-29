@@ -17,7 +17,6 @@ Paul Licameli split from AudioIO.h
 #include <vector>
 #include <limits>
 #include <wx/string.h>
-#include <wx/weakref.h> // member variable
 
 // Tenacity libraries
 #include <lib-utility/MemoryX.h>
@@ -32,9 +31,7 @@ class AudioIOBase;
 class TenacityProject;
 class AudioIOListener;
 class BoundedEnvelope;
-// Windows build needs complete type for parameter of wxWeakRef
-// class MeterPanelBase;
-#include "widgets/MeterPanelBase.h"
+class Meter;
 using PRCrossfadeData = std::vector< std::vector < float > >;
 
 constexpr double BAD_STREAM_TIME = -(std::numeric_limits<double>::max());
@@ -87,7 +84,7 @@ struct AudioIOStartStreamOptions
    {}
 
    TenacityProject *pProject{};
-   MeterPanelBase *captureMeter{}, *playbackMeter{};
+   std::weak_ptr<Meter> captureMeter, playbackMeter;
    const BoundedEnvelope *envelope; // for time warping
    std::shared_ptr< AudioIOListener > listener;
    double rate;
@@ -123,8 +120,10 @@ public:
 
    virtual ~AudioIOBase();
 
-   void SetCaptureMeter(TenacityProject *project, MeterPanelBase *meter);
-   void SetPlaybackMeter(TenacityProject *project, MeterPanelBase *meter);
+   void SetCaptureMeter(
+      TenacityProject *project, const std::weak_ptr<Meter> &meter);
+   void SetPlaybackMeter(
+      TenacityProject *project, const std::weak_ptr<Meter> &meter);
 
    /** \brief update state after changing what audio devices are selected
     *
@@ -266,8 +265,8 @@ protected:
 
    PaStream           *mPortStreamV19;
 
-   wxWeakRef<MeterPanelBase> mInputMeter{};
-   wxWeakRef<MeterPanelBase> mOutputMeter{};
+   std::weak_ptr<Meter> mInputMeter{};
+   std::weak_ptr<Meter> mOutputMeter{};
 
    // For cacheing supported sample rates
    static int mCachedPlaybackIndex;

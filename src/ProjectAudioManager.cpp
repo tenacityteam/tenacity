@@ -22,6 +22,7 @@ Paul Licameli split from ProjectManager.cpp
 #include "CommonCommandFlags.h"
 #include "LabelTrack.h"
 #include "Menus.h"
+#include "Meter.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "ProjectFileIO.h"

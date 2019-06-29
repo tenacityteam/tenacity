@@ -166,6 +166,8 @@ list( APPEND SOURCES
       MacroMagic.h
       Menus.cpp
       Menus.h
+      Meter.cpp
+      Meter.h
       Mix.cpp
       Mix.h
       MixerBoard.cpp

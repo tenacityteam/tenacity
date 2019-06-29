@@ -13,6 +13,8 @@
 #include "AudioIOBase.h"
 #include "Envelope.h"
 
+#include <cmath>
+
 void PlaybackSchedule::Init(
    const double t0, const double t1,
    const AudioIOStartStreamOptions &options,

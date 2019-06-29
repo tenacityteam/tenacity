@@ -11,16 +11,12 @@ Paul Licameli split from AudioIO.cpp
 
 #include "AudioIOBase.h"
 
-
 #include <wx/log.h>
 #include <wx/sstream.h>
 #include <wx/txtstrm.h>
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-utility/MemoryX.h>
-
-#include "widgets/MeterPanelBase.h"
+#include "Meter.h"
+#include "Prefs.h"
 
 #include <portaudio.h>
 
@@ -125,32 +121,36 @@ void AudioIOBase::HandleDeviceChange()
 
 }
 
-void AudioIOBase::SetCaptureMeter(TenacityProject *project, MeterPanelBase *meter)
+void AudioIOBase::SetCaptureMeter(
+   TenacityProject *project, const std::weak_ptr<Meter> &wMeter)
 {
    if (( mOwningProject ) && ( mOwningProject != project))
       return;
 
+   auto meter = wMeter.lock();
    if (meter)
    {
       mInputMeter = meter;
-      mInputMeter->Reset(mRate, true);
+      meter->Reset(mRate, true);
    }
    else
-      mInputMeter.Release();
+      mInputMeter.reset();
 }
 
-void AudioIOBase::SetPlaybackMeter(TenacityProject *project, MeterPanelBase *meter)
+void AudioIOBase::SetPlaybackMeter(
+   TenacityProject *project, const std::weak_ptr<Meter> &wMeter)
 {
    if (( mOwningProject ) && ( mOwningProject != project))
       return;
 
+   auto meter = wMeter.lock();
    if (meter)
    {
       mOutputMeter = meter;
-      mOutputMeter->Reset(mRate, true);
+      meter->Reset(mRate, true);
    }
    else
-      mOutputMeter.Release();
+      mOutputMeter.reset();
 }
 
 bool AudioIOBase::IsPaused() const
