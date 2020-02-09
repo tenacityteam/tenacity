@@ -29,6 +29,7 @@
 class ChoiceSetting;
 
 class wxArrayStringEx;
+class SliderTextCtrl;
 
 
 const int nMaxNestedSizers = 20;
@@ -263,6 +264,10 @@ public:
    wxSpinCtrl * AddSpinCtrl(const TranslatableString &Prompt,
       int Value, int Max, int Min);
    wxTreeCtrl * AddTree();
+
+   SliderTextCtrl* AddSliderTextCtrl(
+      const TranslatableString &Prompt, double pos, double Max, double Min = 0,
+      int precision = 2, double* value = NULL, double scale = 0);
 
    // Pass the same initValue to the sequence of calls to AddRadioButton and
    // AddRadioButtonToGroup.

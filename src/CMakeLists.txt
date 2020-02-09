@@ -938,6 +938,8 @@ list( APPEND SOURCES
       widgets/ReadOnlyText.h
       widgets/Ruler.cpp
       widgets/Ruler.h
+      widgets/SliderTextCtrl.cpp
+      widgets/SliderTextCtrl.h
       widgets/UnwritableLocationErrorDialog.cpp
       widgets/UnwritableLocationErrorDialog.h
       widgets/Warning.cpp
