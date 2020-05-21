@@ -145,6 +145,8 @@ list( APPEND SOURCES
       JournalOutput.h
       JournalRegistry.cpp
       JournalRegistry.h
+      JournalWindowPaths.cpp
+      JournalWindowPaths.h
       KeyboardCapture.cpp
       KeyboardCapture.h
       LabelDialog.cpp
