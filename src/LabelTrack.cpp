@@ -84,6 +84,23 @@ LabelTrack::LabelTrack(const LabelTrack &orig) :
    }
 }
 
+static const Track::TypeInfo &typeInfo()
+{
+   static Track::TypeInfo info{ TrackKind::Label,
+      { "label", "label", XO("Label Track") }, true, &Track::ClassTypeInfo() };
+   return info;
+}
+
+auto LabelTrack::GetTypeInfo() const -> const TypeInfo &
+{
+   return typeInfo();
+}
+
+auto LabelTrack::ClassTypeInfo() -> const TypeInfo &
+{
+   return typeInfo();
+}
+
 Track::Holder LabelTrack::PasteInto( TenacityProject & ) const
 {
    auto pNewTrack = std::make_shared<LabelTrack>();
