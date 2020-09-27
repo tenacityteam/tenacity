@@ -43,6 +43,9 @@ class TENACITY_DLL_API TimeTrack final : public Track {
    virtual ~TimeTrack();
 
 
+   const TypeInfo &GetTypeInfo() const override;
+   static const TypeInfo &ClassTypeInfo();
+
    bool SupportsBasicEditing() const override;
 
    Holder PasteInto( TenacityProject & ) const override;
