@@ -238,6 +238,8 @@ list( APPEND SOURCES
       TrackArtist.h
       TrackInfo.cpp
       TrackInfo.h
+      TrackAttachment.h
+      TrackAttachment.cpp
       TrackPanel.cpp
       TrackPanel.h
       TrackPanelAx.cpp
