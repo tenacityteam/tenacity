@@ -20,6 +20,7 @@
 #include <wx/longlong.h>
 
 #include "ClientData.h"
+#include "TrackAttachment.h"
 
 // Tenacity libraries
 #include <lib-math/SampleFormat.h>
@@ -30,7 +31,6 @@
 #endif
 
 class wxTextFile;
-class CommonTrackCell;
 class Track;
 class AudioTrack;
 class PlayableTrack;
@@ -354,13 +354,13 @@ private:
 
    // These are exposed only for the purposes of the TrackView class, to
    // initialize the pointer on demand
-   const std::shared_ptr<CommonTrackCell> &GetTrackView();
-   void SetTrackView( const std::shared_ptr<CommonTrackCell> &pView );
+   const std::shared_ptr<TrackAttachment> &GetTrackView();
+   void SetTrackView( const std::shared_ptr<TrackAttachment> &pView );
 
    // These are exposed only for the purposes of the TrackControls class, to
    // initialize the pointer on demand
-   const std::shared_ptr<CommonTrackCell> &GetTrackControls();
-   void SetTrackControls( const std::shared_ptr<CommonTrackCell> &pControls );
+   const std::shared_ptr<TrackAttachment> &GetTrackControls();
+   void SetTrackControls( const std::shared_ptr<TrackAttachment> &pControls );
 
    // Return another, associated TrackPanelCell object that implements the
 
@@ -828,8 +828,8 @@ public:
    bool HandleCommonXMLAttribute(const std::string_view& attr, const XMLAttributeValueView& valueView);
 
 protected:
-   std::shared_ptr<CommonTrackCell> mpView;
-   std::shared_ptr<CommonTrackCell> mpControls;
+   std::shared_ptr<TrackAttachment> mpView;
+   std::shared_ptr<TrackAttachment> mpControls;
 };
 
 //! Track subclass holding data representing sound (as notes, or samples, or ...)
