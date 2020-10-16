@@ -87,6 +87,9 @@ class TENACITY_DLL_API LabelTrack final
    , public wxEvtHandler
 {
  public:
+   // Construct and also build all attachments
+   static LabelTrack *New(TenacityProject &project);
+
    LabelTrack();
    LabelTrack(const LabelTrack &orig);
 
@@ -103,7 +106,7 @@ class TENACITY_DLL_API LabelTrack final
    double GetEndTime() const override;
 
    using Holder = std::shared_ptr<LabelTrack>;
-   
+
 private:
    Track::Holder Clone() const override;
 
