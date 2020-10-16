@@ -58,9 +58,6 @@ from the project that will own the track.
 #include "prefs/TracksBehaviorsPrefs.h"
 #include "prefs/WaveformSettings.h"
 
-#include "tracks/ui/TrackView.h"
-#include "tracks/ui/TrackControls.h"
-
 #include "ProjectFormatExtensionsRegistry.h"
 
 using std::max;
@@ -99,14 +96,7 @@ Track::LinkType ToLinkType(int value)
 
 static ProjectFileIORegistry::ObjectReaderEntry readerEntry{
    "wavetrack",
-   []( TenacityProject &project ){
-      auto &trackFactory = WaveTrackFactory::Get( project );
-      auto &tracks = TrackList::Get( project );
-      auto result = tracks.Add(trackFactory.NewWaveTrack());
-      TrackView::Get( *result );
-      TrackControls::Get( *result );
-      return result;
-   }
+   WaveTrack::New
 };
 
 WaveTrack::Holder WaveTrackFactory::DuplicateWaveTrack(const WaveTrack &orig)
@@ -127,6 +117,15 @@ WaveTrack::Holder WaveTrackFactory::NewWaveTrack(sampleFormat format, double rat
    auto waveTrack = std::make_shared<WaveTrack> ( mpFactory, format, rate );
 
    return waveTrack;
+}
+
+WaveTrack *WaveTrack::New( TenacityProject &project )
+{
+   auto &trackFactory = WaveTrackFactory::Get( project );
+   auto &tracks = TrackList::Get( project );
+   auto result = tracks.Add(trackFactory.NewWaveTrack());
+   result->AttachedTrackObjects::BuildAll();
+   return result;
 }
 
 WaveTrack::WaveTrack( const SampleBlockFactoryPtr &pFactory,

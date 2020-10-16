@@ -75,6 +75,9 @@ public:
    // Constructor / Destructor / Duplicator
    //
 
+   // Construct and also build all attachments
+   static WaveTrack *New( TenacityProject &project );
+
    WaveTrack(
       const SampleBlockFactoryPtr &pFactory, sampleFormat format, double rate);
    WaveTrack(const WaveTrack &orig);
