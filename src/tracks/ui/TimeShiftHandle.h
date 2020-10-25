@@ -198,6 +198,7 @@ private:
 struct MakeTrackShifterTag;
 using MakeTrackShifter = AttachedVirtualFunction<
    MakeTrackShifterTag, std::unique_ptr<TrackShifter>, Track, SaucedacityProject&>;
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, MakeTrackShifter);
 
 class ViewInfo;
 

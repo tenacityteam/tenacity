@@ -233,12 +233,10 @@ static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
 
 }
 
-template<> auto DoGetView::Implementation() -> Function {
+DEFINE_ATTACHED_VIRTUAL(DoGetView) {
    return nullptr;
 }
-static DoGetView registerDoGetView;
 
-template<> auto GetDefaultTrackHeight::Implementation() -> Function {
+DEFINE_ATTACHED_VIRTUAL(GetDefaultTrackHeight) {
    return nullptr;
 }
-static GetDefaultTrackHeight registerGetDefaultTrackHeight;

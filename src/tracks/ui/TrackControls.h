@@ -38,5 +38,6 @@ AttachedVirtualFunction<
    std::shared_ptr< TrackControls >,
    Track
 >;
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, DoGetControls);
 
 #endif
