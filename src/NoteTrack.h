@@ -272,6 +272,9 @@ public:
    // of the line separating B and C
    int GetWhitePos(int i) const { return 1 + (i * GetOctaveHeight()) / 7; }
 };
+
+ENUMERATE_TRACK_TYPE(NoteTrack);
+
 #endif // USE_MIDI
 
 #ifndef SONIFY
