@@ -26,6 +26,7 @@
 #include "../ProjectWindow.h"
 #include "../SelectUtilities.h"
 #include "../shuttle/ShuttleGui.h"
+#include "../SyncLock.h"
 #include "../TimeTrack.h"
 #include "../TrackPanelAx.h"
 #include "../TrackPanel.h"
@@ -333,7 +334,8 @@ void DoAlign
 
    if (delta != 0.0) {
       // For a fixed-distance shift move sync-lock selected tracks also.
-      for (auto t : tracks.Any() + &Track::IsSelectedOrSyncLockSelected )
+      for (auto t : tracks.Any()
+           + &SyncLock::IsSelectedOrSyncLockSelected )
          t->SetOffset(t->GetOffset() + delta);
    }
 

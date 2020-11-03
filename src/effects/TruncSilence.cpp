@@ -35,6 +35,7 @@
 #include "../ProjectSettings.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
+#include "../SyncLock.h"
 #include "../WaveTrack.h"
 #include "../widgets/valnum.h"
 #include "../widgets/AudacityMessageBox.h"
@@ -346,7 +347,7 @@ bool EffectTruncSilence::ProcessIndependently()
          if (syncLock) {
             auto channels = TrackList::Channels(track);
             auto otherTracks =
-               TrackList::SyncLockGroup(track).Filter<const WaveTrack>()
+               SyncLock::Group(track).Filter<const WaveTrack>()
                   + &Track::IsSelected
                   - [&](const Track *pTrack){
                         return channels.contains(pTrack); };
@@ -384,7 +385,7 @@ bool EffectTruncSilence::ProcessIndependently()
          // Treat tracks in the sync lock group only
          Track *groupFirst, *groupLast;
          if (syncLock) {
-            auto trackRange = TrackList::SyncLockGroup(track);
+            auto trackRange = SyncLock::Group(track);
             groupFirst = *trackRange.begin();
             groupLast = *trackRange.rbegin();
          }
@@ -543,7 +544,7 @@ bool EffectTruncSilence::DoRemoval
       double cutEnd = cutStart + cutLen;
       (mOutputTracks->Any()
          .StartingWith(firstTrack).EndingAfter(lastTrack)
-         + &Track::IsSelectedOrSyncLockSelected
+         + &SyncLock::IsSelectedOrSyncLockSelected
          - [&](const Track *pTrack) { return
            // Don't waste time past the end of a track
            pTrack->GetEndTime() < r->start;

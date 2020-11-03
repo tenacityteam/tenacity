@@ -24,6 +24,7 @@
 #include "../ProjectWindows.h"
 #include "../SelectUtilities.h"
 #include "../TimeDialog.h"
+#include "../SyncLock.h"
 #include "../TrackPanel.h"
 #include "../WaveTrack.h"
 #include "../LabelTrack.h"
@@ -515,7 +516,7 @@ void OnSelectSyncLockSel(const CommandContext &context)
 
    bool selected = false;
    for (auto t : tracks.Any() + &Track::SupportsBasicEditing
-         + &Track::IsSyncLockSelected - &Track::IsSelected) {
+         + &SyncLock::IsSyncLockSelected - &Track::IsSelected) {
       t->SetSelected(true);
       selected = true;
    }

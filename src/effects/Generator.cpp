@@ -21,6 +21,7 @@
 #include <lib-project/Project.h>
 #include <lib-screen-geometry/ViewInfo.h>
 
+#include "SyncLock.h"
 #include "../WaveTrack.h"
 #include "../prefs/TracksBehaviorsPrefs.h"
 
@@ -100,7 +101,7 @@ bool Generator::Process()
          ntrack++;
       },
       [&](Track *t) {
-         if (t->IsSyncLockSelected()) {
+         if (SyncLock::IsSyncLockSelected(t)) {
             t->SyncLockAdjust(mT1, mT0 + GetDuration());
          }
       }
