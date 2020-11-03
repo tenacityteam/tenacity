@@ -22,6 +22,7 @@
 #include "../ProjectWindow.h"
 #include "../ProjectWindows.h"
 #include "../SelectUtilities.h"
+#include "../SyncLock.h"
 #include "../TrackPanel.h"
 #include "../TrackPanelAx.h"
 #include "../UndoManager.h"
@@ -274,7 +275,7 @@ void OnCut(const CommandContext &context)
    // Proceed to change the project.  If this throws, the project will be
    // rolled back by the top level handler.
 
-   (tracks.Any() + &Track::IsSelectedOrSyncLockSelected).Visit(
+   (tracks.Any() + &SyncLock::IsSelectedOrSyncLockSelected).Visit(
 #if defined(USE_MIDI)
       [](NoteTrack*) {
          //if NoteTrack, it was cut, so do not clear anything
@@ -317,7 +318,7 @@ void OnDelete(const CommandContext &context)
    for (auto n : tracks.Any()) {
       if (!n->SupportsBasicEditing())
          continue;
-      if (n->GetSelected() || n->IsSyncLockSelected()) {
+      if (SyncLock::IsSelectedOrSyncLockSelected(n)) {
          n->Clear(selectedRegion.t0(), selectedRegion.t1());
       }
    }
@@ -488,7 +489,7 @@ void OnPaste(const CommandContext &context)
             while (n && (!c->SameKindAs(*n) || !n->GetSelected()))
             {
                // Must perform sync-lock adjustment before incrementing n
-               if (n->IsSyncLockSelected()) {
+               if (SyncLock::IsSyncLockSelected(n)) {
                   auto newT1 = t0 + clipboard.Duration();
                   if (t1 != newT1 && t1 <= n->GetEndTime()) {
                      n->SyncLockAdjust(t1, newT1);
@@ -600,7 +601,7 @@ void OnPaste(const CommandContext &context)
             c = * ++ pC;
          }
       } // if (n->GetSelected())
-      else if (n->IsSyncLockSelected())
+      else if (SyncLock::IsSyncLockSelected(n))
       {
          auto newT1 = t0 + clipboard.Duration();
          if (t1 != newT1 && t1 <= n->GetEndTime()) {
@@ -639,7 +640,7 @@ void OnPaste(const CommandContext &context)
             }
          },
          [&](LabelTrack *lt, const Track::Fallthrough &fallthrough) {
-            if (!lt->GetSelected() && !lt->IsSyncLockSelected())
+            if (!SyncLock::IsSelectedOrSyncLockSelected(lt))
                return fallthrough();
 
             lt->Clear(t0, t1);
@@ -650,7 +651,7 @@ void OnPaste(const CommandContext &context)
                   clipboard.Duration(), t0);
          },
          [&](Track *n) {
-            if (n->IsSyncLockSelected())
+            if (SyncLock::IsSyncLockSelected(n))
                n->SyncLockAdjust(t1, t0 + clipboard.Duration() );
          }
       );

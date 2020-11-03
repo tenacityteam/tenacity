@@ -226,6 +226,8 @@ list( APPEND SOURCES
       SqliteSampleBlock.cpp
       Tags.cpp
       Tags.h
+      SyncLock.cpp
+      SyncLock.h
       TimeDialog.cpp
       TimeDialog.h
       TimeTrack.cpp

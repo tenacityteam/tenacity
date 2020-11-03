@@ -47,6 +47,7 @@ audio tracks.
 #include "theme/AllThemeResources.h"
 #include "prefs/GUIPrefs.h"
 #include "theme/Theme.h"
+#include "SyncLock.h"
 #include "Track.h"
 #include "TrackPanelDrawingContext.h"
 #include "ViewInfo.h"
@@ -544,7 +545,7 @@ void TrackArt::DrawBackgroundWithSelection(
    const double sel1 = useSelection ? selectedRegion.t1() : 0.0;
 
    dc->SetPen(*wxTRANSPARENT_PEN);
-   if (track->GetSelected() || track->IsSyncLockSelected())
+   if (SyncLock::IsSelectedOrSyncLockSelected(track))
    {
       // Rectangles before, within, after the selection
       wxRect before = rect;

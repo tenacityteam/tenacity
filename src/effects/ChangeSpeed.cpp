@@ -30,6 +30,7 @@
 #include "../LabelTrack.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
+#include "../SyncLock.h"
 #include "../widgets/NumericTextCtrl.h"
 #include "../widgets/valnum.h"
 
@@ -246,7 +247,7 @@ bool EffectChangeSpeed::Process()
 
    mOutputTracks->Any().VisitWhile( bGoodResult,
       [&](LabelTrack *lt) {
-         if (lt->GetSelected() || lt->IsSyncLockSelected())
+         if (SyncLock::IsSelectedOrSyncLockSelected(lt))
          {
             if (!ProcessLabelTrack(lt))
                bGoodResult = false;
@@ -278,7 +279,7 @@ bool EffectChangeSpeed::Process()
          mCurTrackNum++;
       },
       [&](Track *t) {
-         if (t->IsSyncLockSelected())
+         if (SyncLock::IsSyncLockSelected(t))
             t->SyncLockAdjust(mT1, mT0 + (mT1 - mT0) * mFactor);
       }
    );
