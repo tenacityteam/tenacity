@@ -1513,6 +1513,20 @@ void MixerBoardFrame::SetWindowTitle()
 
 namespace {
 
+const ReservedCommandFlag&
+   PlayableTracksExistFlag() { static ReservedCommandFlag flag{
+      [](const TenacityProject &project){
+         auto &tracks = TrackList::Get( project );
+         return
+#ifdef EXPERIMENTAL_MIDI_OUT
+            !tracks.Any<const NoteTrack>().empty()
+         ||
+#endif
+            !tracks.Any<const WaveTrack>().empty()
+         ;
+      }
+   }; return flag; }
+
 // Mixer board window attached to each project is built on demand by:
 AttachedWindows::RegisteredFactory sMixerBoardKey{
    []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
