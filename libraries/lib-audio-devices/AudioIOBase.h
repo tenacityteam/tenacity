@@ -113,6 +113,12 @@ struct AudioIOStartStreamOptions
    std::function< unsigned long() > playbackStreamPrimer;
 };
 
+struct AudioIODiagnostics{
+   std::string filename;    /// For crash report bundle
+   std::string text;        /// One big string, may be localized
+   std::string description; /// Non-localized short description
+};
+
 //! Abstract interface to alternative, concurrent playback with the main audio (such as MIDI events)
 class AUDIO_DEVICES_API AudioIOExtBase
 {
@@ -121,6 +127,9 @@ public:
 
    // Formerly in AudioIOBase
    virtual bool IsOtherStreamActive() const = 0;
+
+   //! Get diagnostic information for audio devices and also for extensions
+   virtual AudioIODiagnostics Dump() const = 0;
 };
 
 ///\brief A singleton object supporting queries of the state of any active
@@ -221,12 +230,10 @@ public:
    /** \brief Get diagnostic information on all the available audio I/O devices
     *
     */
-   std::string GetDeviceInfo();
+   std::string GetDeviceInfo() const;
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-   /** \brief Get diagnostic information on all the available MIDI I/O devices */
-   std::string GetMidiDeviceInfo();
-#endif
+   //! Get diagnostic information for audio devices and also for extensions
+   std::vector<AudioIODiagnostics> GetAllDeviceInfo();
 
    /** \brief Find out if playback / recording is currently paused */
    bool IsPaused() const;

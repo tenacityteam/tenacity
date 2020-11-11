@@ -25,6 +25,7 @@
 #include "../lib-src/header-substitutes/allegro.h"
 
 #include <sstream>
+#include <iostream>
 
 #define ROUND(x) ((int) ((x) + 0.5))
 
@@ -1165,5 +1166,115 @@ int NoteTrackDisplayData::YToIPitch(int y) const
 }
 
 const float NoteTrack::ZoomStep = powf( 2.0f, 0.25f );
+
+#include <wx/log.h>
+#include <wx/sstream.h>
+#include <wx/txtstrm.h>
+#include "AudioIOBase.h"
+#include "portmidi.h"
+
+// FIXME: When EXPERIMENTAL_MIDI_IN is added (eventually) this should also be enabled -- Poke
+std::string GetMIDIDeviceInfo()
+{
+   std::ostringstream s;
+
+   if (AudioIOBase::Get()->IsStreamActive()) {
+      return XO("Stream is active ... unable to gather information.\n")
+         .Translation().ToStdString(wxConvUTF8);
+   }
+
+
+   // XXX: May need to trap errors as with the normal device info
+   int recDeviceNum = Pm_GetDefaultInputDeviceID();
+   int playDeviceNum = Pm_GetDefaultOutputDeviceID();
+   int cnt = Pm_CountDevices();
+
+   // PRL:  why only into the log?
+   wxLogDebug(wxT("PortMidi reports %d MIDI devices"), cnt);
+
+   s << std::string("==============================") << std::endl;
+   s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation().ToStdString(wxConvUTF8) << std::endl;
+   s << XO("Default playback device number: %d").Format( playDeviceNum ).Translation().ToStdString(wxConvUTF8) << std::endl;
+
+   wxString recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT(""));
+   wxString playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT(""));
+
+   // This gets info on all available audio devices (input and output)
+   if (cnt <= 0) {
+      s << XO("No devices found\n").Translation().ToStdString(wxConvUTF8) << std::endl;
+      return s.str();
+   }
+
+   for (int i = 0; i < cnt; i++) {
+      s << std::string("==============================") << std::endl;
+
+      const PmDeviceInfo* info = Pm_GetDeviceInfo(i);
+      if (!info) {
+         s << XO("Device info unavailable for: %d").Format( i ).Translation().ToStdString(wxConvUTF8) << std::endl;
+         continue;
+      }
+
+      wxString name = wxSafeConvertMB2WX(info->name);
+      wxString hostName = wxSafeConvertMB2WX(info->interf);
+
+      s << XO("Device ID: %d").Format( i ).Translation().ToStdString(wxConvUTF8) << std::endl;
+      s << XO("Device name: %s").Format( name ).Translation().ToStdString(wxConvUTF8) << std::endl;
+      s << XO("Host name: %s").Format( hostName ).Translation().ToStdString(wxConvUTF8) << std::endl;
+      /* i18n-hint: Supported, meaning made available by the system */
+      s << XO("Supports output: %d").Format( info->output ).Translation().ToStdString(wxConvUTF8) << std::endl;
+      /* i18n-hint: Supported, meaning made available by the system */
+      s << XO("Supports input: %d").Format( info->input ).Translation().ToStdString(wxConvUTF8) << std::endl;
+      s << XO("Opened: %d").Format( info->opened ).Translation().ToStdString(wxConvUTF8) << std::endl;
+
+      if (name == playDevice && info->output)
+         playDeviceNum = i;
+
+      if (name == recDevice && info->input)
+         recDeviceNum = i;
+
+      // XXX: This is only done because the same was applied with PortAudio
+      // If PortMidi returns -1 for the default device, use the first one
+      if (recDeviceNum < 0 && info->input){
+         recDeviceNum = i;
+      }
+      if (playDeviceNum < 0 && info->output){
+         playDeviceNum = i;
+      }
+   }
+
+   bool haveRecDevice = (recDeviceNum >= 0);
+   bool havePlayDevice = (playDeviceNum >= 0);
+
+   s << std::string("==============================") << std::endl;
+   if (haveRecDevice)
+      s << XO("Selected MIDI recording device: %d - %s").Format( recDeviceNum, recDevice ).Translation().ToStdString(wxConvUTF8) << std::endl;
+   else
+      s << XO("No MIDI recording device found for '%s'.").Format( recDevice ).Translation().ToStdString(wxConvUTF8) << std::endl;
+
+   if (havePlayDevice)
+      s << XO("Selected MIDI playback device: %d - %s").Format( playDeviceNum, playDevice ).Translation().ToStdString(wxConvUTF8) << std::endl;
+   else
+      s << XO("No MIDI playback device found for '%s'.").Format( playDevice ).Translation().ToStdString(wxConvUTF8) << std::endl;
+
+   // Mention our conditional compilation flags for Alpha only
+#ifdef IS_ALPHA
+
+   // Not internationalizing these alpha-only messages
+   s << std::string("==============================") << std::endl;
+#ifdef EXPERIMENTAL_MIDI_OUT
+   s << std::string("EXPERIMENTAL_MIDI_OUT is enabled") << std::endl;
+#else
+   s << std::string("EXPERIMENTAL_MIDI_OUT is NOT enabled") << std::endl;
+#endif
+#ifdef EXPERIMENTAL_MIDI_IN
+   s << std::string("EXPERIMENTAL_MIDI_IN is enabled") << std::endl;
+#else
+   s << std::string("EXPERIMENTAL_MIDI_IN is NOT enabled") << std::endl;
+#endif
+
+#endif
+
+   return s.str();
+}
 
 #endif // USE_MIDI

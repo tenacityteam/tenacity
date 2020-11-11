@@ -33,7 +33,7 @@ public:
    static Factories &GetFactories();
 
    //! Typically statically constructed
-   struct TENACITY_DLL_API RegisteredFactory{
+   struct AUDIO_DEVICES_API RegisteredFactory{
       explicit RegisteredFactory(Factory factory);
       ~RegisteredFactory();
    };

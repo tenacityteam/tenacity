@@ -296,4 +296,6 @@ ENUMERATE_TRACK_TYPE(NoteTrack);
 #endif
 
 
+TENACITY_DLL_API std::string GetMIDIDeviceInfo();
+
 #endif

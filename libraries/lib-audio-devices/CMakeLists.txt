@@ -26,7 +26,6 @@ set( SOURCES
 )
 set( LIBRARIES
    PortAudio::PortAudio
-   $<$<BOOL:${USE_MIDI}>:PortMidi::PortMidi>
    lib-preferences-interface
    PRIVATE
    wxWidgets::wxWidgets
