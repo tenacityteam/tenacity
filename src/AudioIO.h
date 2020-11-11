@@ -106,6 +106,17 @@ struct TransportTracks;
 class TENACITY_DLL_API AudioIOExt : public AudioIOExtBase
 {
 public:
+   using Factory = std::function<
+      std::unique_ptr<AudioIOExt>( const PlaybackSchedule& ) >;
+   using Factories = std::vector<AudioIOExt::Factory>;
+   static Factories &GetFactories();
+
+   //! Typically statically constructed
+   struct TENACITY_DLL_API RegisteredFactory{
+      explicit RegisteredFactory(Factory factory);
+      ~RegisteredFactory();
+   };
+
    virtual ~AudioIOExt();
 
    // Formerly in AudioIoCallback
