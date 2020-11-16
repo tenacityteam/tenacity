@@ -200,7 +200,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
       return;
    }
 
-   const WaveTrack *const track = waveTrackCache.GetTrack().get();
+   const auto track =
+      static_cast<const WaveTrack*>(waveTrackCache.GetTrack().get());
    const SpectrogramSettings &settings = track->GetSpectrogramSettings();
    const bool autocorrelation = (settings.algorithm == SpectrogramSettings::algPitchEAC);
 
