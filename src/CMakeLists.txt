@@ -209,6 +209,8 @@ list( APPEND SOURCES
       SampleBlock.h
       SampleTrack.cpp
       SampleTrack.h
+      SampleTrackCache.cpp
+      SampleTrackCache.h
       TenacityApp.cpp
       TenacityApp.h
       $<$<BOOL:${wxIS_MAC}>:TenacityApp.mm>

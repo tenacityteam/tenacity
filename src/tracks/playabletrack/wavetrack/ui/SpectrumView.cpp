@@ -15,6 +15,11 @@ Paul Licameli split from WaveTrackView.cpp
 #include "WaveTrackView.h"
 #include "WaveTrackViewConstants.h"
 
+// Tenacity libraries
+#include <lib-screen-geometry/NumberScale.h>
+#include <lib-screen-geometry/SelectedRegion.h>
+#include <lib-screen-geometry/ZoomInfo.h>
+
 #include "../../../../AColor.h"
 #include "../../../../TrackArt.h"
 #include "../../../../TrackArtist.h"
@@ -22,15 +27,7 @@ Paul Licameli split from WaveTrackView.cpp
 #include "../../../../WaveClip.h"
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
-
-#ifdef PROFILE_WAVEFORM
-#include "../../../../Profiler.h"
-#endif
-
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-screen-geometry/NumberScale.h>
-#include <lib-screen-geometry/ViewInfo.h>
+#include "../../../../SampleTrackCache.h"
 
 #include <wx/dcmemory.h>
 #include <wx/graphics.h>
@@ -177,7 +174,7 @@ ChooseColorSet( float bin0, float bin1, float selBinLo,
 }
 
 void DrawClipSpectrum(TrackPanelDrawingContext &context,
-                                   WaveTrackCache &waveTrackCache,
+                                   SampleTrackCache &waveTrackCache,
                                    const WaveClip *clip,
                                    const wxRect & rect,
                                    bool selected)
@@ -636,7 +633,7 @@ void SpectrumView::DoDraw(TrackPanelDrawingContext& context,
    TrackArt::DrawBackgroundWithSelection(
       context, rect, track, blankSelectedBrush, blankBrush );
 
-   WaveTrackCache cache(track->SharedPointer<const WaveTrack>());
+   SampleTrackCache cache(track->SharedPointer<const WaveTrack>());
    for (const auto &clip: track->GetClips())
       DrawClipSpectrum( context, cache, clip.get(), rect, clip.get() == selectedClip );
 
