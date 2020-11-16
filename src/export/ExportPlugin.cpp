@@ -173,7 +173,7 @@ std::unique_ptr<Mixer> ExportPlugin::CreateMixer(const TrackList &tracks,
             double outRate, sampleFormat outFormat,
             MixerSpec *mixerSpec)
 {
-    WaveTrackConstArray inputTracks;
+    SampleTrackConstArray inputTracks;
 
     bool anySolo = !(( tracks.Any<const WaveTrack>() + &WaveTrack::GetSolo ).empty());
 
@@ -183,7 +183,7 @@ std::unique_ptr<Mixer> ExportPlugin::CreateMixer(const TrackList &tracks,
     for (auto pTrack: range)
     {
         inputTracks.push_back(
-            pTrack->SharedPointer< const WaveTrack >()
+            pTrack->SharedPointer< const SampleTrack >()
         );
     }
 
