@@ -17,6 +17,8 @@
 #include <lib-math/SampleCount.h>
 #include <lib-math/SampleFormat.h>
 
+#include "SampleTrack.h"
+
 #include <vector>
 #include <functional>
 #include <wx/longlong.h>
@@ -69,7 +71,8 @@ using Regions = std::vector < Region >;
 
 class Envelope;
 
-class TENACITY_DLL_API WaveTrack final : public PlayableTrack {
+class TENACITY_DLL_API WaveTrack final : public SampleTrack
+{
 public:
 
    //

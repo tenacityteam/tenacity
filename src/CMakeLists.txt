@@ -207,6 +207,8 @@ list( APPEND SOURCES
       RingBuffer.h
       SampleBlock.cpp
       SampleBlock.h
+      SampleTrack.cpp
+      SampleTrack.h
       TenacityApp.cpp
       TenacityApp.h
       $<$<BOOL:${wxIS_MAC}>:TenacityApp.mm>

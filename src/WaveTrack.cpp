@@ -130,7 +130,7 @@ WaveTrack *WaveTrack::New( TenacityProject &project )
 
 WaveTrack::WaveTrack( const SampleBlockFactoryPtr &pFactory,
    sampleFormat format, double rate )
-   : PlayableTrack()
+   : SampleTrack()
    , mpFactory(pFactory)
 {
    mLegacyProjectFileOffset = 0;
@@ -152,7 +152,7 @@ WaveTrack::WaveTrack( const SampleBlockFactoryPtr &pFactory,
 }
 
 WaveTrack::WaveTrack(const WaveTrack &orig):
-   PlayableTrack(orig)
+   SampleTrack(orig)
    , mpFactory( orig.mpFactory )
    , mpSpectrumSettings(orig.mpSpectrumSettings
       ? std::make_unique<SpectrogramSettings>(*orig.mpSpectrumSettings)
@@ -178,7 +178,7 @@ WaveTrack::WaveTrack(const WaveTrack &orig):
 // Copy the track metadata but not the contents.
 void WaveTrack::Init(const WaveTrack &orig)
 {
-   PlayableTrack::Init(orig);
+   SampleTrack::Init(orig);
    mpFactory = orig.mpFactory;
    
    mFormat = orig.mFormat;
@@ -231,7 +231,7 @@ void WaveTrack::Merge(const Track &orig)
       SetWaveformSettings
          (wt.mpWaveformSettings ? std::make_unique<WaveformSettings>(*wt.mpWaveformSettings) : nullptr);
    });
-   PlayableTrack::Merge(orig);
+   SampleTrack::Merge(orig);
 }
 
 WaveTrack::~WaveTrack()
@@ -281,7 +281,7 @@ void WaveTrack::SetPanFromChannelType()
 
 bool WaveTrack::LinkConsistencyCheck()
 {
-   auto err = PlayableTrack::LinkConsistencyCheck();
+   auto err = SampleTrack::LinkConsistencyCheck();
 
    auto linkType = GetLinkType();
    if (static_cast<int>(linkType) == 1 || //Comes from old audacity version
@@ -315,7 +315,7 @@ static const Track::TypeInfo &typeInfo()
 {
    static const Track::TypeInfo info{
       { "wave", "wave", XO("Wave Track") },
-      true, &PlayableTrack::ClassTypeInfo() };
+      true, &SampleTrack::ClassTypeInfo() };
    return info;
 }
 
@@ -1868,7 +1868,7 @@ bool WaveTrack::HandleXMLTag(const std::string_view& tag, const AttributesList &
             // track is created.
             mLegacyProjectFileOffset = dblValue;
          }
-         else if (this->PlayableTrack::HandleXMLAttribute(attr, value))
+         else if (this->SampleTrack::HandleXMLAttribute(attr, value))
          {}
          else if (this->Track::HandleCommonXMLAttribute(attr, value))
             ;
@@ -1949,7 +1949,7 @@ void WaveTrack::WriteXML(XMLWriter &xmlFile) const
    this->Track::WriteCommonXMLAttributes( xmlFile );
    xmlFile.WriteAttr(wxT("channel"), mChannel);
    xmlFile.WriteAttr(wxT("linked"), static_cast<int>(GetLinkType()));
-   this->PlayableTrack::WriteXMLAttributes(xmlFile);
+   this->SampleTrack::WriteXMLAttributes(xmlFile);
    xmlFile.WriteAttr(wxT("rate"), mRate);
    xmlFile.WriteAttr(wxT("gain"), (double)mGain);
    xmlFile.WriteAttr(wxT("pan"), (double)mPan);
