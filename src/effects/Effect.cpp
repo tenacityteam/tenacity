@@ -32,7 +32,7 @@
 #include "widgets/wxWidgetsBasicUI.h"
 #include "../DBConnection.h"
 #include "../LabelTrack.h"
-#include "../Mix.h"
+#include "../MixAndRender.h"
 #include "../PluginManager.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectFileIO.h"
