@@ -440,7 +440,8 @@ void StartAudioIOThread()
    {
       using Clock = std::chrono::steady_clock;
       auto loopPassStart = Clock::now();
-      const auto interval = ScrubPollInterval_ms;
+      auto& schedule = gAudioIO->mPlaybackSchedule;
+      const auto interval = schedule.GetPolicy().SleepInterval(schedule);
 
       // Set LoopActive outside the tests to avoid race condition
       gAudioIO->mAudioThreadTrackBufferExchangeLoopActive = true;
@@ -455,14 +456,7 @@ void StartAudioIOThread()
       }
       gAudioIO->mAudioThreadTrackBufferExchangeLoopActive = false;
 
-      if ( gAudioIO->mPlaybackSchedule.Interactive() )
-      {
-         std::this_thread::sleep_until(
-            loopPassStart + std::chrono::milliseconds( interval ) );
-      } else
-      {
-         std::this_thread::sleep_for(std::chrono::milliseconds(10));
-      }
+      std::this_thread::sleep_until(loopPassStart + interval);
    }
 }
 
