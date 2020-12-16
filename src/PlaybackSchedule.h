@@ -38,7 +38,20 @@ struct RecordingSchedule {
    double ToDiscard() const;
 };
 
+//! Directs which parts of tracks to fetch for playback
+/*!
+ A non-default policy object may be created each time playback begins, and if so it is destroyed when
+ playback stops, not reused in the next playback.
+
+ Methods of the object are passed a PlaybackSchedule as context.
+ */
+class PlaybackPolicy {
+public:
+   virtual ~PlaybackPolicy() = 0;
+};
+
 struct TENACITY_DLL_API PlaybackSchedule {
+
    /// Playback starts at offset of mT0, which is measured in seconds.
    double              mT0;
    /// Playback ends at offset of mT1, which is measured in seconds.  Note that mT1 may be less than mT0 during scrubbing.
@@ -107,6 +120,9 @@ struct TENACITY_DLL_API PlaybackSchedule {
       /*! Assumes the producer and consumer are suspended */
       void Prime(double time);
    } mTimeQueue;
+
+   PlaybackPolicy &GetPolicy();
+   const PlaybackPolicy &GetPolicy() const;
 
    volatile enum {
       PLAY_STRAIGHT,
@@ -184,7 +200,10 @@ struct TENACITY_DLL_API PlaybackSchedule {
     */
    double NormalizeTrackTime() const;
 
-   void ResetMode() { mPlayMode = PLAY_STRAIGHT; }
+   void ResetMode() {
+      mPlayMode = PLAY_STRAIGHT;
+      mPolicyValid.store(false, std::memory_order_release);
+   }
 
    bool PlayingStraight() const { return mPlayMode == PLAY_STRAIGHT; }
    bool Looping() const         { return mPlayMode == PLAY_LOOPED; }
@@ -220,6 +239,12 @@ struct TENACITY_DLL_API PlaybackSchedule {
    
    void RealTimeRestart();
 
+private:
+   std::unique_ptr<PlaybackPolicy> mpPlaybackPolicy;
+   std::atomic<bool> mPolicyValid{ false };
 };
 
+struct LoopingPlaybackPolicy final : PlaybackPolicy {
+   ~LoopingPlaybackPolicy() override;
+};
 #endif
