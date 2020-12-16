@@ -137,7 +137,7 @@ public:
 public:
    // This function executes in a thread spawned by the PortAudio library
    int AudioCallback(
-      const void *inputBuffer, void *outputBuffer,
+      constSamplePtr inputBuffer, float *outputBuffer,
       unsigned long framesPerBuffer,
       const PaStreamCallbackTimeInfo *timeInfo,
       const PaStreamCallbackFlags statusFlags, void *userData);
@@ -208,17 +208,18 @@ public:
    void AddToOutputChannel( unsigned int chan,
       float * outputMeterFloats,
       float * outputFloats,
-      float * tempBuf,
+      const float * tempBuf,
       bool drop,
       unsigned long len,
       WaveTrack& vt
       );
    bool FillOutputBuffers(
-      void *outputBuffer,
-      unsigned long framesPerBuffer, float *outputMeterFloats
+      float *outputBuffer,
+      unsigned long framesPerBuffer,
+      float *outputMeterFloats
    );
    void FillInputBuffers(
-      const void *inputBuffer, 
+      constSamplePtr inputBuffer, 
       unsigned long framesPerBuffer,
       const PaStreamCallbackFlags statusFlags,
       float * tempFloats
@@ -227,17 +228,17 @@ public:
       unsigned long framesPerBuffer
    );
    void DoPlaythrough(
-      const void *inputBuffer, 
-      void *outputBuffer,
+      constSamplePtr inputBuffer, 
+      float *outputBuffer,
       unsigned long framesPerBuffer,
       float *outputMeterFloats
    );
    void SendVuInputMeterData(
-      float *inputSamples,
+      const float *inputSamples,
       unsigned long framesPerBuffer
    );
    void SendVuOutputMeterData(
-      float *outputMeterFloats,
+      const float *outputMeterFloats,
       unsigned long framesPerBuffer
    );
 
