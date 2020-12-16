@@ -72,6 +72,11 @@ public:
    //! Whether repositioning commands are allowed during playback
    virtual bool AllowSeek( PlaybackSchedule &schedule );
 
+   //! Returns true if schedule.GetTrackTime() has reached the end of playback
+   virtual bool Done( PlaybackSchedule &schedule,
+      unsigned long outputFrames //!< how many playback frames were taken from RingBuffers
+   );
+
    //! @section Called by the AudioIO::TrackBufferExchange thread
 
    //! How long to wait between calls to AudioIO::TrackBufferExchange
@@ -236,10 +241,6 @@ struct TENACITY_DLL_API PlaybackSchedule {
    bool PlayingAtSpeed() const  { return mPlayMode == PLAY_AT_SPEED; }
    bool Interactive() const     { return Scrubbing() || PlayingAtSpeed(); }
 
-   // Returns true if a loop pass, or the sole pass of straight play,
-   // is completed at the current value of mTime
-   bool PassIsComplete() const;
-
    // Returns true if time equals t1 or is on opposite side of t1, to t0
    bool Overruns( double trackTime ) const;
 
@@ -271,5 +272,7 @@ private:
 
 struct LoopingPlaybackPolicy final : PlaybackPolicy {
    ~LoopingPlaybackPolicy() override;
+
+   bool Done( PlaybackSchedule &schedule, unsigned long ) override;
 };
 #endif

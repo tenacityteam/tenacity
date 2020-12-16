@@ -12,6 +12,7 @@
 
 #include "AudioIOBase.h"
 #include "Envelope.h"
+#include "SampleCount.h"
 
 #include <cmath>
 
@@ -58,6 +59,17 @@ bool PlaybackPolicy::AllowSeek(PlaybackSchedule &)
    return true;
 }
 
+bool PlaybackPolicy::Done( PlaybackSchedule &schedule,
+   unsigned long outputFrames)
+{
+   auto diff = schedule.GetTrackTime() - schedule.mT1;
+   if (schedule.ReversedTime())
+      diff *= -1;
+   return sampleCount(floor(diff * mRate + 0.5)) >= 0 &&
+      // Require also that output frames are all consumed from ring buffer
+      outputFrames == 0;
+}
+
 std::chrono::milliseconds PlaybackPolicy::SleepInterval(PlaybackSchedule &)
 {
    using namespace std::chrono;
@@ -85,6 +97,11 @@ const PlaybackPolicy &PlaybackSchedule::GetPolicy() const
 }
 
 LoopingPlaybackPolicy::~LoopingPlaybackPolicy() = default;
+
+bool LoopingPlaybackPolicy::Done( PlaybackSchedule &, unsigned long )
+{
+   return false;
+}
 
 void PlaybackSchedule::Init(
    const double t0, const double t1,
@@ -176,14 +193,6 @@ double PlaybackSchedule::ClampTrackTime( double trackTime ) const
       return std::max(mT1, std::min(mT0, trackTime));
    else
       return std::max(mT0, std::min(mT1, trackTime));
-}
-
-bool PlaybackSchedule::PassIsComplete() const
-{
-   // Test mTime within the PortAudio callback
-   if (Scrubbing())
-      return false; // but may be true if playing at speed
-   return Overruns( GetTrackTime() );
 }
 
 bool PlaybackSchedule::Overruns( double trackTime ) const
