@@ -103,6 +103,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "Project.h"
 #include "DBConnection.h"
 #include "ProjectFileIO.h"
+#include "ScrubState.h"
 #include "WaveTrack.h"
 
 #include "effects/RealtimeEffectManager.h"
@@ -159,16 +160,24 @@ bool AudioIoCallback::mCachedBestRateCapturing;
 #endif
 
 
-struct AudioIoCallback::ScrubState : NonInterferingBase
+struct AudioIoCallback::ScrubQueue : NonInterferingBase
 {
-   ScrubState(double t0,
+   static ScrubQueue Instance;
+
+   ScrubQueue() {}
+
+   void Init(double t0,
               double rate,
               const ScrubbingOptions &options)
-      : mRate(rate)
-      , mStartTime( t0 )
    {
+      mRate = rate;
+      mStartTime = t0;
       const double t1 = options.bySpeed ? options.initSpeed : t0;
       Update( t1, options );
+
+      mStarted = false;
+      mStopped = false;
+      mAccumulatedSeekDuration = 0;
    }
 
    void Update(double end, const ScrubbingOptions &options)
@@ -250,19 +259,19 @@ struct AudioIoCallback::ScrubState : NonInterferingBase
    void Stop()
    {
       mStopped.store( true, std::memory_order_relaxed );
+      mStarted = false;
    }
 
-#if 0
-   // Needed only for the DRAG_SCRUB experiment
-   // Should make mS1 atomic then?
+   // Should make mS1 atomic?
    double LastTrackTime() const
    {
       // Needed by the main thread sometimes
       return mData.mS1.as_double() / mRate;
    }
-#endif
 
-   ~ScrubState() {}
+   ~ScrubQueue() {}
+
+   bool Started() const { return mStarted; }
 
 private:
    struct Data
@@ -412,11 +421,11 @@ private:
       sampleCount mSilence;
    };
 
-   double mStartTime;
+   double mStartTime{};
    bool mStarted{ false };
    std::atomic<bool> mStopped { false };
    Data mData;
-   const double mRate;
+   double mRate{};
    struct Message {
       Message() = default;
       Message(const Message&) = default;
@@ -426,6 +435,8 @@ private:
    MessageBuffer<Message> mMessage;
    sampleCount mAccumulatedSeekDuration{};
 };
+
+AudioIoCallback::ScrubQueue AudioIoCallback::ScrubQueue::Instance;
 #endif
 
 int audacityAudioCallback(const void *inputBuffer, void *outputBuffer,
@@ -582,7 +593,6 @@ AudioIO::AudioIO()
    mLastPlaybackTimeMillis = std::chrono::milliseconds{};
 
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
-   mScrubState = NULL;
    mScrubDuration = 0;
    mSilentScrub = false;
 #endif
@@ -1027,8 +1037,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
    if (scrubbing)
    {
       const auto &scrubOptions = *options.pScrubbingOptions;
-      mScrubState =
-         std::make_unique<ScrubState>(
+      ScrubQueue::Instance.Init(
             mPlaybackSchedule.mT0,
             mRate,
             scrubOptions);
@@ -1036,7 +1045,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
       mSilentScrub = false;
    }
    else
-      mScrubState.reset();
+      ScrubQueue::Instance.Stop();
 #endif
 
    // We signal the audio thread to call TrackBufferExchange, to prime the RingBuffers
@@ -1390,10 +1399,7 @@ void AudioIO::StartStreamCleanup(bool bOnlyBuffers)
    }
 
    mPlaybackSchedule.GetPolicy().Finalize( mPlaybackSchedule );
-
-#ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
-   mScrubState.reset();
-#endif
+   ScrubQueue::Instance.Stop();
 }
 
 bool AudioIO::IsAvailable(TenacityProject &project) const
@@ -1661,10 +1667,6 @@ void AudioIO::StopStream()
 
    mPlaybackSchedule.GetPolicy().Finalize( mPlaybackSchedule );
 
-#ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
-   mScrubState.reset();
-#endif
-
    if (pListener) {
       // Tell UI to hide sample rate
       pListener->OnAudioIORate(0);
@@ -1691,29 +1693,32 @@ void AudioIO::SetPaused(bool state)
 }
 
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
-void AudioIO::UpdateScrub
+void ScrubState::UpdateScrub
    (double endTimeOrSpeed, const ScrubbingOptions &options)
 {
-   if (mScrubState)
-      mScrubState->Update(endTimeOrSpeed, options);
+   auto &queue = AudioIoCallback::ScrubQueue::Instance;
+   queue.Update(endTimeOrSpeed, options);
 }
 
-void AudioIO::StopScrub()
+void ScrubState::StopScrub()
 {
-   if (mScrubState)
-      mScrubState->Stop();
+   auto &queue = AudioIoCallback::ScrubQueue::Instance;
+   queue.Stop();
 }
 
-#if 0
 // Only for DRAG_SCRUB
-double AudioIO::GetLastScrubTime() const
+double ScrubState::GetLastScrubTime()
 {
-   if (mScrubState)
-      return mScrubState->LastTrackTime();
-   else
-      return -1.0;
+   auto &queue = AudioIoCallback::ScrubQueue::Instance;
+   return queue.LastTrackTime();
 }
-#endif
+
+bool ScrubState::IsScrubbing()
+{
+   auto gAudioIO = AudioIOBase::Get();
+   auto &queue = AudioIoCallback::ScrubQueue::Instance;
+   return gAudioIO->IsBusy() && queue.Started();
+}
 
 #endif
 
@@ -1944,7 +1949,7 @@ bool AudioIO::RepositionPlayback(size_t frames, size_t available, bool progress)
       if (!done && mScrubDuration <= 0)
       {
          sampleCount startSample, endSample;
-         mScrubState->Get(
+         ScrubQueue::Instance.Get(
             startSample, endSample, available, mScrubDuration);
          if (mScrubDuration < 0)
          {
