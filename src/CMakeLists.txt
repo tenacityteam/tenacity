@@ -216,6 +216,8 @@ list( APPEND SOURCES
       TenacityFileConfig.h
       TenacityHeaders.cpp
       TenacityHeaders.h
+      ScrubState.cpp
+      ScrubState.h
       SelectUtilities.cpp
       SelectUtilities.h
       SelectFile.cpp
