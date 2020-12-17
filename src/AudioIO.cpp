@@ -902,7 +902,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
    });
 
    mPlaybackBuffers.reset();
-   mPlaybackMixers.reset();
+   mPlaybackMixers.clear();
    mCaptureBuffers.reset();
    mResample.reset();
    mPlaybackSchedule.mTimeQueue.mData.reset();
@@ -1236,7 +1236,8 @@ bool AudioIO::AllocateBuffers(
             // Always make at least one playback buffer
             mPlaybackBuffers.reinit(
                std::max<size_t>(1, mPlaybackTracks.size()));
-            mPlaybackMixers.reinit(mPlaybackTracks.size());
+            mPlaybackMixers.clear();
+            mPlaybackMixers.resize(mPlaybackTracks.size());
 
             const Mixer::WarpOptions &warpOptions =
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
@@ -1375,7 +1376,7 @@ void AudioIO::StartStreamCleanup(bool bOnlyBuffers)
    }
 
    mPlaybackBuffers.reset();
-   mPlaybackMixers.reset();
+   mPlaybackMixers.clear();
    mCaptureBuffers.reset();
    mResample.reset();
    mPlaybackSchedule.mTimeQueue.mData.reset();
@@ -1529,7 +1530,7 @@ void AudioIO::StopStream()
       if (mPlaybackTracks.size() > 0)
       {
          mPlaybackBuffers.reset();
-         mPlaybackMixers.reset();
+         mPlaybackMixers.clear();
          mPlaybackSchedule.mTimeQueue.mData.reset();
       }
 
