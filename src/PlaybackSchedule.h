@@ -220,15 +220,6 @@ struct TENACITY_DLL_API PlaybackSchedule {
    PlaybackPolicy &GetPolicy();
    const PlaybackPolicy &GetPolicy() const;
 
-   volatile enum {
-      PLAY_STRAIGHT,
-      PLAY_LOOPED,
-#ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
-      PLAY_SCRUB,
-      PLAY_AT_SPEED, // a version of PLAY_SCRUB.
-      PLAY_KEYBOARD_SCRUB,
-#endif
-   }                   mPlayMode { PLAY_STRAIGHT };
    double              mCutPreviewGapStart;
    double              mCutPreviewGapLen;
 
@@ -290,7 +281,6 @@ struct TENACITY_DLL_API PlaybackSchedule {
    double LimitTrackTime() const;
 
    void ResetMode() {
-      mPlayMode = PLAY_STRAIGHT;
       mPolicyValid.store(false, std::memory_order_release);
    }
 
