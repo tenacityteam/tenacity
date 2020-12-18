@@ -632,7 +632,6 @@ int AudioIO::StartStream(const TransportTracks &tracks,
 
    mPlaybackSchedule.Init(
       t0, t1, options, mCaptureTracks.empty() ? nullptr : &mRecordingSchedule );
-   const bool scrubbing = mPlaybackSchedule.Interactive();
 
    unsigned int playbackChannels = 0;
    unsigned int captureChannels = 0;
@@ -694,7 +693,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
       return 0;
    }
 
-   if ( ! AllocateBuffers( options, tracks, t0, t1, options.rate, scrubbing ) )
+   if ( ! AllocateBuffers( options, tracks, t0, t1, options.rate ) )
       return 0;
 
    if (mNumPlaybackChannels > 0)
@@ -880,8 +879,7 @@ void AudioIO::CallAfterRecording(PostRecordingAction action)
 
 bool AudioIO::AllocateBuffers(
    const AudioIOStartStreamOptions &options,
-   const TransportTracks &tracks, double t0, double t1, double sampleRate,
-   bool scrubbing )
+   const TransportTracks &tracks, double t0, double t1, double sampleRate )
 {
    bool success = false;
    auto cleanup = finally([&]{
@@ -889,6 +887,7 @@ bool AudioIO::AllocateBuffers(
    });
 
    auto &policy = mPlaybackSchedule.GetPolicy();
+   auto times = policy.SuggestedBufferTimes(mPlaybackSchedule);
 
    //
    // The (audio) stream has been opened successfully (assuming we tried
@@ -906,22 +905,15 @@ bool AudioIO::AllocateBuffers(
    // real playback time to produce with each filling of the buffers
    // by the Audio thread (except at the end of playback):
    // usually, make fillings fewer and longer for less CPU usage.
-   // But for useful scrubbing, we can't run too far ahead without checking
-   // mouse input, so make fillings more and shorter.
    // What Audio thread produces for playback is then consumed by the PortAudio
    // thread, in many smaller pieces.
-   double playbackTime = 4.0;
-   if (scrubbing)
-      // Specify a very short minimum batch for non-seek scrubbing, to allow
-      // more frequent polling of the mouse
-      playbackTime =
-         lrint(options.pScrubbingOptions->delay * mRate) / mRate;
+   double playbackTime = lrint(times.batchSize * mRate) / mRate;
    
    assert( playbackTime >= 0 );
    mPlaybackSamplesToCopy = playbackTime * mRate;
 
    // Capacity of the playback buffer.
-   mPlaybackRingBufferSecs = 10.0;
+   mPlaybackRingBufferSecs = times.ringBufferDelay;
 
    mCaptureRingBufferSecs =
       4.5 + 0.5 * std::min(size_t(16), mCaptureTracks.size());
@@ -951,14 +943,7 @@ bool AudioIO::AllocateBuffers(
             const auto &warpOptions =
                policy.MixerWarpOptions(mPlaybackSchedule);
 
-            mPlaybackQueueMinimum = mPlaybackSamplesToCopy;
-            if (scrubbing)
-               // Specify enough playback RingBuffer latency so we can refill
-               // once every seek stutter without falling behind the demand.
-               // (Scrub might switch in and out of seeking with left mouse
-               // presses in the ruler)
-               mPlaybackQueueMinimum = lrint(
-                  2 * options.pScrubbingOptions->minStutterTime * mRate );
+            mPlaybackQueueMinimum = lrint( mRate * times.latency );
             mPlaybackQueueMinimum =
                std::min( mPlaybackQueueMinimum, playbackBufferSize );
 
