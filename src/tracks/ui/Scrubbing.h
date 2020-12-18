@@ -20,6 +20,7 @@ Paul Licameli split from TrackPanel.cpp
 #include <lib-preferences/Prefs.h> // to inherit
 #include <lib-registries/ClientData.h>
 
+#include "../../ScrubState.h" // for ScrubbingOptions
 #include "../../widgets/Overlay.h" // to inherit
 #include "../../commands/CommandContext.h"
 #include "../../commands/CommandManager.h" // for MenuTable
