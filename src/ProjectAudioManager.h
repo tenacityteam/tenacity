@@ -167,8 +167,8 @@ private:
 };
 
 TENACITY_DLL_API
-AudioIOStartStreamOptions DefaultPlayOptions( TenacityProject &project );
-TENACITY_DLL_API
+AudioIOStartStreamOptions DefaultPlayOptions(
+   TenacityProject &project, bool looped = false );
 AudioIOStartStreamOptions DefaultSpeedPlayOptions( TenacityProject &project );
 
 struct PropertiesOfSelected
