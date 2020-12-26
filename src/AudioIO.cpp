@@ -53,15 +53,11 @@ to the meters.
   or rush synchronous audio samples (without distortion).
 
   \par
-  MIDI output is driven by yet another thread. In principle, we could
-  output timestamped MIDI data at the same time we fill audio buffers
-  from disk, but audio buffers are filled far in advance of playback
-  time, and there is a lower latency thread (PortAudio's callback) that
-  actually sends samples to the output device. The relatively low
+  MIDI output is driven by the low latency thread (PortAudio's callback)
+  that also sends samples to the output device.  The relatively low
   latency to the output device allows Audacity to stop audio output
   quickly. We want the same behavior for MIDI, but there is not
-  periodic callback from PortMidi (because MIDI is asynchronous), so
-  this function is performed by the MidiThread class.
+  periodic callback from PortMidi (because MIDI is asynchronous).
 
   \par
   When Audio is running, MIDI is synchronized to Audio. Globals are set
@@ -297,9 +293,7 @@ Time (in seconds, = total_sample_count / sample_rate)
 
   Since there is still bound to be jitter, we can smooth these estimates.
   First, we will assume a linear mapping from system time to audio time
-  with slope = 1, so really it's just the offset we need, which is going
-  to be a double that we can read/write atomically without locks or
-  anything fancy. (Maybe it should be "volatile".)
+  with slope = 1, so really it's just the offset we need.
 
   To improve the estimate, we get a new offset every callback, so we can
   create a "smooth" offset by using a simple regression model (also
@@ -328,7 +322,7 @@ Time (in seconds, = total_sample_count / sample_rate)
   \par Interaction between MIDI, Audio, and Pause
   When Pause is used, PauseTime() will increase at the same rate as
   AudioTime(), and no more events will be output. Because of the
-  time advance of mAudioOutputLatency + MIDI_SLEEP + latency and the
+  time advance of mAudioOutputLatency + latency and the
   fact that
   AudioTime() advances stepwise by mAudioBufferDuration, some extra MIDI
   might be output, but the same is true of audio: something like
@@ -458,17 +452,8 @@ time warp info and AudioIOListener and whether the playback is looped.
 
 #include <portmidi.h>
 #include <porttime.h>
-#include "../lib-src/header-substitutes/allegro.h"
 
-   constexpr int MIDI_SLEEP = 10; // milliseconds
-   // how long do we think the thread that fills MIDI buffers,
-   // if it is separate from the portaudio thread,
-   // might be delayed due to other threads?
-   #ifdef USE_MIDI_THREAD
-      constexpr int THREAD_LATENCY = 10; // milliseconds
-   #else
-      constexpr int THREAD_LATENCY = 0; // milliseconds
-   #endif
+#include "../lib-src/header-substitutes/allegro.h"
    template <typename FloatType>
    constexpr int ROUND(FloatType x)
    {
@@ -968,27 +953,6 @@ void StartAudioIOThread()
    }
 }
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-void StartMidiIOThread()
-{
-   AudioIO *gAudioIO;
-   while ( (gAudioIO = AudioIO::Get()) != nullptr )
-   {
-      // Set LoopActive outside the tests to avoid race condition
-      gAudioIO->mMidiThreadFillBuffersLoopActive = true;
-      if( gAudioIO->mMidiThreadFillBuffersLoopRunning &&
-          // mNumFrames signals at least one callback, needed for MidiTime()
-          gAudioIO->mNumFrames > 0)
-      {
-         gAudioIO->FillMidiBuffers();
-      }
-
-      gAudioIO->mMidiThreadFillBuffersLoopActive = false;
-      std::this_thread::sleep_for(std::chrono::milliseconds(MIDI_SLEEP));
-   }
-}
-#endif
-
 //////////////////////////////////////////////////////////////////////
 //
 //     UI Thread Context
@@ -1002,11 +966,6 @@ void AudioIO::Init()
    // Start the audio (and MIDI) IO threads
    std::thread audioThread(StartAudioIOThread);
    audioThread.detach();
-
-   #if defined(EXPERIMENTAL_MIDI_OUT) && defined(USE_MIDI_THREAD)
-   std::thread midiThread(StartMidiIOThread);
-   midiThread.detach();
-   #endif
 
    // Make sure device prefs are initialized
    if (gPrefs->Read(wxT("AudioIO/RecordingDevice"), wxT("")).empty()) {
@@ -1067,8 +1026,6 @@ AudioIO::AudioIO()
 
 #ifdef EXPERIMENTAL_MIDI_OUT
    mMidiStream = NULL;
-   mMidiThreadFillBuffersLoopRunning = false;
-   mMidiThreadFillBuffersLoopActive = false;
    mMidiStreamActive = false;
    mSendMidiState = false;
 
@@ -1158,25 +1115,10 @@ AudioIO::~AudioIO()
 
 #ifdef EXPERIMENTAL_MIDI_OUT
    Pm_Terminate();
-
-   /* Delete is a "graceful" way to stop the thread.
-   (Kill is the not-graceful way.) */
-
-/*#ifdef USE_MIDI_THREAD
-   //mMidiThread->join();
-   delete mMidiThread;
-#endif*/
-
 #endif
-
-   /* Delete is a "graceful" way to stop the thread.
-      (Kill is the not-graceful way.) */
 
    // This causes reentrancy issues during application shutdown
    // wxTheApp->Yield();
-
-   //mThread->join();
-   //delete mThread;*/
 }
 
 static PaSampleFormat AudacityToPortAudioSampleFormat(sampleFormat format)
@@ -2102,8 +2044,6 @@ bool AudioIoCallback::StartPortMidiStream()
       // until after the first audio callback, which provides necessary
       // data for MidiTime().
       Pm_Synchronize(mMidiStream); // start using timestamps
-      // start midi output flowing (pending first audio callback)
-      mMidiThreadFillBuffersLoopRunning = true;
    }
    return (mLastPmError == pmNoError);
 }
@@ -2223,14 +2163,6 @@ void AudioIO::StopStream()
    if ( mMidiStream ) {
 
       mMidiStreamActive = false;
-
-#ifdef USE_MIDI_THREAD
-      mMidiThreadFillBuffersLoopRunning = false; // stop output to stream
-      // but output is in another thread. Wait for output to stop...
-      while (mMidiThreadFillBuffersLoopActive) {
-         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-      }
-#endif
 
       mMidiOutputComplete = true;
 
@@ -2567,68 +2499,6 @@ double AudioIO::GetStreamTime()
 
    return mPlaybackSchedule.NormalizeTrackTime();
 }
-
-
-//////////////////////////////////////////////////////////////////////
-//
-//     Audio Thread Context
-//
-//////////////////////////////////////////////////////////////////////
-
-/*AudioThread::ExitCode AudioThread::Entry()
-{
-   AudioIO *gAudioIO;
-   while( !TestDestroy() &&
-      nullptr != ( gAudioIO = AudioIO::Get() ) )
-   {
-      using Clock = std::chrono::steady_clock;
-      auto loopPassStart = Clock::now();
-      const auto interval = ScrubPollInterval_ms;
-
-      // Set LoopActive outside the tests to avoid race condition
-      gAudioIO->mAudioThreadTrackBufferExchangeLoopActive = true;
-      if( gAudioIO->mAudioThreadShouldCallTrackBufferExchangeOnce )
-      {
-         gAudioIO->TrackBufferExchange();
-         gAudioIO->mAudioThreadShouldCallTrackBufferExchangeOnce = false;
-      }
-      else if( gAudioIO->mAudioThreadTrackBufferExchangeLoopRunning )
-      {
-         gAudioIO->TrackBufferExchange();
-      }
-      gAudioIO->mAudioThreadTrackBufferExchangeLoopActive = false;
-
-      if ( gAudioIO->mPlaybackSchedule.Interactive() )
-         std::this_thread::sleep_until(
-            loopPassStart + std::chrono::milliseconds( interval ) );
-      else
-         std::this_thread::sleep_until(std::chrono::milliseconds(10));
-   }
-
-   return 0;
-}
-
-#ifdef EXPERIMENTAL_MIDI_OUT
-MidiThread::ExitCode MidiThread::Entry()
-{
-   AudioIO *gAudioIO;
-   while( !TestDestroy() &&
-      nullptr != ( gAudioIO = AudioIO::Get() ) )
-   {
-      // Set LoopActive outside the tests to avoid race condition
-      gAudioIO->mMidiThreadFillBuffersLoopActive = true;
-      if( gAudioIO->mMidiThreadFillBuffersLoopRunning &&
-          // mNumFrames signals at least one callback, needed for MidiTime()
-          gAudioIO->mNumFrames > 0)
-      {
-         gAudioIO->FillMidiBuffers();
-      }
-      gAudioIO->mMidiThreadFillBuffersLoopActive = false;
-      Sleep(MIDI_SLEEP);
-   }
-   return 0;
-}
-#endif*/
 
 size_t AudioIO::GetCommonlyFreePlayback()
 {
@@ -3323,8 +3193,7 @@ void AudioIoCallback::FillMidiBuffers()
    double time = AudioTime(); // compute to here
    // But if mAudioOutLatency is very low, we might need some extra
    // compute-ahead to deal with mSynthLatency or even this thread.
-   double actual_latency  = (MIDI_SLEEP + THREAD_LATENCY +
-                             MIDI_MINIMAL_LATENCY_MS + mSynthLatency) * 0.001;
+   double actual_latency  = (MIDI_MINIMAL_LATENCY_MS + mSynthLatency) * 0.001;
    if (actual_latency > mAudioOutLatency) {
        time += actual_latency - mAudioOutLatency;
    }
@@ -3535,9 +3404,6 @@ void AudioIoCallback::ComputeMidiTimings(
        )
       mNumPauseFrames += framesPerBuffer;
 
-   // PRL:  Note that when there is a separate MIDI thread, it is effectively
-   // blocked until the first visit to this line during a playback, and will
-   // not read mSystemMinusAudioTimePlusLatency sooner:
    mNumFrames += framesPerBuffer;
 #endif
 }
@@ -4236,10 +4102,8 @@ int AudioIoCallback::AudioCallback(
       timeInfo, 
       framesPerBuffer 
    );
-#ifndef USE_MIDI_THREAD
    if (mMidiStream)
       FillMidiBuffers();
-#endif
 #endif
 
    // ------ MEMORY ALLOCATIONS -----------------------------------------------

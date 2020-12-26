@@ -79,16 +79,6 @@ wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
 wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_AUDIOIO_MONITOR, wxCommandEvent);
 
-// PRL:
-// If we always run a portaudio output stream (even just to produce silence)
-// whenever we play Midi, then we might use just one thread for both.
-// I thought this would improve MIDI synch problems on Linux/ALSA, but RBD
-// convinced me it was neither a necessary nor sufficient fix.  Perhaps too the
-// MIDI thread might block in some error situations but we should then not
-// also block the audio thread.
-// So leave the separate thread ENABLED.
-#define USE_MIDI_THREAD
-
 struct TransportTracks {
    WaveTrackArray playbackTracks;
    WaveTrackArray captureTracks;
@@ -274,7 +264,6 @@ public:
    * they are different. */
    size_t GetCommonlyReadyPlayback();
 
-
 #ifdef EXPERIMENTAL_MIDI_OUT
    //   MIDI_PLAYBACK:
    PmStream        *mMidiStream;
@@ -286,19 +275,19 @@ public:
    // These fields are used to synchronize MIDI with audio:
 
    /// Number of frames output, including pauses
-   volatile long    mNumFrames;
+   long    mNumFrames;
    /// How many frames of zeros were output due to pauses?
-   volatile long    mNumPauseFrames;
+   long    mNumPauseFrames;
    /// total of backward jumps
-   volatile int     mMidiLoopPasses;
+   int     mMidiLoopPasses;
    inline double MidiLoopOffset() {
       return mMidiLoopPasses * (mPlaybackSchedule.mT1 - mPlaybackSchedule.mT0);
    }
 
-   volatile long    mAudioFramesPerBuffer;
+   long    mAudioFramesPerBuffer;
    /// Used by Midi process to record that pause has begun,
    /// so that AllNotesOff() is only delivered once
-   volatile bool    mMidiPaused;
+   bool    mMidiPaused;
    /// The largest timestamp written so far, used to delay
    /// stream closing until last message has been delivered
    PmTimestamp mMaxMidiTimestamp;
@@ -320,9 +309,7 @@ public:
    /// number of callbacks since stream start
    long mCallbackCount;
 
-   /// Make just one variable to communicate from audio to MIDI thread,
-   /// to avoid problems of atomicity of updates
-   volatile double mSystemMinusAudioTimePlusLatency;
+   double mSystemMinusAudioTimePlusLatency;
 
    Alg_seq      *mSeq;
    std::optional<Alg_iterator> mIterator;
@@ -383,11 +370,6 @@ public:
    std::atomic<bool>   mForceFadeOut{ false };
 
    wxLongLong          mLastPlaybackTimeMillis;
-
-#ifdef EXPERIMENTAL_MIDI_OUT
-   volatile bool       mMidiThreadFillBuffersLoopRunning;
-   volatile bool       mMidiThreadFillBuffersLoopActive;
-#endif
 
    volatile double     mLastRecordingOffset;
    PaError             mLastPaError;
@@ -620,10 +602,6 @@ public:
    double GetStreamTime();
 
    friend void StartAudioIOThread();
-
-#ifdef EXPERIMENTAL_MIDI_OUT
-   friend void StartMidiIOThread();
-#endif
 
    static void Init();
    static void Deinit();
