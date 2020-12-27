@@ -83,6 +83,26 @@ struct TENACITY_DLL_API PlaybackSchedule {
       const AudioIOStartStreamOptions &options,
       const RecordingSchedule *pRecordingSchedule );
 
+   /** @brief Compute signed duration (in seconds at playback) of the specified region of the track.
+    *
+    * Takes a region of the time track (specified by the unwarped time points in the project), and
+    * calculates how long it will actually take to play this region back, taking the time track's
+    * warping effects into account.
+    * @param t0 unwarped time to start calculation from
+    * @param t1 unwarped time to stop calculation at
+    * @return the warped duration in seconds, negated if `t0 > t1`
+    */
+   double ComputeWarpedLength(double t0, double t1) const;
+
+   /** @brief Compute how much unwarped time must have elapsed if length seconds of warped time has
+    * elapsed, and add to t0
+    *
+    * @param t0 The unwarped time (seconds from project start) at which to start
+    * @param length How many seconds of real time went past; signed
+    * @return The end point (in seconds from project start) as unwarped time
+    */
+   double SolveWarpedLength(double t0, double length) const;
+
    /** \brief True if the end time is before the start time */
    bool ReversedTime() const
    {
