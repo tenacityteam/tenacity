@@ -1984,7 +1984,7 @@ void AudioIoCallback::PrepareMidiIterator(bool send, double offset)
    mSendMidiState = true;
    while (mNextEvent &&
           mNextEventTime < mPlaybackSchedule.mT0 + offset) {
-      if (send) OutputEvent();
+      if (send) OutputEvent(0);
       GetNextEvent();
    }
    mSendMidiState = false;
@@ -2038,7 +2038,7 @@ bool AudioIoCallback::StartPortMidiStream()
       mMidiLoopPasses = 0;
       mMidiOutputComplete = false;
       mMaxMidiTimestamp = 0;
-      PrepareMidiIterator();
+      PrepareMidiIterator(true, 0);
 
       // It is ok to call this now, but do not send timestamped midi
       // until after the first audio callback, which provides necessary
@@ -2955,7 +2955,7 @@ void AudioIoCallback::SetListener(
 static Alg_update gAllNotesOff; // special event for loop ending
 // the fields of this event are never used, only the address is important
 
-double AudioIoCallback::UncorrectedMidiEventTime()
+double AudioIoCallback::UncorrectedMidiEventTime(double pauseTime)
 {
    double time;
    if (mPlaybackSchedule.mEnvelope)
@@ -2966,17 +2966,17 @@ double AudioIoCallback::UncorrectedMidiEventTime()
    else
       time = mNextEventTime;
 
-   return time + PauseTime();
+   return time + pauseTime;
 }
 
-void AudioIoCallback::OutputEvent()
+void AudioIoCallback::OutputEvent(double pauseTime)
 {
    int channel = (mNextEvent->chan) & 0xF; // must be in [0..15]
    int command = -1;
    int data1 = -1;
    int data2 = -1;
 
-   double eventTime = UncorrectedMidiEventTime();
+   double eventTime = UncorrectedMidiEventTime(pauseTime);
 
    // 0.0005 is for rounding
    double time = eventTime + 0.0005 -
@@ -3198,8 +3198,8 @@ void AudioIoCallback::FillMidiBuffers()
        time += actual_latency - mAudioOutLatency;
    }
    while (mNextEvent &&
-          UncorrectedMidiEventTime() < time) {
-      OutputEvent();
+          UncorrectedMidiEventTime(PauseTime()) < time) {
+      OutputEvent(PauseTime());
       GetNextEvent();
    }
 }
