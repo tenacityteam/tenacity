@@ -42,10 +42,11 @@
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../LabelTrack.h"
-#include "../Project.h"
-#include "../ProjectSettings.h"
-#include "../ProjectWindow.h"
+#include "LabelTrack.h"
+#include "Project.h"
+#include "ProjectSettings.h"
+#include "ProjectWindow.h"
+#include "ProjectWindows.h"
 #include "../SelectionState.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"

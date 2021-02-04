@@ -16,6 +16,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "Menus.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
+#include "ProjectWindows.h"
 #include "ProjectStatus.h"
 #include "RefreshCode.h"
 #include "TrackPanelMouseEvent.h"
@@ -496,7 +497,7 @@ unsigned operator()
 
 } sMouseWheelHandler;
 
-TenacityProject::AttachedWindows::RegisteredFactory sProjectWindowKey{
+AttachedWindows::RegisteredFactory sProjectWindowKey{
    []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       wxRect wndRect;
       bool bMaximized = false;
@@ -531,7 +532,7 @@ TenacityProject::AttachedWindows::RegisteredFactory sProjectWindowKey{
 
 ProjectWindow &ProjectWindow::Get( TenacityProject &project )
 {
-   return project.AttachedWindows::Get< ProjectWindow >( sProjectWindowKey );
+   return GetAttachedWindows(project).Get< ProjectWindow >(sProjectWindowKey);
 }
 
 const ProjectWindow &ProjectWindow::Get( const TenacityProject &project )
@@ -542,7 +543,7 @@ const ProjectWindow &ProjectWindow::Get( const TenacityProject &project )
 ProjectWindow *ProjectWindow::Find( TenacityProject *pProject )
 {
    return pProject
-      ? pProject->AttachedWindows::Find< ProjectWindow >( sProjectWindowKey )
+      ? GetAttachedWindows(*pProject).Find< ProjectWindow >(sProjectWindowKey)
       : nullptr;
 }
 

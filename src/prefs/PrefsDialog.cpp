@@ -40,6 +40,7 @@
 
 #include "../shuttle/ShuttleGui.h"
 #include "../commands/CommandManager.h"
+#include "../ProjectWindows.h"
 
 #include "PrefsPanel.h"
 

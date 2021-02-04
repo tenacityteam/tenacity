@@ -21,6 +21,7 @@
 
 #include "LoadCommands.h"
 #include "../Project.h"
+#include "../ProjectWindows.h"
 #include "../WaveTrack.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

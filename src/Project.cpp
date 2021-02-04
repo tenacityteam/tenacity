@@ -12,11 +12,8 @@
 
 #include "Project.h"
 
-#include "widgets/wxWidgetsBasicUI.h"
-
 #include <wx/display.h>
 #include <wx/filename.h>
-#include <wx/frame.h>
 
 wxDEFINE_EVENT(EVT_TRACK_PANEL_TIMER, wxCommandEvent);
 
@@ -93,16 +90,6 @@ TenacityProject::~TenacityProject()
 {
 }
 
-void TenacityProject::SetFrame( wxFrame *pFrame )
-{
-   mFrame = pFrame;
-}
-
-void TenacityProject::SetPanel( wxWindow *pPanel )
-{
-   mPanel = pPanel;
-}
-
 const wxString &TenacityProject::GetProjectName() const
 {
    return mName;
@@ -124,48 +111,6 @@ void TenacityProject::SetInitialImportPath(const FilePath &path)
    {
       mInitialImportPath = path;
    }
-}
-
-TENACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
-{
-   auto ptr = project.GetFrame();
-   if ( !ptr )
-      THROW_INCONSISTENCY_EXCEPTION;
-   return *ptr;
-}
-
-TENACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project )
-{
-   auto ptr = project.GetFrame();
-   if ( !ptr )
-      THROW_INCONSISTENCY_EXCEPTION;
-   return *ptr;
-}
-
-std::unique_ptr<const GenericUI::WindowPlacement>
-ProjectFramePlacement( TenacityProject *project )
-{
-   if (!project)
-      return std::make_unique<GenericUI::WindowPlacement>();
-   return std::make_unique<wxWidgetsWindowPlacement>(
-      &GetProjectFrame(*project));
-}
-
-TENACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
-{
-   auto ptr = project.GetPanel();
-   if ( !ptr )
-      THROW_INCONSISTENCY_EXCEPTION;
-   return *ptr;
-}
-
-TENACITY_DLL_API const wxWindow &GetProjectPanel(
-   const TenacityProject &project )
-{
-   auto ptr = project.GetPanel();
-   if ( !ptr )
-      THROW_INCONSISTENCY_EXCEPTION;
-   return *ptr;
 }
 
 // Generate the needed, linkable registry functions

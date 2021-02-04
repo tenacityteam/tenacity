@@ -448,6 +448,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "Project.h"
 #include "DBConnection.h"
 #include "ProjectFileIO.h"
+#include "ProjectWindows.h"
 #include "WaveTrack.h"
 
 #include "effects/RealtimeEffectManager.h"

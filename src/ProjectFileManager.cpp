@@ -32,6 +32,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "ProjectFileIO.h"
 #include "ProjectHistory.h"
 #include "ProjectSelectionManager.h"
+#include "ProjectWindows.h"
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
@@ -54,6 +55,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "widgets/FileHistory.h"
 #include "widgets/UnwritableLocationErrorDialog.h"
 #include "widgets/Warning.h"
+#include "widgets/wxPanelWrapper.h"
 
 #include "HelpText.h"
 

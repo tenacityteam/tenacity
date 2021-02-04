@@ -655,12 +655,13 @@ void ContrastDialog::OnReset(wxCommandEvent & /*event*/)
 // Remaining code hooks this add-on into the application
 #include "commands/CommandContext.h"
 #include "commands/CommandManager.h"
+#include "ProjectWindows.h"
 #include "../commands/ScreenshotCommand.h"
 
 namespace {
 
 // Contrast window attached to each project is built on demand by:
-TenacityProject::AttachedWindows::RegisteredFactory sContrastDialogKey{
+AttachedWindows::RegisteredFactory sContrastDialogKey{
    []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &window = ProjectWindow::Get( parent );
       return safenew ContrastDialog(
@@ -676,8 +677,8 @@ struct Handler : CommandHandlerObject {
    {
       auto &project = context.project;
       CommandManager::Get(project).RegisterLastAnalyzer(context);  //Register Contrast as Last Analyzer
-      auto contrastDialog =
-         &project.AttachedWindows::Get< ContrastDialog >( sContrastDialogKey );
+      auto contrastDialog = &GetAttachedWindows(project)
+         .Get< ContrastDialog >( sContrastDialogKey );
 
       contrastDialog->CentreOnParent();
       if( ScreenshotCommand::MayCapture( contrastDialog ) )

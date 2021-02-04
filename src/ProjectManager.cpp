@@ -27,6 +27,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "ProjectFileManager.h"
 #include "ProjectHistory.h"
 #include "ProjectSelectionManager.h"
+#include "ProjectWindows.h"
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"

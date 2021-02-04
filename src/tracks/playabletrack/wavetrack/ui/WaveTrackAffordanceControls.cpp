@@ -29,6 +29,7 @@
 #include "../../../../shuttle/ShuttleGui.h"
 #include "../../../../Project.h"
 #include "../../../../ProjectWindow.h"
+#include "../../../../ProjectWindows.h"
 #include "../../../../commands/AudacityCommand.h"
 
 #include "../../../ui/TextEditHelper.h"

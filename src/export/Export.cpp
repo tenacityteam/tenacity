@@ -49,7 +49,7 @@
 
 #include "sndfile.h"
 
-#include "../widgets/FileDialog/FileDialog.h"
+#include "widgets/FileDialog/FileDialog.h"
 
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
@@ -58,12 +58,13 @@
 #include <lib-preferences/Prefs.h>
 
 #include "../theme/AllThemeResources.h"
-#include "../Mix.h"
+#include "Mix.h"
 #include "../prefs/ImportExportPrefs.h"
 #include "../Project.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
+#include "../ProjectWindows.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "../theme/Theme.h"
@@ -72,8 +73,8 @@
 #include "../widgets/Warning.h"
 #include "../widgets/HelpSystem.h"
 #include "../AColor.h"
-#include "../widgets/HelpSystem.h"
-#include "../widgets/ProgressDialog.h"
+#include "widgets/HelpSystem.h"
+#include "widgets/ProgressDialog.h"
 
 //----------------------------------------------------------------------------
 // ExportPlugin

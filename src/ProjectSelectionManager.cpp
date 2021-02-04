@@ -13,6 +13,7 @@ Paul Licameli split from ProjectManager.cpp
 
 #include "Project.h"
 #include "ProjectHistory.h"
+#include "ProjectWindows.h"
 #include "ProjectSettings.h"
 #include "ProjectWindow.h"
 #include "Snap.h"

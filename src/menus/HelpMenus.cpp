@@ -24,6 +24,7 @@
 #include "../Menus.h"
 #include "../Project.h"
 #include "../ProjectSelectionManager.h"
+#include "../ProjectWindows.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../SplashDialog.h"

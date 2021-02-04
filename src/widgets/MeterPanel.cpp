@@ -68,6 +68,7 @@
 #include "../ProjectStatus.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"
+#include "../ProjectWindows.h"
 
 // Tenacity libraires
 #include <lib-preferences/Prefs.h>

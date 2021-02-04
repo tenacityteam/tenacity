@@ -1190,10 +1190,11 @@ void FreqPlot::OnMouseEvent(wxMouseEvent & event)
 #include "commands/CommandContext.h"
 #include "commands/CommandManager.h"
 #include "commands/ScreenshotCommand.h"
+#include "ProjectWindows.h"
 
 namespace {
 
-TenacityProject::AttachedWindows::RegisteredFactory sFrequencyWindowKey{
+AttachedWindows::RegisteredFactory sFrequencyWindowKey{
    []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &window = ProjectWindow::Get( parent );
       return safenew FrequencyPlotDialog(
@@ -1209,8 +1210,8 @@ struct Handler : CommandHandlerObject {
    {
       auto &project = context.project;
       CommandManager::Get(project).RegisterLastAnalyzer(context);  //Register Plot Spectrum as Last Analyzer
-      auto freqWindow =
-         &project.AttachedWindows::Get< FrequencyPlotDialog >( sFrequencyWindowKey );
+      auto freqWindow = &GetAttachedWindows(project)
+         .Get< FrequencyPlotDialog >( sFrequencyWindowKey );
 
       if( ScreenshotCommand::MayCapture( freqWindow ) )
          return;

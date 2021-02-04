@@ -28,29 +28,31 @@
 #include <lib-preferences/Prefs.h>
 #include <lib-xml/XMLFileReader.h>
 
-#include "../Envelope.h"
-#include "../FileFormats.h"
-#include "../LabelTrack.h"
+#include "Envelope.h"
+#include "FileFormats.h"
+#include "FileNames.h"
+#include "LabelTrack.h"
 #if defined(USE_MIDI)
-#include "../NoteTrack.h"
+#include "NoteTrack.h"
 #endif
 
-#include "../Project.h"
-#include "../ProjectFileIO.h"
-#include "../ProjectFileManager.h"
-#include "../ProjectHistory.h"
-#include "../ProjectSelectionManager.h"
-#include "../ProjectSettings.h"
-#include "../Sequence.h"
-#include "../Tags.h"
-#include "../TimeTrack.h"
-#include "../ViewInfo.h"
-#include "../WaveClip.h"
-#include "../WaveTrack.h"
-#include "../toolbars/SelectionBar.h"
-#include "../widgets/AudacityMessageBox.h"
-#include "../widgets/NumericTextCtrl.h"
-#include "../widgets/ProgressDialog.h"
+#include "Project.h"
+#include "ProjectFileIO.h"
+#include "ProjectFileManager.h"
+#include "ProjectHistory.h"
+#include "ProjectSelectionManager.h"
+#include "ProjectSettings.h"
+#include "ProjectWindows.h"
+#include "Sequence.h"
+#include "Tags.h"
+#include "TimeTrack.h"
+#include "ViewInfo.h"
+#include "WaveClip.h"
+#include "WaveTrack.h"
+#include "toolbars/SelectionBar.h"
+#include "widgets/AudacityMessageBox.h"
+#include "widgets/NumericTextCtrl.h"
+#include "widgets/ProgressDialog.h"
 
 #include <map>
 

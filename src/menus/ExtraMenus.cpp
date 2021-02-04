@@ -12,6 +12,7 @@
 #include "../CommonCommandFlags.h"
 #include "../Menus.h"
 #include "../Project.h"
+#include "../ProjectWindows.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
 #include "../toolbars/DeviceToolBar.h"

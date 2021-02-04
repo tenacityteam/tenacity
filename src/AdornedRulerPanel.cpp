@@ -37,6 +37,7 @@
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "ProjectAudioManager.h"
+#include "ProjectWindows.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
 #include "RefreshCode.h"
@@ -859,7 +860,7 @@ std::vector<UIHandlePtr> AdornedRulerPanel::ScrubbingCell::HitTest
 }
 
 namespace{
-TenacityProject::AttachedWindows::RegisteredFactory sKey{
+AttachedWindows::RegisteredFactory sKey{
 []( TenacityProject &project ) -> wxWeakRef< wxWindow > {
    auto &viewInfo = ViewInfo::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -875,7 +876,7 @@ TenacityProject::AttachedWindows::RegisteredFactory sKey{
 
 AdornedRulerPanel &AdornedRulerPanel::Get( TenacityProject &project )
 {
-   return project.AttachedWindows::Get< AdornedRulerPanel >( sKey );
+   return GetAttachedWindows(project).Get< AdornedRulerPanel >( sKey );
 }
 
 const AdornedRulerPanel &AdornedRulerPanel::Get( const TenacityProject &project )
@@ -885,10 +886,10 @@ const AdornedRulerPanel &AdornedRulerPanel::Get( const TenacityProject &project 
 
 void AdornedRulerPanel::Destroy( TenacityProject &project )
 {
-   auto *pPanel = project.AttachedWindows::Find( sKey );
+   auto *pPanel = GetAttachedWindows(project).Find( sKey );
    if (pPanel) {
       pPanel->wxWindow::Destroy();
-      project.AttachedWindows::Assign( sKey, nullptr );
+      GetAttachedWindows(project).Assign( sKey, nullptr );
    }
 }
 

@@ -59,6 +59,7 @@
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../Project.h"
+#include "../ProjectWindows.h"
 #include "../widgets/AButton.h"
 #include "../widgets/ASlider.h"
 #include "../widgets/MeterPanelBase.h"
