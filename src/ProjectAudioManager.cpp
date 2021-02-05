@@ -27,6 +27,7 @@ Paul Licameli split from ProjectManager.cpp
 #include "ProjectAudioIO.h"
 #include "ProjectFileIO.h"
 #include "ProjectHistory.h"
+#include "ProjectRate.h"
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindows.h"
@@ -1005,7 +1006,7 @@ DefaultPlayOptions( TenacityProject &project )
 {
    auto &projectAudioIO = ProjectAudioIO::Get( project );
    AudioIOStartStreamOptions options { &project,
-      ProjectSettings::Get( project ).GetRate() };
+      ProjectRate::Get( project ).GetRate() };
    options.captureMeter = projectAudioIO.GetCaptureMeter();
    options.playbackMeter = projectAudioIO.GetPlaybackMeter();
    auto timeTrack = *TrackList::Get( project ).Any<TimeTrack>().begin();
@@ -1022,7 +1023,7 @@ DefaultSpeedPlayOptions( TenacityProject &project )
    auto PlayAtSpeedRate = gAudioIO->GetBestRate(
       false,     //not capturing
       true,      //is playing
-      ProjectSettings::Get( project ).GetRate()  //suggested rate
+      ProjectRate::Get( project ).GetRate()  //suggested rate
    );
    AudioIOStartStreamOptions options{ &project, PlayAtSpeedRate };
    options.captureMeter = projectAudioIO.GetCaptureMeter();

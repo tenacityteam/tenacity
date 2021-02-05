@@ -17,6 +17,7 @@
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectHistory.h"
+#include "../ProjectRate.h"
 #include "../ProjectSelectionManager.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
@@ -66,8 +67,7 @@ void DoNextPeakFrequency(TenacityProject &project, bool up)
 double NearestZeroCrossing
 (TenacityProject &project, double t0)
 {
-   const auto &settings = ProjectSettings::Get( project );
-   auto rate = settings.GetRate();
+   auto rate = ProjectRate::Get(project).GetRate();
    auto &tracks = TrackList::Get( project );
 
    // Window is 1/100th of a second.
@@ -201,8 +201,8 @@ void SeekWhenAudioActive(double seekStep, wxLongLong &lastSelectionAdjustment)
 double GridMove
 (TenacityProject &project, double t, int minPix)
 {
-   const auto &settings = ProjectSettings::Get( project );
-   auto rate = settings.GetRate();
+   auto &settings = ProjectSettings::Get(project);
+   auto rate = ProjectRate::Get(project).GetRate();
    auto &viewInfo = ViewInfo::Get( project );
    auto format = settings.GetSelectionFormat();
 
@@ -546,7 +546,7 @@ void OnSetLeftSelection(const CommandContext &context)
    else
    {
       auto fmt = settings.GetSelectionFormat();
-      auto rate = settings.GetRate();
+      auto rate = ProjectRate::Get(project).GetRate();
 
       TimeDialog dlg(&window, XO("Set Left Selection Boundary"),
          fmt, rate, selectedRegion.t0(), XO("Position"));
@@ -585,7 +585,7 @@ void OnSetRightSelection(const CommandContext &context)
    else
    {
       auto fmt = settings.GetSelectionFormat();
-      auto rate = settings.GetRate();
+      auto rate = ProjectRate::Get(project).GetRate();
 
       TimeDialog dlg(&window, XO("Set Right Selection Boundary"),
          fmt, rate, selectedRegion.t1(), XO("Position"));
@@ -776,7 +776,6 @@ void OnZeroCrossing(const CommandContext &context)
 {
    auto &project = context.project;
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
-   const auto &settings = ProjectSettings::Get( project );
 
    const double t0 = NearestZeroCrossing(project, selectedRegion.t0());
    if (selectedRegion.isPoint())
@@ -784,7 +783,7 @@ void OnZeroCrossing(const CommandContext &context)
    else {
       const double t1 = NearestZeroCrossing(project, selectedRegion.t1());
       // Empty selection is generally not much use, so do not make it if empty.
-      if( fabs( t1 - t0 ) * settings.GetRate() > 1.5 )
+      if( fabs( t1 - t0 ) * ProjectRate::Get(project).GetRate() > 1.5 )
          selectedRegion.setTimes(t0, t1);
    }
 

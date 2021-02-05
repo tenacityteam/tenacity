@@ -37,7 +37,7 @@ function.
 #include <wx/combobox.h>
 
 #include "../Mix.h"
-#include "../ProjectSettings.h"
+#include "../ProjectRate.h"
 #include "../Tags.h"
 #include "../Track.h"
 #include "../widgets/AudacityMessageBox.h"
@@ -422,7 +422,6 @@ bool ExportFFmpeg::CheckSampleRate(int rate, int lowrate, int highrate, const in
 
 bool ExportFFmpeg::InitCodecs(TenacityProject *project)
 {
-   const auto &settings = ProjectSettings::Get( *project );
    std::unique_ptr<AVCodecWrapper> codec;
 
    AVDictionaryWrapper options(*mFFmpeg);
@@ -433,7 +432,7 @@ bool ExportFFmpeg::InitCodecs(TenacityProject *project)
    // dialogs in the event the codec can't support the specified rate.
    if (!mSampleRate)
    {
-      mSampleRate = (int)settings.GetRate();
+      mSampleRate = (int)ProjectRate::Get(*project).GetRate();
    }
 
    // Configure the audio stream's codec context.

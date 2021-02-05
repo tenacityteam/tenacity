@@ -28,6 +28,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "ProjectHistory.h"
 #include "ProjectSelectionManager.h"
 #include "ProjectWindows.h"
+#include "ProjectRate.h"
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
@@ -1092,7 +1093,7 @@ int ProjectManager::GetEstimatedRecordingMinsLeftOnDisk(long lCaptureChannels) {
    dRecTime = lFreeSpace.GetHi() * 4294967296.0 + lFreeSpace.GetLo();
    dRecTime /= bytesOnDiskPerSample;   
    dRecTime /= lCaptureChannels;
-   dRecTime /= ProjectSettings::Get( project ).GetRate();
+   dRecTime /= ProjectRate::Get( project ).GetRate();
 
    // Convert to minutes before returning
    int iRecMins = (int)round(dRecTime / 60.0);

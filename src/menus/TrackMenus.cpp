@@ -20,6 +20,7 @@
 
 #include "../ProjectAudioIO.h"
 #include "../ProjectHistory.h"
+#include "../ProjectRate.h"
 #include "../ProjectSettings.h"
 #include "../PluginManager.h"
 #include "../ProjectWindow.h"
@@ -58,10 +59,9 @@ namespace {
 void DoMixAndRender
 (TenacityProject &project, bool toNewTrack)
 {
-   const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
    auto &trackFactory = WaveTrackFactory::Get( project );
-   auto rate = settings.GetRate();
+   auto rate = ProjectRate::Get(project).GetRate();
    auto defaultFormat = QualitySettings::SampleFormatChoice();
    auto &trackPanel = TrackPanel::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -614,14 +614,13 @@ struct Handler : CommandHandlerObject {
 void OnNewWaveTrack(const CommandContext &context)
 {
    auto &project = context.project;
-   const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
    auto &trackFactory = WaveTrackFactory::Get( project );
    auto &window = ProjectWindow::Get( project );
 
    auto defaultFormat = QualitySettings::SampleFormatChoice();
 
-   auto rate = settings.GetRate();
+   auto rate = ProjectRate::Get(project).GetRate();
 
    auto t = tracks.Add( trackFactory.NewWaveTrack( defaultFormat, rate ) );
    SelectUtilities::SelectNone( project );
@@ -638,13 +637,12 @@ void OnNewWaveTrack(const CommandContext &context)
 void OnNewStereoTrack(const CommandContext &context)
 {
    auto &project = context.project;
-   const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
    auto &trackFactory = WaveTrackFactory::Get( project );
    auto &window = ProjectWindow::Get( project );
 
    auto defaultFormat = QualitySettings::SampleFormatChoice();
-   auto rate = settings.GetRate();
+   auto rate = ProjectRate::Get(project).GetRate();
 
    SelectUtilities::SelectNone( project );
 
@@ -733,8 +731,7 @@ void OnMixAndRenderToNewTrack(const CommandContext &context)
 void OnResample(const CommandContext &context)
 {
    auto &project = context.project;
-   const auto &settings = ProjectSettings::Get( project );
-   auto projectRate = settings.GetRate();
+   auto projectRate = ProjectRate::Get(project).GetRate();
    auto &tracks = TrackList::Get( project );
    auto &undoManager = UndoManager::Get( project );
    auto &window = ProjectWindow::Get( project );

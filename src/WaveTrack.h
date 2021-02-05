@@ -708,6 +708,8 @@ void VisitBlocks(TrackList &tracks, BlockVisitor visitor,
 void InspectBlocks(const TrackList &tracks, BlockInspector inspector,
    SampleBlockIDSet *pIDs = nullptr);
 
+class ProjectRate;
+
 class TENACITY_DLL_API WaveTrackFactory final
    : public ClientData::Base
 {
@@ -717,9 +719,9 @@ class TENACITY_DLL_API WaveTrackFactory final
    static WaveTrackFactory &Reset( TenacityProject &project );
    static void Destroy( TenacityProject &project );
 
-   WaveTrackFactory( const ProjectSettings &settings,
+   WaveTrackFactory( const ProjectRate &rate,
       const SampleBlockFactoryPtr &pFactory)
-      : mSettings{ settings }
+      : mRate{ rate }
       , mpFactory(pFactory)
    {
    }
@@ -730,7 +732,7 @@ class TENACITY_DLL_API WaveTrackFactory final
    { return mpFactory; }
 
  private:
-   const ProjectSettings &mSettings;
+   const ProjectRate &mRate;
    SampleBlockFactoryPtr mpFactory;
  public:
    std::shared_ptr<WaveTrack> DuplicateWaveTrack(const WaveTrack &orig);

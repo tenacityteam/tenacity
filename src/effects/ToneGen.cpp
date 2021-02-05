@@ -30,7 +30,7 @@ frequency changes smoothly during the tone.
 #include <wx/valgen.h>
 
 #include "Project.h"
-#include "../ProjectSettings.h"
+#include "../ProjectRate.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/valnum.h"
@@ -335,7 +335,7 @@ bool EffectToneGen::SetAutomationParameters(CommandParameters & parms)
 
    double freqMax =
       (FindProject()
-         ? ProjectSettings::Get( *FindProject() ).GetRate()
+         ? ProjectRate::Get( *FindProject() ).GetRate()
          : 44100.0)
       / 2.0;
    mFrequency[1] = TrapDouble(mFrequency[1], MIN_EndFreq, freqMax);

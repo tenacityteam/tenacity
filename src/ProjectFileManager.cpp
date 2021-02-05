@@ -33,6 +33,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "ProjectHistory.h"
 #include "ProjectSelectionManager.h"
 #include "ProjectWindows.h"
+#include "ProjectRate.h"
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
@@ -1019,7 +1020,8 @@ TenacityProject *ProjectFileManager::OpenProjectFile(
       selectionManager.SSBL_SetBandwidthSelectionFormatName(
       settings.GetBandwidthSelectionFormatName());
 
-      SelectionBar::Get( project ).SetRate( settings.GetRate() );
+      SelectionBar::Get( project )
+         .SetRate( ProjectRate::Get(project).GetRate() );
 
       ProjectHistory::Get( project ).InitialState();
       TrackFocus::Get( project ).Set( *tracks.Any().begin() );
@@ -1154,8 +1156,7 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
    // Automatically assign rate of imported file to whole project,
    // if this is the first file that is imported
    if (initiallyEmpty && newRate > 0) {
-      auto &settings = ProjectSettings::Get( project );
-      settings.SetRate( newRate );
+      ProjectRate::Get(project).SetRate( newRate );
       SelectionBar::Get( project ).SetRate( newRate );
    }
 

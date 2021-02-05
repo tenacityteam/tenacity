@@ -29,7 +29,7 @@
 
 #include "../FileFormats.h"
 #include "../Mix.h"
-#include "../ProjectSettings.h"
+#include "../ProjectRate.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "../Track.h"
@@ -475,7 +475,7 @@ ProgressResult ExportPCM::Export(TenacityProject *project,
                                  const Tags *metadata,
                                  int subformat)
 {
-   double rate = ProjectSettings::Get( *project ).GetRate();
+   double rate = ProjectRate::Get( *project ).GetRate();
    const auto &tracks = TrackList::Get( *project );
 
    // Set a default in case the settings aren't found

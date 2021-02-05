@@ -31,7 +31,7 @@
 #include <lib-files/FileIO.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../ProjectSettings.h"
+#include "../ProjectRate.h"
 #include "../Mix.h"
 #include "../shuttle/ShuttleGui.h"
 
@@ -173,7 +173,7 @@ ProgressResult ExportOGG::Export(TenacityProject *project,
                        const Tags *metadata,
                        int WXUNUSED(subformat))
 {
-   double    rate    = ProjectSettings::Get( *project ).GetRate();
+   double    rate    = ProjectRate::Get( *project ).GetRate();
    const auto &tracks = TrackList::Get( *project );
    double    quality = (gPrefs->Read(wxT("/FileFormats/OggExportQuality"), 50)/(float)100.0);
 

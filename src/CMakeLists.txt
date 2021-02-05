@@ -196,6 +196,8 @@ list( APPEND SOURCES
       ProjectHistory.h
       ProjectManager.cpp
       ProjectManager.h
+      ProjectRate.cpp
+      ProjectRate.h
       ProjectSelectionManager.cpp
       ProjectSelectionManager.h
       ProjectSerializer.cpp
