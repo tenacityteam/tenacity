@@ -22,7 +22,7 @@ ProjectWindowBase::ProjectWindowBase(wxWindow * parent, wxWindowID id,
 
    // Ensure a unique name of this window for journalling purposes
    SetName(
-      wxString::Format( L"AudacityProject %d", project.GetProjectNumber() ) );
+      wxString::Format( L"TenacityProject %d", project.GetProjectNumber() ) );
 };
 
 ProjectWindowBase::~ProjectWindowBase()

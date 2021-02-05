@@ -359,6 +359,27 @@ void PopulatePreferences()
 static bool gInited = false;
 static bool gIsQuitting = false;
 
+static bool CloseAllProjects( bool force )
+{
+   ProjectManager::SetClosingAll(true);
+   auto cleanup = finally([]{ ProjectManager::SetClosingAll(false); });
+   while (AllProjects{}.size())
+   {
+      // Closing the project has global side-effect
+      // of deletion from gTenacityProjects
+      if ( force )
+      {
+         GetProjectFrame( **AllProjects{}.begin() ).Close(true);
+      }
+      else
+      {
+         if (! GetProjectFrame( **AllProjects{}.begin() ).Close())
+            return false;
+      }
+   }
+   return true;
+}
+
 static void QuitAudacity(bool bForce)
 {
    // guard against recursion

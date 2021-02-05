@@ -247,3 +247,9 @@ int ViewInfo::UpdateScrollPrefsID()
    static int value = wxNewId();
    return value;
 }
+
+static ProjectFileIORegistry::WriterEntry entry {
+[](const TenacityProject &project, XMLWriter &xmlFile){
+   ViewInfo::Get(project).WriteXMLAttributes(xmlFile);
+}
+};

@@ -16,6 +16,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "prefs/QualitySettings.h"
 #include "prefs/TracksBehaviorsPrefs.h"
 #include "widgets/NumericTextCtrl.h"
+#include "XMLWriter.h"
 
 wxDEFINE_EVENT(EVT_PROJECT_SETTINGS_CHANGE, wxCommandEvent);
 
@@ -206,3 +207,16 @@ void ProjectSettings::SetSyncLock(bool flag)
    }
 }
 
+static ProjectFileIORegistry::WriterEntry entry {
+[](const TenacityProject &project, XMLWriter &xmlFile){
+   auto &settings = ProjectSettings::Get(project);
+   xmlFile.WriteAttr(wxT("rate"), settings.GetRate());
+   xmlFile.WriteAttr(wxT("snapto"), settings.GetSnapTo() ? wxT("on") : wxT("off"));
+   xmlFile.WriteAttr(wxT("selectionformat"),
+                     settings.GetSelectionFormat().Internal());
+   xmlFile.WriteAttr(wxT("frequencyformat"),
+                     settings.GetFrequencySelectionFormatName().Internal());
+   xmlFile.WriteAttr(wxT("bandwidthformat"),
+                     settings.GetBandwidthSelectionFormatName().Internal());
+}
+};

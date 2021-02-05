@@ -1538,3 +1538,9 @@ bool TagsEditorDialog::IsWindowRectValid(const wxRect *windowRect) const
 
    return true;
 }
+
+static ProjectFileIORegistry::WriterEntry entry {
+[](const TenacityProject &project, XMLWriter &xmlFile){
+   Tags::Get(project).WriteXML(xmlFile);
+}
+};
