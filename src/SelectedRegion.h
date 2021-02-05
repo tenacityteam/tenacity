@@ -29,6 +29,7 @@
 #include <wx/defs.h>
 #include <wx/chartype.h> // for wxChar, a typedef
 #include <cmath>
+#include "XMLMethodRegistry.h"
 
 class XMLWriter;
 
@@ -219,6 +220,15 @@ public:
       (const wxChar *attr, const wxChar *value,
        const wxChar *legacyT0Name = sDefaultT0Name,
        const wxChar *legacyT1Name = sDefaultT1Name);
+
+   /*
+    This function encapsulates details of serialization of
+    SelectedRegion.  It was serialized with differing attribute values in
+    different contexts, for reasons of history.
+    */
+   static XMLMethodRegistryBase::Mutators<SelectedRegion>
+   Mutators(
+      const wxString &legacyT0Name, const wxString &legacyT1Name);
 
    bool ensureOrdering() 
    {
