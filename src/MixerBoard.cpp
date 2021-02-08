@@ -50,7 +50,7 @@
 
 #include "widgets/AButton.h"
 #include "widgets/AuStaticText.h"
-#include "widgets/Meter.h"
+#include "widgets/MeterPanel.h"
 
 #include "../images/MusicalInstruments.h"
 #ifdef __WXMSW__
