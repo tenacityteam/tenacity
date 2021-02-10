@@ -15,6 +15,7 @@
 
 // Tenacity libraries
 #include <lib-math/SampleCount.h>
+#include <lib-math/SampleFormat.h>
 
 #include <vector>
 #include <functional>

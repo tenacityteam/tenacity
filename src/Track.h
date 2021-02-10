@@ -20,6 +20,8 @@
 #include <wx/longlong.h>
 
 #include "ClientData.h"
+// TrackAttachment needs to be a complete type for the Windows build, though
+// not the others, so there is a nested include here:
 #include "TrackAttachment.h"
 
 // Tenacity libraries
