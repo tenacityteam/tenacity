@@ -11,9 +11,6 @@
 #ifndef __AUDACITY_PROJECT__
 #define __AUDACITY_PROJECT__
 
-// Tenacity libraries
-#include <lib-strings/Identifier.h>
-
 #include "ClientData.h" // to inherit
 
 #include <memory>
@@ -21,6 +18,7 @@
 #include <wx/weakref.h> // member variable
 #include <wx/window.h> // MSVC wants this
 
+using FilePath = wxString;
 class wxFrame;
 class wxWindow;
 namespace GenericUI { class WindowPlacement; }
