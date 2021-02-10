@@ -45,6 +45,8 @@ class EnvelopeEditor;
 class EqualizationPanel;
 class RulerPanel;
 
+using Floats = ArrayOf<float>;
+
 //
 // One point in a curve
 //
