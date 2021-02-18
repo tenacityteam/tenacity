@@ -31,9 +31,9 @@ MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs.
 
 // Saucedacity libraries
 #include <lib-components/ComponentInterface.h>
+#include <lib-registries/Registry.h>
 
 #include "../widgets/wxPanelWrapper.h" // to inherit
-#include "../Registry.h"
 
 /* A few constants for an attempt at semi-uniformity */
 #define PREFS_FONT_SIZE     8

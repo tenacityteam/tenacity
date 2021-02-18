@@ -18,10 +18,10 @@
 // Saucedacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-math/SampleFormat.h>
+#include <lib-registries/Registry.h>
 #include <lib-strings/Identifier.h>
 
 #include "../widgets/wxPanelWrapper.h" // to inherit
-#include "../Registry.h"
 
 class wxArrayString;
 class FileDialogWrapper;

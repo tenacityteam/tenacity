@@ -20,15 +20,15 @@ Paul Licameli
 #include <vector>
 
 // Saucedacity libraries
-#include <lib-exceptions/InconsistencyException.h>
+#include "InconsistencyException.h"
 
 //! @copydoc ClientData.h
 namespace ClientData {
 
 //! A convenient default parameter for class template @b Site
-struct SAUCEDACITY_DLL_API Base
+struct REGISTRIES_API Base
 {
-   virtual ~Base() {}
+   virtual ~Base();
 };
 
 //! A one-argument alias template for the default template-template parameter of ClientData::Site
@@ -46,12 +46,12 @@ template< typename Object > using BarePtr = Object*;
  */
 template<
    template<typename> class Owner = UniquePtr
-> struct SAUCEDACITY_DLL_API Cloneable
+> struct REGISTRIES_API Cloneable
 {
    using Base = Cloneable;
    using PointerType = Owner< Base >;
 
-   virtual ~Cloneable() {}
+   virtual ~Cloneable();
    virtual PointerType Clone() const = 0;
 };
 

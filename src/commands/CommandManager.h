@@ -16,14 +16,14 @@
 
 // Saucedacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-registries/ClientData.h>
+#include <lib-registries/Registry.h>
 #include <lib-xml/XMLTagHandler.h>
 
-#include "../ClientData.h"
 #include "CommandFunctors.h"
 #include "CommandFlag.h"
 
 #include "Keyboard.h"
-#include "../Registry.h"
 
 #include <vector>
 #include <unordered_map>

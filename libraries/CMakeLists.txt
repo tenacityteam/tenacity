@@ -11,6 +11,7 @@ set( LIBRARIES
    lib-math
    lib-preferences
    lib-string-utils
+   lib-registries
    lib-strings
    lib-utility
    lib-xml

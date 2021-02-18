@@ -21,7 +21,7 @@
 
 #include "../widgets/wxPanelWrapper.h" // to inherit
 
-#include "../Registry.h"
+#include "Registry.h"
 
 class wxArrayString;
 class wxListBox;

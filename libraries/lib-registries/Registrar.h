@@ -28,7 +28,7 @@ class LoadableModule;
 class ComponentInterface;
 class Effect;
 
-class SAUCEDACITY_DLL_API Registrar 
+class REGISTRIES_API Registrar 
 {
 public:
    Registrar(){

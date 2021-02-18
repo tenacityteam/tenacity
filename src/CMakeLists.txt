@@ -85,14 +85,6 @@ list( APPEND SOURCES
       AdornedRulerPanel.h
       AllThemeResources.cpp
       AllThemeResources.h
-      AttachedVirtualFunction.h
-      SaucedacityApp.cpp
-      SaucedacityApp.h
-      $<$<BOOL:${wxIS_MAC}>:SaucedacityApp.mm>
-      SaucedacityFileConfig.cpp
-      SaucedacityFileConfig.h
-      SaucedacityHeaders.cpp
-      SaucedacityHeaders.h
       AudioIO.cpp
       AudioIO.h
       AudioIOBase.cpp
@@ -110,8 +102,6 @@ list( APPEND SOURCES
       Benchmark.h
       CellularPanel.cpp
       CellularPanel.h
-      ClientData.h
-      ClientDataHelpers.h
       Clipboard.cpp
       Clipboard.h
       CommonCommandFlags.cpp
@@ -210,13 +200,17 @@ list( APPEND SOURCES
       ProjectWindowBase.cpp
       ProjectWindowBase.h
       RefreshCode.h
-      Registrar.h
-      Registry.cpp
-      Registry.h
       RingBuffer.cpp
       RingBuffer.h
       SampleBlock.cpp
       SampleBlock.h
+      SaucedacityApp.cpp
+      SaucedacityApp.h
+      $<$<BOOL:${wxIS_MAC}>:SaucedacityApp.mm>
+      SaucedacityFileConfig.cpp
+      SaucedacityFileConfig.h
+      SaucedacityHeaders.cpp
+      SaucedacityHeaders.h
       Screenshot.cpp
       Screenshot.h
       SelectUtilities.cpp

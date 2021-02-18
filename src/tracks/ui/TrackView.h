@@ -128,7 +128,7 @@ private:
    int            mHeight{ DefaultHeight };
 };
 
-#include "../../AttachedVirtualFunction.h"
+#include "AttachedVirtualFunction.h"
 
 struct DoGetViewTag;
 

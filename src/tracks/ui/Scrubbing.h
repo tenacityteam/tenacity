@@ -17,9 +17,9 @@ Paul Licameli split from TrackPanel.cpp
 // Saucedacity libraries
 #include <lib-strings/Identifier.h>
 #include <lib-preferences/Prefs.h> // to inherit
+#include <lib-registries/ClientData.h>
 
 #include "../../AudioIOBase.h" // for ScrubbingOptions
-#include "../../ClientData.h" // to inherit
 #include "../../widgets/Overlay.h" // to inherit
 #include "../../commands/CommandContext.h"
 #include "../../commands/CommandManager.h" // for MenuTable
