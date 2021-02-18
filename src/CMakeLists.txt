@@ -295,8 +295,6 @@ list( APPEND SOURCES
       WaveTrackLocation.h
       WrappedType.cpp
       WrappedType.h
-      XMLMethodRegistry.cpp
-      XMLMethodRegistry.h
       ZoomInfo.cpp
       ZoomInfo.h
 

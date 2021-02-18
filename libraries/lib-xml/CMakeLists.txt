@@ -1,3 +1,10 @@
+#[[
+   Utilities to serialize and deserialize trees of objects in XML form, and a
+   class template XMLMethodRegistry to generate registries for serializable
+   objects attached to a host object.  The template is parametrized by the host
+   type.
+]]#
+
 set(SOURCES
     audacityproject.dtd
 
@@ -5,6 +12,8 @@ set(SOURCES
     XMLFileReader.h
     XMLFileWriter.cpp
     XMLFileWriter.h
+    XMLMethodRegistry.cpp
+    XMLMethodRegistry.h
     XMLTagHandler.cpp
     XMLTagHandler.h
     XMLStringWriter.cpp
@@ -14,12 +23,11 @@ set(SOURCES
 )
 
 set(LIBRARIES
-    PRIVATE
         EXPAT::EXPAT
+        lib-files-interface
+        lib-strings-interface
+    PRIVATE
         wxWidgets::wxWidgets
-        lib-files
-        lib-math
-        lib-strings
 )
 
 tenacity_library( lib-xml "${SOURCES}" "${LIBRARIES}" "" "")

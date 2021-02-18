@@ -10,8 +10,7 @@
 
 #include "XMLMethodRegistry.h"
 
-// Tenacity libraries
-#include <lib-strings/Identifier.h>
+#include "Identifier.h"
 
 #include <wx/string.h>
 
