@@ -269,11 +269,13 @@ private:
 
    //! Alias for my base type
    using AttachedObjects = ::AttachedTrackObjects;
-   using ChannelType = XMLValueChecker::ChannelType;
 
-   static const auto LeftChannel = XMLValueChecker::LeftChannel;
-   static const auto RightChannel = XMLValueChecker::RightChannel;
-   static const auto MonoChannel = XMLValueChecker::MonoChannel;
+   enum ChannelType
+   {
+      LeftChannel = 0,
+      RightChannel = 1,
+      MonoChannel = 2
+   };
    
    TrackId GetId() const { return mId; }
  private:

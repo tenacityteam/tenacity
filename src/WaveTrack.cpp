@@ -1685,6 +1685,13 @@ void WaveTrack::Flush()
    RightmostOrNewClip()->Flush();
 }
 
+namespace {
+bool IsValidChannel(const int nValue)
+{
+   return (nValue >= Track::LeftChannel) && (nValue <= Track::MonoChannel);
+}
+}
+
 bool WaveTrack::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
 {
    if (!wxStrcmp(tag, wxT("wavetrack"))) {
@@ -1732,7 +1739,7 @@ bool WaveTrack::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
          else if (!wxStrcmp(attr, wxT("channel")))
          {
             if (!XMLValueChecker::IsGoodInt(strValue) || !strValue.ToLong(&nValue) ||
-                  !XMLValueChecker::IsValidChannel(nValue))
+                  !IsValidChannel(nValue))
                return false;
             mChannel = static_cast<Track::ChannelType>( nValue );
          }
@@ -1747,7 +1754,7 @@ bool WaveTrack::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
          else if (!wxStrcmp(attr, wxT("sampleformat")) &&
                   XMLValueChecker::IsGoodInt(strValue) &&
                   strValue.ToLong(&nValue) &&
-                  XMLValueChecker::IsValidSampleFormat(nValue))
+                  Sequence::IsValidSampleFormat(nValue))
             mFormat = static_cast<sampleFormat>(nValue);
       } // while
       return true;
