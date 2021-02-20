@@ -13,6 +13,7 @@ set( LIBRARIES
    lib-string-utils
    lib-registries
    lib-strings
+   lib-track
    lib-utility
    lib-xml
    lib-audio-devices

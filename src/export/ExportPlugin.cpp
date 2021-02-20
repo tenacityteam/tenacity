@@ -14,8 +14,8 @@
 
 // Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
+#include <lib-track/Track.h>
 
-#include "../Track.h"
 #include "../WaveTrack.h"
 
 

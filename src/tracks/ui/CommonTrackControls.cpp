@@ -10,6 +10,9 @@ Paul Licameli split from TrackControls.cpp
 
 #include "CommonTrackControls.h"
 
+// Tenacity libraries
+#include <lib-track/Track.h>
+
 #include "TrackButtonHandles.h"
 #include "TrackSelectHandle.h"
 #include "../../AColor.h"
@@ -26,7 +29,6 @@ Paul Licameli split from TrackControls.cpp
 #include "../../commands/AudacityCommand.h"
 #include "../../commands/CommandManager.h"
 #include "../../shuttle/ShuttleGui.h"
-#include "../../Track.h"
 #include "../../widgets/PopupMenuTable.h"
 
 #include <wx/dc.h>

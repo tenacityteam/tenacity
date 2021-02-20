@@ -21,8 +21,6 @@ and TimeTrack.
 
 *//*******************************************************************/
 
-
-
 #include "Track.h"
 
 #include <algorithm>
@@ -36,7 +34,7 @@ and TimeTrack.
 #include "Project.h"
 
 // Tenacity libraries
-#include <lib-exceptions/InconsistencyException.h>
+#include "InconsistencyException.h"
 
 #ifdef _MSC_VER
 //Disable truncation warnings

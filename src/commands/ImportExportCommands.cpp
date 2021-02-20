@@ -19,6 +19,7 @@
 
 // Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
+#include <lib-track/Track.h>
 
 #include "LoadCommands.h"
 #include "../ProjectFileManager.h"
@@ -27,7 +28,6 @@
 #include "../SelectUtilities.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Track.h"
 #include "CommandContext.h"
 
 const ComponentInterfaceSymbol ImportCommand::Symbol
