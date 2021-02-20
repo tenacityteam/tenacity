@@ -15,7 +15,7 @@
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
-#include "../Track.h"
+#include "Track.h"
 #include "../TrackInfo.h"
 #include "../TrackPanel.h"
 #include "../UndoManager.h"

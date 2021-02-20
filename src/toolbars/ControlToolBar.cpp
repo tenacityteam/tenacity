@@ -59,6 +59,7 @@
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
 #include <lib-project/ProjectStatus.h>
+#include <lib-track/Track.h>
 
 #include "../AColor.h"
 #include "../theme/AllThemeResources.h"
@@ -68,7 +69,6 @@
 #include "../ProjectAudioManager.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
-#include "../Track.h"
 #include "../widgets/AButton.h"
 
 #include "../tracks/ui/Scrubbing.h"

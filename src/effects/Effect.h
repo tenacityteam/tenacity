@@ -32,7 +32,7 @@ class wxWindow;
 #include <lib-math/SampleCount.h>
 #include <lib-screen-geometry/SelectedRegion.h>
 
-#include "../Track.h"
+#include "Track.h"
 
 #include "../widgets/wxPanelWrapper.h" // to inherit
 

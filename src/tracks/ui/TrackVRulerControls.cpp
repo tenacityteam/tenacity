@@ -13,8 +13,10 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "TrackView.h"
 
+// Tenacity libraries
+#include <lib-track/Track.h>
+
 #include "../../AColor.h"
-#include "../../Track.h"
 #include "../../TrackArtist.h"
 #include "../../TrackPanelDrawingContext.h"
 #include "ViewInfo.h"

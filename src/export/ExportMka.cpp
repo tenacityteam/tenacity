@@ -13,12 +13,12 @@
 
 #include "Export.h"
 #include "../Tags.h"
-#include "../Track.h"
 
 // Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-string-utils/CodeConversions.h>
 #include <lib-project-rate/ProjectRate.h>
+#include <lib-track/Track.h>
 
 #include "TenacityHeaders.h"
 
