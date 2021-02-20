@@ -37,7 +37,7 @@
 // Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 
-#include "effects/TimeWarper.h"
+#include "TimeWarper.h"
 
 #include "theme/AllThemeResources.h"
 #include "theme/Theme.h"

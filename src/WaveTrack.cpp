@@ -44,6 +44,7 @@ from the project that will own the track.
 #include <lib-exceptions/InconsistencyException.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-track/TimeWarper.h>
 
 #include "Envelope.h"
 #include "Sequence.h"
@@ -51,7 +52,6 @@ from the project that will own the track.
 #include "Project.h"
 #include "ProjectRate.h"
 
-#include "effects/TimeWarper.h"
 #include "QualitySettings.h"
 #include "prefs/SpectrogramSettings.h"
 #include "prefs/WaveformSettings.h"
