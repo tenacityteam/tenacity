@@ -8,6 +8,8 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
+#include <lib-project/ProjectStatus.h>
 
 #include <optional>
 
@@ -16,12 +18,10 @@
 #include "../Menus.h"
 #include "../Mix.h"
 
-#include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"
 #include "../PluginManager.h"
-#include "../ProjectStatus.h"
 #include "../ProjectWindow.h"
 #include "../SelectUtilities.h"
 #include "../shuttle/ShuttleGui.h"

@@ -48,13 +48,13 @@
 #endif
 
 // Tenacity libraries
+#include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
 
 #include "../theme/AllThemeResources.h"
 #include "../BatchCommands.h"
 #include "../ImageManipulation.h"
 #include "../Menus.h"
-#include "../Project.h"
 #include "../UndoManager.h"
 #include "../widgets/AButton.h"
 

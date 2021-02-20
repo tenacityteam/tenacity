@@ -8,6 +8,7 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../AdornedRulerPanel.h"
 #include "../Clipboard.h"
@@ -15,7 +16,6 @@
 #include "../LabelTrack.h"
 #include "../Menus.h"
 #include "../NoteTrack.h"
-#include "../Project.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"

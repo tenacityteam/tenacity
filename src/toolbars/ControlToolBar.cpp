@@ -57,16 +57,16 @@
 // Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
+#include <lib-project/ProjectStatus.h>
 
 #include "../AColor.h"
 #include "../theme/AllThemeResources.h"
 #include "../AudioIO.h"
 #include "../ImageManipulation.h"
-#include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectSettings.h"
-#include "../ProjectStatus.h"
 #include "../ProjectWindow.h"
 #include "../Track.h"
 #include "../widgets/AButton.h"

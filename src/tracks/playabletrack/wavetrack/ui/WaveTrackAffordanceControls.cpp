@@ -13,6 +13,9 @@
 #include <wx/dc.h>
 #include <wx/frame.h>
 
+// Tenacity libraries
+#include <lib-project/Project.h>
+
 #include "../../../../theme/AllThemeResources.h"
 #include "../../../../commands/CommandContext.h"
 #include "../../../../commands/CommandFlag.h"
@@ -27,7 +30,6 @@
 #include "../../../../WaveClip.h"
 #include "../../../../UndoManager.h"
 #include "../../../../shuttle/ShuttleGui.h"
-#include "../../../../Project.h"
 #include "../../../../ProjectWindow.h"
 #include "../../../../ProjectWindows.h"
 #include "../../../../commands/AudacityCommand.h"

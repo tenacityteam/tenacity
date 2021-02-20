@@ -23,7 +23,7 @@
 #include "ScriptCommandRelay.h"
 
 #include "../ActiveProject.h"
-#include "../Project.h"
+#include "Project.h"
 #include "../ProjectWindow.h"
 #include "../commands/CommandContext.h"
 #include "../commands/Command.h"

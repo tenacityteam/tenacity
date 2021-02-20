@@ -9,6 +9,7 @@
 // Tenacity libraries
 #include <lib-files/TempDirectory.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../AudioIO.h"
 #include "../BatchProcessDialog.h"
@@ -17,7 +18,6 @@
 #include "../Menus.h"
 #include "../PluginManager.h"
 #include "../PluginRegistrationDialog.h"
-#include "../Project.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../ProjectWindows.h"

@@ -93,6 +93,7 @@
 #include <lib-math/FFT.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 #include <lib-xml/XMLFileReader.h>
 #include <lib-xml/XMLFileWriter.h>
 #include <lib-xml/XMLWriter.h>
@@ -102,7 +103,6 @@
 #include "../shuttle/ShuttleGui.h"
 #include "../Envelope.h"
 #include "../EnvelopeEditor.h"
-#include "../Project.h"
 #include "../theme/Theme.h"
 #include "../TrackArtist.h"
 #include "../WaveClip.h"

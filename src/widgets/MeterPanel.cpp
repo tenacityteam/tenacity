@@ -1,4 +1,4 @@
-/**********************************************************************
+   /**********************************************************************
 
   Audacity: A Digital Audio Editor
 
@@ -63,15 +63,15 @@
 #include "../AColor.h"
 #include "../ImageManipulation.h"
 #include "../prefs/GUISettings.h"
-#include "../Project.h"
 #include "../ProjectAudioManager.h"
-#include "../ProjectStatus.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"
 #include "../ProjectWindows.h"
 
 // Tenacity libraires
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
+#include <lib-project/ProjectStatus.h>
 
 #include "../theme/AllThemeResources.h"
 #include "../widgets/valnum.h"

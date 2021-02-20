@@ -17,7 +17,7 @@ Paul Licameli
 #include "ClientData.h" // to inherit
 
 // Tenacity libraries
-#include <lib-preferences/Prefs.h>
+#include "Prefs.h"
 
 class TenacityProject;
 class wxWindow;
@@ -30,7 +30,7 @@ enum StatusBarField : int {
    nStatusBarFields = 3
 };
 
-struct TENACITY_DLL_API ProjectStatusEvent final : wxEvent{
+struct PROJECT_API ProjectStatusEvent final : wxEvent{
    explicit ProjectStatusEvent( StatusBarField field );
    ~ProjectStatusEvent() override;
    wxEvent *Clone() const override;
@@ -38,11 +38,10 @@ struct TENACITY_DLL_API ProjectStatusEvent final : wxEvent{
 };
 
 // Type of event emitted by the project when its status message is set
-// GetInt() identifies the intended field of the status bar
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(PROJECT_API,
                          EVT_PROJECT_STATUS_UPDATE, ProjectStatusEvent);
 
-class TENACITY_DLL_API ProjectStatus final
+class PROJECT_API ProjectStatus final
    : public ClientData::Base
    , public PrefsListener
 {
@@ -65,7 +64,7 @@ public:
    using StatusWidthFunctions = std::vector< StatusWidthFunction >;
 
    // Typically a static instance of this struct is used.
-   struct TENACITY_DLL_API RegisteredStatusWidthFunction
+   struct PROJECT_API RegisteredStatusWidthFunction
    {
       explicit
       RegisteredStatusWidthFunction( const StatusWidthFunction &function );

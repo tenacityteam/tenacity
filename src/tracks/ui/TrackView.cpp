@@ -12,9 +12,9 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../Track.h"
 
 #include "ClientData.h"
-#include "../../Project.h"
 
 // Tenacity libraries
+#include <lib-project/Project.h>
 #include <lib-xml/XMLTagHandler.h>
 #include <lib-xml/XMLWriter.h>
 

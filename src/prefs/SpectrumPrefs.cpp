@@ -27,8 +27,8 @@
 
 // Tenacity libraries
 #include <lib-math/FFT.h>
+#include <lib-project/Project.h>
 
-#include "../Project.h"
 #include "../shuttle/ShuttleGui.h"
 
 #include "../TrackPanel.h"

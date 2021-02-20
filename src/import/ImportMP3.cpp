@@ -30,7 +30,7 @@
 
 #include "Import.h"
 #include "ImportPlugin.h"
-#include "../Project.h"
+#include "Project.h"
 
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>

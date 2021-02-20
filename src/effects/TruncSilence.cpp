@@ -30,8 +30,8 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
-#include "../Project.h"
 #include "../ProjectSettings.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

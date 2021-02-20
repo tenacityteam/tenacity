@@ -54,9 +54,9 @@ with changes in the SpectralSelectionBar.
 #include <wx/statline.h>
 
 // Tenacity libraries
+#include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../Project.h"
 #include "../theme/AllThemeResources.h"
 #include "../SelectedRegion.h"
 #include "../ViewInfo.h"

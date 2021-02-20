@@ -10,6 +10,7 @@
 #include <lib-audio-devices/AudioIOBase.h>
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include <wx/app.h>
 #include <wx/bmpbuttn.h>
@@ -22,7 +23,6 @@
 #include "../HelpText.h"
 #include "../LogWindow.h"
 #include "../Menus.h"
-#include "../Project.h"
 #include "../ProjectSelectionManager.h"
 #include "../ProjectWindows.h"
 #include "../SelectFile.h"

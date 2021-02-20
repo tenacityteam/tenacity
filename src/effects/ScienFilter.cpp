@@ -55,10 +55,10 @@ a graph for EffectScienFilter.
 // Tenacity libraries
 #include <lib-files/PlatformCompatibility.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../AColor.h"
 #include "../theme/AllThemeResources.h"
-#include "../Project.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"

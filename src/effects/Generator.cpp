@@ -18,8 +18,8 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
-#include "../Project.h"
 #include "../ViewInfo.h"
 #include "../WaveTrack.h"
 #include "../prefs/TracksBehaviorsPrefs.h"

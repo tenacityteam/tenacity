@@ -40,6 +40,7 @@ ImportLOF.cpp, and ImportAUP.cpp.
 // Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include <algorithm>
 #include <unordered_set>
@@ -52,7 +53,6 @@ ImportLOF.cpp, and ImportAUP.cpp.
 #include <wx/sizer.h>         //for wxBoxSizer
 #include "../ffmpeg/FFmpeg.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Project.h"
 #include "../WaveTrack.h"
 
 #include "../widgets/ProgressDialog.h"

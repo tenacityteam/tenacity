@@ -29,7 +29,7 @@ frequency changes smoothly during the tone.
 #include <wx/intl.h>
 #include <wx/valgen.h>
 
-#include "../Project.h"
+#include "Project.h"
 #include "../ProjectSettings.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

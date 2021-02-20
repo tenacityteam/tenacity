@@ -8,12 +8,12 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../AdornedRulerPanel.h"
 #include "../AudioIO.h"
 #include "../CommonCommandFlags.h"
 #include "../SpectrumAnalyst.h"
-#include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectHistory.h"

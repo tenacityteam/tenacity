@@ -8,13 +8,13 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../AudioIO.h"
 #include "../Clipboard.h"
 #include "../CommonCommandFlags.h"
 #include "../LabelTrack.h"
 #include "../Menus.h"
-#include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"

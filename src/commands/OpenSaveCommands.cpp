@@ -17,9 +17,11 @@
 
 #include "OpenSaveCommands.h"
 
+// Tenacity libraries
+#include <lib-project/Project.h>
+
 #include "LoadCommands.h"
 #include "TenacityLogger.h"
-#include "../Project.h"
 #include "../ProjectFileIO.h"
 #include "../ProjectFileManager.h"
 #include "../ProjectManager.h"

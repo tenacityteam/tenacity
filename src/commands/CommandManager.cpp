@@ -95,7 +95,7 @@ CommandManager.  It holds the callback for one command.
 #include "../JournalOutput.h"
 #include "../JournalRegistry.h"
 #include "../Menus.h"
-#include "../Project.h"
+#include "Project.h"
 #include "ProjectWindows.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/HelpSystem.h"

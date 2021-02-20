@@ -15,10 +15,10 @@
 // Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../CommonCommandFlags.h"
 #include "../WaveTrack.h"
-#include "../Project.h"
 #include "../ProjectFileIO.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"

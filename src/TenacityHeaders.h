@@ -41,7 +41,6 @@
 #include "LabelTrack.h"
 #include "Mix.h"
 #include "NoteTrack.h"
-#include "Project.h"
 #include "Sequence.h"
 #include "TimeTrack.h"
 #include "UndoManager.h"

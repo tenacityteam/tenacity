@@ -53,13 +53,13 @@
 #endif  // end WX_PRECOMP
 
 // Tenacity libraries
+#include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"
+#include "../ProjectWindows.h"
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
-#include "../Project.h"
-#include "../ProjectWindows.h"
 #include "../widgets/AButton.h"
 #include "../widgets/ASlider.h"
 #include "../widgets/MeterPanelBase.h"

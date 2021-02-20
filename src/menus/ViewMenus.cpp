@@ -8,10 +8,10 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../CommonCommandFlags.h"
 #include "../Menus.h"
-#include "../Project.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"

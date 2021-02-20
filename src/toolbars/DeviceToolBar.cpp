@@ -37,6 +37,7 @@
 
 // Tenacity libraries
 #include <lib-audio-devices/AudioIOBase.h>
+#include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
 
 #include "../TrackPanel.h"
@@ -45,8 +46,6 @@
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../KeyboardCapture.h"
-#include "../Project.h"
-#include "../shuttle/ShuttleGui.h"
 #include "../widgets/Grabber.h"
 #include "DeviceManager.h"
 #include "../widgets/AudacityMessageBox.h"

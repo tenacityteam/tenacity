@@ -51,12 +51,12 @@ with changes in the SelectionBar.
 #include <wx/statline.h>
 
 // Tenacity libraries
+#include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
 
 #include "../AudioIO.h"
 #include "../AColor.h"
 #include "../KeyboardCapture.h"
-#include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectSettings.h"
 #include "../Snap.h"

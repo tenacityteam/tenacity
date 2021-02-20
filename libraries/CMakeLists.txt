@@ -16,6 +16,7 @@ set( LIBRARIES
    lib-utility
    lib-xml
    lib-audio-devices
+   lib-project
 )
 
 foreach( LIBRARY ${LIBRARIES} )

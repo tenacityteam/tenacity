@@ -34,13 +34,13 @@ KeyConfigPrefs and MousePrefs use.
 #include <wx/textctrl.h>
 
 // Tenacity libraries
-#include <lib-preferences/Prefs.h>
 #include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 #include <lib-xml/XMLFileReader.h>
 #include <lib-xml/XMLFileWriter.h>
 
 #include "ActiveProject.h"
-#include "../Project.h"
 #include "../ProjectWindows.h"
 #include "../commands/CommandManager.h"
 

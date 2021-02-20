@@ -9,6 +9,7 @@
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
 
 #include "../AdornedRulerPanel.h"
 #include "../AudioIO.h"
@@ -16,7 +17,6 @@
 #include "DeviceManager.h"
 #include "../LabelTrack.h"
 #include "../Menus.h"
-#include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectFileIO.h"
