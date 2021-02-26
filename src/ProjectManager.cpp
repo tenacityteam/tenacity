@@ -597,6 +597,13 @@ void ProjectManager::OnReconnectionFailure(wxCommandEvent & event)
    });
 }
 
+static bool sbClosingAll = false;
+
+void ProjectManager::SetClosingAll(bool closing)
+{
+   sbClosingAll = closing;
+}
+
 void ProjectManager::OnCloseWindow(wxCloseEvent & event)
 {
    auto &project = mProject;
@@ -715,7 +722,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    // DanH: If we're definitely about to quit, clear the clipboard.
    auto &clipboard = Clipboard::Get();
    if ((AllProjects{}.size() == 1) &&
-      (quitOnClose || AllProjects::Closing()))
+      (quitOnClose || sbClosingAll))
       clipboard.Clear();
    else {
       auto clipboardProject = clipboard.Project().lock();
@@ -806,7 +813,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
       );
    }
 
-   if (AllProjects{}.empty() && !AllProjects::Closing()) {
+   if (AllProjects{}.empty() && !sbClosingAll) {
 
 #if !defined(__WXMAC__)
       if (quitOnClose) {

@@ -411,7 +411,7 @@ static void QuitAudacity(bool bForce)
          // PRL:  Always did at least once before close might be vetoed
          // though I don't know why that is important
          ProjectManager::SaveWindowSize();
-      bool closedAll = AllProjects::Close( bForce );
+      bool closedAll = CloseAllProjects( bForce );
       if ( !closedAll )
       {
          gIsQuitting = false;
@@ -1996,7 +1996,7 @@ void TenacityApp::OnEndSession(wxCloseEvent & event)
       // PRL:  Always did at least once before close might be vetoed
       // though I don't know why that is important
       ProjectManager::SaveWindowSize();
-   bool closedAll = AllProjects::Close( force );
+   bool closedAll = CloseAllProjects( force );
    if ( !closedAll )
    {
       gIsQuitting = false;
