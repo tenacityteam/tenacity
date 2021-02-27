@@ -20,19 +20,16 @@
 
 // Tenacity libraries
 #include <lib-strings/Internat.h> // for TranslatableStrings
-
+#include <lib-strings/Identifier.h> // for ManualPageID
 class wxString;
-
-const TranslatableString &DefaultMultiDialogMessage();
 
 // Display a dialog with radio buttons.
 // Return the zero-based index of the chosen button.
 int ShowMultiDialog(const TranslatableString &message,
                     const TranslatableString &title,
                     const TranslatableStrings &buttons,
-                    const wxString & helpPage,
-                    const TranslatableString &boxMsg
-                       = DefaultMultiDialogMessage(),
-                    bool log = true);
+                    const ManualPageID & helpPage,
+                    const TranslatableString &boxMsg,
+                    bool log);
 
 #endif // __AUDACITY_MULTIDIALOG__
