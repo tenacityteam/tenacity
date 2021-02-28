@@ -94,6 +94,7 @@
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
+#include <lib-track/Envelope.h>
 #include <lib-xml/XMLFileReader.h>
 #include <lib-xml/XMLFileWriter.h>
 #include <lib-xml/XMLWriter.h>
@@ -101,7 +102,6 @@
 #include "../AColor.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Envelope.h"
 #include "../EnvelopeEditor.h"
 #include "../theme/Theme.h"
 #include "../TrackArtist.h"

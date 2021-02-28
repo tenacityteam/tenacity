@@ -15,8 +15,7 @@
 #include <algorithm>
 #include <vector>
 
-// Tenacity libraries
-#include <lib-xml/XMLTagHandler.h>
+#include "XMLTagHandler.h"
 
 class wxRect;
 class wxMouseEvent;
@@ -70,7 +69,7 @@ private:
 typedef std::vector<EnvPoint> EnvArray;
 struct TrackPanelDrawingContext;
 
-class TENACITY_DLL_API Envelope /* not final */ : public XMLTagHandler {
+class TRACK_API Envelope /* not final */ : public XMLTagHandler {
 public:
    // Envelope can define a piecewise linear function, or piecewise exponential.
    Envelope(bool exponential, double minValue, double maxValue, double defaultValue);

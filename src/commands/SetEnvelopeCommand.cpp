@@ -25,9 +25,11 @@
 #include "../UndoManager.h"
 #include "../WaveClip.h"
 #include "../WaveTrack.h"
-#include "../Envelope.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
+
+// Tenacity libraries
+#include <lib-track/Envelope.h>
 
 const ComponentInterfaceSymbol SetEnvelopeCommand::Symbol
 { XO("Set Envelope") };

@@ -13,10 +13,12 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "TimeTrackControls.h"
 
+// Tenacity libraries
+#include <lib-track/Envelope.h>
+
 #include "TimeTrackVRulerControls.h"
 #include "../../../AColor.h"
 #include "../../../theme/AllThemeResources.h"
-#include "../../../Envelope.h"
 #include "../../../EnvelopeEditor.h"
 #include "../../../HitTestResult.h"
 #include "../../../theme/Theme.h"

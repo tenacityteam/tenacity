@@ -63,10 +63,10 @@ array of Ruler::Label.
 // Tenacity libraries
 #include <lib-screen-geometry/NumberScale.h>
 #include <lib-screen-geometry/ViewInfo.h>
+#include <lib-track/Envelope.h>
 
 #include "../AColor.h"
 #include "../theme/AllThemeResources.h"
-#include "../Envelope.h"
 #include "../theme/Theme.h"
 
 using std::min;
