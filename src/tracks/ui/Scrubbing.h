@@ -15,11 +15,11 @@ Paul Licameli split from TrackPanel.cpp
 #include <wx/longlong.h>
 
 // Tenacity libraries
+#include <lib-audio-devices/AudioIOBase.h>
 #include <lib-strings/Identifier.h>
 #include <lib-preferences/Prefs.h> // to inherit
 #include <lib-registries/ClientData.h>
 
-#include "../../AudioIOBase.h" // for ScrubbingOptions
 #include "../../widgets/Overlay.h" // to inherit
 #include "../../commands/CommandContext.h"
 #include "../../commands/CommandManager.h" // for MenuTable

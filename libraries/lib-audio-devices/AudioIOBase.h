@@ -19,7 +19,7 @@ Paul Licameli split from AudioIO.h
 #include <wx/string.h>
 
 // Tenacity libraries
-#include <lib-utility/MemoryX.h>
+#include "MemoryX.h"
 
 #include <portaudio.h>
 
@@ -112,7 +112,7 @@ struct AudioIOStartStreamOptions
 
 ///\brief A singleton object supporting queries of the state of any active
 /// audio streams, and audio device capabilities
-class TENACITY_DLL_API AudioIOBase /* not final */
+class AUDIO_DEVICES_API AudioIOBase /* not final */
    : public NonInterferingBase
 {
 public:
@@ -308,11 +308,11 @@ protected:
 
 #include "Prefs.h"
 
-extern TENACITY_DLL_API StringSetting AudioIOHost;
-extern TENACITY_DLL_API DoubleSetting AudioIOLatencyCorrection;
-extern TENACITY_DLL_API DoubleSetting AudioIOLatencyDuration;
-extern TENACITY_DLL_API StringSetting AudioIOPlaybackDevice;
-extern TENACITY_DLL_API IntSetting    AudioIORecordChannels;
-extern TENACITY_DLL_API StringSetting AudioIORecordingDevice;
-extern TENACITY_DLL_API StringSetting AudioIORecordingSource;
-extern TENACITY_DLL_API IntSetting    AudioIORecordingSourceIndex;
+extern AUDIO_DEVICES_API StringSetting AudioIOHost;
+extern AUDIO_DEVICES_API DoubleSetting AudioIOLatencyCorrection;
+extern AUDIO_DEVICES_API DoubleSetting AudioIOLatencyDuration;
+extern AUDIO_DEVICES_API StringSetting AudioIOPlaybackDevice;
+extern AUDIO_DEVICES_API IntSetting    AudioIORecordChannels;
+extern AUDIO_DEVICES_API StringSetting AudioIORecordingDevice;
+extern AUDIO_DEVICES_API StringSetting AudioIORecordingSource;
+extern AUDIO_DEVICES_API IntSetting    AudioIORecordingSourceIndex;

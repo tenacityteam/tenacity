@@ -24,7 +24,6 @@ other settings.
 
 
 #include "DevicePrefs.h"
-#include "AudioIOBase.h"
 
 #include "RecordingPrefs.h"
 
@@ -38,10 +37,11 @@ other settings.
 #include "portaudio.h"
 
 // Tenacity libraries
+#include <lib-audio-devices/AudioIOBase.h>
+#include <lib-audio-devices/DeviceManager.h>
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
-#include "../DeviceManager.h"
 
 enum {
    HostID = 10000,

@@ -35,9 +35,9 @@
 #include <wx/treectrl.h>
 
 // Tenacity libraries
+#include <lib-audio-devices/AudioIOBase.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../AudioIOBase.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../commands/CommandManager.h"
 

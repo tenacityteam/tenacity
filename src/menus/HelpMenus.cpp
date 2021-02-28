@@ -7,6 +7,7 @@
 **********************************************************************/
 
 // Tenacity libraries
+#include <lib-audio-devices/AudioIOBase.h>
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -16,8 +17,6 @@
 #include <wx/frame.h>
 
 #include "../AboutDialog.h"
-#include "../theme/AllThemeResources.h"
-#include "../AudioIOBase.h"
 #include "../CommonCommandFlags.h"
 
 #include "../HelpText.h"
@@ -32,6 +31,7 @@
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
 #include "../prefs/PrefsDialog.h"
+#include "../theme/AllThemeResources.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/HelpSystem.h"
 
