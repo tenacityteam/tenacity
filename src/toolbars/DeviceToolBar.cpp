@@ -77,7 +77,7 @@ static int DeviceToolbarPrefsID()
 DeviceToolBar::DeviceToolBar( TenacityProject &project )
 : ToolBar( project, DeviceBarID, XO("Device"), wxT("Device"), true )
 {
-   wxTheApp->Bind( EVT_RESCANNED_DEVICES,
+   DeviceManager::Instance()->Bind( EVT_RESCANNED_DEVICES,
       &DeviceToolBar::OnRescannedDevices, this );
 }
 
@@ -554,7 +554,7 @@ void DeviceToolBar::FillInputChannels()
    mInputChannels->SetMinSize(wxSize(50, wxDefaultCoord));
 }
 
-void DeviceToolBar::OnRescannedDevices( wxCommandEvent &event )
+void DeviceToolBar::OnRescannedDevices( wxEvent &event )
 {
    event.Skip();
    // Hosts may have disappeared or appeared so a complete repopulate is needed.
