@@ -643,4 +643,6 @@ class TENACITY_DLL_API WaveTrackFactory final
 
 extern TENACITY_DLL_API StringSetting AudioTrackNameSetting;
 
+TENACITY_DLL_API bool GetEditClipsCanMove();
+
 #endif // __AUDACITY_WAVETRACK__
