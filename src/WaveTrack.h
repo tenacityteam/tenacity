@@ -16,6 +16,7 @@
 // Tenacity libraries
 #include <lib-math/SampleCount.h>
 #include <lib-math/SampleFormat.h>
+#include <lib-preferences/Prefs.h>
 
 #include "SampleTrack.h"
 
@@ -77,6 +78,7 @@ class Envelope;
 class TENACITY_DLL_API WaveTrack final : public WritableSampleTrack
 {
 public:
+   static wxString GetDefaultAudioTrackNamePreference();
 
    //
    // Constructor / Destructor / Duplicator
@@ -638,5 +640,7 @@ class TENACITY_DLL_API WaveTrackFactory final
       sampleFormat format = (sampleFormat)0,
       double rate = 0);
 };
+
+extern TENACITY_DLL_API StringSetting AudioTrackNameSetting;
 
 #endif // __AUDACITY_WAVETRACK__
