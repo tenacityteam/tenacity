@@ -19,7 +19,6 @@ class wxString;
 class wxWindow;
 class TenacityProject;
 
-#include "../Mix.h"
 #include "../Tags.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/ProgressDialog.h"
@@ -27,6 +26,7 @@ class TenacityProject;
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-files/FileNames.h>
+#include <lib-sample-track/Mix.h>
 #include <lib-strings/Internat.h>
 
 struct TENACITY_DLL_API FormatInfo

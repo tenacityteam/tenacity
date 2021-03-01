@@ -65,7 +65,7 @@
 #include <lib-xml/XMLFileWriter.h>
 #include <lib-xml/XMLWriter.h>
 
-#include "../Mix.h"
+#include "Mix.h"
 #include "../Tags.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/HelpSystem.h"

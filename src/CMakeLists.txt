@@ -154,8 +154,6 @@ list( APPEND SOURCES
       Menus.h
       $<$<BOOL:${USE_MIDI}>:MIDIPlay.cpp>
       $<$<BOOL:${USE_MIDI}>:MIDIPlay.h>
-      Mix.cpp
-      Mix.h
       MixAndRender.cpp
       MixAndRender.h
       MixerBoard.cpp
@@ -209,10 +207,6 @@ list( APPEND SOURCES
       RingBuffer.h
       SampleBlock.cpp
       SampleBlock.h
-      SampleTrack.cpp
-      SampleTrack.h
-      SampleTrackCache.cpp
-      SampleTrackCache.h
       TenacityApp.cpp
       TenacityApp.h
       $<$<BOOL:${wxIS_MAC}>:TenacityApp.mm>

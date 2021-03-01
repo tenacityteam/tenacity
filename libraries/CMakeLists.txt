@@ -14,6 +14,7 @@ set( LIBRARIES
    lib-registries
    lib-strings
    lib-track
+   lib-sample-track
    lib-theme
    lib-utility
    lib-xml

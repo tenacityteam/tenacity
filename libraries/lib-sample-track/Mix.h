@@ -20,9 +20,7 @@
 #ifndef __AUDACITY_MIX__
 #define __AUDACITY_MIX__
 
-// Tenacity libraries
-#include <lib-math/SampleFormat.h>
-
+#include "SampleFormat.h"
 #include <functional>
 #include <vector>
 
@@ -34,7 +32,7 @@ class SampleTrack;
 using SampleTrackConstArray = std::vector < std::shared_ptr < const SampleTrack > >;
 class SampleTrackCache;
 
-class TENACITY_DLL_API MixerSpec
+class SAMPLE_TRACK_API MixerSpec
 {
    unsigned mNumTracks, mNumChannels, mMaxNumChannels;
 
@@ -56,11 +54,11 @@ public:
    MixerSpec& operator=( const MixerSpec &mixerSpec );
 };
 
-class TENACITY_DLL_API Mixer {
+class SAMPLE_TRACK_API Mixer {
  public:
 
     // An argument to Mixer's constructor
-    class TENACITY_DLL_API WarpOptions
+    class SAMPLE_TRACK_API WarpOptions
     {
     public:
        //! Type of hook function for default time warp

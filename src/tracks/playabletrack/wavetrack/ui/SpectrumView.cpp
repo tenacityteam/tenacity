@@ -16,6 +16,7 @@ Paul Licameli split from WaveTrackView.cpp
 #include "WaveTrackViewConstants.h"
 
 // Tenacity libraries
+#include <lib-sample-track/SampleTrackCache.h>
 #include <lib-screen-geometry/NumberScale.h>
 #include <lib-screen-geometry/SelectedRegion.h>
 #include <lib-screen-geometry/ZoomInfo.h>
@@ -27,7 +28,6 @@ Paul Licameli split from WaveTrackView.cpp
 #include "../../../../WaveClip.h"
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
-#include "../../../../SampleTrackCache.h"
 
 #include <wx/dcmemory.h>
 #include <wx/graphics.h>

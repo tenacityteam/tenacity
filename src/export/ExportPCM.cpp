@@ -27,9 +27,9 @@
 #include <lib-math/Dither.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-project-rate/ProjectRate.h>
+#include <lib-sample-track/Mix.h>
 
 #include "../FileFormats.h"
-#include "../Mix.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "Track.h"

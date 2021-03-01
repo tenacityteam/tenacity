@@ -21,19 +21,13 @@
 *//*******************************************************************/
 
 
-
 #include "Mix.h"
 
 #include <cmath>
 
-#include <wx/textctrl.h>
-#include <wx/timer.h>
-#include <wx/intl.h>
-
-// Tenacity libraries
-#include <lib-math/float_cast.h>
-#include <lib-math/Resample.h>
-#include <lib-preferences/Prefs.h>
+#include "float_cast.h"
+#include "Resample.h"
+#include "Prefs.h"
 
 #include "Envelope.h"
 #include "SampleTrack.h"

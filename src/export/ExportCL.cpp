@@ -32,9 +32,9 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-sample-track/Mix.h>
 #include <lib-track/Track.h>
 
-#include "../Mix.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"

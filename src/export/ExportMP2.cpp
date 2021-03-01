@@ -48,10 +48,10 @@
 #include <lib-files/FileIO.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-project-rate/ProjectRate.h>
+#include <lib-sample-track/Mix.h>
 
 #include "Export.h"
 #include "ExportPlugin.h"
-#include "../Mix.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "Track.h"

@@ -73,8 +73,8 @@
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-project-rate/ProjectRate.h>
+#include <lib-sample-track/Mix.h>
 
-#include "../Mix.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../SelectFile.h"
