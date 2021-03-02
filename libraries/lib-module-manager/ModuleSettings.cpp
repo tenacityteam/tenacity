@@ -10,8 +10,7 @@
 
 #include "ModuleSettings.h"
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
+#include "Prefs.h"
 
 #include <unordered_set>
 #include <wx/filename.h>

@@ -18,16 +18,13 @@ i.e. an alternative to the usual interface, for Audacity.
 
 *//*******************************************************************/
 
-
 #include "ModuleManager.h"
 
+#include "BasicUI.h"
+#include "FileNames.h"
+#include "MemoryX.h"
+#include "ModuleInterface.h"
 #include "PluginInterface.h"
-
-// Tenacity libraries
-#include <lib-basic-ui/BasicUI.h>
-#include <lib-components/ModuleInterface.h>
-#include <lib-files/FileNames.h>
-#include <lib-utility/MemoryX.h>
 
 #include <wx/dynlib.h>
 #include <wx/log.h>
@@ -36,7 +33,7 @@ i.e. an alternative to the usual interface, for Audacity.
 
 #ifdef EXPERIMENTAL_MODULE_PREFS
 // Tenacity libraries
-#include <lib-preferences/Prefs.h>
+#include "Prefs.h"
 
 #include "ModuleSettings.h"
 #endif

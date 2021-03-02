@@ -18,12 +18,12 @@
 
 #if USE_AUDIO_UNITS
 #include "AudioUnitEffect.h"
-#include "../../ModuleManager.h"
-#include "../../ConfigInterface.h"
 
 // Tenacity libraries
 #include <lib-exceptions/TenacityException.h>
 #include <lib-math/SampleCount.h>
+#include <lib-module-manager/ModuleManager.h>
+#include <lib-module-manager/ConfigInterface.h>
 
 #include <wx/defs.h>
 #include <wx/base64.h>

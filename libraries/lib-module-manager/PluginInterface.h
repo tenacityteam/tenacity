@@ -80,7 +80,7 @@ using ConfigConstReference =
 
 }
 
-class TENACITY_DLL_API PluginManagerInterface /* not final */
+class MODULE_MANAGER_API PluginManagerInterface /* not final */
 {
 public:
    using ConfigurationType = PluginSettings::ConfigurationType;

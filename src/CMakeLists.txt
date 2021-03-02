@@ -106,8 +106,6 @@ list( APPEND SOURCES
       Clipboard.h
       CommonCommandFlags.cpp
       CommonCommandFlags.h
-      ConfigInterface.cpp
-      ConfigInterface.h
       DBConnection.cpp
       DBConnection.h
       Diags.cpp
@@ -158,20 +156,12 @@ list( APPEND SOURCES
       MixAndRender.h
       MixerBoard.cpp
       MixerBoard.h
-      ModuleManager.cpp
-      ModuleManager.h
-      ModuleSettings.cpp
-      ModuleSettings.h
       $<$<BOOL:${USE_MIDI}>:NoteTrack.cpp>
       $<$<BOOL:${USE_MIDI}>:NoteTrack.h>
       PitchName.cpp
       PitchName.h
       PlaybackSchedule.cpp
       PlaybackSchedule.h
-      PluginInterface.cpp
-      PluginInterface.h
-      PluginManager.cpp
-      PluginManager.h
       PluginRegistrationDialog.cpp
       PluginRegistrationDialog.h
       Printing.cpp

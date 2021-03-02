@@ -9,6 +9,7 @@ set( LIBRARIES
    lib-ffmpeg-support
    lib-files
    lib-math
+   lib-module-manager
    lib-preferences
    lib-string-utils
    lib-registries

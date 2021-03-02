@@ -17,11 +17,9 @@
 #include <map>
 #include <memory>
 
-// Tenacity libraries
-#include <lib-components/EffectInterface.h>
-#include <lib-strings/wxArrayStringEx.h>
-
+#include "EffectInterface.h"
 #include "PluginInterface.h"
+#include "wxArrayStringEx.h"
 
 class wxArrayString;
 class FileConfig;
@@ -43,7 +41,7 @@ typedef enum : unsigned {
 } PluginType;
 
 // TODO:  Convert this to multiple derived classes
-class TENACITY_DLL_API PluginDescriptor
+class MODULE_MANAGER_API PluginDescriptor
 {
 public:
    PluginDescriptor();
@@ -173,7 +171,7 @@ typedef wxArrayString PluginIDs;
 
 class PluginRegistrationDialog;
 
-class TENACITY_DLL_API PluginManager final : public PluginManagerInterface
+class MODULE_MANAGER_API PluginManager final : public PluginManagerInterface
 {
 public:
 
@@ -241,7 +239,7 @@ public:
 
    //! @name iteration over plugins of certain types, supporting range-for syntax
    //! @{
-   class Iterator {
+   class MODULE_MANAGER_API Iterator {
    public:
       //! Iterates all, even disabled
       explicit Iterator(PluginManager &manager);

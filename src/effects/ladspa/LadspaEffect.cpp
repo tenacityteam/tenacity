@@ -25,9 +25,8 @@ effects from this one class.
 
 #include "LadspaEffect.h"       // This class's header file
 
-#include "../../ConfigInterface.h"
-
 // Tenacity libraries
+#include <lib-module-manager/ConfigInterface.h>
 #include <lib-exceptions/TenacityException.h>
 #include <lib-files/FileNames.h>
 #include <lib-math/SampleCount.h>
@@ -65,7 +64,7 @@ effects from this one class.
 #include "../../widgets/NumericTextCtrl.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/wxPanelWrapper.h"
-#include "../../ModuleManager.h"
+#include "ModuleManager.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "../../widgets/WindowAccessible.h"

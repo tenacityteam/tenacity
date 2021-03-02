@@ -46,9 +46,11 @@ This class now lists
 
 #include "../prefs/PrefsDialog.h"
 #include "../shuttle/Shuttle.h"
-#include "../PluginManager.h"
 #include "../tracks/ui/TrackView.h"
 #include "../shuttle/ShuttleGui.h"
+
+// Tenacity libraries
+#include <lib-module-manager/PluginManager.h>
 
 #include <wx/frame.h>
 #include <wx/log.h>

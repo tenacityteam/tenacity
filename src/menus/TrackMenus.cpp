@@ -7,6 +7,7 @@
 **********************************************************************/
 
 // Tenacity libraries
+#include <lib-module-manager/PluginManager.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
 #include <lib-project/ProjectStatus.h>
@@ -22,7 +23,6 @@
 #include "../ProjectHistory.h"
 #include "ProjectRate.h"
 #include "../ProjectSettings.h"
-#include "../PluginManager.h"
 #include "../ProjectWindow.h"
 #include "../SelectUtilities.h"
 #include "../shuttle/ShuttleGui.h"

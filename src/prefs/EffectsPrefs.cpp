@@ -24,10 +24,10 @@
 #include <wx/defs.h>
 
 // Tenacity libraries
+#include <lib-module-manager/PluginManager.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Languages.h>
 
-#include "../PluginManager.h"
 #include "../shuttle/ShuttleGui.h"
 
 EffectsPrefs::EffectsPrefs(wxWindow * parent, wxWindowID winid)

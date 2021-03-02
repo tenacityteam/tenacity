@@ -11,8 +11,7 @@
 #ifndef __AUDACITY_MODULE_SETTINGS__
 #define __AUDACITY_MODULE_SETTINGS__
 
-// Tenacity libraries
-#include <lib-strings/Identifier.h>
+#include "Identifier.h"
 
 enum {
    kModuleDisabled = 0,
@@ -24,8 +23,8 @@ enum {
 
 namespace ModuleSettings {
 
-int GetModuleStatus( const FilePath &fname );
-void SetModuleStatus( const FilePath &fname, int iStatus );
+MODULE_MANAGER_API int GetModuleStatus( const FilePath &fname );
+MODULE_MANAGER_API void SetModuleStatus( const FilePath &fname, int iStatus );
 
 }
 

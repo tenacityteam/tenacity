@@ -28,12 +28,10 @@ for shared and private configs - which need to move out.
 #include <wx/tokenzr.h>
 
 #include "BasicUI.h"
+#include "FileNames.h"
+#include "MemoryX.h"
 #include "ModuleInterface.h"
-
-// Tenacity libraries
-#include <lib-files/FileNames.h>
-#include <lib-strings/Internat.h>
-#include <lib-utility/MemoryX.h>
+#include "PluginInterface.h"
 
 #include "ModuleManager.h"
 #include "PlatformCompatibility.h"

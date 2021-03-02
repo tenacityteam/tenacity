@@ -12,22 +12,25 @@
 #ifndef __AUDACITY_MODULEMANAGER_H__
 #define __AUDACITY_MODULEMANAGER_H__
 
-// Tenacity libraries
-#include <lib-strings/Identifier.h>
-#include <lib-utility/MemoryX.h>
-#include <lib-utility/ModuleConstants.h>
-
+#include "Identifier.h"
+#include "MemoryX.h"
+#include "ModuleConstants.h"
 #include "PluginInterface.h"
 
 #include <functional>
 #include <map>
 #include <vector>
+#include <wx/string.h>
+
+#include "Identifier.h"
 
 class wxArrayString;
 class wxDynamicLibrary;
 class ComponentInterface;
 class ModuleInterface;
 class wxWindow;
+using PluginID = wxString;
+class TranslatableString;
 
 //
 // Module Manager
@@ -68,7 +71,7 @@ using ModuleInterfaceHandle = std::unique_ptr<
 typedef std::map<wxString, ModuleInterfaceHandle> ModuleMap;
 typedef std::map<ModuleInterface *, std::unique_ptr<wxDynamicLibrary>> LibraryMap;
 
-class TENACITY_DLL_API ModuleManager final
+class MODULE_MANAGER_API ModuleManager final
 {
 public:
 
@@ -143,9 +146,9 @@ private:
 // ----------------------------------------------------------------------------
 using ModuleMain = ModuleInterface *(*)();
 
-TENACITY_DLL_API
+MODULE_MANAGER_API
 void RegisterProvider(ModuleMain rtn);
-TENACITY_DLL_API
+MODULE_MANAGER_API
 void UnregisterProvider(ModuleMain rtn);
 
 // Guarantee the registry exists before any registrations, so it will

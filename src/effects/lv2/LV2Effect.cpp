@@ -26,6 +26,7 @@
 // Tenacity libraries
 #include <lib-exceptions/TenacityException.h>
 #include <lib-math/SampleCount.h>
+#include <lib-module-manager/ConfigInterface.h>
 
 #include <cmath>
 
@@ -50,7 +51,6 @@
 #include <wx/intl.h>
 #include <wx/scrolwin.h>
 
-#include "../../ConfigInterface.h"
 #include "../../shuttle/ShuttleGui.h"
 #include "../../EffectHostInterface.h"
 #include "../../widgets/valnum.h"

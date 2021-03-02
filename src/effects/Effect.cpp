@@ -33,7 +33,7 @@
 #include "widgets/wxWidgetsBasicUI.h"
 #include "../LabelTrack.h"
 #include "../MixAndRender.h"
-#include "../PluginManager.h"
+#include "PluginManager.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectSettings.h"
 #include "QualitySettings.h"

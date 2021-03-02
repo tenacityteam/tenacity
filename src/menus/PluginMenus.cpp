@@ -16,7 +16,7 @@
 #include "../Benchmark.h"
 #include "../CommonCommandFlags.h"
 #include "../Menus.h"
-#include "../PluginManager.h"
+#include "PluginManager.h"
 #include "../PluginRegistrationDialog.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"

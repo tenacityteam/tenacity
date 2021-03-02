@@ -22,10 +22,10 @@ with names like mod-script-pipe that add NEW features.
 #include <wx/filename.h>
 
 // Tenacity libraries
+#include <lib-module-manager/ModuleSettings.h>
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
-#include "../ModuleSettings.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
