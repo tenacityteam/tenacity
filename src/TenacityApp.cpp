@@ -1092,7 +1092,8 @@ bool TenacityApp::InitPart2()
    ModuleManager::Get().Initialize();
 
    // Initialize the PluginManager
-   PluginManager::Get().Initialize();
+   PluginManager::Get().Initialize( [](const FilePath &localFileName){
+      return TenacityFileConfig::Create({}, {}, localFileName); } );
 
    // BG: Create a temporary window to set as the top window
    wxImage logoimage((const char **)TenacityLogoWithName_xpm);

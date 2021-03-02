@@ -13,6 +13,7 @@
 
 #include <wx/defs.h>
 
+#include <functional>
 #include <map>
 #include <memory>
 
@@ -214,11 +215,17 @@ public:
 
    // PluginManager implementation
 
-   void Initialize();
+   // Initialization must inject a factory to make a concrete subtype of
+   // FileConfig
+   using FileConfigFactory = std::function<
+      std::unique_ptr<FileConfig>(const FilePath &localFilename ) >;
+   /*! @pre `factory != nullptr` */
+   void Initialize(FileConfigFactory factory);
    void Terminate();
 
    bool DropFile(const wxString &fileName);
 
+   //! @pre Initialize() has been called
    static PluginManager & Get();
 
    static PluginID GetID(ModuleInterface *module);

@@ -34,7 +34,6 @@ for shared and private configs - which need to move out.
 #include <lib-strings/Internat.h>
 #include <lib-utility/MemoryX.h>
 
-#include "TenacityFileConfig.h"
 #include "ModuleManager.h"
 #include "PlatformCompatibility.h"
 #include "widgets/AudacityMessageBox.h"
@@ -572,6 +571,8 @@ PluginManager::~PluginManager()
 // PluginManager implementation
 // ----------------------------------------------------------------------------
 
+static PluginManager::FileConfigFactory sFactory;
+
 // ============================================================================
 //
 // Return reference to singleton
@@ -581,6 +582,7 @@ PluginManager::~PluginManager()
 
 PluginManager & PluginManager::Get()
 {
+   wxASSERT(sFactory);
    if (!mInstance)
    {
       mInstance.reset(safenew PluginManager);
@@ -589,8 +591,10 @@ PluginManager & PluginManager::Get()
    return *mInstance;
 }
 
-void PluginManager::Initialize()
+void PluginManager::Initialize(FileConfigFactory factory)
 {
+   sFactory = move(factory);
+
    // Always load the registry first
    Load();
 
@@ -752,8 +756,7 @@ bool PluginManager::DropFile(const wxString &fileName)
 void PluginManager::Load()
 {
    // Create/Open the registry
-   auto pRegistry = TenacityFileConfig::Create(
-      {}, {}, FileNames::PluginRegistry());
+   auto pRegistry = sFactory(FileNames::PluginRegistry());
    auto &registry = *pRegistry;
 
    // If this group doesn't exist then we have something that's not a registry.
@@ -1097,8 +1100,7 @@ void PluginManager::LoadGroup(FileConfig *pRegistry, PluginType type)
 void PluginManager::Save()
 {
    // Create/Open the registry
-   auto pRegistry = TenacityFileConfig::Create(
-      {}, {}, FileNames::PluginRegistry());
+   auto pRegistry = sFactory(FileNames::PluginRegistry());
    auto &registry = *pRegistry;
 
    // Clear pluginregistry.cfg (not audacity.cfg)
@@ -1519,8 +1521,7 @@ FileConfig *PluginManager::GetSettings()
 {
    if (!mSettings)
    {
-      mSettings =
-         TenacityFileConfig::Create({}, {}, FileNames::PluginSettings());
+      mSettings = sFactory(FileNames::PluginSettings());
 
       // Check for a settings version that we can understand
       if (mSettings->HasEntry(SETVERKEY))
