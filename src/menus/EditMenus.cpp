@@ -17,7 +17,7 @@
 #include "../Menus.h"
 #include "../NoteTrack.h"
 #include "../ProjectHistory.h"
-#include "../ProjectRate.h"
+#include "ProjectRate.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../ProjectWindows.h"

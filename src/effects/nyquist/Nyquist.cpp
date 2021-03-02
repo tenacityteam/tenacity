@@ -62,7 +62,7 @@ effects from this one class.
 #include "../../prefs/SpectrogramSettings.h"
 #include "../../PluginManager.h"
 #include "Project.h"
-#include "../../ProjectRate.h"
+#include "ProjectRate.h"
 #include "../../shuttle/ShuttleGetDefinition.h"
 #include "../../shuttle/ShuttleGui.h"
 #include "TempDirectory.h"

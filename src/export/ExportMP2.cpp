@@ -47,10 +47,10 @@
 // Tenacity 
 #include <lib-files/FileIO.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/ProjectRate.h>
 
 #include "Export.h"
 #include "../Mix.h"
-#include "../ProjectRate.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "../Track.h"

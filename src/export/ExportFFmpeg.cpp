@@ -37,7 +37,7 @@ function.
 #include <wx/combobox.h>
 
 #include "../Mix.h"
-#include "../ProjectRate.h"
+#include "ProjectRate.h"
 #include "../Tags.h"
 #include "../Track.h"
 #include "../widgets/AudacityMessageBox.h"

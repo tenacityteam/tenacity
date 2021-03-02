@@ -84,9 +84,10 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/ProjectRate.h>
 
 #include "../Mix.h"
-#include "../ProjectRate.h"
+#include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"

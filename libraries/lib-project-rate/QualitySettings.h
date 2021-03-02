@@ -12,15 +12,15 @@
 #define __AUDACITY_QUALITY_SETTINGS__
 
 // Tenacity libraries
-#include <lib-preferences/Prefs.h> // for EnumSetting
-#include <lib-math/SampleFormat.h>
+#include "Prefs.h" // for EnumSetting, lib-preferences
+#include "SampleFormat.h" // lib-math
 
 class IntSetting;
 
 namespace QualitySettings {
-extern TENACITY_DLL_API IntSetting DefaultSampleRate;
-extern TENACITY_DLL_API EnumSetting< sampleFormat > SampleFormatSetting;
-extern TENACITY_DLL_API sampleFormat SampleFormatChoice();
+extern PROJECT_RATE_API IntSetting DefaultSampleRate;
+extern PROJECT_RATE_API EnumSetting< sampleFormat > SampleFormatSetting;
+extern PROJECT_RATE_API sampleFormat SampleFormatChoice();
 }
 
 #endif

@@ -20,7 +20,7 @@
 
 #include "../ProjectAudioIO.h"
 #include "../ProjectHistory.h"
-#include "../ProjectRate.h"
+#include "ProjectRate.h"
 #include "../ProjectSettings.h"
 #include "../PluginManager.h"
 #include "../ProjectWindow.h"
@@ -38,7 +38,7 @@
 #include "../commands/CommandManager.h"
 #include "../effects/EffectManager.h"
 #include "../effects/EffectUI.h"
-#include "../prefs/QualitySettings.h"
+#include "QualitySettings.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackControls.h"
 #include "../widgets/ASlider.h"
 #include "../widgets/AudacityMessageBox.h"

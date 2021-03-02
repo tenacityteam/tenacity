@@ -12,7 +12,7 @@
 #include "AudioIOBase.h"
 
 // Tenacity libraries
-#include <lib-strings/Internat.h>
+#include "Internat.h"
 
 IntSetting QualitySettings::DefaultSampleRate{
    L"/SamplingRate/DefaultProjectSampleRate",

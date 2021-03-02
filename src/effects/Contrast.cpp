@@ -21,7 +21,7 @@
 #include "../CommonCommandFlags.h"
 #include "../WaveTrack.h"
 #include "../ProjectFileIO.h"
-#include "../ProjectRate.h"
+#include "ProjectRate.h"
 #include "../ProjectWindow.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"

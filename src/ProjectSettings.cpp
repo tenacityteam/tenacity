@@ -11,11 +11,11 @@ Paul Licameli split from TenacityProject.cpp
 #include "ProjectSettings.h"
 
 // Tenacity libraries
+#include <lib-project-rate/QualitySettings.h>
 #include <lib-xml/XMLWriter.h>
 
 #include "AudioIOBase.h"
 #include "Project.h"
-#include "prefs/QualitySettings.h"
 #include "prefs/TracksBehaviorsPrefs.h"
 #include "widgets/NumericTextCtrl.h"
 

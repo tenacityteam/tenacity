@@ -26,10 +26,10 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/Dither.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/ProjectRate.h>
 
 #include "../FileFormats.h"
 #include "../Mix.h"
-#include "../ProjectRate.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "../Track.h"

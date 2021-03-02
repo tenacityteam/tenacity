@@ -13,6 +13,7 @@ Paul Licameli split from TenacityProject.cpp
 // Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
+#include <lib-project-rate/QualitySettings.h>
 
 #include "ActiveProject.h"
 #include "AdornedRulerPanel.h"
@@ -39,7 +40,6 @@ Paul Licameli split from TenacityProject.cpp
 #include "WaveTrack.h"
 #include "import/Import.h"
 #include "import/ImportMIDI.h"
-#include "prefs/QualitySettings.h"
 #include "toolbars/SelectionBar.h"
 #include "toolbars/SpectralSelectionBar.h"
 #include "toolbars/TimeToolBar.h"

@@ -29,8 +29,10 @@ frequency changes smoothly during the tone.
 #include <wx/intl.h>
 #include <wx/valgen.h>
 
-#include "Project.h"
-#include "../ProjectRate.h"
+// Tenacity libraries
+#include <lib-project/Project.h>
+#include <lib-project-rate/ProjectRate.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/valnum.h"

@@ -33,8 +33,8 @@ and libvorbis examples, Monty <monty@xiph.org>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/ProjectRate.h>
 
-#include "../ProjectRate.h"
 #include "../Mix.h"
 #include "../shuttle/ShuttleGui.h"
 

@@ -452,7 +452,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "WaveTrack.h"
 
 #include "effects/RealtimeEffectManager.h"
-#include "prefs/QualitySettings.h"
+#include "QualitySettings.h"
 #include "widgets/AudacityMessageBox.h"
 
 #ifdef EXPERIMENTAL_MIDI_OUT

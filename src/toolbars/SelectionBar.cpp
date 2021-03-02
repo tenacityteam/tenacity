@@ -51,8 +51,9 @@ with changes in the SelectionBar.
 #include <wx/statline.h>
 
 // Tenacity libraries
-#include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project/Project.h>
+#include <lib-project-rate/QualitySettings.h>
 
 #include "../AudioIO.h"
 #include "../AColor.h"
@@ -61,7 +62,6 @@ with changes in the SelectionBar.
 #include "../ProjectSettings.h"
 #include "../Snap.h"
 #include "ViewInfo.h"
-#include "../prefs/QualitySettings.h"
 #include "../theme/AllThemeResources.h"
 #include "../widgets/AuStaticText.h"
 

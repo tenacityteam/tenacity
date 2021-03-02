@@ -26,7 +26,6 @@ and sample size to help you importing data of an unknown format.
 
 #include "AudioIOBase.h"
 #include "../FileFormats.h"
-#include "../ProjectRate.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../WaveTrack.h"
@@ -35,6 +34,7 @@ and sample size to help you importing data of an unknown format.
 // Tenacity libraries
 #include <lib-exceptions/UserException.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/ProjectRate.h>
 
 #include <cmath>
 #include <cstdio>

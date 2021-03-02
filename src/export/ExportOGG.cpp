@@ -30,8 +30,8 @@
 // Tenacity libraries
 #include <lib-files/FileIO.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/ProjectRate.h>
 
-#include "../ProjectRate.h"
 #include "../Mix.h"
 #include "../shuttle/ShuttleGui.h"
 
