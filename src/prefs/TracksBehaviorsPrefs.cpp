@@ -16,6 +16,7 @@
 
 
 #include "TracksBehaviorsPrefs.h"
+#include "../ViewInfo.h"
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
@@ -46,12 +47,6 @@ TranslatableString TracksBehaviorsPrefs::GetDescription()
 ManualPageID TracksBehaviorsPrefs::HelpPageName()
 {
    return "Tracks_Behaviors_Preferences";
-}
-
-const wxChar *TracksBehaviorsPrefs::ScrollingPreferenceKey()
-{
-   static auto string = wxT("/GUI/ScrollBeyondZero");
-   return string;
 }
 
 void TracksBehaviorsPrefs::Populate()
@@ -104,8 +99,7 @@ void TracksBehaviorsPrefs::PopulateOrExchange(ShuttleGui & S)
                      false});
 #ifdef EXPERIMENTAL_SCROLLING_LIMITS
       S.TieCheckBox(XXO("Enable scrolling left of &zero"),
-                    {ScrollingPreferenceKey(),
-                     ScrollingPreferenceDefault()});
+                    ScrollingPreference);
 #endif
       S.TieCheckBox(XXO("Advanced &vertical zooming"),
                     {wxT("/GUI/VerticalZooming"),

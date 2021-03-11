@@ -15,7 +15,6 @@ Paul Licameli
 #include <algorithm>
 
 #include "Project.h"
-#include "prefs/TracksBehaviorsPrefs.h"
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
@@ -198,8 +197,7 @@ void ViewInfo::UpdatePrefs()
 {
    ZoomInfo::UpdatePrefs();
 #ifdef EXPERIMENTAL_SCROLLING_LIMITS
-   gPrefs->Read(TracksBehaviorsPrefs::ScrollingPreferenceKey(), &bScrollBeyondZero,
-                TracksBehaviorsPrefs::ScrollingPreferenceDefault());
+   bScrollBeyondZero = ScrollingPreference.Read();
 #endif
    gPrefs->Read(wxT("/GUI/AdjustSelectionEdges"), &bAdjustSelectionEdges,
       true);
@@ -267,3 +265,5 @@ static ProjectFileIORegistry::WriterEntry entry {
    ViewInfo::Get(project).WriteXMLAttributes(xmlFile);
 }
 };
+
+BoolSetting ScrollingPreference{ L"/GUI/ScrollBeyondZero", false };

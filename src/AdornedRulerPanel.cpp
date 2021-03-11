@@ -46,7 +46,6 @@
 #include "TrackPanelMouseEvent.h"
 #include "UIHandle.h"
 #include "ViewInfo.h"
-#include "prefs/TracksBehaviorsPrefs.h"
 #include "prefs/TracksPrefs.h"
 #include "prefs/ThemePrefs.h"
 #include "toolbars/ToolBar.h"
@@ -989,9 +988,7 @@ void AdornedRulerPanel::UpdatePrefs()
 #ifdef EXPERIMENTAL_SCROLLING_LIMITS
 #ifdef EXPERIMENTAL_TWO_TONE_TIME_RULER
    {
-      bool scrollBeyondZero = false;
-      gPrefs->Read(TracksBehaviorsPrefs::ScrollingPreferenceKey(), &scrollBeyondZero,
-                   TracksBehaviorsPrefs::ScrollingPreferenceDefault());
+      auto scrollBeyondZero = ScrollingPreference.Read();
       mRuler.SetTwoTone(scrollBeyondZero);
    }
 #endif
