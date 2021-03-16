@@ -22,6 +22,7 @@
 #include "../../../../commands/CommandFunctors.h"
 #include "../../../../commands/CommandManager.h"
 #include "../../../../TrackPanelMouseEvent.h"
+#include "../../../../TrackArt.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"
 #include "../../../../TrackPanelResizeHandle.h"
