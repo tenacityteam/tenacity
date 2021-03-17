@@ -30,10 +30,17 @@ enum StatusBarField : int {
    nStatusBarFields = 3
 };
 
+struct TENACITY_DLL_API ProjectStatusEvent final : wxEvent{
+   explicit ProjectStatusEvent( StatusBarField field );
+   ~ProjectStatusEvent() override;
+   wxEvent *Clone() const override;
+   StatusBarField mField;
+};
+
 // Type of event emitted by the project when its status message is set
 // GetInt() identifies the intended field of the status bar
 wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_PROJECT_STATUS_UPDATE, wxCommandEvent);
+                         EVT_PROJECT_STATUS_UPDATE, ProjectStatusEvent);
 
 class TENACITY_DLL_API ProjectStatus final
    : public ClientData::Base

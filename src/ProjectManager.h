@@ -25,6 +25,8 @@ class wxTimerEvent;
 class TenacityProject;
 struct AudioIOStartStreamOptions;
 
+struct ProjectStatusEvent;
+
 ///\brief Object associated with a project for high-level management of the
 /// project's lifetime, including creation, destruction, opening from file,
 /// importing, pushing undo states, and reverting to saved states
@@ -118,7 +120,7 @@ private:
    void OnCloseWindow(wxCloseEvent & event);
    void OnTimer(wxTimerEvent & event);
    void OnOpenAudioFile(wxCommandEvent & event);
-   void OnStatusChange( wxCommandEvent& );
+   void OnStatusChange( ProjectStatusEvent& );
 
    void RestartTimer();
 
