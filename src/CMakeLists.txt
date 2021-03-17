@@ -116,6 +116,8 @@ list( APPEND SOURCES
       CommonCommandFlags.h
       DBConnection.cpp
       DBConnection.h
+      Decibels.cpp
+      Decibels.h
       Diags.cpp
       Diags.h
       Envelope.cpp

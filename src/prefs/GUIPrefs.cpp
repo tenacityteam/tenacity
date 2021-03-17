@@ -31,7 +31,7 @@
 #include "../theme/Theme.h"
 #include "../shuttle/ShuttleGui.h"
 
-#include "GUISettings.h"
+#include "../Decibels.h"
 
 #include "ThemePrefs.h"
 #include "../AColor.h"
@@ -163,7 +163,7 @@ void GUIPrefs::PopulateOrExchange(ShuttleGui & S)
 
          S.TieChoice( XXO("Meter dB &range:"),
             {
-               ENV_DB_KEY,
+               DecibelScaleCutoff.GetPath(),
                { ByColumns, mRangeChoices, mRangeCodes },
                mDefaultRangeIndex
             }

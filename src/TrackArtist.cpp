@@ -51,7 +51,7 @@ audio tracks.
 #include "TrackPanelDrawingContext.h"
 #include "ViewInfo.h"
 
-#include "prefs/GUISettings.h"
+#include "Decibels.h"
 #include "prefs/TracksPrefs.h"
 
 #include <wx/app.h>
@@ -63,7 +63,7 @@ static constexpr int ClipSelectionStrokeSize{ 1 };//px
 TrackArtist::TrackArtist( TrackPanel *parent_ )
    : parent( parent_ )
 {
-   mdBrange = ENV_DB_RANGE;
+   mdBrange = DecibelScaleCutoff.GetDefault();
    mShowClipping = false;
    mSampleDisplay = 1;// Stem plots by default.
 
@@ -290,7 +290,7 @@ void TrackArtist::UpdateSelectedPrefs( int id )
 
 void TrackArtist::UpdatePrefs()
 {
-   mdBrange = gPrefs->Read(ENV_DB_KEY, mdBrange);
+   mdBrange = DecibelScaleCutoff.Read();
    mSampleDisplay = TracksPrefs::SampleViewChoice();
 
    UpdateSelectedPrefs( ShowClippingPrefsID() );

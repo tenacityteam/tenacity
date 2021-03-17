@@ -16,7 +16,7 @@ Paul Licameli
 
 #include "WaveformSettings.h"
 
-#include "GUISettings.h"
+#include "Decibels.h"
 #include "GUIPrefs.h"
 #include "TracksPrefs.h"
 
@@ -89,7 +89,7 @@ void WaveformSettings::LoadPrefs()
 {
    scaleType = TracksPrefs::WaveformScaleChoice();
 
-   dBRange = gPrefs->Read(ENV_DB_KEY, ENV_DB_RANGE);
+   dBRange = DecibelScaleCutoff.Read();
 
    // Enforce legal values
    Validate(true);
@@ -113,7 +113,7 @@ void WaveformSettings::UpdatePrefs()
    }
 
    if (dBRange == defaults().dBRange){
-      dBRange = gPrefs->Read(ENV_DB_KEY, ENV_DB_RANGE);
+      dBRange = DecibelScaleCutoff.Read();
    }
 
    // Enforce legal values

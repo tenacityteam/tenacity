@@ -22,7 +22,7 @@
 #include "SoundActivatedRecord.h"
 
 #include "shuttle/ShuttleGui.h"
-#include "prefs/GUISettings.h"
+#include "Decibels.h"
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
@@ -58,7 +58,7 @@ void SoundActivatedRecordDialog::PopulateOrExchange(ShuttleGui & S)
       S.TieSlider(
          XXO("Activation level (dB):"),
          {wxT("/AudioIO/SilenceLevel"), -50},
-         0, -gPrefs->Read(ENV_DB_KEY, ENV_DB_RANGE)
+         0, -DecibelScaleCutoff.Read()
       )->SetMinSize(wxSize(300, wxDefaultCoord));
       S.EndMultiColumn();
    }

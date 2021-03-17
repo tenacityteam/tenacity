@@ -29,7 +29,7 @@
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "../prefs/GUISettings.h"
+#include "../Decibels.h"
 #include "../shuttle/ShuttleGui.h"
 
 using std::min;
@@ -139,7 +139,7 @@ void RecordingPrefs::PopulateOrExchange(ShuttleGui & S)
                      {wxT("/AudioIO/SilenceLevel"),
                       -50},
                      0,
-                     -gPrefs->Read(ENV_DB_KEY, ENV_DB_RANGE));
+                     -DecibelScaleCutoff.Read());
       }
       S.EndMultiColumn();
    }
