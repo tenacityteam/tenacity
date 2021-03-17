@@ -27,6 +27,7 @@
 
 // Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
+#include <lib-screen-geometry/ViewInfo.h>
 
 #include "../AudioIO.h"
 #include "widgets/wxWidgetsBasicUI.h"
@@ -41,7 +42,6 @@
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../shuttle/Shuttle.h"
-#include "../ViewInfo.h"
 #include "../WaveTrack.h"
 #include "../widgets/ProgressDialog.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"

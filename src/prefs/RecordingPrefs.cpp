@@ -28,8 +28,8 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-screen-geometry/Decibels.h>
 
-#include "../Decibels.h"
 #include "../shuttle/ShuttleGui.h"
 
 using std::min;

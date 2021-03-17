@@ -654,11 +654,13 @@ private:
 #include "Project.h"
 #include "../ProjectAudioManager.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../ViewInfo.h"
 #include "../commands/AudacityCommand.h"
 #include "../commands/CommandContext.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/HelpSystem.h"
+
+// Tenacity libraries
+#include <lib-screen-geometry/ViewInfo.h>
 
 #include <wx/app.h>
 #include <wx/bmpbuttn.h>

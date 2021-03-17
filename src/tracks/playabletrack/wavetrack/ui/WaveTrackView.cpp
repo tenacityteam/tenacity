@@ -35,7 +35,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../TrackPanelDrawingContext.h"
 #include "../../../../TrackPanelMouseEvent.h"
 #include "../../../../TrackPanelResizeHandle.h"
-#include "../../../../ViewInfo.h"
+#include "ViewInfo.h"
 #include "../../../../prefs/TracksPrefs.h"
 
 #include "../../../ui/TimeShiftHandle.h"

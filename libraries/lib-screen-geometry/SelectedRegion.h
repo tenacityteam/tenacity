@@ -25,7 +25,6 @@
 #ifndef __AUDACITY_SELECTEDREGION__
 #define __AUDACITY_SELECTEDREGION__
 
-
 #include <wx/defs.h>
 #include <wx/chartype.h> // for wxChar, a typedef
 #include <cmath>
@@ -33,7 +32,7 @@
 
 class XMLWriter;
 
-class TENACITY_DLL_API SelectedRegion {
+class SCREEN_GEOMETRY_API SelectedRegion {
 
    // Maintains the invariant:  t1() >= t0()
 

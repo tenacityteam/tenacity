@@ -8,11 +8,7 @@
 
 **********************************************************************/
 
-
 #include "ZoomInfo.h"
-
-
-
 #include "Decibels.h"
 
 #include <cmath>

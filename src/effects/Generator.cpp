@@ -19,8 +19,8 @@
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
+#include <lib-screen-geometry/ViewInfo.h>
 
-#include "../ViewInfo.h"
 #include "../WaveTrack.h"
 #include "../prefs/TracksBehaviorsPrefs.h"
 

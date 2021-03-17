@@ -56,10 +56,10 @@ with changes in the SpectralSelectionBar.
 // Tenacity libraries
 #include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-screen-geometry/SelectedRegion.h>
+#include <lib-screen-geometry/ViewInfo.h>
 
 #include "../theme/AllThemeResources.h"
-#include "../SelectedRegion.h"
-#include "../ViewInfo.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "../widgets/WindowAccessible.h"

@@ -16,7 +16,7 @@
 
 
 #include "TracksBehaviorsPrefs.h"
-#include "../ViewInfo.h"
+#include "ViewInfo.h"
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>

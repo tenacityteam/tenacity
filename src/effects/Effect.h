@@ -30,8 +30,7 @@ class wxWindow;
 #include <lib-components/EffectInterface.h>
 #include <lib-components/PluginInterface.h>
 #include <lib-math/SampleCount.h>
-
-#include "../SelectedRegion.h"
+#include <lib-screen-geometry/SelectedRegion.h>
 
 #include "../Track.h"
 

@@ -21,7 +21,7 @@
 #include "../SelectFile.h"
 #include "../TrackPanelAx.h"
 #include "../TrackPanel.h"
-#include "../ViewInfo.h"
+#include "ViewInfo.h"
 #include "../WaveTrack.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"

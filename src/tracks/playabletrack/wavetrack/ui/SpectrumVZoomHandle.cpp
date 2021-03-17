@@ -14,7 +14,6 @@ Paul Licameli split from WaveTrackVZoomHandle.cpp
 #include "WaveTrackVZoomHandle.h"
 
 #include "../../../../HitTestResult.h"
-#include "../../../../NumberScale.h"
 #include "../../../../ProjectHistory.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../TrackPanelMouseEvent.h"
@@ -23,6 +22,7 @@ Paul Licameli split from WaveTrackVZoomHandle.cpp
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-screen-geometry/NumberScale.h>
 
 SpectrumVZoomHandle::SpectrumVZoomHandle
 (const std::shared_ptr<WaveTrack> &pTrack, const wxRect &rect, int y)

@@ -62,7 +62,6 @@
 #include "../AudioIO.h"
 #include "../AColor.h"
 #include "../ImageManipulation.h"
-#include "../Decibels.h"
 #include "../ProjectAudioManager.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"
@@ -72,6 +71,7 @@
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
 #include <lib-project/ProjectStatus.h>
+#include <lib-screen-geometry/Decibels.h>
 
 #include "../theme/AllThemeResources.h"
 #include "../widgets/valnum.h"

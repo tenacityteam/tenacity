@@ -109,7 +109,7 @@ private:
 #include "EffectInterface.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
 
-#include "../SelectedRegion.h"
+#include "SelectedRegion.h"
 
 class AudacityCommand;
 class TenacityProject;

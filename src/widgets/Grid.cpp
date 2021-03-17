@@ -30,7 +30,7 @@
 // Tenacity
 #include <lib-utility/MemoryX.h>
 
-#include "../SelectedRegion.h"
+#include <lib-screen-geometry/SelectedRegion.h>
 
 #if wxUSE_ACCESSIBILITY
 #include "WindowAccessible.h"

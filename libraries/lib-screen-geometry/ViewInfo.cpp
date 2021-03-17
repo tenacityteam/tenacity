@@ -17,8 +17,8 @@ Paul Licameli
 #include "Project.h"
 
 // Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-xml/XMLWriter.h>
+#include "Prefs.h"
+#include "XMLWriter.h"
 
 wxDEFINE_EVENT( EVT_SELECTED_REGION_CHANGE, SelectedRegionEvent );
 
@@ -256,8 +256,7 @@ ProjectFileIORegistry::AttributeReaderEntries entries2 {
 
 int ViewInfo::UpdateScrollPrefsID()
 {
-   static int value = wxNewId();
-   return value;
+   return 10000;
 }
 
 static ProjectFileIORegistry::WriterEntry entry {

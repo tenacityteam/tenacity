@@ -31,7 +31,7 @@
 #include "../theme/Theme.h"
 #include "../shuttle/ShuttleGui.h"
 
-#include "../Decibels.h"
+#include "Decibels.h"
 
 #include "ThemePrefs.h"
 #include "../AColor.h"

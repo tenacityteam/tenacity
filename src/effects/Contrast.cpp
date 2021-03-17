@@ -16,6 +16,7 @@
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
+#include <lib-screen-geometry/ViewInfo.h>
 
 #include "../CommonCommandFlags.h"
 #include "../WaveTrack.h"
@@ -24,7 +25,6 @@
 #include "../ProjectWindow.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../ViewInfo.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/NumericTextCtrl.h"
 #include "../widgets/AudacityMessageBox.h"

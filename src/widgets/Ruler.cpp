@@ -60,12 +60,14 @@ array of Ruler::Label.
 #include <wx/dcclient.h>
 #include <wx/dcscreen.h>
 
+// Tenacity libraries
+#include <lib-screen-geometry/NumberScale.h>
+#include <lib-screen-geometry/ViewInfo.h>
+
 #include "../AColor.h"
 #include "../theme/AllThemeResources.h"
 #include "../Envelope.h"
-#include "../NumberScale.h"
 #include "../theme/Theme.h"
-#include "../ViewInfo.h"
 
 using std::min;
 using std::max;

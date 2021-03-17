@@ -60,7 +60,7 @@ with changes in the SelectionBar.
 #include "../ProjectAudioIO.h"
 #include "../ProjectSettings.h"
 #include "../Snap.h"
-#include "../ViewInfo.h"
+#include "ViewInfo.h"
 #include "../prefs/QualitySettings.h"
 #include "../theme/AllThemeResources.h"
 #include "../widgets/AuStaticText.h"

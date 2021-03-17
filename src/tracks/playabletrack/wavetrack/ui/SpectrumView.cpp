@@ -16,16 +16,16 @@ Paul Licameli split from WaveTrackView.cpp
 #include "WaveTrackViewConstants.h"
 
 #include "../../../../AColor.h"
-#include "../../../../NumberScale.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"
-#include "../../../../ViewInfo.h"
 #include "../../../../WaveClip.h"
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-screen-geometry/NumberScale.h>
+#include <lib-screen-geometry/ViewInfo.h>
 
 #include <wx/dcmemory.h>
 #include <wx/graphics.h>

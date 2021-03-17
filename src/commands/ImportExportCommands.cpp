@@ -22,7 +22,7 @@
 
 #include "LoadCommands.h"
 #include "../ProjectFileManager.h"
-#include "../ViewInfo.h"
+#include "ViewInfo.h"
 #include "../export/Export.h"
 #include "../SelectUtilities.h"
 #include "../shuttle/Shuttle.h"
