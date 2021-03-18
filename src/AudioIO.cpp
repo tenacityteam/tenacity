@@ -95,6 +95,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <lib-exceptions/TenacityException.h>
 #include <lib-math/Resample.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-transactions/TransactionScope.h>
 #include <lib-utility/MessageBuffer.h>
 
 #include "Meter.h"
@@ -104,7 +105,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "Project.h"
 #include "ScrubState.h"
 #include "ProjectWindows.h"
-#include "TransactionScope.h"
 #include "WaveTrack.h"
 
 #include "effects/RealtimeEffectManager.h"
