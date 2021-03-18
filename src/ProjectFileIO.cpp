@@ -1863,7 +1863,7 @@ bool ProjectFileIO::WriteDoc(const char *table,
 {
    auto db = DB();
 
-   TransactionScope transaction(GetConnection(), "UpdateProject");
+   TransactionScope transaction(mProject, "UpdateProject");
 
    int rc;
 

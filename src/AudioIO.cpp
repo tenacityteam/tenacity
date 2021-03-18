@@ -74,6 +74,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <optional>
 #include <iostream>
 #include <numeric>
+#include <optional>
 
 #include "portaudio.h"
 #ifdef PA_USE_JACK
@@ -101,8 +102,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "RingBuffer.h"
 #include "Decibels.h"
 #include "Project.h"
-#include "DBConnection.h"
-#include "ProjectFileIO.h"
 #include "ScrubState.h"
 #include "ProjectWindows.h"
 #include "TransactionScope.h"
@@ -1244,11 +1243,8 @@ void AudioIO::StopStream()
             // This scope may combine many splittings of wave tracks
             // into one transaction, lessening the number of checkpoints
             std::optional<TransactionScope> pScope;
-            auto pOwningProject = mOwningProject.lock();
-            if (pOwningProject) {
-               auto &pIO = ProjectFileIO::Get(*pOwningProject);
-               pScope.emplace(pIO.GetConnection(), "Dropouts");
-            }
+            if (auto pOwningProject = mOwningProject.lock())
+               pScope.emplace(*pOwningProject, "Dropouts");
             for (auto &interval : mLostCaptureIntervals) {
                auto &start = interval.first;
                auto duration = interval.second;
@@ -1599,11 +1595,8 @@ void AudioIO::DrainRecordBuffers()
          // and also an autosave, into one transaction,
          // lessening the number of checkpoints
          std::optional<TransactionScope> pScope;
-         auto pOwningProject = mOwningProject.lock();
-         if (pOwningProject) {
-            auto &pIO = ProjectFileIO::Get(*pOwningProject);
-            pScope.emplace(pIO.GetConnection(), "Recording");
-         }
+         if (auto pOwningProject = mOwningProject.lock())
+            pScope.emplace(*pOwningProject, "Recording");
 
          bool newBlocks = false;
 

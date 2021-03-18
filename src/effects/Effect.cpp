@@ -34,7 +34,6 @@
 #include "../MixAndRender.h"
 #include "../PluginManager.h"
 #include "../ProjectAudioManager.h"
-#include "../ProjectFileIO.h"
 #include "../ProjectSettings.h"
 #include "QualitySettings.h"
 #include "../SelectFile.h"
@@ -1016,8 +1015,7 @@ bool Effect::DoEffect(double projectRate,
 
    // This is for performance purposes only, no additional recovery implied
    auto &pProject = *const_cast<TenacityProject*>(FindProject()); // how to remove this const_cast?
-   auto &pIO = ProjectFileIO::Get(pProject);
-   TransactionScope trans(pIO.GetConnection(), "Effect");
+   TransactionScope trans(pProject, "Effect");
 
    // Update track/group counts
    CountWaveTracks();
