@@ -106,6 +106,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "ScrubState.h"
 #include "ProjectWindows.h"
 #include "WaveTrack.h"
+#include "TransactionScope.h"
 
 #include "effects/RealtimeEffectManager.h"
 #include "widgets/AudacityMessageBox.h"
