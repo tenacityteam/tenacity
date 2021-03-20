@@ -1196,8 +1196,8 @@ std::string GetMIDIDeviceInfo()
    s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation().ToStdString(wxConvUTF8) << std::endl;
    s << XO("Default playback device number: %d").Format( playDeviceNum ).Translation().ToStdString(wxConvUTF8) << std::endl;
 
-   wxString recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT(""));
-   wxString playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT(""));
+   auto recDevice = MIDIRecordingDevice.Read();
+   auto playDevice = MIDIPlaybackDevice.Read();
 
    // This gets info on all available audio devices (input and output)
    if (cnt <= 0) {
@@ -1276,5 +1276,9 @@ std::string GetMIDIDeviceInfo()
 
    return s.str();
 }
+
+StringSetting MIDIPlaybackDevice{ L"/MidiIO/PlaybackDevice", L"" };
+StringSetting MIDIRecordingDevice{ L"/MidiIO/RecordingDevice", L"" };
+IntSetting MIDISynthLatency_ms{ L"/MidiIO/SynthLatency", 5 };
 
 #endif // USE_MIDI
