@@ -1109,13 +1109,6 @@ void AudioIO::StopStream()
 
    std::lock_guard<std::mutex> locker(mSuspendAudioThread);
 
-   // No longer need effects processing
-   if (mNumPlaybackChannels > 0)
-   {
-      if (auto pOwningProject = mOwningProject.lock())
-         RealtimeEffectManager::Get(*pOwningProject).Finalize();
-   }
-
    //
    // We got here in one of two ways:
    //
@@ -1159,6 +1152,14 @@ void AudioIO::StopStream()
       Pa_AbortStream( mPortStreamV19 );
       Pa_CloseStream( mPortStreamV19 );
       mPortStreamV19 = NULL;
+   }
+
+   // No longer need effects processing. This must be done after the stream is stopped
+   // to prevent the callback from being invoked after the effects are finalized.
+   if (mNumPlaybackChannels > 0)
+   {
+      if (auto pOwningProject = mOwningProject.lock())
+         RealtimeEffectManager::Get(*pOwningProject).Finalize();
    }
 
    for( auto &ext : Extensions() )
