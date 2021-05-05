@@ -1125,10 +1125,7 @@ void EffectUIHost::LoadUserPresets()
 
 void EffectUIHost::InitializeRealtime()
 {
-   if (mSupportsRealtime && !mInitialized)
-   {
-      RealtimeEffectManager::Get(*mProject).RealtimeAddEffect(mEffect);
-      
+   if (mSupportsRealtime && !mInitialized) {
       AudioIO::Get()->Subscribe([this](AudioIOEvent event){
          switch (event.type) {
          case AudioIOEvent::PLAYBACK:
@@ -1146,10 +1143,7 @@ void EffectUIHost::InitializeRealtime()
 
 void EffectUIHost::CleanupRealtime()
 {
-   if (mSupportsRealtime && mInitialized)
-   {
-      RealtimeEffectManager::Get(*mProject).RealtimeRemoveEffect(mEffect);
-      
+   if (mSupportsRealtime && mInitialized) {
       mInitialized = false;
    }
 }
