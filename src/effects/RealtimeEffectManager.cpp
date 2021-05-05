@@ -16,6 +16,7 @@
 // Tenacity libraries
 #include <lib-components/EffectInterface.h>
 #include <lib-project/Project.h>
+#include <lib-track/Track.h>
 #include <lib-utility/MemoryX.h>
 
 #include <atomic>
@@ -68,25 +69,30 @@ void RealtimeEffectManager::Initialize(double rate)
    // (Re)Set processor parameters
    mChans.clear();
    mRates.clear();
+   mGroupLeaders.clear();
 
    // RealtimeAdd/RemoveEffect() needs to know when we're active so it can
    // initialize newly added effects
    mActive = true;
 
-   // Tell each effect to get ready for action
+   // Tell each effect of the master list to get ready for action
    VisitGroup(nullptr, [rate](RealtimeEffectState &state, bool){
       state.Initialize(rate);
    });
 }
 
-void RealtimeEffectManager::AddTrack(int group, unsigned chans, float rate)
+void RealtimeEffectManager::AddTrack(Track *track, unsigned chans, float rate)
 {
-   VisitGroup(nullptr, [&](RealtimeEffectState &state, bool){
-      state.AddTrack(group, chans, rate);
-   });
+   auto leader = *track->GetOwner()->FindLeader(track);
+   mGroupLeaders.push_back(leader);
+   mChans.insert({leader, chans});
+   mRates.insert({leader, rate});
 
-   mChans.push_back(chans);
-   mRates.push_back(rate);
+   VisitGroup(leader,
+      [&](RealtimeEffectState & state, bool) {
+         state.AddTrack(leader, chans, rate);
+      }
+   );
 }
 
 void RealtimeEffectManager::Finalize()
@@ -94,12 +100,13 @@ void RealtimeEffectManager::Finalize()
    // Make sure nothing is going on
    Suspend();
 
-   // Tell each effect to clean up as well
-   VisitGroup(nullptr, [](RealtimeEffectState &state, bool){
-      state.Finalize();
-   });
+   // It is now safe to clean up
+   mLatency = std::chrono::microseconds(0);
+
+   VisitAll([](auto &state, bool){ state.Finalize(); });
 
    // Reset processor parameters
+   mGroupLeaders.clear();
    mChans.clear();
    mRates.clear();
 
@@ -167,7 +174,9 @@ void RealtimeEffectManager::ProcessStart()
 //
 // This will be called in a different thread than the main GUI thread.
 //
-size_t RealtimeEffectManager::Process(int group, unsigned chans, float **buffers, size_t numSamples)
+size_t RealtimeEffectManager::Process(Track *track,
+                                      float **buffers,
+                                      size_t numSamples)
 {
    using namespace std::chrono;
 
@@ -179,6 +188,8 @@ size_t RealtimeEffectManager::Process(int group, unsigned chans, float **buffers
    if (mSuspended)
       return numSamples;
 
+   auto chans = mChans[track];
+
    // AK: If we have more channels than our input and output bufffers'
    // capacities, increase their capacities when necessary.
    if (mInputBuffers.capacity() < chans)
@@ -188,6 +199,7 @@ size_t RealtimeEffectManager::Process(int group, unsigned chans, float **buffers
    {
       mOutputBuffers.reserve(chans);
    }
+
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
@@ -207,19 +219,21 @@ size_t RealtimeEffectManager::Process(int group, unsigned chans, float **buffers
 
    // Now call each effect in the chain while swapping buffer pointers to feed the
    // output of one effect as the input to the next effect
+   // Tracks how many processors were called
    size_t called = 0;
-   VisitGroup(nullptr, [&](RealtimeEffectState &state, bool bypassed){
-      if (!bypassed) {
-         state.Process(group, chans, mInputBuffers.data(),
+   VisitGroup(track,
+      [&](RealtimeEffectState &state, bool bypassed)
+      {
+         if (bypassed)
+            return;
+
+         state.Process(track, chans, mInputBuffers.data(),
                        mOutputBuffers.data(), numSamples);
+         for (auto i = 0; i < chans; ++i)
+            std::swap(mInputBuffers[i], mOutputBuffers[i]);
          called++;
       }
-
-      for (unsigned int j = 0; j < chans; j++)
-      {
-         std::swap(mInputBuffers[j], mOutputBuffers[j]);
-      }
-   });
+   );
 
    // Once we're done, we might wind up with the last effect storing its results
    // in the temporary buffers.  If that's the case, we need to copy it over to
@@ -261,8 +275,7 @@ void RealtimeEffectManager::ProcessEnd() noexcept
    }
 }
 
-void RealtimeEffectManager::VisitGroup(Track *leader,
-   std::function<void(RealtimeEffectState &state, bool bypassed)> func)
+void RealtimeEffectManager::VisitGroup(Track *leader, StateVisitor func)
 {
    // Call the function for each effect on the master list
    RealtimeEffectList::Get(mProject).Visit(func);
@@ -270,6 +283,16 @@ void RealtimeEffectManager::VisitGroup(Track *leader,
    // Call the function for each effect on the track list
    if (leader)
      RealtimeEffectList::Get(*leader).Visit(func);
+}
+
+void RealtimeEffectManager::VisitAll(StateVisitor func)
+{
+   // Call the function for each effect on the master list
+   RealtimeEffectList::Get(mProject).Visit(func);
+
+   // And all track lists
+   for (auto leader : mGroupLeaders)
+      RealtimeEffectList::Get(*leader).Visit(func);
 }
 
 auto RealtimeEffectManager::GetLatency() const -> Latency
