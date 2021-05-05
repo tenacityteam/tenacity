@@ -14,6 +14,7 @@
 
 // Tenacity libraries
 #include <lib-components/EffectInterface.h>
+#include <lib-project/Project.h>
 #include <lib-utility/MemoryX.h>
 
 #include <atomic>
@@ -22,13 +23,26 @@
 
 using LockGuard = std::lock_guard<std::mutex>;
 
-RealtimeEffectManager & RealtimeEffectManager::Get()
+static const AttachedProjectObjects::RegisteredFactory manager
 {
-   static RealtimeEffectManager rem;
-   return rem;
+   [](TenacityProject &project)
+   {
+      return std::make_shared<RealtimeEffectManager>(project);
+   }
+};
+
+RealtimeEffectManager &RealtimeEffectManager::Get(TenacityProject &project)
+{
+   return project.AttachedObjects::Get<RealtimeEffectManager&>(manager);
 }
 
-RealtimeEffectManager::RealtimeEffectManager()
+const RealtimeEffectManager &RealtimeEffectManager::Get(const TenacityProject &project)
+{
+   return Get(const_cast<TenacityProject &>(project));
+}
+
+RealtimeEffectManager::RealtimeEffectManager(TenacityProject &project)
+   : mProject(project)
 {
    // Allocate our vectors. We set their capacity to a size of '2', enough to
    // process stero audio data.
@@ -40,12 +54,12 @@ RealtimeEffectManager::~RealtimeEffectManager()
 {
 }
 
-bool RealtimeEffectManager::RealtimeIsActive()
+bool RealtimeEffectManager::RealtimeIsActive() const noexcept
 {
    return mStates.size() != 0;
 }
 
-bool RealtimeEffectManager::RealtimeIsSuspended()
+bool RealtimeEffectManager::RealtimeIsSuspended() const noexcept
 {
    return mSuspended;
 }
@@ -53,7 +67,7 @@ bool RealtimeEffectManager::RealtimeIsSuspended()
 void RealtimeEffectManager::RealtimeAddEffect(EffectProcessor &effect)
 {
    // Block RealtimeProcess()
-   SuspensionScope scope;
+   SuspensionScope scope{ &mProject };
 
    // Add to list of active effects
    mStates.emplace_back( std::make_unique< RealtimeEffectState >( effect ) );
@@ -76,7 +90,7 @@ void RealtimeEffectManager::RealtimeAddEffect(EffectProcessor &effect)
 void RealtimeEffectManager::RealtimeRemoveEffect(EffectProcessor &effect)
 {
    // Block RealtimeProcess()
-   SuspensionScope scope;
+   SuspensionScope scope{ &mProject };
 
    if (mActive)
    {
@@ -98,7 +112,7 @@ void RealtimeEffectManager::RealtimeRemoveEffect(EffectProcessor &effect)
 void RealtimeEffectManager::RealtimeInitialize(double rate)
 {
    // The audio thread should not be running yet, but protect anyway
-   SuspensionScope scope;
+   SuspensionScope scope{ &mProject };
 
    // (Re)Set processor parameters
    mRealtimeChans.clear();
