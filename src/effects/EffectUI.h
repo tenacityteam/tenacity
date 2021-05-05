@@ -16,10 +16,13 @@
 
 #include <wx/bitmap.h> // member variables
 
+#include <optional>
+
 #include "Identifier.h"
 #include "EffectHostInterface.h"
 #include "Observer.h"
 #include "PluginInterface.h"
+#include "effects/RealtimeEffectManager.h"
 
 struct AudioIOEvent;
 
@@ -85,7 +88,6 @@ private:
 
    void InitializeRealtime();
    void CleanupRealtime();
-   void Resume();
 
 private:
    Observer::Subscription mSubscription;
@@ -127,7 +129,7 @@ private:
    double mPlayPos;
 
    bool mDismissed{};
-   bool mNeedsResume{};
+   std::optional<RealtimeEffectManager::SuspensionScope> mSuspensionScope;
 
 #if wxDEBUG_LEVEL
    // Used only in an assertion

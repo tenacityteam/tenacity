@@ -497,9 +497,8 @@ void EffectUIHost::OnClose(wxCloseEvent & /* evt */)
    CleanupRealtime();
    
    Hide();
-   
-   if (mNeedsResume)
-      Resume();
+
+   mSuspensionScope.reset();
    mClient.CloseUI();
 
    Destroy();
@@ -696,35 +695,15 @@ void EffectUIHost::OnMenu(wxCommandEvent & /* evt */)
    btn->PopupMenu(&menu, r.GetLeft(), r.GetBottom());
 }
 
-void EffectUIHost::Resume()
-{
-   if (!mClient.ValidateUI()) {
-      // If we're previewing we should still be able to stop playback
-      // so don't disable transport buttons.
-      //   mEffect->EnableApply(false);   // currently this would also disable transport buttons.
-      // The preferred behaviour is currently undecided, so for now
-      // just disallow enabling until settings are valid.
-      mEnabled = false;
-      mEnableCb->SetValue(mEnabled);
-      return;
-   }
-   RealtimeEffectManager::Get(*mProject).RealtimeResumeOne( mEffect );
-}
-
 void EffectUIHost::OnEnable(wxCommandEvent & /* evt */)
 {
    mEnabled = mEnableCb->GetValue();
    
-   if (mEnabled) {
-      Resume();
-      mNeedsResume = false;
-   }
+   if (mEnabled)
+      mSuspensionScope.reset();
    else
-   {
-      RealtimeEffectManager::Get(*mProject).RealtimeSuspendOne( mEffect );
-      mNeedsResume = true;
-   }
-   
+      mSuspensionScope.emplace(mProject);
+
    UpdateControls();
 }
 
