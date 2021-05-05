@@ -114,11 +114,7 @@ EffectType EffectBassTreble::GetType()
 
 bool EffectBassTreble::SupportsRealtime()
 {
-#if defined(EXPERIMENTAL_REALTIME_AUDACITY_EFFECTS)
    return true;
-#else
-   return false;
-#endif
 }
 
 
