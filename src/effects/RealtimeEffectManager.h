@@ -23,6 +23,7 @@
 class TenacityProject;
 class EffectProcessor;
 class RealtimeEffectState;
+class Track;
 
 class TENACITY_DLL_API RealtimeEffectManager final
    : public ClientData::Base
@@ -126,15 +127,20 @@ private:
    RealtimeEffectManager(const RealtimeEffectManager&) = delete;
    RealtimeEffectManager &operator=(const RealtimeEffectManager&) = delete;
 
+   using StateVisitor =
+      std::function<void(RealtimeEffectState &state, bool bypassed)> ;
+
+   //! Visit the per-project states first, then states for leader if not null
+   void VisitGroup(Track *leader, StateVisitor func);
+
+   TenacityProject& mProject;
+
    // Input and output buffers. Note that their capacity is equal to the number
    // of channels being processed.
    std::vector<float*> mInputBuffers;
    std::vector<float*> mOutputBuffers;
 
-   TenacityProject &mProject;
-
    std::mutex mLock;
-   std::vector< std::unique_ptr<RealtimeEffectState> > mStates;
    Latency mLatency{0};
    std::atomic<bool> mSuspended{ true };
    std::atomic<bool> mActive{ false };
