@@ -492,11 +492,6 @@ bool LV2Effect::IsDefault()
    return false;
 }
 
-bool LV2Effect::IsLegacy()
-{
-   return false;
-}
-
 bool LV2Effect::SupportsRealtime()
 {
    return GetType() == EffectTypeProcess;

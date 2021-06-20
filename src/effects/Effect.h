@@ -109,7 +109,6 @@ class TENACITY_DLL_API Effect /* not final */ : public wxEvtHandler,
    EffectFamilySymbol GetFamily() override;
    bool IsInteractive() override;
    bool IsDefault() override;
-   bool IsLegacy() override;
    bool SupportsRealtime() override;
    bool SupportsAutomation() override;
 
