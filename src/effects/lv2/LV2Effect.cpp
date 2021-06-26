@@ -1050,11 +1050,6 @@ size_t LV2Effect::GetTailSize()
    return 0;
 }
 
-bool LV2Effect::IsReady()
-{
-   return mMaster != NULL;
-}
-
 bool LV2Effect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
 {
    mProcess = InitInstance(mSampleRate);

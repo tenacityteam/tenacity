@@ -945,11 +945,6 @@ size_t LadspaEffect::GetTailSize()
    return 0;
 }
 
-bool LadspaEffect::IsReady()
-{
-   return mReady;
-}
-
 bool LadspaEffect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
 {
    /* Instantiate the plugin */

@@ -856,8 +856,6 @@ AudioUnitEffect::AudioUnitEffect(const PluginPath & path,
    mUnitInitialized = false;
 
    mEventListenerRef = NULL;
-
-   mReady = false;
 }
 
 AudioUnitEffect::~AudioUnitEffect()
@@ -1247,11 +1245,6 @@ size_t AudioUnitEffect::GetTailSize()
    return tailTime * mSampleRate;
 }
 
-bool AudioUnitEffect::IsReady()
-{
-   return mReady;
-}
-
 bool AudioUnitEffect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
 {
    OSStatus result;
@@ -1300,15 +1293,11 @@ bool AudioUnitEffect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelN
 
    mLatencyDone = false;
 
-   mReady = true;
-
    return true;
 }
 
 bool AudioUnitEffect::ProcessFinalize()
 {
-   mReady = false;
-
    mOutputList.reset();
    mInputList.reset();
 

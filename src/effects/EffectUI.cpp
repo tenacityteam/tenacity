@@ -1859,12 +1859,12 @@ wxDialog *EffectUI::DialogFactory( wxWindow &parent, EffectHostInterface &host,
          EffectRack::Get( context.project ).Add(effect);
       }
 #endif
-      effect->SetUIFlags(flags);
       success = effect->DoEffect(
          rate,
          &tracks,
          &trackFactory,
          selectedRegion,
+         flags,
          &window,
          (flags & EffectManager::kConfigured) == 0
             ? DialogFactory
