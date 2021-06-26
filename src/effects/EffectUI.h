@@ -33,7 +33,6 @@ struct AudioIOEvent;
 
 class AudacityCommand;
 class TenacityProject;
-class Effect;
 class RealtimeEffectState;
 
 class wxCheckBox;
@@ -45,7 +44,7 @@ public:
    // constructors and destructors
    EffectUIHost(wxWindow *parent,
                 TenacityProject &project,
-                Effect &effect,
+                EffectUIHostInterface &effect,
                 EffectUIClientInterface &client);
    virtual ~EffectUIHost();
 
@@ -95,7 +94,7 @@ private:
 
    TenacityProject& mProject;
    wxWindow *mParent;
-   Effect &mEffect;
+   EffectUIHostInterface &mEffect;
    EffectUIClientInterface &mClient;
    RealtimeEffectState *mpState{ nullptr };
 
@@ -146,7 +145,7 @@ class CommandContext;
 namespace  EffectUI {
 
    TENACITY_DLL_API
-   wxDialog *DialogFactory( wxWindow &parent, EffectHostInterface &host,
+   wxDialog *DialogFactory( wxWindow &parent, EffectUIHostInterface &host,
       EffectUIClientInterface &client);
 
    /** Run an effect given the plugin ID */
