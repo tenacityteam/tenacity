@@ -70,7 +70,6 @@ using FloatBuffers = ArraysOf<float>;
 // TODO:  can't be done until after all effects are using the NEW API.
 
 class TENACITY_DLL_API Effect /* not final */ : public wxEvtHandler,
-                                public EffectClientInterface,
                                 public EffectUIClientInterface,
                                 public EffectHostInterface
 {
@@ -193,7 +192,7 @@ class TENACITY_DLL_API Effect /* not final */ : public wxEvtHandler,
    // Effect implementation
 
    // NEW virtuals
-   virtual bool Startup(EffectClientInterface *client);
+   virtual bool Startup(EffectUIClientInterface *client);
    virtual bool Startup();
 
    virtual bool GetAutomationParameters(wxString & parms);
@@ -490,7 +489,7 @@ private:
    int mNumGroups;
 
    // For client driver
-   EffectClientInterface *mClient;
+   EffectUIClientInterface *mClient;
    size_t mNumAudioIn;
    size_t mNumAudioOut;
 

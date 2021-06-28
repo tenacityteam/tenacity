@@ -41,7 +41,6 @@ class NumericTextCtrl;
 class LadspaEffectMeter;
 
 class LadspaEffect final : public wxEvtHandler,
-                     public EffectClientInterface,
                      public EffectUIClientInterface
 {
 public:
@@ -67,8 +66,6 @@ public:
    bool SupportsAutomation() override;
 
    // EffectClientInterface implementation
-
-   bool SetHost(EffectHostInterface *host) override;
 
    unsigned GetAudioInCount() override;
    unsigned GetAudioOutCount() override;
@@ -115,6 +112,7 @@ public:
 
    // EffectUIClientInterface implementation
 
+   bool SetHost(EffectHostInterface *host) override;
    void SetHostUI(EffectUIHostInterface *host) override;
    bool PopulateUI(ShuttleGui &S) override;
    bool IsGraphicalUI() override;
