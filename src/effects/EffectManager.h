@@ -20,6 +20,8 @@
 #include <lib-components/EffectInterface.h>
 #include <lib-strings/Identifier.h>
 
+#include "EffectHostInterface.h" // for EffectDialogFactory
+
 class AudacityCommand;
 class TenacityProject;
 class CommandContext;

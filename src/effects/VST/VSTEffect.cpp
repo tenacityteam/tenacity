@@ -1132,7 +1132,6 @@ VSTEffect::VSTEffect(const PluginPath & path, VSTEffect *master)
    mHost = NULL;
    mModule = NULL;
    mAEffect = NULL;
-   mDialog = NULL;
 
    mTimer = std::make_unique<VSTEffectTimer>(this);
    mTimerGuard = 0;
@@ -1175,11 +1174,6 @@ VSTEffect::VSTEffect(const PluginPath & path, VSTEffect *master)
 
 VSTEffect::~VSTEffect()
 {
-   if (mDialog)
-   {
-      mDialog->Close();
-   }
-
    Unload();
 }
 
@@ -1596,19 +1590,9 @@ bool VSTEffect::RealtimeProcessEnd()
 /// provided by the effect, so it will not work with all effects since they don't
 /// all provide the information (kn0ck0ut is one).
 ///
-bool VSTEffect::ShowInterface(
-   wxWindow &parent, const EffectDialogFactory &factory, bool forceModal)
+bool VSTEffect::ShowClientInterface(
+   wxWindow &parent, wxDialog &dialog, bool forceModal)
 {
-   if (mDialog)
-   {
-      if ( mDialog->Close(true) )
-         mDialog = nullptr;
-      return false;
-   }
-
-   // mDialog is null
-   auto cleanup = valueRestorer( mDialog );
-
    //   mProcessLevel = 1;      // in GUI thread
 
    // Set some defaults since some VSTs need them...these will be reset when
@@ -1620,25 +1604,17 @@ bool VSTEffect::ShowInterface(
       ProcessInitialize(0, NULL);
    }
 
-   if ( factory )
-      mDialog = factory(parent, *mHost, *this);
-   if (!mDialog)
-   {
-      return false;
-   }
+   // Remember the dialog with a weak pointer, but don't control its lifetime
+   mDialog = &dialog;
    mDialog->CentreOnParent();
 
    if (SupportsRealtime() && !forceModal)
    {
       mDialog->Show();
-      cleanup.release();
-
       return false;
    }
 
-   bool res = mDialog->ShowModal() != 0;
-
-   return res;
+   return mDialog->ShowModal() != 0;
 }
 
 bool VSTEffect::GetAutomationParameters(CommandParameters & parms)
