@@ -505,7 +505,7 @@ bool Effect::ShowInterface(wxWindow &parent,
    auto cleanup = valueRestorer( mUIDialog );
    
    if ( factory )
-      mUIDialog = factory(parent, this, this);
+      mUIDialog = factory(parent, *this, *this);
    if (!mUIDialog)
    {
       return false;

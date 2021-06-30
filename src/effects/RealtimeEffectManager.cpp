@@ -118,20 +118,20 @@ bool RealtimeEffectManager::RealtimeIsSuspended()
    return mRealtimeSuspended;
 }
 
-void RealtimeEffectManager::RealtimeAddEffect(EffectClientInterface *effect)
+void RealtimeEffectManager::RealtimeAddEffect(EffectClientInterface &effect)
 {
    // Block RealtimeProcess()
    RealtimeSuspend();
 
    // Add to list of active effects
-   mStates.emplace_back( std::make_unique< RealtimeEffectState >( *effect ) );
+   mStates.emplace_back( std::make_unique< RealtimeEffectState >( effect ) );
    auto &state = mStates.back();
 
    // Initialize effect if realtime is already active
    if (mRealtimeActive)
    {
       // Initialize realtime processing
-      effect->RealtimeInitialize();
+      effect.RealtimeInitialize();
 
       // Add the required processors
       for (size_t i = 0, cnt = mRealtimeChans.size(); i < cnt; i++)
@@ -145,7 +145,7 @@ void RealtimeEffectManager::RealtimeAddEffect(EffectClientInterface *effect)
    RealtimeResume();
 }
 
-void RealtimeEffectManager::RealtimeRemoveEffect(EffectClientInterface *effect)
+void RealtimeEffectManager::RealtimeRemoveEffect(EffectClientInterface &effect)
 {
    // Block RealtimeProcess()
    RealtimeSuspend();
@@ -153,14 +153,14 @@ void RealtimeEffectManager::RealtimeRemoveEffect(EffectClientInterface *effect)
    if (mRealtimeActive)
    {
       // Cleanup realtime processing
-      effect->RealtimeFinalize();
+      effect.RealtimeFinalize();
    }
       
    // Remove from list of active effects
    auto end = mStates.end();
    auto found = std::find_if( mStates.begin(), end,
       [&](const decltype(mStates)::value_type &state){
-         return &state->GetEffect() == effect;
+         return &state->GetEffect() == &effect;
       }
    );
    if (found != end)
