@@ -77,7 +77,6 @@ It handles initialization and termination by subclassing wxApp.
 #include "AudioIO.h"
 #include "Benchmark.h"
 #include "Clipboard.h"
-#include "CrashReport.h" // for HAS_CRASH_REPORT
 #include "commands/CommandHandler.h"
 #include "commands/AppCommandEvent.h"
 #include "widgets/ASlider.h"
@@ -111,11 +110,6 @@ It handles initialization and termination by subclassing wxApp.
 #include "tracks/ui/Scrubbing.h"
 #include "widgets/FileConfig.h"
 #include "widgets/FileHistory.h"
-#include "update/UpdateManager.h"
-
-#ifdef HAS_NETWORKING
-#include "NetworkManager.h"
-#endif
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
 #include "prefs/KeyConfigPrefs.h"
@@ -387,29 +381,6 @@ void PopulatePreferences()
    gPrefs->Flush();
 }
 
-#if defined(USE_BREAKPAD)
-void InitBreakpad()
-{
-    wxFileName databasePath;
-    databasePath.SetPath(wxStandardPaths::Get().GetUserLocalDataDir());
-    databasePath.AppendDir("crashreports");
-    databasePath.Mkdir(wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
-    
-    if(databasePath.DirExists())
-    {   
-        BreakpadConfigurer configurer;
-        configurer.SetDatabasePathUTF8(databasePath.GetPath().ToUTF8().data())
-            .SetSenderPathUTF8(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetPath().ToUTF8().data())
-    #if defined(CRASH_REPORT_URL)
-            .SetReportURL(CRASH_REPORT_URL)
-    #endif
-            .SetParameters({
-                { "version", wxString(AUDACITY_VERSION_STRING).ToUTF8().data() }
-            })
-            .Start();
-    }
-}
-#endif
 }
 
 static bool gInited = false;
@@ -957,10 +928,6 @@ wxLanguageInfo userLangs[] =
 
 void AudacityApp::OnFatalException()
 {
-#if defined(HAS_CRASH_REPORT)
-   CrashReport::Generate(wxDebugReport::Context_Exception);
-#endif
-
    exit(-1);
 }
 
@@ -2242,10 +2209,6 @@ int AudacityApp::OnExit()
 
    // Terminate the PluginManager (must be done before deleting the locale)
    PluginManager::Get().Terminate();
-
-#ifdef HAS_NETWORKING
-   audacity::network_manager::NetworkManager::GetInstance().Terminate();
-#endif
 
    return 0;
 }

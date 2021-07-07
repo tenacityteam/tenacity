@@ -9,7 +9,6 @@
 #include "../AudacityLogger.h"
 #include "../AudioIOBase.h"
 #include "../CommonCommandFlags.h"
-#include "../CrashReport.h" // for HAS_CRASH_REPORT
 #include "../FileNames.h"
 #include "../HelpText.h"
 #include "../Menus.h"
@@ -504,68 +503,89 @@ BaseItemSharedPtr HelpMenu()
 {
    static BaseItemSharedPtr menu{
    ( FinderScope{ findCommandHandler },
-   Menu( wxT("Help"), XXO("&Help"),
-      Section( "Basic",
-         // QuickFix menu item not in Audacity 2.3.1 whilst we discuss further.
-   #ifdef EXPERIMENTAL_DA
-         // DA: Has QuickFix menu item.
-         Command( wxT("QuickFix"), XXO("&Quick Fix..."), FN(OnQuickFix),
-            AlwaysEnabledFlag ),
-         // DA: 'Getting Started' rather than 'Quick Help'.
-         Command( wxT("QuickHelp"), XXO("&Getting Started"), FN(OnQuickHelp),
-            AlwaysEnabledFlag ),
-         // DA: Emphasise it is the Audacity Manual (No separate DA manual).
-         Command( wxT("Manual"), XXO("Audacity &Manual"), FN(OnManual),
-            AlwaysEnabledFlag )
+    Menu(
+        wxT("Help"),
+        XXO("&Help"),
+        Section( "Basic",
+                // QuickFix menu item not in Audacity 2.3.1 whilst we discuss further.
+              #ifdef EXPERIMENTAL_DA
+                // DA: Has QuickFix menu item.
+                Command( wxT("QuickFix"), XXO("&Quick Fix..."), FN(OnQuickFix), AlwaysEnabledFlag ),
 
-   #else
-         Command( wxT("QuickHelp"), XXO("&Quick Help..."), FN(OnQuickHelp),
-            AlwaysEnabledFlag ),
-         Command( wxT("Manual"), XXO("&Manual..."), FN(OnManual),
-            AlwaysEnabledFlag )
-   #endif
-      ),
+                // DA: 'Getting Started' rather than 'Quick Help'.
+                Command( wxT("QuickHelp"), XXO("&Getting Started"), FN(OnQuickHelp), AlwaysEnabledFlag ),
 
-   #ifdef __WXMAC__
-      Items
-   #else
-      Section
-   #endif
-      ( "Other",
-         Menu( wxT("Diagnostics"), XXO("&Diagnostics"),
-            Command( wxT("DeviceInfo"), XXO("Au&dio Device Info..."),
-               FN(OnAudioDeviceInfo),
-               AudioIONotBusyFlag() ),
-      #ifdef EXPERIMENTAL_MIDI_OUT
-            Command( wxT("MidiDeviceInfo"), XXO("&MIDI Device Info..."),
-               FN(OnMidiDeviceInfo),
-               AudioIONotBusyFlag() ),
-      #endif
-            Command( wxT("Log"), XXO("Show &Log..."), FN(OnShowLog),
-               AlwaysEnabledFlag ),
-      #if defined(HAS_CRASH_REPORT)
-            Command( wxT("CrashReport"), XXO("&Generate Support Data..."),
-               FN(OnCrashReport), AlwaysEnabledFlag )
-      #endif
+                // DA: Emphasise it is the Audacity Manual (No separate DA manual).
+                Command( wxT("Manual"), XXO("Audacity &Manual"), FN(OnManual), AlwaysEnabledFlag )
+              #else
+                Command( wxT("QuickHelp"), XXO("&Quick Help..."), FN(OnQuickHelp), AlwaysEnabledFlag ),
+                Command( wxT("Manual"), XXO("&Manual..."), FN(OnManual), AlwaysEnabledFlag )
+              #endif
+               ),
+
+              #ifdef __WXMAC__
+                Items
+              #else
+                Section
+              #endif
+
+         /*Section*/("Other",
+                     Menu( wxT("Diagnostics"),
+                     XXO("&Diagnostics"),
+                     Command(wxT("DeviceInfo"),
+                             XXO("Au&dio Device Info..."),
+                             FN(OnAudioDeviceInfo),
+                             AudioIONotBusyFlag()
+                            ),
+
+              #ifdef EXPERIMENTAL_MIDI_OUT
+                     Command(
+                             wxT("MidiDeviceInfo"),
+                             XXO("&MIDI Device Info..."),
+                             FN(OnMidiDeviceInfo),
+                             AudioIONotBusyFlag()
+                            ),
+              #endif
+                Command(
+                        wxT("Log"),
+                        XXO("Show &Log..."),
+                        FN(OnShowLog),
+                        AlwaysEnabledFlag
+                       ),
 
       #ifdef IS_ALPHA
-            ,
+            //,
             // alpha-only items don't need to internationalize, so use
             // Verbatim for labels
 
-            Command( wxT("RaiseSegfault"), Verbatim("Test segfault report"),
-               FN(OnSegfault), AlwaysEnabledFlag ),
+                Command(
+                        wxT("RaiseSegfault"),
+                        Verbatim("Test segfault report"),
+                        FN(OnSegfault),
+                        AlwaysEnabledFlag
+                       ),
 
-            Command( wxT("ThrowException"), Verbatim("Test exception report"),
-               FN(OnException), AlwaysEnabledFlag ),
+                Command(
+                        wxT("ThrowException"),
+                        Verbatim("Test exception report"),
+                        FN(OnException),
+                        AlwaysEnabledFlag
+                       ),
 
-            Command( wxT("ViolateAssertion"), Verbatim("Test assertion report"),
-               FN(OnAssertion), AlwaysEnabledFlag ),
+                Command(
+                        wxT("ViolateAssertion"),
+                        Verbatim("Test assertion report"),
+                        FN(OnAssertion),
+                        AlwaysEnabledFlag
+                       ),
 
-            // Menu explorer.  Perhaps this should become a macro command
-            Command( wxT("MenuTree"), Verbatim("Menu Tree..."),
-               FN(OnMenuTree),
-               AlwaysEnabledFlag )
+                // Menu explorer.  Perhaps this should become a macro command
+                Command(
+                        wxT("MenuTree"),
+                        Verbatim("Menu Tree..."),
+                        FN(OnMenuTree),
+                        AlwaysEnabledFlag
+                       )
       #endif
          )
    #ifndef __WXMAC__
