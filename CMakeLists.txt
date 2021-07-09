@@ -19,14 +19,15 @@ endif ()
 # still link to the alpha manual online.
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
-set( AUDACITY_BUILD_LEVEL 0 )
+set( AUDACITY_BUILD_LEVEL 2 )
 
-# The Audacity version
+# The Saucedacity version
 # Increment as appropriate after release of a new version, and set back
 # AUDACITY_BUILD_LEVEL to 0
-set( AUDACITY_VERSION 3 )
+# TODO: changed AUDACITY_* to SAUCEDACITY_*, as with most things
+set( AUDACITY_VERSION 1 )
 set( AUDACITY_RELEASE 0 )
-set( AUDACITY_REVISION 4 )
+set( AUDACITY_REVISION 0 )
 set( AUDACITY_MODLEVEL 0 )
 
 string( TIMESTAMP __TDATE__ "%Y%m%d" )
@@ -49,6 +50,7 @@ if( "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}" )
       "  cd build\n"
       "  cmake ..\n"
       "You will need to delete CMakeCache.txt and CMakeFiles from this directory to clean up."
+
    )
 endif()
 
@@ -445,11 +447,11 @@ if( NOT CMAKE_INSTALL_LIBDIR STREQUAL "lib" AND NOT EXISTS "${CMAKE_BINARY_DIR}/
    file( CREATE_LINK "${CMAKE_BINARY_DIR}/lib" "${CMAKE_BINARY_DIR}/lib64" SYMBOLIC )
 endif()
 
-# Define Audacity's name
+# Define Saucedacity's name
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
-   set( AUDACITY_NAME "Audacity" )
+   set( AUDACITY_NAME "Saucedacity" )
 else()
-   set( AUDACITY_NAME "audacity" )
+   set( AUDACITY_NAME "saucedacity" )
 endif()
 
 # Create short and full version strings
