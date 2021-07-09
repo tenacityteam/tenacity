@@ -115,6 +115,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "prefs/KeyConfigPrefs.h"
 #endif
 
+
 //temporarily commented out till it is added to all projects
 //#include "Profiler.h"
 
@@ -122,9 +123,9 @@ It handles initialization and termination by subclassing wxApp.
 
 #include "import/Import.h"
 
-#if defined(USE_BREAKPAD)
-#include "BreakpadConfigurer.h"
-#endif
+// Here lies some telemetry code that I unfortunately did not get. While
+// it was relatively harmless (thanks to the opt-in nature, making my
+// job easier), it was removed and purged from this world anyway.
 
 #ifdef EXPERIMENTAL_SCOREALIGN
 #include "effects/ScoreAlignDialog.h"

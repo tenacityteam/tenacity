@@ -69,15 +69,15 @@ hold information about one contributor to Audacity.
 #endif
 
 #ifdef REV_LONG
-#define REV_IDENT wxString( "[[https://github.com/audacity/audacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
+#define REV_IDENT wxString( "[[https://github.com/generic-pers0n/audacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
 #else
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
 
 // To substitute into many other translatable strings
 static const auto ProgramName =
-   //XO("Audacity");
-   Verbatim("Audacity");
+   //XO("Saucedacity");
+   Verbatim("Saucedacity");
 
 void AboutDialog::CreateCreditsList()
 {
@@ -126,6 +126,18 @@ void AboutDialog::CreateCreditsList()
    const auto graphicsFormat =
    /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
       XO("%s, graphics");
+
+   // TODO: add roleAudacityTeam or something similar for Audacity team
+   // members. Also considered, add an extra parameter to AddCredit,
+   // indicating if they were an Audacity developer.
+
+   // The Saucedacity Team: developers and support
+   // NOTE: anyone that does NOT have '(Saucedacity)' next to their name
+   // is NOT a Saucedacity developer. Anyone that DOES have that by their
+   // name (e.g. Avery's below) IS a Saucedacity developer. Also, this
+   // is for the mean time until I figure out someting with the Role
+   // enum.
+   AddCredit(wxT("Avery King (Saucedacity)"), developerFormat, roleTeamMember);
 
    // The Audacity Team: developers and support
    AddCredit(wxT("Anton Gerasimov"), developerFormat, roleTeamMember);
