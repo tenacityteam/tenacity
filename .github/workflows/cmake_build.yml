@@ -1,9 +1,22 @@
 name: CMake Build
 
+# Rules: Only build if there's a push to origin/main or a pull request to merge
+# a branch into main. Any other branches will NOT be tested, so you must test
+# them by yourself, but see #2 for details (this can (should) also be
+# discussed there too).
 on:
   push:
-  pull_request:
+    branches:
+      - main
 
+    # Make an issue if you want any branches ignored
+    # branches-ignore:
+
+  pull_request:
+    branches:
+      - main
+
+   
 defaults:
   run:
     shell: bash
@@ -27,6 +40,8 @@ jobs:
       matrix:
         config:
 
+          # Linux Config
+          # Optimally, this could be the latest version, ideally LTS(right now 20.04)
         - name: Ubuntu_18.04
           os: ubuntu-18.04
           arch: x86_64 # as reported by `arch` or `uname -m`
@@ -37,11 +52,16 @@ jobs:
           arch: Intel # as reported by Apple menu > About This Mac
           generator: Xcode
 
+          # FIXME: maybe add Apple Silicon? Now that's something for discussion (see #2),
+          # although it might not exist yet.
+
+          # Windows (x86) config
         - name: Windows_32bit
           os: windows-latest
           arch: 32bit # as reported by Windows Settings > System > About
           generator: Visual Studio 16 2019
 
+          # Windows (x64) config
         - name: Windows_64bit
           os: windows-latest
           arch: 64bit # as reported by Windows Settings > System > About
