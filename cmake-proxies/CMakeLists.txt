@@ -51,7 +51,7 @@ add_conan_lib(
    REQUIRED 
    ALWAYS_ALLOW_CONAN_FALLBACK
    OPTION_NAME wxwidgets
-   FIND_PACKAGE_OPTIONS COMPONENTS adv base core html qa xml net
+   FIND_PACKAGE_OPTIONS COMPONENTS adv base core html qa xml
    INTERFACE_NAME wxwidgets::wxwidgets
    CONAN_OPTIONS 
       wxwidgets:shared=True
