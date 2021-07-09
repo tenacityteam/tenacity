@@ -367,10 +367,10 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
    // This trick here means that the English language version won't mention using
    // English, whereas all translated versions will.
    auto par2Str = XO(
-/* i18n-hint first and third %s will be "forum", second "wiki" */
-"If you find a bug or have a suggestion for us, please write, in English, to our %s. \
-For help, view the tips and tricks on our %s or \
-visit our %s.")
+  /* i18n-hint first and third %s will be "forum", second "wiki" */
+  "If you find a bug or have a suggestion for us, please write, in English, to our %s. \
+  For help, view the tips and tricks on our %s or \
+  visit our %s.")
       .Format(
          Verbatim("[[https://forum.audacityteam.org/|%s]]")
             /* i18n-hint substitutes into "write to our %s" */
@@ -445,7 +445,7 @@ visit our %s.")
 
       << wxT("<p><b>")
       /* i18n-hint: The program's name substitutes for %s */
-      << XO("%s Team Members").Format( ProgramName )
+      << XO("%s (and Audacity) Team Members").Format( ProgramName )
       << wxT("</b><br>")
       << GetCreditsByRole(roleTeamMember)
 
@@ -493,31 +493,20 @@ visit our %s.")
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
-      << wxT("[[https://www.audacityteam.org/|https://www.audacityteam.org/]]")
+      << wxT("[[https://github.com/generic-pers0n/audacity/|https://github.com/generic-pers0n/audacity]]<br>")
 
 // DA: Link for DA url too
 #ifdef EXPERIMENTAL_DA
       << wxT("<br>DarkAudacity website: [[http://www.darkaudacity.com/|https://www.darkaudacity.com/]]")
 #else
-      << wxT("<p><br>&nbsp; &nbsp; ")
-      /* i18n-hint Audacity's name substitutes for first and third %s,
-       and a "copyright" symbol for the second */
-      << XO("%s software is copyright %s 1999-2021 %s Team.")
-         .Format(
-            Verbatim("<b>%s<sup>&reg;</sup></b>").Format( ProgramName ),
-            wxT("&copy;"),
-            ProgramName )
-      << wxT("<br>")
-
-      << wxT("&nbsp; &nbsp; ")
-      /* i18n-hint Audacity's name substitutes for %s */
-      << XO("The name %s is a registered trademark.")
-         .Format( Verbatim("<b>%s</b>").Format( ProgramName ) )
-      << wxT("<br><br>")
+      //<< wxT(" ")
+      /* i18n-hint A coprygith symbol substitutes the 1st %s and Saucedacity's
+         name substitues the 2nd. */
+      << XO("<center>Copyright %s 2021 %s Team.</center>")
+         .Format( wxT("&copy;"), ProgramName )
 #endif
 
-      << wxT("</center>")
-   ;
+      << wxT("</center>");
 
    auto pPage = S.StartNotebookPage( ProgramName );
    S.StartVerticalLay(1);
@@ -594,7 +583,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
    informationStr
       << wxT("<h3>")
    /* i18n-hint: Information about when audacity was compiled follows */
-      << XO("The Build")
+      << XO("This Build")
       << wxT("</h3>\n<table>"); // start build info table
 
    // Current date
@@ -609,7 +598,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
 #endif
    ;
    if( (sizeof(void*) == 8) )
-      buildType = XO("%s, 64 bits").Format( buildType );
+      buildType = XO("%s, 64 bit").Format( buildType );
 
 // Remove this once the transition to CMake is complete
 #if defined(CMAKE)
