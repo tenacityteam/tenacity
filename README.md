@@ -1,4 +1,4 @@
-**Audacity** is an easy-to-use, multi-track audio editor and recorder for Windows, Mac OS X, GNU/Linux and other operating systems. Audacity is open source software licensed under GPL, version 2 or later.
+**Saucedacity** is an easy-to-use, multi-track audio editor and recorder for Windows, Mac OS X, GNU/Linux and other operating systems. Saucedacity is open source software licensed under GPL, version 2 or later.
 
 - **Recording** from any real, or virtual audio device that is available to the host system.
 - **Export / Import** a wide range of audio formats, extendible with FFmpeg.
@@ -17,15 +17,14 @@ If you want to contribute to this project, we welcome your contributions. Please
 
 Here's what's currently needs to be done:
 
-* **We need a new name!** We'll otherwise be mixed up with upstream Audacity.
-* Perhaps some ideas for the project
+* Ideas for the project
 
 Of course, there will be plenty of other issues that will come up in the future, in which you can tackle.
 
 Finally, it should be well noted throughout this entire repository that **you do NOT need to know how to code in order to contribute to this program!** If you **do** know how to code, then we welcome your contributions.
 
 ## Getting Started
-For end users, the latest Windows and macOS release version of Audacity is available from the [Audacity website](https://www.audacityteam.org/download/).
-Help with using Audacity is available from the [Audacity Forum](https://forum.audacityteam.org/).
+For end users, the latest Windows and macOS release version of Saucedacity is available from the [Saucedacity releases page](https://github.com/generic-pers0n/saucedacity).
+Help with using Saucedacity is available from the Wiki (in progress.
 
 Build instructions are available [here](BUILDING.md).
