@@ -69,7 +69,7 @@ hold information about one contributor to Audacity.
 #endif
 
 #ifdef REV_LONG
-#define REV_IDENT wxString( "[[https://github.com/generic-pers0n/audacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
+#define REV_IDENT wxString( "[[https://github.com/generic-pers0n/saucedacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
 #else
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
@@ -493,7 +493,7 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
-      << wxT("[[https://github.com/generic-pers0n/audacity/|https://github.com/generic-pers0n/audacity]]<br>")
+      << wxT("[[https://github.com/generic-pers0n/saucedacity/|https://github.com/generic-pers0n/saucedacity]]<br>")
 
 // DA: Link for DA url too
 #ifdef EXPERIMENTAL_DA

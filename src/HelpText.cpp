@@ -55,11 +55,11 @@ static wxString InnerLink( const wxString &Key, const wxString& Text )
       wxT("</a>");
 }
 
-static wxString WikiLink( const wxString &Key, const wxString& Text )
+static wxString WikiLink( const wxString &Page, const wxString& Text )
 {
    return wxString(wxT("")) +
-      wxT("<a href='https://www.audacityteam.org/wiki/index.php?title=") +
-      Key +
+      wxT("<a href='https://github.com/generic-pers0n/saucedacity/wiki/") +
+      Page +
       wxT("'>") +
       Text +
       wxT("</a>");
@@ -210,9 +210,9 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 {
    // PRL:  Is it necessary to define these outside of conditional compilation so that both get into the .pot file?
    const auto alphamsg = XO(
-"<br><br>The version of Audacity you are using is an <b>Alpha test version</b>.");
+"<br><br>The version of Saucedacity you are using is an <b>Alpha test version</b>.");
    const auto betamsg = XO(
-"<br><br>The version of Audacity you are using is a <b>Beta test version</b>.");
+"<br><br>The version of Saucedacity you are using is a <b>Beta test version</b>.");
 
    if (Key == wxT("welcome"))
    {
@@ -221,7 +221,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
       s
 #if defined(IS_ALPHA) || defined(IS_BETA)
          << wxT("<hr><center><h3>")
-         << XO("Get the Official Released Version of Audacity")
+         << XO("Saucedacity Alpha/Beta")
          << wxT("</h3></center>")
          << VerCheckHtml()
 #ifdef IS_ALPHA
@@ -231,9 +231,9 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 #endif
          << wxT(" ")
          << XO(
-"We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>")
+"You are using a beta or alpha version of Saucedacity. There might be some hidden bugs within this version, and production use is discouraged."
          << XO(
-"You can help us get Audacity ready for release by joining our [[https://www.audacityteam.org/community/|community]].<hr><br><br>")
+"You can help us develop Saucedacity by joining our [[https://github.com/generic-pers0n/saucedacity/discussions|community]].<hr><br><br>")
 #endif
 
 // DA: Support methods text.
@@ -259,10 +259,10 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << wxT(" [[https://forum.audacityteam.org/|Forum]] - for large knowledge base on using Audacity.")
          << wxT("</li></ul>")
 #else
-         << wxT("<center><h3>Audacity ")
+         << wxT("<center><h2>Saucedacity ")
          << AUDACITY_VERSION_STRING
-         << wxT("</h3><h3>")
-         << XO("How to get help")
+         << wxT("</h2><h3>")
+         << XO("Need Help?")
          << wxT("</h3></center>")
          << XO("These are our support methods:")
          << wxT("<p><ul><li>")
@@ -274,10 +274,10 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
          << wxT("</li><li>")
          << XO(
-" [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online.")
+" [[https://github.com/generic-pers0n/saucedacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
-         << XO("More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
+         << XO("More:</b> Visit our [[https://github.com/generic-pers0n/saucedacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
          << wxT("</p>")
 #endif
    ;
@@ -297,7 +297,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
       s
          << wxT("<p>")
          << XO(
-"Audacity can import unprotected files in many other formats (such as M4A and WMA, \
+"Saucedacity can import unprotected files in many other formats (such as M4A and WMA, \
 compressed WAV files from portable recorders and audio from video files) if you download and install \
 the optional [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#foreign| \
 FFmpeg library]] to your computer.")
@@ -375,19 +375,6 @@ wxString FormatHtmlText( const wxString & Text ){
       wxT("</html>");
 }
 
-// Function to give the extra arguments to put on the version check string.
-// TODO: It might be possible to remove this function. However, we'll
-// keep it for now.
-[[deprecated("not required for current website")]] const wxString VerCheckArgs(){
-   wxString result = wxString("from_ver=") + AUDACITY_VERSION_STRING;
-#ifdef REV_LONG
-   result += wxString("&CommitId=")+wxString(REV_LONG).Left(6);
-#endif
-   result += wxString("&Time=") + wxString( __DATE__ ) + wxString( __TIME__ );
-   result.Replace(" ","");
-   return result;
-}
-
 // Text of hyperlink to check versions.
 const wxString VerCheckHtml()
 {
@@ -403,7 +390,6 @@ const wxString VerCheckHtml()
 }
 
 // Url with Version check args attached.
-// To do: we can add 
 const URLString VerCheckUrl()
 {
    //The version we intend to use for live Audacity.

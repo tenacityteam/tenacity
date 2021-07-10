@@ -15,7 +15,6 @@
 #define __AUDACITY_APP__
 
 
-// FIXME: this doesn't exist. Do we need it anyways?
 #include "Identifier.h"
 
 
