@@ -376,7 +376,9 @@ wxString FormatHtmlText( const wxString & Text ){
 }
 
 // Function to give the extra arguments to put on the version check string.
-const wxString VerCheckArgs(){
+// TODO: It might be possible to remove this function. However, we'll
+// keep it for now.
+[[deprecated("not required for current website")]] const wxString VerCheckArgs(){
    wxString result = wxString("from_ver=") + AUDACITY_VERSION_STRING;
 #ifdef REV_LONG
    result += wxString("&CommitId=")+wxString(REV_LONG).Left(6);
@@ -401,14 +403,15 @@ const wxString VerCheckHtml()
 }
 
 // Url with Version check args attached.
+// To do: we can add 
 const URLString VerCheckUrl()
 {
    //The version we intend to use for live Audacity.
-#define VER_CHECK_URL "https://www.audacityteam.org/download/?"
+#define VER_CHECK_URL "https://github.com/generic-pers0n/audacity/releases"
 //For testing of our scriptlet.
 //#define VER_CHECK_URL "http://www.audacityteam.org/slug/?"
 //For testing locally
 //#define VER_CHECK_URL "http://localhost:63342/WorkingDocs/demos/download.html?"
 
-   return wxString( wxT(VER_CHECK_URL)) +VerCheckArgs();
+   return wxString( wxT(VER_CHECK_URL));
 }
