@@ -1389,6 +1389,9 @@ else()
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
       install( FILES "${CMAKE_SOURCE_DIR}/presets/EQDefaultCurves.xml"
                DESTINATION "${_PKGDATA}" )
+   elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
+      install( TARGETS ${TARGET}
+               DESTINATION "." )
    else()
       install( TARGETS ${TARGET} RUNTIME )
       install( DIRECTORY "${_DEST}/${_LIBDIR}/"
