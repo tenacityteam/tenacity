@@ -26,7 +26,7 @@ set( wx_tiff "off" )
 
 set( id3tag_zlib "conan" )
 
-if ( ${_OPT}use_zlib STREQUAL "system" )
+if ( use_zlib STREQUAL "system" )
    set( wx_zlib "sys" )
    # To prevent linking conflicts - we need to use system libpng as well.
    # wxWdigets will attempt to resolve it using find_package
@@ -41,7 +41,7 @@ endif()
 
 set(wx_expat "expat")
 
-if (${_OPT}use_expat STREQUAL "system")
+if (use_expat STREQUAL "system")
    set(wx_expat "sys")
 endif()
 

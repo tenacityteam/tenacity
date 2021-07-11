@@ -30,7 +30,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin")
 
    install( SCRIPT "scripts/build/macOS/SignMacos.cmake" )
 
-   if( ${_OPT}perform_notarization )
+   if( perform_notarization )
       install( SCRIPT "scripts/build/macOS/NotarizeMacos.cmake" )
    endif()
 endif()

@@ -1,5 +1,5 @@
 
-if (${_OPT}use_ffmpeg)
+if (use_ffmpeg)
    set( SOURCES
       FFmpegTypes.h
 

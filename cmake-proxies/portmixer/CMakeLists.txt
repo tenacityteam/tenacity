@@ -10,28 +10,28 @@ list( APPEND SOURCES
          ${TARGET_ROOT}/src/px_win_common.c
       >
 
-      $<$<BOOL:${${_OPT}use_pa_ds}>:
+      $<$<BOOL:${use_pa_ds}>:
          ${TARGET_ROOT}/src/px_win_ds.c
       >
 
-      $<$<BOOL:${${_OPT}use_pa_wasapi}>:
+      $<$<BOOL:${use_pa_wasapi}>:
          ${TARGET_ROOT}/src/px_win_wasapi.c
          ${TARGET_ROOT}/src/px_win_endpoint.c
       >
 
-      $<$<BOOL:${${_OPT}use_pa_wmme}>:
+      $<$<BOOL:${use_pa_wmme}>:
          ${TARGET_ROOT}/src/px_win_wmme.c
       >
 
-      $<$<BOOL:${${_OPT}use_pa_coreaudio}>:
+      $<$<BOOL:${use_pa_coreaudio}>:
          ${TARGET_ROOT}/src/px_mac_coreaudio.c
       >
 
-      $<$<BOOL:${${_OPT}use_pa_alsa}>:
+      $<$<BOOL:${use_pa_alsa}>:
          ${TARGET_ROOT}/src/px_linux_alsa.c
       >
 
-      $<$<BOOL:${${_OPT}use_pa_oss}>:
+      $<$<BOOL:${use_pa_oss}>:
          ${TARGET_ROOT}/src/px_unix_oss.c
       >
 )
@@ -45,27 +45,27 @@ list( APPEND INCLUDES
 
 list( APPEND DEFINES
    PRIVATE
-      $<$<BOOL:${${_OPT}use_pa_ds}>:
+      $<$<BOOL:${use_pa_ds}>:
          PX_USE_WIN_DSOUND=1
       >
 
-      $<$<BOOL:${${_OPT}use_pa_wasapi}>:
+      $<$<BOOL:${use_pa_wasapi}>:
          PX_USE_WIN_WASAPI=1
       >
 
-      $<$<BOOL:${${_OPT}use_pa_wmme}>:
+      $<$<BOOL:${use_pa_wmme}>:
          PX_USE_WIN_MME=1
       >
 
-      $<$<BOOL:${${_OPT}use_pa_coreaudio}>:
+      $<$<BOOL:${use_pa_coreaudio}>:
          PX_USE_MAC_COREAUDIO=1
       >
 
-      $<$<BOOL:${${_OPT}use_pa_alsa}>:
+      $<$<BOOL:${use_pa_alsa}>:
          PX_USE_LINUX_ALSA=1
       >
 
-      $<$<BOOL:${${_OPT}use_pa_oss}>:
+      $<$<BOOL:${use_pa_oss}>:
          PX_USE_UNIX_OSS=1
       >
 )

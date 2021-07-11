@@ -1,6 +1,6 @@
 # Load Conan
 
-if( ${_OPT}conan_enabled )
+if( conan_enabled )
     include( conan )
 
     conan_add_remote(NAME audacity
@@ -53,7 +53,7 @@ function (add_conan_lib package conan_package_name )
     set( conan_package_options )
     set( required off )
     set( pkg_config_options )
-    set( system_only ${${_OPT}obey_system_dependencies})
+    set( system_only ${obey_system_dependencies})
     set( interface_name "${package}::${package}")
     
     # Parse function arguments
@@ -100,16 +100,16 @@ function (add_conan_lib package conan_package_name )
     endif()
 
     # Generate CMake option
-    set( option_name ${_OPT}use_${option_name_base} )
+    set( option_name use_${option_name_base} )
 
     set( option_desc "local" )
 
-    if( pkg_config_options OR allow_find_package OR NOT ${_OPT}conan_enabled )
+    if( pkg_config_options OR allow_find_package OR NOT conan_enabled )
         set( sysopt "system" )
         string( PREPEND option_desc "system (if available), " )
 
-        if( ${_OPT}conan_enabled )
-            set( default "${${_OPT}lib_preference}" )
+        if( conan_enabled )
+            set( default "${lib_preference}" )
         else()
             set( default "system" )
         endif()
@@ -117,7 +117,7 @@ function (add_conan_lib package conan_package_name )
         set( default "local" )
     endif()
 
-    if( ${_OPT}conan_enabled )
+    if( conan_enabled )
         set( localopt "local" )
     endif()
 
@@ -149,7 +149,7 @@ function (add_conan_lib package conan_package_name )
         return()
     endif()
 
-    if( ${option_name} STREQUAL "system" OR NOT ${_OPT}conan_enabled )
+    if( ${option_name} STREQUAL "system" OR NOT conan_enabled )
         if( pkg_config_options )
             foreach(variant ${pkg_config_options})
                 pkg_check_modules( PKG_${package} ${variant} )
@@ -182,7 +182,7 @@ function (add_conan_lib package conan_package_name )
             endif()
         endif()
 
-        if( system_only OR NOT ${_OPT}conan_enabled )
+        if( system_only OR NOT conan_enabled )
             message( FATAL_ERROR "Failed to find the system package ${package}" )
         else()
             set( ${option_name} "local" )
@@ -259,7 +259,7 @@ function ( _conan_install build_type )
 endfunction()
 
 macro( resolve_conan_dependencies )
-    if( ${_OPT}conan_enabled )
+    if( conan_enabled )
         message(STATUS 
         "Executing Conan: \
             REQUIRES ${CONAN_REQUIRES}

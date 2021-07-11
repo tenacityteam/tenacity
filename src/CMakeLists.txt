@@ -44,11 +44,11 @@ endif()
 # Handle Audio Units option
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    cmd_option(
-      ${_OPT}use_audio_units
+      use_audio_units
       "Use Audio Units plug-in support [on, off]"
       ON
    )
-   set( USE_AUDIO_UNITS ${${_OPT}use_audio_units} CACHE INTERNAL "" )
+   set( USE_AUDIO_UNITS ${use_audio_units} CACHE INTERNAL "" )
 endif()
 
 # Detect, which version of FileDialog to use for
@@ -64,20 +64,20 @@ endif()
 
 # Handle Ladspa option
 cmd_option(
-   ${_OPT}use_ladspa
+   use_ladspa
    "Use LADSPA plugin support [on, off]"
    ON
 )
 
-set( USE_LADSPA ${${_OPT}use_ladspa} CACHE INTERNAL "" )
+set( USE_LADSPA ${use_ladspa} CACHE INTERNAL "" )
 
 # Handle VST option
 cmd_option(
-   ${_OPT}use_vst
+   use_vst
    "Use VST2 plug-in support [on, off]"
    ON
 )
-set( USE_VST ${${_OPT}use_vst} CACHE INTERNAL "" )
+set( USE_VST ${use_vst} CACHE INTERNAL "" )
 
 #
 #
@@ -1039,13 +1039,13 @@ list( APPEND DEFINES
 # available and the user hasn't disabled it.
 if( NOT CCACHE_PROGRAM )
    cmd_option(
-      ${_OPT}use_pch
+      use_pch
       "Use precompiled headers [yes, no]"
       YES
    )
 endif()
 
-audacity_append_common_compiler_options( OPTIONS "${${_OPT}use_pch}" )
+audacity_append_common_compiler_options( OPTIONS "${use_pch}" )
 
 list( APPEND LDFLAGS
    PRIVATE
@@ -1097,11 +1097,11 @@ set( HAVE_GTK ${GTK_FOUND} )
 # can be done against ExportMP3.cpp.  If either are defined, the
 # build will fail.
 if( NOT CMAKE_SYSTEM_NAME MATCHES "Windows|Darwin" )
-   if( "${${_OPT}use_lame}" STREQUAL "local" )
+   if( "${use_lame}" STREQUAL "local" )
       set( DISABLE_DYNAMIC_LOADING_LAME YES )
    endif()
 
-   if( "${${_OPT}use_ffmpeg}" STREQUAL "linked" )
+   if( "${use_ffmpeg}" STREQUAL "linked" )
       set( DISABLE_DYNAMIC_LOADING_FFMPEG YES )
    endif()
 endif()
@@ -1332,7 +1332,7 @@ target_link_libraries( ${TARGET} PUBLIC ${SAUCEDACITY_LIBRARIES} )
 target_link_libraries( ${TARGET} ${LIBRARIES} )
 
 if( NOT CCACHE_PROGRAM )
-   if( ${_OPT}use_pch )
+   if( use_pch )
       message( STATUS "Using precompiled headers" )
       target_precompile_headers( ${TARGET} PRIVATE
          $<$<PLATFORM_ID:Windows>:${CMAKE_BINARY_DIR}/src/private/configwin.h>

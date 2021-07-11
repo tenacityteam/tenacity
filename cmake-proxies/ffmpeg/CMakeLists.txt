@@ -18,14 +18,14 @@ if( PkgConfig_FOUND )
 endif()
 
 # FFmpeg is either dynamically loaded, linked to, or off
-cmd_option( ${_OPT}use_ffmpeg
+cmd_option( use_ffmpeg
             "Use ffmpeg library [loaded, ${desc}off]"
             "loaded"
             STRINGS "loaded" ${opt} "off"
 )
 
 # Determine if it will be turned off, linked to, or loaded
-if( ${_OPT}use_ffmpeg STREQUAL "off" )
+if( use_ffmpeg STREQUAL "off" )
    message( STATUS "Disabling '${name}' library" )
 else()
    # Let the Audacity target know that this library will be used.
@@ -38,7 +38,7 @@ else()
    set( isdyn YES )
 
    # Does the user want to link to it instead?
-   if( ${_OPT}use_ffmpeg STREQUAL "linked" )
+   if( use_ffmpeg STREQUAL "linked" )
       # Set up for link if it was found
       if( ${TARGET}_FOUND )
          message( STATUS "Linking '${name}' library during build" )

@@ -2,7 +2,7 @@
 # Some of the dependecies do not check for the system libraries,
 # which can be problematic.
 # We need to call find_package once again.
-if (${_OPT}use_zlib STREQUAL "system")
+if (use_zlib STREQUAL "system")
     message(STATUS "Fixing up ZLib mess...")
     
     find_package(ZLIB REQUIRED)

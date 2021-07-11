@@ -4,7 +4,7 @@ add_library( ${TARGET} STATIC )
 def_vars()
 
 if( CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD" )
-   if( ${_OPT}use_pa_alsa )
+   if( use_pa_alsa )
       find_package( ALSA )
    endif()
 endif()

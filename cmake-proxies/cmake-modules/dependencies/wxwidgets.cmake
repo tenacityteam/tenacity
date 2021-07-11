@@ -1,4 +1,4 @@
-if( ${_OPT}use_wxwidgets STREQUAL "system" OR NOT ${_OPT}conan_enabled )
+if( use_wxwidgets STREQUAL "system" OR NOT conan_enabled )
     # DV: find_package will be scoped, as FindwxWidgets.cmake is rather outdated.
     # Still - let's perform the sanity check first.
     if( NOT wxWidgets_FOUND )

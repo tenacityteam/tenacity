@@ -130,7 +130,7 @@ Alternatively, you can use **CLion**. If you chose to do so, open the directory 
 At the moment we only support **x86_64** builds. It is possible to build using AppleSilicon hardware but **mad** and **id3tag** should be disabled:
 
 ```
-cmake -G Xcode -T buildsystem=1 -Dsaucedacity_use_mad="off" -Dsaucedacity_use_id3tag=off ../saucedacity
+cmake -G Xcode -T buildsystem=1 -Duse_mad="off" -Duse_id3tag=off ../tenacity
 ```
 
 ## Linux & Other OS
@@ -144,7 +144,7 @@ cmake -G Xcode -T buildsystem=1 -Dsaucedacity_use_mad="off" -Dsaucedacity_use_id
 2. Configure Saucedacity using CMake:
    ```
    $ mkdir build && cd build
-   $ cmake -G "Unix Makefiles" -Dsaucedacity_use_ffmpeg=loaded ../
+   $ cmake -G "Unix Makefiles" -Duse_ffmpeg=loaded ../tenacity
    ```
    By default, Debug build will be configured. To change that, pass `-DCMAKE_BUILD_TYPE=Release` to CMake.
 
@@ -180,10 +180,10 @@ On Linux it is possible to build Saucedacity using (almost) only the libraries p
 ```
 $ mkdir build && cd build
 $ cmake -G "Unix Makefiles" \
-        -Dsaucedacity_use_ffmpeg=loaded \
-        -Dsaucedacity_lib_preference=system \
-        -Dsaucedacity_obey_system_dependencies=On \
-         ../saucedacity
+        -Duse_ffmpeg=loaded \
+        -Dlib_preference=system \
+        -Dobey_system_dependencies=On \
+         ../tenacity
 ```
 
 There are a few cases when the local library build is preferred or required:

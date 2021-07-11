@@ -22,16 +22,16 @@ if( INNO_SETUP_COMPILER )
                 -DSOURCE_DIR=${CMAKE_SOURCE_DIR}
                 -DOUTPUT_DIR=${TEMP_PACKAGE_PATH}
                 -DINNO_SETUP_COMPILER=${INNO_SETUP_COMPILER}
-                -DEMBED_MANUAL=${${_OPT}package_manual}
+                -DEMBED_MANUAL=${package_manual}
                 -DBUILDING_64_BIT=${IS_64BIT}
-                -DSIGN=${${_OPT}perform_codesign}
+                -DSIGN=${perform_codesign}
                 -DWINDOWS_CERTIFICATE=${WINDOWS_CERTIFICATE}
                 -D WINDOWS_CERTIFICATE_PASSWORD=${WINDOWS_CERTIFICATE_PASSWORD}
                 -P "${CMAKE_SOURCE_DIR}/win/Inno_Setup_Wizard/BuildInnoSetupInstaller.cmake" 
         VERBATIM
     )
 
-    if( ${_OPT}package_manual )
+    if( package_manual )
         add_dependencies( innosetup manual )
     endif()
 

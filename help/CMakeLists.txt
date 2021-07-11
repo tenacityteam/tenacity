@@ -35,7 +35,7 @@ add_custom_command(
 
 add_custom_target( ${TARGET} DEPENDS "${out}" )
 
-if( ${_OPT}package_manual )
+if( package_manual )
    install(CODE "                                     \
       execute_process(                                \
          COMMAND                                      \

@@ -585,7 +585,7 @@ function( addlib dir name symbol required check )
    set( TARGET_ROOT ${libsrc}/${dir} )
 
    # Define the option name
-   set( use ${_OPT}use_${name} ) 
+   set( use use_${name} ) 
 
    # If we're not checking for system or local here, then let the
    # target config handle the rest.
@@ -600,7 +600,7 @@ function( addlib dir name symbol required check )
    if( packages )
       set( sysopt "system" )
       string( PREPEND desc "system (if available), " )
-      set( default "${${_OPT}lib_preference}" )
+      set( default "${lib_preference}" )
    else()
       set( default "local" )
    endif()
@@ -651,7 +651,7 @@ function( addlib dir name symbol required check )
          # And add it to our target
          target_include_directories( ${TARGET} INTERFACE ${INCLUDES} )
          target_link_libraries( ${TARGET} INTERFACE ${LIBRARIES} )
-      elseif( ${_OPT}obey_system_dependencies )
+      elseif( obey_system_dependencies )
          message( FATAL_ERROR "Failed to find the system package ${name}" )
       else()
          set( ${use} "local" )
