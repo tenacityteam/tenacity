@@ -16,6 +16,7 @@
 #include <wx/statusbr.h> // to inherit
 #include "SpectrumAnalyst.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
+#include "NumberScale.h" // member variable
 
 // Tenacity libraries
 #include <lib-math/SampleFormat.h>
@@ -151,6 +152,8 @@ private:
    float mYMin;
    /// The maximum y value to plot.
    float mYMax;
+
+   NumberScale hNumberScale;
 
    std::unique_ptr<wxBitmap> mBitmap;
 
