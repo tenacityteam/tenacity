@@ -993,15 +993,8 @@ bool AudacityApp::OnExceptionInMainLoop()
 
 AudacityApp::AudacityApp()
 {
-#if defined(USE_BREAKPAD)
-    InitBreakpad();
-// Do not capture crashes in debug builds
-#elif !defined(_DEBUG)
-#if defined(HAS_CRASH_REPORT)
 #if defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
    wxHandleFatalExceptions();
-#endif
-#endif
 #endif
 }
 
