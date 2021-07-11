@@ -16,6 +16,10 @@
 #include <wx/font.h> // member variable
 #include <wx/statusbr.h> // to inherit
 #include "wxPanelWrapper.h" // to inherit
+#include "SpectrumAnalyst.h"
+#include "NumberScale.h" // member variable
+#include "SampleFormat.h"
+#include "Prefs.h"
 
 class wxMemoryDC;
 class wxScrollBar;
@@ -133,6 +137,8 @@ private:
    float mYMin;
    /// The maximum y value to plot.
    float mYMax;
+
+   NumberScale hNumberScale;
 
    std::unique_ptr<wxBitmap> mBitmap;
 
