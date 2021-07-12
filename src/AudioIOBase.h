@@ -21,6 +21,8 @@ Paul Licameli split from AudioIO.h
 // Saucedacity libraries
 #include <lib-utility/MemoryX.h>
 
+#include <portaudio.h>
+
 struct PaDeviceInfo;
 typedef void PaStream;
 
