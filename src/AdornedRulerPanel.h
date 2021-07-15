@@ -13,6 +13,7 @@
 
 #include "CellularPanel.h"
 #include "widgets/Ruler.h" // member variable
+#include "widgets/Grabber.h" // mGrabber
 #include "ViewInfo.h" // for PlayRegion
 
 // Tenacity preferences
@@ -144,6 +145,9 @@ private:
    double mQuickPlayPos;
 
    bool mIsSnapped;
+   bool mEditMode;
+
+   Grabber *mGrabber;
 
    PlayRegion mOldPlayRegion;
 
