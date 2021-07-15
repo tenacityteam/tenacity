@@ -917,7 +917,7 @@ AdornedRulerPanel::AdornedRulerPanel(TenacityProject* project,
    mTracks = &TrackList::Get( *project );
 
    mIsSnapped = false;
-   mEditMode = gPrefs->Read(wxT("/GUI/Toolbars/EditMode"), false);
+   mEditMode = gPrefs->Read(wxT("/GUI/Toolbars/EditMode"), true);
 
    mGrabber = nullptr;
 
@@ -963,7 +963,7 @@ void AdornedRulerPanel::Refresh( bool eraseBackground, const wxRect *rect )
 
 void AdornedRulerPanel::UpdatePrefs()
 {
-   bool mode = gPrefs->Read(wxT("/GUI/Toolbars/EditMode"), false);
+   bool mode = gPrefs->Read(wxT("/GUI/Toolbars/EditMode"), true);
    
    if ( mode != mEditMode )
    {
