@@ -11,6 +11,7 @@
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
 #include "../toolbars/ToolManager.h"
+#include "../CommonCommandFlags.h"
 
 /// Namespace for functions for View Toolbar menu
 namespace ToolbarActions {
@@ -70,7 +71,7 @@ BaseItemSharedPtr ToolbarsMenu()
          Section( "Manage",
             /* i18n-hint: (verb)*/
 			Command( wxT("EditMode"), XXO("&Edit Mode (on/off)"),
-				FN(OnEditMode), AlwaysEnabledFlag,
+				FN(OnEditMode), AudioIONotBusyFlag(),
 				Options{}.CheckTest( wxT("/GUI/Toolbars/EditMode"), false ) ),
             Command( wxT("ResetToolbars"), XXO("Reset Toolb&ars"),
                FN(OnResetToolBars), AlwaysEnabledFlag )
