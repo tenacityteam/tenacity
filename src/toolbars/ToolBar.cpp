@@ -632,14 +632,14 @@ void ToolBar::UpdatePrefs()
 
    if ( editing != mEditMode )
    {
-	   mEditMode = editing;
-	   updated = true;
+      mEditMode = editing;
+      updated = true;
    }
 
    if ( updated )
    {
-	   ReCreateButtons();
-	   Updated();
+      ReCreateButtons();
+      Updated();
    }
 
    return;
