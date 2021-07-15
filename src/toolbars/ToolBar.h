@@ -122,6 +122,7 @@ class TENACITY_DLL_API ToolBar /* not final */
    TranslatableString GetLabel();
    wxString GetSection();
    ToolDock *GetDock();
+   bool GetEditMode();
 
 private:
    void SetLabel(const wxString & label) override;
@@ -250,6 +251,7 @@ public:
    bool mVisible;
    bool mResizable;
    bool mPositioned; // true if position floating determined.
+   bool mEditMode;
 
  public:
 
