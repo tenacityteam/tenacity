@@ -1565,11 +1565,6 @@ bool LV2Effect::SetAutomationParameters(CommandParameters &parms)
 // EffectUIClientInterface Implementation
 // ============================================================================
 
-void LV2Effect::SetHostUI(EffectUIHostInterface *host)
-{
-   mUIHost = host;
-}
-
 bool LV2Effect::PopulateUI(ShuttleGui &S)
 {
    auto parent = S.GetParent();
@@ -1679,7 +1674,6 @@ bool LV2Effect::CloseUI()
       mMaster = NULL;
    }
 
-   mUIHost = NULL;
    mParent = NULL;
    mDialog = NULL;
 

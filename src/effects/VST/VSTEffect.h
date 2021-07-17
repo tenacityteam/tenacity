@@ -163,7 +163,6 @@ class VSTEffect final : public wxEvtHandler,
    // EffectUIClientInterface implementation
 
    bool SetHost(EffectHostInterface *host) override;
-   void SetHostUI(EffectUIHostInterface *host) override;
    bool PopulateUI(ShuttleGui &S) override;
    bool IsGraphicalUI() override;
    bool ValidateUI() override;
@@ -368,7 +367,6 @@ private:
    // UI
    wxDialog *mDialog;
    wxWindow *mParent;
-   EffectUIHostInterface *mUIHost;
    wxSizerItem *mContainer;
    bool mGui;
 

@@ -620,10 +620,6 @@ bool Effect::LoadFactoryDefaults()
 
 // EffectUIClientInterface implementation
 
-void Effect::SetHostUI(EffectUIHostInterface *WXUNUSED(host))
-{
-}
-
 bool Effect::PopulateUI(ShuttleGui &S)
 {
    auto parent = S.GetParent();

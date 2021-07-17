@@ -1751,11 +1751,6 @@ bool VSTEffect::LoadFactoryDefaults()
 // EffectUIClientInterface implementation
 // ============================================================================
 
-void VSTEffect::SetHostUI(EffectUIHostInterface *host)
-{
-   mUIHost = host;
-}
-
 bool VSTEffect::PopulateUI(ShuttleGui &S)
 {
    auto parent = S.GetParent();
@@ -1837,7 +1832,6 @@ bool VSTEffect::CloseUI()
    mDisplays.reset();
    mLabels.reset();
 
-   mUIHost = NULL;
    mParent = NULL;
    mDialog = NULL;
 
