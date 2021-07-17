@@ -1069,7 +1069,7 @@ bool LadspaEffect::RealtimeProcessEnd()
    return true;
 }
 
-bool LadspaEffect::ShowClientInterface(
+int LadspaEffect::ShowClientInterface(
    wxWindow &parent, wxDialog &dialog, bool forceModal)
 {
    // Remember the dialog with a weak pointer, but don't control its lifetime
@@ -1081,10 +1081,10 @@ bool LadspaEffect::ShowClientInterface(
    if ((SupportsRealtime() || GetType() == EffectTypeAnalyze) && !forceModal)
    {
       mDialog->Show();
-      return false;
+      return 0;
    }
 
-   return mDialog->ShowModal() != 0;
+   return mDialog->ShowModal();
 }
 
 bool LadspaEffect::GetAutomationParameters(CommandParameters & parms)
