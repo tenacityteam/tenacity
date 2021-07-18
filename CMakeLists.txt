@@ -8,7 +8,7 @@ cmake_minimum_required( VERSION 3.15 )
 # If building with GNU compiler, then must be 4.9 or later.
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
     CMAKE_CXX_COMPILER_VERSION VERSION_LESS "4.9")
-   message(FATAL_ERROR "Audacity requires at least GCC 4.9")
+   message(FATAL_ERROR "Saucedacity requires at least GCC 4.9")
 endif ()
 
 # We only do alpha builds, beta builds, and release versions.
@@ -19,7 +19,7 @@ endif ()
 # still link to the alpha manual online.
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
-set( AUDACITY_BUILD_LEVEL 2 )
+set( AUDACITY_BUILD_LEVEL 0 )
 
 # The Saucedacity version
 # Increment as appropriate after release of a new version, and set back
@@ -27,7 +27,7 @@ set( AUDACITY_BUILD_LEVEL 2 )
 # TODO: changed AUDACITY_* to SAUCEDACITY_*, as with most things
 set( AUDACITY_VERSION 1 )
 set( AUDACITY_RELEASE 0 )
-set( AUDACITY_REVISION 0 )
+set( AUDACITY_REVISION 1 )
 set( AUDACITY_MODLEVEL 0 )
 
 string( TIMESTAMP __TDATE__ "%Y%m%d" )
@@ -278,8 +278,8 @@ set( _DEST "${_DESTDIR}" )
 set( _PREFIX "${CMAKE_INSTALL_PREFIX}" )
 set( _LIBDIR "${CMAKE_INSTALL_LIBDIR}" )
 set( _DATADIR "${CMAKE_INSTALL_DATADIR}" )
-set( _PKGLIB "${_LIBDIR}/audacity" )
-set( _PKGDATA "${_DATADIR}/audacity/" )
+set( _PKGLIB "${_LIBDIR}/saucedacity" )
+set( _PKGDATA "${_DATADIR}/saucedacity/" )
 set( _MANDIR "${CMAKE_INSTALL_MANDIR}" )
 set( _MODDIR "${_DEST}/modules" )
 set( _EXEDIR "${_DEST}" )
@@ -292,7 +292,7 @@ set( CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE )
 
 # Adjust them for the Mac
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   set( _APPDIR "Audacity.app/Contents" )
+   set( _APPDIR "Saucedacity.app/Contents" )
    set( _DEST "${_DESTDIR}/${_APPDIR}" )
    set( _EXEDIR "${_DEST}/MacOS" )
    set( _MODDIR "${_DEST}/modules" )

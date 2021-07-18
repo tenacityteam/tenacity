@@ -569,8 +569,7 @@ class GnomeShutdown
  public:
    GnomeShutdown()
    {
-      mArgv[0].reset(strdup("Audacity"));
-      //mArgv[0].reset(strdup("Saucedacity"));
+      mArgv[0].reset(strdup("Saucedacity"));
 
       mGnomeui = dlopen("libgnomeui-2.so.0", RTLD_NOW);
       if (!mGnomeui) {
@@ -642,7 +641,7 @@ static wxArrayString ofqueue;
 // of Audacity.
 //
 
-#define IPC_APPL wxT("audacity")
+#define IPC_APPL wxT("saucedacity")
 #define IPC_TOPIC wxT("System")
 
 class IPCConn final : public wxConnection
@@ -1073,7 +1072,7 @@ bool AudacityApp::OnInit()
 #endif
 
    // Don't use AUDACITY_NAME here.
-   // We want Audacity with a capital 'A'
+   // We want Saucedacity with a capital 'S'
 
 // DA: App name
 #ifndef EXPERIMENTAL_DA
@@ -1102,10 +1101,10 @@ bool AudacityApp::OnInit()
    wxStandardPaths::Get().SetInstallPrefix(wxT(INSTALL_PREFIX));
 
    /* Search path (for plug-ins, translations etc) is (in this order):
-      * The AUDACITY_PATH environment variable
+      * The SAUCEDACITY_PATH environment variable
       * The current directory
-      * The user's "~/.audacity-data" or "Portable Settings" directory
-      * The user's "~/.audacity-files" directory
+      * The user's "~/.Saucedacity-data" or "Portable Settings" directory
+      * The user's "~/.Saucedacity-files" directory
       * The "share" and "share/doc" directories in their install path */
    wxString home = wxGetHomeDir();
 
@@ -1123,7 +1122,7 @@ bool AudacityApp::OnInit()
 
 // DA: Path env variable.
 #ifndef EXPERIMENTAL_DA
-   wxString pathVar = wxGetenv(wxT("AUDACITY_PATH"));
+   wxString pathVar = wxGetenv(wxT("SAUCEDACITY_PATH"));
 #else
    wxString pathVar = wxGetenv(wxT("DARKAUDACITY_PATH"));
 #endif
@@ -1134,7 +1133,7 @@ bool AudacityApp::OnInit()
    wxString progPath = wxPathOnly(argv[0]);
    FileNames::AddUniquePathToPathList(progPath, audacityPathList);
    // Add the path to modules:
-   FileNames::AddUniquePathToPathList(progPath + L"/lib/audacity", audacityPathList);
+   FileNames::AddUniquePathToPathList(progPath + L"/lib/saucedacity", audacityPathList);
 
    FileNames::AddUniquePathToPathList(FileNames::DataDir(), audacityPathList);
 
@@ -1151,15 +1150,15 @@ bool AudacityApp::OnInit()
       wxT(INSTALL_PREFIX), wxT(AUDACITY_NAME)),
       audacityPathList);
 #else //AUDACITY_NAME
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.audacity-files"),
+   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.Saucedacity-files"),
       home),
       audacityPathList)
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
       audacityPathList);
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/audacity"),
+   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/saucedacity"),
       wxT(INSTALL_PREFIX)),
       audacityPathList);
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/doc/audacity"),
+   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/doc/saucedacity"),
       wxT(INSTALL_PREFIX)),
       audacityPathList);
 #endif //AUDACITY_NAME
@@ -1387,7 +1386,7 @@ bool AudacityApp::InitPart2()
       temporarywindow.SetPosition( wndRect.GetTopLeft() );
       // Centered on whichever screen it is on.
       temporarywindow.Center();
-      temporarywindow.SetTitle(_("Audacity is starting up..."));
+      temporarywindow.SetTitle(_("Saucedacity is starting up..."));
       SetTopWindow(&temporarywindow);
       temporarywindow.Raise();
 
@@ -1658,7 +1657,7 @@ bool AudacityApp::InitTempDir()
       // Failed
       if( !TempDirectory::IsTempDirectoryNameOK( tempFromPrefs ) ) {
          AudacityMessageBox(XO(
-"Saucedacity could not find a safe place to store temporary files.\nAudacity needs a place where automatic cleanup programs won't delete the temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
+"Saucedacity could not find a safe place to store temporary files.\Saucedacity needs a place where automatic cleanup programs won't delete the temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
       } else {
          AudacityMessageBox(XO(
 "Saucedacity could not find a place to store temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
@@ -1694,7 +1693,7 @@ bool AudacityApp::InitTempDir()
 
 bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
-   wxString name = wxString::Format(wxT("audacity-lock-%s"), wxGetUserId());
+   wxString name = wxString::Format(wxT("saucedacity-lock-%s"), wxGetUserId());
    mChecker.reset();
    auto checker = std::make_unique<wxSingleInstanceChecker>();
 
@@ -2375,7 +2374,7 @@ void AudacityApp::AssociateFileTypes()
    int wantAssoc =
       AudacityMessageBox(
          XO(
-"Audacity project (.aup3) files are not currently \nassociated with Saucedacity. \n\nAssociate them, so they open on double-click."),
+"Audacity project (.aup3) files are not currently \nassociated with Saucedacity. \n\nYou can associate them so they open on double-click for convience."),
          XO("Audacity Project Files"),
          wxYES_NO | wxICON_QUESTION);
 

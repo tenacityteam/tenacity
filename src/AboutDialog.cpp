@@ -127,6 +127,19 @@ void AboutDialog::CreateCreditsList()
    /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
       XO("%s, graphics");
 
+   // Saucedacity
+   // Note: more is to be added (copied) over time.
+   const auto saucedacityFounderFormat =
+      XO("%s, Saucedacity (co-)founder and developer");
+
+   const auto saucedacityDeveloperFormat =
+   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+      XO("%s, Saucedacity developer");
+
+   const auto saucedacityWebDeveloperFormat =
+   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+      XO("%s, Saucedacity web developer");
+
    // TODO: add roleAudacityTeam or something similar for Audacity team
    // members. Also considered, add an extra parameter to AddCredit,
    // indicating if they were an Audacity developer.
@@ -137,7 +150,7 @@ void AboutDialog::CreateCreditsList()
    // name (e.g. Avery's below) IS a Saucedacity developer. Also, this
    // is for the mean time until I figure out someting with the Role
    // enum.
-   AddCredit(wxT("Avery King (Saucedacity)"), developerFormat, roleTeamMember);
+   AddCredit(wxT("Avery King"), saucedacityFounderFormat, roleSaucedacity);
 
    // The Audacity Team: developers and support
    AddCredit(wxT("Anton Gerasimov"), developerFormat, roleTeamMember);
@@ -350,7 +363,7 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       XO(
 /* i18n-hint: First and third %s will be the program's name,
   second %s will be "volunteers", fourth "available" */
-"%s is a free program written by a worldwide team of %s. \
+"%s is a free, open source program written by a worldwide team of %s. \
 %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems).")
          .Format(
             ProgramName,
@@ -416,24 +429,25 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << wxT("&nbsp; &nbsp; The name <b>Audacity</b> is a registered trademark.<br><br>")
 
 #else
-      << XO("<h3>")
+      << XO("<h1>")
       << ProgramName
       << wxT(" ")
       << wxString(AUDACITY_VERSION_STRING)
-      << wxT("</center></h3>")
+      << wxT("</center></h1>")
       /* i18n-hint: The program's name substitutes for %s */
-      << XO("%s the free, open source, cross-platform software for recording and editing sounds.")
+      << XO("%s is a free, open source, cross-platform software for recording and editing audio.<br><br>")
             .Format(ProgramName)
+      << XO("%s is a fork of Audacity, created on July 7, 2021").Format(ProgramName)
 #endif
 
       // << wxT("<p><br>")
       // << par1Str
       // << wxT("<p>")
       // << par2Str
-      << wxT("<h3>")
+      << wxT("<h1>")
       << XO("Credits")
-      << wxT("</h3>")
-      << wxT("<p>")
+      << wxT("</h1>")
+//      << wxT("<p>")
 
 // DA: Customisation credit
 #ifdef EXPERIMENTAL_DA
@@ -443,51 +457,55 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << wxT("James Crook, art, coding &amp; design<br>")
 #endif
 
-      << wxT("<p><b>")
+      << wxT("<h2>")
+      << XO("%s Team Members").Format( ProgramName )
+      << wxT("</h2><br>")
+      << GetCreditsByRole(roleSaucedacity)
+
+      << wxT("<h2>")
       /* i18n-hint: The program's name substitutes for %s */
-      << XO("%s (and Audacity) Team Members").Format( ProgramName )
-      << wxT("</b><br>")
+      << XO("Audacity Team Members")
+      << wxT("</h2>")
       << GetCreditsByRole(roleTeamMember)
 
-      << wxT("<p><b> ")
+      << wxT("<h3>")
       << XO("Emeritus:")
-      << wxT("</b><br>")
+      << wxT("</h3>")
       /* i18n-hint: The program's name substitutes for %s */
-      << XO("Distinguished %s Team members, not currently active")
-         .Format( ProgramName )
+      << XO("Distinguished Audacity Team members, not currently active")
       << wxT("<br><br>")
       << GetCreditsByRole(roleEmeritusTeam)
 
-      << wxT("<p><b>")
+      << wxT("<h3><b>")
       << XO("Contributors")
-      << wxT("</b><br>")
+      << wxT("</h3><br>")
       << GetCreditsByRole(roleContributor)
 
-      << wxT("<p><b>")
+      << wxT("<h3>")
       << XO("Website and Graphics")
-      << wxT("</b><br>")
+      << wxT("</h3><br>")
       << GetCreditsByRole(roleGraphics)
    ;
 
    if(!translatorCredits.empty()) informationStr
-      << wxT("<p><b>")
+      << wxT("<h3>")
       << XO("Translators")
-      << wxT("</b><br>")
+      << wxT("</h3><br>")
       << translatorCredits
    ;
 
    informationStr
-      << wxT("<p><b>")
+      << wxT("<h3>")
       << XO("Libraries")
-      << wxT("</b><br>")
+      << wxT("</h3><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s includes code from the following projects:").Format( ProgramName )
       << wxT("<br><br>")
       << GetCreditsByRole(roleLibrary)
 
-      << wxT("<p><b>")
+      << wxT("<h3>")
       << XO("Special thanks:")
-      << wxT("</b><br>")
+      << wxT("</h3><br>")
       << GetCreditsByRole(roleThanks)
 
       << wxT("<p><br>")
@@ -506,6 +524,9 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
          .Format( wxT("&copy;"), ProgramName )
 #endif
 
+      << wxT("<center>")
+      << XO("\'Audacity\' is a registered trademark of MuseCY SM Ltd")
+      << XO("</center>")
       << wxT("</center>");
 
    auto pPage = S.StartNotebookPage( ProgramName );

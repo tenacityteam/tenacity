@@ -46,6 +46,7 @@ class AUDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
 
  private:
    enum Role {
+      roleSaucedacity,
       roleTeamMember,
       roleEmeritusTeam,
       roleDeceased,

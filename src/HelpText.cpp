@@ -232,8 +232,10 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << wxT(" ")
          << XO(
 "You are using a beta or alpha version of Saucedacity. There might be some hidden bugs within this version, and production use is discouraged."
+              )
          << XO(
-"You can help us develop Saucedacity by joining our [[https://github.com/generic-pers0n/saucedacity/discussions|community]].<hr><br><br>")
+"You can help us develop Saucedacity by joining our [[https://github.com/generic-pers0n/saucedacity/discussions|community]].<hr><br><br>"
+              )
 #endif
 
 // DA: Support methods text.
@@ -384,7 +386,7 @@ const wxString VerCheckHtml()
       << "<center>[["
       << VerCheckUrl().GET()
       << "|"
-      << XO("Check Online")
+      << XO("View latest stable release")
       << "]]</center>\n";
    return o.GetString();
 }
@@ -393,7 +395,7 @@ const wxString VerCheckHtml()
 const URLString VerCheckUrl()
 {
    //The version we intend to use for live Audacity.
-#define VER_CHECK_URL "https://github.com/generic-pers0n/audacity/releases"
+#define VER_CHECK_URL "https://github.com/generic-pers0n/saucedacity/releases"
 //For testing of our scriptlet.
 //#define VER_CHECK_URL "http://www.audacityteam.org/slug/?"
 //For testing locally
