@@ -42,8 +42,8 @@ jobs:
 
           # Linux Config
           # Optimally, this could be the latest version, ideally LTS(right now 20.04)
-        - name: Ubuntu_18.04
-          os: ubuntu-18.04
+        - name: Ubuntu
+          os: ubuntu-latest
           arch: x86_64 # as reported by `arch` or `uname -m`
           generator: Unix Makefiles
 
@@ -82,7 +82,7 @@ jobs:
     
     - name: Install Apple codesigning certificates
       uses: apple-actions/import-codesign-certs@v1
-      if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && github.repository_owner == 'generic-pers0n'
+      if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && github.repository_owner == 'audacity'
       with: 
         p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
         p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
@@ -122,7 +122,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Saucedacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
+        name: Audacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
         path: |
           build/package/*
           !build/package/_CPack_Packages
