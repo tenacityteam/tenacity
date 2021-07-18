@@ -66,6 +66,16 @@ public:
    bool SupportsRealtime() override;
    bool SupportsAutomation() override;
 
+   bool GetAutomationParameters(CommandParameters & parms) override;
+   bool SetAutomationParameters(CommandParameters & parms) override;
+
+   bool LoadUserPreset(const RegistryPath & name) override;
+   bool SaveUserPreset(const RegistryPath & name) override;
+
+   RegistryPaths GetFactoryPresets() override;
+   bool LoadFactoryPreset(int id) override;
+   bool LoadFactoryDefaults() override;
+
    // EffectClientInterface implementation
 
    unsigned GetAudioInCount() override;
@@ -99,16 +109,6 @@ public:
 
    int ShowClientInterface(
       wxWindow &parent, wxDialog &dialog, bool forceModal) override;
-
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   bool LoadUserPreset(const RegistryPath & name) override;
-   bool SaveUserPreset(const RegistryPath & name) override;
-
-   RegistryPaths GetFactoryPresets() override;
-   bool LoadFactoryPreset(int id) override;
-   bool LoadFactoryDefaults() override;
 
    // EffectUIClientInterface implementation
 
