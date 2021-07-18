@@ -723,7 +723,7 @@ bool LadspaEffect::SupportsAutomation()
 }
 
 // ============================================================================
-// EffectClientInterface Implementation
+// EffectProcessor Implementation
 // ============================================================================
 
 bool LadspaEffect::SetHost(EffectHostInterface *host)

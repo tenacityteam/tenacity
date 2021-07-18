@@ -105,7 +105,7 @@ EffectType EffectNoise::GetType()
    return EffectTypeGenerate;
 }
 
-// EffectClientInterface implementation
+// EffectProcessor implementation
 
 unsigned EffectNoise::GetAudioOutCount()
 {

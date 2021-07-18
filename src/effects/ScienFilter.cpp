@@ -207,7 +207,7 @@ EffectType EffectScienFilter::GetType()
    return EffectTypeProcess;
 }
 
-// EffectClientInterface implementation
+// EffectProcessor implementation
 
 unsigned EffectScienFilter::GetAudioInCount()
 {

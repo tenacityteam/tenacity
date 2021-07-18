@@ -183,7 +183,7 @@ EffectType EffectTruncSilence::GetType()
    return EffectTypeProcess;
 }
 
-// EffectClientInterface implementation
+// EffectProcessor implementation
 
 bool EffectTruncSilence::DefineParams( ShuttleParams & S ){
    S.SHUTTLE_PARAM( mThresholdDB, Threshold );
