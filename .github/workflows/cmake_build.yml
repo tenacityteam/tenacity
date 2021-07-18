@@ -111,14 +111,6 @@ jobs:
       run: |
         exec bash "scripts/ci/build.sh"
 
-    - name: Upload debug symbols
-      if: startsWith(github.ref, 'refs/heads/release-')
-      env:
-        #this is required to run sentry's get-cli script on platforms where 'sudo' is not available
-        INSTALL_DIR: ${{ github.workspace }}
-      run: |
-        exec bash "scripts/ci/upload_debug_symbols.sh"
-
     - name: Install
       run: |
         exec bash "scripts/ci/install.sh"
