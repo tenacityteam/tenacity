@@ -171,8 +171,6 @@ class TENACITY_DLL_API Effect /* not final */ : public wxEvtHandler,
    void ExportPresets() override;
    void ImportPresets() override;
 
-   static CommandID GetSquashedName(wxString name);
-
    bool HasOptions() override;
    void ShowOptions() override;
 
