@@ -421,7 +421,8 @@ LadspaEffectOptionsDialog::LadspaEffectOptionsDialog(wxWindow * parent, EffectHo
 {
    mHost = host;
 
-   mHost->GetSharedConfig(wxT("Options"), wxT("UseLatency"), mUseLatency, true);
+   mHost->GetConfig(PluginSettings::Shared, wxT("Options"), wxT("UseLatency"),
+      mUseLatency, true);
 
    ShuttleGui S(this, eIsCreating);
    PopulateOrExchange(S);
@@ -478,7 +479,8 @@ void LadspaEffectOptionsDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
    ShuttleGui S(this, eIsGettingFromDialog);
    PopulateOrExchange(S);
 
-   mHost->SetSharedConfig(wxT("Options"), wxT("UseLatency"), mUseLatency);
+   mHost->SetConfig(PluginSettings::Shared, wxT("Options"),
+      wxT("UseLatency"), mUseLatency);
 
    EndModal(wxID_OK);
 }
@@ -866,14 +868,18 @@ bool LadspaEffect::SetHost(EffectHostInterface *host)
    // mHost will be null during registration
    if (mHost)
    {
-      mHost->GetSharedConfig(wxT("Options"), wxT("UseLatency"), mUseLatency, true);
+      mHost->GetConfig(PluginSettings::Shared, wxT("Options"),
+         wxT("UseLatency"), mUseLatency, true);
 
       bool haveDefaults;
-      mHost->GetPrivateConfig(mHost->GetFactoryDefaultsGroup(), wxT("Initialized"), haveDefaults, false);
+      mHost->GetConfig(PluginSettings::Private,
+         mHost->GetFactoryDefaultsGroup(), wxT("Initialized"), haveDefaults,
+         false);
       if (!haveDefaults)
       {
          SaveParameters(mHost->GetFactoryDefaultsGroup());
-         mHost->SetPrivateConfig(mHost->GetFactoryDefaultsGroup(), wxT("Initialized"), true);
+         mHost->SetConfig(PluginSettings::Private,
+            mHost->GetFactoryDefaultsGroup(), wxT("Initialized"), true);
       }
 
       LoadParameters(mHost->GetCurrentSettingsGroup());
@@ -1567,7 +1573,8 @@ void LadspaEffect::ShowOptions()
    if (dlg.ShowModal())
    {
       // Reinitialize configuration options
-      mHost->GetSharedConfig(wxT("Options"), wxT("UseLatency"), mUseLatency, true);
+      mHost->GetConfig(PluginSettings::Shared, wxT("Options"),
+         wxT("UseLatency"), mUseLatency, true);
    }
 }
 
@@ -1625,7 +1632,8 @@ void LadspaEffect::Unload()
 bool LadspaEffect::LoadParameters(const RegistryPath & group)
 {
    wxString parms;
-   if (!mHost->GetPrivateConfig(group, wxT("Parameters"), parms, wxEmptyString))
+   if (!mHost->GetConfig(PluginSettings::Private, group, wxT("Parameters"),
+      parms, wxEmptyString))
    {
       return false;
    }
@@ -1653,7 +1661,8 @@ bool LadspaEffect::SaveParameters(const RegistryPath & group)
       return false;
    }
 
-   return mHost->SetPrivateConfig(group, wxT("Parameters"), parms);
+   return mHost->SetConfig(PluginSettings::Private,
+      group, wxT("Parameters"), parms);
 }
 
 LADSPA_Handle LadspaEffect::InitInstance(float sampleRate)
