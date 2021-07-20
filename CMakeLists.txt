@@ -130,10 +130,11 @@ if( CCACHE_PROGRAM )
 endif()
 
 # Define option() prefix
-set( _OPT "audacity_" )
+set( _OPT  "audacity_" )
+set( _OPT2 "saucedacity_") # Only used for new options
 
 # Our very own project
-project( Audacity )
+project( Saucedacity )
 
 # Load our functions/macros
 include( AudacityFunctions )
