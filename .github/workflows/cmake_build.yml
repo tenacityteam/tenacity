@@ -47,10 +47,11 @@ jobs:
           arch: x86_64 # as reported by `arch` or `uname -m`
           generator: Unix Makefiles
 
-        - name: macOS_Intel
-          os: macos-latest
-          arch: Intel # as reported by Apple menu > About This Mac
-          generator: Xcode
+       # Disabled because codesigning is broken
+       #- name macOS_Intel
+       #   os: macos-latest
+       #   arch: Intel # as reported by Apple menu > About This Mac
+       #   generator: Xcode
 
           # FIXME: maybe add Apple Silicon? Now that's something for discussion (see #2),
           # although it might not exist yet.
