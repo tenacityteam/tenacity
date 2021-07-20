@@ -58,6 +58,7 @@ effects from this one class.
 #include <wx/version.h>
 
 #include "../../shuttle/ShuttleGui.h"
+#include "../../EffectHostInterface.h"
 #include "../../widgets/NumericTextCtrl.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/wxPanelWrapper.h"

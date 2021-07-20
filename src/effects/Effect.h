@@ -26,11 +26,13 @@ class wxListBox;
 class wxWindow;
 
 // Tenacity libraries
-#include <lib-components/ConfigInterface.h>
-#include <lib-components/EffectInterface.h>
-#include <lib-components/PluginInterface.h>
 #include <lib-math/SampleCount.h>
 #include <lib-screen-geometry/SelectedRegion.h>
+
+#include "ConfigInterface.h"
+#include "EffectHostInterface.h" // to inherit
+#include "EffectInterface.h" // to inherit
+#include "PluginInterface.h"
 
 #include "Track.h"
 

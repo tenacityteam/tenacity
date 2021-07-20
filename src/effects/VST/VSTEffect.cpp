@@ -72,7 +72,6 @@
 //        dialogs, widgets and other stuff.  This will need to be cleaned up.
 
 // Tenacity libraries
-#include <lib-components/ConfigInterface.h>
 #include <lib-files/FileNames.h>
 #include <lib-files/PlatformCompatibility.h>
 #include <lib-xml/XMLFileReader.h>

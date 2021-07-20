@@ -24,8 +24,7 @@ ShuttleGui.
 
 #include "CommandContext.h"
 
-// Tenacity libraries
-#include <lib-components/ConfigInterface.h>
+#include "ConfigInterface.h"
 
 #include <algorithm>
 

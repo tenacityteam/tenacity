@@ -13,10 +13,11 @@
 #define __AUDACITY_MODULEMANAGER_H__
 
 // Tenacity libraries
-#include <lib-components/PluginInterface.h>
 #include <lib-strings/Identifier.h>
 #include <lib-utility/MemoryX.h>
 #include <lib-utility/ModuleConstants.h>
+
+#include "PluginInterface.h"
 
 #include <functional>
 #include <map>

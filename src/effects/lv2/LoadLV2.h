@@ -34,7 +34,8 @@
 // Tenacity libraries
 #include <lib-components/ModuleInterface.h>
 #include <lib-components/EffectInterface.h>
-#include <lib-components/PluginInterface.h>
+
+#include "PluginInterface.h"
 
 #include "lv2_external_ui.h"
 

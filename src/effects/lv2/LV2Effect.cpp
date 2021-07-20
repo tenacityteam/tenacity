@@ -50,6 +50,7 @@
 #include <wx/scrolwin.h>
 
 #include "../../shuttle/ShuttleGui.h"
+#include "../../EffectHostInterface.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/AudacityMessageBox.h"
 #include "../../widgets/wxPanelWrapper.h"

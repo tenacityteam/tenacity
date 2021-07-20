@@ -18,8 +18,9 @@
 
 // Tenacity libraries
 #include <lib-components/EffectInterface.h>
-#include <lib-components/PluginInterface.h>
 #include <lib-strings/wxArrayStringEx.h>
+
+#include "PluginInterface.h"
 
 class wxArrayString;
 class FileConfig;

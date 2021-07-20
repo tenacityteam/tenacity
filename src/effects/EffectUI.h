@@ -16,9 +16,9 @@
 
 #include <wx/bitmap.h> // member variables
 
-// Tenacity libraries
-#include <lib-components/PluginInterface.h>
-#include <lib-strings/Identifier.h>
+#include "Identifier.h"
+#include "EffectHostInterface.h"
+#include "PluginInterface.h"
 
 #if defined(EXPERIMENTAL_EFFECTS_RACK)
 

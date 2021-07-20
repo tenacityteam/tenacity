@@ -13,9 +13,10 @@
 // Tenacity Libraries
 #include <lib-components/EffectInterface.h>
 #include <lib-components/ModuleInterface.h>
-#include <lib-components/PluginInterface.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-xml/XMLTagHandler.h>
+
+#include "PluginInterface.h"
 
 class wxSizerItem;
 class wxSlider;
