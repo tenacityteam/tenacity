@@ -56,6 +56,8 @@ class TENACITY_DLL_API PluginManagerInterface /* not final */
 {
 public:
    using ConfigurationType = PluginSettings::ConfigurationType;
+   using ConfigReference = PluginSettings::ConfigReference;
+   using ConfigConstReference = PluginSettings::ConfigConstReference;
 
    virtual ~PluginManagerInterface();
 
