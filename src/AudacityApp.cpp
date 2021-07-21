@@ -2374,7 +2374,7 @@ void AudacityApp::AssociateFileTypes()
    int wantAssoc =
       AudacityMessageBox(
          XO(
-"Audacity project (.aup3) files are not currently \nassociated with Saucedacity. \n\nYou can associate them so they open on double-click for convience."),
+"Audacity project (.aup3) files are not currently \nassociated with Saucedacity. \n\nYou can associate them so they open on double-click for convenience."),
          XO("Audacity Project Files"),
          wxYES_NO | wxICON_QUESTION);
 
