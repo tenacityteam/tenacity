@@ -5,7 +5,7 @@ There are many ways to contribute to the Saucedacity Project. Such include contr
 Of course, we have a couple of things that you should know. Below are some general points that you should know about contributing to Saucedacity.
 
 ## General
-* **NO CLA is required!** The code you right is YOURS to keep FOREVER. There might be chances that you 
+* **NO CLA is required!** The code you right is YOURS to keep FOREVER.
 * **Make sure your code is available under the GPL v2 or later**. This is re
 
 ## Coding Style
