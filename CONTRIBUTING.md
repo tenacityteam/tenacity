@@ -134,11 +134,11 @@ namespace SomeNamespace
 * There are four different tiers for platform support: Tier 1, Tier 2, Tier 3, and Tier 4.
   * **Tier 1** support is where the platform is officially supported.
   * **Tier 2** support is where the platform is not officially supported but has **community support**.
-    * In terms of support, main developers/contributors can attempt to answer support requests regarding Tier 2 platform builds, although support is not guaranteed.
+    * In terms of support, main developers/contributors can (and may) attempt to answer support requests regarding Tier 2 platform builds, although support is not guaranteed.
    * **Tier 3** support is where the platform is **partially supported**.
-   * **Tier 4** support is where the platform is not supported at all. Platform support might be discussed, so check the Discussions or the Discord server for more info.
+   * **Tier 4** support is where the platform is not supported at all. Platform support might be in discussion, so check the Discussions or the Discord server for more info. Additionally, there might have been support for a Tier 4 platform, but was since dropped for various reasons.
      * In some cases, platforms in Tier 4 support might've been supported at one point but support was dropped for various reasons.
-
+* Note that Tier 1 is the only tier where binary releases are guaranteed. Tiers 2 and 3 might have binary releases, but they are not guaranteed.
 
 ## Translation
 
