@@ -7,7 +7,7 @@ name: CMake Build
 on:
   push:
     branches:
-      - main
+      - main # Test every time on main
 
     # Make an issue if you want any branches ignored
     # branches-ignore:
@@ -28,6 +28,7 @@ jobs:
     env:
       AUDACITY_CMAKE_GENERATOR: ${{ matrix.config.generator }}
       AUDACITY_ARCH_LABEL: ${{ matrix.config.arch }}
+
       # Windows codesigning
       # This variables will be used by all the steps
       WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
@@ -81,12 +82,15 @@ jobs:
       run: |
         source "scripts/ci/environment.sh"
     
-    - name: Install Apple codesigning certificates
-      uses: apple-actions/import-codesign-certs@v1
-      if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && github.repository_owner == 'audacity'
-      with: 
-        p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
-        p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+    # Disabled because we don't have any codesigning certificates
+    #
+    # Please raise an issue if you have any possible solutions about this
+    #- name: Install Apple codesigning certificates
+    #  uses: apple-actions/import-codesign-certs@v1
+    #  if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && github.repository_owner == 'audacity'
+    #  with: 
+    #    p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
+    #    p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
 
     - name: Cache for .conan
       id: cache-conan
@@ -101,10 +105,10 @@ jobs:
 
     - name: Configure
       env:
-        # Apple code signing
-        APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
-        APPLE_NOTARIZATION_USER_NAME: ${{ secrets.APPLE_NOTARIZATION_USER_NAME }}
-        APPLE_NOTARIZATION_PASSWORD: ${{ secrets.APPLE_NOTARIZATION_PASSWORD }}
+        # Apple code signing (currently broken)
+        #APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
+        #APPLE_NOTARIZATION_USER_NAME: ${{ secrets.APPLE_NOTARIZATION_USER_NAME }}
+        #APPLE_NOTARIZATION_PASSWORD: ${{ secrets.APPLE_NOTARIZATION_PASSWORD }}
       run: |
         exec bash "scripts/ci/configure.sh"
 
@@ -120,11 +124,11 @@ jobs:
       run: |
         exec bash "scripts/ci/package.sh"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: Audacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
-        path: |
-          build/package/*
-          !build/package/_CPack_Packages
-        if-no-files-found: error
+#    - name: Upload artifact
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: Audacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
+#        path: |
+#          build/package/*
+#          !build/package/_CPack_Packages
+#        if-no-files-found: error
