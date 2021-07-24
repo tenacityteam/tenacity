@@ -1,13 +1,15 @@
 name: CMake Build
 
-# Rules: Only build if there's a push to origin/main or a pull request to merge
+# Rules: Only run if there's a push to origin/main or a pull request to merge
 # a branch into main. Any other branches will NOT be tested, so you must test
 # them by yourself, but see #2 for details (this can (should) also be
-# discussed there too).
+# discussed there too). The only exception is for 'ci-fixes', having been
+# dedicated for CI changes.
 on:
   push:
     branches:
       - main # Test every time on main
+      - ci-fixes # Just to ensure any CI changes work
 
     # Make an issue if you want any branches ignored
     # branches-ignore:
@@ -15,6 +17,7 @@ on:
   pull_request:
     branches:
       - main
+      - ci-fixes # JUst to ensure any CI changes work
 
    
 defaults:
@@ -104,7 +107,7 @@ jobs:
           host-${{ matrix.config.name }}-
 
     - name: Configure
-      env:
+      #env:
         # Apple code signing (currently broken)
         #APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
         #APPLE_NOTARIZATION_USER_NAME: ${{ secrets.APPLE_NOTARIZATION_USER_NAME }}
