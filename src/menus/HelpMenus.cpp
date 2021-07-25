@@ -432,7 +432,19 @@ void OnMenuTree(const CommandContext &context)
 
 void OnCheckForUpdates(const CommandContext &WXUNUSED(context))
 {
-   ::OpenInDefaultBrowser( VerCheckUrl());
+  int dialog_status = AudacityMessageBox(XO("This option does not actually check for updates. It "
+                                            "merely takes you to the releases page on our "
+                                            "GitHub repository so you can view the latest releases.\n\nIf "
+                                            "you want to continue, click \'OK\' below. "
+                                            "Otherwise, click \'Cancel\'"
+                                            ),
+                                         XO("Check for Updates"),
+                                         wxOK | wxCANCEL | wxCENTER | wxICON_INFORMATION
+                                         );
+  if (dialog_status == wxOK) // If the user accepts
+  {
+     ::OpenInDefaultBrowser( VerCheckUrl());
+  }
 }
 
 void OnAbout(const CommandContext &context)
