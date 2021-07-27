@@ -36,7 +36,7 @@ class AUDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
    AboutDialog(wxWindow * parent);
    virtual ~ AboutDialog();
 
-   static AboutDialog *ActiveIntance();
+   static AboutDialog *ActiveInstance();
 
    void OnOK(wxCommandEvent & event);
 

@@ -310,7 +310,7 @@ namespace {
    AboutDialog *sActiveInstance{};
 }
 
-AboutDialog *AboutDialog::ActiveIntance()
+AboutDialog *AboutDialog::ActiveInstance()
 {
    return sActiveInstance;
 }
