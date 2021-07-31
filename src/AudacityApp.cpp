@@ -260,6 +260,28 @@ void PopulatePreferences()
       gPrefs->DeleteEntry(wxT("/NewPrefsInitialized"), true);  // take group as well if empty
    }
 
+   // Saucedacity Preferences
+   //
+   // We set this preference bit in case Saucedacity reads Audacity
+   // Preferences. Saucedacity, in the future, might interpret these
+   // preferences differently. Right now we don't, but this is for
+   // future proofing anyways.
+   bool isSaucedacity = false;
+   gPrefs->Read(wxT("IsSaucedacity"), &isSaucedacity);
+   if (!isSaucedacity)
+   {
+      AudacityMessageBox(XO("The current preferences loaded are Audacity preferences."
+                             " Although this means nothing right now, in the future, this"
+                             " could mean a potential incompatibility with either some"
+                             " certain versions of Audacity or with Audacity completely."
+                             "\n\nClick OK to continue. This message will be surpressed"
+                             " in the future."
+                           ),
+                         XO("Saucedacity Preferences")
+                        );
+      gPrefs->Write(wxT("IsSaucedacity"), true);
+   }
+
    // record the Prefs version for future checking (this has not been used for a very
    // long time).
    gPrefs->Write(wxT("/PrefsVersion"), wxString(wxT(AUDACITY_PREFS_VERSION_STRING)));
