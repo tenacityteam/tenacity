@@ -24,6 +24,7 @@ effects from this one class.
 
 
 #include "LadspaEffect.h"       // This class's header file
+#include "SampleCount.h"
 
 #include <float.h>
 
@@ -53,7 +54,7 @@ effects from this one class.
 #include <wx/scrolwin.h>
 #include <wx/version.h>
 
-#include "../../FileNames.h"
+#include "FileNames.h"
 #include "../../ShuttleGui.h"
 #include "../../widgets/NumericTextCtrl.h"
 #include "../../widgets/valnum.h"

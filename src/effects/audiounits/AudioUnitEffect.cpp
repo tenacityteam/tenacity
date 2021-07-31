@@ -19,6 +19,7 @@
 #if USE_AUDIO_UNITS
 #include "AudioUnitEffect.h"
 #include "../../ModuleManager.h"
+#include "SampleCount.h"
 
 #include <wx/defs.h>
 #include <wx/base64.h>
@@ -42,6 +43,7 @@
 #include <wx/textctrl.h>
 #include <wx/tokenzr.h>
 
+#include "../../SelectFile.h"
 #include "../../ShuttleGui.h"
 #include "../../widgets/AudacityMessageBox.h"
 #include "../../widgets/valnum.h"
@@ -1862,8 +1864,8 @@ void AudioUnitEffect::ExportPresets()
    // Ask the user for the name to use
    //
    // Passing a valid parent will cause some effects dialogs to malfunction
-   // upon returning from the FileNames::SelectFile().
-   path = FileNames::SelectFile(FileNames::Operation::_None,
+   // upon returning from the SelectFile().
+   path = SelectFile(FileNames::Operation::_None,
       XO("Export Audio Unit Preset As %s:").Format(fn.GetFullPath()),
       fn.GetFullPath(),
       wxEmptyString,
@@ -1904,8 +1906,8 @@ void AudioUnitEffect::ImportPresets()
    // Ask the user for the name to use
    //
    // Passing a valid parent will cause some effects dialogs to malfunction
-   // upon returning from the FileNames::SelectFile().
-   path = FileNames::SelectFile(FileNames::Operation::_None,
+   // upon returning from the SelectFile().
+   path = SelectFile(FileNames::Operation::_None,
       XO("Import Audio Unit Preset As %s:").Format(fn.GetFullPath()),
       fn.GetFullPath(),
       wxEmptyString,

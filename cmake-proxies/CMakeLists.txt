@@ -83,6 +83,7 @@ add_conan_lib(
    REQUIRED
    INTERFACE_NAME libmp3lame::libmp3lame
    PKG_CONFIG "lame >= 3.100"
+   ALLOW_FIND_PACKAGE
 )
 
 add_conan_lib(
@@ -101,26 +102,12 @@ add_conan_lib(
    PKG_CONFIG "mad >= 0.15.1b"
 )
 
-add_conan_lib(
-   ThreadPool
-   threadpool/20140926
-   REQUIRED
-   ALWAYS_ALLOW_CONAN_FALLBACK
-)
-
-add_conan_lib(
-   RapidJSON
-   rapidjson/1.1.0
-   REQUIRED
-)
-
 set_conan_vars_to_parent()
 
 # Required libraries
 #
 #       directory          option      symbol      req   chk   version
 addlib( libsndfile         sndfile     SNDFILE     YES   YES   "sndfile >= 1.0.28" )
-addlib( libsoxr            soxr        SOXR        YES   YES   "soxr >= 0.1.1" )
 addlib( portaudio-v19      portaudio   PORTAUDIO   YES   YES   "" )
 addlib( sqlite             sqlite      SQLITE      YES   YES   "sqlite3 >= 3.32.0" )
 

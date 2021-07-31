@@ -29,10 +29,10 @@ and libvorbis examples, Monty <monty@xiph.org>
 
 #include "FLAC++/encoder.h"
 
-#include "../float_cast.h"
+#include "float_cast.h"
 #include "../ProjectSettings.h"
 #include "../Mix.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../ShuttleGui.h"
 
 #include "../Tags.h"
@@ -40,7 +40,7 @@ and libvorbis examples, Monty <monty@xiph.org>
 
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
-#include "../wxFileNameWrapper.h"
+#include "wxFileNameWrapper.h"
 
 //----------------------------------------------------------------------------
 // ExportFLACOptions Class

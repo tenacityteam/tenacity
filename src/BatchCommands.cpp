@@ -23,6 +23,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include <wx/defs.h>
 #include <wx/datetime.h>
 #include <wx/dir.h>
+#include <wx/log.h>
 #include <wx/textfile.h>
 #include <wx/time.h>
 
@@ -38,6 +39,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include "Menus.h"
 #include "PluginManager.h"
 #include "Prefs.h"
+#include "SelectFile.h"
 #include "SelectUtilities.h"
 #include "Shuttle.h"
 #include "Track.h"
@@ -129,7 +131,7 @@ wxString MacroCommands::ReadMacro(const wxString & macro, wxWindow *parent)
 
    // But, ask the user for the real name if we're importing
    if (parent) {
-      FilePath fn = FileNames::SelectFile(FileNames::Operation::_None,
+      FilePath fn = SelectFile(FileNames::Operation::_None,
          XO("Import Macro"),
          wxEmptyString,
          name.GetName(),
@@ -208,7 +210,7 @@ wxString MacroCommands::WriteMacro(const wxString & macro, wxWindow *parent)
 
    // But, ask the user for the real name if we're exporting
    if (parent) {
-      FilePath fn = FileNames::SelectFile(FileNames::Operation::_None,
+      FilePath fn = SelectFile(FileNames::Operation::_None,
          XO("Export Macro"),
          wxEmptyString,
          name.GetName(),

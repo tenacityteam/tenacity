@@ -35,7 +35,7 @@
 #include <wx/treectrl.h>
 
 #include "../AudioIOBase.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../ShuttleGui.h"
 #include "../commands/CommandManager.h"
 
@@ -766,7 +766,7 @@ void PrefsDialog::OnOK(wxCommandEvent & WXUNUSED(event))
    //      so AudacityProject::UpdatePrefs() or any of the routines it calls must
    //      not cause MenuCreator::RebuildMenuBar() to be executed.
 
-   wxTheApp->AddPendingEvent(wxCommandEvent{ EVT_PREFS_UPDATE });
+   PrefsListener::Broadcast();
 
    if( IsModal() )
       EndModal(true);
@@ -782,6 +782,11 @@ void PrefsDialog::SelectPageByName(const wxString &pageName)
       for (size_t i = 0; i < n; i++) {
          if (mCategories->GetPageText(i) == pageName) {
             mCategories->SetSelection(i);
+            // This covers the case, when ShowModal is called 
+            // after selecting the page.
+            // ShowModal will select the page previously used by 
+            // user
+            SavePreferredPage();
             return;
          }
       }

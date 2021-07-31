@@ -168,7 +168,7 @@ different formats.
 
 #include "NumericTextCtrl.h"
 
-#include "Identifier.h"
+#include "SampleCount.h"
 #include "../AllThemeResources.h"
 #include "../AColor.h"
 #include "../KeyboardCapture.h"

@@ -6,7 +6,7 @@
 #include "../DeviceManager.h"
 #include "../LabelTrack.h"
 #include "../Menus.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
@@ -30,10 +30,11 @@
 #include "../toolbars/ControlToolBar.h"
 #include "../toolbars/TranscriptionToolBar.h"
 #include "../widgets/AudacityMessageBox.h"
-#include "../widgets/ErrorDialog.h"
+#include "BasicUI.h"
 #include "../widgets/ProgressDialog.h"
 
 #include <float.h>
+#include <wx/app.h>
 
 // private helper classes and functions
 namespace {
@@ -197,7 +198,6 @@ bool DoStopPlaying(const CommandContext &context)
    auto &projectAudioManager = ProjectAudioManager::Get(project);
    auto gAudioIO = AudioIOBase::Get();
    auto &toolbar = ControlToolBar::Get(project);
-   auto &window = ProjectWindow::Get(project);
    auto token = ProjectAudioIO::Get(project).GetAudioIOToken();
 
    //If this project is playing, stop playing, make sure everything is unpaused.
@@ -498,7 +498,6 @@ void OnPunchAndRoll(const CommandContext &context)
 {
    AudacityProject &project = context.project;
    auto &viewInfo = ViewInfo::Get( project );
-   auto &window = GetProjectFrame( project );
 
    static const auto url =
       wxT("Punch_and_Roll_Record#Using_Punch_and_Roll_Record");
@@ -537,7 +536,8 @@ void OnPunchAndRoll(const CommandContext &context)
          : (recordingChannels == 2)
          ? XO("Please select in a stereo track or two mono tracks.")
          : XO("Please select at least %d channels.").Format( recordingChannels );
-      ShowErrorDialog(&window, XO("Error"), message, url);
+      BasicUI::ShowErrorDialog( *ProjectFramePlacement(&project),
+         XO("Error"), message, url);
       return;
    }
 
@@ -579,7 +579,8 @@ void OnPunchAndRoll(const CommandContext &context)
 
    if (error) {
       auto message = XO("Please select a time within a clip.");
-      ShowErrorDialog( &window, XO("Error"), message, url);
+      BasicUI::ShowErrorDialog(
+         *ProjectFramePlacement(&project), XO("Error"), message, url);
       return;
    }
 

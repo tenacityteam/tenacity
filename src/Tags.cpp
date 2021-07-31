@@ -40,6 +40,7 @@
 
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h
+#include <wx/log.h>
 #include <wx/window.h>
 #endif
 
@@ -47,6 +48,7 @@
 #include "Prefs.h"
 #include "Project.h"
 #include "ProjectFileIORegistry.h"
+#include "SelectFile.h"
 #include "ShuttleGui.h"
 #include "widgets/Grid.h"
 #include "widgets/AudacityMessageBox.h"
@@ -1238,7 +1240,7 @@ void TagsEditorDialog::OnLoad(wxCommandEvent & WXUNUSED(event))
    wxString fn;
 
    // Ask the user for the real name
-   fn = FileNames::SelectFile(FileNames::Operation::_None,
+   fn = SelectFile(FileNames::Operation::_None,
       XO("Load Metadata As:"),
       FileNames::DataDir(),
       wxT("Tags.xml"),
@@ -1296,7 +1298,7 @@ void TagsEditorDialog::OnSave(wxCommandEvent & WXUNUSED(event))
    TransferDataFromWindow();
 
    // Ask the user for the real name
-   fn = FileNames::SelectFile(FileNames::Operation::_None,
+   fn = SelectFile(FileNames::Operation::_None,
       XO("Save Metadata As:"),
       FileNames::DataDir(),
       wxT("Tags.xml"),

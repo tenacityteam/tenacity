@@ -6,6 +6,12 @@ set( LIBRARIES
    lib-string-utils
    lib-strings
    lib-utility
+   lib-components
+   lib-basic-ui
+   lib-exceptions
+   lib-preferences
+   lib-math
+   lib-files
 )
 
 foreach( LIBRARY ${LIBRARIES} )

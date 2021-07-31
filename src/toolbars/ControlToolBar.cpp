@@ -58,7 +58,7 @@
 #include "../AllThemeResources.h"
 #include "../AudioIO.h"
 #include "../ImageManipulation.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
@@ -67,8 +67,7 @@
 #include "../ProjectWindow.h"
 #include "../Track.h"
 #include "../widgets/AButton.h"
-#include "../widgets/ErrorDialog.h"
-#include "../FileNames.h"
+#include "FileNames.h"
 
 #include "../tracks/ui/Scrubbing.h"
 #include "../toolbars/ToolManager.h"

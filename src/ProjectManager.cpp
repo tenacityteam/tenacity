@@ -44,9 +44,9 @@ Paul Licameli split from AudacityProject.cpp
 #include "toolbars/ToolManager.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/FileHistory.h"
-#include "widgets/ErrorDialog.h"
 #include "widgets/WindowAccessible.h"
 
+#include <wx/app.h>
 #include <wx/dataobj.h>
 #include <wx/dnd.h>
 #include <wx/scrolbar.h>

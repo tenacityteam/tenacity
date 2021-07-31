@@ -7,14 +7,14 @@
 #include "../Menus.h"
 #include "../PluginManager.h"
 #include "../PluginRegistrationDialog.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../ProjectSelectionManager.h"
 #include "../toolbars/ToolManager.h"
 #include "../Screenshot.h"
-#include "../TempDirectory.h"
+#include "TempDirectory.h"
 #include "../UndoManager.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
@@ -24,6 +24,8 @@
 #include "../effects/RealtimeEffectManager.h"
 #include "../prefs/EffectsPrefs.h"
 #include "../prefs/PrefsDialog.h"
+
+#include <wx/log.h>
 
 // private helper classes and functions
 namespace {
@@ -393,7 +395,7 @@ void OnResetConfig(const CommandContext &context)
    menuManager.mLastAnalyzer = "";
    menuManager.mLastTool = "";
 
-   gPrefs->DeleteAll();
+   ResetPreferences();
 
    // Directory will be reset on next restart.
    FileNames::UpdateDefaultPath(FileNames::Operation::Temp, TempDirectory::DefaultTempDir());

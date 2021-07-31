@@ -12,9 +12,9 @@ Paul Licameli split from AudacityProject.cpp
 
 #include <atomic>
 #include <sqlite3.h>
+#include <wx/app.h>
 #include <wx/crt.h>
 #include <wx/frame.h>
-#include <wx/progdlg.h>
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 
@@ -31,8 +31,8 @@ Paul Licameli split from AudacityProject.cpp
 #include "ViewInfo.h"
 #include "WaveTrack.h"
 #include "widgets/AudacityMessageBox.h"
-#include "widgets/ErrorDialog.h"
 #include "widgets/NumericTextCtrl.h"
+#include "BasicUI.h"
 #include "widgets/ProgressDialog.h"
 #include "wxFileNameWrapper.h"
 #include "xml/XMLFileReader.h"
@@ -1129,27 +1129,23 @@ bool ProjectFileIO::RenameOrWarn(const FilePath &src, const FilePath &dst)
       done = true;
    });
 
-   auto &window = GetProjectFrame( mProject );
-
    // Provides a progress dialog with indeterminate mode
-   wxGenericProgressDialog pd(XO("Copying Project").Translation(),
-                              XO("This may take several seconds").Translation(),
-                              300000,     // range
-                              &window,     // parent
-                              wxPD_APP_MODAL | wxPD_ELAPSED_TIME | wxPD_SMOOTH);
+   using namespace BasicUI;
+   auto pd = MakeGenericProgress(*ProjectFramePlacement(&mProject),
+      XO("Copying Project"), XO("This may take several seconds"));
+   wxASSERT(pd);
 
    // Wait for the checkpoints to end
    while (!done)
    {
       wxMilliSleep(50);
-      pd.Pulse();
+      pd->Pulse();
    }
    thread.join();
 
    if (!success)
    {
-      ShowError(
-         &window,
+      ShowError( *ProjectFramePlacement(&mProject),
          XO("Error Writing to File"),
          XO("Saucedacity failed to write file %s.\n"
             "The disk might be full or isn't writable.\n"
@@ -1482,7 +1478,6 @@ void ProjectFileIO::SetFileName(const FilePath &fileName)
 bool ProjectFileIO::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
 {
    auto &project = mProject;
-   auto &window = GetProjectFrame(project);
    auto &viewInfo = ViewInfo::Get(project);
    auto &settings = ProjectSettings::Get(project);
 
@@ -1594,8 +1589,7 @@ bool ProjectFileIO::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
       auto msg = XO("This file was saved using Audacity %s (or a derivative of the same version, possibly Saucedacity).\nYou are using Saucedacity %s. You may need to upgrade to a newer version to open this file.")
          .Format(audacityVersion, AUDACITY_VERSION_STRING);
 
-      ShowError(
-         &window,
+      ShowError( *ProjectFramePlacement(&project),
          XO("Can't open project file"),
          msg, 
          "FAQ:Errors_opening_an_Audacity_project"
@@ -1985,7 +1979,7 @@ bool ProjectFileIO::SaveProject(
 
          if (!reopened) {
             wxTheApp->CallAfter([this]{
-               ShowError(nullptr,
+               ShowError( {},
                   XO("Warning"),
                   XO(
 "The project's database failed to reopen, "
@@ -2009,8 +2003,7 @@ bool ProjectFileIO::SaveProject(
       // after we switch to the new file.
       if (!CopyTo(fileName, XO("Saving project"), false))
       {
-         ShowError(
-            nullptr,
+         ShowError( {},
             XO("Error Saving Project"),
             FileException::WriteFailureMessage(fileName),
             "Error:_Disk_full_or_not_writable"
@@ -2049,24 +2042,23 @@ bool ProjectFileIO::SaveProject(
          });
 
          // Provides a progress dialog with indeterminate mode
-         wxGenericProgressDialog pd(XO("Syncing").Translation(),
-                                    XO("This may take several seconds").Translation(),
-                                    300000,     // range
-                                    nullptr,    // parent
-                                    wxPD_APP_MODAL | wxPD_ELAPSED_TIME | wxPD_SMOOTH);
+         using namespace BasicUI;
+         auto pd = MakeGenericProgress({},
+            XO("Syncing"), XO("This may take several seconds"));
+         wxASSERT(pd);
 
          // Wait for the checkpoints to end
          while (!done)
          {
             wxMilliSleep(50);
-            pd.Pulse();
+            pd->Pulse();
          }
          thread.join();
 
          if (!success)
          {
             // Additional help via a Help button links to the manual.
-            ShowError(nullptr,
+            ShowError( {},
                       XO("Error Saving Project"),
                       XO("The project failed to open, possibly due to limited space\n"
                          "on the storage device.\n\n%s").Format(GetLastError()),
@@ -2088,7 +2080,7 @@ bool ProjectFileIO::SaveProject(
       if (!AutoSaveDelete())
       {
          // Additional help via a Help button links to the manual.
-         ShowError(nullptr,
+         ShowError( {},
                    XO("Error Saving Project"),
                    XO("Unable to remove autosave information, possibly due to limited space\n"
                       "on the storage device.\n\n%s").Format(GetLastError()),
@@ -2131,8 +2123,7 @@ bool ProjectFileIO::SaveProject(
    else
    {
       if ( !UpdateSaved( nullptr ) ) {
-         ShowError(
-            nullptr,
+         ShowError( {},
             XO("Error Saving Project"),
             FileException::WriteFailureMessage(fileName),
             "Error:_Disk_full_or_not_writable"
@@ -2255,13 +2246,16 @@ wxLongLong ProjectFileIO::GetFreeDiskSpace() const
 }
 
 /// Displays an error dialog with a button that offers help
-void ProjectFileIO::ShowError(wxWindow *parent,
+void ProjectFileIO::ShowError(const BasicUI::WindowPlacement &placement,
                               const TranslatableString &dlogTitle,
                               const TranslatableString &message,
                               const wxString &helpPage)
 {
-   ShowExceptionDialog(parent, dlogTitle, message, helpPage, true,
-                   audacity::ToWString(GetLastLog()));
+   using namespace audacity;
+   using namespace BasicUI;
+   ShowErrorDialog( placement, dlogTitle, message, helpPage,
+      ErrorDialogOptions{ ErrorDialogType::ModalErrorReport }
+         .Log(ToWString(GetLastLog())));
 }
 
 const TranslatableString &ProjectFileIO::GetLastError() const

@@ -18,6 +18,8 @@ Paul Licameli -- split from SampleBlock.cpp and SampleBlock.h
 
 #include "SampleBlock.h" // to inherit
 
+#include <wx/log.h>
+
 class SqliteSampleBlockFactory;
 
 ///\brief Implementation of @ref SampleBlock using Sqlite database

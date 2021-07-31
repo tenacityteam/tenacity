@@ -32,13 +32,13 @@
 #include <wx/filename.h>
 #include <wx/utils.h>
 
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../ShuttleGui.h"
-#include "../TempDirectory.h"
+#include "TempDirectory.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ReadOnlyText.h"
 #include "../widgets/wxTextCtrlWrapper.h"
-#include "../FileNames.h"
+#include "FileNames.h"
 
 using namespace FileNames;
 using namespace TempDirectory;
@@ -418,6 +418,10 @@ bool DirectoriesPrefs::Validate()
    }
    else {
       /* If the directory already exists, make sure it is writable */
+      if (!FileNames::WritableLocationCheck(mTempText->GetValue()))
+      {
+          return false;
+      }
       wxLogNull logNo;
       Temp.AppendDir(wxT("canicreate"));
       path =  Temp.GetPath();
@@ -441,6 +445,19 @@ bool DirectoriesPrefs::Validate()
 "Changes to temporary directory will not take effect until Audacity is restarted"),
          XO("Temp Directory Update"),
          wxOK | wxCENTRE | wxICON_INFORMATION);
+   }
+
+   const wxString macroPathString = mMacrosText->GetValue();
+
+   if (!macroPathString.empty())
+   {
+      const wxFileName macroPath { macroPathString };
+
+      if (macroPath.DirExists())
+      {
+         if (!FileNames::WritableLocationCheck(macroPathString))
+            return false;
+      }
    }
 
    return true;

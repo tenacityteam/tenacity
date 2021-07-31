@@ -1,21 +1,25 @@
 // This is one of my least favorite files in Saucedacity. It's very
 // long below...
 
+#include <wx/app.h>
 #include <wx/bmpbuttn.h>
 #include <wx/textctrl.h>
 #include <wx/frame.h>
 
 #include "../AboutDialog.h"
 #include "../AllThemeResources.h"
-#include "../AudacityLogger.h"
 #include "../AudioIOBase.h"
 #include "../CommonCommandFlags.h"
-#include "../FileNames.h"
+
+#include "FileNames.h"
+
 #include "../HelpText.h"
+#include "../LogWindow.h"
 #include "../Menus.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectSelectionManager.h"
+#include "../SelectFile.h"
 #include "../ShuttleGui.h"
 #include "../SplashDialog.h"
 #include "../Theme.h"
@@ -63,7 +67,7 @@ void ShowDiagnostics(
    if (dlg.ShowModal() == wxID_OK)
    {
       const auto fileDialogTitle = XO("Save %s").Format( description );
-      wxString fName = FileNames::SelectFile(FileNames::Operation::Export,
+      wxString fName = SelectFile(FileNames::Operation::Export,
          fileDialogTitle,
          wxEmptyString,
          defaultPath,
@@ -342,10 +346,7 @@ void OnMidiDeviceInfo(const CommandContext &context)
 
 void OnShowLog( const CommandContext &context )
 {
-   auto logger = AudacityLogger::Get();
-   if (logger) {
-      logger->Show();
-   }
+   LogWindow::Show();
 }
 
 #ifdef IS_ALPHA

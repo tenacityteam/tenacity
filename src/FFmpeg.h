@@ -18,6 +18,7 @@ Describes shared object that is used to access FFmpeg libraries.
 
 
 
+#include "audacity/Types.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
 
 #if defined(__WXMSW__)
@@ -152,6 +153,7 @@ extern "C" {
 #include "Prefs.h"
 
 #include "Identifier.h"
+#include "SampleFormat.h"
 
 class wxDynamicLibrary;
 

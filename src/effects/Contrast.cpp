@@ -14,18 +14,18 @@
 
 #include "../CommonCommandFlags.h"
 #include "../WaveTrack.h"
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectFileIO.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
+#include "../SelectFile.h"
 #include "../ShuttleGui.h"
-#include "../FileNames.h"
+#include "FileNames.h"
 #include "../ViewInfo.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/NumericTextCtrl.h"
 #include "../widgets/AudacityMessageBox.h"
-#include "../widgets/ErrorDialog.h"
 
 #include <cmath>
 #include <limits>
@@ -40,8 +40,9 @@
 #include <wx/log.h>
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
+#include <wx/textctrl.h>
 
-#include "../PlatformCompatibility.h"
+#include "PlatformCompatibility.h"
 
 #define DB_MAX_LIMIT 0.0   // Audio is massively distorted.
 #define WCAG2_PASS 20.0    // dB difference required to pass WCAG2 test.
@@ -532,7 +533,7 @@ void ContrastDialog::OnExport(wxCommandEvent & WXUNUSED(event))
    auto project = FindProjectFromWindow( this );
    wxString fName = wxT("contrast.txt");
 
-   fName = FileNames::SelectFile(FileNames::Operation::Export,
+   fName = SelectFile(FileNames::Operation::Export,
       XO("Export Contrast Result As:"),
       wxEmptyString,
       fName,

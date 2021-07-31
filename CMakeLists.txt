@@ -19,15 +19,14 @@ endif ()
 # still link to the alpha manual online.
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
-set( AUDACITY_BUILD_LEVEL 0 )
+set( AUDACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 
 # The Saucedacity version
 # Increment as appropriate after release of a new version, and set back
 # AUDACITY_BUILD_LEVEL to 0
-# TODO: changed AUDACITY_* to SAUCEDACITY_*, as with most things
 set( AUDACITY_VERSION 1 )
-set( AUDACITY_RELEASE 0 )
-set( AUDACITY_REVISION 1 )
+set( AUDACITY_RELEASE 1 )
+set( AUDACITY_REVISION 0 )
 set( AUDACITY_MODLEVEL 0 )
 
 string( TIMESTAMP __TDATE__ "%Y%m%d" )
@@ -140,6 +139,12 @@ project( Saucedacity )
 include( AudacityFunctions )
 
 set_from_env(AUDACITY_ARCH_LABEL) # e.g. x86_64
+
+# Allow user to globally set the library preference
+cmd_option( ${_OPT}conan_enabled
+            "Use Conan package manager for 3d party dependencies" 
+            On
+)
 
 # Allow user to globally set the library preference
 cmd_option( ${_OPT}lib_preference
@@ -288,7 +293,7 @@ set( _EXEDIR "${_DEST}" )
 # Setup RPATH handling
 set( CMAKE_BUILD_RPATH "${_DEST}/${_PKGLIB}" )
 set( CMAKE_BUILD_WITH_INSTALL_RPATH FALSE )
-set( CMAKE_INSTALL_RPATH "${_PREFIX}/${_PKGLIB}" )
+set( CMAKE_INSTALL_RPATH "$ORIGIN/../${_PKGLIB}" )
 set( CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE )
 
 # Adjust them for the Mac

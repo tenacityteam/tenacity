@@ -34,14 +34,15 @@ KeyConfigPrefs and MousePrefs use.
 #include <wx/statbox.h>
 #include <wx/textctrl.h>
 
-#include "../Prefs.h"
+#include "Prefs.h"
 #include "../Project.h"
 #include "../commands/CommandManager.h"
 #include "../xml/XMLFileReader.h"
 
+#include "../SelectFile.h"
 #include "../ShuttleGui.h"
 
-#include "../FileNames.h"
+#include "FileNames.h"
 
 #include "../widgets/KeyView.h"
 #include "../widgets/AudacityMessageBox.h"
@@ -475,7 +476,9 @@ void KeyConfigPrefs::OnShow(wxShowEvent & event)
 {
    event.Skip();
 
-   if (event.IsShown())
+   // This is required to prevent a crash if Preferences 
+   // were opened without a project.
+   if (event.IsShown() && mView != nullptr)
    {
       mView->Refresh();
    }
@@ -485,7 +488,7 @@ void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
 {
    wxString file = wxT("Audacity-keys.xml");
 
-   file = FileNames::SelectFile(FileNames::Operation::Open,
+   file = SelectFile(FileNames::Operation::Open,
       XO("Select an XML file containing Audacity keyboard shortcuts..."),
       wxEmptyString,
       file,
@@ -564,7 +567,7 @@ void KeyConfigPrefs::OnExport(wxCommandEvent & WXUNUSED(event))
 {
    wxString file = wxT("Audacity-keys.xml");
 
-   file = FileNames::SelectFile(FileNames::Operation::Export,
+   file = SelectFile(FileNames::Operation::Export,
       XO("Export Keyboard Shortcuts As:"),
       wxEmptyString,
       file,

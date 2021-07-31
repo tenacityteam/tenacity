@@ -27,6 +27,7 @@
 #include <wx/checkbox.h>
 #include <wx/choice.h>
 #include <wx/intl.h>
+#include <wx/log.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
 #include <wx/stattext.h>
@@ -58,8 +59,8 @@
 #include "widgets/FileDialog/FileDialog.h"
 #include "FileNames.h"
 #include "import/Import.h"
-#include "widgets/ErrorDialog.h"
 #include "widgets/AudacityMessageBox.h"
+#include "widgets/AudacityTextEntryDialog.h"
 #include "widgets/HelpSystem.h"
 
 #if wxUSE_ACCESSIBILITY

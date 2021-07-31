@@ -24,6 +24,7 @@ function.
 #include "../FFmpeg.h"
 
 #include <wx/choice.h>
+#include <wx/log.h>
 #include <wx/intl.h>
 #include <wx/timer.h>
 #include <wx/string.h>
@@ -38,13 +39,13 @@ function.
 #include "../Tags.h"
 #include "../Track.h"
 #include "../widgets/AudacityMessageBox.h"
-#include "../widgets/ErrorDialog.h"
 #include "../widgets/ProgressDialog.h"
-#include "../wxFileNameWrapper.h"
+#include "wxFileNameWrapper.h"
 
 #include "Export.h"
 
 #include "ExportFFmpegDialogs.h"
+#include "SelectFile.h"
 
 #if defined(WIN32) && _MSC_VER < 1900
 #define snprintf _snprintf

@@ -96,6 +96,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "ProjectWindow.h"
 #include "Screenshot.h"
 #include "Sequence.h"
+#include "SelectFile.h"
 #include "TempDirectory.h"
 #include "Track.h"
 #include "prefs/PrefsDialog.h"
@@ -108,8 +109,10 @@ It handles initialization and termination by subclassing wxApp.
 #include "prefs/DirectoriesPrefs.h"
 #include "prefs/GUIPrefs.h"
 #include "tracks/ui/Scrubbing.h"
-#include "widgets/FileConfig.h"
+#include "FileConfig.h"
 #include "widgets/FileHistory.h"
+
+#include "widgets/wxWidgetsBasicUI.h"
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
 #include "prefs/KeyConfigPrefs.h"
@@ -236,7 +239,7 @@ void PopulatePreferences()
          wxYES_NO, NULL);
       if (action == wxYES)   // reset
       {
-         gPrefs->DeleteAll();
+         ResetPreferences();
          writeLang = true;
       }
    }
@@ -1018,6 +1021,12 @@ bool AudacityApp::OnInit()
    // Ensure we have an event loop during initialization
    wxEventLoopGuarantor eventLoop;
 
+   // Inject basic GUI services behind the facade
+   {
+      static wxWidgetsBasicUI uiServices;
+      (void)BasicUI::Install(&uiServices);
+   }
+
    // Fire up SQLite
    if ( !ProjectFileIO::InitializeSQL() )
       this->CallAfter([]{
@@ -1070,21 +1079,10 @@ bool AudacityApp::OnInit()
                        "}\n"
                        "widget_class \"*GtkCombo*\" style \"audacity\"");
 #endif
-
-   // Don't use AUDACITY_NAME here.
-   // We want Saucedacity with a capital 'S'
-
-// DA: App name
-#ifndef EXPERIMENTAL_DA
-   wxString appName = wxT("Saucedacity");
-#else
-   wxString appName = wxT("DarkAudacity");
-#endif
-
-   wxTheApp->SetAppName(appName);
+   wxTheApp->SetAppName(AppName);
    // Explicitly set since OSX will use it for the "Quit" menu item
-   wxTheApp->SetAppDisplayName(appName);
-   wxTheApp->SetVendorName(appName);
+   wxTheApp->SetAppDisplayName(AppName);
+   wxTheApp->SetVendorName(AppName);
 
    ::wxInitAllImageHandlers();
 
@@ -2196,6 +2194,10 @@ int AudacityApp::OnExit()
 #endif
 
    DeinitFFT();
+
+#ifdef HAS_NETWORKING
+   audacity::network_manager::NetworkManager::GetInstance().Terminate();
+#endif
 
    AudioIO::Deinit();
 
