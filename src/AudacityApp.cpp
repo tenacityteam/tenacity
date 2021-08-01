@@ -1267,6 +1267,9 @@ bool AudacityApp::OnInit()
          appName, wxEmptyString,
          configFileName.GetFullPath(),
          wxEmptyString, wxCONFIG_USE_LOCAL_FILE) );
+
+      // Ensure that these preferences were created by Saucedacity.
+      gPrefs->Write("IsSaucedacity", true);
       PopulatePreferences();
    }
 
@@ -1470,10 +1473,6 @@ bool AudacityApp::InitPart2()
       // project->MayCheckForUpdates();
       SplashDialog::DoHelpWelcome(*project);
    }
-
-#if defined(HAVE_UPDATES_CHECK)
-   UpdateManager::Start();
-#endif
 
    #ifdef USE_FFMPEG
    FFmpegStartup();
@@ -2217,17 +2216,12 @@ int AudacityApp::OnExit()
 
    DeinitFFT();
 
-#ifdef HAS_NETWORKING
-   audacity::network_manager::NetworkManager::GetInstance().Terminate();
-#endif
-
    AudioIO::Deinit();
 
    MenuTable::DestroyRegistry();
 
    // Terminate the PluginManager (must be done before deleting the locale)
    PluginManager::Get().Terminate();
-
    return 0;
 }
 

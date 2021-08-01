@@ -514,7 +514,7 @@ void InitProjectWindow( ProjectWindow &window )
 #endif
 
    window.UpdateStatusWidths();
-   auto msg = XO("Welcome to Audacity version %s")
+   auto msg = XO("Welcome to Saucedacity version %s")
       .Format( AUDACITY_VERSION_STRING );
    ProjectManager::Get( project ).SetStatusText( msg, mainStatusBarField );
 
