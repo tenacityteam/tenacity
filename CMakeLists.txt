@@ -328,31 +328,30 @@ set( AUDACITY_VERSION 1 )
 set( AUDACITY_RELEASE 3 )
 set( AUDACITY_REVISION 0 )
 set( GIT_DESCRIBE "unknown" )
+find_package( Git QUIET )
 if( GIT_FOUND )
-   execute_process(
-      COMMAND
-         ${GIT_EXECUTABLE} show -s "--format=%h;%H;%cd"
-      WORKING_DIRECTORY
-         ${topdir}
-      OUTPUT_VARIABLE
-         git_output
-      OUTPUT_STRIP_TRAILING_WHITESPACE
-      ERROR_QUIET
-   )
+    execute_process(
+        COMMAND
+            ${GIT_EXECUTABLE} describe --abbrev=7 --tags
+        WORKING_DIRECTORY
+            ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE
+            GIT_DESCRIBE
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+    )
 
-   if( git_output )
-      list( GET git_output 0 GIT_COMMIT_SHORT )
-      list( GET git_output 1 GIT_COMMIT_LONG )
-      list( GET git_output 2 GIT_COMMIT_TIME )
-
-      file(WRITE
-         "${CMAKE_BINARY_DIR}/Variables.cmake"
-         "set( AUDACITY_BUILD_LEVEL ${AUDACITY_BUILD_LEVEL} )\nset( AUDACITY_REV_LONG \"${GIT_COMMIT_LONG}\" )\nset( AUDACITY_REV_TIME \"${GIT_COMMIT_TIME}\" )\n"
-      )
-   endif()
+    # Get the number of commits since the last tag and the current commit from
+    # Git describe. This is only if we're not building a release version.
+    if( GIT_DESCRIBE AND AUDACITY_BUILD_LEVEL LESS 2)
+        string( REGEX MATCHALL "-.*" GIT_VERSION_TAG "${GIT_DESCRIBE}" )
+    endif()
 endif()
-message( STATUS "  Current Commit: ${GIT_COMMIT_SHORT}" )
+message( STATUS "  Current Commit: ${GIT_DESCRIBE}" )
 message( STATUS )
+
+# Not sure what this even does
+set( AUDACITY_MODLEVEL 0 )
 
 # Organize subdirectories/targets into folders for the IDEs
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
