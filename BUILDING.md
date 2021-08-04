@@ -14,7 +14,7 @@
 To install Conan on Windows:
 
 ```
-$ pip install conan
+> pip install conan
 ```
 
 To install Conan on macOS and Linux:
@@ -37,9 +37,19 @@ On Linux, `cmake` is usually available from the system package manager.
 
 We build Saucedacity using [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/community/). In order to build Saucedacity, the **Desktop development with C++** workload is required.
 
-As we require only C++14 - MSVC 2017 should work just fine too.
+As we require only C++14, MSVC 2017 should work just fine.
+
+#### Cygwin
+
+Currently, building under Cygwin isn't supported. You can find instructions on the Audacity Wiki, but they are very old and likely won't work. If you somehow **do** get a working Saucedacity build, please let us know through our issue tracker.
+
+#### MinGW
+
+Building with MinGW isn't supported either. However, this might be of interest in the future as an alternative to building with Visual Studio and MSVC. Feel free to work on this.
 
 ### MacOS
+
+**WARNING**: these instructions are taken from Audacity's BUILDING.md. They have not been modified except for branding changes. If there's anything incorrect here, please create an issue.
 
 We build Saucedacity using XCode 12. However, it is likely possible to build it with XCode 7.
 
@@ -80,11 +90,22 @@ $ sudo apt-get install libgtk2.0-dev libasound2-dev libavformat-dev libjack-jack
    
 6. Select "Build -> Build Solution".
    
-7. You can now run and debug Saucedacity!
-      
-Generally, steps 1-5 are only needed the first-time you configure. Then, after you've generated the solution, you can open it in Visual Studio next time. If the project configuration has changed, the IDE will invoke CMake internally. 
+7. You have now built Saucedacity...except that it might not work. See the additional steps below.
+
+Generally, steps 1-5 are only needed the first-time you configure. Then, after you've generated the solution, you can open it in Visual Studio next time. If the project configuration has changed, the IDE will invoke CMake internally.
 
 > Conan Center provides prebuilt binaries only for **x64**. Configuring the project for Win32 will take much longer, as all the 3rd party libraries will be built during the configuration.
+
+
+### Additional Steps
+
+You need to build additional dependencies on Windows. They are listed below:
+
+* libexpat
+* zlib
+* wxWidgets (Audacity's fork)
+
+Instructions needed to build those dependencies aren't going to be provided here. You need to use CMAke with libexpat, so you can follow steps 1-4 as listed above, replacing the repository link with 'https://github.com/libexpat/libexpat. For wxWidgets, you don't need to use CMake. The appropriate Visual Studio Project files are in `build/msw`. Additionally, you don't need to use Visual Studio if you don't want to, as there are many different build systems.
 
 ## macOS
 
