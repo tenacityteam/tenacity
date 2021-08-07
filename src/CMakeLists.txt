@@ -1,6 +1,6 @@
 
 set( TARGET Tenacity )
-set( TARGET_ROOT ${topdir}/src )
+set( TARGET_ROOT ${CMAKE_SOURCE_DIR}/src )
 
 include(CheckFunctionExists)
 
@@ -31,7 +31,7 @@ elseif( GIT_FOUND )
                           -D "_PRVDIR=${_PRVDIR}"
                           -P "cmake-proxies/cmake-modules/Version.cmake"
       WORKING_DIRECTORY
-         ${topdir}
+         ${CMAKE_SOURCE_DIR}
    )
 
    add_dependencies( ${TARGET} version )
@@ -999,7 +999,7 @@ list( APPEND SOURCES
 list( APPEND INCLUDES
    PUBLIC
       ${_PRVDIR}
-      ${topdir}/libraries
+      ${CMAKE_SOURCE_DIR}/libraries
       ${TARGET_ROOT}
 )
 
@@ -1390,11 +1390,11 @@ else()
                FILES_MATCHING PATTERN "*.so*" )
       install( FILES "${_INTDIR}/${APP_NAME}.desktop"
                DESTINATION "${_DATADIR}/applications" )
-      install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
+      install( FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_SOURCE_DIR}/README.md"
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
       install( FILES "${_SRCDIR}/tenacity.xml"
                DESTINATION "${_DATADIR}/mime/packages" )
-      install( FILES "${topdir}/presets/EQDefaultCurves.xml"
+      install( FILES "${CMAKE_SOURCE_DIR}/presets/EQDefaultCurves.xml"
                DESTINATION "${_PKGDATA}" )
       install( PROGRAMS "${PROJECT_SOURCE_DIR}/linux/tenacity.sh"
                DESTINATION "."

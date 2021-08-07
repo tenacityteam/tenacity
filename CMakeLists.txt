@@ -110,10 +110,6 @@ if( "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}" )
    )
 endif()
 
-# Just a couple of convenience variables
-set( topdir "${CMAKE_SOURCE_DIR}" )
-set( libsrc "${topdir}/lib-src" )
-
 # Default build type is 'Debug' if CMAKE_BUILD_TYPE and
 # CMAKE_CONFIGURATION_TYPES are not set AND TENACITY_BUILD_LEVEL is less
 # than 2 (meaing alpha or beta).
