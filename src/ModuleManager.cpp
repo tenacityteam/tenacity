@@ -106,10 +106,10 @@ bool Module::Load(wxString &deferredErrorMessage)
    wxString moduleVersion = versionFn();
    if( moduleVersion != AUDACITY_VERSION_STRING) {
       AudacityMessageBox(
-         XO("The module \"%s\" is matched with Audacity version \"%s\".\n\nIt will not be loaded.")
+         XO("The module \"%s\" is matched with Audacity (or Saucedacity) version \"%s\".\n\nIt will not be loaded.")
             .Format(ShortName, moduleVersion),
          XO("Module Unsuitable"));
-      wxLogMessage(wxT("The module \"%s\" is matched with Audacity version \"%s\". It will not be loaded."), mName, moduleVersion);
+      wxLogMessage(wxT("The module \"%s\" is matched with Audacity (or Saucedacity) version \"%s\". It will not be loaded."), mName, moduleVersion);
       mLib->Unload();
       return false;
    }
