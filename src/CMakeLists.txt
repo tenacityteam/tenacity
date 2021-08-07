@@ -1,10 +1,10 @@
 
-set( TARGET Audacity )
+set( TARGET Saucedacity )
 set( TARGET_ROOT ${topdir}/src )
 
 message( STATUS "========== Configuring ${TARGET} ==========" )
 
-# Allow modules to link against the Audacity executable
+# Allow modules to link against the Saucedacity executable
 set( CMAKE_ENABLE_EXPORTS ON )
 
 add_executable( ${TARGET} )
@@ -52,13 +52,15 @@ else()
    set ( wxIS_GTK on)
 endif()
 
-# Handle Ladspa option
+# Legacy options
 cmd_option(
-   ${_OPT}use_ladspa
-   "Use LADSPA plug-in support [on, off]"
+   ${_OPT2}enable_legacy
+   "Enable legacy features (LADSPA plugin support, ancient project formats) [on, off]"
    ON
 )
-set( USE_LADSPA ${${_OPT}use_ladspa} CACHE INTERNAL "" )
+
+set( USE_LEGACY ${${_OPT2}enable_legacy} CACHE INTERNAL "" )
+set( USE_LADSPA ${${_OPT2}enable_legacy} CACHE INTERNAL "" )
 
 # Handle VST option
 cmd_option(
@@ -151,8 +153,6 @@ list( APPEND SOURCES
       LabelTrack.h
       LangChoice.cpp
       LangChoice.h
-      Legacy.cpp
-      Legacy.h
       LightThemeAsCeeCode.h
       LogWindow.cpp
       LogWindow.h
@@ -481,6 +481,20 @@ list( APPEND SOURCES
       effects/Wahwah.cpp
       effects/Wahwah.h
 
+      # Legacy features
+
+      $<$<BOOL:${ENABLE_LEGACY}>:
+         # LADSPA plugin support
+         effects/ladspa/LadspaEffect.cpp
+         effects/ladspa/LadspaEffect.h
+         effects/ladspa/ladspa.h
+
+         # Compatibility with legacy project files. Note: this is for the
+         # project format used in Audacity 0.98 to 1.0.
+         Legacy.cpp
+         Legacy.h        
+      >
+
       # VST Effects
 
       $<$<BOOL:${USE_VST}>:
@@ -512,14 +526,6 @@ list( APPEND SOURCES
          effects/audiounits/AUControl.mm
          effects/audiounits/AudioUnitEffect.cpp
          effects/audiounits/AudioUnitEffect.h
-      >
-
-      # Ladspa Effects
-
-      $<$<BOOL:${USE_LADSPA}>:
-         effects/ladspa/LadspaEffect.cpp
-         effects/ladspa/LadspaEffect.h
-         effects/ladspa/ladspa.h
       >
 
       # LV2 Effects
@@ -1007,10 +1013,9 @@ list( APPEND DEFINES
       >
 )
 
-# If we have cmake 3.16 or higher, we can use precompiled headers, but
-# only use them if ccache is not available and the user hasn't disabled
-# it.
-if( CMAKE_VERSION VERSION_GREATER_EQUAL "3.16" AND NOT CCACHE_PROGRAM )
+# We now use precompiled headers regardless, but only if ccache is not
+# available and the user hasn't disabled it.
+if( NOT CCACHE_PROGRAM )
    cmd_option(
       ${_OPT}use_pch
       "Use precompiled headers [yes, no]"
@@ -1099,7 +1104,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
       TARGET
          ${TARGET}
       COMMAND
-         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Audacity.exe"
+         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Saucedacity.exe"
                           -D DST="${_EXEDIR}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>/"
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
@@ -1184,7 +1189,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       TARGET
          ${TARGET}
       COMMAND
-         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Audacity"
+         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Saucedacity"
                           -D DST="${_PKGLIB}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
@@ -1253,7 +1258,7 @@ else()
       TARGET
          ${TARGET}
       COMMAND
-         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/audacity"
+         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/saucedacity"
                           -D DST="${_DEST}/${_PKGLIB}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake

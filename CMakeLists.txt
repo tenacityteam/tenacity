@@ -1,9 +1,6 @@
-# If you want built-in precompiled header support
-# then make sure you have cmake 3.16 or higher.
-#
-# Minimum required is 3.15 due to use of multiple values in
-# generator expressions.
-cmake_minimum_required( VERSION 3.15 )
+# Minimum required is 3.16 due to use of multiple values in
+# generator expressions and the use of precompiled headers
+cmake_minimum_required( VERSION 3.16 )
 
 # If building with GNU compiler, then must be 4.9 or later.
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
@@ -57,9 +54,15 @@ endif()
 set( topdir "${CMAKE_SOURCE_DIR}" )
 set( libsrc "${topdir}/lib-src" )
 
-# Default build type is Debug
+# Default build type is 'Debug' if CMAKE_BUILD_TYPE and
+# CMAKE_CONFIGURATION_TYPES are not set AND AUDACITY_BUILD_LEVEL is less
+# than 2 (meaing alpha or beta). If AUDACTIY_
 if( NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES )
-   set( CMAKE_BUILD_TYPE "Debug" )
+   if ( AUDACITY_BUILD_LEVEL LESS 2)
+     set( CMAKE_BUILD_TYPE "Debug" )
+   else()
+     set( CMAKE_BUILD_TYPE "Release" )
+   endif()
 endif()
 
 # Ignore COMPILE_DEFINITIONS_<Config> properties
@@ -142,7 +145,7 @@ set_from_env(AUDACITY_ARCH_LABEL) # e.g. x86_64
 
 # Allow user to globally set the library preference
 cmd_option( ${_OPT}conan_enabled
-            "Use Conan package manager for 3d party dependencies" 
+            "Use Conan package manager for 3rd party dependencies" 
             On
 )
 
@@ -244,7 +247,7 @@ message( STATUS )
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 if( CMAKE_GENERATOR MATCHES "Visual Studio" )
-   # Make sure Audacity is the startup project
+   # Make sure Saucedacity is the startup project
    set_directory_properties(
       PROPERTIES
          VS_STARTUP_PROJECT "${CMAKE_PROJECT_NAME}"
@@ -517,13 +520,13 @@ execute_process( COMMAND
 #
 
 cmd_option( ${_OPT}perform_codesign
-            "Perform code signing during the install step. This only works on Windows and macOS."
+            "Perform code signing during the install step. This only works on Windows and macOS. WARNING: this might not work."
             Off
 )
 
 cmake_dependent_option(
    ${_OPT}perform_notarization
-   "Perform notarization during the install step. This only works on macOS."
+   "Perform notarization during the install step. This only works on macOS. WARNING: this might not work."
    Off
    "${_OPT}perform_codesign;APPLE"
    Off
