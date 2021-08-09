@@ -1036,7 +1036,7 @@ list( APPEND DEFINES
 
 # We now use precompiled headers regardless, but only if ccache is not
 # available and the user hasn't disabled it.
-if( NOT CCACHE_PROGRAM )
+if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
    cmd_option(
       use_pch
       "Use precompiled headers [yes, no]"
@@ -1337,8 +1337,8 @@ target_link_options( ${TARGET} PRIVATE ${LDFLAGS} )
 target_link_libraries( ${TARGET} PUBLIC ${SAUCEDACITY_LIBRARIES} )
 target_link_libraries( ${TARGET} ${LIBRARIES} )
 
-if( NOT CCACHE_PROGRAM )
-   if( use_pch )
+if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
+   if( ${_OPT}use_pch )
       message( STATUS "Using precompiled headers" )
       target_precompile_headers( ${TARGET} PRIVATE
          $<$<PLATFORM_ID:Windows>:${CMAKE_BINARY_DIR}/src/private/configwin.h>
