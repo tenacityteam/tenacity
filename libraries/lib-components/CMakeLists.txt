@@ -24,6 +24,6 @@ list( APPEND SOURCES
    PluginInterface.h
 )
 saucedacity_library( lib-components "${SOURCES}"
-   "lib-strings-interface;PRIVATE;wxBase"
+   "lib-strings-interface;PRIVATE;wxWidgets::wxWidgets"
    "" ""
 )

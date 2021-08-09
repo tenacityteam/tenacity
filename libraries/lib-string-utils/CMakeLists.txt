@@ -13,7 +13,7 @@ set(SOURCES
 
 set( LIBRARIES
    PRIVATE
-   wxwidgets::base
+   wxWidgets::wxWidgets
 )
 
 saucedacity_library( ${TARGET} "${SOURCES}" "${LIBRARIES}" "" "" )

@@ -10,7 +10,7 @@ and can also bind formatting arguments.  It can generate a translation later,
 even if the global choice of locale changes during its lifetime.  It does not
 implicitly interconvert with wxString.
 
-This library depends only on the wxBase subset of wxWidgets.
+This library depends only on the wxWidgets::wxWidgets subset of wxWidgets.
 ]]#
 
 set( SOURCES
@@ -28,7 +28,7 @@ set( SOURCES
 )
 set( LIBRARIES
    PRIVATE
-   wxBase
+   wxWidgets::wxWidgets
 )
 saucedacity_library( lib-strings "${SOURCES}" "${LIBRARIES}"
    "" ""

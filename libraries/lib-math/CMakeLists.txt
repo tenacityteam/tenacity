@@ -2,7 +2,7 @@
 A library of mathematical utilities and manipulation of samples
 ]]#
 
-addlib( libsoxr            soxr        SOXR        YES   YES   "soxr >= 0.1.1" )
+#addlib( libsoxr            soxr        SOXR        YES   YES   "soxr >= 0.1.1" )
 
 set( SOURCES
    Dither.cpp
@@ -28,10 +28,10 @@ set( SOURCES
    float_cast.h
 )
 set( LIBRARIES
-   libsoxr
+   Soxr::soxr
    lib-preferences-interface
    PRIVATE
-   wxBase
+   wxWidgets::wxWidgets
 )
 saucedacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
    "" ""

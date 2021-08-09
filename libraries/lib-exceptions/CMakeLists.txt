@@ -27,7 +27,7 @@ set( LIBRARIES
    lib-utility-interface
    lib-basic-ui-interface
    PRIVATE
-   wxBase
+   wxWidgets::wxWidgets
 )
 saucedacity_library( lib-exceptions "${SOURCES}" "${LIBRARIES}"
    "" ""

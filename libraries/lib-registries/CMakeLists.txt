@@ -40,7 +40,7 @@ set( LIBRARIES
    lib-preferences-interface
    lib-exceptions
    PRIVATE
-   wxBase
+   wxWidgets::wxWidgets
 )
 saucedacity_library( lib-registries "${SOURCES}" "${LIBRARIES}"
    "" ""

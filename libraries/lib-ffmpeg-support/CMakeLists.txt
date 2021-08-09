@@ -1,5 +1,5 @@
 
-if (use_ffmpeg)
+if (USE_FFMPEG)
    set( SOURCES
       FFmpegTypes.h
 
@@ -87,7 +87,7 @@ if (use_ffmpeg)
 
    set( LIBRARIES
       PRIVATE
-      wxBase
+      wxWidgets::wxWidgets
       lib-preferences
       lib-files
       lib-math

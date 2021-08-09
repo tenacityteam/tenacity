@@ -25,7 +25,7 @@ set( LIBRARIES
    lib-basic-ui-interface
    lib-components-interface
    PRIVATE
-   wxBase
+   wxWidgets::wxWidgets
 )
 saucedacity_library( lib-preferences "${SOURCES}" "${LIBRARIES}"
    "" ""

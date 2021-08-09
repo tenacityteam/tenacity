@@ -23,12 +23,14 @@ set( SOURCES
    TempDirectory.h
    wxFileNameWrapper.h
 )
+
 set( LIBRARIES
    lib-exceptions-interface
    lib-preferences-interface
    PRIVATE
-   wxBase
+   wxWidgets::wxWidgets
 )
+
 saucedacity_library( lib-files "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

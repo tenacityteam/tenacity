@@ -15,8 +15,8 @@ set(SOURCES
 
 set(LIBRARIES
     PRIVATE
-        expat::expat
-        wxBase
+        EXPAT::EXPAT
+        wxWidgets::wxWidgets
         lib-files
         lib-math
         lib-strings
