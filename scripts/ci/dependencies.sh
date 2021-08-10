@@ -5,19 +5,28 @@
 set -euxo pipefail
 
 if [[ "${OSTYPE}" == msys* ]]; then # Windows
+    if which choco; then
 
-    # Python packages
-    pip_packages=(
-        conan
-    )
-    pip3 install "${pip_packages[@]}"
+        # Chocolatey packages
+        choco_packages=(
+            sccache
+        )
 
+        choco install "${choco_packages[@]}" -y
+    else
+        echo >&2 "$0: Error: You don't have a recognized package manager installed."
+        exit 1
+    fi
 elif [[ "${OSTYPE}" == darwin* ]]; then # macOS
 
     # Homebrew packages
     brew_packages=(
         bash # macOS ships with Bash v3 for licensing reasons so upgrade it now
-        conan
+        ccache
+        ninja
+
+        # needed to build ffmpeg
+        nasm
     )
     brew install "${brew_packages[@]}"
 
@@ -30,11 +39,23 @@ else # Linux & others
     # Distribution packages
     if which apt-get; then
         apt_packages=(
-            # Docker image
+            # Build tools
             file
             g++
+            ninja-build
+            nasm
             git
             wget
+            bash
+            scdoc
+            ccache
+
+            # Dependencies
+            debhelper-compat
+            gettext
+            libasound2-dev
+            libgtk-3-dev
+            libsuil-dev
 
             # GitHub Actions
             libasound2-dev
@@ -43,23 +64,12 @@ else # Linux & others
             gettext
             portaudio19-dev
             python3-pip
+            gettext
         )
         sudo apt-get update -y
         sudo apt-get install -y --no-install-recommends "${apt_packages[@]}"
-        sudo apt-get remove -y ccache
     else
         echo >&2 "$0: Error: You don't have a recognized package manager installed."
         exit 1
     fi
-
-    # Python packages
-    pip_packages=(
-        conan
-    )
-
-    which cmake || pip_packages+=( cmake ) # get latest CMake when inside Docker image
-
-    pip3 install wheel setuptools # need these first to install other packages (e.g. conan)
-    pip3 install "${pip_packages[@]}"
-
 fi
