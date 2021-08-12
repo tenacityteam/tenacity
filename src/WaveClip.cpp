@@ -153,6 +153,8 @@ WaveClip::WaveClip(const WaveClip& orig,
    mSpecCache = std::make_unique<SpecCache>();
    mSpecPxCache = std::make_unique<SpecPxCache>(1);
 
+   mName = orig.mName;
+
    if ( copyCutlines )
       for (const auto &clip: orig.mCutLines)
          mCutLines.push_back
@@ -1313,7 +1315,12 @@ bool WaveClip::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
                return false;
             SetOffset(dblValue);
          }
-         if (!wxStrcmp(attr, wxT("colorindex")))
+         else if (!wxStrcmp(attr, wxT("name")))
+         {
+            if(XMLValueChecker::IsGoodLongString(strValue))
+               SetName(strValue);
+         }
+         else if (!wxStrcmp(attr, wxT("colorindex")))
          {
             if (!XMLValueChecker::IsGoodString(strValue) ||
                   !strValue.ToLong( &longValue))
@@ -1356,6 +1363,7 @@ void WaveClip::WriteXML(XMLWriter &xmlFile) const
 {
    xmlFile.StartTag(wxT("waveclip"));
    xmlFile.WriteAttr(wxT("offset"), mOffset, 8);
+   xmlFile.WriteAttr(wxT("name"), mName);
    xmlFile.WriteAttr(wxT("colorindex"), mColourIndex );
 
    mSequence->WriteXML(xmlFile);
@@ -1772,4 +1780,14 @@ bool WaveClip::SharesBoundaryWithNextClip(const WaveClip* next) const
    // given that a double has about 15 significant digits, using a criterion
    // of half a sample should be safe in all normal usage.
    return fabs(startNext - endThis) < 0.5;
+}
+
+void WaveClip::SetName(const wxString& name)
+{
+   mName = name;
+}
+
+const wxString& WaveClip::GetName() const
+{
+   return mName;
 }
