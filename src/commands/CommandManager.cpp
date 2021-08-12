@@ -91,6 +91,7 @@ CommandManager.  It holds the callback for one command.
 #include <wx/tokenzr.h>
 
 #include "../Menus.h"
+#include "../Journal.h"
 
 #include "../Project.h"
 #include "../widgets/AudacityMessageBox.h"
@@ -1181,6 +1182,33 @@ bool CommandManager::FilterKeyEvent(SaucedacityProject *project, const wxKeyEven
    return false;
 }
 
+namespace {
+
+constexpr auto JournalCode = wxT("CM");  // for CommandManager
+
+// Register a callback for the journal
+Journal::RegisteredCommand sCommand{ JournalCode,
+[]( const wxArrayStringEx &fields )
+{
+   // Expect JournalCode and the command name.
+   // To do, perhaps, is to include some parameters.
+   bool handled = false;
+   if ( fields.size() == 2 ) {
+      auto project = GetActiveProject();
+      if (project) {
+         auto pManager = &CommandManager::Get( *project );
+         auto flags = MenuManager::Get( *project ).GetUpdateFlags();
+         const CommandContext context( *project );
+         auto &command = fields[1];
+         handled =
+            pManager->HandleTextualCommand( command, context, flags, false );
+      }
+   }
+   return handled;
+}
+};
+
+}
 
 /// HandleCommandEntry() takes a CommandListEntry and executes it
 /// returning true iff successful.  If you pass any flags,
