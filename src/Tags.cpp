@@ -230,7 +230,7 @@ static const wxChar *DefaultGenres[] =
    wxT("Synthpop")
 };
 
-static ProjectFileIORegistry::Entry registerFactory{
+static ProjectFileIORegistry::ObjectReaderEntry readerEntry{
    wxT( "tags" ),
    []( TenacityProject &project ){ return &Tags::Get( project ); }
 };

@@ -57,7 +57,7 @@ wxDEFINE_EVENT(EVT_LABELTRACK_DELETION, LabelTrackEvent);
 wxDEFINE_EVENT(EVT_LABELTRACK_PERMUTED, LabelTrackEvent);
 wxDEFINE_EVENT(EVT_LABELTRACK_SELECTION, LabelTrackEvent);
 
-static ProjectFileIORegistry::Entry registerFactory{
+static ProjectFileIORegistry::ObjectReaderEntry readerEntry{
    wxT( "labeltrack" ),
    []( TenacityProject &project ){
       auto &tracks = TrackList::Get( project );

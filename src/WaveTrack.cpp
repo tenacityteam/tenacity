@@ -94,7 +94,7 @@ Track::LinkType ToLinkType(int value)
 
 }
 
-static ProjectFileIORegistry::Entry registerFactory{
+static ProjectFileIORegistry::ObjectReaderEntry readerEntry{
    wxT( "wavetrack" ),
    []( TenacityProject &project ){
       auto &trackFactory = WaveTrackFactory::Get( project );

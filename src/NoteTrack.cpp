@@ -106,7 +106,7 @@ SONFNS(AutoSave)
 
 
 
-static ProjectFileIORegistry::Entry registerFactory{
+static ProjectFileIORegistry::ObjectReaderEntry readerEntry{
    wxT( "notetrack" ),
    []( TenacityProject &project ){
       auto &tracks = TrackList::Get( project );
