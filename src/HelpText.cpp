@@ -58,7 +58,7 @@ static wxString InnerLink( const wxString &Key, const wxString& Text )
 static wxString WikiLink( const wxString &Page, const wxString& Text )
 {
    return wxString(wxT("")) +
-      wxT("<a href='https://github.com/generic-pers0n/saucedacity/wiki/") +
+      wxT("<a href='https://github.com/saucedacity/saucedacity/wiki/") +
       Page +
       wxT("'>") +
       Text +

@@ -89,7 +89,7 @@ SplashDialog::SplashDialog(wxWindow * parent)
 void SplashDialog::OnChar(wxMouseEvent &event)
 {
    if ( event.ShiftDown() && event.ControlDown() )
-      wxLaunchDefaultBrowser("https://www.audacityteam.org");
+      wxLaunchDefaultBrowser("https://saucedacity.github.io");
 }
 
 void SplashDialog::Populate( ShuttleGui & S )

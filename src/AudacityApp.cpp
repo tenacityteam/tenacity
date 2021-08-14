@@ -782,8 +782,8 @@ void AudacityApp::MacNewFile()
 #endif //__WXMAC__
 
 // IPC communication
-#define ID_IPC_SERVER   6200
-#define ID_IPC_SOCKET   6201
+#define ID_IPC_SERVER   6300
+#define ID_IPC_SOCKET   6301
 
 // we don't really care about the timer id, but set this value just in case we do in the future
 #define kAudacityAppTimerID 0
