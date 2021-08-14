@@ -823,11 +823,6 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          set(selectionformat, strValue);
       }
 
-      else if (!wxStrcmp(attr, wxT("audiotimeformat")))
-      {
-         set(audiotimeformat, strValue);
-      }
-
       else if (!wxStrcmp(attr, wxT("frequencyformat")))
       {
          set(frequencyformat, strValue);
