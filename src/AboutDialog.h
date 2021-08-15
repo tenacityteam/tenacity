@@ -46,7 +46,15 @@ class AUDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
 
  private:
    enum Role {
-      roleSaucedacity,
+      roleSaucedacityTeamMember,
+      roleSaucedacityEmeritusTeam,
+      roleSaucedacityDeceased,
+      roleSaucedacityContributor,
+      roleSaucedacityGraphics,
+      roleSaucedacityLibrary,
+      roleSaucedacityThanks,
+
+      // Regular Audacity team member roles
       roleTeamMember,
       roleEmeritusTeam,
       roleDeceased,
@@ -71,5 +79,4 @@ class AUDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
    void AddBuildinfoRow( wxTextOutputStream *str,
       const TranslatableString &description, const wxChar *spec);
 };
-
 #endif

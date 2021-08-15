@@ -147,12 +147,7 @@ void AboutDialog::CreateCreditsList()
    // indicating if they were an Audacity developer.
 
    // The Saucedacity Team: developers and support
-   // NOTE: anyone that does NOT have '(Saucedacity)' next to their name
-   // is NOT a Saucedacity developer. Anyone that DOES have that by their
-   // name (e.g. Avery's below) IS a Saucedacity developer. Also, this
-   // is for the mean time until I figure out someting with the Role
-   // enum.
-   AddCredit(wxT("Avery King"), saucedacityFounderFormat, roleSaucedacity);
+   AddCredit(wxT("Avery King"), saucedacityFounderFormat, roleSaucedacityTeamMember);
 
    // The Audacity Team: developers and support
    AddCredit(wxT("Anton Gerasimov"), developerFormat, roleTeamMember);
@@ -467,7 +462,7 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << wxT("<h2>")
       << XO("%s Team Members").Format( ProgramName )
       << wxT("</h2><br>")
-      << GetCreditsByRole(roleSaucedacity)
+      << GetCreditsByRole(roleSaucedacityTeamMember)
 
       << wxT("<h2>")
       /* i18n-hint: The program's name substitutes for %s */
@@ -857,38 +852,7 @@ static const wxString GPL_TEXT();
 
 void AboutDialog::PopulateLicensePage( ShuttleGui & S )
 {
-#if defined(HAS_PRIVACY_POLICY)
-   S.StartNotebookPage(XC("Legal", "about dialog"));
-#else
    S.StartNotebookPage(XO("GPL License"));
-#endif
-   
-#if defined(HAS_PRIVACY_POLICY)
-   S.Prop(0).StartPanel();
-   {
-      S.AddSpace(0, 8);
-      /* i18n-hint: For "About Audacity...": Title for Privacy Policy section */
-      S.AddVariableText(XC("PRIVACY POLICY", "about dialog"), true);
-
-      S.AddFixedText(
-         XO("App update checking and error reporting require network access. "
-            "These features are optional."));
-
-      /* i18n-hint: %s will be replaced with "our Privacy Policy" */
-      AccessibleLinksFormatter privacyPolicy(XO("See %s for more info."));
-
-      privacyPolicy.FormatLink(
-         /* i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See". */
-         wxT("%s"), XO("our Privacy Policy"),
-         "https://www.audacityteam.org/about/desktop-privacy-notice/");
-
-      privacyPolicy.Populate(S);
-   }
-   S.EndPanel();
-
-   S.AddSpace(0, 8);
-#endif
-
    S.Prop(1).StartPanel();
    {
       HtmlWindow* html = safenew LinkingHtmlWindow(
@@ -910,8 +874,6 @@ void AboutDialog::PopulateLicensePage( ShuttleGui & S )
 // better proportionally spaced.
 //
 // The GPL is not to be translated....
-   
-
 const wxString GPL_TEXT() { return
 wxT("		    <center>GNU GENERAL PUBLIC LICENSE\n</center>")
 wxT("		       <center>Version 2, June 1991\n</center>")
