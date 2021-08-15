@@ -384,22 +384,8 @@ const wxString VerCheckHtml()
    wxTextOutputStream s(o);
    s
       << "<center>[["
-      << VerCheckUrl().GET()
-      << "|"
+      << "https://github.com/saucedacity/saucedacity/releases|"
       << XO("View latest stable release")
       << "]]</center>\n";
    return o.GetString();
-}
-
-// Url with Version check args attached.
-const URLString VerCheckUrl()
-{
-   //The version we intend to use for live Audacity.
-#define VER_CHECK_URL "https://github.com/generic-pers0n/saucedacity/releases"
-//For testing of our scriptlet.
-//#define VER_CHECK_URL "http://www.audacityteam.org/slug/?"
-//For testing locally
-//#define VER_CHECK_URL "http://localhost:63342/WorkingDocs/demos/download.html?"
-
-   return wxString( wxT(VER_CHECK_URL));
 }

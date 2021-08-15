@@ -431,23 +431,6 @@ void OnMenuTree(const CommandContext &context)
       Verbatim("Menu Tree"), wxT("menutree.txt"), true );
 }
 
-void OnCheckForUpdates(const CommandContext &WXUNUSED(context))
-{
-  int dialog_status = AudacityMessageBox(XO("This option does not actually check for updates. It "
-                                            "merely takes you to the releases page on our "
-                                            "GitHub repository so you can view the latest releases.\n\nIf "
-                                            "you want to continue, click \'OK\' below. "
-                                            "Otherwise, click \'Cancel\'"
-                                            ),
-                                         XO("Check for Updates"),
-                                         wxOK | wxCANCEL | wxCENTER | wxICON_INFORMATION
-                                         );
-  if (dialog_status == wxOK) // If the user accepts
-  {
-     ::OpenInDefaultBrowser( VerCheckUrl());
-  }
-}
-
 void OnAbout(const CommandContext &context)
 {
 #ifdef __WXMAC__
@@ -467,15 +450,6 @@ void OnAbout(const CommandContext &context)
 
 #if 0
 // Legacy handlers, not used as of version 2.3.0
-
-// Only does the update checks if it's an ALPHA build and not disabled by
-// preferences.
-void MayCheckForUpdates(AudacityProject &project)
-{
-#ifdef IS_ALPHA
-   OnCheckForUpdates(project);
-#endif
-}
 
 void OnHelpWelcome(const CommandContext &context)
 {
