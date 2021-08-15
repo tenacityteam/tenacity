@@ -71,7 +71,7 @@ void SplashDialog::DoHelpWelcome( AudacityProject &project )
 }
 
 SplashDialog::SplashDialog(wxWindow * parent)
-   :  wxDialogWrapper(parent, -1, XO("Welcome to Audacity!"),
+   :  wxDialogWrapper(parent, -1, XO("Welcome to Saucedacity!"),
       wxPoint( -1, 60 ), // default x position, y position 60 pixels from top of screen.
       wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
@@ -84,6 +84,31 @@ SplashDialog::SplashDialog(wxWindow * parent)
    int x,y;
    GetPosition( &x, &y );
    Move( x, 60 );
+
+   // Alpha/beta notice dialog
+   #if defined(IS_ALPHA) || defined(IS_BETA)
+   bool ShouldShow;
+   gPrefs->Read(wxT("/GUI/ShowSplashScreen"), &ShouldShow, true );
+
+   if (ShouldShow)
+   {
+     #ifdef IS_ALPHA
+     AudacityMessageBox(XO("The version of Saucedacity you are using is an alpha version. Use of "
+                        "these releases in production environments is discouraged. This version "
+                        "of Saucedacity might contain (unknown) bugs along with possible data "
+                        "loss."),
+                        XO("Saucedacity Alpha Release"),
+                        wxOK);
+     #else
+     AudacityMessageBox(XO("The version of Saucedacity you are using is a beta version. Use of "
+                        "these releases in production environments is discouraged. This version "
+                        "of Saucedacity might contain (unknown) bugs along with possible data "
+                        "loss."),
+                        XO("Saucedacity Beta Release"),
+                        wxOK);
+     #endif
+   }
+   #endif
 }
 
 void SplashDialog::OnChar(wxMouseEvent &event)
@@ -114,7 +139,10 @@ void SplashDialog::Populate( ShuttleGui & S )
    this->SetBackgroundColour(MainColour);
 
    // wxIMAGE_QUALITY_HIGH not supported by wxWidgets 2.6.1, or we would use it here.
-   RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale) );
+   // GP: ANSWER-ME: Don't we already require wxWidgets 3.1.3 (Audacity's version)? If
+   // so, then shouldn't we have this option already? Please make an issue if you have
+   // an answer or make a comment here.
+   RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH );
    wxBitmap RescaledBitmap( RescaledImage );
    wxStaticBitmap *const icon =
        safenew wxStaticBitmap(S.GetParent(), -1,

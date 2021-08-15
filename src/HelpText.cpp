@@ -208,36 +208,12 @@ TranslatableString TitleText( const wxString & Key )
 
 static wxString HelpTextBuiltIn( const wxString & Key )
 {
-   // PRL:  Is it necessary to define these outside of conditional compilation so that both get into the .pot file?
-   const auto alphamsg = XO(
-"<br><br>The version of Saucedacity you are using is an <b>Alpha test version</b>.");
-   const auto betamsg = XO(
-"<br><br>The version of Saucedacity you are using is a <b>Beta test version</b>.");
-
    if (Key == wxT("welcome"))
    {
       wxStringOutputStream o;
       wxTextOutputStream s(o);
-      s
-#if defined(IS_ALPHA) || defined(IS_BETA)
-         << wxT("<hr><center><h3>")
-         << XO("Saucedacity Alpha/Beta")
-         << wxT("</h3></center>")
-         << VerCheckHtml()
-#ifdef IS_ALPHA
-         << alphamsg
-#else
-         << betamsg
-#endif
-         << wxT(" ")
-         << XO(
-"You are using a beta or alpha version of Saucedacity. There might be some hidden bugs within this version, and production use is discouraged."
-              )
-         << XO(
-"You can help us develop Saucedacity by joining our [[https://github.com/generic-pers0n/saucedacity/discussions|community]].<hr><br><br>"
-              )
-#endif
 
+      s
 // DA: Support methods text.
 #ifdef EXPERIMENTAL_DA
          // Deliberately not translated.
@@ -282,7 +258,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << XO("More:</b> Visit our [[https://github.com/generic-pers0n/saucedacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
          << wxT("</p>")
 #endif
-   ;
+      ;
 
       auto result = o.GetString();
 #ifdef USE_ALPHA_MANUAL
