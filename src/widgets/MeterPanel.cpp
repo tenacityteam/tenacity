@@ -310,7 +310,6 @@ MeterPanel::MeterPanel(TenacityProject *project,
    mNumBars(0),
    mLayoutValid(false),
    mBitmap{},
-   mIcon{},
    mAccSilent(false)
 {
    // i18n-hint: Noun (the meter is used for playback or record level monitoring)
@@ -365,19 +364,6 @@ MeterPanel::MeterPanel(TenacityProject *project,
    // No longer show a difference in the background colour when not monitoring.
    // We have the tip instead.
    mDisabledBkgndBrush = mBkgndBrush;
-   
-   // MixerTrackCluster style has no menu, so disallows SetStyle, so never needs icon.
-   if (mStyle != MixerTrackCluster)
-   {
-      if(mIsInput)
-      {
-         mIcon = std::make_unique<wxBitmap>(wxBitmap(theTheme.Bitmap(bmpMic)));
-      }
-      else
-      {
-         mIcon = std::make_unique<wxBitmap>(wxBitmap(theTheme.Bitmap(bmpSpeaker)));
-      }
-   }
 
    mTimer.SetOwner(this, OnMeterUpdateID);
    // TODO: Yikes.  Hard coded sample rate.
@@ -488,12 +474,6 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
       // MixerTrackCluster style has no icon or L/R labels
       if (mStyle != MixerTrackCluster)
       {
-         bool highlight = InIcon();
-         dc.DrawBitmap( theTheme.Bitmap( highlight ? 
-            bmpHiliteUpButtonSmall : bmpUpButtonSmall ), 
-            mIconRect.GetPosition(), false );
-
-         dc.DrawBitmap(*mIcon, mIconRect.GetPosition(), true);
          dc.SetFont(GetFont());
          dc.SetTextForeground( clrText );
          dc.SetTextBackground( clrBoxFill );
@@ -732,11 +712,6 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
       }
    }
 
-   if (mIsFocused)
-   {
-      wxRect r = mIconRect;
-      AColor::DrawFocus(destDC, r.Inflate(1, 1));
-   }
 }
 
 void MeterPanel::OnSize(wxSizeEvent & /* event */)
@@ -747,24 +722,8 @@ void MeterPanel::OnSize(wxSizeEvent & /* event */)
    Refresh();
 }
 
-bool MeterPanel::InIcon(wxMouseEvent *pEvent) const
-{
-   auto point = pEvent ? pEvent->GetPosition() : ScreenToClient(::wxGetMousePosition());
-   return mIconRect.Contains(point);
-}
-
 void MeterPanel::OnMouse(wxMouseEvent &evt)
 {
-   bool shouldHighlight = InIcon(&evt);
-   if ((evt.GetEventType() == wxEVT_MOTION || evt.Entering() || evt.Leaving()) &&
-       (mHighlighted != shouldHighlight)) {
-      mHighlighted = shouldHighlight;
-      mLayoutValid = false;
-      Refresh();
-   }
-
-   if (mStyle == MixerTrackCluster) // MixerTrackCluster style has no menu.
-      return;
 
   #if wxUSE_TOOLTIPS // Not available in wxX11
    if (evt.Leaving()){
@@ -780,8 +739,7 @@ void MeterPanel::OnMouse(wxMouseEvent &evt)
    }
   #endif
 
-   if (evt.RightDown() ||
-       (evt.ButtonDown() && InIcon(&evt)))
+   if (evt.RightDown())
    {
       wxMenu menu;
       // Note: these should be kept in the same order as the enum
@@ -798,9 +756,6 @@ void MeterPanel::OnMouse(wxMouseEvent &evt)
 
       if (evt.RightDown()) {
          ShowMenu(evt.GetPosition());
-      }
-      else {
-         ShowMenu(wxPoint(mIconRect.x + 1, mIconRect.y + mIconRect.height + 1));
       }
    }
    else if (evt.LeftDown()) {
@@ -824,14 +779,7 @@ void MeterPanel::OnContext(wxContextMenuEvent &evt)
    if (mHadKeyDown)
    {
 #endif
-   if (mStyle != MixerTrackCluster) // MixerTrackCluster style has no menu.
-   {
-      ShowMenu(wxPoint(mIconRect.x + 1, mIconRect.y + mIconRect.height + 1));
-   }
-   else
-   {
       evt.Skip();
-   }
 
 #if defined(__WXMSW__)
    }
@@ -885,10 +833,6 @@ void MeterPanel::OnKeyUp(wxKeyEvent &evt)
 #if defined(__WXMSW__)
       if (mHadKeyDown)
 #endif
-      if (mStyle != MixerTrackCluster) // MixerTrackCluster style has no menu.
-      {
-         ShowMenu(wxPoint(mIconRect.x + 1, mIconRect.y + mIconRect.height + 1));
-      }
 #if defined(__WXMSW__)
       mHadKeyDown = false;
 #endif
@@ -1278,8 +1222,6 @@ void MeterPanel::HandleLayout(wxDC &dc)
    mRightText = _("R");
 
    dc.SetFont(GetFont());
-   int iconWidth = 0;
-   int iconHeight = 0;
    int width = mWidth;
    int height = mHeight;
    int left = 0;
@@ -1306,8 +1248,6 @@ void MeterPanel::HandleLayout(wxDC &dc)
          SetActiveStyle(width < 100 ? VerticalStereoCompact : VerticalStereo);
       }
    
-      iconWidth = mIcon->GetWidth();
-      iconHeight = mIcon->GetHeight();
       if (mLeftSize.GetWidth() == 0)  // Not yet initialized to dc.
       {
          dc.GetTextExtent(mLeftText, &mLeftSize.x, &mLeftSize.y);
@@ -1360,7 +1300,7 @@ void MeterPanel::HandleLayout(wxDC &dc)
       break;
    case VerticalStereo:
       // Determine required width of each side;
-      lside = intmax(iconWidth, ltxtWidth);
+      lside = ltxtWidth;
       rside = intmax(mRulerWidth, rtxtWidth);
 
       // left is now the right edge of the icon or L label
@@ -1369,11 +1309,6 @@ void MeterPanel::HandleLayout(wxDC &dc)
       // Ensure there's a margin between top edge of window and the meters
       top = gap;
 
-      // Position the icon
-      mIconRect.SetX(left - iconWidth);
-      mIconRect.SetY(top);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
 
       // Position the L/R labels
       mLeftTextPos = wxPoint(left - ltxtWidth - gap, height - gap - ltxtHeight);
@@ -1418,14 +1353,8 @@ void MeterPanel::HandleLayout(wxDC &dc)
       // Ensure there's a margin between top edge of window and the meters
       top = gap;
 
-      // Position the icon
-      mIconRect.SetX((width - iconWidth) / 2);
-      mIconRect.SetY(top);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
-
       // top is now the top of the bar
-      top += iconHeight + gap;
+      top += gap;
 
       // height is now the entire height of the meter canvas
       height -= top + gap + ltxtHeight + gap;
@@ -1467,15 +1396,8 @@ void MeterPanel::HandleLayout(wxDC &dc)
       // Add a gap between bottom of icon and bottom of window
       height -= gap;
 
-      // Create icon rectangle
-      mIconRect.SetX(left);
-      mIconRect.SetY(height - iconHeight);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
       left = gap;
 
-      // Make sure there's room for icon and gap between the bottom of the meter and icon
-      height -= iconHeight + gap;
 
       // L/R is centered vertically and to the left of a each bar
       mLeftTextPos = wxPoint(left, (height / 4) - ltxtHeight / 2);
@@ -1514,21 +1436,12 @@ void MeterPanel::HandleLayout(wxDC &dc)
                        mBar[1].r.GetBottom() + 1, // +1 to fit below bevel
                        mBar[1].r.GetRight(),
                        mHeight - mBar[1].r.GetBottom() + 1);
-      mRuler.OfflimitsPixels(0, mIconRect.GetRight() - 4);
       break;
    case HorizontalStereoCompact:
       // Button right next to dragger.
       left = 0;
 
-      // Create icon rectangle
-      mIconRect.SetX(left);
-      mIconRect.SetY((height - iconHeight) / 2 -1);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
-
       left = gap;
-      // Add width of icon and gap between icon and L/R
-      left += iconWidth + gap;
 
       // L/R is centered vertically and to the left of a each bar
       mLeftTextPos = wxPoint(left, (height / 4) - (ltxtHeight / 2));
@@ -2204,7 +2117,7 @@ wxAccStatus MeterAx::GetLocation(wxRect & rect, int /* elementId */)
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
-   rect = m->mIconRect;
+   rect = m->GetRect();
    rect.SetPosition(m->ClientToScreen(rect.GetPosition()));
 
    return wxACC_OK;
