@@ -76,10 +76,6 @@ hold information about one contributor to Audacity.
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
 
-#if defined(HAS_SENTRY_REPORTING) || defined(HAVE_UPDATES_CHECK) || defined(USE_BREAKPAD)
-#define HAS_PRIVACY_POLICY
-#endif
-
 // To substitute into many other translatable strings
 static const auto ProgramName =
    //XO("Saucedacity");
