@@ -35,6 +35,7 @@
 
 #include "../theme/AllThemeResources.h"
 #include "../ProjectAudioIO.h"
+#include "../widgets/AButton.h"
 #include "../widgets/MeterPanel.h"
 
 ////////////////////////////////////////////////////////////
@@ -46,6 +47,9 @@ MeterToolBar::MeterToolBar(TenacityProject &project, int type)
 : ToolBar(project, type, XO("Combined Meter"), wxT("CombinedMeter"), true)
 {
    Bind(wxEVT_SIZE, &MeterToolBar::OnSize, this);
+   Bind(wxEVT_MENU, &MeterToolBar::OnMonitor, this, OnMonitorID);
+   Bind(wxEVT_MENU, &MeterToolBar::OnRecPreferences, this, OnRecPreferencesID);
+   Bind(wxEVT_MENU, &MeterToolBar::OnPlayPreferences, this, OnPlayPreferencesID);
 
    if( mType == RecordMeterBarID ){
       mWhichMeters = kWithRecordMeter;
@@ -112,9 +116,21 @@ void MeterToolBar::ReCreateButtons()
 void MeterToolBar::Populate()
 {
    SetBackgroundColour( theTheme.Colour( clrMedium  ) );
+
    Add((mSizer = safenew wxGridBagSizer()), 1, wxEXPAND);
 
    if( mWhichMeters & kWithRecordMeter ){
+      //Add Button
+      AButton *mInButton = MeterToolBar::MakeButton(this,
+         bmpRecoloredUpSmall, bmpRecoloredDownSmall, bmpRecoloredUpHiliteSmall, bmpRecoloredHiliteSmall,
+         bmpMic, bmpMic, bmpMic,
+         wxWindowID(ID_INPUT_BUTTON),
+         wxDefaultPosition, true,
+         theTheme.ImageSize( bmpRecoloredUpSmall ));
+      mInButton->SetLabel(XO("a"));
+      mInButton->SetFocusRect( mInButton->GetClientRect().Deflate( 1, 1 ) );
+      mSizer->Add( mInButton, wxGBPosition( 0, (mWhichMeters & kWithPlayMeter)?2:0 ), wxGBSpan(2,1), wxALIGN_CENTER_VERTICAL );
+
       //JKC: Record on left, playback on right.  Left to right flow
       //(maybe we should do it differently for Arabic language :-)  )
       mRecordMeter = safenew MeterPanel( &mProject,
@@ -129,10 +145,23 @@ void MeterToolBar::Populate()
        This is the name used in screen reader software, where having 'Meter' first
        apparently is helpful to partially sighted people.  */
       mRecordMeter->SetLabel( XO("Meter-Record") );
-      mSizer->Add( mRecordMeter, wxGBPosition( 0, 0 ), wxDefaultSpan, wxEXPAND );
+      mSizer->Add( mRecordMeter, wxGBPosition( 0,  (mWhichMeters & kWithPlayMeter)?3:1 ), wxDefaultSpan, wxEXPAND );
+
+      Bind(wxEVT_BUTTON, &MeterToolBar::OnInputButton, this, ID_INPUT_BUTTON);
    }
 
    if( mWhichMeters & kWithPlayMeter ){
+      //Add Button
+      AButton *mOutButton = MeterToolBar::MakeButton(this,
+         bmpRecoloredUpSmall, bmpRecoloredDownSmall, bmpRecoloredUpHiliteSmall, bmpRecoloredHiliteSmall,
+         bmpSpeaker, bmpSpeaker, bmpSpeaker,
+         wxWindowID(ID_OUTPUT_BUTTON),
+         wxDefaultPosition, false,
+         theTheme.ImageSize( bmpRecoloredUpSmall ));
+      mOutButton->SetLabel(XO("a"));
+      mOutButton->SetFocusRect( mOutButton->GetClientRect().Deflate( 1, 1 ) );
+      mSizer->Add( mOutButton, wxGBPosition( 0, 0 ), wxGBSpan(2,1), wxALIGN_CENTER_VERTICAL );
+
       mPlayMeter = safenew MeterPanel( &mProject,
                               this,
                               wxID_ANY,
@@ -145,7 +174,9 @@ void MeterToolBar::Populate()
        This is the name used in screen reader software, where having 'Meter' first
        apparently is helpful to partially sighted people.  */
       mPlayMeter->SetLabel( XO("Meter-Play"));
-      mSizer->Add( mPlayMeter, wxGBPosition( (mWhichMeters & kWithRecordMeter)?1:0, 0 ), wxDefaultSpan, wxEXPAND );
+
+      mOutSizer->Add( mPlayMeter, wxGBPosition( 0, 2 ), wxDefaultSpan, wxEXPAND );
+      Bind(wxEVT_BUTTON, &MeterToolBar::OnOutputButton, this, ID_OUTPUT_BUTTON);
    }
 
    RegenerateTooltips();
@@ -188,6 +219,7 @@ void MeterToolBar::OnSize( wxSizeEvent & event) ///* event */ )
    // Get the usable area
    wxSize sz = GetSizer()->GetSize();
    width = sz.x; height = sz.y;
+   width -= 27;// get button size
 
    int nMeters = 
       ((mRecordMeter ==NULL) ? 0:1) +
@@ -266,6 +298,13 @@ static RegisteredToolbarFactory factory2{ PlayMeterBarID,
       return ToolBar::Holder{
          safenew MeterToolBar{ project, PlayMeterBarID } }; }
 };
+
+void MeterToolBar::OnInputButton(wxCommandEvent &event)
+{
+}
+void MeterToolBar::OnOutputButton(wxCommandEvent &event)
+{
+}
 
 #include "ToolManager.h"
 
