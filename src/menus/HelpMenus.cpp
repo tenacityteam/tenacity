@@ -564,7 +564,6 @@ BaseItemSharedPtr HelpMenu()
       #else
       ,
       #endif
-              Command( wxT("Updates"), XXO("&Check for Updates..."), FN(OnCheckForUpdates), AlwaysEnabledFlag ),
               Command( wxT("About"), XXO("&About Saucedacity..."), FN(OnAbout), AlwaysEnabledFlag )
              )
         )
