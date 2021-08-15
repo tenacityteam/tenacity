@@ -106,7 +106,7 @@ class TENACITY_DLL_API MeterPanel final
       AutomaticStereo,
       HorizontalStereo,
       VerticalStereo,
-      MixerTrackCluster, // Doesn't show menu, icon, or L/R labels, but otherwise like VerticalStereo.
+      MixerTrackCluster, // L/R labels, but otherwise like VerticalStereo.
       HorizontalStereoCompact, // Thinner.
       VerticalStereoCompact, // Narrower.
    };
@@ -199,7 +199,6 @@ class TENACITY_DLL_API MeterPanel final
    void OnErase(wxEraseEvent &evt);
    void OnPaint(wxPaintEvent &evt);
    void OnSize(wxSizeEvent &evt);
-   bool InIcon(wxMouseEvent *pEvent = nullptr) const;
    void OnMouse(wxMouseEvent &evt);
    void OnKeyDown(wxKeyEvent &evt);
    void OnKeyUp(wxKeyEvent &evt);
@@ -267,12 +266,10 @@ class TENACITY_DLL_API MeterPanel final
    bool      mLayoutValid;
 
    std::unique_ptr<wxBitmap> mBitmap;
-   wxRect    mIconRect;
    wxPoint   mLeftTextPos;
    wxPoint   mRightTextPos;
    wxSize    mLeftSize;
    wxSize    mRightSize;
-   std::unique_ptr<wxBitmap> mIcon;
    wxPen     mPen;
    wxPen     mDisabledPen;
    wxPen     mPeakPeakPen;
