@@ -46,7 +46,7 @@ for drawing different aspects of the label and its text box.
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "ProjectFileIORegistry.h"
+#include "Project.h"
 #include "prefs/ImportExportPrefs.h"
 
 #include "effects/TimeWarper.h"

@@ -29,7 +29,6 @@ Paul Licameli split from TenacityProject.cpp
 #include "CodeConversions.h"
 #include "DBConnection.h"
 #include "Project.h"
-#include "ProjectFileIORegistry.h"
 #include "ProjectSerializer.h"
 #include "ProjectSettings.h"
 #include "SampleBlock.h"

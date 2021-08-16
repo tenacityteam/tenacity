@@ -30,7 +30,7 @@
 
 #include "AColor.h"
 #include "Prefs.h"
-#include "ProjectFileIORegistry.h"
+#include "Project.h"
 #include "prefs/ImportExportPrefs.h"
 
 // Tenacity libraries

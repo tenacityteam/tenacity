@@ -47,7 +47,7 @@ from the project that will own the track.
 #include "Envelope.h"
 #include "Sequence.h"
 
-#include "ProjectFileIORegistry.h"
+#include "Project.h"
 #include "ProjectSettings.h"
 
 #include "effects/TimeWarper.h"

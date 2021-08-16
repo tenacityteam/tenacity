@@ -189,4 +189,10 @@ TENACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project );
 TENACITY_DLL_API const wxWindow &GetProjectPanel(
    const TenacityProject &project );
 
+// Generate a registry for serialized data attached to the project
+#include "XMLMethodRegistry.h"
+class TenacityProject;
+using ProjectFileIORegistry = XMLMethodRegistry<TenacityProject>;
+DECLARE_XML_METHOD_REGISTRY( TENACITY_DLL_API, ProjectFileIORegistry );
+
 #endif

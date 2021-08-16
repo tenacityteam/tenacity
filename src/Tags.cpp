@@ -45,7 +45,6 @@
 #endif
 
 #include "Project.h"
-#include "ProjectFileIORegistry.h"
 #include "SelectFile.h"
 #include "shuttle/ShuttleGui.h"
 #include "widgets/Grid.h"
