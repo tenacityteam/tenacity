@@ -28,6 +28,7 @@
 #include "ToolManager.h"
 
 #include "../commands/CommandContext.h"
+#include "ToolBar.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
@@ -136,9 +137,13 @@ ToolFrame::ToolFrame
    // Make sure resizable floaters don't get any smaller than initial size
    if( bar->IsResizable() )
    {
-      // Calc the minimum size of the frame
-      mMinSize = bar->GetMinSize() + ( GetSize() - bar->GetSize() );
+      mMinSize=CalcMinSize(bar);
    }
+}
+
+wxSize ToolFrame::CalcMinSize(ToolBar * bar) {
+   // Calc the minimum size of the frame
+   return bar->GetMinSize() + ( GetSize() - bar->GetSize() );
 }
 
 ToolFrame::~ToolFrame()
@@ -214,6 +219,8 @@ void ToolFrame::OnMotion( wxMouseEvent & event )
    {
       return;
    }
+   // Calc the minimum size of the frame
+   mMinSize=CalcMinSize(mBar);
 
    // Retrieve the mouse position
    wxPoint pos = ClientToScreen( event.GetPosition() );
