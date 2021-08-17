@@ -1791,8 +1791,7 @@ void ProjectFileIO::WriteXML(XMLWriter &xmlFile,
    xmlFile.WriteAttr(wxT("version"), wxT(AUDACITY_FILE_FORMAT_VERSION));
    xmlFile.WriteAttr(wxT("audacityversion"), TENACITY_VERSION_STRING);
 
-   ProjectFileIORegistry::Get().CallAttributeWriters(proj, xmlFile);
-   ProjectFileIORegistry::Get().CallObjectWriters(proj, xmlFile);
+   ProjectFileIORegistry::Get().CallWriters(proj, xmlFile);
 
    tracklist.Any().Visit([&](const Track *t)
    {
