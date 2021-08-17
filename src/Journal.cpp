@@ -14,22 +14,20 @@
 *//*******************************************************************/
 
 #include "Journal.h"
+#include "JournalOutput.h"
 #include "JournalRegistry.h"
 
 #include <algorithm>
 #include <wx/app.h>
 #include <wx/filename.h>
-#include <wx/textfile.h>
 
 // Saucedacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-utility/MemoryX.h>
 
-namespace {
+namespace Journal {
 
-constexpr auto SeparatorCharacter = ',';
-constexpr auto EscapeCharacter = '\\';
-constexpr auto CommentCharacter = '#';
+namespace {
 
 wxString sFileNameIn;
 wxTextFile sFileIn;
@@ -38,12 +36,6 @@ wxString sLine;
 // Invariant:  the input file has not been opened, or else sLineNumber counts
 // the number of lines consumed by the tokenizer
 int sLineNumber = -1;
-
-struct FlushingTextFile : wxTextFile {
-   // Flush output when the program quits, even if that makes an incomplete
-   // journal file without an exit
-   ~FlushingTextFile() { if ( IsOpened() ) { Write(); Close(); } }
-} sFileOut;
 
 BoolSetting JournalEnabled{ L"/Journal/Enabled", false };
 
@@ -110,8 +102,6 @@ bool VersionCheck( const wxString &value )
 
 }
 
-namespace Journal {
-
 SyncException::SyncException()
 {
    // If the exception is ever constructed, cause nonzero program exit code
@@ -137,11 +127,6 @@ bool SetRecordEnabled(bool value)
    auto result = JournalEnabled.Write(value);
    gPrefs->Flush();
    return result;
-}
-
-bool IsRecording()
-{
-  return sFileOut.IsOpened();
 }
 
 bool IsReplaying()
@@ -181,14 +166,7 @@ bool Begin( const FilePath &dataDir )
    if ( !GetError() && RecordEnabled() ) {
       wxFileName fName{ dataDir, "journal", "txt" };
       const auto path = fName.GetFullPath();
-      sFileOut.Open( path );
-      if ( sFileOut.IsOpened() )
-         sFileOut.Clear();
-      else {
-         sFileOut.Create();
-         sFileOut.Open( path );
-      }
-      if ( !sFileOut.IsOpened() )
+      if ( !OpenOut( path ) )
          SetError();
       else {
          // Generate a header
@@ -242,34 +220,11 @@ bool Dispatch()
    return true;
 }
 
-void Output( const wxString &string )
-{
-   if ( IsRecording() )
-      sFileOut.AddLine( string );
-}
-
-void Output( const wxArrayString &strings )
-{
-   if ( IsRecording() )
-      Output( ::wxJoin( strings, SeparatorCharacter, EscapeCharacter ) );
-}
-
-void Output( std::initializer_list< const wxString > strings )
-{
-   return Output( wxArrayStringEx( strings ) );
-}
-
-void Comment( const wxString &string )
-{
-   if ( IsRecording() )
-      sFileOut.AddLine( CommentCharacter + string );
-}
-
 void Sync( const wxString &string )
 {
    if ( IsRecording() || IsReplaying() ) {
       if ( IsRecording() )
-         sFileOut.AddLine( string );
+         Output( string );
       if ( IsReplaying() ) {
          if ( sFileIn.Eof() || sLine != string )
             throw SyncException{};
@@ -290,7 +245,6 @@ void Sync( std::initializer_list< const wxString > strings )
 {
    return Sync( wxArrayStringEx( strings ) );
 }
-
 int GetExitCode()
 {
    // Unconsumed commands remaining in the input file is also an error condition.
