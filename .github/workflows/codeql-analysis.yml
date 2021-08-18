@@ -25,13 +25,8 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
     env:
-      # Ubuntu-specific. We'll only test on Ubuntu for now
-      AUDACITY_CMAKE_GENERATOR: Unix Makefiles
-      AUDACITY_ARCH_LABEL: x86_64
+      CMAKE_BUILD_TYPE: Release
 
-      # We shouldn't need these given the platform, but configure.sh requires them
-      WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
-      WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
     permissions:
       actions: read
       contents: read
@@ -40,16 +35,66 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'cpp' ]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
+        config:
+        - name: Ubuntu
+          os: ubuntu-latest
+          arch: x86_64 # as reported by `arch` or `uname -m`
+          compiler_cache: ccache
+          compiler_cache_path: ~/.ccache
+          language: 'cpp'  # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
+          vcpkg_binary_cache: ~/.cache/vcpkg
+          vcpkg_triplet: x64-linux
+          wxwidgets_git_url: https://github.com/wxWidgets/wxWidgets.git
+          wxwidgets_git_ref: v3.1.5
+          WX_CONFIG: /home/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
     steps:
+    # Setup 64-bit GCC 11
+    - name: Set up GCC
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        platform: x64
+        version: latest
+
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Submodules Checkout
-      uses: snickerbockers/submodules-init@v4
+    - name: Install dependencies
+      run: |
+        exec bash "scripts/ci/dependencies.sh"
+
+    - name: Get Git commit of vcpkg submodule
+      run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
+
+    # FIXME: use wxWidgets from vcpkg for all OSes when bugs are fixed for Linux and macOS
+    # https://github.com/microsoft/vcpkg/pull/17111
+    - name: Build and install wxWidgets
+      if: steps.wxwidgets-cache.outputs.cache-hit != 'true' && runner.os != 'Windows'
+      run: |
+        # wxWidgets' build system does not find dependencies from vcpkg, so use its vendored Git submodules
+        git clone --recurse-submodules ${{ matrix.config.wxwidgets_git_url }}
+        cd wxWidgets
+        git checkout ${{ matrix.config.wxwidgets_git_ref }}
+        cmake -G Ninja -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/wxwidgets-install \
+          -S . -B cmake_build
+        cmake --build cmake_build
+        cmake --install cmake_build
+
+    - name: Configure
+      run: >-
+        cmake
+        -G Ninja
+        -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
+        -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
+        -D VCPKG=ON
+        -S .
+        -B build
+      env:
+        CC: ${{ matrix.config.cc }}
+        CXX: ${{ matrix.config.cxx }}
+        # hack to get CMake to find wxWidgets until vcpkg wxWidgets port is fixed
+        # https://github.com/microsoft/vcpkg/pull/17111
+        WX_CONFIG: ${{ matrix.config.WX_CONFIG }}
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -59,26 +104,10 @@ jobs:
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
-        
-        # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
-        # queries: security-extended,security-and-quality
-
-    - name: Dependencies
-      run: |
-        exec bash "scripts/ci/dependencies.sh"
-
-    - name: Environment
-      run: |
-        source "scripts/ci/environment.sh"
-
-    # Taken from our CMake Build workflow
-    - name: Configure
-      run: |
-        exec bash "scripts/ci/configure.sh"
+        # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
     - name: Build
-      run: |
-        exec bash "scripts/ci/build.sh"
+      run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }} --verbose
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
