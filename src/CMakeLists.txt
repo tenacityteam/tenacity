@@ -756,8 +756,6 @@ list( APPEND SOURCES
 
       toolbars/ControlToolBar.cpp
       toolbars/ControlToolBar.h
-      toolbars/DeviceToolBar.cpp
-      toolbars/DeviceToolBar.h
       toolbars/EditToolBar.cpp
       toolbars/EditToolBar.h
       toolbars/MeterToolBar.cpp
