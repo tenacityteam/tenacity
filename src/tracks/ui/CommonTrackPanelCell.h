@@ -54,14 +54,14 @@ public:
     track.
     */
    virtual std::vector<ComponentInterfaceSymbol> GetMenuItems(
-      const wxRect &rect, const wxPoint *pPosition, AudacityProject *pProject );
+      const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject );
 
 protected:
    virtual std::shared_ptr<Track> DoFindTrack() = 0;
 
    unsigned DoContextMenu(
       const wxRect &rect,
-      wxWindow *pParent, const wxPoint *pPosition, AudacityProject *pProject)
+      wxWindow *pParent, const wxPoint *pPosition, SaucedacityProject *pProject)
    override;
 
    unsigned HandleWheelRotation

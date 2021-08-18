@@ -50,13 +50,13 @@ HitTestPreview CommonTrackPanelCell::DefaultPreview
 }
 
 std::vector<ComponentInterfaceSymbol> CommonTrackPanelCell::GetMenuItems(
-   const wxRect&, const wxPoint *, AudacityProject * )
+   const wxRect&, const wxPoint *, SaucedacityProject * )
 {
    return {};
 }
 
 unsigned CommonTrackPanelCell::DoContextMenu( const wxRect &rect,
-   wxWindow *pParent, const wxPoint *pPoint, AudacityProject *pProject)
+   wxWindow *pParent, const wxPoint *pPoint, SaucedacityProject *pProject)
 {
    const auto symbols = GetMenuItems( rect, pPoint, pProject );
    if (symbols.empty())

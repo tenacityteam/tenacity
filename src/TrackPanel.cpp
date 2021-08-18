@@ -1683,7 +1683,7 @@ std::vector<wxRect> TrackPanel::FindRulerRects( const Track *target )
 TrackPanelCell *TrackPanel::GetFocusedCell()
 {
    auto pTrack = TrackFocus::Get( *GetProject() ).Get();
-   return pTrack ? &TrackView::Get( *pTrack ) : nullptr;
+   return pTrack ? &TrackView::Get( *pTrack ) : GetBackgroundCell().get();
 }
 
 void TrackPanel::SetFocusedCell()
