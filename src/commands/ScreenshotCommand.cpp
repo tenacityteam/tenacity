@@ -72,7 +72,6 @@ kCaptureWhatStrings[ ScreenshotCommand::nCaptureWhats ] =
    { wxT("PlayMeter"), XO("Play Meter") },
    { wxT("RecordMeter"), XO("Record Meter") },
    { XO("Edit") },
-   { XO("Device") },
    { XO("Scrub") },
    { XO("Play-at-Speed") },
    { XO("Trackpanel") },
@@ -801,8 +800,6 @@ bool ScreenshotCommand::Apply(const CommandContext & context)
       return CaptureToolbar(context, &toolManager, PlayMeterBarID, mFileName);
    case kedit:
       return CaptureToolbar(context, &toolManager, EditBarID, mFileName);
-   case kdevice:
-      return CaptureToolbar(context, &toolManager, DeviceBarID, mFileName);
    case ktranscription:
       return CaptureToolbar(context, &toolManager, TranscriptionBarID, mFileName);
    case kscrub:
