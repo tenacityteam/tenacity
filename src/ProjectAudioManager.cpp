@@ -730,7 +730,7 @@ bool ProjectAudioManager::DoRecord(SaucedacityProject &project,
 
             transportTracks.captureTracks.push_back(newTrack);
          }
-         TrackList::Get( *p ).GroupChannels(*first, recordingChannels);
+         TrackList::Get( *p ).MakeMultiChannelTrack(*first, recordingChannels, true);
          // Bug 1548.  First of new tracks needs the focus.
          TrackFocus::Get(*p).Set(first);
          if (TrackList::Get(*p).back())
