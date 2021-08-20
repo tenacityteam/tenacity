@@ -39,6 +39,11 @@ void WaveformVZoomHandle::Enter( bool, SaucedacityProject* )
 #endif
 }
 
+bool WaveformVZoomHandle::HandlesRightClick()
+{
+   return true;
+}
+
 UIHandle::Result WaveformVZoomHandle::Click
 (const TrackPanelMouseEvent &, SaucedacityProject *)
 {

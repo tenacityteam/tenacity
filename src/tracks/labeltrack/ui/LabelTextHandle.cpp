@@ -141,6 +141,11 @@ void LabelTextHandle::HandleTextClick(SaucedacityProject &project, const wxMouse
    }
 }
 
+bool LabelTextHandle::HandlesRightClick()
+{
+   return true;
+}
+
 UIHandle::Result LabelTextHandle::Click
 (const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {

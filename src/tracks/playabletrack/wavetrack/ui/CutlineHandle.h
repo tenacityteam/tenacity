@@ -45,6 +45,8 @@ public:
 
    void Enter(bool forward, SaucedacityProject *) override;
 
+   bool HandlesRightClick() override;
+
    Result Click
       (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
 

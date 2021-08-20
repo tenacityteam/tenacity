@@ -38,6 +38,11 @@ void TimeTrackVZoomHandle::Enter( bool, SaucedacityProject* )
 #endif
 }
 
+bool TimeTrackVZoomHandle::HandlesRightClick()
+{
+   return true;
+}
+
 UIHandle::Result TimeTrackVZoomHandle::Click
 (const TrackPanelMouseEvent &, SaucedacityProject *)
 {

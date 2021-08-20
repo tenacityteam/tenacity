@@ -39,6 +39,11 @@ void SpectrumVZoomHandle::Enter( bool, SaucedacityProject* )
 #endif
 }
 
+bool SpectrumVZoomHandle::HandlesRightClick()
+{
+   return true;
+}
+
 UIHandle::Result SpectrumVZoomHandle::Click
 (const TrackPanelMouseEvent &, SaucedacityProject *)
 {

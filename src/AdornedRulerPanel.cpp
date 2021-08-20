@@ -462,6 +462,8 @@ public:
    }
 
 protected:
+   bool HandlesRightClick() override { return true; }
+
    Result Click
       (const TrackPanelMouseEvent &event, SaucedacityProject *) override
    {

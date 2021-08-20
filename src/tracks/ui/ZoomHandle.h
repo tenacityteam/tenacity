@@ -34,6 +34,8 @@ public:
 
    virtual ~ZoomHandle();
 
+   bool HandlesRightClick() override;
+
    Result Click
       (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
 
