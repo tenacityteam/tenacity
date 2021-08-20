@@ -47,7 +47,7 @@ unsigned TrackPanelCell::HandleWheelRotation
 }
 
 unsigned TrackPanelCell::DoContextMenu
-   (const wxRect &, wxWindow*, wxPoint *, SaucedacityProject*)
+   (const wxRect &, wxWindow*, const wxPoint *, SaucedacityProject*)
 {
    return RefreshCode::RefreshNone;
 }

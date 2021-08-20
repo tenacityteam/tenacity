@@ -427,7 +427,7 @@ public:
 
    unsigned DoContextMenu
       (const wxRect &rect,
-       wxWindow *pParent, wxPoint *pPosition, SaucedacityProject*) final override
+       wxWindow *pParent, const wxPoint *pPosition, SaucedacityProject*) final
    {
       (void)pParent;// Compiler food
       (void)rect;// Compiler food

@@ -54,7 +54,7 @@ protected:
        const SaucedacityProject *) override = 0;
 
    unsigned DoContextMenu
-      (const wxRect &rect, wxWindow *pParent, wxPoint *pPosition,
+      (const wxRect &rect, wxWindow *pParent, const wxPoint *pPosition,
        SaucedacityProject *pProject) override;
    virtual PopupMenuTable *GetMenuExtension(Track *pTrack) = 0;
 
