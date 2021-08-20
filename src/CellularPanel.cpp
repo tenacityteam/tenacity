@@ -819,6 +819,61 @@ catch( ... )
    throw;
 }
 
+namespace {
+
+class DefaultRightButtonHandler : public UIHandle {
+public:
+   explicit DefaultRightButtonHandler(
+      const std::shared_ptr<TrackPanelCell> &pCell )
+      : mwCell{ pCell }
+   {}
+
+   ~DefaultRightButtonHandler() override;
+
+   virtual Result Click
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+   {
+      return RefreshCode::RefreshNone;
+   }
+
+   virtual Result Drag
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+   {
+      return RefreshCode::RefreshNone;
+   }
+
+   virtual HitTestPreview Preview
+      (const TrackPanelMouseState &state, SaucedacityProject *pProject) override
+   {
+      return {};
+   }
+
+   virtual Result Release
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+       wxWindow *pParent) override
+   {
+      if (auto pCell = mwCell.lock()) {
+         auto point = event.event.GetPosition();
+         return pCell->DoContextMenu(event.rect, pParent, &point, pProject);
+      }
+      return RefreshCode::RefreshNone;
+   }
+
+   virtual Result Cancel(SaucedacityProject *pProject) override
+   {
+      return RefreshCode::RefreshNone;
+   }
+
+private:
+   std::weak_ptr<TrackPanelCell> mwCell;
+};
+
+DefaultRightButtonHandler::~DefaultRightButtonHandler()
+{
+}
+
+}
+
 void CellularPanel::HandleClick( const TrackPanelMouseEvent &tpmEvent )
 {
    auto pCell = tpmEvent.pCell;
@@ -835,6 +890,11 @@ void CellularPanel::HandleClick( const TrackPanelMouseEvent &tpmEvent )
 
    auto &state = *mState;
    state.mUIHandle = Target();
+   if (tpmEvent.event.RightDown() &&
+       !(state.mUIHandle && state.mUIHandle->HandlesRightClick())) {
+      if (auto pCell = state.mLastCell.lock())
+         state.mUIHandle = std::make_shared<DefaultRightButtonHandler>(pCell);
+   }
 
    if (state.mUIHandle) {
       // UIHANDLE CLICK
