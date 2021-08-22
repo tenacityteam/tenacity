@@ -62,6 +62,8 @@ cmd_option(
 set( USE_LEGACY ${${_OPT2}enable_legacy} CACHE INTERNAL "" )
 set( USE_LADSPA ${${_OPT2}enable_legacy} CACHE INTERNAL "" )
 
+message( STATUS "Legacy featues: ${${_OPT2}enable_legacy}" )
+
 # Handle VST option
 cmd_option(
    ${_OPT}use_vst

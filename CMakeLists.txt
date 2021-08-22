@@ -16,7 +16,7 @@ endif ()
 # still link to the alpha manual online.
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
-set( AUDACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
+set( AUDACITY_BUILD_LEVEL 1 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 
 # The Saucedacity version
 # Increment as appropriate after release of a new version, and set back
@@ -56,7 +56,7 @@ set( libsrc "${topdir}/lib-src" )
 
 # Default build type is 'Debug' if CMAKE_BUILD_TYPE and
 # CMAKE_CONFIGURATION_TYPES are not set AND AUDACITY_BUILD_LEVEL is less
-# than 2 (meaing alpha or beta). If AUDACTIY_
+# than 2 (meaing alpha or beta).
 if( NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES )
    if ( AUDACITY_BUILD_LEVEL LESS 2)
      set( CMAKE_BUILD_TYPE "Debug" )
