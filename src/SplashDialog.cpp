@@ -92,19 +92,12 @@ SplashDialog::SplashDialog(wxWindow * parent)
 
    if (ShouldShow)
    {
-     #ifdef IS_ALPHA
-     AudacityMessageBox(XO("The version of Saucedacity you are using is an alpha version. Use of "
+     #if defined(IS_ALPHA) || defined(IS_BETA)
+     AudacityMessageBox(XO("The version of Saucedacity you are using is a pre-release version. Use of "
                         "these releases in production environments is discouraged. This version "
                         "of Saucedacity might contain (unknown) bugs along with possible data "
                         "loss."),
-                        XO("Saucedacity Alpha Release"),
-                        wxOK);
-     #else
-     AudacityMessageBox(XO("The version of Saucedacity you are using is a beta version. Use of "
-                        "these releases in production environments is discouraged. This version "
-                        "of Saucedacity might contain (unknown) bugs along with possible data "
-                        "loss."),
-                        XO("Saucedacity Beta Release"),
+                        XO("Saucedacity Pre-Release"),
                         wxOK);
      #endif
    }
