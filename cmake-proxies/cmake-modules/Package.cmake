@@ -54,7 +54,7 @@ elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
 
    set( CPACK_COMMAND_HDIUTIL "${CMAKE_SOURCE_DIR}/scripts/build/macOS/hdiutil_wrapper.sh" )
 
-   set( CPACK_DMG_BACKGROUND_IMAGE "${CMAKE_SOURCE_DIR}/mac/Resources/Audacity-DMG-background.png")
+   set( CPACK_DMG_BACKGROUND_IMAGE "${CMAKE_SOURCE_DIR}/mac/Resources/Tenacity-DMG-background.tiff")
    set( CPACK_DMG_DS_STORE_SETUP_SCRIPT "${CMAKE_SOURCE_DIR}/scripts/build/macOS/DMGSetup.scpt")
 
    if( perform_codesign )
