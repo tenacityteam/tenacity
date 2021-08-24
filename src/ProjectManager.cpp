@@ -37,7 +37,6 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "import/Import.h"
 #include "import/ImportMIDI.h"
 #include "prefs/QualitySettings.h"
-#include "toolbars/MixerToolBar.h"
 #include "toolbars/SelectionBar.h"
 #include "toolbars/SpectralSelectionBar.h"
 #include "toolbars/TimeToolBar.h"
@@ -983,9 +982,7 @@ void ProjectManager::OnTimer(wxTimerEvent& WXUNUSED(event))
 {
    auto &project = mProject;
    auto &projectAudioIO = ProjectAudioIO::Get( project );
-   auto mixerToolBar = &MixerToolBar::Get( project );
-   mixerToolBar->UpdateControls();
-   
+
    auto gAudioIO = AudioIO::Get();
    // gAudioIO->GetNumCaptureChannels() should only be positive
    // when we are recording.

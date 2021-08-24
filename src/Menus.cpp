@@ -407,7 +407,6 @@ void MenuCreator::CreateMenusAndCommands(SaucedacityProject &project)
          {wxT("/View/Other/Toolbars/Toolbars/Other"), wxT(
 "ShowTransportTB,ShowToolsTB,ShowRecordMeterTB,ShowPlayMeterTB,"
 //"ShowMeterTB,"
-"ShowMixerTB,"
 "ShowEditTB,ShowTranscriptionTB,ShowScrubbingTB,ShowDeviceTB,ShowSelectionTB,"
 "ShowSpectralSelectionTB") }
       }

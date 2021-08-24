@@ -76,7 +76,6 @@ enum ToolBarID
    MeterBarID,
    RecordMeterBarID,
    PlayMeterBarID,
-   MixerBarID,
    EditBarID,
    TranscriptionBarID,
    ScrubbingBarID,
