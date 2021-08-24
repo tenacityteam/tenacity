@@ -407,9 +407,43 @@ auto WaveTrack::GetIntervals() -> Intervals
    return MakeIntervals<Intervals>( mClips );
 }
 
+const WaveClip* WaveTrack::FindClipByName(const wxString& name) const
+{
+   for (const auto& clip : mClips)
+   {
+      if (clip->GetName() == name)
+         return clip.get();
+   }
+   return nullptr;
+}
+
 Track::Holder WaveTrack::Clone() const
 {
    return std::make_shared<WaveTrack>( *this );
+}
+
+wxString WaveTrack::MakeClipCopyName(const wxString& originalName) const
+{
+   auto name = originalName;
+   for (auto i = 1;; ++i)
+   {
+      if (FindClipByName(name) == nullptr)
+         return name;
+      //i18n-hint Template for clip name generation on copy-paste
+      name = XC("%s - copy %i", "clip name template").Format(originalName, i).Translation();
+   }
+}
+
+wxString WaveTrack::MakeNewClipName() const
+{
+   auto name = GetName();
+   for (auto i = 1;; ++i)
+   {
+      if (FindClipByName(name) == nullptr)
+         return name;
+      //i18n-hint Template for clip name generation on inserting new empty clip
+      name = XC("%s %i", "clip name template").Format(GetName(), i).Translation();
+   }
 }
 
 double WaveTrack::GetRate() const
@@ -669,6 +703,11 @@ Track::Holder WaveTrack::Copy(double t0, double t1, bool forClipboard) const
 
          auto newClip = std::make_unique<WaveClip>
             (*clip, mpFactory, ! forClipboard, clip_t0, clip_t1);
+         newClip->SetName( 
+            //i18n-hint Template for clip name generation used when copying a part of clip data
+            XC("%s samples [%.2f-%.2f]", "clip name template")
+                 .Format(clip->GetName(), clip_t0 - clip->GetStartTime(), clip_t1 - clip->GetStartTime())
+                 .Translation());
 
          //wxPrintf("copy: clip_t0=%f, clip_t1=%f\n", clip_t0, clip_t1);
 
@@ -1113,17 +1152,18 @@ void WaveTrack::HandleClear(double t0, double t1,
                   // Delete in the middle of the clip...we actually create two
                   // NEW clips out of the left and right halves...
 
-                  // left
-                  clipsToAdd.push_back
-                     ( std::make_unique<WaveClip>( *clip, mpFactory, true ) );
-                  clipsToAdd.back()->Clear(t0, clip->GetEndTime());
+                  auto leftClip = std::make_unique<WaveClip>(*clip, mpFactory, true);
+                  //i18n-hint Name assigned to the first clip when splitting a wave track
+                  leftClip->SetName(XC("%s 1", "clip name template").Format(leftClip->GetName()).Translation());
+                  leftClip->Clear(t0, clip->GetEndTime());
+                  clipsToAdd.push_back(std::move(leftClip));
 
-                  // right
-                  clipsToAdd.push_back
-                     ( std::make_unique<WaveClip>( *clip, mpFactory, true ) );
-                  WaveClip *const right = clipsToAdd.back().get();
-                  right->Clear(clip->GetStartTime(), t1);
-                  right->Offset(t1 - clip->GetStartTime());
+                  auto rightClip = std::make_unique<WaveClip>(*clip, mpFactory, true);
+                  //i18n-hint Name assigned to the second clip when splitting a wave track
+                  rightClip->SetName(XC("%s 2", "clip name template").Format(rightClip->GetName()).Translation());
+                  rightClip->Clear(clip->GetStartTime(), t1);
+                  rightClip->Offset(t1 - clip->GetStartTime());
+                  clipsToAdd.push_back(std::move(rightClip));
 
                   clipsToDelete.push_back(clip.get());
                }
@@ -1365,6 +1405,7 @@ void WaveTrack::Paste(double t0, const Track *src)
             newClip->Resample(mRate);
             newClip->Offset(t0);
             newClip->MarkChanged();
+            newClip->SetName(MakeClipCopyName(clip->GetName()));
             mClips.push_back(std::move(newClip)); // transfer ownership
          }
       }
@@ -1534,7 +1575,7 @@ void WaveTrack::Join(double t0, double t1)
    // Merge all WaveClips overlapping selection into one
 
    WaveClipPointers clipsToDelete;
-   WaveClip *newClip;
+   WaveClip* newClip{};
 
    for (const auto &clip: mClips)
    {
@@ -1555,9 +1596,9 @@ void WaveTrack::Join(double t0, double t1)
    if( clipsToDelete.size() == 0 )
       return;
 
-   newClip = CreateClip();
-   double t = clipsToDelete[0]->GetOffset();
-   newClip->SetOffset(t);
+   auto t = clipsToDelete[0]->GetOffset();
+   newClip = CreateClip(t, clipsToDelete[0]->GetName());
+   
    for (const auto &clip : clipsToDelete)
    {
       //wxPrintf("t=%.6f adding clip (offset %.6f, %.6f ... %.6f)\n",
@@ -2189,18 +2230,20 @@ Sequence* WaveTrack::GetSequenceAtTime(double time)
       return NULL;
 }
 
-WaveClip* WaveTrack::CreateClip(double offset)
+WaveClip* WaveTrack::CreateClip(double offset, const wxString& name)
 {
-   mClips.emplace_back(std::make_shared<WaveClip>(mpFactory, mFormat, mRate, GetWaveColorIndex()));
-   auto clip = mClips.back().get();
+   auto clip = std::make_unique<WaveClip>(mpFactory, mFormat, mRate, GetWaveColorIndex());
+   clip->SetName(name);
    clip->SetOffset(offset);
-   return clip;
+   mClips.push_back(std::move(clip));
+
+   return mClips.back().get();
 }
 
 WaveClip* WaveTrack::NewestOrNewClip()
 {
    if (mClips.empty()) {
-      return CreateClip(mOffset);
+      return CreateClip(mOffset, MakeNewClipName());
    }
    else
       return mClips.back().get();
@@ -2210,7 +2253,7 @@ WaveClip* WaveTrack::NewestOrNewClip()
 WaveClip* WaveTrack::RightmostOrNewClip()
 {
    if (mClips.empty()) {
-      return CreateClip(mOffset);
+      return CreateClip(mOffset, MakeNewClipName());
    }
    else
    {
@@ -2365,6 +2408,11 @@ void WaveTrack::SplitAt(double t)
          c->Clear(t, c->GetEndTime());
          newClip->Clear(c->GetStartTime(), t);
 
+         //i18n-hint Name assigned to the first clip on split
+         c->SetName(XC("%s 1", "clip name template").Format(c->GetName()).Translation());
+         //i18n-hint Name assigned to the second clip on split
+         newClip->SetName(XC("%s 2", "clip name template").Format(newClip->GetName()).Translation());
+             
          //offset the NEW clip by the splitpoint (noting that it is already offset to c->GetStartTime())
          sampleCount here = llrint(floor(((t - c->GetStartTime()) * mRate) + 0.5));
          newClip->Offset(here.as_double()/(double)mRate);
