@@ -544,7 +544,6 @@ static struct DefaultConfigEntry {
 
    // start another top dock row
    { ScrubbingBarID,         NoBarID,                TransportBarID         },
-   { NoBarID,                NoBarID,                EditBarID              },
 
    // Bottom dock
    { SelectionBarID,         NoBarID,                NoBarID                },
