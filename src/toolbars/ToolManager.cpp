@@ -534,20 +534,19 @@ ToolManager::~ToolManager()
 static struct DefaultConfigEntry {
    int barID;
    int rightOf; // parent
-   int below;   // preceding sibling
+   int below;   // preceding siblingsrc/toolbars/ToolManager.cpp
 } DefaultConfigTable [] = {
    // Top dock row, may wrap
    { TransportBarID,         NoBarID,                NoBarID                },
    { ToolsBarID,             TransportBarID,         NoBarID                },
    { RecordMeterBarID,       ToolsBarID,             NoBarID                },
    { PlayMeterBarID,         RecordMeterBarID,       NoBarID                },
-   { EditBarID,              PlayMeterBarID,         NoBarID                },
+   { EditBarID,              ToolsBarID,             RecordMeterBarID       },
 
    { TranscriptionBarID,     EditBarID,              NoBarID                },
 
    // start another top dock row
    { ScrubbingBarID,         NoBarID,                TransportBarID         },
-   { NoBarID,                ScrubbingBarID,         TransportBarID         },
 
    // Bottom dock
    { SelectionBarID,         NoBarID,                NoBarID                },
