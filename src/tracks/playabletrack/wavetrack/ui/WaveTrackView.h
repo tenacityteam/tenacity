@@ -223,7 +223,7 @@ struct SAUCEDACITY_DLL_API ClipParameters
 
    // returns a clip rectangle restricted by viewRect, 
    // and with clipOffsetX - clip horizontal origin offset within view rect
-   static wxRect GetClipRect(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect, int clipOffsetX = 0);
+   static wxRect GetClipRect(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect);
 };
 
 #endif
