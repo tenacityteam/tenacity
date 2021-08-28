@@ -69,7 +69,6 @@ enum ToolBarID
    NoBarID = -1,
    TransportBarID,
    ToolsBarID,
-   MeterBarID,
    RecordMeterBarID,
    PlayMeterBarID,
    EditBarID,
