@@ -539,9 +539,6 @@ static struct DefaultConfigEntry {
    { ScrubbingBarID,         NoBarID,                TransportBarID         },
    { DeviceBarID,            NoBarID,                EditBarID              },
 
-   // Hidden by default in top dock
-   { MeterBarID,             NoBarID,                NoBarID                },
-
    // Bottom dock
    { SelectionBarID,         NoBarID,                NoBarID                },
 
@@ -619,7 +616,7 @@ void ToolManager::Reset()
 #endif
 
       // Hide some bars.
-      if( ndx == MeterBarID
+      if(  ndx == ScrubbingBarID
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
          || ndx == SpectralSelectionBarID
 #endif
@@ -754,8 +751,6 @@ void ToolManager::ReadConfig()
 
       if( ndx == SelectionBarID )
          defaultDock = BotDockID;
-      if( ndx == MeterBarID )
-         bShownByDefault = false;
       if( ndx == ScrubbingBarID )
          bShownByDefault = false;
 
