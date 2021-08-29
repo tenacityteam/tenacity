@@ -423,10 +423,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 
 #include "portaudio.h"
 
-#if USE_PORTMIXER
-#include "portmixer.h"
-#endif
-
 #include <wx/app.h>
 #include <wx/wxcrtvararg.h>
 #include <wx/log.h>
@@ -1127,16 +1123,6 @@ AudioIO::AudioIO()
    }
 #endif
 
-#if defined(USE_PORTMIXER)
-   mPortMixer = NULL;
-   mPreviousHWPlaythrough = -1.0;
-   HandleDeviceChange();
-#else
-   mEmulateMixerOutputVol = true;
-   mMixerOutputVol = 1.0;
-   mInputMixerWorks = false;
-#endif
-
    mLastPlaybackTimeMillis = 0;
 
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
@@ -1148,17 +1134,6 @@ AudioIO::AudioIO()
 
 AudioIO::~AudioIO()
 {
-#if defined(USE_PORTMIXER)
-   if (mPortMixer) {
-      #if __WXMAC__
-      if (Px_SupportsPlaythrough(mPortMixer) && mPreviousHWPlaythrough >= 0.0)
-         Px_SetPlaythrough(mPortMixer, mPreviousHWPlaythrough);
-         mPreviousHWPlaythrough = -1.0;
-      #endif
-      Px_CloseMixer(mPortMixer);
-      mPortMixer = NULL;
-   }
-#endif
 
    // FIXME: ? TRAP_ERR.  Pa_Terminate probably OK if err without reporting.
    Pa_Terminate();
@@ -1184,95 +1159,6 @@ AudioIO::~AudioIO()
 
    //mThread->join();
    //delete mThread;*/
-}
-
-void AudioIO::SetMixer(int inputSource, float recordVolume,
-                       float playbackVolume)
-{
-   mMixerOutputVol = playbackVolume;
-#if defined(USE_PORTMIXER)
-   PxMixer *mixer = mPortMixer;
-   if( !mixer )
-      return;
-
-   float oldRecordVolume = Px_GetInputVolume(mixer);
-   float oldPlaybackVolume = Px_GetPCMOutputVolume(mixer);
-
-   AudioIoCallback::SetMixer(inputSource);
-   if( oldRecordVolume != recordVolume )
-      Px_SetInputVolume(mixer, recordVolume);
-   if( oldPlaybackVolume != playbackVolume )
-      Px_SetPCMOutputVolume(mixer, playbackVolume);
-
-#endif
-}
-
-void AudioIO::GetMixer(int *recordDevice, float *recordVolume,
-                       float *playbackVolume)
-{
-#if defined(USE_PORTMIXER)
-
-   PxMixer *mixer = mPortMixer;
-
-   if( mixer )
-   {
-      *recordDevice = Px_GetCurrentInputSource(mixer);
-
-      if (mInputMixerWorks)
-         *recordVolume = Px_GetInputVolume(mixer);
-      else
-         *recordVolume = 1.0f;
-
-      if (mEmulateMixerOutputVol)
-         *playbackVolume = mMixerOutputVol;
-      else
-         *playbackVolume = Px_GetPCMOutputVolume(mixer);
-
-      return;
-   }
-
-#endif
-
-   *recordDevice = 0;
-   *recordVolume = 1.0f;
-   *playbackVolume = mMixerOutputVol;
-}
-
-bool AudioIO::InputMixerWorks()
-{
-   return mInputMixerWorks;
-}
-
-bool AudioIO::OutputMixerEmulated()
-{
-   return mEmulateMixerOutputVol;
-}
-
-std::vector<std::string> AudioIO::GetInputSourceNames()
-{
-#if defined(USE_PORTMIXER)
-
-   std::vector<std::string> deviceNames;
-
-   if( mPortMixer )
-   {
-      int numSources = Px_GetNumInputSources(mPortMixer);
-      for( int source = 0; source < numSources; source++ )
-         deviceNames.push_back(Px_GetInputSourceName(mPortMixer, source));
-   }
-   else
-   {
-      wxLogDebug(wxT("AudioIO::GetInputSourceNames(): PortMixer not initialised!"));
-   }
-
-   return deviceNames;
-
-#else
-
-   std::vector<std::string> blank;
-   return blank;
-
-#endif
 }
 
 static PaSampleFormat AudacityToPortAudioSampleFormat(sampleFormat format)
@@ -1420,15 +1306,6 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 
    SetMeters();
 
-#ifdef USE_PORTMIXER
-#ifdef __WXMSW__
-   //mchinen nov 30 2010.  For some reason Pa_OpenStream resets the input volume on windows.
-   //so cache and restore after it.
-   //The actual problem is likely in portaudio's pa_win_wmme.c OpenStream().
-   float oldRecordVolume = Px_GetInputVolume(mPortMixer);
-#endif
-#endif
-
    // July 2016 (Carsten and Uwe)
    // BUG 193: Possibly tell portAudio to use 24 bit with DirectSound. 
    int  userData = 24;
@@ -1456,32 +1333,6 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       wxLogDebug("Attempt %u to open capture stream failed with: %d", 1 + tries, mLastPaError);
       std::this_thread::sleep_for(std::chrono::milliseconds(1000));
    }
-
-
-#if USE_PORTMIXER
-#ifdef __WXMSW__
-   Px_SetInputVolume(mPortMixer, oldRecordVolume);
-#endif
-   if (mPortStreamV19 != NULL && mLastPaError == paNoError) {
-
-      #ifdef __WXMAC__
-      if (mPortMixer) {
-         if (Px_SupportsPlaythrough(mPortMixer)) {
-            bool playthrough = false;
-
-            mPreviousHWPlaythrough = Px_GetPlaythrough(mPortMixer);
-
-            // Bug 388.  Feature not supported.
-            //gPrefs->Read(wxT("/AudioIO/Playthrough"), &playthrough, false);
-            if (playthrough)
-               Px_SetPlaythrough(mPortMixer, 1.0);
-            else
-               Px_SetPlaythrough(mPortMixer, 0.0);
-         }
-      }
-      #endif
-   }
-#endif
 
 #ifdef EXPERIMENTAL_MIDI_OUT
    // We use audio latency to estimate how far ahead of DACS we are writing
@@ -2348,18 +2199,6 @@ void AudioIO::StopStream()
       ::wxSafeYield();
       std::this_thread::sleep_for(std::chrono::milliseconds(50));
    }
-
-   // Turn off HW playthrough if PortMixer is being used
-
-  #if defined(USE_PORTMIXER)
-   if( mPortMixer ) {
-      #if __WXMAC__
-      if (Px_SupportsPlaythrough(mPortMixer) && mPreviousHWPlaythrough >= 0.0)
-         Px_SetPlaythrough(mPortMixer, mPreviousHWPlaythrough);
-         mPreviousHWPlaythrough = -1.0;
-      #endif
-   }
-  #endif
 
    if (mPortStreamV19) {
       Pa_AbortStream( mPortStreamV19 );
@@ -3901,9 +3740,6 @@ void AudioIoCallback::AddToOutputChannel(unsigned int chan,
          outputMeterFloats[numPlaybackChannels*i+chan] +=
             gain*tempBuf[i];
 
-   if (mEmulateMixerOutputVol)
-      gain *= mMixerOutputVol;
-
    float oldGain = vt->GetOldChannelGain(chan);
    if( gain != oldGain )
       vt->SetOldChannelGain(chan, gain);
@@ -4521,15 +4357,7 @@ int AudioIoCallback::AudioCallback(const void *inputBuffer, void *outputBuffer,
       new float[framesPerBuffer * std::max(numCaptureChannels, numPlaybackChannels)]
    );
 
-   bool bVolEmulationActive = 
-      (outputBuffer && mEmulateMixerOutputVol &&  mMixerOutputVol != 1.0);
-   // outputMeterFloats is the scratch pad for the output meter.  
-   // we can often reuse the existing outputBuffer and save on allocating 
-   // something new.
-   StackAllocator<float> floatAllocator;
-   float *outputMeterFloats = bVolEmulationActive ?
-         floatAllocator.Allocate(framesPerBuffer*numPlaybackChannels) :
-         static_cast<float*>(outputBuffer);
+   float* outputMeterFloats = static_cast<float*>(outputBuffer);
    // ----- END of MEMORY ALLOCATIONS ------------------------------------------
 
    if (inputBuffer && numCaptureChannels) {
