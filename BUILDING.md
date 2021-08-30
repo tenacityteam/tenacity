@@ -107,6 +107,16 @@ sudo apk add gtk+3.0-dev zlib-dev libpng-dev tiff-dev libjpeg-turbo-dev expat-de
 
 TODO: add portsmf and libsbsms to this package list when aports are accepted.
 
+
+#### FreeBSD
+
+wxWidgets 3.1.5 is packaged in FreeBSD's repositories. Install it and the rest
+of Tenacity's dependencies:
+
+```
+sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg
+```
+
 #### vcpkg on Linux
 
 Optionally, you can build dependencies from source using vcpkg, with the
