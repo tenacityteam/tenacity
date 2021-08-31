@@ -80,6 +80,9 @@ private:
 class TENACITY_DLL_API GlobalPrefsDialog final : public PrefsDialog
 {
 public:
+   /*!
+    @param pProject may be null
+    */
    GlobalPrefsDialog(
       wxWindow * parent, TenacityProject *pProject,
       PrefsPanel::Factories &factories =

@@ -1220,8 +1220,7 @@ Journal::RegisteredCommand sCommand{ JournalCode,
    // To do, perhaps, is to include some parameters.
    bool handled = false;
    if ( fields.size() == 2 ) {
-      auto project = GetActiveProject();
-      if (project) {
+      if (auto project = GetActiveProject().lock()) {
          auto pManager = &CommandManager::Get( *project );
          auto flags = MenuManager::Get( *project ).GetUpdateFlags();
          const CommandContext context( *project );
@@ -1714,14 +1713,17 @@ static struct InstallHandlers
       KeyboardCapture::SetPreFilter( []( wxKeyEvent & ) {
          // We must have a project since we will be working with the
          // CommandManager, which is tied to individual projects.
-         TenacityProject *project = GetActiveProject();
+         auto project = GetActiveProject().lock();
          return project && GetProjectFrame( *project ).IsEnabled();
       } );
       KeyboardCapture::SetPostFilter( []( wxKeyEvent &key ) {
          // Capture handler window didn't want it, so ask the CommandManager.
-         TenacityProject *project = GetActiveProject();
-         auto &manager = CommandManager::Get( *project );
-         return manager.FilterKeyEvent(project, key);
+         if (auto project = GetActiveProject().lock()) {
+            auto &manager = CommandManager::Get( *project );
+            return manager.FilterKeyEvent(project.get(), key);
+         }
+         else
+            return false;
       } );
    }
 } installHandlers;

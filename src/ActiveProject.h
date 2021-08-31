@@ -13,10 +13,11 @@
 #define __AUDACITY_ACTIVE_PROJECT__
 
 #include <wx/event.h> // to declare custom event type
+#include <memory>
 
 class TenacityProject;
 
-TENACITY_DLL_API TenacityProject *GetActiveProject();
+TENACITY_DLL_API std::weak_ptr<TenacityProject> GetActiveProject();
 // For use by ProjectManager only:
 TENACITY_DLL_API void SetActiveProject(TenacityProject * project);
 

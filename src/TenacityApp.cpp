@@ -626,7 +626,8 @@ bool TenacityApp::MRUOpen(const FilePath &fullPathStr) {
    // Most of the checks below are copied from ProjectManager::OpenFiles.
    // - some rationalisation might be possible.
 
-   TenacityProject *proj = GetActiveProject();
+   auto pProj = GetActiveProject().lock();
+   auto proj = pProj.get();
 
    if (!fullPathStr.empty())
    {
@@ -642,6 +643,7 @@ bool TenacityApp::MRUOpen(const FilePath &fullPathStr) {
          if (ProjectFileManager::IsAlreadyOpen(fullPathStr))
             return false;
 
+         //! proj may be null
          ( void ) ProjectManager::OpenProject( proj, fullPathStr,
                true /* addtohistory */, false /* reuseNonemptyProject */ );
       }
@@ -703,8 +705,7 @@ void TenacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
             // Get the user's attention if no file name was specified
             if (name.empty()) {
                // Get the users attention
-               TenacityProject *project = GetActiveProject();
-               if (project) {
+               if (auto project = GetActiveProject().lock()) {
                   auto &window = GetProjectFrame( *project );
                   window.Maximize();
                   window.Raise();
@@ -767,7 +768,7 @@ bool TenacityApp::OnExceptionInMainLoop()
 
       // Use CallAfter to delay this to the next pass of the event loop,
       // rather than risk doing it inside stack unwinding.
-      auto pProject = ::GetActiveProject();
+      auto pProject = ::GetActiveProject().lock();
       auto pException = std::current_exception();
       CallAfter( [=]      // Capture pException by value!
       {
@@ -1327,9 +1328,10 @@ bool TenacityApp::InitPart2()
          // Only want one page of the preferences
          PrefsPanel::Factories factories;
          factories.push_back(KeyConfigPrefsFactory( id ));
-         const auto pProject = GetActiveProject();
-         auto pWindow = FindProjectFrame( pProject );
-         GlobalPrefsDialog dialog( pWindow, pProject, factories );
+         const auto pProject = GetActiveProject().lock();
+         auto pWindow = FindProjectFrame( pProject.get() );
+         // pProject may be null
+         GlobalPrefsDialog dialog( pWindow, pProject.get(), factories );
          dialog.ShowModal();
          MenuCreator::RebuildAllMenuBars();
          return true;
@@ -1390,8 +1392,7 @@ void TenacityApp::OnKeyDown(wxKeyEvent &event)
 {
    if(event.GetKeyCode() == WXK_ESCAPE) {
       // Stop play, including scrub, but not record
-      auto project = ::GetActiveProject();
-      if ( project ) {
+      if ( auto project = ::GetActiveProject().lock() ) {
          auto token = ProjectAudioIO::Get( *project ).GetAudioIOToken();
          auto &scrubber = Scrubber::Get( *project );
          auto scrubbing = scrubber.HasMark();
