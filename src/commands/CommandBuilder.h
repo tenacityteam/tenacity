@@ -39,12 +39,12 @@ class CommandBuilder
 
       void Failure(const wxString &msg = {});
       void Success(const OldStyleCommandPointer &cmd);
-      void BuildCommand( TenacityProject *project,
+      void BuildCommand( TenacityProject &project,
          const wxString &cmdName, const wxString &cmdParams);
-      void BuildCommand( TenacityProject *project, const wxString &cmdString);
+      void BuildCommand( TenacityProject &project, const wxString &cmdString);
    public:
-      CommandBuilder(TenacityProject *project, const wxString &cmdString);
-      CommandBuilder(TenacityProject *project, const wxString &cmdName,
+      CommandBuilder(TenacityProject &project, const wxString &cmdString);
+      CommandBuilder(TenacityProject &project, const wxString &cmdName,
                      const wxString &cmdParams);
       ~CommandBuilder();
       bool WasValid();

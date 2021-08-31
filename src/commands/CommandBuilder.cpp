@@ -31,13 +31,13 @@ system by constructing BatchCommandEval objects.
 #include "../shuttle/Shuttle.h"
 
 CommandBuilder::CommandBuilder(
-   TenacityProject *project, const wxString &cmdString)
+   TenacityProject &project, const wxString &cmdString)
    : mValid(false)
 {
    BuildCommand(project, cmdString);
 }
 
-CommandBuilder::CommandBuilder(TenacityProject *project,
+CommandBuilder::CommandBuilder(TenacityProject &project,
    const wxString &cmdName, const wxString &params)
    : mValid(false)
 {
@@ -82,7 +82,7 @@ void CommandBuilder::Success(const OldStyleCommandPointer &cmd)
    mValid = true;
 }
 
-void CommandBuilder::BuildCommand(TenacityProject *project,
+void CommandBuilder::BuildCommand(TenacityProject &project,
                                   const wxString &cmdName,
                                   const wxString &cmdParamsArg)
 {
@@ -188,7 +188,7 @@ void CommandBuilder::BuildCommand(TenacityProject *project,
 }
 
 void CommandBuilder::BuildCommand(
-   TenacityProject *project, const wxString &cmdStringArg)
+   TenacityProject &project, const wxString &cmdStringArg)
 {
    wxString cmdString(cmdStringArg);
 

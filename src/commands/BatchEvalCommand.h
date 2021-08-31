@@ -33,7 +33,7 @@ class BatchEvalCommandType final : public OldStyleCommandType
 public:
    ComponentInterfaceSymbol BuildName() override;
    void BuildSignature(CommandSignature &signature) override;
-   OldStyleCommandPointer Create( TenacityProject *project,
+   OldStyleCommandPointer Create( TenacityProject &project,
       std::unique_ptr<CommandOutputTargets> &&target) override;
 };
 
