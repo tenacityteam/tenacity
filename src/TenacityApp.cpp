@@ -75,6 +75,7 @@ It handles initialization and termination by subclassing wxApp.
 #include <lib-preferences/FileConfig.h>
 
 #include "AboutDialog.h"
+#include "ActiveProject.h"
 #include "AColor.h"
 #include "TenacityFileConfig.h"
 #include "AudioIO.h"

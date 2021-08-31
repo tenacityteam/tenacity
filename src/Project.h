@@ -27,10 +27,6 @@ namespace GenericUI { class WindowPlacement; }
 
 class TenacityProject;
 
-TENACITY_DLL_API TenacityProject *GetActiveProject();
-// For use by ProjectManager only:
-TENACITY_DLL_API void SetActiveProject(TenacityProject * project);
-
 /// \brief an object of class AllProjects acts like a standard library
 /// container, but refers to a global array of open projects.  So you can
 /// iterate easily over shared pointers to them with range-for :
@@ -94,11 +90,6 @@ using AttachedProjectWindows = ClientData::Site<
 
 wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_TRACK_PANEL_TIMER, wxCommandEvent);
-
-// This event is emitted by the application object when there is a change
-// in the activated project
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_PROJECT_ACTIVATION, wxCommandEvent);
 
 ///\brief The top-level handle to an Audacity project.  It serves as a source
 /// of events that other objects can bind to, and a container of associated

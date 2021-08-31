@@ -14,6 +14,7 @@ Paul Licameli split from TenacityProject.cpp
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
 
+#include "ActiveProject.h"
 #include "AdornedRulerPanel.h"
 #include "AudioIO.h"
 #include "Clipboard.h"

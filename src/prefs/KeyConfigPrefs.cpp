@@ -39,6 +39,7 @@ KeyConfigPrefs and MousePrefs use.
 #include <lib-xml/XMLFileReader.h>
 #include <lib-xml/XMLFileWriter.h>
 
+#include "ActiveProject.h"
 #include "../Project.h"
 #include "../commands/CommandManager.h"
 

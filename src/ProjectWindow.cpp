@@ -10,7 +10,7 @@ Paul Licameli split from TenacityProject.cpp
 
 #include "ProjectWindow.h"
 
-
+#include "ActiveProject.h"
 #include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 #include "Menus.h"

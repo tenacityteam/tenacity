@@ -22,7 +22,7 @@
 #include "AppCommandEvent.h"
 #include "ScriptCommandRelay.h"
 
-#include <wx/event.h>
+#include "../ActiveProject.h"
 #include "../Project.h"
 #include "../ProjectWindow.h"
 #include "../commands/CommandContext.h"
