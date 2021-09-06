@@ -1145,7 +1145,7 @@ void ThemeBase::SaveComponents()
       }
    }
 
-   using namespace BasicUI;
+   using namespace GenericUI;
 
    if (n > 0)
    {

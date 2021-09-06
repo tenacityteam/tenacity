@@ -36,7 +36,7 @@ class ProgressDialog;
 class ShuttleGui;
 class Mixer;
 using WaveTrackConstArray = std::vector < std::shared_ptr < const WaveTrack > >;
-namespace BasicUI{ enum class ProgressResult : unsigned; }
+namespace GenericUI{ enum class ProgressResult : unsigned; }
 class wxFileNameWrapper;
 
 class AUDACITY_DLL_API FormatInfo
@@ -64,7 +64,7 @@ class AUDACITY_DLL_API FormatInfo
 class AUDACITY_DLL_API ExportPlugin /* not final */
 {
 public:
-   using ProgressResult = BasicUI::ProgressResult;
+   using ProgressResult = GenericUI::ProgressResult;
 
    ExportPlugin();
    virtual ~ExportPlugin();

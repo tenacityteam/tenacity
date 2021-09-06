@@ -31,7 +31,7 @@ class SqliteSampleBlock;
 class TrackList;
 class WaveTrack;
 
-namespace BasicUI{ class WindowPlacement; }
+namespace GenericUI{ class WindowPlacement; }
 
 using WaveTrackArray = std::vector < std::shared_ptr < WaveTrack > >;
 
@@ -117,7 +117,7 @@ public:
    static int64_t GetDiskUsage(DBConnection &conn, SampleBlockID blockid);
 
    // Displays an error dialog with a button that offers help
-   void ShowError(const BasicUI::WindowPlacement &placement,
+   void ShowError(const GenericUI::WindowPlacement &placement,
                   const TranslatableString &dlogTitle,
                   const TranslatableString &message,
                   const wxString &helpPage);

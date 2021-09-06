@@ -22,7 +22,7 @@
 
 class wxFrame;
 class wxWindow;
-namespace BasicUI { class WindowPlacement; }
+namespace GenericUI { class WindowPlacement; }
 
 class AudacityProject;
 
@@ -179,7 +179,7 @@ inline const wxFrame *FindProjectFrame( const AudacityProject *project ) {
 
 //! Make a WindowPlacement object suitable for `project` (which may be null)
 /*! @post return value is not null */
-AUDACITY_DLL_API std::unique_ptr<const BasicUI::WindowPlacement>
+AUDACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
 ProjectFramePlacement( AudacityProject *project );
 
 ///\brief Get the main sub-window of the project frame that displays track data

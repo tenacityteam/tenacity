@@ -90,7 +90,7 @@ static wxEvtHandler hub;
 
 void PrefsListener::Broadcast(int id)
 {
-   BasicUI::CallAfter([id]{
+   GenericUI::CallAfter([id]{
       MyEvent event{ id };
       hub.ProcessEvent(event);
    });

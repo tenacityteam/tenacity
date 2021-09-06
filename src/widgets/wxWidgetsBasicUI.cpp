@@ -16,7 +16,7 @@ Paul Licameli
 #include <wx/progdlg.h>
 #include <wx/windowptr.h>
 
-using namespace BasicUI;
+using namespace GenericUI;
 
 wxWidgetsWindowPlacement::~wxWidgetsWindowPlacement() = default;
 
@@ -33,7 +33,7 @@ void wxWidgetsBasicUI::DoYield()
 }
 
 namespace {
-wxWindow *GetParent(const BasicUI::WindowPlacement &placement)
+wxWindow *GetParent(const GenericUI::WindowPlacement &placement)
 {
    if (auto *pPlacement =
        dynamic_cast<const wxWidgetsWindowPlacement*>(&placement))
@@ -43,13 +43,13 @@ wxWindow *GetParent(const BasicUI::WindowPlacement &placement)
 }
 
 void wxWidgetsBasicUI::DoShowErrorDialog(
-   const BasicUI::WindowPlacement &placement,
+   const GenericUI::WindowPlacement &placement,
    const TranslatableString &dlogTitle,
    const TranslatableString &message,
    const ManualPageID &helpPage,
-   const BasicUI::ErrorDialogOptions &options)
+   const GenericUI::ErrorDialogOptions &options)
 {
-   using namespace BasicUI;
+   using namespace GenericUI;
    bool modal = true;
    auto parent = GetParent(placement);
    switch (options.type) {
@@ -90,7 +90,7 @@ void wxWidgetsBasicUI::DoShowErrorDialog(
    }
 }
 
-BasicUI::MessageBoxResult
+GenericUI::MessageBoxResult
 wxWidgetsBasicUI::DoMessageBox(
    const TranslatableString &message,
    MessageBoxOptions options)
@@ -160,7 +160,7 @@ wxWidgetsBasicUI::DoMessageBox(
 }
 
 namespace {
-struct MyProgressDialog : BasicUI::ProgressDialog {
+struct MyProgressDialog : GenericUI::ProgressDialog {
    wxWindowPtr<::ProgressDialog> mpDialog;
 
    explicit MyProgressDialog(::ProgressDialog *pDialog)
@@ -179,7 +179,7 @@ struct MyProgressDialog : BasicUI::ProgressDialog {
 };
 }
 
-std::unique_ptr<BasicUI::ProgressDialog>
+std::unique_ptr<GenericUI::ProgressDialog>
 wxWidgetsBasicUI::DoMakeProgress(const TranslatableString & title,
    const TranslatableString &message,
    unsigned flags,
@@ -224,7 +224,7 @@ struct MyGenericProgress : GenericProgressDialog {
 
 std::unique_ptr<GenericProgressDialog>
 wxWidgetsBasicUI::DoMakeGenericProgress(
-   const BasicUI::WindowPlacement &placement,
+   const GenericUI::WindowPlacement &placement,
    const TranslatableString &title,
    const TranslatableString &message)
 {

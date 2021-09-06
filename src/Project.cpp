@@ -136,7 +136,7 @@ AudacityProject::AudacityProject()
       if (freeSpace < wxLongLong(wxLL(100 * 1048576))) {
          auto volume = FileNames::AbbreviatePath( path );
          /* i18n-hint: %s will be replaced by the drive letter (on Windows) */
-         BasicUI::ShowErrorDialog( {},
+         GenericUI::ShowErrorDialog( {},
             XO("Warning"),
             XO("There is very little free disk space left on %s\n"
                "Please select a bigger temporary directory location in\n"
@@ -201,11 +201,11 @@ AUDACITY_DLL_API const wxFrame &GetProjectFrame( const AudacityProject &project 
    return *ptr;
 }
 
-std::unique_ptr<const BasicUI::WindowPlacement>
+std::unique_ptr<const GenericUI::WindowPlacement>
 ProjectFramePlacement( AudacityProject *project )
 {
    if (!project)
-      return std::make_unique<BasicUI::WindowPlacement>();
+      return std::make_unique<GenericUI::WindowPlacement>();
    return std::make_unique<wxWidgetsWindowPlacement>(
       &GetProjectFrame(*project));
 }

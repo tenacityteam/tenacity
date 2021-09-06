@@ -17,7 +17,7 @@ class wxWindow;
 
 //! Window placement information for wxWidgetsBasicUI can be constructed from a wxWindow pointer
 struct AUDACITY_DLL_API wxWidgetsWindowPlacement final
-: BasicUI::WindowPlacement {
+: GenericUI::WindowPlacement {
    wxWidgetsWindowPlacement() = default;
    explicit wxWidgetsWindowPlacement( wxWindow *pWindow )
       : pWindow{ pWindow }
@@ -27,30 +27,30 @@ struct AUDACITY_DLL_API wxWidgetsWindowPlacement final
    wxWindow *pWindow{};
 };
 
-//! An implementation of BasicUI::Services in terms of the wxWidgets toolkit
+//! An implementation of GenericUI::Services in terms of the wxWidgets toolkit
 /*! This is a singleton that doesn't need AUDACITY_DLL_API visibility */
-class wxWidgetsBasicUI final : public BasicUI::Services {
+class wxWidgetsBasicUI final : public GenericUI::Services {
 public:
    ~wxWidgetsBasicUI() override;
 
 protected:
-   void DoCallAfter(const BasicUI::Action &action) override;
+   void DoCallAfter(const GenericUI::Action &action) override;
    void DoYield() override;
-   void DoShowErrorDialog(const BasicUI::WindowPlacement &placement,
+   void DoShowErrorDialog(const GenericUI::WindowPlacement &placement,
       const TranslatableString &dlogTitle,
       const TranslatableString &message,
       const ManualPageID &helpPage,
-      const BasicUI::ErrorDialogOptions &options) override;
-   BasicUI::MessageBoxResult DoMessageBox(
+      const GenericUI::ErrorDialogOptions &options) override;
+   GenericUI::MessageBoxResult DoMessageBox(
       const TranslatableString &message,
-      BasicUI::MessageBoxOptions options) override;
-   std::unique_ptr<BasicUI::ProgressDialog>
+      GenericUI::MessageBoxOptions options) override;
+   std::unique_ptr<GenericUI::ProgressDialog>
    DoMakeProgress(const TranslatableString & title,
       const TranslatableString &message,
       unsigned flags,
       const TranslatableString &remainingLabelText) override;
-   std::unique_ptr<BasicUI::GenericProgressDialog>
-   DoMakeGenericProgress(const BasicUI::WindowPlacement &placement,
+   std::unique_ptr<GenericUI::GenericProgressDialog>
+   DoMakeGenericProgress(const GenericUI::WindowPlacement &placement,
       const TranslatableString &title,
       const TranslatableString &message) override;
 };

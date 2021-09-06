@@ -27,7 +27,7 @@
 #include "wxPanelWrapper.h" // to inherit
 
 #include "BasicUI.h" // For ProgressResult
-using ProgressResult = BasicUI::ProgressResult;
+using ProgressResult = GenericUI::ProgressResult;
 
 class wxGauge;
 class wxStaticText;

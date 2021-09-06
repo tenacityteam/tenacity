@@ -1519,7 +1519,7 @@ void ShowExportErrorDialog(wxString ErrorCode,
    TranslatableString message,
    const TranslatableString& caption)
 {
-   using namespace BasicUI;
+   using namespace GenericUI;
    ShowErrorDialog( {},
       caption,
       message.Format( ErrorCode ),
@@ -1529,7 +1529,7 @@ void ShowExportErrorDialog(wxString ErrorCode,
 
 void ShowDiskFullExportErrorDialog(const wxFileNameWrapper &fileName)
 {
-   BasicUI::ShowErrorDialog( {},
+   GenericUI::ShowErrorDialog( {},
       XO("Warning"),
       FileException::WriteFailureMessage(fileName),
       "Error:_Disk_full_or_not_writable"

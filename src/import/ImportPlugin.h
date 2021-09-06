@@ -56,7 +56,7 @@ but little else.
 
 class AudacityProject;
 class ProgressDialog;
-namespace BasicUI{ enum class ProgressResult : unsigned; }
+namespace GenericUI{ enum class ProgressResult : unsigned; }
 class WaveTrackFactory;
 class Track;
 class Tags;
@@ -106,7 +106,7 @@ using TrackHolders = std::vector< std::vector< std::shared_ptr<WaveTrack> > >;
 class AUDACITY_DLL_API ImportFileHandle /* not final */
 {
 public:
-   using ProgressResult = BasicUI::ProgressResult;
+   using ProgressResult = GenericUI::ProgressResult;
 
    ImportFileHandle(const FilePath & filename);
 

@@ -23,7 +23,7 @@ void AudacityException::EnqueueAction(
    std::exception_ptr pException,
    std::function<void(AudacityException*)> delayedHandler)
 {
-   BasicUI::CallAfter( [
+   GenericUI::CallAfter( [
       pException = std::move(pException), delayedHandler = std::move(delayedHandler)
    ] {
       try {
@@ -88,7 +88,7 @@ void MessageBoxException::DelayedHandlerAction()
       // common cause such as exhaustion of disk space so that the others
       // give the user no useful added information.
       
-      using namespace BasicUI;
+      using namespace GenericUI;
       if ( wxAtomicDec( sOutstandingMessages ) == 0 ) {
          if (exceptionType != ExceptionType::Internal
              && ErrorHelpUrl().IsEmpty()) {
@@ -100,7 +100,7 @@ void MessageBoxException::DelayedHandlerAction()
                   .IconStyle(Icon::Error) );
          }
          else {
-            using namespace BasicUI;
+            using namespace GenericUI;
             auto type = exceptionType == ExceptionType::Internal
                ? ErrorDialogType::ModalErrorReport : ErrorDialogType::ModalError;
             ShowErrorDialog( {},

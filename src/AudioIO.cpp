@@ -1461,7 +1461,7 @@ void AudioIO::StartMonitoring( const AudioIOStartStreamOptions &options )
                                   captureFormat);
 
    if (!success) {
-      using namespace BasicUI;
+      using namespace GenericUI;
       auto msg = XO("Error opening recording device.\nError code: %s")
          .Format( Get()->LastPaErrorString() );
       ShowErrorDialog( *ProjectFramePlacement( mOwningProject ),

@@ -33,7 +33,7 @@ namespace TempDirectory
 
    FILES_API bool FATFilesystemDenied(const FilePath &path,
                             const TranslatableString &msg,
-                            const BasicUI::WindowPlacement &placement = {});
+                            const GenericUI::WindowPlacement &placement = {});
 };
 
 #endif

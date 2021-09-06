@@ -2469,7 +2469,7 @@ void Effect::Preview(bool dryOnly)
          }
       }
       else {
-         using namespace BasicUI;
+         using namespace GenericUI;
          ShowErrorDialog(
             wxWidgetsWindowPlacement{ FocusDialog }, XO("Error"),
             XO("Error opening sound device.\nTry changing the audio host, playback device and the project sample rate."),

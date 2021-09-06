@@ -1130,7 +1130,7 @@ bool ProjectFileIO::RenameOrWarn(const FilePath &src, const FilePath &dst)
    });
 
    // Provides a progress dialog with indeterminate mode
-   using namespace BasicUI;
+   using namespace GenericUI;
    auto pd = MakeGenericProgress(*ProjectFramePlacement(&mProject),
       XO("Copying Project"), XO("This may take several seconds"));
    wxASSERT(pd);
@@ -2042,7 +2042,7 @@ bool ProjectFileIO::SaveProject(
          });
 
          // Provides a progress dialog with indeterminate mode
-         using namespace BasicUI;
+         using namespace GenericUI;
          auto pd = MakeGenericProgress({},
             XO("Syncing"), XO("This may take several seconds"));
          wxASSERT(pd);
@@ -2246,13 +2246,13 @@ wxLongLong ProjectFileIO::GetFreeDiskSpace() const
 }
 
 /// Displays an error dialog with a button that offers help
-void ProjectFileIO::ShowError(const BasicUI::WindowPlacement &placement,
+void ProjectFileIO::ShowError(const GenericUI::WindowPlacement &placement,
                               const TranslatableString &dlogTitle,
                               const TranslatableString &message,
                               const wxString &helpPage)
 {
    using namespace audacity;
-   using namespace BasicUI;
+   using namespace GenericUI;
    ShowErrorDialog( placement, dlogTitle, message, helpPage,
       ErrorDialogOptions{ ErrorDialogType::ModalErrorReport }
          .Log(ToWString(GetLastLog())));

@@ -655,7 +655,7 @@ bool FileNames::WritableLocationCheck(const FilePath& path)
 
     if (!status)
     {
-        using namespace BasicUI;
+        using namespace GenericUI;
         ShowMessageBox(
             XO("Directory %s does not have write permissions").Format(path),
             MessageBoxOptions{}

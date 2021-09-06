@@ -233,7 +233,7 @@ bool DBConnection::Close()
       }
 
       // Provides a progress dialog with indeterminate mode
-      using namespace BasicUI;
+      using namespace GenericUI;
       auto pd = MakeGenericProgress({},
          title, XO("This may take several seconds"));
       wxASSERT(pd);
