@@ -149,6 +149,17 @@ public:
    // y coordinate for each subview within this rect
    Refinement GetSubViews(const wxRect* rect = nullptr);
 
+   unsigned CaptureKey
+   (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
+       SaucedacityProject* project) override;
+
+   unsigned KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
+       SaucedacityProject* project) override;
+
+   unsigned Char
+   (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
+       SaucedacityProject* project) override;
+
 private:
    void BuildSubViews() const;
    void DoSetDisplay(Display display, bool exclusive = true);
