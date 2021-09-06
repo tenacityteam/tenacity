@@ -46,5 +46,7 @@ public:
         SaucedacityProject* project) override;
 
 private:
+
+    bool SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward);
     bool StartEditSelectedClipName(ViewInfo& viewInfo, SaucedacityProject* project);
 };
