@@ -54,16 +54,7 @@ void wxWidgetsBasicUI::DoShowErrorDialog(
    auto parent = GetParent(placement);
    switch (options.type) {
       case ErrorDialogType::ModalErrorReport: {
-#ifdef HAS_SENTRY_REPORTING
-         ErrorReportDialog dlog(parent, dlogTitle, message, helpPage,
-            options.log, modal);
-
-         dlog.CentreOnParent();
-         dlog.ShowModal();
-         return;
-#else
          break;
-#endif
       }
       case ErrorDialogType::ModelessError: {
          if (!parent)
