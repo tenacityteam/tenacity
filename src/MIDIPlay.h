@@ -39,7 +39,7 @@ class Resample;
 class AudioThread;
 class SelectedRegion;
 
-class AudacityProject;
+class TenacityProject;
 
 class PlayableTrack;
 using PlayableTrackConstArray =
@@ -610,7 +610,7 @@ public:
    wxString LastPaErrorString();
 
    wxLongLong GetLastPlaybackTime() const { return mLastPlaybackTimeMillis; }
-   AudacityProject *GetOwningProject() const { return mOwningProject; }
+   TenacityProject *GetOwningProject() const { return mOwningProject; }
 
    /** \brief Pause and un-pause playback and recording */
    void SetPaused(bool state);
@@ -671,7 +671,7 @@ public:
       double AILAGetLastDecisionTime();
    #endif
 
-   bool IsAvailable(AudacityProject *projecT) const;
+   bool IsAvailable(TenacityProject *projecT) const;
 
    /** \brief Return a valid sample rate that is supported by the current I/O
    * device(s).
