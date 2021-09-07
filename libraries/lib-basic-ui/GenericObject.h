@@ -57,7 +57,7 @@ class GenericObject
      */
     virtual GenericObject* RemoveChildren();
 
-  private:
+  protected:
     /// Internal C-style struct for keeping track of manually allocated objects.
     struct LinkedObject
     {
