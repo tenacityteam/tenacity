@@ -22,6 +22,24 @@ GenericObject::GenericObject(GenericObject* g_obj, bool is_allocated)
   AddParent(g_obj, is_allocated);
 }
 
+GenericObject::GenericObject(GenericObject& g_obj)
+{
+  mFlags        = g_obj.mFlags;
+  mChildObjects = g_obj.mChildObjects;
+  mParentObject = g_obj.mParentObject;
+}
+
+GenericObject::GenericObject(GenericObject&& g_obj)
+{
+  mFlags        = g_obj.mFlags;
+  mChildObjects = g_obj.mChildObjects;
+  mParentObject = g_obj.mParentObject;
+
+  g_obj.mFlags = 0;
+  g_obj.mChildObjects.clear();
+  g_obj.mParent Object.reset();
+}
+
 GenericObject::~GenericObject()
 {
   DestroyLinkedObjects();
@@ -49,7 +67,7 @@ GenericObject* GenericObject::RemoveChildren()
   return this;
 }
 
-// Private member functions
+// Protected member functions
 void GenericObject::DestroyLinkedObjects()
 {
   for (auto obj : mChildObjects)
@@ -60,6 +78,13 @@ void GenericObject::DestroyLinkedObjects()
       delete obj.object;
     }
   }
+}
+
+virtual void GenericObject::DestroyObject()
+{
+  DestroyChildObjects();
+  mChildObjects.clear();
+  mFlags = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

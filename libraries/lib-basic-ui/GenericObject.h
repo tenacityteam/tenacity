@@ -27,6 +27,12 @@ class GenericObject
     /// Default constructor
     GenericObject() = default;
 
+    /// Copy Constructor
+    GenericObject(GenericObject&);
+
+    /// Move constructor
+    GenericObject(GenericObject&&);
+
     /// Constructor to add child objects
     GenericObject(GenericObject* g_obj, bool is_allocated = true);
 
@@ -75,22 +81,13 @@ class GenericObject
     //};
 
     /// Internal object flags
-    unsigned short mFlags;
+    unsigned short mFlags = 0;
 
-    /** \brief Destructs the object.
-     *
-     * This internal function destructs the object. In derived objects, they
-     * should have the exact same behavior as the object's destructor. In fact,
-     * they might even call DestructObject() directly.
-     *
-     * By default (i.e. in GenericObject), this function does nothing. The only
-     * reason why this is defined is to make GenericObject instantiable for any
-     * plausible reason (more or less).
-     *
-     */
-    virtual void DestroyObject()
-    {
-    }
+    /// Internal list of pointers to GenericObjects
+    std::vector<LinkedObject> mChildObjects;
+
+    /// Internal pointer
+    std::unique_ptr<GenericObject> mParentObject;
 
     /** \brief Destructs any linked objects.
      *
@@ -99,13 +96,19 @@ class GenericObject
      * enough for destructing any linked objects.
      *
      */
-    virtual void DestroyLinkedObjects();
+    virtual void DestroyChildObjects();
 
-    /// Internal list of pointers to GenericObjects
-    std::vector<LinkedObject> mChildObjects;
-
-    /// Internal pointer
-    std::unique_ptr<GenericObject> mParentObject;
+    /** \brief Destructs the object.
+     *
+     * This internal function destructs the object. In derived objects, they
+     * should have the exact same behavior as the object's destructor. In fact,
+     * they might even call DestructObject() directly.
+     *
+     * In GenericObject, DestroyObject() destroys any child objects, clears its
+     * internal list of child objects, and sets its internal flags to 0.
+     *
+     */
+    virtual void DestroyObject();
 };
 
 } // namespace GenericUI
