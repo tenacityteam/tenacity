@@ -60,7 +60,7 @@ elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
       SET( CPACK_POST_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/scripts/build/macOS/DMGSign.cmake" )
    endif()
 elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
-   set( CPACK_GENERATOR ZIP )
+   set( CPACK_GENERATOR WIX )
 endif()
 
 if( CMAKE_GENERATOR MATCHES "Makefiles|Ninja" )
