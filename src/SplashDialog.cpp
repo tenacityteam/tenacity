@@ -53,14 +53,14 @@ most commonly asked questions about Audacity.
 
 SplashDialog * SplashDialog::pSelf=NULL;
 
-enum
+/*enum
 {
    DontShowID=1000,
-};
+};*/
 
 BEGIN_EVENT_TABLE(SplashDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_OK, SplashDialog::OnOK)
-   EVT_CHECKBOX( DontShowID, SplashDialog::OnDontShow )
+//   EVT_CHECKBOX( DontShowID, SplashDialog::OnDontShow )
 END_EVENT_TABLE()
 
 IMPLEMENT_CLASS(SplashDialog, wxDialogWrapper)
@@ -158,16 +158,13 @@ void SplashDialog::Populate( ShuttleGui & S )
    S.Prop(1)
       .Position( wxEXPAND )
       .AddWindow( mpHtml );
-   S.Prop(0).StartMultiColumn(2, wxEXPAND);
-   S.SetStretchyCol( 1 );// Column 1 is stretchy...
    {
       S.SetBorder( 5 );
-      S.Id( DontShowID).AddCheckBox( XXO("Don't show this again at start up"), !bShow );
       S.SetBorder( 5 );
 
       S.Id(wxID_OK)
          .Prop(0)
-         .AddButton(XXO("OK"), wxALIGN_RIGHT| wxALL, true);
+         .AddButton(XXO("OK"), wxALIGN_RIGHT | wxALL, true);
    }
    S.EndVerticalLay();
 }
@@ -176,17 +173,11 @@ SplashDialog::~SplashDialog()
 {
 }
 
-void SplashDialog::OnDontShow( wxCommandEvent & Evt )
-{
-   bool bShow = !Evt.IsChecked();
-   gPrefs->Write(wxT("/GUI/ShowSplashScreen"), bShow );
-   gPrefs->Flush();
-}
-
 void SplashDialog::OnOK(wxCommandEvent & WXUNUSED(event))
 {
+   gPrefs->Write(wxT("/GUI/ShowSplashScreen"), false );
+   gPrefs->Flush();
    Show( false );
-
 }
 
 void SplashDialog::Show2( wxWindow * pParent )

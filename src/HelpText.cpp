@@ -237,25 +237,29 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << wxT(" [[https://forum.audacityteam.org/|Forum]] - for large knowledge base on using Audacity.")
          << wxT("</li></ul>")
 #else
-         << wxT("<center><h2>Saucedacity ")
-         << AUDACITY_VERSION_STRING
-         << wxT("</h2><h3>")
+         << wxT("<center><h2>")
+         << XO("Welcome to Saucedacity!")
+         << wxT("</h2></center><br>")
+
+         /* i18n-hint: %s is the program's version string */
+         << XO("You are using Saucedacity %s. Saucedacity is based off of Audacity").Format(AUDACITY_VERSION_STRING)
+         << wxT("<center><h2>")
          << XO("Need Help?")
-         << wxT("</h3></center>")
-         << XO("These are our support methods:")
+         << wxT("</h2></center>")
+         << XO("We have several support methods:")
          << wxT("<p><ul><li>")
          /* i18n-hint: Preserve '[[help:Quick_Help|' as it's the name of a link.*/
          << XO("[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]")
          << wxT("</li><li>")
          << XO(
 /* i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.*/
-" [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
+" [[help:Main_Page|Audacity Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
          << wxT("</li><li>")
          << XO(
 " [[https://github.com/generic-pers0n/saucedacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
-         << XO("More:</b> Visit our [[https://github.com/generic-pers0n/saucedacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
+         << XO("More:</b> Visit our [[https://github.com/saucedacity/saucedacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
          << wxT("</p>")
 #endif
       ;
