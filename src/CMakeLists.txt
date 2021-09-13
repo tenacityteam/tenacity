@@ -1379,6 +1379,12 @@ else()
       install( TARGETS ${TARGET}
                DESTINATION "."
                RESOURCE DESTINATION "${_APPDIR}/Resources" )
+               set_target_properties(${TARGET} PROPERTIES
+               MACOSX_BUNDLE true
+           )
+      install(CODE "
+         include(BundleUtilities)
+         fixup_bundle( \${CMAKE_INSTALL_PREFIX}/Tenacity.app \"\" \"${CMAKE_PREFIX_PATH}/lib\" )")       
    elseif( CMAKE_SYSTEM_NAME MATCHES "Haiku" )
       install( TARGETS ${TARGET} RUNTIME )
       install( DIRECTORY "${_DEST}/${_LIBDIR}/"
