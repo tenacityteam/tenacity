@@ -916,8 +916,18 @@ bool TenacityApp::OnInit()
    FilePaths tenacityPathList;
 
 #ifdef __WXGTK__
+   wxStandardPaths standardPaths = wxStandardPaths::Get();
+   wxString portablePrefix = wxPathOnly(wxPathOnly(standardPaths.GetExecutablePath()));
+
    // Make sure install prefix is set so wxStandardPath resolves paths properly
-   wxStandardPaths::Get().SetInstallPrefix(wxT(INSTALL_PREFIX));
+   if (wxDirExists(portablePrefix + L"/share/tenacity")) {
+      // use prefix relative to executable location to make Audacity portable
+      standardPaths.SetInstallPrefix(portablePrefix);
+   } else {
+      // fallback to hard-coded prefix set during configuration
+      standardPaths.SetInstallPrefix(wxT(INSTALL_PREFIX));
+   }
+   wxString installPrefix = standardPaths.GetInstallPrefix();
 
    /* Search path (for plug-ins, translations etc) is (in this order):
       * The SAUCEDACITY_PATH environment variable
@@ -965,15 +975,12 @@ bool TenacityApp::OnInit()
 
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
       tenacityPathList);
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/%s"),
-      wxT(INSTALL_PREFIX), wxT(APP_NAME)),
+   FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/%s", wxT(APP_NAME)),
       tenacityPathList);
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/doc/%s"),
-      wxT(INSTALL_PREFIX), wxT(APP_NAME)),
+   FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/doc/%s", wxT(APP_NAME)),
       tenacityPathList);
 
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/locale"),
-      wxT(INSTALL_PREFIX)),
+   FileNames::AddUniquePathToPathList(installPrefix + L"/share/locale",
       tenacityPathList);
 
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("./locale")),
