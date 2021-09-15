@@ -73,11 +73,15 @@ public:
     void OnTextModified(SaucedacityProject* project, const wxString& text) override;
     void OnTextContextMenu(SaucedacityProject* project, const wxPoint& position) override;
 
+    bool StartEditNameOfMatchingClip( SaucedacityProject &project,
+        std::function<bool(WaveClip&)> test /*!<
+            Edit the first clip in the track's list satisfying the test */
+    );
+
 private:
     void OnTrackChanged(TrackListEvent& evt);
 
     bool SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward);
-    bool StartEditSelectedClipName(ViewInfo& viewInfo, SaucedacityProject* project);
 
     std::shared_ptr<TextEditHelper> MakeTextEditHelper(const wxString& text);
 };
