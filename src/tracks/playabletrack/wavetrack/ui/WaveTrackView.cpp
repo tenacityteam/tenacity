@@ -812,8 +812,9 @@ std::weak_ptr<WaveTrackView> WaveTrackSubView::GetWaveTrackView() const
    return mwWaveTrackView;
 }
 
-std::vector<ComponentInterfaceSymbol> WaveTrackSubView::GetMenuItems(
+auto WaveTrackSubView::GetMenuItems(
    const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject )
+      -> std::vector<MenuItem>
 {
    const WaveClip *pClip = nullptr;
    auto pTrack = static_cast<WaveTrack*>(FindTrack().get());

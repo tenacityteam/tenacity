@@ -55,7 +55,7 @@ protected:
 
    std::weak_ptr<WaveTrackView> GetWaveTrackView() const;
 
-   std::vector<ComponentInterfaceSymbol> GetMenuItems(
+   std::vector<MenuItem> GetMenuItems(
       const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject )
    override;
 
