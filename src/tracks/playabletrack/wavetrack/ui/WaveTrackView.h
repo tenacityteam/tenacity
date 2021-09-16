@@ -25,6 +25,7 @@ class TranslatableString;
 class WaveTrack;
 class WaveTrackView;
 class WaveClip;
+class WaveClipTrimHandle;
 
 class wxDC;
 
@@ -64,6 +65,7 @@ private:
    std::weak_ptr<UIHandle> mResizeHandle;
    std::weak_ptr<UIHandle> mAdjustHandle;
    std::weak_ptr<UIHandle> mRearrangeHandle;
+   std::weak_ptr<WaveClipTrimHandle> mClipTrimHandle;
    std::weak_ptr<CutlineHandle> mCutlineHandle;
    std::weak_ptr<WaveTrackView> mwWaveTrackView;
 };
