@@ -1410,8 +1410,8 @@ bool EffectEqualization::ProcessOne(int count, WaveTrack * t,
          double clipStartT;
          double clipEndT;
 
-         clipStartT = clip->GetStartTime();
-         clipEndT = clip->GetEndTime();
+         clipStartT = clip->GetPlayStartTime();
+         clipEndT = clip->GetPlayEndTime();
          if( clipEndT <= startT )
             continue;   // clip is not within selection
          if( clipStartT >= startT + lenT )

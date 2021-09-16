@@ -574,7 +574,7 @@ UIHandle::Result SelectHandle::Click
          WaveClip *const selectedClip = wt->GetClipAtTime(time);
          if (selectedClip) {
             viewInfo.selectedRegion.setTimes(
-               selectedClip->GetOffset(), selectedClip->GetEndTime());
+               selectedClip->GetPlayStartTime(), selectedClip->GetPlayEndTime());
          }
       } );
 
