@@ -10,6 +10,7 @@ Avery King
 **********************************************************************/
 
 #include "GenericObject.h"
+#include <stdexcept>
 
 namespace GenericUI
 {
@@ -17,58 +18,52 @@ namespace GenericUI
 //// GenericObject Implementations ////////////////////////////////////////////
 
 // Constructors and Destructors
-GenericObject::GenericObject(GenericObject* g_obj, bool is_allocated)
+GenericObject::GenericObject()
 {
-  AddParent(g_obj, is_allocated);
-}
-
-GenericObject::GenericObject(GenericObject& g_obj)
-{
-  mFlags        = g_obj.mFlags;
-  mChildObjects = g_obj.mChildObjects;
-  mParentObject = g_obj.mParentObject;
-}
-
-GenericObject::GenericObject(GenericObject&& g_obj)
-{
-  mFlags        = g_obj.mFlags;
-  mChildObjects = g_obj.mChildObjects;
-  mParentObject = g_obj.mParentObject;
-
-  g_obj.mFlags = 0;
-  g_obj.mChildObjects.clear();
-  g_obj.mParent Object.reset();
 }
 
 GenericObject::~GenericObject()
 {
-  DestroyLinkedObjects();
+  DestroyObject();
 }
 
 // Public member functions
 
-GenericObject* GenericObject::AddParent(GenericObject* g_obj, bool is_allocated)
+GenericObject* GenericObject::AddChild(GenericObject* child, bool is_allocated)
 {
   LinkedObject linked_obj;
-  if (g_obj != nullptr)
+
+  if (child != nullptr)
   {
-    linked_obj.object = g_obj;
+    linked_obj.object = child;
     linked_obj.shouldDeallocate = is_allocated;
-    g_obj->mParentObject = std::make_unique<GenericObject>(this);
+    child->mParentObject = this;
     mChildObjects.push_back(linked_obj);
   }
 
   return this;
 }
 
-GenericObject* GenericObject::RemoveChildren()
+GenericObject* GenericObject::ClearChildren()
 {
   mChildObjects.clear();
   return this;
 }
 
+void GenericObject::DestroyObject()
+{
+  ClearChildren();
+  mChildObjects.clear();
+  mFlags = 0;
+}
+
+GenericObject* GenericObject::GetParent()
+{
+  return mParentObject;
+}
+
 // Protected member functions
-void GenericObject::DestroyLinkedObjects()
+void GenericObject::DestroyChildObjects()
 {
   for (auto obj : mChildObjects)
   {
@@ -78,13 +73,6 @@ void GenericObject::DestroyLinkedObjects()
       delete obj.object;
     }
   }
-}
-
-virtual void GenericObject::DestroyObject()
-{
-  DestroyChildObjects();
-  mChildObjects.clear();
-  mFlags = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
