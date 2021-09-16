@@ -38,6 +38,7 @@ GenericObject* GenericObject::AddChild(GenericObject* child, bool is_allocated)
     linked_obj.object = child;
     linked_obj.shouldDeallocate = is_allocated;
     child->mParentObject = this;
+    child->mFlags |= IsChildObject;
     mChildObjects.push_back(linked_obj);
   }
 
