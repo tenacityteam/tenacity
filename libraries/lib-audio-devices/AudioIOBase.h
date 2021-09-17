@@ -72,8 +72,9 @@ struct ScrubbingOptions {
 struct AudioIOStartStreamOptions
 {
    explicit
-   AudioIOStartStreamOptions(TenacityProject *pProject_, double rate_)
-      : pProject{ pProject_ }
+   AudioIOStartStreamOptions(
+      const std::shared_ptr<TenacityProject> &pProject, double rate_)
+      : pProject{ pProject }
       , envelope(nullptr)
       , rate(rate_)
       , playLooped(false)
@@ -83,7 +84,7 @@ struct AudioIOStartStreamOptions
       , preRoll(0.0)
    {}
 
-   TenacityProject *pProject{};
+   std::shared_ptr<TenacityProject> pProject;
    std::weak_ptr<Meter> captureMeter, playbackMeter;
    const BoundedEnvelope *envelope; // for time warping
    std::shared_ptr< AudioIOListener > listener;
@@ -121,9 +122,9 @@ public:
    virtual ~AudioIOBase();
 
    void SetCaptureMeter(
-      TenacityProject *project, const std::weak_ptr<Meter> &meter);
+      const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &meter);
    void SetPlaybackMeter(
-      TenacityProject *project, const std::weak_ptr<Meter> &meter);
+      const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &meter);
 
    /** \brief update state after changing what audio devices are selected
     *
@@ -247,7 +248,7 @@ protected:
    static std::string DeviceName(const PaDeviceInfo* info);
    static std::string HostName(const PaDeviceInfo* info);
 
-   TenacityProject    *mOwningProject;
+   std::weak_ptr<TenacityProject> mOwningProject;
 
    /// True if audio playback is paused
    bool                mPaused;

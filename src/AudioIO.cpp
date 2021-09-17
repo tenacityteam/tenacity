@@ -1089,7 +1089,6 @@ AudioIO::AudioIO()
    mUpdateMeters = false;
    mUpdatingMeters = false;
 
-   mOwningProject = NULL;
    mOutputMeter.reset();
 
    mBuffersPrepared = false;
@@ -1219,7 +1218,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 
    // PRL:  Protection from crash reported by David Bailes, involving starting
    // and stopping with frequent changes of active window, hard to reproduce
-   if (!mOwningProject)
+   if (mOwningProject.expired())
       return false;
 
    mInputMeter.reset();
@@ -1303,7 +1302,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
          captureDeviceInfo->defaultHighInputLatency :
          0.0;
 
-      SetCaptureMeter( mOwningProject, options.captureMeter );
+      SetCaptureMeter( mOwningProject.lock(), options.captureMeter );
    }
 
    SetMeters();
@@ -1389,6 +1388,7 @@ void AudioIO::StartMonitoring( const AudioIOStartStreamOptions &options )
                                   (unsigned int)captureChannels,
                                   captureFormat);
 
+   auto pOwningProject = mOwningProject.lock();
    if (!success) {
       auto msg = XO("Error opening recording device.\nError code: %s")
          .Format( Get()->LastPaErrorString() );
@@ -1397,7 +1397,7 @@ void AudioIO::StartMonitoring( const AudioIOStartStreamOptions &options )
    }
 
    wxCommandEvent e(EVT_AUDIOIO_MONITOR);
-   e.SetEventObject(mOwningProject);
+   e.SetEventObject( pOwningProject.get() );
    e.SetInt(true);
    wxTheApp->ProcessEvent(e);
 
@@ -1726,10 +1726,11 @@ int AudioIO::StartStream(const TransportTracks &tracks,
       pListener->OnAudioIORate((int)mRate);
    }
 
+   auto pOwningProject = mOwningProject.lock();
    if (mNumPlaybackChannels > 0)
    {
       wxCommandEvent e(EVT_AUDIOIO_PLAYBACK);
-      e.SetEventObject(mOwningProject);
+      e.SetEventObject( pOwningProject.get() );
       e.SetInt(true);
       wxTheApp->ProcessEvent(e);
    }
@@ -1737,7 +1738,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
    if (mNumCaptureChannels > 0)
    {
       wxCommandEvent e(EVT_AUDIOIO_CAPTURE);
-      e.SetEventObject(mOwningProject);
+      e.SetEventObject( pOwningProject.get() );
       e.SetInt(true);
       wxTheApp->ProcessEvent(e);
    }
@@ -2100,9 +2101,10 @@ bool AudioIoCallback::StartPortMidiStream()
 }
 #endif
 
-bool AudioIO::IsAvailable(TenacityProject *project) const
+bool AudioIO::IsAvailable(TenacityProject &project) const
 {
-   return mOwningProject == NULL || mOwningProject == project;
+   auto pOwningProject = mOwningProject.lock();
+   return !pOwningProject || pOwningProject.get() == &project;
 }
 
 void AudioIO::SetMeters()
@@ -2329,8 +2331,9 @@ void AudioIO::StopStream()
             // This scope may combine many splittings of wave tracks
             // into one transaction, lessening the number of checkpoints
             std::optional<TransactionScope> pScope;
-            if (mOwningProject) {
-               auto &pIO = ProjectFileIO::Get(*mOwningProject);
+            auto pOwningProject = mOwningProject.lock();
+            if (pOwningProject) {
+               auto &pIO = ProjectFileIO::Get(*pOwningProject);
                pScope.emplace(pIO.GetConnection(), "Dropouts");
             }
             for (auto &interval : mLostCaptureIntervals) {
@@ -2359,7 +2362,7 @@ void AudioIO::StopStream()
 
    mInputMeter.reset();
    mOutputMeter.reset();
-   mOwningProject = nullptr;
+   mOwningProject.reset();
 
    if (pListener && mNumCaptureChannels > 0)
       pListener->OnAudioIOStopRecording();
@@ -2388,7 +2391,8 @@ void AudioIO::StopStream()
    if (mNumPlaybackChannels > 0)
    {
       wxCommandEvent e(EVT_AUDIOIO_PLAYBACK);
-      e.SetEventObject(mOwningProject);
+      auto pOwningProject = mOwningProject.lock();
+      e.SetEventObject(pOwningProject.get());
       e.SetInt(false);
       wxTheApp->ProcessEvent(e);
    }
@@ -2396,7 +2400,8 @@ void AudioIO::StopStream()
    if (mNumCaptureChannels > 0)
    {
       wxCommandEvent e(wasMonitoring ? EVT_AUDIOIO_MONITOR : EVT_AUDIOIO_CAPTURE);
-      e.SetEventObject(mOwningProject);
+      auto pOwningProject = mOwningProject.lock();
+      e.SetEventObject(pOwningProject.get());
       e.SetInt(false);
       wxTheApp->ProcessEvent(e);
    }
@@ -2883,8 +2888,9 @@ void AudioIO::FillBuffers()
             // and also an autosave, into one transaction,
             // lessening the number of checkpoints
             std::optional<TransactionScope> pScope;
-            if (mOwningProject) {
-               auto &pIO = ProjectFileIO::Get(*mOwningProject);
+            auto pOwningProject = mOwningProject.lock();
+            if (pOwningProject) {
+               auto &pIO = ProjectFileIO::Get(*pOwningProject);
                pScope.emplace(pIO.GetConnection(), "Recording");
             }
 

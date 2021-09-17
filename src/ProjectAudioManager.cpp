@@ -946,7 +946,7 @@ void ProjectAudioManager::OnSoundActivationThreshold()
 {
    auto &project = mProject;
    auto gAudioIO = AudioIO::Get();
-   if ( gAudioIO && &project == gAudioIO->GetOwningProject() ) {
+   if ( gAudioIO && &project == gAudioIO->GetOwningProject().get() ) {
       wxTheApp->CallAfter( [this]{ Pause(); } );
    }
 }
@@ -983,7 +983,7 @@ bool ProjectAudioManager::CanStopAudioStream() const
    auto gAudioIO = AudioIO::Get();
    return (!gAudioIO->IsStreamActive() ||
            gAudioIO->IsMonitoring() ||
-           gAudioIO->GetOwningProject() == &mProject );
+           gAudioIO->GetOwningProject().get() == &mProject );
 }
 
 const ReservedCommandFlag&
@@ -999,7 +999,7 @@ AudioIOStartStreamOptions
 DefaultPlayOptions( TenacityProject &project )
 {
    auto &projectAudioIO = ProjectAudioIO::Get( project );
-   AudioIOStartStreamOptions options { &project,
+   AudioIOStartStreamOptions options { project.shared_from_this(),
       ProjectRate::Get( project ).GetRate() };
    options.captureMeter = projectAudioIO.GetCaptureMeter();
    options.playbackMeter = projectAudioIO.GetPlaybackMeter();
@@ -1019,7 +1019,7 @@ DefaultSpeedPlayOptions( TenacityProject &project )
       true,      //is playing
       ProjectRate::Get( project ).GetRate()  //suggested rate
    );
-   AudioIOStartStreamOptions options{ &project, PlayAtSpeedRate };
+   AudioIOStartStreamOptions options{ project.shared_from_this(), PlayAtSpeedRate };
    options.captureMeter = projectAudioIO.GetCaptureMeter();
    options.playbackMeter = projectAudioIO.GetPlaybackMeter();
    auto timeTrack = *TrackList::Get( project ).Any<TimeTrack>().begin();

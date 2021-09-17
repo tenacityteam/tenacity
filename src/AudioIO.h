@@ -552,7 +552,8 @@ public:
    std::string LastPaErrorString();
 
    wxLongLong GetLastPlaybackTime() const { return mLastPlaybackTimeMillis; }
-   TenacityProject *GetOwningProject() const { return mOwningProject; }
+   std::shared_ptr<TenacityProject> GetOwningProject() const
+   { return mOwningProject.lock(); }
 
    /** \brief Pause and un-pause playback and recording */
    void SetPaused(bool state);
@@ -573,7 +574,7 @@ public:
     *
     */
 
-   bool IsAvailable(TenacityProject *projecT) const;
+   bool IsAvailable(TenacityProject &project) const;
 
    /** \brief Return a valid sample rate that is supported by the current I/O
    * device(s).

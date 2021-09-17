@@ -120,9 +120,10 @@ void AudioIOBase::HandleDeviceChange()
 }
 
 void AudioIOBase::SetCaptureMeter(
-   TenacityProject *project, const std::weak_ptr<Meter> &wMeter)
+   const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &wMeter)
 {
-   if (( mOwningProject ) && ( mOwningProject != project))
+   if (auto pOwningProject = mOwningProject.lock();
+       ( pOwningProject ) && ( pOwningProject != project))
       return;
 
    auto meter = wMeter.lock();
@@ -136,9 +137,10 @@ void AudioIOBase::SetCaptureMeter(
 }
 
 void AudioIOBase::SetPlaybackMeter(
-   TenacityProject *project, const std::weak_ptr<Meter> &wMeter)
+   const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &wMeter)
 {
-   if (( mOwningProject ) && ( mOwningProject != project))
+   if (auto pOwningProject = mOwningProject.lock();
+       ( pOwningProject ) && ( pOwningProject != project))
       return;
 
    auto meter = wMeter.lock();
