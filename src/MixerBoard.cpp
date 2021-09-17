@@ -56,14 +56,14 @@
 
 #include "../images/MusicalInstruments.h"
 #ifdef __WXMSW__
-   #include "../images/AudacityLogo.xpm"
+   #include "../images/SaucedacityLogo.xpm"
 #else
-   #include "../images/AudacityLogo48x48.xpm"
+   #include "../images/SaucedacityLogo48x48.xpm"
 #endif
 
 #include "commands/CommandManager.h"
 
-#define AudacityMixerBoardTitle XO("Audacity Mixer Board%s")
+#define AudacityMixerBoardTitle XO("Saucedacity Mixer Board%s")
 
 // class MixerTrackSlider
 
@@ -280,7 +280,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
    mToggleButton_Mute->SetAlternateImages(
       1,
       *(mMixerBoard->mImageMuteUp), *(mMixerBoard->mImageMuteOver),
-      *(mMixerBoard->mImageMuteDown), *(mMixerBoard->mImageMuteDown), 
+      *(mMixerBoard->mImageMuteDown), *(mMixerBoard->mImageMuteDown),
       *(mMixerBoard->mImageMuteDisabled));
 
    ctrlPos.y += MUTE_SOLO_HEIGHT;
@@ -288,7 +288,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
       safenew AButton(this, ID_TOGGLEBUTTON_SOLO,
                   ctrlPos, ctrlSize,
                   *(mMixerBoard->mImageSoloUp), *(mMixerBoard->mImageSoloOver),
-                  *(mMixerBoard->mImageSoloDown), *(mMixerBoard->mImageSoloDown), 
+                  *(mMixerBoard->mImageSoloDown), *(mMixerBoard->mImageSoloDown),
                   *(mMixerBoard->mImageSoloDisabled),
                   true); // toggle button
    mToggleButton_Solo->SetName(_("Solo"));
@@ -1231,7 +1231,7 @@ void MixerBoard::CreateMuteSoloImages()
    wxBitmap bitmap(mMuteSoloWidth, MUTE_SOLO_HEIGHT,24);
    dc.SelectObject(bitmap);
    wxRect bev(0, 0, mMuteSoloWidth, MUTE_SOLO_HEIGHT);
-   
+
    const bool up=true;
    const bool down=false;
 
@@ -1432,9 +1432,9 @@ MixerBoardFrame::MixerBoardFrame(AudacityProject* parent)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #ifdef __WXMSW__
-      wxIcon ic{ wxICON(AudacityLogo) };
+      wxIcon ic{ wxICON(SaucedacityLogo) };
 #else
-      wxIcon ic{wxICON(AudacityLogo48x48)};
+      wxIcon ic{wxICON(SaucedacityLogo48x48)};
 #endif
       SetIcon(ic);
    }

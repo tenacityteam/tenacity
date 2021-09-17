@@ -148,7 +148,7 @@ It handles initialization and termination by subclassing wxApp.
 #ifdef EXPERIMENTAL_DA
 #include "../images/DarkAudacityLogoWithName.xpm"
 #else
-#include "../images/AudacityLogoWithName.xpm"
+#include "../images/SaucedacityLogoWithName.xpm"
 #endif
 
 #include <thread>
@@ -1373,7 +1373,7 @@ bool AudacityApp::InitPart2()
    }
 
    // BG: Create a temporary window to set as the top window
-   wxImage logoimage((const char **)AudacityLogoWithName_xpm);
+   wxImage logoimage((const char **)SaucedacityLogoWithName_xpm);
    logoimage.Rescale(logoimage.GetWidth() / 2, logoimage.GetHeight() / 2);
    if( GetLayoutDirection() == wxLayout_RightToLeft)
       logoimage = logoimage.Mirror();

@@ -178,9 +178,9 @@ can't be.
 #include "../images/GlyphImages.h"
 #include "../images/UploadImages.h"
 
-#include "../images/AudacityLogoWithName.xpm"
-//#include "../images/AudacityLogo.xpm"
-#include "../images/AudacityLogo48x48.xpm"
+#include "../images/SaucedacityLogoWithName.xpm"
+//#include "../images/SaucedacityLogo.xpm"
+#include "../images/SaucedacityLogo48x48.xpm"
 #endif
 
 

@@ -48,7 +48,7 @@ most commonly asked questions about Audacity.
 #ifdef EXPERIMENTAL_DA
 #include "../images/DarkAudacityLogoWithName.xpm"
 #else
-#include "../images/AudacityLogoWithName.xpm"
+#include "../images/SaucedacityLogoWithName.xpm"
 #endif
 
 SplashDialog * SplashDialog::pSelf=NULL;
@@ -115,7 +115,7 @@ void SplashDialog::Populate( ShuttleGui & S )
    S.StartVerticalLay(1);
 
    //v For now, change to AudacityLogoWithName via old-fashioned ways, not Theme.
-   m_pLogo = std::make_unique<wxBitmap>((const char **) AudacityLogoWithName_xpm); //v
+   m_pLogo = std::make_unique<wxBitmap>((const char **) SaucedacityLogoWithName_xpm); //v
 
 
    // JKC: Resize to 50% of size.  Later we may use a smaller xpm as

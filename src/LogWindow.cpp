@@ -26,7 +26,7 @@ Paul Licameli split from AudacityLogger.cpp
 #include "SelectFile.h"
 #include "ShuttleGui.h"
 
-#include "../images/AudacityLogoAlpha.xpm"
+#include "../images/SaucedacityLogoAlpha.xpm"
 
 // If wxLogWindow is used and initialized before the Mac's "root" window, then
 //     Audacity may crash when terminating.  It's not fully understood why this occurs
@@ -92,9 +92,9 @@ void LogWindow::Show(bool show)
    {
 #if !defined(__WXMAC__) && !defined(__WXX11__)
 #if defined(__WXMSW__)
-      wxIcon ic{wxICON(AudacityLogo)};
+      wxIcon ic{wxICON(SaucedacityLogo)};
 #elif defined(__WXGTK__)
-      wxIcon ic{wxICON(AudacityLogoAlpha)};
+      wxIcon ic{wxICON(SaucedacityLogoAlpha)};
 #else
       wxIcon ic{};
       ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));

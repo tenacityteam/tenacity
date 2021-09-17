@@ -25,16 +25,16 @@
 #include <wx/settings.h>
 
 #ifdef __WXMSW__
-   #include "../images/AudacityLogo.xpm"
+   #include "../images/SaucedacityLogo.xpm"
 #else
-   #include "../images/AudacityLogo48x48.xpm"
+   #include "../images/SaucedacityLogo48x48.xpm"
 #endif
 
 #ifdef __WXMAC__
    #include <Carbon/Carbon.h>
 #endif
 
-#define AudacityKaraokeTitle XO("Audacity Karaoke%s")
+#define AudacityKaraokeTitle XO("Saucedacity Karaoke%s")
 
 enum {
    kID_RadioButton_BouncingBall = 10101,
@@ -79,9 +79,9 @@ LyricsWindow::LyricsWindow(AudacityProject *parent)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #ifdef __WXMSW__
-      wxIcon ic{ wxICON(AudacityLogo) };
+      wxIcon ic{ wxICON(SaucedacityLogo) };
 #else
-      wxIcon ic{wxICON(AudacityLogo48x48)};
+      wxIcon ic{wxICON(SaucedacityLogo48x48)};
 #endif
       SetIcon(ic);
    }

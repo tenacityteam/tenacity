@@ -7,6 +7,6 @@ elements.
 
 All interim logos are licensed under [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/).
 
-The logo with text (as is found under the file `AudacityLogoWithName.xpm`) has
+The logo with text (as is found under the file `SaucedacityLogoWithName.xpm`) has
 a different license, [Creative Commons Attribute 4.0](https://creativecommons.org/licenses/by/4.0/).
 

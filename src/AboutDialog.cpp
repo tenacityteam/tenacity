@@ -53,7 +53,7 @@ hold information about one contributor to Audacity.
 #ifdef EXPERIMENTAL_DA
 #include "../images/DarkAudacityLogoWithName.xpm"
 #else
-#include "../images/AudacityLogoWithName.xpm"
+#include "../images/SaucedacityLogoWithName.xpm"
 #endif
 
 // Notice this is a "system include".  This is on purpose and only until
@@ -534,8 +534,8 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
    auto pPage = S.StartNotebookPage( ProgramName );
    S.StartVerticalLay(1);
    {
-      //v For now, change to AudacityLogoWithName via old-fashioned way, not Theme.
-      wxBitmap logo(AudacityLogoWithName_xpm); //v
+      //v For now, change to SaucedacityLogoWithName via old-fashioned way, not Theme.
+      wxBitmap logo(SaucedacityLogoWithName_xpm); //v
 
       // JKC: Resize to 50% of size.  Later we may use a smaller xpm as
       // our source, but this allows us to tweak the size - if we want to.
@@ -555,7 +555,7 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
          safenew wxStaticBitmap(S.GetParent(), -1,
          //*logo, //v
          //v theTheme.Bitmap(bmpAudacityLogo), wxPoint(93, 10), wxSize(215, 190));
-         //v theTheme.Bitmap(bmpAudacityLogoWithName),
+         //v theTheme.Bitmap(bmpSaucedacityLogoWithName),
          RescaledBitmap,
          wxDefaultPosition,
          wxSize((int)(LOGOWITHNAME_WIDTH*fScale), (int)(LOGOWITHNAME_HEIGHT*fScale)));
