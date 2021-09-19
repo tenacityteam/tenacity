@@ -118,13 +118,18 @@ class GenericObject
      */
     virtual void DestroyObject();
 
-  private:
-    enum ObjectFlags
+  protected:
+    /** Shareed object flags.
+     * 
+     * These flags are shared flags across derivative classes. This is
+     * intended for reuse for different classes, although not all
+     * classes might use such objects
+     */
+    enum class GenericObjectFlags
     {
       IsChildObject = 1 << 0 /// If the object is a parent
     };
 
-  protected:
     /// Internal C-style struct for keeping track of manually allocated objects.
     struct LinkedObject
     {
@@ -137,10 +142,13 @@ class GenericObject
 
     /** Internal flags for the current object.
      *
-     * This variable represents the object's current internal flags. Note that
-     * these flags can mean anything to any object and are not portable across
-     * different object types. For example, flags from a GenericWindow object
-     * might be interpreted differently by a GenericString object.
+     * This variable represents the object's current internal flags. Note
+     * that these flags can mean anything to any object and are not
+     * portable across different object types. For example, flags from a
+     * GenericWindow object might be interpreted differently by a
+     * GenericString object. Additionally, they might represent
+     * something else in another derived class. Therefore, universal
+     * representation across different classes is not guaranteed.
      *
      */
     unsigned long mFlags = 0;
