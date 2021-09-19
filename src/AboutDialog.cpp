@@ -597,6 +597,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
 
    AddBuildinfoRow(&informationStr, XO("Build type:"), BuildInfo::GetBuildType());
    AddBuildinfoRow(&informationStr, XO("Compiler:"), BuildInfo::GetCompilerVersionString());
+   AddBuildinfoRow(&informationStr, XO("wxWidgets:"), BuildInfo::GetWxWidgetsVersion());
 
    // Install prefix
 #ifdef __WXGTK__
