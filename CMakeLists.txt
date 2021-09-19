@@ -22,7 +22,7 @@ set( AUDACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release
 # Increment as appropriate after release of a new version, and set back
 # AUDACITY_BUILD_LEVEL to 0
 set( AUDACITY_VERSION 1 )
-set( AUDACITY_RELEASE 1 )
+set( AUDACITY_RELEASE 2 )
 set( AUDACITY_REVISION 0 )
 set( AUDACITY_MODLEVEL 0 )
 
