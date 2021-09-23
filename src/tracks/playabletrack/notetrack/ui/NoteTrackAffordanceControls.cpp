@@ -16,6 +16,8 @@
 
 #include "../../../ui/AffordanceHandle.h"
 #include "../../../../theme/AllThemeResources.h"
+#include "../../../ui/SelectHandle.h"
+#include "../../../ui/TrackView.h"
 #include "../../../../AColor.h"
 #include "../../../../NoteTrack.h"
 #include "ViewInfo.h"
@@ -83,6 +85,17 @@ std::vector<UIHandlePtr> NoteTrackAffordanceControls::HitTest(const TrackPanelMo
         py >= headerRect.GetTop() && py <= headerRect.GetBottom())
     {
         results.push_back(NoteTrackAffordanceHandle::HitAnywhere(mAffordanceHandle, track));
+    }
+
+    const auto& settings = ProjectSettings::Get(*pProject);
+    const auto currentTool = settings.GetTool();
+    if (currentTool == ToolCodes::multiTool || currentTool == ToolCodes::selectTool)
+    {
+        results.push_back(
+            SelectHandle::HitTest(
+                mSelectHandle, state, pProject, std::static_pointer_cast<TrackView>(track->GetTrackView())
+            )
+        );
     }
 
     return results;

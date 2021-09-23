@@ -35,10 +35,12 @@
 #include "../../../../commands/AudacityCommand.h"
 
 #include "../../../ui/TextEditHelper.h"
+#include "../../../ui/SelectHandle.h"
 #include "WaveTrackView.h"//need only ClipParameters
 #include "WaveTrackAffordanceHandle.h"
 
 #include "../../../../ProjectHistory.h"
+#include "../../../../ProjectSettings.h"
 #include "../../../../SelectionState.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../theme/Theme.h"
@@ -212,6 +214,17 @@ std::vector<UIHandlePtr> WaveTrackAffordanceControls::HitTest(const TrackPanelMo
             mFocusClip = clip;
             break;
         }
+    }
+
+    const auto& settings = ProjectSettings::Get(*pProject);
+    const auto currentTool = settings.GetTool();
+    if (currentTool == ToolCodes::multiTool || currentTool == ToolCodes::selectTool)
+    {
+        results.push_back(
+            SelectHandle::HitTest(
+                mSelectHandle, state, pProject, std::static_pointer_cast<TrackView>(track->GetTrackView())
+            )
+        );
     }
 
     return results;

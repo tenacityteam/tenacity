@@ -20,6 +20,7 @@
 struct TrackListEvent;
 
 class AffordanceHandle;
+class SelectHandle;
 class WaveClip;
 class TrackPanelResizeHandle;
 class WaveClipTitleEditHandle;
