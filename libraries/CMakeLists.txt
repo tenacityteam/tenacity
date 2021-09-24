@@ -12,6 +12,7 @@ set( LIBRARIES
    lib-preferences
    lib-math
    lib-files
+   lib-ffmpeg-support
 )
 
 foreach( LIBRARY ${LIBRARIES} )
