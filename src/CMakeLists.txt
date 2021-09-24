@@ -589,14 +589,10 @@ list( APPEND SOURCES
 
       # FFmpeg
 
-      ffmpeg/AVPacketEx.h
-      ffmpeg/AVPacketEx.cpp
       ffmpeg/FFmpeg.h
       ffmpeg/FFmpeg.cpp
       ffmpeg/FFmpegNotFoundDialog.h
       ffmpeg/FFmpegNotFoundDialog.cpp
-      ffmpeg/StreamContext.h
-      ffmpeg/StreamContext.cpp
 
       # Import
 

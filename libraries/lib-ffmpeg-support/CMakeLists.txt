@@ -95,7 +95,7 @@ if (${_OPT}use_ffmpeg)
       list(APPEND DEFINITIONS PRIVATE _DARWIN_C_SOURCE )
    endif()
 
-   audacity_library( lib-ffmpeg-support "${SOURCES}" "${LIBRARIES}"
+   saucedacity_library( lib-ffmpeg-support "${SOURCES}" "${LIBRARIES}"
       "${DEFINITIONS}" ""
    )
 
