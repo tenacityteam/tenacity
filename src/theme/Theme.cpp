@@ -163,7 +163,8 @@ void Theme::RegisterImages()
    mbInitialised = true;
 
 // This initialises the variables e.g
-// RegisterImage( bmpRecordButton, some image, wxT("RecordButton"));
+// RegisterImage( myFlags, bmpRecordButton, some image, wxT("RecordButton"));
+   int myFlags = resFlagPaired;
 #define THEME_INITS
 #include "theme/AllThemeResources.h"
 
@@ -333,7 +334,27 @@ wxImage ThemeBase::MaskedImage( char const ** pXpm, char const ** pMask )
    return Img1;
 }
 
-void ThemeBase::RegisterImage( int &iIndex, const wxImage &Image, const wxString & Name )
+// Legacy function to allow use of an XPM where no theme image was defined.
+// Bit depth and mask needs review.
+// Note that XPMs don't offer translucency, so unsuitable for a round shape overlay, 
+// for example.
+void ThemeBase::RegisterImage( int &flags, int &iIndex, char const ** pXpm, const wxString & Name )
+{
+   wxASSERT( iIndex == -1 ); // Don't initialise same bitmap twice!
+   wxBitmap Bmp( pXpm );
+   wxImage Img( Bmp.ConvertToImage() );
+   // The next line recommended by http://forum.audacityteam.org/viewtopic.php?f=50&t=96765
+   Img.SetMaskColour(0xDE, 0xDE, 0xDE);
+   Img.InitAlpha();
+
+   //dmazzoni: the top line does not work on wxGTK
+   //wxBitmap Bmp2( Img, 32 );
+   //wxBitmap Bmp2( Img );
+
+   RegisterImage( flags, iIndex, Img, Name );
+}
+
+void ThemeBase::RegisterImage( int &flags, int &iIndex, const wxImage &Image, const wxString & Name )
 {
    wxASSERT( iIndex == -1 ); // Don't initialise same bitmap twice!
    mImages.push_back( Image );
@@ -352,8 +373,8 @@ void ThemeBase::RegisterImage( int &iIndex, const wxImage &Image, const wxString
 #endif
 
    mBitmapNames.push_back( Name );
-   mBitmapFlags.push_back( mFlow.mFlags );
-   mFlow.mFlags &= ~resFlagSkip;
+   mBitmapFlags.push_back( flags );
+   flags &= ~resFlagSkip;
    iIndex = mBitmaps.size() - 1;
 }
 
