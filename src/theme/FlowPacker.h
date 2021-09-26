@@ -14,6 +14,8 @@
 
 #include <wx/gdicmn.h>
 
+#include "ThemeFlags.h"
+
 /** @brief Packs rectangular boxes into a rectangle, using simple first fit.
  *
  * This class is currently used by Theme to pack its images into the image
@@ -21,13 +23,12 @@
  * and use it for toolbar and window layouts too.
  *
  **/
+//! A cursor for iterating the theme bitmap
 class TENACITY_DLL_API FlowPacker
 {
     public:
-        FlowPacker() {}
+        explicit FlowPacker(int width);
         ~FlowPacker() {}
-
-        void Init(int width);
         void GetNextPosition( int xSize, int ySize );
         void SetNewGroup( int iGroupSize );
         void SetColourGroup( );
@@ -36,20 +37,19 @@ class TENACITY_DLL_API FlowPacker
         void RectMid( int &x, int &y );
 
         // These 4 should become private again...
-        int mFlags;
-        int mxPos;
-        int myPos;
-        int myHeight;
-        int mBorderWidth;
+        int mFlags = resFlagPaired;
+        int mxPos = 0;
+        int myPos = 0;
+        int myHeight = 0;
+        int mBorderWidth = 1;
 
     private:
-        int iImageGroupSize;
-        int iImageGroupIndex;
-        int mOldFlags;
-        int myPosBase;
-        int mxWidth;
-        int mxCacheWidth;
+        int iImageGroupSize = 1;
+        int iImageGroupIndex = -1;
+        int mOldFlags = resFlagPaired;
+        int myPosBase = 0;
+        int mxCacheWidth = 0;
 
-        int mComponentWidth;
-        int mComponentHeight;
+        int mComponentWidth = 0;
+        int mComponentHeight = 0;
 };

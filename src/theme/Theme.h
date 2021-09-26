@@ -58,7 +58,7 @@ public:
    void WriteImageDefs( );
    void WriteImageMap( );
    static bool LoadPreferredTheme();
-   bool IsUsingSystemTextColour(){ return bIsUsingSystemTextColour;};
+   bool IsUsingSystemTextColour(){ return bIsUsingSystemTextColour; }
    void RecolourBitmap( int iIndex, wxColour From, wxColour To );
    void RecolourTheme();
 
@@ -90,7 +90,6 @@ protected:
 
    std::vector<wxColour> mColours;
    wxArrayString mColourNames;
-   FlowPacker mFlow;
 };
 
 

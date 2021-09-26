@@ -13,18 +13,10 @@
 #include "FlowPacker.h"
 #include "ThemeFlags.h"
 
-void FlowPacker::Init(int width)
+FlowPacker::FlowPacker(int width)
+   : mxCacheWidth{ width }
 {
-   mFlags = resFlagPaired;
-   mOldFlags = mFlags;
-   mxCacheWidth = width;
-
-   myPos = 0;
-   myPosBase =0;
-   myHeight = 0;
-   iImageGroupSize = 1;
    SetNewGroup(1);
-   mBorderWidth = 0;
 }
 
 void FlowPacker::SetNewGroup( int iGroupSize )
