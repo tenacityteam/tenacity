@@ -189,8 +189,8 @@ can't be.
 static const unsigned char DarkImageCacheAsData[] = {
 #include "DarkThemeAsCeeCode.h"
 };
-static const unsigned char LightImageCacheAsData[] = {
-#include "LightThemeAsCeeCode.h"
+static const unsigned char AudacityImageCacheAsData[] = {
+#include "AudacityThemeAsCeeCode.h"
 };
 static const unsigned char ClassicImageCacheAsData[] = {
 #include "ClassicThemeAsCeeCode.h"
@@ -894,7 +894,7 @@ teThemeType ThemeBase::GetFallbackThemeType(){
 #ifdef EXPERIMENTAL_DA
    return themeDark;
 #else
-   return themeLight;
+   return themeAudacity;
 #endif
 }
 
@@ -942,7 +942,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          if( bOkIfNotFound )
             return false; // did not load the images, so return false.
          AudacityMessageBox(
-            XO("Audacity could not find file:\n  %s.\nTheme not loaded.")
+            XO("Saucedacity could not find file:\n  %s.\nTheme not loaded.")
                .Format( FileName ));
          return false;
       }
@@ -950,7 +950,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
       {
          AudacityMessageBox(
             /* i18n-hint: Do not translate png.  It is the name of a file format.*/
-            XO("Audacity could not load file:\n  %s.\nBad png format perhaps?")
+            XO("Saucedacity could not load file:\n  %s.\nBad png format perhaps?")
                .Format( FileName ));
          return false;
       }
@@ -966,9 +966,9 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
             ImageSize = sizeof(ClassicImageCacheAsData);
             pImage = ClassicImageCacheAsData;
             break;
-         case themeLight : 
-            ImageSize = sizeof(LightImageCacheAsData);
-            pImage = LightImageCacheAsData;
+         case themeAudacity : 
+            ImageSize = sizeof(AudacityImageCacheAsData);
+            pImage = AudacityImageCacheAsData;
             break;
          case themeDark : 
             ImageSize = sizeof(DarkImageCacheAsData);
@@ -990,7 +990,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          // Or some experiment is being tried with NEW formats for it.
          AudacityMessageBox(
             XO(
-"Audacity could not read its default theme.\nPlease report the problem."));
+"Saucedacity could not read its default theme.\nPlease report the problem."));
          return false;
       }
       //wxLogDebug("Read %i by %i", ImageCache.GetWidth(), ImageCache.GetHeight() );
@@ -1307,7 +1307,7 @@ constexpr int defaultTheme =
 #ifdef EXPERIMENTAL_DA
    2 // "dark"
 #else
-   1 // "light"
+   1 // "audacity". FIXME: this should change to "default" for our own new theme
 #endif
 ;
 
@@ -1317,10 +1317,10 @@ ChoiceSetting GUITheme{
       ByColumns,
       {
          /* i18n-hint: describing the "classic" or traditional
-            appearance of older versions of Audacity */
+            appearance of older versions of Audacity (prior to Saucedacity) */
          XO("Classic")  ,
-         /* i18n-hint: Light meaning opposite of dark */
-         XO("Light")  ,
+         // Note: The "Audacity" theme was previously known as the "Light" theme
+         XO("Audacity")  ,
          XO("Dark")  ,
          /* i18n-hint: greater difference between foreground and
             background colors */
@@ -1330,7 +1330,7 @@ ChoiceSetting GUITheme{
       },
       {
          wxT("classic")  ,
-         wxT("light")  ,
+         wxT("audacity")  ,
          wxT("dark")  ,
          wxT("high-contrast")  ,
          wxT("custom")  ,
