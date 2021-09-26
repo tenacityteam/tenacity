@@ -21,6 +21,9 @@
 #include "ThemeFlags.h"
 #include "FlowPacker.h"
 
+// Tenacity libraries
+#include <lib-preferences/Prefs.h>
+
 class wxArrayString;
 class wxBitmap;
 class wxColour;
@@ -114,6 +117,10 @@ class wxString;
 class wxPaintEvent;
 
 extern TENACITY_DLL_API Theme theTheme;
+
+extern TENACITY_DLL_API BoolSetting
+     GUIBlendThemes
+;
 
 extern TENACITY_DLL_API ChoiceSetting
      GUITheme

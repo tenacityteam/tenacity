@@ -682,7 +682,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
 //      ImageCache.InitAlpha();
 //   }
 
-   gPrefs->Read(wxT("/GUI/BlendThemes"), &bRecolourOnLoad, true);
+   bRecolourOnLoad = GUIBlendThemes.Read();
 
    if(  type == themeFromFile )
    {
@@ -1180,4 +1180,6 @@ ChoiceSetting GUITheme{
    },
    defaultTheme
 };
+
+BoolSetting GUIBlendThemes{ wxT("/GUI/BlendThemes"), true };
 
