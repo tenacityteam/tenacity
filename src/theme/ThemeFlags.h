@@ -19,9 +19,7 @@ enum teResourceType
 {
    resTypeColour,
    resTypeBitmap,
-   resTypeImage = resTypeBitmap,
-   resTypeCursor,
-   resTypeFont
+   resTypeImage = resTypeBitmap
 };
 
 enum teResourceFlags
