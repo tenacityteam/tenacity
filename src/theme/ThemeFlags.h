@@ -31,25 +31,3 @@ enum teResourceFlags
    resFlagInternal = 0x08,  // For image manipulation.  Don't save or load.
    resFlagSkip = 0x10
 };
-
-enum teThemeType
-{
-   themeLight,
-   themeDark,
-   themeSaucedacity,
-   themeAudacity,
-   themeAudacityClassic,
-   themeProTools,
-   themeAudaciumLightBlue,
-   themeAudaciumLightOrange,
-   themeAudaciumLightPink,
-   themeAudaciumLightGreen,
-   themeAudaciumLightPurple,
-   themeAudaciumDarkBlue,
-   themeAudaciumDarkOrange,
-   themeAudaciumDarkPink,
-   themeAudaciumDarkGreen,
-   themeAudaciumDarkPurple,
-   themeHiContrast,
-   themeFromFile,
-};

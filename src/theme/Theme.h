@@ -17,12 +17,16 @@
 #include <vector>
 #include <wx/defs.h>
 #include <wx/window.h> // to inherit
+#include "ComponentInterfaceSymbol.h"
 
 #include "ThemeFlags.h"
 #include "FlowPacker.h"
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+
+//! A choice of theme such as "Light", "Dark", ...
+using teThemeType = Identifier;
 
 class wxArrayString;
 class wxBitmap;
@@ -43,15 +47,25 @@ public:
 
 public:
    virtual void EnsureInitialised()=0;
+
+   // Typically statically constructed:
+   struct TENACITY_DLL_API RegisteredTheme {
+      RegisteredTheme(EnumValueSymbol symbol,
+         const std::vector<unsigned char> &data /*!<
+            A reference to this vector is stored, not a copy of it! */
+      );
+      ~RegisteredTheme();
+      const EnumValueSymbol symbol;
+   };
+
    void LoadTheme( teThemeType Theme );
    void RegisterImage( int &flags, int &iIndex,char const** pXpm, const wxString & Name);
    void RegisterImage( int &flags, int &iIndex, const wxImage &Image, const wxString & Name );
    void RegisterColour( int &iIndex, const wxColour &Clr, const wxString & Name );
 
    teThemeType GetFallbackThemeType();
-   teThemeType ThemeTypeOfTypeName( const wxString & Name );
    void CreateImageCache(bool bBinarySave = true);
-   bool ReadImageCache( teThemeType type = themeFromFile, bool bOkIfNotFound=false);
+   bool ReadImageCache( teThemeType type = {}, bool bOkIfNotFound=false);
    void LoadComponents( bool bOkIfNotFound =false);
    void SaveComponents();
    void SaveThemeAsCode();
@@ -118,8 +132,6 @@ extern TENACITY_DLL_API BoolSetting
      GUIBlendThemes
 ;
 
-extern TENACITY_DLL_API ChoiceSetting
-     GUITheme
-;
+extern TENACITY_DLL_API ChoiceSetting &GUITheme();
 
 #endif // __AUDACITY_THEME__

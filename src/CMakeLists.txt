@@ -700,22 +700,39 @@ list( APPEND SOURCES
 
       # Theming
       # Built-in themes #######################################################
+      theme/AudacityClassicThemeAsCeeCode.cpp
       theme/AudacityClassicThemeAsCeeCode.h
+      theme/AudacityThemeAsCeeCode.cpp
       theme/AudacityThemeAsCeeCode.h
+      theme/AudaciumDarkBlueThemeAsCeeCode.cpp
       theme/AudaciumDarkBlueThemeAsCeeCode.h
+      theme/AudaciumDarkGreenThemeAsCeeCode.cpp
       theme/AudaciumDarkGreenThemeAsCeeCode.h
+      theme/AudaciumDarkPinkThemeAsCeeCode.cpp      
       theme/AudaciumDarkPinkThemeAsCeeCode.h
+      theme/AudaciumDarkPurpleThemeAsCeeCode.cpp
       theme/AudaciumDarkPurpleThemeAsCeeCode.h
+      theme/AudaciumDarkOrangeThemeAsCeeCode.cpp
       theme/AudaciumDarkOrangeThemeAsCeeCode.h
+      theme/AudaciumLightBlueThemeAsCeeCode.cpp
       theme/AudaciumLightBlueThemeAsCeeCode.h
+      theme/AudaciumLightGreenThemeAsCeeCode.cpp
       theme/AudaciumLightGreenThemeAsCeeCode.h
+      theme/AudaciumLightPinkThemeAsCeeCode.cpp
       theme/AudaciumLightPinkThemeAsCeeCode.h
+      theme/AudaciumLightPurpleThemeAsCeeCode.cpp
       theme/AudaciumLightPurpleThemeAsCeeCode.h
+      theme/AudaciumLightOrangeThemeAsCeeCode.cpp
       theme/AudaciumLightOrangeThemeAsCeeCode.h
+      theme/DarkThemeAsCeeCode.cpp
       theme/DarkThemeAsCeeCode.h
+      theme/HiContrastThemeAsCeeCode.cpp
       theme/HiContrastThemeAsCeeCode.h
+      theme/LightThemeAsCeeCode.cpp
       theme/LightThemeAsCeeCode.h
+      theme/ProToolsThemeAsCeeCode.cpp
       theme/ProToolsThemeAsCeeCode.h
+      theme/SaucedacityThemeAsCeeCode.cpp
       theme/SaucedacityThemeAsCeeCode.h
       #########################################################################
       theme/AllThemeResources.cpp

@@ -38,6 +38,8 @@
 #include "ThemeFlags.h"
 #include "SourceOutputStream.h"
 
+#include <map>
+
 #include <wx/wxprec.h>
 #include <wx/dcclient.h>
 #include <wx/image.h>
@@ -56,72 +58,6 @@
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Internat.h>
 #include <lib-utility/MemoryX.h>
-
-///////////// ImageCache Includes /////////////////////////////////////////////
-
-static const unsigned char LightImageCacheAsData[] = {
-#include "LightThemeAsCeeCode.h"
-};
-
-static const unsigned char DarkImageCacheAsData[] = {
-#include "DarkThemeAsCeeCode.h"
-};
-
-static const unsigned char SaucedacityImageCacheAsData[] = {
-#include "SaucedacityThemeAsCeeCode.h"
-};
-
-static const unsigned char AudacityImageCacheAsData[] = {
-#include "AudacityThemeAsCeeCode.h"
-};
-
-static const unsigned char AudacityClassicImageCacheAsData[] = {
-#include "AudacityClassicThemeAsCeeCode.h"
-};
-
-static const unsigned char HiContrastImageCacheAsData[] = {
-#include "HiContrastThemeAsCeeCode.h"
-};
-
-static const unsigned char ProToolsImageCacheAsData[] = {
-#include "ProToolsThemeAsCeeCode.h"
-};
-
-// Audacium light themes
-static const unsigned char AudaciumLightBlueImageCacheAsData[] = {
-#include "AudaciumLightBlueThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumLightOrangeImageCacheAsData[] = {
-#include "AudaciumLightOrangeThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumLightPinkImageCacheAsData[] = {
-#include "AudaciumLightPinkThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumLightGreenImageCacheAsData[] = {
-#include "AudaciumLightGreenThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumLightPurpleImageCacheAsData[] = {
-#include "AudaciumLightPurpleThemeAsCeeCode.h"
-};
-
-// Audacium dark themes
-static const unsigned char AudaciumDarkBlueImageCacheAsData[] = {
-#include "AudaciumDarkBlueThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumDarkOrangeImageCacheAsData[] = {
-#include "AudaciumDarkOrangeThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumDarkPinkImageCacheAsData[] = {
-#include "AudaciumDarkPinkThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumDarkGreenImageCacheAsData[] = {
-#include "AudaciumDarkGreenThemeAsCeeCode.h"
-};
-static const unsigned char AudaciumDarkPurpleImageCacheAsData[] = {
-#include "AudaciumDarkPurpleThemeAsCeeCode.h"
-};
-
-///////////////////////////////////////////////////////////////////////////////
 
 // theTheme is a global variable.
 TENACITY_DLL_API Theme theTheme;
@@ -150,9 +86,9 @@ void Theme::EnsureInitialised()
 bool ThemeBase::LoadPreferredTheme()
 {
 // DA: Default themes differ.
-   auto theme = GUITheme.Read();
+   Identifier theme = GUITheme().Read();
 
-   theTheme.LoadTheme( theTheme.ThemeTypeOfTypeName( theme ) );
+   theTheme.LoadTheme( theme );
    return true;
 }
 
@@ -184,6 +120,27 @@ ThemeBase::ThemeBase(void)
 
 ThemeBase::~ThemeBase(void)
 {
+}
+
+using ThemeCacheLookup =
+   std::map< EnumValueSymbol, const std::vector<unsigned char>& >;
+
+static ThemeCacheLookup &GetThemeCacheLookup()
+{
+   static ThemeCacheLookup theMap;
+   return theMap;
+}
+
+ThemeBase::RegisteredTheme::RegisteredTheme(
+   EnumValueSymbol symbol, const std::vector<unsigned char> &data )
+   : symbol{ symbol }
+{
+   GetThemeCacheLookup().emplace(symbol, data);
+}
+
+ThemeBase::RegisteredTheme::~RegisteredTheme()
+{
+   GetThemeCacheLookup().erase(symbol);
 }
 
 /// This function is called to load the initial Theme images.
@@ -647,46 +604,15 @@ void ThemeBase::WriteImageDefs( )
 }
 
 
-teThemeType ThemeBase::GetFallbackThemeType()
-{
-   // Fallback must be an internally supported type,
-   // to guarantee it is found.
-   return themeDark;
+teThemeType ThemeBase::GetFallbackThemeType(){
+// Fallback must be an internally supported type,
+// to guarantee it is found.
+   return "dark";
 }
-
-teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
-{
-   static const wxArrayStringEx aThemes{
-      "light",
-      "dark",
-      "saucedacity",
-      "audacity",
-      "audacity-classic",
-      "pro-tools",
-      "audacium-blue",
-      "audacium-orange",
-      "audacium-pink",
-      "audacium-green",
-      "audacium-purple",
-      "audacium-dark-blue",
-      "audacium-dark-orange",
-      "audacium-dark-pink",
-      "audacium-dark-green",
-      "audacium-dark-purple",
-      "high-contrast",
-      "custom",
-   };
-   int themeIx = make_iterator_range( aThemes ).index( Name );
-   if( themeIx < 0 )
-      return GetFallbackThemeType();
-   return (teThemeType)themeIx;
-}
-
-
 
 /// Reads an image cache including images, cursors and colours.
-/// @param bBinaryRead if true means read from an external binary file.
-///   otherwise the data is taken from a compiled in block of memory.
+/// @param type if empty means read from an external binary file.
+///   otherwise the data is taken from a block of memory.
 /// @param bOkIfNotFound if true means do not report absent file.
 /// @return true iff we loaded the images.
 bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
@@ -703,7 +629,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
 
    bRecolourOnLoad = GUIBlendThemes.Read();
 
-   if(  type == themeFromFile )
+   if( type.empty() )
    {
       const auto &FileName = FileNames::ThemeCachePng();
       if( !wxFileExists( FileName ))
@@ -729,94 +655,14 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
    {
       size_t ImageSize = 0;
       const unsigned char * pImage = nullptr;
-      switch( type )
-      {
-         default: 
-         case themeDark:
-            ImageSize = sizeof(DarkImageCacheAsData);
-            pImage = DarkImageCacheAsData;
-            break;
-
-         case themeLight:
-            ImageSize = sizeof(LightImageCacheAsData);
-            pImage = LightImageCacheAsData;
-            break;
-
-         case themeSaucedacity:
-            ImageSize = sizeof(SaucedacityImageCacheAsData);
-            pImage = SaucedacityImageCacheAsData;
-            break;
-
-         case themeAudacity:
-            ImageSize = sizeof(AudacityImageCacheAsData);
-            pImage = AudacityImageCacheAsData;
-            break;
-
-         case themeAudacityClassic:
-            ImageSize = sizeof(AudacityClassicImageCacheAsData);
-            pImage = AudacityClassicImageCacheAsData;
-            break;
-
-         case themeProTools:
-            ImageSize = sizeof(ProToolsImageCacheAsData);
-            pImage = ProToolsImageCacheAsData;
-            break;
-
-         case themeAudaciumLightBlue:
-             ImageSize = sizeof(AudaciumLightBlueImageCacheAsData);
-             pImage = AudaciumLightBlueImageCacheAsData;
-             break;
-
-         case themeAudaciumLightOrange:
-             ImageSize = sizeof(AudaciumLightOrangeImageCacheAsData);
-             pImage = AudaciumLightOrangeImageCacheAsData;
-             break;
-
-         case themeAudaciumLightPink:
-             ImageSize = sizeof(AudaciumLightPinkImageCacheAsData);
-             pImage = AudaciumLightPinkImageCacheAsData;
-             break;
-
-         case themeAudaciumLightGreen:
-             ImageSize = sizeof(AudaciumLightGreenImageCacheAsData);
-             pImage = AudaciumLightGreenImageCacheAsData;
-             break;
-
-         case themeAudaciumLightPurple:
-             ImageSize = sizeof(AudaciumLightPurpleImageCacheAsData);
-             pImage = AudaciumLightPurpleImageCacheAsData;
-             break;
-
-         case themeAudaciumDarkBlue:
-             ImageSize = sizeof(AudaciumDarkBlueImageCacheAsData);
-             pImage = AudaciumDarkBlueImageCacheAsData;
-             break;
-
-         case themeAudaciumDarkOrange:
-             ImageSize = sizeof(AudaciumDarkOrangeImageCacheAsData);
-             pImage = AudaciumDarkOrangeImageCacheAsData;
-             break;
-
-         case themeAudaciumDarkPink:
-             ImageSize = sizeof(AudaciumDarkPinkImageCacheAsData);
-             pImage = AudaciumDarkPinkImageCacheAsData;
-             break;
-
-         case themeAudaciumDarkGreen:
-             ImageSize = sizeof(AudaciumDarkGreenImageCacheAsData);
-             pImage = AudaciumDarkGreenImageCacheAsData;
-             break;
-
-         case themeAudaciumDarkPurple:
-             ImageSize = sizeof(AudaciumDarkGreenImageCacheAsData);
-             pImage = AudaciumDarkPurpleImageCacheAsData;
-             break;
-
-         case themeHiContrast:
-            ImageSize = sizeof(HiContrastImageCacheAsData);
-            pImage = HiContrastImageCacheAsData;
-            break;
+      auto &lookup = GetThemeCacheLookup();
+      auto iter = lookup.find({type, {}});
+      if (const auto end = lookup.end(); iter == end) {
+         iter = lookup.find({"classic", {}});
+         wxASSERT(iter != end);
       }
+      ImageSize = iter->second.size();
+      pImage = iter->second.data();
       //wxLogDebug("Reading ImageCache %p size %i", pImage, ImageSize );
       wxMemoryInputStream InternalStream( pImage, ImageSize );
 
@@ -1085,98 +931,40 @@ void ThemeBase::RotateImageInto( int iTo, int iFrom, bool bClockwise )
    ReplaceImage( iTo, &img2 );
 }
 
-/** @brief Default Theme.
- * 
- * Options:
- * 
- * 1 - Default
- * 2 - Dark
- * 
- **/
-constexpr int defaultTheme = 1;
+ChoiceSetting &GUITheme()
+{
+   auto symbols = []{
+      std::vector<EnumValueSymbol> symbols;
 
-ChoiceSetting GUITheme{
-   wxT("/GUI/Theme"),
-   {
-      ByColumns,
+      // Gather registered themes
+      for (const auto &[symbol, data] : GetThemeCacheLookup())
       {
-         XO("Light"),
-
-         XO("Dark"),
-
-         /* i18n-hint: describing the appearance of Tenacity 1.2 */
-         XO("Saucedacity"),
-
-         /* i18n-hint: describing the appearance of Audacity 3.0.4's default theme */
-         XO("Audacity"),
-
-         /* i18n-hint: describing the "classic" or traditional
-            appearance of older versions of Audacity (before Tenacity) */
-         XO("Audacity Classic"),
-
-         // i18n-hint: A Pro Tools lookalike theme
-         XO("Pro Tools"),
-
-         // i18n-hint: A light theme with blue audio waveforms, taken from Audacium.
-         XO("Audacium Light Blue"),
-
-         //i18n-hint: A light theme with orange audio waveforms, taken from Audacium.
-         XO("Audacium Light Orange"),
-
-         // i18n-hint: A light theme with pink audio waveforms, taken from Audacium.
-         XO("Audacium Light Pink"),
-
-         // i18n-hint: A light theme with green audio waveforms, taken from Audacium.
-         XO("Audacium Light Green"),
-
-         // i18n-hint: A light theme with purple audio waveforms, taken from Audacium.
-         XO("Audacium Light Purple"),
-
-         // i18n-hint: A light theme with blue audio waveforms, taken from Audacium.
-         XO("Audacium Dark Blue"),
-
-         // i18n-hint: A dark theme with orange audio waveforms, taken from Audacium.
-         XO("Audacium Dark Orange"),
-
-         // i18n-hint: A dark theme with pink audio waveforms, taken from Audacium.
-         XO("Audacium Dark Pink"),
-
-         // i18n-hint: A dark theme with green audio waveforms, taken from Audacium.
-         XO("Audacium Dark Green"),
-
-         // i18n-hint: A dark theme with purple audio waveforms, taken from Audacium.
-         XO("Audacium Dark Purple"),
-
-         /* i18n-hint: greater difference between foreground and
-            background colors */
-         XO("High Contrast"),
-
-         /* i18n-hint: user defined */
-         XO("Custom"),
-      },
-      {
-         wxT("light"),
-         wxT("dark"),
-         wxT("saucedacity"),
-         wxT("audacity"),
-         wxT("audacity-classic"),
-         wxT("pro-tools"),
-         wxT("audacium-blue"),
-         wxT("audacium-orange"),
-         wxT("audacium-pink"),
-         wxT("audacium-green"),
-         wxT("audacium-purple"),
-         wxT("audacium-dark-blue"),
-         wxT("audacium-dark-orange"),
-         wxT("audacium-dark-pink"),
-         wxT("audacium-dark-green"),
-         wxT("audacium-dark-purple"),
-         wxT("high-contrast"),
-         wxT("custom"),
+         symbols.emplace_back(symbol);
       }
-   },
-   defaultTheme
-};
+
+      static auto index = [&](const EnumValueSymbol &symbol){
+         return std::find(symbols.begin(), symbols.end(), symbol.Internal());
+      };
+
+      std::stable_sort( symbols.begin(), symbols.end(),
+         [](auto &a, auto &b){ return index(a) < index(b); } );
+
+      // Last, custom
+      symbols.emplace_back(
+         /* i18n-hint: user defined */
+         "custom", XO("Custom")
+      );
+   
+      return symbols;
+   };
+
+   constexpr int defaultTheme = 12; // "dark"
+
+   static ChoiceSetting setting {
+      wxT("/GUI/Theme"), symbols(), defaultTheme
+   };
+
+   return setting;
+}
 
 BoolSetting GUIBlendThemes{ wxT("/GUI/BlendThemes"), true };
-
