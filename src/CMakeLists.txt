@@ -155,7 +155,7 @@ list( APPEND SOURCES
       LabelTrack.h
       LangChoice.cpp
       LangChoice.h
-      LightThemeAsCeeCode.h
+      AudacityThemeAsCeeCode.h
       LogWindow.cpp
       LogWindow.h
       Lyrics.cpp
