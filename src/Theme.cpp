@@ -189,12 +189,19 @@ can't be.
 static const unsigned char DarkImageCacheAsData[] = {
 #include "DarkThemeAsCeeCode.h"
 };
+
+static const unsigned char DefaultImageCacheAsData[] = {
+#include "DefaultThemeAsCeeCode.h"
+};
+
 static const unsigned char AudacityImageCacheAsData[] = {
 #include "AudacityThemeAsCeeCode.h"
 };
+
 static const unsigned char ClassicImageCacheAsData[] = {
 #include "ClassicThemeAsCeeCode.h"
 };
+
 static const unsigned char HiContrastImageCacheAsData[] = {
 #include "HiContrastThemeAsCeeCode.h"
 };
@@ -903,7 +910,8 @@ teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
    static const wxArrayStringEx aThemes{
       "classic" ,
       "dark" ,
-      "light" ,
+      "default" ,
+      "audacity" ,
       "high-contrast" ,
       "custom" ,
    };
@@ -965,6 +973,10 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          case themeClassic : 
             ImageSize = sizeof(ClassicImageCacheAsData);
             pImage = ClassicImageCacheAsData;
+            break;
+         case themeDefault :
+            ImageSize = sizeof(DefaultImageCacheAsData);
+            pImage = DefaultImageCacheAsData;
             break;
          case themeAudacity : 
             ImageSize = sizeof(AudacityImageCacheAsData);
@@ -1307,7 +1319,7 @@ constexpr int defaultTheme =
 #ifdef EXPERIMENTAL_DA
    2 // "dark"
 #else
-   1 // "audacity". FIXME: this should change to "default" for our own new theme
+   1 // "default"
 #endif
 ;
 
@@ -1319,6 +1331,10 @@ ChoiceSetting GUITheme{
          /* i18n-hint: describing the "classic" or traditional
             appearance of older versions of Audacity (prior to Saucedacity) */
          XO("Classic")  ,
+         /* i18n-hint: describes the main theme that is first applied if
+            the user has not selected a custom theme (whether it's an
+            internal or external theme) */
+         XO("Default")  ,
          // Note: The "Audacity" theme was previously known as the "Light" theme
          XO("Audacity")  ,
          XO("Dark")  ,
@@ -1330,6 +1346,7 @@ ChoiceSetting GUITheme{
       },
       {
          wxT("classic")  ,
+         wxT("default")  ,
          wxT("audacity")  ,
          wxT("dark")  ,
          wxT("high-contrast")  ,

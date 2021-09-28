@@ -55,6 +55,7 @@ enum teThemeType
 {
    themeClassic,
    themeDark,
+   themeDefault,
    themeAudacity,
    themeHiContrast,
    themeFromFile,
