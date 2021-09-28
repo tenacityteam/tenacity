@@ -37,6 +37,8 @@
 #include "../../../../images/Cursors.h"
 #include "../../../../HitTestResult.h"
 
+#include "WaveClipTrimHandle.h"
+
 class WaveTrackAffordanceHandle final : public AffordanceHandle
 {
     std::shared_ptr<WaveClip> mTarget;
@@ -175,6 +177,17 @@ std::vector<UIHandlePtr> WaveTrackAffordanceControls::HitTest(const TrackPanelMo
     const auto rect = state.rect;
 
     const auto track = FindTrack();
+
+    {
+        auto handle = WaveClipTrimHandle::HitAnywhere(
+            mClipTrimHandle,
+            std::static_pointer_cast<WaveTrack>(track).get(),
+            pProject,
+            state);
+
+        if (handle)
+            results.push_back(handle);
+    }
 
     auto trackList = track->GetOwner();
     if ((std::abs(rect.GetTop() - py) <= WaveTrackView::kChannelSeparatorThickness / 2) 
