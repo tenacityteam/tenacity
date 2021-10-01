@@ -1255,6 +1255,9 @@ else()
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
       POST_BUILD
    )
+   
+   add_executable(findlib ../linux/findlib.c)
+   target_link_libraries(findlib ${CMAKE_DL_LIBS})
 endif()
 
 set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${APP_NAME} )
