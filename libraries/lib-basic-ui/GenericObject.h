@@ -53,10 +53,10 @@ class GenericObject
      * **std::invalid_argument** - `child` is null.
      *
      * @param child The child object to add as a child.
-     * @return Returns `this`.
+     * @return Returns `*this` (for function chaining).
      *
      */
-    virtual GenericObject* AddChild(GenericObject* child, bool is_allocated);
+    virtual GenericObject& AddChild(GenericObject* child, bool is_allocated);
 
     /** Clears all children from the current object.
      *
@@ -69,10 +69,10 @@ class GenericObject
      * parent is also no longer a parent itself since it doesn't have any
      * children.
      *
-     * @return Returns `this`.
+     * @return Returns `*this` (for function chaining).
      *
      */
-    virtual GenericObject* ClearChildren();
+    virtual GenericObject& ClearChildren();
 
     /** Gets the parent of the current object.
      *
@@ -119,8 +119,8 @@ class GenericObject
     virtual void DestroyObject();
 
   protected:
-    /** Shareed object flags.
-     * 
+    /** Shared object flags.
+     *
      * These flags are shared flags across derivative classes. This is
      * intended for reuse for different classes, although not all
      * classes might use such objects

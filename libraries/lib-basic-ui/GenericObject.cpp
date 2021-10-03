@@ -29,7 +29,7 @@ GenericObject::~GenericObject()
 
 // Public member functions
 
-GenericObject* GenericObject::AddChild(GenericObject* child, bool is_allocated)
+GenericObject& GenericObject::AddChild(GenericObject* child, bool is_allocated)
 {
   LinkedObject linked_obj;
 
@@ -42,13 +42,13 @@ GenericObject* GenericObject::AddChild(GenericObject* child, bool is_allocated)
     mChildObjects.push_back(linked_obj);
   }
 
-  return this;
+  return *this;
 }
 
-GenericObject* GenericObject::ClearChildren()
+GenericObject& GenericObject::ClearChildren()
 {
   mChildObjects.clear();
-  return this;
+  return *this;
 }
 
 void GenericObject::DestroyObject()
