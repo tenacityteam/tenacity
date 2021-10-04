@@ -31,7 +31,7 @@ class GenericObject
     GenericObject();
 
     /// Default destructor.
-    ~GenericObject();
+    virtual ~GenericObject();
 
     /** Adds a parent object to the current object.
      *
@@ -118,25 +118,20 @@ class GenericObject
      */
     virtual void DestroyObject();
 
-  protected:
+  private:
     /** Shared object flags.
      *
-     * These flags are shared flags across derivative classes. This is
-     * intended for reuse for different classes, although not all
-     * classes might use such objects
+     * These are internal flags that GenericObject uses. As flags are not
+     * intended to be re-used across objects (as the need for flags varies on a
+     * per-object type basis), these flags are private and therefore cannot be
+     * reused in derived classes.
      */
-    enum class GenericObjectFlags : unsigned long
+    enum Flags
     {
-      IsChildObject = 1 << 0 /// If the object is a parent
+      FlagIsChildObject = 1 << 0 /// If the object is a parent
     };
 
-    /// Internal function to convert from GenericObjectFlags to unsigned long
-    /// (making it usable for mFlags).
-    constexpr unsigned long ConvertFlag(GenericObjectFlags flag)
-    {
-      return static_cast<unsigned long>(flag);
-    }
-
+  protected:
     /// Internal C-style struct for keeping track of manually allocated objects.
     struct LinkedObject
     {
