@@ -24,6 +24,7 @@ GenericObject::GenericObject()
 
 GenericObject::~GenericObject()
 {
+  DestroyChildObjects();
   DestroyObject();
 }
 
