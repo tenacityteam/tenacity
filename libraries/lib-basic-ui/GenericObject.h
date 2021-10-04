@@ -125,10 +125,17 @@ class GenericObject
      * intended for reuse for different classes, although not all
      * classes might use such objects
      */
-    enum class GenericObjectFlags
+    enum class GenericObjectFlags : unsigned long
     {
       IsChildObject = 1 << 0 /// If the object is a parent
     };
+
+    /// Internal function to convert from GenericObjectFlags to unsigned long
+    /// (making it usable for mFlags).
+    constexpr unsigned long ConvertFlag(GenericObjectFlags flag)
+    {
+      return static_cast<unsigned long>(flag);
+    }
 
     /// Internal C-style struct for keeping track of manually allocated objects.
     struct LinkedObject
