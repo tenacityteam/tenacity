@@ -1107,11 +1107,33 @@ auto WaveTrackView::GetSubViews(const wxRect* rect) -> Refinement
 unsigned WaveTrackView::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
 {
    unsigned result{ RefreshCode::RefreshNone };
-   if (auto affordance = GetAffordanceControls())
+
+   // Give sub-views first chance to handle the event
+   for (auto &subView : GetSubViews()) {
+      // Event defaults in skipped state which must be turned off explicitly
+      wxASSERT(!event.GetSkipped());
+      result |= subView.second->CaptureKey(event, viewInfo, pParent, project);
+      if (!event.GetSkipped()) {
+         // sub view wants it
+         mKeyEventDelegate = subView.second;
+         return result;
+      }
+      else
+         event.Skip(false);
+   }
+
+   if (auto affordance = GetAffordanceControls()) {
       result |= affordance->CaptureKey(event, viewInfo, pParent, project);
+      if (!event.GetSkipped()) {
+         mKeyEventDelegate = affordance;
+         return result;
+      }
+   }
     
-   if(event.GetSkipped())
-      result |= CommonTrackView::CaptureKey(event, viewInfo, pParent, project);
+   event.Skip(false);
+   result |= CommonTrackView::CaptureKey(event, viewInfo, pParent, project);
+   if (!event.GetSkipped())
+      mKeyEventDelegate = shared_from_this();
 
    return result;
 }
@@ -1119,24 +1141,26 @@ unsigned WaveTrackView::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWind
 unsigned WaveTrackView::KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
 {
    unsigned result{ RefreshCode::RefreshNone };
-   if (auto affordance = GetAffordanceControls())
-      result |= affordance->KeyDown(event, viewInfo, pParent, project);
-    
-   if(event.GetSkipped())
-      result |= CommonTrackView::KeyDown(event, viewInfo, pParent, project);
-
+   if (auto delegate = mKeyEventDelegate.lock()) {
+      if (auto pWaveTrackView = dynamic_cast<WaveTrackView*>(delegate.get()))
+         result |= pWaveTrackView->CommonTrackView::KeyDown(
+            event, viewInfo, pParent, project);
+      else
+         result |= delegate->KeyDown(event, viewInfo, pParent, project);
+   }
    return result;
 }
 
 unsigned WaveTrackView::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
 {
    unsigned result{ RefreshCode::RefreshNone };
-   if (auto affordance = GetAffordanceControls())
-      result |= affordance->Char(event, viewInfo, pParent, project);
-    
-   if(event.GetSkipped())
-      result |= CommonTrackView::Char(event, viewInfo, pParent, project);
-
+   if (auto delegate = mKeyEventDelegate.lock()) {
+      if (auto pWaveTrackView = dynamic_cast<WaveTrackView*>(delegate.get()))
+         result |= pWaveTrackView->CommonTrackView::Char(
+            event, viewInfo, pParent, project);
+      else
+         result |= delegate->Char(event, viewInfo, pParent, project);
+   }
    return result;
 }
 
