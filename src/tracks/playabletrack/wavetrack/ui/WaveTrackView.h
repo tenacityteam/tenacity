@@ -171,6 +171,8 @@ public:
    (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
        SaucedacityProject* project) override;
 
+   unsigned LoseFocus(SaucedacityProject *project) override;
+
 private:
    void BuildSubViews() const;
    void DoSetDisplay(Display display, bool exclusive = true);

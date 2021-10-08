@@ -1164,6 +1164,16 @@ unsigned WaveTrackView::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pP
    return result;
 }
 
+unsigned WaveTrackView::LoseFocus(SaucedacityProject *project)
+{
+   unsigned result = RefreshCode::RefreshNone;
+   if (auto delegate = mKeyEventDelegate.lock()) {
+      result = delegate->LoseFocus(project);
+      mKeyEventDelegate.reset();
+   }
+   return result;
+}
+
 std::vector< std::shared_ptr< WaveTrackSubView > >
 WaveTrackView::GetAllSubViews()
 {

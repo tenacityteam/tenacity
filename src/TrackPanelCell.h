@@ -134,6 +134,11 @@ public:
    virtual unsigned Char
       (wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *pParent,
        SaucedacityProject *project);
+
+   // Return value is a bitwise OR of RefreshCode values
+   // Notification to the focused cell that the CellularPanel is losing focus
+   // Default does nothing, returns RefreshCode::RefreshNone
+   virtual unsigned LoseFocus(SaucedacityProject *project);
 };
 
 #endif

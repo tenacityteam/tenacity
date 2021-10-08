@@ -71,6 +71,8 @@ public:
     (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
         SaucedacityProject* project) override;
 
+    unsigned LoseFocus(SaucedacityProject *project) override;
+
     void OnTextEditFinished(SaucedacityProject* project, const wxString& text) override;
     void OnTextEditCancelled(SaucedacityProject* project) override;
     void OnTextModified(SaucedacityProject* project, const wxString& text) override;
@@ -83,6 +85,8 @@ public:
 
 private:
     void OnTrackChanged(TrackListEvent& evt);
+
+    unsigned ExitTextEditing();
 
     bool SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward);
 
