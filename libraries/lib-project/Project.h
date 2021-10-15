@@ -131,7 +131,7 @@ private:
 
 // Generate a registry for serialized data attached to the project
 #include "XMLMethodRegistry.h"
-class AudacityProject;
+class TenacityProject;
 using ProjectFileIORegistry = XMLMethodRegistry<TenacityProject>;
 DECLARE_XML_METHOD_REGISTRY( PROJECT_API, ProjectFileIORegistry );
 

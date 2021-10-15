@@ -21,6 +21,7 @@ Paul Licameli split from TenacityProject.cpp
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-files/wxFileNameWrapper.h>
+#include <lib-project/ProjectFormatExtensionsRegistry.h>
 #include <lib-xml/XMLFileReader.h>
 #include <lib-xml/XMLStringWriter.h>
 #include <lib-xml/XMLWriter.h>
@@ -76,7 +77,8 @@ static const int ProjectFileID = PACK('A', 'U', 'D', 'Y');
 // Note that this is NOT the "schema_version" that SQLite maintains. The value
 // specified here is stored in the "user_version" field of the SQLite database
 // header.
-static const int ProjectFileVersion = PACK(3, 0, 0, 0);
+// DV: ProjectFileVersion is now evaluated at runtime
+// static const int ProjectFileVersion = PACK(3, 0, 0, 0);
 
 // Navigation:
 //
@@ -92,7 +94,7 @@ static const char *ProjectFileSchema =
    // See the CMakeList.txt for the SQLite lib for more
    // settings.
    "PRAGMA <schema>.application_id = %d;"
-   "PRAGMA <schema>.user_version = %d;"
+   "PRAGMA <schema>.user_version = %u;"
    ""
    // project is a binary representation of an XML file.
    // it's in binary for speed.
@@ -671,11 +673,12 @@ bool ProjectFileIO::CheckVersion()
       return false;
    }
 
-   long version = wxStrtol<char **>(result, nullptr, 10);
+   const ProjectFormatVersion version =
+      ProjectFormatVersion::FromPacked(wxStrtoul<char**>(result, nullptr, 10));
 
    // Project file version is higher than ours. We will refuse to
    // process it since we can't trust anything about it.
-   if (version > ProjectFileVersion)
+   if (SupportedProjectFormatVersion < version)
    {
       SetError(
          XO("This project was created with a version of Audacity (or a derivate) that is not supported by Tenacity.\n\nYou will need to use that version to open it.")
@@ -683,13 +686,6 @@ bool ProjectFileIO::CheckVersion()
       return false;
    }
    
-   // Project file is older than ours, ask the user if it's okay to
-   // upgrade.
-   if (version < ProjectFileVersion)
-   {
-      return UpgradeSchema();
-   }
-
    return true;
 }
 
@@ -698,7 +694,7 @@ bool ProjectFileIO::InstallSchema(sqlite3 *db, const char *schema /* = "main" */
    int rc;
 
    wxString sql;
-   sql.Printf(ProjectFileSchema, ProjectFileID, ProjectFileVersion);
+   sql.Printf(ProjectFileSchema, ProjectFileID, BaseProjectFormatVersion.GetPacked());
    sql.Replace("<schema>", schema);
 
    rc = sqlite3_exec(db, sql, nullptr, nullptr, nullptr);
@@ -710,12 +706,6 @@ bool ProjectFileIO::InstallSchema(sqlite3 *db, const char *schema /* = "main" */
       return false;
    }
 
-   return true;
-}
-
-bool ProjectFileIO::UpgradeSchema()
-{
-   // To do
    return true;
 }
 
@@ -1742,6 +1732,24 @@ bool ProjectFileIO::WriteDoc(const char *table,
       SetDBError(
          XO("Failed to update the project file.\nThe following command failed:\n\n%s").Format(sql)
       );
+      return false;
+   }
+
+   const auto requiredVersion =
+      ProjectFormatExtensionsRegistry::Get().GetRequiredVersion(mProject);
+
+   const wxString setVersionSql =
+      wxString::Format("PRAGMA user_version = %u", requiredVersion.GetPacked());
+
+   if (!Query(setVersionSql.c_str(), [](auto...) { return 0; }))
+   {
+      // DV: Very unlikely case.
+      // Since we need to improve the error messages in the future, let's use
+      // the generic message for now, so no new strings are needed
+      SetDBError(
+         XO("Failed to update the project file.\nThe following command failed:\n\n%s")
+            .Format(setVersionSql));
+
       return false;
    }
 

@@ -82,7 +82,6 @@ public:
    // overwrite data excluding the sample sequence but including display
    // settings
    void Reinit(const WaveTrack &orig);
-
 private:
    void Init(const WaveTrack &orig);
 
@@ -579,7 +578,6 @@ private:
 
    //! Returns nullptr if clip with such name was not found
    const WaveClip* FindClipByName(const wxString& name) const;
-
  protected:
    //
    // Protected variables
@@ -719,10 +717,11 @@ class TENACITY_DLL_API WaveTrackFactory final
    static WaveTrackFactory &Reset( TenacityProject &project );
    static void Destroy( TenacityProject &project );
 
-   WaveTrackFactory( const ProjectRate &rate,
+   WaveTrackFactory(
+      const ProjectRate& rate,
       const SampleBlockFactoryPtr &pFactory)
-      : mRate{ rate }
-      , mpFactory(pFactory)
+       : mRate{ rate }
+       , mpFactory(pFactory)
    {
    }
    WaveTrackFactory( const WaveTrackFactory & ) = delete;
