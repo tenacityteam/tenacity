@@ -1257,7 +1257,10 @@ unsigned WaveTrackView::LoseFocus(SaucedacityProject *project)
 {
    unsigned result = RefreshCode::RefreshNone;
    if (auto delegate = mKeyEventDelegate.lock()) {
-      result = delegate->LoseFocus(project);
+      if (auto waveTrackView = dynamic_cast<WaveTrackView*>(delegate.get()))
+         result = waveTrackView->CommonTrackView::LoseFocus(project);
+      else
+         result = delegate->LoseFocus(project);
       mKeyEventDelegate.reset();
    }
    return result;
