@@ -15,6 +15,7 @@
 // Saucedacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-xml/XMLTagHandler.h>
+#include <lib-math/SampleCount.h>
 
 #include <wx/longlong.h>
 

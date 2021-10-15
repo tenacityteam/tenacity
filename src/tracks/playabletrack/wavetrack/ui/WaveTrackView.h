@@ -176,6 +176,7 @@ public:
 private:
    void BuildSubViews() const;
    void DoSetDisplay(Display display, bool exclusive = true);
+   bool SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward);
 
    // TrackPanelDrawable implementation
    void Draw(

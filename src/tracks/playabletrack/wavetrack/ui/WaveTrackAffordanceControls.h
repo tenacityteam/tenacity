@@ -88,7 +88,5 @@ private:
 
     unsigned ExitTextEditing();
 
-    bool SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward);
-
     std::shared_ptr<TextEditHelper> MakeTextEditHelper(const wxString& text);
 };
