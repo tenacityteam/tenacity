@@ -43,6 +43,8 @@
 #include "../../../../TrackPanel.h"
 #include "../../../../TrackPanelAx.h"
 
+#include "../WaveTrackUtils.h"
+
 #include "WaveClipTrimHandle.h"
 
 class WaveTrackAffordanceHandle final : public AffordanceHandle
@@ -338,21 +340,6 @@ std::weak_ptr<WaveClip> WaveTrackAffordanceControls::GetSelectedClip() const
 }
 
 namespace {
-// Function-making function
-auto ClipIsSelected(const ViewInfo &viewInfo)
-{
-    return [&viewInfo](const WaveClip& clip) {
-        return clip.GetPlayStartTime() == viewInfo.selectedRegion.t0() &&
-             clip.GetPlayEndTime() == viewInfo.selectedRegion.t1();
-    };
-}
-
-template<typename Iter>
-Iter SelectedClip(const ViewInfo &viewInfo, Iter begin, Iter end)
-{
-    return std::find_if(begin, end,
-      [&](auto &pClip){ return ClipIsSelected(viewInfo)(*pClip); });
-}
 
 auto FindAffordance(WaveTrack &track)
 {
@@ -374,7 +361,7 @@ SelectedClipOfFocusedTrack(SaucedacityProject &project)
             auto &viewInfo = ViewInfo::Get(project);
             auto &clips = pChannel->GetClips();
             auto begin = clips.begin(), end = clips.end(),
-               iter = SelectedClip(viewInfo, begin, end);
+               iter = WaveTrackUtils::SelectedClip(viewInfo, begin, end);
             if (iter != end)
                return { pChannel, iter->get() };
          }
@@ -503,10 +490,7 @@ namespace {
     template<typename Iter, typename Comp>
     WaveClip* NextClipLooped(ViewInfo& viewInfo, Iter begin, Iter end, Comp comp)
     {
-        auto it = std::find_if(begin, end, [&](WaveClip* clip) {
-            return clip->GetPlayStartTime() == viewInfo.selectedRegion.t0() &&
-                clip->GetPlayEndTime() == viewInfo.selectedRegion.t1();
-        });
+        auto it = WaveTrackUtils::SelectedClip(viewInfo, begin, end);
         if (it == end)
             it = std::find_if(begin, end, comp);
         else
