@@ -26,6 +26,7 @@ class WaveTrack;
 class WaveTrackView;
 class WaveClip;
 class WaveClipTrimHandle;
+class ZoomInfo;
 
 
 class TrackPanelResizeHandle;
@@ -172,6 +173,10 @@ public:
        SaucedacityProject* project) override;
 
    unsigned LoseFocus(SaucedacityProject *project) override;
+
+   static bool ClipDetailsVisible(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect);
+   static wxRect ClipHitTestArea(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect);
+   static bool HitTest(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& rect, const wxPoint& pos);
 
    //FIXME: These functions do not push state to undo history
    //because attempt to do so leads to a focus lose which, in
