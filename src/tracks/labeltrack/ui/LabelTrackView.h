@@ -116,6 +116,8 @@ public:
 
    bool CutSelectedText( SaucedacityProject &project );
    bool CopySelectedText( SaucedacityProject &project );
+   bool SelectAllText(SaucedacityProject& project);
+   
    bool PasteSelectedText(
       SaucedacityProject &project, double sel0, double sel1 );
 
