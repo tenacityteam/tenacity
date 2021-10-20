@@ -50,6 +50,11 @@ namespace TrackArt {
    SAUCEDACITY_DLL_API
    void DrawClipEdges(wxDC& dc, const wxRect& clipRect, bool selected = false);
 
+   //Used to draw clip boundaries without contents/details when it's not
+   //sensible to show them
+   SAUCEDACITY_DLL_API
+   void DrawClipFolded(wxDC& dc, const wxRect& rect);
+
    // Helper: draws the "sync-locked" watermark tiled to a rectangle
    SAUCEDACITY_DLL_API
    void DrawSyncLockTiles(
