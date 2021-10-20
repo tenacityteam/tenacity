@@ -32,6 +32,7 @@
 #include "../export/Export.h"
 #include "../prefs/PrefsDialog.h"
 #include "../tracks/labeltrack/ui/LabelTrackView.h"
+#include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"
 #include "../widgets/AudacityMessageBox.h"
 
 // private helper classes and functions
@@ -227,6 +228,16 @@ void OnCut(const CommandContext &context)
       }
    }
 
+   //Presumably, there might be not more than one track
+   //that expects text input
+   for (auto wt : tracks.Any<WaveTrack>()) {
+      auto& view = WaveTrackView::Get(*wt);
+      if (view.CutSelectedText(context.project)) {
+         trackPanel.Refresh(false);
+         return;
+      }
+   }
+
    auto &clipboard = Clipboard::Get();
    clipboard.Clear();
 
@@ -335,6 +346,14 @@ void OnCopy(const CommandContext &context)
          return;
       }
    }
+   //Presumably, there might be not more than one track
+   //that expects text input
+   for (auto wt : tracks.Any<WaveTrack>()) {
+      auto& view = WaveTrackView::Get(*wt);
+      if (view.CopySelectedText(context.project)) {
+         return;
+      }
+   }
 
    auto &clipboard = Clipboard::Get();
    clipboard.Clear();
@@ -384,6 +403,7 @@ void OnPaste(const CommandContext &context)
 {
    auto &project = context.project;
    auto &tracks = TrackList::Get( project );
+   auto& trackPanel = TrackPanel::Get(project);
    auto &trackFactory = WaveTrackFactory::Get( project );
    auto &pSampleBlockFactory = trackFactory.GetSampleBlockFactory();
    const auto &settings = ProjectSettings::Get( project );
@@ -394,6 +414,16 @@ void OnPaste(const CommandContext &context)
    // Handle text paste (into active label) first.
    if (DoPasteText(project))
       return;
+
+   //Presumably, there might be not more than one track
+   //that expects text input
+   for (auto wt : tracks.Any<WaveTrack>()) {
+      auto& view = WaveTrackView::Get(*wt);
+      if (view.PasteText(context.project)) {
+         trackPanel.Refresh(false);
+         return;
+      }
+   }
 
    // If nothing's selected, we just insert NEW tracks.
    if (DoPasteNothingSelected(project))

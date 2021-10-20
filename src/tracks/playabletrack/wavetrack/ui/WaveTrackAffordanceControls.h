@@ -86,6 +86,11 @@ public:
 
     unsigned OnAffordanceClick(const TrackPanelMouseEvent& event, SaucedacityProject* project);
 
+    bool OnTextCopy(SaucedacityProject& project);
+    bool OnTextCut(SaucedacityProject& project);
+    bool OnTextPaste(SaucedacityProject& project);
+    bool OnTextSelect(SaucedacityProject& project);
+
 private:
     void ResetClipNameEdit();
 
