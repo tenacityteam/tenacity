@@ -301,6 +301,9 @@ void TrackArtist::UpdatePrefs()
 
 void TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& title, bool highlight, bool selected)
 {
+   //To make sure that roundings do not overlap each other
+   auto clipFrameRadius = std::min(ClipFrameRadius, rect.width / 2);
+
    wxRect clipRect;
    //Fix #1689: visual glitches appear on attempt to draw a rectangle
    //larger than 0x7FFFFFF pixels wide (value was discovered
@@ -312,8 +315,8 @@ void TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& 
    if (dc.GetClippingBox(clipRect))
    {
        //to make sure that rounding happends outside the clipping rectangle
-       drawingRect.SetLeft(std::max(rect.GetLeft(), clipRect.GetLeft() - ClipFrameRadius - 1));
-       drawingRect.SetRight(std::min(rect.GetRight(), clipRect.GetRight() + ClipFrameRadius + 1));
+       drawingRect.SetLeft(std::max(rect.GetLeft(), clipRect.GetLeft() - clipFrameRadius - 1));
+       drawingRect.SetRight(std::min(rect.GetRight(), clipRect.GetRight() + clipFrameRadius + 1));
    }
 
    if (selected)
@@ -322,10 +325,10 @@ void TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& 
          drawingRect.x - ClipSelectionStrokeSize,
          drawingRect.y,
          drawingRect.width + ClipSelectionStrokeSize * 2,
-         drawingRect.height + ClipFrameRadius };
+         drawingRect.height + clipFrameRadius };
       dc.SetBrush(*wxTRANSPARENT_BRUSH);
       AColor::UseThemeColour(&dc, clrClipAffordanceStroke, clrClipAffordanceStroke);
-      dc.DrawRoundedRectangle(strokeRect, ClipFrameRadius);
+      dc.DrawRoundedRectangle(strokeRect, clipFrameRadius);
    }
 
    AColor::UseThemeColour(&dc, highlight ? clrClipAffordanceActiveBrush : clrClipAffordanceInactiveBrush, clrClipAffordanceOutlinePen);
@@ -334,8 +337,8 @@ void TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& 
          drawingRect.x, 
          drawingRect.y + ClipSelectionStrokeSize, 
          drawingRect.width, 
-         drawingRect.height + ClipFrameRadius
-      ), ClipFrameRadius
+         drawingRect.height + clipFrameRadius
+      ), clipFrameRadius
    );
 
    if (!title.empty())
