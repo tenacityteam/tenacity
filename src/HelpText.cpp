@@ -214,29 +214,6 @@ static wxString HelpTextBuiltIn( const wxString & Key )
       wxTextOutputStream s(o);
 
       s
-// DA: Support methods text.
-#ifdef EXPERIMENTAL_DA
-         // Deliberately not translated.
-         << wxT("<center><h3>DarkAudacity ")
-         << AUDACITY_VERSION_STRING
-         << wxT("</h3></center>")
-         << wxT("<br><br>DarkAudacity is based on Audacity:")
-         << wxT("<ul><li>")
-         << wxT(" [[http://www.darkaudacity.com|www.darkaudacity.com]] - for differences between them.")
-         << wxT("</li><li>")
-         << wxT(
-" email to [[mailto:james@audacityteam.org|james@audacityteam.org]] - for help using DarkAudacity.")
-         << wxT("</li><li>")
-         << wxT(
-" [[http://www.darkaudacity.com/video.html|Tutorials]] - for getting started with DarkAudacity.")
-         << wxT("</li></ul>")
-         << wxT("<br><br>Audacity has these support methods:")
-         << wxT("<ul><li>")
-         << wxT(" [[https://manual.audacityteam.org/|Manual]] - for comprehensive Audacity documentation")
-         << wxT("</li><li>")
-         << wxT(" [[https://forum.audacityteam.org/|Forum]] - for large knowledge base on using Audacity.")
-         << wxT("</li></ul>")
-#else
          << wxT("<center><h2>")
          << XO("Welcome to Saucedacity!")
          << wxT("</h2></center><br>")
@@ -256,13 +233,11 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 " [[help:Main_Page|Audacity Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
          << wxT("</li><li>")
          << XO(
-" [[https://github.com/generic-pers0n/saucedacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
+" [[https://github.com/saucedacity/saucedacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
          << XO("More:</b> Visit our [[https://github.com/saucedacity/saucedacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
-         << wxT("</p>")
-#endif
-      ;
+         << wxT("</p>");
 
       auto result = o.GetString();
 #ifdef USE_ALPHA_MANUAL
