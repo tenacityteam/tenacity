@@ -150,7 +150,7 @@ void SplashDialog::Populate( ShuttleGui & S )
 
    mpHtml = safenew LinkingHtmlWindow(S.GetParent(), -1,
                                          wxDefaultPosition,
-                                         wxSize(506, 280),
+                                         wxSize(506, 480),
                                          wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
    mpHtml->SetPage(HelpText( wxT("welcome") ));
    S.Prop(1)
