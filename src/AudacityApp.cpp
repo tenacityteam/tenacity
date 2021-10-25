@@ -1315,9 +1315,41 @@ bool AudacityApp::OnInit()
 
 bool AudacityApp::InitPart2()
 {
+  
 #if defined(__WXMAC__)
    SetExitOnFrameDelete(false);
 #endif
+
+   // Parse command line and handle options that might require
+   // immediate exit...no need to initialize all of the audio
+   // stuff to display the version string.
+   // GP: I would preferrably do this in OnInit() (when the application
+   // first starts up; i.e., immediately) but wxWidgets technicallities
+   // prevent me from doing so...
+   std::shared_ptr< wxCmdLineParser > parser{ ParseCommandLine().release() };
+   if (!parser)
+   {
+      // Either user requested help or a parsing error occurred
+      exit(1);
+   }
+
+   if (parser->Found(wxT("v")))
+   {
+      wxPrintf("Saucedacity v%s\n", AUDACITY_VERSION_STRING);
+      exit(0);
+   }
+
+   long lval;
+   if (parser->Found(wxT("b"), &lval))
+   {
+      if (lval < 256 || lval > 100000000)
+      {
+         wxPrintf(_("Block size must be within 256 to 100000000\n"));
+         exit(1);
+      }
+
+      Sequence::SetMaxDiskBlockSize(lval);
+   }
 
    // Make sure the temp dir isn't locked by another process.
    {
@@ -1343,34 +1375,6 @@ bool AudacityApp::InitPart2()
 
    // Initialize the PluginManager
    PluginManager::Get().Initialize();
-
-   // Parse command line and handle options that might require
-   // immediate exit...no need to initialize all of the audio
-   // stuff to display the version string.
-   std::shared_ptr< wxCmdLineParser > parser{ ParseCommandLine().release() };
-   if (!parser)
-   {
-      // Either user requested help or a parsing error occurred
-      exit(1);
-   }
-
-   if (parser->Found(wxT("v")))
-   {
-      wxPrintf("Saucedacity v%s\n", AUDACITY_VERSION_STRING);
-      exit(0);
-   }
-
-   long lval;
-   if (parser->Found(wxT("b"), &lval))
-   {
-      if (lval < 256 || lval > 100000000)
-      {
-         wxPrintf(_("Block size must be within 256 to 100000000\n"));
-         exit(1);
-      }
-
-      Sequence::SetMaxDiskBlockSize(lval);
-   }
 
    // BG: Create a temporary window to set as the top window
    wxImage logoimage((const char **)SaucedacityLogoWithName_xpm);
