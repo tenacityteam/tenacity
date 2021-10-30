@@ -1247,6 +1247,8 @@ bool AudacityApp::OnInit()
          wxEmptyString, wxCONFIG_USE_LOCAL_FILE) );
    }
 
+   PopulatePreferences();
+
 #if defined(__WXMSW__) && !defined(__WXUNIVERSAL__) && !defined(__CYGWIN__)
    this->AssociateFileTypes();
 #endif
