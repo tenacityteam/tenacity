@@ -1774,14 +1774,14 @@ bool ProjectFileIO::WriteDoc(const char *table,
       return false;
    }
 
-   const wxMemoryBuffer &dict = autosave.GetDict();
-   const wxMemoryBuffer &data = autosave.GetData();
+   const MemoryStream &dict = autosave.GetDict();
+   const MemoryStream& data = autosave.GetData();
 
    // Bind statement parameters
    // Might return SQL_MISUSE which means it's our mistake that we violated
    // preconditions; should return SQL_OK which is 0
-   if (sqlite3_bind_blob(stmt, 1, dict.GetData(), dict.GetDataLen(), SQLITE_STATIC) ||
-       sqlite3_bind_blob(stmt, 2, data.GetData(), data.GetDataLen(), SQLITE_STATIC))
+   if (sqlite3_bind_blob(stmt, 1, dict.GetData(), dict.GetSize(), SQLITE_STATIC) ||
+       sqlite3_bind_blob(stmt, 2, data.GetData(), data.GetSize(), SQLITE_STATIC))
    {
       SetDBError(
          XO("Unable to bind to blob")

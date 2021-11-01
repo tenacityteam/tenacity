@@ -21,6 +21,8 @@ set( SOURCES
    MessageBuffer.h
    ModuleConstants.cpp
    ModuleConstants.h
+   MemoryStream.cpp
+   MemoryStream.h
    Observer.cpp
    Observer.h
 )
