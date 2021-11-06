@@ -84,3 +84,8 @@ void MenuBarComponent::AddSubMenuItem(int id, wxString label, wxString helpText)
   menu->Append(id, label, helpText);
   mCurrentMenu->AppendSubMenu(menu, mSubMenuEntryTitle, helpText);
 }
+
+void MenuBarComponent::AddSeparator()
+{
+  mCurrentMenu->AppendSeparator();
+}

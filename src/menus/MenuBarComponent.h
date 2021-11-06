@@ -122,6 +122,8 @@ class MenuBarComponent final : public MainWindowComponent
      * 
      */
     void AddSubMenuItem(int id, wxString label, wxString helpText = wxEmptyString);
+
+    void AddSeparator();
 };
 
 #endif // end __SAUCEDACITY_MENUBARCOMPONENT__
