@@ -18,6 +18,8 @@
 
 #include "MemoryX.h"
 
+#include "MemoryX.h"
+
 /*!
  * @brief A low overhead memory stream with O(1) append, low heap fragmentation and a linear memory view.
  *
