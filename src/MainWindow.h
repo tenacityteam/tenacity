@@ -44,6 +44,13 @@ class MainWindow final : public wxFrame
     /// Default destructor
     ~MainWindow();
 
+    /** Adds a main window component.
+     * 
+     * This function adds the main window component `component` to the main
+     * window. `comopnent` should be allocated with `new` as it will be deleted
+     * when the main window closes (around when Saucedacity exits).
+     * 
+     **/
     void AddComponent(MainWindowComponent* component);
 
     /** Destroys all added window components
@@ -64,7 +71,7 @@ class MainWindow final : public wxFrame
       * initialized.
       *
       **/
-    //void Show();
+    void ShowWindow();
 };
 
 /** \brief Class to describe a window component.

@@ -34,7 +34,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::AddComponent(MainWindowComponent* component)
 {
-  component->ShowComponent(this);
   mComponents.push_back(component);
 }
 
@@ -43,7 +42,18 @@ void MainWindow::DestroyAllComponents()
   for (auto& c : mComponents)
   {
     c->Destroy();
+    delete c;
   }
 
   mComponents.clear();
+}
+
+void MainWindow::ShowWindow()
+{
+  for (auto& c : mComponents)
+  {
+    c->ShowComponent(this);
+  }
+
+  Show();
 }
