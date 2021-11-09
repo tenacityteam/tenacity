@@ -25,7 +25,7 @@ set(SOURCES
 set(LIBRARIES
         EXPAT::EXPAT
         lib-files-interface
-        lib-strings-interface
+        lib-string-utils-interface
     PRIVATE
         wxWidgets::wxWidgets
 )
