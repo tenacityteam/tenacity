@@ -23,12 +23,12 @@ void MenuBarComponent::ShowComponent(MainWindow* window)
 void MenuBarComponent::InitComponent()
 {
   mMenuBar = new wxMenuBar;
-  mInitizlied = true;
+  mInitialized = true;
 }
 
 void MenuBarComponent::StartMenuEntry(wxString title)
 {
-  wxASSERT(mInitizlied);
+  wxASSERT(mInitialized);
 
   mCurrentMenu = new wxMenu;
   mMenuEntryTitle = title;
@@ -48,7 +48,7 @@ void MenuBarComponent::EndMenuEntry()
 void MenuBarComponent::AddMenuItem(int id, wxString label, wxString helpText, MenuItemType type)
 {
   wxASSERT(!mMenuEntryTitle.IsEmpty());
-  wxASSERT(mInitizlied);
+  wxASSERT(mInitialized);
 
 
   if (type == MenuItemType::RegularItem)
@@ -67,7 +67,7 @@ void MenuBarComponent::AddMenuItem(int id, wxString label, wxString helpText, Me
 
 void MenuBarComponent::StartSubMenuEntry(wxString submenuTitle)
 {
-  wxASSERT(mInitizlied);
+  wxASSERT(mInitialized);
   mSubMenuEntryTitle = submenuTitle;
 }
 
@@ -78,7 +78,7 @@ void MenuBarComponent::EndSubMenuEntry()
 
 void MenuBarComponent::AddSubMenuItem(int id, wxString label, wxString helpText)
 {
-  wxASSERT(mInitizlied);
+  wxASSERT(mInitialized);
   wxMenu* menu = new wxMenu;
 
   menu->Append(id, label, helpText);
