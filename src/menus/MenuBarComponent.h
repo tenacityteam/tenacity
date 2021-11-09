@@ -57,7 +57,7 @@ class MenuBarComponent final : public MainWindowComponent
      * 
      **/
     void InitComponent() override;
-    void Destroy() override;
+    void Destroy() override {}
 
     /** \brief Starts a menu entry.
      * 
