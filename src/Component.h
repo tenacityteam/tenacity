@@ -15,7 +15,7 @@
 class Component
 {
   protected:
-    bool mInitizlied = false;
+    bool mInitialized = false;
     
   public:
 
