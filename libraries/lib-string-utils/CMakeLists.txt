@@ -6,6 +6,8 @@ def_vars()
 set(SOURCES
     CodeConversions.h
     CodeConversions.cpp
+    ToChars.h
+    ToChars.cpp
 )
 
 set( LIBRARIES
