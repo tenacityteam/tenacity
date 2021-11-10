@@ -1562,7 +1562,7 @@ void ProjectFileIO::SetFileName(const FilePath &fileName)
    SetProjectTitle();
 }
 
-bool ProjectFileIO::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
+bool ProjectFileIO::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
 {
    auto &project = mProject;
 
@@ -1637,7 +1637,7 @@ bool ProjectFileIO::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
       return false;
    }
 
-   if (wxStrcmp(tag, wxT("project")))
+   if (tag != "project")
    {
       return false;
    }
@@ -1646,7 +1646,7 @@ bool ProjectFileIO::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
    return true;
 }
 
-XMLTagHandler *ProjectFileIO::HandleXMLChild(const wxChar *tag)
+XMLTagHandler *ProjectFileIO::HandleXMLChild(const std::string_view& tag)
 {
    auto &project = mProject;
    return ProjectFileIORegistry::Get().CallObjectAccessor(tag, project);

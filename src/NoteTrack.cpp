@@ -889,9 +889,9 @@ bool IsValidVisibleChannels(const int nValue)
 }
 }
 
-bool NoteTrack::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
+bool NoteTrack::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
 {
-   if (!wxStrcmp(tag, wxT("notetrack"))) {
+   if (tag == "notetrack") {
       while (*attrs) {
          const wxChar *attr = *attrs++;
          const wxChar *value = *attrs++;
@@ -938,7 +938,7 @@ bool NoteTrack::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
    return false;
 }
 
-XMLTagHandler *NoteTrack::HandleXMLChild(const wxChar * WXUNUSED(tag))
+XMLTagHandler *NoteTrack::HandleXMLChild(const std::string_view&  WXUNUSED(tag))
 {
    return NULL;
 }

@@ -3687,9 +3687,9 @@ void VSTEffect::SaveXML(const wxFileName & fn)
    xmlFile.Commit();
 }
 
-bool VSTEffect::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
+bool VSTEffect::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
 {
-   if (wxStrcmp(tag, wxT("vstprogrampersistence")) == 0)
+   if (tag == "vstprogrampersistence")
    {
       while (*attrs)
       {
@@ -3724,7 +3724,7 @@ bool VSTEffect::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
       return true;
    }
 
-   if (wxStrcmp(tag, wxT("effect")) == 0)
+   if (tag == "effect")
    {
       memset(&mXMLInfo, 0, sizeof(mXMLInfo));
       mXMLInfo.version = 1;
@@ -3805,7 +3805,7 @@ bool VSTEffect::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
       return true;
    }
 
-   if (wxStrcmp(tag, wxT("program")) == 0)
+   if (tag == "program")
    {
       while (*attrs)
       {
@@ -3859,7 +3859,7 @@ bool VSTEffect::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
       return true;
    }
 
-   if (wxStrcmp(tag, wxT("param")) == 0)
+   if (tag == "param")
    {
       long ndx = -1;
       double val = -1.0;
@@ -3922,7 +3922,7 @@ bool VSTEffect::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
       return true;
    }
 
-   if (wxStrcmp(tag, wxT("chunk")) == 0)
+   if (tag == "chunk")
    {
       mInChunk = true;
       return true;
@@ -3931,9 +3931,9 @@ bool VSTEffect::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
    return false;
 }
 
-void VSTEffect::HandleXMLEndTag(const wxChar *tag)
+void VSTEffect::HandleXMLEndTag(const std::string_view& tag)
 {
-   if (wxStrcmp(tag, wxT("chunk")) == 0)
+   if (tag == "chunk")
    {
       if (mChunk.length())
       {
@@ -3950,7 +3950,7 @@ void VSTEffect::HandleXMLEndTag(const wxChar *tag)
       mInChunk = false;
    }
 
-   if (wxStrcmp(tag, wxT("program")) == 0)
+   if (tag == "program")
    {
       if (mInSet)
       {
@@ -3961,37 +3961,37 @@ void VSTEffect::HandleXMLEndTag(const wxChar *tag)
    }
 }
 
-void VSTEffect::HandleXMLContent(const wxString & content)
+void VSTEffect::HandleXMLContent(const std::string_view& content)
 {
    if (mInChunk)
    {
-      mChunk += wxString(content).Trim(true).Trim(false);
+      mChunk += wxString(std::string(content)).Trim(true).Trim(false);
    }
 }
 
-XMLTagHandler *VSTEffect::HandleXMLChild(const wxChar *tag)
+XMLTagHandler *VSTEffect::HandleXMLChild(const std::string_view& tag)
 {
-   if (wxStrcmp(tag, wxT("vstprogrampersistence")) == 0)
+   if (tag == "vstprogrampersistence")
    {
       return this;
    }
 
-   if (wxStrcmp(tag, wxT("effect")) == 0)
+   if (tag == "effect")
    {
       return this;
    }
 
-   if (wxStrcmp(tag, wxT("program")) == 0)
+   if (tag == "program")
    {
       return this;
    }
 
-   if (wxStrcmp(tag, wxT("param")) == 0)
+   if (tag == "param")
    {
       return this;
    }
 
-   if (wxStrcmp(tag, wxT("chunk")) == 0)
+   if (tag == "chunk")
    {
       return this;
    }
