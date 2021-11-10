@@ -54,6 +54,7 @@
 
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
+using namespace GenericUI;
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Internat.h>
@@ -648,7 +649,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
 
    bRecolourOnLoad = GUIBlendThemes.Read();
 
-   if( type.empty() )
+   if( type.empty() || type == "custom" )
    {
       const auto &FileName = FileNames::ThemeCachePng();
       if( !wxFileExists( FileName ))
@@ -848,8 +849,6 @@ void ThemeBase::SaveComponents()
          }
       }
    }
-
-   using namespace GenericUI;
 
    if (n > 0)
    {
