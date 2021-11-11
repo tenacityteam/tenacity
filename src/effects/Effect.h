@@ -206,8 +206,8 @@ class TENACITY_DLL_API Effect /* not final */ : public wxEvtHandler,
    // NEW virtuals
    virtual bool Startup(EffectUIClientInterface *client);
 
-   virtual bool GetAutomationParameters(wxString & parms);
-   virtual bool SetAutomationParameters(const wxString & parms);
+   virtual bool GetAutomationParametersAsString(wxString & parms);
+   virtual bool SetAutomationParametersFromString(const wxString & parms);
 
    // Name of page in the Audacity alpha manual
    virtual ManualPageID ManualPage();

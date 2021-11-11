@@ -73,8 +73,8 @@ class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
 
    wxDialog *CreateUI(wxWindow *parent, AudacityCommand *client);
 
-   virtual bool GetAutomationParameters(wxString & parms);
-   virtual bool SetAutomationParameters(const wxString & parms);
+   bool GetAutomationParametersAsString(wxString & parms);
+   bool SetAutomationParametersFromString(const wxString & parms);
 
    bool DoAudacityCommand(wxWindow *parent, const CommandContext & context,bool shouldPrompt = true);
 
