@@ -54,19 +54,19 @@ RealtimeEffectManager::~RealtimeEffectManager()
 {
 }
 
-bool RealtimeEffectManager::RealtimeIsActive() const noexcept
+bool RealtimeEffectManager::IsActive() const noexcept
 {
    return mStates.size() != 0;
 }
 
-void RealtimeEffectManager::RealtimeInitialize(double rate)
+void RealtimeEffectManager::Initialize(double rate)
 {
    // The audio thread should not be running yet, but protect anyway
    SuspensionScope scope{ &mProject };
 
    // (Re)Set processor parameters
-   mRealtimeChans.clear();
-   mRealtimeRates.clear();
+   mChans.clear();
+   mRates.clear();
 
    // RealtimeAdd/RemoveEffect() needs to know when we're active so it can
    // initialize newly added effects
@@ -79,33 +79,33 @@ void RealtimeEffectManager::RealtimeInitialize(double rate)
    }
 }
 
-void RealtimeEffectManager::RealtimeAddProcessor(int group, unsigned chans, float rate)
+void RealtimeEffectManager::AddTrack(int group, unsigned chans, float rate)
 {
    for (auto &state : mStates)
-      state->RealtimeAddProcessor(group, chans, rate);
+      state->AddTrack(group, chans, rate);
 
-   mRealtimeChans.push_back(chans);
-   mRealtimeRates.push_back(rate);
+   mChans.push_back(chans);
+   mRates.push_back(rate);
 }
 
-void RealtimeEffectManager::RealtimeFinalize()
+void RealtimeEffectManager::Finalize()
 {
    // Make sure nothing is going on
-   RealtimeSuspend();
+   Suspend();
 
    // Tell each effect to clean up as well
    for (auto &state : mStates)
       state->GetEffect().RealtimeFinalize();
 
    // Reset processor parameters
-   mRealtimeChans.clear();
-   mRealtimeRates.clear();
+   mChans.clear();
+   mRates.clear();
 
    // No longer active
    mActive = false;
 }
 
-void RealtimeEffectManager::RealtimeSuspend()
+void RealtimeEffectManager::Suspend()
 {
    // Already suspended...bail
    if (mSuspended)
@@ -120,10 +120,10 @@ void RealtimeEffectManager::RealtimeSuspend()
 
    // And make sure the effects don't either
    for (auto &state : mStates)
-      state->RealtimeSuspend();
+      state->Suspend();
 }
 
-void RealtimeEffectManager::RealtimeResume() noexcept
+void RealtimeEffectManager::Resume() noexcept
 {
    LockGuard lock(mLock);
 
@@ -135,7 +135,7 @@ void RealtimeEffectManager::RealtimeResume() noexcept
 
    // Tell the effects to get ready for more action
    for (auto &state : mStates)
-      state->RealtimeResume();
+      state->Resume();
 
    // And we should too
    mSuspended = false;
@@ -144,7 +144,7 @@ void RealtimeEffectManager::RealtimeResume() noexcept
 //
 // This will be called in a different thread than the main GUI thread.
 //
-void RealtimeEffectManager::RealtimeProcessStart()
+void RealtimeEffectManager::ProcessStart()
 {
    // Protect ourselves from the main thread
    LockGuard lock(mLock);
@@ -155,7 +155,7 @@ void RealtimeEffectManager::RealtimeProcessStart()
    {
       for (auto &state : mStates)
       {
-         if (state->IsRealtimeActive())
+         if (state->IsActive())
             state->GetEffect().RealtimeProcessStart();
       }
    }
@@ -164,7 +164,7 @@ void RealtimeEffectManager::RealtimeProcessStart()
 //
 // This will be called in a different thread than the main GUI thread.
 //
-size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float **buffers, size_t numSamples)
+size_t RealtimeEffectManager::Process(int group, unsigned chans, float **buffers, size_t numSamples)
 {
    using namespace std::chrono;
 
@@ -209,10 +209,10 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    size_t called = 0;
    for (auto &state : mStates)
    {
-      if (state->IsRealtimeActive())
+      if (state->IsActive())
       {
-         state->RealtimeProcess(group, chans, mInputBuffers.data(),
-                                mOutputBuffers.data(), numSamples
+         state->Process(group, chans, mInputBuffers.data(),
+                        mOutputBuffers.data(), numSamples
          );
          called++;
       }
@@ -247,7 +247,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 //
 // This will be called in a different thread than the main GUI thread.
 //
-void RealtimeEffectManager::RealtimeProcessEnd() noexcept
+void RealtimeEffectManager::ProcessEnd() noexcept
 {
    // Protect ourselves from the main thread
    LockGuard lock(mLock);
@@ -258,13 +258,13 @@ void RealtimeEffectManager::RealtimeProcessEnd() noexcept
    {
       for (auto &state : mStates)
       {
-         if (state->IsRealtimeActive())
+         if (state->IsActive())
             state->GetEffect().RealtimeProcessEnd();
       }
    }
 }
 
-auto RealtimeEffectManager::GetRealtimeLatency() const -> Latency
+auto RealtimeEffectManager::GetLatency() const -> Latency
 {
    return mLatency;
 }

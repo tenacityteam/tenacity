@@ -874,7 +874,7 @@ BaseItemSharedPtr GenerateMenu()
 static const ReservedCommandFlag
 &IsRealtimeNotActiveFlag() { static ReservedCommandFlag flag{
    [](const TenacityProject &project){
-      return !RealtimeEffectManager::Get(project).RealtimeIsActive();
+      return !RealtimeEffectManager::Get(project).IsActive();
    }
 }; return flag; }  //lll
 
