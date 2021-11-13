@@ -30,11 +30,6 @@ RealtimeEffectManager & RealtimeEffectManager::Get()
 
 RealtimeEffectManager::RealtimeEffectManager()
 {
-   LockGuard lock(mLock);
-
-   mRealtimeActive = false;
-   mRealtimeSuspended = true;
-
    // Allocate our vectors. We set their capacity to a size of '2', enough to
    // process stero audio data.
    mInputBuffers.reserve(2);
@@ -52,7 +47,7 @@ bool RealtimeEffectManager::RealtimeIsActive()
 
 bool RealtimeEffectManager::RealtimeIsSuspended()
 {
-   return mRealtimeSuspended;
+   return mSuspended;
 }
 
 void RealtimeEffectManager::RealtimeAddEffect(EffectProcessor &effect)
@@ -65,7 +60,7 @@ void RealtimeEffectManager::RealtimeAddEffect(EffectProcessor &effect)
    auto &state = mStates.back();
 
    // Initialize effect if realtime is already active
-   if (mRealtimeActive)
+   if (mActive)
    {
       // Initialize realtime processing
       effect.RealtimeInitialize();
@@ -83,7 +78,7 @@ void RealtimeEffectManager::RealtimeRemoveEffect(EffectProcessor &effect)
    // Block RealtimeProcess()
    SuspensionScope scope;
 
-   if (mRealtimeActive)
+   if (mActive)
    {
       // Cleanup realtime processing
       effect.RealtimeFinalize();
@@ -111,7 +106,7 @@ void RealtimeEffectManager::RealtimeInitialize(double rate)
 
    // RealtimeAdd/RemoveEffect() needs to know when we're active so it can
    // initialize newly added effects
-   mRealtimeActive = true;
+   mActive = true;
 
    // Tell each effect to get ready for action
    for (auto &state : mStates) {
@@ -143,13 +138,13 @@ void RealtimeEffectManager::RealtimeFinalize()
    mRealtimeRates.clear();
 
    // No longer active
-   mRealtimeActive = false;
+   mActive = false;
 }
 
 void RealtimeEffectManager::RealtimeSuspend()
 {
    // Already suspended...bail
-   if (mRealtimeSuspended)
+   if (mSuspended)
    {
       return;
    }
@@ -157,7 +152,7 @@ void RealtimeEffectManager::RealtimeSuspend()
    LockGuard lock(mLock);
 
    // Show that we aren't going to be doing anything
-   mRealtimeSuspended = true;
+   mSuspended = true;
 
    // And make sure the effects don't either
    for (auto &state : mStates)
@@ -178,20 +173,20 @@ void RealtimeEffectManager::RealtimeSuspendOne( EffectProcessor &effect )
 
 void RealtimeEffectManager::RealtimeResume() noexcept
 {
+   LockGuard lock(mLock);
+
    // Already running...bail
-   if (!mRealtimeSuspended)
+   if (!mSuspended)
    {
       return;
    }
-
-   LockGuard lock(mLock);
 
    // Tell the effects to get ready for more action
    for (auto &state : mStates)
       state->RealtimeResume();
 
    // And we should too
-   mRealtimeSuspended = false;
+   mSuspended = false;
 }
 
 void RealtimeEffectManager::RealtimeResumeOne( EffectProcessor &effect )
@@ -216,7 +211,7 @@ void RealtimeEffectManager::RealtimeProcessStart()
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended.
-   if (!mRealtimeSuspended)
+   if (!mSuspended)
    {
       for (auto &state : mStates)
       {
@@ -233,15 +228,15 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 {
    using namespace std::chrono;
 
+   // Protect ourselves from the main thread
+   LockGuard lock(mLock);
+
    // Can be suspended because of the audio stream being paused or because effects
-   // have  been suspended, so allow the samples to pass as-is.
-   if (mRealtimeSuspended || mStates.empty())
+   // have been suspended, so allow the samples to pass as-is.
+   if (mSuspended || mStates.empty())
    {
       return numSamples;
    }
-
-   // Protect ourselves from the main thread
-   LockGuard lock(mLock);
 
    // AK: If we have more channels than our input and output bufffers'
    // capacities, increase their capacities when necessary.
@@ -319,7 +314,7 @@ void RealtimeEffectManager::RealtimeProcessEnd() noexcept
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended.
-   if (!mRealtimeSuspended)
+   if (!mSuspended)
    {
       for (auto &state : mStates)
       {
