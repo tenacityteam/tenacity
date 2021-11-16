@@ -8,6 +8,8 @@
 set(SOURCES
     audacityproject.dtd
 
+    XMLAttributeValueView.cpp
+    XMLAttributeValueView.h 
     XMLFileReader.cpp
     XMLFileReader.h
     XMLFileWriter.cpp
