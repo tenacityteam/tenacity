@@ -8,6 +8,9 @@ set(SOURCES
     CodeConversions.cpp
     ToChars.h
     ToChars.cpp
+
+    FromChars.h
+    FromChars.cpp
 )
 
 set( LIBRARIES
