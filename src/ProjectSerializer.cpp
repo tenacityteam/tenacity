@@ -23,8 +23,7 @@
 #include <codecvt>
 #include <locale>
 
-// Tenacity libraries
-#include <lib-xml/XMLStringWriter.h>
+#include <wx/log.h>
 
 ///
 /// ProjectSerializer class

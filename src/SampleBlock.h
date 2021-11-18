@@ -16,6 +16,8 @@ SampleBlock.h
 #include <memory>
 #include <unordered_set>
 
+#include "XMLTagHandler.h"
+
 class TenacityProject;
 class ProjectFileIO;
 class XMLWriter;
@@ -130,7 +132,7 @@ public:
    // Returns a non-null pointer or else throws an exception
    SampleBlockPtr CreateFromXML(
       sampleFormat srcformat,
-      const wxChar **attrs);
+      const AttributesList &attrs);
 
    using SampleBlockIDs = std::unordered_set<SampleBlockID>;
    /*! @return ids of all sample blocks created by this factory and still extant */
@@ -160,7 +162,7 @@ protected:
    // default InconsistencyException thrown by CreateFromXML
    virtual SampleBlockPtr DoCreateFromXML(
       sampleFormat srcformat,
-      const wxChar **attrs) = 0;
+      const AttributesList &attrs) = 0;
 };
 
 #endif

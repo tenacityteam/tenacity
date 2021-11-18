@@ -230,7 +230,7 @@ static const wxChar *DefaultGenres[] =
 };
 
 static ProjectFileIORegistry::ObjectReaderEntry readerEntry{
-   wxT( "tags" ),
+   "tags",
    []( TenacityProject &project ){ return &Tags::Get( project ); }
 };
 
@@ -547,7 +547,7 @@ void Tags::SetTag(const wxString & name, const int & value)
    SetTag(name, wxString::Format(wxT("%d"), value));
 }
 
-bool Tags::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
+bool Tags::HandleXMLTag(const std::string_view& tag, const AttributesList &attrs)
 {
    if (tag == "tags") {
       return true;
@@ -556,22 +556,16 @@ bool Tags::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
    if (tag == "tag") {
       wxString n, v;
 
-      while (*attrs) {
-         wxString attr = *attrs++;
-         if (attr.empty())
-            break;
-         wxString value = *attrs++;
+      for (auto pair : attrs)
+      {
+         auto attr = pair.first;
+         auto value = pair.second;
 
-         if (!XMLValueChecker::IsGoodString(attr) ||
-             !XMLValueChecker::IsGoodLongString(value)) {
-            break;
+         if (attr == "name") {
+            n = value.ToWString();
          }
-
-         if (attr == wxT("name")) {
-            n = value;
-         }
-         else if (attr == wxT("value")) {
-            v = value;
+         else if (attr == "value") {
+            v = value.ToWString();
          }
       }
 

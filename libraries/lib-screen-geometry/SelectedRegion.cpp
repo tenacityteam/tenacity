@@ -12,18 +12,19 @@ Paul Licameli
 
 // Tenacity libraries
 #include "XMLWriter.h"
+#include "XMLAttributeValueView.h"
 
-const wxChar *SelectedRegion::sDefaultT0Name = wxT("selStart");
-const wxChar *SelectedRegion::sDefaultT1Name = wxT("selEnd");
+const char* SelectedRegion::sDefaultT0Name = "selStart";
+const char *SelectedRegion::sDefaultT1Name = "selEnd";
 
 namespace {
-const wxChar *sDefaultF0Name = wxT("selLow");
-const wxChar *sDefaultF1Name = wxT("selHigh");
+const char* sDefaultF0Name = "selLow";
+const char* sDefaultF1Name = "selHigh";
 }
 
 void SelectedRegion::WriteXMLAttributes
 (XMLWriter &xmlFile,
- const wxChar *legacyT0Name, const wxChar *legacyT1Name) const
+ const char *legacyT0Name, const char *legacyT1Name) const
 // may throw
 {
    xmlFile.WriteAttr(legacyT0Name, t0(), 10);
@@ -37,27 +38,28 @@ void SelectedRegion::WriteXMLAttributes
 }
 
 bool SelectedRegion::HandleXMLAttribute
-(const wxChar *attr, const wxChar *value,
- const wxChar *legacyT0Name, const wxChar *legacyT1Name)
+(const std::string_view &attr, const XMLAttributeValueView &value,
+ const char *legacyT0Name, const char *legacyT1Name)
 {
    // Keep this function consistent with the table in the next!
    typedef bool (SelectedRegion::*Setter)(double, bool);
    Setter setter = 0;
-   if (!wxStrcmp(attr, legacyT0Name))
+   if (attr == legacyT0Name)
       setter = &SelectedRegion::setT0;
-   else if (!wxStrcmp(attr, legacyT1Name))
+   else if (attr == legacyT1Name)
       setter = &SelectedRegion::setT1;
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
-   else if (!wxStrcmp(attr, sDefaultF0Name))
+   else if (attr == sDefaultF0Name)
       setter = &SelectedRegion::setF0;
-   else if (!wxStrcmp(attr, sDefaultF1Name))
+   else if (attr == sDefaultF1Name)
       setter = &SelectedRegion::setF1;
 #endif
    else
       return false;
 
    double dblValue;
-   if (!Internat::CompatibleToDouble(value, &dblValue))
+
+   if (!value.TryGet(dblValue))
       return false;
 
    // False means don't flip time or frequency boundaries
@@ -67,7 +69,7 @@ bool SelectedRegion::HandleXMLAttribute
 
 XMLMethodRegistryBase::Mutators<SelectedRegion>
 SelectedRegion::Mutators(
-   const wxString &legacyT0Name, const wxString &legacyT1Name)
+   const char *legacyT0Name, const char *legacyT1Name)
 {
    // Keep this table consistent with the previous function!
    return {
@@ -84,11 +86,11 @@ SelectedRegion::Mutators(
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
       { sDefaultF0Name, [=](auto &selectedRegion, auto value){
          selectedRegion
-            .HandleXMLAttribute(sDefaultF0Name, value, L"", L"");
+            .HandleXMLAttribute(sDefaultF0Name, value, "", "");
       } },
       { sDefaultF1Name, [=](auto &selectedRegion, auto value){
          selectedRegion
-            .HandleXMLAttribute(sDefaultF1Name, value, L"", L"");
+            .HandleXMLAttribute(sDefaultF1Name, value, "", "");
       } },
 #endif
    };

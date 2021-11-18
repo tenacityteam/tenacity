@@ -756,7 +756,7 @@ bool ProjectFileIO::CheckVersion()
    // process it since we can't trust anything about it.
    // TODO: use the SupportedProjectFormatVersion instead and make a way to
    // clearly distinguish projects created by either Audacity or Tenacity.
-   if (SupportedAudacityProjectFormatVersion < version)
+   if (SupportedTenacityProjectFormatVersion < version)
    {
       SetError(
          XO("This project was created with a version of Audacity that is not supported by Tenacity.\n\nYou will need to use that version to open it.")
@@ -1562,7 +1562,7 @@ void ProjectFileIO::SetFileName(const FilePath &fileName)
    SetProjectTitle();
 }
 
-bool ProjectFileIO::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
+bool ProjectFileIO::HandleXMLTag(const std::string_view& tag, const AttributesList &attrs)
 {
    auto &project = mProject;
 
@@ -1572,29 +1572,24 @@ bool ProjectFileIO::HandleXMLTag(const std::string_view& tag, const wxChar **att
 
    // loop through attrs, which is a null-terminated list of
    // attribute-value pairs
-   while (*attrs)
+   for (auto pair : attrs)
    {
-      const wxChar *attr = *attrs++;
-      const wxChar *value = *attrs++;
-
-      if (!value || !XMLValueChecker::IsGoodString(value))
-      {
-         break;
-      }
+      auto attr = pair.first;
+      auto value = pair.second;
 
       if ( ProjectFileIORegistry::Get()
           .CallAttributeHandler( attr, project, value ) )
          continue;
 
-      else if (!wxStrcmp(attr, wxT("version")))
+      else if (attr == "version")
       {
-         fileVersion = value;
+         fileVersion = value.ToWString();
          requiredTags++;
       }
 
-      else if (!wxStrcmp(attr, wxT("audacityversion")))
+      else if (attr == "audacityversion")
       {
-         audacityVersion = value;
+         audacityVersion = value.ToWString();
          requiredTags++;
       }
    } // while

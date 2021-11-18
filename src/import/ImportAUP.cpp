@@ -120,7 +120,7 @@ private:
    };
    using stack = std::vector<struct node>;
 
-   bool HandleXMLTag(const std::string_view& tag, const wxChar **attrs) override;
+   bool HandleXMLTag(const std::string_view& tag, const AttributesList &attrs) override;
    void HandleXMLEndTag(const std::string_view& tag) override;
    XMLTagHandler *HandleXMLChild(const std::string_view& tag) override;
 
@@ -209,7 +209,7 @@ private:
    stack mHandlers;
    std::string mParentTag;
    std::string mCurrentTag;
-   const wxChar **mAttrs;
+   AttributesList mAttrs;
 
    wxFileName mProjDir;
    using BlockFileMap =
@@ -223,6 +223,23 @@ private:
    ProgressResult mUpdateResult;
    TranslatableString mErrorMsg;
 };
+
+namespace
+{
+// RHS is expected to be lowercase
+bool CaseInsensitiveEquals(
+   const std::string_view& lhs, const std::string_view& rhsLower)
+{
+   if (lhs.length() != rhsLower.length())
+      return false;
+
+   for (size_t i = 0; i < lhs.length(); ++i)
+      if (std::tolower(lhs[i]) != rhsLower[i])
+         return false;
+
+   return true;
+}
+} // namespace
 
 AUPImportPlugin::AUPImportPlugin()
 :  ImportPlugin(FileExtensions(exts.begin(), exts.end()))
@@ -548,7 +565,7 @@ void AUPImportFileHandle::HandleXMLEndTag(const std::string_view& tag)
    }
 }
 
-bool AUPImportFileHandle::HandleXMLTag(const std::string_view& tag, const wxChar **attrs)
+bool AUPImportFileHandle::HandleXMLTag(const std::string_view& tag, const AttributesList &attrs)
 {
    if (mUpdateResult != ProgressResult::Success)
    {
@@ -649,49 +666,38 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
 
    int requiredTags = 0;
 
-   while (*mAttrs)
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr = *mAttrs++;
-      const wxChar *value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
+
       double dValue;
-
-      if (!value)
-      {
-         break;
-      }
-
-      if (!XMLValueChecker::IsGoodString(value))
-      {
-         return SetError(XO("Invalid project '%s' attribute.").Format(attr));
-      }
-
-      wxString strValue = value;
 
 #define set(f, v) (mProjectAttrs.have ## f = true, mProjectAttrs.f = v)
 
       // ViewInfo
-      if (!wxStrcmp(attr, wxT("vpos")))
+      if (attr == "vpos")
       {
          long lValue;
-         if (!XMLValueChecker::IsGoodInt(strValue) || !strValue.ToLong(&lValue) || (lValue < 0))
+         if (!value.TryGet(lValue) || (lValue < 0))
          {
             return SetError(XO("Invalid project 'vpos' attribute."));
          }
 
          set(vpos, (int) lValue);
       }
-      else if (!wxStrcmp(attr, wxT("h")))
+      else if (attr == "h")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue))
+         if (!value.TryGet(dValue))
          {
             return SetError(XO("Invalid project 'h' attribute."));
          }
 
          set(h, dValue);
       }
-      else if (!wxStrcmp(attr, wxT("zoom")))
+      else if (attr == "zoom")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue) || (dValue < 0.0))
+         if (!value.TryGet(dValue) || (dValue < 0.0))
          {
             return SetError(XO("Invalid project 'zoom' attribute."));
          }
@@ -699,18 +705,18 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          set(zoom, dValue);
       }
       // Viewinfo.SelectedRegion
-      else if (!wxStrcmp(attr, wxT("sel0")))
+      else if (attr == "sel0")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue) || (dValue < 0.0))
+         if (!value.TryGet(dValue) || (dValue < 0.0))
          {
             return SetError(XO("Invalid project 'sel0' attribute."));
          }
 
          set(sel0, dValue);
       }
-      else if (!wxStrcmp(attr, wxT("sel1")))
+      else if (attr == "sel1")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue) || (dValue < 0.0))
+         if (!value.TryGet(dValue) || (dValue < 0.0))
          {
             return SetError(XO("Invalid project 'sel1' attribute."));
          }
@@ -718,18 +724,18 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          set(sel1, dValue);
       }
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
-      else if (!wxStrcmp(attr, wxT("selLow")))
+      else if (attr == "selLow")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue) || (dValue < 0.0))
+         if (!value.TryGet(dValue) || (dValue < 0.0))
          {
             return SetError(XO("Invalid project 'selLow' attribute."));
          }
 
          set(selLow, dValue);
       }
-      else if (!wxStrcmp(attr, wxT("selHigh")))
+      else if (attr == "selHigh")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue) || (dValue < 0.0))
+         if (!value.TryGet(dValue) || (dValue < 0.0))
          {
             return SetError(XO("Invalid project 'selHigh' attribute."));
          }
@@ -737,16 +743,16 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          set(selHigh, dValue);
       }
 #endif
-      else if (!wxStrcmp(attr, wxT("version")))
+      else if (attr == "version")
       {
          requiredTags++;
       }
 
-      else if (!wxStrcmp(attr, wxT("audacityversion")))
+      else if (attr == "audacityversion")
       {
          requiredTags++;
       }
-      else if (!wxStrcmp(attr, wxT("projname")))
+      else if (attr == "projname")
       {
          requiredTags++;
 
@@ -754,7 +760,7 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          wxString altname = mProjDir.GetName() + wxT("_data");
          mProjDir.SetFullName(wxEmptyString);
 
-         wxString projName = value;
+         wxString projName = value.ToWString();
          bool found = false;
 
          // First try to load the data files based on the _data dir given in the .aup file
@@ -786,7 +792,7 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          if (projName.empty())
          {
             AudacityMessageBox(
-               XO("Couldn't find the project data folder: \"%s\"").Format(value),
+               XO("Couldn't find the project data folder: \"%s\"").Format(value.ToWString()),
                XO("Error Opening Project"),
                wxOK | wxCENTRE,
                &window);
@@ -805,9 +811,9 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
             mFileMap[wxFileNameFromPath(fn)] = {fn, {}};
          }
       }
-      else if (!wxStrcmp(attr, wxT("rate")))
+      else if (attr == "rate")
       {
-         if (!Internat::CompatibleToDouble(value, &dValue) || (dValue < 0.0))
+         if (!value.TryGet(dValue) || (dValue < 0.0))
          {
             return SetError(XO("Invalid project 'selLow' attribute."));
          }
@@ -815,24 +821,24 @@ bool AUPImportFileHandle::HandleProject(XMLTagHandler *&handler)
          set(rate, dValue);
       }
 
-      else if (!wxStrcmp(attr, wxT("snapto")))
+      else if (attr == "snapto")
       {
-         set(snapto, (strValue == wxT("on") ? true : false));
+         set(snapto, (value.ToWString() == "on" ? true : false));
       }
 
-      else if (!wxStrcmp(attr, wxT("selectionformat")))
+      else if (attr == "selectionformat")
       {
-         set(selectionformat, strValue);
+         set(selectionformat, value.ToWString());
       }
 
-      else if (!wxStrcmp(attr, wxT("frequencyformat")))
+      else if (attr == "frequencyformat")
       {
-         set(frequencyformat, strValue);
+         set(frequencyformat, value.ToWString());
       }
 
-      else if (!wxStrcmp(attr, wxT("bandwidthformat")))
+      else if (attr == "bandwidthformat")
       {
-         set(bandwidthformat, strValue);
+         set(bandwidthformat, value.ToWString());
       }
 #undef set
    }
@@ -915,43 +921,29 @@ bool AUPImportFileHandle::HandleTags(XMLTagHandler *&handler)
    wxString v;
 
    // Support for legacy tags
-   while(*mAttrs)
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr = *mAttrs++;
-      const wxChar *value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
 
-      if (!value)
-      {
-         break;
-      }
-      
-      // Ignore empty tags
-      if (!*value)
+      if (attr == "id3v2")
       {
          continue;
       }
-
-      if (!XMLValueChecker::IsGoodString(attr) || !XMLValueChecker::IsGoodString(value))
-      {
-         // Log it???
-         return false;
-      }
-
-      if (!wxStrcmp(attr, "id3v2"))
-      {
-         continue;
-      }
-      else if (!wxStrcmp(attr, "track"))
+      else if (attr == "track")
       {
          n = wxT("TRACKNUMBER");
       }
       else
       {
-         n = attr;
+         n = std::string(attr);
          n.MakeUpper();
       }
 
-      mTags->SetTag(n, value);
+      v = value.ToWString();
+
+      if (!v.empty())
+         mTags->SetTag(n, value.ToWString());
    }
 
    // Do not set the handler - already handled
@@ -968,27 +960,18 @@ bool AUPImportFileHandle::HandleTag(XMLTagHandler *&handler)
 
    wxString n, v;
 
-   while (*mAttrs)
+   for (auto pair : mAttrs)
    {
-      wxString attr = *mAttrs++;
-      if (attr.empty())
-      {
-         break;
-      }
-      wxString value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
 
-      if (!XMLValueChecker::IsGoodString(attr) || !XMLValueChecker::IsGoodString(value))
+      if (attr == "name")
       {
-         break;
+         n = value.ToWString();
       }
-
-      if (attr == wxT("name"))
+      else if (attr == "value")
       {
-         n = value;
-      }
-      else if (attr == wxT("value"))
-      {
-         v = value;
+         v = value.ToWString();
       }
    }
 
@@ -1109,23 +1092,16 @@ bool AUPImportFileHandle::HandleSequence(XMLTagHandler *&handler)
       waveclip = mClip;
    }
 
-   while(*mAttrs)
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr = *mAttrs++;
-      const wxChar *value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
 
-      if (!value)
-      {
-         break;
-      }
-
-      const wxString strValue = value;	// promote string, we need this for all
-
-      if (!wxStrcmp(attr, wxT("maxsamples")))
+      if (attr == "maxsamples")
       {
          // This attribute is a sample count, so can be 64bit
          long long llvalue;
-         if (!XMLValueChecker::IsGoodInt64(strValue) || !strValue.ToLongLong(&llvalue) || (llvalue < 0))
+         if (!value.TryGet(llvalue) || (llvalue < 0))
          {
             return SetError(XO("Invalid sequence 'maxsamples' attribute."));
          }
@@ -1138,11 +1114,11 @@ bool AUPImportFileHandle::HandleSequence(XMLTagHandler *&handler)
             return SetError(XO("Invalid sequence 'maxsamples' attribute."));
          }
       }
-      else if (!wxStrcmp(attr, wxT("sampleformat")))
+      else if (attr == "sampleformat")
       {
          // This attribute is a sample format, normal int
          long fValue;
-         if (!XMLValueChecker::IsGoodInt(strValue) || !strValue.ToLong(&fValue) || (fValue < 0) || !Sequence::IsValidSampleFormat(fValue))
+         if (!value.TryGet(fValue) || (fValue < 0) || !Sequence::IsValidSampleFormat(fValue))
          {
             return SetError(XO("Invalid sequence 'sampleformat' attribute."));
          }
@@ -1150,11 +1126,11 @@ bool AUPImportFileHandle::HandleSequence(XMLTagHandler *&handler)
          mFormat = (sampleFormat) fValue;
          waveclip->GetSequence()->ConvertToSampleFormat( mFormat );
       }
-      else if (!wxStrcmp(attr, wxT("numsamples")))
+      else if (attr == "numsamples")
       {
          // This attribute is a sample count, so can be 64bit
          long long llvalue;
-         if (!XMLValueChecker::IsGoodInt64(strValue) || !strValue.ToLongLong(&llvalue) || (llvalue < 0))
+         if (!value.TryGet(llvalue) || (llvalue < 0))
          {
             return SetError(XO("Invalid sequence 'numsamples' attribute."));
          }
@@ -1168,23 +1144,16 @@ bool AUPImportFileHandle::HandleSequence(XMLTagHandler *&handler)
 
 bool AUPImportFileHandle::HandleWaveBlock(XMLTagHandler *&handler)
 {
-   while(*mAttrs)
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr = *mAttrs++;
-      const wxChar *value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
 
-      if (!value)
-      {
-         break;
-      }
-
-      const wxString strValue = value;
-
-      if (!wxStrcmp(attr, wxT("start")))
+      if (attr == "start")
       {
          // making sure that values > 2^31 are OK because long clips will need them.
          long long llvalue;
-         if (!XMLValueChecker::IsGoodInt64(strValue) || !strValue.ToLongLong(&llvalue) || (llvalue < 0))
+         if (!value.TryGet(llvalue) || (llvalue < 0))
          {
             return SetError(XO("Unable to parse the waveblock 'start' attribute"));
          }
@@ -1200,22 +1169,17 @@ bool AUPImportFileHandle::HandleSimpleBlockFile(XMLTagHandler *&handler)
 {
    FilePath filename;
    size_t len = 0;
-   
-   while (*mAttrs)
+
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr =  *mAttrs++;
-      const wxChar *value = *mAttrs++;
-
-      if (!value)
-      {
-         break;
-      }
-
-      const wxString strValue = value;
+      auto attr = pair.first;
+      auto value = pair.second;
 
       // Can't use XMLValueChecker::IsGoodFileName here, but do part of its test.
-      if (!wxStricmp(attr, wxT("filename")))
+      if (CaseInsensitiveEquals(attr, "filename"))
       {
+         const wxString strValue = value.ToWString();
+
          if (XMLValueChecker::IsGoodFileString(strValue))
          {
             if (mFileMap.find(strValue) != mFileMap.end())
@@ -1229,10 +1193,10 @@ bool AUPImportFileHandle::HandleSimpleBlockFile(XMLTagHandler *&handler)
             }
          }
       }
-      else if (!wxStrcmp(attr, wxT("len")))
+      else if (attr == "len")
       {
          long lValue;
-         if (!XMLValueChecker::IsGoodInt(strValue) || !strValue.ToLong(&lValue) || (lValue <= 0))
+         if (!value.TryGet(lValue) || (lValue <= 0))
          {
             return SetError(XO("Missing or invalid simpleblockfile 'len' attribute."));
          }
@@ -1252,23 +1216,16 @@ bool AUPImportFileHandle::HandleSilentBlockFile(XMLTagHandler *&handler)
 {
    FilePath filename;
    size_t len = 0;
-   
-   while (*mAttrs)
+
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr =  *mAttrs++;
-      const wxChar *value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
 
-      if (!value)
-      {
-         break;
-      }
-
-      const wxString strValue = value;
-
-      if (!wxStrcmp(attr, wxT("len")))
+      if (attr == "len")
       {
          long lValue;
-         if (!XMLValueChecker::IsGoodInt(value) || !strValue.ToLong(&lValue) || !(lValue > 0))
+         if (!value.TryGet(lValue) || !(lValue > 0))
          {
             return SetError(XO("Missing or invalid silentblockfile 'len' attribute."));
          }
@@ -1293,20 +1250,15 @@ bool AUPImportFileHandle::HandlePCMAliasBlockFile(XMLTagHandler *&handler)
    int channel = 0;
    wxString name;
 
-   while (*mAttrs)
+   for (auto pair : mAttrs)
    {
-      const wxChar *attr =  *mAttrs++;
-      const wxChar *value = *mAttrs++;
+      auto attr = pair.first;
+      auto value = pair.second;
 
-      if (!value)
+      if (CaseInsensitiveEquals(attr, "aliasfile"))
       {
-         break;
-      }
+         const wxString strValue = value.ToWString();
 
-      const wxString strValue = value;
-
-      if (!wxStricmp(attr, wxT("aliasfile")))
-      {
          if (XMLValueChecker::IsGoodPathName(strValue))
          {
             filename.Assign(strValue);
@@ -1324,34 +1276,34 @@ bool AUPImportFileHandle::HandlePCMAliasBlockFile(XMLTagHandler *&handler)
                .Format(strValue));
          }
       }
-      else if (!wxStricmp(attr, wxT("summaryfile")))
+      else if (CaseInsensitiveEquals(attr, "summaryfile"))
       {
-         summaryFilename = strValue;
+         summaryFilename = value.ToWString();
       }
-      else if (!wxStricmp(attr, wxT("aliasstart")))
+      else if (CaseInsensitiveEquals(attr, "aliasstart"))
       {
          long long llValue;
-         if (!XMLValueChecker::IsGoodInt64(strValue) || !strValue.ToLongLong(&llValue) || (llValue < 0))
+         if (!value.TryGet(llValue) || (llValue < 0))
          {
             return SetError(XO("Missing or invalid pcmaliasblockfile 'aliasstart' attribute."));
          }
 
          start = llValue;
       }
-      else if (!wxStricmp(attr, wxT("aliaslen")))
+      else if (CaseInsensitiveEquals(attr, "aliaslen"))
       {
          long lValue;
-         if (!XMLValueChecker::IsGoodInt(strValue) || !strValue.ToLong(&lValue) || (lValue <= 0))
+         if (!value.TryGet(lValue) || (lValue <= 0))
          {
             return SetError(XO("Missing or invalid pcmaliasblockfile 'aliaslen' attribute."));
          }
 
          len = lValue;
       }
-      else if (!wxStricmp(attr, wxT("aliaschannel")))
+      else if (CaseInsensitiveEquals(attr, "aliaschannel"))
       {
          long lValue;
-         if (!XMLValueChecker::IsGoodInt(strValue) || !strValue.ToLong(&lValue) || (lValue < 0))
+         if (!value.TryGet(lValue) || (lValue < 0))
          {
             return SetError(XO("Missing or invalid pcmaliasblockfile 'aliaslen' attribute."));
          }
@@ -1375,10 +1327,11 @@ bool AUPImportFileHandle::HandlePCMAliasBlockFile(XMLTagHandler *&handler)
 bool AUPImportFileHandle::HandleImport(XMLTagHandler *&handler)
 {
    // Adapted from ImportXMLTagHandler::HandleXMLTag as in version 2.4.2
-   if (!mAttrs || !(*mAttrs) || wxStrcmp(*mAttrs++, wxT("filename")))
-       return false;
+   if (mAttrs.empty() || mAttrs.front().first != "filename")
+      return false;
 
-   wxString strAttr = *mAttrs;
+   wxString strAttr = mAttrs.front().second.ToWString();
+
    if (!XMLValueChecker::IsGoodPathName(strAttr))
    {
       // Maybe strAttr is just a fileName, not the full path. Try the project data directory.
@@ -1414,8 +1367,6 @@ bool AUPImportFileHandle::HandleImport(XMLTagHandler *&handler)
 
    // Handle other attributes, now that we have the tracks.
    // Apply them to all new wave tracks.
-   ++mAttrs;
-   const wxChar** pAttr;
    bool bSuccess = true;
 
    auto range = tracks.Any();
@@ -1423,6 +1374,9 @@ bool AUPImportFileHandle::HandleImport(XMLTagHandler *&handler)
       range = range.StartingWith(pLast);
       ++range.first;
    }
+
+   mAttrs.erase(mAttrs.begin());
+
    for (auto pTrack: range.Filter<WaveTrack>())
    {
       // Most of the "import" tag attributes are the same as for "wavetrack" tags,
@@ -1432,15 +1386,13 @@ bool AUPImportFileHandle::HandleImport(XMLTagHandler *&handler)
       // "offset" tag is ignored in WaveTrack::HandleXMLTag except for legacy projects,
       // so handle it here.
       double dblValue;
-      pAttr = mAttrs;
-      while (*pAttr)
+
+      for (auto pair : mAttrs)
       {
-         const wxChar *attr = *pAttr++;
-         const wxChar *value = *pAttr++;
-         const wxString strValue = value;
-         if (!wxStrcmp(attr, wxT("offset")) &&
-               XMLValueChecker::IsGoodString(strValue) &&
-               Internat::CompatibleToDouble(strValue, &dblValue))
+         auto attr = pair.first;
+         auto value = pair.second;
+
+         if (attr == "offset" && value.TryGet(dblValue))
             pTrack->SetOffset(dblValue);
       }
    }

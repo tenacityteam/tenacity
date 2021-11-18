@@ -53,6 +53,6 @@ const ProjectFormatVersion SupportedProjectFormatVersion = {
    AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION, AUDACITY_MODLEVEL, true
 };
 
-const ProjectFormatVersion SupportedAudacityProjectFormatVersion = { 3, 1, 0, 0, false };
+const ProjectFormatVersion SupportedTenacityProjectFormatVersion = { 3, 1, 0, 0, false };
 const ProjectFormatVersion BaseProjectFormatVersion              = { 1, 3, 0, 0, true  };
-const ProjectFormatVersion BaseAudacityProjectFormatVersion      = { 3, 0, 0, 0, false };
+const ProjectFormatVersion BaseTenacityProjectFormatVersion      = { 3, 0, 0, 0, false };
