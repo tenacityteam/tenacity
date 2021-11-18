@@ -23,6 +23,7 @@
 
 #include "SampleBlock.h"
 
+class BufferedStreamReader;
 ///
 /// ProjectSerializer
 ///
@@ -64,7 +65,7 @@ public:
    bool DictChanged() const;
 
    // Returns empty string if decoding fails
-   static bool Decode(const wxMemoryBuffer &buffer, XMLTagHandler* hadler);
+   static bool Decode(BufferedStreamReader& in, XMLTagHandler* handler);
 
 private:
    void WriteName(const wxString& name);
