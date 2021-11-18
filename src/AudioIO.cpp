@@ -2249,8 +2249,9 @@ void AudioIO::StopStream()
 
       while( mAudioThreadShouldCallFillBuffersOnce )
       {
-         // LLL:  Experienced recursive yield here...once.
-         wxTheApp->Yield(true); // Pass true for onlyIfNeeded to avoid recursive call error.
+         //FIXME: Seems like this block of the UI thread isn't bounded,
+         //but we cannot allow event handlers to see incompletely terminated
+         //AudioIO state with wxYield (or similar functions)
          std::this_thread::sleep_for(std::chrono::milliseconds( 50 ));
       }
 
