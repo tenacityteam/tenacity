@@ -642,4 +642,9 @@ extern TENACITY_DLL_API StringSetting AudioTrackNameSetting;
 
 TENACITY_DLL_API bool GetEditClipsCanMove();
 
+// Generate a registry for serialized data
+#include "XMLMethodRegistry.h"
+using WaveTrackIORegistry = XMLMethodRegistry<WaveTrack>;
+DECLARE_XML_METHOD_REGISTRY( TENACITY_DLL_API, WaveTrackIORegistry );
+
 #endif // __AUDACITY_WAVETRACK__

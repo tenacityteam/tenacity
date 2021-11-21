@@ -1919,6 +1919,10 @@ void WaveTrack::HandleXMLEndTag(const std::string_view&  /* tag */)
 
 XMLTagHandler *WaveTrack::HandleXMLChild(const std::string_view& tag)
 {
+   if ( auto pChild = WaveTrackIORegistry::Get()
+          .CallObjectAccessor(tag, *this) )
+      return pChild;
+
    //
    // This is legacy code (1.2 and previous) and is not called for NEW projects!
    //
@@ -1949,8 +1953,8 @@ XMLTagHandler *WaveTrack::HandleXMLChild(const std::string_view& tag)
    //
    if (tag == "waveclip")
       return CreateClip();
-   else
-      return NULL;
+
+   return nullptr;
 }
 
 void WaveTrack::WriteXML(XMLWriter &xmlFile) const
@@ -1966,6 +1970,8 @@ void WaveTrack::WriteXML(XMLWriter &xmlFile) const
    xmlFile.WriteAttr(wxT("pan"), (double)mPan);
    xmlFile.WriteAttr(wxT("colorindex"), mWaveColorIndex );
    xmlFile.WriteAttr(wxT("sampleformat"), static_cast<long>(mFormat) );
+
+   WaveTrackIORegistry::Get().CallWriters(*this, xmlFile);
 
    for (const auto &clip : mClips)
    {
@@ -2858,3 +2864,5 @@ bool GetEditClipsCanMove()
    gPrefs->Read(wxT("/GUI/EditClipCanMove"), &editClipsCanMove, false);
    return editClipsCanMove;
 }
+
+DEFINE_XML_METHOD_REGISTRY( WaveTrackIORegistry );
