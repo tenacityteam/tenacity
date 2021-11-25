@@ -15,29 +15,21 @@ Avery King
 #include <wx/string.h>
 #include <string>
 #include <vector>
-#include "GenericObject.h"
 
 namespace GenericUI {
 
-class GenericString : public GenericObject
+class GenericString
 {
   public:
     GenericString(); /// Default constructor
     GenericString(GenericString& source); /// Copy Constructor
     GenericString(GenericString&& source); /// Move Constructor
 
-    GenericString(wxString&  source); /// Constructs a GenericString from a wxStrimg
+    GenericString(wxString& source); /// Constructs a GenericString from a wxStrimg
 
+    GenericString(const char*   source); /// Constructs a GenericString from a string literal
     GenericString(std::string&  source); /// Constructs a GenericString from a std::string
     GenericString(std::wstring& source); /// Constructs a GenericString from a std::wstring
-
-    /// Default destructor
-    ~GenericString();
-
-    // Member functions
-    void DestroyObject() override;
-
-    wxString GetInternalObject() const;
 
     // Operators
     GenericString& operator=(GenericString& source); /// Copy assignment operator
@@ -47,16 +39,19 @@ class GenericString : public GenericObject
     GenericString& operator=(std::wstring& source);
     GenericString& operator=(wxString&  source);
 
+    /// Same as GetChar(pos)
+    char operator[] (size_t pos);
+
+    // Member functions
+    
+    /// Returns the internal string used by GenericString
+    wxString& GetInternalString();
+
+    /// Returns a reference to the character as `pos`.
+    char GetChar(size_t pos);
+
   private:
-
-    /// Internal object flags
-    enum
-    {
-      FlagIsChildObject      = 1 << 0,
-      FlagIsAllocatedWithNew = 1 << 1 // if the object was manually allocated with 'new'
-    };
-
-    wxString* mString = nullptr;
+    wxString mString;
 };
 
 // Typedefs

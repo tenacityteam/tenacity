@@ -14,122 +14,88 @@ namespace GenericUI {
 
 GenericString::GenericString()
 {
-  mString = new wxString;
-  mFlags |= FlagIsAllocatedWithNew;
 }
 
 GenericString::GenericString(GenericString& source)
 {
   mString = source.mString;
-  mFlags = source.mFlags;
 }
 
 GenericString::GenericString(GenericString&& source)
 {
   mString = source.mString;
-  mFlags = source.mFlags;
-
-  source.DestroyObject();
+  source.mString = wxEmptyString;
 }
 
 GenericString::GenericString(wxString& source)
 {
-  mString = new wxString(source);
+  mString = source;
+}
+
+GenericString::GenericString(const char* source)
+{
+  std::string dummy = source;
+  mString = wxString(dummy);
 }
 
 GenericString::GenericString(std::string& source)
 {
-  mString = new wxString(source);
-  mFlags |= FlagIsAllocatedWithNew;
+  mString = wxString(source);
 }
 
 GenericString::GenericString(std::wstring& source)
 {
-  mString = new wxString(source);
-  mFlags |= FlagIsAllocatedWithNew;
-}
-
-GenericString::~GenericString()
-{
-  DestroyChildObjects();
-  DestroyObject();
+  mString = wxString(source);
 }
 
 //// Member functions /////////////////////////////////////////////////////////
-void GenericString::DestroyObject()
+wxString& GenericString::GetInternalString()
 {
-  if ((mFlags & FlagIsAllocatedWithNew) == FlagIsAllocatedWithNew)
-  {
-    delete mString;
-  }
+  return mString;
+}
 
-  mString = nullptr;
-  mFlags = 0;
-  ClearChildren();
+char GenericString::GetChar(size_t pos)
+{
+  return mString.GetChar(pos).GetValue();
 }
 
 //// Operators Overloads //////////////////////////////////////////////////////
 GenericString& GenericString::operator=(GenericString& source)
 {
-  if ((mFlags & FlagIsAllocatedWithNew) == FlagIsAllocatedWithNew)
-  {
-    delete mString;
-  }
-
   mString = source.mString;
-  mFlags = source.mFlags;
-
   return *this;
 }
 
 GenericString& GenericString::operator=(GenericString&& source)
 {
-  if ((mFlags & FlagIsAllocatedWithNew) == FlagIsAllocatedWithNew)
-  {
-    delete mString;
-  }
-
   mString = source.mString;
-  mFlags = source.mFlags;
-
-  source.DestroyObject();
+  source.mString = wxEmptyString;
 
   return *this;
 }
 
 GenericString& GenericString::operator=(wxString& source)
 {
-  if (!(mFlags & FlagIsAllocatedWithNew))
-  {
-    mString = &source;
-  }
-
-
+  mString = source;
   return *this;
 }
 
 GenericString& GenericString::operator=(std::string& source)
 {
-  if ((mFlags & FlagIsAllocatedWithNew) == FlagIsAllocatedWithNew)
-  {
-    delete mString;
-  }
 
-  mString = new wxString(source);
-
+  mString = wxString(source);
   return *this;
 }
 
 GenericString& GenericString::operator=(std::wstring& source)
 {
-  if ((mFlags & FlagIsAllocatedWithNew) == FlagIsAllocatedWithNew)
-  {
-    delete mString;
-  }
-
-  mString = new wxString(source);
-
+  mString = wxString(source);
   return *this;
+}
+
+char GenericString::operator[] (size_t pos)
+{
+  return GetChar(pos);
 }
 
 } // namespace GenericUI
