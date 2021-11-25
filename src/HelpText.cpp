@@ -141,6 +141,17 @@ static wxString LinkExpand( const wxString & Text )
    return Temp;
 }
 
+/// Changelog text. This should be changed across every release. FIXME: there
+/// should be an alternative way instead of hardcoding this text into the program.
+static void ChangelogText( wxTextOutputStream& s)
+{
+   s << "<br/>"
+     << "<ul><li>"
+     << XO("Added a changelog to the splash and about screens. Inspired by (taken from) Audacity")
+     << "</li>"
+     << "</li></ul>";
+}
+
 TranslatableString TitleText( const wxString & Key )
 {
    if(Key==wxT("welcome"))
@@ -247,6 +258,21 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 
       return WrapText( result );
    }
+
+   if (Key == wxT("changelog"))
+   {
+      wxStringOutputStream o;
+      wxTextOutputStream s(o);
+      
+      s << "<center><h2>"
+        << XO("What's new in Saucedacity")
+        << "</h2></center>";
+      ChangelogText(s);
+      auto result = o.GetString();
+
+      return WrapText(result);
+   }
+
    if(Key==wxT("wma-proprietary"))
    {
       wxStringOutputStream o;
@@ -300,7 +326,7 @@ Interface Preferences to \"From Internet\".")
    return {};
 }
 
-wxString HelpText( const wxString & Key )
+wxString HelpText( const wxString Key )
 {
 
    // Possible future enhancement...

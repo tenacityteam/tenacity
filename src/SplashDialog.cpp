@@ -113,57 +113,75 @@ void SplashDialog::Populate( ShuttleGui & S )
    bool bShow;
    gPrefs->Read(wxT("/GUI/ShowSplashScreen"), &bShow, true );
    S.StartVerticalLay(1);
-
-   //v For now, change to AudacityLogoWithName via old-fashioned ways, not Theme.
-   //m_pLogo = std::make_unique<wxBitmap>((const char **) SaucedacityLogoWithName_xpm); //v
-
-
-   // JKC: Resize to 50% of size.  Later we may use a smaller xpm as
-   // our source, but this allows us to tweak the size - if we want to.
-   // It also makes it easier to revert to full size if we decide to.
-   //const float fScale=0.5f;// smaller size.
-   //wxImage RescaledImage( m_pLogo->ConvertToImage() );
-   //wxColour MainColour( 
-   //   RescaledImage.GetRed(1,1), 
-   //   RescaledImage.GetGreen(1,1), 
-   //   RescaledImage.GetBlue(1,1));
-   //this->SetBackgroundColour(MainColour);
-
-   // wxIMAGE_QUALITY_HIGH not supported by wxWidgets 2.6.1, or we would use it here.
-   // GP: ANSWER-ME: Don't we already require wxWidgets 3.1.3 (Audacity's version)? If
-   // so, then shouldn't we have this option already? Please make an issue if you have
-   // an answer or make a comment here.
-   //RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH );
-   //wxBitmap RescaledBitmap( RescaledImage );
-   //wxStaticBitmap *const icon =
-   //    safenew wxStaticBitmap(S.GetParent(), -1,
-                          //*m_pLogo, //v theTheme.Bitmap(bmpAudacityLogoWithName),
-   //                       RescaledBitmap,
-   //                       wxDefaultPosition,
-   //                       wxSize((int)(LOGOWITHNAME_WIDTH*fScale), (int)(LOGOWITHNAME_HEIGHT*fScale)));
-
-   S.Prop(0)
-#if  (0)
-      .ConnectRoot( wxEVT_LEFT_DOWN, &SplashDialog::OnChar)
-#endif
-      /*.AddWindow( icon )*/;
-
-   mpHtml = safenew LinkingHtmlWindow(S.GetParent(), -1,
-                                         wxDefaultPosition,
-                                         wxSize(506, 480),
-                                         wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
-   mpHtml->SetPage(HelpText( wxT("welcome") ));
-   S.Prop(1)
-      .Position( wxEXPAND )
-      .AddWindow( mpHtml );
+   S.StartNotebook();
    {
-      S.SetBorder( 5 );
-      S.SetBorder( 5 );
+      S.StartNotebookPage(XO("Welcome!"));
+      {
+         //v For now, change to AudacityLogoWithName via old-fashioned ways, not Theme.
+         //m_pLogo = std::make_unique<wxBitmap>((const char **) SaucedacityLogoWithName_xpm); //v
 
-      S.Id(wxID_OK)
-         .Prop(0)
-         .AddButton(XXO("OK"), wxALIGN_RIGHT | wxALL, true);
+
+         // JKC: Resize to 50% of size.  Later we may use a smaller xpm as
+         // our source, but this allows us to tweak the size - if we want to.
+         // It also makes it easier to revert to full size if we decide to.
+         /*const float fScale=0.5f;// smaller size.
+           wxImage RescaledImage( m_pLogo->ConvertToImage() );
+           wxColour MainColour( 
+              RescaledImage.GetRed(1,1), 
+              RescaledImage.GetGreen(1,1), 
+              RescaledImage.GetBlue(1,1));
+           this->SetBackgroundColour(MainColour);*/
+
+         // wxIMAGE_QUALITY_HIGH not supported by wxWidgets 2.6.1, or we would use it here.
+         // GP: ANSWER-ME: Don't we already require wxWidgets 3.1.3 (Audacity's version)? If
+         // so, then shouldn't we have this option already? Please make an issue if you have
+         // an answer or make a comment here.
+         /*RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH );
+           wxBitmap RescaledBitmap( RescaledImage );
+           wxStaticBitmap *const icon =
+               safenew wxStaticBitmap(S.GetParent(), -1,
+                               //*m_pLogo, //v theTheme.Bitmap(bmpAudacityLogoWithName),
+                                  RescaledBitmap,
+                                  wxDefaultPosition,
+                                  wxSize((int)(LOGOWITHNAME_WIDTH*fScale), (int)(LOGOWITHNAME_HEIGHT*fScale)));*/
+
+         S.Prop(0)
+#if  (0)
+            .ConnectRoot( wxEVT_LEFT_DOWN, &SplashDialog::OnChar)
+#endif
+            /*.AddWindow( icon )*/;
+
+         mpHtml = safenew LinkingHtmlWindow(S.GetParent(), -1,
+                                            wxDefaultPosition,
+                                            wxSize(506, 480),
+                                            wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
+         mpHtml->SetPage(HelpText( wxT("welcome") ));
+         S.Prop(1)
+            .Position( wxEXPAND )
+            .AddWindow( mpHtml );
+         
+      }
+      S.EndNotebookPage();
+
+      S.StartNotebookPage(XO("What's New"));
+      {
+         mChangelogHtml = new HtmlWindow(S.GetParent(), -1, wxDefaultPosition,
+                                         wxDefaultSize, wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
+
+         mChangelogHtml->SetPage(HelpText("changelog"));
+         S.Prop(1)
+            .Position( wxEXPAND )
+            .AddWindow( mChangelogHtml );
+      }
+      S.EndNotebookPage();
+
    }
+   S.EndNotebook();
+
+   S.Id(wxID_OK)
+      .Prop(0)
+      .AddButton(XXO("OK"), wxALIGN_RIGHT | wxALL, true);
+
    S.EndVerticalLay();
 }
 

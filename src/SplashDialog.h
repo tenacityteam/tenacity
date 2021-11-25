@@ -18,6 +18,8 @@ class ShuttleGui;
 class AudacityProject;
 class HtmlWindow;
 
+/// Saucedacity's welcome dialog. This should probably be renamed to
+/// WelcomeDialog (or something alone the likes) which might happen in the future.
 class SplashDialog final : public wxDialogWrapper {
    DECLARE_DYNAMIC_CLASS(SplashDialog)
 public:
@@ -37,7 +39,7 @@ private:
    void Populate( ShuttleGui & S );
    void OnDontShow( wxCommandEvent & Evt );
 
-   HtmlWindow * mpHtml;
+   HtmlWindow *mpHtml, *mChangelogHtml;
    std::unique_ptr<wxBitmap> m_pLogo; //vvv
    static SplashDialog * pSelf;
 };

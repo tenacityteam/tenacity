@@ -332,13 +332,14 @@ AboutDialog::AboutDialog(wxWindow * parent)
    {
       PopulateAudacityPage( S );
       PopulateInformationPage( S );
+      PopulateChangelogPage( S );
       PopulateLicensePage( S );
    }
    S.EndNotebook();
 
    S.Id(wxID_OK)
       .Prop(0)
-      .AddButton(XXO("OK"), wxALIGN_CENTER, true);
+      .AddButton(XXO("OK"), wxALIGN_RIGHT, true);
 
    Layout();
    Fit();
@@ -870,6 +871,23 @@ void AboutDialog::PopulateLicensePage( ShuttleGui & S )
    }
    S.EndPanel();
 
+   S.EndNotebookPage();
+}
+
+void AboutDialog::PopulateChangelogPage(ShuttleGui& S)
+{
+   S.StartNotebookPage(XO("Changelog"));
+   //S.Prop(1).StartPanel();
+   {
+      HtmlWindow* html = safenew HtmlWindow(S.GetParent(), -1, wxDefaultPosition,
+                                            wxSize(ABOUT_DIALOG_WIDTH, 264),
+                                            wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER);
+      html->SetPage( FormatHtmlText( HelpText("changelog") ) );
+      html->SetHTMLBackgroundColour( *wxWHITE );
+
+      S.Prop(1).Position(wxEXPAND).AddWindow(html);
+   }
+   //S.EndPanel();
    S.EndNotebookPage();
 }
 

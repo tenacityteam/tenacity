@@ -68,6 +68,7 @@ class AUDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
    void PopulateAudacityPage( ShuttleGui & S );
    void PopulateLicensePage( ShuttleGui & S );
    void PopulateInformationPage (ShuttleGui & S );
+   void PopulateChangelogPage (ShuttleGui& S);
 
    void CreateCreditsList();
    void AddCredit( const wxString &name, Role role );
