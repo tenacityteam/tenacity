@@ -921,19 +921,6 @@ void OnPreferences(const CommandContext &context)
    //      state.
    for (auto p : AllProjects{}) {
       MenuManager::Get(*p).RebuildMenuBar(*p);
-// TODO: The comment below suggests this workaround is obsolete.
-#if defined(__WXGTK__)
-      // Workaround for:
-      //
-      //   http://bugzilla.audacityteam.org/show_bug.cgi?id=458
-      //
-      // This workaround should be removed when Audacity updates to wxWidgets
-      // 3.x which has a fix.
-      auto &window = GetProjectFrame( *p );
-      wxRect r = window.GetRect();
-      window.SetSize(wxSize(1,1));
-      window.SetSize(r.GetSize());
-#endif
    }
 }
 

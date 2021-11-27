@@ -461,180 +461,6 @@ static void QuitAudacity()
    QuitAudacity(false);
 }
 
-#if defined(__WXGTK__) && defined(HAVE_GTK)
-
-///////////////////////////////////////////////////////////////////////////////
-// Provide the ability to receive notification from the session manager
-// when the user is logging out or shutting down.
-//
-// Most of this was taken from nsNativeAppSupportUnix.cpp from Mozilla.
-///////////////////////////////////////////////////////////////////////////////
-
-// TODO: May need updating.  Is this code too obsolete (relying on Gnome2 so's) to be
-// worth keeping anymore?
-// CB suggests we use libSM directly ref:
-// http://www.x.org/archive/X11R7.7/doc/libSM/SMlib.html#The_Save_Yourself_Callback
-
-#include <dlfcn.h>
-/* There is a conflict between the type names used in Glib >= 2.21 and those in
- * wxGTK (http://trac.wxwidgets.org/ticket/10883)
- * Happily we can avoid the hack, as we only need some of the headers, not
- * the full GTK headers
- */
-#include <glib-object.h>
-
-typedef struct _GnomeProgram GnomeProgram;
-typedef struct _GnomeModuleInfo GnomeModuleInfo;
-typedef struct _GnomeClient GnomeClient;
-
-typedef enum
-{
-  GNOME_SAVE_GLOBAL,
-  GNOME_SAVE_LOCAL,
-  GNOME_SAVE_BOTH
-} GnomeSaveStyle;
-
-typedef enum
-{
-  GNOME_INTERACT_NONE,
-  GNOME_INTERACT_ERRORS,
-  GNOME_INTERACT_ANY
-} GnomeInteractStyle;
-
-typedef enum
-{
-  GNOME_DIALOG_ERROR,
-  GNOME_DIALOG_NORMAL
-} GnomeDialogType;
-
-typedef GnomeProgram * (*_gnome_program_init_fn)(const char *,
-                                                 const char *,
-                                                 const GnomeModuleInfo *,
-                                                 int,
-                                                 char **,
-                                                 const char *,
-                                                 ...);
-typedef const GnomeModuleInfo * (*_libgnomeui_module_info_get_fn)();
-typedef GnomeClient * (*_gnome_master_client_fn)(void);
-typedef void (*GnomeInteractFunction)(GnomeClient *,
-                                      gint,
-                                      GnomeDialogType,
-                                      gpointer);
-typedef void (*_gnome_client_request_interaction_fn)(GnomeClient *,
-                                                     GnomeDialogType,
-                                                     GnomeInteractFunction,
-                                                     gpointer);
-typedef void (*_gnome_interaction_key_return_fn)(gint, gboolean);
-
-static _gnome_client_request_interaction_fn gnome_client_request_interaction;
-static _gnome_interaction_key_return_fn gnome_interaction_key_return;
-
-static void interact_cb(GnomeClient * /* client */,
-                        gint key,
-                        GnomeDialogType /* type */,
-                        gpointer /* data */)
-{
-   wxCloseEvent e(wxEVT_QUERY_END_SESSION, wxID_ANY);
-   e.SetEventObject(&wxGetApp());
-   e.SetCanVeto(true);
-
-   wxGetApp().ProcessEvent(e);
-
-   gnome_interaction_key_return(key, e.GetVeto());
-}
-
-static gboolean save_yourself_cb(GnomeClient *client,
-                                 gint /* phase */,
-                                 GnomeSaveStyle /* style */,
-                                 gboolean shutdown,
-                                 GnomeInteractStyle interact,
-                                 gboolean /* fast */,
-                                 gpointer /* user_data */)
-{
-   if (!shutdown || interact != GNOME_INTERACT_ANY) {
-      return TRUE;
-   }
-
-   if (AllProjects{}.empty()) {
-      return TRUE;
-   }
-
-   gnome_client_request_interaction(client,
-                                    GNOME_DIALOG_NORMAL,
-                                    interact_cb,
-                                    NULL);
-
-   return TRUE;
-}
-
-class GnomeShutdown
-{
- public:
-   GnomeShutdown()
-   {
-      mArgv[0].reset(strdup("Saucedacity"));
-
-      mGnomeui = dlopen("libgnomeui-2.so.0", RTLD_NOW);
-      if (!mGnomeui) {
-         return;
-      }
-
-      mGnome = dlopen("libgnome-2.so.0", RTLD_NOW);
-      if (!mGnome) {
-         return;
-      }
-
-      _gnome_program_init_fn gnome_program_init = (_gnome_program_init_fn)
-         dlsym(mGnome, "gnome_program_init");
-      _libgnomeui_module_info_get_fn libgnomeui_module_info_get = (_libgnomeui_module_info_get_fn)
-         dlsym(mGnomeui, "libgnomeui_module_info_get");
-      _gnome_master_client_fn gnome_master_client = (_gnome_master_client_fn)
-         dlsym(mGnomeui, "gnome_master_client");
-
-      gnome_client_request_interaction = (_gnome_client_request_interaction_fn)
-         dlsym(mGnomeui, "gnome_client_request_interaction");
-      gnome_interaction_key_return = (_gnome_interaction_key_return_fn)
-         dlsym(mGnomeui, "gnome_interaction_key_return");
-
-
-      if (!gnome_program_init || !libgnomeui_module_info_get) {
-         return;
-      }
-
-      gnome_program_init(mArgv[0].get(),
-                         "1.0",
-                         libgnomeui_module_info_get(),
-                         1,
-                         reinterpret_cast<char**>(mArgv),
-                         NULL);
-
-      mClient = gnome_master_client();
-      if (mClient == NULL) {
-         return;
-      }
-
-      g_signal_connect(mClient, "save-yourself", G_CALLBACK(save_yourself_cb), NULL);
-   }
-
-   virtual ~GnomeShutdown()
-   {
-      // Do not dlclose() the libraries here lest you want segfaults...
-   }
-
- private:
-
-   MallocString<> mArgv[1];
-   void *mGnomeui;
-   void *mGnome;
-   GnomeClient *mClient;
-};
-
-// This variable exists to call the constructor and
-// connect a signal for the 'save-yourself' message.
-GnomeShutdown GnomeShutdownInstance;
-
-#endif
-
 // Where drag/drop or "Open With" filenames get stored until
 // the timer routine gets around to picking them up.
 static wxArrayString ofqueue;
@@ -715,7 +541,7 @@ int main(int argc, char *argv[])
 {
    wxDISABLE_DEBUG_SUPPORT();
 
-   // Bug #1986 workaround - This doesn't actually reduce the number of 
+   // Bug #1986 workaround - This doesn't actually reduce the number of
    // messages, it simply hides them in Release builds. We'll probably
    // never be able to get rid of the messages entirely, but we should
    // look into what's causing them, so allow them to show in Debug
@@ -1361,7 +1187,7 @@ bool AudacityApp::InitPart2()
 
    AudacityProject *project;
    {
-      // Bug 718: Position splash screen on same screen 
+      // Bug 718: Position splash screen on same screen
       // as where Audacity project will appear.
       wxRect wndRect;
       bool bMaximized = false;
@@ -1378,11 +1204,11 @@ bool AudacityApp::InitPart2()
          wxDefaultSize,
          wxSTAY_ON_TOP);
 
-      // Unfortunately with the Windows 10 Creators update, the splash screen 
+      // Unfortunately with the Windows 10 Creators update, the splash screen
       // now appears before setting its position.
-      // On a dual monitor screen it will appear on one screen and then 
+      // On a dual monitor screen it will appear on one screen and then
       // possibly jump to the second.
-      // We could fix this by writing our own splash screen and using Hide() 
+      // We could fix this by writing our own splash screen and using Hide()
       // until the splash scren was correctly positioned, then Show()
 
       // Possibly move it on to the second screen...
