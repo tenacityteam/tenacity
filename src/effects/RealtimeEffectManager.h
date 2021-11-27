@@ -20,9 +20,11 @@
 #include <chrono>
 
 #include "ClientData.h"
+#include "ModuleInterface.h" // for PluginID
 
 class TenacityProject;
 class EffectProcessor;
+class RealtimeEffectList;
 class RealtimeEffectState;
 class Track;
 
@@ -122,6 +124,15 @@ public:
       TenacityProject *mpProject = nullptr;
    };
 
+   //! Main thread appends a global or per-track effect
+   /*!
+    @param pTrack if null, then state is added to the global list
+    @return if null, the given id was not found
+    */
+   RealtimeEffectState *AddState(Track *pTrack, const PluginID & id);
+   //! Main thread safely removes an effect from a list
+   void RemoveState(RealtimeEffectList &states, RealtimeEffectState &state);
+
 private:
    void ProcessStart();
    size_t Process(Track *track, float **buffers, size_t numSamples);
@@ -149,6 +160,9 @@ private:
 
    std::mutex mLock;
    Latency mLatency{0};
+
+   double mRate;
+
    std::atomic<bool> mSuspended{ true };
    std::atomic<bool> mActive{ false };
 
