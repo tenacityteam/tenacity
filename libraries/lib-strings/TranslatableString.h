@@ -54,6 +54,13 @@ public:
       mMsgid.swap( str );
    }
 
+   TranslatableString( const char* str, Formatter formatter = {} )
+      : mFormatter{ std::move(formatter) }
+   {
+      wxString dummy(str);
+      mMsgid.swap( dummy );
+   }
+
    // copy and move
    TranslatableString( const TranslatableString & ) = default;
    TranslatableString &operator=( const TranslatableString & ) = default;

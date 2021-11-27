@@ -489,7 +489,7 @@ void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
    wxString file = wxT("Audacity-keys.xml");
 
    file = SelectFile(FileNames::Operation::Open,
-      XO("Select an XML file containing Audacity keyboard shortcuts..."),
+      XO("Select an XML file containing Saucedacity (Audacity) keyboard shortcuts..."),
       wxEmptyString,
       file,
       wxT(""),

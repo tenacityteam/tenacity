@@ -84,7 +84,7 @@ TranslatableString ProjectSerializer::FailureMessage( const FilePath &/*filePath
 {
    return 
 XO("This recovery file was saved by Audacity 2.3.0 or before.\n"
-   "You need to run that version of Audacity to recover the project." );
+   "You need to run that version of Audacity (NOT Saucedacity) to recover the project." );
 }
 
 namespace {

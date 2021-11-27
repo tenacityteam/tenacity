@@ -1692,7 +1692,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
    mChecker.reset();
    auto checker = std::make_unique<wxSingleInstanceChecker>();
 
-   auto runningTwoCopiesStr = XO("Running two copies of Saucedacity simultaneously or running Saucedacity and Audacity together may cause\ndata loss or cause your system to crash.\n\n");
+   auto runningTwoCopiesStr = XO("Running two copies of Saucedacity simultaneously may cause\ndata loss or cause your system to crash.\n\n");
 
    if (!checker->Create(name, dir))
    {
@@ -1700,7 +1700,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // whether there is another instance running or not.
 
       auto prompt = XO(
-"Saucedacity was not able to lock the temporary files directory.\nThis folder may be in use by another copy of Saucedacity (or by a copy of Audacity).\n")
+"Saucedacity was not able to lock the temporary files directory.\nThis folder may be in use by another copy of Saucedacity.\n")
          + runningTwoCopiesStr
          + XO("Do you still want to start Saucedacity?");
       int action = AudacityMessageBox(

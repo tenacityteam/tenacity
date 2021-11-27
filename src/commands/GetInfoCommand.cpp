@@ -442,7 +442,7 @@ bool GetInfoCommand::SendBoxes(const CommandContext &context)
    //wxString Name = pWin->GetName();
    context.StartStruct();
    context.AddItem( 0, "depth" );
-   context.AddItem( "Audacity Window", "name" ); 
+   context.AddItem( "Saucedacity Window", "name" ); 
    context.StartField( "box" );
    context.StartArray( );
    context.AddItem( R.GetLeft() );

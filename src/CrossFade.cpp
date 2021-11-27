@@ -7,12 +7,17 @@
 *******************************************************************//**
 
 \class CrossFader
-\brief Not used by Audacity (yet) apparently work in progress that has
-been abandoned.
+\brief Not used by Audacity, never used in Saucedacity. Apparently work
+in progress that has been abandoned.
 
 *//********************************************************************/
 
-#pragma message( "--- CrossFade.cpp: This is abandoned code, not included in Audacity builds")
+/* GP: FIXME: Should we drop this? If this is apprently abandoned, we
+ * ought to just drop it unless someone's willing to restart work on
+ * this code.
+ */
+
+#pragma message( "--- CrossFade.cpp: This is abandoned code, not included in Saucedacity builds")
 
 #include "CrossFade.h"
 
