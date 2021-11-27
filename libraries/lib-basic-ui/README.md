@@ -1,11 +1,18 @@
-# lib-basic-ui and GenericUI
+# lib-basic-ui
 
-This library contains the GenericUI wrapper toolkit. This is largely going to be implemented around wxWidgets, more or less created in the style of wxWidgets too.
+**FIXME**: Maybe rename this to `lib-generic-ui` to avoid confusion.
 
-Right now, lib-basic-ui is purely Audacity's version. We intend to implement more of this in the future, in addition to bringing BasicUI over to the mix too.
+lib-basic-ui in Saucedacity is an abstract library that allows the use of a
+single UI library with multiple different toolkits (wxWidgets, Qt, GTK+, etc).
+It is designed to be a completely abstract library, requiring implementations
+for what you have to use.
 
-More documentation is expected to arrive in a `doc/` folder or something. Documentation is a priority too, and this will mostly be done with Doxygen for now.
+More documentation might arrive in a `doc/` folder or something. Documentation
+is a priority too, and this will mostly be done with Doxygen for now.
 
-Currently, GenericUI isn't build with Saucedacity. GenericUI is virtually nothing at this point, and, in order to save time compiling, is not built.
+Currently, anything introduced in our version of lib-basic-ui (namely GenericUI)
+isn't built with Saucedacity. GenericUI is not yet ready (even for very basic
+things), and, in order to save time compiling, is not built.
 
-Warning: some of this code is untested. If you see a bug, or if something doesn't look right, please file an issue under our issue tracker.
+Warning: some of this code is untested. If you see a bug, or if something
+doesn't look right, please file an issue in our issue tracker.
