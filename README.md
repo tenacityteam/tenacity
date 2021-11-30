@@ -13,6 +13,19 @@
 - **Accessibility** for VI users.
 - **Analysis and visualization** tools to analyze audio, or other signal data.
 
+## Cloning the Source
+To clone the Saucedacity source tree, you will need to run the following command:
+```
+git clone --recurse-submodules https://github.com/saucedacity/saucedacity
+```
+
+The `--recurse-submodules` is very important because, unlike Audacity, Saucedacity uses submodules. If you forget the `--recurse-submodules`, you can run the following after `git clone`:
+
+```
+git submodule init
+git submodule update
+```
+
 ## Contributing and To Do
 
 If you want to contribute to this project, we welcome your contributions. Please see the [issue tracker](https://github.com/saucedacity/saucedacity/issues) to see what needs to be done. You can also take a look at (our TODO page)[https://github.com/saucedacity/saucedacity/wiki/TODO]. There, you will find some things that we plan on doing or that need to be done.
