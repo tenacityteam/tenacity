@@ -185,7 +185,7 @@ void ProjectSettings::SetSyncLock(bool flag)
    }
 }
 
-static ProjectFileIORegistry::WriterEntry entry {
+static ProjectFileIORegistry::AttributeWriterEntry entry {
 [](const TenacityProject &project, XMLWriter &xmlFile){
    auto &settings = ProjectSettings::Get(project);
    xmlFile.WriteAttr(wxT("snapto"), settings.GetSnapTo() ? wxT("on") : wxT("off"));
