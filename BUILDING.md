@@ -51,7 +51,7 @@ Building with MinGW isn't supported either. However, this might be of interest i
 
 **WARNING**: these instructions are taken from Audacity's BUILDING.md. They have not been modified except for branding changes. If there's anything incorrect here, please create an issue.
 
-We build Saucedacity using XCode 12. However, it is likely possible to build it with XCode 7.
+You should be able to build Saucedacity using XCode 12. However, it is likely possible to build it with XCode 7.
 
 ### Linux
 
@@ -73,7 +73,7 @@ $ sudo apt-get install libgtk2.0-dev libasound2-dev libavformat-dev libjack-jack
    For example, in the **git-bash** run:
 
     ```
-    $ git clone https://github.com/generic-pers0n/saucedacity/
+    $ git clone --recurse-submodules https://github.com/generic-pers0n/saucedacity/
     ```
 
 2. Open CMake GUI. 
@@ -112,7 +112,7 @@ Instructions needed to build those dependencies aren't going to be provided here
 1. Clone Saucedacity from the Saucedacity GitHub project. 
   
     ```
-    $ git clone https://github.com/generic-pers0n/saucedacity/
+    $ git clone --recurse-submodules https://github.com/generic-pers0n/saucedacity/
     ```
 
 2. Configure Saucedacity using CMake:
@@ -142,7 +142,7 @@ cmake -GXCode -T buildsystem=1 -Daudacity_use_mad="off" -Daudacity_use_id3tag=of
 1. Clone Saucedacity from the Saucedacity GitHub project. 
   
     ```
-    $ git clone https://github.com/generic-pers0n/saucedacity/
+    $ git clone --recurse-submodules https://github.com/generic-pers0n/saucedacity/
     ```
 
 2. Configure Saucedacity using CMake:
