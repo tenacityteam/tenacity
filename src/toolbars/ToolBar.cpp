@@ -365,7 +365,7 @@ ToolBar::~ToolBar()
 TranslatableString ToolBar::GetTitle()
 {
    /* i18n-hint: %s will be replaced by the name of the kind of toolbar.*/
-   return XO("Audacity %s Toolbar").Format( GetLabel() );
+   return XO("Saucedacity %s Toolbar").Format( GetLabel() );
 }
 
 //
