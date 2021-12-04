@@ -105,6 +105,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "ProjectFileIO.h"
 #include "ScrubState.h"
 #include "ProjectWindows.h"
+#include "TransactionScope.h"
 #include "WaveTrack.h"
 
 #include "effects/RealtimeEffectManager.h"

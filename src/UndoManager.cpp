@@ -34,6 +34,7 @@ UndoManager
 #include "WaveTrack.h"          // temp
 #include "Diags.h"
 #include "Tags.h"
+#include "TransactionScope.h"
 #include "widgets/ProgressDialog.h"
 
 #include <unordered_set>

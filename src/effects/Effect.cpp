@@ -30,7 +30,6 @@
 
 #include "../AudioIO.h"
 #include "widgets/wxWidgetsBasicUI.h"
-#include "../DBConnection.h"
 #include "../LabelTrack.h"
 #include "../MixAndRender.h"
 #include "../PluginManager.h"
@@ -42,6 +41,7 @@
 #include "../shuttle/ShuttleGui.h"
 #include "../shuttle/Shuttle.h"
 #include "../SyncLock.h"
+#include "../TransactionScope.h"
 #include "../WaveTrack.h"
 #include "../widgets/ProgressDialog.h"
 #include "../widgets/NumericTextCtrl.h"

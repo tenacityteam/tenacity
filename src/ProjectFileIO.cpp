@@ -37,6 +37,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "ProjectWindows.h"
 #include "SampleBlock.h"
 #include "TempDirectory.h"
+#include "TransactionScope.h"
 #include "WaveTrack.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/NumericTextCtrl.h"
