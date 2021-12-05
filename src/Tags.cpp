@@ -49,7 +49,7 @@
 #include "Project.h"
 #include "ProjectFileIORegistry.h"
 #include "SelectFile.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "widgets/Grid.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/HelpSystem.h"

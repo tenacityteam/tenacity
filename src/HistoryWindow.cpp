@@ -42,7 +42,7 @@ undo memory so as to free up space.
 #include "Project.h"
 #include "ProjectFileIO.h"
 #include "ProjectHistory.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/HelpSystem.h"
 

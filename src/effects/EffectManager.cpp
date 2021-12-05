@@ -28,7 +28,7 @@ effects.
 
 #include "../widgets/AudacityMessageBox.h"
 
-#include "../ShuttleGetDefinition.h"
+#include "../shuttle/ShuttleGetDefinition.h"
 #include "../commands/CommandContext.h"
 #include "../commands/AudacityCommand.h"
 #include "../PluginManager.h"
@@ -347,7 +347,7 @@ bool EffectManager::HasPresets(const PluginID & ID)
 
 #include <wx/choice.h>
 #include <wx/listbox.h>
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 namespace {
 

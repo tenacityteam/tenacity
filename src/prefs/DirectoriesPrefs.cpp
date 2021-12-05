@@ -33,7 +33,7 @@
 #include <wx/utils.h>
 
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "TempDirectory.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ReadOnlyText.h"

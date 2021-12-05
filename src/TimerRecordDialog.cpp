@@ -42,7 +42,7 @@
 
 #include "AudioIO.h"
 #include "SelectFile.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "ProjectAudioManager.h"
 #include "ProjectFileIO.h"
 #include "ProjectFileManager.h"

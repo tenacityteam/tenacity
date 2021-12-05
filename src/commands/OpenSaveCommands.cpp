@@ -24,8 +24,8 @@
 #include "../ProjectFileManager.h"
 #include "../ProjectManager.h"
 #include "../export/Export.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "CommandContext.h"
 
 

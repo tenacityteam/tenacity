@@ -25,7 +25,7 @@ It forwards the actual work of doing the commands to the ScreenshotCommand.
 #include <wx/event.h>
 #include <wx/frame.h>
 
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/dirdlg.h>

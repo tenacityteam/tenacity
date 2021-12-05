@@ -28,7 +28,7 @@
 
 #include "../prefs/GUISettings.h"
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 using std::min;
 

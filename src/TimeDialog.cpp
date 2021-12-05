@@ -21,7 +21,7 @@
 #include <wx/sizer.h>
 #include <wx/string.h>
 
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "widgets/NumericTextCtrl.h"
 
 BEGIN_EVENT_TABLE(TimeDialog, wxDialogWrapper)

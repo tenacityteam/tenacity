@@ -24,8 +24,8 @@
 #include "../WaveTrack.h"
 #include "../LabelTrack.h"
 #include "../ProjectHistory.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "CommandContext.h"
 #include "../tracks/labeltrack/ui/LabelTrackView.h"
 

@@ -26,7 +26,7 @@
 #include "Languages.h"
 #include "../PluginManager.h"
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 EffectsPrefs::EffectsPrefs(wxWindow * parent, wxWindowID winid)
 :  PrefsPanel(parent, winid, XO("Effects"))

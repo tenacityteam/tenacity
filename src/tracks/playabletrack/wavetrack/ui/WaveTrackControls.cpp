@@ -22,7 +22,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../ProjectAudioIO.h"
 #include "../../../../ProjectHistory.h"
 #include "../../../../RefreshCode.h"
-#include "../../../../ShuttleGui.h"
+#include "../../../../shuttle/ShuttleGui.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanel.h"
 #include "../../../../TrackPanelAx.h"

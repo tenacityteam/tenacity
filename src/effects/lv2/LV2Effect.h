@@ -37,7 +37,7 @@ class wxArrayString;
 #include <lilv/lilv.h>
 #include <suil/suil.h>
 
-#include "../../ShuttleGui.h"
+#include "../../shuttle/ShuttleGui.h"
 #include "SampleFormat.h"
 
 #include "LoadLV2.h"

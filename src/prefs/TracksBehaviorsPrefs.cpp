@@ -18,7 +18,7 @@
 #include "TracksBehaviorsPrefs.h"
 
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 TracksBehaviorsPrefs::TracksBehaviorsPrefs(wxWindow * parent, wxWindowID winid)
 /* i18n-hint: i.e. the behaviors of tracks */

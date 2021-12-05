@@ -47,7 +47,7 @@
 #include <wx/intl.h>
 #include <wx/scrolwin.h>
 
-#include "../../ShuttleGui.h"
+#include "../../shuttle/ShuttleGui.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/AudacityMessageBox.h"
 #include "../../widgets/wxPanelWrapper.h"

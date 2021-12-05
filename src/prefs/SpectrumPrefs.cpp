@@ -25,7 +25,7 @@
 
 #include "FFT.h"
 #include "../Project.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 #include "../TrackPanel.h"
 #include "../WaveTrack.h"

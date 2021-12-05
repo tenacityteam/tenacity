@@ -37,8 +37,8 @@ ShuttleGui.
 
 #include "ConfigInterface.h"
 
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../widgets/ProgressDialog.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/AudacityMessageBox.h"

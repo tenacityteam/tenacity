@@ -27,8 +27,8 @@ parameters.  It is for development purposes.
 
 #include <wx/intl.h>
 
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/valnum.h"
 #include "../commands/CommandContext.h"

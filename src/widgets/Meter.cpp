@@ -68,7 +68,7 @@
 #include "../ProjectAudioManager.h"
 #include "../ProjectStatus.h"
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../Theme.h"
 
 #include "../AllThemeResources.h"

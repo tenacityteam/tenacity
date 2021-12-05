@@ -21,7 +21,7 @@
 #include <wx/defs.h>
 
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 ImportExportPrefs::ImportExportPrefs(wxWindow * parent, wxWindowID winid)
 :   PrefsPanel(parent, winid, XO("Import / Export"))

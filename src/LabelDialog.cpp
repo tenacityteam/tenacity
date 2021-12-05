@@ -29,7 +29,7 @@
 #include <wx/stattext.h>
 #include <wx/textdlg.h>
 
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "LabelTrack.h"
 #include "Prefs.h"
 #include "Project.h"

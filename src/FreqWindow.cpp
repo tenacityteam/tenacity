@@ -65,7 +65,7 @@ the mouse around.
 #include <math.h>
 
 #include "SelectFile.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "AColor.h"
 #include "CommonCommandFlags.h"
 #include "FFT.h"

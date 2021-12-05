@@ -19,7 +19,7 @@
 
 #include <wx/intl.h>
 
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../WaveTrack.h"
 #include "../widgets/NumericTextCtrl.h"
 

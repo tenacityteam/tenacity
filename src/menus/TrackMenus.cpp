@@ -14,7 +14,7 @@
 #include "../ProjectStatus.h"
 #include "../ProjectWindow.h"
 #include "../SelectUtilities.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../TimeTrack.h"
 #include "../TrackPanelAx.h"
 #include "../TrackPanel.h"

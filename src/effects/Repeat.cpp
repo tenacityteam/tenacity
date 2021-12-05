@@ -30,8 +30,8 @@
 #include <wx/stattext.h>
 
 #include "../LabelTrack.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../WaveTrack.h"
 #include "../widgets/NumericTextCtrl.h"
 #include "../widgets/valnum.h"

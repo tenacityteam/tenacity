@@ -149,7 +149,7 @@ extern "C" {
 
 /* rather earlier than normal, but pulls in config*.h and other program stuff
  * we need for the next bit */
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "Prefs.h"
 
 #include "Identifier.h"

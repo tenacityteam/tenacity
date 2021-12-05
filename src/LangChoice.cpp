@@ -26,7 +26,7 @@ of languages for Audacity.
 #include <wx/stattext.h>
 
 #include "Languages.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/wxPanelWrapper.h"
 

@@ -43,7 +43,7 @@ selected command.
 
 #include "Project.h"
 #include "effects/EffectManager.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "widgets/HelpSystem.h"
 
 

@@ -11,7 +11,7 @@
 #include "UnwritableLocationErrorDialog.h"
 
 #include "HelpSystem.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 
 #include "prefs/PrefsDialog.h"
 #include "ui/AccessibleLinksFormatter.h"

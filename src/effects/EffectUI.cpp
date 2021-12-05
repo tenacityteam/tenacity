@@ -653,7 +653,7 @@ private:
 #include "../prefs/GUISettings.h" // for RTL_WORKAROUND
 #include "../Project.h"
 #include "../ProjectAudioManager.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../ViewInfo.h"
 #include "../commands/AudacityCommand.h"
 #include "../commands/CommandContext.h"

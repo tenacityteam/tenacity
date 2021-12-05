@@ -40,7 +40,7 @@ KeyConfigPrefs and MousePrefs use.
 #include "../xml/XMLFileReader.h"
 
 #include "../SelectFile.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 #include "FileNames.h"
 

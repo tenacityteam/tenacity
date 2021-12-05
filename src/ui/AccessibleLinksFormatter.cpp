@@ -10,7 +10,7 @@
 
 #include "AccessibleLinksFormatter.h"
 
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 
 #include <unordered_map>
 #include <algorithm>

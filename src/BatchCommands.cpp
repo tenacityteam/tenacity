@@ -41,7 +41,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include "Prefs.h"
 #include "SelectFile.h"
 #include "SelectUtilities.h"
-#include "Shuttle.h"
+#include "shuttle/Shuttle.h"
 #include "Track.h"
 #include "UndoManager.h"
 

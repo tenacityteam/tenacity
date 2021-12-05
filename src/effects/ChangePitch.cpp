@@ -36,8 +36,8 @@ the pitch without changing the tempo.
 #include <wx/valtext.h>
 
 #include "../PitchName.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "Spectrum.h"
 #include "../WaveTrack.h"
 #include "../widgets/valnum.h"

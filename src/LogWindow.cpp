@@ -24,7 +24,7 @@ Paul Licameli split from AudacityLogger.cpp
 #include "MemoryX.h"
 #include "Prefs.h"
 #include "SelectFile.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 
 #include "../images/SaucedacityLogoAlpha.xpm"
 

@@ -39,7 +39,7 @@
 #include <wx/settings.h>
 
 #include "Clipboard.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "Menus.h"
 #include "Prefs.h"
 #include "Project.h"

@@ -85,7 +85,7 @@
 #include "FileNames.h"
 #include "PlatformCompatibility.h"
 #include "../../SelectFile.h"
-#include "../../ShuttleGui.h"
+#include "../../shuttle/ShuttleGui.h"
 #include "../../effects/Effect.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/AudacityMessageBox.h"

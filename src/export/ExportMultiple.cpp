@@ -45,7 +45,7 @@
 #include "../ProjectWindow.h"
 #include "Prefs.h"
 #include "../SelectionState.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "../WaveTrack.h"
 #include "../widgets/HelpSystem.h"

@@ -26,8 +26,8 @@
 #include "../WaveClip.h"
 #include "../WaveTrack.h"
 #include "../Envelope.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 
 const ComponentInterfaceSymbol SetEnvelopeCommand::Symbol
 { XO("Set Envelope") };

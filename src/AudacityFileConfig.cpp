@@ -13,7 +13,7 @@ Paul Licameli split from Prefs.cpp
 
 #include "widgets/HelpSystem.h"
 #include "widgets/wxPanelWrapper.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "../images/Help.xpm"
 
 #include <wx/app.h>

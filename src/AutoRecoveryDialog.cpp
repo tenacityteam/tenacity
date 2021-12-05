@@ -14,7 +14,7 @@ Paul Licameli split from AutoRecovery.cpp
 #include "ProjectManager.h"
 #include "ProjectFileIO.h"
 #include "ProjectFileManager.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "TempDirectory.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/wxPanelWrapper.h"

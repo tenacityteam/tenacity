@@ -20,7 +20,7 @@
 #include "../Project.h"
 #include "../ProjectSelectionManager.h"
 #include "../SelectFile.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../SplashDialog.h"
 #include "../Theme.h"
 #include "../commands/CommandContext.h"

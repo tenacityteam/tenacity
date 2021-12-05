@@ -34,7 +34,7 @@ of sample block storage.
 #include <wx/intl.h>
 
 #include "SampleBlock.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "Project.h"
 #include "WaveClip.h"
 #include "WaveTrack.h"

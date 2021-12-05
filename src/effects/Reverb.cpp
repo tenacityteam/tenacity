@@ -25,8 +25,8 @@
 #include <wx/spinctrl.h>
 
 #include "Prefs.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../widgets/valnum.h"
 
 #include "Reverb_libSoX.h"

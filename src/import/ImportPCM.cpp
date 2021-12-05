@@ -36,7 +36,7 @@
 
 #include "sndfile.h"
 
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 #include "../widgets/ProgressDialog.h"
 
@@ -46,7 +46,7 @@
 
 #include "../FileFormats.h"
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../WaveTrack.h"
 #include "ImportPlugin.h"
 

@@ -236,14 +236,6 @@ list( APPEND SOURCES
       SelectionState.h
       Sequence.cpp
       Sequence.h
-      Shuttle.cpp
-      Shuttle.h
-      ShuttleGetDefinition.cpp
-      ShuttleGetDefinition.h
-      ShuttleGui.cpp
-      ShuttleGui.h
-      ShuttlePrefs.cpp
-      ShuttlePrefs.h
       Snap.cpp
       Snap.h
       SoundActivatedRecord.cpp
@@ -483,6 +475,17 @@ list( APPEND SOURCES
       effects/Wahwah.cpp
       effects/Wahwah.h
 
+      # Shuttle system
+      shuttle/Shuttle.cpp
+      shuttle/Shuttle.h
+      shuttle/ShuttleGetDefinition.cpp
+      shuttle/ShuttleGetDefinition.h
+      shuttle/ShuttleGui.cpp
+      shuttle/ShuttleGui.h
+      shuttle/ShuttlePrefs.cpp
+      shuttle/ShuttlePrefs.h
+
+      
       # Legacy features
 
       $<$<BOOL:${ENABLE_LEGACY}>:

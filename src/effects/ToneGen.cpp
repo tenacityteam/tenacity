@@ -31,8 +31,8 @@ frequency changes smoothly during the tone.
 
 #include "../Project.h"
 #include "../ProjectSettings.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../widgets/valnum.h"
 #include "../widgets/NumericTextCtrl.h"
 

@@ -12,7 +12,7 @@
 #include "EffectInterface.h"
 #include "ModuleManager.h"
 #include "PluginManager.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/ProgressDialog.h"
 

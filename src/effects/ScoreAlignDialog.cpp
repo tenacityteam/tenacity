@@ -43,7 +43,7 @@ It \TODO: description
 #include <fstream>
 #include <wx/dialog.h>
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../lib-src/header-substitutes/allegro.h"
 #include "audioreader.h"
 #include "scorealign.h"

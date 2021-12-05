@@ -24,7 +24,7 @@
 //#include <wx/defs.h>
 
 #include "Prefs.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
 
 int TracksPrefs::iPreferencePinned = -1;

@@ -38,14 +38,14 @@ This class now lists
 #include "../Envelope.h"
 
 #include "SelectCommand.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "CommandContext.h"
 
 #include "../prefs/PrefsDialog.h"
-#include "../Shuttle.h"
+#include "../shuttle/Shuttle.h"
 #include "../PluginManager.h"
 #include "../tracks/ui/TrackView.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 
 #include <wx/frame.h>
 #include <wx/log.h>

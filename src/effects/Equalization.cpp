@@ -88,8 +88,8 @@
 #include <wx/utils.h>
 
 #include "../AColor.h"
-#include "../Shuttle.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/Shuttle.h"
+#include "../shuttle/ShuttleGui.h"
 #include "PlatformCompatibility.h"
 #include "FileNames.h"
 #include "../Envelope.h"

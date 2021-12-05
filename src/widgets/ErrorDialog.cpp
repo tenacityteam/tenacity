@@ -35,7 +35,7 @@
 
 #include "../AllThemeResources.h"
 #include "CodeConversions.h"
-#include "../ShuttleGui.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../HelpText.h"
 #include "Prefs.h"
 #include "HelpSystem.h"
