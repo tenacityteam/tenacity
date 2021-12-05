@@ -88,9 +88,10 @@ void CommandMessageTarget::AddItem(const double value,    const wxString &name){
    str.imbue(nolocale);
 
    if( name.empty() )
-      str << ((mCounts.back()>0)? ", " : "") << value;
+      str << ((mCounts.back()>0)? std::string(", ") : std::string("")) << value;
    else
-      str << ((mCounts.back()>0)? ", " : "") << "\"" << name << "\"" << ":" << value;
+      str << ((mCounts.back()>0)? std::string(", ") : std::string(""))
+          << std::string("\"") << name << std::string("\"") << std::string(":") << value;
 
    Update( str.str() );
    mCounts.back() += 1;
