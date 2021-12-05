@@ -261,7 +261,7 @@ public:
 static
 Importer::RegisteredImportPlugin{ "GStreamer",
    []() -> std::unique_ptr< ImportPlugin > {
-   wxLogMessage(_TS("Audacity is built against GStreamer version %d.%d.%d-%d"),
+   wxLogMessage(_TS("Saucedacity is built against GStreamer version %d.%d.%d-%d"),
                 GST_VERSION_MAJOR,
                 GST_VERSION_MINOR,
                 GST_VERSION_MICRO,
