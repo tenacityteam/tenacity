@@ -115,6 +115,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "prefs/GUIPrefs.h"
 #include "tracks/ui/Scrubbing.h"
 #include "widgets/FileHistory.h"
+#include "LogWindow.h"
 
 #include "widgets/wxWidgetsBasicUI.h"
 
@@ -395,6 +396,13 @@ static void QuitAudacity(bool bForce)
    CloseScoreAlignDialog();
 #endif
    CloseScreenshotTools();
+
+   // Logger window is always destroyed on macOS,
+   // on other platforms - it prevents the runloop
+   // termination when exiting is requested
+   #if !defined(__WXMAC__)
+   LogWindow::Destroy();
+   #endif
 
    //print out profile if we have one by deleting it
    //temporarily commented out till it is added to all projects
