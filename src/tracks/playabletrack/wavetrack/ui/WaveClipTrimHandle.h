@@ -29,20 +29,31 @@ class WaveClipTrimHandle : public UIHandle
        virtual ~ClipTrimPolicy();
 
        virtual bool Init(const TrackPanelMouseEvent& event) = 0;
-       virtual void Trim(const TrackPanelMouseEvent& event, TenacityProject& project) = 0;
+       virtual UIHandle::Result Trim(const TrackPanelMouseEvent& event, TenacityProject& project) = 0;
        virtual void Finish(TenacityProject& project) = 0;
        virtual void Cancel() = 0;
+
+       virtual void Draw(
+           TrackPanelDrawingContext &context, 
+           const wxRect &rect, 
+           unsigned iPass);
+
+       virtual wxRect DrawingArea(
+           TrackPanelDrawingContext&, 
+           const wxRect &rect, 
+           const wxRect &panelRect, 
+           unsigned iPass);
     };
     class AdjustBorder;
     class AdjustBetweenBorders;
     
-    std::unique_ptr<ClipTrimPolicy> mClipTrimPolicy;
+    std::unique_ptr<ClipTrimPolicy> mClipTrimPolicy{};
 
 public:
     WaveClipTrimHandle(std::unique_ptr<ClipTrimPolicy>& clipTrimPolicy);
 
     static UIHandlePtr HitAnywhere(std::weak_ptr<WaveClipTrimHandle>& holder,
-        WaveTrack* waveTrack,
+        const std::shared_ptr<WaveTrack>& waveTrack,
         const TenacityProject* pProject,
         const TrackPanelMouseState& state);
 
@@ -52,15 +63,26 @@ public:
 
     HitTestPreview Preview(const TrackPanelMouseState& mouseState, TenacityProject* pProject) override;
 
-    virtual Result Click
+    Result Click
     (const TrackPanelMouseEvent& event, TenacityProject* pProject) override;
 
-    virtual Result Drag
+    Result Drag
     (const TrackPanelMouseEvent& event, TenacityProject* pProject) override;
 
-    virtual Result Release
+    Result Release
     (const TrackPanelMouseEvent& event, TenacityProject* pProject,
         wxWindow* pParent) override;
 
-    virtual Result Cancel(TenacityProject* pProject) override;
+    Result Cancel(TenacityProject* pProject) override;
+
+    // TrackPanelDrawable implementation
+
+    void Draw(TrackPanelDrawingContext &context,
+        const wxRect &rect,
+        unsigned iPass ) override;
+
+    wxRect DrawingArea(TrackPanelDrawingContext&,
+        const wxRect &rect,
+        const wxRect &panelRect,
+        unsigned iPass) override;
 };
