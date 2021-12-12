@@ -779,8 +779,6 @@ VSTEffectOptionsDialog::VSTEffectOptionsDialog(wxWindow * parent,
 {
    Bind(wxEVT_BUTTON, &VSTEffectOptionsDialog::OnOk, this, wxID_OK);
 
-   mHost = host;
-
    GetConfig(mEffect, PluginSettings::Shared, wxT("Options"),
       wxT("BufferSize"), mBufferSize, 8192);
    GetConfig(mEffect, PluginSettings::Shared, wxT("Options"),
