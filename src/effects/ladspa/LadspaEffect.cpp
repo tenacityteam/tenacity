@@ -25,6 +25,8 @@ effects from this one class.
 
 #include "LadspaEffect.h"       // This class's header file
 
+#include "../../ConfigInterface.h"
+
 // Tenacity libraries
 #include <lib-exceptions/TenacityException.h>
 #include <lib-files/FileNames.h>

@@ -19,6 +19,7 @@
 #if USE_AUDIO_UNITS
 #include "AudioUnitEffect.h"
 #include "../../ModuleManager.h"
+#include "../../ConfigInterface.h"
 
 // Tenacity libraries
 #include <lib-exceptions/TenacityException.h>
