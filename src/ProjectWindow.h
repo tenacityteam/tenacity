@@ -17,6 +17,7 @@ Paul Licameli split from TenacityProject.h
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-utility/Observer.h>
 
 class Track;
 
@@ -59,6 +60,7 @@ public:
    void UpdateStatusWidths();
 
    class PlaybackScroller final : public wxEvtHandler
+      , public Observer::Publisher<>
    {
    public:
       explicit PlaybackScroller(TenacityProject *project);
