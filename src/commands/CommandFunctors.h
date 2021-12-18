@@ -12,7 +12,11 @@
 class SaucedacityProject;
 class SaucedacityApp;
 class CommandContext;
-class wxEvtHandler;
+
+// Forward-declaring this type before including wx/event.h causes strange
+// compilation failures with MSVC.
+// class wxEvtHandler;
+#include <wx/event.h>
 
 // Base class for objects, to whose member functions, the CommandManager will
 // dispatch.

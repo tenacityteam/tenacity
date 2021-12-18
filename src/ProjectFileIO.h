@@ -14,6 +14,8 @@ Paul Licameli split from SaucedacityProject.h
 #include <memory>
 #include <unordered_set>
 
+#include <wx/event.h>
+
 #include "ClientData.h" // to inherit
 
 // Saucedacity libraries
