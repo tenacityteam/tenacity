@@ -20,6 +20,8 @@ set( SOURCES
    MemoryX.h
    ModuleConstants.cpp
    ModuleConstants.h
+   Observer.cpp
+   Observer.h
 )
 saucedacity_library( lib-utility "${SOURCES}" ""
    "" ""
