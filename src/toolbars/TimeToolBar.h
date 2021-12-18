@@ -15,6 +15,7 @@
 
 #include "ToolBar.h"
 #include "../widgets/NumericTextCtrl.h"
+#include "Observer.h"
 
 class NumericTextCtrl;
 class TimeToolBarListener;
@@ -46,7 +47,7 @@ private:
    void SetResizingLimits();
    wxSize ComputeSizing(int digitH);
 
-   void OnRateChanged(wxEvent &evt);
+   void OnRateChanged(double);
    void OnUpdate(wxCommandEvent &evt);
    void OnSize(wxSizeEvent &evt);
    void OnIdle(wxIdleEvent &evt);
@@ -59,6 +60,7 @@ private:
    static const int minDigitH = 17;
    static const int maxDigitH = 100;
 
+   Observer::Subscription mSubscription;
    DECLARE_EVENT_TABLE()
 };
 
