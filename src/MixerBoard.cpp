@@ -916,25 +916,19 @@ MixerBoard::MixerBoard(TenacityProject* pProject,
       &MixerBoard::OnTimer,
       this);
 
-   mTracks->Bind(EVT_TRACKLIST_SELECTION_CHANGE,
-      &MixerBoard::OnTrackChanged,
-      this);
-
-   mTracks->Bind(EVT_TRACKLIST_PERMUTED,
-      &MixerBoard::OnTrackSetChanged,
-      this);
-
-   mTracks->Bind(EVT_TRACKLIST_ADDITION,
-      &MixerBoard::OnTrackSetChanged,
-      this);
-
-   mTracks->Bind(EVT_TRACKLIST_DELETION,
-      &MixerBoard::OnTrackSetChanged,
-      this);
-
-   mTracks->Bind(EVT_TRACKLIST_TRACK_DATA_CHANGE,
-      &MixerBoard::OnTrackChanged,
-      this);
+   mSubscription = mTracks->Subscribe([this](const TrackListEvent &event){
+      switch (event.mType) {
+      case TrackListEvent::SELECTION_CHANGE:
+      case TrackListEvent::TRACK_DATA_CHANGE:
+         OnTrackChanged(event); break;
+      case TrackListEvent::PERMUTED:
+      case TrackListEvent::ADDITION:
+      case TrackListEvent::DELETION:
+         OnTrackSetChanged(); break;
+      default:
+         break;
+      }
+   });
 
    wxTheApp->Connect(EVT_AUDIOIO_PLAYBACK,
       wxCommandEventHandler(MixerBoard::OnStartStop),
@@ -1361,10 +1355,8 @@ void MixerBoard::OnTimer(wxCommandEvent &event)
    event.Skip();
 }
 
-void MixerBoard::OnTrackChanged(TrackListEvent &evt)
+void MixerBoard::OnTrackChanged(const TrackListEvent &evt)
 {
-   evt.Skip();
-
    auto pTrack = evt.mpTrack.lock();
    auto pPlayable = dynamic_cast<PlayableTrack*>( pTrack.get() );
    if ( pPlayable ) {
@@ -1375,9 +1367,8 @@ void MixerBoard::OnTrackChanged(TrackListEvent &evt)
    }
 }
 
-void MixerBoard::OnTrackSetChanged(wxEvent &evt)
+void MixerBoard::OnTrackSetChanged()
 {
-   evt.Skip();
    mUpToDate = false;
    UpdateTrackClusters();
    Refresh();

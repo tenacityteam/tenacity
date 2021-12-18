@@ -193,29 +193,30 @@ namespace {
  Attached to each project, it receives track list events and maintains the
  cache of cumulative track view heights for use by TrackPanel.
  */
-struct TrackPositioner final : ClientData::Base, wxEvtHandler
+struct TrackPositioner final : ClientData::Base
 {
    TenacityProject &mProject;
 
    explicit TrackPositioner( TenacityProject &project )
       : mProject{ project }
    {
-      TrackList::Get( project ).Bind(
-         EVT_TRACKLIST_ADDITION, &TrackPositioner::OnUpdate, this );
-      TrackList::Get( project ).Bind(
-         EVT_TRACKLIST_DELETION, &TrackPositioner::OnUpdate, this );
-      TrackList::Get( project ).Bind(
-         EVT_TRACKLIST_PERMUTED, &TrackPositioner::OnUpdate, this );
-      TrackList::Get( project ).Bind(
-         EVT_TRACKLIST_RESIZING, &TrackPositioner::OnUpdate, this );
+      mSubscription = TrackList::Get( project )
+         .Subscribe(*this, &TrackPositioner::OnUpdate);
    }
    TrackPositioner( const TrackPositioner & ) = delete;
    TrackPositioner &operator=( const TrackPositioner & ) = delete;
 
-   void OnUpdate( TrackListEvent & e )
+   void OnUpdate(const TrackListEvent & e)
    {
-      e.Skip();
-
+      switch (e.mType) {
+      case TrackListEvent::ADDITION:
+      case TrackListEvent::DELETION:
+      case TrackListEvent::PERMUTED:
+      case TrackListEvent::RESIZING:
+         break;
+      default:
+         return;
+      }
       auto iter =
          TrackList::Get( mProject ).Find( e.mpTrack.lock().get() );
       if ( !*iter )
@@ -231,6 +232,8 @@ struct TrackPositioner final : ClientData::Base, wxEvtHandler
          ++iter;
       }
    }
+
+   Observer::Subscription mSubscription;
 };
 
 static const TenacityProject::AttachedObjects::RegisteredFactory key{

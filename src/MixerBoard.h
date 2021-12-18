@@ -19,6 +19,7 @@
 
 // Tenacity library
 #include <lib-preferences/Prefs.h>
+#include <lib-utility/Observer.h>
 
 class wxArrayString;
 class wxBitmapButton;
@@ -232,8 +233,8 @@ private:
    void OnPaint(wxPaintEvent& evt);
    void OnSize(wxSizeEvent &evt);
    void OnTimer(wxCommandEvent &event);
-   void OnTrackSetChanged(wxEvent &event);
-   void OnTrackChanged(TrackListEvent &event);
+   void OnTrackSetChanged();
+   void OnTrackChanged(const TrackListEvent &event);
    void OnStartStop(wxCommandEvent &event);
 
 public:
@@ -245,6 +246,8 @@ public:
    int mMuteSoloWidth;
 
 private:
+   Observer::Subscription mSubscription;
+
    // Track clusters are maintained in the same order as the WaveTracks.
    std::vector<MixerTrackCluster*> mMixerTrackClusters;
 

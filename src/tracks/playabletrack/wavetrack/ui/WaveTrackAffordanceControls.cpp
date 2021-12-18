@@ -142,9 +142,8 @@ WaveTrackAffordanceControls::WaveTrackAffordanceControls(const std::shared_ptr<T
 {
     if (auto trackList = pTrack->GetOwner())
     {
-        trackList->Bind(EVT_TRACKLIST_SELECTION_CHANGE,
-            &WaveTrackAffordanceControls::OnTrackChanged,
-            this);
+        mSubscription = trackList->Subscribe(
+            *this, &WaveTrackAffordanceControls::OnTrackChanged);
     }
 }
 
@@ -448,10 +447,10 @@ void WaveTrackAffordanceControls::ResetClipNameEdit()
     mEditedClip.reset();
 }
 
-void WaveTrackAffordanceControls::OnTrackChanged(TrackListEvent& evt)
+void WaveTrackAffordanceControls::OnTrackChanged(const TrackListEvent& evt)
 {
-    evt.Skip();
-    ExitTextEditing();
+    if (evt.mType == TrackListEvent::SELECTION_CHANGE)
+       ExitTextEditing();
 }
 
 unsigned WaveTrackAffordanceControls::ExitTextEditing()
