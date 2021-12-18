@@ -944,8 +944,8 @@ AdornedRulerPanel::AdornedRulerPanel(TenacityProject* project,
    wxTheApp->Bind(EVT_THEME_CHANGE, &AdornedRulerPanel::OnThemeChange, this);
 
    // Bind event that updates the play region
-   mViewInfo->selectedRegion.Bind(EVT_SELECTED_REGION_CHANGE,
-      &AdornedRulerPanel::OnSelectionChange, this);
+   mSubscription = mViewInfo->selectedRegion.Subscribe(
+      *this, &AdornedRulerPanel::OnSelectionChange);
 
    // And call it once to initialize it
    DoSelectionChange( mViewInfo->selectedRegion );
@@ -1254,12 +1254,9 @@ void AdornedRulerPanel::OnThemeChange(wxCommandEvent& evt)
    ReCreateButtons();
 }
 
-void AdornedRulerPanel::OnSelectionChange(SelectedRegionEvent& evt)
+void AdornedRulerPanel::OnSelectionChange(Observer::Message)
 {
-   evt.Skip();
-   if (!evt.pRegion)
-      return;
-   auto &selectedRegion = *evt.pRegion;
+   auto &selectedRegion = mViewInfo->selectedRegion;
    DoSelectionChange( selectedRegion );
 }
 

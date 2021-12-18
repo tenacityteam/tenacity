@@ -13,6 +13,7 @@
 
 #include "MemoryX.h"
 #include "Mix.h"
+#include "Observer.h"
 #include <atomic>
 #include <chrono>
 #include <vector>

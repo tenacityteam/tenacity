@@ -21,7 +21,6 @@
 class wxTextFile;
 
 class TenacityProject;
-class NotifyingSelectedRegion;
 class TimeWarper;
 
 class LabelTrack;

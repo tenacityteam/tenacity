@@ -421,7 +421,6 @@ protected:
    double         mProjectRate; // Sample rate of the project - NEW tracks should
                                // be created with this rate...
    double         mSampleRate;
-   wxWeakRef<NotifyingSelectedRegion> mpSelectedRegion{};
    WaveTrackFactory   *mFactory;
    const TrackList *inputTracks() const { return mTracks; }
    const TenacityProject *FindProject() const;

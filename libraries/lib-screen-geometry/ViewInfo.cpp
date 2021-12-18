@@ -15,24 +15,13 @@ Paul Licameli
 #include <algorithm>
 #include "XMLAttributeValueView.h"
 
+#include "BasicUI.h"
+#include "Prefs.h"
 #include "Project.h"
 
 // Tenacity libraries
 #include "Prefs.h"
 #include "XMLWriter.h"
-
-wxDEFINE_EVENT( EVT_SELECTED_REGION_CHANGE, SelectedRegionEvent );
-
-SelectedRegionEvent::SelectedRegionEvent(
-   wxEventType commandType, NotifyingSelectedRegion *pReg )
-: wxEvent{ 0, commandType }
-, pRegion{ pReg }
-{}
-
-wxEvent *SelectedRegionEvent::Clone() const
-{
-   return safenew SelectedRegionEvent{ *this };
-}
 
 XMLMethodRegistryBase::Mutators<NotifyingSelectedRegion>
 NotifyingSelectedRegion::Mutators(
@@ -148,11 +137,13 @@ bool NotifyingSelectedRegion::setF1(double f, bool maySwap)
 
 void NotifyingSelectedRegion::Notify( bool delayed )
 {
-   SelectedRegionEvent evt{ EVT_SELECTED_REGION_CHANGE, this };
-   if ( delayed )
-      QueueEvent( evt.Clone() );
+   if (delayed)
+      GenericUI::CallAfter([This = wxWeakRef(this)]{
+         if (This)
+            This->Publish({});
+      });
    else
-      ProcessEvent( evt );
+      Publish({});
 }
 
 static const TenacityProject::AttachedObjects::RegisteredFactory key{

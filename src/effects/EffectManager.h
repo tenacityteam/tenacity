@@ -40,8 +40,6 @@ using EffectOwnerMap = std::unordered_map< wxString, std::shared_ptr<Effect> >;
 class AudacityCommand;
 
 
-class NotifyingSelectedRegion;
-
 class TENACITY_DLL_API EffectManager
 {
 public:

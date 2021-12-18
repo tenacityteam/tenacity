@@ -19,6 +19,8 @@
 #include "Track.h"
 #include "../../../images/Cursors.h"
 
+#include <wx/cursor.h>
+
 HitTestPreview AffordanceHandle::HitPreview(const TenacityProject*, bool unsafe, bool moving)
 {
     static auto disabledCursor =

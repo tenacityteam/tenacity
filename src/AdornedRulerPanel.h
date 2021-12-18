@@ -18,6 +18,7 @@
 
 // Tenacity preferences
 #include <lib-preferences/Prefs.h>
+#include <lib-utility/Observer.h>
 
 class TenacityProject;
 struct SelectedRegionEvent;
@@ -89,7 +90,7 @@ private:
    void OnPaint(wxPaintEvent &evt);
    void OnSize(wxSizeEvent &evt);
    void OnThemeChange(wxCommandEvent& evt);
-   void OnSelectionChange(SelectedRegionEvent& evt);
+   void OnSelectionChange(Observer::Message);
    void DoSelectionChange( const SelectedRegion &selectedRegion );
    bool UpdateRects();
    void HandleQPClick(wxMouseEvent &event, wxCoord mousePosX);
@@ -229,6 +230,8 @@ private:
    
    class ScrubbingCell;
    std::shared_ptr<ScrubbingCell> mScrubbingCell;
+
+   Observer::Subscription mSubscription;
 
    // classes implementing subdivision for CellularPanel
    struct Subgroup;
