@@ -21,24 +21,16 @@
 #include <chrono>
 #include <vector>
 
-#include <wx/event.h> // to declare a custom event type
 #include <wx/string.h> // member variables
 
-#if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER)
-#include "DeviceChange.h"
-#endif
-
 #include "Device.h"
-
-// Event sent to the application
-wxDECLARE_EXPORTED_EVENT(AUDIO_DEVICES_API,
-                         EVT_RESCANNED_DEVICES, wxEvent);
+#include "DeviceChange.h"
 
 class AUDIO_DEVICES_API DeviceManager final
 #if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER) && defined(HAVE_DEVICE_CHANGE)
 : public DeviceChangeHandler
 #else
-: public wxEvtHandler
+: public DeviceChangeMessagePublisher
 #endif
 {
  public:
