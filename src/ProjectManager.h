@@ -18,6 +18,7 @@ Paul Licameli split from TenacityProject.h
 
 // Tenacity libraries
 #include <lib-strings/Identifier.h>
+#include <lib-utility/Observer.h>
 
 class wxTimer;
 class wxTimerEvent;
@@ -26,6 +27,8 @@ class TenacityProject;
 struct AudioIOStartStreamOptions;
 
 struct ProjectStatusEvent;
+
+enum StatusBarField : int;
 
 ///\brief Object associated with a project for high-level management of the
 /// project's lifetime, including creation, destruction, opening from file,
@@ -120,7 +123,7 @@ private:
    void OnCloseWindow(wxCloseEvent & event);
    void OnTimer(wxTimerEvent & event);
    void OnOpenAudioFile(wxCommandEvent & event);
-   void OnStatusChange( ProjectStatusEvent& );
+   void OnStatusChange(StatusBarField field);
 
    void RestartTimer();
 
@@ -128,6 +131,8 @@ private:
    TenacityProject &mProject;
 
    std::unique_ptr<wxTimer> mTimer;
+
+   Observer::Subscription mSubscription;
 
    DECLARE_EVENT_TABLE()
 
