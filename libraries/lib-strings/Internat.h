@@ -30,6 +30,25 @@ extern STRINGS_API const wxString& GetCustomSubstitution(const wxString& str1 );
 // '&', preceding menu accelerators, should NOT occur in the argument.
 #define XO(s)  (TranslatableString{ wxT(s), {} })
 
+/** @brief Marks strings for extraction only. Requires TranslatableString::Translate()
+  * to translate the actual string.
+  *
+  * An '&', i.e. the character preceding menu accelerators, should NOT occur in
+  * the argument.
+  * 
+  */
+inline TranslatableString StringLiteral(const char* str)
+{
+  return TranslatableString( str );
+}
+
+/// Same as the prior definition, but for wxString. Exactly the same as XO, which
+/// this function intends to replace over time.
+inline TranslatableString StringLiteral(wxString str)
+{
+  return TranslatableString( str, {} );
+}
+
 // Alternative taking a second context argument.  A context is a string literal,
 // which is not translated, but serves to disambiguate uses of the first string
 // that might need differing translations, such as "Light" meaning not-heavy in
@@ -41,7 +60,7 @@ extern STRINGS_API const wxString& GetCustomSubstitution(const wxString& str1 );
 // For now, expands exactly as macro XO does, but in future there will be a
 // type distinction - for example XXO should be used for menu item names that
 // might use the & character for shortcuts.
-#define XXO(s)  XO(s)
+#define XXO(s)  StringLiteral(s)
 
 // Corresponds to XC as XXO does to XO
 #define XXC(s, c) XC(s, c)
