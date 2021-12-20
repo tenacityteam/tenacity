@@ -1406,7 +1406,7 @@ bool AUPImportFileHandle::HandleImport(XMLTagHandler *&handler)
    GuardedCall(
       [&] {
          ProjectFileManager::Get( mProject ).Import(strAttr, false); },
-      [&] (AudacityException*) {}
+      [&] (SaucedacityException*) {}
    );
 
    if (oldNumTracks == tracks.size())

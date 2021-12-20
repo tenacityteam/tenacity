@@ -500,7 +500,7 @@ void DBConnection::CheckpointThread(sqlite3 *db, const FilePath &fileName)
             throw SimpleMessageBoxException{ rc != SQLITE_FULL ? ExceptionType::Internal : ExceptionType::BadEnvironment,
                message, XO("Warning"), "Error:_Disk_full_or_not_writable" }; },
             SimpleGuard<void>{},
-            [this](AudacityException * e) {
+            [this](SaucedacityException * e) {
                // This executes in the main thread.
                if (mCallback)
                   mCallback();

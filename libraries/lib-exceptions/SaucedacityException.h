@@ -3,15 +3,17 @@
 
 /*!********************************************************************
 
- Audacity: A Digital Audio Editor
+ Saucedacity: A Digital Audio Editor
 
- @file AudacityException.h
- @brief Declare abstract class AudacityException, some often-used subclasses, and @ref GuardedCall
+ @file SaucedacityException.h
+ @brief Declare abstract class SaucedacityException, some often-used subclasses, and @ref GuardedCall
 
  Paul Licameli
+ Avery King
  **********************************************************************/
 
 #include "MemoryX.h"
+#include "../lib-strings/Internat.h"
 #include <exception>
 #include <functional>
 
@@ -20,73 +22,84 @@
 //! A type of an exception
 enum class ExceptionType
 {
-    Internal, //!< Indicates internal failure from Audacity.
+    Internal, //!< Indicates internal failure from Saucedacity.
     BadUserAction, //!< Indicates that the user performed an action that is not allowed.
     BadEnvironment, //!< Indicates problems with environment, such as a full disk
 };
 
-//! Base class for exceptions specially processed by the application
-/*! Objects of this type can be thrown and caught in any thread, stored, and then used by the main
- thread in later idle time to explain the error condition to the user.
+/// Base class for exceptions specially processed by the application
+/** Objects of this type can be thrown and caught in any thread, stored, and then
+ * used by the main thread in later idle time to explain the error condition to
+ * the user.
+ * 
+ * Additionally, unlike AudacityException, What() returns TranslatableString,
+ * allowing for translation of an exception message. (This wraps around
+ * std::exception::what()).
  */
-class AudacityException /* not final */
+class SaucedacityException : public std::exception
 {
-public:
-   AudacityException() {}
-   virtual ~AudacityException() = 0;
+  public:
+    SaucedacityException();
+    SaucedacityException(const char* what_arg);
+    virtual ~SaucedacityException();
 
-   //! Action to do in the main thread at idle time of the event loop.
-   virtual void DelayedHandlerAction() = 0;
+    //! Don't allow moves of this class or subclasses
+    // see https://bugzilla.audacityteam.org/show_bug.cgi?id=2442
+    SaucedacityException( SaucedacityException&& ) = delete;
 
-   EXCEPTIONS_API static void EnqueueAction(
-      std::exception_ptr pException,
-      std::function<void(AudacityException*)> delayedHandler);
+    //! Disallow assignment
+    SaucedacityException &operator = ( const SaucedacityException & ) PROHIBITED;
 
-protected:
-   //! Make this protected to prevent slicing copies
-   AudacityException( const AudacityException& ) = default;
 
-   //! Don't allow moves of this class or subclasses
-   // see https://bugzilla.audacityteam.org/show_bug.cgi?id=2442
-   AudacityException( AudacityException&& ) PROHIBITED;
+    /// Action to do in the main thread at idle time of the event loop.
+    virtual void DelayedHandlerAction() = 0;
 
-   //! Disallow assignment
-   AudacityException &operator = ( const AudacityException & ) PROHIBITED;
+    /// Returns a C-style string containing the exception message
+    virtual const char* what();
+
+    EXCEPTIONS_API static void EnqueueAction(
+       std::exception_ptr pException,
+       std::function<void(SaucedacityException*)> delayedHandler);
+
+  protected:
+    std::string m_WhatMsg;
 };
 
 //! Abstract AudacityException subclass displays a message, specified by further subclass
 /*! At most one message will be displayed for each pass through the main event idle loop,
  no matter how many exceptions were caught. */
 class EXCEPTIONS_API MessageBoxException /* not final */
-   : public AudacityException
+   : public SaucedacityException
 {
-   //! Privatize the inherited function
-   using AudacityException::DelayedHandlerAction;
+  //! Privatize the inherited function
+  using SaucedacityException::DelayedHandlerAction;
 
-   //! Do not allow subclasses to change behavior, except by overriding ErrorMessage().
-   void DelayedHandlerAction() final;
+  //! Do not allow subclasses to change behavior, except by overriding ErrorMessage().
+  void DelayedHandlerAction() final;
 
-protected:
-   //! If default-constructed with empty caption, it makes no message box.
-   explicit MessageBoxException(
+  protected:
+    //! If default-constructed with empty caption, it makes no message box.
+    explicit MessageBoxException(
       ExceptionType exceptionType, //!< Exception type
       const TranslatableString &caption //!< Shown in message box's frame; not the actual message
-   );
-   ~MessageBoxException() override;
+    );
 
-   MessageBoxException( const MessageBoxException& );
+    ~MessageBoxException() override;
 
-   //! %Format the error message for this exception.
-   virtual TranslatableString ErrorMessage() const = 0;
-   virtual wxString ErrorHelpUrl() const { return helpUrl; };
+    MessageBoxException( const MessageBoxException& );
 
-private:
-   TranslatableString caption; //!< Stored caption
-   ExceptionType exceptionType; //!< Exception type
+    //! %Format the error message for this exception.
+    virtual TranslatableString ErrorMessage() const = 0;
+    virtual wxString ErrorHelpUrl() const { return helpUrl; };
 
-   mutable bool moved { false }; //!< Whether @c *this has been the source of a copy
-protected:
-   mutable wxString helpUrl{ "" };
+  private:
+    TranslatableString caption; //!< Stored caption
+    ExceptionType exceptionType; //!< Exception type
+
+    mutable bool moved { false }; //!< Whether @c *this has been the source of a copy
+
+  protected:
+    mutable wxString helpUrl{ "" };
 };
 
 //! A MessageBoxException that shows a given, unvarying string.
@@ -122,7 +135,7 @@ private:
 //! A default template parameter for @ref GuardedCall
 struct DefaultDelayedHandlerAction
 {
-   void operator () (AudacityException *pException) const
+   void operator () (SaucedacityException *pException) const
    {
       if ( pException )
          pException->DelayedHandlerAction();
@@ -137,7 +150,7 @@ template <typename R> struct SimpleGuard
       R value //!< The value to return from GurdedCall when an exception is handled
    )
       : m_value{ value } {}
-   R operator () ( AudacityException * ) const { return m_value; }
+   R operator () ( SaucedacityException * ) const { return m_value; }
    const R m_value;
 };
 
@@ -148,7 +161,7 @@ template<> struct SimpleGuard<bool>
       bool value //!< The value to return from @ref GaurdedCall when an exception is handled
    )
       : m_value{ value } {}
-   bool operator () ( AudacityException * ) const { return m_value; }
+   bool operator () ( SaucedacityException * ) const { return m_value; }
    static SimpleGuard Default()
       { return SimpleGuard{ false }; }
    const bool m_value;
@@ -158,7 +171,7 @@ template<> struct SimpleGuard<bool>
 template<> struct SimpleGuard<void>
 {
    SimpleGuard() {}
-   void operator () ( AudacityException * ) const {}
+   void operator () ( SaucedacityException * ) const {}
    static SimpleGuard Default() { return {}; }
 };
 
@@ -202,13 +215,13 @@ template <
 R GuardedCall(
    const F1 &body, //!< typically a lambda
    const F2 &handler = F2::Default(), //!< default just returns false or void; see also @ref MakeSimpleGuard
-   std::function<void(AudacityException*)> delayedHandler
+   std::function<void(SaucedacityException*)> delayedHandler
       = DefaultDelayedHandlerAction{} /*!<called later in the main thread,
                                        passing it a stored exception; usually defaulted */
 )
 {
    try { return body(); }
-   catch ( AudacityException &e ) {
+   catch ( SaucedacityException &e ) {
 
       auto end = finally([&]{
          // At this point, e is the "current" exception, but not "uncaught"
@@ -216,7 +229,7 @@ R GuardedCall(
          // other exception object.
          if (!std::uncaught_exceptions()) {
             auto pException = std::current_exception(); // This points to e
-            AudacityException::EnqueueAction(
+            SaucedacityException::EnqueueAction(
                pException, std::move(delayedHandler));
          }
       });

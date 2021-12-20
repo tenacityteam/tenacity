@@ -775,7 +775,7 @@ bool AudacityApp::OnExceptionInMainLoop()
    // letting us dispatch according to its type.
 
    try { throw; }
-   catch ( AudacityException &e ) {
+   catch ( SaucedacityException &e ) {
       (void)e;// Compiler food
       // Here is the catch-all for our own exceptions
 
@@ -799,7 +799,7 @@ bool AudacityApp::OnExceptionInMainLoop()
 
          // Give the user an alert
          try { std::rethrow_exception( pException ); }
-         catch( AudacityException &e )
+         catch( SaucedacityException &e )
             { e.DelayedHandlerAction(); }
 
       } );

@@ -26,7 +26,7 @@
 #include <wx/weakref.h>
 #include <wx/window.h>
 
-#include "AudacityException.h"
+#include "SaucedacityException.h"
 
 ////////////////////////////////////////////////////////////
 /// Custom events
@@ -243,7 +243,7 @@ public:
       },
       // Immediate handler invokes the same high level catch-all as for
       // unhandled exceptions, which will also do its own delayed handling
-      [](AudacityException *pEx){
+      [](SaucedacityException *pEx){
          if (pEx)
             wxTheApp->OnExceptionInMainLoop();
          else

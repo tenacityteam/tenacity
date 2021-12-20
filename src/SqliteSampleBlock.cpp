@@ -447,7 +447,7 @@ bool SqliteSampleBlock::GetSummary(float *dest,
                      numframes * fields * SAMPLE_SIZE(floatSample));
          return true;
       }
-      catch ( const AudacityException & ) {
+      catch ( const SaucedacityException & ) {
       }
    }
    memset(dest, 0, 3 * numframes * sizeof( float ));
