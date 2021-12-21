@@ -147,7 +147,13 @@ static void ChangelogText( wxTextOutputStream& s)
 {
    s << "<br/>"
      << "<ul><li>"
-     << XO("Added a changelog to the splash and about screens. Inspired by (taken from) Audacity")
+     << XO("Added a changelog to the splash and about screens. Inspired by (taken from) Audacity.")
+     << "</li>"
+     << "<li>"
+     << XO("Added a new default theme. The old Audacity theme is still available")
+     << "</li>"
+     << "<li>"
+     << XO("Dropped some obsolete code and fixes.")
      << "</li>"
      << "</li></ul>";
 }
