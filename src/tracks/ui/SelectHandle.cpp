@@ -37,8 +37,6 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../prefs/SpectrogramSettings.h"
 #include "../../../images/Cursors.h"
 
-#include <wx/event.h>
-
 // Only for definition of SonifyBeginModifyState:
 //#include "../../NoteTrack.h"
 
@@ -1053,7 +1051,7 @@ void SelectHandle::Connect(TenacityProject *pProject)
    mTimerHandler = std::make_shared<TimerHandler>( this, pProject );
 }
 
-class SelectHandle::TimerHandler : public wxEvtHandler
+class SelectHandle::TimerHandler
 {
 public:
    TimerHandler( SelectHandle *pParent, TenacityProject *pProject )
@@ -1061,23 +1059,21 @@ public:
       , mConnectedProject{ pProject }
    {
       if (mConnectedProject)
-         mConnectedProject->Bind(EVT_TRACK_PANEL_TIMER,
-            &SelectHandle::TimerHandler::OnTimer,
-            this);
+         mSubscription = ProjectWindow::Get( *mConnectedProject )
+            .GetPlaybackScroller().Subscribe( *this, &SelectHandle::TimerHandler::OnTimer);
    }
 
    // Receives timer event notifications, to implement auto-scroll
-   void OnTimer(wxCommandEvent &event);
+   void OnTimer(Observer::Message);
 
 private:
    SelectHandle *mParent;
    TenacityProject *mConnectedProject;
+   Observer::Subscription mSubscription;
 };
 
-void SelectHandle::TimerHandler::OnTimer(wxCommandEvent &event)
+void SelectHandle::TimerHandler::OnTimer(Observer::Message)
 {
-   event.Skip();
-
    // AS: If the user is dragging the mouse and there is a track that
    //  has captured the mouse, then scroll the screen, as necessary.
 

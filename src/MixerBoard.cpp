@@ -44,7 +44,7 @@
 #include "ProjectWindows.h"
 #include "SelectUtilities.h"
 #include "theme/Theme.h"
-#include "TrackPanel.h" // for EVT_TRACK_PANEL_TIMER
+#include "TrackPanel.h"
 #include "TrackUtilities.h"
 #include "UndoManager.h"
 #include "WaveTrack.h"
@@ -912,11 +912,12 @@ MixerBoard::MixerBoard(TenacityProject* pProject,
    mTracks = &TrackList::Get( *mProject );
 
    // Events from the project don't propagate directly to this other frame, so...
-   mProject->Bind(EVT_TRACK_PANEL_TIMER,
-      &MixerBoard::OnTimer,
-      this);
+   mPlaybackScrollerSubscription =
+   ProjectWindow::Get( *mProject ).GetPlaybackScroller()
+      .Subscribe(*this, &MixerBoard::OnTimer);
 
-   mSubscription = mTracks->Subscribe([this](const TrackListEvent &event){
+   mTrackPanelSubscription =
+   mTracks->Subscribe([this](const TrackListEvent &event){
       switch (event.mType) {
       case TrackListEvent::SELECTION_CHANGE:
       case TrackListEvent::TRACK_DATA_CHANGE:
@@ -1327,7 +1328,7 @@ void MixerBoard::OnSize(wxSizeEvent &evt)
    this->RefreshTrackClusters(true);
 }
 
-void MixerBoard::OnTimer(wxCommandEvent &event)
+void MixerBoard::OnTimer(Observer::Message)
 {
    // PRL 12 Jul 2015:  Moved the below (with comments) out of TrackPanel::OnTimer.
 
@@ -1350,9 +1351,6 @@ void MixerBoard::OnTimer(wxCommandEvent &event)
             == PlayMode::loopedPlay)
       );
    }
-
-   // Let other listeners get the notification
-   event.Skip();
 }
 
 void MixerBoard::OnTrackChanged(const TrackListEvent &evt)

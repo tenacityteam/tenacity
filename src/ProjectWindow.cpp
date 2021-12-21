@@ -1620,9 +1620,6 @@ void ProjectWindow::TP_HandleResize()
 ProjectWindow::PlaybackScroller::PlaybackScroller(TenacityProject *project)
 : mProject(project)
 {
-   mProject->Bind(EVT_TRACK_PANEL_TIMER,
-      &PlaybackScroller::OnTimer,
-      this);
 }
 
 void ProjectWindow::PlaybackScroller::OnTimer(wxCommandEvent &event)

@@ -17,6 +17,7 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-utility/Observer.h>
 
 class TenacityProject;
 class LyricsPanel;
@@ -35,7 +36,7 @@ private:
 
   void OnStyle_BouncingBall(wxCommandEvent &evt);
   void OnStyle_Highlight(wxCommandEvent &evt);
-  void OnTimer(wxCommandEvent &event);
+  void OnTimer(Observer::Message);
 
   void SetWindowTitle();
 
@@ -44,6 +45,7 @@ private:
 
   std::weak_ptr<TenacityProject> mProject;
   LyricsPanel *mLyricsPanel;
+  Observer::Subscription mSubscription;
 };
 
 #endif

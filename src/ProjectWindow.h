@@ -59,8 +59,10 @@ public:
 
    void UpdateStatusWidths();
 
-   class PlaybackScroller final : public wxEvtHandler
-      , public Observer::Publisher<>
+   struct PlaybackScrollerMessage : Observer::Message {};
+
+   class PlaybackScroller final
+      : public Observer::Publisher<PlaybackScrollerMessage>
    {
    public:
       explicit PlaybackScroller(TenacityProject *project);

@@ -18,6 +18,7 @@
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "ProjectFileIO.h"
+#include "ProjectWindow.h"
 #include "ProjectWindows.h"
 #include "ViewInfo.h"
 
@@ -138,9 +139,13 @@ LyricsWindow::LyricsWindow(TenacityProject *parent)
    // }
 
    // Events from the project don't propagate directly to this other frame, so...
-   pProject->Bind(EVT_TRACK_PANEL_TIMER,
-                  &LyricsWindow::OnTimer,
-                  this);
+   if (pProject)
+   {
+      mSubscription = ProjectWindow::Get(*pProject)
+         .GetPlaybackScroller()
+         .Subscribe(*this, &LyricsWindow::OnTimer);
+   }
+
    Center();
 }
 
@@ -159,7 +164,7 @@ void LyricsWindow::OnStyle_Highlight(wxCommandEvent & /* event */)
    mLyricsPanel->SetLyricsStyle(LyricsPanel::kHighlightLyrics);
 }
 
-void LyricsWindow::OnTimer(wxCommandEvent &event)
+void LyricsWindow::OnTimer(Observer::Message)
 {
    if (auto pProject = mProject.lock())
    {
@@ -175,9 +180,6 @@ void LyricsWindow::OnTimer(wxCommandEvent &event)
          GetLyricsPanel()->Update(selectedRegion.t0());
       }
    }
-
-   // Let other listeners get the notification
-   event.Skip();
 }
 
 void LyricsWindow::SetWindowTitle()
