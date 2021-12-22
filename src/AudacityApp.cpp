@@ -9,7 +9,7 @@
 ******************************************************************//**
 
 \class AudacityApp
-\brief AudacityApp is the 'main' class for Audacity
+\brief AudacityApp is the 'main' class for Saucedacity
 
 It handles initialization and termination by subclassing wxApp.
 

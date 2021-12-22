@@ -442,7 +442,7 @@ void ExportPCM::ReportTooBigError(wxWindow * pParent)
    //Temporary translation hack, to say 'WAV or AIFF' rather than 'WAV'
    auto message =
       XO("You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
-      "Audacity cannot do this, the Export was abandoned.");
+      "Saucedacity cannot do this, the Export was abandoned.");
 
    GenericUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
       XO("Error Exporting"), message,
@@ -453,7 +453,7 @@ void ExportPCM::ReportTooBigError(wxWindow * pParent)
 #if 0
    GenericUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
                   XO("Error Exporting"),
-                  XO("Your exported WAV file has been truncated as Audacity cannot export WAV\n"
+                  XO("Your exported WAV file has been truncated as Saucedacity cannot export WAV\n"
                     "files bigger than 4GB."),
                   wxT("Size_limits_for_WAV_files"));
 #endif

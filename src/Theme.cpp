@@ -762,7 +762,7 @@ void ThemeBase::CreateImageCache( bool bBinarySave )
       if( !ImageCache.SaveFile( FileName, wxBITMAP_TYPE_PNG ))
       {
          AudacityMessageBox(
-            XO("Audacity could not write file:\n  %s.")
+            XO("Saucedacity could not write file:\n  %s.")
                .Format( FileName ));
          return;
       }
@@ -782,14 +782,14 @@ void ThemeBase::CreateImageCache( bool bBinarySave )
       if( !OutStream.OpenFile( FileName ))
       {
          AudacityMessageBox(
-            XO("Audacity could not open file:\n  %s\nfor writing.")
+            XO("Saucedacity could not open file:\n  %s\nfor writing.")
                .Format( FileName ));
          return;
       }
       if( !ImageCache.SaveFile(OutStream, wxBITMAP_TYPE_PNG ) )
       {
          AudacityMessageBox(
-            XO("Audacity could not write images to file:\n  %s.")
+            XO("Saucedacity could not write images to file:\n  %s.")
                .Format( FileName ));
          return;
       }

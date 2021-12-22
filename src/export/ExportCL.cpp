@@ -310,8 +310,8 @@ private:
       ExtendPath()
       {
          // Give Windows a chance at finding lame command in the default location.
-         wxString paths[] = {wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Audacity"),
-                             wxT("HKEY_LOCAL_MACHINE\\Software\\FFmpeg for Audacity")};
+         wxString paths[] = {wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Saucedacity"),
+                             wxT("HKEY_LOCAL_MACHINE\\Software\\FFmpeg for Saucedacity")};
          wxString npath;
          wxRegKey reg;
 

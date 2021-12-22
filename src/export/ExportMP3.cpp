@@ -610,7 +610,7 @@ public:
       S.StartVerticalLay(true);
       {
          S.AddTitle(
-            XO("Audacity needs the file %s to create MP3s.")
+            XO("Saucedacity needs the file %s to create MP3s.")
                .Format( mName ) );
 
          S.SetBorder(3);
@@ -1235,7 +1235,7 @@ bool MP3Exporter::InitLibraryExternal(wxString libpath)
          beVersion(&v);
 
          mBladeVersion = XO(
-"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\nPlease download the latest version of 'LAME for Audacity'.")
+"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Saucedacity %d.%d.%d.\nPlease download the latest version of 'LAME for Saucedacity'.")
             .Format(
                v.byMajorVersion,
                v.byMinorVersion,
@@ -1496,7 +1496,7 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
 
 wxString MP3Exporter::GetLibraryPath()
 {
-   wxRegKey reg(wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Audacity"));
+   wxRegKey reg(wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Saucedacity"));
    wxString path;
 
    if (reg.Exists()) {
@@ -1533,19 +1533,19 @@ wxString MP3Exporter::GetLibraryPath()
 {
    wxString path;
 
-   path = wxT("/Library/Application Support/audacity/libs");
+   path = wxT("/Library/Application Support/saucedacity/libs");
    if (wxFileExists(path + wxT("/") + GetLibraryName()))
    {
         return path;
    }
 
-   path = wxT("/usr/local/lib/audacity");
+   path = wxT("/usr/local/lib/saucedacity");
    if (wxFileExists(path + wxT("/") + GetLibraryName()))
    {
         return path;
    }
     
-   return wxT("/Library/Application Support/audacity/libs");
+   return wxT("/Library/Application Support/saucedacity/libs");
 }
 
 wxString MP3Exporter::GetLibraryName()
