@@ -170,6 +170,10 @@ struct MyProgressDialog : GenericUI::ProgressDialog {
    {
       return mpDialog->Update(numerator, denominator, message);
    }
+   virtual void SetMessage(const TranslatableString & message) override
+   {
+      mpDialog->SetMessage(message);
+   }
 };
 }
 
