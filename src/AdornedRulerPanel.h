@@ -21,6 +21,7 @@
 #include <lib-utility/Observer.h>
 
 class TenacityProject;
+struct AudioIOEvent;
 struct SelectedRegionEvent;
 class SnapManager;
 class TrackList;
@@ -86,7 +87,7 @@ public:
 private:
    void DoIdle();
    void OnIdle( wxIdleEvent &evt );
-   void OnAudioStartStop(wxCommandEvent & evt);
+   void OnAudioStartStop(AudioIOEvent);
    void OnPaint(wxPaintEvent &evt);
    void OnSize(wxSizeEvent &evt);
    void OnThemeChange(wxCommandEvent& evt);
@@ -231,7 +232,8 @@ private:
    class ScrubbingCell;
    std::shared_ptr<ScrubbingCell> mScrubbingCell;
 
-   Observer::Subscription mSubscription;
+   Observer::Subscription mAudioIOSubscription,
+      mPlayRegionSubscription;
 
    // classes implementing subdivision for CellularPanel
    struct Subgroup;

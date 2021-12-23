@@ -26,9 +26,11 @@
 #include <lib-preferences/Prefs.h>
 
 #include "MeterPanelBase.h" // to inherit
+#include "Observer.h"
 #include "Ruler.h" // member variable
 
 class TenacityProject;
+struct AudioIOEvent;
 
 // Increase this when we add support for multichannel meters
 // (most of the code is already there)
@@ -205,7 +207,7 @@ class TENACITY_DLL_API MeterPanel final
    void OnSetFocus(wxFocusEvent &evt);
    void OnKillFocus(wxFocusEvent &evt);
 
-   void OnAudioIOStatus(wxCommandEvent &evt);
+   void OnAudioIOStatus(AudioIOEvent);
 
    void OnMeterUpdate(wxTimerEvent &evt);
 
@@ -225,6 +227,8 @@ class TENACITY_DLL_API MeterPanel final
    void OnPreferences(wxCommandEvent &evt);
 
    wxString Key(const wxString & key) const;
+
+   Observer::Subscription mSubscription;
 
    TenacityProject *mProject;
    MeterUpdateQueue mQueue;

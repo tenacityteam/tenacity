@@ -32,6 +32,8 @@
 
 class wxRect;
 
+struct AudioIOEvent;
+
 class SpectrumAnalyst;
 class Track;
 class TrackList;
@@ -81,7 +83,7 @@ class TENACITY_DLL_API TrackPanel final
 
    void UpdatePrefs() override;
 
-   void OnAudioIO(wxCommandEvent & evt);
+   void OnAudioIO(AudioIOEvent);
 
    void OnPaint(wxPaintEvent & event);
    void OnMouseEvent(wxMouseEvent & event);
@@ -184,7 +186,8 @@ public:
 public:
 
 protected:
-   Observer::Subscription mSubscription;
+   Observer::Subscription mTrackListScubscription,
+      mAudioIOScubscription;
 
    TrackPanelListener *mListener;
 

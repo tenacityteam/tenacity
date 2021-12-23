@@ -25,12 +25,11 @@
 #include <utility>
 #include <chrono>
 
-#include <wx/event.h> // to declare custom event types
-
 // Tenacity libraries
 #include <lib-math/SampleCount.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-utility/MessageBuffer.h>
+#include <lib-utility/Observer.h>
 
 class AudioIOBase;
 class AudioIO;
@@ -55,12 +54,19 @@ typedef int PaError;
 
 bool ValidateDeviceNames();
 
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_AUDIOIO_PLAYBACK, wxCommandEvent);
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_AUDIOIO_CAPTURE, wxCommandEvent);
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_AUDIOIO_MONITOR, wxCommandEvent);
+/*!
+ Emitted by the global AudioIO object when play, recording, or monitoring
+ starts or stops
+*/
+struct AudioIOEvent {
+   TenacityProject *pProject;
+   enum Type {
+      PLAYBACK,
+      CAPTURE,
+      MONITOR,
+   } type;
+   bool on;
+};
 
 struct TransportTracks {
    WaveTrackArray playbackTracks;
@@ -365,6 +371,7 @@ struct PaStreamInfo;
 
 class TENACITY_DLL_API AudioIO final
    : public AudioIoCallback
+   , public Observer::Publisher<AudioIOEvent>
 {
 
    AudioIO();

@@ -13,7 +13,6 @@
 
 #include <cmath>
 
-#include <wx/app.h>
 #include <wx/dcclient.h>
 #include <wx/defs.h>
 #include <wx/dcmemory.h>
@@ -113,8 +112,7 @@ LyricsPanel::LyricsPanel(wxWindow *parent, wxWindowID id,
     project->Bind(EVT_UNDO_OR_REDO, &LyricsPanel::UpdateLyrics, this);
     project->Bind(EVT_UNDO_RESET, &LyricsPanel::UpdateLyrics, this);
 
-    wxTheApp->Bind(EVT_AUDIOIO_PLAYBACK, &LyricsPanel::OnStartStop, this);
-    wxTheApp->Bind(EVT_AUDIOIO_CAPTURE, &LyricsPanel::OnStartStop, this);
+    mSubscription = AudioIO::Get()->Subscribe(*this, &LyricsPanel::OnStartStop);
 }
 
 LyricsPanel::~LyricsPanel()
@@ -471,7 +469,11 @@ void LyricsPanel::Update(double t)
 void LyricsPanel::UpdateLyrics(wxEvent &e)
 {
     e.Skip();
+    UpdateLyrics();
+}
 
+void LyricsPanel::UpdateLyrics()
+{
     // It's crucial to not do that repopulating during playback.
     auto gAudioIO = AudioIOBase::Get();
     if (gAudioIO->IsStreamActive())
@@ -505,13 +507,14 @@ void LyricsPanel::UpdateLyrics(wxEvent &e)
     Update(selectedRegion.t0());
 }
 
-void LyricsPanel::OnStartStop(wxCommandEvent &e)
+void LyricsPanel::OnStartStop(AudioIOEvent e)
 {
-    e.Skip();
-    if (!e.GetInt() && mDelayedUpdate)
+    if (e.type == AudioIOEvent::MONITOR) return;
+
+    if (!e.on && mDelayedUpdate)
     {
         mDelayedUpdate = false;
-        UpdateLyrics(e);
+        UpdateLyrics();
     }
 }
 

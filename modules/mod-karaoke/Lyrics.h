@@ -17,7 +17,11 @@
 #include "commands/CommandManagerWindowClasses.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
 
+// Tenacity libraries
+#include <lib-utility/Observer.h>
+
 class TenacityProject;
+struct AudioIOEvent;
 class LabelTrack;
 
 #define LYRICS_DEFAULT_WIDTH 608
@@ -97,8 +101,9 @@ public:
 
    void Update(double t);
    void UpdateLyrics(wxEvent &e);
-   void OnShow(wxShowEvent &e);
-   void OnStartStop(wxCommandEvent &e);
+   void UpdateLyrics();
+   void OnShow(wxShowEvent& e);
+   void OnStartStop(AudioIOEvent);
 
    //
    // Event handlers
@@ -134,8 +139,10 @@ private:
    void GetKaraokePosition(double t, int *outX, double *outY);
 
 private:
-   int mWidth;  // client width
-   int mHeight; // client height
+   Observer::Subscription mSubscription;
+
+   int            mWidth;  // client width
+   int            mHeight; // client height
 
    int mKaraokeHeight; // v mHeight - mBrandingHeight (so just mHeight now that Branding is removed).
    unsigned int mKaraokeFontSize;

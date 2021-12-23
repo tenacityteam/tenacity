@@ -13,6 +13,7 @@
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
+#include <lib-utility/Observer.h>
 
 #include "widgets/wxPanelWrapper.h" // to inherit
 
@@ -22,6 +23,7 @@ class wxListEvent;
 class wxSpinCtrl;
 class wxTextCtrl;
 class TenacityProject;
+struct AudioIOEvent;
 class ShuttleGui;
 class UndoManager;
 
@@ -39,7 +41,7 @@ class HistoryDialog final : public wxDialogWrapper,
  private:
    void Populate(ShuttleGui & S);
 
-   void OnAudioIO(wxCommandEvent & evt);
+   void OnAudioIO(AudioIOEvent);
    void DoUpdate();
    void UpdateLevels();
 
@@ -55,6 +57,8 @@ class HistoryDialog final : public wxDialogWrapper,
 
    // PrefsListener implementation
    void UpdatePrefs() override;
+
+   Observer::Subscription mSubscription;
 
    TenacityProject   *mProject;
    UndoManager       *mManager;

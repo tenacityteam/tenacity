@@ -931,12 +931,8 @@ AdornedRulerPanel::AdornedRulerPanel(TenacityProject* project,
    wxToolTip::Enable(true);
 #endif
 
-   wxTheApp->Bind(EVT_AUDIOIO_CAPTURE,
-                     &AdornedRulerPanel::OnAudioStartStop,
-                     this);
-   wxTheApp->Bind(EVT_AUDIOIO_PLAYBACK,
-                     &AdornedRulerPanel::OnAudioStartStop,
-                     this);
+   mAudioIOSubscription = AudioIO::Get()
+      ->Subscribe(*this, &AdornedRulerPanel::OnAudioStartStop);
 
    // Delay until after CommandManager has been populated:
    this->CallAfter( &AdornedRulerPanel::UpdatePrefs );
@@ -944,7 +940,7 @@ AdornedRulerPanel::AdornedRulerPanel(TenacityProject* project,
    wxTheApp->Bind(EVT_THEME_CHANGE, &AdornedRulerPanel::OnThemeChange, this);
 
    // Bind event that updates the play region
-   mSubscription = mViewInfo->selectedRegion.Subscribe(
+   mPlayRegionSubscription = mViewInfo->selectedRegion.Subscribe(
       *this, &AdornedRulerPanel::OnSelectionChange);
 
    // And call it once to initialize it
@@ -1177,12 +1173,12 @@ void AdornedRulerPanel::DoIdle()
    mDirtySelectedRegion = false;
 }
 
-void AdornedRulerPanel::OnAudioStartStop(wxCommandEvent & evt)
+void AdornedRulerPanel::OnAudioStartStop(AudioIOEvent evt)
 {
-   evt.Skip();
-
-   if ( evt.GetEventType() == EVT_AUDIOIO_CAPTURE ) {
-      if (evt.GetInt() != 0)
+   if (evt.type == AudioIOEvent::MONITOR)
+      return;
+   if ( evt.type == AudioIOEvent::CAPTURE ) {
+      if (evt.on)
       {
          mIsRecording = true;
          this->CellularPanel::CancelDragging( false );
@@ -1196,7 +1192,7 @@ void AdornedRulerPanel::OnAudioStartStop(wxCommandEvent & evt)
       }
    }
 
-   if ( evt.GetInt() == 0 )
+   if ( !evt.on )
       // So that the play region is updated
       DoSelectionChange( mViewInfo->selectedRegion );
 }
