@@ -10,7 +10,6 @@ cmake_args=(
     -S .
     -B build
     -G "${AUDACITY_CMAKE_GENERATOR}"
-    -D audacity_use_pch=no
     -D CMAKE_BUILD_TYPE="${AUDACITY_BUILD_TYPE}"
     -D CMAKE_INSTALL_PREFIX="${AUDACITY_INSTALL_PREFIX}"
 )

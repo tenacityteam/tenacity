@@ -1,4 +1,5 @@
 
+
 add_library( ${TARGET} STATIC )
 
 def_vars()
@@ -137,7 +138,7 @@ set( TYPEOF_SF_COUNT_T "int64_t" )
 check_type_size( "${TYPEOF_SF_COUNT_T}" SIZEOF_SF_COUNT_T LANGUAGE C )
 set( SF_COUNT_MAX "0x7FFFFFFFFFFFFFFFLL" )
 
-configure_file( ${TARGET_ROOT}/src/sndfile.h.in ${_PUBDIR}/sndfile.h )
+#configure_file( ${TARGET_ROOT}/src/sndfile.h.in ${_PUBDIR}/sndfile.h )
 
 check_symbol_exists( S_IRGRP "sys/stat.h" HAVE_DECL_S_IRGRP )
 
@@ -162,7 +163,7 @@ set( CPU_IS_BIG_ENDIAN ${WORDS_BIGENDIAN} )
 set( CPU_IS_LITTLE_ENDIAN !${WORDS_BIGENDIAN} )
 set( HAVE_EXTERNAL_LIBS 0 )
 
-set( VERSION "1.0.24" )
+set( VERSION "1.0.29" )
 set( PACKAGE "libsndfile" )
 set( PACKAGE_NAME ${PACKAGE} )
 set( PACKAGE_VERSION ${VERSION} )
