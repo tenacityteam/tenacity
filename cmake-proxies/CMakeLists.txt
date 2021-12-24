@@ -90,7 +90,7 @@ add_conan_lib(
    libid3tag
    libid3tag/0.15.2b@audacity/stable
    OPTION_NAME libid3tag
-   PKG_CONFIG "id3tag >= 0.15.1b"
+   PKG_CONFIG "id3tag >= 0.15.0b"
    CONAN_OPTIONS
       libid3tag:zlib=${id3tag_zlib}
 )
@@ -99,7 +99,7 @@ add_conan_lib(
    libmad
    libmad/0.15.2b@audacity/stable
    OPTION_NAME libmad
-   PKG_CONFIG "mad >= 0.15.1b"
+   PKG_CONFIG "mad >= 0.15.0b"
 )
 
 set_conan_vars_to_parent()
