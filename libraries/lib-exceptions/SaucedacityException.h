@@ -36,7 +36,7 @@ enum class ExceptionType
  * allowing for translation of an exception message. (This wraps around
  * std::exception::what()).
  */
-class SaucedacityException : public std::exception
+class EXCEPTIONS_API SaucedacityException : public std::exception
 {
   public:
     SaucedacityException();
@@ -55,7 +55,7 @@ class SaucedacityException : public std::exception
     virtual void DelayedHandlerAction() = 0;
 
     /// Returns a C-style string containing the exception message
-    virtual const char* what();
+    EXCEPTIONS_API virtual const char* what();
 
     EXCEPTIONS_API static void EnqueueAction(
        std::exception_ptr pException,
