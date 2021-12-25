@@ -39,6 +39,8 @@ else # Linux & others
             # GitHub Actions
             libasound2-dev
             libgtk2.0-dev
+	    libexpat-dev
+	    libexpat
             gettext
             python3-pip
         )
