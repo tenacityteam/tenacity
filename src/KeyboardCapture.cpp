@@ -41,16 +41,6 @@ wxWindowRef &sHandler()
    static wxWindowRef theHandler;
    return theHandler;
 }
-KeyboardCapture::FilterFunction &sPreFilter()
-{
-   static KeyboardCapture::FilterFunction theFilter;
-   return theFilter;
-}
-KeyboardCapture::FilterFunction &sPostFilter()
-{
-   static KeyboardCapture::FilterFunction theFilter;
-   return theFilter;
-}
 
 }
 
@@ -77,20 +67,6 @@ void Release(wxWindow *handler)
 {
 //   wxASSERT(sHandler() == handler);
    sHandler() = nullptr;
-}
-
-FilterFunction SetPreFilter( const FilterFunction &function )
-{
-   auto result = sPreFilter();
-   sPreFilter() = function;
-   return result;
-}
-
-FilterFunction SetPostFilter( const FilterFunction &function )
-{
-   auto result = sPostFilter();
-   sPostFilter() = function;
-   return result;
 }
 
 void OnFocus( wxWindow &window, wxFocusEvent &event )
@@ -193,7 +169,7 @@ public:
 
          wxKeyEvent key = static_cast<wxKeyEvent &>( event );
 
-         if ( !( sPreFilter() && sPreFilter()( key ) ) )
+         if ( !( KeyboardCapture::PreFilter::Call(key) ) )
             return Event_Skip;
 
 #ifdef __WXMAC__
@@ -236,7 +212,7 @@ public:
             return Event_Processed;
          }
 
-         if ( sPostFilter() && sPostFilter()( key ) )
+         if ( KeyboardCapture::PostFilter::Call( key ) )
             return Event_Processed;
 
          // Give it back to WX for normal processing.

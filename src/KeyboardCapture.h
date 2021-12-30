@@ -15,6 +15,8 @@
 #include <functional>
 #include <wx/event.h>
 
+#include "GlobalVariable.h"
+
 ////////////////////////////////////////////////////////////
 /// Custom events
 ////////////////////////////////////////////////////////////
@@ -35,22 +37,19 @@ namespace KeyboardCapture
    TENACITY_DLL_API void Capture(wxWindow *handler);
    TENACITY_DLL_API void Release(wxWindow *handler);
 
-   using FilterFunction = std::function< bool( wxKeyEvent& ) >;
-
-   /// \brief Install a pre-filter, returning the previously installed one
-   /// Pre-filter is called before passing the event to the captured window; if it
-   /// returns false, then skip the event entirely
-   TENACITY_DLL_API
-   FilterFunction SetPreFilter( const FilterFunction &function );
+   //! Pre-filter is called before passing the event to the captured window
+   /*! If it returns false, then skip the event entirely */
+   using PreFilter = GlobalHook<struct PreFilterTag, bool( wxKeyEvent& )>;
    
-   /// \brief Install a post-filter, returning the previously installed one
-   /// Post-filter is called if the captured window skips either the
-   /// EVT_CAPTURE_KEY or the following wxKEY_DOWN event (but not if
-   /// it skips only the wxEVT_CHAR or wxEVT_KEY_UP event); it is passed a
-   /// wxKEY_DOWN or a wxKEY_UP event; if it returns false, then the event is
-   /// skipped
-   TENACITY_DLL_API
-   FilterFunction SetPostFilter( const FilterFunction &function );
+   //! Post-filter is conditionally called after passing the event to the window
+   /*!
+       Post-filter is called if the captured window skips either the
+       EVT_CAPTURE_KEY or the following wxKEY_DOWN event (but not if
+       it skips only the wxEVT_CHAR or wxEVT_KEY_UP event); it is passed a
+       wxKEY_DOWN or a wxKEY_UP event; if it returns false, then the event is
+       skipped
+    */
+   using PostFilter = GlobalHook<struct PostFilterTag, bool( wxKeyEvent& )>;
 
    /// \brief a function useful to implement a focus event handler
    /// The window releases the keyboard if the event is for killing focus,
