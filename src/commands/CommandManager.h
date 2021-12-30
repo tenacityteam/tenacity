@@ -22,6 +22,7 @@
 
 #include "CommandFunctors.h"
 #include "CommandFlag.h"
+#include "GlobalVariable.h"
 
 #include "Keyboard.h"
 
@@ -61,12 +62,9 @@ class TENACITY_DLL_API CommandManager final
    static CommandManager &Get( TenacityProject &project );
    static const CommandManager &Get( const TenacityProject &project );
 
-   // Type of a function that can intercept menu item handling.
-   // If it returns true, bypass the usual dipatch of commands.
-   using MenuHook = std::function< bool(const CommandID&) >;
-
-   // install a menu hook, returning the previously installed one
-   static MenuHook SetMenuHook( const MenuHook &hook );
+   // Interception of menu item handling.
+   // If it returns true, bypass the usual dispatch of commands.
+   using GlobalMenuHook = GlobalHook<CommandManager, bool(const CommandID&)>;
 
    //
    // Constructor / Destructor

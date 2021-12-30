@@ -1269,7 +1269,8 @@ bool TenacityApp::InitPart2()
    mTimer.Start(200);
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
-   CommandManager::SetMenuHook( [](const CommandID &id){
+   static CommandManager::GlobalMenuHook::Scope scope{
+   [](const CommandID &id){
       if (::wxGetMouseState().ShiftDown()) {
          // Only want one page of the preferences
          PrefsPanel::Factories factories;
@@ -1284,7 +1285,7 @@ bool TenacityApp::InitPart2()
       }
       else
          return false;
-   } );
+   } };
 #endif
 
 #if defined(__WXMAC__)
