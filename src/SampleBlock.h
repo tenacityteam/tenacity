@@ -11,6 +11,7 @@ SampleBlock.h
 
 // Tenacity libraries
 #include <lib-math/SampleFormat.h>
+#include <lib-utility/GlobalVariable.h>
 
 #include <functional>
 #include <memory>
@@ -26,8 +27,6 @@ class SampleBlock;
 using SampleBlockPtr = std::shared_ptr<SampleBlock>;
 class SampleBlockFactory;
 using SampleBlockFactoryPtr = std::shared_ptr<SampleBlockFactory>;
-using SampleBlockFactoryFactory =
-   std::function< SampleBlockFactoryPtr( TenacityProject& ) >;
 
 using SampleBlockID = long long;
 
@@ -38,8 +37,6 @@ public:
    float max = 0;
    float RMS = 0;
 };
-
-class SqliteSampleBlockFactory;
 
 ///\brief Abstract class allows access to contents of a block of sound samples,
 /// serialization as XML, and reference count management that can suppress
@@ -108,11 +105,9 @@ BlockSpaceUsageAccumulator (unsigned long long &total)
 class SampleBlockFactory
 {
 public:
-   // Install global function that produces a sample block factory object for
-   // a given project; the factory has methods that later make sample blocks.
-   // Return the previously installed factory.
-   static SampleBlockFactoryFactory RegisterFactoryFactory(
-      SampleBlockFactoryFactory newFactory );
+   //! Global factory of per-project factories of sample blocks
+   using Factory = GlobalHook<SampleBlockFactory,
+      SampleBlockFactoryPtr( TenacityProject& )>;
 
    // Invoke the installed factory (throw an exception if none was installed)
    static SampleBlockFactoryPtr New( TenacityProject &project );

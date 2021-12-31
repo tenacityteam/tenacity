@@ -14,24 +14,9 @@ SampleBlock.cpp
 
 #include <wx/defs.h>
 
-static SampleBlockFactoryFactory& installedFactory()
-{
-   static SampleBlockFactoryFactory theFactory;
-   return theFactory;
-}
-
-SampleBlockFactoryFactory SampleBlockFactory::RegisterFactoryFactory(
-   SampleBlockFactoryFactory newFactory )
-{
-   auto &theFactory = installedFactory();
-   auto result = std::move( theFactory );
-   theFactory = std::move( newFactory );
-   return result;
-}
-
 SampleBlockFactoryPtr SampleBlockFactory::New( TenacityProject &project )
 {
-   auto &factory = installedFactory();
+   auto &factory = Factory::Get();
    if ( ! factory )
       THROW_INCONSISTENCY_EXCEPTION;
    return factory( project );

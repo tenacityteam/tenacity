@@ -978,17 +978,7 @@ void SqliteSampleBlock::CalcSummary(Sizes sizes)
 }
 
 // Inject our database implementation at startup
-static struct Injector
+static SampleBlockFactory::Factory::Scope scope{ []( TenacityProject &project )
 {
-   Injector()
-   {
-      // Do this some time before the first project is created
-      (void) SampleBlockFactory::RegisterFactoryFactory(
-         []( TenacityProject &project )
-         {
-            return std::make_shared<SqliteSampleBlockFactory>( project );
-         }
-      );
-   }
-} injector;
- 
+   return std::make_shared<SqliteSampleBlockFactory>( project );
+} };
