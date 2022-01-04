@@ -52,15 +52,14 @@ else()
    set ( wxIS_GTK on)
 endif()
 
-# Legacy options
+# Handle Ladspa option
 cmd_option(
-   ${_OPT2}enable_legacy
-   "Enable legacy features (LADSPA plugin support, ancient project formats) [on, off]"
+   ${_OPT}use_ladspa
+   "Use LADSPA plugin support [on, off]"
    ON
 )
 
-set( USE_LEGACY ${${_OPT2}enable_legacy} CACHE INTERNAL "" )
-set( USE_LADSPA ${${_OPT2}enable_legacy} CACHE INTERNAL "" )
+set( USE_LADSPA ${${_OPT}use_ladspa} CACHE INTERNAL "" )
 
 message( STATUS "Legacy featues: ${${_OPT2}enable_legacy}" )
 
@@ -155,6 +154,8 @@ list( APPEND SOURCES
       LabelTrack.h
       LangChoice.cpp
       LangChoice.h
+      Legacy.cpp
+      Legacy.h
       AudacityThemeAsCeeCode.h
       LogWindow.cpp
       LogWindow.h
@@ -485,20 +486,6 @@ list( APPEND SOURCES
       shuttle/ShuttlePrefs.cpp
       shuttle/ShuttlePrefs.h
 
-      
-      # Legacy features
-
-      $<$<BOOL:${ENABLE_LEGACY}>:
-         # LADSPA plugin support
-         effects/ladspa/LadspaEffect.cpp
-         effects/ladspa/LadspaEffect.h
-         effects/ladspa/ladspa.h
-
-         # Compatibility with legacy project files. Note: this is for the
-         # project format used in Audacity 0.98 to 1.0.
-         Legacy.cpp
-         Legacy.h        
-      >
 
       # VST Effects
 
@@ -531,6 +518,14 @@ list( APPEND SOURCES
          effects/audiounits/AUControl.mm
          effects/audiounits/AudioUnitEffect.cpp
          effects/audiounits/AudioUnitEffect.h
+      >
+
+      # Ladspa Effects
+
+      $<$<BOOL:${USE_LADSPA}>:
+         effects/ladspa/LadspaEffect.cpp
+         effects/ladspa/LadspaEffect.h
+         effects/ladspa/ladspa.h
       >
 
       # LV2 Effects

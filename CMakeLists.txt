@@ -132,8 +132,7 @@ if( CCACHE_PROGRAM )
 endif()
 
 # Define option() prefix
-set( _OPT  "audacity_" )
-set( _OPT2 "saucedacity_") # Only used for new options
+set( _OPT  "saucedacity_" )
 
 # Our very own project
 project( Saucedacity )
