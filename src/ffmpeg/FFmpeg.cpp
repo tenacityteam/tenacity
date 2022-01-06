@@ -816,7 +816,6 @@ bool FFmpegLibs::InitLibs(const wxString &libpath_format, bool WXUNUSED(showerr)
    }
 
    wxLogMessage(wxT("Importing symbols..."));
-   FFMPEG_INITDYN(avformat, av_register_all);
    FFMPEG_INITDYN(avformat, avformat_find_stream_info);
    FFMPEG_INITDYN(avformat, av_read_frame);
    FFMPEG_INITDYN(avformat, av_seek_frame);
@@ -835,8 +834,6 @@ bool FFmpegLibs::InitLibs(const wxString &libpath_format, bool WXUNUSED(showerr)
    FFMPEG_INITALT(avformat, av_guess_format, avformat, guess_format);
    FFMPEG_INITDYN(avformat, avformat_free_context);
 
-   /*FFMPEG_INITDYN(avcodec, av_init_packet);
-   FFMPEG_INITDYN(avcodec, av_free_packet);*/
    FFMPEG_INITDYN(avcodec, av_new_packet);
    FFMPEG_INITDYN(avcodec, av_packet_move_ref);
    FFMPEG_INITDYN(avcodec, av_packet_unref);
@@ -848,7 +845,6 @@ bool FFmpegLibs::InitLibs(const wxString &libpath_format, bool WXUNUSED(showerr)
    FFMPEG_INITDYN(avcodec, avcodec_decode_audio4);
    FFMPEG_INITDYN(avcodec, avcodec_encode_audio2);
    FFMPEG_INITDYN(avcodec, avcodec_close);
-   FFMPEG_INITDYN(avcodec, avcodec_register_all);
    FFMPEG_INITDYN(avcodec, avcodec_version);
    FFMPEG_INITDYN(avcodec, av_codec_next);
    FFMPEG_INITDYN(avcodec, av_codec_is_encoder);
@@ -879,10 +875,6 @@ bool FFmpegLibs::InitLibs(const wxString &libpath_format, bool WXUNUSED(showerr)
 
    wxLogMessage(wxT("All symbols loaded successfully. Initializing the library."));
 #endif
-
-   //FFmpeg initialization
-   avcodec_register_all();
-   av_register_all();
 
    wxLogMessage(wxT("Retrieving FFmpeg library version numbers:"));
    int avfver = avformat_version();
