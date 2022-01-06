@@ -23,7 +23,7 @@ MP3 and FFmpeg encoding libraries.
 #include <wx/button.h>
 #include <wx/stattext.h>
 
-#include "../FFmpeg.h"
+#include "../ffmpeg/FFmpeg.h"
 #include "../export/ExportMP3.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/AudacityMessageBox.h"

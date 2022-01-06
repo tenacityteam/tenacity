@@ -15,7 +15,7 @@ LRN
 
 #if defined(USE_FFMPEG)
 
-#include "../FFmpeg.h"
+#include "../ffmpeg/FFmpeg.h"
 
 #include "../xml/XMLFileReader.h"
 #include "FileNames.h"

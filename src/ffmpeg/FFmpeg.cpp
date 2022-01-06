@@ -19,6 +19,7 @@ License: GPL v2.  See License.txt.
 
 
 #include "FFmpeg.h"
+#include "StreamContext.h"
 
 #include "FileNames.h"
 #include "SelectFile.h"
@@ -273,7 +274,7 @@ int ufile_fopen_input(std::unique_ptr<FFmpegContext> &context_ptr, FilePath & na
 
    // Open the file to prepare for probing
    if ((err = ufile_fopen(&context->pb, name, AVIO_FLAG_READ)) < 0) {
-      goto fail;
+      return err;
    }
 
    context->ic_ptr = avformat_alloc_context();
@@ -282,16 +283,12 @@ int ufile_fopen_input(std::unique_ptr<FFmpegContext> &context_ptr, FilePath & na
    // And finally, attempt to associate an input stream with the file
    err = avformat_open_input(&context->ic_ptr, filename, NULL, NULL);
    if (err) {
-      goto fail;
+      return err;
    }
 
    // success
    context_ptr = std::move(context);
    return 0;
-
-fail:
-
-   return err;
 }
 
 FFmpegContext::~FFmpegContext()
@@ -313,42 +310,7 @@ FFmpegContext::~FFmpegContext()
    }
 }
 
-streamContext *import_ffmpeg_read_next_frame(AVFormatContext* formatContext,
-                                             streamContext** streams,
-                                             unsigned int numStreams)
-{
-   streamContext *sc = NULL;
-   AVPacketEx pkt;
-
-   if (av_read_frame(formatContext, &pkt) < 0)
-   {
-      return NULL;
-   }
-
-   // Find a stream to which this frame belongs
-   for (unsigned int i = 0; i < numStreams; i++)
-   {
-      if (streams[i]->m_stream->index == pkt.stream_index)
-         sc = streams[i];
-   }
-
-   // Off-stream packet. Don't panic, just skip it.
-   // When not all streams are selected for import this will happen very often.
-   if (sc == NULL)
-   {
-      return (streamContext*)1;
-   }
-
-   // Copy the frame to the stream context
-   sc->m_pkt.emplace(std::move(pkt));
-
-   sc->m_pktDataPtr = sc->m_pkt->data;
-   sc->m_pktRemainingSiz = sc->m_pkt->size;
-
-   return sc;
-}
-
-int import_ffmpeg_decode_frame(streamContext *sc, bool flushing)
+int import_ffmpeg_decode_frame(StreamContext *sc, bool flushing)
 {
    int      nBytesDecoded;
    wxUint8 *pDecode = sc->m_pktDataPtr;
@@ -564,64 +526,6 @@ BEGIN_EVENT_TABLE(FindFFmpegDialog, wxDialogWrapper)
    EVT_BUTTON(ID_FFMPEG_BROWSE, FindFFmpegDialog::OnBrowse)
    EVT_BUTTON(ID_FFMPEG_DLOAD,  FindFFmpegDialog::OnDownload)
 END_EVENT_TABLE()
-
-
-//----------------------------------------------------------------------------
-// FFmpegNotFoundDialog
-//----------------------------------------------------------------------------
-
-FFmpegNotFoundDialog::FFmpegNotFoundDialog(wxWindow *parent)
-   :  wxDialogWrapper(parent, wxID_ANY, XO("FFmpeg not found"))
-{
-   SetName();
-   ShuttleGui S(this, eIsCreating);
-   PopulateOrExchange(S);
-}
-
-void FFmpegNotFoundDialog::PopulateOrExchange(ShuttleGui & S)
-{
-   wxString text;
-
-   S.SetBorder(10);
-   S.StartVerticalLay(true);
-   {
-      S.AddFixedText(XO(
-"Audacity attempted to use FFmpeg to import an audio file,\n\
-but the libraries were not found.\n\n\
-To use FFmpeg import, go to Edit > Preferences > Libraries\n\
-to download or locate the FFmpeg libraries."
-      ));
-
-      mDontShow = S
-         .AddCheckBox(XXO("Do not show this warning again"),
-            gPrefs->ReadBool(wxT("/FFmpeg/NotFoundDontShow"), false) );
-
-      S.AddStandardButtons(eOkButton);
-   }
-   S.EndVerticalLay();
-
-   Layout();
-   Fit();
-   SetMinSize(GetSize());
-   Center();
-
-   return;
-}
-
-void FFmpegNotFoundDialog::OnOk(wxCommandEvent & WXUNUSED(event))
-{
-   if (mDontShow->GetValue())
-   {
-      gPrefs->Write(wxT("/FFmpeg/NotFoundDontShow"),1);
-      gPrefs->Flush();
-   }
-   this->EndModal(0);
-}
-
-BEGIN_EVENT_TABLE(FFmpegNotFoundDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, FFmpegNotFoundDialog::OnOk)
-END_EVENT_TABLE()
-
 
 //----------------------------------------------------------------------------
 // FFmpegLibs

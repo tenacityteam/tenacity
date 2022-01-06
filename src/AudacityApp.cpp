@@ -80,7 +80,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "commands/CommandHandler.h"
 #include "commands/AppCommandEvent.h"
 #include "widgets/ASlider.h"
-#include "FFmpeg.h"
+#include "ffmpeg/FFmpeg.h"
 //#include "LangChoice.h"
 #include "Languages.h"
 #include "Menus.h"

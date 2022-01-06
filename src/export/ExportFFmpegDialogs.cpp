@@ -44,7 +44,7 @@
 
 #include "ExportFFmpegDialogs.h"
 
-#include "../FFmpeg.h"
+#include "../ffmpeg/FFmpeg.h"
 
 #include <wx/app.h>
 #include <wx/checkbox.h>

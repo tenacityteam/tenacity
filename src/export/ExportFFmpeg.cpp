@@ -21,7 +21,9 @@ function.
 
 
 
-#include "../FFmpeg.h"
+#include "../ffmpeg/FFmpeg.h"
+#include "../ffmpeg/AVPacketEx.h"
+#include "Internat.h"
 
 #include <wx/choice.h>
 #include <wx/log.h>
@@ -40,6 +42,7 @@ function.
 #include "../Track.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
+#include "../../libraries/lib-exceptions/InconsistencyException.h"
 #include "wxFileNameWrapper.h"
 
 #include "Export.h"
@@ -668,13 +671,18 @@ bool ExportFFmpeg::InitCodecs(AudacityProject *project)
 // Returns 0 if no more output, 1 if more output, negative if error
 static int encode_audio(AVCodecContext *avctx, AVPacket *pkt, int16_t *audio_samples, int nb_samples)
 {
-   // Assume *pkt is already initialized.
+   // ASSERT *pkt is already initialized. This is (or should be) a bug if it isn't
+   if (!pkt)
+   {
+      throw InconsistencyException(__FILE__, __FUNCTION__, __LINE__);
+   }
 
    int i, ch, buffer_size, ret, got_output = 0;
    AVMallocHolder<uint8_t> samples;
    AVFrameHolder frame;
 
-   if (audio_samples) {
+   if (audio_samples)
+   {
       frame.reset(av_frame_alloc());
       if (!frame)
          return AVERROR(ENOMEM);
@@ -687,7 +695,8 @@ static int encode_audio(AVCodecContext *avctx, AVPacket *pkt, int16_t *audio_sam
 
       buffer_size = av_samples_get_buffer_size(NULL, avctx->channels, frame->nb_samples,
                                               avctx->sample_fmt, 0);
-      if (buffer_size < 0) {
+      if (buffer_size < 0)
+      {
          AudacityMessageBox(
             XO("FFmpeg : ERROR - Could not get sample buffer size"),
             XO("FFmpeg Error"),
@@ -695,8 +704,10 @@ static int encode_audio(AVCodecContext *avctx, AVPacket *pkt, int16_t *audio_sam
          );
          return buffer_size;
       }
+
       samples.reset(static_cast<uint8_t*>(av_malloc(buffer_size)));
-      if (!samples) {
+      if (!samples)
+      {
          AudacityMessageBox(
             XO("FFmpeg : ERROR - Could not allocate bytes for samples buffer"),
             XO("FFmpeg Error"),
@@ -704,21 +715,26 @@ static int encode_audio(AVCodecContext *avctx, AVPacket *pkt, int16_t *audio_sam
          );
          return AVERROR(ENOMEM);
       }
+
       /* setup the data pointers in the AVFrame */
       ret = avcodec_fill_audio_frame(frame.get(), avctx->channels, avctx->sample_fmt,
                                   samples.get(), buffer_size, 0);
-      if (ret < 0) {
+      if (ret < 0)
+      {
          AudacityMessageBox(
-            XO("FFmpeg : ERROR - Could not setup audio frame"),
+            XO("FFmpeg : ERROR - Could not setup audio frame. Failed with error %d").Format(ret),
             XO("FFmpeg Error"),
             wxOK|wxCENTER|wxICON_EXCLAMATION
          );
          return ret;
       }
 
-      for (ch = 0; ch < avctx->channels; ch++) {
-         for (i = 0; i < frame->nb_samples; i++) {
-            switch(avctx->sample_fmt) {
+      for (ch = 0; ch < avctx->channels; ch++)
+      {
+         for (i = 0; i < frame->nb_samples; i++)
+         {
+            switch(avctx->sample_fmt)
+            {
             case AV_SAMPLE_FMT_U8:
                ((uint8_t*)(frame->data[0]))[ch + i*avctx->channels] = audio_samples[ch + i*avctx->channels]/258 + 128;
                break;
@@ -760,7 +776,7 @@ static int encode_audio(AVCodecContext *avctx, AVPacket *pkt, int16_t *audio_sam
    ret = avcodec_encode_audio2(avctx, pkt, frame.get(), &got_output);
    if (ret < 0) {
       AudacityMessageBox(
-         XO("FFmpeg : ERROR - encoding frame failed"),
+         XO("FFmpeg : ERROR - encoding frame failed with error %d").Format(ret),
          XO("FFmpeg Error"),
          wxOK|wxCENTER|wxICON_EXCLAMATION
       );
@@ -931,7 +947,7 @@ bool ExportFFmpeg::EncodeAudioFrame(int16_t *pFrame, size_t frameSize)
 
       AVPacketEx pkt;
 
-      ret= encode_audio(mEncAudioCodecCtx.get(),
+      ret = encode_audio(mEncAudioCodecCtx.get(),
          &pkt,                          // out
          mEncAudioFifoOutBuf.get(), // in
          default_frame_size);

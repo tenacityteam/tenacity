@@ -132,8 +132,6 @@ list( APPEND SOURCES
       Envelope.h
       EnvelopeEditor.cpp
       EnvelopeEditor.h
-      FFmpeg.cpp
-      FFmpeg.h
       FileFormats.cpp
       FileFormats.h
       FreqWindow.cpp
@@ -591,6 +589,17 @@ list( APPEND SOURCES
       $<$<AND:$<BOOL:${USE_LIBOGG}>,$<BOOL:${USE_LIBVORBIS}>>:
          export/ExportOGG.cpp
       >
+
+      # FFmpeg
+
+      ffmpeg/AVPacketEx.h
+      ffmpeg/AVPacketEx.cpp
+      ffmpeg/FFmpeg.h
+      ffmpeg/FFmpeg.cpp
+      ffmpeg/FFmpegNotFoundDialog.h
+      ffmpeg/FFmpegNotFoundDialog.cpp
+      ffmpeg/StreamContext.h
+      ffmpeg/StreamContext.cpp
 
       # Import
 

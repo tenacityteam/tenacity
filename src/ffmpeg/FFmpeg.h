@@ -13,9 +13,8 @@ Describes shared object that is used to access FFmpeg libraries.
 
 *//*******************************************************************/
 
-#if !defined(__AUDACITY_FFMPEG__)
+#ifndef __AUDACITY_FFMPEG__
 #define __AUDACITY_FFMPEG__
-
 
 
 #include "audacity/Types.h"
@@ -39,7 +38,7 @@ class wxCheckBox;
  * The symptoms are that INT64_C is not a valid type, which tends to break
  * somewhere down in the implementations using this file */
 
-#if defined(USE_FFMPEG)
+#ifdef USE_FFMPEG
 extern "C" {
    // Include errno.h before the ffmpeg includes since they depend on
    // knowing the value of EINVAL...see bottom of avcodec.h.  Not doing
@@ -145,7 +144,7 @@ extern "C" {
    #endif
 
 }
-#endif
+#endif // end USE_FFMPEG
 
 /* rather earlier than normal, but pulls in config*.h and other program stuff
  * we need for the next bit */
@@ -168,7 +167,7 @@ void av_log_wx_callback(void* ptr, int level, const char* fmt, va_list vl);
 TranslatableString GetFFmpegVersion();
 
 /* from here on in, this stuff only applies when ffmpeg is available */
-#if defined(USE_FFMPEG)
+#ifdef USE_FFMPEG
 
 //----------------------------------------------------------------------------
 // Attempt to load and enable/disable FFmpeg at startup
@@ -176,27 +175,6 @@ TranslatableString GetFFmpegVersion();
 void FFmpegStartup();
 
 bool LoadFFmpeg(bool showerror);
-
-
-/// If Audacity failed to load libav*, this dialog
-/// shows up and tells user about that. It will pop-up
-/// again and again until it is disabled.
-class FFmpegNotFoundDialog final : public wxDialogWrapper
-{
-public:
-
-   FFmpegNotFoundDialog(wxWindow *parent);
-
-   void PopulateOrExchange(ShuttleGui & S);
-
-   void OnOk(wxCommandEvent & WXUNUSED(event));
-
-private:
-
-   wxCheckBox *mDontShow;
-
-   DECLARE_EVENT_TABLE()
-};
 
 /// Manages liabv* libraries - loads/unloads libraries, imports symbols.
 /// Only one instance of this class should exist at each given moment.
@@ -389,14 +367,14 @@ int ufile_fopen(AVIOContext **s, const FilePath & name, int flags);
 int ufile_fopen_input(std::unique_ptr<FFmpegContext> &context_ptr, FilePath & name);
 int ufile_close(AVIOContext *pb);
 
-struct streamContext;
+struct StreamContext;
 // common utility functions
 // utility calls that are shared with ImportFFmpeg
-streamContext *import_ffmpeg_read_next_frame(AVFormatContext* formatContext,
-                                             streamContext** streams,
+StreamContext *import_ffmpeg_read_next_frame(AVFormatContext* formatContext,
+                                             StreamContext** streams,
                                              unsigned int numStreams);
 
-int import_ffmpeg_decode_frame(streamContext *sc, bool flushing);
+int import_ffmpeg_decode_frame(StreamContext *sc, bool flushing);
 
 #if !defined(DISABLE_DYNAMIC_LOADING_FFMPEG)
 extern "C" {
@@ -597,6 +575,18 @@ extern "C" {
       avcodec_encode_audio2,
       (AVCodecContext *avctx, AVPacket *pkt, const AVFrame *frame, int *got_output),
       (avctx, pkt, frame, got_output)
+   );
+   FFMPEG_FUNCTION_WITH_RETURN(
+      int,
+      avcodec_send_frame,
+      (AVCodecContext *avctx, const AVFrame *frame),
+      (avctx, frame)
+   );
+   FFMPEG_FUNCTION_WITH_RETURN(
+      int,
+      avcodec_receive_packet,
+      (AVCodecContext *avctx, AVPacket *pkt),
+      (avctx, pkt)
    );
    FFMPEG_FUNCTION_WITH_RETURN(
       int,
@@ -881,51 +871,6 @@ extern "C" {
 
 #endif
 
-// Attach some C++ lifetime management to the struct, which owns some memory resources.
-struct AVPacketEx : public AVPacket
-{
-   AVPacketEx()
-   {
-      av_init_packet(this);
-      data = nullptr;
-      size = 0;
-   }
-   AVPacketEx(const AVPacketEx &) PROHIBITED;
-   AVPacketEx& operator= (const AVPacketEx&) PROHIBITED;
-   AVPacketEx(AVPacketEx &&that)
-   {
-      steal(std::move(that));
-   }
-   AVPacketEx &operator= (AVPacketEx &&that)
-   {
-      if (this != &that) {
-         reset();
-         steal(std::move(that));
-      }
-      return *this;
-   }
-
-   ~AVPacketEx ()
-   {
-      reset();
-   }
-
-   void reset()
-   {
-      // This does not deallocate the pointer, but it frees side data.
-      av_free_packet(this);
-   }
-
-private:
-   void steal(AVPacketEx &&that)
-   {
-      memcpy(this, &that, sizeof(that));
-      av_init_packet(&that);
-      that.data = nullptr;
-      that.size = 0;
-   }
-};
-
 // utilities for RAII:
 
 // Deleter adaptor for functions like av_free that take a pointer
@@ -1002,40 +947,6 @@ struct UFileHolder : public std::unique_ptr<
 template<typename T> using AVMallocHolder = std::unique_ptr<
    T, AV_Deleter<void, void, av_free>
 >;
-
-struct streamContext
-{
-   bool                 m_use{};                           // TRUE = this stream will be loaded into Audacity
-   AVStream            *m_stream{};                        // an AVStream *
-   AVCodecContext      *m_codecCtx{};                      // pointer to m_stream->codec
-
-   Optional<AVPacketEx>    m_pkt;                           // the last AVPacket we read for this stream
-   uint8_t             *m_pktDataPtr{};                    // pointer into m_pkt.data
-   int                  m_pktRemainingSiz{};
-
-   int64_t              m_pts{};                           // the current presentation time of the input stream
-   int64_t              m_ptsOffset{};                     // packets associated with stream are relative to this
-
-   int                  m_frameValid{};                    // is m_decodedVideoFrame/m_decodedAudioSamples valid?
-   AVMallocHolder<uint8_t> m_decodedAudioSamples;           // decoded audio samples stored here
-   unsigned int         m_decodedAudioSamplesSiz{};        // current size of m_decodedAudioSamples
-   size_t               m_decodedAudioSamplesValidSiz{};   // # valid bytes in m_decodedAudioSamples
-   int                  m_initialchannels{};               // number of channels allocated when we begin the importing. Assumes that number of channels doesn't change on the fly.
-
-   size_t               m_samplesize{};                    // input sample size in bytes
-   AVSampleFormat       m_samplefmt{ AV_SAMPLE_FMT_NONE  }; // input sample format
-
-   size_t               m_osamplesize{};                   // output sample size in bytes
-   sampleFormat         m_osamplefmt{ floatSample };                    // output sample format
-
-   streamContext() { memset(this, 0, sizeof(*this)); }
-   ~streamContext()
-   {
-   }
-};
-
-using Scs = ArrayOf<std::unique_ptr<streamContext>>;
-using ScsPtr = std::shared_ptr<Scs>;
 
 extern FFmpegLibs *FFmpegLibsInst();
 

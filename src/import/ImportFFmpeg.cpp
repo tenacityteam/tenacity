@@ -25,7 +25,10 @@ Licensed under the GNU General Public License v2 or later
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
-#include "../FFmpeg.h"      // which brings in avcodec.h, avformat.h
+#include "../ffmpeg/FFmpeg.h"      // which brings in avcodec.h, avformat.h
+#include "../ffmpeg/FFmpegNotFoundDialog.h"
+#include "../ffmpeg/StreamContext.h"
+
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h
 #include <wx/log.h>
@@ -203,17 +206,17 @@ public:
 
    ///! Reads next audio frame
    ///\return pointer to the stream context structure to which the frame belongs to or NULL on error, or 1 if stream is not to be imported.
-   streamContext* ReadNextFrame();
+   StreamContext* ReadNextFrame();
 
    ///! Decodes the frame
    ///\param sc - stream context (from ReadNextFrame)
    ///\param flushing - true if flushing (no more frames left), false otherwise
    ///\return 0 on success, -1 if it can't decode any further
-   int DecodeFrame(streamContext *sc, bool flushing);
+   int DecodeFrame(StreamContext *sc, bool flushing);
 
    ///! Writes decoded data into WaveTracks. Called by DecodeFrame
    ///\param sc - stream context
-   ProgressResult WriteData(streamContext *sc);
+   ProgressResult WriteData(StreamContext *sc);
 
    ///! Writes extracted metadata to tags object
    ///\param avf - file context
@@ -386,7 +389,7 @@ bool FFmpegImportFileHandle::InitCodecs()
       if (mFormatContext->streams[i]->codec->codec_type == AVMEDIA_TYPE_AUDIO)
       {
          //Create a context
-         auto sc = std::make_unique<streamContext>();
+         auto sc = std::make_unique<StreamContext>();
 
          sc->m_stream = mFormatContext->streams[i];
          sc->m_codecCtx = sc->m_stream->codec;
@@ -550,10 +553,10 @@ ProgressResult FFmpegImportFileHandle::Import(WaveTrackFactory *trackFactory,
    auto res = ProgressResult::Success;
 
    // Read next frame.
-   for (streamContext *sc; (sc = ReadNextFrame()) != NULL && (res == ProgressResult::Success);)
+   for (StreamContext *sc; (sc = ReadNextFrame()) != NULL && (res == ProgressResult::Success);)
    {
       // ReadNextFrame returns 1 if stream is not to be imported
-      if (sc != (streamContext*)1)
+      if (sc != (StreamContext*)1)
       {
          // Decode frame until it is not possible to decode any further
          while (sc->m_pktRemainingSiz > 0 && (res == ProgressResult::Success || res == ProgressResult::Stopped))
@@ -605,21 +608,21 @@ ProgressResult FFmpegImportFileHandle::Import(WaveTrackFactory *trackFactory,
    return res;
 }
 
-streamContext *FFmpegImportFileHandle::ReadNextFrame()
+StreamContext *FFmpegImportFileHandle::ReadNextFrame()
 {
    // Get pointer to array of contiguous unique_ptrs
    auto scs = mScs->get();
    // This reinterpret_cast to array of plain pointers is innocent
    return import_ffmpeg_read_next_frame
-      (mFormatContext, reinterpret_cast<streamContext**>(scs), mNumStreams);
+      (mFormatContext, reinterpret_cast<StreamContext**>(scs), mNumStreams);
 }
 
-int FFmpegImportFileHandle::DecodeFrame(streamContext *sc, bool flushing)
+int FFmpegImportFileHandle::DecodeFrame(StreamContext *sc, bool flushing)
 {
    return import_ffmpeg_decode_frame(sc, flushing);
 }
 
-ProgressResult FFmpegImportFileHandle::WriteData(streamContext *sc)
+ProgressResult FFmpegImportFileHandle::WriteData(StreamContext *sc)
 {
    // Find the stream index in mScs array
    int streamid = -1;
