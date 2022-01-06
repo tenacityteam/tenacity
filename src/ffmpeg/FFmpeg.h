@@ -726,10 +726,11 @@ extern "C" {
       (AVFormatContext *s, AVPacket *pkt),
       (s, pkt)
    );
-   FFMPEG_FUNCTION_NO_RETURN(
-      av_init_packet,
-      (AVPacket *pkt),
-      (pkt)
+   FFMPEG_FUNCTION_WITH_RETURN(
+      int,
+      av_new_packet,
+      (AVPacket* pkt, int size),
+      (pkt, size)
    );
    FFMPEG_FUNCTION_WITH_RETURN(
       int,
@@ -777,8 +778,13 @@ extern "C" {
       (a, bq, cq)
    );
    FFMPEG_FUNCTION_NO_RETURN(
-      av_free_packet,
-      (AVPacket *pkt),
+      av_packet_move_ref,
+      (AVPacket* dst, AVPacket* src),
+      (dst, src)
+   );
+   FFMPEG_FUNCTION_NO_RETURN(
+      av_packet_unref,
+      (AVPacket* pkt),
       (pkt)
    );
    FFMPEG_FUNCTION_WITH_RETURN(

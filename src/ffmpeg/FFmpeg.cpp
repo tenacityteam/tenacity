@@ -835,8 +835,11 @@ bool FFmpegLibs::InitLibs(const wxString &libpath_format, bool WXUNUSED(showerr)
    FFMPEG_INITALT(avformat, av_guess_format, avformat, guess_format);
    FFMPEG_INITDYN(avformat, avformat_free_context);
 
-   FFMPEG_INITDYN(avcodec, av_init_packet);
-   FFMPEG_INITDYN(avcodec, av_free_packet);
+   /*FFMPEG_INITDYN(avcodec, av_init_packet);
+   FFMPEG_INITDYN(avcodec, av_free_packet);*/
+   FFMPEG_INITDYN(avcodec, av_new_packet);
+   FFMPEG_INITDYN(avcodec, av_packet_move_ref);
+   FFMPEG_INITDYN(avcodec, av_packet_unref);
    FFMPEG_INITDYN(avcodec, avcodec_find_encoder);
    FFMPEG_INITDYN(avcodec, avcodec_find_encoder_by_name);
    FFMPEG_INITDYN(avcodec, avcodec_find_decoder);

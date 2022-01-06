@@ -10,12 +10,15 @@
 #ifdef USE_FFMPEG
 
 #include "AVPacketEx.h"
+#include <stdexcept>
 
 AVPacketEx::AVPacketEx()
 {
-  av_init_packet(this);
-  data = nullptr;
-  size = 0;
+  int ok = av_new_packet(this, 0);
+  if (ok != 0)
+  {
+    throw std::bad_alloc();
+  }
 }
 
 AVPacketEx::AVPacketEx(AVPacketEx &&that)
@@ -41,16 +44,12 @@ AVPacketEx::~AVPacketEx()
 
 void AVPacketEx::reset()
 {
-  // This does not deallocate the pointer, but it frees side data.
-  av_free_packet(this);
+  av_packet_unref(this);
 }
 
 void AVPacketEx::steal(AVPacketEx &&that)
 {
-  memcpy(this, &that, sizeof(that));
-  av_init_packet(&that);
-  that.data = nullptr;
-  that.size = 0;
+  av_packet_move_ref(this, &that);
 }
 
 #endif // end USE_FFMPEG
