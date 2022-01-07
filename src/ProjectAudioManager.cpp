@@ -999,7 +999,7 @@ DefaultPlayOptions( TenacityProject &project, bool looped )
       ProjectRate::Get( project ).GetRate() };
    options.captureMeter = projectAudioIO.GetCaptureMeter();
    options.playbackMeter = projectAudioIO.GetPlaybackMeter();
-   options.envelope = Mixer::WarpOptions::DefaultWarp(TrackList::Get(project));
+   options.envelope = Mixer::WarpOptions::DefaultWarp::Call(TrackList::Get(project));
    options.listener = ProjectAudioManager::Get( project ).shared_from_this();
    
    if (looped)
