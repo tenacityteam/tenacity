@@ -21,23 +21,6 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../TrackPanelMouseEvent.h"
 #include "ViewInfo.h"
 
-namespace {
-   CommonTrackPanelCell::Hook &GetHook()
-   {
-      static CommonTrackPanelCell::Hook theHook;
-      return theHook;
-   }
-}
-
-auto CommonTrackPanelCell::InstallMouseWheelHook( const Hook &hook )
-   -> Hook
-{
-   auto &theHook = GetHook();
-   auto result = theHook;
-   theHook = hook;
-   return result;
-}
-
 CommonTrackPanelCell::~CommonTrackPanelCell()
 {
 }
@@ -116,7 +99,7 @@ unsigned CommonTrackPanelCell::DoContextMenu( const wxRect &rect,
 unsigned CommonTrackPanelCell::HandleWheelRotation
 (const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
-   auto hook = GetHook();
+   auto &hook = MouseWheelHook::Get();
    return hook ? hook( evt, pProject ) : RefreshCode::Cancelled;
 }
 
