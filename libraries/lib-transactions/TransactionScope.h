@@ -10,7 +10,9 @@
 #ifndef __AUDACITY_TRANSACTION_SCOPE__
 #define __AUDACITY_TRANSACTION_SCOPE__
 
+#include "GlobalVariable.h"
 class TenacityProject;
+
 #include <functional>
 #include <memory>
 #include <wx/string.h>
@@ -27,12 +29,8 @@ class TRANSACTIONS_API TransactionScope
 {
 public:
    //! Type of function supplying implementation of steps
-   using TransactionScopeImplFactory = std::function<
+   using Factory = GlobalHook< TransactionScope,
       std::unique_ptr<TransactionScopeImpl>(TenacityProject &) >;
-
-   //! Installs global factory; returns previously installed factory
-   static TransactionScopeImplFactory
-   InstallImplementation(TransactionScopeImplFactory factory);
 
    //! Construct from a project
    /*!

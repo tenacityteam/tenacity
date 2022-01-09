@@ -543,16 +543,15 @@ struct DBConnectionTransactionScopeImpl final : TransactionScopeImpl {
    DBConnection &mConnection;
 };
 
-static struct Installer{ Installer() { TransactionScope::InstallImplementation(
-   [](TenacityProject &project) -> std::unique_ptr<TransactionScopeImpl> {
-      auto &connectionPtr = ConnectionPtr::Get(project);
-      if (auto pConnection = connectionPtr.mpConnection.get())
-         return
-            std::make_unique<DBConnectionTransactionScopeImpl>(*pConnection);
-      else
-         return nullptr;
-   }
-); } } installer;
+static TransactionScope::Factory::Scope scope {
+[](TenacityProject &project) -> std::unique_ptr<TransactionScopeImpl> {
+   auto &connectionPtr = ConnectionPtr::Get(project);
+   if (auto pConnection = connectionPtr.mpConnection.get())
+      return
+         std::make_unique<DBConnectionTransactionScopeImpl>(*pConnection);
+   else
+      return nullptr;
+} };
 
 DBConnectionTransactionScopeImpl::~DBConnectionTransactionScopeImpl() = default;
 
