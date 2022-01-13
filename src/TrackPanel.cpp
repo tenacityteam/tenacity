@@ -423,7 +423,7 @@ void TrackPanel::OnTimer(wxTimerEvent& )
    }
 
    // Notify listeners for timer ticks
-   window.GetPlaybackScroller().Publish({});
+   window.GetPlaybackScroller().OnTimer();
 
    Refresh();
    mRuler->Refresh();

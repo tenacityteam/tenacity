@@ -82,9 +82,9 @@ public:
 
       double GetRecentStreamTime() const { return mRecentStreamTime; }
 
-   private:
-      void OnTimer(wxCommandEvent &event);
+      void OnTimer();
 
+   private:
       TenacityProject *mProject;
       Mode mMode { Mode::Off };
 
