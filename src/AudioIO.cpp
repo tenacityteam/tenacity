@@ -1591,13 +1591,73 @@ void AudioIO::FillPlayBuffers()
          frames, available );
    } while (available && !done);
 
-   /* The flushing of all the Puts to the RingBuffers is lifted out of the loop.
-    It's only here that a release is done on the atomic variable that
-    indicates the readiness of sample data to the consumer.  That atomic
-    also sychronizes the use of the TimeQueue.
-    */
+   // Do any realtime effect processing, more efficiently in at most
+   // two buffers per track, after all the little slices have been written.
+   TransformPlayBuffers();
+
+   /* The flushing of all the Puts to the RingBuffers is lifted out of the
+   do-loop above, and also after transformation of the stream for realtime
+   effects.
+
+   It's only here that a release is done on the atomic variable that
+   indicates the readiness of sample data to the consumer.  That atomic
+   also sychronizes the use of the TimeQueue.
+   */
    for (size_t i = 0; i < std::max(size_t{1}, mPlaybackTracks.size()); ++i)
       mPlaybackBuffers[i]->Flush();
+}
+
+void AudioIO::TransformPlayBuffers()
+{
+   // Transform written but un-flushed samples in the RingBuffers in-place.
+
+   // Avoiding std::vector
+   auto pointers =
+      static_cast<float**>(alloca(mNumPlaybackChannels * sizeof(float*)));
+
+   std::optional<RealtimeEffects::ProcessingScope> pScope;
+   if (mpTransportState && mpTransportState->mpRealtimeInitialization)
+      pScope.emplace(
+         *mpTransportState->mpRealtimeInitialization, mOwningProject);
+   const auto numPlaybackTracks = mPlaybackTracks.size();
+   for (unsigned t = 0; t < numPlaybackTracks; ++t) {
+      const auto vt = mPlaybackTracks[t].get();
+      if ( vt->IsLeader() ) {
+         // vt is mono, or is the first of its group of channels
+         const auto nChannels = std::min<size_t>(
+            mNumPlaybackChannels, TrackList::Channels(vt).size());
+
+         // Loop over the blocks of unflushed data, at most two
+         for (unsigned iBlock : {0, 1}) {
+            size_t len = 0;
+            size_t iChannel = 0;
+            for (; iChannel < nChannels; ++iChannel) {
+               const auto pair =
+                  mPlaybackBuffers[t + iChannel]->GetUnflushed(iBlock);
+               // Playback RingBuffers have float format: see AllocateBuffers
+               pointers[iChannel] = reinterpret_cast<float*>(pair.first);
+               // The lengths of corresponding unflushed blocks should be
+               // the same for all channels
+               if (len == 0)
+                  len = pair.second;
+               else
+                  assert(len == pair.second);
+            }
+
+            // Are there more output device channels than channels of vt?
+            // Such as when a mono track is processed for stereo play?
+            // Then supply some non-null fake input buffers, because the
+            // various ProcessBlock overrides of effects may crash without it.
+            // But it would be good to find the fixes to make this unnecessary.
+            float **scratch = &mScratchPointers[mNumPlaybackChannels + 1];
+            while (iChannel < mNumPlaybackChannels)
+               pointers[iChannel++] = *scratch++;
+
+            if (len && pScope)
+               pScope->Process(vt, &pointers[0], mScratchPointers.data(), len);
+         }
+      }
+   }
 }
 
 void AudioIO::DrainRecordBuffers()
@@ -1997,9 +2057,6 @@ bool AudioIoCallback::FillOutputBuffers(
 
    {
       auto pProject = mOwningProject.lock();
-      std::optional<RealtimeEffects::ProcessingScope> pScope;
-      if (mpTransportState && mpTransportState->mpRealtimeInitialization)
-         pScope.emplace( *mpTransportState->mpRealtimeInitialization, mOwningProject );
 
       bool selected = false;
       int group = 0;
@@ -2099,39 +2156,34 @@ bool AudioIoCallback::FillOutputBuffers(
          // Last channel of a track seen now
          len = mMaxFramesOutput;
 
-         // Do realtime effects
-         if( !dropQuickly && len > 0 ) {
-            if (pScope)
-               pScope->Process(mTrackChannelsBuffer[0], mAudioScratchBuffers.data(), mScratchPointers.data(), len);
-            // Mix the results with the existing output (software playthrough) and
-            // apply panning.  If post panning effects are desired, the panning would
-            // need to be be split out from the mixing and applied in a separate step.
-            for (auto c = 0; c < chanCnt; ++c)
+         // Mix the results with the existing output (software playthrough) and
+         // apply panning.  If post panning effects are desired, the panning would
+         // need to be be split out from the mixing and applied in a separate step.
+         for (auto c = 0; c < chanCnt; ++c)
+         {
+            // Our channels aren't silent.  We need to pass their data on.
+            //
+            // Note that there are two kinds of channel count.
+            // c and chanCnt are counting channels in the Tracks.
+            // chan (and numPlayBackChannels) is counting output channels on the device.
+            // chan = 0 is left channel
+            // chan = 1 is right channel.
+            //
+            // Each channel in the tracks can output to more than one channel on the device.
+            // For example mono channels output to both left and right output channels.
+            if (len > 0) for (int c = 0; c < chanCnt; c++)
             {
-               // Our channels aren't silent.  We need to pass their data on.
-               //
-               // Note that there are two kinds of channel count.
-               // c and chanCnt are counting channels in the Tracks.
-               // chan (and numPlayBackChannels) is counting output channels on the device.
-               // chan = 0 is left channel
-               // chan = 1 is right channel.
-               //
-               // Each channel in the tracks can output to more than one channel on the device.
-               // For example mono channels output to both left and right output channels.
-               if (len > 0) for (int c = 0; c < chanCnt; c++)
-               {
-                  vt = mTrackChannelsBuffer[c];
+               vt = mTrackChannelsBuffer[c];
 
-                  if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
-                        vt->GetChannelIgnoringPan() == Track::MonoChannel )
-                     AddToOutputChannel( 0, outputMeterFloats, outputFloats,
-                        mAudioScratchBuffers[c], drop, len, *vt);
+               if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
+                     vt->GetChannelIgnoringPan() == Track::MonoChannel )
+                  AddToOutputChannel( 0, outputMeterFloats, outputFloats,
+                     mAudioScratchBuffers[c], drop, len, *vt);
 
-                  if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
-                        vt->GetChannelIgnoringPan() == Track::MonoChannel  )
-                     AddToOutputChannel( 1, outputMeterFloats, outputFloats,
-                        mAudioScratchBuffers[c], drop, len, *vt);
-               }
+               if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
+                     vt->GetChannelIgnoringPan() == Track::MonoChannel  )
+                  AddToOutputChannel( 1, outputMeterFloats, outputFloats,
+                     mAudioScratchBuffers[c], drop, len, *vt);
             }
          }
 
