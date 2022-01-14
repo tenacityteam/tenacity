@@ -131,7 +131,7 @@ private:
    double mPlayPos;
 
    bool mDismissed{};
-   std::optional<RealtimeEffectManager::SuspensionScope> mSuspensionScope;
+   std::optional<RealtimeEffects::SuspensionScope> mSuspensionScope;
 
 #if wxDEBUG_LEVEL
    // Used only in an assertion
