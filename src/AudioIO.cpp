@@ -3665,153 +3665,153 @@ bool AudioIoCallback::FillOutputBuffers(
       return true;
    }
 
-   auto & em = RealtimeEffectManager::Get();
-   em.RealtimeProcessStart();
-
-   bool selected = false;
-   int group = 0;
-   int chanCnt = 0;
-
-   // Choose a common size to take from all ring buffers
-   const auto toGet =
-      std::min<size_t>(framesPerBuffer, GetCommonlyReadyPlayback());
-
-   // The drop and dropQuickly booleans are so named for historical reasons.
-   // JKC: The original code attempted to be faster by doing nothing on silenced audio.
-   // This, IMHO, is 'premature optimisation'.  Instead clearer and cleaner code would
-   // simply use a gain of 0.0 for silent audio and go on through to the stage of 
-   // applying that 0.0 gain to the data mixed into the buffer.
-   // Then (and only then) we would have if needed fast paths for:
-   // - Applying a uniform gain of 0.0.
-   // - Applying a uniform gain of 1.0.
-   // - Applying some other uniform gain.
-   // - Applying a linearly interpolated gain.
-   // I would expect us not to need the fast paths, since linearly interpolated gain
-   // is very cheap to process.
-
-   bool drop = false;        // Track should become silent.
-   bool dropQuickly = false; // Track has already been faded to silence.
-   for (unsigned t = 0; t < numPlaybackTracks; t++)
    {
-      WaveTrack* vt = mPlaybackTracks[t].get();
-      mTrackChannelsBuffer[chanCnt] = vt;
+      RealtimeEffectManager::ProcessScope scope;
 
-      // TODO: more-than-two-channels
-      auto nextTrack =
-         t + 1 < numPlaybackTracks
-            ? mPlaybackTracks[t + 1].get()
-            : nullptr;
+      bool selected = false;
+      int group = 0;
+      int chanCnt = 0;
 
-      // First and last channel in this group (for example left and right
-      // channels of stereo).
-      bool firstChannel = vt->IsLeader();
-      bool lastChannel = !nextTrack || nextTrack->IsLeader();
+      // Choose a common size to take from all ring buffers
+      const auto toGet =
+         std::min<size_t>(framesPerBuffer, GetCommonlyReadyPlayback());
 
-      if ( firstChannel )
+      // The drop and dropQuickly booleans are so named for historical reasons.
+      // JKC: The original code attempted to be faster by doing nothing on silenced audio.
+      // This, IMHO, is 'premature optimisation'.  Instead clearer and cleaner code would
+      // simply use a gain of 0.0 for silent audio and go on through to the stage of 
+      // applying that 0.0 gain to the data mixed into the buffer.
+      // Then (and only then) we would have if needed fast paths for:
+      // - Applying a uniform gain of 0.0.
+      // - Applying a uniform gain of 1.0.
+      // - Applying some other uniform gain.
+      // - Applying a linearly interpolated gain.
+      // I would expect us not to need the fast paths, since linearly interpolated gain
+      // is very cheap to process.
+
+      bool drop = false;        // Track should become silent.
+      bool dropQuickly = false; // Track has already been faded to silence.
+      for (unsigned t = 0; t < numPlaybackTracks; t++)
       {
-         selected = vt->GetSelected();
-         // IF mono THEN clear 'the other' channel.
-         if ( lastChannel && (numPlaybackChannels>1))
+         WaveTrack* vt = mPlaybackTracks[t].get();
+         mTrackChannelsBuffer[chanCnt] = vt;
+
+         // TODO: more-than-two-channels
+         auto nextTrack =
+            t + 1 < numPlaybackTracks
+               ? mPlaybackTracks[t + 1].get()
+               : nullptr;
+
+         // First and last channel in this group (for example left and right
+         // channels of stereo).
+         bool firstChannel = vt->IsLeader();
+         bool lastChannel = !nextTrack || nextTrack->IsLeader();
+
+         if ( firstChannel )
          {
-            // TODO: more-than-two-channels
-            auto buf = mScratchBuffers[1];
-            memset(buf, 0, framesPerBuffer * sizeof(float));
+            selected = vt->GetSelected();
+            // IF mono THEN clear 'the other' channel.
+            if ( lastChannel && (numPlaybackChannels>1))
+            {
+               // TODO: more-than-two-channels
+               auto buf = mScratchBuffers[1];
+               memset(buf, 0, framesPerBuffer * sizeof(float));
+            }
+            drop = TrackShouldBeSilent( *vt );
+            dropQuickly = drop;
          }
-         drop = TrackShouldBeSilent( *vt );
-         dropQuickly = drop;
-      }
 
-      if( mbMicroFades )
-         dropQuickly = dropQuickly && TrackHasBeenFadedOut( *vt );
-         
-      decltype(framesPerBuffer) len = 0;
+         if( mbMicroFades )
+            dropQuickly = dropQuickly && TrackHasBeenFadedOut( *vt );
+            
+         decltype(framesPerBuffer) len = 0;
 
-      if (dropQuickly)
-      {
-         len = mPlaybackBuffers[t]->Discard(toGet);
-         // keep going here.  
-         // we may still need to issue a paComplete.
-      }
-      else
-      {
-         len = mPlaybackBuffers[t]->Get((samplePtr)mScratchBuffers[chanCnt],
-                                                   floatSample,
-                                                   toGet);
-         // assert( len == toGet );
-         if (len < framesPerBuffer)
+         if (dropQuickly)
          {
-            // This used to happen normally at the end of non-looping
-            // plays, but it can also be an anomalous case where the
-            // supply from FillBuffers fails to keep up with the
-            // real-time demand in this thread (see bug 1932).  We
-            // must supply something to the sound card, so pad it with
-            // zeroes and not random garbage.
-            memset((void*)&mScratchBuffers[chanCnt][len], 0,
-               (framesPerBuffer - len) * sizeof(float));
+            len = mPlaybackBuffers[t]->Discard(toGet);
+            // keep going here.  
+            // we may still need to issue a paComplete.
          }
-         chanCnt++;
+         else
+         {
+            len = mPlaybackBuffers[t]->Get((samplePtr)mScratchBuffers[chanCnt],
+                                                      floatSample,
+                                                      toGet);
+            // assert( len == toGet );
+            if (len < framesPerBuffer)
+            {
+               // This used to happen normally at the end of non-looping
+               // plays, but it can also be an anomalous case where the
+               // supply from FillBuffers fails to keep up with the
+               // real-time demand in this thread (see bug 1932).  We
+               // must supply something to the sound card, so pad it with
+               // zeroes and not random garbage.
+               memset((void*)&mScratchBuffers[chanCnt][len], 0,
+                  (framesPerBuffer - len) * sizeof(float));
+            }
+            chanCnt++;
+         }
+
+         // PRL:  Bug1104:
+         // There can be a difference of len in different loop passes if one channel
+         // of a stereo track ends before the other!  Take a max!
+
+         // PRL:  More recent rewrites of FillBuffers should guarantee a
+         // padding out of the ring buffers so that equal lengths are
+         // available, so maxLen ought to increase from 0 only once
+         mMaxFramesOutput = std::max(mMaxFramesOutput, len);
+
+         if ( !lastChannel )
+            continue;
+
+         // Last channel of a track seen now
+         len = mMaxFramesOutput;
+
+         if( !dropQuickly && selected )
+            len = scope.Process(group, chanCnt, mScratchBuffers.data(), len);
+         group++;
+
+         CallbackCheckCompletion(mCallbackReturn, len);
+         if (dropQuickly) // no samples to process, they've been discarded
+            continue;
+
+         // Our channels aren't silent.  We need to pass their data on.
+         //
+         // Note that there are two kinds of channel count.
+         // c and chanCnt are counting channels in the Tracks.
+         // chan (and numPlayBackChannels) is counting output channels on the device.
+         // chan = 0 is left channel
+         // chan = 1 is right channel.
+         //
+         // Each channel in the tracks can output to more than one channel on the device.
+         // For example mono channels output to both left and right output channels.
+         if (len > 0) for (int c = 0; c < chanCnt; c++)
+         {
+            vt = mTrackChannelsBuffer[c];
+
+            if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
+                  vt->GetChannelIgnoringPan() == Track::MonoChannel )
+               AddToOutputChannel( 0, outputMeterFloats, outputFloats,
+                  mScratchBuffers[c], drop, len, *vt);
+
+            if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
+                  vt->GetChannelIgnoringPan() == Track::MonoChannel  )
+               AddToOutputChannel( 1, outputMeterFloats, outputFloats,
+                  mScratchBuffers[c], drop, len, *vt);
+         }
+
+         chanCnt = 0;
       }
 
-      // PRL:  Bug1104:
-      // There can be a difference of len in different loop passes if one channel
-      // of a stereo track ends before the other!  Take a max!
+      // Poke: If there are no playback tracks, then the earlier check
+      // about the time indicator being past the end won't happen;
+      // do it here instead (but not if looping or scrubbing)
+      if (numPlaybackTracks == 0)
+         CallbackCheckCompletion(mCallbackReturn, 0);
 
-      // PRL:  More recent rewrites of FillBuffers should guarantee a
-      // padding out of the ring buffers so that equal lengths are
-      // available, so maxLen ought to increase from 0 only once
-      mMaxFramesOutput = std::max(mMaxFramesOutput, len);
-
-      if ( !lastChannel )
-         continue;
-
-      // Last channel of a track seen now
-      len = mMaxFramesOutput;
-
-      if( !dropQuickly && selected )
-         len = em.RealtimeProcess(group, chanCnt, mScratchBuffers.data(), len);
-      group++;
-
-      CallbackCheckCompletion(mCallbackReturn, len);
-      if (dropQuickly) // no samples to process, they've been discarded
-         continue;
-
-      // Our channels aren't silent.  We need to pass their data on.
-      //
-      // Note that there are two kinds of channel count.
-      // c and chanCnt are counting channels in the Tracks.
-      // chan (and numPlayBackChannels) is counting output channels on the device.
-      // chan = 0 is left channel
-      // chan = 1 is right channel.
-      //
-      // Each channel in the tracks can output to more than one channel on the device.
-      // For example mono channels output to both left and right output channels.
-      if (len > 0) for (int c = 0; c < chanCnt; c++)
-      {
-         vt = mTrackChannelsBuffer[c];
-
-         if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
-               vt->GetChannelIgnoringPan() == Track::MonoChannel )
-            AddToOutputChannel( 0, outputMeterFloats, outputFloats,
-               mScratchBuffers[c], drop, len, *vt);
-
-         if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
-               vt->GetChannelIgnoringPan() == Track::MonoChannel  )
-            AddToOutputChannel( 1, outputMeterFloats, outputFloats,
-               mScratchBuffers[c], drop, len, *vt);
-      }
-
-      chanCnt = 0;
+      // assert( maxLen == toGet );
    }
 
-   // Poke: If there are no playback tracks, then the earlier check
-   // about the time indicator being past the end won't happen;
-   // do it here instead (but not if looping or scrubbing)
-   if (numPlaybackTracks == 0)
-      CallbackCheckCompletion(mCallbackReturn, 0);
-
-   // assert( maxLen == toGet );
-
-   em.RealtimeProcessEnd();
    mLastPlaybackTimeMillis = ::wxGetUTCTimeMillis();
 
    ClampBuffer( outputFloats, framesPerBuffer*numPlaybackChannels );

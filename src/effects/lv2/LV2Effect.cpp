@@ -24,6 +24,7 @@
 #include "LV2Effect.h"
 
 // Tenacity libraries
+#include <lib-exceptions/TenacityException.h>
 #include <lib-math/SampleCount.h>
 
 #include <cmath>
@@ -1414,8 +1415,9 @@ size_t LV2Effect::RealtimeProcess(int group, float **inbuf, float **outbuf, size
    return numSamples;
 }
 
-bool LV2Effect::RealtimeProcessEnd()
+bool LV2Effect::RealtimeProcessEnd() noexcept
 {
+return GuardedCall<bool>([&]{
    // Nothing to do if we did process any samples
    if (mNumSamples == 0)
    {
@@ -1452,6 +1454,7 @@ bool LV2Effect::RealtimeProcessEnd()
    mNumSamples = 0;
 
    return true;
+});
 }
 
 int LV2Effect::ShowClientInterface(
