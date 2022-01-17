@@ -135,15 +135,6 @@ set( EXPERIMENTAL_OPTIONS_LIST
    # USE_MIDI must be defined in order for SCOREALIGN to work
    #SCOREALIGN
 
-   # Unknown option, maybe added sometime in 2010.
-   # GP: Building Saucedacity with this option enabled fails due to missing files.
-   # Apparently, they have not been checked into the source tree as of...Feburary
-   # 2010.
-   # FIXME: This option might need a rewrite. I have no idea what this is supposed
-   # to do, nor do I know what "GuiFactory" is. I believe it could be something
-   # similiar to ShuttleGui, but I have no idea.
-   #NOTEBOOK
-
    #Automatically tries to find an acceptable input volume
    #AUTOMATED_INPUT_LEVEL_ADJUSTMENT
 

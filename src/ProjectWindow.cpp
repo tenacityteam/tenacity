@@ -568,15 +568,6 @@ enum {
    NextID,
 };
 
-//If you want any of these files, ask JKC.  They are not
-//yet checked in to Audacity SVN as of 12-Feb-2010
-#ifdef EXPERIMENTAL_NOTEBOOK
-   // GP: The original includes were "GuiFactory.h" and "APanel.h", which have
-   // never existed in Saucedacity.
-   #include "shuttle/ShuttleGui.h"
-   #include "widgets/wxPanelWrapper.h"
-#endif
-
 ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
                                  const wxPoint & pos,
                                  const wxSize & size, AudacityProject &project)
@@ -607,35 +598,9 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
 
    wxWindow    * pPage;
 
-#ifdef EXPERIMENTAL_NOTEBOOK
-   // We are using a notebook (tabbed panel), so we create the notebook and add pages.
-   wxNotebook  * pNotebook;
-   //mMainPanel = Factory.AddPanel(
-   //   this, wxPoint( left, top ), wxSize( width, height ) );
- 
-   mMainPanel = safenew wxPanelWrapper(this, -1, wxDefaultPosition, wxDefaultSize,
-                                       wxNO_BORDER);
-
-   ShuttleGui S(mMainPanel, eIsCreating);
-
-   //pNotebook  = Factory.AddNotebook( mMainPanel );
-
-   /* i18n-hint: This is an experimental feature where the main panel in
-      Audacity is put on a notebook tab, and this is the name on that tab.
-      Other tabs in that notebook may have instruments, patch panels etc.*/
-   //pPage = Factory.AddPage( pNotebook, _("Main Mix"));
-
-   S.StartNotebook();
-   {
-     S.StartNotebookPage(XO("Main Mix"));
-     S.EndNotebookPage();
-   }
-   S.EndNotebook();
-
-#else
-   // Not using a notebook, so we place the track panel inside another panel,
-   // this keeps the notebook code and normal code consistent and also
-   // paves the way for adding additional windows inside the track panel.
+   // We place the track panel inside another panel keeping the notebook code
+   // and normal code consistent and also paves the way for adding additional
+   // windows inside the track panel.
    mMainPanel = safenew wxPanelWrapper(this, -1,
       wxDefaultPosition,
       wxDefaultSize,
@@ -649,7 +614,6 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
    // being painted in background colour and not scroller background
    // colour, so suppress this for now.
    //pPage->SetBackgroundColour( theTheme.Colour( clrDark ));
-#endif
    pPage->SetLayoutDirection(wxLayout_LeftToRight);
 
 #ifdef EXPERIMENTAL_DA2

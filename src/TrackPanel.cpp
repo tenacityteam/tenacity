@@ -347,12 +347,6 @@ AudacityProject * TrackPanel::GetProject() const
    //when the compiler will flag the error.
    wxWindow const * const pConstWind = this;
    wxWindow * pWind=(wxWindow*)pConstWind;
-#ifdef EXPERIMENTAL_NOTEBOOK
-   pWind = pWind->GetParent(); //Page
-   wxASSERT( pWind );
-   pWind = pWind->GetParent(); //Notebook
-   wxASSERT( pWind );
-#endif
    pWind = pWind->GetParent(); //MainPanel
    wxASSERT( pWind );
    pWind = pWind->GetParent(); //ProjectWindow

@@ -350,10 +350,6 @@ private:
 
 #endif
 
-#ifdef EXPERIMENTAL_NOTEBOOK
-   extern void AddPages(   AudacityProject * pProj, GuiFactory & Factory,  wxNotebook  * pNotebook );
-#endif
-
 void InitProjectWindow( ProjectWindow &window )
 {
    auto &project = window.GetProject();
@@ -477,10 +473,6 @@ void InitProjectWindow( ProjectWindow &window )
    // Lay it out
    pPage->SetAutoLayout(true);
    pPage->Layout();
-
-#ifdef EXPERIMENTAL_NOTEBOOK
-   AddPages(this, Factory, pNotebook);
-#endif
 
    auto mainPanel = window.GetMainPanel();
 
