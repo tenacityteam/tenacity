@@ -672,6 +672,8 @@ int AudioIO::StartStream(const TransportTracks &tracks,
    });
 
    mPlaybackBuffers.reset();
+   mScratchBuffers.clear();
+   mScratchPointers.clear();
    mPlaybackMixers.clear();
    mCaptureBuffers.reset();
    mResample.reset();
@@ -949,6 +951,16 @@ bool AudioIO::AllocateBuffers(
             // Always make at least one playback buffer
             mPlaybackBuffers.reinit(
                std::max<size_t>(1, mPlaybackTracks.size()));
+            // Number of scratch buffers depends on device playback channels
+            if (mNumPlaybackChannels > 0) {
+               mScratchBuffers.resize(mNumPlaybackChannels * 2);
+               mScratchPointers.clear();
+               for (auto &buffer : mScratchBuffers) {
+                  buffer.Allocate(playbackBufferSize, floatSample);
+                  mScratchPointers.push_back(
+                     reinterpret_cast<float*>(buffer.ptr()));
+               }
+            }
             mPlaybackMixers.clear();
             mPlaybackMixers.resize(mPlaybackTracks.size());
 
@@ -1071,6 +1083,8 @@ void AudioIO::StartStreamCleanup(bool bOnlyBuffers)
    mpTransportState.reset();
 
    mPlaybackBuffers.reset();
+   mScratchBuffers.clear();
+   mScratchPointers.clear();
    mPlaybackMixers.clear();
    mCaptureBuffers.reset();
    mResample.reset();
@@ -1218,6 +1232,8 @@ void AudioIO::StopStream()
       if (mPlaybackTracks.size() > 0)
       {
          mPlaybackBuffers.reset();
+         mScratchBuffers.clear();
+         mScratchPointers.clear();
          mPlaybackMixers.clear();
          mPlaybackSchedule.mTimeQueue.mData.reset();
       }
@@ -1929,11 +1945,11 @@ void AudioIoCallback::UpdateBuffers()
       mTrackChannelsBuffer.resize(channels);
    }
 
-   mScratchBufferAllocator.DeallocateAll();
-   mScratchBuffers.resize(mNumPlaybackChannels);
-   for (auto& buffer : mScratchBuffers)
+   mAudioScratchBufferAllocator.DeallocateAll();
+   mAudioScratchBuffers.resize(mNumPlaybackChannels);
+   for (auto& buffer : mAudioScratchBuffers)
    {
-      buffer = mScratchBufferAllocator.Allocate(true, newBufferSize);
+      buffer = mAudioScratchBufferAllocator.Allocate(true, newBufferSize);
    }
 
    mBuffersPrepared = true;
@@ -2031,8 +2047,7 @@ bool AudioIoCallback::FillOutputBuffers(
             if ( lastChannel && (numPlaybackChannels>1))
             {
                // TODO: more-than-two-channels
-               auto buf = mScratchBuffers[1];
-               memset(buf, 0, framesPerBuffer * sizeof(float));
+               memset(mAudioScratchBuffers[1], 0, framesPerBuffer * sizeof(float));
             }
             drop = TrackShouldBeSilent( *vt );
             dropQuickly = drop;
@@ -2051,7 +2066,7 @@ bool AudioIoCallback::FillOutputBuffers(
          }
          else
          {
-            len = mPlaybackBuffers[t]->Get((samplePtr)mScratchBuffers[chanCnt],
+            len = mPlaybackBuffers[t]->Get((samplePtr)mAudioScratchBuffers[chanCnt],
                                                       floatSample,
                                                       toGet);
             // assert( len == toGet );
@@ -2063,7 +2078,7 @@ bool AudioIoCallback::FillOutputBuffers(
                // real-time demand in this thread (see bug 1932).  We
                // must supply something to the sound card, so pad it with
                // zeroes and not random garbage.
-               memset((void*)&mScratchBuffers[chanCnt][len], 0,
+               memset((void*)&mAudioScratchBuffers[chanCnt][len], 0,
                   (framesPerBuffer - len) * sizeof(float));
             }
             chanCnt++;
@@ -2087,7 +2102,7 @@ bool AudioIoCallback::FillOutputBuffers(
          // Do realtime effects
          if( !dropQuickly && len > 0 ) {
             if (pScope)
-               pScope->Process(mTrackChannelsBuffer[0], mScratchBuffers.data(), len);
+               pScope->Process(mTrackChannelsBuffer[0], mAudioScratchBuffers.data(), len);
             // Mix the results with the existing output (software playthrough) and
             // apply panning.  If post panning effects are desired, the panning would
             // need to be be split out from the mixing and applied in a separate step.
@@ -2110,12 +2125,12 @@ bool AudioIoCallback::FillOutputBuffers(
                   if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
                         vt->GetChannelIgnoringPan() == Track::MonoChannel )
                      AddToOutputChannel( 0, outputMeterFloats, outputFloats,
-                        mScratchBuffers[c], drop, len, *vt);
+                        mAudioScratchBuffers[c], drop, len, *vt);
 
                   if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
                         vt->GetChannelIgnoringPan() == Track::MonoChannel  )
                      AddToOutputChannel( 1, outputMeterFloats, outputFloats,
-                        mScratchBuffers[c], drop, len, *vt);
+                        mAudioScratchBuffers[c], drop, len, *vt);
                }
             }
          }
