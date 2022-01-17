@@ -1260,7 +1260,7 @@ else()
    endif()
 
    # Create the desktop file
-   configure_file( audacity.desktop.in ${_INTDIR}/audacity.desktop )
+   configure_file( saucedacity.desktop.in ${_INTDIR}/saucedacity.desktop )
 
    # Copy the required wxWidgets libs into the bundle
    add_custom_command(
@@ -1343,7 +1343,7 @@ else()
                DESTINATION "${_LIBDIR}"
                USE_SOURCE_PERMISSIONS
                FILES_MATCHING PATTERN "*.so*" )
-      install( FILES "${_INTDIR}/audacity.desktop"
+      install( FILES "${_INTDIR}/saucedacity.desktop"
                DESTINATION "${_DATADIR}/applications" )
       install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.txt"
                DESTINATION "${_DATADIR}/doc/${AUDACITY_NAME}" )

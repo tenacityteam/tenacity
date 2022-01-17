@@ -212,7 +212,7 @@ unzip %{SOURCE1} -d $RPM_BUILD_ROOT%{_datadir}/%{name}/help
 %{find_lang} %{name}
 
 desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications \
-        $RPM_BUILD_ROOT%{_datadir}/applications/audacity.desktop
+        $RPM_BUILD_ROOT%{_datadir}/applications/saucedacity.desktop
 
 mkdir %{buildroot}%{_datadir}/doc/%{name}/nyquist
 cp -pr lib-src/libnyquist/nyquist/license.txt %{buildroot}%{_datadir}/doc/%{name}/nyquist
