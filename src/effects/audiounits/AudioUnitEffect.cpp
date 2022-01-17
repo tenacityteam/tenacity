@@ -21,6 +21,7 @@
 #include "../../ModuleManager.h"
 
 // Tenacity libraries
+#include <lib-exceptions/TenacityException.h>
 #include <lib-math/SampleCount.h>
 
 #include <wx/defs.h>
@@ -1402,8 +1403,9 @@ bool AudioUnitEffect::RealtimeSuspend()
    return true;
 }
 
-bool AudioUnitEffect::RealtimeResume()
+bool AudioUnitEffect::RealtimeResume() noexcept
 {
+return GuardedCall<bool>([&]{
    if (!BypassEffect(false))
    {
       return false;
@@ -1418,6 +1420,7 @@ bool AudioUnitEffect::RealtimeResume()
    }
 
    return true;
+});
 }
 
 bool AudioUnitEffect::RealtimeProcessStart()

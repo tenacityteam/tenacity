@@ -147,7 +147,7 @@ class TENACITY_DLL_API Effect /* not final */ : public wxEvtHandler,
    bool RealtimeAddProcessor(unsigned numChannels, float sampleRate) override;
    bool RealtimeFinalize() override;
    bool RealtimeSuspend() override;
-   bool RealtimeResume() override;
+   bool RealtimeResume() noexcept override;
    bool RealtimeProcessStart() override;
    size_t RealtimeProcess(int group,
                                        float **inbuf,

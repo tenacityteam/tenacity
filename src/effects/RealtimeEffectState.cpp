@@ -31,7 +31,7 @@ bool RealtimeEffectState::RealtimeSuspend()
    return result;
 }
 
-bool RealtimeEffectState::RealtimeResume()
+bool RealtimeEffectState::RealtimeResume() noexcept
 {
    auto result = mEffect.RealtimeResume();
    if ( result ) {
