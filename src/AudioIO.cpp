@@ -2680,7 +2680,7 @@ void AudioIO::FillBuffers()
       // TenacityException::DelayedHandlerAction prevents redundant message
       // boxes.
       StopStream();
-      DefaultDelayedHandlerAction{}( pException );
+      DefaultDelayedHandlerAction( pException );
    };
 
    if (mPlaybackTracks.size() > 0)

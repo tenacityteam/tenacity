@@ -32,7 +32,7 @@ enum class ExceptionType
  * used by the main thread in later idle time to explain the error condition to
  * the user.
  * 
- * Additionally, unlike AudacityException, What() returns TranslatableString,
+ * Additionally, unlike TenacityException, What() returns TranslatableString,
  * allowing for translation of an exception message. (This wraps around
  * std::exception::what()).
  */
@@ -65,7 +65,7 @@ class EXCEPTIONS_API TenacityException : public std::exception
     std::string m_WhatMsg;
 };
 
-//! Abstract AudacityException subclass displays a message, specified by further subclass
+//! Abstract TenacityException subclass displays a message, specified by further subclass
 /*! At most one message will be displayed for each pass through the main event idle loop,
  no matter how many exceptions were caught. */
 class EXCEPTIONS_API MessageBoxException /* not final */
@@ -133,24 +133,24 @@ private:
 
 
 //! A default template parameter for @ref GuardedCall
-struct DefaultDelayedHandlerAction
+inline void DefaultDelayedHandlerAction(TenacityException *pException)
 {
-   void operator () (TenacityException *pException) const
-   {
-      if ( pException )
-         pException->DelayedHandlerAction();
-   }
-};
+   if ( pException )
+      pException->DelayedHandlerAction();
+}
 
 //! A default template parameter for @ref GuardedCall<R>
 /*! @tparam R return type from GuardedCall (or convertible to it) */
 template <typename R> struct SimpleGuard
 {
    explicit SimpleGuard(
-      R value //!< The value to return from GurdedCall when an exception is handled
+      const R &value //!< The value to return from GuardedCall when an exception is handled
    )
-      : m_value{ value } {}
-   R operator () ( TenacityException * ) const { return m_value; }
+      noexcept(noexcept( R{ std::declval<const R&>() } ))
+         : m_value{ value } {}
+   R operator () ( TenacityException * ) const
+      noexcept(noexcept( R{ std::declval<R>() } ))
+         { return m_value; }
    const R m_value;
 };
 
@@ -159,10 +159,10 @@ template<> struct SimpleGuard<bool>
 {
    explicit SimpleGuard(
       bool value //!< The value to return from @ref GaurdedCall when an exception is handled
-   )
+   ) noexcept
       : m_value{ value } {}
-   bool operator () ( TenacityException * ) const { return m_value; }
-   static SimpleGuard Default()
+   bool operator () ( TenacityException * ) const noexcept { return m_value; }
+   static SimpleGuard Default() noexcept
       { return SimpleGuard{ false }; }
    const bool m_value;
 };
@@ -170,18 +170,19 @@ template<> struct SimpleGuard<bool>
 //! Specialization of SimpleGuard, also defining a default value
 template<> struct SimpleGuard<void>
 {
-   SimpleGuard() {}
-   void operator () ( TenacityException * ) const {}
-   static SimpleGuard Default() { return {}; }
+   SimpleGuard() noexcept {}
+   void operator () ( TenacityException * ) const noexcept {}
+   static SimpleGuard Default() noexcept { return {}; }
 };
 
 //! Convert a value to a handler function returning that value, suitable for @ref GuardedCall<R>
 template < typename R >
 SimpleGuard< R > MakeSimpleGuard( R value )
-{ return SimpleGuard< R >{ value }; }
+   noexcept(noexcept( SimpleGuard< R >{ value } ))
+      { return SimpleGuard< R >{ value }; }
 
 //! Convert a value to a no-op handler function, suitable for @ref GuardedCall<void>
-inline SimpleGuard< void > MakeSimpleGuard() { return {}; }
+inline SimpleGuard< void > MakeSimpleGuard() noexcept { return {}; }
 
 /*!
   Executes a given function (typically a lamba), in any thread.
@@ -189,41 +190,52 @@ inline SimpleGuard< void > MakeSimpleGuard() { return {}; }
   If there is any exception, can invoke another given function as handler, which may rethrow that or
   another exception, but usually just returns the value for the GuardedCall.
  
-  If AudacityException is handled, then it queues up a delayed handler action for execution later in
+  If TenacityException is handled, then it queues up a delayed handler action for execution later in
   the event loop at idle time, on the main thread; typically this informs the user of the error.
 
-  The default delayed handler action is simply to invoke a method of the AudacityException, but this
+  The default delayed handler action is simply to invoke a method of the TenacityException, but this
   too can be specified otherwise by a third function.
 
   @tparam R Return type, defaulted to void, or else the only explicit template parameter
   @tparam F1 deduced type of body function; takes no arguments, returns @b R
   @tparam F2 deduced type of handler function, or defaulted to @ref SimpleGuard<R>;
-  takes pointer to AudacityException, which is null when some other type of exception is caught;
+  takes pointer to TenacityException, which is null when some other type of exception is caught;
   return value is converted to @b R
   @tparam F3 deduced type of delayed handler function, if a nondefault argument is given;
-  takes pointer to AudacityException, return value is unused
+  takes pointer to TenacityException, return value is unused
+
+  @throws nothing, when handler throws nothing and delayedHandler is defaulted
  */
 template <
    typename R = void,
 
    typename F1, // function object with signature R()
 
-   typename F2 = SimpleGuard< R > // function object
-      // with signature R( AudacityException * )
+   typename F2 = SimpleGuard< R >, // function object
+      // with signature R( TenacityException * )
+
+   typename F3 = void (*)(TenacityException *pException)
 >
-//! Execute some code on any thread; catch any AudacityException; enqueue error report on the main thread
+//! Execute some code on any thread; catch any TenacityException; enqueue error report on the main thread
 R GuardedCall(
    const F1 &body, //!< typically a lambda
    const F2 &handler = F2::Default(), //!< default just returns false or void; see also @ref MakeSimpleGuard
-   std::function<void(TenacityException*)> delayedHandler
-      = DefaultDelayedHandlerAction{} /*!<called later in the main thread,
-                                       passing it a stored exception; usually defaulted */
+   F3 delayedHandler = DefaultDelayedHandlerAction /*!< called later in the
+      main thread, passing it a stored exception; usually defaulted */
 )
+noexcept(
+   noexcept( handler( std::declval<TenacityException*>() ) ) &&
+   noexcept( handler( nullptr ) ) &&
+   noexcept(
+      std::function<void(TenacityException*)>{std::move(delayedHandler)} ) )
 {
    try { return body(); }
    catch ( TenacityException &e ) {
 
-      auto end = finally([&]{
+      auto end = finally( [&]()
+      noexcept(noexcept(
+         std::function<void(TenacityException*)>{
+            std::move(delayedHandler)} )) {
          // At this point, e is the "current" exception, but not "uncaught"
          // unless it was rethrown by handler.  handler might also throw some
          // other exception object.
