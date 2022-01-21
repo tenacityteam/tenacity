@@ -20,6 +20,7 @@
 #include "../ProjectHistory.h"
 #include "../ProjectWindowBase.h"
 #include "../TrackPanelAx.h"
+#include "RealtimeEffectList.h"
 #include "RealtimeEffectManager.h"
 
 static PluginID GetID(Effect &effect)
@@ -1126,6 +1127,15 @@ void EffectUIHost::LoadUserPresets()
 void EffectUIHost::InitializeRealtime()
 {
    if (mSupportsRealtime && !mInitialized) {
+      mpState = RealtimeEffectManager::Get(*mProject)
+         .AddState(nullptr, PluginManager::GetID(&mEffect));
+      /*
+      ProjectHistory::Get(mProject).PushState(
+         XO("Added %s effect").Format(mpState->GetEffect()->GetName()),
+         XO("Added Effect"),
+         UndoPush::NONE
+      );
+       */
       AudioIO::Get()->Subscribe([this](AudioIOEvent event){
          switch (event.type) {
          case AudioIOEvent::PLAYBACK:
@@ -1144,6 +1154,18 @@ void EffectUIHost::InitializeRealtime()
 void EffectUIHost::CleanupRealtime()
 {
    if (mSupportsRealtime && mInitialized) {
+      if (mpState) {
+         auto &list = RealtimeEffectList::Get(*mProject);
+         RealtimeEffectManager::Get(*mProject)
+            .RemoveState(list, *mpState);
+      /*
+         ProjectHistory::Get(mProject).PushState(
+            XO("Removed %s effect").Format(mpState->GetEffect()->GetName()),
+            XO("Removed Effect"),
+            UndoPush::NONE
+         );
+       */
+      }
       mInitialized = false;
    }
 }
