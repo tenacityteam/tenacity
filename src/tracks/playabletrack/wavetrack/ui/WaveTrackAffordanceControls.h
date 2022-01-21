@@ -48,6 +48,9 @@ class TENACITY_DLL_API WaveTrackAffordanceControls :
 
     wxFont mClipNameFont;
 
+    //Helper flag, checked when text editing is triggered (and dialog-edit option is disabled)
+    bool mClipNameVisible { false };
+
 public:
     WaveTrackAffordanceControls(const std::shared_ptr<Track>& pTrack);
 
