@@ -653,7 +653,7 @@ bool EffectCompressor2::RealtimeAddProcessor(
    return true;
 }
 
-bool EffectCompressor2::RealtimeFinalize()
+bool EffectCompressor2::RealtimeFinalize() noexcept
 {
    mPreproc.reset(nullptr);
    mEnvelope.reset(nullptr);

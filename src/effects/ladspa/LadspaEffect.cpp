@@ -26,6 +26,7 @@ effects from this one class.
 #include "LadspaEffect.h"       // This class's header file
 
 // Tenacity libraries
+#include <lib-exceptions/TenacityException.h>
 #include <lib-files/FileNames.h>
 #include <lib-math/SampleCount.h>
 
@@ -1001,8 +1002,9 @@ bool LadspaEffect::RealtimeAddProcessor(unsigned /* numChannels */, float sample
    return true;
 }
 
-bool LadspaEffect::RealtimeFinalize()
+bool LadspaEffect::RealtimeFinalize() noexcept
 {
+return GuardedCall<bool>([&]{
    for (size_t i = 0, cnt = mSlaves.size(); i < cnt; i++)
    {
       FreeInstance(mSlaves[i]);
@@ -1010,6 +1012,7 @@ bool LadspaEffect::RealtimeFinalize()
    mSlaves.clear();
 
    return true;
+});
 }
 
 bool LadspaEffect::RealtimeSuspend()

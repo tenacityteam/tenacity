@@ -1363,8 +1363,9 @@ bool AudioUnitEffect::RealtimeAddProcessor(unsigned numChannels, float sampleRat
    return pSlave->ProcessInitialize(0);
 }
 
-bool AudioUnitEffect::RealtimeFinalize()
+bool AudioUnitEffect::RealtimeFinalize() noexcept
 {
+return GuardedCall<bool>([&]{
    for (size_t i = 0, cnt = mSlaves.size(); i < cnt; i++)
    {
       mSlaves[i]->ProcessFinalize();
@@ -1375,6 +1376,7 @@ bool AudioUnitEffect::RealtimeFinalize()
    mMasterOut.reset();
 
    return ProcessFinalize();
+});
 }
 
 bool AudioUnitEffect::RealtimeSuspend()

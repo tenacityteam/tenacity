@@ -162,7 +162,7 @@ bool EffectBassTreble::RealtimeAddProcessor(unsigned /* numChannels */, float sa
    return true;
 }
 
-bool EffectBassTreble::RealtimeFinalize()
+bool EffectBassTreble::RealtimeFinalize() noexcept
 {
    mSlaves.clear();
 

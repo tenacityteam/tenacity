@@ -180,7 +180,7 @@ bool EffectPhaser::RealtimeAddProcessor(unsigned /* numChannels */, float sample
    return true;
 }
 
-bool EffectPhaser::RealtimeFinalize()
+bool EffectPhaser::RealtimeFinalize() noexcept
 {
    mSlaves.clear();
 

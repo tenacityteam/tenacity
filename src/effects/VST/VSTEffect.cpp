@@ -1500,8 +1500,9 @@ bool VSTEffect::RealtimeAddProcessor(unsigned numChannels, float sampleRate)
    return slave->ProcessInitialize(0, NULL);
 }
 
-bool VSTEffect::RealtimeFinalize()
+bool VSTEffect::RealtimeFinalize() noexcept
 {
+return GuardedCall<bool>([&]{
    for (const auto &slave : mSlaves)
       slave->ProcessFinalize();
    mSlaves.clear();
@@ -1511,6 +1512,7 @@ bool VSTEffect::RealtimeFinalize()
    mMasterOut.reset();
 
    return ProcessFinalize();
+});
 }
 
 bool VSTEffect::RealtimeSuspend()

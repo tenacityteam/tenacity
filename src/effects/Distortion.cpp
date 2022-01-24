@@ -260,7 +260,7 @@ bool EffectDistortion::RealtimeAddProcessor(unsigned /* numChannels */, float sa
    return true;
 }
 
-bool EffectDistortion::RealtimeFinalize()
+bool EffectDistortion::RealtimeFinalize() noexcept
 {
    mSlaves.clear();
 

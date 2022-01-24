@@ -172,7 +172,7 @@ bool EffectWahwah::RealtimeAddProcessor(unsigned /* numChannels */, float sample
    return true;
 }
 
-bool EffectWahwah::RealtimeFinalize()
+bool EffectWahwah::RealtimeFinalize() noexcept
 {
    mSlaves.clear();
 
