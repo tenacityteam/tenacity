@@ -136,6 +136,9 @@ AudioIO *AudioIO::Get()
    return static_cast< AudioIO* >( AudioIOBase::Get() );
 }
 
+struct AudioIoCallback::TransportState {
+};
+
 // static
 int AudioIoCallback::mNextStreamToken = 0;
 double AudioIoCallback::mCachedBestRateOut;
@@ -713,6 +716,8 @@ int AudioIO::StartStream(const TransportTracks &tracks,
       }
    }
 
+   mpTransportState = std::make_unique<TransportState>();
+
    if (options.pStartTime)
    {
       // Calculate the NEW time position
@@ -1041,6 +1046,8 @@ void AudioIO::StartStreamCleanup(bool bOnlyBuffers)
          RealtimeEffectManager::Get(*pOwningProject).Finalize();
    }
 
+   mpTransportState.reset();
+
    mPlaybackBuffers.reset();
    mPlaybackMixers.clear();
    mCaptureBuffers.reset();
@@ -1161,6 +1168,8 @@ void AudioIO::StopStream()
       if (auto pOwningProject = mOwningProject.lock())
          RealtimeEffectManager::Get(*pOwningProject).Finalize();
    }
+
+   mpTransportState.reset();
 
    for( auto &ext : Extensions() )
       ext.StopOtherStream();
