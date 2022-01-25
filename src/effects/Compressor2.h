@@ -192,8 +192,8 @@ public:
    bool RealtimeInitialize() override;
    bool RealtimeAddProcessor(unsigned numChannels, float sampleRate) override;
    bool RealtimeFinalize() noexcept override;
-   size_t RealtimeProcess(int group, float **inbuf, float **outbuf,
-      size_t numSamples) override;
+   size_t RealtimeProcess(int group, const float* const* inBuf,
+       float* const* outBuf, size_t numSamples) override;
    bool DefineParams( ShuttleParams & S ) override;
    bool GetAutomationParameters(CommandParameters & parms) override;
    bool SetAutomationParameters(CommandParameters & parms) override;

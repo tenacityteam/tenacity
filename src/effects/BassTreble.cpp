@@ -137,7 +137,8 @@ bool EffectBassTreble::ProcessInitialize(sampleCount /* totalLen */, ChannelName
    return true;
 }
 
-size_t EffectBassTreble::ProcessBlock(float **inBlock, float **outBlock, size_t blockLen)
+size_t EffectBassTreble::ProcessBlock(
+   const float *const *inBlock, float *const *outBlock, size_t blockLen)
 {
    return InstanceProcess(mMaster, inBlock, outBlock, blockLen);
 }
@@ -170,9 +171,7 @@ bool EffectBassTreble::RealtimeFinalize() noexcept
 }
 
 size_t EffectBassTreble::RealtimeProcess(int group,
-                                              float **inbuf,
-                                              float **outbuf,
-                                              size_t numSamples)
+   const float *const *inbuf, float *const *outbuf, size_t numSamples)
 {
    return InstanceProcess(mSlaves[group], inbuf, outbuf, numSamples);
 }
@@ -355,11 +354,9 @@ void EffectBassTreble::InstanceInit(EffectBassTrebleState & data, float sampleRa
 
 
 size_t EffectBassTreble::InstanceProcess(EffectBassTrebleState & data,
-                                              float **inBlock,
-                                              float **outBlock,
-                                              size_t blockLen)
+   const float *const *inBlock, float *const *outBlock, size_t blockLen)
 {
-   float *ibuf = inBlock[0];
+   const float *ibuf = inBlock[0];
    float *obuf = outBlock[0];
 
    // Set value to ensure correct rounding

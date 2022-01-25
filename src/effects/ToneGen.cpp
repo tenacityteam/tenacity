@@ -170,7 +170,8 @@ bool EffectToneGen::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /
    return true;
 }
 
-size_t EffectToneGen::ProcessBlock(float** /* inBlock */, float **outBlock, size_t blockLen)
+size_t EffectToneGen::ProcessBlock(
+   const float *const *, float *const *outBlock, size_t blockLen)
 {
    float *buffer = outBlock[0];
    double throwaway = 0;        //passed to modf but never used

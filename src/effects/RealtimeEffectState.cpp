@@ -139,10 +139,8 @@ bool RealtimeEffectState::ProcessStart()
 //! Visit the effect processors that were added in AddTrack
 /*! The iteration over channels in AddTrack and Process must be the same */
 size_t RealtimeEffectState::Process(Track *track,
-                                    unsigned chans,
-                                    float **inbuf,
-                                    float **outbuf,
-                                    size_t numSamples)
+   unsigned chans, const float *const *inbuf,
+   float *const *outbuf, size_t numSamples)
 {
    if (!mEffect) {
       for (size_t ii = 0; ii < chans; ++ii)
@@ -162,12 +160,10 @@ size_t RealtimeEffectState::Process(Track *track,
    const auto numAudioOut = mEffect->GetAudioOutCount();
 
    AutoAllocator<float> floatAllocator;
-   std::unique_ptr<float*> _clientIn(new float*[numAudioIn]);
-   std::unique_ptr<float*> _clientOut(new float*[numAudioIn]);
-   std::unique_ptr<float>  _dummybuf(new float[numSamples]);
-   auto clientIn  = _clientIn.get();
-   auto clientOut = _clientOut.get();
-   auto dummybuf  = _dummybuf.get();
+   const auto clientIn =
+       static_cast<const float**>(alloca(numAudioIn * sizeof(float*)));
+   float** clientOut = (float**)alloca(numAudioOut * sizeof(float*));
+   float* dummybuf = (float*)alloca(numSamples * sizeof(float));
 
    decltype(numSamples) len = 0;
    auto ichans = chans;

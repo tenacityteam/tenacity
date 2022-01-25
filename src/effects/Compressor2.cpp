@@ -669,11 +669,12 @@ bool EffectCompressor2::RealtimeFinalize() noexcept
    return true;
 }
 
-size_t EffectCompressor2::RealtimeProcess(
-   int group, float **inbuf, float **outbuf, size_t numSamples)
+size_t EffectCompressor2::RealtimeProcess(int group, const float* const* inBuf,
+    float* const* outBuf, size_t numSamples)
 {
    std::lock_guard<std::mutex> guard(mRealtimeMutex);
    const size_t j = PIPELINE_DEPTH-1;
+   float** outbuf = const_cast<float**>(outBuf);
    for(size_t i = 0; i < numSamples; ++i)
    {
       if(mPipeline[j].trackSize == mPipeline[j].size)
@@ -685,8 +686,8 @@ size_t EffectCompressor2::RealtimeProcess(
 
       outbuf[0][i] = mPipeline[j][0][mPipeline[j].trackSize];
       outbuf[1][i] = mPipeline[j][1][mPipeline[j].trackSize];
-      mPipeline[j][0][mPipeline[j].trackSize] = inbuf[0][i];
-      mPipeline[j][1][mPipeline[j].trackSize] = inbuf[1][i];
+      mPipeline[j][0][mPipeline[j].trackSize] = inBuf[0][i];
+      mPipeline[j][1][mPipeline[j].trackSize] = inBuf[1][i];
       ++mPipeline[j].trackSize;
    }
    return numSamples;
