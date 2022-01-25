@@ -104,11 +104,6 @@ private:
 
    TenacityProject& mProject;
 
-   // Input and output buffers. Note that their capacity is equal to the number
-   // of channels being processed.
-   std::vector<float*> mInputBuffers;
-   std::vector<float*> mOutputBuffers;
-
    std::mutex mLock;
    Latency mLatency{0};
 

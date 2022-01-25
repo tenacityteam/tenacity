@@ -45,10 +45,6 @@ const RealtimeEffectManager &RealtimeEffectManager::Get(const TenacityProject &p
 RealtimeEffectManager::RealtimeEffectManager(TenacityProject &project)
    : mProject(project)
 {
-   // Allocate our vectors. We set their capacity to a size of '2', enough to
-   // process stero audio data.
-   mInputBuffers.reserve(2);
-   mOutputBuffers.reserve(2);
 }
 
 RealtimeEffectManager::~RealtimeEffectManager()
@@ -192,33 +188,24 @@ size_t RealtimeEffectManager::Process(Track *track,
 
    auto chans = mChans[track];
 
-   // AK: If we have more channels than our input and output bufffers'
-   // capacities, increase their capacities when necessary.
-   if (mInputBuffers.capacity() < chans)
-   {
-      mInputBuffers.reserve(chans);
-   } else if (mOutputBuffers.capacity() < chans)
-   {
-      mOutputBuffers.reserve(chans);
-   }
-
-   mInputBuffers.resize(chans);
-   mOutputBuffers.resize(chans);
-
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
    auto start = steady_clock::now();
 
-   // Allocate the in/out buffer arrays
-   // GP: temporary fix until we convert Effect
-   AutoAllocator<float>  floatAllocator;
+   // Allocate the in and out buffer arrays
+   const auto ibuf =
+      static_cast<float **>(alloca(chans * sizeof(float *)));
+   const auto obuf =
+      static_cast<float **>(alloca(chans * sizeof(float *)));
+   const auto scratch =
+      static_cast<float*>(alloca(numSamples * sizeof(float)));
 
    // And populate the input with the buffers we've been given while allocating
    // NEW output buffers
    for (unsigned int i = 0; i < chans; i++)
    {
-      mInputBuffers[i] = buffers[i];
-      mOutputBuffers[i] = floatAllocator.Allocate(true, numSamples);
+      ibuf[i] = buffers[i];
+      obuf[i] = static_cast<float*>(alloca(numSamples * sizeof(float)));
    }
 
    // Now call each effect in the chain while swapping buffer pointers to feed the
@@ -231,10 +218,10 @@ size_t RealtimeEffectManager::Process(Track *track,
          if (bypassed)
             return;
 
-         state.Process(track, chans, mInputBuffers.data(),
-                       mOutputBuffers.data(), numSamples);
+         state.Process(track, chans, ibuf, obuf, scratch, numSamples);
+
          for (auto i = 0; i < chans; ++i)
-            std::swap(mInputBuffers[i], mOutputBuffers[i]);
+            std::swap(ibuf[i], obuf[i]);
          called++;
       }
    );
@@ -247,7 +234,7 @@ size_t RealtimeEffectManager::Process(Track *track,
    {
       for (unsigned int i = 0; i < chans; i++)
       {
-         memcpy(buffers[i], mInputBuffers[i], numSamples * sizeof(float));
+         memcpy(buffers[i], ibuf[i], numSamples * sizeof(float));
       }
    }
 
