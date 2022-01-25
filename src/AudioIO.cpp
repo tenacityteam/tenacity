@@ -2102,7 +2102,7 @@ bool AudioIoCallback::FillOutputBuffers(
          // Do realtime effects
          if( !dropQuickly && len > 0 ) {
             if (pScope)
-               pScope->Process(mTrackChannelsBuffer[0], mAudioScratchBuffers.data(), len);
+               pScope->Process(mTrackChannelsBuffer[0], mAudioScratchBuffers.data(), mScratchPointers.data(), len);
             // Mix the results with the existing output (software playthrough) and
             // apply panning.  If post panning effects are desired, the panning would
             // need to be be split out from the mixing and applied in a separate step.
