@@ -703,7 +703,7 @@ void EffectUIHost::OnEnable(wxCommandEvent & /* evt */)
    if (mEnabled)
       mSuspensionScope.reset();
    else
-      mSuspensionScope.emplace(mProject);
+      mSuspensionScope.emplace(mProject->weak_from_this());
 
    UpdateControls();
 }

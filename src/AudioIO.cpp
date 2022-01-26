@@ -1947,7 +1947,7 @@ bool AudioIoCallback::FillOutputBuffers(
 
    {
       auto pProject = mOwningProject.lock();
-      RealtimeEffects::ProcessingScope scope{ pProject.get() };
+      RealtimeEffects::ProcessingScope scope{ mOwningProject };
 
       bool selected = false;
       int group = 0;
