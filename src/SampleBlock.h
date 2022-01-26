@@ -106,8 +106,9 @@ class SampleBlockFactory
 {
 public:
    //! Global factory of per-project factories of sample blocks
-   using Factory = GlobalHook<SampleBlockFactory,
-      SampleBlockFactoryPtr( TenacityProject& )>;
+   struct TENACITY_DLL_API Factory : GlobalHook<Factory,
+      SampleBlockFactoryPtr( TenacityProject& )
+   >{};
 
    // Invoke the installed factory (throw an exception if none was installed)
    static SampleBlockFactoryPtr New( TenacityProject &project );

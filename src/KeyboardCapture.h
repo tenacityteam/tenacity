@@ -39,7 +39,9 @@ namespace KeyboardCapture
 
    //! Pre-filter is called before passing the event to the captured window
    /*! If it returns false, then skip the event entirely */
-   using PreFilter = GlobalHook<struct PreFilterTag, bool( wxKeyEvent& )>;
+   struct TENACITY_DLL_API PreFilter : GlobalHook<PreFilter,
+      bool( wxKeyEvent& )
+   >{};
    
    //! Post-filter is conditionally called after passing the event to the window
    /*!
@@ -49,7 +51,9 @@ namespace KeyboardCapture
        wxKEY_DOWN or a wxKEY_UP event; if it returns false, then the event is
        skipped
     */
-   using PostFilter = GlobalHook<struct PostFilterTag, bool( wxKeyEvent& )>;
+   struct TENACITY_DLL_API PostFilter : GlobalHook<PostFilter,
+      bool( wxKeyEvent& )
+   >{};
 
    /// \brief a function useful to implement a focus event handler
    /// The window releases the keyboard if the event is for killing focus,

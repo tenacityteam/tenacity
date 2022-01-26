@@ -64,7 +64,9 @@ class TENACITY_DLL_API CommandManager final
 
    // Interception of menu item handling.
    // If it returns true, bypass the usual dispatch of commands.
-   using GlobalMenuHook = GlobalHook<CommandManager, bool(const CommandID&)>;
+   struct TENACITY_DLL_API GlobalMenuHook : GlobalHook<GlobalMenuHook,
+      bool(const CommandID&)
+   >{};
 
    //
    // Constructor / Destructor

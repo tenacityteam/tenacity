@@ -58,7 +58,9 @@ class TENACITY_DLL_API ToolManager final
 
  public:
    // a hook function to break dependency of ToolManager on ProjectWindow
-   using TopPanelHook = GlobalHook< ToolManager, wxWindow*( wxWindow& ) >;
+   struct TENACITY_DLL_API TopPanelHook : GlobalHook<TopPanelHook,
+      wxWindow*( wxWindow& )
+   >{};
 
    static ToolManager &Get( TenacityProject &project );
    static const ToolManager &Get( const TenacityProject &project );

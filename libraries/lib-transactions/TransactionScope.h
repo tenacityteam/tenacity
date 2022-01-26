@@ -29,8 +29,9 @@ class TRANSACTIONS_API TransactionScope
 {
 public:
    //! Type of function supplying implementation of steps
-   using Factory = GlobalHook< TransactionScope,
-      std::unique_ptr<TransactionScopeImpl>(TenacityProject &) >;
+   struct TRANSACTIONS_API Factory : GlobalHook<Factory,
+      std::unique_ptr<TransactionScopeImpl>(TenacityProject &)
+   > {};
 
    //! Construct from a project
    /*!
