@@ -108,7 +108,6 @@ public:
 public:
    virtual void EnsureInitialised()=0;
    void LoadTheme( teThemeType Theme );
-   void RegisterImage( int &iIndex,char const** pXpm, const wxString & Name);
    void RegisterImage( int &iIndex, const wxImage &Image, const wxString & Name );
    void RegisterColour( int &iIndex, const wxColour &Clr, const wxString & Name );
 
