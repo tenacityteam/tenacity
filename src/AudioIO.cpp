@@ -1944,7 +1944,9 @@ bool AudioIoCallback::FillOutputBuffers(
 
    {
       auto pProject = mOwningProject.lock();
-      RealtimeEffects::ProcessingScope scope{ mOwningProject };
+      std::optional<RealtimeEffects::ProcessingScope> pScope;
+      if (mpTransportState && mpTransportState->mpRealtimeInitialization)
+         pScope.emplace( *mpTransportState->mpRealtimeInitialization, mOwningProject );
 
       bool selected = false;
       int group = 0;
@@ -2047,8 +2049,8 @@ bool AudioIoCallback::FillOutputBuffers(
 
          // Do realtime effects
          if( !dropQuickly && len > 0 ) {
-            scope.Process(mTrackChannelsBuffer[0], mScratchBuffers.data(), len);
-
+            if (pScope)
+               pScope->Process(mTrackChannelsBuffer[0], mScratchBuffers.data(), len);
             // Mix the results with the existing output (software playthrough) and
             // apply panning.  If post panning effects are desired, the panning would
             // need to be be split out from the mixing and applied in a separate step.

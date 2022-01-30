@@ -167,7 +167,9 @@ private:
 class ProcessingScope {
 public:
    ProcessingScope() {}
-   explicit ProcessingScope(std::weak_ptr<TenacityProject> wProject)
+   //! Require a prior InializationScope to ensure correct nesting
+   explicit ProcessingScope(InitializationScope &,
+      std::weak_ptr<TenacityProject> wProject)
       : mwProject{ move(wProject) }
    {
       if (auto pProject = mwProject.lock())
