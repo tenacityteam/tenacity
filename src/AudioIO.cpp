@@ -363,6 +363,14 @@ void AudioIO::RemoveState(TenacityProject &project,
    RealtimeEffectManager::Get(project).RemoveState(pInit, pTrack, state);
 }
 
+RealtimeEffects::SuspensionScope AudioIO::SuspensionScope()
+{
+   if (mpTransportState && mpTransportState->mpRealtimeInitialization)
+      return RealtimeEffects::SuspensionScope{
+         *mpTransportState->mpRealtimeInitialization, mOwningProject };
+   return {};
+}
+
 static PaSampleFormat AudacityToPortAudioSampleFormat(sampleFormat format)
 {
    switch(format) {

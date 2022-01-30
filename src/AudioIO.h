@@ -55,6 +55,8 @@ struct PaStreamCallbackTimeInfo;
 typedef unsigned long PaStreamCallbackFlags;
 typedef int PaError;
 
+namespace RealtimeEffects { class SuspensionScope; }
+
 bool ValidateDeviceNames();
 
 /*!
@@ -395,6 +397,8 @@ public:
    //! Forwards to RealtimeEffectManager::RemoveState with proper init scope
    void RemoveState(TenacityProject &project,
       Track *pTrack, RealtimeEffectState &state);
+
+   RealtimeEffects::SuspensionScope SuspensionScope();
 
    /** \brief Start up Portaudio for capture and recording as needed for
     * input monitoring and software playthrough only

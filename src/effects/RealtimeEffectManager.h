@@ -156,7 +156,9 @@ private:
 class SuspensionScope {
 public:
    SuspensionScope() {}
-   explicit SuspensionScope(std::weak_ptr<TenacityProject> wProject)
+   //! Require a prior InitializationScope to ensure correct nesting
+   explicit SuspensionScope(InitializationScope &,
+      std::weak_ptr<TenacityProject> wProject)
       : mwProject{ move(wProject) }
    {
       if (auto pProject = mwProject.lock()) {
