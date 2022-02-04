@@ -52,14 +52,6 @@ std::vector<UIHandlePtr> CommonTrackView::HitTest
 
    // There are still some general cases.
 
-   // Sliding applies in more than one track type.
-   if ( !isMultiTool && currentTool == slideTool ) {
-      result = TimeShiftHandle::HitAnywhere(
-         mTimeShiftHandle, FindTrack(), false);
-      if (result)
-         results.push_back(result);
-   }
-
    // Let the multi-tool right-click handler apply only in default of all
    // other detailed hits.
    if ( isMultiTool ) {

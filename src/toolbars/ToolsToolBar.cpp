@@ -80,7 +80,6 @@ ToolsToolBar::ToolsToolBar( AudacityProject &project )
    //Read the following wxASSERTs as documentating a design decision
    wxASSERT( selectTool   == selectTool   - firstTool );
    wxASSERT( envelopeTool == envelopeTool - firstTool );
-   wxASSERT( slideTool    == slideTool    - firstTool );
    wxASSERT( zoomTool     == zoomTool     - firstTool );
    wxASSERT( drawTool     == drawTool     - firstTool );
    wxASSERT( multiTool    == multiTool    - firstTool );
@@ -136,7 +135,6 @@ void ToolsToolBar::RegenerateTooltips()
    //		wxSafeYield(); //Deal with some queued up messages...
 
    #if wxUSE_TOOLTIPS
-
    using namespace ToolCodes;
 
    static const struct Entry {
@@ -146,7 +144,6 @@ void ToolsToolBar::RegenerateTooltips()
    } table[] = {
       { selectTool,   wxT("SelectTool"),    XO("Selection Tool")  },
       { envelopeTool, wxT("EnvelopeTool"),  XO("Envelope Tool")   },
-      { slideTool,    wxT("TimeShiftTool"), XO("Time Shift Tool") },
       { zoomTool,     wxT("ZoomTool"),      XO("Zoom Tool")       },
       { drawTool,     wxT("DrawTool"),      XO("Draw Tool")       },
       { multiTool,    wxT("MultiTool"),     XO("Multi-Tool")      },
@@ -202,7 +199,6 @@ void ToolsToolBar::Populate()
    mTool[ envelopeTool ] = MakeTool( this, bmpEnvelope, envelopeTool, XO("Envelope Tool") );
    mTool[ drawTool     ] = MakeTool( this, bmpDraw, drawTool, XO("Draw Tool") );
    mTool[ zoomTool     ] = MakeTool( this, bmpZoom, zoomTool, XO("Zoom Tool") );
-   mTool[ slideTool    ] = MakeTool( this, bmpTimeShift, slideTool, XO("Slide Tool") );
    mTool[ multiTool    ] = MakeTool( this, bmpMulti, multiTool, XO("Multi-Tool") );
 
    // It's OK to reset the tool when regenerating this, e.g after visiting preferences.
@@ -359,12 +355,6 @@ void OnZoomTool(const CommandContext &context)
    SetTool(context.project, ToolCodes::zoomTool);
 }
 
-/// Handler to set the Time shift tool active
-void OnTimeShiftTool(const CommandContext &context)
-{
-   SetTool(context.project, ToolCodes::slideTool);
-}
-
 void OnMultiTool(const CommandContext &context)
 {
    SetTool(context.project, ToolCodes::multiTool);
@@ -421,8 +411,6 @@ BaseItemSharedPtr ExtraToolsMenu()
          AlwaysEnabledFlag, wxT("F3") ),
       Command( wxT("ZoomTool"), XXO("&Zoom Tool"), FN(OnZoomTool),
          AlwaysEnabledFlag, wxT("F4") ),
-      Command( wxT("TimeShiftTool"), XXO("&Time Shift Tool"),
-         FN(OnTimeShiftTool), AlwaysEnabledFlag, wxT("F5") ),
       Command( wxT("MultiTool"), XXO("&Multi Tool"), FN(OnMultiTool),
          AlwaysEnabledFlag, wxT("F6") ),
       Command( wxT("PrevTool"), XXO("&Previous Tool"), FN(OnPrevTool),
