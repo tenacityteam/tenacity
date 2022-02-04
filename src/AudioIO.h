@@ -26,6 +26,7 @@
 #include <chrono>
 
 // Tenacity libraries
+#include <lib-components/ModuleInterface.h>
 #include <lib-math/SampleCount.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-utility/MessageBuffer.h>
@@ -35,6 +36,7 @@ class AudioIOBase;
 class AudioIO;
 class RingBuffer;
 class Mixer;
+class RealtimeEffectState;
 class Resample;
 class SelectedRegion;
 
@@ -44,6 +46,7 @@ class PlayableTrack;
 using PlayableTrackConstArray =
    std::vector < std::shared_ptr < const PlayableTrack > >;
 
+class Track;
 class WaveTrack;
 using WaveTrackArray = std::vector < std::shared_ptr < WaveTrack > >;
 using WaveTrackConstArray = std::vector < std::shared_ptr < const WaveTrack > >;
@@ -384,6 +387,14 @@ class TENACITY_DLL_API AudioIO final
 public:
    // This might return null during application startup or shutdown
    static AudioIO *Get();
+
+   //! Forwards to RealtimeEffectManager::AddState with proper init scope
+   RealtimeEffectState *AddState(TenacityProject &project,
+      Track *pTrack, const PluginID & id);
+
+   //! Forwards to RealtimeEffectManager::RemoveState with proper init scope
+   void RemoveState(TenacityProject &project,
+      Track *pTrack, RealtimeEffectState &state);
 
    /** \brief Start up Portaudio for capture and recording as needed for
     * input monitoring and software playthrough only

@@ -342,6 +342,27 @@ AudioIO::~AudioIO()
    // wxTheApp->Yield();
 }
 
+RealtimeEffectState *AudioIO::AddState(TenacityProject &project,
+   Track *pTrack, const PluginID & id)
+{
+   RealtimeEffects::InitializationScope *pInit = nullptr;
+   if (mpTransportState)
+      if (auto pProject = GetOwningProject(); pProject.get() == &project)
+         pInit = &*mpTransportState->mpRealtimeInitialization;
+   return RealtimeEffectManager::Get(project).AddState(pInit, pTrack, id);
+   return nullptr;
+}
+
+void AudioIO::RemoveState(TenacityProject &project,
+   Track *pTrack, RealtimeEffectState &state)
+{
+   RealtimeEffects::InitializationScope *pInit = nullptr;
+   if (mpTransportState)
+      if (auto pProject = GetOwningProject(); pProject.get() == &project)
+         pInit = &*mpTransportState->mpRealtimeInitialization;
+   RealtimeEffectManager::Get(project).RemoveState(pInit, pTrack, state);
+}
+
 static PaSampleFormat AudacityToPortAudioSampleFormat(sampleFormat format)
 {
    switch(format) {

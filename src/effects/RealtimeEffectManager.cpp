@@ -292,13 +292,17 @@ void RealtimeEffectManager::VisitAll(StateVisitor func)
 }
 
 RealtimeEffectState *
-RealtimeEffectManager::AddState(Track *pTrack, const PluginID & id)
+RealtimeEffectManager::AddState(
+   RealtimeEffects::InitializationScope *pScope,
+   Track *pTrack, const PluginID & id)
 {
    auto pLeader = pTrack ? *TrackList::Channels(pTrack).begin() : nullptr;
    RealtimeEffectList &states = pLeader
       ? RealtimeEffectList::Get(*pLeader)
       : RealtimeEffectList::Get(mProject);
 
+   if (mActive && !pScope)
+      return nullptr;
    RealtimeEffects::SuspensionScope scope{ mProject.weak_from_this() };
    // Protect...
    std::lock_guard<std::mutex> guard(mLock);
@@ -328,8 +332,17 @@ RealtimeEffectManager::AddState(Track *pTrack, const PluginID & id)
    return &state;
 }
 
-void RealtimeEffectManager::RemoveState(RealtimeEffectList &states, RealtimeEffectState &state)
+void RealtimeEffectManager::RemoveState(
+   RealtimeEffects::InitializationScope *pScope,
+   Track *pTrack, RealtimeEffectState &state)
 {
+   auto pLeader = pTrack ? *TrackList::Channels(pTrack).begin() : nullptr;
+   RealtimeEffectList &states = pLeader
+      ? RealtimeEffectList::Get(*pLeader)
+      : RealtimeEffectList::Get(mProject);
+
+   if (mActive && !pScope)
+      return;
    RealtimeEffects::SuspensionScope scope{ mProject.weak_from_this() };
    // Protect...
    std::lock_guard<std::mutex> guard(mLock);
