@@ -93,7 +93,7 @@ private:
 private:
    Observer::Subscription mSubscription;
 
-   TenacityProject *mProject;
+   TenacityProject& mProject;
    wxWindow *mParent;
    Effect &mEffect;
    EffectUIClientInterface &mClient;
