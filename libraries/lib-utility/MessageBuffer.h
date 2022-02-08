@@ -13,10 +13,12 @@
 #include "MemoryX.h"
 #include <atomic>
 
-// Communicate data from one writer to one reader.
-// This is not a queue: it is not necessary for each write to be read.
-// Rather loss of a message is allowed:  writer may overwrite.
-// Data must be default-constructible and either copyable or movable.
+//! Communicate data atomically from one writer thread to one reader.
+/*!
+ This is not a queue: it is not necessary for each write to be read.
+ Rather loss of a message is allowed:  writer may overwrite.
+ Data must be default-constructible and reassignable.
+ */
 template<typename Data>
 class MessageBuffer
 {
@@ -73,8 +75,9 @@ class MessageBuffer
             return result;
         }
 
-        // Copy data in
-        void Write( const Data &data )
+        //! Reassign a slot by move or copy
+        template<typename Arg = Data&&>
+        void Write( Arg &&arg )
         {
             // Whichever slot was last written, prefer to write the other.
             auto idx = mLastWrittenSlot.load( std::memory_order_relaxed );
@@ -86,26 +89,7 @@ class MessageBuffer
                 wasBusy = mSlots[idx].mBusy.exchange( true, std::memory_order_acquire );
             } while ( wasBusy );
 
-            mSlots[idx].mData = data;
-            mLastWrittenSlot.store( idx, std::memory_order_relaxed );
-
-            mSlots[idx].mBusy.store( false, std::memory_order_release );
-        }
-
-        // Move data in
-        void Write( Data &&data )
-        {
-            // Whichever slot was last written, prefer to write the other.
-            auto idx = mLastWrittenSlot.load( std::memory_order_relaxed );
-            bool wasBusy = false;
-            do {
-            // This loop is unlikely to execute twice, but it might because the
-            // consumer thread is reading a slot.
-            idx = 1 - idx;
-            wasBusy = mSlots[idx].mBusy.exchange( true, std::memory_order_acquire );
-            } while ( wasBusy );
-
-            mSlots[idx].mData = std::move( data );
+            mSlots[idx].mData = std::forward<Arg>(arg);
             mLastWrittenSlot.store( idx, std::memory_order_relaxed );
 
             mSlots[idx].mBusy.store( false, std::memory_order_release );
