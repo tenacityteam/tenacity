@@ -521,7 +521,7 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       //<< wxT(" ")
       /* i18n-hint A copyright symbol substitutes the 1st %s and Saucedacity's
          name substitues the 2nd. */
-      << XO("<center>Copyright %s 2021 %s Team.</center>")
+      << XO("<center>Copyright %s 2022 %s Team.</center>")
          .Format( wxT("&copy;"), ProgramName )
 #endif
 
