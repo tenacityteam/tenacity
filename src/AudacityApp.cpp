@@ -944,12 +944,7 @@ bool AudacityApp::OnInit()
          wxT("/var/tmp/saucedacity-%s"), wxGetUserId() ) );
    }
 
-// DA: Path env variable.
-#ifndef EXPERIMENTAL_DA
    wxString pathVar = wxGetenv(wxT("SAUCEDACITY_PATH"));
-#else
-   wxString pathVar = wxGetenv(wxT("DARKAUDACITY_PATH"));
-#endif
    if (!pathVar.empty())
       FileNames::AddMultiPathsToPathList(pathVar, audacityPathList);
    FileNames::AddUniquePathToPathList(::wxGetCwd(), audacityPathList);
