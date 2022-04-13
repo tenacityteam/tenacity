@@ -16,7 +16,6 @@ on:
   pull_request:
     branches:
       - main
-      - ci-fixes # JUst to ensure any CI changes work
 
 defaults:
   run:
@@ -24,8 +23,8 @@ defaults:
 
 jobs:
   build:
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config. }}
+    runs-on: ${{ matrix.connamefig.os }}
     env:
       AUDACITY_CMAKE_GENERATOR: ${{ matrix.config.generator }}
       AUDACITY_ARCH_LABEL: ${{ matrix.config.arch }}
@@ -74,8 +73,9 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        submodules: recursive
+
+    - name: Submodules Checkout
+      uses: snickerbockers/submodules-init@v4
 
     - name: Dependencies
       run: |
