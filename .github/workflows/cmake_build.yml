@@ -23,8 +23,8 @@ defaults:
 
 jobs:
   build:
-    name: ${{ matrix.config. }}
-    runs-on: ${{ matrix.connamefig.os }}
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
     env:
       AUDACITY_CMAKE_GENERATOR: ${{ matrix.config.generator }}
       AUDACITY_ARCH_LABEL: ${{ matrix.config.arch }}
