@@ -48,11 +48,10 @@ jobs:
           arch: x86_64 # as reported by `arch` or `uname -m`
           generator: Unix Makefiles
 
-       # Disabled because codesigning is broken
-       #- name macOS_Intel
-       #   os: macos-latest
-       #   arch: Intel # as reported by Apple menu > About This Mac
-       #   generator: Xcode
+        - name: macOS_Intel
+          os: macos-latest
+          arch: Intel # as reported by Apple menu > About This Mac
+          generator: Xcode
 
           # FIXME: maybe add Apple Silicon? Now that's something for discussion (see #2),
           # although it might not exist yet.
@@ -61,13 +60,13 @@ jobs:
         - name: Windows_32bit
           os: windows-latest
           arch: 32bit # as reported by Windows Settings > System > About
-          generator: Visual Studio 16 2019
+          generator: Visual Studio 17 2022
 
           # Windows (x64) config
         - name: Windows_64bit
           os: windows-latest
           arch: 64bit # as reported by Windows Settings > System > About
-          generator: Visual Studio 16 2019
+          generator: Visual Studio 17 2022
 
     steps:
 
