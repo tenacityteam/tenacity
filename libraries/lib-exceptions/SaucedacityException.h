@@ -55,9 +55,9 @@ class EXCEPTIONS_API SaucedacityException : public std::exception
     virtual void DelayedHandlerAction() = 0;
 
     /// Returns a C-style string containing the exception message
-    EXCEPTIONS_API virtual const char* what();
+    virtual const char* what();
 
-    EXCEPTIONS_API static void EnqueueAction(
+    static void EnqueueAction(
        std::exception_ptr pException,
        std::function<void(SaucedacityException*)> delayedHandler);
 
