@@ -34,7 +34,7 @@ case "$1" in
     help
     ;;
 --readme )
-    exec less "${APPDIR}/share/doc/saucedacity/README.txt"
+    exec less "${APPDIR}/share/doc/saucedacity/README.md"
     ;;
 --license )
     exec less "${APPDIR}/share/doc/saucedacity/LICENSE.txt"
