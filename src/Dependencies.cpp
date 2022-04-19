@@ -55,7 +55,7 @@ AliasedFile s.
 #include "Prefs.h"
 #include "Project.h"
 #include "Sequence.h"
-#include "ShuttleGui.h"
+#include "shuttle/ShuttleGui.h"
 #include "WaveTrack.h"
 #include "WaveClip.h"
 #include "prefs/QualityPrefs.h"

@@ -44,7 +44,7 @@
 #include <wx/tokenzr.h>
 
 #include "../../SelectFile.h"
-#include "../../ShuttleGui.h"
+#include "../../shuttle/ShuttleGui.h"
 #include "../../widgets/AudacityMessageBox.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/wxPanelWrapper.h"
