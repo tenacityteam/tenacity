@@ -122,6 +122,6 @@ jobs:
     #  run: |
     #    exec bash "scripts/ci/install.sh"
 
-    #- name: Package
-    #  run: |
-    #    exec bash "scripts/ci/package.sh"
+    - name: Package
+      run: |
+        exec bash "scripts/ci/package.sh"
