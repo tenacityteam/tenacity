@@ -8,7 +8,7 @@ cd build
 
 cpack -C "${AUDACITY_BUILD_TYPE}" --verbose
 
-if [[ "${OSTYPE}" == msys* && ${GIT_BRANCH} == release* ]]; then # Windows
+if [[ "${OSTYPE}" == msys ]]; then # Windows
     cmake --build . --target innosetup --config "${AUDACITY_BUILD_TYPE}"
 fi
 
