@@ -125,3 +125,12 @@ jobs:
     - name: Package
       run: |
         exec bash "scripts/ci/package.sh"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: saucedacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
+        path: |
+          build/package/*
+          !build/package/_CPack_Packages
+        if-no-files-found: error
