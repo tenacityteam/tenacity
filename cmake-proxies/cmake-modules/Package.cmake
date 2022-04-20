@@ -1,8 +1,8 @@
 set(CPACK_PACKAGE_VERSION_MAJOR "${AUDACITY_VERSION}") # X
 set(CPACK_PACKAGE_VERSION_MINOR "${AUDACITY_RELEASE}") # Y
 set(CPACK_PACKAGE_VERSION_PATCH "${AUDACITY_REVISION}") # Z
-set(CPACK_PACKAGE_VENDOR "Audacity")
-set(CPACK_PACKAGE_HOMEPAGE_URL "https://audacityteam.org")
+set(CPACK_PACKAGE_VENDOR "Saucedacity")
+set(CPACK_PACKAGE_HOMEPAGE_URL "https://saucedacity.github.io")
 
 # X.Y.Z-alpha-20210615
 set(CPACK_PACKAGE_VERSION "${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION}${AUDACITY_SUFFIX}")
@@ -25,11 +25,11 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
 endif()
 
 # audacity-linux-X.Y.Z-alpha-20210615
-set(CPACK_PACKAGE_FILE_NAME "audacity-${os}-${CPACK_PACKAGE_VERSION}")
-set(zsync_name "audacity-${os}-*") # '*' is wildcard (here it means any version)
+set(CPACK_PACKAGE_FILE_NAME "saucedacity-${os}-${CPACK_PACKAGE_VERSION}")
+set(zsync_name "saucedacity-${os}-*") # '*' is wildcard (here it means any version)
 
 if(DEFINED AUDACITY_ARCH_LABEL)
-   # audacity-linux-X.Y.Z-alpha-20210615-x86_64
+   # saucedacity-linux-X.Y.Z-alpha-20210615-x86_64
    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-${AUDACITY_ARCH_LABEL}")
    set(zsync_name "${zsync_name}-${AUDACITY_ARCH_LABEL}")
    set(CPACK_AUDACITY_ARCH_LABEL "${AUDACITY_ARCH_LABEL}")
@@ -42,10 +42,11 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
    set(CPACK_GENERATOR "External")
    set(CPACK_EXTERNAL_ENABLE_STAGING TRUE)
    set(CPACK_EXTERNAL_PACKAGE_SCRIPT "${PROJECT_SOURCE_DIR}/linux/package_appimage.cmake")
-   if(AUDACITY_BUILD_LEVEL EQUAL 2)
+   # disable updates for now
+   #if(AUDACITY_BUILD_LEVEL EQUAL 2)
       # Enable updates. See https://github.com/AppImage/AppImageSpec/blob/master/draft.md#update-information
-      set(CPACK_AUDACITY_APPIMAGE_UPDATE_INFO "gh-releases-zsync|audacity|audacity|latest|${zsync_name}.AppImage.zsync")
-   endif()
+      #set(CPACK_AUDACITY_APPIMAGE_UPDATE_INFO "gh-releases-zsync|audacity|audacity|latest|${zsync_name}.AppImage.zsync")
+      #endif()
 elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
    set( CPACK_GENERATOR DragNDrop )
 

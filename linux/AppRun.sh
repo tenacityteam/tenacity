@@ -46,7 +46,7 @@ case "$1" in
     exec bash "${APPDIR}/bin/check_dependencies"
     ;;
 * )
-    # Other arguments go to Audacity
+    # Other arguments go to Saucedacity
     exec "${APPDIR}/bin/saucedacity" "$@"
     ;;
 esac
