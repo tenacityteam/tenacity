@@ -93,9 +93,6 @@ if( APPLE )
    set( CMAKE_OSX_SYSROOT macosx CACHE INTERNAL "" )
    set( CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "" CACHE INTERNAL "" )
 
-   # This prevents a link error when building with the 10.9 or older SDKs
-   set( CMAKE_XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME OFF )
-
    # Shouldn't cmake do this???
    string( APPEND CMAKE_CXX_FLAGS " -stdlib=libc++" )
 endif()
