@@ -1,9 +1,10 @@
-﻿;   Audacity: A Digital Audio Editor
-;   Audacity(R) is copyright (c) 1999-2021 Audacity Team.
+﻿;   Saucedacity: A Digital Audio Editor
+;   Saucedacity is copyright (c) 2021-2022 Saucedacity Team.
 ;   License: GPL v2.  See License.txt.
 ;
 ;   audacity.iss
-;   Vaughan Johnson, Leland Lucius, Martyn Shaw, Richard Ash, & others
+;   Originally by Vaughan Johnson, Leland Lucius, Martyn Shaw, Richard Ash, &
+;   others. Modified by Avery King.
 ;
 
 ; This requires that the ISS Preprocessor be installed
@@ -25,8 +26,8 @@ Filename: "{app}\unins*.*";
 ; compiler-related directives
 OutputBaseFilename=saucedacity-win-{#AppVersion}-@INSTALLER_SUFFIX@
 
-WizardImageFile=".\audacity_InnoWizardImage.bmp"
-WizardSmallImageFile=".\audacity_InnoWizardSmallImage.bmp"
+WizardImageFile=".\saucedacity_InnoWizardImage.bmp"
+WizardSmallImageFile=".\saucedacity_InnoWizardSmallImage.bmp"
 
 SolidCompression=yes
 
@@ -36,7 +37,7 @@ SolidCompression=yes
 DisableWelcomePage=no
 
 AppName={#AppName}
-AppVerName=Audacity {#AppVersion}
+AppVerName=Saucedacity {#AppVersion}
 ; Specify AppVersion as well, so it appears in the Add/Remove Programs entry. 
 AppVersion={#AppVersion}
 AppPublisher="Saucedacity Team"
@@ -55,16 +56,16 @@ VersionInfoVersion={#GetFileVersion(AppExe)}
 VersionInfoCopyright={#GetFileCopyright(AppExe)}
 
 ; Don't disable the "Select Destination Location" wizard, even if 
-; Audacity is already installed.
+; Saucedacity is already installed.
 DisableDirPage=no
 
-; Always warn if dir exists, because we'll overwrite previous Audacity.
+; Always warn if dir exists, because we'll overwrite previous Saucedacity.
 DirExistsWarning=yes
 DisableProgramGroupPage=yes
 UninstallDisplayIcon="{app}\saucedacity.exe"
 
 ; No longer force them to accept the license, just display it.   LicenseFile=..\LICENSE.txt
-InfoBeforeFile=".\audacity_InnoWizard_InfoBefore.rtf"
+InfoBeforeFile=".\saucedacity_InnoWizard_InfoBefore.rtf"
 InfoAfterFile=Additional\README.md
 
 ; We no longer produce new ANSI builds. 
@@ -74,7 +75,7 @@ InfoAfterFile=Additional\README.md
 ;   MinVersion=4.0,5.0
 
 ; cosmetic-related directives
-SetupIconFile="Additional\audacity.ico"
+SetupIconFile="Additional\saucedacity.ico"
 
 @SIGN_TOOL@
 
@@ -115,13 +116,10 @@ Source: "Package\plug-ins\*"; DestDir: "{app}\Plug-Ins\"; Flags: ignoreversion
 Source: "Package\modules\*"; DestDir: "{app}\modules\"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{commonprograms}\Audacity"; Filename: "{app}\saucedacity.exe"
-Name: "{commondesktop}\Audacity"; Filename: "{app}\saucedacity.exe"; Tasks: desktopicon
+Name: "{commonprograms}\Saucedacity"; Filename: "{app}\saucedacity.exe"
+Name: "{commondesktop}\Saucedacity"; Filename: "{app}\saucedacity.exe"; Tasks: desktopicon
 
 [InstallDelete]
-; Get rid of Audacity 1.0.0 stuff that's no longer used.
-Type: files; Name: "{app}\audacity-help.htb"
-Type: files; Name: "{app}\audacity-1.2-help.htb"
 
 ; Get rid of previous versions of MSVC runtimes.
 Type: files; Name: "{app}\Microsoft.VC80.CRT.manifest"
@@ -136,26 +134,8 @@ Type: files; Name: "{app}\msvcr120.dll"
 ; Get rid of previous help folder.
 Type: filesandordirs; Name: "{app}\help"
 
-; Don't want to do this because user may have stored their own.
-;   Type: filesandordirs; Name: "{app}\vst"
-
-; We've switched from a folder in the start menu to just the Audacity.exe at the top level.
-; Get rid of 1.0.0 folder and its icons.
-Type: files; Name: "{commonprograms}\Audacity\saucedacity.exe"
-Type: files; Name: "{commonprograms}\Audacity\unins000.exe"
-Type: dirifempty; Name: "{commonprograms}\Audacity"
-
 ;Get rid of previous uninstall item
 Type: files; Name: "{app}\unins*.*"
-
-; Get rid of no longer used test.lsp.
-Type: files; Name: "{app}\Nyquist\test.lsp"
-
-; Get rid of specific LADSPA plug-ins that we now ship with different names.
-Type: files; Name: "{app}\Plug-Ins\GVerb.dll"
-Type: files; Name: "{app}\Plug-Ins\Hard Limiter.dll"
-Type: files; Name: "{app}\Plug-Ins\hard_limiter_1413.dll"
-Type: files; Name: "{app}\Plug-Ins\sc4.dll"
 
 ;Get rid of any modules that we have ever installed
 Type: files; Name: "{app}\Modules\mod-script-pipe.dll"
@@ -165,9 +145,6 @@ Type: files; Name: "{app}\Modules\mod-nyq-bench.dll"
 
 ;get rid of the Modules dir, if it is empty
 Type: dirifempty; Name: "{app}\Modules"
-
-; Get rid of gverb that we no longer ship
-Type: files; Name: "{app}\Plug-Ins\gverb_1216.dll"
 
 ; Get rid of old nyquist plugins that we no longer ship
 Type: files; Name: "{app}\Plug-Ins\crossfadein.ny"
@@ -190,10 +167,10 @@ Root: HKCR; Subkey: "Audacity.Project\shell\open\command"; ValueType: string; Va
 ;Root: HKCR; Subkey: "Audacity.Project\Path";  ValueType: string; ValueData: {app}; Flags: createvalueifdoesntexist uninsdeletekey;
 
 [Run]
-Filename: "{app}\saucedacity.exe"; Description: "{cm:LaunchProgram,Audacity}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\saucedacity.exe"; Description: "{cm:LaunchProgram,Saucedacity}"; Flags: nowait postinstall skipifsilent
 
 [Languages]
-; NOTE: "0" in locale name will be translated to "@" when read by Audacity.
+; NOTE: "0" in locale name will be translated to "@" when read by Saucedacity.
 
 ; Create subdirectories where we'll store the unofficial and dummy translation files
 {#expr Exec("cmd", "/c mkdir """ + "Languages\dummy""", '.\', , SW_HIDE), \
