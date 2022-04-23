@@ -1,8 +1,4 @@
-#ifdef EXPERIMENTAL_DA
-AudacityLogo ICON "darkaudacity.ico"
-#else
 AudacityLogo ICON "audacity.ico"
-#endif
 
 #include <winuser.h>
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "Audacity.exe.manifest"
@@ -30,11 +26,11 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", "Saucedacity Team"
-            VALUE "FileDescription", "A cross-platform audio editor based on Audacity®."
+            VALUE "FileDescription", "A cross-platform audio editor based on Audacityï¿½."
             VALUE "FileVersion", AUDACITY_FILE_VERSION
             VALUE "InternalName", "Saucedacity"
-            VALUE "LegalCopyright", "Copyright © 2022. All rights reserved."
-            VALUE "LegalTrademarks", "Audacity® is a registered trademark."
+            VALUE "LegalCopyright", "Copyright ï¿½ 2022. All rights reserved."
+            VALUE "LegalTrademarks", "Audacityï¿½ is a registered trademark."
             VALUE "OriginalFilename", "Saucedacity.exe"
             VALUE "ProductName", "Saucedacity"
             VALUE "ProductVersion", AUDACITY_FILE_VERSION
