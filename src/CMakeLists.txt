@@ -1103,7 +1103,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
 
    # Define the Windows specific resources
    list( APPEND WIN_RESOURCES
-      ../win/audacity.rc
+      ../win/saucedacity.rc
    )
 
    # Copy over the wxWidgets DLLs
