@@ -1073,17 +1073,11 @@ void ProjectWindow::FixScrollbars()
       (viewInfo.GetScreenEndTime() - viewInfo.h) < viewInfo.total;
    bool newvstate = panelHeight < totalHeight;
 
-#ifdef __WXGTK__
    oldhstate = mHsbar->IsShown();
    oldvstate = mVsbar->IsShown();
    mHsbar->Show(newhstate);
    mVsbar->Show(panelHeight < totalHeight);
-#else
-   oldhstate = mHsbar->IsEnabled();
-   oldvstate = mVsbar->IsEnabled();
-   mHsbar->Enable(newhstate);
-   mVsbar->Enable(panelHeight < totalHeight);
-#endif
+
 
    if (panelHeight >= totalHeight && viewInfo.vpos != 0) {
       viewInfo.vpos = 0;
