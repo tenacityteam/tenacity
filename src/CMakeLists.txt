@@ -336,8 +336,6 @@ list( APPEND SOURCES
       commands/DragCommand.h
       commands/GetInfoCommand.cpp
       commands/GetInfoCommand.h
-      commands/GetTrackInfoCommand.cpp
-      commands/GetTrackInfoCommand.h
       commands/HelpCommand.cpp
       commands/HelpCommand.h
       commands/ImportExportCommands.cpp
