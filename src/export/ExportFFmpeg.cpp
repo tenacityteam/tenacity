@@ -309,7 +309,15 @@ bool ExportFFmpeg::Init(const char *shortname, AudacityProject *project, const T
    // Initialise the output format context.
    mEncFormatCtx->oformat = mEncFormatDesc;
 
-   memcpy(mEncFormatCtx->filename, OSINPUT(path), strlen(OSINPUT(path))+1);
+
+   const size_t url_size = strlen(OSINPUT(path)) + 1;
+   mEncFormatCtx->url = (char*) av_malloc(sizeof(char) * url_size);
+   if (!mEncFormatCtx->url)
+   {
+      return false;
+   }
+
+   memcpy(mEncFormatCtx->url, OSINPUT(path), url_size - 1);
 
    // At the moment Audacity can export only one audio stream
    if ((mEncAudioStream = avformat_new_stream(mEncFormatCtx.get(), NULL)) == NULL)
