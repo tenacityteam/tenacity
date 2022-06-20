@@ -1773,10 +1773,7 @@ void ExportFFmpegOptions::FetchFormatList()
    if (!mFFmpeg)
       return;
 
-   // Enumerate all output formats
-   std::unique_ptr<AVOutputFormatWrapper> ofmt;
-
-   while ((ofmt = mFFmpeg->GetNextOutputFormat(ofmt.get()))!=NULL)
+   for (auto ofmt : mFFmpeg->GetOutputFormats())
    {
       // Any audio-capable format has default audio codec.
       // If it doesn't, then it doesn't supports any audio codecs
@@ -1799,7 +1796,7 @@ void ExportFFmpegOptions::FetchCodecList()
       return;
    // Enumerate all codecs
    std::unique_ptr<AVCodecWrapper> codec;
-   while ((codec = mFFmpeg->GetNextCodec(codec.get()))!=NULL)
+   for (auto codec : mFFmpeg->GetCodecs())
    {
       // We're only interested in audio and only in encoders
       if (codec->IsAudio() && mFFmpeg->av_codec_is_encoder(codec->GetWrappedValue()))
@@ -2096,7 +2093,7 @@ int ExportFFmpegOptions::FetchCompatibleCodecList(const wxChar *fmt, AudacityAVC
    if (found == 2)
    {
       std::unique_ptr<AVCodecWrapper> codec;
-      while ((codec = mFFmpeg->GetNextCodec(codec.get()))!=NULL)
+      for (auto codec : mFFmpeg->GetCodecs())
       {
          if (codec->IsAudio() && mFFmpeg->av_codec_is_encoder(codec->GetWrappedValue()))
          {
@@ -2153,7 +2150,6 @@ int ExportFFmpegOptions::FetchCompatibleFormatList(
    mShownFormatNames.clear();
    mShownFormatLongNames.clear();
    mFormatList->Clear();
-   std::unique_ptr<AVOutputFormatWrapper> ofmt;
 
    wxArrayString FromList;
    // Find all formats compatible to this codec in compatibility list
@@ -2191,7 +2187,7 @@ int ExportFFmpegOptions::FetchCompatibleFormatList(
    if (found)
    {
       // Find all formats which have this codec as default and which are not in the list yet and add them too
-      while ((ofmt = mFFmpeg->GetNextOutputFormat(ofmt.get()))!=NULL)
+      for (auto ofmt  : mFFmpeg->GetOutputFormats())
       {
          if (ofmt->GetAudioCodec() == mFFmpeg->GetAVCodecID(id))
          {
