@@ -1,6 +1,6 @@
 **Saucedacity** is an easy-to-use, multi-track audio editor and recorder for Windows, GNU/Linux, and other operating systems*. Saucedacity is open source software licensed under GPL, version 2 or later.
 
-*macOS should be supported but we do not ship builds because of a lack of access to the appropriate tools. If you are able to build Saucedacity on macOS, feel free to submit those binaries by creating an issue.
+*macOS is unofficially supported (it is buildable). We lack an actual Mac to test our CI builds on to make sure Saucedacity runs properly.
 
 - **Recording** from any real, or virtual audio device that is available to the host system.
 - **Export / Import** a wide range of audio formats, extendible with FFmpeg.
@@ -32,7 +32,7 @@ All contributions made to Saucedacity are available under the GNU General Public
 
 If you want to contribute to this project, we welcome your contributions. Please see the [issue tracker](https://github.com/saucedacity/saucedacity/issues) to see what needs to be done. You can also take a look at [our TODO page](https://github.com/saucedacity/saucedacity/wiki/TODO). There, you will find some things that we plan on doing or that need to be done.
 
-Finally, it should be well noted throughout this entire repository that **you do NOT need to know how to code in order to contribute to this program!** If you **do** know how to code, then we welcome your contributions.
+Finally, **you do NOT need to know how to code in order to contribute to this program!** If you **do** know how to code, then we welcome your contributions.
 
 ## Getting Started
 For end users, the latest Windows and Linux release version of Saucedacity is available from the [Saucedacity releases page](https://github.com/saucedacity/saucedacity).
