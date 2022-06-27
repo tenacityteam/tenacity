@@ -30,9 +30,6 @@
 #include <wx/intl.h>
 #include <wx/log.h>
 #include <wx/settings.h>
-#include <wx/sizer.h>
-#include <wx/statbmp.h>
-#include <wx/tooltip.h>
 #endif
 
 #include "Project.h"
