@@ -1,17 +1,19 @@
 # Contributing
 
-There are many ways to contribute to the Saucedacity Project. Such include contributing to either documentation or to Saucedacity itself. If you are willing to contribute to Saucedacity itself (code-wise, that is), then you've come to the right place.
+There are many ways to contribute to the Saucedacity Project. Such include contributing to either documentation or to Saucedacity itself. If you are willing to contribute to Saucedacity itself (code-wise, that is), then you've come to the right place. If you've want to contribute to something else, it's best you consult [our wiki](https://github.com/saucedacity/saucedacity/wiki) for more information.
 
 Of course, we have a couple of things that you should know. Below are some general points that you should know about contributing to Saucedacity.
 
-## General
+# General
 * **NO CLA is required!** The code you right is YOURS to keep FOREVER.
-* **Make sure your code is available under the GPL v2 or later**. This is re
+* **Make sure your code is available under the GPL v2 or later**.
 
-## Coding Style
-**While not required**, we do recommend you follow the following guidelines for coding
+# Coding Style
+We recommend you follow the following guidelines for coding. This helps keep Saucedacity easy to read and keeps its coding style consistent.
 
-### At A Glance
+**Note that this style guide does not cover everything. For that, use what you are familiar with.**
+
+## At A Glance
 ```c++
 
 #ifndef SOMETHING
@@ -29,9 +31,14 @@ Of course, we have a couple of things that you should know. Below are some gener
 //
 // more things go here
 
+/// another long comment, but for doxygen.
+///
+/// please try to use Doxygen comments like this so we can document their usage, intentions,
+/// etc. in Doxygen.
+
 /** Alternatively, we have these types of comments. preferred for Doxygen.
  *
- * More things about foor and bar
+ * More things about foor and bar.
  *
  **/
 int* foo = some_memory;
@@ -39,40 +46,38 @@ int *bar = nullptr, *bar2 = foo;
 
 if (some_condition == true)
 {
-  DoSomething();
+   DoSomething();
 } else
 {
-  DoSomething(alternatively_with_goodies);
-  DoAnotherThing();
+   DoSomething(alternatively_with_goodies);
+   DoAnotherThing();
 }
 
 for (int i = 0; i < 10; i++)
 {
-  DoAnActionRepeatedly();
+   DoAnActionRepeatedly();
 }
 
 
 class SomeClass
 {
-  public:
-    int a_public_member;
-    virtual void SomeFunc() = 0; // a virtual function
-    void DoSomething();
+   public:
+      int mPublicMember; // STYLE NOTE: Inherited from Audacity
+      virtual void SomeFunc() = 0; // a virtual function
+      void DoSomething();
 
-  private:
-    int __a_private_member; // a private member
+   private:
+      int mPrivateMember; // a private member
 };
 
 ```
 
-### An In-Depth View of the Recommended Coding Style
+## An In-Depth View of the Recommended Coding Style
 **Note**: as stated previously, **you do not need to follow this coding style**. This is more or less the recommendations, but can also be viewed as an overview of generic-pers0n's coding style.
 
-Additionally, this is a WIP, so that justifies your own coding style
+### Variable Names, Function Names, and Macros
 
-#### Variable Names, Function Names, and Macros
-
-* Use `PascalCase` for function names, class names, and type names. Use `snake_case` for variable names. For macros use all uppercase with `snake_case`. **Example**:
+* Use `PascalCase` for most things, **including file names**. For macros use all uppercase with `snake_case`. **Example**:
 ```c++
 #define SOME_MACRO
 
@@ -81,31 +86,47 @@ int a_global_var;
 const int a_constant_var;
 
 ```
-* Use indents of 2 spaces, appropriately increasing as needed. **Example**:
+* Use indents of **3 spaces**, indenting appropriately. Additionally, use only spaces. **Example**:
+  * Yes, we know that 3 spaces for indentation is uncommon, but we inherited from Audacity and we don't want to edit every single file to be in line with our coding style.
+
 ```c++
 int SomeFunc(bool do_something)
 {
-  int a = 0;
-  if (!do_something)
-  {
-    return 0;
-  }
+   int a = 0;
+   if (!do_something)
+   {
+      return 0;
+   }
 
-  a += 2;
-  a = (10 / 2 -10 +8 - 420 - 69 * 2 & 9);
-  return a;
+   a += 2;
+   a = (10 / 2 -10 +8 - 420 - 69 * 2 & 9);
+   return a;
 }
 ```
 
-* Do not indent anything inside an `#ifdef`, `#ifndef`, or similar. Keep it as is. **Example**:
+* Do not indent anything inside a preprocessor statement. Keep it as is. **Example**:
 ```c++
 #ifdef SOMETHING
 #define ANOTHER_THING
 #endif 
 ```
 
-#### Namespaces
-* Names for namespaces should be in PascalCase. Additionally, at the end of a long namespace declaration, there should be a comment in the following format: `// namespace <namespace name>`. **Example**:
+* Do make sure that preprocessor statements are indented appropriately. **Example**:
+
+```c++
+void func()
+{
+   #ifndef SOMETHING
+   auto thing = new Something;
+   thing->Run();
+   #endif
+
+   RunAnotherThing();
+}
+```
+
+### Namespaces
+* Names for namespaces should be in PascalCase. Additionally, at the end of a long namespace declaration, there should be a comment in the following format: `// namespace <name>`. **Example**:
 
 ```c++
 namespace SomeNamespace
@@ -114,38 +135,74 @@ namespace SomeNamespace
 } // namespace SomeNamespace
 ```
 
-## Developing
+* Do not indent anything inside a namespace.
 
-### In General
+### Blocks
+* Put blocks on a new line at all times. **Example**:
 
-* If you want to make a change, you don't need to make an issue first. Go ahead and commit away! Have fun!
+```c++
+namespace Saucedacity
+{
+
+class SomeClass
+{
+   private:
+      bool mBool;
+
+public:
+      int SomeMember(int param)
+      {
+         bool some_bool = true;
+
+         if (some_bool)
+         {
+            some_bool = false;
+         }
+
+         Object some_very_long_statement(Param1Actions() + 10, Param2Actions + 20,
+                                         Param3Actions() + 30, Param4Actions + 40,
+                                         {
+                                           true, false,
+                                           true, false
+                                         });
+
+         return 42;
+      }
+};
+
+}
+```
+
+# Developing
+
+## In General
+
+* If you want to make a change, it is best advised that you do make an issue so we can discuss things. You may open a pull request without relating to an issue, hwoever.
   * Careful not to step on anyone's toes, though. Someone might be already working on the same thing you have, consult the [Issue Tracker](https://github.com/generic-pers0n/saucedacity/issues) for details
 
-### Branches
-* All development happens on the `main` branch. Simple fixes and such go here. Do not create another branch for such simple fixes. Additionally:
-  * If there are any security issues, and if you have a fix, commit them **directly** to `main` **as soon as possible**.
+## Branches
+* All development happens on the `main` branch.
 * If you have a major proposal or new feature, create a new branch named `new_feature_name`. Additionally:
-  * Try to rebase whever possible off of `main`. This might not be necessary, but if it is, please do so.
   * Once the branch has been merged into `main`, feel free to delete that branch.
 
-#### Releases
+### Releases
 * After each stable release, a new branch is to be created as soon as the release is made. The branch is to then **never, ever** be touched again.
 * After a stable release, there should be a page regarding release information about that specific version. This can also be done for future releases.
 * There are four different tiers for platform support: Tier 1, Tier 2, Tier 3, and Tier 4.
   * **Tier 1** support is where the platform is officially supported.
   * **Tier 2** support is where the platform is not officially supported but has **community support**.
-    * In terms of support, main developers/contributors can (and may) attempt to answer support requests regarding Tier 2 platform builds, although support is not guaranteed.
+    * In terms of support, main developers/contributors can (and may) attempt to provide support for Tier 2 platform builds, although support is not guaranteed.
    * **Tier 3** support is where the platform is **partially supported**.
    * **Tier 4** support is where the platform is not supported at all. Platform support might be in discussion, so check the Discussions or the Discord server for more info. Additionally, there might have been support for a Tier 4 platform, but was since dropped for various reasons.
      * In some cases, platforms in Tier 4 support might've been supported at one point but support was dropped for various reasons.
 * Note that Tier 1 is the only tier where binary releases are guaranteed. Tiers 2 and 3 might have binary releases, but they are not guaranteed.
 
-## Translation
+# Translations
 
 * We accept translations for any languages, whether they're new languages introduced or improvements to existing translations.
 * Feel free to work on a translation. Note that your translation doesn't necessarily need to correspond to an issue.
 
-## Supporting Users
+# Supporting Users
 
-* You can answer questions in the [discussions](https://github.com/generic-pers0n/saucedacity/discussions) and on our [Discord server](https://discord.gg/UXbWPpB422).
-  * Additionally, you can also participate in the community, with the aforementioned places also.
+* You can answer questions on our [discussions page](https://github.com/generic-pers0n/saucedacity/discussions)
+  * Additionally, you can also participate in the community, with the places mentioned above.
