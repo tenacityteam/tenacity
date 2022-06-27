@@ -25,8 +25,9 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
     env:
-      AUDACITY_CMAKE_GENERATOR: ${{ matrix.config.generator }}
-      AUDACITY_ARCH_LABEL: ${{ matrix.config.arch }}
+      # Ubuntu-specific. We'll only test on Ubuntu for now
+      AUDACITY_CMAKE_GENERATOR: Unix Makefiles
+      AUDACITY_ARCH_LABEL: x86_64
 
       # We shouldn't need these given the platform, but configure.sh requires them
       WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
