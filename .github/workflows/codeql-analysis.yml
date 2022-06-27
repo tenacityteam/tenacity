@@ -24,6 +24,9 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    env:
+      AUDACITY_CMAKE_GENERATOR: ${{ matrix.config.generator }}
+      AUDACITY_ARCH_LABEL: ${{ matrix.config.arch }}
     permissions:
       actions: read
       contents: read
