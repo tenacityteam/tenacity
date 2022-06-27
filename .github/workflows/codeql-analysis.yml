@@ -27,6 +27,10 @@ jobs:
     env:
       AUDACITY_CMAKE_GENERATOR: ${{ matrix.config.generator }}
       AUDACITY_ARCH_LABEL: ${{ matrix.config.arch }}
+
+      # We shouldn't need these given the platform, but configure.sh requires them
+      WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+      WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
     permissions:
       actions: read
       contents: read
