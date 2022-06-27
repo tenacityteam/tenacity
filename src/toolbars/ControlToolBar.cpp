@@ -81,6 +81,7 @@ IMPLEMENT_CLASS(ControlToolBar, ToolBar);
 BEGIN_EVENT_TABLE(ControlToolBar, ToolBar)
    EVT_CHAR(ControlToolBar::OnKeyEvent)
    EVT_BUTTON(ID_PLAY_BUTTON,   ControlToolBar::OnPlay)
+   EVT_BUTTON(ID_LOOP_BUTTON,   ControlToolBar::OnLoop)
    EVT_BUTTON(ID_STOP_BUTTON,   ControlToolBar::OnStop)
    EVT_BUTTON(ID_RECORD_BUTTON, ControlToolBar::OnRecord)
    EVT_BUTTON(ID_REW_BUTTON,    ControlToolBar::OnRewind)
@@ -115,7 +116,7 @@ ControlToolBar::ControlToolBar( AudacityProject &project )
    gPrefs->Read(wxT("/GUI/ErgonomicTransportButtons"), &mErgonomicTransportButtons, true);
    mStrLocale = gPrefs->Read(wxT("/Locale/Language"), wxT(""));
 
-   mSizer = NULL;
+   mSizer = nullptr;
 }
 
 ControlToolBar::~ControlToolBar()
@@ -196,27 +197,27 @@ void ControlToolBar::Populate()
       ID_PAUSE_BUTTON,  true,  XO("Pause"));
 
    mPlay = MakeButton(this, bmpPlay, bmpPlay, bmpPlayDisabled,
-      ID_PLAY_BUTTON, true, XO("Play"));
-   MakeAlternateImages(*mPlay, 1, bmpLoop, bmpLoop, bmpLoopDisabled);
-   MakeAlternateImages(*mPlay, 2,
-      bmpCutPreview, bmpCutPreview, bmpCutPreviewDisabled);
-   MakeAlternateImages(*mPlay, 3,
-                       bmpScrub, bmpScrub, bmpScrubDisabled);
-   MakeAlternateImages(*mPlay, 4,
-                       bmpSeek, bmpSeek, bmpSeekDisabled);
+                      ID_PLAY_BUTTON, true, XO("Play"));
+
+   MakeAlternateImages(*mPlay, 1, bmpCutPreview, bmpCutPreview, bmpCutPreviewDisabled);
+   MakeAlternateImages(*mPlay, 2, bmpScrub, bmpScrub, bmpScrubDisabled);
+   MakeAlternateImages(*mPlay, 3, bmpSeek, bmpSeek, bmpSeekDisabled);
    mPlay->FollowModifierKeys();
 
+   mLoop = MakeButton(this, bmpLoop, bmpLoop, bmpLoopDisabled,
+                      ID_LOOP_BUTTON, false, XO("Loop"));
+
    mStop = MakeButton(this, bmpStop, bmpStop, bmpStopDisabled ,
-      ID_STOP_BUTTON, false, XO("Stop"));
+                      ID_STOP_BUTTON, false, XO("Stop"));
 
    mRewind = MakeButton(this, bmpRewind, bmpRewind, bmpRewindDisabled,
-      ID_REW_BUTTON, false, XO("Skip to Start"));
+                        ID_REW_BUTTON, false, XO("Skip to Start"));
 
    mFF = MakeButton(this, bmpFFwd, bmpFFwd, bmpFFwdDisabled,
-      ID_FF_BUTTON, false, XO("Skip to End"));
+                    ID_FF_BUTTON, false, XO("Skip to End"));
 
    mRecord = MakeButton(this, bmpRecord, bmpRecord, bmpRecordDisabled,
-      ID_RECORD_BUTTON, false, XO("Record"));
+                        ID_RECORD_BUTTON, false, XO("Record"));
 
    bool bPreferNewTrack;
    gPrefs->Read("/GUI/PreferNewTrackRecord",&bPreferNewTrack, false);
@@ -250,24 +251,27 @@ void ControlToolBar::RegenerateTooltips()
       {
          case ID_PLAY_BUTTON:
             // Without shift
-            name = wxT("PlayStop");
+            name = "Playlooped";
+            break;
+         case ID_LOOP_BUTTON:
+            name = "Loop";
             break;
          case ID_RECORD_BUTTON:
             // Without shift
             //name = wxT("Record");
-            name = wxT("Record1stChoice");
+            name = "Record1stChoice";
             break;
          case ID_PAUSE_BUTTON:
-            name = wxT("Pause");
+            name = "Pause";
             break;
          case ID_STOP_BUTTON:
-            name = wxT("Stop");
+            name = "Stop";
             break;
          case ID_FF_BUTTON:
-            name = wxT("CursProjectEnd");
+            name = "CursProjectEnd";
             break;
          case ID_REW_BUTTON:
-            name = wxT("CursProjectStart");
+            name = "CursProjectStart";
             break;
       }
       std::vector<ComponentInterfaceSymbol> commands(
@@ -276,10 +280,6 @@ void ControlToolBar::RegenerateTooltips()
       // Some have a second
       switch (iWinID)
       {
-         case ID_PLAY_BUTTON:
-            // With shift
-            commands.push_back( { wxT("PlayLooped"), XO("Loop Play") } );
-            break;
          case ID_RECORD_BUTTON:
             // With shift
             {  bool bPreferNewTrack;
@@ -379,6 +379,7 @@ void ControlToolBar::ArrangeButtons()
       mSizer->Add( mPause,  0, flags, 2 );
       mSizer->Add( mPlay,   0, flags, 2 );
       mSizer->Add( mStop,   0, flags, 2 );
+      mSizer->Add( mLoop,   0, flags, 2 );
       mSizer->Add( mRewind, 0, flags, 2 );
       mSizer->Add( mFF,     0, flags, 10 );
       mSizer->Add( mRecord, 0, flags, 5 );
@@ -387,12 +388,14 @@ void ControlToolBar::ArrangeButtons()
    {
       mRewind->MoveBeforeInTabOrder( mFF );
       mPlay->MoveBeforeInTabOrder( mFF );
+      mLoop->MoveBeforeInTabOrder( mFF);
       mRecord->MoveBeforeInTabOrder( mFF );
       mPause->MoveBeforeInTabOrder( mFF );
       mStop->MoveBeforeInTabOrder( mFF );
 
       mSizer->Add( mRewind, 0, flags, 2 );
       mSizer->Add( mPlay,   0, flags, 2 );
+      mSizer->Add( mLoop,   0, flags, 2 );
       mSizer->Add( mRecord, 0, flags, 2 );
       mSizer->Add( mPause,  0, flags, 2 );
       mSizer->Add( mStop,   0, flags, 2 );
@@ -412,7 +415,7 @@ void ControlToolBar::ArrangeButtons()
 void ControlToolBar::ReCreateButtons()
 {
    bool playDown = false;
-   bool playShift = false;
+   bool loopDown = false;
    bool pauseDown = false;
    bool recordDown = false;
    bool recordShift = false;
@@ -423,24 +426,26 @@ void ControlToolBar::ReCreateButtons()
    if( mSizer )
    {
       playDown = mPlay->IsDown();
-      playShift = mPlay->WasShiftDown();
+      loopDown = mLoop->IsDown();
       pauseDown = mPause->IsDown();
       recordDown = mRecord->IsDown();
       recordShift = mRecord->WasShiftDown();
       Detach( mSizer );
 
       std::unique_ptr < wxSizer > {mSizer}; // DELETE it
-      mSizer = NULL;
+      mSizer = nullptr;
    }
 
    ToolBar::ReCreateButtons();
 
    if (playDown)
    {
-      ControlToolBar::PlayAppearance appearance =
-         playShift ? ControlToolBar::PlayAppearance::Looped
-         : ControlToolBar::PlayAppearance::Straight;
-      SetPlay(playDown, appearance);
+      SetPlay(playDown, PlayAppearance::Straight);
+   }
+
+   if (loopDown)
+   {
+      SetLoop(loopDown);
    }
 
    if (pauseDown)
@@ -477,7 +482,7 @@ void ControlToolBar::EnableDisableButtons()
    bool canStop = projectAudioManager.CanStopAudioStream();
 
    bool paused = mPause->IsDown();
-   bool playing = mPlay->IsDown();
+   bool playing = mPlay->IsDown() || mLoop->IsDown();
    bool recording = mRecord->IsDown();
    auto gAudioIO = AudioIO::Get();
    bool busy = gAudioIO->IsBusy();
@@ -491,6 +496,7 @@ void ControlToolBar::EnableDisableButtons()
       !(busy && !recording && !paused) &&
       !(playing && !paused)
    );
+   mLoop->SetEnabled(canStop && tracks && !recording );
    mStop->SetEnabled(canStop && (playing || recording));
    mRewind->SetEnabled(paused || (!playing && !recording));
    mFF->SetEnabled(tracks && (paused || (!playing && !recording)));
@@ -501,7 +507,6 @@ void ControlToolBar::EnableDisableButtons()
 void ControlToolBar::SetPlay(bool down, PlayAppearance appearance)
 {
    if (down) {
-      mPlay->SetShift(appearance == PlayAppearance::Looped);
       mPlay->SetControl(appearance == PlayAppearance::CutPreview);
       mPlay->SetAlternateIdx(static_cast<int>(appearance));
       mPlay->PushDown();
@@ -510,6 +515,20 @@ void ControlToolBar::SetPlay(bool down, PlayAppearance appearance)
       mPlay->PopUp();
       mPlay->SetAlternateIdx(0);
    }
+
+   EnableDisableButtons();
+}
+
+void ControlToolBar::SetLoop(bool down)
+{
+   if (down)
+   {
+      mLoop->PushDown();
+   } else
+   {
+      mLoop->PopUp();
+   }
+
    EnableDisableButtons();
 }
 
@@ -552,7 +571,6 @@ void ControlToolBar::OnKeyEvent(wxKeyEvent & event)
 
 void ControlToolBar::OnPlay(wxCommandEvent & WXUNUSED(evt))
 {
-   auto p = &mProject;
    auto &projectAudioManager = ProjectAudioManager::Get( mProject );
    bool canStop = projectAudioManager.CanStopAudioStream();
 
@@ -562,6 +580,22 @@ void ControlToolBar::OnPlay(wxCommandEvent & WXUNUSED(evt))
    projectAudioManager.Stop();
 
    PlayDefault();
+}
+
+void ControlToolBar::OnLoop(wxCommandEvent & evt)
+{
+  // most of this is just copied from ControlToolBar::OnPlay()
+  auto& projectAudioManager = ProjectAudioManager::Get( mProject );
+  bool canStop = projectAudioManager.CanStopAudioStream();
+
+  if (!canStop)
+  {
+    return;
+  }
+
+  projectAudioManager.Stop();
+
+  PlayLooped();
 }
 
 void ControlToolBar::OnStop(wxCommandEvent & WXUNUSED(evt))
@@ -576,11 +610,13 @@ void ControlToolBar::OnStop(wxCommandEvent & WXUNUSED(evt))
 
 void ControlToolBar::PlayDefault()
 {
-   // Let control have precedence over shift
    const bool cutPreview = mPlay->WasControlDown();
-   const bool looped = !cutPreview &&
-      mPlay->WasShiftDown();
-   ProjectAudioManager::Get( mProject ).PlayCurrentRegion(looped, cutPreview);
+   ProjectAudioManager::Get( mProject ).PlayCurrentRegion(false, cutPreview);
+}
+
+void ControlToolBar::PlayLooped()
+{
+   ProjectAudioManager::Get(mProject).PlayCurrentRegion(true);
 }
 
 /*! @excsafety{Strong} -- For state of current project's tracks */
@@ -624,25 +660,26 @@ void ControlToolBar::OnIdle(wxIdleEvent & event)
    }
 
    bool playing = projectAudioManager.Playing();
+   bool looping = projectAudioManager.Looping();
    if ( !(playing || Scrubber::Get(mProject).HasMark()) ) {
       mPlay->PopUp();
       mPlay->SetAlternateIdx(
-         wxGetKeyState(WXK_CONTROL)
-         ? 2
-         : wxGetKeyState(WXK_SHIFT)
-            ? 1
-            : 0
+         wxGetKeyState(WXK_CONTROL) ? 2 : 0
       );
    }
-   else {
+   else if (playing && !looping) {
       mPlay->PushDown();
       mPlay->SetAlternateIdx(
-         projectAudioManager.Cutting()
-         ? 2
-         : projectAudioManager.Looping()
-            ? 1
-            : 0
+         projectAudioManager.Cutting() ? 2 : 0
       );
+   }
+
+   if (looping)
+   {
+      mLoop->PushDown();
+   } else
+   {
+      mLoop->PopUp();
    }
 
    if ( recording || playing )

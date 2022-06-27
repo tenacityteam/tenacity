@@ -49,6 +49,7 @@ class AUDACITY_DLL_API ControlToolBar final : public ToolBar {
    // call the "real" interface functions below.
    void OnRewind(wxCommandEvent & evt);
    void OnPlay(wxCommandEvent & evt);
+   void OnLoop(wxCommandEvent & evt);
    void OnStop(wxCommandEvent & evt);
    void OnRecord(wxCommandEvent & evt);
    void OnFF(wxCommandEvent & evt);
@@ -62,11 +63,15 @@ class AUDACITY_DLL_API ControlToolBar final : public ToolBar {
 
    //These allow buttons to be controlled externally:
    void SetPlay(bool down, PlayAppearance appearance = PlayAppearance::Straight);
+   void SetLoop(bool down);
    void SetStop();
 
-   // Play the region [t0,t1]
-   // Return the Audio IO token or -1 for failure
+   /// Play the region [t0,t1]
+   /// Return the Audio IO token or -1 for failure
    void PlayDefault();
+
+   /// Same as PlayDefault(), but for when the audio needs to be looped
+   void PlayLooped();
 
    void Populate() override;
    void Repaint(wxDC *dc) override;
@@ -103,6 +108,7 @@ class AUDACITY_DLL_API ControlToolBar final : public ToolBar {
    {
       ID_PAUSE_BUTTON = 11000,
       ID_PLAY_BUTTON,
+      ID_LOOP_BUTTON,
       ID_STOP_BUTTON,
       ID_FF_BUTTON,
       ID_REW_BUTTON,
@@ -112,6 +118,7 @@ class AUDACITY_DLL_API ControlToolBar final : public ToolBar {
 
    AButton *mRewind;
    AButton *mPlay;
+   AButton *mLoop;
    AButton *mRecord;
    AButton *mPause;
    AButton *mStop;
