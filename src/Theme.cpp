@@ -118,18 +118,13 @@ Theme::~Theme(void)
 
 void Theme::EnsureInitialised()
 {
-   if( mbInitialised )
+   if (mbInitialised)
+   {
       return;
+   }
    RegisterImages();
    RegisterColours();
-
-#ifdef EXPERIMENTAL_EXTRA_THEME_RESOURCES
-   extern void RegisterExtraThemeResources();
-   RegisterExtraThemeResources();
-#endif
-
    LoadPreferredTheme();
-
 }
 
 bool ThemeBase::LoadPreferredTheme()
@@ -467,16 +462,11 @@ int SourceOutputStream::OpenFile(const FilePath & Filename)
    bOk = File.Open( Filename, wxFile::write );
    if( bOk )
    {
-// DA: Naming of output sourcery
-#ifdef EXPERIMENTAL_DA
-      File.Write( wxT("///   @file DarkThemeAsCeeCode.h\r\n") );
-#else
-      File.Write( wxT("///   @file ThemeAsCeeCode.h\r\n") );
-#endif
-      File.Write( wxT("///   @brief This file was Auto-Generated.\r\n") );
-      File.Write( wxT("///\r\n") );
-      File.Write( wxT("///   It is included by Theme.cpp.\r\n") );
-      File.Write( wxT("///   Only check this into Git if you've read and understood the guidelines!\r\n\r\n   ") );
+      File.Write( wxT("///   @file ThemeAsCeeCode.h\n") );
+      File.Write( wxT("///   @brief This file was Auto-Generated.\n") );
+      File.Write( wxT("///\n") );
+      File.Write( wxT("///   It is included by Theme.cpp.\n") );
+      File.Write( wxT("///   Only check this into Git if you've read and understood the guidelines!\n\n") );
    }
    return bOk;
 }
@@ -775,11 +765,7 @@ void ThemeBase::WriteImageDefs( )
 teThemeType ThemeBase::GetFallbackThemeType(){
 // Fallback must be an internally supported type,
 // to guarantee it is found.
-#ifdef EXPERIMENTAL_DA
-   return themeDark;
-#else
-   return themeAudacity;
-#endif
+   return themeDefault;
 }
 
 teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
@@ -879,7 +865,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          // Or some experiment is being tried with NEW formats for it.
          AudacityMessageBox(
             XO(
-"Saucedacity could not read its default theme.\nPlease report the problem."));
+"Saucedacity could not read its default theme.\nPlease report this problem."));
          return false;
       }
       //wxLogDebug("Read %i by %i", ImageCache.GetWidth(), ImageCache.GetHeight() );
@@ -1192,13 +1178,15 @@ void auStaticText::OnPaint(wxPaintEvent & WXUNUSED(evt))
    dc.DrawText( GetLabel(), 0,0);
 }
 
-constexpr int defaultTheme =
-#ifdef EXPERIMENTAL_DA
-   2 // "dark"
-#else
-   1 // "default"
-#endif
-;
+/** @brief Default Theme.
+ * 
+ * Options:
+ * 
+ * 1 - Default
+ * 2 - Dark
+ * 
+ **/
+constexpr int defaultTheme = 1;
 
 ChoiceSetting GUITheme{
    wxT("/GUI/Theme"),

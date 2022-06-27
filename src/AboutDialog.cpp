@@ -49,22 +49,7 @@ hold information about one contributor to Audacity.
 #include "AllThemeResources.h"
 #include "Theme.h"
 
-// DA: Logo for About box.
-#ifdef EXPERIMENTAL_DA
-#include "../images/DarkAudacityLogoWithName.xpm"
-#else
 #include "../images/SaucedacityLogoWithName.xpm"
-#endif
-
-// Notice this is a "system include".  This is on purpose and only until
-// we convert over to CMake.  Once converted, the "RevisionIndent.h" file
-// should be deleted and this can be changed back to a user include if
-// desired.
-//
-// RevisionIdent.h may contain #defines like these ones:
-//#define REV_LONG "28864acb238cb3ca71dda190a2d93242591dd80e"
-//#define REV_TIME "Sun Apr 12 12:40:22 2015 +0100"
-#include "RevisionIdent.h"
 
 #ifndef REV_TIME
 #define REV_TIME "unknown date and time"
@@ -332,7 +317,6 @@ AboutDialog::AboutDialog(wxWindow * parent)
    {
       PopulateAudacityPage( S );
       PopulateInformationPage( S );
-      PopulateChangelogPage( S );
       PopulateLicensePage( S );
    }
    S.EndNotebook();
@@ -353,12 +337,6 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
    CreateCreditsList();
 
    auto par1Str =
-// DA: Says that it is a customised version.
-#ifdef EXPERIMENTAL_DA
-      wxT(
-"Audacity, which this is a customised version of, is a free program written by a worldwide team of [[https://www.audacityteam.org/about/credits|volunteers]]. \
-Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac, and GNU/Linux (and other Unix-like systems).")
-#else
 /* Do the i18n of a string with markup carefully with hints.
  (Remember languages with cases.) */
       XO(
@@ -374,9 +352,7 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
             ProgramName,
             Verbatim("[[https://www.audacityteam.org/download|%s]]")
                /* i18n-hint: substitutes into "Audacity is %s" */
-               .Format( XO("available") ) )
-#endif
-   ;
+               .Format( XO("available") ) );
 
    // This trick here means that the English language version won't mention using
    // English, whereas all translated versions will.
@@ -417,19 +393,6 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
    wxTextOutputStream informationStr( o );   // string to build up list of information in
    informationStr
       << wxT("<center>")
-// DA: Description and provenance in About box
-#ifdef EXPERIMENTAL_DA
-      #undef _
-      #define _(s) wxGetTranslation((s))
-      << wxT("<h3>DarkAudacity ")
-      << wxString(AUDACITY_VERSION_STRING)
-      << wxT("</center></h3>")
-      << wxT("Customised version of the Audacity free, open source, cross-platform software " )
-      << wxT("for recording and editing sounds.")
-      << wxT("<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2021 Audacity Team.<br>")
-      << wxT("&nbsp; &nbsp; The name <b>Audacity</b> is a registered trademark.<br><br>")
-
-#else
       << XO("<h1>")
       << ProgramName
       << wxT(" ")
@@ -439,7 +402,6 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << XO("%s is a free, open source, cross-platform software for recording and editing audio.<br><br>")
             .Format(ProgramName)
       << XO("%s is a fork of Audacity, created on July 7, 2021").Format(ProgramName)
-#endif
 
       // << wxT("<p><br>")
       // << par1Str
@@ -449,14 +411,6 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << XO("Credits")
       << wxT("</h1>")
 //      << wxT("<p>")
-
-// DA: Customisation credit
-#ifdef EXPERIMENTAL_DA
-      << wxT("<p><b>")
-      << XO("DarkAudacity Customisation")
-      << wxT("</b><br>")
-      << wxT("James Crook, art, coding &amp; design<br>")
-#endif
 
       << wxT("<h2>")
       << XO("%s Team Members").Format( ProgramName )
@@ -514,16 +468,10 @@ Audacity is [[https://www.audacityteam.org/download|available]] for Windows, Mac
       << XO("%s website: ").Format( ProgramName )
       << wxT("[[https://github.com/saucedacity/saucedacity/|https://github.com/saucedacity/saucedacity]]<br>")
 
-// DA: Link for DA url too
-#ifdef EXPERIMENTAL_DA
-      << wxT("<br>DarkAudacity website: [[http://www.darkaudacity.com/|https://www.darkaudacity.com/]]")
-#else
-      //<< wxT(" ")
       /* i18n-hint A copyright symbol substitutes the 1st %s and Saucedacity's
          name substitues the 2nd. */
       << XO("<center>Copyright %s 2022 %s Team.</center>")
          .Format( wxT("&copy;"), ProgramName )
-#endif
 
       << wxT("<center>")
       << XO("\'Audacity\' is a registered trademark of MuseCY SM Ltd")
@@ -760,12 +708,6 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
       << XO("Features")
       << wxT("</h3>\n<table>");  // start table of features
 
-#ifdef EXPERIMENTAL_DA
-   AddBuildinfoRow(&informationStr, wxT("Theme"), XO("Dark Theme Extras"), enabled);
-#else
-   AddBuildinfoRow(&informationStr, wxT("Theme"), XO("Dark Theme Extras"), disabled);
-#endif
-
    # if USE_NYQUIST
    AddBuildinfoRow(&informationStr, wxT("Nyquist"), XO("Plug-in support"),
          enabled);
@@ -871,23 +813,6 @@ void AboutDialog::PopulateLicensePage( ShuttleGui & S )
    }
    S.EndPanel();
 
-   S.EndNotebookPage();
-}
-
-void AboutDialog::PopulateChangelogPage(ShuttleGui& S)
-{
-   S.StartNotebookPage(XO("Changelog"));
-   //S.Prop(1).StartPanel();
-   {
-      HtmlWindow* html = safenew HtmlWindow(S.GetParent(), -1, wxDefaultPosition,
-                                            wxSize(ABOUT_DIALOG_WIDTH, 264),
-                                            wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER);
-      html->SetPage( FormatHtmlText( HelpText("changelog") ) );
-      html->SetHTMLBackgroundColour( *wxWHITE );
-
-      S.Prop(1).Position(wxEXPAND).AddWindow(html);
-   }
-   //S.EndPanel();
    S.EndNotebookPage();
 }
 

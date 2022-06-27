@@ -18,14 +18,6 @@ It handles initialization and termination by subclassing wxApp.
 
 #include "AudacityApp.h"
 
-
-
-#if 0
-// This may be used to debug memory leaks.
-// See: Visual Leak Detector @ http://vld.codeplex.com/
-#include <vld.h>
-#endif
-
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/wxcrtvararg.h>
 #include <wx/defs.h>
@@ -134,22 +126,8 @@ It handles initialization and termination by subclassing wxApp.
 #include "effects/ScoreAlignDialog.h"
 #endif
 
-#if 0
-#ifdef _DEBUG
-    #ifdef _MSC_VER
-        #undef THIS_FILE
-        static char*THIS_FILE= __FILE__;
-        #define new new(_NORMAL_BLOCK, THIS_FILE, __LINE__)
-    #endif
-#endif
-#endif
-
-// DA: Logo for Splash Screen
-#ifdef EXPERIMENTAL_DA
-#include "../images/DarkAudacityLogoWithName.xpm"
-#else
+// Logo for Splash Screen
 #include "../images/SaucedacityLogoWithName.xpm"
-#endif
 
 #include <thread>
 
