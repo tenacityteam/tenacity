@@ -39,7 +39,7 @@ private:
    void Populate( ShuttleGui & S );
    void OnDontShow( wxCommandEvent & Evt );
 
-   HtmlWindow *mpHtml, *mChangelogHtml;
+   HtmlWindow *mpHtml;
    std::unique_ptr<wxBitmap> m_pLogo; //vvv
    static SplashDialog * pSelf;
 };

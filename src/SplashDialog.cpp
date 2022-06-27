@@ -48,14 +48,14 @@ most commonly asked questions about Audacity.
 
 SplashDialog * SplashDialog::pSelf=NULL;
 
-/*enum
+enum
 {
    DontShowID=1000,
-};*/
+};
 
 BEGIN_EVENT_TABLE(SplashDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_OK, SplashDialog::OnOK)
-//   EVT_CHECKBOX( DontShowID, SplashDialog::OnDontShow )
+   EVT_CHECKBOX( DontShowID, SplashDialog::OnDontShow )
 END_EVENT_TABLE()
 
 IMPLEMENT_CLASS(SplashDialog, wxDialogWrapper)
@@ -108,75 +108,56 @@ void SplashDialog::Populate( ShuttleGui & S )
    bool bShow;
    gPrefs->Read(wxT("/GUI/ShowSplashScreen"), &bShow, true );
    S.StartVerticalLay(1);
-   S.StartNotebook();
-   {
-      S.StartNotebookPage(XO("Welcome!"));
-      {
-         //v For now, change to AudacityLogoWithName via old-fashioned ways, not Theme.
-         //m_pLogo = std::make_unique<wxBitmap>((const char **) SaucedacityLogoWithName_xpm); //v
+
+   //v For now, change to AudacityLogoWithName via old-fashioned ways, not Theme.
+   m_pLogo = std::make_unique<wxBitmap>((const char **) SaucedacityLogoWithName_xpm); //v
 
 
-         // JKC: Resize to 50% of size.  Later we may use a smaller xpm as
-         // our source, but this allows us to tweak the size - if we want to.
-         // It also makes it easier to revert to full size if we decide to.
-         /*const float fScale=0.5f;// smaller size.
-           wxImage RescaledImage( m_pLogo->ConvertToImage() );
-           wxColour MainColour( 
-              RescaledImage.GetRed(1,1), 
-              RescaledImage.GetGreen(1,1), 
-              RescaledImage.GetBlue(1,1));
-           this->SetBackgroundColour(MainColour);*/
+   // JKC: Resize to 50% of size.  Later we may use a smaller xpm as
+   // our source, but this allows us to tweak the size - if we want to.
+   // It also makes it easier to revert to full size if we decide to.
+   const float fScale=0.5f;// smaller size.
+   wxImage RescaledImage( m_pLogo->ConvertToImage() );
+   wxColour MainColour( 
+      RescaledImage.GetRed(1,1), 
+      RescaledImage.GetGreen(1,1), 
+      RescaledImage.GetBlue(1,1));
+   this->SetBackgroundColour(MainColour);
 
-         // wxIMAGE_QUALITY_HIGH not supported by wxWidgets 2.6.1, or we would use it here.
-         // GP: ANSWER-ME: Don't we already require wxWidgets 3.1.3 (Audacity's version)? If
-         // so, then shouldn't we have this option already? Please make an issue if you have
-         // an answer or make a comment here.
-         /*RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH );
-           wxBitmap RescaledBitmap( RescaledImage );
-           wxStaticBitmap *const icon =
-               safenew wxStaticBitmap(S.GetParent(), -1,
-                               //*m_pLogo, //v theTheme.Bitmap(bmpAudacityLogoWithName),
-                                  RescaledBitmap,
-                                  wxDefaultPosition,
-                                  wxSize((int)(LOGOWITHNAME_WIDTH*fScale), (int)(LOGOWITHNAME_HEIGHT*fScale)));*/
+   RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH );
+   wxBitmap RescaledBitmap( RescaledImage );
+   wxStaticBitmap *const icon =
+       safenew wxStaticBitmap(S.GetParent(), -1,
+                          //*m_pLogo, //v theTheme.Bitmap(bmpAudacityLogoWithName),
+                          RescaledBitmap,
+                          wxDefaultPosition,
+                          wxSize((int)(LOGOWITHNAME_WIDTH*fScale), (int)(LOGOWITHNAME_HEIGHT*fScale)));
 
-         S.Prop(0)
+   S.Prop(0)
 #if  (0)
-            .ConnectRoot( wxEVT_LEFT_DOWN, &SplashDialog::OnChar)
+      .ConnectRoot( wxEVT_LEFT_DOWN, &SplashDialog::OnChar)
 #endif
-            /*.AddWindow( icon )*/;
+      .AddWindow( icon );
 
-         mpHtml = safenew LinkingHtmlWindow(S.GetParent(), -1,
-                                            wxDefaultPosition,
-                                            wxSize(506, 480),
-                                            wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
-         mpHtml->SetPage(HelpText( wxT("welcome") ));
-         S.Prop(1)
-            .Position( wxEXPAND )
-            .AddWindow( mpHtml );
-         
-      }
-      S.EndNotebookPage();
+   mpHtml = safenew LinkingHtmlWindow(S.GetParent(), -1,
+                                         wxDefaultPosition,
+                                         wxSize(506, 280),
+                                         wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
+   mpHtml->SetPage(HelpText( wxT("welcome") ));
+   S.Prop(1)
+      .Position( wxEXPAND )
+      .AddWindow( mpHtml );
+   S.Prop(0).StartMultiColumn(2, wxEXPAND);
+   S.SetStretchyCol( 1 );// Column 1 is stretchy...
+   {
+      S.SetBorder( 5 );
+      S.Id( DontShowID).AddCheckBox( XXO("Don't show this again at start up"), !bShow );
+      S.SetBorder( 5 );
 
-      S.StartNotebookPage(XO("What's New"));
-      {
-         mChangelogHtml = new HtmlWindow(S.GetParent(), -1, wxDefaultPosition,
-                                         wxDefaultSize, wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER );
-
-         mChangelogHtml->SetPage(HelpText("changelog"));
-         S.Prop(1)
-            .Position( wxEXPAND )
-            .AddWindow( mChangelogHtml );
-      }
-      S.EndNotebookPage();
-
+      S.Id(wxID_OK)
+         .Prop(0)
+         .AddButton(XXO("OK"), wxALIGN_RIGHT| wxALL, true);
    }
-   S.EndNotebook();
-
-   S.Id(wxID_OK)
-      .Prop(0)
-      .AddButton(XXO("OK"), wxALIGN_RIGHT | wxALL, true);
-
    S.EndVerticalLay();
 }
 
@@ -184,10 +165,15 @@ SplashDialog::~SplashDialog()
 {
 }
 
+void SplashDialog::OnDontShow( wxCommandEvent & Evt )
+{
+   bool bShow = !Evt.IsChecked();
+   gPrefs->Write(wxT("/GUI/ShowSplashScreen"), bShow );
+   gPrefs->Flush();
+}
+
 void SplashDialog::OnOK(wxCommandEvent & WXUNUSED(event))
 {
-   gPrefs->Write(wxT("/GUI/ShowSplashScreen"), false );
-   gPrefs->Flush();
    Show( false );
 }
 
