@@ -53,8 +53,10 @@ jobs:
           arch: Intel # as reported by Apple menu > About This Mac
           generator: Xcode
 
-          # FIXME: maybe add Apple Silicon? Now that's something for discussion (see #2),
-          # although it might not exist yet.
+        - name: macOS_ARM
+          os: macos-latest
+          arch: arm64
+          generator: Xcode
 
           # Windows (x86) config
         - name: Windows_32bit
