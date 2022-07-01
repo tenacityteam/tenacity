@@ -1,4 +1,7 @@
 # Saucedacity: A saucy audio editor
+![Saucedacity build status](https://github.com/saucedacity/saucedacity/actions/workflows/cmake_build.yml/badge.svg)
+![Saucedacity CodeQL Status](https://github.com/saucedacity/saucedacity/actions/workflows/codeql-analysis.yml/badge.svg)
+
 **Saucedacity** is an easy-to-use, multi-track audio editor and recorder for Windows, GNU/Linux, and other operating systems*. Saucedacity is open source software licensed under GPL, version 2 or later.
 
 *macOS is unofficially supported (it is buildable). We lack an actual Mac to test our CI builds on to make sure Saucedacity runs properly.
