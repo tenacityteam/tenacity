@@ -13,7 +13,8 @@
 
 #include <memory>
 #include <vector>
-#include <wx/thread.h>
+#include <thread>
+
 
 class EffectClientInterface;
 class RealtimeEffectState;
@@ -42,15 +43,15 @@ public:
    void RealtimeProcessStart();
    size_t RealtimeProcess(int group, unsigned chans, float **buffers, size_t numSamples);
    void RealtimeProcessEnd();
-   int GetRealtimeLatency();
+   std::chrono::milliseconds GetRealtimeLatency();
 
 private:
    RealtimeEffectManager();
    ~RealtimeEffectManager();
 
-   wxCriticalSection mRealtimeLock;
+   std::mutex mLock;
    std::vector< std::unique_ptr<RealtimeEffectState> > mStates;
-   int mRealtimeLatency;
+   std::chrono::milliseconds mRealtimeLatency;
    bool mRealtimeSuspended;
    bool mRealtimeActive;
    std::vector<unsigned> mRealtimeChans;

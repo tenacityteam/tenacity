@@ -21,8 +21,9 @@
 #include <functional>
 #include <memory>
 #include <mutex>
+#include <string>
+#include <thread>
 #include <utility>
-#include <wx/atomic.h> // member variable
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 typedef void PmStream;
@@ -43,13 +44,11 @@ using NoteTrackConstArray = std::vector < std::shared_ptr< const NoteTrack > >;
 #include "SampleCount.h"
 #include "SampleFormat.h"
 
-class wxArrayString;
 class AudioIOBase;
 class AudioIO;
 class RingBuffer;
 class Mixer;
 class Resample;
-class AudioThread;
 class SelectedRegion;
 
 class AudacityProject;
@@ -446,12 +445,6 @@ public:
    unsigned short mAILALastChangeType;  //0 - no change, 1 - increase change, 2 - decrease change
 #endif
 
-   std::unique_ptr<AudioThread> mThread;
-#ifdef EXPERIMENTAL_MIDI_OUT
-#ifdef USE_MIDI_THREAD
-   std::unique_ptr<AudioThread> mMidiThread;
-#endif
-#endif
    ArrayOf<std::unique_ptr<Resample>> mResample;
    ArrayOf<std::unique_ptr<RingBuffer>> mCaptureBuffers;
    WaveTrackArray      mCaptureTracks;
@@ -503,11 +496,6 @@ protected:
 
    std::weak_ptr< AudioIOListener > mListener;
 
-   friend class AudioThread;
-#ifdef EXPERIMENTAL_MIDI_OUT
-   friend class MidiThread;
-#endif
-
    bool mUsingAlsa { false };
 
    // For cacheing supported sample rates
@@ -517,7 +505,7 @@ protected:
 
    // Serialize main thread and PortAudio thread's attempts to pause and change
    // the state used by the third, Audio thread.
-   wxMutex mSuspendAudioThread;
+   std::mutex mSuspendAudioThread;
 
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
 public:
@@ -532,11 +520,19 @@ public:
 protected:
    // A flag tested and set in one thread, cleared in another.  Perhaps
    // this guarantee of atomicity is more cautious than necessary.
-   wxAtomicInt mRecordingException {};
+   std::atomic<int> mRecordingException {};
    void SetRecordingException()
-      { wxAtomicInc( mRecordingException ); }
+   {
+      mRecordingException++;
+   }
+
    void ClearRecordingException()
-      { if (mRecordingException) wxAtomicDec( mRecordingException ); }
+   {
+      if (mRecordingException)
+      {
+         mRecordingException--;
+      }
+   }
 
    std::vector< std::pair<double, double> > mLostCaptureIntervals;
    bool mDetectDropouts{ true };
@@ -646,7 +642,7 @@ public:
 #endif
 
 public:
-   wxString LastPaErrorString();
+   std::string LastPaErrorString();
 
    wxLongLong GetLastPlaybackTime() const { return mLastPlaybackTimeMillis; }
    AudacityProject *GetOwningProject() const { return mOwningProject; }
@@ -684,7 +680,7 @@ public:
     *
     * Returns an array of strings giving the names of the inputs to the
     * soundcard mixer (driven by PortMixer) */
-   wxArrayString GetInputSourceNames();
+   std::vector<std::string> GetInputSourceNames();
 
    sampleFormat GetCaptureFormat() { return mCaptureFormat; }
    unsigned GetNumPlaybackChannels() const { return mNumPlaybackChannels; }
@@ -732,9 +728,10 @@ public:
     */
    double GetStreamTime();
 
-   friend class AudioThread;
+   friend void StartAudioIOThread();
+
 #ifdef EXPERIMENTAL_MIDI_OUT
-   friend class MidiThread;
+   friend void StartMidiIOThread();
 #endif
 
    static void Init();

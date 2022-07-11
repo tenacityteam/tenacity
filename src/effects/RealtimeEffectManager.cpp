@@ -15,7 +15,7 @@
 #include <memory>
 
 #include <atomic>
-#include <wx/time.h>
+#include <chrono>
 
 class RealtimeEffectState
 {
@@ -48,11 +48,10 @@ RealtimeEffectManager & RealtimeEffectManager::Get()
 
 RealtimeEffectManager::RealtimeEffectManager()
 {
-   mRealtimeLock.Enter();
+   mLock.lock();
    mRealtimeActive = false;
    mRealtimeSuspended = true;
-   mRealtimeLatency = 0;
-   mRealtimeLock.Leave();
+   mLock.unlock();
 }
 
 RealtimeEffectManager::~RealtimeEffectManager()
@@ -199,9 +198,6 @@ void RealtimeEffectManager::RealtimeFinalize()
    // Make sure nothing is going on
    RealtimeSuspend();
 
-   // It is now safe to clean up
-   mRealtimeLatency = 0;
-
    // Tell each effect to clean up as well
    for (auto &state : mStates)
       state->GetEffect().RealtimeFinalize();
@@ -216,12 +212,12 @@ void RealtimeEffectManager::RealtimeFinalize()
 
 void RealtimeEffectManager::RealtimeSuspend()
 {
-   mRealtimeLock.Enter();
+   mLock.lock();
 
    // Already suspended...bail
    if (mRealtimeSuspended)
    {
-      mRealtimeLock.Leave();
+      mLock.unlock();
       return;
    }
 
@@ -232,7 +228,7 @@ void RealtimeEffectManager::RealtimeSuspend()
    for (auto &state : mStates)
       state->RealtimeSuspend();
 
-   mRealtimeLock.Leave();
+   mLock.unlock();
 }
 
 void RealtimeEffectManager::RealtimeSuspendOne( EffectClientInterface &effect )
@@ -249,12 +245,12 @@ void RealtimeEffectManager::RealtimeSuspendOne( EffectClientInterface &effect )
 
 void RealtimeEffectManager::RealtimeResume()
 {
-   mRealtimeLock.Enter();
+   mLock.lock();
 
    // Already running...bail
    if (!mRealtimeSuspended)
    {
-      mRealtimeLock.Leave();
+      mLock.unlock();
       return;
    }
 
@@ -265,7 +261,7 @@ void RealtimeEffectManager::RealtimeResume()
    // And we should too
    mRealtimeSuspended = false;
 
-   mRealtimeLock.Leave();
+   mLock.unlock();
 }
 
 void RealtimeEffectManager::RealtimeResumeOne( EffectClientInterface &effect )
@@ -286,7 +282,7 @@ void RealtimeEffectManager::RealtimeResumeOne( EffectClientInterface &effect )
 void RealtimeEffectManager::RealtimeProcessStart()
 {
    // Protect ourselves from the main thread
-   mRealtimeLock.Enter();
+   mLock.lock();
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended.
@@ -299,7 +295,7 @@ void RealtimeEffectManager::RealtimeProcessStart()
       }
    }
 
-   mRealtimeLock.Leave();
+   mLock.unlock();
 }
 
 //
@@ -307,20 +303,21 @@ void RealtimeEffectManager::RealtimeProcessStart()
 //
 size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float **buffers, size_t numSamples)
 {
+   using namespace std::chrono;
    // Protect ourselves from the main thread
-   mRealtimeLock.Enter();
+   mLock.lock();
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended, so allow the samples to pass as-is.
    if (mRealtimeSuspended || mStates.empty())
    {
-      mRealtimeLock.Leave();
+      mLock.unlock();
       return numSamples;
    }
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
-   wxMilliClock_t start = wxGetUTCTimeMillis();
+   system_clock::time_point start = system_clock::now();
 
    // Allocate the in/out buffer arrays
    float **ibuf = (float **) alloca(chans * sizeof(float *));
@@ -331,7 +328,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    for (unsigned int i = 0; i < chans; i++)
    {
       ibuf[i] = buffers[i];
-      obuf[i] = (float *) alloca(numSamples * sizeof(float));
+      obuf[i] = new float[numSamples];
    }
 
    // Now call each effect in the chain while swapping buffer pointers to feed the
@@ -347,10 +344,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 
       for (unsigned int j = 0; j < chans; j++)
       {
-         float *temp;
-         temp = ibuf[j];
-         ibuf[j] = obuf[j];
-         obuf[j] = temp;
+         std::swap(ibuf[j], obuf[j]);
       }
    }
 
@@ -367,9 +361,9 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    }
 
    // Remember the latency
-   mRealtimeLatency = (int) (wxGetUTCTimeMillis() - start).GetValue();
+   mRealtimeLatency = duration_cast<milliseconds>(system_clock::now() - start);
 
-   mRealtimeLock.Leave();
+   mLock.unlock();
 
    //
    // This is wrong...needs to handle tails
@@ -383,7 +377,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 void RealtimeEffectManager::RealtimeProcessEnd()
 {
    // Protect ourselves from the main thread
-   mRealtimeLock.Enter();
+   mLock.lock();
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended.
@@ -396,10 +390,10 @@ void RealtimeEffectManager::RealtimeProcessEnd()
       }
    }
 
-   mRealtimeLock.Leave();
+   mLock.unlock();
 }
 
-int RealtimeEffectManager::GetRealtimeLatency()
+std::chrono::milliseconds RealtimeEffectManager::GetRealtimeLatency()
 {
    return mRealtimeLatency;
 }

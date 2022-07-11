@@ -1183,7 +1183,25 @@ bool AudacityApp::InitPart2()
       // More initialization
 
       InitDitherers();
-      AudioIO::Init();
+      try
+      {
+         AudioIO::Init();
+      } catch (std::runtime_error& e)
+      {
+         /** GP: There are several possibilities for reaching this point:
+          * 1. atomic<double> might be converted to atomic<float> (AudioIO::AudioIO)
+          * 2. sizeof(float) is not greater than sizeof(short).
+          * 
+          * This is preferrably done
+          **/
+         AudacityMessageBox(XO("Saucedacity has encountered a critical error. This "
+                               "is likely to do with your platform.\n\n"
+                               "Error message (for devs): %s").Format(e.what()),
+                            XO("Saucedacity - Critical Error")
+         );
+
+         return false;
+      }
 
 #ifdef __WXMAC__
 

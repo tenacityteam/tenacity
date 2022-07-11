@@ -394,13 +394,6 @@ Time (in seconds, = total_sample_count / sample_rate)
 
 *//****************************************************************//**
 
-\class AudioThread
-\brief Defined different on Mac and other platforms (on Mac it does not
-use wxWidgets wxThread), this class sits in a thread loop reading and
-writing audio.
-
-*//****************************************************************//**
-
 \class AudioIOListener
 \brief Monitors record play start/stop and new sample blocks.  Has
 callbacks for these events.
@@ -423,10 +416,12 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "float_cast.h"
 #include "DeviceManager.h"
 
+#include <string>
 #include <cfloat>
-#include <math.h>
-#include <stdlib.h>
-#include <algorithm>
+#include <cmath>
+#include <cstdlib>
+#include <stdexcept>
+#include <thread>
 
 #ifdef __WXMSW__
 #include <malloc.h>
@@ -443,13 +438,8 @@ time warp info and AudioIOListener and whether the playback is looped.
 #endif
 
 #include <wx/app.h>
-#include <wx/frame.h>
 #include <wx/wxcrtvararg.h>
 #include <wx/log.h>
-#include <wx/textctrl.h>
-#include <wx/timer.h>
-#include <wx/intl.h>
-#include <wx/debug.h>
 
 #if defined(__WXMAC__) || defined(__WXMSW__)
 #include <wx/power.h>
@@ -469,8 +459,8 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "prefs/QualitySettings.h"
 #include "prefs/RecordingPrefs.h"
 #include "widgets/MeterPanelBase.h"
-#include "widgets/AudacityMessageBox.h"
 #include "BasicUI.h"
+#include "SaucedacityException.h"
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 
@@ -837,70 +827,59 @@ int audacityAudioCallback(const void *inputBuffer, void *outputBuffer,
                           const PaStreamCallbackTimeInfo *timeInfo,
                           PaStreamCallbackFlags statusFlags, void *userData );
 
-//////////////////////////////////////////////////////////////////////
-//
-//     class AudioThread - declaration and glue code
-//
-//////////////////////////////////////////////////////////////////////
+void StartAudioIOThread()
+{
+   AudioIO *gAudioIO;
+   while( (gAudioIO = AudioIO::Get()) != nullptr )
+   {
+      using Clock = std::chrono::steady_clock;
+      auto loopPassStart = Clock::now();
+      const auto interval = ScrubPollInterval_ms;
 
-#include <thread>
+      // Set LoopActive outside the tests to avoid race condition
+      gAudioIO->mAudioThreadFillBuffersLoopActive = true;
+      if( gAudioIO->mAudioThreadShouldCallFillBuffersOnce )
+      {
+         gAudioIO->FillBuffers();
+         gAudioIO->mAudioThreadShouldCallFillBuffersOnce = false;
+      }
+      else if( gAudioIO->mAudioThreadFillBuffersLoopRunning )
+      {
+         gAudioIO->FillBuffers();
+      }
+      gAudioIO->mAudioThreadFillBuffersLoopActive = false;
 
-#ifdef __WXMAC__
-
-// On Mac OS X, it's better not to use the wxThread class.
-// We use our own implementation based on pthreads instead.
-
-#include <pthread.h>
-#include <time.h>
-
-class AudioThread {
- public:
-   typedef int ExitCode;
-   AudioThread() { mDestroy = false; mThread = NULL; }
-   virtual ExitCode Entry();
-   void Create() {}
-   void Delete() {
-      mDestroy = true;
-      pthread_join(mThread, NULL);
+      if ( gAudioIO->mPlaybackSchedule.Interactive() )
+      {
+         std::this_thread::sleep_until(
+            loopPassStart + std::chrono::milliseconds( interval ) );
+      } else
+      {
+         std::this_thread::sleep_for(std::chrono::milliseconds(10));
+      }
    }
-   bool TestDestroy() { return mDestroy; }
-   void Sleep(int ms) {
-      struct timespec spec;
-      spec.tv_sec = 0;
-      spec.tv_nsec = ms * 1000 * 1000;
-      nanosleep(&spec, NULL);
-   }
-   static void *callback(void *p) {
-      AudioThread *th = (AudioThread *)p;
-      return reinterpret_cast<void *>( th->Entry() );
-   }
-   void Run() {
-      pthread_create(&mThread, NULL, callback, this);
-   }
- private:
-   bool mDestroy;
-   pthread_t mThread;
-};
-
-#else
-
-// The normal wxThread-derived AudioThread class for all other
-// platforms:
-class AudioThread /* not final */ : public wxThread {
- public:
-   AudioThread():wxThread(wxTHREAD_JOINABLE) {}
-   ExitCode Entry() override;
-};
-
-#endif
+}
 
 #ifdef EXPERIMENTAL_MIDI_OUT
-class MidiThread final : public AudioThread {
- public:
-   ExitCode Entry() override;
-};
-#endif
+void StartMidiIOThread()
+{
+   AudioIO *gAudioIO;
+   while ( (gAudioIO = AudioIO::Get()) != nullptr )
+   {
+      // Set LoopActive outside the tests to avoid race condition
+      gAudioIO->mMidiThreadFillBuffersLoopActive = true;
+      if( gAudioIO->mMidiThreadFillBuffersLoopRunning &&
+          // mNumFrames signals at least one callback, needed for MidiTime()
+          gAudioIO->mNumFrames > 0)
+      {
+         gAudioIO->FillMidiBuffers();
+      }
 
+      gAudioIO->mMidiThreadFillBuffersLoopActive = false;
+      std::this_thread::sleep_for(std::chrono::milliseconds(MIDI_SLEEP));
+   }
+}
+#endif
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -911,12 +890,15 @@ class MidiThread final : public AudioThread {
 void AudioIO::Init()
 {
    ugAudioIO.reset(safenew AudioIO());
-   Get()->mThread->Run();
-#ifdef EXPERIMENTAL_MIDI_OUT
-#ifdef USE_MIDI_THREAD
-   Get()->mMidiThread->Run();
-#endif
-#endif
+
+   // Start the audio (and MIDI) IO threads
+   std::thread audioThread(StartAudioIOThread);
+   audioThread.detach();
+
+   #if defined(EXPERIMENTAL_MIDI_OUT) && defined(USE_MIDI_THREAD)
+   std::thread midiThread(StartMidiIOThread);
+   midiThread.detach();
+   #endif
 
    // Make sure device prefs are initialized
    if (gPrefs->Read(wxT("AudioIO/RecordingDevice"), wxT("")).empty()) {
@@ -961,13 +943,16 @@ AudioIO::AudioIO()
       // might be changed to atomic<float> to be more efficient with some
       // loss of precision.  That could be conditionally compiled depending
       // on the platform.
-      wxASSERT(false);
+      throw std::runtime_error("atomic<double> could be changed to atomic<float>, reducing precision");
    }
 
-   // This ASSERT because of casting in the callback 
+   // This exception is thrown because of casting in the callback 
    // functions where we cast a tempFloats buffer to a (short*) buffer.
    // We have to ASSERT in the GUI thread, if we are to see it properly.
-   wxASSERT( sizeof( short ) <= sizeof( float ));
+   if constexpr ( !(sizeof(short) <= sizeof(float)) )
+   {
+      throw std::runtime_error("sizeof(short) is not less than sizeof(float)");
+   }
 
    mAudioThreadShouldCallFillBuffersOnce = false;
    mAudioThreadFillBuffersLoopRunning = false;
@@ -1011,13 +996,11 @@ AudioIO::AudioIO()
       errStr += XO("You will not be able to play or record audio.\n\n");
       wxString paErrStr = LAT1CTOWX(Pa_GetErrorText(err));
       if (!paErrStr.empty())
+      {
          errStr += XO("Error: %s").Format( paErrStr );
-      // XXX: we are in libaudacity, popping up dialogs not allowed!  A
-      // long-term solution will probably involve exceptions
-      AudacityMessageBox(
-         errStr,
-         XO("Error Initializing Audio"),
-         wxICON_ERROR|wxOK);
+      }
+
+      throw SimpleMessageBoxException(ExceptionType::Internal, errStr, XO("PortAudio Error"));
 
       // Since PortAudio is not initialized, all calls to PortAudio
       // functions will fail.  This will give reasonable behavior, since
@@ -1034,27 +1017,15 @@ AudioIO::AudioIO()
       errStr += XO("You will not be able to play midi.\n\n");
       wxString pmErrStr = LAT1CTOWX(Pm_GetErrorText(pmErr));
       if (!pmErrStr.empty())
+      {
          errStr += XO("Error: %s").Format( pmErrStr );
-      // XXX: we are in libaudacity, popping up dialogs not allowed!  A
-      // long-term solution will probably involve exceptions
-      AudacityMessageBox(
-         errStr,
-         XO("Error Initializing Midi"),
-         wxICON_ERROR|wxOK);
+      }
+
+      throw SimpleMessageBoxException(ExceptionType::Internal, errStr, XO("PortMidi Error"));
 
       // Same logic for PortMidi as described above for PortAudio
    }
-
-#ifdef USE_MIDI_THREAD
-   mMidiThread = std::make_unique<MidiThread>();
-   mMidiThread->Create();
 #endif
-
-#endif
-
-   // Start thread
-   mThread = std::make_unique<AudioThread>();
-   mThread->Create();
 
 #if defined(USE_PORTMIXER)
    mPortMixer = NULL;
@@ -1098,10 +1069,10 @@ AudioIO::~AudioIO()
    /* Delete is a "graceful" way to stop the thread.
    (Kill is the not-graceful way.) */
 
-#ifdef USE_MIDI_THREAD
-   mMidiThread->Delete();
-   mMidiThread.reset();
-#endif
+/*#ifdef USE_MIDI_THREAD
+   //mMidiThread->join();
+   delete mMidiThread;
+#endif*/
 
 #endif
 
@@ -1111,8 +1082,8 @@ AudioIO::~AudioIO()
    // This causes reentrancy issues during application shutdown
    // wxTheApp->Yield();
 
-   mThread->Delete();
-   mThread.reset();
+   //mThread->join();
+   //delete mThread;*/
 }
 
 void AudioIO::SetMixer(int inputSource, float recordVolume,
@@ -1177,17 +1148,17 @@ bool AudioIO::OutputMixerEmulated()
    return mEmulateMixerOutputVol;
 }
 
-wxArrayString AudioIO::GetInputSourceNames()
+std::vector<std::string> AudioIO::GetInputSourceNames()
 {
 #if defined(USE_PORTMIXER)
 
-   wxArrayString deviceNames;
+   std::vector<std::string> deviceNames;
 
    if( mPortMixer )
    {
       int numSources = Px_GetNumInputSources(mPortMixer);
       for( int source = 0; source < numSources; source++ )
-         deviceNames.push_back(wxString(wxSafeConvertMB2WX(Px_GetInputSourceName(mPortMixer, source))));
+         deviceNames.push_back(Px_GetInputSourceName(mPortMixer, source));
    }
    else
    {
@@ -1198,8 +1169,7 @@ wxArrayString AudioIO::GetInputSourceNames()
 
 #else
 
-   wxArrayString blank;
-
+   std::vector<std::string> blank;
    return blank;
 
 #endif
@@ -1384,7 +1354,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
          break;
       }
       wxLogDebug("Attempt %u to open capture stream failed with: %d", 1 + tries, mLastPaError);
-      wxMilliSleep(1000);
+      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
    }
 
 
@@ -1427,16 +1397,18 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 #if (defined(__WXMAC__) || defined(__WXMSW__)) && wxCHECK_VERSION(3,1,0)
    // Don't want the system to sleep while audio I/O is active
    if (mPortStreamV19 != NULL && mLastPaError == paNoError) {
-      wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Audacity Audio"));
+      wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Saucedacity Audio"));
    }
 #endif
 
    return (mLastPaError == paNoError);
 }
 
-wxString AudioIO::LastPaErrorString()
+std::string AudioIO::LastPaErrorString()
 {
-   return wxString::Format(wxT("%d %s."), (int) mLastPaError, Pa_GetErrorText(mLastPaError));
+   return std::string(std::to_string(mLastPaError) + 
+                      std::string(Pa_GetErrorText(mLastPaError))
+   );
 }
 
 void AudioIO::StartMonitoring( const AudioIOStartStreamOptions &options )
@@ -1461,12 +1433,9 @@ void AudioIO::StartMonitoring( const AudioIOStartStreamOptions &options )
                                   captureFormat);
 
    if (!success) {
-      using namespace GenericUI;
       auto msg = XO("Error opening recording device.\nError code: %s")
          .Format( Get()->LastPaErrorString() );
-      ShowErrorDialog( *ProjectFramePlacement( mOwningProject ),
-         XO("Error"), msg, wxT("Error_opening_sound_device"),
-         ErrorDialogOptions{ ErrorDialogType::ModalErrorReport } );
+      throw SimpleMessageBoxException(ExceptionType::Internal, msg, XO("Error"), wxT("Error_opening_sound_device"));
       return;
    }
 
@@ -1520,7 +1489,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
    if (mPortStreamV19) {
       StopStream();
       while(mPortStreamV19)
-         wxMilliSleep( 50 );
+         std::this_thread::sleep_for(std::chrono::milliseconds(50));
    }
 
 #ifdef __WXGTK__
@@ -1744,7 +1713,8 @@ int AudioIO::StartStream(const TransportTracks &tracks,
       if (options.playbackStreamPrimer) {
          interval = options.playbackStreamPrimer();
       }
-      wxMilliSleep( interval );
+
+      std::this_thread::sleep_for(std::chrono::milliseconds(interval));
    }
 
    if(mNumPlaybackChannels > 0 || mNumCaptureChannels > 0) {
@@ -1793,8 +1763,7 @@ int AudioIO::StartStream(const TransportTracks &tracks,
             pListener->OnAudioIOStopRecording();
          StartStreamCleanup();
          // PRL: PortAudio error messages are sadly not internationalized
-         AudacityMessageBox(
-            Verbatim( LAT1CTOWX(Pa_GetErrorText(err)) ) );
+         throw SimpleMessageBoxException(ExceptionType::Internal, StringLiteral(Pa_GetErrorText(err)), StringLiteral("PortAudio Stream Error"));
          return 0;
       }
    }
@@ -2007,8 +1976,7 @@ bool AudioIO::AllocateBuffers(
             // 100 samples, just give up.
             if(captureBufferSize < 100)
             {
-               AudacityMessageBox( XO("Out of memory!") );
-               return false;
+               throw std::bad_alloc();
             }
 
             mCaptureBuffers.reinit(mCaptureTracks.size());
@@ -2042,8 +2010,7 @@ bool AudioIO::AllocateBuffers(
             (size_t)lrint(mRate * mPlaybackRingBufferSecs);
          if(playbackBufferSize < 100 || mPlaybackSamplesToCopy < 100)
          {
-            AudacityMessageBox( XO("Out of memory!") );
-            return false;
+            throw std::bad_alloc();
          }
       }
    } while(!bDone);
@@ -2232,10 +2199,10 @@ void AudioIO::StopStream()
       // the sound card, then do so.  If we can't, don't wait around.  Just stop quickly and accept 
       // there will be a click.
       if( mbMicroFades  && (latency < 150 ))
-         wxMilliSleep( latency + 50);
+         std::this_thread::sleep_for(std::chrono::milliseconds(latency + 50));
    }
 
-   wxMutexLocker locker(mSuspendAudioThread);
+   std::lock_guard<std::mutex> locker(mSuspendAudioThread);
 
    // No longer need effects processing
    if (mNumPlaybackChannels > 0)
@@ -2279,7 +2246,7 @@ void AudioIO::StopStream()
    mUpdateMeters = false;
    while(mUpdatingMeters) {
       ::wxSafeYield();
-      wxMilliSleep( 50 );
+      std::this_thread::sleep_for(std::chrono::milliseconds(50));
    }
 
    // Turn off HW playthrough if PortMixer is being used
@@ -2310,7 +2277,7 @@ void AudioIO::StopStream()
       mMidiThreadFillBuffersLoopRunning = false; // stop output to stream
       // but output is in another thread. Wait for output to stop...
       while (mMidiThreadFillBuffersLoopActive) {
-         wxMilliSleep(1);
+         std::this_thread::sleep_for(std::chrono::milliseconds(1));
       }
 #endif
 
@@ -2328,7 +2295,7 @@ void AudioIO::StopStream()
       // delay a bit so that messages can be delivered before closing
       // the stream. Add 2ms of "padding" to avoid any rounding errors.
       while (mMaxMidiTimestamp + 2 > MidiTime()) {
-          wxMilliSleep(1); // deliver the all-off messages
+          std::this_thread::sleep_for(std::chrono::milliseconds(1)); // deliver the all-off messages
       }
       Pm_Close(mMidiStream);
       mMidiStream = NULL;
@@ -2362,7 +2329,7 @@ void AudioIO::StopStream()
       {
          // LLL:  Experienced recursive yield here...once.
          wxTheApp->Yield(true); // Pass true for onlyIfNeeded to avoid recursive call error.
-         wxMilliSleep( 50 );
+         std::this_thread::sleep_for(std::chrono::milliseconds( 50 ));
       }
 
       //
@@ -2654,7 +2621,7 @@ double AudioIO::GetStreamTime()
 //
 //////////////////////////////////////////////////////////////////////
 
-AudioThread::ExitCode AudioThread::Entry()
+/*AudioThread::ExitCode AudioThread::Entry()
 {
    AudioIO *gAudioIO;
    while( !TestDestroy() &&
@@ -2681,12 +2648,11 @@ AudioThread::ExitCode AudioThread::Entry()
          std::this_thread::sleep_until(
             loopPassStart + std::chrono::milliseconds( interval ) );
       else
-         Sleep(10);
+         std::this_thread::sleep_until(std::chrono::milliseconds(10));
    }
 
    return 0;
 }
-
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 MidiThread::ExitCode MidiThread::Entry()
@@ -2708,7 +2674,7 @@ MidiThread::ExitCode MidiThread::Entry()
    }
    return 0;
 }
-#endif
+#endif*/
 
 size_t AudioIO::GetCommonlyFreePlayback()
 {
@@ -4524,7 +4490,7 @@ int AudioIoCallback::AudioCallback(const void *inputBuffer, void *outputBuffer,
 int AudioIoCallback::CallbackDoSeek()
 {
    const int token = mStreamToken;
-   wxMutexLocker locker(mSuspendAudioThread);
+   std::lock_guard<std::mutex> locker(mSuspendAudioThread);
    if (token != mStreamToken)
       // This stream got destroyed while we waited for it
       return paAbort;
@@ -4535,7 +4501,7 @@ int AudioIoCallback::CallbackDoSeek()
    mAudioThreadFillBuffersLoopRunning = false;
    while( mAudioThreadFillBuffersLoopActive )
    {
-      wxMilliSleep( 50 );
+      std::this_thread::sleep_for(std::chrono::milliseconds( 50 ));
    }
 
    // Calculate the NEW time position, in the PortAudio callback
@@ -4564,7 +4530,7 @@ int AudioIoCallback::CallbackDoSeek()
    mAudioThreadShouldCallFillBuffersOnce = true;
    while( mAudioThreadShouldCallFillBuffersOnce )
    {
-      wxMilliSleep( 50 );
+      std::this_thread::sleep_for(std::chrono::milliseconds( 50 ));
    }
 
    // Reenable the audio thread
