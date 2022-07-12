@@ -12,6 +12,7 @@
 #define __AUDACITY_REALTIME_EFFECT_MANAGER__
 
 #include <memory>
+#include <mutex>
 #include <vector>
 #include <thread>
 
