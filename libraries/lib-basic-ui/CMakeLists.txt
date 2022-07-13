@@ -16,6 +16,8 @@ namespace BasicUI are no-ops.
 set( SOURCES
    BasicUI.cpp
    BasicUI.h
+   GenericUIAssert.cpp
+   GenericUIAssert.h
 )
 set( LIBRARIES
    lib-strings-interface
