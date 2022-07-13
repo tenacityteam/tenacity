@@ -19,8 +19,8 @@ namespace GenericUI
 
 using AssertFn = std::function<void(bool)>;
 
-void SetAssertFn(AssertFn fn);
-void Assert(bool condition);
+BASIC_UI_API void SetAssertFn(AssertFn fn);
+BASIC_UI_API void Assert(bool condition);
 
 } // namespace GenericUI
 
