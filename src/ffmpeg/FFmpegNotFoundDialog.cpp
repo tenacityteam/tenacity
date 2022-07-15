@@ -9,6 +9,7 @@
 **********************************************************************/
 
 #include "FFmpegNotFoundDialog.h"
+#include "FFmpeg.h"
 
 FFmpegNotFoundDialog::FFmpegNotFoundDialog(wxWindow *parent)
    :  wxDialogWrapper(parent, wxID_ANY, XO("FFmpeg not found"))
@@ -32,9 +33,10 @@ void FFmpegNotFoundDialog::PopulateOrExchange(ShuttleGui & S)
 "to download or locate the FFmpeg libraries."
       ));
 
-      mDontShow = S
-         .AddCheckBox(XXO("Do not show this warning again"),
-            gPrefs->ReadBool(wxT("/FFmpeg/NotFoundDontShow"), false) );
+      mDontShow = S.AddCheckBox(
+                     XXO("Do not show this warning again"),
+                     FFmpegNotFoundDontShow.Read()
+                  );
 
       S.AddStandardButtons(eOkButton);
    }
@@ -52,7 +54,7 @@ void FFmpegNotFoundDialog::OnOk(wxCommandEvent & WXUNUSED(event))
 {
    if (mDontShow->GetValue())
    {
-      gPrefs->Write(wxT("/FFmpeg/NotFoundDontShow"),1);
+      FFmpegNotFoundDontShow.Write(true);
       gPrefs->Flush();
    }
    this->EndModal(0);
