@@ -1132,7 +1132,7 @@ template <
    template< typename R, typename C >
       TrackIterRange operator - ( R ( C ::* pmf ) () const ) const
    {
-      return this->operator + ( std::not1( std::mem_fn( pmf ) ) );
+      return this->operator + ( std::not_fn( std::mem_fn( pmf ) ) );
    }
 
    template< typename TrackType2 >
