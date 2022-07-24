@@ -77,6 +77,7 @@ add_conan_lib(
       libjpeg-turbo:SIMD=False 
 )
 
+# TODO: Switch to Tenacity's fork or our own fork for these libraries... ######
 add_conan_lib(
    libmp3lame
    libmp3lame/3.100
@@ -94,13 +95,7 @@ add_conan_lib(
    CONAN_OPTIONS
       libid3tag:zlib=${id3tag_zlib}
 )
-
-add_conan_lib(
-   libmad
-   libmad/0.15.2b@audacity/stable
-   OPTION_NAME libmad
-   PKG_CONFIG "mad >= 0.15.0b"
-)
+###############################################################################
 
 set_conan_vars_to_parent()
 
@@ -121,6 +116,13 @@ addlib( libogg             ogg         LIBOGG      NO    YES   "ogg >= 1.3.1" )
 addlib( libvorbis          vorbis      LIBVORBIS   NO    YES   "vorbis >= 1.3.7" "vorbisenc >= 1.3.7" "vorbisfile >= 1.3.7" )
 addlib( libflac            flac        LIBFLAC     NO    YES   "flac >= 1.3.1" "flac++ >= 1.3.1" )
 addlib( lv2                lv2         LV2         NO    YES   "lilv-0 >= 0.24.6" "lv2 >= 1.16.0" "serd-0 >= 0.30.2" "sord-0 >= 0.16.4" "sratom-0 >= 0.6.4" "suil-0 >= 0.10.6" )
+
+# Use Tenacity's libmad instead of the system's libmad. It uses a CMake build
+# system and has important (security) fixes.
+#
+# Note that for the time being, we will require at least 0.15.1b, but if there is
+# anything new introduced in Tenacity's fork, we might bump our requirements.
+addlib( libmad             libmad      LIBMAD      NO    YES   "libmad >= 0.15.1b")
 
 addlib( portmidi           midi        MIDI        NO    YES   "portmidi >= 0.1" )
 if (NOT USE_MIDI AND
