@@ -1,4 +1,4 @@
-if (${_OPT}_use_libmad STREQUAL "local")
+if (${USE_LIBMAD})
    add_library(${TARGET} STATIC)
    def_vars()
 
@@ -6,7 +6,7 @@ if (${_OPT}_use_libmad STREQUAL "local")
    # TODO: implement more architectures other than x86_64 and i386
    if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "AMD64|x86_64")
       set(FPM_64BIT ON)
-      message(STATUS "Using FPM 'FPM_64BIT for selected target architecture")
+      message(STATUS "Using FPM 'FPM_64BIT' for selected target architecture")
    elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "i386|i686|x86")
       set(FPM_INTEL ON)
       message(STATUS "Using FPM 'FPM_INTEL' for selected target architecture")
@@ -15,7 +15,7 @@ if (${_OPT}_use_libmad STREQUAL "local")
       message(STATUS "Using default FPM for selected target architecture")
    endif()
 
-   configure_file(${TARGET_ROOT}/mad.h.in ${TARGET_ROOT}/mad.h)
+   configure_file(${TARGET_ROOT}/mad.h.in ${_PUBDIR}/mad.h)
 
    list(APPEND SOURCES
       PRIVATE
