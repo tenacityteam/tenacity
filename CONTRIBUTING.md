@@ -6,7 +6,44 @@ Of course, we have a couple of things that you should know. Below are some gener
 
 # General
 * **NO CLA is required!** The code you right is YOURS to keep FOREVER.
-* **Make sure your code is available under the GPL v2 or later**.
+* **Make sure your code is available under the GPL v2 or later**. If you are making contributions to documentation or media (i.e., logos, icons, etc), please license those changes under CC BY 4.0.
+  * Wiki contributions are made under CC BY (Creative Commons Attribution) 4.0.
+* **[Follow our code of conduct](CODE_OF_CONDUCT.md)** when participating in discussions of issues, pull requests, and discussions.
+
+# Developing
+
+## In General
+
+* If you want to make a change, it is best advised that you do make an issue so we can discuss things. You may open a pull request without relating to an issue, hwoever.
+  * Careful not to step on anyone's toes, though. Someone might be already working on the same thing you have, consult the [Issue Tracker](https://github.com/generic-pers0n/saucedacity/issues) for details
+
+## Branches
+* All development happens on the `main` branch.
+* If you have a major proposal or new feature, create a new branch named `new_feature_name`. Additionally:
+  * Once the branch has been merged into `main`, feel free to delete that branch.
+
+### Releases
+* After each stable release, a new branch is to be created as soon as the release is made. The branch is to then **never, ever** be touched again.
+* After a stable release, there should be a page regarding release information about that specific version. This can also be done for future releases.
+* There are four different tiers for platform support: Tier 1, Tier 2, Tier 3, and Tier 4.
+  * **Tier 1** support is where the platform is officially supported.
+  * **Tier 2** support is where the platform is not officially supported but has **community support**.
+    * In terms of support, main developers/contributors can (and may) attempt to provide support for Tier 2 platform builds, although support is not guaranteed.
+   * **Tier 3** support is where the platform is **partially supported**.
+   * **Tier 4** support is where the platform is not supported at all. Platform support might be in discussion, so check the Discussions or the Discord server for more info. Additionally, there might have been support for a Tier 4 platform, but was since dropped for various reasons.
+     * In some cases, platforms in Tier 4 support might've been supported at one point but support was dropped for various reasons.
+* Note that Tier 1 is the only tier where binary releases are guaranteed. Tiers 2 and 3 might have binary releases, but they are not guaranteed.
+
+# Translations
+
+* We accept translations for any languages, whether they're new languages introduced or improvements to existing translations.
+* Feel free to work on a translation. Note that your translation doesn't necessarily need to correspond to an issue.
+
+# Supporting Users
+
+* You can answer questions on our [discussions page](https://github.com/generic-pers0n/saucedacity/discussions)
+  * Additionally, you can also participate in the community, with the places mentioned above.
+
 
 # Coding Style
 We recommend you follow the following guidelines for coding. This helps keep Saucedacity easy to read and keeps its coding style consistent.
@@ -17,7 +54,7 @@ We recommend you follow the following guidelines for coding. This helps keep Sau
 ```c++
 
 #ifndef SOMETHING
-#define THIS_IS_TRUE
+#deta 1 fine THIS_IS_TRUE
 #endif
 
 #ifndef __LONG_CONDITION__ // this can be named anything
@@ -172,37 +209,3 @@ public:
 
 }
 ```
-
-# Developing
-
-## In General
-
-* If you want to make a change, it is best advised that you do make an issue so we can discuss things. You may open a pull request without relating to an issue, hwoever.
-  * Careful not to step on anyone's toes, though. Someone might be already working on the same thing you have, consult the [Issue Tracker](https://github.com/generic-pers0n/saucedacity/issues) for details
-
-## Branches
-* All development happens on the `main` branch.
-* If you have a major proposal or new feature, create a new branch named `new_feature_name`. Additionally:
-  * Once the branch has been merged into `main`, feel free to delete that branch.
-
-### Releases
-* After each stable release, a new branch is to be created as soon as the release is made. The branch is to then **never, ever** be touched again.
-* After a stable release, there should be a page regarding release information about that specific version. This can also be done for future releases.
-* There are four different tiers for platform support: Tier 1, Tier 2, Tier 3, and Tier 4.
-  * **Tier 1** support is where the platform is officially supported.
-  * **Tier 2** support is where the platform is not officially supported but has **community support**.
-    * In terms of support, main developers/contributors can (and may) attempt to provide support for Tier 2 platform builds, although support is not guaranteed.
-   * **Tier 3** support is where the platform is **partially supported**.
-   * **Tier 4** support is where the platform is not supported at all. Platform support might be in discussion, so check the Discussions or the Discord server for more info. Additionally, there might have been support for a Tier 4 platform, but was since dropped for various reasons.
-     * In some cases, platforms in Tier 4 support might've been supported at one point but support was dropped for various reasons.
-* Note that Tier 1 is the only tier where binary releases are guaranteed. Tiers 2 and 3 might have binary releases, but they are not guaranteed.
-
-# Translations
-
-* We accept translations for any languages, whether they're new languages introduced or improvements to existing translations.
-* Feel free to work on a translation. Note that your translation doesn't necessarily need to correspond to an issue.
-
-# Supporting Users
-
-* You can answer questions on our [discussions page](https://github.com/generic-pers0n/saucedacity/discussions)
-  * Additionally, you can also participate in the community, with the places mentioned above.
