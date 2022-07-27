@@ -14,7 +14,7 @@ else()
    message(STATUS "Using default FPM for selected target architecture")
 endif()
 
-configure_file(${TARGET_ROOT}/mad.h.in ${_PUBDIR}/mad.h)
+configure_file(${TARGET_ROOT}/mad.h.in ${TARGET_ROOT}/mad.h)
 
 list(APPEND SOURCES
    PRIVATE
@@ -32,10 +32,13 @@ list(APPEND SOURCES
 )
 
 list(APPEND INCLUDES
-   ${TARGET_ROOT}/huffman.h
-   ${TARGET_ROOT}/layer3.h
-   ${TARGET_ROOT}/global.h
-   ${TARGET_ROOT}/layer12.h
+   PUBLIC
+      ${TARGET_ROOT}/huffman.h
+      ${TARGET_ROOT}/layer3.h
+      ${TARGET_ROOT}/global.h
+      ${TARGET_ROOT}/layer12.h
+   PRIVATE
+      ${TARGET_ROOT}/mad.h
 )
 
 organize_source("${TARGET_ROOT}" "" "${SOURCES}")
