@@ -43,4 +43,4 @@ list(APPEND INCLUDES
 
 organize_source("${TARGET_ROOT}" "" "${SOURCES}")
 target_sources(${TARGET} PRIVATE ${SOURCES})
-target_include_directories(${TARGET} PRIVATE ${TARGET_ROOT})
+target_include_directories(${TARGET} PUBLIC ${TARGET_ROOT})
