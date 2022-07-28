@@ -22,7 +22,7 @@ namespace {
 
 const ReservedCommandFlag
 &LabelsSelectedFlag() { static ReservedCommandFlag flag{
-   [](const AudacityProject &project){
+   [](const SaucedacityProject &project){
       // At least one label track selected, having at least one label
       // completely within the time selection.
       const auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -46,7 +46,7 @@ const ReservedCommandFlag
 
 //Adds label and returns index of label in labeltrack.
 int DoAddLabel(
-   AudacityProject &project, const SelectedRegion &region,
+   SaucedacityProject &project, const SelectedRegion &region,
    bool preserveFocus = false)
 {
    auto &tracks = TrackList::Get( project );
@@ -159,7 +159,7 @@ using EditFunction = std::function<void(Track *, double, double)>;
 //If the function replaces the selection with audio of a different length,
 // bSyncLockedTracks should be set true to perform the same action on sync-lock
 // selected tracks.
-void EditByLabel(AudacityProject &project,
+void EditByLabel(SaucedacityProject &project,
    TrackList &tracks, const SelectedRegion &selectedRegion,
    EditFunction action)
 {
@@ -198,7 +198,7 @@ using EditDestFunction = std::function<Track::Holder (Track *, double, double)>;
 //Functions copy the edited regions to clipboard, possibly in multiple tracks
 //This probably should not be called if *action() changes the timeline, because
 // the copy needs to happen by track, and the timeline change by group.
-void EditClipboardByLabel( AudacityProject &project,
+void EditClipboardByLabel( SaucedacityProject &project,
    TrackList &tracks, const SelectedRegion &selectedRegion,
    EditDestFunction action )
 {
@@ -675,9 +675,9 @@ void OnDisjoinLabels(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static LabelEditActions::Handler instance;
    return instance;
 };

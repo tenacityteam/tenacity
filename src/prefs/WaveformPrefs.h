@@ -26,7 +26,7 @@ class WaveformPrefs final : public PrefsPanel
 {
 public:
    WaveformPrefs(wxWindow * parent, wxWindowID winid,
-      AudacityProject *pProject, WaveTrack *wt);
+      SaucedacityProject *pProject, WaveTrack *wt);
    virtual ~WaveformPrefs();
    ComponentInterfaceSymbol GetSymbol() override;
    TranslatableString GetDescription() override;
@@ -47,7 +47,7 @@ private:
 
    void EnableDisableRange();
 
-   AudacityProject *mProject{};
+   SaucedacityProject *mProject{};
 
    WaveTrack *const mWt;
    bool mDefaulted;

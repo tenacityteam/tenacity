@@ -31,7 +31,7 @@ Paul Licameli
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
 
 WaveformPrefs::WaveformPrefs(wxWindow * parent, wxWindowID winid,
-   AudacityProject *pProject, WaveTrack *wt)
+   SaucedacityProject *pProject, WaveTrack *wt)
 /* i18n-hint: A waveform is a visual representation of vibration */
 : PrefsPanel(parent, winid, XO("Waveforms"))
 , mProject{ pProject }
@@ -257,7 +257,7 @@ END_EVENT_TABLE()
 PrefsPanel::Factory
 WaveformPrefsFactory(WaveTrack *wt)
 {
-   return [=](wxWindow *parent, wxWindowID winid, AudacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, SaucedacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
       return safenew WaveformPrefs(parent, winid, pProject, wt);

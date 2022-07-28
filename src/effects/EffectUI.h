@@ -31,7 +31,7 @@ class wxFlexGridSizer;
 class wxPanel;
 class wxStaticText;
 
-class AudacityProject;
+class SaucedacityProject;
 
 class Effect;
 using EffectArray = std::vector<Effect*>;
@@ -39,12 +39,12 @@ using EffectArray = std::vector<Effect*>;
 class EffectRack final : public wxFrame
 {
 public:
-   EffectRack( AudacityProject &project );
+   EffectRack( SaucedacityProject &project );
    virtual ~EffectRack();
 
    void Add(Effect *effect, bool active = false, bool favorite = false);
 
-   static EffectRack &Get( AudacityProject &project );
+   static EffectRack &Get( SaucedacityProject &project );
 
 private:
 
@@ -66,7 +66,7 @@ private:
    void OnRemove(wxCommandEvent & evt);
 
 private:
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    wxStaticText *mLatency;
    int mLastLatency;
@@ -111,7 +111,7 @@ private:
 #include "../SelectedRegion.h"
 
 class AudacityCommand;
-class AudacityProject;
+class SaucedacityProject;
 class Effect;
 
 class wxCheckBox;
@@ -123,11 +123,11 @@ class EffectUIHost final : public wxDialogWrapper,
 public:
    // constructors and destructors
    EffectUIHost(wxWindow *parent,
-                AudacityProject &project,
+                SaucedacityProject &project,
                 Effect *effect,
                 EffectUIClientInterface *client);
    EffectUIHost(wxWindow *parent,
-                AudacityProject &project,
+                SaucedacityProject &project,
                 AudacityCommand *command,
                 EffectUIClientInterface *client);
    virtual ~EffectUIHost();
@@ -176,7 +176,7 @@ private:
    void Resume();
 
 private:
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
    wxWindow *mParent;
    Effect *mEffect;
    AudacityCommand * mCommand;
@@ -223,7 +223,7 @@ class CommandContext;
 
 namespace  EffectUI {
 
-   AUDACITY_DLL_API
+   SAUCEDACITY_DLL_API
    wxDialog *DialogFactory( wxWindow &parent, EffectHostInterface *pHost,
       EffectUIClientInterface *client);
 
@@ -231,7 +231,7 @@ namespace  EffectUI {
    // Returns true on success.  Will only operate on tracks that
    // have the "selected" flag set to true, which is consistent with
    // Audacity's standard UI.
-   AUDACITY_DLL_API bool DoEffect(
+   SAUCEDACITY_DLL_API bool DoEffect(
       const PluginID & ID, const CommandContext &context, unsigned flags );
 
 }
@@ -239,7 +239,7 @@ namespace  EffectUI {
 class ShuttleGui;
 
 // Obsolescent dialog still used only in Noise Reduction/Removal
-class AUDACITY_DLL_API EffectDialog /* not final */ : public wxDialogWrapper
+class SAUCEDACITY_DLL_API EffectDialog /* not final */ : public wxDialogWrapper
 {
 public:
    // constructors and destructors

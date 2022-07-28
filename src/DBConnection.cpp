@@ -15,7 +15,7 @@ Paul Licameli -- split from ProjectFileIO.cpp
 
 #include <wx/string.h>
 
-#include "AudacityLogger.h"
+#include "SaucedacityLogger.h"
 #include "BasicUI.h"
 #include "FileNames.h"
 #include "Internat.h"
@@ -39,7 +39,7 @@ static const char *FastConfig =
    "PRAGMA <schema>.journal_mode = OFF;";
 
 DBConnection::DBConnection(
-   const std::weak_ptr<AudacityProject> &pProject,
+   const std::weak_ptr<SaucedacityProject> &pProject,
    const std::shared_ptr<DBConnectionErrors> &pErrors,
    CheckpointFailureCallback callback)
 : mpProject{ pProject }
@@ -90,7 +90,7 @@ void DBConnection::SetError(
                  mpErrors->mLastError.Debug(),
                  mpErrors->mLibraryError.Debug());
 
-   auto logger = AudacityLogger::Get();
+   auto logger = SaucedacityLogger::Get();
    if (logger)
    {
       mpErrors->mLog = logger->GetLog(10);
@@ -122,7 +122,7 @@ void DBConnection::SetDBError(
                  mpErrors->mLastError.Debug(),
                  mpErrors->mLibraryError.Debug());
 
-   auto logger = AudacityLogger::Get();
+   auto logger = SaucedacityLogger::Get();
    if (logger)
    {
       mpErrors->mLog = logger->GetLog(10);
@@ -646,9 +646,9 @@ ConnectionPtr::~ConnectionPtr()
    }
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory
+static const SaucedacityProject::AttachedObjects::RegisteredFactory
 sConnectionPtrKey{
-   []( AudacityProject & ){
+   []( SaucedacityProject & ){
       // Ignore the argument; this is just a holder of a
       // unique_ptr to DBConnection, which must be filled in later
       // (when we can get a weak_ptr to the project)
@@ -657,15 +657,15 @@ sConnectionPtrKey{
    }
 };
 
-ConnectionPtr &ConnectionPtr::Get( AudacityProject &project )
+ConnectionPtr &ConnectionPtr::Get( SaucedacityProject &project )
 {
    auto &result =
       project.AttachedObjects::Get< ConnectionPtr >( sConnectionPtrKey );
    return result;
 }
 
-const ConnectionPtr &ConnectionPtr::Get( const AudacityProject &project )
+const ConnectionPtr &ConnectionPtr::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 

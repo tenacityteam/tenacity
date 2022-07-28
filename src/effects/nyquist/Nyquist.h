@@ -61,7 +61,7 @@ public:
 };
 
 
-class AUDACITY_DLL_API NyquistEffect final : public Effect
+class SAUCEDACITY_DLL_API NyquistEffect final : public Effect
 {
 public:
 

@@ -49,22 +49,22 @@ wxDEFINE_EVENT(EVT_UNDO_PURGE, wxCommandEvent);
 
 using SampleBlockID = long long;
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-   [](AudacityProject &project)
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+   [](SaucedacityProject &project)
       { return std::make_unique<UndoManager>( project ); }
 };
 
-UndoManager &UndoManager::Get( AudacityProject &project )
+UndoManager &UndoManager::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< UndoManager >( key );
 }
 
-const UndoManager &UndoManager::Get( const AudacityProject &project )
+const UndoManager &UndoManager::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-UndoManager::UndoManager( AudacityProject &project )
+UndoManager::UndoManager( SaucedacityProject &project )
    : mProject{ project }
 {
    current = -1;

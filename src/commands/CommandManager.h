@@ -50,16 +50,16 @@ using CommandKeyHash = std::unordered_map<NormalizedKeyString, CommandListEntry*
 using CommandNameHash = std::unordered_map<CommandID, CommandListEntry*>;
 using CommandNumericIDHash = std::unordered_map<int, CommandListEntry*>;
 
-class AudacityProject;
+class SaucedacityProject;
 class CommandContext;
 
-class AUDACITY_DLL_API CommandManager final
+class SAUCEDACITY_DLL_API CommandManager final
    : public XMLTagHandler
    , public ClientData::Base
 {
  public:
-   static CommandManager &Get( AudacityProject &project );
-   static const CommandManager &Get( const AudacityProject &project );
+   static CommandManager &Get( SaucedacityProject &project );
+   static const CommandManager &Get( const SaucedacityProject &project );
 
    // Type of a function that can intercept menu item handling.
    // If it returns true, bypass the usual dipatch of commands.
@@ -91,10 +91,10 @@ class AUDACITY_DLL_API CommandManager final
    void EndMenu();
 
    // type of a function that determines checkmark state
-   using CheckFn = std::function< bool(AudacityProject&) >;
+   using CheckFn = std::function< bool(SaucedacityProject&) >;
 
    // For specifying unusual arguments in AddItem
-   struct AUDACITY_DLL_API Options
+   struct SAUCEDACITY_DLL_API Options
    {
       Options() {}
       // Allow implicit construction from an accelerator string, which is
@@ -172,7 +172,7 @@ class AUDACITY_DLL_API CommandManager final
                     CommandFlag flags,
                     bool bIsEffect = false);
 
-   void AddItem(AudacityProject &project,
+   void AddItem(SaucedacityProject &project,
                 const CommandID & name,
                 const TranslatableString &label_in,
                 CommandHandlerFinder finder,
@@ -212,8 +212,8 @@ class AUDACITY_DLL_API CommandManager final
 
    // "permit" allows filtering even if the active window isn't a child of the project.
    // Lyrics and MixerTrackCluster classes use it.
-   bool FilterKeyEvent(AudacityProject *project, const wxKeyEvent & evt, bool permit = false);
-   bool HandleMenuID(AudacityProject &project, int id, CommandFlag flags, bool alwaysEnabled);
+   bool FilterKeyEvent(SaucedacityProject *project, const wxKeyEvent & evt, bool permit = false);
+   bool HandleMenuID(SaucedacityProject &project, int id, CommandFlag flags, bool alwaysEnabled);
    void RegisterLastAnalyzer(const CommandContext& context);
    void RegisterLastTool(const CommandContext& context);
    void DoRepeatProcess(const CommandContext& context, int);
@@ -232,7 +232,7 @@ class AUDACITY_DLL_API CommandManager final
    // Accessing
    //
 
-   TranslatableStrings GetCategories( AudacityProject& );
+   TranslatableStrings GetCategories( SaucedacityProject& );
    void GetAllCommandNames(CommandIDs &names, bool includeMultis) const;
    void GetAllCommandLabels(
       TranslatableStrings &labels, std::vector<bool> &vExcludeFromMacros,
@@ -310,7 +310,7 @@ private:
    // Executing commands
    //
 
-   bool HandleCommandEntry(AudacityProject &project,
+   bool HandleCommandEntry(SaucedacityProject &project,
       const CommandListEntry * entry, CommandFlag flags,
       bool alwaysEnabled, const wxEvent * evt = NULL);
 
@@ -334,7 +334,7 @@ private:
 public:
    wxMenu * CurrentMenu() const;
 
-   void UpdateCheckmarks( AudacityProject &project );
+   void UpdateCheckmarks( SaucedacityProject &project );
 private:
    wxString FormatLabelForMenu(const CommandListEntry *entry) const;
    wxString FormatLabelWithDisabledAccel(const CommandListEntry *entry) const;
@@ -373,7 +373,7 @@ private:
    std::unique_ptr< wxMenuBar > mTempMenuBar;
 };
 
-struct AUDACITY_DLL_API MenuVisitor : Registry::Visitor
+struct SAUCEDACITY_DLL_API MenuVisitor : Registry::Visitor
 {
    // final overrides
    void BeginGroup( Registry::GroupItem &item, const Path &path ) final;
@@ -394,9 +394,9 @@ private:
 
 struct ToolbarMenuVisitor : MenuVisitor
 {
-   explicit ToolbarMenuVisitor( AudacityProject &p ) : project{ p } {}
-   operator AudacityProject & () const { return project; }
-   AudacityProject &project;
+   explicit ToolbarMenuVisitor( SaucedacityProject &p ) : project{ p } {}
+   operator SaucedacityProject & () const { return project; }
+   SaucedacityProject &project;
 };
 
 // Define items that populate tables that specifically describe menu trees
@@ -404,17 +404,17 @@ namespace MenuTable {
    using namespace Registry;
 
    // These are found by dynamic_cast
-   struct AUDACITY_DLL_API MenuSection {
+   struct SAUCEDACITY_DLL_API MenuSection {
       virtual ~MenuSection();
    };
-   struct AUDACITY_DLL_API WholeMenu {
+   struct SAUCEDACITY_DLL_API WholeMenu {
       WholeMenu( bool extend = false ) : extension{ extend }  {}
       virtual ~WholeMenu();
       bool extension;
    };
 
    // Describes a main menu in the toolbar, or a sub-menu
-   struct AUDACITY_DLL_API MenuItem final
+   struct SAUCEDACITY_DLL_API MenuItem final
       : ConcreteGroupItem< false, ToolbarMenuVisitor >
       , WholeMenu {
       // Construction from an internal name and a previously built-up
@@ -468,7 +468,7 @@ namespace MenuTable {
    // This is used before a sequence of many calls to Command() and
    // CommandGroup(), so that the finder argument need not be specified
    // in each call.
-   class AUDACITY_DLL_API FinderScope : ValueRestorer< CommandHandlerFinder >
+   class SAUCEDACITY_DLL_API FinderScope : ValueRestorer< CommandHandlerFinder >
    {
       static CommandHandlerFinder sFinder;
 
@@ -482,7 +482,7 @@ namespace MenuTable {
    };
 
    // Describes one command in a menu
-   struct AUDACITY_DLL_API CommandItem final : SingleItem {
+   struct SAUCEDACITY_DLL_API CommandItem final : SingleItem {
       CommandItem(const CommandID &name_,
                const TranslatableString &label_in_,
                CommandFunctorPointer callback_,
@@ -516,7 +516,7 @@ namespace MenuTable {
    // Describes several successive commands in a menu that are closely related
    // and dispatch to one common callback, which will be passed a number
    // in the CommandContext identifying the command
-   struct AUDACITY_DLL_API CommandGroupItem final : SingleItem {
+   struct SAUCEDACITY_DLL_API CommandGroupItem final : SingleItem {
       CommandGroupItem(const Identifier &name_,
                std::vector< ComponentInterfaceSymbol > items_,
                CommandFunctorPointer callback_,
@@ -551,7 +551,7 @@ namespace MenuTable {
    // adding any number of items, not using the CommandManager
    struct SpecialItem final : SingleItem
    {
-      using Appender = std::function< void( AudacityProject&, wxMenu& ) >;
+      using Appender = std::function< void( SaucedacityProject&, wxMenu& ) >;
 
       explicit SpecialItem( const Identifier &internalName, const Appender &fn_ )
       : SingleItem{ internalName }
@@ -691,7 +691,7 @@ namespace MenuTable {
    // Typically you make a static object of this type in the .cpp file that
    // also defines the added menu actions.
    // pItem can be specified by an expression using the inline functions above.
-   struct AUDACITY_DLL_API AttachedItem final
+   struct SAUCEDACITY_DLL_API AttachedItem final
    {
       AttachedItem( const Placement &placement, BaseItemPtr pItem );
 

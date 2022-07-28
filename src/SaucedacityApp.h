@@ -2,7 +2,7 @@
 
   Audacity: A Digital Audio Editor
 
-  AudacityApp.h
+  SaucedacityApp.h
 
   Dominic Mazzoni
 
@@ -32,12 +32,12 @@ class IPCServ;
 class Importer;
 class CommandHandler;
 class AppCommandEvent;
-class AudacityProject;
+class SaucedacityProject;
 
-class AudacityApp final : public wxApp {
+class SaucedacityApp final : public wxApp {
  public:
-   AudacityApp();
-   ~AudacityApp();
+   SaucedacityApp();
+   ~SaucedacityApp();
    bool OnInit(void) override;
    bool InitPart2();
    int OnExit(void) override;
@@ -117,6 +117,6 @@ class AudacityApp final : public wxApp {
     DECLARE_EVENT_TABLE()
 };
 
-extern AudacityApp & wxGetApp();
+extern SaucedacityApp & wxGetApp();
 
 #endif

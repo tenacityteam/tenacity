@@ -49,7 +49,7 @@ class wxGridCellStringRenderer;
 class wxGridEvent;
 class wxTextCtrl;
 
-class AudacityProject;
+class SaucedacityProject;
 class Grid;
 class ShuttleGui;
 class TagsEditorDialog;
@@ -67,7 +67,7 @@ using TagMap = std::unordered_map< wxString, wxString >;
 #define TAG_SOFTWARE wxT("Software")
 #define TAG_COPYRIGHT wxT("Copyright")
 
-class AUDACITY_DLL_API Tags final
+class SAUCEDACITY_DLL_API Tags final
    : public XMLTagHandler
    , public std::enable_shared_from_this< Tags >
    , public ClientData::Base
@@ -75,11 +75,11 @@ class AUDACITY_DLL_API Tags final
 
  public:
 
-   static Tags &Get( AudacityProject &project );
-   static const Tags &Get( const AudacityProject &project );
+   static Tags &Get( SaucedacityProject &project );
+   static const Tags &Get( const SaucedacityProject &project );
    // Returns reference to *tags
    static Tags &Set(
-      AudacityProject &project, const std::shared_ptr<Tags> &tags );
+      SaucedacityProject &project, const std::shared_ptr<Tags> &tags );
 
    Tags();  // constructor
    Tags( const Tags& ) = default;

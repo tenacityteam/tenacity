@@ -164,7 +164,7 @@ void RecordAndWait(const CommandContext &context, bool altAppearance)
 /// and pops the play button up.  Then, if nothing is now
 /// playing, it pushes the play button down and enables
 /// the stop button.
-bool MakeReadyToPlay(AudacityProject &project)
+bool MakeReadyToPlay(SaucedacityProject &project)
 {
    auto &toolbar = ControlToolBar::Get( project );
    wxCommandEvent evt;
@@ -246,7 +246,7 @@ void DoStartPlaying(const CommandContext &context, bool looping = false)
    }
 }
 
-void DoMoveToLabel(AudacityProject &project, bool next)
+void DoMoveToLabel(SaucedacityProject &project, bool next)
 {
    auto &tracks = TrackList::Get( project );
    auto &trackFocus = TrackFocus::Get( project );
@@ -496,7 +496,7 @@ void OnTimerRecord(const CommandContext &context)
 #ifdef EXPERIMENTAL_PUNCH_AND_ROLL
 void OnPunchAndRoll(const CommandContext &context)
 {
-   AudacityProject &project = context.project;
+   SaucedacityProject &project = context.project;
    auto &viewInfo = ViewInfo::Get( project );
 
    static const auto url =
@@ -659,7 +659,7 @@ void OnRescanDevices(const CommandContext &WXUNUSED(context) )
 
 void OnSoundActivated(const CommandContext &context)
 {
-   AudacityProject &project = context.project;
+   SaucedacityProject &project = context.project;
 
    SoundActivatedRecordDialog dialog( &GetProjectFrame( project ) /* parent */ );
    dialog.ShowModal();
@@ -1037,9 +1037,9 @@ void OnStopSelect(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static TransportActions::Handler instance;
    return instance;
 };
@@ -1084,7 +1084,7 @@ BaseItemSharedPtr TransportMenu()
             // it records below, if normal record records below, it records beside.
             // TODO: Do 'the right thing' with other options like TimerRecord.
             // Delayed evaluation in case gPrefs is not yet defined
-            [](const AudacityProject&)
+            [](const SaucedacityProject&)
             { return Command( wxT("Record2ndChoice"),
                // Our first choice is bound to R (by default)
                // and gets the prime position.
@@ -1147,7 +1147,7 @@ BaseItemSharedPtr TransportMenu()
                   // Switching of scrolling on and off is permitted
                   // even during transport
                   AlwaysEnabledFlag,
-                  Options{}.CheckTest([](const AudacityProject&){
+                  Options{}.CheckTest([](const SaucedacityProject&){
                      return TracksPrefs::GetPinnedHeadPreference(); } ) ),
 
                Command( wxT("Overdub"), XXO("&Overdub (on/off)"),

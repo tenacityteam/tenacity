@@ -20,7 +20,7 @@
 #define CONST const
 #endif
 
-class AudacityProject;
+class SaucedacityProject;
 
 // See big pictorial comment in TrackPanel.cpp for explanation of these numbers
 enum : int {
@@ -39,7 +39,7 @@ enum : int {
 // The subset of ViewInfo information (other than selection)
 // that is sufficient for purposes of TrackArtist,
 // and for computing conversions between track times and pixel positions.
-class AUDACITY_DLL_API ZoomInfo /* not final */
+class SAUCEDACITY_DLL_API ZoomInfo /* not final */
    // Note that ViewInfo inherits from ZoomInfo but there are no virtual functions.
    // That's okay if we pass always by reference and never copy, suffering "slicing."
    : public ClientData::Base

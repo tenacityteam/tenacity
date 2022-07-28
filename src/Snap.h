@@ -19,7 +19,7 @@
 #include <wx/defs.h>
 #include "widgets/NumericTextCtrl.h" // member variable
 
-class AudacityProject;
+class SaucedacityProject;
 class Track;
 class TrackList;
 class ZoomInfo;
@@ -52,16 +52,16 @@ struct SnapResults {
    bool Snapped() const { return snappedPoint || snappedTime; }
 };
 
-class AUDACITY_DLL_API SnapManager
+class SAUCEDACITY_DLL_API SnapManager
 {
 public:
-   SnapManager(const AudacityProject &project,
+   SnapManager(const SaucedacityProject &project,
                SnapPointArray candidates,
                const ZoomInfo &zoomInfo,
                bool noTimeSnap = false,
                int pixelTolerance = kPixelTolerance);
 
-   SnapManager(const AudacityProject &project,
+   SnapManager(const SaucedacityProject &project,
                const TrackList &tracks,
                const ZoomInfo &zoomInfo,
                bool noTimeSnap = false,
@@ -94,7 +94,7 @@ private:
 
 private:
 
-   const AudacityProject *mProject;
+   const SaucedacityProject *mProject;
    const ZoomInfo *mZoomInfo;
    int mPixelTolerance;
    bool mNoTimeSnap;

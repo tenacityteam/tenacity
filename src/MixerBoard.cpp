@@ -169,7 +169,7 @@ BEGIN_EVENT_TABLE(MixerTrackCluster, wxPanelWrapper)
 END_EVENT_TABLE()
 
 MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
-                                       MixerBoard* grandParent, AudacityProject* project,
+                                       MixerBoard* grandParent, SaucedacityProject* project,
                                        const std::shared_ptr<PlayableTrack> &pTrack,
                                        const wxPoint& pos /*= wxDefaultPosition*/,
                                        const wxSize& size /*= wxDefaultSize*/)
@@ -308,7 +308,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
    mMeter.Release();
    if (GetWave()) {
       mMeter =
-         safenew MeterPanel(mProject, // AudacityProject* project,
+         safenew MeterPanel(mProject, // SaucedacityProject* project,
                    this, -1, // wxWindow* parent, wxWindowID id,
                    false, // bool isInput
                    ctrlPos, ctrlSize, // const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
@@ -815,7 +815,7 @@ BEGIN_EVENT_TABLE(MixerBoardScrolledWindow, wxScrolledWindow)
    EVT_MOUSE_EVENTS(MixerBoardScrolledWindow::OnMouseEvent)
 END_EVENT_TABLE()
 
-MixerBoardScrolledWindow::MixerBoardScrolledWindow(AudacityProject* project,
+MixerBoardScrolledWindow::MixerBoardScrolledWindow(SaucedacityProject* project,
                                                    MixerBoard* parent, wxWindowID id /*= -1*/,
                                                    const wxPoint& pos /*= wxDefaultPosition*/,
                                                    const wxSize& size /*= wxDefaultSize*/,
@@ -857,7 +857,7 @@ BEGIN_EVENT_TABLE(MixerBoard, wxWindow)
    EVT_SIZE(MixerBoard::OnSize)
 END_EVENT_TABLE()
 
-MixerBoard::MixerBoard(AudacityProject* pProject,
+MixerBoard::MixerBoard(SaucedacityProject* pProject,
                         wxFrame* parent,
                         const wxPoint& pos /*= wxDefaultPosition*/,
                         const wxSize& size /*= wxDefaultSize*/)
@@ -886,7 +886,7 @@ MixerBoard::MixerBoard(AudacityProject* pProject,
    wxASSERT(pProject); // to justify safenew
    mScrolledWindow =
       safenew MixerBoardScrolledWindow(
-         pProject, // AudacityProject* project,
+         pProject, // SaucedacityProject* project,
          this, -1, // wxWindow* parent, wxWindowID id = -1,
          this->GetClientAreaOrigin(), // const wxPoint& pos = wxDefaultPosition,
          size, // const wxSize& size = wxDefaultSize,
@@ -1408,7 +1408,7 @@ END_EVENT_TABLE()
 const wxSize kDefaultSize =
    wxSize(MIXER_BOARD_MIN_WIDTH, MIXER_BOARD_MIN_HEIGHT);
 
-MixerBoardFrame::MixerBoardFrame(AudacityProject* parent)
+MixerBoardFrame::MixerBoardFrame(SaucedacityProject* parent)
 :  wxFrame( &GetProjectFrame( *parent ), -1, wxString{},
             wxDefaultPosition, kDefaultSize,
             wxDEFAULT_FRAME_STYLE | wxFRAME_FLOAT_ON_PARENT)
@@ -1475,12 +1475,12 @@ void MixerBoardFrame::OnSize(wxSizeEvent & WXUNUSED(event))
 
 void MixerBoardFrame::OnKeyEvent(wxKeyEvent & event)
 {
-   AudacityProject *project = mMixerBoard->mProject;
+   SaucedacityProject *project = mMixerBoard->mProject;
    auto &commandManager = CommandManager::Get( *project );
    commandManager.FilterKeyEvent(project, event, true);
 }
 
-void MixerBoardFrame::Recreate( AudacityProject *pProject )
+void MixerBoardFrame::Recreate( SaucedacityProject *pProject )
 {
    wxPoint  pos = mMixerBoard->GetPosition();
    wxSize siz = mMixerBoard->GetSize();
@@ -1515,8 +1515,8 @@ void MixerBoardFrame::SetWindowTitle()
 namespace {
 
 // Mixer board window attached to each project is built on demand by:
-AudacityProject::AttachedWindows::RegisteredFactory sMixerBoardKey{
-   []( AudacityProject &parent ) -> wxWeakRef< wxWindow > {
+SaucedacityProject::AttachedWindows::RegisteredFactory sMixerBoardKey{
+   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
       return safenew MixerBoardFrame( &parent );
    }
 };
@@ -1534,9 +1534,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(AudacityProject &) {
+CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static Handler instance;
    return instance;
 }

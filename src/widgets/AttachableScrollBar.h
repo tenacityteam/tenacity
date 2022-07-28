@@ -21,7 +21,7 @@
 
 class ViewInfo;
 
-class AUDACITY_DLL_API AttachableScrollBar final :
+class SAUCEDACITY_DLL_API AttachableScrollBar final :
    public wxScrollBar
 {
 public:

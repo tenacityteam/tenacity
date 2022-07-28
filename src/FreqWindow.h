@@ -27,12 +27,12 @@ class wxButton;
 class wxCheckBox;
 class wxChoice;
 
-class AudacityProject;
+class SaucedacityProject;
 class FrequencyPlotDialog;
 class FreqGauge;
 class RulerPanel;
 
-DECLARE_EXPORTED_EVENT_TYPE(AUDACITY_DLL_API, EVT_FREQWINDOW_RECALC, -1);
+DECLARE_EXPORTED_EVENT_TYPE(SAUCEDACITY_DLL_API, EVT_FREQWINDOW_RECALC, -1);
 
 class FreqPlot final : public wxWindow
 {
@@ -58,7 +58,7 @@ class FrequencyPlotDialog final : public wxDialogWrapper,
 {
 public:
    FrequencyPlotDialog(wxWindow *parent, wxWindowID id,
-              AudacityProject &project,
+              SaucedacityProject &project,
               const TranslatableString & title, const wxPoint & pos);
    virtual ~ FrequencyPlotDialog();
 
@@ -102,7 +102,7 @@ private:
    int mFunc;
    int mAxis;
    int dBRange;
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
 
 #ifdef __WXMSW__
    static const int fontSize = 8;

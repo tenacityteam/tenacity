@@ -488,28 +488,28 @@ wxDEFINE_EVENT(EVT_TRACKLIST_DELETION, TrackListEvent);
 // same value as in the default constructed TrackId:
 long TrackList::sCounter = -1;
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-   [](AudacityProject &project) { return TrackList::Create( &project ); }
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+   [](SaucedacityProject &project) { return TrackList::Create( &project ); }
 };
 
-TrackList &TrackList::Get( AudacityProject &project )
+TrackList &TrackList::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< TrackList >( key );
 }
 
-const TrackList &TrackList::Get( const AudacityProject &project )
+const TrackList &TrackList::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-TrackList::TrackList( AudacityProject *pOwner )
+TrackList::TrackList( SaucedacityProject *pOwner )
 :  wxEvtHandler()
 , mOwner{ pOwner }
 {
 }
 
 // Factory function
-std::shared_ptr<TrackList> TrackList::Create( AudacityProject *pOwner )
+std::shared_ptr<TrackList> TrackList::Create( SaucedacityProject *pOwner )
 {
    return std::make_shared<TrackList>( pOwner );
 }

@@ -104,7 +104,7 @@ bool WarningsPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Warnings",
-   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
+   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew WarningsPrefs(parent, winid);

@@ -30,7 +30,7 @@ WaveformVZoomHandle::WaveformVZoomHandle(
 
 WaveformVZoomHandle::~WaveformVZoomHandle() = default;
 
-void WaveformVZoomHandle::Enter( bool, AudacityProject* )
+void WaveformVZoomHandle::Enter( bool, SaucedacityProject* )
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -38,13 +38,13 @@ void WaveformVZoomHandle::Enter( bool, AudacityProject* )
 }
 
 UIHandle::Result WaveformVZoomHandle::Click
-(const TrackPanelMouseEvent &, AudacityProject *)
+(const TrackPanelMouseEvent &, SaucedacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
 UIHandle::Result WaveformVZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
+(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {
    using namespace RefreshCode;
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -54,13 +54,13 @@ UIHandle::Result WaveformVZoomHandle::Drag
 }
 
 HitTestPreview WaveformVZoomHandle::Preview
-(const TrackPanelMouseState &st, AudacityProject *)
+(const TrackPanelMouseState &st, SaucedacityProject *)
 {
    return WaveTrackVZoomHandle::HitPreview(st.state);
 }
 
 UIHandle::Result WaveformVZoomHandle::Release
-(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
+(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
  wxWindow *pParent)
 {
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -70,7 +70,7 @@ UIHandle::Result WaveformVZoomHandle::Release
       mZoomStart, mZoomEnd );
 }
 
-UIHandle::Result WaveformVZoomHandle::Cancel(AudacityProject*)
+UIHandle::Result WaveformVZoomHandle::Cancel(SaucedacityProject*)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.
@@ -98,7 +98,7 @@ wxRect WaveformVZoomHandle::DrawingArea(
 // If ZoomStart and ZoomEnd are not equal, this may override
 // the zoomKind and cause a drag-zoom-in.
 void WaveformVZoomHandle::DoZoom(
-   AudacityProject *pProject,
+   SaucedacityProject *pProject,
    WaveTrack *pTrack,
    WaveTrackViewConstants::ZoomActions ZoomKind,
    const wxRect &rect, int zoomStart, int zoomEnd,
@@ -330,7 +330,7 @@ void WaveformVRulerMenuTable::OnWaveformScaleType(wxCommandEvent &evt)
          channel->GetWaveformSettings().scaleType = newScaleType;
       }
 
-      AudacityProject *const project = &mpData->project;
+      SaucedacityProject *const project = &mpData->project;
       ProjectHistory::Get( *project ).ModifyState(true);
 
       using namespace RefreshCode;

@@ -185,7 +185,7 @@ BEGIN_EVENT_TABLE(FrequencyPlotDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 FrequencyPlotDialog::FrequencyPlotDialog(wxWindow * parent, wxWindowID id,
-                           AudacityProject &project,
+                           SaucedacityProject &project,
                            const TranslatableString & title,
                            const wxPoint & pos)
 :  wxDialogWrapper(parent, id, title, pos, wxDefaultSize,
@@ -1199,8 +1199,8 @@ void FreqPlot::OnMouseEvent(wxMouseEvent & event)
 
 namespace {
 
-AudacityProject::AttachedWindows::RegisteredFactory sFrequencyWindowKey{
-   []( AudacityProject &parent ) -> wxWeakRef< wxWindow > {
+SaucedacityProject::AttachedWindows::RegisteredFactory sFrequencyWindowKey{
+   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &window = ProjectWindow::Get( parent );
       return safenew FrequencyPlotDialog(
          &window, -1, parent, FrequencyAnalysisTitle,
@@ -1226,9 +1226,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(AudacityProject &) {
+CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static Handler instance;
    return instance;
 }

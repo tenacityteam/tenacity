@@ -12,19 +12,19 @@
 
 #include "TimeShiftHandle.h"
 
-class AUDACITY_DLL_API AffordanceHandle : public TimeShiftHandle
+class SAUCEDACITY_DLL_API AffordanceHandle : public TimeShiftHandle
 {
-    static HitTestPreview HitPreview(const AudacityProject*, bool unsafe, bool moving);
+    static HitTestPreview HitPreview(const SaucedacityProject*, bool unsafe, bool moving);
 public:
 
-    void Enter(bool forward, AudacityProject* pProject) override;
-    HitTestPreview Preview(const TrackPanelMouseState& mouseState, AudacityProject* pProject) override;
+    void Enter(bool forward, SaucedacityProject* pProject) override;
+    HitTestPreview Preview(const TrackPanelMouseState& mouseState, SaucedacityProject* pProject) override;
 
     AffordanceHandle(const std::shared_ptr<Track>& track);
 
-    Result Click(const TrackPanelMouseEvent& evt, AudacityProject* pProject) override;
-    Result Release(const TrackPanelMouseEvent& event, AudacityProject* pProject, wxWindow* pParent) override;
+    Result Click(const TrackPanelMouseEvent& evt, SaucedacityProject* pProject) override;
+    Result Release(const TrackPanelMouseEvent& event, SaucedacityProject* pProject, wxWindow* pParent) override;
 
 protected:
-    virtual Result SelectAt(const TrackPanelMouseEvent& event, AudacityProject* pProject) = 0;
+    virtual Result SelectAt(const TrackPanelMouseEvent& event, SaucedacityProject* pProject) = 0;
 };

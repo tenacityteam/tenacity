@@ -52,7 +52,7 @@ std::shared_ptr<Track> TrackVRulerControls::DoFindTrack()
 }
 
 std::vector<UIHandlePtr> TrackVRulerControls::HitTest
-(const TrackPanelMouseState &, const AudacityProject *)
+(const TrackPanelMouseState &, const SaucedacityProject *)
 {
    return std::vector<UIHandlePtr>{};
 }

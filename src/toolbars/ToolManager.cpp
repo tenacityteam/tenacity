@@ -71,7 +71,7 @@
 // Constructor
 //
 ToolFrame::ToolFrame
-   ( AudacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos )
+   ( SaucedacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos )
    : wxFrame( FindProjectFrame( parent ),
           bar->GetId(),
           wxEmptyString,
@@ -347,25 +347,25 @@ auto ToolManager::SetGetTopPanelHook( const GetTopPanelHook &hook )
    return result;
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-  []( AudacityProject &parent ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+  []( SaucedacityProject &parent ){
      return std::make_shared< ToolManager >( &parent ); }
 };
 
-ToolManager &ToolManager::Get( AudacityProject &project )
+ToolManager &ToolManager::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ToolManager >( key );
 }
 
-const ToolManager &ToolManager::Get( const AudacityProject &project )
+const ToolManager &ToolManager::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
 //
 // Constructor
 //
-ToolManager::ToolManager( AudacityProject *parent )
+ToolManager::ToolManager( SaucedacityProject *parent )
 : wxEvtHandler()
 {
    wxPoint pt[ 3 ];
@@ -680,7 +680,7 @@ void ToolManager::Reset()
    // If audio was playing, we stopped the VU meters,
    // It would be nice to show them again, but hardly essential as
    // they will show up again on the next play.
-   // SetVUMeters(AudacityProject *p);
+   // SetVUMeters(SaucedacityProject *p);
    Updated();
 }
 
@@ -1582,12 +1582,12 @@ AttachedToolBarMenuItem::AttachedToolBarMenuItem(
    , mAttachedItem{
       Registry::Placement{ wxT("View/Other/Toolbars/Toolbars/Other"), hint },
       (  MenuTable::FinderScope(
-            [this](AudacityProject &) -> CommandHandlerObject&
+            [this](SaucedacityProject &) -> CommandHandlerObject&
                { return *this; } ),
          MenuTable::Command( name, label_in,
             &AttachedToolBarMenuItem::OnShowToolBar,
             AlwaysEnabledFlag,
-            CommandManager::Options{}.CheckTest( [id](AudacityProject &project){
+            CommandManager::Options{}.CheckTest( [id](SaucedacityProject &project){
                auto &toolManager = ToolManager::Get( project );
                return toolManager.IsVisible( id ); } ) ) ) }
    , mExcludeIds{ std::move( excludeIDs ) }

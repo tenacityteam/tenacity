@@ -15,7 +15,7 @@
 
 class wxBitmap;
 class ShuttleGui;
-class AudacityProject;
+class SaucedacityProject;
 class HtmlWindow;
 
 /// Saucedacity's welcome dialog. This should probably be renamed to
@@ -24,7 +24,7 @@ class SplashDialog final : public wxDialogWrapper {
    DECLARE_DYNAMIC_CLASS(SplashDialog)
 public:
 
-   static void DoHelpWelcome( AudacityProject &project );
+   static void DoHelpWelcome( SaucedacityProject &project );
 
    SplashDialog(wxWindow * parent);
    virtual ~ SplashDialog();

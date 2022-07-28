@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectSettings.h
 
-Paul Licameli split from AudacityProject.h
+Paul Licameli split from SaucedacityProject.h
 
 **********************************************************************/
 
@@ -18,10 +18,10 @@ Paul Licameli split from AudacityProject.h
 #include "Prefs.h" // to inherit
 #include "audacity/Types.h"
 
-class AudacityProject;
+class SaucedacityProject;
 
 // Sent to the project when certain settings change
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
    EVT_PROJECT_SETTINGS_CHANGE, wxCommandEvent);
 
 enum
@@ -47,13 +47,13 @@ enum {
 
 ///\brief Holds various per-project settings values, including the sample rate,
 /// and sends events to the project when certain values change
-class AUDACITY_DLL_API ProjectSettings final
+class SAUCEDACITY_DLL_API ProjectSettings final
    : public ClientData::Base
    , private PrefsListener
 {
 public:
-   static ProjectSettings &Get( AudacityProject &project );
-   static const ProjectSettings &Get( const AudacityProject &project );
+   static ProjectSettings &Get( SaucedacityProject &project );
+   static const ProjectSettings &Get( const SaucedacityProject &project );
    
    // Values retrievable from GetInt() of the event for settings change
    enum EventCode : int {
@@ -61,7 +61,7 @@ public:
       ChangedProjectRate
    };
 
-   explicit ProjectSettings( AudacityProject &project );
+   explicit ProjectSettings( SaucedacityProject &project );
    ProjectSettings( const ProjectSettings & ) PROHIBITED;
    ProjectSettings &operator=( const ProjectSettings & ) PROHIBITED;
 
@@ -121,7 +121,7 @@ public:
 private:
    void UpdatePrefs() override;
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    NumericFormatSymbol mSelectionFormat;
    NumericFormatSymbol mFrequencySelectionFormatName;

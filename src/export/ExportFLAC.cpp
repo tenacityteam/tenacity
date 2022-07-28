@@ -212,7 +212,7 @@ public:
    // Required
 
    void OptionsCreate(ShuttleGui &S, int format) override;
-   ProgressResult Export(AudacityProject *project,
+   ProgressResult Export(SaucedacityProject *project,
                std::unique_ptr<ProgressDialog> &pDialog,
                unsigned channels,
                const wxFileNameWrapper &fName,
@@ -225,7 +225,7 @@ public:
 
 private:
 
-   bool GetMetadata(AudacityProject *project, const Tags *tags);
+   bool GetMetadata(SaucedacityProject *project, const Tags *tags);
 
    // Should this be a stack variable instead in Export?
    FLAC__StreamMetadataHandle mMetadata;
@@ -244,7 +244,7 @@ ExportFLAC::ExportFLAC()
    SetDescription(XO("FLAC Files"),0);
 }
 
-ProgressResult ExportFLAC::Export(AudacityProject *project,
+ProgressResult ExportFLAC::Export(SaucedacityProject *project,
                         std::unique_ptr<ProgressDialog> &pDialog,
                         unsigned numChannels,
                         const wxFileNameWrapper &fName,
@@ -445,7 +445,7 @@ void ExportFLAC::OptionsCreate(ShuttleGui &S, int format)
 //      expects that array to be valid until the stream is initialized.
 //
 //      This has been fixed in 1.1.4.
-bool ExportFLAC::GetMetadata(AudacityProject *project, const Tags *tags)
+bool ExportFLAC::GetMetadata(SaucedacityProject *project, const Tags *tags)
 {
    // Retrieve tags if needed
    if (tags == NULL)

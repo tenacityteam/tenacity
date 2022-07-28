@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectFileManager.h
 
-Paul Licameli split from AudacityProject.h
+Paul Licameli split from SaucedacityProject.h
 
 **********************************************************************/
 
@@ -20,7 +20,7 @@ Paul Licameli split from AudacityProject.h
 
 class wxString;
 class wxFileName;
-class AudacityProject;
+class SaucedacityProject;
 class Track;
 class TrackList;
 class WaveTrack;
@@ -29,17 +29,17 @@ class XMLTagHandler;
 using WaveTrackArray = std::vector < std::shared_ptr < WaveTrack > >;
 using TrackHolders = std::vector< WaveTrackArray >;
 
-class AUDACITY_DLL_API ProjectFileManager final
+class SAUCEDACITY_DLL_API ProjectFileManager final
    : public ClientData::Base
 {
 public:
-   static ProjectFileManager &Get( AudacityProject &project );
-   static const ProjectFileManager &Get( const AudacityProject &project );
+   static ProjectFileManager &Get( SaucedacityProject &project );
+   static const ProjectFileManager &Get( const SaucedacityProject &project );
 
    // Open and close a file, invisibly, removing its Autosave blob
    static void DiscardAutosave(const FilePath &filename);
 
-   explicit ProjectFileManager( AudacityProject &project );
+   explicit ProjectFileManager( SaucedacityProject &project );
    ProjectFileManager( const ProjectFileManager & ) PROHIBITED;
    ProjectFileManager &operator=( const ProjectFileManager & ) PROHIBITED;
    ~ProjectFileManager();
@@ -83,7 +83,7 @@ public:
    static bool IsAlreadyOpen(const FilePath &projPathName);
 
    //! A function that returns a project to use for opening a file; argument is true if opening a project file
-   using ProjectChooserFn = std::function<AudacityProject&(bool)>;
+   using ProjectChooserFn = std::function<SaucedacityProject&(bool)>;
 
    /*!
     Opens files of many kinds.  In case of import (sound, MIDI, or .aup), the undo history is pushed.
@@ -92,7 +92,7 @@ public:
     @param addtohistory whether to add .aup3 files to the MRU list (but always done for imports)
     @return if something was successfully opened, the project containing it; else null
     */
-   static AudacityProject *OpenFile( const ProjectChooserFn &chooser,
+   static SaucedacityProject *OpenFile( const ProjectChooserFn &chooser,
       const FilePath &fileName, bool addtohistory = true);
 
    bool Import(const FilePath &fileName,
@@ -112,7 +112,7 @@ private:
     @param addtohistory whether to add the file to the MRU list
     @return if something was successfully opened, the project containing it; else null
     */
-   AudacityProject *OpenProjectFile(
+   SaucedacityProject *OpenProjectFile(
       const FilePath &fileName, bool addtohistory);
 
    struct ReadProjectResults
@@ -127,7 +127,7 @@ private:
 
    bool DoSave(const FilePath & fileName, bool fromSaveAs);
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    std::shared_ptr<TrackList> mLastSavedTracks;
    

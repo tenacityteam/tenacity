@@ -697,7 +697,7 @@ void GetInfoCommand::ExploreAdornments( const CommandContext &context,
 void GetInfoCommand::ExploreTrackPanel( const CommandContext &context,
    wxPoint P, wxWindow * pWin, int WXUNUSED(Id), int depth )
 {
-   AudacityProject * pProj = &context.project;
+   SaucedacityProject * pProj = &context.project;
    auto &tp = TrackPanel::Get( *pProj );
    auto &viewInfo = ViewInfo::Get( *pProj );
 

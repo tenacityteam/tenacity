@@ -41,7 +41,7 @@ public:
         return result;
     }
 
-    UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, AudacityProject* pProject) override
+    UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, SaucedacityProject* pProject) override
     {
         auto& viewInfo = ViewInfo::Get(*pProject);
         const auto& settings = ProjectSettings::Get(*pProject);
@@ -61,7 +61,7 @@ NoteTrackAffordanceControls::NoteTrackAffordanceControls(const std::shared_ptr<T
 
 }
 
-std::vector<UIHandlePtr> NoteTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const AudacityProject* pProject)
+std::vector<UIHandlePtr> NoteTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject)
 {
     std::vector<UIHandlePtr> results;
 

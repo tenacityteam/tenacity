@@ -26,7 +26,7 @@
 // private helper classes and functions
 namespace {
 
-void DoNextPeakFrequency(AudacityProject &project, bool up)
+void DoNextPeakFrequency(SaucedacityProject &project, bool up)
 {
    auto &tracks = TrackList::Get( project );
    auto &viewInfo = ViewInfo::Get( project );
@@ -53,7 +53,7 @@ void DoNextPeakFrequency(AudacityProject &project, bool up)
 }
 
 double NearestZeroCrossing
-(AudacityProject &project, double t0)
+(SaucedacityProject &project, double t0)
 {
    const auto &settings = ProjectSettings::Get( project );
    auto rate = settings.GetRate();
@@ -188,7 +188,7 @@ void SeekWhenAudioActive(double seekStep, wxLongLong &lastSelectionAdjustment)
 // negative to move backward.
 // Helper for moving by keyboard with snap-to-grid enabled
 double GridMove
-(AudacityProject &project, double t, int minPix)
+(SaucedacityProject &project, double t, int minPix)
 {
    const auto &settings = ProjectSettings::Get( project );
    auto rate = settings.GetRate();
@@ -214,7 +214,7 @@ double GridMove
 }
 
 double OffsetTime
-(AudacityProject &project,
+(SaucedacityProject &project,
  double t, double offset, TimeUnit timeUnit, int snapToTime)
 {
    auto &viewInfo = ViewInfo::Get( project );
@@ -230,7 +230,7 @@ double OffsetTime
 
 // Moving a cursor, and collapsed selection.
 void MoveWhenAudioInactive
-(AudacityProject &project, double seekStep, TimeUnit timeUnit)
+(SaucedacityProject &project, double seekStep, TimeUnit timeUnit)
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto &trackPanel = TrackPanel::Get( project );
@@ -281,7 +281,7 @@ void MoveWhenAudioInactive
 }
 
 void SeekWhenAudioInactive
-(AudacityProject &project, double seekStep, TimeUnit timeUnit,
+(SaucedacityProject &project, double seekStep, TimeUnit timeUnit,
 SelectionOperation operation)
 {
    auto &viewInfo = ViewInfo::Get( project );
@@ -327,7 +327,7 @@ SelectionOperation operation)
 
 // Handle small cursor and play head movements
 void SeekLeftOrRight
-(AudacityProject &project, double direction, SelectionOperation operation,
+(SaucedacityProject &project, double direction, SelectionOperation operation,
  SeekInfo &info)
 {
    // PRL:  What I found and preserved, strange though it be:
@@ -365,7 +365,7 @@ void SeekLeftOrRight
 
 // Move the cursor forward or backward, while paused or while playing.
 void DoCursorMove(
-   AudacityProject &project, double seekStep,
+   SaucedacityProject &project, double seekStep,
    wxLongLong &lastSelectionAdjustment)
 {
    if (ProjectAudioIO::Get( project ).IsAudioActive()) {
@@ -380,7 +380,7 @@ void DoCursorMove(
    ProjectHistory::Get( project ).ModifyState(false);
 }
 
-void DoBoundaryMove(AudacityProject &project, int step, SeekInfo &info)
+void DoBoundaryMove(SaucedacityProject &project, int step, SeekInfo &info)
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -1016,12 +1016,12 @@ Handler &operator=( const Handler & ) PROHIBITED;
 } // namespace
 
 // Handler is stateful.  Needs a factory registered with
-// AudacityProject.
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-   [](AudacityProject&) {
+// SaucedacityProject.
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+   [](SaucedacityProject&) {
       return std::make_unique< SelectActions::Handler >(); } };
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &project) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &project) {
    return project.AttachedObjects::Get< SelectActions::Handler >( key );
 };
 

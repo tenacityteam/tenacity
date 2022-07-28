@@ -22,7 +22,7 @@ class wxArrayString;
 class Effect;
 class CommandContext;
 class CommandManager;
-class AudacityProject;
+class SaucedacityProject;
 class wxArrayStringEx;
 
 class MacroCommandsCatalog {
@@ -34,7 +34,7 @@ public:
    };
    using Entries = std::vector<Entry>;
 
-   MacroCommandsCatalog( const AudacityProject *project );
+   MacroCommandsCatalog( const SaucedacityProject *project );
 
    // binary search
    Entries::const_iterator ByFriendlyName( const TranslatableString &friendlyName ) const;
@@ -59,7 +59,7 @@ class MacroCommands final {
       const PluginID & ID, const CommandContext & context, unsigned flags );
 
    // constructors and destructors
-   MacroCommands( AudacityProject &project );
+   MacroCommands( SaucedacityProject &project );
  public:
    bool ApplyMacro( const MacroCommandsCatalog &catalog,
       const wxString & filename = {});
@@ -115,7 +115,7 @@ class MacroCommands final {
    wxString Join(const wxString & command, const wxString & param);
 
 private:
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    CommandIDs mCommandMacro;
    wxArrayString mParamsMacro;

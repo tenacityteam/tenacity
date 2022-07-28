@@ -20,7 +20,7 @@ Paul Licameli split from ProjectManager.h
 
 constexpr int RATE_NOT_SELECTED{ -1 };
 
-class AudacityProject;
+class SaucedacityProject;
 struct AudioIOStartStreamOptions;
 class TrackList;
 class SelectedRegion;
@@ -39,18 +39,18 @@ struct TransportTracks;
 
 enum StatusBarField : int;
 
-class AUDACITY_DLL_API ProjectAudioManager final
+class SAUCEDACITY_DLL_API ProjectAudioManager final
    : public ClientData::Base
    , public AudioIOListener
    , public std::enable_shared_from_this< ProjectAudioManager >
 {
 public:
-   static ProjectAudioManager &Get( AudacityProject &project );
-   static const ProjectAudioManager &Get( const AudacityProject &project );
+   static ProjectAudioManager &Get( SaucedacityProject &project );
+   static const ProjectAudioManager &Get( const SaucedacityProject &project );
 
    // Find suitable tracks to record into, or return an empty array.
    static WaveTrackArray ChooseExistingRecordingTracks(
-      AudacityProject &proj, bool selectedOnly,
+      SaucedacityProject &proj, bool selectedOnly,
       double targetRate = RATE_NOT_SELECTED);
 
    static bool UseDuplex();
@@ -58,7 +58,7 @@ public:
    static TransportTracks GetAllPlaybackTracks(
       TrackList &trackList, bool selectedOnly, bool useMidi = false);
 
-   explicit ProjectAudioManager( AudacityProject &project );
+   explicit ProjectAudioManager( SaucedacityProject &project );
    ProjectAudioManager( const ProjectAudioManager & ) PROHIBITED;
    ProjectAudioManager &operator=( const ProjectAudioManager & ) PROHIBITED;
    ~ProjectAudioManager() override;
@@ -87,7 +87,7 @@ public:
 
    void OnRecord(bool altAppearance);
 
-   bool DoRecord(AudacityProject &project,
+   bool DoRecord(SaucedacityProject &project,
       const TransportTracks &transportTracks, // If captureTracks is empty, then tracks are created
       double t0, double t1,
       bool altAppearance,
@@ -143,7 +143,7 @@ private:
 
    void OnCheckpointFailure(wxCommandEvent &evt);
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    std::shared_ptr<TrackList> mCutPreviewTracks;
 
@@ -161,13 +161,13 @@ private:
    int mDisplayedRate{ 0 };
    static std::pair< TranslatableStrings, unsigned >
       StatusWidthFunction(
-         const AudacityProject &project, StatusBarField field);
+         const SaucedacityProject &project, StatusBarField field);
 };
 
-AUDACITY_DLL_API
-AudioIOStartStreamOptions DefaultPlayOptions( AudacityProject &project );
-AUDACITY_DLL_API
-AudioIOStartStreamOptions DefaultSpeedPlayOptions( AudacityProject &project );
+SAUCEDACITY_DLL_API
+AudioIOStartStreamOptions DefaultPlayOptions( SaucedacityProject &project );
+SAUCEDACITY_DLL_API
+AudioIOStartStreamOptions DefaultSpeedPlayOptions( SaucedacityProject &project );
 
 struct PropertiesOfSelected
 {
@@ -176,12 +176,12 @@ struct PropertiesOfSelected
    int numberOfSelected{ 0 };
 };
 
-AUDACITY_DLL_API
-PropertiesOfSelected GetPropertiesOfSelected(const AudacityProject &proj);
+SAUCEDACITY_DLL_API
+PropertiesOfSelected GetPropertiesOfSelected(const SaucedacityProject &proj);
 
 #include "commands/CommandFlag.h"
 
-extern AUDACITY_DLL_API const ReservedCommandFlag
+extern SAUCEDACITY_DLL_API const ReservedCommandFlag
    &CanStopAudioStreamFlag();
 
 #endif

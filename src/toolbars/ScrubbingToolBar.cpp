@@ -56,7 +56,7 @@ EVT_IDLE( ScrubbingToolBar::OnIdle )
 END_EVENT_TABLE()
 
 //Standard constructor
-ScrubbingToolBar::ScrubbingToolBar( AudacityProject &project )
+ScrubbingToolBar::ScrubbingToolBar( SaucedacityProject &project )
 : ToolBar(project, ScrubbingBarID, XO("Scrub"), wxT("Scrub"))
 {
 }
@@ -65,15 +65,15 @@ ScrubbingToolBar::~ScrubbingToolBar()
 {
 }
 
-ScrubbingToolBar &ScrubbingToolBar::Get( AudacityProject &project )
+ScrubbingToolBar &ScrubbingToolBar::Get( SaucedacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<ScrubbingToolBar*>( toolManager.GetToolBar(ScrubbingBarID) );
 }
 
-const ScrubbingToolBar &ScrubbingToolBar::Get( const AudacityProject &project )
+const ScrubbingToolBar &ScrubbingToolBar::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast<AudacityProject&>( project )) ;
+   return Get( const_cast<SaucedacityProject&>( project )) ;
 }
 
 void ScrubbingToolBar::Create(wxWindow * parent)
@@ -218,7 +218,7 @@ void ScrubbingToolBar::DoRegenerateTooltips( bool force )
 
 void ScrubbingToolBar::OnButton(wxCommandEvent &event)
 {
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
    if (!p) return;
    auto &scrubber = Scrubber::Get( *p );
 
@@ -246,7 +246,7 @@ void ScrubbingToolBar::EnableDisableButtons()
    const auto scrubButton = mButtons[STBScrubID];
    const auto seekButton = mButtons[STBSeekID];
 
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
 
    auto &scrubber = Scrubber::Get( *p );
    const auto canScrub = scrubber.CanScrub();
@@ -292,7 +292,7 @@ void ScrubbingToolBar::OnIdle( wxIdleEvent &evt )
 }
 
 static RegisteredToolbarFactory factory{ ScrubbingBarID,
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       return ToolBar::Holder{ safenew ScrubbingToolBar{ project } }; }
 };
 

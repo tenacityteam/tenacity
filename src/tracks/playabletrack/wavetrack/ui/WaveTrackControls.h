@@ -23,7 +23,7 @@ class WaveTrack;
 class wxEvent;
 class wxWindow;
 
-class AUDACITY_DLL_API WaveTrackControls final : public PlayableTrackControls
+class SAUCEDACITY_DLL_API WaveTrackControls final : public PlayableTrackControls
 {
    WaveTrackControls(const WaveTrackControls&) = delete;
    WaveTrackControls &operator=(const WaveTrackControls&) = delete;
@@ -36,7 +36,7 @@ public:
 
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const AudacityProject *pProject) override;
+       const SaucedacityProject *pProject) override;
 
    PopupMenuTable *GetMenuExtension(Track *pTrack) override;
 
@@ -70,7 +70,7 @@ private:
 
 #include "../../../../widgets/PopupMenuTable.h"
 
-struct AUDACITY_DLL_API WaveTrackPopupMenuTable : public PopupMenuTable
+struct SAUCEDACITY_DLL_API WaveTrackPopupMenuTable : public PopupMenuTable
 {
    using PopupMenuTable::PopupMenuTable;
    PlayableTrackControls::InitMenuData *mpData{};
@@ -81,7 +81,7 @@ protected:
 };
 
 // Expose the wave track menu table to registration of menu items
-AUDACITY_DLL_API
+SAUCEDACITY_DLL_API
 WaveTrackPopupMenuTable &GetWaveTrackMenuTable();
 
 #endif

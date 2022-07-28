@@ -38,14 +38,14 @@ CommonTrackPanelCell::~CommonTrackPanelCell()
 }
 
 HitTestPreview CommonTrackPanelCell::DefaultPreview
-(const TrackPanelMouseState &, const AudacityProject *)
+(const TrackPanelMouseState &, const SaucedacityProject *)
 {
    static wxCursor defaultCursor{ wxCURSOR_ARROW };
    return { {}, &defaultCursor, {} };
 }
 
 unsigned CommonTrackPanelCell::HandleWheelRotation
-(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
+(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {
    auto hook = GetHook();
    return hook ? hook( evt, pProject ) : RefreshCode::Cancelled;

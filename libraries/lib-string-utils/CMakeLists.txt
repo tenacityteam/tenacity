@@ -24,4 +24,4 @@ set( LIBRARIES
    wxwidgets::base
 )
 
-audacity_library( ${TARGET} "${SOURCES}" "${LIBRARIES}" "" "" )
+saucedacity_library( ${TARGET} "${SOURCES}" "${LIBRARIES}" "" "" )

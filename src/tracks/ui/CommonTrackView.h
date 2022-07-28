@@ -16,7 +16,7 @@ Paul Licameli split from class TrackView
 class SelectHandle;
 class TimeShiftHandle;
 
-class AUDACITY_DLL_API CommonTrackView /* not final */ : public TrackView
+class SAUCEDACITY_DLL_API CommonTrackView /* not final */ : public TrackView
 {
 public:
    using TrackView::TrackView;
@@ -28,7 +28,7 @@ public:
    // uniformly in all tracks, disregarding track contents.
    // Do not further override this...
    std::vector<UIHandlePtr> HitTest
-      (const TrackPanelMouseState &, const AudacityProject *pProject)
+      (const TrackPanelMouseState &, const SaucedacityProject *pProject)
       final override;
 
    void TimeShiftHitTest();
@@ -39,7 +39,7 @@ protected:
    // Rather override this for subclasses:
    virtual std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &,
-       const AudacityProject *pProject, int currentTool, bool bMultiTool)
+       const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
       = 0;
 
    std::weak_ptr<SelectHandle> mSelectHandle;

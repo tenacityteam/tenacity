@@ -13,18 +13,18 @@ Paul Licameli split from ProjectManager.h
 
 #include "ClientData.h"
 
-class AudacityProject;
+class SaucedacityProject;
 struct UndoState;
 enum class UndoPush : unsigned char;
 
-class AUDACITY_DLL_API ProjectHistory final
+class SAUCEDACITY_DLL_API ProjectHistory final
    : public ClientData::Base
 {
 public:
-   static ProjectHistory &Get( AudacityProject &project );
-   static const ProjectHistory &Get( const AudacityProject &project );
+   static ProjectHistory &Get( SaucedacityProject &project );
+   static const ProjectHistory &Get( const SaucedacityProject &project );
 
-   explicit ProjectHistory( AudacityProject &project )
+   explicit ProjectHistory( SaucedacityProject &project )
       : mProject{ project }
    {}
    ProjectHistory( const ProjectHistory & ) PROHIBITED;
@@ -52,7 +52,7 @@ public:
    void SetDirty( bool value ) { mDirty = value; }
 
 private:
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    bool mDirty{ false };
 };

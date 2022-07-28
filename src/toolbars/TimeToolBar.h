@@ -22,11 +22,11 @@ class TimeToolBarListener;
 class TimeToolBar final : public ToolBar
 {
 public:
-   TimeToolBar(AudacityProject &project);
+   TimeToolBar(SaucedacityProject &project);
    virtual ~TimeToolBar();
    
-   static TimeToolBar &Get(AudacityProject &project);
-   static const TimeToolBar &Get(const AudacityProject &project);
+   static TimeToolBar &Get(SaucedacityProject &project);
+   static const TimeToolBar &Get(const SaucedacityProject &project);
    
    void Populate() override;
    void Repaint(wxDC * WXUNUSED(dc)) override {};

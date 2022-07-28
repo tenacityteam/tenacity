@@ -26,19 +26,19 @@ class wxWindow;
 class wxStatusBar;
 
 class AButton;
-class AudacityProject;
+class SaucedacityProject;
 
 // In the GUI, ControlToolBar appears as the "Transport Toolbar". "Control Toolbar" is historic.
-class AUDACITY_DLL_API ControlToolBar final : public ToolBar {
+class SAUCEDACITY_DLL_API ControlToolBar final : public ToolBar {
 
  public:
 
-   ControlToolBar( AudacityProject &project );
+   ControlToolBar( SaucedacityProject &project );
    virtual ~ControlToolBar();
 
-   static ControlToolBar *Find( AudacityProject &project );
-   static ControlToolBar &Get( AudacityProject &project );
-   static const ControlToolBar &Get( const AudacityProject &project );
+   static ControlToolBar *Find( SaucedacityProject &project );
+   static ControlToolBar &Get( SaucedacityProject &project );
+   static const ControlToolBar &Get( const SaucedacityProject &project );
 
    void Create(wxWindow *parent) override;
 

@@ -84,13 +84,13 @@ list( APPEND SOURCES
       AllThemeResources.cpp
       AllThemeResources.h
       AttachedVirtualFunction.h
-      AudacityApp.cpp
-      AudacityApp.h
-      $<$<BOOL:${wxIS_MAC}>:AudacityApp.mm>
-      AudacityFileConfig.cpp
-      AudacityFileConfig.h
-      AudacityHeaders.cpp
-      AudacityHeaders.h
+      SaucedacityApp.cpp
+      SaucedacityApp.h
+      $<$<BOOL:${wxIS_MAC}>:SaucedacityApp.mm>
+      SaucedacityFileConfig.cpp
+      SaucedacityFileConfig.h
+      SaucedacityHeaders.cpp
+      SaucedacityHeaders.h
       AudioIO.cpp
       AudioIO.h
       AudioIOBase.cpp
@@ -1231,7 +1231,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       ../mac/Resources/AudacityAU.icns
       ../mac/Resources/AudacityMP3.icns
       ../mac/Resources/AudacityOGG.icns
-      ../mac/Resources/AudacityProject.icns
+      ../mac/Resources/SaucedacityProject.icns
       ../mac/Resources/AudacityWAV.icns
    )
 
@@ -1248,7 +1248,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    # These sources must be compiled as Objective C++ and excluded
    # from precompiled header usage
    set_source_files_properties(
-      AudacityApp.mm
+      SaucedacityApp.mm
       KeyboardCapture.cpp
       effects/EffectUI.cpp
       effects/VST/VSTControlOSX.mm
@@ -1374,9 +1374,9 @@ source_group(
         ${_INTDIR}/CMakeFiles/Audacity.dir/cmake_pch.hxx
 )
 
-# Define AUDACITY_DLL_API
-import_symbol_define( import_symbol AUDACITY_DLL )
-export_symbol_define( export_symbol AUDACITY_DLL )
+# Define SAUCEDACITY_DLL_API
+import_symbol_define( import_symbol SAUCEDACITY_DLL )
+export_symbol_define( export_symbol SAUCEDACITY_DLL )
 list( APPEND DEFINES PRIVATE "${export_symbol}" INTERFACE "${import_symbol}" )
 
 target_sources( ${TARGET} PRIVATE ${HEADERS} ${SOURCES} ${RESOURCES} ${MAC_RESOURCES} ${WIN_RESOURCES} )
@@ -1386,7 +1386,7 @@ target_include_directories( ${TARGET} PRIVATE ${INCLUDES} )
 target_include_directories( ${TARGET} PRIVATE ${SUBDIR_INCLUDES})
 
 target_link_options( ${TARGET} PRIVATE ${LDFLAGS} )
-target_link_libraries( ${TARGET} PUBLIC ${AUDACITY_LIBRARIES} )
+target_link_libraries( ${TARGET} PUBLIC ${SAUCEDACITY_LIBRARIES} )
 target_link_libraries( ${TARGET} ${LIBRARIES} )
 
 if( NOT CCACHE_PROGRAM )
@@ -1396,7 +1396,7 @@ if( NOT CCACHE_PROGRAM )
          $<$<PLATFORM_ID:Windows>:${CMAKE_BINARY_DIR}/src/private/configwin.h>
          $<$<PLATFORM_ID:Darwin>:${CMAKE_BINARY_DIR}/src/private/configmac.h>
          $<$<NOT:$<PLATFORM_ID:Windows,Darwin>>:${CMAKE_BINARY_DIR}/src/private/configunix.h>
-         AudacityHeaders.h
+         SaucedacityHeaders.h
       )
    else()
       message( STATUS "Not using precompiled headers" )

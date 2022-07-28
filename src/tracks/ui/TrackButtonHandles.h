@@ -21,11 +21,11 @@ class MinimizeButtonHandle final : public ButtonHandle
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &) const override;
+      const wxMouseState &state, SaucedacityProject &) const override;
 
 public:
    explicit MinimizeButtonHandle
@@ -47,11 +47,11 @@ class SelectButtonHandle final : public ButtonHandle
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &) const override;
+      const wxMouseState &state, SaucedacityProject &) const override;
 
 public:
    explicit SelectButtonHandle
@@ -73,11 +73,11 @@ class CloseButtonHandle final : public ButtonHandle
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &project) const override;
+      const wxMouseState &state, SaucedacityProject &project) const override;
 
    bool StopsOnKeystroke () override { return true; }
    
@@ -102,11 +102,11 @@ class MenuButtonHandle final : public ButtonHandle
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &) const override;
+      const wxMouseState &state, SaucedacityProject &) const override;
 
 public:
    explicit MenuButtonHandle

@@ -86,7 +86,7 @@ BEGIN_EVENT_TABLE(KeyConfigPrefs, PrefsPanel)
 END_EVENT_TABLE()
 
 KeyConfigPrefs::KeyConfigPrefs(
-   wxWindow * parent, wxWindowID winid, AudacityProject *pProject,
+   wxWindow * parent, wxWindowID winid, SaucedacityProject *pProject,
    const CommandID &name)
 /* i18n-hint: as in computer keyboard (not musical!) */
 :  PrefsPanel(parent, winid, XO("Keyboard")),
@@ -937,7 +937,7 @@ void KeyConfigPrefs::Cancel()
 PrefsPanel::Factory
 KeyConfigPrefsFactory( const CommandID &name )
 {
-   return [=](wxWindow *parent, wxWindowID winid, AudacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, SaucedacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
       auto result = safenew KeyConfigPrefs{ parent, winid, pProject, name };

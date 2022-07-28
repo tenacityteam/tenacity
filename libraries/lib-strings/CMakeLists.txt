@@ -30,6 +30,6 @@ set( LIBRARIES
    PRIVATE
    wxBase
 )
-audacity_library( lib-strings "${SOURCES}" "${LIBRARIES}"
+saucedacity_library( lib-strings "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

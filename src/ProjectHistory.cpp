@@ -17,20 +17,20 @@ Paul Licameli split from ProjectManager.cpp
 #include "UndoManager.h"
 #include "ViewInfo.h"
 
-static AudacityProject::AttachedObjects::RegisteredFactory sProjectHistoryKey {
-   []( AudacityProject &project ) {
+static SaucedacityProject::AttachedObjects::RegisteredFactory sProjectHistoryKey {
+   []( SaucedacityProject &project ) {
       return std::make_shared< ProjectHistory >( project );
    }
 };
 
-ProjectHistory &ProjectHistory::Get( AudacityProject &project )
+ProjectHistory &ProjectHistory::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectHistory >( sProjectHistoryKey );
 }
 
-const ProjectHistory &ProjectHistory::Get( const AudacityProject &project )
+const ProjectHistory &ProjectHistory::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
 ProjectHistory::~ProjectHistory() = default;

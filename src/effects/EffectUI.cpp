@@ -80,7 +80,7 @@ BEGIN_EVENT_TABLE(EffectRack, wxFrame)
    EVT_COMMAND_RANGE(ID_FAV,    ID_FAV + 99,    wxEVT_COMMAND_BUTTON_CLICKED, EffectRack::OnFav)
 END_EVENT_TABLE()
 
-EffectRack::EffectRack( AudacityProject &project )
+EffectRack::EffectRack( SaucedacityProject &project )
 :  wxFrame( &GetProjectFrame( project ),
       wxID_ANY,
       _("Effects Rack"),
@@ -297,7 +297,7 @@ void EffectRack::OnTimer(wxTimerEvent & WXUNUSED(evt))
 
 void EffectRack::OnApply(wxCommandEvent & WXUNUSED(evt))
 {
-   AudacityProject *project = &mProject;
+   SaucedacityProject *project = &mProject;
 
    bool success = false;
    auto state = UndoManager::Get( *project ).GetCurrentState();
@@ -574,8 +574,8 @@ void EffectRack::UpdateActive()
 
 namespace
 {
-AudacityProject::AttachedWindows::RegisteredFactory sKey{
-   []( AudacityProject &parent ) -> wxWeakRef< wxWindow > {
+SaucedacityProject::AttachedWindows::RegisteredFactory sKey{
+   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto result = safenew EffectRack( parent );
       result->CenterOnParent();
       return result;
@@ -583,7 +583,7 @@ AudacityProject::AttachedWindows::RegisteredFactory sKey{
 };
 }
 
-EffectRack &EffectRack::Get( AudacityProject &project )
+EffectRack &EffectRack::Get( SaucedacityProject &project )
 {
    return project.AttachedWindows::Get< EffectRack >( sKey );
 }
@@ -718,7 +718,7 @@ EVT_MENU_RANGE(kFactoryPresetsID, kFactoryPresetsID + 999, EffectUIHost::OnFacto
 END_EVENT_TABLE()
 
 EffectUIHost::EffectUIHost(wxWindow *parent,
-                           AudacityProject &project,
+                           SaucedacityProject &project,
                            Effect *effect,
                            EffectUIClientInterface *client)
 :  wxDialogWrapper(parent, wxID_ANY, effect->GetName(),
@@ -752,7 +752,7 @@ EffectUIHost::EffectUIHost(wxWindow *parent,
 }
 
 EffectUIHost::EffectUIHost(wxWindow *parent,
-                           AudacityProject &project,
+                           SaucedacityProject &project,
                            AudacityCommand *command,
                            EffectUIClientInterface *client)
 :  wxDialogWrapper(parent, wxID_ANY, XO("Some Command") /*command->GetName()*/,
@@ -1646,7 +1646,7 @@ void EffectUIHost::OnImport(wxCommandEvent & WXUNUSED(evt))
 void EffectUIHost::OnExport(wxCommandEvent & WXUNUSED(evt))
 {
    // may throw
-   // exceptions are handled in AudacityApp::OnExceptionInMainLoop
+   // exceptions are handled in SaucedacityApp::OnExceptionInMainLoop
    mClient->ExportPresets();
    
    return;
@@ -1860,7 +1860,7 @@ wxDialog *EffectUI::DialogFactory( wxWindow &parent, EffectHostInterface *pHost,
 /* static */ bool EffectUI::DoEffect(
    const PluginID & ID, const CommandContext &context, unsigned flags )
 {
-   AudacityProject &project = context.project;
+   SaucedacityProject &project = context.project;
    const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
    auto &trackPanel = TrackPanel::Get( project );

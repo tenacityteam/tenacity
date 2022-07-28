@@ -130,7 +130,7 @@ class FLACImportPlugin final : public ImportPlugin
    wxString GetPluginStringID() override { return wxT("libflac"); }
    TranslatableString GetPluginFormatDescription() override;
    std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, AudacityProject*)  override;
+      const FilePath &Filename, SaucedacityProject*)  override;
 };
 
 
@@ -287,7 +287,7 @@ TranslatableString FLACImportPlugin::GetPluginFormatDescription()
 
 
 std::unique_ptr<ImportFileHandle> FLACImportPlugin::Open(
-   const FilePath &filename, AudacityProject*)
+   const FilePath &filename, SaucedacityProject*)
 {
    // First check if it really is a FLAC file
 

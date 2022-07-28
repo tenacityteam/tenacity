@@ -36,7 +36,7 @@
 #include "../widgets/AudacityMessageBox.h"
 
 SpectrumPrefs::SpectrumPrefs(wxWindow * parent, wxWindowID winid,
-   AudacityProject *pProject, WaveTrack *wt)
+   SaucedacityProject *pProject, WaveTrack *wt)
 :  PrefsPanel(parent, winid, wt ? XO("Spectrogram Settings") : XO("Spectrograms"))
 , mProject{ pProject }
 , mWt(wt)
@@ -594,7 +594,7 @@ END_EVENT_TABLE()
 PrefsPanel::Factory
 SpectrumPrefsFactory( WaveTrack *wt )
 {
-   return [=](wxWindow *parent, wxWindowID winid, AudacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, SaucedacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
       return safenew SpectrumPrefs(parent, winid, pProject, wt);

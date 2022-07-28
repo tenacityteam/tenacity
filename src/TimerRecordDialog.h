@@ -50,7 +50,7 @@ enum {
 #endif
 };
 
-class AudacityProject;
+class SaucedacityProject;
 
 class TimerRecordDialog final : public wxDialogWrapper
 {
@@ -58,7 +58,7 @@ public:
    using ProgressResult = GenericUI::ProgressResult;
 
    TimerRecordDialog(
-      wxWindow* parent, AudacityProject &project, bool bAlreadySaved);
+      wxWindow* parent, SaucedacityProject &project, bool bAlreadySaved);
    ~TimerRecordDialog();
 
    void OnTimer(wxTimerEvent& event);
@@ -105,7 +105,7 @@ private:
    ProgressResult PreActionDelay(int iActionIndex, TimerRecordCompletedActions eCompletedActions);
 
 private:
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    wxDateTime m_DateTime_Start;
    wxDateTime m_DateTime_End;

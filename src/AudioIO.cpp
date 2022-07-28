@@ -2149,7 +2149,7 @@ bool AudioIoCallback::StartPortMidiStream()
 }
 #endif
 
-bool AudioIO::IsAvailable(AudacityProject *project) const
+bool AudioIO::IsAvailable(SaucedacityProject *project) const
 {
    return mOwningProject == NULL || mOwningProject == project;
 }
@@ -3500,7 +3500,7 @@ double AudioIO::AILAGetLastDecisionTime() {
 }
 
 void AudioIO::AILAProcess(double maxPeak) {
-   AudacityProject *const proj = mOwningProject;
+   SaucedacityProject *const proj = mOwningProject;
    if (proj && mAILAActive) {
       if (mInputMeter && mInputMeter->IsClipping()) {
          mAILAClipped = true;

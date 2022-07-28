@@ -27,7 +27,7 @@ class ViewInfo;
 class WaveTrack;
 class wxMouseState;
 
-class AUDACITY_DLL_API SelectHandle : public UIHandle
+class SAUCEDACITY_DLL_API SelectHandle : public UIHandle
 {
    SelectHandle(const SelectHandle&);
 
@@ -41,7 +41,7 @@ public:
    // key state.
    static UIHandlePtr HitTest
       (std::weak_ptr<SelectHandle> &holder,
-       const TrackPanelMouseState &state, const AudacityProject *pProject,
+       const TrackPanelMouseState &state, const SaucedacityProject *pProject,
        const std::shared_ptr<TrackView> &pTrackView);
 
    SelectHandle &operator=(const SelectHandle&) = default;
@@ -50,29 +50,29 @@ public:
 
    bool IsClicked() const;
 
-   void SetUseSnap(bool use, AudacityProject *pProject);
-   void Enter(bool forward, AudacityProject *pProject) override;
+   void SetUseSnap(bool use, SaucedacityProject *pProject);
+   void Enter(bool forward, SaucedacityProject *pProject) override;
 
    bool HasSnap() const;
    bool HasEscape() const override;
 
-   bool Escape(AudacityProject *pProject) override;
+   bool Escape(SaucedacityProject *pProject) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, AudacityProject *pProject)
+      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(AudacityProject*) override;
+   Result Cancel(SaucedacityProject*) override;
 
    static UIHandle::Result NeedChangeHighlight
       (const SelectHandle &oldState,
@@ -81,11 +81,11 @@ public:
 private:
    std::weak_ptr<Track> FindTrack();
 
-   void Connect(AudacityProject *pProject);
+   void Connect(SaucedacityProject *pProject);
 
-   void StartSelection(AudacityProject *pProject);
+   void StartSelection(SaucedacityProject *pProject);
    void AdjustSelection
-      (AudacityProject *pProject,
+      (SaucedacityProject *pProject,
        ViewInfo &viewInfo, int mouseXCoordinate, int trackLeftEdge,
        Track *pTrack);
    void AssignSelection(ViewInfo &viewInfo, double selend, Track *pTrack);
@@ -105,7 +105,7 @@ private:
       (SpectrumAnalyst &analyst,
        const ViewInfo &viewInfo, const WaveTrack *pTrack);
    void MoveSnappingFreqSelection
-      (AudacityProject *pProject, ViewInfo &viewInfo, int mouseYCoordinate,
+      (SaucedacityProject *pProject, ViewInfo &viewInfo, int mouseYCoordinate,
        int trackTopEdge,
        int trackHeight, TrackView *pTrackView);
 public:

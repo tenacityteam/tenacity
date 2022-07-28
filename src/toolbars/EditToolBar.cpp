@@ -76,7 +76,7 @@ BEGIN_EVENT_TABLE( EditToolBar, ToolBar )
 END_EVENT_TABLE()
 
 //Standard constructor
-EditToolBar::EditToolBar( AudacityProject &project )
+EditToolBar::EditToolBar( SaucedacityProject &project )
 : ToolBar(project, EditBarID, XO("Edit"), wxT("Edit"))
 {
 }
@@ -255,7 +255,7 @@ static const struct Entry {
 
 void EditToolBar::ForAllButtons(int Action)
 {
-   AudacityProject *p;
+   SaucedacityProject *p;
    CommandManager* cm = nullptr;
 
    if( Action & ETBActEnableDisable ){
@@ -294,7 +294,7 @@ void EditToolBar::OnButton(wxCommandEvent &event)
    // Be sure the pop-up happens even if there are exceptions, except for buttons which toggle.
    auto cleanup = finally( [&] { mButtons[id]->InteractionOver();});
 
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
    auto &cm = CommandManager::Get( *p );
 
    auto flags = MenuManager::Get(*p).GetUpdateFlags();
@@ -314,7 +314,7 @@ void EditToolBar::OnButton(wxCommandEvent &event)
 }
 
 static RegisteredToolbarFactory factory{ EditBarID,
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       return ToolBar::Holder{ safenew EditToolBar{ project } }; }
 };
 

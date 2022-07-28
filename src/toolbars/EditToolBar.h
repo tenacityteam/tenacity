@@ -72,7 +72,7 @@ class EditToolBar final : public ToolBar {
 
  public:
 
-   EditToolBar( AudacityProject &project );
+   EditToolBar( SaucedacityProject &project );
    virtual ~EditToolBar();
 
    void Create(wxWindow *parent) override;

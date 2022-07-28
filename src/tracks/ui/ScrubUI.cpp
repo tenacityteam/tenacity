@@ -33,7 +33,7 @@ class ScrubbingOverlay final
 {
 public:
    explicit
-   ScrubbingOverlay(AudacityProject *project);
+   ScrubbingOverlay(SaucedacityProject *project);
 
 private:
    unsigned SequenceNumber() const override;
@@ -45,13 +45,13 @@ private:
    const Scrubber &GetScrubber() const;
    Scrubber &GetScrubber();
 
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
 
    wxRect mLastScrubRect, mNextScrubRect;
    wxString mLastScrubSpeedText, mNextScrubSpeedText;
 };
 
-ScrubbingOverlay::ScrubbingOverlay(AudacityProject *project)
+ScrubbingOverlay::ScrubbingOverlay(SaucedacityProject *project)
    : mProject(project)
    , mLastScrubRect()
    , mNextScrubRect()
@@ -202,8 +202,8 @@ Scrubber &ScrubbingOverlay::GetScrubber()
    return Scrubber::Get( *mProject );
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
-  []( AudacityProject &parent ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
+  []( SaucedacityProject &parent ){
      auto result = std::make_shared< ScrubbingOverlay >( &parent );
      TrackPanel::Get( parent ).AddOverlay( result );
      return result;
@@ -219,7 +219,7 @@ struct ScrubForwarder
     : public wxEvtHandler
     , public ClientData::Base
 {
-   ScrubForwarder( AudacityProject &project )
+   ScrubForwarder( SaucedacityProject &project )
       : mProject{ project }
    {
       mWindow = &ProjectWindow::Get( project );
@@ -235,7 +235,7 @@ struct ScrubForwarder
          mWindow->PopEventHandler();
    }
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
    wxWindowPtr<wxWindow> mWindow;
    wxWeakRef<AdornedRulerPanel> mRuler;
    std::weak_ptr<Scrubber> mScrubber;
@@ -291,8 +291,8 @@ BEGIN_EVENT_TABLE(ScrubForwarder, wxEvtHandler)
    EVT_MOUSE_EVENTS(ScrubForwarder::OnMouse)
 END_EVENT_TABLE()
 
-static const AudacityProject::AttachedObjects::RegisteredFactory sForwarderKey{
-   []( AudacityProject &parent ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory sForwarderKey{
+   []( SaucedacityProject &parent ){
       return std::make_shared< ScrubForwarder >( parent );
    }
 };

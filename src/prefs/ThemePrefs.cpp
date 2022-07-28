@@ -232,7 +232,7 @@ bool ThemePrefs::Commit()
 #ifdef EXPERIMENTAL_THEME_PREFS
 namespace{
 PrefsPanel::Registration sAttachment{ "Theme",
-   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
+   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew ThemePrefs(parent, winid);

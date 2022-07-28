@@ -30,7 +30,7 @@ public:
 
    std::vector<UIHandlePtr> HitTest(
       const TrackPanelMouseState &state,
-      const AudacityProject *) override;
+      const SaucedacityProject *) override;
 
 private:
 

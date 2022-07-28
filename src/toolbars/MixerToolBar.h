@@ -17,17 +17,17 @@ class wxSize;
 class wxPoint;
 
 class ASlider;
-class AudacityProject;
+class SaucedacityProject;
 
 class MixerToolBar final : public ToolBar {
 
  public:
 
-   MixerToolBar( AudacityProject &project );
+   MixerToolBar( SaucedacityProject &project );
    virtual ~MixerToolBar();
 
-   static MixerToolBar &Get( AudacityProject &project );
-   static const MixerToolBar &Get( const AudacityProject &project );
+   static MixerToolBar &Get( SaucedacityProject &project );
+   static const MixerToolBar &Get( const SaucedacityProject &project );
 
    void Create(wxWindow * parent) override;
 

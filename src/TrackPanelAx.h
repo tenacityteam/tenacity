@@ -29,12 +29,12 @@
 
 class wxRect;
 
-class AudacityProject;
+class SaucedacityProject;
 class Track;
 class TrackList;
 
 // An event sent to the project
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_TRACK_FOCUS_CHANGE, wxCommandEvent);
 
 class TrackPanelAx final
@@ -43,7 +43,7 @@ class TrackPanelAx final
 #endif
 {
 public:
-   TrackPanelAx(AudacityProject &project);
+   TrackPanelAx(SaucedacityProject &project);
    virtual ~ TrackPanelAx();
 
    using RectangleFinder = std::function< wxRect( Track& ) >;
@@ -140,7 +140,7 @@ private:
    int TrackNum( const std::shared_ptr<Track> &track );
    std::shared_ptr<Track> FindTrack( int num );
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
 #if !wxUSE_ACCESSIBILITY
    wxWindow *mWindow{};
@@ -156,14 +156,14 @@ private:
    int mMessageCount;
 };
 
-class AUDACITY_DLL_API TrackFocus final
+class SAUCEDACITY_DLL_API TrackFocus final
    : public ClientData::Base
 {
 public:
-   static TrackFocus &Get( AudacityProject &project );
-   static const TrackFocus &Get( const AudacityProject &project );
+   static TrackFocus &Get( SaucedacityProject &project );
+   static const TrackFocus &Get( const SaucedacityProject &project );
 
-   explicit TrackFocus( AudacityProject &project );
+   explicit TrackFocus( SaucedacityProject &project );
    ~TrackFocus() override;
 
    TrackFocus( const TrackFocus & ) PROHIBITED;
@@ -192,7 +192,7 @@ public:
 
 private:
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
 #if wxUSE_ACCESSIBILITY
    TrackPanelAx *mAx{};

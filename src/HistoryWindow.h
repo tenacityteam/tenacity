@@ -19,7 +19,7 @@ class wxListCtrl;
 class wxListEvent;
 class wxSpinCtrl;
 class wxTextCtrl;
-class AudacityProject;
+class SaucedacityProject;
 class ShuttleGui;
 class UndoManager;
 
@@ -28,7 +28,7 @@ class HistoryDialog final : public wxDialogWrapper,
 {
 
  public:
-   HistoryDialog(AudacityProject * parent, UndoManager *manager);
+   HistoryDialog(SaucedacityProject * parent, UndoManager *manager);
 
    void UpdateDisplay(wxEvent &e);
    
@@ -54,7 +54,7 @@ class HistoryDialog final : public wxDialogWrapper,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   AudacityProject   *mProject;
+   SaucedacityProject   *mProject;
    UndoManager       *mManager;
    wxListCtrl        *mList;
    wxTextCtrl        *mTotal;

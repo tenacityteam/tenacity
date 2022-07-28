@@ -60,7 +60,7 @@ END_EVENT_TABLE()
 
 IMPLEMENT_CLASS(SplashDialog, wxDialogWrapper)
 
-void SplashDialog::DoHelpWelcome( AudacityProject &project )
+void SplashDialog::DoHelpWelcome( SaucedacityProject &project )
 {
    Show2( &GetProjectFrame( project ) );
 }

@@ -18,7 +18,7 @@ Paul Licameli
 #include "ClientData.h" // to inherit
 #include "Prefs.h"
 
-class AudacityProject;
+class SaucedacityProject;
 class wxWindow;
 
 enum StatusBarField : int {
@@ -31,18 +31,18 @@ enum StatusBarField : int {
 
 // Type of event emitted by the project when its status message is set
 // GetInt() identifies the intended field of the status bar
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_PROJECT_STATUS_UPDATE, wxCommandEvent);
 
-class AUDACITY_DLL_API ProjectStatus final
+class SAUCEDACITY_DLL_API ProjectStatus final
    : public ClientData::Base
    , public PrefsListener
 {
 public:
-   static ProjectStatus &Get( AudacityProject &project );
-   static const ProjectStatus &Get( const AudacityProject &project );
+   static ProjectStatus &Get( SaucedacityProject &project );
+   static const ProjectStatus &Get( const SaucedacityProject &project );
 
-   explicit ProjectStatus( AudacityProject &project );
+   explicit ProjectStatus( SaucedacityProject &project );
    ProjectStatus( const ProjectStatus & ) = delete;
    ProjectStatus &operator= ( const ProjectStatus & ) = delete;
    ~ProjectStatus() override;
@@ -52,12 +52,12 @@ public:
    // be wide enough to contain any of those strings plus the margin.
    using StatusWidthResult = std::pair< std::vector<TranslatableString>, unsigned >;
    using StatusWidthFunction = std::function<
-      StatusWidthResult( const AudacityProject &, StatusBarField )
+      StatusWidthResult( const SaucedacityProject &, StatusBarField )
    >;
    using StatusWidthFunctions = std::vector< StatusWidthFunction >;
 
    // Typically a static instance of this struct is used.
-   struct AUDACITY_DLL_API RegisteredStatusWidthFunction
+   struct SAUCEDACITY_DLL_API RegisteredStatusWidthFunction
    {
       explicit
       RegisteredStatusWidthFunction( const StatusWidthFunction &function );
@@ -73,6 +73,6 @@ public:
    void UpdatePrefs() override;
 
 private:
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
    TranslatableString mLastStatusMessages[ nStatusBarFields ];
 };

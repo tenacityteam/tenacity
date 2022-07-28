@@ -33,7 +33,7 @@
 namespace {
 
 void ShowDiagnostics(
-   AudacityProject &project, const wxString &info,
+   SaucedacityProject &project, const wxString &info,
    const TranslatableString &description, const wxString &defaultPath,
    bool fixedWidth = false)
 {
@@ -99,7 +99,7 @@ class QuickFixDialog : public wxDialogWrapper
 public:
    using PrefSetter = std::function< void() > ;
 
-   QuickFixDialog(wxWindow * pParent, AudacityProject &project);
+   QuickFixDialog(wxWindow * pParent, SaucedacityProject &project);
    void Populate();
    void PopulateOrExchange(ShuttleGui & S);
    void AddStuck( ShuttleGui & S, bool & bBool,
@@ -111,7 +111,7 @@ public:
    void OnHelp(const ManualPageID &Str);
    void OnFix(const PrefSetter &setter, wxWindowID id);
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    int mItem;
    bool mbSyncLocked;
@@ -129,7 +129,7 @@ BEGIN_EVENT_TABLE(QuickFixDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_CANCEL,                                        QuickFixDialog::OnCancel)
 END_EVENT_TABLE();
 
-QuickFixDialog::QuickFixDialog(wxWindow * pParent, AudacityProject &project) :
+QuickFixDialog::QuickFixDialog(wxWindow * pParent, SaucedacityProject &project) :
       wxDialogWrapper(pParent, wxID_ANY, XO("Do you have these problems?"),
             wxDefaultPosition, wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE )
@@ -207,7 +207,7 @@ void QuickFixDialog::PopulateOrExchange(ShuttleGui & S)
          mItem = -1;
 
          auto defaultAction =
-         [](AudacityProject *pProject, const wxString &path){ return
+         [](SaucedacityProject *pProject, const wxString &path){ return
             [pProject, path]{
                gPrefs->Write(path, 0);
                gPrefs->Flush();
@@ -462,9 +462,9 @@ void OnHelpWelcome(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static HelpActions::Handler instance;
    return instance;
 };

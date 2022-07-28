@@ -66,7 +66,7 @@ using Regions = std::vector < Region >;
 
 class Envelope;
 
-class AUDACITY_DLL_API WaveTrack final : public PlayableTrack {
+class SAUCEDACITY_DLL_API WaveTrack final : public PlayableTrack {
 public:
 
    //
@@ -565,7 +565,7 @@ private:
       std::shared_ptr<WaveClip> pClip;
    };
 
-   Track::Holder PasteInto( AudacityProject & ) const override;
+   Track::Holder PasteInto( SaucedacityProject & ) const override;
 
    ConstIntervals GetIntervals() const override;
    Intervals GetIntervals() override;
@@ -623,7 +623,7 @@ private:
 //! A short-lived object, during whose lifetime, the contents of the WaveTrack are assumed not to change.
 /*! It can replace repeated calls to WaveTrack::Get() (each of which opens and closes at least one block).
  */
-class AUDACITY_DLL_API WaveTrackCache {
+class SAUCEDACITY_DLL_API WaveTrackCache {
 public:
    WaveTrackCache()
       : mBufferSize(0)
@@ -696,14 +696,14 @@ void VisitBlocks(TrackList &tracks, BlockVisitor visitor,
 void InspectBlocks(const TrackList &tracks, BlockInspector inspector,
    SampleBlockIDSet *pIDs = nullptr);
 
-class AUDACITY_DLL_API WaveTrackFactory final
+class SAUCEDACITY_DLL_API WaveTrackFactory final
    : public ClientData::Base
 {
  public:
-   static WaveTrackFactory &Get( AudacityProject &project );
-   static const WaveTrackFactory &Get( const AudacityProject &project );
-   static WaveTrackFactory &Reset( AudacityProject &project );
-   static void Destroy( AudacityProject &project );
+   static WaveTrackFactory &Get( SaucedacityProject &project );
+   static const WaveTrackFactory &Get( const SaucedacityProject &project );
+   static WaveTrackFactory &Reset( SaucedacityProject &project );
+   static void Destroy( SaucedacityProject &project );
 
    WaveTrackFactory( const ProjectSettings &settings,
       const SampleBlockFactoryPtr &pFactory)

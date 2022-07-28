@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectSettings.cpp
 
-Paul Licameli split from AudacityProject.cpp
+Paul Licameli split from SaucedacityProject.cpp
 
 **********************************************************************/
 
@@ -21,7 +21,7 @@ Paul Licameli split from AudacityProject.cpp
 wxDEFINE_EVENT(EVT_PROJECT_SETTINGS_CHANGE, wxCommandEvent);
 
 namespace {
-   void Notify( AudacityProject &project, ProjectSettings::EventCode code )
+   void Notify( SaucedacityProject &project, ProjectSettings::EventCode code )
    {
       wxCommandEvent e{ EVT_PROJECT_SETTINGS_CHANGE };
       e.SetInt( static_cast<int>( code ) );
@@ -29,26 +29,26 @@ namespace {
    }
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory
+static const SaucedacityProject::AttachedObjects::RegisteredFactory
 sProjectSettingsKey{
-  []( AudacityProject &project ){
+  []( SaucedacityProject &project ){
      auto result = std::make_shared< ProjectSettings >( project );
      return result;
    }
 };
 
-ProjectSettings &ProjectSettings::Get( AudacityProject &project )
+ProjectSettings &ProjectSettings::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectSettings >(
       sProjectSettingsKey );
 }
 
-const ProjectSettings &ProjectSettings::Get( const AudacityProject &project )
+const ProjectSettings &ProjectSettings::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-ProjectSettings::ProjectSettings(AudacityProject &project)
+ProjectSettings::ProjectSettings(SaucedacityProject &project)
    : mProject{ project }
    , mSelectionFormat{ NumericTextCtrl::LookupFormat(
       NumericConverter::TIME,

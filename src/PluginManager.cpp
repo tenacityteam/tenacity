@@ -30,7 +30,7 @@ for shared and private configs - which need to move out.
 
 #include "ModuleInterface.h"
 
-#include "AudacityFileConfig.h"
+#include "SaucedacityFileConfig.h"
 #include "Internat.h" // for macro XO
 #include "FileNames.h"
 #include "MemoryX.h"
@@ -865,7 +865,7 @@ bool PluginManager::DropFile(const wxString &fileName)
 void PluginManager::Load()
 {
    // Create/Open the registry
-   auto pRegistry = AudacityFileConfig::Create(
+   auto pRegistry = SaucedacityFileConfig::Create(
       {}, {}, FileNames::PluginRegistry());
    auto &registry = *pRegistry;
 
@@ -1210,7 +1210,7 @@ void PluginManager::LoadGroup(FileConfig *pRegistry, PluginType type)
 void PluginManager::Save()
 {
    // Create/Open the registry
-   auto pRegistry = AudacityFileConfig::Create(
+   auto pRegistry = SaucedacityFileConfig::Create(
       {}, {}, FileNames::PluginRegistry());
    auto &registry = *pRegistry;
 
@@ -1633,7 +1633,7 @@ FileConfig *PluginManager::GetSettings()
    if (!mSettings)
    {
       mSettings =
-         AudacityFileConfig::Create({}, {}, FileNames::PluginSettings());
+         SaucedacityFileConfig::Create({}, {}, FileNames::PluginSettings());
 
       // Check for a settings version that we can understand
       if (mSettings->HasEntry(SETVERKEY))

@@ -183,9 +183,9 @@ namespace {
 // track Y coordinates
 struct TrackPositioner final : ClientData::Base, wxEvtHandler
 {
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
-   explicit TrackPositioner( AudacityProject &project )
+   explicit TrackPositioner( SaucedacityProject &project )
       : mProject{ project }
    {
       TrackList::Get( project ).Bind(
@@ -221,8 +221,8 @@ struct TrackPositioner final : ClientData::Base, wxEvtHandler
    }
 };
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-  []( AudacityProject &project ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+  []( SaucedacityProject &project ){
      return std::make_shared< TrackPositioner >( project );
    }
 };

@@ -33,7 +33,7 @@ public:
    TrackPanelResizerCell( const std::shared_ptr<Track> &pTrack );
 
    std::vector<UIHandlePtr> HitTest
-      (const TrackPanelMouseState &, const AudacityProject *) override;
+      (const TrackPanelMouseState &, const SaucedacityProject *) override;
 
 protected:
    std::shared_ptr<Track> DoFindTrack() override;

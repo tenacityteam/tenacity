@@ -27,7 +27,7 @@ class wxFileCtrlEvent;
 class wxMemoryDC;
 class wxSimplebook;
 class wxStaticText;
-class AudacityProject;
+class SaucedacityProject;
 class WaveTrack;
 class Tags;
 class TrackList;
@@ -39,7 +39,7 @@ using WaveTrackConstArray = std::vector < std::shared_ptr < const WaveTrack > >;
 namespace GenericUI{ enum class ProgressResult : unsigned; }
 class wxFileNameWrapper;
 
-class AUDACITY_DLL_API FormatInfo
+class SAUCEDACITY_DLL_API FormatInfo
 {
    public:
       FormatInfo() {}
@@ -61,7 +61,7 @@ class AUDACITY_DLL_API FormatInfo
 //----------------------------------------------------------------------------
 // ExportPlugin
 //----------------------------------------------------------------------------
-class AUDACITY_DLL_API ExportPlugin /* not final */
+class SAUCEDACITY_DLL_API ExportPlugin /* not final */
 {
 public:
    using ProgressResult = GenericUI::ProgressResult;
@@ -123,7 +123,7 @@ public:
     * responsible for alerting the user.  Otherwise ProgressResult::Success or
     * ProgressResult::Stopped
     */
-   virtual ProgressResult Export(AudacityProject *project,
+   virtual ProgressResult Export(SaucedacityProject *project,
                        std::unique_ptr<ProgressDialog> &pDialog,
                        unsigned channels,
                        const wxFileNameWrapper &fName,
@@ -159,10 +159,10 @@ using ExportPluginArray = std::vector < std::unique_ptr< ExportPlugin > > ;
 //----------------------------------------------------------------------------
 
 // For a file suffix change from the options.
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
    AUDACITY_FILE_SUFFIX_EVENT, wxCommandEvent);
 
-class  AUDACITY_DLL_API Exporter final : public wxEvtHandler
+class  SAUCEDACITY_DLL_API Exporter final : public wxEvtHandler
 {
 public:
 
@@ -174,18 +174,18 @@ public:
    // Register factories, not plugin objects themselves, which allows them
    // to have some fresh state variables each time export begins again
    // and to compute translated strings for the current locale
-   struct AUDACITY_DLL_API RegisteredExportPlugin{
+   struct SAUCEDACITY_DLL_API RegisteredExportPlugin{
       RegisteredExportPlugin(
          const Identifier &id, // an internal string naming the plug-in
          const ExportPluginFactory&,
          const Registry::Placement &placement = { wxEmptyString, {} } );
    };
 
-   static bool DoEditMetadata(AudacityProject &project,
+   static bool DoEditMetadata(SaucedacityProject &project,
       const TranslatableString &title,
       const TranslatableString &shortUndoDescription, bool force);
 
-   Exporter( AudacityProject &project );
+   Exporter( SaucedacityProject &project );
    virtual ~Exporter();
 
    void SetFileDialogTitle( const TranslatableString & DialogTitle );
@@ -233,7 +233,7 @@ private:
    FileExtension mFormatName;
    FileDialogWrapper *mDialog;
    TranslatableString mFileDialogTitle;
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
    std::unique_ptr<MixerSpec> mMixerSpec;
 
    ExportPluginArray mPlugins;
@@ -324,17 +324,17 @@ private:
    DECLARE_EVENT_TABLE()
 };
 
-AUDACITY_DLL_API TranslatableString AudacityExportCaptionStr();
-AUDACITY_DLL_API TranslatableString AudacityExportMessageStr();
+SAUCEDACITY_DLL_API TranslatableString AudacityExportCaptionStr();
+SAUCEDACITY_DLL_API TranslatableString AudacityExportMessageStr();
 
 /// We have many Export errors that are essentially anonymous
 /// and are distinguished only by an error code number.
 /// Rather than repeat the code, we have it just once.
-AUDACITY_DLL_API void ShowExportErrorDialog(wxString ErrorCode,
+SAUCEDACITY_DLL_API void ShowExportErrorDialog(wxString ErrorCode,
    TranslatableString message = AudacityExportMessageStr(),
    const TranslatableString& caption = AudacityExportCaptionStr());
 
-AUDACITY_DLL_API
+SAUCEDACITY_DLL_API
 void ShowDiskFullExportErrorDialog(const wxFileNameWrapper &fileName);
 
 #endif

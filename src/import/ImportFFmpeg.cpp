@@ -177,7 +177,7 @@ public:
 
    ///! Probes the file and opens it if appropriate
    std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, AudacityProject*) override;
+      const FilePath &Filename, SaucedacityProject*) override;
 };
 
 struct StreamContext final
@@ -285,7 +285,7 @@ TranslatableString FFmpegImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> FFmpegImportPlugin::Open(
-   const FilePath &filename, AudacityProject*)
+   const FilePath &filename, SaucedacityProject*)
 {
    auto ffmpeg = FFmpegFunctions::Load();
 

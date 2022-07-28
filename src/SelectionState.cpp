@@ -13,18 +13,18 @@
 #include "Track.h"
 #include "Project.h"
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-  [](AudacityProject &){ return std::make_shared< SelectionState >(); }
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+  [](SaucedacityProject &){ return std::make_shared< SelectionState >(); }
 };
 
-SelectionState &SelectionState::Get( AudacityProject &project )
+SelectionState &SelectionState::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< SelectionState >( key );
 }
 
-const SelectionState &SelectionState::Get( const AudacityProject &project )
+const SelectionState &SelectionState::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
 // Set selection length to the length of a track -- but if sync-lock is turned

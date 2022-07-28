@@ -16,22 +16,22 @@
 #include "Prefs.h"
 #include "ViewInfo.h" // for PlayRegion
 
-class AudacityProject;
+class SaucedacityProject;
 struct SelectedRegionEvent;
 class SnapManager;
 class TrackList;
 
 // This is an Audacity Specific ruler panel.
-class AUDACITY_DLL_API AdornedRulerPanel final
+class SAUCEDACITY_DLL_API AdornedRulerPanel final
 : public CellularPanel
 , private PrefsListener
 {
 public:
-   static AdornedRulerPanel &Get( AudacityProject &project );
-   static const AdornedRulerPanel &Get( const AudacityProject &project );
-   static void Destroy( AudacityProject &project );
+   static AdornedRulerPanel &Get( SaucedacityProject &project );
+   static const AdornedRulerPanel &Get( const SaucedacityProject &project );
+   static void Destroy( SaucedacityProject &project );
 
-   AdornedRulerPanel(AudacityProject *project,
+   AdornedRulerPanel(SaucedacityProject *project,
                      wxWindow* parent,
                      wxWindowID id,
                      const wxPoint& pos = wxDefaultPosition,
@@ -127,7 +127,7 @@ private:
 private:
 
    Ruler mRuler;
-   AudacityProject *const mProject;
+   SaucedacityProject *const mProject;
    TrackList *mTracks;
 
    wxRect mOuter;
@@ -193,7 +193,7 @@ private:
    // area into cells
    std::shared_ptr<TrackPanelNode> Root() override;
 public:
-   AudacityProject * GetProject() const override;
+   SaucedacityProject * GetProject() const override;
 private:
    TrackPanelCell *GetFocusedCell() override;
    void SetFocusedCell() override;

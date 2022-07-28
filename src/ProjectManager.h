@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectManager.h
 
-Paul Licameli split from AudacityProject.h
+Paul Licameli split from SaucedacityProject.h
 
 **********************************************************************/
 
@@ -20,34 +20,34 @@ Paul Licameli split from AudacityProject.h
 class wxTimer;
 class wxTimerEvent;
 
-class AudacityProject;
+class SaucedacityProject;
 struct AudioIOStartStreamOptions;
 
 ///\brief Object associated with a project for high-level management of the
 /// project's lifetime, including creation, destruction, opening from file,
 /// importing, pushing undo states, and reverting to saved states
-class AUDACITY_DLL_API ProjectManager final
+class SAUCEDACITY_DLL_API ProjectManager final
    : public wxEvtHandler
    , public ClientData::Base
 {
 public:
-   static ProjectManager &Get( AudacityProject &project );
-   static const ProjectManager &Get( const AudacityProject &project );
+   static ProjectManager &Get( SaucedacityProject &project );
+   static const ProjectManager &Get( const SaucedacityProject &project );
 
-   explicit ProjectManager( AudacityProject &project );
+   explicit ProjectManager( SaucedacityProject &project );
    ProjectManager( const ProjectManager & ) PROHIBITED;
    ProjectManager &operator=( const ProjectManager & ) PROHIBITED;
    ~ProjectManager() override;
 
    // This is the factory for projects:
-   static AudacityProject *New();
+   static SaucedacityProject *New();
 
    // The function that imports files can act as a factory too, and for that
    // reason remains in this class, not in ProjectFileManager
-   static void OpenFiles(AudacityProject *proj);
+   static void OpenFiles(SaucedacityProject *proj);
 
    //! False when it is unsafe to overwrite proj with contents of an .aup3 file
-   static bool SafeToOpenProjectInto(AudacityProject &proj);
+   static bool SafeToOpenProjectInto(SaucedacityProject &proj);
 
    //! Callable object that supplies the `chooser` argument of ProjectFileManager::OpenFile
    /*!
@@ -65,7 +65,7 @@ public:
        @param reuseNonemptyProject if true, may reuse the given project when nonempty,
        but only if importing (not for a project file)
        */
-      ProjectChooser( AudacityProject *pProject, bool reuseNonemptyProject )
+      ProjectChooser( SaucedacityProject *pProject, bool reuseNonemptyProject )
          : mpGivenProject{ pProject }
          , mReuseNonemptyProject{ reuseNonemptyProject }
       {}
@@ -74,17 +74,17 @@ public:
       //! Destroy any fresh project, or rollback the existing project, unless committed
       ~ProjectChooser();
       //! May create a fresh project
-      AudacityProject &operator() ( bool openingProjectFile );
+      SaucedacityProject &operator() ( bool openingProjectFile );
       //! Commit the creation of any fresh project or changes to the existing project
       void Commit();
 
    private:
-      AudacityProject *mpGivenProject;
-      AudacityProject *mpUsedProject = nullptr;
+      SaucedacityProject *mpGivenProject;
+      SaucedacityProject *mpUsedProject = nullptr;
       bool mReuseNonemptyProject;
    };
 
-   //! Open a file into an AudacityProject, returning the project, or nullptr for failure
+   //! Open a file into an SaucedacityProject, returning the project, or nullptr for failure
    /*!
     If an exception escapes this function, no projects are created.
     @param pGivenProject if not null, a project that may be reused
@@ -93,8 +93,8 @@ public:
     @param reuseNonemptyProject if true, may reuse the given project when nonempty,
        but only if importing (not for a project file)
     */
-   static AudacityProject *OpenProject(
-      AudacityProject *pGivenProject,
+   static SaucedacityProject *OpenProject(
+      SaucedacityProject *pGivenProject,
       const FilePath &fileNameArg, bool addtohistory, bool reuseNonemptyProject);
 
    void ResetProjectToEmpty();
@@ -119,7 +119,7 @@ private:
    void RestartTimer();
 
    // non-static data members
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    std::unique_ptr<wxTimer> mTimer;
 

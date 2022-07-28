@@ -24,7 +24,7 @@ class wxKeyEvent;
 
 class AButton;
 class ASlider;
-class AudacityProject;
+class SaucedacityProject;
 class BoundedEnvelope;
 class sampleCount;
 class WaveTrack;
@@ -62,11 +62,11 @@ class TranscriptionToolBar final : public ToolBar {
 
  public:
 
-   TranscriptionToolBar( AudacityProject &project );
+   TranscriptionToolBar( SaucedacityProject &project );
    virtual ~TranscriptionToolBar();
 
-   static TranscriptionToolBar &Get( AudacityProject &project );
-   static const TranscriptionToolBar &Get( const AudacityProject &project );
+   static TranscriptionToolBar &Get( SaucedacityProject &project );
+   static const TranscriptionToolBar &Get( const SaucedacityProject &project );
 
    void Create(wxWindow *parent) override;
 

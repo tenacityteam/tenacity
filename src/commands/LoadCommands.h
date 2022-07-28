@@ -27,7 +27,7 @@ class AudacityCommand;
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class AUDACITY_DLL_API BuiltinCommandsModule final : public ModuleInterface
+class SAUCEDACITY_DLL_API BuiltinCommandsModule final : public ModuleInterface
 {
 public:
    BuiltinCommandsModule();

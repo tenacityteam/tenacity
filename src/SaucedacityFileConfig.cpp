@@ -2,14 +2,14 @@
 
 Audacity: A Digital Audio Editor
 
-AudacityFileConfig.cpp
+SaucedacityFileConfig.cpp
 
 Paul Licameli split from Prefs.cpp
 
 **********************************************************************/
 
 
-#include "AudacityFileConfig.h"
+#include "SaucedacityFileConfig.h"
 
 #include "widgets/HelpSystem.h"
 #include "widgets/wxPanelWrapper.h"
@@ -20,7 +20,7 @@ Paul Licameli split from Prefs.cpp
 #include <wx/bmpbuttn.h>
 #include <wx/sizer.h>
 
-AudacityFileConfig::AudacityFileConfig(
+SaucedacityFileConfig::SaucedacityFileConfig(
    const wxString& appName,
    const wxString& vendorName,
    const wxString& localFilename,
@@ -31,9 +31,9 @@ AudacityFileConfig::AudacityFileConfig(
 : FileConfig{ appName, vendorName, localFilename, globalFilename, style, conv }
 {}
 
-AudacityFileConfig::~AudacityFileConfig() = default;
+SaucedacityFileConfig::~SaucedacityFileConfig() = default;
 
-std::unique_ptr<AudacityFileConfig> AudacityFileConfig::Create(
+std::unique_ptr<SaucedacityFileConfig> SaucedacityFileConfig::Create(
    const wxString& appName,
    const wxString& vendorName,
    const wxString& localFilename,
@@ -43,14 +43,14 @@ std::unique_ptr<AudacityFileConfig> AudacityFileConfig::Create(
 )
 {
    // Private ctor means make_unique can't compile, so this verbosity:
-   auto result = std::unique_ptr<AudacityFileConfig>{
-      safenew AudacityFileConfig{
+   auto result = std::unique_ptr<SaucedacityFileConfig>{
+      safenew SaucedacityFileConfig{
          appName, vendorName, localFilename, globalFilename, style, conv } };
    result->Init();
    return result;
 }
 
-void AudacityFileConfig::Warn()
+void SaucedacityFileConfig::Warn()
 {
    wxDialogWrapper dlg(nullptr, wxID_ANY, XO("Saucedacity Configuration Error"));
 

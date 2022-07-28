@@ -58,7 +58,7 @@ wxDEFINE_EVENT(EVT_LABELTRACK_SELECTION, LabelTrackEvent);
 
 static ProjectFileIORegistry::Entry registerFactory{
    wxT( "labeltrack" ),
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       auto &tracks = TrackList::Get( project );
       auto result = tracks.Add(std::make_shared<LabelTrack>());
       TrackView::Get( *result );
@@ -86,7 +86,7 @@ LabelTrack::LabelTrack(const LabelTrack &orig) :
    }
 }
 
-Track::Holder LabelTrack::PasteInto( AudacityProject & ) const
+Track::Holder LabelTrack::PasteInto( SaucedacityProject & ) const
 {
    auto pNewTrack = std::make_shared<LabelTrack>();
    pNewTrack->Paste(0.0, this);

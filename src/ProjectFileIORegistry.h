@@ -13,7 +13,7 @@
 
 #include <functional>
 
-class AudacityProject;
+class SaucedacityProject;
 class XMLTagHandler;
 class wxString;
 
@@ -21,10 +21,10 @@ namespace ProjectFileIORegistry {
 
 // Type of functions returning objects that interpret a part of the saved XML
 using TagHandlerFactory =
-   std::function< XMLTagHandler *( AudacityProject & ) >;
+   std::function< XMLTagHandler *( SaucedacityProject & ) >;
 
 // Typically statically constructed
-struct AUDACITY_DLL_API Entry{
+struct SAUCEDACITY_DLL_API Entry{
    Entry( const wxString &tag, const TagHandlerFactory &factory );
 };
 

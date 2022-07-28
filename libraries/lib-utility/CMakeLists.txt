@@ -21,6 +21,6 @@ set( SOURCES
    ModuleConstants.cpp
    ModuleConstants.h
 )
-audacity_library( lib-utility "${SOURCES}" ""
+saucedacity_library( lib-utility "${SOURCES}" ""
    "" ""
 )

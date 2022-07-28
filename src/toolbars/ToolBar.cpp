@@ -326,7 +326,7 @@ END_EVENT_TABLE()
 //
 // Constructor
 //
-ToolBar::ToolBar( AudacityProject &project,
+ToolBar::ToolBar( SaucedacityProject &project,
                   int type,
                   const TranslatableString &label,
                   const wxString &section,
@@ -894,7 +894,7 @@ void ToolBar::MakeAlternateImages(AButton &button, int idx,
 }
 
 void ToolBar::SetButtonToolTip
-(AudacityProject &theProject,
+(SaucedacityProject &theProject,
  AButton &button, const ComponentInterfaceSymbol commands[], size_t nCommands)
 {
    TranslatableString result;

@@ -24,23 +24,23 @@ class wxFrame;
 class wxWindow;
 namespace GenericUI { class WindowPlacement; }
 
-class AudacityProject;
+class SaucedacityProject;
 
-AUDACITY_DLL_API AudacityProject *GetActiveProject();
+SAUCEDACITY_DLL_API SaucedacityProject *GetActiveProject();
 // For use by ProjectManager only:
-AUDACITY_DLL_API void SetActiveProject(AudacityProject * project);
+SAUCEDACITY_DLL_API void SetActiveProject(SaucedacityProject * project);
 
 /// \brief an object of class AllProjects acts like a standard library
 /// container, but refers to a global array of open projects.  So you can
 /// iterate easily over shared pointers to them with range-for :
 /// for (auto pProject : AllProjects{}) { ... }
 /// The pointers are never null.
-class AUDACITY_DLL_API AllProjects
+class SAUCEDACITY_DLL_API AllProjects
 {
    // Use shared_ptr to projects, because elsewhere we need weak_ptr
-   using AProjectHolder = std::shared_ptr< AudacityProject >;
+   using AProjectHolder = std::shared_ptr< SaucedacityProject >;
    using Container = std::vector< AProjectHolder >;
-   static Container gAudacityProjects;
+   static Container gSaucedacityProjects;
 
 public:
    AllProjects() = default;
@@ -60,7 +60,7 @@ public:
 
    // If the project is present, remove it from the global array and return
    // a shared pointer, else return null.  This invalidates any iterators.
-   value_type Remove( AudacityProject &project );
+   value_type Remove( SaucedacityProject &project );
 
    // This invalidates iterators
    void Add( const value_type &pProject );
@@ -83,20 +83,20 @@ private:
 // Container of various objects associated with the project, which is
 // responsible for destroying them
 using AttachedProjectObjects = ClientData::Site<
-   AudacityProject, ClientData::Base, ClientData::SkipCopying, std::shared_ptr
+   SaucedacityProject, ClientData::Base, ClientData::SkipCopying, std::shared_ptr
 >;
 // Container of pointers to various windows associated with the project, which
 // is not responsible for destroying them -- wxWidgets handles that instead
 using AttachedProjectWindows = ClientData::Site<
-   AudacityProject, wxWindow, ClientData::SkipCopying, ClientData::BarePtr
+   SaucedacityProject, wxWindow, ClientData::SkipCopying, ClientData::BarePtr
 >;
 
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_TRACK_PANEL_TIMER, wxCommandEvent);
 
 // This event is emitted by the application object when there is a change
 // in the activated project
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_PROJECT_ACTIVATION, wxCommandEvent);
 
 ///\brief The top-level handle to an Audacity project.  It serves as a source
@@ -105,18 +105,18 @@ wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
 /// message and a few other things.
 /// There is very little in this class, most of the intelligence residing in
 /// the cooperating attached objects.
-class AUDACITY_DLL_API AudacityProject final
+class SAUCEDACITY_DLL_API SaucedacityProject final
    : public wxEvtHandler
    , public AttachedProjectObjects
    , public AttachedProjectWindows
-   , public std::enable_shared_from_this<AudacityProject>
+   , public std::enable_shared_from_this<SaucedacityProject>
 {
  public:
    using AttachedObjects = ::AttachedProjectObjects;
    using AttachedWindows = ::AttachedProjectWindows;
 
-   AudacityProject();
-   virtual ~AudacityProject();
+   SaucedacityProject();
+   virtual ~SaucedacityProject();
 
    wxFrame *GetFrame() { return mFrame; }
    const wxFrame *GetFrame() const { return mFrame; }
@@ -165,27 +165,27 @@ private:
 
 ///\brief Get the top-level window associated with the project (as a wxFrame
 /// only, when you do not need to use the subclass ProjectWindow)
-AUDACITY_DLL_API wxFrame &GetProjectFrame( AudacityProject &project );
-AUDACITY_DLL_API const wxFrame &GetProjectFrame( const AudacityProject &project );
+SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( SaucedacityProject &project );
+SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const SaucedacityProject &project );
 
 ///\brief Get a pointer to the window associated with a project, or null if
 /// the given pointer is null.
-inline wxFrame *FindProjectFrame( AudacityProject *project ) {
+inline wxFrame *FindProjectFrame( SaucedacityProject *project ) {
    return project ? &GetProjectFrame( *project ) : nullptr;
 }
-inline const wxFrame *FindProjectFrame( const AudacityProject *project ) {
+inline const wxFrame *FindProjectFrame( const SaucedacityProject *project ) {
    return project ? &GetProjectFrame( *project ) : nullptr;
 }
 
 //! Make a WindowPlacement object suitable for `project` (which may be null)
 /*! @post return value is not null */
-AUDACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
-ProjectFramePlacement( AudacityProject *project );
+SAUCEDACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
+ProjectFramePlacement( SaucedacityProject *project );
 
 ///\brief Get the main sub-window of the project frame that displays track data
 // (as a wxWindow only, when you do not need to use the subclass TrackPanel)
-AUDACITY_DLL_API wxWindow &GetProjectPanel( AudacityProject &project );
-AUDACITY_DLL_API const wxWindow &GetProjectPanel(
-   const AudacityProject &project );
+SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( SaucedacityProject &project );
+SAUCEDACITY_DLL_API const wxWindow &GetProjectPanel(
+   const SaucedacityProject &project );
 
 #endif

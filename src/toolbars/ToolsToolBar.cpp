@@ -72,7 +72,7 @@ BEGIN_EVENT_TABLE(ToolsToolBar, ToolBar)
 END_EVENT_TABLE()
 
 //Standard constructor
-ToolsToolBar::ToolsToolBar( AudacityProject &project )
+ToolsToolBar::ToolsToolBar( SaucedacityProject &project )
 : ToolBar(project, ToolsBarID, XO("Tools"), wxT("Tools"))
 {
    using namespace ToolCodes;
@@ -99,15 +99,15 @@ ToolsToolBar::~ToolsToolBar()
       "mismatch in number of tools" );
 }
 
-ToolsToolBar &ToolsToolBar::Get( AudacityProject &project )
+ToolsToolBar &ToolsToolBar::Get( SaucedacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<ToolsToolBar*>( toolManager.GetToolBar(ToolsBarID) );
 }
 
-const ToolsToolBar &ToolsToolBar::Get( const AudacityProject &project )
+const ToolsToolBar &ToolsToolBar::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast<AudacityProject&>( project )) ;
+   return Get( const_cast<SaucedacityProject&>( project )) ;
 }
 
 void ToolsToolBar::RegenerateTooltips()
@@ -292,7 +292,7 @@ void ToolsToolBar::Create(wxWindow * parent)
 }
 
 static RegisteredToolbarFactory factory{ ToolsBarID,
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       return ToolBar::Holder{ safenew ToolsToolBar{ project } }; }
 };
 
@@ -312,7 +312,7 @@ AttachedToolBarMenuItem sAttachment{
 namespace {
 
 /// Called by handlers that set tools.
-void SetTool(AudacityProject &project, int tool)
+void SetTool(SaucedacityProject &project, int tool)
 {
    auto toolbar = &ToolsToolBar::Get( project );
    if (toolbar) {
@@ -388,9 +388,9 @@ void OnNextTool(const CommandContext &context)
 
 }; // struct Handler
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static ToolActions::Handler instance;
    return instance;
 };

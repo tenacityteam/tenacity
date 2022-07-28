@@ -14,7 +14,7 @@ Paul Licameli split from ProjectWindow.cpp
 
 ProjectWindowBase::ProjectWindowBase(wxWindow * parent, wxWindowID id,
                                  const wxPoint & pos,
-                                 const wxSize & size, AudacityProject &project)
+                                 const wxSize & size, SaucedacityProject &project)
    : wxFrame(parent, id, _TS("Saucedacity"), pos, size)
    , mProject{ project }
 {
@@ -36,13 +36,13 @@ ProjectWindowBase *FindProjectWindow( wxWindow *pWindow )
 
 }
 
-AudacityProject *FindProjectFromWindow( wxWindow *pWindow )
+SaucedacityProject *FindProjectFromWindow( wxWindow *pWindow )
 {
    auto pProjectWindow = FindProjectWindow( pWindow );
    return pProjectWindow ? &pProjectWindow->GetProject() : nullptr;
 }
 
-const AudacityProject *FindProjectFromWindow( const wxWindow *pWindow )
+const SaucedacityProject *FindProjectFromWindow( const wxWindow *pWindow )
 {
    return FindProjectFromWindow( const_cast< wxWindow* >( pWindow ) );
 }

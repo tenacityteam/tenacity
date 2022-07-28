@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectFileManager.cpp
 
-Paul Licameli split from AudacityProject.cpp
+Paul Licameli split from SaucedacityProject.cpp
 
 **********************************************************************/
 
@@ -51,21 +51,21 @@ Paul Licameli split from AudacityProject.cpp
 
 #include "HelpText.h"
 
-static const AudacityProject::AttachedObjects::RegisteredFactory sFileManagerKey{
-   []( AudacityProject &parent ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory sFileManagerKey{
+   []( SaucedacityProject &parent ){
       auto result = std::make_shared< ProjectFileManager >( parent );
       return result;
    }
 };
 
-ProjectFileManager &ProjectFileManager::Get( AudacityProject &project )
+ProjectFileManager &ProjectFileManager::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectFileManager >( sFileManagerKey );
 }
 
-const ProjectFileManager &ProjectFileManager::Get( const AudacityProject &project )
+const ProjectFileManager &ProjectFileManager::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
 void ProjectFileManager::DiscardAutosave(const FilePath &filename)
@@ -86,7 +86,7 @@ void ProjectFileManager::DiscardAutosave(const FilePath &filename)
    // closes the temporary project properly
 }
 
-ProjectFileManager::ProjectFileManager( AudacityProject &project )
+ProjectFileManager::ProjectFileManager( SaucedacityProject &project )
 : mProject{ project }
 {
 }
@@ -456,7 +456,7 @@ For an audio file that will open in other apps, use 'Export'.\n");
             filename.GetPath(),
             filename.GetFullName(),
             wxT("aup3"),
-            { FileNames::AudacityProjects },
+            { FileNames::SaucedacityProjects },
             wxFD_SAVE | wxRESIZE_BORDER,
             &window);
 
@@ -596,7 +596,7 @@ bool ProjectFileManager::SaveCopy(const FilePath &fileName /* = wxT("") */)
                                        filename.GetPath(),
                                        filename.GetFullName(),
                                        wxT("aup3"),
-                                       { FileNames::AudacityProjects },
+                                       { FileNames::SaucedacityProjects },
                                        wxFD_SAVE | wxRESIZE_BORDER,
                                        &window);
 
@@ -861,7 +861,7 @@ bool ProjectFileManager::IsAlreadyOpen(const FilePath &projPathName)
    return false;
 }
 
-AudacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
+SaucedacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
    const FilePath &fileNameArg, bool addtohistory)
 {
    // On Win32, we may be given a short (DOS-compatible) file name on rare
@@ -870,8 +870,8 @@ AudacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
    auto fileName = PlatformCompatibility::GetLongFileName(fileNameArg);
 
    // Make sure it isn't already open.
-   // Vaughan, 2011-03-25: This was done previously in AudacityProject::OpenFiles()
-   //    and AudacityApp::MRUOpen(), but if you open an aup file by double-clicking it
+   // Vaughan, 2011-03-25: This was done previously in SaucedacityProject::OpenFiles()
+   //    and SaucedacityApp::MRUOpen(), but if you open an aup file by double-clicking it
    //    from, e.g., Win Explorer, it would bypass those, get to here with no check,
    //    then open a NEW project from the same data with no warning.
    //    This was reported in http://bugzilla.audacityteam.org/show_bug.cgi?id=137#c17,
@@ -982,7 +982,7 @@ AudacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
    return Get(project).OpenProjectFile(fileName, addtohistory);
 }
 
-AudacityProject *ProjectFileManager::OpenProjectFile(
+SaucedacityProject *ProjectFileManager::OpenProjectFile(
    const FilePath &fileName, bool addtohistory)
 {
    auto &project = mProject;
@@ -1171,7 +1171,7 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
 }
 
 namespace {
-bool ImportProject(AudacityProject &dest, const FilePath &fileName)
+bool ImportProject(SaucedacityProject &dest, const FilePath &fileName)
 {
    InvisibleTemporaryProject temp;
    auto &project = temp.Project();

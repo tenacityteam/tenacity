@@ -443,7 +443,7 @@ int wxTreebookExt::SetSelection(size_t n)
 }
 
 PrefsDialog::PrefsDialog(
-   wxWindow * parent, AudacityProject *pProject,
+   wxWindow * parent, SaucedacityProject *pProject,
    const TranslatableString &titlePrefix,
    PrefsPanel::Factories &factories)
 :  wxDialogWrapper(parent, wxID_ANY, XO("Saucedacity Preferences"),
@@ -738,7 +738,7 @@ void PrefsDialog::OnOK(wxCommandEvent & WXUNUSED(event))
    if (gAudioIO) {
       // We cannot have opened this dialog if gAudioIO->IsAudioTokenActive(),
       // per the setting of AudioIONotBusyFlag and AudioIOBusyFlag in
-      // AudacityProject::GetUpdateFlags().
+      // SaucedacityProject::GetUpdateFlags().
       // However, we can have an invalid audio token (so IsAudioTokenActive()
       // is false), but be monitoring.
       // If monitoring, have to stop the stream, so HandleDeviceChange() can work.
@@ -763,7 +763,7 @@ void PrefsDialog::OnOK(wxCommandEvent & WXUNUSED(event))
    //      handled instead by delayed event processing?
 
    // LL:  wxMac can't handle recreating the menus when this dialog is still active,
-   //      so AudacityProject::UpdatePrefs() or any of the routines it calls must
+   //      so SaucedacityProject::UpdatePrefs() or any of the routines it calls must
    //      not cause MenuCreator::RebuildMenuBar() to be executed.
 
    PrefsListener::Broadcast();
@@ -802,7 +802,7 @@ int PrefsDialog::GetSelectedPage() const
 }
 
 GlobalPrefsDialog::GlobalPrefsDialog(
-   wxWindow * parent, AudacityProject *pProject,
+   wxWindow * parent, SaucedacityProject *pProject,
    PrefsPanel::Factories &factories)
    : PrefsDialog(parent, pProject, XO("Preferences:"), factories)
 {
@@ -842,7 +842,7 @@ void PrefsDialog::RecordExpansionState()
 #include "../Menus.h"
 #include "../Project.h"
 
-void DoReloadPreferences( AudacityProject &project )
+void DoReloadPreferences( SaucedacityProject &project )
 {
    PreferenceInitializer::ReinitializeAll();
 

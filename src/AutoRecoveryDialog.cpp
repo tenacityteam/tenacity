@@ -36,7 +36,7 @@ enum {
 class AutoRecoveryDialog final : public wxDialogWrapper
 {
 public:
-   explicit AutoRecoveryDialog(AudacityProject *proj);
+   explicit AutoRecoveryDialog(SaucedacityProject *proj);
 
    bool HasRecoverables() const;
    FilePaths GetRecoverables();
@@ -56,7 +56,7 @@ private:
 
    FilePaths mFiles;
    wxListCtrl *mFileList;
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
 
 public:
    DECLARE_EVENT_TABLE()
@@ -71,7 +71,7 @@ BEGIN_EVENT_TABLE(AutoRecoveryDialog, wxDialogWrapper)
    EVT_LIST_ITEM_ACTIVATED(ID_FILE_LIST, AutoRecoveryDialog::OnItemActivated)
 END_EVENT_TABLE()
 
-AutoRecoveryDialog::AutoRecoveryDialog(AudacityProject *project)
+AutoRecoveryDialog::AutoRecoveryDialog(SaucedacityProject *project)
 :  wxDialogWrapper(nullptr, wxID_ANY, XO("Automatic Crash Recovery"),
                    wxDefaultPosition, wxDefaultSize,
                    (wxDEFAULT_DIALOG_STYLE & (~wxCLOSE_BOX)) | wxRESIZE_BORDER), // no close box
@@ -417,7 +417,7 @@ void AutoRecoveryDialog::OnListKeyDown(wxKeyEvent &evt)
 ////////////////////////////////////////////////////////////////////////////
 
 static bool RecoverAllProjects(const FilePaths &files,
-                               AudacityProject *&pproj)
+                               SaucedacityProject *&pproj)
 {
    // Open a project window for each auto save file
    wxString filename;
@@ -425,7 +425,7 @@ static bool RecoverAllProjects(const FilePaths &files,
 
    for (auto &file: files)
    {
-      AudacityProject *proj = nullptr;
+      SaucedacityProject *proj = nullptr;
       // Reuse any existing project window, which will be the empty project
       // created at application startup
       std::swap(proj, pproj);
@@ -447,7 +447,7 @@ static void DiscardAllProjects(const FilePaths &files)
       ProjectFileManager::DiscardAutosave(file);
 }
 
-bool ShowAutoRecoveryDialogIfNeeded(AudacityProject *&pproj, bool *didRecoverAnything)
+bool ShowAutoRecoveryDialogIfNeeded(SaucedacityProject *&pproj, bool *didRecoverAnything)
 {
    if (didRecoverAnything)
    {

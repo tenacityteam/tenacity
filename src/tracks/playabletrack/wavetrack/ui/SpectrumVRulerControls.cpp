@@ -25,7 +25,7 @@ SpectrumVRulerControls::~SpectrumVRulerControls() = default;
 
 std::vector<UIHandlePtr> SpectrumVRulerControls::HitTest(
    const TrackPanelMouseState &st,
-   const AudacityProject *pProject)
+   const SaucedacityProject *pProject)
 {
    std::vector<UIHandlePtr> results;
 
@@ -46,7 +46,7 @@ std::vector<UIHandlePtr> SpectrumVRulerControls::HitTest(
 }
 
 unsigned SpectrumVRulerControls::HandleWheelRotation(
-   const TrackPanelMouseEvent &evt, AudacityProject *pProject)
+   const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {
    using namespace RefreshCode;
    const auto pTrack = FindTrack();
@@ -57,7 +57,7 @@ unsigned SpectrumVRulerControls::HandleWheelRotation(
 }
 
 unsigned SpectrumVRulerControls::DoHandleWheelRotation(
-   const TrackPanelMouseEvent &evt, AudacityProject *pProject, WaveTrack *wt)
+   const TrackPanelMouseEvent &evt, SaucedacityProject *pProject, WaveTrack *wt)
 {
    using namespace RefreshCode;
    const wxMouseEvent &event = evt.event;

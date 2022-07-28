@@ -51,7 +51,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 
 #include "commands/CommandContext.h"
 
-MacroCommands::MacroCommands( AudacityProject &project )
+MacroCommands::MacroCommands( SaucedacityProject &project )
 : mProject{ project }
 , mExporter{ project }
 {
@@ -300,7 +300,7 @@ bool MacroCommands::RenameMacro(const wxString & oldmacro, const wxString & newm
 }
 
 // Gets all commands that are valid for this mode.
-MacroCommandsCatalog::MacroCommandsCatalog( const AudacityProject *project )
+MacroCommandsCatalog::MacroCommandsCatalog( const SaucedacityProject *project )
 {
    if (!project)
       return;
@@ -548,7 +548,7 @@ bool MacroCommands::ApplyEffectCommand(
    if (!plug)
       return false;
 
-   AudacityProject *project = &mProject;
+   SaucedacityProject *project = &mProject;
 
    // IF nothing selected, THEN select everything depending
    // on preferences setting.
@@ -635,7 +635,7 @@ bool MacroCommands::ApplyCommand( const TranslatableString &friendlyCommand,
          ID, friendlyCommand, command, params, context);
    }
 
-   AudacityProject *project = &mProject;
+   SaucedacityProject *project = &mProject;
    auto &manager = CommandManager::Get( *project );
    if( pContext ){
       if( HandleTextualCommand(
@@ -665,7 +665,7 @@ bool MacroCommands::ApplyCommandInBatchMode(
    const CommandID & command, const wxString &params,
    CommandContext const * pContext)
 {
-   AudacityProject *project = &mProject;
+   SaucedacityProject *project = &mProject;
    auto &settings = ProjectSettings::Get( *project );
    // Recalc flags and enable items that may have become enabled.
    MenuManager::Get(*project).UpdateMenus(false);
@@ -699,7 +699,7 @@ bool MacroCommands::ApplyMacro(
    auto cleanup1 = valueRestorer(MacroReentryCount);
    MacroReentryCount++;
 
-   AudacityProject *proj = &mProject;
+   SaucedacityProject *proj = &mProject;
    bool res = false;
 
    // Only perform this group on initial entry.  They should not be done

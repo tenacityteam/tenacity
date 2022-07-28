@@ -2,19 +2,19 @@
 
   Audacity: A Digital Audio Editor
 
-  AudacityLogger.cpp
+  SaucedacityLogger.cpp
 
 ******************************************************************//**
 
-\class AudacityLogger
-\brief AudacityLogger is a thread-safe logger class
+\class SaucedacityLogger
+\brief SaucedacityLogger is a thread-safe logger class
 
 Provides thread-safe logging based on the wxWidgets log facility.
 
 *//*******************************************************************/
 
 
-#include "AudacityLogger.h"
+#include "SaucedacityLogger.h"
 
 #include "Internat.h"
 #include "MemoryX.h"
@@ -26,13 +26,13 @@ Provides thread-safe logging based on the wxWidgets log facility.
 #include <wx/tokenzr.h>
 
 //
-// AudacityLogger class
+// SaucedacityLogger class
 //
 // By providing an Audacity specific logging class, it can be made thread-safe and,
 //     as such, can be used by the ever growing threading within Audacity.
 //
 
-AudacityLogger *AudacityLogger::Get()
+SaucedacityLogger *SaucedacityLogger::Get()
 {
    static std::once_flag flag;
    std::call_once( flag, []{
@@ -40,37 +40,37 @@ AudacityLogger *AudacityLogger::Get()
       // safenew.  See:
       // http://docs.wxwidgets.org/3.0/classwx_log.html#a2525bf54fa3f31dc50e6e3cd8651e71d
       std::unique_ptr < wxLog > // DELETE any previous logger
-         { wxLog::SetActiveTarget(safenew AudacityLogger) };
+         { wxLog::SetActiveTarget(safenew SaucedacityLogger) };
    } );
 
    // Use dynamic_cast so that we get a NULL ptr in case our logger
    // is no longer the target.
-   return dynamic_cast<AudacityLogger *>(wxLog::GetActiveTarget());
+   return dynamic_cast<SaucedacityLogger *>(wxLog::GetActiveTarget());
 }
 
-AudacityLogger::AudacityLogger()
+SaucedacityLogger::SaucedacityLogger()
 :  wxEvtHandler(),
    wxLog()
 {
    mUpdated = false;
 }
 
-AudacityLogger::~AudacityLogger()  = default;
+SaucedacityLogger::~SaucedacityLogger()  = default;
 
-void AudacityLogger::Flush()
+void SaucedacityLogger::Flush()
 {
    if (mUpdated && mListener && mListener())
       mUpdated = false;
 }
 
-auto AudacityLogger::SetListener(Listener listener) -> Listener
+auto SaucedacityLogger::SetListener(Listener listener) -> Listener
 {
    auto result = std::move(mListener);
    mListener = std::move(listener);
    return result;
 }
 
-void AudacityLogger::DoLogText(const wxString & str)
+void SaucedacityLogger::DoLogText(const wxString & str)
 {
    if (!wxIsMainThread()) {
       wxMutexGuiEnter();
@@ -95,7 +95,7 @@ void AudacityLogger::DoLogText(const wxString & str)
    }
 }
 
-bool AudacityLogger::SaveLog(const wxString &fileName) const
+bool SaucedacityLogger::SaveLog(const wxString &fileName) const
 {
    wxFFile file(fileName, wxT("w"));
 
@@ -108,7 +108,7 @@ bool AudacityLogger::SaveLog(const wxString &fileName) const
    return false;
 }
 
-bool AudacityLogger::ClearLog()
+bool SaucedacityLogger::ClearLog()
 {
    mBuffer = wxEmptyString;
    DoLogText(wxT("Log Cleared."));
@@ -116,7 +116,7 @@ bool AudacityLogger::ClearLog()
    return true;
 }
 
-wxString AudacityLogger::GetLog(int count)
+wxString SaucedacityLogger::GetLog(int count)
 {
    if (count == 0)
    {

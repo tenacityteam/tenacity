@@ -147,20 +147,20 @@ void NotifyingSelectedRegion::Notify( bool delayed )
       ProcessEvent( evt );
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-   []( AudacityProject &project ) {
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+   []( SaucedacityProject &project ) {
       return std::make_unique<ViewInfo>(0.0, 1.0, ZoomInfo::GetDefaultZoom());
    }
 };
 
-ViewInfo &ViewInfo::Get( AudacityProject &project )
+ViewInfo &ViewInfo::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ViewInfo >( key );
 }
 
-const ViewInfo &ViewInfo::Get( const AudacityProject &project )
+const ViewInfo &ViewInfo::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
 ViewInfo::ViewInfo(double start, double screenDuration, double pixelsPerSecond)

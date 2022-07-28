@@ -26,7 +26,7 @@
 // private helper classes and functions
 namespace {
 
-double GetZoomOfSelection( const AudacityProject &project )
+double GetZoomOfSelection( const SaucedacityProject &project )
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -53,7 +53,7 @@ double GetZoomOfSelection( const AudacityProject &project )
    return (width - 1) / denom;
 }
 
-double GetZoomOfPreset( const AudacityProject &project, int preset )
+double GetZoomOfPreset( const SaucedacityProject &project, int preset )
 {
 
    // Sets a limit on how far we will zoom out as a factor over zoom to fit.
@@ -121,7 +121,7 @@ double GetZoomOfPreset( const AudacityProject &project, int preset )
 }
 
 namespace {
-void DoZoomFitV(AudacityProject &project)
+void DoZoomFitV(SaucedacityProject &project)
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -369,7 +369,7 @@ void OnUndoPushed( wxCommandEvent &evt )
       DoZoomFitV( mProject );
 }
 
-Handler( AudacityProject &project )
+Handler( SaucedacityProject &project )
    : mProject{ project }
 {
    mProject.Bind( EVT_UNDO_PUSHED, &Handler::OnUndoPushed, this );
@@ -382,19 +382,19 @@ Handler( AudacityProject &project )
 Handler( const Handler & ) PROHIBITED;
 Handler &operator=( const Handler & ) PROHIBITED;
 
-AudacityProject &mProject;
+SaucedacityProject &mProject;
 
 }; // struct Handler
 
 } // namespace
 
 // Handler needs a back-reference to the project, so needs a factory registered
-// with AudacityProject.
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-   []( AudacityProject &project ) {
+// with SaucedacityProject.
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+   []( SaucedacityProject &project ) {
       return std::make_unique< ViewActions::Handler >( project ); } };
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &project) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &project) {
    return project.AttachedObjects::Get< ViewActions::Handler >( key );
 };
 
@@ -470,7 +470,7 @@ BaseItemSharedPtr ViewMenu()
          ,
          Command( wxT("ShowEffectsRack"), XXO("Show Effects Rack"),
             FN(OnShowEffectsRack), AlwaysEnabledFlag,
-            Options{}.CheckTest( [](AudacityProject &project){
+            Options{}.CheckTest( [](SaucedacityProject &project){
                auto &rack = EffectRack::Get( project );
                return rack.IsShown(); } ) )
    #endif

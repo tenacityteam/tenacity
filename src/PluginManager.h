@@ -40,7 +40,7 @@ typedef enum : unsigned {
 } PluginType;
 
 // TODO:  Convert this to multiple derived classes
-class AUDACITY_DLL_API PluginDescriptor
+class SAUCEDACITY_DLL_API PluginDescriptor
 {
 public:
    PluginDescriptor();
@@ -170,7 +170,7 @@ typedef wxArrayString PluginIDs;
 
 class PluginRegistrationDialog;
 
-class AUDACITY_DLL_API PluginManager final : public PluginManagerInterface
+class SAUCEDACITY_DLL_API PluginManager final : public PluginManagerInterface
 {
 public:
 

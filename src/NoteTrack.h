@@ -61,7 +61,7 @@ using QuantizedTimeAndBeat = std::pair< double, double >;
 class StretchHandle;
 class TimeWarper;
 
-class AUDACITY_DLL_API NoteTrack final
+class SAUCEDACITY_DLL_API NoteTrack final
    : public NoteTrackBase
 {
 public:
@@ -185,7 +185,7 @@ public:
          mVisibleChannels = CHANNEL_BIT(c);
    }
 
-   Track::Holder PasteInto( AudacityProject & ) const override;
+   Track::Holder PasteInto( SaucedacityProject & ) const override;
 
    ConstIntervals GetIntervals() const override;
    Intervals GetIntervals() override;

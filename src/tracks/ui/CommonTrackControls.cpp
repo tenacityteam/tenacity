@@ -33,7 +33,7 @@ Paul Licameli split from TrackControls.cpp
 
 std::vector<UIHandlePtr> CommonTrackControls::HitTest
 (const TrackPanelMouseState &st,
- const AudacityProject *WXUNUSED(project))
+ const SaucedacityProject *WXUNUSED(project))
 {
    // Hits are mutually exclusive, results single
 
@@ -227,7 +227,7 @@ void TrackMenuTable::OnSetName(wxCommandEvent &)
    Track *const pTrack = mpData->pTrack;
    if (pTrack)
    {
-      AudacityProject *const proj = &mpData->project;
+      SaucedacityProject *const proj = &mpData->project;
       const wxString oldName = pTrack->GetName();
 
       SetTrackNameCommand Command;
@@ -252,7 +252,7 @@ void TrackMenuTable::OnSetName(wxCommandEvent &)
 
 void TrackMenuTable::OnMoveTrack(wxCommandEvent &event)
 {
-   AudacityProject *const project = &mpData->project;
+   SaucedacityProject *const project = &mpData->project;
    TrackUtilities::MoveChoice choice;
    switch (event.GetId()) {
    default:
@@ -275,7 +275,7 @@ void TrackMenuTable::OnMoveTrack(wxCommandEvent &event)
 }
 
 unsigned CommonTrackControls::DoContextMenu(
-   const wxRect &rect, wxWindow *pParent, wxPoint *, AudacityProject *pProject)
+   const wxRect &rect, wxWindow *pParent, wxPoint *, SaucedacityProject *pProject)
 {
    using namespace RefreshCode;
    wxRect buttonRect;

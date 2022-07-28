@@ -111,7 +111,7 @@ SONFNS(AutoSave)
 
 static ProjectFileIORegistry::Entry registerFactory{
    wxT( "notetrack" ),
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       auto &tracks = TrackList::Get( project );
       auto result = tracks.Add( std::make_shared<NoteTrack>());
       TrackView::Get( *result );
@@ -685,7 +685,7 @@ QuantizedTimeAndBeat NoteTrack::NearestBeatTime( double time ) const
    return { seq_time + GetOffset(), beat };
 }
 
-Track::Holder NoteTrack::PasteInto( AudacityProject & ) const
+Track::Holder NoteTrack::PasteInto( SaucedacityProject & ) const
 {
    auto pNewTrack = std::make_shared<NoteTrack>();
    pNewTrack->Paste(0.0, this);

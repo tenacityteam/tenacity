@@ -89,7 +89,7 @@ BEGIN_EVENT_TABLE(ApplyMacroDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 ApplyMacroDialog::ApplyMacroDialog(
-   wxWindow * parent, AudacityProject &project, bool bInherited):
+   wxWindow * parent, SaucedacityProject &project, bool bInherited):
    wxDialogWrapper(parent, wxID_ANY, MacrosPaletteTitle,
             wxDefaultPosition, wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
@@ -340,7 +340,7 @@ void ApplyMacroDialog::OnApplyToFiles(wxCommandEvent & WXUNUSED(event))
    gPrefs->Write(wxT("/Batch/ActiveMacro"), name);
    gPrefs->Flush();
 
-   AudacityProject *project = &mProject;
+   SaucedacityProject *project = &mProject;
    if (!TrackList::Get( *project ).empty()) {
       AudacityMessageBox(
          XO("Please save and close the current project first.") );
@@ -560,7 +560,7 @@ enum {
 
 /// Constructor
 MacrosWindow::MacrosWindow(
-   wxWindow * parent, AudacityProject &project, bool bExpanded):
+   wxWindow * parent, SaucedacityProject &project, bool bExpanded):
    ApplyMacroDialog(parent, project, true)
    , mProject{ project }
 {

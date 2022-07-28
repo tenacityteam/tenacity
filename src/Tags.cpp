@@ -228,24 +228,24 @@ static const wxChar *DefaultGenres[] =
 
 static ProjectFileIORegistry::Entry registerFactory{
    wxT( "tags" ),
-   []( AudacityProject &project ){ return &Tags::Get( project ); }
+   []( SaucedacityProject &project ){ return &Tags::Get( project ); }
 };
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-  [](AudacityProject &){ return std::make_shared< Tags >(); }
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+  [](SaucedacityProject &){ return std::make_shared< Tags >(); }
 };
 
-Tags &Tags::Get( AudacityProject &project )
+Tags &Tags::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< Tags >( key );
 }
 
-const Tags &Tags::Get( const AudacityProject &project )
+const Tags &Tags::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-Tags &Tags::Set( AudacityProject &project, const std::shared_ptr< Tags > &tags )
+Tags &Tags::Set( SaucedacityProject &project, const std::shared_ptr< Tags > &tags )
 {
    auto &result = *tags;
    project.AttachedObjects::Assign( key, tags );

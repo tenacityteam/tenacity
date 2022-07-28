@@ -173,7 +173,7 @@ void ODTask::DoSome(float amountWork)
    mBlockUntilTerminateMutex.Unlock();
 }
 
-bool ODTask::IsTaskAssociatedWithProject(AudacityProject* proj)
+bool ODTask::IsTaskAssociatedWithProject(SaucedacityProject* proj)
 {
    for (auto tr : TrackList::Get( *proj ).Any<const WaveTrack>())
    {

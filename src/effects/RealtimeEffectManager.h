@@ -20,7 +20,7 @@
 class EffectClientInterface;
 class RealtimeEffectState;
 
-class AUDACITY_DLL_API RealtimeEffectManager final
+class SAUCEDACITY_DLL_API RealtimeEffectManager final
 {
 public:
    using EffectArray = std::vector <EffectClientInterface*> ;

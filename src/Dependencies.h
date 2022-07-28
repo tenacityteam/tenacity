@@ -18,7 +18,7 @@
 #include "MemoryX.h"
 #include "wxFileNameWrapper.h" // member variable
 
-class AudacityProject;
+class SaucedacityProject;
 
 class AliasedFile
 {
@@ -56,11 +56,11 @@ using AliasedFileArray = std::list<AliasedFile>;
 // user requests it, and returns True if the user continues.
 // Returns false if the user clicks Cancel, meaning that they do
 // not want to go ahead with the Save/Save As operation.
-bool ShowDependencyDialogIfNeeded(AudacityProject *project,
+bool ShowDependencyDialogIfNeeded(SaucedacityProject *project,
                                   bool isSaving);
 
 // Returns a list of aliased files associated with a project.
-void FindDependencies(AudacityProject *project,
+void FindDependencies(SaucedacityProject *project,
                       AliasedFileArray &outAliasedFiles);
 
 #endif

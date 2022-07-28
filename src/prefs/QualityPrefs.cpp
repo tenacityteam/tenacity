@@ -215,7 +215,7 @@ bool QualityPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Quality",
-   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
+   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew QualityPrefs(parent, winid);

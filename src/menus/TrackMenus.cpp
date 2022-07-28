@@ -46,7 +46,7 @@
 namespace {
 
 void DoMixAndRender
-(AudacityProject &project, bool toNewTrack)
+(SaucedacityProject &project, bool toNewTrack)
 {
    const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -153,7 +153,7 @@ void DoMixAndRender
    }
 }
 
-void DoPanTracks(AudacityProject &project, float PanValue)
+void DoPanTracks(SaucedacityProject &project, float PanValue)
 {
    auto &tracks = TrackList::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -197,7 +197,7 @@ static const std::vector< ComponentInterfaceSymbol >
 const size_t kAlignLabelsCount(){ return alignLabels().size(); }
 
 void DoAlign
-(AudacityProject &project, int index, bool moveSel)
+(SaucedacityProject &project, int index, bool moveSel)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -488,7 +488,7 @@ enum{
    kAudacitySortByName = (1 << 2),
 };
 
-void DoSortTracks( AudacityProject &project, int flags )
+void DoSortTracks( SaucedacityProject &project, int flags )
 {
    auto GetTime = [](const Track *t) {
       return t->TypeSwitch< double >(
@@ -565,7 +565,7 @@ void DoSortTracks( AudacityProject &project, int flags )
    tracks.Permute(arr);
 }
 
-void SetTrackGain(AudacityProject &project, WaveTrack * wt, LWSlider * slider)
+void SetTrackGain(SaucedacityProject &project, WaveTrack * wt, LWSlider * slider)
 {
    wxASSERT(wt);
    float newValue = slider->Get();
@@ -579,7 +579,7 @@ void SetTrackGain(AudacityProject &project, WaveTrack * wt, LWSlider * slider)
    TrackPanel::Get( project ).RefreshTrack(wt);
 }
 
-void SetTrackPan(AudacityProject &project, WaveTrack * wt, LWSlider * slider)
+void SetTrackPan(SaucedacityProject &project, WaveTrack * wt, LWSlider * slider)
 {
    wxASSERT(wt);
    float newValue = slider->Get();
@@ -1275,9 +1275,9 @@ void OnTrackMoveBottom(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(AudacityProject &) {
+static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // AudacityProject.
+   // SaucedacityProject.
    static TrackActions::Handler instance;
    return instance;
 };
@@ -1318,7 +1318,7 @@ BaseItemSharedPtr TracksMenu()
             // Stereo to Mono is an oddball command that is also subject to control
             // by the plug-in manager, as if an effect.  Decide whether to show or
             // hide it.
-            [](AudacityProject&) -> BaseItemPtr {
+            [](SaucedacityProject&) -> BaseItemPtr {
                const PluginID ID =
                   EffectManager::Get().GetEffectByIdentifier(wxT("StereoToMono"));
                const PluginDescriptor *plug = PluginManager::Get().GetPlugin(ID);

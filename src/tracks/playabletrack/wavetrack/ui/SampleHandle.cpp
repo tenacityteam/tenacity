@@ -39,7 +39,7 @@ SampleHandle::SampleHandle( const std::shared_ptr<WaveTrack> &pTrack )
 {
 }
 
-void SampleHandle::Enter(bool, AudacityProject *)
+void SampleHandle::Enter(bool, SaucedacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -47,7 +47,7 @@ void SampleHandle::Enter(bool, AudacityProject *)
 }
 
 HitTestPreview SampleHandle::HitPreview
-(const wxMouseState &state, const AudacityProject *WXUNUSED(pProject), bool unsafe)
+(const wxMouseState &state, const SaucedacityProject *WXUNUSED(pProject), bool unsafe)
 {
    static auto disabledCursor =
       ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
@@ -110,7 +110,7 @@ namespace {
 UIHandlePtr SampleHandle::HitTest
 (std::weak_ptr<SampleHandle> &holder,
  const wxMouseState &state, const wxRect &rect,
- const AudacityProject *pProject, const std::shared_ptr<WaveTrack> &pTrack)
+ const SaucedacityProject *pProject, const std::shared_ptr<WaveTrack> &pTrack)
 {
    const auto &viewInfo = ViewInfo::Get( *pProject );
 
@@ -187,7 +187,7 @@ namespace {
 }
 
 UIHandle::Result SampleHandle::Click
-(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
+(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {
    using namespace RefreshCode;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -316,7 +316,7 @@ UIHandle::Result SampleHandle::Click
 }
 
 UIHandle::Result SampleHandle::Drag
-(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
+(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {
    using namespace RefreshCode;
    const wxMouseEvent &event = evt.event;
@@ -399,14 +399,14 @@ UIHandle::Result SampleHandle::Drag
 }
 
 HitTestPreview SampleHandle::Preview
-(const TrackPanelMouseState &st, AudacityProject *pProject)
+(const TrackPanelMouseState &st, SaucedacityProject *pProject)
 {
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
    return HitPreview(st.state, pProject, unsafe);
 }
 
 UIHandle::Result SampleHandle::Release
-(const TrackPanelMouseEvent &, AudacityProject *pProject,
+(const TrackPanelMouseEvent &, SaucedacityProject *pProject,
  wxWindow *)
 {
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -426,7 +426,7 @@ UIHandle::Result SampleHandle::Release
    return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result SampleHandle::Cancel(AudacityProject *pProject)
+UIHandle::Result SampleHandle::Cancel(SaucedacityProject *pProject)
 {
    mClickedTrack.reset();
    ProjectHistory::Get( *pProject ).RollbackState();

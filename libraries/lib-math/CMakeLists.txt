@@ -31,6 +31,6 @@ set( LIBRARIES
    PRIVATE
    wxBase
 )
-audacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
+saucedacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

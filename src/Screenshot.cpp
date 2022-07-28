@@ -64,7 +64,7 @@ class ScreenshotBigDialog final : public wxFrame,
 
    // constructors and destructors
    ScreenshotBigDialog(
-      wxWindow *parent, wxWindowID id, AudacityProject &project);
+      wxWindow *parent, wxWindowID id, SaucedacityProject &project);
    virtual ~ScreenshotBigDialog();
 
    bool ProcessEvent(wxEvent & event) override;
@@ -104,7 +104,7 @@ class ScreenshotBigDialog final : public wxFrame,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    std::unique_ptr<ScreenshotCommand> CreateCommand();
 
@@ -131,7 +131,7 @@ ScreenshotBigDialogPtr mFrame;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void OpenScreenshotTools( AudacityProject &project )
+void OpenScreenshotTools( SaucedacityProject &project )
 {
    if (!mFrame) {
       auto parent = wxTheApp->GetTopWindow();
@@ -285,7 +285,7 @@ std::unique_ptr<ScreenshotCommand> ScreenshotBigDialog::CreateCommand()
 }
 
 ScreenshotBigDialog::ScreenshotBigDialog(
-   wxWindow * parent, wxWindowID id, AudacityProject &project)
+   wxWindow * parent, wxWindowID id, SaucedacityProject &project)
 :  wxFrame(parent, id, ScreenCaptureFrameTitle.Translation(),
            wxDefaultPosition, wxDefaultSize,
 

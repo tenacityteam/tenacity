@@ -54,30 +54,30 @@
 #include "ClientData.h"
 #include "SelectedRegion.h"
 
-// Events emitted by AudacityProject for the use of listeners
+// Events emitted by SaucedacityProject for the use of listeners
 
 // Project state did not change, but a new state was copied into Undo history
 // and any redo states were lost
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API, EVT_UNDO_PUSHED, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_PUSHED, wxCommandEvent);
 
 // Project state did not change, but current state was modified in Undo history
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API, EVT_UNDO_MODIFIED, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_MODIFIED, wxCommandEvent);
 
 // Project state did not change, but current state was renamed in Undo history
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API, EVT_UNDO_RENAMED, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_RENAMED, wxCommandEvent);
 
 // Project state changed because of undo or redo; undo manager
 // contents did not change other than the pointer to current state
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API, EVT_UNDO_OR_REDO, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_OR_REDO, wxCommandEvent);
 
 // Project state changed other than for single-step undo/redo; undo manager
 // contents did not change other than the pointer to current state
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API, EVT_UNDO_RESET, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_RESET, wxCommandEvent);
 
 // Undo or redo states discarded
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API, EVT_UNDO_PURGE, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_PURGE, wxCommandEvent);
 
-class AudacityProject;
+class SaucedacityProject;
 class Tags;
 class Track;
 class TrackList;
@@ -132,15 +132,15 @@ inline UndoPush operator & (UndoPush a, UndoPush b)
 
 //! Maintain a non-persistent list of states of the project, to support undo and redo commands
 /*! The history should be cleared before destruction */
-class AUDACITY_DLL_API UndoManager final
+class SAUCEDACITY_DLL_API UndoManager final
    : public ClientData::Base
 {
  public:
-   static UndoManager &Get( AudacityProject &project );
-   static const UndoManager &Get( const AudacityProject &project );
+   static UndoManager &Get( SaucedacityProject &project );
+   static const UndoManager &Get( const SaucedacityProject &project );
  
    explicit
-   UndoManager( AudacityProject &project );
+   UndoManager( SaucedacityProject &project );
    ~UndoManager();
 
    UndoManager( const UndoManager& ) = delete;
@@ -211,7 +211,7 @@ class AUDACITY_DLL_API UndoManager final
 
    void RemoveStateAt(int n);
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
  
    int current;
    int saved;

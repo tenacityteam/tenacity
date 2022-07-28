@@ -33,7 +33,7 @@ class KeyConfigPrefs final : public PrefsPanel
 {
 public:
    KeyConfigPrefs(wxWindow * parent, wxWindowID winid,
-      AudacityProject *pProject,
+      SaucedacityProject *pProject,
       const CommandID &name);
    ComponentInterfaceSymbol GetSymbol() override;
    TranslatableString GetDescription() override;
@@ -93,7 +93,7 @@ private:
    wxRadioButton *mViewByName;
    wxRadioButton *mViewByKey;
 
-   AudacityProject *mProject{};
+   SaucedacityProject *mProject{};
 
    CommandManager *mManager;
    int mCommandSelected;

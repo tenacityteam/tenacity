@@ -30,13 +30,13 @@ class ShuttleGui;
 #define BUILTIN_GENERIC_COMMAND_PREFIX wxT("Built-in AudacityCommand: ")
 
 class AudacityCommand;
-class AudacityProject;
+class SaucedacityProject;
 class CommandContext;
 class EffectUIHostInterface;
 class ProgressDialog;
 
 
-class AUDACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
+class SAUCEDACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
                                 public ComponentInterface
 {
  public:
@@ -139,7 +139,7 @@ private:
 
 
 // Base dialog for command dialog.
-class AUDACITY_DLL_API AudacityCommandDialog /* not final */ : public wxDialogWrapper
+class SAUCEDACITY_DLL_API AudacityCommandDialog /* not final */ : public wxDialogWrapper
 {
 public:
    // constructors and destructors

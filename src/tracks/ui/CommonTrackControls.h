@@ -23,7 +23,7 @@ class TrackSelectHandle;
 namespace TrackInfo{ struct TCPLine; }
 using TCPLines = std::vector< TrackInfo::TCPLine >;
 
-class AUDACITY_DLL_API CommonTrackControls /* not final */ : public TrackControls
+class SAUCEDACITY_DLL_API CommonTrackControls /* not final */ : public TrackControls
 {
 public:
    using TrackControls::TrackControls;
@@ -33,7 +33,7 @@ public:
    struct InitMenuData
    {
    public:
-      AudacityProject &project;
+      SaucedacityProject &project;
       Track *pTrack;
       wxWindow *pParent;
       unsigned result;
@@ -51,11 +51,11 @@ protected:
    // still marked pure virtual
    virtual std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const AudacityProject *) override = 0;
+       const SaucedacityProject *) override = 0;
 
    unsigned DoContextMenu
       (const wxRect &rect, wxWindow *pParent, wxPoint *pPosition,
-       AudacityProject *pProject) override;
+       SaucedacityProject *pProject) override;
    virtual PopupMenuTable *GetMenuExtension(Track *pTrack) = 0;
 
    // TrackPanelDrawable implementation

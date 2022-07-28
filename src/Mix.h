@@ -45,7 +45,7 @@ class WaveTrackCache;
  * no explicit time range to process, and the whole occupied length of the
  * input tracks is processed.
  */
-void AUDACITY_DLL_API MixAndRender(TrackList * tracks, WaveTrackFactory *factory,
+void SAUCEDACITY_DLL_API MixAndRender(TrackList * tracks, WaveTrackFactory *factory,
                   double rate, sampleFormat format,
                   double startTime, double endTime,
                   std::shared_ptr<WaveTrack> &uLeft,
@@ -55,7 +55,7 @@ void MixBuffers(unsigned numChannels, int *channelFlags, float *gains,
                 samplePtr src,
                 samplePtr *dests, int len, bool interleaved);
 
-class AUDACITY_DLL_API MixerSpec
+class SAUCEDACITY_DLL_API MixerSpec
 {
    unsigned mNumTracks, mNumChannels, mMaxNumChannels;
 
@@ -77,11 +77,11 @@ public:
    MixerSpec& operator=( const MixerSpec &mixerSpec );
 };
 
-class AUDACITY_DLL_API Mixer {
+class SAUCEDACITY_DLL_API Mixer {
  public:
 
     // An argument to Mixer's constructor
-    class AUDACITY_DLL_API WarpOptions
+    class SAUCEDACITY_DLL_API WarpOptions
     {
     public:
        //! Construct with warp from the TimeTrack if there is one

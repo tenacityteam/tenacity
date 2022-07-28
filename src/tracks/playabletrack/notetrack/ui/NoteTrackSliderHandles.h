@@ -36,12 +36,12 @@ public:
 protected:
    float GetValue() override;
    Result SetValue
-   (AudacityProject *pProject, float newValue) override;
+   (SaucedacityProject *pProject, float newValue) override;
    Result CommitChanges
-   (const wxMouseEvent &event, AudacityProject *pProject) override;
+   (const wxMouseEvent &event, SaucedacityProject *pProject) override;
 
    TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &) const override;
+      const wxMouseState &state, SaucedacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 

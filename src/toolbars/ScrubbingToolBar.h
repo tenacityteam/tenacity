@@ -18,7 +18,7 @@
 
 #include "ToolBar.h"
 
-class AudacityProject;
+class SaucedacityProject;
 
 class wxCommandEvent;
 class wxDC;
@@ -40,11 +40,11 @@ class ScrubbingToolBar final : public ToolBar {
 
 public:
 
-   ScrubbingToolBar( AudacityProject &project );
+   ScrubbingToolBar( SaucedacityProject &project );
    virtual ~ScrubbingToolBar();
 
-   static ScrubbingToolBar &Get( AudacityProject &project );
-   static const ScrubbingToolBar &Get( const AudacityProject &project );
+   static ScrubbingToolBar &Get( SaucedacityProject &project );
+   static const ScrubbingToolBar &Get( const SaucedacityProject &project );
 
    void Create(wxWindow *parent) override;
 

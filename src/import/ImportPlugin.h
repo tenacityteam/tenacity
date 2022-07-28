@@ -54,7 +54,7 @@ but little else.
 #include "SampleFormat.h"
 #include "wxArrayStringEx.h"
 
-class AudacityProject;
+class SaucedacityProject;
 class ProgressDialog;
 namespace GenericUI{ enum class ProgressResult : unsigned; }
 class WaveTrackFactory;
@@ -63,7 +63,7 @@ class Tags;
 
 class ImportFileHandle;
 
-class AUDACITY_DLL_API ImportPlugin /* not final */
+class SAUCEDACITY_DLL_API ImportPlugin /* not final */
 {
 public:
 
@@ -88,7 +88,7 @@ public:
    // format, false otherwise.  This puts the importer into the open
    // state.
    virtual std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, AudacityProject*) = 0;
+      const FilePath &Filename, SaucedacityProject*) = 0;
 
    virtual ~ImportPlugin();
 
@@ -103,7 +103,7 @@ protected:
 class WaveTrack;
 using TrackHolders = std::vector< std::vector< std::shared_ptr<WaveTrack> > >;
 
-class AUDACITY_DLL_API ImportFileHandle /* not final */
+class SAUCEDACITY_DLL_API ImportFileHandle /* not final */
 {
 public:
    using ProgressResult = GenericUI::ProgressResult;

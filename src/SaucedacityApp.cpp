@@ -2,21 +2,21 @@
 
   Audacity: A Digital Audio Editor
 
-  AudacityApp.cpp
+  SaucedacityApp.cpp
 
   Dominic Mazzoni
 
 ******************************************************************//**
 
-\class AudacityApp
-\brief AudacityApp is the 'main' class for Saucedacity
+\class SaucedacityApp
+\brief SaucedacityApp is the 'main' class for Saucedacity
 
 It handles initialization and termination by subclassing wxApp.
 
 *//*******************************************************************/
 
 
-#include "AudacityApp.h"
+#include "SaucedacityApp.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/wxcrtvararg.h>
@@ -62,10 +62,10 @@ It handles initialization and termination by subclassing wxApp.
 #include <wx/msw/registry.h> // for wxRegKey
 #endif
 
-#include "AudacityLogger.h"
+#include "SaucedacityLogger.h"
 #include "AboutDialog.h"
 #include "AColor.h"
-#include "AudacityFileConfig.h"
+#include "SaucedacityFileConfig.h"
 #include "AudioIO.h"
 #include "Benchmark.h"
 #include "Clipboard.h"
@@ -172,7 +172,7 @@ void PopulatePreferences()
       const wxString fullPath{fn.GetFullPath()};
 
       auto pIni =
-         AudacityFileConfig::Create({}, {}, fullPath, {},
+         SaucedacityFileConfig::Create({}, {}, fullPath, {},
             wxCONFIG_USE_LOCAL_FILE);
       auto &ini = *pIni;
 
@@ -419,7 +419,7 @@ static void QuitAudacity(bool bForce)
    //DELETE Profiler::Instance();
 
    // Save last log for diagnosis
-   auto logger = AudacityLogger::Get();
+   auto logger = SaucedacityLogger::Get();
    if (logger)
    {
       wxFileName logFile(FileNames::DataDir(), wxT("lastlog.txt"));
@@ -501,7 +501,7 @@ public:
 
 #if defined(__WXMAC__)
 
-IMPLEMENT_APP_NO_MAIN(AudacityApp)
+IMPLEMENT_APP_NO_MAIN(SaucedacityApp)
 IMPLEMENT_WX_THEME_SUPPORT
 
 int main(int argc, char *argv[])
@@ -513,7 +513,7 @@ int main(int argc, char *argv[])
 
 #elif defined(__WXGTK__) && defined(NDEBUG)
 
-IMPLEMENT_APP_NO_MAIN(AudacityApp)
+IMPLEMENT_APP_NO_MAIN(SaucedacityApp)
 IMPLEMENT_WX_THEME_SUPPORT
 
 int main(int argc, char *argv[])
@@ -532,25 +532,25 @@ int main(int argc, char *argv[])
 }
 
 #else
-IMPLEMENT_APP(AudacityApp)
+IMPLEMENT_APP(SaucedacityApp)
 #endif
 
 #ifdef __WXMAC__
 
 // in response of an open-document apple event
-void AudacityApp::MacOpenFile(const wxString &fileName)
+void SaucedacityApp::MacOpenFile(const wxString &fileName)
 {
    ofqueue.push_back(fileName);
 }
 
 // in response of a print-document apple event
-void AudacityApp::MacPrintFile(const wxString &fileName)
+void SaucedacityApp::MacPrintFile(const wxString &fileName)
 {
    ofqueue.push_back(fileName);
 }
 
 // in response of a open-application apple event
-void AudacityApp::MacNewFile()
+void SaucedacityApp::MacNewFile()
 {
    if (!gInited)
       return;
@@ -569,52 +569,52 @@ void AudacityApp::MacNewFile()
 #define ID_IPC_SOCKET   6301
 
 // we don't really care about the timer id, but set this value just in case we do in the future
-#define kAudacityAppTimerID 0
+#define kSaucedacityAppTimerID 0
 
-BEGIN_EVENT_TABLE(AudacityApp, wxApp)
-   EVT_QUERY_END_SESSION(AudacityApp::OnQueryEndSession)
-   EVT_END_SESSION(AudacityApp::OnEndSession)
+BEGIN_EVENT_TABLE(SaucedacityApp, wxApp)
+   EVT_QUERY_END_SESSION(SaucedacityApp::OnQueryEndSession)
+   EVT_END_SESSION(SaucedacityApp::OnEndSession)
 
-   EVT_TIMER(kAudacityAppTimerID, AudacityApp::OnTimer)
+   EVT_TIMER(kSaucedacityAppTimerID, SaucedacityApp::OnTimer)
 #ifdef __WXMAC__
-   EVT_MENU(wxID_NEW, AudacityApp::OnMenuNew)
-   EVT_MENU(wxID_OPEN, AudacityApp::OnMenuOpen)
-   EVT_MENU(wxID_ABOUT, AudacityApp::OnMenuAbout)
-   EVT_MENU(wxID_PREFERENCES, AudacityApp::OnMenuPreferences)
+   EVT_MENU(wxID_NEW, SaucedacityApp::OnMenuNew)
+   EVT_MENU(wxID_OPEN, SaucedacityApp::OnMenuOpen)
+   EVT_MENU(wxID_ABOUT, SaucedacityApp::OnMenuAbout)
+   EVT_MENU(wxID_PREFERENCES, SaucedacityApp::OnMenuPreferences)
 #endif
 
    // Associate the handler with the menu id on all operating systems, even
    // if they don't have an application menu bar like in macOS, so that
    // other parts of the program can send the application a shut-down
    // event
-   EVT_MENU(wxID_EXIT, AudacityApp::OnMenuExit)
+   EVT_MENU(wxID_EXIT, SaucedacityApp::OnMenuExit)
 
 #ifndef __WXMSW__
-   EVT_SOCKET(ID_IPC_SERVER, AudacityApp::OnServerEvent)
-   EVT_SOCKET(ID_IPC_SOCKET, AudacityApp::OnSocketEvent)
+   EVT_SOCKET(ID_IPC_SERVER, SaucedacityApp::OnServerEvent)
+   EVT_SOCKET(ID_IPC_SOCKET, SaucedacityApp::OnSocketEvent)
 #endif
 
    // Recent file event handlers.
-   EVT_MENU(FileHistory::ID_RECENT_CLEAR, AudacityApp::OnMRUClear)
+   EVT_MENU(FileHistory::ID_RECENT_CLEAR, SaucedacityApp::OnMRUClear)
    EVT_MENU_RANGE(FileHistory::ID_RECENT_FIRST, FileHistory::ID_RECENT_LAST,
-      AudacityApp::OnMRUFile)
+      SaucedacityApp::OnMRUFile)
 
    // Handle AppCommandEvents (usually from a script)
-   EVT_APP_COMMAND(wxID_ANY, AudacityApp::OnReceiveCommand)
+   EVT_APP_COMMAND(wxID_ANY, SaucedacityApp::OnReceiveCommand)
 
    // Global ESC key handling
-   EVT_KEY_DOWN(AudacityApp::OnKeyDown)
+   EVT_KEY_DOWN(SaucedacityApp::OnKeyDown)
 END_EVENT_TABLE()
 
 // backend for OnMRUFile
 // TODO: Would be nice to make this handle not opening a file with more panache.
 //  - Inform the user if DefaultOpenPath not set.
 //  - Switch focus to correct instance of project window, if already open.
-bool AudacityApp::MRUOpen(const FilePath &fullPathStr) {
+bool SaucedacityApp::MRUOpen(const FilePath &fullPathStr) {
    // Most of the checks below are copied from ProjectManager::OpenFiles.
    // - some rationalisation might be possible.
 
-   AudacityProject *proj = GetActiveProject();
+   SaucedacityProject *proj = GetActiveProject();
 
    if (!fullPathStr.empty())
    {
@@ -624,7 +624,7 @@ bool AudacityApp::MRUOpen(const FilePath &fullPathStr) {
          FileNames::UpdateDefaultPath(FileNames::Operation::Open, ::wxPathOnly(fullPathStr));
 
          // Make sure it isn't already open.
-         // Test here even though AudacityProject::OpenFile() also now checks, because
+         // Test here even though SaucedacityProject::OpenFile() also now checks, because
          // that method does not return the bad result.
          // That itself may be a FIXME.
          if (ProjectFileManager::IsAlreadyOpen(fullPathStr))
@@ -645,12 +645,12 @@ bool AudacityApp::MRUOpen(const FilePath &fullPathStr) {
    return(true);
 }
 
-bool AudacityApp::SafeMRUOpen(const wxString &fullPathStr)
+bool SaucedacityApp::SafeMRUOpen(const wxString &fullPathStr)
 {
    return GuardedCall< bool >( [&]{ return MRUOpen( fullPathStr ); } );
 }
 
-void AudacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
+void SaucedacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
 {
    FileHistory::Global().Clear();
 }
@@ -658,15 +658,15 @@ void AudacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
 //vvv Basically, anything from Recent Files is treated as a .aup3, until proven otherwise,
 // then it tries to Import(). Very questionable handling, imo.
 // Better, for example, to check the file type early on.
-void AudacityApp::OnMRUFile(wxCommandEvent& event) {
+void SaucedacityApp::OnMRUFile(wxCommandEvent& event) {
    int n = event.GetId() - FileHistory::ID_RECENT_FIRST;
    auto &history = FileHistory::Global();
    const auto &fullPathStr = history[ n ];
 
    // Try to open only if not already open.
-   // Test IsAlreadyOpen() here even though AudacityProject::MRUOpen() also now checks,
+   // Test IsAlreadyOpen() here even though SaucedacityProject::MRUOpen() also now checks,
    // because we don't want to Remove() just because it already exists,
-   // and AudacityApp::OnMacOpenFile() calls MRUOpen() directly.
+   // and SaucedacityApp::OnMacOpenFile() calls MRUOpen() directly.
    // that method does not return the bad result.
    // PRL: Don't call SafeMRUOpen
    // -- if open fails for some exceptional reason of resource exhaustion that
@@ -675,7 +675,7 @@ void AudacityApp::OnMRUFile(wxCommandEvent& event) {
       history.Remove(n);
 }
 
-void AudacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
+void SaucedacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 {
    // Filenames are queued when Audacity receives a few of the
    // AppleEvent messages (via wxWidgets).  So, open any that are
@@ -691,7 +691,7 @@ void AudacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
             // Get the user's attention if no file name was specified
             if (name.empty()) {
                // Get the users attention
-               AudacityProject *project = GetActiveProject();
+               SaucedacityProject *project = GetActiveProject();
                if (project) {
                   auto &window = GetProjectFrame( *project );
                   window.Maximize();
@@ -725,7 +725,7 @@ void AudacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 #define WL(lang,sublang)
 #endif
 
-void AudacityApp::OnFatalException()
+void SaucedacityApp::OnFatalException()
 {
    exit(-1);
 }
@@ -737,7 +737,7 @@ void AudacityApp::OnFatalException()
 #pragma warning( disable : 4702) // unreachable code warning.
 #endif //_MSC_VER
 
-bool AudacityApp::OnExceptionInMainLoop()
+bool SaucedacityApp::OnExceptionInMainLoop()
 {
    // This function is invoked from catch blocks in the wxWidgets framework,
    // and throw; without argument re-throws the exception being handled,
@@ -788,20 +788,20 @@ bool AudacityApp::OnExceptionInMainLoop()
 #pragma warning( pop )
 #endif //_MSC_VER
 
-AudacityApp::AudacityApp()
+SaucedacityApp::SaucedacityApp()
 {
 #if defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
    wxHandleFatalExceptions();
 #endif
 }
 
-AudacityApp::~AudacityApp()
+SaucedacityApp::~SaucedacityApp()
 {
 }
 
 // The `main program' equivalent, creating the windows and returning the
 // main frame
-bool AudacityApp::OnInit()
+bool SaucedacityApp::OnInit()
 {
    // JKC: ANSWER-ME: Who actually added the event loop guarantor?
    // Although 'blame' says Leland, I think it came from a donated patch.
@@ -836,7 +836,7 @@ bool AudacityApp::OnInit()
 
 
    // cause initialization of wxWidgets' global logger target
-   (void) AudacityLogger::Get();
+   (void) SaucedacityLogger::Get();
 
 #if defined(__WXMAC__)
    // Disable window animation
@@ -1025,7 +1025,7 @@ bool AudacityApp::OnInit()
    {
       wxFileName configFileName(FileNames::DataDir(), wxT("saucedacity.cfg"));
       auto appName = wxTheApp->GetAppName();
-      InitPreferences( AudacityFileConfig::Create(
+      InitPreferences( SaucedacityFileConfig::Create(
          appName, wxEmptyString,
          configFileName.GetFullPath(),
          wxEmptyString, wxCONFIG_USE_LOCAL_FILE) );
@@ -1073,7 +1073,7 @@ bool AudacityApp::OnInit()
 #endif
 }
 
-bool AudacityApp::InitPart2()
+bool SaucedacityApp::InitPart2()
 {
   
 #if defined(__WXMAC__)
@@ -1143,7 +1143,7 @@ bool AudacityApp::InitPart2()
       logoimage = logoimage.Mirror();
    wxBitmap logo(logoimage);
 
-   AudacityProject *project;
+   SaucedacityProject *project;
    {
       // Bug 718: Position splash screen on same screen
       // as where Audacity project will appear.
@@ -1303,7 +1303,7 @@ bool AudacityApp::InitPart2()
 
    ModuleManager::Get().Dispatch(AppInitialized);
 
-   mTimer.SetOwner(this, kAudacityAppTimerID);
+   mTimer.SetOwner(this, kSaucedacityAppTimerID);
    mTimer.Start(200);
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
@@ -1358,20 +1358,20 @@ bool AudacityApp::InitPart2()
    return TRUE;
 }
 
-void AudacityApp::InitCommandHandler()
+void SaucedacityApp::InitCommandHandler()
 {
    mCmdHandler = std::make_unique<CommandHandler>();
    //SetNextHandler(mCmdHandler);
 }
 
 // AppCommandEvent callback - just pass the event on to the CommandHandler
-void AudacityApp::OnReceiveCommand(AppCommandEvent &event)
+void SaucedacityApp::OnReceiveCommand(AppCommandEvent &event)
 {
    wxASSERT(NULL != mCmdHandler);
    mCmdHandler->OnReceiveCommand(event);
 }
 
-void AudacityApp::OnKeyDown(wxKeyEvent &event)
+void SaucedacityApp::OnKeyDown(wxKeyEvent &event)
 {
    if(event.GetKeyCode() == WXK_ESCAPE) {
       // Stop play, including scrub, but not record
@@ -1413,7 +1413,7 @@ void SetToExtantDirectory( wxString & result, const wxString & dir ){
       result = dir;
 }
 
-bool AudacityApp::InitTempDir()
+bool SaucedacityApp::InitTempDir()
 {
    // We need to find a temp directory location.
    auto tempFromPrefs = TempDirectory::TempDir();
@@ -1490,7 +1490,7 @@ bool AudacityApp::InitTempDir()
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
 
-bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
+bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
    wxString name = wxString::Format(wxT("saucedacity-lock-%s"), wxGetUserId());
    mChecker.reset();
@@ -1605,7 +1605,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
 
-bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
+bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
    mIPCServ.reset();
 
@@ -1825,7 +1825,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #if defined(__WXMAC__)
    // On macOS the client gets events from the wxWidgets framework that
-   // go to AudacityApp::MacOpenFile. Forward the file names to the prior
+   // go to SaucedacityApp::MacOpenFile. Forward the file names to the prior
    // instance via the socket.
    for (const auto &filename: ofqueue)
    {
@@ -1854,7 +1854,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
    return false;
 }
 
-void AudacityApp::OnServerEvent(wxSocketEvent & /* evt */)
+void SaucedacityApp::OnServerEvent(wxSocketEvent & /* evt */)
 {
    wxSocketBase *sock;
 
@@ -1872,7 +1872,7 @@ void AudacityApp::OnServerEvent(wxSocketEvent & /* evt */)
    } while (sock);
 }
 
-void AudacityApp::OnSocketEvent(wxSocketEvent & evt)
+void SaucedacityApp::OnSocketEvent(wxSocketEvent & evt)
 {
    wxSocketBase *sock = evt.GetSocket();
 
@@ -1895,7 +1895,7 @@ void AudacityApp::OnSocketEvent(wxSocketEvent & evt)
 
 #endif
 
-std::unique_ptr<wxCmdLineParser> AudacityApp::ParseCommandLine()
+std::unique_ptr<wxCmdLineParser> SaucedacityApp::ParseCommandLine()
 {
    auto parser = std::make_unique<wxCmdLineParser>(argc, argv);
    if (!parser)
@@ -1931,7 +1931,7 @@ std::unique_ptr<wxCmdLineParser> AudacityApp::ParseCommandLine()
    return{};
 }
 
-void AudacityApp::OnQueryEndSession(wxCloseEvent & event)
+void SaucedacityApp::OnQueryEndSession(wxCloseEvent & event)
 {
    bool mustVeto = false;
 
@@ -1945,7 +1945,7 @@ void AudacityApp::OnQueryEndSession(wxCloseEvent & event)
       OnEndSession(event);
 }
 
-void AudacityApp::OnEndSession(wxCloseEvent & event)
+void SaucedacityApp::OnEndSession(wxCloseEvent & event)
 {
    bool force = !event.CanVeto();
 
@@ -1964,7 +1964,7 @@ void AudacityApp::OnEndSession(wxCloseEvent & event)
    }
 }
 
-int AudacityApp::OnExit()
+int SaucedacityApp::OnExit()
 {
    gIsQuitting = true;
    while(Pending())
@@ -2011,7 +2011,7 @@ int AudacityApp::OnExit()
 // and skip the event unless none are open (which should only happen
 // on the Mac, at least currently.)
 
-void AudacityApp::OnMenuAbout(wxCommandEvent & /*event*/)
+void SaucedacityApp::OnMenuAbout(wxCommandEvent & /*event*/)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform.
@@ -2029,7 +2029,7 @@ void AudacityApp::OnMenuAbout(wxCommandEvent & /*event*/)
 #endif
 }
 
-void AudacityApp::OnMenuNew(wxCommandEvent & event)
+void SaucedacityApp::OnMenuNew(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2044,7 +2044,7 @@ void AudacityApp::OnMenuNew(wxCommandEvent & event)
 }
 
 
-void AudacityApp::OnMenuOpen(wxCommandEvent & event)
+void SaucedacityApp::OnMenuOpen(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2061,7 +2061,7 @@ void AudacityApp::OnMenuOpen(wxCommandEvent & event)
 
 }
 
-void AudacityApp::OnMenuPreferences(wxCommandEvent & event)
+void SaucedacityApp::OnMenuPreferences(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2078,7 +2078,7 @@ void AudacityApp::OnMenuPreferences(wxCommandEvent & event)
 
 }
 
-void AudacityApp::OnMenuExit(wxCommandEvent & event)
+void SaucedacityApp::OnMenuExit(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2105,7 +2105,7 @@ void AudacityApp::OnMenuExit(wxCommandEvent & event)
    //      if people want to manually change associations.
 */
 #if defined(__WXMSW__) && !defined(__WXUNIVERSAL__) && !defined(__CYGWIN__)
-void AudacityApp::AssociateFileTypes()
+void SaucedacityApp::AssociateFileTypes()
 {
    // Check pref in case user has already decided against it.
    bool bWantAssociateFiles = true;

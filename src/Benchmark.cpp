@@ -57,7 +57,7 @@ class BenchmarkDialog final : public wxDialogWrapper
 {
 public:
    // constructors and destructors
-   BenchmarkDialog( wxWindow *parent, AudacityProject &project );
+   BenchmarkDialog( wxWindow *parent, SaucedacityProject &project );
 
    void MakeBenchmarkDialog();
 
@@ -72,7 +72,7 @@ private:
    void HoldPrint(bool hold);
    void FlushPrint();
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
    const ProjectSettings &mSettings;
 
    bool      mHoldPrint;
@@ -92,7 +92,7 @@ private:
    DECLARE_EVENT_TABLE()
 };
 
-void RunBenchmark( wxWindow *parent, AudacityProject &project )
+void RunBenchmark( wxWindow *parent, SaucedacityProject &project )
 {
    /*
    int action = AudacityMessageBox(
@@ -138,7 +138,7 @@ BEGIN_EVENT_TABLE(BenchmarkDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 BenchmarkDialog::BenchmarkDialog(
-   wxWindow *parent, AudacityProject &project)
+   wxWindow *parent, SaucedacityProject &project)
    :
       /* i18n-hint: Benchmark means a software speed test */
       wxDialogWrapper( parent, 0, XO("Benchmark"),

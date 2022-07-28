@@ -20,7 +20,7 @@
 #include "Identifier.h"
 
 class AudacityCommand;
-class AudacityProject;
+class SaucedacityProject;
 class CommandContext;
 class CommandMessageTarget;
 class ComponentInterfaceSymbol;
@@ -42,7 +42,7 @@ class AudacityCommand;
 
 class NotifyingSelectedRegion;
 
-class AUDACITY_DLL_API EffectManager
+class SAUCEDACITY_DLL_API EffectManager
 {
 public:
 

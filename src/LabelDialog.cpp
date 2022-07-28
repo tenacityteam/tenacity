@@ -95,7 +95,7 @@ BEGIN_EVENT_TABLE(LabelDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 LabelDialog::LabelDialog(wxWindow *parent,
-                         AudacityProject &project,
+                         SaucedacityProject &project,
                          TrackList *tracks,
                          LabelTrack *selectedTrack,
                          int index,

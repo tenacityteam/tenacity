@@ -17,7 +17,7 @@
 
 #include "Prefs.h"
 
-class AudacityProject;
+class SaucedacityProject;
 class LyricsPanel;
 
 class LyricsWindow final : public wxFrame,
@@ -25,7 +25,7 @@ class LyricsWindow final : public wxFrame,
 {
 
  public:
-   LyricsWindow(AudacityProject* parent);
+   LyricsWindow(SaucedacityProject* parent);
 
    LyricsPanel *GetLyricsPanel() { return mLyricsPanel; };
 
@@ -41,7 +41,7 @@ class LyricsWindow final : public wxFrame,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   std::weak_ptr<AudacityProject> mProject;
+   std::weak_ptr<SaucedacityProject> mProject;
    LyricsPanel *mLyricsPanel;
 
  public:

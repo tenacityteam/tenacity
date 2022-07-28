@@ -13,7 +13,7 @@
 
 #include <memory>
 
-class AudacityProject;
+class SaucedacityProject;
 class WaveTrackFactory;
 class WaveTrack;
 class wxString;
@@ -27,7 +27,7 @@ using NewChannelGroup = std::vector< std::shared_ptr<WaveTrack> >;
 using TrackHolders = std::vector< NewChannelGroup >;
 
 
-void ImportRaw(const AudacityProject &project, wxWindow *parent, const wxString &fileName,
+void ImportRaw(const SaucedacityProject &project, wxWindow *parent, const wxString &fileName,
    WaveTrackFactory *trackFactory, TrackHolders &outTracks);
 
 #endif

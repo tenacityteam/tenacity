@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 LogWindow.cpp
 
-Paul Licameli split from AudacityLogger.cpp
+Paul Licameli split from SaucedacityLogger.cpp
 
 **********************************************************************/
 #include "LogWindow.h"
@@ -17,7 +17,7 @@ Paul Licameli split from AudacityLogger.cpp
 #include <wx/textctrl.h>
 #include <wx/weakref.h>
 
-#include "AudacityLogger.h"
+#include "SaucedacityLogger.h"
 #include "widgets/AudacityMessageBox.h"
 #include "FileNames.h"
 #include "Internat.h"
@@ -69,7 +69,7 @@ void LogWindow::Show(bool show)
    }
 
    // If the frame already exists, refresh its contents and show it
-   auto pLogger = AudacityLogger::Get();
+   auto pLogger = SaucedacityLogger::Get();
    if (sFrame) {
       if (!sFrame->IsShown() && sText) {
          if (pLogger)
@@ -157,7 +157,7 @@ void LogWindow::Show(bool show)
 
    if (pLogger) {
       pLogger->SetListener([]{
-         if (auto pLogger = AudacityLogger::Get()) {
+         if (auto pLogger = SaucedacityLogger::Get()) {
             if (sFrame && sFrame->IsShown()) {
                if (sText)
                   sText->ChangeValue(pLogger->GetBuffer());
@@ -193,7 +193,7 @@ void OnClose(wxCommandEvent & WXUNUSED(e))
 
 void OnClear(wxCommandEvent & WXUNUSED(e))
 {
-   auto pLogger = AudacityLogger::Get();
+   auto pLogger = SaucedacityLogger::Get();
    if (pLogger)
       pLogger->ClearLog();
 }

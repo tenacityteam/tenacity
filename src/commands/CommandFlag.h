@@ -18,7 +18,7 @@
 
 #include "audacity/Types.h"
 
-class AudacityProject;
+class SaucedacityProject;
 
 // Increase the template parameter as needed to allow more flags
 constexpr size_t NCommandFlags = 64;
@@ -85,10 +85,10 @@ struct CommandFlagOptions{
 // Construct one statically to register (and reserve) a bit position in the set
 // an associate it with a test function; those with quickTest = true are cheap
 // to compute and always checked
-class AUDACITY_DLL_API ReservedCommandFlag : public CommandFlag
+class SAUCEDACITY_DLL_API ReservedCommandFlag : public CommandFlag
 {
 public:
-   using Predicate = std::function< bool( const AudacityProject& ) >;
+   using Predicate = std::function< bool( const SaucedacityProject& ) >;
    ReservedCommandFlag( const Predicate &predicate,
       const CommandFlagOptions &options = {} );
 };
@@ -106,8 +106,8 @@ public:
 // while they may not have been initialized yet, during static initialization.
 struct MenuItemEnabler {
    using Flags = std::function< CommandFlag() >;
-   using Test = std::function< bool( const AudacityProject& ) >;
-   using Action = std::function< void( AudacityProject&, CommandFlag ) >;
+   using Test = std::function< bool( const SaucedacityProject& ) >;
+   using Action = std::function< void( SaucedacityProject&, CommandFlag ) >;
 
    const Flags actualFlags;
    const Flags possibleFlags;
@@ -116,7 +116,7 @@ struct MenuItemEnabler {
 };
 
 // Typically this is statically constructed:
-struct AUDACITY_DLL_API RegisteredMenuItemEnabler{
+struct SAUCEDACITY_DLL_API RegisteredMenuItemEnabler{
    RegisteredMenuItemEnabler( const MenuItemEnabler &enabler );
 };
 

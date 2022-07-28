@@ -250,7 +250,7 @@ public:
    }
 
    Result Click(
-      const TrackPanelMouseEvent &event, AudacityProject *pProject ) override
+      const TrackPanelMouseEvent &event, SaucedacityProject *pProject ) override
    {
       using namespace RefreshCode;
       const auto &permutation = mAdjuster.mPermutation;
@@ -302,7 +302,7 @@ public:
       return RefreshNone;
    }
 
-   Result Drag( const TrackPanelMouseEvent &event, AudacityProject * ) override
+   Result Drag( const TrackPanelMouseEvent &event, SaucedacityProject * ) override
    {
       using namespace RefreshCode;
       auto pView = mAdjuster.mwView.lock();
@@ -376,7 +376,7 @@ public:
    }
 
    HitTestPreview Preview(
-      const TrackPanelMouseState &state, AudacityProject * ) override
+      const TrackPanelMouseState &state, SaucedacityProject * ) override
    {
       static auto resizeCursor =
          ::MakeCursor(wxCURSOR_ARROW, SubViewsCursorXpm, 16, 16);
@@ -388,14 +388,14 @@ public:
    }
 
    Result Release(
-      const TrackPanelMouseEvent &event, AudacityProject *pProject,
+      const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
       wxWindow *pParent) override
    {
       ProjectHistory::Get( *pProject ).ModifyState( false );
       return RefreshCode::RefreshNone;
    }
 
-   Result Cancel( AudacityProject * ) override
+   Result Cancel( SaucedacityProject * ) override
    {
       mAdjuster.UpdateViews( true );
       return RefreshCode::RefreshAll;
@@ -476,7 +476,7 @@ public:
    }
    
    Result Click(
-      const TrackPanelMouseEvent &event, AudacityProject *pProject ) override
+      const TrackPanelMouseEvent &event, SaucedacityProject *pProject ) override
    {
       using namespace RefreshCode;
       const auto &permutation = mAdjuster.mPermutation;
@@ -531,7 +531,7 @@ public:
       return Neutral;
    }
 
-   Result Drag( const TrackPanelMouseEvent &event, AudacityProject * ) override
+   Result Drag( const TrackPanelMouseEvent &event, SaucedacityProject * ) override
    {
       using namespace RefreshCode;
       auto pView = mAdjuster.mwView.lock();
@@ -569,7 +569,7 @@ public:
    }
 
    HitTestPreview Preview(
-      const TrackPanelMouseState &state, AudacityProject * ) override
+      const TrackPanelMouseState &state, SaucedacityProject * ) override
    {
       static auto hoverCursor =
          ::MakeCursor(wxCURSOR_HAND, RearrangeCursorXpm, 16, 16);
@@ -583,14 +583,14 @@ public:
    }
 
    Result Release(
-      const TrackPanelMouseEvent &event, AudacityProject *pProject,
+      const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
       wxWindow *pParent) override
    {
       ProjectHistory::Get( *pProject ).ModifyState( false );
       return RefreshCode::RefreshNone;
    }
 
-   Result Cancel( AudacityProject * ) override
+   Result Cancel( SaucedacityProject * ) override
    {
       mAdjuster.UpdateViews( true );
       return RefreshCode::RefreshAll;
@@ -649,7 +649,7 @@ public:
    }
 
    Result CommitChanges(
-      const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
+      const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
       override
    {
       ProjectHistory::Get( *pProject ).ModifyState( false );
@@ -661,7 +661,7 @@ public:
    }
 
    TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &project) const override
+      const wxMouseState &state, SaucedacityProject &project) const override
    {
       return XO("Close sub-view");
    }
@@ -689,7 +689,7 @@ std::pair<
    std::vector<UIHandlePtr>
 > WaveTrackSubView::DoDetailedHitTest(
    const TrackPanelMouseState &state,
-   const AudacityProject *pProject, int currentTool, bool bMultiTool,
+   const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
    const std::shared_ptr<WaveTrack> &wt)
 {
    auto results = WaveTrackView::DoDetailedHitTest(
@@ -808,7 +808,7 @@ void WaveTrackView::CopyTo( Track &track ) const
 
 std::vector<UIHandlePtr> WaveTrackView::DetailedHitTest
 (const TrackPanelMouseState &st,
- const AudacityProject *pProject, int currentTool, bool bMultiTool)
+ const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
 {
    // should not come here any more, delegation to sub-view instead
    wxASSERT( false );
@@ -818,7 +818,7 @@ std::vector<UIHandlePtr> WaveTrackView::DetailedHitTest
 std::pair< bool, std::vector<UIHandlePtr> >
 WaveTrackView::DoDetailedHitTest
 (const TrackPanelMouseState &st,
- const AudacityProject *pProject, int currentTool, bool bMultiTool,
+ const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
  const std::shared_ptr<WaveTrack> &pTrack,
  CommonTrackView &view)
 {

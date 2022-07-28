@@ -14,22 +14,22 @@
 #include <memory>
 #include "Identifier.h"
 
-class AudacityProject;
+class SaucedacityProject;
 class wxEvent;
 class CommandOutputTargets;
 using CommandParameter = CommandID;
 
-class AUDACITY_DLL_API CommandContext {
+class SAUCEDACITY_DLL_API CommandContext {
 public:
    CommandContext(
-      AudacityProject &p
+      SaucedacityProject &p
       , const wxEvent *e = nullptr
       , int ii = 0
       , const CommandParameter &param = CommandParameter{}
    );
 
    CommandContext(
-      AudacityProject &p,
+      SaucedacityProject &p,
       std::unique_ptr<CommandOutputTargets> target);
 
    ~CommandContext();
@@ -49,7 +49,7 @@ public:
    void AddBool(const bool value      , const wxString &name = {} ) const;
    void AddItem(const double value    , const wxString &name = {} ) const;
 
-   AudacityProject &project;
+   SaucedacityProject &project;
    std::unique_ptr<CommandOutputTargets> pOutput;
    const wxEvent *pEvt;
    int index;

@@ -22,7 +22,7 @@ class TranslatableString;
 
 /// \brief A UIHandle for a TrackPanel button, such as the Mute and Solo 
 /// buttons.
-class AUDACITY_DLL_API ButtonHandle /* not final */ : public UIHandle
+class SAUCEDACITY_DLL_API ButtonHandle /* not final */ : public UIHandle
 {
    ButtonHandle(const ButtonHandle&) = delete;
 
@@ -43,31 +43,31 @@ protected:
    // change.
    // Subclass can decide to refresh other things and the results will be ORed.
    virtual Result CommitChanges
-      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent) = 0;
+      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent) = 0;
 
    // Define a message for the status bar and tooltip.
    virtual TranslatableString Tip(
-      const wxMouseState &state, AudacityProject &project) const = 0;
+      const wxMouseState &state, SaucedacityProject &project) const = 0;
 
-   void Enter(bool forward, AudacityProject *) final override;
+   void Enter(bool forward, SaucedacityProject *) final override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject)
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject)
       final override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject)
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject)
       final override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, AudacityProject *pProject)
+      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
       final override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
        wxWindow *pParent) final override;
 
-   Result Cancel(AudacityProject *pProject) final override;
+   Result Cancel(SaucedacityProject *pProject) final override;
 
    std::weak_ptr<Track> mpTrack;
    wxRect mRect;

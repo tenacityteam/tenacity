@@ -27,6 +27,6 @@ set( LIBRARIES
    PRIVATE
    wxBase
 )
-audacity_library( lib-preferences "${SOURCES}" "${LIBRARIES}"
+saucedacity_library( lib-preferences "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

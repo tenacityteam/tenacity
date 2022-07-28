@@ -43,10 +43,10 @@ MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs.
 #define TOP_LEVEL_BORDER       5
 #define GENERIC_CONTROL_BORDER 5
 
-class AudacityProject;
+class SaucedacityProject;
 class ShuttleGui;
 
-class AUDACITY_DLL_API PrefsPanel /* not final */
+class SAUCEDACITY_DLL_API PrefsPanel /* not final */
    : public wxPanelWrapper, ComponentInterface
 {
  public:
@@ -54,7 +54,7 @@ class AUDACITY_DLL_API PrefsPanel /* not final */
     struct PrefsNode {
        using Factory =
          std::function< PrefsPanel * (
-            wxWindow *parent, wxWindowID winid, AudacityProject *) >;
+            wxWindow *parent, wxWindowID winid, SaucedacityProject *) >;
        Factory factory;
        size_t nChildren{ 0 };
        bool expanded{ false };
@@ -76,11 +76,11 @@ class AUDACITY_DLL_API PrefsPanel /* not final */
    // preview the preference changes for spectrograms.
    using Factory =
       std::function< PrefsPanel * (
-         wxWindow *parent, wxWindowID winid, AudacityProject *) >;
+         wxWindow *parent, wxWindowID winid, SaucedacityProject *) >;
 
    // Typically you make a static object of this type in the .cpp file that
    // also implements the PrefsPanel subclass.
-   struct AUDACITY_DLL_API Registration final
+   struct SAUCEDACITY_DLL_API Registration final
    {
       Registration( const wxString &name, const Factory &factory,
          bool expanded = true,

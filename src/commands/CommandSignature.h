@@ -25,7 +25,7 @@ class wxString;
 class wxVariant;
 class Validator;
 
-class AUDACITY_DLL_API CommandSignature
+class SAUCEDACITY_DLL_API CommandSignature
 {
 private:
    ParamValueMap mDefaults;

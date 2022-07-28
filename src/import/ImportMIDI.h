@@ -23,10 +23,10 @@ into a NoteTrack.
 
 #if defined(USE_MIDI)
 
-class AudacityProject;
+class SaucedacityProject;
 class NoteTrack;
 
-bool DoImportMIDI( AudacityProject &project, const FilePath &fileName );
+bool DoImportMIDI( SaucedacityProject &project, const FilePath &fileName );
 
 bool ImportMIDI(const FilePath &fName, NoteTrack * dest);
 

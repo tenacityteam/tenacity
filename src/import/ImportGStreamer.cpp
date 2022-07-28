@@ -248,7 +248,7 @@ public:
 
    ///! Probes the file and opens it if appropriate
    std::unique_ptr<ImportFileHandle> Open(
-      const wxString &Filename, AudacityProject*) override;
+      const wxString &Filename, SaucedacityProject*) override;
 };
 
 // ============================================================================
@@ -410,7 +410,7 @@ GStreamerImportPlugin::GetSupportedExtensions()
 // ----------------------------------------------------------------------------
 // Open the file and return an importer "file handle"
 std::unique_ptr<ImportFileHandle> GStreamerImportPlugin::Open(
-   const wxString &filename, AudacityProject*)
+   const wxString &filename, SaucedacityProject*)
 {
    auto handle = std::make_unique<GStreamerImportFileHandle>(filename);
 

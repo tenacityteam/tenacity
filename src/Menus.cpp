@@ -61,22 +61,22 @@ MenuCreator::~MenuCreator()
 {
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory key{
-  []( AudacityProject &project ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
+  []( SaucedacityProject &project ){
      return std::make_shared< MenuManager >( project ); }
 };
 
-MenuManager &MenuManager::Get( AudacityProject &project )
+MenuManager &MenuManager::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< MenuManager >( key );
 }
 
-const MenuManager &MenuManager::Get( const AudacityProject &project )
+const MenuManager &MenuManager::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-MenuManager::MenuManager( AudacityProject &project )
+MenuManager::MenuManager( SaucedacityProject &project )
    : mProject{ project }
 {
    UpdatePrefs();
@@ -234,7 +234,7 @@ MenuSection::~MenuSection() {}
 WholeMenu::~WholeMenu() {}
 
 CommandHandlerFinder FinderScope::sFinder =
-   [](AudacityProject &project) -> CommandHandlerObject & {
+   [](SaucedacityProject &project) -> CommandHandlerObject & {
       // If this default finder function is reached, then FinderScope should
       // have been used somewhere, or an explicit CommandHandlerFinder passed
       // to menu item constructors
@@ -278,7 +278,7 @@ using namespace MenuTable;
 
 struct MenuItemVisitor : ToolbarMenuVisitor
 {
-   MenuItemVisitor( AudacityProject &proj, CommandManager &man )
+   MenuItemVisitor( SaucedacityProject &proj, CommandManager &man )
       : ToolbarMenuVisitor(proj), manager( man ) {}
 
    void DoBeginGroup( GroupItem &item, const Path& ) override
@@ -378,7 +378,7 @@ struct MenuItemVisitor : ToolbarMenuVisitor
 };
 }
 
-void MenuCreator::CreateMenusAndCommands(AudacityProject &project)
+void MenuCreator::CreateMenusAndCommands(SaucedacityProject &project)
 {
    // Once only, cause initial population of preferences for the ordering
    // of some menu items that used to be given in tables but are now separately
@@ -440,7 +440,7 @@ void MenuManager::Visit( ToolbarMenuVisitor &visitor )
 }
 
 // TODO: This surely belongs in CommandManager?
-void MenuManager::ModifyUndoMenuItems(AudacityProject &project)
+void MenuManager::ModifyUndoMenuItems(SaucedacityProject &project)
 {
    TranslatableString desc;
    auto &undoManager = UndoManager::Get( project );
@@ -482,7 +482,7 @@ public:
    using wxFrame::DetachMenuBar;
 };
 
-void MenuCreator::RebuildMenuBar(AudacityProject &project)
+void MenuCreator::RebuildMenuBar(SaucedacityProject &project)
 {
    // On OSX, we can't rebuild the menus while a modal dialog is being shown
    // since the enabled state for menus like Quit and Preference gets out of
@@ -588,7 +588,7 @@ void MenuManager::ModifyAllProjectToolbarMenus()
    }
 }
 
-void MenuManager::ModifyToolbarMenus(AudacityProject &project)
+void MenuManager::ModifyToolbarMenus(SaucedacityProject &project)
 {
    // Refreshes can occur during shutdown and the toolmanager may already
    // be deleted, so protect against it.

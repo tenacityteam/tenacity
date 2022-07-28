@@ -23,7 +23,7 @@ list( APPEND SOURCES
    PluginInterface.cpp
    PluginInterface.h
 )
-audacity_library( lib-components "${SOURCES}"
+saucedacity_library( lib-components "${SOURCES}"
    "lib-strings-interface;PRIVATE;wxBase"
    "" ""
 )

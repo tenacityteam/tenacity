@@ -170,7 +170,7 @@ bool ApplyAndSendResponse::Apply()
 }
 
 CommandImplementation::CommandImplementation(
-  AudacityProject &project, OldStyleCommandType &type)
+  SaucedacityProject &project, OldStyleCommandType &type)
 :  OldStyleCommand{ project },
    mType(type),
    mParams(type.GetSignature().GetDefaults()),

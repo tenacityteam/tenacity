@@ -48,7 +48,7 @@ BEGIN_EVENT_TABLE(TimeToolBar, ToolBar)
    EVT_IDLE(TimeToolBar::OnIdle)
 END_EVENT_TABLE()
 
-TimeToolBar::TimeToolBar(AudacityProject &project)
+TimeToolBar::TimeToolBar(SaucedacityProject &project)
 :  ToolBar(project, TimeBarID, XO("Time"), wxT("Time"), true),
    mListener(NULL),
    mAudioTime(NULL)
@@ -60,15 +60,15 @@ TimeToolBar::~TimeToolBar()
 {
 }
 
-TimeToolBar &TimeToolBar::Get(AudacityProject &project)
+TimeToolBar &TimeToolBar::Get(SaucedacityProject &project)
 {
    auto &toolManager = ToolManager::Get(project);
    return *static_cast<TimeToolBar*>(toolManager.GetToolBar(TimeBarID));
 }
 
-const TimeToolBar &TimeToolBar::Get(const AudacityProject &project)
+const TimeToolBar &TimeToolBar::Get(const SaucedacityProject &project)
 {
-   return Get(const_cast<AudacityProject&>(project)) ;
+   return Get(const_cast<SaucedacityProject&>(project)) ;
 }
 
 void TimeToolBar::Populate()
@@ -376,7 +376,7 @@ void TimeToolBar::OnIdle(wxIdleEvent &evt)
 static RegisteredToolbarFactory factory
 {
    TimeBarID,
-   []( AudacityProject &project )
+   []( SaucedacityProject &project )
    {
       return ToolBar::Holder{ safenew TimeToolBar{ project } };
    }

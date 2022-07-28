@@ -123,7 +123,7 @@ class QTImportPlugin final : public ImportPlugin
 
    TranslatableString GetPluginFormatDescription() override;
    std::unique_ptr<ImportFileHandle> Open(
-      const wxString & Filename, AudacityProject*) override;
+      const wxString & Filename, SaucedacityProject*) override;
 
  private:
    bool mInitialized;
@@ -180,7 +180,7 @@ TranslatableString QTImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> QTImportPlugin::Open(
-   const wxString & Filename, AudacityProject*)
+   const wxString & Filename, SaucedacityProject*)
 {
    OSErr err;
    FSRef inRef;

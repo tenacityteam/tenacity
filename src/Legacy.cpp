@@ -266,7 +266,7 @@ bool ConvertLegacyProjectFile(const wxFileName &filename)
       wxString label;
       wxString value;
 
-      if (f.GetFirstLine() != wxT("AudacityProject"))
+      if (f.GetFirstLine() != wxT("SaucedacityProject"))
          return false;
       if (f.GetNextLine() != wxT("Version"))
          return false;

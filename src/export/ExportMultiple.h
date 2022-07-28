@@ -23,18 +23,18 @@ class wxSimplebook;
 class wxStaticText;
 class wxTextCtrl;
 
-class AudacityProject;
+class SaucedacityProject;
 class LabelTrack;
 class SelectionState;
 class ShuttleGui;
 class Track;
 
-class AUDACITY_DLL_API ExportMultipleDialog final : public wxDialogWrapper
+class SAUCEDACITY_DLL_API ExportMultipleDialog final : public wxDialogWrapper
 {
 public:
    using ProgressResult = GenericUI::ProgressResult;
 
-   ExportMultipleDialog(AudacityProject *parent);
+   ExportMultipleDialog(SaucedacityProject *parent);
    virtual ~ExportMultipleDialog();
 
    int ShowModal();
@@ -107,7 +107,7 @@ private:
    Exporter mExporter;
    std::vector<ExportPlugin*> mPlugins;   /**< Array of references to available exporter
                                    plug-ins */
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
    TrackList *mTracks;           /**< The list of tracks in the project that is
                                    being exported */
    const LabelTrack *mLabels;

@@ -2,7 +2,7 @@
 
   Audacity: A Digital Audio Editor
 
-  AudacityLogger.h
+  SaucedacityLogger.h
 
   Dominic Mazzoni
 
@@ -17,15 +17,15 @@
 class wxFrame;
 class wxTextCtrl;
 
-class FILES_API AudacityLogger final : public wxEvtHandler,
+class FILES_API SaucedacityLogger final : public wxEvtHandler,
                              public wxLog
 {
  public:
 
-   ~AudacityLogger() override;
+   ~SaucedacityLogger() override;
  
    // Get the singleton instance or null
-   static AudacityLogger *Get();
+   static SaucedacityLogger *Get();
 
    bool SaveLog(const wxString &fileName) const;
    bool ClearLog();
@@ -51,7 +51,7 @@ protected:
    void DoLogText(const wxString & msg) override;
 
  private:
-   AudacityLogger();
+   SaucedacityLogger();
 
    Listener mListener;
    wxString mBuffer;

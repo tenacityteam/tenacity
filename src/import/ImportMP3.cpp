@@ -97,7 +97,7 @@ public:
 
    wxString GetPluginStringID() override;
    TranslatableString GetPluginFormatDescription() override;
-   std::unique_ptr<ImportFileHandle> Open(const FilePath &Filename, AudacityProject*) override;
+   std::unique_ptr<ImportFileHandle> Open(const FilePath &Filename, SaucedacityProject*) override;
 };
 
 using NewChannelGroup = std::vector< std::shared_ptr<WaveTrack> >;
@@ -195,7 +195,7 @@ TranslatableString MP3ImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> MP3ImportPlugin::Open(
-   const FilePath &Filename, AudacityProject *)
+   const FilePath &Filename, SaucedacityProject *)
 {
    auto handle = std::make_unique<MP3ImportFileHandle>(Filename);
 

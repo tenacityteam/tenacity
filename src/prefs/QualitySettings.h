@@ -18,9 +18,9 @@
 class IntSetting;
 
 namespace QualitySettings {
-extern AUDACITY_DLL_API IntSetting DefaultSampleRate;
-extern AUDACITY_DLL_API EnumSetting< sampleFormat > SampleFormatSetting;
-extern AUDACITY_DLL_API sampleFormat SampleFormatChoice();
+extern SAUCEDACITY_DLL_API IntSetting DefaultSampleRate;
+extern SAUCEDACITY_DLL_API EnumSetting< sampleFormat > SampleFormatSetting;
+extern SAUCEDACITY_DLL_API sampleFormat SampleFormatChoice();
 }
 
 #endif

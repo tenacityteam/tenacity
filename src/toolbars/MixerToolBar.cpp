@@ -56,7 +56,7 @@ BEGIN_EVENT_TABLE(MixerToolBar, ToolBar)
 END_EVENT_TABLE()
 
 //Standard constructor
-MixerToolBar::MixerToolBar( AudacityProject &project )
+MixerToolBar::MixerToolBar( SaucedacityProject &project )
 : ToolBar(project, MixerBarID, XO("Mixer"), wxT("Mixer"), true)
 {
    mInputSliderVolume = 0.0;
@@ -68,15 +68,15 @@ MixerToolBar::~MixerToolBar()
 {
 }
 
-MixerToolBar &MixerToolBar::Get( AudacityProject &project )
+MixerToolBar &MixerToolBar::Get( SaucedacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<MixerToolBar*>( toolManager.GetToolBar(MixerBarID) );
 }
 
-const MixerToolBar &MixerToolBar::Get( const AudacityProject &project )
+const MixerToolBar &MixerToolBar::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast<AudacityProject&>( project )) ;
+   return Get( const_cast<SaucedacityProject&>( project )) ;
 }
 
 void MixerToolBar::Create(wxWindow *parent)
@@ -141,8 +141,8 @@ void MixerToolBar::OnAudioCapture(wxCommandEvent & event)
 {
    event.Skip();
 
-   AudacityProject *p = &mProject;
-   if ((AudacityProject *) event.GetEventObject() != p)
+   SaucedacityProject *p = &mProject;
+   if ((SaucedacityProject *) event.GetEventObject() != p)
    {
       mEnabled = !event.GetInt();
       mInputSlider->Enable(mEnabled);
@@ -333,7 +333,7 @@ void MixerToolBar::SetToolTips()
 }
 
 static RegisteredToolbarFactory factory{ MixerBarID,
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       return ToolBar::Holder{ safenew MixerToolBar{ project } }; }
 };
 

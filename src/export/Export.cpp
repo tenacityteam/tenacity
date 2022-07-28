@@ -316,7 +316,7 @@ Exporter::RegisteredExportPlugin::RegisteredExportPlugin(
          std::make_unique< ExporterItem >( id, factory ) );
 }
 
-Exporter::Exporter( AudacityProject &project )
+Exporter::Exporter( SaucedacityProject &project )
 : mProject{ &project }
 {
    using namespace Registry;
@@ -395,7 +395,7 @@ const ExportPluginArray &Exporter::GetPlugins()
    return mPlugins;
 }
 
-bool Exporter::DoEditMetadata(AudacityProject &project,
+bool Exporter::DoEditMetadata(SaucedacityProject &project,
    const TranslatableString &title,
    const TranslatableString &shortUndoDescription, bool force)
 {

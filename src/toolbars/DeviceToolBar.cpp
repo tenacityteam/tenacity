@@ -72,7 +72,7 @@ static int DeviceToolbarPrefsID()
 }
 
 //Standard constructor
-DeviceToolBar::DeviceToolBar( AudacityProject &project )
+DeviceToolBar::DeviceToolBar( SaucedacityProject &project )
 : ToolBar( project, DeviceBarID, XO("Device"), wxT("Device"), true )
 {
    wxTheApp->Bind( EVT_RESCANNED_DEVICES,
@@ -83,15 +83,15 @@ DeviceToolBar::~DeviceToolBar()
 {
 }
 
-DeviceToolBar &DeviceToolBar::Get( AudacityProject &project )
+DeviceToolBar &DeviceToolBar::Get( SaucedacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<DeviceToolBar*>( toolManager.GetToolBar(DeviceBarID) );
 }
 
-const DeviceToolBar &DeviceToolBar::Get( const AudacityProject &project )
+const DeviceToolBar &DeviceToolBar::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast<AudacityProject&>( project )) ;
+   return Get( const_cast<SaucedacityProject&>( project )) ;
 }
 
 void DeviceToolBar::Create(wxWindow *parent)
@@ -660,7 +660,7 @@ void DeviceToolBar::OnChoice(wxCommandEvent &event)
    if (gAudioIO) {
       // We cannot have gotten here if gAudioIO->IsAudioTokenActive(),
       // per the setting of AudioIONotBusyFlag and AudioIOBusyFlag in
-      // AudacityProject::GetUpdateFlags().
+      // SaucedacityProject::GetUpdateFlags().
       // However, we can have an invalid audio token (so IsAudioTokenActive()
       // is false), but be monitoring.
       // If monitoring, have to stop the stream, so HandleDeviceChange() can work.
@@ -744,7 +744,7 @@ void DeviceToolBar::ShowComboDialog(wxChoice *combo, const TranslatableString &t
 }
 
 static RegisteredToolbarFactory factory{ DeviceBarID,
-   []( AudacityProject &project ){
+   []( SaucedacityProject &project ){
       return ToolBar::Holder{ safenew DeviceToolBar{ project } }; }
 };
 

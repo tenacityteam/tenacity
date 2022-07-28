@@ -38,7 +38,7 @@ public:
         return result;
     }
 
-    UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, AudacityProject* pProject) override
+    UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, SaucedacityProject* pProject) override
     {
         const auto track = std::dynamic_pointer_cast<WaveTrack>(TrackList::Get(*pProject).Lock<Track>(GetTrack()));
 
@@ -62,7 +62,7 @@ WaveTrackAffordanceControls::WaveTrackAffordanceControls(const std::shared_ptr<T
 {
 }
 
-std::vector<UIHandlePtr> WaveTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const AudacityProject* pProject)
+std::vector<UIHandlePtr> WaveTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject)
 {
     mFocusClip.reset();
 

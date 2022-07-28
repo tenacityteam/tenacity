@@ -40,26 +40,26 @@ Paul Licameli split from ProjectManager.cpp
 #include "widgets/AudacityMessageBox.h"
 
 
-static AudacityProject::AttachedObjects::RegisteredFactory
+static SaucedacityProject::AttachedObjects::RegisteredFactory
 sProjectAudioManagerKey {
-   []( AudacityProject &project ) {
+   []( SaucedacityProject &project ) {
       return std::make_shared< ProjectAudioManager >( project );
    }
 };
 
-ProjectAudioManager &ProjectAudioManager::Get( AudacityProject &project )
+ProjectAudioManager &ProjectAudioManager::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectAudioManager >(
       sProjectAudioManagerKey );
 }
 
 const ProjectAudioManager &ProjectAudioManager::Get(
-   const AudacityProject &project )
+   const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-ProjectAudioManager::ProjectAudioManager( AudacityProject &project )
+ProjectAudioManager::ProjectAudioManager( SaucedacityProject &project )
    : mProject{ project }
 {
    static ProjectStatus::RegisteredStatusWidthFunction
@@ -81,7 +81,7 @@ static TranslatableString FormatRate( int rate )
 }
 
 auto ProjectAudioManager::StatusWidthFunction(
-   const AudacityProject &project, StatusBarField field )
+   const SaucedacityProject &project, StatusBarField field )
    -> ProjectStatus::StatusWidthResult
 {
    if ( field == rateStatusBarField ) {
@@ -139,7 +139,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
    if (cutpreview && t0==t1)
       return -1; /* msmeyer: makes no sense */
 
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
 
    auto &tracks = TrackList::Get( *p );
 
@@ -288,7 +288,7 @@ void ProjectAudioManager::PlayCurrentRegion(bool looped /* = false */,
    if ( !canStop )
       return;
 
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
 
    {
 
@@ -310,7 +310,7 @@ void ProjectAudioManager::PlayCurrentRegion(bool looped /* = false */,
 
 void ProjectAudioManager::Stop(bool stopStream /* = true*/)
 {
-   AudacityProject *project = &mProject;
+   SaucedacityProject *project = &mProject;
    auto &projectAudioManager = *this;
    bool canStop = projectAudioManager.CanStopAudioStream();
 
@@ -388,7 +388,7 @@ void ProjectAudioManager::Pause()
 }
 
 WaveTrackArray ProjectAudioManager::ChooseExistingRecordingTracks(
-   AudacityProject &proj, bool selectedOnly, double targetRate)
+   SaucedacityProject &proj, bool selectedOnly, double targetRate)
 {
    auto p = &proj;
    size_t recordingChannels = std::max(0, AudioIORecordChannels.Read());
@@ -470,7 +470,7 @@ void ProjectAudioManager::OnRecord(bool altAppearance)
    const bool appendRecord = (altAppearance == bPreferNewTrack);
 
    // Code from CommandHandler start...
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
 
    if (p) {
       const auto &selectedRegion = ViewInfo::Get( *p ).selectedRegion;
@@ -574,7 +574,7 @@ bool ProjectAudioManager::UseDuplex()
    return duplex;
 }
 
-bool ProjectAudioManager::DoRecord(AudacityProject &project,
+bool ProjectAudioManager::DoRecord(SaucedacityProject &project,
    const TransportTracks &tracks,
    double t0, double t1,
    bool altAppearance,
@@ -809,7 +809,7 @@ void ProjectAudioManager::SetupCutPreviewTracks(double WXUNUSED(playStart), doub
 
 {
    ClearCutPreviewTracks();
-   AudacityProject *p = &mProject;
+   SaucedacityProject *p = &mProject;
    {
       auto trackRange = TrackList::Get( *p ).Selected< const PlayableTrack >();
       if( !trackRange.empty() ) {
@@ -989,7 +989,7 @@ bool ProjectAudioManager::CanStopAudioStream() const
 
 const ReservedCommandFlag&
    CanStopAudioStreamFlag(){ static ReservedCommandFlag flag{
-      [](const AudacityProject &project){
+      [](const SaucedacityProject &project){
          auto &projectAudioManager = ProjectAudioManager::Get( project );
          bool canStop = projectAudioManager.CanStopAudioStream();
          return canStop;
@@ -997,7 +997,7 @@ const ReservedCommandFlag&
    }; return flag; }
 
 AudioIOStartStreamOptions
-DefaultPlayOptions( AudacityProject &project )
+DefaultPlayOptions( SaucedacityProject &project )
 {
    auto &projectAudioIO = ProjectAudioIO::Get( project );
    AudioIOStartStreamOptions options { &project,
@@ -1011,7 +1011,7 @@ DefaultPlayOptions( AudacityProject &project )
 }
 
 AudioIOStartStreamOptions
-DefaultSpeedPlayOptions( AudacityProject &project )
+DefaultSpeedPlayOptions( SaucedacityProject &project )
 {
    auto &projectAudioIO = ProjectAudioIO::Get( project );
    auto gAudioIO = AudioIO::Get();
@@ -1139,9 +1139,9 @@ void ProjectAudioManager::DoPlayStopSelect()
 static RegisteredMenuItemEnabler stopIfPaused{{
    []{ return PausedFlag(); },
    []{ return AudioIONotBusyFlag(); },
-   []( const AudacityProject &project ){
+   []( const SaucedacityProject &project ){
       return MenuManager::Get( project ).mStopIfWasPaused; },
-   []( AudacityProject &project, CommandFlag ){
+   []( SaucedacityProject &project, CommandFlag ){
       if ( MenuManager::Get( project ).mStopIfWasPaused )
          ProjectAudioManager::Get( project ).StopIfPaused();
    }
@@ -1150,7 +1150,7 @@ static RegisteredMenuItemEnabler stopIfPaused{{
 // GetSelectedProperties collects information about 
 // currently selected audio tracks
 PropertiesOfSelected
-GetPropertiesOfSelected(const AudacityProject &proj)
+GetPropertiesOfSelected(const SaucedacityProject &proj)
 {
    double rateOfSelection{ RATE_NOT_SELECTED };
 

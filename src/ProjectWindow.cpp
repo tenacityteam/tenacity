@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectWindow.cpp
 
-Paul Licameli split from AudacityProject.cpp
+Paul Licameli split from SaucedacityProject.cpp
 
 **********************************************************************/
 
@@ -365,7 +365,7 @@ MouseWheelHandler()
 mutable double mVertScrollRemainder = 0.0;
 
 unsigned operator()
-   ( const TrackPanelMouseEvent &evt, AudacityProject *pProject ) const
+   ( const TrackPanelMouseEvent &evt, SaucedacityProject *pProject ) const
 {
    using namespace RefreshCode;
 
@@ -397,11 +397,11 @@ unsigned operator()
    {
 #if 0
          // JKC: Alternative scroll wheel zooming code
-         // using AudacityProject zooming, which is smarter,
+         // using SaucedacityProject zooming, which is smarter,
          // it keeps selections on screen and centred if it can,
          // also this ensures mousewheel and zoom buttons give same result.
          double ZoomFactor = pow(2.0, steps);
-         AudacityProject *p = GetProject();
+         SaucedacityProject *p = GetProject();
          if( steps > 0 )
             // PRL:  Track panel refresh may be needed if you reenable this
             // code, but we don't want this file dependent on TrackPanel.cpp
@@ -497,8 +497,8 @@ unsigned operator()
 
 } sMouseWheelHandler;
 
-AudacityProject::AttachedWindows::RegisteredFactory sProjectWindowKey{
-   []( AudacityProject &parent ) -> wxWeakRef< wxWindow > {
+SaucedacityProject::AttachedWindows::RegisteredFactory sProjectWindowKey{
+   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
       wxRect wndRect;
       bool bMaximized = false;
       bool bIconized = false;
@@ -530,26 +530,26 @@ AudacityProject::AttachedWindows::RegisteredFactory sProjectWindowKey{
 
 }
 
-ProjectWindow &ProjectWindow::Get( AudacityProject &project )
+ProjectWindow &ProjectWindow::Get( SaucedacityProject &project )
 {
    return project.AttachedWindows::Get< ProjectWindow >( sProjectWindowKey );
 }
 
-const ProjectWindow &ProjectWindow::Get( const AudacityProject &project )
+const ProjectWindow &ProjectWindow::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-ProjectWindow *ProjectWindow::Find( AudacityProject *pProject )
+ProjectWindow *ProjectWindow::Find( SaucedacityProject *pProject )
 {
    return pProject
       ? pProject->AttachedWindows::Find< ProjectWindow >( sProjectWindowKey )
       : nullptr;
 }
 
-const ProjectWindow *ProjectWindow::Find( const AudacityProject *pProject )
+const ProjectWindow *ProjectWindow::Find( const SaucedacityProject *pProject )
 {
-   return Find( const_cast< AudacityProject * >( pProject ) );
+   return Find( const_cast< SaucedacityProject * >( pProject ) );
 }
 
 int ProjectWindow::NextWindowID()
@@ -570,7 +570,7 @@ enum {
 
 ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
                                  const wxPoint & pos,
-                                 const wxSize & size, AudacityProject &project)
+                                 const wxSize & size, SaucedacityProject &project)
    : ProjectWindowBase{ parent, id, pos, size, project }
 {
    mNextWindowID = NextID;
@@ -1056,7 +1056,7 @@ void ProjectWindow::FixScrollbars()
    // Setting mVSbar earlier, int HandlXMLTag, didn't succeed in restoring
    // the vertical scrollbar to its saved position.  So defer that till now.
    // mbInitializingScrollbar should be true only at the start of the life
-   // of an AudacityProject reopened from disk.
+   // of an SaucedacityProject reopened from disk.
    if (!mbInitializingScrollbar) {
       viewInfo.vpos = mVsbar->GetThumbPosition() * viewInfo.scrollStep;
    }
@@ -1633,7 +1633,7 @@ void ProjectWindow::TP_HandleResize()
    HandleResize();
 }
 
-ProjectWindow::PlaybackScroller::PlaybackScroller(AudacityProject *project)
+ProjectWindow::PlaybackScroller::PlaybackScroller(SaucedacityProject *project)
 : mProject(project)
 {
    mProject->Bind(EVT_TRACK_PANEL_TIMER,

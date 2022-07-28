@@ -21,7 +21,7 @@
 #include "../../WaveTrack.h"
 #include "../../../images/Cursors.h"
 
-HitTestPreview AffordanceHandle::HitPreview(const AudacityProject*, bool unsafe, bool moving)
+HitTestPreview AffordanceHandle::HitPreview(const SaucedacityProject*, bool unsafe, bool moving)
 {
     static auto disabledCursor =
         MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
@@ -42,13 +42,13 @@ HitTestPreview AffordanceHandle::HitPreview(const AudacityProject*, bool unsafe,
     };
 }
 
-void AffordanceHandle::Enter(bool forward, AudacityProject* pProject)
+void AffordanceHandle::Enter(bool forward, SaucedacityProject* pProject)
 {
     SetChangeHighlight(RefreshCode::RefreshCell | RefreshCode::RefreshLatestCell);
     TimeShiftHandle::Enter(forward, pProject);
 }
 
-HitTestPreview AffordanceHandle::Preview(const TrackPanelMouseState& mouseState, AudacityProject* pProject)
+HitTestPreview AffordanceHandle::Preview(const TrackPanelMouseState& mouseState, SaucedacityProject* pProject)
 {
     const bool unsafe = ProjectAudioIO::Get(*pProject).IsAudioActive();
     return HitPreview(pProject, unsafe, Clicked());
@@ -59,13 +59,13 @@ AffordanceHandle::AffordanceHandle(const std::shared_ptr<Track>& track)
 {
 }
 
-UIHandle::Result AffordanceHandle::Click(const TrackPanelMouseEvent& evt, AudacityProject* pProject)
+UIHandle::Result AffordanceHandle::Click(const TrackPanelMouseEvent& evt, SaucedacityProject* pProject)
 {
     auto result = TimeShiftHandle::Click(evt, pProject);
     return result | RefreshCode::RefreshCell;
 }
 
-UIHandle::Result AffordanceHandle::Release(const TrackPanelMouseEvent& event, AudacityProject* pProject, wxWindow* pParent)
+UIHandle::Result AffordanceHandle::Release(const TrackPanelMouseEvent& event, SaucedacityProject* pProject, wxWindow* pParent)
 {
     auto result = TimeShiftHandle::Release(event, pProject, pParent);
     //Clip was not moved

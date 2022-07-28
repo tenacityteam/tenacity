@@ -35,7 +35,7 @@ MinimizeButtonHandle::~MinimizeButtonHandle()
 }
 
 UIHandle::Result MinimizeButtonHandle::CommitChanges
-(const wxMouseEvent &, AudacityProject *pProject, wxWindow*)
+(const wxMouseEvent &, SaucedacityProject *pProject, wxWindow*)
 {
    using namespace RefreshCode;
 
@@ -58,7 +58,7 @@ UIHandle::Result MinimizeButtonHandle::CommitChanges
 }
 
 TranslatableString MinimizeButtonHandle::Tip(
-   const wxMouseState &, AudacityProject &) const
+   const wxMouseState &, SaucedacityProject &) const
 {
    auto pTrack = GetTrack();
    return TrackView::Get( *pTrack ).GetMinimized()
@@ -93,7 +93,7 @@ SelectButtonHandle::~SelectButtonHandle()
 }
 
 UIHandle::Result SelectButtonHandle::CommitChanges
-(const wxMouseEvent &event, AudacityProject *pProject, wxWindow*)
+(const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow*)
 {
    using namespace RefreshCode;
 
@@ -110,7 +110,7 @@ UIHandle::Result SelectButtonHandle::CommitChanges
 }
 
 TranslatableString SelectButtonHandle::Tip(
-   const wxMouseState &, AudacityProject &) const
+   const wxMouseState &, SaucedacityProject &) const
 {
    auto pTrack = GetTrack();
 #if defined(__WXMAC__)
@@ -149,7 +149,7 @@ CloseButtonHandle::~CloseButtonHandle()
 }
 
 UIHandle::Result CloseButtonHandle::CommitChanges
-(const wxMouseEvent &, AudacityProject *pProject, wxWindow*)
+(const wxMouseEvent &, SaucedacityProject *pProject, wxWindow*)
 {
    using namespace RefreshCode;
    Result result = RefreshNone;
@@ -173,7 +173,7 @@ UIHandle::Result CloseButtonHandle::CommitChanges
 }
 
 TranslatableString CloseButtonHandle::Tip(
-   const wxMouseState &, AudacityProject &project) const
+   const wxMouseState &, SaucedacityProject &project) const
 {
    auto name = XO("Close");
    auto focused =
@@ -217,7 +217,7 @@ MenuButtonHandle::~MenuButtonHandle()
 }
 
 UIHandle::Result MenuButtonHandle::CommitChanges
-(const wxMouseEvent &, AudacityProject *pProject, wxWindow *WXUNUSED(pParent))
+(const wxMouseEvent &, SaucedacityProject *pProject, wxWindow *WXUNUSED(pParent))
 {
    auto &trackPanel = TrackPanel::Get( *pProject );
    auto pCell = mpCell.lock();
@@ -233,7 +233,7 @@ UIHandle::Result MenuButtonHandle::CommitChanges
 }
 
 TranslatableString MenuButtonHandle::Tip(
-   const wxMouseState &, AudacityProject &project) const
+   const wxMouseState &, SaucedacityProject &project) const
 {
    auto name = XO("Open menu...");
    auto focused =

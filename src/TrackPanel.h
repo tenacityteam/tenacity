@@ -57,15 +57,15 @@ enum {
 
 const int DragThreshold = 3;// Anything over 3 pixels is a drag, else a click.
 
-class AUDACITY_DLL_API TrackPanel final
+class SAUCEDACITY_DLL_API TrackPanel final
    : public CellularPanel
    , public NonKeystrokeInterceptingWindow
    , private PrefsListener
 {
  public:
-   static TrackPanel &Get( AudacityProject &project );
-   static const TrackPanel &Get( const AudacityProject &project );
-   static void Destroy( AudacityProject &project );
+   static TrackPanel &Get( SaucedacityProject &project );
+   static const TrackPanel &Get( const SaucedacityProject &project );
+   static void Destroy( SaucedacityProject &project );
  
    TrackPanel(wxWindow * parent,
               wxWindowID id,
@@ -73,7 +73,7 @@ class AUDACITY_DLL_API TrackPanel final
               const wxSize & size,
               const std::shared_ptr<TrackList> &tracks,
               ViewInfo * viewInfo,
-              AudacityProject * project,
+              SaucedacityProject * project,
               AdornedRulerPanel * ruler );
 
    virtual ~ TrackPanel();
@@ -109,7 +109,7 @@ class AUDACITY_DLL_API TrackPanel final
 
    void HandlePageUpKey();
    void HandlePageDownKey();
-   AudacityProject * GetProject() const override;
+   SaucedacityProject * GetProject() const override;
 
    void OnTrackMenu(Track *t = NULL);
 
@@ -174,7 +174,7 @@ protected:
 
    std::unique_ptr<TrackArtist> mTrackArtist;
 
-   class AUDACITY_DLL_API AudacityTimer final : public wxTimer {
+   class SAUCEDACITY_DLL_API AudacityTimer final : public wxTimer {
    public:
      void Notify() override{
        // (From Debian)
@@ -213,9 +213,9 @@ protected:
 };
 
 // A predicate class
-struct AUDACITY_DLL_API IsVisibleTrack
+struct SAUCEDACITY_DLL_API IsVisibleTrack
 {
-   IsVisibleTrack(AudacityProject *project);
+   IsVisibleTrack(SaucedacityProject *project);
 
    bool operator () (const Track *pTrack) const;
 

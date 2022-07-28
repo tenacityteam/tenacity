@@ -113,14 +113,14 @@ public:
    wxString GetPluginStringID() override { return wxT("lof"); }
    TranslatableString GetPluginFormatDescription() override;
    std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, AudacityProject *pProject) override;
+      const FilePath &Filename, SaucedacityProject *pProject) override;
 };
 
 
 class LOFImportFileHandle final : public ImportFileHandle
 {
 public:
-   LOFImportFileHandle( AudacityProject *pProject,
+   LOFImportFileHandle( SaucedacityProject *pProject,
       const FilePath & name, std::unique_ptr<wxTextFile> &&file);
    ~LOFImportFileHandle();
 
@@ -148,7 +148,7 @@ private:
    std::unique_ptr<wxTextFile> mTextFile;
    wxFileName mLOFFileName;  /**< The name of the LOF file, which is used to
                                 interpret relative paths in it */
-   AudacityProject *mProject{};
+   SaucedacityProject *mProject{};
 
    // In order to know whether or not to create a NEW window
    int nFilesInGroup{ 0 };
@@ -162,7 +162,7 @@ private:
    double            scrollOffset{ 0 };
 };
 
-LOFImportFileHandle::LOFImportFileHandle( AudacityProject *pProject,
+LOFImportFileHandle::LOFImportFileHandle( SaucedacityProject *pProject,
    const FilePath & name, std::unique_ptr<wxTextFile> &&file)
 :  ImportFileHandle(name)
    , mTextFile(std::move(file))
@@ -177,7 +177,7 @@ TranslatableString LOFImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> LOFImportPlugin::Open(
-   const FilePath &filename, AudacityProject *pProject)
+   const FilePath &filename, SaucedacityProject *pProject)
 {
    // Check if it is a binary file
    {
@@ -228,12 +228,12 @@ ProgressResult LOFImportFileHandle::Import(
 {
    // Unlike other ImportFileHandle subclasses, this one never gives any tracks
    // back to the caller.
-   // Instead, it recursively calls AudacityProject::Import for each file listed
+   // Instead, it recursively calls SaucedacityProject::Import for each file listed
    // in the .lof file.
    // Each importation creates a NEW undo state.
    // If there is an error or exception during one of them, only that one's
    // side effects are rolled back, and the rest of the import list is skipped.
-   // The file may have "window" directives that cause NEW AudacityProjects
+   // The file may have "window" directives that cause NEW SaucedacityProjects
    // to be created, and the undo states are pushed onto the latest project.
    // If a project is created but the first file import into it fails, destroy
    // the project.
@@ -275,10 +275,10 @@ static Importer::RegisteredImportPlugin registered{ "LOF",
 #ifdef USE_MIDI
 // return null on failure; if success, return the given project, or a NEW
 // one, if the given was null; create no NEW project if failure
-static AudacityProject *DoImportMIDIProject(
-   AudacityProject *pProject, const FilePath &fileName)
+static SaucedacityProject *DoImportMIDIProject(
+   SaucedacityProject *pProject, const FilePath &fileName)
 {
-   AudacityProject *pNewProject {};
+   SaucedacityProject *pNewProject {};
    if ( !pProject )
       pProject = pNewProject = ProjectManager::New();
    auto cleanup = finally( [&]

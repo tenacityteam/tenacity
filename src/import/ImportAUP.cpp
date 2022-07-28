@@ -79,7 +79,7 @@ public:
    TranslatableString GetPluginFormatDescription() override;
 
    ImportHandle Open(const FilePath &fileName,
-                     AudacityProject *project) override;
+                     SaucedacityProject *project) override;
 };
 
 class AUPImportFileHandle final : public ImportFileHandle,
@@ -87,7 +87,7 @@ class AUPImportFileHandle final : public ImportFileHandle,
 {
 public:
    AUPImportFileHandle(const FilePath &name,
-                       AudacityProject *project);
+                       SaucedacityProject *project);
    ~AUPImportFileHandle();
 
    TranslatableString GetFileDescription() override;
@@ -158,7 +158,7 @@ private:
    bool SetWarning(const TranslatableString &msg);
 
 private:
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
    Tags *mTags;
 
    // project tag values that will be set in the actual project if the
@@ -243,7 +243,7 @@ TranslatableString AUPImportPlugin::GetPluginFormatDescription()
 }
 
 ImportHandle AUPImportPlugin::Open(const FilePath &fileName,
-                                   AudacityProject *project)
+                                   SaucedacityProject *project)
 {
    auto handle = std::make_unique<AUPImportFileHandle>(fileName, project);
 
@@ -262,7 +262,7 @@ static Importer::RegisteredImportPlugin registered
 };
 
 AUPImportFileHandle::AUPImportFileHandle(const FilePath &fileName,
-                                         AudacityProject *project)
+                                         SaucedacityProject *project)
 :  ImportFileHandle(fileName),
    mProject(*project)
 {
@@ -484,7 +484,7 @@ bool AUPImportFileHandle::Open()
 
       buf[sizeof(buf) - 1] = '\0';
 
-      if (!wxStrncmp(buf, wxT("AudacityProject"), 15))
+      if (!wxStrncmp(buf, wxT("SaucedacityProject"), 15))
       {
          AudacityMessageBox(
             XO("This project was saved by Audacity version 1.0 or earlier. The format has\n"

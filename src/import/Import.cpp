@@ -183,7 +183,7 @@ Importer::GetFileTypes( const FileNames::FileType &extraType )
       FileNames::AllFiles,
       // Will fill in the list of extensions later:
       { XO("All supported files"), {} },
-      FileNames::AudacityProjects
+      FileNames::SaucedacityProjects
    };
 
    if ( !extraType.extensions.empty() )
@@ -196,13 +196,13 @@ Importer::GetFileTypes( const FileNames::FileType &extraType )
                                importPlugin->GetSupportedExtensions());
    }
 
-   FileExtensions extraExtensions = FileNames::AudacityProjects.extensions;
+   FileExtensions extraExtensions = FileNames::SaucedacityProjects.extensions;
    extraExtensions.insert(extraExtensions.end(),
                           extraType.extensions.begin(),
                           extraType.extensions.end());
 
    using ExtensionSet = std::unordered_set< FileExtension >;
-   FileExtensions allList = FileNames::AudacityProjects.extensions, newList;
+   FileExtensions allList = FileNames::SaucedacityProjects.extensions, newList;
    allList.insert(allList.end(), extraType.extensions.begin(), extraType.extensions.end());
    ExtensionSet allSet{ allList.begin(), allList.end() }, newSet;
    for ( const auto &format : l ) {
@@ -454,14 +454,14 @@ std::unique_ptr<ExtImportItem> Importer::CreateDefaultImportItem()
 }
 
 // returns number of tracks imported
-bool Importer::Import( AudacityProject &project,
+bool Importer::Import( SaucedacityProject &project,
                      const FilePath &fName,
                      WaveTrackFactory *trackFactory,
                      TrackHolders &tracks,
                      Tags *tags,
                      TranslatableString &errorMessage)
 {
-   AudacityProject *pProj = &project;
+   SaucedacityProject *pProj = &project;
    auto cleanup = valueRestorer( pProj->mbBusyImporting, true );
 
    const FileExtension extension{ fName.AfterLast(wxT('.')) };

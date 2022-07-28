@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectManager.cpp
 
-Paul Licameli split from AudacityProject.cpp
+Paul Licameli split from SaucedacityProject.cpp
 
 **********************************************************************/
 
@@ -56,27 +56,27 @@ Paul Licameli split from AudacityProject.cpp
 #include "../images/SaucedacityLogoAlpha.xpm"
 #endif
 
-const int AudacityProjectTimerID = 5200;
+const int SaucedacityProjectTimerID = 5200;
 
-static AudacityProject::AttachedObjects::RegisteredFactory sProjectManagerKey {
-   []( AudacityProject &project ) {
+static SaucedacityProject::AttachedObjects::RegisteredFactory sProjectManagerKey {
+   []( SaucedacityProject &project ) {
       return std::make_shared< ProjectManager >( project );
    }
 };
 
-ProjectManager &ProjectManager::Get( AudacityProject &project )
+ProjectManager &ProjectManager::Get( SaucedacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectManager >( sProjectManagerKey );
 }
 
-const ProjectManager &ProjectManager::Get( const AudacityProject &project )
+const ProjectManager &ProjectManager::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-ProjectManager::ProjectManager( AudacityProject &project )
+ProjectManager::ProjectManager( SaucedacityProject &project )
    : mProject{ project }
-   , mTimer{ std::make_unique<wxTimer>(this, AudacityProjectTimerID) }
+   , mTimer{ std::make_unique<wxTimer>(this, SaucedacityProjectTimerID) }
 {
    auto &window = ProjectWindow::Get( mProject );
    window.Bind( wxEVT_CLOSE_WINDOW, &ProjectManager::OnCloseWindow, this );
@@ -88,17 +88,17 @@ ProjectManager::ProjectManager( AudacityProject &project )
 
 ProjectManager::~ProjectManager() = default;
 
-// PRL:  This event type definition used to be in AudacityApp.h, which created
+// PRL:  This event type definition used to be in SaucedacityApp.h, which created
 // a bad compilation dependency.  The event was never emitted anywhere.  I
 // preserve it and its handler here but I move it to remove the dependency.
 // Asynchronous open
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_OPEN_AUDIO_FILE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_OPEN_AUDIO_FILE, wxCommandEvent);
 
 BEGIN_EVENT_TABLE( ProjectManager, wxEvtHandler )
    EVT_COMMAND(wxID_ANY, EVT_OPEN_AUDIO_FILE, ProjectManager::OnOpenAudioFile)
-   EVT_TIMER(AudacityProjectTimerID, ProjectManager::OnTimer)
+   EVT_TIMER(SaucedacityProjectTimerID, ProjectManager::OnTimer)
 END_EVENT_TABLE()
 
 bool ProjectManager::sbWindowRectAlreadySaved = false;
@@ -212,7 +212,7 @@ public:
 class DropTarget final : public wxFileDropTarget
 {
 public:
-   DropTarget(AudacityProject *proj)
+   DropTarget(SaucedacityProject *proj)
    {
       mProject = proj;
 
@@ -345,7 +345,7 @@ public:
    }
 
 private:
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
 };
 
 #endif
@@ -515,7 +515,7 @@ void InitProjectWindow( ProjectWindow &window )
 #endif
 }
 
-AudacityProject *ProjectManager::New()
+SaucedacityProject *ProjectManager::New()
 {
    wxRect wndRect;
    bool bMaximized = false;
@@ -524,7 +524,7 @@ AudacityProject *ProjectManager::New()
    
    // Create and show a NEW project
    // Use a non-default deleter in the smart pointer!
-   auto sp = std::make_shared< AudacityProject >();
+   auto sp = std::make_shared< SaucedacityProject >();
    AllProjects{}.Add( sp );
    auto p = sp.get();
    auto &project = *p;
@@ -631,7 +631,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    // and flush the tracks once we've completely finished
    // recording NEW state.
    // This code is derived from similar code in
-   // AudacityProject::~AudacityProject() and TrackPanel::OnTimer().
+   // SaucedacityProject::~SaucedacityProject() and TrackPanel::OnTimer().
    if (projectAudioIO.GetAudioIOToken()>0 &&
        gAudioIO->IsStreamActive(projectAudioIO.GetAudioIOToken())) {
 
@@ -845,7 +845,7 @@ void ProjectManager::OnOpenAudioFile(wxCommandEvent & event)
 }
 
 // static method, can be called outside of a project
-void ProjectManager::OpenFiles(AudacityProject *proj)
+void ProjectManager::OpenFiles(SaucedacityProject *proj)
 {
    auto selectedFiles =
       ProjectFileManager::ShowOpenDialog(FileNames::Operation::Open);
@@ -871,7 +871,7 @@ void ProjectManager::OpenFiles(AudacityProject *proj)
    }
 }
 
-bool ProjectManager::SafeToOpenProjectInto(AudacityProject &proj)
+bool ProjectManager::SafeToOpenProjectInto(SaucedacityProject &proj)
 {
    // DMM: If the project is dirty, that means it's been touched at
    // all, and it's not safe to open a fresh project directly in its
@@ -908,7 +908,7 @@ ProjectManager::ProjectChooser::~ProjectChooser()
    }
 }
 
-AudacityProject &
+SaucedacityProject &
 ProjectManager::ProjectChooser::operator() ( bool openingProjectFile )
 {
    if (mpGivenProject) {
@@ -928,8 +928,8 @@ void ProjectManager::ProjectChooser::Commit()
    mpUsedProject = nullptr;
 }
 
-AudacityProject *ProjectManager::OpenProject(
-   AudacityProject *pGivenProject, const FilePath &fileNameArg,
+SaucedacityProject *ProjectManager::OpenProject(
+   SaucedacityProject *pGivenProject, const FilePath &fileNameArg,
    bool addtohistory, bool reuseNonemptyProject)
 {
    ProjectManager::ProjectChooser chooser{ pGivenProject, reuseNonemptyProject };

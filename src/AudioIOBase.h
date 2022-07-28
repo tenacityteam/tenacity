@@ -30,7 +30,7 @@ typedef void PxMixer;
 
 class AudioIOBase;
 
-class AudacityProject;
+class SaucedacityProject;
 class AudioIOListener;
 class BoundedEnvelope;
 // Windows build needs complete type for parameter of wxWeakRef
@@ -76,7 +76,7 @@ struct ScrubbingOptions {
 struct AudioIOStartStreamOptions
 {
    explicit
-   AudioIOStartStreamOptions(AudacityProject *pProject_, double rate_)
+   AudioIOStartStreamOptions(SaucedacityProject *pProject_, double rate_)
       : pProject{ pProject_ }
       , envelope(nullptr)
       , rate(rate_)
@@ -87,7 +87,7 @@ struct AudioIOStartStreamOptions
       , preRoll(0.0)
    {}
 
-   AudacityProject *pProject{};
+   SaucedacityProject *pProject{};
    MeterPanelBase *captureMeter{}, *playbackMeter{};
    const BoundedEnvelope *envelope; // for time warping
    std::shared_ptr< AudioIOListener > listener;
@@ -116,7 +116,7 @@ struct AudioIOStartStreamOptions
 
 ///\brief A singleton object supporting queries of the state of any active
 /// audio streams, and audio device capabilities
-class AUDACITY_DLL_API AudioIOBase /* not final */
+class SAUCEDACITY_DLL_API AudioIOBase /* not final */
    : public NonInterferingBase
 {
 public:
@@ -124,8 +124,8 @@ public:
 
    virtual ~AudioIOBase();
 
-   void SetCaptureMeter(AudacityProject *project, MeterPanelBase *meter);
-   void SetPlaybackMeter(AudacityProject *project, MeterPanelBase *meter);
+   void SetCaptureMeter(SaucedacityProject *project, MeterPanelBase *meter);
+   void SetPlaybackMeter(SaucedacityProject *project, MeterPanelBase *meter);
 
    /** \brief update state after changing what audio devices are selected
     *
@@ -257,7 +257,7 @@ protected:
    static wxString DeviceName(const PaDeviceInfo* info);
    static wxString HostName(const PaDeviceInfo* info);
 
-   AudacityProject    *mOwningProject;
+   SaucedacityProject    *mOwningProject;
 
    /// True if audio playback is paused
    bool                mPaused;
@@ -342,11 +342,11 @@ protected:
 
 #include "Prefs.h"
 
-extern AUDACITY_DLL_API StringSetting AudioIOHost;
-extern AUDACITY_DLL_API DoubleSetting AudioIOLatencyCorrection;
-extern AUDACITY_DLL_API DoubleSetting AudioIOLatencyDuration;
-extern AUDACITY_DLL_API StringSetting AudioIOPlaybackDevice;
-extern AUDACITY_DLL_API IntSetting    AudioIORecordChannels;
-extern AUDACITY_DLL_API StringSetting AudioIORecordingDevice;
-extern AUDACITY_DLL_API StringSetting AudioIORecordingSource;
-extern AUDACITY_DLL_API IntSetting    AudioIORecordingSourceIndex;
+extern SAUCEDACITY_DLL_API StringSetting AudioIOHost;
+extern SAUCEDACITY_DLL_API DoubleSetting AudioIOLatencyCorrection;
+extern SAUCEDACITY_DLL_API DoubleSetting AudioIOLatencyDuration;
+extern SAUCEDACITY_DLL_API StringSetting AudioIOPlaybackDevice;
+extern SAUCEDACITY_DLL_API IntSetting    AudioIORecordChannels;
+extern SAUCEDACITY_DLL_API StringSetting AudioIORecordingDevice;
+extern SAUCEDACITY_DLL_API StringSetting AudioIORecordingSource;
+extern SAUCEDACITY_DLL_API IntSetting    AudioIORecordingSourceIndex;

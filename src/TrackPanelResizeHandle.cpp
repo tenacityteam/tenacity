@@ -53,7 +53,7 @@ TrackPanelResizeHandle::~TrackPanelResizeHandle()
 }
 
 UIHandle::Result TrackPanelResizeHandle::Click(
-   const TrackPanelMouseEvent &evt, AudacityProject *pProject )
+   const TrackPanelMouseEvent &evt, SaucedacityProject *pProject )
 {
    using namespace RefreshCode;
    if ( evt.event.LeftDClick() && mMode == IsResizingBetweenLinkedTracks ) {
@@ -114,7 +114,7 @@ TrackPanelResizeHandle::TrackPanelResizeHandle
 }
 
 UIHandle::Result TrackPanelResizeHandle::Drag
-(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
+(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
 {
    auto &tracks = TrackList::Get( *pProject );
    auto pTrack = tracks.Lock(mpTrack);
@@ -237,13 +237,13 @@ UIHandle::Result TrackPanelResizeHandle::Drag
 }
 
 HitTestPreview TrackPanelResizeHandle::Preview
-(const TrackPanelMouseState &, AudacityProject *)
+(const TrackPanelMouseState &, SaucedacityProject *)
 {
    return HitPreview(mMode == IsResizingBetweenLinkedTracks);
 }
 
 UIHandle::Result TrackPanelResizeHandle::Release
-(const TrackPanelMouseEvent &, AudacityProject *pProject,
+(const TrackPanelMouseEvent &, SaucedacityProject *pProject,
  wxWindow *)
 {
    ///  This happens when the button is released from a drag.
@@ -256,7 +256,7 @@ UIHandle::Result TrackPanelResizeHandle::Release
    return RefreshCode::FixScrollbars;
 }
 
-UIHandle::Result TrackPanelResizeHandle::Cancel(AudacityProject *pProject)
+UIHandle::Result TrackPanelResizeHandle::Cancel(SaucedacityProject *pProject)
 {
    auto &tracks = TrackList::Get( *pProject );
    auto pTrack = tracks.Lock(mpTrack);

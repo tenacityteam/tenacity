@@ -19,7 +19,7 @@
 
 class wxArrayString;
 class wxGridEvent;
-class AudacityProject;
+class SaucedacityProject;
 class ChoiceEditor;
 class Grid;
 class NumericEditor;
@@ -37,7 +37,7 @@ class LabelDialog final : public wxDialogWrapper
  public:
 
    LabelDialog(wxWindow *parent,
-               AudacityProject &project,
+               SaucedacityProject &project,
                TrackList *tracks,
 
                // if NULL edit all tracks, else this one only:
@@ -93,7 +93,7 @@ class LabelDialog final : public wxDialogWrapper
 
  private:
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 
    Grid *mGrid;
    ChoiceEditor *mChoiceEditor;

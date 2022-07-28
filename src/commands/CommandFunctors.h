@@ -9,8 +9,8 @@
 #ifndef __AUDACITY_COMMAND_FUNCTORS__
 #define __AUDACITY_COMMAND_FUNCTORS__
 
-class AudacityProject;
-class AudacityApp;
+class SaucedacityProject;
+class SaucedacityApp;
 class CommandContext;
 class wxEvtHandler;
 
@@ -28,9 +28,9 @@ class wxEvtHandler;
 using CommandHandlerObject = wxEvtHandler;
 
 // First of two functions registered with each command: an extractor
-// of the handler object from the AudacityProject
+// of the handler object from the SaucedacityProject
 using CommandHandlerFinder =
-   std::function< CommandHandlerObject&(AudacityProject &) >;
+   std::function< CommandHandlerObject&(SaucedacityProject &) >;
 
 // Second of two function pointers registered with each command: a pointer
 // to a member function of the handler object

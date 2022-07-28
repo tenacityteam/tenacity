@@ -16,19 +16,19 @@ Paul Licameli split from ProjectManager.cpp
 #include "toolbars/SpectralSelectionBarListener.h" // to inherit
 #include "ComponentInterfaceSymbol.h"
 
-class AudacityProject;
+class SaucedacityProject;
 
-class AUDACITY_DLL_API ProjectSelectionManager final
+class SAUCEDACITY_DLL_API ProjectSelectionManager final
    : public ClientData::Base
    , public SelectionBarListener
    , public SpectralSelectionBarListener
    , public TimeToolBarListener
 {
 public:
-   static ProjectSelectionManager &Get( AudacityProject &project );
-   static const ProjectSelectionManager &Get( const AudacityProject &project );
+   static ProjectSelectionManager &Get( SaucedacityProject &project );
+   static const ProjectSelectionManager &Get( const SaucedacityProject &project );
 
-   explicit ProjectSelectionManager( AudacityProject &project );
+   explicit ProjectSelectionManager( SaucedacityProject &project );
    ProjectSelectionManager( const ProjectSelectionManager & ) PROHIBITED;
    ProjectSelectionManager &operator=(
       const ProjectSelectionManager & ) PROHIBITED;
@@ -59,7 +59,7 @@ public:
 private:
    bool SnapSelection();
 
-   AudacityProject &mProject;
+   SaucedacityProject &mProject;
 };
 
 #endif

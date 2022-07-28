@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectFileIO.cpp
 
-Paul Licameli split from AudacityProject.cpp
+Paul Licameli split from SaucedacityProject.cpp
 
 **********************************************************************/
 
@@ -227,7 +227,7 @@ static void RefreshAllTitles(bool bShowProjectNumbers )
 }
 
 TitleRestorer::TitleRestorer(
-   wxTopLevelWindow &window, AudacityProject &project )
+   wxTopLevelWindow &window, SaucedacityProject &project )
 {
    if( window.IsIconized() )
       window.Restore();
@@ -258,25 +258,25 @@ TitleRestorer::~TitleRestorer() {
       RefreshAllTitles( false );
 }
 
-static const AudacityProject::AttachedObjects::RegisteredFactory sFileIOKey{
-   []( AudacityProject &parent ){
+static const SaucedacityProject::AttachedObjects::RegisteredFactory sFileIOKey{
+   []( SaucedacityProject &parent ){
       auto result = std::make_shared< ProjectFileIO >( parent );
       return result;
    }
 };
 
-ProjectFileIO &ProjectFileIO::Get( AudacityProject &project )
+ProjectFileIO &ProjectFileIO::Get( SaucedacityProject &project )
 {
    auto &result = project.AttachedObjects::Get< ProjectFileIO >( sFileIOKey );
    return result;
 }
 
-const ProjectFileIO &ProjectFileIO::Get( const AudacityProject &project )
+const ProjectFileIO &ProjectFileIO::Get( const SaucedacityProject &project )
 {
-   return Get( const_cast< AudacityProject & >( project ) );
+   return Get( const_cast< SaucedacityProject & >( project ) );
 }
 
-ProjectFileIO::ProjectFileIO(AudacityProject &project)
+ProjectFileIO::ProjectFileIO(SaucedacityProject &project)
    : mProject{ project }
    , mpErrors{ std::make_shared<DBConnectionErrors>() }
 {
@@ -1651,7 +1651,7 @@ void ProjectFileIO::WriteXML(XMLWriter &xmlFile,
    auto &tags = Tags::Get(proj);
    const auto &settings = ProjectSettings::Get(proj);
 
-   //TIMER_START( "AudacityProject::WriteXML", xml_writer_timer );
+   //TIMER_START( "SaucedacityProject::WriteXML", xml_writer_timer );
 
    xmlFile.StartTag(wxT("project"));
    xmlFile.WriteAttr(wxT("xmlns"), wxT("http://audacity.sourceforge.net/xml/"));
@@ -2613,7 +2613,7 @@ int ProjectFileIO::get_varint(const unsigned char *ptr, int64_t *out)
 }
 
 InvisibleTemporaryProject::InvisibleTemporaryProject()
-   : mpProject{ std::make_shared< AudacityProject >() }
+   : mpProject{ std::make_shared< SaucedacityProject >() }
 {
 }
 

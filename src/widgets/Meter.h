@@ -26,7 +26,7 @@
 #include "MeterPanelBase.h" // to inherit
 #include "Ruler.h" // member variable
 
-class AudacityProject;
+class SaucedacityProject;
 
 // Increase this when we add support for multichannel meters
 // (most of the code is already there)
@@ -92,7 +92,7 @@ class MeterAx;
 \brief MeterPanel is a panel that paints the meter used for monitoring
 or playback.
 ************************************************************************/
-class AUDACITY_DLL_API MeterPanel final
+class SAUCEDACITY_DLL_API MeterPanel final
    : public MeterPanelBase, private PrefsListener
 {
    DECLARE_DYNAMIC_CLASS(MeterPanel)
@@ -110,7 +110,7 @@ class AUDACITY_DLL_API MeterPanel final
    };
 
 
-   MeterPanel(AudacityProject *,
+   MeterPanel(SaucedacityProject *,
          wxWindow* parent, wxWindowID id,
          bool isInput,
          const wxPoint& pos = wxDefaultPosition,
@@ -226,7 +226,7 @@ class AUDACITY_DLL_API MeterPanel final
 
    wxString Key(const wxString & key) const;
 
-   AudacityProject *mProject;
+   SaucedacityProject *mProject;
    MeterUpdateQueue mQueue;
    wxTimer          mTimer;
 

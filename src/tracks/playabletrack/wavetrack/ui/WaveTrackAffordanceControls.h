@@ -15,14 +15,14 @@
 class AffordanceHandle;
 class WaveClip;
 
-class AUDACITY_DLL_API WaveTrackAffordanceControls : public CommonTrackCell
+class SAUCEDACITY_DLL_API WaveTrackAffordanceControls : public CommonTrackCell
 {
     std::weak_ptr<WaveClip> mFocusClip;
     std::weak_ptr<AffordanceHandle> mAffordanceHandle;
 public:
     WaveTrackAffordanceControls(const std::shared_ptr<Track>& pTrack);
 
-    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const AudacityProject* pProject) override;
+    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject) override;
 
     void Draw(TrackPanelDrawingContext& context, const wxRect& rect, unsigned iPass) override;
 

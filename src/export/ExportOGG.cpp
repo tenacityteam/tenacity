@@ -133,7 +133,7 @@ public:
    // Required
    void OptionsCreate(ShuttleGui &S, int format) override;
 
-   ProgressResult Export(AudacityProject *project,
+   ProgressResult Export(SaucedacityProject *project,
                std::unique_ptr<ProgressDialog> &pDialog,
                unsigned channels,
                const wxFileNameWrapper &fName,
@@ -146,7 +146,7 @@ public:
 
 private:
 
-   bool FillComment(AudacityProject *project, vorbis_comment *comment, const Tags *metadata);
+   bool FillComment(SaucedacityProject *project, vorbis_comment *comment, const Tags *metadata);
 };
 
 ExportOGG::ExportOGG()
@@ -160,7 +160,7 @@ ExportOGG::ExportOGG()
    SetDescription(XO("Ogg Vorbis Files"),0);
 }
 
-ProgressResult ExportOGG::Export(AudacityProject *project,
+ProgressResult ExportOGG::Export(SaucedacityProject *project,
                        std::unique_ptr<ProgressDialog> &pDialog,
                        unsigned numChannels,
                        const wxFileNameWrapper &fName,
@@ -374,7 +374,7 @@ void ExportOGG::OptionsCreate(ShuttleGui &S, int format)
    S.AddWindow( safenew ExportOGGOptions{ S.GetParent(), format } );
 }
 
-bool ExportOGG::FillComment(AudacityProject *project, vorbis_comment *comment, const Tags *metadata)
+bool ExportOGG::FillComment(SaucedacityProject *project, vorbis_comment *comment, const Tags *metadata)
 {
    // Retrieve tags from project if not over-ridden
    if (metadata == NULL)

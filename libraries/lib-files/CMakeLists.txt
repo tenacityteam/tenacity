@@ -9,8 +9,8 @@ Also the global logger which can save to a file.
 ]]#
 
 set( SOURCES
-   AudacityLogger.cpp
-   AudacityLogger.h
+   SaucedacityLogger.cpp
+   SaucedacityLogger.h
    FileException.cpp
    FileException.h
    FileIO.cpp
@@ -29,6 +29,6 @@ set( LIBRARIES
    PRIVATE
    wxBase
 )
-audacity_library( lib-files "${SOURCES}" "${LIBRARIES}"
+saucedacity_library( lib-files "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

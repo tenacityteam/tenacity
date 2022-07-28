@@ -31,11 +31,11 @@ public:
    CutlineHandle &operator=(const CutlineHandle&) = default;
 
    static UIHandlePtr HitAnywhere
-      (const AudacityProject *pProject, bool cutline, UIHandlePtr ptr);
+      (const SaucedacityProject *pProject, bool cutline, UIHandlePtr ptr);
    static UIHandlePtr HitTest
       (std::weak_ptr<CutlineHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const AudacityProject *pProject,
+       const SaucedacityProject *pProject,
        const std::shared_ptr<WaveTrack> &pTrack);
 
    virtual ~CutlineHandle();
@@ -43,23 +43,23 @@ public:
    const WaveTrackLocation &GetLocation() { return mLocation; }
    std::shared_ptr<WaveTrack> GetTrack() { return mpTrack; }
 
-   void Enter(bool forward, AudacityProject *) override;
+   void Enter(bool forward, SaucedacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, AudacityProject *pProject)
+      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
+      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(AudacityProject *pProject) override;
+   Result Cancel(SaucedacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 

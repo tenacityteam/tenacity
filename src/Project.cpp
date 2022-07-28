@@ -27,30 +27,30 @@ wxDEFINE_EVENT(EVT_PROJECT_ACTIVATION, wxCommandEvent);
 
 size_t AllProjects::size() const
 {
-   return gAudacityProjects.size();
+   return gSaucedacityProjects.size();
 }
 
 auto AllProjects::begin() const -> const_iterator
 {
-   return gAudacityProjects.begin();
+   return gSaucedacityProjects.begin();
 }
 
 auto AllProjects::end() const -> const_iterator
 {
-   return gAudacityProjects.end();
+   return gSaucedacityProjects.end();
 }
 
 auto AllProjects::rbegin() const -> const_reverse_iterator
 {
-   return gAudacityProjects.rbegin();
+   return gSaucedacityProjects.rbegin();
 }
 
 auto AllProjects::rend() const -> const_reverse_iterator
 {
-   return gAudacityProjects.rend();
+   return gSaucedacityProjects.rend();
 }
 
-auto AllProjects::Remove( AudacityProject &project ) -> value_type
+auto AllProjects::Remove( SaucedacityProject &project ) -> value_type
 {
    std::lock_guard<std::mutex> guard{ Mutex() };
    auto start = begin(), finish = end(), iter = std::find_if(
@@ -60,14 +60,14 @@ auto AllProjects::Remove( AudacityProject &project ) -> value_type
    if (iter == finish)
       return nullptr;
    auto result = *iter;
-   gAudacityProjects.erase( iter );
+   gSaucedacityProjects.erase( iter );
    return result;
 }
 
 void AllProjects::Add( const value_type &pProject )
 {
    std::lock_guard<std::mutex> guard{ Mutex() };
-   gAudacityProjects.push_back( pProject );
+   gSaucedacityProjects.push_back( pProject );
 }
 
 bool AllProjects::sbClosing = false;
@@ -78,7 +78,7 @@ bool AllProjects::Close( bool force )
    while (AllProjects{}.size())
    {
       // Closing the project has global side-effect
-      // of deletion from gAudacityProjects
+      // of deletion from gSaucedacityProjects
       if ( force )
       {
          GetProjectFrame( **AllProjects{}.begin() ).Close(true);
@@ -98,20 +98,20 @@ std::mutex &AllProjects::Mutex()
    return theMutex;
 }
 
-int AudacityProject::mProjectCounter=0;// global counter.
+int SaucedacityProject::mProjectCounter=0;// global counter.
 
 /* Define Global Variables */
 //This is a pointer to the currently-active project.
-static AudacityProject *gActiveProject;
+static SaucedacityProject *gActiveProject;
 //This array holds onto all of the projects currently open
-AllProjects::Container AllProjects::gAudacityProjects;
+AllProjects::Container AllProjects::gSaucedacityProjects;
 
-AUDACITY_DLL_API AudacityProject *GetActiveProject()
+SAUCEDACITY_DLL_API SaucedacityProject *GetActiveProject()
 {
    return gActiveProject;
 }
 
-void SetActiveProject(AudacityProject * project)
+void SetActiveProject(SaucedacityProject * project)
 {
    if ( gActiveProject != project ) {
       gActiveProject = project;
@@ -121,7 +121,7 @@ void SetActiveProject(AudacityProject * project)
    wxTheApp->SetTopWindow( FindProjectFrame( project ) );
 }
 
-AudacityProject::AudacityProject()
+SaucedacityProject::SaucedacityProject()
 {
    mProjectNo = mProjectCounter++; // Bug 322
    AttachedObjects::BuildAll();
@@ -148,36 +148,36 @@ AudacityProject::AudacityProject()
 
 }
 
-AudacityProject::~AudacityProject()
+SaucedacityProject::~SaucedacityProject()
 {
 }
 
-void AudacityProject::SetFrame( wxFrame *pFrame )
+void SaucedacityProject::SetFrame( wxFrame *pFrame )
 {
    mFrame = pFrame;
 }
 
-void AudacityProject::SetPanel( wxWindow *pPanel )
+void SaucedacityProject::SetPanel( wxWindow *pPanel )
 {
    mPanel = pPanel;
 }
 
-const wxString &AudacityProject::GetProjectName() const
+const wxString &SaucedacityProject::GetProjectName() const
 {
    return mName;
 }
 
-void AudacityProject::SetProjectName(const wxString &name)
+void SaucedacityProject::SetProjectName(const wxString &name)
 {
    mName = name;
 }
 
-FilePath AudacityProject::GetInitialImportPath() const
+FilePath SaucedacityProject::GetInitialImportPath() const
 {
    return mInitialImportPath;
 }
 
-void AudacityProject::SetInitialImportPath(const FilePath &path)
+void SaucedacityProject::SetInitialImportPath(const FilePath &path)
 {
    if (mInitialImportPath.empty())
    {
@@ -185,7 +185,7 @@ void AudacityProject::SetInitialImportPath(const FilePath &path)
    }
 }
 
-AUDACITY_DLL_API wxFrame &GetProjectFrame( AudacityProject &project )
+SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( SaucedacityProject &project )
 {
    auto ptr = project.GetFrame();
    if ( !ptr )
@@ -193,7 +193,7 @@ AUDACITY_DLL_API wxFrame &GetProjectFrame( AudacityProject &project )
    return *ptr;
 }
 
-AUDACITY_DLL_API const wxFrame &GetProjectFrame( const AudacityProject &project )
+SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const SaucedacityProject &project )
 {
    auto ptr = project.GetFrame();
    if ( !ptr )
@@ -202,7 +202,7 @@ AUDACITY_DLL_API const wxFrame &GetProjectFrame( const AudacityProject &project 
 }
 
 std::unique_ptr<const GenericUI::WindowPlacement>
-ProjectFramePlacement( AudacityProject *project )
+ProjectFramePlacement( SaucedacityProject *project )
 {
    if (!project)
       return std::make_unique<GenericUI::WindowPlacement>();
@@ -210,7 +210,7 @@ ProjectFramePlacement( AudacityProject *project )
       &GetProjectFrame(*project));
 }
 
-AUDACITY_DLL_API wxWindow &GetProjectPanel( AudacityProject &project )
+SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( SaucedacityProject &project )
 {
    auto ptr = project.GetPanel();
    if ( !ptr )
@@ -218,8 +218,8 @@ AUDACITY_DLL_API wxWindow &GetProjectPanel( AudacityProject &project )
    return *ptr;
 }
 
-AUDACITY_DLL_API const wxWindow &GetProjectPanel(
-   const AudacityProject &project )
+SAUCEDACITY_DLL_API const wxWindow &GetProjectPanel(
+   const SaucedacityProject &project )
 {
    auto ptr = project.GetPanel();
    if ( !ptr )

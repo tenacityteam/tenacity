@@ -38,18 +38,18 @@ class wxDC;
 class wxSizeEvent;
 class wxStaticText;
 
-class AudacityProject;
+class SaucedacityProject;
 class SelectionBarListener;
 class NumericTextCtrl;
 
-class AUDACITY_DLL_API SelectionBar final : public ToolBar {
+class SAUCEDACITY_DLL_API SelectionBar final : public ToolBar {
 
  public:
-   SelectionBar( AudacityProject &project );
+   SelectionBar( SaucedacityProject &project );
    virtual ~SelectionBar();
 
-   static SelectionBar &Get( AudacityProject &project );
-   static const SelectionBar &Get( const AudacityProject &project );
+   static SelectionBar &Get( SaucedacityProject &project );
+   static const SelectionBar &Get( const SaucedacityProject &project );
 
    void Create(wxWindow *parent) override;
 

@@ -25,7 +25,7 @@ class WaveClip;
 
 class wxDC;
 
-class AUDACITY_DLL_API WaveTrackSubView : public CommonTrackView
+class SAUCEDACITY_DLL_API WaveTrackSubView : public CommonTrackView
 {
 public:
 
@@ -42,7 +42,7 @@ public:
       std::vector<UIHandlePtr>
    > DoDetailedHitTest(
       const TrackPanelMouseState &state,
-      const AudacityProject *pProject, int currentTool, bool bMultiTool,
+      const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
       const std::shared_ptr<WaveTrack> &wt );
    
 protected:
@@ -71,7 +71,7 @@ using WaveTrackSubViews = ClientData::Site<
    WaveTrackView, WaveTrackSubView, ClientData::SkipCopying, std::shared_ptr
 >;
 
-class AUDACITY_DLL_API WaveTrackView final
+class SAUCEDACITY_DLL_API WaveTrackView final
    : public CommonTrackView
    , public WaveTrackSubViews
 {
@@ -101,7 +101,7 @@ public:
       std::vector<UIHandlePtr>
    > DoDetailedHitTest(
       const TrackPanelMouseState &state,
-      const AudacityProject *pProject, int currentTool, bool bMultiTool,
+      const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
       const std::shared_ptr<WaveTrack> &wt,
       CommonTrackView &view);
 
@@ -141,7 +141,7 @@ private:
 
    std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &state,
-       const AudacityProject *pProject, int currentTool, bool bMultiTool)
+       const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
       override;
 
    // TrackView implementation
@@ -167,7 +167,7 @@ class SelectedRegion;
 class WaveClip;
 class ZoomInfo;
 
-struct AUDACITY_DLL_API ClipParameters
+struct SAUCEDACITY_DLL_API ClipParameters
 {
    // Do a bunch of calculations common to waveform and spectrum drawing.
    ClipParameters

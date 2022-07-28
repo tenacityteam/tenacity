@@ -29,6 +29,6 @@ set( LIBRARIES
    PRIVATE
    wxBase
 )
-audacity_library( lib-exceptions "${SOURCES}" "${LIBRARIES}"
+saucedacity_library( lib-exceptions "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

@@ -25,10 +25,10 @@ class ToolManager;
 class CommandOutputTargets;
 class TrackPanel;
 class AdornedRulerPanel;
-class AudacityProject;
+class SaucedacityProject;
 class CommandContext;
 
-class AUDACITY_DLL_API ScreenshotCommand : public AudacityCommand
+class SAUCEDACITY_DLL_API ScreenshotCommand : public AudacityCommand
 {
 public:
    enum kBackgrounds
@@ -122,9 +122,9 @@ private:
    bool CaptureToolbar(const CommandContext & Context, ToolManager *man, int type, const wxString &name);
    bool CaptureDock(const CommandContext & Context, wxWindow *win, const wxString &fileName);
    void CaptureCommands(const CommandContext & Context, const wxArrayStringEx &Commands  );
-   void CaptureEffects(const CommandContext & Context, AudacityProject * pProject, const wxString &fileName );
-   void CaptureScriptables(const CommandContext & Context, AudacityProject * pProject, const wxString &fileName );
-   void CapturePreferences(const CommandContext & Context, AudacityProject * pProject, const wxString &fileName );
+   void CaptureEffects(const CommandContext & Context, SaucedacityProject * pProject, const wxString &fileName );
+   void CaptureScriptables(const CommandContext & Context, SaucedacityProject * pProject, const wxString &fileName );
+   void CapturePreferences(const CommandContext & Context, SaucedacityProject * pProject, const wxString &fileName );
    bool Capture(
       const CommandContext & Context,
       const wxString &basename,
@@ -136,17 +136,17 @@ private:
    wxRect GetPanelRect(TrackPanel * panel);
    wxRect GetRulerRect(AdornedRulerPanel *ruler);
    wxRect GetTracksRect(TrackPanel * panel);
-   wxRect GetTrackRect( AudacityProject * pProj, TrackPanel * panel,int n);
-   wxString WindowFileName(AudacityProject * proj, wxTopLevelWindow *w);
+   wxRect GetTrackRect( SaucedacityProject * pProj, TrackPanel * panel,int n);
+   wxString WindowFileName(SaucedacityProject * proj, wxTopLevelWindow *w);
 
 public:
    static ScreenshotCommand * mpShooter;
    static void (*mIdleHandler)(wxIdleEvent& event);
-   static void SetIdleHandler( AudacityProject &project );
+   static void SetIdleHandler( SaucedacityProject &project );
    static bool MayCapture( wxDialog * pDlg );
 
    void CaptureWindowOnIdle( const CommandContext & context, wxWindow * pWin );
-   wxTopLevelWindow *GetFrontWindow(AudacityProject *project);
+   wxTopLevelWindow *GetFrontWindow(SaucedacityProject *project);
 };
 
 #endif /* End of include guard: __SCREENSHOT_COMMAND__ */

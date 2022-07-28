@@ -27,12 +27,12 @@ in a background thread.
 
 #include <vector>
 #include <wx/event.h> // to declare custom event type
-class AudacityProject;
+class SaucedacityProject;
 class Track;
 class WaveTrack;
 
 
-wxDECLARE_EXPORTED_EVENT(AUDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_ODTASK_COMPLETE, wxCommandEvent);
 
 /// A class representing a modular task to be used with the On-Demand structures.
@@ -120,7 +120,7 @@ class ODTask /* not final */
    virtual TranslatableString GetTip()=0;
 
     ///returns true if the task is associated with the project.
-   virtual bool IsTaskAssociatedWithProject(AudacityProject* proj);
+   virtual bool IsTaskAssociatedWithProject(SaucedacityProject* proj);
 
    bool IsRunning();
 
