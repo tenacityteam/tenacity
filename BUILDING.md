@@ -1,4 +1,4 @@
-# Building Saucedacity
+# Saucedacity Build Instructions
 
 ## Prerequisites
 
@@ -27,17 +27,20 @@ Alternatively, on macOS, Conan is available from `brew`.
 
 ### CMake
 
+#### Windows
 On Windows, please use the [prebuilt binaries](https://cmake.org/download/).
 
-On macOS, the easiest way to install CMake is `brew install cmake`.
+#### macOS
+On macOS, the easiest way to install CMake is through Homebrew. Run `brew install cmake` to install CMake.
 
-On Linux, `cmake` is usually available from the system package manager.
+#### Linux
+On Linux, `cmake` is usually available from the system package manager. If you are building on an older LTS distro, e.g. Ubuntu 18.04, you will need to build and install your own version of CMake. On a more recent (LTS) distro, you shouldn't need to do this.
 
 ### Windows
 
-We build Saucedacity using [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/vs/community/). In order to build Saucedacity, the **Desktop development with C++** workload is required.
+We build Saucedacity using [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/community/). In order to build Saucedacity, the **Desktop development with C++** workload is required.
 
-As we require only C++14, MSVC 2017 should work just fine.
+You will need at least MSVC 2017 to build Saucedacity on Windows using MSVC. We require a compiler that supports C++17.
 
 #### Cygwin
 
@@ -47,15 +50,15 @@ Currently, building under Cygwin isn't supported. You can find instructions on t
 
 Building with MinGW isn't supported either. However, this might be of interest in the future as an alternative to building with Visual Studio and MSVC. Feel free to work on this.
 
-### MacOS
+### macOS
 
-**WARNING**: these instructions are taken from Audacity's BUILDING.md. They have not been modified except for branding changes. If there's anything incorrect here, please create an issue.
+**WARNING**: these instructions might not work or might be incorrect.
 
-You should be able to build Saucedacity using XCode 12. However, it is likely possible to build it with XCode 7.
+You should be able to build Saucedacity using XCode 12. Apple Silicon is not supported as of now, but might be buildable
 
 ### Linux
 
-We use GCC 9, but any C++14 compliant compiler should work.
+We use GCC 9, but any C++17 compliant compiler should work.
 
 On Debian or Ubuntu, you can install everything required using the following commands:
 
@@ -66,6 +69,8 @@ $ sudo pip3 install conan
 $ sudo apt-get install libgtk2.0-dev libasound2-dev libavformat-dev libjack-jackd2-dev uuid-dev
 ```
 
+# Building Saucedacity
+
 ## Building on Windows
 
 1. Clone Saucedacity from the Saucedacity's GitHub. 
@@ -73,7 +78,7 @@ $ sudo apt-get install libgtk2.0-dev libasound2-dev libavformat-dev libjack-jack
    For example, in the **git-bash** run:
 
     ```
-    $ git clone --recurse-submodules https://github.com/generic-pers0n/saucedacity/
+    $ git clone --recurse-submodules https://github.com/saucedacity/saucedacity/
     ```
 
 2. Open CMake GUI. 
@@ -96,29 +101,20 @@ Generally, steps 1-5 are only needed the first-time you configure. Then, after y
 
 > Conan Center provides prebuilt binaries only for **x64**. Configuring the project for Win32 will take much longer, as all the 3rd party libraries will be built during the configuration.
 
-
-### Additional Steps
-
-You need to build additional dependencies on Windows. They are listed below:
-
-* libexpat
-* zlib
-* wxWidgets (Audacity's fork)
-
-Instructions needed to build those dependencies aren't going to be provided here. You need to use CMAke with libexpat, so you can follow steps 1-4 as listed above, replacing the repository link with 'https://github.com/libexpat/libexpat. For wxWidgets, you don't need to use CMake. The appropriate Visual Studio Project files are in `build/msw`. Additionally, you don't need to use Visual Studio if you don't want to, as there are many different build systems.
-
 ## macOS
+
+**Warning**: Saucedacity on macOS isn't tested. These build instructions might not work or Saucedacity might not build in the first place.
 
 1. Clone Saucedacity from the Saucedacity GitHub project. 
   
     ```
-    $ git clone --recurse-submodules https://github.com/generic-pers0n/saucedacity/
+    $ git clone --recurse-submodules https://github.com/saucedacity/saucedacity/
     ```
 
 2. Configure Saucedacity using CMake:
    ```
    $ mkdir build && cd build
-   $ cmake -GXcode -T buildsystem=1 ../saucedacity
+   $ cmake -G Xcode -T buildsystem=1 ../saucedacity
    ```
 
 3. Open Saucedacity XCode project:
@@ -134,7 +130,7 @@ Alternatively, you can use **CLion**. If you chose to do so, open the directory 
 At the moment we only support **x86_64** builds. It is possible to build using AppleSilicon hardware but **mad** and **id3tag** should be disabled:
 
 ```
-cmake -GXCode -T buildsystem=1 -Daudacity_use_mad="off" -Daudacity_use_id3tag=off ../saucedacity
+cmake -GXCode -T buildsystem=1 -Dsaucedacity_use_mad="off" -Dsaucedacity_use_id3tag=off ../saucedacity
 ```
 
 ## Linux & Other OS
@@ -142,13 +138,13 @@ cmake -GXCode -T buildsystem=1 -Daudacity_use_mad="off" -Daudacity_use_id3tag=of
 1. Clone Saucedacity from the Saucedacity GitHub project. 
   
     ```
-    $ git clone --recurse-submodules https://github.com/generic-pers0n/saucedacity/
+    $ git clone --recurse-submodules https://github.com/saucedacity/saucedacity/
     ```
 
 2. Configure Saucedacity using CMake:
    ```
    $ mkdir build && cd build
-   $ cmake -G "Unix Makefiles" -Daudacity_use_ffmpeg=loaded ../saucedacity
+   $ cmake -G "Unix Makefiles" -Dsaucedacity_use_ffmpeg=loaded ../
    ```
    By default, Debug build will be configured. To change that, pass `-DCMAKE_BUILD_TYPE=Release` to CMake.
 
@@ -171,28 +167,28 @@ cmake -GXCode -T buildsystem=1 -Daudacity_use_mad="off" -Daudacity_use_id3tag=of
    $ sudo make install
    ```
 
-## Advanced
+# Advanced Build Options and Build Methods
 
-### CMake options
+## CMake options
 
 You can use `cmake -LH` to get a list of the options available (or use CMake GUI or `ccmake`). The list will include documentation about each option. For convenience, [here is a list](CMAKE_OPTIONS.md) of the most notable options.
 
-### Building using system libraries
+## Building using system libraries
 
 On Linux it is possible to build Saucedacity using (almost) only the libraries provided by the package manager. Please, see the list of required libraries [here](linux/required_libraries.md).
 
 ```
 $ mkdir build && cd build
 $ cmake -G "Unix Makefiles" \
-        -Daudacity_use_ffmpeg=loaded \
-        -Daudacity_lib_preference=system \
-        -Daudacity_obey_system_dependencies=On \
+        -Dsaucedacity_use_ffmpeg=loaded \
+        -Dsaucedacity_lib_preference=system \
+        -Dsaucedacity_obey_system_dependencies=On \
          ../saucedacity
 ```
 
-There are a few cases when the local library build is preferred:
+There are a few cases when the local library build is preferred or required:
 
-1. **wxWidgets**: While Saucedacity on **Linux** uses vanilla version of wxWidgets, we **require** that version **3.1.3** is used. This version is not available in most of the distributions.
+1. **wxWidgets**: While Saucedacity on **Linux** uses vanilla version of wxWidgets, we **require** that version **3.1.3** is used. This version is not available in most of the distributions. We also support wxWidgets 3.2.0, however, but not all distributions support that yet either.
 2. **portaudio-v19**: Saucedacity currently uses [some private APIs](https://github.com/audacity/audacity/issues/871), so using system portaudio is not yet possible.
 3. **vamp-host-sdk**: Development packages are not available in Ubuntu 20.04.
 4. **libnyquist** & **portmixer**: Libraries are not available in Ubuntu 20.04.
@@ -200,16 +196,26 @@ There are a few cases when the local library build is preferred:
 
 It is not advised to mix system and local libraries, except for the list above. `ZLib` is a very common dependency; it is possible to mix system and local libraries in one build. However, we advise against doing so.
 
-There is a [`Dockerfile`](linux/build-environment/Dockerfile) that can be used as an example of how to build Saucedacity using system libraries: 
+### Using Docker
+
+There is a [`Dockerfile`](linux/build-environment/Dockerfile) that can be used as an example of how to build Saucedacity using system libraries:
 
 ```
+# NOTE: Docker builds are untested.
 $ docker build -t audacity_linux_env .\linux\build-environment\
 $ docker run --rm -v ${pwd}:/audacity/audacity/ -v ${pwd}/../build/linux-system:/audacity/build -it audacity_linux_env
 ```
 
 To find system packages, we rely on `pkg-config`. There are several packages that have broken `*.pc` or do not use `pkg-config` at all. For the docker image - we handle this issue by installing the correct [`pc` files](linux/build-environment/pkgconfig/).
 
-### Disabling Conan
+## Disabling Conan
 
-Conan can be disabled completely using `-Daudacity_conan_enabled=Off` during the configuration. 
-This option implies `-Daudacity_obey_system_dependencies=On` and disables `local` for packages that are managed with Conan. 
+Conan can be disabled completely using `-Dsaucedacity_conan_enabled=Off` during the configuration. 
+This option implies `-Dsaucedacity_obey_system_dependencies=On` and disables `local` for packages that are managed with Conan.
+
+Note that Conan is intended to be removed in the future. In turn, Saucedacity will be built using mostly system libraries and some local libraries (most notably libmad).
+
+## Other Architectures and Cross Compiling
+Saucedacity does not support cross-compiling officially, but it has some interest. Keep in mind that you are on your own here and nothing is expected to work. If cross-compiling Saucedacity somehow does work and you would like to distribute those binaries, we make a (non-binding) request that you indicate that they are unofficial binaries (e.g., you could say *[insert some username here]'s Saucedacity builds* and that will fulfill our (once again non-binding) request). The only requirement is that you follow Saucedacity's license, the GPLv2 or later. That is in case you had to modify any part of Saucedacity to work.
+
+We are interested in looking at different architectures, most notably ARM. For macOS, this will be a requirement in the future. For Windows, Linux, and other OSes, this will be of interest and maybe a hobby. Of course, we do not supported these other architectures *except* for ARM (even though we don't publically distribute ARM builds). ARM builds will receieve the same support for any other officially supported architecture, so long as you haven't made any modifications.
