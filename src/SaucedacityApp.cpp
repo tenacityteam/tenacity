@@ -1,6 +1,6 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Saucedacity: A Digital Audio Editor
 
   SaucedacityApp.cpp
 
@@ -891,7 +891,7 @@ bool SaucedacityApp::OnInit()
    //
    // Paths: set search path and temp dir path
    //
-   FilePaths audacityPathList;
+   FilePaths saucedacityPathList;
 
 #ifdef __WXGTK__
    // Make sure install prefix is set so wxStandardPath resolves paths properly
@@ -904,63 +904,58 @@ bool SaucedacityApp::OnInit()
       * The user's "~/.Saucedacity-files" directory
       * The "share" and "share/doc" directories in their install path */
    wxString home = wxGetHomeDir();
-
    wxString envTempDir = wxGetenv(wxT("TMPDIR"));
-   if (!envTempDir.empty()) {
+   wxString pathVar = wxGetenv(wxT("SAUCEDACITY_PATH"));
+   wxString configHome;
+
+   if (!envTempDir.empty())
+   {
       /* On Unix systems, the environment variable TMPDIR may point to
          an unusual path when /tmp and /var/tmp are not desirable. */
       TempDirectory::SetDefaultTempDir( wxString::Format(
          wxT("%s/saucedacity-%s"), envTempDir, wxGetUserId() ) );
-   } else {
+   } else
+   {
       /* On Unix systems, the default temp dir is in /var/tmp. */
       TempDirectory::SetDefaultTempDir( wxString::Format(
          wxT("/var/tmp/saucedacity-%s"), wxGetUserId() ) );
    }
 
-   wxString pathVar = wxGetenv(wxT("SAUCEDACITY_PATH"));
    if (!pathVar.empty())
-      FileNames::AddMultiPathsToPathList(pathVar, audacityPathList);
-   FileNames::AddUniquePathToPathList(::wxGetCwd(), audacityPathList);
+   {
+      FileNames::AddMultiPathsToPathList(pathVar, saucedacityPathList);
+   }
+
+   FileNames::AddUniquePathToPathList(::wxGetCwd(), saucedacityPathList);
 
    wxString progPath = wxPathOnly(argv[0]);
-   FileNames::AddUniquePathToPathList(progPath, audacityPathList);
+   FileNames::AddUniquePathToPathList(progPath, saucedacityPathList);
    // Add the path to modules:
-   FileNames::AddUniquePathToPathList(progPath + L"/lib/saucedacity", audacityPathList);
+   FileNames::AddUniquePathToPathList(progPath + L"/lib/saucedacity", saucedacityPathList);
 
-   FileNames::AddUniquePathToPathList(FileNames::DataDir(), audacityPathList);
+   FileNames::AddUniquePathToPathList(FileNames::DataDir(), saucedacityPathList);
 
-#ifdef AUDACITY_NAME
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.%s-files"),
-      home, wxT(AUDACITY_NAME)),
-      audacityPathList);
+   FileNames::AddUniquePathToPathList(configHome, saucedacityPathList);
+
+   /*FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.%s-files"),
+      home, wxT(APP_NAME)),
+      saucedacityPathList);*/
+
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
-      audacityPathList);
+      saucedacityPathList);
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/%s"),
-      wxT(INSTALL_PREFIX), wxT(AUDACITY_NAME)),
-      audacityPathList);
+      wxT(INSTALL_PREFIX), wxT(APP_NAME)),
+      saucedacityPathList);
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/doc/%s"),
-      wxT(INSTALL_PREFIX), wxT(AUDACITY_NAME)),
-      audacityPathList);
-#else //AUDACITY_NAME
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.Saucedacity-files"),
-      home),
-      audacityPathList)
-   FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
-      audacityPathList);
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/saucedacity"),
-      wxT(INSTALL_PREFIX)),
-      audacityPathList);
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/doc/saucedacity"),
-      wxT(INSTALL_PREFIX)),
-      audacityPathList);
-#endif //AUDACITY_NAME
+      wxT(INSTALL_PREFIX), wxT(APP_NAME)),
+      saucedacityPathList);
 
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/locale"),
       wxT(INSTALL_PREFIX)),
-      audacityPathList);
+      saucedacityPathList);
 
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("./locale")),
-      audacityPathList);
+      saucedacityPathList);
 
 #endif //__WXGTK__
 
@@ -982,8 +977,8 @@ bool SaucedacityApp::OnInit()
 #ifdef __WXMSW__
    // On Windows, the path to the Audacity program is in argv[0]
    wxString progPath = wxPathOnly(argv[0]);
-   FileNames::AddUniquePathToPathList(progPath, audacityPathList);
-   FileNames::AddUniquePathToPathList(progPath + wxT("\\Languages"), audacityPathList);
+   FileNames::AddUniquePathToPathList(progPath, saucedacityPathList);
+   FileNames::AddUniquePathToPathList(progPath + wxT("\\Languages"), saucedacityPathList);
 
    // See bug #1271 for explanation of location
    tmpDirLoc = FileNames::MkDir(wxStandardPaths::Get().GetUserLocalDataDir());
@@ -995,16 +990,16 @@ bool SaucedacityApp::OnInit()
    // On Mac OS X, the path to the Audacity program is in argv[0]
    wxString progPath = wxPathOnly(argv[0]);
 
-   FileNames::AddUniquePathToPathList(progPath, audacityPathList);
+   FileNames::AddUniquePathToPathList(progPath, saucedacityPathList);
    // If Audacity is a "bundle" package, then the root directory is
    // the great-great-grandparent of the directory containing the executable.
-   //FileNames::AddUniquePathToPathList(progPath + wxT("/../../../"), audacityPathList);
+   //FileNames::AddUniquePathToPathList(progPath + wxT("/../../../"), saucedacityPathList);
 
    // These allow for searching the "bundle"
    FileNames::AddUniquePathToPathList(
-      progPath + wxT("/../"), audacityPathList);
+      progPath + wxT("/../"), saucedacityPathList);
    FileNames::AddUniquePathToPathList(
-      progPath + wxT("/../Resources"), audacityPathList);
+      progPath + wxT("/../Resources"), saucedacityPathList);
 
    // JKC Bug 1220: Using an actual temp directory for session data on Mac was
    // wrong because it would get cleared out on a reboot.
@@ -1017,7 +1012,7 @@ bool SaucedacityApp::OnInit()
    //   wxGetUserId() ) );
 #endif //__WXMAC__
 
-   FileNames::SetAudacityPathList( std::move( audacityPathList ) );
+   FileNames::SetAudacityPathList( std::move( saucedacityPathList ) );
 
    // Initialize preferences and language
    // TODO:  The whole Language initialization really need to be reworked.

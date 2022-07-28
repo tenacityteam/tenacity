@@ -216,7 +216,7 @@ ModuleManager::~ModuleManager()
 // static
 void ModuleManager::FindModules(FilePaths &files)
 {
-   const auto &audacityPathList = FileNames::AudacityPathList();
+   const auto &saucedacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
    wxString pathVar;
 
@@ -225,7 +225,7 @@ void ModuleManager::FindModules(FilePaths &files)
    if (!pathVar.empty())
       FileNames::AddMultiPathsToPathList(pathVar, pathList);
 
-   for (const auto &path : audacityPathList) {
+   for (const auto &path : saucedacityPathList) {
       wxString prefix = path + wxFILE_SEP_PATH;
       FileNames::AddUniquePathToPathList(prefix + wxT("modules"),
                                          pathList);

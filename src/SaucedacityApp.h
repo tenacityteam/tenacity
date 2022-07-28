@@ -1,6 +1,6 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Saucedacity: A Digital Audio Editor
 
   SaucedacityApp.h
 

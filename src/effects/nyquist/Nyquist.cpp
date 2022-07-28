@@ -2567,12 +2567,12 @@ void NyquistEffect::OSCallback()
 
 FilePaths NyquistEffect::GetNyquistSearchPath()
 {
-   const auto &audacityPathList = FileNames::AudacityPathList();
+   const auto &saucedacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
 
-   for (size_t i = 0; i < audacityPathList.size(); i++)
+   for (size_t i = 0; i < saucedacityPathList.size(); i++)
    {
-      wxString prefix = audacityPathList[i] + wxFILE_SEP_PATH;
+      wxString prefix = saucedacityPathList[i] + wxFILE_SEP_PATH;
       FileNames::AddUniquePathToPathList(prefix + wxT("nyquist"), pathList);
       FileNames::AddUniquePathToPathList(prefix + wxT("plugins"), pathList);
       FileNames::AddUniquePathToPathList(prefix + wxT("plug-ins"), pathList);

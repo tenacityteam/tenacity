@@ -449,9 +449,9 @@ endif()
 
 # Define Saucedacity's name
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
-   set( AUDACITY_NAME "Saucedacity" )
+   set( APP_NAME "Saucedacity" )
 else()
-   set( AUDACITY_NAME "saucedacity" )
+   set( APP_NAME "saucedacity" )
 endif()
 
 # Create short and full version strings

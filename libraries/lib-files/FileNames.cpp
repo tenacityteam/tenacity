@@ -251,14 +251,22 @@ FilePath FileNames::DataDir()
          gDataDir = portablePrefsPath.GetFullPath();
       } else
       {
-         // Use OS-provided user data dir folder
+         // Use OS-provided user data dir folder...
          wxString dataDir( LowerCaseAppNameInPath( wxStandardPaths::Get().GetUserDataDir() ));
 #if defined( __WXGTK__ )
-         dataDir = dataDir + wxT("-data");
+         // ...except on Linux. We use XDG_CONFIG_HOME/saucedacity (or
+         // $HOME/.config/saucedacity) instead.
+         wxString configHome = wxGetenv("XDG_CONFIG_HOME");
+         if (configHome.empty())
+         {
+            configHome = wxGetenv("HOME") + wxString("/.config/") + wxString(APP_NAME);
+         }
+         dataDir = configHome;
 #endif
          gDataDir = FileNames::MkDir(dataDir);
       }
    }
+
    return gDataDir;
 }
 

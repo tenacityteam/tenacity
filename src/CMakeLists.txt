@@ -1231,7 +1231,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       ../mac/Resources/AudacityAU.icns
       ../mac/Resources/AudacityMP3.icns
       ../mac/Resources/AudacityOGG.icns
-      ../mac/Resources/SaucedacityProject.icns
+      ../mac/Resources/AudacityProject.icns
       ../mac/Resources/AudacityWAV.icns
    )
 
@@ -1353,7 +1353,7 @@ else()
    )
 endif()
 
-set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${AUDACITY_NAME} )
+set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${APP_NAME} )
 
 organize_source( "${TARGET_ROOT}/.." "include" "${HEADERS}" )
 organize_source( "${TARGET_ROOT}/../presets" "presets" "${RESOURCES}" )
@@ -1426,7 +1426,7 @@ else()
       install( FILES "${_INTDIR}/saucedacity.desktop"
                DESTINATION "${_DATADIR}/applications" )
       install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
-               DESTINATION "${_DATADIR}/doc/${AUDACITY_NAME}" )
+               DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
       install( FILES "${_SRCDIR}/audacity.xml"
                DESTINATION "${_DATADIR}/mime/packages" )
       install( FILES "${topdir}/presets/EQDefaultCurves.xml"
