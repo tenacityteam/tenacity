@@ -75,8 +75,8 @@ class SAUCEDACITY_DLL_API CommandManager final
    CommandManager();
    virtual ~CommandManager();
 
-   CommandManager(const CommandManager&) PROHIBITED;
-   CommandManager &operator= (const CommandManager&) PROHIBITED;
+   CommandManager(const CommandManager&) = delete;
+   CommandManager &operator= (const CommandManager&) = delete;
 
    void SetMaxList();
    void PurgeData();

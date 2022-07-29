@@ -70,8 +70,8 @@ public:
 
    explicit ProjectFileIO( SaucedacityProject &project );
 
-   ProjectFileIO( const ProjectFileIO & ) PROHIBITED;
-   ProjectFileIO &operator=( const ProjectFileIO & ) PROHIBITED;
+   ProjectFileIO( const ProjectFileIO & ) = delete;
+   ProjectFileIO &operator=( const ProjectFileIO & ) = delete;
    ~ProjectFileIO();
 
    // It seems odd to put this method in this class, but the results do depend

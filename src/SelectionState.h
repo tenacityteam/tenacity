@@ -23,8 +23,8 @@ class SAUCEDACITY_DLL_API SelectionState final
 {
 public:
    SelectionState() = default;
-   SelectionState( const SelectionState & ) PROHIBITED;
-   SelectionState &operator=( const SelectionState & ) PROHIBITED;
+   SelectionState( const SelectionState & ) = delete;
+   SelectionState &operator=( const SelectionState & ) = delete;
 
    static SelectionState &Get( SaucedacityProject &project );
    static const SelectionState &Get( const SaucedacityProject &project );

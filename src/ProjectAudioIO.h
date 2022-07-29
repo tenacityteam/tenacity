@@ -30,8 +30,8 @@ public:
    static const ProjectAudioIO &Get( const SaucedacityProject &project );
 
    explicit ProjectAudioIO( SaucedacityProject &project );
-   ProjectAudioIO( const ProjectAudioIO & ) PROHIBITED;
-   ProjectAudioIO &operator=( const ProjectAudioIO & ) PROHIBITED;
+   ProjectAudioIO( const ProjectAudioIO & ) = delete;
+   ProjectAudioIO &operator=( const ProjectAudioIO & ) = delete;
    ~ProjectAudioIO();
 
    int GetAudioIOToken() const;

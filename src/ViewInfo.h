@@ -176,8 +176,8 @@ public:
    static const ViewInfo &Get( const SaucedacityProject &project );
 
    ViewInfo(double start, double screenDuration, double pixelsPerSecond);
-   ViewInfo( const ViewInfo & ) PROHIBITED;
-   ViewInfo &operator=( const ViewInfo & ) PROHIBITED;
+   ViewInfo( const ViewInfo & ) = delete;
+   ViewInfo &operator=( const ViewInfo & ) = delete;
 
    int GetHeight() const { return mHeight; }
    void SetHeight( int height ) { mHeight = height; }

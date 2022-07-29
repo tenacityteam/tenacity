@@ -29,9 +29,9 @@ public:
    static const ProjectSelectionManager &Get( const SaucedacityProject &project );
 
    explicit ProjectSelectionManager( SaucedacityProject &project );
-   ProjectSelectionManager( const ProjectSelectionManager & ) PROHIBITED;
+   ProjectSelectionManager( const ProjectSelectionManager & ) = delete;
    ProjectSelectionManager &operator=(
-      const ProjectSelectionManager & ) PROHIBITED;
+      const ProjectSelectionManager & ) = delete;
    ~ProjectSelectionManager() override;
 
    // SelectionBarListener callback methods

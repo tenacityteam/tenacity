@@ -380,7 +380,7 @@ protected:
    class SAUCEDACITY_DLL_API AddedAnalysisTrack {
       friend Effect;
       AddedAnalysisTrack(Effect *pEffect, const wxString &name);
-      AddedAnalysisTrack(const AddedAnalysisTrack&) PROHIBITED;
+      AddedAnalysisTrack(const AddedAnalysisTrack&) = delete;
 
    public:
 
@@ -411,7 +411,7 @@ protected:
       friend Effect;
       ModifiedAnalysisTrack
          (Effect *pEffect, const LabelTrack *pOrigTrack, const wxString &name);
-      ModifiedAnalysisTrack(const ModifiedAnalysisTrack&) PROHIBITED;
+      ModifiedAnalysisTrack(const ModifiedAnalysisTrack&) = delete;
 
    public:
 

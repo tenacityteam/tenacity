@@ -711,8 +711,8 @@ class SAUCEDACITY_DLL_API WaveTrackFactory final
       , mpFactory(pFactory)
    {
    }
-   WaveTrackFactory( const WaveTrackFactory & ) PROHIBITED;
-   WaveTrackFactory &operator=( const WaveTrackFactory & ) PROHIBITED;
+   WaveTrackFactory( const WaveTrackFactory & ) = delete;
+   WaveTrackFactory &operator=( const WaveTrackFactory & ) = delete;
 
    const SampleBlockFactoryPtr &GetSampleBlockFactory() const
    { return mpFactory; }

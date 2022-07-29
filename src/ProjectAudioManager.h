@@ -59,8 +59,8 @@ public:
       TrackList &trackList, bool selectedOnly, bool useMidi = false);
 
    explicit ProjectAudioManager( SaucedacityProject &project );
-   ProjectAudioManager( const ProjectAudioManager & ) PROHIBITED;
-   ProjectAudioManager &operator=( const ProjectAudioManager & ) PROHIBITED;
+   ProjectAudioManager( const ProjectAudioManager & ) = delete;
+   ProjectAudioManager &operator=( const ProjectAudioManager & ) = delete;
    ~ProjectAudioManager() override;
 
    bool IsTimerRecordCancelled() { return mTimerRecordCanceled; }

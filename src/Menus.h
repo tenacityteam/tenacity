@@ -82,8 +82,8 @@ public:
 
    explicit
    MenuManager( SaucedacityProject &project );
-   MenuManager( const MenuManager & ) PROHIBITED;
-   MenuManager &operator=( const MenuManager & ) PROHIBITED;
+   MenuManager( const MenuManager & ) = delete;
+   MenuManager &operator=( const MenuManager & ) = delete;
    ~MenuManager();
 
    static void Visit( ToolbarMenuVisitor &visitor );

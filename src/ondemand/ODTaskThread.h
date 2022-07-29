@@ -145,8 +145,8 @@ public:
       return *this;
    }
 
-   ODLocker(const ODLocker &that) PROHIBITED;
-   ODLocker &operator= (const ODLocker &that) PROHIBITED;
+   ODLocker(const ODLocker &that) = delete;
+   ODLocker &operator= (const ODLocker &that) = delete;
 };
 
 #endif //__AUDACITY_ODTASKTHREAD__

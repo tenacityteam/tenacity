@@ -98,8 +98,8 @@ public:
    Importer();
    ~Importer();
 
-   Importer( const Importer& ) PROHIBITED;
-   Importer &operator=( Importer& ) PROHIBITED;
+   Importer( const Importer& ) = delete;
+   Importer &operator=( Importer& ) = delete;
 
    /**
     * Return instance reference

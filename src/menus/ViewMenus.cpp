@@ -379,8 +379,8 @@ Handler( SaucedacityProject &project )
 {
    mProject.Unbind( EVT_UNDO_PUSHED, &Handler::OnUndoPushed, this );
 }
-Handler( const Handler & ) PROHIBITED;
-Handler &operator=( const Handler & ) PROHIBITED;
+Handler( const Handler & ) = delete;
+Handler &operator=( const Handler & ) = delete;
 
 SaucedacityProject &mProject;
 

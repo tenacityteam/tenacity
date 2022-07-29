@@ -27,8 +27,8 @@ public:
    explicit ProjectHistory( SaucedacityProject &project )
       : mProject{ project }
    {}
-   ProjectHistory( const ProjectHistory & ) PROHIBITED;
-   ProjectHistory &operator=( const ProjectHistory & ) PROHIBITED;
+   ProjectHistory( const ProjectHistory & ) = delete;
+   ProjectHistory &operator=( const ProjectHistory & ) = delete;
    ~ProjectHistory() override;
 
    void InitialState();

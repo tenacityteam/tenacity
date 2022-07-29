@@ -119,8 +119,8 @@ class ODManager final
    public:
       Pauser() { Pause(); }
       ~Pauser() { Resume(); }
-      Pauser(const Pauser&) PROHIBITED;
-      Pauser &operator= (const Pauser&) PROHIBITED;
+      Pauser(const Pauser&) = delete;
+      Pauser &operator= (const Pauser&) = delete;
    };
 
 

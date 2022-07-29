@@ -166,8 +166,8 @@ public:
    explicit TrackFocus( SaucedacityProject &project );
    ~TrackFocus() override;
 
-   TrackFocus( const TrackFocus & ) PROHIBITED;
-   TrackFocus& operator=( const TrackFocus & ) PROHIBITED;
+   TrackFocus( const TrackFocus & ) = delete;
+   TrackFocus& operator=( const TrackFocus & ) = delete;
 
    // Report the currently focused track, which may be null, otherwise is
    // a leader track

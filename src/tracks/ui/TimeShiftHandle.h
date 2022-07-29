@@ -33,8 +33,8 @@ class wxMouseState;
 class SAUCEDACITY_DLL_API TrackShifter {
 public:
    TrackShifter();
-   TrackShifter(const TrackShifter&) PROHIBITED;
-   TrackShifter &operator=(const TrackShifter&) PROHIBITED;
+   TrackShifter(const TrackShifter&) = delete;
+   TrackShifter &operator=(const TrackShifter&) = delete;
 
    virtual ~TrackShifter() = 0;
    //! There is always an associated track
@@ -204,8 +204,8 @@ class ViewInfo;
 struct SAUCEDACITY_DLL_API ClipMoveState {
    ClipMoveState() = default;
 
-   ClipMoveState(const ClipMoveState&) PROHIBITED;
-   ClipMoveState& operator =(const ClipMoveState&) PROHIBITED;
+   ClipMoveState(const ClipMoveState&) = delete;
+   ClipMoveState& operator =(const ClipMoveState&) = delete;
 
    ClipMoveState(ClipMoveState&&) = default;
    ClipMoveState& operator =(ClipMoveState&&) = default;

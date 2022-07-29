@@ -48,7 +48,7 @@ class EXCEPTIONS_API SaucedacityException : public std::exception
     SaucedacityException( SaucedacityException&& ) = delete;
 
     //! Disallow assignment
-    SaucedacityException &operator = ( const SaucedacityException & ) PROHIBITED;
+    SaucedacityException &operator = ( const SaucedacityException & ) = delete;
 
 
     /// Action to do in the main thread at idle time of the event loop.
@@ -122,7 +122,7 @@ public:
 
    SimpleMessageBoxException( const SimpleMessageBoxException& ) = default;
    SimpleMessageBoxException &operator = (
-      SimpleMessageBoxException && ) PROHIBITED;
+      SimpleMessageBoxException && ) = delete;
 
    // Format a default, internationalized error message for this exception.
    virtual TranslatableString ErrorMessage() const override;

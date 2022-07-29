@@ -117,8 +117,8 @@ private:
    // I'm a singleton class
    ModuleManager();
    ~ModuleManager();
-   ModuleManager(const ModuleManager&) PROHIBITED;
-   ModuleManager &operator=(const ModuleManager&) PROHIBITED;
+   ModuleManager(const ModuleManager&) = delete;
+   ModuleManager &operator=(const ModuleManager&) = delete;
 
    void InitializeBuiltins();
 
