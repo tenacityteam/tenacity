@@ -2251,7 +2251,7 @@ void ProjectFileIO::ShowError(const GenericUI::WindowPlacement &placement,
                               const TranslatableString &message,
                               const wxString &helpPage)
 {
-   using namespace audacity;
+   using namespace Saucedacity;
    using namespace GenericUI;
    ShowErrorDialog( placement, dlogTitle, message, helpPage,
       ErrorDialogOptions{ ErrorDialogType::ModalErrorReport }

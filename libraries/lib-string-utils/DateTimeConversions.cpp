@@ -14,7 +14,7 @@
 
 #include "CodeConversions.h"
 
-namespace audacity
+namespace Saucedacity
 {
 
 bool ParseRFC822Date (const std::string& dateString, SystemTime* time)

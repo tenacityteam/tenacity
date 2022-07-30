@@ -13,7 +13,7 @@
 #include <chrono>
 #include <string>
 
-namespace audacity
+namespace Saucedacity
 {
 
 using SystemTime = std::chrono::system_clock::time_point;

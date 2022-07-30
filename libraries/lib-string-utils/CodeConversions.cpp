@@ -13,7 +13,7 @@
 #include <locale>
 #include <codecvt>
 
-namespace audacity
+namespace Saucedacity
 {
 
 std::string ToUTF8 (const std::wstring& wstr)
