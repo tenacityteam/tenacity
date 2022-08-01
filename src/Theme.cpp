@@ -485,7 +485,7 @@ size_t SourceOutputStream::OnSysWrite(const void *buffer, size_t bufsize)
       // New line if more than 20 bytes written since last time.
       if( (nBytes %20)==0 )
       {
-         File.Write( wxT("\r\n   "));
+         File.Write( wxT("\n   "));
       }
    }
    return bufsize;
@@ -494,7 +494,7 @@ size_t SourceOutputStream::OnSysWrite(const void *buffer, size_t bufsize)
 /// Destructor.  We close our text stream in here.
 SourceOutputStream::~SourceOutputStream()
 {
-   File.Write( wxT("\r\n") );
+   File.Write( wxT("\n") );
    File.Close();
 }
 
@@ -682,11 +682,11 @@ void ThemeBase::WriteImageMap( )
    if( !File.IsOpened() )
       return;
 
-   File.Write( wxT("<html>\r\n"));
-   File.Write( wxT("<body bgcolor=\"303030\">\r\n"));
-   wxString Temp = wxString::Format( wxT("<img src=\"ImageCache.png\" width=\"%i\" usemap=\"#map1\">\r\n" ), ImageCacheWidth );
+   File.Write( wxT("<html>\n"));
+   File.Write( wxT("<body bgcolor=\"303030\">\n"));
+   wxString Temp = wxString::Format( wxT("<img src=\"ImageCache.png\" width=\"%i\" usemap=\"#map1\">\n" ), ImageCacheWidth );
    File.Write( Temp );
-   File.Write( wxT("<map name=\"map1\">\r\n") );
+   File.Write( wxT("<map name=\"map1\">\n") );
 
    for(i = 0; i < (int)mImages.size(); i++)
    {
@@ -698,7 +698,7 @@ void ThemeBase::WriteImageMap( )
          // No href in html.  Uses title not alt.
          wxRect R( mFlow.RectInner() );
          File.Write( wxString::Format(
-            wxT("<area title=\"Bitmap:%s\" shape=rect coords=\"%i,%i,%i,%i\">\r\n"),
+            wxT("<area title=\"Bitmap:%s\" shape=rect coords=\"%i,%i,%i,%i\">\n"),
             mBitmapNames[i],
             R.GetLeft(), R.GetTop(), R.GetRight(), R.GetBottom()) );
       }
@@ -711,13 +711,13 @@ void ThemeBase::WriteImageMap( )
       mFlow.GetNextPosition( iColSize, iColSize );
       // No href in html.  Uses title not alt.
       wxRect R( mFlow.RectInner() );
-      File.Write( wxString::Format( wxT("<area title=\"Colour:%s\" shape=rect coords=\"%i,%i,%i,%i\">\r\n"),
+      File.Write( wxString::Format( wxT("<area title=\"Colour:%s\" shape=rect coords=\"%i,%i,%i,%i\">\n"),
          mColourNames[i],
          R.GetLeft(), R.GetTop(), R.GetRight(), R.GetBottom()) );
    }
-   File.Write( wxT("</map>\r\n") );
-   File.Write( wxT("</body>\r\n"));
-   File.Write( wxT("</html>\r\n"));
+   File.Write( wxT("</map>\n") );
+   File.Write( wxT("</body>\n"));
+   File.Write( wxT("</html>\n"));
    // File will be closed automatically.
 }
 
@@ -748,11 +748,11 @@ void ThemeBase::WriteImageDefs( )
          if( t & resFlagInternal ) Temp += wxT(" resFlagInternal ");
          Temp.Replace( wxT("  "), wxT(" | ") );
 
-         File.Write( wxString::Format( wxT("\r\n   SET_THEME_FLAGS( %s );\r\n"),
+         File.Write( wxString::Format( wxT("\n   SET_THEME_FLAGS( %s );\n"),
             Temp ));
       }
       File.Write( wxString::Format(
-         wxT("   DEFINE_IMAGE( bmp%s, wxImage( %i, %i ), wxT(\"%s\"));\r\n"),
+         wxT("   DEFINE_IMAGE( bmp%s, wxImage( %i, %i ), wxT(\"%s\"));\n"),
          mBitmapNames[i],
          SrcImage.GetWidth(),
          SrcImage.GetHeight(),
