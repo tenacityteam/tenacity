@@ -33,11 +33,6 @@ list(APPEND SOURCES
 
 list(APPEND INCLUDES
    PUBLIC
-      ${TARGET_ROOT}/huffman.h
-      ${TARGET_ROOT}/layer3.h
-      ${TARGET_ROOT}/global.h
-      ${TARGET_ROOT}/layer12.h
-   PRIVATE
       ${TARGET_ROOT}/mad.h
 )
 
