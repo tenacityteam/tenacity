@@ -265,7 +265,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    // nearest frequency to each pixel row from number scale, for selecting
    // the desired fft bin(s) for display on that row
-   float *bins = (float*)alloca(sizeof(*bins)*(hiddenMid.height + 1));
+   std::unique_ptr<float> _bins(new float[hiddenMid.height + 1]);
+   auto bins = _bins.get();
    {
       const NumberScale numberScale( settings.GetScale( minFreq, maxFreq ) );
 

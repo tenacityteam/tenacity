@@ -707,18 +707,18 @@ void MP3ImportFileHandle::LoadID3(Tags *tags)
 
       // Would like to use std::dynarray or runtime-sized array,
       // but VS doesn't support either.
-      wxUint32 *buf = (wxUint32 *) alloca((len + 1) * sizeof(wxUint32));
+      std::unique_ptr<wxUint32> buf(new unsigned[len + 1]);
 
       // Copy and convert to unsigned int
       wxUint32 *out;
-      for (out = buf; *in; in++, out++)
+      for (out = buf.get(); *in; in++, out++)
       {
          *out = (wxUint32) (*in);
       }
       *out = 0;
 
       // Finally convert to and return wxString
-      return wxString((char *) buf, converter);
+      return wxString((char *) buf.get(), converter);
    };
 
    tags->Clear();

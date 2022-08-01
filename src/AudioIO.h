@@ -312,7 +312,7 @@ public:
       float * tempBuf,
       bool drop,
       unsigned long len,
-      WaveTrack *vt
+      std::shared_ptr<WaveTrack>& vt
       );
    bool FillOutputBuffers(
       void *outputBuffer,

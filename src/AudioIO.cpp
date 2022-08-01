@@ -3634,8 +3634,6 @@ void AudioIO::AILAProcess(double maxPeak) {
 //
 //////////////////////////////////////////////////////////////////////
 
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
-
 static void DoSoftwarePlaythrough(const void *inputBuffer,
                                   sampleFormat inputFormat,
                                   unsigned inputChannels,
@@ -3782,14 +3780,14 @@ void AudioIoCallback::CheckSoundActivatedRecordingLevel(
 
 // A function to apply the requested gain, fading up or down from the
 // most recently applied gain.
-void AudioIoCallback::AddToOutputChannel( unsigned int chan,
-   float * outputMeterFloats,
-   float * outputFloats,
-   float * tempBuf,
-   bool drop,
-   unsigned long len,
-   WaveTrack *vt
-   )
+void AudioIoCallback::AddToOutputChannel(unsigned int chan,
+                                         float * outputMeterFloats,
+                                         float * outputFloats,
+                                         float * tempBuf,
+                                         bool drop,
+                                         unsigned long len,
+                                         std::shared_ptr<WaveTrack>& vt
+                                        )
 {
    const auto numPlaybackChannels = mNumPlaybackChannels;
 
@@ -3866,12 +3864,18 @@ bool AudioIoCallback::FillOutputBuffers(
 
    // ------ MEMORY ALLOCATION ----------------------
    // These are small structures.
-   WaveTrack **chans = (WaveTrack **) alloca(numPlaybackChannels * sizeof(WaveTrack *));
-   float **tempBufs = (float **) alloca(numPlaybackChannels * sizeof(float *));
+   WaveTrackArray chans;
+   StackAllocator<float>  floatAllocator;
+   std::unique_ptr<float*> tempBufs(new float*[numPlaybackChannels]);
+   chans.resize(numPlaybackChannels);
 
    // And these are larger structures....
+   // GP: not needed
    for (unsigned int c = 0; c < numPlaybackChannels; c++)
-      tempBufs[c] = (float *) alloca(framesPerBuffer * sizeof(float));
+   {
+      auto& buf = tempBufs.get()[c];
+      buf = floatAllocator.Allocate(true, framesPerBuffer);
+   }
    // ------ End of MEMORY ALLOCATION ---------------
 
    auto & em = RealtimeEffectManager::Get();
@@ -3902,7 +3906,7 @@ bool AudioIoCallback::FillOutputBuffers(
    bool dropQuickly = false; // Track has already been faded to silence.
    for (unsigned t = 0; t < numPlaybackTracks; t++)
    {
-      WaveTrack *vt = mPlaybackTracks[t].get();
+      std::shared_ptr<WaveTrack> vt = mPlaybackTracks[t];
       chans[chanCnt] = vt;
 
       // TODO: more-than-two-channels
@@ -3920,9 +3924,11 @@ bool AudioIoCallback::FillOutputBuffers(
       {
          selected = vt->GetSelected();
          // IF mono THEN clear 'the other' channel.
-         if ( lastChannel && (numPlaybackChannels>1)) {
+         if ( lastChannel && (numPlaybackChannels>1))
+         {
             // TODO: more-than-two-channels
-            memset(tempBufs[1], 0, framesPerBuffer * sizeof(float));
+            auto buf = tempBufs.get()[1];
+            memset(buf, 0, framesPerBuffer * sizeof(float));
          }
          drop = TrackShouldBeSilent( *vt );
          dropQuickly = drop;
@@ -3941,19 +3947,21 @@ bool AudioIoCallback::FillOutputBuffers(
       }
       else
       {
-         len = mPlaybackBuffers[t]->Get((samplePtr)tempBufs[chanCnt],
+         len = mPlaybackBuffers[t]->Get((samplePtr)tempBufs.get()[chanCnt],
                                                    floatSample,
                                                    toGet);
          // wxASSERT( len == toGet );
          if (len < framesPerBuffer)
+         {
             // This used to happen normally at the end of non-looping
             // plays, but it can also be an anomalous case where the
             // supply from FillBuffers fails to keep up with the
             // real-time demand in this thread (see bug 1932).  We
             // must supply something to the sound card, so pad it with
             // zeroes and not random garbage.
-            memset((void*)&tempBufs[chanCnt][len], 0,
+            memset((void*)&tempBufs.get()[chanCnt][len], 0,
                (framesPerBuffer - len) * sizeof(float));
+         }
          chanCnt++;
       }
 
@@ -3973,7 +3981,7 @@ bool AudioIoCallback::FillOutputBuffers(
       len = mMaxFramesOutput;
 
       if( !dropQuickly && selected )
-         len = em.RealtimeProcess(group, chanCnt, tempBufs, len);
+         len = em.RealtimeProcess(group, chanCnt, tempBufs.get(), len);
       group++;
 
       CallbackCheckCompletion(mCallbackReturn, len);
@@ -3997,12 +4005,12 @@ bool AudioIoCallback::FillOutputBuffers(
          if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
                vt->GetChannelIgnoringPan() == Track::MonoChannel )
             AddToOutputChannel( 0, outputMeterFloats, outputFloats,
-               tempBufs[c], drop, len, vt);
+               tempBufs.get()[c], drop, len, vt);
 
          if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
                vt->GetChannelIgnoringPan() == Track::MonoChannel  )
             AddToOutputChannel( 1, outputMeterFloats, outputFloats,
-               tempBufs[c], drop, len, vt);
+               tempBufs.get()[c], drop, len, vt);
       }
 
       chanCnt = 0;
@@ -4158,12 +4166,11 @@ void AudioIoCallback::FillInputBuffers(
       // JKC: mCaptureFormat must be for samples with sizeof(float) or
       // fewer bytes (because tempFloats is sized for floats).  All 
       // formats are 2 or 4 bytes, so we are OK.
-      const auto put =
+      //const auto put = // unused
          mCaptureBuffers[t]->Put(
             (samplePtr)tempFloats, mCaptureFormat, len);
       // wxASSERT(put == len);
       // but we can't assert in this thread
-      wxUnusedVar(put);
    }
 }
 
@@ -4411,17 +4418,19 @@ int AudioIoCallback::AudioCallback(const void *inputBuffer, void *outputBuffer,
    // audio data.  One temporary use is for the InputMeter data.
    const auto numPlaybackChannels = mNumPlaybackChannels;
    const auto numCaptureChannels = mNumCaptureChannels;
-   float *tempFloats = (float *)alloca(framesPerBuffer*sizeof(float)*
-                             MAX(numCaptureChannels,numPlaybackChannels));
+   std::unique_ptr<float> tempFloats(
+      new float[framesPerBuffer * std::max(numCaptureChannels, numPlaybackChannels)]
+   );
 
    bool bVolEmulationActive = 
       (outputBuffer && mEmulateMixerOutputVol &&  mMixerOutputVol != 1.0);
    // outputMeterFloats is the scratch pad for the output meter.  
    // we can often reuse the existing outputBuffer and save on allocating 
    // something new.
+   StackAllocator<float> floatAllocator;
    float *outputMeterFloats = bVolEmulationActive ?
-         (float *)alloca(framesPerBuffer*numPlaybackChannels * sizeof(float)) :
-         (float *)outputBuffer;
+         floatAllocator.Allocate(framesPerBuffer*numPlaybackChannels) :
+         static_cast<float*>(outputBuffer);
    // ----- END of MEMORY ALLOCATIONS ------------------------------------------
 
    if (inputBuffer && numCaptureChannels) {
@@ -4432,8 +4441,8 @@ int AudioIoCallback::AudioCallback(const void *inputBuffer, void *outputBuffer,
       }
       else {
          SamplesToFloats(reinterpret_cast<constSamplePtr>(inputBuffer),
-            mCaptureFormat, tempFloats, framesPerBuffer * numCaptureChannels);
-         inputSamples = tempFloats;
+            mCaptureFormat, tempFloats.get(), framesPerBuffer * numCaptureChannels);
+         inputSamples = tempFloats.get();
       }
 
       SendVuInputMeterData(
@@ -4481,7 +4490,7 @@ int AudioIoCallback::AudioCallback(const void *inputBuffer, void *outputBuffer,
       inputBuffer, 
       framesPerBuffer,
       statusFlags,
-      tempFloats);
+      tempFloats.get());
 
    SendVuOutputMeterData( outputMeterFloats, framesPerBuffer);
 

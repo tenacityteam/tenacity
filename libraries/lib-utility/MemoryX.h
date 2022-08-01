@@ -261,6 +261,103 @@ private:
  */
 struct freer { void operator() (void *p) const { free(p); } };
 
+/** @brief A kind of allocator that gives non-owning access to allocated memory.
+ * 
+ * This is intended as a shim for anything that doesn't use a smart pointer,
+ * namely in EffectsInterface, RealtimeEffectManager, AudioIO, etc. It allows
+ * for allocating memory for use with regular pointers. The memory is actually
+ * owned by a StackAllocator object.
+ * 
+ **/
+template<class T>
+class StackAllocator
+{
+   private:
+      /** @brief Vector to hold our allocated memory.
+       * 
+       * We use a pair here,
+       * 
+       **/
+      std::vector<std::pair<bool, T*>>  mAllocMem;
+      std::vector<T**> mAllocArray;
+
+   public:
+      /// Default constructor.
+      StackAllocator() = default;
+
+      /** @brief Allocates `ptr`.
+       * 
+       * @param ptr The pointer to allocate memory for.
+       * 
+       * @param isArray If true, uses new[] and delete[] instead of regular new
+       * and delete.
+       * 
+       * @param count How many elements there should be in the new array.
+       * Default is 1, ignored if `isArray` is false.
+       * 
+       * @warning StackAllocator does **not** take ownership of `ptr` and
+       * deallocate it for you. You must do this yourself before passing `ptr`
+       * to ensure no memory leaks occur.
+       * 
+       **/
+      StackAllocator(T* ptr, bool isArray = false, size_t count = 1)
+      {
+         ptr = Allocate(isArray, count);
+      }
+
+      /// Deallocates any memory allocated by the StackAllocator object.
+      ~StackAllocator()
+      {
+         for (auto& x : mAllocMem)
+         {
+            // the first element represents if this was allocated with new[] or
+            // not. if so, we use delete[]
+            if (std::get<bool>(x))
+            {
+               delete[] std::get<T*>(x);
+            } else
+            {
+               delete std::get<T*>(x);
+            }
+         }
+
+         for (auto& x : mAllocArray)
+         {
+
+         }
+      }
+
+      /** @brief Allocates memory.
+       * @param isArray If true, uses new[] instead of new along with the
+       * corresponding delete[] operator.
+       * 
+       * @param count How many elements there should be in the allocated array.
+       * Default is 1, ignored if `isArray` is false.
+       **/
+      T* Allocate(bool isArray = false, size_t count = 1)
+      {
+         T* mem;
+
+         try
+         {
+            if (isArray)
+            {
+               mem = new T[count];
+               mAllocMem.push_back(std::make_pair(true, mem));
+            } else
+            {
+               mem = new T;
+               mAllocMem.push_back(std::make_pair(true, mem));
+            }
+
+            return mem;
+         } catch(const std::bad_alloc&)
+         {
+            throw;
+         }
+      }
+};
+
 /**
   A useful alias for holding the result of malloc
  */

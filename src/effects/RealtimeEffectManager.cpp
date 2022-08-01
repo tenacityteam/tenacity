@@ -12,6 +12,7 @@
 #include "RealtimeEffectManager.h"
 
 #include "EffectInterface.h"
+#include "MemoryX.h"
 #include <memory>
 
 #include <atomic>
@@ -308,7 +309,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    mLock.lock();
 
    // Can be suspended because of the audio stream being paused or because effects
-   // have been suspended, so allow the samples to pass as-is.
+   // have  been suspended, so allow the samples to pass as-is.
    if (mRealtimeSuspended || mStates.empty())
    {
       mLock.unlock();
@@ -320,15 +321,19 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    system_clock::time_point start = system_clock::now();
 
    // Allocate the in/out buffer arrays
-   float **ibuf = (float **) alloca(chans * sizeof(float *));
-   float **obuf = (float **) alloca(chans * sizeof(float *));
+   // GP: temporary fix until we convert Effect
+   StackAllocator<float>  floatAllocator;
+   std::unique_ptr<float*> _ibuf(new float*[chans]);
+   std::unique_ptr<float*> _obuf(new float*[chans]);
+   auto ibuf = _ibuf.get();
+   auto obuf = _obuf.get();
 
    // And populate the input with the buffers we've been given while allocating
    // NEW output buffers
    for (unsigned int i = 0; i < chans; i++)
    {
       ibuf[i] = buffers[i];
-      obuf[i] = new float[numSamples];
+      obuf[i] = floatAllocator.Allocate(true, numSamples);
    }
 
    // Now call each effect in the chain while swapping buffer pointers to feed the
@@ -510,9 +515,18 @@ size_t RealtimeEffectState::RealtimeProcess(int group,
    const auto numAudioIn = mEffect.GetAudioInCount();
    const auto numAudioOut = mEffect.GetAudioOutCount();
 
-   float **clientIn = (float **) alloca(numAudioIn * sizeof(float *));
-   float **clientOut = (float **) alloca(numAudioOut * sizeof(float *));
-   float *dummybuf = (float *) alloca(numSamples * sizeof(float));
+   //StackAllocator<float*> floatBufferArrayAllocator;
+   StackAllocator<float> floatAllocator;
+   //float **clientIn  = floatBufferArrayAllocator.Allocate(true, numAudioIn);
+   //float **clientOut = floatBufferArrayAllocator.Allocate(true, numAudioIn);
+   //float *dummybuf = floatBufferAllocator.Allocate(numSamples);
+   std::unique_ptr<float*> _clientIn(new float*[numAudioIn]);
+   std::unique_ptr<float*> _clientOut(new float*[numAudioIn]);
+   std::unique_ptr<float>  _dummybuf(new float[numSamples]);
+   auto clientIn  = _clientIn.get();
+   auto clientOut = _clientOut.get();
+   auto dummybuf  = _dummybuf.get();
+
    decltype(numSamples) len = 0;
    auto ichans = chans;
    auto ochans = chans;
