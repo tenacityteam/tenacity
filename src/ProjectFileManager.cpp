@@ -173,9 +173,9 @@ auto ProjectFileManager::ReadProjectFile(
 
          AudacityMessageBox(
             resaved
-               ? XO("This project was not saved properly the last time Audacity ran.\n\n"
+               ? XO("This project was not saved properly the last time Saucedacity ran.\n\n"
                     "It has been recovered to the last snapshot.")
-               : XO("This project was not saved properly the last time Audacity ran.\n\n"
+               : XO("This project was not saved properly the last time Saucedacity ran.\n\n"
                     "It has been recovered to the last snapshot, but you must save it\n"
                     "to preserve its contents."),
             XO("Project Recovered"),
