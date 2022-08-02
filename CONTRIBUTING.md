@@ -5,7 +5,7 @@ There are many ways to contribute to the Saucedacity Project. Such include contr
 Of course, we have a couple of things that you should know. Below are some general points that you should know about contributing to Saucedacity.
 
 # General
-* **NO CLA is required!** The code you right is YOURS to keep FOREVER.
+* **NO CLA is required!** The code you write is YOURS to keep FOREVER.
 * **Make sure your code is available under the GPL v2 or later**. If you are making contributions to documentation or media (i.e., logos, icons, etc), please license those changes under CC BY 4.0.
   * Wiki contributions are made under CC BY (Creative Commons Attribution) 4.0.
 * **[Follow our code of conduct](CODE_OF_CONDUCT.md)** when participating in discussions of issues, pull requests, and discussions.
@@ -14,7 +14,7 @@ Of course, we have a couple of things that you should know. Below are some gener
 
 ## In General
 
-* If you want to make a change, it is best advised that you do make an issue so we can discuss things. You may open a pull request without relating to an issue, hwoever.
+* If you want to make a change, it is best advised that you do make an issue so we can discuss things. You may open a pull request without relating to an issue, however.
   * Careful not to step on anyone's toes, though. Someone might be already working on the same thing you have, consult the [Issue Tracker](https://github.com/generic-pers0n/saucedacity/issues) for details
 
 ## Branches
