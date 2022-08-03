@@ -264,7 +264,7 @@ void Dither::Apply(enum DitherType ditherType,
         // No need to dither, because source and destination
         // format are the same. Just copy samples.
         if (destStride == 1 && sourceStride == 1)
-            memcpy(dest, source, len * SAMPLE_SIZE(destFormat));
+            memcpy(dest, source, static_cast<size_t>(len) * SAMPLE_SIZE(destFormat));
         else
         {
             if (sourceFormat == floatSample)
