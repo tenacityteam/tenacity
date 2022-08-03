@@ -115,7 +115,7 @@ bool ContrastDialog::GetDB(float &dB)
 
       // Don't throw in this analysis dialog
       rms = t->GetRMS(mT0, mT1, false);
-      meanSq += rms * rms;
+      meanSq += static_cast<double>(rms) * rms;
    }
    // TODO: This works for stereo, provided the audio clips are in both channels.
    // We should really count gaps between clips as silence.

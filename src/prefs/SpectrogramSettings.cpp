@@ -603,7 +603,7 @@ size_t SpectrogramSettings::GetFFTLength() const
 #ifndef EXPERIMENTAL_ZERO_PADDED_SPECTROGRAMS
    return windowSize;
 #else
-   return windowSize * ((algorithm != algPitchEAC) ? zeroPaddingFactor : 1);
+   return static_cast<size_t>(windowSize) * ((algorithm != algPitchEAC) ? zeroPaddingFactor : 1);
 #endif
 }
 

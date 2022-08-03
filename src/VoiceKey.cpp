@@ -866,21 +866,21 @@ double VoiceKey::TestEnergy (
    Floats buffer{ blockSize };       //Get a sampling buffer
 
    while(len > 0)
+   {
+      //Figure out how much to grab
+      auto block = limitSampleBufferSize ( t.GetBestBlockSize(s), len );
+
+      t.GetFloats(buffer.get(), s,block);                      //grab the block;
+
+      //Now, go through the block and calculate energy
+      for(decltype(block) i = 0; i< block; i++)
       {
-         //Figure out how much to grab
-         auto block = limitSampleBufferSize ( t.GetBestBlockSize(s), len );
-
-         t.GetFloats(buffer.get(), s,block);                      //grab the block;
-
-         //Now, go through the block and calculate energy
-         for(decltype(block) i = 0; i< block; i++)
-            {
-               sum += buffer[i]*buffer[i];
-            }
-
-         len -= block;
-         s += block;
+         sum += static_cast<double>(buffer[i]) * buffer[i];
       }
+
+      len -= block;
+      s += block;
+   }
 
    return sum / originalLen.as_double();
 }

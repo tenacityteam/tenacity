@@ -324,7 +324,7 @@ float Sequence::GetRMS(sampleCount start, sampleCount len, bool mayThrow) const
 
       const auto fileLen = sb->GetSampleCount();
       const auto blockRMS = results.RMS;
-      sumsq += blockRMS * blockRMS * fileLen;
+      sumsq += static_cast<double>(blockRMS) * blockRMS * fileLen;
       length += fileLen;
    }
 
@@ -344,7 +344,7 @@ float Sequence::GetRMS(sampleCount start, sampleCount len, bool mayThrow) const
 
       auto results = sb->GetMinMaxRMS(s0, l0, mayThrow);
       const auto partialRMS = results.RMS;
-      sumsq += partialRMS * partialRMS * l0;
+      sumsq += static_cast<double>(partialRMS) * partialRMS * l0;
       length += l0;
    }
 
@@ -358,7 +358,7 @@ float Sequence::GetRMS(sampleCount start, sampleCount len, bool mayThrow) const
 
       auto results = sb->GetMinMaxRMS(0, l0, mayThrow);
       const auto partialRMS = results.RMS;
-      sumsq += partialRMS * partialRMS * l0;
+      sumsq += static_cast<double>(partialRMS) * partialRMS * l0;
       length += l0;
    }
 

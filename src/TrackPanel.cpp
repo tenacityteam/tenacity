@@ -1150,10 +1150,11 @@ void DrawTrackName(
    };
    wxImage image(
       textWidth + MarginsX + SecondMarginsX,
-      textHeight + MarginsY + SecondMarginsY );
+      textHeight + MarginsY + SecondMarginsY
+   );
    image.InitAlpha();
    unsigned char *alpha=image.GetAlpha();
-   memset(alpha, wxIMAGE_ALPHA_TRANSPARENT, image.GetWidth()*image.GetHeight());
+   memset(alpha, wxIMAGE_ALPHA_TRANSPARENT, static_cast<size_t>(image.GetWidth()) * image.GetHeight());
 
    {
       std::unique_ptr< wxGraphicsContext >
@@ -1164,12 +1165,14 @@ void DrawTrackName(
       // Draw at 1,1, not at 0,0 to avoid clipping of the antialiasing.
       gc.DrawRoundedRectangle(
          SecondMarginX, SecondMarginY,
-         textWidth + MarginsX, textHeight + MarginsY, 8.0 );
+         textWidth + MarginsX, textHeight + MarginsY, 8.0
+      );
       // destructor of gc updates the wxImage.
    }
    wxBitmap bitmap( image );
    dc.DrawBitmap( bitmap,
-      nameRect.x - SecondMarginX, nameRect.y - SecondMarginY );
+      nameRect.x - SecondMarginX, nameRect.y - SecondMarginY
+   );
 #endif
    dc.SetTextForeground(theTheme.Colour( clrTrackPanelText ));
    dc.DrawText(t->GetName(),
@@ -1229,7 +1232,8 @@ struct EmptyCell final : CommonTrackPanelCell {
       TrackPanelDrawingContext &context,
       const wxRect &rect, unsigned iPass ) override
    {
-      if ( iPass == TrackArtist::PassMargins ) {
+      if ( iPass == TrackArtist::PassMargins )
+      {
          // Draw a margin area of TrackPanel
          auto dc = &context.dc;
          

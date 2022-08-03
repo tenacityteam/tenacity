@@ -136,7 +136,7 @@ std::unique_ptr<wxImage> OverlayImage(wxImage * background, wxImage * foreground
    //Make a NEW image the size of the background
    auto dstImage = std::make_unique<wxImage>(bgWidth, bgHeight);
    unsigned char *dst = dstImage->GetData();
-   memcpy(dst, bg, bgWidth * bgHeight * 3);
+   memcpy(dst, bg, static_cast<size_t>(bgWidth) * bgHeight * 3);
 
 
    // Go through the foreground image bit by bit and mask it on to the
@@ -211,7 +211,7 @@ std::unique_ptr<wxImage> OverlayImage(teBmps eBack, teBmps eForeground,
    //Make a NEW image the size of the background
    auto dstImage = std::make_unique<wxImage>(bgWidth, bgHeight);
    unsigned char *dst = dstImage->GetData();
-   memcpy(dst, bg, bgWidth * bgHeight * 3);
+   memcpy(dst, bg, static_cast<size_t>(bgWidth) * bgHeight * 3);
 
    // If background image has tranparency, then we want to blend with the 
    // current background colour.

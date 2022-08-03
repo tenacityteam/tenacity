@@ -352,8 +352,8 @@ float SpectrumAnalyst::GetProcessedValue(float freq0, float freq1) const
    float bin0, bin1, binwidth;
 
    if (mAlg == Spectrum) {
-      bin0 = freq0 * mWindowSize / mRate;
-      bin1 = freq1 * mWindowSize / mRate;
+      bin0 = freq0 * static_cast<float>(mWindowSize) / mRate;
+      bin1 = freq1 * static_cast<float>(mWindowSize) / mRate;
    } else {
       bin0 = freq0 * mRate;
       bin1 = freq1 * mRate;

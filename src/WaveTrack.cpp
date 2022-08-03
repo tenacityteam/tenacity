@@ -1875,7 +1875,11 @@ float WaveTrack::GetRMS(double t0, double t1, bool mayThrow) const
 
          clip->TimeToSamplesClip(wxMax(t0, clip->GetStartTime()), &clipStart);
          clip->TimeToSamplesClip(wxMin(t1, clip->GetEndTime()), &clipEnd);
-         sumsq += cliprms * cliprms * (clipEnd - clipStart).as_float();
+         // GP: trying to fix conversion after multiplication. The 2nd static_cast
+         // is probably unnecessary, but I'm tired...
+         sumsq += static_cast<double>(cliprms) *
+                  static_cast<double>(cliprms) *
+                  (clipEnd - clipStart).as_double();
          length += (clipEnd - clipStart);
       }
    }

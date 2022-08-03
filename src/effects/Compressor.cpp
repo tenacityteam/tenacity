@@ -521,7 +521,7 @@ float EffectCompressor::AvgCircle(float value)
    // Calculate current level from root-mean-squared of
    // circular buffer ("RMS")
    mRMSSum -= mCircle[mCirclePos];
-   mCircle[mCirclePos] = value*value;
+   mCircle[mCirclePos] = static_cast<double>(value) * value;
    mRMSSum += mCircle[mCirclePos];
    level = sqrt(mRMSSum/mCircleSize);
    mCirclePos = (mCirclePos+1)%mCircleSize;
