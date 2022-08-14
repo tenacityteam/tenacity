@@ -53,11 +53,7 @@ static Importer::RegisteredUnusableImportPlugin registered
 
 #else
 
-#if defined(__WXMSW__)
-#include <malloc.h>
-#else
 #include <stdlib.h>
-#endif
 
 #include <wx/file.h>
 #include <wx/string.h>

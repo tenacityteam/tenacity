@@ -44,10 +44,6 @@
 
 #include <stdlib.h>
 
-#ifdef __WXMSW__
-#include <malloc.h>
-#endif
-
 #include <stdio.h>
 #include <math.h>
 #include <emmintrin.h>

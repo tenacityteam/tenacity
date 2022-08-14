@@ -423,14 +423,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <stdexcept>
 #include <thread>
 
-#ifdef __WXMSW__
-#include <malloc.h>
-#endif
-
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
-
 #include "portaudio.h"
 
 #if USE_PORTMIXER
