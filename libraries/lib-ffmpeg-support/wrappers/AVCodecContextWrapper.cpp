@@ -101,6 +101,7 @@ AVCodecContextWrapper::DecodeAudioPacket(const AVPacketWrapper* packet)
             return data; // Packet decoding has failed
 
          if (gotFrame == 0)
+         {
             /*
              "Note that this field being set to zero does not mean that an
              error has occurred. For decoders with AV_CODEC_CAP_DELAY set, no
