@@ -211,6 +211,4 @@ private:
    DECLARE_EVENT_TABLE()
 };
 
-extern SAUCEDACITY_DLL_API BoolSetting NewImportingSession;
-
 #endif

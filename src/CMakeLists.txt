@@ -69,7 +69,9 @@ cmd_option(
 )
 set( USE_VST ${${_OPT}use_vst} CACHE INTERNAL "" )
 
-# Saucedacity core source files
+#
+#
+#
 list( APPEND SOURCES
    PRIVATE
       AColor.cpp
@@ -586,91 +588,15 @@ list( APPEND SOURCES
       >
 
       # FFmpeg
-      ffmpeg/FFmpeg.cpp
+
+      ffmpeg/AVPacketEx.h
+      ffmpeg/AVPacketEx.cpp
       ffmpeg/FFmpeg.h
-
-      ffmpeg/FFmpegNotFoundDialog.cpp
+      ffmpeg/FFmpeg.cpp
       ffmpeg/FFmpegNotFoundDialog.h
-
-      ## lib-ffmpeg-support source from Audacity
-      ffmpeg/FFmpegTypes.h
-
-      ffmpeg/FFmpegFunctions.cpp
-      ffmpeg/FFmpegFunctions.h
-
-      ffmpeg/AVCodecFunctions.h
-      ffmpeg/AVCodecID.h
-      ffmpeg/AVFormatFunctions.h
-      ffmpeg/AVUtilFunctions.h
-
-      ffmpeg/wrappers/AVCodecContextWrapper.cpp
-      ffmpeg/wrappers/AVCodecContextWrapper.h
-      ffmpeg/wrappers/AVCodecWrapper.cpp
-      ffmpeg/wrappers/AVCodecWrapper.h
-      ffmpeg/wrappers/AVDictionaryWrapper.cpp
-      ffmpeg/wrappers/AVDictionaryWrapper.h
-      ffmpeg/wrappers/AVFifoBufferWrapper.cpp
-      ffmpeg/wrappers/AVFifoBufferWrapper.h
-      ffmpeg/wrappers/AVFormatContextWrapper.cpp
-      ffmpeg/wrappers/AVFormatContextWrapper.h
-      ffmpeg/wrappers/AVFrameWrapper.cpp
-      ffmpeg/wrappers/AVFrameWrapper.h
-      ffmpeg/wrappers/AVInputFormatWrapper.cpp
-      ffmpeg/wrappers/AVInputFormatWrapper.h
-      ffmpeg/wrappers/AVIOContextWrapper.cpp
-      ffmpeg/wrappers/AVIOContextWrapper.h
-      ffmpeg/wrappers/AVOutputFormatWrapper.cpp
-      ffmpeg/wrappers/AVOutputFormatWrapper.h
-      ffmpeg/wrappers/AVPacketWrapper.cpp
-      ffmpeg/wrappers/AVPacketWrapper.h
-      ffmpeg/wrappers/AVStreamWrapper.cpp
-      ffmpeg/wrappers/AVStreamWrapper.h
-
-      ffmpeg/impl/DynamicLibraryHelpers.cpp
-      ffmpeg/impl/DynamicLibraryHelpers.h
-
-      ffmpeg/impl/FFmpegAPIResolver.cpp
-      ffmpeg/impl/FFmpegAPIResolver.h
-
-      ffmpeg/impl/FFmpegLog.h
-
-      ffmpeg/impl/avcodec/55/AVCodecIDLookup.cpp
-      ffmpeg/impl/avcodec/55/AVCodecImpl.cpp
-
-      ffmpeg/impl/avcodec/58/AVCodecIDLookup.cpp
-      ffmpeg/impl/avcodec/58/AVCodecImpl.cpp
-
-      ffmpeg/impl/avcodec/AVCodecFunctionsLoader.cpp
-      ffmpeg/impl/avcodec/AVCodecFunctionsLoader.h
-
-      ffmpeg/impl/avformat/55/AVFormatImpl.cpp
-      ffmpeg/impl/avformat/58/AVFormatImpl.cpp
-
-      ffmpeg/impl/avformat/AVFormatFunctionsLoader.cpp
-      ffmpeg/impl/avformat/AVFormatFunctionsLoader.h
-
-      ffmpeg/impl/avutil/52/AVUtilImpl.cpp
-      ffmpeg/impl/avutil/56/AVUtilImpl.cpp
-
-      ffmpeg/impl/avutil/AVUtilFunctionsLoader.cpp
-      ffmpeg/impl/avutil/AVUtilFunctionsLoader.h
-
-      # not necessary here for the build, but they help browsing in an IDE:
-      ffmpeg/impl/AVCodecIDLookup.inl
-      ffmpeg/impl/avcodec/AVCodecContextWrapperImpl.inl
-      ffmpeg/impl/avcodec/AVCodecWrapperImpl.inl
-      ffmpeg/impl/avcodec/AVPacketWrapperImpl.inl
-      ffmpeg/impl/avformat/AVFormatContextWrapperImpl.inl
-      ffmpeg/impl/avformat/AVIOContextWrapperImpl.inl
-      ffmpeg/impl/avformat/AVInputFormatWrapperImpl.inl
-      ffmpeg/impl/avformat/AVOutputFormatWrapperImpl.inl
-      ffmpeg/impl/avformat/AVStreamWrapperImpl.inl
-      ffmpeg/impl/avutil/AVFrameWrapperImpl.inl
-      ffmpeg/impl/avutil/FFmpegLogImpl.inl
-      ffmpeg/impl/ffmpeg-2.3.6-single-header.h
-      ffmpeg/impl/ffmpeg-4.2.4-single-header.h
-      ffmpeg/impl/avutil/52/avconfig.h
-      ffmpeg/impl/avutil/56/avconfig.h
+      ffmpeg/FFmpegNotFoundDialog.cpp
+      ffmpeg/StreamContext.h
+      ffmpeg/StreamContext.cpp
 
       # Import
 
@@ -1052,14 +978,6 @@ list( APPEND HEADERS
    ../include/audacity/Types.h
 )
 
-# Make subdirectories as includes, although this is only a few at the moment
-list ( APPEND SUBDIR_INCLUDES
-   ffmpeg
-   shuttle
-   widgets
-   xml
-)
-
 #
 #
 #
@@ -1384,8 +1302,6 @@ target_sources( ${TARGET} PRIVATE ${HEADERS} ${SOURCES} ${RESOURCES} ${MAC_RESOU
 target_compile_definitions( ${TARGET} PRIVATE ${DEFINES} )
 target_compile_options( ${TARGET} PRIVATE ${OPTIONS} )
 target_include_directories( ${TARGET} PRIVATE ${INCLUDES} )
-target_include_directories( ${TARGET} PRIVATE ${SUBDIR_INCLUDES})
-
 target_link_options( ${TARGET} PRIVATE ${LDFLAGS} )
 target_link_libraries( ${TARGET} PUBLIC ${SAUCEDACITY_LIBRARIES} )
 target_link_libraries( ${TARGET} ${LIBRARIES} )

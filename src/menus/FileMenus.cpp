@@ -133,8 +133,8 @@ void DoImport(const CommandContext &context, bool isRaw)
 
    // PRL:  This affects FFmpegImportPlugin::Open which resets the preference
    // to false.  Should it also be set to true on other paths that reach
-   // SaucedacityProject::Import ?
-   NewImportingSession.Write(false);
+   // AudacityProject::Import ?
+   gPrefs->Write(wxT("/NewImportingSession"), true);
 
    selectedFiles.Sort(FileNames::CompareNoCase);
 

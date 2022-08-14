@@ -112,51 +112,49 @@ public:
 
    virtual ~ImportFileHandle();
 
-   /// The importer should call this to create the progress dialog and
-   /// identify the filename being imported.
+   // The importer should call this to create the progress dialog and
+   // identify the filename being imported.
    void CreateProgress();
 
-   /// This is similar to GetPluginFormatDescription, but if possible the
-   /// importer will return a more specific description of the
-   /// specific file that is open.
+   // This is similar to GetPluginFormatDescription, but if possible the
+   // importer will return a more specific description of the
+   // specific file that is open.
    virtual TranslatableString GetFileDescription() = 0;
 
-   /// Return an estimate of how many bytes the file will occupy once
-   /// imported.  In principle this may exceed main memory, so don't use
-   /// size_t.
+   // Return an estimate of how many bytes the file will occupy once
+   // imported.  In principle this may exceed main memory, so don't use
+   // size_t.
    using ByteCount = unsigned long long;
    virtual ByteCount GetFileUncompressedBytes() = 0;
 
-   /// Return number of elements in stream list
-   virtual wxInt32 GetStreamCount() = 0;
-
-   /// Return stream descriptions list
-   virtual const TranslatableStrings &GetStreamInfo() = 0;
-
-   /// Set stream "import/don't import" flag
-   virtual void SetStreamUsage(wxInt32 StreamID, bool Use) = 0;
-
-   /// do the actual import, creating whatever tracks are necessary with
-   /// the WaveTrackFactory and calling the progress callback every iteration
-   /// through the importing loop
-   /// The given Tags structure may also be modified.
-   /// In case of errors or exceptions, it is not necessary to leave outTracks
-   /// or tags unmodified.
-   /// If resulting outTracks is not empty,
-   /// then each member of it must be a nonempty vector.
+   // do the actual import, creating whatever tracks are necessary with
+   // the WaveTrackFactory and calling the progress callback every iteration
+   // through the importing loop
+   // The given Tags structure may also be modified.
+   // In case of errors or exceptions, it is not necessary to leave outTracks
+   // or tags unmodified.
+   // If resulting outTracks is not empty,
+   // then each member of it must be a nonempty vector.
    virtual ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks,
                       Tags *tags) = 0;
 
+   // Return number of elements in stream list
+   virtual wxInt32 GetStreamCount() = 0;
+
+   // Return stream descriptions list
+   virtual const TranslatableStrings &GetStreamInfo() = 0;
+
+   // Set stream "import/don't import" flag
+   virtual void SetStreamUsage(wxInt32 StreamID, bool Use) = 0;
 
    //! Choose appropriate format, which will not be narrower than the specified one
    static sampleFormat ChooseFormat(sampleFormat effectiveFormat);
-
-protected:
 
    //! Build a wave track with appropriate format, which will not be narrower than the specified one
    std::shared_ptr<WaveTrack> NewWaveTrack( WaveTrackFactory &trackFactory,
       sampleFormat effectiveFormat, double rate);
 
+protected:
    FilePath mFilename;
    std::unique_ptr<ProgressDialog> mProgress;
 };
