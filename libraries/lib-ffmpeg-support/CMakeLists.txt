@@ -42,13 +42,6 @@ if (${_OPT}use_ffmpeg)
 
       impl/FFmpegLog.h
 
-      impl/ffmpeg-2.3.6-single-header.h
-      impl/avutil/52/avconfig.h
-      impl/avcodec/55/AVCodecIDLookup.cpp
-      impl/avcodec/55/AVCodecImpl.cpp
-      impl/avformat/55/AVFormatImpl.cpp
-      impl/avutil/52/AVUtilImpl.cpp
-
       impl/ffmpeg-3.4.8-single-header.h
       impl/avutil/55/avconfig.h
       impl/avcodec/57/AVCodecIDLookup.cpp
