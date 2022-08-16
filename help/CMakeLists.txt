@@ -58,7 +58,7 @@ if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
                DESTINATION "${_DATADIR}/audacity/help" )
       install( FILES "${_SRCDIR}/audacity.1"
                DESTINATION "${_MANDIR}/man1" )
-      install( FILES "${_SRCDIR}/audacity.appdata.xml"
+      install( FILES "${_SRCDIR}/${APP_ID}.metainfo.xml"
                DESTINATION "${_DATADIR}/metainfo" )
    endif()
 endif()

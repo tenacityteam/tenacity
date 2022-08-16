@@ -452,6 +452,9 @@ else()
    set( APP_NAME "saucedacity" )
 endif()
 
+# Define Application ID
+set( APP_ID "io.github.saucedacity.Saucedacity" )
+
 # Create short and full version strings
 set( AUDACITY_DIST_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION} )
 set( AUDACITY_INFO_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION}.${AUDACITY_MODLEVEL} )
