@@ -18,6 +18,7 @@ set( script_dir "${topdir}/scripts/mw2html_audacity" )
 set( script "mw2html.py" )
 set( out_dir "${_INTDIR}" )
 set( out "${out_dir}/${host}/index.html" )
+configure_file( ${APP_ID}.metainfo.xml.in ${_INTDIR}/${APP_ID}.metainfo.xml )
 
 add_custom_command(
    COMMENT
@@ -58,7 +59,7 @@ if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
                DESTINATION "${_DATADIR}/audacity/help" )
       install( FILES "${_SRCDIR}/audacity.1"
                DESTINATION "${_MANDIR}/man1" )
-      install( FILES "${_SRCDIR}/${APP_ID}.metainfo.xml"
+      install( FILES "${_INTDIR}/${APP_ID}.metainfo.xml"
                DESTINATION "${_DATADIR}/metainfo" )
    endif()
 endif()
