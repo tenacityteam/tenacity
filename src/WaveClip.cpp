@@ -170,8 +170,6 @@ WaveClip::WaveClip(const WaveClip& orig,
                    bool copyCutlines,
                    double t0, double t1)
 {
-   // Copy only a range of the other WaveClip
-
    mSequenceOffset = orig.mSequenceOffset;
    mTrimLeft = orig.mTrimLeft + (t0 > orig.GetPlayStartTime()? t0 - orig.GetPlayStartTime() : 0);
    mTrimRight = orig.mTrimRight + (t1 < orig.GetPlayEndTime()? orig.GetPlayEndTime() - t1 : 0);
@@ -1337,8 +1335,9 @@ void WaveClip::Paste(double t0, const WaveClip* other)
    }
    else
    {
-       newClip = std::make_unique<WaveClip>(*other, mSequence->GetFactory(), true,
-           other->GetPlayStartTime(), other->GetPlayEndTime());
+      newClip = std::make_unique<WaveClip>(*other, mSequence->GetFactory(), true);
+      newClip->ClearSequence(newClip->GetPlayEndTime(), newClip->GetSequenceEndTime());
+      newClip->ClearSequence(newClip->GetSequenceStartTime(), newClip->GetPlayStartTime());
    }
 
    if (clipNeedsResampling || clipNeedsNewFormat)
