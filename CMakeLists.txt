@@ -445,14 +445,8 @@ if( NOT CMAKE_INSTALL_LIBDIR STREQUAL "lib" AND NOT EXISTS "${CMAKE_BINARY_DIR}/
    file( CREATE_LINK "${CMAKE_BINARY_DIR}/lib" "${CMAKE_BINARY_DIR}/lib64" SYMBOLIC )
 endif()
 
-# Define Saucedacity's name
-if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
-   set( APP_NAME "Saucedacity" )
-else()
-   set( APP_NAME "saucedacity" )
-endif()
-
-# Define Application ID
+# Define name and Application ID
+set( APP_NAME "Saucedacity" )
 set( APP_ID "io.github.saucedacity.Saucedacity" )
 
 # Create short and full version strings
