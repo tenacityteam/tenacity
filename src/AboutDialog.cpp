@@ -311,6 +311,8 @@ AboutDialog::AboutDialog(wxWindow * parent)
    sActiveInstance = this;
 
    SetName();
+   this->SetBackgroundColour(theTheme.Colour( clrAboutBoxBackground ));
+   //this->SetBackgroundColour(theTheme.Colour( clrMedium ));
    icon = NULL;
    ShuttleGui S( this, eIsCreating );
    S.StartNotebook();
@@ -514,9 +516,6 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
                                          wxSize(ABOUT_DIALOG_WIDTH, 359),
                                          wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER);
    html->SetPage( FormatHtmlText( o.GetString() ) );
-
-   // Set a default white background for the html window (regardless of the image)
-   html->SetHTMLBackgroundColour( *wxWHITE );
 
    /* locate the html renderer where it fits in the dialogue */
    S.Prop(1).Position( wxEXPAND ).Focus()
@@ -783,8 +782,6 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
    informationStr << wxT("</table>\n");   // end of table of features
 
    html->SetPage( FormatHtmlText( o.GetString() ) );   // push the page into the html renderer
-   html->SetHTMLBackgroundColour( *wxWHITE );
-
    S.Prop(2)
       .Position( wxEXPAND )
       .AddWindow( html ); // make it fill the page
@@ -806,8 +803,6 @@ void AboutDialog::PopulateLicensePage( ShuttleGui & S )
          wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER);
 
       html->SetPage(FormatHtmlText(GPL_TEXT()));
-      html->SetHTMLBackgroundColour( *wxWHITE );
-
 
       S.Prop(1).Position(wxEXPAND).AddWindow( html );
    }
