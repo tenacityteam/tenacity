@@ -407,11 +407,15 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       // << par1Str
       // << wxT("<p>")
       // << par2Str
+      << wxT("<br/><br/>")
+      << wxT("<b>")
+      << XO("This program includes code from [[https://github.com/tenacityteam/tenacity|Tenacity]], a very "
+            "similar project in both code base and views. Be sure to check them out!"
+         )
+      << wxT("</b>")
       << wxT("<h1>")
       << XO("Credits")
       << wxT("</h1>")
-//      << wxT("<p>")
-
       << wxT("<h2>")
       << XO("%s Team Members").Format( ProgramName )
       << wxT("</h2><br>")
