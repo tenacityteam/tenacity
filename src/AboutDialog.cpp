@@ -311,8 +311,6 @@ AboutDialog::AboutDialog(wxWindow * parent)
    sActiveInstance = this;
 
    SetName();
-   this->SetBackgroundColour(theTheme.Colour( clrAboutBoxBackground ));
-   //this->SetBackgroundColour(theTheme.Colour( clrMedium ));
    icon = NULL;
    ShuttleGui S( this, eIsCreating );
    S.StartNotebook();
@@ -325,7 +323,7 @@ AboutDialog::AboutDialog(wxWindow * parent)
 
    S.Id(wxID_OK)
       .Prop(0)
-      .AddButton(XXO("OK"), wxALIGN_RIGHT, true);
+      .AddButton(XXO("OK"), wxALIGN_CENTRE, true);
 
    Layout();
    Fit();

@@ -122,7 +122,6 @@ void SplashDialog::Populate( ShuttleGui & S )
       RescaledImage.GetRed(1,1), 
       RescaledImage.GetGreen(1,1), 
       RescaledImage.GetBlue(1,1));
-   this->SetBackgroundColour(MainColour);
 
    RescaledImage.Rescale( (int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH );
    wxBitmap RescaledBitmap( RescaledImage );
