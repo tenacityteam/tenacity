@@ -24,6 +24,8 @@
 #include "../float_cast.h"
 #include <vector>
 
+#include "MemoryX.h" // for safenew
+
 #include <wx/setup.h> // for wxUSE_* macros
 
 #include <wx/event.h>
@@ -140,19 +142,6 @@ MathCaps *EffectEqualization48x::GetMathCaps()
    return &sMathCaps; 
 };
 
-void * malloc_simd(const size_t size)
-{
-#if defined WIN32           // WIN32
-    return _aligned_malloc(size, 16);
-#elif defined __linux__     // Linux
-    return memalign (16, size);
-#elif defined __MACH__      // Mac OS X
-    return malloc(size);
-#else                       // other (use valloc for page-aligned memory)
-    return valloc(size);
-#endif
-}
-
 void free_simd::operator() (void* mem) const
 {
 #if defined WIN32           // WIN32
@@ -206,7 +195,7 @@ bool EffectEqualization48x::AllocateBuffersWorkers(int nThreads)
 
    mScratchBufferSize=mWindowSize*3*sizeof(float)*mBufferCount; // 3 window size blocks of instruction size
    mSubBufferSize=mBlockSize*(mBufferCount*(mBlocksPerBuffer-1)); // we are going to do a full block overlap
-   mBigBuffer.reset( (float *)malloc_simd(sizeof(float) * (mSubBufferSize + mFilterSize + mScratchBufferSize) * mWorkerDataCount) ); // we run over by filtersize
+   mBigBuffer.reset( safenew (std::align_val_t(16)) float[(mSubBufferSize + mFilterSize + mScratchBufferSize) * mWorkerDataCount]);
    // fill the bufferInfo
    mBufferInfo.reinit(mWorkerDataCount);
    for(int i=0;i<mWorkerDataCount;i++) {
