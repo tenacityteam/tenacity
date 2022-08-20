@@ -83,20 +83,24 @@ can't be.
 
 // Include the ImageCache...
 
+static const unsigned char LightImageCacheAsData[] = {
+#include "LightThemeAsCeeCode.h"
+};
+
 static const unsigned char DarkImageCacheAsData[] = {
 #include "DarkThemeAsCeeCode.h"
 };
 
-static const unsigned char DefaultImageCacheAsData[] = {
-#include "DefaultThemeAsCeeCode.h"
+static const unsigned char SaucedacityImageCacheAsData[] = {
+#include "SaucedacityThemeAsCeeCode.h"
 };
 
 static const unsigned char AudacityImageCacheAsData[] = {
 #include "AudacityThemeAsCeeCode.h"
 };
 
-static const unsigned char ClassicImageCacheAsData[] = {
-#include "ClassicThemeAsCeeCode.h"
+static const unsigned char AudacityClassicImageCacheAsData[] = {
+#include "AudacityClassicThemeAsCeeCode.h"
 };
 
 static const unsigned char HiContrastImageCacheAsData[] = {
@@ -756,21 +760,25 @@ void ThemeBase::WriteImageDefs( )
 }
 
 
-teThemeType ThemeBase::GetFallbackThemeType(){
-// Fallback must be an internally supported type,
-// to guarantee it is found.
-   return themeDefault;
+teThemeType ThemeBase::GetFallbackThemeType()
+{
+   // Fallback must be an internally supported type,
+   // to guarantee it is found.
+   return themeDark;
 }
 
 teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
 {
    static const wxArrayStringEx aThemes{
-      "classic" ,
-      "dark" ,
-      "default" ,
-      "audacity" ,
-      "high-contrast" ,
-      "custom" ,
+     // "classic",
+      "light",
+      "dark",
+      "default",
+      "saucedacity",
+      "audacity",
+      "audacity-classic",
+      "high-contrast",
+      "custom",
    };
    int themeIx = make_iterator_range( aThemes ).index( Name );
    if( themeIx < 0 )
@@ -825,25 +833,40 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
    {
       size_t ImageSize = 0;
       const unsigned char * pImage = nullptr;
-      switch( type ){
+      switch( type )
+      {
          default: 
-         case themeClassic : 
-            ImageSize = sizeof(ClassicImageCacheAsData);
-            pImage = ClassicImageCacheAsData;
+         case themeDefault:
+            ImageSize = sizeof(SaucedacityImageCacheAsData);
+            pImage = SaucedacityImageCacheAsData;
             break;
-         case themeDefault :
-            ImageSize = sizeof(DefaultImageCacheAsData);
-            pImage = DefaultImageCacheAsData;
+
+         case themeLight:
+            ImageSize = sizeof(LightImageCacheAsData);
+            pImage = LightImageCacheAsData;
             break;
-         case themeAudacity : 
-            ImageSize = sizeof(AudacityImageCacheAsData);
-            pImage = AudacityImageCacheAsData;
-            break;
-         case themeDark : 
+
+         case themeDark:
             ImageSize = sizeof(DarkImageCacheAsData);
             pImage = DarkImageCacheAsData;
             break;
-         case themeHiContrast : 
+
+         case themeSaucedacity:
+            ImageSize = sizeof(SaucedacityImageCacheAsData);
+            pImage = SaucedacityImageCacheAsData;
+            break;
+
+         case themeAudacity:
+            ImageSize = sizeof(AudacityImageCacheAsData);
+            pImage = AudacityImageCacheAsData;
+            break;
+
+         case themeAudacityClassic:
+            ImageSize = sizeof(AudacityClassicImageCacheAsData);
+            pImage = AudacityClassicImageCacheAsData;
+            break;
+
+         case themeHiContrast:
             ImageSize = sizeof(HiContrastImageCacheAsData);
             pImage = HiContrastImageCacheAsData;
             break;
@@ -1187,29 +1210,35 @@ ChoiceSetting GUITheme{
    {
       ByColumns,
       {
+         XO("Light"),
+
+         XO("Dark"),
+
+         /* i18n-hint: describing the appearance of Saucedacity 1.2 */
+         XO("Saucedacity"),
+
+         /* i18n-hint: describing the appearance of Audacity 3.0.4's default theme */
+         XO("Audacity"),
+
          /* i18n-hint: describing the "classic" or traditional
-            appearance of older versions of Audacity (prior to Saucedacity) */
-         XO("Classic")  ,
-         /* i18n-hint: describes the main theme that is first applied if
-            the user has not selected a custom theme (whether it's an
-            internal or external theme) */
-         XO("Default")  ,
-         // Note: The "Audacity" theme was previously known as the "Light" theme
-         XO("Audacity")  ,
-         XO("Dark")  ,
+            appearance of older versions of Audacity (before Saucedacity) */
+         XO("Audacity Classic"),
+
          /* i18n-hint: greater difference between foreground and
             background colors */
-         XO("High Contrast")  ,
+         XO("High Contrast"),
+
          /* i18n-hint: user defined */
-         XO("Custom")  ,
+         XO("Custom"),
       },
       {
-         wxT("classic")  ,
-         wxT("default")  ,
-         wxT("audacity")  ,
-         wxT("dark")  ,
-         wxT("high-contrast")  ,
-         wxT("custom")  ,
+         wxT("light"),
+         wxT("dark"),
+         wxT("saucedacity"),
+         wxT("audacity"),
+         wxT("audacity-classic"),
+         wxT("high-contrast"),
+         wxT("custom"),
       }
    },
    defaultTheme

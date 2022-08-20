@@ -53,10 +53,12 @@ enum teResourceFlags
 
 enum teThemeType
 {
-   themeClassic,
+   themeLight,
    themeDark,
    themeDefault,
+   themeSaucedacity,
    themeAudacity,
+   themeAudacityClassic,
    themeHiContrast,
    themeFromFile,
 };
