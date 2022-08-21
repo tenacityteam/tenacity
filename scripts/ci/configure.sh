@@ -64,7 +64,7 @@ fi
 # Tenacity's libmad
 if [[ $"{OSTYPE}" == darwin* ]]
     # We'll be using the system's libmad by default
-    cmake_args +=(
+    cmake_args+=(
         -D saucedacity_use_libmad=system
     )
 fi
