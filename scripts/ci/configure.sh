@@ -65,7 +65,7 @@ fi
 if [[ "${OSTYPE}" == darwin* ]]; then
     # We'll be using the system's libmad by default
     cmake_args+=(
-        -D saucedacity_use_libmad=system
+        -D saucedacity_use_libmad=off
     )
 fi
 

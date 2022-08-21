@@ -18,7 +18,6 @@ elif [[ "${OSTYPE}" == darwin* ]]; then # macOS
     brew_packages=(
         bash # macOS ships with Bash v3 for licensing reasons so upgrade it now
         conan
-        mad # Our libmad submodule won't work properly
     )
     brew install "${brew_packages[@]}"
 
