@@ -60,6 +60,15 @@ if [[ -n "${WINDOWS_CERTIFICATE}" && "${OSTYPE}" == msys* ]]; then
     )
 fi
 
+# Use Homebrew's libmad instead because our submodule fails to build on macOS.
+# Tenacity's libmad
+if [[ $"{OSTYPE}" == darwin* ]]
+    # We'll be using the system's libmad by default
+    cmake_args +=(
+        -D saucedacity_use_libmad=system
+    )
+fi
+
 if [[ ${GIT_BRANCH} == release* ]]; then
     cmake_args+=(
         -D saucedacity_package_manual=yes
