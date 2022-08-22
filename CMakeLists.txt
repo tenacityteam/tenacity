@@ -450,6 +450,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
    set( APP_NAME "Saucedacity" )
 else()
    set( APP_NAME "saucedacity" )
+   set( PROPER_NAME "Saucedacity" )
 endif()
 
 # Define Application ID
