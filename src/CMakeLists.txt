@@ -1256,7 +1256,7 @@ else()
    endif()
 
    # Create the desktop file
-   configure_file( ${APP_ID}.desktop.in ${_INTDIR}/${APP_ID}.desktop )
+   configure_file( ${APP_NAME}.desktop.in ${_INTDIR}/${APP_NAME}.desktop )
 
    # Copy the required wxWidgets libs into the bundle
    add_custom_command(
@@ -1339,7 +1339,7 @@ else()
                DESTINATION "${_LIBDIR}"
                USE_SOURCE_PERMISSIONS
                FILES_MATCHING PATTERN "*.so*" )
-      install( FILES "${_INTDIR}/${APP_ID}.desktop"
+      install( FILES "${_INTDIR}/${APP_NAME}.desktop"
                DESTINATION "${_DATADIR}/applications" )
       install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
