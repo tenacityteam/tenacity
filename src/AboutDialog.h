@@ -46,22 +46,26 @@ class SAUCEDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
 
  private:
    enum Role {
+      // Saucedacity Roles
       roleSaucedacityTeamMember,
-      roleSaucedacityEmeritusTeam,
-      roleSaucedacityDeceased,
       roleSaucedacityContributor,
       roleSaucedacityGraphics,
       roleSaucedacityLibrary,
       roleSaucedacityThanks,
 
+      // Tenacity Roles
+      roleTenacityTeamMember,
+      roleTenacityThanks,
+      roleTenacityLibrary,
+
       // Regular Audacity team member roles
-      roleTeamMember,
-      roleEmeritusTeam,
-      roleDeceased,
-      roleContributor,
-      roleGraphics,
-      roleLibrary,
-      roleThanks
+      roleAudacityTeamMember,
+      roleAudacityEmeritusTeam,
+      roleAudacityDeceased,
+      roleAudacityContributor,
+      roleAudacityGraphics,
+      roleAudacityLibrary,
+      roleAudacityThanks
    };
 
    AboutDialogCreditItemsList creditItems;
