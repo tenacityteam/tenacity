@@ -515,11 +515,7 @@ size_t RealtimeEffectState::RealtimeProcess(int group,
    const auto numAudioIn = mEffect.GetAudioInCount();
    const auto numAudioOut = mEffect.GetAudioOutCount();
 
-   //StackAllocator<float*> floatBufferArrayAllocator;
    StackAllocator<float> floatAllocator;
-   //float **clientIn  = floatBufferArrayAllocator.Allocate(true, numAudioIn);
-   //float **clientOut = floatBufferArrayAllocator.Allocate(true, numAudioIn);
-   //float *dummybuf = floatBufferAllocator.Allocate(numSamples);
    std::unique_ptr<float*> _clientIn(new float*[numAudioIn]);
    std::unique_ptr<float*> _clientOut(new float*[numAudioIn]);
    std::unique_ptr<float>  _dummybuf(new float[numSamples]);
