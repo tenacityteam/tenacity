@@ -12,8 +12,7 @@
 
 #include "SaucedacityException.h"
 
-#include <wx/atomic.h>
-
+#include <atomic>
 #include "BasicUI.h"
 
 SaucedacityException::SaucedacityException()
@@ -49,7 +48,7 @@ void SaucedacityException::EnqueueAction(
   } );
 }
 
-wxAtomicInt sOutstandingMessages {};
+std::atomic<int> sOutstandingMessages {};
 
 MessageBoxException::MessageBoxException(
   ExceptionType exceptionType_, const TranslatableString& caption_)
@@ -57,10 +56,14 @@ MessageBoxException::MessageBoxException(
    , exceptionType { exceptionType_ }
 {
   if (!caption.empty())
-     wxAtomicInc( sOutstandingMessages );
+  {
+     sOutstandingMessages++;
+  }
   else
+  {
      // invalidate me
      moved = true;
+  }
 }
 
 // The class needs a copy constructor to be throwable
@@ -81,7 +84,9 @@ MessageBoxException::~MessageBoxException()
   if (!moved)
      // If exceptions are used properly, you should never reach this,
      // because moved should become true earlier in the object's lifetime.
-     wxAtomicDec( sOutstandingMessages );
+   {
+     sOutstandingMessages--;
+   }
 }
 
 SimpleMessageBoxException::~SimpleMessageBoxException()
@@ -104,9 +109,11 @@ void MessageBoxException::DelayedHandlerAction()
      // give the user no useful added information.
       
      using namespace GenericUI;
-     if ( wxAtomicDec( sOutstandingMessages ) == 0 ) {
+     if ( ++sOutstandingMessages == 0 )
+     {
         if (exceptionType != ExceptionType::Internal
-            && ErrorHelpUrl().IsEmpty()) {
+            && ErrorHelpUrl().IsEmpty())
+        {
            // We show BadEnvironment and BadUserAction in a similar way
            ShowMessageBox(
               ErrorMessage(),
@@ -114,7 +121,8 @@ void MessageBoxException::DelayedHandlerAction()
                  .Caption(caption.empty() ? DefaultCaption() : caption)
                  .IconStyle(Icon::Error) );
         }
-        else {
+        else
+        {
            using namespace GenericUI;
            auto type = exceptionType == ExceptionType::Internal
               ? ErrorDialogType::ModalErrorReport : ErrorDialogType::ModalError;
