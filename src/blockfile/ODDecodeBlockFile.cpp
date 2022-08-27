@@ -363,7 +363,7 @@ int ODDecodeBlockFile::WriteODDecodeBlockFile()
          return -1;
    }
 
-   wxAtomicInc( mDataAvailable );
+   mDataAvailable++;
 
    return ret;
 }

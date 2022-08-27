@@ -28,7 +28,7 @@ Also, see ODPCMAliasBlockFile for a similar file.
 #define __AUDACITY_ODDecodeBlockFile__
 
 #include "SimpleBlockFile.h"
-#include <wx/atomic.h> // member variable
+#include <atomic> // member variable
 
 class ODFileDecoder;
 
@@ -167,7 +167,7 @@ class ODDecodeBlockFile final : public SimpleBlockFile
    ///The original file the audio came from.
    wxFileNameWrapper mAudioFileName;
 
-   wxAtomicInt mDataAvailable{ 0 };
+   std::atomic<int> mDataAvailable{ 0 };
    bool mDataBeingComputed;
 
    ODFileDecoder* mDecoder;
