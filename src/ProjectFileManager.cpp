@@ -47,7 +47,7 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "widgets/FileHistory.h"
 #include "widgets/UnwritableLocationErrorDialog.h"
 #include "widgets/Warning.h"
-#include "xml/XMLFileReader.h"
+#include "XMLFileReader.h"
 
 #include "HelpText.h"
 

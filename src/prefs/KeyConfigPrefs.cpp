@@ -37,7 +37,8 @@ KeyConfigPrefs and MousePrefs use.
 #include "Prefs.h"
 #include "../Project.h"
 #include "../commands/CommandManager.h"
-#include "../xml/XMLFileReader.h"
+#include "XMLFileReader.h"
+#include "XMLFileWriter.h"
 
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"

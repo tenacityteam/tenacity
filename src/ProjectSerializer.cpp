@@ -21,6 +21,8 @@
 #include <mutex>
 #include <wx/ustring.h>
 
+#include "XMLStringWriter.h"
+
 ///
 /// ProjectSerializer class
 ///

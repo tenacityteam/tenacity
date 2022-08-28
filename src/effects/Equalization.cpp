@@ -104,7 +104,9 @@
 #include "../WaveTrack.h"
 #include "../widgets/Ruler.h"
 #include "../widgets/AudacityTextEntryDialog.h"
-#include "../xml/XMLFileReader.h"
+#include "XMLFileReader.h"
+#include "XMLFileWriter.h"
+#include "XMLWriter.h"
 #include "../AllThemeResources.h"
 #include "float_cast.h"
 

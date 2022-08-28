@@ -16,7 +16,7 @@ LRN
 #include "../ffmpeg/FFmpeg.h"
 #include "FFmpegFunctions.h"
 
-#include "../xml/XMLFileReader.h"
+#include "XMLFileReader.h"
 #include "FileNames.h"
 
 #include <unordered_map>

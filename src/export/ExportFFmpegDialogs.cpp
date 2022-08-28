@@ -65,6 +65,9 @@
 #include "../Tags.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/HelpSystem.h"
+#include "XMLFileReader.h"
+#include "XMLFileWriter.h"
+#include "XMLWriter.h"
 
 #include "Export.h"
 #include "ffmpeg/FFmpeg.h"

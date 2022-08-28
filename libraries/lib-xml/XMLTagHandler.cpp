@@ -29,7 +29,6 @@
    #include <wx/msw/winundef.h>
 #endif
 
-#include "audacity/Types.h"
 #include <wx/defs.h>
 #include <wx/arrstr.h>
 #include <wx/filename.h>

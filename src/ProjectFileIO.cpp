@@ -35,7 +35,9 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "BasicUI.h"
 #include "widgets/ProgressDialog.h"
 #include "wxFileNameWrapper.h"
-#include "xml/XMLFileReader.h"
+#include "XMLFileReader.h"
+#include "XMLStringWriter.h"
+#include "XMLWriter.h"
 
 // Don't change this unless the file format changes
 // in an irrevocable way
@@ -1636,7 +1638,7 @@ void ProjectFileIO::WriteXMLHeader(XMLWriter &xmlFile) const
    xmlFile.Write(wxT("project "));
    xmlFile.Write(wxT("PUBLIC "));
    xmlFile.Write(wxT("\"-//audacityproject-1.3.0//DTD//EN\" "));
-   xmlFile.Write(wxT("\"http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd\" "));
+   xmlFile.Write(wxT("\"http://audacity.sourceforge.net/audacityproject-1.3.0.dtd\" "));
    xmlFile.Write(wxT(">\n"));
 }
 
@@ -1654,7 +1656,7 @@ void ProjectFileIO::WriteXML(XMLWriter &xmlFile,
    //TIMER_START( "SaucedacityProject::WriteXML", xml_writer_timer );
 
    xmlFile.StartTag(wxT("project"));
-   xmlFile.WriteAttr(wxT("xmlns"), wxT("http://audacity.sourceforge.net/xml/"));
+   xmlFile.WriteAttr(wxT("xmlns"), wxT("http://audacity.sourceforge.net/"));
 
    xmlFile.WriteAttr(wxT("version"), wxT(AUDACITY_FILE_FORMAT_VERSION));
    xmlFile.WriteAttr(wxT("audacityversion"), AUDACITY_VERSION_STRING);

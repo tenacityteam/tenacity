@@ -3,16 +3,17 @@
 # The list of modules is ordered so that each library occurs after any others
 # that it depends on
 set( LIBRARIES
+   lib-basic-ui
+   lib-components
+   lib-exceptions
+   lib-ffmpeg-support
+   lib-files
+   lib-math
+   lib-preferences
    lib-string-utils
    lib-strings
    lib-utility
-   lib-components
-   lib-basic-ui
-   lib-exceptions
-   lib-preferences
-   lib-math
-   lib-files
-   lib-ffmpeg-support
+   lib-xml
 )
 
 foreach( LIBRARY ${LIBRARIES} )
