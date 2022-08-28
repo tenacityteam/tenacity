@@ -975,6 +975,7 @@ list( APPEND INCLUDES
    PUBLIC
       ${_PRVDIR}
       ${topdir}/include
+      ${topdir}/libraries
       ${TARGET_ROOT}
 )
 
