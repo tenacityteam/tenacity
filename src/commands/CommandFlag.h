@@ -16,6 +16,9 @@
 #include <utility>
 #include <wx/string.h>
 
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
+
 class SaucedacityProject;
 
 // Increase the template parameter as needed to allow more flags
