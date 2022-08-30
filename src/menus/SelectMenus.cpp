@@ -1,10 +1,18 @@
+/**********************************************************************
 
+  Saucedacity: A Digital Audio Editor
+
+  SelectMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 #include "../AdornedRulerPanel.h"
 #include "../AudioIO.h"
 #include "../CommonCommandFlags.h"
 #include "../SpectrumAnalyst.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"

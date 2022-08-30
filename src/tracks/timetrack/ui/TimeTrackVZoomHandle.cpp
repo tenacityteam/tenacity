@@ -15,11 +15,13 @@ Paul Licameli split from TimeTrackVZoomHandle.cpp
 
 #include "../../../HitTestResult.h"
 #include "../../../NumberScale.h"
-#include "Prefs.h"
 #include "../../../ProjectHistory.h"
 #include "../../../RefreshCode.h"
 #include "../../../TrackPanelMouseEvent.h"
 #include "../../../TimeTrack.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 TimeTrackVZoomHandle::TimeTrackVZoomHandle(
    const std::shared_ptr<TimeTrack> &pTrack, const wxRect &rect, int y)

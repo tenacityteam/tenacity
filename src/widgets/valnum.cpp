@@ -2,6 +2,8 @@
 //
 // Backport from wxWidgets-3.0-rc1
 //
+// FIXME (GP): We might want to drop this...
+//
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/valnum.cpp
 // Purpose:     Numeric validator classes implementation
@@ -28,11 +30,9 @@
 #include <wx/setup.h> // for wxUSE_* macros
 
 #include "AudacityMessageBox.h"
-#include "Internat.h"
 
-#ifdef __BORLANDC__
-    #pragma hdrstop
-#endif
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
 
 #if wxUSE_VALIDATORS && wxUSE_TEXTCTRL
 

@@ -17,12 +17,14 @@ Paul Licameli split from SaucedacityLogger.cpp
 #include <wx/textctrl.h>
 #include <wx/weakref.h>
 
-#include "SaucedacityLogger.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/SaucedacityLogger.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Internat.h>
+#include <lib-utility/MemoryX.h>
+
 #include "widgets/AudacityMessageBox.h"
-#include "FileNames.h"
-#include "Internat.h"
-#include "MemoryX.h"
-#include "Prefs.h"
 #include "SelectFile.h"
 #include "shuttle/ShuttleGui.h"
 

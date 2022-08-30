@@ -22,8 +22,10 @@
 #include "SoundActivatedRecord.h"
 
 #include "shuttle/ShuttleGui.h"
-#include "Prefs.h"
 #include "prefs/GUISettings.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 BEGIN_EVENT_TABLE(SoundActivatedRecordDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_OK, SoundActivatedRecordDialog::OnOK)

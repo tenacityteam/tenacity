@@ -38,12 +38,14 @@
 #include <wx/textctrl.h>
 #include <wx/textdlg.h>
 
-#include "FileNames.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../LabelTrack.h"
 #include "../Project.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
-#include "Prefs.h"
 #include "../SelectionState.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"

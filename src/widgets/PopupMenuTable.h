@@ -25,7 +25,9 @@ class wxCommandEvent;
 #include <wx/menu.h> // to inherit wxMenu
 #include <memory>
 
-#include "Internat.h"
+// Saucedacity
+#include <lib-strings/Internat.h>
+
 #include "../commands/CommandManager.h"
 
 class PopupMenuHandler;

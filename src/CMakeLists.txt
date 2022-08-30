@@ -964,13 +964,6 @@ list( APPEND SOURCES
 #
 #
 #
-list( APPEND HEADERS
-   ../include/audacity/Types.h
-)
-
-#
-#
-#
 list( APPEND INCLUDES
    PUBLIC
       ${_PRVDIR}
@@ -1264,7 +1257,6 @@ endif()
 
 set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${APP_NAME} )
 
-organize_source( "${TARGET_ROOT}/.." "include" "${HEADERS}" )
 organize_source( "${TARGET_ROOT}/../presets" "presets" "${RESOURCES}" )
 organize_source( "${TARGET_ROOT}" "src" "${SOURCES}" )
 organize_source( "${TARGET_ROOT}/../mac/Resources" "mac" "${MAC_RESOURCES}" )
@@ -1288,7 +1280,7 @@ import_symbol_define( import_symbol SAUCEDACITY_DLL )
 export_symbol_define( export_symbol SAUCEDACITY_DLL )
 list( APPEND DEFINES PRIVATE "${export_symbol}" INTERFACE "${import_symbol}" )
 
-target_sources( ${TARGET} PRIVATE ${HEADERS} ${SOURCES} ${RESOURCES} ${MAC_RESOURCES} ${WIN_RESOURCES} )
+target_sources( ${TARGET} PRIVATE ${SOURCES} ${RESOURCES} ${MAC_RESOURCES} ${WIN_RESOURCES} )
 target_compile_definitions( ${TARGET} PRIVATE ${DEFINES} )
 target_compile_options( ${TARGET} PRIVATE ${OPTIONS} )
 target_include_directories( ${TARGET} PRIVATE ${INCLUDES} )

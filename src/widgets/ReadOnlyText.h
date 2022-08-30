@@ -11,9 +11,6 @@
 
 
 #include <wx/wx.h>
-
-
-
 #include "WindowAccessible.h"
 
 #if wxUSE_ACCESSIBILITY

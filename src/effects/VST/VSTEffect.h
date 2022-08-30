@@ -12,12 +12,12 @@
 
 #if USE_VST
 
-#include "EffectInterface.h"
-#include "ModuleInterface.h"
-#include "PluginInterface.h"
-
-#include "SampleFormat.h"
-#include "XMLTagHandler.h"
+// Saucedacity Libraries
+#include <lib-components/EffectInterface.h>
+#include <lib-components/ModuleInterface.h>
+#include <lib-components/PluginInterface.h>
+#include <lib-math/SampleFormat.h>
+#include <lib-xml/XMLTagHandler.h>
 
 class wxSizerItem;
 class wxSlider;

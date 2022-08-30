@@ -18,7 +18,7 @@
 #include "BassTreble.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 #include <algorithm>
 
 #include <wx/button.h>
@@ -28,7 +28,9 @@
 #include <wx/sizer.h>
 #include <wx/slider.h>
 
-#include "Prefs.h"
+// Saucedacity Libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../WaveTrack.h"

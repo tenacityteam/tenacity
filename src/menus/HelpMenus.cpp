@@ -1,5 +1,14 @@
-// This is one of my least favorite files in Saucedacity. It's very
-// long below...
+/**********************************************************************
+
+  Saucedacity: A Digital Audio Editor
+
+  HelpMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
 
 #include <wx/app.h>
 #include <wx/bmpbuttn.h>
@@ -11,12 +20,9 @@
 #include "../AudioIOBase.h"
 #include "../CommonCommandFlags.h"
 
-#include "FileNames.h"
-
 #include "../HelpText.h"
 #include "../LogWindow.h"
 #include "../Menus.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectSelectionManager.h"
 #include "../SelectFile.h"
@@ -447,16 +453,6 @@ void OnAbout(const CommandContext &context)
    dlog.ShowModal();
 #endif
 }
-
-#if 0
-// Legacy handlers, not used as of version 2.3.0
-
-void OnHelpWelcome(const CommandContext &context)
-{
-   SplashDialog::DoHelpWelcome( context.project );
-}
-
-#endif
 
 }; // struct Handler
 

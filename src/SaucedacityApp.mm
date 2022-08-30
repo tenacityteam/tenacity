@@ -1,3 +1,13 @@
+/**********************************************************************
+
+  Saucedacity: A Digital Audio Editor
+
+  SaucedacityApp.h
+
+  Mac-specific initialization for when Saucedacity initializes.
+
+**********************************************************************/
+
 #ifdef __WXMAC__
 
 #include "SaucedacityApp.h"

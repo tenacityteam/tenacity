@@ -11,11 +11,12 @@
 #ifndef __AUDACITY_ENVELOPE__
 #define __AUDACITY_ENVELOPE__
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <algorithm>
 #include <vector>
 
-#include "XMLTagHandler.h"
+// Saucedacity libraries
+#include <lib-xml/XMLTagHandler.h>
 
 class wxRect;
 class wxMouseEvent;

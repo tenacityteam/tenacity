@@ -30,7 +30,7 @@ and TimeTrack.
 #include <algorithm>
 #include <numeric>
 
-#include <float.h>
+#include <cfloat>
 #include <wx/file.h>
 #include <wx/textfile.h>
 #include <wx/log.h>
@@ -39,7 +39,8 @@ and TimeTrack.
 #include "Project.h"
 #include "ProjectSettings.h"
 
-#include "InconsistencyException.h"
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
 
 #ifdef _MSC_VER
 //Disable truncation warnings

@@ -1,4 +1,10 @@
+/**********************************************************************
 
+  Saucedacity: A Digital Audio Editor
+
+  PluginMenus.cpp
+
+**********************************************************************/
 
 #include "../commands/CommandManager.h"
 

@@ -31,8 +31,10 @@ around to NEW positions.
 
 #include "../AColor.h"
 #include "../AllThemeResources.h"
-#include "Internat.h"
 #include "../Theme.h"
+
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
 
 ////////////////////////////////////////////////////////////
 /// Methods for Grabber

@@ -34,9 +34,11 @@ other settings.
 #include <wx/intl.h>
 #include <wx/textctrl.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../../lib-src/portmidi/pm_common/portmidi.h"
 
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/AudacityMessageBox.h"
 

@@ -28,8 +28,11 @@ MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs.
 #define __AUDACITY_PREFS_PANEL__
 
 #include <functional>
+
+// Saucedacity libraries
+#include <lib-components/ComponentInterface.h>
+
 #include "../widgets/wxPanelWrapper.h" // to inherit
-#include "ComponentInterface.h"
 #include "../Registry.h"
 
 /* A few constants for an attempt at semi-uniformity */

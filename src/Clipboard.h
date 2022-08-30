@@ -12,7 +12,6 @@
 #define __AUDACITY_CLIPBOARD__
 
 
-
 #include <memory>
 #include <wx/event.h> // to inherit wxEvtHandler
 

@@ -13,7 +13,6 @@
 #define __AUDACITY_LYRICS__
 
 
-
 #include <vector>
 #include <wx/textctrl.h> // to inherit
 #include "commands/CommandManagerWindowClasses.h"

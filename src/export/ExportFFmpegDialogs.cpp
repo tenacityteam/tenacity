@@ -42,9 +42,9 @@
 *//*******************************************************************/
 
 
+#include "Export.h"
 #include "ExportFFmpegDialogs.h"
-
-#include "FFmpegFunctions.h"
+#include "ffmpeg/FFmpeg.h"
 
 #include <wx/app.h>
 #include <wx/checkbox.h>
@@ -59,18 +59,18 @@
 #include <wx/combobox.h>
 #include <wx/stattext.h>
 
+// Saucedacity libraries
+#include <lib-ffmpeg-support/FFmpegFunctions.h>
+#include <lib-xml/XMLFileReader.h>
+#include <lib-xml/XMLFileWriter.h>
+#include <lib-xml/XMLWriter.h>
+
 #include "../widgets/FileDialog/FileDialog.h"
 
 #include "../Mix.h"
 #include "../Tags.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/HelpSystem.h"
-#include "XMLFileReader.h"
-#include "XMLFileWriter.h"
-#include "XMLWriter.h"
-
-#include "Export.h"
-#include "ffmpeg/FFmpeg.h"
 
 #if defined(USE_FFMPEG)
 

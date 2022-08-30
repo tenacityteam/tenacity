@@ -11,16 +11,16 @@
 #ifndef __AUDACITY_PROJECTSERIALIZER__
 #define __AUDACITY_PROJECTSERIALIZER__
 
-#include "XMLTagHandler.h"
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
+#include <lib-xml/XMLTagHandler.h>
 
 #include <wx/mstream.h> // member variables
 
 #include <unordered_set>
 #include <unordered_map>
-#include "Identifier.h"
 
-// From SampleBlock.h
-using SampleBlockID = long long;
+#include "SampleBlock.h"
 
 ///
 /// ProjectSerializer

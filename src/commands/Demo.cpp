@@ -23,7 +23,7 @@ parameters.  It is for development purposes.
 #include "Demo.h"
 #include "LoadCommands.h"
 
-#include <float.h>
+#include <cfloat>
 
 #include <wx/intl.h>
 

@@ -20,7 +20,9 @@
 
 #include <wx/defs.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/ShuttleGui.h"
 
 ImportExportPrefs::ImportExportPrefs(wxWindow * parent, wxWindowID winid)

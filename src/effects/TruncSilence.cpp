@@ -22,13 +22,15 @@
 #include <algorithm>
 #include <list>
 #include <limits>
-#include <math.h>
+#include <cmath>
 
 #include <wx/checkbox.h>
 #include <wx/choice.h>
 #include <wx/valgen.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../Project.h"
 #include "../ProjectSettings.h"
 #include "../shuttle/Shuttle.h"

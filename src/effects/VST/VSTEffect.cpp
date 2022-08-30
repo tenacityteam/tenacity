@@ -31,16 +31,6 @@
 
 #include "../../widgets/ProgressDialog.h"
 
-#if 0
-#if defined(BUILDING_AUDACITY)
-#include "../../PlatformCompatibility.h"
-
-// Make the main function private
-#else
-#define USE_VST 1
-#endif
-#endif
-
 #if USE_VST
 
 #include <limits.h>
@@ -82,16 +72,19 @@
 // TODO:  Unfortunately we have some dependencies on Audacity provided 
 //        dialogs, widgets and other stuff.  This will need to be cleaned up.
 
-#include "FileNames.h"
-#include "PlatformCompatibility.h"
+// Saucedacity libraries
+#include <lib-components/ConfigInterface.h>
+#include <lib-files/FileNames.h>
+#include <lib-files/PlatformCompatibility.h>
+#include <lib-xml/XMLFileReader.h>
+#include <lib-xml/XMLFileWriter.h>
+
 #include "../../SelectFile.h"
 #include "../../shuttle/ShuttleGui.h"
 #include "../../effects/Effect.h"
 #include "../../widgets/valnum.h"
 #include "../../widgets/AudacityMessageBox.h"
 #include "../../widgets/NumericTextCtrl.h"
-#include "XMLFileReader.h"
-#include "XMLFileWriter.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "../../widgets/WindowAccessible.h"

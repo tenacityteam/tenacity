@@ -22,8 +22,8 @@ or "OFF" point
 #include "VoiceKey.h"
 
 #include <wx/string.h>
-#include <math.h>
-#include <stdio.h>
+#include <cmath>
+#include <cstdio>
 
 #include <wx/textfile.h>
 #include <wx/intl.h>

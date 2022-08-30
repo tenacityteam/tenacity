@@ -24,10 +24,6 @@ It \TODO: description
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
-#ifdef __BORLANDC__
-#pragma hdrstop
-#endif
-
 #ifndef WX_PRECOMP
 #include <wx/brush.h>
 #include <wx/button.h>
@@ -40,9 +36,11 @@ It \TODO: description
 #include <wx/statusbr.h>
 #endif
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include <fstream>
 #include <wx/dialog.h>
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../lib-src/header-substitutes/allegro.h"
 #include "audioreader.h"

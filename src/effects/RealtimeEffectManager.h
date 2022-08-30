@@ -16,7 +16,6 @@
 #include <vector>
 #include <thread>
 
-
 class EffectClientInterface;
 class RealtimeEffectState;
 

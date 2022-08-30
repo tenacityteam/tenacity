@@ -10,9 +10,11 @@
 #include "OverlayPanel.h"
 
 #include "Overlay.h"
-#include "MemoryX.h"
 #include <algorithm>
 #include <wx/dcclient.h>
+
+// Saucedacity libraries
+#include <lib-utility/MemoryX.h>
 
 OverlayPanel::OverlayPanel(wxWindow * parent, wxWindowID id,
              const wxPoint & pos,

@@ -11,7 +11,8 @@ Paul Licameli split from CommandManager.h
 #ifndef __AUDACITY_REGISTRY__
 #define __AUDACITY_REGISTRY__
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 // Define classes and functions that associate parts of the user interface
 // with path names

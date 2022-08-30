@@ -9,7 +9,8 @@ SampleBlock.h
 #ifndef __AUDACITY_SAMPLE_BLOCK__
 #define __AUDACITY_SAMPLE_BLOCK__
 
-#include "SampleFormat.h"
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
 
 #include <functional>
 #include <memory>

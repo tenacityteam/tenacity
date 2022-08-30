@@ -15,7 +15,6 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../HitTestResult.h"
 #include "../../../LabelTrack.h"
 #include "../../../widgets/PopupMenuTable.h"
-#include "Prefs.h"
 #include "../../../RefreshCode.h"
 #include "../../../shuttle/ShuttleGui.h"
 #include "../../../widgets/wxPanelWrapper.h"
@@ -23,6 +22,9 @@ Paul Licameli split from TrackPanel.cpp
 #include <wx/fontenum.h>
 #include <wx/listbox.h>
 #include <wx/spinctrl.h>
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 LabelTrackControls::~LabelTrackControls()
 {

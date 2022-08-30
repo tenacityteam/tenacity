@@ -40,7 +40,9 @@ hold information about one contributor to Audacity.
 #include <wx/statbox.h>
 #include <wx/stattext.h>
 
-#include "FileNames.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+
 #include "HelpText.h"
 #include "shuttle/ShuttleGui.h"
 #include "widgets/HelpSystem.h"

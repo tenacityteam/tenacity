@@ -14,10 +14,11 @@ LRN
 #if defined(USE_FFMPEG)
 
 #include "../ffmpeg/FFmpeg.h"
-#include "FFmpegFunctions.h"
 
-#include "XMLFileReader.h"
-#include "FileNames.h"
+// Saucedacity libraries
+#include <lib-ffmpeg-support/FFmpegFunctions.h>
+#include <lib-files/FileNames.h>
+#include <lib-xml/XMLFileReader.h>
 
 #include <unordered_map>
 #include "Identifier.h"

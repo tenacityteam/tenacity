@@ -63,7 +63,6 @@ can't be.
 #include "Theme.h"
 
 
-
 #include <wx/wxprec.h>
 #include <wx/dcclient.h>
 #include <wx/image.h>
@@ -73,13 +72,15 @@ can't be.
 #include <wx/settings.h>
 
 #include "AllThemeResources.h"  // can remove this later, only needed for 'XPMS_RETIRED'.
-#include "BasicUI.h"
-#include "FileNames.h"
-#include "Prefs.h"
 #include "ImageManipulation.h"
-#include "Internat.h"
-#include "MemoryX.h"
 #include "widgets/AudacityMessageBox.h"
+
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Internat.h>
+#include <lib-utility/MemoryX.h>
 
 // Include the ImageCache...
 

@@ -14,10 +14,11 @@
 
 #include <memory>
 #include <vector>
-
 #include <unordered_map>
-#include "EffectInterface.h"
-#include "Identifier.h"
+
+// Saucedacity libraires
+#include <lib-components/EffectInterface.h>
+#include <lib-strings/Identifier.h>
 
 class AudacityCommand;
 class SaucedacityProject;

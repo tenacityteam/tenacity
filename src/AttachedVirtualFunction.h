@@ -17,7 +17,9 @@ Paul Licameli
 #include <mutex>
 #include <type_traits>
 #include <utility>
-#include "InconsistencyException.h"
+
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
 
 //! Class template generates single-dispatch, open method registry tables
 /*!

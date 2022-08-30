@@ -16,8 +16,9 @@
 
 #include <wx/bitmap.h> // member variables
 
-#include "Identifier.h"
-#include "PluginInterface.h"
+// Saucedacity libraries
+#include <lib-components/PluginInterface.h>
+#include <lib-strings/Identifier.h>
 
 #if defined(EXPERIMENTAL_EFFECTS_RACK)
 

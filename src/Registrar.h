@@ -21,7 +21,6 @@ responsible for calling the appropriate callback functions.
 #define __AUDACITY_REGISTRAR__
 
 
-
 #include <memory>
 
 class AudacityCommand;

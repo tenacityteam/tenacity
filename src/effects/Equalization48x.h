@@ -16,7 +16,6 @@ Intrinsics (SSE/AVX) and Threaded Equalization
 #include <memory>
 
 #include <wx/thread.h> // to inherit
-#include <audacity/Types.h>
 class WaveTrack;
 using fft_type = float;
 

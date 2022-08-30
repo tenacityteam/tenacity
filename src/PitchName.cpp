@@ -16,14 +16,13 @@
 
 *//*******************************************************************/
 
-
-
 #include "PitchName.h"
 
-#include <math.h>
-#include <stdio.h>
+#include <cmath>
+#include <cstdio>
 
-#include "Internat.h"
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
 
 
 double FreqToMIDInote(const double freq)

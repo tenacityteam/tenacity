@@ -50,11 +50,12 @@ with changes in the SelectionBar.
 #endif
 #include <wx/statline.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 #include "../AudioIO.h"
 #include "../AColor.h"
 #include "../KeyboardCapture.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectSettings.h"

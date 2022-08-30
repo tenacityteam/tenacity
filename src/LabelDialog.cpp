@@ -16,6 +16,10 @@
 
 #include "LabelDialog.h"
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include <wx/button.h>
 #include <wx/defs.h>
 #include <wx/choice.h>
@@ -31,7 +35,6 @@
 
 #include "shuttle/ShuttleGui.h"
 #include "LabelTrack.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "ProjectWindow.h"
 #include "SelectFile.h"
@@ -42,7 +45,6 @@
 #include "widgets/Grid.h"
 #include "widgets/HelpSystem.h"
 
-#include "FileNames.h"
 #include <limits>
 
 enum Column

@@ -1,9 +1,19 @@
+/**********************************************************************
+
+  Saucedacity: A Digital Audio Editor
+
+  LabelMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../AudioIO.h"
 #include "../Clipboard.h"
 #include "../CommonCommandFlags.h"
 #include "../LabelTrack.h"
 #include "../Menus.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectHistory.h"

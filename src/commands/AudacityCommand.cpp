@@ -24,6 +24,9 @@ ShuttleGui.
 
 #include "CommandContext.h"
 
+// Saucedacity libraries
+#include <lib-components/ConfigInterface.h>
+
 #include <algorithm>
 
 #include <wx/defs.h>
@@ -34,8 +37,6 @@ ShuttleGui.
 #include <wx/timer.h>
 #include <wx/utils.h>
 #include <wx/log.h>
-
-#include "ConfigInterface.h"
 
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

@@ -16,8 +16,10 @@
 #include <vector>
 #include <wx/tokenzr.h> // for enum wxStringTokenizerMode
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h> // for FileType
+
 #include "../widgets/wxPanelWrapper.h" // to inherit
-#include "FileNames.h" // for FileType
 
 #include "../Registry.h"
 

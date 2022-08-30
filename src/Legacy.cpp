@@ -29,9 +29,9 @@ On failure the old version is put back in place.
 
 #include "Legacy.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 #include <wx/defs.h>
 #include <wx/ffile.h>
@@ -41,7 +41,9 @@ On failure the old version is put back in place.
 #include <wx/textfile.h>
 
 #include "widgets/AudacityMessageBox.h"
-#include "XMLFileWriter.h"
+
+// Saucedacity libraries
+#include <lib-xml/XMLFileWriter.h>
 
 static bool ConvertLegacyTrack(wxTextFile *f, XMLFileWriter &xmlFile)
 // may throw

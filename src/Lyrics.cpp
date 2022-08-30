@@ -11,7 +11,7 @@
 
 #include "Lyrics.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/app.h>
 #include <wx/dcclient.h>

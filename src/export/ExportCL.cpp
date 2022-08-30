@@ -11,7 +11,7 @@
 
 **********************************************************************/
 
-
+#include "Export.h"
 
 #include "../ProjectSettings.h"
 
@@ -27,21 +27,21 @@
 #include <wx/msw/registry.h> // for wxRegKey
 #endif
 
-#include "FileNames.h"
-#include "Export.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
 
 #include "../Mix.h"
-#include "Prefs.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
 #include "../Track.h"
-#include "float_cast.h"
 #include "../widgets/FileHistory.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
 #include "../widgets/Warning.h"
-#include "wxFileNameWrapper.h"
 
 #ifdef USE_LIBID3TAG
    #include <id3tag.h>

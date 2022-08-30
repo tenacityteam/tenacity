@@ -18,8 +18,10 @@ SetPreferenceCommand classes
 
 #include "PreferenceCommands.h"
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "LoadCommands.h"
-#include "Prefs.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../commands/CommandContext.h"

@@ -13,7 +13,9 @@
 
 class TranslatableString;
 class wxString;
-#include "Identifier.h"
+
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
 
 struct URLStringTag;
 //! Distinct type for URLs

@@ -53,7 +53,9 @@ with changes in the SpectralSelectionBar.
 #endif
 #include <wx/statline.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../Project.h"
 #include "../AllThemeResources.h"
 #include "../SelectedRegion.h"

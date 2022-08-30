@@ -50,7 +50,8 @@
 #include <wx/window.h>
 #include <wx/stattext.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 // This really should be a Preferences setting
 static const unsigned char beep[] =

@@ -13,7 +13,6 @@
 #define __AUDACITY_ERRORDIALOG__
 
 
-
 #include <string>
 #include <wx/defs.h>
 #include <wx/msgdlg.h> // to inherit

@@ -16,7 +16,6 @@ Paul Licameli split from WaveTrackView.cpp
 #include "WaveTrackViewConstants.h"
 
 #include "../../../../AColor.h"
-#include "Prefs.h"
 #include "../../../../NumberScale.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"
@@ -24,6 +23,9 @@ Paul Licameli split from WaveTrackView.cpp
 #include "../../../../WaveClip.h"
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 #include <wx/dcmemory.h>
 #include <wx/graphics.h>

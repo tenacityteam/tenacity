@@ -36,8 +36,8 @@ a graph for EffectScienFilter.
 #include "ScienFilter.h"
 #include "LoadEffects.h"
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 #include <wx/setup.h> // for wxUSE_* macros
 
@@ -52,10 +52,12 @@ a graph for EffectScienFilter.
 #include <wx/utils.h>
 #include <wx/valgen.h>
 
+// Saucedacity libraries
+#include <lib-files/PlatformCompatibility.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../AColor.h"
 #include "../AllThemeResources.h"
-#include "PlatformCompatibility.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

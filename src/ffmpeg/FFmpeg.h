@@ -16,8 +16,6 @@ Describes shared object that is used to access FFmpeg libraries.
 #ifndef __AUDACITY_FFMPEG__
 #define __AUDACITY_FFMPEG__
 
-
-#include "audacity/Types.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
 
 class wxCheckBox;
@@ -27,11 +25,11 @@ class wxCheckBox;
 #include "shuttle/ShuttleGui.h"
 #include "Prefs.h"
 
-#include "Identifier.h"
-#include "SampleFormat.h"
-
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-strings/Identifier.h>
 #ifdef USE_FFMPEG
-#   include "FFmpegFunctions.h"
+#   include <lib-ffmpeg-support/FFmpegFunctions.h>
 #endif
 
 TranslatableString GetFFmpegVersion();

@@ -15,10 +15,10 @@
 #include <vector>
 #include <functional>
 
-#include "SampleFormat.h"
-#include "XMLTagHandler.h"
-
-#include "SampleCount.h"
+// Saucedacity libraries
+#include <lib-math/SampleCount.h>
+#include <lib-math/SampleFormat.h>
+#include <lib-xml/XMLTagHandler.h>
 
 class SampleBlock;
 class SampleBlockFactory;

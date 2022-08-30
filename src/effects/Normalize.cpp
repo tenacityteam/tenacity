@@ -19,14 +19,16 @@
 #include "Normalize.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/checkbox.h>
 #include <wx/intl.h>
 #include <wx/stattext.h>
 #include <wx/valgen.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../ProjectFileManager.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

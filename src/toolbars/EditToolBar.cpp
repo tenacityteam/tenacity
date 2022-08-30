@@ -47,11 +47,13 @@
 #include <wx/tooltip.h>
 #endif
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../AllThemeResources.h"
 #include "../BatchCommands.h"
 #include "../ImageManipulation.h"
 #include "../Menus.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../UndoManager.h"
 #include "../widgets/AButton.h"

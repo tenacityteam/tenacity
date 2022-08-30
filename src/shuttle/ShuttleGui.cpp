@@ -92,13 +92,8 @@ for registering for changes.
 
 *//******************************************************************/
 
-
-
 #include "ShuttleGui.h"
 
-
-
-#include "Prefs.h"
 #include "ShuttlePrefs.h"
 #include "Theme.h"
 
@@ -115,11 +110,14 @@ for registering for changes.
 #include <wx/bmpbuttn.h>
 #include <wx/wrapsizer.h>
 
-#include "ComponentInterface.h"
 #include "widgets/ReadOnlyText.h"
 #include "widgets/wxPanelWrapper.h"
 #include "widgets/wxTextCtrlWrapper.h"
 #include "AllThemeResources.h"
+
+// Saucedacity libraries
+#include <lib-components/ComponentInterface.h>
+#include <lib-preferences/Prefs.h>
 
 #if wxUSE_ACCESSIBILITY
 #include "widgets/WindowAccessible.h"

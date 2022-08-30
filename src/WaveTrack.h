@@ -12,7 +12,9 @@
 #define __AUDACITY_WAVETRACK__
 
 #include "Track.h"
-#include "SampleCount.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleCount.h>
 
 #include <vector>
 #include <functional>

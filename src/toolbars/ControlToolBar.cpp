@@ -54,11 +54,14 @@
 #include <wx/tooltip.h>
 #include <wx/datetime.h>
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../AColor.h"
 #include "../AllThemeResources.h"
 #include "../AudioIO.h"
 #include "../ImageManipulation.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
@@ -67,7 +70,6 @@
 #include "../ProjectWindow.h"
 #include "../Track.h"
 #include "../widgets/AButton.h"
-#include "FileNames.h"
 
 #include "../tracks/ui/Scrubbing.h"
 #include "../toolbars/ToolManager.h"

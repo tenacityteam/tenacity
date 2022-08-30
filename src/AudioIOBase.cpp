@@ -12,13 +12,14 @@ Paul Licameli split from AudioIO.cpp
 #include "AudioIOBase.h"
 
 
-
 #include <wx/log.h>
 #include <wx/sstream.h>
 #include <wx/txtstrm.h>
 
-#include "MemoryX.h"
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-utility/MemoryX.h>
+
 #include "widgets/MeterPanelBase.h"
 
 #if USE_PORTMIXER

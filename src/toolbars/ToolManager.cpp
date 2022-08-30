@@ -52,10 +52,12 @@
 #include <wx/minifram.h>
 #include <wx/popupwin.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../AColor.h"
 #include "../AllThemeResources.h"
 #include "../ImageManipulation.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../widgets/AButton.h"
 #include "../widgets/ASlider.h"

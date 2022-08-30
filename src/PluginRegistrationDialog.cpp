@@ -9,7 +9,9 @@
 **********************************************************************/
 #include "PluginRegistrationDialog.h"
 
-#include "EffectInterface.h"
+// Saucedacity libraries
+#include <lib-components/EffectInterface.h>
+
 #include "ModuleManager.h"
 #include "PluginManager.h"
 #include "shuttle/ShuttleGui.h"

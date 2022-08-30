@@ -30,7 +30,6 @@ flicker-free use.
 #define __AUDACITY_WIDGETS_GRABBER__
 
 
-
 #include <wx/defs.h>
 #include <wx/statbmp.h> // to inherit
 

@@ -12,15 +12,15 @@
 #define __AUDACITY_TRACK_PANEL__
 
 
-
-
 #include <vector>
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/timer.h> // to inherit
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "HitTestResult.h"
-#include "Prefs.h"
 
 #include "SelectedRegion.h"
 

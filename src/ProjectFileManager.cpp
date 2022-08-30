@@ -18,8 +18,12 @@ Paul Licameli split from SaucedacityProject.cpp
 
 #include <wx/frame.h>
 #include <wx/log.h>
-#include "BasicUI.h"
-#include "CodeConversions.h"
+
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-string-utils/CodeConversions.h>
+#include <lib-xml/XMLFileReader.h>
+
 #include "Legacy.h"
 #include "PlatformCompatibility.h"
 #include "Project.h"
@@ -47,7 +51,6 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "widgets/FileHistory.h"
 #include "widgets/UnwritableLocationErrorDialog.h"
 #include "widgets/Warning.h"
-#include "XMLFileReader.h"
 
 #include "HelpText.h"
 

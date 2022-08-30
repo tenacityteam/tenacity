@@ -12,14 +12,14 @@ Paul Licameli split from AudioIO.h
 #define __AUDACITY_AUDIO_IO_BASE__
 
 
-
-
 #include <cfloat>
 #include <functional>
 #include <vector>
 #include <wx/string.h>
 #include <wx/weakref.h> // member variable
-#include "MemoryX.h"
+
+// Saucedacity libraries
+#include <lib-utility/MemoryX.h>
 
 struct PaDeviceInfo;
 typedef void PaStream;

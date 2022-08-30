@@ -19,7 +19,7 @@ for classification of the sample format and the used endianness.
 *//*******************************************************************/
 #include "FormatClassifier.h"
 
-#include <stdint.h>
+#include <cstdint>
 #include <cmath>
 #include <cfloat>
 #include <vector>

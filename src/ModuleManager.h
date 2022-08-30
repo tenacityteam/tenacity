@@ -12,13 +12,15 @@
 #ifndef __AUDACITY_MODULEMANAGER_H__
 #define __AUDACITY_MODULEMANAGER_H__
 
-#include "MemoryX.h"
+// Saucedacity libraries
+#include <lib-components/PluginInterface.h>
+#include <lib-strings/Identifier.h>
+#include <lib-utility/MemoryX.h>
+#include <lib-utility/ModuleConstants.h>
+
 #include <functional>
 #include <map>
 #include <vector>
-
-#include "audacity/Types.h"
-#include "Identifier.h"
 
 class wxArrayString;
 class wxDynamicLibrary;
@@ -31,8 +33,6 @@ class wxWindow;
 //
 // wxPluginManager would be MUCH better, but it's an "undocumented" framework.
 //
-
-#include "ModuleConstants.h"
 
 typedef int (*fnModuleDispatch)(ModuleDispatchTypes type);
 

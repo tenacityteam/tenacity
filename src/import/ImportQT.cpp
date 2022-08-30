@@ -13,8 +13,6 @@
 
 **********************************************************************/
 
-#include "../Audacity.h" // for USE_* macros
-
 #include "Import.h"
 #include "ImportPlugin.h"
 #include "../widgets/AudacityMessageBox.h"

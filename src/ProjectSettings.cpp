@@ -11,12 +11,11 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "ProjectSettings.h"
 
 
-
 #include "AudioIOBase.h"
 #include "Project.h"
 #include "prefs/QualitySettings.h"
-#include "widgets/NumericTextCtrl.h"
 #include "prefs/TracksBehaviorsPrefs.h"
+#include "widgets/NumericTextCtrl.h"
 
 wxDEFINE_EVENT(EVT_PROJECT_SETTINGS_CHANGE, wxCommandEvent);
 

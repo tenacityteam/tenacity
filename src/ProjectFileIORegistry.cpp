@@ -10,7 +10,9 @@
 
 #include "ProjectFileIORegistry.h"
 
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
+
 #include <unordered_map>
 #include <wx/string.h>
 

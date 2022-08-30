@@ -22,8 +22,8 @@ frequency changes smoothly during the tone.
 #include "ToneGen.h"
 #include "LoadEffects.h"
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 #include <wx/choice.h>
 #include <wx/intl.h>

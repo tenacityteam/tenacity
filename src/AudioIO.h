@@ -14,7 +14,6 @@
 #define __AUDACITY_AUDIO_IO__
 
 
-
 #include "AudioIOBase.h" // to inherit
 #include "PlaybackSchedule.h" // member variable
 

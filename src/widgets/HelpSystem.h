@@ -22,7 +22,6 @@
 #define __AUDACITY_HELPSYSTEM__
 
 
-
 #include <wx/defs.h>
 #include "wxPanelWrapper.h" // to inherit
 #include "../HelpText.h"

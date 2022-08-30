@@ -45,14 +45,13 @@ but little else.
 #ifndef __AUDACITY_IMPORTER__
 #define __AUDACITY_IMPORTER__
 
-
-
 #include <memory>
-#include "audacity/Types.h"
-#include "Identifier.h"
-#include "Internat.h"
-#include "SampleFormat.h"
-#include "wxArrayStringEx.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-strings/Identifier.h>
+#include <lib-strings/Internat.h>
+#include <lib-strings/wxArrayStringEx.h>
 
 class SaucedacityProject;
 class ProgressDialog;

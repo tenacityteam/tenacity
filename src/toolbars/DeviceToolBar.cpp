@@ -35,6 +35,9 @@
 #include <wx/tooltip.h>
 #endif
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../TrackPanel.h"
 
 #include "../AColor.h"
@@ -42,7 +45,6 @@
 #include "../AudioIOBase.h"
 #include "../ImageManipulation.h"
 #include "../KeyboardCapture.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/Grabber.h"

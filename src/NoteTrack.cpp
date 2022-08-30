@@ -13,11 +13,7 @@
 
 *//*******************************************************************/
 
-
-
 #include "NoteTrack.h"
-
-
 
 #include <wx/wxcrtvararg.h>
 #include <wx/dc.h>
@@ -37,7 +33,8 @@
 #include "ProjectFileIORegistry.h"
 #include "prefs/ImportExportPrefs.h"
 
-#include "InconsistencyException.h"
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
 
 #include "effects/TimeWarper.h"
 #include "tracks/ui/TrackView.h"

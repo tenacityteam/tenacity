@@ -24,7 +24,8 @@
 #include "../float_cast.h"
 #include <vector>
 
-#include "MemoryX.h" // for safenew
+// Saucedacity libraries
+#include <lib-utility/MemoryX.h> // for safenew
 
 #include <wx/setup.h> // for wxUSE_* macros
 
@@ -36,7 +37,7 @@
 #endif
 #include <wx/utils.h>
 
-#include <math.h>
+#include <cmath>
 
 #include "../RealFFTf48x.h"
 
@@ -47,7 +48,7 @@
 #include <stdlib.h>
 
 #include <stdio.h>
-#include <math.h>
+#include <cmath>
 #include <emmintrin.h>
 
 #ifdef _WIN32

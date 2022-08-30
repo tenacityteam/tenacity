@@ -14,17 +14,17 @@
 #ifndef SHUTTLE_GUI
 #define SHUTTLE_GUI
 
-
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-components/ComponentInterfaceSymbol.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Identifier.h>
+#include <lib-utility/MemoryX.h>
 
 #include <vector>
 #include <wx/slider.h> // to inherit
-#include "MemoryX.h"
 #include <wx/listbase.h> // for wxLIST_FORMAT_LEFT
 
-#include "Prefs.h"
 #include "WrappedType.h"
-#include "ComponentInterfaceSymbol.h"
 
 class ChoiceSetting;
 

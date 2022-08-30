@@ -30,7 +30,9 @@
 #include <wx/defs.h>
 
 #include "WrappedType.h"
-#include "Prefs.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 bool ShuttlePrefs::TransferBool( const wxString & Name, bool & bValue, const bool & bDefault )
 {

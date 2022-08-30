@@ -22,7 +22,6 @@ for shared and private configs - which need to move out.
 #include "PluginManager.h"
 
 
-
 #include <algorithm>
 
 #include <wx/log.h>
@@ -30,10 +29,12 @@ for shared and private configs - which need to move out.
 
 #include "ModuleInterface.h"
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-strings/Internat.h>
+#include <lib-utility/MemoryX.h>
+
 #include "SaucedacityFileConfig.h"
-#include "Internat.h" // for macro XO
-#include "FileNames.h"
-#include "MemoryX.h"
 #include "ModuleManager.h"
 #include "PlatformCompatibility.h"
 #include "widgets/AudacityMessageBox.h"

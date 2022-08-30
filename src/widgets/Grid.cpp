@@ -27,7 +27,9 @@
 #include <wx/settings.h>
 #include <wx/toplevel.h>
 
-#include "MemoryX.h"
+// Saucedacity
+#include <lib-utility/MemoryX.h>
+
 #include "../SelectedRegion.h"
 
 #if wxUSE_ACCESSIBILITY

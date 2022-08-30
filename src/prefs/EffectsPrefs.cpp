@@ -23,9 +23,11 @@
 #include <wx/choice.h>
 #include <wx/defs.h>
 
-#include "Languages.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Languages.h>
+
 #include "../PluginManager.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 
 EffectsPrefs::EffectsPrefs(wxWindow * parent, wxWindowID winid)

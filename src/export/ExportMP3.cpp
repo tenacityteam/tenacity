@@ -79,10 +79,13 @@
 #include <wx/utils.h>
 #include <wx/window.h>
 
-#include "FileNames.h"
-#include "float_cast.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../Mix.h"
-#include "Prefs.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../SelectFile.h"
@@ -92,7 +95,6 @@
 #include "../widgets/HelpSystem.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
-#include "wxFileNameWrapper.h"
 
 #include "Export.h"
 

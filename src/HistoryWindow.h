@@ -11,7 +11,9 @@
 #ifndef __AUDACITY_HISTORY_WINDOW__
 #define __AUDACITY_HISTORY_WINDOW__
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "widgets/wxPanelWrapper.h" // to inherit
 
 class wxButton;

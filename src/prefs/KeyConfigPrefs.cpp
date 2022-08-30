@@ -20,7 +20,6 @@ KeyConfigPrefs and MousePrefs use.
 *//*********************************************************************/
 
 
-
 #include "KeyConfigPrefs.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
@@ -34,16 +33,17 @@ KeyConfigPrefs and MousePrefs use.
 #include <wx/statbox.h>
 #include <wx/textctrl.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-files/FileNames.h>
+#include <lib-xml/XMLFileReader.h>
+#include <lib-xml/XMLFileWriter.h>
+
 #include "../Project.h"
 #include "../commands/CommandManager.h"
-#include "XMLFileReader.h"
-#include "XMLFileWriter.h"
 
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
-
-#include "FileNames.h"
 
 #include "../widgets/KeyView.h"
 #include "../widgets/AudacityMessageBox.h"

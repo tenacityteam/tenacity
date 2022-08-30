@@ -18,7 +18,8 @@ modelled on BuiltinEffectsModule
 #include "AudacityCommand.h"
 #include "ModuleManager.h"
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 namespace {
 bool sInitialized = false;

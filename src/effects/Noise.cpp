@@ -17,14 +17,16 @@
 #include "Noise.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/choice.h>
 #include <wx/intl.h>
 #include <wx/textctrl.h>
 #include <wx/valgen.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/valnum.h"

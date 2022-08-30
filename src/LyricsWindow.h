@@ -15,7 +15,8 @@
 #include <wx/frame.h> // to inherit
 #include <memory>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 class SaucedacityProject;
 class LyricsPanel;

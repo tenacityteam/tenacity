@@ -35,7 +35,6 @@ for each problem encountered, since there can be many orphans.
 #include <wx/radiobox.h>
 #include <wx/bmpbuttn.h>
 
-
 #include "wxPanelWrapper.h"
 #include "../LogWindow.h"
 #include "../Theme.h"

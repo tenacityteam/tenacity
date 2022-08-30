@@ -10,12 +10,13 @@ Paul Licameli split from SaucedacityProject.cpp
 
 #include "ProjectManager.h"
 
-
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/wxFileNameWrapper.h>
 
 #include "AdornedRulerPanel.h"
 #include "AudioIO.h"
 #include "Clipboard.h"
-#include "FileNames.h"
 #include "Menus.h"
 #include "ModuleManager.h"
 #include "Project.h"
@@ -33,7 +34,6 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "TrackUtilities.h"
 #include "UndoManager.h"
 #include "WaveTrack.h"
-#include "wxFileNameWrapper.h"
 #include "import/Import.h"
 #include "import/ImportMIDI.h"
 #include "prefs/QualitySettings.h"

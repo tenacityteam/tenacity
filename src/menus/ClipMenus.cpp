@@ -1,3 +1,11 @@
+/**********************************************************************
+
+  Saucedacity: A Digital Audio Editor
+
+  ClipMenus.cpp
+
+**********************************************************************/
+
 #include "../CommonCommandFlags.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"

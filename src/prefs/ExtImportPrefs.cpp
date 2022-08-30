@@ -21,7 +21,9 @@
 #include <wx/listctrl.h>
 #include <wx/dnd.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/ShuttleGui.h"
 #include "../import/Import.h"
 #include "../widgets/AudacityMessageBox.h"

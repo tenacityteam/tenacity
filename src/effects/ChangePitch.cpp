@@ -25,8 +25,8 @@ the pitch without changing the tempo.
 #include <wx/valgen.h>
 #endif
 
-#include <float.h>
-#include <math.h>
+#include <cfloat>
+#include <cmath>
 
 #include <wx/checkbox.h>
 #include <wx/choice.h>
@@ -35,10 +35,12 @@ the pitch without changing the tempo.
 #include <wx/spinctrl.h>
 #include <wx/valtext.h>
 
+// Saucedacity libraries
+#include <lib-math/Spectrum.h>
+
 #include "../PitchName.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "Spectrum.h"
 #include "../WaveTrack.h"
 #include "../widgets/valnum.h"
 #include "TimeWarper.h"

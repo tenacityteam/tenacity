@@ -23,7 +23,9 @@
 #include <wx/valtext.h>
 #include <wx/stattext.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/NumericTextCtrl.h"

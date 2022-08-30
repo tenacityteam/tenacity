@@ -26,8 +26,10 @@
 #include <wx/textctrl.h>
 #include <algorithm>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../prefs/GUISettings.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 
 using std::min;

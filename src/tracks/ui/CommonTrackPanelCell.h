@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "../../TrackPanelCell.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <memory>
 #include <functional>
 

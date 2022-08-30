@@ -9,8 +9,8 @@
 #ifndef __AUDACITY_ACTIVE_PROJECTS__
 #define __AUDACITY_ACTIVE_PROJECTS__
 
-
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
 
 namespace ActiveProjects
 {

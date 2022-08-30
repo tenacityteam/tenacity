@@ -24,7 +24,9 @@
 #include <wx/slider.h>
 #include <wx/spinctrl.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/valnum.h"

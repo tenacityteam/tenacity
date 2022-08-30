@@ -12,7 +12,6 @@ Paul Licameli split from Menus.cpp
 #define __AUDACITY_COMMON_COMMAND_FLAGS__
 
 
-
 #include "commands/CommandFlag.h"
 
 SAUCEDACITY_DLL_API

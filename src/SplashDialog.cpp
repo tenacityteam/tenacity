@@ -20,9 +20,7 @@ most commonly asked questions about Audacity.
 *//********************************************************************/
 
 
-
 #include "SplashDialog.h"
-
 
 
 #include <wx/dialog.h>
@@ -34,15 +32,17 @@ most commonly asked questions about Audacity.
 #include <wx/intl.h>
 #include <wx/image.h>
 
-#include "FileNames.h"
 #include "Project.h"
 #include "shuttle/ShuttleGui.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/HelpSystem.h"
 
 #include "AllThemeResources.h"
-#include "Prefs.h"
 #include "HelpText.h"
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
 
 #include "../images/SaucedacityLogoWithName.xpm"
 

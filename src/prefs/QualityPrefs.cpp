@@ -23,10 +23,12 @@
 #include <wx/defs.h>
 #include <wx/textctrl.h>
 
+// Saucedacity libraries
+#include <lib-math/Dither.h>
+#include <lib-math/Resample.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../AudioIOBase.h"
-#include "Dither.h"
-#include "Prefs.h"
-#include "Resample.h"
 #include "../shuttle/ShuttleGui.h"
 
 #define ID_SAMPLE_RATE_CHOICE           7001

@@ -51,10 +51,14 @@
 
 #include "../widgets/FileDialog/FileDialog.h"
 
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-files/FileNames.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../src/AllThemeResources.h"
-#include "BasicUI.h"
 #include "../Mix.h"
-#include "Prefs.h"
 #include "../prefs/ImportExportPrefs.h"
 #include "../Project.h"
 #include "../ProjectHistory.h"
@@ -68,10 +72,8 @@
 #include "../widgets/Warning.h"
 #include "../widgets/HelpSystem.h"
 #include "../AColor.h"
-#include "FileNames.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/ProgressDialog.h"
-#include "wxFileNameWrapper.h"
 
 //----------------------------------------------------------------------------
 // ExportPlugin

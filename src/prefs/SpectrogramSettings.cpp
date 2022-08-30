@@ -20,11 +20,12 @@ Paul Licameli
 #include "../NumberScale.h"
 
 #include <algorithm>
-
-#include "FFT.h"
-#include "Prefs.h"
-
 #include <cmath>
+
+
+// Saucedacity libraries
+#include <lib-math/FFT.h>
+#include <lib-preferences/Prefs.h>
 
 #include "../widgets/AudacityMessageBox.h"
 

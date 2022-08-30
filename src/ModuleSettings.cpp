@@ -10,7 +10,8 @@
 
 #include "ModuleSettings.h"
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 #include <unordered_set>
 #include <wx/filename.h>

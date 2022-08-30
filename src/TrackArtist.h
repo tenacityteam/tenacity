@@ -24,7 +24,8 @@
 #include <wx/brush.h> // member variable
 #include <wx/pen.h> // member variables
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 class wxRect;
 

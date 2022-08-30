@@ -24,11 +24,13 @@ the audio, rather than actually finding the clicks.
 
 #include "Repair.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/intl.h>
 
-#include "InterpolateAudio.h"
+// Saucedacity libraries
+#include <lib-math/InterpolateAudio.h>
+
 #include "../WaveTrack.h"
 #include "../widgets/AudacityMessageBox.h"
 

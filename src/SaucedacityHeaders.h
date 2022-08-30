@@ -5,29 +5,17 @@
   SaucedacityHeaders.h
 
   Dominic Mazzoni
-
-  This is not a normal include file - it's currently only used
-  on Mac OS X as a "precompiled header" file that's automatically
-  included by all source files, resulting in roughly a 2x increase
-  in compilation speed.
-
-  When gcc 3.4 is released, it will have precompiled header support
-  on other platforms, and this file could be adapted to support
-  precompiled headers on Linux, etc.
-
 **********************************************************************/
 
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
 #ifdef __WXMSW__
 #include <initializer_list>
 #endif
-
-
 
 #include <wx/wx.h>
 #include <wx/bitmap.h>
@@ -39,19 +27,20 @@
 #include <wx/thread.h>
 #include <wx/tooltip.h>
 
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-math/FFT.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Identifier.h>
 
 #include "AColor.h"
 #include "AudioIO.h"
 #include "Diags.h"
 #include "Envelope.h"
-#include "FFT.h"
 #include "FileFormats.h"
 #include "ImageManipulation.h"
 #include "LabelTrack.h"
 #include "Mix.h"
 #include "NoteTrack.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "Sequence.h"
 #include "TimeTrack.h"

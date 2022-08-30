@@ -29,10 +29,6 @@
 #ifndef __AUDACITY_TAGS__
 #define __AUDACITY_TAGS__
 
-
-
-#include "XMLTagHandler.h"
-
 #include "ClientData.h"
 #include <utility>
 
@@ -40,7 +36,10 @@
 
 #include <memory>
 #include <unordered_map>
-#include "Identifier.h"
+
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
+#include <lib-xml/XMLTagHandler.h>
 
 class wxArrayString;
 class wxComboBox;

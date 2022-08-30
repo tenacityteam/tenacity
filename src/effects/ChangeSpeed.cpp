@@ -17,15 +17,17 @@
 #include "ChangeSpeed.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/choice.h>
 #include <wx/intl.h>
 #include <wx/slider.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-math/Resample.h>
+
 #include "../LabelTrack.h"
-#include "Prefs.h"
-#include "Resample.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/NumericTextCtrl.h"

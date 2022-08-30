@@ -24,7 +24,7 @@
 
 #include "../WaveTrack.h"
 
-#include <math.h>
+#include <cmath>
 
 bool EffectSimpleMono::Process()
 {

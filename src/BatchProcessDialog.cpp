@@ -38,10 +38,13 @@
 #include <wx/imaglist.h>
 #include <wx/settings.h>
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include "Clipboard.h"
 #include "shuttle/ShuttleGui.h"
 #include "Menus.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "ProjectFileManager.h"
 #include "ProjectHistory.h"
@@ -57,7 +60,6 @@
 #include "AllThemeResources.h"
 
 #include "widgets/FileDialog/FileDialog.h"
-#include "FileNames.h"
 #include "import/Import.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/AudacityTextEntryDialog.h"

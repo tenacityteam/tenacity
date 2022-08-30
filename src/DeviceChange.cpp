@@ -169,8 +169,8 @@ private:
 #elif defined(__WXGTK__)
 
 #include <libudev.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <locale.h>
 #include <unistd.h>
 

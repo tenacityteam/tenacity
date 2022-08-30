@@ -50,6 +50,10 @@ is time to refresh some aspect of the screen.
 #include <wx/app.h>
 #include <wx/setup.h> // for wxUSE_* macros
 
+// Saucedacity libraries
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
+
 #include "AdornedRulerPanel.h"
 #include "KeyboardCapture.h"
 #include "Project.h"
@@ -69,9 +73,7 @@ is time to refresh some aspect of the screen.
 #include "AColor.h"
 #include "AllThemeResources.h"
 #include "AudioIO.h"
-#include "float_cast.h"
 
-#include "Prefs.h"
 #include "RefreshCode.h"
 #include "TrackArtist.h"
 #include "TrackPanelAx.h"

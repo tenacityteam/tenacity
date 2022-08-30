@@ -47,7 +47,9 @@
 #endif
 #include <wx/tooltip.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../Project.h"

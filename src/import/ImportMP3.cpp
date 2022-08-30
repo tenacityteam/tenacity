@@ -26,14 +26,14 @@
 
 *//*******************************************************************/
 
-
-
 #include <wx/defs.h>
 
 #include "Import.h"
-#include "BasicUI.h"
 #include "ImportPlugin.h"
 #include "../Project.h"
+
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
 
 #define DESC XO("MP3 files")
 
@@ -53,7 +53,7 @@ static Importer::RegisteredUnusableImportPlugin registered
 
 #else
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <wx/file.h>
 #include <wx/string.h>

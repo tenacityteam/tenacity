@@ -21,8 +21,10 @@
 #include <wx/defs.h>
 #include <wx/timer.h> // member variable
 
-#include "SampleFormat.h"
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-preferences/Prefs.h>
+
 #include "MeterPanelBase.h" // to inherit
 #include "Ruler.h" // member variable
 

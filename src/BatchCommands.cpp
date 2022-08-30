@@ -27,6 +27,10 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include <wx/textfile.h>
 #include <wx/time.h>
 
+// Saucedacity librarries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include "Project.h"
 #include "ProjectAudioManager.h"
 #include "ProjectHistory.h"
@@ -35,10 +39,8 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include "commands/CommandManager.h"
 #include "effects/EffectManager.h"
 #include "effects/EffectUI.h"
-#include "FileNames.h"
 #include "Menus.h"
 #include "PluginManager.h"
-#include "Prefs.h"
 #include "SelectFile.h"
 #include "SelectUtilities.h"
 #include "shuttle/Shuttle.h"

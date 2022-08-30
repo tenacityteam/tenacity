@@ -7,8 +7,11 @@ Audacity: A Digital Audio Editor
 Paul Licameli
 
 **********************************************************************/
+
+// Saucedacity libraries
+#include <lib-utility/MemoryX.h>
+
 #include "wxWidgetsBasicUI.h"
-#include "MemoryX.h" // for Destroy_ptr
 #include "widgets/ErrorDialog.h"
 #include "widgets/AudacityMessageBox.h"
 #include "ProgressDialog.h"

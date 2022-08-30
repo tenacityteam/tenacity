@@ -26,7 +26,8 @@
 
 #include "wxPanelWrapper.h" // to inherit
 
-#include "BasicUI.h" // For ProgressResult
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h> // For ProgressResult
 using ProgressResult = GenericUI::ProgressResult;
 
 class wxGauge;

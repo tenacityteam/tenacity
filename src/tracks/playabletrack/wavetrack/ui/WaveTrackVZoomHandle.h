@@ -14,9 +14,12 @@ Paul Licameli split from TrackPanel.cpp
 class wxMouseState;
 class PopupMenuTable;
 class WaveTrack;
+
 #include "WaveTrackViewConstants.h"
 #include "../../../../UIHandle.h"
-#include "Prefs.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 namespace WaveTrackVZoomHandle
 {

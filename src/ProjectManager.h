@@ -15,7 +15,9 @@ Paul Licameli split from SaucedacityProject.h
 
 #include <wx/event.h> // to inherit
 #include "ClientData.h" // to inherit
-#include "Identifier.h"
+
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
 
 class wxTimer;
 class wxTimerEvent;

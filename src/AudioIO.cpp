@@ -409,11 +409,8 @@ time warp info and AudioIOListener and whether the playback is looped.
 
 #include "AudioIO.h"
 
-
-
 #include "AudioIOListener.h"
 
-#include "float_cast.h"
 #include "DeviceManager.h"
 
 #include <string>
@@ -438,8 +435,14 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <wx/power.h>
 #endif
 
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-exceptions/SaucedacityException.h>
+#include <lib-math/float_cast.h>
+#include <lib-math/Resample.h>
+#include <lib-preferences/Prefs.h>
+
 #include "Mix.h"
-#include "Resample.h"
 #include "RingBuffer.h"
 #include "prefs/GUISettings.h"
 #include "Prefs.h"
@@ -452,8 +455,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "prefs/QualitySettings.h"
 #include "prefs/RecordingPrefs.h"
 #include "widgets/MeterPanelBase.h"
-#include "BasicUI.h"
-#include "SaucedacityException.h"
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 
@@ -471,7 +472,7 @@ time warp info and AudioIOListener and whether the playback is looped.
       #define THREAD_LATENCY 0 /* milliseconds */
    #endif
    #define ROUND(x) (int) ((x)+0.5)
-   //#include <string.h>
+   //#include <cstring>
 //   #include "../lib-src/portmidi/pm_common/portmidi.h"
    #include "../lib-src/portaudio-v19/src/common/pa_util.h"
    #include "NoteTrack.h"

@@ -27,7 +27,9 @@ Licensed under the GNU General Public License v2 or later
 
 #include "../ffmpeg/FFmpeg.h"      // which brings in avcodec.h, avformat.h
 #include "../ffmpeg/FFmpegNotFoundDialog.h"
-#include "FFmpegFunctions.h"
+
+// Saucedacity libraries
+#include <lib-ffmpeg-support/FFmpegFunctions.h>
 
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h

@@ -18,14 +18,13 @@ with names like mod-script-pipe that add NEW features.
 
 #include "ModulePrefs.h"
 
-
-
 #include <wx/defs.h>
 #include <wx/filename.h>
 
-#include "../shuttle/ShuttleGui.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
-#include "Prefs.h"
+#include "../shuttle/ShuttleGui.h"
 #include "../ModuleSettings.h"
 
 ////////////////////////////////////////////////////////////////////////////////

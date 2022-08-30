@@ -17,7 +17,9 @@
 #include <vector>
 #include <wx/defs.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../Theme.h"
 #include "../widgets/wxPanelWrapper.h" // to inherit
 #include <wx/windowptr.h>

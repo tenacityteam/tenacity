@@ -21,7 +21,8 @@
 #include <mutex>
 #include <wx/ustring.h>
 
-#include "XMLStringWriter.h"
+// Saucedacity libraries
+#include <lib-xml/XMLStringWriter.h>
 
 ///
 /// ProjectSerializer class

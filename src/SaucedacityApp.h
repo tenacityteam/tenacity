@@ -15,9 +15,8 @@
 #define __AUDACITY_APP__
 
 
-#include "Identifier.h"
-
-
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
 
 #include <wx/app.h> // to inherit
 #include <wx/timer.h> // member variable

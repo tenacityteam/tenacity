@@ -12,7 +12,9 @@
 #define __AUDACITY_ZOOM_INFO__
 
 #include "ClientData.h" // to inherit
-#include "Prefs.h" // to inherit
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h> // to inherit
 
 #ifdef __GNUC__
 #define CONST

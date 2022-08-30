@@ -22,7 +22,9 @@
 #endif
 
 #include "LV2Effect.h"
-#include "SampleCount.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleCount.h>
 
 #include <cmath>
 

@@ -12,8 +12,6 @@ Paul Licameli split from TrackPanel.cpp
 #define __AUDACITY_TRACK_INFO__
 
 
-
-
 #include <vector>
 
 class wxDC;

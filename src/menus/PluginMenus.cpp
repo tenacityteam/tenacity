@@ -1,4 +1,14 @@
+/**********************************************************************
 
+  Saucedacity: A Digital Audio Editor
+
+  PluginMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-files/TempDirectory.h>
+#include <lib-preferences/Prefs.h>
 
 #include "../AudioIO.h"
 #include "../BatchProcessDialog.h"
@@ -7,14 +17,12 @@
 #include "../Menus.h"
 #include "../PluginManager.h"
 #include "../PluginRegistrationDialog.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../ProjectSelectionManager.h"
 #include "../toolbars/ToolManager.h"
 #include "../Screenshot.h"
-#include "TempDirectory.h"
 #include "../UndoManager.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"

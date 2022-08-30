@@ -33,8 +33,10 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../prefs/ThemePrefs.h"
 #include "../../../../widgets/AudacityMessageBox.h"
 #include "widgets/ProgressDialog.h"
-#include "UserException.h"
-#include "Identifier.h"
+
+// Saucedacity libraries
+#include <lib-exceptions/UserException.h>
+#include <lib-strings/Identifier.h>
 
 #include <wx/app.h>
 #include <wx/combobox.h>

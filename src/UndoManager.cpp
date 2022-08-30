@@ -32,7 +32,6 @@ UndoManager
 #include "SampleBlock.h"
 #include "Sequence.h"
 #include "WaveTrack.h"          // temp
-//#include "NoteTrack.h"  // for Sonify* function declarations
 #include "Diags.h"
 #include "Tags.h"
 #include "widgets/ProgressDialog.h"

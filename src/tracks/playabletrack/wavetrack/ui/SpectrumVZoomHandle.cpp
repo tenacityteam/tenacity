@@ -15,12 +15,14 @@ Paul Licameli split from WaveTrackVZoomHandle.cpp
 
 #include "../../../../HitTestResult.h"
 #include "../../../../NumberScale.h"
-#include "Prefs.h"
 #include "../../../../ProjectHistory.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../TrackPanelMouseEvent.h"
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 SpectrumVZoomHandle::SpectrumVZoomHandle
 (const std::shared_ptr<WaveTrack> &pTrack, const wxRect &rect, int y)

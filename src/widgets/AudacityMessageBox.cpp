@@ -9,4 +9,7 @@
 **********************************************************************/
 
 #include "AudacityMessageBox.h"
-#include "Internat.h"
+
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
+

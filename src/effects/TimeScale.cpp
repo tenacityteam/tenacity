@@ -19,7 +19,7 @@
 #include "TimeScale.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/intl.h>
 #include <wx/slider.h>

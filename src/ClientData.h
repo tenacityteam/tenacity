@@ -18,7 +18,9 @@ Paul Licameli
 #include <iterator>
 #include <utility>
 #include <vector>
-#include "InconsistencyException.h"
+
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
 
 //! @copydoc ClientData.h
 namespace ClientData {

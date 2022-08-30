@@ -55,14 +55,18 @@ It handles initialization and termination by subclassing wxApp.
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/stat.h>
-#include <stdio.h>
+#include <cstdio>
 #endif
 
 #if defined(__WXMSW__)
 #include <wx/msw/registry.h> // for wxRegKey
 #endif
 
-#include "SaucedacityLogger.h"
+// Saucedacity libraries
+#include <lib-files/SaucedacityLogger.h>
+#include <lib-math/FFT.h>
+#include <lib-preferences/FileConfig.h>
+
 #include "AboutDialog.h"
 #include "AColor.h"
 #include "SaucedacityFileConfig.h"
@@ -97,12 +101,10 @@ It handles initialization and termination by subclassing wxApp.
 #include "PlatformCompatibility.h"
 #include "AutoRecoveryDialog.h"
 #include "SplashDialog.h"
-#include "FFT.h"
 #include "widgets/AudacityMessageBox.h"
 #include "prefs/DirectoriesPrefs.h"
 #include "prefs/GUIPrefs.h"
 #include "tracks/ui/Scrubbing.h"
-#include "FileConfig.h"
 #include "widgets/FileHistory.h"
 
 #include "widgets/wxWidgetsBasicUI.h"

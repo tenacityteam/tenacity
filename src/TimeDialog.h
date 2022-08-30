@@ -13,7 +13,8 @@
 
 #include <wx/defs.h>
 
-#include "ComponentInterface.h" // member variable
+// Saucedacity libraries
+#include <lib-components/ComponentInterface.h> // member variable
 
 #include "widgets/wxPanelWrapper.h" // to inherit
 

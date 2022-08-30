@@ -53,10 +53,7 @@
 *  along with this program; if not, write to the Free Software
 *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
-
-
 #include "RealFFTf48x.h"
-
 
 
 #ifdef EXPERIMENTAL_EQ_SSE_THREADED
@@ -69,12 +66,15 @@
 #define  USE_SSE2
 #endif
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include "RealFFTf.h"
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
+
+// Saucedacity libraries
+#include <lib-math/RealFFTf.h>
+
 #ifdef __WXMSW__
-#pragma warning(disable:4305)
+#pragma warning(disable:4305) // conversion to smaller type in initialization
 #else
 
 #endif 

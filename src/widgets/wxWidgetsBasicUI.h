@@ -11,7 +11,8 @@ Paul Licameli
 #ifndef __WXWIDGETS_BASIC_UI__
 #define __WXWIDGETS_BASIC_UI__
 
-#include "BasicUI.h"
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
 
 class wxWindow;
 

@@ -20,6 +20,9 @@ small calculations of rectangles.
 
 #include "ScreenshotCommand.h"
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include <mutex>
 
 #include "LoadCommands.h"
@@ -37,7 +40,6 @@ small calculations of rectangles.
 #include "../TrackPanel.h"
 #include "../effects/Effect.h"
 #include "../toolbars/ToolManager.h"
-#include "Prefs.h"
 #include "../ProjectWindow.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"

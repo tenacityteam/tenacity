@@ -12,7 +12,7 @@
 #define __AUDACITY_COMMAND_CONTEXT__
 
 #include <memory>
-#include "Identifier.h"
+#include <lib-strings/Identifier.h>
 
 class SaucedacityProject;
 class wxEvent;

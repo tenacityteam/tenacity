@@ -24,18 +24,20 @@
 
 #include "Mix.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/textctrl.h>
 #include <wx/timer.h>
 #include <wx/intl.h>
 
+// Saucedacity libraries
+#include <lib-math/float_cast.h>
+#include <lib-math/Resample.h>
+#include <lib-preferences/Prefs.h>
+
 #include "Envelope.h"
 #include "WaveTrack.h"
-#include "Prefs.h"
-#include "Resample.h"
 #include "TimeTrack.h"
-#include "float_cast.h"
 
 #include "widgets/ProgressDialog.h"
 

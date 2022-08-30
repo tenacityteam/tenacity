@@ -31,9 +31,10 @@
 #include "lv2/uri-map/uri-map.h"
 #include "lv2/units/units.h"
 
-#include "ModuleInterface.h"
-#include "EffectInterface.h"
-#include "PluginInterface.h"
+// Saucedacity libraries
+#include <lib-components/ModuleInterface.h>
+#include <lib-components/EffectInterface.h>
+#include <lib-components/PluginInterface.h>
 
 #include "lv2_external_ui.h"
 

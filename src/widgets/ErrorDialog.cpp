@@ -34,11 +34,13 @@
 #include <wx/artprov.h>
 
 #include "../AllThemeResources.h"
-#include "CodeConversions.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../HelpText.h"
-#include "Prefs.h"
 #include "HelpSystem.h"
+
+// Saucedacity libraries
+#include <lib-string-utils/CodeConversions.h>
+#include <lib-preferences/Prefs.h>
 
 BEGIN_EVENT_TABLE(ErrorDialog, wxDialogWrapper)
    EVT_COLLAPSIBLEPANE_CHANGED( wxID_ANY, ErrorDialog::OnPane )

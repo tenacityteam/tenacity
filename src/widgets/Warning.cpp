@@ -15,8 +15,6 @@ the ability to not see similar warnings again for this session.
 *//********************************************************************/
 
 
-
-
 #include "Warning.h"
 
 #include "../shuttle/ShuttleGui.h"

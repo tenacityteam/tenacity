@@ -20,22 +20,23 @@ i.e. an alternative to the usual interface, for Audacity.
 
 
 #include "ModuleManager.h"
-#include "ModuleInterface.h"
 
+#include "PluginInterface.h"
 
+// Saucedacity libraries
+#include <lib-components/ModuleInterface.h>
+#include <lib-files/FileNames.h>
+#include <lib-utility/MemoryX.h>
 
 #include <wx/dynlib.h>
 #include <wx/log.h>
 #include <wx/string.h>
 #include <wx/filename.h>
 
-#include "FileNames.h"
-#include "MemoryX.h"
-
-#include "PluginInterface.h"
-
 #ifdef EXPERIMENTAL_MODULE_PREFS
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "ModuleSettings.h"
 #endif
 

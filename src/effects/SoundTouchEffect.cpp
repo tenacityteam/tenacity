@@ -17,7 +17,7 @@ effect that uses SoundTouch to do its processing (ChangeTempo
 #if USE_SOUNDTOUCH
 #include "SoundTouchEffect.h"
 
-#include <math.h>
+#include <cmath>
 
 #include "../LabelTrack.h"
 #include "../WaveClip.h"

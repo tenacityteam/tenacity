@@ -13,8 +13,10 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "../../ClientData.h"
 #include "../../Project.h"
-#include "XMLTagHandler.h"
-#include "XMLWriter.h"
+
+// Saucedacity libraries
+#include <lib-xml/XMLTagHandler.h>
+#include <lib-xml/XMLWriter.h>
 
 TrackView::TrackView( const std::shared_ptr<Track> &pTrack )
    : CommonTrackCell{ pTrack }

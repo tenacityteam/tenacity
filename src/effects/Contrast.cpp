@@ -12,16 +12,18 @@
 
 #include "Contrast.h"
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../CommonCommandFlags.h"
 #include "../WaveTrack.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectFileIO.h"
 #include "../ProjectSettings.h"
 #include "../ProjectWindow.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
-#include "FileNames.h"
 #include "../ViewInfo.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/NumericTextCtrl.h"
@@ -31,7 +33,7 @@
 #include <limits>
 
 #if defined(__WXMSW__) && !defined(__CYGWIN__)
-#include <float.h>
+#include <cfloat>
 #define finite(x) _finite(x)
 #endif
 

@@ -23,7 +23,8 @@ Paul Licameli
 #include <algorithm>
 #include <wx/intl.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 
 WaveformSettings::Globals::Globals()

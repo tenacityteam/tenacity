@@ -20,16 +20,18 @@
 #include "AutoDuck.h"
 #include "LoadEffects.h"
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 #include <wx/dcclient.h>
 #include <wx/dcmemory.h>
 #include <wx/intl.h>
 
+// Saucedacity Libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../AColor.h"
 #include "../AllThemeResources.h"
-#include "Prefs.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Theme.h"

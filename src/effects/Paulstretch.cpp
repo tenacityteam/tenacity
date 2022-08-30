@@ -20,18 +20,20 @@
 
 #include <algorithm>
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 #include <wx/intl.h>
 #include <wx/valgen.h>
 
+// Saucedacity libraries
+#include <lib-math/FFT.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "FFT.h"
 #include "../widgets/valnum.h"
 #include "../widgets/AudacityMessageBox.h"
-#include "Prefs.h"
 
 #include "../WaveTrack.h"
 

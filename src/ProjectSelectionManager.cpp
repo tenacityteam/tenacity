@@ -11,7 +11,6 @@ Paul Licameli split from ProjectManager.cpp
 #include "ProjectSelectionManager.h"
 
 
-
 #include "Project.h"
 #include "ProjectHistory.h"
 #include "ProjectSettings.h"

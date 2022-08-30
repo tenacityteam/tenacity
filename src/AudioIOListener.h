@@ -14,7 +14,6 @@
 #define __AUDACITY_AUDIO_IO_LISTENER__
 
 
-
 class WaveTrack;
 using WaveTrackArray =
    std::vector < std::shared_ptr < WaveTrack > >;

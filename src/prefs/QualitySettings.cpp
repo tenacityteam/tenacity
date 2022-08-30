@@ -10,7 +10,9 @@
 
 #include "QualitySettings.h"
 #include "AudioIOBase.h"
-#include "Internat.h"
+
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
 
 IntSetting QualitySettings::DefaultSampleRate{
    L"/SamplingRate/DefaultProjectSampleRate",

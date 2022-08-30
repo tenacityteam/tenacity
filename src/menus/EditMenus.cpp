@@ -1,3 +1,13 @@
+/**********************************************************************
+
+  Saucedacity: A Digital Audio Editor
+
+  EditMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 #include "../AdornedRulerPanel.h"
 #include "../Clipboard.h"
@@ -5,7 +15,6 @@
 #include "../LabelTrack.h"
 #include "../Menus.h"
 #include "../NoteTrack.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectHistory.h"
 #include "../ProjectSettings.h"

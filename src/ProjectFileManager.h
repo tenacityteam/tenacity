@@ -16,7 +16,9 @@ Paul Licameli split from SaucedacityProject.h
 #include <vector>
 
 #include "ClientData.h" // to inherit
-#include "FileNames.h" // for FileType
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h> // for FileType
 
 class wxString;
 class wxFileName;

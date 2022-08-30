@@ -15,8 +15,10 @@ Paul Licameli split from ProjectManager.cpp
 #include <wx/frame.h>
 #include <wx/statusbr.h>
 
+// Saucedacity librairies
+#include <lib-basic-ui/BasicUI.h>
+
 #include "AudioIO.h"
-#include "BasicUI.h"
 #include "CommonCommandFlags.h"
 #include "LabelTrack.h"
 #include "Menus.h"

@@ -18,12 +18,12 @@ class NumericTextCtrl;
 #include <wx/dynlib.h> // member variable
 #include <wx/event.h> // to inherit
 
-#include "EffectInterface.h"
-#include "ModuleInterface.h"
-#include "PluginInterface.h"
+#include <lib-components/EffectInterface.h>
+#include <lib-components/ModuleInterface.h>
+#include <lib-components/PluginInterface.h>
+#include <lib-math/SampleFormat.h>
 
 #include "ladspa.h"
-#include "SampleFormat.h"
 
 #define LADSPAEFFECTS_VERSION wxT("1.0.0.0")
 /* i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"

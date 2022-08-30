@@ -26,7 +26,9 @@
 
 
 #include "RingBuffer.h"
-#include "Dither.h"
+
+// Saucedacity libraries
+#include <lib-math/Dither.h>
 
 RingBuffer::RingBuffer(sampleFormat format, size_t size)
    : mFormat{ format }

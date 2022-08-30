@@ -11,7 +11,8 @@
 #ifndef __AUDACITY_MODULE_SETTINGS__
 #define __AUDACITY_MODULE_SETTINGS__
 
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
 
 enum {
    kModuleDisabled = 0,

@@ -13,7 +13,10 @@ Paul Licameli split from class WaveTrack
 
 #include "../../../ui/CommonTrackView.h"
 #include "../../../../ClientData.h"
-#include "SampleCount.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleCount.h>
+
 namespace WaveTrackViewConstants{ enum Display : int; }
 struct WaveTrackSubViewType;
 

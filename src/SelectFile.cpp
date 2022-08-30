@@ -9,9 +9,11 @@
  **********************************************************************/
 
 #include "SelectFile.h"
-#include "FileNames.h"
 #include "widgets/FileDialog/FileDialog.h"
 #include "widgets/AudacityMessageBox.h"
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
 
 FilePath
 SelectFile(FileNames::Operation op,

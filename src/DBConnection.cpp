@@ -15,13 +15,15 @@ Paul Licameli -- split from ProjectFileIO.cpp
 
 #include <wx/string.h>
 
-#include "SaucedacityLogger.h"
-#include "BasicUI.h"
-#include "FileNames.h"
-#include "Internat.h"
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-files/FileException.h>
+#include <lib-files/FileNames.h>
+#include <lib-files/SaucedacityLogger.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-strings/Internat.h>
+
 #include "Project.h"
-#include "FileException.h"
-#include "wxFileNameWrapper.h"
 
 // Configuration to provide "safe" connections
 static const char *SafeConfig =

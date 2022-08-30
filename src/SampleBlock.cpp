@@ -6,10 +6,11 @@ SampleBlock.cpp
 
 **********************************************************************/
 
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
+#include <lib-math/SampleFormat.h>
 
-#include "InconsistencyException.h"
 #include "SampleBlock.h"
-#include "SampleFormat.h"
 
 #include <wx/defs.h>
 

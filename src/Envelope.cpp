@@ -30,8 +30,7 @@ a draggable point type.
 #include "Envelope.h"
 
 
-
-#include <math.h>
+#include <cmath>
 
 #include <wx/wxcrtvararg.h>
 #include <wx/brush.h>

@@ -43,10 +43,12 @@
 #include "EffectManager.h"
 #include "EffectUI.h"
 
+// Saucedacity libraries
+#include <lib-math/RealFFTf.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/HelpSystem.h"
-#include "Prefs.h"
-#include "RealFFTf.h"
 
 #include "../WaveTrack.h"
 #include "../widgets/AudacityMessageBox.h"
@@ -54,10 +56,10 @@
 
 #include <algorithm>
 #include <vector>
-#include <math.h>
+#include <cmath>
 
 #if defined(__WXMSW__) && !defined(__CYGWIN__)
-#include <float.h>
+#include <cfloat>
 #define finite(x) _finite(x)
 #endif
 

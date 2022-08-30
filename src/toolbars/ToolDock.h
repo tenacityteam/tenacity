@@ -17,7 +17,9 @@
 #include <wx/defs.h>
 
 #include "ToolBar.h"
-#include "MemoryX.h"
+
+// Saucedacity libraries
+#include <lib-utility/MemoryX.h>
 
 class wxCommandEvent;
 class wxEraseEvent;

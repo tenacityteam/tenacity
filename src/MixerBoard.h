@@ -8,9 +8,6 @@
 
 **********************************************************************/
 
-
-
-
 #ifndef __AUDACITY_MIXER_BOARD__
 #define __AUDACITY_MIXER_BOARD__
 
@@ -20,7 +17,8 @@
 #include "widgets/ASlider.h" // to inherit
 #include "commands/CommandManagerWindowClasses.h"
 
-#include "Prefs.h"
+// Saucedacity library
+#include <lib-preferences/Prefs.h>
 
 class wxArrayString;
 class wxBitmapButton;

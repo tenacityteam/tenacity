@@ -46,7 +46,7 @@ and get deterministic behaviour.
 #include "float_cast.h"
 
 #include <stdlib.h>
-#include <math.h>
+#include <cmath>
 #include <string.h>
 //#include <sys/types.h>
 //#include <memory.h>

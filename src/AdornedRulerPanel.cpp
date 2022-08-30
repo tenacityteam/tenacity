@@ -25,13 +25,15 @@
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/tooltip.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "AColor.h"
 #include "AllThemeResources.h"
 #include "AudioIO.h"
 #include "CellularPanel.h"
 #include "HitTestResult.h"
 #include "Menus.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "ProjectAudioManager.h"

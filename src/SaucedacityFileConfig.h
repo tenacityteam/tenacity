@@ -13,7 +13,9 @@ Paul Licameli split from Prefs.h
 #define __AUDACITY_FILE_CONFIG__
 
 #include <memory>
-#include "FileConfig.h" // to inherit
+
+// Saucedacity libraries
+#include <lib-preferences/FileConfig.h> // to inherit
 
 /// \brief Our own specialisation of FileConfig.
 class SAUCEDACITY_DLL_API SaucedacityFileConfig final : public FileConfig

@@ -15,8 +15,10 @@ Paul Licameli split from SaucedacityProject.h
 #include <unordered_set>
 
 #include "ClientData.h" // to inherit
-#include "Prefs.h" // to inherit
-#include "XMLTagHandler.h" // to inherit
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h> // to inherit
+#include <lib-xml/XMLTagHandler.h> // to inherit
 
 struct sqlite3;
 struct sqlite3_context;

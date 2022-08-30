@@ -26,7 +26,8 @@
 #include <wx/weakref.h>
 #include <wx/window.h>
 
-#include "SaucedacityException.h"
+// Saucedacity libraries
+#include <lib-exceptions/SaucedacityException.h>
 
 ////////////////////////////////////////////////////////////
 /// Custom events

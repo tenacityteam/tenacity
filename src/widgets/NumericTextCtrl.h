@@ -15,17 +15,16 @@
 #ifndef __AUDACITY_TIME_TEXT_CTRL__
 #define __AUDACITY_TIME_TEXT_CTRL__
 
+// Saucedacity libraries
+#include <lib-components/ComponentInterface.h>
+#include <lib-components/ComponentInterfaceSymbol.h>
+#include <lib-strings/Internat.h>
+#include <lib-utility/MemoryX.h>
 
-
-#include "MemoryX.h"
-#include "ComponentInterface.h"
-#include "ComponentInterfaceSymbol.h"
 #include <vector>
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/control.h> // to inherit
-
-#include "Internat.h"
 
 // One event type for each type of control.  Event is raised when a control
 // changes its format.  Owners of controls of the same type can listen and

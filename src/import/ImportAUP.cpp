@@ -22,14 +22,19 @@
 #include "Import.h"
 #include "ImportPlugin.h"
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-xml/XMLFileReader.h>
+
 #include "../Envelope.h"
 #include "../FileFormats.h"
-#include "FileNames.h"
 #include "../LabelTrack.h"
 #if defined(USE_MIDI)
 #include "../NoteTrack.h"
 #endif
-#include "Prefs.h"
+
 #include "../Project.h"
 #include "../ProjectFileIO.h"
 #include "../ProjectFileManager.h"
@@ -46,8 +51,6 @@
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/NumericTextCtrl.h"
 #include "../widgets/ProgressDialog.h"
-#include "XMLFileReader.h"
-#include "wxFileNameWrapper.h"
 
 #include <map>
 

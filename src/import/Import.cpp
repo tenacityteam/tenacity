@@ -33,12 +33,13 @@ ImportLOF.cpp, and ImportAUP.cpp.
 
 *//******************************************************************/
 
-
-
-
 #include "Import.h"
 
 #include "ImportPlugin.h"
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
 
 #include <algorithm>
 #include <unordered_set>
@@ -50,12 +51,9 @@ ImportLOF.cpp, and ImportAUP.cpp.
 #include <wx/log.h>
 #include <wx/sizer.h>         //for wxBoxSizer
 #include "../ffmpeg/FFmpeg.h"
-#include "FileNames.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Project.h"
 #include "../WaveTrack.h"
-
-#include "Prefs.h"
 
 #include "../widgets/ProgressDialog.h"
 

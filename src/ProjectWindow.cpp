@@ -11,7 +11,6 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "ProjectWindow.h"
 
 
-
 #include "AllThemeResources.h"
 #include "AudioIO.h"
 #include "Menus.h"

@@ -19,7 +19,7 @@ machine endianness representations.
 #include <exception>
 #include <stdexcept>
 #include <cstring>
-#include <stdint.h>
+#include <cstdint>
 #include <cstdio>
 
 #include <wx/defs.h>

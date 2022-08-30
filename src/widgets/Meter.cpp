@@ -58,7 +58,7 @@
 #include <wx/radiobut.h>
 #include <wx/tooltip.h>
 
-#include <math.h>
+#include <cmath>
 
 #include "../AudioIO.h"
 #include "../AColor.h"
@@ -67,9 +67,11 @@
 #include "../Project.h"
 #include "../ProjectAudioManager.h"
 #include "../ProjectStatus.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Theme.h"
+
+// Saucedacity libraires
+#include <lib-preferences/Prefs.h>
 
 #include "../AllThemeResources.h"
 #include "../widgets/valnum.h"

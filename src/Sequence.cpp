@@ -28,12 +28,11 @@
 *//*******************************************************************/
 
 
-
 #include "Sequence.h"
 
 #include <algorithm>
-#include <float.h>
-#include <math.h>
+#include <cfloat>
+#include <cmath>
 
 #include <wx/intl.h>
 #include <wx/filefn.h>
@@ -41,8 +40,10 @@
 #include <wx/log.h>
 
 #include "SampleBlock.h"
-#include "InconsistencyException.h"
 #include "widgets/AudacityMessageBox.h"
+
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
 
 size_t Sequence::sMaxDiskBlockSize = 1048576;
 

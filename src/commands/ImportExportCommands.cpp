@@ -17,6 +17,9 @@
 
 #include "ImportExportCommands.h"
 
+// Saucedacity libraries
+#include <lib-files/wxFileNameWrapper.h>
+
 #include "LoadCommands.h"
 #include "../ProjectFileManager.h"
 #include "../ViewInfo.h"
@@ -25,7 +28,6 @@
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Track.h"
-#include "wxFileNameWrapper.h"
 #include "CommandContext.h"
 
 const ComponentInterfaceSymbol ImportCommand::Symbol

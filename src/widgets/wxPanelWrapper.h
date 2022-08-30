@@ -13,9 +13,9 @@
 #include <wx/panel.h> // to inherit
 #include <wx/dialog.h> // to inherit
 
-#include "Internat.h"
-
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
+#include <lib-strings/Internat.h>
 
 SAUCEDACITY_DLL_API void wxTabTraversalWrapperCharHook(wxKeyEvent &event);
 

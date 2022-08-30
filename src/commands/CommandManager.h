@@ -14,19 +14,18 @@
 
 #include "Identifier.h"
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-xml/XMLTagHandler.h>
+
 #include "../ClientData.h"
 #include "CommandFunctors.h"
 #include "CommandFlag.h"
 
 #include "Keyboard.h"
-
-#include "Prefs.h"
 #include "../Registry.h"
 
 #include <vector>
-
-#include "XMLTagHandler.h"
-
 #include <unordered_map>
 
 class wxMenu;

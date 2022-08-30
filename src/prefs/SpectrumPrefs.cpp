@@ -17,21 +17,23 @@
 
 #include "SpectrumPrefs.h"
 
+#include <algorithm>
+
 #include <wx/choice.h>
 #include <wx/defs.h>
 #include <wx/intl.h>
 #include <wx/checkbox.h>
 #include <wx/textctrl.h>
 
-#include "FFT.h"
+// Saucedacity libraries
+#include <lib-math/FFT.h>
+
 #include "../Project.h"
 #include "../shuttle/ShuttleGui.h"
 
 #include "../TrackPanel.h"
 #include "../WaveTrack.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"
-
-#include <algorithm>
 
 #include "../widgets/AudacityMessageBox.h"
 

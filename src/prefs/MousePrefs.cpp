@@ -39,7 +39,9 @@
 #include <wx/intl.h>
 #include <wx/listctrl.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/ShuttleGui.h"
 
 // The numbers of the columns of the mList.

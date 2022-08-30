@@ -8,13 +8,15 @@ Paul Licameli -- split from SampleBlock.cpp and SampleBlock.h
 
 **********************************************************************/
 
-#include <float.h>
+#include <cfloat>
 #include <sqlite3.h>
 
 #include "DBConnection.h"
 #include "ProjectFileIO.h"
-#include "SampleFormat.h"
-#include "XMLTagHandler.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-xml/XMLTagHandler.h>
 
 #include "SampleBlock.h" // to inherit
 

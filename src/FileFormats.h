@@ -12,9 +12,9 @@
 #define __AUDACITY_FILE_FORMATS__
 
 
-
-#include "Identifier.h"
-#include "SampleFormat.h"
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-strings/Identifier.h>
 
 //#include <mutex>
 #include <memory>

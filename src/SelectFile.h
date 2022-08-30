@@ -11,7 +11,9 @@
 #ifndef __AUDACITY_SELECT_FILE__
 #define __AUDACITY_SELECT_FILE__
 
-#include "Identifier.h" // for FilePath
+// Saucedacity libraries
+#include <lib-strings/Identifier.h> // for FilePath
+
 #include <vector>
 class wxWindow;
 

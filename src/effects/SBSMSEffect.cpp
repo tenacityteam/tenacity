@@ -16,7 +16,7 @@ effect that uses SBSMS to do its processing (TimeScale)
 #if USE_SBSMS
 #include "SBSMSEffect.h"
 
-#include <math.h>
+#include <cmath>
 
 #include "../LabelTrack.h"
 #include "../WaveClip.h"

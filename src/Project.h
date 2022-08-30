@@ -11,7 +11,8 @@
 #ifndef __AUDACITY_PROJECT__
 #define __AUDACITY_PROJECT__
 
-#include "Identifier.h"
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
 
 #include "ClientData.h" // to inherit
 

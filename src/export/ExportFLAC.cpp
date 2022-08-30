@@ -29,10 +29,13 @@ and libvorbis examples, Monty <monty@xiph.org>
 
 #include "FLAC++/encoder.h"
 
-#include "float_cast.h"
+// Saucedacity libraries
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../ProjectSettings.h"
 #include "../Mix.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 
 #include "../Tags.h"
@@ -40,7 +43,6 @@ and libvorbis examples, Monty <monty@xiph.org>
 
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
-#include "wxFileNameWrapper.h"
 
 //----------------------------------------------------------------------------
 // ExportFLACOptions Class

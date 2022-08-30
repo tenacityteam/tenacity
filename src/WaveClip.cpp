@@ -23,19 +23,21 @@
 
 
 
-#include <math.h>
+#include <cmath>
 #include <vector>
 #include <wx/log.h>
 
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
+#include <lib-exceptions/UserException.h>
+#include <lib-math/Resample.h>
+#include <lib-preferences/Prefs.h>
+
 #include "Sequence.h"
 #include "Spectrum.h"
-#include "Prefs.h"
 #include "Envelope.h"
-#include "Resample.h"
 #include "WaveTrack.h"
 #include "Profiler.h"
-#include "InconsistencyException.h"
-#include "UserException.h"
 
 #include "prefs/SpectrogramSettings.h"
 #include "widgets/ProgressDialog.h"

@@ -28,7 +28,7 @@
 #include "Compressor.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/brush.h>
 #include <wx/checkbox.h>
@@ -37,12 +37,14 @@
 #include <wx/slider.h>
 #include <wx/stattext.h>
 
+// Saucedacity libraries
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../AColor.h"
-#include "Prefs.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Theme.h"
-#include "float_cast.h"
 #include "../widgets/Ruler.h"
 
 #include "../WaveTrack.h"

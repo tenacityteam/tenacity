@@ -56,7 +56,7 @@
 #include "Equalization.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 #include <vector>
 
 #include <wx/setup.h> // for wxUSE_* macros
@@ -87,15 +87,21 @@
 #include <wx/tooltip.h>
 #include <wx/utils.h>
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/PlatformCompatibility.h>
+#include <lib-math/FFT.h>
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-xml/XMLFileReader.h>
+#include <lib-xml/XMLFileWriter.h>
+#include <lib-xml/XMLWriter.h>
+
 #include "../AColor.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "PlatformCompatibility.h"
-#include "FileNames.h"
 #include "../Envelope.h"
 #include "../EnvelopeEditor.h"
-#include "FFT.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../Theme.h"
 #include "../TrackArtist.h"
@@ -104,11 +110,7 @@
 #include "../WaveTrack.h"
 #include "../widgets/Ruler.h"
 #include "../widgets/AudacityTextEntryDialog.h"
-#include "XMLFileReader.h"
-#include "XMLFileWriter.h"
-#include "XMLWriter.h"
 #include "../AllThemeResources.h"
-#include "float_cast.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "../widgets/WindowAccessible.h"

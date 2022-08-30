@@ -16,7 +16,8 @@
 #define	M_PI		3.14159265358979323846  /* pi */
 #endif
 
-#include "SampleCount.h"
+// Saucedacity libraries
+#include <lib-math/SampleCount.h>
 
 class WaveTrack;
 

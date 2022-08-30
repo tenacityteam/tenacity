@@ -10,9 +10,8 @@ Paul Licameli
 
 #include "SelectedRegion.h"
 
-
-
-#include "XMLWriter.h"
+// Saucedacity libraries
+#include <lib-xml/XMLWriter.h>
 
 const wxChar *SelectedRegion::sDefaultT0Name = wxT("selStart");
 const wxChar *SelectedRegion::sDefaultT1Name = wxT("selEnd");

@@ -24,8 +24,10 @@
 #include <wx/defs.h>
 #include <wx/textctrl.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/ShuttleGui.h"
-#include "Prefs.h"
 
 PlaybackPrefs::PlaybackPrefs(wxWindow * parent, wxWindowID winid)
 :  PrefsPanel(parent, winid, XO("Playback"))

@@ -19,8 +19,9 @@
 #include <wx/defs.h>
 #include <wx/menu.h>
 
-#include "Internat.h"
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
+#include <lib-preferences/Prefs.h>
 
 #include <mutex>
 

@@ -27,10 +27,12 @@
  
 #include <vorbis/vorbisenc.h>
 
-#include "FileIO.h"
+// Saucedacity libraries
+#include <lib-files/FileIO.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../ProjectSettings.h"
 #include "../Mix.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 
 #include "../Tags.h"

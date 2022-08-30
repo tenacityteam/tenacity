@@ -22,8 +22,8 @@
 #include "Amplify.h"
 #include "LoadEffects.h"
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 #include <wx/button.h>
 #include <wx/checkbox.h>

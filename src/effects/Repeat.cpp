@@ -24,7 +24,7 @@
 #include "Repeat.h"
 
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/intl.h>
 #include <wx/stattext.h>

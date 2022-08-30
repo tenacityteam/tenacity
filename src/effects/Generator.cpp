@@ -16,8 +16,10 @@
 
 #include "Generator.h"
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../Project.h"
-#include "Prefs.h"
 #include "../ViewInfo.h"
 #include "../WaveTrack.h"
 #include "../prefs/TracksBehaviorsPrefs.h"

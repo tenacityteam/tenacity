@@ -33,7 +33,10 @@ Provides:
 
 #include <wx/app.h>
 #include <wx/wxprec.h>
-#include "Prefs.h"
+
+// Saucedacity preferences
+#include <lib-preferences/Prefs.h>
+
 #include "../Theme.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../AColor.h"

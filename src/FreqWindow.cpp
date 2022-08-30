@@ -62,23 +62,24 @@ the mouse around.
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
 
-#include <math.h>
+#include <cmath>
+
+// Saucedacity
+#include <lib-files/FileNames.h>
+#include <lib-math/FFT.h>
+#include <lib-preferences/Prefs.h>
 
 #include "SelectFile.h"
 #include "shuttle/ShuttleGui.h"
 #include "AColor.h"
 #include "CommonCommandFlags.h"
-#include "FFT.h"
 #include "PitchName.h"
 #include "prefs/GUISettings.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "ProjectWindow.h"
 #include "Theme.h"
 #include "ViewInfo.h"
 #include "AllThemeResources.h"
-
-#include "FileNames.h"
 
 #include "WaveTrack.h"
 

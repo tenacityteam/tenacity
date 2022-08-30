@@ -25,6 +25,9 @@
 #include <wx/sizer.h>
 #include <wx/tokenzr.h>
 
+// Saucedacity libraries
+#include <lib-files/wxFileNameWrapper.h>
+
 #include "../AudioIO.h"
 #include "widgets/wxWidgetsBasicUI.h"
 #include "../DBConnection.h"
@@ -40,7 +43,6 @@
 #include "../shuttle/Shuttle.h"
 #include "../ViewInfo.h"
 #include "../WaveTrack.h"
-#include "wxFileNameWrapper.h"
 #include "../widgets/ProgressDialog.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"

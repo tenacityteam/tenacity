@@ -23,10 +23,12 @@
 #include <wx/app.h>
 #include <wx/defs.h>
 
-#include "FileNames.h"
-#include "Languages.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Languages.h>
+
 #include "../Theme.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 
 #include "GUISettings.h"

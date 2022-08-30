@@ -11,7 +11,7 @@
 #include "Matrix.h"
 
 #include <stdlib.h>
-#include <math.h>
+#include <cmath>
 
 #include <wx/defs.h>
 

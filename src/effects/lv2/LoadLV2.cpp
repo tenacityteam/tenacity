@@ -35,8 +35,9 @@ Functions that find and load all LV2 plugins on the system.
 #include <wx/log.h>
 #include <wx/string.h>
 
-#include "Internat.h"
-#include "wxArrayStringEx.h"
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
+#include <lib-strings/wxArrayStringEx.h>
 
 #include "LV2Effect.h"
 #include "lv2/event/event.h"

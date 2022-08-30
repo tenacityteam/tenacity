@@ -15,7 +15,7 @@
 
 #include "Spectrum.h"
 
-#include <math.h>
+#include <cmath>
 
 #include "SampleFormat.h"
 

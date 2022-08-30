@@ -24,7 +24,7 @@
 #include <wx/valgen.h>
 #endif
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/intl.h>
 #include <wx/checkbox.h>

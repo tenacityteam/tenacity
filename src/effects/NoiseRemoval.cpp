@@ -50,10 +50,10 @@
 #include "../FileNames.h"
 #include "../shuttle/ShuttleGui.h"
 
-#include <math.h>
+#include <cmath>
 
 #if defined(__WXMSW__) && !defined(__CYGWIN__)
-#include <float.h>
+#include <cfloat>
 #define finite(x) _finite(x)
 #endif
 

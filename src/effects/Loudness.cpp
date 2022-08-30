@@ -17,7 +17,7 @@
 
 #include "Loudness.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/intl.h>
 #include <wx/simplebook.h>

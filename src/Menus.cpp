@@ -29,7 +29,6 @@
 #include "Menus.h"
 
 
-
 #include <wx/frame.h>
 
 #include "Project.h"
@@ -39,7 +38,9 @@
 #include "commands/CommandManager.h"
 #include "toolbars/ToolManager.h"
 #include "widgets/AudacityMessageBox.h"
-#include "BasicUI.h"
+
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
 
 #include <unordered_set>
 

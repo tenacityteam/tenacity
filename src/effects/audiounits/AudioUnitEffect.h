@@ -13,17 +13,17 @@
 
 
 #if USE_AUDIO_UNITS
+// Saucedacity libraries
+#include <lib-components/EffectInterface.h>
+#include <lib-components/ModuleInterface.h>
+#include <lib-components/PluginInterface.h>
+#include <lib-utility/MemoryX.h>
 
-#include "MemoryX.h"
 #include <vector>
 
 #include <AudioToolbox/AudioUnitUtilities.h>
 #include <AudioUnit/AudioUnit.h>
 #include <AudioUnit/AudioUnitProperties.h>
-
-#include "EffectInterface.h"
-#include "ModuleInterface.h"
-#include "PluginInterface.h"
 
 #include "AUControl.h"
 

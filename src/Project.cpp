@@ -12,7 +12,7 @@
 
 #include "Project.h"
 
-#include "FileNames.h"
+#include <lib-files/FileNames.h>
 #include "KeyboardCapture.h"
 #include "TempDirectory.h"
 #include "widgets/wxWidgetsBasicUI.h"

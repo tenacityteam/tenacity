@@ -13,12 +13,13 @@
 
 #include <wx/defs.h>
 
-#include "wxArrayStringEx.h"
 #include <map>
 #include <memory>
 
-#include "EffectInterface.h"
-#include "PluginInterface.h"
+// Saucedacity libraries
+#include <lib-components/EffectInterface.h>
+#include <lib-components/PluginInterface.h>
+#include <lib-strings/wxArrayStringEx.h>
 
 class wxArrayString;
 class FileConfig;

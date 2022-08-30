@@ -16,7 +16,9 @@
 
 #include "export/Export.h"
 #include "commands/CommandFlag.h"
-#include "ComponentInterface.h" // for ComponentInterfaceSymbol
+
+// Ssaucedaity libraries
+#include <lib-components/ComponentInterface.h> // for ComponentInterfaceSymbol
 
 class wxArrayString;
 class Effect;

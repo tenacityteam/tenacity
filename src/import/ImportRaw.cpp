@@ -20,25 +20,25 @@ and sample size to help you importing data of an unknown format.
 
 *//*******************************************************************/
 
-
-
 #include "ImportRaw.h"
 
 #include "ImportPlugin.h"
 
 #include "../AudioIOBase.h"
 #include "../FileFormats.h"
-#include "Prefs.h"
 #include "../ProjectSettings.h"
 #include "../SelectFile.h"
 #include "../shuttle/ShuttleGui.h"
-#include "UserException.h"
 #include "../WaveTrack.h"
 #include "../widgets/ProgressDialog.h"
 
+// Saucedacity libraries
+#include <lib-exceptions/UserException.h>
+#include <lib-preferences/Prefs.h>
+
 #include <cmath>
 #include <cstdio>
-#include <stdint.h>
+#include <cstdint>
 #include <vector>
 
 #include <wx/crt.h>

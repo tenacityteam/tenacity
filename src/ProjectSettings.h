@@ -15,8 +15,9 @@ Paul Licameli split from SaucedacityProject.h
 #include <wx/event.h> // to declare custom event type
 
 #include "ClientData.h" // to inherit
-#include "Prefs.h" // to inherit
-#include "audacity/Types.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h> // to inherit
 
 class SaucedacityProject;
 

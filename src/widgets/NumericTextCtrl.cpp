@@ -175,7 +175,7 @@ different formats.
 #include "../Theme.h"
 
 #include <algorithm>
-#include <math.h>
+#include <cmath>
 #include <limits>
 
 #include <wx/setup.h> // for wxUSE_* macros

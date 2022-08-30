@@ -10,13 +10,14 @@ Paul Licameli
 
 #ifndef __AUDACITY_PROJECT_STATUS__
 #define __AUDACITY_PROJECT_STATUS__
-#endif
 
 #include <utility>
 #include <vector>
 #include <wx/event.h> // to declare custom event type
 #include "ClientData.h" // to inherit
-#include "Prefs.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 class SaucedacityProject;
 class wxWindow;
@@ -76,3 +77,5 @@ private:
    SaucedacityProject &mProject;
    TranslatableString mLastStatusMessages[ nStatusBarFields ];
 };
+
+#endif

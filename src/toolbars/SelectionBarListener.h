@@ -11,8 +11,8 @@
 #ifndef __AUDACITY_SELECTION_BAR_LISTENER__
 #define __AUDACITY_SELECTION_BAR_LISTENER__
 
-#include "audacity/Types.h"
-#include "ComponentInterfaceSymbol.h"
+// Saucedacity libraries
+#include <lib-components/ComponentInterfaceSymbol.h>
 
 class SelectedRegion;
 

@@ -16,8 +16,6 @@
 #include <utility>
 #include <wx/string.h>
 
-#include "audacity/Types.h"
-
 class SaucedacityProject;
 
 // Increase the template parameter as needed to allow more flags

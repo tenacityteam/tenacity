@@ -43,12 +43,14 @@ It forwards the actual work of doing the commands to the ScreenshotCommand.
 #include "Project.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
-#include "Prefs.h"
 #include "tracks/ui/TrackView.h"
 #include "widgets/HelpSystem.h"
 
 #include "ViewInfo.h"
 #include "WaveTrack.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 class OldStyleCommandType;
 class ScreenFrameTimer;

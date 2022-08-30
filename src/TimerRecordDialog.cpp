@@ -21,8 +21,6 @@
 
 #include "TimerRecordDialog.h"
 
-#include "FileNames.h"
-
 #include <wx/setup.h> // for wxUSE_* macros
 
 #include <wx/wxcrtvararg.h>
@@ -47,13 +45,16 @@
 #include "ProjectFileIO.h"
 #include "ProjectFileManager.h"
 #include "ProjectManager.h"
-#include "Prefs.h"
 #include "Track.h"
 #include "widgets/NumericTextCtrl.h"
 #include "widgets/HelpSystem.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/ProgressDialog.h"
 #include "widgets/wxTextCtrlWrapper.h"
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
 
 #if wxUSE_ACCESSIBILITY
 #include "widgets/WindowAccessible.h"

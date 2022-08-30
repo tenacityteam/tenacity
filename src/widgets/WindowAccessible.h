@@ -16,7 +16,9 @@
 #if wxUSE_ACCESSIBILITY
 
 #include <wx/access.h> // to inherit
-#include <Internat.h> // for TranslatableString
+
+// Saucedacity library
+#include <lib-strings/Internat.h> // for TranslatableString
 
 class SAUCEDACITY_DLL_API WindowAccessible: public wxAccessible
 {

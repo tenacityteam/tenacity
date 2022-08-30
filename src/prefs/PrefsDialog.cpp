@@ -34,8 +34,10 @@
 #include <wx/treebook.h>
 #include <wx/treectrl.h>
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../AudioIOBase.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../commands/CommandManager.h"
 

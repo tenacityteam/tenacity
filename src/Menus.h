@@ -13,7 +13,10 @@
 #include "Identifier.h"
 
 #include <wx/string.h> // member variable
-#include "Prefs.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "ClientData.h"
 #include "commands/CommandFlag.h"
 

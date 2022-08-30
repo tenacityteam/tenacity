@@ -9,13 +9,11 @@
 
 **********************************************************************/
 
-
 #include "MixerBoard.h"
 
 
-
 #include <cfloat>
-#include <math.h>
+#include <cmath>
 
 #include <wx/setup.h> // for wxUSE_* macros
 

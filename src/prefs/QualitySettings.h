@@ -11,9 +11,9 @@
 #ifndef __AUDACITY_QUALITY_SETTINGS__
 #define __AUDACITY_QUALITY_SETTINGS__
 
-#include <audacity/Types.h>
-#include "Prefs.h" // for EnumSetting
-#include "SampleFormat.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h> // for EnumSetting
+#include <lib-math/SampleFormat.h>
 
 class IntSetting;
 

@@ -28,13 +28,15 @@
 #include "ClickRemoval.h"
 #include "LoadEffects.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/intl.h>
 #include <wx/slider.h>
 #include <wx/valgen.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/AudacityMessageBox.h"

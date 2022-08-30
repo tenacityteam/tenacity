@@ -1,4 +1,14 @@
+/**********************************************************************
 
+  Saucedacity: A Digital Audio Editor
+
+  TransportMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-preferences/Prefs.h>
 
 #include "../AdornedRulerPanel.h"
 #include "../AudioIO.h"
@@ -6,7 +16,6 @@
 #include "../DeviceManager.h"
 #include "../LabelTrack.h"
 #include "../Menus.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
@@ -30,10 +39,9 @@
 #include "../toolbars/ControlToolBar.h"
 #include "../toolbars/TranscriptionToolBar.h"
 #include "../widgets/AudacityMessageBox.h"
-#include "BasicUI.h"
 #include "../widgets/ProgressDialog.h"
 
-#include <float.h>
+#include <cfloat>
 #include <wx/app.h>
 
 // private helper classes and functions

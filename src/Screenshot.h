@@ -20,7 +20,6 @@
 #define __AUDACITY_SCREENSHOT__
 
 
-
 #include <wx/defs.h>
 
 class SaucedacityProject;

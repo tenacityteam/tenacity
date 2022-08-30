@@ -22,12 +22,12 @@ and in the spectrogram spectral selection.
   Extended range check for additional FFT windows
 */
 
-
-
 #include "SpectrumAnalyst.h"
-#include "FFT.h"
 
-#include "SampleFormat.h"
+// Saucedacity libraries
+#include <lib-math/FFT.h>
+#include <lib-math/SampleFormat.h>
+
 #include <wx/dcclient.h>
 
 FreqGauge::FreqGauge(wxWindow * parent, wxWindowID winid)

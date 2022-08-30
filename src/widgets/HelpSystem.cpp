@@ -38,13 +38,15 @@
 #include <wx/statusbr.h>
 #include <wx/regex.h>
 
-#include "FileNames.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../AllThemeResources.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Theme.h"
 #include "../HelpText.h"
-#include "Prefs.h"
-#include "wxFileNameWrapper.h"
 #include "../prefs/GUIPrefs.h"
 
 #ifdef USE_ALPHA_MANUAL

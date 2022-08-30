@@ -11,8 +11,6 @@
 
 #include "EnvelopeEditor.h"
 
-
-
 #include <wx/dc.h>
 #include <wx/event.h>
 

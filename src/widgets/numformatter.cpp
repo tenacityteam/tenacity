@@ -2,6 +2,8 @@
 //
 // Backport from wxWidgets-3.0-rc1
 //
+// FIXME (GP): We might want to drop this...
+//
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/numformatter.cpp
 // Purpose:     NumberFormatter
@@ -23,17 +25,13 @@
 
 #include <wx/setup.h> // for wxUSE_* macros
 
-#ifdef __BORLANDC__
-    #pragma hdrstop
-#endif
-
 #ifdef __WIN32__
     #include <wx/msw/private.h>
-
 #endif
 
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
 
-#include "Internat.h"
 #include <wx/intl.h>
 
 #include <locale.h> // for setlocale and LC_ALL

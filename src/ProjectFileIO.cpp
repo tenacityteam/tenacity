@@ -18,6 +18,13 @@ Paul Licameli split from SaucedacityProject.cpp
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 
+// Saucedacity libraries
+#include <lib-basic-ui/BasicUI.h>
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-xml/XMLFileReader.h>
+#include <lib-xml/XMLStringWriter.h>
+#include <lib-xml/XMLWriter.h>
+
 #include "ActiveProjects.h"
 #include "CodeConversions.h"
 #include "DBConnection.h"
@@ -32,12 +39,7 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "WaveTrack.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/NumericTextCtrl.h"
-#include "BasicUI.h"
 #include "widgets/ProgressDialog.h"
-#include "wxFileNameWrapper.h"
-#include "XMLFileReader.h"
-#include "XMLStringWriter.h"
-#include "XMLWriter.h"
 
 // Don't change this unless the file format changes
 // in an irrevocable way

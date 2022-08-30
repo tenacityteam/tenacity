@@ -15,7 +15,6 @@ of sample block storage.
 *//*******************************************************************/
 
 
-
 #include "Benchmark.h"
 
 #include <wx/app.h>
@@ -33,17 +32,19 @@ of sample block storage.
 #include <wx/valtext.h>
 #include <wx/intl.h>
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+
 #include "SampleBlock.h"
 #include "shuttle/ShuttleGui.h"
 #include "Project.h"
 #include "WaveClip.h"
 #include "WaveTrack.h"
 #include "Sequence.h"
-#include "Prefs.h"
 #include "ProjectSettings.h"
 #include "ViewInfo.h"
 
-#include "FileNames.h"
 #include "SelectFile.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/wxPanelWrapper.h"

@@ -12,7 +12,9 @@ Paul Licameli
 #define __AUDACITY_HIT_TEST_RESULT__
 
 #include <memory>
-#include "Internat.h" // for TranslatableString
+
+// Saucedacity libraries
+#include <lib-strings/Internat.h> // for TranslatableString
 
 class wxCursor;
 

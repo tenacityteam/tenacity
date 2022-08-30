@@ -19,7 +19,7 @@ Geometric TimeWarper classes
 #include "TimeWarper.h"
 
 #include <wx/string.h>
-#include <math.h>
+#include <cmath>
 #include <wx/debug.h>
 
 TimeWarper::~TimeWarper() = default;

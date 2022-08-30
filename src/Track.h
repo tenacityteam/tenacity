@@ -13,9 +13,6 @@
 #define __AUDACITY_TRACK__
 
 
-
-
-
 #include <vector>
 #include <list>
 #include <functional>
@@ -23,8 +20,10 @@
 #include <wx/longlong.h>
 
 #include "ClientData.h"
-#include "SampleFormat.h"
-#include "XMLTagHandler.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-xml/XMLTagHandler.h>
 
 #ifdef __WXMSW__
 #pragma warning(disable:4284)

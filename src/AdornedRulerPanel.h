@@ -13,8 +13,10 @@
 
 #include "CellularPanel.h"
 #include "widgets/Ruler.h" // member variable
-#include "Prefs.h"
 #include "ViewInfo.h" // for PlayRegion
+
+// Saucedacity preferences
+#include <lib-preferences/Prefs.h>
 
 class SaucedacityProject;
 struct SelectedRegionEvent;

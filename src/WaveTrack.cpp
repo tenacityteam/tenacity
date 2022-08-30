@@ -28,19 +28,20 @@ from the project that will own the track.
 
 #include "WaveTrack.h"
 
-
-
 #include "WaveClip.h"
 
 #include <wx/defs.h>
 #include <wx/intl.h>
 #include <wx/debug.h>
 
-#include <float.h>
-#include <math.h>
+#include <cfloat>
+#include <cmath>
 #include <algorithm>
 
-#include "float_cast.h"
+// Saucedacity libraries
+#include <lib-exceptions/InconsistencyException.h>
+#include <lib-math/float_cast.h>
+#include <lib-preferences/Prefs.h>
 
 #include "Envelope.h"
 #include "Sequence.h"
@@ -48,16 +49,12 @@ from the project that will own the track.
 #include "ProjectFileIORegistry.h"
 #include "ProjectSettings.h"
 
-#include "Prefs.h"
-
 #include "effects/TimeWarper.h"
 #include "prefs/QualitySettings.h"
 #include "prefs/SpectrogramSettings.h"
 #include "prefs/TracksPrefs.h"
 #include "prefs/TracksBehaviorsPrefs.h"
 #include "prefs/WaveformSettings.h"
-
-#include "InconsistencyException.h"
 
 #include "tracks/ui/TrackView.h"
 #include "tracks/ui/TrackControls.h"

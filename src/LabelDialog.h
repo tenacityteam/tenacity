@@ -15,7 +15,9 @@
 #include <wx/defs.h>
 
 #include "widgets/wxPanelWrapper.h" // to inherit
-#include "ComponentInterface.h" // member variable
+
+// Saucedacity libraries
+#include <lib-components/ComponentInterface.h> // member variable
 
 class wxArrayString;
 class wxGridEvent;

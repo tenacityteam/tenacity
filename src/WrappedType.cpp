@@ -29,7 +29,9 @@
 #include "WrappedType.h"
 
 #include <wx/wxprec.h>
-#include "Internat.h"
+
+// Saucedacity libraries
+#include <lib-strings/Internat.h>
 
 /// @return true iff the wrapped type is a string.
 bool WrappedType::IsString()

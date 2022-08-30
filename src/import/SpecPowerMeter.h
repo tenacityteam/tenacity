@@ -12,7 +12,9 @@
 #define __AUDACITY_SPECPOWERMETER_H_
 
 #include <cstddef>
-#include "SampleFormat.h"
+
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
 
 class SpecPowerCalculation
 {

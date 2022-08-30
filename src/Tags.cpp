@@ -44,8 +44,6 @@
 #include <wx/window.h>
 #endif
 
-#include "FileNames.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "ProjectFileIORegistry.h"
 #include "SelectFile.h"
@@ -53,9 +51,13 @@
 #include "widgets/Grid.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/HelpSystem.h"
-#include "XMLFileReader.h"
-#include "XMLFileWriter.h"
-#include "XMLWriter.h"
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
+#include <lib-xml/XMLFileReader.h>
+#include <lib-xml/XMLFileWriter.h>
+#include <lib-xml/XMLWriter.h>
 
 #include <wx/button.h>
 #include <wx/choice.h>

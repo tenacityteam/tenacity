@@ -1,10 +1,18 @@
+/**********************************************************************
 
+  Saucedacity: A Digital Audio Editor
+
+  FileMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-preferences/Prefs.h>
 
 #include "../CommonCommandFlags.h"
-#include "FileNames.h"
 #include "../LabelTrack.h"
 #include "../NoteTrack.h"
-#include "Prefs.h"
 #include "../Printing.h"
 #include "../Project.h"
 #include "../ProjectFileIO.h"

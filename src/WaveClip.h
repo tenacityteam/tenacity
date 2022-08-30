@@ -12,10 +12,9 @@
 #ifndef __AUDACITY_WAVECLIP__
 #define __AUDACITY_WAVECLIP__
 
-
-
-#include "SampleFormat.h"
-#include "XMLTagHandler.h"
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-xml/XMLTagHandler.h>
 
 #include <wx/longlong.h>
 

@@ -12,9 +12,6 @@
 #define __AUDACITY_NOTETRACK__
 
 
-
-
-
 #include <utility>
 #include "Track.h"
 

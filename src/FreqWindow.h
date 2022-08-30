@@ -14,10 +14,12 @@
 #include <vector>
 #include <wx/font.h> // member variable
 #include <wx/statusbr.h> // to inherit
-#include "Prefs.h"
-#include "SampleFormat.h"
 #include "SpectrumAnalyst.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
+
+// Saucedacity libraries
+#include <lib-math/SampleFormat.h>
+#include <lib-preferences/Prefs.h>
 
 class wxMemoryDC;
 class wxScrollBar;

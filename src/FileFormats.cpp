@@ -15,16 +15,17 @@ information.
 *//*******************************************************************/
 
 
-
 #include "FileFormats.h"
 
 #include <wx/arrstr.h>
 #include <wx/intl.h>
 #include "sndfile.h"
-#include "Internat.h"
-#include "MemoryX.h"
 #include "widgets/AudacityMessageBox.h"
-#include "Prefs.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-strings/Internat.h>
+#include <lib-utility/MemoryX.h>
 
 #ifndef SNDFILE_1
 #error Requires libsndfile 1.0 or higher

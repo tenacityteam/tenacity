@@ -44,8 +44,10 @@
 #error Requires libsndfile 1.0 or higher
 #endif
 
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../FileFormats.h"
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../WaveTrack.h"
 #include "ImportPlugin.h"

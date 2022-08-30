@@ -11,8 +11,8 @@
 #ifndef __AUDACITY_MULTIFORMATREADER_H__
 #define __AUDACITY_MULTIFORMATREADER_H__
 
-#include <stdio.h>
-#include <stdint.h>
+#include <cstdio>
+#include <cstdint>
 
 class MachineEndianness
 {

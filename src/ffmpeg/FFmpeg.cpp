@@ -20,8 +20,11 @@ License: GPL v2.  See License.txt.
 
 #include "FFmpeg.h"
 
-#include "FileNames.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+
 #include "SelectFile.h"
+
 #include "widgets/HelpSystem.h"
 #include "widgets/AudacityMessageBox.h"
 

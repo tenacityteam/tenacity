@@ -8,8 +8,6 @@
 
 **********************************************************************/
 
-
-
 #include <wx/defs.h>
 
 #include <wx/app.h>
@@ -24,10 +22,13 @@
 
 #include "sndfile.h"
 
-#include "Dither.h"
+// Saucedacity libraries
+#include <lib-files/wxFileNameWrapper.h>
+#include <lib-math/Dither.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../FileFormats.h"
 #include "../Mix.h"
-#include "Prefs.h"
 #include "../ProjectSettings.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
@@ -35,7 +36,6 @@
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
 #include "../widgets/wxWidgetsBasicUI.h"
-#include "wxFileNameWrapper.h"
 
 #include "Export.h"
 

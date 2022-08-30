@@ -16,14 +16,15 @@
 #include "HelpText.h"
 
 
-
 #include <wx/string.h>
 #include <wx/intl.h>
 #include <wx/sstream.h>
 #include <wx/txtstrm.h>
 
-#include "FileNames.h"
-#include "Internat.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-strings/Internat.h>
+
 #include "AllThemeResources.h"
 #include "Theme.h"
 

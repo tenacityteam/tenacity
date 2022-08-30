@@ -10,7 +10,7 @@
 
 #include "InterpolateAudio.h"
 
-#include <math.h>
+#include <cmath>
 #include <stdlib.h>
 
 #include <wx/defs.h>

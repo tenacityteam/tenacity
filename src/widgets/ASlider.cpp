@@ -32,7 +32,7 @@ or ASlider.
 
 #include "ASlider.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>

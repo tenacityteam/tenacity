@@ -11,8 +11,9 @@
 #ifndef __AUDACITY_SHUTTLE__
 #define __AUDACITY_SHUTTLE__
 
-#include "ComponentInterface.h"
-#include "ComponentInterfaceSymbol.h"
+// Saucedacity libraries
+#include <lib-components/ComponentInterface.h>
+#include <lib-components/ComponentInterfaceSymbol.h>
 
 class ComponentInterfaceSymbol;
 class WrappedType;

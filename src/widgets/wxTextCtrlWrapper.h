@@ -12,7 +12,6 @@
 #define __AUDACITY_WXTEXTCTRLWRAPPER__
 
 
-
 #include <wx/textctrl.h>
 
 // MY: Class that inherits from the wxTextCtrl class.

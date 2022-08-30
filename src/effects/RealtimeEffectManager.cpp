@@ -11,11 +11,12 @@
 
 #include "RealtimeEffectManager.h"
 
-#include "EffectInterface.h"
-#include "MemoryX.h"
-#include <memory>
+// Saucedacity libraries
+#include <lib-components/EffectInterface.h>
+#include <lib-utility/MemoryX.h>
 
 #include <atomic>
+#include <memory>
 #include <chrono>
 
 class RealtimeEffectState

@@ -12,7 +12,6 @@
 #define __AUDACITY_KEYBOARD_CAPTURE__
 
 
-
 #include <functional>
 #include <wx/event.h>
 

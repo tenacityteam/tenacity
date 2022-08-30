@@ -23,8 +23,8 @@ but it will probably work fine if you use it on a high level.
 
 #include "Profiler.h"
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <wx/crt.h>
 
 ///write to a profile at the end of the test.

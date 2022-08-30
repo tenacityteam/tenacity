@@ -21,8 +21,10 @@ setting used in debugging batch (aka macros) processing.
 #include <wx/intl.h>
 #include <wx/textdlg.h>
 
-#include "Languages.h"
-#include "Prefs.h"
+// Saucedacity libraries
+#include  <lib-preferences/Prefs.h>
+#include <lib-strings/Languages.h>
+
 #include "../shuttle/ShuttleGui.h"
 
 BEGIN_EVENT_TABLE(BatchPrefs, PrefsPanel)

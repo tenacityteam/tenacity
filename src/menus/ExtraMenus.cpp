@@ -1,6 +1,16 @@
+/**********************************************************************
+
+  Saucedacity: A Digital Audio Editor
+
+  ExtraMenus.cpp
+
+**********************************************************************/
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "../CommonCommandFlags.h"
 #include "../Menus.h"
-#include "Prefs.h"
 #include "../Project.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"

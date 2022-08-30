@@ -11,18 +11,18 @@ Paul Licameli split from TrackPanel.cpp
 #ifndef __AUDACITY_SCRUBBING__
 #define __AUDACITY_SCRUBBING__
 
-
-
 #include <vector>
 #include <wx/longlong.h>
 
+// Saucedacity libraries
+#include <lib-strings/Identifier.h>
+#include <lib-preferences/Prefs.h> // to inherit
+
 #include "../../AudioIOBase.h" // for ScrubbingOptions
 #include "../../ClientData.h" // to inherit
-#include "Prefs.h" // to inherit
 #include "../../widgets/Overlay.h" // to inherit
 #include "../../commands/CommandContext.h"
 #include "../../commands/CommandManager.h" // for MenuTable
-#include "Identifier.h"
 
 class SaucedacityProject;
 class TranslatableString;

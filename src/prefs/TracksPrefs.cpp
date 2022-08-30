@@ -20,10 +20,9 @@
 
 #include "TracksPrefs.h"
 
-//#include <algorithm>
-//#include <wx/defs.h>
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
-#include "Prefs.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
 

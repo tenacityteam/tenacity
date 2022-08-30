@@ -14,7 +14,9 @@ Paul Licameli split from SaucedacityProject.h
 #include <memory>
 #include "ProjectWindowBase.h" // to inherit
 #include "TrackPanelListener.h" // to inherit
-#include "Prefs.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
 
 class Track;
 

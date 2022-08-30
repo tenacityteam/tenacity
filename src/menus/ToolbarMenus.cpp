@@ -1,4 +1,10 @@
+/**********************************************************************
 
+  Saucedacity: A Digital Audio Editor
+
+  ToolbarMenus.cpp
+
+**********************************************************************/
 
 #include "../Menus.h"
 #include "../ProjectSettings.h"

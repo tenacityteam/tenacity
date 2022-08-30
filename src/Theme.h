@@ -15,7 +15,6 @@
 #define __AUDACITY_THEME__
 
 
-
 #include <vector>
 #include <wx/defs.h>
 #include <wx/window.h> // to inherit

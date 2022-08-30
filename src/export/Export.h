@@ -14,11 +14,13 @@
 #include <functional>
 #include <vector>
 #include <wx/filename.h> // member variable
-#include "Identifier.h"
-#include "SampleFormat.h"
-#include "../widgets/wxPanelWrapper.h" // to inherit
-#include "FileNames.h" // for FileTypes
 
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-math/SampleFormat.h>
+#include <lib-strings/Identifier.h>
+
+#include "../widgets/wxPanelWrapper.h" // to inherit
 #include "../Registry.h"
 
 class wxArrayString;

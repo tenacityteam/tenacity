@@ -18,9 +18,12 @@ function.
 
 *//*******************************************************************/
 
-//#include "Internat.h"
 #include "../ffmpeg/FFmpeg.h"
-#include "FFmpegFunctions.h"
+
+// Saucedacity libraries
+#include <lib-ffmpeg-support/FFmpegFunctions.h>
+#include <lib-exceptions/InconsistencyException.h>
+#include <lib-files/wxFileNameWrapper.h>
 
 #include <wx/choice.h>
 #include <wx/log.h>
@@ -39,8 +42,6 @@ function.
 #include "../Track.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ProgressDialog.h"
-#include "../../libraries/lib-exceptions/InconsistencyException.h"
-#include "wxFileNameWrapper.h"
 
 #include "Export.h"
 

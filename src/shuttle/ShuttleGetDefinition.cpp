@@ -9,7 +9,9 @@
 **********************************************************************/
 
 #include "ShuttleGetDefinition.h"
-#include "ComponentInterfaceSymbol.h"
+
+// Saucedacity libraries
+#include <lib-components/ComponentInterfaceSymbol.h>
 
 bool ShuttleGetDefinition::IsOptional(){
    bool result = pOptionalFlag !=NULL;

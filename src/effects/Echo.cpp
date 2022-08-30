@@ -23,7 +23,7 @@
 #include "Echo.h"
 #include "LoadEffects.h"
 
-#include <float.h>
+#include <cfloat>
 
 #include <wx/intl.h>
 

@@ -24,7 +24,6 @@ around to NEW positions.
 #define __AUDACITY_WIDGETS_HtmlWindow__
 
 
-
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/html/htmlwin.h> // to inherit

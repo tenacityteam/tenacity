@@ -35,16 +35,17 @@ for drawing different aspects of the label and its text box.
 #include "tracks/ui/TrackControls.h"
 
 
-
-#include <stdio.h>
+#include <cstdio>
 #include <algorithm>
 #include <limits.h>
-#include <float.h>
+#include <cfloat>
 
 #include <wx/log.h>
 #include <wx/tokenzr.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+
 #include "ProjectFileIORegistry.h"
 #include "prefs/ImportExportPrefs.h"
 

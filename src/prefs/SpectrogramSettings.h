@@ -11,9 +11,10 @@ Paul Licameli
 #ifndef __AUDACITY_SPECTROGRAM_SETTINGS__
 #define __AUDACITY_SPECTROGRAM_SETTINGS__
 
-#include "Prefs.h"
-#include "SampleFormat.h"
-#include "RealFFTf.h"
+// Saucedacity libraries
+#include <lib-math/RealFFTf.h>
+#include <lib-math/SampleFormat.h>
+#include <lib-preferences/Prefs.h>
 
 #undef SPECTRAL_SELECTION_GLOBAL_SWITCH
 

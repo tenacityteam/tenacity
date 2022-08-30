@@ -14,11 +14,12 @@ Paul Licameli
 
 #include <algorithm>
 
-#include "Prefs.h"
 #include "Project.h"
-#include "XMLWriter.h"
 #include "prefs/TracksBehaviorsPrefs.h"
-#include "XMLWriter.h"
+
+// Saucedacity libraries
+#include <lib-preferences/Prefs.h>
+#include <lib-xml/XMLWriter.h>
 
 wxDEFINE_EVENT( EVT_SELECTED_REGION_CHANGE, SelectedRegionEvent );
 

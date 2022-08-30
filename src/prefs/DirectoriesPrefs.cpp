@@ -7,7 +7,6 @@
   Joshua Haberman
   James Crook
 
-
 *******************************************************************//**
 
 \class DirectoriesPrefs
@@ -18,7 +17,7 @@
 
 #include "DirectoriesPrefs.h"
 
-#include <math.h>
+#include <cmath>
 
 #include <wx/defs.h>
 #include <wx/intl.h>
@@ -32,13 +31,15 @@
 #include <wx/filename.h>
 #include <wx/utils.h>
 
-#include "Prefs.h"
+// Saucedacity libraries
+#include <lib-files/FileNames.h>
+#include <lib-files/TempDirectory.h>
+#include <lib-preferences/Prefs.h>
+
 #include "../shuttle/ShuttleGui.h"
-#include "TempDirectory.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ReadOnlyText.h"
 #include "../widgets/wxTextCtrlWrapper.h"
-#include "FileNames.h"
 
 using namespace FileNames;
 using namespace TempDirectory;
