@@ -23,10 +23,10 @@ class wxCheckBox;
 /* rather earlier than normal, but pulls in config*.h and other program stuff
  * we need for the next bit */
 #include "shuttle/ShuttleGui.h"
-#include "Prefs.h"
 
 // Saucedacity libraries
 #include <lib-math/SampleFormat.h>
+#include <lib-preferences/Prefs.h>
 #include <lib-strings/Identifier.h>
 #ifdef USE_FFMPEG
 #   include <lib-ffmpeg-support/FFmpegFunctions.h>
