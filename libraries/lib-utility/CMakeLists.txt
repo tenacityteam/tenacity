@@ -18,6 +18,7 @@ used utilities that don't correspond to things in the standard.
 set( SOURCES
    MemoryX.cpp
    MemoryX.h
+   MessageBuffer.h
    ModuleConstants.cpp
    ModuleConstants.h
    Observer.cpp

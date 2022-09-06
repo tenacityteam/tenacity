@@ -441,6 +441,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <lib-math/float_cast.h>
 #include <lib-math/Resample.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-utility/MessageBuffer.h>
 
 #include "Mix.h"
 #include "RingBuffer.h"
