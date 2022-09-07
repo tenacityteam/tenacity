@@ -1258,6 +1258,7 @@ else()
    
    add_executable(findlib ../linux/findlib.c)
    target_link_libraries(findlib ${CMAKE_DL_LIBS})
+   set_target_property_all( findlib SKIP_BUILD_RPATH On )
 endif()
 
 set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${APP_NAME} )
