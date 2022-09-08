@@ -81,6 +81,7 @@ linuxdeploy --list-plugins
 # Create symlinks
 #============================================================================
 
+sed -i 's|env UBUNTU_MENUPROXY=0 ||' "${appdir}/share/applications/saucedacity.desktop"
 ln -sf --no-dereference . "${appdir}/usr"
 ln -sf share/applications/saucedacity.desktop "${appdir}/saucedacity.desktop"
 ln -sf share/icons/hicolor/scalable/apps/saucedacity.svg "${appdir}/saucedacity.svg"
