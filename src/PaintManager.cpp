@@ -71,6 +71,8 @@ wxPen PaintManager::snapGuidePen;
 wxPen PaintManager::tooltipPen;
 wxBrush PaintManager::tooltipBrush;
 
+wxGraphicsRenderer* PaintManager::renderer;
+
 // The spare pen and brush possibly help us cut down on the
 // number of pens and brushes we need.
 wxPen PaintManager::sparePen;
@@ -78,6 +80,16 @@ wxBrush PaintManager::spareBrush;
 
 wxPen PaintManager::uglyPen;
 wxBrush PaintManager::uglyBrush;
+
+wxGraphicsContext* PaintManager::CreateGC(wxDC& dc)
+{
+   return renderer->CreateContextFromUnknownDC(dc);
+}
+
+wxGraphicsRenderer* PaintManager::GetRenderer()
+{
+   return renderer;
+}
 
 //
 // Draw an upward or downward pointing arrow.
@@ -479,6 +491,16 @@ void PaintManager::Init()
 {
    if (inited)
       return;
+
+   // Setup our renderer
+   #ifdef __WXMSW__
+   renderer = wxGraphicsRenderer::GetDirect2DRenderer();
+   #elif defined(__WXMAC__)
+   renderer = wxGraphicsRenderer::GetDefaultRenderer();
+   #else
+   // Use cairo on all other platforms
+   renderer = wxGraphicsRenderer::GetCairoRenderer();
+   #endif
 
    wxColour light = theTheme.Colour( clrLight ); 
    // wxSystemSettings::GetColour(wxSYS_COLOUR_3DHIGHLIGHT);
