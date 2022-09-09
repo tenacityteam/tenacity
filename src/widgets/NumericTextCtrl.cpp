@@ -170,7 +170,7 @@ different formats.
 
 #include "SampleCount.h"
 #include "../theme/AllThemeResources.h"
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../KeyboardCapture.h"
 #include "../theme/Theme.h"
 
@@ -1676,10 +1676,10 @@ bool NumericTextCtrl::Layout()
 
    if (mMenuEnabled) {
       wxRect r(mWidth, 0, mButtonWidth - 1, mHeight - 1);
-      AColor::Bevel(memDC, true, r);
+      PaintManager::Bevel(memDC, true, r);
       memDC.SetBrush(*wxBLACK_BRUSH);
       memDC.SetPen(*wxBLACK_PEN);
-      AColor::Arrow(memDC,
+      PaintManager::Arrow(memDC,
                     mWidth + 1,
                     (mHeight / 2) - 2,
                     mButtonWidth - 2);

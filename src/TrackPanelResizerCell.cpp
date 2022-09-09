@@ -11,7 +11,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "TrackPanelResizerCell.h"
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "Track.h"
 #include "TrackArtist.h"
 #include "TrackPanelDrawingContext.h"
@@ -61,7 +61,7 @@ void TrackPanelResizerCell::Draw(
             pTrack.get() == *TrackList::Channels( pTrack.get() ).rbegin();
          if ( last ) {
             // Fill in separator area below a track
-            AColor::TrackPanelBackground( dc, false );
+            PaintManager::TrackPanelBackground( dc, false );
             dc->DrawRectangle( rect );
          }
          else {
@@ -75,7 +75,7 @@ void TrackPanelResizerCell::Draw(
             // Paint the left part of the background
             const auto artist = TrackArtist::Get( context );
             auto labelw = artist->pZoomInfo->GetLabelWidth();
-            AColor::MediumTrackInfo( dc, pTrack->GetSelected() );
+            PaintManager::MediumTrackInfo( dc, pTrack->GetSelected() );
             dc->DrawRectangle(
                rect.GetX(), rect.GetY(), labelw, rect.GetHeight() );
             
@@ -83,10 +83,10 @@ void TrackPanelResizerCell::Draw(
             dc->SetPen(*wxBLACK_PEN);
             {
                const auto left = rect.GetLeft();
-               AColor::Line( *dc, left, rect.GetTop(), left, rect.GetBottom() );
+               PaintManager::Line( *dc, left, rect.GetTop(), left, rect.GetBottom() );
             }
             
-            AColor::TrackPanelBackground(dc, false);
+            PaintManager::TrackPanelBackground(dc, false);
             
             wxRect rec{ rect };
             rec.width -= labelw - rec.x;
@@ -102,8 +102,8 @@ void TrackPanelResizerCell::Draw(
             const auto right = rec.GetRight();
             const auto top = rec.GetTop();
             const auto bottom = rec.GetBottom();
-            AColor::Line( *dc, left, top,    right, top    );
-            AColor::Line( *dc, left, bottom, right, bottom );
+            PaintManager::Line( *dc, left, top,    right, top    );
+            PaintManager::Line( *dc, left, bottom, right, bottom );
          }
       }
    }

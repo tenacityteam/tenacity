@@ -2,7 +2,7 @@
 
   Audacity: A Digital Audio Editor
 
-  AColor.h
+  PaintManager.h
 
   Dominic Mazzoni
 
@@ -17,12 +17,14 @@
 #include <memory>
 #include <wx/brush.h> // member variable
 #include <wx/pen.h> // member variable
+#include <wx/window.h>
+#include <wx/graphics.h>
 
 class wxDC;
 class wxGraphicsContext;
 class wxRect;
 
-class TENACITY_DLL_API AColor {
+class TENACITY_DLL_API PaintManager {
  public:
 
     enum ColorGradientChoice {
@@ -139,17 +141,17 @@ class TENACITY_DLL_API AColor {
 };
 
 inline void GetColorGradient(float value,
-                             AColor::ColorGradientChoice selected,
+                             PaintManager::ColorGradientChoice selected,
                              int colorScheme,
                              unsigned char * __restrict red,
                              unsigned char * __restrict green,
                              unsigned char * __restrict blue) {
 
-   int idx = value * (AColor::gradientSteps - 1);
+   int idx = value * (PaintManager::gradientSteps - 1);
 
-   *red = AColor::gradient_pre[selected][colorScheme][idx][0];
-   *green = AColor::gradient_pre[selected][colorScheme][idx][1];
-   *blue = AColor::gradient_pre[selected][colorScheme][idx][2];
+   *red = PaintManager::gradient_pre[selected][colorScheme][idx][0];
+   *green = PaintManager::gradient_pre[selected][colorScheme][idx][1];
+   *blue = PaintManager::gradient_pre[selected][colorScheme][idx][2];
 }
 
 #endif

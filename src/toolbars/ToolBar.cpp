@@ -47,7 +47,7 @@ in which buttons can be placed.
 #include "ToolDock.h"
 
 #include "../theme/AllThemeResources.h"
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../ImageManipulation.h"
 #include "Project.h"
 #include "../commands/CommandManager.h"
@@ -156,8 +156,8 @@ void ToolBarResizer::OnPaint( wxPaintEvent & event )
 
    wxSize sz = GetSize();
 
-   AColor::Dark( &dc, false );
-   AColor::Line(dc, sz.x - 1,  0, sz.x - 1, sz.y );
+   PaintManager::Dark( &dc, false );
+   PaintManager::Line(dc, sz.x - 1,  0, sz.x - 1, sz.y );
 }
 
 //

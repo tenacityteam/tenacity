@@ -30,7 +30,7 @@
 // Tenacity Libraries
 #include <lib-preferences/Prefs.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
@@ -740,14 +740,14 @@ void EffectAutoDuckPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
       points[5].x = clientWidth - 10;
       points[5].y = DUCK_AMOUNT_START;
 
-      AColor::Lines(dc, 6, points);
+      PaintManager::Lines(dc, 6, points);
 
       dc.SetPen(wxPen(*wxBLACK, 1, wxPENSTYLE_DOT));
 
-      AColor::Line(dc, FADE_DOWN_START, 10, FADE_DOWN_START, clientHeight - 10);
-      AColor::Line(dc, FADE_UP_START, 10, FADE_UP_START, clientHeight - 10);
+      PaintManager::Line(dc, FADE_DOWN_START, 10, FADE_DOWN_START, clientHeight - 10);
+      PaintManager::Line(dc, FADE_UP_START, 10, FADE_UP_START, clientHeight - 10);
 
-      dc.SetPen(AColor::envelopePen);
+      dc.SetPen(PaintManager::envelopePen);
       dc.SetBrush(*wxWHITE_BRUSH);
 
       mControlPoints[outerFadeDown] = points[1];

@@ -28,7 +28,7 @@
 
 #define ROUND(x) ((int) ((x) + 0.5))
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "Prefs.h"
 #include "Project.h"
 #include "prefs/ImportExportPrefs.h"
@@ -269,7 +269,7 @@ void NoteTrack::DrawLabelControls
    for (int row = 0; row < 4; row++) {
       for (int col = 0; col < 4; col++) {
          // chanName is the "external" channel number (1-16)
-         // used by AColor and button labels
+         // used by PaintManager and button labels
          int chanName = row * 4 + col + 1;
 
          box.x = rect.x + col * cellWidth;
@@ -281,56 +281,56 @@ void NoteTrack::DrawLabelControls
          if (visible) {
             // highlightedChannel counts 0 based
             if ( chanName == highlightedChannel + 1 )
-               AColor::LightMIDIChannel(&dc, chanName);
+               PaintManager::LightMIDIChannel(&dc, chanName);
             else
-               AColor::MIDIChannel(&dc, chanName);
+               PaintManager::MIDIChannel(&dc, chanName);
             dc.DrawRectangle(box);
 // two choices: channel is enabled (to see and play) when button is in
 // "up" position (original Audacity style) or in "down" position
 //
 #define CHANNEL_ON_IS_DOWN 1
 #if CHANNEL_ON_IS_DOWN
-            AColor::DarkMIDIChannel(&dc, chanName);
+            PaintManager::DarkMIDIChannel(&dc, chanName);
 #else
-            AColor::LightMIDIChannel(&dc, chanName);
+            PaintManager::LightMIDIChannel(&dc, chanName);
 #endif
-            AColor::Line(dc, box.x, box.y, box.x + box.width - 1, box.y);
-            AColor::Line(dc, box.x, box.y, box.x, box.y + box.height - 1);
+            PaintManager::Line(dc, box.x, box.y, box.x + box.width - 1, box.y);
+            PaintManager::Line(dc, box.x, box.y, box.x, box.y + box.height - 1);
 
 #if CHANNEL_ON_IS_DOWN
-            AColor::LightMIDIChannel(&dc, chanName);
+            PaintManager::LightMIDIChannel(&dc, chanName);
 #else
-            AColor::DarkMIDIChannel(&dc, chanName);
+            PaintManager::DarkMIDIChannel(&dc, chanName);
 #endif
-            AColor::Line(dc,
+            PaintManager::Line(dc,
                          box.x + box.width - 1, box.y,
                          box.x + box.width - 1, box.y + box.height - 1);
-            AColor::Line(dc,
+            PaintManager::Line(dc,
                          box.x, box.y + box.height - 1,
                          box.x + box.width - 1, box.y + box.height - 1);
          } else {
             if ( chanName == highlightedChannel + 1 )
-               AColor::LightMIDIChannel(&dc, chanName);
+               PaintManager::LightMIDIChannel(&dc, chanName);
             else
-               AColor::MIDIChannel(&dc, 0);
+               PaintManager::MIDIChannel(&dc, 0);
             dc.DrawRectangle(box);
 #if CHANNEL_ON_IS_DOWN
-            AColor::LightMIDIChannel(&dc, 0);
+            PaintManager::LightMIDIChannel(&dc, 0);
 #else
-            AColor::DarkMIDIChannel(&dc, 0);
+            PaintManager::DarkMIDIChannel(&dc, 0);
 #endif
-            AColor::Line(dc, box.x, box.y, box.x + box.width - 1, box.y);
-            AColor::Line(dc, box.x, box.y, box.x, box.y + box.height - 1);
+            PaintManager::Line(dc, box.x, box.y, box.x + box.width - 1, box.y);
+            PaintManager::Line(dc, box.x, box.y, box.x, box.y + box.height - 1);
 
 #if CHANNEL_ON_IS_DOWN
-            AColor::DarkMIDIChannel(&dc, 0);
+            PaintManager::DarkMIDIChannel(&dc, 0);
 #else
-            AColor::LightMIDIChannel(&dc, 0);
+            PaintManager::LightMIDIChannel(&dc, 0);
 #endif
-            AColor::Line(dc,
+            PaintManager::Line(dc,
                          box.x + box.width - 1, box.y,
                          box.x + box.width - 1, box.y + box.height - 1);
-            AColor::Line(dc,
+            PaintManager::Line(dc,
                          box.x, box.y + box.height - 1,
                          box.x + box.width - 1, box.y + box.height - 1);
 
@@ -347,7 +347,7 @@ void NoteTrack::DrawLabelControls
       }
    }
    dc.SetTextForeground(theTheme.Colour(clrTrackPanelText));
-   AColor::MIDIChannel(&dc, 0); // always return with gray color selected
+   PaintManager::MIDIChannel(&dc, 0); // always return with gray color selected
 }
 
 int NoteTrack::FindChannel(const wxRect &rect, int mx, int my)

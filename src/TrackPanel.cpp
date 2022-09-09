@@ -71,7 +71,7 @@ is time to refresh some aspect of the screen.
 
 #include "UndoManager.h"
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 
@@ -1142,7 +1142,7 @@ void DrawTrackName(
 
 #ifdef __WXMAC__
    // Mac dc is a graphics dc already.
-   AColor::UseThemeColour( &dc, clrTrackInfoSelected, clrTrackPanelText, opacity );
+   PaintManager::UseThemeColour( &dc, clrTrackInfoSelected, clrTrackPanelText, opacity );
    dc.DrawRoundedRectangle( nameRect, 8.0 );
 #else
    // This little dance with wxImage in order to draw to a graphic dc
@@ -1164,7 +1164,7 @@ void DrawTrackName(
          pGc{ wxGraphicsContext::Create(image) };
       auto &gc = *pGc;
       // This is to a gc, not a dc.
-      AColor::UseThemeColour( &gc, clrTrackInfoSelected, clrTrackPanelText, opacity );
+      PaintManager::UseThemeColour( &gc, clrTrackInfoSelected, clrTrackPanelText, opacity );
       // Draw at 1,1, not at 0,0 to avoid clipping of the antialiasing.
       gc.DrawRoundedRectangle(
          SecondMarginX, SecondMarginY,
@@ -1240,7 +1240,7 @@ struct EmptyCell final : CommonTrackPanelCell {
          // Draw a margin area of TrackPanel
          auto dc = &context.dc;
          
-         AColor::TrackPanelBackground( dc, false );
+         PaintManager::TrackPanelBackground( dc, false );
          dc->DrawRectangle( rect );
       }
    }
@@ -1300,11 +1300,11 @@ struct VRulersAndChannels final : TrackPanelGroup {
          if (mRefinement.size() > 1) {
             // Draw lines separating sub-views
             auto &dc = context.dc;
-            AColor::CursorColor( &dc );
+            PaintManager::CursorColor( &dc );
             auto iter = mRefinement.begin() + 1, end = mRefinement.end();
             for ( ; iter != end; ++iter ) {
                auto yy = iter->first;
-               AColor::Line( dc, mLeftOffset, yy, rect.GetRight(), yy );
+               PaintManager::Line( dc, mLeftOffset, yy, rect.GetRight(), yy );
             }
          }
       }
@@ -1351,10 +1351,10 @@ public:
       if (iPass == TrackArtist::PassBackground)
       {
          context.dc.SetPen(*wxTRANSPARENT_PEN);
-         AColor::UseThemeColour(&context.dc, mFillBrushName);
+         PaintManager::UseThemeColour(&context.dc, mFillBrushName);
          context.dc.DrawRectangle(rect);
          wxRect bevel(rect.x, rect.y, rect.width - 1, rect.height - 1);
-         AColor::BevelTrackInfo(context.dc, true, bevel, false);
+         PaintManager::BevelTrackInfo(context.dc, true, bevel, false);
       }
    }
 
@@ -1506,15 +1506,15 @@ struct LabeledChannelGroup final : TrackPanelGroup {
             auto &dc = context.dc;
             dc.SetBrush(*wxTRANSPARENT_BRUSH);
             
-            AColor::TrackFocusPen( &dc, 2 );
+            PaintManager::TrackFocusPen( &dc, 2 );
             dc.DrawRectangle(theRect);
             theRect.Deflate(1);
             
-            AColor::TrackFocusPen( &dc, 1 );
+            PaintManager::TrackFocusPen( &dc, 1 );
             dc.DrawRectangle(theRect);
             theRect.Deflate(1);
             
-            AColor::TrackFocusPen( &dc, 0 );
+            PaintManager::TrackFocusPen( &dc, 0 );
             dc.DrawRectangle(theRect);
          }
       }

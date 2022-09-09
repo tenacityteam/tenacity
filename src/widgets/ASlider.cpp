@@ -54,7 +54,7 @@ or ASlider.
 #include <wx/popupwin.h>
 #include <wx/window.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../ImageManipulation.h"
 #include "Project.h"
 #include "ProjectStatus.h"
@@ -239,11 +239,11 @@ void TipWindow::OnPaint(wxPaintEvent & WXUNUSED(event))
    wxAutoBufferedPaintDC dc(this);
 
    dc.SetPen(*wxBLACK_PEN);
-   dc.SetBrush(AColor::tooltipBrush);
+   dc.SetBrush(PaintManager::tooltipBrush);
    dc.DrawRoundedRectangle(0, 0, mWidth, mHeight, 5);
 
    dc.SetFont(mFont);
-   dc.SetTextForeground(AColor::tooltipPen.GetColour());
+   dc.SetTextForeground(PaintManager::tooltipPen.GetColour());
 
    int textWidth, textHeight;
    const auto visibleLabel = mLabel.Translation();
@@ -755,17 +755,17 @@ void LWSlider::DrawToBitmap(wxDC & paintDC)
    dc.Clear();
 
    // Draw the line along which the thumb moves.
-   AColor::UseThemeColour(&dc, clrSliderMain );
+   PaintManager::UseThemeColour(&dc, clrSliderMain );
 
    if (mOrientation == wxHORIZONTAL)
    {
-      AColor::Line(dc, mLeftX, mCenterY, mRightX+2, mCenterY);
-      AColor::Line(dc, mLeftX, mCenterY+1, mRightX+2, mCenterY+1);
+      PaintManager::Line(dc, mLeftX, mCenterY, mRightX+2, mCenterY);
+      PaintManager::Line(dc, mLeftX, mCenterY+1, mRightX+2, mCenterY+1);
    }
    else 
    {
-      AColor::Line(dc, mCenterX, mTopY, mCenterX, mBottomY+2);
-      AColor::Line(dc, mCenterX+1, mTopY, mCenterX+1, mBottomY+2);
+      PaintManager::Line(dc, mCenterX, mTopY, mCenterX, mBottomY+2);
+      PaintManager::Line(dc, mCenterX+1, mTopY, mCenterX+1, mBottomY+2);
    }
 
    // Draw +/- or L/R first.  We need to draw these before the tick marks.
@@ -791,13 +791,13 @@ void LWSlider::DrawToBitmap(wxDC & paintDC)
    {
       // draw the '-' and the '+'
       // These are drawn with lines, rather tha nwith a font.
-      AColor::UseThemeColour(&dc, clrTrackPanelText );
+      PaintManager::UseThemeColour(&dc, clrTrackPanelText );
 
       if (mOrientation == wxHORIZONTAL)
       {
-         AColor::Line(dc, mLeftX, mCenterY-10, mLeftX+4, mCenterY-10);
-         AColor::Line(dc, mRightX-5, mCenterY-10, mRightX-1, mCenterY-10);
-         AColor::Line(dc, mRightX-3, mCenterY-12, mRightX-3, mCenterY-8);
+         PaintManager::Line(dc, mLeftX, mCenterY-10, mLeftX+4, mCenterY-10);
+         PaintManager::Line(dc, mRightX-5, mCenterY-10, mRightX-1, mCenterY-10);
+         PaintManager::Line(dc, mRightX-3, mCenterY-12, mRightX-3, mCenterY-8);
       }
       else
       {
@@ -806,9 +806,9 @@ void LWSlider::DrawToBitmap(wxDC & paintDC)
          // Draw '+' and '-' only for other vertical sliders.
          if (mStyle != DB_SLIDER)
          {
-            AColor::Line(dc, mCenterX-12, mBottomY-3,  mCenterX-8, mBottomY-3);
-            AColor::Line(dc, mCenterX-12, mTopY+3,     mCenterX-8, mTopY+3);
-            AColor::Line(dc, mCenterX-10, mTopY,       mCenterX-10, mTopY+5);
+            PaintManager::Line(dc, mCenterX-12, mBottomY-3,  mCenterX-8, mBottomY-3);
+            PaintManager::Line(dc, mCenterX-12, mTopY+3,     mCenterX-8, mTopY+3);
+            PaintManager::Line(dc, mCenterX-10, mTopY,       mCenterX-10, mTopY+5);
          }
       }
    }
@@ -843,26 +843,26 @@ void LWSlider::DrawToBitmap(wxDC & paintDC)
          {
             int_d = (int)d;
             int tickLength = ((int_d == 0) || (int_d == divs)) ? 5: 3; // longer ticks at extremes
-            AColor::UseThemeColour(&dc, clrSliderLight );
+            PaintManager::UseThemeColour(&dc, clrSliderLight );
 
             if (mOrientation == wxHORIZONTAL)
             {
-               AColor::Line(dc, mLeftX+p, mCenterY-tickLength, mLeftX+p, mCenterY-1); // ticks above
+               PaintManager::Line(dc, mLeftX+p, mCenterY-tickLength, mLeftX+p, mCenterY-1); // ticks above
             }
             else
             {
-               AColor::Line(dc, mCenterX-tickLength, mTopY+p, mCenterX-1, mTopY+p); // ticks at left
+               PaintManager::Line(dc, mCenterX-tickLength, mTopY+p, mCenterX-1, mTopY+p); // ticks at left
             }
 
-            AColor::UseThemeColour(&dc, clrSliderDark );
+            PaintManager::UseThemeColour(&dc, clrSliderDark );
 
             if (mOrientation == wxHORIZONTAL)
             {
-               AColor::Line(dc, mLeftX+p+1, mCenterY-tickLength+1, mLeftX+p+1, mCenterY-1); // ticks above
+               PaintManager::Line(dc, mLeftX+p+1, mCenterY-tickLength+1, mLeftX+p+1, mCenterY-1); // ticks above
             }
             else
             {
-               AColor::Line(dc, mCenterX-tickLength+1, mTopY+p+1, mCenterX-1, mTopY+p+1); // ticks at left
+               PaintManager::Line(dc, mCenterX-tickLength+1, mTopY+p+1, mCenterX-1, mTopY+p+1); // ticks at left
             }
          }
          d += upp;
@@ -1677,7 +1677,7 @@ void ASlider::OnPaint(wxPaintEvent & WXUNUSED(event))
 
       r.Deflate( 1, 1 );
 
-      AColor::DrawFocus( dc, r );
+      PaintManager::DrawFocus( dc, r );
    }
 }
 

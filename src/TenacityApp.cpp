@@ -76,7 +76,7 @@ It handles initialization and termination by subclassing wxApp.
 
 #include "AboutDialog.h"
 #include "ActiveProject.h"
-#include "AColor.h"
+#include "PaintManager.h"
 #include "TenacityFileConfig.h"
 #include "AudioIO.h"
 #include "Benchmark.h"
@@ -1056,8 +1056,8 @@ bool TenacityApp::OnInit()
 
    theTheme.EnsureInitialised();
 
-   // AColor depends on theTheme.
-   AColor::Init();
+   // PaintManager depends on theTheme.
+   PaintManager::Init();
 
    // If this fails, we must exit the program.
    if (!InitTempDir()) {

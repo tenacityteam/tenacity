@@ -11,7 +11,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "BackgroundCell.h"
 
-#include "../../AColor.h"
+#include "../../PaintManager.h"
 #include "../../HitTestResult.h"
 #include "Project.h"
 #include "../../RefreshCode.h"
@@ -129,7 +129,7 @@ void BackgroundCell::Draw(
    if ( iPass == TrackArtist::PassBackground ) {
       auto &dc = context.dc;
       // Paint over the part below the tracks
-      AColor::TrackPanelBackground( &dc, false );
+      PaintManager::TrackPanelBackground( &dc, false );
       dc.DrawRectangle( rect );
    }
 }

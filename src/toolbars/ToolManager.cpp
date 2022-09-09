@@ -56,7 +56,7 @@
 #include <lib-project/Project.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../ProjectWindows.h"
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
@@ -200,10 +200,10 @@ void ToolFrame::OnPaint( wxPaintEvent & WXUNUSED(event) )
       r.width = sizerW + 2;
       r.height = sizerW + 2;
 
-      AColor::Line(dc, r.GetLeft(), r.GetBottom(), r.GetRight(), r.GetTop() );
-      AColor::Line(dc, r.GetLeft() + 3, r.GetBottom(), r.GetRight(), r.GetTop() + 3 );
-      AColor::Line(dc, r.GetLeft() + 6, r.GetBottom(), r.GetRight(), r.GetTop() + 6 );
-      AColor::Line(dc, r.GetLeft() + 9, r.GetBottom(), r.GetRight(), r.GetTop() + 9 );
+      PaintManager::Line(dc, r.GetLeft(), r.GetBottom(), r.GetRight(), r.GetTop() );
+      PaintManager::Line(dc, r.GetLeft() + 3, r.GetBottom(), r.GetRight(), r.GetTop() + 3 );
+      PaintManager::Line(dc, r.GetLeft() + 6, r.GetBottom(), r.GetRight(), r.GetTop() + 6 );
+      PaintManager::Line(dc, r.GetLeft() + 9, r.GetBottom(), r.GetRight(), r.GetTop() + 9 );
    }
 
 }

@@ -3,23 +3,23 @@
 
   Audacity: A Digital Audio Editor
 
-  AColor.cpp
+  PaintManager.cpp
 
   Dominic Mazzoni
 
 
 ********************************************************************//**
 
-\class AColor
-\brief AColor Manages color brushes and pens
+\class PaintManager
+\brief PaintManager Manages color brushes and pens
 
 It is also a place to document colour usage policy in Audacity
 
 *//********************************************************************/
 
 
-#include "AColor.h"
-#include "AColorResources.h"
+#include "PaintManager.h"
+#include "PaintManagerResources.h"
 
 
 #include <wx/window.h>
@@ -33,56 +33,56 @@ It is also a place to document colour usage policy in Audacity
 #include "theme/AllThemeResources.h"
 #include "theme/Theme.h"
 
-bool AColor::inited = false;
-wxBrush AColor::lightBrush[2];
-wxBrush AColor::mediumBrush[2];
-wxBrush AColor::darkBrush[2];
-wxPen AColor::lightPen[2];
-wxPen AColor::mediumPen[2];
-wxPen AColor::darkPen[2];
+bool PaintManager::inited = false;
+wxBrush PaintManager::lightBrush[2];
+wxBrush PaintManager::mediumBrush[2];
+wxBrush PaintManager::darkBrush[2];
+wxPen PaintManager::lightPen[2];
+wxPen PaintManager::mediumPen[2];
+wxPen PaintManager::darkPen[2];
 
-wxPen AColor::cursorPen;
-wxBrush AColor::indicatorBrush[2];
-wxPen AColor::indicatorPen[2];
-wxPen AColor::playRegionPen[2];
-wxBrush AColor::playRegionBrush[2];
+wxPen PaintManager::cursorPen;
+wxBrush PaintManager::indicatorBrush[2];
+wxPen PaintManager::indicatorPen[2];
+wxPen PaintManager::playRegionPen[2];
+wxBrush PaintManager::playRegionBrush[2];
 
-wxBrush AColor::muteBrush[2];
-wxBrush AColor::soloBrush;
+wxBrush PaintManager::muteBrush[2];
+wxBrush PaintManager::soloBrush;
 
-wxPen AColor::clippingPen;
+wxPen PaintManager::clippingPen;
 
-wxBrush AColor::envelopeBrush;
-wxPen AColor::envelopePen;
-wxPen AColor::WideEnvelopePen;
+wxBrush PaintManager::envelopeBrush;
+wxPen PaintManager::envelopePen;
+wxPen PaintManager::WideEnvelopePen;
 
-wxBrush AColor::labelTextNormalBrush;
-wxBrush AColor::labelTextEditBrush;
-wxBrush AColor::labelUnselectedBrush;
-wxBrush AColor::labelSelectedBrush;
-wxBrush AColor::labelSyncLockSelBrush;
-wxPen AColor::labelUnselectedPen;
-wxPen AColor::labelSelectedPen;
-wxPen AColor::labelSyncLockSelPen;
-wxPen AColor::labelSurroundPen;
-wxPen AColor::trackFocusPens[3];
-wxPen AColor::snapGuidePen;
+wxBrush PaintManager::labelTextNormalBrush;
+wxBrush PaintManager::labelTextEditBrush;
+wxBrush PaintManager::labelUnselectedBrush;
+wxBrush PaintManager::labelSelectedBrush;
+wxBrush PaintManager::labelSyncLockSelBrush;
+wxPen PaintManager::labelUnselectedPen;
+wxPen PaintManager::labelSelectedPen;
+wxPen PaintManager::labelSyncLockSelPen;
+wxPen PaintManager::labelSurroundPen;
+wxPen PaintManager::trackFocusPens[3];
+wxPen PaintManager::snapGuidePen;
 
-wxPen AColor::tooltipPen;
-wxBrush AColor::tooltipBrush;
+wxPen PaintManager::tooltipPen;
+wxBrush PaintManager::tooltipBrush;
 
 // The spare pen and brush possibly help us cut down on the
 // number of pens and brushes we need.
-wxPen AColor::sparePen;
-wxBrush AColor::spareBrush;
+wxPen PaintManager::sparePen;
+wxBrush PaintManager::spareBrush;
 
-wxPen AColor::uglyPen;
-wxBrush AColor::uglyBrush;
+wxPen PaintManager::uglyPen;
+wxBrush PaintManager::uglyBrush;
 
 //
 // Draw an upward or downward pointing arrow.
 //
-void AColor::Arrow(wxDC & dc, wxCoord x, wxCoord y, int width, bool down)
+void PaintManager::Arrow(wxDC & dc, wxCoord x, wxCoord y, int width, bool down)
 {
    if (width & 0x01) {
       width--;
@@ -109,14 +109,14 @@ void AColor::Arrow(wxDC & dc, wxCoord x, wxCoord y, int width, bool down)
 // Draw a line, inclusive of endpoints,
 // compensating for differences in wxWidgets versions across platforms
 //
-void AColor::Line(wxDC & dc, wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2)
+void PaintManager::Line(wxDC & dc, wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2)
 {
    const wxPoint points[] { { x1, y1 }, { x2, y2 } };
    Lines( dc, 2, points );
 }
 
 // Draw lines, INCLUSIVE of all endpoints
-void AColor::Lines(wxDC &dc, size_t nPoints, const wxPoint points[])
+void PaintManager::Lines(wxDC &dc, size_t nPoints, const wxPoint points[])
 {
    if ( nPoints <= 1 ) {
       if (nPoints == 1)
@@ -157,7 +157,7 @@ void AColor::Lines(wxDC &dc, size_t nPoints, const wxPoint points[])
 //
 // Draws a focus rectangle (Taken directly from wxWidgets source)
 //
-void AColor::DrawFocus(wxDC & dc, wxRect & rect)
+void PaintManager::DrawFocus(wxDC & dc, wxRect & rect)
 {
    // draw the pixels manually: note that to behave in the same manner as
    // DrawRect(), we must exclude the bottom and right borders from the
@@ -188,26 +188,26 @@ void AColor::DrawFocus(wxDC & dc, wxRect & rect)
 
 }
 
-void AColor::Bevel(wxDC & dc, bool up, const wxRect & r)
+void PaintManager::Bevel(wxDC & dc, bool up, const wxRect & r)
 {
    if (up)
-      AColor::Light(&dc, false);
+      PaintManager::Light(&dc, false);
    else
-      AColor::Dark(&dc, false);
+      PaintManager::Dark(&dc, false);
 
-   AColor::Line(dc, r.x, r.y, r.x + r.width, r.y);
-   AColor::Line(dc, r.x, r.y, r.x, r.y + r.height);
+   PaintManager::Line(dc, r.x, r.y, r.x + r.width, r.y);
+   PaintManager::Line(dc, r.x, r.y, r.x, r.y + r.height);
 
    if (!up)
-      AColor::Light(&dc, false);
+      PaintManager::Light(&dc, false);
    else
-      AColor::Dark(&dc, false);
+      PaintManager::Dark(&dc, false);
 
-   AColor::Line(dc, r.x + r.width, r.y, r.x + r.width, r.y + r.height);
-   AColor::Line(dc, r.x, r.y + r.height, r.x + r.width, r.y + r.height);
+   PaintManager::Line(dc, r.x + r.width, r.y, r.x + r.width, r.y + r.height);
+   PaintManager::Line(dc, r.x, r.y + r.height, r.x + r.width, r.y + r.height);
 }
 
-void AColor::Bevel2
+void PaintManager::Bevel2
 (wxDC & dc, bool up, const wxRect & r, bool bSel, bool bHighlight)
 {
    int index = 0;
@@ -239,7 +239,7 @@ void AColor::Bevel2
       Bmp.GetWidth() - r2, 0, wxCOPY, true );
 }
 
-wxColour AColor::Blend( const wxColour & c1, const wxColour & c2 )
+wxColour PaintManager::Blend( const wxColour & c1, const wxColour & c2 )
 {
    wxColour c3(
       (c1.Red() + c2.Red())/2,
@@ -248,7 +248,7 @@ wxColour AColor::Blend( const wxColour & c1, const wxColour & c2 )
    return c3;
 }
 
-void AColor::BevelTrackInfo(wxDC & dc, bool up, const wxRect & r, bool highlight)
+void PaintManager::BevelTrackInfo(wxDC & dc, bool up, const wxRect & r, bool highlight)
 {
 #ifndef EXPERIMENTAL_THEMING
    Bevel( dc, up, r );
@@ -282,7 +282,7 @@ void AColor::BevelTrackInfo(wxDC & dc, bool up, const wxRect & r, bool highlight
 // If pen omitted, then the same colour as the brush will be used.
 // alpha for the brush is normally 255, but if set will make a difference 
 // on mac (only) currently.
-void AColor::UseThemeColour( wxDC * dc, int iBrush, int iPen, int alpha )
+void PaintManager::UseThemeColour( wxDC * dc, int iBrush, int iPen, int alpha )
 {
    if (!inited)
       Init();
@@ -302,7 +302,7 @@ void AColor::UseThemeColour( wxDC * dc, int iBrush, int iPen, int alpha )
    dc->SetPen( sparePen );
 }
 
-void AColor::UseThemeColour( wxGraphicsContext * gc, int iBrush, int iPen, int alpha )
+void PaintManager::UseThemeColour( wxGraphicsContext * gc, int iBrush, int iPen, int alpha )
 {
    if (!inited)
       Init();
@@ -323,18 +323,18 @@ void AColor::UseThemeColour( wxGraphicsContext * gc, int iBrush, int iPen, int a
 }
 
 
-void AColor::Light(wxDC * dc, bool selected, bool highlight)
+void PaintManager::Light(wxDC * dc, bool selected, bool highlight)
 {
    if (!inited)
       Init();
    int index = (int) selected;
-   auto &brush = highlight ? AColor::uglyBrush : lightBrush[index];
+   auto &brush = highlight ? PaintManager::uglyBrush : lightBrush[index];
    dc->SetBrush( brush );
-   auto &pen = highlight ? AColor::uglyPen : lightPen[index];
+   auto &pen = highlight ? PaintManager::uglyPen : lightPen[index];
    dc->SetPen( pen );
 }
 
-void AColor::Medium(wxDC * dc, bool selected)
+void PaintManager::Medium(wxDC * dc, bool selected)
 {
    if (!inited)
       Init();
@@ -343,7 +343,7 @@ void AColor::Medium(wxDC * dc, bool selected)
    dc->SetPen(mediumPen[index]);
 }
 
-void AColor::MediumTrackInfo(wxDC * dc, bool selected)
+void PaintManager::MediumTrackInfo(wxDC * dc, bool selected)
 {
 #ifdef EXPERIMENTAL_THEMING
    UseThemeColour( dc, selected ? clrTrackInfoSelected : clrTrackInfo );
@@ -353,18 +353,18 @@ void AColor::MediumTrackInfo(wxDC * dc, bool selected)
 }
 
 
-void AColor::Dark(wxDC * dc, bool selected, bool highlight)
+void PaintManager::Dark(wxDC * dc, bool selected, bool highlight)
 {
    if (!inited)
       Init();
    int index = (int) selected;
-   auto &brush = highlight ? AColor::uglyBrush : darkBrush[index];
+   auto &brush = highlight ? PaintManager::uglyBrush : darkBrush[index];
    dc->SetBrush( brush );
-   auto &pen = highlight ? AColor::uglyPen : darkPen[index];
+   auto &pen = highlight ? PaintManager::uglyPen : darkPen[index];
    dc->SetPen( pen );
 }
 
-void AColor::TrackPanelBackground(wxDC * dc, bool selected)
+void PaintManager::TrackPanelBackground(wxDC * dc, bool selected)
 {
 #ifdef EXPERIMENTAL_THEMING
    UseThemeColour( dc, selected ? clrMediumSelected : clrTrackBackground );
@@ -373,7 +373,7 @@ void AColor::TrackPanelBackground(wxDC * dc, bool selected)
 #endif
 }
 
-void AColor::CursorColor(wxDC * dc)
+void PaintManager::CursorColor(wxDC * dc)
 {
    if (!inited)
       Init();
@@ -382,7 +382,7 @@ void AColor::CursorColor(wxDC * dc)
    dc->SetPen(cursorPen);
 }
 
-void AColor::IndicatorColor(wxDC * dc, bool bIsNotRecording)
+void PaintManager::IndicatorColor(wxDC * dc, bool bIsNotRecording)
 {
    if (!inited)
       Init();
@@ -391,7 +391,7 @@ void AColor::IndicatorColor(wxDC * dc, bool bIsNotRecording)
    dc->SetBrush(indicatorBrush[index]);
 }
 
-void AColor::PlayRegionColor(wxDC * dc, bool locked)
+void PaintManager::PlayRegionColor(wxDC * dc, bool locked)
 {
    if (!inited)
       Init();
@@ -399,21 +399,21 @@ void AColor::PlayRegionColor(wxDC * dc, bool locked)
    dc->SetBrush(playRegionBrush[(int)locked]);
 }
 
-void AColor::TrackFocusPen(wxDC * dc, int level)
+void PaintManager::TrackFocusPen(wxDC * dc, int level)
 {
    if (!inited)
       Init();
    dc->SetPen(trackFocusPens[level]);
 }
 
-void AColor::SnapGuidePen(wxDC * dc)
+void PaintManager::SnapGuidePen(wxDC * dc)
 {
    if (!inited)
       Init();
    dc->SetPen(snapGuidePen);
 }
 
-void AColor::Mute(wxDC * dc, bool on, bool selected, bool soloing)
+void PaintManager::Mute(wxDC * dc, bool on, bool selected, bool soloing)
 {
    if (!inited)
       Init();
@@ -428,7 +428,7 @@ void AColor::Mute(wxDC * dc, bool on, bool selected, bool soloing)
    }
 }
 
-void AColor::Solo(wxDC * dc, bool on, bool selected)
+void PaintManager::Solo(wxDC * dc, bool on, bool selected)
 {
    if (!inited)
       Init();
@@ -443,9 +443,9 @@ void AColor::Solo(wxDC * dc, bool on, bool selected)
    }
 }
 
-bool AColor::gradient_inited = 0;
+bool PaintManager::gradient_inited = 0;
 
-void AColor::ReInit()
+void PaintManager::ReInit()
 {
    inited=false;
    Init();
@@ -475,7 +475,7 @@ wxColour CursorColour( )
    return theTheme.Colour( clrSelected );
 }
 
-void AColor::Init()
+void PaintManager::Init()
 {
    if (inited)
       return;
@@ -563,7 +563,7 @@ void AColor::Init()
 }
 
 // These colours are chosen so that black text shows up OK on them.
-const int AColor_midicolors[16][3] = {
+const int PaintManager_midicolors[16][3] = {
    {255, 102, 102},             // 1=salmon
    {204, 0, 0},                 // 2=red
    {255, 117, 23},              // 3=orange
@@ -583,10 +583,10 @@ const int AColor_midicolors[16][3] = {
    {255, 51, 204}               // 16=lt red-violet
 };
 
-void AColor::MIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
+void PaintManager::MIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
 {
    if (channel >= 1 && channel <= 16) {
-      const int *colors = AColor_midicolors[channel - 1];
+      const int *colors = PaintManager_midicolors[channel - 1];
 
       dc->SetPen(wxPen(wxColour(colors[0],
                                 colors[1], colors[2]), 1, wxPENSTYLE_SOLID));
@@ -599,10 +599,10 @@ void AColor::MIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
 
 }
 
-void AColor::LightMIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
+void PaintManager::LightMIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
 {
    if (channel >= 1 && channel <= 16) {
-      const int *colors = AColor_midicolors[channel - 1];
+      const int *colors = PaintManager_midicolors[channel - 1];
 
       dc->SetPen(wxPen(wxColour(127 + colors[0] / 2,
                                 127 + colors[1] / 2,
@@ -617,10 +617,10 @@ void AColor::LightMIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
 
 }
 
-void AColor::DarkMIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
+void PaintManager::DarkMIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
 {
    if (channel >= 1 && channel <= 16) {
-      const int *colors = AColor_midicolors[channel - 1];
+      const int *colors = PaintManager_midicolors[channel - 1];
 
       dc->SetPen(wxPen(wxColour(colors[0] / 2,
                                 colors[1] / 2,
@@ -637,9 +637,9 @@ void AColor::DarkMIDIChannel(wxDC * dc, int channel /* 1 - 16 */ )
 
 
 
-unsigned char AColor::gradient_pre[ColorGradientTotal][colorSchemes][gradientSteps][3];
+unsigned char PaintManager::gradient_pre[ColorGradientTotal][colorSchemes][gradientSteps][3];
 
-void AColor::PreComputeGradient() {
+void PaintManager::PreComputeGradient() {
    if (gradient_inited) return;
    gradient_inited = 1;
 

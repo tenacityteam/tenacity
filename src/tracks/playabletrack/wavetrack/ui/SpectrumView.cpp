@@ -15,7 +15,7 @@ Paul Licameli split from WaveTrackView.cpp
 #include "WaveTrackView.h"
 #include "WaveTrackViewConstants.h"
 
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"
 #include "../../../../WaveClip.h"
@@ -152,23 +152,23 @@ static inline float findValue
 }
 
 // dashCount counts both dashes and the spaces between them.
-inline AColor::ColorGradientChoice
+inline PaintManager::ColorGradientChoice
 ChooseColorSet( float bin0, float bin1, float selBinLo,
    float selBinCenter, float selBinHi, int dashCount, bool isSpectral )
 {
    if (!isSpectral)
-      return  AColor::ColorGradientTimeSelected;
+      return  PaintManager::ColorGradientTimeSelected;
    if ((selBinCenter >= 0) && (bin0 <= selBinCenter) &&
        (selBinCenter < bin1))
-      return AColor::ColorGradientEdge;
+      return PaintManager::ColorGradientEdge;
    if ((0 == dashCount % 2) &&
        (((selBinLo >= 0) && (bin0 <= selBinLo) && ( selBinLo < bin1))  ||
         ((selBinHi >= 0) && (bin0 <= selBinHi) && ( selBinHi < bin1))))
-      return AColor::ColorGradientEdge;
+      return PaintManager::ColorGradientEdge;
    if ((selBinLo < 0 || selBinLo < bin1) && (selBinHi < 0 || selBinHi > bin0))
-      return  AColor::ColorGradientTimeAndFrequencySelected;
+      return  PaintManager::ColorGradientTimeAndFrequencySelected;
    
-   return  AColor::ColorGradientTimeSelected;
+   return  PaintManager::ColorGradientTimeSelected;
 }
 
 void DrawClipSpectrum(TrackPanelDrawingContext &context,
@@ -529,8 +529,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    }
 
    // build color gradient tables (not thread safe)
-   if (!AColor::gradient_inited)
-      AColor::PreComputeGradient();
+   if (!PaintManager::gradient_inited)
+      PaintManager::PreComputeGradient();
 
    // left pixel column of the fisheye
    int fisheyeLeft = zoomInfo.GetFisheyeLeftBoundary(-leftOffset);
@@ -576,7 +576,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          // set to use.  We use a darker selection if
          // in both spectral range and time range.
 
-         AColor::ColorGradientChoice selected = AColor::ColorGradientUnselected;
+         PaintManager::ColorGradientChoice selected = PaintManager::ColorGradientUnselected;
 
          // If we are in the time selected range, then we may use a different color set.
          if (maybeSelected)

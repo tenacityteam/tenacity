@@ -39,7 +39,7 @@ Provides:
 
 #include "../theme/Theme.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../AColor.h"
+#include "../PaintManager.h"
 
 wxDEFINE_EVENT(EVT_THEME_CHANGE, wxCommandEvent);
 
@@ -217,7 +217,7 @@ void ThemePrefs::OnSaveThemeAsCode(wxCommandEvent & WXUNUSED(event))
 
 void ThemePrefs::ApplyUpdatedImages()
 {
-   AColor::ReInit();
+   PaintManager::ReInit();
 
    wxCommandEvent e{ EVT_THEME_CHANGE };
    wxTheApp->SafelyProcessEvent( e );

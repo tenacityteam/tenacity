@@ -64,7 +64,7 @@ array of Ruler::Label.
 #include <lib-screen-geometry/NumberScale.h>
 #include <lib-screen-geometry/ViewInfo.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../Envelope.h"
 #include "../theme/Theme.h"
@@ -1452,19 +1452,19 @@ void Ruler::Draw(wxDC& dc, const Envelope* envelope) const
    {
       if (mOrientation == wxHORIZONTAL) {
          if (mFlip)
-            AColor::Line(dc, mLeft, mTop, mRight, mTop);
+            PaintManager::Line(dc, mLeft, mTop, mRight, mTop);
          else
-            AColor::Line(dc, mLeft, mBottom, mRight, mBottom);
+            PaintManager::Line(dc, mLeft, mBottom, mRight, mBottom);
       }
       else {
          if (mFlip)
-            AColor::Line(dc, mLeft, mTop, mLeft, mBottom);
+            PaintManager::Line(dc, mLeft, mTop, mLeft, mBottom);
          else
          {
             // These calculations appear to be wrong, and to never have been used (so not tested) prior to MixerBoard.
-            //    AColor::Line(dc, mRect.x-mRect.width, mTop, mRect.x-mRect.width, mBottom);
+            //    PaintManager::Line(dc, mRect.x-mRect.width, mTop, mRect.x-mRect.width, mBottom);
             const int nLineX = mRight - 1;
-            AColor::Line(dc, nLineX, mTop, nLineX, mBottom);
+            PaintManager::Line(dc, nLineX, mTop, nLineX, mBottom);
          }
       }
    }
@@ -1484,18 +1484,18 @@ void Ruler::Draw(wxDC& dc, const Envelope* envelope) const
       {
          if (mOrientation == wxHORIZONTAL) {
             if (mFlip)
-               AColor::Line(dc, mLeft + pos, mTop,
+               PaintManager::Line(dc, mLeft + pos, mTop,
                              mLeft + pos, mTop + length);
             else
-               AColor::Line(dc, mLeft + pos, mBottom - length,
+               PaintManager::Line(dc, mLeft + pos, mBottom - length,
                              mLeft + pos, mBottom);
          }
          else {
             if (mFlip)
-               AColor::Line(dc, mLeft, mTop + pos,
+               PaintManager::Line(dc, mLeft, mTop + pos,
                              mLeft + length, mTop + pos);
             else
-               AColor::Line(dc, mRight - length, mTop + pos,
+               PaintManager::Line(dc, mRight - length, mTop + pos,
                              mRight, mTop + pos);
          }
       }
@@ -1538,11 +1538,11 @@ void Ruler::DrawGrid(wxDC& dc,
          gridPos = label.pos;
          if(mOrientation == wxHORIZONTAL) {
             if((gridPos != 0) && (gridPos != gridLineLength))
-               AColor::Line(dc, gridPos+xOffset, yOffset, gridPos+xOffset, gridLineLength-1+yOffset);
+               PaintManager::Line(dc, gridPos+xOffset, yOffset, gridPos+xOffset, gridLineLength-1+yOffset);
          }
          else {
             if((gridPos != 0) && (gridPos != gridLineLength))
-               AColor::Line(dc, xOffset, gridPos+yOffset, gridLineLength-1+xOffset, gridPos+yOffset);
+               PaintManager::Line(dc, xOffset, gridPos+yOffset, gridLineLength-1+xOffset, gridPos+yOffset);
          }
       }
    }
@@ -1554,11 +1554,11 @@ void Ruler::DrawGrid(wxDC& dc,
          gridPos = label.pos;
          if(mOrientation == wxHORIZONTAL) {
             if((gridPos != 0) && (gridPos != gridLineLength))
-               AColor::Line(dc, gridPos+xOffset, yOffset, gridPos+xOffset, gridLineLength-1+yOffset);
+               PaintManager::Line(dc, gridPos+xOffset, yOffset, gridPos+xOffset, gridLineLength-1+yOffset);
          }
          else {
             if((gridPos != 0) && (gridPos != gridLineLength))
-               AColor::Line(dc, xOffset, gridPos+yOffset, gridLineLength-1+xOffset, gridPos+yOffset);
+               PaintManager::Line(dc, xOffset, gridPos+yOffset, gridLineLength-1+xOffset, gridPos+yOffset);
          }
       }
 
@@ -1568,11 +1568,11 @@ void Ruler::DrawGrid(wxDC& dc,
          dc.SetPen(*wxBLACK_PEN);
          if(mOrientation == wxHORIZONTAL) {
             if(zeroPosition != gridLineLength)
-               AColor::Line(dc, zeroPosition+xOffset, yOffset, zeroPosition+xOffset, gridLineLength-1+yOffset);
+               PaintManager::Line(dc, zeroPosition+xOffset, yOffset, zeroPosition+xOffset, gridLineLength-1+yOffset);
          }
          else {
             if(zeroPosition != gridLineLength)
-               AColor::Line(dc, xOffset, zeroPosition+yOffset, gridLineLength-1+xOffset, zeroPosition+yOffset);
+               PaintManager::Line(dc, xOffset, zeroPosition+yOffset, gridLineLength-1+xOffset, zeroPosition+yOffset);
          }
       }
    }

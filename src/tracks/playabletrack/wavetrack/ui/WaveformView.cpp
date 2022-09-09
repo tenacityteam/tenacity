@@ -18,7 +18,7 @@ Paul Licameli split from WaveTrackView.cpp
 #include "SampleHandle.h"
 #include "../../../ui/EnvelopeHandle.h"
 #include "../../../ui/TimeShiftHandle.h"
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../Envelope.h"
 #include "../../../../EnvelopeEditor.h"
 #include "../../../../ProjectSettings.h"
@@ -237,7 +237,7 @@ void DrawWaveformBackground(TrackPanelDrawingContext &context,
       }
 
       if (highlightEnvelope && lmaxbot < lmintop - 1) {
-         dc.SetBrush( AColor::uglyBrush );
+         dc.SetBrush( PaintManager::uglyBrush );
          dc.DrawRectangle(l, rect.y + lmaxbot, w, lmintop - lmaxbot);
       }
 
@@ -260,7 +260,7 @@ void DrawWaveformBackground(TrackPanelDrawingContext &context,
       dc.DrawRectangle(l, rect.y + lmaxtop, w, lminbot - lmaxtop);
    }
    if (highlightEnvelope && lmaxbot < lmintop - 1) {
-      dc.SetBrush( AColor::uglyBrush );
+      dc.SetBrush( PaintManager::uglyBrush );
       dc.DrawRectangle(l, rect.y + lmaxbot, w, lmintop - lmaxbot);
    }
 
@@ -277,8 +277,8 @@ void DrawWaveformBackground(TrackPanelDrawingContext &context,
    if (zeroLevelYCoordinate >= rect.GetTop() &&
        zeroLevelYCoordinate <= rect.GetBottom()) {
       dc.SetPen(*wxBLACK_PEN);
-      AColor::Line(dc, rect.x, zeroLevelYCoordinate,
-                   rect.x + rect.width - 1, zeroLevelYCoordinate);
+      PaintManager::Line(dc, rect.x, zeroLevelYCoordinate,
+                         rect.x + rect.width - 1, zeroLevelYCoordinate);
    }
 }
 
@@ -414,7 +414,7 @@ void DrawMinMaxRMS(
             dc.SetPen((bl[x0] % 2) ? muteSamplePen : samplePen);
             for (int yy = 0; yy < rect.height / 25 + 1; ++yy) {
                // we are drawing over the buffer, but I think DrawLine takes care of this.
-               AColor::Line(dc,
+               PaintManager::Line(dc,
                             xx,
                             rect.y + 25 * yy + (x0 /*+pixAnimOffset*/) % 25,
                             xx,
@@ -439,7 +439,7 @@ void DrawMinMaxRMS(
          dc.SetPen(muted ? muteSamplePen : samplePen);
       }
       else {
-         AColor::Line(dc, xx, rect.y + h2, xx, rect.y + h1);
+         PaintManager::Line(dc, xx, rect.y + h2, xx, rect.y + h1);
       }
    }
 
@@ -453,7 +453,7 @@ void DrawMinMaxRMS(
       if (bl[x0] <= -1) {
       }
       else if (r1[x0] != r2[x0]) {
-         AColor::Line(dc, xx, rect.y + r2[x0], xx, rect.y + r1[x0]);
+         PaintManager::Line(dc, xx, rect.y + r2[x0], xx, rect.y + r1[x0]);
       }
    }
 
@@ -465,7 +465,7 @@ void DrawMinMaxRMS(
       dc.SetPen(muted ? muteClippedPen : clippedPen);
       while (--clipcnt >= 0) {
          int xx = clipped[clipcnt];
-         AColor::Line(dc, xx, rect.y, xx, rect.y + rect.height);
+         PaintManager::Line(dc, xx, rect.y, xx, rect.y + rect.height);
       }
    }
 }
@@ -516,7 +516,7 @@ void DrawIndividualSamples(TrackPanelDrawingContext &context,
 
    const auto &muteSamplePen = artist->muteSamplePen;
    const auto &samplePen = artist->samplePen;
-   auto &pen = highlight ? AColor::uglyPen : muted ? muteSamplePen : samplePen;
+   auto &pen = highlight ? PaintManager::uglyPen : muted ? muteSamplePen : samplePen;
    dc.SetPen( pen );
 
    for (decltype(slen) s = 0; s < slen; s++) {
@@ -552,7 +552,7 @@ void DrawIndividualSamples(TrackPanelDrawingContext &context,
       const auto &dragsampleBrush = artist->dragsampleBrush;
       const auto &sampleBrush = artist->sampleBrush;
       auto &brush = highlight
-         ? AColor::uglyBrush
+         ? PaintManager::uglyBrush
          : bigPoints ? dragsampleBrush : sampleBrush;
       dc.SetBrush( brush );
       for (decltype(slen) s = 0; s < slen; s++) {
@@ -570,7 +570,7 @@ void DrawIndividualSamples(TrackPanelDrawingContext &context,
       int yZero = GetWaveYPos(0.0, zoomMin, zoomMax, rect.height, dB, true, dBRange, false);
       yZero = rect.y + std::max(-1, std::min(rect.height, yZero));
       for (decltype(slen) s = 0; s < slen; s++) {
-         AColor::Line(dc,
+         PaintManager::Line(dc,
                      rect.x + xpos[s], rect.y + ypos[s],
                      rect.x + xpos[s], yZero);
       }
@@ -578,7 +578,7 @@ void DrawIndividualSamples(TrackPanelDrawingContext &context,
    else {
       // Connect samples with straight lines
       for (decltype(slen) s = 0; s < slen - 1; s++) {
-         AColor::Line(dc,
+         PaintManager::Line(dc,
                      rect.x + xpos[s], rect.y + ypos[s],
                      rect.x + xpos[s + 1], rect.y + ypos[s + 1]);
       }
@@ -591,7 +591,7 @@ void DrawIndividualSamples(TrackPanelDrawingContext &context,
       dc.SetPen(muted ? muteClippedPen : clippedPen);
       while (--clipcnt >= 0) {
          auto s = clipped[clipcnt];
-         AColor::Line(dc, rect.x + s, rect.y, rect.x + s, rect.y + rect.height);
+         PaintManager::Line(dc, rect.x + s, rect.y, rect.x + s, rect.y + rect.height);
       }
    }
 }
@@ -607,20 +607,20 @@ void DrawEnvLine(
 
    if (y0 < 0) {
       if (x0 % 4 != 3) {
-         AColor::Line(dc, xx, yy, xx, yy + 3);
+         PaintManager::Line(dc, xx, yy, xx, yy + 3);
       }
    }
    else if (y0 > rect.height) {
       if (x0 % 4 != 3) {
-         AColor::Line(dc, xx, yy - 3, xx, yy);
+         PaintManager::Line(dc, xx, yy - 3, xx, yy);
       }
    }
    else {
       if (top) {
-         AColor::Line(dc, xx, yy, xx, yy + 3);
+         PaintManager::Line(dc, xx, yy, xx, yy + 3);
       }
       else {
-         AColor::Line(dc, xx, yy - 3, xx, yy);
+         PaintManager::Line(dc, xx, yy - 3, xx, yy);
       }
    }
 }
@@ -634,7 +634,7 @@ void DrawEnvelope(TrackPanelDrawingContext &context,
 
    int h = rect.height;
 
-   auto &pen = highlight ? AColor::uglyPen : AColor::envelopePen;
+   auto &pen = highlight ? PaintManager::uglyPen : PaintManager::envelopePen;
    dc.SetPen( pen );
 
    for (int x0 = 0; x0 < rect.width; ++x0) {
@@ -946,15 +946,15 @@ void DrawTimeSlider( TrackPanelDrawingContext &context,
    int yTop  = rect.y + border;
    int yBot  = rect.y + rect.height - border - 1;
 
-   AColor::Light(&dc, false, highlight);
-   AColor::Line(dc, xLeft,         yBot - leftTaper, xLeft,         yTop + leftTaper);
-   AColor::Line(dc, xLeft,         yTop + leftTaper, xLeft + xFlat, yTop);
-   AColor::Line(dc, xLeft + xFlat, yTop,             xLeft + width, yTop + rightTaper);
+   PaintManager::Light(&dc, false, highlight);
+   PaintManager::Line(dc, xLeft,         yBot - leftTaper, xLeft,         yTop + leftTaper);
+   PaintManager::Line(dc, xLeft,         yTop + leftTaper, xLeft + xFlat, yTop);
+   PaintManager::Line(dc, xLeft + xFlat, yTop,             xLeft + width, yTop + rightTaper);
 
-   AColor::Dark(&dc, false, highlight);
-   AColor::Line(dc, xLeft + width,         yTop + rightTaper, xLeft + width,       yBot - rightTaper);
-   AColor::Line(dc, xLeft + width,         yBot - rightTaper, xLeft + width-xFlat, yBot);
-   AColor::Line(dc, xLeft + width - xFlat, yBot,              xLeft,               yBot - leftTaper);
+   PaintManager::Dark(&dc, false, highlight);
+   PaintManager::Line(dc, xLeft + width,         yTop + rightTaper, xLeft + width,       yBot - rightTaper);
+   PaintManager::Line(dc, xLeft + width,         yBot - rightTaper, xLeft + width-xFlat, yBot);
+   PaintManager::Line(dc, xLeft + width - xFlat, yBot,              xLeft,               yBot - leftTaper);
 
    int firstBar = yTop + taper + taper / 2;
    int nBars    = (yBot - yTop - taper * 3) / barSpacing + 1;
@@ -962,15 +962,15 @@ void DrawTimeSlider( TrackPanelDrawingContext &context,
    int yy;
    int i;
 
-   AColor::Light(&dc, false, highlight);
+   PaintManager::Light(&dc, false, highlight);
    for (i = 0;i < nBars; i++) {
       yy = firstBar + barSpacing * i;
-      AColor::Line(dc, xLeft, yy, xLeft + barWidth, yy);
+      PaintManager::Line(dc, xLeft, yy, xLeft + barWidth, yy);
    }
-   AColor::Dark(&dc, false, highlight);
+   PaintManager::Dark(&dc, false, highlight);
    for(i = 0;i < nBars; i++){
       yy = firstBar + barSpacing * i + 1;
-      AColor::Line(dc, xLeft, yy, xLeft + barWidth, yy);
+      PaintManager::Line(dc, xLeft, yy, xLeft + barWidth, yy);
    }
 }
 

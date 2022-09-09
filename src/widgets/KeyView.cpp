@@ -19,7 +19,7 @@
 #include <wx/settings.h>
 #include <wx/vlbox.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../commands/CommandManager.h"
 
@@ -1199,11 +1199,11 @@ KeyView::OnDrawBackground(wxDC & dc, const wxRect & rect, size_t line) const
          // rectangle itself.  Consequently for themes that have black text it
          // disappears.  But on HiContrast you do get a dotted green border which
          // may have some utility.
-         AColor::DrawFocus(dc, r);
+         PaintManager::DrawFocus(dc, r);
 
          if (mViewType == ViewByTree){
             dc.DrawRectangle(r2);
-            AColor::DrawFocus(dc, r2);
+            PaintManager::DrawFocus(dc, r2);
          }
       }
       else
@@ -1220,9 +1220,9 @@ KeyView::OnDrawBackground(wxDC & dc, const wxRect & rect, size_t line) const
    {
       // Non-selected lines get a thin bottom border
       dc.SetPen(wxColour(240, 240, 240));
-      AColor::Line(dc, r.GetLeft(), r.GetBottom(), r.GetRight(), r.GetBottom());
+      PaintManager::Line(dc, r.GetLeft(), r.GetBottom(), r.GetRight(), r.GetBottom());
       if (mViewType == ViewByTree )
-         AColor::Line(dc, r2.GetLeft(), r2.GetBottom(), r2.GetRight(), r2.GetBottom());
+         PaintManager::Line(dc, r2.GetLeft(), r2.GetBottom(), r2.GetRight(), r2.GetBottom());
    }
 }
 
@@ -1271,12 +1271,12 @@ KeyView::OnDrawItem(wxDC & dc, const wxRect & rect, size_t line) const
          dc.DrawRectangle(bx + 3, by + 4, 9, 9);
          if (node->isopen)
          {
-            AColor::Line(dc, bx + 5, by + 8, bx + 9, by + 8);
+            PaintManager::Line(dc, bx + 5, by + 8, bx + 9, by + 8);
          }
          else
          {
-            AColor::Line(dc, bx + 7, by + 6, bx + 7, by + 10);
-            AColor::Line(dc, bx + 5, by + 8, bx + 9, by + 8);
+            PaintManager::Line(dc, bx + 7, by + 6, bx + 7, by + 10);
+            PaintManager::Line(dc, bx + 5, by + 8, bx + 9, by + 8);
          }
       }
 

@@ -17,7 +17,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "NoteTrackVRulerControls.h"
 #include "../../../../NoteTrack.h"
 
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../theme/AllThemeResources.h"
 #include "../../../../HitTestResult.h"
 #include "../../../../theme/Theme.h"
@@ -296,12 +296,12 @@ void DrawNoteBackground(TrackPanelDrawingContext &context,
       if (obottom < rect.y + rect.height - data.GetNoteMargin()) {
          dc.SetPen(*wxBLACK_PEN);
          // obottom - 1 because obottom is at the bottom of the line
-         AColor::Line(dc, left, obottom - 1, right, obottom - 1);
+         PaintManager::Line(dc, left, obottom - 1, right, obottom - 1);
       }
       dc.SetPen(bp);
       // draw a black-key stripe colored line separating E and F if visible
       if (obottom - eOffset > rect.y && obottom - eOffset < rect.y + rect.height) {
-         AColor::Line(dc, left, obottom - eOffset,
+         PaintManager::Line(dc, left, obottom - eOffset,
                           right, obottom - eOffset);
       }
 
@@ -347,7 +347,7 @@ void DrawNoteBackground(TrackPanelDrawingContext &context,
       // map time to position
       int xx = TIME_TO_X(t + track->GetOffset());
       if (xx > right) break;
-      AColor::Line(dc, xx, sel.y, xx, sel.y + sel.height);
+      PaintManager::Line(dc, xx, sel.y, xx, sel.y + sel.height);
       next_bar_beat += beats_per_measure;
    }
 }
@@ -521,18 +521,18 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
                         }
                         // nr.y += rect.y;
                         if (muted)
-                           AColor::LightMIDIChannel(&dc, note->chan + 1);
+                           PaintManager::LightMIDIChannel(&dc, note->chan + 1);
                         else
-                           AColor::MIDIChannel(&dc, note->chan + 1);
+                           PaintManager::MIDIChannel(&dc, note->chan + 1);
                         dc.DrawRectangle(nr);
                         if (data.GetPitchHeight(1) > 2) {
-                           AColor::LightMIDIChannel(&dc, note->chan + 1);
-                           AColor::Line(dc, nr.x, nr.y, nr.x + nr.width-2, nr.y);
-                           AColor::Line(dc, nr.x, nr.y, nr.x, nr.y + nr.height-2);
-                           AColor::DarkMIDIChannel(&dc, note->chan + 1);
-                           AColor::Line(dc, nr.x+nr.width-1, nr.y,
+                           PaintManager::LightMIDIChannel(&dc, note->chan + 1);
+                           PaintManager::Line(dc, nr.x, nr.y, nr.x + nr.width-2, nr.y);
+                           PaintManager::Line(dc, nr.x, nr.y, nr.x, nr.y + nr.height-2);
+                           PaintManager::DarkMIDIChannel(&dc, note->chan + 1);
+                           PaintManager::Line(dc, nr.x+nr.width-1, nr.y,
                                  nr.x+nr.width-1, nr.y+nr.height-1);
-                           AColor::Line(dc, nr.x, nr.y+nr.height-1,
+                           PaintManager::Line(dc, nr.x, nr.y+nr.height-1,
                                  nr.x+nr.width-1, nr.y+nr.height-1);
                         }
 //                        }
@@ -550,7 +550,7 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
                   long fillflag = 0;
 
                   // set default color to be that of channel
-                  AColor::MIDIChannel(&dc, note->chan+1);
+                  PaintManager::MIDIChannel(&dc, note->chan+1);
                   if (shape != text) {
                      if (linecolor != -1)
                         dc.SetPen(wxPen(wxColour(RED(linecolor),
@@ -581,7 +581,7 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
                         y1 = (int)((yy + (y1 - yy) * (h1 - xx) / (x1 - xx)) + 0.5);
                         x1 = h1;
                      }
-                     AColor::Line(dc, TIME_TO_X(xx), yy, TIME_TO_X(x1), y1);
+                     PaintManager::Line(dc, TIME_TO_X(xx), yy, TIME_TO_X(x1), y1);
                   } else if (shape == rectangle) {
                      if (xx < h) { // clip on left, leave 10 pixels to spare
                         xx = X_TO_TIME(rect.x - (linethick + 10));
@@ -701,8 +701,8 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
    iterator.end();
    // draw black line between top/bottom margins and the track
    dc.SetPen(*wxBLACK_PEN);
-   AColor::Line(dc, rect.x, rect.y + marg, rect.x + rect.width, rect.y + marg);
-   AColor::Line(dc, rect.x, rect.y + rect.height - marg - 1, // subtract 1 to get
+   PaintManager::Line(dc, rect.x, rect.y + marg, rect.x + rect.width, rect.y + marg);
+   PaintManager::Line(dc, rect.x, rect.y + rect.height - marg - 1, // subtract 1 to get
                 rect.x + rect.width, rect.y + rect.height - marg - 1); // top of line
 
    if (h == 0.0 && track->GetOffset() < 0.0) {
@@ -738,7 +738,7 @@ void NoteTrackView::Draw(
 #endif
 
 #ifdef EXPERIMENTAL_NOTETRACK_OVERLAY
-      TrackArt::DrawBackgroundWithSelection(context, rect, nt.get(), AColor::labelSelectedBrush, AColor::labelUnselectedBrush);
+      TrackArt::DrawBackgroundWithSelection(context, rect, nt.get(), PaintManager::labelSelectedBrush, PaintManager::labelUnselectedBrush);
 #endif
       bool selected{ false };
       if (auto affordance = std::dynamic_pointer_cast<NoteTrackAffordanceControls>(GetAffordanceControls()))

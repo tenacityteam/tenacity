@@ -71,7 +71,7 @@ the mouse around.
 
 #include "SelectFile.h"
 #include "shuttle/ShuttleGui.h"
-#include "AColor.h"
+#include "PaintManager.h"
 #include "CommonCommandFlags.h"
 #include "PitchName.h"
 #include "Decibels.h"
@@ -788,7 +788,7 @@ void FrequencyPlotDialog::DrawPlot()
          lineheight = r.height - 2;
 
       if (ynorm > 0.0)
-         AColor::Line(memDC, r.x + 1 + i, r.y + r.height - 1 - lineheight,
+         PaintManager::Line(memDC, r.x + 1 + i, r.y + r.height - 1 - lineheight,
                         r.x + 1 + i, r.y + r.height - 1);
 
       if (mLogAxis)
@@ -926,7 +926,7 @@ void FrequencyPlotDialog::PlotPaint(wxPaintEvent & event)
          px = (int)((bestpeak - xMin) * width / (xMax - xMin));
 
       dc.SetPen(wxPen(wxColour(160,160,160), 1, wxPENSTYLE_SOLID));
-      AColor::Line(dc, r.x + 1 + px, r.y, r.x + 1 + px, r.y + r.height);
+      PaintManager::Line(dc, r.x + 1 + px, r.y, r.x + 1 + px, r.y + r.height);
 
        // print out info about the cursor location
 

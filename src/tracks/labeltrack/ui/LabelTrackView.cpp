@@ -17,7 +17,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "../../../LabelTrack.h"
 
-#include "../../../AColor.h"
+#include "../../../PaintManager.h"
 #include "../../../theme/AllThemeResources.h"
 #include "../../../HitTestResult.h"
 #include "Project.h"
@@ -547,21 +547,21 @@ void LabelTrackView::DrawLines(
       if((x  >= r.x) && (x  <= (r.x+r.width)))
       {
          // Draw line above and below left dragging widget.
-         AColor::Line(dc, x, r.y,  x, yIconStart - 1);
-         AColor::Line(dc, x, yIconEnd, x, r.y + r.height);
+         PaintManager::Line(dc, x, r.y,  x, yIconStart - 1);
+         PaintManager::Line(dc, x, yIconEnd, x, r.y + r.height);
       }
       if((x1 >= r.x) && (x1 <= (r.x+r.width)))
       {
          // Draw line above and below right dragging widget.
-         AColor::Line(dc, x1, r.y,  x1, yIconStart - 1);
-         AColor::Line(dc, x1, yIconEnd, x1, r.y + r.height);
+         PaintManager::Line(dc, x1, r.y,  x1, yIconStart - 1);
+         PaintManager::Line(dc, x1, yIconEnd, x1, r.y + r.height);
       }
    }
    else
    {
       // Draw the line, even though the widget is off screen
-      AColor::Line(dc, x, r.y,  x, r.y + r.height);
-      AColor::Line(dc, x1, r.y,  x1, r.y + r.height);
+      PaintManager::Line(dc, x, r.y,  x, r.y + r.height);
+      PaintManager::Line(dc, x1, r.y,  x1, r.y + r.height);
    }
 }
 
@@ -800,7 +800,7 @@ void LabelTrackView::Draw
    const auto &mLabels = pTrack->GetLabels();
 
    TrackArt::DrawBackgroundWithSelection( context, r, pTrack.get(),
-      AColor::labelSelectedBrush, AColor::labelUnselectedBrush,
+      PaintManager::labelSelectedBrush, PaintManager::labelUnselectedBrush,
       ( pTrack->GetSelected() || pTrack->IsSyncLockSelected() ) );
 
    wxCoord textWidth, textHeight;
@@ -825,8 +825,8 @@ void LabelTrackView::Draw
    ComputeLayout( r, zoomInfo );
    dc.SetTextForeground(theTheme.Colour( clrLabelTrackText));
    dc.SetBackgroundMode(wxTRANSPARENT);
-   dc.SetBrush(AColor::labelTextNormalBrush);
-   dc.SetPen(AColor::labelSurroundPen);
+   dc.SetBrush(PaintManager::labelTextNormalBrush);
+   dc.SetPen(PaintManager::labelSurroundPen);
    int GlyphLeft;
    int GlyphRight;
    // Now we draw the various items in this order,
@@ -863,20 +863,20 @@ void LabelTrackView::Draw
 #endif
          
          dc.SetBrush(mNavigationIndex == i || (pHit && pHit->mMouseOverLabel == i) 
-            ? AColor::labelTextEditBrush : AColor::labelTextNormalBrush);
+            ? PaintManager::labelTextEditBrush : PaintManager::labelTextNormalBrush);
          DrawBar(dc, labelStruct, r);
 
          bool selected = mTextEditIndex == i;
 
          if (selected)
-            dc.SetBrush(AColor::labelTextEditBrush);
+            dc.SetBrush(PaintManager::labelTextEditBrush);
          else if (highlight)
-            dc.SetBrush(AColor::uglyBrush);
+            dc.SetBrush(PaintManager::uglyBrush);
          else
-            dc.SetBrush(AColor::labelTextNormalBrush);
+            dc.SetBrush(PaintManager::labelTextNormalBrush);
          DrawTextBox(dc, labelStruct, r);
 
-         dc.SetBrush(AColor::labelTextNormalBrush);
+         dc.SetBrush(PaintManager::labelTextNormalBrush);
       }
    }
 
@@ -892,10 +892,10 @@ void LabelTrackView::Draw
    // Draw the text and the label boxes.
    { int i = -1; for (const auto &labelStruct : mLabels) { ++i;
       if(mTextEditIndex == i )
-         dc.SetBrush(AColor::labelTextEditBrush);
+         dc.SetBrush(PaintManager::labelTextEditBrush);
       DrawText( dc, labelStruct, r );
       if(mTextEditIndex == i )
-         dc.SetBrush(AColor::labelTextNormalBrush);
+         dc.SetBrush(PaintManager::labelTextNormalBrush);
    }}
 
    // Draw the cursor, if there is one.
@@ -916,7 +916,7 @@ void LabelTrackView::Draw
       const int CursorWidth=2;
       currentPen.SetWidth(CursorWidth);
       const auto top = labelStruct.y - (LabelBarHeight + yFrameHeight) / 2 + (yFrameHeight - mFontHeight) / 2 + TextFrameYOffset;
-      AColor::Line(dc,
+      PaintManager::Line(dc,
                    xPos-1, top,
                    xPos-1, top + mFontHeight);
       currentPen.SetWidth(1);

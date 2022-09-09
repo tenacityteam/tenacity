@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "../../../HitTestResult.h"
 
-#include "../../../AColor.h"
+#include "../../../PaintManager.h"
 #include "../../../theme/AllThemeResources.h"
 #include "../../../ProjectHistory.h"
 #include "../../../RefreshCode.h"
@@ -82,7 +82,7 @@ void TimeTrackVRulerControls::Draw(
       wxRect bev = rect;
       bev.Inflate(-1, 0);
       bev.width += 1;
-      AColor::BevelTrackInfo(*dc, true, bev);
+      PaintManager::BevelTrackInfo(*dc, true, bev);
       
       // Right align the ruler
       wxRect rr = rect;

@@ -98,7 +98,7 @@
 #include <lib-xml/XMLFileWriter.h>
 #include <lib-xml/XMLWriter.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Envelope.h"
@@ -3169,7 +3169,7 @@ void EqualizationPanel::OnPaint(wxPaintEvent &  WXUNUSED(event))
    // Pure blue x-axis line
    memDC.SetPen(wxPen(theTheme.Colour( clrGraphLines ), 1, wxPENSTYLE_SOLID));
    int center = (int) (mEnvRect.height * mEffect->mdBMax/(mEffect->mdBMax-mEffect->mdBMin) + .5);
-   AColor::Line(memDC,
+   PaintManager::Line(memDC,
       mEnvRect.GetLeft(), mEnvRect.y + center,
       mEnvRect.GetRight(), mEnvRect.y + center);
 
@@ -3205,7 +3205,7 @@ void EqualizationPanel::OnPaint(wxPaintEvent &  WXUNUSED(event))
          }
          if ((i != 0) & (!off1))
          {
-            AColor::Line(memDC, xlast, ylast,
+            PaintManager::Line(memDC, xlast, ylast,
                x, mEnvRect.y + y);
          }
          off1 = off;
@@ -3277,7 +3277,7 @@ void EqualizationPanel::OnPaint(wxPaintEvent &  WXUNUSED(event))
 
       if (i != 0)
       {
-         AColor::Line(memDC, xlast, ylast, x, mEnvRect.y + y);
+         PaintManager::Line(memDC, xlast, ylast, x, mEnvRect.y + y);
       }
       xlast = x;
       ylast = mEnvRect.y + y;

@@ -13,7 +13,7 @@ Paul Licameli split from TrackInfo.cpp
 
 
 #include "PlayableTrackButtonHandles.h"
-#include "../../../AColor.h"
+#include "../../../PaintManager.h"
 #include "../../../Track.h"
 #include "../../../TrackInfo.h"
 #include "../../../TrackPanelDrawingContext.h"
@@ -58,23 +58,23 @@ void MuteOrSoloDrawFunction
    bool value = pt ? (solo ? pt->GetSolo() : pt->GetMute()) : false;
 
 #if 0
-   AColor::MediumTrackInfo( dc, t->GetSelected());
+   PaintManager::MediumTrackInfo( dc, t->GetSelected());
    if( solo )
    {
       if( pt && pt->GetSolo() )
       {
-         AColor::Solo(dc, pt->GetSolo(), t->GetSelected());
+         PaintManager::Solo(dc, pt->GetSolo(), t->GetSelected());
       }
    }
    else
    {
       if( pt && pt->GetMute() )
       {
-         AColor::Mute(dc, pt->GetMute(), t->GetSelected(), pt->GetSolo());
+         PaintManager::Mute(dc, pt->GetMute(), t->GetSelected(), pt->GetSolo());
       }
    }
-   //(solo) ? AColor::Solo(dc, t->GetSolo(), t->GetSelected()) :
-   //    AColor::Mute(dc, t->GetMute(), t->GetSelected(), t->GetSolo());
+   //(solo) ? PaintManager::Solo(dc, t->GetSolo(), t->GetSelected()) :
+   //    PaintManager::Mute(dc, t->GetMute(), t->GetSelected(), t->GetSolo());
    dc->SetPen( *wxTRANSPARENT_PEN );//No border!
    dc->DrawRectangle(bev);
 #endif
@@ -86,7 +86,7 @@ void MuteOrSoloDrawFunction
       /* i18n-hint: This is on a button that will silence this track.*/
       _("Mute");
 
-   AColor::Bevel2(
+   PaintManager::Bevel2(
       *dc,
       value == down,
       bev,

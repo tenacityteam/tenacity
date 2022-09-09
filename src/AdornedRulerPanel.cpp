@@ -28,7 +28,7 @@
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 #include "CellularPanel.h"
@@ -334,10 +334,10 @@ void AdornedRulerPanel::QuickPlayIndicatorOverlay::Draw(
 
    if (mOldQPIndicatorPos >= 0) {
       mOldPreviewingScrub
-      ? AColor::IndicatorColor(&dc, true) // Draw green line for preview.
+      ? PaintManager::IndicatorColor(&dc, true) // Draw green line for preview.
       : mOldQPIndicatorSnapped
-        ? AColor::SnapGuidePen(&dc)
-        : AColor::Light(&dc, false)
+        ? PaintManager::SnapGuidePen(&dc)
+        : PaintManager::Light(&dc, false)
       ;
 
       // Draw indicator in all visible tracks
@@ -353,7 +353,7 @@ void AdornedRulerPanel::QuickPlayIndicatorOverlay::Draw(
                return;
 
             // Draw the NEW indicator in its NEW location
-            AColor::Line(dc,
+            PaintManager::Line(dc,
                mOldQPIndicatorPos,
                rect.GetTop(),
                mOldQPIndicatorPos,
@@ -1964,7 +1964,7 @@ void AdornedRulerPanel::DoDrawPlayRegion(wxDC * dc)
       int y = mInner.y - TopMargin + mInner.height/2;
 
       bool isLocked = playRegion.Locked();
-      AColor::PlayRegionColor(dc, isLocked);
+      PaintManager::PlayRegionColor(dc, isLocked);
 
       wxPoint tri[3];
       wxRect r;
@@ -2041,13 +2041,13 @@ void AdornedRulerPanel::ShowContextMenu( MenuChoice choice, const wxPoint *pPosi
 void AdornedRulerPanel::DoDrawBackground(wxDC * dc)
 {
    // Draw AdornedRulerPanel border
-   AColor::UseThemeColour( dc, clrTrackInfo );
+   PaintManager::UseThemeColour( dc, clrTrackInfo );
    dc->DrawRectangle( mInner );
 
    if (ShowingScrubRuler()) {
       // Let's distinguish the scrubbing area by using a themable
       // colour and a line to set it off.  
-      AColor::UseThemeColour(dc, clrScrubRuler, clrTrackPanelText );
+      PaintManager::UseThemeColour(dc, clrScrubRuler, clrTrackPanelText );
       wxRect ScrubRect = mScrubZone;
       ScrubRect.Inflate( 1,0 );
       dc->DrawRectangle(ScrubRect);
@@ -2059,11 +2059,11 @@ void AdornedRulerPanel::DoDrawEdge(wxDC *dc)
    wxRect r = mOuter;
    r.width -= RightMargin;
    r.height -= BottomMargin;
-   AColor::BevelTrackInfo( *dc, true, r );
+   PaintManager::BevelTrackInfo( *dc, true, r );
 
    // Black stroke at bottom
    dc->SetPen( *wxBLACK_PEN );
-   AColor::Line( *dc, mOuter.x,
+   PaintManager::Line( *dc, mOuter.x,
                 mOuter.y + mOuter.height - 1,
                 mOuter.x + mOuter.width - 1	,
                 mOuter.y + mOuter.height - 1 );
@@ -2120,7 +2120,7 @@ void AdornedRulerPanel::DoDrawIndicator
 {
    ADCChanger changer(dc); // Undo pen and brush changes at function exit
 
-   AColor::IndicatorColor( dc, playing );
+   PaintManager::IndicatorColor( dc, playing );
 
    wxPoint tri[ 3 ];
    if (seek) {

@@ -45,7 +45,7 @@
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../widgets/Grabber.h"
@@ -905,13 +905,13 @@ void ToolDock::OnPaint( wxPaintEvent & WXUNUSED(event) )
    dc.Clear();
 
    // Set the gap color
-   AColor::Dark( &dc, false );
+   PaintManager::Dark( &dc, false );
 
    // Draw the initial horizontal and vertical gaps
    wxSize sz = GetClientSize();
 
-   AColor::Line(dc, 0, 0, sz.GetWidth(), 0 );
-   AColor::Line(dc, 0, 0, 0, sz.GetHeight() );
+   PaintManager::Line(dc, 0, 0, sz.GetWidth(), 0 );
+   PaintManager::Line(dc, 0, 0, 0, sz.GetHeight() );
 
    // Draw the gap between each bar
    for (const auto &place : GetConfiguration())
@@ -919,7 +919,6 @@ void ToolDock::OnPaint( wxPaintEvent & WXUNUSED(event) )
       auto toolbar = place.pTree->pBar;
       if (!toolbar)
          continue;
-
    }
 }
 

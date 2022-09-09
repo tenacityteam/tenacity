@@ -24,7 +24,7 @@
 
 #include "AButton.h"
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
 
@@ -392,7 +392,7 @@ void AButton::OnPaint(wxPaintEvent & WXUNUSED(event))
 
    if( this == wxWindow::FindFocus() )
    {
-      AColor::DrawFocus( dc, mFocusRect );
+      PaintManager::DrawFocus( dc, mFocusRect );
    }
 }
 

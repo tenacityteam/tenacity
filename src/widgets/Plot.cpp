@@ -16,7 +16,7 @@
 
 #include "Plot.h"
 #include "Ruler.h"
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/Theme.h"
 #include "../theme/AllThemeResources.h"
 
@@ -98,7 +98,7 @@ void Plot::OnPaint(wxPaintEvent & evt)
       size_t xsize = plot.xdata.size();
       for(size_t i = 1; i < xsize; ++i)
       {
-         AColor::Line(dc,
+         PaintManager::Line(dc,
             XToScreen(plot.xdata[i-1], border),
             YToScreen(plot.ydata[i-1], border),
             XToScreen(plot.xdata[i], border),

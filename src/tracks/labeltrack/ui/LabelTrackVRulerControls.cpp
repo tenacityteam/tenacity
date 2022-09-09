@@ -13,7 +13,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "../../../HitTestResult.h"
 
-#include "../../../AColor.h"
+#include "../../../PaintManager.h"
 #include "../../../TrackArtist.h"
 #include "../../../TrackPanelDrawingContext.h"
 
@@ -39,7 +39,7 @@ void LabelTrackVRulerControls::Draw(
       wxRect bev = rect;
       bev.Inflate(-1, 0);
       bev.width += 1;
-      AColor::BevelTrackInfo(*dc, true, bev);
+      PaintManager::BevelTrackInfo(*dc, true, bev);
    }
 }
 

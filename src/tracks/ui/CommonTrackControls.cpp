@@ -12,7 +12,7 @@ Paul Licameli split from TrackControls.cpp
 
 #include "TrackButtonHandles.h"
 #include "TrackSelectHandle.h"
-#include "../../AColor.h"
+#include "../../PaintManager.h"
 #include "../../RefreshCode.h"
 #include "Project.h"
 #include "../../ProjectHistory.h"
@@ -307,17 +307,17 @@ unsigned CommonTrackControls::DoContextMenu(
 void TrackInfo::DrawBordersWithin
    ( wxDC* dc, const wxRect & rect, const Track &track ) const
 {
-   AColor::Dark(dc, false); // same color as border of toolbars (ToolBar::OnPaint())
+   PaintManager::Dark(dc, false); // same color as border of toolbars (ToolBar::OnPaint())
 
    // below close box and title bar
    wxRect buttonRect;
    GetTitleBarRect( rect, buttonRect );
-   AColor::Line
+   PaintManager::Line
       (*dc, rect.x,              buttonRect.y + buttonRect.height,
             rect.width - 1,      buttonRect.y + buttonRect.height);
 
    // between close box and title bar
-   AColor::Line
+   PaintManager::Line
       (*dc, buttonRect.x, buttonRect.y,
             buttonRect.x, buttonRect.y + buttonRect.height - 1);
 
@@ -327,19 +327,19 @@ void TrackInfo::DrawBordersWithin
    if( bHasMuteSolo && !TrackInfo::HideTopItem( rect, buttonRect ) )
    {
       // above mute/solo
-      AColor::Line
+      PaintManager::Line
          (*dc, rect.x,          buttonRect.y,
                rect.width - 1,  buttonRect.y);
 
       // between mute/solo
       // Draw this little line; if there is no solo, wide mute button will
       // overpaint it later:
-      AColor::Line
+      PaintManager::Line
          (*dc, buttonRect.x + buttonRect.width, buttonRect.y,
                buttonRect.x + buttonRect.width, buttonRect.y + buttonRect.height - 1);
 
       // below mute/solo
-      AColor::Line
+      PaintManager::Line
          (*dc, rect.x,          buttonRect.y + buttonRect.height,
                rect.width - 1,  buttonRect.y + buttonRect.height);
    }
@@ -347,10 +347,10 @@ void TrackInfo::DrawBordersWithin
    // left of and above minimize button
    wxRect minimizeRect;
    this->GetMinimizeRect(rect, minimizeRect);
-   AColor::Line
+   PaintManager::Line
       (*dc, minimizeRect.x - 1, minimizeRect.y,
             minimizeRect.x - 1, minimizeRect.y + minimizeRect.height - 1);
-   AColor::Line
+   PaintManager::Line
       (*dc, minimizeRect.x,                          minimizeRect.y - 1,
             minimizeRect.x + minimizeRect.width - 1, minimizeRect.y - 1);
 }
@@ -364,7 +364,7 @@ void CommonTrackControls::Draw(
       // fill in label
       auto dc = &context.dc;
       const auto pTrack = FindTrack();
-      AColor::MediumTrackInfo( dc, pTrack && pTrack->GetSelected() );
+      PaintManager::MediumTrackInfo( dc, pTrack && pTrack->GetSelected() );
       dc->DrawRectangle( rect_ );
    }
 
@@ -405,17 +405,17 @@ void CommonTrackControls::Draw(
       int ybuttonEnd = 67;
 
       fill=wxRect( rect.x+1, rect.y+17, vrul-6, ybutton);
-      AColor::BevelTrackInfo( *dc, true, fill );
+      PaintManager::BevelTrackInfo( *dc, true, fill );
    
       if( ybuttonEnd < ylast ){
          fill=wxRect( rect.x+1, rect.y+ybuttonEnd, fill.width, ylast - ybuttonEnd);
-         AColor::BevelTrackInfo( *dc, true, fill );
+         PaintManager::BevelTrackInfo( *dc, true, fill );
       }
    }
    else
    {
       fill=wxRect( rect.x+1, rect.y+17, vrul-6, rect.height-37);
-      AColor::BevelTrackInfo( *dc, true, fill );
+      PaintManager::BevelTrackInfo( *dc, true, fill );
    }
 #endif
 

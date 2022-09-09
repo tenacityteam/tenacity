@@ -11,7 +11,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "PlayIndicatorOverlay.h"
 
-#include "../../AColor.h"
+#include "../../PaintManager.h"
 #include "../../AdornedRulerPanel.h"
 #include "../../AudioIO.h"
 #include "Project.h"
@@ -81,7 +81,7 @@ void PlayIndicatorOverlayBase::Draw(OverlayPanel &panel, wxDC &dc)
    // Set play/record color
    auto gAudioIO = AudioIO::Get();
    bool rec = gAudioIO->IsCapturing();
-   AColor::IndicatorColor(&dc, !rec);
+   PaintManager::IndicatorColor(&dc, !rec);
 
    if (mIsMaster
        && mLastIsCapturing != mNewIsCapturing) {
@@ -100,7 +100,7 @@ void PlayIndicatorOverlayBase::Draw(OverlayPanel &panel, wxDC &dc)
    if(auto tp = dynamic_cast<TrackPanel*>(&panel)) {
       wxASSERT(mIsMaster);
 
-      AColor::Line(dc, mLastIndicatorX, tp->GetRect().GetTop(), mLastIndicatorX, tp->GetRect().GetBottom());
+      PaintManager::Line(dc, mLastIndicatorX, tp->GetRect().GetTop(), mLastIndicatorX, tp->GetRect().GetBottom());
    }
    else if(auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
       wxASSERT(!mIsMaster);

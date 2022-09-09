@@ -57,7 +57,7 @@ a graph for EffectScienFilter.
 #include <lib-preferences/Prefs.h>
 #include <lib-project/Project.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
@@ -919,7 +919,7 @@ void EffectScienFilterPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
    // Pure blue x-axis line
    memDC.SetPen(wxPen(theTheme.Colour(clrGraphLines), 1, wxPENSTYLE_SOLID));
    int center = (int) (mEnvRect.height * mDbMax / (mDbMax - mDbMin) + 0.5);
-   AColor::Line(memDC,
+   PaintManager::Line(memDC,
                 mEnvRect.GetLeft(), mEnvRect.y + center,
                 mEnvRect.GetRight(), mEnvRect.y + center);
 
@@ -959,7 +959,7 @@ void EffectScienFilterPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
 
       if (i != 0 && (y < mEnvRect.height - 1 || ylast < mEnvRect.y + mEnvRect.height - 1))
       {
-         AColor::Line(memDC, xlast, ylast, x, mEnvRect.y + y);
+         PaintManager::Line(memDC, xlast, ylast, x, mEnvRect.y + y);
       }
       xlast = x;
       ylast = mEnvRect.y + y;

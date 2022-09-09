@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "TimeTrackControls.h"
 
 #include "TimeTrackVRulerControls.h"
-#include "../../../AColor.h"
+#include "../../../PaintManager.h"
 #include "../../../theme/AllThemeResources.h"
 #include "../../../Envelope.h"
 #include "../../../EnvelopeEditor.h"
@@ -88,7 +88,7 @@ void DrawHorzRulerAndCurve
       min = max;
    }
    
-   AColor::UseThemeColour( &dc, clrUnselected );
+   PaintManager::UseThemeColour( &dc, clrUnselected );
    dc.DrawRectangle(r);
    
    //copy this rectangle away for future use.
@@ -106,7 +106,7 @@ void DrawHorzRulerAndCurve
    Envelope::GetValues( *track.GetEnvelope(),
     0, 0, envValues.get(), mid.width, 0, zoomInfo );
    
-   wxPen &pen = highlight ? AColor::uglyPen : AColor::envelopePen;
+   wxPen &pen = highlight ? PaintManager::uglyPen : PaintManager::envelopePen;
    dc.SetPen( pen );
    
    auto rangeLower = track.GetRangeLower(), rangeUpper = track.GetRangeUpper();
@@ -121,7 +121,7 @@ void DrawHorzRulerAndCurve
       else
          y = (double)mid.height * (rangeUpper - envValues[x]) / (rangeUpper - rangeLower);
       int thisy = r.y + (int)y;
-      AColor::Line(dc, mid.x + x, thisy - 1, mid.x + x, thisy+2);
+      PaintManager::Line(dc, mid.x + x, thisy - 1, mid.x + x, thisy+2);
    }
 }
 

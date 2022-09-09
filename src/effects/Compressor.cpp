@@ -41,7 +41,7 @@
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"
@@ -778,7 +778,7 @@ void EffectCompressorPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
 
    // Yellow line for threshold
 /*   dc.SetPen(wxPen(wxColour(220, 220, 0), 1, wxSOLID));
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 envRect.x,
                 envRect.y + envRect.height - kneeY,
                 envRect.x + envRect.width - 1,
@@ -788,15 +788,15 @@ void EffectCompressorPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
 //   dc.SetPen(wxPen(wxColour(180, 40, 40), 3, wxSOLID));
 
    // Nice blue line for compressor, same color as used in the waveform envelope.
-   dc.SetPen( AColor::WideEnvelopePen) ;
+   dc.SetPen( PaintManager::WideEnvelopePen) ;
 
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 envRect.x,
                 envRect.y + envRect.height - startY,
                 envRect.x + kneeX - 1,
                 envRect.y + envRect.height - kneeY);
 
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 envRect.x + kneeX,
                 envRect.y + envRect.height - kneeY,
                 envRect.x + envRect.width - 1,

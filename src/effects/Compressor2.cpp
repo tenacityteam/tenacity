@@ -26,7 +26,7 @@
 #include <lib-strings/Internat.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../ProjectFileManager.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
@@ -901,7 +901,7 @@ void EffectCompressor2::PopulateOrExchange(ShuttleGui & S)
 
       plot = mGainPlot->GetPlotData(0);
       plot->pen = std::unique_ptr<wxPen>(
-         safenew wxPen(AColor::WideEnvelopePen));
+         safenew wxPen(PaintManager::WideEnvelopePen));
       plot->xdata.resize(61);
       plot->ydata.resize(61);
       std::iota(plot->xdata.begin(), plot->xdata.end(), -60);
@@ -918,14 +918,14 @@ void EffectCompressor2::PopulateOrExchange(ShuttleGui & S)
 
       plot = mResponsePlot->GetPlotData(0);
       plot->pen = std::unique_ptr<wxPen>(
-         safenew wxPen(AColor::WideEnvelopePen));
+         safenew wxPen(PaintManager::WideEnvelopePen));
       plot->xdata = {0, RESPONSE_PLOT_STEP_START, RESPONSE_PLOT_STEP_START,
          RESPONSE_PLOT_STEP_STOP, RESPONSE_PLOT_STEP_STOP, 5};
       plot->ydata = {0.1, 0.1, 1, 1, 0.1, 0.1};
 
       plot = mResponsePlot->GetPlotData(1);
       plot->pen = std::unique_ptr<wxPen>(
-         safenew wxPen(AColor::WideEnvelopePen));
+         safenew wxPen(PaintManager::WideEnvelopePen));
       plot->pen->SetColour(wxColor( 230,80,80 )); // Same color as TrackArtist RMS red.
       plot->pen->SetWidth(2);
       plot->xdata.resize(RESPONSE_PLOT_SAMPLES+1);

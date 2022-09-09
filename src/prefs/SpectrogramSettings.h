@@ -131,7 +131,7 @@ public:
    size_t NBins() const;
 
    enum ColorScheme : int {
-      // Keep in correspondence with AColor::colorSchemes, AColor::gradient_pre
+      // Keep in correspondence with PaintManager::colorSchemes, PaintManager::gradient_pre
       csColorNew = 0,
       csColorTheme,
       csGrayscale,

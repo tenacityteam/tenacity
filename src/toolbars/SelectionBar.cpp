@@ -56,7 +56,7 @@ with changes in the SelectionBar.
 #include <lib-project-rate/QualitySettings.h>
 
 #include "../AudioIO.h"
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../KeyboardCapture.h"
 #include "../ProjectAudioIO.h"
 #include "../ProjectSettings.h"

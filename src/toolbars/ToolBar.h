@@ -16,6 +16,7 @@
 #include <functional>
 #include <vector>
 #include <wx/defs.h>
+#include <wx/graphics.h>
 
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>

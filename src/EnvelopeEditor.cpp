@@ -14,7 +14,7 @@
 #include <wx/dc.h>
 #include <wx/event.h>
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "Envelope.h"
 #include "TrackArtist.h"
 #include "TrackPanelDrawingContext.h"
@@ -45,7 +45,7 @@ void EnvelopeEditor::DrawPoints
    auto target = dynamic_cast<EnvelopeHandle*>(context.target.get());
    highlight = target && target->GetEnvelope() == this;
 #endif
-   wxPen &pen = highlight ? AColor::uglyPen : AColor::envelopePen;
+   wxPen &pen = highlight ? PaintManager::uglyPen : PaintManager::envelopePen;
    dc.SetPen( pen );
    dc.SetBrush(*wxWHITE_BRUSH);
 
@@ -56,7 +56,7 @@ void EnvelopeEditor::DrawPoints
          // Change colour if this is the draggable point...
          if (i == env.GetDragPoint()) {
             dc.SetPen( pen );
-            dc.SetBrush(AColor::envelopeBrush);
+            dc.SetBrush(PaintManager::envelopeBrush);
          }
 
          double v = env[i].GetVal();

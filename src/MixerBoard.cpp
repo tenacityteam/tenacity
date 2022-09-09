@@ -23,7 +23,7 @@
 #include <wx/icon.h>
 #include <wx/settings.h> // for wxSystemSettings::GetColour and wxSystemSettings::GetMetric
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 
@@ -702,14 +702,14 @@ void MixerTrackCluster::OnPaint(wxPaintEvent & WXUNUSED(event))
 
    wxPaintDC dc(this);
 
-   AColor::MediumTrackInfo(&dc, selected);
+   PaintManager::MediumTrackInfo(&dc, selected);
    dc.DrawRectangle(this->GetClientRect());
 
    wxSize clusterSize = this->GetSize();
    wxRect bev(0, 0, clusterSize.GetWidth() - 1, clusterSize.GetHeight() - 1);
 
    //bev.Inflate(-1, -1);
-   AColor::Bevel(dc, true, bev);// same bevel whether selected or not.
+   PaintManager::Bevel(dc, true, bev);// same bevel whether selected or not.
 }
 
 
@@ -1203,10 +1203,10 @@ void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & WXUNUSED(bitmap),
    wxFont font(fontSize, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
    GetTextExtent(translation, &textWidth, &textHeight, NULL, NULL, &font);
 
-   AColor::UseThemeColour( &dc, clrMedium );
+   PaintManager::UseThemeColour( &dc, clrMedium );
    dc.DrawRectangle(bev);
 
-   AColor::Bevel2( dc, up, bev, false );
+   PaintManager::Bevel2( dc, up, bev, false );
 
    wxCoord x = bev.x + (bev.width - textWidth) / 2;
    wxCoord y = bev.y + (bev.height - textHeight) / 2;
@@ -1239,7 +1239,7 @@ void MixerBoard::CreateMuteSoloImages()
    mImageMuteOver = std::make_unique<wxImage>(bitmap.ConvertToImage()); // Same as up, for now.
 
    MakeButtonBitmap( dc, bitmap, bev, str, down );
-   //AColor::Bevel(dc, false, bev);
+   //PaintManager::Bevel(dc, false, bev);
    mImageMuteDown = std::make_unique<wxImage>(bitmap.ConvertToImage());
 
    MakeButtonBitmap( dc, bitmap, bev, str, down );
@@ -1308,7 +1308,7 @@ void MixerBoard::LoadMusicalInstruments()
    for (const auto &data : table) {
       auto bmp = std::make_unique<wxBitmap>( data.bitmap );
       dc.SelectObject(*bmp);
-      AColor::Bevel(dc, false, bev);
+      PaintManager::Bevel(dc, false, bev);
       mMusicalInstruments.push_back(std::make_unique<MusicalInstrument>(
          std::move(bmp), data.name
       ));

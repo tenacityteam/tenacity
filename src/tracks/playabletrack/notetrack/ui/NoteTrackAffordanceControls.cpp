@@ -14,7 +14,7 @@
 
 #include "../../../ui/AffordanceHandle.h"
 #include "../../../../theme/AllThemeResources.h"
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../NoteTrack.h"
 #include "ViewInfo.h"
 #include "../../../../TrackArtist.h"
@@ -92,7 +92,7 @@ void NoteTrackAffordanceControls::Draw(TrackPanelDrawingContext& context, const 
         const auto nt = std::static_pointer_cast<const NoteTrack>(FindTrack()->SubstitutePendingChangedTrack());
         const auto artist = TrackArtist::Get(context);
 
-        TrackArt::DrawBackgroundWithSelection(context, rect, nt.get(), AColor::labelSelectedBrush, AColor::labelUnselectedBrush);
+        TrackArt::DrawBackgroundWithSelection(context, rect, nt.get(), PaintManager::labelSelectedBrush, PaintManager::labelUnselectedBrush);
 
         const auto& zoomInfo = *artist->pZoomInfo;
         auto left = zoomInfo.TimeToPosition(nt->GetOffset(), rect.x);

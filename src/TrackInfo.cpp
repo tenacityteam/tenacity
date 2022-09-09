@@ -32,7 +32,7 @@ Paul Licameli split from TrackPanel.cpp
 #include <wx/dc.h>
 #include <wx/frame.h>
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "theme/AllThemeResources.h"
 #include "Prefs.h"
 #include "Project.h"
@@ -272,7 +272,7 @@ void TrackInfo::DrawCloseButton(
    bool hit = target && target->GetTrack().get() == pTrack;
    bool captured = hit && target->IsClicked();
    bool down = captured && bev.Contains( context.lastState.GetPosition());
-   AColor::Bevel2(*dc, !down, bev, selected, hit );
+   PaintManager::Bevel2(*dc, !down, bev, selected, hit );
 
 #ifdef EXPERIMENTAL_THEMING
    wxPen pen( theTheme.Colour( clrTrackPanelText ));
@@ -289,10 +289,10 @@ void TrackInfo::DrawCloseButton(
    int rs = ls + s;
    int bs = ts + s;
 
-   AColor::Line(*dc, ls,     ts, rs,     bs);
-   AColor::Line(*dc, ls + 1, ts, rs + 1, bs);
-   AColor::Line(*dc, rs,     ts, ls,     bs);
-   AColor::Line(*dc, rs + 1, ts, ls + 1, bs);
+   PaintManager::Line(*dc, ls,     ts, rs,     bs);
+   PaintManager::Line(*dc, ls + 1, ts, rs + 1, bs);
+   PaintManager::Line(*dc, rs,     ts, ls,     bs);
+   PaintManager::Line(*dc, rs + 1, ts, ls + 1, bs);
    //   bev.Inflate(-1, -1);
 }
 
@@ -320,7 +320,7 @@ void TrackInfo::CloseTitleDrawFunction
          pTrack ? pTrack->GetName() : _("Name");
 
       //bev.Inflate(-1, -1);
-      AColor::Bevel2(*dc, !down, bev, selected, hit);
+      PaintManager::Bevel2(*dc, !down, bev, selected, hit);
 
       // Draw title text
       SetTrackInfoFont(dc);
@@ -349,7 +349,7 @@ void TrackInfo::CloseTitleDrawFunction
       // characters if they are repeatedly drawn.  This
       // happens when holding down mouse button and moving
       // in and out of the title bar.  So clear it first.
-   //   AColor::MediumTrackInfo(dc, t->GetSelected());
+   //   PaintManager::MediumTrackInfo(dc, t->GetSelected());
    //   dc->DrawRectangle(bev);
 
       dc->SetTextForeground( c );
@@ -362,7 +362,7 @@ void TrackInfo::CloseTitleDrawFunction
       dc->SetBrush(c);
 
       int s = 10; // Width of dropdown arrow...height is half of width
-      AColor::Arrow(*dc,
+      PaintManager::Arrow(*dc,
                     bev.GetRight() - s - 3, // 3 to offset from right border
                     bev.y + ((bev.height - (s / 2)) / 2),
                     s);
@@ -388,20 +388,20 @@ void TrackInfo::MinimizeSyncLockDrawFunction
       bool down = captured && bev.Contains( context.lastState.GetPosition());
 
       // Clear background to get rid of previous arrow
-      //AColor::MediumTrackInfo(dc, t->GetSelected());
+      //PaintManager::MediumTrackInfo(dc, t->GetSelected());
       //dc->DrawRectangle(bev);
 
-      AColor::Bevel2(*dc, !down, bev, selected, hit);
+      PaintManager::Bevel2(*dc, !down, bev, selected, hit);
 
 #ifdef EXPERIMENTAL_THEMING
       wxColour c = theTheme.Colour(clrTrackPanelText);
       dc->SetBrush(c);
       dc->SetPen(c);
 #else
-      AColor::Dark(dc, selected);
+      PaintManager::Dark(dc, selected);
 #endif
 
-      AColor::Arrow(*dc,
+      PaintManager::Arrow(*dc,
                     bev.x - 5 + bev.width / 2,
                     bev.y - 2 + bev.height / 2,
                     10,
@@ -416,14 +416,14 @@ void TrackInfo::MinimizeSyncLockDrawFunction
       bool captured = hit && target->IsClicked();
       bool down = captured && bev.Contains( context.lastState.GetPosition());
 
-      AColor::Bevel2(*dc, !down, bev, selected, hit);
+      PaintManager::Bevel2(*dc, !down, bev, selected, hit);
 
 #ifdef EXPERIMENTAL_THEMING
       wxColour c = theTheme.Colour(clrTrackPanelText);
       dc->SetBrush(c);
       dc->SetPen(c);
 #else
-      AColor::Dark(dc, selected);
+      PaintManager::Dark(dc, selected);
 #endif
 
       wxString str = _("Select");

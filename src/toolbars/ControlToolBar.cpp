@@ -60,7 +60,7 @@
 #include <lib-project/Project.h>
 #include <lib-project/ProjectStatus.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../AudioIO.h"
 #include "../ImageManipulation.h"

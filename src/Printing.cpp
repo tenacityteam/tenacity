@@ -22,8 +22,8 @@
 #include <wx/print.h>
 #include <wx/printdlg.h>
 
-#include "AColor.h"
 #include "ProjectWindows.h"
+#include "PaintManager.h"
 #include "TrackArtist.h"
 #include "ViewInfo.h"
 #include "Track.h"
@@ -130,7 +130,7 @@ bool AudacityPrintout::OnPrintPage(int WXUNUSED(page))
       }
 
       dc->SetPen(*wxBLACK_PEN);
-      AColor::Line(*dc, 0, y, width, y);
+      PaintManager::Line(*dc, 0, y, width, y);
 
       y += trackHeight;
    };

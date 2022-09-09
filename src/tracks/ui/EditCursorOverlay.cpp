@@ -12,7 +12,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "EditCursorOverlay.h"
 
 #include "TrackView.h"
-#include "../../AColor.h"
+#include "../../PaintManager.h"
 #include "../../AdornedRulerPanel.h"
 #include "Project.h"
 #include "../../ProjectWindows.h"
@@ -103,7 +103,7 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
    //NOTE: point selection cursor drawing over tracks moved to TrackPanel.cpp(see also TrackArt::DrawCursor)
    /*if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
       wxASSERT(mIsMaster);
-      AColor::CursorColor(&dc);
+      PaintManager::CursorColor(&dc);
 
       // Draw cursor in all selected tracks
       tp->VisitCells( [&]( const wxRect &rect, TrackPanelCell &cell ) {
@@ -114,8 +114,8 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
          if (pTrack->GetSelected() ||
              TrackFocus::Get( *mProject ).IsFocused( pTrack.get() ))
          {
-            // AColor::Line includes both endpoints so use GetBottom()
-            AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
+            // PaintManager::Line includes both endpoints so use GetBottom()
+            PaintManager::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
             // ^^^ The whole point of this routine.
 
          }
@@ -124,17 +124,17 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
    else if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
       wxASSERT(!mIsMaster);
       dc.SetPen(*wxBLACK_PEN);
-      // AColor::Line includes both endpoints so use GetBottom()
+      // PaintManager::Line includes both endpoints so use GetBottom()
       auto rect = ruler->GetInnerRect();
-      AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
+      PaintManager::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
    }
    else
       wxASSERT(false);*/
    if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
        wxASSERT(!mIsMaster);
        dc.SetPen(*wxBLACK_PEN);
-       // AColor::Line includes both endpoints so use GetBottom()
+       // PaintManager::Line includes both endpoints so use GetBottom()
        auto rect = ruler->GetInnerRect();
-       AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
+       PaintManager::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
    }
 }

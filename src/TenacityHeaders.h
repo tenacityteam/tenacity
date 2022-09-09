@@ -32,7 +32,7 @@
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Identifier.h>
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "AudioIO.h"
 #include "Diags.h"
 #include "Envelope.h"

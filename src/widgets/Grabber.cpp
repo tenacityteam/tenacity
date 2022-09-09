@@ -29,7 +29,7 @@ around to NEW positions.
 #include <wx/intl.h>
 #include <wx/window.h>
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../theme/Theme.h"
 
@@ -126,7 +126,7 @@ void Grabber::DrawGrabber( wxDC & dc )
    r.SetPosition( wxPoint(0,0) );
    int x, y, left, right, top, bottom;
 
-   AColor::Medium(&dc, mOver );
+   PaintManager::Medium(&dc, mOver );
    dc.DrawRectangle(r);
 
    // HACK: We used a wider rectangle to also cover one pixel of space just to the right.
@@ -139,7 +139,6 @@ void Grabber::DrawGrabber( wxDC & dc )
    if (r.GetSize().GetHeight() <= r.GetSize().GetWidth()) {
       SetSize(GetSize().GetWidth(),10);
       r.SetHeight(10);
-
    }
 
 
@@ -154,7 +153,6 @@ void Grabber::DrawGrabber( wxDC & dc )
    right = r.GetRight();
    top = r.GetTop();
    bottom = r.GetBottom();
-
 
    // Draw the line
    if (!mPressed) {

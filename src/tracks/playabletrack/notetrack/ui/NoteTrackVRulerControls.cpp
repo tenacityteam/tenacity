@@ -22,7 +22,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelMouseEvent.h"
 
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../TrackPanelDrawingContext.h"
 #include "../../../../widgets/Ruler.h"
 
@@ -121,7 +121,7 @@ void NoteTrackVRulerControls::Draw(
 
       auto dc = &context.dc;
 
-      dc->SetPen(highlight ? AColor::uglyPen : *wxTRANSPARENT_PEN);
+      dc->SetPen(highlight ? PaintManager::uglyPen : *wxTRANSPARENT_PEN);
       dc->SetBrush(*wxWHITE_BRUSH);
       wxRect bev = rect;
       bev.x++;
@@ -159,7 +159,7 @@ void NoteTrackVRulerControls::Draw(
             if (obottom - pos > rect.y + marg + 1 &&
                 // don't draw too close to margin line -- it's annoying
                 obottom - pos < rect.y + rect.height - marg - 3)
-               AColor::Line(*dc, rect.x, obottom - pos,
+               PaintManager::Line(*dc, rect.x, obottom - pos,
                             rect.x + rect.width, obottom - pos);
          }
          wxRect br = rect;
@@ -172,10 +172,10 @@ void NoteTrackVRulerControls::Draw(
                dc->SetPen(hilitePen);
                dc->DrawRectangle(br);
                dc->SetPen(*wxBLACK_PEN);
-               AColor::Line(*dc,
+               PaintManager::Line(*dc,
                             br.x + 1, br.y + br.height - 1,
                             br.x + br.width - 1, br.y + br.height - 1);
-               AColor::Line(*dc,
+               PaintManager::Line(*dc,
                             br.x + br.width - 1, br.y + 1,
                             br.x + br.width - 1, br.y + br.height - 1);
             }
@@ -201,10 +201,10 @@ void NoteTrackVRulerControls::Draw(
       dc->SetPen(*wxBLACK_PEN);
       // you would think the -1 offset here should be -2 to match the
       // adjustment to rect.y (see above), but -1 produces correct output
-      AColor::Line(*dc, rect.x, rect.y + marg - 1, rect.x + rect.width, rect.y + marg - 1);
+      PaintManager::Line(*dc, rect.x, rect.y + marg - 1, rect.x + rect.width, rect.y + marg - 1);
       // since the margin gives us the bottom of the line,
       // the extra -1 gets us to the top
-      AColor::Line(*dc, rect.x, rect.y + rect.height - marg - 1,
+      PaintManager::Line(*dc, rect.x, rect.y + rect.height - marg - 1,
                         rect.x + rect.width, rect.y + rect.height - marg - 1);
 
    }

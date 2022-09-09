@@ -43,7 +43,7 @@ audio tracks.
 
 
 
-#include "AColor.h"
+#include "PaintManager.h"
 #include "theme/AllThemeResources.h"
 #include "prefs/GUIPrefs.h"
 #include "theme/Theme.h"
@@ -220,22 +220,22 @@ void TrackArt::DrawNegativeOffsetTrackArrows(
    // to the left beyond t=0.0.
 
    dc.SetPen(*wxBLACK_PEN);
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 rect.x + 2, rect.y + 6,
                 rect.x + 8, rect.y + 6);
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 rect.x + 2, rect.y + 6,
                 rect.x + 6, rect.y + 2);
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 rect.x + 2, rect.y + 6,
                 rect.x + 6, rect.y + 10);
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 rect.x + 2, rect.y + rect.height - 8,
                 rect.x + 8, rect.y + rect.height - 8);
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 rect.x + 2, rect.y + rect.height - 8,
                 rect.x + 6, rect.y + rect.height - 4);
-   AColor::Line(dc,
+   PaintManager::Line(dc,
                 rect.x + 2, rect.y + rect.height - 8,
                 rect.x + 6, rect.y + rect.height - 12);
 }
@@ -327,11 +327,11 @@ void TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& 
          drawingRect.width + ClipSelectionStrokeSize * 2,
          drawingRect.height + clipFrameRadius };
       dc.SetBrush(*wxTRANSPARENT_BRUSH);
-      AColor::UseThemeColour(&dc, clrClipAffordanceStroke, clrClipAffordanceStroke);
+      PaintManager::UseThemeColour(&dc, clrClipAffordanceStroke, clrClipAffordanceStroke);
       dc.DrawRoundedRectangle(strokeRect, clipFrameRadius);
    }
 
-   AColor::UseThemeColour(&dc, highlight ? clrClipAffordanceActiveBrush : clrClipAffordanceInactiveBrush, clrClipAffordanceOutlinePen);
+   PaintManager::UseThemeColour(&dc, highlight ? clrClipAffordanceActiveBrush : clrClipAffordanceInactiveBrush, clrClipAffordanceOutlinePen);
    dc.DrawRoundedRectangle(
       wxRect(
          drawingRect.x, 
@@ -368,11 +368,11 @@ void TrackArt::DrawClipEdges(wxDC& dc, const wxRect& clipRect, bool selected)
 {
    dc.SetBrush(*wxTRANSPARENT_BRUSH);
    {
-      AColor::UseThemeColour(&dc, -1, clrClipAffordanceOutlinePen);
-      AColor::Line(dc,
+      PaintManager::UseThemeColour(&dc, -1, clrClipAffordanceOutlinePen);
+      PaintManager::Line(dc,
          clipRect.GetLeft(), clipRect.GetTop(),
          clipRect.GetLeft(), clipRect.GetBottom());
-      AColor::Line(dc,
+      PaintManager::Line(dc,
          clipRect.GetRight(), clipRect.GetTop(),
          clipRect.GetRight(), clipRect.GetBottom());
    }
@@ -380,17 +380,17 @@ void TrackArt::DrawClipEdges(wxDC& dc, const wxRect& clipRect, bool selected)
    {
       if constexpr (ClipSelectionStrokeSize == 1)
       {
-         AColor::UseThemeColour(&dc, -1, clrClipAffordanceStroke);
-         AColor::Line(dc,
+         PaintManager::UseThemeColour(&dc, -1, clrClipAffordanceStroke);
+         PaintManager::Line(dc,
             clipRect.GetLeft() - ClipSelectionStrokeSize, clipRect.GetTop(),
             clipRect.GetLeft() - ClipSelectionStrokeSize, clipRect.GetBottom());
-         AColor::Line(dc,
+         PaintManager::Line(dc,
             clipRect.GetRight() + ClipSelectionStrokeSize, clipRect.GetTop(),
             clipRect.GetRight() + ClipSelectionStrokeSize, clipRect.GetBottom());
       }
       else if constexpr (ClipSelectionStrokeSize > 1)
       {
-         AColor::UseThemeColour(&dc, clrClipAffordanceStroke, clrClipAffordanceStroke);
+         PaintManager::UseThemeColour(&dc, clrClipAffordanceStroke, clrClipAffordanceStroke);
          dc.DrawRectangle(wxRect(
             clipRect.GetLeft() - ClipSelectionStrokeSize, clipRect.GetTop(),
             ClipSelectionStrokeSize, clipRect.GetHeight()));
@@ -403,7 +403,7 @@ void TrackArt::DrawClipEdges(wxDC& dc, const wxRect& clipRect, bool selected)
 
 void TrackArt::DrawClipFolded(wxDC& dc, const wxRect& rect)
 {
-   AColor::UseThemeColour(&dc, clrClipAffordanceOutlinePen);
+   PaintManager::UseThemeColour(&dc, clrClipAffordanceOutlinePen);
    dc.DrawRectangle(rect);
 }
 
@@ -426,8 +426,8 @@ void TrackArt::DrawSyncLockTiles(
    const auto dc = &context.dc;
    dc->SetBrush(*wxTRANSPARENT_BRUSH);
    dc->SetPen( wxPen( theTheme.Colour( clrSelected )) );
- //  AColor::Line(*dc, rect.x, rect.y, rect.x, rect.height);
-//   AColor::Line(*dc, rect.width, rect.y, rect.width, rect.height);
+ //  PaintManager::Line(*dc, rect.x, rect.y, rect.x, rect.height);
+//   PaintManager::Line(*dc, rect.width, rect.y, rect.width, rect.height);
 //   dc->DrawRectangle(rect.x, rect.y, rect.width, rect.height);
    dc->SetPen(*wxTRANSPARENT_PEN);
 
@@ -621,8 +621,8 @@ void TrackArt::DrawCursor(TrackPanelDrawingContext& context,
        auto x = static_cast<int>(zoomInfo.TimeToPosition(selectedRegion.t0(), rect.x));
        if (x >= rect.GetLeft() && x <= rect.GetRight())
        {
-          AColor::CursorColor(dc);
-          AColor::Line(*dc, x, rect.GetTop(), x, rect.GetBottom());
+          PaintManager::CursorColor(dc);
+          PaintManager::Line(*dc, x, rect.GetTop(), x, rect.GetBottom());
        }
    }
 }

@@ -60,7 +60,7 @@
 #include <cmath>
 
 #include "../AudioIO.h"
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../ImageManipulation.h"
 #include "../ProjectAudioManager.h"
 #include "../shuttle/ShuttleGui.h"
@@ -552,12 +552,12 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
       for (unsigned int i = 0; i < mNumBars; i++)
       {
          // Give it a recessed look
-         AColor::Bevel(dc, false, mBar[i].b);
+         PaintManager::Bevel(dc, false, mBar[i].b);
    
          // Draw the clip indicator bevel
          if (mClip)
          {
-            AColor::Bevel(dc, false, mBar[i].rClip);
+            PaintManager::Bevel(dc, false, mBar[i].rClip);
          }
    
          // Cache bar rect
@@ -626,13 +626,13 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
                {
                   // 2 pixel spacing between the LEDs
                   if( (i%7)<2 ){
-                     AColor::Line( dc, i+r.x, r.y, i+r.x, r.y+r.height );
+                     PaintManager::Line( dc, i+r.x, r.y, i+r.x, r.y+r.height );
                   } else {
                      // The LEDs have triangular ends.  
                      // This code shapes the ends.
                      int j = abs( (i%7)-4);
-                     AColor::Line( dc, i+r.x, r.y, i+r.x, r.y+j +1);
-                     AColor::Line( dc, i+r.x, r.y+r.height-j, i+r.x, r.y+r.height );
+                     PaintManager::Line( dc, i+r.x, r.y, i+r.x, r.y+j +1);
+                     PaintManager::Line( dc, i+r.x, r.y+r.height-j, i+r.x, r.y+r.height );
                   }
                }
             }
@@ -742,7 +742,7 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
    if (mIsFocused)
    {
       wxRect r = mIconRect;
-      AColor::DrawFocus(destDC, r.Inflate(1, 1));
+      PaintManager::DrawFocus(destDC, r.Inflate(1, 1));
    }
 }
 
@@ -1653,10 +1653,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          ht = (int)(bar->peakPeakHold * (h - 1) + 0.5);
          if (ht > 0)
          {
-            AColor::Line(dc, x, y + h - ht - 1, x + w - 1, y + h - ht - 1);
+            PaintManager::Line(dc, x, y + h - ht - 1, x + w - 1, y + h - ht - 1);
             if (ht > 1)
             {
-               AColor::Line(dc, x, y + h - ht, x + w - 1, y + h - ht);
+               PaintManager::Line(dc, x, y + h - ht, x + w - 1, y + h - ht);
             }
          }
       }
@@ -1697,10 +1697,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          wd = (int)(bar->peakPeakHold * (w - 1) + 0.5);
          if (wd > 0)
          {
-            AColor::Line(dc, x + wd, y, x + wd, y + h - 1);
+            PaintManager::Line(dc, x + wd, y, x + wd, y + h - 1);
             if (wd > 1)
             {
-               AColor::Line(dc, x + wd - 1, y, x + wd - 1, y + h - 1);
+               PaintManager::Line(dc, x + wd - 1, y, x + wd - 1, y + h - 1);
             }
          }
       }
@@ -1738,10 +1738,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          ht = (int)(bar->peakHold * (h - 1) + 0.5);
          if (ht > 0)
          {
-            AColor::Line(dc, x, y + h - ht - 1, x + w - 1, y + h - ht - 1);
+            PaintManager::Line(dc, x, y + h - ht - 1, x + w - 1, y + h - ht - 1);
             if (ht > 1)
             {
-               AColor::Line(dc, x, y + h - ht, x + w - 1, y + h - ht);
+               PaintManager::Line(dc, x, y + h - ht, x + w - 1, y + h - ht);
             }
          }
 
@@ -1764,10 +1764,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          ht = (int)(bar->peakPeakHold * (h - 1) + 0.5);
          if (ht > 0)
          {
-            AColor::Line(dc, x, y + h - ht - 1, x + w - 1, y + h - ht - 1);
+            PaintManager::Line(dc, x, y + h - ht - 1, x + w - 1, y + h - ht - 1);
             if (ht > 1)
             {
-               AColor::Line(dc, x, y + h - ht, x + w - 1, y + h - ht);
+               PaintManager::Line(dc, x, y + h - ht, x + w - 1, y + h - ht);
             }
          }
       }
@@ -1799,10 +1799,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          wd = (int)(bar->peakHold * (w - 1) + 0.5);
          if (wd > 0)
          {
-            AColor::Line(dc, x + wd, y, x + wd, y + h - 1);
+            PaintManager::Line(dc, x + wd, y, x + wd, y + h - 1);
             if (wd > 1)
             {
-               AColor::Line(dc, x + wd - 1, y, x + wd - 1, y + h - 1);
+               PaintManager::Line(dc, x + wd - 1, y, x + wd - 1, y + h - 1);
             }
          }
 
@@ -1825,10 +1825,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          wd = (int)(bar->peakPeakHold * (w - 1) + 0.5);
          if (wd > 0)
          {
-            AColor::Line(dc, x + wd, y, x + wd, y + h - 1);
+            PaintManager::Line(dc, x + wd, y, x + wd, y + h - 1);
             if (wd > 1)
             {
-               AColor::Line(dc, x + wd - 1, y, x + wd - 1, y + h - 1);
+               PaintManager::Line(dc, x + wd - 1, y, x + wd - 1, y + h - 1);
             }
          }
       }

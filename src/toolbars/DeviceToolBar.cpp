@@ -42,7 +42,7 @@
 
 #include "../TrackPanel.h"
 
-#include "../AColor.h"
+#include "../PaintManager.h"
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../KeyboardCapture.h"

@@ -15,7 +15,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../TrackPanelMouseEvent.h"
 #include "../../../../WaveTrack.h"
 
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../theme/AllThemeResources.h"
 #include "../../../../theme/Theme.h"
 #include "../../../../TrackArtist.h"
@@ -56,7 +56,7 @@ void WaveTrackVRulerControls::DoDraw( TrackVRulerControls &controls,
       highlight = rect.Contains(context.lastState.GetPosition());
 #endif
    
-      AColor::BevelTrackInfo(*dc, true, bev, highlight);
+      PaintManager::BevelTrackInfo(*dc, true, bev, highlight);
       
       // Right align the ruler
       wxRect rr = rect;

@@ -18,7 +18,7 @@ Paul Licameli split from TrackPanel.cpp
 #include <wx/dc.h>
 #include <wx/graphics.h>
 
-#include "../../../../AColor.h"
+#include "../../../../PaintManager.h"
 #include "../../../../WaveClip.h"
 #include "../../../../WaveTrack.h"
 
@@ -797,22 +797,22 @@ void WaveTrackSubView::DrawBoldBoundaries(
 #endif
       const int xx = zoomInfo.TimeToPosition(loc.pos);
       if (xx >= 0 && xx < rect.width) {
-         dc.SetPen( highlightLoc ? AColor::uglyPen : *wxGREY_PEN );
-         AColor::Line(dc, (int) (rect.x + xx - 1), rect.y, (int) (rect.x + xx - 1), rect.y + rect.height);
+         dc.SetPen( highlightLoc ? PaintManager::uglyPen : *wxGREY_PEN );
+         PaintManager::Line(dc, (int) (rect.x + xx - 1), rect.y, (int) (rect.x + xx - 1), rect.y + rect.height);
          if (loc.typ == WaveTrackLocation::locationCutLine) {
-            dc.SetPen( highlightLoc ? AColor::uglyPen : *wxRED_PEN );
+            dc.SetPen( highlightLoc ? PaintManager::uglyPen : *wxRED_PEN );
          }
          else {
 #ifdef EXPERIMENTAL_DA
             // JKC Black does not show up enough.
-            dc.SetPen(highlightLoc ? AColor::uglyPen : *wxWHITE_PEN);
+            dc.SetPen(highlightLoc ? PaintManager::uglyPen : *wxWHITE_PEN);
 #else
-            dc.SetPen(highlightLoc ? AColor::uglyPen : *wxBLACK_PEN);
+            dc.SetPen(highlightLoc ? PaintManager::uglyPen : *wxBLACK_PEN);
 #endif
          }
-         AColor::Line(dc, (int) (rect.x + xx), rect.y, (int) (rect.x + xx), rect.y + rect.height);
-         dc.SetPen( highlightLoc ? AColor::uglyPen : *wxGREY_PEN );
-         AColor::Line(dc, (int) (rect.x + xx + 1), rect.y, (int) (rect.x + xx + 1), rect.y + rect.height);
+         PaintManager::Line(dc, (int) (rect.x + xx), rect.y, (int) (rect.x + xx), rect.y + rect.height);
+         dc.SetPen( highlightLoc ? PaintManager::uglyPen : *wxGREY_PEN );
+         PaintManager::Line(dc, (int) (rect.x + xx + 1), rect.y, (int) (rect.x + xx + 1), rect.y + rect.height);
       }
    }
 }

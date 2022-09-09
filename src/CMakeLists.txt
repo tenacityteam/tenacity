@@ -57,9 +57,6 @@ endif()
 #
 list( APPEND SOURCES
    PRIVATE
-      AColor.cpp
-      AColor.h
-      AColorResources.h
       ActiveProject.cpp
       ActiveProject.h
       ActiveProjects.cpp
@@ -145,6 +142,9 @@ list( APPEND SOURCES
       ModuleSettings.h
       NoteTrack.cpp
       NoteTrack.h
+      PaintManager.cpp
+      PaintManager.h
+      PaintManagerResources.h
       PitchName.cpp
       PitchName.h
       PlaybackSchedule.cpp
