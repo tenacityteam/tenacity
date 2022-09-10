@@ -1161,12 +1161,12 @@ void DrawTrackName(
 
    {
       std::unique_ptr< wxGraphicsContext >
-         pGc{ wxGraphicsContext::Create(image) };
-      auto &gc = *pGc;
+         gc{ wxGraphicsContext::Create(image) };
+
       // This is to a gc, not a dc.
-      PaintManager::UseThemeColour( &gc, clrTrackInfoSelected, clrTrackPanelText, opacity );
+      PaintManager::UseThemeColour( gc.get(), clrTrackInfoSelected, clrTrackPanelText, opacity );
       // Draw at 1,1, not at 0,0 to avoid clipping of the antialiasing.
-      gc.DrawRoundedRectangle(
+      gc->DrawRoundedRectangle(
          SecondMarginX, SecondMarginY,
          textWidth + MarginsX, textHeight + MarginsY, 8.0
       );
