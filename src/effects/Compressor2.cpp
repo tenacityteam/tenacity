@@ -26,6 +26,7 @@
 #include <lib-strings/Internat.h>
 #include <lib-preferences/Prefs.h>
 
+#include "../AColor.h"
 #include "../ProjectFileManager.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
