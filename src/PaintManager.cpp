@@ -494,7 +494,7 @@ void PaintManager::Init()
 
    // Setup our renderer
    #ifdef __WXMSW__
-   renderer = wxGraphicsRenderer::GetDirect2DRenderer();
+   renderer = wxGraphicsRenderer::GetGDIPlusRenderer();
    #elif defined(__WXMAC__)
    renderer = wxGraphicsRenderer::GetDefaultRenderer();
    #else
