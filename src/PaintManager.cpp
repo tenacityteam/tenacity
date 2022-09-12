@@ -86,6 +86,11 @@ wxGraphicsContext* PaintManager::CreateGC(wxDC& dc)
    return renderer->CreateContextFromUnknownDC(dc);
 }
 
+wxGraphicsContext* PaintManager::CreateGC(wxWindow* window)
+{
+   return renderer->CreateContext(window);
+}
+
 wxGraphicsRenderer* PaintManager::GetRenderer()
 {
    return renderer;
@@ -219,6 +224,32 @@ void PaintManager::Bevel(wxDC & dc, bool up, const wxRect & r)
    PaintManager::Line(dc, r.x, r.y + r.height, r.x + r.width, r.y + r.height);
 }
 
+void PaintManager::Bevel(wxGraphicsContext* gc, bool up, const wxRect & r)
+{
+   if (up)
+   {
+      PaintManager::Light(gc, false);
+   } else
+   {
+      PaintManager::Dark(gc, false);
+   }
+
+   gc->StrokeLine(r.x, r.y, r.x + r.width, r.y);
+   gc->StrokeLine(r.x, r.y, r.x, r.y + r.height);
+
+   if (!up)
+   {
+      PaintManager::Light(gc, false);
+   } else
+   {
+      PaintManager::Dark(gc, false);
+   }
+
+   gc->StrokeLine(r.x + r.width, r.y, r.x + r.width, r.y + r.height);
+   gc->StrokeLine(r.x, r.y + r.height, r.x + r.width, r.y + r.height);
+}
+
+
 void PaintManager::Bevel2
 (wxDC & dc, bool up, const wxRect & r, bool bSel, bool bHighlight)
 {
@@ -346,6 +377,21 @@ void PaintManager::Light(wxDC * dc, bool selected, bool highlight)
    dc->SetPen( pen );
 }
 
+void PaintManager::Light(wxGraphicsContext* gc, bool selected, bool highlight)
+{
+   if (!inited)
+   {
+      Init();
+   }
+
+   int index = (int) selected;
+   auto &brush = highlight ? PaintManager::uglyBrush : lightBrush[index];
+   auto &pen = highlight ? PaintManager::uglyPen : lightPen[index];
+
+   gc->SetBrush( brush );
+   gc->SetPen( pen );
+}
+
 void PaintManager::Medium(wxDC * dc, bool selected)
 {
    if (!inited)
@@ -353,6 +399,18 @@ void PaintManager::Medium(wxDC * dc, bool selected)
    int index = (int) selected;
    dc->SetBrush(mediumBrush[index]);
    dc->SetPen(mediumPen[index]);
+}
+
+void PaintManager::Medium(wxGraphicsContext* gc, bool selected)
+{
+   if (!inited)
+   {
+      Init();
+   }
+
+   int index = (int) selected;
+   gc->SetBrush(mediumBrush[index]);
+   gc->SetPen(mediumPen[index]);
 }
 
 void PaintManager::MediumTrackInfo(wxDC * dc, bool selected)
@@ -364,6 +422,10 @@ void PaintManager::MediumTrackInfo(wxDC * dc, bool selected)
 #endif
 }
 
+void PaintManager::MediumTrackInfo(wxGraphicsContext* gc, bool selected)
+{
+   UseThemeColour( gc, selected ? clrTrackInfoSelected : clrTrackInfo );
+}
 
 void PaintManager::Dark(wxDC * dc, bool selected, bool highlight)
 {
@@ -374,6 +436,21 @@ void PaintManager::Dark(wxDC * dc, bool selected, bool highlight)
    dc->SetBrush( brush );
    auto &pen = highlight ? PaintManager::uglyPen : darkPen[index];
    dc->SetPen( pen );
+}
+
+void PaintManager::Dark(wxGraphicsContext* gc, bool selected, bool highlight)
+{
+   if (!inited)
+   {
+      Init();
+   }
+
+   int index = (int) selected;
+   auto &brush = highlight ? PaintManager::uglyBrush : darkBrush[index];
+   auto &pen = highlight ? PaintManager::uglyPen : darkPen[index];
+
+   gc->SetBrush(brush);
+   gc->SetPen(pen);
 }
 
 void PaintManager::TrackPanelBackground(wxDC * dc, bool selected)

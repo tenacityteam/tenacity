@@ -74,7 +74,7 @@ class TENACITY_DLL_API ControlToolBar final : public ToolBar {
    void PlayLooped();
 
    void Populate() override;
-   void Repaint(wxDC *dc) override;
+   void Repaint(wxGraphicsContext* gc) override;
    void EnableDisableButtons() override;
 
    void ReCreateButtons() override;

@@ -466,12 +466,11 @@ void ControlToolBar::ReCreateButtons()
    RegenerateTooltips();
 }
 
-void ControlToolBar::Repaint( wxDC *dc )
+void ControlToolBar::Repaint( wxGraphicsContext* gc )
 {
 #ifndef USE_AQUA_THEME
    wxSize s = mSizer->GetSize();
    wxPoint p = mSizer->GetPosition();
-
 #endif
 }
 

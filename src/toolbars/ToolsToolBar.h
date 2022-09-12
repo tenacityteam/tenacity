@@ -54,7 +54,7 @@ class ToolsToolBar final : public ToolBar {
    int GetDownTool();
 
    void Populate() override;
-   void Repaint(wxDC * WXUNUSED(dc)) override {};
+   void Repaint(wxGraphicsContext* /* unused */) override {};
    void EnableDisableButtons() override {};
 
  private:

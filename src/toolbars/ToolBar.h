@@ -227,7 +227,16 @@ public:
    int GetResizeGrabberWidth();
 
    virtual void Populate() = 0;
-   virtual void Repaint(wxDC *dc) = 0;
+
+   /** @brief Repaints the toolbar if needed.
+    * 
+    * Most toolbars do not use this function.
+    * 
+    * @warning Do not delete the passed context. It is managed by a smart
+    * pointer and will already handle deletiong.
+    * 
+    **/
+   virtual void Repaint(wxGraphicsContext* gc) = 0;
 
    void OnErase(wxEraseEvent & event);
    void OnPaint(wxPaintEvent & event);

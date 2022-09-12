@@ -34,6 +34,7 @@
 #include <wx/defs.h>
 #include <wx/event.h>
 #include <wx/gdicmn.h>
+#include <wx/graphics.h>
 #include <wx/intl.h>
 #include <wx/panel.h>
 #include <wx/settings.h>
@@ -894,31 +895,47 @@ void ToolDock::OnPaint( wxPaintEvent & WXUNUSED(event) )
 {
    // Don't use a wxBufferedPaintDC() here.  It produces a bogus
    // background on Windows and GTK.
-   wxPaintDC dc( this );
+   wxPaintDC dc(this);
+   std::unique_ptr<wxGraphicsContext> gc(PaintManager::CreateGC(dc));
 
-   // Start with a clean background
-   //
-   // Under GTK, we don't set the toolbar background to the background
-   // colour in the system theme.  Instead we use our own colour.
-
-   dc.SetBackground( wxBrush( theTheme.Colour( clrMedium )));
-   dc.Clear();
-
-   // Set the gap color
-   PaintManager::Dark( &dc, false );
-
-   // Draw the initial horizontal and vertical gaps
-   wxSize sz = GetClientSize();
-
-   PaintManager::Line(dc, 0, 0, sz.GetWidth(), 0 );
-   PaintManager::Line(dc, 0, 0, 0, sz.GetHeight() );
-
-   // Draw the gap between each bar
-   for (const auto &place : GetConfiguration())
+   if (gc)
    {
-      auto toolbar = place.pTree->pBar;
-      if (!toolbar)
-         continue;
+      // Clear the background
+      dc.SetBackground(wxBrush(theTheme.Colour(clrMedium)));
+      dc.Clear();
+
+      // Set the gap color
+      PaintManager::Dark( gc.get(), false );
+
+      // Draw the initial horizontal and vertical gaps
+      wxSize sz = GetClientSize();
+
+      gc->StrokeLine(0, 0, sz.GetWidth(), 0);
+      gc->StrokeLine(0, 0, 0, sz.GetHeight());
+
+      // Draw the gap between each bar
+      for (const auto &place : GetConfiguration())
+      {
+         auto toolbar = place.pTree->pBar;
+         if (!toolbar)
+         {
+            continue;
+         }
+
+         wxRect r = toolbar->GetRect();
+
+         // Draw a horizontal line under the bar extending to the right edge of
+         // the dock
+         gc->StrokeLine(r.GetLeft(), r.GetBottom() + 1, sz.GetWidth(), r.GetBottom() + 1);
+
+         // For all bars but the last...
+         // ...and for bars that aren't the last in a row, draw a
+         // vertical gap line
+         if (!mConfiguration.IsRightmost(toolbar))
+         {
+            gc->StrokeLine(r.GetRight() + 1, r.GetTop(), r.GetRight() + 1, r.GetBottom() + 1);
+         }
+      }
    }
 }
 

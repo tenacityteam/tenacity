@@ -36,6 +36,7 @@ in which buttons can be placed.
 #include <wx/dcclient.h>
 #include <wx/defs.h>
 #include <wx/gdicmn.h>
+#include <wx/graphics.h>
 #include <wx/image.h>
 #include <wx/intl.h>
 #include <wx/settings.h>
@@ -43,6 +44,8 @@ in which buttons can be placed.
 #include <wx/sysopt.h>
 #include <wx/window.h>
 #endif  /*  */
+
+#include <memory>
 
 #include "ToolDock.h"
 
@@ -935,15 +938,21 @@ void ToolBar::OnErase( wxEraseEvent & WXUNUSED(event) )
 //
 // This draws the background of a toolbar
 //
-void ToolBar::OnPaint( wxPaintEvent & WXUNUSED(event) )
+void ToolBar::OnPaint( wxPaintEvent & /* event */ )
 {
-   wxPaintDC dc( this );
+   wxPaintDC dc(this);
+   std::unique_ptr<wxGraphicsContext> gc(
+      PaintManager::CreateGC(dc)
+   );
 
    // Themed background colour.
    dc.SetBackground( wxBrush( theTheme.Colour( clrMedium  ) ) );
    dc.Clear();
 
-   Repaint( &dc );
+   if (gc)
+   {
+      Repaint(gc.get());
+   }
 }
 
 void ToolBar::OnMouseEvents(wxMouseEvent &event)

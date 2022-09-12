@@ -42,6 +42,7 @@ class TENACITY_DLL_API PaintManager {
 
    // wxGraphicsContext and wxGraphicsRenderer related members
    static wxGraphicsContext* CreateGC(wxDC& dc);
+   static wxGraphicsContext* CreateGC(wxWindow* window);
 
    static wxGraphicsRenderer* GetRenderer();
 
@@ -49,6 +50,8 @@ class TENACITY_DLL_API PaintManager {
 
    // Draw a line, INCLUSIVE of both endpoints
    // (unlike what wxDC::DrawLine() documentation specifies)
+   // GP: We don't have a wxGraphicsContext version of this because
+   // wxGraphicsContext::StrokeLine should have the same behavior as this.
    static void Line(wxDC & dc, wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2);
 
    // Draw lines, INCLUSIVE of all endpoints
@@ -56,6 +59,7 @@ class TENACITY_DLL_API PaintManager {
 
    static void DrawFocus(wxDC & dc, wxRect & r);
    static void Bevel(wxDC & dc, bool up, const wxRect & r);
+   static void Bevel(wxGraphicsContext* gc, bool up, const wxRect& r);
    static void Bevel2
       (wxDC & dc, bool up, const wxRect & r, bool bSel=false, bool bHighlight = false);
    static void BevelTrackInfo(wxDC & dc, bool up, const wxRect & r, bool highlight = false);
@@ -66,9 +70,13 @@ class TENACITY_DLL_API PaintManager {
    static void TrackPanelBackground(wxDC * dc, bool selected);
 
    static void Light(wxDC * dc, bool selected, bool highlight = false);
+   static void Light(wxGraphicsContext* gc, bool selected, bool highlight = false);
    static void Medium(wxDC * dc, bool selected);
+   static void Medium(wxGraphicsContext* gc, bool selected);
    static void MediumTrackInfo(wxDC * dc, bool selected);
+   static void MediumTrackInfo(wxGraphicsContext* gc, bool selected);
    static void Dark(wxDC * dc, bool selected, bool highlight = false);
+   static void Dark(wxGraphicsContext* gc, bool selected, bool highlight = false);
 
    static void CursorColor(wxDC * dc);
    static void IndicatorColor(wxDC * dc, bool bIsNotRecording);
