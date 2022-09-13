@@ -316,109 +316,125 @@ void ImageRoll::DrawBitmap(wxDC &dc, wxBitmap &bitmap,
 
 void ImageRoll::Draw(wxDC &dc, wxRect rect)
 {
-   Draw( dc, rect, wxCOPY );
-}
-
-void ImageRoll::Draw(wxDC &dc, wxRect rect, int WXUNUSED(logicalFunc))
-{
-   auto func = wxCOPY;
    int width = rect.width;
    int height = rect.height;
    int num = (int)mPieces.size();
    int i, j;
 
-   switch(mType) {
-   case HorizontalRoll: {
-      // The pieces alternate fixed, rolling, fixed, rolling...
+   switch(mType)
+   {
+      case HorizontalRoll: {
+         // The pieces alternate fixed, rolling, fixed, rolling...
 
-      int fixedWidth = 0;
-      for(i=0; i<num; i+=2)
-         fixedWidth += (mPieces[i].Ok() ? mPieces[i].GetWidth() : 0);
-
-      int rollingSpace = width - fixedWidth;
-      int numRolling = num / 2;
-      int x = 0;
-
-      for(i=0; i<num; i++) {
-         int w = (mPieces[i].Ok() ? mPieces[i].GetWidth() : 0);
-
-         if (i%2==0) {
-            // fixed
-
-            if (mPieces[i].Ok())
-               DrawBitmap(dc, mPieces[i], rect.x + x, rect.y, func);
-            x += w;
+         int fixedWidth = 0;
+         for (i = 0; i < num; i += 2)
+         {
+            fixedWidth += (mPieces[i].Ok() ? mPieces[i].GetWidth() : 0);
          }
-         else {
-            // rolling
 
-            int space =
-               ((1+(i/2))*rollingSpace / numRolling) -
-               ((i/2)*rollingSpace / numRolling);
+         int rollingSpace = width - fixedWidth;
+         int numRolling = num / 2;
+         int x = 0;
 
-            j = 0;
-            while(j < space) {
+         for(i=0; i<num; i++)
+         {
+            int w = (mPieces[i].Ok() ? mPieces[i].GetWidth() : 0);
+
+            if (i % 2 == 0)
+            {
+               // fixed
+
                if (mPieces[i].Ok())
-                  DrawBitmap(dc, mPieces[i], rect.x + x + j, rect.y, func);
-               j += w;
+               {
+                  DrawBitmap(dc, mPieces[i], rect.x + x, rect.y, wxCOPY);
+               }
+
+               x += w;
+            } else
+            {
+               // rolling
+
+               int space =
+                  ((1+(i/2))*rollingSpace / numRolling) -
+                  ((i/2)*rollingSpace / numRolling);
+
+               j = 0;
+               while(j < space)
+               {
+                  if (mPieces[i].Ok())
+                  {
+                     DrawBitmap(dc, mPieces[i], rect.x + x + j, rect.y, wxCOPY);
+                  }
+
+                  j += w;
+               }
+
+               x += space;
             }
-
-            x += space;
          }
-      }
-   } break; // case HorizontalRoll
+      } break; // case HorizontalRoll
 
-   case VerticalRoll: {
-      // The pieces alternate fixed, rolling, fixed, rolling...
+      case VerticalRoll: {
+         // The pieces alternate fixed, rolling, fixed, rolling...
 
-      int fixedHeight = 0;
-      for(i=0; i<num; i+=2)
-         fixedHeight += (mPieces[i].Ok() ? mPieces[i].GetHeight() : 0);
-
-      int rollingSpace = height - fixedHeight;
-      int numRolling = num / 2;
-      int y = 0;
-
-      for(i=0; i<num; i++) {
-         int h = (mPieces[i].Ok() ? mPieces[i].GetHeight() : 0);
-
-         if (i%2==0) {
-            // fixed
-
-            if (mPieces[i].Ok())
-               DrawBitmap(dc, mPieces[i], rect.x, rect.y + y, func);
-            y += h;
+         int fixedHeight = 0;
+         for (i = 0; i < num; i += 2)
+         {
+            fixedHeight += (mPieces[i].Ok() ? mPieces[i].GetHeight() : 0);
          }
-         else {
-            // rolling
 
-            int space =
-               ((1+(i/2))*rollingSpace / numRolling) -
-               ((i/2)*rollingSpace / numRolling);
+         int rollingSpace = height - fixedHeight;
+         int numRolling = num / 2;
+         int y = 0;
 
-            j = 0;
-            while(j < space) {
+         for (i = 0; i < num; i++)
+         {
+            int h = (mPieces[i].Ok() ? mPieces[i].GetHeight() : 0);
+
+            if (i % 2 == 0)
+            {
+               // fixed
+
                if (mPieces[i].Ok())
-                  DrawBitmap(dc, mPieces[i], rect.x, rect.y + y + j, func);
-               j += h;
+               {
+                  DrawBitmap(dc, mPieces[i], rect.x, rect.y + y, wxCOPY);
+               }
+
+               y += h;
+            } else
+            {
+               // rolling
+
+               int space =
+                  ((1+(i/2))*rollingSpace / numRolling) -
+                  ((i/2)*rollingSpace / numRolling);
+
+               j = 0;
+               while(j < space)
+               {
+                  if (mPieces[i].Ok())
+                  {
+                     DrawBitmap(dc, mPieces[i], rect.x, rect.y + y + j, wxCOPY);
+                  }
+
+                  j += h;
+               }
+
+               y += space;
             }
-
-            y += space;
          }
-      }
-   } break; // case VerticalRoll
+      } break; // case VerticalRoll
 
-   case FixedImage:
-      DrawBitmap(dc, mPieces[0], rect.x, rect.y, func);
+      case FixedImage:
+         DrawBitmap(dc, mPieces[0], rect.x, rect.y, wxCOPY);
+         break;
+      /* the other possible cases don't really make sense, but not having them
+      * listed gives a GCC warning */
+      case Uninitialized:
       break;
-   /* the other possible cases don't really make sense, but not having them
-    * listed gives a GCC warning */
-   case Uninitialized:
-   break;
 
-   case Frame:
-   break;
-
+      case Frame:
+      break;
    } // switch
 }
 

@@ -47,9 +47,7 @@ class SAUCEDACITY_DLL_API ImageRoll
    wxSize GetMinSize() const { return mMinSize; }
    wxSize GetMaxSize() const { return mMaxSize; }
 
-   void Draw(wxDC &dc, wxRect rect,
-             int /* wxRasterOperationMode */ logicalFunc);
-   void Draw(wxDC &dc, wxRect rect); // default logicalFunc to wxCOPY
+   void Draw(wxDC &dc, wxRect rect);
 
    static ImageArray SplitH(const wxImage &src, wxColour magicColor);
    static ImageArray SplitV(const wxImage &src, wxColour magicColor);
