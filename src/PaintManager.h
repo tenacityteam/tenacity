@@ -43,6 +43,7 @@ class TENACITY_DLL_API PaintManager {
    // wxGraphicsContext and wxGraphicsRenderer related members
    static wxGraphicsContext* CreateGC(wxDC& dc);
    static wxGraphicsContext* CreateGC(wxWindow* window);
+   static wxGraphicsPath     CreateGraphicsPath();
 
    static wxGraphicsRenderer* GetRenderer();
 

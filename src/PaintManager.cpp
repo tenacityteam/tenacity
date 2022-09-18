@@ -91,6 +91,11 @@ wxGraphicsContext* PaintManager::CreateGC(wxWindow* window)
    return renderer->CreateContext(window);
 }
 
+wxGraphicsPath PaintManager::CreateGraphicsPath()
+{
+   return renderer->CreatePath();
+}
+
 wxGraphicsRenderer* PaintManager::GetRenderer()
 {
    return renderer;
