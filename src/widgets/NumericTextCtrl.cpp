@@ -182,6 +182,7 @@ different formats.
 
 #include <wx/wx.h>
 #include <wx/dcbuffer.h>
+#include <wx/dcgraph.h>
 #include <wx/font.h>
 #include <wx/intl.h>
 #include <wx/menu.h>
@@ -1705,7 +1706,8 @@ void NumericTextCtrl::OnErase(wxEraseEvent & WXUNUSED(event))
 
 void NumericTextCtrl::OnPaint(wxPaintEvent & WXUNUSED(event))
 {
-   wxBufferedPaintDC dc(this);
+   wxGCDC dc(PaintManager::CreateGC(this));
+
    bool focused = (FindFocus() == this);
 
    dc.DrawBitmap(*mBackgroundBitmap, 0, 0);
