@@ -139,25 +139,6 @@ It handles initialization and termination by subclassing wxApp.
 /// Custom events
 ////////////////////////////////////////////////////////////
 
-#if 0
-#ifdef __WXGTK__
-static void wxOnAssert(const wxChar *fileName, int lineNumber, const wxChar *msg)
-{
-   if (msg)
-      wxPrintf("ASSERTION FAILED: %s\n%s: %d\n", (const char *)wxString(msg).mb_str(), (const char *)wxString(fileName).mb_str(), lineNumber);
-   else
-      wxPrintf("ASSERTION FAILED!\n%s: %d\n", (const char *)wxString(fileName).mb_str(), lineNumber);
-
-   // Force core dump
-   int *i = 0;
-   if (*i)
-      exit(1);
-
-   exit(0);
-}
-#endif
-#endif
-
 namespace {
 
 void PopulatePreferences()
