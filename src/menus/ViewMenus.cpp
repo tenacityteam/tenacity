@@ -428,7 +428,7 @@ BaseItemSharedPtr ViewMenu()
                Command( wxT("ZoomIn"), XXO("Zoom &In"), FN(OnZoomIn),
                   ZoomInAvailableFlag(), wxT("Ctrl+=") ),
                Command( wxT("ZoomNormal"), XXO("Zoom &Normal"), FN(OnZoomNormal),
-                  TracksExistFlag(), wxT("Ctrl+2") ),
+                  TracksExistFlag(), wxT("Ctrl+0") ),
                Command( wxT("ZoomOut"), XXO("Zoom &Out"), FN(OnZoomOut),
                   ZoomOutAvailableFlag(), wxT("Ctrl+-") ),
                Command( wxT("ZoomSel"), XXO("&Zoom to Selection"), FN(OnZoomSel),
