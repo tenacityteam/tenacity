@@ -119,7 +119,7 @@ fi
 # Put the non-RUNPATH binaries back
 mv "${appdir}/../findlib" "${appdir}/bin/findlib"
 
-mv "${appdir}/share/metainfo/audacity.appdata.xml" "${appdir}/share/metainfo/org.audacityteam.Audacity.appdata.xml"
+mv "${appdir}/share/metainfo/saucedacity.metainfo.xml" "${appdir}/share/metainfo/org.saucedacityteam.Saucedacity.metainfo.xml"
 ##########################################################################
 # BUNDLE REMAINING DEPENDENCIES MANUALLY
 ##########################################################################
