@@ -40,7 +40,7 @@ function download_appimage_release()
 function download_linuxdeploy_component()
 {
     local -r component="$1" tag="$2"
-    download_appimage_release "audacity/$1" "$1" "$2"
+    download_appimage_release "linuxdeploy/$1" "$1" "$2"
 }
 
 function create_path()
@@ -69,6 +69,9 @@ if create_path "linuxdeploy"; then
 (
     cd "linuxdeploy"
     download_linuxdeploy_component linuxdeploy continuous
+    echo "=============================="
+    echo "DOWNLOADING GTK PLUGIN"
+    echo "=============================="
     wget -q https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
     chmod +x linuxdeploy-plugin-gtk.sh
 )
@@ -99,18 +102,18 @@ export LD_LIBRARY_PATH="${appdir}/usr/lib/saucedacity:${LD_LIBRARY_PATH-}"
 # based location
 if [ -f "/etc/debian_version" ]; then
    archDir=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
-   export LD_LIBRARY_PATH="${appdir}/usr/lib/${archDir}:${appdir}/usr/lib/${archDir}/audacity:${LD_LIBRARY_PATH-}"
+   export LD_LIBRARY_PATH="${appdir}/usr/lib/${archDir}:${appdir}/usr/lib/${archDir}/saucedacity:${LD_LIBRARY_PATH-}"
 fi
 
 # Prevent linuxdeploy setting RUNPATH in binaries that shouldn't have it
 mv "${appdir}/bin/findlib" "${appdir}/../findlib"
 
 linuxdeploy --appdir "${appdir}" --plugin gtk # add all shared library dependencies
-rm -Rf "${appdir}/lib/audacity"
+rm -Rf "${appdir}/lib/saucedacity"
 
 if [ -f "/etc/debian_version" ]; then
    archDir=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
-   rm -Rf "${appdir}/lib/${archDir}/audacity"
+   rm -Rf "${appdir}/lib/${archDir}/saucedacity"
 fi
 
 # Put the non-RUNPATH binaries back
