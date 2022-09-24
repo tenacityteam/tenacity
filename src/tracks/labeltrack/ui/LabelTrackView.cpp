@@ -2031,6 +2031,15 @@ int LabelTrackView::AddLabel(const SelectedRegion &selectedRegion,
    return pos;
 }
 
+std::vector<ComponentInterfaceSymbol> LabelTrackView::GetMenuItems(const wxRect&, const wxPoint*, SaucedacityProject*)
+{
+   return {
+      { L"EditLabels", XO("Edit Labels")},
+      { L"AddLabel", XO("Add Label at &Selection")},
+      { L"AddLabelPlaying", XO("Add Label at &Playback Position")}
+   };
+}
+
 void LabelTrackView::OnLabelAdded( LabelTrackEvent &e )
 {
    e.Skip();

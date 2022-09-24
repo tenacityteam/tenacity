@@ -67,6 +67,8 @@ public:
       const wxString &title = {},
       int restoreFocus = -1);
 
+   std::vector<ComponentInterfaceSymbol> GetMenuItems(const wxRect&, const wxPoint*, SaucedacityProject*);
+
 private:
    void BindTo( LabelTrack *pParent );
    void UnbindFrom( LabelTrack *pParent );
