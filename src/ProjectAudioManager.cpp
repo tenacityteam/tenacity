@@ -917,7 +917,7 @@ void ProjectAudioManager::OnAudioIOStopRecording()
                ShowWarningDialog(&window, wxT("DropoutDetected"), XO("\
 Recorded audio was lost at the labeled locations. Possible causes:\n\
 \n\
-Other applications are competing with Audacity for processor time\n\
+Other applications are competing with Saucedacity for processor time\n\
 \n\
 You are saving directly to a slow external storage device\n\
 "
