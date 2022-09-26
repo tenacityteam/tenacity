@@ -13,6 +13,7 @@
 #pragma once
 
 #include <wx/window.h>
+#include <wx/dcclient.h>
 
 class SAUCEDACITY_DLL_API AuStaticText : public wxWindow
 {

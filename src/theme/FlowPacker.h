@@ -12,7 +12,7 @@
 
 #pragma once
 
-class wxRect;
+#include <wx/gdicmn.h>
 
 /** @brief Packs rectangular boxes into a rectangle, using simple first fit.
  *
