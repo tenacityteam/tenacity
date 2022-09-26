@@ -37,7 +37,7 @@ Provides:
 // Saucedacity preferences
 #include <lib-preferences/Prefs.h>
 
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../AColor.h"
 

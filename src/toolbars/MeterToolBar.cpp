@@ -33,7 +33,7 @@
 
 #include <wx/gbsizer.h>
 
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../ProjectAudioIO.h"
 #include "../widgets/Meter.h"
 

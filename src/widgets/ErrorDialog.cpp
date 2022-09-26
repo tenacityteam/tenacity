@@ -33,7 +33,7 @@
 #include <wx/textctrl.h>
 #include <wx/artprov.h>
 
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../HelpText.h"
 #include "HelpSystem.h"

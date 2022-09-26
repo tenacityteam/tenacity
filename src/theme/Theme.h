@@ -14,10 +14,12 @@
 #ifndef __AUDACITY_THEME__
 #define __AUDACITY_THEME__
 
-
 #include <vector>
 #include <wx/defs.h>
 #include <wx/window.h> // to inherit
+
+#include "ThemeFlags.h"
+#include "FlowPacker.h"
 
 class wxArrayString;
 class wxBitmap;
@@ -27,75 +29,6 @@ class wxImage;
 class wxPen;
 
 class ChoiceSetting;
-
-// JKC: will probably change name from 'teBmps' to 'tIndexBmp';
-using teBmps = int; /// The index of a bitmap resource in Theme Resources.
-
-enum teResourceType
-{
-   resTypeColour,
-   resTypeBitmap,
-   resTypeImage = resTypeBitmap,
-   resTypeCursor,
-   resTypeFont
-};
-
-enum teResourceFlags
-{
-   resFlagNone   =0x00,
-   resFlagPaired =0x01,
-   resFlagCursor =0x02,
-   resFlagNewLine = 0x04,
-   resFlagInternal = 0x08,  // For image manipulation.  Don't save or load.
-   resFlagSkip = 0x10
-};
-
-enum teThemeType
-{
-   themeLight,
-   themeDark,
-   themeDefault,
-   themeSaucedacity,
-   themeAudacity,
-   themeAudacityClassic,
-   themeHiContrast,
-   themeFromFile,
-};
-
-
-
-class SAUCEDACITY_DLL_API FlowPacker
-{
-public:
-   FlowPacker(){;};
-   ~FlowPacker(){;};
-   void Init(int width);
-   void GetNextPosition( int xSize, int ySize );
-   void SetNewGroup( int iGroupSize );
-   void SetColourGroup( );
-   wxRect Rect();
-   wxRect RectInner();
-   void RectMid( int &x, int &y );
-
-   // These 4 should become private again...
-   int mFlags;
-   int mxPos;
-   int myPos;
-   int myHeight;
-   int mBorderWidth;
-
-private:
-   int iImageGroupSize;
-   int iImageGroupIndex;
-   int mOldFlags;
-   int myPosBase;
-   int mxWidth;
-   int mxCacheWidth;
-
-   int mComponentWidth;
-   int mComponentHeight;
-
-};
 
 class SAUCEDACITY_DLL_API ThemeBase /* not final */
 {
@@ -179,18 +112,6 @@ public:
 class wxWindow;
 class wxString;
 class wxPaintEvent;
-
-class SAUCEDACITY_DLL_API auStaticText : public wxWindow
-{
-public:
-   auStaticText(wxWindow* parent, wxString text);
-   void OnPaint(wxPaintEvent & evt);
-   bool AcceptsFocus() const override { return false; }
-   void OnErase(wxEraseEvent& event) {
-      static_cast<void>(event);
-   };
-   DECLARE_EVENT_TABLE();
-};
 
 extern SAUCEDACITY_DLL_API Theme theTheme;
 

@@ -30,8 +30,8 @@ around to NEW positions.
 #include <wx/window.h>
 
 #include "../AColor.h"
-#include "../AllThemeResources.h"
-#include "../Theme.h"
+#include "../theme/AllThemeResources.h"
+#include "../theme/Theme.h"
 
 // Saucedacity libraries
 #include <lib-strings/Internat.h>

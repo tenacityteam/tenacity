@@ -24,7 +24,7 @@
 #include <wx/settings.h> // for wxSystemSettings::GetColour and wxSystemSettings::GetMetric
 
 #include "AColor.h"
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 
 #ifdef USE_MIDI
@@ -42,15 +42,15 @@
 #include "ProjectSettings.h"
 #include "ProjectWindow.h"
 #include "SelectUtilities.h"
-#include "Theme.h"
+#include "theme/Theme.h"
 #include "TrackPanel.h" // for EVT_TRACK_PANEL_TIMER
 #include "TrackUtilities.h"
 #include "UndoManager.h"
 #include "WaveTrack.h"
 
 #include "widgets/AButton.h"
+#include "widgets/AuStaticText.h"
 #include "widgets/Meter.h"
-
 
 #include "../images/MusicalInstruments.h"
 #ifdef __WXMSW__
@@ -191,7 +191,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
    wxPoint ctrlPos(kDoubleInset, kDoubleInset);
    wxSize ctrlSize(size.GetWidth() - kQuadrupleInset, TRACK_NAME_HEIGHT);
    mStaticText_TrackName =
-      safenew auStaticText(this, mTrack->GetName());
+      safenew AuStaticText(this, mTrack->GetName());
    //v Useful when different tracks are different colors, but not now.
    //    mStaticText_TrackName->SetBackgroundColour(this->GetTrackColor());
    mStaticText_TrackName->SetForegroundColour(theTheme.Colour(clrMedium));

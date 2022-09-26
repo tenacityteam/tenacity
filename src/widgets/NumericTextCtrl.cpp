@@ -169,10 +169,10 @@ different formats.
 #include "NumericTextCtrl.h"
 
 #include "SampleCount.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../AColor.h"
 #include "../KeyboardCapture.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 
 #include <algorithm>
 #include <cmath>

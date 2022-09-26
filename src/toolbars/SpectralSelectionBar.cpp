@@ -57,7 +57,7 @@ with changes in the SpectralSelectionBar.
 #include <lib-preferences/Prefs.h>
 
 #include "../Project.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../SelectedRegion.h"
 #include "../ViewInfo.h"
 

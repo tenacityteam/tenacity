@@ -77,9 +77,9 @@ the mouse around.
 #include "prefs/GUISettings.h"
 #include "Project.h"
 #include "ProjectWindow.h"
-#include "Theme.h"
+#include "theme/Theme.h"
 #include "ViewInfo.h"
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 
 #include "WaveTrack.h"
 

@@ -57,11 +57,11 @@ a graph for EffectScienFilter.
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../Project.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../WaveTrack.h"
 #include "../widgets/valnum.h"
 #include "../widgets/AudacityMessageBox.h"

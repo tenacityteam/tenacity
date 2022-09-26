@@ -50,7 +50,7 @@
 // Saucedacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../BatchCommands.h"
 #include "../ImageManipulation.h"
 #include "../Menus.h"

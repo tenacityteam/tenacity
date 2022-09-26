@@ -47,7 +47,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include "Track.h"
 #include "UndoManager.h"
 
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 
 #include "widgets/AudacityMessageBox.h"
 

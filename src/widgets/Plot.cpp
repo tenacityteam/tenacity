@@ -17,8 +17,8 @@
 #include "Plot.h"
 #include "Ruler.h"
 #include "../AColor.h"
-#include "../Theme.h"
-#include "../AllThemeResources.h"
+#include "../theme/Theme.h"
+#include "../theme/AllThemeResources.h"
 
 #include <wx/brush.h>
 #include <wx/dcclient.h>

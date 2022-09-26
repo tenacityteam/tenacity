@@ -13,7 +13,7 @@
 #include <wx/dc.h>
 
 #include "../../../ui/AffordanceHandle.h"
-#include "../../../../AllThemeResources.h"
+#include "../../../../theme/AllThemeResources.h"
 #include "../../../../AColor.h"
 #include "../../../../NoteTrack.h"
 #include "../../../../ViewInfo.h"

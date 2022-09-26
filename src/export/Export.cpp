@@ -57,7 +57,7 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../src/AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../Mix.h"
 #include "../prefs/ImportExportPrefs.h"
 #include "../Project.h"
@@ -66,7 +66,7 @@
 #include "../ProjectWindow.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../WaveTrack.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/Warning.h"

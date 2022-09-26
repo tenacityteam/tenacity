@@ -44,11 +44,11 @@
 #include "../AColor.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../widgets/Ruler.h"
 
 #include "../WaveTrack.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 
 enum
 {

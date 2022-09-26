@@ -62,7 +62,8 @@ with changes in the SelectionBar.
 #include "../Snap.h"
 #include "../ViewInfo.h"
 #include "../prefs/QualitySettings.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
+#include "../widgets/AuStaticText.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "../widgets/WindowAccessible.h"
@@ -153,10 +154,10 @@ void SelectionBar::Create(wxWindow * parent)
 }
 
 
-auStaticText * SelectionBar::AddTitle(
+AuStaticText * SelectionBar::AddTitle(
    const TranslatableString & Title, wxSizer * pSizer ){
    const auto translated = Title.Translation();
-   auStaticText * pTitle = safenew auStaticText(this, translated );
+   AuStaticText * pTitle = safenew AuStaticText(this, translated );
    pTitle->SetBackgroundColour( theTheme.Colour( clrMedium ));
    pTitle->SetForegroundColour( theTheme.Colour( clrTrackPanelText ) );
    pSizer->Add( pTitle, 0, wxEXPAND | wxALIGN_CENTER_VERTICAL | wxRIGHT, 5 );
@@ -199,9 +200,9 @@ void SelectionBar::Populate()
    // Top row (mostly labels)
    wxColour clrText =  theTheme.Colour( clrTrackPanelText );
    wxColour clrText2 = *wxBLUE;
-   auStaticText *rateLabel = AddTitle( XO("Project Rate (Hz)"), mainSizer );
+   AuStaticText *rateLabel = AddTitle( XO("Project Rate (Hz)"), mainSizer );
    AddVLine( mainSizer );
-   auStaticText *snapLabel = AddTitle( XO("Snap-To"), mainSizer );
+   AuStaticText *snapLabel = AddTitle( XO("Snap-To"), mainSizer );
    AddVLine( mainSizer );
 #ifdef TIME_IN_SELECT_TOOLBAR
    AddTitle( XO("Audio Position"), mainSizer );

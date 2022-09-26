@@ -40,8 +40,8 @@
 #include "tracks/ui/TrackView.h"
 #include "tracks/ui/TrackControls.h"
 
-#include "AllThemeResources.h"
-#include "Theme.h"
+#include "theme/AllThemeResources.h"
+#include "theme/Theme.h"
 
 #ifdef SONIFY
 #include "../lib-src/portmidi/pm_common/portmidi.h"

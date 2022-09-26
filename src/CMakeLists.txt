@@ -93,8 +93,6 @@ list( APPEND SOURCES
       AboutDialog.h
       AdornedRulerPanel.cpp
       AdornedRulerPanel.h
-      AllThemeResources.cpp
-      AllThemeResources.h
       AudioIO.cpp
       AudioIO.h
       AudioIOBase.cpp
@@ -256,8 +254,6 @@ list( APPEND SOURCES
       SseMathFuncs.h
       Tags.cpp
       Tags.h
-      Theme.cpp
-      Theme.h
       TimeDialog.cpp
       TimeDialog.h
       TimeTrack.cpp
@@ -305,14 +301,6 @@ list( APPEND SOURCES
       WrappedType.h
       ZoomInfo.cpp
       ZoomInfo.h
-
-      # Themes
-      AudacityThemeAsCeeCode.h
-      AudacityClassicThemeAsCeeCode.h
-      DarkThemeAsCeeCode.h
-      HiContrastThemeAsCeeCode.h
-      LightThemeAsCeeCode.h
-      SaucedacityThemeAsCeeCode.h
 
       # Commands
 
@@ -737,6 +725,25 @@ list( APPEND SOURCES
       prefs/WaveformSettings.cpp
       prefs/WaveformSettings.h
 
+      # Theming
+      # Built-in themes #######################################################
+      theme/AudacityClassicThemeAsCeeCode.h
+      theme/AudacityThemeAsCeeCode.h
+      theme/DarkThemeAsCeeCode.h
+      theme/HiContrastThemeAsCeeCode.h
+      theme/LightThemeAsCeeCode.h
+      theme/SaucedacityThemeAsCeeCode.h
+      #########################################################################
+      theme/AllThemeResources.cpp
+      theme/AllThemeResources.h
+      theme/FlowPacker.cpp
+      theme/FlowPacker.h
+      theme/Theme.cpp
+      theme/Theme.h
+      theme/ThemeFlags.h
+      theme/SourceOutputStream.cpp
+      theme/SourceOutputStream.h
+
       # Toolbars
 
       toolbars/ControlToolBar.cpp
@@ -899,6 +906,8 @@ list( APPEND SOURCES
       widgets/AButton.h
       widgets/ASlider.cpp
       widgets/ASlider.h
+      widgets/AuStaticText.cpp
+      widgets/AuStaticText.h
       widgets/AttachableScrollBar.cpp
       widgets/AttachableScrollBar.h
       widgets/AudacityMessageBox.cpp

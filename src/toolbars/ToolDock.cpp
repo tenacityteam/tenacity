@@ -46,7 +46,7 @@
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../widgets/Grabber.h"
 

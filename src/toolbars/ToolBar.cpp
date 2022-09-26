@@ -46,7 +46,7 @@ in which buttons can be placed.
 
 #include "ToolDock.h"
 
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../AColor.h"
 #include "../ImageManipulation.h"
 #include "../Project.h"

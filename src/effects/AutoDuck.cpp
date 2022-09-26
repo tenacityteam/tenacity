@@ -31,10 +31,10 @@
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../widgets/valnum.h"
 
 #include "../WaveTrack.h"

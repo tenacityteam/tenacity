@@ -103,14 +103,14 @@
 #include "../Envelope.h"
 #include "../EnvelopeEditor.h"
 #include "../Project.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../TrackArtist.h"
 #include "../WaveClip.h"
 #include "../ViewInfo.h"
 #include "../WaveTrack.h"
 #include "../widgets/Ruler.h"
 #include "../widgets/AudacityTextEntryDialog.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "../widgets/WindowAccessible.h"

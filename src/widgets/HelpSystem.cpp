@@ -43,9 +43,9 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../HelpText.h"
 #include "../prefs/GUIPrefs.h"
 

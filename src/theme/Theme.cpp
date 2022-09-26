@@ -34,34 +34,15 @@
 
 *//*****************************************************************//**
 
-\class FlowPacker
-\brief Packs rectangular boxes into a rectangle, using simple first fit.
-
-This class is currently used by Theme to pack its images into the image
-cache.  Perhaps someday we will improve FlowPacker and make it more flexible,
-and use it for toolbar and window layouts too.
-
-*//*****************************************************************//**
-
-\class SourceOutputStream
-\brief Allows us to capture output of the Save .png and 'pipe' it into
-our own output function which gives a series of numbers.
-
-This class is currently used by Theme to pack its images into the image
-cache.  Perhaps someday we will improve FlowPacker and make it more flexible,
-and use it for toolbar and window layouts too.
-
-*//*****************************************************************//**
-
 \class auStaticText
 \brief is like wxStaticText, except it can be themed.  wxStaticText 
 can't be.
 
 *//*****************************************************************/
 
-
 #include "Theme.h"
-
+#include "ThemeFlags.h"
+#include "SourceOutputStream.h"
 
 #include <wx/wxprec.h>
 #include <wx/dcclient.h>
@@ -71,7 +52,7 @@ can't be.
 #include <wx/mstream.h>
 #include <wx/settings.h>
 
-#include "AllThemeResources.h"  // can remove this later, only needed for 'XPMS_RETIRED'.
+#include "theme/AllThemeResources.h"  // can remove this later, only needed for 'XPMS_RETIRED'.
 #include "ImageManipulation.h"
 #include "widgets/AudacityMessageBox.h"
 
@@ -150,7 +131,7 @@ void Theme::RegisterImages()
 // This initialises the variables e.g
 // RegisterImage( bmpRecordButton, some image, wxT("RecordButton"));
 #define THEME_INITS
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 
 
 }
@@ -350,153 +331,6 @@ void ThemeBase::RegisterColour( int &iIndex, const wxColour &Clr, const wxString
    mColourNames.push_back( Name );
    iIndex = mColours.size() - 1;
 }
-
-void FlowPacker::Init(int width)
-{
-   mFlags = resFlagPaired;
-   mOldFlags = mFlags;
-   mxCacheWidth = width;
-
-   myPos = 0;
-   myPosBase =0;
-   myHeight = 0;
-   iImageGroupSize = 1;
-   SetNewGroup(1);
-   mBorderWidth = 0;
-}
-
-void FlowPacker::SetNewGroup( int iGroupSize )
-{
-   myPosBase +=myHeight * iImageGroupSize;
-   mxPos =0;
-   mOldFlags = mFlags;
-   iImageGroupSize = iGroupSize;
-   iImageGroupIndex = -1;
-   mComponentWidth=0;
-}
-
-void FlowPacker::SetColourGroup( )
-{
-   myPosBase = 750;
-   mxPos =0;
-   mOldFlags = mFlags;
-   iImageGroupSize = 1;
-   iImageGroupIndex = -1;
-   mComponentWidth=0;
-   myHeight = 11;
-}
-
-void FlowPacker::GetNextPosition( int xSize, int ySize )
-{
-   xSize += 2*mBorderWidth;
-   ySize += 2*mBorderWidth;
-   // if the height has increased, then we are on a NEW group.
-   if(( ySize > myHeight )||(((mFlags ^ mOldFlags )& ~resFlagSkip)!=0))
-   {
-      SetNewGroup( ((mFlags & resFlagPaired)!=0) ? 2 : 1 );
-      myHeight = ySize;
-//      mFlags &= ~resFlagNewLine;
-//      mOldFlags = mFlags;
-   }
-
-   iImageGroupIndex++;
-   if( iImageGroupIndex == iImageGroupSize )
-   {
-      iImageGroupIndex = 0;
-      mxPos += mComponentWidth;
-   }
-
-   if(mxPos > (mxCacheWidth - xSize ))
-   {
-      SetNewGroup(iImageGroupSize);
-      iImageGroupIndex++;
-      myHeight = ySize;
-   }
-   myPos = myPosBase + iImageGroupIndex * myHeight;
-
-   mComponentWidth = xSize;
-   mComponentHeight = ySize;
-}
-
-wxRect FlowPacker::Rect()
-{
-   return wxRect( mxPos, myPos, mComponentWidth, mComponentHeight);
-}
-
-wxRect FlowPacker::RectInner()
-{
-   return Rect().Deflate( mBorderWidth, mBorderWidth );
-}
-
-void FlowPacker::RectMid( int &x, int &y )
-{
-   x = mxPos + mComponentWidth/2;
-   y = myPos + mComponentHeight/2;
-}
-
-
-/// \brief Helper class based on wxOutputStream used to get a png file in text format
-///
-/// The trick used here is that wxWidgets can write a PNG image to a stream.
-/// By writing to a custom stream, we get to see each byte of data in turn, convert
-/// it to text, put in commas, and then write that out to our own text stream.
-class SourceOutputStream final : public wxOutputStream
-{
-public:
-   SourceOutputStream(){;};
-   int OpenFile(const FilePath & Filename);
-   virtual ~SourceOutputStream();
-
-protected:
-   size_t OnSysWrite(const void *buffer, size_t bufsize) override;
-   wxFile File;
-   int nBytes;
-};
-
-/// Opens the file and also adds a standard comment at the start of it.
-int SourceOutputStream::OpenFile(const FilePath & Filename)
-{
-   nBytes = 0;
-   bool bOk;
-   bOk = File.Open( Filename, wxFile::write );
-   if( bOk )
-   {
-      File.Write( wxT("///   @file ThemeAsCeeCode.h\n") );
-      File.Write( wxT("///   @brief This file was Auto-Generated.\n") );
-      File.Write( wxT("///\n") );
-      File.Write( wxT("///   It is included by Theme.cpp.\n") );
-      File.Write( wxT("///   Only check this into Git if you've read and understood the guidelines!\n\n") );
-   }
-   return bOk;
-}
-
-/// This is the 'callback' function called with each write of PNG data
-/// to the stream.  This is where we conveet to text and add commas.
-size_t SourceOutputStream::OnSysWrite(const void *buffer, size_t bufsize)
-{
-   wxString Temp;
-   for(int i=0;i<(int)bufsize;i++)
-   {
-      // Write one byte with a comma
-      Temp = wxString::Format( wxT("%i,"),(int)(((unsigned char*)buffer)[i]) );
-      File.Write( Temp );
-      nBytes++;
-      // New line if more than 20 bytes written since last time.
-      if( (nBytes %20)==0 )
-      {
-         File.Write( wxT("\n   "));
-      }
-   }
-   return bufsize;
-}
-
-/// Destructor.  We close our text stream in here.
-SourceOutputStream::~SourceOutputStream()
-{
-   File.Write( wxT("\n") );
-   File.Close();
-}
-
 
 // Must be wide enough for bmpAudacityLogo. Use double width + 10.
 const int ImageCacheWidth = 440;
@@ -1160,40 +994,6 @@ void ThemeBase::RotateImageInto( int iTo, int iFrom, bool bClockwise )
    wxImage img(theTheme.Bitmap( iFrom ).ConvertToImage() );
    wxImage img2 = img.Rotate90( bClockwise );
    ReplaceImage( iTo, &img2 );
-}
-
-BEGIN_EVENT_TABLE(auStaticText, wxWindow)
-    EVT_PAINT(auStaticText::OnPaint)
-    EVT_ERASE_BACKGROUND(auStaticText::OnErase)
-END_EVENT_TABLE()
-
- 
-auStaticText::auStaticText(wxWindow* parent, wxString textIn) :
- wxWindow(parent, wxID_ANY)
-{
-   int textWidth, textHeight;
-
-   int fontSize = 11;
-   #ifdef __WXMSW__
-      fontSize = 9;
-   #endif
-   wxFont font(fontSize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-   GetTextExtent(textIn, &textWidth, &textHeight, NULL, NULL, &font);
-
-   SetFont( font );
-   SetMinSize( wxSize(textWidth, textHeight) );
-   SetBackgroundColour( theTheme.Colour( clrMedium));
-   SetForegroundColour( theTheme.Colour( clrTrackPanelText));
-   SetName(textIn);
-   SetLabel(textIn);
-}
- 
-void auStaticText::OnPaint(wxPaintEvent & WXUNUSED(evt))
-{
-   wxPaintDC dc(this);
-   //dc.SetTextForeground( theTheme.Colour( clrTrackPanelText));
-   dc.Clear();
-   dc.DrawText( GetLabel(), 0,0);
 }
 
 /** @brief Default Theme.

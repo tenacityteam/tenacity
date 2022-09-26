@@ -30,8 +30,8 @@ It is also a place to document colour usage policy in Audacity
 #include <wx/settings.h>
 #include <wx/utils.h>
 
-#include "AllThemeResources.h"
-#include "Theme.h"
+#include "theme/AllThemeResources.h"
+#include "theme/Theme.h"
 
 bool AColor::inited = false;
 wxBrush AColor::lightBrush[2];

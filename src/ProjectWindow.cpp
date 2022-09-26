@@ -11,7 +11,7 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "ProjectWindow.h"
 
 
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 #include "Menus.h"
 #include "Project.h"
@@ -756,7 +756,7 @@ const int sbarSpaceWidth = 15;
 const int sbarControlWidth = 15;
 const int sbarExtraLen = 0;
 const int sbarHjump = 30;       //STM: This is how far the thumb jumps when the l/r buttons are pressed, or auto-scrolling occurs -- in pixels
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #endif
 
 // Make sure selection edge is in view

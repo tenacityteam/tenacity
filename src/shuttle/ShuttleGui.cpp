@@ -95,7 +95,7 @@ for registering for changes.
 #include "ShuttleGui.h"
 
 #include "ShuttlePrefs.h"
-#include "Theme.h"
+#include "theme/Theme.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/wx.h>
@@ -114,7 +114,7 @@ for registering for changes.
 #include "widgets/ReadOnlyText.h"
 #include "widgets/wxPanelWrapper.h"
 #include "widgets/wxTextCtrlWrapper.h"
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 
 // Saucedacity libraries
 #include <lib-components/ComponentInterface.h>

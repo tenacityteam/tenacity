@@ -23,7 +23,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../WaveTrack.h"
 
 #include "../../../../../images/Cursors.h"
-#include "../../../../AllThemeResources.h"
+#include "../../../../theme/AllThemeResources.h"
 
 #include "../../../../HitTestResult.h"
 #include "../../../../ProjectHistory.h"

@@ -63,7 +63,7 @@ is time to refresh some aspect of the screen.
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
-#include "Theme.h"
+#include "theme/Theme.h"
 #include "TrackPanelMouseEvent.h"
 #include "TrackPanelResizeHandle.h"
 //#define DEBUG_DRAW_TIMING 1
@@ -71,7 +71,7 @@ is time to refresh some aspect of the screen.
 #include "UndoManager.h"
 
 #include "AColor.h"
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 
 #include "RefreshCode.h"

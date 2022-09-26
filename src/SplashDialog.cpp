@@ -37,7 +37,7 @@ most commonly asked questions about Audacity.
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/HelpSystem.h"
 
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #include "HelpText.h"
 
 // Saucedacity libraries

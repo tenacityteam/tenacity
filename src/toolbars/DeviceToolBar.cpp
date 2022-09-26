@@ -41,7 +41,7 @@
 #include "../TrackPanel.h"
 
 #include "../AColor.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../AudioIOBase.h"
 #include "../ImageManipulation.h"
 #include "../KeyboardCapture.h"

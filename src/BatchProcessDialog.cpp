@@ -57,7 +57,7 @@
 #include "../images/Empty9x16.xpm"
 #include "UndoManager.h"
 
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 
 #include "widgets/FileDialog/FileDialog.h"
 #include "import/Import.h"

@@ -15,11 +15,11 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "TimeTrackVRulerControls.h"
 #include "../../../AColor.h"
-#include "../../../AllThemeResources.h"
+#include "../../../theme/AllThemeResources.h"
 #include "../../../Envelope.h"
 #include "../../../EnvelopeEditor.h"
 #include "../../../HitTestResult.h"
-#include "../../../Theme.h"
+#include "../../../theme/Theme.h"
 #include "../../../TrackArtist.h"
 #include "../../../TrackPanelDrawingContext.h"
 #include "../../../TrackPanelMouseEvent.h"

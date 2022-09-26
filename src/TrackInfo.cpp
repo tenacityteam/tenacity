@@ -33,10 +33,10 @@ Paul Licameli split from TrackPanel.cpp
 #include <wx/frame.h>
 
 #include "AColor.h"
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #include "Prefs.h"
 #include "Project.h"
-#include "Theme.h"
+#include "theme/Theme.h"
 #include "Track.h"
 #include "TrackPanelDrawingContext.h"
 #include "ViewInfo.h"

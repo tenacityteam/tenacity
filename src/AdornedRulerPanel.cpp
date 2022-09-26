@@ -29,7 +29,7 @@
 #include <lib-preferences/Prefs.h>
 
 #include "AColor.h"
-#include "AllThemeResources.h"
+#include "theme/AllThemeResources.h"
 #include "AudioIO.h"
 #include "CellularPanel.h"
 #include "HitTestResult.h"

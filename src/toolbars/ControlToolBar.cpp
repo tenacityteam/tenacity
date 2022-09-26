@@ -59,7 +59,7 @@
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 #include "../AudioIO.h"
 #include "../ImageManipulation.h"
 #include "../Project.h"

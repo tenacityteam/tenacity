@@ -18,9 +18,9 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../NoteTrack.h"
 
 #include "../../../../AColor.h"
-#include "../../../../AllThemeResources.h"
+#include "../../../../theme/AllThemeResources.h"
 #include "../../../../HitTestResult.h"
-#include "../../../../Theme.h"
+#include "../../../../theme/Theme.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"
 #include "../../../../TrackPanelMouseEvent.h"

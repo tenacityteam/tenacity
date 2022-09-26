@@ -60,10 +60,10 @@ or ASlider.
 #include "../ProjectStatus.h"
 #include "../ProjectWindowBase.h"
 #include "../shuttle/ShuttleGui.h"
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "valnum.h"
 
-#include "../AllThemeResources.h"
+#include "../theme/AllThemeResources.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "WindowAccessible.h"

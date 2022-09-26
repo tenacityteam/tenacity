@@ -28,7 +28,7 @@
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Languages.h>
 
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../shuttle/ShuttleGui.h"
 
 #include "GUISettings.h"

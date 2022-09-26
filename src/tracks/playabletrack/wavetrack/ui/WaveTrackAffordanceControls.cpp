@@ -12,7 +12,7 @@
 
 #include <wx/dc.h>
 
-#include "../../../../AllThemeResources.h"
+#include "../../../../theme/AllThemeResources.h"
 #include "../../../../TrackPanelMouseEvent.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"

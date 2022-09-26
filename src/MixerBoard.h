@@ -68,7 +68,7 @@ class NoteTrack;
 class PlayableTrack;
 
 class WaveTrack;
-class auStaticText;
+class AuStaticText;
 
 class MixerTrackCluster final : public wxPanelWrapper
 {
@@ -130,7 +130,7 @@ private:
    SaucedacityProject* mProject;
 
    // controls
-   auStaticText* mStaticText_TrackName;
+   AuStaticText* mStaticText_TrackName;
    wxBitmapButton* mBitmapButton_MusicalInstrument;
    AButton* mToggleButton_Mute;
    AButton* mToggleButton_Solo;

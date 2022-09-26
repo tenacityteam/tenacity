@@ -38,6 +38,7 @@ class wxDC;
 class wxSizeEvent;
 class wxStaticText;
 
+class AuStaticText;
 class SaucedacityProject;
 class SelectionBarListener;
 class NumericTextCtrl;
@@ -66,7 +67,7 @@ class SAUCEDACITY_DLL_API SelectionBar final : public ToolBar {
    void RegenerateTooltips() override;
 
  private:
-   auStaticText * AddTitle( const TranslatableString & Title,
+   AuStaticText * AddTitle( const TranslatableString & Title,
       wxSizer * pSizer );
    NumericTextCtrl * AddTime( const TranslatableString &Name, int id, wxSizer * pSizer );
    void AddVLine(  wxSizer * pSizer );

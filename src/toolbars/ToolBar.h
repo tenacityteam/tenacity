@@ -20,7 +20,7 @@
 // Saucedacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "../Theme.h"
+#include "../theme/Theme.h"
 #include "../widgets/wxPanelWrapper.h" // to inherit
 #include <wx/windowptr.h>
 
