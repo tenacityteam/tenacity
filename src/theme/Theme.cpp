@@ -32,12 +32,6 @@
 
 \see \ref Themability
 
-*//*****************************************************************//**
-
-\class auStaticText
-\brief is like wxStaticText, except it can be themed.  wxStaticText 
-can't be.
-
 *//*****************************************************************/
 
 #include "Theme.h"
