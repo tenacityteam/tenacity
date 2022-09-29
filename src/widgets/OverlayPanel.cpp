@@ -11,6 +11,7 @@
 
 #include "Overlay.h"
 #include <algorithm>
+#include <optional>
 #include <wx/dcclient.h>
 
 // Saucedacity libraries
@@ -101,7 +102,7 @@ void OverlayPanel::DrawOverlays(bool repaint_all, wxDC *pDC)
       } while (!done);
    }
 
-   Optional<wxClientDC> myDC;
+   std::optional<wxClientDC> myDC;
    auto &dc = pDC ? *pDC : (myDC.emplace(this), *myDC);
 
    // Erase

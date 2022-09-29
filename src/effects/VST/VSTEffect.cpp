@@ -35,6 +35,7 @@
 
 #include <limits.h>
 #include <stdio.h>
+#include <optional>
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/dynlib.h>
@@ -507,7 +508,7 @@ unsigned VSTEffectsModule::DiscoverPluginsAtPath(
    wxString effectIDs = wxT("0;");
    wxStringTokenizer effectTzr(effectIDs, wxT(";"));
 
-   Optional<ProgressDialog> progress{};
+   std::optional<ProgressDialog> progress{};
    size_t idCnt = 0;
    size_t idNdx = 0;
 

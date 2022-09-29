@@ -19,6 +19,8 @@
 #include "CommandSignature.h"
 #include "../commands/AudacityCommand.h"
 
+#include <optional>
+
 class OldStyleCommand;
 
 /**************************************************************//**
@@ -43,7 +45,7 @@ class SAUCEDACITY_DLL_API OldStyleCommandType : public AudacityCommand
 {
 private:
    ComponentInterfaceSymbol mSymbol;
-   Optional<CommandSignature> mSignature;
+   std::optional<CommandSignature> mSignature;
 
 public:
    OldStyleCommandType();

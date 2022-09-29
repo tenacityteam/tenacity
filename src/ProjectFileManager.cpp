@@ -19,6 +19,8 @@ Paul Licameli split from SaucedacityProject.cpp
 #include <wx/frame.h>
 #include <wx/log.h>
 
+#include <optional>
+
 // Saucedacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-string-utils/CodeConversions.h>
@@ -320,7 +322,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
    // End of confirmations
 
    // Always save a backup of the original project file
-   Optional<ProjectFileIO::BackupProject> pBackupProject;
+   std::optional<ProjectFileIO::BackupProject> pBackupProject;
    if (fromSaveAs && wxFileExists(fileName))
    {
       pBackupProject.emplace(projectFileIO, fileName);
