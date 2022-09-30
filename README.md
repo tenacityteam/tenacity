@@ -44,6 +44,12 @@ Finally, **you do NOT need to know how to code in order to contribute to Sauceda
 ## Getting Started
 For end users, the latest Windows and Linux release version of Saucedacity is available from the [Saucedacity releases page](https://github.com/saucedacity/saucedacity).
 
-Audacity's manual should work for getting support (especially the manual for Audacity 3.0.4). We welcome contributions to our wiki, but we feature some more technical information that developers are more interested aside from general changelogs.
+Audacity's manual should work for getting support (especially any manual for Audacity 3.0.x). We welcome contributions to our wiki, but we feature some more technical information that developers are more interested aside from general changelogs.
 
 Build instructions are available [here](BUILDING.md). If you've built Audacity with CMake before, things should feel mostly similar if not right at home with Saucedacity.
+
+## Support
+
+We have a [Matrix room](https://matrix.to/#/#saucedacity:matrix.org) for anything Saucedacity, including general discussion, support, and development. You may also use [our discussions page](https://github.com/saucedacity/saucedacity/discussions) for discussion too.
+
+Be sure to follow our [Code of Conduct](CODE_OF_CONDUCT.md) when participating in our discussions page and in our Matrix room.
