@@ -274,8 +274,8 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
 endif()
 
 # Current version and commit info
-set( AUDACITY_VERSION 0 )
-set( AUDACITY_RELEASE 0 )
+set( AUDACITY_VERSION 1 )
+set( AUDACITY_RELEASE 3 )
 set( AUDACITY_REVISION 0 )
 set( GIT_DESCRIBE "unknown" )
 if( GIT_FOUND )
