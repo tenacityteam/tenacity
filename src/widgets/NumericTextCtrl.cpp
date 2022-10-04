@@ -1712,13 +1712,12 @@ void NumericTextCtrl::OnPaint(wxPaintEvent & WXUNUSED(event))
 
    wxPen   Pen;
    wxBrush Brush;
-   if (focused) {
-      theTheme.SetPenColour( Pen, clrTimeFontFocus );
-      dc.SetPen(Pen);
-      dc.SetBrush(*wxTRANSPARENT_BRUSH);
-      dc.DrawRectangle(0, 0, mWidth, mHeight);
-      dc.SetPen( wxNullPen );
-   }
+   dc.SetBrush(*wxTRANSPARENT_BRUSH);
+
+   // Draw a border around the control
+   theTheme.SetPenColour( Pen, clrTimeFontFocus );
+   dc.SetPen(Pen);
+   dc.DrawRectangle(0, 0, mWidth, mHeight);
 
    dc.SetFont(*mDigitFont);
    dc.SetTextForeground(theTheme.Colour( clrTimeFont ));
