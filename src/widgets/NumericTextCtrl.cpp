@@ -1360,7 +1360,7 @@ NumericTextCtrl::NumericTextCtrl(wxWindow *parent, wxWindowID id,
                            const Options &options,
                            const wxPoint &pos,
                            const wxSize &size):
-   wxControl(parent, id, pos, size, wxSUNKEN_BORDER | wxWANTS_CHARS),
+   wxControl(parent, id, pos, size, wxBORDER_NONE | wxWANTS_CHARS),
    NumericConverter(type, formatName, timeValue, sampleRate),
    mBackgroundBitmap{},
    mDigitFont{},
