@@ -7,15 +7,7 @@ name: CMake Build
 # dedicated for CI changes.
 on:
   push:
-    branches:
-      - main # Test every time on main
-
-    # Make an issue if you want any branches ignored
-    # branches-ignore:
-
   pull_request:
-    branches:
-      - main
 
 defaults:
   run:
