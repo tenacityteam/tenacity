@@ -1964,13 +1964,14 @@ float WaveTrack::GetRMS(double t0, double t1, bool mayThrow) const
          auto clipStart = clip->TimeToSequenceSamples(wxMax(t0, clip->GetPlayStartTime()));
          auto clipEnd = clip->TimeToSequenceSamples(wxMin(t1, clip->GetPlayEndTime()));
 
-         float cliprms = clip->GetRMS(t0, t1, mayThrow);
+         double cliprms = clip->GetRMS(t0, t1, mayThrow);
 
-         sumsq += cliprms * cliprms * (clipEnd - clipStart).as_float();
+         sumsq += cliprms * cliprms * (clipEnd - clipStart).as_double();
          length += (clipEnd - clipStart);
       }
    }
-   return length > 0 ? sqrt(sumsq / length.as_double()) : 0.0;
+
+   return length > 0 ? static_cast<float>(sqrt(sumsq / length.as_double())) : 0.0;
 }
 
 bool WaveTrack::Get(samplePtr buffer, sampleFormat format,
