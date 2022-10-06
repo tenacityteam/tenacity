@@ -2031,7 +2031,8 @@ int LabelTrackView::AddLabel(const SelectedRegion &selectedRegion,
    return pos;
 }
 
-std::vector<ComponentInterfaceSymbol> LabelTrackView::GetMenuItems(const wxRect&, const wxPoint*, SaucedacityProject*)
+auto LabelTrackView::GetMenuItems(const wxRect&, const wxPoint*, SaucedacityProject*)
+   -> std::vector<MenuItem>
 {
    return {
       { L"EditLabels", XO("Edit Labels")},
