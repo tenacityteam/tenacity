@@ -788,10 +788,7 @@ SaucedacityApp::SaucedacityApp()
 SaucedacityApp::~SaucedacityApp()
 {
    #ifdef __UNIX__
-      if (mWasServer)
-      {
-         sem_unlink(SaucedacityApp::LockSemName);
-      }
+      CleanupSemaphores();
    #endif
 }
 
@@ -1583,9 +1580,17 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #if defined(__UNIX__)
 
+void SaucedacityApp::CleanupSemaphores()
+{
+   if (mWasServer)
+   {
+      // Remove the lock semaphore from the system
+      sem_unlink(SaucedacityApp::LockSemName);
+   }
+}
+
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
-
 bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 {
    mIPCServ.reset();
@@ -1603,17 +1608,17 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    int memid = shmget(memkey, sizeof(int), IPC_CREAT | S_IRUSR | S_IWUSR);
    int *portnum = (int *) shmat(memid, nullptr, 0);
 
-   // Create the lock and server semaphores. 1 means released, 0 means acquired.
-   mServerSemaphore = sem_open(SaucedacityApp::LockSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
+   // Create the lock and server semaphores. 0 means acquired (locked),
+   // 1 means released (unlocked).
+   mLockSemaphore = sem_open(SaucedacityApp::LockSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
 
-   // If the LOCK semaphore was successfully created, then we are going to be
-   // the server. The semaphore should not have existed if there was no copy of
-   // Saucedacity running because any "server" processes would've unlinked
-   // them.
-   if (mServerSemaphore != SEM_FAILED)
+   // If the semaphore was successfully created, then we are going to be the
+   // server. "Server" processes clean them up on exit (unless something werid
+   // happens).
+   if (mLockSemaphore != SEM_FAILED)
    {
       // Lock both the server and lock semaphores. The server isn't ready yet.
-      if (sem_wait(mServerSemaphore) !=0)
+      if (sem_wait(mLockSemaphore) !=0)
       {
          AudacityMessageBox(
             XO("Unable to acquire semaphores.\n\n"
@@ -1634,11 +1639,12 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    else if (errno == EEXIST)
    {
       // Retrieve the server semaphore since we wouldn't have gotten it above.
-      mServerSemaphore = sem_open(SaucedacityApp::LockSemName, 0);
+      // It should already exist given the exclusive creation failed.
+      mLockSemaphore = sem_open(SaucedacityApp::LockSemName, 0);
 
-      // Acquire the LOCK semaphore. We may block here if another
-      // process is currently setting up the server.
-      if (sem_wait(mServerSemaphore) == -1)
+      // Lock the semaphore. We may block here if another process is setting up
+      // the server.
+      if (sem_wait(mLockSemaphore) == -1)
       {
          AudacityMessageBox(
             XO("Unable to acquire lock semaphore.\n\n"
@@ -1653,7 +1659,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    }
 
    // Something catastrophic must have happened, so bail.
-   else if (errno != EEXIST)
+   else
    {
       AudacityMessageBox(
          XO("Unable to create semaphores.\n\n"
@@ -1704,7 +1710,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 
       // The server has successfully initialized, so we can unlock the server
       // semaphore now.
-      sem_post(mServerSemaphore);
+      sem_post(mLockSemaphore);
 
       // We've successfully created the socket server and the app
       // should continue to initialize.
@@ -1715,7 +1721,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    addr.Service(*portnum);
 
    // Now release the SERVER semaphore.
-   sem_post(mServerSemaphore);
+   sem_post(mLockSemaphore);
 
    // If we get here, then Audacity is currently active. So, we connect
    // to it and we forward all filenames listed on the command line to
@@ -1786,7 +1792,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 
    // We're already done with server interaction, so we can release the server
    // semaphore now.
-   sem_post(mServerSemaphore);
+   sem_post(mLockSemaphore);
 
    // Send an empty string to force existing Audacity to front
    sock->WriteMsg(wxEmptyString, sizeof(wxChar));
