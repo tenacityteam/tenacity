@@ -1615,13 +1615,6 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       // Lock both the server and lock semaphores. The server isn't ready yet.
       if (sem_wait(mServerSemaphore) !=0)
       {
-         // Note: any error should not be EAGAIN because the semaphore did not
-         // exist previously and the semaphore was already set in a released
-         // state. Therefore, if there's any error, it should not be EAGAIN.
-         //
-         // This is more or less for debugging purposes.
-         wxASSERT(errno != EAGAIN);
-
          AudacityMessageBox(
             XO("Unable to acquire semaphores.\n\n"
                "This is likely due to a resource shortage\n"
