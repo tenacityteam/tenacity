@@ -1770,6 +1770,15 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    }
 #endif
 
+   // Let the user know that another copy is running.
+   AudacityMessageBox(XO("Another copy of Saucedacity has been detected"
+                           "running on this system. Running multiple copies of"
+                           "Saucedacity is not supported\n\n"
+                           "You will now be redirected to the running copy."),
+                      XO("Saucedacity is already running"),
+                      wxOK
+   );
+
    // On macOS and Linux, forward any file names found in the command
    // line arguments.
    for (size_t j = 0, cnt = parser->GetParamCount(); j < cnt; ++j)
