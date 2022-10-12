@@ -23,6 +23,10 @@
 
 #include <memory>
 
+#ifdef __UNIX__
+#include <semaphore.h>
+#endif
+
 class wxSingleInstanceChecker;
 class wxSocketEvent;
 class wxSocketServer;
@@ -110,6 +114,10 @@ class SaucedacityApp final : public wxApp {
    std::unique_ptr<IPCServ> mIPCServ;
 #else
    std::unique_ptr<wxSocketServer> mIPCServ;
+
+   sem_t* mServerSemaphore;
+   static constexpr const char* LockSemName = "/SaucedacityLock";
+   bool mWasServer;
 #endif
 
  public:

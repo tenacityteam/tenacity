@@ -52,9 +52,16 @@ It handles initialization and termination by subclassing wxApp.
 
 // chmod, lstat, geteuid
 #ifdef __UNIX__
+
+// IPC includes
+#include <fcntl.h>
+#include <semaphore.h>
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/stat.h>
+#include <sys/shm.h>
+
+#include <cerrno>
 #include <cstdio>
 #endif
 
@@ -780,6 +787,12 @@ SaucedacityApp::SaucedacityApp()
 
 SaucedacityApp::~SaucedacityApp()
 {
+   #ifdef __UNIX__
+      if (mWasServer)
+      {
+         sem_unlink(SaucedacityApp::LockSemName);
+      }
+   #endif
 }
 
 // The `main program' equivalent, creating the windows and returning the
@@ -1502,12 +1515,6 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
          return false;
       }
 
-      if (parser->Found(wxT("v")))
-      {
-         wxPrintf("Saucedacity v%s\n", AUDACITY_VERSION_STRING);
-         return false;
-      }
-
       // Windows and Linux require absolute file names as command may
       // not come from current working directory.
       FilePaths filenames;
@@ -1576,14 +1583,10 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #if defined(__UNIX__)
 
-#include <sys/ipc.h>
-#include <sys/sem.h>
-#include <sys/shm.h>
-
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
 
-bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
+bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 {
    mIPCServ.reset();
 
@@ -1591,52 +1594,41 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
    wxIPV4address addr;
    addr.LocalHost();
 
-   struct sembuf op = {};
-
    // Generate the IPC key we'll use for both shared memory and semaphores.
    wxString datadir = FileNames::DataDir();
    key_t memkey = ftok(datadir.c_str(), 0);
-   key_t servkey = ftok(datadir.c_str(), 1);
-   key_t lockkey = ftok(datadir.c_str(), 2);
 
    // Create and map the shared memory segment where the port number
    // will be stored.
    int memid = shmget(memkey, sizeof(int), IPC_CREAT | S_IRUSR | S_IWUSR);
    int *portnum = (int *) shmat(memid, nullptr, 0);
 
-   // Create (or return) the SERVER semaphore ID
-   int servid = semget(servkey, 1, IPC_CREAT | S_IRUSR | S_IWUSR);
+   // Create the lock and server semaphores. 1 means released, 0 means acquired.
+   mServerSemaphore = sem_open(SaucedacityApp::LockSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
 
-   // Create the LOCK semaphore only if it doesn't already exist.
-   int lockid = semget(lockkey, 1, IPC_CREAT | IPC_EXCL | S_IRUSR | S_IWUSR);
-
-   // If the LOCK semaphore was successfully created, then this is the first
-   // time Audacity has been run during this boot of the system. In this
-   // case we know we'll become the "server" application, so set up the
-   // semaphores to prepare for it.
-   if (lockid != -1)
+   // If the LOCK semaphore was successfully created, then we are going to be
+   // the server. The semaphore should not have existed if there was no copy of
+   // Saucedacity running because any "server" processes would've unlinked
+   // them.
+   if (mServerSemaphore != SEM_FAILED)
    {
-      // Initialize value of each semaphore, 1 indicates released and 0
-      // indicates acquired.
-      //
-      // Note that this action is NOT recorded in the semaphore's
-      // UNDO buffer.
-      semctl(servid, 0, SETVAL, 1);
-      semctl(lockid, 0, SETVAL, 1);
-
-      // Now acquire them so the semaphores will be set to the
-      // released state when the process terminates.
-      op.sem_num = 0;
-      op.sem_op = -1;
-      op.sem_flg = SEM_UNDO;
-      if (semop(lockid, &op, 1) == -1 || semop(servid, &op, 1) == -1)
+      // Lock both the server and lock semaphores. The server isn't ready yet.
+      if (sem_wait(mServerSemaphore) !=0)
       {
+         // Note: any error should not be EAGAIN because the semaphore did not
+         // exist previously and the semaphore was already set in a released
+         // state. Therefore, if there's any error, it should not be EAGAIN.
+         //
+         // This is more or less for debugging purposes.
+         wxASSERT(errno != EAGAIN);
+
          AudacityMessageBox(
             XO("Unable to acquire semaphores.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
             XO("Saucedacity Startup Failure"),
-            wxOK | wxICON_ERROR);
+            wxOK | wxICON_ERROR
+         );
 
          return false;
       }
@@ -1644,6 +1636,29 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // We will be the server...
       isServer = true;
    }
+
+   // Otherwise we'll be the client.
+   else if (errno == EEXIST)
+   {
+      // Retrieve the server semaphore since we wouldn't have gotten it above.
+      mServerSemaphore = sem_open(SaucedacityApp::LockSemName, 0);
+
+      // Acquire the LOCK semaphore. We may block here if another
+      // process is currently setting up the server.
+      if (sem_wait(mServerSemaphore) == -1)
+      {
+         AudacityMessageBox(
+            XO("Unable to acquire lock semaphore.\n\n"
+               "This is likely due to a resource shortage\n"
+               "and a reboot may be required."),
+            XO("Saucedacity Startup Failure"),
+            wxOK | wxICON_ERROR
+         );
+
+         return false;
+      }
+   }
+
    // Something catastrophic must have happened, so bail.
    else if (errno != EEXIST)
    {
@@ -1652,56 +1667,13 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
             "This is likely due to a resource shortage\n"
             "and a reboot may be required."),
          XO("Saucedacity Startup Failure"),
-         wxOK | wxICON_ERROR);
+         wxOK | wxICON_ERROR
+      );
 
       return false;
    }
-   // Otherwise it's a normal startup and we need to determine whether
-   // we'll be the server or the client.
-   else
-   {
-      // Retrieve the LOCK semaphore since we wouldn't have gotten it above.
-      lockid = semget(lockkey, 1, 0);
 
-      // Acquire the LOCK semaphore. We may block here if another
-      // process is currently setting up the server.
-      op.sem_num = 0;
-      op.sem_op = -1;
-      op.sem_flg = SEM_UNDO;
-      if (semop(lockid, &op, 1) == -1)
-      {
-         AudacityMessageBox(
-            XO("Unable to acquire lock semaphore.\n\n"
-               "This is likely due to a resource shortage\n"
-               "and a reboot may be required."),
-            XO("Saucedacity Startup Failure"),
-            wxOK | wxICON_ERROR);
-
-         return false;
-      }
-
-      // Try to acquire the SERVER semaphore. If it's not currently active, then
-      // we will become the server. Otherwise, this will fail and we'll know that
-      // the server is already active and we will become the client.
-      op.sem_num = 0;
-      op.sem_op = -1;
-      op.sem_flg = IPC_NOWAIT | SEM_UNDO;
-      if (semop(servid, &op, 1) == 0)
-      {
-         isServer = true;
-      }
-      else if (errno != EAGAIN)
-      {
-         AudacityMessageBox(
-            XO("Unable to acquire server semaphore.\n\n"
-               "This is likely due to a resource shortage\n"
-               "and a reboot may be required."),
-            XO("Saucedacity Startup Failure"),
-            wxOK | wxICON_ERROR);
-
-         return false;
-      }
-   }
+   mWasServer = isServer;
 
    // Initialize the socket server if we're to be the server.
    if (isServer)
@@ -1724,14 +1696,6 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
          *portnum = addr.Service();
       }
 
-      // Now that the server is active, we release the LOCK semaphore
-      // to allow any waiters to continue. The SERVER semaphore will
-      // remain locked for the duration of this processes execution
-      // and will be cleaned up by the system.
-      op.sem_num = 0;
-      op.sem_op = 1;
-      semop(lockid, &op, 1);
-
       // Bail if the server creation failed.
       if (mIPCServ == nullptr)
       {
@@ -1745,6 +1709,10 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
          return false;
       }
 
+      // The server has successfully initialized, so we can unlock the server
+      // semaphore now.
+      sem_post(mServerSemaphore);
+
       // We've successfully created the socket server and the app
       // should continue to initialize.
       return true;
@@ -1753,10 +1721,8 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
    // Retrieve the port number that the server is listening on.
    addr.Service(*portnum);
 
-   // Now release the LOCK semaphore.
-   op.sem_num = 0;
-   op.sem_op = 1;
-   semop(lockid, &op, 1);
+   // Now release the SERVER semaphore.
+   sem_post(mServerSemaphore);
 
    // If we get here, then Audacity is currently active. So, we connect
    // to it and we forward all filenames listed on the command line to
@@ -1793,14 +1759,6 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
       return false;
    }
 
-   // Display Audacity's version if requested
-   if (parser->Found(wxT("v")))
-   {
-      wxPrintf("Saucedacity v%s\n", AUDACITY_VERSION_STRING);
-
-      return false;
-   }
-
 #if defined(__WXMAC__)
    // On macOS the client gets events from the wxWidgets framework that
    // go to SaucedacityApp::MacOpenFile. Forward the file names to the prior
@@ -1823,6 +1781,10 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
          sock->WriteMsg((const wxChar *) param, (param.length() + 1) * sizeof(wxChar));
       }
    }
+
+   // We're already done with server interaction, so we can release the server
+   // semaphore now.
+   sem_post(mServerSemaphore);
 
    // Send an empty string to force existing Audacity to front
    sock->WriteMsg(wxEmptyString, sizeof(wxChar));
