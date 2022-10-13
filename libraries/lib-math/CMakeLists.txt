@@ -21,6 +21,8 @@ set( SOURCES
    SampleCount.h
    SampleFormat.cpp
    SampleFormat.h
+   SSEMathFuncs.cpp
+   SSEMathFuncs.h
    Spectrum.cpp
    Spectrum.h
    float_cast.h
