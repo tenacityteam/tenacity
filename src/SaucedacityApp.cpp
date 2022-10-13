@@ -59,7 +59,7 @@ It handles initialization and termination by subclassing wxApp.
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/stat.h>
-#include <sys/shm.h>
+#include <sys/mman.h>
 
 #include <cerrno>
 #include <cstdio>
@@ -788,7 +788,7 @@ SaucedacityApp::SaucedacityApp()
 SaucedacityApp::~SaucedacityApp()
 {
    #ifdef __UNIX__
-      CleanupSemaphores();
+      CleanupIPCResources();
    #endif
 }
 
@@ -1580,12 +1580,15 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #if defined(__UNIX__)
 
-void SaucedacityApp::CleanupSemaphores()
+void SaucedacityApp::CleanupIPCResources()
 {
    if (mWasServer)
    {
       // Remove the lock semaphore from the system
       sem_unlink(SaucedacityApp::LockSemName);
+
+      // Remove the shared memory segment.
+      shm_unlink(SaucedacityApp::SharedMemName);
    }
 }
 
@@ -1599,14 +1602,46 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    wxIPV4address addr;
    addr.LocalHost();
 
-   // Generate the IPC key we'll use for both shared memory and semaphores.
-   wxString datadir = FileNames::DataDir();
-   key_t memkey = ftok(datadir.c_str(), 0);
-
    // Create and map the shared memory segment where the port number
    // will be stored.
-   int memid = shmget(memkey, sizeof(int), IPC_CREAT | S_IRUSR | S_IWUSR);
-   int *portnum = (int *) shmat(memid, nullptr, 0);
+   int memFd = shm_open(SaucedacityApp::SharedMemName, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
+   if (memFd == -1)
+   {
+      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
+      // is intended for the developers to look at.
+      AudacityMessageBox(XO("IPC: Failed to create shared memory region.\n\n"
+                            "Error: %s").Format(strerror(errno)),
+                         XO("Saucedacity startup failure"),
+                         wxOK
+      );
+
+      return false;
+   }
+
+   if (ftruncate(memFd, sizeof(int)) != 0)
+   {
+      AudacityMessageBox(XO("IPC: Cannot truncate shared memory.\n\n"
+                            "Error: %s").Format(strerror(errno)),
+                         XO("Saucedacity startup failure"),
+                         wxOK
+      );
+
+      return false;
+   }
+
+   int* portnum = static_cast<int*>(
+                     mmap(nullptr, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, memFd, 0)
+                  );
+   if (portnum == MAP_FAILED)
+   {
+      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
+      // is intended for the developers to look at.
+      AudacityMessageBox(XO("Unable to map shared memory region for IPC.\n\n"
+                            "Error: %s").Format(strerror(errno)),
+                         XO("Saucedacity Startup Failure"),
+                         wxOK
+      );
+   }
 
    // Create the lock and server semaphores. 0 means acquired (locked),
    // 1 means released (unlocked).
@@ -1712,6 +1747,9 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       // semaphore now.
       sem_post(mLockSemaphore);
 
+      // We don't need our shared memory FD mapped to our address space anymore.
+      munmap(portnum, sizeof(int));
+
       // We've successfully created the socket server and the app
       // should continue to initialize.
       return true;
@@ -1796,6 +1834,8 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 
    // Send an empty string to force existing Audacity to front
    sock->WriteMsg(wxEmptyString, sizeof(wxChar));
+
+   munmap(portnum, sizeof(int));
 
    // We've forwarded all of the filenames, so let the caller know
    // to terminate.

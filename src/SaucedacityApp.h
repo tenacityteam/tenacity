@@ -116,16 +116,19 @@ class SaucedacityApp final : public wxApp {
    std::unique_ptr<wxSocketServer> mIPCServ;
 
    sem_t* mLockSemaphore;
-   static constexpr const char* LockSemName = "/SaucedacityLock";
+
+   static constexpr const char* LockSemName   = "/SaucedacityLock";
+   static constexpr const char* SharedMemName = "/SaucedacityMem";
    bool mWasServer;
 
-   /** @brief Cleans up ALL semaphores created by any "server" processes.
+   /** @brief Cleans up ALL IPC resources created by any "server" processes.
     *
-    * It is GUARANTEED that all semaphores are cleaned up and removed from the
-    * system at exit, unless something catastrophic happens.
+    * It is GUARANTEED that ALL RESOURCES created by the "server" process are
+    * cleaned up and removed from the system at exit, unless something
+    * catastrophic happens.
     *
     **/
-   void CleanupSemaphores();
+   void CleanupIPCResources();
 #endif
 
  public:
