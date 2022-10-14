@@ -717,6 +717,11 @@ void SaucedacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 
 void SaucedacityApp::OnFatalException()
 {
+   #ifdef __UNIX__
+      // Cleanup our IPC resources. Error checking isn't that important given
+      // we're crashing already.
+      CleanupIPCResources();
+   #endif
    exit(-1);
 }
 
