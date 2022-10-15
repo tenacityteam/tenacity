@@ -39,7 +39,7 @@
 #include "../../../../SelectionState.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../theme/Theme.h"
-#include "../../../../images/Cursors.h"
+#include "../../../../../images/Cursors.h"
 #include "../../../../HitTestResult.h"
 #include "../../../../TrackPanel.h"
 #include "../../../../TrackPanelAx.h"
