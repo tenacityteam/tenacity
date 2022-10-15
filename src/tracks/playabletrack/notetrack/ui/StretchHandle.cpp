@@ -11,6 +11,9 @@ Paul Licameli split from TrackPanel.cpp
 
 
 #ifdef USE_MIDI
+
+ // PortSMF does not include this for some reason. Fixed in Tenacity's fork.
+#include <cstring>
 #include "../lib-src/header-substitutes/allegro.h"
 
 #include "StretchHandle.h"
