@@ -47,7 +47,7 @@ endif()
 
 add_conan_lib( 
    wxWidgets 
-   wxwidgets/3.1.3.1-audacity 
+   wxwidgets/3.1.3.2-audacity 
    REQUIRED 
    ALWAYS_ALLOW_CONAN_FALLBACK
    OPTION_NAME wxwidgets
