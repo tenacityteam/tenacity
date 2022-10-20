@@ -48,11 +48,18 @@ RealtimeEffectManager & RealtimeEffectManager::Get()
    return rem;
 }
 
-RealtimeEffectManager::RealtimeEffectManager()
+RealtimeEffectManager::RealtimeEffectManager() : mMemoryPool(sizeof(float))
 {
    mLock.lock();
+
    mRealtimeActive = false;
    mRealtimeSuspended = true;
+
+   // Allocate our vectors. We set their capacity to a size of '2', enough to
+   // process stero audio data.
+   mInputBuffers.reserve(2);
+   mOutputBuffers.reserve(2);
+
    mLock.unlock();
 }
 
@@ -306,16 +313,26 @@ void RealtimeEffectManager::RealtimeProcessStart()
 size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float **buffers, size_t numSamples)
 {
    using namespace std::chrono;
-   // Protect ourselves from the main thread
-   mLock.lock();
 
    // Can be suspended because of the audio stream being paused or because effects
    // have  been suspended, so allow the samples to pass as-is.
    if (mRealtimeSuspended || mStates.empty())
    {
-      mLock.unlock();
       return numSamples;
    }
+
+   // AK: If we have more channels than our input and output bufffers'
+   // capacities, increase their capacities when necessary.
+   if (mInputBuffers.capacity() < chans)
+   {
+      mInputBuffers.reserve(chans);
+   } else if (mOutputBuffers.capacity() < chans)
+   {
+      mOutputBuffers.reserve(chans);
+   }
+
+   // Protect ourselves from the main thread
+   mLock.lock();
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
@@ -324,17 +341,13 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    // Allocate the in/out buffer arrays
    // GP: temporary fix until we convert Effect
    StackAllocator<float>  floatAllocator;
-   std::unique_ptr<float*> _ibuf(new float*[chans]);
-   std::unique_ptr<float*> _obuf(new float*[chans]);
-   auto ibuf = _ibuf.get();
-   auto obuf = _obuf.get();
 
    // And populate the input with the buffers we've been given while allocating
    // NEW output buffers
    for (unsigned int i = 0; i < chans; i++)
    {
-      ibuf[i] = buffers[i];
-      obuf[i] = floatAllocator.Allocate(true, numSamples);
+      mInputBuffers[i] = buffers[i];
+      mOutputBuffers[i] = floatAllocator.Allocate(true, numSamples);
    }
 
    // Now call each effect in the chain while swapping buffer pointers to feed the
@@ -344,13 +357,15 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    {
       if (state->IsRealtimeActive())
       {
-         state->RealtimeProcess(group, chans, ibuf, obuf, numSamples);
+         state->RealtimeProcess(group, chans, mInputBuffers.data(),
+                                mOutputBuffers.data(), numSamples
+         );
          called++;
       }
 
       for (unsigned int j = 0; j < chans; j++)
       {
-         std::swap(ibuf[j], obuf[j]);
+         std::swap(mInputBuffers[j], mOutputBuffers[j]);
       }
    }
 
@@ -362,7 +377,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    {
       for (unsigned int i = 0; i < chans; i++)
       {
-         memcpy(buffers[i], ibuf[i], numSamples * sizeof(float));
+         memcpy(buffers[i], mInputBuffers[i], numSamples * sizeof(float));
       }
    }
 

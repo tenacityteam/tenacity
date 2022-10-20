@@ -16,6 +16,9 @@
 #include <vector>
 #include <thread>
 
+#include <boost/pool/pool.hpp>
+using DefaultPoolAllocator = boost::default_user_allocator_new_delete;
+
 class EffectClientInterface;
 class RealtimeEffectState;
 
@@ -48,6 +51,13 @@ public:
 private:
    RealtimeEffectManager();
    ~RealtimeEffectManager();
+
+   boost::pool<DefaultPoolAllocator> mMemoryPool;
+
+   // Input and output buffers. Note that their capacity is equal to the number
+   // of channels being processed.
+   std::vector<float*> mInputBuffers;
+   std::vector<float*> mOutputBuffers;
 
    std::mutex mLock;
    std::vector< std::unique_ptr<RealtimeEffectState> > mStates;
