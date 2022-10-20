@@ -319,7 +319,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
-   system_clock::time_point start = system_clock::now();
+   steady_clock::time_point start = steady_clock::now();
 
    // Allocate the in/out buffer arrays
    // GP: temporary fix until we convert Effect
@@ -367,7 +367,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    }
 
    // Remember the latency
-   mRealtimeLatency = duration_cast<milliseconds>(system_clock::now() - start);
+   mRealtimeLatency = duration_cast<milliseconds>(steady_clock::now() - start);
 
    mLock.unlock();
 
