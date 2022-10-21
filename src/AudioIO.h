@@ -64,8 +64,8 @@ typedef int PaError;
 
 bool ValidateDeviceNames();
 
-#define MAX_MIDI_BUFFER_SIZE 5000
-#define DEFAULT_SYNTH_LATENCY 5
+constexpr int MAX_MIDI_BUFFER_SIZE = 5000;
+constexpr int DEFAULT_SYNTH_LATENCY = 5;
 
 wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
                          EVT_AUDIOIO_PLAYBACK, wxCommandEvent);

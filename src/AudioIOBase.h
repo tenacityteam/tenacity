@@ -15,6 +15,7 @@ Paul Licameli split from AudioIO.h
 #include <cfloat>
 #include <functional>
 #include <vector>
+#include <limits>
 #include <wx/string.h>
 #include <wx/weakref.h> // member variable
 
@@ -40,7 +41,7 @@ class BoundedEnvelope;
 #include "widgets/MeterPanelBase.h"
 using PRCrossfadeData = std::vector< std::vector < float > >;
 
-#define BAD_STREAM_TIME (-DBL_MAX)
+constexpr double BAD_STREAM_TIME = -(std::numeric_limits<double>::max());
 
 // For putting an increment of work in the scrubbing queue
 struct ScrubbingOptions {

@@ -464,16 +464,20 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "../lib-src/portmidi/porttime/porttime.h"
 #include "../lib-src/header-substitutes/allegro.h"
 
-   #define MIDI_SLEEP 10 /* milliseconds */
+   constexpr int MIDI_SLEEP = 10; // milliseconds
    // how long do we think the thread that fills MIDI buffers,
    // if it is separate from the portaudio thread,
    // might be delayed due to other threads?
    #ifdef USE_MIDI_THREAD
-      #define THREAD_LATENCY 10 /* milliseconds */
+      constexpr int THREAD_LATENCY = 10; // milliseconds
    #else
-      #define THREAD_LATENCY 0 /* milliseconds */
+      constexpr int THREAD_LATENCY = 0; // milliseconds
    #endif
-   #define ROUND(x) (int) ((x)+0.5)
+   template <typename FloatType>
+   constexpr int ROUND(FloatType x)
+   {
+      return static_cast<int>(x + 0.5);
+   }
    //#include <cstring>
 //   #include "../lib-src/portmidi/pm_common/portmidi.h"
    #include "../lib-src/portaudio-v19/src/common/pa_util.h"
@@ -481,8 +485,8 @@ time warp info and AudioIOListener and whether the playback is looped.
 #endif
 
 #ifdef EXPERIMENTAL_AUTOMATED_INPUT_LEVEL_ADJUSTMENT
-   #define LOWER_BOUND 0.0
-   #define UPPER_BOUND 1.0
+   constexpr int LOWER_BOUND = 0.0;
+   constexpr int UPPER_BOUND = 1.0;
 #endif
 
 /*
