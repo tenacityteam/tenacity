@@ -145,13 +145,11 @@ template<class T>
 class StackAllocator
 {
    private:
-      /** @brief Vector to hold our allocated memory.
-       * 
-       * We use a pair here,
-       * 
-       **/
-      std::vector<std::pair<bool, T*>>  mAllocMem;
-      std::vector<T**> mAllocArray;
+      /// @brief Holds memory allocated with `new` (single objects).
+      std::vector<T*> mSingleObjects;
+
+      /// @brief Holds memory allocated with `new[]` (arrays).
+      std::vector<T*> mArrayObjects;
 
    public:
       /// Default constructor.
@@ -180,26 +178,21 @@ class StackAllocator
       /// Deallocates any memory allocated by the StackAllocator object.
       ~StackAllocator()
       {
-         for (auto& x : mAllocMem)
+         for (auto& x : mSingleObjects)
          {
-            // the first element represents if this was allocated with new[] or
-            // not. if so, we use delete[]
-            if (std::get<bool>(x))
-            {
-               delete[] std::get<T*>(x);
-            } else
-            {
-               delete std::get<T*>(x);
-            }
+            delete x;
          }
 
-         for (auto& x : mAllocArray)
+         for (auto& x : mArrayObjects)
          {
-
+            delete[] x;
          }
       }
 
       /** @brief Allocates memory.
+       * 
+       * Any exceptions thrown by `new` or `new[]` are rethrown.
+       * 
        * @param isArray If true, uses new[] instead of new along with the
        * corresponding delete[] operator.
        * 
@@ -215,11 +208,11 @@ class StackAllocator
             if (isArray)
             {
                mem = new T[count];
-               mAllocMem.push_back(std::make_pair(true, mem));
+               mArrayObjects.push_back(mem);
             } else
             {
                mem = new T;
-               mAllocMem.push_back(std::make_pair(true, mem));
+               mSingleObjects.push_back(mem);
             }
 
             return mem;
