@@ -48,7 +48,7 @@ RealtimeEffectManager & RealtimeEffectManager::Get()
    return rem;
 }
 
-RealtimeEffectManager::RealtimeEffectManager() : mMemoryPool(sizeof(float))
+RealtimeEffectManager::RealtimeEffectManager()
 {
    mLock.lock();
 
