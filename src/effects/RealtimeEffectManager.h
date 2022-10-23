@@ -16,9 +16,6 @@
 #include <vector>
 #include <thread>
 
-#include <boost/pool/pool.hpp>
-using DefaultPoolAllocator = boost::default_user_allocator_new_delete;
-
 class EffectClientInterface;
 class RealtimeEffectState;
 
