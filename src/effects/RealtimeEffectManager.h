@@ -49,8 +49,6 @@ private:
    RealtimeEffectManager();
    ~RealtimeEffectManager();
 
-   boost::pool<DefaultPoolAllocator> mMemoryPool;
-
    // Input and output buffers. Note that their capacity is equal to the number
    // of channels being processed.
    std::vector<float*> mInputBuffers;
