@@ -92,7 +92,7 @@ jobs:
     steps:
 
     - name: Checkout Git repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: true
 
@@ -110,7 +110,7 @@ jobs:
     # required for CMake to find Ninja
     - name: "[Windows] Set up MSVC Developer Command Prompt"
       if: runner.os == 'Windows'
-      uses: seanmiddleditch/gha-setup-vsdevenv@v3
+      uses: seanmiddleditch/gha-setup-vsdevenv@v4
       with:
         arch: ${{ matrix.config.arch }}
 
@@ -140,7 +140,7 @@ jobs:
           "http://www.tortall.net/projects/yasm/snapshots/v1.3.0.6.g1962/yasm-1.3.0.6.g1962.exe"
 
     - name: "Set up wxwidgets cache"
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       id: wxwidgets-cache
       if: runner.os != 'Windows'
       with:
@@ -162,7 +162,7 @@ jobs:
         cmake --install cmake_build
 
     - name: "Set up compiler cache"
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ matrix.config.compiler_cache_path }}
         key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-${{ github.run_number }}
@@ -217,7 +217,7 @@ jobs:
         WXWIDGETS_LD_LIBRARY_PATH: ${{ github.workspace }}/wxwidgets-install/lib
 
     - name: Upload package artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: saucedacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
         path: |
@@ -227,7 +227,7 @@ jobs:
 
     - name: Upload artifact of vcpkg build logs
       if: always()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: vcpkg-logs-${{ runner.os }}
         path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log
