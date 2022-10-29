@@ -1228,6 +1228,7 @@ else()
    # entries in the list.)
    set( MIMETYPES
       application/x-audacity-project
+      application/x-audacity-project+sqlite3
    )
    if( USE_FFMPEG )
       list( APPEND MIMETYPES
