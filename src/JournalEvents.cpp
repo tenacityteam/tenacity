@@ -370,7 +370,7 @@ static const ByCodeMap &ByCode()
 }
 
 //! Singleton object listens to global wxEvent stream
-struct Watcher : wxEventFilter
+struct Watcher : public wxEventFilter
 {
    Watcher()
    {
