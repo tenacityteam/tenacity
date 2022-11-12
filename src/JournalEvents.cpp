@@ -18,6 +18,7 @@
 #include <optional>
 #include <unordered_map>
 
+#include <wx/event.h>
 #include <wx/eventfilter.h>
 #include <wx/spinctrl.h>
 #include <wx/textctrl.h>
