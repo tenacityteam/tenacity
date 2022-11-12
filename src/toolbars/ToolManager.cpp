@@ -37,9 +37,12 @@
 #include <wx/dcclient.h>
 #include <wx/defs.h>
 #include <wx/event.h>
+#include <wx/eventfilter.h>
 #include <wx/frame.h>
 #include <wx/gdicmn.h>
 #include <wx/intl.h>
+#include <wx/minifram.h>
+#include <wx/popupwin.h>
 #include <wx/region.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
@@ -47,11 +50,7 @@
 #include <wx/timer.h>
 #include <wx/utils.h>
 #include <wx/window.h>
-#endif  /*  */
-
-#include <wx/eventfilter.h> // to inherit
-#include <wx/minifram.h>
-#include <wx/popupwin.h>
+#endif  // end WX_PRECOMP
 
 // Saucedacity libraries
 #include <lib-preferences/Prefs.h>
