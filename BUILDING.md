@@ -223,6 +223,17 @@ cmake --install build
   * **CCACHE** (ON|OFF): whether to use ccache for compiler caching to speed
     up rebuilds. ON by default if ccache is installed. If sccache and ccache
     are both installed, sccache will be prefered.
+  * **PCH** (ON|OFF): Enables the use of precompiled headers. ON by default if
+    either ccache or sccache was not found or was disabled.
+  * **PERFORM_CODESIGN** (ON|OFF): Performs codesigning during the install step.
+    This only works on Windows and macOS and requires the appropriate certificates
+    to be installed in order for signing to work. **Note that codesigning and
+    notarization might be broken as they haven't been tested**.
+  * **PERFORM_NOTARIZATION** (ON|OFF): [macOS Only] Performs notarizaiton during
+    the install step. This only works on macOS and if PERFORM_NTOARIZATION has
+    been enabled.
+  * **PACKAGE_MANUAL** (ON|OFF): Packages the (Audacity) manual alongside DMG and
+    InnoSetup targets.
 
 The following feature options are enabled by default if the required libraries
 are found. You may explicitly disable them if you prefer or your distribution

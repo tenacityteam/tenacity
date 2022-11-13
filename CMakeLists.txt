@@ -805,20 +805,20 @@ execute_process( COMMAND
 # Code signing
 #
 
-option( perform_codesign
-        "Perform code signing during the install step. This only works on Windows and macOS. WARNING: this might not work."
+option( PERFORM_CODESIGN
+        "Perform code signing during the install step. This only works on Windows and macOS. Might be broken."
         Off
 )
 
 cmake_dependent_option(
-   perform_notarization
-   "Perform notarization during the install step. This only works on macOS. WARNING: this might not work."
+   PERFORM_NOTARIZATION
+   "Perform notarization during the install step. This only works on macOS. Might be broken."
    Off
-   "perform_codesign;APPLE"
+   "PERFORM_CODESIGN;APPLE"
    Off
 )
 
-if( perform_codesign )
+if( PERFORM_CODESIGN )
    include( AudacityCodeSigning )
 endif()
 
@@ -826,7 +826,7 @@ endif()
 # Packaging
 #
 
-option( package_manual
+option( PACKAGE_MANUAL
         "Package the manual along with the DMG and InnoSetup targets"
         Off
 )

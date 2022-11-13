@@ -1038,13 +1038,13 @@ list( APPEND DEFINES
 # available and the user hasn't disabled it.
 if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
    option(
-      use_pch
+      PCH
       "Use precompiled headers [yes, no]"
       YES
    )
 endif()
 
-audacity_append_common_compiler_options( OPTIONS "${use_pch}" )
+audacity_append_common_compiler_options( OPTIONS "${PCH}" )
 
 list( APPEND LDFLAGS
    PRIVATE
@@ -1338,7 +1338,7 @@ target_link_libraries( ${TARGET} PUBLIC ${SAUCEDACITY_LIBRARIES} )
 target_link_libraries( ${TARGET} ${LIBRARIES} )
 
 if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
-   if( ${_OPT}use_pch )
+   if( PCH )
       message( STATUS "Using precompiled headers" )
       target_precompile_headers( ${TARGET} PRIVATE
          $<$<PLATFORM_ID:Windows>:${CMAKE_BINARY_DIR}/src/private/configwin.h>
