@@ -682,7 +682,7 @@ endif()
 #endif()
 
 find_package(sbsms)
-cmake_dependent_option(SBSMS "SBSMS timestretching" ON "sbsms_FOUND" OFF)
+cmake_dependent_option(SBSMS "SBSMS timestretching" OFF "sbsms_FOUND" OFF)
 if(SBSMS)
     set(USE_SBSMS ON)
     message(STATUS "SBSMS timestretching support enabled.")
