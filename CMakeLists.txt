@@ -805,9 +805,9 @@ execute_process( COMMAND
 # Code signing
 #
 
-cmd_option( perform_codesign
-            "Perform code signing during the install step. This only works on Windows and macOS. WARNING: this might not work."
-            Off
+option( perform_codesign
+        "Perform code signing during the install step. This only works on Windows and macOS. WARNING: this might not work."
+        Off
 )
 
 cmake_dependent_option(
@@ -826,9 +826,9 @@ endif()
 # Packaging
 #
 
-cmd_option( package_manual
-            "Package the manual along with the DMG and InnoSetup targets"
-            Off
+option( package_manual
+        "Package the manual along with the DMG and InnoSetup targets"
+        Off
 )
 
 # Variables, that are common for all package targets

@@ -43,7 +43,7 @@ endif()
 
 # Handle Audio Units option
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   cmd_option(
+   option(
       use_audio_units
       "Use Audio Units plug-in support [on, off]"
       ON
@@ -63,7 +63,7 @@ else()
 endif()
 
 # Handle Ladspa option
-cmd_option(
+option(
    use_ladspa
    "Use LADSPA plugin support [on, off]"
    ON
@@ -72,7 +72,7 @@ cmd_option(
 set( USE_LADSPA ${use_ladspa} CACHE INTERNAL "" )
 
 # Handle VST option
-cmd_option(
+option(
    use_vst
    "Use VST2 plug-in support [on, off]"
    ON
@@ -1037,7 +1037,7 @@ list( APPEND DEFINES
 # We now use precompiled headers regardless, but only if ccache is not
 # available and the user hasn't disabled it.
 if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
-   cmd_option(
+   option(
       use_pch
       "Use precompiled headers [yes, no]"
       YES
