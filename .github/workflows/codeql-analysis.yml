@@ -49,15 +49,11 @@ jobs:
           WX_CONFIG: /home/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
     steps:
-    # Setup 64-bit GCC 11
-    - name: Set up GCC
-      uses: egor-tensin/setup-gcc@v1
-      with:
-        platform: x64
-        version: latest
 
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        submodules: true
 
     - name: Install dependencies
       run: |
@@ -65,6 +61,13 @@ jobs:
 
     - name: Get Git commit of vcpkg submodule
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
+
+    - name: "Set up wxWidgets cache"
+      uses: actions/cache@v3
+      id: wxwidgets-cache
+      with:
+        path: ${{ github.workspace }}/wxwidgets-install
+        key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ matrix.config.wxwidgets_git_url }}-${{ matrix.config.wxwidgets_git_ref }}
 
     # FIXME: use wxWidgets from vcpkg for all OSes when bugs are fixed for Linux and macOS
     # https://github.com/microsoft/vcpkg/pull/17111
@@ -79,6 +82,15 @@ jobs:
           -S . -B cmake_build
         cmake --build cmake_build
         cmake --install cmake_build
+
+    - name: "Set up compiler cache"
+      uses: actions/cache@v3
+      with:
+        path: ${{ matrix.config.compiler_cache_path }}
+        key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-${{ github.run_number }}
+        restore-keys: |
+          ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-
+          ${{ matrix.config.os }}-${{ matrix.config.arch }}-
 
     - name: Configure
       run: >-
