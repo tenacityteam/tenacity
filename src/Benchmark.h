@@ -12,9 +12,9 @@
 #define __AUDACITY_BENCHMARK__
 
 class wxWindow;
-class SaucedacityProject;
+class TenacityProject;
 
 SAUCEDACITY_DLL_API
-void RunBenchmark( wxWindow *parent, SaucedacityProject &project );
+void RunBenchmark( wxWindow *parent, TenacityProject &project );
 
 #endif // define __AUDACITY_BENCHMARK__

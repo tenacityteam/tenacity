@@ -50,7 +50,7 @@ void Clipboard::Clear()
 }
 
 void Clipboard::Assign( TrackList && newContents,
-   double t0, double t1, const std::weak_ptr<SaucedacityProject> &pProject )
+   double t0, double t1, const std::weak_ptr<TenacityProject> &pProject )
 {
    newContents.Swap( *mTracks );
    newContents.Clear();

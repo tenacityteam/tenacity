@@ -37,7 +37,7 @@
 #include <memory>
 #include <unordered_map>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 #include <lib-xml/XMLTagHandler.h>
 
@@ -48,7 +48,7 @@ class wxGridCellStringRenderer;
 class wxGridEvent;
 class wxTextCtrl;
 
-class SaucedacityProject;
+class TenacityProject;
 class Grid;
 class ShuttleGui;
 class TagsEditorDialog;
@@ -74,11 +74,11 @@ class SAUCEDACITY_DLL_API Tags final
 
  public:
 
-   static Tags &Get( SaucedacityProject &project );
-   static const Tags &Get( const SaucedacityProject &project );
+   static Tags &Get( TenacityProject &project );
+   static const Tags &Get( const TenacityProject &project );
    // Returns reference to *tags
    static Tags &Set(
-      SaucedacityProject &project, const std::shared_ptr<Tags> &tags );
+      TenacityProject &project, const std::shared_ptr<Tags> &tags );
 
    Tags();  // constructor
    Tags( const Tags& ) = default;

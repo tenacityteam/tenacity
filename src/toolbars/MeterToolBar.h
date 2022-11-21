@@ -21,7 +21,7 @@ class wxGridBagSizer;
 class wxSizeEvent;
 class wxWindow;
 
-class SaucedacityProject;
+class TenacityProject;
 class MeterPanel;
 
 
@@ -33,7 +33,7 @@ class MeterToolBar final : public ToolBar {
 
  public:
 
-   MeterToolBar(SaucedacityProject &project, int type);
+   MeterToolBar(TenacityProject &project, int type);
    virtual ~MeterToolBar();
 
    void Create(wxWindow *parent) override;

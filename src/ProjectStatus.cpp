@@ -14,23 +14,23 @@ Paul Licameli
 
 wxDEFINE_EVENT(EVT_PROJECT_STATUS_UPDATE, wxCommandEvent);
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+  []( TenacityProject &parent ){
      return std::make_shared< ProjectStatus >( parent );
    }
 };
 
-ProjectStatus &ProjectStatus::Get( SaucedacityProject &project )
+ProjectStatus &ProjectStatus::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectStatus >( key );
 }
 
-const ProjectStatus &ProjectStatus::Get( const SaucedacityProject &project )
+const ProjectStatus &ProjectStatus::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-ProjectStatus::ProjectStatus( SaucedacityProject &project )
+ProjectStatus::ProjectStatus( TenacityProject &project )
    : mProject{ project }
 {
 }

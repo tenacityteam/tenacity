@@ -40,7 +40,7 @@ namespace {
 }
 
 
-HitTestPreview WaveClipTrimHandle::HitPreview(const SaucedacityProject*, bool unsafe)
+HitTestPreview WaveClipTrimHandle::HitPreview(const TenacityProject*, bool unsafe)
 {
     static auto disabledCursor =
         ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
@@ -61,7 +61,7 @@ WaveClipTrimHandle::WaveClipTrimHandle(const std::pair<double, double>& range, c
 {
 }
 
-UIHandlePtr WaveClipTrimHandle::HitAnywhere(std::weak_ptr<WaveClipTrimHandle>& holder, WaveTrack* waveTrack, const SaucedacityProject* pProject, const TrackPanelMouseState& state)
+UIHandlePtr WaveClipTrimHandle::HitAnywhere(std::weak_ptr<WaveClipTrimHandle>& holder, WaveTrack* waveTrack, const TenacityProject* pProject, const TrackPanelMouseState& state)
 {
     const auto rect = state.rect;
 
@@ -124,7 +124,7 @@ UIHandlePtr WaveClipTrimHandle::HitAnywhere(std::weak_ptr<WaveClipTrimHandle>& h
 }
 
 UIHandlePtr WaveClipTrimHandle::HitTest(std::weak_ptr<WaveClipTrimHandle>& holder,
-    WaveTrackView& view, const SaucedacityProject* pProject,
+    WaveTrackView& view, const TenacityProject* pProject,
     const TrackPanelMouseState& state)
 {
     auto waveTrack = std::dynamic_pointer_cast<WaveTrack>(view.FindTrack()->SubstitutePendingChangedTrack());
@@ -149,14 +149,14 @@ UIHandlePtr WaveClipTrimHandle::HitTest(std::weak_ptr<WaveClipTrimHandle>& holde
 
 
 
-HitTestPreview WaveClipTrimHandle::Preview(const TrackPanelMouseState& mouseState, SaucedacityProject* pProject)
+HitTestPreview WaveClipTrimHandle::Preview(const TrackPanelMouseState& mouseState, TenacityProject* pProject)
 {
     const bool unsafe = ProjectAudioIO::Get(*pProject).IsAudioActive();
     return HitPreview(pProject, unsafe);
 }
 
 UIHandle::Result WaveClipTrimHandle::Click
-(const TrackPanelMouseEvent& event, SaucedacityProject* pProject)
+(const TrackPanelMouseEvent& event, TenacityProject* pProject)
 {
     if (event.event.LeftDown())
     {
@@ -168,7 +168,7 @@ UIHandle::Result WaveClipTrimHandle::Click
 }
 
 UIHandle::Result WaveClipTrimHandle::Drag
-(const TrackPanelMouseEvent& event, SaucedacityProject* project)
+(const TrackPanelMouseEvent& event, TenacityProject* project)
 {
     const auto newX = event.event.GetX();
     const auto dx = newX - mDragStartX;
@@ -196,7 +196,7 @@ UIHandle::Result WaveClipTrimHandle::Drag
 }
 
 UIHandle::Result WaveClipTrimHandle::Release
-(const TrackPanelMouseEvent& event, SaucedacityProject* project,
+(const TrackPanelMouseEvent& event, TenacityProject* project,
     wxWindow* pParent)
 {
     if (mTargetBorder == Border::Left && mClips[0]->GetPlayStartTime() != mInitialBorderPosition)
@@ -214,7 +214,7 @@ UIHandle::Result WaveClipTrimHandle::Release
     return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result WaveClipTrimHandle::Cancel(SaucedacityProject* pProject)
+UIHandle::Result WaveClipTrimHandle::Cancel(TenacityProject* pProject)
 {
     switch (mTargetBorder)
     {

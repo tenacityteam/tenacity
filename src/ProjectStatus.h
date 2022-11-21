@@ -16,10 +16,10 @@ Paul Licameli
 #include <wx/event.h> // to declare custom event type
 #include "ClientData.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-class SaucedacityProject;
+class TenacityProject;
 class wxWindow;
 
 enum StatusBarField : int {
@@ -40,10 +40,10 @@ class SAUCEDACITY_DLL_API ProjectStatus final
    , public PrefsListener
 {
 public:
-   static ProjectStatus &Get( SaucedacityProject &project );
-   static const ProjectStatus &Get( const SaucedacityProject &project );
+   static ProjectStatus &Get( TenacityProject &project );
+   static const ProjectStatus &Get( const TenacityProject &project );
 
-   explicit ProjectStatus( SaucedacityProject &project );
+   explicit ProjectStatus( TenacityProject &project );
    ProjectStatus( const ProjectStatus & ) = delete;
    ProjectStatus &operator= ( const ProjectStatus & ) = delete;
    ~ProjectStatus() override;
@@ -53,7 +53,7 @@ public:
    // be wide enough to contain any of those strings plus the margin.
    using StatusWidthResult = std::pair< std::vector<TranslatableString>, unsigned >;
    using StatusWidthFunction = std::function<
-      StatusWidthResult( const SaucedacityProject &, StatusBarField )
+      StatusWidthResult( const TenacityProject &, StatusBarField )
    >;
    using StatusWidthFunctions = std::vector< StatusWidthFunction >;
 
@@ -74,7 +74,7 @@ public:
    void UpdatePrefs() override;
 
 private:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
    TranslatableString mLastStatusMessages[ nStatusBarFields ];
 };
 

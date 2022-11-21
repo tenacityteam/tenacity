@@ -17,7 +17,7 @@
 #include "widgets/ASlider.h" // to inherit
 #include "commands/CommandManagerWindowClasses.h"
 
-// Saucedacity library
+// Tenacity library
 #include <lib-preferences/Prefs.h>
 
 class wxArrayString;
@@ -57,7 +57,7 @@ public:
 };
 
 
-class SaucedacityProject;
+class TenacityProject;
 class MeterPanel;
 class MixerBoard;
 
@@ -74,7 +74,7 @@ class MixerTrackCluster final : public wxPanelWrapper
 {
 public:
    MixerTrackCluster(wxWindow* parent,
-                     MixerBoard* grandParent, SaucedacityProject* project,
+                     MixerBoard* grandParent, TenacityProject* project,
                      const std::shared_ptr<PlayableTrack> &pTrack,
                      const wxPoint& pos = wxDefaultPosition,
                      const wxSize& size = wxDefaultSize);
@@ -127,7 +127,7 @@ public:
 
 private:
    MixerBoard* mMixerBoard;
-   SaucedacityProject* mProject;
+   TenacityProject* mProject;
 
    // controls
    AuStaticText* mStaticText_TrackName;
@@ -166,7 +166,7 @@ using MusicalInstrumentArray = std::vector<std::unique_ptr<MusicalInstrument>>;
 class MixerBoardScrolledWindow final : public wxScrolledWindow
 {
 public:
-   MixerBoardScrolledWindow(SaucedacityProject* project,
+   MixerBoardScrolledWindow(TenacityProject* project,
                               MixerBoard* parent, wxWindowID id = -1,
                               const wxPoint& pos = wxDefaultPosition,
                               const wxSize& size = wxDefaultSize,
@@ -178,7 +178,7 @@ private:
 
 private:
    MixerBoard* mMixerBoard;
-   SaucedacityProject* mProject;
+   TenacityProject* mProject;
 
 public:
    DECLARE_EVENT_TABLE()
@@ -193,7 +193,7 @@ class MixerBoard final : public wxWindow, private PrefsListener
    friend class MixerBoardFrame;
 
 public:
-   MixerBoard(SaucedacityProject* pProject,
+   MixerBoard(TenacityProject* pProject,
                wxFrame* parent,
                const wxPoint& pos = wxDefaultPosition,
                const wxSize& size = wxDefaultSize);
@@ -249,7 +249,7 @@ private:
    std::vector<MixerTrackCluster*> mMixerTrackClusters;
 
    MusicalInstrumentArray     mMusicalInstruments;
-   SaucedacityProject*           mProject;
+   TenacityProject*           mProject;
    MixerBoardScrolledWindow*  mScrolledWindow; // Holds the MixerTrackClusters and handles scrolling.
    double                     mPrevT1;
    TrackList*                 mTracks;
@@ -265,10 +265,10 @@ class MixerBoardFrame final
    , public TopLevelKeystrokeHandlingWindow
 {
 public:
-   MixerBoardFrame(SaucedacityProject* parent);
+   MixerBoardFrame(TenacityProject* parent);
    virtual ~MixerBoardFrame();
 
-   void Recreate(SaucedacityProject *pProject);
+   void Recreate(TenacityProject *pProject);
 
 private:
    // event handlers
@@ -279,7 +279,7 @@ private:
 
    void SetWindowTitle();
 
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 public:
    MixerBoard* mMixerBoard;
 

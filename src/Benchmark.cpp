@@ -32,7 +32,7 @@ of sample block storage.
 #include <wx/valtext.h>
 #include <wx/intl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -58,7 +58,7 @@ class BenchmarkDialog final : public wxDialogWrapper
 {
 public:
    // constructors and destructors
-   BenchmarkDialog( wxWindow *parent, SaucedacityProject &project );
+   BenchmarkDialog( wxWindow *parent, TenacityProject &project );
 
    void MakeBenchmarkDialog();
 
@@ -73,7 +73,7 @@ private:
    void HoldPrint(bool hold);
    void FlushPrint();
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
    const ProjectSettings &mSettings;
 
    bool      mHoldPrint;
@@ -93,7 +93,7 @@ private:
    DECLARE_EVENT_TABLE()
 };
 
-void RunBenchmark( wxWindow *parent, SaucedacityProject &project )
+void RunBenchmark( wxWindow *parent, TenacityProject &project )
 {
    /*
    int action = AudacityMessageBox(
@@ -139,7 +139,7 @@ BEGIN_EVENT_TABLE(BenchmarkDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 BenchmarkDialog::BenchmarkDialog(
-   wxWindow *parent, SaucedacityProject &project)
+   wxWindow *parent, TenacityProject &project)
    :
       /* i18n-hint: Benchmark means a software speed test */
       wxDialogWrapper( parent, 0, XO("Benchmark"),
@@ -463,7 +463,7 @@ void BenchmarkDialog::OnRun( wxCommandEvent & WXUNUSED(event))
       try {
          tmp = t->Cut(double (x0 * chunkSize), double ((x0 + xlen) * chunkSize));
       }
-      catch (const SaucedacityException&) {
+      catch (const TenacityException&) {
          Printf( XO("Trial %d\n").Format( z ) );
          Printf( XO("Cut (%lld, %lld) failed.\n")
             .Format( (x0 * chunkSize), (x0 + xlen) * chunkSize) );
@@ -485,7 +485,7 @@ void BenchmarkDialog::OnRun( wxCommandEvent & WXUNUSED(event))
       try {
          t->Paste((double)(y0 * chunkSize), tmp.get());
       }
-      catch (const SaucedacityException&) {
+      catch (const TenacityException&) {
          Printf( XO("Trial %d\nFailed on Paste.\n").Format( z ) );
          goto fail;
       }

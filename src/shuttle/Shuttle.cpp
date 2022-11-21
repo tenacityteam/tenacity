@@ -65,7 +65,7 @@ preferences.
 #include <wx/radiobut.h>
 #include <wx/button.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/EffectAutomationParameters.h> // for command automation
 
 #include "WrappedType.h"

@@ -13,7 +13,7 @@
 #include <functional>
 #include <vector>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/TranslatableString.h>
 
 class ShuttleGui;

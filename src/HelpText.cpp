@@ -21,7 +21,7 @@
 #include <wx/sstream.h>
 #include <wx/txtstrm.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-strings/Internat.h>
 
@@ -59,7 +59,7 @@ static wxString InnerLink( const wxString &Key, const wxString& Text )
 static wxString WikiLink( const wxString &Page, const wxString& Text )
 {
    return wxString(wxT("")) +
-      wxT("<a href='https://github.com/saucedacity/saucedacity/wiki/") +
+      wxT("<a href='https://github.com/tenacity/tenacity/wiki/") +
       Page +
       wxT("'>") +
       Text +
@@ -216,11 +216,11 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 
       s
          << wxT("<center><h2>")
-         << XO("Welcome to Saucedacity!")
+         << XO("Welcome to Tenacity!")
          << wxT("</h2></center><br>")
 
          /* i18n-hint: %s is the program's version string */
-         << XO("You are using Saucedacity %s. Saucedacity is a fork of Audacity").Format(AUDACITY_VERSION_STRING)
+         << XO("You are using Tenacity %s. Tenacity is a fork of Audacity").Format(AUDACITY_VERSION_STRING)
          << wxT("<center><h2>")
          << XO("Need Help?")
          << wxT("</h2></center>")
@@ -234,10 +234,10 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 " [[help:Main_Page|Audacity Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
          << wxT("</li><li>")
          << XO(
-" [[https://github.com/saucedacity/saucedacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
+" [[https://github.com/tenacity/tenacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
-         << XO("More:</b> Visit our [[https://github.com/saucedacity/saucedacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
+         << XO("More:</b> Visit our [[https://github.com/tenacity/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
          << wxT("</p>");
 
       auto result = o.GetString();
@@ -256,7 +256,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
       s
          << wxT("<p>")
          << XO(
-"Saucedacity can import unprotected files in many other formats (such as M4A and WMA, \
+"Tenacity can import unprotected files in many other formats (such as M4A and WMA, \
 compressed WAV files from portable recorders and audio from video files) if you download and install \
 the optional [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#foreign| \
 FFmpeg library]] to your computer.")
@@ -332,7 +332,7 @@ const wxString VerCheckHtml()
    wxTextOutputStream s(o);
    s
       << "<center>[["
-      << "https://github.com/saucedacity/saucedacity/releases|"
+      << "https://github.com/tenacity/tenacity/releases|"
       << XO("View latest stable release")
       << "]]</center>\n";
    return o.GetString();

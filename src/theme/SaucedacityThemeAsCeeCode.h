@@ -1,4 +1,4 @@
-///   @file SaucedacityThemeAsCeeCode.h
+///   @file TenacityThemeAsCeeCode.h
 ///   @brief This file was Auto-Generated.
 ///
 ///   It is included by Theme.cpp.

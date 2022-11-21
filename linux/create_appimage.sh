@@ -84,11 +84,11 @@ linuxdeploy --list-plugins
 # Create symlinks
 #============================================================================
 
-sed -i 's|env UBUNTU_MENUPROXY=0 ||' "${appdir}/share/applications/saucedacity.desktop"
+sed -i 's|env UBUNTU_MENUPROXY=0 ||' "${appdir}/share/applications/tenacity.desktop"
 ln -sf --no-dereference . "${appdir}/usr"
-ln -sf share/applications/saucedacity.desktop "${appdir}/saucedacity.desktop"
-ln -sf share/icons/hicolor/scalable/apps/saucedacity.svg "${appdir}/saucedacity.svg"
-ln -sf share/icons/hicolor/scalable/apps/saucedacity.svg "${appdir}/.DirIcon"
+ln -sf share/applications/tenacity.desktop "${appdir}/tenacity.desktop"
+ln -sf share/icons/hicolor/scalable/apps/tenacity.svg "${appdir}/tenacity.svg"
+ln -sf share/icons/hicolor/scalable/apps/tenacity.svg "${appdir}/.DirIcon"
 
 #============================================================================
 # Bundle dependencies
@@ -102,24 +102,24 @@ export LD_LIBRARY_PATH="${appdir}/usr/lib/tenacity:${WXWIDGETS_LD_LIBRARY_PATH}:
 # based location
 if [ -f "/etc/debian_version" ]; then
    archDir=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
-   export LD_LIBRARY_PATH="${appdir}/usr/lib/${archDir}:${appdir}/usr/lib/${archDir}/saucedacity:${LD_LIBRARY_PATH-}"
+   export LD_LIBRARY_PATH="${appdir}/usr/lib/${archDir}:${appdir}/usr/lib/${archDir}/tenacity:${LD_LIBRARY_PATH-}"
 fi
 
 # Prevent linuxdeploy setting RUNPATH in binaries that shouldn't have it
 mv "${appdir}/bin/findlib" "${appdir}/../findlib"
 
 linuxdeploy --appdir "${appdir}" --plugin gtk # add all shared library dependencies
-rm -Rf "${appdir}/lib/saucedacity"
+rm -Rf "${appdir}/lib/tenacity"
 
 if [ -f "/etc/debian_version" ]; then
    archDir=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
-   rm -Rf "${appdir}/lib/${archDir}/saucedacity"
+   rm -Rf "${appdir}/lib/${archDir}/tenacity"
 fi
 
 # Put the non-RUNPATH binaries back
 mv "${appdir}/../findlib" "${appdir}/bin/findlib"
 
-mv "${appdir}/share/metainfo/saucedacity.metainfo.xml" "${appdir}/share/metainfo/org.saucedacityteam.Saucedacity.metainfo.xml"
+mv "${appdir}/share/metainfo/tenacity.metainfo.xml" "${appdir}/share/metainfo/org.tenacityteam.Saucedacity.metainfo.xml"
 ##########################################################################
 # BUNDLE REMAINING DEPENDENCIES MANUALLY
 ##########################################################################

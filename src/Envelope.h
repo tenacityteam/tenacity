@@ -15,7 +15,7 @@
 #include <algorithm>
 #include <vector>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-xml/XMLTagHandler.h>
 
 class wxRect;

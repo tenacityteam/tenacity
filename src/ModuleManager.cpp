@@ -23,7 +23,7 @@ i.e. an alternative to the usual interface, for Audacity.
 
 #include "PluginInterface.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ModuleInterface.h>
 #include <lib-files/FileNames.h>
 #include <lib-utility/MemoryX.h>
@@ -34,7 +34,7 @@ i.e. an alternative to the usual interface, for Audacity.
 #include <wx/filename.h>
 
 #ifdef EXPERIMENTAL_MODULE_PREFS
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "ModuleSettings.h"
@@ -107,10 +107,10 @@ bool Module::Load(wxString &deferredErrorMessage)
    wxString moduleVersion = versionFn();
    if( moduleVersion != AUDACITY_VERSION_STRING) {
       AudacityMessageBox(
-         XO("The module \"%s\" is matched with Audacity (or Saucedacity) version \"%s\".\n\nIt will not be loaded.")
+         XO("The module \"%s\" is matched with Audacity (or Tenacity) version \"%s\".\n\nIt will not be loaded.")
             .Format(ShortName, moduleVersion),
          XO("Module Unsuitable"));
-      wxLogMessage(wxT("The module \"%s\" is matched with Audacity (or Saucedacity) version \"%s\". It will not be loaded."), mName, moduleVersion);
+      wxLogMessage(wxT("The module \"%s\" is matched with Audacity (or Tenacity) version \"%s\". It will not be loaded."), mName, moduleVersion);
       mLib->Unload();
       return false;
    }
@@ -217,7 +217,7 @@ ModuleManager::~ModuleManager()
 // static
 void ModuleManager::FindModules(FilePaths &files)
 {
-   const auto &saucedacityPathList = FileNames::AudacityPathList();
+   const auto &tenacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
    wxString pathVar;
 
@@ -226,7 +226,7 @@ void ModuleManager::FindModules(FilePaths &files)
    if (!pathVar.empty())
       FileNames::AddMultiPathsToPathList(pathVar, pathList);
 
-   for (const auto &path : saucedacityPathList) {
+   for (const auto &path : tenacityPathList) {
       wxString prefix = path + wxFILE_SEP_PATH;
       FileNames::AddUniquePathToPathList(prefix + wxT("modules"),
                                          pathList);

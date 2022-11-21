@@ -35,7 +35,7 @@ public:
    // Define a default hit test method, just for message and cursor
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject) override;
+       const TenacityProject *pProject) override;
 
    // Helpers for handle classes' TrackPanelDrawable implementations
    static void DrawZooming

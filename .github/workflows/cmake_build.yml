@@ -29,7 +29,7 @@ jobs:
           vcpkg_triplet: x64-linux
           wxwidgets_git_url: https://github.com/wxWidgets/wxWidgets.git
           wxwidgets_git_ref: v3.1.5
-          WX_CONFIG: /home/runner/work/saucedacity/saucedacity/wxwidgets-install/bin/wx-config
+          WX_CONFIG: /home/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
         - name: macOS_Intel
           os: macos-latest
@@ -40,7 +40,7 @@ jobs:
           vcpkg_triplet: x64-osx-10.12min
           wxwidgets_git_url: https://github.com/wxWidgets/wxWidgets.git
           wxwidgets_git_ref: v3.1.5
-          WX_CONFIG: /Users/runner/work/saucedacity/saucedacity/wxwidgets-install/bin/wx-config
+          WX_CONFIG: /Users/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
         #- name: macOS_ARM
         #  os: macos-latest
@@ -219,7 +219,7 @@ jobs:
     - name: Upload package artifact
       uses: actions/upload-artifact@v3
       with:
-        name: saucedacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
+        name: tenacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
         path: |
           build/package/*
           !build/package/_CPack_Packages

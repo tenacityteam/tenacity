@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_RING_BUFFER__
 #define __AUDACITY_RING_BUFFER__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 
 #include <atomic>

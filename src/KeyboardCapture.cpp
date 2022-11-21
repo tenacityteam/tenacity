@@ -26,8 +26,8 @@
 #include <wx/weakref.h>
 #include <wx/window.h>
 
-// Saucedacity libraries
-#include <lib-exceptions/SaucedacityException.h>
+// Tenacity libraries
+#include <lib-exceptions/TenacityException.h>
 
 ////////////////////////////////////////////////////////////
 /// Custom events
@@ -244,7 +244,7 @@ public:
       },
       // Immediate handler invokes the same high level catch-all as for
       // unhandled exceptions, which will also do its own delayed handling
-      [](SaucedacityException *pEx){
+      [](TenacityException *pEx){
          if (pEx)
             wxTheApp->OnExceptionInMainLoop();
          else

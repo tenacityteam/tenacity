@@ -25,7 +25,7 @@ class wxCommandEvent;
 #include <wx/menu.h> // to inherit wxMenu
 #include <memory>
 
-// Saucedacity
+// Tenacity
 #include <lib-strings/Internat.h>
 
 #include "../commands/CommandManager.h"

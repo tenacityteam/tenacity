@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   NavgiationMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../CommonCommandFlags.h"
@@ -27,7 +27,7 @@
 // private helper classes and functions
 namespace {
 
-void NextOrPrevFrame(SaucedacityProject &project, bool forward)
+void NextOrPrevFrame(TenacityProject &project, bool forward)
 {
    // Focus won't take in a dock unless at least one descendant window
    // accepts focus.  Tell controls to take focus for the duration of this
@@ -92,7 +92,7 @@ void NextOrPrevFrame(SaucedacityProject &project, bool forward)
 
 /// \todo Merge related methods, OnPrevTrack and OnNextTrack.
 void DoPrevTrack(
-   SaucedacityProject &project, bool shift, bool circularTrackNavigation )
+   TenacityProject &project, bool shift, bool circularTrackNavigation )
 {
    auto &projectHistory = ProjectHistory::Get( project );
    auto &trackFocus = TrackFocus::Get( project );
@@ -202,7 +202,7 @@ void DoPrevTrack(
 /// selecting and unselecting depending if you are on the start of a
 /// block or not.
 void DoNextTrack(
-   SaucedacityProject &project, bool shift, bool circularTrackNavigation )
+   TenacityProject &project, bool shift, bool circularTrackNavigation )
 {
    auto &projectHistory = ProjectHistory::Get( project );
    auto &trackFocus = TrackFocus::Get( project );
@@ -550,12 +550,12 @@ Handler &operator=( const Handler & ) = delete;
 } // namespace
 
 // Handler is stateful.  Needs a factory registered with
-// SaucedacityProject.
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   [](SaucedacityProject&) {
+// TenacityProject.
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   [](TenacityProject&) {
       return std::make_unique< NavigationActions::Handler >(); } };
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &project) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &project) {
    return project.AttachedObjects::Get< NavigationActions::Handler >( key );
 };
 

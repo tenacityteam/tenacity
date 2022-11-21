@@ -17,7 +17,7 @@ Paul Licameli
 #include "Project.h"
 #include "prefs/TracksBehaviorsPrefs.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-xml/XMLWriter.h>
 
@@ -148,20 +148,20 @@ void NotifyingSelectedRegion::Notify( bool delayed )
       ProcessEvent( evt );
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   []( SaucedacityProject &project ) {
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   []( TenacityProject &project ) {
       return std::make_unique<ViewInfo>(0.0, 1.0, ZoomInfo::GetDefaultZoom());
    }
 };
 
-ViewInfo &ViewInfo::Get( SaucedacityProject &project )
+ViewInfo &ViewInfo::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ViewInfo >( key );
 }
 
-const ViewInfo &ViewInfo::Get( const SaucedacityProject &project )
+const ViewInfo &ViewInfo::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
 ViewInfo::ViewInfo(double start, double screenDuration, double pixelsPerSecond)

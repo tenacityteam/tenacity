@@ -1,12 +1,12 @@
 
-set( TARGET Saucedacity )
+set( TARGET Tenacity )
 set( TARGET_ROOT ${topdir}/src )
 
 include(CheckFunctionExists)
 
 message( STATUS "========== Configuring ${TARGET} ==========" )
 
-# Allow modules to link against the Saucedacity executable
+# Allow modules to link against the Tenacity executable
 set( CMAKE_ENABLE_EXPORTS ON )
 
 add_executable( ${TARGET} )
@@ -222,13 +222,13 @@ list( APPEND SOURCES
       RingBuffer.h
       SampleBlock.cpp
       SampleBlock.h
-      SaucedacityApp.cpp
-      SaucedacityApp.h
-      $<$<BOOL:${wxIS_MAC}>:SaucedacityApp.mm>
-      SaucedacityFileConfig.cpp
-      SaucedacityFileConfig.h
-      SaucedacityHeaders.cpp
-      SaucedacityHeaders.h
+      TenacityApp.cpp
+      TenacityApp.h
+      $<$<BOOL:${wxIS_MAC}>:TenacityApp.mm>
+      TenacityFileConfig.cpp
+      TenacityFileConfig.h
+      TenacityHeaders.cpp
+      TenacityHeaders.h
       Screenshot.cpp
       Screenshot.h
       SelectUtilities.cpp
@@ -730,7 +730,7 @@ list( APPEND SOURCES
       theme/DarkThemeAsCeeCode.h
       theme/HiContrastThemeAsCeeCode.h
       theme/LightThemeAsCeeCode.h
-      theme/SaucedacityThemeAsCeeCode.h
+      theme/TenacityThemeAsCeeCode.h
       #########################################################################
       theme/AllThemeResources.cpp
       theme/AllThemeResources.h
@@ -1117,7 +1117,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
 
    # Define the Windows specific resources
    list( APPEND WIN_RESOURCES
-      ../win/saucedacity.rc
+      ../win/tenacity.rc
    )
 
    # Copy over the wxWidgets DLLs
@@ -1127,7 +1127,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
       TARGET
          ${TARGET}
       COMMAND
-         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Saucedacity.exe"
+         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Tenacity.exe"
                           -D DST="${_EXEDIR}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>/"
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
@@ -1184,7 +1184,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    # These sources must be compiled as Objective C++ and excluded
    # from precompiled header usage
    set_source_files_properties(
-      SaucedacityApp.mm
+      TenacityApp.mm
       KeyboardCapture.cpp
       effects/EffectUI.cpp
       effects/VST/VSTControlOSX.mm
@@ -1217,7 +1217,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       TARGET
          ${TARGET}
       COMMAND
-         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Saucedacity"
+         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Tenacity"
                           -D DST="${_PKGLIB}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
@@ -1286,7 +1286,7 @@ else()
       TARGET
          ${TARGET}
       COMMAND
-         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/saucedacity"
+         ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/tenacity"
                           -D DST="${_DEST}/${_PKGLIB}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
                           -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
@@ -1344,7 +1344,7 @@ if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
          $<$<PLATFORM_ID:Windows>:${CMAKE_BINARY_DIR}/src/private/configwin.h>
          $<$<PLATFORM_ID:Darwin>:${CMAKE_BINARY_DIR}/src/private/configmac.h>
          $<$<NOT:$<PLATFORM_ID:Windows,Darwin>>:${CMAKE_BINARY_DIR}/src/private/configunix.h>
-         SaucedacityHeaders.h
+         TenacityHeaders.h
       )
    else()
       message( STATUS "Not using precompiled headers" )

@@ -19,7 +19,7 @@
 
 #include "Effect.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/RealFFTf.h>
 
 // Flags to specialise the UI

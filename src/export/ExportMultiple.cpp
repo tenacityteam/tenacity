@@ -38,7 +38,7 @@
 #include <wx/textctrl.h>
 #include <wx/textdlg.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -128,7 +128,7 @@ BEGIN_EVENT_TABLE(MouseEvtHandler, wxEvtHandler)
    EVT_LEFT_DCLICK(MouseEvtHandler::OnMouse)
 END_EVENT_TABLE()
 
-ExportMultipleDialog::ExportMultipleDialog(SaucedacityProject *project)
+ExportMultipleDialog::ExportMultipleDialog(TenacityProject *project)
 : wxDialogWrapper( &GetProjectFrame( *project ),
    wxID_ANY, XO("Export Multiple") )
 , mExporter{ *project }

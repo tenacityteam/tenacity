@@ -21,7 +21,7 @@ class WaveTrackAffordanceHandle final : public AffordanceHandle
 public:
    WaveTrackAffordanceHandle(const std::shared_ptr<Track>& track, const std::shared_ptr<WaveClip>& target);
 
-   Result Click(const TrackPanelMouseEvent& event, SaucedacityProject* project) override;
+   Result Click(const TrackPanelMouseEvent& event, TenacityProject* project) override;
 
-   UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, SaucedacityProject* project) override;
+   UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, TenacityProject* project) override;
 };

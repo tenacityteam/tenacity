@@ -31,20 +31,20 @@ public:
    std::shared_ptr<Track> GetTrack() const { return mpTrack.lock(); }
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
 private:
    enum Mode {

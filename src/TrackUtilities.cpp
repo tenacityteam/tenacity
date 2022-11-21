@@ -19,7 +19,7 @@
 
 namespace TrackUtilities {
 
-void DoRemoveTracks( SaucedacityProject &project )
+void DoRemoveTracks( TenacityProject &project )
 {
    auto &tracks = TrackList::Get( project );
    auto &trackPanel = TrackPanel::Get( project );
@@ -61,7 +61,7 @@ void DoRemoveTracks( SaucedacityProject &project )
    trackPanel.UpdateViewIfNoTracks();
 }
 
-void DoTrackMute(SaucedacityProject &project, Track *t, bool exclusive)
+void DoTrackMute(TenacityProject &project, Track *t, bool exclusive)
 {
    const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -109,7 +109,7 @@ void DoTrackMute(SaucedacityProject &project, Track *t, bool exclusive)
    TrackFocus::Get( project ).UpdateAccessibility();
 }
 
-void DoTrackSolo(SaucedacityProject &project, Track *t, bool exclusive)
+void DoTrackSolo(TenacityProject &project, Track *t, bool exclusive)
 {
    const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -160,7 +160,7 @@ void DoTrackSolo(SaucedacityProject &project, Track *t, bool exclusive)
    TrackFocus::Get( project ).UpdateAccessibility();
 }
 
-void DoRemoveTrack(SaucedacityProject &project, Track * toRemove)
+void DoRemoveTrack(TenacityProject &project, Track * toRemove)
 {
    auto &tracks = TrackList::Get( project );
    auto &trackFocus = TrackFocus::Get( project );
@@ -196,7 +196,7 @@ void DoRemoveTrack(SaucedacityProject &project, Track * toRemove)
 }
 
 void DoMoveTrack
-(SaucedacityProject &project, Track* target, MoveChoice choice)
+(TenacityProject &project, Track* target, MoveChoice choice)
 {
    auto &tracks = TrackList::Get( project );
 

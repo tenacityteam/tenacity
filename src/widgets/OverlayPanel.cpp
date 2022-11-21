@@ -14,7 +14,7 @@
 #include <optional>
 #include <wx/dcclient.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h>
 
 OverlayPanel::OverlayPanel(wxWindow * parent, wxWindowID id,

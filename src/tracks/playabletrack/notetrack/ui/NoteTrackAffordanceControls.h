@@ -21,7 +21,7 @@ class SAUCEDACITY_DLL_API NoteTrackAffordanceControls : public CommonTrackCell
 public:
     NoteTrackAffordanceControls(const std::shared_ptr<Track>& pTrack);
 
-    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject) override;
+    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject) override;
 
     void Draw(TrackPanelDrawingContext& context, const wxRect& rect, unsigned iPass) override;
 

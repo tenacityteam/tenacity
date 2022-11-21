@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_PROJECTSERIALIZER__
 #define __AUDACITY_PROJECTSERIALIZER__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 #include <lib-xml/XMLTagHandler.h>
 
@@ -30,7 +30,7 @@
 using NameMap = std::unordered_map<wxString, unsigned short>;
 using IdMap = std::unordered_map<unsigned short, wxString>;
 
-// This class's overrides do NOT throw SaucedacityException.
+// This class's overrides do NOT throw TenacityException.
 class SAUCEDACITY_DLL_API ProjectSerializer final : public XMLWriter
 {
 public:

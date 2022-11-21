@@ -30,7 +30,7 @@ NoteTrackButtonHandle::NoteTrackButtonHandle
 {
 }
 
-void NoteTrackButtonHandle::Enter(bool, SaucedacityProject *)
+void NoteTrackButtonHandle::Enter(bool, TenacityProject *)
 {
    mChangeHighlight = RefreshCode::RefreshCell;
 }
@@ -69,19 +69,19 @@ UIHandlePtr NoteTrackButtonHandle::HitTest
 }
 
 UIHandle::Result NoteTrackButtonHandle::Click
-(const TrackPanelMouseEvent &, SaucedacityProject *)
+(const TrackPanelMouseEvent &, TenacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
 UIHandle::Result NoteTrackButtonHandle::Drag
-(const TrackPanelMouseEvent &, SaucedacityProject *)
+(const TrackPanelMouseEvent &, TenacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
 HitTestPreview NoteTrackButtonHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *)
+(const TrackPanelMouseState &, TenacityProject *)
 {
    // auto pTrack = pProject->GetTracks()->Lock(mpTrack);
    auto pTrack = mpTrack.lock();
@@ -92,7 +92,7 @@ HitTestPreview NoteTrackButtonHandle::Preview
 }
 
 UIHandle::Result NoteTrackButtonHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject, wxWindow *)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject, wxWindow *)
 {
    using namespace RefreshCode;
 
@@ -110,7 +110,7 @@ UIHandle::Result NoteTrackButtonHandle::Release
    return RefreshNone;
 }
 
-UIHandle::Result NoteTrackButtonHandle::Cancel(SaucedacityProject *)
+UIHandle::Result NoteTrackButtonHandle::Cancel(TenacityProject *)
 {
    return RefreshCode::RefreshNone;
 }

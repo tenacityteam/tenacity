@@ -18,7 +18,7 @@
 
 #include <wx/chartype.h> // for typedef wxChar
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h> // for TranslatableStrings
 
 class wxString;

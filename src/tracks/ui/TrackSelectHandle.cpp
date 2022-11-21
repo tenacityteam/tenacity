@@ -66,7 +66,7 @@ TrackSelectHandle::~TrackSelectHandle()
 }
 
 UIHandle::Result TrackSelectHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    // If unsafe to drag, still, it does harmlessly change the selected track
    // set on button down.
@@ -107,7 +107,7 @@ UIHandle::Result TrackSelectHandle::Click
 }
 
 UIHandle::Result TrackSelectHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    Result result = RefreshNone;
@@ -142,7 +142,7 @@ UIHandle::Result TrackSelectHandle::Drag
 }
 
 HitTestPreview TrackSelectHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *project)
+(const TrackPanelMouseState &, TenacityProject *project)
 {
    static auto disabledCursor =
       ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
@@ -184,7 +184,7 @@ HitTestPreview TrackSelectHandle::Preview
 }
 
 UIHandle::Result TrackSelectHandle::Release
-(const TrackPanelMouseEvent &, SaucedacityProject *project, wxWindow *)
+(const TrackPanelMouseEvent &, TenacityProject *project, wxWindow *)
 {
    // If we're releasing, surely we are dragging a track?
    wxASSERT( mpTrack );
@@ -204,7 +204,7 @@ UIHandle::Result TrackSelectHandle::Release
    return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result TrackSelectHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result TrackSelectHandle::Cancel(TenacityProject *pProject)
 {
    ProjectHistory::Get( *pProject ).RollbackState();
    // Bug 1677
@@ -215,7 +215,7 @@ UIHandle::Result TrackSelectHandle::Cancel(SaucedacityProject *pProject)
 /// Figure out how far the user must drag the mouse up or down
 /// before the track will swap with the one above or below
 void TrackSelectHandle::CalculateRearrangingThresholds(
-   const wxMouseEvent & event, SaucedacityProject *project)
+   const wxMouseEvent & event, TenacityProject *project)
 {
    // JH: this will probably need to be tweaked a bit, I'm just
    //   not sure what formula will have the best feel for the

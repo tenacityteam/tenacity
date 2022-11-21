@@ -18,7 +18,7 @@
 #include <wx/msgdlg.h> // to inherit
 #include "wxPanelWrapper.h" // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 class wxCollapsiblePaneEvent;
 
 class ErrorDialog /* not final */ : public wxDialogWrapper

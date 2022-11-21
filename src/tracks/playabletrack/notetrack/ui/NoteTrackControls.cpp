@@ -39,7 +39,7 @@ NoteTrackControls::~NoteTrackControls()
 
 std::vector<UIHandlePtr> NoteTrackControls::HitTest
 (const TrackPanelMouseState & st,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    // Hits are mutually exclusive, results single
    std::vector<UIHandlePtr> results;
@@ -123,7 +123,7 @@ void NoteTrackMenuTable::OnChangeOctave(wxCommandEvent &event)
    const bool bDown = (OnDownOctaveID == event.GetId());
    pTrack->ShiftNoteRange((bDown) ? -12 : 12);
 
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    ProjectHistory::Get( *project )
       .ModifyState(false);
    mpData->result = RefreshCode::RefreshAll;

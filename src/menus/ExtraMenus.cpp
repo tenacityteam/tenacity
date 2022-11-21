@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   ExtraMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../CommonCommandFlags.h"
@@ -75,9 +75,9 @@ void OnFullScreen(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static ExtraActions::Handler instance;
    return instance;
 };
@@ -147,7 +147,7 @@ BaseItemSharedPtr ExtraMiscItems()
    static BaseItemSharedPtr items{
    Items( wxT("Misc"),
       // Delayed evaluation
-      []( SaucedacityProject &project ) {
+      []( TenacityProject &project ) {
 
    static const auto key =
 #ifdef __WXMAC__
@@ -163,7 +163,7 @@ BaseItemSharedPtr ExtraMiscItems()
          Command( wxT("FullScreenOnOff"), XXO("&Full Screen (on/off)"),
             FN(OnFullScreen),
             AlwaysEnabledFlag,
-            Options{ key }.CheckTest( []( const SaucedacityProject &project ) {
+            Options{ key }.CheckTest( []( const TenacityProject &project ) {
                return GetProjectFrame( project )
                   .wxTopLevelWindow::IsFullScreen(); } ) )
         );

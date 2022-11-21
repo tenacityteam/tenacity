@@ -32,7 +32,7 @@
 #include "ImportPlugin.h"
 #include "../Project.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 
 #define DESC XO("MP3 files")
@@ -93,7 +93,7 @@ public:
 
    wxString GetPluginStringID() override;
    TranslatableString GetPluginFormatDescription() override;
-   std::unique_ptr<ImportFileHandle> Open(const FilePath &Filename, SaucedacityProject*) override;
+   std::unique_ptr<ImportFileHandle> Open(const FilePath &Filename, TenacityProject*) override;
 };
 
 using NewChannelGroup = std::vector< std::shared_ptr<WaveTrack> >;
@@ -191,7 +191,7 @@ TranslatableString MP3ImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> MP3ImportPlugin::Open(
-   const FilePath &Filename, SaucedacityProject *)
+   const FilePath &Filename, TenacityProject *)
 {
    auto handle = std::make_unique<MP3ImportFileHandle>(Filename);
 

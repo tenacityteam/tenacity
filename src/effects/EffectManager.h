@@ -16,12 +16,12 @@
 #include <vector>
 #include <unordered_map>
 
-// Saucedacity libraires
+// Tenacity libraires
 #include <lib-components/EffectInterface.h>
 #include <lib-strings/Identifier.h>
 
 class AudacityCommand;
-class SaucedacityProject;
+class TenacityProject;
 class CommandContext;
 class CommandMessageTarget;
 class ComponentInterfaceSymbol;

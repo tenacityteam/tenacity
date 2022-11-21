@@ -55,7 +55,7 @@ private:
 
 using MakeNoteTrackShifter = MakeTrackShifter::Override<NoteTrack>;
 DEFINE_ATTACHED_VIRTUAL_OVERRIDE(MakeNoteTrackShifter) {
-   return [](NoteTrack &track, SaucedacityProject&) {
+   return [](NoteTrack &track, TenacityProject&) {
       return std::make_unique<NoteTrackShifter>(track);
    };
 }

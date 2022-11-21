@@ -13,7 +13,7 @@
 
 
 #if USE_AUDIO_UNITS
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/EffectInterface.h>
 #include <lib-components/ModuleInterface.h>
 #include <lib-components/PluginInterface.h>

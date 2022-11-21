@@ -22,13 +22,13 @@ Paul Licameli -- split from ProjectFileIO.h
 
 #include "ClientData.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 struct sqlite3;
 struct sqlite3_stmt;
 class wxString;
-class SaucedacityProject;
+class TenacityProject;
 
 struct DBConnectionErrors
 {
@@ -46,7 +46,7 @@ public:
    using CheckpointFailureCallback = std::function<void()>;
 
    DBConnection(
-      const std::weak_ptr<SaucedacityProject> &pProject,
+      const std::weak_ptr<TenacityProject> &pProject,
       const std::shared_ptr<DBConnectionErrors> &pErrors,
       CheckpointFailureCallback callback);
    ~DBConnection();
@@ -106,7 +106,7 @@ private:
    static int CheckpointHook(void *data, sqlite3 *db, const char *schema, int pages);
 
 private:
-   std::weak_ptr<SaucedacityProject> mpProject;
+   std::weak_ptr<TenacityProject> mpProject;
    sqlite3 *mDB;
    sqlite3 *mCheckpointDB;
 
@@ -163,8 +163,8 @@ class ConnectionPtr final
    , public std::enable_shared_from_this< ConnectionPtr >
 {
 public:
-   static ConnectionPtr &Get( SaucedacityProject &project );
-   static const ConnectionPtr &Get( const SaucedacityProject &project );
+   static ConnectionPtr &Get( TenacityProject &project );
+   static const ConnectionPtr &Get( const TenacityProject &project );
 
    ~ConnectionPtr() override;
 

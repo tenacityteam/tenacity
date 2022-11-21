@@ -26,7 +26,7 @@ public:
 
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject) override;
+       const TenacityProject *pProject) override;
 
    PopupMenuTable *GetMenuExtension(Track *pTrack) override;
 };

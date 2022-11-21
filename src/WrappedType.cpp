@@ -30,7 +30,7 @@
 
 #include <wx/wxprec.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 /// @return true iff the wrapped type is a string.

@@ -25,7 +25,7 @@ class SampleHandle final : public UIHandle
 {
    SampleHandle(const SampleHandle&) = delete;
    static HitTestPreview HitPreview
-      (const wxMouseState &state, const SaucedacityProject *pProject, bool unsafe);
+      (const wxMouseState &state, const TenacityProject *pProject, bool unsafe);
 
 public:
    explicit SampleHandle( const std::shared_ptr<WaveTrack> &pTrack );
@@ -38,29 +38,29 @@ public:
    static UIHandlePtr HitTest
       (std::weak_ptr<SampleHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const SaucedacityProject *pProject, const std::shared_ptr<WaveTrack> &pTrack);
+       const TenacityProject *pProject, const std::shared_ptr<WaveTrack> &pTrack);
 
    virtual ~SampleHandle();
 
    std::shared_ptr<WaveTrack> GetTrack() const { return mClickedTrack; }
 
-   void Enter(bool forward, SaucedacityProject *) override;
+   void Enter(bool forward, TenacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 

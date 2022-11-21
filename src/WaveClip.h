@@ -12,7 +12,7 @@
 #ifndef __AUDACITY_WAVECLIP__
 #define __AUDACITY_WAVECLIP__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-xml/XMLTagHandler.h>
 #include <lib-math/SampleCount.h>

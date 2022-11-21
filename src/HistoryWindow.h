@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_HISTORY_WINDOW__
 #define __AUDACITY_HISTORY_WINDOW__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "widgets/wxPanelWrapper.h" // to inherit
@@ -21,7 +21,7 @@ class wxListCtrl;
 class wxListEvent;
 class wxSpinCtrl;
 class wxTextCtrl;
-class SaucedacityProject;
+class TenacityProject;
 class ShuttleGui;
 class UndoManager;
 
@@ -30,7 +30,7 @@ class HistoryDialog final : public wxDialogWrapper,
 {
 
  public:
-   HistoryDialog(SaucedacityProject * parent, UndoManager *manager);
+   HistoryDialog(TenacityProject * parent, UndoManager *manager);
 
    void UpdateDisplay(wxEvent &e);
    
@@ -56,7 +56,7 @@ class HistoryDialog final : public wxDialogWrapper,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   SaucedacityProject   *mProject;
+   TenacityProject   *mProject;
    UndoManager       *mManager;
    wxListCtrl        *mList;
    wxTextCtrl        *mTotal;

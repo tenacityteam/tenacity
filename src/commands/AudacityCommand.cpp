@@ -24,7 +24,7 @@ ShuttleGui.
 
 #include "CommandContext.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ConfigInterface.h>
 
 #include <algorithm>
@@ -83,7 +83,7 @@ AudacityCommand::~AudacityCommand()
 
 
 PluginPath AudacityCommand::GetPath(){        return BUILTIN_GENERIC_COMMAND_PREFIX + GetSymbol().Internal(); }
-VendorSymbol AudacityCommand::GetVendor(){      return XO("Saucedacity");}
+VendorSymbol AudacityCommand::GetVendor(){      return XO("Tenacity");}
 wxString AudacityCommand::GetVersion(){     return AUDACITY_VERSION_STRING;}
 
 

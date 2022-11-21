@@ -52,7 +52,7 @@
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/HelpSystem.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-xml/XMLFileReader.h>
@@ -232,24 +232,24 @@ static const wxChar *DefaultGenres[] =
 
 static ProjectFileIORegistry::Entry registerFactory{
    wxT( "tags" ),
-   []( SaucedacityProject &project ){ return &Tags::Get( project ); }
+   []( TenacityProject &project ){ return &Tags::Get( project ); }
 };
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-  [](SaucedacityProject &){ return std::make_shared< Tags >(); }
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+  [](TenacityProject &){ return std::make_shared< Tags >(); }
 };
 
-Tags &Tags::Get( SaucedacityProject &project )
+Tags &Tags::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< Tags >( key );
 }
 
-const Tags &Tags::Get( const SaucedacityProject &project )
+const Tags &Tags::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-Tags &Tags::Set( SaucedacityProject &project, const std::shared_ptr< Tags > &tags )
+Tags &Tags::Set( TenacityProject &project, const std::shared_ptr< Tags > &tags )
 {
    auto &result = *tags;
    project.AttachedObjects::Assign( key, tags );

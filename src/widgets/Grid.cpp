@@ -27,7 +27,7 @@
 #include <wx/settings.h>
 #include <wx/toplevel.h>
 
-// Saucedacity
+// Tenacity
 #include <lib-utility/MemoryX.h>
 
 #include "../SelectedRegion.h"

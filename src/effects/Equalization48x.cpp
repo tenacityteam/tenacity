@@ -24,7 +24,7 @@
 #include "../float_cast.h"
 #include <vector>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h> // for safenew
 
 #include <wx/setup.h> // for wxUSE_* macros

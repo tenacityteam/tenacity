@@ -26,19 +26,19 @@ class wxWindow;
 class wxStatusBar;
 
 class AButton;
-class SaucedacityProject;
+class TenacityProject;
 
 // In the GUI, ControlToolBar appears as the "Transport Toolbar". "Control Toolbar" is historic.
 class SAUCEDACITY_DLL_API ControlToolBar final : public ToolBar {
 
  public:
 
-   ControlToolBar( SaucedacityProject &project );
+   ControlToolBar( TenacityProject &project );
    virtual ~ControlToolBar();
 
-   static ControlToolBar *Find( SaucedacityProject &project );
-   static ControlToolBar &Get( SaucedacityProject &project );
-   static const ControlToolBar &Get( const SaucedacityProject &project );
+   static ControlToolBar *Find( TenacityProject &project );
+   static ControlToolBar &Get( TenacityProject &project );
+   static const ControlToolBar &Get( const TenacityProject &project );
 
    void Create(wxWindow *parent) override;
 

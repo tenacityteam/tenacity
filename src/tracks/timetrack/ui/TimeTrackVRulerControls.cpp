@@ -40,7 +40,7 @@ namespace {
 
 std::vector<UIHandlePtr> TimeTrackVRulerControls::HitTest(
    const TrackPanelMouseState &st,
-   const SaucedacityProject *pProject)
+   const TenacityProject *pProject)
 {
    std::vector<UIHandlePtr> results;
 

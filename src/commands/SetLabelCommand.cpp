@@ -73,7 +73,7 @@ bool SetLabelCommand::Apply(const CommandContext & context)
    // this code could be put in subroutines/reduced.
 
    //wxString mode = GetString(wxT("Type"));
-   SaucedacityProject * p = &context.project;
+   TenacityProject * p = &context.project;
    auto &tracks = TrackList::Get( *p );
    auto &selectedRegion = ViewInfo::Get( *p ).selectedRegion;
    const LabelStruct * pLabel = nullptr;

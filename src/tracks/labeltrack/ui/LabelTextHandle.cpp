@@ -32,7 +32,7 @@ LabelTextHandle::LabelTextHandle
 {
 }
 
-void LabelTextHandle::Enter(bool, SaucedacityProject *)
+void LabelTextHandle::Enter(bool, TenacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -70,7 +70,7 @@ LabelTextHandle::~LabelTextHandle()
 {
 }
 
-void LabelTextHandle::HandleTextClick(SaucedacityProject &project, const wxMouseEvent & evt)
+void LabelTextHandle::HandleTextClick(TenacityProject &project, const wxMouseEvent & evt)
 {
    auto pTrack = mpLT.lock();
    if (!pTrack)
@@ -147,7 +147,7 @@ bool LabelTextHandle::HandlesRightClick()
 }
 
 UIHandle::Result LabelTextHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    auto pLT = mpLT.lock();
    if (!pLT)
@@ -164,7 +164,7 @@ UIHandle::Result LabelTextHandle::Click
 }
 
 void LabelTextHandle::HandleTextDragRelease(
-   SaucedacityProject &project, const wxMouseEvent & evt)
+   TenacityProject &project, const wxMouseEvent & evt)
 {
    auto pTrack = mpLT.lock();
    if (!pTrack)
@@ -217,7 +217,7 @@ void LabelTextHandle::HandleTextDragRelease(
 }
 
 UIHandle::Result LabelTextHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    auto &project = *pProject;
    using namespace RefreshCode;
@@ -252,13 +252,13 @@ UIHandle::Result LabelTextHandle::Drag
 }
 
 HitTestPreview LabelTextHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *)
+(const TrackPanelMouseState &, TenacityProject *)
 {
    return HitPreview();
 }
 
 UIHandle::Result LabelTextHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
  wxWindow *pParent)
 {
    auto result = LabelDefaultClickHandle::Release( evt, pProject, pParent );
@@ -278,7 +278,7 @@ UIHandle::Result LabelTextHandle::Release
    return result | RefreshCode::RefreshNone;
 }
 
-UIHandle::Result LabelTextHandle::Cancel( SaucedacityProject *pProject )
+UIHandle::Result LabelTextHandle::Cancel( TenacityProject *pProject )
 {
    auto result = LabelDefaultClickHandle::Cancel( pProject );
    return result | RefreshCode::RefreshAll;

@@ -1,8 +1,8 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
-  SaucedacityApp.h
+  TenacityApp.h
 
   Dominic Mazzoni
 
@@ -15,7 +15,7 @@
 #define __AUDACITY_APP__
 
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 #include <wx/app.h> // to inherit
@@ -35,12 +35,12 @@ class IPCServ;
 class Importer;
 class CommandHandler;
 class AppCommandEvent;
-class SaucedacityProject;
+class TenacityProject;
 
-class SaucedacityApp final : public wxApp {
+class TenacityApp final : public wxApp {
  public:
-   SaucedacityApp();
-   ~SaucedacityApp();
+   TenacityApp();
+   ~TenacityApp();
    bool OnInit(void) override;
    bool InitPart2();
    int OnExit(void) override;
@@ -117,8 +117,8 @@ class SaucedacityApp final : public wxApp {
 
    sem_t* mLockSemaphore;
 
-   static constexpr const char* LockSemName   = "/SaucedacityLock";
-   static constexpr const char* SharedMemName = "/SaucedacityMem";
+   static constexpr const char* LockSemName   = "/TenacityLock";
+   static constexpr const char* SharedMemName = "/TenacityMem";
    bool mWasServer;
 
    /** @brief Cleans up ALL IPC resources created by any "server" processes.
@@ -135,6 +135,6 @@ class SaucedacityApp final : public wxApp {
     DECLARE_EVENT_TABLE()
 };
 
-extern SaucedacityApp & wxGetApp();
+extern TenacityApp & wxGetApp();
 
 #endif

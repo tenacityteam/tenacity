@@ -19,7 +19,7 @@
 class wxDC;
 class wxMouseEvent;
 
-class SaucedacityProject;
+class TenacityProject;
 class TextEditDelegate;
 class Track;
 
@@ -30,10 +30,10 @@ public:
 
     virtual ~TextEditDelegate();
 
-    virtual void OnTextEditFinished(SaucedacityProject* project, const wxString& text) = 0;
-    virtual void OnTextEditCancelled(SaucedacityProject* project) = 0;
-    virtual void OnTextModified(SaucedacityProject* project, const wxString& text) = 0;
-    virtual void OnTextContextMenu(SaucedacityProject* project, const wxPoint& position) = 0;
+    virtual void OnTextEditFinished(TenacityProject* project, const wxString& text) = 0;
+    virtual void OnTextEditCancelled(TenacityProject* project) = 0;
+    virtual void OnTextModified(TenacityProject* project, const wxString& text) = 0;
+    virtual void OnTextContextMenu(TenacityProject* project, const wxPoint& position) = 0;
 
 };
 
@@ -73,8 +73,8 @@ public:
     void SetTextColor(const wxColor& textColor);
     void SetTextSelectionColor(const wxColor& textSelectionColor);
 
-    void Cancel(SaucedacityProject* project);
-    void Finish(SaucedacityProject* project);
+    void Cancel(TenacityProject* project);
+    void Finish(TenacityProject* project);
 
     std::pair<int, int> GetSelection() const;
     void SetSelection(int from, int to);
@@ -82,18 +82,18 @@ public:
     bool IsSelectionEmpty();
 
     bool CaptureKey(int keyCode, int mods);
-    bool OnKeyDown(int keyCode, int mods, SaucedacityProject* project);
-    bool OnChar(int charCode, SaucedacityProject* project);
+    bool OnKeyDown(int keyCode, int mods, TenacityProject* project);
+    bool OnChar(int charCode, TenacityProject* project);
 
-    bool OnClick(const wxMouseEvent& event, SaucedacityProject* project);
-    bool OnDrag(const wxMouseEvent& event, SaucedacityProject* project);
-    bool OnRelease(const wxMouseEvent& event, SaucedacityProject* project);
+    bool OnClick(const wxMouseEvent& event, TenacityProject* project);
+    bool OnDrag(const wxMouseEvent& event, TenacityProject* project);
+    bool OnRelease(const wxMouseEvent& event, TenacityProject* project);
 
     void Draw(wxDC& dc, const wxRect& rect);
 
-    bool CutSelectedText(SaucedacityProject& project);
-    bool CopySelectedText(SaucedacityProject& project);
-    bool PasteSelectedText(SaucedacityProject& project);
+    bool CutSelectedText(TenacityProject& project);
+    bool CopySelectedText(TenacityProject& project);
+    bool PasteSelectedText(TenacityProject& project);
 
     bool GetCharPositionX(int index, int* outX);
 
@@ -101,9 +101,9 @@ public:
 
 protected:
 
-    bool HandleDragRelease(const wxMouseEvent& event, SaucedacityProject* project);
+    bool HandleDragRelease(const wxMouseEvent& event, TenacityProject* project);
 
-    void RemoveSelectedText(SaucedacityProject* project);
+    void RemoveSelectedText(TenacityProject* project);
     int FindCursorIndex(const wxPoint& point);
     
 };

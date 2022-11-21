@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectManager.h
 
-Paul Licameli split from SaucedacityProject.h
+Paul Licameli split from TenacityProject.h
 
 **********************************************************************/
 
@@ -16,13 +16,13 @@ Paul Licameli split from SaucedacityProject.h
 #include <wx/event.h> // to inherit
 #include "ClientData.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 class wxTimer;
 class wxTimerEvent;
 
-class SaucedacityProject;
+class TenacityProject;
 struct AudioIOStartStreamOptions;
 
 ///\brief Object associated with a project for high-level management of the
@@ -33,23 +33,23 @@ class SAUCEDACITY_DLL_API ProjectManager final
    , public ClientData::Base
 {
 public:
-   static ProjectManager &Get( SaucedacityProject &project );
-   static const ProjectManager &Get( const SaucedacityProject &project );
+   static ProjectManager &Get( TenacityProject &project );
+   static const ProjectManager &Get( const TenacityProject &project );
 
-   explicit ProjectManager( SaucedacityProject &project );
+   explicit ProjectManager( TenacityProject &project );
    ProjectManager( const ProjectManager & ) = delete;
    ProjectManager &operator=( const ProjectManager & ) = delete;
    ~ProjectManager() override;
 
    // This is the factory for projects:
-   static SaucedacityProject *New();
+   static TenacityProject *New();
 
    // The function that imports files can act as a factory too, and for that
    // reason remains in this class, not in ProjectFileManager
-   static void OpenFiles(SaucedacityProject *proj);
+   static void OpenFiles(TenacityProject *proj);
 
    //! False when it is unsafe to overwrite proj with contents of an .aup3 file
-   static bool SafeToOpenProjectInto(SaucedacityProject &proj);
+   static bool SafeToOpenProjectInto(TenacityProject &proj);
 
    //! Callable object that supplies the `chooser` argument of ProjectFileManager::OpenFile
    /*!
@@ -67,7 +67,7 @@ public:
        @param reuseNonemptyProject if true, may reuse the given project when nonempty,
        but only if importing (not for a project file)
        */
-      ProjectChooser( SaucedacityProject *pProject, bool reuseNonemptyProject )
+      ProjectChooser( TenacityProject *pProject, bool reuseNonemptyProject )
          : mpGivenProject{ pProject }
          , mReuseNonemptyProject{ reuseNonemptyProject }
       {}
@@ -76,17 +76,17 @@ public:
       //! Destroy any fresh project, or rollback the existing project, unless committed
       ~ProjectChooser();
       //! May create a fresh project
-      SaucedacityProject &operator() ( bool openingProjectFile );
+      TenacityProject &operator() ( bool openingProjectFile );
       //! Commit the creation of any fresh project or changes to the existing project
       void Commit();
 
    private:
-      SaucedacityProject *mpGivenProject;
-      SaucedacityProject *mpUsedProject = nullptr;
+      TenacityProject *mpGivenProject;
+      TenacityProject *mpUsedProject = nullptr;
       bool mReuseNonemptyProject;
    };
 
-   //! Open a file into an SaucedacityProject, returning the project, or nullptr for failure
+   //! Open a file into an TenacityProject, returning the project, or nullptr for failure
    /*!
     If an exception escapes this function, no projects are created.
     @param pGivenProject if not null, a project that may be reused
@@ -95,8 +95,8 @@ public:
     @param reuseNonemptyProject if true, may reuse the given project when nonempty,
        but only if importing (not for a project file)
     */
-   static SaucedacityProject *OpenProject(
-      SaucedacityProject *pGivenProject,
+   static TenacityProject *OpenProject(
+      TenacityProject *pGivenProject,
       const FilePath &fileNameArg, bool addtohistory, bool reuseNonemptyProject);
 
    void ResetProjectToEmpty();
@@ -121,7 +121,7 @@ private:
    void RestartTimer();
 
    // non-static data members
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    std::unique_ptr<wxTimer> mTimer;
 

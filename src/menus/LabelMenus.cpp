@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   LabelMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AudioIO.h"
@@ -32,7 +32,7 @@ namespace {
 
 const ReservedCommandFlag
 &LabelsSelectedFlag() { static ReservedCommandFlag flag{
-   [](const SaucedacityProject &project){
+   [](const TenacityProject &project){
       // At least one label track selected, having at least one label
       // completely within the time selection.
       const auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -56,7 +56,7 @@ const ReservedCommandFlag
 
 //Adds label and returns index of label in labeltrack.
 int DoAddLabel(
-   SaucedacityProject &project, const SelectedRegion &region,
+   TenacityProject &project, const SelectedRegion &region,
    bool preserveFocus = false)
 {
    auto &tracks = TrackList::Get( project );
@@ -169,7 +169,7 @@ using EditFunction = std::function<void(Track *, double, double)>;
 //If the function replaces the selection with audio of a different length,
 // bSyncLockedTracks should be set true to perform the same action on sync-lock
 // selected tracks.
-void EditByLabel(SaucedacityProject &project,
+void EditByLabel(TenacityProject &project,
    TrackList &tracks, const SelectedRegion &selectedRegion,
    EditFunction action)
 {
@@ -208,7 +208,7 @@ using EditDestFunction = std::function<Track::Holder (Track *, double, double)>;
 //Functions copy the edited regions to clipboard, possibly in multiple tracks
 //This probably should not be called if *action() changes the timeline, because
 // the copy needs to happen by track, and the timeline change by group.
-void EditClipboardByLabel( SaucedacityProject &project,
+void EditClipboardByLabel( TenacityProject &project,
    TrackList &tracks, const SelectedRegion &selectedRegion,
    EditDestFunction action )
 {
@@ -685,9 +685,9 @@ void OnDisjoinLabels(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static LabelEditActions::Handler instance;
    return instance;
 };

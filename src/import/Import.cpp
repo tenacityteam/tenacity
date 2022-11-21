@@ -37,7 +37,7 @@ ImportLOF.cpp, and ImportAUP.cpp.
 
 #include "ImportPlugin.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -181,7 +181,7 @@ Importer::GetFileTypes( const FileNames::FileType &extraType )
       FileNames::AllFiles,
       // Will fill in the list of extensions later:
       { XO("All supported files"), {} },
-      FileNames::SaucedacityProjects
+      FileNames::TenacityProjects
    };
 
    if ( !extraType.extensions.empty() )
@@ -194,13 +194,13 @@ Importer::GetFileTypes( const FileNames::FileType &extraType )
                                importPlugin->GetSupportedExtensions());
    }
 
-   FileExtensions extraExtensions = FileNames::SaucedacityProjects.extensions;
+   FileExtensions extraExtensions = FileNames::TenacityProjects.extensions;
    extraExtensions.insert(extraExtensions.end(),
                           extraType.extensions.begin(),
                           extraType.extensions.end());
 
    using ExtensionSet = std::unordered_set< FileExtension >;
-   FileExtensions allList = FileNames::SaucedacityProjects.extensions, newList;
+   FileExtensions allList = FileNames::TenacityProjects.extensions, newList;
    allList.insert(allList.end(), extraType.extensions.begin(), extraType.extensions.end());
    ExtensionSet allSet{ allList.begin(), allList.end() }, newSet;
    for ( const auto &format : l ) {
@@ -452,14 +452,14 @@ std::unique_ptr<ExtImportItem> Importer::CreateDefaultImportItem()
 }
 
 // returns number of tracks imported
-bool Importer::Import( SaucedacityProject &project,
+bool Importer::Import( TenacityProject &project,
                      const FilePath &fName,
                      WaveTrackFactory *trackFactory,
                      TrackHolders &tracks,
                      Tags *tags,
                      TranslatableString &errorMessage)
 {
-   SaucedacityProject *pProj = &project;
+   TenacityProject *pProj = &project;
    auto cleanup = valueRestorer( pProj->mbBusyImporting, true );
 
    const FileExtension extension{ fName.AfterLast(wxT('.')) };
@@ -469,7 +469,7 @@ bool Importer::Import( SaucedacityProject &project,
    // MIDI files must be imported, not opened
    if (FileNames::IsMidi(fName)) {
       errorMessage = XO(
-"\"%s\" \nis a MIDI file, not an audio file. \nSaucedacity cannot open this type of file for playing, but you can\nedit it by clicking File > Import > MIDI.")
+"\"%s\" \nis a MIDI file, not an audio file. \nTenacity cannot open this type of file for playing, but you can\nedit it by clicking File > Import > MIDI.")
          .Format( fName );
       return false;
    }
@@ -478,7 +478,7 @@ bool Importer::Import( SaucedacityProject &project,
    // Bug #2647: Peter has a Word 2000 .doc file that is recognized and imported by FFmpeg.
    if (wxFileName(fName).GetExt() == wxT("doc")) {
       errorMessage =
-         XO("\"%s\" \nis a not an audio file. \nSaucedacity cannot open this type of file.")
+         XO("\"%s\" \nis a not an audio file. \nTenacity cannot open this type of file.")
          .Format( fName );
       return false;
    }
@@ -691,7 +691,7 @@ bool Importer::Import( SaucedacityProject &project,
       if (extension.IsSameAs(wxT("cda"), false)) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is an audio CD track. \nSaucedacity cannot open audio CDs directly. \nExtract (rip) the CD tracks to an audio format that \nSaucedacity can import, such as WAV or AIFF.")
+"\"%s\" is an audio CD track. \nTenacity cannot open audio CDs directly. \nExtract (rip) the CD tracks to an audio format that \nTenacity can import, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -700,7 +700,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("m3u"), false))||(extension.IsSameAs(wxT("ram"), false))||(extension.IsSameAs(wxT("pls"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a playlist file. \nSaucedacity cannot open this file because it only contains links to other files. \nYou may be able to open it in a text editor and download the actual audio files.")
+"\"%s\" is a playlist file. \nTenacity cannot open this file because it only contains links to other files. \nYou may be able to open it in a text editor and download the actual audio files.")
             .Format( fName );
          return false;
       }
@@ -708,7 +708,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("wma"), false))||(extension.IsSameAs(wxT("asf"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a Windows Media Audio file. \nSaucedacity cannot open this type of file due to patent restrictions. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
+"\"%s\" is a Windows Media Audio file. \nTenacity cannot open this type of file due to patent restrictions. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -716,7 +716,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("aac"), false))||(extension.IsSameAs(wxT("m4a"), false))||(extension.IsSameAs(wxT("m4r"), false))||(extension.IsSameAs(wxT("mp4"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is an Advanced Audio Coding file.\nWithout the optional FFmpeg library, Saucedacity cannot open this type of file.\nOtherwise, you need to convert it to a supported audio format, such as WAV or AIFF.")
+"\"%s\" is an Advanced Audio Coding file.\nWithout the optional FFmpeg library, Tenacity cannot open this type of file.\nOtherwise, you need to convert it to a supported audio format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -724,7 +724,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("m4p"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is an encrypted audio file. \nThese typically are from an online music store. \nSaucedacity cannot open this type of file due to the encryption. \nTry recording the file into Saucedacity, or burn it to audio CD then \nextract the CD track to a supported audio format such as WAV or AIFF.")
+"\"%s\" is an encrypted audio file. \nThese typically are from an online music store. \nTenacity cannot open this type of file due to the encryption. \nTry recording the file into Tenacity, or burn it to audio CD then \nextract the CD track to a supported audio format such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -732,7 +732,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("ra"), false))||(extension.IsSameAs(wxT("rm"), false))||(extension.IsSameAs(wxT("rpm"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a RealPlayer media file. \nSaucedacity cannot open this proprietary format. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
+"\"%s\" is a RealPlayer media file. \nTenacity cannot open this proprietary format. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -768,7 +768,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("ac3"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a Dolby Digital audio file. \nSaucedacity cannot currently open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
+"\"%s\" is a Dolby Digital audio file. \nTenacity cannot currently open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -786,7 +786,7 @@ bool Importer::Import( SaucedacityProject &project,
       if ((extension.IsSameAs(wxT("mpg"), false))||(extension.IsSameAs(wxT("mpeg"), false))||(extension.IsSameAs(wxT("avi"), false))||(extension.IsSameAs(wxT("wmv"), false))||(extension.IsSameAs(wxT("rv"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a video file. \nSaucedacity cannot currently open this type of file. \nYou need to extract the audio to a supported format, such as WAV or AIFF.")
+"\"%s\" is a video file. \nTenacity cannot currently open this type of file. \nYou need to extract the audio to a supported format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -799,7 +799,7 @@ bool Importer::Import( SaucedacityProject &project,
       // we were not able to recognize the file type
       errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"Saucedacity did not recognize the type of the file '%s'.\n\n%sFor uncompressed files, also try File > Import > Raw Data.")
+"Tenacity did not recognize the type of the file '%s'.\n\n%sFor uncompressed files, also try File > Import > Raw Data.")
          .Format( fName,
 #if defined(USE_FFMPEG)
                !FFmpegFunctions::Load()
@@ -823,7 +823,7 @@ bool Importer::Import( SaucedacityProject &project,
 
       errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"Saucedacity recognized the type of the file '%s'.\nImporters supposedly supporting such files are:\n%s,\nbut none of them understood this file format.")
+"Tenacity recognized the type of the file '%s'.\nImporters supposedly supporting such files are:\n%s,\nbut none of them understood this file format.")
          .Format( fName, pluglist );
    }
 

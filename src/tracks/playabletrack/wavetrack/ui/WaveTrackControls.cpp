@@ -34,7 +34,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../widgets/AudacityMessageBox.h"
 #include "widgets/ProgressDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/UserException.h>
 #include <lib-strings/Identifier.h>
 
@@ -50,7 +50,7 @@ WaveTrackControls::~WaveTrackControls()
 
 std::vector<UIHandlePtr> WaveTrackControls::HitTest
 (const TrackPanelMouseState & st,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    // Hits are mutually exclusive, results single
    const wxMouseState &state = st.state;
@@ -254,7 +254,7 @@ void FormatMenuTable::OnFormatChange(wxCommandEvent & event)
    if (newFormat == pTrack->GetSampleFormat())
       return; // Nothing to do.
 
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
 
    ProgressDialog progress{ XO("Changing sample format"),
                             XO("Processing...   0%%"),
@@ -384,7 +384,7 @@ int RateMenuTable::IdOfRate(int rate)
 /// another track, that one as well.
 void RateMenuTable::SetRate(WaveTrack * pTrack, double rate)
 {
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    for (auto channel : TrackList::Channels(pTrack))
       channel->SetRate(rate);
 
@@ -669,7 +669,7 @@ BEGIN_POPUP_MENU(WaveTrackMenuTable)
          []( PopupMenuHandler &handler, wxMenu &menu, int id ){
             bool canMakeStereo = !isUnsafe( handler ) && isMono( handler );
             if ( canMakeStereo ) {
-               SaucedacityProject &project =
+               TenacityProject &project =
                   static_cast< WaveTrackMenuTable& >( handler ).mpData->project;
                auto &tracks = TrackList::Get( project );
                auto &table = static_cast< WaveTrackMenuTable& >( handler );
@@ -772,7 +772,7 @@ void WaveTrackMenuTable::OnSetDisplay(wxCommandEvent & event)
                .SetDisplay( WaveTrackView::Display{ id } );
          }
 
-         SaucedacityProject *const project = &mpData->project;
+         TenacityProject *const project = &mpData->project;
          ProjectHistory::Get( *project ).ModifyState(true);
 
          using namespace RefreshCode;
@@ -806,7 +806,7 @@ void WaveTrackMenuTable::OnChannelChange(wxCommandEvent & event)
       break;
    }
    pTrack->SetChannel(channel);
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    ProjectHistory::Get( *project )
       .PushState(
 /* i18n-hint: The strings name a track and a channel choice (mono, left, or right) */
@@ -819,7 +819,7 @@ void WaveTrackMenuTable::OnChannelChange(wxCommandEvent & event)
 /// Merge two tracks into one stereo track ??
 void WaveTrackMenuTable::OnMergeStereo(wxCommandEvent &)
 {
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    auto &tracks = TrackList::Get( *project );
 
    WaveTrack *const pTrack = static_cast<WaveTrack*>(mpData->pTrack);
@@ -869,7 +869,7 @@ void WaveTrackMenuTable::SplitStereo(bool stereo)
 {
    WaveTrack *const pTrack = static_cast<WaveTrack*>(mpData->pTrack);
    wxASSERT(pTrack);
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    auto channels = TrackList::Channels( pTrack );
 
    int totalHeight = 0;
@@ -899,7 +899,7 @@ void WaveTrackMenuTable::SplitStereo(bool stereo)
 /// Swap the left and right channels of a stero track...
 void WaveTrackMenuTable::OnSwapChannels(wxCommandEvent &)
 {
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
 
    WaveTrack *const pTrack = static_cast<WaveTrack*>(mpData->pTrack);
    const auto linkType = pTrack->GetLinkType();
@@ -934,7 +934,7 @@ void WaveTrackMenuTable::OnSplitStereo(wxCommandEvent &)
 {
    SplitStereo(true);
    WaveTrack *const pTrack = static_cast<WaveTrack*>(mpData->pTrack);
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    ProjectHistory::Get( *project ).PushState(
    /* i18n-hint: The string names a track  */
       XO("Split stereo track '%s'").Format( pTrack->GetName() ),
@@ -949,7 +949,7 @@ void WaveTrackMenuTable::OnSplitStereoMono(wxCommandEvent &)
 {
    SplitStereo(false);
    WaveTrack *const pTrack = static_cast<WaveTrack*>(mpData->pTrack);
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    ProjectHistory::Get( *project ).PushState(
    /* i18n-hint: The string names a track  */
       XO("Split Stereo to Mono '%s'").Format( pTrack->GetName() ),

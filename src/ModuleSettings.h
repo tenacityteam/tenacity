@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_MODULE_SETTINGS__
 #define __AUDACITY_MODULE_SETTINGS__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 enum {

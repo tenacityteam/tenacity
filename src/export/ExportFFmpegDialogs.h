@@ -15,7 +15,7 @@ LRN
 
 #include "../ffmpeg/FFmpeg.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-ffmpeg-support/FFmpegFunctions.h>
 #include <lib-files/FileNames.h>
 #include <lib-xml/XMLFileReader.h>

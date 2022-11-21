@@ -25,16 +25,16 @@
 #include <wx/settings.h>
 
 #ifdef __WXMSW__
-   #include "../images/SaucedacityLogo.xpm"
+   #include "../images/TenacityLogo.xpm"
 #else
-   #include "../images/SaucedacityLogo48x48.xpm"
+   #include "../images/TenacityLogo48x48.xpm"
 #endif
 
 #ifdef __WXMAC__
    #include <Carbon/Carbon.h>
 #endif
 
-#define AudacityKaraokeTitle XO("Saucedacity Karaoke%s")
+#define AudacityKaraokeTitle XO("Tenacity Karaoke%s")
 
 enum {
    kID_RadioButton_BouncingBall = 10101,
@@ -49,7 +49,7 @@ END_EVENT_TABLE()
 
 const wxSize gSize = wxSize(LYRICS_DEFAULT_WIDTH, LYRICS_DEFAULT_HEIGHT);
 
-LyricsWindow::LyricsWindow(SaucedacityProject *parent)
+LyricsWindow::LyricsWindow(TenacityProject *parent)
    : wxFrame( &GetProjectFrame( *parent ), -1, wxString{},
             wxPoint(100, 300), gSize,
             //v Bug in wxFRAME_FLOAT_ON_PARENT:
@@ -79,9 +79,9 @@ LyricsWindow::LyricsWindow(SaucedacityProject *parent)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #ifdef __WXMSW__
-      wxIcon ic{ wxICON(SaucedacityLogo) };
+      wxIcon ic{ wxICON(TenacityLogo) };
 #else
-      wxIcon ic{wxICON(SaucedacityLogo48x48)};
+      wxIcon ic{wxICON(TenacityLogo48x48)};
 #endif
       SetIcon(ic);
    }
@@ -202,8 +202,8 @@ void LyricsWindow::UpdatePrefs()
 namespace {
 
 // Lyrics window attached to each project is built on demand by:
-SaucedacityProject::AttachedWindows::RegisteredFactory sLyricsWindowKey{
-   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sLyricsWindowKey{
+   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       return safenew LyricsWindow( &parent );
    }
 };
@@ -220,9 +220,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static Handler instance;
    return instance;
 }

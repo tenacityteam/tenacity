@@ -31,7 +31,7 @@
 #include <wx/filename.h>
 #include <wx/utils.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/TempDirectory.h>
 #include <lib-preferences/Prefs.h>
@@ -443,7 +443,7 @@ bool DirectoriesPrefs::Validate()
    if (Temp != oldDir) {
       AudacityMessageBox(
          XO(
-"Changes to temporary directory will not take effect until Saucedacity is restarted"),
+"Changes to temporary directory will not take effect until Tenacity is restarted"),
          XO("Temp Directory Update"),
          wxOK | wxCENTRE | wxICON_INFORMATION);
    }
@@ -475,7 +475,7 @@ bool DirectoriesPrefs::Commit()
 PrefsPanel::Factory
 DirectoriesPrefsFactory()
 {
-   return [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   return [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew DirectoriesPrefs(parent, winid);

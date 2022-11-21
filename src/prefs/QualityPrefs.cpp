@@ -23,7 +23,7 @@
 #include <wx/defs.h>
 #include <wx/textctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/Dither.h>
 #include <lib-math/Resample.h>
 #include <lib-preferences/Prefs.h>
@@ -217,7 +217,7 @@ bool QualityPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Quality",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew QualityPrefs(parent, winid);

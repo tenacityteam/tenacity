@@ -13,7 +13,7 @@
 
 #include <functional>
 
-class SaucedacityProject;
+class TenacityProject;
 class XMLTagHandler;
 class wxString;
 
@@ -21,7 +21,7 @@ namespace ProjectFileIORegistry {
 
 // Type of functions returning objects that interpret a part of the saved XML
 using TagHandlerFactory =
-   std::function< XMLTagHandler *( SaucedacityProject & ) >;
+   std::function< XMLTagHandler *( TenacityProject & ) >;
 
 // Typically statically constructed
 struct SAUCEDACITY_DLL_API Entry{

@@ -21,7 +21,7 @@ class wxRect;
 class wxRegion;
 class wxWindow;
 
-class SaucedacityProject;
+class TenacityProject;
 struct HitTestPreview;
 class TrackPanelCell;
 struct TrackPanelMouseEvent;
@@ -46,7 +46,7 @@ public:
    // This might put the handle into its first rotated state
    // (or last, if forward is false) or mark itself as needing a highlight.
    // Default does nothing.
-   virtual void Enter(bool forward, SaucedacityProject *pProject);
+   virtual void Enter(bool forward, TenacityProject *pProject);
 
    // Tell whether the handle has more than one TAB key rotation state.
    // Default is always false.
@@ -64,7 +64,7 @@ public:
 
    // The handle may change state and mark itself for highlight change.
    // Default does nothing and returns false
-   virtual bool Escape(SaucedacityProject *pProject);
+   virtual bool Escape(TenacityProject *pProject);
 
    //! Whether the handle has any special right-button handling
    /*! If not, then Click() will not be called for right click.
@@ -76,20 +76,20 @@ public:
    // Otherwise the framework will later call Release or Cancel after
    // some number of Drag calls.
    virtual Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) = 0;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) = 0;
 
    // Assume previously Clicked and not yet Released or Cancelled.
    // pCell may be other than for Click; may be NULL, and rect empty.
    // Return value may include the Cancelled return flag,
    // in which case the handle will not be invoked again.
    virtual Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) = 0;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) = 0;
 
    // Can be called when the handle has been hit but not yet clicked,
    // or called after Drag().
    // Specifies cursor and status bar message.
    virtual HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject) = 0;
+      (const TrackPanelMouseState &state, TenacityProject *pProject) = 0;
 
    // Assume previously Clicked and not yet Released or Cancelled.
    // event.pCell may be other than for Click; may be NULL, and rect empty.
@@ -97,12 +97,12 @@ public:
    // connecting and disconnecting event handlers for the menu items.
    // Cancelled in return flags has no effect.
    virtual Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) = 0;
 
    // Assume previously Clicked and not yet Released or Cancelled.
    // Cancelled in return flags has no effect.
-   virtual Result Cancel(SaucedacityProject *pProject) = 0;
+   virtual Result Cancel(TenacityProject *pProject) = 0;
 
    // Whether to force Release (not Cancel!) of the drag when a
    // keystroke command is about to be dispatched.  Default is always false.
@@ -116,7 +116,7 @@ public:
    // PRL: all former uses of this are now accomplished with weak_ptr instead
    // to avoid dangling pointers to tracks.  But maybe there will be a future
    // use?
-   virtual void OnProjectChange(SaucedacityProject *pProject);
+   virtual void OnProjectChange(TenacityProject *pProject);
 
 public:
    Result GetChangeHighlight() const { return mChangeHighlight; }

@@ -37,7 +37,7 @@ other settings.
 
 #include "portaudio.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
@@ -419,7 +419,7 @@ bool DevicePrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Device",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew DevicePrefs(parent, winid);

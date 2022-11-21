@@ -70,7 +70,7 @@
 #include <cstdio>
 #include <cmath>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/RealFFTf.h>
 
 #ifdef __WXMSW__

@@ -22,7 +22,7 @@ information.
 #include "sndfile.h"
 #include "widgets/AudacityMessageBox.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Internat.h>
 #include <lib-utility/MemoryX.h>

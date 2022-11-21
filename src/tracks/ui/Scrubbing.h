@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 #include <vector>
 #include <wx/longlong.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 #include <lib-preferences/Prefs.h> // to inherit
 #include <lib-registries/ClientData.h>
@@ -24,7 +24,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../commands/CommandContext.h"
 #include "../../commands/CommandManager.h" // for MenuTable
 
-class SaucedacityProject;
+class TenacityProject;
 class TranslatableString;
 
 // Conditionally compile either a separate thead, or else use a timer in the main
@@ -44,11 +44,11 @@ class SAUCEDACITY_DLL_API Scrubber final
    , public std::enable_shared_from_this< Scrubber >
 {
 public:   
-   static Scrubber &Get( SaucedacityProject &project );
-   static const Scrubber &Get( const SaucedacityProject &project );
+   static Scrubber &Get( TenacityProject &project );
+   static const Scrubber &Get( const TenacityProject &project );
 
    explicit
-   Scrubber(SaucedacityProject *project);
+   Scrubber(TenacityProject *project);
    Scrubber( const Scrubber & ) = delete;
    Scrubber &operator=( const Scrubber & ) = delete;
    ~Scrubber();
@@ -176,7 +176,7 @@ private:
    int mLogMaxScrubSpeed;
 #endif
 
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 
    DECLARE_EVENT_TABLE()
 

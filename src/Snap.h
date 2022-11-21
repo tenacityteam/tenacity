@@ -19,7 +19,7 @@
 #include <wx/defs.h>
 #include "widgets/NumericTextCtrl.h" // member variable
 
-class SaucedacityProject;
+class TenacityProject;
 class Track;
 class TrackList;
 class ZoomInfo;
@@ -55,13 +55,13 @@ struct SnapResults {
 class SAUCEDACITY_DLL_API SnapManager
 {
 public:
-   SnapManager(const SaucedacityProject &project,
+   SnapManager(const TenacityProject &project,
                SnapPointArray candidates,
                const ZoomInfo &zoomInfo,
                bool noTimeSnap = false,
                int pixelTolerance = kPixelTolerance);
 
-   SnapManager(const SaucedacityProject &project,
+   SnapManager(const TenacityProject &project,
                const TrackList &tracks,
                const ZoomInfo &zoomInfo,
                bool noTimeSnap = false,
@@ -94,7 +94,7 @@ private:
 
 private:
 
-   const SaucedacityProject *mProject;
+   const TenacityProject *mProject;
    const ZoomInfo *mZoomInfo;
    int mPixelTolerance;
    bool mNoTimeSnap;

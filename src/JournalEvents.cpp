@@ -26,7 +26,7 @@
 #include <wx/valgen.h>
 #include <wx/window.h>
 
-#include <lib-exceptions/SaucedacityException.h>
+#include <lib-exceptions/TenacityException.h>
 #include <lib-strings/Identifier.h>
 #include <lib-strings/wxArrayStringEx.h>
 

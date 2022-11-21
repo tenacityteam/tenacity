@@ -18,7 +18,7 @@ modelled on BuiltinEffectsModule
 #include "AudacityCommand.h"
 #include "ModuleManager.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 namespace {
@@ -95,7 +95,7 @@ ComponentInterfaceSymbol BuiltinCommandsModule::GetSymbol()
 
 VendorSymbol BuiltinCommandsModule::GetVendor()
 {
-   return XO("The Audacity and Saucedacity Teams");
+   return XO("The Audacity and Tenacity Teams");
 }
 
 wxString BuiltinCommandsModule::GetVersion()
@@ -106,7 +106,7 @@ wxString BuiltinCommandsModule::GetVersion()
 
 TranslatableString BuiltinCommandsModule::GetDescription()
 {
-   return XO("Provides builtin commands to Saucedacity");
+   return XO("Provides builtin commands to Tenacity");
 }
 
 // ============================================================================

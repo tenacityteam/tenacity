@@ -13,7 +13,7 @@ Paul Licameli split from class WaveTrack
 
 #include "../../../ui/CommonTrackView.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleCount.h>
 #include <lib-registries/ClientData.h>
 
@@ -57,7 +57,7 @@ public:
       std::vector<UIHandlePtr>
    > DoDetailedHitTest(
       const TrackPanelMouseState &state,
-      const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
+      const TenacityProject *pProject, int currentTool, bool bMultiTool,
       const std::shared_ptr<WaveTrack> &wt );
    
 protected:
@@ -68,7 +68,7 @@ protected:
    std::weak_ptr<WaveTrackView> GetWaveTrackView() const;
 
    std::vector<MenuItem> GetMenuItems(
-      const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject )
+      const wxRect &rect, const wxPoint *pPosition, TenacityProject *pProject )
    override;
 
 private:
@@ -124,7 +124,7 @@ public:
       std::vector<UIHandlePtr>
    > DoDetailedHitTest(
       const TrackPanelMouseState &state,
-      const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
+      const TenacityProject *pProject, int currentTool, bool bMultiTool,
       const std::shared_ptr<WaveTrack> &wt,
       CommonTrackView &view);
 
@@ -164,16 +164,16 @@ public:
 
    unsigned CaptureKey
    (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-       SaucedacityProject* project) override;
+       TenacityProject* project) override;
 
    unsigned KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-       SaucedacityProject* project) override;
+       TenacityProject* project) override;
 
    unsigned Char
    (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-       SaucedacityProject* project) override;
+       TenacityProject* project) override;
 
-   unsigned LoseFocus(SaucedacityProject *project) override;
+   unsigned LoseFocus(TenacityProject *project) override;
 
    static bool ClipDetailsVisible(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect);
    static wxRect ClipHitTestArea(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect);
@@ -184,15 +184,15 @@ public:
    //turn finilizes text editing (state is saved after text
    //editing was intentionally finished instead)
 
-   bool CutSelectedText(SaucedacityProject& project);
-   bool CopySelectedText(SaucedacityProject& project);
-   bool PasteText(SaucedacityProject& project);
-   bool SelectAllText(SaucedacityProject& project);
+   bool CutSelectedText(TenacityProject& project);
+   bool CopySelectedText(TenacityProject& project);
+   bool PasteText(TenacityProject& project);
+   bool SelectAllText(TenacityProject& project);
 
 private:
    void BuildSubViews() const;
    void DoSetDisplay(Display display, bool exclusive = true);
-   bool SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward);
+   bool SelectNextClip(ViewInfo& viewInfo, TenacityProject* project, bool forward);
 
    // TrackPanelDrawable implementation
    void Draw(
@@ -201,7 +201,7 @@ private:
 
    std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
+       const TenacityProject *pProject, int currentTool, bool bMultiTool)
       override;
 
    // TrackView implementation

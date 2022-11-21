@@ -13,7 +13,7 @@ Paul Licameli split from ProjectManager.h
 
 #include "ClientData.h"
 
-class SaucedacityProject;
+class TenacityProject;
 struct UndoState;
 enum class UndoPush : unsigned char;
 
@@ -21,10 +21,10 @@ class SAUCEDACITY_DLL_API ProjectHistory final
    : public ClientData::Base
 {
 public:
-   static ProjectHistory &Get( SaucedacityProject &project );
-   static const ProjectHistory &Get( const SaucedacityProject &project );
+   static ProjectHistory &Get( TenacityProject &project );
+   static const ProjectHistory &Get( const TenacityProject &project );
 
-   explicit ProjectHistory( SaucedacityProject &project )
+   explicit ProjectHistory( TenacityProject &project )
       : mProject{ project }
    {}
    ProjectHistory( const ProjectHistory & ) = delete;
@@ -52,7 +52,7 @@ public:
    void SetDirty( bool value ) { mDirty = value; }
 
 private:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    bool mDirty{ false };
 };

@@ -116,7 +116,7 @@ for registering for changes.
 #include "widgets/wxTextCtrlWrapper.h"
 #include "theme/AllThemeResources.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterface.h>
 #include <lib-preferences/Prefs.h>
 #include "widgets/SliderTextCtrl.h"

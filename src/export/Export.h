@@ -15,7 +15,7 @@
 #include <vector>
 #include <wx/filename.h> // member variable
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-registries/Registry.h>
@@ -29,7 +29,7 @@ class wxFileCtrlEvent;
 class wxMemoryDC;
 class wxSimplebook;
 class wxStaticText;
-class SaucedacityProject;
+class TenacityProject;
 class WaveTrack;
 class Tags;
 class TrackList;
@@ -125,7 +125,7 @@ public:
     * responsible for alerting the user.  Otherwise ProgressResult::Success or
     * ProgressResult::Stopped
     */
-   virtual ProgressResult Export(SaucedacityProject *project,
+   virtual ProgressResult Export(TenacityProject *project,
                        std::unique_ptr<ProgressDialog> &pDialog,
                        unsigned channels,
                        const wxFileNameWrapper &fName,
@@ -183,11 +183,11 @@ public:
          const Registry::Placement &placement = { wxEmptyString, {} } );
    };
 
-   static bool DoEditMetadata(SaucedacityProject &project,
+   static bool DoEditMetadata(TenacityProject &project,
       const TranslatableString &title,
       const TranslatableString &shortUndoDescription, bool force);
 
-   Exporter( SaucedacityProject &project );
+   Exporter( TenacityProject &project );
    virtual ~Exporter();
 
    void SetFileDialogTitle( const TranslatableString & DialogTitle );
@@ -235,7 +235,7 @@ private:
    FileExtension mFormatName;
    FileDialogWrapper *mDialog;
    TranslatableString mFileDialogTitle;
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
    std::unique_ptr<MixerSpec> mMixerSpec;
 
    ExportPluginArray mPlugins;

@@ -42,7 +42,7 @@
 #include "../Tags.h"
 #include "../widgets/ProgressDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #define DESC XO("Ogg Vorbis files")
@@ -92,7 +92,7 @@ public:
    wxString GetPluginStringID() override { return wxT("liboggvorbis"); }
    TranslatableString GetPluginFormatDescription() override;
    std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, SaucedacityProject*) override;
+      const FilePath &Filename, TenacityProject*) override;
 };
 
 
@@ -165,7 +165,7 @@ TranslatableString OggImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> OggImportPlugin::Open(
-   const FilePath &filename, SaucedacityProject*)
+   const FilePath &filename, TenacityProject*)
 {
    // Suppress some compiler warnings about unused global variables in the library header
    wxUnusedVar(OV_CALLBACKS_DEFAULT);

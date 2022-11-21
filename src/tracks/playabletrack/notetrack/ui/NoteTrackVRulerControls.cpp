@@ -35,7 +35,7 @@ NoteTrackVRulerControls::~NoteTrackVRulerControls()
 
 std::vector<UIHandlePtr> NoteTrackVRulerControls::HitTest
 (const TrackPanelMouseState &st,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    std::vector<UIHandlePtr> results;
    UIHandlePtr result;
@@ -55,7 +55,7 @@ std::vector<UIHandlePtr> NoteTrackVRulerControls::HitTest
 }
 
 unsigned NoteTrackVRulerControls::HandleWheelRotation
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    const wxMouseEvent &event = evt.event;

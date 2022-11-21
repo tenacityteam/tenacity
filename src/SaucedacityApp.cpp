@@ -1,22 +1,22 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
-  SaucedacityApp.cpp
+  TenacityApp.cpp
 
   Dominic Mazzoni
 
 ******************************************************************//**
 
-\class SaucedacityApp
-\brief SaucedacityApp is the 'main' class for Saucedacity
+\class TenacityApp
+\brief TenacityApp is the 'main' class for Tenacity
 
 It handles initialization and termination by subclassing wxApp.
 
 *//*******************************************************************/
 
 
-#include "SaucedacityApp.h"
+#include "TenacityApp.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/wxcrtvararg.h>
@@ -69,14 +69,14 @@ It handles initialization and termination by subclassing wxApp.
 #include <wx/msw/registry.h> // for wxRegKey
 #endif
 
-// Saucedacity libraries
-#include <lib-files/SaucedacityLogger.h>
+// Tenacity libraries
+#include <lib-files/TenacityLogger.h>
 #include <lib-math/FFT.h>
 #include <lib-preferences/FileConfig.h>
 
 #include "AboutDialog.h"
 #include "AColor.h"
-#include "SaucedacityFileConfig.h"
+#include "TenacityFileConfig.h"
 #include "AudioIO.h"
 #include "Benchmark.h"
 #include "Clipboard.h"
@@ -137,7 +137,7 @@ It handles initialization and termination by subclassing wxApp.
 #endif
 
 // Logo for Splash Screen
-#include "../images/SaucedacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.xpm"
 
 #include <thread>
 
@@ -162,7 +162,7 @@ void PopulatePreferences()
       const wxString fullPath{fn.GetFullPath()};
 
       auto pIni =
-         SaucedacityFileConfig::Create({}, {}, fullPath, {},
+         TenacityFileConfig::Create({}, {}, fullPath, {},
             wxCONFIG_USE_LOCAL_FILE);
       auto &ini = *pIni;
 
@@ -204,7 +204,7 @@ void PopulatePreferences()
 "Reset Preferences?\n\nThis is a one-time question, after an 'install' where you asked to have the Preferences reset.");
       int action = AudacityMessageBox(
          prompt,
-         XO("Reset Saucedacity Preferences"),
+         XO("Reset Tenacity Preferences"),
          wxYES_NO, NULL);
       if (action == wxYES)   // reset
       {
@@ -409,7 +409,7 @@ static void QuitAudacity(bool bForce)
    //DELETE Profiler::Instance();
 
    // Save last log for diagnosis
-   auto logger = SaucedacityLogger::Get();
+   auto logger = TenacityLogger::Get();
    if (logger)
    {
       wxFileName logFile(FileNames::DataDir(), wxT("lastlog.txt"));
@@ -439,7 +439,7 @@ static wxArrayString ofqueue;
 // of Audacity.
 //
 
-#define IPC_APPL wxT("saucedacity")
+#define IPC_APPL wxT("tenacity")
 #define IPC_TOPIC wxT("System")
 
 class IPCConn final : public wxConnection
@@ -491,7 +491,7 @@ public:
 
 #if defined(__WXMAC__)
 
-IMPLEMENT_APP_NO_MAIN(SaucedacityApp)
+IMPLEMENT_APP_NO_MAIN(TenacityApp)
 IMPLEMENT_WX_THEME_SUPPORT
 
 int main(int argc, char *argv[])
@@ -503,7 +503,7 @@ int main(int argc, char *argv[])
 
 #elif defined(__WXGTK__) && defined(NDEBUG)
 
-IMPLEMENT_APP_NO_MAIN(SaucedacityApp)
+IMPLEMENT_APP_NO_MAIN(TenacityApp)
 IMPLEMENT_WX_THEME_SUPPORT
 
 int main(int argc, char *argv[])
@@ -522,25 +522,25 @@ int main(int argc, char *argv[])
 }
 
 #else
-IMPLEMENT_APP(SaucedacityApp)
+IMPLEMENT_APP(TenacityApp)
 #endif
 
 #ifdef __WXMAC__
 
 // in response of an open-document apple event
-void SaucedacityApp::MacOpenFile(const wxString &fileName)
+void TenacityApp::MacOpenFile(const wxString &fileName)
 {
    ofqueue.push_back(fileName);
 }
 
 // in response of a print-document apple event
-void SaucedacityApp::MacPrintFile(const wxString &fileName)
+void TenacityApp::MacPrintFile(const wxString &fileName)
 {
    ofqueue.push_back(fileName);
 }
 
 // in response of a open-application apple event
-void SaucedacityApp::MacNewFile()
+void TenacityApp::MacNewFile()
 {
    if (!gInited)
       return;
@@ -559,52 +559,52 @@ void SaucedacityApp::MacNewFile()
 #define ID_IPC_SOCKET   6301
 
 // we don't really care about the timer id, but set this value just in case we do in the future
-#define kSaucedacityAppTimerID 0
+#define kTenacityAppTimerID 0
 
-BEGIN_EVENT_TABLE(SaucedacityApp, wxApp)
-   EVT_QUERY_END_SESSION(SaucedacityApp::OnQueryEndSession)
-   EVT_END_SESSION(SaucedacityApp::OnEndSession)
+BEGIN_EVENT_TABLE(TenacityApp, wxApp)
+   EVT_QUERY_END_SESSION(TenacityApp::OnQueryEndSession)
+   EVT_END_SESSION(TenacityApp::OnEndSession)
 
-   EVT_TIMER(kSaucedacityAppTimerID, SaucedacityApp::OnTimer)
+   EVT_TIMER(kTenacityAppTimerID, TenacityApp::OnTimer)
 #ifdef __WXMAC__
-   EVT_MENU(wxID_NEW, SaucedacityApp::OnMenuNew)
-   EVT_MENU(wxID_OPEN, SaucedacityApp::OnMenuOpen)
-   EVT_MENU(wxID_ABOUT, SaucedacityApp::OnMenuAbout)
-   EVT_MENU(wxID_PREFERENCES, SaucedacityApp::OnMenuPreferences)
+   EVT_MENU(wxID_NEW, TenacityApp::OnMenuNew)
+   EVT_MENU(wxID_OPEN, TenacityApp::OnMenuOpen)
+   EVT_MENU(wxID_ABOUT, TenacityApp::OnMenuAbout)
+   EVT_MENU(wxID_PREFERENCES, TenacityApp::OnMenuPreferences)
 #endif
 
    // Associate the handler with the menu id on all operating systems, even
    // if they don't have an application menu bar like in macOS, so that
    // other parts of the program can send the application a shut-down
    // event
-   EVT_MENU(wxID_EXIT, SaucedacityApp::OnMenuExit)
+   EVT_MENU(wxID_EXIT, TenacityApp::OnMenuExit)
 
 #ifndef __WXMSW__
-   EVT_SOCKET(ID_IPC_SERVER, SaucedacityApp::OnServerEvent)
-   EVT_SOCKET(ID_IPC_SOCKET, SaucedacityApp::OnSocketEvent)
+   EVT_SOCKET(ID_IPC_SERVER, TenacityApp::OnServerEvent)
+   EVT_SOCKET(ID_IPC_SOCKET, TenacityApp::OnSocketEvent)
 #endif
 
    // Recent file event handlers.
-   EVT_MENU(FileHistory::ID_RECENT_CLEAR, SaucedacityApp::OnMRUClear)
+   EVT_MENU(FileHistory::ID_RECENT_CLEAR, TenacityApp::OnMRUClear)
    EVT_MENU_RANGE(FileHistory::ID_RECENT_FIRST, FileHistory::ID_RECENT_LAST,
-      SaucedacityApp::OnMRUFile)
+      TenacityApp::OnMRUFile)
 
    // Handle AppCommandEvents (usually from a script)
-   EVT_APP_COMMAND(wxID_ANY, SaucedacityApp::OnReceiveCommand)
+   EVT_APP_COMMAND(wxID_ANY, TenacityApp::OnReceiveCommand)
 
    // Global ESC key handling
-   EVT_KEY_DOWN(SaucedacityApp::OnKeyDown)
+   EVT_KEY_DOWN(TenacityApp::OnKeyDown)
 END_EVENT_TABLE()
 
 // backend for OnMRUFile
 // TODO: Would be nice to make this handle not opening a file with more panache.
 //  - Inform the user if DefaultOpenPath not set.
 //  - Switch focus to correct instance of project window, if already open.
-bool SaucedacityApp::MRUOpen(const FilePath &fullPathStr) {
+bool TenacityApp::MRUOpen(const FilePath &fullPathStr) {
    // Most of the checks below are copied from ProjectManager::OpenFiles.
    // - some rationalisation might be possible.
 
-   SaucedacityProject *proj = GetActiveProject();
+   TenacityProject *proj = GetActiveProject();
 
    if (!fullPathStr.empty())
    {
@@ -614,7 +614,7 @@ bool SaucedacityApp::MRUOpen(const FilePath &fullPathStr) {
          FileNames::UpdateDefaultPath(FileNames::Operation::Open, ::wxPathOnly(fullPathStr));
 
          // Make sure it isn't already open.
-         // Test here even though SaucedacityProject::OpenFile() also now checks, because
+         // Test here even though TenacityProject::OpenFile() also now checks, because
          // that method does not return the bad result.
          // That itself may be a FIXME.
          if (ProjectFileManager::IsAlreadyOpen(fullPathStr))
@@ -635,12 +635,12 @@ bool SaucedacityApp::MRUOpen(const FilePath &fullPathStr) {
    return(true);
 }
 
-bool SaucedacityApp::SafeMRUOpen(const wxString &fullPathStr)
+bool TenacityApp::SafeMRUOpen(const wxString &fullPathStr)
 {
    return GuardedCall< bool >( [&]{ return MRUOpen( fullPathStr ); } );
 }
 
-void SaucedacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
+void TenacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
 {
    FileHistory::Global().Clear();
 }
@@ -648,15 +648,15 @@ void SaucedacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
 //vvv Basically, anything from Recent Files is treated as a .aup3, until proven otherwise,
 // then it tries to Import(). Very questionable handling, imo.
 // Better, for example, to check the file type early on.
-void SaucedacityApp::OnMRUFile(wxCommandEvent& event) {
+void TenacityApp::OnMRUFile(wxCommandEvent& event) {
    int n = event.GetId() - FileHistory::ID_RECENT_FIRST;
    auto &history = FileHistory::Global();
    const auto &fullPathStr = history[ n ];
 
    // Try to open only if not already open.
-   // Test IsAlreadyOpen() here even though SaucedacityProject::MRUOpen() also now checks,
+   // Test IsAlreadyOpen() here even though TenacityProject::MRUOpen() also now checks,
    // because we don't want to Remove() just because it already exists,
-   // and SaucedacityApp::OnMacOpenFile() calls MRUOpen() directly.
+   // and TenacityApp::OnMacOpenFile() calls MRUOpen() directly.
    // that method does not return the bad result.
    // PRL: Don't call SafeMRUOpen
    // -- if open fails for some exceptional reason of resource exhaustion that
@@ -665,7 +665,7 @@ void SaucedacityApp::OnMRUFile(wxCommandEvent& event) {
       history.Remove(n);
 }
 
-void SaucedacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
+void TenacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 {
    // Filenames are queued when Audacity receives a few of the
    // AppleEvent messages (via wxWidgets).  So, open any that are
@@ -681,7 +681,7 @@ void SaucedacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
             // Get the user's attention if no file name was specified
             if (name.empty()) {
                // Get the users attention
-               SaucedacityProject *project = GetActiveProject();
+               TenacityProject *project = GetActiveProject();
                if (project) {
                   auto &window = GetProjectFrame( *project );
                   window.Maximize();
@@ -715,7 +715,7 @@ void SaucedacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 #define WL(lang,sublang)
 #endif
 
-void SaucedacityApp::OnFatalException()
+void TenacityApp::OnFatalException()
 {
    #ifdef __UNIX__
       // Cleanup our IPC resources. Error checking isn't that important given
@@ -732,14 +732,14 @@ void SaucedacityApp::OnFatalException()
 #pragma warning( disable : 4702) // unreachable code warning.
 #endif //_MSC_VER
 
-bool SaucedacityApp::OnExceptionInMainLoop()
+bool TenacityApp::OnExceptionInMainLoop()
 {
    // This function is invoked from catch blocks in the wxWidgets framework,
    // and throw; without argument re-throws the exception being handled,
    // letting us dispatch according to its type.
 
    try { throw; }
-   catch ( SaucedacityException &e ) {
+   catch ( TenacityException &e ) {
       (void)e;// Compiler food
       // Here is the catch-all for our own exceptions
 
@@ -763,7 +763,7 @@ bool SaucedacityApp::OnExceptionInMainLoop()
 
          // Give the user an alert
          try { std::rethrow_exception( pException ); }
-         catch( SaucedacityException &e )
+         catch( TenacityException &e )
             { e.DelayedHandlerAction(); }
 
       } );
@@ -783,14 +783,14 @@ bool SaucedacityApp::OnExceptionInMainLoop()
 #pragma warning( pop )
 #endif //_MSC_VER
 
-SaucedacityApp::SaucedacityApp()
+TenacityApp::TenacityApp()
 {
 #if defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
    wxHandleFatalExceptions();
 #endif
 }
 
-SaucedacityApp::~SaucedacityApp()
+TenacityApp::~TenacityApp()
 {
    #ifdef __UNIX__
       CleanupIPCResources();
@@ -799,7 +799,7 @@ SaucedacityApp::~SaucedacityApp()
 
 // The `main program' equivalent, creating the windows and returning the
 // main frame
-bool SaucedacityApp::OnInit()
+bool TenacityApp::OnInit()
 {
    // JKC: ANSWER-ME: Who actually added the event loop guarantor?
    // Although 'blame' says Leland, I think it came from a donated patch.
@@ -828,13 +828,13 @@ bool SaucedacityApp::OnInit()
    if ( !ProjectFileIO::InitializeSQL() )
       this->CallAfter([]{
          ::AudacityMessageBox(
-            XO("SQLite library failed to initialize. Saucedacity cannot continue.") );
+            XO("SQLite library failed to initialize. Tenacity cannot continue.") );
          QuitAudacity( true );
       });
 
 
    // cause initialization of wxWidgets' global logger target
-   (void) SaucedacityLogger::Get();
+   (void) TenacityLogger::Get();
 
 #if defined(__WXMAC__)
    // Disable window animation
@@ -889,7 +889,7 @@ bool SaucedacityApp::OnInit()
    //
    // Paths: set search path and temp dir path
    //
-   FilePaths saucedacityPathList;
+   FilePaths tenacityPathList;
 
 #ifdef __WXGTK__
    // Make sure install prefix is set so wxStandardPath resolves paths properly
@@ -898,8 +898,8 @@ bool SaucedacityApp::OnInit()
    /* Search path (for plug-ins, translations etc) is (in this order):
       * The SAUCEDACITY_PATH environment variable
       * The current directory
-      * The user's "~/.Saucedacity-data" or "Portable Settings" directory
-      * The user's "~/.Saucedacity-files" directory
+      * The user's "~/.Tenacity-data" or "Portable Settings" directory
+      * The user's "~/.Tenacity-files" directory
       * The "share" and "share/doc" directories in their install path */
    wxString home = wxGetHomeDir();
    wxString envTempDir = wxGetenv(wxT("TMPDIR"));
@@ -911,49 +911,49 @@ bool SaucedacityApp::OnInit()
       /* On Unix systems, the environment variable TMPDIR may point to
          an unusual path when /tmp and /var/tmp are not desirable. */
       TempDirectory::SetDefaultTempDir( wxString::Format(
-         wxT("%s/saucedacity-%s"), envTempDir, wxGetUserId() ) );
+         wxT("%s/tenacity-%s"), envTempDir, wxGetUserId() ) );
    } else
    {
       /* On Unix systems, the default temp dir is in /var/tmp. */
       TempDirectory::SetDefaultTempDir( wxString::Format(
-         wxT("/var/tmp/saucedacity-%s"), wxGetUserId() ) );
+         wxT("/var/tmp/tenacity-%s"), wxGetUserId() ) );
    }
 
    if (!pathVar.empty())
    {
-      FileNames::AddMultiPathsToPathList(pathVar, saucedacityPathList);
+      FileNames::AddMultiPathsToPathList(pathVar, tenacityPathList);
    }
 
-   FileNames::AddUniquePathToPathList(::wxGetCwd(), saucedacityPathList);
+   FileNames::AddUniquePathToPathList(::wxGetCwd(), tenacityPathList);
 
    wxString progPath = wxPathOnly(argv[0]);
-   FileNames::AddUniquePathToPathList(progPath, saucedacityPathList);
+   FileNames::AddUniquePathToPathList(progPath, tenacityPathList);
    // Add the path to modules:
-   FileNames::AddUniquePathToPathList(progPath + L"/lib/saucedacity", saucedacityPathList);
+   FileNames::AddUniquePathToPathList(progPath + L"/lib/tenacity", tenacityPathList);
 
-   FileNames::AddUniquePathToPathList(FileNames::DataDir(), saucedacityPathList);
+   FileNames::AddUniquePathToPathList(FileNames::DataDir(), tenacityPathList);
 
-   FileNames::AddUniquePathToPathList(configHome, saucedacityPathList);
+   FileNames::AddUniquePathToPathList(configHome, tenacityPathList);
 
    /*FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.%s-files"),
       home, wxT(APP_NAME)),
-      saucedacityPathList);*/
+      tenacityPathList);*/
 
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
-      saucedacityPathList);
+      tenacityPathList);
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/%s"),
       wxT(INSTALL_PREFIX), wxT(APP_NAME)),
-      saucedacityPathList);
+      tenacityPathList);
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/doc/%s"),
       wxT(INSTALL_PREFIX), wxT(APP_NAME)),
-      saucedacityPathList);
+      tenacityPathList);
 
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/share/locale"),
       wxT(INSTALL_PREFIX)),
-      saucedacityPathList);
+      tenacityPathList);
 
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("./locale")),
-      saucedacityPathList);
+      tenacityPathList);
 
 #endif //__WXGTK__
 
@@ -975,8 +975,8 @@ bool SaucedacityApp::OnInit()
 #ifdef __WXMSW__
    // On Windows, the path to the Audacity program is in argv[0]
    wxString progPath = wxPathOnly(argv[0]);
-   FileNames::AddUniquePathToPathList(progPath, saucedacityPathList);
-   FileNames::AddUniquePathToPathList(progPath + wxT("\\Languages"), saucedacityPathList);
+   FileNames::AddUniquePathToPathList(progPath, tenacityPathList);
+   FileNames::AddUniquePathToPathList(progPath + wxT("\\Languages"), tenacityPathList);
 
    // See bug #1271 for explanation of location
    tmpDirLoc = FileNames::MkDir(wxStandardPaths::Get().GetUserLocalDataDir());
@@ -988,21 +988,21 @@ bool SaucedacityApp::OnInit()
    // On Mac OS X, the path to the Audacity program is in argv[0]
    wxString progPath = wxPathOnly(argv[0]);
 
-   FileNames::AddUniquePathToPathList(progPath, saucedacityPathList);
+   FileNames::AddUniquePathToPathList(progPath, tenacityPathList);
    // If Audacity is a "bundle" package, then the root directory is
    // the great-great-grandparent of the directory containing the executable.
-   //FileNames::AddUniquePathToPathList(progPath + wxT("/../../../"), saucedacityPathList);
+   //FileNames::AddUniquePathToPathList(progPath + wxT("/../../../"), tenacityPathList);
 
    // These allow for searching the "bundle"
    FileNames::AddUniquePathToPathList(
-      progPath + wxT("/../"), saucedacityPathList);
+      progPath + wxT("/../"), tenacityPathList);
    FileNames::AddUniquePathToPathList(
-      progPath + wxT("/../Resources"), saucedacityPathList);
+      progPath + wxT("/../Resources"), tenacityPathList);
 
    // JKC Bug 1220: Using an actual temp directory for session data on Mac was
    // wrong because it would get cleared out on a reboot.
    TempDirectory::SetDefaultTempDir( wxString::Format(
-      wxT("%s/Library/Application Support/saucedacity/SessionData"), tmpDirLoc) );
+      wxT("%s/Library/Application Support/tenacity/SessionData"), tmpDirLoc) );
 
    //TempDirectory::SetDefaultTempDir( wxString::Format(
    //   wxT("%s/audacity-%s"),
@@ -1010,15 +1010,15 @@ bool SaucedacityApp::OnInit()
    //   wxGetUserId() ) );
 #endif //__WXMAC__
 
-   FileNames::SetAudacityPathList( std::move( saucedacityPathList ) );
+   FileNames::SetAudacityPathList( std::move( tenacityPathList ) );
 
    // Initialize preferences and language
    // TODO:  The whole Language initialization really need to be reworked.
    //        It's all over the place.
    {
-      wxFileName configFileName(FileNames::DataDir(), wxT("saucedacity.cfg"));
+      wxFileName configFileName(FileNames::DataDir(), wxT("tenacity.cfg"));
       auto appName = wxTheApp->GetAppName();
-      InitPreferences( SaucedacityFileConfig::Create(
+      InitPreferences( TenacityFileConfig::Create(
          appName, wxEmptyString,
          configFileName.GetFullPath(),
          wxEmptyString, wxCONFIG_USE_LOCAL_FILE) );
@@ -1066,7 +1066,7 @@ bool SaucedacityApp::OnInit()
 #endif
 }
 
-bool SaucedacityApp::InitPart2()
+bool TenacityApp::InitPart2()
 {
   
 #if defined(__WXMAC__)
@@ -1088,7 +1088,7 @@ bool SaucedacityApp::InitPart2()
 
    if (parser->Found(wxT("v")))
    {
-      wxPrintf("Saucedacity v%s\n", AUDACITY_VERSION_STRING);
+      wxPrintf("Tenacity v%s\n", AUDACITY_VERSION_STRING);
       exit(0);
    }
 
@@ -1130,13 +1130,13 @@ bool SaucedacityApp::InitPart2()
    PluginManager::Get().Initialize();
 
    // BG: Create a temporary window to set as the top window
-   wxImage logoimage((const char **)SaucedacityLogoWithName_xpm);
+   wxImage logoimage((const char **)TenacityLogoWithName_xpm);
    logoimage.Rescale(logoimage.GetWidth() / 2, logoimage.GetHeight() / 2);
    if( GetLayoutDirection() == wxLayout_RightToLeft)
       logoimage = logoimage.Mirror();
    wxBitmap logo(logoimage);
 
-   SaucedacityProject *project;
+   TenacityProject *project;
    {
       // Bug 718: Position splash screen on same screen
       // as where Audacity project will appear.
@@ -1166,7 +1166,7 @@ bool SaucedacityApp::InitPart2()
       temporarywindow.SetPosition( wndRect.GetTopLeft() );
       // Centered on whichever screen it is on.
       temporarywindow.Center();
-      temporarywindow.SetTitle(_("Saucedacity is starting up..."));
+      temporarywindow.SetTitle(_("Tenacity is starting up..."));
       SetTopWindow(&temporarywindow);
       temporarywindow.Show();
       temporarywindow.Raise();
@@ -1192,10 +1192,10 @@ bool SaucedacityApp::InitPart2()
           * 
           * This is preferrably done
           **/
-         AudacityMessageBox(XO("Saucedacity has encountered a critical error. This "
+         AudacityMessageBox(XO("Tenacity has encountered a critical error. This "
                                "is likely to do with your platform.\n\n"
                                "Error message (for devs): %s").Format(e.what()),
-                            XO("Saucedacity - Critical Error")
+                            XO("Tenacity - Critical Error")
          );
 
          return false;
@@ -1212,7 +1212,7 @@ bool SaucedacityApp::InitPart2()
       fileMenu->Append(wxID_NEW, wxString(_("&New")) + wxT("\tCtrl+N"));
       fileMenu->Append(wxID_OPEN, wxString(_("&Open...")) + wxT("\tCtrl+O"));
       fileMenu->AppendSubMenu(urecentMenu.release(), _("Open &Recent..."));
-      fileMenu->Append(wxID_ABOUT, _("&About Saucedacity..."));
+      fileMenu->Append(wxID_ABOUT, _("&About Tenacity..."));
       fileMenu->Append(wxID_PREFERENCES, wxString(_("&Preferences...")) + wxT("\tCtrl+,"));
 
       {
@@ -1296,7 +1296,7 @@ bool SaucedacityApp::InitPart2()
 
    ModuleManager::Get().Dispatch(AppInitialized);
 
-   mTimer.SetOwner(this, kSaucedacityAppTimerID);
+   mTimer.SetOwner(this, kTenacityAppTimerID);
    mTimer.Start(200);
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
@@ -1351,20 +1351,20 @@ bool SaucedacityApp::InitPart2()
    return TRUE;
 }
 
-void SaucedacityApp::InitCommandHandler()
+void TenacityApp::InitCommandHandler()
 {
    mCmdHandler = std::make_unique<CommandHandler>();
    //SetNextHandler(mCmdHandler);
 }
 
 // AppCommandEvent callback - just pass the event on to the CommandHandler
-void SaucedacityApp::OnReceiveCommand(AppCommandEvent &event)
+void TenacityApp::OnReceiveCommand(AppCommandEvent &event)
 {
    wxASSERT(NULL != mCmdHandler);
    mCmdHandler->OnReceiveCommand(event);
 }
 
-void SaucedacityApp::OnKeyDown(wxKeyEvent &event)
+void TenacityApp::OnKeyDown(wxKeyEvent &event)
 {
    if(event.GetKeyCode() == WXK_ESCAPE) {
       // Stop play, including scrub, but not record
@@ -1406,7 +1406,7 @@ void SetToExtantDirectory( wxString & result, const wxString & dir ){
       result = dir;
 }
 
-bool SaucedacityApp::InitTempDir()
+bool TenacityApp::InitTempDir()
 {
    // We need to find a temp directory location.
    auto tempFromPrefs = TempDirectory::TempDir();
@@ -1449,10 +1449,10 @@ bool SaucedacityApp::InitTempDir()
       // Failed
       if( !TempDirectory::IsTempDirectoryNameOK( tempFromPrefs ) ) {
          AudacityMessageBox(XO(
-"Saucedacity could not find a safe place to store temporary files.\Saucedacity needs a place where automatic cleanup programs won't delete the temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
+"Tenacity could not find a safe place to store temporary files.\Tenacity needs a place where automatic cleanup programs won't delete the temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
       } else {
          AudacityMessageBox(XO(
-"Saucedacity could not find a place to store temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
+"Tenacity could not find a place to store temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
       }
 
       // Only want one page of the preferences
@@ -1462,7 +1462,7 @@ bool SaucedacityApp::InitTempDir()
       dialog.ShowModal();
 
       AudacityMessageBox(XO(
-"Saucedacity is now going to exit. Please launch Saucedacity again to use the new temporary directory."));
+"Tenacity is now going to exit. Please launch Tenacity again to use the new temporary directory."));
       return false;
    }
 
@@ -1483,13 +1483,13 @@ bool SaucedacityApp::InitTempDir()
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
 
-bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
+bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
-   wxString name = wxString::Format(wxT("saucedacity-lock-%s"), wxGetUserId());
+   wxString name = wxString::Format(wxT("tenacity-lock-%s"), wxGetUserId());
    mChecker.reset();
    auto checker = std::make_unique<wxSingleInstanceChecker>();
 
-   auto runningTwoCopiesStr = XO("Running two copies of Saucedacity simultaneously may cause\ndata loss or cause your system to crash.\n\n");
+   auto runningTwoCopiesStr = XO("Running two copies of Tenacity simultaneously may cause\ndata loss or cause your system to crash.\n\n");
 
    if (!checker->Create(name, dir))
    {
@@ -1497,9 +1497,9 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // whether there is another instance running or not.
 
       auto prompt = XO(
-"Saucedacity was not able to lock the temporary files directory.\nThis folder may be in use by another copy of Saucedacity.\n")
+"Tenacity was not able to lock the temporary files directory.\nThis folder may be in use by another copy of Tenacity.\n")
          + runningTwoCopiesStr
-         + XO("Do you still want to start Saucedacity?");
+         + XO("Do you still want to start Tenacity?");
       int action = AudacityMessageBox(
          prompt,
          XO("Error Locking Temporary Folder"),
@@ -1565,12 +1565,12 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // There is another copy of Audacity running.  Force quit.
 
       auto prompt =  XO(
-"The system has detected that another copy of Saucedacity (or a copy of Audacity) is running.\n")
+"The system has detected that another copy of Tenacity (or a copy of Audacity) is running.\n")
          + runningTwoCopiesStr
          + XO(
-"Use the New or Open commands in the currently running Saucedacity\n process to open multiple projects simultaneously.\n");
+"Use the New or Open commands in the currently running Tenacity\n process to open multiple projects simultaneously.\n");
       AudacityMessageBox(
-         prompt, XO("Saucedacity is already running"),
+         prompt, XO("Tenacity is already running"),
          wxOK | wxICON_ERROR);
 
       return false;
@@ -1585,21 +1585,21 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #if defined(__UNIX__)
 
-void SaucedacityApp::CleanupIPCResources()
+void TenacityApp::CleanupIPCResources()
 {
    if (mWasServer)
    {
       // Remove the lock semaphore from the system
-      sem_unlink(SaucedacityApp::LockSemName);
+      sem_unlink(TenacityApp::LockSemName);
 
       // Remove the shared memory segment.
-      shm_unlink(SaucedacityApp::SharedMemName);
+      shm_unlink(TenacityApp::SharedMemName);
    }
 }
 
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
-bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
+bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 {
    mIPCServ.reset();
 
@@ -1609,14 +1609,14 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 
    // Create and map the shared memory segment where the port number
    // will be stored.
-   int memFd = shm_open(SaucedacityApp::SharedMemName, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
+   int memFd = shm_open(TenacityApp::SharedMemName, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
    if (memFd == -1)
    {
       // i18n-hint: '%s' represents an error message indicated by 'errno'. This
       // is intended for the developers to look at.
       AudacityMessageBox(XO("IPC: Failed to create shared memory region.\n\n"
                             "Error: %s").Format(strerror(errno)),
-                         XO("Saucedacity startup failure"),
+                         XO("Tenacity startup failure"),
                          wxOK
       );
 
@@ -1627,7 +1627,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    {
       AudacityMessageBox(XO("IPC: Cannot truncate shared memory.\n\n"
                             "Error: %s").Format(strerror(errno)),
-                         XO("Saucedacity startup failure"),
+                         XO("Tenacity startup failure"),
                          wxOK
       );
 
@@ -1643,14 +1643,14 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       // is intended for the developers to look at.
       AudacityMessageBox(XO("Unable to map shared memory region for IPC.\n\n"
                             "Error: %s").Format(strerror(errno)),
-                         XO("Saucedacity Startup Failure"),
+                         XO("Tenacity Startup Failure"),
                          wxOK
       );
    }
 
    // Create the lock and server semaphores. 0 means acquired (locked),
    // 1 means released (unlocked).
-   mLockSemaphore = sem_open(SaucedacityApp::LockSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
+   mLockSemaphore = sem_open(TenacityApp::LockSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
 
    // If the semaphore was successfully created, then we are going to be the
    // server. "Server" processes clean them up on exit (unless something werid
@@ -1664,7 +1664,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
             XO("Unable to acquire semaphores.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Saucedacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR
          );
 
@@ -1680,7 +1680,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    {
       // Retrieve the server semaphore since we wouldn't have gotten it above.
       // It should already exist given the exclusive creation failed.
-      mLockSemaphore = sem_open(SaucedacityApp::LockSemName, 0);
+      mLockSemaphore = sem_open(TenacityApp::LockSemName, 0);
 
       // Lock the semaphore. We may block here if another process is setting up
       // the server.
@@ -1690,7 +1690,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
             XO("Unable to acquire lock semaphore.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Saucedacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR
          );
 
@@ -1705,7 +1705,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
          XO("Unable to create semaphores.\n\n"
             "This is likely due to a resource shortage\n"
             "and a reboot may be required."),
-         XO("Saucedacity Startup Failure"),
+         XO("Tenacity Startup Failure"),
          wxOK | wxICON_ERROR
       );
 
@@ -1739,10 +1739,10 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       if (mIPCServ == nullptr)
       {
          AudacityMessageBox(
-            XO("The Saucedacity IPC server failed to initialize.\n\n"
+            XO("The Tenacity IPC server failed to initialize.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Saucedacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR);
 
          return false;
@@ -1786,7 +1786,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       // Audacity is already running.
       AudacityMessageBox(
          XO("An unrecoverable error has occurred during startup"),
-         XO("Saucedacity Startup Failure"),
+         XO("Tenacity Startup Failure"),
          wxOK | wxICON_ERROR);
 
       return false;
@@ -1803,7 +1803,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 
 #if defined(__WXMAC__)
    // On macOS the client gets events from the wxWidgets framework that
-   // go to SaucedacityApp::MacOpenFile. Forward the file names to the prior
+   // go to TenacityApp::MacOpenFile. Forward the file names to the prior
    // instance via the socket.
    for (const auto &filename: ofqueue)
    {
@@ -1813,11 +1813,11 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
 #endif
 
    // Let the user know that another copy is running.
-   AudacityMessageBox(XO("Another copy of Saucedacity has been detected"
+   AudacityMessageBox(XO("Another copy of Tenacity has been detected"
                            "running on this system. Running multiple copies of"
-                           "Saucedacity is not supported\n\n"
+                           "Tenacity is not supported\n\n"
                            "You will now be redirected to the running copy."),
-                      XO("Saucedacity is already running"),
+                      XO("Tenacity is already running"),
                       wxOK
    );
 
@@ -1847,7 +1847,7 @@ bool SaucedacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    return false;
 }
 
-void SaucedacityApp::OnServerEvent(wxSocketEvent & /* evt */)
+void TenacityApp::OnServerEvent(wxSocketEvent & /* evt */)
 {
    wxSocketBase *sock;
 
@@ -1865,7 +1865,7 @@ void SaucedacityApp::OnServerEvent(wxSocketEvent & /* evt */)
    } while (sock);
 }
 
-void SaucedacityApp::OnSocketEvent(wxSocketEvent & evt)
+void TenacityApp::OnSocketEvent(wxSocketEvent & evt)
 {
    wxSocketBase *sock = evt.GetSocket();
 
@@ -1888,7 +1888,7 @@ void SaucedacityApp::OnSocketEvent(wxSocketEvent & evt)
 
 #endif
 
-std::unique_ptr<wxCmdLineParser> SaucedacityApp::ParseCommandLine()
+std::unique_ptr<wxCmdLineParser> TenacityApp::ParseCommandLine()
 {
    auto parser = std::make_unique<wxCmdLineParser>(argc, argv);
    if (!parser)
@@ -1909,7 +1909,7 @@ std::unique_ptr<wxCmdLineParser> SaucedacityApp::ParseCommandLine()
    parser->AddSwitch(wxT("t"), wxT("test"), _("run self diagnostics"));
 
    /*i18n-hint: This displays the Audacity version */
-   parser->AddSwitch(wxT("v"), wxT("version"), _("display Saucedacity version"));
+   parser->AddSwitch(wxT("v"), wxT("version"), _("display Tenacity version"));
 
    /*i18n-hint: This is a list of one or more files that Audacity
     *           should open upon startup */
@@ -1924,7 +1924,7 @@ std::unique_ptr<wxCmdLineParser> SaucedacityApp::ParseCommandLine()
    return{};
 }
 
-void SaucedacityApp::OnQueryEndSession(wxCloseEvent & event)
+void TenacityApp::OnQueryEndSession(wxCloseEvent & event)
 {
    bool mustVeto = false;
 
@@ -1938,7 +1938,7 @@ void SaucedacityApp::OnQueryEndSession(wxCloseEvent & event)
       OnEndSession(event);
 }
 
-void SaucedacityApp::OnEndSession(wxCloseEvent & event)
+void TenacityApp::OnEndSession(wxCloseEvent & event)
 {
    bool force = !event.CanVeto();
 
@@ -1957,7 +1957,7 @@ void SaucedacityApp::OnEndSession(wxCloseEvent & event)
    }
 }
 
-int SaucedacityApp::OnExit()
+int TenacityApp::OnExit()
 {
    gIsQuitting = true;
    while(Pending())
@@ -2004,7 +2004,7 @@ int SaucedacityApp::OnExit()
 // and skip the event unless none are open (which should only happen
 // on the Mac, at least currently.)
 
-void SaucedacityApp::OnMenuAbout(wxCommandEvent & /*event*/)
+void TenacityApp::OnMenuAbout(wxCommandEvent & /*event*/)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform.
@@ -2022,7 +2022,7 @@ void SaucedacityApp::OnMenuAbout(wxCommandEvent & /*event*/)
 #endif
 }
 
-void SaucedacityApp::OnMenuNew(wxCommandEvent & event)
+void TenacityApp::OnMenuNew(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2037,7 +2037,7 @@ void SaucedacityApp::OnMenuNew(wxCommandEvent & event)
 }
 
 
-void SaucedacityApp::OnMenuOpen(wxCommandEvent & event)
+void TenacityApp::OnMenuOpen(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2054,7 +2054,7 @@ void SaucedacityApp::OnMenuOpen(wxCommandEvent & event)
 
 }
 
-void SaucedacityApp::OnMenuPreferences(wxCommandEvent & event)
+void TenacityApp::OnMenuPreferences(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2071,7 +2071,7 @@ void SaucedacityApp::OnMenuPreferences(wxCommandEvent & event)
 
 }
 
-void SaucedacityApp::OnMenuExit(wxCommandEvent & event)
+void TenacityApp::OnMenuExit(wxCommandEvent & event)
 {
    // This function shadows a similar function
    // in Menus.cpp, but should only be used on the Mac platform
@@ -2098,7 +2098,7 @@ void SaucedacityApp::OnMenuExit(wxCommandEvent & event)
    //      if people want to manually change associations.
 */
 #if defined(__WXMSW__) && !defined(__WXUNIVERSAL__) && !defined(__CYGWIN__)
-void SaucedacityApp::AssociateFileTypes()
+void TenacityApp::AssociateFileTypes()
 {
    // Check pref in case user has already decided against it.
    bool bWantAssociateFiles = true;
@@ -2161,7 +2161,7 @@ void SaucedacityApp::AssociateFileTypes()
    int wantAssoc =
       AudacityMessageBox(
          XO(
-"Audacity project (.aup3) files are not currently \nassociated with Saucedacity. \n\nYou can associate them so they open on double-click for convenience."),
+"Audacity project (.aup3) files are not currently \nassociated with Tenacity. \n\nYou can associate them so they open on double-click for convenience."),
          XO("Audacity Project Files"),
          wxYES_NO | wxICON_QUESTION);
 
@@ -2217,7 +2217,7 @@ void SaucedacityApp::AssociateFileTypes()
       }
 
       if (!associateFileTypes.Exists() ||
-            (tmpRegAudPath.Find(wxT("saucedacity.exe")) >= 0))
+            (tmpRegAudPath.Find(wxT("tenacity.exe")) >= 0))
       {
          associateFileTypes.Create(true);
          associateFileTypes = (wxString)argv[0] + (wxString)wxT(" \"%1\"");

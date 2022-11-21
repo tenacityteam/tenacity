@@ -32,20 +32,20 @@ public:
    virtual ~TrackSelectHandle();
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *) override;
+   Result Cancel(TenacityProject *) override;
 
    bool StopsOnKeystroke() override { return true; }
 
@@ -60,7 +60,7 @@ private:
    int mRearrangeCount {};
 
    void CalculateRearrangingThresholds(
-      const wxMouseEvent & event, SaucedacityProject *project);
+      const wxMouseEvent & event, TenacityProject *project);
 };
 
 #endif

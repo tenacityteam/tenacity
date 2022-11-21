@@ -37,7 +37,7 @@
 #include <wx/slider.h>
 #include <wx/stattext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
 

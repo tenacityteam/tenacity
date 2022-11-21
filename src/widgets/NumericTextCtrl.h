@@ -15,7 +15,7 @@
 #ifndef __AUDACITY_TIME_TEXT_CTRL__
 #define __AUDACITY_TIME_TEXT_CTRL__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterface.h>
 #include <lib-components/ComponentInterfaceSymbol.h>
 #include <lib-strings/Internat.h>

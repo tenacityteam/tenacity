@@ -8,7 +8,7 @@ Paul Licameli
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h>
 
 #include "wxWidgetsBasicUI.h"

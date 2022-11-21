@@ -23,14 +23,14 @@ class wxListCtrl;
 class wxListEvent;
 class wxButton;
 class wxTextCtrl;
-class SaucedacityProject;
+class TenacityProject;
 class ShuttleGui;
 
 class ApplyMacroDialog : public wxDialogWrapper {
  public:
    // constructors and destructors
    ApplyMacroDialog(
-      wxWindow * parent, SaucedacityProject &project, bool bInherited=false);
+      wxWindow * parent, TenacityProject &project, bool bInherited=false);
    virtual ~ApplyMacroDialog();
  public:
    // Populate methods NOT virtual.
@@ -63,7 +63,7 @@ class ApplyMacroDialog : public wxDialogWrapper {
    wxString mMacroBeingRenamed;
 
 protected:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
    const MacroCommandsCatalog mCatalog;
 
    DECLARE_EVENT_TABLE()
@@ -74,7 +74,7 @@ class MacrosWindow final : public ApplyMacroDialog,
 {
 public:
    MacrosWindow(
-      wxWindow * parent, SaucedacityProject &project, bool bExpanded=true);
+      wxWindow * parent, TenacityProject &project, bool bExpanded=true);
    ~MacrosWindow();
    void UpdateDisplay( bool bExpanded );
 
@@ -131,7 +131,7 @@ private:
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    wxButton *mRemove;
    wxButton *mRename;

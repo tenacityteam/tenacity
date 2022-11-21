@@ -16,12 +16,12 @@
 
 #include "widgets/wxPanelWrapper.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterface.h> // member variable
 
 class wxArrayString;
 class wxGridEvent;
-class SaucedacityProject;
+class TenacityProject;
 class ChoiceEditor;
 class Grid;
 class NumericEditor;
@@ -39,7 +39,7 @@ class LabelDialog final : public wxDialogWrapper
  public:
 
    LabelDialog(wxWindow *parent,
-               SaucedacityProject &project,
+               TenacityProject &project,
                TrackList *tracks,
 
                // if NULL edit all tracks, else this one only:
@@ -95,7 +95,7 @@ class LabelDialog final : public wxDialogWrapper
 
  private:
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    Grid *mGrid;
    ChoiceEditor *mChoiceEditor;

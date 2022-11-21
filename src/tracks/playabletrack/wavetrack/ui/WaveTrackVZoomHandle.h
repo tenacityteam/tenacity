@@ -18,7 +18,7 @@ class WaveTrack;
 #include "WaveTrackViewConstants.h"
 #include "../../../../UIHandle.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 namespace WaveTrackVZoomHandle
@@ -32,7 +32,7 @@ namespace WaveTrackVZoomHandle
    SAUCEDACITY_DLL_API
    bool IsDragZooming(int zoomStart, int zoomEnd);
 
-   using DoZoomFunction = void (*)( SaucedacityProject *pProject,
+   using DoZoomFunction = void (*)( TenacityProject *pProject,
        WaveTrack *pTrack,
        WaveTrackViewConstants::ZoomActions ZoomKind,
        const wxRect &rect, int zoomStart, int zoomEnd,
@@ -40,12 +40,12 @@ namespace WaveTrackVZoomHandle
 
    SAUCEDACITY_DLL_API
    Result DoDrag(
-      const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      const TrackPanelMouseEvent &event, TenacityProject *pProject,
       int zoomStart, int &zoomEnd );
 
    SAUCEDACITY_DLL_API
    Result DoRelease(
-      const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      const TrackPanelMouseEvent &event, TenacityProject *pProject,
       wxWindow *pParent, WaveTrack *pTrack, const wxRect &mRect,
       DoZoomFunction doZoom, PopupMenuTable &table,
       int zoomStart, int zoomEnd );
@@ -70,7 +70,7 @@ public:
    struct InitMenuData
    {
    public:
-      SaucedacityProject &project;
+      TenacityProject &project;
       WaveTrack *pTrack;
       wxRect rect;
       unsigned result;

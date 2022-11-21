@@ -182,7 +182,7 @@ public:
          mVisibleChannels = CHANNEL_BIT(c);
    }
 
-   Track::Holder PasteInto( SaucedacityProject & ) const override;
+   Track::Holder PasteInto( TenacityProject & ) const override;
 
    ConstIntervals GetIntervals() const override;
    Intervals GetIntervals() override;

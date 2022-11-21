@@ -26,7 +26,7 @@
 
 #include "wxPanelWrapper.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h> // For ProgressResult
 using ProgressResult = GenericUI::ProgressResult;
 

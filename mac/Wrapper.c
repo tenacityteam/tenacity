@@ -29,20 +29,20 @@ executable.
 #include <string.h>
 #include <unistd.h>
 
-static const char saucedacity[] = "Saucedacity";
+static const char tenacity[] = "Saucedacity";
 extern char **environ;
 
 int main(int argc, char *argv[])
 {
    size_t len = strlen(argv[0]);
-   char path[len + sizeof(saucedacity)]; // not precise, but we don't need it to be
+   char path[len + sizeof(tenacity)]; // not precise, but we don't need it to be
 
    strcpy(path, argv[0]);
 
    char *slash = strrchr(path, '/');
    if (slash)
    {
-      strcpy(++slash, saucedacity);
+      strcpy(++slash, tenacity);
    }
 
    unsetenv("DYLD_LIBRARY_PATH");

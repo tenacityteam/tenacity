@@ -29,12 +29,12 @@ for shared and private configs - which need to move out.
 
 #include "ModuleInterface.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-strings/Internat.h>
 #include <lib-utility/MemoryX.h>
 
-#include "SaucedacityFileConfig.h"
+#include "TenacityFileConfig.h"
 #include "ModuleManager.h"
 #include "PlatformCompatibility.h"
 #include "widgets/AudacityMessageBox.h"
@@ -866,7 +866,7 @@ bool PluginManager::DropFile(const wxString &fileName)
 void PluginManager::Load()
 {
    // Create/Open the registry
-   auto pRegistry = SaucedacityFileConfig::Create(
+   auto pRegistry = TenacityFileConfig::Create(
       {}, {}, FileNames::PluginRegistry());
    auto &registry = *pRegistry;
 
@@ -1211,7 +1211,7 @@ void PluginManager::LoadGroup(FileConfig *pRegistry, PluginType type)
 void PluginManager::Save()
 {
    // Create/Open the registry
-   auto pRegistry = SaucedacityFileConfig::Create(
+   auto pRegistry = TenacityFileConfig::Create(
       {}, {}, FileNames::PluginRegistry());
    auto &registry = *pRegistry;
 
@@ -1634,7 +1634,7 @@ FileConfig *PluginManager::GetSettings()
    if (!mSettings)
    {
       mSettings =
-         SaucedacityFileConfig::Create({}, {}, FileNames::PluginSettings());
+         TenacityFileConfig::Create({}, {}, FileNames::PluginSettings());
 
       // Check for a settings version that we can understand
       if (mSettings->HasEntry(SETVERKEY))

@@ -100,7 +100,7 @@ if (USE_FFMPEG)
       list(APPEND DEFINITIONS PRIVATE _DARWIN_C_SOURCE )
    endif()
 
-   saucedacity_library( lib-ffmpeg-support "${SOURCES}" "${LIBRARIES}"
+   tenacity_library( lib-ffmpeg-support "${SOURCES}" "${LIBRARIES}"
       "${DEFINITIONS}" ""
    )
 

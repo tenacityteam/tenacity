@@ -46,7 +46,7 @@ private:
    const WaveTrack *mTrack1;
 
    // Update member variables with project selection data (and validate)
-   bool GetSelection(const CommandContext &context, SaucedacityProject &proj);
+   bool GetSelection(const CommandContext &context, TenacityProject &proj);
 
 protected:
    double CompareSample(double value1, double value2) /* not override */;

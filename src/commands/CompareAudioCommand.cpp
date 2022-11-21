@@ -64,7 +64,7 @@ void CompareAudioCommand::PopulateOrExchange(ShuttleGui & S)
 }
 
 // Update member variables with project selection data (and validate)
-bool CompareAudioCommand::GetSelection(const CommandContext &context, SaucedacityProject &proj)
+bool CompareAudioCommand::GetSelection(const CommandContext &context, TenacityProject &proj)
 {
    // Get the selected time interval
    auto &selectedRegion = ViewInfo::Get( proj ).selectedRegion;

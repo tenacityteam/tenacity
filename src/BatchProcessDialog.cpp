@@ -38,7 +38,7 @@
 #include <wx/imaglist.h>
 #include <wx/settings.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -91,7 +91,7 @@ BEGIN_EVENT_TABLE(ApplyMacroDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 ApplyMacroDialog::ApplyMacroDialog(
-   wxWindow * parent, SaucedacityProject &project, bool bInherited):
+   wxWindow * parent, TenacityProject &project, bool bInherited):
    wxDialogWrapper(parent, wxID_ANY, MacrosPaletteTitle,
             wxDefaultPosition, wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
@@ -342,7 +342,7 @@ void ApplyMacroDialog::OnApplyToFiles(wxCommandEvent & WXUNUSED(event))
    gPrefs->Write(wxT("/Batch/ActiveMacro"), name);
    gPrefs->Flush();
 
-   SaucedacityProject *project = &mProject;
+   TenacityProject *project = &mProject;
    if (!TrackList::Get( *project ).empty()) {
       AudacityMessageBox(
          XO("Please save and close the current project first.") );
@@ -562,7 +562,7 @@ enum {
 
 /// Constructor
 MacrosWindow::MacrosWindow(
-   wxWindow * parent, SaucedacityProject &project, bool bExpanded):
+   wxWindow * parent, TenacityProject &project, bool bExpanded):
    ApplyMacroDialog(parent, project, true)
    , mProject{ project }
 {

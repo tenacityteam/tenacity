@@ -35,52 +35,52 @@ TrackPanelCell::~TrackPanelCell()
 }
 
 HitTestPreview TrackPanelCell::DefaultPreview
-(const TrackPanelMouseState &, const SaucedacityProject *)
+(const TrackPanelMouseState &, const TenacityProject *)
 {
    return {};
 }
 
 unsigned TrackPanelCell::HandleWheelRotation
-(const TrackPanelMouseEvent &, SaucedacityProject *)
+(const TrackPanelMouseEvent &, TenacityProject *)
 {
    return RefreshCode::Cancelled;
 }
 
 unsigned TrackPanelCell::DoContextMenu
-   (const wxRect &, wxWindow*, const wxPoint *, SaucedacityProject*)
+   (const wxRect &, wxWindow*, const wxPoint *, TenacityProject*)
 {
    return RefreshCode::RefreshNone;
 }
 
 unsigned TrackPanelCell::CaptureKey(
-   wxKeyEvent &event, ViewInfo &, wxWindow *, SaucedacityProject *)
+   wxKeyEvent &event, ViewInfo &, wxWindow *, TenacityProject *)
 {
    event.Skip();
    return RefreshCode::RefreshNone;
 }
 
 unsigned TrackPanelCell::KeyDown(
-   wxKeyEvent &event, ViewInfo &, wxWindow *, SaucedacityProject *)
+   wxKeyEvent &event, ViewInfo &, wxWindow *, TenacityProject *)
 {
    event.Skip();
    return RefreshCode::RefreshNone;
 }
 
 unsigned TrackPanelCell::KeyUp(
-   wxKeyEvent &event, ViewInfo &, wxWindow *, SaucedacityProject *)
+   wxKeyEvent &event, ViewInfo &, wxWindow *, TenacityProject *)
 {
    event.Skip();
    return RefreshCode::RefreshNone;
 }
 
 unsigned TrackPanelCell::Char(
-   wxKeyEvent &event, ViewInfo &, wxWindow *, SaucedacityProject *)
+   wxKeyEvent &event, ViewInfo &, wxWindow *, TenacityProject *)
 {
    event.Skip();
    return RefreshCode::RefreshNone;
 }
 
-unsigned TrackPanelCell::LoseFocus(SaucedacityProject *)
+unsigned TrackPanelCell::LoseFocus(TenacityProject *)
 {
    return RefreshCode::RefreshNone;
 }

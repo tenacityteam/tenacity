@@ -42,7 +42,7 @@ class SpectrumPrefs final : public PrefsPanel
 {
  public:
    SpectrumPrefs(wxWindow * parent, wxWindowID winid,
-      SaucedacityProject *pProject, WaveTrack *wt);
+      TenacityProject *pProject, WaveTrack *wt);
    virtual ~SpectrumPrefs();
    ComponentInterfaceSymbol GetSymbol() override;
    TranslatableString GetDescription() override;
@@ -67,7 +67,7 @@ class SpectrumPrefs final : public PrefsPanel
 
    void EnableDisableSTFTOnlyControls();
 
-   SaucedacityProject *mProject{};
+   TenacityProject *mProject{};
 
    WaveTrack *const mWt;
    bool mDefaulted, mOrigDefaulted;

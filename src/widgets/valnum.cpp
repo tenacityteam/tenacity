@@ -31,7 +31,7 @@
 
 #include "AudacityMessageBox.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 #if wxUSE_VALIDATORS && wxUSE_TEXTCTRL

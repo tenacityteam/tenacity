@@ -42,7 +42,7 @@ class SAUCEDACITY_DLL_API TimeTrack final : public Track {
 
    bool SupportsBasicEditing() const override;
 
-   Holder PasteInto( SaucedacityProject & ) const override;
+   Holder PasteInto( TenacityProject & ) const override;
 
    Holder Cut( double t0, double t1 ) override;
    Holder Copy( double t0, double t1, bool forClipboard ) const override;

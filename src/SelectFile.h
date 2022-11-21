@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_SELECT_FILE__
 #define __AUDACITY_SELECT_FILE__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h> // for FilePath
 
 #include <vector>

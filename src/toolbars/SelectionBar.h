@@ -39,18 +39,18 @@ class wxSizeEvent;
 class wxStaticText;
 
 class AuStaticText;
-class SaucedacityProject;
+class TenacityProject;
 class SelectionBarListener;
 class NumericTextCtrl;
 
 class SAUCEDACITY_DLL_API SelectionBar final : public ToolBar {
 
  public:
-   SelectionBar( SaucedacityProject &project );
+   SelectionBar( TenacityProject &project );
    virtual ~SelectionBar();
 
-   static SelectionBar &Get( SaucedacityProject &project );
-   static const SelectionBar &Get( const SaucedacityProject &project );
+   static SelectionBar &Get( TenacityProject &project );
+   static const SelectionBar &Get( const TenacityProject &project );
 
    void Create(wxWindow *parent) override;
 

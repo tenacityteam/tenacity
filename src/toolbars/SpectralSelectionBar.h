@@ -21,7 +21,7 @@ class wxCommandEvent;
 class wxDC;
 class wxSizeEvent;
 
-class SaucedacityProject;
+class TenacityProject;
 class SpectralSelectionBarListener;
 class NumericTextCtrl;
 
@@ -29,11 +29,11 @@ class SpectralSelectionBar final : public ToolBar {
 
 public:
 
-   SpectralSelectionBar( SaucedacityProject &project );
+   SpectralSelectionBar( TenacityProject &project );
    virtual ~SpectralSelectionBar();
 
-   static SpectralSelectionBar &Get( SaucedacityProject &project );
-   static const SpectralSelectionBar &Get( const SaucedacityProject &project );
+   static SpectralSelectionBar &Get( TenacityProject &project );
+   static const SpectralSelectionBar &Get( const TenacityProject &project );
 
    void Create(wxWindow *parent) override;
 

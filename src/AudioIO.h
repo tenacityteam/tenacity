@@ -40,7 +40,7 @@ using NoteTrackConstArray = std::vector < std::shared_ptr< const NoteTrack > >;
 
 #include <wx/event.h> // to declare custom event types
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleCount.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-utility/MessageBuffer.h>
@@ -52,7 +52,7 @@ class Mixer;
 class Resample;
 class SelectedRegion;
 
-class SaucedacityProject;
+class TenacityProject;
 
 class WaveTrack;
 using WaveTrackArray = std::vector < std::shared_ptr < WaveTrack > >;
@@ -527,7 +527,7 @@ public:
    std::string LastPaErrorString();
 
    wxLongLong GetLastPlaybackTime() const { return mLastPlaybackTimeMillis; }
-   SaucedacityProject *GetOwningProject() const { return mOwningProject; }
+   TenacityProject *GetOwningProject() const { return mOwningProject; }
 
    /** \brief Pause and un-pause playback and recording */
    void SetPaused(bool state);
@@ -548,7 +548,7 @@ public:
     *
     */
 
-   bool IsAvailable(SaucedacityProject *projecT) const;
+   bool IsAvailable(TenacityProject *projecT) const;
 
    /** \brief Return a valid sample rate that is supported by the current I/O
    * device(s).

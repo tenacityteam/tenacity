@@ -23,7 +23,7 @@
 #include <wx/intl.h>
 #include <wx/slider.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-math/Resample.h>
 

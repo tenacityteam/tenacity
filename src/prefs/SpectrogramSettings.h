@@ -11,7 +11,7 @@ Paul Licameli
 #ifndef __AUDACITY_SPECTROGRAM_SETTINGS__
 #define __AUDACITY_SPECTROGRAM_SETTINGS__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/RealFFTf.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-preferences/Prefs.h>

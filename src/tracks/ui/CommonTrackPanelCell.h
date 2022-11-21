@@ -29,7 +29,7 @@ class SAUCEDACITY_DLL_API CommonTrackPanelCell /* not final */
 public:
    // Type of function to dispatch mouse wheel events
    using Hook = std::function<
-      unsigned(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+      unsigned(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
    >;
    // Install a dispatcher function, returning the previous function
    static Hook InstallMouseWheelHook( const Hook &hook );
@@ -41,7 +41,7 @@ public:
 
    // Default to the arrow cursor
    HitTestPreview DefaultPreview
-      (const TrackPanelMouseState &, const SaucedacityProject *) override;
+      (const TrackPanelMouseState &, const TenacityProject *) override;
 
    std::shared_ptr<Track> FindTrack() { return DoFindTrack(); }
    std::shared_ptr<const Track> FindTrack() const
@@ -78,19 +78,19 @@ public:
     conditions.
     */
    virtual std::vector<MenuItem> GetMenuItems(
-      const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject );
+      const wxRect &rect, const wxPoint *pPosition, TenacityProject *pProject );
 
 protected:
    virtual std::shared_ptr<Track> DoFindTrack() = 0;
 
    unsigned DoContextMenu(
       const wxRect &rect,
-      wxWindow *pParent, const wxPoint *pPosition, SaucedacityProject *pProject)
+      wxWindow *pParent, const wxPoint *pPosition, TenacityProject *pProject)
    override;
 
    unsigned HandleWheelRotation
       (const TrackPanelMouseEvent &event,
-      SaucedacityProject *pProject) override;
+      TenacityProject *pProject) override;
 
 };
 

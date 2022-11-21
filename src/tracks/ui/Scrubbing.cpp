@@ -191,22 +191,22 @@ void Scrubber::ScrubPoller::Notify()
    mScrubber.ContinueScrubbingUI();
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+  []( TenacityProject &parent ){
      return std::make_shared< Scrubber >( &parent ); }
 };
 
-Scrubber &Scrubber::Get( SaucedacityProject &project )
+Scrubber &Scrubber::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< Scrubber >( key );
 }
 
-const Scrubber &Scrubber::Get( const SaucedacityProject &project )
+const Scrubber &Scrubber::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-Scrubber::Scrubber(SaucedacityProject *project)
+Scrubber::Scrubber(TenacityProject *project)
    : mScrubToken(-1)
    , mPaused(true)
    , mScrubSpeedDisplayCountdown(0)
@@ -238,7 +238,7 @@ Scrubber::~Scrubber()
 }
 
 static const auto HasWaveDataPred =
-   [](const SaucedacityProject &project){
+   [](const TenacityProject &project){
       auto range = TrackList::Get( project ).Any<const WaveTrack>()
          + [](const WaveTrack *pTrack){
             return pTrack->GetEndTime() > pTrack->GetStartTime();
@@ -1104,7 +1104,7 @@ wxString Scrubber::StatusMessageForWave() const
 
 static ProjectStatus::RegisteredStatusWidthFunction
 registeredStatusWidthFunction{
-   []( const SaucedacityProject &, StatusBarField field )
+   []( const TenacityProject &, StatusBarField field )
       -> ProjectStatus::StatusWidthResult
    {
       if ( field == stateStatusBarField ) {
@@ -1207,7 +1207,7 @@ void Scrubber::OnKeyboardScrubForwards(const CommandContext &context)
 namespace {
 
 static const auto finder =
-   [](SaucedacityProject &project) -> CommandHandlerObject&
+   [](TenacityProject &project) -> CommandHandlerObject&
      { return Scrubber::Get( project ); };
 
 using namespace MenuTable;
@@ -1227,7 +1227,7 @@ BaseItemSharedPtr ToolbarMenu()
                item.flags,
                item.StatusTest
                   ? // a checkmark item
-                     Options{}.CheckTest( [&item](SaucedacityProject &project){
+                     Options{}.CheckTest( [&item](TenacityProject &project){
                      return ( Scrubber::Get(project).*(item.StatusTest) )(); } )
                   : // not a checkmark item
                      Options{}

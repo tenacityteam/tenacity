@@ -26,21 +26,21 @@ to that system.
 #include "CommandType.h"
 #include "../BatchCommands.h"
 
-class SaucedacityProject;
+class TenacityProject;
 
 class BatchEvalCommandType final : public OldStyleCommandType
 {
 public:
    ComponentInterfaceSymbol BuildName() override;
    void BuildSignature(CommandSignature &signature) override;
-   OldStyleCommandPointer Create( SaucedacityProject *project,
+   OldStyleCommandPointer Create( TenacityProject *project,
       std::unique_ptr<CommandOutputTargets> &&target) override;
 };
 
 class BatchEvalCommand final : public CommandImplementation
 {
 public:
-   BatchEvalCommand(SaucedacityProject &project, OldStyleCommandType &type)
+   BatchEvalCommand(TenacityProject &project, OldStyleCommandType &type)
       : CommandImplementation(project, type)
    { }
 

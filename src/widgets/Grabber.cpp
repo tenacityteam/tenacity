@@ -33,7 +33,7 @@ around to NEW positions.
 #include "../theme/AllThemeResources.h"
 #include "../theme/Theme.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 ////////////////////////////////////////////////////////////

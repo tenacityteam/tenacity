@@ -20,7 +20,7 @@ Paul Licameli split from ProjectManager.h
 
 constexpr int RATE_NOT_SELECTED{ -1 };
 
-class SaucedacityProject;
+class TenacityProject;
 struct AudioIOStartStreamOptions;
 class TrackList;
 class SelectedRegion;
@@ -45,12 +45,12 @@ class SAUCEDACITY_DLL_API ProjectAudioManager final
    , public std::enable_shared_from_this< ProjectAudioManager >
 {
 public:
-   static ProjectAudioManager &Get( SaucedacityProject &project );
-   static const ProjectAudioManager &Get( const SaucedacityProject &project );
+   static ProjectAudioManager &Get( TenacityProject &project );
+   static const ProjectAudioManager &Get( const TenacityProject &project );
 
    // Find suitable tracks to record into, or return an empty array.
    static WaveTrackArray ChooseExistingRecordingTracks(
-      SaucedacityProject &proj, bool selectedOnly,
+      TenacityProject &proj, bool selectedOnly,
       double targetRate = RATE_NOT_SELECTED);
 
    static bool UseDuplex();
@@ -58,7 +58,7 @@ public:
    static TransportTracks GetAllPlaybackTracks(
       TrackList &trackList, bool selectedOnly, bool useMidi = false);
 
-   explicit ProjectAudioManager( SaucedacityProject &project );
+   explicit ProjectAudioManager( TenacityProject &project );
    ProjectAudioManager( const ProjectAudioManager & ) = delete;
    ProjectAudioManager &operator=( const ProjectAudioManager & ) = delete;
    ~ProjectAudioManager() override;
@@ -87,7 +87,7 @@ public:
 
    void OnRecord(bool altAppearance);
 
-   bool DoRecord(SaucedacityProject &project,
+   bool DoRecord(TenacityProject &project,
       const TransportTracks &transportTracks, // If captureTracks is empty, then tracks are created
       double t0, double t1,
       bool altAppearance,
@@ -143,7 +143,7 @@ private:
 
    void OnCheckpointFailure(wxCommandEvent &evt);
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    std::shared_ptr<TrackList> mCutPreviewTracks;
 
@@ -161,13 +161,13 @@ private:
    int mDisplayedRate{ 0 };
    static std::pair< TranslatableStrings, unsigned >
       StatusWidthFunction(
-         const SaucedacityProject &project, StatusBarField field);
+         const TenacityProject &project, StatusBarField field);
 };
 
 SAUCEDACITY_DLL_API
-AudioIOStartStreamOptions DefaultPlayOptions( SaucedacityProject &project );
+AudioIOStartStreamOptions DefaultPlayOptions( TenacityProject &project );
 SAUCEDACITY_DLL_API
-AudioIOStartStreamOptions DefaultSpeedPlayOptions( SaucedacityProject &project );
+AudioIOStartStreamOptions DefaultSpeedPlayOptions( TenacityProject &project );
 
 struct PropertiesOfSelected
 {
@@ -177,7 +177,7 @@ struct PropertiesOfSelected
 };
 
 SAUCEDACITY_DLL_API
-PropertiesOfSelected GetPropertiesOfSelected(const SaucedacityProject &proj);
+PropertiesOfSelected GetPropertiesOfSelected(const TenacityProject &proj);
 
 #include "commands/CommandFlag.h"
 

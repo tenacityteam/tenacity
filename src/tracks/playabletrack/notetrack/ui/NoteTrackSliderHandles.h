@@ -36,12 +36,12 @@ public:
 protected:
    float GetValue() override;
    Result SetValue
-   (SaucedacityProject *pProject, float newValue) override;
+   (TenacityProject *pProject, float newValue) override;
    Result CommitChanges
-   (const wxMouseEvent &event, SaucedacityProject *pProject) override;
+   (const wxMouseEvent &event, TenacityProject *pProject) override;
 
    TranslatableString Tip(
-      const wxMouseState &state, SaucedacityProject &) const override;
+      const wxMouseState &state, TenacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 

@@ -49,7 +49,7 @@ It forwards the actual work of doing the commands to the ScreenshotCommand.
 #include "ViewInfo.h"
 #include "WaveTrack.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 class OldStyleCommandType;
@@ -66,7 +66,7 @@ class ScreenshotBigDialog final : public wxFrame,
 
    // constructors and destructors
    ScreenshotBigDialog(
-      wxWindow *parent, wxWindowID id, SaucedacityProject &project);
+      wxWindow *parent, wxWindowID id, TenacityProject &project);
    virtual ~ScreenshotBigDialog();
 
    bool ProcessEvent(wxEvent & event) override;
@@ -106,7 +106,7 @@ class ScreenshotBigDialog final : public wxFrame,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    std::unique_ptr<ScreenshotCommand> CreateCommand();
 
@@ -133,7 +133,7 @@ ScreenshotBigDialogPtr mFrame;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void OpenScreenshotTools( SaucedacityProject &project )
+void OpenScreenshotTools( TenacityProject &project )
 {
    if (!mFrame) {
       auto parent = wxTheApp->GetTopWindow();
@@ -287,7 +287,7 @@ std::unique_ptr<ScreenshotCommand> ScreenshotBigDialog::CreateCommand()
 }
 
 ScreenshotBigDialog::ScreenshotBigDialog(
-   wxWindow * parent, wxWindowID id, SaucedacityProject &project)
+   wxWindow * parent, wxWindowID id, TenacityProject &project)
 :  wxFrame(parent, id, ScreenCaptureFrameTitle.Translation(),
            wxDefaultPosition, wxDefaultSize,
 

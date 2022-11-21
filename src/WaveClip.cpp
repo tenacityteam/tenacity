@@ -27,7 +27,7 @@
 #include <vector>
 #include <wx/log.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 #include <lib-exceptions/UserException.h>
 #include <lib-math/Resample.h>
@@ -1517,7 +1517,7 @@ void WaveClip::ClearSequence(double t0, double t1)
 }
 
 /*! @excsafety{Weak}
--- This WaveClip remains destructible in case of SaucedacityException.
+-- This WaveClip remains destructible in case of TenacityException.
 But some cutlines may be deleted */
 void WaveClip::ClearAndAddCutLine(double t0, double t1)
 {

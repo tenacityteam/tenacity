@@ -104,7 +104,7 @@ bool SelectTimeCommand::Apply(const CommandContext & context){
    if( !bHasRelativeSpec )
       mRelativeTo = 0;
 
-   SaucedacityProject * p = &context.project;
+   TenacityProject * p = &context.project;
    double end = TrackList::Get( *p ).GetEndTime();
    double t0;
    double t1;

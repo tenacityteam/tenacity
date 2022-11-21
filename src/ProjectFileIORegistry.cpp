@@ -10,7 +10,7 @@
 
 #include "ProjectFileIORegistry.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 #include <unordered_map>

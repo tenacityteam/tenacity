@@ -12,7 +12,7 @@
 #define __AUDACITY_FILE_FORMATS__
 
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-strings/Identifier.h>
 

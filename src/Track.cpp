@@ -39,7 +39,7 @@ and TimeTrack.
 #include "Project.h"
 #include "ProjectSettings.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 
 #ifdef _MSC_VER
@@ -500,28 +500,28 @@ wxDEFINE_EVENT(EVT_TRACKLIST_DELETION, TrackListEvent);
 // same value as in the default constructed TrackId:
 long TrackList::sCounter = -1;
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   [](SaucedacityProject &project) { return TrackList::Create( &project ); }
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   [](TenacityProject &project) { return TrackList::Create( &project ); }
 };
 
-TrackList &TrackList::Get( SaucedacityProject &project )
+TrackList &TrackList::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< TrackList >( key );
 }
 
-const TrackList &TrackList::Get( const SaucedacityProject &project )
+const TrackList &TrackList::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-TrackList::TrackList( SaucedacityProject *pOwner )
+TrackList::TrackList( TenacityProject *pOwner )
 :  wxEvtHandler()
 , mOwner{ pOwner }
 {
 }
 
 // Factory function
-std::shared_ptr<TrackList> TrackList::Create( SaucedacityProject *pOwner )
+std::shared_ptr<TrackList> TrackList::Create( TenacityProject *pOwner )
 {
    return std::make_shared<TrackList>( pOwner );
 }

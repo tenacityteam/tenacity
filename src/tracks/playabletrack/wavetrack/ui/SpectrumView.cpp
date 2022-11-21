@@ -24,7 +24,7 @@ Paul Licameli split from WaveTrackView.cpp
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include <wx/dcmemory.h>
@@ -46,7 +46,7 @@ bool SpectrumView::IsSpectral() const
 
 std::vector<UIHandlePtr> SpectrumView::DetailedHitTest(
    const TrackPanelMouseState &state,
-   const SaucedacityProject *pProject, int currentTool, bool bMultiTool )
+   const TenacityProject *pProject, int currentTool, bool bMultiTool )
 {
    const auto wt = std::static_pointer_cast< WaveTrack >( FindTrack() );
 
@@ -731,7 +731,7 @@ void SpectrogramSettingsHandler::OnSpectrogramSettings(wxCommandEvent &)
    class ViewSettingsDialog final : public PrefsDialog
    {
    public:
-      ViewSettingsDialog(wxWindow *parent, SaucedacityProject &project,
+      ViewSettingsDialog(wxWindow *parent, TenacityProject &project,
          const TranslatableString &title, PrefsPanel::Factories &factories,
          int page)
          : PrefsDialog(parent, &project, title, factories)
@@ -777,7 +777,7 @@ void SpectrogramSettingsHandler::OnSpectrogramSettings(wxCommandEvent &)
 
    if (0 != dialog.ShowModal()) {
       // Redraw
-      SaucedacityProject *const project = &mpData->project;
+      TenacityProject *const project = &mpData->project;
       ProjectHistory::Get( *project ).ModifyState(true);
       //Bug 1725 Toolbar was left greyed out.
       //This solution is overkill, but does fix the problem and is what the

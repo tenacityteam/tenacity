@@ -21,14 +21,14 @@
 #include <wx/defs.h>
 #include <wx/timer.h> // member variable
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-preferences/Prefs.h>
 
 #include "MeterPanelBase.h" // to inherit
 #include "Ruler.h" // member variable
 
-class SaucedacityProject;
+class TenacityProject;
 
 // Increase this when we add support for multichannel meters
 // (most of the code is already there)
@@ -112,7 +112,7 @@ class SAUCEDACITY_DLL_API MeterPanel final
    };
 
 
-   MeterPanel(SaucedacityProject *,
+   MeterPanel(TenacityProject *,
          wxWindow* parent, wxWindowID id,
          bool isInput,
          const wxPoint& pos = wxDefaultPosition,
@@ -228,7 +228,7 @@ class SAUCEDACITY_DLL_API MeterPanel final
 
    wxString Key(const wxString & key) const;
 
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
    MeterUpdateQueue mQueue;
    wxTimer          mTimer;
 

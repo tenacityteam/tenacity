@@ -16,7 +16,7 @@
 #include <vector>
 #include <wx/tokenzr.h> // for enum wxStringTokenizerMode
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h> // for FileType
 
 #include "../widgets/wxPanelWrapper.h" // to inherit
@@ -25,7 +25,7 @@
 
 class wxArrayString;
 class wxListBox;
-class SaucedacityProject;
+class TenacityProject;
 class Tags;
 class WaveTrackFactory;
 class Track;
@@ -170,7 +170,7 @@ public:
     std::unique_ptr<ExtImportItem> CreateDefaultImportItem();
 
    // if false, the import failed and errorMessage will be set.
-   bool Import( SaucedacityProject &project,
+   bool Import( TenacityProject &project,
               const FilePath &fName,
               WaveTrackFactory *trackFactory,
               TrackHolders &tracks,

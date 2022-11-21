@@ -40,11 +40,11 @@ most commonly asked questions about Audacity.
 #include "theme/AllThemeResources.h"
 #include "HelpText.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../images/SaucedacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.xpm"
 
 SplashDialog * SplashDialog::pSelf=NULL;
 
@@ -60,13 +60,13 @@ END_EVENT_TABLE()
 
 IMPLEMENT_CLASS(SplashDialog, wxDialogWrapper)
 
-void SplashDialog::DoHelpWelcome( SaucedacityProject &project )
+void SplashDialog::DoHelpWelcome( TenacityProject &project )
 {
    Show2( &GetProjectFrame( project ) );
 }
 
 SplashDialog::SplashDialog(wxWindow * parent)
-   :  wxDialogWrapper(parent, -1, XO("Welcome to Saucedacity!"),
+   :  wxDialogWrapper(parent, -1, XO("Welcome to Tenacity!"),
       wxPoint( -1, 60 ), // default x position, y position 60 pixels from top of screen.
       wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
@@ -87,11 +87,11 @@ SplashDialog::SplashDialog(wxWindow * parent)
 
    if (ShouldShow)
    {
-     AudacityMessageBox(XO("The version of Saucedacity you are using is a pre-release version. Use of "
+     AudacityMessageBox(XO("The version of Tenacity you are using is a pre-release version. Use of "
                         "these releases in production environments is discouraged. This version "
-                        "of Saucedacity might contain (unknown) bugs along with possible data "
+                        "of Tenacity might contain (unknown) bugs along with possible data "
                         "loss."),
-                        XO("Saucedacity Pre-Release"),
+                        XO("Tenacity Pre-Release"),
                         wxOK);
    }
    #endif
@@ -100,7 +100,7 @@ SplashDialog::SplashDialog(wxWindow * parent)
 void SplashDialog::OnChar(wxMouseEvent &event)
 {
    if ( event.ShiftDown() && event.ControlDown() )
-      wxLaunchDefaultBrowser("https://saucedacity.github.io");
+      wxLaunchDefaultBrowser("https://tenacity.github.io");
 }
 
 void SplashDialog::Populate( ShuttleGui & S )
@@ -110,7 +110,7 @@ void SplashDialog::Populate( ShuttleGui & S )
    S.StartVerticalLay(1);
 
    //v For now, change to AudacityLogoWithName via old-fashioned ways, not Theme.
-   m_pLogo = std::make_unique<wxBitmap>((const char **) SaucedacityLogoWithName_xpm); //v
+   m_pLogo = std::make_unique<wxBitmap>((const char **) TenacityLogoWithName_xpm); //v
 
 
    // JKC: Resize to 50% of size.  Later we may use a smaller xpm as

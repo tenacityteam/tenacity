@@ -89,7 +89,7 @@ classes derived from it.
 
 #include "CommandContext.h"
 
-#include "SaucedacityException.h"
+#include "TenacityException.h"
 
 
 
@@ -170,7 +170,7 @@ bool ApplyAndSendResponse::Apply()
 }
 
 CommandImplementation::CommandImplementation(
-  SaucedacityProject &project, OldStyleCommandType &type)
+  TenacityProject &project, OldStyleCommandType &type)
 :  OldStyleCommand{ project },
    mType(type),
    mParams(type.GetSignature().GetDefaults()),

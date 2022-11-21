@@ -19,7 +19,7 @@
 
 class wxTextFile;
 
-class SaucedacityProject;
+class TenacityProject;
 class NotifyingSelectedRegion;
 class TimeWarper;
 
@@ -155,7 +155,7 @@ public:
    int FindNextLabel(const SelectedRegion& currentSelection);
    int FindPrevLabel(const SelectedRegion& currentSelection);
 
-   Track::Holder PasteInto( SaucedacityProject & ) const override;
+   Track::Holder PasteInto( TenacityProject & ) const override;
 
    struct IntervalData final : Track::IntervalData {
       size_t index;

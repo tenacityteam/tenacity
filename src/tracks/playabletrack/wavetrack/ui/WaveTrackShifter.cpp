@@ -200,7 +200,7 @@ private:
 
 using MakeWaveTrackShifter = MakeTrackShifter::Override<WaveTrack>;
 DEFINE_ATTACHED_VIRTUAL_OVERRIDE(MakeWaveTrackShifter) {
-   return [](WaveTrack &track, SaucedacityProject&) {
+   return [](WaveTrack &track, TenacityProject&) {
       return std::make_unique<WaveTrackShifter>(track);
    };
 }

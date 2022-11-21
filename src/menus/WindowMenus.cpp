@@ -1,6 +1,6 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   PluginMenus.cpp
 
@@ -37,7 +37,7 @@
 // private helper classes and functions
 namespace {
 
-void DoMacMinimize(SaucedacityProject *project)
+void DoMacMinimize(TenacityProject *project)
 {
    if (project) {
       auto window = &GetProjectFrame( *project );
@@ -60,7 +60,7 @@ void DoMacMinimize(SaucedacityProject *project)
 }
 
 std::vector< wxWindowID > sReservedIds;
-std::vector< std::weak_ptr< SaucedacityProject > > sProjects;
+std::vector< std::weak_ptr< TenacityProject > > sProjects;
 
 void RebuildMenu(wxCommandEvent &evt)
 {
@@ -75,7 +75,7 @@ void RebuildMenu(wxCommandEvent &evt)
 }
 
 wxWindowID ReservedID(
-   size_t index, const std::shared_ptr< SaucedacityProject > &pProject )
+   size_t index, const std::shared_ptr< TenacityProject > &pProject )
 {
    if ( sReservedIds.empty() ) {
       // Do this once only per session, and don't worry about unbinding
@@ -171,9 +171,9 @@ void OnMacMinimizeAll(const CommandContext &)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static WindowActions::Handler instance;
    return instance;
 };
@@ -212,7 +212,7 @@ BaseItemSharedPtr WindowMenu()
 
       Section( "",
          Special( wxT("PopulateWindowsStep"),
-         [](SaucedacityProject &, wxMenu &theMenu)
+         [](TenacityProject &, wxMenu &theMenu)
          {
             // Undo previous bindings
             for ( auto id : sReservedIds )

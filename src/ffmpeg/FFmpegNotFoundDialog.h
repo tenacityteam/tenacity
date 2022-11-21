@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   FFmpegNotFoundDialog.h
 
@@ -20,7 +20,7 @@
 #include "../widgets/wxPanelWrapper.h"
 #include <wx/checkbox.h>
 
-/// If Saucedacity failed to load libav*, this dialog shows up and tells user
+/// If Tenacity failed to load libav*, this dialog shows up and tells user
 /// about that. It will pop-up again and again until it is disabled.
 class FFmpegNotFoundDialog final : public wxDialogWrapper
 {

@@ -12,7 +12,7 @@
 
 #include "Contrast.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -660,8 +660,8 @@ void ContrastDialog::OnReset(wxCommandEvent & /*event*/)
 namespace {
 
 // Contrast window attached to each project is built on demand by:
-SaucedacityProject::AttachedWindows::RegisteredFactory sContrastDialogKey{
-   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sContrastDialogKey{
+   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &window = ProjectWindow::Get( parent );
       return safenew ContrastDialog(
          &window, -1, XO("Contrast Analysis (WCAG 2 compliance)"),
@@ -686,9 +686,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static Handler instance;
    return instance;
 }

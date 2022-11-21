@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_QUALITY_SETTINGS__
 #define __AUDACITY_QUALITY_SETTINGS__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h> // for EnumSetting
 #include <lib-math/SampleFormat.h>
 

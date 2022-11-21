@@ -43,21 +43,21 @@ CommonTrackPanelCell::~CommonTrackPanelCell()
 }
 
 HitTestPreview CommonTrackPanelCell::DefaultPreview
-(const TrackPanelMouseState &, const SaucedacityProject *)
+(const TrackPanelMouseState &, const TenacityProject *)
 {
    static wxCursor defaultCursor{ wxCURSOR_ARROW };
    return { {}, &defaultCursor, {} };
 }
 
 auto CommonTrackPanelCell::GetMenuItems(
-   const wxRect&, const wxPoint *, SaucedacityProject * )
+   const wxRect&, const wxPoint *, TenacityProject * )
       -> std::vector<MenuItem>
 {
    return {};
 }
 
 unsigned CommonTrackPanelCell::DoContextMenu( const wxRect &rect,
-   wxWindow *pParent, const wxPoint *pPoint, SaucedacityProject *pProject)
+   wxWindow *pParent, const wxPoint *pPoint, TenacityProject *pProject)
 {
    const auto items = GetMenuItems( rect, pPoint, pProject );
    if (items.empty())
@@ -114,7 +114,7 @@ unsigned CommonTrackPanelCell::DoContextMenu( const wxRect &rect,
 }
 
 unsigned CommonTrackPanelCell::HandleWheelRotation
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    auto hook = GetHook();
    return hook ? hook( evt, pProject ) : RefreshCode::Cancelled;

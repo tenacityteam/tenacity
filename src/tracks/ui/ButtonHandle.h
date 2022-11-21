@@ -43,31 +43,31 @@ protected:
    // change.
    // Subclass can decide to refresh other things and the results will be ORed.
    virtual Result CommitChanges
-      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent) = 0;
+      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent) = 0;
 
    // Define a message for the status bar and tooltip.
    virtual TranslatableString Tip(
-      const wxMouseState &state, SaucedacityProject &project) const = 0;
+      const wxMouseState &state, TenacityProject &project) const = 0;
 
-   void Enter(bool forward, SaucedacityProject *) final override;
+   void Enter(bool forward, TenacityProject *) final override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject)
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject)
       final override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject)
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject)
       final override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       final override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) final override;
 
-   Result Cancel(SaucedacityProject *pProject) final override;
+   Result Cancel(TenacityProject *pProject) final override;
 
    std::weak_ptr<Track> mpTrack;
    wxRect mRect;

@@ -28,7 +28,7 @@
 #include <wx/choice.h>
 #include <wx/valgen.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../Project.h"

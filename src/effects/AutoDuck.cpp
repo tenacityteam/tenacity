@@ -27,7 +27,7 @@
 #include <wx/dcmemory.h>
 #include <wx/intl.h>
 
-// Saucedacity Libraries
+// Tenacity Libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"

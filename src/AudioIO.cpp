@@ -432,9 +432,9 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <wx/power.h>
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
-#include <lib-exceptions/SaucedacityException.h>
+#include <lib-exceptions/TenacityException.h>
 #include <lib-math/float_cast.h>
 #include <lib-math/Resample.h>
 #include <lib-preferences/Prefs.h>
@@ -1340,7 +1340,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 #if (defined(__WXMAC__) || defined(__WXMSW__)) && wxCHECK_VERSION(3,1,0)
    // Don't want the system to sleep while audio I/O is active
    if (mPortStreamV19 != NULL && mLastPaError == paNoError) {
-      wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Saucedacity Audio"));
+      wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Tenacity Audio"));
    }
 #endif
 
@@ -2087,7 +2087,7 @@ bool AudioIoCallback::StartPortMidiStream()
 }
 #endif
 
-bool AudioIO::IsAvailable(SaucedacityProject *project) const
+bool AudioIO::IsAvailable(TenacityProject *project) const
 {
    return mOwningProject == NULL || mOwningProject == project;
 }
@@ -2642,7 +2642,7 @@ void AudioIO::FillBuffers()
 {
    unsigned int i;
 
-   auto delayedHandler = [this] ( SaucedacityException * pException ) {
+   auto delayedHandler = [this] ( TenacityException * pException ) {
       // In the main thread, stop recording
       // This is one place where the application handles disk
       // exhaustion exceptions from wave track operations, without rolling
@@ -2655,7 +2655,7 @@ void AudioIO::FillBuffers()
 
       // Note that the Flush in StopStream() may throw another exception,
       // but StopStream() contains that exception, and the logic in
-      // SaucedacityException::DelayedHandlerAction prevents redundant message
+      // TenacityException::DelayedHandlerAction prevents redundant message
       // boxes.
       StopStream();
       DefaultDelayedHandlerAction{}( pException );
@@ -3016,7 +3016,7 @@ void AudioIO::FillBuffers()
          // end of record buffering
       },
       // handler
-      [this] ( SaucedacityException *pException ) {
+      [this] ( TenacityException *pException ) {
          if ( pException ) {
             // So that we don't attempt to fill the recording buffer again
             // before the main thread stops recording

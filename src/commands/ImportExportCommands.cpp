@@ -17,7 +17,7 @@
 
 #include "ImportExportCommands.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
 
 #include "LoadCommands.h"

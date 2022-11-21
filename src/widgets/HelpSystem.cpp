@@ -38,7 +38,7 @@
 #include <wx/statusbr.h>
 #include <wx/regex.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-preferences/Prefs.h>

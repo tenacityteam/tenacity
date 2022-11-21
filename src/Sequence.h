@@ -15,7 +15,7 @@
 #include <vector>
 #include <functional>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleCount.h>
 #include <lib-math/SampleFormat.h>
 #include <lib-xml/XMLTagHandler.h>

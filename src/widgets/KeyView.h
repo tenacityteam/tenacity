@@ -15,7 +15,7 @@
 #include <wx/defs.h>
 #include <wx/vlbox.h> // to inherit wxVListBox
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/TranslatableString.h>
 
 #include "../commands/Keyboard.h"

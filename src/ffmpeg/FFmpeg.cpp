@@ -20,7 +20,7 @@ License: GPL v2.  See License.txt.
 
 #include "FFmpeg.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 
 #include "SelectFile.h"
@@ -75,7 +75,7 @@ void FFmpegStartup()
       {
          AudacityMessageBox(XO(
 "FFmpeg was configured in Preferences and successfully loaded before, \
-\nbut this time Saucedacity failed to load it at startup. \
+\nbut this time Tenacity failed to load it at startup. \
 \n\nYou may want to go back to Preferences > Libraries and re-configure it."),
             XO("FFmpeg startup failed"));
       }
@@ -134,7 +134,7 @@ public:
       {
          S.AddTitle(
             XO(
-"Saucedacity needs the file '%s' to import and export audio via FFmpeg.")
+"Tenacity needs the file '%s' to import and export audio via FFmpeg.")
                .Format( mName ) );
 
          S.SetBorder(3);

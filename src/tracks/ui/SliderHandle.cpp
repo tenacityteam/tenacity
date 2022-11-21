@@ -25,7 +25,7 @@ SliderHandle::SliderHandle
 {
 }
 
-void SliderHandle::Enter(bool, SaucedacityProject *)
+void SliderHandle::Enter(bool, TenacityProject *)
 {
    mChangeHighlight = RefreshCode::RefreshCell;
 }
@@ -35,7 +35,7 @@ SliderHandle::~SliderHandle()
 }
 
 UIHandle::Result SliderHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    wxMouseEvent &event = evt.event;
    using namespace RefreshCode;
@@ -62,7 +62,7 @@ UIHandle::Result SliderHandle::Click
 }
 
 UIHandle::Result SliderHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    wxMouseEvent &event = evt.event;
    using namespace RefreshCode;
@@ -74,7 +74,7 @@ UIHandle::Result SliderHandle::Drag
 }
 
 HitTestPreview SliderHandle::Preview
-(const TrackPanelMouseState &st, SaucedacityProject *project)
+(const TrackPanelMouseState &st, TenacityProject *project)
 {
    // No special cursor
    TranslatableString message;
@@ -84,7 +84,7 @@ HitTestPreview SliderHandle::Preview
 }
 
 UIHandle::Result SliderHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
  wxWindow *)
 {
    using namespace RefreshCode;
@@ -102,7 +102,7 @@ UIHandle::Result SliderHandle::Release
    return result;
 }
 
-UIHandle::Result SliderHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result SliderHandle::Cancel(TenacityProject *pProject)
 {
    wxMouseEvent event(wxEVT_LEFT_UP);
    GetSlider( pProject )->OnMouseEvent(event);
@@ -113,7 +113,7 @@ UIHandle::Result SliderHandle::Cancel(SaucedacityProject *pProject)
    return RefreshCode::RefreshCell | result;
 }
 
-LWSlider *SliderHandle::GetSlider( SaucedacityProject *pProject )
+LWSlider *SliderHandle::GetSlider( TenacityProject *pProject )
 {
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
    return mSliderFn( pProject, mRect, pTrack.get() );

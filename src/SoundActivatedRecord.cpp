@@ -24,7 +24,7 @@
 #include "shuttle/ShuttleGui.h"
 #include "prefs/GUISettings.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 BEGIN_EVENT_TABLE(SoundActivatedRecordDialog, wxDialogWrapper)

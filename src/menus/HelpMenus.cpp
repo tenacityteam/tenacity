@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   HelpMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -39,7 +39,7 @@
 namespace {
 
 void ShowDiagnostics(
-   SaucedacityProject &project, const wxString &info,
+   TenacityProject &project, const wxString &info,
    const TranslatableString &description, const wxString &defaultPath,
    bool fixedWidth = false)
 {
@@ -105,7 +105,7 @@ class QuickFixDialog : public wxDialogWrapper
 public:
    using PrefSetter = std::function< void() > ;
 
-   QuickFixDialog(wxWindow * pParent, SaucedacityProject &project);
+   QuickFixDialog(wxWindow * pParent, TenacityProject &project);
    void Populate();
    void PopulateOrExchange(ShuttleGui & S);
    void AddStuck( ShuttleGui & S, bool & bBool,
@@ -117,7 +117,7 @@ public:
    void OnHelp(const ManualPageID &Str);
    void OnFix(const PrefSetter &setter, wxWindowID id);
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    int mItem;
    bool mbSyncLocked;
@@ -135,7 +135,7 @@ BEGIN_EVENT_TABLE(QuickFixDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_CANCEL,                                        QuickFixDialog::OnCancel)
 END_EVENT_TABLE();
 
-QuickFixDialog::QuickFixDialog(wxWindow * pParent, SaucedacityProject &project) :
+QuickFixDialog::QuickFixDialog(wxWindow * pParent, TenacityProject &project) :
       wxDialogWrapper(pParent, wxID_ANY, XO("Do you have these problems?"),
             wxDefaultPosition, wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE )
@@ -213,7 +213,7 @@ void QuickFixDialog::PopulateOrExchange(ShuttleGui & S)
          mItem = -1;
 
          auto defaultAction =
-         [](SaucedacityProject *pProject, const wxString &path){ return
+         [](TenacityProject *pProject, const wxString &path){ return
             [pProject, path]{
                gPrefs->Write(path, 0);
                gPrefs->Flush();
@@ -458,9 +458,9 @@ void OnAbout(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static HelpActions::Handler instance;
    return instance;
 };
@@ -492,7 +492,7 @@ BaseItemSharedPtr HelpMenu()
                   Command( wxT("QuickHelp"), XXO("&Getting Started"), FN(OnQuickHelp), AlwaysEnabledFlag ),
 
                   // DA: Emphasise it is the Audacity Manual (No separate DA manual).
-                  Command( wxT("Manual"), XXO("Saucedacity &Manual"), FN(OnManual), AlwaysEnabledFlag )
+                  Command( wxT("Manual"), XXO("Tenacity &Manual"), FN(OnManual), AlwaysEnabledFlag )
                 #else
                   Command( wxT("QuickHelp"), XXO("&Quick Help..."), FN(OnQuickHelp), AlwaysEnabledFlag ),
                   Command( wxT("Manual"), XXO("&Manual..."), FN(OnManual), AlwaysEnabledFlag )
@@ -534,7 +534,7 @@ BaseItemSharedPtr HelpMenu()
       #else
       ,
       #endif
-              Command( wxT("About"), XXO("&About Saucedacity..."), FN(OnAbout), AlwaysEnabledFlag )
+              Command( wxT("About"), XXO("&About Tenacity..."), FN(OnAbout), AlwaysEnabledFlag )
              )
         )
      ) };

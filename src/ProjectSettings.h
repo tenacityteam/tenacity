@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectSettings.h
 
-Paul Licameli split from SaucedacityProject.h
+Paul Licameli split from TenacityProject.h
 
 **********************************************************************/
 
@@ -16,10 +16,10 @@ Paul Licameli split from SaucedacityProject.h
 
 #include "ClientData.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h> // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 
 // Sent to the project when certain settings change
 wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
@@ -53,8 +53,8 @@ class SAUCEDACITY_DLL_API ProjectSettings final
    , private PrefsListener
 {
 public:
-   static ProjectSettings &Get( SaucedacityProject &project );
-   static const ProjectSettings &Get( const SaucedacityProject &project );
+   static ProjectSettings &Get( TenacityProject &project );
+   static const ProjectSettings &Get( const TenacityProject &project );
    
    // Values retrievable from GetInt() of the event for settings change
    enum EventCode : int {
@@ -62,7 +62,7 @@ public:
       ChangedProjectRate
    };
 
-   explicit ProjectSettings( SaucedacityProject &project );
+   explicit ProjectSettings( TenacityProject &project );
    ProjectSettings( const ProjectSettings & ) = delete;
    ProjectSettings &operator=( const ProjectSettings & ) = delete;
 
@@ -122,7 +122,7 @@ public:
 private:
    void UpdatePrefs() override;
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    NumericFormatSymbol mSelectionFormat;
    NumericFormatSymbol mFrequencySelectionFormatName;

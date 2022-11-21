@@ -13,7 +13,7 @@ Paul Licameli split from ProjectWindow.h
 
 #include <wx/frame.h> // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 
 ///\brief A top-level window associated with a project
 class ProjectWindowBase /* not final */ : public wxFrame
@@ -22,19 +22,19 @@ public:
    explicit ProjectWindowBase(
       wxWindow * parent, wxWindowID id,
       const wxPoint & pos, const wxSize &size,
-      SaucedacityProject &project );
+      TenacityProject &project );
 
    ~ProjectWindowBase() override;
 
-   SaucedacityProject &GetProject() { return mProject; }
-   const SaucedacityProject &GetProject() const { return mProject; }
+   TenacityProject &GetProject() { return mProject; }
+   const TenacityProject &GetProject() const { return mProject; }
 
 protected:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 };
 
-SAUCEDACITY_DLL_API SaucedacityProject *FindProjectFromWindow( wxWindow *pWindow );
-const SaucedacityProject *FindProjectFromWindow( const wxWindow *pWindow );
+SAUCEDACITY_DLL_API TenacityProject *FindProjectFromWindow( wxWindow *pWindow );
+const TenacityProject *FindProjectFromWindow( const wxWindow *pWindow );
 
 #endif
 

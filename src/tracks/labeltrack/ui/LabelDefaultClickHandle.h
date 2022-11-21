@@ -28,24 +28,24 @@ public:
       (const LabelDefaultClickHandle&) = default;
    
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    // does not override Preview()
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
 private:
    struct LabelState;
    std::shared_ptr< LabelState > mLabelState;
-   void SaveState( SaucedacityProject *pProject );
-   void RestoreState( SaucedacityProject *pProject );
+   void SaveState( TenacityProject *pProject );
+   void RestoreState( TenacityProject *pProject );
 };
 
 #endif

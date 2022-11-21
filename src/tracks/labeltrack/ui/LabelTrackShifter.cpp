@@ -10,7 +10,7 @@
 
 class LabelTrackShifter final : public TrackShifter {
 public:
-   LabelTrackShifter( LabelTrack &track, SaucedacityProject &project )
+   LabelTrackShifter( LabelTrack &track, TenacityProject &project )
       : mpTrack{ track.SharedPointer<LabelTrack>() }
       , mProject{ project }
    {
@@ -244,12 +244,12 @@ private:
    }
 
    std::shared_ptr<LabelTrack> mpTrack;
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 };
 
 using MakeLabelTrackShifter = MakeTrackShifter::Override<LabelTrack>;
 DEFINE_ATTACHED_VIRTUAL_OVERRIDE(MakeLabelTrackShifter) {
-   return [](LabelTrack &track, SaucedacityProject &project) {
+   return [](LabelTrack &track, TenacityProject &project) {
       return std::make_unique<LabelTrackShifter>(track, project);
    };
 }

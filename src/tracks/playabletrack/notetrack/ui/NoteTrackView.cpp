@@ -42,7 +42,7 @@ NoteTrackView::~NoteTrackView()
 
 std::vector<UIHandlePtr> NoteTrackView::DetailedHitTest
 (const TrackPanelMouseState &WXUNUSED(state),
- const SaucedacityProject *WXUNUSED(pProject), int, bool )
+ const TenacityProject *WXUNUSED(pProject), int, bool )
 {
    // Eligible for stretch?
    UIHandlePtr result;

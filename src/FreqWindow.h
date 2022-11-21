@@ -17,7 +17,7 @@
 #include "SpectrumAnalyst.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-preferences/Prefs.h>
 
@@ -29,7 +29,7 @@ class wxButton;
 class wxCheckBox;
 class wxChoice;
 
-class SaucedacityProject;
+class TenacityProject;
 class FrequencyPlotDialog;
 class FreqGauge;
 class RulerPanel;
@@ -60,7 +60,7 @@ class FrequencyPlotDialog final : public wxDialogWrapper,
 {
 public:
    FrequencyPlotDialog(wxWindow *parent, wxWindowID id,
-              SaucedacityProject &project,
+              TenacityProject &project,
               const TranslatableString & title, const wxPoint & pos);
    virtual ~ FrequencyPlotDialog();
 
@@ -104,7 +104,7 @@ private:
    int mFunc;
    int mAxis;
    int dBRange;
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 
 #ifdef __WXMSW__
    static const int fontSize = 8;

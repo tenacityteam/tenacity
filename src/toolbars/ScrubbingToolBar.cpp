@@ -30,7 +30,7 @@
 #include <wx/tooltip.h>
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AdornedRulerPanel.h"
@@ -58,7 +58,7 @@ EVT_IDLE( ScrubbingToolBar::OnIdle )
 END_EVENT_TABLE()
 
 //Standard constructor
-ScrubbingToolBar::ScrubbingToolBar( SaucedacityProject &project )
+ScrubbingToolBar::ScrubbingToolBar( TenacityProject &project )
 : ToolBar(project, ScrubbingBarID, XO("Scrub"), wxT("Scrub"))
 {
 }
@@ -67,15 +67,15 @@ ScrubbingToolBar::~ScrubbingToolBar()
 {
 }
 
-ScrubbingToolBar &ScrubbingToolBar::Get( SaucedacityProject &project )
+ScrubbingToolBar &ScrubbingToolBar::Get( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<ScrubbingToolBar*>( toolManager.GetToolBar(ScrubbingBarID) );
 }
 
-const ScrubbingToolBar &ScrubbingToolBar::Get( const SaucedacityProject &project )
+const ScrubbingToolBar &ScrubbingToolBar::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject&>( project )) ;
+   return Get( const_cast<TenacityProject&>( project )) ;
 }
 
 void ScrubbingToolBar::Create(wxWindow * parent)
@@ -220,7 +220,7 @@ void ScrubbingToolBar::DoRegenerateTooltips( bool force )
 
 void ScrubbingToolBar::OnButton(wxCommandEvent &event)
 {
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    if (!p) return;
    auto &scrubber = Scrubber::Get( *p );
 
@@ -248,7 +248,7 @@ void ScrubbingToolBar::EnableDisableButtons()
    const auto scrubButton = mButtons[STBScrubID];
    const auto seekButton = mButtons[STBSeekID];
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    auto &scrubber = Scrubber::Get( *p );
    const auto canScrub = scrubber.CanScrub();
@@ -294,7 +294,7 @@ void ScrubbingToolBar::OnIdle( wxIdleEvent &evt )
 }
 
 static RegisteredToolbarFactory factory{ ScrubbingBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew ScrubbingToolBar{ project } }; }
 };
 

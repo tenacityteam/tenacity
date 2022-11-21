@@ -15,10 +15,10 @@
 #include <wx/frame.h> // to inherit
 #include <memory>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-class SaucedacityProject;
+class TenacityProject;
 class LyricsPanel;
 
 class LyricsWindow final : public wxFrame,
@@ -26,7 +26,7 @@ class LyricsWindow final : public wxFrame,
 {
 
  public:
-   LyricsWindow(SaucedacityProject* parent);
+   LyricsWindow(TenacityProject* parent);
 
    LyricsPanel *GetLyricsPanel() { return mLyricsPanel; };
 
@@ -42,7 +42,7 @@ class LyricsWindow final : public wxFrame,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   std::weak_ptr<SaucedacityProject> mProject;
+   std::weak_ptr<TenacityProject> mProject;
    LyricsPanel *mLyricsPanel;
 
  public:

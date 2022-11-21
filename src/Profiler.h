@@ -27,7 +27,7 @@ but it will probably work fine if you use it on a high level.
 #include <vector>
 #include <time.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h>
 
 

@@ -1,6 +1,6 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   ClipMenus.cpp
 
@@ -270,7 +270,7 @@ FoundClipBoundary FindPrevClipBoundary(const WaveTrack* wt, double time)
 }
 
 int FindClipBoundaries
-(SaucedacityProject &project,
+(TenacityProject &project,
  double time, bool next, std::vector<FoundClipBoundary>& finalResults)
 {
    auto &tracks = TrackList::Get( project );
@@ -397,7 +397,7 @@ TranslatableString ClipBoundaryMessage(
    return message;
 }
 
-void DoSelectClipBoundary(SaucedacityProject &project, bool next)
+void DoSelectClipBoundary(TenacityProject &project, bool next)
 {
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
    auto &trackFocus = TrackFocus::Get( project );
@@ -422,7 +422,7 @@ void DoSelectClipBoundary(SaucedacityProject &project, bool next)
 }
 
 FoundClip FindNextClip
-(SaucedacityProject &project, const WaveTrack* wt, double t0, double t1)
+(TenacityProject &project, const WaveTrack* wt, double t0, double t1)
 {
    (void)project;//Compiler food.
 
@@ -464,7 +464,7 @@ FoundClip FindNextClip
 }
 
 FoundClip FindPrevClip
-(SaucedacityProject &project, const WaveTrack* wt, double t0, double t1)
+(TenacityProject &project, const WaveTrack* wt, double t0, double t1)
 {
    (void)project;//Compiler food.
 
@@ -508,7 +508,7 @@ FoundClip FindPrevClip
 }
 
 int FindClips
-(SaucedacityProject &project,
+(TenacityProject &project,
  double t0, double t1, bool next, std::vector<FoundClip>& finalResults)
 {
    auto &tracks = TrackList::Get( project );
@@ -585,7 +585,7 @@ int FindClips
    return nTracksSearched; // can be used for screen reader messages if required
 }
 
-void DoSelectClip(SaucedacityProject &project, bool next)
+void DoSelectClip(TenacityProject &project, bool next)
 {
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
    auto &trackFocus = TrackFocus::Get( project );
@@ -636,7 +636,7 @@ void DoSelectClip(SaucedacityProject &project, bool next)
 }
 
 void DoCursorClipBoundary
-(SaucedacityProject &project, bool next)
+(TenacityProject &project, bool next)
 {
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
    auto &trackFocus = TrackFocus::Get( project );
@@ -660,7 +660,7 @@ void DoCursorClipBoundary
 }
 
 // This function returns the amount moved.  Possibly 0.0.
-double DoClipMove( SaucedacityProject &project, Track *track,
+double DoClipMove( TenacityProject &project, Track *track,
      TrackList &trackList, bool syncLocked, bool right )
 {
    auto &viewInfo = ViewInfo::Get(project);
@@ -713,7 +713,7 @@ double DoClipMove( SaucedacityProject &project, Track *track,
 }
 
 void DoClipLeftOrRight
-(SaucedacityProject &project, bool right, bool keyUp )
+(TenacityProject &project, bool right, bool keyUp )
 {
    auto &undoManager = UndoManager::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -791,14 +791,14 @@ void OnSelectNextClip(const CommandContext &context)
 
 void OnCursorPrevClipBoundary(const CommandContext &context)
 {
-   SaucedacityProject &project = context.project;
+   TenacityProject &project = context.project;
 
    DoCursorClipBoundary(project, false);
 }
 
 void OnCursorNextClipBoundary(const CommandContext &context)
 {
-   SaucedacityProject &project = context.project;
+   TenacityProject &project = context.project;
    
    DoCursorClipBoundary(project, true);
 }
@@ -833,9 +833,9 @@ void OnClipRight(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static ClipActions::Handler instance;
    return instance;
 };

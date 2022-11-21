@@ -41,7 +41,7 @@ public:
    // key state.
    static UIHandlePtr HitTest
       (std::weak_ptr<SelectHandle> &holder,
-       const TrackPanelMouseState &state, const SaucedacityProject *pProject,
+       const TrackPanelMouseState &state, const TenacityProject *pProject,
        const std::shared_ptr<TrackView> &pTrackView);
 
    SelectHandle &operator=(const SelectHandle&) = default;
@@ -50,29 +50,29 @@ public:
 
    bool IsClicked() const;
 
-   void SetUseSnap(bool use, SaucedacityProject *pProject);
-   void Enter(bool forward, SaucedacityProject *pProject) override;
+   void SetUseSnap(bool use, TenacityProject *pProject);
+   void Enter(bool forward, TenacityProject *pProject) override;
 
    bool HasSnap() const;
    bool HasEscape() const override;
 
-   bool Escape(SaucedacityProject *pProject) override;
+   bool Escape(TenacityProject *pProject) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject*) override;
+   Result Cancel(TenacityProject*) override;
 
    static UIHandle::Result NeedChangeHighlight
       (const SelectHandle &oldState,
@@ -81,11 +81,11 @@ public:
 private:
    std::weak_ptr<Track> FindTrack();
 
-   void Connect(SaucedacityProject *pProject);
+   void Connect(TenacityProject *pProject);
 
-   void StartSelection(SaucedacityProject *pProject);
+   void StartSelection(TenacityProject *pProject);
    void AdjustSelection
-      (SaucedacityProject *pProject,
+      (TenacityProject *pProject,
        ViewInfo &viewInfo, int mouseXCoordinate, int trackLeftEdge,
        Track *pTrack);
    void AssignSelection(ViewInfo &viewInfo, double selend, Track *pTrack);
@@ -105,7 +105,7 @@ private:
       (SpectrumAnalyst &analyst,
        const ViewInfo &viewInfo, const WaveTrack *pTrack);
    void MoveSnappingFreqSelection
-      (SaucedacityProject *pProject, ViewInfo &viewInfo, int mouseYCoordinate,
+      (TenacityProject *pProject, ViewInfo &viewInfo, int mouseYCoordinate,
        int trackTopEdge,
        int trackHeight, TrackView *pTrackView);
 public:

@@ -23,7 +23,7 @@ Paul Licameli
 #include <algorithm>
 #include <wx/intl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 

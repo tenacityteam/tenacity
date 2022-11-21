@@ -2,7 +2,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR "${AUDACITY_VERSION}") # X
 set(CPACK_PACKAGE_VERSION_MINOR "${AUDACITY_RELEASE}") # Y
 set(CPACK_PACKAGE_VERSION_PATCH "${AUDACITY_REVISION}") # Z
 set(CPACK_PACKAGE_VENDOR "Saucedacity")
-set(CPACK_PACKAGE_HOMEPAGE_URL "https://saucedacity.github.io")
+set(CPACK_PACKAGE_HOMEPAGE_URL "https://tenacity.github.io")
 
 # X.Y.Z-alpha-20210615
 set(CPACK_PACKAGE_VERSION "${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION}${AUDACITY_SUFFIX}")
@@ -26,11 +26,11 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
 endif()
 
 # audacity-linux-X.Y.Z-alpha-20210615
-set(CPACK_PACKAGE_FILE_NAME "saucedacity-${os}-${CPACK_PACKAGE_VERSION}")
-set(zsync_name "saucedacity-${os}-*") # '*' is wildcard (here it means any version)
+set(CPACK_PACKAGE_FILE_NAME "tenacity-${os}-${CPACK_PACKAGE_VERSION}")
+set(zsync_name "tenacity-${os}-*") # '*' is wildcard (here it means any version)
 
 if(DEFINED AUDACITY_ARCH_LABEL)
-   # saucedacity-linux-X.Y.Z-alpha-20210615-x86_64
+   # tenacity-linux-X.Y.Z-alpha-20210615-x86_64
    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-${AUDACITY_ARCH_LABEL}")
    set(zsync_name "${zsync_name}-${AUDACITY_ARCH_LABEL}")
    set(CPACK_AUDACITY_ARCH_LABEL "${AUDACITY_ARCH_LABEL}")

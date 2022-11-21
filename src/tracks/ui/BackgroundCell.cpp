@@ -48,7 +48,7 @@ public:
    {}
 
    Result Click
-      (const TrackPanelMouseEvent &evt, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &evt, TenacityProject *pProject) override
    {
       using namespace RefreshCode;
       const wxMouseEvent &event = evt.event;
@@ -67,38 +67,38 @@ public:
    }
 
    Result Drag
-      (const TrackPanelMouseEvent &, SaucedacityProject *) override
+      (const TrackPanelMouseEvent &, TenacityProject *) override
    { return RefreshCode::RefreshNone; }
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &, SaucedacityProject *) override
+      (const TrackPanelMouseState &, TenacityProject *) override
    { return HitPreview(); }
 
    Result Release
-      (const TrackPanelMouseEvent &, SaucedacityProject *,
+      (const TrackPanelMouseEvent &, TenacityProject *,
        wxWindow *) override
    { return RefreshCode::RefreshNone; }
 
-   Result Cancel(SaucedacityProject *) override
+   Result Cancel(TenacityProject *) override
    { return RefreshCode::RefreshNone; }
 };
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+  []( TenacityProject &parent ){
      auto result = std::make_shared< BackgroundCell >( &parent );
      TrackPanel::Get( parent ).SetBackgroundCell( result );
      return result;
    }
 };
 
-BackgroundCell &BackgroundCell::Get( SaucedacityProject &project )
+BackgroundCell &BackgroundCell::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< BackgroundCell >( key );
 }
 
-const BackgroundCell &BackgroundCell::Get( const SaucedacityProject &project )
+const BackgroundCell &BackgroundCell::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
 BackgroundCell::~BackgroundCell()
@@ -107,7 +107,7 @@ BackgroundCell::~BackgroundCell()
 
 std::vector<UIHandlePtr> BackgroundCell::HitTest
 (const TrackPanelMouseState &,
- const SaucedacityProject *)
+ const TenacityProject *)
 {
    std::vector<UIHandlePtr> results;
    auto result = mHandle.lock();
@@ -152,7 +152,7 @@ wxRect BackgroundCell::DrawingArea(
 }
 
 auto BackgroundCell::GetMenuItems(
-   const wxRect &, const wxPoint *, SaucedacityProject * )
+   const wxRect &, const wxPoint *, TenacityProject * )
       -> std::vector<MenuItem>
 {
    // These commands exist in toolbar menus too, but maybe with other labels

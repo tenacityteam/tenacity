@@ -64,7 +64,7 @@ the mouse around.
 
 #include <cmath>
 
-// Saucedacity
+// Tenacity
 #include <lib-files/FileNames.h>
 #include <lib-math/FFT.h>
 #include <lib-preferences/Prefs.h>
@@ -179,7 +179,7 @@ BEGIN_EVENT_TABLE(FrequencyPlotDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 FrequencyPlotDialog::FrequencyPlotDialog(wxWindow * parent, wxWindowID id,
-                           SaucedacityProject &project,
+                           TenacityProject &project,
                            const TranslatableString & title,
                            const wxPoint & pos)
 :  wxDialogWrapper(parent, id, title, pos, wxDefaultSize,
@@ -1193,8 +1193,8 @@ void FreqPlot::OnMouseEvent(wxMouseEvent & event)
 
 namespace {
 
-SaucedacityProject::AttachedWindows::RegisteredFactory sFrequencyWindowKey{
-   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sFrequencyWindowKey{
+   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &window = ProjectWindow::Get( parent );
       return safenew FrequencyPlotDialog(
          &window, -1, parent, FrequencyAnalysisTitle,
@@ -1220,9 +1220,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static Handler instance;
    return instance;
 }

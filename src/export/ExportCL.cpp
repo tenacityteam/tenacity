@@ -27,7 +27,7 @@
 #include <wx/msw/registry.h> // for wxRegKey
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/float_cast.h>
@@ -281,7 +281,7 @@ public:
    // Required
    void OptionsCreate(ShuttleGui &S, int format) override;
 
-   ProgressResult Export(SaucedacityProject *project,
+   ProgressResult Export(TenacityProject *project,
                          std::unique_ptr<ProgressDialog> &pDialog,
                          unsigned channels,
                          const wxFileNameWrapper &fName,
@@ -310,8 +310,8 @@ private:
       ExtendPath()
       {
          // Give Windows a chance at finding lame command in the default location.
-         wxString paths[] = {wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Saucedacity"),
-                             wxT("HKEY_LOCAL_MACHINE\\Software\\FFmpeg for Saucedacity")};
+         wxString paths[] = {wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Tenacity"),
+                             wxT("HKEY_LOCAL_MACHINE\\Software\\FFmpeg for Tenacity")};
          wxString npath;
          wxRegKey reg;
 
@@ -355,7 +355,7 @@ ExportCL::ExportCL()
    SetDescription(XO("(external program)"),0);
 }
 
-ProgressResult ExportCL::Export(SaucedacityProject *project,
+ProgressResult ExportCL::Export(TenacityProject *project,
                                 std::unique_ptr<ProgressDialog> &pDialog,
                                 unsigned channels,
                                 const wxFileNameWrapper &fName,

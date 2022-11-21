@@ -19,7 +19,7 @@ Paul Licameli split from AudioIO.h
 #include <wx/string.h>
 #include <wx/weakref.h> // member variable
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h>
 
 #include <portaudio.h>
@@ -29,7 +29,7 @@ typedef void PaStream;
 
 class AudioIOBase;
 
-class SaucedacityProject;
+class TenacityProject;
 class AudioIOListener;
 class BoundedEnvelope;
 // Windows build needs complete type for parameter of wxWeakRef
@@ -75,7 +75,7 @@ struct ScrubbingOptions {
 struct AudioIOStartStreamOptions
 {
    explicit
-   AudioIOStartStreamOptions(SaucedacityProject *pProject_, double rate_)
+   AudioIOStartStreamOptions(TenacityProject *pProject_, double rate_)
       : pProject{ pProject_ }
       , envelope(nullptr)
       , rate(rate_)
@@ -86,7 +86,7 @@ struct AudioIOStartStreamOptions
       , preRoll(0.0)
    {}
 
-   SaucedacityProject *pProject{};
+   TenacityProject *pProject{};
    MeterPanelBase *captureMeter{}, *playbackMeter{};
    const BoundedEnvelope *envelope; // for time warping
    std::shared_ptr< AudioIOListener > listener;
@@ -123,8 +123,8 @@ public:
 
    virtual ~AudioIOBase();
 
-   void SetCaptureMeter(SaucedacityProject *project, MeterPanelBase *meter);
-   void SetPlaybackMeter(SaucedacityProject *project, MeterPanelBase *meter);
+   void SetCaptureMeter(TenacityProject *project, MeterPanelBase *meter);
+   void SetPlaybackMeter(TenacityProject *project, MeterPanelBase *meter);
 
    /** \brief update state after changing what audio devices are selected
     *
@@ -248,7 +248,7 @@ protected:
    static wxString DeviceName(const PaDeviceInfo* info);
    static wxString HostName(const PaDeviceInfo* info);
 
-   SaucedacityProject    *mOwningProject;
+   TenacityProject    *mOwningProject;
 
    /// True if audio playback is paused
    bool                mPaused;

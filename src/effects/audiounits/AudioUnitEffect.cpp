@@ -20,7 +20,7 @@
 #include "AudioUnitEffect.h"
 #include "../../ModuleManager.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleCount.h>
 
 #include <wx/defs.h>

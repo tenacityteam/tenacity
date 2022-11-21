@@ -22,9 +22,9 @@
 
 #include <wx/defs.h>
 
-class SaucedacityProject;
+class TenacityProject;
 
-SAUCEDACITY_DLL_API void OpenScreenshotTools( SaucedacityProject &project );
+SAUCEDACITY_DLL_API void OpenScreenshotTools( TenacityProject &project );
 void CloseScreenshotTools();
 
 #endif // __AUDACITY_SCREENSHOT__

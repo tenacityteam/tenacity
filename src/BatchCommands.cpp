@@ -27,7 +27,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include <wx/textfile.h>
 #include <wx/time.h>
 
-// Saucedacity librarries
+// Tenacity librarries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -53,7 +53,7 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 
 #include "commands/CommandContext.h"
 
-MacroCommands::MacroCommands( SaucedacityProject &project )
+MacroCommands::MacroCommands( TenacityProject &project )
 : mProject{ project }
 , mExporter{ project }
 {
@@ -302,7 +302,7 @@ bool MacroCommands::RenameMacro(const wxString & oldmacro, const wxString & newm
 }
 
 // Gets all commands that are valid for this mode.
-MacroCommandsCatalog::MacroCommandsCatalog( const SaucedacityProject *project )
+MacroCommandsCatalog::MacroCommandsCatalog( const TenacityProject *project )
 {
    if (!project)
       return;
@@ -550,7 +550,7 @@ bool MacroCommands::ApplyEffectCommand(
    if (!plug)
       return false;
 
-   SaucedacityProject *project = &mProject;
+   TenacityProject *project = &mProject;
 
    // IF nothing selected, THEN select everything depending
    // on preferences setting.
@@ -637,7 +637,7 @@ bool MacroCommands::ApplyCommand( const TranslatableString &friendlyCommand,
          ID, friendlyCommand, command, params, context);
    }
 
-   SaucedacityProject *project = &mProject;
+   TenacityProject *project = &mProject;
    auto &manager = CommandManager::Get( *project );
    if( pContext ){
       if( HandleTextualCommand(
@@ -667,7 +667,7 @@ bool MacroCommands::ApplyCommandInBatchMode(
    const CommandID & command, const wxString &params,
    CommandContext const * pContext)
 {
-   SaucedacityProject *project = &mProject;
+   TenacityProject *project = &mProject;
    auto &settings = ProjectSettings::Get( *project );
    // Recalc flags and enable items that may have become enabled.
    MenuManager::Get(*project).UpdateMenus(false);
@@ -701,7 +701,7 @@ bool MacroCommands::ApplyMacro(
    auto cleanup1 = valueRestorer(MacroReentryCount);
    MacroReentryCount++;
 
-   SaucedacityProject *proj = &mProject;
+   TenacityProject *proj = &mProject;
    bool res = false;
 
    // Only perform this group on initial entry.  They should not be done

@@ -24,7 +24,7 @@
 #include <wx/slider.h>
 #include <wx/spinctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/Shuttle.h"

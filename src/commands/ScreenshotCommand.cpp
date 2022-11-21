@@ -20,7 +20,7 @@ small calculations of rectangles.
 
 #include "ScreenshotCommand.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include <mutex>
@@ -140,7 +140,7 @@ void ScreenshotCommand::PopulateOrExchange(ShuttleGui & S)
 
 // static member variable.
 void (*ScreenshotCommand::mIdleHandler)(wxIdleEvent& event) = NULL;
-static SaucedacityProject *pIdleHandlerProject = nullptr;
+static TenacityProject *pIdleHandlerProject = nullptr;
 // This static variable is used to get from an idle event to the screenshot
 // command that caused the idle event interception to be set up.
 ScreenshotCommand * ScreenshotCommand::mpShooter=NULL;
@@ -159,13 +159,13 @@ void IdleHandler(wxIdleEvent& event){
       ScreenshotCommand::mpShooter->CaptureWindowOnIdle( context, pWin );
 }
 
-void ScreenshotCommand::SetIdleHandler( SaucedacityProject &project )
+void ScreenshotCommand::SetIdleHandler( TenacityProject &project )
 {
    mIdleHandler = IdleHandler;
    pIdleHandlerProject = &project;
 }
 
-wxTopLevelWindow *ScreenshotCommand::GetFrontWindow(SaucedacityProject *project)
+wxTopLevelWindow *ScreenshotCommand::GetFrontWindow(TenacityProject *project)
 {
    wxWindow *front = NULL;
    wxWindow *proj = wxGetTopLevelParent( ProjectWindow::Find( project ) );
@@ -388,7 +388,7 @@ void ScreenshotCommand::CaptureWindowOnIdle(
 
 void ScreenshotCommand::CapturePreferences( 
    const CommandContext & context,
-   SaucedacityProject * pProject, const wxString &FileName ){
+   TenacityProject * pProject, const wxString &FileName ){
    (void)&FileName;//compiler food.
    (void)&context;
    CommandManager &commandManager = CommandManager::Get( *pProject );
@@ -424,7 +424,7 @@ void ScreenshotCommand::CapturePreferences(
 
 void ScreenshotCommand::CaptureEffects(
    const CommandContext & context,
-   SaucedacityProject * pProject, const wxString &FileName )
+   TenacityProject * pProject, const wxString &FileName )
 {
    (void)pProject;
    (void)&FileName;//compiler food.
@@ -516,7 +516,7 @@ void ScreenshotCommand::CaptureEffects(
 
 void ScreenshotCommand::CaptureScriptables( 
    const CommandContext & context,
-   SaucedacityProject * pProject, const wxString &FileName )
+   TenacityProject * pProject, const wxString &FileName )
 {
    (void)pProject;
    (void)&FileName;//compiler food.
@@ -555,7 +555,7 @@ void ScreenshotCommand::CaptureScriptables(
 
 void ScreenshotCommand::CaptureCommands( 
    const CommandContext & context, const wxArrayStringEx & Commands ){
-   SaucedacityProject * pProject = &context.project;
+   TenacityProject * pProject = &context.project;
    CommandManager &manager = CommandManager::Get( *pProject );
    wxString Str;
    // Yucky static variables.  Is there a better way?  The problem is that we need the
@@ -708,7 +708,7 @@ wxRect ScreenshotCommand::GetTracksRect(TrackPanel * panel){
    return wxRect( x, y, width, height);
 }
 
-wxRect ScreenshotCommand::GetTrackRect( SaucedacityProject * pProj, TrackPanel * panel, int n){
+wxRect ScreenshotCommand::GetTrackRect( TenacityProject * pProj, TrackPanel * panel, int n){
    auto FindRectangle = []( TrackPanel &panel, Track &t )
    {
       wxRect rect = panel.FindFocusedTrackRect( &t );
@@ -734,7 +734,7 @@ wxRect ScreenshotCommand::GetTrackRect( SaucedacityProject * pProj, TrackPanel *
    return wxRect( 0,0,0,0);
 }
 
-wxString ScreenshotCommand::WindowFileName(SaucedacityProject * proj, wxTopLevelWindow *w){
+wxString ScreenshotCommand::WindowFileName(TenacityProject * proj, wxTopLevelWindow *w){
    if (w != ProjectWindow::Find( proj ) && !w->GetTitle().empty()) {
       mFileName = MakeFileName(mFilePath,
          kCaptureWhatStrings[ mCaptureMode ].Translation() +

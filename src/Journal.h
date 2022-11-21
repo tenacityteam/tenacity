@@ -13,8 +13,8 @@
 
 #include <initializer_list>
 
-// Saucedacity libraries
-#include <lib-exceptions/SaucedacityException.h>
+// Tenacity libraries
+#include <lib-exceptions/TenacityException.h>
 #include <lib-strings/Identifier.h>
 
 class wxArrayString;
@@ -72,7 +72,7 @@ namespace Journal
    int GetExitCode();
 
    //\brief thrown when playback of a journal doesn't match the recording
-   class SyncException : public SaucedacityException {
+   class SyncException : public TenacityException {
    public:
       SyncException();
       ~SyncException() override;

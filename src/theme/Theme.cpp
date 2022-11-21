@@ -50,7 +50,7 @@
 #include "ImageManipulation.h"
 #include "widgets/AudacityMessageBox.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
@@ -67,8 +67,8 @@ static const unsigned char DarkImageCacheAsData[] = {
 #include "DarkThemeAsCeeCode.h"
 };
 
-static const unsigned char SaucedacityImageCacheAsData[] = {
-#include "SaucedacityThemeAsCeeCode.h"
+static const unsigned char TenacityImageCacheAsData[] = {
+#include "TenacityThemeAsCeeCode.h"
 };
 
 static const unsigned char AudacityImageCacheAsData[] = {
@@ -456,7 +456,7 @@ void ThemeBase::CreateImageCache( bool bBinarySave )
       if( !ImageCache.SaveFile( FileName, wxBITMAP_TYPE_PNG ))
       {
          AudacityMessageBox(
-            XO("Saucedacity could not write file:\n  %s.")
+            XO("Tenacity could not write file:\n  %s.")
                .Format( FileName ));
          return;
       }
@@ -476,14 +476,14 @@ void ThemeBase::CreateImageCache( bool bBinarySave )
       if( !OutStream.OpenFile( FileName ))
       {
          AudacityMessageBox(
-            XO("Saucedacity could not open file:\n  %s\nfor writing.")
+            XO("Tenacity could not open file:\n  %s\nfor writing.")
                .Format( FileName ));
          return;
       }
       if( !ImageCache.SaveFile(OutStream, wxBITMAP_TYPE_PNG ) )
       {
          AudacityMessageBox(
-            XO("Saucedacity could not write images to file:\n  %s.")
+            XO("Tenacity could not write images to file:\n  %s.")
                .Format( FileName ));
          return;
       }
@@ -603,7 +603,7 @@ teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
       "light",
       "dark",
       "default",
-      "saucedacity",
+      "tenacity",
       "audacity",
       "audacity-classic",
       "high-contrast",
@@ -644,7 +644,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          if( bOkIfNotFound )
             return false; // did not load the images, so return false.
          AudacityMessageBox(
-            XO("Saucedacity could not find file:\n  %s.\nTheme not loaded.")
+            XO("Tenacity could not find file:\n  %s.\nTheme not loaded.")
                .Format( FileName ));
          return false;
       }
@@ -652,7 +652,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
       {
          AudacityMessageBox(
             /* i18n-hint: Do not translate png.  It is the name of a file format.*/
-            XO("Saucedacity could not load file:\n  %s.\nBad png format perhaps?")
+            XO("Tenacity could not load file:\n  %s.\nBad png format perhaps?")
                .Format( FileName ));
          return false;
       }
@@ -666,8 +666,8 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
       {
          default: 
          case themeDefault:
-            ImageSize = sizeof(SaucedacityImageCacheAsData);
-            pImage = SaucedacityImageCacheAsData;
+            ImageSize = sizeof(TenacityImageCacheAsData);
+            pImage = TenacityImageCacheAsData;
             break;
 
          case themeLight:
@@ -680,9 +680,9 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
             pImage = DarkImageCacheAsData;
             break;
 
-         case themeSaucedacity:
-            ImageSize = sizeof(SaucedacityImageCacheAsData);
-            pImage = SaucedacityImageCacheAsData;
+         case themeTenacity:
+            ImageSize = sizeof(TenacityImageCacheAsData);
+            pImage = TenacityImageCacheAsData;
             break;
 
          case themeAudacity:
@@ -711,7 +711,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          // Or some experiment is being tried with NEW formats for it.
          AudacityMessageBox(
             XO(
-"Saucedacity could not read its default theme.\nPlease report this problem."));
+"Tenacity could not read its default theme.\nPlease report this problem."));
          return false;
       }
       //wxLogDebug("Read %i by %i", ImageCache.GetWidth(), ImageCache.GetHeight() );
@@ -796,7 +796,7 @@ void ThemeBase::LoadComponents( bool bOkIfNotFound )
                AudacityMessageBox(
                   XO(
                /* i18n-hint: Do not translate png.  It is the name of a file format.*/
-"Saucedacity could not load file:\n  %s.\nBad png format perhaps?")
+"Tenacity could not load file:\n  %s.\nBad png format perhaps?")
                      .Format( FileName ));
                return;
             }
@@ -890,7 +890,7 @@ void ThemeBase::SaveComponents()
          if( !mImages[i].SaveFile( FileName, wxBITMAP_TYPE_PNG ))
          {
             AudacityMessageBox(
-               XO("Saucedacity could not save file:\n  %s")
+               XO("Tenacity could not save file:\n  %s")
                   .Format( FileName ));
             return;
          }
@@ -1009,14 +1009,14 @@ ChoiceSetting GUITheme{
 
          XO("Dark"),
 
-         /* i18n-hint: describing the appearance of Saucedacity 1.2 */
-         XO("Saucedacity"),
+         /* i18n-hint: describing the appearance of Tenacity 1.2 */
+         XO("Tenacity"),
 
          /* i18n-hint: describing the appearance of Audacity 3.0.4's default theme */
          XO("Audacity"),
 
          /* i18n-hint: describing the "classic" or traditional
-            appearance of older versions of Audacity (before Saucedacity) */
+            appearance of older versions of Audacity (before Tenacity) */
          XO("Audacity Classic"),
 
          /* i18n-hint: greater difference between foreground and
@@ -1029,7 +1029,7 @@ ChoiceSetting GUITheme{
       {
          wxT("light"),
          wxT("dark"),
-         wxT("saucedacity"),
+         wxT("tenacity"),
          wxT("audacity"),
          wxT("audacity-classic"),
          wxT("high-contrast"),

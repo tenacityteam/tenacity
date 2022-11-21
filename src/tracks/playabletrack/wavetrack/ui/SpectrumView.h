@@ -43,7 +43,7 @@ private:
 
    std::vector<UIHandlePtr> DetailedHitTest(
       const TrackPanelMouseState &state,
-      const SaucedacityProject *pProject, int currentTool, bool bMultiTool )
+      const TenacityProject *pProject, int currentTool, bool bMultiTool )
       override;
 
 protected:

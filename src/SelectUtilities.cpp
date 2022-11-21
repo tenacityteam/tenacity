@@ -28,7 +28,7 @@ namespace {
 // Temporal selection (not TimeTrack selection)
 // potentially for all wave tracks.
 void DoSelectTimeAndAudioTracks
-(SaucedacityProject &project, bool bAllTime, bool bAllTracks)
+(TenacityProject &project, bool bAllTime, bool bAllTracks)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -52,7 +52,7 @@ void DoSelectTimeAndAudioTracks
 namespace SelectUtilities {
 
 void DoSelectTimeAndTracks
-(SaucedacityProject &project, bool bAllTime, bool bAllTracks)
+(TenacityProject &project, bool bAllTime, bool bAllTracks)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -69,7 +69,7 @@ void DoSelectTimeAndTracks
    }
 }
 
-void SelectNone( SaucedacityProject &project )
+void SelectNone( TenacityProject &project )
 {
    auto &tracks = TrackList::Get( project );
    for (auto t : tracks.Any())
@@ -81,7 +81,7 @@ void SelectNone( SaucedacityProject &project )
 
 // Select the full time range, if no
 // time range is selected.
-void SelectAllIfNone( SaucedacityProject &project )
+void SelectAllIfNone( TenacityProject &project )
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto flags = MenuManager::Get( project ).GetUpdateFlags();
@@ -92,7 +92,7 @@ void SelectAllIfNone( SaucedacityProject &project )
 
 // Select the full time range, if no time range is selected and
 // selecting is allowed. Returns "false" selecting not allowed.
-bool SelectAllIfNoneAndAllowed( SaucedacityProject &project )
+bool SelectAllIfNoneAndAllowed( TenacityProject &project )
 {
    auto allowed = gPrefs->ReadBool(wxT("/GUI/SelectAllOnNone"), false);
    auto &viewInfo = ViewInfo::Get( project );
@@ -109,7 +109,7 @@ bool SelectAllIfNoneAndAllowed( SaucedacityProject &project )
 }
 
 void DoListSelection
-(SaucedacityProject &project, Track *t, bool shift, bool ctrl, bool modifyState)
+(TenacityProject &project, Track *t, bool shift, bool ctrl, bool modifyState)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectionState = SelectionState::Get( project );
@@ -130,12 +130,12 @@ void DoListSelection
       ProjectHistory::Get( project ).ModifyState(true);
 }
 
-void DoSelectAll(SaucedacityProject &project)
+void DoSelectAll(TenacityProject &project)
 {
    DoSelectTimeAndTracks( project, true, true );
 }
 
-void DoSelectAllAudio(SaucedacityProject &project)
+void DoSelectAllAudio(TenacityProject &project)
 {
    DoSelectTimeAndAudioTracks( project, true, true );
 }
@@ -145,7 +145,7 @@ void DoSelectAllAudio(SaucedacityProject &project)
 // There is an argument for making it just count wave tracks,
 // However you could then not select a label and cut it,
 // without this function selecting all tracks.
-void DoSelectSomething(SaucedacityProject &project)
+void DoSelectSomething(TenacityProject &project)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;

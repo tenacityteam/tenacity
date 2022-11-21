@@ -15,7 +15,7 @@
 #include <memory>
 #include <wx/event.h> // to inherit wxEvtHandler
 
-class SaucedacityProject;
+class TenacityProject;
 class TrackList;
 
 // An event emitted by the clipboard whenever its contents change.
@@ -34,13 +34,13 @@ public:
    double T1() const { return mT1; }
    double Duration() const { return mT1 - mT0; }
 
-   const std::weak_ptr<SaucedacityProject> &Project() const { return mProject; }
+   const std::weak_ptr<TenacityProject> &Project() const { return mProject; }
 
    void Clear();
    
    void Assign(
      TrackList && newContents, double t0, double t1,
-     const std::weak_ptr<SaucedacityProject> &pProject );
+     const std::weak_ptr<TenacityProject> &pProject );
 
    Clipboard();
    ~Clipboard();
@@ -50,7 +50,7 @@ public:
 private:
 
    std::shared_ptr<TrackList> mTracks;
-   std::weak_ptr<SaucedacityProject> mProject{};
+   std::weak_ptr<TenacityProject> mProject{};
    double mT0{ 0 };
    double mT1{ 0 };
 };

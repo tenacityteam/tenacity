@@ -10,7 +10,7 @@
 
 #include "ModuleSettings.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include <unordered_set>

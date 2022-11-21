@@ -9,14 +9,14 @@ SampleBlock.h
 #ifndef __AUDACITY_SAMPLE_BLOCK__
 #define __AUDACITY_SAMPLE_BLOCK__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 
 #include <functional>
 #include <memory>
 #include <unordered_set>
 
-class SaucedacityProject;
+class TenacityProject;
 class ProjectFileIO;
 class XMLWriter;
 
@@ -25,7 +25,7 @@ using SampleBlockPtr = std::shared_ptr<SampleBlock>;
 class SampleBlockFactory;
 using SampleBlockFactoryPtr = std::shared_ptr<SampleBlockFactory>;
 using SampleBlockFactoryFactory =
-   std::function< SampleBlockFactoryPtr( SaucedacityProject& ) >;
+   std::function< SampleBlockFactoryPtr( TenacityProject& ) >;
 
 using SampleBlockID = long long;
 
@@ -113,7 +113,7 @@ public:
       SampleBlockFactoryFactory newFactory );
 
    // Invoke the installed factory (throw an exception if none was installed)
-   static SampleBlockFactoryPtr New( SaucedacityProject &project );
+   static SampleBlockFactoryPtr New( TenacityProject &project );
 
    virtual ~SampleBlockFactory();
 

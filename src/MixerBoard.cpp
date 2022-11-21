@@ -54,14 +54,14 @@
 
 #include "../images/MusicalInstruments.h"
 #ifdef __WXMSW__
-   #include "../images/SaucedacityLogo.xpm"
+   #include "../images/TenacityLogo.xpm"
 #else
-   #include "../images/SaucedacityLogo48x48.xpm"
+   #include "../images/TenacityLogo48x48.xpm"
 #endif
 
 #include "commands/CommandManager.h"
 
-#define AudacityMixerBoardTitle XO("Saucedacity Mixer Board%s")
+#define AudacityMixerBoardTitle XO("Tenacity Mixer Board%s")
 
 // class MixerTrackSlider
 
@@ -167,7 +167,7 @@ BEGIN_EVENT_TABLE(MixerTrackCluster, wxPanelWrapper)
 END_EVENT_TABLE()
 
 MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
-                                       MixerBoard* grandParent, SaucedacityProject* project,
+                                       MixerBoard* grandParent, TenacityProject* project,
                                        const std::shared_ptr<PlayableTrack> &pTrack,
                                        const wxPoint& pos /*= wxDefaultPosition*/,
                                        const wxSize& size /*= wxDefaultSize*/)
@@ -306,7 +306,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
    mMeter.Release();
    if (GetWave()) {
       mMeter =
-         safenew MeterPanel(mProject, // SaucedacityProject* project,
+         safenew MeterPanel(mProject, // TenacityProject* project,
                    this, -1, // wxWindow* parent, wxWindowID id,
                    false, // bool isInput
                    ctrlPos, ctrlSize, // const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
@@ -813,7 +813,7 @@ BEGIN_EVENT_TABLE(MixerBoardScrolledWindow, wxScrolledWindow)
    EVT_MOUSE_EVENTS(MixerBoardScrolledWindow::OnMouseEvent)
 END_EVENT_TABLE()
 
-MixerBoardScrolledWindow::MixerBoardScrolledWindow(SaucedacityProject* project,
+MixerBoardScrolledWindow::MixerBoardScrolledWindow(TenacityProject* project,
                                                    MixerBoard* parent, wxWindowID id /*= -1*/,
                                                    const wxPoint& pos /*= wxDefaultPosition*/,
                                                    const wxSize& size /*= wxDefaultSize*/,
@@ -855,7 +855,7 @@ BEGIN_EVENT_TABLE(MixerBoard, wxWindow)
    EVT_SIZE(MixerBoard::OnSize)
 END_EVENT_TABLE()
 
-MixerBoard::MixerBoard(SaucedacityProject* pProject,
+MixerBoard::MixerBoard(TenacityProject* pProject,
                         wxFrame* parent,
                         const wxPoint& pos /*= wxDefaultPosition*/,
                         const wxSize& size /*= wxDefaultSize*/)
@@ -884,7 +884,7 @@ MixerBoard::MixerBoard(SaucedacityProject* pProject,
    wxASSERT(pProject); // to justify safenew
    mScrolledWindow =
       safenew MixerBoardScrolledWindow(
-         pProject, // SaucedacityProject* project,
+         pProject, // TenacityProject* project,
          this, -1, // wxWindow* parent, wxWindowID id = -1,
          this->GetClientAreaOrigin(), // const wxPoint& pos = wxDefaultPosition,
          size, // const wxSize& size = wxDefaultSize,
@@ -1406,7 +1406,7 @@ END_EVENT_TABLE()
 const wxSize kDefaultSize =
    wxSize(MIXER_BOARD_MIN_WIDTH, MIXER_BOARD_MIN_HEIGHT);
 
-MixerBoardFrame::MixerBoardFrame(SaucedacityProject* parent)
+MixerBoardFrame::MixerBoardFrame(TenacityProject* parent)
 :  wxFrame( &GetProjectFrame( *parent ), -1, wxString{},
             wxDefaultPosition, kDefaultSize,
             wxDEFAULT_FRAME_STYLE | wxFRAME_FLOAT_ON_PARENT)
@@ -1430,9 +1430,9 @@ MixerBoardFrame::MixerBoardFrame(SaucedacityProject* parent)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #ifdef __WXMSW__
-      wxIcon ic{ wxICON(SaucedacityLogo) };
+      wxIcon ic{ wxICON(TenacityLogo) };
 #else
-      wxIcon ic{wxICON(SaucedacityLogo48x48)};
+      wxIcon ic{wxICON(TenacityLogo48x48)};
 #endif
       SetIcon(ic);
    }
@@ -1473,12 +1473,12 @@ void MixerBoardFrame::OnSize(wxSizeEvent & WXUNUSED(event))
 
 void MixerBoardFrame::OnKeyEvent(wxKeyEvent & event)
 {
-   SaucedacityProject *project = mMixerBoard->mProject;
+   TenacityProject *project = mMixerBoard->mProject;
    auto &commandManager = CommandManager::Get( *project );
    commandManager.FilterKeyEvent(project, event, true);
 }
 
-void MixerBoardFrame::Recreate( SaucedacityProject *pProject )
+void MixerBoardFrame::Recreate( TenacityProject *pProject )
 {
    wxPoint  pos = mMixerBoard->GetPosition();
    wxSize siz = mMixerBoard->GetSize();
@@ -1513,8 +1513,8 @@ void MixerBoardFrame::SetWindowTitle()
 namespace {
 
 // Mixer board window attached to each project is built on demand by:
-SaucedacityProject::AttachedWindows::RegisteredFactory sMixerBoardKey{
-   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sMixerBoardKey{
+   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       return safenew MixerBoardFrame( &parent );
    }
 };
@@ -1532,9 +1532,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static Handler instance;
    return instance;
 }

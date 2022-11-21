@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectFileIO.cpp
 
-Paul Licameli split from SaucedacityProject.cpp
+Paul Licameli split from TenacityProject.cpp
 
 **********************************************************************/
 
@@ -18,7 +18,7 @@ Paul Licameli split from SaucedacityProject.cpp
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-xml/XMLFileReader.h>
@@ -231,7 +231,7 @@ static void RefreshAllTitles(bool bShowProjectNumbers )
 }
 
 TitleRestorer::TitleRestorer(
-   wxTopLevelWindow &window, SaucedacityProject &project )
+   wxTopLevelWindow &window, TenacityProject &project )
 {
    if( window.IsIconized() )
       window.Restore();
@@ -262,25 +262,25 @@ TitleRestorer::~TitleRestorer() {
       RefreshAllTitles( false );
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory sFileIOKey{
-   []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory sFileIOKey{
+   []( TenacityProject &parent ){
       auto result = std::make_shared< ProjectFileIO >( parent );
       return result;
    }
 };
 
-ProjectFileIO &ProjectFileIO::Get( SaucedacityProject &project )
+ProjectFileIO &ProjectFileIO::Get( TenacityProject &project )
 {
    auto &result = project.AttachedObjects::Get< ProjectFileIO >( sFileIOKey );
    return result;
 }
 
-const ProjectFileIO &ProjectFileIO::Get( const SaucedacityProject &project )
+const ProjectFileIO &ProjectFileIO::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-ProjectFileIO::ProjectFileIO(SaucedacityProject &project)
+ProjectFileIO::ProjectFileIO(TenacityProject &project)
    : mProject{ project }
    , mpErrors{ std::make_shared<DBConnectionErrors>() }
 {
@@ -663,7 +663,7 @@ bool ProjectFileIO::CheckVersion()
    if (version > ProjectFileVersion)
    {
       SetError(
-         XO("This project was created with a version of Audacity (or a derivate) that is not supported by Saucedacity.\n\nYou will need to use that version to open it.")
+         XO("This project was created with a version of Audacity (or a derivate) that is not supported by Tenacity.\n\nYou will need to use that version to open it.")
       );
       return false;
    }
@@ -1151,7 +1151,7 @@ bool ProjectFileIO::RenameOrWarn(const FilePath &src, const FilePath &dst)
    {
       ShowError( *ProjectFramePlacement(&mProject),
          XO("Error Writing to File"),
-         XO("Saucedacity failed to write file %s.\n"
+         XO("Tenacity failed to write file %s.\n"
             "The disk might be full or isn't writable.\n"
             "For tips on freeing up space, click the help button.")
             .Format(dst),
@@ -1423,10 +1423,10 @@ void ProjectFileIO::SetProjectTitle(int number)
                  name.empty() ? XO("<untitled>") : Verbatim((const char *)name))
          .Translation();
    }
-   // If we are not showing numbers, then <untitled> shows as 'Saucedacity'.
+   // If we are not showing numbers, then <untitled> shows as 'Tenacity'.
    else if (name.empty())
    {
-      name = _TS("Saucedacity");
+      name = _TS("Tenacity");
    }
 
    if (mRecovered)
@@ -1590,7 +1590,7 @@ bool ProjectFileIO::HandleXMLTag(const wxChar *tag, const wxChar **attrs)
    if (codeVer<fileVer)
    {
       /* i18n-hint: %s will be replaced by the version number.*/
-      auto msg = XO("This file was saved using Audacity %s (or a derivative of the same version, possibly Saucedacity).\nYou are using Saucedacity %s. You may need to upgrade to a newer version to open this file.")
+      auto msg = XO("This file was saved using Audacity %s (or a derivative of the same version, possibly Tenacity).\nYou are using Tenacity %s. You may need to upgrade to a newer version to open this file.")
          .Format(audacityVersion, AUDACITY_VERSION_STRING);
 
       ShowError( *ProjectFramePlacement(&project),
@@ -1655,7 +1655,7 @@ void ProjectFileIO::WriteXML(XMLWriter &xmlFile,
    auto &tags = Tags::Get(proj);
    const auto &settings = ProjectSettings::Get(proj);
 
-   //TIMER_START( "SaucedacityProject::WriteXML", xml_writer_timer );
+   //TIMER_START( "TenacityProject::WriteXML", xml_writer_timer );
 
    xmlFile.StartTag(wxT("project"));
    xmlFile.WriteAttr(wxT("xmlns"), wxT("http://audacity.sourceforge.net/"));
@@ -2255,7 +2255,7 @@ void ProjectFileIO::ShowError(const GenericUI::WindowPlacement &placement,
                               const TranslatableString &message,
                               const wxString &helpPage)
 {
-   using namespace Saucedacity;
+   using namespace Tenacity;
    using namespace GenericUI;
    ShowErrorDialog( placement, dlogTitle, message, helpPage,
       ErrorDialogOptions{ ErrorDialogType::ModalErrorReport }
@@ -2617,7 +2617,7 @@ int ProjectFileIO::get_varint(const unsigned char *ptr, int64_t *out)
 }
 
 InvisibleTemporaryProject::InvisibleTemporaryProject()
-   : mpProject{ std::make_shared< SaucedacityProject >() }
+   : mpProject{ std::make_shared< TenacityProject >() }
 {
 }
 

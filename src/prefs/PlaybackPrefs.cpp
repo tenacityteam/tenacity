@@ -24,7 +24,7 @@
 #include <wx/defs.h>
 #include <wx/textctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
@@ -186,7 +186,7 @@ bool PlaybackPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Playback",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew PlaybackPrefs(parent, winid);

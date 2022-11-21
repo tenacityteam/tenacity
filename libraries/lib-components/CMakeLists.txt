@@ -23,7 +23,7 @@ list( APPEND SOURCES
    PluginInterface.cpp
    PluginInterface.h
 )
-saucedacity_library( lib-components "${SOURCES}"
+tenacity_library( lib-components "${SOURCES}"
    "lib-strings-interface;PRIVATE;wxWidgets::wxWidgets"
    "" ""
 )

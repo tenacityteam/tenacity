@@ -14,7 +14,7 @@ Paul Licameli -- split from SampleBlock.cpp and SampleBlock.h
 #include "DBConnection.h"
 #include "ProjectFileIO.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-xml/XMLTagHandler.h>
 
@@ -135,7 +135,7 @@ class SqliteSampleBlockFactory final
    , public std::enable_shared_from_this<SqliteSampleBlockFactory>
 {
 public:
-   explicit SqliteSampleBlockFactory( SaucedacityProject &project );
+   explicit SqliteSampleBlockFactory( TenacityProject &project );
 
    ~SqliteSampleBlockFactory() override;
 
@@ -172,7 +172,7 @@ private:
    BlockDeletionCallback mCallback;
 };
 
-SqliteSampleBlockFactory::SqliteSampleBlockFactory( SaucedacityProject &project )
+SqliteSampleBlockFactory::SqliteSampleBlockFactory( TenacityProject &project )
    : mppConnection{ ConnectionPtr::Get(project).shared_from_this() }
 {
    
@@ -449,7 +449,7 @@ bool SqliteSampleBlock::GetSummary(float *dest,
                      numframes * fields * SAMPLE_SIZE(floatSample));
          return true;
       }
-      catch ( const SaucedacityException & ) {
+      catch ( const TenacityException & ) {
       }
    }
    memset(dest, 0, 3 * numframes * sizeof( float ));
@@ -992,7 +992,7 @@ static struct Injector
    {
       // Do this some time before the first project is created
       (void) SampleBlockFactory::RegisterFactoryFactory(
-         []( SaucedacityProject &project )
+         []( TenacityProject &project )
          {
             return std::make_shared<SqliteSampleBlockFactory>( project );
          }

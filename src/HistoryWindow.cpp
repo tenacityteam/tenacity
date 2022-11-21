@@ -69,7 +69,7 @@ END_EVENT_TABLE()
 
 #define HistoryTitle XO("History")
 
-HistoryDialog::HistoryDialog(SaucedacityProject *parent, UndoManager *manager):
+HistoryDialog::HistoryDialog(TenacityProject *parent, UndoManager *manager):
    wxDialogWrapper(FindProjectFrame( parent ), wxID_ANY, HistoryTitle,
       wxDefaultPosition, wxDefaultSize,
       wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER )
@@ -412,8 +412,8 @@ void HistoryDialog::UpdatePrefs()
 namespace {
 
 // History window attached to each project is built on demand by:
-SaucedacityProject::AttachedWindows::RegisteredFactory sHistoryWindowKey{
-   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sHistoryWindowKey{
+   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &undoManager = UndoManager::Get( parent );
       return safenew HistoryDialog( &parent, &undoManager );
    }
@@ -431,9 +431,9 @@ struct Handler : CommandHandlerObject {
    }
 };
 
-CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static Handler instance;
    return instance;
 }
@@ -456,11 +456,11 @@ AttachedItem sAttachment{ wxT("View/Windows"),
    // would fail.
    // The only way to fix this in the current architecture
    // is to hack in special cases for RedoAvailableFlag
-   // in SaucedacityProject::UpdateMenus() (ugly)
+   // in TenacityProject::UpdateMenus() (ugly)
    // and CommandManager::HandleCommandEntry() (*really* ugly --
    // shouldn't know about particular command names and flags).
    // Here's the hack that would be necessary in
-   // SaucedacityProject::UpdateMenus(), if somebody decides to do it:
+   // TenacityProject::UpdateMenus(), if somebody decides to do it:
    //    // Because EnableUsingFlags requires all the flag bits match the
    //    // corresponding mask bits,
    //    // "UndoHistory" specifies only

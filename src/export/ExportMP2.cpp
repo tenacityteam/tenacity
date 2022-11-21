@@ -44,7 +44,7 @@
 #include <wx/intl.h>
 #include <wx/stream.h>
 
-// Saucedacity 
+// Tenacity 
 #include <lib-files/FileIO.h>
 #include <lib-preferences/Prefs.h>
 
@@ -209,7 +209,7 @@ public:
    // Required
 
    void OptionsCreate(ShuttleGui &S, int format) override;
-   ProgressResult Export(SaucedacityProject *project,
+   ProgressResult Export(TenacityProject *project,
                std::unique_ptr<ProgressDialog> &pDialog,
                unsigned channels,
                const wxFileNameWrapper &fName,
@@ -222,7 +222,7 @@ public:
 
 private:
 
-   int AddTags(SaucedacityProject *project, ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags);
+   int AddTags(TenacityProject *project, ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags);
 #ifdef USE_LIBID3TAG
    void AddFrame(struct id3_tag *tp, const wxString & n, const wxString & v, const char *name);
 #endif
@@ -240,7 +240,7 @@ ExportMP2::ExportMP2()
    SetDescription(XO("MP2 Files"),0);
 }
 
-ProgressResult ExportMP2::Export(SaucedacityProject *project,
+ProgressResult ExportMP2::Export(TenacityProject *project,
    std::unique_ptr<ProgressDialog> &pDialog,
    unsigned channels, const wxFileNameWrapper &fName,
    bool selectionOnly, double t0, double t1, MixerSpec *mixerSpec, const Tags *metadata,
@@ -395,7 +395,7 @@ using id3_tag_holder = std::unique_ptr<id3_tag, id3_tag_deleter>;
 
 // returns buffer len; caller frees
 int ExportMP2::AddTags(
-   SaucedacityProject * WXUNUSED(project), ArrayOf< char > &buffer,
+   TenacityProject * WXUNUSED(project), ArrayOf< char > &buffer,
    bool *endOfFile, const Tags *tags)
 {
 #ifdef USE_LIBID3TAG

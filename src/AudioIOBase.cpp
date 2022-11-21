@@ -16,7 +16,7 @@ Paul Licameli split from AudioIO.cpp
 #include <wx/sstream.h>
 #include <wx/txtstrm.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-utility/MemoryX.h>
 
@@ -125,7 +125,7 @@ void AudioIOBase::HandleDeviceChange()
 
 }
 
-void AudioIOBase::SetCaptureMeter(SaucedacityProject *project, MeterPanelBase *meter)
+void AudioIOBase::SetCaptureMeter(TenacityProject *project, MeterPanelBase *meter)
 {
    if (( mOwningProject ) && ( mOwningProject != project))
       return;
@@ -139,7 +139,7 @@ void AudioIOBase::SetCaptureMeter(SaucedacityProject *project, MeterPanelBase *m
       mInputMeter.Release();
 }
 
-void AudioIOBase::SetPlaybackMeter(SaucedacityProject *project, MeterPanelBase *meter)
+void AudioIOBase::SetPlaybackMeter(TenacityProject *project, MeterPanelBase *meter)
 {
    if (( mOwningProject ) && ( mOwningProject != project))
       return;

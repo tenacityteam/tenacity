@@ -166,8 +166,8 @@ class SAUCEDACITY_DLL_API ViewInfo final
    : public wxEvtHandler, public ZoomInfo
 {
 public:
-   static ViewInfo &Get( SaucedacityProject &project );
-   static const ViewInfo &Get( const SaucedacityProject &project );
+   static ViewInfo &Get( TenacityProject &project );
+   static const ViewInfo &Get( const TenacityProject &project );
 
    ViewInfo(double start, double screenDuration, double pixelsPerSecond);
    ViewInfo( const ViewInfo & ) = delete;

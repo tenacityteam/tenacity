@@ -34,7 +34,7 @@
 #include <wx/treebook.h>
 #include <wx/treectrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AudioIOBase.h"
@@ -445,10 +445,10 @@ int wxTreebookExt::SetSelection(size_t n)
 }
 
 PrefsDialog::PrefsDialog(
-   wxWindow * parent, SaucedacityProject *pProject,
+   wxWindow * parent, TenacityProject *pProject,
    const TranslatableString &titlePrefix,
    PrefsPanel::Factories &factories)
-:  wxDialogWrapper(parent, wxID_ANY, XO("Saucedacity Preferences"),
+:  wxDialogWrapper(parent, wxID_ANY, XO("Tenacity Preferences"),
             wxDefaultPosition,
             wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
@@ -739,7 +739,7 @@ void PrefsDialog::OnOK(wxCommandEvent & WXUNUSED(event))
    //      handled instead by delayed event processing?
 
    // LL:  wxMac can't handle recreating the menus when this dialog is still active,
-   //      so SaucedacityProject::UpdatePrefs() or any of the routines it calls must
+   //      so TenacityProject::UpdatePrefs() or any of the routines it calls must
    //      not cause MenuCreator::RebuildMenuBar() to be executed.
 
    PrefsListener::Broadcast();
@@ -778,7 +778,7 @@ int PrefsDialog::GetSelectedPage() const
 }
 
 GlobalPrefsDialog::GlobalPrefsDialog(
-   wxWindow * parent, SaucedacityProject *pProject,
+   wxWindow * parent, TenacityProject *pProject,
    PrefsPanel::Factories &factories)
    : PrefsDialog(parent, pProject, XO("Preferences:"), factories)
 {
@@ -818,7 +818,7 @@ void PrefsDialog::RecordExpansionState()
 #include "../Menus.h"
 #include "../Project.h"
 
-void DoReloadPreferences( SaucedacityProject &project )
+void DoReloadPreferences( TenacityProject &project )
 {
    PreferenceInitializer::ReinitializeAll();
 

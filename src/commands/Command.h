@@ -20,7 +20,7 @@
 #include "CommandSignature.h"
 #include "AudacityCommand.h"
 
-class SaucedacityApp;
+class TenacityApp;
 class CommandContext;
 class CommandOutputTargets;
 
@@ -28,9 +28,9 @@ class CommandOutputTargets;
 class OldStyleCommand /* not final */
 {
 public:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
-   OldStyleCommand(SaucedacityProject &project) : mProject{ project } {};
+   OldStyleCommand(TenacityProject &project) : mProject{ project } {};
    virtual ~OldStyleCommand() { }
    virtual ComponentInterfaceSymbol GetSymbol() = 0;
    virtual CommandSignature &GetSignature() = 0;
@@ -99,7 +99,7 @@ protected:
 public:
    /// Constructor should not be called directly; only by a factory which
    /// ensures name and params are set appropriately for the command.
-   CommandImplementation(SaucedacityProject &project, OldStyleCommandType &type);
+   CommandImplementation(TenacityProject &project, OldStyleCommandType &type);
 
    virtual ~CommandImplementation();
 

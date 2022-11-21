@@ -73,7 +73,7 @@ HitTestPreview StretchHandle::HitPreview( StretchEnum stretchMode, bool unsafe )
 
 UIHandlePtr StretchHandle::HitTest
 (std::weak_ptr<StretchHandle> &holder,
- const TrackPanelMouseState &st, const SaucedacityProject *pProject,
+ const TrackPanelMouseState &st, const TenacityProject *pProject,
  const std::shared_ptr<NoteTrack> &pTrack)
 {
    StretchState stretchState;
@@ -159,7 +159,7 @@ StretchHandle::~StretchHandle()
 }
 
 UIHandle::Result StretchHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -188,7 +188,7 @@ UIHandle::Result StretchHandle::Click
 }
 
 UIHandle::Result StretchHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -212,14 +212,14 @@ UIHandle::Result StretchHandle::Drag
 }
 
 HitTestPreview StretchHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *pProject)
+(const TrackPanelMouseState &, TenacityProject *pProject)
 {
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
    return HitPreview( mStretchState.mMode, unsafe );
 }
 
 UIHandle::Result StretchHandle::Release
-(const TrackPanelMouseEvent &, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &, TenacityProject *pProject,
  wxWindow *)
 {
    using namespace RefreshCode;
@@ -268,7 +268,7 @@ UIHandle::Result StretchHandle::Release
    return RefreshAll;
 }
 
-UIHandle::Result StretchHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result StretchHandle::Cancel(TenacityProject *pProject)
 {
    ProjectHistory::Get( *pProject ).RollbackState();
    return RefreshCode::RefreshNone;
@@ -284,7 +284,7 @@ double StretchHandle::GetT1(const Track &track, const ViewInfo &viewInfo)
    return std::min(track.GetEndTime(), viewInfo.selectedRegion.t1());
 }
 
-void StretchHandle::Stretch(SaucedacityProject *pProject, int mouseXCoordinate, int trackLeftEdge,
+void StretchHandle::Stretch(TenacityProject *pProject, int mouseXCoordinate, int trackLeftEdge,
    Track *pTrack)
 {
    auto &viewInfo = ViewInfo::Get( *pProject );

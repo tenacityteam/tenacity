@@ -21,7 +21,7 @@ setting used in debugging batch (aka macros) processing.
 #include <wx/intl.h>
 #include <wx/textdlg.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include  <lib-preferences/Prefs.h>
 #include <lib-strings/Languages.h>
 
@@ -100,7 +100,7 @@ BatchPrefs::~BatchPrefs()
 #if 0
 namespace{
 PrefsPanel::Registration sAttachment{ "Batch",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew BatchPrefs(parent, winid);

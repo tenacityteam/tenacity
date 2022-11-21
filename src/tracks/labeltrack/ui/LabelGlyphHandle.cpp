@@ -73,7 +73,7 @@ LabelGlyphHandle::LabelGlyphHandle
 {
 }
 
-void LabelGlyphHandle::Enter(bool, SaucedacityProject *)
+void LabelGlyphHandle::Enter(bool, TenacityProject *)
 {
    mChangeHighlight = RefreshCode::RefreshCell;
 }
@@ -195,7 +195,7 @@ void LabelGlyphHandle::HandleGlyphClick
 }
 
 UIHandle::Result LabelGlyphHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    auto result = LabelDefaultClickHandle::Click( evt, pProject );
 
@@ -285,7 +285,7 @@ static int Constrain( int value, int min, int max )
 }
 
 bool LabelGlyphHandle::HandleGlyphDragRelease
-(SaucedacityProject &project,
+(TenacityProject &project,
  LabelTrackHit &hit, const wxMouseEvent & evt,
  wxRect & r, const ZoomInfo &zoomInfo,
  NotifyingSelectedRegion &newSel)
@@ -413,7 +413,7 @@ bool LabelGlyphHandle::HandleGlyphDragRelease
 }
 
 UIHandle::Result LabelGlyphHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    auto result = LabelDefaultClickHandle::Drag( evt, pProject );
 
@@ -427,7 +427,7 @@ UIHandle::Result LabelGlyphHandle::Drag
 }
 
 HitTestPreview LabelGlyphHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *)
+(const TrackPanelMouseState &, TenacityProject *)
 {
    static wxCursor arrowCursor{ wxCURSOR_ARROW };
    static auto handOpenCursor =
@@ -449,7 +449,7 @@ HitTestPreview LabelGlyphHandle::Preview
 }
 
 UIHandle::Result LabelGlyphHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
  wxWindow *pParent)
 {
    auto result = LabelDefaultClickHandle::Release( evt, pProject, pParent );
@@ -467,7 +467,7 @@ UIHandle::Result LabelGlyphHandle::Release
    return result | RefreshCode::RefreshAll | RefreshCode::DrawOverlays;
 }
 
-UIHandle::Result LabelGlyphHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result LabelGlyphHandle::Cancel(TenacityProject *pProject)
 {
    ProjectHistory::Get( *pProject ).RollbackState();
    auto result = LabelDefaultClickHandle::Cancel( pProject );

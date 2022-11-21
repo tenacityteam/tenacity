@@ -40,7 +40,7 @@
 #include <wx/slider.h>
 #include <wx/stattext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/Shuttle.h"

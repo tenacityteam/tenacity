@@ -29,7 +29,7 @@ CutlineHandle::CutlineHandle
 {
 }
 
-void CutlineHandle::Enter(bool, SaucedacityProject *)
+void CutlineHandle::Enter(bool, TenacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -96,7 +96,7 @@ namespace
 UIHandlePtr CutlineHandle::HitTest
 (std::weak_ptr<CutlineHandle> &holder,
  const wxMouseState &state, const wxRect &rect,
- const SaucedacityProject *pProject,
+ const TenacityProject *pProject,
  const std::shared_ptr<WaveTrack> &pTrack)
 {
    auto &viewInfo = ViewInfo::Get( *pProject );
@@ -122,7 +122,7 @@ bool CutlineHandle::HandlesRightClick()
 }
 
 UIHandle::Result CutlineHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -203,13 +203,13 @@ UIHandle::Result CutlineHandle::Click
 }
 
 UIHandle::Result CutlineHandle::Drag
-(const TrackPanelMouseEvent &, SaucedacityProject *)
+(const TrackPanelMouseEvent &, TenacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
 HitTestPreview CutlineHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *pProject)
+(const TrackPanelMouseState &, TenacityProject *pProject)
 {
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
    auto bCutline = (mLocation.typ == WaveTrackLocation::locationCutLine);
@@ -217,7 +217,7 @@ HitTestPreview CutlineHandle::Preview
 }
 
 UIHandle::Result CutlineHandle::Release
-(const TrackPanelMouseEvent &, SaucedacityProject *pProject, wxWindow *)
+(const TrackPanelMouseEvent &, TenacityProject *pProject, wxWindow *)
 {
    UIHandle::Result result = RefreshCode::RefreshNone;
 
@@ -243,13 +243,13 @@ UIHandle::Result CutlineHandle::Release
    return result;
 }
 
-UIHandle::Result CutlineHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result CutlineHandle::Cancel(TenacityProject *pProject)
 {
    using namespace RefreshCode;
    UIHandle::Result result = RefreshCell;
    ProjectHistory::Get( *pProject ).RollbackState();
    if (mOperation == Expand) {
-      SaucedacityProject &project = *pProject;
+      TenacityProject &project = *pProject;
       auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
       selectedRegion.setTimes( mStartTime, mEndTime );
    }

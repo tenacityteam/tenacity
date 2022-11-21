@@ -192,7 +192,7 @@ void LibraryPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
    if (!locate) {
       int response = AudacityMessageBox(
          XO(
-"Saucedacity has automatically detected valid FFmpeg libraries.\nDo you still want to locate them manually?"),
+"Tenacity has automatically detected valid FFmpeg libraries.\nDo you still want to locate them manually?"),
          XO("Success"),
          wxCENTRE | wxYES_NO | wxNO_DEFAULT |wxICON_QUESTION);
       if (response == wxYES) {
@@ -226,7 +226,7 @@ bool LibraryPrefs::Commit()
 #if !defined(DISABLE_DYNAMIC_LOADING_FFMPEG) || !defined(DISABLE_DYNAMIC_LOADING_LAME)
 namespace{
 PrefsPanel::Registration sAttachment{ "Library",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew LibraryPrefs(parent, winid);

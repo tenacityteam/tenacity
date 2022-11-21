@@ -150,7 +150,7 @@ struct CommandListEntry
    CommandParameter parameter;
 
    // type of a function that determines checkmark state
-   using CheckFn = std::function< bool(SaucedacityProject&) >;
+   using CheckFn = std::function< bool(TenacityProject&) >;
    CheckFn checkmarkFn;
 
    bool multi;
@@ -195,20 +195,20 @@ SubMenuListEntry::~SubMenuListEntry()
 }
 
 ///
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   [](SaucedacityProject&) {
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   [](TenacityProject&) {
       return std::make_unique<CommandManager>();
    }
 };
 
-CommandManager &CommandManager::Get( SaucedacityProject &project )
+CommandManager &CommandManager::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< CommandManager >( key );
 }
 
-const CommandManager &CommandManager::Get( const SaucedacityProject &project )
+const CommandManager &CommandManager::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
 static CommandManager::MenuHook &sMenuHook()
@@ -529,7 +529,7 @@ wxMenu * CommandManager::CurrentMenu() const
    return tmpCurrentSubMenu;
 }
 
-void CommandManager::UpdateCheckmarks( SaucedacityProject &project )
+void CommandManager::UpdateCheckmarks( TenacityProject &project )
 {
    for ( const auto &entry : mCommandList ) {
       if ( entry->menu && entry->checkmarkFn && !entry->isOccult) {
@@ -540,7 +540,7 @@ void CommandManager::UpdateCheckmarks( SaucedacityProject &project )
 
 
 
-void CommandManager::AddItem(SaucedacityProject &project,
+void CommandManager::AddItem(TenacityProject &project,
                              const CommandID &name,
                              const TranslatableString &label_in,
                              CommandHandlerFinder finder,
@@ -585,7 +585,7 @@ void CommandManager::AddItem(SaucedacityProject &project,
 auto CommandManager::Options::MakeCheckFn(
    const wxString key, bool defaultValue ) -> CheckFn
 {
-   return [=](SaucedacityProject&){ return gPrefs->ReadBool( key, defaultValue ); };
+   return [=](TenacityProject&){ return gPrefs->ReadBool( key, defaultValue ); };
 }
 
 auto CommandManager::Options::MakeCheckFn(
@@ -1100,7 +1100,7 @@ TranslatableString CommandManager::DescribeCommandsAndShortcuts(
 ///
 ///
 ///
-bool CommandManager::FilterKeyEvent(SaucedacityProject *project, const wxKeyEvent & evt, bool permit)
+bool CommandManager::FilterKeyEvent(TenacityProject *project, const wxKeyEvent & evt, bool permit)
 {
    if (!project)
       return false;
@@ -1240,7 +1240,7 @@ Journal::RegisteredCommand sCommand{ JournalCode,
 /// returning true iff successful.  If you pass any flags,
 ///the command won't be executed unless the flags are compatible
 ///with the command's flags.
-bool CommandManager::HandleCommandEntry(SaucedacityProject &project,
+bool CommandManager::HandleCommandEntry(TenacityProject &project,
    const CommandListEntry * entry,
    CommandFlag flags, bool alwaysEnabled, const wxEvent * evt,
    const CommandContext *pGivenContext)
@@ -1322,7 +1322,7 @@ void CommandManager::DoRepeatProcess(const CommandContext& context, int id) {
 ///the command won't be executed unless the flags are compatible
 ///with the command's flags.
 bool CommandManager::HandleMenuID(
-   SaucedacityProject &project, int id, CommandFlag flags, bool alwaysEnabled)
+   TenacityProject &project, int id, CommandFlag flags, bool alwaysEnabled)
 {
    mLastProcessId = id;
    CommandListEntry *entry = mCommandNumericIDHash[id];
@@ -1376,7 +1376,7 @@ CommandManager::HandleTextualCommand(const CommandID & Str,
    return CommandNotFound;
 }
 
-TranslatableStrings CommandManager::GetCategories( SaucedacityProject& )
+TranslatableStrings CommandManager::GetCategories( TenacityProject& )
 {
    TranslatableStrings cats;
 
@@ -1714,12 +1714,12 @@ static struct InstallHandlers
       KeyboardCapture::SetPreFilter( []( wxKeyEvent & ) {
          // We must have a project since we will be working with the
          // CommandManager, which is tied to individual projects.
-         SaucedacityProject *project = GetActiveProject();
+         TenacityProject *project = GetActiveProject();
          return project && GetProjectFrame( *project ).IsEnabled();
       } );
       KeyboardCapture::SetPostFilter( []( wxKeyEvent &key ) {
          // Capture handler window didn't want it, so ask the CommandManager.
-         SaucedacityProject *project = GetActiveProject();
+         TenacityProject *project = GetActiveProject();
          auto &manager = CommandManager::Get( *project );
          return manager.FilterKeyEvent(project, key);
       } );

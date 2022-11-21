@@ -9,7 +9,7 @@
 **********************************************************************/
 #include "PluginRegistrationDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/EffectInterface.h>
 
 #include "ModuleManager.h"

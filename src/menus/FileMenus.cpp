@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   FileMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -47,7 +47,7 @@
 // private helper classes and functions
 namespace {
 
-void DoExport(SaucedacityProject &project, const FileExtension &format)
+void DoExport(TenacityProject &project, const FileExtension &format)
 {
    auto &tracks = TrackList::Get( project );
    auto &projectFileIO = ProjectFileIO::Get( project );
@@ -547,9 +547,9 @@ void OnExportFLAC(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static FileActions::Handler instance;
    return instance;
 };
@@ -598,7 +598,7 @@ BaseItemSharedPtr FileMenu()
    #endif
             ,
             Special( wxT("PopulateRecentFilesStep"),
-            [](SaucedacityProject &, wxMenu &theMenu){
+            [](TenacityProject &, wxMenu &theMenu){
                // Recent Files and Recent Projects menus
                auto &history = FileHistory::Global();
                history.UseMenu( &theMenu );

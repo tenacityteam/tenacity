@@ -44,7 +44,7 @@
 #error Requires libsndfile 1.0 or higher
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../FileFormats.h"
@@ -81,7 +81,7 @@ public:
    wxString GetPluginStringID() override { return wxT("libsndfile"); }
    TranslatableString GetPluginFormatDescription() override;
    std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, SaucedacityProject*) override;
+      const FilePath &Filename, TenacityProject*) override;
 };
 
 
@@ -119,7 +119,7 @@ TranslatableString PCMImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> PCMImportPlugin::Open(
-   const FilePath &filename, SaucedacityProject*)
+   const FilePath &filename, TenacityProject*)
 {
    SF_INFO info;
    wxFile f;   // will be closed when it goes out of scope

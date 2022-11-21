@@ -40,7 +40,7 @@ hold information about one contributor to Audacity.
 #include <wx/statbox.h>
 #include <wx/stattext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 
 #include "HelpText.h"
@@ -51,22 +51,22 @@ hold information about one contributor to Audacity.
 #include "theme/AllThemeResources.h"
 #include "theme/Theme.h"
 
-#include "../images/SaucedacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.xpm"
 
 #ifndef REV_TIME
 #define REV_TIME "unknown date and time"
 #endif
 
 #ifdef REV_LONG
-#define REV_IDENT wxString( "[[https://github.com/saucedacity/saucedacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
+#define REV_IDENT wxString( "[[https://github.com/tenacity/tenacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
 #else
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
 
 // To substitute into many other translatable strings
 static const auto ProgramName =
-   //XO("Saucedacity");
-   Verbatim("Saucedacity");
+   //XO("Tenacity");
+   Verbatim("Tenacity");
 
 void AboutDialog::CreateCreditsList()
 {
@@ -116,18 +116,18 @@ void AboutDialog::CreateCreditsList()
    /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
       XO("%s, graphics");
 
-   // Saucedacity
+   // Tenacity
    // Note: more is to be added (copied) over time.
-   const auto saucedacityFounderFormat =
-      XO("%s, Saucedacity founder and developer");
+   const auto tenacityFounderFormat =
+      XO("%s, Tenacity founder and developer");
 
-   const auto saucedacityDeveloperFormat =
+   const auto tenacityDeveloperFormat =
    /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
-      XO("%s, Saucedacity developer");
+      XO("%s, Tenacity developer");
 
-   const auto saucedacityWebDeveloperFormat =
+   const auto tenacityWebDeveloperFormat =
    /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
-      XO("%s, Saucedacity web developer");
+      XO("%s, Tenacity web developer");
 
    // Tenacity
    /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
@@ -141,8 +141,8 @@ void AboutDialog::CreateCreditsList()
    // members. Also considered, add an extra parameter to AddCredit,
    // indicating if they were an Audacity developer.
 
-   // The Saucedacity and Tenacity Teams
-   AddCredit(wxT("Avery King"), saucedacityFounderFormat, roleSaucedacityTeamMember);
+   // The Tenacity and Tenacity Teams
+   AddCredit(wxT("Avery King"), tenacityFounderFormat, roleTenacityTeamMember);
    AddCredit(wxT("Panagiotis \"AlwaysLivid\" Vasilopoulos ([[https://alwayslivid.com|Website]])"), tenacity_contributorFormat, roleTenacityTeamMember);
    AddCredit(wxT("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])"), tenacity_contributorFormat, roleTenacityTeamMember);
    AddCredit(wxT("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])"), tenacity_contributorFormat, roleTenacityTeamMember);
@@ -435,7 +435,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<h2>")
       << XO("%s and Tenacity Team Members").Format( ProgramName )
       << wxT("</h2><br>")
-      << GetCreditsByRole(roleSaucedacityTeamMember)
+      << GetCreditsByRole(roleTenacityTeamMember)
       << wxT("<br/>")
       << GetCreditsByRole(roleTenacityTeamMember)
 
@@ -492,9 +492,9 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
-      << wxT("[[https://github.com/saucedacity/saucedacity/|https://github.com/saucedacity/saucedacity]]<br>")
+      << wxT("[[https://github.com/tenacity/tenacity/|https://github.com/tenacity/tenacity]]<br>")
 
-      /* i18n-hint A copyright symbol substitutes the 1st %s and Saucedacity's
+      /* i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
          name substitues the 2nd. */
       << XO("<center>Copyright %s 2022 %s Team.</center>")
          .Format( wxT("&copy;"), ProgramName )
@@ -507,8 +507,8 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
    auto pPage = S.StartNotebookPage( ProgramName );
    S.StartVerticalLay(1);
    {
-      //v For now, change to SaucedacityLogoWithName via old-fashioned way, not Theme.
-      wxBitmap logo(SaucedacityLogoWithName_xpm); //v
+      //v For now, change to TenacityLogoWithName via old-fashioned way, not Theme.
+      wxBitmap logo(TenacityLogoWithName_xpm); //v
 
       // JKC: Resize to 50% of size.  Later we may use a smaller xpm as
       // our source, but this allows us to tweak the size - if we want to.
@@ -528,7 +528,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
          safenew wxStaticBitmap(S.GetParent(), -1,
          //*logo, //v
          //v theTheme.Bitmap(bmpAudacityLogo), wxPoint(93, 10), wxSize(215, 190));
-         //v theTheme.Bitmap(bmpSaucedacityLogoWithName),
+         //v theTheme.Bitmap(bmpTenacityLogoWithName),
          RescaledBitmap,
          wxDefaultPosition,
          wxSize((int)(LOGOWITHNAME_WIDTH*fScale), (int)(LOGOWITHNAME_HEIGHT*fScale)));

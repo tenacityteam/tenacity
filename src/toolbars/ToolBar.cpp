@@ -54,7 +54,7 @@ in which buttons can be placed.
 #include "../widgets/AButton.h"
 #include "../widgets/Grabber.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 ////////////////////////////////////////////////////////////
@@ -328,7 +328,7 @@ END_EVENT_TABLE()
 //
 // Constructor
 //
-ToolBar::ToolBar( SaucedacityProject &project,
+ToolBar::ToolBar( TenacityProject &project,
                   int type,
                   const TranslatableString &label,
                   const wxString &section,
@@ -366,7 +366,7 @@ ToolBar::~ToolBar()
 TranslatableString ToolBar::GetTitle()
 {
    /* i18n-hint: %s will be replaced by the name of the kind of toolbar.*/
-   return XO("Saucedacity %s Toolbar").Format( GetLabel() );
+   return XO("Tenacity %s Toolbar").Format( GetLabel() );
 }
 
 //
@@ -896,7 +896,7 @@ void ToolBar::MakeAlternateImages(AButton &button, int idx,
 }
 
 void ToolBar::SetButtonToolTip
-(SaucedacityProject &theProject,
+(TenacityProject &theProject,
  AButton &button, const ComponentInterfaceSymbol commands[], size_t nCommands)
 {
    TranslatableString result;

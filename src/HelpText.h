@@ -14,7 +14,7 @@
 class TranslatableString;
 class wxString;
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 struct URLStringTag;

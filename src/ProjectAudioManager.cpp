@@ -15,7 +15,7 @@ Paul Licameli split from ProjectManager.cpp
 #include <wx/frame.h>
 #include <wx/statusbr.h>
 
-// Saucedacity librairies
+// Tenacity librairies
 #include <lib-basic-ui/BasicUI.h>
 
 #include "AudioIO.h"
@@ -42,26 +42,26 @@ Paul Licameli split from ProjectManager.cpp
 #include "widgets/AudacityMessageBox.h"
 
 
-static SaucedacityProject::AttachedObjects::RegisteredFactory
+static TenacityProject::AttachedObjects::RegisteredFactory
 sProjectAudioManagerKey {
-   []( SaucedacityProject &project ) {
+   []( TenacityProject &project ) {
       return std::make_shared< ProjectAudioManager >( project );
    }
 };
 
-ProjectAudioManager &ProjectAudioManager::Get( SaucedacityProject &project )
+ProjectAudioManager &ProjectAudioManager::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectAudioManager >(
       sProjectAudioManagerKey );
 }
 
 const ProjectAudioManager &ProjectAudioManager::Get(
-   const SaucedacityProject &project )
+   const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-ProjectAudioManager::ProjectAudioManager( SaucedacityProject &project )
+ProjectAudioManager::ProjectAudioManager( TenacityProject &project )
    : mProject{ project }
 {
    static ProjectStatus::RegisteredStatusWidthFunction
@@ -83,7 +83,7 @@ static TranslatableString FormatRate( int rate )
 }
 
 auto ProjectAudioManager::StatusWidthFunction(
-   const SaucedacityProject &project, StatusBarField field )
+   const TenacityProject &project, StatusBarField field )
    -> ProjectStatus::StatusWidthResult
 {
    if ( field == rateStatusBarField ) {
@@ -141,7 +141,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
    if (cutpreview && t0==t1)
       return -1; /* msmeyer: makes no sense */
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    auto &tracks = TrackList::Get( *p );
 
@@ -290,7 +290,7 @@ void ProjectAudioManager::PlayCurrentRegion(bool looped /* = false */,
    if ( !canStop )
       return;
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    {
 
@@ -312,7 +312,7 @@ void ProjectAudioManager::PlayCurrentRegion(bool looped /* = false */,
 
 void ProjectAudioManager::Stop(bool stopStream /* = true*/)
 {
-   SaucedacityProject *project = &mProject;
+   TenacityProject *project = &mProject;
    auto &projectAudioManager = *this;
    bool canStop = projectAudioManager.CanStopAudioStream();
 
@@ -386,7 +386,7 @@ void ProjectAudioManager::Pause()
 }
 
 WaveTrackArray ProjectAudioManager::ChooseExistingRecordingTracks(
-   SaucedacityProject &proj, bool selectedOnly, double targetRate)
+   TenacityProject &proj, bool selectedOnly, double targetRate)
 {
    auto p = &proj;
    size_t recordingChannels = std::max(0, AudioIORecordChannels.Read());
@@ -468,7 +468,7 @@ void ProjectAudioManager::OnRecord(bool altAppearance)
    const bool appendRecord = (altAppearance == bPreferNewTrack);
 
    // Code from CommandHandler start...
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    if (p) {
       const auto &selectedRegion = ViewInfo::Get( *p ).selectedRegion;
@@ -511,7 +511,7 @@ void ProjectAudioManager::OnRecord(bool altAppearance)
             if (numberOfSelected > 0 && rateOfSelected != options.rate) {
                AudacityMessageBox(XO(
                   "Too few tracks are selected for recording at this sample rate.\n"
-                  "(Saucedacity requires two channels at the same sample rate for\n"
+                  "(Tenacity requires two channels at the same sample rate for\n"
                   "each stereo track)"),
                   XO("Too Few Compatible Tracks Selected"),
                   wxICON_ERROR | wxCENTRE);
@@ -572,7 +572,7 @@ bool ProjectAudioManager::UseDuplex()
    return duplex;
 }
 
-bool ProjectAudioManager::DoRecord(SaucedacityProject &project,
+bool ProjectAudioManager::DoRecord(TenacityProject &project,
    const TransportTracks &tracks,
    double t0, double t1,
    bool altAppearance,
@@ -811,7 +811,7 @@ void ProjectAudioManager::SetupCutPreviewTracks(double WXUNUSED(playStart), doub
 
 {
    ClearCutPreviewTracks();
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    {
       auto trackRange = TrackList::Get( *p ).Selected< const PlayableTrack >();
       if( !trackRange.empty() ) {
@@ -919,7 +919,7 @@ void ProjectAudioManager::OnAudioIOStopRecording()
                ShowWarningDialog(&window, wxT("DropoutDetected"), XO("\
 Recorded audio was lost at the labeled locations. Possible causes:\n\
 \n\
-Other applications are competing with Saucedacity for processor time\n\
+Other applications are competing with Tenacity for processor time\n\
 \n\
 You are saving directly to a slow external storage device\n\
 "
@@ -991,7 +991,7 @@ bool ProjectAudioManager::CanStopAudioStream() const
 
 const ReservedCommandFlag&
    CanStopAudioStreamFlag(){ static ReservedCommandFlag flag{
-      [](const SaucedacityProject &project){
+      [](const TenacityProject &project){
          auto &projectAudioManager = ProjectAudioManager::Get( project );
          bool canStop = projectAudioManager.CanStopAudioStream();
          return canStop;
@@ -999,7 +999,7 @@ const ReservedCommandFlag&
    }; return flag; }
 
 AudioIOStartStreamOptions
-DefaultPlayOptions( SaucedacityProject &project )
+DefaultPlayOptions( TenacityProject &project )
 {
    auto &projectAudioIO = ProjectAudioIO::Get( project );
    AudioIOStartStreamOptions options { &project,
@@ -1013,7 +1013,7 @@ DefaultPlayOptions( SaucedacityProject &project )
 }
 
 AudioIOStartStreamOptions
-DefaultSpeedPlayOptions( SaucedacityProject &project )
+DefaultSpeedPlayOptions( TenacityProject &project )
 {
    auto &projectAudioIO = ProjectAudioIO::Get( project );
    auto gAudioIO = AudioIO::Get();
@@ -1141,9 +1141,9 @@ void ProjectAudioManager::DoPlayStopSelect()
 static RegisteredMenuItemEnabler stopIfPaused{{
    []{ return PausedFlag(); },
    []{ return AudioIONotBusyFlag(); },
-   []( const SaucedacityProject &project ){
+   []( const TenacityProject &project ){
       return MenuManager::Get( project ).mStopIfWasPaused; },
-   []( SaucedacityProject &project, CommandFlag ){
+   []( TenacityProject &project, CommandFlag ){
       if ( MenuManager::Get( project ).mStopIfWasPaused )
          ProjectAudioManager::Get( project ).StopIfPaused();
    }
@@ -1152,7 +1152,7 @@ static RegisteredMenuItemEnabler stopIfPaused{{
 // GetSelectedProperties collects information about 
 // currently selected audio tracks
 PropertiesOfSelected
-GetPropertiesOfSelected(const SaucedacityProject &proj)
+GetPropertiesOfSelected(const TenacityProject &proj)
 {
    double rateOfSelection{ RATE_NOT_SELECTED };
 

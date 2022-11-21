@@ -87,7 +87,7 @@
 #include <wx/tooltip.h>
 #include <wx/utils.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/PlatformCompatibility.h>
 #include <lib-math/FFT.h>

@@ -38,31 +38,31 @@ public:
    std::shared_ptr<LabelTrack> GetTrack() const { return mpLT.lock(); }
    int GetLabelNum() const { return mLabelNum; }
 
-   void Enter(bool forward, SaucedacityProject *) override;
+   void Enter(bool forward, TenacityProject *) override;
 
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
 private:
    void HandleTextClick
-      (SaucedacityProject &project, const wxMouseEvent & evt);
+      (TenacityProject &project, const wxMouseEvent & evt);
    void HandleTextDragRelease(
-      SaucedacityProject &project, const wxMouseEvent & evt);
+      TenacityProject &project, const wxMouseEvent & evt);
 
    std::weak_ptr<LabelTrack> mpLT {};
    int mLabelNum{ -1 };

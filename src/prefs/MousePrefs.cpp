@@ -39,7 +39,7 @@
 #include <wx/intl.h>
 #include <wx/listctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
@@ -241,7 +241,7 @@ bool MousePrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Mouse",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew MousePrefs(parent, winid);

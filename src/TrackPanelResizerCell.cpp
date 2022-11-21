@@ -30,7 +30,7 @@ TrackPanelResizerCell::TrackPanelResizerCell(
 {}
 
 std::vector<UIHandlePtr> TrackPanelResizerCell::HitTest
-(const TrackPanelMouseState &st, const SaucedacityProject *pProject)
+(const TrackPanelMouseState &st, const TenacityProject *pProject)
 {
    (void)pProject;// Compiler food
    std::vector<UIHandlePtr> results;

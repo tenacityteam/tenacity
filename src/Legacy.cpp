@@ -42,7 +42,7 @@ On failure the old version is put back in place.
 
 #include "widgets/AudacityMessageBox.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-xml/XMLFileWriter.h>
 
 static bool ConvertLegacyTrack(wxTextFile *f, XMLFileWriter &xmlFile)
@@ -268,7 +268,7 @@ bool ConvertLegacyProjectFile(const wxFileName &filename)
       wxString label;
       wxString value;
 
-      if (f.GetFirstLine() != wxT("SaucedacityProject"))
+      if (f.GetFirstLine() != wxT("TenacityProject"))
          return false;
       if (f.GetNextLine() != wxT("Version"))
          return false;

@@ -25,7 +25,7 @@ effects from this one class.
 
 #include "LadspaEffect.h"       // This class's header file
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-math/SampleCount.h>
 

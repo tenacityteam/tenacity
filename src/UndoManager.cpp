@@ -48,22 +48,22 @@ wxDEFINE_EVENT(EVT_UNDO_PURGE, wxCommandEvent);
 
 using SampleBlockID = long long;
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   [](SaucedacityProject &project)
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   [](TenacityProject &project)
       { return std::make_unique<UndoManager>( project ); }
 };
 
-UndoManager &UndoManager::Get( SaucedacityProject &project )
+UndoManager &UndoManager::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< UndoManager >( key );
 }
 
-const UndoManager &UndoManager::Get( const SaucedacityProject &project )
+const UndoManager &UndoManager::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-UndoManager::UndoManager( SaucedacityProject &project )
+UndoManager::UndoManager( TenacityProject &project )
    : mProject{ project }
 {
    current = -1;

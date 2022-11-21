@@ -39,7 +39,7 @@ from the project that will own the track.
 #include <cmath>
 #include <algorithm>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
@@ -96,7 +96,7 @@ Track::LinkType ToLinkType(int value)
 
 static ProjectFileIORegistry::Entry registerFactory{
    wxT( "wavetrack" ),
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       auto &trackFactory = WaveTrackFactory::Get( project );
       auto &tracks = TrackList::Get( project );
       auto result = tracks.Add(trackFactory.NewWaveTrack());
@@ -393,7 +393,7 @@ static Container MakeIntervals(const std::vector<WaveClipHolder> &clips)
    return result;
 }
 
-Track::Holder WaveTrack::PasteInto( SaucedacityProject &project ) const
+Track::Holder WaveTrack::PasteInto( TenacityProject &project ) const
 {
    auto &trackFactory = WaveTrackFactory::Get( project );
    auto &pSampleBlockFactory = trackFactory.GetSampleBlockFactory();
@@ -840,7 +840,7 @@ void WaveTrack::SetWaveformSettings(std::unique_ptr<WaveformSettings> &&pSetting
 // be pasted with visible split lines.  Normally, effects do not
 // want these extra lines, so they may be merged out.
 //
-/*! @excsafety{Weak} -- This WaveTrack remains destructible in case of SaucedacityException.
+/*! @excsafety{Weak} -- This WaveTrack remains destructible in case of TenacityException.
 But some of its cutline clips may have been destroyed. */
 void WaveTrack::ClearAndPaste(double t0, // Start of time to clear
                               double t1, // End of time to clear
@@ -2862,34 +2862,34 @@ void InspectBlocks(const TrackList &tracks, BlockInspector inspector,
 
 #include "Project.h"
 #include "SampleBlock.h"
-static auto TrackFactoryFactory = []( SaucedacityProject &project ) {
+static auto TrackFactoryFactory = []( TenacityProject &project ) {
    return std::make_shared< WaveTrackFactory >(
       ProjectSettings::Get( project ),
       SampleBlockFactory::New( project ) );
 };
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key2{
+static const TenacityProject::AttachedObjects::RegisteredFactory key2{
    TrackFactoryFactory
 };
 
-WaveTrackFactory &WaveTrackFactory::Get( SaucedacityProject &project )
+WaveTrackFactory &WaveTrackFactory::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< WaveTrackFactory >( key2 );
 }
 
-const WaveTrackFactory &WaveTrackFactory::Get( const SaucedacityProject &project )
+const WaveTrackFactory &WaveTrackFactory::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-WaveTrackFactory &WaveTrackFactory::Reset( SaucedacityProject &project )
+WaveTrackFactory &WaveTrackFactory::Reset( TenacityProject &project )
 {
    auto result = TrackFactoryFactory( project );
    project.AttachedObjects::Assign( key2, result );
    return *result;
 }
 
-void WaveTrackFactory::Destroy( SaucedacityProject &project )
+void WaveTrackFactory::Destroy( TenacityProject &project )
 {
    project.AttachedObjects::Assign( key2, nullptr );
 }

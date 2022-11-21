@@ -2,7 +2,7 @@
 
   Audacity: A Digital Audio Editor
 
-  SaucedacityHeaders.h
+  TenacityHeaders.h
 
   Dominic Mazzoni
 **********************************************************************/
@@ -27,7 +27,7 @@
 #include <wx/thread.h>
 #include <wx/tooltip.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/FFT.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Identifier.h>

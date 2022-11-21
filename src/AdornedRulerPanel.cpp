@@ -25,7 +25,7 @@
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/tooltip.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "AColor.h"
@@ -169,14 +169,14 @@ class AdornedRulerPanel::QuickPlayIndicatorOverlay final : public Overlay
    friend AdornedRulerPanel;
 
 public:
-   QuickPlayIndicatorOverlay(SaucedacityProject *project);
+   QuickPlayIndicatorOverlay(TenacityProject *project);
 
 private:
    unsigned SequenceNumber() const override;
    std::pair<wxRect, bool> DoGetRectangle(wxSize size) override;
    void Draw(OverlayPanel &panel, wxDC &dc) override;
 
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 
    std::shared_ptr<QuickPlayRulerOverlay> mPartner
       { std::make_shared<QuickPlayRulerOverlay>(*this) };
@@ -300,7 +300,7 @@ void AdornedRulerPanel::QuickPlayRulerOverlay::Draw(
  **********************************************************************/
 
 AdornedRulerPanel::QuickPlayIndicatorOverlay::QuickPlayIndicatorOverlay(
-   SaucedacityProject *project)
+   TenacityProject *project)
    : mProject(project)
 {
 }
@@ -406,7 +406,7 @@ public:
    {}
    
    HitTestPreview DefaultPreview
-      (const TrackPanelMouseState &state, const SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, const TenacityProject *pProject)
       override
    {
       (void)pProject;// Compiler food
@@ -427,7 +427,7 @@ public:
 
    unsigned DoContextMenu
       (const wxRect &rect,
-       wxWindow *pParent, const wxPoint *pPosition, SaucedacityProject*) final
+       wxWindow *pParent, const wxPoint *pPosition, TenacityProject*) final
    {
       (void)pParent;// Compiler food
       (void)rect;// Compiler food
@@ -465,20 +465,20 @@ protected:
    bool HandlesRightClick() override { return true; }
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *) override
+      (const TrackPanelMouseEvent &event, TenacityProject *) override
    {
       mClicked = event.event.LeftIsDown() ? Button::Left : Button::Right;
       return RefreshCode::DrawOverlays;
    }
 
    Result Drag
-      (const TrackPanelMouseEvent &, SaucedacityProject *) override
+      (const TrackPanelMouseEvent &, TenacityProject *) override
    {
       return RefreshCode::DrawOverlays;
    }
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *,
+      (const TrackPanelMouseEvent &event, TenacityProject *,
        wxWindow *) override
    {
       if ( mParent && mClicked == Button::Right ) {
@@ -488,13 +488,13 @@ protected:
       return RefreshCode::DrawOverlays;
    }
 
-   Result Cancel(SaucedacityProject *pProject) override
+   Result Cancel(TenacityProject *pProject) override
    {
       (void)pProject;// Compiler food
       return RefreshCode::DrawOverlays;
    }
    
-   void Enter(bool, SaucedacityProject *) override
+   void Enter(bool, TenacityProject *) override
    {
       mChangeHighlight = RefreshCode::DrawOverlays;
    }
@@ -522,20 +522,20 @@ public:
 
 private:
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
    override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
    SelectedRegion mOldSelection;
 };
@@ -543,7 +543,7 @@ private:
 namespace
 {
 
-wxCoord GetPlayHeadX( const SaucedacityProject *pProject )
+wxCoord GetPlayHeadX( const TenacityProject *pProject )
 {
    const auto &viewInfo = ViewInfo::Get( *pProject );
    auto width = viewInfo.GetTracksUsableWidth();
@@ -551,7 +551,7 @@ wxCoord GetPlayHeadX( const SaucedacityProject *pProject )
       + width * TracksPrefs::GetPinnedHeadPositionPreference();
 }
 
-double GetPlayHeadFraction( const SaucedacityProject *pProject, wxCoord xx )
+double GetPlayHeadFraction( const TenacityProject *pProject, wxCoord xx )
 {
    const auto &viewInfo = ViewInfo::Get( *pProject );
    auto width = viewInfo.GetTracksUsableWidth();
@@ -578,7 +578,7 @@ public:
    }
    
    static std::shared_ptr<PlayheadHandle>
-   HitTest( const SaucedacityProject *pProject, wxCoord xx )
+   HitTest( const TenacityProject *pProject, wxCoord xx )
    {
       if( Scrubber::Get( *pProject )
          .IsTransportingPinned() &&
@@ -593,7 +593,7 @@ public:
    
 protected:
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
    {
       (void)pProject;// Compiler food
       if (event.event.LeftDClick()) {
@@ -613,7 +613,7 @@ protected:
    }
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
    {
 
       auto value = GetPlayHeadFraction(pProject, event.event.m_x );
@@ -622,7 +622,7 @@ protected:
    }
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override
    {
       (void)pProject;// Compiler food
@@ -639,7 +639,7 @@ protected:
    }
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *) override
    {
       auto value = GetPlayHeadFraction(pProject, event.event.m_x );
@@ -647,14 +647,14 @@ protected:
       return RefreshCode::DrawOverlays;
    }
 
-   Result Cancel(SaucedacityProject *pProject) override
+   Result Cancel(TenacityProject *pProject) override
    {
       (void)pProject;// Compiler food
       TracksPrefs::SetPinnedHeadPositionPreference( mOrigPreference );
       return RefreshCode::DrawOverlays;
    }
    
-   void Enter(bool, SaucedacityProject *) override
+   void Enter(bool, TenacityProject *) override
    {
       mChangeHighlight = RefreshCode::DrawOverlays;
    }
@@ -675,7 +675,7 @@ public:
    
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject) override;
+       const TenacityProject *pProject) override;
    
    // Return shared_ptr to self, stored in parent
    std::shared_ptr<TrackPanelCell> ContextMenuDelegate() override
@@ -694,7 +694,7 @@ public:
 
 std::vector<UIHandlePtr> AdornedRulerPanel::QPCell::HitTest
 (const TrackPanelMouseState &state,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    // Creation of overlays on demand here -- constructor of AdornedRulerPanel
    // is too early to do it
@@ -740,7 +740,7 @@ public:
 
 private:
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
    {
       auto result = CommonRulerHandle::Click(event, pProject);
       if (!( result & RefreshCode::Cancelled )) {
@@ -765,7 +765,7 @@ private:
    }
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
    {
       auto result = CommonRulerHandle::Drag(event, pProject);
       if (!( result & RefreshCode::Cancelled )) {
@@ -776,11 +776,11 @@ private:
    }
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
    override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override {
       auto result = CommonRulerHandle::Release(event, pProject, pParent);
       if (!( result & RefreshCode::Cancelled )) {
@@ -791,7 +791,7 @@ private:
       return result;
    }
 
-   Result Cancel(SaucedacityProject *pProject) override
+   Result Cancel(TenacityProject *pProject) override
    {
       auto result = CommonRulerHandle::Cancel(pProject);
 
@@ -816,7 +816,7 @@ public:
    
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject) override;
+       const TenacityProject *pProject) override;
    
    // Return shared_ptr to self, stored in parent
    std::shared_ptr<TrackPanelCell> ContextMenuDelegate() override
@@ -835,7 +835,7 @@ private:
 
 std::vector<UIHandlePtr> AdornedRulerPanel::ScrubbingCell::HitTest
 (const TrackPanelMouseState &state,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    (void)pProject;// Compiler food
    // Creation of overlays on demand here -- constructor of AdornedRulerPanel
@@ -859,8 +859,8 @@ std::vector<UIHandlePtr> AdornedRulerPanel::ScrubbingCell::HitTest
 }
 
 namespace{
-SaucedacityProject::AttachedWindows::RegisteredFactory sKey{
-[]( SaucedacityProject &project ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sKey{
+[]( TenacityProject &project ) -> wxWeakRef< wxWindow > {
    auto &viewInfo = ViewInfo::Get( project );
    auto &window = ProjectWindow::Get( project );
 
@@ -873,17 +873,17 @@ SaucedacityProject::AttachedWindows::RegisteredFactory sKey{
 };
 }
 
-AdornedRulerPanel &AdornedRulerPanel::Get( SaucedacityProject &project )
+AdornedRulerPanel &AdornedRulerPanel::Get( TenacityProject &project )
 {
    return project.AttachedWindows::Get< AdornedRulerPanel >( sKey );
 }
 
-const AdornedRulerPanel &AdornedRulerPanel::Get( const SaucedacityProject &project )
+const AdornedRulerPanel &AdornedRulerPanel::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-void AdornedRulerPanel::Destroy( SaucedacityProject &project )
+void AdornedRulerPanel::Destroy( TenacityProject &project )
 {
    auto *pPanel = project.AttachedWindows::Find( sKey );
    if (pPanel) {
@@ -892,7 +892,7 @@ void AdornedRulerPanel::Destroy( SaucedacityProject &project )
    }
 }
 
-AdornedRulerPanel::AdornedRulerPanel(SaucedacityProject* project,
+AdornedRulerPanel::AdornedRulerPanel(TenacityProject* project,
                                      wxWindow *parent,
                                      wxWindowID id,
                                      const wxPoint& pos,
@@ -1353,7 +1353,7 @@ bool AdornedRulerPanel::IsWithinMarker(int mousePosX, double markerTime)
 }
 
 auto AdornedRulerPanel::QPHandle::Click
-(const TrackPanelMouseEvent &event, SaucedacityProject *pProject) -> Result
+(const TrackPanelMouseEvent &event, TenacityProject *pProject) -> Result
 {
    auto result = CommonRulerHandle::Click(event, pProject);
    if (!( result & RefreshCode::Cancelled )) {
@@ -1422,7 +1422,7 @@ void AdornedRulerPanel::HandleQPClick(wxMouseEvent &evt, wxCoord mousePosX)
 }
 
 auto AdornedRulerPanel::QPHandle::Drag
-(const TrackPanelMouseEvent &event, SaucedacityProject *pProject) -> Result
+(const TrackPanelMouseEvent &event, TenacityProject *pProject) -> Result
 {
    auto result = CommonRulerHandle::Drag(event, pProject);
    if (!( result & RefreshCode::Cancelled )) {
@@ -1517,7 +1517,7 @@ void AdornedRulerPanel::HandleQPDrag(wxMouseEvent &/*event*/, wxCoord mousePosX)
 }
 
 auto AdornedRulerPanel::ScrubbingHandle::Preview
-(const TrackPanelMouseState &state, SaucedacityProject *pProject)
+(const TrackPanelMouseState &state, TenacityProject *pProject)
 -> HitTestPreview
 {
    (void)state;// Compiler food
@@ -1533,7 +1533,7 @@ auto AdornedRulerPanel::ScrubbingHandle::Preview
 }
 
 auto AdornedRulerPanel::QPHandle::Preview
-(const TrackPanelMouseState &state, SaucedacityProject *pProject)
+(const TrackPanelMouseState &state, TenacityProject *pProject)
 -> HitTestPreview
 {
    TranslatableString tooltip;
@@ -1574,7 +1574,7 @@ auto AdornedRulerPanel::QPHandle::Preview
 }
 
 auto AdornedRulerPanel::QPHandle::Release
-(const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &event, TenacityProject *pProject,
  wxWindow *pParent) -> Result
 {
    // Keep a shared pointer to self.  Otherwise *this might get deleted
@@ -1652,7 +1652,7 @@ void AdornedRulerPanel::HandleQPRelease(wxMouseEvent &evt)
 }
 
 auto AdornedRulerPanel::QPHandle::Cancel
-(SaucedacityProject *pProject) -> Result
+(TenacityProject *pProject) -> Result
 {
    auto result = CommonRulerHandle::Cancel(pProject);
 
@@ -2215,7 +2215,7 @@ AdornedRulerPanel::GetIndicatorBitmap(wxCoord xx, bool playing) const
 void AdornedRulerPanel::SetPlayRegion(double playRegionStart,
                                       double playRegionEnd)
 {
-   // This is called by SaucedacityProject to make the play region follow
+   // This is called by TenacityProject to make the play region follow
    // the current selection. But while the user is selecting a play region
    // with the mouse directly in the ruler, changes from outside are blocked.
    if (mMouseEventState != mesNone)
@@ -2303,7 +2303,7 @@ std::shared_ptr<TrackPanelNode> AdornedRulerPanel::Root()
    return std::make_shared< MainGroup >( *this );
 }
 
-SaucedacityProject * AdornedRulerPanel::GetProject() const
+TenacityProject * AdornedRulerPanel::GetProject() const
 {
    return mProject;
 }

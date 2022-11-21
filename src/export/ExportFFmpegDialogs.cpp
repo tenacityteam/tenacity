@@ -59,7 +59,7 @@
 #include <wx/combobox.h>
 #include <wx/stattext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-ffmpeg-support/FFmpegFunctions.h>
 #include <lib-xml/XMLFileReader.h>
 #include <lib-xml/XMLFileWriter.h>

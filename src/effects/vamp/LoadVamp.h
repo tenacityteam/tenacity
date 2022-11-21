@@ -14,7 +14,7 @@
 
 #include <memory>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ModuleInterface.h>
 #include <lib-components/EffectInterface.h>
 #include <lib-components/PluginInterface.h>

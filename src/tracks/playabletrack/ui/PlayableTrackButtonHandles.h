@@ -28,11 +28,11 @@ public:
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, SaucedacityProject &) const override;
+      const wxMouseState &state, TenacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 
@@ -40,7 +40,7 @@ public:
    static UIHandlePtr HitTest
       (std::weak_ptr<MuteButtonHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const SaucedacityProject *pProject, const std::shared_ptr<Track> &pTrack);
+       const TenacityProject *pProject, const std::shared_ptr<Track> &pTrack);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,11 +59,11 @@ public:
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, SaucedacityProject &) const override;
+      const wxMouseState &state, TenacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 
@@ -71,7 +71,7 @@ public:
    static UIHandlePtr HitTest
       (std::weak_ptr<SoloButtonHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const SaucedacityProject *pProject, const std::shared_ptr<Track> &pTrack);
+       const TenacityProject *pProject, const std::shared_ptr<Track> &pTrack);
 };
 
 #endif

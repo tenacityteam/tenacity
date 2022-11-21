@@ -54,7 +54,7 @@
 #include "ClientData.h"
 #include "SelectedRegion.h"
 
-// Events emitted by SaucedacityProject for the use of listeners
+// Events emitted by TenacityProject for the use of listeners
 
 // Project state did not change, but a new state was copied into Undo history
 // and any redo states were lost
@@ -77,7 +77,7 @@ wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_RESET, wxCommandEvent);
 // Undo or redo states discarded
 wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API, EVT_UNDO_PURGE, wxCommandEvent);
 
-class SaucedacityProject;
+class TenacityProject;
 class Tags;
 class Track;
 class TrackList;
@@ -136,11 +136,11 @@ class SAUCEDACITY_DLL_API UndoManager final
    : public ClientData::Base
 {
  public:
-   static UndoManager &Get( SaucedacityProject &project );
-   static const UndoManager &Get( const SaucedacityProject &project );
+   static UndoManager &Get( TenacityProject &project );
+   static const UndoManager &Get( const TenacityProject &project );
  
    explicit
-   UndoManager( SaucedacityProject &project );
+   UndoManager( TenacityProject &project );
    ~UndoManager();
 
    UndoManager( const UndoManager& ) = delete;
@@ -211,7 +211,7 @@ class SAUCEDACITY_DLL_API UndoManager final
 
    void RemoveStateAt(int n);
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
  
    int current;
    int saved;

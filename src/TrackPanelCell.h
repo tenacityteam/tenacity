@@ -16,7 +16,7 @@ Paul Licameli
 #include <memory>
 #include "TrackPanelDrawable.h" // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 struct HitTestPreview;
 struct TrackPanelDrawingContext;
 struct TrackPanelMouseEvent;
@@ -82,7 +82,7 @@ public:
    // May supply default cursor, status message, and tooltip, when there is no
    // handle to hit at the mouse position, or the handle does not supply them.
    virtual HitTestPreview DefaultPreview
-      (const TrackPanelMouseState &state, const SaucedacityProject *pProject);
+      (const TrackPanelMouseState &state, const TenacityProject *pProject);
 
    // Return pointers to objects that can be queried for a status
    // bar message and cursor appropriate to the point, and that dispatch
@@ -91,14 +91,14 @@ public:
    // time -- not necessarily as it is now.
    virtual std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject) = 0;
+       const TenacityProject *pProject) = 0;
 
    // Return value is a bitwise OR of RefreshCode values
    // Include Cancelled in the flags to indicate that the event is not handled.
    // Default does only that.
    virtual unsigned HandleWheelRotation
       (const TrackPanelMouseEvent &event,
-       SaucedacityProject *pProject);
+       TenacityProject *pProject);
 
    // A cell may delegate context menu handling to another one
    virtual std::shared_ptr<TrackPanelCell> ContextMenuDelegate()
@@ -109,36 +109,36 @@ public:
    // Default implementation does nothing
    virtual unsigned DoContextMenu
       (const wxRect &rect,
-       wxWindow *pParent, const wxPoint *pPosition, SaucedacityProject *pProject);
+       wxWindow *pParent, const wxPoint *pPosition, TenacityProject *pProject);
 
    // Return value is a bitwise OR of RefreshCode values
    // Default skips the event and does nothing
    virtual unsigned CaptureKey
       (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-       SaucedacityProject *project);
+       TenacityProject *project);
 
    // Return value is a bitwise OR of RefreshCode values
    // Default skips the event and does nothing
    virtual unsigned KeyDown
       (wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *pParent,
-       SaucedacityProject *project);
+       TenacityProject *project);
 
    // Return value is a bitwise OR of RefreshCode values
    // Default skips the event and does nothing
    virtual unsigned KeyUp
       (wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *pParent,
-       SaucedacityProject *project);
+       TenacityProject *project);
 
    // Return value is a bitwise OR of RefreshCode values
    // Default skips the event and does nothing
    virtual unsigned Char
       (wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *pParent,
-       SaucedacityProject *project);
+       TenacityProject *project);
 
    // Return value is a bitwise OR of RefreshCode values
    // Notification to the focused cell that the CellularPanel is losing focus
    // Default does nothing, returns RefreshCode::RefreshNone
-   virtual unsigned LoseFocus(SaucedacityProject *project);
+   virtual unsigned LoseFocus(TenacityProject *project);
 };
 
 #endif

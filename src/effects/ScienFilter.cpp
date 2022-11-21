@@ -52,7 +52,7 @@ a graph for EffectScienFilter.
 #include <wx/utils.h>
 #include <wx/valgen.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/PlatformCompatibility.h>
 #include <lib-preferences/Prefs.h>
 

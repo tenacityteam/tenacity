@@ -52,7 +52,7 @@
 #include <wx/window.h>
 #endif  // end WX_PRECOMP
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"
@@ -73,7 +73,7 @@
 // Constructor
 //
 ToolFrame::ToolFrame
-   ( SaucedacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos )
+   ( TenacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos )
    : wxFrame( FindProjectFrame( parent ),
           bar->GetId(),
           wxEmptyString,
@@ -349,25 +349,25 @@ auto ToolManager::SetGetTopPanelHook( const GetTopPanelHook &hook )
    return result;
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+  []( TenacityProject &parent ){
      return std::make_shared< ToolManager >( &parent ); }
 };
 
-ToolManager &ToolManager::Get( SaucedacityProject &project )
+ToolManager &ToolManager::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ToolManager >( key );
 }
 
-const ToolManager &ToolManager::Get( const SaucedacityProject &project )
+const ToolManager &ToolManager::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
 //
 // Constructor
 //
-ToolManager::ToolManager( SaucedacityProject *parent )
+ToolManager::ToolManager( TenacityProject *parent )
 : wxEvtHandler()
 {
    wxPoint pt[ 3 ];
@@ -681,7 +681,7 @@ void ToolManager::Reset()
    // If audio was playing, we stopped the VU meters,
    // It would be nice to show them again, but hardly essential as
    // they will show up again on the next play.
-   // SetVUMeters(SaucedacityProject *p);
+   // SetVUMeters(TenacityProject *p);
    Updated();
 }
 
@@ -1583,12 +1583,12 @@ AttachedToolBarMenuItem::AttachedToolBarMenuItem(
    , mAttachedItem{
       Registry::Placement{ wxT("View/Other/Toolbars/Toolbars/Other"), hint },
       (  MenuTable::FinderScope(
-            [this](SaucedacityProject &) -> CommandHandlerObject&
+            [this](TenacityProject &) -> CommandHandlerObject&
                { return *this; } ),
          MenuTable::Command( name, label_in,
             &AttachedToolBarMenuItem::OnShowToolBar,
             AlwaysEnabledFlag,
-            CommandManager::Options{}.CheckTest( [id](SaucedacityProject &project){
+            CommandManager::Options{}.CheckTest( [id](TenacityProject &project){
                auto &toolManager = ToolManager::Get( project );
                return toolManager.IsVisible( id ); } ) ) ) }
    , mExcludeIds{ std::move( excludeIDs ) }

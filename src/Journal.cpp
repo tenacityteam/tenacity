@@ -22,7 +22,7 @@
 #include <wx/app.h>
 #include <wx/filename.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-utility/MemoryX.h>
 

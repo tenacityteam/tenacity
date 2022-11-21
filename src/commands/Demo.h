@@ -13,7 +13,7 @@
 
 #include "AudacityCommand.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 
 class ShuttleGui;

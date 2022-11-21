@@ -24,7 +24,7 @@ class wxArrayString;
 class Effect;
 class CommandContext;
 class CommandManager;
-class SaucedacityProject;
+class TenacityProject;
 class wxArrayStringEx;
 
 class MacroCommandsCatalog {
@@ -36,7 +36,7 @@ public:
    };
    using Entries = std::vector<Entry>;
 
-   MacroCommandsCatalog( const SaucedacityProject *project );
+   MacroCommandsCatalog( const TenacityProject *project );
 
    // binary search
    Entries::const_iterator ByFriendlyName( const TranslatableString &friendlyName ) const;
@@ -61,7 +61,7 @@ class MacroCommands final {
       const PluginID & ID, const CommandContext & context, unsigned flags );
 
    // constructors and destructors
-   MacroCommands( SaucedacityProject &project );
+   MacroCommands( TenacityProject &project );
  public:
    bool ApplyMacro( const MacroCommandsCatalog &catalog,
       const wxString & filename = {});
@@ -117,7 +117,7 @@ class MacroCommands final {
    wxString Join(const wxString & command, const wxString & param);
 
 private:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    CommandIDs mCommandMacro;
    wxArrayString mParamsMacro;

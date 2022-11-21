@@ -22,4 +22,4 @@ set(LIBRARIES
         lib-strings
 )
 
-saucedacity_library( lib-xml "${SOURCES}" "${LIBRARIES}" "" "")
+tenacity_library( lib-xml "${SOURCES}" "${LIBRARIES}" "" "")

@@ -11,7 +11,7 @@
 #include "QualitySettings.h"
 #include "AudioIOBase.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 IntSetting QualitySettings::DefaultSampleRate{

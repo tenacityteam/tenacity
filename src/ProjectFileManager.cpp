@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectFileManager.cpp
 
-Paul Licameli split from SaucedacityProject.cpp
+Paul Licameli split from TenacityProject.cpp
 
 **********************************************************************/
 
@@ -21,7 +21,7 @@ Paul Licameli split from SaucedacityProject.cpp
 
 #include <optional>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-string-utils/CodeConversions.h>
 #include <lib-xml/XMLFileReader.h>
@@ -57,21 +57,21 @@ Paul Licameli split from SaucedacityProject.cpp
 
 #include "HelpText.h"
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory sFileManagerKey{
-   []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory sFileManagerKey{
+   []( TenacityProject &parent ){
       auto result = std::make_shared< ProjectFileManager >( parent );
       return result;
    }
 };
 
-ProjectFileManager &ProjectFileManager::Get( SaucedacityProject &project )
+ProjectFileManager &ProjectFileManager::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectFileManager >( sFileManagerKey );
 }
 
-const ProjectFileManager &ProjectFileManager::Get( const SaucedacityProject &project )
+const ProjectFileManager &ProjectFileManager::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
 void ProjectFileManager::DiscardAutosave(const FilePath &filename)
@@ -92,7 +92,7 @@ void ProjectFileManager::DiscardAutosave(const FilePath &filename)
    // closes the temporary project properly
 }
 
-ProjectFileManager::ProjectFileManager( SaucedacityProject &project )
+ProjectFileManager::ProjectFileManager( TenacityProject &project )
 : mProject{ project }
 {
 }
@@ -179,9 +179,9 @@ auto ProjectFileManager::ReadProjectFile(
 
          AudacityMessageBox(
             resaved
-               ? XO("This project was not saved properly the last time Saucedacity ran.\n\n"
+               ? XO("This project was not saved properly the last time Tenacity ran.\n\n"
                     "It has been recovered to the last snapshot.")
-               : XO("This project was not saved properly the last time Saucedacity ran.\n\n"
+               : XO("This project was not saved properly the last time Tenacity ran.\n\n"
                     "It has been recovered to the last snapshot, but you must save it\n"
                     "to preserve its contents."),
             XO("Project Recovered"),
@@ -462,7 +462,7 @@ For an audio file that will open in other apps, use 'Export'.\n");
             filename.GetPath(),
             filename.GetFullName(),
             wxT("aup3"),
-            { FileNames::SaucedacityProjects },
+            { FileNames::TenacityProjects },
             wxFD_SAVE | wxRESIZE_BORDER,
             &window);
 
@@ -602,7 +602,7 @@ bool ProjectFileManager::SaveCopy(const FilePath &fileName /* = wxT("") */)
                                        filename.GetPath(),
                                        filename.GetFullName(),
                                        wxT("aup3"),
-                                       { FileNames::SaucedacityProjects },
+                                       { FileNames::TenacityProjects },
                                        wxFD_SAVE | wxRESIZE_BORDER,
                                        &window);
 
@@ -867,7 +867,7 @@ bool ProjectFileManager::IsAlreadyOpen(const FilePath &projPathName)
    return false;
 }
 
-SaucedacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
+TenacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
    const FilePath &fileNameArg, bool addtohistory)
 {
    // On Win32, we may be given a short (DOS-compatible) file name on rare
@@ -876,8 +876,8 @@ SaucedacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &choose
    auto fileName = PlatformCompatibility::GetLongFileName(fileNameArg);
 
    // Make sure it isn't already open.
-   // Vaughan, 2011-03-25: This was done previously in SaucedacityProject::OpenFiles()
-   //    and SaucedacityApp::MRUOpen(), but if you open an aup file by double-clicking it
+   // Vaughan, 2011-03-25: This was done previously in TenacityProject::OpenFiles()
+   //    and TenacityApp::MRUOpen(), but if you open an aup file by double-clicking it
    //    from, e.g., Win Explorer, it would bypass those, get to here with no check,
    //    then open a NEW project from the same data with no warning.
    //    This was reported in http://bugzilla.audacityteam.org/show_bug.cgi?id=137#c17,
@@ -988,7 +988,7 @@ SaucedacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &choose
    return Get(project).OpenProjectFile(fileName, addtohistory);
 }
 
-SaucedacityProject *ProjectFileManager::OpenProjectFile(
+TenacityProject *ProjectFileManager::OpenProjectFile(
    const FilePath &fileName, bool addtohistory)
 {
    auto &project = mProject;
@@ -1182,7 +1182,7 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
 }
 
 namespace {
-bool ImportProject(SaucedacityProject &dest, const FilePath &fileName)
+bool ImportProject(TenacityProject &dest, const FilePath &fileName)
 {
    InvisibleTemporaryProject temp;
    auto &project = temp.Project();

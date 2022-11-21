@@ -15,7 +15,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "ClientData.h" // to inherit
 #include "../../widgets/Overlay.h" // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 
 class EditCursorOverlay final
    : public Overlay
@@ -23,14 +23,14 @@ class EditCursorOverlay final
 {
 public:
    explicit
-   EditCursorOverlay(SaucedacityProject *project, bool isMaster = true);
+   EditCursorOverlay(TenacityProject *project, bool isMaster = true);
 
 private:
    unsigned SequenceNumber() const override;
    std::pair<wxRect, bool> DoGetRectangle(wxSize size) override;
    void Draw(OverlayPanel &panel, wxDC &dc) override;
 
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
    bool mIsMaster;
    std::shared_ptr<EditCursorOverlay> mPartner;
 

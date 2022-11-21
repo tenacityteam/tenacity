@@ -9,8 +9,8 @@
 #ifndef __AUDACITY_COMMAND_FUNCTORS__
 #define __AUDACITY_COMMAND_FUNCTORS__
 
-class SaucedacityProject;
-class SaucedacityApp;
+class TenacityProject;
+class TenacityApp;
 class CommandContext;
 
 // Forward-declaring this type before including wx/event.h causes strange
@@ -32,9 +32,9 @@ class CommandContext;
 using CommandHandlerObject = wxEvtHandler;
 
 // First of two functions registered with each command: an extractor
-// of the handler object from the SaucedacityProject
+// of the handler object from the TenacityProject
 using CommandHandlerFinder =
-   std::function< CommandHandlerObject&(SaucedacityProject &) >;
+   std::function< CommandHandlerObject&(TenacityProject &) >;
 
 // Second of two function pointers registered with each command: a pointer
 // to a member function of the handler object

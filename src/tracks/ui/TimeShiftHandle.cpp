@@ -49,7 +49,7 @@ bool TimeShiftHandle::Clicked() const
    return mClipMoveState.initialized;
 }
 
-void TimeShiftHandle::Enter(bool, SaucedacityProject *)
+void TimeShiftHandle::Enter(bool, TenacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -57,7 +57,7 @@ void TimeShiftHandle::Enter(bool, SaucedacityProject *)
 }
 
 HitTestPreview TimeShiftHandle::HitPreview
-(const SaucedacityProject *WXUNUSED(pProject), bool unsafe)
+(const TenacityProject *WXUNUSED(pProject), bool unsafe)
 {
    static auto disabledCursor =
       ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
@@ -273,13 +273,13 @@ bool CoarseTrackShifter::SyncLocks()
 }
 
 DEFINE_ATTACHED_VIRTUAL(MakeTrackShifter) {
-   return [](Track &track, SaucedacityProject&) {
+   return [](Track &track, TenacityProject&) {
       return std::make_unique<CoarseTrackShifter>(track);
    };
 }
 
 void ClipMoveState::Init(
-   SaucedacityProject &project,
+   TenacityProject &project,
    Track &capturedTrack,
    TrackShifter::HitTestResult hitTestResult,
    std::unique_ptr<TrackShifter> pHit,
@@ -492,7 +492,7 @@ SnapPointArray FindCandidates(
 }
 
 UIHandle::Result TimeShiftHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -853,7 +853,7 @@ bool TimeShiftHandle::DoSlideVertical
 }
 
 UIHandle::Result TimeShiftHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -944,7 +944,7 @@ UIHandle::Result TimeShiftHandle::Drag
 }
 
 HitTestPreview TimeShiftHandle::Preview
-(const TrackPanelMouseState &, SaucedacityProject *pProject)
+(const TrackPanelMouseState &, TenacityProject *pProject)
 {
    // After all that, it still may be unsafe to drag.
    // Even if so, make an informative cursor change from default to "banned."
@@ -953,7 +953,7 @@ HitTestPreview TimeShiftHandle::Preview
 }
 
 UIHandle::Result TimeShiftHandle::Release
-(const TrackPanelMouseEvent &, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &, TenacityProject *pProject,
  wxWindow *)
 {
    using namespace RefreshCode;
@@ -998,7 +998,7 @@ UIHandle::Result TimeShiftHandle::Release
    return result | FixScrollbars;
 }
 
-UIHandle::Result TimeShiftHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result TimeShiftHandle::Cancel(TenacityProject *pProject)
 {
    ProjectHistory::Get( *pProject ).RollbackState();
    return RefreshCode::RefreshAll;

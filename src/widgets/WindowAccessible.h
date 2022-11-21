@@ -17,7 +17,7 @@
 
 #include <wx/access.h> // to inherit
 
-// Saucedacity library
+// Tenacity library
 #include <lib-strings/Internat.h> // for TranslatableString
 
 class SAUCEDACITY_DLL_API WindowAccessible: public wxAccessible

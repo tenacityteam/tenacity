@@ -32,7 +32,7 @@ class SAUCEDACITY_DLL_API EnvelopeHandle final : public UIHandle
    static UIHandlePtr HitEnvelope
       (std::weak_ptr<EnvelopeHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const SaucedacityProject *pProject,
+       const TenacityProject *pProject,
        Envelope *envelope, float zoomMin, float zoomMax,
        bool dB, float dBRange, bool timeTrack);
 
@@ -47,31 +47,31 @@ public:
    static UIHandlePtr TimeTrackHitTest
       (std::weak_ptr<EnvelopeHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const SaucedacityProject *pProject, const std::shared_ptr<TimeTrack> &tt);
+       const TenacityProject *pProject, const std::shared_ptr<TimeTrack> &tt);
    static UIHandlePtr WaveTrackHitTest
       (std::weak_ptr<EnvelopeHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const SaucedacityProject *pProject, const std::shared_ptr<WaveTrack> &wt);
+       const TenacityProject *pProject, const std::shared_ptr<WaveTrack> &wt);
 
    Envelope *GetEnvelope() const { return mEnvelope; }
 
-   void Enter(bool forward, SaucedacityProject *) override;
+   void Enter(bool forward, TenacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
       wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 

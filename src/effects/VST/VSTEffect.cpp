@@ -73,7 +73,7 @@
 // TODO:  Unfortunately we have some dependencies on Audacity provided 
 //        dialogs, widgets and other stuff.  This will need to be cleaned up.
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ConfigInterface.h>
 #include <lib-files/FileNames.h>
 #include <lib-files/PlatformCompatibility.h>

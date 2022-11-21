@@ -26,7 +26,7 @@
 #include "wxPanelWrapper.h" // to inherit
 #include "../HelpText.h"
 
-class SaucedacityProject;
+class TenacityProject;
 
 /** @brief Class which contains static methods and data needed for implementing
  * help buttons

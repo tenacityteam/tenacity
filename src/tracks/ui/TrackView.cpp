@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "ClientData.h"
 #include "../../Project.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-xml/XMLTagHandler.h>
 #include <lib-xml/XMLWriter.h>
 
@@ -180,9 +180,9 @@ namespace {
  */
 struct TrackPositioner final : ClientData::Base, wxEvtHandler
 {
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
-   explicit TrackPositioner( SaucedacityProject &project )
+   explicit TrackPositioner( TenacityProject &project )
       : mProject{ project }
    {
       TrackList::Get( project ).Bind(
@@ -218,8 +218,8 @@ struct TrackPositioner final : ClientData::Base, wxEvtHandler
    }
 };
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-  []( SaucedacityProject &project ){
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+  []( TenacityProject &project ){
      return std::make_shared< TrackPositioner >( project );
    }
 };

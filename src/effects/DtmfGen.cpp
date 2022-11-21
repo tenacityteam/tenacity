@@ -23,7 +23,7 @@
 #include <wx/valtext.h>
 #include <wx/stattext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/Shuttle.h"
@@ -44,7 +44,7 @@ enum
 #ifdef EXPERIMENTAL_DA
 #define SHORT_APP_NAME "darkaudacity"
 #else
-#define SHORT_APP_NAME "saucedacity"
+#define SHORT_APP_NAME "tenacity"
 #endif
 
 // Define keys, defaults, minimums, and maximums for the effect parameters

@@ -24,7 +24,7 @@ class wxCheckBox;
  * we need for the next bit */
 #include "shuttle/ShuttleGui.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Identifier.h>

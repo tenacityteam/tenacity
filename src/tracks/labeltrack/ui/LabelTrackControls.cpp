@@ -23,7 +23,7 @@ Paul Licameli split from TrackPanel.cpp
 #include <wx/listbox.h>
 #include <wx/spinctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 LabelTrackControls::~LabelTrackControls()
@@ -32,7 +32,7 @@ LabelTrackControls::~LabelTrackControls()
 
 std::vector<UIHandlePtr> LabelTrackControls::HitTest
 (const TrackPanelMouseState & state,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    return CommonTrackControls::HitTest(state, pProject);
 }

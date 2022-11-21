@@ -25,7 +25,7 @@
 #include <wx/checkbox.h>
 #include <wx/textctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/FFT.h>
 
 #include "../Project.h"
@@ -38,7 +38,7 @@
 #include "../widgets/AudacityMessageBox.h"
 
 SpectrumPrefs::SpectrumPrefs(wxWindow * parent, wxWindowID winid,
-   SaucedacityProject *pProject, WaveTrack *wt)
+   TenacityProject *pProject, WaveTrack *wt)
 :  PrefsPanel(parent, winid, wt ? XO("Spectrogram Settings") : XO("Spectrograms"))
 , mProject{ pProject }
 , mWt(wt)
@@ -596,7 +596,7 @@ END_EVENT_TABLE()
 PrefsPanel::Factory
 SpectrumPrefsFactory( WaveTrack *wt )
 {
-   return [=](wxWindow *parent, wxWindowID winid, SaucedacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, TenacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
       return safenew SpectrumPrefs(parent, winid, pProject, wt);

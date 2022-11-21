@@ -50,7 +50,7 @@ with changes in the SelectionBar.
 #endif
 #include <wx/statline.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AudioIO.h"
@@ -109,7 +109,7 @@ BEGIN_EVENT_TABLE(SelectionBar, ToolBar)
    EVT_COMMAND(wxID_ANY, EVT_CAPTURE_KEY, SelectionBar::OnCaptureKey)
 END_EVENT_TABLE()
 
-SelectionBar::SelectionBar( SaucedacityProject &project )
+SelectionBar::SelectionBar( TenacityProject &project )
 : ToolBar(project, SelectionBarID, XO("Selection"), wxT("Selection")),
   mListener(NULL), mRate(0.0),
   mStart(0.0), mEnd(0.0), mLength(0.0), mCenter(0.0), mAudio(0.0),
@@ -136,15 +136,15 @@ SelectionBar::~SelectionBar()
 {
 }
 
-SelectionBar &SelectionBar::Get( SaucedacityProject &project )
+SelectionBar &SelectionBar::Get( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<SelectionBar*>( toolManager.GetToolBar(SelectionBarID) );
 }
 
-const SelectionBar &SelectionBar::Get( const SaucedacityProject &project )
+const SelectionBar &SelectionBar::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject&>( project )) ;
+   return Get( const_cast<TenacityProject&>( project )) ;
 }
 
 void SelectionBar::Create(wxWindow * parent)
@@ -812,7 +812,7 @@ void SelectionBar::OnSnapTo(wxCommandEvent & WXUNUSED(event))
 }
 
 static RegisteredToolbarFactory factory{ SelectionBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew SelectionBar{ project } }; }
 };
 

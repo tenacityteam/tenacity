@@ -43,7 +43,7 @@
 #include "SampleBlock.h"
 #include "widgets/AudacityMessageBox.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 
 size_t Sequence::sMaxDiskBlockSize = 1048576;
@@ -125,7 +125,7 @@ namespace {
          if (!buffer.ptr() || (pSecondBuffer && !pSecondBuffer->ptr())) {
             // malloc failed
             // Perhaps required is a really crazy value,
-            // and perhaps we should throw an SaucedacityException, but that is
+            // and perhaps we should throw an TenacityException, but that is
             // a second-order concern
             THROW_INCONSISTENCY_EXCEPTION;
          }

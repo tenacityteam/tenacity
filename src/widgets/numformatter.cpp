@@ -29,7 +29,7 @@
     #include <wx/msw/private.h>
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 #include <wx/intl.h>

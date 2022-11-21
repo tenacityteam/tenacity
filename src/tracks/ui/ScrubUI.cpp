@@ -33,7 +33,7 @@ class ScrubbingOverlay final
 {
 public:
    explicit
-   ScrubbingOverlay(SaucedacityProject *project);
+   ScrubbingOverlay(TenacityProject *project);
 
 private:
    unsigned SequenceNumber() const override;
@@ -45,13 +45,13 @@ private:
    const Scrubber &GetScrubber() const;
    Scrubber &GetScrubber();
 
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 
    wxRect mLastScrubRect, mNextScrubRect;
    wxString mLastScrubSpeedText, mNextScrubSpeedText;
 };
 
-ScrubbingOverlay::ScrubbingOverlay(SaucedacityProject *project)
+ScrubbingOverlay::ScrubbingOverlay(TenacityProject *project)
    : mProject(project)
    , mLastScrubRect()
    , mNextScrubRect()
@@ -202,8 +202,8 @@ Scrubber &ScrubbingOverlay::GetScrubber()
    return Scrubber::Get( *mProject );
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
+  []( TenacityProject &parent ){
      auto result = std::make_shared< ScrubbingOverlay >( &parent );
      TrackPanel::Get( parent ).AddOverlay( result );
      return result;
@@ -219,7 +219,7 @@ struct ScrubForwarder
     : public wxEvtHandler
     , public ClientData::Base
 {
-   ScrubForwarder( SaucedacityProject &project )
+   ScrubForwarder( TenacityProject &project )
       : mProject{ project }
    {
       mWindow = &ProjectWindow::Get( project );
@@ -235,7 +235,7 @@ struct ScrubForwarder
          mWindow->PopEventHandler();
    }
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
    wxWindowPtr<wxWindow> mWindow;
    wxWeakRef<AdornedRulerPanel> mRuler;
    std::weak_ptr<Scrubber> mScrubber;
@@ -291,8 +291,8 @@ BEGIN_EVENT_TABLE(ScrubForwarder, wxEvtHandler)
    EVT_MOUSE_EVENTS(ScrubForwarder::OnMouse)
 END_EVENT_TABLE()
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory sForwarderKey{
-   []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory sForwarderKey{
+   []( TenacityProject &parent ){
       return std::make_shared< ScrubForwarder >( parent );
    }
 };

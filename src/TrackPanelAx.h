@@ -29,7 +29,7 @@
 
 class wxRect;
 
-class SaucedacityProject;
+class TenacityProject;
 class Track;
 class TrackList;
 
@@ -43,7 +43,7 @@ class TrackPanelAx final
 #endif
 {
 public:
-   TrackPanelAx(SaucedacityProject &project);
+   TrackPanelAx(TenacityProject &project);
    virtual ~ TrackPanelAx();
 
    using RectangleFinder = std::function< wxRect( Track& ) >;
@@ -140,7 +140,7 @@ private:
    int TrackNum( const std::shared_ptr<Track> &track );
    std::shared_ptr<Track> FindTrack( int num );
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
 #if !wxUSE_ACCESSIBILITY
    wxWindow *mWindow{};
@@ -160,10 +160,10 @@ class SAUCEDACITY_DLL_API TrackFocus final
    : public ClientData::Base
 {
 public:
-   static TrackFocus &Get( SaucedacityProject &project );
-   static const TrackFocus &Get( const SaucedacityProject &project );
+   static TrackFocus &Get( TenacityProject &project );
+   static const TrackFocus &Get( const TenacityProject &project );
 
-   explicit TrackFocus( SaucedacityProject &project );
+   explicit TrackFocus( TenacityProject &project );
    ~TrackFocus() override;
 
    TrackFocus( const TrackFocus & ) = delete;
@@ -192,7 +192,7 @@ public:
 
 private:
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
 #if wxUSE_ACCESSIBILITY
    TrackPanelAx *mAx{};

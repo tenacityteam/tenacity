@@ -39,7 +39,7 @@ class wxTimer;
 class wxTimerEvent;
 class wxWindow;
 
-class SaucedacityProject;
+class TenacityProject;
 class ProjectWindow;
 class ToolFrame;
 
@@ -58,10 +58,10 @@ class SAUCEDACITY_DLL_API ToolManager final
    using GetTopPanelHook = std::function< wxWindow*( wxWindow& ) >;
    static GetTopPanelHook SetGetTopPanelHook( const GetTopPanelHook& );
 
-   static ToolManager &Get( SaucedacityProject &project );
-   static const ToolManager &Get( const SaucedacityProject &project );
+   static ToolManager &Get( TenacityProject &project );
+   static const ToolManager &Get( const TenacityProject &project );
 
-   ToolManager( SaucedacityProject *parent );
+   ToolManager( TenacityProject *parent );
    ToolManager( const ToolManager & ) = delete;
    ToolManager &operator=( const ToolManager & ) = delete;
    ~ToolManager();
@@ -114,7 +114,7 @@ class SAUCEDACITY_DLL_API ToolManager final
    void WriteConfig();
    void Updated();
 
-   SaucedacityProject *mParent;
+   TenacityProject *mParent;
    wxWindowRef mLastFocus{};
 
    ToolFrame *mDragWindow;
@@ -166,7 +166,7 @@ class ToolFrame final : public wxFrame
 {
 public:
 
-   ToolFrame( SaucedacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos );
+   ToolFrame( TenacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos );
 
    ~ToolFrame();
 
@@ -205,7 +205,7 @@ public:
 
 private:
 
-   SaucedacityProject *const mParent;
+   TenacityProject *const mParent;
    ToolManager *mManager;
    ToolBar *mBar;
    wxSize mMinSize;

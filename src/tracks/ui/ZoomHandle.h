@@ -20,7 +20,7 @@ class ZoomHandle final : public UIHandle
 {
    ZoomHandle(const ZoomHandle&) = delete;
    static HitTestPreview HitPreview
-      (const wxMouseState &state, const SaucedacityProject *pProject);
+      (const wxMouseState &state, const TenacityProject *pProject);
 
 public:
    ZoomHandle();
@@ -37,20 +37,20 @@ public:
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
 private:
 

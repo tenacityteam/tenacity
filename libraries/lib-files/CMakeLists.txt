@@ -31,6 +31,6 @@ set( LIBRARIES
    wxWidgets::wxWidgets
 )
 
-saucedacity_library( lib-files "${SOURCES}" "${LIBRARIES}"
+tenacity_library( lib-files "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

@@ -1,5 +1,5 @@
 //
-// Copied from wxWidgets 3.1.5 and modified for Saucedacity
+// Copied from wxWidgets 3.1.5 and modified for Tenacity
 //
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/filedlg.h

@@ -29,7 +29,7 @@ and libvorbis examples, Monty <monty@xiph.org>
 
 #include "FLAC++/encoder.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
@@ -214,7 +214,7 @@ public:
    // Required
 
    void OptionsCreate(ShuttleGui &S, int format) override;
-   ProgressResult Export(SaucedacityProject *project,
+   ProgressResult Export(TenacityProject *project,
                std::unique_ptr<ProgressDialog> &pDialog,
                unsigned channels,
                const wxFileNameWrapper &fName,
@@ -227,7 +227,7 @@ public:
 
 private:
 
-   bool GetMetadata(SaucedacityProject *project, const Tags *tags);
+   bool GetMetadata(TenacityProject *project, const Tags *tags);
 
    // Should this be a stack variable instead in Export?
    FLAC__StreamMetadataHandle mMetadata;
@@ -246,7 +246,7 @@ ExportFLAC::ExportFLAC()
    SetDescription(XO("FLAC Files"),0);
 }
 
-ProgressResult ExportFLAC::Export(SaucedacityProject *project,
+ProgressResult ExportFLAC::Export(TenacityProject *project,
                         std::unique_ptr<ProgressDialog> &pDialog,
                         unsigned numChannels,
                         const wxFileNameWrapper &fName,
@@ -447,7 +447,7 @@ void ExportFLAC::OptionsCreate(ShuttleGui &S, int format)
 //      expects that array to be valid until the stream is initialized.
 //
 //      This has been fixed in 1.1.4.
-bool ExportFLAC::GetMetadata(SaucedacityProject *project, const Tags *tags)
+bool ExportFLAC::GetMetadata(TenacityProject *project, const Tags *tags)
 {
    // Retrieve tags if needed
    if (tags == NULL)

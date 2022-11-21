@@ -23,7 +23,7 @@
 #include <wx/choice.h>
 #include <wx/defs.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Languages.h>
 
@@ -218,10 +218,10 @@ void EffectsPrefs::PopulateOrExchange(ShuttleGui & S)
 #ifndef EXPERIMENTAL_EFFECT_MANAGEMENT
    S.StartStatic(XO("Plugin Options"));
    {
-      S.TieCheckBox(XXO("Check for updated plugins when Saucedacity starts"),
+      S.TieCheckBox(XXO("Check for updated plugins when Tenacity starts"),
                      {wxT("/Plugins/CheckForUpdates"),
                      true});
-      S.TieCheckBox(XXO("Rescan plugins next time Saucedacity is started"),
+      S.TieCheckBox(XXO("Rescan plugins next time Tenacity is started"),
                      {wxT("/Plugins/Rescan"),
                      false});
    }
@@ -250,7 +250,7 @@ bool EffectsPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Effects",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew EffectsPrefs(parent, winid);

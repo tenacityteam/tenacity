@@ -18,7 +18,7 @@
 
 #include "../widgets/wxPanelWrapper.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterface.h>
 #include <lib-components/EffectAutomationParameters.h> // for command automation
 
@@ -29,7 +29,7 @@ class ShuttleGui;
 #define BUILTIN_GENERIC_COMMAND_PREFIX wxT("Built-in AudacityCommand: ")
 
 class AudacityCommand;
-class SaucedacityProject;
+class TenacityProject;
 class CommandContext;
 class EffectUIHostInterface;
 class ProgressDialog;

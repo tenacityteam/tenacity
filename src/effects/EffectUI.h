@@ -16,7 +16,7 @@
 
 #include <wx/bitmap.h> // member variables
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/PluginInterface.h>
 #include <lib-strings/Identifier.h>
 
@@ -32,7 +32,7 @@ class wxFlexGridSizer;
 class wxPanel;
 class wxStaticText;
 
-class SaucedacityProject;
+class TenacityProject;
 
 class Effect;
 using EffectArray = std::vector<Effect*>;
@@ -40,12 +40,12 @@ using EffectArray = std::vector<Effect*>;
 class EffectRack final : public wxFrame
 {
 public:
-   EffectRack( SaucedacityProject &project );
+   EffectRack( TenacityProject &project );
    virtual ~EffectRack();
 
    void Add(Effect *effect, bool active = false, bool favorite = false);
 
-   static EffectRack &Get( SaucedacityProject &project );
+   static EffectRack &Get( TenacityProject &project );
 
 private:
 
@@ -67,7 +67,7 @@ private:
    void OnRemove(wxCommandEvent & evt);
 
 private:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    wxStaticText *mLatency;
    int mLastLatency;
@@ -112,7 +112,7 @@ private:
 #include "../SelectedRegion.h"
 
 class AudacityCommand;
-class SaucedacityProject;
+class TenacityProject;
 class Effect;
 
 class wxCheckBox;
@@ -124,11 +124,11 @@ class EffectUIHost final : public wxDialogWrapper,
 public:
    // constructors and destructors
    EffectUIHost(wxWindow *parent,
-                SaucedacityProject &project,
+                TenacityProject &project,
                 Effect *effect,
                 EffectUIClientInterface *client);
    EffectUIHost(wxWindow *parent,
-                SaucedacityProject &project,
+                TenacityProject &project,
                 AudacityCommand *command,
                 EffectUIClientInterface *client);
    virtual ~EffectUIHost();
@@ -177,7 +177,7 @@ private:
    void Resume();
 
 private:
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
    wxWindow *mParent;
    Effect *mEffect;
    AudacityCommand * mCommand;

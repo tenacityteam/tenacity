@@ -16,7 +16,7 @@
 
 #include "LabelDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -97,7 +97,7 @@ BEGIN_EVENT_TABLE(LabelDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 LabelDialog::LabelDialog(wxWindow *parent,
-                         SaucedacityProject &project,
+                         TenacityProject &project,
                          TrackList *tracks,
                          LabelTrack *selectedTrack,
                          int index,

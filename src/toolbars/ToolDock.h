@@ -18,7 +18,7 @@
 
 #include "ToolBar.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h>
 
 class wxCommandEvent;

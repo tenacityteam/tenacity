@@ -36,7 +36,7 @@
 
 wxDEFINE_EVENT(EVT_TRACK_FOCUS_CHANGE, wxCommandEvent);
 
-TrackPanelAx::TrackPanelAx( SaucedacityProject &project )
+TrackPanelAx::TrackPanelAx( TenacityProject &project )
    :
 #if wxUSE_ACCESSIBILITY
      WindowAccessible( nullptr ) // window pointer must be set after construction
@@ -727,23 +727,23 @@ wxAccStatus TrackPanelAx::Select(int childId, wxAccSelectionFlags selectFlags)
 
 #endif // wxUSE_ACCESSIBILITY
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   []( TenacityProject &parent ){
       return std::make_shared< TrackFocus >( parent );
    }
 };
 
-TrackFocus &TrackFocus::Get( SaucedacityProject &project )
+TrackFocus &TrackFocus::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< TrackFocus >( key );
 }
 
-const TrackFocus &TrackFocus::Get( const SaucedacityProject &project )
+const TrackFocus &TrackFocus::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-TrackFocus::TrackFocus( SaucedacityProject &project )
+TrackFocus::TrackFocus( TenacityProject &project )
    : mProject{ project }
 {
 }

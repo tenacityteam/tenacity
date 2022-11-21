@@ -34,7 +34,7 @@
 #include "../widgets/FileHistory.h"
 
 // Given an existing project, try to import into it, return true on success
-bool DoImportMIDI( SaucedacityProject &project, const FilePath &fileName )
+bool DoImportMIDI( TenacityProject &project, const FilePath &fileName )
 {
    auto &projectFileIO = ProjectFileIO::Get( project );
    auto &tracks = TrackList::Get( project );

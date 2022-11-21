@@ -23,7 +23,7 @@
 
 #include "LV2Effect.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleCount.h>
 
 #include <cmath>

@@ -45,7 +45,7 @@
 #include "../widgets/ASlider.h"
 #include "../tracks/ui/Scrubbing.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #ifdef EXPERIMENTAL_VOICE_DETECTION
@@ -95,7 +95,7 @@ END_EVENT_TABLE()
    ;   //semicolon enforces  proper automatic indenting in emacs.
 
 ////Standard Constructor
-TranscriptionToolBar::TranscriptionToolBar( SaucedacityProject &project )
+TranscriptionToolBar::TranscriptionToolBar( TenacityProject &project )
 : ToolBar( project,
    TranscriptionBarID, XO("Play-at-Speed"), wxT("Transcription"), true )
 {
@@ -109,15 +109,15 @@ TranscriptionToolBar::~TranscriptionToolBar()
 {
 }
 
-TranscriptionToolBar &TranscriptionToolBar::Get( SaucedacityProject &project )
+TranscriptionToolBar &TranscriptionToolBar::Get( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<TranscriptionToolBar*>( toolManager.GetToolBar(TranscriptionBarID) );
 }
 
-const TranscriptionToolBar &TranscriptionToolBar::Get( const SaucedacityProject &project )
+const TranscriptionToolBar &TranscriptionToolBar::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject&>( project )) ;
+   return Get( const_cast<TenacityProject&>( project )) ;
 }
 
 void TranscriptionToolBar::Create(wxWindow * parent)
@@ -296,7 +296,7 @@ void TranscriptionToolBar::Populate()
 
 void TranscriptionToolBar::EnableDisableButtons()
 {
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    auto gAudioIO = AudioIO::Get();
    bool canStopAudioStream = (!gAudioIO->IsStreamActive() ||
@@ -433,7 +433,7 @@ void TranscriptionToolBar::GetSamples(
    // GetSamples attempts to translate the start and end selection markers into sample indices
    // These selection numbers are doubles.
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    if (!p) {
       return;
    }
@@ -476,7 +476,7 @@ void TranscriptionToolBar::GetSamples(
 void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
 {
    // Can't do anything without an active project
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    if (!p) {
       return;
    }
@@ -616,7 +616,7 @@ void TranscriptionToolBar::OnStartOff(wxCommandEvent & WXUNUSED(event))
       return;
    }
    mVk->AdjustThreshold(GetSensitivity());
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    SetButton(false, mButtons[TTB_StartOff]);
    auto t = *TrackList::Get( mProject ).Any< const WaveTrack >().begin();
@@ -651,7 +651,7 @@ void TranscriptionToolBar::OnEndOn(wxCommandEvent & WXUNUSED(event))
    }
 
    mVk->AdjustThreshold(GetSensitivity());
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    auto t = *TrackList::Get( mProject ).Any< const WaveTrack >().begin();
    if(t) {
       auto wt = static_cast<const WaveTrack*>(t);
@@ -687,7 +687,7 @@ void TranscriptionToolBar::OnEndOff(wxCommandEvent & WXUNUSED(event))
       return;
    }
    mVk->AdjustThreshold(GetSensitivity());
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    auto t = *TrackList::Get( mProject ).Any< const WaveTrack >().begin();
    if(t) {
@@ -840,7 +840,7 @@ void TranscriptionToolBar::OnCalibrate(wxCommandEvent & WXUNUSED(event))
 #include "../tracks/labeltrack/ui/LabelTrackView.h"
 namespace {
 int DoAddLabel(
-   SaucedacityProject &project, const SelectedRegion &region )
+   TenacityProject &project, const SelectedRegion &region )
 {
    auto &tracks = TrackList::Get( project );
    auto &trackFocus = TrackFocus::Get( project );
@@ -1056,7 +1056,7 @@ void TranscriptionToolBar::AdjustPlaySpeed(float adj)
 }
 
 static RegisteredToolbarFactory factory{ TranscriptionBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew TranscriptionToolBar{ project } }; }
 };
 

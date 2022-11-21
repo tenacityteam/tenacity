@@ -2,10 +2,10 @@
 
   Audacity: A Digital Audio Editor
 
-  SaucedacityHeaders.cpp
+  TenacityHeaders.cpp
 
   Dominic Mazzoni
 
 **********************************************************************/
 
-#include "SaucedacityHeaders.h"
+#include "TenacityHeaders.h"

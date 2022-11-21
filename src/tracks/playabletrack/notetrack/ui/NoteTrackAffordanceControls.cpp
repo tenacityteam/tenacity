@@ -40,7 +40,7 @@ public:
         return AssignUIHandlePtr(holder, std::make_shared<NoteTrackAffordanceHandle>(pTrack));
     }
 
-    UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, SaucedacityProject* pProject) override
+    UIHandle::Result SelectAt(const TrackPanelMouseEvent& event, TenacityProject* pProject) override
     {
         auto& viewInfo = ViewInfo::Get(*pProject);
         const auto& settings = ProjectSettings::Get(*pProject);
@@ -60,7 +60,7 @@ NoteTrackAffordanceControls::NoteTrackAffordanceControls(const std::shared_ptr<T
 
 }
 
-std::vector<UIHandlePtr> NoteTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject)
+std::vector<UIHandlePtr> NoteTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject)
 {
     std::vector<UIHandlePtr> results;
 

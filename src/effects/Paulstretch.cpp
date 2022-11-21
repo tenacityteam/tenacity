@@ -26,7 +26,7 @@
 #include <wx/intl.h>
 #include <wx/valgen.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/FFT.h>
 #include <lib-preferences/Prefs.h>
 

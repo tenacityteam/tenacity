@@ -19,17 +19,17 @@ class wxPoint;
 class wxChoice;
 struct DeviceSourceMap;
 
-class SaucedacityProject;
+class TenacityProject;
 
 class DeviceToolBar final : public ToolBar {
 
  public:
 
-   DeviceToolBar( SaucedacityProject &project );
+   DeviceToolBar( TenacityProject &project );
    virtual ~DeviceToolBar();
 
-   static DeviceToolBar &Get( SaucedacityProject &project );
-   static const DeviceToolBar &Get( const SaucedacityProject &project );
+   static DeviceToolBar &Get( TenacityProject &project );
+   static const DeviceToolBar &Get( const TenacityProject &project );
 
    void Create(wxWindow * parent) override;
 

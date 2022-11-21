@@ -22,7 +22,7 @@
 
 #include "sndfile.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/Dither.h>
 #include <lib-preferences/Prefs.h>
@@ -388,7 +388,7 @@ public:
    // Required
 
    void OptionsCreate(ShuttleGui &S, int format) override;
-   ProgressResult Export(SaucedacityProject *project,
+   ProgressResult Export(TenacityProject *project,
                          std::unique_ptr<ProgressDialog> &pDialog,
                          unsigned channels,
                          const wxFileNameWrapper &fName,
@@ -406,7 +406,7 @@ public:
 private:
    void ReportTooBigError(wxWindow * pParent);
    ArrayOf<char> AdjustString(const wxString & wxStr, int sf_format);
-   bool AddStrings(SaucedacityProject *project, SNDFILE *sf, const Tags *tags, int sf_format);
+   bool AddStrings(TenacityProject *project, SNDFILE *sf, const Tags *tags, int sf_format);
    bool AddID3Chunk(
       const wxFileNameWrapper &fName, const Tags *tags, int sf_format);
 
@@ -442,7 +442,7 @@ void ExportPCM::ReportTooBigError(wxWindow * pParent)
    //Temporary translation hack, to say 'WAV or AIFF' rather than 'WAV'
    auto message =
       XO("You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
-      "Saucedacity cannot do this, the Export was abandoned.");
+      "Tenacity cannot do this, the Export was abandoned.");
 
    GenericUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
       XO("Error Exporting"), message,
@@ -453,7 +453,7 @@ void ExportPCM::ReportTooBigError(wxWindow * pParent)
 #if 0
    GenericUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
                   XO("Error Exporting"),
-                  XO("Your exported WAV file has been truncated as Saucedacity cannot export WAV\n"
+                  XO("Your exported WAV file has been truncated as Tenacity cannot export WAV\n"
                     "files bigger than 4GB."),
                   wxT("Size_limits_for_WAV_files"));
 #endif
@@ -464,7 +464,7 @@ void ExportPCM::ReportTooBigError(wxWindow * pParent)
  * @param subformat Control whether we are doing a "preset" export to a popular
  * file type, or giving the user full control over libsndfile.
  */
-ProgressResult ExportPCM::Export(SaucedacityProject *project,
+ProgressResult ExportPCM::Export(TenacityProject *project,
                                  std::unique_ptr<ProgressDialog> &pDialog,
                                  unsigned numChannels,
                                  const wxFileNameWrapper &fName,
@@ -811,7 +811,7 @@ ArrayOf<char> ExportPCM::AdjustString(const wxString & wxStr, int sf_format)
    return pDest;
 }
 
-bool ExportPCM::AddStrings(SaucedacityProject * WXUNUSED(project), SNDFILE *sf, const Tags *tags, int sf_format)
+bool ExportPCM::AddStrings(TenacityProject * WXUNUSED(project), SNDFILE *sf, const Tags *tags, int sf_format)
 {
    if (tags->HasTag(TAG_TITLE)) {
       auto ascii7Str = AdjustString(tags->GetTag(TAG_TITLE), sf_format);

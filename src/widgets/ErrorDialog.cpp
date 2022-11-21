@@ -38,7 +38,7 @@
 #include "../HelpText.h"
 #include "HelpSystem.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-string-utils/CodeConversions.h>
 #include <lib-preferences/Prefs.h>
 

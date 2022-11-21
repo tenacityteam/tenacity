@@ -33,7 +33,7 @@ KeyConfigPrefs and MousePrefs use.
 #include <wx/statbox.h>
 #include <wx/textctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-files/FileNames.h>
 #include <lib-xml/XMLFileReader.h>
@@ -87,7 +87,7 @@ BEGIN_EVENT_TABLE(KeyConfigPrefs, PrefsPanel)
 END_EVENT_TABLE()
 
 KeyConfigPrefs::KeyConfigPrefs(
-   wxWindow * parent, wxWindowID winid, SaucedacityProject *pProject,
+   wxWindow * parent, wxWindowID winid, TenacityProject *pProject,
    const CommandID &name)
 /* i18n-hint: as in computer keyboard (not musical!) */
 :  PrefsPanel(parent, winid, XO("Keyboard")),
@@ -490,7 +490,7 @@ void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
    wxString file = wxT("Audacity-keys.xml");
 
    file = SelectFile(FileNames::Operation::Open,
-      XO("Select an XML file containing Saucedacity (Audacity) keyboard shortcuts..."),
+      XO("Select an XML file containing Tenacity (Audacity) keyboard shortcuts..."),
       wxEmptyString,
       file,
       wxT(""),
@@ -938,7 +938,7 @@ void KeyConfigPrefs::Cancel()
 PrefsPanel::Factory
 KeyConfigPrefsFactory( const CommandID &name )
 {
-   return [=](wxWindow *parent, wxWindowID winid, SaucedacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, TenacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
       auto result = safenew KeyConfigPrefs{ parent, winid, pProject, name };

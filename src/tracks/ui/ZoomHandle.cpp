@@ -40,7 +40,7 @@ ZoomHandle::ZoomHandle()
 {}
 
 HitTestPreview ZoomHandle::HitPreview
-   (const wxMouseState &state, const SaucedacityProject *WXUNUSED(pProject))
+   (const wxMouseState &state, const TenacityProject *WXUNUSED(pProject))
 {
    static auto zoomInCursor =
       ::MakeCursor(wxCURSOR_MAGNIFIER, ZoomInCursorXpm, 19, 15);
@@ -89,7 +89,7 @@ bool ZoomHandle::HandlesRightClick()
 }
 
 UIHandle::Result ZoomHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *)
+(const TrackPanelMouseEvent &evt, TenacityProject *)
 {
    const wxMouseEvent &event = evt.event;
    if (event.ButtonDown() || event.LeftDClick()) {
@@ -102,7 +102,7 @@ UIHandle::Result ZoomHandle::Click
 }
 
 UIHandle::Result ZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *)
+(const TrackPanelMouseEvent &evt, TenacityProject *)
 {
    const wxMouseEvent &event = evt.event;
    const int left = mRect.GetLeft();
@@ -123,13 +123,13 @@ UIHandle::Result ZoomHandle::Drag
 }
 
 HitTestPreview ZoomHandle::Preview
-(const TrackPanelMouseState &st, SaucedacityProject *pProject)
+(const TrackPanelMouseState &st, TenacityProject *pProject)
 {
    return HitPreview(st.state, pProject);
 }
 
 UIHandle::Result ZoomHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
  wxWindow *)
 {
    const wxMouseEvent &event = evt.event;
@@ -183,7 +183,7 @@ UIHandle::Result ZoomHandle::Release
    return RefreshAll | FixScrollbars;
 }
 
-UIHandle::Result ZoomHandle::Cancel(SaucedacityProject*)
+UIHandle::Result ZoomHandle::Cancel(TenacityProject*)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.

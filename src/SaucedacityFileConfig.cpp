@@ -2,14 +2,14 @@
 
 Audacity: A Digital Audio Editor
 
-SaucedacityFileConfig.cpp
+TenacityFileConfig.cpp
 
 Paul Licameli split from Prefs.cpp
 
 **********************************************************************/
 
 
-#include "SaucedacityFileConfig.h"
+#include "TenacityFileConfig.h"
 
 #include "widgets/HelpSystem.h"
 #include "widgets/wxPanelWrapper.h"
@@ -20,7 +20,7 @@ Paul Licameli split from Prefs.cpp
 #include <wx/bmpbuttn.h>
 #include <wx/sizer.h>
 
-SaucedacityFileConfig::SaucedacityFileConfig(
+TenacityFileConfig::TenacityFileConfig(
    const wxString& appName,
    const wxString& vendorName,
    const wxString& localFilename,
@@ -31,9 +31,9 @@ SaucedacityFileConfig::SaucedacityFileConfig(
 : FileConfig{ appName, vendorName, localFilename, globalFilename, style, conv }
 {}
 
-SaucedacityFileConfig::~SaucedacityFileConfig() = default;
+TenacityFileConfig::~TenacityFileConfig() = default;
 
-std::unique_ptr<SaucedacityFileConfig> SaucedacityFileConfig::Create(
+std::unique_ptr<TenacityFileConfig> TenacityFileConfig::Create(
    const wxString& appName,
    const wxString& vendorName,
    const wxString& localFilename,
@@ -43,16 +43,16 @@ std::unique_ptr<SaucedacityFileConfig> SaucedacityFileConfig::Create(
 )
 {
    // Private ctor means make_unique can't compile, so this verbosity:
-   auto result = std::unique_ptr<SaucedacityFileConfig>{
-      safenew SaucedacityFileConfig{
+   auto result = std::unique_ptr<TenacityFileConfig>{
+      safenew TenacityFileConfig{
          appName, vendorName, localFilename, globalFilename, style, conv } };
    result->Init();
    return result;
 }
 
-void SaucedacityFileConfig::Warn()
+void TenacityFileConfig::Warn()
 {
-   wxDialogWrapper dlg(nullptr, wxID_ANY, XO("Saucedacity Configuration Error"));
+   wxDialogWrapper dlg(nullptr, wxID_ANY, XO("Tenacity Configuration Error"));
 
    ShuttleGui S(&dlg, eIsCreating);
 
@@ -72,7 +72,7 @@ void SaucedacityFileConfig::Warn()
                "the disk is full or you do not have write permissions to the file. "
                "More information can be obtained by clicking the help button below.\n\n"
                "You can attempt to correct the issue and then click \"Retry\" to continue.\n\n"
-               "If you choose to \"Quit Saucedacity\", your project may be left in an unsaved "
+               "If you choose to \"Quit Tenacity\", your project may be left in an unsaved "
                "state which will be recovered the next time you open it.")
             .Format(GetFilePath()),
             false,
@@ -89,7 +89,7 @@ void SaucedacityFileConfig::Warn()
          b->SetToolTip( XO("Help").Translation() );
          b->SetLabel(XO("Help").Translation());       // for screen readers
 
-         b = S.Id(wxID_CANCEL).AddButton(XXO("&Quit Saucedacity"));
+         b = S.Id(wxID_CANCEL).AddButton(XXO("&Quit Tenacity"));
          b = S.Id(wxID_OK).AddButton(XXO("&Retry"));
          dlg.SetAffirmativeId(wxID_OK);
 

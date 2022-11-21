@@ -26,6 +26,6 @@ set( SOURCES
    Observer.cpp
    Observer.h
 )
-saucedacity_library( lib-utility "${SOURCES}" ""
+tenacity_library( lib-utility "${SOURCES}" ""
    "" ""
 )

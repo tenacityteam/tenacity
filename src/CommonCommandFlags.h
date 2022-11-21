@@ -15,13 +15,13 @@ Paul Licameli split from Menus.cpp
 #include "commands/CommandFlag.h"
 
 SAUCEDACITY_DLL_API
-bool EditableTracksSelectedPred( const SaucedacityProject &project );
+bool EditableTracksSelectedPred( const TenacityProject &project );
 
 SAUCEDACITY_DLL_API
-bool AudioIOBusyPred( const SaucedacityProject &project );
+bool AudioIOBusyPred( const TenacityProject &project );
 
 SAUCEDACITY_DLL_API
-bool TimeSelectedPred( const SaucedacityProject &project );
+bool TimeSelectedPred( const TenacityProject &project );
 
 SAUCEDACITY_DLL_API
 const CommandFlagOptions &cutCopyOptions();

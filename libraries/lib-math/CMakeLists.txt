@@ -31,6 +31,6 @@ set( LIBRARIES
    PRIVATE
    wxWidgets::wxWidgets
 )
-saucedacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
+tenacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

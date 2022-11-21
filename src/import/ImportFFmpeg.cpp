@@ -28,7 +28,7 @@ Licensed under the GNU General Public License v2 or later
 #include "../ffmpeg/FFmpeg.h"      // which brings in avcodec.h, avformat.h
 #include "../ffmpeg/FFmpegNotFoundDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-ffmpeg-support/FFmpegFunctions.h>
 
 #ifndef WX_PRECOMP
@@ -179,7 +179,7 @@ public:
 
    ///! Probes the file and opens it if appropriate
    std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, SaucedacityProject*) override;
+      const FilePath &Filename, TenacityProject*) override;
 };
 
 struct StreamContext final
@@ -287,7 +287,7 @@ TranslatableString FFmpegImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> FFmpegImportPlugin::Open(
-   const FilePath &filename, SaucedacityProject*)
+   const FilePath &filename, TenacityProject*)
 {
    auto ffmpeg = FFmpegFunctions::Load();
 

@@ -28,7 +28,7 @@ the audio, rather than actually finding the clicks.
 
 #include <wx/intl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/InterpolateAudio.h>
 
 #include "../WaveTrack.h"

@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectFileIO.h
 
-Paul Licameli split from SaucedacityProject.h
+Paul Licameli split from TenacityProject.h
 
 **********************************************************************/
 
@@ -18,7 +18,7 @@ Paul Licameli split from SaucedacityProject.h
 
 #include "ClientData.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h> // to inherit
 #include <lib-xml/XMLTagHandler.h> // to inherit
 
@@ -27,7 +27,7 @@ struct sqlite3_context;
 struct sqlite3_stmt;
 struct sqlite3_value;
 
-class SaucedacityProject;
+class TenacityProject;
 class DBConnection;
 struct DBConnectionErrors;
 class ProjectSerializer;
@@ -69,10 +69,10 @@ public:
    // class.  Reinvocations have no effect.  Return value is true for success.
    static bool InitializeSQL();
 
-   static ProjectFileIO &Get( SaucedacityProject &project );
-   static const ProjectFileIO &Get( const SaucedacityProject &project );
+   static ProjectFileIO &Get( TenacityProject &project );
+   static const ProjectFileIO &Get( const TenacityProject &project );
 
-   explicit ProjectFileIO( SaucedacityProject &project );
+   explicit ProjectFileIO( TenacityProject &project );
 
    ProjectFileIO( const ProjectFileIO & ) = delete;
    ProjectFileIO &operator=( const ProjectFileIO & ) = delete;
@@ -288,7 +288,7 @@ private:
    Connection &CurrConn();
 
    // non-static data members
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
    std::shared_ptr<DBConnectionErrors> mpErrors;
 
@@ -320,7 +320,7 @@ class wxTopLevelWindow;
 // TitleRestorer restores project window titles to what they were, in its destructor.
 class TitleRestorer{
 public:
-   TitleRestorer( wxTopLevelWindow &window, SaucedacityProject &project );
+   TitleRestorer( wxTopLevelWindow &window, TenacityProject &project );
    ~TitleRestorer();
    wxString sProjNumber;
    wxString sProjName;
@@ -338,12 +338,12 @@ class SAUCEDACITY_DLL_API InvisibleTemporaryProject
 public:
    InvisibleTemporaryProject();
    ~InvisibleTemporaryProject();
-   SaucedacityProject &Project()
+   TenacityProject &Project()
    {
       return *mpProject;
    }
 private:
-   std::shared_ptr<SaucedacityProject> mpProject;
+   std::shared_ptr<TenacityProject> mpProject;
 };
 
 #endif

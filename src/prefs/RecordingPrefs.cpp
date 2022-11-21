@@ -26,7 +26,7 @@
 #include <wx/textctrl.h>
 #include <algorithm>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../prefs/GUISettings.h"
@@ -242,7 +242,7 @@ void RecordingPrefs::OnToggleCustomName(wxCommandEvent & /* Evt */)
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Recording",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew RecordingPrefs(parent, winid);

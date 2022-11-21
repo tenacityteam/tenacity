@@ -13,7 +13,7 @@
 
 #include "Track.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleCount.h>
 
 #include <vector>
@@ -572,7 +572,7 @@ private:
       std::shared_ptr<WaveClip> pClip;
    };
 
-   Track::Holder PasteInto( SaucedacityProject & ) const override;
+   Track::Holder PasteInto( TenacityProject & ) const override;
 
    ConstIntervals GetIntervals() const override;
    Intervals GetIntervals() override;
@@ -712,10 +712,10 @@ class SAUCEDACITY_DLL_API WaveTrackFactory final
    : public ClientData::Base
 {
  public:
-   static WaveTrackFactory &Get( SaucedacityProject &project );
-   static const WaveTrackFactory &Get( const SaucedacityProject &project );
-   static WaveTrackFactory &Reset( SaucedacityProject &project );
-   static void Destroy( SaucedacityProject &project );
+   static WaveTrackFactory &Get( TenacityProject &project );
+   static const WaveTrackFactory &Get( const TenacityProject &project );
+   static WaveTrackFactory &Reset( TenacityProject &project );
+   static void Destroy( TenacityProject &project );
 
    WaveTrackFactory( const ProjectSettings &settings,
       const SampleBlockFactoryPtr &pFactory)

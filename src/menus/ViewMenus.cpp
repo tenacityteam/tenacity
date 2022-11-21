@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   ViewMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../CommonCommandFlags.h"
@@ -36,7 +36,7 @@
 // private helper classes and functions
 namespace {
 
-double GetZoomOfSelection( const SaucedacityProject &project )
+double GetZoomOfSelection( const TenacityProject &project )
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -63,7 +63,7 @@ double GetZoomOfSelection( const SaucedacityProject &project )
    return (width - 1) / denom;
 }
 
-double GetZoomOfPreset( const SaucedacityProject &project, int preset )
+double GetZoomOfPreset( const TenacityProject &project, int preset )
 {
 
    // Sets a limit on how far we will zoom out as a factor over zoom to fit.
@@ -131,7 +131,7 @@ double GetZoomOfPreset( const SaucedacityProject &project, int preset )
 }
 
 namespace {
-void DoZoomFitV(SaucedacityProject &project)
+void DoZoomFitV(TenacityProject &project)
 {
    auto &viewInfo = ViewInfo::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -379,7 +379,7 @@ void OnUndoPushed( wxCommandEvent &evt )
       DoZoomFitV( mProject );
 }
 
-Handler( SaucedacityProject &project )
+Handler( TenacityProject &project )
    : mProject{ project }
 {
    mProject.Bind( EVT_UNDO_PUSHED, &Handler::OnUndoPushed, this );
@@ -392,19 +392,19 @@ Handler( SaucedacityProject &project )
 Handler( const Handler & ) = delete;
 Handler &operator=( const Handler & ) = delete;
 
-SaucedacityProject &mProject;
+TenacityProject &mProject;
 
 }; // struct Handler
 
 } // namespace
 
 // Handler needs a back-reference to the project, so needs a factory registered
-// with SaucedacityProject.
-static const SaucedacityProject::AttachedObjects::RegisteredFactory key{
-   []( SaucedacityProject &project ) {
+// with TenacityProject.
+static const TenacityProject::AttachedObjects::RegisteredFactory key{
+   []( TenacityProject &project ) {
       return std::make_unique< ViewActions::Handler >( project ); } };
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &project) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &project) {
    return project.AttachedObjects::Get< ViewActions::Handler >( key );
 };
 
@@ -480,7 +480,7 @@ BaseItemSharedPtr ViewMenu()
          ,
          Command( wxT("ShowEffectsRack"), XXO("Show Effects Rack"),
             FN(OnShowEffectsRack), AlwaysEnabledFlag,
-            Options{}.CheckTest( [](SaucedacityProject &project){
+            Options{}.CheckTest( [](TenacityProject &project){
                auto &rack = EffectRack::Get( project );
                return rack.IsShown(); } ) )
    #endif

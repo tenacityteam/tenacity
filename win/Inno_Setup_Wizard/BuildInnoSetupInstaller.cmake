@@ -42,7 +42,7 @@ endif()
 # Prepare the output directory
 
 file(COPY "${SOURCE_DIR}/win/Inno_Setup_Wizard/" DESTINATION "${OUTPUT_DIR}")
-configure_file("${OUTPUT_DIR}/saucedacity.iss.in" "${OUTPUT_DIR}/saucedacity.iss")
+configure_file("${OUTPUT_DIR}/tenacity.iss.in" "${OUTPUT_DIR}/tenacity.iss")
 
 # Copy additional files
 
@@ -51,7 +51,7 @@ file(COPY "${SOURCE_DIR}/presets" DESTINATION "${OUTPUT_DIR}/Additional")
 file(COPY 
         "${SOURCE_DIR}/LICENSE.txt"
         "${SOURCE_DIR}/README.md"
-        "${SOURCE_DIR}/win/saucedacity.ico"
+        "${SOURCE_DIR}/win/tenacity.ico"
     DESTINATION 
         "${OUTPUT_DIR}/Additional"
 )
@@ -69,7 +69,7 @@ execute_process(
 
 execute_process(
     COMMAND
-        ${INNO_SETUP_COMPILER} /Sbyparam=$p "saucedacity.iss"
+        ${INNO_SETUP_COMPILER} /Sbyparam=$p "tenacity.iss"
     WORKING_DIRECTORY
         ${OUTPUT_DIR}
 )

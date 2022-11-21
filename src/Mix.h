@@ -20,7 +20,7 @@
 #ifndef __AUDACITY_MIX__
 #define __AUDACITY_MIX__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 
 #include <vector>

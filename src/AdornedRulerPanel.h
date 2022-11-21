@@ -15,10 +15,10 @@
 #include "widgets/Ruler.h" // member variable
 #include "ViewInfo.h" // for PlayRegion
 
-// Saucedacity preferences
+// Tenacity preferences
 #include <lib-preferences/Prefs.h>
 
-class SaucedacityProject;
+class TenacityProject;
 struct SelectedRegionEvent;
 class SnapManager;
 class TrackList;
@@ -29,11 +29,11 @@ class SAUCEDACITY_DLL_API AdornedRulerPanel final
 , private PrefsListener
 {
 public:
-   static AdornedRulerPanel &Get( SaucedacityProject &project );
-   static const AdornedRulerPanel &Get( const SaucedacityProject &project );
-   static void Destroy( SaucedacityProject &project );
+   static AdornedRulerPanel &Get( TenacityProject &project );
+   static const AdornedRulerPanel &Get( const TenacityProject &project );
+   static void Destroy( TenacityProject &project );
 
-   AdornedRulerPanel(SaucedacityProject *project,
+   AdornedRulerPanel(TenacityProject *project,
                      wxWindow* parent,
                      wxWindowID id,
                      const wxPoint& pos = wxDefaultPosition,
@@ -129,7 +129,7 @@ private:
 private:
 
    Ruler mRuler;
-   SaucedacityProject *const mProject;
+   TenacityProject *const mProject;
    TrackList *mTracks;
 
    wxRect mOuter;
@@ -195,7 +195,7 @@ private:
    // area into cells
    std::shared_ptr<TrackPanelNode> Root() override;
 public:
-   SaucedacityProject * GetProject() const override;
+   TenacityProject * GetProject() const override;
 private:
    TrackPanelCell *GetFocusedCell() override;
    void SetFocusedCell() override;

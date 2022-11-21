@@ -14,7 +14,7 @@
 #ifndef SHUTTLE_GUI
 #define SHUTTLE_GUI
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterfaceSymbol.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Identifier.h>

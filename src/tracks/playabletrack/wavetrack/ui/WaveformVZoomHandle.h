@@ -27,7 +27,7 @@ public:
    WaveformVZoomHandle &operator=(const WaveformVZoomHandle&) = default;
 
    static void DoZoom(
-      SaucedacityProject *pProject, WaveTrack *pTrack,
+      TenacityProject *pProject, WaveTrack *pTrack,
       WaveTrackViewConstants::ZoomActions ZoomKind,
       const wxRect &rect, int zoomStart, int zoomEnd,
       bool fixedMousePoint);
@@ -36,25 +36,25 @@ public:
 
    std::shared_ptr<WaveTrack> GetTrack() const { return mpTrack.lock(); }
 
-   void Enter( bool forward, SaucedacityProject * ) override;
+   void Enter( bool forward, TenacityProject * ) override;
 
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
 private:
 

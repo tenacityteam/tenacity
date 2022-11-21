@@ -36,7 +36,7 @@ It \TODO: description
 #include <wx/statusbr.h>
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include <fstream>

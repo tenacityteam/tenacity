@@ -30,6 +30,6 @@ set( LIBRARIES
    PRIVATE
    wxWidgets::wxWidgets
 )
-saucedacity_library( lib-strings "${SOURCES}" "${LIBRARIES}"
+tenacity_library( lib-strings "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

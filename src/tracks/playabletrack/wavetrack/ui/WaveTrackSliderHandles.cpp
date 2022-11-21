@@ -43,7 +43,7 @@ float GainSliderHandle::GetValue()
 }
 
 UIHandle::Result GainSliderHandle::SetValue
-(SaucedacityProject *pProject, float newValue)
+(TenacityProject *pProject, float newValue)
 {
    (void)pProject;//Compiler food
    auto pTrack = GetWaveTrack();
@@ -58,7 +58,7 @@ UIHandle::Result GainSliderHandle::SetValue
 }
 
 UIHandle::Result GainSliderHandle::CommitChanges
-(const wxMouseEvent &, SaucedacityProject *pProject)
+(const wxMouseEvent &, TenacityProject *pProject)
 {
    ProjectHistory::Get( *pProject )
       .PushState(XO("Moved gain slider"), XO("Gain"), UndoPush::CONSOLIDATE);
@@ -66,7 +66,7 @@ UIHandle::Result GainSliderHandle::CommitChanges
 }
 
 TranslatableString GainSliderHandle::Tip(
-   const wxMouseState &, SaucedacityProject &project) const
+   const wxMouseState &, TenacityProject &project) const
 {
    TranslatableString val;
    float value = 0;
@@ -101,7 +101,7 @@ UIHandlePtr GainSliderHandle::HitTest
       wxRect sliderRect2;
       WaveTrackControls::GetGainRect(rect.GetTopLeft(), sliderRect2);
       auto sliderFn =
-      []( SaucedacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
+      []( TenacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
          return WaveTrackControls::GainSlider
             (sliderRect, static_cast<WaveTrack*>( pTrack ), true,
              &TrackPanel::Get( *pProject ));
@@ -140,7 +140,7 @@ float PanSliderHandle::GetValue()
       return 0;
 }
 
-UIHandle::Result PanSliderHandle::SetValue(SaucedacityProject *pProject, float newValue)
+UIHandle::Result PanSliderHandle::SetValue(TenacityProject *pProject, float newValue)
 {
    (void)pProject;//Compiler food
    using namespace RefreshCode;
@@ -157,7 +157,7 @@ UIHandle::Result PanSliderHandle::SetValue(SaucedacityProject *pProject, float n
 }
 
 UIHandle::Result PanSliderHandle::CommitChanges
-(const wxMouseEvent &, SaucedacityProject *pProject)
+(const wxMouseEvent &, TenacityProject *pProject)
 {
    ProjectHistory::Get( *pProject )
       .PushState(XO("Moved pan slider"), XO("Pan"), UndoPush::CONSOLIDATE);
@@ -165,7 +165,7 @@ UIHandle::Result PanSliderHandle::CommitChanges
 }
 
 TranslatableString PanSliderHandle::Tip(
-   const wxMouseState &, SaucedacityProject &project) const
+   const wxMouseState &, TenacityProject &project) const
 {
    TranslatableString val;
    float value = 0.0;
@@ -210,7 +210,7 @@ UIHandlePtr PanSliderHandle::HitTest
       return {};
    if (sliderRect.Contains(state.m_x, state.m_y)) {
       auto sliderFn =
-      []( SaucedacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
+      []( TenacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
          return WaveTrackControls::PanSlider
             (sliderRect, static_cast<WaveTrack*>( pTrack ), true,
              &TrackPanel::Get( *pProject ));

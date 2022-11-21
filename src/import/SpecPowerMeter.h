@@ -13,7 +13,7 @@
 
 #include <cstddef>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 
 class SpecPowerCalculation

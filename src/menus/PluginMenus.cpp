@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   PluginMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/TempDirectory.h>
 #include <lib-preferences/Prefs.h>
 
@@ -38,8 +38,8 @@
 // private helper classes and functions
 namespace {
 
-SaucedacityProject::AttachedWindows::RegisteredFactory sMacrosWindowKey{
-   []( SaucedacityProject &parent ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sMacrosWindowKey{
+   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
       auto &window = ProjectWindow::Get( parent );
       return safenew MacrosWindow(
          &window, parent, true
@@ -56,7 +56,7 @@ bool ShowManager(
    return dlg.ShowModal() == wxID_OK;
 }
 
-void DoManagePluginsMenu(SaucedacityProject &project, EffectType type)
+void DoManagePluginsMenu(TenacityProject &project, EffectType type)
 {
    auto &window = GetProjectFrame( project );
    auto &pm = PluginManager::Get();
@@ -662,9 +662,9 @@ void OnAudacityCommand(const CommandContext & ctx)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static PluginActions::Handler instance;
    return instance;
 };
@@ -837,7 +837,7 @@ using namespace MenuTable;
 
 const ReservedCommandFlag&
    HasLastGeneratorFlag() { static ReservedCommandFlag flag{
-      [](const SaucedacityProject &project){
+      [](const TenacityProject &project){
          return !MenuManager::Get( project ).mLastGenerator.empty();
       }
    }; return flag; }
@@ -861,7 +861,7 @@ BaseItemSharedPtr GenerateMenu()
 
       Section("RepeatLast",
          // Delayed evaluation:
-         [](SaucedacityProject &project)
+         [](TenacityProject &project)
          {
             const auto &lastGenerator = MenuManager::Get(project).mLastGenerator;
             TranslatableString buildMenuLabel;
@@ -881,7 +881,7 @@ BaseItemSharedPtr GenerateMenu()
 
       Section( "Generators",
          // Delayed evaluation:
-         [](SaucedacityProject &)
+         [](TenacityProject &)
          { return Items( wxEmptyString, PopulateEffectsMenu(
             EffectTypeGenerate,
             AudioIONotBusyFlag(),
@@ -894,7 +894,7 @@ BaseItemSharedPtr GenerateMenu()
 
 static const ReservedCommandFlag
 &IsRealtimeNotActiveFlag() { static ReservedCommandFlag flag{
-   [](const SaucedacityProject &){
+   [](const TenacityProject &){
       return !RealtimeEffectManager::Get().RealtimeIsActive();
    }
 }; return flag; }  //lll
@@ -906,7 +906,7 @@ AttachedItem sAttachment1{
 
 const ReservedCommandFlag&
    HasLastEffectFlag() { static ReservedCommandFlag flag{
-      [](const SaucedacityProject &project) {
+      [](const TenacityProject &project) {
          return !MenuManager::Get(project).mLastEffect.empty();
       }
    }; return flag;
@@ -929,7 +929,7 @@ BaseItemSharedPtr EffectMenu()
 
       Section( "RepeatLast",
          // Delayed evaluation:
-         [](SaucedacityProject &project)
+         [](TenacityProject &project)
          {
             const auto &lastEffect = MenuManager::Get(project).mLastEffect;
             TranslatableString buildMenuLabel;
@@ -949,7 +949,7 @@ BaseItemSharedPtr EffectMenu()
 
       Section( "Effects",
          // Delayed evaluation:
-         [](SaucedacityProject &)
+         [](TenacityProject &)
          { return Items( wxEmptyString, PopulateEffectsMenu(
             EffectTypeProcess,
             AudioIONotBusyFlag() | TimeSelectedFlag() | WaveTracksSelectedFlag(),
@@ -967,7 +967,7 @@ AttachedItem sAttachment2{
 
 const ReservedCommandFlag&
    HasLastAnalyzerFlag() { static ReservedCommandFlag flag{
-      [](const SaucedacityProject &project) {
+      [](const TenacityProject &project) {
          if (MenuManager::Get(project).mLastAnalyzerRegistration == MenuCreator::repeattypeunique) return true;
          return !MenuManager::Get(project).mLastAnalyzer.empty();
       }
@@ -993,7 +993,7 @@ BaseItemSharedPtr AnalyzeMenu()
 
       Section("RepeatLast",
          // Delayed evaluation:
-         [](SaucedacityProject &project)
+         [](TenacityProject &project)
          {
             const auto &lastAnalyzer = MenuManager::Get(project).mLastAnalyzer;
             TranslatableString buildMenuLabel;
@@ -1015,7 +1015,7 @@ BaseItemSharedPtr AnalyzeMenu()
          Items( "Windows" ),
 
          // Delayed evaluation:
-         [](SaucedacityProject&)
+         [](TenacityProject&)
          { return Items( wxEmptyString, PopulateEffectsMenu(
             EffectTypeAnalyze,
             AudioIONotBusyFlag() | TimeSelectedFlag() | WaveTracksSelectedFlag(),
@@ -1033,7 +1033,7 @@ AttachedItem sAttachment3{
 
 const ReservedCommandFlag&
    HasLastToolFlag() { static ReservedCommandFlag flag{
-      [](const SaucedacityProject &project) {
+      [](const TenacityProject &project) {
       auto& menuManager = MenuManager::Get(project);
          if (menuManager.mLastToolRegistration == MenuCreator::repeattypeunique) return true;
          return !menuManager.mLastTool.empty();
@@ -1059,7 +1059,7 @@ BaseItemSharedPtr ToolsMenu()
 
          Section( "RepeatLast",
          // Delayed evaluation:
-         [](SaucedacityProject &project)
+         [](TenacityProject &project)
          {
             const auto &lastTool = MenuManager::Get(project).mLastTool;
             TranslatableString buildMenuLabel;
@@ -1090,7 +1090,7 @@ BaseItemSharedPtr ToolsMenu()
 
             Section( "",
                // Delayed evaluation:
-               [](SaucedacityProject&)
+               [](TenacityProject&)
                { return Items( wxEmptyString, PopulateMacrosMenu( AudioIONotBusyFlag() ) ); }
             )
          )
@@ -1116,7 +1116,7 @@ BaseItemSharedPtr ToolsMenu()
 
       Section( "Tools",
          // Delayed evaluation:
-         [](SaucedacityProject&)
+         [](TenacityProject&)
          { return Items( wxEmptyString, PopulateEffectsMenu(
             EffectTypeTool,
             AudioIONotBusyFlag(),
@@ -1132,14 +1132,14 @@ BaseItemSharedPtr ToolsMenu()
             FN(OnSimulateRecordingErrors),
             AudioIONotBusyFlag(),
             Options{}.CheckTest(
-               [](SaucedacityProject&){
+               [](TenacityProject&){
                   return AudioIO::Get()->mSimulateRecordingErrors; } ) ),
          Command( wxT("DetectUpstreamDropouts"),
             XXO("Detect Upstream Dropouts"),
             FN(OnDetectUpstreamDropouts),
             AudioIONotBusyFlag(),
             Options{}.CheckTest(
-               [](SaucedacityProject&){
+               [](TenacityProject&){
                   return AudioIO::Get()->mDetectUpstreamDropouts; } ) )
       )
 #endif

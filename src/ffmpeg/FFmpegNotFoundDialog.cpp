@@ -1,6 +1,6 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   FFmpegNotFoundDialog.cpp
 
@@ -26,7 +26,7 @@ void FFmpegNotFoundDialog::PopulateOrExchange(ShuttleGui & S)
    S.StartVerticalLay(true);
    {
       S.AddFixedText(XO(
-"Saucedacity attempted to use FFmpeg to import an audio file,\n"
+"Tenacity attempted to use FFmpeg to import an audio file,\n"
 "but the libraries were not found.\n\n"
 "To use FFmpeg import, go to Edit > Preferences > Libraries\n"
 "to download or locate the FFmpeg libraries."

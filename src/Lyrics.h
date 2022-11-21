@@ -18,7 +18,7 @@
 #include "commands/CommandManagerWindowClasses.h"
 #include "widgets/wxPanelWrapper.h" // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 class LabelTrack;
 
 
@@ -85,7 +85,7 @@ class LyricsPanel final
 
  public:
    LyricsPanel(wxWindow* parent, wxWindowID id,
-          SaucedacityProject *project,
+          TenacityProject *project,
           const wxPoint& pos = wxDefaultPosition,
           const wxSize& size = wxDefaultSize);
    virtual ~LyricsPanel();
@@ -155,7 +155,7 @@ private:
    int            mTextHeight; // only for drawn text
    bool           mMeasurementsDone; // only for drawn text
 
-   wxWeakRef<SaucedacityProject> mProject;
+   wxWeakRef<TenacityProject> mProject;
    bool           mDelayedUpdate{ false };
 
    DECLARE_EVENT_TABLE()

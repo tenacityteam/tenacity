@@ -34,7 +34,7 @@ other settings.
 #include <wx/intl.h>
 #include <wx/textctrl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../../lib-src/portmidi/pm_common/portmidi.h"
@@ -304,7 +304,7 @@ bool MidiIOPrefs::Validate()
 #ifdef EXPERIMENTAL_MIDI_OUT
 namespace{
 PrefsPanel::Registration sAttachment{ "MidiIO",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew MidiIOPrefs(parent, winid);

@@ -47,7 +47,7 @@
 #endif
 #include <wx/tooltip.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../theme/AllThemeResources.h"
@@ -74,7 +74,7 @@ BEGIN_EVENT_TABLE(ToolsToolBar, ToolBar)
 END_EVENT_TABLE()
 
 //Standard constructor
-ToolsToolBar::ToolsToolBar( SaucedacityProject &project )
+ToolsToolBar::ToolsToolBar( TenacityProject &project )
 : ToolBar(project, ToolsBarID, XO("Tools"), wxT("Tools"))
 {
    using namespace ToolCodes;
@@ -101,15 +101,15 @@ ToolsToolBar::~ToolsToolBar()
       "mismatch in number of tools" );
 }
 
-ToolsToolBar &ToolsToolBar::Get( SaucedacityProject &project )
+ToolsToolBar &ToolsToolBar::Get( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<ToolsToolBar*>( toolManager.GetToolBar(ToolsBarID) );
 }
 
-const ToolsToolBar &ToolsToolBar::Get( const SaucedacityProject &project )
+const ToolsToolBar &ToolsToolBar::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject&>( project )) ;
+   return Get( const_cast<TenacityProject&>( project )) ;
 }
 
 void ToolsToolBar::RegenerateTooltips()
@@ -294,7 +294,7 @@ void ToolsToolBar::Create(wxWindow * parent)
 }
 
 static RegisteredToolbarFactory factory{ ToolsBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew ToolsToolBar{ project } }; }
 };
 
@@ -314,7 +314,7 @@ AttachedToolBarMenuItem sAttachment{
 namespace {
 
 /// Called by handlers that set tools.
-void SetTool(SaucedacityProject &project, int tool)
+void SetTool(TenacityProject &project, int tool)
 {
    auto toolbar = &ToolsToolBar::Get( project );
    if (toolbar) {
@@ -390,9 +390,9 @@ void OnNextTool(const CommandContext &context)
 
 }; // struct Handler
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static ToolActions::Handler instance;
    return instance;
 };

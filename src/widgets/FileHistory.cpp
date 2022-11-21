@@ -19,7 +19,7 @@
 #include <wx/defs.h>
 #include <wx/menu.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 #include <lib-preferences/Prefs.h>
 

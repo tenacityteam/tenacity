@@ -50,7 +50,7 @@
 #include <wx/window.h>
 #include <wx/stattext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 // This really should be a Preferences setting

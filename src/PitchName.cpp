@@ -21,7 +21,7 @@
 #include <cmath>
 #include <cstdio>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 

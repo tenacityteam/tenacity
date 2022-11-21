@@ -121,7 +121,7 @@ class QTImportPlugin final : public ImportPlugin
 
    TranslatableString GetPluginFormatDescription() override;
    std::unique_ptr<ImportFileHandle> Open(
-      const wxString & Filename, SaucedacityProject*) override;
+      const wxString & Filename, TenacityProject*) override;
 
  private:
    bool mInitialized;
@@ -178,7 +178,7 @@ TranslatableString QTImportPlugin::GetPluginFormatDescription()
 }
 
 std::unique_ptr<ImportFileHandle> QTImportPlugin::Open(
-   const wxString & Filename, SaucedacityProject*)
+   const wxString & Filename, TenacityProject*)
 {
    OSErr err;
    FSRef inRef;

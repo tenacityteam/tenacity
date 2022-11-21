@@ -30,15 +30,15 @@ namespace {
    }
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
+  []( TenacityProject &parent ){
      auto result = std::make_shared< EditCursorOverlay >( &parent );
      TrackPanel::Get( parent ).AddOverlay( result );
      return result;
    }
 };
 
-EditCursorOverlay::EditCursorOverlay(SaucedacityProject *project, bool isMaster)
+EditCursorOverlay::EditCursorOverlay(TenacityProject *project, bool isMaster)
    : mProject(project)
    , mIsMaster(isMaster)
    , mLastCursorX(-1)

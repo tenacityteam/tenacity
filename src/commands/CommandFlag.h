@@ -16,10 +16,10 @@
 #include <utility>
 #include <wx/string.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
-class SaucedacityProject;
+class TenacityProject;
 
 // Increase the template parameter as needed to allow more flags
 constexpr size_t NCommandFlags = 64;
@@ -89,7 +89,7 @@ struct CommandFlagOptions{
 class SAUCEDACITY_DLL_API ReservedCommandFlag : public CommandFlag
 {
 public:
-   using Predicate = std::function< bool( const SaucedacityProject& ) >;
+   using Predicate = std::function< bool( const TenacityProject& ) >;
    ReservedCommandFlag( const Predicate &predicate,
       const CommandFlagOptions &options = {} );
 };
@@ -107,8 +107,8 @@ public:
 // while they may not have been initialized yet, during static initialization.
 struct MenuItemEnabler {
    using Flags = std::function< CommandFlag() >;
-   using Test = std::function< bool( const SaucedacityProject& ) >;
-   using Action = std::function< void( SaucedacityProject&, CommandFlag ) >;
+   using Test = std::function< bool( const TenacityProject& ) >;
+   using Action = std::function< void( TenacityProject&, CommandFlag ) >;
 
    const Flags actualFlags;
    const Flags possibleFlags;

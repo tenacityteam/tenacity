@@ -31,7 +31,7 @@
 
 #include "WrappedType.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 bool ShuttlePrefs::TransferBool( const wxString & Name, bool & bValue, const bool & bDefault )

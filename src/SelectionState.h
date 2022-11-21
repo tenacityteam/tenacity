@@ -9,7 +9,7 @@
 #ifndef __AUDACITY_SELECTION_STATE__
 #define __AUDACITY_SELECTION_STATE__
 
-class SaucedacityProject;
+class TenacityProject;
 class Track;
 class TrackList;
 class ViewInfo;
@@ -26,8 +26,8 @@ public:
    SelectionState( const SelectionState & ) = delete;
    SelectionState &operator=( const SelectionState & ) = delete;
 
-   static SelectionState &Get( SaucedacityProject &project );
-   static const SelectionState &Get( const SaucedacityProject &project );
+   static SelectionState &Get( TenacityProject &project );
+   static const SelectionState &Get( const TenacityProject &project );
 
    static void SelectTrackLength
       ( ViewInfo &viewInfo, Track &track, bool syncLocked );

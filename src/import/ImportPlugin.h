@@ -47,13 +47,13 @@ but little else.
 
 #include <memory>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-strings/Identifier.h>
 #include <lib-strings/Internat.h>
 #include <lib-strings/wxArrayStringEx.h>
 
-class SaucedacityProject;
+class TenacityProject;
 class ProgressDialog;
 namespace GenericUI{ enum class ProgressResult : unsigned; }
 class WaveTrackFactory;
@@ -87,7 +87,7 @@ public:
    // format, false otherwise.  This puts the importer into the open
    // state.
    virtual std::unique_ptr<ImportFileHandle> Open(
-      const FilePath &Filename, SaucedacityProject*) = 0;
+      const FilePath &Filename, TenacityProject*) = 0;
 
    virtual ~ImportPlugin();
 

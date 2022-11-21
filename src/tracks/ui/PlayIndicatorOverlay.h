@@ -16,7 +16,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "ClientData.h"
 #include "../../widgets/Overlay.h" // to inherit
 
-class SaucedacityProject;
+class TenacityProject;
 
 
 // Common class for overlaying track panel or ruler
@@ -26,7 +26,7 @@ class PlayIndicatorOverlayBase
    , public ClientData::Base
 {
 public:
-   PlayIndicatorOverlayBase(SaucedacityProject *project, bool isMaster);
+   PlayIndicatorOverlayBase(TenacityProject *project, bool isMaster);
    virtual ~PlayIndicatorOverlayBase();
 
    void Update(int newIndicatorX) { mNewIndicatorX = newIndicatorX; }
@@ -38,7 +38,7 @@ private:
 
 protected:
 
-   SaucedacityProject *const mProject;
+   TenacityProject *const mProject;
    const bool mIsMaster;
    int mLastIndicatorX { -1 };
    int mNewIndicatorX { -1 };
@@ -51,7 +51,7 @@ class PlayIndicatorOverlay final : public PlayIndicatorOverlayBase
 {
 public:
    explicit
-   PlayIndicatorOverlay(SaucedacityProject *project);
+   PlayIndicatorOverlay(TenacityProject *project);
 
 private:
    void OnTimer(wxCommandEvent &event);

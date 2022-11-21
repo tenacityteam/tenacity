@@ -17,8 +17,8 @@
 #define __COMMANDHANDLER__
 
 #include <memory>
-class SaucedacityApp;
-class SaucedacityProject;
+class TenacityApp;
+class TenacityProject;
 class AppCommandEvent;
 class CommandContext;
 

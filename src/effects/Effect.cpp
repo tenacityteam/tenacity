@@ -25,7 +25,7 @@
 #include <wx/sizer.h>
 #include <wx/tokenzr.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h>
 
 #include "../AudioIO.h"
@@ -1225,7 +1225,7 @@ bool Effect::DoEffect(double projectRate,
    mTracks = list;
 
    // This is for performance purposes only, no additional recovery implied
-   auto &pProject = *const_cast<SaucedacityProject*>(FindProject()); // how to remove this const_cast?
+   auto &pProject = *const_cast<TenacityProject*>(FindProject()); // how to remove this const_cast?
    auto &pIO = ProjectFileIO::Get(pProject);
    TransactionScope trans(pIO.GetConnection(), "Effect");
 
@@ -1714,7 +1714,7 @@ bool Effect::ProcessTrack(int count,
       {
          processed = ProcessBlock(inBufPos.get(), outBufPos.get(), curBlockSize);
       }
-      catch( const SaucedacityException & WXUNUSED(e) )
+      catch( const TenacityException & WXUNUSED(e) )
       {
          // PRL: Bug 437:
          // Pass this along to our application-level handler
@@ -2077,7 +2077,7 @@ void Effect::CopyInputTracks(bool allSyncLockSelected)
    mOMap.clear();
 
    mOutputTracks = TrackList::Create(
-      const_cast<SaucedacityProject*>( FindProject() ) // how to remove this const_cast?
+      const_cast<TenacityProject*>( FindProject() ) // how to remove this const_cast?
   );
 
    auto trackRange = mTracks->Any() +
@@ -2271,7 +2271,7 @@ void Effect::ReplaceProcessedTracks(const bool bGoodResult)
    nEffectsDone++;
 }
 
-const SaucedacityProject *Effect::FindProject() const
+const TenacityProject *Effect::FindProject() const
 {
    if (!inputTracks())
       return nullptr;

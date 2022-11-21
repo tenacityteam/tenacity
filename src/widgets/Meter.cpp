@@ -70,7 +70,7 @@
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"
 
-// Saucedacity libraires
+// Tenacity libraires
 #include <lib-preferences/Prefs.h>
 
 #include "../theme/AllThemeResources.h"
@@ -286,7 +286,7 @@ END_EVENT_TABLE()
 
 IMPLEMENT_CLASS(MeterPanel, wxPanelWrapper)
 
-MeterPanel::MeterPanel(SaucedacityProject *project,
+MeterPanel::MeterPanel(TenacityProject *project,
              wxWindow* parent, wxWindowID id,
              bool isInput,
              const wxPoint& pos /*= wxDefaultPosition*/,
@@ -1871,7 +1871,7 @@ void MeterPanel::StartMonitoring()
    } 
 
    if (start && !gAudioIO->IsBusy()){
-      SaucedacityProject *p = mProject;
+      TenacityProject *p = mProject;
       if (p){
          gAudioIO->StartMonitoring( DefaultPlayOptions( *p ) );
       }
@@ -1893,7 +1893,7 @@ void MeterPanel::StopMonitoring(){
 void MeterPanel::OnAudioIOStatus(wxCommandEvent &evt)
 {
    evt.Skip();
-   SaucedacityProject *p = (SaucedacityProject *) evt.GetEventObject();
+   TenacityProject *p = (TenacityProject *) evt.GetEventObject();
 
    mActive = (evt.GetInt() != 0) && (p == mProject);
 

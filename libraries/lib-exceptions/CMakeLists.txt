@@ -29,6 +29,6 @@ set( LIBRARIES
    PRIVATE
    wxWidgets::wxWidgets
 )
-saucedacity_library( lib-exceptions "${SOURCES}" "${LIBRARIES}"
+tenacity_library( lib-exceptions "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

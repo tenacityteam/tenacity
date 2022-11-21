@@ -28,7 +28,7 @@ public:
    // uniformly in all tracks, disregarding track contents.
    // Do not further override this...
    std::vector<UIHandlePtr> HitTest
-      (const TrackPanelMouseState &, const SaucedacityProject *pProject)
+      (const TrackPanelMouseState &, const TenacityProject *pProject)
       final override;
 
    void TimeShiftHitTest();
@@ -39,7 +39,7 @@ protected:
    // Rather override this for subclasses:
    virtual std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &,
-       const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
+       const TenacityProject *pProject, int currentTool, bool bMultiTool)
       = 0;
 
    std::weak_ptr<SelectHandle> mSelectHandle;

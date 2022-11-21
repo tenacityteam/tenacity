@@ -32,7 +32,7 @@ and sample size to help you importing data of an unknown format.
 #include "../WaveTrack.h"
 #include "../widgets/ProgressDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/UserException.h>
 #include <lib-preferences/Prefs.h>
 
@@ -97,7 +97,7 @@ class ImportRawDialog final : public wxDialogWrapper {
 // This function leaves outTracks empty as an indication of error,
 // but may also throw FileException to make use of the application's
 // user visible error reporting.
-void ImportRaw(const SaucedacityProject &project, wxWindow *parent, const wxString &fileName,
+void ImportRaw(const TenacityProject &project, wxWindow *parent, const wxString &fileName,
               WaveTrackFactory *trackFactory, TrackHolders &outTracks)
 {
    outTracks.clear();

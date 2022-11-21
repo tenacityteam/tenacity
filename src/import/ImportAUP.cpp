@@ -22,7 +22,7 @@
 #include "Import.h"
 #include "ImportPlugin.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-preferences/Prefs.h>
@@ -82,7 +82,7 @@ public:
    TranslatableString GetPluginFormatDescription() override;
 
    ImportHandle Open(const FilePath &fileName,
-                     SaucedacityProject *project) override;
+                     TenacityProject *project) override;
 };
 
 class AUPImportFileHandle final : public ImportFileHandle,
@@ -90,7 +90,7 @@ class AUPImportFileHandle final : public ImportFileHandle,
 {
 public:
    AUPImportFileHandle(const FilePath &name,
-                       SaucedacityProject *project);
+                       TenacityProject *project);
    ~AUPImportFileHandle();
 
    TranslatableString GetFileDescription() override;
@@ -161,7 +161,7 @@ private:
    bool SetWarning(const TranslatableString &msg);
 
 private:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
    Tags *mTags;
 
    // project tag values that will be set in the actual project if the
@@ -246,7 +246,7 @@ TranslatableString AUPImportPlugin::GetPluginFormatDescription()
 }
 
 ImportHandle AUPImportPlugin::Open(const FilePath &fileName,
-                                   SaucedacityProject *project)
+                                   TenacityProject *project)
 {
    auto handle = std::make_unique<AUPImportFileHandle>(fileName, project);
 
@@ -265,7 +265,7 @@ static Importer::RegisteredImportPlugin registered
 };
 
 AUPImportFileHandle::AUPImportFileHandle(const FilePath &fileName,
-                                         SaucedacityProject *project)
+                                         TenacityProject *project)
 :  ImportFileHandle(fileName),
    mProject(*project)
 {
@@ -487,7 +487,7 @@ bool AUPImportFileHandle::Open()
 
       buf[sizeof(buf) - 1] = '\0';
 
-      if (!wxStrncmp(buf, wxT("SaucedacityProject"), 15))
+      if (!wxStrncmp(buf, wxT("TenacityProject"), 15))
       {
          AudacityMessageBox(
             XO("This project was saved by Audacity version 1.0 or earlier. The format has\n"
@@ -1409,7 +1409,7 @@ bool AUPImportFileHandle::HandleImport(XMLTagHandler *&handler)
    GuardedCall(
       [&] {
          ProjectFileManager::Get( mProject ).Import(strAttr, false); },
-      [&] (SaucedacityException*) {}
+      [&] (TenacityException*) {}
    );
 
    if (oldNumTracks == tracks.size())

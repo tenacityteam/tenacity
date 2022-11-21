@@ -47,7 +47,7 @@
 #include <wx/tooltip.h>
 #endif
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../theme/AllThemeResources.h"
@@ -78,7 +78,7 @@ BEGIN_EVENT_TABLE( EditToolBar, ToolBar )
 END_EVENT_TABLE()
 
 //Standard constructor
-EditToolBar::EditToolBar( SaucedacityProject &project )
+EditToolBar::EditToolBar( TenacityProject &project )
 : ToolBar(project, EditBarID, XO("Edit"), wxT("Edit"))
 {
 }
@@ -257,7 +257,7 @@ static const struct Entry {
 
 void EditToolBar::ForAllButtons(int Action)
 {
-   SaucedacityProject *p;
+   TenacityProject *p;
    CommandManager* cm = nullptr;
 
    if( Action & ETBActEnableDisable ){
@@ -296,7 +296,7 @@ void EditToolBar::OnButton(wxCommandEvent &event)
    // Be sure the pop-up happens even if there are exceptions, except for buttons which toggle.
    auto cleanup = finally( [&] { mButtons[id]->InteractionOver();});
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    auto &cm = CommandManager::Get( *p );
 
    auto flags = MenuManager::Get(*p).GetUpdateFlags();
@@ -316,7 +316,7 @@ void EditToolBar::OnButton(wxCommandEvent &event)
 }
 
 static RegisteredToolbarFactory factory{ EditBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew EditToolBar{ project } }; }
 };
 

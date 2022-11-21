@@ -29,7 +29,7 @@ MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs.
 
 #include <functional>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterface.h>
 #include <lib-registries/Registry.h>
 
@@ -46,7 +46,7 @@ MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs.
 #define TOP_LEVEL_BORDER       5
 #define GENERIC_CONTROL_BORDER 5
 
-class SaucedacityProject;
+class TenacityProject;
 class ShuttleGui;
 
 class SAUCEDACITY_DLL_API PrefsPanel /* not final */
@@ -57,7 +57,7 @@ class SAUCEDACITY_DLL_API PrefsPanel /* not final */
     struct PrefsNode {
        using Factory =
          std::function< PrefsPanel * (
-            wxWindow *parent, wxWindowID winid, SaucedacityProject *) >;
+            wxWindow *parent, wxWindowID winid, TenacityProject *) >;
        Factory factory;
        size_t nChildren{ 0 };
        bool expanded{ false };
@@ -79,7 +79,7 @@ class SAUCEDACITY_DLL_API PrefsPanel /* not final */
    // preview the preference changes for spectrograms.
    using Factory =
       std::function< PrefsPanel * (
-         wxWindow *parent, wxWindowID winid, SaucedacityProject *) >;
+         wxWindow *parent, wxWindowID winid, TenacityProject *) >;
 
    // Typically you make a static object of this type in the .cpp file that
    // also implements the PrefsPanel subclass.

@@ -17,7 +17,7 @@
 #include "../widgets/wxPanelWrapper.h" // to inherit
 #include "PrefsPanel.h"
 
-class SaucedacityProject;
+class TenacityProject;
 class wxTreebook;
 class wxTreeEvent;
 class ShuttleGui;
@@ -28,13 +28,13 @@ class ShuttleGui;
 #define CONST const
 #endif
 
-class SaucedacityProject;
+class TenacityProject;
 
 class SAUCEDACITY_DLL_API PrefsDialog /* not final */ : public wxDialogWrapper
 {
  public:
    PrefsDialog(wxWindow * parent,
-      SaucedacityProject *pProject, // may be null
+      TenacityProject *pProject, // may be null
       const TranslatableString &titlePrefix = XO("Preferences:"),
       PrefsPanel::Factories &factories =
          PrefsPanel::DefaultFactories());
@@ -81,7 +81,7 @@ class SAUCEDACITY_DLL_API GlobalPrefsDialog final : public PrefsDialog
 {
 public:
    GlobalPrefsDialog(
-      wxWindow * parent, SaucedacityProject *pProject,
+      wxWindow * parent, TenacityProject *pProject,
       PrefsPanel::Factories &factories =
          PrefsPanel::DefaultFactories());
    virtual ~GlobalPrefsDialog();
@@ -89,7 +89,7 @@ public:
    void SavePreferredPage() override;
 };
 
-class SaucedacityProject;
-void SAUCEDACITY_DLL_API DoReloadPreferences( SaucedacityProject &project );
+class TenacityProject;
+void SAUCEDACITY_DLL_API DoReloadPreferences( TenacityProject &project );
 
 #endif

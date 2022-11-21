@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   TrackMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include <optional>
@@ -56,7 +56,7 @@
 namespace {
 
 void DoMixAndRender
-(SaucedacityProject &project, bool toNewTrack)
+(TenacityProject &project, bool toNewTrack)
 {
    const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
@@ -163,7 +163,7 @@ void DoMixAndRender
    }
 }
 
-void DoPanTracks(SaucedacityProject &project, float PanValue)
+void DoPanTracks(TenacityProject &project, float PanValue)
 {
    auto &tracks = TrackList::Get( project );
    auto &window = ProjectWindow::Get( project );
@@ -207,7 +207,7 @@ static const std::vector< ComponentInterfaceSymbol >
 const size_t kAlignLabelsCount(){ return alignLabels().size(); }
 
 void DoAlign
-(SaucedacityProject &project, int index, bool moveSel)
+(TenacityProject &project, int index, bool moveSel)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -498,7 +498,7 @@ enum{
    kAudacitySortByName = (1 << 2),
 };
 
-void DoSortTracks( SaucedacityProject &project, int flags )
+void DoSortTracks( TenacityProject &project, int flags )
 {
    auto GetTime = [](const Track *t) {
       return t->TypeSwitch< double >(
@@ -575,7 +575,7 @@ void DoSortTracks( SaucedacityProject &project, int flags )
    tracks.Permute(arr);
 }
 
-void SetTrackGain(SaucedacityProject &project, WaveTrack * wt, LWSlider * slider)
+void SetTrackGain(TenacityProject &project, WaveTrack * wt, LWSlider * slider)
 {
    wxASSERT(wt);
    float newValue = slider->Get();
@@ -589,7 +589,7 @@ void SetTrackGain(SaucedacityProject &project, WaveTrack * wt, LWSlider * slider
    TrackPanel::Get( project ).RefreshTrack(wt);
 }
 
-void SetTrackPan(SaucedacityProject &project, WaveTrack * wt, LWSlider * slider)
+void SetTrackPan(TenacityProject &project, WaveTrack * wt, LWSlider * slider)
 {
    wxASSERT(wt);
    float newValue = slider->Get();
@@ -1289,9 +1289,9 @@ void OnTrackMoveBottom(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static TrackActions::Handler instance;
    return instance;
 };
@@ -1332,7 +1332,7 @@ BaseItemSharedPtr TracksMenu()
             // Stereo to Mono is an oddball command that is also subject to control
             // by the plug-in manager, as if an effect.  Decide whether to show or
             // hide it.
-            [](SaucedacityProject&) -> BaseItemPtr {
+            [](TenacityProject&) -> BaseItemPtr {
                const PluginID ID =
                   EffectManager::Get().GetEffectByIdentifier(wxT("StereoToMono"));
                const PluginDescriptor *plug = PluginManager::Get().GetPlugin(ID);

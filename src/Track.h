@@ -21,7 +21,7 @@
 
 #include "ClientData.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 #include <lib-xml/XMLTagHandler.h>
 
@@ -39,7 +39,7 @@ class LabelTrack;
 class TimeTrack;
 class WaveTrack;
 class NoteTrack;
-class SaucedacityProject;
+class TenacityProject;
 
 using TrackArray = std::vector< Track* >;
 using WaveTrackArray = std::vector < std::shared_ptr< WaveTrack > > ;
@@ -334,7 +334,7 @@ private:
 
    //! Find or create the destination track for a paste, maybe in a different project
    /*! @return A smart pointer to the track; its `use_count()` can tell whether it is new */
-   virtual Holder PasteInto( SaucedacityProject & ) const = 0;
+   virtual Holder PasteInto( TenacityProject & ) const = 0;
 
    //! Report times on the track where important intervals begin and end, for UI to snap to
    /*!
@@ -1292,15 +1292,15 @@ class SAUCEDACITY_DLL_API TrackList final
    void clear() = delete;
 
  public:
-   static TrackList &Get( SaucedacityProject &project );
-   static const TrackList &Get( const SaucedacityProject &project );
+   static TrackList &Get( TenacityProject &project );
+   static const TrackList &Get( const TenacityProject &project );
  
    // Create an empty TrackList
    // Don't call directly -- use Create() instead
-   explicit TrackList( SaucedacityProject *pOwner );
+   explicit TrackList( TenacityProject *pOwner );
 
    // Create an empty TrackList
-   static std::shared_ptr<TrackList> Create( SaucedacityProject *pOwner );
+   static std::shared_ptr<TrackList> Create( TenacityProject *pOwner );
 
    // Move is defined in terms of Swap
    void Swap(TrackList &that);
@@ -1309,8 +1309,8 @@ class SAUCEDACITY_DLL_API TrackList final
    virtual ~TrackList();
 
    // Find the owning project, which may be null
-   SaucedacityProject *GetOwner() { return mOwner; }
-   const SaucedacityProject *GetOwner() const { return mOwner; }
+   TenacityProject *GetOwner() { return mOwner; }
+   const TenacityProject *GetOwner() const { return mOwner; }
 
    // Iteration
 
@@ -1705,7 +1705,7 @@ public:
    bool HasPendingTracks() const;
 
 private:
-   SaucedacityProject *mOwner;
+   TenacityProject *mOwner;
 
    //! Shadow tracks holding append-recording in progress; need to put them into a list so that GetLink() works
    /*! Beware, they are in a disjoint iteration sequence from ordinary tracks */

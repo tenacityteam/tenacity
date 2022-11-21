@@ -30,7 +30,7 @@
 #include <wx/timer.h>
 #include <wx/intl.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/float_cast.h>
 #include <lib-math/Resample.h>
 #include <lib-preferences/Prefs.h>

@@ -442,7 +442,7 @@ bool GetInfoCommand::SendBoxes(const CommandContext &context)
    //wxString Name = pWin->GetName();
    context.StartStruct();
    context.AddItem( 0, "depth" );
-   context.AddItem( "Saucedacity Window", "name" ); 
+   context.AddItem( "Tenacity Window", "name" ); 
    context.StartField( "box" );
    context.StartArray( );
    context.AddItem( R.GetLeft() );
@@ -697,7 +697,7 @@ void GetInfoCommand::ExploreAdornments( const CommandContext &context,
 void GetInfoCommand::ExploreTrackPanel( const CommandContext &context,
    wxPoint P, int depth )
 {
-   SaucedacityProject * pProj = &context.project;
+   TenacityProject * pProj = &context.project;
    auto &tp = TrackPanel::Get( *pProj );
    wxRect panelRect{ {}, tp.GetSize() };
    for ( auto t : TrackList::Get( *pProj ).Any() ) {

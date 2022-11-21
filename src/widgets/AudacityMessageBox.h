@@ -13,7 +13,7 @@
 
 #include <wx/msgdlg.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h>
 
 extern SAUCEDACITY_DLL_API TranslatableString AudacityMessageBoxCaptionStr();

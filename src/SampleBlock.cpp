@@ -6,7 +6,7 @@ SampleBlock.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 #include <lib-math/SampleFormat.h>
 
@@ -29,7 +29,7 @@ SampleBlockFactoryFactory SampleBlockFactory::RegisterFactoryFactory(
    return result;
 }
 
-SampleBlockFactoryPtr SampleBlockFactory::New( SaucedacityProject &project )
+SampleBlockFactoryPtr SampleBlockFactory::New( TenacityProject &project )
 {
    auto &factory = installedFactory();
    if ( ! factory )

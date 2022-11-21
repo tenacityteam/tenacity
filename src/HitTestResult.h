@@ -13,7 +13,7 @@ Paul Licameli
 
 #include <memory>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Internat.h> // for TranslatableString
 
 class wxCursor;

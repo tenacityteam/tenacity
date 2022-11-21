@@ -23,7 +23,7 @@ Paul Licameli
 #include <cmath>
 
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/FFT.h>
 #include <lib-preferences/Prefs.h>
 

@@ -11,7 +11,7 @@
 
 #include "RealtimeEffectManager.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/EffectInterface.h>
 #include <lib-utility/MemoryX.h>
 

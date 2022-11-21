@@ -12,7 +12,7 @@
 #ifndef __AUDACITY_MODULEMANAGER_H__
 #define __AUDACITY_MODULEMANAGER_H__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/PluginInterface.h>
 #include <lib-strings/Identifier.h>
 #include <lib-utility/MemoryX.h>

@@ -259,7 +259,7 @@ public:
    }
 
    Result Click(
-      const TrackPanelMouseEvent &event, SaucedacityProject *pProject ) override
+      const TrackPanelMouseEvent &event, TenacityProject *pProject ) override
    {
       using namespace RefreshCode;
       const auto &permutation = mAdjuster.mPermutation;
@@ -311,7 +311,7 @@ public:
       return RefreshNone;
    }
 
-   Result Drag( const TrackPanelMouseEvent &event, SaucedacityProject * ) override
+   Result Drag( const TrackPanelMouseEvent &event, TenacityProject * ) override
    {
       using namespace RefreshCode;
       auto pView = mAdjuster.mwView.lock();
@@ -385,7 +385,7 @@ public:
    }
 
    HitTestPreview Preview(
-      const TrackPanelMouseState &state, SaucedacityProject * ) override
+      const TrackPanelMouseState &state, TenacityProject * ) override
    {
       static auto resizeCursor =
          ::MakeCursor(wxCURSOR_ARROW, SubViewsCursorXpm, 16, 16);
@@ -397,14 +397,14 @@ public:
    }
 
    Result Release(
-      const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      const TrackPanelMouseEvent &event, TenacityProject *pProject,
       wxWindow *pParent) override
    {
       ProjectHistory::Get( *pProject ).ModifyState( false );
       return RefreshCode::RefreshNone;
    }
 
-   Result Cancel( SaucedacityProject * ) override
+   Result Cancel( TenacityProject * ) override
    {
       mAdjuster.UpdateViews( true );
       return RefreshCode::RefreshAll;
@@ -485,7 +485,7 @@ public:
    }
    
    Result Click(
-      const TrackPanelMouseEvent &event, SaucedacityProject *pProject ) override
+      const TrackPanelMouseEvent &event, TenacityProject *pProject ) override
    {
       using namespace RefreshCode;
       const auto &permutation = mAdjuster.mPermutation;
@@ -540,7 +540,7 @@ public:
       return Neutral;
    }
 
-   Result Drag( const TrackPanelMouseEvent &event, SaucedacityProject * ) override
+   Result Drag( const TrackPanelMouseEvent &event, TenacityProject * ) override
    {
       using namespace RefreshCode;
       auto pView = mAdjuster.mwView.lock();
@@ -578,7 +578,7 @@ public:
    }
 
    HitTestPreview Preview(
-      const TrackPanelMouseState &state, SaucedacityProject * ) override
+      const TrackPanelMouseState &state, TenacityProject * ) override
    {
       static auto hoverCursor =
          ::MakeCursor(wxCURSOR_HAND, RearrangeCursorXpm, 16, 16);
@@ -592,14 +592,14 @@ public:
    }
 
    Result Release(
-      const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      const TrackPanelMouseEvent &event, TenacityProject *pProject,
       wxWindow *pParent) override
    {
       ProjectHistory::Get( *pProject ).ModifyState( false );
       return RefreshCode::RefreshNone;
    }
 
-   Result Cancel( SaucedacityProject * ) override
+   Result Cancel( TenacityProject * ) override
    {
       mAdjuster.UpdateViews( true );
       return RefreshCode::RefreshAll;
@@ -658,7 +658,7 @@ public:
    }
 
    Result CommitChanges(
-      const wxMouseEvent &event, SaucedacityProject *pProject, wxWindow *pParent)
+      const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
       override
    {
       ProjectHistory::Get( *pProject ).ModifyState( false );
@@ -670,7 +670,7 @@ public:
    }
 
    TranslatableString Tip(
-      const wxMouseState &state, SaucedacityProject &project) const override
+      const wxMouseState &state, TenacityProject &project) const override
    {
       return XO("Close sub-view");
    }
@@ -698,7 +698,7 @@ std::pair<
    std::vector<UIHandlePtr>
 > WaveTrackSubView::DoDetailedHitTest(
    const TrackPanelMouseState &state,
-   const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
+   const TenacityProject *pProject, int currentTool, bool bMultiTool,
    const std::shared_ptr<WaveTrack> &wt)
 {
    auto results = WaveTrackView::DoDetailedHitTest(
@@ -823,7 +823,7 @@ std::weak_ptr<WaveTrackView> WaveTrackSubView::GetWaveTrackView() const
 }
 
 auto WaveTrackSubView::GetMenuItems(
-   const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject )
+   const wxRect &rect, const wxPoint *pPosition, TenacityProject *pProject )
       -> std::vector<MenuItem>
 {
    const WaveClip *pClip = nullptr;
@@ -890,7 +890,7 @@ void WaveTrackView::CopyTo( Track &track ) const
 
 std::vector<UIHandlePtr> WaveTrackView::DetailedHitTest
 (const TrackPanelMouseState &st,
- const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
+ const TenacityProject *pProject, int currentTool, bool bMultiTool)
 {
    // should not come here any more, delegation to sub-view instead
    wxASSERT( false );
@@ -900,7 +900,7 @@ std::vector<UIHandlePtr> WaveTrackView::DetailedHitTest
 std::pair< bool, std::vector<UIHandlePtr> >
 WaveTrackView::DoDetailedHitTest
 (const TrackPanelMouseState &st,
- const SaucedacityProject *pProject, int currentTool, bool bMultiTool,
+ const TenacityProject *pProject, int currentTool, bool bMultiTool,
  const std::shared_ptr<WaveTrack> &pTrack,
  CommonTrackView &view)
 {
@@ -1078,7 +1078,7 @@ namespace {
    }
 }
 
-bool WaveTrackView::SelectNextClip(ViewInfo& viewInfo, SaucedacityProject* project, bool forward)
+bool WaveTrackView::SelectNextClip(ViewInfo& viewInfo, TenacityProject* project, bool forward)
 {
    //Iterates through clips in a looped manner
    auto waveTrack = std::dynamic_pointer_cast<WaveTrack>(FindTrack());
@@ -1192,7 +1192,7 @@ auto WaveTrackView::GetSubViews(const wxRect* rect) -> Refinement
    return results;
 }
 
-unsigned WaveTrackView::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
+unsigned WaveTrackView::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, TenacityProject* project)
 {
    unsigned result{ RefreshCode::RefreshNone };
    auto pTrack = static_cast<WaveTrack*>(FindTrack().get());
@@ -1239,7 +1239,7 @@ unsigned WaveTrackView::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWind
    return result;
 }
 
-unsigned WaveTrackView::KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
+unsigned WaveTrackView::KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, TenacityProject* project)
 {
    unsigned result{ RefreshCode::RefreshNone };
    if (auto delegate = mKeyEventDelegate.lock()) {
@@ -1260,7 +1260,7 @@ unsigned WaveTrackView::KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow*
    return result;
 }
 
-unsigned WaveTrackView::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
+unsigned WaveTrackView::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, TenacityProject* project)
 {
    unsigned result{ RefreshCode::RefreshNone };
    if (auto delegate = mKeyEventDelegate.lock()) {
@@ -1273,7 +1273,7 @@ unsigned WaveTrackView::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pP
    return result;
 }
 
-unsigned WaveTrackView::LoseFocus(SaucedacityProject *project)
+unsigned WaveTrackView::LoseFocus(TenacityProject *project)
 {
    unsigned result = RefreshCode::RefreshNone;
    if (auto delegate = mKeyEventDelegate.lock()) {
@@ -1286,7 +1286,7 @@ unsigned WaveTrackView::LoseFocus(SaucedacityProject *project)
    return result;
 }
 
-bool WaveTrackView::CutSelectedText(SaucedacityProject& project)
+bool WaveTrackView::CutSelectedText(TenacityProject& project)
 {
    for (auto channel : TrackList::Channels(FindTrack().get()))
    {
@@ -1301,7 +1301,7 @@ bool WaveTrackView::CutSelectedText(SaucedacityProject& project)
    return false;
 }
 
-bool WaveTrackView::CopySelectedText(SaucedacityProject& project)
+bool WaveTrackView::CopySelectedText(TenacityProject& project)
 {
    for (auto channel : TrackList::Channels(FindTrack().get()))
    {
@@ -1341,7 +1341,7 @@ bool WaveTrackView::HitTest(const WaveClip& clip, const ZoomInfo& viewInfo, cons
    return ClipHitTestArea(clip, viewInfo, viewRect).Contains(pos);
 }
 
-bool WaveTrackView::PasteText(SaucedacityProject& project)
+bool WaveTrackView::PasteText(TenacityProject& project)
 {
    for (auto channel : TrackList::Channels(FindTrack().get()))
    {
@@ -1356,7 +1356,7 @@ bool WaveTrackView::PasteText(SaucedacityProject& project)
    return false;
 }
 
-bool WaveTrackView::SelectAllText(SaucedacityProject& project)
+bool WaveTrackView::SelectAllText(TenacityProject& project)
 {
    for (auto channel : TrackList::Channels(FindTrack().get()))
    {

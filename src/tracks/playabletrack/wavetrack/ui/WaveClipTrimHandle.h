@@ -32,31 +32,31 @@ class WaveClipTrimHandle : public UIHandle
     Border  mTargetBorder{ Border::Left };
     double  mInitialBorderPosition{};
 
-    static HitTestPreview HitPreview(const SaucedacityProject*, bool unsafe);
+    static HitTestPreview HitPreview(const TenacityProject*, bool unsafe);
 
 public:
     WaveClipTrimHandle(const std::pair<double, double>& range, const std::vector<std::shared_ptr<WaveClip>>& clips, Border targetBorder);
 
     static UIHandlePtr HitAnywhere(std::weak_ptr<WaveClipTrimHandle>& holder,
         WaveTrack* waveTrack,
-        const SaucedacityProject* pProject,
+        const TenacityProject* pProject,
         const TrackPanelMouseState& state);
 
     static UIHandlePtr HitTest(std::weak_ptr<WaveClipTrimHandle>& holder,
-        WaveTrackView& view, const SaucedacityProject* pProject,
+        WaveTrackView& view, const TenacityProject* pProject,
         const TrackPanelMouseState& state);
 
-    HitTestPreview Preview(const TrackPanelMouseState& mouseState, SaucedacityProject* pProject) override;
+    HitTestPreview Preview(const TrackPanelMouseState& mouseState, TenacityProject* pProject) override;
 
     virtual Result Click
-    (const TrackPanelMouseEvent& event, SaucedacityProject* pProject) override;
+    (const TrackPanelMouseEvent& event, TenacityProject* pProject) override;
 
     virtual Result Drag
-    (const TrackPanelMouseEvent& event, SaucedacityProject* pProject) override;
+    (const TrackPanelMouseEvent& event, TenacityProject* pProject) override;
 
     virtual Result Release
-    (const TrackPanelMouseEvent& event, SaucedacityProject* pProject,
+    (const TrackPanelMouseEvent& event, TenacityProject* pProject,
         wxWindow* pParent) override;
 
-    virtual Result Cancel(SaucedacityProject* pProject) override;
+    virtual Result Cancel(TenacityProject* pProject) override;
 };

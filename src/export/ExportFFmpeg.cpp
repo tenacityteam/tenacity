@@ -20,7 +20,7 @@ function.
 
 #include "../ffmpeg/FFmpeg.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-ffmpeg-support/FFmpegFunctions.h>
 #include <lib-exceptions/InconsistencyException.h>
 #include <lib-files/wxFileNameWrapper.h>
@@ -105,7 +105,7 @@ public:
    bool CheckFileName(wxFileName &filename, int format = 0) override;
 
    /// Format initialization
-   bool Init(const char *shortname, SaucedacityProject *project, const Tags *metadata, int subformat);
+   bool Init(const char *shortname, TenacityProject *project, const Tags *metadata, int subformat);
 
    /// Writes metadata
    bool AddTags(const Tags *metadata);
@@ -141,7 +141,7 @@ public:
    ///\param metadata tags to write into file
    ///\param subformat index of export type
    ///\return true if export succeeded
-   ProgressResult Export(SaucedacityProject *project,
+   ProgressResult Export(TenacityProject *project,
       std::unique_ptr<ProgressDialog> &pDialog,
       unsigned channels,
       const wxFileNameWrapper &fName,
@@ -154,7 +154,7 @@ public:
 
 private:
    /// Codec initialization
-   bool InitCodecs(SaucedacityProject* project);
+   bool InitCodecs(TenacityProject* project);
 
    bool WritePacket(AVPacketWrapper& packet);
 
@@ -269,7 +269,7 @@ bool ExportFFmpeg::CheckFileName(wxFileName & WXUNUSED(filename), int WXUNUSED(f
    return result;
 }
 
-bool ExportFFmpeg::Init(const char *shortname, SaucedacityProject *project, const Tags *metadata, int subformat)
+bool ExportFFmpeg::Init(const char *shortname, TenacityProject *project, const Tags *metadata, int subformat)
 {
    // This will undo the acquisition of resources along any early exit path:
    auto deleter = [](ExportFFmpeg *This) {
@@ -420,7 +420,7 @@ bool ExportFFmpeg::CheckSampleRate(int rate, int lowrate, int highrate, const in
    return false;
 }
 
-bool ExportFFmpeg::InitCodecs(SaucedacityProject *project)
+bool ExportFFmpeg::InitCodecs(TenacityProject *project)
 {
    const auto &settings = ProjectSettings::Get( *project );
    std::unique_ptr<AVCodecWrapper> codec;
@@ -1104,7 +1104,7 @@ bool ExportFFmpeg::EncodeAudioFrame(int16_t *pFrame, size_t frameSize)
 }
 
 
-ProgressResult ExportFFmpeg::Export(SaucedacityProject *project,
+ProgressResult ExportFFmpeg::Export(TenacityProject *project,
    std::unique_ptr<ProgressDialog> &pDialog,
    unsigned channels, const wxFileNameWrapper &fName,
    bool selectionOnly, double t0, double t1,

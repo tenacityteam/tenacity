@@ -23,27 +23,27 @@ Paul Licameli split from ProjectManager.cpp
 #include "toolbars/SpectralSelectionBar.h"
 #include "toolbars/TimeToolBar.h"
 
-static SaucedacityProject::AttachedObjects::RegisteredFactory
+static TenacityProject::AttachedObjects::RegisteredFactory
 sProjectSelectionManagerKey {
-   []( SaucedacityProject &project ) {
+   []( TenacityProject &project ) {
       return std::make_shared< ProjectSelectionManager >( project );
    }
 };
 
 ProjectSelectionManager &ProjectSelectionManager::Get(
-   SaucedacityProject &project )
+   TenacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectSelectionManager >(
       sProjectSelectionManagerKey );
 }
 
 const ProjectSelectionManager &ProjectSelectionManager::Get(
-   const SaucedacityProject &project )
+   const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-ProjectSelectionManager::ProjectSelectionManager( SaucedacityProject &project )
+ProjectSelectionManager::ProjectSelectionManager( TenacityProject &project )
    : mProject{ project }
 {
 }

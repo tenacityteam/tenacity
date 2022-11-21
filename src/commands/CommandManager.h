@@ -14,7 +14,7 @@
 
 #include "Identifier.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-registries/ClientData.h>
 #include <lib-registries/Registry.h>
@@ -50,7 +50,7 @@ using CommandKeyHash = std::unordered_map<NormalizedKeyString, CommandListEntry*
 using CommandNameHash = std::unordered_map<CommandID, CommandListEntry*>;
 using CommandNumericIDHash = std::unordered_map<int, CommandListEntry*>;
 
-class SaucedacityProject;
+class TenacityProject;
 class CommandContext;
 
 class SAUCEDACITY_DLL_API CommandManager final
@@ -58,8 +58,8 @@ class SAUCEDACITY_DLL_API CommandManager final
    , public ClientData::Base
 {
  public:
-   static CommandManager &Get( SaucedacityProject &project );
-   static const CommandManager &Get( const SaucedacityProject &project );
+   static CommandManager &Get( TenacityProject &project );
+   static const CommandManager &Get( const TenacityProject &project );
 
    // Type of a function that can intercept menu item handling.
    // If it returns true, bypass the usual dipatch of commands.
@@ -91,7 +91,7 @@ class SAUCEDACITY_DLL_API CommandManager final
    void EndMenu();
 
    // type of a function that determines checkmark state
-   using CheckFn = std::function< bool(SaucedacityProject&) >;
+   using CheckFn = std::function< bool(TenacityProject&) >;
 
    // For specifying unusual arguments in AddItem
    struct SAUCEDACITY_DLL_API Options
@@ -172,7 +172,7 @@ class SAUCEDACITY_DLL_API CommandManager final
                     CommandFlag flags,
                     bool bIsEffect = false);
 
-   void AddItem(SaucedacityProject &project,
+   void AddItem(TenacityProject &project,
                 const CommandID & name,
                 const TranslatableString &label_in,
                 CommandHandlerFinder finder,
@@ -212,8 +212,8 @@ class SAUCEDACITY_DLL_API CommandManager final
 
    // "permit" allows filtering even if the active window isn't a child of the project.
    // Lyrics and MixerTrackCluster classes use it.
-   bool FilterKeyEvent(SaucedacityProject *project, const wxKeyEvent & evt, bool permit = false);
-   bool HandleMenuID(SaucedacityProject &project, int id, CommandFlag flags, bool alwaysEnabled);
+   bool FilterKeyEvent(TenacityProject *project, const wxKeyEvent & evt, bool permit = false);
+   bool HandleMenuID(TenacityProject &project, int id, CommandFlag flags, bool alwaysEnabled);
    void RegisterLastAnalyzer(const CommandContext& context);
    void RegisterLastTool(const CommandContext& context);
    void DoRepeatProcess(const CommandContext& context, int);
@@ -232,7 +232,7 @@ class SAUCEDACITY_DLL_API CommandManager final
    // Accessing
    //
 
-   TranslatableStrings GetCategories( SaucedacityProject& );
+   TranslatableStrings GetCategories( TenacityProject& );
    void GetAllCommandNames(CommandIDs &names, bool includeMultis) const;
    void GetAllCommandLabels(
       TranslatableStrings &labels, std::vector<bool> &vExcludeFromMacros,
@@ -310,7 +310,7 @@ private:
    // Executing commands
    //
 
-   bool HandleCommandEntry(SaucedacityProject &project,
+   bool HandleCommandEntry(TenacityProject &project,
       const CommandListEntry * entry, CommandFlag flags,
       bool alwaysEnabled, const wxEvent * evt = nullptr,
       const CommandContext *pGivenContext = nullptr );
@@ -335,7 +335,7 @@ private:
 public:
    wxMenu * CurrentMenu() const;
 
-   void UpdateCheckmarks( SaucedacityProject &project );
+   void UpdateCheckmarks( TenacityProject &project );
 
    //! Format a string appropriate for insertion in a menu
    /*!
@@ -407,9 +407,9 @@ private:
 
 struct ToolbarMenuVisitor : MenuVisitor
 {
-   explicit ToolbarMenuVisitor( SaucedacityProject &p ) : project{ p } {}
-   operator SaucedacityProject & () const { return project; }
-   SaucedacityProject &project;
+   explicit ToolbarMenuVisitor( TenacityProject &p ) : project{ p } {}
+   operator TenacityProject & () const { return project; }
+   TenacityProject &project;
 };
 
 // Define items that populate tables that specifically describe menu trees
@@ -564,7 +564,7 @@ namespace MenuTable {
    // adding any number of items, not using the CommandManager
    struct SpecialItem final : SingleItem
    {
-      using Appender = std::function< void( SaucedacityProject&, wxMenu& ) >;
+      using Appender = std::function< void( TenacityProject&, wxMenu& ) >;
 
       explicit SpecialItem( const Identifier &internalName, const Appender &fn_ )
       : SingleItem{ internalName }

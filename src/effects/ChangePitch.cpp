@@ -35,7 +35,7 @@ the pitch without changing the tempo.
 #include <wx/spinctrl.h>
 #include <wx/valtext.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/Spectrum.h>
 
 #include "../PitchName.h"

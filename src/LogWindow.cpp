@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 LogWindow.cpp
 
-Paul Licameli split from SaucedacityLogger.cpp
+Paul Licameli split from TenacityLogger.cpp
 
 **********************************************************************/
 #include "LogWindow.h"
@@ -17,9 +17,9 @@ Paul Licameli split from SaucedacityLogger.cpp
 #include <wx/textctrl.h>
 #include <wx/weakref.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
-#include <lib-files/SaucedacityLogger.h>
+#include <lib-files/TenacityLogger.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Internat.h>
 #include <lib-utility/MemoryX.h>
@@ -28,7 +28,7 @@ Paul Licameli split from SaucedacityLogger.cpp
 #include "SelectFile.h"
 #include "shuttle/ShuttleGui.h"
 
-#include "../images/SaucedacityLogoAlpha.xpm"
+#include "../images/TenacityLogoAlpha.xpm"
 
 // If wxLogWindow is used and initialized before the Mac's "root" window, then
 //     Audacity may crash when terminating.  It's not fully understood why this occurs
@@ -71,7 +71,7 @@ void LogWindow::Show(bool show)
    }
 
    // If the frame already exists, refresh its contents and show it
-   auto pLogger = SaucedacityLogger::Get();
+   auto pLogger = TenacityLogger::Get();
    if (sFrame) {
       if (!sFrame->IsShown() && sText) {
          if (pLogger)
@@ -86,7 +86,7 @@ void LogWindow::Show(bool show)
 
    // This is the first use, so create the frame
    Destroy_ptr<wxFrame> frame
-      { safenew wxFrame(NULL, wxID_ANY, _("Saucedacity Log")) };
+      { safenew wxFrame(NULL, wxID_ANY, _("Tenacity Log")) };
    frame->SetName(frame->GetTitle());
    frame->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
 
@@ -94,9 +94,9 @@ void LogWindow::Show(bool show)
    {
 #if !defined(__WXMAC__) && !defined(__WXX11__)
 #if defined(__WXMSW__)
-      wxIcon ic{wxICON(SaucedacityLogo)};
+      wxIcon ic{wxICON(TenacityLogo)};
 #elif defined(__WXGTK__)
-      wxIcon ic{wxICON(SaucedacityLogoAlpha)};
+      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
       wxIcon ic{};
       ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
@@ -159,7 +159,7 @@ void LogWindow::Show(bool show)
 
    if (pLogger) {
       pLogger->SetListener([]{
-         if (auto pLogger = SaucedacityLogger::Get()) {
+         if (auto pLogger = TenacityLogger::Get()) {
             if (sFrame && sFrame->IsShown()) {
                if (sText)
                   sText->ChangeValue(pLogger->GetBuffer());
@@ -195,7 +195,7 @@ void OnClose(wxCommandEvent & WXUNUSED(e))
 
 void OnClear(wxCommandEvent & WXUNUSED(e))
 {
-   auto pLogger = SaucedacityLogger::Get();
+   auto pLogger = TenacityLogger::Get();
    if (pLogger)
       pLogger->ClearLog();
 }

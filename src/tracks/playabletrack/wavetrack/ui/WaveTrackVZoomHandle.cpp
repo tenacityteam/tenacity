@@ -80,7 +80,7 @@ HitTestPreview WaveTrackVZoomHandle::HitPreview(const wxMouseState &state)
 }
 
 UIHandle::Result WaveTrackVZoomHandle::DoDrag(
-   const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+   const TrackPanelMouseEvent &evt, TenacityProject *pProject,
    const int zoomStart, int &zoomEnd)
 {
    using namespace RefreshCode;
@@ -95,7 +95,7 @@ UIHandle::Result WaveTrackVZoomHandle::DoDrag(
 }
 
 UIHandle::Result WaveTrackVZoomHandle::DoRelease(
-   const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+   const TrackPanelMouseEvent &evt, TenacityProject *pProject,
    wxWindow *pParent, WaveTrack *pTrack, const wxRect &rect,
    DoZoomFunction doZoom, PopupMenuTable &table,
    int zoomStart, int zoomEnd )

@@ -33,7 +33,7 @@ namespace
    struct InitMenuData
    {
    public:
-      SaucedacityProject &project;
+      TenacityProject &project;
       NoteTrack *pTrack;
       wxRect rect;
       unsigned result;
@@ -58,7 +58,7 @@ NoteTrackVZoomHandle::NoteTrackVZoomHandle
 {
 }
 
-void NoteTrackVZoomHandle::Enter(bool, SaucedacityProject *)
+void NoteTrackVZoomHandle::Enter(bool, TenacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -111,7 +111,7 @@ bool NoteTrackVZoomHandle::HandlesRightClick()
 }
 
 UIHandle::Result NoteTrackVZoomHandle::Click
-(const TrackPanelMouseEvent &, SaucedacityProject *)
+(const TrackPanelMouseEvent &, TenacityProject *)
 {
    // change note track to zoom like audio track
    //          mpTrack->StartVScroll();
@@ -120,7 +120,7 @@ UIHandle::Result NoteTrackVZoomHandle::Click
 }
 
 UIHandle::Result NoteTrackVZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -138,7 +138,7 @@ UIHandle::Result NoteTrackVZoomHandle::Drag
 }
 
 HitTestPreview NoteTrackVZoomHandle::Preview
-(const TrackPanelMouseState &st, SaucedacityProject *)
+(const TrackPanelMouseState &st, TenacityProject *)
 {
    return HitPreview(st.state);
 }
@@ -250,7 +250,7 @@ void NoteTrackVRulerMenuTable::OnZoom( int iZoomCode ){
       mpData->pTrack->ShiftNoteRange(-12);
       break;
    }
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
    ProjectHistory::Get( *project ).ModifyState(false);
    using namespace RefreshCode;
    mpData->result = UpdateVRuler | RefreshAll;
@@ -293,7 +293,7 @@ END_POPUP_MENU()
 
 
 UIHandle::Result NoteTrackVZoomHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
  wxWindow *pParent)
 {
    using namespace RefreshCode;
@@ -359,7 +359,7 @@ UIHandle::Result NoteTrackVZoomHandle::Release
    return RefreshAll;
 }
 
-UIHandle::Result NoteTrackVZoomHandle::Cancel(SaucedacityProject *WXUNUSED(pProject))
+UIHandle::Result NoteTrackVZoomHandle::Cancel(TenacityProject *WXUNUSED(pProject))
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.

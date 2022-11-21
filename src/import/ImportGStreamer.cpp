@@ -246,7 +246,7 @@ public:
 
    ///! Probes the file and opens it if appropriate
    std::unique_ptr<ImportFileHandle> Open(
-      const wxString &Filename, SaucedacityProject*) override;
+      const wxString &Filename, TenacityProject*) override;
 };
 
 // ============================================================================
@@ -259,7 +259,7 @@ public:
 static
 Importer::RegisteredImportPlugin{ "GStreamer",
    []() -> std::unique_ptr< ImportPlugin > {
-   wxLogMessage(_TS("Saucedacity is built against GStreamer version %d.%d.%d-%d"),
+   wxLogMessage(_TS("Tenacity is built against GStreamer version %d.%d.%d-%d"),
                 GST_VERSION_MAJOR,
                 GST_VERSION_MINOR,
                 GST_VERSION_MICRO,
@@ -408,7 +408,7 @@ GStreamerImportPlugin::GetSupportedExtensions()
 // ----------------------------------------------------------------------------
 // Open the file and return an importer "file handle"
 std::unique_ptr<ImportFileHandle> GStreamerImportPlugin::Open(
-   const wxString &filename, SaucedacityProject*)
+   const wxString &filename, TenacityProject*)
 {
    auto handle = std::make_unique<GStreamerImportFileHandle>(filename);
 

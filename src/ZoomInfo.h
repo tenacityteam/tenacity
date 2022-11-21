@@ -13,7 +13,7 @@
 
 #include "ClientData.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h> // to inherit
 
 #ifdef __GNUC__
@@ -22,7 +22,7 @@
 #define CONST const
 #endif
 
-class SaucedacityProject;
+class TenacityProject;
 
 // See big pictorial comment in TrackPanel.cpp for explanation of these numbers
 enum : int {

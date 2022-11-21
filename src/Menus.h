@@ -14,7 +14,7 @@
 
 #include <wx/string.h> // member variable
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "ClientData.h"
@@ -22,7 +22,7 @@
 
 class wxArrayString;
 class wxCommandEvent;
-class SaucedacityProject;
+class TenacityProject;
 class CommandContext;
 class CommandManager;
 class Track;
@@ -42,8 +42,8 @@ class SAUCEDACITY_DLL_API MenuCreator
 public:
    MenuCreator();
    ~MenuCreator();
-   void CreateMenusAndCommands(SaucedacityProject &project);
-   void RebuildMenuBar(SaucedacityProject &project);
+   void CreateMenusAndCommands(TenacityProject &project);
+   void RebuildMenuBar(TenacityProject &project);
 
    static void RebuildAllMenuBars();
 
@@ -80,19 +80,19 @@ class SAUCEDACITY_DLL_API MenuManager final
 {
 public:
 
-   static MenuManager &Get( SaucedacityProject &project );
-   static const MenuManager &Get( const SaucedacityProject &project );
+   static MenuManager &Get( TenacityProject &project );
+   static const MenuManager &Get( const TenacityProject &project );
 
    explicit
-   MenuManager( SaucedacityProject &project );
+   MenuManager( TenacityProject &project );
    MenuManager( const MenuManager & ) = delete;
    MenuManager &operator=( const MenuManager & ) = delete;
    ~MenuManager();
 
    static void Visit( ToolbarMenuVisitor &visitor );
 
-   static void ModifyUndoMenuItems(SaucedacityProject &project);
-   static void ModifyToolbarMenus(SaucedacityProject &project);
+   static void ModifyUndoMenuItems(TenacityProject &project);
+   static void ModifyToolbarMenus(TenacityProject &project);
    // Calls ModifyToolbarMenus() on all projects
    static void ModifyAllProjectToolbarMenus();
 
@@ -118,7 +118,7 @@ private:
 
    void OnUndoRedo( wxCommandEvent &evt );
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 
 public:
    // 0 is grey out, 1 is Autoselect, 2 is Give warnings.

@@ -33,7 +33,7 @@ public:
    struct InitMenuData
    {
    public:
-      SaucedacityProject &project;
+      TenacityProject &project;
       Track *pTrack;
       wxWindow *pParent;
       unsigned result;
@@ -51,11 +51,11 @@ protected:
    // still marked pure virtual
    virtual std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *) override = 0;
+       const TenacityProject *) override = 0;
 
    unsigned DoContextMenu
       (const wxRect &rect, wxWindow *pParent, const wxPoint *pPosition,
-       SaucedacityProject *pProject) override;
+       TenacityProject *pProject) override;
    virtual PopupMenuTable *GetMenuExtension(Track *pTrack) = 0;
 
    // TrackPanelDrawable implementation

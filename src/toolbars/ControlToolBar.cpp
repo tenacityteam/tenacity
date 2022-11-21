@@ -54,7 +54,7 @@
 #include <wx/tooltip.h>
 #include <wx/datetime.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -112,7 +112,7 @@ static const TranslatableString
 // Note that we use the legacy "Control" string as the section because this
 // gets written to prefs and cannot be changed in prefs to maintain backwards
 // compatibility
-ControlToolBar::ControlToolBar( SaucedacityProject &project )
+ControlToolBar::ControlToolBar( TenacityProject &project )
 : ToolBar(project, TransportBarID, XO("Transport"), wxT("Control"))
 {
    gPrefs->Read(wxT("/GUI/ErgonomicTransportButtons"), &mErgonomicTransportButtons, true);
@@ -126,23 +126,23 @@ ControlToolBar::~ControlToolBar()
 }
 
 
-ControlToolBar *ControlToolBar::Find( SaucedacityProject &project )
+ControlToolBar *ControlToolBar::Find( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return static_cast<ControlToolBar*>(
       toolManager.GetToolBar(TransportBarID) );
 }
 
-ControlToolBar &ControlToolBar::Get( SaucedacityProject &project )
+ControlToolBar &ControlToolBar::Get( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<ControlToolBar*>(
       toolManager.GetToolBar(TransportBarID) );
 }
 
-const ControlToolBar &ControlToolBar::Get( const SaucedacityProject &project )
+const ControlToolBar &ControlToolBar::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject&>( project )) ;
+   return Get( const_cast<TenacityProject&>( project )) ;
 }
 
 void ControlToolBar::Create(wxWindow * parent)
@@ -479,7 +479,7 @@ void ControlToolBar::Repaint( wxDC *dc )
 
 void ControlToolBar::EnableDisableButtons()
 {
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    auto &projectAudioManager = ProjectAudioManager::Get( mProject );
    bool canStop = projectAudioManager.CanStopAudioStream();
 
@@ -704,7 +704,7 @@ void ControlToolBar::OnRewind(wxCommandEvent & WXUNUSED(evt))
    mRewind->PushDown();
    mRewind->PopUp();
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
    {
       ProjectAudioManager::Get( *p ).StopIfPaused();
       ProjectWindow::Get( *p ).Rewind(mRewind->WasShiftDown());
@@ -716,7 +716,7 @@ void ControlToolBar::OnFF(wxCommandEvent & WXUNUSED(evt))
    mFF->PushDown();
    mFF->PopUp();
 
-   SaucedacityProject *p = &mProject;
+   TenacityProject *p = &mProject;
 
    {
       ProjectAudioManager::Get( *p ).StopIfPaused();
@@ -727,7 +727,7 @@ void ControlToolBar::OnFF(wxCommandEvent & WXUNUSED(evt))
 // works out the width of the field in the status bar needed for the state (eg play, record pause)
 static ProjectStatus::RegisteredStatusWidthFunction
 registeredStatusWidthFunction{
-   []( const SaucedacityProject &, StatusBarField field )
+   []( const TenacityProject &, StatusBarField field )
       -> ProjectStatus::StatusWidthResult
    {
       if ( field == stateStatusBarField ) {
@@ -843,7 +843,7 @@ void ControlToolBar::StopScrolling()
 }
 
 static RegisteredToolbarFactory factory{ TransportBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew ControlToolBar{ project } }; }
 };
 

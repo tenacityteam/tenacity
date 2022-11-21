@@ -39,7 +39,7 @@ enum teThemeType
    themeLight,
    themeDark,
    themeDefault,
-   themeSaucedacity,
+   themeTenacity,
    themeAudacity,
    themeAudacityClassic,
    themeHiContrast,

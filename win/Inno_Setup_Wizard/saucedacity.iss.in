@@ -9,7 +9,7 @@
 
 ; This requires that the ISS Preprocessor be installed
 
-#define AppExe "Package\saucedacity.exe" 
+#define AppExe "Package\tenacity.exe" 
 #define AppMajor ""
 #define AppMinor ""
 #define AppRev ""
@@ -24,10 +24,10 @@ Filename: "{app}\unins*.*";
 
 [Setup]
 ; compiler-related directives
-OutputBaseFilename=saucedacity-win-{#AppVersion}-@INSTALLER_SUFFIX@
+OutputBaseFilename=tenacity-win-{#AppVersion}-@INSTALLER_SUFFIX@
 
-WizardImageFile=".\saucedacity_InnoWizardImage.bmp"
-WizardSmallImageFile=".\saucedacity_InnoWizardSmallImage.bmp"
+WizardImageFile=".\tenacity_InnoWizardImage.bmp"
+WizardSmallImageFile=".\tenacity_InnoWizardSmallImage.bmp"
 
 SolidCompression=yes
 
@@ -41,9 +41,9 @@ AppVerName=Saucedacity {#AppVersion}
 ; Specify AppVersion as well, so it appears in the Add/Remove Programs entry. 
 AppVersion={#AppVersion}
 AppPublisher="Saucedacity Team"
-AppPublisherURL=https://saucedacity.github.io
-AppSupportURL=https://github.com/saucedacity/saucedacity/issues
-AppUpdatesURL=https://github.com/saucedacity/saucedacity/releases
+AppPublisherURL=https://tenacity.github.io
+AppSupportURL=https://github.com/tenacity/tenacity/issues
+AppUpdatesURL=https://github.com/tenacity/tenacity/releases
 ChangesAssociations=yes
 @INSTALLER_X64_MODE@
 
@@ -62,10 +62,10 @@ DisableDirPage=no
 ; Always warn if dir exists, because we'll overwrite previous Saucedacity.
 DirExistsWarning=yes
 DisableProgramGroupPage=yes
-UninstallDisplayIcon="{app}\saucedacity.exe"
+UninstallDisplayIcon="{app}\tenacity.exe"
 
 ; No longer force them to accept the license, just display it.   LicenseFile=..\LICENSE.txt
-InfoBeforeFile=".\saucedacity_InnoWizard_InfoBefore.rtf"
+InfoBeforeFile=".\tenacity_InnoWizard_InfoBefore.rtf"
 InfoAfterFile=Additional\README.md
 
 ; We no longer produce new ANSI builds. 
@@ -75,7 +75,7 @@ InfoAfterFile=Additional\README.md
 ;   MinVersion=4.0,5.0
 
 ; cosmetic-related directives
-SetupIconFile="Additional\saucedacity.ico"
+SetupIconFile="Additional\tenacity.ico"
 
 @SIGN_TOOL@
 
@@ -116,8 +116,8 @@ Source: "Package\plug-ins\*"; DestDir: "{app}\Plug-Ins\"; Flags: ignoreversion
 Source: "Package\modules\*"; DestDir: "{app}\modules\"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{commonprograms}\Saucedacity"; Filename: "{app}\saucedacity.exe"
-Name: "{commondesktop}\Saucedacity"; Filename: "{app}\saucedacity.exe"; Tasks: desktopicon
+Name: "{commonprograms}\Saucedacity"; Filename: "{app}\tenacity.exe"
+Name: "{commondesktop}\Saucedacity"; Filename: "{app}\tenacity.exe"; Tasks: desktopicon
 
 [InstallDelete]
 
@@ -157,17 +157,17 @@ Type: files; Name: "{app}\Plug-Ins\clicktrack.ny"
 ; Root: HKCR; Subkey: ".AUP"; ValueType: string; ValueData: "Audacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey; Tasks: associate_aup
 Root: HKCR; Subkey: ".AUP"; ValueType: string; ValueData: "Audacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey;
 Root: HKCR; Subkey: ".AUP3"; ValueType: string; ValueData: "Audacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Audacity.Project\OpenWithList\saucedacity.exe"; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKCR; Subkey: "Audacity.Project\OpenWithList\tenacity.exe"; Flags: createvalueifdoesntexist uninsdeletekey;
 Root: HKCR; Subkey: "Audacity.Project"; ValueType: string; ValueData: "Audacity Project File"; Flags: createvalueifdoesntexist uninsdeletekey;
 Root: HKCR; Subkey: "Audacity.Project\shell"; ValueType: string; ValueData: ""; Flags: createvalueifdoesntexist uninsdeletekey;
 Root: HKCR; Subkey: "Audacity.Project\shell\open"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Audacity.Project\shell\open\command"; ValueType: string; ValueData: """{app}\saucedacity.exe"" ""%1"""; Flags: uninsdeletekey;
+Root: HKCR; Subkey: "Audacity.Project\shell\open\command"; ValueType: string; ValueData: """{app}\tenacity.exe"" ""%1"""; Flags: uninsdeletekey;
 
 ;The following would allow a following 'help' installer to know where to put the 'help' files.
 ;Root: HKCR; Subkey: "Audacity.Project\Path";  ValueType: string; ValueData: {app}; Flags: createvalueifdoesntexist uninsdeletekey;
 
 [Run]
-Filename: "{app}\saucedacity.exe"; Description: "{cm:LaunchProgram,Saucedacity}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Saucedacity}"; Flags: nowait postinstall skipifsilent
 
 [Languages]
 ; NOTE: "0" in locale name will be translated to "@" when read by Saucedacity.

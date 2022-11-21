@@ -15,10 +15,10 @@ Paul Licameli split from ProjectManager.cpp
 #include "toolbars/SelectionBarListener.h" // to inherit
 #include "toolbars/SpectralSelectionBarListener.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterfaceSymbol.h>
 
-class SaucedacityProject;
+class TenacityProject;
 
 class SAUCEDACITY_DLL_API ProjectSelectionManager final
    : public ClientData::Base
@@ -27,10 +27,10 @@ class SAUCEDACITY_DLL_API ProjectSelectionManager final
    , public TimeToolBarListener
 {
 public:
-   static ProjectSelectionManager &Get( SaucedacityProject &project );
-   static const ProjectSelectionManager &Get( const SaucedacityProject &project );
+   static ProjectSelectionManager &Get( TenacityProject &project );
+   static const ProjectSelectionManager &Get( const TenacityProject &project );
 
-   explicit ProjectSelectionManager( SaucedacityProject &project );
+   explicit ProjectSelectionManager( TenacityProject &project );
    ProjectSelectionManager( const ProjectSelectionManager & ) = delete;
    ProjectSelectionManager &operator=(
       const ProjectSelectionManager & ) = delete;
@@ -61,7 +61,7 @@ public:
 private:
    bool SnapSelection();
 
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
 };
 
 #endif

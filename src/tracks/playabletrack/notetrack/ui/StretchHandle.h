@@ -63,26 +63,26 @@ public:
 
    static UIHandlePtr HitTest
       (std::weak_ptr<StretchHandle> &holder,
-       const TrackPanelMouseState &state, const SaucedacityProject *pProject,
+       const TrackPanelMouseState &state, const TenacityProject *pProject,
        const std::shared_ptr<NoteTrack> &pTrack );
 
    virtual ~StretchHandle();
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
       wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 
@@ -91,7 +91,7 @@ private:
    static double GetT1(const Track &track, const ViewInfo &viewInfo);
 
    void Stretch
-      (SaucedacityProject *pProject, int mouseXCoordinate, int trackLeftEdge, Track *pTrack);
+      (TenacityProject *pProject, int mouseXCoordinate, int trackLeftEdge, Track *pTrack);
 
    std::shared_ptr<NoteTrack> mpTrack{};
    int mLeftEdge{ -1 };

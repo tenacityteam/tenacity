@@ -89,21 +89,21 @@ public:
    {
    }
 
-    Result Click(const TrackPanelMouseEvent& event, SaucedacityProject* project) override
+    Result Click(const TrackPanelMouseEvent& event, TenacityProject* project) override
     {
         if (mHelper->OnClick(event.event, project))
             return RefreshCode::RefreshCell;
         return RefreshCode::RefreshNone;
     }
 
-    Result Drag(const TrackPanelMouseEvent& event, SaucedacityProject* project) override
+    Result Drag(const TrackPanelMouseEvent& event, TenacityProject* project) override
     {
         if (mHelper->OnDrag(event.event, project))
             return RefreshCode::RefreshCell;
         return RefreshCode::RefreshNone;
     }
 
-    HitTestPreview Preview(const TrackPanelMouseState& state, SaucedacityProject* pProject) override
+    HitTestPreview Preview(const TrackPanelMouseState& state, TenacityProject* pProject) override
     {
         static auto ibeamCursor =
             ::MakeCursor(wxCURSOR_IBEAM, IBeamCursorXpm, 17, 16);
@@ -113,14 +113,14 @@ public:
         };
     }
 
-    Result Release(const TrackPanelMouseEvent& event, SaucedacityProject* project, wxWindow*) override
+    Result Release(const TrackPanelMouseEvent& event, TenacityProject* project, wxWindow*) override
     {
         if (mHelper->OnRelease(event.event, project))
             return RefreshCode::RefreshCell;
         return RefreshCode::RefreshNone;
     }
 
-    Result Cancel(SaucedacityProject* project) override
+    Result Cancel(TenacityProject* project) override
     {
         if (mHelper)
         {
@@ -142,7 +142,7 @@ WaveTrackAffordanceControls::WaveTrackAffordanceControls(const std::shared_ptr<T
     }
 }
 
-std::vector<UIHandlePtr> WaveTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject)
+std::vector<UIHandlePtr> WaveTrackAffordanceControls::HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject)
 {
     std::vector<UIHandlePtr> results;
 
@@ -262,7 +262,7 @@ void WaveTrackAffordanceControls::Draw(TrackPanelDrawingContext& context, const 
     }
 }
 
-bool WaveTrackAffordanceControls::StartEditClipName(SaucedacityProject* project)
+bool WaveTrackAffordanceControls::StartEditClipName(TenacityProject* project)
 {
     if (auto lock = mFocusClip.lock())
     {
@@ -319,7 +319,7 @@ auto FindAffordance(WaveTrack &track)
 }
 
 std::pair<WaveTrack *, WaveClip *>
-SelectedClipOfFocusedTrack(SaucedacityProject &project)
+SelectedClipOfFocusedTrack(TenacityProject &project)
 {
    // Note that TrackFocus may change its state as a side effect, defining
    // a track focus if there was none
@@ -343,10 +343,10 @@ SelectedClipOfFocusedTrack(SaucedacityProject &project)
 const ReservedCommandFlag &SomeClipIsSelectedFlag()
 {
    static ReservedCommandFlag flag{
-      [](const SaucedacityProject &project){
+      [](const TenacityProject &project){
          return nullptr !=
             // const_cast isn't pretty but not harmful in this case
-            SelectedClipOfFocusedTrack(const_cast<SaucedacityProject&>(project))
+            SelectedClipOfFocusedTrack(const_cast<TenacityProject&>(project))
                .second;
       }
    };
@@ -355,7 +355,7 @@ const ReservedCommandFlag &SomeClipIsSelectedFlag()
 
 }
 
-unsigned WaveTrackAffordanceControls::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
+unsigned WaveTrackAffordanceControls::CaptureKey(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, TenacityProject* project)
 {
     if (!mTextEditHelper 
        || !mTextEditHelper->CaptureKey(event.GetKeyCode(), event.GetModifiers()))
@@ -365,7 +365,7 @@ unsigned WaveTrackAffordanceControls::CaptureKey(wxKeyEvent& event, ViewInfo& vi
 }
 
 
-unsigned WaveTrackAffordanceControls::KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow*, SaucedacityProject* project)
+unsigned WaveTrackAffordanceControls::KeyDown(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow*, TenacityProject* project)
 {
     auto keyCode = event.GetKeyCode();
     
@@ -380,19 +380,19 @@ unsigned WaveTrackAffordanceControls::KeyDown(wxKeyEvent& event, ViewInfo& viewI
     return RefreshCode::RefreshNone;
 }
 
-unsigned WaveTrackAffordanceControls::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, SaucedacityProject* project)
+unsigned WaveTrackAffordanceControls::Char(wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent, TenacityProject* project)
 {
     if (mTextEditHelper && mTextEditHelper->OnChar(event.GetUnicodeKey(), project))
         return RefreshCode::RefreshCell;
     return RefreshCode::RefreshNone;
 }
 
-unsigned WaveTrackAffordanceControls::LoseFocus(SaucedacityProject *)
+unsigned WaveTrackAffordanceControls::LoseFocus(TenacityProject *)
 {
    return ExitTextEditing();
 }
 
-void WaveTrackAffordanceControls::OnTextEditFinished(SaucedacityProject* project, const wxString& text)
+void WaveTrackAffordanceControls::OnTextEditFinished(TenacityProject* project, const wxString& text)
 {
     if (auto lock = mEditedClip.lock())
     {
@@ -406,17 +406,17 @@ void WaveTrackAffordanceControls::OnTextEditFinished(SaucedacityProject* project
     ResetClipNameEdit();
 }
 
-void WaveTrackAffordanceControls::OnTextEditCancelled(SaucedacityProject* project)
+void WaveTrackAffordanceControls::OnTextEditCancelled(TenacityProject* project)
 {
     ResetClipNameEdit();
 }
 
-void WaveTrackAffordanceControls::OnTextModified(SaucedacityProject* project, const wxString& text)
+void WaveTrackAffordanceControls::OnTextModified(TenacityProject* project, const wxString& text)
 {
     //Nothing to do
 }
 
-void WaveTrackAffordanceControls::OnTextContextMenu(SaucedacityProject* project, const wxPoint& position)
+void WaveTrackAffordanceControls::OnTextContextMenu(TenacityProject* project, const wxPoint& position)
 {
 }
 
@@ -448,7 +448,7 @@ unsigned WaveTrackAffordanceControls::ExitTextEditing()
 }
 
 bool WaveTrackAffordanceControls::StartEditNameOfMatchingClip(
-    SaucedacityProject &project, std::function<bool(WaveClip&)> test )
+    TenacityProject &project, std::function<bool(WaveClip&)> test )
 {
     //Attempts to invoke name editing if there is a selected clip
     auto waveTrack = std::dynamic_pointer_cast<WaveTrack>(FindTrack());
@@ -466,7 +466,7 @@ bool WaveTrackAffordanceControls::StartEditNameOfMatchingClip(
     return false;
 }
 
-bool WaveTrackAffordanceControls::OnTextCopy(SaucedacityProject& project)
+bool WaveTrackAffordanceControls::OnTextCopy(TenacityProject& project)
 {
    if (mTextEditHelper)
    {
@@ -476,7 +476,7 @@ bool WaveTrackAffordanceControls::OnTextCopy(SaucedacityProject& project)
    return false;
 }
 
-bool WaveTrackAffordanceControls::OnTextCut(SaucedacityProject& project)
+bool WaveTrackAffordanceControls::OnTextCut(TenacityProject& project)
 {
    if (mTextEditHelper)
    {
@@ -486,7 +486,7 @@ bool WaveTrackAffordanceControls::OnTextCut(SaucedacityProject& project)
    return false;
 }
 
-bool WaveTrackAffordanceControls::OnTextPaste(SaucedacityProject& project)
+bool WaveTrackAffordanceControls::OnTextPaste(TenacityProject& project)
 {
    if (mTextEditHelper)
    {
@@ -496,7 +496,7 @@ bool WaveTrackAffordanceControls::OnTextPaste(SaucedacityProject& project)
    return false;
 }
 
-bool WaveTrackAffordanceControls::OnTextSelect(SaucedacityProject& project)
+bool WaveTrackAffordanceControls::OnTextSelect(TenacityProject& project)
 {
    if (mTextEditHelper)
    {
@@ -506,7 +506,7 @@ bool WaveTrackAffordanceControls::OnTextSelect(SaucedacityProject& project)
    return false;
 }
 
-unsigned WaveTrackAffordanceControls::OnAffordanceClick(const TrackPanelMouseEvent& event, SaucedacityProject* project)
+unsigned WaveTrackAffordanceControls::OnAffordanceClick(const TrackPanelMouseEvent& event, TenacityProject* project)
 {
     auto& viewInfo = ViewInfo::Get(*project);
     if (mTextEditHelper)
@@ -568,9 +568,9 @@ void OnEditClipName(const CommandContext &context)
 
 #define FN(X) (& Handler :: X)
 
-CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static Handler instance;
    return instance;
 };

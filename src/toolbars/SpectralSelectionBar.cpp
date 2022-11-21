@@ -53,7 +53,7 @@ with changes in the SpectralSelectionBar.
 #endif
 #include <wx/statline.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../Project.h"
@@ -95,7 +95,7 @@ END_EVENT_TABLE()
 static const wxString preferencePath
 (wxT("/GUI/Toolbars/SpectralSelection/CenterAndWidthChoice"));
 
-SpectralSelectionBar::SpectralSelectionBar( SaucedacityProject &project )
+SpectralSelectionBar::SpectralSelectionBar( TenacityProject &project )
 : ToolBar( project,
    SpectralSelectionBarID, XO("Spectral Selection"), wxT("SpectralSelection") )
 , mListener(NULL), mbCenterAndWidth(true)
@@ -110,16 +110,16 @@ SpectralSelectionBar::~SpectralSelectionBar()
    // Do nothing, sizer deletes the controls
 }
 
-SpectralSelectionBar &SpectralSelectionBar::Get( SaucedacityProject &project )
+SpectralSelectionBar &SpectralSelectionBar::Get( TenacityProject &project )
 {
    auto &toolManager = ToolManager::Get( project );
    return *static_cast<SpectralSelectionBar*>(
       toolManager.GetToolBar(SpectralSelectionBarID) );
 }
 
-const SpectralSelectionBar &SpectralSelectionBar::Get( const SaucedacityProject &project )
+const SpectralSelectionBar &SpectralSelectionBar::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject&>( project )) ;
+   return Get( const_cast<TenacityProject&>( project )) ;
 }
 
 void SpectralSelectionBar::Create(wxWindow * parent)
@@ -487,7 +487,7 @@ void SpectralSelectionBar::SetBandwidthSelectionFormatName(const NumericFormatSy
 }
 
 static RegisteredToolbarFactory factory{ SpectralSelectionBarID,
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       return ToolBar::Holder{ safenew SpectralSelectionBar{ project } }; }
 };
 

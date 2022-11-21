@@ -22,7 +22,7 @@ measurements in subbands or in the entire signal band.
 #include <cstdlib>
 #include <wx/defs.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/FFT.h>
 
 SpecPowerCalculation::SpecPowerCalculation(size_t sigLen)

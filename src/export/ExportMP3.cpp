@@ -79,7 +79,7 @@
 #include <wx/utils.h>
 #include <wx/window.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-math/float_cast.h>
@@ -612,7 +612,7 @@ public:
       S.StartVerticalLay(true);
       {
          S.AddTitle(
-            XO("Saucedacity needs the file %s to create MP3s.")
+            XO("Tenacity needs the file %s to create MP3s.")
                .Format( mName ) );
 
          S.SetBorder(3);
@@ -1237,7 +1237,7 @@ bool MP3Exporter::InitLibraryExternal(wxString libpath)
          beVersion(&v);
 
          mBladeVersion = XO(
-"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Saucedacity %d.%d.%d.\nPlease download the latest version of 'LAME for Saucedacity'.")
+"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Tenacity %d.%d.%d.\nPlease download the latest version of 'LAME for Tenacity'.")
             .Format(
                v.byMajorVersion,
                v.byMinorVersion,
@@ -1498,7 +1498,7 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
 
 wxString MP3Exporter::GetLibraryPath()
 {
-   wxRegKey reg(wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Saucedacity"));
+   wxRegKey reg(wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Tenacity"));
    wxString path;
 
    if (reg.Exists()) {
@@ -1535,19 +1535,19 @@ wxString MP3Exporter::GetLibraryPath()
 {
    wxString path;
 
-   path = wxT("/Library/Application Support/saucedacity/libs");
+   path = wxT("/Library/Application Support/tenacity/libs");
    if (wxFileExists(path + wxT("/") + GetLibraryName()))
    {
         return path;
    }
 
-   path = wxT("/usr/local/lib/saucedacity");
+   path = wxT("/usr/local/lib/tenacity");
    if (wxFileExists(path + wxT("/") + GetLibraryName()))
    {
         return path;
    }
     
-   return wxT("/Library/Application Support/saucedacity/libs");
+   return wxT("/Library/Application Support/tenacity/libs");
 }
 
 wxString MP3Exporter::GetLibraryName()
@@ -1701,7 +1701,7 @@ public:
    // Required
 
    void OptionsCreate(ShuttleGui &S, int format) override;
-   ProgressResult Export(SaucedacityProject *project,
+   ProgressResult Export(TenacityProject *project,
                std::unique_ptr<ProgressDialog> &pDialog,
                unsigned channels,
                const wxFileNameWrapper &fName,
@@ -1715,7 +1715,7 @@ public:
 private:
 
    int AskResample(int bitrate, int rate, int lowrate, int highrate);
-   unsigned long AddTags(SaucedacityProject *project, ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags);
+   unsigned long AddTags(TenacityProject *project, ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags);
 #ifdef USE_LIBID3TAG
    void AddFrame(struct id3_tag *tp, const wxString & n, const wxString & v, const char *name);
 #endif
@@ -1759,7 +1759,7 @@ int ExportMP3::SetNumExportChannels()
 }
 
 
-ProgressResult ExportMP3::Export(SaucedacityProject *project,
+ProgressResult ExportMP3::Export(TenacityProject *project,
                        std::unique_ptr<ProgressDialog> &pDialog,
                        unsigned channels,
                        const wxFileNameWrapper &fName,
@@ -2118,7 +2118,7 @@ using id3_tag_holder = std::unique_ptr<id3_tag, id3_tag_deleter>;
 #endif
 
 // returns buffer len; caller frees
-unsigned long ExportMP3::AddTags(SaucedacityProject *WXUNUSED(project), ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags)
+unsigned long ExportMP3::AddTags(TenacityProject *WXUNUSED(project), ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags)
 {
 #ifdef USE_LIBID3TAG
    id3_tag_holder tp { id3_tag_new() };

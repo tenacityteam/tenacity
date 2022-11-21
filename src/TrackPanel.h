@@ -17,7 +17,7 @@
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/timer.h> // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "HitTestResult.h"
@@ -63,9 +63,9 @@ class SAUCEDACITY_DLL_API TrackPanel final
    , private PrefsListener
 {
  public:
-   static TrackPanel &Get( SaucedacityProject &project );
-   static const TrackPanel &Get( const SaucedacityProject &project );
-   static void Destroy( SaucedacityProject &project );
+   static TrackPanel &Get( TenacityProject &project );
+   static const TrackPanel &Get( const TenacityProject &project );
+   static void Destroy( TenacityProject &project );
  
    TrackPanel(wxWindow * parent,
               wxWindowID id,
@@ -73,7 +73,7 @@ class SAUCEDACITY_DLL_API TrackPanel final
               const wxSize & size,
               const std::shared_ptr<TrackList> &tracks,
               ViewInfo * viewInfo,
-              SaucedacityProject * project,
+              TenacityProject * project,
               AdornedRulerPanel * ruler );
 
    virtual ~ TrackPanel();
@@ -109,7 +109,7 @@ class SAUCEDACITY_DLL_API TrackPanel final
 
    void HandlePageUpKey();
    void HandlePageDownKey();
-   SaucedacityProject * GetProject() const override;
+   TenacityProject * GetProject() const override;
 
    void OnTrackMenu(Track *t = NULL);
 

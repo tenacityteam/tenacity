@@ -21,13 +21,13 @@ class wxTextCtrl;
 class wxListCtrl;
 class wxListEvent;
 class wxButton;
-class SaucedacityProject;
+class TenacityProject;
 class ShuttleGui;
 
 class MacroCommandDialog final : public wxDialogWrapper {
  public:
    // constructors and destructors
-   MacroCommandDialog(wxWindow *parent, wxWindowID id, SaucedacityProject &project);
+   MacroCommandDialog(wxWindow *parent, wxWindowID id, TenacityProject &project);
    void SetCommandAndParams(const CommandID &Command, const wxString &Params);
  public:
    CommandID   mSelectedCommand;

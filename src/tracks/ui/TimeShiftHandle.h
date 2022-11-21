@@ -197,7 +197,7 @@ private:
 
 struct MakeTrackShifterTag;
 using MakeTrackShifter = AttachedVirtualFunction<
-   MakeTrackShifterTag, std::unique_ptr<TrackShifter>, Track, SaucedacityProject&>;
+   MakeTrackShifterTag, std::unique_ptr<TrackShifter>, Track, TenacityProject&>;
 DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, MakeTrackShifter);
 
 class ViewInfo;
@@ -215,7 +215,7 @@ struct SAUCEDACITY_DLL_API ClipMoveState {
    
    //! Will associate a TrackShifter with each track in the list
    void Init(
-      SaucedacityProject &project,
+      TenacityProject &project,
       Track &capturedTrack, //<! pHit if not null associates with this track
       TrackShifter::HitTestResult hitTestResult, //!< must not be `Miss`
       std::unique_ptr<TrackShifter> pHit, /*!<
@@ -262,7 +262,7 @@ class SAUCEDACITY_DLL_API TimeShiftHandle : public UIHandle
 {
    TimeShiftHandle(const TimeShiftHandle&) = delete;
    static HitTestPreview HitPreview
-      (const SaucedacityProject *pProject, bool unsafe);
+      (const TenacityProject *pProject, bool unsafe);
 
 public:
    explicit TimeShiftHandle
@@ -290,23 +290,23 @@ public:
 
    virtual ~TimeShiftHandle();
 
-   void Enter(bool forward, SaucedacityProject *) override;
+   void Enter(bool forward, TenacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject)
+      (const TrackPanelMouseState &state, TenacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(SaucedacityProject *pProject) override;
+   Result Cancel(TenacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 

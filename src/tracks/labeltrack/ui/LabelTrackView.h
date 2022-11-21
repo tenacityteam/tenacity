@@ -56,18 +56,18 @@ public:
    static LabelTrackView &Get( LabelTrack& );
    static const LabelTrackView &Get( const LabelTrack& );
 
-   bool DoCaptureKey( SaucedacityProject &project, wxKeyEvent &event );
+   bool DoCaptureKey( TenacityProject &project, wxKeyEvent &event );
    bool DoKeyDown(
-      SaucedacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
+      TenacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
    bool DoChar(
-      SaucedacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
+      TenacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
 
    //This returns the index of the label we just added.
    int AddLabel(const SelectedRegion &region,
       const wxString &title = {},
       int restoreFocus = -1);
 
-   std::vector<MenuItem> GetMenuItems(const wxRect&, const wxPoint*, SaucedacityProject*);
+   std::vector<MenuItem> GetMenuItems(const wxRect&, const wxPoint*, TenacityProject*);
 
 private:
    void BindTo( LabelTrack *pParent );
@@ -75,20 +75,20 @@ private:
 
    std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *pProject, int currentTool, bool bMultiTool)
+       const TenacityProject *pProject, int currentTool, bool bMultiTool)
       override;
 
    unsigned CaptureKey
      (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-      SaucedacityProject *project) override;
+      TenacityProject *project) override;
 
    unsigned KeyDown
       (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-      SaucedacityProject *project) override;
+      TenacityProject *project) override;
 
    unsigned Char
       (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-      SaucedacityProject *project) override;
+      TenacityProject *project) override;
 
    std::shared_ptr<TrackVRulerControls> DoGetVRulerControls() override;
 
@@ -97,13 +97,13 @@ private:
 
 public:
    static void DoEditLabels(
-      SaucedacityProject &project, LabelTrack *lt = nullptr, int index = -1);
+      TenacityProject &project, LabelTrack *lt = nullptr, int index = -1);
 
    static int DialogForLabelName(
-      SaucedacityProject &project, const SelectedRegion& region,
+      TenacityProject &project, const SelectedRegion& region,
       const wxString& initialValue, wxString& value);
 
-   bool IsTextSelected( SaucedacityProject &project ) const;
+   bool IsTextSelected( TenacityProject &project ) const;
 
 private:
    void CreateCustomGlyphs();
@@ -114,12 +114,12 @@ public:
 
    void Draw( TrackPanelDrawingContext &context, const wxRect & r ) const;
 
-   bool CutSelectedText( SaucedacityProject &project );
-   bool CopySelectedText( SaucedacityProject &project );
-   bool SelectAllText(SaucedacityProject& project);
+   bool CutSelectedText( TenacityProject &project );
+   bool CopySelectedText( TenacityProject &project );
+   bool SelectAllText(TenacityProject& project);
    
    bool PasteSelectedText(
-      SaucedacityProject &project, double sel0, double sel1 );
+      TenacityProject &project, double sel0, double sel1 );
 
    static void OverGlyph(
       const LabelTrack &track, LabelTrackHit &hit, int x, int y );
@@ -174,16 +174,16 @@ private:
 public:
    //get current cursor position,
    // relative to the left edge of the track panel
-   bool CalcCursorX( SaucedacityProject &project, int * x ) const;
+   bool CalcCursorX( TenacityProject &project, int * x ) const;
 
 private:
    void CalcHighlightXs(int *x1, int *x2) const;
 
 public:
-   void ShowContextMenu( SaucedacityProject &project );
+   void ShowContextMenu( TenacityProject &project );
 
 private:
-   void OnContextMenu( SaucedacityProject &project, wxCommandEvent & evt);
+   void OnContextMenu( TenacityProject &project, wxCommandEvent & evt);
 
    /// Keeps track of the currently selected label (not same as selection region)
    /// used for navigation between labels
@@ -230,11 +230,11 @@ public:
    /// Sets the label with specified index for editing,
    /// optionaly selection may be specified with [start, end]
    void SetTextSelection(int labelIndex, int start = 1, int end = 1);
-   int GetTextEditIndex(SaucedacityProject& project) const;
+   int GetTextEditIndex(TenacityProject& project) const;
    void ResetTextSelection();
 
    void SetNavigationIndex(int index);
-   int GetNavigationIndex(SaucedacityProject& project) const;
+   int GetNavigationIndex(TenacityProject& project) const;
 
 private:
 
@@ -245,7 +245,7 @@ private:
 
    static void calculateFontHeight(wxDC & dc);
 
-   bool IsValidIndex(const Index& index, SaucedacityProject& project) const;
+   bool IsValidIndex(const Index& index, TenacityProject& project) const;
 
 private:
    void RemoveSelectedText();

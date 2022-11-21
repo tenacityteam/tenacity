@@ -31,7 +31,7 @@
 #include "lv2/uri-map/uri-map.h"
 #include "lv2/units/units.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ModuleInterface.h>
 #include <lib-components/EffectInterface.h>
 #include <lib-components/PluginInterface.h>

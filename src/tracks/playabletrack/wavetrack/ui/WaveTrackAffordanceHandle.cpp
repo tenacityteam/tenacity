@@ -22,7 +22,7 @@ WaveTrackAffordanceHandle::WaveTrackAffordanceHandle(const std::shared_ptr<Track
    : AffordanceHandle(track), mTarget(target)
 { }
 
-UIHandle::Result WaveTrackAffordanceHandle::Click(const TrackPanelMouseEvent& event, SaucedacityProject* project)
+UIHandle::Result WaveTrackAffordanceHandle::Click(const TrackPanelMouseEvent& event, TenacityProject* project)
 {
    Result result = RefreshCode::RefreshNone;
    if (WaveTrackView::ClipDetailsVisible(*mTarget, ViewInfo::Get(*project), event.rect))
@@ -40,7 +40,7 @@ UIHandle::Result WaveTrackAffordanceHandle::Click(const TrackPanelMouseEvent& ev
    return result | AffordanceHandle::Click(event, project);
 }
 
-UIHandle::Result WaveTrackAffordanceHandle::SelectAt(const TrackPanelMouseEvent& event, SaucedacityProject* project)
+UIHandle::Result WaveTrackAffordanceHandle::SelectAt(const TrackPanelMouseEvent& event, TenacityProject* project)
 {
    auto& viewInfo = ViewInfo::Get(*project);
    viewInfo.selectedRegion.setTimes(mTarget->GetPlayStartTime(), mTarget->GetPlayEndTime());

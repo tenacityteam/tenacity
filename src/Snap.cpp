@@ -24,7 +24,7 @@ inline bool operator < (SnapPoint s1, SnapPoint s2)
    return s1.t < s2.t;
 }
 
-SnapManager::SnapManager(const SaucedacityProject &project,
+SnapManager::SnapManager(const TenacityProject &project,
                          SnapPointArray candidates,
                          const ZoomInfo &zoomInfo,
                          bool noTimeSnap,
@@ -56,7 +56,7 @@ SnapPointArray FindCandidates( const TrackList &tracks )
 }
 }
 
-SnapManager::SnapManager(const SaucedacityProject &project,
+SnapManager::SnapManager(const TenacityProject &project,
             const TrackList &tracks,
             const ZoomInfo &zoomInfo,
             bool noTimeSnap,

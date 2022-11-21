@@ -566,7 +566,7 @@ void CellularPanel::OnKeyDown(wxKeyEvent & event)
       // This switch case is now redundant with the global filter
       if(HandleEscapeKey(true))
          // Don't skip the event, eat it so that
-         // SaucedacityApp does not also stop any playback.
+         // TenacityApp does not also stop any playback.
          return;
       else
          break;
@@ -831,25 +831,25 @@ public:
    ~DefaultRightButtonHandler() override;
 
    virtual Result Click
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
    {
       return RefreshCode::RefreshNone;
    }
 
    virtual Result Drag
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
    {
       return RefreshCode::RefreshNone;
    }
 
    virtual HitTestPreview Preview
-      (const TrackPanelMouseState &state, SaucedacityProject *pProject) override
+      (const TrackPanelMouseState &state, TenacityProject *pProject) override
    {
       return {};
    }
 
    virtual Result Release
-      (const TrackPanelMouseEvent &event, SaucedacityProject *pProject,
+      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
        wxWindow *pParent) override
    {
       if (auto pCell = mwCell.lock()) {
@@ -859,7 +859,7 @@ public:
       return RefreshCode::RefreshNone;
    }
 
-   virtual Result Cancel(SaucedacityProject *pProject) override
+   virtual Result Cancel(TenacityProject *pProject) override
    {
       return RefreshCode::RefreshNone;
    }

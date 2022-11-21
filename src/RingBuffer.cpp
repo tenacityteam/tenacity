@@ -27,7 +27,7 @@
 
 #include "RingBuffer.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/Dither.h>
 
 RingBuffer::RingBuffer(sampleFormat format, size_t size)

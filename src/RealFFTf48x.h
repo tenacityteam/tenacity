@@ -1,6 +1,6 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   RealFFT48x.h
 
@@ -9,7 +9,7 @@
 #ifndef __realfftf48x_h
 #define __realfftf48x_h
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-utility/MemoryX.h>
 
 using fft_type = float;

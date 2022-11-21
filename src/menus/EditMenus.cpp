@@ -1,12 +1,12 @@
 /**********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   EditMenus.cpp
 
 **********************************************************************/
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AdornedRulerPanel.h"
@@ -47,7 +47,7 @@ void FinishCopy
 
 // Handle text paste (into active label), if any. Return true if did paste.
 // (This was formerly the first part of overly-long OnPaste.)
-bool DoPasteText(SaucedacityProject &project)
+bool DoPasteText(TenacityProject &project)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -82,7 +82,7 @@ bool DoPasteText(SaucedacityProject &project)
 // Return true if nothing selected, regardless of paste result.
 // If nothing was selected, create and paste into NEW tracks.
 // (This was formerly the second part of overly-long OnPaste.)
-bool DoPasteNothingSelected(SaucedacityProject &project)
+bool DoPasteNothingSelected(TenacityProject &project)
 {
    auto &tracks = TrackList::Get( project );
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
@@ -1002,11 +1002,11 @@ void OnPasteOver(const CommandContext &context)
    auto &project = context.project;
    auto &selectedRegion = project.GetViewInfo().selectedRegion;
 
-   if((SaucedacityProject::msClipT1 - SaucedacityProject::msClipT0) > 0.0)
+   if((TenacityProject::msClipT1 - TenacityProject::msClipT0) > 0.0)
    {
       selectedRegion.setT1(
          selectedRegion.t0() +
-         (SaucedacityProject::msClipT1 - SaucedacityProject::msClipT0));
+         (TenacityProject::msClipT1 - TenacityProject::msClipT0));
          // MJS: pointless, given what we do in OnPaste?
    }
    OnPaste(context);
@@ -1019,9 +1019,9 @@ void OnPasteOver(const CommandContext &context)
 
 } // namespace
 
-static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
+static CommandHandlerObject &findCommandHandler(TenacityProject &) {
    // Handler is not stateful.  Doesn't need a factory registered with
-   // SaucedacityProject.
+   // TenacityProject.
    static EditActions::Handler instance;
    return instance;
 };
@@ -1032,12 +1032,12 @@ static CommandHandlerObject &findCommandHandler(SaucedacityProject &) {
 
 static const ReservedCommandFlag
 &CutCopyAvailableFlag() { static ReservedCommandFlag flag{
-   [](const SaucedacityProject &project){
+   [](const TenacityProject &project){
       auto range = TrackList::Get( project ).Any<const LabelTrack>()
          + [&](const LabelTrack *pTrack){
             return LabelTrackView::Get( *pTrack ).IsTextSelected(
                // unhappy const_cast because track focus might be set
-               const_cast<SaucedacityProject&>(project)
+               const_cast<TenacityProject&>(project)
             );
          };
       if ( !range.empty() )
@@ -1094,7 +1094,7 @@ BaseItemSharedPtr EditMenu()
             AudioIONotBusyFlag() | RedoAvailableFlag(), redoKey ),
             
          Special( wxT("UndoItemsUpdateStep"),
-         [](SaucedacityProject &project, wxMenu&) {
+         [](TenacityProject &project, wxMenu&) {
             // Change names in the CommandManager as a side-effect
             MenuManager::ModifyUndoMenuItems(project);
          })
@@ -1215,9 +1215,9 @@ BaseItemSharedPtr ExtraEditMenu()
    return menu;
 }
 
-auto canSelectAll = [](const SaucedacityProject &project){
+auto canSelectAll = [](const TenacityProject &project){
    return MenuManager::Get( project ).mWhatIfNoSelection != 0; };
-auto selectAll = []( SaucedacityProject &project, CommandFlag flagsRqd ){
+auto selectAll = []( TenacityProject &project, CommandFlag flagsRqd ){
    if ( MenuManager::Get( project ).mWhatIfNoSelection == 1 &&
       (flagsRqd & NoAutoSelect()).none() )
       SelectUtilities::DoSelectAllAudio(project);

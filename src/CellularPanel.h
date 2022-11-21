@@ -14,7 +14,7 @@
 #include "widgets/OverlayPanel.h" // to inherit
 
 class ViewInfo;
-class SaucedacityProject;
+class TenacityProject;
 
 class TrackPanelCell;
 struct TrackPanelDrawingContext;
@@ -43,7 +43,7 @@ public:
    
    // Overridables:
    
-   virtual SaucedacityProject *GetProject() const = 0;
+   virtual TenacityProject *GetProject() const = 0;
    
    // Get the root object defining a recursive subdivision of the panel's
    // area into cells

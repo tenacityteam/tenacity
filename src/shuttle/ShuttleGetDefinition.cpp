@@ -10,7 +10,7 @@
 
 #include "ShuttleGetDefinition.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterfaceSymbol.h>
 
 bool ShuttleGetDefinition::IsOptional(){

@@ -15,11 +15,11 @@ Paul Licameli -- split from ProjectFileIO.cpp
 
 #include <wx/string.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-files/FileException.h>
 #include <lib-files/FileNames.h>
-#include <lib-files/SaucedacityLogger.h>
+#include <lib-files/TenacityLogger.h>
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-strings/Internat.h>
 
@@ -41,7 +41,7 @@ static const char *FastConfig =
    "PRAGMA <schema>.journal_mode = OFF;";
 
 DBConnection::DBConnection(
-   const std::weak_ptr<SaucedacityProject> &pProject,
+   const std::weak_ptr<TenacityProject> &pProject,
    const std::shared_ptr<DBConnectionErrors> &pErrors,
    CheckpointFailureCallback callback)
 : mpProject{ pProject }
@@ -92,7 +92,7 @@ void DBConnection::SetError(
                  mpErrors->mLastError.Debug(),
                  mpErrors->mLibraryError.Debug());
 
-   auto logger = SaucedacityLogger::Get();
+   auto logger = TenacityLogger::Get();
    if (logger)
    {
       mpErrors->mLog = logger->GetLog(10);
@@ -124,7 +124,7 @@ void DBConnection::SetDBError(
                  mpErrors->mLastError.Debug(),
                  mpErrors->mLibraryError.Debug());
 
-   auto logger = SaucedacityLogger::Get();
+   auto logger = TenacityLogger::Get();
    if (logger)
    {
       mpErrors->mLog = logger->GetLog(10);
@@ -502,7 +502,7 @@ void DBConnection::CheckpointThread(sqlite3 *db, const FilePath &fileName)
             throw SimpleMessageBoxException{ rc != SQLITE_FULL ? ExceptionType::Internal : ExceptionType::BadEnvironment,
                message, XO("Warning"), "Error:_Disk_full_or_not_writable" }; },
             SimpleGuard<void>{},
-            [this](SaucedacityException * e) {
+            [this](TenacityException * e) {
                // This executes in the main thread.
                if (mCallback)
                   mCallback();
@@ -648,9 +648,9 @@ ConnectionPtr::~ConnectionPtr()
    }
 }
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory
+static const TenacityProject::AttachedObjects::RegisteredFactory
 sConnectionPtrKey{
-   []( SaucedacityProject & ){
+   []( TenacityProject & ){
       // Ignore the argument; this is just a holder of a
       // unique_ptr to DBConnection, which must be filled in later
       // (when we can get a weak_ptr to the project)
@@ -659,15 +659,15 @@ sConnectionPtrKey{
    }
 };
 
-ConnectionPtr &ConnectionPtr::Get( SaucedacityProject &project )
+ConnectionPtr &ConnectionPtr::Get( TenacityProject &project )
 {
    auto &result =
       project.AttachedObjects::Get< ConnectionPtr >( sConnectionPtrKey );
    return result;
 }
 
-const ConnectionPtr &ConnectionPtr::Get( const SaucedacityProject &project )
+const ConnectionPtr &ConnectionPtr::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 

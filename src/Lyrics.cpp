@@ -65,7 +65,7 @@ void HighlightTextCtrl::OnMouseEvent(wxMouseEvent& event)
 
          //v Should probably select to end as in
          // SelectUtilities::Handler::OnSelectCursorEnd,
-         // but better to generalize that in SaucedacityProject methods.
+         // but better to generalize that in TenacityProject methods.
          selectedRegion.setT1( pCurSyl->t );
       }
    }
@@ -88,7 +88,7 @@ END_EVENT_TABLE()
 IMPLEMENT_CLASS(LyricsPanel, wxPanel)
 
 LyricsPanel::LyricsPanel(wxWindow* parent, wxWindowID id,
-               SaucedacityProject *project,
+               TenacityProject *project,
                const wxPoint& pos /*= wxDefaultPosition*/,
                const wxSize& size /*= wxDefaultSize*/) :
    wxPanelWrapper(parent, id, pos, size, wxWANTS_CHARS),

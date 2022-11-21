@@ -4,13 +4,13 @@ Audacity: A Digital Audio Editor
 
 ProjectManager.cpp
 
-Paul Licameli split from SaucedacityProject.cpp
+Paul Licameli split from TenacityProject.cpp
 
 **********************************************************************/
 
 #include "ProjectManager.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
 
@@ -52,30 +52,30 @@ Paul Licameli split from SaucedacityProject.cpp
 #include <wx/sizer.h>
 
 #ifdef __WXGTK__
-#include "../images/SaucedacityLogoAlpha.xpm"
+#include "../images/TenacityLogoAlpha.xpm"
 #endif
 
-const int SaucedacityProjectTimerID = 5200;
+const int TenacityProjectTimerID = 5200;
 
-static SaucedacityProject::AttachedObjects::RegisteredFactory sProjectManagerKey {
-   []( SaucedacityProject &project ) {
+static TenacityProject::AttachedObjects::RegisteredFactory sProjectManagerKey {
+   []( TenacityProject &project ) {
       return std::make_shared< ProjectManager >( project );
    }
 };
 
-ProjectManager &ProjectManager::Get( SaucedacityProject &project )
+ProjectManager &ProjectManager::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectManager >( sProjectManagerKey );
 }
 
-const ProjectManager &ProjectManager::Get( const SaucedacityProject &project )
+const ProjectManager &ProjectManager::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-ProjectManager::ProjectManager( SaucedacityProject &project )
+ProjectManager::ProjectManager( TenacityProject &project )
    : mProject{ project }
-   , mTimer{ std::make_unique<wxTimer>(this, SaucedacityProjectTimerID) }
+   , mTimer{ std::make_unique<wxTimer>(this, TenacityProjectTimerID) }
 {
    auto &window = ProjectWindow::Get( mProject );
    window.Bind( wxEVT_CLOSE_WINDOW, &ProjectManager::OnCloseWindow, this );
@@ -87,7 +87,7 @@ ProjectManager::ProjectManager( SaucedacityProject &project )
 
 ProjectManager::~ProjectManager() = default;
 
-// PRL:  This event type definition used to be in SaucedacityApp.h, which created
+// PRL:  This event type definition used to be in TenacityApp.h, which created
 // a bad compilation dependency.  The event was never emitted anywhere.  I
 // preserve it and its handler here but I move it to remove the dependency.
 // Asynchronous open
@@ -97,7 +97,7 @@ wxDEFINE_EVENT(EVT_OPEN_AUDIO_FILE, wxCommandEvent);
 
 BEGIN_EVENT_TABLE( ProjectManager, wxEvtHandler )
    EVT_COMMAND(wxID_ANY, EVT_OPEN_AUDIO_FILE, ProjectManager::OnOpenAudioFile)
-   EVT_TIMER(SaucedacityProjectTimerID, ProjectManager::OnTimer)
+   EVT_TIMER(TenacityProjectTimerID, ProjectManager::OnTimer)
 END_EVENT_TABLE()
 
 bool ProjectManager::sbWindowRectAlreadySaved = false;
@@ -211,7 +211,7 @@ public:
 class DropTarget final : public wxFileDropTarget
 {
 public:
-   DropTarget(SaucedacityProject *proj)
+   DropTarget(TenacityProject *proj)
    {
       mProject = proj;
 
@@ -344,7 +344,7 @@ public:
    }
 
 private:
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 };
 
 #endif
@@ -493,9 +493,9 @@ void InitProjectWindow( ProjectWindow &window )
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #if defined(__WXMSW__)
-      wxIcon ic{ wxICON(SaucedacityLogo) };
+      wxIcon ic{ wxICON(TenacityLogo) };
 #elif defined(__WXGTK__)
-      wxIcon ic{wxICON(SaucedacityLogoAlpha)};
+      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
       wxIcon ic{};
       ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
@@ -505,7 +505,7 @@ void InitProjectWindow( ProjectWindow &window )
 #endif
 
    window.UpdateStatusWidths();
-   auto msg = XO("Welcome to Saucedacity version %s")
+   auto msg = XO("Welcome to Tenacity version %s")
       .Format( AUDACITY_VERSION_STRING );
    ProjectManager::Get( project ).SetStatusText( msg, mainStatusBarField );
 
@@ -514,7 +514,7 @@ void InitProjectWindow( ProjectWindow &window )
 #endif
 }
 
-SaucedacityProject *ProjectManager::New()
+TenacityProject *ProjectManager::New()
 {
    wxRect wndRect;
    bool bMaximized = false;
@@ -523,7 +523,7 @@ SaucedacityProject *ProjectManager::New()
    
    // Create and show a NEW project
    // Use a non-default deleter in the smart pointer!
-   auto sp = std::make_shared< SaucedacityProject >();
+   auto sp = std::make_shared< TenacityProject >();
    AllProjects{}.Add( sp );
    auto p = sp.get();
    auto &project = *p;
@@ -630,7 +630,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    // and flush the tracks once we've completely finished
    // recording NEW state.
    // This code is derived from similar code in
-   // SaucedacityProject::~SaucedacityProject() and TrackPanel::OnTimer().
+   // TenacityProject::~TenacityProject() and TrackPanel::OnTimer().
    if (projectAudioIO.GetAudioIOToken()>0 &&
        gAudioIO->IsStreamActive(projectAudioIO.GetAudioIOToken())) {
 
@@ -844,7 +844,7 @@ void ProjectManager::OnOpenAudioFile(wxCommandEvent & event)
 }
 
 // static method, can be called outside of a project
-void ProjectManager::OpenFiles(SaucedacityProject *proj)
+void ProjectManager::OpenFiles(TenacityProject *proj)
 {
    auto selectedFiles =
       ProjectFileManager::ShowOpenDialog(FileNames::Operation::Open);
@@ -870,7 +870,7 @@ void ProjectManager::OpenFiles(SaucedacityProject *proj)
    }
 }
 
-bool ProjectManager::SafeToOpenProjectInto(SaucedacityProject &proj)
+bool ProjectManager::SafeToOpenProjectInto(TenacityProject &proj)
 {
    // DMM: If the project is dirty, that means it's been touched at
    // all, and it's not safe to open a fresh project directly in its
@@ -907,7 +907,7 @@ ProjectManager::ProjectChooser::~ProjectChooser()
    }
 }
 
-SaucedacityProject &
+TenacityProject &
 ProjectManager::ProjectChooser::operator() ( bool openingProjectFile )
 {
    if (mpGivenProject) {
@@ -927,8 +927,8 @@ void ProjectManager::ProjectChooser::Commit()
    mpUsedProject = nullptr;
 }
 
-SaucedacityProject *ProjectManager::OpenProject(
-   SaucedacityProject *pGivenProject, const FilePath &fileNameArg,
+TenacityProject *ProjectManager::OpenProject(
+   TenacityProject *pGivenProject, const FilePath &fileNameArg,
    bool addtohistory, bool reuseNonemptyProject)
 {
    ProjectManager::ProjectChooser chooser{ pGivenProject, reuseNonemptyProject };

@@ -50,7 +50,7 @@ is time to refresh some aspect of the screen.
 #include <wx/app.h>
 #include <wx/setup.h> // for wxUSE_* macros
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/float_cast.h>
 #include <lib-preferences/Prefs.h>
 
@@ -199,8 +199,8 @@ std::unique_ptr<wxCursor> MakeCursor( int WXUNUSED(CursorId), const char * const
 
 namespace{
 
-SaucedacityProject::AttachedWindows::RegisteredFactory sKey{
-   []( SaucedacityProject &project ) -> wxWeakRef< wxWindow > {
+TenacityProject::AttachedWindows::RegisteredFactory sKey{
+   []( TenacityProject &project ) -> wxWeakRef< wxWindow > {
       auto &ruler = AdornedRulerPanel::Get( project );
       auto &viewInfo = ViewInfo::Get( project );
       auto &window = ProjectWindow::Get( project );
@@ -223,17 +223,17 @@ SaucedacityProject::AttachedWindows::RegisteredFactory sKey{
 
 }
 
-TrackPanel &TrackPanel::Get( SaucedacityProject &project )
+TrackPanel &TrackPanel::Get( TenacityProject &project )
 {
    return project.AttachedWindows::Get< TrackPanel >( sKey );
 }
 
-const TrackPanel &TrackPanel::Get( const SaucedacityProject &project )
+const TrackPanel &TrackPanel::Get( const TenacityProject &project )
 {
-   return Get( const_cast< SaucedacityProject & >( project ) );
+   return Get( const_cast< TenacityProject & >( project ) );
 }
 
-void TrackPanel::Destroy( SaucedacityProject &project )
+void TrackPanel::Destroy( TenacityProject &project )
 {
    auto *pPanel = project.AttachedWindows::Find( sKey );
    if (pPanel) {
@@ -251,7 +251,7 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
                        const wxSize & size,
                        const std::shared_ptr<TrackList> &tracks,
                        ViewInfo * viewInfo,
-                       SaucedacityProject * project,
+                       TenacityProject * project,
                        AdornedRulerPanel * ruler)
    : CellularPanel(parent, id, pos, size, viewInfo,
                    wxWANTS_CHARS | wxNO_BORDER),
@@ -343,9 +343,9 @@ void TrackPanel::UpdatePrefs()
    Refresh();
 }
 
-/// Gets the pointer to the SaucedacityProject that
+/// Gets the pointer to the TenacityProject that
 /// goes with this track panel.
-SaucedacityProject * TrackPanel::GetProject() const
+TenacityProject * TrackPanel::GetProject() const
 {
    //JKC casting away constness here.
    //Do it in two stages in case 'this' is not a wxWindow.
@@ -392,7 +392,7 @@ void TrackPanel::OnTimer(wxTimerEvent& )
 {
    mTimeCount++;
 
-   SaucedacityProject *const p = GetProject();
+   TenacityProject *const p = GetProject();
    auto &window = ProjectWindow::Get( *p );
 
    auto &projectAudioIO = ProjectAudioIO::Get( *p );
@@ -606,7 +606,7 @@ void TrackPanel::HandlePageDownKey()
 
 bool TrackPanel::IsAudioActive()
 {
-   SaucedacityProject *p = GetProject();
+   TenacityProject *p = GetProject();
    return ProjectAudioIO::Get( *p ).IsAudioActive();
 }
 
@@ -1220,7 +1220,7 @@ void DrawTrackName(
 
 struct EmptyCell final : CommonTrackPanelCell {
    std::vector< UIHandlePtr > HitTest(
-      const TrackPanelMouseState &, const SaucedacityProject *) override
+      const TrackPanelMouseState &, const TenacityProject *) override
    { return {}; }
    virtual std::shared_ptr< Track > DoFindTrack() override { return {}; }
    static std::shared_ptr<EmptyCell> Instance()
@@ -1362,7 +1362,7 @@ public:
        return mTrack;
    }
 
-   std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject)
+   std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject)
    {
       return {};
    }

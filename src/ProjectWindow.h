@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectWindow.h
 
-Paul Licameli split from SaucedacityProject.h
+Paul Licameli split from TenacityProject.h
 
 **********************************************************************/
 
@@ -15,7 +15,7 @@ Paul Licameli split from SaucedacityProject.h
 #include "ProjectWindowBase.h" // to inherit
 #include "TrackPanelListener.h" // to inherit
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 class Track;
@@ -33,15 +33,15 @@ class SAUCEDACITY_DLL_API ProjectWindow final : public ProjectWindowBase
    , public PrefsListener
 {
 public:
-   static ProjectWindow &Get( SaucedacityProject &project );
-   static const ProjectWindow &Get( const SaucedacityProject &project );
-   static ProjectWindow *Find( SaucedacityProject *pProject );
-   static const ProjectWindow *Find( const SaucedacityProject *pProject );
+   static ProjectWindow &Get( TenacityProject &project );
+   static const ProjectWindow &Get( const TenacityProject &project );
+   static ProjectWindow *Find( TenacityProject *pProject );
+   static const ProjectWindow *Find( const TenacityProject *pProject );
 
    explicit ProjectWindow(
       wxWindow * parent, wxWindowID id,
       const wxPoint & pos, const wxSize &size,
-      SaucedacityProject &project );
+      TenacityProject &project );
    ~ProjectWindow() override;
 
    // Next available ID for sub-windows
@@ -62,7 +62,7 @@ public:
    class PlaybackScroller final : public wxEvtHandler
    {
    public:
-      explicit PlaybackScroller(SaucedacityProject *project);
+      explicit PlaybackScroller(TenacityProject *project);
 
       enum class Mode {
          Off,
@@ -82,7 +82,7 @@ public:
    private:
       void OnTimer(wxCommandEvent &event);
 
-      SaucedacityProject *mProject;
+      TenacityProject *mProject;
       Mode mMode { Mode::Off };
 
       // During timer update, grab the volatile stream time just once, so that

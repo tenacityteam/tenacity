@@ -14,7 +14,7 @@
 #include <memory>
 #include <lib-strings/Identifier.h>
 
-class SaucedacityProject;
+class TenacityProject;
 class wxEvent;
 class CommandOutputTargets;
 using CommandParameter = CommandID;
@@ -34,14 +34,14 @@ struct TemporarySelection {
 class SAUCEDACITY_DLL_API CommandContext {
 public:
    CommandContext(
-      SaucedacityProject &p
+      TenacityProject &p
       , const wxEvent *e = nullptr
       , int ii = 0
       , const CommandParameter &param = CommandParameter{}
    );
 
    CommandContext(
-      SaucedacityProject &p,
+      TenacityProject &p,
       std::unique_ptr<CommandOutputTargets> target);
 
    ~CommandContext();
@@ -61,7 +61,7 @@ public:
    void AddBool(const bool value      , const wxString &name = {} ) const;
    void AddItem(const double value    , const wxString &name = {} ) const;
 
-   SaucedacityProject &project;
+   TenacityProject &project;
    std::unique_ptr<CommandOutputTargets> pOutput;
    const wxEvent *pEvt;
    int index;

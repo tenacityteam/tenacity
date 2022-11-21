@@ -125,11 +125,11 @@ TranslatableString NyquistEffectsModule::GetDescription()
 
 bool NyquistEffectsModule::Initialize()
 {
-   const auto &saucedacityPathList = FileNames::AudacityPathList();
+   const auto &tenacityPathList = FileNames::AudacityPathList();
 
-   for (size_t i = 0, cnt = saucedacityPathList.size(); i < cnt; i++)
+   for (size_t i = 0, cnt = tenacityPathList.size(); i < cnt; i++)
    {
-      wxFileName name(saucedacityPathList[i], wxT(""));
+      wxFileName name(tenacityPathList[i], wxT(""));
       name.AppendDir(wxT("nyquist"));
       name.SetFullName(wxT("nyquist.lsp"));
       if (name.FileExists())

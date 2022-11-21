@@ -16,7 +16,7 @@
 
 #include "Generator.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../Project.h"

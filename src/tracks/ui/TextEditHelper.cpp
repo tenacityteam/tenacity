@@ -60,13 +60,13 @@ void TextEditHelper::SetTextSelectionColor(const wxColor& textSelectionColor)
     mTextSelectionColor = textSelectionColor;
 }
 
-void TextEditHelper::Cancel(SaucedacityProject* project)
+void TextEditHelper::Cancel(TenacityProject* project)
 {
     if (auto lock = mDelegate.lock())
         lock->OnTextEditCancelled(project);
 }
 
-void TextEditHelper::Finish(SaucedacityProject* project)
+void TextEditHelper::Finish(TenacityProject* project)
 {
     if (auto lock = mDelegate.lock())
         lock->OnTextEditFinished(project, mText);
@@ -99,7 +99,7 @@ bool TextEditHelper::CaptureKey(int, int mods)
    return mods == wxMOD_NONE || mods == wxMOD_SHIFT;
 }
 
-bool TextEditHelper::OnKeyDown(int keyCode, int mods, SaucedacityProject* project)
+bool TextEditHelper::OnKeyDown(int keyCode, int mods, TenacityProject* project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -244,7 +244,7 @@ bool TextEditHelper::OnKeyDown(int keyCode, int mods, SaucedacityProject* projec
     return false;
 }
 
-bool TextEditHelper::OnChar(int charCode, SaucedacityProject* project)
+bool TextEditHelper::OnChar(int charCode, TenacityProject* project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -280,7 +280,7 @@ bool TextEditHelper::OnChar(int charCode, SaucedacityProject* project)
     return true;
 }
 
-bool TextEditHelper::OnClick(const wxMouseEvent& event, SaucedacityProject*)
+bool TextEditHelper::OnClick(const wxMouseEvent& event, TenacityProject*)
 {
     if (event.ButtonDown())
     {
@@ -335,12 +335,12 @@ bool TextEditHelper::OnClick(const wxMouseEvent& event, SaucedacityProject*)
     return false;
 }
 
-bool TextEditHelper::OnDrag(const wxMouseEvent& event, SaucedacityProject* project)
+bool TextEditHelper::OnDrag(const wxMouseEvent& event, TenacityProject* project)
 {
     return HandleDragRelease(event, project);
 }
 
-bool TextEditHelper::OnRelease(const wxMouseEvent& event, SaucedacityProject* project)
+bool TextEditHelper::OnRelease(const wxMouseEvent& event, TenacityProject* project)
 {
     return HandleDragRelease(event, project);
 }
@@ -410,7 +410,7 @@ void TextEditHelper::Draw(wxDC& dc, const wxRect& rect)
     }
 }
 
-bool TextEditHelper::HandleDragRelease(const wxMouseEvent& event, SaucedacityProject* project)
+bool TextEditHelper::HandleDragRelease(const wxMouseEvent& event, TenacityProject* project)
 {
     if (event.Dragging())
     {
@@ -434,7 +434,7 @@ bool TextEditHelper::HandleDragRelease(const wxMouseEvent& event, SaucedacityPro
     return false;
 }
 
-void TextEditHelper::RemoveSelectedText(SaucedacityProject* project)
+void TextEditHelper::RemoveSelectedText(TenacityProject* project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -565,7 +565,7 @@ const wxRect& TextEditHelper::GetBBox() const
 
 /// Cut the selected text in the text box
 ///  @return true if text is selected in text box, false otherwise
-bool TextEditHelper::CutSelectedText(SaucedacityProject& project)
+bool TextEditHelper::CutSelectedText(TenacityProject& project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -610,7 +610,7 @@ bool TextEditHelper::CutSelectedText(SaucedacityProject& project)
 
 /// Copy the selected text in the text box
 ///  @return true if text is selected in text box, false otherwise
-bool TextEditHelper::CopySelectedText(SaucedacityProject& project)
+bool TextEditHelper::CopySelectedText(TenacityProject& project)
 {
     if (mCurrentCursorPos == mInitialCursorPos)
         return false;
@@ -639,7 +639,7 @@ bool TextEditHelper::CopySelectedText(SaucedacityProject& project)
 // PRL:  should this set other fields of the label selection?
 /// Paste the text on the clipboard to text box
 ///  @return true if mouse is clicked in text box, false otherwise
-bool TextEditHelper::PasteSelectedText(SaucedacityProject& project)
+bool TextEditHelper::PasteSelectedText(TenacityProject& project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)

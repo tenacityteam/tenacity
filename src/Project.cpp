@@ -27,30 +27,30 @@ wxDEFINE_EVENT(EVT_PROJECT_ACTIVATION, wxCommandEvent);
 
 size_t AllProjects::size() const
 {
-   return gSaucedacityProjects.size();
+   return gTenacityProjects.size();
 }
 
 auto AllProjects::begin() const -> const_iterator
 {
-   return gSaucedacityProjects.begin();
+   return gTenacityProjects.begin();
 }
 
 auto AllProjects::end() const -> const_iterator
 {
-   return gSaucedacityProjects.end();
+   return gTenacityProjects.end();
 }
 
 auto AllProjects::rbegin() const -> const_reverse_iterator
 {
-   return gSaucedacityProjects.rbegin();
+   return gTenacityProjects.rbegin();
 }
 
 auto AllProjects::rend() const -> const_reverse_iterator
 {
-   return gSaucedacityProjects.rend();
+   return gTenacityProjects.rend();
 }
 
-auto AllProjects::Remove( SaucedacityProject &project ) -> value_type
+auto AllProjects::Remove( TenacityProject &project ) -> value_type
 {
    std::lock_guard<std::mutex> guard{ Mutex() };
    auto start = begin(), finish = end(), iter = std::find_if(
@@ -60,14 +60,14 @@ auto AllProjects::Remove( SaucedacityProject &project ) -> value_type
    if (iter == finish)
       return nullptr;
    auto result = *iter;
-   gSaucedacityProjects.erase( iter );
+   gTenacityProjects.erase( iter );
    return result;
 }
 
 void AllProjects::Add( const value_type &pProject )
 {
    std::lock_guard<std::mutex> guard{ Mutex() };
-   gSaucedacityProjects.push_back( pProject );
+   gTenacityProjects.push_back( pProject );
 }
 
 bool AllProjects::sbClosing = false;
@@ -78,7 +78,7 @@ bool AllProjects::Close( bool force )
    while (AllProjects{}.size())
    {
       // Closing the project has global side-effect
-      // of deletion from gSaucedacityProjects
+      // of deletion from gTenacityProjects
       if ( force )
       {
          GetProjectFrame( **AllProjects{}.begin() ).Close(true);
@@ -98,20 +98,20 @@ std::mutex &AllProjects::Mutex()
    return theMutex;
 }
 
-int SaucedacityProject::mProjectCounter=0;// global counter.
+int TenacityProject::mProjectCounter=0;// global counter.
 
 /* Define Global Variables */
 //This is a pointer to the currently-active project.
-static SaucedacityProject *gActiveProject;
+static TenacityProject *gActiveProject;
 //This array holds onto all of the projects currently open
-AllProjects::Container AllProjects::gSaucedacityProjects;
+AllProjects::Container AllProjects::gTenacityProjects;
 
-SAUCEDACITY_DLL_API SaucedacityProject *GetActiveProject()
+SAUCEDACITY_DLL_API TenacityProject *GetActiveProject()
 {
    return gActiveProject;
 }
 
-void SetActiveProject(SaucedacityProject * project)
+void SetActiveProject(TenacityProject * project)
 {
    if ( gActiveProject != project ) {
       gActiveProject = project;
@@ -121,7 +121,7 @@ void SetActiveProject(SaucedacityProject * project)
    wxTheApp->SetTopWindow( FindProjectFrame( project ) );
 }
 
-SaucedacityProject::SaucedacityProject()
+TenacityProject::TenacityProject()
 {
    mProjectNo = mProjectCounter++; // Bug 322
    AttachedObjects::BuildAll();
@@ -148,36 +148,36 @@ SaucedacityProject::SaucedacityProject()
 
 }
 
-SaucedacityProject::~SaucedacityProject()
+TenacityProject::~TenacityProject()
 {
 }
 
-void SaucedacityProject::SetFrame( wxFrame *pFrame )
+void TenacityProject::SetFrame( wxFrame *pFrame )
 {
    mFrame = pFrame;
 }
 
-void SaucedacityProject::SetPanel( wxWindow *pPanel )
+void TenacityProject::SetPanel( wxWindow *pPanel )
 {
    mPanel = pPanel;
 }
 
-const wxString &SaucedacityProject::GetProjectName() const
+const wxString &TenacityProject::GetProjectName() const
 {
    return mName;
 }
 
-void SaucedacityProject::SetProjectName(const wxString &name)
+void TenacityProject::SetProjectName(const wxString &name)
 {
    mName = name;
 }
 
-FilePath SaucedacityProject::GetInitialImportPath() const
+FilePath TenacityProject::GetInitialImportPath() const
 {
    return mInitialImportPath;
 }
 
-void SaucedacityProject::SetInitialImportPath(const FilePath &path)
+void TenacityProject::SetInitialImportPath(const FilePath &path)
 {
    if (mInitialImportPath.empty())
    {
@@ -185,7 +185,7 @@ void SaucedacityProject::SetInitialImportPath(const FilePath &path)
    }
 }
 
-SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( SaucedacityProject &project )
+SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
 {
    auto ptr = project.GetFrame();
    if ( !ptr )
@@ -193,7 +193,7 @@ SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( SaucedacityProject &project )
    return *ptr;
 }
 
-SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const SaucedacityProject &project )
+SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project )
 {
    auto ptr = project.GetFrame();
    if ( !ptr )
@@ -202,7 +202,7 @@ SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const SaucedacityProject &pr
 }
 
 std::unique_ptr<const GenericUI::WindowPlacement>
-ProjectFramePlacement( SaucedacityProject *project )
+ProjectFramePlacement( TenacityProject *project )
 {
    if (!project)
       return std::make_unique<GenericUI::WindowPlacement>();
@@ -210,7 +210,7 @@ ProjectFramePlacement( SaucedacityProject *project )
       &GetProjectFrame(*project));
 }
 
-SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( SaucedacityProject &project )
+SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
 {
    auto ptr = project.GetPanel();
    if ( !ptr )
@@ -219,7 +219,7 @@ SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( SaucedacityProject &project )
 }
 
 SAUCEDACITY_DLL_API const wxWindow &GetProjectPanel(
-   const SaucedacityProject &project )
+   const TenacityProject &project )
 {
    auto ptr = project.GetPanel();
    if ( !ptr )

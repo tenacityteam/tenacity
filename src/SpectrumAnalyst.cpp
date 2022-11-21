@@ -24,7 +24,7 @@ and in the spectrogram spectral selection.
 
 #include "SpectrumAnalyst.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/FFT.h>
 #include <lib-math/SampleFormat.h>
 

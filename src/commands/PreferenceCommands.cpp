@@ -18,7 +18,7 @@ SetPreferenceCommand classes
 
 #include "PreferenceCommands.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "LoadCommands.h"

@@ -36,7 +36,7 @@ enum {
 class AutoRecoveryDialog final : public wxDialogWrapper
 {
 public:
-   explicit AutoRecoveryDialog(SaucedacityProject *proj);
+   explicit AutoRecoveryDialog(TenacityProject *proj);
 
    bool HasRecoverables() const;
    FilePaths GetRecoverables();
@@ -53,7 +53,7 @@ private:
 
    FilePaths mFiles;
    wxDataViewListCtrl *mFileList;
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
 
 public:
    DECLARE_EVENT_TABLE()
@@ -66,7 +66,7 @@ BEGIN_EVENT_TABLE(AutoRecoveryDialog, wxDialogWrapper)
    EVT_BUTTON(ID_SKIP, AutoRecoveryDialog::OnSkip)
 END_EVENT_TABLE()
 
-AutoRecoveryDialog::AutoRecoveryDialog(SaucedacityProject *project)
+AutoRecoveryDialog::AutoRecoveryDialog(TenacityProject *project)
 :  wxDialogWrapper(nullptr, wxID_ANY, XO("Automatic Crash Recovery"),
                    wxDefaultPosition, wxDefaultSize,
                    (wxDEFAULT_DIALOG_STYLE & (~wxCLOSE_BOX)) | wxRESIZE_BORDER), // no close box
@@ -93,7 +93,7 @@ void AutoRecoveryDialog::Populate(ShuttleGui &S)
    S.StartVerticalLay(wxEXPAND, 1);
    {
       S.AddFixedText(
-         XO("The following projects were not saved properly the last time Saucedacity was run and "
+         XO("The following projects were not saved properly the last time Tenacity was run and "
             "can be automatically recovered.\n\n"
             "After recovery, save the projects to ensure changes are written to disk."),
          false,
@@ -122,7 +122,7 @@ void AutoRecoveryDialog::Populate(ShuttleGui &S)
 
       S.StartHorizontalLay(wxALIGN_CENTRE, 0);
       {
-         S.Id(ID_QUIT_AUDACITY).AddButton(XXO("&Quit Saucedacity"));
+         S.Id(ID_QUIT_AUDACITY).AddButton(XXO("&Quit Tenacity"));
          S.Id(ID_DISCARD_SELECTED).AddButton(XXO("&Discard Selected"));
          S.Id(ID_RECOVER_SELECTED).AddButton(XXO("&Recover Selected"), wxALIGN_CENTRE, true);
          S.Id(ID_SKIP).AddButton(XXO("&Skip"));
@@ -341,7 +341,7 @@ void AutoRecoveryDialog::OnSkip(wxCommandEvent &WXUNUSED(evt))
 ////////////////////////////////////////////////////////////////////////////
 
 static bool RecoverAllProjects(const FilePaths &files,
-                               SaucedacityProject *&pproj)
+                               TenacityProject *&pproj)
 {
    // Open a project window for each auto save file
    wxString filename;
@@ -349,7 +349,7 @@ static bool RecoverAllProjects(const FilePaths &files,
 
    for (auto &file: files)
    {
-      SaucedacityProject *proj = nullptr;
+      TenacityProject *proj = nullptr;
       // Reuse any existing project window, which will be the empty project
       // created at application startup
       std::swap(proj, pproj);
@@ -371,7 +371,7 @@ static void DiscardAllProjects(const FilePaths &files)
       ProjectFileManager::DiscardAutosave(file);
 }
 
-bool ShowAutoRecoveryDialogIfNeeded(SaucedacityProject *&pproj, bool *didRecoverAnything)
+bool ShowAutoRecoveryDialogIfNeeded(TenacityProject *&pproj, bool *didRecoverAnything)
 {
    if (didRecoverAnything)
    {

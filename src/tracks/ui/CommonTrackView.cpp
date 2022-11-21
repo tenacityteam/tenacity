@@ -28,7 +28,7 @@ Paul Licameli split from class TrackView
 
 std::vector<UIHandlePtr> CommonTrackView::HitTest
 (const TrackPanelMouseState &st,
- const SaucedacityProject *pProject)
+ const TenacityProject *pProject)
 {
    UIHandlePtr result;
    using namespace ToolCodes;

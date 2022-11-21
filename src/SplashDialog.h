@@ -15,16 +15,16 @@
 
 class wxBitmap;
 class ShuttleGui;
-class SaucedacityProject;
+class TenacityProject;
 class HtmlWindow;
 
-/// Saucedacity's welcome dialog. This should probably be renamed to
+/// Tenacity's welcome dialog. This should probably be renamed to
 /// WelcomeDialog (or something alone the likes) which might happen in the future.
 class SplashDialog final : public wxDialogWrapper {
    DECLARE_DYNAMIC_CLASS(SplashDialog)
 public:
 
-   static void DoHelpWelcome( SaucedacityProject &project );
+   static void DoHelpWelcome( TenacityProject &project );
 
    SplashDialog(wxWindow * parent);
    virtual ~ SplashDialog();

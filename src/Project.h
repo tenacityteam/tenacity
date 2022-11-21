@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_PROJECT__
 #define __AUDACITY_PROJECT__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-strings/Identifier.h>
 
 #include "ClientData.h" // to inherit
@@ -25,11 +25,11 @@ class wxFrame;
 class wxWindow;
 namespace GenericUI { class WindowPlacement; }
 
-class SaucedacityProject;
+class TenacityProject;
 
-SAUCEDACITY_DLL_API SaucedacityProject *GetActiveProject();
+SAUCEDACITY_DLL_API TenacityProject *GetActiveProject();
 // For use by ProjectManager only:
-SAUCEDACITY_DLL_API void SetActiveProject(SaucedacityProject * project);
+SAUCEDACITY_DLL_API void SetActiveProject(TenacityProject * project);
 
 /// \brief an object of class AllProjects acts like a standard library
 /// container, but refers to a global array of open projects.  So you can
@@ -39,9 +39,9 @@ SAUCEDACITY_DLL_API void SetActiveProject(SaucedacityProject * project);
 class SAUCEDACITY_DLL_API AllProjects
 {
    // Use shared_ptr to projects, because elsewhere we need weak_ptr
-   using AProjectHolder = std::shared_ptr< SaucedacityProject >;
+   using AProjectHolder = std::shared_ptr< TenacityProject >;
    using Container = std::vector< AProjectHolder >;
-   static Container gSaucedacityProjects;
+   static Container gTenacityProjects;
 
 public:
    AllProjects() = default;
@@ -61,7 +61,7 @@ public:
 
    // If the project is present, remove it from the global array and return
    // a shared pointer, else return null.  This invalidates any iterators.
-   value_type Remove( SaucedacityProject &project );
+   value_type Remove( TenacityProject &project );
 
    // This invalidates iterators
    void Add( const value_type &pProject );
@@ -84,12 +84,12 @@ private:
 // Container of various objects associated with the project, which is
 // responsible for destroying them
 using AttachedProjectObjects = ClientData::Site<
-   SaucedacityProject, ClientData::Base, ClientData::SkipCopying, std::shared_ptr
+   TenacityProject, ClientData::Base, ClientData::SkipCopying, std::shared_ptr
 >;
 // Container of pointers to various windows associated with the project, which
 // is not responsible for destroying them -- wxWidgets handles that instead
 using AttachedProjectWindows = ClientData::Site<
-   SaucedacityProject, wxWindow, ClientData::SkipCopying, ClientData::BarePtr
+   TenacityProject, wxWindow, ClientData::SkipCopying, ClientData::BarePtr
 >;
 
 wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
@@ -106,18 +106,18 @@ wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
 /// message and a few other things.
 /// There is very little in this class, most of the intelligence residing in
 /// the cooperating attached objects.
-class SAUCEDACITY_DLL_API SaucedacityProject final
+class SAUCEDACITY_DLL_API TenacityProject final
    : public wxEvtHandler
    , public AttachedProjectObjects
    , public AttachedProjectWindows
-   , public std::enable_shared_from_this<SaucedacityProject>
+   , public std::enable_shared_from_this<TenacityProject>
 {
  public:
    using AttachedObjects = ::AttachedProjectObjects;
    using AttachedWindows = ::AttachedProjectWindows;
 
-   SaucedacityProject();
-   virtual ~SaucedacityProject();
+   TenacityProject();
+   virtual ~TenacityProject();
 
    wxFrame *GetFrame() { return mFrame; }
    const wxFrame *GetFrame() const { return mFrame; }
@@ -166,27 +166,27 @@ private:
 
 ///\brief Get the top-level window associated with the project (as a wxFrame
 /// only, when you do not need to use the subclass ProjectWindow)
-SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( SaucedacityProject &project );
-SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const SaucedacityProject &project );
+SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project );
+SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project );
 
 ///\brief Get a pointer to the window associated with a project, or null if
 /// the given pointer is null.
-inline wxFrame *FindProjectFrame( SaucedacityProject *project ) {
+inline wxFrame *FindProjectFrame( TenacityProject *project ) {
    return project ? &GetProjectFrame( *project ) : nullptr;
 }
-inline const wxFrame *FindProjectFrame( const SaucedacityProject *project ) {
+inline const wxFrame *FindProjectFrame( const TenacityProject *project ) {
    return project ? &GetProjectFrame( *project ) : nullptr;
 }
 
 //! Make a WindowPlacement object suitable for `project` (which may be null)
 /*! @post return value is not null */
 SAUCEDACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
-ProjectFramePlacement( SaucedacityProject *project );
+ProjectFramePlacement( TenacityProject *project );
 
 ///\brief Get the main sub-window of the project frame that displays track data
 // (as a wxWindow only, when you do not need to use the subclass TrackPanel)
-SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( SaucedacityProject &project );
+SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project );
 SAUCEDACITY_DLL_API const wxWindow &GetProjectPanel(
-   const SaucedacityProject &project );
+   const TenacityProject &project );
 
 #endif

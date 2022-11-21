@@ -362,7 +362,7 @@ namespace
 
 UIHandlePtr SelectHandle::HitTest
 (std::weak_ptr<SelectHandle> &holder,
- const TrackPanelMouseState &st, const SaucedacityProject *pProject,
+ const TrackPanelMouseState &st, const TenacityProject *pProject,
  const std::shared_ptr<TrackView> &pTrackView)
 {
    // This handle is a little special because there may be some state to
@@ -472,12 +472,12 @@ namespace {
    }
 }
 
-void SelectHandle::Enter(bool, SaucedacityProject *project)
+void SelectHandle::Enter(bool, TenacityProject *project)
 {
    SetUseSnap(true, project);
 }
 
-void SelectHandle::SetUseSnap(bool use, SaucedacityProject *project)
+void SelectHandle::SetUseSnap(bool use, TenacityProject *project)
 {
    mUseSnap = use;
 
@@ -506,7 +506,7 @@ bool SelectHandle::HasEscape() const
    return HasSnap() && mUseSnap;
 }
 
-bool SelectHandle::Escape(SaucedacityProject *project)
+bool SelectHandle::Escape(TenacityProject *project)
 {
    if (SelectHandle::HasEscape()) {
       SetUseSnap(false, project);
@@ -516,7 +516,7 @@ bool SelectHandle::Escape(SaucedacityProject *project)
 }
 
 UIHandle::Result SelectHandle::Click
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    /// This method gets called when we're handling selection
    /// and the mouse was just clicked.
@@ -782,7 +782,7 @@ UIHandle::Result SelectHandle::Click
 }
 
 UIHandle::Result SelectHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
 
@@ -876,7 +876,7 @@ UIHandle::Result SelectHandle::Drag
 }
 
 HitTestPreview SelectHandle::Preview
-(const TrackPanelMouseState &st, SaucedacityProject *pProject)
+(const TrackPanelMouseState &st, TenacityProject *pProject)
 {
    if (!HasSnap() && !mUseSnap)
       // Moved out of snapping; revert to un-escaped state
@@ -987,7 +987,7 @@ HitTestPreview SelectHandle::Preview
 }
 
 UIHandle::Result SelectHandle::Release
-(const TrackPanelMouseEvent &, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &, TenacityProject *pProject,
  wxWindow *)
 {
    using namespace RefreshCode;
@@ -1005,7 +1005,7 @@ UIHandle::Result SelectHandle::Release
       return RefreshNone;
 }
 
-UIHandle::Result SelectHandle::Cancel(SaucedacityProject *pProject)
+UIHandle::Result SelectHandle::Cancel(TenacityProject *pProject)
 {
    mSelectionStateChanger.reset();
    ViewInfo::Get( *pProject ).selectedRegion = mInitialSelection;
@@ -1047,7 +1047,7 @@ std::weak_ptr<Track> SelectHandle::FindTrack()
       return pView->FindTrack();
 }
 
-void SelectHandle::Connect(SaucedacityProject *pProject)
+void SelectHandle::Connect(TenacityProject *pProject)
 {
    mTimerHandler = std::make_shared<TimerHandler>( this, pProject );
 }
@@ -1055,7 +1055,7 @@ void SelectHandle::Connect(SaucedacityProject *pProject)
 class SelectHandle::TimerHandler : public wxEvtHandler
 {
 public:
-   TimerHandler( SelectHandle *pParent, SaucedacityProject *pProject )
+   TimerHandler( SelectHandle *pParent, TenacityProject *pProject )
       : mParent{ pParent }
       , mConnectedProject{ pProject }
    {
@@ -1070,7 +1070,7 @@ public:
 
 private:
    SelectHandle *mParent;
-   SaucedacityProject *mConnectedProject;
+   TenacityProject *mConnectedProject;
 };
 
 void SelectHandle::TimerHandler::OnTimer(wxCommandEvent &event)
@@ -1147,7 +1147,7 @@ void SelectHandle::TimerHandler::OnTimer(wxCommandEvent &event)
 }
 
 /// Reset our selection markers.
-void SelectHandle::StartSelection( SaucedacityProject *pProject )
+void SelectHandle::StartSelection( TenacityProject *pProject )
 {
    auto &viewInfo = ViewInfo::Get( *pProject );
    mSelStartValid = true;
@@ -1163,7 +1163,7 @@ void SelectHandle::StartSelection( SaucedacityProject *pProject )
 
 /// Extend or contract the existing selection
 void SelectHandle::AdjustSelection
-(SaucedacityProject *pProject,
+(TenacityProject *pProject,
  ViewInfo &viewInfo, int mouseXCoordinate, int trackLeftEdge,
  Track *track)
 {
@@ -1390,7 +1390,7 @@ void SelectHandle::StartSnappingFreqSelection
 }
 
 void SelectHandle::MoveSnappingFreqSelection
-   (SaucedacityProject *pProject, ViewInfo &viewInfo, int mouseYCoordinate,
+   (TenacityProject *pProject, ViewInfo &viewInfo, int mouseYCoordinate,
     int trackTopEdge,
     int trackHeight, TrackView *pTrackView)
 {

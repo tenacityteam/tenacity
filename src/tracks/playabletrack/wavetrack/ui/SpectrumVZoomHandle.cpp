@@ -21,7 +21,7 @@ Paul Licameli split from WaveTrackVZoomHandle.cpp
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 SpectrumVZoomHandle::SpectrumVZoomHandle
@@ -32,7 +32,7 @@ SpectrumVZoomHandle::SpectrumVZoomHandle
 
 SpectrumVZoomHandle::~SpectrumVZoomHandle() = default;
 
-void SpectrumVZoomHandle::Enter( bool, SaucedacityProject* )
+void SpectrumVZoomHandle::Enter( bool, TenacityProject* )
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -45,13 +45,13 @@ bool SpectrumVZoomHandle::HandlesRightClick()
 }
 
 UIHandle::Result SpectrumVZoomHandle::Click
-(const TrackPanelMouseEvent &, SaucedacityProject *)
+(const TrackPanelMouseEvent &, TenacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
 UIHandle::Result SpectrumVZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject)
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
 {
    using namespace RefreshCode;
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -61,13 +61,13 @@ UIHandle::Result SpectrumVZoomHandle::Drag
 }
 
 HitTestPreview SpectrumVZoomHandle::Preview
-(const TrackPanelMouseState &st, SaucedacityProject *)
+(const TrackPanelMouseState &st, TenacityProject *)
 {
    return WaveTrackVZoomHandle::HitPreview(st.state);
 }
 
 UIHandle::Result SpectrumVZoomHandle::Release
-(const TrackPanelMouseEvent &evt, SaucedacityProject *pProject,
+(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
  wxWindow *pParent)
 {
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -77,7 +77,7 @@ UIHandle::Result SpectrumVZoomHandle::Release
       mZoomStart, mZoomEnd );
 }
 
-UIHandle::Result SpectrumVZoomHandle::Cancel(SaucedacityProject*)
+UIHandle::Result SpectrumVZoomHandle::Cancel(TenacityProject*)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.
@@ -105,7 +105,7 @@ wxRect SpectrumVZoomHandle::DrawingArea(
 // If ZoomStart and ZoomEnd are not equal, this may override
 // the zoomKind and cause a drag-zoom-in.
 void SpectrumVZoomHandle::DoZoom(
-   SaucedacityProject *pProject,
+   TenacityProject *pProject,
    WaveTrack *pTrack,
    WaveTrackViewConstants::ZoomActions ZoomKind,
    const wxRect &rect, int zoomStart, int zoomEnd,

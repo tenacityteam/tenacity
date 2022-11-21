@@ -42,7 +42,7 @@
 
 #include <algorithm>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../AColor.h"

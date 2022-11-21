@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "ClientData.h"
 #include "CommonTrackPanelCell.h"
 
-class SaucedacityProject;
+class TenacityProject;
 
 class BackgroundHandle;
 class ZoomHandle;
@@ -27,11 +27,11 @@ class BackgroundCell final
    , public ClientData::Base
 {
 public:
-   static BackgroundCell &Get( SaucedacityProject &project );
-   static const BackgroundCell &Get( const SaucedacityProject &project );
+   static BackgroundCell &Get( TenacityProject &project );
+   static const BackgroundCell &Get( const TenacityProject &project );
 
    explicit
-   BackgroundCell(SaucedacityProject *pProject)
+   BackgroundCell(TenacityProject *pProject)
       : mpProject(pProject)
    {}
 
@@ -40,7 +40,7 @@ public:
 protected:
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const SaucedacityProject *) override;
+       const TenacityProject *) override;
 
    std::shared_ptr<Track> DoFindTrack() override;
 
@@ -55,10 +55,10 @@ private:
       const wxRect &rect, const wxRect &panelRect, unsigned iPass ) override;
 
    std::vector<MenuItem> GetMenuItems(
-      const wxRect &rect, const wxPoint *pPosition, SaucedacityProject *pProject )
+      const wxRect &rect, const wxPoint *pPosition, TenacityProject *pProject )
    override;
    
-   SaucedacityProject *mpProject;
+   TenacityProject *mpProject;
 
    std::weak_ptr<BackgroundHandle> mHandle;
 

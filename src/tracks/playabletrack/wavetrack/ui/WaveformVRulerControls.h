@@ -29,14 +29,14 @@ public:
 
    std::vector<UIHandlePtr> HitTest(
       const TrackPanelMouseState &state,
-      const SaucedacityProject *) override;
+      const TenacityProject *) override;
 
    unsigned HandleWheelRotation(
       const TrackPanelMouseEvent &event,
-      SaucedacityProject *pProject) override;
+      TenacityProject *pProject) override;
    static unsigned DoHandleWheelRotation(
       const TrackPanelMouseEvent &event,
-      SaucedacityProject *pProject, WaveTrack *wt);
+      TenacityProject *pProject, WaveTrack *wt);
 
 private:
    // TrackPanelDrawable implementation

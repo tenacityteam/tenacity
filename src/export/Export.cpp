@@ -51,7 +51,7 @@
 
 #include "../widgets/FileDialog/FileDialog.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-files/FileNames.h>
 #include <lib-files/wxFileNameWrapper.h>
@@ -318,7 +318,7 @@ Exporter::RegisteredExportPlugin::RegisteredExportPlugin(
          std::make_unique< ExporterItem >( id, factory ) );
 }
 
-Exporter::Exporter( SaucedacityProject &project )
+Exporter::Exporter( TenacityProject &project )
 : mProject{ &project }
 {
    using namespace Registry;
@@ -397,7 +397,7 @@ const ExportPluginArray &Exporter::GetPlugins()
    return mPlugins;
 }
 
-bool Exporter::DoEditMetadata(SaucedacityProject &project,
+bool Exporter::DoEditMetadata(TenacityProject &project,
    const TranslatableString &title,
    const TranslatableString &shortUndoDescription, bool force)
 {

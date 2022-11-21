@@ -32,7 +32,7 @@ messaging from a command back to its invoker.
 #include "CommandTargets.h"
 
 CommandContext::CommandContext(
-      SaucedacityProject &p
+      TenacityProject &p
       , const wxEvent *e
       , int ii
       , const CommandParameter &param
@@ -47,7 +47,7 @@ CommandContext::CommandContext(
 }
    
 CommandContext::CommandContext(
-      SaucedacityProject &p,
+      TenacityProject &p,
       std::unique_ptr<CommandOutputTargets> target)
       : project{ p }
       // Revisit and use std_unique pointer for pOutput??

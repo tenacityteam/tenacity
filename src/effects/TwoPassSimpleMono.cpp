@@ -32,7 +32,7 @@ bool EffectTwoPassSimpleMono::Process()
    this->CopyInputTracks(); // Set up mOutputTracks.
 
    mWorkTracks = TrackList::Create(
-      const_cast<SaucedacityProject*>( FindProject() ) );
+      const_cast<TenacityProject*>( FindProject() ) );
    for (auto track : mOutputTracks->Selected< WaveTrack >()) {
       mWorkTracks->Add(track->EmptyCopy())->ConvertToSampleFormat(floatSample);
       if( mT0 > 0 )

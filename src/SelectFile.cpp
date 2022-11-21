@@ -12,7 +12,7 @@
 #include "widgets/FileDialog/FileDialog.h"
 #include "widgets/AudacityMessageBox.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 
 FilePath

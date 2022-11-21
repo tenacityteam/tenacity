@@ -2240,7 +2240,7 @@ bool NyquistEffect::Parse(
                //       wxOK | wxICON_EXCLAMATION,
                //       XO("Nyquist Warning") );
 
-               // Note that the SaucedacityApp's mLogger has not yet been created,
+               // Note that the TenacityApp's mLogger has not yet been created,
                // so this brings up an alert box, but after the Audacity frame is up.
                wxLogWarning(str);
                return true;
@@ -2568,12 +2568,12 @@ void NyquistEffect::OSCallback()
 
 FilePaths NyquistEffect::GetNyquistSearchPath()
 {
-   const auto &saucedacityPathList = FileNames::AudacityPathList();
+   const auto &tenacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
 
-   for (size_t i = 0; i < saucedacityPathList.size(); i++)
+   for (size_t i = 0; i < tenacityPathList.size(); i++)
    {
-      wxString prefix = saucedacityPathList[i] + wxFILE_SEP_PATH;
+      wxString prefix = tenacityPathList[i] + wxFILE_SEP_PATH;
       FileNames::AddUniquePathToPathList(prefix + wxT("nyquist"), pathList);
       FileNames::AddUniquePathToPathList(prefix + wxT("plugins"), pathList);
       FileNames::AddUniquePathToPathList(prefix + wxT("plug-ins"), pathList);

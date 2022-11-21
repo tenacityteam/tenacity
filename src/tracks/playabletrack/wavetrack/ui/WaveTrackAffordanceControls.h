@@ -50,46 +50,46 @@ class SAUCEDACITY_DLL_API WaveTrackAffordanceControls :
 public:
     WaveTrackAffordanceControls(const std::shared_ptr<Track>& pTrack);
 
-    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const SaucedacityProject* pProject) override;
+    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject) override;
 
     void Draw(TrackPanelDrawingContext& context, const wxRect& rect, unsigned iPass) override;
 
     //Invokes name editing for a clip that currently is
     //in focus(as a result of hit testing), returns true on success
     //false if there is no focus
-    bool StartEditClipName(SaucedacityProject* project);
+    bool StartEditClipName(TenacityProject* project);
 
     std::weak_ptr<WaveClip> GetSelectedClip() const;
 
     unsigned CaptureKey
     (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-        SaucedacityProject* project) override;
+        TenacityProject* project) override;
     
     unsigned KeyDown (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-        SaucedacityProject* project) override;
+        TenacityProject* project) override;
 
     unsigned Char
     (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-        SaucedacityProject* project) override;
+        TenacityProject* project) override;
 
-    unsigned LoseFocus(SaucedacityProject *project) override;
+    unsigned LoseFocus(TenacityProject *project) override;
 
-    void OnTextEditFinished(SaucedacityProject* project, const wxString& text) override;
-    void OnTextEditCancelled(SaucedacityProject* project) override;
-    void OnTextModified(SaucedacityProject* project, const wxString& text) override;
-    void OnTextContextMenu(SaucedacityProject* project, const wxPoint& position) override;
+    void OnTextEditFinished(TenacityProject* project, const wxString& text) override;
+    void OnTextEditCancelled(TenacityProject* project) override;
+    void OnTextModified(TenacityProject* project, const wxString& text) override;
+    void OnTextContextMenu(TenacityProject* project, const wxPoint& position) override;
 
-    bool StartEditNameOfMatchingClip( SaucedacityProject &project,
+    bool StartEditNameOfMatchingClip( TenacityProject &project,
         std::function<bool(WaveClip&)> test /*!<
             Edit the first clip in the track's list satisfying the test */
     );
 
-    unsigned OnAffordanceClick(const TrackPanelMouseEvent& event, SaucedacityProject* project);
+    unsigned OnAffordanceClick(const TrackPanelMouseEvent& event, TenacityProject* project);
 
-    bool OnTextCopy(SaucedacityProject& project);
-    bool OnTextCut(SaucedacityProject& project);
-    bool OnTextPaste(SaucedacityProject& project);
-    bool OnTextSelect(SaucedacityProject& project);
+    bool OnTextCopy(TenacityProject& project);
+    bool OnTextCut(TenacityProject& project);
+    bool OnTextPaste(TenacityProject& project);
+    bool OnTextSelect(TenacityProject& project);
 
 private:
     void ResetClipNameEdit();

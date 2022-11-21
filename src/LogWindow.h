@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 LogWindow.h
 
-Paul Licameli split from SaucedacityLogger.h
+Paul Licameli split from TenacityLogger.h
 
 **********************************************************************/
 

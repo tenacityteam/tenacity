@@ -43,7 +43,7 @@
 #include "EffectManager.h"
 #include "EffectUI.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/RealFFTf.h>
 #include <lib-preferences/Prefs.h>
 

@@ -11,7 +11,7 @@ Paul Licameli split from AutoRecovery.h
 #ifndef __AUDACITY_AUTO_RECOVERY_DIALOG__
 #define __AUDACITY_AUTO_RECOVERY_DIALOG__
 
-class SaucedacityProject;
+class TenacityProject;
 
 //
 // Show auto recovery dialog if there are projects to recover. Should be
@@ -26,7 +26,7 @@ class SaucedacityProject;
 // The didRecoverAnything param is strictly for a return value.
 // Any value passed in is ignored.
 //
-bool ShowAutoRecoveryDialogIfNeeded(SaucedacityProject*& pproj,
+bool ShowAutoRecoveryDialogIfNeeded(TenacityProject*& pproj,
                                     bool *didRecoverAnything);
 
 #endif

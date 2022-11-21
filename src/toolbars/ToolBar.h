@@ -17,7 +17,7 @@
 #include <vector>
 #include <wx/defs.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../theme/Theme.h"
@@ -91,7 +91,7 @@ enum ToolBarID
 // How may pixels padding each side of a floating toolbar
 enum { ToolBarFloatMargin = 1 };
 
-class SaucedacityProject;
+class TenacityProject;
 
 class SAUCEDACITY_DLL_API ToolBar /* not final */
 : public wxPanelWrapper
@@ -102,7 +102,7 @@ class SAUCEDACITY_DLL_API ToolBar /* not final */
 
    using Holder = wxWindowPtr<ToolBar>;
 
-   ToolBar( SaucedacityProject &project,
+   ToolBar( TenacityProject &project,
       int type, const TranslatableString & label, const wxString & section,
       bool resizable = false);
    virtual ~ToolBar();
@@ -177,7 +177,7 @@ public:
 
    static
    void SetButtonToolTip
-      (SaucedacityProject &project, AButton &button,
+      (TenacityProject &project, AButton &button,
        // If a shortcut key is defined for the command, then it is appended,
        // parenthesized, after the translated name.
        const ComponentInterfaceSymbol commands[], size_t nCommands);
@@ -233,7 +233,7 @@ public:
    void OnMouseEvents(wxMouseEvent &event);
 
  protected:
-   SaucedacityProject &mProject;
+   TenacityProject &mProject;
    TranslatableString mLabel;
    wxString mSection;
    int mType;
@@ -260,7 +260,7 @@ public:
 };
 
 struct SAUCEDACITY_DLL_API RegisteredToolbarFactory {
-   using Function = std::function< ToolBar::Holder( SaucedacityProject & ) >;
+   using Function = std::function< ToolBar::Holder( TenacityProject & ) >;
    using Functions = std::vector< Function >;
 
    RegisteredToolbarFactory( int id, const Function &function );

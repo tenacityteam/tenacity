@@ -98,7 +98,7 @@ void ZoomInfo::SetZoom(double pixelsPerSecond)
    // still quite close together.
    if( zoom > (gMaxZoom * 0.06  ))
    {
-      SaucedacityProject * project = GetActiveProject();
+      TenacityProject * project = GetActiveProject();
       if( project )
          project->OnSnapToOff();
    }

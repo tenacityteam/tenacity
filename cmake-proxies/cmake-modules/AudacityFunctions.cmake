@@ -519,7 +519,7 @@ endmacro()
 # other targets, and link to them.
 # More defines, and more target libraries (maybe generator expressions)
 # may be given too.
-macro( saucedacity_library NAME SOURCES IMPORT_TARGETS
+macro( tenacity_library NAME SOURCES IMPORT_TARGETS
    ADDITIONAL_DEFINES ADDITIONAL_LIBRARIES )
    # ditto comment in the previous macro
    audacity_module_fn(

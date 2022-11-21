@@ -10,7 +10,7 @@ Paul Licameli
 
 #include "SelectedRegion.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-xml/XMLWriter.h>
 
 const wxChar *SelectedRegion::sDefaultT0Name = wxT("selStart");

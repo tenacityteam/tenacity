@@ -25,7 +25,7 @@ class wxChoice;
 class wxListBox;
 class wxWindow;
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ConfigInterface.h>
 #include <lib-components/EffectInterface.h>
 #include <lib-components/PluginInterface.h>
@@ -43,7 +43,7 @@ class AudacityCommand;
 
 #define BUILTIN_EFFECT_PREFIX wxT("Built-in Effect: ")
 
-class SaucedacityProject;
+class TenacityProject;
 class LabelTrack;
 class NotifyingSelectedRegion;
 class ProgressDialog;
@@ -462,7 +462,7 @@ protected:
    wxWeakRef<NotifyingSelectedRegion> mpSelectedRegion{};
    WaveTrackFactory   *mFactory;
    const TrackList *inputTracks() const { return mTracks; }
-   const SaucedacityProject *FindProject() const;
+   const TenacityProject *FindProject() const;
    std::shared_ptr<TrackList> mOutputTracks; // used only if CopyInputTracks() is called.
    double         mT0;
    double         mT1;

@@ -14,7 +14,7 @@ Max Maisel
 #include "Biquad.h"
 #include <memory>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-math/SampleFormat.h>
 
 #include <cmath>

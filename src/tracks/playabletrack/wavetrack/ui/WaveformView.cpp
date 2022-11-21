@@ -45,7 +45,7 @@ WaveformView::~WaveformView() = default;
 
 std::vector<UIHandlePtr> WaveformView::DetailedHitTest(
    const TrackPanelMouseState &st,
-   const SaucedacityProject *pProject, int currentTool, bool bMultiTool )
+   const TenacityProject *pProject, int currentTool, bool bMultiTool )
 {
    auto &view = *this;
    const auto pTrack =
@@ -1163,7 +1163,7 @@ void WaveColorMenuTable::OnWaveColorChange(wxCommandEvent & event)
 
    int newWaveColor = id - OnInstrument1ID;
 
-   SaucedacityProject *const project = &mpData->project;
+   TenacityProject *const project = &mpData->project;
 
    for (auto channel : TrackList::Channels(pTrack))
       channel->SetWaveColorIndex(newWaveColor);

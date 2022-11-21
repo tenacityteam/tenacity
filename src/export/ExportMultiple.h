@@ -13,7 +13,7 @@
 
 #include "Export.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h> // member variable
 
 class wxButton;
@@ -25,7 +25,7 @@ class wxSimplebook;
 class wxStaticText;
 class wxTextCtrl;
 
-class SaucedacityProject;
+class TenacityProject;
 class LabelTrack;
 class SelectionState;
 class ShuttleGui;
@@ -36,7 +36,7 @@ class SAUCEDACITY_DLL_API ExportMultipleDialog final : public wxDialogWrapper
 public:
    using ProgressResult = GenericUI::ProgressResult;
 
-   ExportMultipleDialog(SaucedacityProject *parent);
+   ExportMultipleDialog(TenacityProject *parent);
    virtual ~ExportMultipleDialog();
 
    int ShowModal();
@@ -109,7 +109,7 @@ private:
    Exporter mExporter;
    std::vector<ExportPlugin*> mPlugins;   /**< Array of references to available exporter
                                    plug-ins */
-   SaucedacityProject *mProject;
+   TenacityProject *mProject;
    TrackList *mTracks;           /**< The list of tracks in the project that is
                                    being exported */
    const LabelTrack *mLabels;

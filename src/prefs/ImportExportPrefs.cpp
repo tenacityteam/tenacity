@@ -20,7 +20,7 @@
 
 #include <wx/defs.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
@@ -183,7 +183,7 @@ bool ImportExportPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "ImportExport",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew ImportExportPrefs(parent, winid);

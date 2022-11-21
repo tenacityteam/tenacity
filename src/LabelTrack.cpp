@@ -43,7 +43,7 @@ for drawing different aspects of the label and its text box.
 #include <wx/log.h>
 #include <wx/tokenzr.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "ProjectFileIORegistry.h"
@@ -59,7 +59,7 @@ wxDEFINE_EVENT(EVT_LABELTRACK_SELECTION, LabelTrackEvent);
 
 static ProjectFileIORegistry::Entry registerFactory{
    wxT( "labeltrack" ),
-   []( SaucedacityProject &project ){
+   []( TenacityProject &project ){
       auto &tracks = TrackList::Get( project );
       auto result = tracks.Add(std::make_shared<LabelTrack>());
       TrackView::Get( *result );
@@ -87,7 +87,7 @@ LabelTrack::LabelTrack(const LabelTrack &orig) :
    }
 }
 
-Track::Holder LabelTrack::PasteInto( SaucedacityProject & ) const
+Track::Holder LabelTrack::PasteInto( TenacityProject & ) const
 {
    auto pNewTrack = std::make_shared<LabelTrack>();
    pNewTrack->Paste(0.0, this);

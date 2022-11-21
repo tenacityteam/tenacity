@@ -52,7 +52,7 @@
 #include "widgets/ProgressDialog.h"
 #include "widgets/wxTextCtrlWrapper.h"
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
@@ -153,7 +153,7 @@ BEGIN_EVENT_TABLE(TimerRecordDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 TimerRecordDialog::TimerRecordDialog(
-   wxWindow* parent, SaucedacityProject &project, bool bAlreadySaved)
+   wxWindow* parent, TenacityProject &project, bool bAlreadySaved)
 : wxDialogWrapper(parent, -1, XO("Audacity Timer Record"), wxDefaultPosition,
            wxDefaultSize, wxCAPTION)
 , mProject{ project }
@@ -309,7 +309,7 @@ void TimerRecordDialog::OnAutoSavePathButton_Click(wxCommandEvent& WXUNUSED(even
       m_fnAutoSaveFile.GetPath(),
       m_fnAutoSaveFile.GetFullName(),
       wxT("aup3"),
-      { FileNames::SaucedacityProjects },
+      { FileNames::TenacityProjects },
       wxFD_SAVE | wxRESIZE_BORDER,
       this);
 
@@ -978,7 +978,7 @@ void TimerRecordDialog::UpdateDuration()
 // Update m_DateTime_End and ctrls based on m_DateTime_Start and m_TimeSpan_Duration.
 void TimerRecordDialog::UpdateEnd()
 {
-   //v Use remaining disk -> record time calcs from SaucedacityProject::OnTimer to set range?
+   //v Use remaining disk -> record time calcs from TenacityProject::OnTimer to set range?
    m_DateTime_End = m_DateTime_Start + m_TimeSpan_Duration;
    //wxLogDebug( "Time start %s end %s", 
    //   m_DateTime_Start.FormatISOCombined(' '),

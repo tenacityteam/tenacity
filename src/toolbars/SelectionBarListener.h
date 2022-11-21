@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_SELECTION_BAR_LISTENER__
 #define __AUDACITY_SELECTION_BAR_LISTENER__
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-components/ComponentInterfaceSymbol.h>
 
 class SelectedRegion;

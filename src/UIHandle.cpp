@@ -17,7 +17,7 @@ UIHandle::~UIHandle()
 {
 }
 
-void UIHandle::Enter(bool, SaucedacityProject *)
+void UIHandle::Enter(bool, TenacityProject *)
 {
 }
 
@@ -36,7 +36,7 @@ bool UIHandle::HasEscape() const
    return false;
 }
 
-bool UIHandle::Escape(SaucedacityProject *)
+bool UIHandle::Escape(TenacityProject *)
 {
    return false;
 }
@@ -51,6 +51,6 @@ bool UIHandle::StopsOnKeystroke()
    return false;
 }
 
-void UIHandle::OnProjectChange(SaucedacityProject *)
+void UIHandle::OnProjectChange(TenacityProject *)
 {
 }

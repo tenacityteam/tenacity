@@ -21,7 +21,7 @@ with names like mod-script-pipe that add NEW features.
 #include <wx/defs.h>
 #include <wx/filename.h>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
 #include "../shuttle/ShuttleGui.h"
@@ -119,15 +119,15 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
 "These are experimental modules. Enable them only if you've read the Audacity Manual\nand know what you are doing.") );
       S.AddFixedText(XO(
 /* i18n-hint preserve the leading spaces */
-"  'Ask' means Saucedacity will ask if you want to load the module each time it starts.") );
+"  'Ask' means Tenacity will ask if you want to load the module each time it starts.") );
       S.AddFixedText(XO(
 /* i18n-hint preserve the leading spaces */
-"  'Failed' means Saucedacity thinks the module is broken and won't run it.") );
+"  'Failed' means Tenacity thinks the module is broken and won't run it.") );
       S.AddFixedText(XO(
 /* i18n-hint preserve the leading spaces */
 "  'New' means no choice has been made yet.") );
       S.AddFixedText(XO(
-"Changes to these settings only take effect when Saucedacity starts up."));
+"Changes to these settings only take effect when Tenacity starts up."));
       {
         S.StartMultiColumn( 2 );
         int i;
@@ -166,7 +166,7 @@ bool ModulePrefs::Commit()
 #ifdef EXPERIMENTAL_MODULE_PREFS
 namespace{
 PrefsPanel::Registration sAttachment{ "Module",
-   [](wxWindow *parent, wxWindowID winid, SaucedacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew ModulePrefs(parent, winid);

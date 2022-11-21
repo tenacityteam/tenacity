@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectAudioIO.cpp
 
-Paul Licameli split from SaucedacityProject.cpp
+Paul Licameli split from TenacityProject.cpp
 
 **********************************************************************/
 
@@ -14,23 +14,23 @@ Paul Licameli split from SaucedacityProject.cpp
 #include "Project.h"
 #include "widgets/MeterPanelBase.h"
 
-static const SaucedacityProject::AttachedObjects::RegisteredFactory sAudioIOKey{
-  []( SaucedacityProject &parent ){
+static const TenacityProject::AttachedObjects::RegisteredFactory sAudioIOKey{
+  []( TenacityProject &parent ){
      return std::make_shared< ProjectAudioIO >( parent );
    }
 };
 
-ProjectAudioIO &ProjectAudioIO::Get( SaucedacityProject &project )
+ProjectAudioIO &ProjectAudioIO::Get( TenacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectAudioIO >( sAudioIOKey );
 }
 
-const ProjectAudioIO &ProjectAudioIO::Get( const SaucedacityProject &project )
+const ProjectAudioIO &ProjectAudioIO::Get( const TenacityProject &project )
 {
-   return Get( const_cast<SaucedacityProject &>(project) );
+   return Get( const_cast<TenacityProject &>(project) );
 }
 
-ProjectAudioIO::ProjectAudioIO( SaucedacityProject &project )
+ProjectAudioIO::ProjectAudioIO( TenacityProject &project )
 : mProject{ project }
 {
 }
