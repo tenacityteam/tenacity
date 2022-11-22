@@ -43,7 +43,7 @@ class AudacityCommand;
 
 class NotifyingSelectedRegion;
 
-class SAUCEDACITY_DLL_API EffectManager
+class TENACITY_DLL_API EffectManager
 {
 public:
 

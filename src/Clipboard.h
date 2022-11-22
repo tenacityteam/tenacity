@@ -19,10 +19,10 @@ class TenacityProject;
 class TrackList;
 
 // An event emitted by the clipboard whenever its contents change.
-wxDECLARE_EXPORTED_EVENT( SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT( TENACITY_DLL_API,
                           EVT_CLIPBOARD_CHANGE, wxCommandEvent );
 
-class SAUCEDACITY_DLL_API Clipboard final
+class TENACITY_DLL_API Clipboard final
    : public wxEvtHandler
 {
 public:

@@ -16,7 +16,7 @@
 class wxRect;
 class Track;
 
-class SAUCEDACITY_DLL_API PlayableTrackControls /* not final */
+class TENACITY_DLL_API PlayableTrackControls /* not final */
    : public CommonTrackControls
 {
 public:

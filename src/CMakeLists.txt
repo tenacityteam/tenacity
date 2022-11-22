@@ -1318,9 +1318,9 @@ source_group(
         ${_INTDIR}/CMakeFiles/Audacity.dir/cmake_pch.hxx
 )
 
-# Define SAUCEDACITY_DLL_API
-import_symbol_define( import_symbol SAUCEDACITY_DLL )
-export_symbol_define( export_symbol SAUCEDACITY_DLL )
+# Define TENACITY_DLL_API
+import_symbol_define( import_symbol TENACITY_DLL )
+export_symbol_define( export_symbol TENACITY_DLL )
 list( APPEND DEFINES PRIVATE "${export_symbol}" INTERFACE "${import_symbol}" )
 
 # see AudioIO.cpp

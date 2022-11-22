@@ -25,7 +25,7 @@ enum DitherType : unsigned;
 
 #define QUALITY_PREFS_PLUGIN_SYMBOL ComponentInterfaceSymbol{ XO("Quality") }
 
-class SAUCEDACITY_DLL_API QualityPrefs final : public PrefsPanel
+class TENACITY_DLL_API QualityPrefs final : public PrefsPanel
 {
  public:
    QualityPrefs(wxWindow * parent, wxWindowID winid);

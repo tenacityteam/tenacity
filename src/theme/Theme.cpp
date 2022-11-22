@@ -68,7 +68,7 @@ static const unsigned char DarkImageCacheAsData[] = {
 };
 
 static const unsigned char TenacityImageCacheAsData[] = {
-#include "TenacityThemeAsCeeCode.h"
+#include "SaucedacityThemeAsCeeCode.h"
 };
 
 static const unsigned char AudacityImageCacheAsData[] = {
@@ -84,7 +84,7 @@ static const unsigned char HiContrastImageCacheAsData[] = {
 };
 
 // theTheme is a global variable.
-SAUCEDACITY_DLL_API Theme theTheme;
+TENACITY_DLL_API Theme theTheme;
 
 Theme::Theme(void)
 {

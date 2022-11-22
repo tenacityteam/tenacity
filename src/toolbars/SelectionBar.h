@@ -43,7 +43,7 @@ class TenacityProject;
 class SelectionBarListener;
 class NumericTextCtrl;
 
-class SAUCEDACITY_DLL_API SelectionBar final : public ToolBar {
+class TENACITY_DLL_API SelectionBar final : public ToolBar {
 
  public:
    SelectionBar( TenacityProject &project );

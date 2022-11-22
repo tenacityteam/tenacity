@@ -17,7 +17,7 @@ class TenacityProject;
 struct UndoState;
 enum class UndoPush : unsigned char;
 
-class SAUCEDACITY_DLL_API ProjectHistory final
+class TENACITY_DLL_API ProjectHistory final
    : public ClientData::Base
 {
 public:

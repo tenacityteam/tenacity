@@ -24,7 +24,7 @@ namespace FileNames {
 }
 using FileTypes = std::vector< FileNames::FileType >;
 
-SAUCEDACITY_DLL_API FilePath
+TENACITY_DLL_API FilePath
 SelectFile(FileNames::Operation op,   // op matters only when default_path is empty
    const TranslatableString& message,
    const FilePath& default_path,
@@ -37,7 +37,7 @@ SelectFile(FileNames::Operation op,   // op matters only when default_path is em
 /** \brief Protect against Unicode to multi-byte conversion failures
  * on Windows */
 #if defined(__WXMSW__)
-SAUCEDACITY_DLL_API char *VerifyFilename(const wxString &s, bool input = true);
+TENACITY_DLL_API char *VerifyFilename(const wxString &s, bool input = true);
 #endif
 
 // Use this macro to wrap all filenames and pathnames that get

@@ -19,7 +19,7 @@ class LWSlider;
 class Track;
 class TranslatableString;
 
-class SAUCEDACITY_DLL_API SliderHandle /* not final */ : public UIHandle
+class TENACITY_DLL_API SliderHandle /* not final */ : public UIHandle
 {
    SliderHandle(const SliderHandle&) = delete;
 

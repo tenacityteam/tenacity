@@ -115,7 +115,7 @@ struct AudioIOStartStreamOptions
 
 ///\brief A singleton object supporting queries of the state of any active
 /// audio streams, and audio device capabilities
-class SAUCEDACITY_DLL_API AudioIOBase /* not final */
+class TENACITY_DLL_API AudioIOBase /* not final */
    : public NonInterferingBase
 {
 public:
@@ -309,11 +309,11 @@ protected:
 
 #include "Prefs.h"
 
-extern SAUCEDACITY_DLL_API StringSetting AudioIOHost;
-extern SAUCEDACITY_DLL_API DoubleSetting AudioIOLatencyCorrection;
-extern SAUCEDACITY_DLL_API DoubleSetting AudioIOLatencyDuration;
-extern SAUCEDACITY_DLL_API StringSetting AudioIOPlaybackDevice;
-extern SAUCEDACITY_DLL_API IntSetting    AudioIORecordChannels;
-extern SAUCEDACITY_DLL_API StringSetting AudioIORecordingDevice;
-extern SAUCEDACITY_DLL_API StringSetting AudioIORecordingSource;
-extern SAUCEDACITY_DLL_API IntSetting    AudioIORecordingSourceIndex;
+extern TENACITY_DLL_API StringSetting AudioIOHost;
+extern TENACITY_DLL_API DoubleSetting AudioIOLatencyCorrection;
+extern TENACITY_DLL_API DoubleSetting AudioIOLatencyDuration;
+extern TENACITY_DLL_API StringSetting AudioIOPlaybackDevice;
+extern TENACITY_DLL_API IntSetting    AudioIORecordChannels;
+extern TENACITY_DLL_API StringSetting AudioIORecordingDevice;
+extern TENACITY_DLL_API StringSetting AudioIORecordingSource;
+extern TENACITY_DLL_API IntSetting    AudioIORecordingSourceIndex;

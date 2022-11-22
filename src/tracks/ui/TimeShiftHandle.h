@@ -30,7 +30,7 @@ class ViewInfo;
 class wxMouseState;
 
 //! Abstract base class for policies to manipulate a track type with the Time Shift tool
-class SAUCEDACITY_DLL_API TrackShifter {
+class TENACITY_DLL_API TrackShifter {
 public:
    TrackShifter();
    TrackShifter(const TrackShifter&) = delete;
@@ -198,11 +198,11 @@ private:
 struct MakeTrackShifterTag;
 using MakeTrackShifter = AttachedVirtualFunction<
    MakeTrackShifterTag, std::unique_ptr<TrackShifter>, Track, TenacityProject&>;
-DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, MakeTrackShifter);
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(TENACITY_DLL_API, MakeTrackShifter);
 
 class ViewInfo;
 
-struct SAUCEDACITY_DLL_API ClipMoveState {
+struct TENACITY_DLL_API ClipMoveState {
    ClipMoveState() = default;
 
    ClipMoveState(const ClipMoveState&) = delete;
@@ -258,7 +258,7 @@ struct SAUCEDACITY_DLL_API ClipMoveState {
    }
 };
 
-class SAUCEDACITY_DLL_API TimeShiftHandle : public UIHandle
+class TENACITY_DLL_API TimeShiftHandle : public UIHandle
 {
    TimeShiftHandle(const TimeShiftHandle&) = delete;
    static HitTestPreview HitPreview

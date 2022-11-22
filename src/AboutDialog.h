@@ -29,7 +29,7 @@ struct AboutDialogCreditItem {
 
 using AboutDialogCreditItemsList = std::vector<AboutDialogCreditItem>;
 
-class SAUCEDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
+class TENACITY_DLL_API AboutDialog final : public wxDialogWrapper {
    DECLARE_DYNAMIC_CLASS(AboutDialog)
 
  public:
@@ -52,11 +52,6 @@ class SAUCEDACITY_DLL_API AboutDialog final : public wxDialogWrapper {
       roleTenacityGraphics,
       roleTenacityLibrary,
       roleTenacityThanks,
-
-      // Tenacity Roles
-      roleTenacityTeamMember,
-      roleTenacityThanks,
-      roleTenacityLibrary,
 
       // Regular Audacity team member roles
       roleAudacityTeamMember,

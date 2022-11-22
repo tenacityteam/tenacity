@@ -23,7 +23,7 @@ class ShuttleGui;
 
 template< typename Enum > class EnumSetting;
 
-class SAUCEDACITY_DLL_API ImportExportPrefs final : public PrefsPanel
+class TENACITY_DLL_API ImportExportPrefs final : public PrefsPanel
 {
  public:
    static EnumSetting< bool > ExportDownMixSetting;

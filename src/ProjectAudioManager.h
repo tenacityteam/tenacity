@@ -39,7 +39,7 @@ struct TransportTracks;
 
 enum StatusBarField : int;
 
-class SAUCEDACITY_DLL_API ProjectAudioManager final
+class TENACITY_DLL_API ProjectAudioManager final
    : public ClientData::Base
    , public AudioIOListener
    , public std::enable_shared_from_this< ProjectAudioManager >
@@ -164,9 +164,9 @@ private:
          const TenacityProject &project, StatusBarField field);
 };
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 AudioIOStartStreamOptions DefaultPlayOptions( TenacityProject &project );
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 AudioIOStartStreamOptions DefaultSpeedPlayOptions( TenacityProject &project );
 
 struct PropertiesOfSelected
@@ -176,12 +176,12 @@ struct PropertiesOfSelected
    int numberOfSelected{ 0 };
 };
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 PropertiesOfSelected GetPropertiesOfSelected(const TenacityProject &proj);
 
 #include "commands/CommandFlag.h"
 
-extern SAUCEDACITY_DLL_API const ReservedCommandFlag
+extern TENACITY_DLL_API const ReservedCommandFlag
    &CanStopAudioStreamFlag();
 
 #endif

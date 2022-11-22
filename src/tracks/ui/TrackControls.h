@@ -15,7 +15,7 @@ Paul Licameli split from TrackPanel.cpp
 
 class Track;
 
-class SAUCEDACITY_DLL_API TrackControls /* not final */ : public CommonTrackCell
+class TENACITY_DLL_API TrackControls /* not final */ : public CommonTrackCell
    , public std::enable_shared_from_this< TrackControls >
 {
 public:
@@ -38,6 +38,6 @@ AttachedVirtualFunction<
    std::shared_ptr< TrackControls >,
    Track
 >;
-DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, DoGetControls);
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(TENACITY_DLL_API, DoGetControls);
 
 #endif

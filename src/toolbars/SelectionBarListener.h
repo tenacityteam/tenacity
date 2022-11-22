@@ -16,7 +16,7 @@
 
 class SelectedRegion;
 
-class SAUCEDACITY_DLL_API SelectionBarListener /* not final */ {
+class TENACITY_DLL_API SelectionBarListener /* not final */ {
 
  public:
 
@@ -32,7 +32,7 @@ class SAUCEDACITY_DLL_API SelectionBarListener /* not final */ {
    virtual void AS_ModifySelection(double &start, double &end, bool done) = 0;
 };
 
-class SAUCEDACITY_DLL_API TimeToolBarListener /* not final */ {
+class TENACITY_DLL_API TimeToolBarListener /* not final */ {
 
  public:
 

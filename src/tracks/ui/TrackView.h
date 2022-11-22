@@ -19,7 +19,7 @@ class TrackList;
 class TrackVRulerControls;
 class TrackPanelResizerCell;
 
-class SAUCEDACITY_DLL_API TrackView /* not final */ : public CommonTrackCell
+class TENACITY_DLL_API TrackView /* not final */ : public CommonTrackCell
    , public std::enable_shared_from_this<TrackView>
 {
    TrackView( const TrackView& ) = delete;
@@ -135,7 +135,7 @@ AttachedVirtualFunction<
    std::shared_ptr< TrackView >,
    Track
 >;
-DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, DoGetView);
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(TENACITY_DLL_API, DoGetView);
 
 struct GetDefaultTrackHeightTag;
 
@@ -145,6 +145,6 @@ AttachedVirtualFunction<
    int,
    Track
 >;
-DECLARE_EXPORTED_ATTACHED_VIRTUAL(SAUCEDACITY_DLL_API, GetDefaultTrackHeight);
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(TENACITY_DLL_API, GetDefaultTrackHeight);
 
 #endif

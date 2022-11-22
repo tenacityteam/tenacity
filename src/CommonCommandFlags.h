@@ -14,19 +14,19 @@ Paul Licameli split from Menus.cpp
 
 #include "commands/CommandFlag.h"
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 bool EditableTracksSelectedPred( const TenacityProject &project );
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 bool AudioIOBusyPred( const TenacityProject &project );
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 bool TimeSelectedPred( const TenacityProject &project );
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 const CommandFlagOptions &cutCopyOptions();
 
-extern SAUCEDACITY_DLL_API const ReservedCommandFlag
+extern TENACITY_DLL_API const ReservedCommandFlag
    &AudioIONotBusyFlag(),
    &StereoRequiredFlag(),  //lda
    &NoiseReductionTimeSelectedFlag(),
@@ -37,11 +37,11 @@ extern SAUCEDACITY_DLL_API const ReservedCommandFlag
    &AnyTracksSelectedFlag(),
    &TrackPanelHasFocus();  //lll
 
-extern SAUCEDACITY_DLL_API const ReservedCommandFlag
+extern TENACITY_DLL_API const ReservedCommandFlag
    &AudioIOBusyFlag(), // lll
    &CaptureNotBusyFlag();
 
-extern SAUCEDACITY_DLL_API const ReservedCommandFlag
+extern TENACITY_DLL_API const ReservedCommandFlag
    &LabelTracksExistFlag(),
    &UnsavedChangesFlag(),
    &UndoAvailableFlag(),

@@ -24,7 +24,7 @@ using TagHandlerFactory =
    std::function< XMLTagHandler *( TenacityProject & ) >;
 
 // Typically statically constructed
-struct SAUCEDACITY_DLL_API Entry{
+struct TENACITY_DLL_API Entry{
    Entry( const wxString &tag, const TagHandlerFactory &factory );
 };
 

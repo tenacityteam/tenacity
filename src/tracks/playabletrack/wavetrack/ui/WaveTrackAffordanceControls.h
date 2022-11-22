@@ -29,7 +29,7 @@ class TrackList;
 
 //Handles clip movement, selection, navigation and
 //allow name change
-class SAUCEDACITY_DLL_API WaveTrackAffordanceControls : 
+class TENACITY_DLL_API WaveTrackAffordanceControls : 
     public CommonTrackCell,
     public TextEditDelegate,
     public wxEvtHandler,

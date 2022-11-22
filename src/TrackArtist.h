@@ -41,45 +41,45 @@ namespace TrackArt {
 
    static constexpr int ClipFrameRadius{ 6 };
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawClipAffordance(wxDC& dc, const wxRect& affordanceRect, const wxString& title, bool highlight = false, bool selected = false);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    wxRect GetAffordanceTitleRect(const wxRect& affordanceRect);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawClipEdges(wxDC& dc, const wxRect& clipRect, bool selected = false);
 
    //Used to draw clip boundaries without contents/details when it's not
    //sensible to show them
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawClipFolded(wxDC& dc, const wxRect& rect);
 
    // Helper: draws the "sync-locked" watermark tiled to a rectangle
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawSyncLockTiles(
       TrackPanelDrawingContext &context, const wxRect &rect );
 
    // Helper: draws background with selection rect
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawBackgroundWithSelection(TrackPanelDrawingContext &context,
          const wxRect &rect, const Track *track,
          const wxBrush &selBrush, const wxBrush &unselBrush,
          bool useSelection = true);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawCursor(TrackPanelDrawingContext& context,
         const wxRect& rect, const Track* track);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawNegativeOffsetTrackArrows( TrackPanelDrawingContext &context,
                                        const wxRect & rect );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    wxString TruncateText(wxDC& dc, const wxString& text, const int maxWidth);
 }
 
-class SAUCEDACITY_DLL_API TrackArtist final : private PrefsListener {
+class TENACITY_DLL_API TrackArtist final : private PrefsListener {
 
 public:
 
@@ -164,11 +164,11 @@ public:
    bool hasSolo{ false };
 };
 
-extern SAUCEDACITY_DLL_API int GetWaveYPos(float value, float min, float max,
+extern TENACITY_DLL_API int GetWaveYPos(float value, float min, float max,
                        int height, bool dB, bool outer, float dBr,
                        bool clip);
 extern float FromDB(float value, double dBRange);
-extern SAUCEDACITY_DLL_API float ValueOfPixel(int yy, int height, bool offset,
+extern TENACITY_DLL_API float ValueOfPixel(int yy, int height, bool offset,
                           bool dB, double dBRange, float zoomMin, float zoomMax);
 
 #endif                          // define __AUDACITY_TRACKARTIST__

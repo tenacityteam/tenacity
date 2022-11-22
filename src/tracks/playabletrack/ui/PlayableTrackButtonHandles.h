@@ -14,7 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../ui/ButtonHandle.h"
 class wxMouseState;
 
-class SAUCEDACITY_DLL_API MuteButtonHandle final : public ButtonHandle
+class TENACITY_DLL_API MuteButtonHandle final : public ButtonHandle
 {
    MuteButtonHandle(const MuteButtonHandle&) = delete;
 
@@ -45,7 +45,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class SAUCEDACITY_DLL_API SoloButtonHandle final : public ButtonHandle
+class TENACITY_DLL_API SoloButtonHandle final : public ButtonHandle
 {
    SoloButtonHandle(const SoloButtonHandle&) = delete;
 

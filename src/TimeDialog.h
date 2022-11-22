@@ -21,7 +21,7 @@
 class NumericTextCtrl;
 class ShuttleGui;
 
-class SAUCEDACITY_DLL_API TimeDialog final : public wxDialogWrapper
+class TENACITY_DLL_API TimeDialog final : public wxDialogWrapper
 {
  public:
 

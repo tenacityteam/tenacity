@@ -12,7 +12,7 @@
 
 #include "TimeShiftHandle.h"
 
-class SAUCEDACITY_DLL_API AffordanceHandle : public TimeShiftHandle
+class TENACITY_DLL_API AffordanceHandle : public TimeShiftHandle
 {
     static HitTestPreview HitPreview(const TenacityProject*, bool unsafe, bool moving);
 public:

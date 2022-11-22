@@ -22,7 +22,7 @@ Paul Licameli split from TenacityProject.h
 class TenacityProject;
 
 // Sent to the project when certain settings change
-wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
    EVT_PROJECT_SETTINGS_CHANGE, wxCommandEvent);
 
 enum
@@ -48,7 +48,7 @@ enum {
 
 ///\brief Holds various per-project settings values, including the sample rate,
 /// and sends events to the project when certain values change
-class SAUCEDACITY_DLL_API ProjectSettings final
+class TENACITY_DLL_API ProjectSettings final
    : public ClientData::Base
    , private PrefsListener
 {

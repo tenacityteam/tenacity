@@ -34,7 +34,7 @@ class FrequencyPlotDialog;
 class FreqGauge;
 class RulerPanel;
 
-DECLARE_EXPORTED_EVENT_TYPE(SAUCEDACITY_DLL_API, EVT_FREQWINDOW_RECALC, -1);
+DECLARE_EXPORTED_EVENT_TYPE(TENACITY_DLL_API, EVT_FREQWINDOW_RECALC, -1);
 
 class FreqPlot final : public wxWindow
 {

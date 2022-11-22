@@ -14,7 +14,7 @@
 class wxWindow;
 class TenacityProject;
 
-SAUCEDACITY_DLL_API
+TENACITY_DLL_API
 void RunBenchmark( wxWindow *parent, TenacityProject &project );
 
 #endif // define __AUDACITY_BENCHMARK__

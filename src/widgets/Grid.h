@@ -34,7 +34,7 @@ class NumericTextCtrl;
 #define GRID_VALUE_TIME wxT("Time")
 #define GRID_VALUE_FREQUENCY wxT("Frequency")
 
-class SAUCEDACITY_DLL_API NumericEditor /* not final */ : public wxGridCellEditor
+class TENACITY_DLL_API NumericEditor /* not final */ : public wxGridCellEditor
 {
 public:
 
@@ -116,7 +116,7 @@ wxComboBox.
 **************************************************************************/
 #define GRID_VALUE_CHOICE wxT("Choice")
 
-class SAUCEDACITY_DLL_API ChoiceEditor final
+class TENACITY_DLL_API ChoiceEditor final
    : public wxGridCellEditor, wxEvtHandler
 {
 public:
@@ -181,7 +181,7 @@ public:
 \brief wxGrid with support for accessibility.
 **************************************************************************/
 
-class SAUCEDACITY_DLL_API Grid final : public wxGrid
+class TENACITY_DLL_API Grid final : public wxGrid
 {
 
  public:

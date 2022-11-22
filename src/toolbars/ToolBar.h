@@ -53,7 +53,7 @@ class ToolBarResizer;
 //
 // Custom event
 //
-DECLARE_EXPORTED_EVENT_TYPE(SAUCEDACITY_DLL_API, EVT_TOOLBAR_UPDATED, -1);
+DECLARE_EXPORTED_EVENT_TYPE(TENACITY_DLL_API, EVT_TOOLBAR_UPDATED, -1);
 
 //
 // Height of a single line toolbar
@@ -93,7 +93,7 @@ enum { ToolBarFloatMargin = 1 };
 
 class TenacityProject;
 
-class SAUCEDACITY_DLL_API ToolBar /* not final */
+class TENACITY_DLL_API ToolBar /* not final */
 : public wxPanelWrapper
 , protected PrefsListener
 {
@@ -259,7 +259,7 @@ public:
    friend class ToolBarResizer;
 };
 
-struct SAUCEDACITY_DLL_API RegisteredToolbarFactory {
+struct TENACITY_DLL_API RegisteredToolbarFactory {
    using Function = std::function< ToolBar::Holder( TenacityProject & ) >;
    using Functions = std::vector< Function >;
 

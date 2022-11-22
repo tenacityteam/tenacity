@@ -32,7 +32,7 @@
 
 class XMLWriter;
 
-class SAUCEDACITY_DLL_API SelectedRegion {
+class TENACITY_DLL_API SelectedRegion {
 
    // Maintains the invariant:  t1() >= t0()
 

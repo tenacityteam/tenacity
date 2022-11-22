@@ -29,7 +29,7 @@ class AButton;
 class TenacityProject;
 
 // In the GUI, ControlToolBar appears as the "Transport Toolbar". "Control Toolbar" is historic.
-class SAUCEDACITY_DLL_API ControlToolBar final : public ToolBar {
+class TENACITY_DLL_API ControlToolBar final : public ToolBar {
 
  public:
 

@@ -67,11 +67,11 @@ bool ValidateDeviceNames();
 constexpr int MAX_MIDI_BUFFER_SIZE = 5000;
 constexpr int DEFAULT_SYNTH_LATENCY = 5;
 
-wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_AUDIOIO_PLAYBACK, wxCommandEvent);
-wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_AUDIOIO_CAPTURE, wxCommandEvent);
-wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_AUDIOIO_MONITOR, wxCommandEvent);
 
 // PRL:
@@ -127,7 +127,7 @@ int audacityAudioCallback(
    const PaStreamCallbackTimeInfo *timeInfo,
    PaStreamCallbackFlags statusFlags, void *userData );
 
-class SAUCEDACITY_DLL_API AudioIoCallback /* not final */
+class TENACITY_DLL_API AudioIoCallback /* not final */
    : public AudioIOBase
 {
 public:
@@ -459,7 +459,7 @@ protected:
    PlaybackSchedule mPlaybackSchedule;
 };
 
-class SAUCEDACITY_DLL_API AudioIO final
+class TENACITY_DLL_API AudioIO final
    : public AudioIoCallback
 {
 

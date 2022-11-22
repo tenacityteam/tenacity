@@ -24,7 +24,7 @@
 // wxImage copies cheaply with reference counting
 using ImageArray = std::vector<wxImage>;
 
-class SAUCEDACITY_DLL_API ImageRoll
+class TENACITY_DLL_API ImageRoll
 {
  public:
    enum RollType {

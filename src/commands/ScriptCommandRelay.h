@@ -25,7 +25,7 @@ class wxString;
 typedef int(*tpExecScriptServerFunc)(wxString * pIn, wxString * pOut);
 typedef int(*tpRegScriptServerFunc)(tpExecScriptServerFunc pFn);
 
-class SAUCEDACITY_DLL_API ScriptCommandRelay
+class TENACITY_DLL_API ScriptCommandRelay
 {
 public:
    static void StartScriptServer(tpRegScriptServerFunc scriptFn);

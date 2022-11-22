@@ -26,10 +26,10 @@ namespace WaveTrackVZoomHandle
    // See RefreshCode.h for bit flags:
    using Result = unsigned;
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    HitTestPreview HitPreview(const wxMouseState &state);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    bool IsDragZooming(int zoomStart, int zoomEnd);
 
    using DoZoomFunction = void (*)( TenacityProject *pProject,
@@ -38,31 +38,31 @@ namespace WaveTrackVZoomHandle
        const wxRect &rect, int zoomStart, int zoomEnd,
        bool fixedMousePoint);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    Result DoDrag(
       const TrackPanelMouseEvent &event, TenacityProject *pProject,
       int zoomStart, int &zoomEnd );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    Result DoRelease(
       const TrackPanelMouseEvent &event, TenacityProject *pProject,
       wxWindow *pParent, WaveTrack *pTrack, const wxRect &mRect,
       DoZoomFunction doZoom, PopupMenuTable &table,
       int zoomStart, int zoomEnd );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DoDraw(
       TrackPanelDrawingContext &context,
       const wxRect &rect, unsigned iPass, int zoomStart, int zoomEnd );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    wxRect DoDrawingArea(
       const wxRect &rect, const wxRect &panelRect, unsigned iPass );
 };
 
 #include "../../../../widgets/PopupMenuTable.h" // to inherit
 
-class SAUCEDACITY_DLL_API WaveTrackVRulerMenuTable
+class TENACITY_DLL_API WaveTrackVRulerMenuTable
    : public PopupMenuTable
    , private PrefsListener
 {

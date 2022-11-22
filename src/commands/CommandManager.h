@@ -53,7 +53,7 @@ using CommandNumericIDHash = std::unordered_map<int, CommandListEntry*>;
 class TenacityProject;
 class CommandContext;
 
-class SAUCEDACITY_DLL_API CommandManager final
+class TENACITY_DLL_API CommandManager final
    : public XMLTagHandler
    , public ClientData::Base
 {
@@ -94,7 +94,7 @@ class SAUCEDACITY_DLL_API CommandManager final
    using CheckFn = std::function< bool(TenacityProject&) >;
 
    // For specifying unusual arguments in AddItem
-   struct SAUCEDACITY_DLL_API Options
+   struct TENACITY_DLL_API Options
    {
       Options() {}
       // Allow implicit construction from an accelerator string, which is
@@ -386,7 +386,7 @@ private:
    std::unique_ptr< wxMenuBar > mTempMenuBar;
 };
 
-struct SAUCEDACITY_DLL_API MenuVisitor : Registry::Visitor
+struct TENACITY_DLL_API MenuVisitor : Registry::Visitor
 {
    // final overrides
    void BeginGroup( Registry::GroupItem &item, const Path &path ) final;
@@ -417,17 +417,17 @@ namespace MenuTable {
    using namespace Registry;
 
    // These are found by dynamic_cast
-   struct SAUCEDACITY_DLL_API MenuSection {
+   struct TENACITY_DLL_API MenuSection {
       virtual ~MenuSection();
    };
-   struct SAUCEDACITY_DLL_API WholeMenu {
+   struct TENACITY_DLL_API WholeMenu {
       WholeMenu( bool extend = false ) : extension{ extend }  {}
       virtual ~WholeMenu();
       bool extension;
    };
 
    // Describes a main menu in the toolbar, or a sub-menu
-   struct SAUCEDACITY_DLL_API MenuItem final
+   struct TENACITY_DLL_API MenuItem final
       : ConcreteGroupItem< false, ToolbarMenuVisitor >
       , WholeMenu {
       // Construction from an internal name and a previously built-up
@@ -481,7 +481,7 @@ namespace MenuTable {
    // This is used before a sequence of many calls to Command() and
    // CommandGroup(), so that the finder argument need not be specified
    // in each call.
-   class SAUCEDACITY_DLL_API FinderScope : ValueRestorer< CommandHandlerFinder >
+   class TENACITY_DLL_API FinderScope : ValueRestorer< CommandHandlerFinder >
    {
       static CommandHandlerFinder sFinder;
 
@@ -495,7 +495,7 @@ namespace MenuTable {
    };
 
    // Describes one command in a menu
-   struct SAUCEDACITY_DLL_API CommandItem final : SingleItem {
+   struct TENACITY_DLL_API CommandItem final : SingleItem {
       CommandItem(const CommandID &name_,
                const TranslatableString &label_in_,
                CommandFunctorPointer callback_,
@@ -529,7 +529,7 @@ namespace MenuTable {
    // Describes several successive commands in a menu that are closely related
    // and dispatch to one common callback, which will be passed a number
    // in the CommandContext identifying the command
-   struct SAUCEDACITY_DLL_API CommandGroupItem final : SingleItem {
+   struct TENACITY_DLL_API CommandGroupItem final : SingleItem {
       CommandGroupItem(const Identifier &name_,
                std::vector< ComponentInterfaceSymbol > items_,
                CommandFunctorPointer callback_,
@@ -704,7 +704,7 @@ namespace MenuTable {
    // Typically you make a static object of this type in the .cpp file that
    // also defines the added menu actions.
    // pItem can be specified by an expression using the inline functions above.
-   struct SAUCEDACITY_DLL_API AttachedItem final
+   struct TENACITY_DLL_API AttachedItem final
    {
       AttachedItem( const Placement &placement, BaseItemPtr pItem );
 

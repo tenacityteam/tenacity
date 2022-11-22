@@ -22,7 +22,7 @@
 class wxImage;
 class TranslatableString;
 
-class SAUCEDACITY_DLL_API AButton final : public wxWindow {
+class TENACITY_DLL_API AButton final : public wxWindow {
    friend class AButtonAx;
    class Listener;
 

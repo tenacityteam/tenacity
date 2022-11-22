@@ -79,12 +79,12 @@ class ExtImportItem
   wxArrayString mime_types;
 };
 
-class SAUCEDACITY_DLL_API Importer {
+class TENACITY_DLL_API Importer {
 public:
 
    // Objects of this type are statically constructed in files implementing
    // subclasses of ImportPlugin
-   struct SAUCEDACITY_DLL_API RegisteredImportPlugin{
+   struct TENACITY_DLL_API RegisteredImportPlugin{
       RegisteredImportPlugin(
          const Identifier &id, // an internal string naming the plug-in
          std::unique_ptr<ImportPlugin>,
@@ -213,6 +213,6 @@ private:
    DECLARE_EVENT_TABLE()
 };
 
-extern SAUCEDACITY_DLL_API BoolSetting NewImportingSession;
+extern TENACITY_DLL_API BoolSetting NewImportingSession;
 
 #endif

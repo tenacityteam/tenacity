@@ -49,7 +49,7 @@ MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs.
 class TenacityProject;
 class ShuttleGui;
 
-class SAUCEDACITY_DLL_API PrefsPanel /* not final */
+class TENACITY_DLL_API PrefsPanel /* not final */
    : public wxPanelWrapper, ComponentInterface
 {
  public:
@@ -83,7 +83,7 @@ class SAUCEDACITY_DLL_API PrefsPanel /* not final */
 
    // Typically you make a static object of this type in the .cpp file that
    // also implements the PrefsPanel subclass.
-   struct SAUCEDACITY_DLL_API Registration final
+   struct TENACITY_DLL_API Registration final
    {
       Registration( const wxString &name, const Factory &factory,
          bool expanded = true,

@@ -23,7 +23,7 @@ class CommandContext;
 class Track;
 class XMLWriter;
 
-class SAUCEDACITY_DLL_API CommonTrackPanelCell /* not final */
+class TENACITY_DLL_API CommonTrackPanelCell /* not final */
    : public TrackPanelCell
 {
 public:
@@ -94,7 +94,7 @@ protected:
 
 };
 
-class SAUCEDACITY_DLL_API CommonTrackCell /* not final */
+class TENACITY_DLL_API CommonTrackCell /* not final */
    : public CommonTrackPanelCell
 {
 public:

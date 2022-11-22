@@ -41,7 +41,7 @@ class CommandOutputTargets;
 class CommandSignature;
 class wxString;
 
-class SAUCEDACITY_DLL_API OldStyleCommandType : public AudacityCommand
+class TENACITY_DLL_API OldStyleCommandType : public AudacityCommand
 {
 private:
    ComponentInterfaceSymbol mSymbol;

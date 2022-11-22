@@ -15,7 +15,7 @@
 class AffordanceHandle;
 class NoteTrackAffordanceHandle;
 
-class SAUCEDACITY_DLL_API NoteTrackAffordanceControls : public CommonTrackCell
+class TENACITY_DLL_API NoteTrackAffordanceControls : public CommonTrackCell
 {
     std::weak_ptr<NoteTrackAffordanceHandle> mAffordanceHandle;
 public:

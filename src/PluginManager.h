@@ -41,7 +41,7 @@ typedef enum : unsigned {
 } PluginType;
 
 // TODO:  Convert this to multiple derived classes
-class SAUCEDACITY_DLL_API PluginDescriptor
+class TENACITY_DLL_API PluginDescriptor
 {
 public:
    PluginDescriptor();
@@ -171,7 +171,7 @@ typedef wxArrayString PluginIDs;
 
 class PluginRegistrationDialog;
 
-class SAUCEDACITY_DLL_API PluginManager final : public PluginManagerInterface
+class TENACITY_DLL_API PluginManager final : public PluginManagerInterface
 {
 public:
 

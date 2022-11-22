@@ -33,7 +33,7 @@ protected:
    TenacityProject &mProject;
 };
 
-SAUCEDACITY_DLL_API TenacityProject *FindProjectFromWindow( wxWindow *pWindow );
+TENACITY_DLL_API TenacityProject *FindProjectFromWindow( wxWindow *pWindow );
 const TenacityProject *FindProjectFromWindow( const wxWindow *pWindow );
 
 #endif

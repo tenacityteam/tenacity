@@ -31,7 +31,7 @@ struct TemporarySelection {
    Track *pTrack = nullptr;
 };
 
-class SAUCEDACITY_DLL_API CommandContext {
+class TENACITY_DLL_API CommandContext {
 public:
    CommandContext(
       TenacityProject &p

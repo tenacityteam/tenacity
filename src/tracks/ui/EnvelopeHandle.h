@@ -24,7 +24,7 @@ class ViewInfo;
 class TimeTrack;
 class WaveTrack;
 
-class SAUCEDACITY_DLL_API EnvelopeHandle final : public UIHandle
+class TENACITY_DLL_API EnvelopeHandle final : public UIHandle
 {
    EnvelopeHandle(const EnvelopeHandle&) = delete;
    EnvelopeHandle &operator=(const EnvelopeHandle&) = delete;

@@ -106,7 +106,7 @@ static TenacityProject *gActiveProject;
 //This array holds onto all of the projects currently open
 AllProjects::Container AllProjects::gTenacityProjects;
 
-SAUCEDACITY_DLL_API TenacityProject *GetActiveProject()
+TENACITY_DLL_API TenacityProject *GetActiveProject()
 {
    return gActiveProject;
 }
@@ -185,7 +185,7 @@ void TenacityProject::SetInitialImportPath(const FilePath &path)
    }
 }
 
-SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
+TENACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
 {
    auto ptr = project.GetFrame();
    if ( !ptr )
@@ -193,7 +193,7 @@ SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
    return *ptr;
 }
 
-SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project )
+TENACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project )
 {
    auto ptr = project.GetFrame();
    if ( !ptr )
@@ -210,7 +210,7 @@ ProjectFramePlacement( TenacityProject *project )
       &GetProjectFrame(*project));
 }
 
-SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
+TENACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
 {
    auto ptr = project.GetPanel();
    if ( !ptr )
@@ -218,7 +218,7 @@ SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
    return *ptr;
 }
 
-SAUCEDACITY_DLL_API const wxWindow &GetProjectPanel(
+TENACITY_DLL_API const wxWindow &GetProjectPanel(
    const TenacityProject &project )
 {
    auto ptr = project.GetPanel();

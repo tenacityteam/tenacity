@@ -28,7 +28,7 @@ static const int TitleSoloBorderOverlap = 1;
 
 namespace TrackInfo
 {
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    unsigned MinimumTrackHeight();
 
    struct TCPLine {
@@ -64,81 +64,81 @@ namespace TrackInfo
    using TCPLines = std::vector< TCPLine >;
 
    // return y value and height
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    std::pair< int, int > CalcItemY( const TCPLines &lines, unsigned iItem );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    unsigned DefaultTrackHeight( const TCPLines &topLines );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawItems
       ( TrackPanelDrawingContext &context,
         const wxRect &rect, const Track &track );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawItems
       ( TrackPanelDrawingContext &context,
         const wxRect &rect, const Track *pTrack,
         const std::vector<TCPLine> &topLines,
         const std::vector<TCPLine> &bottomLines );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void DrawCloseButton(
       TrackPanelDrawingContext &context, const wxRect &bev,
       const Track *pTrack, ButtonHandle *target );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void CloseTitleDrawFunction
       ( TrackPanelDrawingContext &context,
         const wxRect &rect, const Track *pTrack );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void MinimizeSyncLockDrawFunction
       ( TrackPanelDrawingContext &context,
         const wxRect &rect, const Track *pTrack );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void SetTrackInfoFont(wxDC *dc);
 
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetCloseBoxHorizontalBounds( const wxRect & rect, wxRect &dest );
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetCloseBoxRect(const wxRect & rect, wxRect &dest);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetTitleBarHorizontalBounds( const wxRect & rect, wxRect &dest );
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetTitleBarRect(const wxRect & rect, wxRect &dest);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetSliderHorizontalBounds( const wxPoint &topleft, wxRect &dest );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetMinimizeHorizontalBounds( const wxRect &rect, wxRect &dest );
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetMinimizeRect(const wxRect & rect, wxRect &dest);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetSelectButtonHorizontalBounds( const wxRect &rect, wxRect &dest );
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetSelectButtonRect(const wxRect & rect, wxRect &dest);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetSyncLockHorizontalBounds( const wxRect &rect, wxRect &dest );
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void GetSyncLockIconRect(const wxRect & rect, wxRect &dest);
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    bool HideTopItem( const wxRect &rect, const wxRect &subRect,
                                int allowance = 0 );
 
    // Non-member, namespace function relying on TrackPanel to invoke it
    // when it handles preference update events
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    void UpdatePrefs( wxWindow *pParent );
 
-   SAUCEDACITY_DLL_API
+   TENACITY_DLL_API
    bool HasSoloButton();
 };
 

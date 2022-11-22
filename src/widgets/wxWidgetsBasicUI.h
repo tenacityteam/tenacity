@@ -17,7 +17,7 @@ Paul Licameli
 class wxWindow;
 
 //! Window placement information for wxWidgetsBasicUI can be constructed from a wxWindow pointer
-struct SAUCEDACITY_DLL_API wxWidgetsWindowPlacement final
+struct TENACITY_DLL_API wxWidgetsWindowPlacement final
 : GenericUI::WindowPlacement {
    wxWidgetsWindowPlacement() = default;
    explicit wxWidgetsWindowPlacement( wxWindow *pWindow )
@@ -29,7 +29,7 @@ struct SAUCEDACITY_DLL_API wxWidgetsWindowPlacement final
 };
 
 //! An implementation of GenericUI::Services in terms of the wxWidgets toolkit
-/*! This is a singleton that doesn't need SAUCEDACITY_DLL_API visibility */
+/*! This is a singleton that doesn't need TENACITY_DLL_API visibility */
 class wxWidgetsBasicUI final : public GenericUI::Services {
 public:
    ~wxWidgetsBasicUI() override;

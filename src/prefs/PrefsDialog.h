@@ -30,7 +30,7 @@ class ShuttleGui;
 
 class TenacityProject;
 
-class SAUCEDACITY_DLL_API PrefsDialog /* not final */ : public wxDialogWrapper
+class TENACITY_DLL_API PrefsDialog /* not final */ : public wxDialogWrapper
 {
  public:
    PrefsDialog(wxWindow * parent,
@@ -77,7 +77,7 @@ private:
 
 // This adds code appropriate only to the original use of PrefsDialog for
 // global settings -- not its reuses elsewhere as in View Settings
-class SAUCEDACITY_DLL_API GlobalPrefsDialog final : public PrefsDialog
+class TENACITY_DLL_API GlobalPrefsDialog final : public PrefsDialog
 {
 public:
    GlobalPrefsDialog(
@@ -90,6 +90,6 @@ public:
 };
 
 class TenacityProject;
-void SAUCEDACITY_DLL_API DoReloadPreferences( TenacityProject &project );
+void TENACITY_DLL_API DoReloadPreferences( TenacityProject &project );
 
 #endif

@@ -61,7 +61,7 @@ public:
 };
 
 
-class SAUCEDACITY_DLL_API NyquistEffect final : public Effect
+class TENACITY_DLL_API NyquistEffect final : public Effect
 {
 public:
 

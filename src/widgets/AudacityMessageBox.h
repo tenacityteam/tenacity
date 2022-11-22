@@ -16,7 +16,7 @@
 // Tenacity libraries
 #include <lib-strings/Internat.h>
 
-extern SAUCEDACITY_DLL_API TranslatableString AudacityMessageBoxCaptionStr();
+extern TENACITY_DLL_API TranslatableString AudacityMessageBoxCaptionStr();
 
 // Do not use wxMessageBox!!  Its default window title does not translate!
 inline int AudacityMessageBox(const TranslatableString& message,

@@ -52,7 +52,7 @@ struct SnapResults {
    bool Snapped() const { return snappedPoint || snappedTime; }
 };
 
-class SAUCEDACITY_DLL_API SnapManager
+class TENACITY_DLL_API SnapManager
 {
 public:
    SnapManager(const TenacityProject &project,

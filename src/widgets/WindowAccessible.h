@@ -20,7 +20,7 @@
 // Tenacity library
 #include <lib-strings/Internat.h> // for TranslatableString
 
-class SAUCEDACITY_DLL_API WindowAccessible: public wxAccessible
+class TENACITY_DLL_API WindowAccessible: public wxAccessible
 {
 public:
    WindowAccessible(wxWindow* win);
@@ -30,7 +30,7 @@ public:
 
 };
 
-class SAUCEDACITY_DLL_API SliderAx final : public WindowAccessible
+class TENACITY_DLL_API SliderAx final : public WindowAccessible
 {
 public:
    SliderAx(wxWindow * window, const TranslatableString &fmt);

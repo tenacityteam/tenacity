@@ -62,7 +62,7 @@ class Tags;
 
 class ImportFileHandle;
 
-class SAUCEDACITY_DLL_API ImportPlugin /* not final */
+class TENACITY_DLL_API ImportPlugin /* not final */
 {
 public:
 
@@ -102,7 +102,7 @@ protected:
 class WaveTrack;
 using TrackHolders = std::vector< std::vector< std::shared_ptr<WaveTrack> > >;
 
-class SAUCEDACITY_DLL_API ImportFileHandle /* not final */
+class TENACITY_DLL_API ImportFileHandle /* not final */
 {
 public:
    using ProgressResult = GenericUI::ProgressResult;

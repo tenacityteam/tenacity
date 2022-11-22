@@ -21,7 +21,7 @@
  * and use it for toolbar and window layouts too.
  *
  **/
-class SAUCEDACITY_DLL_API FlowPacker
+class TENACITY_DLL_API FlowPacker
 {
     public:
         FlowPacker() {}

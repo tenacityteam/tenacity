@@ -19,7 +19,7 @@
 class EffectClientInterface;
 class RealtimeEffectState;
 
-class SAUCEDACITY_DLL_API RealtimeEffectManager final
+class TENACITY_DLL_API RealtimeEffectManager final
 {
 public:
    using EffectArray = std::vector <EffectClientInterface*> ;

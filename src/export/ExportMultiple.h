@@ -31,7 +31,7 @@ class SelectionState;
 class ShuttleGui;
 class Track;
 
-class SAUCEDACITY_DLL_API ExportMultipleDialog final : public wxDialogWrapper
+class TENACITY_DLL_API ExportMultipleDialog final : public wxDialogWrapper
 {
 public:
    using ProgressResult = GenericUI::ProgressResult;

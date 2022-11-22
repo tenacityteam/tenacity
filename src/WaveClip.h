@@ -35,7 +35,7 @@ class WaveCache;
 class WaveTrackCache;
 class wxFileNameWrapper;
 
-class SAUCEDACITY_DLL_API SpecCache {
+class TENACITY_DLL_API SpecCache {
 public:
 
    // Make invalid cache
@@ -171,7 +171,7 @@ public:
    }
 };
 
-class SAUCEDACITY_DLL_API WaveClip final : public XMLTagHandler
+class TENACITY_DLL_API WaveClip final : public XMLTagHandler
 {
 private:
    // It is an error to copy a WaveClip without specifying the

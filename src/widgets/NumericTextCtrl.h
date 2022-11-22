@@ -29,9 +29,9 @@
 // One event type for each type of control.  Event is raised when a control
 // changes its format.  Owners of controls of the same type can listen and
 // update their formats to agree.
-DECLARE_EXPORTED_EVENT_TYPE(SAUCEDACITY_DLL_API, EVT_TIMETEXTCTRL_UPDATED, -1);
-DECLARE_EXPORTED_EVENT_TYPE(SAUCEDACITY_DLL_API, EVT_FREQUENCYTEXTCTRL_UPDATED, -1);
-DECLARE_EXPORTED_EVENT_TYPE(SAUCEDACITY_DLL_API, EVT_BANDWIDTHTEXTCTRL_UPDATED,
+DECLARE_EXPORTED_EVENT_TYPE(TENACITY_DLL_API, EVT_TIMETEXTCTRL_UPDATED, -1);
+DECLARE_EXPORTED_EVENT_TYPE(TENACITY_DLL_API, EVT_FREQUENCYTEXTCTRL_UPDATED, -1);
+DECLARE_EXPORTED_EVENT_TYPE(TENACITY_DLL_API, EVT_BANDWIDTHTEXTCTRL_UPDATED,
                             -1);
 
 /** \brief struct to hold a formatting control string and its user facing name
@@ -43,7 +43,7 @@ class NumericField;
 
 class DigitInfo;
 
-class SAUCEDACITY_DLL_API NumericConverter /* not final */
+class TENACITY_DLL_API NumericConverter /* not final */
 {
 public:
 
@@ -166,7 +166,7 @@ protected:
    int mDefaultNdx;
 };
 
-class SAUCEDACITY_DLL_API NumericTextCtrl final
+class TENACITY_DLL_API NumericTextCtrl final
    : public wxControl, public NumericConverter
 {
    friend class NumericTextCtrlAx;

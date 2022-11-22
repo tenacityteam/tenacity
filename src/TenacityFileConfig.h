@@ -18,7 +18,7 @@ Paul Licameli split from Prefs.h
 #include <lib-preferences/FileConfig.h> // to inherit
 
 /// \brief Our own specialisation of FileConfig.
-class SAUCEDACITY_DLL_API TenacityFileConfig final : public FileConfig
+class TENACITY_DLL_API TenacityFileConfig final : public FileConfig
 {
 public:
    //! Require a call to this factory, to guarantee proper two-phase initialization

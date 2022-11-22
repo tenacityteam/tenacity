@@ -303,7 +303,7 @@ BriefCommandOutputTargets::~BriefCommandOutputTargets()
 
 
 
-class SAUCEDACITY_DLL_API LongMessageDialog /* not final */ : public wxDialogWrapper
+class TENACITY_DLL_API LongMessageDialog /* not final */ : public wxDialogWrapper
 {
 public:
    // constructors and destructors

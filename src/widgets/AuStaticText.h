@@ -16,7 +16,7 @@
 #include <wx/dcclient.h>
 
 /// Like wxStaticText, except it allows for theming unlike wxStaticText
-class SAUCEDACITY_DLL_API AuStaticText : public wxWindow
+class TENACITY_DLL_API AuStaticText : public wxWindow
 {
     public:
         AuStaticText(wxWindow* parent, wxString text);

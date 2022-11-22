@@ -27,16 +27,16 @@ namespace GenericUI { class WindowPlacement; }
 
 class TenacityProject;
 
-SAUCEDACITY_DLL_API TenacityProject *GetActiveProject();
+TENACITY_DLL_API TenacityProject *GetActiveProject();
 // For use by ProjectManager only:
-SAUCEDACITY_DLL_API void SetActiveProject(TenacityProject * project);
+TENACITY_DLL_API void SetActiveProject(TenacityProject * project);
 
 /// \brief an object of class AllProjects acts like a standard library
 /// container, but refers to a global array of open projects.  So you can
 /// iterate easily over shared pointers to them with range-for :
 /// for (auto pProject : AllProjects{}) { ... }
 /// The pointers are never null.
-class SAUCEDACITY_DLL_API AllProjects
+class TENACITY_DLL_API AllProjects
 {
    // Use shared_ptr to projects, because elsewhere we need weak_ptr
    using AProjectHolder = std::shared_ptr< TenacityProject >;
@@ -92,12 +92,12 @@ using AttachedProjectWindows = ClientData::Site<
    TenacityProject, wxWindow, ClientData::SkipCopying, ClientData::BarePtr
 >;
 
-wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_TRACK_PANEL_TIMER, wxCommandEvent);
 
 // This event is emitted by the application object when there is a change
 // in the activated project
-wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
+wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
                          EVT_PROJECT_ACTIVATION, wxCommandEvent);
 
 ///\brief The top-level handle to an Audacity project.  It serves as a source
@@ -106,7 +106,7 @@ wxDECLARE_EXPORTED_EVENT(SAUCEDACITY_DLL_API,
 /// message and a few other things.
 /// There is very little in this class, most of the intelligence residing in
 /// the cooperating attached objects.
-class SAUCEDACITY_DLL_API TenacityProject final
+class TENACITY_DLL_API TenacityProject final
    : public wxEvtHandler
    , public AttachedProjectObjects
    , public AttachedProjectWindows
@@ -166,8 +166,8 @@ private:
 
 ///\brief Get the top-level window associated with the project (as a wxFrame
 /// only, when you do not need to use the subclass ProjectWindow)
-SAUCEDACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project );
-SAUCEDACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project );
+TENACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project );
+TENACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project );
 
 ///\brief Get a pointer to the window associated with a project, or null if
 /// the given pointer is null.
@@ -180,13 +180,13 @@ inline const wxFrame *FindProjectFrame( const TenacityProject *project ) {
 
 //! Make a WindowPlacement object suitable for `project` (which may be null)
 /*! @post return value is not null */
-SAUCEDACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
+TENACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
 ProjectFramePlacement( TenacityProject *project );
 
 ///\brief Get the main sub-window of the project frame that displays track data
 // (as a wxWindow only, when you do not need to use the subclass TrackPanel)
-SAUCEDACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project );
-SAUCEDACITY_DLL_API const wxWindow &GetProjectPanel(
+TENACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project );
+TENACITY_DLL_API const wxWindow &GetProjectPanel(
    const TenacityProject &project );
 
 #endif

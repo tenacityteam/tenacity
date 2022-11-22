@@ -20,7 +20,7 @@ Paul Licameli split from ProjectManager.cpp
 
 class TenacityProject;
 
-class SAUCEDACITY_DLL_API ProjectSelectionManager final
+class TENACITY_DLL_API ProjectSelectionManager final
    : public ClientData::Base
    , public SelectionBarListener
    , public SpectralSelectionBarListener

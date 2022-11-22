@@ -354,7 +354,7 @@ void TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& 
    }
 }
 
-SAUCEDACITY_DLL_API wxRect TrackArt::GetAffordanceTitleRect(const wxRect& rect)
+TENACITY_DLL_API wxRect TrackArt::GetAffordanceTitleRect(const wxRect& rect)
 {
     constexpr int FrameThickness{ 1 };
     return wxRect(

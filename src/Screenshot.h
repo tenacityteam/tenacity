@@ -24,7 +24,7 @@
 
 class TenacityProject;
 
-SAUCEDACITY_DLL_API void OpenScreenshotTools( TenacityProject &project );
+TENACITY_DLL_API void OpenScreenshotTools( TenacityProject &project );
 void CloseScreenshotTools();
 
 #endif // __AUDACITY_SCREENSHOT__
