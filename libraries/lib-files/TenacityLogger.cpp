@@ -2,19 +2,19 @@
 
   Audacity: A Digital Audio Editor
 
-  SaucedacityLogger.cpp
+  TenacityLogger.cpp
 
 ******************************************************************//**
 
-\class SaucedacityLogger
-\brief SaucedacityLogger is a thread-safe logger class
+\class TenacityLogger
+\brief TenacityLogger is a thread-safe logger class
 
 Provides thread-safe logging based on the wxWidgets log facility.
 
 *//*******************************************************************/
 
 
-#include "SaucedacityLogger.h"
+#include "TenacityLogger.h"
 
 #include "Internat.h"
 #include "MemoryX.h"
@@ -26,13 +26,13 @@ Provides thread-safe logging based on the wxWidgets log facility.
 #include <wx/tokenzr.h>
 
 //
-// SaucedacityLogger class
+// TenacityLogger class
 //
 // By providing an Audacity specific logging class, it can be made thread-safe and,
 //     as such, can be used by the ever growing threading within Audacity.
 //
 
-SaucedacityLogger *SaucedacityLogger::Get()
+TenacityLogger *TenacityLogger::Get()
 {
    static std::once_flag flag;
    std::call_once( flag, []{
@@ -40,37 +40,37 @@ SaucedacityLogger *SaucedacityLogger::Get()
       // safenew.  See:
       // http://docs.wxwidgets.org/3.0/classwx_log.html#a2525bf54fa3f31dc50e6e3cd8651e71d
       std::unique_ptr < wxLog > // DELETE any previous logger
-         { wxLog::SetActiveTarget(safenew SaucedacityLogger) };
+         { wxLog::SetActiveTarget(safenew TenacityLogger) };
    } );
 
    // Use dynamic_cast so that we get a NULL ptr in case our logger
    // is no longer the target.
-   return dynamic_cast<SaucedacityLogger *>(wxLog::GetActiveTarget());
+   return dynamic_cast<TenacityLogger *>(wxLog::GetActiveTarget());
 }
 
-SaucedacityLogger::SaucedacityLogger()
+TenacityLogger::TenacityLogger()
 :  wxEvtHandler(),
    wxLog()
 {
    mUpdated = false;
 }
 
-SaucedacityLogger::~SaucedacityLogger()  = default;
+TenacityLogger::~TenacityLogger()  = default;
 
-void SaucedacityLogger::Flush()
+void TenacityLogger::Flush()
 {
    if (mUpdated && mListener && mListener())
       mUpdated = false;
 }
 
-auto SaucedacityLogger::SetListener(Listener listener) -> Listener
+auto TenacityLogger::SetListener(Listener listener) -> Listener
 {
    auto result = std::move(mListener);
    mListener = std::move(listener);
    return result;
 }
 
-void SaucedacityLogger::DoLogText(const wxString & str)
+void TenacityLogger::DoLogText(const wxString & str)
 {
    if (!wxIsMainThread()) {
       wxMutexGuiEnter();
@@ -81,7 +81,7 @@ void SaucedacityLogger::DoLogText(const wxString & str)
 
       TimeStamp(&stamp);
 
-      mBuffer << stamp << _TS("Saucedacity ") << AUDACITY_VERSION_STRING << wxT("\n");
+      mBuffer << stamp << _TS("Tenacity ") << AUDACITY_VERSION_STRING << wxT("\n");
    }
 
    mBuffer << str << wxT("\n");
@@ -95,7 +95,7 @@ void SaucedacityLogger::DoLogText(const wxString & str)
    }
 }
 
-bool SaucedacityLogger::SaveLog(const wxString &fileName) const
+bool TenacityLogger::SaveLog(const wxString &fileName) const
 {
    wxFFile file(fileName, wxT("w"));
 
@@ -108,7 +108,7 @@ bool SaucedacityLogger::SaveLog(const wxString &fileName) const
    return false;
 }
 
-bool SaucedacityLogger::ClearLog()
+bool TenacityLogger::ClearLog()
 {
    mBuffer = wxEmptyString;
    DoLogText(wxT("Log Cleared."));
@@ -116,7 +116,7 @@ bool SaucedacityLogger::ClearLog()
    return true;
 }
 
-wxString SaucedacityLogger::GetLog(int count)
+wxString TenacityLogger::GetLog(int count)
 {
    if (count == 0)
    {

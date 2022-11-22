@@ -202,9 +202,9 @@ void ResetPreferences()
 {
    gPrefs->DeleteAll();
 
-   // Ensure the reset preferences have been marked as 'Saucedacity'
+   // Ensure the reset preferences have been marked as 'Tenacity'
    // preferences
-   gPrefs->Write("IsSaucedacity", true);
+   gPrefs->Write("IsTenacity", true);
 }
 
 void FinishPreferences()

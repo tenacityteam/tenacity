@@ -19,7 +19,7 @@ Paul Licameli
 #include <utility>
 #include <vector>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include "InconsistencyException.h"
 
 //! @copydoc ClientData.h

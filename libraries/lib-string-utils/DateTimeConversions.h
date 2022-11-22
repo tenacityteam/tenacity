@@ -13,7 +13,7 @@
 #include <chrono>
 #include <string>
 
-namespace Saucedacity
+namespace Tenacity
 {
 
 using SystemTime = std::chrono::system_clock::time_point;

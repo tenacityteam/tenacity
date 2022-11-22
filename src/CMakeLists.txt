@@ -730,7 +730,7 @@ list( APPEND SOURCES
       theme/DarkThemeAsCeeCode.h
       theme/HiContrastThemeAsCeeCode.h
       theme/LightThemeAsCeeCode.h
-      theme/TenacityThemeAsCeeCode.h
+      theme/SaucedacityThemeAsCeeCode.h
       #########################################################################
       theme/AllThemeResources.cpp
       theme/AllThemeResources.h

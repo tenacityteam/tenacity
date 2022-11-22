@@ -9,8 +9,8 @@ Also the global logger which can save to a file.
 ]]#
 
 set( SOURCES
-   SaucedacityLogger.cpp
-   SaucedacityLogger.h
+   TenacityLogger.cpp
+   TenacityLogger.h
    FileException.cpp
    FileException.h
    FileIO.cpp

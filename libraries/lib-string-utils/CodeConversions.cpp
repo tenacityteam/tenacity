@@ -13,7 +13,7 @@
 #include <locale>
 #include <codecvt>
 
-namespace Saucedacity
+namespace Tenacity
 {
 
 std::string ToUTF8 (const std::wstring& wstr)

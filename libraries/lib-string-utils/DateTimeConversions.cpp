@@ -14,7 +14,7 @@
 
 #include "CodeConversions.h"
 
-namespace Saucedacity
+namespace Tenacity
 {
 
 bool ParseRFC822Date (const std::string& dateString, SystemTime* time)

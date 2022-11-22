@@ -3,10 +3,10 @@
 
 /*!********************************************************************
 
- Saucedacity: A Digital Audio Editor
+ Tenacity: A Digital Audio Editor
 
- @file SaucedacityException.h
- @brief Declare abstract class SaucedacityException, some often-used subclasses, and @ref GuardedCall
+ @file TenacityException.h
+ @brief Declare abstract class TenacityException, some often-used subclasses, and @ref GuardedCall
 
  Paul Licameli
  Avery King
@@ -22,7 +22,7 @@
 //! A type of an exception
 enum class ExceptionType
 {
-    Internal, //!< Indicates internal failure from Saucedacity.
+    Internal, //!< Indicates internal failure from Tenacity.
     BadUserAction, //!< Indicates that the user performed an action that is not allowed.
     BadEnvironment, //!< Indicates problems with environment, such as a full disk
 };
@@ -36,19 +36,19 @@ enum class ExceptionType
  * allowing for translation of an exception message. (This wraps around
  * std::exception::what()).
  */
-class EXCEPTIONS_API SaucedacityException : public std::exception
+class EXCEPTIONS_API TenacityException : public std::exception
 {
   public:
-    SaucedacityException();
-    SaucedacityException(const char* what_arg);
-    virtual ~SaucedacityException();
+    TenacityException();
+    TenacityException(const char* what_arg);
+    virtual ~TenacityException();
 
     //! Don't allow moves of this class or subclasses
     // see https://bugzilla.audacityteam.org/show_bug.cgi?id=2442
-    SaucedacityException( SaucedacityException&& ) = delete;
+    TenacityException( TenacityException&& ) = delete;
 
     //! Disallow assignment
-    SaucedacityException &operator = ( const SaucedacityException & ) = delete;
+    TenacityException &operator = ( const TenacityException & ) = delete;
 
 
     /// Action to do in the main thread at idle time of the event loop.
@@ -59,7 +59,7 @@ class EXCEPTIONS_API SaucedacityException : public std::exception
 
     static void EnqueueAction(
        std::exception_ptr pException,
-       std::function<void(SaucedacityException*)> delayedHandler);
+       std::function<void(TenacityException*)> delayedHandler);
 
   protected:
     std::string m_WhatMsg;
@@ -69,10 +69,10 @@ class EXCEPTIONS_API SaucedacityException : public std::exception
 /*! At most one message will be displayed for each pass through the main event idle loop,
  no matter how many exceptions were caught. */
 class EXCEPTIONS_API MessageBoxException /* not final */
-   : public SaucedacityException
+   : public TenacityException
 {
   //! Privatize the inherited function
-  using SaucedacityException::DelayedHandlerAction;
+  using TenacityException::DelayedHandlerAction;
 
   //! Do not allow subclasses to change behavior, except by overriding ErrorMessage().
   void DelayedHandlerAction() final;
@@ -135,7 +135,7 @@ private:
 //! A default template parameter for @ref GuardedCall
 struct DefaultDelayedHandlerAction
 {
-   void operator () (SaucedacityException *pException) const
+   void operator () (TenacityException *pException) const
    {
       if ( pException )
          pException->DelayedHandlerAction();
@@ -150,7 +150,7 @@ template <typename R> struct SimpleGuard
       R value //!< The value to return from GurdedCall when an exception is handled
    )
       : m_value{ value } {}
-   R operator () ( SaucedacityException * ) const { return m_value; }
+   R operator () ( TenacityException * ) const { return m_value; }
    const R m_value;
 };
 
@@ -161,7 +161,7 @@ template<> struct SimpleGuard<bool>
       bool value //!< The value to return from @ref GaurdedCall when an exception is handled
    )
       : m_value{ value } {}
-   bool operator () ( SaucedacityException * ) const { return m_value; }
+   bool operator () ( TenacityException * ) const { return m_value; }
    static SimpleGuard Default()
       { return SimpleGuard{ false }; }
    const bool m_value;
@@ -171,7 +171,7 @@ template<> struct SimpleGuard<bool>
 template<> struct SimpleGuard<void>
 {
    SimpleGuard() {}
-   void operator () ( SaucedacityException * ) const {}
+   void operator () ( TenacityException * ) const {}
    static SimpleGuard Default() { return {}; }
 };
 
@@ -215,13 +215,13 @@ template <
 R GuardedCall(
    const F1 &body, //!< typically a lambda
    const F2 &handler = F2::Default(), //!< default just returns false or void; see also @ref MakeSimpleGuard
-   std::function<void(SaucedacityException*)> delayedHandler
+   std::function<void(TenacityException*)> delayedHandler
       = DefaultDelayedHandlerAction{} /*!<called later in the main thread,
                                        passing it a stored exception; usually defaulted */
 )
 {
    try { return body(); }
-   catch ( SaucedacityException &e ) {
+   catch ( TenacityException &e ) {
 
       auto end = finally([&]{
          // At this point, e is the "current" exception, but not "uncaught"
@@ -229,7 +229,7 @@ R GuardedCall(
          // other exception object.
          if (!std::uncaught_exceptions()) {
             auto pException = std::current_exception(); // This points to e
-            SaucedacityException::EnqueueAction(
+            TenacityException::EnqueueAction(
                pException, std::move(delayedHandler));
          }
       });

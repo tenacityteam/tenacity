@@ -1,41 +1,41 @@
 /*!********************************************************************
 
-  Saucedacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
-  @file SaucedacityException.cpp
-  @brief Implements SaucedacityException and related
+  @file TenacityException.cpp
+  @brief Implements TenacityException and related
 
   Paul Licameli
   Avery King
 
 ***********************************************************************/
 
-#include "SaucedacityException.h"
+#include "TenacityException.h"
 
 #include <atomic>
 #include "BasicUI.h"
 
-SaucedacityException::SaucedacityException()
+TenacityException::TenacityException()
 {
 }
 
-SaucedacityException::SaucedacityException(const char* what_arg)
+TenacityException::TenacityException(const char* what_arg)
 {
   m_WhatMsg = what_arg;
 }
 
-SaucedacityException::~SaucedacityException()
+TenacityException::~TenacityException()
 {
 }
 
-const char* SaucedacityException::what()
+const char* TenacityException::what()
 {
   return m_WhatMsg.c_str();
 }
 
-void SaucedacityException::EnqueueAction(
+void TenacityException::EnqueueAction(
    std::exception_ptr pException,
-   std::function<void(SaucedacityException*)> delayedHandler)
+   std::function<void(TenacityException*)> delayedHandler)
 {
   GenericUI::CallAfter( [
      pException = std::move(pException), delayedHandler = std::move(delayedHandler)
@@ -43,7 +43,7 @@ void SaucedacityException::EnqueueAction(
      try {
         std::rethrow_exception(pException);
      }
-     catch( SaucedacityException &e )
+     catch( TenacityException &e )
         { delayedHandler( &e ); }
   } );
 }

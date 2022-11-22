@@ -68,7 +68,7 @@ namespace FileNames
    // Frequently used types
    extern FILES_API const FileType
         AllFiles // *
-      , SaucedacityProjects // *.aup3
+      , TenacityProjects // *.aup3
       , DynamicLibraries // depends on the operating system
       , TextFiles // *.txt
       , XMLFiles; // *.xml, *.XML

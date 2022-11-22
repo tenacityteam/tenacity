@@ -18,7 +18,7 @@ Paul Licameli
 #include <type_traits>
 #include <utility>
 
-// Saucedacity libraries
+// Tenacity libraries
 #include <lib-exceptions/InconsistencyException.h>
 
 //! Class template generates single-dispatch, open method registry tables

@@ -16,8 +16,8 @@ level code.
 ]]#
 
 list( APPEND SOURCES
-   SaucedacityException.cpp
-   SaucedacityException.h
+   TenacityException.cpp
+   TenacityException.h
    InconsistencyException.cpp
    InconsistencyException.h
    UserException.cpp

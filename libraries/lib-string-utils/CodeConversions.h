@@ -13,7 +13,7 @@
 #include <string>
 #include <wx/string.h>
 
-namespace Saucedacity
+namespace Tenacity
 {
 
 STRING_UTILS_API std::string ToUTF8 (const std::wstring& wstr);

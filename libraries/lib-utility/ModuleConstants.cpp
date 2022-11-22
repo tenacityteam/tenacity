@@ -14,7 +14,7 @@
 // DA: App name
 const std::wstring AppName =
 #ifndef EXPERIMENTAL_DA
-   L"Saucedacity"
+   L"Tenacity"
 #else
    L"DarkAudacity"
 #endif

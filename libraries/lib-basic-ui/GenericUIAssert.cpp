@@ -1,6 +1,6 @@
 /*!********************************************************************
 
-Saucedacity: A Digital Audio Editor
+Tenacity: A Digital Audio Editor
 
 @file GenericUIAssert.cpp
 @brief Implementation for GenericUI::Assert()
