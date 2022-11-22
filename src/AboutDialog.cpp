@@ -142,7 +142,7 @@ void AboutDialog::CreateCreditsList()
    // indicating if they were an Audacity developer.
 
    // The Tenacity and Tenacity Teams
-   AddCredit(wxT("Avery King"), tenacityFounderFormat, roleTenacityTeamMember);
+   AddCredit(wxT("Avery King"), tenacity_leadDeveloperFormat, roleTenacityTeamMember);
    AddCredit(wxT("Panagiotis \"AlwaysLivid\" Vasilopoulos ([[https://alwayslivid.com|Website]])"), tenacity_contributorFormat, roleTenacityTeamMember);
    AddCredit(wxT("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])"), tenacity_contributorFormat, roleTenacityTeamMember);
    AddCredit(wxT("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])"), tenacity_contributorFormat, roleTenacityTeamMember);
