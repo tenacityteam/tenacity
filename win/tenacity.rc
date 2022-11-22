@@ -1,7 +1,7 @@
-SaucedacityLogo ICON "tenacity.ico"
+TenacityLogo ICON "tenacity.ico"
 
 #include <winuser.h>
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "Saucedacity.exe.manifest"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "Tenacity.exe.manifest"
 
 #include "wx/msw/wx.rc"
 /////////////////////////////////////////////////////////////////////////////
@@ -25,14 +25,14 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "Saucedacity Team"
+            VALUE "CompanyName", "Tenacity Contributors"
             VALUE "FileDescription", "A cross-platform audio editor based on Audacity�."
             VALUE "FileVersion", AUDACITY_FILE_VERSION
-            VALUE "InternalName", "Saucedacity"
-            VALUE "LegalCopyright", "Copyright � 2022. All rights reserved."
+            VALUE "InternalName", "Tenacity"
+            VALUE "LegalCopyright", "Copyright � 2022 under GPLv2+"
             VALUE "LegalTrademarks", "Audacity� is a registered trademark."
-            VALUE "OriginalFilename", "Saucedacity.exe"
-            VALUE "ProductName", "Saucedacity"
+            VALUE "OriginalFilename", "Tenacity.exe"
+            VALUE "ProductName", "Tenacity"
             VALUE "ProductVersion", AUDACITY_FILE_VERSION
         END
     END
