@@ -141,11 +141,20 @@ void AboutDialog::CreateCreditsList()
    // members. Also considered, add an extra parameter to AddCredit,
    // indicating if they were an Audacity developer.
 
-   // The Tenacity and Tenacity Teams
-   AddCredit(wxT("Avery King"), tenacity_leadDeveloperFormat, roleTenacityTeamMember);
-   AddCredit(wxT("Panagiotis \"AlwaysLivid\" Vasilopoulos ([[https://alwayslivid.com|Website]])"), tenacity_contributorFormat, roleTenacityTeamMember);
-   AddCredit(wxT("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])"), tenacity_contributorFormat, roleTenacityTeamMember);
-   AddCredit(wxT("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])"), tenacity_contributorFormat, roleTenacityTeamMember);
+   // The Tenacity Team
+   AddCredit("Avery \"Generic Person\" King ([[https://github.com/generic-pers0n|GitHub]])", tenacity_leadDeveloperFormat, roleTeamMember);
+   AddCredit("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])", tenacity_contributorFormat, roleTeamMember);
+   AddCredit("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])", tenacity_contributorFormat, roleTeamMember);
+
+   // Tenacity Team Emeritus
+   AddCredit("Emily \"emabrey\" Mabrey ([[https://github.com/emabrey|GitHub]])", tenacity_leadDeveloperFormat, roleEmeritus);
+   AddCredit("Panagiotis \"Ivory\" Vasilopoulos (n0toose) ([[https://n0toose.net|Website]])", tenacity_leadDeveloperFormat, roleEmeritus);
+   AddCredit(wxT("Be ([[https://github.com/Be-ing/|GitHub]])"), tenacity_leadDeveloperFormat, roleEmeritus);
+
+   // Tenacity Thanks
+   AddCredit(wxT("Drew \"SirCmpwn\" DeVault"), roleThanks);
+   AddCredit(wxT("Filipe \"falkTX\" Coelho"), roleThanks);
+
    //// More to be added over time! ///////////////////////////////////////////
 
    // The Audacity Team: developers and support
@@ -270,9 +279,7 @@ void AboutDialog::CreateCreditsList()
    AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleAudacityLibrary);
    AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleAudacityLibrary);
    AddCredit(wxT("[[https://wxwidgets.org/|wxWidgets]]"), roleAudacityLibrary);
-
-   // Tenacity Libraries
-   AddCredit(wxT("[[https://www.underbit.com/products/mad/|libmad]]"), roleTenacityLibrary);
+   AddCredit(wxT("[[https://www.underbit.com/products/mad/|libmad]]"), roleLibrary);
 
 
    // Thanks
@@ -417,27 +424,22 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s is a free, open source, cross-platform software for recording and editing audio.<br><br>")
             .Format(ProgramName)
-      << XO("%s is a fork of Audacity, created on July 7, 2021").Format(ProgramName)
 
-      // << wxT("<p><br>")
-      // << par1Str
-      // << wxT("<p>")
-      // << par2Str
-      << wxT("<br/><br/>")
-      << wxT("<b>")
-      << XO("This program includes code from [[https://github.com/tenacityteam/tenacity|Tenacity]], a very "
-            "similar project in both code base and views. Be sure to check them out!"
-         )
-      << wxT("</b>")
       << wxT("<h1>")
       << XO("Credits")
       << wxT("</h1>")
       << wxT("<h2>")
+      /* i18n-hint: The program's name substitutes for %s */
       << XO("%s Team Members").Format( ProgramName )
       << wxT("</h2><br>")
-      << GetCreditsByRole(roleTenacityTeamMember)
-      << wxT("<br/>")
-      << GetCreditsByRole(roleTenacityTeamMember)
+      << GetCreditsByRole(roleTeamMember)
+
+      << wxT("<h3>")
+      << XO("Emeritus")
+      << wxT("</h3><br/><i>")
+      << XO("Distinguished Tenacity Team members that aren\'t currently active")
+      << wxT("</i><br/><br/>")
+      << GetCreditsByRole(roleEmeritus)
 
       << wxT("<h2>")
       /* i18n-hint: The program's name substitutes for %s */
@@ -447,10 +449,10 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
 
       << wxT("<h3>")
       << XO("Emeritus:")
-      << wxT("</h3>")
+      << wxT("</h3><i>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("Distinguished Audacity Team members, not currently active")
-      << wxT("<br><br>")
+      << wxT("</i><br><br>")
       << GetCreditsByRole(roleAudacityEmeritusTeam)
 
       << wxT("<h3><b>")
@@ -482,7 +484,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<br><br>")
       << XO("In addition, %s also includes these libraries (some forks) from Tenacity:").Format(ProgramName)
       << wxT("<br><br>")
-      << GetCreditsByRole(roleTenacityLibrary)
+      << GetCreditsByRole(roleLibrary)
 
       << wxT("<h3>")
       << XO("Special thanks:")
