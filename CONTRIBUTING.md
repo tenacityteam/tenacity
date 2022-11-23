@@ -1,211 +1,355 @@
-# Contributing
+# Contributing to Tenacity
 
-There are many ways to contribute to the Saucedacity Project. Such include contributing to either documentation or to Saucedacity itself. If you are willing to contribute to Saucedacity itself (code-wise, that is), then you've come to the right place. If you've want to contribute to something else, it's best you consult [our wiki](https://github.com/saucedacity/saucedacity/wiki) for more information.
+Thanks for showing your interest to contribute, your contribution is very
+valuable to us as people like **you** help us build Tenacity. Some guidelines
+have been put in place in an effort to keep the codebase clean.
 
-Of course, we have a couple of things that you should know. Below are some general points that you should know about contributing to Saucedacity.
+## Reporting bugs and feature requests
 
-# General
-* **NO CLA is required!** The code you write is YOURS to keep FOREVER.
-* **Make sure your code is available under the GPL v2 or later**. If you are making contributions to documentation or media (i.e., logos, icons, etc), please license those changes under CC BY 4.0.
-  * Wiki contributions are made under CC BY (Creative Commons Attribution) 4.0.
-* **[Follow our code of conduct](CODE_OF_CONDUCT.md)** when participating in discussions of issues, pull requests, and discussions.
+Our IRC channel, [`#tenacity` on Libera](https://web.libera.chat/#tenacity)
+([IRC](ircs://irc.libera.chat:6697/#libera)/
+[Matrix](https://matrix.to/#/#tenacity:libera.chat)), is the best place to ask
+general questions about Tenacity and talk about feature requests in real time.
 
-# Developing
+You can use [GitHub Issues](https://github.com/tenacityteam/tenacity/issues)
+to report bugs and propose feature requests. Support questions will also be
+accepted, but you must mark your support request with the 'Support' label, or
+else it will be ignored and closed.
 
-## In General
+Here are some general tips if you are unsure about submitting a bug report:
 
-* If you want to make a change, it is best advised that you do make an issue so we can discuss things. You may open a pull request without relating to an issue, however.
-  * Careful not to step on anyone's toes, though. Someone might be already working on the same thing you have, consult the [Issue Tracker](https://github.com/generic-pers0n/saucedacity/issues) for details
+* Please only submit a bug report if you are sure it is valid.
+* On GitHub, we use "issue templates" to help you help us. Please use them
+  and answer as many questions as you can. That way, we will not have to go
+  back and forth to understand what you want to say to us.
 
-## Branches
-* All development happens on the `main` branch.
-* If you have a major proposal or new feature, create a new branch named `new_feature_name`. Additionally:
-  * Once the branch has been merged into `main`, feel free to delete that branch.
+## Contributing
 
-### Releases
-* After each stable release, a new branch is to be created as soon as the release is made. The branch is to then **never, ever** be touched again.
-* After a stable release, there should be a page regarding release information about that specific version. This can also be done for future releases.
-* There are four different tiers for platform support: Tier 1, Tier 2, Tier 3, and Tier 4.
-  * **Tier 1** support is where the platform is officially supported.
-  * **Tier 2** support is where the platform is not officially supported but has **community support**.
-    * In terms of support, main developers/contributors can (and may) attempt to provide support for Tier 2 platform builds, although support is not guaranteed.
-   * **Tier 3** support is where the platform is **partially supported**.
-   * **Tier 4** support is where the platform is not supported at all. Platform support might be in discussion, so check the Discussions or the Discord server for more info. Additionally, there might have been support for a Tier 4 platform, but was since dropped for various reasons.
-     * In some cases, platforms in Tier 4 support might've been supported at one point but support was dropped for various reasons.
-* Note that Tier 1 is the only tier where binary releases are guaranteed. Tiers 2 and 3 might have binary releases, but they are not guaranteed.
+Contributing code to Tenacity is done either via Codeberg or GitHub. Tenacity
+requires you to Sign-off your commits, which indicates you agree to the
+[Developer Certificate of Origin](#developer-certificate-of-origin). Details below.
 
-# Translations
+_Note: you do not need to open a GitHub issue for every matching contribution,
+only for those which need further looking into, and only when asked to._
 
-* We accept translations for any languages, whether they're new languages introduced or improvements to existing translations.
-* Feel free to work on a translation. Note that your translation doesn't necessarily need to correspond to an issue.
+### Submitting code
 
-# Supporting Users
+#### Making pull requests on GitHub or Codeberg
 
-* You can answer questions on our [discussions page](https://github.com/generic-pers0n/saucedacity/discussions)
-  * Additionally, you can also participate in the community, with the places mentioned above.
+To contribute code using GitHub, first fork either our
+[GitHub repo](https://github.com/tenacityteam/tenacity) or our
+[Codeberg](https://github.com/tenacityteam/tenacity)
+and make your changes. Please use `git commit --amend` and
+`git push -f` for minor changes and only if they are **your** commits.
 
+_Note: be sure you open your pull request on the right platform. If you forked
+the repository on GitHub, you would open your pull request on GitHub. If you
+forked the repository on Codeberg, you would open your pull request on
+Codeberg._
 
-# Coding Style
-We recommend you follow the following guidelines for coding. This helps keep Saucedacity easy to read and keeps its coding style consistent.
+See [git-rebase.io](https://git-rebase.io) for more details.
 
-**Note that this style guide does not cover everything. For that, use what you are familiar with.**
+### Guidelines for code
 
-## At A Glance
-```c++
+Please adhere to the following guidelines when authoring code that you plan to submit to Tenacity:
 
-#ifndef SOMETHING
-#deta 1 fine THIS_IS_TRUE
-#endif
+1. Follow these proper code formatting guidelines:
+   * **If the file uses spaces, do not change them to tabs.**
 
-#ifndef __LONG_CONDITION__ // this can be named anything
-#define __SOMETHING__
-// things
-#endif // end __LONG_CONDITION
+   * **Do not mix functional changes with whitespace changes**. This makes it
+     difficult to review your changes because we won't what was exactly
+     changed.
 
-#include <iostream>
+   * **Preserve the file's current indentation levels**. For example, if a file
+     uses an indentation level of 3 spaces, don't make changes that introduce
+     an indentation level of 4 spaces.
 
-// here we have foor and bar. They do several things
-//
-// more things go here
+     * If creating a new file, **use an indentation level of 4 spaces. Do not
+       use tabs**.
 
-/// another long comment, but for doxygen.
-///
-/// please try to use Doxygen comments like this so we can document their usage, intentions,
-/// etc. in Doxygen.
+2. Do not change any variable names unless necessary.
+   * You may change variable names to more understandable names, but a change
+     merely consisting of variable name changes will not be accepted.
 
-/** Alternatively, we have these types of comments. preferred for Doxygen.
- *
- * More things about foor and bar.
- *
- **/
-int* foo = some_memory;
-int *bar = nullptr, *bar2 = foo;
+3. Follow the [commit message guidelines](#commit-messages).
 
-if (some_condition == true)
-{
-   DoSomething();
-} else
-{
-   DoSomething(alternatively_with_goodies);
-   DoAnotherThing();
-}
+#### Coding Style
 
-for (int i = 0; i < 10; i++)
-{
-   DoAnActionRepeatedly();
-}
+Please follow the following guidelines when making your patch:
 
+* Use PascalCase for function names and classes wherever possible and use
+  camelCase for variable names.
 
-class SomeClass
-{
-   public:
-      int mPublicMember; // STYLE NOTE: Inherited from Audacity
-      virtual void SomeFunc() = 0; // a virtual function
-      void DoSomething();
+* Prefix **protected and private** class member variables with an 'm' at the
+  start using camel case. For example, if a class has a member variable called
+  'data' that's protected or private, it would be named 'mData'.
 
-   private:
-      int mPrivateMember; // a private member
-};
+* For new files, use 4 spaces of indentation. **Do not use tabs**.
+
+* Always put brackets on a new line except for variables. Example:
+
+    ``` c++
+    class Something
+    {
+        // stuff...
+    };
+
+    static const char* data = { /* ... */};
+    ```
+
+* Please treat Tenacity libraries as system includes. Additionally, include a
+  comment, `// Tenacity libraries`, that indicate the following headers are
+  Tenacity libraries. Example:
+
+  ``` c++
+  // Tenacity libraries
+  #include <lib-strings/Internat.h>
+  ```
+
+* For macros, use `snake_case` for naming and write the macro name in all-caps. Example:
+
+  ``` c++
+  #define SOME_MACRO 10
+  #define SOME_USE_MACRO
+  ```
+
+### Guidelines for commits
+
+#### Developer Certificate of Origin
+
+Tenacity is an open source project licensed under the GNU General Public
+license, version 2 or later (see [`LICENSE`](LICENSE.txt)).
+
+We respect intellectual property rights, and we would like to make sure that
+all contributions are properly attributed. As such, we use the simple and clear
+Developer Certificate of Origin (DCO).
+
+The DCO is a declaration attached to every contribution made by every
+contributor. All the developer has to do is include a `Signed-off-by` statement,
+thereby agreeing to the DCO, provided below or on
+[developercertificate.org](https://developercertificate.org):
 
 ```
+Developer Certificate of Origin Version 1.1
 
-## An In-Depth View of the Recommended Coding Style
-**Note**: as stated previously, **you do not need to follow this coding style**. This is more or less the recommendations, but can also be viewed as an overview of generic-pers0n's coding style.
+Copyright (C) 2004, 2006 The Linux Foundation and its contributors.  1
+Letterman Drive Suite D4700 San Francisco, CA, 94129
 
-### Variable Names, Function Names, and Macros
+Everyone is permitted to copy and distribute verbatim copies of this license
+document, but changing it is not allowed.
 
-* Use `PascalCase` for most things, **including file names**. For macros use all uppercase with `snake_case`. **Example**:
-```c++
-#define SOME_MACRO
 
-void ANiceFunction(int parameter_one);
-int a_global_var;
-const int a_constant_var;
+Developer's Certificate of Origin 1.1
 
-```
-* Use indents of **3 spaces**, indenting appropriately. Additionally, use only spaces. **Example**:
-  * Yes, we know that 3 spaces for indentation is uncommon, but we inherited from Audacity and we don't want to edit every single file to be in line with our coding style.
+By making a contribution to this project, I certify that:
 
-```c++
-int SomeFunc(bool do_something)
-{
-   int a = 0;
-   if (!do_something)
-   {
-      return 0;
-   }
+(a) The contribution was created in whole or in part by me and I have the right
+to submit it under the open source license indicated in the file; or
 
-   a += 2;
-   a = (10 / 2 -10 +8 - 420 - 69 * 2 & 9);
-   return a;
-}
-```
+(b) The contribution is based upon previous work that, to the best of my
+knowledge, is covered under an appropriate open source license and I have the
+right under that license to submit that work with modifications, whether
+created in whole or in part by me, under the same open source license (unless I
+am permitted to submit under a different license), as indicated in the file; or
 
-* Do not indent anything inside a preprocessor statement. Keep it as is. **Example**:
-```c++
-#ifdef SOMETHING
-#define ANOTHER_THING
-#endif 
+(c) The contribution was provided directly to me by some other person who
+certified (a), (b) or (c) and I have not modified it.
+
+(d) I understand and agree that this project and the contribution are public
+and that a record of the contribution (including all personal information I
+submit with it, including my sign-off) is maintained indefinitely and may be
+redistributed consistent with this project or the open source license(s)
+involved.
 ```
 
-* Do make sure that preprocessor statements are indented appropriately. **Example**:
+Each commit must include a DCO in its description, which looks like this:
 
-```c++
-void func()
-{
-   #ifndef SOMETHING
-   auto thing = new Something;
-   thing->Run();
-   #endif
-
-   RunAnotherThing();
-}
+```
+Signed-off-by: Con Tributor <con.tributor@example.com>
 ```
 
-### Namespaces
-* Names for namespaces should be in PascalCase. Additionally, at the end of a long namespace declaration, there should be a comment in the following format: `// namespace <name>`. **Example**:
+You may type this line manually or, if using the command line, simply append
+`-s` to your commit.
 
-```c++
-namespace SomeNamespace
-{
-// very long contents
-} // namespace SomeNamespace
-```
+We ask that all contributors use their real email address, which can be replied
+to.
 
-* Do not indent anything inside a namespace.
+#### Commit messages
 
-### Blocks
-* Put blocks on a new line at all times. **Example**:
+The following rules continue to support hosting our code on multiple platforms,
+such as both GitHub and Codeberg, without being unnecessarily locked in to
+GitHub. Moreover, they are also necessary for complying to the GPL license,
+ensuring our independence and just giving credit where it is due.
 
-```c++
-namespace Saucedacity
-{
+Our stance on these rules is not very strict. Worst case scenario, we may
+correct the commit messages for you and inform you about what we had to correct
+for future reference. However, if you would like to get seriously involved
+with our project and take on responsibilities such as as reviewing and merging
+patches, your abidance to the following rules will also be one of the factors
+that will be considered.
 
-class SomeClass
-{
-   private:
-      bool mBool;
+Apart from including a DCO, as mentioned earlier, the following are also very
+important:
 
-public:
-      int SomeMember(int param)
-      {
-         bool some_bool = true;
+* Make concise and accurate commit messages. A commit message should be
+   limited to 50 characters and its description limited to 72 characters
+   per line, and the message should be able to complete this sentence:
 
-         if (some_bool)
-         {
-            some_bool = false;
-         }
+    > This commit will...
 
-         Object some_very_long_statement(Param1Actions() + 10, Param2Actions + 20,
-                                         Param3Actions() + 30, Param4Actions + 40,
-                                         {
-                                           true, false,
-                                           true, false
-                                         });
+    If you need to add any additional context, do so in the commit description.
 
-         return 42;
-      }
-};
+* Avoid using full stops (e.g. `.`) or past tense in your commit messages.
 
-}
-```
+   - Correct: `Add support for the Commodore 64`
+   - Incorrect: `Added support for the Commodore 64.`
+
+* The first character of the commit message should be capitalized.
+
+   Example:
+
+   - `GH Actions: Buy celebratory Margaretha Pizza`
+   - `Have Tenacity eat more veggies`
+
+* If you are using changes that were made by another person, make sure to
+  properly credit them by using the `Co-authored-by: ` tag(s) in the end of
+  the commit message before the `Signed-off-by:` tag(s), followed by the name
+  or alias that they have used in Git in the past, as well as their e-mail.
+
+   Example: `Co-authored-by: Jane Doe <jane.doe@example.com>`
+
+* If your commit is complicated and involves multiple changes, use asterisks
+  and explain of the changes you made in a few words.
+
+   Example:
+
+   ```
+   Prepare Teriyaki Sauce
+
+   * Added Soy Sauce
+   * Added Cooking Sake and Sugar
+   * Added 1 teaspoon of Mirin
+   * Added Dashi Stock
+   * Mixed ingredients together
+   ```
+
+* If you are using changes that were made by another person, the original
+  changes by that said person should generally be signed off and available
+  publicly in places such as another pull request on GitHub. Exceptions can
+  be made, but do ***not*** sign off a commit for another person without
+  their explicit permission.
+
+* If your patch resolves an issue that was previously mentioned in the Issues
+  tab on GitHub or in our mailing list, please use the `Reference-to:` tag,
+  followed by the URL where the issue in question was mentioned.
+
+   Example:
+
+   ```
+   Reference-to: https://github.com/tenacityteam/tenacity/issues/2046
+   ```
+
+* Leave an empty line between tags such as `Signed-off-by:` and the rest of
+  the commit description.
+
+   Example:
+
+   ```
+   Remove references to pumpkin pies
+
+   I get that pumpkin pie is tasty, but this does not have anything to do
+   with Tenacity whatsoever.
+
+   Signed-off-by: Pumpkin Hater <pumpkin.hater99@example.com>
+   ```
+
+##### GitHub
+
+* Avoid using emojis or GitHub-specific references (e.g. `:tada:`) to emojis
+  in your commits. They may look just fine on GitHub, but they do not anywhere
+  else.
+
+##### Maintainers
+
+* When merging pull requests from GitHub, make sure to remove references to
+  issues or pull requests that have a numeric format (e.g. `(#1234)` or
+  `Resolves #1234`). Please use the `Reference-to:` tag instead.
+
+  Including a hyperlink to the said issue or pull request is preferred, because
+  these links will not break outside of GitHub and will also reduce confusion
+  between patches that refer to issues in the Audacity repository and patches
+  that are meant to be used in Tenacity. If you use a hyperlink instead of just
+  the #nnn format, GitHub will still show the #nnn format on the website, but
+  other websites and/or the command line will show the full hyperlink.
+  This is good, because it reduces our dependency on GitHub.
+
+###### Merging branches
+
+* If a proposed change is running behind a certain amount of commits that affect
+  the same "parts" of the project that the patch also affects, make sure to
+  rebase the patch on top of the `main` branch just to be sure that the most
+  recent changes do not cause the proposed patch to break.
+
+* In order to accommodate other reviewers that live in different timezones,
+  the rule of thumb is to wait for up to a day before merging a change that
+  has been approved by a reviewer, or wait around 12 hours before merging a
+  change that has been approved by multiple people. If possible, make sure to
+  check the change for yourself if possible, especially when a reviewer
+  approves a change reluctantly.
+
+* Before merging any change, make sure that all (or, at the very least, *most
+  of*) the tests have passed. If a change concerns a particular platform (e.g.
+  macOS), then wait for the tests for that said platform to complete.
+
+* If a change affects the user interface or the audio engine, you're generally
+  expected to use Tenacity with the included change on your machine and
+  evaluate it. Since it's very hard to answer whether a specific change
+  affecting the experience of the user is worth including or if the contributor
+  should adjust their change, you may want to ask for the help of other
+  contributors.
+
+* If there are multiple proposed changes that affect the same parts of the
+  project, ***please wait*** for a while after initially merging a single
+  proposed change just to be sure that this will not break the build. This does
+  not apply to changes that do not affect the functionality of the program
+  (such as changes to a Markdown file).
+
+The most basic way of evaluating whether two separate changes affect the same
+part of the project is checking whether the changes concern the same source
+or header files. For example, if both changes affect `src/Theme.cpp`, then
+they affect the same part of the project. However, this sort of evaluation
+can get trickier, as in large applications, different source and header files
+depend on each other.
+
+Rebasing patches on top of the `main` branch and making sure that they work
+as intended is the safest and fastest way to make sure that everything will be
+okay.
+
+###### Reverting
+
+Mistakes can happen, and that's okay. After all, we're here to learn and
+help others. However, reverting can impose a large amount of work on yourself
+or other maintainers later down the line, as well as frustrate
+contributors -- particularly those who are contributing for the first-time
+or are thinking about contributing to the project.
+
+A change that breaks Tenacity should be reverted under at least some of the
+following conditions:
+
+* There is no obvious or fast way (up to a couple of hours) to fix the mistake
+  that caused Tenacity to break. **Fixing is better than reverting most of the
+  time.**
+* There is a high amount of activity on the project and the change that got
+  merged is killing off that said activity.
+* There are maintainers and contributors that are aware of this and agree that
+  reverting is the best cause of action.
+* The community appears to heavily disagree with the change.
+* Another person, regardless of whether they are a well-established developer
+  or a community member, provides an additional perspective that the
+  contributors or maintainers were not previously aware of, which calls the
+  validity of the change into question.
+
+When reverting a change, you should be *at least* **just as careful** as when
+committing a change. Make sure to use your own judgement, communicate
+transparently and coordinate with other contributors -- especially the ones
+that worked on the change itself.
