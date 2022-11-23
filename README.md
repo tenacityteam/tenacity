@@ -1,55 +1,64 @@
-# Saucedacity: A saucy audio editor
-![Saucedacity build status](https://github.com/tenacityteam/saucedacity/actions/workflows/cmake_build.yml/badge.svg)
-![Saucedacity CodeQL Status](https://github.com/tenacityteam/saucedacity/actions/workflows/codeql-analysis.yml/badge.svg)
+[![Tenacity](https://raw.githubusercontent.com/tenacityteam/assets/master/PNG/tenacity-logo-dark-readme.png)](https://tenacityaudio.org)
 
-**Saucedacity** is an easy-to-use, multi-track audio editor and recorder for Windows, GNU/Linux, and other operating systems*. Saucedacity is open source software licensed under GPL, version 2 or later.
+[![Chat on IRC](https://badgen.net/badge/irc/%23tenacity/green)](https://web.libera.chat/gamja/?channels=#tenacity)
+[![License](https://badgen.net/badge/license/GPLv2/blue)](LICENSE.txt)
+[![Open issues](https://badgen.net/github/open-issues/tenacityteam/tenacity)](https://github.com/tenacityteam/tenacity/issues)
+[![GitHub builds](https://badgen.net/github/status/tenacityteam/tenacity)](https://github.com/tenacityteam/tenacity/actions?query=branch%3Amaster+event%3Apush)
+<!--[![builds.sr.ht](https://builds.sr.ht/~tenacity/tenacity/commits/.svg)](https://builds.sr.ht/~tenacity/tenacity/commits/?)-->
+[![Translation status](https://hosted.weblate.org/widgets/tenacity/-/tenacity/svg-badge.svg)](https://hosted.weblate.org/engage/tenacity/)
+[![Donators](https://opencollective.com/tenacity/tiers/badge.svg)](https://opencollective.com/tenacity#category-CONTRIBUTE)
 
-*macOS is unofficially supported (it is buildable). We lack an actual Mac to test our CI builds on to make sure Saucedacity runs properly.
+Tenacity is an easy-to-use multi-track audio editor and recorder for Windows, macOS, Linux and other operating systems. It is built on top of the widely popular [Audacity](https://audacityteam.org/) and is being developed by a wide, diverse group of volunteers.
 
-Features:
+## Features
 
-- **Recording** from any real, or virtual audio device that is available to the host system.
-- **Export / Import** a wide range of audio formats, extendible with FFmpeg.
-- **High quality** using 32-bit float audio processing.
-- **Clip handles** for easy audio editing.
-- **Plug-ins** Support for multiple audio plug-in formats, including VST, LV2, AU.
-- **Macros** for chaining commands and batch processing.
-- **Scripting** in Python, Perl, or any language that supports named pipes.
-- **Nyquist** Very powerful built-in scripting language that may also be used to create plug-ins.
-- **Editing** multi-track editing with sample accuracy and arbitrary sample rates.
-- **Accessibility** for VI users.
-- **Analysis and visualization** tools to analyze audio, or other signal data.
+- **Recording** from audio devices (real or virtual)
+- **Export / Import** a wide range of audio formats (extensible with FFmpeg)
+- **High quality** including up to 32-bit float audio support
+- **Plug-ins** providing support for VST, LV2, and AU plugins
+- **Scripting** in the built-in scripting language Nyquist, or in Python, Perl and other languages with named pipes
+- **Editing** arbitrary sampling and multi-track timeline
+- **Accessibility** including editing via keyboard, screen reader support and narration support
+- **Tools** useful in the analysis of signals, including audio
 
-## Cloning the Source
-To clone the Saucedacity source tree, you will need to run the following command:
-```
-git clone --recurse-submodules https://github.com/tenacityteam/saucedacity
-```
+## Motivation
 
-The `--recurse-submodules` is very important because, unlike Audacity, Saucedacity uses submodules. If you forget the `--recurse-submodules`, you can run the following after `git clone`:
+Our project initially started as a fork of [Audacity](https://audacityteam.org) as a result of multiple controversies and public relation crises, which you can find out more about here:
 
-```
-git submodule init
-git submodule update
-```
+- [**Privacy policy which may violate the original project's GPL license**](https://github.com/audacity/audacity/issues/1213)
+- [**Contributor's License Agreement (CLA) which may violate the same GPL license**](https://github.com/audacity/audacity/discussions/932)
+- [**Attempts at adding telemetry using Google services for data collection**](https://github.com/audacity/audacity/pull/835)
 
-## Contributing and To Do
+Nevertheless, the goal of this project is to pick up what the original developers of Audacity the decades-long work by the original creators of Audacity and create an audio editor that is fresh, more modern, convenient and practical to use, with the help and the guidance of our users and our community.
 
-All contributions made to Saucedacity are available under the GNU General Public License, version 2 or later.
+## Download
 
-If you want to contribute to this project, we welcome your contributions. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for notes on contributing, the [issue tracker](https://github.com/tenacityteam/saucedacity/issues) to see what needs to be done or to create a new issue, and [our TODO page](https://github.com/tenacityteam/saucedacity/wiki/TODO) for things that we plan on doing or that need to be done.
+### Tenacity
 
-Finally, **you do NOT need to know how to code in order to contribute to Saucedacity.** We also have fields such as documentation and translations that need some good work too! Of course, if you want to contribute code, we welcome your contribution :)
+We have not released the first version of Tenacity yet, but we are working towards Tenacity's first ever release, version 1.3, which is close to completion.
+
+Nevertheless, as a result of popular demand by the community, we decided to provide "nightly" downloads for Windows, macOS and Ubuntu Linux. These downloads are based on the latest version of Tenacity's code, and are not representative of our final product. Some features may be added, removed, or changed.
+
+- [Nightly Downloads](https://tenacityaudio.org/very-early-builds)
+- [Nightly Flatpak builds](https://github.com/tenacityteam/tenacity-flatpak-nightly/blob/main/README.md)
+- [Unofficial Arch Linux (AUR) Package](https://aur.archlinux.org/packages/tenacity-git/)
+
+### Audacity
+
+The latest official version of Audacity that does not implement telemetry is `3.0.2`. Some Linux-based operating systems also ship Audacity with telemetry and networking features disabled by default.
+
+Downloads for these versions can be found on the [Audacity website](https://www.audacityteam.org/download/). If you're looking for support regarding these versions, it may be worth consulting [Audacity's forum](https://forum.audacityteam.org/) or [Audacity's wiki](https://wiki.audacityteam.org/).
 
 ## Getting Started
-For end users, the latest Windows and Linux release version of Saucedacity is available from the [Saucedacity releases page](https://github.com/tenacityteam/saucedacity/releases).
 
-Audacity's manual should work for getting support (especially any manual for Audacity 3.0.x). We welcome contributions to our wiki, but we feature some more technical information that developers are more interested aside from general changelogs.
+Build instructions for Tenacity are available in the [BUILDING.md file](BUILDING.md).
 
-Build instructions are available [here](BUILDING.md). If you've built Audacity with CMake before, things should feel mostly similar if not right at home with Saucedacity.
+## Contributing
 
-## Support
+To start contributing, please consult the [CONTRIBUTING.md file](CONTRIBUTING.md).
 
-We have a [Matrix room](https://matrix.to/#/#saucedacity:matrix.org) for anything Saucedacity, including general discussion, support, and development. You may also use [our discussions page](https://github.com/tenacityteam/saucedacity/discussions) for discussion too.
+If you are planning to make a big change or if you are otherwise hesitant as to whether we want to incorporate something you want to work on in Tenacity itself, simply open an issue about it in our [Codeberg issue tracker](https://codeberg.org/tenacityteam/tenacity/issues). We can discuss it and work together, so that neither our time or your time and hard effort goes to waste.
 
-Be sure to follow our [Code of Conduct](CODE_OF_CONDUCT.md) when participating in our discussions page and in our Matrix room.
+### Translating
+
+You can help us translate Tenacity and make it more accessible on [Weblate](https://hosted.weblate.org/projects/tenacity).
