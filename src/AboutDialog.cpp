@@ -143,17 +143,21 @@ void AboutDialog::CreateCreditsList()
 
    // The Tenacity Team
    AddCredit("Avery \"Generic Person\" King ([[https://github.com/generic-pers0n|GitHub]])", tenacity_leadDeveloperFormat, roleTeamMember);
+   AddCredit("caughtquick ([[https://caughtquick.tech|Website]]", tenacity_contributorFormat, roleTeamMember);
+   AddCredit("TheEvilSkeleton ([[https://github.com/theevilskeleton|GitHub]])", tenacity_contributorFormat,roleContributor);
    AddCredit("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])", tenacity_contributorFormat, roleTeamMember);
+   AddCredit("AnotherFoxGuy ([[https://github.com/AnotherFoxGuy|GitHub]])", tenacity_contributorFormat, roleTeamMember);
 
    // Tenacity Team Emeritus
    AddCredit("Emily \"emabrey\" Mabrey ([[https://github.com/emabrey|GitHub]])", tenacity_leadDeveloperFormat, roleEmeritus);
    AddCredit("Panagiotis \"Ivory\" Vasilopoulos (n0toose) ([[https://n0toose.net|Website]])", tenacity_leadDeveloperFormat, roleEmeritus);
-   AddCredit(wxT("Be ([[https://github.com/Be-ing/|GitHub]])"), tenacity_leadDeveloperFormat, roleEmeritus);
+   AddCredit("Be ([[https://github.com/Be-ing/|GitHub]])", tenacity_leadDeveloperFormat, roleEmeritus);
 
    // Tenacity Thanks
-   AddCredit(wxT("Drew \"SirCmpwn\" DeVault"), roleThanks);
-   AddCredit(wxT("Filipe \"falkTX\" Coelho"), roleThanks);
+   AddCredit("Drew \"SirCmpwn\" DeVault", roleThanks);
+   AddCredit("Filipe \"falkTX\" Coelho", roleThanks);
+   AddCredit("Max Maisel ([[https://github.com/mmmaisel]])", roleThanks);
 
    //// More to be added over time! ///////////////////////////////////////////
 
