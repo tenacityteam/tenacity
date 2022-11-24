@@ -578,7 +578,7 @@ else()
 endif()
 
 # Define Application ID
-set( APP_ID "io.github.tenacity.Saucedacity" )
+set( APP_ID "org.tenacityaudio.Tenacity" )
 
 # Create short and full version strings
 set( AUDACITY_DIST_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION} )

@@ -58,7 +58,7 @@ hold information about one contributor to Audacity.
 #endif
 
 #ifdef REV_LONG
-#define REV_IDENT wxString( "[[https://github.com/tenacity/tenacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
+#define REV_IDENT wxString( "[[https://github.com/tenacityteam/tenacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
 #else
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
@@ -494,7 +494,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
-      << wxT("[[https://github.com/tenacity/tenacity/|https://github.com/tenacity/tenacity]]<br>")
+      << wxT("[[https://codeberg.org/tenacityteam/tenacity/|https://codeberg.org/tenacityteam/tenacity]]<br>")
 
       /* i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
          name substitues the 2nd. */

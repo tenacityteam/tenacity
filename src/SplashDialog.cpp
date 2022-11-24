@@ -100,7 +100,7 @@ SplashDialog::SplashDialog(wxWindow * parent)
 void SplashDialog::OnChar(wxMouseEvent &event)
 {
    if ( event.ShiftDown() && event.ControlDown() )
-      wxLaunchDefaultBrowser("https://tenacity.github.io");
+      wxLaunchDefaultBrowser("https://tenacityaudio.org");
 }
 
 void SplashDialog::Populate( ShuttleGui & S )

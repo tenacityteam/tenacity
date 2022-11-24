@@ -59,7 +59,7 @@ static wxString InnerLink( const wxString &Key, const wxString& Text )
 static wxString WikiLink( const wxString &Page, const wxString& Text )
 {
    return wxString(wxT("")) +
-      wxT("<a href='https://github.com/tenacity/tenacity/wiki/") +
+      wxT("<a href='https://codeberg.org/tenacityteam/tenacity/wiki/") +
       Page +
       wxT("'>") +
       Text +
@@ -234,10 +234,10 @@ static wxString HelpTextBuiltIn( const wxString & Key )
 " [[help:Main_Page|Audacity Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
          << wxT("</li><li>")
          << XO(
-" [[https://github.com/tenacity/tenacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
+" [[https://github.com/tenacitytenacity/tenacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
-         << XO("More:</b> Visit our [[https://github.com/tenacity/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
+         << XO("More:</b> Visit our [[https://codeberg.org/tenacityteam/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
          << wxT("</p>");
 
       auto result = o.GetString();
@@ -332,7 +332,7 @@ const wxString VerCheckHtml()
    wxTextOutputStream s(o);
    s
       << "<center>[["
-      << "https://github.com/tenacity/tenacity/releases|"
+      << "https://codeberg.org/tenacityteam/tenacity/releases|"
       << XO("View latest stable release")
       << "]]</center>\n";
    return o.GetString();
