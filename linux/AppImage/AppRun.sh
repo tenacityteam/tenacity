@@ -59,7 +59,7 @@ case "$1" in
     exec bash "${APPDIR}/bin/check_dependencies"
     ;;
 * )
-    # Other arguments go to Saucedacity
+    # Other arguments go to Tenacity
     exec "${APPDIR}/bin/tenacity" "$@"
     ;;
 esac

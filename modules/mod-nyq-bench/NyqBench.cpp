@@ -32,7 +32,7 @@
 #include "effects/EffectManager.h"
 #include "effects/EffectUI.h"
 #include "effects/nyquist/Nyquist.h"
-#include "../images/SaucedacityLogo.xpm"
+#include "../images/TenacityLogo.xpm"
 #include "../../src/commands/CommandContext.h"
 #include "../../src/commands/CommandManager.h"
 #include "widgets/AudacityMessageBox.h"

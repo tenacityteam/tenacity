@@ -119,7 +119,7 @@ fi
 # Put the non-RUNPATH binaries back
 mv "${appdir}/../findlib" "${appdir}/bin/findlib"
 
-mv "${appdir}/share/metainfo/tenacity.metainfo.xml" "${appdir}/share/metainfo/org.tenacityteam.Saucedacity.metainfo.xml"
+mv "${appdir}/share/metainfo/tenacity.metainfo.xml" "${appdir}/share/metainfo/org.tenacityteam.Tenacity.metainfo.xml"
 ##########################################################################
 # BUNDLE REMAINING DEPENDENCIES MANUALLY
 ##########################################################################

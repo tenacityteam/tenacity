@@ -101,7 +101,7 @@ endif()
 # If building with GNU compiler, then must be 4.9 or later.
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
     CMAKE_CXX_COMPILER_VERSION VERSION_LESS "4.9")
-   message(FATAL_ERROR "Saucedacity requires at least GCC 4.9")
+   message(FATAL_ERROR "Tenacity requires at least GCC 4.9")
 endif ()
 
 if( EXISTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
@@ -120,7 +120,7 @@ if( NOT DEFINED AUDACITY_BUILD_LEVEL )
    set( AUDACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 endif()
 
-# The Saucedacity version
+# The Tenacity version
 # Increment as appropriate after release of a new version, and set back
 # AUDACITY_BUILD_LEVEL to 0
 set( AUDACITY_VERSION 1 )
@@ -224,7 +224,7 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 
 include( CMakeDependentOption )
 
-project( Saucedacity )
+project( Tenacity )
 
 # Use ccache if available
 find_program( CCACHE_PROGRAM ccache )
@@ -358,7 +358,7 @@ message( STATUS )
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 if( CMAKE_GENERATOR MATCHES "Visual Studio" )
-   # Make sure Saucedacity is the startup project
+   # Make sure Tenacity is the startup project
    set_directory_properties(
       PROPERTIES
          VS_STARTUP_PROJECT "${CMAKE_PROJECT_NAME}"
@@ -412,7 +412,7 @@ set( CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE )
 
 # Adjust them for the Mac
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   set( _APPDIR "Saucedacity.app/Contents" )
+   set( _APPDIR "Tenacity.app/Contents" )
    set( _DEST "${_DESTDIR}/${_APPDIR}" )
    set( _EXEDIR "${_DEST}/MacOS" )
    set( _MODDIR "${_DEST}/modules" )
@@ -569,12 +569,12 @@ if( NOT CMAKE_INSTALL_LIBDIR STREQUAL "lib" AND NOT EXISTS "${CMAKE_BINARY_DIR}/
    file( CREATE_LINK "${CMAKE_BINARY_DIR}/lib" "${CMAKE_BINARY_DIR}/lib64" SYMBOLIC )
 endif()
 
-# Define Saucedacity's name
+# Define Tenacity's name
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
-   set( APP_NAME "Saucedacity" )
+   set( APP_NAME "Tenacity" )
 else()
    set( APP_NAME "tenacity" )
-   set( PROPER_NAME "Saucedacity" )
+   set( PROPER_NAME "Tenacity" )
 endif()
 
 # Define Application ID

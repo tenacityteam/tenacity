@@ -3,6 +3,8 @@
 """
 mw2html - Mediawiki to static HTML
 
+AK: This script is probably broken...
+
 I use this to create a personal website from a local mediawiki
 installation.  No search functionality.  Hacks the Monobook skin and
 the produced HTML.
@@ -1075,7 +1077,7 @@ def run(out=sys.stdout):
     print(errors, "errors not recovered")
 
     # use / not \ so as to work on both windows and mac.
-    deploy_file( "SaucedacityLogo.png", r"alphamanual.audacityteam.org/m/resources/assets/SaucedacityLogo.png")
+    deploy_file( "TenacityLogo.png", r"alphamanual.audacityteam.org/m/resources/assets/TenacityLogo.png")
     deploy_file( "303.css", r"alphamanual.audacityteam.org/m/skins/monobook/main.css/303.css")
     deploy_file( "headbg.jpg", r"alphamanual.audacityteam.org/m/skins/monobook/headbg.jpg")
     deploy_file( "audio.png", r"alphamanual.audacityteam.org/m/skins/monobook/audio.png")
