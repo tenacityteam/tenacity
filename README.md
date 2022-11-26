@@ -8,6 +8,10 @@
 [![Translation status](https://hosted.weblate.org/widgets/tenacity/-/tenacity/svg-badge.svg)](https://hosted.weblate.org/engage/tenacity/)
 [![Donators](https://opencollective.com/tenacity/tiers/badge.svg)](https://opencollective.com/tenacity#category-CONTRIBUTE)
 
+Please note that **we do NOT accept any pull requests or issues on GitHub anymore**. See https://codeberg.org/tenacityteam/tenacity to file your bug report or submit your pull request.
+
+---
+
 Tenacity is an easy-to-use multi-track audio editor and recorder for Windows, macOS, Linux and other operating systems. It is built on top of the widely popular [Audacity](https://audacityteam.org/) and is being developed by a wide, diverse group of volunteers.
 
 ## Features
