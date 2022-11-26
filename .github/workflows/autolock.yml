@@ -17,17 +17,17 @@ on:
 
 jobs:
     point-to-upstream:
-    runs-on: ubuntu-latest
-    steps:
-        - uses: dessant/repo-lockdown@v2.2.0
-        with:
-            issue-comment: >
-                Hi there! We don't accept pull requests on GitHub because we use it as a read-only mirror for visibility. Please see https://codeberg.org/tenacityteam/tenacity/issues to report your issue.
-            skip-closed-issue-comment: true
-            close-issue: true
-            lock-issue: false
-            pr-comment: >
-                Hi there! We thank you for your contribution to Tenacity, but we do not accept pull requests on GitHub as it's a read-only mirror for visibility. Please see https://codeberg.org/tenacityteam/tenacity/pulls to submit your pull request.
-            skip-closed-pr-comment: true
-            close-pr: true
-            lock-pr: false
+        runs-on: ubuntu-latest
+        steps:
+            - uses: dessant/repo-lockdown@v2.2.0
+            with:
+                issue-comment: >
+                    Hi there! We don't accept pull requests on GitHub because we use it as a read-only mirror for visibility. Please see https://codeberg.org/tenacityteam/tenacity/issues to report your issue.
+                skip-closed-issue-comment: true
+                close-issue: true
+                lock-issue: false
+                pr-comment: >
+                    Hi there! We thank you for your contribution to Tenacity, but we do not accept pull requests on GitHub as it's a read-only mirror for visibility. Please see https://codeberg.org/tenacityteam/tenacity/pulls to submit your pull request.
+                skip-closed-pr-comment: true
+                close-pr: true
+                lock-pr: false
