@@ -1,4 +1,4 @@
-# This CMake script is invoked to build the InnoSetup installer for Saucedacity
+# This CMake script is invoked to build the InnoSetup installer for Tenacity
 # Requiered parameters:
 # BUILD_DIR - should be set to CMAKE_BINARY_DIR by the caller
 # SOURCE_DIR - should be set to CMAKE_SOURCE_DIR by teh caller

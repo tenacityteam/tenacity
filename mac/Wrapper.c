@@ -29,7 +29,7 @@ executable.
 #include <string.h>
 #include <unistd.h>
 
-static const char tenacity[] = "Saucedacity";
+static const char tenacity[] = "Tenacity";
 extern char **environ;
 
 int main(int argc, char *argv[])

@@ -1,14 +1,14 @@
-# Saucedacity Build Instructions
+# Tenacity Build Instructions
 
 ## Prerequisites
 
 ### Linux
 
-Most distributions do not package all of Saucedacity's dependencies (yet).
-wxWidgets 3.1 is required for building Saucedacity but many distributions only
+Most distributions do not package all of Tenacity's dependencies (yet).
+wxWidgets 3.1 is required for building Tenacity but many distributions only
 package wxWidgets 3.0. [PortMidi](https://github.com/mixxxdj/portmidi) and
 [PortSMF](https://github.com/tenacityteam/portsmf) are required for MIDI support
-but some distributions do not package PortSMF (Saucedacity can still build without
+but some distributions do not package PortSMF (Tenacity can still build without
 MIDI support). [libsbsms](https://github.com/claytonotey/libsbsms) is an
 optional dependency used for time stretching that is not available in many Linux
 distribution package managers either. Optionally,
@@ -20,7 +20,7 @@ not required. CMake will automatically use ccache if it is installed.
 
 #### Debian, Ubuntu, and derived distributions
 
-To install Saucedacity's dependencies, run:
+To install Tenacity's dependencies, run:
 
 ```
 sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-dev liblilv-dev libmad0-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev
@@ -42,7 +42,7 @@ export WX_CONFIG=/home/user/local/bin/wx-config
 
 #### Fedora
 
-First, if you want to build Saucedacity with FFmpeg support, enable the
+First, if you want to build Tenacity with FFmpeg support, enable the
 [RPM Fusion](https://rpmfusion.org/) free repository if you do not
 have enabled already. The nonfree RPM Fusion repository is not
 required. If you do not mind building without FFmpeg support,
@@ -54,7 +54,7 @@ step below).
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 ```
 
-Then install Saucedacity's dependencies:
+Then install Tenacity's dependencies:
 
 ```
 sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-devel
@@ -139,9 +139,9 @@ you can build sccache from source:
 cargo install sccache
 ```
 
-Saucedacity's dependencies will be built automatically with vcpkg when configuring
+Tenacity's dependencies will be built automatically with vcpkg when configuring
 CMake. You can turn off vcpkg by passing `-D VCPKG=OFF` to the CMake
-configuration command, but then it is up to you to install all of Saucedacity's
+configuration command, but then it is up to you to install all of Tenacity's
 dependencies.
 
 Note that building the dependencies requires 10 GB of storage space.
@@ -169,24 +169,24 @@ brew install cmake ccache ninja nasm wxwidgets
 
 The rest of the dependencies will be built automatically with vcpkg when
 configuring CMake. You turn off vcpkg by passing `-D VCPKG=OFF` to the CMake
-configuration command, but then it is up to you to install all of Saucedacity's
+configuration command, but then it is up to you to install all of Tenacity's
 dependencies.
 
-## Building Saucedacity
+## Building Tenacity
 
 On Windows, run the commands below from the x64 Native Tools Command Prompt. For
 other operating systems, run them from a normal shell.
 
-First, download the Saucedacity source code:
+First, download the Tenacity source code:
 
 ```
-git clone https://github.com/saucedacity/saucedacity.git
-cd saucedacity
+git clone https://codeberg.org/tenacityteam/tenacity
+cd tenacity
 ```
 
 Then, configure CMake. This will take a long time the first time on macOS and
 Windows (or if you use `-D VCPKG=ON` on Linux) because vcpkg will compile
-itself, then compile Saucedacity's dependencies. `-G Ninja` is recommended for
+itself, then compile Tenacity's dependencies. `-G Ninja` is recommended for
 faster builds but not required. Add `-D CMAKE_INSTALL_PREFIX=/some/path` to
 change the installation path from the default /usr/local:
 
@@ -194,19 +194,19 @@ change the installation path from the default /usr/local:
 cmake -G Ninja -S . -B build
 ```
 
-Build Saucedacity:
+Build Tenacity:
 
 ```
 cmake --build build
 ```
 
-Run Saucedacity:
+Run Tenacity:
 
 ```
 build/bin/Debug/aucedacity
 ```
 
-Optionally, install Saucedacity:
+Optionally, install Tenacity:
 
 ```
 cmake --install build
@@ -217,7 +217,7 @@ cmake --install build
   * **VCPKG** (ON|OFF): whether to use dependencies from vcpkg. ON by default
     for Windows and macOS; OFF by default for Linux.
   * **VCPKG_ROOT** (file path): path to vcpkg Git repository, defaults to
-    using the vcpkg submodule in the Saucedacity repository
+    using the vcpkg submodule in the Tenacity repository
   * **SCCACHE** (ON|OFF): whether to use sccache for compiler caching to
     speed up rebuilds. ON by default if sccache is installed.
   * **CCACHE** (ON|OFF): whether to use ccache for compiler caching to speed
@@ -237,7 +237,7 @@ cmake --install build
 
 The following feature options are enabled by default if the required libraries
 are found. You may explicitly disable them if you prefer or your distribution
-has outdated libraries that do not build with Saucedacity.
+has outdated libraries that do not build with Tenacity.
 
   * **MIDI** (ON|OFF): MIDI support. Requires PortMidi and PortSMF.
   * **ID3TAG** (ON|OFF): ID3 tag support for MP3 files. Requires libid3tag.

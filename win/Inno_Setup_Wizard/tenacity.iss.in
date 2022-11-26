@@ -1,5 +1,5 @@
-﻿;   Saucedacity: A Digital Audio Editor
-;   Saucedacity is copyright (c) 2021-2022 Saucedacity Team.
+﻿;   Tenacity: A Digital Audio Editor
+;   Tenacity is copyright (c) 2021-2022 Tenacity Team.
 ;   License: GPL v2.  See License.txt.
 ;
 ;   audacity.iss
@@ -37,17 +37,17 @@ SolidCompression=yes
 DisableWelcomePage=no
 
 AppName={#AppName}
-AppVerName=Saucedacity {#AppVersion}
+AppVerName=Tenacity {#AppVersion}
 ; Specify AppVersion as well, so it appears in the Add/Remove Programs entry. 
 AppVersion={#AppVersion}
-AppPublisher="Saucedacity Team"
+AppPublisher="Tenacity Team"
 AppPublisherURL=https://tenacityaudio.org
 AppSupportURL=https://codeberg.org/tenacityteam/tenacity/issues
 AppUpdatesURL=https://codeberg.org/tenacityteam/tenacity/releases
 ChangesAssociations=yes
 @INSTALLER_X64_MODE@
 
-DefaultDirName={commonpf}\Saucedacity
+DefaultDirName={commonpf}\Tenacity
 
 VersionInfoProductName={#AppName}
 VersionInfoProductTextVersion={#GetFileProductVersion(AppExe)}
@@ -56,10 +56,10 @@ VersionInfoVersion={#GetFileVersion(AppExe)}
 VersionInfoCopyright={#GetFileCopyright(AppExe)}
 
 ; Don't disable the "Select Destination Location" wizard, even if 
-; Saucedacity is already installed.
+; Tenacity is already installed.
 DisableDirPage=no
 
-; Always warn if dir exists, because we'll overwrite previous Saucedacity.
+; Always warn if dir exists, because we'll overwrite previous Tenacity.
 DirExistsWarning=yes
 DisableProgramGroupPage=yes
 UninstallDisplayIcon="{app}\tenacity.exe"
@@ -116,8 +116,8 @@ Source: "Package\plug-ins\*"; DestDir: "{app}\Plug-Ins\"; Flags: ignoreversion
 Source: "Package\modules\*"; DestDir: "{app}\modules\"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{commonprograms}\Saucedacity"; Filename: "{app}\tenacity.exe"
-Name: "{commondesktop}\Saucedacity"; Filename: "{app}\tenacity.exe"; Tasks: desktopicon
+Name: "{commonprograms}\Tenacity"; Filename: "{app}\tenacity.exe"
+Name: "{commondesktop}\Tenacity"; Filename: "{app}\tenacity.exe"; Tasks: desktopicon
 
 [InstallDelete]
 
@@ -167,10 +167,10 @@ Root: HKCR; Subkey: "Audacity.Project\shell\open\command"; ValueType: string; Va
 ;Root: HKCR; Subkey: "Audacity.Project\Path";  ValueType: string; ValueData: {app}; Flags: createvalueifdoesntexist uninsdeletekey;
 
 [Run]
-Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Saucedacity}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Tenacity}"; Flags: nowait postinstall skipifsilent
 
 [Languages]
-; NOTE: "0" in locale name will be translated to "@" when read by Saucedacity.
+; NOTE: "0" in locale name will be translated to "@" when read by Tenacity.
 
 ; Create subdirectories where we'll store the unofficial and dummy translation files
 {#expr Exec("cmd", "/c mkdir """ + "Languages\dummy""", '.\', , SW_HIDE), \

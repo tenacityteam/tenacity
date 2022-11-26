@@ -254,8 +254,8 @@ FilePath FileNames::DataDir()
          // Use OS-provided user data dir folder...
          wxString dataDir( LowerCaseAppNameInPath( wxStandardPaths::Get().GetUserDataDir() ));
 #if defined( __WXGTK__ )
-         // ...except on Linux. We use XDG_CONFIG_HOME/saucedacity (or
-         // $HOME/.config/saucedacity) instead.
+         // ...except on Linux. We use XDG_CONFIG_HOME/tenacity (or
+         // $HOME/.config/tenacity) instead.
          wxString configHome = wxGetenv("XDG_CONFIG_HOME");
          if (configHome.empty())
          {
