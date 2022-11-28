@@ -42,22 +42,10 @@ export WX_CONFIG=/home/user/local/bin/wx-config
 
 #### Fedora
 
-First, if you want to build Tenacity with FFmpeg support, enable the
-[RPM Fusion](https://rpmfusion.org/) free repository if you do not
-have enabled already. The nonfree RPM Fusion repository is not
-required. If you do not mind building without FFmpeg support,
-RPM Fusion is not required and this first step can be skipped (also
-remove `ffmpeg-devel` from the end of the package list in the second
-step below).
+To install Tenacity's dependencies, run:
 
 ```
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-```
-
-Then install Tenacity's dependencies:
-
-```
-sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-devel
+sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel
 ```
 
 If you use a high DPI screen, the wxWidgets 3.1.4 package in Fedora does
