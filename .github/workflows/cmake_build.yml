@@ -7,6 +7,9 @@ name: CMake Build
 # dedicated for CI changes.
 on:
   push:
+    branches:
+      - main
+      - tenacity-*
 
 defaults:
   run:
