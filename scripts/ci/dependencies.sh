@@ -4,7 +4,7 @@
 
 set -euxo pipefail
 
-if [["${OSTYPE}" == msys* ]]; then
+if [[ "${OSTYPE}" == msys* ]]; then
     # We don't do anything for Windows package management right now, so
     # exit successfully.
     exit 0
