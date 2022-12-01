@@ -165,6 +165,7 @@ jobs:
         cmake --install cmake_build
 
     - name: "Set up compiler cache"
+      if: runner.os != 'Windows'
       uses: actions/cache@v3
       with:
         path: ${{ matrix.config.compiler_cache_path }}
