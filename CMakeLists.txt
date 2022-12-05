@@ -583,6 +583,16 @@ set( APP_ID "org.tenacityaudio.Tenacity" )
 set( AUDACITY_DIST_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION} )
 set( AUDACITY_INFO_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION}.${AUDACITY_MODLEVEL} )
 
+# Build our custom libraries as either static or shared
+# NOTE: this does not affect external libraries (e.g., wxWidgets).
+option(BUILD_STATIC_LIBS "Build Tenacity's libraries as static libraries" OFF)
+
+if (${BUILD_STATIC_LIBS})
+   message(STATUS "Building static Tenacity libraries")
+else()
+   message(STATUS "Building shared Tenacity libraries")
+endif()
+
 # Python is used for the manual and (possibly) message catalogs
 find_package( Python3 )
 if( Python3_FOUND )

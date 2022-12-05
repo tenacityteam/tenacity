@@ -522,14 +522,25 @@ endmacro()
 macro( tenacity_library NAME SOURCES IMPORT_TARGETS
    ADDITIONAL_DEFINES ADDITIONAL_LIBRARIES )
    # ditto comment in the previous macro
-   audacity_module_fn(
-      "${NAME}"
-      "${SOURCES}"
-      "${IMPORT_TARGETS}"
-      "${ADDITIONAL_DEFINES}"
-      "${ADDITIONAL_LIBRARIES}"
-      "SHARED"
-   )
+   if (${BUILD_STATIC_LIBS})
+      audacity_module_fn(
+         "${NAME}"
+         "${SOURCES}"
+         "${IMPORT_TARGETS}"
+         "${ADDITIONAL_DEFINES}"
+         "${ADDITIONAL_LIBRARIES}"
+         "STATIC"
+      )
+   else()
+      audacity_module_fn(
+         "${NAME}"
+         "${SOURCES}"
+         "${IMPORT_TARGETS}"
+         "${ADDITIONAL_DEFINES}"
+         "${ADDITIONAL_LIBRARIES}"
+         "SHARED"
+      )
+   endif()
    set( GRAPH_EDGES "${GRAPH_EDGES}" PARENT_SCOPE )
    # Collect list of libraries for the executable to declare dependency on
    list( APPEND TENACITY_LIBRARIES "${NAME}" )
