@@ -532,8 +532,8 @@ macro( tenacity_library NAME SOURCES IMPORT_TARGETS
    )
    set( GRAPH_EDGES "${GRAPH_EDGES}" PARENT_SCOPE )
    # Collect list of libraries for the executable to declare dependency on
-   list( APPEND SAUCEDACITY_LIBRARIES "${NAME}" )
-   set( SAUCEDACITY_LIBRARIES "${SAUCEDACITY_LIBRARIES}" PARENT_SCOPE )
+   list( APPEND TENACITY_LIBRARIES "${NAME}" )
+   set( TENACITY_LIBRARIES "${TENACITY_LIBRARIES}" PARENT_SCOPE )
 endmacro()
 
 # A special macro for header only libraries
@@ -548,6 +548,6 @@ macro( audacity_header_only_library NAME SOURCES IMPORT_TARGETS
    target_link_libraries( ${NAME} INTERFACE ${IMPORT_TARGETS} )
    target_compile_definitions( ${NAME} INTERFACE ${ADDITIONAL_DEFINES} )
 
-   list( APPEND SAUCEDACITY_LIBRARIES "${NAME}" )
-   set( SAUCEDACITY_LIBRARIES "${SAUCEDACITY_LIBRARIES}" PARENT_SCOPE )
+   list( APPEND TENACITY_LIBRARIES "${NAME}" )
+   set( TENACITY_LIBRARIES "${TENACITY_LIBRARIES}" PARENT_SCOPE )
 endmacro()

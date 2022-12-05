@@ -1334,7 +1334,7 @@ target_compile_definitions( ${TARGET} PRIVATE ${DEFINES} )
 target_compile_options( ${TARGET} PRIVATE ${OPTIONS} )
 target_include_directories( ${TARGET} PRIVATE ${INCLUDES} )
 target_link_options( ${TARGET} PRIVATE ${LDFLAGS} )
-target_link_libraries( ${TARGET} PUBLIC ${SAUCEDACITY_LIBRARIES} )
+target_link_libraries( ${TARGET} PUBLIC ${TENACITY_LIBRARIES} )
 target_link_libraries( ${TARGET} ${LIBRARIES} )
 
 if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
