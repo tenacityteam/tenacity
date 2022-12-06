@@ -3,6 +3,8 @@
  @brief headerless file injects method definitions for time shifting of NoteTrack
  */
 
+#ifdef USE_MIDI
+
 #include "../../../ui/TimeShiftHandle.h"
 #include "../../../../NoteTrack.h"
 #include "ViewInfo.h"
@@ -59,3 +61,5 @@ DEFINE_ATTACHED_VIRTUAL_OVERRIDE(MakeNoteTrackShifter) {
       return std::make_unique<NoteTrackShifter>(track);
    };
 }
+
+#endif // end USE_MIDI
