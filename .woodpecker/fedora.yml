@@ -1,0 +1,11 @@
+pipeline:
+    build:
+        image: gperson/tenacity-fedora
+        commands:
+            - mkdir build
+            - cd build
+            - cmake -G Ninja ..
+            - cmake --build .
+        when:
+            branch: main
+            event: pull_request
