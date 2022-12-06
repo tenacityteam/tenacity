@@ -4,7 +4,7 @@ pipeline:
         commands:
             - mkdir build
             - cd build
-            - cmake -G Ninja ..
+            - cmake -G Ninja .. -DMIDI=Off
             - cmake --build .
         when:
             branch: main
