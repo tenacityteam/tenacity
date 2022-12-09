@@ -29,29 +29,12 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "例外判斷碼： 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Unknown exception"
 msgstr "未知例外"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
-msgstr "未知錯誤"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "將程式問題回報給 Audacity"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid ""
-"Click \"Send\" to submit the report to Audacity. This information is "
-"collected anonymously."
-msgstr "按下提交後將問題送出給 Audacity。此資訊以匿名方式被收集。"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
@@ -66,18 +49,8 @@ msgstr "備註意見"
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
 msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "不回報錯誤訊息 (&D)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
 msgid "&Send"
 msgstr "提交給Audacity  (&S)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "送出當機報告時候發生錯誤"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -595,25 +568,10 @@ msgstr "關於 %s"
 msgid "OK"
 msgstr "確定"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid ""
-"%s is a free program written by a worldwide team of %s. %s is %s for "
-"Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr ""
-"%s 是一套由來自世界各地的%s團隊建構而成的自由軟體。%s 是%s Windows、Mac 和 GNU/Linux（和其他類 Unix 系統）。"
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "志工"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "可用於"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -623,22 +581,10 @@ msgid ""
 "our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "如果您發現臭蟲或是有建議，請在我們的%s用英文發表主題。如需協助，可以在我們的%s或是%s參閱提示或技巧。"
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "討論區"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "維基百科"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "討論區"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -676,10 +622,6 @@ msgstr "%s 是款免費、開源且跨平台的聲音編輯軟體。"
 msgid "Credits"
 msgstr "版權所有"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity 客製化"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -689,12 +631,6 @@ msgstr "%s 團隊人員"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "名譽："
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "卓越的 %s 團隊人員（目前不活躍）"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -727,13 +663,6 @@ msgstr "特別鳴謝："
 #, c-format
 msgid "%s website: "
 msgstr "%s 網站: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s 軟體的著作權歸屬於 %s 1999-2021 %s Team。"
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -799,18 +728,9 @@ msgstr "安裝前綴："
 msgid "Settings folder:"
 msgstr "設定資料夾："
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "核心函式庫"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "跨平臺 GUI 函式庫"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "聲音播放和錄製"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -862,10 +782,6 @@ msgid "Features"
 msgstr "功能"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "額外深色佈景主題"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "外掛程式支援"
 
@@ -882,32 +798,14 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "極端音高和拍速變更支援"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr "法律聲明"
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL 授權"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr "隱私權政策"
 
 #: src/AboutDialog.cpp
 msgid ""
 "App update checking and error reporting require network access. These "
 "features are optional."
 msgstr "應用程式更新檢查以及錯誤回報機制需要網路的存取，這些功能都可以選擇性關閉。"
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "See %s for more info."
-msgstr "更多資訊請參閱 %s"
 
 #. i18n-hint: Title of hyperlink to the privacy policy. This is an object of
 #. "See".
@@ -1076,10 +974,6 @@ msgstr "Audacity up 因SQLite 函式庫無法初始化而無法繼續執行。"
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "區塊大小必須在 256 至 100100000000 之間\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Audacity 正在啟動中..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2239,17 +2133,9 @@ msgstr ""
 "必須先選擇一些音訊來用於此操作。\n"
 "(選擇其它類型的軌道無法用於此操作。)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Audacity 支援資料"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "這需花費幾秒"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "報告已生成至："
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2981,10 +2867,6 @@ msgid ""
 msgstr "<br><br>您所使用的 Audacity 版本為<b> Beta 測試版</b>。"
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "獲取 Audacity 的官方正式發佈版本"
-
-#: src/HelpText.cpp
 msgid ""
 "We strongly recommend that you use our latest stable released version, which"
 " has full documentation and support.<br><br>"
@@ -3080,10 +2962,6 @@ msgid ""
 "\"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr ""
 "您的電腦似乎並未安裝「help」資料夾。請[[*URL*|線上檢視內容]]或[[https://manual.audacityteam.org/man/unzipping_the_manual.html|下載整份使用手冊]]。<br><br>如果您希望總是在網路上瀏覽使用手冊，請在偏好設定中將「使用手冊位置」變更為「網路」。"
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "線上檢查"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -4047,11 +3925,6 @@ msgstr "警告：自動復原時發生問題"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<未命名>"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[專案 %02i] "
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
@@ -13492,10 +13365,6 @@ msgid "Show &Log..."
 msgstr "顯示日誌(&L)..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "生成支援資料(&G)..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "檢查有否更新(&C)..."
 
@@ -15035,23 +14904,11 @@ msgstr "%s %2.0f%% 已完成。點選以變更工作焦點。"
 msgid "Preferences for Application"
 msgstr "偏好設定"
 
-#. i18n-hint: Title for the update notifications panel in the preferences
-#. dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr "更新提醒設定"
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "檢查更新 (&C)"
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid ""
-"App update checking requires network access. In order to protect your "
-"privacy, Audacity does not store any personal information."
-msgstr "程式更新需要使用到網路，為了維護你的隱私，AUDACITY並沒有收集任何個人資訊。"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -15100,13 +14957,6 @@ msgstr "播放"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "裝置(&D)："
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-msgctxt "preference"
-msgid "Recording"
-msgstr "錄製"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -18220,28 +18070,13 @@ msgstr "左鍵=放大，右鍵=縮小，中鍵=正常"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "檢查更新檔案時發生錯誤"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Unable to connect to Audacity update server."
 msgstr "無法連結到Audacity的更新主機."
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "更新檔案可能是無效或已損壞."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "下載更新檔案的時候發生錯誤."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "無法打開Audacity下載連結."
 
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
@@ -18250,30 +18085,14 @@ msgstr "檢查程式更新"
 
 #: src/update/UpdateNoticeDialog.cpp
 msgid ""
-"To stay up to date, you will receive an in-app notification whenever there "
-"is a new version of Audacity available to download."
-msgstr "為了確保應用程式保持在最新版本的的狀況，你會在Audacity 新版本釋出的時候收到提醒。"
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid ""
 "In order to protect your privacy, Audacity does not collect any personal "
 "information. However, app update checking does require network access."
 msgstr "為了保護您的隱私，Audacity 並不會蒐集任何個人資訊，但檢查是否有新版本的程式將會需要網路連線"
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr "你可以在%s關閉程式更新檢查。"
 
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App updates"
 msgstr "程式更新"
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-msgid "Preferences > Application"
-msgstr "偏好設定 > 附屬應用"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -18282,30 +18101,13 @@ msgstr "更新 Audacity"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "略過(&S)"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
 msgid "&Install update"
 msgstr "安裝更新(&I)"
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "新版本 Audacity %s  已經出來了!"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
 msgid "Changelog"
 msgstr "修改記錄"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr "更多資訊請閱讀 GitHub"
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"

@@ -18,57 +18,19 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr ""
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 #, fuzzy
 msgid "Unknown exception"
 msgstr "Neznámá volba příkazového řádku: %s\n"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
 #, fuzzy
-msgid "Unknown error"
-msgstr "Neznámý formát"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, fuzzy
 msgid "Problem Report for Audacity"
 msgstr "Poskytuje Audacity podporu pro efekty Vamp"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr ""
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Poznámky"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, fuzzy
-msgid "Failed to send crash report"
-msgstr "Nepodařilo se nastavit název přednastavení"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -570,22 +532,10 @@ msgstr "O programu %s"
 msgid "OK"
 msgstr "OK"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "Audacity je svobodný program tvořený lidmi z celého světa%s. %s je %s pro Windows  Mac OS X a GNU/Linux (a jiné Unixové systémy)."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "Dobrovolníci"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "dostupný"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -593,22 +543,10 @@ msgstr "dostupný"
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "Pokud naleznete chybu nebo pro nás máte návrh, napište nám anglicky v našem %s. Pokud sháníte pomoc, podívejte se na rady a triky na naší %s nebo navštivte naše %s."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "fóru"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "wiki stránce"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "fórum"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -633,10 +571,6 @@ msgstr "%s je program zadarmo, s otevřeným zdrojovým kódem, pro více opera�
 msgid "Credits"
 msgstr "Zásluhy"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "Přizpůsobení DarkAudacity"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -646,12 +580,6 @@ msgstr "%s členové týmu"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Zasloužilí:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "Význační členové týmu %s, nyní nečinní"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -684,13 +612,6 @@ msgstr "Zvláštní poděkování:"
 #, c-format
 msgid "%s website: "
 msgstr "Stránky %s: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "Kopírovací právo k software %s %s 1999-2020 tým %s."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -757,18 +678,9 @@ msgstr "Předpona instalace:"
 msgid "Settings folder:"
 msgstr "Složka s nastavením:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "Základní knihovny"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "Knihovna rozhraní pro více systémů"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "Přehrávání a nahrávání zvuku"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -820,10 +732,6 @@ msgid "Features"
 msgstr "Funkce"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "Tmavý vzhled"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "Podpora přídavných modulů"
 
@@ -840,36 +748,8 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "Podpora změny krajní výšky tónu a tempa"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "Licence GPL"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr ""
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy, c-format
-msgid "See %s for more info."
-msgstr "Zvolte jeden nebo více souborů"
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr ""
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -1036,10 +916,6 @@ msgstr "Knihovnu SQLite se nepodařilo inicializovat. Audacity nemůže pokračo
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Velikost bloku musí být uvnitř 256 až 100000000\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Spouští se Audacity..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2179,17 +2055,9 @@ msgstr ""
 "Pro provedení této činnosti musíte nejprve vybrat stereo\n"
 "zvuk. (S jinými typy stop to nejde.)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Data podpory Audacity"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "To může trvat několik sekund"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "Zpráva vytvořena do:"
 
 #: src/DBConnection.cpp
 #, fuzzy, c-format
@@ -2903,10 +2771,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>Používaná verze Audacity je <b>zkušební verze Beta</b>."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Získejte oficiální vydanou verzi Audacity"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "Naléhavě se doporučuje používat nejnovější vydanou verzi, která má úplnou dokumentaci a plnou podporu.<br><br>"
 
@@ -2955,10 +2819,6 @@ msgstr "Zdá se, že není nainstalována příručka. Prosím, [[*URL*|zhlédn�
 #: src/HelpText.cpp
 msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr "Zdá se, že nemáte nainstalovanou složku s nápovědou. Prosím, [[*URL*|zhlédněte ji na internetu]] nebo [[https://manual.audacityteam.org/man/unzipping_the_manual.html| stáhněte nynější příručku]].<br><br> Abyste vždy viděli internetovou příručku, změňte umístění příručky v nastavení rozhraní na \"Z internetu\"."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "Prozkoumat na internetu"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3917,11 +3777,6 @@ msgid "<untitled>"
 msgstr "<bez názvu>"
 
 #: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[Projekt %02i]"
-
-#: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
 msgstr "Nepodařilo se otevřít databázi projektu"
 
@@ -3976,13 +3831,6 @@ msgstr ""
 "\n"
 "%s"
 
-#. i18n-hint: An error message.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is in a read only directory\n"
-"(Unable to create the required temporary files)"
-msgstr ""
-
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
 msgstr "Toto není soubor s projektem Audacity"
@@ -4001,60 +3849,6 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
 msgstr "Nelze inicializovat soubor s projektem"
-
-#. i18n-hint: An error message.  Don't translate inset or blockids.
-#: src/ProjectFileIO.cpp
-msgid "Unable to add 'inset' function (can't verify blockids)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is read only\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is locked\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is busy\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is corrupt\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Some permissions issue\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"A disk I/O error\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Not authorized\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -6464,12 +6258,6 @@ msgstr "Použít nastavení spektra"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Spectral Select"
 msgstr "Výběr spektra"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr ""
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -9930,12 +9718,6 @@ msgstr "Vadná hlavička přídavného modulu Nyquist"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid ""
-"Enable track spectrogram view before\n"
-"applying 'Spectral' effects."
-msgstr ""
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
 "To use 'Spectral effects', enable 'Spectral Selection'\n"
 "in the track Spectrogram settings and select the\n"
 "frequency range for the effect to act on."
@@ -13227,10 +13009,6 @@ msgid "Show &Log..."
 msgstr "Zobrazit &zápis..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "&Vytvořit data podpory..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "&Zkontrolovat aktualizace..."
 
@@ -14772,21 +14550,12 @@ msgstr "%s %2.0f%% hotovo. Klepněte pro změnu ohniskového bodu úkolu."
 msgid "Preferences for Application"
 msgstr "Nastavení kvality"
 
-#. i18n-hint: Title for the update notifications panel in the preferences dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr ""
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 #, fuzzy
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "&Zkontrolovat aktualizace..."
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr ""
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -14835,14 +14604,6 @@ msgstr "Přehrávání"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "&Zařízení:"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Nahrávání"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -15272,10 +15033,6 @@ msgstr "Smísit systémový vzhled a vzhled Audacity"
 #: src/prefs/GUIPrefs.cpp
 msgid "Use mostly Left-to-Right layouts in RTL languages"
 msgstr "Použít většinou rozvržení zleva doprava v jazycích RTL"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Never use comma as decimal point"
-msgstr ""
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show Timeline Tooltips"
@@ -17935,58 +17692,8 @@ msgstr "Levé = přiblížit, Pravé = oddálit, Střední = normální velikost
 #: src/update/UpdateManager.cpp
 #, fuzzy
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "Chyba při dekódování souboru"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr ""
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr ""
-
-#: src/update/UpdateManager.cpp
-#, fuzzy
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "Chyba při nahrávání popisných dat"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr ""
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy
-msgid "Preferences > Application"
-msgstr "Nastavení kvality"
 
 #: src/update/UpdatePopupDialog.cpp
 #, fuzzy
@@ -17997,31 +17704,8 @@ msgstr "Ukončit Audacity"
 #: src/update/UpdatePopupDialog.cpp
 #, fuzzy
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "&Přeskočit"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr ""
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, fuzzy, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Audacity %s panel nástrojů"
-
-#: src/update/UpdatePopupDialog.cpp
-#, fuzzy
-msgctxt "update dialog"
 msgid "Changelog"
 msgstr "Kanál"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr ""
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"
@@ -18604,11 +18288,6 @@ msgstr "Potvrdit zavření"
 #, fuzzy, c-format
 msgid "Unable to write files to directory: %s."
 msgstr "Nelze přečíst přednastavení z \"%s\""
-
-#. i18n-hint: This message describes the error in the Error dialog.
-#: src/widgets/UnwritableLocationErrorDialog.cpp
-msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
-msgstr ""
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp

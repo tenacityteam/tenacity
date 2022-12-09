@@ -21,58 +21,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr ""
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, fuzzy
-msgid "Unknown error"
-msgstr "Ukendt format"
-
 #: crashreports/crashreporter/CrashReportApp.cpp
 #, fuzzy
 msgid "Problem Report for Audacity"
 msgstr "Leverer understøttelse af Vamp-effekter i Audacity"
 
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr ""
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Kommentarer"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, fuzzy
-msgid "Failed to send crash report"
-msgstr "Kunne ikke sætte forudindstillingsnavn"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -574,22 +531,10 @@ msgstr "Om %s"
 msgid "OK"
 msgstr "OK"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "%s er et frit program skrevet af et verdensomspændende team af %s. %s %s til Windows, Mac, og GNU/Linux (og andre Unix-lignende systemer)."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "frivillige"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "fås"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -597,22 +542,10 @@ msgstr "fås"
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "Hvis du finder en fejl eller har et forslag til os, skriv da venligst på engelsk i vores %s. For at få hjælp, se tips og tricks på vores %s, eller besøg vores %s."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "forum"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "wiki"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "forum"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -637,10 +570,6 @@ msgstr "%s, det frie, open source, platformsuafhængige software til optagelse o
 msgid "Credits"
 msgstr "Anerkendelse"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity-tilpasning"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -650,12 +579,6 @@ msgstr "%s-teammedlemmer"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Emeritus:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "Fremstående %s-teammedlemmer, som på nuværende tidspunkt ikke er aktive"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -689,13 +612,6 @@ msgstr "Særlig tak til:"
 msgid "%s website: "
 msgstr "%s-websted: "
 
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s-software er ophavsret %s 1999-2018 %s-teamet."
-
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -714,11 +630,6 @@ msgstr "Aktiveret"
 #: src/prefs/ModulePrefs.cpp
 msgid "Disabled"
 msgstr "Deaktiveret"
-
-#. i18n-hint: Information about when audacity was compiled follows
-#: src/AboutDialog.cpp
-msgid "The Build"
-msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "Program build date:"
@@ -760,18 +671,9 @@ msgstr "Installationens præfiks:"
 msgid "Settings folder:"
 msgstr "Indstillingsmappe:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "Kernebiblioteker"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "Grafisk brugerflade-bibliotek på tværs af platforme"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "Lydafspilning og -optagelse"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -823,10 +725,6 @@ msgid "Features"
 msgstr "Funktionalitet"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "Ekstra ting til mørkt tema"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "Understøttelse af plugin"
 
@@ -843,36 +741,8 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "Understøttelse af ekstrem tonehøjde- og temposkift"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL-licens"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr ""
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy, c-format
-msgid "See %s for more info."
-msgstr "Vælg en eller flere filer"
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr ""
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -1033,16 +903,8 @@ msgstr ""
 "Den er blevet fjernet fra listen over seneste filer."
 
 #: src/AudacityApp.cpp
-msgid "SQLite library failed to initialize.  Audacity cannot continue."
-msgstr ""
-
-#: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Blokstørrelsen skal være mellem 256 og 100.000.000\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Audacity er ved at starte..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -1135,48 +997,8 @@ msgid "Audacity is already running"
 msgstr "Audacity kører allerede"
 
 #: src/AudacityApp.cpp
-msgid ""
-"Unable to acquire semaphores.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
-
-#: src/AudacityApp.cpp
 msgid "Audacity Startup Failure"
 msgstr "Mislykket opstart af Audacity"
-
-#: src/AudacityApp.cpp
-msgid ""
-"Unable to create semaphores.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
-
-#: src/AudacityApp.cpp
-msgid ""
-"Unable to acquire lock semaphore.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
-
-#: src/AudacityApp.cpp
-msgid ""
-"Unable to acquire server semaphore.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
-
-#: src/AudacityApp.cpp
-msgid ""
-"The Audacity IPC server failed to initialize.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
 
 #: src/AudacityApp.cpp
 msgid "An unrecoverable error has occurred during startup"
@@ -1236,20 +1058,6 @@ msgstr "Meddelelse"
 msgid "Audacity Configuration Error"
 msgstr "DarkAudacity-tilpasning"
 
-#: src/AudacityFileConfig.cpp
-#, c-format
-msgid ""
-"The following configuration file could not be accessed:\n"
-"\n"
-"\t%s\n"
-"\n"
-"This could be caused by many reasons, but the most likely are that the disk is full or you do not have write permissions to the file. More information can be obtained by clicking the help button below.\n"
-"\n"
-"You can attempt to correct the issue and then click \"Retry\" to continue.\n"
-"\n"
-"If you choose to \"Quit Audacity\", your project may be left in an unsaved state which will be recovered the next time you open it."
-msgstr ""
-
 #: src/AudacityFileConfig.cpp src/ShuttleGui.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/widgets/ErrorReportDialog.cpp src/widgets/MultiDialog.cpp
@@ -1260,10 +1068,6 @@ msgstr "Hjælp"
 #, fuzzy
 msgid "&Quit Audacity"
 msgstr "Afslut Audacity"
-
-#: src/AudacityFileConfig.cpp
-msgid "&Retry"
-msgstr ""
 
 #: src/AudacityLogger.cpp
 msgid "Audacity Log"
@@ -1599,10 +1403,6 @@ msgstr " Markeret"
 #, fuzzy
 msgid "&Recover Selected"
 msgstr "Ingen markeret"
-
-#: src/AutoRecoveryDialog.cpp
-msgid "&Skip"
-msgstr ""
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -2169,18 +1969,6 @@ msgstr ""
 "Du skal først markere noget lyd for at udføre denne handling.\n"
 "(det virker ikke at vælge andre slags spor)."
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Audacity-supportdata"
-
-#: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
-msgid "This may take several seconds"
-msgstr ""
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "Rapport genereret til:"
-
 #: src/DBConnection.cpp
 #, fuzzy, c-format
 msgid "(%d): %s"
@@ -2212,14 +2000,6 @@ msgid "Could not write to %s.\n"
 msgstr "Kunne ikke skrive til filen: %s"
 
 #: src/DBConnection.cpp
-#, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-
-#: src/DBConnection.cpp
 #, fuzzy, c-format
 msgid ""
 "Failed to create savepoint:\n"
@@ -2238,10 +2018,6 @@ msgid ""
 msgstr ""
 "Kunne ikke registrere:\n"
 "%s"
-
-#: src/DBConnection.cpp
-msgid "Database error.  Sorry, but we don't have more details."
-msgstr ""
 
 #: src/Dependencies.cpp
 msgid "Removing Dependencies"
@@ -2888,10 +2664,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>Den version af Audacity du bruger er en <b>Beta-testversion</b>."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Hent den officielle udgivet version af Audacity"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "Vi anbefaler på det kraftigste at du bruger vores seneste stabile udgivet version, som har fuld dokumentation og support.<br><br>"
 
@@ -2941,10 +2713,6 @@ msgstr "Manualen ser ikke ud til at være installeret. [[*URL*|Se manualen onlin
 msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr "Manualen ser ikke ud til at være installeret. [[*URL*|Se manualen online]] eller [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download manualen]].<br><br>Hvis manualen altid skal ses online, skal \"Manualens placering\" ændres til \"Fra internet\", i Brugerflade-præferencerne."
 
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "Søg online"
-
 #: src/HistoryWindow.cpp
 msgid "History"
 msgstr "Historik"
@@ -2993,11 +2761,6 @@ msgstr "Forkast"
 #, fuzzy
 msgid "&Compact"
 msgstr "&Kommando"
-
-#: src/HistoryWindow.cpp src/ProjectFileManager.cpp
-#, c-format
-msgid "Compacting actually freed %s of disk space."
-msgstr ""
 
 #. i18n-hint: Clicking this menu item shows the various editing steps
 #. that have been taken.
@@ -3903,11 +3666,6 @@ msgid "<untitled>"
 msgstr "<uden titel>"
 
 #: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[Projekt %02i] "
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Failed to open the project's database"
 msgstr "Kunne ikke sætte forudindstillingsnavn"
@@ -3947,91 +3705,14 @@ msgid ""
 msgstr "Kan ikke læse fil med forudindstillinger."
 
 #: src/ProjectFileIO.cpp
-#, c-format
-msgid ""
-"Failed to retrieve data from the project file.\n"
-"The following command failed:\n"
-"\n"
-"%s"
-msgstr ""
-
-#. i18n-hint: An error message.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is in a read only directory\n"
-"(Unable to create the required temporary files)"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "This is not an Audacity project file"
 msgstr "Gemmer et Audacity-projekt"
 
 #: src/ProjectFileIO.cpp
-msgid ""
-"This project was created with a newer version of Audacity.\n"
-"\n"
-"You will need to upgrade to open it."
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Unable to initialize the project file"
 msgstr "Kan ikke initiere MP3-strøm"
-
-#. i18n-hint: An error message.  Don't translate inset or blockids.
-#: src/ProjectFileIO.cpp
-msgid "Unable to add 'inset' function (can't verify blockids)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is read only\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is locked\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is busy\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is corrupt\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Some permissions issue\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"A disk I/O error\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Not authorized\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -4040,40 +3721,14 @@ msgid "Unable to work with the blockfiles"
 msgstr "Kan ikke initiere MP3-strøm"
 
 #: src/ProjectFileIO.cpp
-#, c-format
-msgid "Total orphan blocks deleted %d"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
-msgid "Failed to rollback transaction during import"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Unable to attach destination database"
 msgstr "Kan ikke sætte strømtilstand til pauset."
 
 #: src/ProjectFileIO.cpp
-msgid "Unable to switch to fast journaling mode"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Failed to bind SQL parameter"
 msgstr "Kunne ikke finde codecet"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid ""
-"Failed to update the project file.\n"
-"The following command failed:\n"
-"\n"
-"%s"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
-msgid "Destination project could not be detached"
-msgstr ""
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -4125,10 +3780,6 @@ msgid "Can't open project file"
 msgstr "Kan ikke åbne projektfilen"
 
 #: src/ProjectFileIO.cpp
-msgid "Failed to remove the autosave information from the project file."
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Unable to bind to blob"
 msgstr "Kunne ikke finde codecet"
@@ -4144,10 +3795,6 @@ msgid "Unable to parse project information."
 msgstr "Kan ikke læse fil med forudindstillinger."
 
 #: src/ProjectFileIO.cpp
-msgid "The project's database failed to reopen, possibly because of limited space on the storage device."
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Saving project"
 msgstr "&Projekter gemmes"
@@ -4155,28 +3802,6 @@ msgstr "&Projekter gemmes"
 #: src/ProjectFileIO.cpp src/ProjectFileManager.cpp
 msgid "Error Saving Project"
 msgstr "Fejl ved forsøg på at gemme projekt"
-
-#: src/ProjectFileIO.cpp
-msgid "Syncing"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid ""
-"The project failed to open, possibly due to limited space\n"
-"on the storage device.\n"
-"\n"
-"%s"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid ""
-"Unable to remove autosave information, possibly due to limited space\n"
-"on the storage device.\n"
-"\n"
-"%s"
-msgstr ""
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -4194,21 +3819,9 @@ msgstr ""
 "Heldigvis kan følgende projekter gendannes automatisk:"
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"This project was not saved properly the last time Audacity ran.\n"
-"\n"
-"It has been recovered to the last snapshot, but you must save it\n"
-"to preserve its contents."
-msgstr ""
-
-#: src/ProjectFileManager.cpp
 #, fuzzy
 msgid "Project Recovered"
 msgstr "Projektet blev gendannet"
-
-#: src/ProjectFileManager.cpp src/prefs/DirectoriesPrefs.cpp
-msgid "Projects cannot be saved to FAT drives."
-msgstr ""
 
 #: src/ProjectFileManager.cpp
 msgid ""
@@ -4238,17 +3851,6 @@ msgstr "Advarsel - tomt projekt"
 #, fuzzy
 msgid "Insufficient Disk Space"
 msgstr "Diskplads"
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"The project size exceeds the available free space on the target disk.\n"
-"\n"
-"Please select a different disk with more free space."
-msgstr ""
-
-#: src/ProjectFileManager.cpp
-msgid "The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."
-msgstr ""
 
 #: src/ProjectFileManager.cpp src/commands/ScreenshotCommand.cpp
 #, c-format
@@ -4377,12 +3979,6 @@ msgid "Error Opening File or Project"
 msgstr "Fejl ved åbning af fil eller projekt"
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Project resides on FAT formatted drive.\n"
-"Copy it to another drive to open it."
-msgstr ""
-
-#: src/ProjectFileManager.cpp
 msgid "Project was recovered"
 msgstr "Projektet blev gendannet"
 
@@ -4409,34 +4005,14 @@ msgid "Error Importing"
 msgstr "Fejl ved import"
 
 #: src/ProjectFileManager.cpp
-msgid "Cannot import AUP3 format.  Use File > Open instead"
-msgstr ""
-
-#: src/ProjectFileManager.cpp
 #, fuzzy
 msgid "Compact Project"
 msgstr "Sæt projekt"
 
 #: src/ProjectFileManager.cpp
-#, c-format
-msgid ""
-"Compacting this project will free up disk space by removing unused bytes within the file.\n"
-"\n"
-"There is %s of free disk space and this project is currently using %s.\n"
-"\n"
-"If you proceed, the current Undo/Redo History and clipboard contents will be discarded and you will recover approximately %s of disk space.\n"
-"\n"
-"Do you want to continue?"
-msgstr ""
-
-#: src/ProjectFileManager.cpp
 #, fuzzy
 msgid "Compacted project file"
 msgstr "Kan ikke åbne projektfilen"
-
-#: src/ProjectFileManager.cpp
-msgid "Compact"
-msgstr ""
 
 #: src/ProjectHistory.cpp
 msgid "Created new project"
@@ -4974,20 +4550,6 @@ msgstr "Fejl ved forsøg på at gemme mærkatfil"
 #, fuzzy
 msgid "Unsuitable"
 msgstr "Modulet er ikke egnet"
-
-#: src/TempDirectory.cpp
-msgid ""
-"The temporary files directory is on a FAT formatted drive.\n"
-"Resetting to default location."
-msgstr ""
-
-#: src/TempDirectory.cpp
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"For tips on suitable drives, click the help button."
-msgstr ""
 
 #: src/Theme.cpp
 #, c-format
@@ -5587,10 +5149,6 @@ msgstr "Flyt spor op"
 msgid "Move Track Down"
 msgstr "Flyt spor ned"
 
-#: src/UndoManager.cpp
-msgid "Discarding undo/redo history"
-msgstr ""
-
 #. i18n-hint: Voice key is an experimental/incomplete feature that
 #. is used to navigate in vocal recordings, to move forwards and
 #. backwards by words.  So 'key' is being used in the sense of an index.
@@ -5883,17 +5441,9 @@ msgstr "Kommentarer"
 msgid "Command:"
 msgstr "Kommando:"
 
-#: src/commands/HelpCommand.cpp
-msgid "_"
-msgstr ""
-
 #: src/commands/HelpCommand.h
 msgid "Gives help on a command."
 msgstr "Giver hjælp til en kommando."
-
-#: src/commands/HelpCommand.h
-msgid "For comments in a macro."
-msgstr ""
 
 #: src/commands/ImportExportCommands.cpp
 msgid "Import2"
@@ -5985,14 +5535,6 @@ msgstr "Gemmer et projekt."
 #, fuzzy
 msgid "Saves a copy of current project."
 msgstr "Gemmer et projekt."
-
-#: src/commands/OpenSaveCommands.h
-msgid "Saves the log contents."
-msgstr ""
-
-#: src/commands/OpenSaveCommands.h
-msgid "Clears the log contents."
-msgstr ""
 
 #: src/commands/PreferenceCommands.cpp
 msgid "Get Preference"
@@ -6425,12 +5967,6 @@ msgstr "Brug Spektrumpræferencer"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Spectral Select"
 msgstr "Spektrummarkering"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr ""
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -9896,12 +9432,6 @@ msgstr "Dårligt udformet Nyquist-plugin-hovede"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid ""
-"Enable track spectrogram view before\n"
-"applying 'Spectral' effects."
-msgstr ""
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
 "To use 'Spectral effects', enable 'Spectral Selection'\n"
 "in the track Spectrogram settings and select the\n"
 "frequency range for the effect to act on."
@@ -11896,12 +11426,6 @@ msgstr ""
 "Audacity kunne ikke genkende typen af filen \"%s\".\n"
 "Prøv at installere FFmpeg. Hvis filen er ukomprimeret, så prøv Fil > Importér > Rå data."
 
-#: src/import/Import.cpp
-msgid ""
-"Try installing FFmpeg.\n"
-"\n"
-msgstr ""
-
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, c-format
 msgid "%s, %s"
@@ -11922,10 +11446,6 @@ msgstr ""
 "men ingen af dem kunne læse dette filformat."
 
 #: src/import/ImportAUP.cpp
-msgid "AUP project files (*.aup)"
-msgstr ""
-
-#: src/import/ImportAUP.cpp
 #, fuzzy, c-format
 msgid ""
 "Couldn't import the project:\n"
@@ -11942,51 +11462,9 @@ msgid "Import Project"
 msgstr "Importér forudindstillinger"
 
 #: src/import/ImportAUP.cpp
-msgid ""
-"This project was saved by Audacity version 1.0 or earlier. The format has\n"
-"changed and this version of Audacity is unable to import the project.\n"
-"\n"
-"Use a version of Audacity prior to v3.0.0 to upgrade the project and then\n"
-"you may import it with this version of Audacity."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
 #, fuzzy
 msgid "Internal error in importer...tag not recognized"
 msgstr "Intern fejl rapporteret under forsøg på at opstille på linje."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Invalid project '%s' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'vpos' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'h' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'zoom' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel0' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel1' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selLow' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selHigh' attribute."
-msgstr ""
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -11994,17 +11472,9 @@ msgid "Couldn't find the project data folder: \"%s\""
 msgstr "Kunne ikke finde projektets datamappe: \"%s\""
 
 #: src/import/ImportAUP.cpp
-msgid "MIDI tracks found in project file, but this build of Audacity does not include MIDI support, bypassing track."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
 #, fuzzy
 msgid "Project Import"
 msgstr "Projektets begyndelse"
-
-#: src/import/ImportAUP.cpp
-msgid "The active project already has a time track and one was encountered in the project being imported, bypassing imported time track."
-msgstr ""
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
@@ -12012,57 +11482,9 @@ msgid "Invalid sequence 'maxsamples' attribute."
 msgstr "Ugyldig samplingshastighed"
 
 #: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
 #, fuzzy
 msgid "Invalid sequence 'numsamples' attribute."
 msgstr "Ugyldig samplingshastighed"
-
-#: src/import/ImportAUP.cpp
-msgid "Unable to parse the waveblock 'start' attribute"
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing project file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing alias file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Error while processing %s\n"
-"\n"
-"Inserting silence."
-msgstr ""
 
 #: src/import/ImportAUP.cpp
 #, fuzzy, c-format
@@ -12182,14 +11604,6 @@ msgstr "Kunne ikke åbne filen %s."
 #: src/import/ImportMP3.cpp
 msgid "MP3 files"
 msgstr "MP3-filer"
-
-#: src/import/ImportMP3.cpp
-msgid ""
-"Import failed\n"
-"\n"
-"This is likely caused by a malformed MP3.\n"
-"\n"
-msgstr ""
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -12509,10 +11923,6 @@ msgstr "Samplingshastighed:"
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "&Importér"
-
-#: src/import/RawAudioGuess.cpp
-msgid "Bad data size. Could not import audio"
-msgstr ""
 
 #. i18n-hint: given the name of a track, specify its left channel
 #: src/menus/ClipMenus.cpp
@@ -13076,10 +12486,6 @@ msgid "E&xit"
 msgstr "A&fslut"
 
 #: src/menus/FileMenus.cpp
-msgid "Hidden File Menu"
-msgstr ""
-
-#: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
 msgstr "Eksportér som FLAC"
 
@@ -13172,10 +12578,6 @@ msgstr "Information om &MIDI-enheder..."
 #: src/menus/HelpMenus.cpp src/widgets/ErrorDialog.cpp
 msgid "Show &Log..."
 msgstr "Vis &log..."
-
-#: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "&Generér supportdata..."
 
 #: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
@@ -14724,21 +14126,12 @@ msgstr "%s %2.0f%% fuldført. Klik for at ændre opgavens brændpunkt."
 msgid "Preferences for Application"
 msgstr "Præferencer for kvalitet"
 
-#. i18n-hint: Title for the update notifications panel in the preferences dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr ""
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 #, fuzzy
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "&Søg efter opdateringer..."
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr ""
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -14787,14 +14180,6 @@ msgstr "Afspilning"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "&Enhed:"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Optager"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -14853,23 +14238,9 @@ msgid "Default directories"
 msgstr "Mapper"
 
 #: src/prefs/DirectoriesPrefs.cpp
-msgid ""
-"Leave a field empty to go to the last directory used for that operation.\n"
-"Fill in a field to always go to that directory for that operation."
-msgstr ""
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "O&pen:"
-msgstr ""
-
-#: src/prefs/DirectoriesPrefs.cpp
 #, fuzzy
 msgid "&Browse..."
 msgstr "Gennemse..."
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "S&ave:"
-msgstr ""
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, fuzzy
@@ -15233,10 +14604,6 @@ msgstr "&Bland system- og Audacity-tema"
 #: src/prefs/GUIPrefs.cpp
 msgid "Use mostly Left-to-Right layouts in RTL languages"
 msgstr "Brug hovedsageligt venstre mod højre-layouts i RTL-sprog"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Never use comma as decimal point"
-msgstr ""
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show Timeline Tooltips"
@@ -17905,58 +17272,8 @@ msgstr "Venstre = zoom ind, højre = zoom ud, midt = normal"
 #: src/update/UpdateManager.cpp
 #, fuzzy
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "Fejl ved afkodning af fil"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr ""
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr ""
-
-#: src/update/UpdateManager.cpp
-#, fuzzy
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "Fejl ved indlæsning af metadata"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr ""
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy
-msgid "Preferences > Application"
-msgstr "Præferencer for kvalitet"
 
 #: src/update/UpdatePopupDialog.cpp
 #, fuzzy
@@ -17965,32 +17282,10 @@ msgid "Update Audacity"
 msgstr "Afslut Audacity"
 
 #: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Skip"
-msgstr ""
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr ""
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, fuzzy, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Audacity-værktøjslinje: %s"
-
-#: src/update/UpdatePopupDialog.cpp
 #, fuzzy
 msgctxt "update dialog"
 msgid "Changelog"
 msgstr "Kanal"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr ""
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"
@@ -18574,11 +17869,6 @@ msgstr "Bekræft luk"
 #, fuzzy, c-format
 msgid "Unable to write files to directory: %s."
 msgstr "Kan ikke læse forudindstillingen fra \"%s\""
-
-#. i18n-hint: This message describes the error in the Error dialog.
-#: src/widgets/UnwritableLocationErrorDialog.cpp
-msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
-msgstr ""
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
@@ -19385,36 +18675,15 @@ msgid "Point after sound"
 msgstr "Sammenføjet stereo"
 
 #: plug-ins/label-sounds.ny
-msgid "Region around sounds"
-msgstr ""
-
-#: plug-ins/label-sounds.ny
 #, fuzzy
 msgid "Region between sounds"
 msgstr "~aOmrådelængde = ~a sekunder."
-
-#: plug-ins/label-sounds.ny
-msgid "Maximum leading silence"
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-msgid "Maximum trailing silence"
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-msgid "Sound ##1"
-msgstr ""
 
 #. i18n-hint: hours minutes and seconds. Do not translate "~a".
 #: plug-ins/label-sounds.ny
 #, lisp-format
 msgid "~ah ~am ~as"
 msgstr "~at ~am ~as"
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Too many silences detected.~%Only the first 10000 labels added."
-msgstr ""
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -19426,11 +18695,6 @@ msgstr "Markeringen skal være større end %d datapunkter."
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "Ingen lyde fundet. Prøv at reducere stilhedens~%niveau og stilhedens minimum varighed."
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
-msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -19560,14 +18824,6 @@ msgstr ""
 "\"Gate frekvenser over: ~s kHz\"\n"
 "er for højt til det valgte spor.\n"
 "Sæt styringen under ~a kHz."
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
-"Selection too long.\n"
-"Maximum length is ~a."
-msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
