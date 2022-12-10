@@ -19,7 +19,7 @@
 
 // FIXME: ugly hack for getting MSVC to work with Ninja and sccache without
 // breaking Linux builds
-#ifdef wxMSW
+#ifdef __wxMSW__
 class wxEventFilter;
 #else
 #include <wx/eventfilter.h> // to inherit
