@@ -21,27 +21,12 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "例外コード 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Unknown exception"
 msgstr "不明な例外 (Unknown exception)"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
-msgstr "不明なエラー (Unknown error)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "Audacity の障害を報告"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr "Audacity の障害報告にご協力いただける場合、[送信] をクリックしてください。この情報は匿名で収集されます。"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
@@ -56,18 +41,8 @@ msgstr "コメント"
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
 msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "送信しない(&D)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
 msgid "&Send"
 msgstr "送信(&S)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "クラッシュ報告の送信に失敗しました"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -95,10 +70,6 @@ msgstr "%s MB"
 #, c-format
 msgid "%s GB"
 msgstr "%s GB"
-
-#: libraries/lib-strings/Languages.cpp
-msgid "Simplified"
-msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 msgid "System"
@@ -409,45 +380,17 @@ msgid "Find text"
 msgstr "テキスト検索"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Match"
-msgstr ""
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
 msgid "Go to matching paren"
 msgstr "対応する paren へ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Top"
-msgstr ""
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Go to top S-expr"
-msgstr ""
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Up"
 msgstr "上へ"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Go to higher S-expr"
-msgstr ""
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Previous"
 msgstr "１つ前"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Go to previous S-expr"
-msgstr ""
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Next"
-msgstr ""
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Go to next S-expr"
-msgstr ""
 
 #. i18n-hint noun
 #: modules/mod-nyq-bench/NyqBench.cpp src/effects/Contrast.cpp
@@ -579,22 +522,10 @@ msgstr "%s について"
 msgid "OK"
 msgstr "OK"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "%s は世界中の%sチームによって開発された無料のプログラムです。%s は Windows、Mac、および GNU/Linux(その他 Unix 系システム含む) といった%sしています。"
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "ボランティア"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "様々な環境に対応"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -602,22 +533,10 @@ msgstr "様々な環境に対応"
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "バグを発見した場合や、私たちへのご提案をお持ちの場合には、%sに（英語で！）書き込んでみてください。ヘルプが必要な場合は、%s でヒントや便利な使い方をご覧になるか、または %sまでお越しください。"
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "Audacity フォーラム"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "Audacity Wiki"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "Audacity フォーラム"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -627,10 +546,6 @@ msgstr "Audacity フォーラム"
 #: src/AboutDialog.cpp
 msgid "translator_credits"
 msgstr "日本語訳:<br>Atsushi Yoshida (ayoshida.pub@gmail.com)<br>Phroneris (phroneris@gmail.com)"
-
-#: src/AboutDialog.cpp
-msgid "<h3>"
-msgstr ""
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -642,10 +557,6 @@ msgstr "%s は、録音と音声編集のために開発された、<br>無料 &
 msgid "Credits"
 msgstr "クレジット"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity カスタム"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -655,12 +566,6 @@ msgstr "%s チームメンバー"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "名誉メンバー:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "現在はその席を退いた、功績ある %s チームメンバー達"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -693,14 +598,6 @@ msgstr "スペシャルサンクス:"
 #, c-format
 msgid "%s website: "
 msgstr "%s ウェブサイト: "
-
-# ja: 国際的な表記なので西暦の範囲は "-" のままにすべきかとも思ったが、（そもそも表示自体がもう無意味という話は別にして、）万国著作権条約が求める発行年は「最初の」ものだけなので後ろがどうなっていようと問題無いと判断した。
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s 著作権表示: %s 1999～2021 %s チーム"
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -767,18 +664,9 @@ msgstr "インストールプレフィックス:"
 msgid "Settings folder:"
 msgstr "設定フォルダー:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "コアライブラリ"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "クロスプラットフォームの GUI ライブラリ"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "音声再生と録音"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -830,10 +718,6 @@ msgid "Features"
 msgstr "機能"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "ダークテーマ拡張"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "プラグインのサポート"
 
@@ -850,30 +734,12 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "急激なピッチとテンポの変化のサポート"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr "法的要件"
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL ライセンス"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr "プライバシーポリシー"
 
 #: src/AboutDialog.cpp
 msgid "App update checking and error reporting require network access. These features are optional."
 msgstr "更新確認と障害報告には、ネットワーク接続が必要です。これらの機能のご利用はあくまで任意です。"
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "See %s for more info."
-msgstr "詳細については、%sをご覧ください。"
 
 #. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
 #: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
@@ -1053,10 +919,6 @@ msgstr "SQLite ライブラリの初期化に失敗しました。  続行不能
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "ブロックサイズは 256～100000000 でなければなりません\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Audacity の起動中です..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2210,17 +2072,9 @@ msgstr ""
 "この操作を適用する音声を最初に選択してください。\n"
 "(音声以外のトラックには利用できません)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Audacity サポートデータ"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "処理完了までしばらくお待ちください"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "次の場所にレポートが作成されます:"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2384,12 +2238,6 @@ msgstr "行方不明 %s"
 #: src/Dependencies.cpp
 msgid "&Copy Names to Clipboard"
 msgstr "名前をクリップボードへコピー(&C)"
-
-# ja: もう使われなくなった要らない子
-#: src/Dependencies.cpp
-#, c-format
-msgid "\"%s\", \"%s\", \"%s\"\n"
-msgstr ""
 
 # ja: もう使われなくなった要らない子
 #: src/Dependencies.cpp
@@ -2945,10 +2793,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>あなたが今使っているこの Audacity は<b>βテスト版</b>です。"
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Audacity の公式リリース版をご利用ください"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "完全なドキュメンテーションとサポートを有する最新の安定リリース版のご利用を<br>強く推奨します。<br><br>"
 
@@ -2998,10 +2842,6 @@ msgstr "マニュアルがインストールされていないようです。<br
 msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr "マニュアルがインストールされていないようです。<br>[[*URL*|オンライン]]でご覧になるか、[[https://manual.audacityteam.org/man/unzipping_the_manual.html|マニュアルをダウンロード]]してください。<br><br>マニュアルを常にオンラインで閲覧するには、<br>インターフェイス設定の「マニュアルの場所」を<br>「インターネットから」に変更してください。"
 
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "オンラインで確認"
-
 #: src/HistoryWindow.cpp
 msgid "History"
 msgstr "操作履歴"
@@ -3042,15 +2882,6 @@ msgstr "使用クリップボード領域(&B)"
 #: src/HistoryWindow.cpp
 msgid "D&iscard"
 msgstr "破棄(&I)"
-
-#: src/HistoryWindow.cpp
-msgid "&Compact"
-msgstr ""
-
-#: src/HistoryWindow.cpp src/ProjectFileManager.cpp
-#, c-format
-msgid "Compacting actually freed %s of disk space."
-msgstr ""
 
 #. i18n-hint: Clicking this menu item shows the various editing steps
 #. that have been taken.
@@ -3965,11 +3796,6 @@ msgid "<untitled>"
 msgstr "<無題>"
 
 #: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[プロジェクト %02i] "
-
-#: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
 msgstr "プロジェクトのデータベースを開くことに失敗しました"
 
@@ -4183,10 +4009,6 @@ msgstr ""
 "ファイル「%s」に書き込むことができませんでした。\n"
 "書き込み可能でないか、あるいはディスク容量がない恐れがあります。\n"
 "容量解放のコツについて知るには、ヘルプボタンをクリックしてください。"
-
-#: src/ProjectFileIO.cpp
-msgid "Compacting project"
-msgstr ""
 
 #. i18n-hint: The %02i is the project number, the %s is the project name.
 #: src/ProjectFileIO.cpp
@@ -4511,30 +4333,6 @@ msgstr "取り込みエラー"
 msgid "Cannot import AUP3 format.  Use File > Open instead"
 msgstr "AUP3 フォーマットを取り込めません。  代わりに [ファイル] > [開く] をご利用ください。"
 
-#: src/ProjectFileManager.cpp
-msgid "Compact Project"
-msgstr ""
-
-#: src/ProjectFileManager.cpp
-#, c-format
-msgid ""
-"Compacting this project will free up disk space by removing unused bytes within the file.\n"
-"\n"
-"There is %s of free disk space and this project is currently using %s.\n"
-"\n"
-"If you proceed, the current Undo/Redo History and clipboard contents will be discarded and you will recover approximately %s of disk space.\n"
-"\n"
-"Do you want to continue?"
-msgstr ""
-
-#: src/ProjectFileManager.cpp
-msgid "Compacted project file"
-msgstr ""
-
-#: src/ProjectFileManager.cpp
-msgid "Compact"
-msgstr ""
-
 #: src/ProjectHistory.cpp
 msgid "Created new project"
 msgstr "新しいプロジェクトが作られました"
@@ -4623,21 +4421,6 @@ msgstr "水平スクロールバー"
 #: src/ProjectWindow.cpp
 msgid "Vertical Scrollbar"
 msgstr "垂直スクロールバー"
-
-#: src/Registry.cpp
-#, c-format
-msgid "Plug-in group at %s was merged with a previously defined group"
-msgstr ""
-
-#: src/Registry.cpp
-#, c-format
-msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
-msgstr ""
-
-#: src/Registry.cpp
-#, c-format
-msgid "Plug-in items at %s specify conflicting placements"
-msgstr ""
 
 #: src/Resample.cpp
 msgid "Low Quality (Fastest)"
@@ -5669,10 +5452,6 @@ msgstr "トラックを上へ移動"
 msgid "Move Track Down"
 msgstr "トラックを下へ移動"
 
-#: src/UndoManager.cpp
-msgid "Discarding undo/redo history"
-msgstr ""
-
 #. i18n-hint: Voice key is an experimental/incomplete feature that
 #. is used to navigate in vocal recordings, to move forwards and
 #. backwards by words.  So 'key' is being used in the sense of an index.
@@ -5784,17 +5563,6 @@ msgstr "コマンド"
 #, c-format
 msgid "Repeat %s"
 msgstr "%s を再適用"
-
-#: src/commands/CommandManager.cpp
-#, c-format
-msgid ""
-"\n"
-"* %s, because you have assigned the shortcut %s to %s"
-msgstr ""
-
-#: src/commands/CommandManager.cpp
-msgid "The following commands have had their shortcuts removed, because their default shortcut is new or changed, and is the same shortcut that you have assigned to another command."
-msgstr ""
 
 #: src/commands/CommandManager.cpp
 msgid "Shortcuts have been removed"
@@ -6192,10 +5960,6 @@ msgstr "キャプチャ対象:"
 #: src/commands/ScreenshotCommand.cpp
 msgid "Background:"
 msgstr "背景:"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Bring To Top"
-msgstr ""
 
 #: src/commands/ScreenshotCommand.cpp
 #, c-format
@@ -12145,11 +11909,6 @@ msgstr ""
 "FFmpeg のインストールをお試しください。\n"
 "\n"
 
-#: src/import/Import.cpp src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s, %s"
-msgstr ""
-
 #. i18n-hint: %s will be the filename
 #: src/import/Import.cpp
 #, c-format
@@ -13433,10 +13192,6 @@ msgid "Show &Log..."
 msgstr "ログの表示(&L)..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "サポートデータの生成(&G)..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "更新の確認(&C)..."
 
@@ -13693,10 +13448,6 @@ msgstr "未分類"
 #: src/menus/PluginMenus.cpp
 msgid "..."
 msgstr "..."
-
-#: src/menus/PluginMenus.cpp
-msgid "Unknown"
-msgstr ""
 
 #: src/menus/PluginMenus.cpp
 #, c-format
@@ -14985,20 +14736,11 @@ msgstr "%s %2.0f%% 完了。処理ポイントを変更するにはクリック�
 msgid "Preferences for Application"
 msgstr "アプリケーションの環境設定"
 
-#. i18n-hint: Title for the update notifications panel in the preferences dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr "更新通知"
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "更新を確認する(&C)"
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr "アプリケーションの更新の確認には、ネットワーク接続が必要です。プライバシー保護のため、Audacity が個人情報を保管することはありません。"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -15047,13 +14789,6 @@ msgstr "再生"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "デバイス(&D):"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-msgctxt "preference"
-msgid "Recording"
-msgstr "録音"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -15561,10 +15296,6 @@ msgstr "ラベルの書き出し形式:"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Exported Allegro (.gro) files save time as:"
 msgstr "Allegro (.gro) ファイルの時間基準:"
-
-#: src/prefs/ImportExportPrefs.h
-msgid "IMPORT EXPORT"
-msgstr ""
 
 #. i18n-hint: as in computer keyboard (not musical!)
 #: src/prefs/KeyConfigPrefs.cpp
@@ -18148,28 +17879,13 @@ msgstr "左=拡大、右=縮小、中央=通常"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "更新確認エラー"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Unable to connect to Audacity update server."
 msgstr "Audacity の更新サーバーに接続できません。"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "更新データが破損しました。"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "更新ダウンロードエラー。"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "Audacity のダウンロードリンクを開けません。"
 
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
@@ -18177,27 +17893,13 @@ msgid "App update checking"
 msgstr "アプリケーションの更新確認について"
 
 #: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr "アプリケーションを最新に保つため、新しいバージョンの Audacity がダウンロード可能になるたびに、アプリ内通知を受信することができます。"
-
-#: src/update/UpdateNoticeDialog.cpp
 msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
 msgstr "ご利用者様のプライバシーを守るため、Audacity は個人情報の収集を行いません。とはいえ、更新の確認にはネットワーク接続が必要です。"
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr "更新確認機能は、%s からいつでも停止することができます。"
 
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App updates"
 msgstr "アプリケーションの更新"
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-msgid "Preferences > Application"
-msgstr "[環境設定] > [アプリケーション]"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -18206,30 +17908,13 @@ msgstr "Audacity を更新"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "スキップ(&S)"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
 msgid "&Install update"
 msgstr "更新をインストール(&I)"
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Audacity %s 始めました！"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
 msgid "Changelog"
 msgstr "更新履歴"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr "GitHub でもっと読む"
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"
@@ -19428,10 +19113,6 @@ msgstr "ラベルの間隔 (秒)"
 #: plug-ins/equalabel.ny
 msgid "Length of label region (seconds)"
 msgstr "ラベル領域の長さ (秒)"
-
-#: plug-ins/equalabel.ny
-msgid "Adjust label interval to fit length"
-msgstr ""
 
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny

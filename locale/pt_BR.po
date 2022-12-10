@@ -15,27 +15,12 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "Código de exceção 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Unknown exception"
 msgstr "Exceção desconhecida"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
-msgstr "Erro desconhecido"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "Reportar problemas no Audacity"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr "Clique em \"Enviar\" para submeter os detalhes do erro para o Audacity. Estas informações permanecerão anônimas."
 
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
@@ -50,18 +35,8 @@ msgstr "Comentários"
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
 msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "&Não Enviar"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
 msgid "&Send"
 msgstr "&Enviar"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "Não foi possível enviar descrição das falhas"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -562,22 +537,10 @@ msgstr "Sobre o %s"
 msgid "OK"
 msgstr "OK"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "O %s é um programa livre escrito por um time de %s de todo o mundo. O %s está %s para Windows, Mac, GNU/Linux (e outros sistemas operacionais baseados em Unix)."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "voluntários"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "disponível"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -585,22 +548,10 @@ msgstr "disponível"
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "Caso encontre algum erro ou tiver uma sugestão, por favor, envie-nos uma mensagem em inglês para o nosso %s. Para ajuda, consulte truques e dicas na nossa %s ou visite o nosso %s."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "fórum"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "wiki"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "fórum"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -627,10 +578,6 @@ msgstr "O %s é um programa multiplataforma, livre e de código aberto, para gra
 msgid "Credits"
 msgstr "Créditos"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "Personalização DarkAudacity"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -640,12 +587,6 @@ msgstr "Membros do Time do %s"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Eméritos:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "Distintos membros do time do %s, não ativos atualmente"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -678,13 +619,6 @@ msgstr "Agradecimentos especiais:"
 #, c-format
 msgid "%s website: "
 msgstr "Site do %s: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "O software %s tem copyright %s 1999-2022 %s Team."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -750,18 +684,9 @@ msgstr "Pasta de Instalação:"
 msgid "Settings folder:"
 msgstr "Pasta de configurações:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "Bibliotecas Principais"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "Biblioteca de GUI multi-plataforma"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "Reprodução e gravação de áudio"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -813,10 +738,6 @@ msgid "Features"
 msgstr "Recursos"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "Extras do tema escuro"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "Suporte ao plugin"
 
@@ -833,36 +754,8 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "Suporte a alteração estrema de Tempo e Tom"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "Licença GPL"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr ""
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy, c-format
-msgid "See %s for more info."
-msgstr "Selecione um ou mais arquivos"
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr ""
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -1029,10 +922,6 @@ msgstr "A biblioteca SQLite não conseguiu inicializar. O Audacity não pode con
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "O tamanho do bloco deve estar entre 256 e 100000000\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "O Audacity está iniciando..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2178,17 +2067,9 @@ msgstr ""
 "Você deve selecionar um trecho de áudio antes de executar esse comando.\n"
 "(Outros tipos de faixas não podem ser utilizadas.)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Equipe de Suporte do Audacity"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "Isto pode levar vários segundos"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "Relatório gerado para:"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2902,10 +2783,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>Você está usando uma versão <b>Beta teste</b> do Audacity."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Obtenha a versão estável do Audacity"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "Recomendamos que você use nossa versão estável mais recente, com suporte e documentação completa.<br><br>"
 
@@ -2954,10 +2831,6 @@ msgstr "A pasta 'Ajuda' não está instalada. <br> Por favor, [[*URL*|consulte o
 #: src/HelpText.cpp
 msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr "O Manual não está instalado. <br> Por favor, [[*URL*|consulte o conteúdo online]] ou [[http://manual.audacityteam.org/man/unzipping_the_manual.html| baixe o Manual]].<br><br>Para visualizar apenas o Manual online, altere a opção \"Localização do Manual\" em Preferências de Interface para \"Na Internet\"."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "Verifique on-line"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3919,11 +3792,6 @@ msgstr "Aviso: Problemas na recuperação automática"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<sem-título>"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[Projeto %02i] "
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
@@ -13245,10 +13113,6 @@ msgid "Show &Log..."
 msgstr "Exibir &Log..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "&Gerar Dados de Suporte..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "&Verificar Atualização..."
 
@@ -14789,22 +14653,6 @@ msgstr "%s %2.0f%% completo. Clique para alterar o ponto de foco da tarefa."
 msgid "Preferences for Application"
 msgstr "Preferências para Qualidade"
 
-#. i18n-hint: Title for the update notifications panel in the preferences dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr ""
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-#, fuzzy
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "&Verificar Atualização..."
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr ""
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Lote"
@@ -14852,14 +14700,6 @@ msgstr "Reprodução"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "&Dispositivo:"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Gravação"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -17949,51 +17789,13 @@ msgstr "Esquerdo=Ampliar, Direito=Diminuir, Meio=Normal"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "Erro ao verificar update"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Unable to connect to Audacity update server."
 msgstr "Não foi possível conectar ao servidor de atualização do Audacity."
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "Dados de atualização corrompidos."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "Erro ao carregar update."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "Não foi possível abrir o link de download do Audacity."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr ""
 
 #. i18n-hint: a page in the Preferences dialog; use same name
 #: src/update/UpdateNoticeDialog.cpp
@@ -18003,18 +17805,8 @@ msgstr "Preferências para Qualidade"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "Atualizar o Audacity"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
 msgid "&Skip"
 msgstr "&Ir para"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "&Instalar update"
 
 #. i18n-hint Substitution of version number for %s.
 #: src/update/UpdatePopupDialog.cpp
@@ -18022,11 +17814,6 @@ msgstr "&Instalar update"
 msgctxt "update dialog"
 msgid "Audacity %s is available!"
 msgstr "O Audacity %s está disponível!"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Changelog"
-msgstr "Changelog"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -18615,11 +18402,6 @@ msgstr "Confirma sair"
 #, fuzzy, c-format
 msgid "Unable to write files to directory: %s."
 msgstr "Não foi possível ler o arquivo de predefinições em \"%s\""
-
-#. i18n-hint: This message describes the error in the Error dialog.
-#: src/widgets/UnwritableLocationErrorDialog.cpp
-msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
-msgstr ""
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp

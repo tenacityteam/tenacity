@@ -17,58 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr ""
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, fuzzy
-msgid "Unknown error"
-msgstr "Непознат формат"
-
 #: crashreports/crashreporter/CrashReportApp.cpp
 #, fuzzy
 msgid "Problem Report for Audacity"
 msgstr "Обезбеђује Аудаситију подршку Вамп ефеката"
 
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr ""
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Напомена"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr ""
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, fuzzy
-msgid "Failed to send crash report"
-msgstr "Нисам успео да поставим назив претподешености"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -570,22 +527,10 @@ msgstr "О програму „%s“"
 msgid "OK"
 msgstr "У реду"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "%s је слободан програм који је написала екипа %s широм света. %s је %s за Виндоуз, Мек и Гну/Линукс (и остале Јуниксолике системе)."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "добровољаца"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "доступан"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -593,22 +538,10 @@ msgstr "доступан"
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "Ако пронађете грешку или ако имате неки предлог, пишите нам, на енглеском, на нашем %s. За помоћ, погледајте савете и трикове на нашем %sју или посетите наш %s."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "форуму"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "вики"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "форум"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -635,10 +568,6 @@ msgstr "%s је слободан, отвореног кода, вишеплат�
 msgid "Credits"
 msgstr "Заслуге"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "Прилагођавање тамног Аудаситија"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -648,12 +577,6 @@ msgstr "Чланови тима %s-ја"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Почасни:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "Истакнути чланови тима %s-ја, тренутно неактивни"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -686,13 +609,6 @@ msgstr "Посебно се захваљујемо:"
 #, c-format
 msgid "%s website: "
 msgstr "%s веб сајт: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s је под ауторским правима %s 1999-2020 %s тима."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -759,18 +675,9 @@ msgstr "Префикс инсталације:"
 msgid "Settings folder:"
 msgstr "Фасцикла подешавања:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "Библиотеке језгра"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "Вишеплатформска библиотека графичког сучеља"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "пуштање и снимање звука"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -822,10 +729,6 @@ msgid "Features"
 msgstr "Могућности"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "Додаци тамне теме"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "подршка прикључка"
 
@@ -842,36 +745,8 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "подршка крајњег врхунца и промене такта"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "ОЈЛ лиценца"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr ""
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy, c-format
-msgid "See %s for more info."
-msgstr "Изаберите једну или више датотека"
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr ""
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -1038,10 +913,6 @@ msgstr "СКуЛајт библиотека није успела да се по
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Величина блока мора бити између 256 и 100000000\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Аудасити се покреће..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2181,17 +2052,9 @@ msgstr ""
 "Морате прво да изаберете неки звук да извршите ову радњу.\n"
 "(Бирање других врста нумера неће радити.)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Подаци подршке Аудаситија"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "Ово може потрајати неколико секунди"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "Извештај је направљен за:"
 
 #: src/DBConnection.cpp
 #, fuzzy, c-format
@@ -2905,10 +2768,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>Издање Аудаситија које користите је <b>Пробно бета издање</b>."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Набавите званично издање Аудаситија"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "Строго вам препоручујемо да користите наше последње стабилно издање, које има пуну подршку и документацију.<br><br>"
 
@@ -2957,10 +2816,6 @@ msgstr "Изгледа да „Упутство“ није инсталиран
 #: src/HelpText.cpp
 msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr "Изгледа да „Упутство“ није инсталирано. [[*URL*|Погледајте упутство на мрежи]] или [[https://manual.audacityteam.org/man/unzipping_the_manual.html|преузмите упутство]].<br><br>Да увек видите упутство на мрежи, промените „место упутства“ у поставкама сучеља на „Са Интернета“."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "Провери на мрежи"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3919,11 +3774,6 @@ msgid "<untitled>"
 msgstr "<без наслова>"
 
 #: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[Пројекат %02i] "
-
-#: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
 msgstr "Нисам успео да отворим базу пројекта"
 
@@ -3978,13 +3828,6 @@ msgstr ""
 "\n"
 "%s"
 
-#. i18n-hint: An error message.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is in a read only directory\n"
-"(Unable to create the required temporary files)"
-msgstr ""
-
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
 msgstr "Ово није датотека Аудасити пројекта"
@@ -4003,60 +3846,6 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
 msgstr "Не могу да покренем датотеку пројекта"
-
-#. i18n-hint: An error message.  Don't translate inset or blockids.
-#: src/ProjectFileIO.cpp
-msgid "Unable to add 'inset' function (can't verify blockids)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is read only\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is locked\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is busy\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Project is corrupt\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Some permissions issue\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"A disk I/O error\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
-
-#. i18n-hint: An error message.  Don't translate blockfiles.
-#: src/ProjectFileIO.cpp
-msgid ""
-"Not authorized\n"
-"(Unable to work with the blockfiles)"
-msgstr ""
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -6465,12 +6254,6 @@ msgstr "Користите преференце спектра"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Spectral Select"
 msgstr "Избор спектра"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr ""
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -9933,12 +9716,6 @@ msgstr "Лоше формирано заглавље прикључка Никв
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid ""
-"Enable track spectrogram view before\n"
-"applying 'Spectral' effects."
-msgstr ""
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
 "To use 'Spectral effects', enable 'Spectral Selection'\n"
 "in the track Spectrogram settings and select the\n"
 "frequency range for the effect to act on."
@@ -13233,10 +13010,6 @@ msgid "Show &Log..."
 msgstr "Прикажи &дневник..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "&Направи податке подршке..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "&Провери има ли ажурирања..."
 
@@ -14778,21 +14551,12 @@ msgstr "%s %2.0f%% је обављено. Кликните да измените
 msgid "Preferences for Application"
 msgstr "Поставке за квалитет"
 
-#. i18n-hint: Title for the update notifications panel in the preferences dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr ""
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 #, fuzzy
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "&Провери има ли ажурирања..."
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr ""
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -14841,14 +14605,6 @@ msgstr "Пуштање"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "&Уређај:"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Снимање"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -15278,10 +15034,6 @@ msgstr "&Стопи системску и тему Аудаситија"
 #: src/prefs/GUIPrefs.cpp
 msgid "Use mostly Left-to-Right layouts in RTL languages"
 msgstr "Користи углавном распоред са-лева-на-десно у СДНЛ језицима"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Never use comma as decimal point"
-msgstr ""
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show Timeline Tooltips"
@@ -17942,58 +17694,8 @@ msgstr "Леви=Увећавање, Десни=Умањивање, Средњи
 #: src/update/UpdateManager.cpp
 #, fuzzy
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "Грешка приликом дешифровања датотеке"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr ""
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr ""
-
-#: src/update/UpdateManager.cpp
-#, fuzzy
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "Грешка учитавања метаподатака"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr ""
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy
-msgid "Preferences > Application"
-msgstr "Поставке за квалитет"
 
 #: src/update/UpdatePopupDialog.cpp
 #, fuzzy
@@ -18004,31 +17706,8 @@ msgstr "Изађи из Аудаситија"
 #: src/update/UpdatePopupDialog.cpp
 #, fuzzy
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "&Прескочи"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr ""
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, fuzzy, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Трака алата Аудаситија %s"
-
-#: src/update/UpdatePopupDialog.cpp
-#, fuzzy
-msgctxt "update dialog"
 msgid "Changelog"
 msgstr "Канал"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr ""
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"
@@ -18611,11 +18290,6 @@ msgstr "Потврди затварање"
 #, fuzzy, c-format
 msgid "Unable to write files to directory: %s."
 msgstr "Не могу да читам претподешеност из „%s“"
-
-#. i18n-hint: This message describes the error in the Error dialog.
-#: src/widgets/UnwritableLocationErrorDialog.cpp
-msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
-msgstr ""
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp

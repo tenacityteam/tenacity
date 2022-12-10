@@ -24,26 +24,12 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "예외 코드 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Unknown exception"
 msgstr "알수없는 예외"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
-msgstr "알수없는 오류"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "오데시티의 문제점 리포트"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr "문제점 리포트를 보내려면 \"전송\"을 클릭하세요. 이 정보는 익명으로 처리됩니다."
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Problem details"
@@ -55,17 +41,8 @@ msgstr "코멘트"
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
 msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "전송하지 않음 (&D)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
 msgid "&Send"
 msgstr "전송 (&S)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "오류 리포트 전송에 실패하였습니다"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -570,23 +547,10 @@ msgstr "%s 정보"
 msgid "OK"
 msgstr "확인"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid ""
-"%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "%s는 전세계 %s 팀이 개발한 무료 소프트웨어 입니다.%s는 윈도우, 맥, GNU/Linux(등 Unix 계열 시스템)에서 %s 합니다."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "자원봉사"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "사용가능"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -598,22 +562,10 @@ msgstr ""
 "만약 버그를 찾거나 제안할 것이 있다면 %s 로 영어로 보내주세요.도움이 필요하다면 %s 에서 팁과 해결책을 찾아 보거나, %s 를 방문하세"
 "요."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "포럼"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "위키"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "포럼"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -638,10 +590,6 @@ msgstr "%s 는 소리 녹화와 편집을 위한 무료, 오픈소스,크로스 
 msgid "Credits"
 msgstr "만든 사람들"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity 커스텀화"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -651,12 +599,6 @@ msgstr "%s 팀 구성원"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "명예:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "현재는 활동하지 않는,  뛰어난 %s 팀 멤버"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -689,13 +631,6 @@ msgstr "특별히 감사할 분들:"
 #, c-format
 msgid "%s website: "
 msgstr "%s 웹사이트: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s 소프트웨어의 저작권  %s 1999-2021 %s 팀."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -760,18 +695,9 @@ msgstr "설치 접두사:"
 msgid "Settings folder:"
 msgstr "설정 폴더:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "핵심 라이브러리"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "크로스 플랫폼 GUI 라이브러리"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "오디오 재생 및 녹음"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -823,10 +749,6 @@ msgid "Features"
 msgstr "특징"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "검은색 테마 추가"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "플러그인 지원"
 
@@ -843,29 +765,12 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "극한의 피치와 템포 변경 지원"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr "법률"
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL 라이선스"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr "개인정보 보호정책"
 
 #: src/AboutDialog.cpp
 msgid "App update checking and error reporting require network access. These features are optional."
 msgstr "앱 업데이트 확인 및 오류 보고에는 네트워크 액세스가 필요합니다. 이 기능은 선택 사항입니다."
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "See %s for more info."
-msgstr "상세한 정보는 %s 를 참조하세요."
 
 #. i18n-hint: Title of hyperlink to the privacy policy. This is an object of
 #. "See".
@@ -1027,10 +932,6 @@ msgstr "SQLite 라이브러리 초기화 실패. 오데시티는 계속 실행�
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "블럭 크기는 256에서 100000000 사이에 있어야 합니다.\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "오데시티 시작 중..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2173,17 +2074,9 @@ msgstr ""
 "이 동작을 수행하려면 일부 오디오를 우선 선택해야 합니다.\n"
 "(다른 종류의 트랙을 선택하면 동작하지 않을 것입니다.)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "오데시티 지원 데이터"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "몇초가 필요합니다"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "보고서 생성:"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2892,10 +2785,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>현재 사용 중인 오데시티는 <b>베타 테스트 버전</b>입니다."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "오데시티 공식 배포 버전 구하기"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "완전한 설명서와 지원이 있는 최신 안정화 버전을 사용하시길강력히 권장합니다.<br><br>"
 
@@ -2966,10 +2855,6 @@ msgstr ""
 "매뉴얼이 설치되어 있지 않은 것 같습니다. [[https://manual.audacityteam.org/|view the Manual online]][[https://manual.audacityteam."
 "org/man/unzipping_the_manual.html|download the Manual]]하세요.<br><br>매뉴얼을 항상 온라인으로 보려면,인터페이스 환경 설정에서 \"매"
 "뉴얼 위치\"를 \"인터넷에서\"로 바꾸세요."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "온라인으로 확인"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3920,11 +3805,6 @@ msgstr "경고: 자동 복구에 문제가 있습니다"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<제목 없음>"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[프로젝트 %02i] "
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
@@ -13267,10 +13147,6 @@ msgid "Show &Log..."
 msgstr "로그 보기(&L)..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "지원 요청 자료 만들기(&G)..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "업데이트 확인(&C)..."
 
@@ -14807,24 +14683,11 @@ msgstr "%s %2.0f%% 완료됨. 작업 포컬 포인트를 변경하려면 클릭�
 msgid "Preferences for Application"
 msgstr "응용프로그램 환경설정"
 
-#. i18n-hint: Title for the update notifications panel in the preferences
-#. dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr "업데이트 알림"
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "업데이트 확인"
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid ""
-"App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr ""
-"앱 업데이트를 확인하기 위해서는 네트워크에 접속해 있어야 합니다. 개인정보 보호를 위해서 오데시티는 어떠한 개인정보도 저장하지 않습"
-"니다."
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -14872,12 +14735,6 @@ msgstr "재생"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "장치 (&D)"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp src/prefs/RecordingPrefs.h
-msgctxt "preference"
-msgid "Recording"
-msgstr "녹음"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -17955,38 +17812,18 @@ msgstr "왼쪽=확대, 오른쪽=축소, 가운데=정상"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "업데이트를 위한 오류 점검"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Unable to connect to Audacity update server."
 msgstr "오데시티 업데이트 서버에 접속할 수 없습니다."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "업데이트 데이터가 손실되었습니다."
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "업그레이드를 다운로드하는데 오류."
 
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "오데시티 다운로드 링크를 열 수 없습니다."
-
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App update checking"
 msgstr "앱 업데이트 확인"
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid ""
-"To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr "앱을 최신상태로 유지하기 위해서, 다운로드 할 수있는 새로운 버전이 있을 경우, 앱으로부터 알림을 받게 됩니다."
 
 #: src/update/UpdateNoticeDialog.cpp
 msgid ""
@@ -17996,20 +17833,10 @@ msgstr ""
 "개인정보 보호를 위해서 오데시티는 어떠한 개인정보도 수집하지 않습니다. 하지만 앱 업데이트 확인을 위해서는 네트워크에 접속해 있어야 "
 "합니다."
 
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr "%s 앱 업데이트 확인기능을 언제든 끌 수 있습니다."
-
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App updates"
 msgstr "앱 업데이트"
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-msgid "Preferences > Application"
-msgstr "환경설정 > 응용"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -18018,30 +17845,13 @@ msgstr "오데시티 업데이트"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "건너뛰기 (&S)"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
 msgid "&Install update"
 msgstr "업데이트 설치 (&I)"
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "오데시티 %s 를 사용할 수 있습니다!"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
 msgid "Changelog"
 msgstr "변경 로그"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr "GitHub의 상세정보를 참조"
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"

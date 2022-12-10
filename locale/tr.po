@@ -22,31 +22,12 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "Hata kodu 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Unknown exception"
-msgstr "Hata bilinmiyor"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
 msgstr "Hata bilinmiyor"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "Audacity için sorun bildirimi"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid ""
-"Click \"Send\" to submit the report to Audacity. This information is "
-"collected anonymously."
-msgstr ""
-"Bildirimi Audacity ekibine göndermek için \"Gönder\" üzerine tıklayın. "
-"Toplanan bilgiler anonim tutulur."
 
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
@@ -61,18 +42,8 @@ msgstr "Yorumlar"
 #: crashreports/crashreporter/CrashReportApp.cpp
 #: src/widgets/ErrorReportDialog.cpp
 msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "&Gönderilmesin"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
 msgid "&Send"
 msgstr "&Gönderilsin"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "Çökme bildirimi gönderilemedi"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -590,27 +561,10 @@ msgstr "%s hakkında"
 msgid "OK"
 msgstr "Tamam"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid ""
-"%s is a free program written by a worldwide team of %s. %s is %s for "
-"Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr ""
-"%s, dünya çapında bir %s ekibi tarafından geliştirilmiş özgür bir "
-"yazılımdır. %s, Windows, Mac ve GNU / Linux (ve diğer Unix benzeri "
-"sistemler) için %s."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "gönüllü"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "kullanılabilir"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -623,22 +577,10 @@ msgstr ""
 "olarak %s sayfalarına yazın. Yardım almak, ipuçları ve püf noktalarına "
 "erişmek için %s ya da %s sayfalarına bakabilirsiniz."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "forum"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "wiki"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "forum"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -667,10 +609,6 @@ msgstr ""
 msgid "Credits"
 msgstr "Emeği geçenler"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity uyarlaması"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -680,12 +618,6 @@ msgstr "%s takımı üyeleri"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Emekliler:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "Şu anda etkin olmayan Değerli %s Takımı üyeleri"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -718,13 +650,6 @@ msgstr "Özel teşekkürler:"
 #, c-format
 msgid "%s website: "
 msgstr "%s web sitesi: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s uygulamasının telif hakkı %s 1999-2021 %s ekibine aittir."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -790,18 +715,9 @@ msgstr "Kurulum ön eki:"
 msgid "Settings folder:"
 msgstr "Ayarlar klasörü:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "Temel Kitaplıklar"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "Platformlar arası GUI kitaplığı"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "Ses oynatma ve kaydetme"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -853,10 +769,6 @@ msgid "Features"
 msgstr "Özellikler"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "Koyu tema ekleri"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "Uygulama eki desteği"
 
@@ -873,19 +785,8 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "Aşırı perde ve tempo değiştirme desteği"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr "Yasal"
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL lisansı"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr "GİZLİLİK İLKESİ"
 
 #: src/AboutDialog.cpp
 msgid ""
@@ -894,13 +795,6 @@ msgid ""
 msgstr ""
 "Uygulama güncelleme denetimi ve hata bildirimi özellikleri için ağ erişimi "
 "gereklidir. Bu özelliklerin kullanılması isteğe bağlıdır."
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "See %s for more info."
-msgstr "Ayrıntılı bilgi almak için %s bölümüne bakabilirsiniz."
 
 #. i18n-hint: Title of hyperlink to the privacy policy. This is an object of
 #. "See".
@@ -1069,10 +963,6 @@ msgstr "SQLite kitaplığı hazırlanamadı.  Audacity devam edemiyor."
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Blok boyutu 256 ile 100000000 arasında olmalıdır\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Audacity başlatılıyor..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2252,17 +2142,9 @@ msgstr ""
 "Bu işlemi yapabilmek için önce bazı sesler\n"
 "seçmelisiniz. (Başka iz türleri ile kullanılamaz)."
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Audacity destek verileri"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "Bu işlem bir kaç saniye sürebilir"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "Rapor şuraya oluşturuldu:"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -3001,10 +2883,6 @@ msgid ""
 msgstr "<br><br>Kullandığınız Audacity uygulaması Beta deneme sürümüdür</b>."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Resmi Audacity sürümünü edinin"
-
-#: src/HelpText.cpp
 msgid ""
 "We strongly recommend that you use our latest stable released version, which"
 " has full documentation and support.<br><br>"
@@ -3115,10 +2993,6 @@ msgstr ""
 "indirin]]. <br><br>Kitabı her zaman çevrimiçi görüntülemek için Arayüz "
 "ayarlarında \"Kitap Konumu\" seçeneğini \"İnternet Üzerinden\" olarak "
 "ayarlayın."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "Çevrimiçi denetle"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -4091,11 +3965,6 @@ msgstr "Dikkat: Otomatik kurtarma sırasında sorun çıktı"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<adsız>"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[%02i Projesi] "
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
@@ -13642,10 +13511,6 @@ msgid "Show &Log..."
 msgstr "Gün&lüğü görüntüle..."
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "Destek &verilerini oluştur..."
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "&Güncelleme denetimi..."
 
@@ -15195,25 +15060,11 @@ msgstr "%s %2.0f %% tamamlandı. Görev odaklanma noktasını değiştirmek içi
 msgid "Preferences for Application"
 msgstr "Uygulama ayarları"
 
-#. i18n-hint: Title for the update notifications panel in the preferences
-#. dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr "Güncelleme bildirimleri"
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "&Güncelleme denetimi"
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid ""
-"App update checking requires network access. In order to protect your "
-"privacy, Audacity does not store any personal information."
-msgstr ""
-"Uygulama güncelleme denetimi özelliği için ağ erişimi gereklidir. Audacity, "
-"kiisel gizliliğinizi korumak için herhangi bir kişisel bilgiyi kaydetmez."
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -15262,13 +15113,6 @@ msgstr "Oynatma"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "Ay&gıt:"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-msgctxt "preference"
-msgid "Recording"
-msgstr "Kayıt"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -18399,41 +18243,18 @@ msgstr "Sol=Yakınlaştır, Sağ=Uzaklaştır, Orta=Normal"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "Güncelleme denetlenirken sorun çıktı"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Unable to connect to Audacity update server."
 msgstr "Audacity güncelleme sunucusu ile bağlantı kurulamadı."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "Güncelleme verileri bozuk."
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "Güncelleme indirilirken sorun çıktı."
 
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "Audacity indirme bağlantısı açılamadı."
-
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App update checking"
 msgstr "Uygulama güncelleme denetimi"
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid ""
-"To stay up to date, you will receive an in-app notification whenever there "
-"is a new version of Audacity available to download."
-msgstr ""
-"Güncel kalmanız amacıyla yeni bir Audacity sürümü yayınlandığında uygulama "
-"içinde bir bildirim görüntülenecek."
 
 #: src/update/UpdateNoticeDialog.cpp
 msgid ""
@@ -18444,20 +18265,10 @@ msgstr ""
 "toplamaz. Bununla birlikte, uygulama güncelleme denetimi özelliği için ağ erişimi "
 "gereklidir."
 
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr "Uygulama güncelleme denetimini istediğiniz zaman %s kapatabilirsiniz."
-
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App updates"
 msgstr "Uygulama güncellemeleri"
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-msgid "Preferences > Application"
-msgstr "Ayarlar > Uygulama"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -18466,30 +18277,13 @@ msgstr "Audacity uygulamasını güncelle"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "A&tla"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
 msgid "&Install update"
 msgstr "&Güncellemeyi kur"
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Audacity %s yayınlanmış!"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
 msgid "Changelog"
 msgstr "Değişiklik günlüğü"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr "GitHub üzerinden bilgi alın"
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"

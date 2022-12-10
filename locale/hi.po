@@ -25,26 +25,12 @@ msgstr ""
 
 #. i18n-hint C++ programming assertion
 #: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "अपवाद कोड 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Unknown exception"
 msgstr "अज्ञात अपवाद"
 
 #: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
-msgstr "अज्ञात त्रुटि"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "Audacity के लिए समस्या रिपोर्ट"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr "Audacity को रिपोर्ट भेजने के लिए \"भेजें\" पर क्लिक करें. यह जानकारी गुमनाम रूप से एकत्र की जाती है."
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Problem details"
@@ -56,17 +42,8 @@ msgstr "टिप्पणी"
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
 msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "भेजें नहीं (&D)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
 msgid "&Send"
 msgstr "भेजें (&S)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "क्रैश रिपोर्ट भेजने में विफल"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -570,22 +547,10 @@ msgstr "%s के बारे में"
 msgid "OK"
 msgstr "ठीक"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "%s विश्वव्यापी %s  की टीम द्वारा लिखा गया एक अनमोल प्रोग्राम है. %s विंडोज, मैक और GNU / लिनक्स (तथा अन्य यूनिक्स जैसी सिस्टम) के लिए %s है."
-
 #. i18n-hint: substitutes into "a worldwide team of %s"
 #: src/AboutDialog.cpp
 msgid "volunteers"
 msgstr "स्वयं-सेवकों"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "उपलब्ध"
 
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
@@ -593,22 +558,10 @@ msgstr "उपलब्ध"
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "यदि आप कोई त्रुटि पाते हैं या हमारे लिए कोई सुझाव है, तो कृपया अंग्रेजी में  हमारे %s को लिखें . मदद के लिए, हमारे %s पर जाएं या हमारा  %s देखें."
 
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "फोरम"
-
 #. i18n-hint substitutes into "view the tips and tricks on our %s"
 #: src/AboutDialog.cpp
 msgid "wiki"
 msgstr "विकी"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "फोरम"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -636,10 +589,6 @@ msgstr "%s खुले सोर्स वाला, क्रॉस-प्ल�
 msgid "Credits"
 msgstr "श्रेयसूची"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity कस्टमाइजेशन"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -649,12 +598,6 @@ msgstr "%s टीम के सदस्य"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "अवकाश-प्राप्त :"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "%s टीम के विशिष्ट सदस्य, जो अब सक्रिय नहीं हैं"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -687,13 +630,6 @@ msgstr "विशेष आभार :"
 #, c-format
 msgid "%s website: "
 msgstr "%s वेबसाइट : "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s यह कॉपीराइट सॉफ्टवेयर है %s 1999-2021 %s टीम ."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -758,18 +694,9 @@ msgstr "स्थापना उपसर्ग :"
 msgid "Settings folder:"
 msgstr "सेटिग्स फोल्डर :"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "कोर लाइब्रेरी"
-
 #: src/AboutDialog.cpp
 msgid "Cross-platform GUI library"
 msgstr "क्रॉस-प्लेटफॉर्म GUI लाइब्रेरी"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "ऑडियो प्लेबैक एवं रिकार्डिंग"
 
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
@@ -821,10 +748,6 @@ msgid "Features"
 msgstr "विशेषताएं"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "अतिरिक्त डार्क थीम"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "प्लग-इन समर्थन"
 
@@ -841,29 +764,12 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "चरम पिच तथा टेम्पो परिवर्तन का समर्थन"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr "कानूनी"
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL लाइसेंस"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr "गोपनीयता नीति"
 
 #: src/AboutDialog.cpp
 msgid "App update checking and error reporting require network access. These features are optional."
 msgstr "ऐप अपडेट की जांच और त्रुटि रिपोर्टिंग के लिए नेटवर्क एक्सेस की आवश्यकता होती है. ये सुविधाएँ वैकल्पिक हैं."
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "See %s for more info."
-msgstr "अधिक जानकारी के लिए %s देखें."
 
 #. i18n-hint: Title of hyperlink to the privacy policy. This is an object of
 #. "See".
@@ -1023,10 +929,6 @@ msgstr "SQLite लाइब्रेरी आरंभ होने में �
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "ब्लॉक आकार 256 से 100000000  के बीच ही होना चाहिए\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Audacity शुरू हो रहा है..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2166,17 +2068,9 @@ msgstr ""
 "आप इसके उपयोग लिए पहले कुछ ऑडियो चुनें.\n"
 " (अन्य प्रकार के ट्रैक काम नहीं करेंगे.)"
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Audacity Support Data"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "इसमें कई सेकंड लग सकते हैं"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "रिपोर्ट यहाँ बनाया गया :"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2882,10 +2776,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>Audacity के जिस संस्करण का आप उपयोग कर रहे हैं वह एक <b>बीटा परीक्षण संस्करण</b>है."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Audacity के आधिकारिक प्रकाशित संस्करण प्राप्त करें"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "हम पुरजोर अनुशंसा करते हैं कि आप हमारे नवीनतम स्थिर संस्करण का उपयोग करें, जिसका पूर्ण प्रलेखन और समर्थन उपलब्ध है.<br><br>"
 
@@ -2948,10 +2838,6 @@ msgid ""
 msgstr ""
 "लगता है मदद पुस्तिका स्थापित नहीं है. कृपया  [[*URL*|मदद सामग्री ऑनलाइन देखें]] या [[https://manual.audacityteam.org/man/unzipping_the_manual.html| मैनुअल डाउनलोड करें]].<br><br>हमेशा मैनुअल ऑनलाइन देखने के लिए, \"मैनुअल "
 "निवासस्थान\" को इंटरफेस में पसंद बदलकर \"इंटरनेट से\" करें."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "ऑनलाइन देखें"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3891,11 +3777,6 @@ msgstr "चेतावनी: स्वचालित रिकवरी म�
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<बेनामी>"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[परियोजना %02i] "
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
@@ -13213,10 +13094,6 @@ msgid "Show &Log..."
 msgstr "लाग दिखाएँ... (&L)"
 
 #: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "संबंधित जानकारी जुटाएं... (&G)"
-
-#: src/menus/HelpMenus.cpp
 msgid "&Check for Updates..."
 msgstr "अद्यतन के लिए देखें..."
 
@@ -14753,21 +14630,11 @@ msgstr "%s %2.0f%% संपन्न. कार्य केन्द्र ब
 msgid "Preferences for Application"
 msgstr "ऐपलिकेशन के लिए प्राथमिकताएं"
 
-#. i18n-hint: Title for the update notifications panel in the preferences
-#. dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr "अद्यतन सूचनाएं"
-
 #. i18n-hint: Check-box title that configures periodic updates checking.
 #: src/prefs/ApplicationPrefs.cpp
 msgctxt "application preferences"
 msgid "&Check for updates"
 msgstr "अद्यतन के लिए देखें (&C)"
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr "ऐप अद्यतन की जाँच के लिए नेटवर्क एक्सेस की आवश्यकता होती है. आपकी गोपनीयता की रक्षा के लिए, Audacity  कोई व्यक्तिगत जानकारी संग्रहीत नहीं करता है."
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -14815,12 +14682,6 @@ msgstr "बजाएं"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "यंत्र (&D):"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp src/prefs/RecordingPrefs.h
-msgctxt "preference"
-msgid "Recording"
-msgstr "ध्वन्यांकन"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -17889,28 +17750,13 @@ msgstr "बायाँ=आकार बढ़ाना, दायाँ=आक�
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "अद्यतन के लिए जाँच में त्रुटि"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Unable to connect to Audacity update server."
 msgstr "Audacity अपडेट सर्वर से कनेक्ट करने में असमर्थ."
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "अद्यतन डेटा दूषित था."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "अपडेट डाउनलोड करने में त्रुटि."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "Audacity ऑडेसिटी डाउनलोड लिंक नहीं खोल सकता."
 
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
@@ -17918,27 +17764,13 @@ msgid "App update checking"
 msgstr "ऐप अद्यतन"
 
 #: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr "अद्यतित रहने के लिए, जब भी Audacity का कोई नया संस्करण डाउनलोड करने के लिए उपलब्ध होगा, आपको एक इन-ऐप सूचना प्राप्त होगी."
-
-#: src/update/UpdateNoticeDialog.cpp
 msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
 msgstr "आपकी गोपनीयता की रक्षा के लिए, Audacity कोई व्यक्तिगत जानकारी एकत्र नहीं करता है. हालाँकि, ऐप अपडेट चेकिंग के लिए नेटवर्क एक्सेस की आवश्यकता होती है."
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr "आप में किसी भी समय %s पर ऐप अपडेट चेकिंग को बंद कर सकते हैं."
 
 #. i18n-hint: Title of the app update notice dialog.
 #: src/update/UpdateNoticeDialog.cpp
 msgid "App updates"
 msgstr "ऐप अद्यतन"
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-msgid "Preferences > Application"
-msgstr "वरीयताएं > ऐपलिकेशन"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -17947,30 +17779,13 @@ msgstr "Audacity अपडेट करें"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
-msgid "&Skip"
-msgstr "छोड़ें (&S)"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
 msgid "&Install update"
 msgstr "अद्यतन स्थापित करें (&I)"
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Audacity %s उपलब्ध है!"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
 msgid "Changelog"
 msgstr "परिवर्तन लॉग"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Read more on GitHub"
-msgstr "GitHub पर और पढ़ें"
 
 #: src/widgets/AButton.cpp
 msgid "(disabled)"
