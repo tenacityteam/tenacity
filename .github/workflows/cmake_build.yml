@@ -57,7 +57,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          #compiler_cache: sccache
+          compiler_cache: sccache
           compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
@@ -70,7 +70,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          #compiler_cache: sccache
+          compiler_cache: sccache
           compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x64-windows
@@ -102,6 +102,17 @@ jobs:
     - name: Install dependencies
       run: |
         exec bash "scripts/ci/dependencies.sh"
+
+    - name: "[Windows] Install dependencies"
+      if: runner.os == 'Windows'
+      shell: pwsh
+      env:
+        # Install path of scoop
+        SCOOP: C:\Scoop\
+      run: |
+        echo "C:\Scoop\shims" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        iwr -useb get.scoop.sh | iex
+        scoop install sccache
 
     - name: Install Apple codesigning certificates
       uses: apple-actions/import-codesign-certs@v1
@@ -165,7 +176,6 @@ jobs:
         cmake --install cmake_build
 
     - name: "Set up compiler cache"
-      if: runner.os != 'Windows'
       uses: actions/cache@v3
       with:
         path: ${{ matrix.config.compiler_cache_path }}
