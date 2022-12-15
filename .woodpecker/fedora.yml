@@ -3,9 +3,18 @@ pipeline:
         image: gperson/tenacity-fedora
         commands:
             - mkdir build
-            - cd build
-            - cmake -G Ninja .. -DMIDI=Off
+            - cmake -G Ninja -S . -B build -DMIDI=Off
             - cmake --build .
         when:
             branch: main
             event: pull_request
+<<<<<<< HEAD
+=======
+    package:
+        image: gperson/tenacity-fedora
+        commands:
+            - cpack ./build
+        when:
+            branch: main
+            event: pull_request
+>>>>>>> 00beb78044 (CI: Explicitly specify paths for source and build)
