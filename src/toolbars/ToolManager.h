@@ -16,14 +16,8 @@
 #include <functional>
 
 #include <wx/defs.h>
-
-// FIXME: ugly hack for getting MSVC to work with Ninja and sccache without
-// breaking Linux builds
-#ifdef wxMSW
-class wxEventFilter;
-#else
-#include <wx/eventfilter.h> // to inherit
-#endif // end wxMSW
+#include <wx/event.h>
+#include <wx/eventfilter.h>
 
 #include <wx/frame.h> // to inherit
 #include <wx/timer.h> // member variable
