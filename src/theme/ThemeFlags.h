@@ -38,8 +38,7 @@ enum teThemeType
 {
    themeLight,
    themeDark,
-   themeDefault,
-   themeTenacity,
+   themeSaucedacity,
    themeAudacity,
    themeAudacityClassic,
    themeHiContrast,

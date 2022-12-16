@@ -67,7 +67,7 @@ static const unsigned char DarkImageCacheAsData[] = {
 #include "DarkThemeAsCeeCode.h"
 };
 
-static const unsigned char TenacityImageCacheAsData[] = {
+static const unsigned char SaucedacityImageCacheAsData[] = {
 #include "SaucedacityThemeAsCeeCode.h"
 };
 
@@ -602,8 +602,7 @@ teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
      // "classic",
       "light",
       "dark",
-      "default",
-      "tenacity",
+      "saucedacity",
       "audacity",
       "audacity-classic",
       "high-contrast",
@@ -665,9 +664,9 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
       switch( type )
       {
          default: 
-         case themeDefault:
-            ImageSize = sizeof(TenacityImageCacheAsData);
-            pImage = TenacityImageCacheAsData;
+         case themeDark:
+            ImageSize = sizeof(DarkImageCacheAsData);
+            pImage = DarkImageCacheAsData;
             break;
 
          case themeLight:
@@ -675,14 +674,9 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
             pImage = LightImageCacheAsData;
             break;
 
-         case themeDark:
-            ImageSize = sizeof(DarkImageCacheAsData);
-            pImage = DarkImageCacheAsData;
-            break;
-
-         case themeTenacity:
-            ImageSize = sizeof(TenacityImageCacheAsData);
-            pImage = TenacityImageCacheAsData;
+         case themeSaucedacity:
+            ImageSize = sizeof(SaucedacityImageCacheAsData);
+            pImage = SaucedacityImageCacheAsData;
             break;
 
          case themeAudacity:
@@ -1010,7 +1004,7 @@ ChoiceSetting GUITheme{
          XO("Dark"),
 
          /* i18n-hint: describing the appearance of Tenacity 1.2 */
-         XO("Tenacity"),
+         XO("Saucedacity"),
 
          /* i18n-hint: describing the appearance of Audacity 3.0.4's default theme */
          XO("Audacity"),
@@ -1029,7 +1023,7 @@ ChoiceSetting GUITheme{
       {
          wxT("light"),
          wxT("dark"),
-         wxT("tenacity"),
+         wxT("saucedacity"),
          wxT("audacity"),
          wxT("audacity-classic"),
          wxT("high-contrast"),
