@@ -194,7 +194,7 @@ jobs:
     - name: Configure
       run: >-
         cmake
-        -G Ninja
+        -G ${{ matrix.config.generator }}
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
         -D VCPKG=ON
