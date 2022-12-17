@@ -177,7 +177,7 @@ jobs:
         git clone --recurse-submodules ${{ matrix.config.wxwidgets_git_url }}
         cd wxWidgets
         git checkout ${{ matrix.config.wxwidgets_git_ref }}
-        cmake -G ${{ matrix.config.generator }} -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/wxwidgets-install \
+        cmake -G "${{ matrix.config.generator }}" -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/wxwidgets-install \
           -S . -B cmake_build
         cmake --build cmake_build
         cmake --install cmake_build
@@ -194,7 +194,7 @@ jobs:
     - name: Configure
       run: >-
         cmake
-        -G ${{ matrix.config.generator }}
+        -G "${{ matrix.config.generator }}"
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
         -D VCPKG=ON
