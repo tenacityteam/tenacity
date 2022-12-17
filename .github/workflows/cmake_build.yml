@@ -151,15 +151,6 @@ jobs:
           ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-
           ${{ matrix.config.name }}-
 
-    # FIXME: hack around bad SSL certificate, needed to build ffmpeg
-    # https://github.com/microsoft/vcpkg/issues/19121
-    - name: "[Windows] Install yasm"
-      if: runner.os == 'Windows'
-      run: |
-        mkdir -p "vcpkg/downloads/tools/yasm/1.3.0.6"
-        curl -k -o "vcpkg/downloads/tools/yasm/1.3.0.6/yasm.exe" \
-          "http://www.tortall.net/projects/yasm/snapshots/v1.3.0.6.g1962/yasm-1.3.0.6.g1962.exe"
-
     - name: "Set up wxwidgets cache"
       uses: actions/cache@v3
       id: wxwidgets-cache
