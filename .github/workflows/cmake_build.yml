@@ -203,7 +203,7 @@ jobs:
         WX_CONFIG: ${{ matrix.config.WX_CONFIG }}
 
     - name: Build
-      run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }} --verbose
+      run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }}
 
     - name: "Print compiler cache stats"
       run: ${{ matrix.config.compiler_cache }} -s
