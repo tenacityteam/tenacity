@@ -740,28 +740,14 @@ if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
 
 endif()
 
-if(NOT WIN32)
-  find_package(wxWidgets 3.1 REQUIRED COMPONENTS adv base core html qa xml net)
-  include(${wxWidgets_USE_FILE})
-  # The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
-  # This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
-  if(NOT TARGET wxWidgets::wxWidgets)
-    add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
-    target_link_libraries(wxWidgets::wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
-    target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
-  endif()
-else()
-  # On Windows we are using wxWidgets from an unmerged vcpkg branch in our vcpkg overlay
-  # https://github.com/microsoft/vcpkg/pull/17111
-  # This requires using 'unofficial-wxWidgets' rather than simply 'wxWidgets'.
-  # This is required for CMAKE_BUILD_TYPE=Debug to work. Refer to
-  # https://github.com/microsoft/vcpkg/issues/18066
-  # for background about the bug.
-  find_package(unofficial-wxWidgets COMPONENTS adv base core html qa xml net)
-  if(NOT TARGET wxWidgets::wxWidgets)
-    add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
-    target_link_libraries(wxWidgets::wxWidgets INTERFACE wx::wxadv wx::wxbase wx::wxcore wx::wxhtml wx::wxqa wx::wxxml wx::wxnet)
-  endif()
+find_package(wxWidgets 3.1 REQUIRED COMPONENTS adv base core html qa xml net)
+include(${wxWidgets_USE_FILE})
+# The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
+# This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
+if(NOT TARGET wxWidgets::wxWidgets)
+  add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
+  target_link_libraries(wxWidgets::wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
+  target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
 endif()
 
 add_subdirectory(lib-src/libnyquist)
