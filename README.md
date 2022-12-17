@@ -6,7 +6,6 @@
 [![GitHub builds](https://badgen.net/github/status/tenacityteam/tenacity)](https://github.com/tenacityteam/tenacity/actions?query=branch%3Amaster+event%3Apush)
 <!--[![builds.sr.ht](https://builds.sr.ht/~tenacity/tenacity/commits/.svg)](https://builds.sr.ht/~tenacity/tenacity/commits/?)-->
 [![Translation status](https://hosted.weblate.org/widgets/tenacity/-/tenacity/svg-badge.svg)](https://hosted.weblate.org/engage/tenacity/)
-[![Donators](https://opencollective.com/tenacity/tiers/badge.svg)](https://opencollective.com/tenacity#category-CONTRIBUTE)
 
 Please note that **we do NOT accept any pull requests or issues on GitHub anymore**. See https://codeberg.org/tenacityteam/tenacity to file your bug report or submit your pull request.
 
