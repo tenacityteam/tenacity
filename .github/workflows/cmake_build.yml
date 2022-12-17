@@ -139,7 +139,7 @@ jobs:
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
 
     - name: Setup vcpkg cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         # cache the vcpkg executable to avoid having to bootstrap vcpkg every time
         path: |
