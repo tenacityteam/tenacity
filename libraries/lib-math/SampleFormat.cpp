@@ -37,11 +37,11 @@
 #include "SampleFormat.h"
 #include "Dither.h" // CYCLE
 
-#include <wx/intl.h>
 #include <cmath>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cassert>
 
 #include "Prefs.h"
 #include "Internat.h"
@@ -88,7 +88,7 @@ void ReverseSamples(samplePtr dst, sampleFormat format,
    samplePtr first = dst + start * size;
    samplePtr last = dst + (start + len - 1) * size;
    enum : size_t { fixedSize = SAMPLE_SIZE(floatSample) };
-   wxASSERT(static_cast<size_t>(size) <= fixedSize);
+   assert(static_cast<size_t>(size) <= fixedSize);
    char temp[fixedSize];
    while (first < last) {
       memcpy(temp, first, size);

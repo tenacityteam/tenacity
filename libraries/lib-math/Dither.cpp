@@ -48,9 +48,9 @@ and get deterministic behaviour.
 #include <stdlib.h>
 #include <cmath>
 #include <string.h>
+#include <cassert>
 //#include <sys/types.h>
 //#include <memory.h>
-//#include <assert.h>
 
 #include <wx/defs.h>
 
@@ -203,7 +203,7 @@ const float Dither::SHAPED_BS[] = { 2.033f, -2.165f, 1.959f, -1.590f, 0.6149f };
         DITHER_FLOAT_TO_INT16(dither, dst, dstStride, src, srcStride, len); \
     else if (srcFormat == floatSample && dstFormat == int24Sample) \
         DITHER_FLOAT_TO_INT24(dither, dst, dstStride, src, srcStride, len); \
-    else { wxASSERT(false); } \
+    else { assert(false); } \
     } while (0)
 
 
@@ -246,15 +246,15 @@ void Dither::Apply(enum DitherType ditherType,
     unsigned int i;
 
     // This code is not designed for 16-bit or 64-bit machine
-    wxASSERT(sizeof(int) == 4);
-    wxASSERT(sizeof(short) == 2);
+    assert(sizeof(int) == 4);
+    assert(sizeof(short) == 2);
 
     // Check parameters
-    wxASSERT(source);
-    wxASSERT(dest);
-    wxASSERT(len >= 0);
-    wxASSERT(sourceStride > 0);
-    wxASSERT(destStride > 0);
+    assert(source);
+    assert(dest);
+    assert(len >= 0);
+    assert(sourceStride > 0);
+    assert(destStride > 0);
 
     if (len == 0)
         return; // nothing to do
@@ -291,7 +291,7 @@ void Dither::Apply(enum DitherType ditherType,
                 for (i = 0; i < len; i++, d += destStride, s += sourceStride)
                     *d = *s;
             } else {
-                wxASSERT(false); // source format unknown
+                assert(false); // source format unknown
             }
         }
     } else
@@ -313,7 +313,7 @@ void Dither::Apply(enum DitherType ditherType,
             for (i = 0; i < len; i++, d += destStride, s += sourceStride)
                 *d = FROM_INT24(s);
         } else {
-            wxASSERT(false); // source format unknown
+            assert(false); // source format unknown
         }
     } else
     if (destFormat == int24Sample && sourceFormat == int16Sample)
@@ -343,7 +343,7 @@ void Dither::Apply(enum DitherType ditherType,
             DITHER(ShapedDither, dest, destFormat, destStride, source, sourceFormat, sourceStride, len);
             break;
         default:
-            wxASSERT(false); // unknown dither algorithm
+            assert(false); // unknown dither algorithm
         }
     }
 }

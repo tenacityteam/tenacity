@@ -50,6 +50,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <cmath>
+#include <cassert>
 
 #include "RealFFTf.h"
 
@@ -371,10 +372,10 @@ void NewWindowFunc(int whichFunction, size_t NumSamplesIn, bool extraSample, flo
 {
    int NumSamples = (int)NumSamplesIn;
    if (extraSample) {
-      wxASSERT(NumSamples > 0);
+      assert(NumSamples > 0);
       --NumSamples;
    }
-   wxASSERT(NumSamples > 0);
+   assert(NumSamples > 0);
 
    switch (whichFunction) {
    default:
@@ -541,7 +542,7 @@ void DerivativeOfWindowFunc(int whichFunction, size_t NumSamples, bool extraSamp
    {
       // Rectangular
       // There are deltas at the ends
-      wxASSERT(NumSamples > 0);
+      assert(NumSamples > 0);
       --NumSamples;
       // in[0] *= 1.0f;
       for (int ii = 1; ii < (int)NumSamples; ++ii)
@@ -551,11 +552,11 @@ void DerivativeOfWindowFunc(int whichFunction, size_t NumSamples, bool extraSamp
    }
 
    if (extraSample) {
-      wxASSERT(NumSamples > 0);
+      assert(NumSamples > 0);
       --NumSamples;
    }
 
-   wxASSERT(NumSamples > 0);
+   assert(NumSamples > 0);
 
    double A;
    switch (whichFunction) {

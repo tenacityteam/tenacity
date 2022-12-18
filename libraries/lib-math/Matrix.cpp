@@ -12,8 +12,7 @@
 
 #include <stdlib.h>
 #include <cmath>
-
-#include <wx/defs.h>
+#include <cassert>
 
 Vector::Vector()
 {
@@ -41,7 +40,7 @@ Vector::Vector(unsigned len, float *data)
 
 Vector& Vector::operator=(const Vector &other)
 {
-   wxASSERT(Len() == other.Len());
+   assert(Len() == other.Len());
    std::copy(other.mData.get(), other.mData.get() + mN, mData.get());
    return *this;
 }
@@ -134,7 +133,7 @@ Matrix IdentityMatrix(unsigned N)
 
 Vector operator+(const Vector &left, const Vector &right)
 {
-   wxASSERT(left.Len() == right.Len());
+   assert(left.Len() == right.Len());
    Vector v(left.Len());
    for(unsigned i = 0; i < left.Len(); i++)
       v[i] = left[i] + right[i];
@@ -143,7 +142,7 @@ Vector operator+(const Vector &left, const Vector &right)
 
 Vector operator-(const Vector &left, const Vector &right)
 {
-   wxASSERT(left.Len() == right.Len());
+   assert(left.Len() == right.Len());
    Vector v(left.Len());
    for(unsigned i = 0; i < left.Len(); i++)
       v[i] = left[i] - right[i];
@@ -152,7 +151,7 @@ Vector operator-(const Vector &left, const Vector &right)
 
 Vector operator*(const Vector &left, const Vector &right)
 {
-   wxASSERT(left.Len() == right.Len());
+   assert(left.Len() == right.Len());
    Vector v(left.Len());
    for(unsigned i = 0; i < left.Len(); i++)
       v[i] = left[i] * right[i];
@@ -187,7 +186,7 @@ Vector VectorConcatenate(const Vector& left, const Vector& right)
 
 Vector operator*(const Vector &left, const Matrix &right)
 {
-   wxASSERT(left.Len() == right.Rows());
+   assert(left.Len() == right.Rows());
    Vector v(right.Cols());
    for(unsigned i = 0; i < right.Cols(); i++) {
       v[i] = 0.0;
@@ -199,7 +198,7 @@ Vector operator*(const Vector &left, const Matrix &right)
 
 Vector operator*(const Matrix &left, const Vector &right)
 {
-   wxASSERT(left.Cols() == right.Len());
+   assert(left.Cols() == right.Len());
    Vector v(left.Rows());
    for(unsigned i = 0; i < left.Rows(); i++) {
       v[i] = 0.0;
@@ -211,8 +210,8 @@ Vector operator*(const Matrix &left, const Vector &right)
 
 Matrix operator+(const Matrix &left, const Matrix &right)
 {
-   wxASSERT(left.Rows() == right.Rows());
-   wxASSERT(left.Cols() == right.Cols());
+   assert(left.Rows() == right.Rows());
+   assert(left.Cols() == right.Cols());
    Matrix M(left.Rows(), left.Cols());
    for(unsigned i = 0; i < left.Rows(); i++)
       for(unsigned j = 0; j < left.Cols(); j++)
@@ -231,8 +230,8 @@ Matrix operator*(const Matrix &left, const double right)
 
 Matrix ScalarMultiply(const Matrix &left, const Matrix &right)
 {
-   wxASSERT(left.Rows() == right.Rows());
-   wxASSERT(left.Cols() == right.Cols());
+   assert(left.Rows() == right.Rows());
+   assert(left.Cols() == right.Cols());
    Matrix M(left.Rows(), left.Cols());
    for(unsigned i = 0; i < left.Rows(); i++)
       for(unsigned j = 0; j < left.Cols(); j++)
@@ -242,7 +241,7 @@ Matrix ScalarMultiply(const Matrix &left, const Matrix &right)
 
 Matrix MatrixMultiply(const Matrix &left, const Matrix &right)
 {
-   wxASSERT(left.Cols() == right.Rows());
+   assert(left.Cols() == right.Rows());
    Matrix M(left.Rows(), right.Cols());
    for(unsigned i = 0; i < left.Rows(); i++)
       for(unsigned j = 0; j < right.Cols(); j++) {
@@ -266,7 +265,7 @@ Matrix MatrixSubset(const Matrix &input,
 
 Matrix MatrixConcatenateCols(const Matrix& left, const Matrix& right)
 {
-   wxASSERT(left.Rows() == right.Rows());
+   assert(left.Rows() == right.Rows());
    Matrix M(left.Rows(), left.Cols() + right.Cols());
    for(unsigned i = 0; i < left.Rows(); i++) {
       for(unsigned j = 0; j < left.Cols(); j++)
@@ -292,7 +291,7 @@ bool InvertMatrix(const Matrix& input, Matrix& Minv)
    // Gauss-Jordan elimination to invert a matrix.
    // Returns true if successful
 
-   wxASSERT(input.Rows() == input.Cols());
+   assert(input.Rows() == input.Cols());
    auto N = input.Rows();
 
    Matrix M = input;
