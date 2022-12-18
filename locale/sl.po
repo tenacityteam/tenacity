@@ -21,27 +21,9 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Poedit 3.0\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr "Neznana izjema"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Problem Report for Audacity"
-msgstr "Poročilo o težavah Audacity"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr "Podrobnosti o težavi"
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Komentarji"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr "&Pošlji"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -546,26 +528,6 @@ msgstr "O programu %s"
 msgid "OK"
 msgstr "V redu"
 
-#. i18n-hint: substitutes into "a worldwide team of %s"
-#: src/AboutDialog.cpp
-msgid "volunteers"
-msgstr "prostovoljci"
-
-#. i18n-hint first and third %s will be "forum", second "wiki"
-#: src/AboutDialog.cpp
-#, c-format
-msgid ""
-"If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s "
-"or visit our %s."
-msgstr ""
-"Če opazite napako ali imate predlog, nam pišite na naš %s (v angl.). Če iščete pomoč, si oglejte namige in trike na našem %s ali "
-"obiščite naš %s."
-
-#. i18n-hint substitutes into "view the tips and tricks on our %s"
-#: src/AboutDialog.cpp
-msgid "wiki"
-msgstr "wikiju"
-
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
 #. *  your own name(s) to the credits.
@@ -695,14 +657,6 @@ msgid "Settings folder:"
 msgstr "Mapa z nastavitvami:"
 
 #: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr "Čezplatformna knjižnica GUI"
-
-#: src/AboutDialog.cpp
-msgid "Sample rate conversion"
-msgstr "Pretvorba frekvence vzorčenja"
-
-#: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Podpora vrstam datotek"
 
@@ -766,16 +720,6 @@ msgstr "Podpora izjemni spremembi višine tona in tempa"
 #: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "Licenca GPL"
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr "Iskanje posodobitev in poročanje o napakah zahtevata dostop do omrežja. Ti funkcionalnosti nista obvezni."
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of
-#. "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr "naša politika zasebnosti"
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -13051,10 +12995,6 @@ msgstr "Podatki o napravi &MIDI ..."
 msgid "Show &Log..."
 msgstr "Pokaži &zapisnik ..."
 
-#: src/menus/HelpMenus.cpp
-msgid "&Check for Updates..."
-msgstr "Poi&šči posodobitve …"
-
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Added label"
 msgstr "Oznaka dodana"
@@ -14573,12 +14513,6 @@ msgstr "%s dokončano %2.0f%%. Kliknite, če želite spremeniti žariščno toč
 #: src/prefs/ApplicationPrefs.cpp
 msgid "Preferences for Application"
 msgstr "Nastavitve programa"
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "Poi&šči posodobitve"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -17668,21 +17602,6 @@ msgstr "Povlecite za povečanje področja, desno-kliknite za pomanjšanje"
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 msgstr "Levo=Povečava, Desno=Pomanjšanje, Sredina=Normalno"
 
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr "Povezovanje s strežnikom posodobitev Audacity ni uspelo."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Error downloading update."
-msgstr "Napaka pri prenašanju posodobitve."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr "Preverjanje obstoja posodobitev programa"
-
 #: src/update/UpdateNoticeDialog.cpp
 msgid ""
 "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require "
@@ -17690,21 +17609,6 @@ msgid ""
 msgstr ""
 "Da bi zaščitili vašo zasebnost, Audacity ne zbira vaših osebnih podatkov. Vendar pa preverjanje in iskanje posodobitev zahteva "
 "dostop do omrežja."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr "Posododitve programa"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "Posodobi Audacity"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "&Namesti posodobitev"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"

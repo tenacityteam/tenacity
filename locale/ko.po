@@ -22,27 +22,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.0\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr "알수없는 예외"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Problem Report for Audacity"
-msgstr "오데시티의 문제점 리포트"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr "문제 상세정보"
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "코멘트"
-
-#: crashreports/crashreporter/CrashReportApp.cpp src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr "전송 (&S)"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -547,26 +529,6 @@ msgstr "%s 정보"
 msgid "OK"
 msgstr "확인"
 
-#. i18n-hint: substitutes into "a worldwide team of %s"
-#: src/AboutDialog.cpp
-msgid "volunteers"
-msgstr "자원봉사"
-
-#. i18n-hint first and third %s will be "forum", second "wiki"
-#: src/AboutDialog.cpp
-#, c-format
-msgid ""
-"If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s "
-"or visit our %s."
-msgstr ""
-"만약 버그를 찾거나 제안할 것이 있다면 %s 로 영어로 보내주세요.도움이 필요하다면 %s 에서 팁과 해결책을 찾아 보거나, %s 를 방문하세"
-"요."
-
-#. i18n-hint substitutes into "view the tips and tricks on our %s"
-#: src/AboutDialog.cpp
-msgid "wiki"
-msgstr "위키"
-
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
 #. *  your own name(s) to the credits.
@@ -696,14 +658,6 @@ msgid "Settings folder:"
 msgstr "설정 폴더:"
 
 #: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr "크로스 플랫폼 GUI 라이브러리"
-
-#: src/AboutDialog.cpp
-msgid "Sample rate conversion"
-msgstr "샘플링 주파수 변환"
-
-#: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "지원 파일 형식"
 
@@ -767,16 +721,6 @@ msgstr "극한의 피치와 템포 변경 지원"
 #: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL 라이선스"
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr "앱 업데이트 확인 및 오류 보고에는 네트워크 액세스가 필요합니다. 이 기능은 선택 사항입니다."
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of
-#. "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr "우리의 개인정보 보호정책"
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -13146,10 +13090,6 @@ msgstr "미디 장치 정보(&M)..."
 msgid "Show &Log..."
 msgstr "로그 보기(&L)..."
 
-#: src/menus/HelpMenus.cpp
-msgid "&Check for Updates..."
-msgstr "업데이트 확인(&C)..."
-
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Added label"
 msgstr "추가된 레이블"
@@ -14682,12 +14622,6 @@ msgstr "%s %2.0f%% 완료됨. 작업 포컬 포인트를 변경하려면 클릭�
 #: src/prefs/ApplicationPrefs.cpp
 msgid "Preferences for Application"
 msgstr "응용프로그램 환경설정"
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "업데이트 확인"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -17810,21 +17744,6 @@ msgstr "영역 확대는 드래그, 축소는 우클릭하세요"
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 msgstr "왼쪽=확대, 오른쪽=축소, 가운데=정상"
 
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr "오데시티 업데이트 서버에 접속할 수 없습니다."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Error downloading update."
-msgstr "업그레이드를 다운로드하는데 오류."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr "앱 업데이트 확인"
-
 #: src/update/UpdateNoticeDialog.cpp
 msgid ""
 "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require "
@@ -17832,21 +17751,6 @@ msgid ""
 msgstr ""
 "개인정보 보호를 위해서 오데시티는 어떠한 개인정보도 수집하지 않습니다. 하지만 앱 업데이트 확인을 위해서는 네트워크에 접속해 있어야 "
 "합니다."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr "앱 업데이트"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "오데시티 업데이트"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "업데이트 설치 (&I)"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"

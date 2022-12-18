@@ -19,30 +19,10 @@ msgstr ""
 "X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr "Άγνωστη εξαίρεση"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Problem Report for Audacity"
-msgstr "Αναφορά προβλήματος για το Audacity"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr "Λεπτομέρειες προβλήματος"
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Σχόλια"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr "&Αποστολή"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -542,22 +522,6 @@ msgstr "Περί %s"
 msgid "OK"
 msgstr "Εντάξει"
 
-#. i18n-hint: substitutes into "a worldwide team of %s"
-#: src/AboutDialog.cpp
-msgid "volunteers"
-msgstr "εθελοντές"
-
-#. i18n-hint first and third %s will be "forum", second "wiki"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
-msgstr "Εάν βρείτε κάποιο σφάλμα ή έχετε να μας προτείνετε κάτι, παρακαλούμε γράψτε μας στα αγγλικά στo %s. Για βοήθεια, δείτε τις συμβουλές και τα κόλπα μας στο %s ή επισκεφτείτε μας στο %s."
-
-#. i18n-hint substitutes into "view the tips and tricks on our %s"
-#: src/AboutDialog.cpp
-msgid "wiki"
-msgstr "βίκι"
-
 #  i18n-hint: The translation of "translator_credits" will appear
 #  in the credits in the About Audacity window.  Use this to add
 #  your own name(s) to the credits.
@@ -692,14 +656,6 @@ msgid "Settings folder:"
 msgstr "Φάκελος ρυθμίσεων:"
 
 #: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr "Διαλειτουργική βιβλιοθήκη GUI"
-
-#: src/AboutDialog.cpp
-msgid "Sample rate conversion"
-msgstr "Μετατροπή ρυθμού δειγματοληψίας"
-
-#: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Μορφές αρχείων που υποστηρίζονται"
 
@@ -763,16 +719,6 @@ msgstr "Υποστήριξη ακραίας αλλαγής τόνου και ρ�
 #: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "Άδεια GPL"
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr "Ο έλεγχος ενημέρωσης της εφαρμογής και η αναφορά σφαλμάτων απαιτούν πρόσβαση στο διαδίκτυο. Αυτά τα χαρακτηριστικά είναι προαιρετικά."
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr "η πολιτική απορρήτου μας"
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -13148,10 +13094,6 @@ msgstr "Πληροφορίες συσκευής &MIDI..."
 msgid "Show &Log..."
 msgstr "Εμφάνιση &ημερολογίου..."
 
-#: src/menus/HelpMenus.cpp
-msgid "&Check for Updates..."
-msgstr "Έ&λεγχος για ενημερώσεις..."
-
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Added label"
@@ -14689,12 +14631,6 @@ msgstr "Ολοκληρώθηκε το %s %2.0f%%. Πατήστε για να α�
 #: src/prefs/ApplicationPrefs.cpp
 msgid "Preferences for Application"
 msgstr "Προτιμήσεις για την εφαρμογή"
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "Έ&λεγχος για ενημερώσεις"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -17827,39 +17763,9 @@ msgstr "Σύρετε για να μεγεθύνετε στην περιοχή, �
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 msgstr "Αριστερό=Μεγέθυνση, Δεξί=Σμίκρυνση, Μεσαίο=Κανονικό"
 
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr "Αδυναμία σύνδεσης με τον διακομιστή ενημέρωσης του Audacity."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Error downloading update."
-msgstr "Σφάλμα κατά τη λήψη της ενημέρωσης."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr "Έλεγχος ενημέρωσης εφαρμογής"
-
 #: src/update/UpdateNoticeDialog.cpp
 msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
 msgstr "Προκειμένου να προστατευθεί το απόρρητό σας, το Audacity δεν συλλέγει προσωπικές πληροφορίες. Ωστόσο, ο έλεγχος ενημερώσεων της εφαρμογής απαιτεί πρόσβαση στο διαδίκτυο."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr "Ενημερώσεις εφαρμογής"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "Ενημέρωση του Audacity"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "Ε&γκατάσταση ενημέρωσης"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"

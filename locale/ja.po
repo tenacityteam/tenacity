@@ -19,30 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr "不明な例外 (Unknown exception)"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Problem Report for Audacity"
-msgstr "Audacity の障害を報告"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr "障害の詳細"
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "コメント"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr "送信(&S)"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -522,22 +502,6 @@ msgstr "%s について"
 msgid "OK"
 msgstr "OK"
 
-#. i18n-hint: substitutes into "a worldwide team of %s"
-#: src/AboutDialog.cpp
-msgid "volunteers"
-msgstr "ボランティア"
-
-#. i18n-hint first and third %s will be "forum", second "wiki"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
-msgstr "バグを発見した場合や、私たちへのご提案をお持ちの場合には、%sに（英語で！）書き込んでみてください。ヘルプが必要な場合は、%s でヒントや便利な使い方をご覧になるか、または %sまでお越しください。"
-
-#. i18n-hint substitutes into "view the tips and tricks on our %s"
-#: src/AboutDialog.cpp
-msgid "wiki"
-msgstr "Audacity Wiki"
-
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
 #. *  your own name(s) to the credits.
@@ -665,14 +629,6 @@ msgid "Settings folder:"
 msgstr "設定フォルダー:"
 
 #: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr "クロスプラットフォームの GUI ライブラリ"
-
-#: src/AboutDialog.cpp
-msgid "Sample rate conversion"
-msgstr "サンプリング周波数変換"
-
-#: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "サポートするファイル形式"
 
@@ -736,16 +692,6 @@ msgstr "急激なピッチとテンポの変化のサポート"
 #: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL ライセンス"
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr "更新確認と障害報告には、ネットワーク接続が必要です。これらの機能のご利用はあくまで任意です。"
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr "プライバシーポリシー"
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -13191,10 +13137,6 @@ msgstr "MIDI デバイス情報(&M)..."
 msgid "Show &Log..."
 msgstr "ログの表示(&L)..."
 
-#: src/menus/HelpMenus.cpp
-msgid "&Check for Updates..."
-msgstr "更新の確認(&C)..."
-
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Added label"
@@ -14735,12 +14677,6 @@ msgstr "%s %2.0f%% 完了。処理ポイントを変更するにはクリック�
 #: src/prefs/ApplicationPrefs.cpp
 msgid "Preferences for Application"
 msgstr "アプリケーションの環境設定"
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "更新を確認する(&C)"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -17877,39 +17813,9 @@ msgstr "ドラッグで範囲を拡大、右クリックで縮小"
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 msgstr "左=拡大、右=縮小、中央=通常"
 
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr "Audacity の更新サーバーに接続できません。"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Error downloading update."
-msgstr "更新ダウンロードエラー。"
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr "アプリケーションの更新確認について"
-
 #: src/update/UpdateNoticeDialog.cpp
 msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
 msgstr "ご利用者様のプライバシーを守るため、Audacity は個人情報の収集を行いません。とはいえ、更新の確認にはネットワーク接続が必要です。"
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr "アプリケーションの更新"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "Audacity を更新"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "更新をインストール(&I)"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"

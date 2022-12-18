@@ -22,30 +22,10 @@ msgstr ""
 " 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Generator: Lokalize 20.12.0\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr "Невідоме виключення"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Problem Report for Audacity"
-msgstr "Звіт щодо проблем в Audacity"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr "Подробиці проблеми"
-
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Коментарі"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr "&Надіслати"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -548,27 +528,6 @@ msgstr "Про %s"
 msgid "OK"
 msgstr "Гаразд"
 
-#. i18n-hint: substitutes into "a worldwide team of %s"
-#: src/AboutDialog.cpp
-msgid "volunteers"
-msgstr "волонтерів"
-
-#. i18n-hint first and third %s will be "forum", second "wiki"
-#: src/AboutDialog.cpp
-#, c-format
-msgid ""
-"If you find a bug or have a suggestion for us, please write, in English, to"
-" our %s. For help, view the tips and tricks on our %s or visit our %s."
-msgstr ""
-"Якщо ви знайдете помилку або у вас виникне пропозиція, надішліть ваше"
-" повідомлення, англійською, на %s. Додаткові відомості, підказки і настанови"
-" можна знайти на нашій %s або на нашому %s."
-
-#. i18n-hint substitutes into "view the tips and tricks on our %s"
-#: src/AboutDialog.cpp
-msgid "wiki"
-msgstr "вікі"
-
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
 #. *  your own name(s) to the credits.
@@ -708,14 +667,6 @@ msgid "Settings folder:"
 msgstr "Тека з параметрами:"
 
 #: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr "Бібліотека для побудови графічних інтерфейсів на різних платформах"
-
-#: src/AboutDialog.cpp
-msgid "Sample rate conversion"
-msgstr "Зміна частоти дискретизації"
-
-#: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Підтримка форматів файлів"
 
@@ -779,20 +730,6 @@ msgstr "Підтримка екстремальної зміни такту і �
 #: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "Ліцензія GPL"
-
-#: src/AboutDialog.cpp
-msgid ""
-"App update checking and error reporting require network access. These"
-" features are optional."
-msgstr ""
-"Пошук оновлень програми та звітування щодо помилок потребують доступу до"
-" мережі. Ці можливості не є обов'язковими."
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr "нашими Правилами конфіденційності"
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -13598,10 +13535,6 @@ msgstr "Дані &щодо пристрою MIDI…"
 msgid "Show &Log..."
 msgstr "Показати &журнал…"
 
-#: src/menus/HelpMenus.cpp
-msgid "&Check for Updates..."
-msgstr "П&еревірити наявність оновлень…"
-
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Added label"
@@ -15151,12 +15084,6 @@ msgstr "%s %2.0f%% завершено. Натисніть, щоб змінити
 #: src/prefs/ApplicationPrefs.cpp
 msgid "Preferences for Application"
 msgstr "Налаштування програми"
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "&Перевірити наявність оновлень"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
@@ -18350,44 +18277,6 @@ msgstr ""
 #: src/tracks/ui/ZoomHandle.cpp
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 msgstr "Ліва=Збільшити, Права=Зменшити, Середня=Звичайний масштаб"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr "Не вдалося встановити з'єднання із сервером оновлення Audacity."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Error downloading update."
-msgstr "Помилка під час отримання оновлення."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr "Пошук оновлень програми"
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid ""
-"In order to protect your privacy, Audacity does not collect any personal"
-" information. However, app update checking does require network access."
-msgstr ""
-"Щоб захистити ваші конфіденційні дані, Audacity не збирає жодних особистих"
-" відомостей. Втім, для пошуку оновлень програми потрібен доступ до мережі."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr "Оновлення програми"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "Оновити Audacity"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "&Встановити оновлення"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"

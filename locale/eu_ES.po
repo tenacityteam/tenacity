@@ -17,55 +17,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3\n"
 
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-#, c-format
-msgid "Exception code 0x%x"
-msgstr "Salbuespeneko kodea 0x%x"
-
-#. i18n-hint C++ programming assertion
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown exception"
-msgstr "Salbuespen ezezaguna"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Unknown error"
-msgstr "Errore ezezaguna"
-
 #: crashreports/crashreporter/CrashReportApp.cpp
 msgid "Problem Report for Audacity"
 msgstr "Arazoaren txostena Audacityrentzat"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Click \"Send\" to submit the report to Audacity. This information is collected anonymously."
-msgstr "Egin klik \"Bidali\" botoian txostena Audacityri helarazteko. Informazio hau era anonimoan biltzen da."
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgid "Problem details"
-msgstr "Arazoaren xehetasunak"
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
 msgid "Comments"
 msgstr "Iruzkinak"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Don't send"
-msgstr "&Ez bidali"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-#: src/widgets/ErrorReportDialog.cpp
-msgctxt "crash reporter button"
-msgid "&Send"
-msgstr "&Bidali"
-
-#: crashreports/crashreporter/CrashReportApp.cpp
-msgid "Failed to send crash report"
-msgstr "Matxuraren txostena bidaltzeak huts egin du"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -565,45 +524,11 @@ msgstr "%s-ri buruz"
 msgid "OK"
 msgstr "Ados"
 
-#. i18n-hint: First and third %s will be the program's name,
-#. second %s will be "volunteers", fourth "available"
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free program written by a worldwide team of %s. %s is %s for Windows, Mac, and GNU/Linux (and other Unix-like systems)."
-msgstr "%s software librea da, mundu osoko %s  talde batek idatzia. %s da %s Windows, Mac, eta GNU/Linux eta bestelako UNIX motako sistemetarako."
-
-#. i18n-hint: substitutes into "a worldwide team of %s"
-#: src/AboutDialog.cpp
-msgid "volunteers"
-msgstr "boluntarioak"
-
-#. i18n-hint: substitutes into "Audacity is %s"
-#: src/AboutDialog.cpp
-msgid "available"
-msgstr "eskuragarri"
-
 #. i18n-hint first and third %s will be "forum", second "wiki"
 #: src/AboutDialog.cpp
 #, c-format
 msgid "If you find a bug or have a suggestion for us, please write, in English, to our %s. For help, view the tips and tricks on our %s or visit our %s."
 msgstr "Akatsen bat aurkitzen baduzu edo guretzako iradokizunik baduzu, idatzi mesedez ingelesez gure %s-ra. Laguntzarako, ikusi aholkuak eta trukoak gure %s-an edo bisitatu gure %s-a."
-
-#. i18n-hint substitutes into "write to our %s"
-#: src/AboutDialog.cpp
-msgctxt "dative"
-msgid "forum"
-msgstr "foroari"
-
-#. i18n-hint substitutes into "view the tips and tricks on our %s"
-#: src/AboutDialog.cpp
-msgid "wiki"
-msgstr "wikia"
-
-#. i18n-hint substitutes into "visit our %s"
-#: src/AboutDialog.cpp
-msgctxt "accusative"
-msgid "forum"
-msgstr "foroa"
 
 #. i18n-hint: The translation of "translator_credits" will appear
 #. *  in the credits in the About Audacity window.  Use this to add
@@ -643,10 +568,6 @@ msgstr "%s soinua grabatu eta editatzeko software librea, kode irekikoa, eta pla
 msgid "Credits"
 msgstr "Kredituak"
 
-#: src/AboutDialog.cpp
-msgid "DarkAudacity Customisation"
-msgstr "DarkAudacity pertsonalizazioa"
-
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
@@ -656,12 +577,6 @@ msgstr "%s taldeko kideak"
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Emerituak:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Distinguished %s Team members, not currently active"
-msgstr "%s taldeko kide aipagarriak, orain ez aktiboak"
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -694,13 +609,6 @@ msgstr "Eskerrik asko hauei:"
 #, c-format
 msgid "%s website: "
 msgstr "%s -ren webgunea: "
-
-#. i18n-hint Audacity's name substitutes for first and third %s,
-#. and a "copyright" symbol for the second
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s software is copyright %s 1999-2021 %s Team."
-msgstr "%s software egile eskubideak ditu %s 1999-2020 %s taldea."
 
 #. i18n-hint Audacity's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -766,19 +674,6 @@ msgstr "Instalazioaren aurrizkia:"
 msgid "Settings folder:"
 msgstr "Ezarpenen karpeta:"
 
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-msgid "Core Libraries"
-msgstr "Core liburutegiak"
-
-#: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr "GUI liburutegi plataforma-anitza"
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr "Audio erreprodukzioa eta grabaketa"
-
 #: src/AboutDialog.cpp
 msgid "Sample rate conversion"
 msgstr "Lagin-maiztasun bihurketa"
@@ -829,10 +724,6 @@ msgid "Features"
 msgstr "Ezaugarriak"
 
 #: src/AboutDialog.cpp
-msgid "Dark Theme Extras"
-msgstr "Gai ilunaren gehigarriak"
-
-#: src/AboutDialog.cpp
 msgid "Plug-in support"
 msgstr "Plugin euskarria"
 
@@ -849,36 +740,8 @@ msgid "Extreme Pitch and Tempo Change support"
 msgstr "Muturreko tonu eta tempo aldatzeko euskarria"
 
 #: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "Legal"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "GPL License"
 msgstr "GPL lizentzia"
-
-#. i18n-hint: For "About Audacity...": Title for Privacy Policy section
-#: src/AboutDialog.cpp
-msgctxt "about dialog"
-msgid "PRIVACY POLICY"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "App update checking and error reporting require network access. These features are optional."
-msgstr ""
-
-#. i18n-hint: %s will be replaced with "our Privacy Policy"
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy, c-format
-msgid "See %s for more info."
-msgstr "Hautatu fitxategi bat edo gehiago"
-
-#. i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See".
-#: src/AboutDialog.cpp src/prefs/ApplicationPrefs.cpp
-#: src/update/UpdateNoticeDialog.cpp
-msgid "our Privacy Policy"
-msgstr ""
 
 #: src/AdornedRulerPanel.cpp
 msgid "Timeline actions disabled during recording"
@@ -1045,10 +908,6 @@ msgstr "SQLite liburutegiaren hasieratzeak huts egin du. Audacityk ezin du aurre
 #: src/AudacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Blokearen tamainak 256 eta 100000000 bitartekoa izan behar du\n"
-
-#: src/AudacityApp.cpp
-msgid "Audacity is starting up..."
-msgstr "Audacity abiatzen ari da..."
 
 #. i18n-hint: "New" is an action (verb) to create a NEW project
 #: src/AudacityApp.cpp src/BatchProcessDialog.cpp src/menus/FileMenus.cpp
@@ -2197,17 +2056,9 @@ msgstr ""
 "Ekintza hau burutu aurretik audioren bat aukeratu behar duzu. \n"
 "(Ez dabil beste pista motetan)."
 
-#: src/CrashReport.cpp
-msgid "Audacity Support Data"
-msgstr "Audacity-ren datuak laguntzarako"
-
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
 msgstr "Baliteke zenbait segundo behar izatea"
-
-#: src/CrashReport.cpp
-msgid "Report generated to:"
-msgstr "Txostena hemen sortu da:"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2925,10 +2776,6 @@ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</
 msgstr "<br><br>Erabiltzen ari zaren Audacity bertsioa <b>probetarako Beta bertsio</b> bat da."
 
 #: src/HelpText.cpp
-msgid "Get the Official Released Version of Audacity"
-msgstr "Eskuratu argitaratutako Audacity bertsio ofiziala"
-
-#: src/HelpText.cpp
 msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
 msgstr "Benetan gomendatzen dizugu argitaratutako azken bertsio egonkorra erabiltzea. Bertsio horrek dokumentazio eta laguntza osoa du.<br><br>"
 
@@ -2977,10 +2824,6 @@ msgstr "Badirudi eskuliburua ez dagoela instalatuta. [[*URL*|ikusi lineako eskul
 #: src/HelpText.cpp
 msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
 msgstr "Badirudi eskuliburua ez dagoela instalatuta. [[*URL*|ikusi lineako eskuliburua]] edo [[https://manual.audacityteam.org/man/unzipping_the_manual.html| deskargatu eskuliburua]]. <br><br>Beti ikusteko lineako eskuliburua, interfazearen hobespenetan aldatu \"Eskuliburuaren kokapena\" eta jarri \"Internetetik\"."
-
-#: src/HelpText.cpp
-msgid "Check Online"
-msgstr "Egiaztatu sarean"
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3936,11 +3779,6 @@ msgstr "Kontuz: arazoak berreskuratze automatikoan"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<untitled>"
-
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] "
-msgstr "[%02i proiektua] "
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to open the project's database"
@@ -13260,14 +13098,6 @@ msgstr "&MIDI gailuaren informazioa..."
 msgid "Show &Log..."
 msgstr "Erakutsi &egunkaria..."
 
-#: src/menus/HelpMenus.cpp
-msgid "&Generate Support Data..."
-msgstr "&Sortu laguntzarako datuak..."
-
-#: src/menus/HelpMenus.cpp
-msgid "&Check for Updates..."
-msgstr "&Egiaztatu eguneraketak..."
-
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Added label"
@@ -14805,22 +14635,6 @@ msgstr "%s %% -tik %2.0f osatuta. Egin klik aldatzeko pistaren fokatze puntua."
 msgid "Preferences for Application"
 msgstr "Kalitate hobespenak"
 
-#. i18n-hint: Title for the update notifications panel in the preferences dialog.
-#: src/prefs/ApplicationPrefs.cpp
-msgid "Update notifications"
-msgstr ""
-
-#. i18n-hint: Check-box title that configures periodic updates checking.
-#: src/prefs/ApplicationPrefs.cpp
-#, fuzzy
-msgctxt "application preferences"
-msgid "&Check for updates"
-msgstr "&Egiaztatu eguneraketak..."
-
-#: src/prefs/ApplicationPrefs.cpp
-msgid "App update checking requires network access. In order to protect your privacy, Audacity does not store any personal information."
-msgstr ""
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Batch"
@@ -14868,14 +14682,6 @@ msgstr "Erreprodukzioa"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "&Gailua:"
-
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Grabazioa"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -17960,84 +17766,13 @@ msgstr "Ezkerra=Handiagotu, Eskuina=Txikiagotu, Erdia=Normala"
 
 #: src/update/UpdateManager.cpp
 msgctxt "update dialog"
-msgid "Error checking for update"
-msgstr "Errorea eguneraketak bilatzen"
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Unable to connect to Audacity update server."
-msgstr "Ezin izan da konektatu Audacityren eguneratze zerbitzariarekin."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Update data was corrupted."
-msgstr "Eguneratze data hondatuta dago."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
 msgid "Error downloading update."
 msgstr "Errorea eguneraketa deskargatzen."
-
-#: src/update/UpdateManager.cpp
-msgctxt "update dialog"
-msgid "Can't open the Audacity download link."
-msgstr "Ezin da ireki Audacityren deskarga esteka."
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App update checking"
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "To stay up to date, you will receive an in-app notification whenever there is a new version of Audacity available to download."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-msgid "In order to protect your privacy, Audacity does not collect any personal information. However, app update checking does require network access."
-msgstr ""
-
-#: src/update/UpdateNoticeDialog.cpp
-#, c-format
-msgid "You can turn off app update checking at any time in %s."
-msgstr ""
-
-#. i18n-hint: Title of the app update notice dialog.
-#: src/update/UpdateNoticeDialog.cpp
-msgid "App updates"
-msgstr ""
-
-#. i18n-hint: a page in the Preferences dialog; use same name
-#: src/update/UpdateNoticeDialog.cpp
-#, fuzzy
-msgid "Preferences > Application"
-msgstr "Kalitate hobespenak"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Update Audacity"
-msgstr "Eguneratu Audacity"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
 msgid "&Skip"
 msgstr "&Saltatu"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "&Install update"
-msgstr "&instalatu eguneraketa"
-
-#. i18n-hint Substitution of version number for %s.
-#: src/update/UpdatePopupDialog.cpp
-#, c-format
-msgctxt "update dialog"
-msgid "Audacity %s is available!"
-msgstr "Audacity %s eskuragarri dago!"
-
-#: src/update/UpdatePopupDialog.cpp
-msgctxt "update dialog"
-msgid "Changelog"
-msgstr "Aldaketen erregistroa"
 
 #: src/update/UpdatePopupDialog.cpp
 msgctxt "update dialog"
@@ -18625,11 +18360,6 @@ msgstr "Berretsi ixtea"
 #, fuzzy, c-format
 msgid "Unable to write files to directory: %s."
 msgstr "Ezin izan da aurre-ezarpenenak \"%s\"-tik irakurri"
-
-#. i18n-hint: This message describes the error in the Error dialog.
-#: src/widgets/UnwritableLocationErrorDialog.cpp
-msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
-msgstr ""
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
