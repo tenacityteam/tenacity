@@ -2,21 +2,22 @@
 # Copyright (C) 2021-2022 Tenacity Team
 # This file is distributed under the same license as the tenacity package.
 # Emily Mabrey <emilymabrey93@gmail.com>, 2021.
-#
+# Grzegorz Pruchniakowski <gootector@o2.pl>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: audacity 3.0.4\n"
 "Report-Msgid-Bugs-To: avery98@pm.me\n"
 "POT-Creation-Date: 2021-07-20 03:55-0400\n"
-"PO-Revision-Date: 2022-12-08 21:03-0800\n"
-"Last-Translator: Avery King <avery98@pm.me>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2022-12-19 12:45+0000\n"
+"Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
+"Language-Team: English <https://hosted.weblate.org/projects/tenacity/"
+"tenacity/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -3140,6 +3141,9 @@ msgid ""
 "\n"
 "Error: %s"
 msgstr ""
+"Unable to load the \"%s\" module.\n"
+"\n"
+"Error: %s"
 
 #: src/ModuleManager.cpp
 msgid "Module Unsuitable"
@@ -3152,6 +3156,9 @@ msgid ""
 "\n"
 "It will not be loaded."
 msgstr ""
+"The module \"%s\" does not provide a version string.\n"
+"\n"
+"It will not be loaded."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -3171,6 +3178,9 @@ msgid ""
 "\n"
 "It will not be loaded."
 msgstr ""
+"The module \"%s\" failed to initialize.\n"
+"\n"
+"It will not be loaded."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -3209,6 +3219,9 @@ msgid ""
 "\n"
 "It will not be loaded."
 msgstr ""
+"The module \"%s\" does not provide any of the required functions.\n"
+"\n"
+"It will not be loaded."
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
@@ -4274,6 +4287,12 @@ msgid ""
 "Cancel, Edit > Undo until all tracks\n"
 "are open, then File > Save Project."
 msgstr ""
+"\n"
+"If saved, the project will have no tracks.\n"
+"\n"
+"To save any previously open tracks:\n"
+"Cancel, Edit > Undo until all tracks\n"
+"are open, then File > Save Project."
 
 #: src/ProjectManager.cpp
 #, c-format
@@ -4722,7 +4741,7 @@ msgstr ""
 
 #: src/Tags.cpp
 msgid "&Load..."
-msgstr ""
+msgstr "&Load..."
 
 #: src/Tags.cpp
 msgid "Set De&fault"
@@ -4754,11 +4773,11 @@ msgstr ""
 
 #: src/Tags.cpp
 msgid "Load Metadata As:"
-msgstr ""
+msgstr "Load Metadata As:"
 
 #: src/Tags.cpp
 msgid "Error Loading Metadata"
-msgstr ""
+msgstr "Error Loading Metadata"
 
 #: src/Tags.cpp
 msgid "Save Metadata As:"
@@ -4958,6 +4977,9 @@ msgid ""
 "for Timer Recording because it would overwrite another project.\n"
 "Please try again and select an original name."
 msgstr ""
+"The selected file name could not be used\n"
+"for Timer Recording because it would overwrite another project.\n"
+"Please try again and select an original name."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error Saving Timer Recording Project"
@@ -5029,7 +5051,7 @@ msgstr ""
 
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
-msgstr ""
+msgstr "Action after Timer Recording:"
 
 #: src/TimerRecordDialog.cpp
 msgid "Audacity Timer Record Progress"
@@ -5411,6 +5433,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"%s: Could not load settings below. Default settings will be used.\n"
+"\n"
+"%s"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -5468,6 +5493,9 @@ msgstr ""
 #: src/commands/CommandManager.cpp
 msgid "The following commands have had their shortcuts removed, because their default shortcut is new or changed, and is the same shortcut that you have assigned to another command."
 msgstr ""
+"The following commands have had their shortcuts removed, because their "
+"default shortcut is new or changed, and is the same shortcut that you have "
+"assigned to another command."
 
 #: src/commands/CommandManager.cpp
 msgid "Shortcuts have been removed"
@@ -5794,7 +5822,7 @@ msgstr ""
 
 #: src/commands/ScreenshotCommand.cpp
 msgid "Toolbars"
-msgstr ""
+msgstr "Toolbars"
 
 #: src/commands/ScreenshotCommand.cpp src/prefs/EffectsPrefs.cpp
 #: src/prefs/EffectsPrefs.h
@@ -6233,7 +6261,7 @@ msgstr ""
 
 #: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
 msgid "db"
-msgstr ""
+msgstr "dB"
 
 #: src/effects/AutoDuck.cpp
 msgid "Duck &amount:"
@@ -6740,7 +6768,7 @@ msgstr ""
 
 #: src/effects/Contrast.cpp
 msgid "Please select an audio track."
-msgstr ""
+msgstr "Please select an audio track."
 
 #: src/effects/Contrast.cpp
 msgid ""
@@ -7213,7 +7241,7 @@ msgstr ""
 
 #: src/effects/Distortion.cpp
 msgid "(Not Used):"
-msgstr ""
+msgstr "(Not Used):"
 
 #. i18n-hint: Control range.
 #: src/effects/Distortion.cpp
@@ -7342,7 +7370,7 @@ msgstr ""
 #: src/effects/Effect.cpp src/effects/VST/VSTEffect.cpp
 #, c-format
 msgid "Error writing to file: \"%s\""
-msgstr ""
+msgstr "Error writing to file: \"%s\""
 
 #: src/effects/Effect.cpp
 msgid "Import Effect Parameters"
@@ -7714,6 +7742,9 @@ msgid ""
 "To use this filter curve in a macro, please choose a new name for it.\n"
 "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
 msgstr ""
+"To use this filter curve in a macro, please choose a new name for it.\n"
+"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
+"then use that one."
 
 #: src/effects/Equalization.cpp
 msgid "Filter Curve EQ needs a different name"
@@ -7874,10 +7905,14 @@ msgid ""
 "Error message says:\n"
 "%s"
 msgstr ""
+"Error Loading EQ Curves from file:\n"
+"%s\n"
+"Error message says:\n"
+"%s"
 
 #: src/effects/Equalization.cpp
 msgid "Error Loading EQ Curves"
-msgstr ""
+msgstr "Error Loading EQ Curves"
 
 #: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
@@ -7885,7 +7920,7 @@ msgstr ""
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
-msgstr ""
+msgstr "Requested curve not found, using 'unnamed'"
 
 #: src/effects/Equalization.cpp
 msgid "Curve not found"
@@ -7924,14 +7959,16 @@ msgid ""
 "Rename 'unnamed' to save a new entry.\n"
 "'OK' saves all changes, 'Cancel' doesn't."
 msgstr ""
+"Rename 'unnamed' to save a new entry.\n"
+"'OK' saves all changes, 'Cancel' doesn't."
 
 #: src/effects/Equalization.cpp
 msgid "'unnamed' always stays at the bottom of the list"
-msgstr ""
+msgstr "'unnamed' always stays at the bottom of the list"
 
 #: src/effects/Equalization.cpp
 msgid "'unnamed' is special"
-msgstr ""
+msgstr "'unnamed' is special"
 
 #: src/effects/Equalization.cpp
 #, c-format
@@ -8135,7 +8172,7 @@ msgstr ""
 
 #: src/effects/Loudness.cpp
 msgid "RMS dB"
-msgstr ""
+msgstr "RMS dB"
 
 #: src/effects/Loudness.cpp
 msgid "Normalize &stereo channels independently"
@@ -8414,7 +8451,7 @@ msgstr ""
 
 #: src/effects/NoiseReduction.cpp
 msgid "S&teps per window:"
-msgstr ""
+msgstr "S&teps per window:"
 
 #: src/effects/NoiseReduction.cpp src/export/ExportFFmpegDialogs.cpp
 #: src/export/ExportFLAC.cpp
@@ -8702,7 +8739,7 @@ msgstr ""
 
 #: src/effects/Repeat.cpp
 msgid "Warning: No repeats."
-msgstr ""
+msgstr "Warning: No repeats."
 
 #: src/effects/Reverb.cpp
 msgid "Vocal I"
@@ -9161,7 +9198,7 @@ msgstr ""
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
 msgid "Could not load the library"
-msgstr ""
+msgstr "Could not load the library"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effect Options"
@@ -9236,7 +9273,7 @@ msgstr ""
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Load VST Preset:"
-msgstr ""
+msgstr "Load VST Preset:"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST preset files"
@@ -9244,11 +9281,11 @@ msgstr ""
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Error Loading VST Presets"
-msgstr ""
+msgstr "Error Loading VST Presets"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unable to load presets file."
-msgstr ""
+msgstr "Unable to load presets file."
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LV2Effect.cpp
@@ -9257,7 +9294,7 @@ msgstr ""
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unable to allocate memory when loading presets file."
-msgstr ""
+msgstr "Unable to allocate memory when loading presets file."
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unable to read presets file."
@@ -9380,11 +9417,11 @@ msgstr ""
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to encode preset from \"%s\""
-msgstr ""
+msgstr "Failed to encode preset from \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Unable to store preset in config file"
-msgstr ""
+msgstr "Unable to store preset in config file"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -9393,6 +9430,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Could not import \"%s\" preset\n"
+"\n"
+"%s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -9401,7 +9441,7 @@ msgstr ""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Standard Audio Unit preset file"
-msgstr ""
+msgstr "Standard Audio Unit preset file"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -9410,6 +9450,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Could not export \"%s\" preset\n"
+"\n"
+"%s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Export Audio Unit Presets"
@@ -9422,11 +9465,11 @@ msgstr ""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to set preset name"
-msgstr ""
+msgstr "Failed to set preset name"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to retrieve preset content"
-msgstr ""
+msgstr "Failed to retrieve preset content"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to convert property list to XML data"
@@ -9439,20 +9482,20 @@ msgstr ""
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to write XML preset to \"%s\""
-msgstr ""
+msgstr "Failed to write XML preset to \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to convert preset to internal format"
-msgstr ""
+msgstr "Failed to convert preset to internal format"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to create property list for preset"
-msgstr ""
+msgstr "Failed to create property list for preset"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
-msgstr ""
+msgstr "Failed to set class info for \"%s\" preset"
 
 #. i18n-hint: the name of an Apple audio software protocol
 #. i18n-hint: Audio Unit is the name of an Apple audio software protocol
@@ -9720,7 +9763,7 @@ msgstr ""
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "&Load"
-msgstr ""
+msgstr "&Load"
 
 #. i18n-hint: Nyquist is the name of a programming language
 #: src/effects/nyquist/Nyquist.cpp
@@ -9740,11 +9783,11 @@ msgstr ""
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "File could not be loaded"
-msgstr ""
+msgstr "File could not be loaded"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "File could not be saved"
-msgstr ""
+msgstr "File could not be saved"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -9943,7 +9986,7 @@ msgstr ""
 
 #: src/export/ExportCL.cpp
 msgid "Exporting the selected audio using command-line encoder"
-msgstr ""
+msgstr "Exporting the selected audio using command-line encoder"
 
 #: src/export/ExportCL.cpp
 msgid "Exporting the audio using command-line encoder"
@@ -10036,7 +10079,7 @@ msgstr ""
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr ""
+msgstr "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
@@ -10372,7 +10415,7 @@ msgstr ""
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Load Preset"
-msgstr ""
+msgstr "Load Preset"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Import Presets"
@@ -10715,7 +10758,7 @@ msgstr ""
 
 #: src/export/ExportFLAC.cpp
 msgid "Exporting the selected audio as FLAC"
-msgstr ""
+msgstr "Exporting the selected audio as FLAC"
 
 #: src/export/ExportFLAC.cpp
 msgid "Exporting the audio as FLAC"
@@ -10736,7 +10779,7 @@ msgstr ""
 #: src/export/ExportMP2.cpp
 #, c-format
 msgid "Exporting selected audio at %ld kbps"
-msgstr ""
+msgstr "Exporting selected audio at %ld kbps"
 
 #: src/export/ExportMP2.cpp
 #, c-format
@@ -10965,12 +11008,12 @@ msgstr ""
 #: src/export/ExportMP3.cpp
 #, c-format
 msgid "Exporting selected audio at %d Kbps"
-msgstr ""
+msgstr "Exporting selected audio at %d kbps"
 
 #: src/export/ExportMP3.cpp
 #, c-format
 msgid "Exporting the audio at %d Kbps"
-msgstr ""
+msgstr "Exporting the audio at %d kbps"
 
 #: src/export/ExportMP3.cpp
 #, c-format
@@ -11174,7 +11217,7 @@ msgstr ""
 
 #: src/export/ExportOGG.cpp
 msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr ""
+msgstr "Exporting the selected audio as Ogg Vorbis"
 
 #: src/export/ExportOGG.cpp
 msgid "Exporting the audio as Ogg Vorbis"
@@ -11226,7 +11269,7 @@ msgstr ""
 
 #: src/export/ExportPCM.cpp
 msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr ""
+msgstr "WAVEX and GSM 6.10 formats are not compatible"
 
 #: src/export/ExportPCM.cpp
 msgid "Cannot export audio in this format."
@@ -11657,7 +11700,7 @@ msgstr ""
 
 #: src/import/ImportGStreamer.cpp
 msgid "Unable to add decoder to pipeline"
-msgstr ""
+msgstr "Unable to add decoder to pipeline"
 
 #: src/import/ImportGStreamer.cpp
 msgid "GStreamer Importer"
@@ -11720,7 +11763,7 @@ msgstr ""
 
 #: src/import/ImportMIDI.cpp
 msgid "Import MIDI"
-msgstr ""
+msgstr "Import MIDI"
 
 #: src/import/ImportMIDI.cpp
 #, c-format
@@ -11925,11 +11968,11 @@ msgstr ""
 
 #: src/import/ImportPCM.cpp
 msgid "32kbs G721 ADPCM"
-msgstr ""
+msgstr "32kbps G721 ADPCM"
 
 #: src/import/ImportPCM.cpp
 msgid "24kbs G723 ADPCM"
-msgstr ""
+msgstr "24kbps G723 ADPCM"
 
 #: src/import/ImportPCM.cpp
 msgid "12 bit DWVW"
@@ -12624,7 +12667,7 @@ msgstr ""
 #. i18n-hint: (verb) It's item on a menu.
 #: src/menus/FileMenus.cpp
 msgid "E&xit"
-msgstr ""
+msgstr "E&xit"
 
 #: src/menus/FileMenus.cpp
 msgid "Hidden File Menu"
@@ -13254,7 +13297,7 @@ msgstr ""
 
 #: src/menus/SelectMenus.cpp
 msgid "S&pectral"
-msgstr ""
+msgstr "S&pectral"
 
 #: src/menus/SelectMenus.cpp
 msgid "To&ggle Spectral Selection"
@@ -13442,7 +13485,7 @@ msgstr ""
 
 #: src/menus/ToolbarMenus.cpp
 msgid "&Toolbars"
-msgstr ""
+msgstr "&Toolbars"
 
 #. i18n-hint: (verb)
 #: src/menus/ToolbarMenus.cpp
@@ -14029,7 +14072,7 @@ msgstr ""
 
 #: src/menus/TransportMenus.cpp
 msgid "Sound Activation Le&vel..."
-msgstr ""
+msgstr "Sound Activation Le&vel..."
 
 #: src/menus/TransportMenus.cpp
 msgid "Sound A&ctivated Recording (on/off)"
@@ -14774,7 +14817,7 @@ msgstr ""
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
-msgstr ""
+msgstr "Preferences for ImportExport"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "&Mix down to Stereo or Mono"
@@ -14932,7 +14975,7 @@ msgstr ""
 #: src/prefs/KeyConfigPrefs.cpp
 #, c-format
 msgid "Loaded %d keyboard shortcuts\n"
-msgstr ""
+msgstr "Loaded %d keyboard shortcuts\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid ""
@@ -14942,7 +14985,7 @@ msgstr ""
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Loading Keyboard Shortcuts"
-msgstr ""
+msgstr "Loading Keyboard Shortcuts"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Export Keyboard Shortcuts As:"
@@ -15244,7 +15287,7 @@ msgstr ""
 
 #: src/prefs/MousePrefs.cpp
 msgid "Zoom default"
-msgstr ""
+msgstr "Zoom default"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Move clip left/right or between tracks"
@@ -15411,7 +15454,7 @@ msgstr ""
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
-msgstr ""
+msgstr "Other..."
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Sampling"
@@ -15765,7 +15808,7 @@ msgstr ""
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
-msgstr ""
+msgstr "Global settings"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble spectral selection"
@@ -15846,6 +15889,9 @@ msgid ""
 "Saving and loading individual theme files uses a separate file for each image, but is\n"
 "otherwise the same idea."
 msgstr ""
+"Saving and loading individual theme files uses a separate file for each "
+"image, but is\n"
+"otherwise the same idea."
 
 #. i18n-hint: && in here is an escape character to get a single & on screen,
 #. * so keep it as is
@@ -15859,7 +15905,7 @@ msgstr ""
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Load Theme Cache"
-msgstr ""
+msgstr "Load Theme Cache"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Individual Theme Files"
@@ -15871,7 +15917,7 @@ msgstr ""
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Load Files"
-msgstr ""
+msgstr "Load Files"
 
 #. i18n-hint: i.e. the behaviors of tracks
 #: src/prefs/TracksBehaviorsPrefs.cpp src/prefs/TracksBehaviorsPrefs.h
@@ -15961,7 +16007,7 @@ msgstr ""
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Zoom Default"
-msgstr ""
+msgstr "Zoom Default"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Minutes"
@@ -16177,7 +16223,7 @@ msgstr ""
 #. with the big buttons on it (play record etc)
 #: src/toolbars/ControlToolBar.cpp
 msgid "&Transport Toolbar"
-msgstr ""
+msgstr "&Transport Toolbar"
 
 #. i18n-hint: (noun) It's the device used for playback.
 #: src/toolbars/DeviceToolBar.cpp
@@ -16195,15 +16241,15 @@ msgstr ""
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "Recording Channels"
-msgstr ""
+msgstr "Recording Channels"
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "1 (Mono) Recording Channel"
-msgstr ""
+msgstr "1 (Mono) Recording Channel"
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "2 (Stereo) Recording Channels"
-msgstr ""
+msgstr "2 (Stereo) Recording Channels"
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "Select Recording Device"
@@ -16229,7 +16275,7 @@ msgstr ""
 #. that manages devices
 #: src/toolbars/DeviceToolBar.cpp
 msgid "&Device Toolbar"
-msgstr ""
+msgstr "&Device Toolbar"
 
 #: src/toolbars/EditToolBar.cpp
 msgid "Cut selection"
@@ -16241,7 +16287,7 @@ msgstr ""
 
 #: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
-msgstr ""
+msgstr "Trim audio outside selection"
 
 #: src/toolbars/EditToolBar.cpp
 msgid "Silence audio selection"
@@ -16280,7 +16326,7 @@ msgstr ""
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
-msgstr ""
+msgstr "&Edit Toolbar"
 
 #: src/toolbars/MeterToolBar.cpp
 msgid "Combined Meter"
@@ -16320,13 +16366,13 @@ msgstr ""
 #. with the recording level meters
 #: src/toolbars/MeterToolBar.cpp
 msgid "&Recording Meter Toolbar"
-msgstr ""
+msgstr "&Recording Meter Toolbar"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. with the playback level meter
 #: src/toolbars/MeterToolBar.cpp
 msgid "&Playback Meter Toolbar"
-msgstr ""
+msgstr "&Playback Meter Toolbar"
 
 #: src/toolbars/MixerToolBar.cpp
 msgid "Recording Volume"
@@ -16363,7 +16409,7 @@ msgstr ""
 #. with the mixer
 #: src/toolbars/MixerToolBar.cpp
 msgid "Mi&xer Toolbar"
-msgstr ""
+msgstr "Mi&xer Toolbar"
 
 #: src/toolbars/ScrubbingToolBar.cpp
 msgid "Seek"
@@ -16417,7 +16463,7 @@ msgstr ""
 #. that enables Scrub or Seek playback and Scrub Ruler
 #: src/toolbars/ScrubbingToolBar.cpp
 msgid "Scru&b Toolbar"
-msgstr ""
+msgstr "Scru&b Toolbar"
 
 #: src/toolbars/SelectionBar.cpp
 msgid "Project Rate (Hz)"
@@ -16489,7 +16535,7 @@ msgstr ""
 #. for selecting a time range of audio
 #: src/toolbars/SelectionBar.cpp
 msgid "&Selection Toolbar"
-msgstr ""
+msgstr "&Selection Toolbar"
 
 #: src/toolbars/SpectralSelectionBar.cpp
 msgid "Center frequency and Width"
@@ -16511,7 +16557,7 @@ msgstr ""
 #. for selecting a frequency range of audio
 #: src/toolbars/SpectralSelectionBar.cpp
 msgid "Spe&ctral Selection Toolbar"
-msgstr ""
+msgstr "Spe&ctral Selection Toolbar"
 
 #: src/toolbars/TimeToolBar.cpp
 msgid "Time"
@@ -16521,7 +16567,7 @@ msgstr ""
 #. for viewing actual time of the cursor
 #: src/toolbars/TimeToolBar.cpp
 msgid "&Time Toolbar"
-msgstr ""
+msgstr "&Time Toolbar"
 
 #. i18n-hint: %s will be replaced by the name of the kind of toolbar.
 #: src/toolbars/ToolBar.cpp
@@ -16531,7 +16577,7 @@ msgstr "Tenacity %s Toolbar"
 
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
-msgstr ""
+msgstr "Click and drag to resize toolbar"
 
 #: src/toolbars/ToolDock.cpp
 msgid "ToolDock"
@@ -16570,7 +16616,7 @@ msgstr ""
 #. that has some tools in it
 #: src/toolbars/ToolsToolBar.cpp
 msgid "T&ools Toolbar"
-msgstr ""
+msgstr "T&ools Toolbar"
 
 #: src/toolbars/ToolsToolBar.cpp
 msgid "&Selection Tool"
@@ -16620,7 +16666,7 @@ msgstr ""
 #. for transcription (currently just vary play speed)
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Pla&y-at-Speed Toolbar"
-msgstr ""
+msgstr "Pla&y-at-Speed Toolbar"
 
 #: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
 msgid "Drag one or more label boundaries."
@@ -16904,7 +16950,7 @@ msgstr ""
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Other..."
-msgstr ""
+msgstr "&Other..."
 
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
@@ -17856,7 +17902,7 @@ msgstr ""
 #. * in octaves
 #: src/widgets/NumericTextCtrl.cpp
 msgid "octaves"
-msgstr ""
+msgstr "octaves"
 
 #. i18n-hint: Format string for displaying log of frequency in octaves.
 #. * Change the decimal points for your locale. Don't change the numbers.
@@ -17997,7 +18043,7 @@ msgstr ""
 
 #: src/widgets/valnum.cpp
 msgid "Validation error"
-msgstr ""
+msgstr "Validation error"
 
 #: src/widgets/valnum.cpp
 msgid "Empty value"
@@ -18059,7 +18105,7 @@ msgstr ""
 #: src/xml/XMLFileReader.cpp
 #, c-format
 msgid "Could not load file: \"%s\""
-msgstr ""
+msgstr "Could not load file: \"%s\""
 
 #: src/xml/XMLFileReader.cpp
 msgid "Could not parse XML"
@@ -19023,7 +19069,7 @@ msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Not found or cannot be read:"
-msgstr ""
+msgstr "Not found or cannot be read:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Unsupported file type:"
@@ -19226,7 +19272,7 @@ msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "Sample Data Export"
-msgstr ""
+msgstr "Sample Data Export"
 
 #: plug-ins/sample-data-export.ny
 msgid "Analyzing..."
@@ -19503,11 +19549,11 @@ msgstr ""
 
 #: plug-ins/sample-data-import.ny
 msgid "Sample Data Import"
-msgstr ""
+msgstr "Sample Data Import"
 
 #: plug-ins/sample-data-import.ny
 msgid "Reading and rendering samples..."
-msgstr ""
+msgstr "Reading and rendering samples..."
 
 #: plug-ins/sample-data-import.ny
 msgid "Select file"
@@ -19523,7 +19569,7 @@ msgstr ""
 
 #: plug-ins/sample-data-import.ny
 msgid "Read as Zero"
-msgstr ""
+msgstr "Read as Zero"
 
 #: plug-ins/sample-data-import.ny
 #, lisp-format
@@ -19540,6 +19586,9 @@ msgid ""
 "              The file must contain only plain ASCII text.~%~\n"
 "              (Invalid byte '~a' at byte number: ~a)"
 msgstr ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
 
 #: plug-ins/sample-data-import.ny
 #, lisp-format
@@ -19548,6 +19597,9 @@ msgid ""
 "              Data must be numbers in plain ASCII text.~%~\n"
 "              '~a' is not a numeric value."
 msgstr ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
 
 #: plug-ins/sample-data-import.ny
 #, lisp-format
