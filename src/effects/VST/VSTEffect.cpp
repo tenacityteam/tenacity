@@ -327,7 +327,7 @@ ComponentInterfaceSymbol VSTEffectsModule::GetSymbol()
 
 VendorSymbol VSTEffectsModule::GetVendor()
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString VSTEffectsModule::GetVersion()
@@ -338,7 +338,7 @@ wxString VSTEffectsModule::GetVersion()
 
 TranslatableString VSTEffectsModule::GetDescription()
 {
-   return XO("Adds the ability to use VST effects in Audacity.");
+   return XO("Adds the ability to use VST effects in Tenacity.");
 }
 
 // ============================================================================
@@ -823,7 +823,7 @@ void VSTEffectOptionsDialog::PopulateOrExchange(ShuttleGui & S)
          {
             S.AddVariableText( XO(
 "As part of their processing, some VST effects must delay returning "
-"audio to Audacity. When not compensating for this delay, you will "
+"audio to Tenacity. When not compensating for this delay, you will "
 "notice that small silences have been inserted into the audio. "
 "Enabling this option will provide that compensation, but it may "
 "not work for all VST effects."),
@@ -953,11 +953,11 @@ intptr_t VSTEffect::AudioMaster(AEffect * effect,
          return mCurrentEffectID;
 
       case audioMasterGetVendorString:
-         strcpy((char *) ptr, "Audacity Team");    // Do not translate, max 64 + 1 for null terminator
+         strcpy((char *) ptr, "Tenacity Team");    // Do not translate, max 64 + 1 for null terminator
          return 1;
 
       case audioMasterGetProductString:
-         strcpy((char *) ptr, "Audacity");         // Do not translate, max 64 + 1 for null terminator
+         strcpy((char *) ptr, "Tenacity");         // Do not translate, max 64 + 1 for null terminator
          return 1;
 
       case audioMasterGetVendorVersion:
@@ -1857,7 +1857,7 @@ void VSTEffect::ExportPresets()
       {
         { XO("Standard VST bank file"), { wxT("fxb") }, true },
         { XO("Standard VST program file"), { wxT("fxp") }, true },
-        { XO("Audacity VST preset file"), { wxT("xml") }, true },
+        { XO("Tenacity VST preset file"), { wxT("xml") }, true },
       },
       wxFD_SAVE | wxFD_OVERWRITE_PROMPT | wxRESIZE_BORDER,
       NULL);

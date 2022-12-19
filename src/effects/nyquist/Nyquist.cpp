@@ -222,7 +222,7 @@ VendorSymbol NyquistEffect::GetVendor()
 {
    if (mIsPrompt)
    {
-      return XO("Audacity");
+      return XO("Tenacity");
    }
 
    return mAuthor;
@@ -2050,7 +2050,7 @@ bool NyquistEffect::Parse(
          // This is an unsupported plug-in version
          mOK = false;
          mInitError = XO(
-"This version of Audacity does not support Nyquist plug-in version %ld")
+"This version of Tenacity does not support Nyquist plug-in version %ld")
             .Format( v );
          return true;
       }

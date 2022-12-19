@@ -129,7 +129,7 @@ ComponentInterfaceSymbol LadspaEffectsModule::GetSymbol()
 
 VendorSymbol LadspaEffectsModule::GetVendor()
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString LadspaEffectsModule::GetVersion()
@@ -258,7 +258,7 @@ unsigned LadspaEffectsModule::DiscoverPluginsAtPath(
    // causes duplicate menu entries to appear.
    wxFileName ff(path);
    if (ff.GetName().CmpNoCase(wxT("vst-bridge")) == 0) {
-      errMsg = XO("Audacity no longer uses vst-bridge");
+      errMsg = XO("Tenacity no longer uses vst-bridge");
       return 0;
    }
 
@@ -442,7 +442,7 @@ void LadspaEffectOptionsDialog::PopulateOrExchange(ShuttleGui & S)
          {
             S.AddVariableText( XO(
 "As part of their processing, some LADSPA effects must delay returning "
-"audio to Audacity. When not compensating for this delay, you will "
+"audio to Tenacity. When not compensating for this delay, you will "
 "notice that small silences have been inserted into the audio. "
 "Enabling this option will provide that compensation, but it may "
 "not work for all LADSPA effects."),

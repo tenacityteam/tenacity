@@ -276,7 +276,7 @@ ComponentInterfaceSymbol AudioUnitEffectsModule::GetSymbol()
 
 VendorSymbol AudioUnitEffectsModule::GetVendor()
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString AudioUnitEffectsModule::GetVersion()
@@ -287,7 +287,7 @@ wxString AudioUnitEffectsModule::GetVersion()
 
 TranslatableString AudioUnitEffectsModule::GetDescription()
 {
-   return XO("Provides Audio Unit Effects support to Audacity");
+   return XO("Provides Audio Unit Effects support to Tenacity");
 }
 
 // ============================================================================
@@ -554,7 +554,7 @@ void AudioUnitEffectOptionsDialog::PopulateOrExchange(ShuttleGui & S)
          {
             S.AddVariableText(XO(
 "As part of their processing, some Audio Unit effects must delay returning "
-"audio to Audacity. When not compensating for this delay, you will "
+"audio to Tenacity. When not compensating for this delay, you will "
 "notice that small silences have been inserted into the audio. "
 "Enabling this option will provide that compensation, but it may "
 "not work for all Audio Unit effects."),

@@ -279,7 +279,7 @@ void LV2EffectSettingsDialog::PopulateOrExchange(ShuttleGui &S)
          {
             S.AddVariableText( XO(
 "As part of their processing, some LV2 effects must delay returning "
-"audio to Audacity. When not compensating for this delay, you will "
+"audio to Tenacity. When not compensating for this delay, you will "
 "notice that small silences have been inserted into the audio. "
 "Enabling this setting will provide that compensation, but it may "
 "not work for all LV2 effects."),
