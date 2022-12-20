@@ -23,6 +23,7 @@ and libvorbis examples, Monty <monty@xiph.org>
 #ifdef USE_LIBFLAC
 
 #include "Export.h"
+#include "ExportPlugin.h"
 
 #include <wx/ffile.h>
 #include <wx/log.h>

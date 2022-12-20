@@ -12,6 +12,7 @@
 #define __AUDACITY_EXPORT_MULTIPLE__
 
 #include "Export.h"
+#include "ExportPlugin.h"
 
 // Tenacity libraries
 #include <lib-files/wxFileNameWrapper.h> // member variable

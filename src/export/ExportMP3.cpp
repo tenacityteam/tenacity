@@ -61,6 +61,7 @@
 
 
 #include "ExportMP3.h"
+#include "ExportPlugin.h"
 
 #include <wx/app.h>
 #include <wx/defs.h>

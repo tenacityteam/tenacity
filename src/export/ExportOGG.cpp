@@ -20,6 +20,7 @@
 #ifdef USE_LIBVORBIS
 
 #include "Export.h"
+#include "ExportPlugin.h"
 
 #include <wx/log.h>
 #include <wx/slider.h>

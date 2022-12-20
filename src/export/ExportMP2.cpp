@@ -50,6 +50,7 @@
 #include <lib-project-rate/ProjectRate.h>
 
 #include "Export.h"
+#include "ExportPlugin.h"
 #include "../Mix.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../Tags.h"

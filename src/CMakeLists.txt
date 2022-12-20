@@ -522,6 +522,8 @@ list( APPEND SOURCES
 
       export/Export.cpp
       export/Export.h
+      export/ExportPlugin.cpp
+      export/ExportPlugin.h
 
       # Standard exporters
       export/ExportCL.cpp

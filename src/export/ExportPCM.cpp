@@ -38,6 +38,7 @@
 #include "../widgets/wxWidgetsBasicUI.h"
 
 #include "Export.h"
+#include "ExportPlugin.h"
 
 #ifdef USE_LIBID3TAG
    #include <id3tag.h>
