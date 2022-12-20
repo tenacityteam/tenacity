@@ -1594,6 +1594,9 @@ void TenacityApp::CleanupIPCResources()
 
       // Remove the shared memory segment.
       shm_unlink(TenacityApp::SharedMemName);
+
+      // Remove the failsafe memory segment
+      shm_unlink(TenacityApp::FailsafeSemName);
    }
 }
 
@@ -1695,6 +1698,27 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
          );
 
          return false;
+      }
+
+      // Bug #101: If Tenacity crashes, processes created after the crash will
+      // think a server process is running. In reality, this is not the case,
+      // and a time-out occurs.
+      // To fix this problem, we have a "failsafe" semaphore that can be
+      // leftover on the system if not cleaned up properly. If it exists,
+      // we'll actually be the server instead of a client.
+      mFailsafeSemaphore = sem_open(TenacityApp::FailsafeSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR);
+      if (!mFailsafeSemaphore)
+      {
+         AudacityMessageBox(
+            XO("Tenacity has detected that it previously crashed. "
+               "Please report any problems to https://codeberg.org/tenacityteam/tenacity/issues.\n\n"
+               "You should see the recovery dialog when Tenacity finishes starting up to recover any "
+               "unsaved projects"),
+            XO(""),
+            wxOK | wxICON_INFORMATION
+         );
+
+         isServer = true;
       }
    }
 

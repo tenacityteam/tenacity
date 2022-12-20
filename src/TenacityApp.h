@@ -116,9 +116,11 @@ class TenacityApp final : public wxApp {
    std::unique_ptr<wxSocketServer> mIPCServ;
 
    sem_t* mLockSemaphore;
+   sem_t* mFailsafeSemaphore;
 
-   static constexpr const char* LockSemName   = "/TenacityLock";
-   static constexpr const char* SharedMemName = "/TenacityMem";
+   static constexpr const char* LockSemName     = "/TenacityLock";
+   static constexpr const char* FailsafeSemName = "/TenacityFailsafe";
+   static constexpr const char* SharedMemName   = "/TenacityMem";
    bool mWasServer;
 
    /** @brief Cleans up ALL IPC resources created by any "server" processes.
