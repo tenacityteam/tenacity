@@ -12,6 +12,7 @@
 #include <memory>
 #include <wx/panel.h> // to inherit
 #include <wx/dialog.h> // to inherit
+#include <wx/filedlg.h> // to inherit
 
 // Tenacity libraries
 #include <lib-strings/Identifier.h>
@@ -157,11 +158,10 @@ public:
    }
 };
 
-#include "FileDialog/FileDialog.h"
 #include "FileNames.h" // for FileTypes
 
 class TENACITY_DLL_API FileDialogWrapper
-   : public wxTabTraversalWrapper<FileDialog>
+   : public wxTabTraversalWrapper<wxFileDialog>
 {
 public:
    FileDialogWrapper() {}
@@ -178,7 +178,7 @@ public:
       const wxSize& sz = wxDefaultSize,
       // Important:  default window name localizes!
       const TranslatableString& name = XO("File Dialog"))
-   : wxTabTraversalWrapper<FileDialog>(
+   : wxTabTraversalWrapper<wxFileDialog>(
       parent, message.Translation(), defaultDir, defaultFile,
       FileNames::FormatWildcard( fileTypes ),
       style, pos, sz, name.Translation() )
@@ -197,7 +197,7 @@ public:
       // Important:  default window name localizes!
       const TranslatableString& name = XO("File Dialog"))
    {
-      wxTabTraversalWrapper<FileDialog>::Create(
+      wxTabTraversalWrapper<wxFileDialog>::Create(
          parent, message.Translation(), defaultDir, defaultFile,
          FileNames::FormatWildcard( fileTypes ),
          style, pos, sz, name.Translation()

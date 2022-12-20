@@ -35,6 +35,7 @@
 #include <wx/dcclient.h>
 #include <wx/file.h>
 #include <wx/filectrl.h>
+#include <wx/filedlg.h>
 #include <wx/filename.h>
 #include <wx/simplebook.h>
 #include <wx/sizer.h>
@@ -48,8 +49,6 @@
 #include <wx/window.h>
 
 #include "sndfile.h"
-
-#include "widgets/FileDialog/FileDialog.h"
 
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
@@ -279,7 +278,6 @@ wxDEFINE_EVENT(AUDACITY_FILE_SUFFIX_EVENT, wxCommandEvent);
 BEGIN_EVENT_TABLE(Exporter, wxEvtHandler)
    EVT_FILECTRL_FILTERCHANGED(wxID_ANY, Exporter::OnFilterChanged)
    EVT_BUTTON(wxID_HELP, Exporter::OnHelp)
-   EVT_COMMAND(wxID_ANY, AUDACITY_FILE_SUFFIX_EVENT, Exporter::OnExtensionChanged)
 END_EVENT_TABLE()
 
 namespace {
@@ -360,11 +358,6 @@ Exporter::Exporter( TenacityProject &project )
 
 Exporter::~Exporter()
 {
-}
-
-void Exporter::OnExtensionChanged(wxCommandEvent &evt)
-{
-   mDialog->SetFileExtension(evt.GetString().BeforeFirst(' ').Lower());
 }
 
 void Exporter::OnHelp(wxCommandEvent& WXUNUSED(evt))
@@ -662,7 +655,6 @@ bool Exporter::GetFilename()
          mDialog = &fd;
          mDialog->PushEventHandler(this);
 
-         fd.SetUserPaneCreator(CreateUserPaneCallback, (wxUIntPtr) this);
          fd.SetFilterIndex(mFilterIndex);
 
          int result = fd.ShowModal();
@@ -1029,11 +1021,6 @@ void Exporter::OnFilterChanged(wxFileCtrlEvent & evt)
             auto mask = pPlugin->GetMask(j);
             fileTypes.insert( fileTypes.end(), mask.begin(), mask.end() );
          }
-      }
-
-      if (index < fileTypes.size())
-      {
-         mDialog->SetFileExtension(fileTypes[index].extensions[0].Lower());
       }
    }
 #endif
