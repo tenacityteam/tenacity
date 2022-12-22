@@ -6,9 +6,6 @@ def_vars()
 set(SOURCES
     CodeConversions.h
     CodeConversions.cpp
-
-    DateTimeConversions.h
-    DateTimeConversions.cpp
 )
 
 set( LIBRARIES
