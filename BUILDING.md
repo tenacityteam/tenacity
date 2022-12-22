@@ -245,3 +245,26 @@ has outdated libraries that do not build with Tenacity.
     suil libraries.
   * **VST2** (ON|OFF): VST2 plugin hosting support. No libraries are required.
     ON by default.
+
+### vcpkg Options
+
+These options apply to all platforms where vcpkg is available. They are
+available if you need further control over how Tenacity uses vcpkg if its usage
+is required.
+
+#### Settings a Custom Triplet
+
+You may override the default triplet used for building Tenacity. This may be
+useful for testing different triplets for different platforms.
+
+To override the default triplet, set the `TENACITY_TRIPLET_OVERRIDE` variable
+to the triplet you want to use. For example, if you're on Linux and want to
+use the `x64-linux-dynamic` triplet, you would export the following:
+
+```
+export TENACITY_TRIPLET_OVERRIDE=x64-linux-dynamic
+```
+
+Overriding triplets might be required in some cases. For example, using static
+builds of wxWidgets on Linux is not supported, but vcpkg builds static
+libraries by default. The `x64-linux-dynamic` triplet must be used instead.
