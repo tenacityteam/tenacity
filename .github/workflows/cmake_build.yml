@@ -31,8 +31,6 @@ jobs:
           compiler_cache_path: ~/.ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-linux
-          wxwidgets_git_url: https://github.com/wxWidgets/wxWidgets.git
-          wxwidgets_git_ref: v3.2.1
           WX_CONFIG: /home/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
         - name: macOS_Intel
@@ -43,8 +41,6 @@ jobs:
           compiler_cache_path: ~/Library/Caches/ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-osx-10.12min
-          wxwidgets_git_url: https://github.com/wxWidgets/wxWidgets.git
-          wxwidgets_git_ref: v3.2.1
           WX_CONFIG: /Users/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
         #- name: macOS_ARM
@@ -150,28 +146,6 @@ jobs:
           ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-${{ env.VCPKG_COMMIT }}-
           ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-
           ${{ matrix.config.name }}-
-
-    - name: "Set up wxwidgets cache"
-      uses: actions/cache@v3
-      id: wxwidgets-cache
-      if: runner.os != 'Windows'
-      with:
-        path: ${{ github.workspace }}/wxwidgets-install
-        key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ matrix.config.wxwidgets_git_url }}-${{ matrix.config.wxwidgets_git_ref }}
-
-    # FIXME: use wxWidgets from vcpkg for all OSes when bugs are fixed for Linux and macOS
-    # https://github.com/microsoft/vcpkg/pull/17111
-    - name: Build and install wxWidgets
-      if: steps.wxwidgets-cache.outputs.cache-hit != 'true' && runner.os != 'Windows'
-      run: |
-        # wxWidgets' build system does not find dependencies from vcpkg, so use its vendored Git submodules
-        git clone --recurse-submodules ${{ matrix.config.wxwidgets_git_url }}
-        cd wxWidgets
-        git checkout ${{ matrix.config.wxwidgets_git_ref }}
-        cmake -G "${{ matrix.config.generator }}" -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/wxwidgets-install \
-          -S . -B cmake_build
-        cmake --build cmake_build
-        cmake --install cmake_build
 
     - name: "Set up compiler cache"
       uses: actions/cache@v3
