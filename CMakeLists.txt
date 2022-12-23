@@ -65,54 +65,6 @@ else()
   message(STATUS "Searching for dependencies from system, not using vcpkg.")
 endif()
 
-find_package(Git)
-
-if(WIN32 OR APPLE)
-  option(VCPKG "Use vcpkg for dependencies" ON)
-else()
-  option(VCPKG "Use vcpkg for dependencies" OFF)
-endif()
-
-if(VCPKG)
-  set(ENV{VCPKG_DISABLE_METRICS} true)
-
-  if(VCPKG_ROOT)
-    message(STATUS "Using dependencies from vcpkg repository at ${VCPKG_ROOT}")
-    if(NOT EXISTS "${VCPKG_ROOT}/bootstrap-vcpkg.sh")
-      message(FATAL_ERROR "${VCPKG_ROOT} is not a vcpkg Git repository.")
-    endif()
-  else()
-    message(STATUS "Using dependencies from vcpkg Git submodule")
-    set(VCPKG_ROOT "${CMAKE_SOURCE_DIR}/vcpkg")
-
-    if(NOT EXISTS "${VCPKG_ROOT}/bootstrap-vcpkg.sh")
-      message(STATUS "Initializing vcpkg Git submodule")
-      execute_process(COMMAND ${GIT_EXECUTABLE} submodule init WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
-      execute_process(COMMAND ${GIT_EXECUTABLE} submodule update WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
-    endif()
-  endif()
-
-  if(NOT DEFINED VCPKG_OVERLAY_PORTS)
-    set(VCPKG_OVERLAY_PORTS "${VCPKG_ROOT}/overlay/ports")
-  endif()
-
-  if(NOT DEFINED VCPKG_OVERLAY_TRIPLETS)
-    set(VCPKG_OVERLAY_TRIPLETS "${VCPKG_ROOT}/overlay/triplets")
-  endif()
-
-  if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
-    if(APPLE)
-      set(VCPKG_TARGET_TRIPLET "x64-osx-10.12min")
-    endif()
-  elseif(DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
-    set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
-  endif()
-
-  set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
-else()
-  message(STATUS "Searching for dependencies from system, not using vcpkg.")
-endif()
-
 # If building with GNU compiler, then must be 4.9 or later.
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
     CMAKE_CXX_COMPILER_VERSION VERSION_LESS "4.9")
