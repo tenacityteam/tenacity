@@ -841,7 +841,8 @@ wxArrayString ProjectFileManager::ShowOpenDialog(FileNames::Operation op,
       dlog.GetPaths(selected);
 
       // Remember the directory
-      FileNames::UpdateDefaultPath(op, ::wxPathOnly(dlog.GetPath()));
+      // AK: use the directory in the first path.
+      FileNames::UpdateDefaultPath(op, ::wxPathOnly(selected[0]));
    }
 
    return selected;

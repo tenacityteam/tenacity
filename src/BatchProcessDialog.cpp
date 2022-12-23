@@ -59,7 +59,6 @@
 
 #include "theme/AllThemeResources.h"
 
-#include "widgets/FileDialog/FileDialog.h"
 #include "import/Import.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/AudacityTextEntryDialog.h"

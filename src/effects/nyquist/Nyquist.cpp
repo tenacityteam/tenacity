@@ -79,8 +79,6 @@ effects from this one class.
 #include "../../widgets/NumericTextCtrl.h"
 #include "../../widgets/ProgressDialog.h"
 
-#include "../../widgets/FileDialog/FileDialog.h"
-
 #ifndef nyx_returns_start_and_end_time
 #error You need to update lib-src/libnyquist
 #endif

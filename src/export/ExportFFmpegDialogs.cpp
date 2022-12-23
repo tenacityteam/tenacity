@@ -65,8 +65,6 @@
 #include <lib-xml/XMLFileWriter.h>
 #include <lib-xml/XMLWriter.h>
 
-#include "../widgets/FileDialog/FileDialog.h"
-
 #include "../Mix.h"
 #include "../Tags.h"
 #include "../widgets/AudacityMessageBox.h"

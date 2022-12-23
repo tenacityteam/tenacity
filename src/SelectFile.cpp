@@ -9,8 +9,9 @@
  **********************************************************************/
 
 #include "SelectFile.h"
-#include "widgets/FileDialog/FileDialog.h"
 #include "widgets/AudacityMessageBox.h"
+
+#include <wx/filedlg.h>
 
 // Tenacity libraries
 #include <lib-files/FileNames.h>
@@ -29,7 +30,7 @@ SelectFile(FileNames::Operation op,
       wxString filter;
       if ( !default_extension.empty() )
          filter = wxT("*.") + default_extension;
-      return FileSelector(
+      return wxFileSelector(
             message.Translation(), path, default_filename, filter,
             FormatWildcard( fileTypes ),
             flags, parent, wxDefaultCoord, wxDefaultCoord);
