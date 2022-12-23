@@ -164,8 +164,6 @@ class TENACITY_DLL_API FileDialogWrapper
    : public wxTabTraversalWrapper<wxFileDialog>
 {
 public:
-   FileDialogWrapper() {}
-
    // Constructor with no modal flag - the new convention.
    FileDialogWrapper(
       wxWindow *parent,
