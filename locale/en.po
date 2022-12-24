@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: audacity 3.0.4\n"
 "Report-Msgid-Bugs-To: avery98@pm.me\n"
 "POT-Creation-Date: 2021-07-20 03:55-0400\n"
-"PO-Revision-Date: 2022-12-24 17:39+0000\n"
+"PO-Revision-Date: 2022-12-24 18:00+0000\n"
 "Last-Translator: Avery King <avery98@pm.me>\n"
 "Language-Team: English <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/en/>\n"
@@ -2510,7 +2510,7 @@ msgstr "Specify New Filename:"
 #: src/FileNames.cpp
 #, c-format
 msgid "Directory %s does not have write permissions"
-msgstr ""
+msgstr "Directory %s does not have write permissions"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -3006,6 +3006,8 @@ msgid ""
 "Converted a 1.0 project file to the new format.\n"
 "The old file has been saved as '%s'"
 msgstr ""
+"Converted a 1.0 project file to the new format.\n"
+"The old file has been saved as '%s'"
 
 #: src/Legacy.cpp
 msgid "Opening Audacity Project"
@@ -3043,6 +3045,8 @@ msgid ""
 "There was a problem with your last action. If you think\n"
 "this is a bug, please tell us exactly where it occurred."
 msgstr ""
+"There was a problem with your last action. If you think\n"
+"this is a bug, please tell us exactly where it occurred."
 
 #: src/Menus.cpp
 msgid "Disallowed"
@@ -3188,7 +3192,7 @@ msgid ""
 "\n"
 "\n"
 "Only use modules from trusted sources"
-msgstr ""
+msgstr "Only use modules from trusted sources"
 
 #: src/ModuleManager.cpp src/TimerRecordDialog.cpp plug-ins/delay.ny
 #: plug-ins/equalabel.ny plug-ins/limiter.ny plug-ins/sample-data-export.ny
@@ -3353,7 +3357,7 @@ msgstr "Plug-in file is in use. Failed to overwrite"
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr ""
+msgstr "Failed to register: %s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -3456,7 +3460,7 @@ msgid ""
 "Enabling effects or commands:\n"
 "\n"
 "%s"
-msgstr ""
+msgstr "Enabling effects or commands: %s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -3464,14 +3468,14 @@ msgid ""
 "Enabling effect or command:\n"
 "\n"
 "%s"
-msgstr ""
+msgstr "Enabling effect or command: %s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr ""
+msgstr "Effect or Command at %s failed to register: %s"
 
 #: src/Printing.cpp
 msgid "There was a problem printing."
@@ -3499,6 +3503,8 @@ msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
 msgstr ""
+"Error opening sound device. Try changing the audio host, playback device and "
+"the project sample rate."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
@@ -3555,7 +3561,7 @@ msgstr ""
 
 #: src/ProjectAudioManager.cpp
 msgid "Turn off dropout detection"
-msgstr ""
+msgstr "Turn off dropout detection"
 
 #. i18n-hint: The audacity project file is XML and has 'tags' in it,
 #. rather like html tags <something>some stuff</something>.
@@ -3694,15 +3700,6 @@ msgstr "Replace missing audio with silence (permanent immediately)"
 #: src/ProjectFSCK.cpp
 msgid "Warning - Missing Audio Data Block File(s)"
 msgstr "Warning - Missing Audio Data Block File(s)"
-
-#: src/ProjectFSCK.cpp
-#, c-format
-msgid ""
-"Project check of \"%s\" folder \n"
-"found %d orphan block file(s). These files are \n"
-"unused by this project, but might belong to other projects. \n"
-"They are doing no harm and are small."
-msgstr ""
 
 #: src/ProjectFSCK.cpp
 msgid "Continue without deleting; ignore the extra files this session"
