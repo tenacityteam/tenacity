@@ -46,7 +46,8 @@ else # Linux & others
 
             # GitHub Actions
             libasound2-dev
-            libgtk2.0-dev
+            libflac++-dev
+	    libgtk2.0-dev
             libjack-dev
             gettext
             portaudio19-dev
