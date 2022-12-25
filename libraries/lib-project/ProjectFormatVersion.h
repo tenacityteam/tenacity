@@ -24,6 +24,7 @@ struct PROJECT_API ProjectFormatVersion final
    uint8_t Minor { 0 };
    uint8_t Revision { 0 };
    uint8_t ModLevel { 0 };
+   bool    IsTenacity { false };
 
    // Create ProjectFormatVersion from the uint32_t value 
    static ProjectFormatVersion FromPacked(uint32_t) noexcept;
@@ -38,7 +39,16 @@ PROJECT_API bool operator==(ProjectFormatVersion lhs, ProjectFormatVersion rhs) 
 PROJECT_API bool operator!=(ProjectFormatVersion lhs, ProjectFormatVersion rhs) noexcept;
 PROJECT_API bool operator<(ProjectFormatVersion lhs, ProjectFormatVersion rhs) noexcept;
 
-//! This constant represents the current version of Audacity
+/// This constant represents the current version of Tenacity.
 PROJECT_API extern const ProjectFormatVersion SupportedProjectFormatVersion;
-//! This is a helper constant for the "most compatible" project version which is the current MAJ.MIN.0.0
+
+/// This constant represents the maximum supported Audacity project version.
+PROJECT_API extern const ProjectFormatVersion SupportedAudacityProjectFormatVersion;
+
+/// This is a helper constant for the "most compatible" project version created
+/// by Tenacity with the value (MAJ, MIN, 0, 0).
 PROJECT_API extern const ProjectFormatVersion BaseProjectFormatVersion;
+
+/// This is a helper constant for the "most compatible" project version created
+/// by Audacity with the value {AUD_MAJ, AUD_MIN, 0, 0}.
+PROJECT_API extern const ProjectFormatVersion BaseAudacityProjectFormatVersion;

@@ -774,10 +774,12 @@ bool ProjectFileIO::CheckVersion()
 
    // Project file version is higher than ours. We will refuse to
    // process it since we can't trust anything about it.
-   if (SupportedProjectFormatVersion < version)
+   // TODO: use the SupportedProjectFormatVersion instead and make a way to
+   // clearly distinguish projects created by either Audacity or Tenacity.
+   if (SupportedAudacityProjectFormatVersion < version)
    {
       SetError(
-         XO("This project was created with a newer version of Audacity.\n\nYou will need to upgrade to open it.")
+         XO("This project was created with a version of Audacity that is not supported by Tenacity.\n\nYou will need to use that version to open it.")
       );
       return false;
    }
@@ -785,8 +787,8 @@ bool ProjectFileIO::CheckVersion()
       using namespace BasicUI;
       wxString currentVersionStr = wxString::Format("%u.%u", BaseProjectFormatVersion.Major, BaseProjectFormatVersion.Minor);
       bool updateVersion = (MessageBoxResult::Yes == ShowMessageBox(
-         XO("This project was created using an older Audacity version. "
-            "Once saved, the project can only be opened with Audacity version %s or newer.").Format(currentVersionStr),
+         XO("This project was created using an older Tenacity version. "
+            "Once saved, the project can only be opened with Tenacity version %s or newer.").Format(currentVersionStr),
          MessageBoxOptions{}
             .Caption(XO("Project update required"))));
    }
