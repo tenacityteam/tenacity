@@ -50,7 +50,9 @@ bool ProjectFormatVersion::IsValid() const noexcept
 }
 
 const ProjectFormatVersion SupportedProjectFormatVersion = {
-   AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION, AUDACITY_MODLEVEL
+   AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION, AUDACITY_MODLEVEL, true
 };
 
-const ProjectFormatVersion BaseProjectFormatVersion = { 3, 0, 0, 0 };
+const ProjectFormatVersion SupportedAudacityProjectFormatVersion = { 3, 1, 0, 0, false };
+const ProjectFormatVersion BaseProjectFormatVersion              = { 1, 3, 0, 0, true  };
+const ProjectFormatVersion BaseAudacityProjectFormatVersion      = { 3, 0, 0, 0, false };
