@@ -41,16 +41,6 @@ else()
    file( TOUCH "${_PRVDIR}/RevisionIdent.h" )
 endif()
 
-# Handle Audio Units option
-if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   option(
-      use_audio_units
-      "Use Audio Units plug-in support [on, off]"
-      ON
-   )
-   set( USE_AUDIO_UNITS ${use_audio_units} CACHE INTERNAL "" )
-endif()
-
 # Detect, which version of FileDialog to use for
 # We always assume that GTK is used on platforms other than Windows and macOS,
 # as there is no other implementation avalaible now
@@ -61,23 +51,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
 else()
    set ( wxIS_GTK on)
 endif()
-
-# Handle Ladspa option
-option(
-   use_ladspa
-   "Use LADSPA plugin support [on, off]"
-   ON
-)
-
-set( USE_LADSPA ${use_ladspa} CACHE INTERNAL "" )
-
-# Handle VST option
-option(
-   use_vst
-   "Use VST2 plug-in support [on, off]"
-   ON
-)
-set( USE_VST ${use_vst} CACHE INTERNAL "" )
 
 #
 #

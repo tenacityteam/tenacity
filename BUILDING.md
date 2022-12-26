@@ -240,8 +240,10 @@ has outdated libraries that do not build with Tenacity.
     SoundTouch library.
   * **FFMPEG** (ON|OFF): Support for a wide variety of codecs with FFmpeg.
     Requires FFmpeg libraries.
-  * **VAMP** (ON|OFF): VAMP plugin hosting support. Requires VAMP host SDK.
+  * **AUDIO_UNITS** (ON|OFF): Apple Audio Units plugin support. _macOS only._
+  * **LADSPA** (ON|OFF): LADSPA plugin hosting support.
   * **LV2** (ON|OFF): LV2 plugin hosting support. Requires LV2, lilv, and
+  * **VAMP** (ON|OFF): VAMP plugin hosting support. Requires VAMP host SDK.
     suil libraries.
   * **VST2** (ON|OFF): VST2 plugin hosting support. No libraries are required.
     ON by default.
