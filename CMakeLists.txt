@@ -717,6 +717,7 @@ if(VST2)
     set(USE_VST2 ON)
     message(STATUS "VST2 plugin host support enabled.")
 else()
+    set(USE_VST2 OFF)
     message(STATUS "VST2 plugin host support disabled.")
 endif()
 
