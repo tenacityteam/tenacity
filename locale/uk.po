@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: audacity 3.0.3\n"
 "Report-Msgid-Bugs-To: avery98@pm.me\n"
 "POT-Creation-Date: 2021-07-15 12:48-0400\n"
-"PO-Revision-Date: 2022-12-24 05:47+0000\n"
+"PO-Revision-Date: 2022-12-28 15:56+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/uk/>\n"
@@ -135,7 +135,7 @@ msgstr "&Перейти до"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Select &Font..."
-msgstr "Вибрати &шрифт…"
+msgstr "Вибрати &шрифт"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Split &Vertically"
@@ -1922,7 +1922,7 @@ msgstr "Очікувана тривалість — %lld, тривалість �
 #: src/Benchmark.cpp
 #, c-format
 msgid "Performing %d edits...\n"
-msgstr "Виконуємо %d редагувань…\n"
+msgstr "Виконуємо %d редагувань…"
 
 #: src/Benchmark.cpp
 #, c-format
@@ -3576,7 +3576,6 @@ msgid ""
 "%s"
 msgstr ""
 "Вмикаємо ефекти або команди:\n"
-"\n"
 "%s"
 
 #: src/PluginManager.cpp
@@ -3587,7 +3586,6 @@ msgid ""
 "%s"
 msgstr ""
 "Вмикаємо ефект або команду:\n"
-"\n"
 "%s"
 
 #: src/PluginManager.cpp
@@ -3595,9 +3593,7 @@ msgstr ""
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr ""
-"Не вдалося зареєструвати ефект або команду з %s:\n"
-"%s"
+msgstr "Не вдалося зареєструвати ефект або команду з %s: %s"
 
 #: src/PluginManager.cpp
 #, c-format
@@ -3617,9 +3613,7 @@ msgstr "Файл плаґіну вже використовується. Не в
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr ""
-"Не вдалося зареєструвати:\n"
-"%s"
+msgstr "Не вдалося зареєструвати: %s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -20857,3 +20851,15 @@ msgstr "%s %s 1999-%s %s учасники"
 #, c-format
 msgid "[Project %02i] Audacity "
 msgstr "[Проєкт %02i] Tenacity "
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s, Tenacity developer"
+msgstr "%s, розробник Tenacity"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s, lead Tenacity developer"
+msgstr "%s, головний розробник Tenacity"
