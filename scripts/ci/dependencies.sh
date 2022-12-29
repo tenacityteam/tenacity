@@ -40,20 +40,39 @@ else # Linux & others
             # Dependencies
             debhelper-compat
             gettext
-            libasound2-dev
-            libgtk-3-dev
-            libsuil-dev
-
-            # GitHub Actions
-            libasound2-dev
+            libavcodec-dev
+            libavformat-dev
+            libavutil-dev
             libflac++-dev
-	    libgtk2.0-dev
+            libglib2.0-dev
+            libgtk-3-dev
+            libid3tag0-dev
             libjack-dev
-            gettext
+            liblilv-dev
+            libmad0-dev
+            libmp3lame-dev
+            libogg-dev
+            libpng-dev
             portaudio19-dev
-            python3-pip
-            gettext
+            libportmidi-dev
+            libportsmf-dev
+            libserd-dev
+            libsndfile1-dev
+            libsord-dev
+            libsoundtouch-dev
+            libsoxr-dev
+            libsuil-dev
+            libtwolame-dev
+            vamp-plugin-sdk
+            libvorbis-dev
+            lv2-dev
+            zlib1g-dev
+            libjpeg-dev
+            libtiff-dev
+            liblzma-dev
+            libsqlite3-dev
         )
+
         sudo apt-get update -y
         sudo apt-get install -y --no-install-recommends "${apt_packages[@]}"
     else
