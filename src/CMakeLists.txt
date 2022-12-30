@@ -536,6 +536,8 @@ list( APPEND SOURCES
       export/Export.h
       export/ExportPlugin.cpp
       export/ExportPlugin.h
+      export/ExportDialog.cpp
+      export/ExportDialog.h
 
       # Standard exporters
       export/ExportCL.cpp

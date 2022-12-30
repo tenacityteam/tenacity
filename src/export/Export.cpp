@@ -56,6 +56,7 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-preferences/Prefs.h>
 
+#include "ExportDialog.h"
 #include "../theme/AllThemeResources.h"
 #include "Mix.h"
 #include "../prefs/ImportExportPrefs.h"
@@ -404,6 +405,8 @@ bool Exporter::ExamineTracks()
    return true;
 }
 
+#include <wx/log.h>
+
 bool Exporter::GetFilename()
 {
    mFormat = -1;
@@ -445,6 +448,7 @@ bool Exporter::GetFilename()
    mFilename.SetName(mProject->GetProjectName());
    if (mFilename.GetName().empty())
       mFilename.SetName(_("untitled"));
+   int index = 0;
    while (true) {
       // Must reset each iteration
       mBook = NULL;
@@ -453,21 +457,21 @@ bool Exporter::GetFilename()
          auto useFileName = mFilename;
          if (!useFileName.HasExt())
             useFileName.SetExt(defext);
-         FileDialogWrapper fd( ProjectWindow::Find( mProject ),
-                       mFileDialogTitle,
-                       mFilename.GetPath(),
-                       useFileName.GetFullName(),
-                       fileTypes,
-                       wxFD_SAVE | wxRESIZE_BORDER);
+
+         FileDialogWrapper fd(
+            ProjectWindow::Find( mProject ),
+            mFileDialogTitle,
+            mFilename.GetPath(),
+            useFileName.GetFullName(),
+            fileTypes,
+            wxFD_SAVE | wxRESIZE_BORDER
+         );
+
          mDialog = &fd;
-         mDialog->PushEventHandler(this);
 
          fd.SetFilterIndex(mFilterIndex);
 
          int result = fd.ShowModal();
-
-         mDialog->PopEventHandler();
-
          if (result == wxID_CANCEL) {
             return false;
          }
@@ -553,7 +557,7 @@ bool Exporter::GetFilename()
          continue;
       }
 
-// For Mac, it's handled by the FileDialog
+// FIXME: is this already handled by wxFileDialog?
 #if !defined(__WXMAC__)
       if (mFilename.FileExists()) {
          auto prompt = XO("A file named \"%s\" already exists. Replace?")
@@ -568,6 +572,15 @@ bool Exporter::GetFilename()
          }
       }
 #endif
+
+      ExportOptionsDialog optionsDialog(mPlugins);
+      optionsDialog.SetIndex(mFilterIndex);
+      int result = optionsDialog.ShowModal();
+
+      if (result == wxID_CANCEL)
+      {
+         return false;
+      }
 
       break;
    }
