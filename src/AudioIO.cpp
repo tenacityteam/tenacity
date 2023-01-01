@@ -1040,11 +1040,9 @@ AudioIO::AudioIO()
 
    // This exception is thrown because of casting in the callback 
    // functions where we cast a tempFloats buffer to a (short*) buffer.
-   // We have to ASSERT in the GUI thread, if we are to see it properly.
-   if constexpr ( !(sizeof(short) <= sizeof(float)) )
-   {
-      throw std::runtime_error("sizeof(short) is not less than sizeof(float)");
-   }
+   // We assert this at compile time, although we previously asserted in the
+   // GUI (afterwards throwing exceptions).
+   static_assert(sizeof(short) <= sizeof(float), "sizeof(short) is not less than sizeof(float)");
 
    mAudioThreadShouldCallFillBuffersOnce = false;
    mAudioThreadFillBuffersLoopRunning = false;
