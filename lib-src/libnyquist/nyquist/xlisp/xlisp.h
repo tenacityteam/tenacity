@@ -27,6 +27,10 @@ extern "C" {
 #include <ctype.h>
 #include <setjmp.h>
 
+#ifdef __HAIKU__
+#include <stdint.h>
+#endif
+
 /* NNODES	number of nodes to allocate in each request (1000) */
 /* EDEPTH	evaluation stack depth (2000) */
 /* ADEPTH	argument stack depth (1000) */
@@ -186,6 +190,10 @@ extern long ptrtoabs();
 #else
 #define XL_BIG_ENDIAN
 #endif
+#endif
+
+#ifdef __HAIKU__
+#define XL_LITTLE_ENDIAN
 #endif
 
 /* default important definitions */
