@@ -554,8 +554,11 @@ list( APPEND SOURCES
 
       ffmpeg/FFmpeg.h
       ffmpeg/FFmpeg.cpp
-      ffmpeg/FFmpegNotFoundDialog.h
-      ffmpeg/FFmpegNotFoundDialog.cpp
+
+      $<$<BOOL:${USE_FFMPEG}>:
+         ffmpeg/FFmpegNotFoundDialog.h
+         ffmpeg/FFmpegNotFoundDialog.cpp
+      >
 
       # Import
 

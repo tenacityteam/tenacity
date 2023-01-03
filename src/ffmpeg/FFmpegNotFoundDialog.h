@@ -11,10 +11,8 @@
 
 *******************************************************************************/
 
-#ifndef __SAUCEDACITY_FFMPEGNOTFOUNDDIALOG_H__
-#define __SAUCEDACITY_FFMPEGNOTFOUNDDIALOG_H__
-
-#ifdef USE_FFMPEG
+#ifndef __TENACITY_FFMPEGNOTFOUNDDIALOG_H__
+#define __TENACITY_FFMPEGNOTFOUNDDIALOG_H__
 
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/wxPanelWrapper.h"
@@ -36,7 +34,5 @@ private:
 
    DECLARE_EVENT_TABLE()
 };
-
-#endif // end USE_FFMPEG
 
 #endif // end __SAUCEDACITY_FFMPEGNOTFOUNDDIALOG_H__
