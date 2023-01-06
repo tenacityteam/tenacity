@@ -160,6 +160,7 @@ public:
 
    void OnMenu(wxCommandEvent & event);
    void OnUpdateUI(wxUpdateUIEvent & event);
+   void OnSysColourChanged(wxSysColourChangedEvent& event);
 
    void MacShowUndockedToolbars(bool show);
    void OnActivate(wxActivateEvent & event);

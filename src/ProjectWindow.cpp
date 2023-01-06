@@ -27,6 +27,8 @@ Paul Licameli split from TenacityProject.cpp
 #include "WaveTrack.h"
 #include "prefs/ThemePrefs.h"
 #include "prefs/TracksPrefs.h"
+#include "theme/Theme.h"
+#include "theme/ThemeFlags.h"
 #include "toolbars/ToolManager.h"
 #include "tracks/ui/Scrubbing.h"
 #include "tracks/ui/TrackView.h"
@@ -37,6 +39,7 @@ Paul Licameli split from TenacityProject.cpp
 #include <wx/display.h>
 #include <wx/scrolbar.h>
 #include <wx/sizer.h>
+#include <wx/settings.h>
 
 // Returns the screen containing a rectangle, or -1 if none does.
 int ScreenContaining( wxRect & r ){
@@ -652,7 +655,39 @@ BEGIN_EVENT_TABLE(ProjectWindow, wxFrame)
    EVT_UPDATE_UI(1, ProjectWindow::OnUpdateUI)
    EVT_COMMAND(wxID_ANY, EVT_TOOLBAR_UPDATED, ProjectWindow::OnToolBarUpdate)
    //mchinen:multithreaded calls - may not be threadsafe with CommandEvent: may have to change.
+
+   EVT_SYS_COLOUR_CHANGED(ProjectWindow::OnSysColourChanged)
 END_EVENT_TABLE()
+
+#include <iostream>
+
+void ProjectWindow::OnSysColourChanged(wxSysColourChangedEvent& event)
+{
+   bool dynamicThemingEnabled = true;
+   gPrefs->Read("/GUI/DynamicTheming", &dynamicThemingEnabled);
+
+   if (!dynamicThemingEnabled)
+   {
+      std::cout << "Dynamic theming disabled" << std::endl;
+      event.Skip();
+      return;
+   }
+
+   auto sysAppearance = wxSystemSettings::GetAppearance();
+
+   // Note: system appearance overrides the user's theme preference.
+   if (sysAppearance.IsDark())
+   {
+      GUITheme().Write("dark");
+      theTheme.LoadTheme(GUITheme().Read());
+   } else
+   {
+      GUITheme().Write("light");
+      theTheme.LoadTheme(GUITheme().Read());
+   }
+
+   ThemePrefs::ApplyUpdatedImages();
+}
 
 void ProjectWindow::ApplyUpdatedTheme()
 {
