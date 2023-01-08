@@ -201,6 +201,8 @@ jobs:
       env:
         # Required for linuxdeploy to find wxWidgets libraries installed without a package manager
         WXWIDGETS_LD_LIBRARY_PATH: ${{ github.workspace }}/wxwidgets-install/lib
+        # VCPKG_LIB_PATH is the location that vcpkg stores its libs once built
+        VCPKG_LIB_PATH: ${{ github.workspace }}/build/vcpkg-install/x64-linux-dynamic/lib
 
     - name: Upload package artifact
       uses: actions/upload-artifact@v3
