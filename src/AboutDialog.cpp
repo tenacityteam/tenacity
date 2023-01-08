@@ -53,6 +53,8 @@ hold information about one contributor to Audacity.
 
 #include "../images/TenacityLogoWithName.xpm"
 
+#include "RevisionIdent.h"
+
 #ifndef REV_TIME
 #define REV_TIME "unknown date and time"
 #endif
