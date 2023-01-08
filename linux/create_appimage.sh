@@ -69,9 +69,6 @@ if create_path "linuxdeploy"; then
 (
     cd "linuxdeploy"
     download_linuxdeploy_component linuxdeploy continuous
-    echo "=============================="
-    echo "DOWNLOADING GTK PLUGIN"
-    echo "=============================="
     wget -q https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
     chmod +x linuxdeploy-plugin-gtk.sh
 )
