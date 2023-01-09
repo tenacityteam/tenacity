@@ -17,13 +17,14 @@
 # A-d-r-i <a-d-r-i@outlook.fr>, 2022.
 # Avery King <avery98@pm.me>, 2022.
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2022.
+# Elveli <legros.victor@hotmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: audacity 3.0.3\n"
 "Report-Msgid-Bugs-To: avery98@pm.me\n"
 "POT-Creation-Date: 2021-07-15 12:48-0400\n"
-"PO-Revision-Date: 2022-12-28 15:56+0000\n"
-"Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
+"PO-Revision-Date: 2023-01-09 11:48+0000\n"
+"Last-Translator: Elveli <legros.victor@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "fr/>\n"
 "Language: fr\n"
@@ -57,7 +58,7 @@ msgstr "Système"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "1st Experimental Command..."
-msgstr "1ère commande expérimentale…"
+msgstr "1ère commande expérimental"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "2nd Experimental Command"
@@ -134,8 +135,9 @@ msgstr "Aller à"
 
 # trebmuh to check (accélérateur + "select" à traduire ou pas ?)
 #: modules/mod-nyq-bench/NyqBench.cpp
+#, fuzzy
 msgid "Select &Font..."
-msgstr "&Police…"
+msgstr "Sélectionner &Font"
 
 # trebmuh to check ("split" à traduire ou pas ?)
 #: modules/mod-nyq-bench/NyqBench.cpp
@@ -554,7 +556,9 @@ msgstr ""
 "Si ce travail de traduction vous est utile, veuillez considérer un don.\n"
 "Voir https://liberapay.com/trebmuh/ pour cela.\n"
 "\n"
-"Précédent traducteur en français : Christian Brochec."
+"Précédent traducteur en français : Christian Brochec.\n"
+"\n"
+"Contributeur : elveli,"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -1990,7 +1994,7 @@ msgstr ""
 
 #: src/Benchmark.cpp
 msgid "TEST FAILED!!!\n"
-msgstr "TEST ÉCHOUÉ !!!\n"
+msgstr "TEST ÉCHOUÉ !\n"
 
 # trebmuh to check (vérifier dans un contexte graphique)
 #: src/Benchmark.cpp
@@ -2109,8 +2113,8 @@ msgid ""
 msgstr ""
 "Le disque est plein.\n"
 "%s\n"
-"Pour obtenir des conseils sur la manière de libérer de l’espace,\n"
-"cliquez sur le bouton d’aide."
+"Pour obtenir des conseils sur la manière de libérer de l’espace, cliquez sur "
+"le bouton d’aide."
 
 #: src/DBConnection.cpp
 #, c-format
@@ -2433,7 +2437,7 @@ msgstr "Erreur de fichier"
 #: src/FileFormats.cpp
 #, c-format
 msgid "Error (file may not have been written): %s"
-msgstr "Erreur (le fichier pourrait ne pas avoir été écrit) : %hs"
+msgstr "Erreur (le fichier pourrait ne pas avoir été écrit) : %s"
 
 # trebmuh to check (accélérateur)
 #: src/FileFormats.cpp
@@ -2504,7 +2508,7 @@ msgstr "Spécifier un nouveau nom de fichier :"
 #: src/FileNames.cpp
 #, c-format
 msgid "Directory %s does not have write permissions"
-msgstr "Le répertoire %s n’existe pas. Le créer ?"
+msgstr "Le répertoire %s n’a pas de droit d'écriture."
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -2771,7 +2775,10 @@ msgstr "Voici nos différentes méthodes d’assistance :"
 #. i18n-hint: Preserve '[[help:Quick_Help|' as it's the name of a link.
 #: src/HelpText.cpp
 msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
-msgstr " [[help:Quick_Help|Aide rapide (en anglais)]] - si non-installé localement, [[https://manual.audacityteam.org/quick_help.html|voir en ligne (en anglais également)]]"
+msgstr ""
+"[[help:Quick_Help|Aide rapide (en anglais)]] - si non installé localement, "
+"[[https://manual.audacityteam.org/quick_help.html|voir en ligne (en anglais "
+"également)]]"
 
 #. i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.
 #: src/HelpText.cpp
@@ -2879,8 +2886,9 @@ msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Audacity team at https://forum.audacityteam.org/."
 msgstr ""
-"Erreur interne à %s ligne %d.\n"
-"Veuillez en informer l’équipe d’Audacity à https://forum.audacityteam.org/ (en anglais)."
+"Erreur interne dans %s à %s ligne %d.\n"
+"Veuillez en informer l’équipe de Tenacity à https://tenacityaudio.org/ (en "
+"anglais)."
 
 #: src/InconsistencyException.h
 msgid "Internal Error"
@@ -3039,7 +3047,7 @@ msgid ""
 "this is a bug, please tell us exactly where it occurred."
 msgstr ""
 "Il y a eu un problème lors de votre dernière action. Si vous pensez\n"
-"que c’est un bogue, merci de de décrire ce qui l’a produit."
+"que c’est un bug, merci de décrire ce qui l’a produit."
 
 # trebmuh to check (vérifier dans un contexte graphique)
 #: src/Menus.cpp
@@ -4127,7 +4135,7 @@ msgstr "Le projet dépasse la taille maximale de 4 Go lors de l’écriture sur 
 #: src/ProjectFileManager.cpp src/commands/ScreenshotCommand.cpp
 #, c-format
 msgid "Saved %s"
-msgstr " %s enregistré"
+msgstr "%s enregistré"
 
 #: src/ProjectFileManager.cpp
 msgid ""
@@ -4269,7 +4277,7 @@ msgstr "Récupérer"
 #: src/ProjectFileManager.cpp
 #, c-format
 msgid "Imported '%s'"
-msgstr " '%s' importé"
+msgstr "'%s' importé"
 
 #: src/ProjectFileManager.cpp
 msgid "Import"
@@ -11677,9 +11685,10 @@ msgid ""
 "\n"
 "%sFor uncompressed files, also try File > Import > Raw Data."
 msgstr ""
-"Audacity n’a pas reconnu le type de ce fichier '%s'.\n"
+"Tenacity n’a pas reconnu le type de ce fichier '%s'.\n"
 "\n"
-"%sPour les fichiers non-compressés, essayez Fichier > Importer > Donnée brutes (Raw)…"
+"%sPour les fichiers non compressés, essayez Fichier > Importer > Donnée "
+"brutes (Raw)."
 
 #: src/import/Import.cpp
 msgid ""
@@ -20227,3 +20236,15 @@ msgstr "Bartlett"
 #: src/FFT.cpp
 msgid "Hann"
 msgstr "Hann"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s, Tenacity developer"
+msgstr "%s, développeur de Tenacity"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s, lead Tenacity developer"
+msgstr "%s, développeur principal de Tenacity"
