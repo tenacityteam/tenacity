@@ -28,7 +28,7 @@ TENACITY_DLL_API std::weak_ptr<TenacityProject> GetActiveProject()
 
 void SetActiveProject(TenacityProject * project)
 {
-   auto pProject = project ? nullptr : project->shared_from_this();
+   auto pProject = project ? project->shared_from_this() : nullptr;
    if ( gActiveProject.lock() != pProject ) {
       gActiveProject = pProject;
       KeyboardCapture::Capture( nullptr );
