@@ -65,11 +65,11 @@ static void FindFilesInPathList(const wxString & pattern,
 static bool TranslationExists(const FilePaths &pathList, wxString code)
 {
    FilePaths results;
-   FindFilesInPathList(code + L"/audacity.mo", pathList, results);
+   FindFilesInPathList(code + L"/tenacity.mo", pathList, results);
 #if defined(__WXMAC__)
-   FindFilesInPathList(code + L".lproj/audacity.mo", pathList, results);
+   FindFilesInPathList(code + L".lproj/tenacity.mo", pathList, results);
 #endif
-   FindFilesInPathList(code + L"/LC_MESSAGES/audacity.mo", pathList, results);
+   FindFilesInPathList(code + L"/LC_MESSAGES/tenacity.mo", pathList, results);
    return (results.size() > 0);
 }
 
@@ -364,7 +364,7 @@ wxString SetLang( const FilePaths &pathList, const wxString & lang )
    sLocale->AddCatalog(wxT("wxstd"));
 
    // Must match TranslationExists() in Languages.cpp
-   sLocale->AddCatalog("audacity");
+   sLocale->AddCatalog("tenacity");
 
    // Initialize internationalisation (number formats etc.)
    //
