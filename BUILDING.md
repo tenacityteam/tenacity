@@ -191,7 +191,7 @@ cmake --build build
 Run Tenacity:
 
 ```
-build/bin/Debug/aucedacity
+build/bin/Debug/tenacity
 ```
 
 Optionally, install Tenacity:
