@@ -217,7 +217,11 @@ void GetLanguages( FilePaths pathList,
 
 #if defined(__WXGTK__)
    {
+#ifdef __HAIKU__
+      wxFileName pathNorm{ wxStandardPaths::Get().GetInstallPrefix() + L"/data/locale" };
+#else
       wxFileName pathNorm{ wxStandardPaths::Get().GetInstallPrefix() + L"/share/locale" };
+#endif
       pathNorm.Normalize();
       const wxString newPath{ pathNorm.GetFullPath() };
       if (pathList.end() ==

@@ -975,6 +975,16 @@ bool TenacityApp::OnInit()
 
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
       tenacityPathList);
+
+#ifdef __HAIKU__
+   FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/data/%s", wxT(APP_NAME)),
+      tenacityPathList);
+   FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/data/doc/%s", wxT(APP_NAME)),
+      tenacityPathList);
+
+   FileNames::AddUniquePathToPathList(installPrefix + L"/data/locale",
+      tenacityPathList);
+#else
    FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/%s", wxT(APP_NAME)),
       tenacityPathList);
    FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/doc/%s", wxT(APP_NAME)),
@@ -982,6 +992,7 @@ bool TenacityApp::OnInit()
 
    FileNames::AddUniquePathToPathList(installPrefix + L"/share/locale",
       tenacityPathList);
+#endif
 
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("./locale")),
       tenacityPathList);
