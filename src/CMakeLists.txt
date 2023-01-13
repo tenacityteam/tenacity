@@ -1191,6 +1191,8 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    set_target_property_all( "Wrapper" RUNTIME_OUTPUT_DIRECTORY "${_EXEDIR}" )
    organize_source( "${WRAPPER_ROOT}" "mac" "${WRAPPER_SOURCES}" )
 
+elseif( CMAKE_SYSTEM_NAME MATCHES "Haiku" )
+   set_target_property_all( ${TARGET} RUNTIME_OUTPUT_DIRECTORY "${_DEST}" )
 else()
    set_target_property_all( ${TARGET} RUNTIME_OUTPUT_DIRECTORY "${_DEST}" )
 
@@ -1322,6 +1324,16 @@ else()
       install( TARGETS ${TARGET}
                DESTINATION "."
                RESOURCE DESTINATION "${_APPDIR}/Resources" )
+   elseif( CMAKE_SYSTEM_NAME MATCHES "Haiku" )
+      install( TARGETS ${TARGET} RUNTIME )
+      install( DIRECTORY "${_DEST}/${_LIBDIR}/"
+               DESTINATION "${_LIBDIR}"
+               USE_SOURCE_PERMISSIONS
+               FILES_MATCHING PATTERN "*.so*" )
+      install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
+               DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
+      install( FILES "${topdir}/presets/EQDefaultCurves.xml"
+               DESTINATION "${_PKGDATA}" )
    else()
       install( TARGETS ${TARGET} RUNTIME )
       install( DIRECTORY "${_DEST}/${_LIBDIR}/"
