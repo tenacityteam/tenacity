@@ -57,7 +57,7 @@
 #include <lib-strings/Internat.h>
 #include <lib-utility/MemoryX.h>
 
-// Include the ImageCache...
+///////////// ImageCache Includes /////////////////////////////////////////////
 
 static const unsigned char LightImageCacheAsData[] = {
 #include "LightThemeAsCeeCode.h"
@@ -82,6 +82,46 @@ static const unsigned char AudacityClassicImageCacheAsData[] = {
 static const unsigned char HiContrastImageCacheAsData[] = {
 #include "HiContrastThemeAsCeeCode.h"
 };
+
+static const unsigned char ProToolsImageCacheAsData[] = {
+#include "ProToolsThemeAsCeeCode.h"
+};
+
+// Audacium light themes
+static const unsigned char AudaciumLightBlueImageCacheAsData[] = {
+#include "AudaciumLightBlueThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumLightOrangeImageCacheAsData[] = {
+#include "AudaciumLightOrangeThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumLightPinkImageCacheAsData[] = {
+#include "AudaciumLightPinkThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumLightGreenImageCacheAsData[] = {
+#include "AudaciumLightGreenThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumLightPurpleImageCacheAsData[] = {
+#include "AudaciumLightPurpleThemeAsCeeCode.h"
+};
+
+// Audacium dark themes
+static const unsigned char AudaciumDarkBlueImageCacheAsData[] = {
+#include "AudaciumDarkBlueThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumDarkOrangeImageCacheAsData[] = {
+#include "AudaciumDarkOrangeThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumDarkPinkImageCacheAsData[] = {
+#include "AudaciumDarkPinkThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumDarkGreenImageCacheAsData[] = {
+#include "AudaciumDarkGreenThemeAsCeeCode.h"
+};
+static const unsigned char AudaciumDarkPurpleImageCacheAsData[] = {
+#include "AudaciumDarkPurpleThemeAsCeeCode.h"
+};
+
+///////////////////////////////////////////////////////////////////////////////
 
 // theTheme is a global variable.
 TENACITY_DLL_API Theme theTheme;
@@ -598,12 +638,22 @@ teThemeType ThemeBase::GetFallbackThemeType()
 teThemeType ThemeBase::ThemeTypeOfTypeName( const wxString & Name )
 {
    static const wxArrayStringEx aThemes{
-     // "classic",
       "light",
       "dark",
       "saucedacity",
       "audacity",
       "audacity-classic",
+      "pro-tools",
+      "audacium-blue",
+      "audacium-orange",
+      "audacium-pink",
+      "audacium-green",
+      "audacium-purple",
+      "audacium-dark-blue",
+      "audacium-dark-orange",
+      "audacium-dark-pink",
+      "audacium-dark-green",
+      "audacium-dark-purple",
       "high-contrast",
       "custom",
    };
@@ -687,6 +737,61 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
             ImageSize = sizeof(AudacityClassicImageCacheAsData);
             pImage = AudacityClassicImageCacheAsData;
             break;
+
+         case themeProTools:
+            ImageSize = sizeof(ProToolsImageCacheAsData);
+            pImage = ProToolsImageCacheAsData;
+            break;
+
+         case themeAudaciumLightBlue:
+             ImageSize = sizeof(AudaciumLightBlueImageCacheAsData);
+             pImage = AudaciumLightBlueImageCacheAsData;
+             break;
+
+         case themeAudaciumLightOrange:
+             ImageSize = sizeof(AudaciumLightOrangeImageCacheAsData);
+             pImage = AudaciumLightOrangeImageCacheAsData;
+             break;
+
+         case themeAudaciumLightPink:
+             ImageSize = sizeof(AudaciumLightPinkImageCacheAsData);
+             pImage = AudaciumLightPinkImageCacheAsData;
+             break;
+
+         case themeAudaciumLightGreen:
+             ImageSize = sizeof(AudaciumLightGreenImageCacheAsData);
+             pImage = AudaciumLightGreenImageCacheAsData;
+             break;
+
+         case themeAudaciumLightPurple:
+             ImageSize = sizeof(AudaciumLightPurpleImageCacheAsData);
+             pImage = AudaciumLightPurpleImageCacheAsData;
+             break;
+
+         case themeAudaciumDarkBlue:
+             ImageSize = sizeof(AudaciumDarkBlueImageCacheAsData);
+             pImage = AudaciumDarkBlueImageCacheAsData;
+             break;
+
+         case themeAudaciumDarkOrange:
+             ImageSize = sizeof(AudaciumDarkOrangeImageCacheAsData);
+             pImage = AudaciumDarkOrangeImageCacheAsData;
+             break;
+
+         case themeAudaciumDarkPink:
+             ImageSize = sizeof(AudaciumDarkPinkImageCacheAsData);
+             pImage = AudaciumDarkPinkImageCacheAsData;
+             break;
+
+         case themeAudaciumDarkGreen:
+             ImageSize = sizeof(AudaciumDarkGreenImageCacheAsData);
+             pImage = AudaciumDarkGreenImageCacheAsData;
+             break;
+
+         case themeAudaciumDarkPurple:
+             ImageSize = sizeof(AudaciumDarkGreenImageCacheAsData);
+             pImage = AudaciumDarkPurpleImageCacheAsData;
+             break;
 
          case themeHiContrast:
             ImageSize = sizeof(HiContrastImageCacheAsData);
@@ -1012,6 +1117,39 @@ ChoiceSetting GUITheme{
             appearance of older versions of Audacity (before Tenacity) */
          XO("Audacity Classic"),
 
+         // i18n-hint: A Pro Tools lookalike theme
+         XO("Pro Tools"),
+
+         // i18n-hint: A light theme with blue audio waveforms, taken from Audacium.
+         XO("Audacium Light Blue"),
+
+         //i18n-hint: A light theme with orange audio waveforms, taken from Audacium.
+         XO("Audacium Light Orange"),
+
+         // i18n-hint: A light theme with pink audio waveforms, taken from Audacium.
+         XO("Audacium Light Pink"),
+
+         // i18n-hint: A light theme with green audio waveforms, taken from Audacium.
+         XO("Audacium Light Green"),
+
+         // i18n-hint: A light theme with purple audio waveforms, taken from Audacium.
+         XO("Audacium Light Purple"),
+
+         // i18n-hint: A light theme with blue audio waveforms, taken from Audacium.
+         XO("Audacium Dark Blue"),
+
+         // i18n-hint: A dark theme with orange audio waveforms, taken from Audacium.
+         XO("Audacium Dark Orange"),
+
+         // i18n-hint: A dark theme with pink audio waveforms, taken from Audacium.
+         XO("Audacium Dark Pink"),
+
+         // i18n-hint: A dark theme with green audio waveforms, taken from Audacium.
+         XO("Audacium Dark Green"),
+
+         // i18n-hint: A dark theme with purple audio waveforms, taken from Audacium.
+         XO("Audacium Dark Purple"),
+
          /* i18n-hint: greater difference between foreground and
             background colors */
          XO("High Contrast"),
@@ -1025,6 +1163,17 @@ ChoiceSetting GUITheme{
          wxT("saucedacity"),
          wxT("audacity"),
          wxT("audacity-classic"),
+         wxT("pro-tools"),
+         wxT("audacium-blue"),
+         wxT("audacium-orange"),
+         wxT("audacium-pink"),
+         wxT("audacium-green"),
+         wxT("audacium-purple"),
+         wxT("audacium-dark-blue"),
+         wxT("audacium-dark-orange"),
+         wxT("audacium-dark-pink"),
+         wxT("audacium-dark-green"),
+         wxT("audacium-dark-purple"),
          wxT("high-contrast"),
          wxT("custom"),
       }

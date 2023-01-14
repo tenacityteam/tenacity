@@ -702,9 +702,20 @@ list( APPEND SOURCES
       # Built-in themes #######################################################
       theme/AudacityClassicThemeAsCeeCode.h
       theme/AudacityThemeAsCeeCode.h
+      theme/AudaciumDarkBlueThemeAsCeeCode.h
+      theme/AudaciumDarkGreenThemeAsCeeCode.h
+      theme/AudaciumDarkPinkThemeAsCeeCode.h
+      theme/AudaciumDarkPurpleThemeAsCeeCode.h
+      theme/AudaciumDarkOrangeThemeAsCeeCode.h
+      theme/AudaciumLightBlueThemeAsCeeCode.h
+      theme/AudaciumLightGreenThemeAsCeeCode.h
+      theme/AudaciumLightPinkThemeAsCeeCode.h
+      theme/AudaciumLightPurpleThemeAsCeeCode.h
+      theme/AudaciumLightOrangeThemeAsCeeCode.h
       theme/DarkThemeAsCeeCode.h
       theme/HiContrastThemeAsCeeCode.h
       theme/LightThemeAsCeeCode.h
+      theme/ProToolsThemeAsCeeCode.h
       theme/SaucedacityThemeAsCeeCode.h
       #########################################################################
       theme/AllThemeResources.cpp
