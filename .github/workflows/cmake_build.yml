@@ -31,7 +31,6 @@ jobs:
           compiler_cache_path: ~/.ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-linux
-          WX_CONFIG: /home/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
         - name: macOS_Intel
           os: macos-latest
@@ -41,7 +40,6 @@ jobs:
           compiler_cache_path: ~/Library/Caches/ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-osx-10.12min
-          WX_CONFIG: /Users/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
         #- name: macOS_ARM
         #  os: macos-latest
@@ -172,9 +170,6 @@ jobs:
         APPLE_NOTARIZATION_PASSWORD: ${{ secrets.APPLE_NOTARIZATION_PASSWORD }}
         CC: ${{ matrix.config.cc }}
         CXX: ${{ matrix.config.cxx }}
-        # hack to get CMake to find wxWidgets until vcpkg wxWidgets port is fixed
-        # https://github.com/microsoft/vcpkg/pull/17111
-        WX_CONFIG: ${{ matrix.config.WX_CONFIG }}
 
     - name: Build
       run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }}
@@ -199,8 +194,6 @@ jobs:
         --verbose
         && rm -r package/_CPack_Packages
       env:
-        # Required for linuxdeploy to find wxWidgets libraries installed without a package manager
-        WXWIDGETS_LD_LIBRARY_PATH: ${{ github.workspace }}/wxwidgets-install/lib
         # VCPKG_LIB_PATH is the location that vcpkg stores its libs once built
         VCPKG_LIB_PATH: ${{ github.workspace }}/build/vcpkg-install/x64-linux-dynamic/debug/lib
 
