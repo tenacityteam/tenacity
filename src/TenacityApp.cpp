@@ -221,16 +221,6 @@ void PopulatePreferences()
       gPrefs->Write(wxT("/Locale/Language"), langCode);
    }
 
-   // In Audacity 2.1.0 support for the legacy 1.2.x preferences (depreciated since Audacity
-   // 1.3.1) is dropped. As a result we can drop the import flag
-   // first time this version of Audacity is run we try to migrate
-   // old preferences.
-   bool newPrefsInitialized = false;
-   gPrefs->Read(wxT("/NewPrefsInitialized"), &newPrefsInitialized, false);
-   if (newPrefsInitialized) {
-      gPrefs->DeleteEntry(wxT("/NewPrefsInitialized"), true);  // take group as well if empty
-   }
-
    // record the Prefs version for future checking (this has not been used for a very
    // long time).
    gPrefs->Write(wxT("/PrefsVersion"), wxString(wxT(AUDACITY_PREFS_VERSION_STRING)));
@@ -246,27 +236,6 @@ void PopulatePreferences()
 
    gPrefs->SetVersionKeysInit(vMajor, vMinor, vMicro);   // make a note of these initial values
                                                             // for use by ToolManager::ReadConfig()
-
-   // These integer version keys were introduced april 4 2011 for 1.3.13
-   // The device toolbar needs to be enabled due to removal of source selection features in
-   // the mixer toolbar.
-   if ((vMajor < 1) ||
-       (vMajor == 1 && vMinor < 3) ||
-       (vMajor == 1 && vMinor == 3 && vMicro < 13)) {
-
-
-      // Do a full reset of the Device Toolbar to get it on the screen.
-      if (gPrefs->Exists(wxT("/GUI/ToolBars/Device")))
-         gPrefs->DeleteGroup(wxT("/GUI/ToolBars/Device"));
-
-      // We keep the mixer toolbar prefs (shown/not shown)
-      // the width of the mixer toolbar may have shrunk, the prefs will keep the larger value
-      // if the user had a device that had more than one source.
-      if (gPrefs->Exists(wxT("/GUI/ToolBars/Mixer"))) {
-         // Use the default width
-         gPrefs->Write(wxT("/GUI/ToolBars/Mixer/W"), -1);
-      }
-   }
 
    // In 2.1.0, the Meter toolbar was split and lengthened, but strange arrangements happen
    // if upgrading due to the extra length.  So, if a user is upgrading, use the pre-2.1.0
