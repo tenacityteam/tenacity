@@ -61,9 +61,6 @@ DisableWelcomePage=no
 ; Display license information before install
 InfoBeforeFile=".\tenacity_InnoWizard_InfoBefore.rtf"
 
-; Display README after install
-InfoAfterFile=Additional\README.rtf
-
 ; Directives using information passed by CMake
 @INSTALLER_X64_MODE@
 @SIGN_TOOL@
@@ -82,9 +79,6 @@ Name: resetPrefs; Description:  "{cm:ResetPrefs}"; Flags: unchecked
 [Files]
 ; Prime the first time .ini file so the permissions can be set
 Source: ".\FirstTimeModel.ini"; DestDir: "{app}"; DestName: "FirstTime.ini"; Permissions: users-modify
-
-; Manually create RTF version of README
-Source: "Additional\README.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "Additional\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#AppExe}"; DestDir: "{app}"; Flags: ignoreversion

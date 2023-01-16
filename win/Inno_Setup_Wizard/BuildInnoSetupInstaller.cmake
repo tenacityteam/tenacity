@@ -53,9 +53,7 @@ file(COPY "${SOURCE_DIR}/presets" DESTINATION "${OUTPUT_DIR}/Additional")
 
 file(COPY
         "${SOURCE_DIR}/LICENSE.txt"
-        "${SOURCE_DIR}/win/README.rtf"
         "${SOURCE_DIR}/win/tenacity.ico"
-        "${SOURCE_DIR}/win/darktenacity.ico"
     DESTINATION
         "${OUTPUT_DIR}/Additional"
 )
