@@ -84,7 +84,7 @@ endif()
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
 if( NOT DEFINED AUDACITY_BUILD_LEVEL )
-   set( AUDACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
+   set( AUDACITY_BUILD_LEVEL 1 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 endif()
 
 # The Tenacity version
