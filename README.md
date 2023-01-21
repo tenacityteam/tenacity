@@ -13,6 +13,8 @@ Please note that **we do NOT accept any pull requests or issues on GitHub anymor
 
 Tenacity is an easy-to-use multi-track audio editor and recorder for Windows, macOS, Linux and other operating systems. It is built on top of the widely popular [Audacity](https://audacityteam.org/) and is being developed by a wide, diverse group of volunteers.
 
+**Are you coming from [Audacium](https://github.com/Audacium/audacium) or [Saucedacity](https://codeberg.org/tenacityteam/saucedacity-legacy)? You're in the right place!** We'd like to welcome all Audacium and Saucedacity users to Tenacity and our community. We've implemented new features from Audacity 3.1 to make editing easier. Additionally, we've preserved the themes of these two forks with only very slight modifications so they look better with our new editing features and slight track changes.
+
 ## Features
 
 - **Recording** from audio devices (real or virtual)
@@ -38,13 +40,17 @@ Nevertheless, the goal of this project is to pick up what the original developer
 
 ### Tenacity
 
-We have not released the first version of Tenacity yet, but we are working towards Tenacity's first ever release, version 1.3, which is close to completion.
+You can find the latest release here: https://codeberg.org/tenacityteam/tenacity/releases.
 
-Nevertheless, as a result of popular demand by the community, we decided to provide "nightly" downloads for Windows, macOS and Ubuntu Linux. These downloads are based on the latest version of Tenacity's code, and are not representative of our final product. Some features may be added, removed, or changed.
+Additionally, the following unavailable packages are available for you to try the latest nightly versions of Tenacity:
+https://community.chocolatey.org/packages/tenacity
+**Windows**:
+- [Unofficial Tenacity Chocolatey Package](https://community.chocolatey.org/packages/tenacity)
 
-- [Nightly Downloads](https://tenacityaudio.org/very-early-builds)
-- [Nightly Flatpak builds](https://github.com/tenacityteam/tenacity-flatpak-nightly/blob/main/README.md)
+**Linux**:
 - [Unofficial Arch Linux (AUR) Package](https://aur.archlinux.org/packages/tenacity-git/)
+
+If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue regard Tenacity, please report the issue here.
 
 ### Audacity
 
