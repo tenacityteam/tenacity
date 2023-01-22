@@ -152,7 +152,6 @@ fallback_libraries=(
   libatk-1.0.so.0 # This will possibly prevent browser from opening
   libatk-bridge-2.0.so.0
   libcairo.so.2 # This breaks FFmpeg support
-  libcairo-gobject.so.2
   libjack.so.0 # https://github.com/LMMS/lmms/pull/3958
   libportaudio.so # This is required to enable system PortAudio (so Jack is enabled!)
   libgmodule-2.0.so.0 # Otherwise - Manjaro/Arch will crash, because of libgio mismatch
