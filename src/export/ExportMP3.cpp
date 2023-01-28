@@ -1,24 +1,18 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Tenacity: A Digital Audio Editor
 
   ExportMP3.cpp
 
   Joshua Haberman
 
-  This just acts as an interface to LAME. A Lame dynamic library must
-  be present
+  Historically, Audacity required LAME to be loaded at runtime.
+  Starting in 2017, all patents surrounding the MP3 format have expired,
+  making it possible to link LAME directly against Audacity without
+  legal issues.
 
-  The difficulty in our approach is that we are attempting to use LAME
-  in a way it was not designed to be used. LAME's API is reasonably
-  consistent, so if we were linking directly against it we could expect
-  this code to work with a variety of different LAME versions. However,
-  the data structures change from version to version, and so linking
-  with one version of the header and dynamically linking against a
-  different version of the dynamic library will not work correctly.
+  For historical reasons, we do the following when exporting to MP3:
 
-  The solution is to find the lowest common denominator between versions.
-  The bare minimum of functionality we must use is this:
       1. Initialize the library.
       2. Set, at minimum, the following global options:
           i.  input sample rate
@@ -26,14 +20,7 @@
       3. Encode the stream
       4. Call the finishing routine
 
-  Just so that it's clear that we're NOT free to use whatever features
-  of LAME we like, I'm not including lame.h, but instead enumerating
-  here the extent of functions and structures that we can rely on being
-  able to import and use from a dynamic library.
-
-  For the record, we aim to support LAME 3.70 on. Since LAME 3.70 was
-  released in April of 2000, that should be plenty.
-
+***********************************************************************
 
   Copyright 2002, 2003 Joshua Haberman.
   Some portions may be Copyright 2003 Paolo Patruno.
@@ -581,45 +568,6 @@ void ExportMP3Options::LoadNames(const TranslatableStrings &names)
 // MP3Exporter
 //----------------------------------------------------------------------------
 
-#if defined(__WXMSW__)
-// An alternative solution to give Windows an additional chance of writing the tag before
-// falling bato to lame_mp3_tag_fid().  The latter can have DLL sharing issues when mixing
-// Debug/Release builds of Audacity and the lame DLL.
-typedef unsigned long beWriteInfoTag_t(lame_global_flags *, char *);
-
-// We use this to determine if the user has selected an older, Blade API only, lame_enc.dll
-// so we can be more specific about why their library isn't acceptable.
-typedef struct	{
-
-   // BladeEnc DLL Version number
-
-   BYTE	byDLLMajorVersion;
-   BYTE	byDLLMinorVersion;
-
-   // BladeEnc Engine Version Number
-
-   BYTE	byMajorVersion;
-   BYTE	byMinorVersion;
-
-   // DLL Release date
-
-   BYTE	byDay;
-   BYTE	byMonth;
-   WORD	wYear;
-
-   // BladeEnc	Homepage URL
-
-   CHAR	zHomepage[129];
-
-   BYTE	byAlphaLevel;
-   BYTE	byBetaLevel;
-   BYTE	byMMXEnabled;
-
-   BYTE	btReserved[125];
-} be_version;
-typedef void beVersion_t(be_version *);
-#endif
-
 class MP3Exporter
 {
 public:
@@ -673,10 +621,6 @@ public:
 
 private:
    bool mLibIsExternal;
-
-#if defined(__WXMSW__)
-   TranslatableString mBladeVersion;
-#endif
 
    bool mEncoding;
    int mMode;
@@ -925,15 +869,6 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
          if (mInfoTagLen > f.Write(mInfoTagBuf, mInfoTagLen))
             return false;
       }
-#if defined(__WXMSW__)
-      else if (beWriteInfoTag) {
-         if ( !f.Flush() )
-            return false;
-         // PRL:  What is the correct error check on the return value?
-         beWriteInfoTag(mGlobalFlags, OSOUTPUT(f.GetName()));
-         mGlobalFlags = NULL;
-      }
-#endif
       else if (lame_mp3_tags_fid != NULL) {
          lame_mp3_tags_fid(mGlobalFlags, f.fp());
       }
@@ -1046,96 +981,6 @@ FileNames::FileTypes MP3Exporter::GetLibraryTypes()
       { XO("Extended libraries"), { wxT("so*") }, true },
       FileNames::AllFiles
    };
-}
-#endif
-
-#if 0
-// Debug routine from BladeMP3EncDLL.c in the libmp3lame distro
-static void dump_config( 	lame_global_flags*	gfp )
-{
-   wxPrintf(wxT("\n\nLame_enc configuration options:\n"));
-   wxPrintf(wxT("==========================================================\n"));
-
-   wxPrintf(wxT("version                =%d\n"),lame_get_version( gfp ) );
-   wxPrintf(wxT("Layer                  =3\n"));
-   wxPrintf(wxT("mode                   ="));
-   switch ( lame_get_mode( gfp ) )
-   {
-      case STEREO:       wxPrintf(wxT( "Stereo\n" )); break;
-      case JOINT_STEREO: wxPrintf(wxT( "Joint-Stereo\n" )); break;
-      case DUAL_CHANNEL: wxPrintf(wxT( "Forced Stereo\n" )); break;
-      case MONO:         wxPrintf(wxT( "Mono\n" )); break;
-      case NOT_SET:      /* FALLTHROUGH */
-      default:           wxPrintf(wxT( "Error (unknown)\n" )); break;
-   }
-
-   wxPrintf(wxT("Input sample rate      =%.1f kHz\n"), lame_get_in_samplerate( gfp ) /1000.0 );
-   wxPrintf(wxT("Output sample rate     =%.1f kHz\n"), lame_get_out_samplerate( gfp ) /1000.0 );
-
-   wxPrintf(wxT("bitrate                =%d kbps\n"), lame_get_brate( gfp ) );
-   wxPrintf(wxT("Quality Setting        =%d\n"), lame_get_quality( gfp ) );
-
-   wxPrintf(wxT("Low pass frequency     =%d\n"), lame_get_lowpassfreq( gfp ) );
-   wxPrintf(wxT("Low pass width         =%d\n"), lame_get_lowpasswidth( gfp ) );
-
-   wxPrintf(wxT("High pass frequency    =%d\n"), lame_get_highpassfreq( gfp ) );
-   wxPrintf(wxT("High pass width        =%d\n"), lame_get_highpasswidth( gfp ) );
-
-   wxPrintf(wxT("No short blocks        =%d\n"), lame_get_no_short_blocks( gfp ) );
-   wxPrintf(wxT("Force short blocks     =%d\n"), lame_get_force_short_blocks( gfp ) );
-
-   wxPrintf(wxT("de-emphasis            =%d\n"), lame_get_emphasis( gfp ) );
-   wxPrintf(wxT("private flag           =%d\n"), lame_get_extension( gfp ) );
-
-   wxPrintf(wxT("copyright flag         =%d\n"), lame_get_copyright( gfp ) );
-   wxPrintf(wxT("original flag          =%d\n"),	lame_get_original( gfp ) );
-   wxPrintf(wxT("CRC                    =%s\n"), lame_get_error_protection( gfp ) ? wxT("on") : wxT("off") );
-   wxPrintf(wxT("Fast mode              =%s\n"), ( lame_get_quality( gfp ) )? wxT("enabled") : wxT("disabled") );
-   wxPrintf(wxT("Force mid/side stereo  =%s\n"), ( lame_get_force_ms( gfp ) )?wxT("enabled"):wxT("disabled") );
-   wxPrintf(wxT("Padding Type           =%d\n"), (int) lame_get_padding_type( gfp ) );
-   wxPrintf(wxT("Disable Reservoir      =%d\n"), lame_get_disable_reservoir( gfp ) );
-   wxPrintf(wxT("Allow diff-short       =%d\n"), lame_get_allow_diff_short( gfp ) );
-   wxPrintf(wxT("Interchannel masking   =%d\n"), lame_get_interChRatio( gfp ) ); // supposed to be a float, but in lib-src/lame/lame/lame.h it's int
-   wxPrintf(wxT("Strict ISO Encoding    =%s\n"), ( lame_get_strict_ISO( gfp ) ) ?wxT("Yes"):wxT("No"));
-   wxPrintf(wxT("Scale                  =%5.2f\n"), lame_get_scale( gfp ) );
-
-   wxPrintf(wxT("VBR                    =%s, VBR_q =%d, VBR method ="),
-            ( lame_get_VBR( gfp ) !=vbr_off ) ? wxT("enabled"): wxT("disabled"),
-            lame_get_VBR_q( gfp ) );
-
-   switch ( lame_get_VBR( gfp ) )
-   {
-      case vbr_off:	wxPrintf(wxT( "vbr_off\n" ));	break;
-      case vbr_mt :	wxPrintf(wxT( "vbr_mt \n" ));	break;
-      case vbr_rh :	wxPrintf(wxT( "vbr_rh \n" ));	break;
-      case vbr_mtrh:	wxPrintf(wxT( "vbr_mtrh \n" ));	break;
-      case vbr_abr:
-         wxPrintf(wxT( "vbr_abr (average bitrate %d kbps)\n"), lame_get_VBR_mean_bitrate_kbps( gfp ) );
-         break;
-      default:
-         wxPrintf(wxT("error, unknown VBR setting\n"));
-         break;
-   }
-
-   wxPrintf(wxT("Vbr Min bitrate        =%d kbps\n"), lame_get_VBR_min_bitrate_kbps( gfp ) );
-   wxPrintf(wxT("Vbr Max bitrate        =%d kbps\n"), lame_get_VBR_max_bitrate_kbps( gfp ) );
-
-   wxPrintf(wxT("Write VBR Header       =%s\n"), ( lame_get_bWriteVbrTag( gfp ) ) ?wxT("Yes"):wxT("No"));
-   wxPrintf(wxT("VBR Hard min           =%d\n"), lame_get_VBR_hard_min( gfp ) );
-
-   wxPrintf(wxT("ATH Only               =%d\n"), lame_get_ATHonly( gfp ) );
-   wxPrintf(wxT("ATH short              =%d\n"), lame_get_ATHshort( gfp ) );
-   wxPrintf(wxT("ATH no                 =%d\n"), lame_get_noATH( gfp ) );
-   wxPrintf(wxT("ATH type               =%d\n"), lame_get_ATHtype( gfp ) );
-   wxPrintf(wxT("ATH lower              =%f\n"), lame_get_ATHlower( gfp ) );
-   wxPrintf(wxT("ATH aa                 =%d\n"), lame_get_athaa_type( gfp ) );
-   wxPrintf(wxT("ATH aa  loudapprox     =%d\n"), lame_get_athaa_loudapprox( gfp ) );
-   wxPrintf(wxT("ATH aa  sensitivity    =%f\n"), lame_get_athaa_sensitivity( gfp ) );
-
-   wxPrintf(wxT("Experimental nspsytune =%d\n"), lame_get_exp_nspsytune( gfp ) );
-   wxPrintf(wxT("Experimental X         =%d\n"), lame_get_experimentalX( gfp ) );
-   wxPrintf(wxT("Experimental Y         =%d\n"), lame_get_experimentalY( gfp ) );
-   wxPrintf(wxT("Experimental Z         =%d\n"), lame_get_experimentalZ( gfp ) );
 }
 #endif
 
