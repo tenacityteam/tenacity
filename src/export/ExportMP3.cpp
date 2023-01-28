@@ -593,12 +593,6 @@ public:
    bool InitLibrary();
    void FreeLibrary();
 
-   /* get library info */
-   wxString GetLibraryVersion();
-   wxString GetLibraryName();
-   wxString GetLibraryPath();
-   FileNames::FileTypes GetLibraryTypes();
-
    /* returns the number of samples PER CHANNEL to send for each call to EncodeBuffer */
    int InitializeStream(unsigned channels, int sampleRate);
 
@@ -701,11 +695,6 @@ void MP3Exporter::FreeLibrary()
       lame_close(mGlobalFlags);
       mGlobalFlags = nullptr;
    }
-}
-
-wxString MP3Exporter::GetLibraryVersion()
-{
-   return wxString::Format(wxT("LAME %hs"), get_lame_version());
 }
 
 int MP3Exporter::InitializeStream(unsigned channels, int sampleRate)
@@ -879,110 +868,6 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
 
    return true;
 }
-
-#if defined(__WXMSW__)
-/* values for Windows */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   wxRegKey reg(wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Tenacity"));
-   wxString path;
-
-   if (reg.Exists()) {
-      wxLogMessage(wxT("LAME registry key exists."));
-      reg.QueryValue(wxT("InstallPath"), path);
-   }
-   else {
-      wxLogMessage(wxT("LAME registry key does not exist."));
-   }
-
-   wxLogMessage(wxT("Library path is: ") + path);
-
-   return path;
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   return wxT("lame_enc.dll");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      { XO("Only lame_enc.dll"), { wxT("lame_enc.dll") } },
-      FileNames::DynamicLibraries,
-      FileNames::AllFiles
-   };
-}
-
-#elif defined(__WXMAC__)
-/* values for Mac OS X */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   wxString path;
-
-   path = wxT("/Library/Application Support/tenacity/libs");
-   if (wxFileExists(path + wxT("/") + GetLibraryName()))
-   {
-        return path;
-   }
-
-   path = wxT("/usr/local/lib/tenacity");
-   if (wxFileExists(path + wxT("/") + GetLibraryName()))
-   {
-        return path;
-   }
-    
-   return wxT("/Library/Application Support/tenacity/libs");
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   if (sizeof(void*) == 8)
-      return wxT("libmp3lame64bit.dylib");
-   return wxT("libmp3lame.dylib");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      (sizeof(void*) == 8)
-         ? FileNames::FileType{
-              XO("Only libmp3lame64bit.dylib"), { wxT("libmp3lame64bit.dylib") }
-           }
-         : FileNames::FileType{
-              XO("Only libmp3lame.dylib"), { wxT("libmp3lame.dylib") }
-           }
-      ,
-      FileNames::DynamicLibraries,
-      FileNames::AllFiles
-   };
-}
-
-#else //!__WXMAC__
-/* Values for Linux / Unix systems */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   return wxT(LIBDIR);
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   return wxT("libmp3lame.so.0");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      { XO("Only libmp3lame.so.0"), { wxT("libmp3lame.so.0") } },
-      { XO("Primary shared object files"), { wxT("so") }, true },
-      { XO("Extended libraries"), { wxT("so*") }, true },
-      FileNames::AllFiles
-   };
-}
-#endif
 
 //----------------------------------------------------------------------------
 // ExportMP3
@@ -1483,16 +1368,3 @@ void ExportMP3::AddFrame(struct id3_tag *tp, const wxString & n, const wxString 
 static Exporter::RegisteredExportPlugin sRegisteredPlugin{ "MP3",
    []{ return std::make_unique< ExportMP3 >(); }
 };
-
-//----------------------------------------------------------------------------
-// Return library version
-//----------------------------------------------------------------------------
-
-TranslatableString GetMP3Version(wxWindow *parent, bool prompt)
-{
-   MP3Exporter exporter;
-   auto versionString = Verbatim( exporter.GetLibraryVersion() );
-   versionString.Join( XO("(Built-in)"), " " );
-
-   return versionString;
-}

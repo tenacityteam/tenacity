@@ -25,17 +25,8 @@ enum MP3RateMode : unsigned {
 template< typename Enum > class EnumSetting;
 extern EnumSetting< MP3RateMode > MP3RateModeSetting;
 
-#if defined(__WXMSW__) || defined(__WXMAC__)
-#define MP3_EXPORT_BUILT_IN 1
-#endif
-
 class TranslatableString;
 class wxWindow;
-
-//----------------------------------------------------------------------------
-// Get MP3 library version
-//----------------------------------------------------------------------------
-TranslatableString GetMP3Version(wxWindow *parent, bool prompt);
 
 #endif
 
