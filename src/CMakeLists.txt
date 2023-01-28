@@ -1069,10 +1069,6 @@ set( HAVE_GTK ${GTK_FOUND} )
 # can be done against ExportMP3.cpp.  If either are defined, the
 # build will fail.
 if( NOT CMAKE_SYSTEM_NAME MATCHES "Windows|Darwin" )
-   if( LAME_FOUND )
-      set( DISABLE_DYNAMIC_LOADING_LAME YES )
-   endif()
-
    if( FFMPEG_FOUND )
       set( DISABLE_DYNAMIC_LOADING_FFMPEG YES )
    endif()

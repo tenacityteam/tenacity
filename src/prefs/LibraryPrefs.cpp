@@ -11,8 +11,9 @@
 *******************************************************************//**
 
 \class LibraryPrefs
-\brief A PrefsPanel used to select manage external libraries like the
-MP3 and FFmpeg encoding libraries.
+\brief A PrefsPanel that is only used to manage FFmpeg libraries;
+historically, this PrefsPanel was also used to manage LAME in
+Audacity as well.
 
 *//*******************************************************************/
 
@@ -24,7 +25,6 @@ MP3 and FFmpeg encoding libraries.
 #include <wx/stattext.h>
 
 #include "../ffmpeg/FFmpeg.h"
-#include "../export/ExportMP3.h"
 #include "../widgets/HelpSystem.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/ReadOnlyText.h"
@@ -33,14 +33,10 @@ MP3 and FFmpeg encoding libraries.
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#define ID_MP3_FIND_BUTTON          7001
-#define ID_MP3_DOWN_BUTTON          7002
-#define ID_FFMPEG_FIND_BUTTON       7003
-#define ID_FFMPEG_DOWN_BUTTON       7004
+constexpr int ID_FFMPEG_FIND_BUTTON = 7003;
+constexpr int ID_FFMPEG_DOWN_BUTTON = 7004;
 
 BEGIN_EVENT_TABLE(LibraryPrefs, PrefsPanel)
-   EVT_BUTTON(ID_MP3_FIND_BUTTON, LibraryPrefs::OnMP3FindButton)
-   EVT_BUTTON(ID_MP3_DOWN_BUTTON, LibraryPrefs::OnMP3DownButton)
    EVT_BUTTON(ID_FFMPEG_FIND_BUTTON, LibraryPrefs::OnFFmpegFindButton)
    EVT_BUTTON(ID_FFMPEG_DOWN_BUTTON, LibraryPrefs::OnFFmpegDownButton)
 END_EVENT_TABLE()
@@ -82,8 +78,6 @@ void LibraryPrefs::Populate()
    PopulateOrExchange(S);
    // ----------------------- End of main section --------------
 
-   // Set the MP3 Version string.
-   SetMP3VersionText();
    SetFFmpegVersionText();
 }
 
@@ -96,18 +90,6 @@ void LibraryPrefs::PopulateOrExchange(ShuttleGui & S)
 {
    S.SetBorder(2);
    S.StartScroller();
-
-   S.StartStatic(XO("LAME MP3 Export Library"));
-   {
-      S.StartTwoColumn();
-      {
-         mMP3Version = S
-            .Position(wxALIGN_CENTRE_VERTICAL)
-            .AddReadOnlyText(XO("MP3 Library Version:"), "");
-      }
-      S.EndTwoColumn();
-   }
-   S.EndStatic();
 
    S.StartStatic(XO("FFmpeg Import/Export Library"));
    {
@@ -148,27 +130,6 @@ void LibraryPrefs::PopulateOrExchange(ShuttleGui & S)
    S.EndStatic();
    S.EndScroller();
 
-}
-
-/// Sets the a text area on the dialog to have the name
-/// of the MP3 Library version.
-void LibraryPrefs::SetMP3VersionText(bool prompt)
-{
-   mMP3Version->SetValue(GetMP3Version(this, prompt));
-}
-
-/// Opens a file-finder dialog so that the user can
-/// tell us where the MP3 library is.
-void LibraryPrefs::OnMP3FindButton(wxCommandEvent & WXUNUSED(event))
-{
-   SetMP3VersionText(true);
-}
-
-/// Opens help on downloading a suitable MP3 library is.
-void LibraryPrefs::OnMP3DownButton(wxCommandEvent & WXUNUSED(event))
-{
-   // Modal help dialogue required here
-   HelpSystem::ShowHelp(this, L"FAQ:Installing_the_LAME_MP3_Encoder", true);
 }
 
 void LibraryPrefs::SetFFmpegVersionText()
@@ -223,7 +184,7 @@ bool LibraryPrefs::Commit()
    return true;
 }
 
-#if !defined(DISABLE_DYNAMIC_LOADING_FFMPEG) || !defined(DISABLE_DYNAMIC_LOADING_LAME)
+#if !defined(DISABLE_DYNAMIC_LOADING_FFMPEG)
 namespace{
 PrefsPanel::Registration sAttachment{ "Library",
    [](wxWindow *parent, wxWindowID winid, TenacityProject *)
