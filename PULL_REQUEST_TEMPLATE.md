@@ -1,3 +1,3 @@
 # Pull Requests
 
-If you are submitting a pull request, please read https://wiki.audacityteam.org/wiki/GitHub_Pull_Requests 
+If you are submitting a pull request, please read https://codeberg.org/tenacityteam/tenacity/raw/branch/main/CONTRIBUTING.md
