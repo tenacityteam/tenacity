@@ -18,19 +18,20 @@ else it will be ignored and closed.
 
 Here are some general tips if you are unsure about submitting a bug report:
 
-* Please only submit a bug report if you are sure it is valid.
-* On GitHub, we use "issue templates" to help you help us. Please use them
-  and answer as many questions as you can. That way, we will not have to go
-  back and forth to understand what you want to say to us.
+* Try your best to be clear and concise.
+* Be polite, as the people that will try to help you are volunteers.
+* Provide as many details about the platform you are running Tenacity on as
+  possible. For instance, your report should definitely contain the following:
+    - What is your operating system? (Windows, macOS, Linux, Haiku, etc.)
+    - Which version are you using?
+    - What were you trying to do at the moment?
+    - How did you install Tenacity?
 
 ## Contributing
 
 Contributing code to Tenacity is done either via Codeberg or GitHub. Tenacity
 requires you to Sign-off your commits, which indicates you agree to the
 [Developer Certificate of Origin](#developer-certificate-of-origin). Details below.
-
-_Note: you do not need to open a GitHub issue for every matching contribution,
-only for those which need further looking into, and only when asked to._
 
 ### Submitting code
 
@@ -64,7 +65,7 @@ Please adhere to the following guidelines when authoring code that you plan to s
      uses an indentation level of 3 spaces, don't make changes that introduce
      an indentation level of 4 spaces.
 
-     * If creating a new file, **use an indentation level of 4 spaces. Do not
+     - If creating a new file, **use an indentation level of 4 spaces. Do not
        use tabs**.
 
 2. Do not change any variable names unless necessary.
@@ -84,7 +85,7 @@ Please follow the following guidelines when making your patch:
   start using camel case. For example, if a class has a member variable called
   'data' that's protected or private, it would be named 'mData'.
 
-* For new files, use 4 spaces of indentation. **Do not use tabs**.
+* Use 4 spaces to indent your files. **Do not use tabs**.
 
 * Always put brackets on a new line except for variables. Example:
 
@@ -97,9 +98,10 @@ Please follow the following guidelines when making your patch:
     static const char* data = { /* ... */};
     ```
 
-* Please treat Tenacity libraries as system includes. Additionally, include a
+* Treat Tenacity libraries as system includes. Additionally, include a
   comment, `// Tenacity libraries`, that indicate the following headers are
-  Tenacity libraries. Example:
+  Tenacity libraries. This may come across as bizarre to experienced
+  contributors, but it helps us maintain our code portable. Example:
 
   ``` c++
   // Tenacity libraries
@@ -185,8 +187,8 @@ Our stance on these rules is not very strict. Worst case scenario, we may
 correct the commit messages for you and inform you about what we had to correct
 for future reference. However, if you would like to get seriously involved
 with our project and take on responsibilities such as as reviewing and merging
-patches, your abidance to the following rules will also be one of the factors
-that will be considered.
+patches, your compliance to the following rules will also be one of the many
+factors that will be considered.
 
 Apart from including a DCO, as mentioned earlier, the following are also very
 important:
@@ -208,8 +210,8 @@ important:
 
    Example:
 
-   - `GH Actions: Buy celebratory Margaretha Pizza`
-   - `Have Tenacity eat more veggies`
+   - `CI: Buy celebratory Margherita Pizza`
+   - `nyquist: Add SFX telling user to eat more veggies on startup`
 
 * If you are using changes that were made by another person, make sure to
   properly credit them by using the `Co-authored-by: ` tag(s) in the end of
@@ -303,10 +305,10 @@ important:
 
 * If a change affects the user interface or the audio engine, you're generally
   expected to use Tenacity with the included change on your machine and
-  evaluate it. Since it's very hard to answer whether a specific change
+  evaluate it. Since it is very difficult to answer whether a specific change
   affecting the experience of the user is worth including or if the contributor
   should adjust their change, you may want to ask for the help of other
-  contributors.
+  contributors or community members.
 
 * If there are multiple proposed changes that affect the same parts of the
   project, ***please wait*** for a while after initially merging a single
@@ -337,19 +339,22 @@ A change that breaks Tenacity should be reverted under at least some of the
 following conditions:
 
 * There is no obvious or fast way (up to a couple of hours) to fix the mistake
-  that caused Tenacity to break. **Fixing is better than reverting most of the
-  time.**
+  that caused Tenacity to break. **Fixing with a new commit should always be
+  preferred, if possible.**
 * There is a high amount of activity on the project and the change that got
   merged is killing off that said activity.
-* There are maintainers and contributors that are aware of this and agree that
-  reverting is the best cause of action.
+* There are multiple maintainers and contributors that are aware of this and
+  agree that reverting is the best course of action.
 * The community appears to heavily disagree with the change.
 * Another person, regardless of whether they are a well-established developer
-  or a community member, provides an additional perspective that the
-  contributors or maintainers were not previously aware of, which calls the
-  validity of the change into question.
+  or a community member, provides a new perspective that the contributors or
+  maintainers were not previously aware of, which calls the integrity of the
+  change into question.
 
 When reverting a change, you should be *at least* **just as careful** as when
 committing a change. Make sure to use your own judgement, communicate
-transparently and coordinate with other contributors -- especially the ones
-that worked on the change itself.
+transparently and coordinate together with fellow contributors. This is
+especially the case with the contributors that worked on the change itself,
+as throwing away their hard work without communicating or helping them have
+their change included again *will* cause preventable frustration that is
+absolutely preventable.
