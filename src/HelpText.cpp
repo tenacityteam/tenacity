@@ -232,9 +232,6 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << XO(
 /* i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.*/
 " [[help:Main_Page|Audacity Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
-         << wxT("</li><li>")
-         << XO(
-" [[https://github.com/tenacitytenacity/tenacity/discussions|Discussions (on GitHub)]] - ask your question directly, online.")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
          << XO("More:</b> Visit our [[https://codeberg.org/tenacityteam/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
