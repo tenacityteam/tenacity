@@ -85,7 +85,7 @@ Please follow the following guidelines when making your patch:
   start using camel case. For example, if a class has a member variable called
   'data' that's protected or private, it would be named 'mData'.
 
-* Use 4 spaces to indent your files. **Do not use tabs**.
+* Use 3 or 4 spaces to indent your files depending on the file. **Do not use tabs**.
 
 * Always put brackets on a new line except for variables. Example:
 
