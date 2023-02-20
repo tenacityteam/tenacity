@@ -21,7 +21,7 @@
 #include "RevisionIdent.h"
 
 // This define replaces the original that modified the macro in wxwidgets
-#define CUSTOM_wxMAKE_VERSION_DOT_STRING_T(x, y, z) wxSTRINGIZE_T(x) wxT(".") wxSTRINGIZE_T(y) wxT(".") wxSTRINGIZE_T(z) wxT("(Tenacity)")
+#define CUSTOM_wxMAKE_VERSION_DOT_STRING_T(x, y, z) wxSTRINGIZE_T(x) wxT(".") wxSTRINGIZE_T(y) wxT(".") wxSTRINGIZE_T(z)
 
 class BuildInfo
 {
@@ -103,7 +103,7 @@ class BuildInfo
             static wxString NoRevisionText = XO("No revision identifier was provided").Translation();
 
             #ifdef REV_LONG
-                return wxString("[[https://codeberg.org/tenacityteam/tenacity/commit/") + REV_LONG + "|" + wxString(GIT_DESCRIBE) + "]]";
+                return wxString("[[https://codeberg.org/tenacityteam/tenacity/commit/") + REV_LONG + "|" + wxString(REV_LONG).Left(7) + "]]";
             #else
                 return NoRevisionText;
             #endif
