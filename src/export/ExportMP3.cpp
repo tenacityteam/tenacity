@@ -858,7 +858,7 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
          if (mInfoTagLen > f.Write(mInfoTagBuf, mInfoTagLen))
             return false;
       }
-      else if (lame_mp3_tags_fid != NULL) {
+      else {
          lame_mp3_tags_fid(mGlobalFlags, f.fp());
       }
    }
