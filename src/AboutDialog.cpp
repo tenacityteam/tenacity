@@ -43,6 +43,7 @@ hold information about one contributor to Audacity.
 // Tenacity libraries
 #include <lib-files/FileNames.h>
 
+#include "BuildInfo.h"
 #include "HelpText.h"
 #include "shuttle/ShuttleGui.h"
 #include "widgets/HelpSystem.h"
@@ -57,12 +58,6 @@ hold information about one contributor to Audacity.
 
 #ifndef REV_TIME
 #define REV_TIME "unknown date and time"
-#endif
-
-#ifdef REV_LONG
-#define REV_IDENT wxString( "[[https://codeberg.org/tenacityteam/tenacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME
-#else
-#define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
 
 // To substitute into many other translatable strings
@@ -594,41 +589,14 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
 
    // Current date
    AddBuildinfoRow(&informationStr, XO("Program build date:"), __TDATE__);
-   AddBuildinfoRow(&informationStr, XO("Commit Id:"), REV_IDENT );
 
-   auto buildType =
-#ifdef _DEBUG
-      XO("Debug build (debug level %d)").Format(wxDEBUG_LEVEL);
-#else
-      XO("Release build (debug level %d)").Format(wxDEBUG_LEVEL);
-#endif
-   ;
-   if( (sizeof(void*) == 8) )
-      buildType = XO("%s, 64 bit").Format( buildType );
+   if constexpr (BuildInfo::IsDebugBuild())\
+   {
+      AddBuildinfoRow(&informationStr, XO("Commit Id:"), BuildInfo::GetRevisionIdentifier());
+   }
 
-// Remove this once the transition to CMake is complete
-#if defined(CMAKE)
-   buildType = Verbatim("CMake %s").Format( buildType );
-#endif
-
-   AddBuildinfoRow(&informationStr, XO("Build type:"), buildType.Translation());
-
-#ifdef _MSC_FULL_VER
-   AddBuildinfoRow(&informationStr, XO("Compiler:"),
-	   wxString::Format(wxT("MSVC %02d.%02d.%05d.%02d"), _MSC_VER / 100, _MSC_VER % 100, _MSC_FULL_VER % 100000, _MSC_BUILD));
-#endif
-
-#ifdef __GNUC_PATCHLEVEL__
-#ifdef __MINGW32__
-   AddBuildinfoRow(&informationStr, XO("Compiler:"), wxT("MinGW ") wxMAKE_VERSION_DOT_STRING_T(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__));
-#else
-   AddBuildinfoRow(&informationStr, XO("Compiler:"), wxT("GCC ") wxMAKE_VERSION_DOT_STRING_T(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__));
-#endif
-#endif
-
-#ifdef __clang_version__
-   AddBuildinfoRow(&informationStr, XO("Compiler:"), wxT("clang ") __clang_version__);
-#endif
+   AddBuildinfoRow(&informationStr, XO("Build type:"), BuildInfo::GetBuildType());
+   AddBuildinfoRow(&informationStr, XO("Compiler:"), BuildInfo::GetCompilerVersionString());
 
    // Install prefix
 #ifdef __WXGTK__
