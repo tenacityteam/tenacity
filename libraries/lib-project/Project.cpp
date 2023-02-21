@@ -58,7 +58,7 @@ auto AllProjects::Remove( TenacityProject &project ) -> value_type
 void AllProjects::Add( const value_type &pProject )
 {
    if (!pProject) {
-      wxASSERT(false);
+      assert(false);
       return;
    }
    std::lock_guard<std::mutex> guard{ Mutex() };

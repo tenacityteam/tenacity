@@ -414,7 +414,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "DeviceManager.h"
 
 #include <string>
-#include <cfloat>
 #include <cmath>
 #include <cstdlib>
 #include <stdexcept>
@@ -428,7 +427,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 
 #include <wx/app.h>
 #include <wx/wxcrtvararg.h>
-#include <wx/log.h>
 #include <wx/time.h>
 
 #if defined(__WXMAC__) || defined(__WXMSW__)
@@ -439,7 +437,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <lib-audio-devices/AudioMemoryManager.h>
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-exceptions/TenacityException.h>
-#include <lib-math/float_cast.h>
 #include <lib-math/Resample.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-utility/MessageBuffer.h>
@@ -448,16 +445,13 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "Mix.h"
 #include "RingBuffer.h"
 #include "Decibels.h"
-#include "Prefs.h"
 #include "Project.h"
 #include "DBConnection.h"
 #include "ProjectFileIO.h"
-#include "ProjectWindows.h"
 #include "WaveTrack.h"
 
 #include "effects/RealtimeEffectManager.h"
 #include "QualitySettings.h"
-#include "widgets/AudacityMessageBox.h"
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 
@@ -575,6 +569,7 @@ static PaTime util_GetTime( void )
 #else
 
 #include <sys/time.h>
+#include <iostream>
 
 static PaTime util_GetTime( void )
 {
@@ -782,13 +777,13 @@ private:
 
          const bool &adjustStart = options.adjustStart;
 
-         wxASSERT(duration > 0);
+         assert(duration > 0);
          double speed =
             (std::abs((s1 - s0).as_long_long())) / duration.as_double();
          bool adjustedSpeed = false;
 
          auto minSpeed = std::min(options.minSpeed, options.maxSpeed);
-         wxASSERT(minSpeed == options.minSpeed);
+         assert(minSpeed == options.minSpeed);
 
          // May change the requested speed and duration
          if (!adjustStart && speed > options.maxSpeed)
@@ -1052,7 +1047,7 @@ void AudioIO::Deinit()
    ugAudioIO.reset();
 }
 
-bool AudioIO::ValidateDeviceNames(const wxString &play, const wxString &rec)
+bool AudioIO::ValidateDeviceNames(const std::string &play, const std::string &rec)
 {
    const PaDeviceInfo *pInfo = Pa_GetDeviceInfo(getPlayDevIndex(play));
    const PaDeviceInfo *rInfo = Pa_GetDeviceInfo(getRecordDevIndex(rec));
@@ -1127,7 +1122,7 @@ AudioIO::AudioIO()
    if (err != paNoError) {
       auto errStr = XO("Could not find any audio devices.\n");
       errStr += XO("You will not be able to play or record audio.\n\n");
-      wxString paErrStr = LAT1CTOWX(Pa_GetErrorText(err));
+      std::string paErrStr = std::string(Pa_GetErrorText(err)); // ANERRUPTION: UTF-8?
       if (!paErrStr.empty())
       {
          errStr += XO("Error: %s").Format( paErrStr );
@@ -1148,7 +1143,7 @@ AudioIO::AudioIO()
       auto errStr =
               XO("There was an error initializing the midi i/o layer.\n");
       errStr += XO("You will not be able to play midi.\n\n");
-      wxString pmErrStr = LAT1CTOWX(Pm_GetErrorText(pmErr));
+      std::string pmErrStr = std::string(Pm_GetErrorText(pmErr)); // ANERRUPTION: UTF-8?
       if (!pmErrStr.empty())
       {
          errStr += XO("Error: %s").Format( pmErrStr );
@@ -1358,7 +1353,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       if (mLastPaError == paNoError) {
          break;
       }
-      wxLogDebug("Attempt %u to open capture stream failed with: %d", 1 + tries, mLastPaError);
+      std::cout << "Attempt " << (1 + tries) << " to open capture stream failed with: " << mLastPaError << std::endl;
       std::this_thread::sleep_for(std::chrono::milliseconds(1000));
    }
 
@@ -1843,7 +1838,7 @@ bool AudioIO::AllocateBuffers(
       playbackTime =
          lrint(options.pScrubbingOptions->delay * mRate) / mRate;
    
-   wxASSERT( playbackTime >= 0 );
+   assert( playbackTime >= 0 );
    mPlaybackSamplesToCopy = playbackTime * mRate;
 
    // Capacity of the playback buffer.
@@ -2074,7 +2069,7 @@ bool AudioIoCallback::StartPortMidiStream()
 
    /* get midi playback device */
    PmDeviceID playbackDevice = Pm_GetDefaultOutputDeviceID();
-   wxString playbackDeviceName = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"),
+   std::string playbackDeviceName = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"),
                                               wxT(""));
    mSynthLatency = gPrefs->Read(wxT("/MidiIO/SynthLatency"),
                                 DEFAULT_SYNTH_LATENCY);
@@ -2083,8 +2078,8 @@ bool AudioIoCallback::StartPortMidiStream()
          const PmDeviceInfo *info = Pm_GetDeviceInfo(i);
          if (!info) continue;
          if (!info->output) continue;
-         wxString interf = wxSafeConvertMB2WX(info->interf);
-         wxString name = wxSafeConvertMB2WX(info->name);
+         std::string interf = std::string(info->interf);
+         std::string name = std::string(info->name);
          interf.Append(wxT(": ")).Append(name);
          if (wxStrcmp(interf, playbackDeviceName) == 0) {
             playbackDevice = i;
@@ -2502,9 +2497,9 @@ double AudioIO::GetBestRate(bool capturing, bool playing, double sampleRate)
    double retval;
 
    std::vector<long> rates;
-   if (capturing) wxLogDebug(wxT("AudioIO::GetBestRate() for capture"));
-   if (playing) wxLogDebug(wxT("AudioIO::GetBestRate() for playback"));
-   wxLogDebug(wxT("GetBestRate() suggested rate %.0lf Hz"), sampleRate);
+   if (capturing) std::cout << "AudioIO::GetBestRate() for capture" << std::endl;
+   if (playing) std::cout << "AudioIO::GetBestRate() for playback" << std::endl;
+   std::cout << "GetBestRate() suggested rate " << std::round(sampleRate) << " Hz" << std::endl;
 
    if (capturing && !playing) {
       rates = GetSupportedCaptureRates(-1, sampleRate);
@@ -2521,7 +2516,7 @@ double AudioIO::GetBestRate(bool capturing, bool playing, double sampleRate)
    long rate = (long)sampleRate;
 
    if (make_iterator_range(rates).contains(rate)) {
-      wxLogDebug(wxT("GetBestRate() Returning %.0ld Hz"), rate);
+      std::cout << "GetBestRate() Returning " << std::round(rate) << " Hz" << std::endl;
       retval = rate;
       goto finished;
       /* the easy case - the suggested rate (project rate) is in the list, and
@@ -2540,7 +2535,7 @@ double AudioIO::GetBestRate(bool capturing, bool playing, double sampleRate)
 
    if (rates.empty()) {
       /* we're stuck - there are no supported rates with this hardware. Error */
-      wxLogDebug(wxT("GetBestRate() Error - no supported sample rates"));
+      std::cout << "GetBestRate() Error - no supported sample rates" << std::endl;
       retval = 0.0;
       goto finished;
    }
@@ -2549,13 +2544,13 @@ double AudioIO::GetBestRate(bool capturing, bool playing, double sampleRate)
          {
          if (rates[i] > rate) {
             // supported rate is greater than requested rate
-            wxLogDebug(wxT("GetBestRate() Returning next higher rate - %.0ld Hz"), rates[i]);
+            std::cout << "GetBestRate() Returning next higher rate - " << std::round(rates[i]) << " Hz" << std::endl;
             retval = rates[i];
             goto finished;
          }
          }
 
-   wxLogDebug(wxT("GetBestRate() Returning highest rate - %.0ld Hz"), rates.back());
+   std::cout << "GetBestRate() Returning highest rate - " << rates.back() << " Hz" << std::endl;
    retval = rates.back(); // the highest available rate
    goto finished;
 
@@ -2722,7 +2717,7 @@ void AudioIO::FillBuffers()
       auto nNeeded =
          mPlaybackQueueMinimum - std::min(mPlaybackQueueMinimum, nReady);
 
-      // wxASSERT( nNeeded <= nAvailable );
+      // assert( nNeeded <= nAvailable );
 
       auto realTimeRemaining = mPlaybackSchedule.RealTimeRemaining();
       if (nAvailable >= mPlaybackSamplesToCopy ||
@@ -2799,18 +2794,17 @@ void AudioIO::FillBuffers()
                   size_t processed = 0;
                   if ( toProcess )
                      processed = mPlaybackMixers[i]->Process( toProcess );
-                  //wxASSERT(processed <= toProcess);
+                  //assert(processed <= toProcess);
                   warpedSamples = mPlaybackMixers[i]->GetBuffer();
                   const auto put = mPlaybackBuffers[i]->Put(
                      warpedSamples, floatSample, processed, frames - processed);
-                  // wxASSERT(put == frames);
+                  // assert(put == frames);
                   // but we can't assert in this thread
-                  wxUnusedVar(put);
                }               
             }
 
             available -= frames;
-            wxASSERT(available >= 0);
+            assert(available >= 0);
 
             switch (mPlaybackSchedule.mPlayMode)
             {
@@ -2820,7 +2814,7 @@ void AudioIO::FillBuffers()
             case PlaybackSchedule::PLAY_KEYBOARD_SCRUB:
             {
                mScrubDuration -= frames;
-               wxASSERT(mScrubDuration >= 0);
+               assert(mScrubDuration >= 0);
                done = (available == 0);
                if (!done && mScrubDuration <= 0)
                {
@@ -2967,7 +2961,7 @@ void AudioIO::FillBuffers()
                   }
                }
 
-               wxASSERT(discarded <= avail);
+               assert(discarded <= avail);
                size_t toGet = avail - discarded;
                SampleBuffer temp;
                size_t size;
@@ -2984,9 +2978,8 @@ void AudioIO::FillBuffers()
                   temp.Allocate(size, format);
                   const auto got =
                      mCaptureBuffers[i]->Get(temp.ptr(), format, toGet);
-                  // wxASSERT(got == toGet);
+                  // assert(got == toGet);
                   // but we can't assert in this thread
-                  wxUnusedVar(got);
                   if (double(size) > remainingSamples)
                      size = floor(remainingSamples);
                }
@@ -2998,9 +2991,8 @@ void AudioIO::FillBuffers()
                   temp.Allocate(size, format);
                   const auto got =
                      mCaptureBuffers[i]->Get(temp1.ptr(), floatSample, toGet);
-                  // wxASSERT(got == toGet);
+                  // assert(got == toGet);
                   // but we can't assert in this thread
-                  wxUnusedVar(got);
                   /* we are re-sampling on the fly. The last resampling call
                    * must flush any samples left in the rate conversion buffer
                    * so that they get recorded
@@ -3016,7 +3008,7 @@ void AudioIO::FillBuffers()
                }
 
                if (pCrossfadeSrc) {
-                  wxASSERT(format == floatSample);
+                  assert(format == floatSample);
                   size_t crossfadeLength = std::min(size, totalCrossfadeLength - crossfadeStart);
                   if (crossfadeLength) {
                      auto ratio = double(crossfadeStart) / totalCrossfadeLength;
@@ -3600,7 +3592,7 @@ void AudioIoCallback::AddToOutputChannel(unsigned int chan,
    // if no microfades, jump in volume.
    if( !mbMicroFades )
       oldGain =gain;
-   wxASSERT(len > 0);
+   assert(len > 0);
 
    // Linear interpolate.
    float deltaGain = (gain - oldGain) / len;
@@ -3768,7 +3760,7 @@ bool AudioIoCallback::FillOutputBuffers(
          len = mPlaybackBuffers[t]->Get((samplePtr)mScratchBuffers[chanCnt],
                                                    floatSample,
                                                    toGet);
-         // wxASSERT( len == toGet );
+         // assert( len == toGet );
          if (len < framesPerBuffer)
          {
             // This used to happen normally at the end of non-looping
@@ -3840,7 +3832,7 @@ bool AudioIoCallback::FillOutputBuffers(
    if (numPlaybackTracks == 0)
       CallbackCheckCompletion(mCallbackReturn, 0);
 
-   // wxASSERT( maxLen == toGet );
+   // assert( maxLen == toGet );
 
    em.RealtimeProcessEnd();
    mLastPlaybackTimeMillis = ::wxGetUTCTimeMillis();
@@ -3939,7 +3931,7 @@ void AudioIoCallback::FillInputBuffers(
    if (len < framesPerBuffer)
    {
       mLostSamples += (framesPerBuffer - len);
-      wxPrintf(wxT("lost %d samples\n"), (int)(framesPerBuffer - len));
+      std::cout << "lost " << (int)(framesPerBuffer - len) << " samples" << std::endl;
    }
 
    if (len <= 0) 
@@ -3968,7 +3960,7 @@ void AudioIoCallback::FillInputBuffers(
             // is different from PortAudio's sample format and so we
             // make PortAudio return float samples when recording in
             // 24-bit samples.
-            wxASSERT(false);
+            assert(false);
             break;
          case int16Sample: {
             short *inputShorts = (short *)inputBuffer;
@@ -3987,7 +3979,7 @@ void AudioIoCallback::FillInputBuffers(
       //const auto put = // unused
          mCaptureBuffers[t]->Put(
             (samplePtr)tempFloats, mCaptureFormat, len);
-      // wxASSERT(put == len);
+      // assert(put == len);
       // but we can't assert in this thread
    }
 }
@@ -4343,9 +4335,8 @@ int AudioIoCallback::CallbackDoSeek()
          mPlaybackBuffers[i]->AvailForGet();
       const auto discarded =
          mPlaybackBuffers[i]->Discard( toDiscard );
-      // wxASSERT( discarded == toDiscard );
+      // assert( discarded == toDiscard );
       // but we can't assert in this thread
-      wxUnusedVar(discarded);
    }
 
    // Reload the ring buffers

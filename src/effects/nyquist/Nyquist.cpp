@@ -3376,7 +3376,7 @@ static LVAL gettext()
       nextarg();
 #endif
    xllastarg();
-   return cvstring(GetCustomTranslation(string).mb_str(wxConvUTF8));
+   return cvstring(GetRawTranslation(string).mb_str(wxConvUTF8));
 }
 
 static LVAL gettextc()

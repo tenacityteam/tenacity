@@ -79,19 +79,6 @@ double ZoomInfo::GetMinZoom( ) { return gMinZoom;};
 void ZoomInfo::SetZoom(double pixelsPerSecond)
 {
    zoom = std::max(gMinZoom, std::min(gMaxZoom, pixelsPerSecond));
-// DA: Avoids stuck in snap-to
-#ifdef EXPERIMENTAL_DA
-   // Disable snapping if user zooms in a long way.
-   // Helps stop users be trapped in snap-to.
-   // The level chosen is in sample viewing range with samples
-   // still quite close together.
-   if( zoom > (gMaxZoom * 0.06  ))
-   {
-      TenacityProject * project = GetActiveProject();
-      if( project )
-         project->OnSnapToOff();
-   }
-#endif
 }
 
 void ZoomInfo::ZoomBy(double multiplier)
@@ -106,12 +93,12 @@ void ZoomInfo::FindIntervals
    results.reserve(2);
 
    const wxInt64 rightmost(origin + (0.5 + width));
-   wxASSERT(origin <= rightmost);
+   assert(origin <= rightmost);
    {
       results.push_back(Interval(origin, zoom, false));
    }
 
    if (origin < rightmost)
       results.push_back(Interval(rightmost, 0, false));
-   wxASSERT(!results.empty() && results[0].position == origin);
+   assert(!results.empty() && results[0].position == origin);
 }

@@ -76,7 +76,7 @@ public:
       }
       break;
       default:
-         wxASSERT(false);
+         assert(false);
       }
    }
 
@@ -155,7 +155,7 @@ public:
    {
       switch (mType) {
       default:
-         wxASSERT(false);
+         assert(false);
       case nstLinear:
       case nstNone:
          return mValue0 + pp * (mValue1 - mValue0);
@@ -186,7 +186,7 @@ public:
       {
          switch (mType) {
          default:
-            wxASSERT(false);
+            assert(false);
          case nstLinear:
          case nstNone:
          case nstLogarithmic:
@@ -217,7 +217,7 @@ public:
             mValue *= mStep;
             break;
          default:
-            wxASSERT(false);
+            assert(false);
          }
          return *this;
       }
@@ -232,7 +232,7 @@ public:
    {
       switch (mType) {
       default:
-         wxASSERT(false);
+         assert(false);
       case nstLinear:
       case nstNone:
       case nstMel:
@@ -256,7 +256,7 @@ public:
    {
       switch (mType) {
       default:
-         wxASSERT(false);
+         assert(false);
       case nstLinear:
       case nstNone:
          return ((val - mValue0) / (mValue1 - mValue0));

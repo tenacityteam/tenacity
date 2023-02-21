@@ -559,7 +559,7 @@ public:
    /** \brief Ensure selected device names are valid
     *
     */
-   static bool ValidateDeviceNames(const wxString &play, const wxString &rec);
+   static bool ValidateDeviceNames(const std::string &play, const std::string &rec);
 
    /** \brief Function to automatically set an acceptable volume
     *

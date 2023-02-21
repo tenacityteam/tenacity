@@ -345,7 +345,7 @@ void DirectoriesPrefs::OnTempText(wxCommandEvent & WXUNUSED(evt))
       wxGetDiskSpace(path, NULL, &space);
 
       label = wxDirExists(path)
-         ? Internat::FormatSize(space)
+         ? Internat::FormatSize(space.ToDouble())
          : XO("unavailable - above location doesn't exist");
 
       mFreeSpace->SetValue(label.Translation());

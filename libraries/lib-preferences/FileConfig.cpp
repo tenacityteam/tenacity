@@ -87,7 +87,7 @@ void FileConfig::Init()
 
 FileConfig::~FileConfig()
 {
-   wxASSERT(mDirty == false);
+   assert(mDirty == false);
 }
 
 void FileConfig::SetPath(const wxString& strPath)

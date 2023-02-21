@@ -226,7 +226,7 @@ EnumValueSymbols::EnumValueSymbols(
 {
    auto size = mInternals.size(), size2 = msgids.size();
    if ( size != size2 ) {
-      wxASSERT( false );
+      assert( false );
       size = std::min( size, size2 );
    }
    reserve( size );
@@ -322,7 +322,7 @@ EnumSettingBase::EnumSettingBase(
 {
    auto size = mSymbols.size();
    if( mIntValues.size() != size ) {
-      wxASSERT( false );
+      assert( false );
       mIntValues.resize( size );
    }
 }
@@ -332,14 +332,14 @@ void ChoiceSetting::SetDefault( long value )
    if ( value < (long)mSymbols.size() )
       mDefaultSymbol = value;
    else
-      wxASSERT( false );
+      assert( false );
 }
 
 int EnumSettingBase::ReadInt() const
 {
    auto index = Find( Read() );
 
-   wxASSERT( index < mIntValues.size() );
+   assert( index < mIntValues.size() );
    return mIntValues[ index ];
 }
 
@@ -350,11 +350,11 @@ int EnumSettingBase::ReadIntWithDefault( int defaultValue ) const
    if ( index0 < mSymbols.size() )
       defaultString = mSymbols[ index0 ].Internal();
    else
-      wxASSERT( false );
+      assert( false );
 
    auto index = Find( ReadWithDefault( defaultString ) );
 
-   wxASSERT( index < mSymbols.size() );
+   assert( index < mSymbols.size() );
    return mIntValues[ index ];
 }
 

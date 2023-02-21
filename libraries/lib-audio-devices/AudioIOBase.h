@@ -16,7 +16,6 @@ Paul Licameli split from AudioIO.h
 #include <functional>
 #include <vector>
 #include <limits>
-#include <wx/string.h>
 
 // Tenacity libraries
 #include "MemoryX.h"
@@ -204,11 +203,11 @@ public:
    /** \brief Get diagnostic information on all the available audio I/O devices
     *
     */
-   wxString GetDeviceInfo();
+   std::string GetDeviceInfo();
 
 #ifdef EXPERIMENTAL_MIDI_OUT
    /** \brief Get diagnostic information on all the available MIDI I/O devices */
-   wxString GetMidiDeviceInfo();
+   std::string GetMidiDeviceInfo();
 #endif
 
    /** \brief Find out if playback / recording is currently paused */
@@ -244,8 +243,8 @@ public:
 
 protected:
    static std::unique_ptr<AudioIOBase> ugAudioIO;
-   static wxString DeviceName(const PaDeviceInfo* info);
-   static wxString HostName(const PaDeviceInfo* info);
+   static std::string DeviceName(const PaDeviceInfo* info);
+   static std::string HostName(const PaDeviceInfo* info);
 
    TenacityProject    *mOwningProject;
 
@@ -284,7 +283,7 @@ protected:
     * and would be neater done once. If the device isn't found, return the
     * default device index.
     */
-   static int getRecordDevIndex(const wxString &devName = {});
+   static int getRecordDevIndex(const std::string &devName = {});
 
    /** \brief get the index of the supplied (named) playback device, or the
     * device selected in the preferences if none given.
@@ -293,7 +292,7 @@ protected:
     * and would be neater done once. If the device isn't found, return the
     * default device index.
     */
-   static int getPlayDevIndex(const wxString &devName = {});
+   static int getPlayDevIndex(const std::string &devName = {});
 
    /** \brief Array of audio sample rates to try to use
     *

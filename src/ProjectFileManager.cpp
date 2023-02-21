@@ -1437,7 +1437,7 @@ void ProjectFileManager::Compact()
             "and you will recover approximately %s of disk space.\n"
             "\n"
             "Do you want to continue?")
-         .Format(Internat::FormatSize(projectFileIO.GetFreeDiskSpace()),
+         .Format(Internat::FormatSize(projectFileIO.GetFreeDiskSpace().ToDouble()),
                   Internat::FormatSize(before.GetValue()),
                   Internat::FormatSize(total - used)));
    if (isBatch || dlg.ShowModal() == wxYES)

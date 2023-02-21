@@ -154,7 +154,7 @@ void CollectItem( Registry::Visitor &visitor,
          collection.items.push_back( {pItem, nullptr, hint} );
    }
    else {
-      wxASSERT( dynamic_cast<SingleItem*>(pItem) );
+      assert( dynamic_cast<SingleItem*>(pItem) );
       // common to all single items
       collection.items.push_back( {pItem, nullptr, hint} );
    }
@@ -449,7 +449,7 @@ auto CollectedItems::MergeLikeNamedItems(
       // other name that has not yet been placed.
       success =
          InsertNewItemUsingHint( pItem, hint, endItemsCount, force );
-      wxASSERT( !force || success );
+      assert( !force || success );
    }
 
    if ( success ) {
@@ -675,7 +675,7 @@ void VisitItem(
 
    if (const auto pSingle =
        dynamic_cast<SingleItem*>( pItem )) {
-      wxASSERT( !pToMerge );
+      assert( !pToMerge );
       visitor.Visit( *pSingle, path );
    }
    else
@@ -688,7 +688,7 @@ void VisitItem(
       visitor.EndGroup( *pGroup, path );
    }
    else
-      wxASSERT( false );
+      assert( false );
 }
 
 }

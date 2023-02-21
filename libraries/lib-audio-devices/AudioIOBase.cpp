@@ -11,14 +11,12 @@ Paul Licameli split from AudioIO.cpp
 
 #include "AudioIOBase.h"
 
-#include <wx/log.h>
-#include <wx/sstream.h>
-#include <wx/txtstrm.h>
-
 #include "Meter.h"
 #include "Prefs.h"
 
 #include <portaudio.h>
+#include <iostream>
+#include <sstream>
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 #include <portmidi.h>
@@ -47,7 +45,7 @@ const int AudioIOBase::StandardRates[] = {
    384000
 };
 
-const int AudioIOBase::NumStandardRates = WXSIZEOF(AudioIOBase::StandardRates);
+const int AudioIOBase::NumStandardRates = sizeof(AudioIOBase::StandardRates) / sizeof(int);
 
 const int AudioIOBase::RatesToTry[] = {
    8000,
@@ -68,18 +66,18 @@ const int AudioIOBase::RatesToTry[] = {
    352800,
    384000
 };
-const int AudioIOBase::NumRatesToTry = WXSIZEOF(AudioIOBase::RatesToTry);
+const int AudioIOBase::NumRatesToTry = sizeof(AudioIOBase::RatesToTry) / sizeof(int);
 
-wxString AudioIOBase::DeviceName(const PaDeviceInfo* info)
+std::string AudioIOBase::DeviceName(const PaDeviceInfo* info)
 {
-   wxString infoName = wxSafeConvertMB2WX(info->name);
+   std::string infoName = std::string(info->name);
 
    return infoName;
 }
 
-wxString AudioIOBase::HostName(const PaDeviceInfo* info)
+std::string AudioIOBase::HostName(const PaDeviceInfo* info)
 {
-   wxString hostapiName = wxSafeConvertMB2WX(Pa_GetHostApiInfo(info->hostApi)->name);
+   std::string hostapiName = std::string(Pa_GetHostApiInfo(info->hostApi)->name);
 
    return hostapiName;
 }
@@ -97,8 +95,8 @@ void AudioIOBase::HandleDeviceChange()
 {
    // This should not happen, but it would screw things up if it did.
    // Vaughan, 2010-10-08: But it *did* happen, due to a bug, and nobody
-   // caught it because this method just returned. Added wxASSERT().
-   wxASSERT(!IsStreamActive());
+   // caught it because this method just returned. Added assert().
+   assert(!IsStreamActive());
    if (IsStreamActive())
       return;
 
@@ -218,7 +216,7 @@ std::vector<long> AudioIOBase::GetSupportedPlaybackRates(int devIndex, double ra
 
    if (!devInfo)
    {
-      wxLogDebug(wxT("GetSupportedPlaybackRates() Could not get device info!"));
+      std::cout << "GetSupportedPlaybackRates() Could not get device info!" << std::endl;
       return supported;
    }
 
@@ -283,7 +281,7 @@ std::vector<long> AudioIOBase::GetSupportedCaptureRates(int devIndex, double rat
 
    if (!devInfo)
    {
-      wxLogDebug(wxT("GetSupportedCaptureRates() Could not get device info!"));
+      std::cout << "GetSupportedCaptureRates() Could not get device info!" << std::endl;
       return supported;
    }
 
@@ -394,9 +392,9 @@ int AudioIOBase::GetOptimalSupportedSampleRate()
    return rates.back();
 }
 
-int AudioIOBase::getPlayDevIndex(const wxString &devNameArg)
+int AudioIOBase::getPlayDevIndex(const std::string &devNameArg)
 {
-   wxString devName(devNameArg);
+   std::string devName(devNameArg);
    // if we don't get given a device, look up the preferences
    if (devName.empty())
       devName = AudioIOPlaybackDevice.Read();
@@ -407,7 +405,7 @@ int AudioIOBase::getPlayDevIndex(const wxString &devNameArg)
    for (hostNum = 0; hostNum < hostCnt; hostNum++)
    {
       const PaHostApiInfo *hinfo = Pa_GetHostApiInfo(hostNum);
-      if (hinfo && wxString(wxSafeConvertMB2WX(hinfo->name)) == hostName)
+      if (hinfo && std::string(std::string(hinfo->name)) == hostName)
       {
          for (PaDeviceIndex hostDevice = 0; hostDevice < hinfo->deviceCount; hostDevice++)
          {
@@ -442,16 +440,16 @@ int AudioIOBase::getPlayDevIndex(const wxString &devNameArg)
    //      And I can't imagine how far we'll get specifying an "invalid" index later
    //      on...are we certain "0" even exists?
    if (deviceNum < 0) {
-      wxASSERT(false);
+      assert(false);
       deviceNum = 0;
    }
 
    return deviceNum;
 }
 
-int AudioIOBase::getRecordDevIndex(const wxString &devNameArg)
+int AudioIOBase::getRecordDevIndex(const std::string &devNameArg)
 {
-   wxString devName(devNameArg);
+   std::string devName(devNameArg);
    // if we don't get given a device, look up the preferences
    if (devName.empty())
       devName = AudioIORecordingDevice.Read();
@@ -462,7 +460,7 @@ int AudioIOBase::getRecordDevIndex(const wxString &devNameArg)
    for (hostNum = 0; hostNum < hostCnt; hostNum++)
    {
       const PaHostApiInfo *hinfo = Pa_GetHostApiInfo(hostNum);
-      if (hinfo && wxString(wxSafeConvertMB2WX(hinfo->name)) == hostName)
+      if (hinfo && std::string(std::string(hinfo->name)) == hostName)
       {
          for (PaDeviceIndex hostDevice = 0; hostDevice < hinfo->deviceCount; hostDevice++)
          {
@@ -499,23 +497,22 @@ int AudioIOBase::getRecordDevIndex(const wxString &devNameArg)
       // JKC: This ASSERT will happen if you run with no config file
       // This happens once.  Config file will exist on the next run.
       // TODO: Look into this a bit more.  Could be relevant to blank Device Toolbar.
-      wxASSERT(false);
+      assert(false);
       deviceNum = 0;
    }
 
    return deviceNum;
 }
 
-wxString AudioIOBase::GetDeviceInfo()
+std::string AudioIOBase::GetDeviceInfo()
 {
-   wxStringOutputStream o;
-   wxTextOutputStream s(o, wxEOL_UNIX);
+   std::ostringstream s;
 
    if (IsStreamActive()) {
       return XO("Stream is active ... unable to gather information.\n")
-         .Translation();
+         .Translation()
+         .ToStdString(); // ANERRUPTION: Remove std::string conversion
    }
-
 
    // FIXME: TRAP_ERR PaErrorCode not handled.  3 instances in GetDeviceInfo().
    int recDeviceNum = Pa_GetDefaultInputDevice();
@@ -523,11 +520,11 @@ wxString AudioIOBase::GetDeviceInfo()
    int cnt = Pa_GetDeviceCount();
 
    // PRL:  why only into the log?
-   wxLogDebug(wxT("Portaudio reports %d audio devices"),cnt);
-   
-   s << wxT("==============================\n");
-   s << XO("Default recording device number: %d\n").Format( recDeviceNum );
-   s << XO("Default playback device number: %d\n").Format( playDeviceNum);
+   std::cout << "PortAudio reports " << cnt << " audio devices" << std::endl;
+
+   s << std::string("==============================") << std::endl;
+   s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation() << std::endl;
+   s << XO("Default playback device number: %d").Format( playDeviceNum).Translation() << std::endl;
 
    auto recDevice = AudioIORecordingDevice.Read();
    auto playDevice = AudioIOPlaybackDevice.Read();
@@ -535,38 +532,38 @@ wxString AudioIOBase::GetDeviceInfo()
 
    // This gets info on all available audio devices (input and output)
    if (cnt <= 0) {
-      s << XO("No devices found\n");
-      return o.GetString();
+      s << XO("No devices found").Translation() << std::endl;
+      return s.str();
    }
 
    const PaDeviceInfo* info;
 
    for (j = 0; j < cnt; j++) {
-      s << wxT("==============================\n");
+      s << std::string("==============================") << std::endl;
 
       info = Pa_GetDeviceInfo(j);
       if (!info) {
-         s << XO("Device info unavailable for: %d\n").Format( j );
+         s << XO("Device info unavailable for: %d").Format( j ).Translation() << std::endl;
          continue;
       }
 
-      wxString name = DeviceName(info);
-      s << XO("Device ID: %d\n").Format( j );
-      s << XO("Device name: %s\n").Format( name );
-      s << XO("Host name: %s\n").Format( HostName(info) );
-      s << XO("Recording channels: %d\n").Format( info->maxInputChannels );
-      s << XO("Playback channels: %d\n").Format( info->maxOutputChannels );
-      s << XO("Low Recording Latency: %g\n").Format( info->defaultLowInputLatency );
-      s << XO("Low Playback Latency: %g\n").Format( info->defaultLowOutputLatency );
-      s << XO("High Recording Latency: %g\n").Format( info->defaultHighInputLatency );
-      s << XO("High Playback Latency: %g\n").Format( info->defaultHighOutputLatency );
+      std::string name = DeviceName(info);
+      s << XO("Device ID: %d").Format( j ).Translation() << std::endl;
+      s << XO("Device name: %s").Format( name ).Translation() << std::endl;
+      s << XO("Host name: %s").Format( HostName(info) ).Translation() << std::endl;
+      s << XO("Recording channels: %d").Format( info->maxInputChannels ).Translation() << std::endl;
+      s << XO("Playback channels: %d").Format( info->maxOutputChannels ).Translation() << std::endl;
+      s << XO("Low Recording Latency: %g").Format( info->defaultLowInputLatency ).Translation() << std::endl;
+      s << XO("Low Playback Latency: %g").Format( info->defaultLowOutputLatency ).Translation() << std::endl;
+      s << XO("High Recording Latency: %g").Format( info->defaultHighInputLatency ).Translation() << std::endl;
+      s << XO("High Playback Latency: %g").Format( info->defaultHighOutputLatency ).Translation() << std::endl;
 
       auto rates = GetSupportedPlaybackRates(j, 0.0);
 
       /* i18n-hint: Supported, meaning made available by the system */
-      s << XO("Supported Rates:\n");
+      s << XO("Supported Rates:").Translation() << std::endl;
       for (int k = 0; k < (int) rates.size(); k++) {
-         s << wxT("    ") << (int)rates[k] << wxT("\n");
+         s << std::string("    ") << (int)rates[k] << std::endl;
       }
 
       if (name == playDevice && info->maxOutputChannels > 0)
@@ -588,41 +585,40 @@ wxString AudioIOBase::GetDeviceInfo()
    bool haveRecDevice = (recDeviceNum >= 0);
    bool havePlayDevice = (playDeviceNum >= 0);
 
-   s << wxT("==============================\n");
+   s << std::string("==============================") << std::endl;
    if (haveRecDevice)
-      s << XO("Selected recording device: %d - %s\n").Format( recDeviceNum, recDevice );
+      s << XO("Selected recording device: %d - %s").Format( recDeviceNum, recDevice ).Translation() << std::endl;
    else
-      s << XO("No recording device found for '%s'.\n").Format( recDevice );
+      s << XO("No recording device found for '%s'.").Format( recDevice ).Translation() << std::endl;
 
    if (havePlayDevice)
-      s << XO("Selected playback device: %d - %s\n").Format( playDeviceNum, playDevice );
+      s << XO("Selected playback device: %d - %s").Format( playDeviceNum, playDevice ).Translation() << std::endl;
    else
-      s << XO("No playback device found for '%s'.\n").Format( playDevice );
+      s << XO("No playback device found for '%s'.").Format( playDevice ).Translation() << std::endl;
 
    std::vector<long> supportedSampleRates;
 
    if (havePlayDevice && haveRecDevice) {
       supportedSampleRates = GetSupportedSampleRates(playDeviceNum, recDeviceNum);
 
-      s << XO("Supported Rates:\n");
+      s << XO("Supported Rates:").Translation() << std::endl;
       for (int k = 0; k < (int) supportedSampleRates.size(); k++) {
-         s << wxT("    ") << (int)supportedSampleRates[k] << wxT("\n");
+         s << std::string("    ") << (int)supportedSampleRates[k] << std::endl;
       }
    }
    else {
-      s << XO("Cannot check mutual sample rates without both devices.\n");
-      return o.GetString();
+      s << XO("Cannot check mutual sample rates without both devices.").Translation() << std::endl;
+      return s.str();
    }
 
-   return o.GetString();
+   return s.str();
 }
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 // FIXME: When EXPERIMENTAL_MIDI_IN is added (eventually) this should also be enabled -- Poke
-wxString AudioIOBase::GetMidiDeviceInfo()
+std::string AudioIOBase::GetMidiDeviceInfo()
 {
-   wxStringOutputStream o;
-   wxTextOutputStream s(o, wxEOL_UNIX);
+   std::ostringstream s;
 
    if (IsStreamActive()) {
       return XO("Stream is active ... unable to gather information.\n")
@@ -636,41 +632,41 @@ wxString AudioIOBase::GetMidiDeviceInfo()
    int cnt = Pm_CountDevices();
 
    // PRL:  why only into the log?
-   wxLogDebug(wxT("PortMidi reports %d MIDI devices"), cnt);
+   std::cout << "PortMidi reports " << cnt << " MIDI devices" << std::endl;
 
-   s << wxT("==============================\n");
-   s << XO("Default recording device number: %d\n").Format( recDeviceNum );
-   s << XO("Default playback device number: %d\n").Format( playDeviceNum );
+   s << std::string("==============================") << std::endl;
+   s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation() << std::endl;
+   s << XO("Default playback device number: %d").Format( playDeviceNum ).Translation() << std::endl;
 
-   wxString recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT(""));
-   wxString playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT(""));
+   std::string recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT(""));
+   std::string playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT(""));
 
    // This gets info on all available audio devices (input and output)
    if (cnt <= 0) {
-      s << XO("No devices found\n");
-      return o.GetString();
+      s << XO("No devices found").Translation() << std::endl;
+      return s.str();
    }
 
    for (int i = 0; i < cnt; i++) {
-      s << wxT("==============================\n");
+      s << std::string("==============================") << std::endl;
 
       const PmDeviceInfo* info = Pm_GetDeviceInfo(i);
       if (!info) {
-         s << XO("Device info unavailable for: %d\n").Format( i );
+         s << XO("Device info unavailable for: %d").Format( i ).Translation() << std::endl;
          continue;
       }
 
-      wxString name = wxSafeConvertMB2WX(info->name);
-      wxString hostName = wxSafeConvertMB2WX(info->interf);
+      std::string name = std::string(info->name);
+      std::string hostName = std::string(info->interf);
 
-      s << XO("Device ID: %d\n").Format( i );
-      s << XO("Device name: %s\n").Format( name );
-      s << XO("Host name: %s\n").Format( hostName );
+      s << XO("Device ID: %d").Format( i ).Translation() << std::endl;
+      s << XO("Device name: %s").Format( name ).Translation() << std::endl;
+      s << XO("Host name: %s").Format( hostName ).Translation() << std::endl;
       /* i18n-hint: Supported, meaning made available by the system */
-      s << XO("Supports output: %d\n").Format( info->output );
+      s << XO("Supports output: %d").Format( info->output ).Translation() << std::endl;
       /* i18n-hint: Supported, meaning made available by the system */
-      s << XO("Supports input: %d\n").Format( info->input );
-      s << XO("Opened: %d\n").Format( info->opened );
+      s << XO("Supports input: %d").Format( info->input ).Translation() << std::endl;
+      s << XO("Opened: %d").Format( info->opened ).Translation() << std::endl;
 
       if (name == playDevice && info->output)
          playDeviceNum = i;
@@ -691,36 +687,36 @@ wxString AudioIOBase::GetMidiDeviceInfo()
    bool haveRecDevice = (recDeviceNum >= 0);
    bool havePlayDevice = (playDeviceNum >= 0);
 
-   s << wxT("==============================\n");
+   s << std::string("==============================") << std::endl;
    if (haveRecDevice)
-      s << XO("Selected MIDI recording device: %d - %s\n").Format( recDeviceNum, recDevice );
+      s << XO("Selected MIDI recording device: %d - %s").Format( recDeviceNum, recDevice ).Translation() << std::endl;
    else
-      s << XO("No MIDI recording device found for '%s'.\n").Format( recDevice );
+      s << XO("No MIDI recording device found for '%s'.").Format( recDevice ).Translation() << std::endl;
 
    if (havePlayDevice)
-      s << XO("Selected MIDI playback device: %d - %s\n").Format( playDeviceNum, playDevice );
+      s << XO("Selected MIDI playback device: %d - %s").Format( playDeviceNum, playDevice ).Translation() << std::endl;
    else
-      s << XO("No MIDI playback device found for '%s'.\n").Format( playDevice );
+      s << XO("No MIDI playback device found for '%s'.").Format( playDevice ).Translation() << std::endl;
 
    // Mention our conditional compilation flags for Alpha only
 #ifdef IS_ALPHA
 
    // Not internationalizing these alpha-only messages
-   s << wxT("==============================\n");
+   s << std::string("==============================") << std::endl;
 #ifdef EXPERIMENTAL_MIDI_OUT
-   s << wxT("EXPERIMENTAL_MIDI_OUT is enabled\n");
+   s << "EXPERIMENTAL_MIDI_OUT is enabled" << std::endl;
 #else
-   s << wxT("EXPERIMENTAL_MIDI_OUT is NOT enabled\n");
+   s << "EXPERIMENTAL_MIDI_OUT is NOT enabled" << std::endl;
 #endif
 #ifdef EXPERIMENTAL_MIDI_IN
-   s << wxT("EXPERIMENTAL_MIDI_IN is enabled\n");
+   s << "EXPERIMENTAL_MIDI_IN is enabled" << std::endl;
 #else
-   s << wxT("EXPERIMENTAL_MIDI_IN is NOT enabled\n");
+   s << "EXPERIMENTAL_MIDI_IN is NOT enabled" << std::endl;
 #endif
 
 #endif
 
-   return o.GetString();
+   return s.str();
 }
 #endif
 

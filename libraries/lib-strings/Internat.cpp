@@ -22,12 +22,10 @@ and on Mac OS X for the filesystem.
 
 #include "Internat.h"
 
-#include <wx/log.h>
 #include <wx/intl.h>
 #include <wx/filename.h>
 
-#include <locale.h>
-#include <math.h> // for pow()
+#include <clocale>
 
 // in order for the static member variables to exist, they must appear here
 // (_outside_) the class definition, in order to be allocated some storage.
@@ -37,43 +35,10 @@ wxChar Internat::mDecimalSeparator = wxT('.'); // default
 // exclude is used by SanitiseFilename.
 wxArrayString Internat::exclude;
 
-// DA: Use tweaked translation mechanism to replace 'Audacity' by 'DarkAudacity'.
-#ifdef EXPERIMENTAL_DA
-// This function allows us to replace Audacity by DarkAudacity without peppering 
-// the source code with changes.  We split out this step, the customisation, as 
-// it is used on its own (without translation) in the wxTS macro.
-STRINGS_API const wxString& GetCustomSubstitution(const wxString& str2)
+STRINGS_API const wxString& GetRawTranslation(const wxString& str1)
 {
-   // If contains 'DarkAudacity, already converted.
-   if( str2.Contains( "DarkAudacity" ))
-      return str2;
-   // If does not contain 'Audacity', nothing to do.
-   if( !str2.Contains( "Audacity" ))
-      return str2;
-   wxString str3 = str2;
-   str3.Replace( "Audacity", "DarkAudacity" );
-   str3.Replace( " an DarkAudacity", " a DarkAudacity" );
-   // DA also renames sync-lock(ed) as time-lock(ed).
-   str3.Replace( "Sync-Lock", "Time-Lock" );
-   str3.Replace( "Sync-&Lock", "Time-&Lock" );
-   str3.Replace( "Sync Lock", "Time Lock" );
-   return wxTranslations::GetUntranslatedString(str3);
+   return wxGetTranslation( str1 );
 }
-#else 
-STRINGS_API const wxString& GetCustomSubstitution(const wxString& str1)
-{
-   return str1 ;
-}
-#endif
-
-// In any translated string, we can replace the name 'Audacity' by 'DarkAudacity'
-// without requiring translators to see extra strings for the two versions.
-STRINGS_API const wxString& GetCustomTranslation(const wxString& str1)
-{
-   const wxString& str2 = wxGetTranslation( str1 );
-   return GetCustomSubstitution( str2 );
-}
-
 
 void Internat::Init()
 {
@@ -82,7 +47,7 @@ void Internat::Init()
    if (localeInfo)
       mDecimalSeparator = wxString(wxSafeConvertMB2WX(localeInfo->decimal_point)).GetChar(0);
 
-//   wxLogDebug(wxT("Decimal separator set to '%c'"), mDecimalSeparator);
+//   std::cout << "Decimal separator set to '" << mDecimalSeparator << "'" << std::endl;
 
    // Setup list of characters that aren't allowed in file names
    // Hey!  The default wxPATH_NATIVE does not do as it should.
@@ -199,15 +164,6 @@ wxString Internat::ToDisplayString(double numberToConvert,
    }
 
    return result;
-}
-
-TranslatableString Internat::FormatSize(wxLongLong size)
-{
-   /* wxLongLong contains no built-in conversion to double */
-   double dSize = size.GetHi() * pow(2.0, 32);  // 2 ^ 32
-   dSize += size.GetLo();
-
-   return FormatSize(dSize);
 }
 
 TranslatableString Internat::FormatSize(double size)

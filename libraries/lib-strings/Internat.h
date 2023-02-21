@@ -13,18 +13,13 @@
 #define __AUDACITY_INTERNAT__
 
 #include <vector>
-#include <wx/longlong.h>
 
 #include "TranslatableString.h"
 
 class wxArrayString;
 class wxArrayStringEx;
 
-extern STRINGS_API const wxString& GetCustomTranslation(const wxString& str1 );
-extern STRINGS_API const wxString& GetCustomSubstitution(const wxString& str1 );
-
-// Marks string for substitution only.
-#define _TS( s ) GetCustomSubstitution( s )
+extern STRINGS_API const wxString& GetRawTranslation(const wxString& str1);
 
 // Marks strings for extraction only... use .Translate() to translate.
 // '&', preceding menu accelerators, should NOT occur in the argument.
@@ -79,19 +74,19 @@ inline TranslatableString StringLiteral(wxString str)
    // include <windows.h> directly since it then causes "MemoryX.h" to spew errors.
    #include <wx/app.h>
    #define _(s) ((wxTranslations::Get() || (DebugBreak(), true)), \
-                GetCustomTranslation((s)))
+                GetRawTranslation((s)))
 
    #else
 
    #include <signal.h>
-   // Raise a signal because it's even too early to use wxASSERT for this.
+   // Raise a signal because it's even too early to use assert for this.
    #define _(s) ((wxTranslations::Get() || raise(SIGTRAP)), \
-                GetCustomTranslation((s)))
+                GetRawTranslation((s)))
 
    #endif
 
 #else
-   #define _(s) GetCustomTranslation((s))
+   #define _(s) GetRawTranslation((s))
 #endif
 
 #ifdef XP
@@ -155,7 +150,6 @@ public:
 
    /** \brief Convert a number to a string while formatting it in bytes, KB,
     * MB, GB */
-   static TranslatableString FormatSize(wxLongLong size);
    static TranslatableString FormatSize(double size);
 
    /** \brief Check a proposed file name string for illegal characters and

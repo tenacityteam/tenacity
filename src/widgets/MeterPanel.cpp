@@ -641,10 +641,9 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
       }
       mRuler.SetTickColour( clrText );
       dc.SetTextForeground( clrText );
+
       // Draw the ruler
-#ifndef EXPERIMENTAL_DA
       mRuler.Draw(dc);
-#endif
 
       // Bitmap created...unselect
       dc.SelectObject(wxNullBitmap);
@@ -661,22 +660,20 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
 
    destDC.SetTextForeground( clrText );
 
-#ifndef EXPERIMENTAL_DA
-   // We can have numbers over the bars, in which case we have to draw them each time.
-   if (mStyle == HorizontalStereoCompact || mStyle == VerticalStereoCompact)
-   {
-      mRuler.SetTickColour( clrText );
-      // If the text colour is too similar to the meter colour, then we need a background
-      // for the text.  We require a total of at least one full-scale RGB difference.
-      int d = theTheme.ColourDistance( clrText, theTheme.Colour( clrMeterOutputRMSBrush ) );
-      if( d < 256 )
-      {
-         destDC.SetBackgroundMode( wxSOLID );
-         destDC.SetTextBackground( clrBoxFill );
-      }
-      mRuler.Draw(destDC);
-   }
-#endif
+    // We can have numbers over the bars, in which case we have to draw them each time.
+    if (mStyle == HorizontalStereoCompact || mStyle == VerticalStereoCompact)
+    {
+        mRuler.SetTickColour( clrText );
+        // If the text colour is too similar to the meter colour, then we need a background
+        // for the text.  We require a total of at least one full-scale RGB difference.
+        int d = theTheme.ColourDistance( clrText, theTheme.Colour( clrMeterOutputRMSBrush ) );
+        if( d < 256 )
+        {
+            destDC.SetBackgroundMode( wxSOLID );
+            destDC.SetTextBackground( clrBoxFill );
+        }
+        mRuler.Draw(destDC);
+    }
 
    // Let the user know they can click to start monitoring
    if( mIsInput && !mActive )

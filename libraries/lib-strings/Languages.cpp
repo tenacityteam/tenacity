@@ -241,7 +241,7 @@ void GetLanguages( FilePaths pathList,
       const wxLanguageInfo *info = wxLocale::FindLanguageInfo(i->first);
 
       if (!info) {
-         wxASSERT(info != NULL);
+         assert(info != NULL);
          continue;
       }
 

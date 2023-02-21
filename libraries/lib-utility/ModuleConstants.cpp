@@ -10,12 +10,6 @@
 
 #include "ModuleConstants.h"
 
-// We want Audacity with a capital 'A'
-// DA: App name
-const std::wstring AppName =
-#ifndef EXPERIMENTAL_DA
-   L"Tenacity"
-#else
-   L"DarkAudacity"
-#endif
+// We want Tenacity with a capital 'T'
+const std::wstring AppName = L"Tenacity"
 ;

@@ -279,7 +279,7 @@ public:
 
       , mDefaultSymbol{ defaultSymbol }
    {
-      wxASSERT( defaultSymbol < (long)mSymbols.size() );
+      assert( defaultSymbol < (long)mSymbols.size() );
    }
 
    const wxString &Key() const { return mKey; }
