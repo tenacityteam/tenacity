@@ -123,7 +123,7 @@ ThemeBase::~ThemeBase(void)
 }
 
 using ThemeCacheLookup =
-   std::map< EnumValueSymbol, const std::vector<unsigned char>& >;
+   std::map< EnumValueSymbol, ThemeBase::RegisteredTheme::InfoPair >;
 
 static ThemeCacheLookup &GetThemeCacheLookup()
 {
@@ -131,11 +131,30 @@ static ThemeCacheLookup &GetThemeCacheLookup()
    return theMap;
 }
 
+static const int& GetDefaultTheme()
+{
+   static int defaultTheme = 0;
+   if (defaultTheme == 0)
+   {
+      for (const auto& symbol : GetThemeCacheLookup())
+      {
+         if (symbol.second.second)
+         {
+            break;
+         }
+
+         defaultTheme++;
+      }
+   }
+
+   return defaultTheme;
+}
+
 ThemeBase::RegisteredTheme::RegisteredTheme(
-   EnumValueSymbol symbol, const std::vector<unsigned char> &data )
+   EnumValueSymbol symbol, InfoPair info )
    : symbol{ symbol }
 {
-   GetThemeCacheLookup().emplace(symbol, data);
+   GetThemeCacheLookup().emplace(symbol, info);
 }
 
 ThemeBase::RegisteredTheme::~RegisteredTheme()
@@ -661,8 +680,10 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          iter = lookup.find({"classic", {}});
          wxASSERT(iter != end);
       }
-      ImageSize = iter->second.size();
-      pImage = iter->second.data();
+
+      // Get the theme data (the 2nd pair in the theme cache map)
+      ImageSize = iter->second.first.size();
+      pImage = iter->second.first.data();
       //wxLogDebug("Reading ImageCache %p size %i", pImage, ImageSize );
       wxMemoryInputStream InternalStream( pImage, ImageSize );
 
@@ -958,10 +979,8 @@ ChoiceSetting &GUITheme()
       return symbols;
    };
 
-   constexpr int defaultTheme = 12; // "dark"
-
    static ChoiceSetting setting {
-      wxT("/GUI/Theme"), symbols(), defaultTheme
+      wxT("/GUI/Theme"), symbols(), GetDefaultTheme()
    };
 
    return setting;

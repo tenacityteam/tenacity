@@ -50,10 +50,11 @@ public:
 
    // Typically statically constructed:
    struct TENACITY_DLL_API RegisteredTheme {
-      RegisteredTheme(EnumValueSymbol symbol,
-         const std::vector<unsigned char> &data /*!<
-            A reference to this vector is stored, not a copy of it! */
-      );
+      using InfoPair = std::pair<
+         const std::vector<unsigned char>&, // A reference to this vector is stored, not a copy of it!
+         bool
+      >;
+      RegisteredTheme(EnumValueSymbol symbol, InfoPair info);
       ~RegisteredTheme();
       const EnumValueSymbol symbol;
    };

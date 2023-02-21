@@ -19,5 +19,5 @@ static const std::vector<unsigned char> ImageCacheAsData {
 };
 
 static ThemeBase::RegisteredTheme theme{
-   { "audacium-dark-pink", XO("Audacium Dark Pink") }, ImageCacheAsData
+   { "audacium-dark-pink", XO("Audacium Dark Pink") }, { ImageCacheAsData, false /* is default */}
 };
