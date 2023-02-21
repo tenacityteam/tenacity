@@ -1,0 +1,16 @@
+Checks: >
+    bugprone-branch-clone,
+    modernize-avoid-c-arrays,
+    modernize-use-bool-literals,
+    modernize-use-equals-default,
+    modernize-use-equals-delete,
+    modernize-use-nullptr,
+    modernize-use-nodiscard,
+    modernize-use-noexcept,
+    modernize-use-override,
+    performance-inefficient-algorithm,
+    performance-inefficient-vector-operation,
+    performance-trivially-destructible
+CheckOptions:
+    - key: readability-identifier-naming.FunctionCase
+      value: CamelCase
