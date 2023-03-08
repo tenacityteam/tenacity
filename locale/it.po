@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: audacity 3.0.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2021-07-15 12:48-0400\n"
-"PO-Revision-Date: 2023-03-07 03:48+0000\n"
+"PO-Revision-Date: 2023-03-08 04:39+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/it/>\n"
@@ -75,11 +75,11 @@ msgstr "Sistema"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "1st Experimental Command..."
-msgstr "1° comando sperimentale..."
+msgstr "1° comando sperimentale"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "2nd Experimental Command"
-msgstr "2° comando sperimentale..."
+msgstr "2° comando sperimentale"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "&Nyquist Workbench..."
@@ -143,7 +143,7 @@ msgstr "&Vai a"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Select &Font..."
-msgstr "Seleziona &carattere..."
+msgstr "Seleziona &carattere"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Split &Vertically"
@@ -2034,7 +2034,7 @@ msgid ""
 "stopped. (Pausing is not sufficient.)"
 msgstr ""
 "È possibile compiere questa azione solo quando la riproduzione e\n"
-"la registrazione sono fermate. (Mettere in pausa non basta)."
+"la registrazione sono fermate (mettere in pausa non è sufficiente)"
 
 #: src/CommonCommandFlags.cpp
 msgid ""
@@ -2042,15 +2042,15 @@ msgid ""
 "action. (You cannot use this with mono.)"
 msgstr ""
 "Prima di eseguire questa azione è necessario selezionare un\n"
-"audio stereo. (Non è possibile utilizzarla con audio mono)."
+"audio stereo (non è possibile utilizzarla con audio mono)"
 
 #: src/CommonCommandFlags.cpp
 msgid ""
 "You must first select some audio to perform this action.\n"
 "(Selecting other kinds of track won't work.)"
 msgstr ""
-"Prima di eseguire questa azione è necessario selezionare un audio.\n"
-"(La selezione di altri tipi di tracce non va bene)."
+"Prima di eseguire questa azione è necessario selezionare un audio\n"
+"(la selezione di altri tipi di tracce non va bene)"
 
 #: src/CrashReport.cpp src/DBConnection.cpp src/ProjectFileIO.cpp
 msgid "This may take several seconds"
@@ -2911,7 +2911,7 @@ msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Audacity team at https://forum.audacityteam.org/."
 msgstr ""
-"Errore interno nel file %s alla linea %d.\n"
+"Errore interno in %s alla riga %s %d.\n"
 "Si invita a informare il team di Tenacity all'indirizzo https://forum."
 "audacityteam.org/."
 
@@ -3451,10 +3451,7 @@ msgid ""
 "Enabling effects or commands:\n"
 "\n"
 "%s"
-msgstr ""
-"Abilitazione di effetti o comandi:\n"
-"\n"
-"%s"
+msgstr "Abilitazione di effetti o comandi: %s"
 
 #: src/PluginManager.cpp
 #, c-format
@@ -3462,19 +3459,14 @@ msgid ""
 "Enabling effect or command:\n"
 "\n"
 "%s"
-msgstr ""
-"Abilitazione effetto o comando:\n"
-"\n"
-"%s"
+msgstr "Abilitazione effetto o comando: %s"
 
 #: src/PluginManager.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr ""
-"Non è stato possibile registrare l'effetto/comando in %s:\n"
-"%s"
+msgstr "Non è stato possibile registrare l'effetto/comando in %s: %s"
 
 #: src/PluginManager.cpp
 #, c-format
@@ -3494,9 +3486,7 @@ msgstr "Il file dell'estensione è in uso. Impossibile sovrascrivere"
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr ""
-"Registrazione fallita:\n"
-"%s"
+msgstr "Impossibile registrare: %s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -3544,8 +3534,9 @@ msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
 msgstr ""
-"Errore nell'apertura del dispositivo audio. \n"
-"Provare a cambiare il sistema audio, il dispositivo di riproduzione e la frequenza di campionamento del progetto."
+"Errore nell'apertura del dispositivo audio. Prova a cambiare il sistema "
+"audio, il dispositivo di riproduzione e la frequenza di campionamento del "
+"progetto."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
@@ -3990,8 +3981,7 @@ msgid ""
 msgstr ""
 "Tenacity non è riuscito a scrivere il file %s.\n"
 "Forse il disco è pieno o non scrivibile.\n"
-"Per consigli su come liberare spazio fare clic\n"
-"sul pulsante di aiuto."
+"Per consigli su come liberare spazio fai clic sul pulsante di aiuto."
 
 #: src/ProjectFileIO.cpp
 msgid "Compacting project"
@@ -4091,8 +4081,8 @@ msgid ""
 "\n"
 "It has been recovered to the last snapshot."
 msgstr ""
-"Questo progetto non è stato salvato correttamente\n"
-"l'ultima volta che Tenacity è stato eseguito.\n"
+"Questo progetto non è stato salvato correttamente l'ultima volta che è stato "
+"eseguito Tenacity.\n"
 "\n"
 "È stato ripristinato l'ultimo snapshot."
 
@@ -11901,13 +11891,14 @@ msgid ""
 "Use a version of Audacity prior to v3.0.0 to upgrade the project and then\n"
 "you may import it with this version of Audacity."
 msgstr ""
-"Il progetto è stato salvato con Tenacity versione 1.0 o precente.\n"
-"Il formato è cambiato e questa versione di Tenacity non è in\n"
-"grado di importare il progetto.\n"
+"Questo progetto è stato salvato da Tenacity versione 1.0 o precedente. Il "
+"formato\n"
+"è cambiato e questa versione di Tenacity non è in grado di importare il "
+"progetto.\n"
 "\n"
-"Usare una versione di Tenacity antecedente la v3.0.0 per aggiornare\n"
-"il progetto e solo dopo sarà possibile importarlo con questa versione\n"
-"di Tenacity."
+"Usa una versione di Tenacity precedente alla v3.0.0 per aggiornare il "
+"progetto e\n"
+"solo dopo potrai importarlo con questa versione di Tenacity."
 
 #: src/import/ImportAUP.cpp
 msgid "Internal error in importer...tag not recognized"
@@ -16278,13 +16269,16 @@ msgstr ""
 "\n"
 "[Solo la barra delle attività e i colori delle onde delle tracce sono "
 "realmente influenzati,\n"
-"anche se il file immagine mostra altre icone)."
+"anche se il file immagine mostra altre icone)"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
 "Saving and loading individual theme files uses a separate file for each image, but is\n"
 "otherwise the same idea."
-msgstr "Il salvataggio e il caricamento di singoli file del tema usano un file separato per ciascuna immagine, altrimenti l'approccio è il medesimo."
+msgstr ""
+"Il salvataggio e il caricamento di singoli file del tema usano un file "
+"separato per ciascuna immagine,\n"
+"altrimenti l'approccio è il medesimo."
 
 #. i18n-hint: && in here is an escape character to get a single & on screen,
 #. * so keep it as is
