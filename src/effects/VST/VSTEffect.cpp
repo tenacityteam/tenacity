@@ -31,8 +31,6 @@
 
 #include "../../widgets/ProgressDialog.h"
 
-#if USE_VST2
-
 #include <limits.h>
 #include <stdio.h>
 #include <optional>
@@ -4000,5 +3998,3 @@ XMLTagHandler *VSTEffect::HandleXMLChild(const wxChar *tag)
 
    return NULL;
 }
-
-#endif // USE_VST2

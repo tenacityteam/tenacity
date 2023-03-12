@@ -8,9 +8,7 @@
 
 **********************************************************************/
 
-
-
-#if USE_VST2
+#pragma once
 
 // Tenacity Libraries
 #include <lib-components/EffectInterface.h>
@@ -439,5 +437,3 @@ public:
 
    static void Check(const wxChar *path);
 };
-
-#endif // USE_VST2
