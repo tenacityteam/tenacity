@@ -10,7 +10,7 @@
 
 
 
-#if USE_VST
+#if USE_VST2
 
 // Tenacity Libraries
 #include <lib-components/EffectInterface.h>
@@ -440,4 +440,4 @@ public:
    static void Check(const wxChar *path);
 };
 
-#endif // USE_VST
+#endif // USE_VST2

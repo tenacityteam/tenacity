@@ -772,7 +772,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
          disabled);
    # endif
 
-   # if USE_VST
+   # if USE_VST2
    AddBuildinfoRow(&informationStr, wxT("VST"), XO("Plug-in support"),
          enabled);
    # else

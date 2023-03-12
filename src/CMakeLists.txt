@@ -459,24 +459,24 @@ list( APPEND SOURCES
 
       # VST Effects
 
-      $<$<BOOL:${USE_VST}>:
+      $<$<BOOL:${USE_VST2}>:
          effects/VST/VSTControl.h
          effects/VST/VSTEffect.cpp
          effects/VST/VSTEffect.h
          effects/VST/aeffectx.h
       >
 
-      $<$<AND:$<BOOL:${USE_VST}>,$<BOOL:${wxIS_GTK}>>:
+      $<$<AND:$<BOOL:${USE_VST2}>,$<BOOL:${wxIS_GTK}>>:
          effects/VST/VSTControlGTK.cpp
          effects/VST/VSTControlGTK.h
       >
 
-      $<$<AND:$<BOOL:${USE_VST}>,$<BOOL:${wxIS_WIN}>>:
+      $<$<AND:$<BOOL:${USE_VST2}>,$<BOOL:${wxIS_WIN}>>:
          effects/VST/VSTControlMSW.cpp
          effects/VST/VSTControlMSW.h
       >
 
-      $<$<AND:$<BOOL:${USE_VST}>,$<BOOL:${wxIS_MAC}>>:
+      $<$<AND:$<BOOL:${USE_VST2}>,$<BOOL:${wxIS_MAC}>>:
          effects/VST/VSTControlOSX.h
          effects/VST/VSTControlOSX.mm
       >
