@@ -1607,7 +1607,7 @@ void TenacityApp::CleanupIPCResources()
       shm_unlink(TenacityApp::SharedMemName);
 
       // Remove the failsafe memory segment
-      shm_unlink(TenacityApp::FailsafeSemName);
+      sem_unlink(TenacityApp::FailsafeSemName);
    }
 }
 
