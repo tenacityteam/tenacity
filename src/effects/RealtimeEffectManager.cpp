@@ -19,6 +19,8 @@
 #include <memory>
 #include <chrono>
 
+using LockGuard = std::lock_guard<std::mutex>;
+
 class RealtimeEffectState
 {
 public:
@@ -50,7 +52,7 @@ RealtimeEffectManager & RealtimeEffectManager::Get()
 
 RealtimeEffectManager::RealtimeEffectManager()
 {
-   mLock.lock();
+   LockGuard lock(mLock);
 
    mRealtimeActive = false;
    mRealtimeSuspended = true;
@@ -59,8 +61,6 @@ RealtimeEffectManager::RealtimeEffectManager()
    // process stero audio data.
    mInputBuffers.reserve(2);
    mOutputBuffers.reserve(2);
-
-   mLock.unlock();
 }
 
 RealtimeEffectManager::~RealtimeEffectManager()
@@ -221,14 +221,13 @@ void RealtimeEffectManager::RealtimeFinalize()
 
 void RealtimeEffectManager::RealtimeSuspend()
 {
-   mLock.lock();
-
    // Already suspended...bail
    if (mRealtimeSuspended)
    {
-      mLock.unlock();
       return;
    }
+
+   LockGuard lock(mLock);
 
    // Show that we aren't going to be doing anything
    mRealtimeSuspended = true;
@@ -236,8 +235,6 @@ void RealtimeEffectManager::RealtimeSuspend()
    // And make sure the effects don't either
    for (auto &state : mStates)
       state->RealtimeSuspend();
-
-   mLock.unlock();
 }
 
 void RealtimeEffectManager::RealtimeSuspendOne( EffectClientInterface &effect )
@@ -254,14 +251,13 @@ void RealtimeEffectManager::RealtimeSuspendOne( EffectClientInterface &effect )
 
 void RealtimeEffectManager::RealtimeResume()
 {
-   mLock.lock();
-
    // Already running...bail
    if (!mRealtimeSuspended)
    {
-      mLock.unlock();
       return;
    }
+
+   LockGuard lock(mLock);
 
    // Tell the effects to get ready for more action
    for (auto &state : mStates)
@@ -269,8 +265,6 @@ void RealtimeEffectManager::RealtimeResume()
 
    // And we should too
    mRealtimeSuspended = false;
-
-   mLock.unlock();
 }
 
 void RealtimeEffectManager::RealtimeResumeOne( EffectClientInterface &effect )
@@ -291,7 +285,7 @@ void RealtimeEffectManager::RealtimeResumeOne( EffectClientInterface &effect )
 void RealtimeEffectManager::RealtimeProcessStart()
 {
    // Protect ourselves from the main thread
-   mLock.lock();
+   LockGuard lock(mLock);
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended.
@@ -303,8 +297,6 @@ void RealtimeEffectManager::RealtimeProcessStart()
             state->GetEffect().RealtimeProcessStart();
       }
    }
-
-   mLock.unlock();
 }
 
 //
@@ -321,6 +313,9 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
       return numSamples;
    }
 
+   // Protect ourselves from the main thread
+   LockGuard lock(mLock);
+
    // AK: If we have more channels than our input and output bufffers'
    // capacities, increase their capacities when necessary.
    if (mInputBuffers.capacity() < chans)
@@ -330,9 +325,6 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    {
       mOutputBuffers.reserve(chans);
    }
-
-   // Protect ourselves from the main thread
-   mLock.lock();
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
@@ -384,8 +376,6 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    // Remember the latency
    mRealtimeLatency = duration_cast<milliseconds>(steady_clock::now() - start);
 
-   mLock.unlock();
-
    //
    // This is wrong...needs to handle tails
    //
@@ -398,7 +388,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 void RealtimeEffectManager::RealtimeProcessEnd()
 {
    // Protect ourselves from the main thread
-   mLock.lock();
+   LockGuard lock(mLock);
 
    // Can be suspended because of the audio stream being paused or because effects
    // have been suspended.
@@ -410,8 +400,6 @@ void RealtimeEffectManager::RealtimeProcessEnd()
             state->GetEffect().RealtimeProcessEnd();
       }
    }
-
-   mLock.unlock();
 }
 
 std::chrono::milliseconds RealtimeEffectManager::GetRealtimeLatency()
