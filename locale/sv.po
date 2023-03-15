@@ -3,15 +3,15 @@
 # Lars "musselasse" Carlsson <musselasse@gmail.com>, 200X-2014
 # A. Regnander <anton_r_3@hotmail.com>, 2018
 # Avery King <avery98@pm.me>, 2022.
-# tygyh <jonis9898@hotmail.com>, 2022.
+# tygyh <jonis9898@hotmail.com>, 2022, 2023.
 # Kristoffer Grundström <swedishsailfishosuser@tutanota.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: audacity 3.0.3\n"
-"Report-Msgid-Bugs-To: avery98@pm.me\n"
+"Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2021-07-15 12:48-0400\n"
-"PO-Revision-Date: 2023-01-18 18:47+0000\n"
-"Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
+"PO-Revision-Date: 2023-03-15 07:47+0000\n"
+"Last-Translator: tygyh <jonis9898@hotmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
@@ -398,9 +398,9 @@ msgstr "Stoppa skript"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, system administration"
-msgstr "systemadministration"
+msgstr "%s, pre-fork systemadministration"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -592,9 +592,9 @@ msgid "Commit Id:"
 msgstr "Commit-ID:"
 
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Release build (debug level %d)"
-msgstr "Utgivningsversion"
+msgstr "Utgivningsversion (felsökningsnivå %d)"
 
 #: src/AboutDialog.cpp
 msgid "Build type:"
@@ -21797,3 +21797,8 @@ msgstr "%s, 64-bitars"
 #, c-format
 msgid "%s KB"
 msgstr "%s KB"
+
+#: src/AboutDialog.cpp
+#, c-format
+msgid "Debug build (debug level %d)"
+msgstr "Felsökningsversion (felsökningsnivå %d)"
