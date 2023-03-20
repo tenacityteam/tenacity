@@ -21,7 +21,7 @@ Paul Licameli split from AudioIO.cpp
 #include <portaudio.h>
 
 #ifdef EXPERIMENTAL_MIDI_OUT
-#include "../lib-src/portmidi/pm_common/portmidi.h"
+#include <portmidi.h>
 #endif
 
 int AudioIOBase::mCachedPlaybackIndex = -1;

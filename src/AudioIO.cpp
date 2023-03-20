@@ -457,8 +457,8 @@ time warp info and AudioIOListener and whether the playback is looped.
 
 #ifdef EXPERIMENTAL_MIDI_OUT
 
-#include "../lib-src/portmidi/pm_common/portmidi.h"
-#include "../lib-src/portmidi/porttime/porttime.h"
+#include <portmidi.h>
+#include <porttime.h>
 #include "../lib-src/header-substitutes/allegro.h"
 
    constexpr int MIDI_SLEEP = 10; // milliseconds
@@ -477,7 +477,7 @@ time warp info and AudioIOListener and whether the playback is looped.
    }
    //#include <cstring>
 //   #include "../lib-src/portmidi/pm_common/portmidi.h"
-   #include "../lib-src/portaudio-v19/src/common/pa_util.h"
+   //#include "../lib-src/portaudio-v19/src/common/pa_util.h"
    #include "NoteTrack.h"
 #endif
 

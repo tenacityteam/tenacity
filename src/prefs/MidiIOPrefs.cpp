@@ -37,7 +37,7 @@ other settings.
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 
-#include "../../lib-src/portmidi/pm_common/portmidi.h"
+#include <portmidi.h>
 
 #include "../shuttle/ShuttleGui.h"
 #include "../widgets/AudacityMessageBox.h"
