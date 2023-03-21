@@ -819,10 +819,6 @@ void TrackPanel::OnAudioIO(wxCommandEvent & evt)
 /// actual contents of each track are drawn by the TrackArtist.
 void TrackPanel::DrawTracks(wxDC * dc)
 {
-   wxRegion region = GetUpdateRegion();
-
-   const wxRect clip = GetRect();
-
    const SelectedRegion &sr = mViewInfo->selectedRegion;
    mTrackArtist->pSelectedRegion = &sr;
    mTrackArtist->pZoomInfo = mViewInfo;
