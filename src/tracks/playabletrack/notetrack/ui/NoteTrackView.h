@@ -13,6 +13,10 @@ Paul Licameli split from class NoteTrack
 
 #include "../../../ui/CommonTrackView.h"
 
+#ifdef EXPERIMENTAL_MIDI_STRETCHING
+#include "StretchHandle.h"
+#endif
+
 class NoteTrackView final : public CommonTrackView
 {
    NoteTrackView( const NoteTrackView& ) = delete;
@@ -38,5 +42,9 @@ private:
       const wxRect &rect, unsigned iPass ) override;
 
    std::shared_ptr<CommonTrackCell> mpAffordanceCellControl;
+
+   #ifdef EXPERIMENTAL_MIDI_STRETCHING
+   std::weak_ptr<StretchHandle> mStretchHandle;
+   #endif
 };
 #endif

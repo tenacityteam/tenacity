@@ -41,19 +41,17 @@ NoteTrackView::~NoteTrackView()
 }
 
 std::vector<UIHandlePtr> NoteTrackView::DetailedHitTest
-(const TrackPanelMouseState &WXUNUSED(state),
- const TenacityProject *WXUNUSED(pProject), int, bool )
+(const TrackPanelMouseState &state,
+ const TenacityProject *pProject, int, bool )
 {
    // Eligible for stretch?
    UIHandlePtr result;
    std::vector<UIHandlePtr> results;
-#ifdef USE_MIDI
 #ifdef EXPERIMENTAL_MIDI_STRETCHING
    result = StretchHandle::HitTest(
-      mStretchHandle, state, pProject, Pointer<NoteTrack>(this) );
+      mStretchHandle, state, pProject, std::make_shared<NoteTrack>() );
    if (result)
       results.push_back(result);
-#endif
 #endif
 
    return results;
