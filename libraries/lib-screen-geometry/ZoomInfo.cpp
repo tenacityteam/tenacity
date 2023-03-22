@@ -38,20 +38,14 @@ void ZoomInfo::UpdatePrefs()
 /// Converts a position (mouse X coordinate) to
 /// project time, in seconds.  Needs the left edge of
 /// the track as an additional parameter.
-double ZoomInfo::PositionToTime(wxInt64 position,
-   wxInt64 origin
-   , bool // ignoreFisheye
-) const
+double ZoomInfo::PositionToTime(wxInt64 position, wxInt64 origin) const
 {
    return h + (position - origin) / zoom;
 }
 
 
 /// STM: Converts a project time to screen x position.
-wxInt64 ZoomInfo::TimeToPosition(double projectTime,
-   wxInt64 origin
-   , bool // ignoreFisheye
-) const
+wxInt64 ZoomInfo::TimeToPosition(double projectTime, wxInt64 origin) const
 {
    double t = 0.5 + zoom * (projectTime - h) + origin ;
    if( t < wxINT64_MIN )
@@ -62,7 +56,6 @@ wxInt64 ZoomInfo::TimeToPosition(double projectTime,
    return t;
 }
 
-// This always ignores the fisheye.  Use with caution!
 // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
 double ZoomInfo::TimeRangeToPixelWidth(double timeRange) const
 {

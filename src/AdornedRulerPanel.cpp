@@ -1203,7 +1203,6 @@ void AdornedRulerPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
    mLastDrawnZoom = viewInfo.GetZoom();
    mDirtySelectedRegion = (mLastDrawnSelectedRegion != viewInfo.selectedRegion);
    mLastDrawnSelectedRegion = viewInfo.selectedRegion;
-   // To do, note other fisheye state when we have that
 
    wxPaintDC dc(this);
 
@@ -1323,18 +1322,14 @@ bool AdornedRulerPanel::UpdateRects()
    return true;
 }
 
-double AdornedRulerPanel::Pos2Time(int p, bool ignoreFisheye)
+double AdornedRulerPanel::Pos2Time(int p)
 {
-   return mViewInfo->PositionToTime(p, mLeftOffset
-      , ignoreFisheye
-   );
+   return mViewInfo->PositionToTime(p, mLeftOffset);
 }
 
-int AdornedRulerPanel::Time2Pos(double t, bool ignoreFisheye)
+int AdornedRulerPanel::Time2Pos(double t)
 {
-   return mViewInfo->TimeToPosition(t, mLeftOffset
-      , ignoreFisheye
-   );
+   return mViewInfo->TimeToPosition(t, mLeftOffset);
 }
 
 
@@ -2072,9 +2067,9 @@ void AdornedRulerPanel::DoDrawEdge(wxDC *dc)
 void AdornedRulerPanel::DoDrawMarks(wxDC * dc, bool /*text */ )
 {
    const double min = Pos2Time(0);
-   const double hiddenMin = Pos2Time(0, true);
+   const double hiddenMin = Pos2Time(0);
    const double max = Pos2Time(mInner.width);
-   const double hiddenMax = Pos2Time(mInner.width, true);
+   const double hiddenMax = Pos2Time(mInner.width);
 
    mRuler.SetTickColour( theTheme.Colour( clrTrackPanelText ) );
    mRuler.SetRange( min, max, hiddenMin, hiddenMax );

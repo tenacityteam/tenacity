@@ -121,8 +121,8 @@ private:
    enum class MenuChoice { QuickPlay, Scrub };
    void ShowContextMenu( MenuChoice choice, const wxPoint *pPosition);
 
-   double Pos2Time(int p, bool ignoreFisheye = false);
-   int Time2Pos(double t, bool ignoreFisheye = false);
+   double Pos2Time(int p);
+   int Time2Pos(double t);
 
    bool IsWithinMarker(int mousePosX, double markerTime);
 

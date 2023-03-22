@@ -916,9 +916,7 @@ double ProjectWindow::PixelWidthBeforeTime(double scrollto) const
    auto &project = mProject;
    auto &viewInfo = ViewInfo::Get( project );
    const double lowerBound = ScrollingLowerBoundTime();
-   return
-      // Ignoring fisheye is correct here
-      viewInfo.TimeRangeToPixelWidth(scrollto - lowerBound);
+   return viewInfo.TimeRangeToPixelWidth(scrollto - lowerBound);
 }
 
 void ProjectWindow::SetHorizontalThumb(double scrollto)
@@ -1687,7 +1685,7 @@ void ProjectWindow::PlaybackScroller::OnTimer(wxCommandEvent &event)
             deltaX = posX - width;        break;
       }
       viewInfo.h =
-         viewInfo.OffsetTimeByPixels(viewInfo.h, deltaX, true);
+         viewInfo.OffsetTimeByPixels(viewInfo.h, deltaX);
       if (!ProjectWindow::Get( *mProject ).MayScrollBeyondZero())
          // Can't scroll too far left
          viewInfo.h = std::max(0.0, viewInfo.h);

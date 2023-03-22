@@ -70,27 +70,20 @@ public:
    // Instead, call twice to convert start and end times,
    // and take the difference.
    // origin specifies the pixel corresponding to time h
-   double PositionToTime(wxInt64 position,
-      wxInt64 origin = 0
-      , bool ignoreFisheye = false
-   ) const;
+   double PositionToTime(wxInt64 position, wxInt64 origin = 0 ) const;
 
    // do NOT use this once to convert a duration to a pixel width!
    // Instead, call twice to convert start and end positions,
    // and take the difference.
    // origin specifies the pixel corresponding to time h
-   wxInt64 TimeToPosition(double time,
-      wxInt64 origin = 0
-      , bool ignoreFisheye = false
-   ) const;
+   wxInt64 TimeToPosition(double time, wxInt64 origin = 0) const;
 
-   // This always ignores the fisheye.  Use with caution!
    // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
    double TimeRangeToPixelWidth(double timeRange) const;
 
-   double OffsetTimeByPixels(double time, wxInt64 offset, bool ignoreFisheye = false) const
+   double OffsetTimeByPixels(double time, wxInt64 offset) const
    {
-      return PositionToTime(offset + TimeToPosition(time, ignoreFisheye), ignoreFisheye);
+      return PositionToTime(offset + TimeToPosition(time));
    }
 
    int GetWidth() const { return mWidth; }
@@ -109,11 +102,10 @@ public:
    }
 
    // Returns the time corresponding to the pixel column one past the track area
-   // (ignoring any fisheye)
    double GetScreenEndTime() const
    {
       auto width = GetTracksUsableWidth();
-      return PositionToTime(width, 0, true);
+      return PositionToTime(width, 0);
    }
 
    bool ZoomInAvailable() const;
@@ -138,9 +130,9 @@ public:
    void ZoomBy(double multiplier);
 
    struct Interval {
-      CONST wxInt64 position; CONST double averageZoom; CONST bool inFisheye;
+      CONST wxInt64 position; CONST double averageZoom;
       Interval(wxInt64 p, double z, bool i)
-         : position(p), averageZoom(z), inFisheye(i) {}
+         : position(p), averageZoom(z) {}
    };
    typedef std::vector<Interval> Intervals;
 
@@ -153,28 +145,6 @@ public:
    // @param origin specifies the pixel position corresponding to time ViewInfo::h.
    void FindIntervals
       (double rate, Intervals &results, wxInt64 width, wxInt64 origin = 0) const;
-
-   enum FisheyeState {
-      HIDDEN,
-      PINNED,
-
-      NUM_STATES,
-   };
-   FisheyeState GetFisheyeState() const
-   { return HIDDEN; } // stub
-
-   // Return true if the mouse position is anywhere in the fisheye
-   // origin specifies the pixel corresponding to time h
-   bool InFisheye(wxInt64 /*position*/, wxInt64 WXUNUSED(origin = 0)) const
-   {return false;} // stub
-
-   // These accessors ignore the fisheye hiding state.
-   // Inclusive:
-   wxInt64 GetFisheyeLeftBoundary(wxInt64 WXUNUSED(origin = 0)) const
-   {return 0;} // stub
-   // Exclusive:
-   wxInt64 GetFisheyeRightBoundary(wxInt64 WXUNUSED(origin = 0)) const
-   {return 0;} // stub
 
    int mWidth{ 0 };
    int mVRulerWidth{ 36 };

@@ -1488,8 +1488,8 @@ namespace
    {
       static constexpr double pixelsOffset{ 2 };//The desired offset in pixels
 
-      auto h = zoomInfo.PositionToTime(0, 0, true);
-      auto h1 = zoomInfo.PositionToTime(viewRect.width, 0, true);
+      auto h = zoomInfo.PositionToTime(0, 0);
+      auto h1 = zoomInfo.PositionToTime(viewRect.width, 0);
 
       // Determine whether we should show individual samples
       // or draw circular points as well
@@ -1511,12 +1511,8 @@ ClipParameters::ClipParameters
    tOffset = clip->GetPlayStartTime();
    rate = clip->GetRate();
 
-   h = zoomInfo.PositionToTime(0, 0
-      , true
-   );
-   h1 = zoomInfo.PositionToTime(rect.width, 0
-      , true
-   );
+   h = zoomInfo.PositionToTime(0, 0);
+   h1 = zoomInfo.PositionToTime(rect.width, 0);
 
    double sel0 = selectedRegion.t0();    //left selection bound
    double sel1 = selectedRegion.t1();    //right selection bound
@@ -1578,7 +1574,7 @@ ClipParameters::ClipParameters
    hiddenLeftOffset = 0;
    if (tpre < 0) {
       // Fix Bug #1296 caused by premature conversion to (int).
-      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset, 0 , true);
+      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset, 0);
       if( time64 < 0 )
          time64 = 0;
       hiddenLeftOffset = (time64 < rect.width) ? (int)time64 : rect.width;
@@ -1592,7 +1588,7 @@ ClipParameters::ClipParameters
    // of the track.  Reduce the "hiddenMid" rect by the
    // size of the blank area.
    if (tpost > t1) {
-      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset+t1, 0 , true);
+      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset+t1, 0);
       if( time64 < 0 )
          time64 = 0;
       const int hiddenRightOffset = (time64 < rect.width) ? (int)time64 : rect.width;
@@ -1609,7 +1605,7 @@ ClipParameters::ClipParameters
    // left of the track.  Reduce the "mid"
    leftOffset = 0;
    if (tpre < 0) {
-      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset, 0 , false);
+      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset, 0);
       if( time64 < 0 )
          time64 = 0;
       leftOffset = (time64 < rect.width) ? (int)time64 : rect.width;
@@ -1623,7 +1619,7 @@ ClipParameters::ClipParameters
    // of the track.  Reduce the "mid" rect by the
    // size of the blank area.
    if (tpost > t1) {
-      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset+t1, 0 , false);
+      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset+t1, 0);
       if( time64 < 0 )
          time64 = 0;
       const int distortedRightOffset = (time64 < rect.width) ? (int)time64 : rect.width;
@@ -1645,12 +1641,14 @@ wxRect ClipParameters::GetClipRect(const WaveClip& clip, const ZoomInfo& zoomInf
     constexpr auto edgeRight = static_cast<wxInt64>(std::numeric_limits<int>::max());
     auto left = std::clamp(
        zoomInfo.TimeToPosition(
-          clip.GetPlayStartTime(), viewRect.x, true
+          clip.GetPlayStartTime(),
+          viewRect.x
        ), edgeLeft, edgeRight
     );
     auto right = std::clamp(
        zoomInfo.TimeToPosition(
-          clip.GetPlayEndTime() - .99 * srs + clipEndingAdjustemt, viewRect.x, true
+          clip.GetPlayEndTime() - .99 * srs + clipEndingAdjustemt,
+          viewRect.x
        ), edgeLeft, edgeRight
     );
     if (right >= left)

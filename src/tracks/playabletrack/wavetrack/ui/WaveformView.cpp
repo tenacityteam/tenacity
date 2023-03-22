@@ -285,9 +285,8 @@ void DrawWaveformBackground(TrackPanelDrawingContext &context,
 struct WavePortion {
    wxRect rect;
    CONST double averageZoom;
-   CONST bool inFisheye;
-   WavePortion(int x, int y, int w, int h, double zoom, bool i)
-      : rect(x, y, w, h), averageZoom(zoom), inFisheye(i)
+   WavePortion(int x, int y, int w, int h, double zoom)
+      : rect(x, y, w, h), averageZoom(zoom)
    {}
 };
 
@@ -296,9 +295,6 @@ void FindWavePortions
     const ClipParameters &params)
 {
    // If there is no fisheye, then only one rectangle has nonzero width.
-   // If there is a fisheye, make rectangles for before and after
-   // (except when they are squeezed to zero width), and at least one for inside
-   // the fisheye.
 
    ZoomInfo::Intervals intervals;
    zoomInfo.FindIntervals(params.rate, intervals, rect.width, rect.x);
@@ -313,10 +309,14 @@ void FindWavePortions
       const int right = std::max(left, (int)(it->position));
       const int width = right - left;
       if (width > 0)
-         portions.push_back(
-            WavePortion(left, rect.y, width, rect.height,
-                        prev->averageZoom, prev->inFisheye)
+         portions.emplace_back(
+            left,
+            rect.y,
+            width,
+            rect.height,
+            prev->averageZoom
          );
+
       left = right;
    }
 }
@@ -779,8 +779,7 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
       bool showIndividualSamples = false;
       for (unsigned ii = 0; !showIndividualSamples && ii < nPortions; ++ii) {
          const WavePortion &portion = portions[ii];
-         showIndividualSamples =
-            !portion.inFisheye && portion.averageZoom > threshold1;
+         showIndividualSamples = portion.averageZoom > threshold1;
       }
 
       if (!showIndividualSamples) {
@@ -811,55 +810,12 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
 
       float *useMin = 0, *useMax = 0, *useRms = 0;
       int *useBl = 0;
-      WaveDisplay fisheyeDisplay(rectPortion.width);
       int skipped = 0, skippedLeft = 0, skippedRight = 0;
-      if (portion.inFisheye) {
-         if (!showIndividualSamples) {
-            fisheyeDisplay.Allocate();
-            const auto numSamples = clip->GetPlaySamplesCount();
-            // Get wave display data for different magnification
-            int jj = 0;
-            for (; jj < rectPortion.width; ++jj) {
-               const double time =
-                  zoomInfo.PositionToTime(jj, -leftOffset) - tOffset;
-               const auto sample = (sampleCount)floor(time * rate + 0.5);
-               if (sample < 0) {
-                  ++rectPortion.x;
-                  ++skippedLeft;
-                  continue;
-               }
-               if (sample >= numSamples)
-                  break;
-               fisheyeDisplay.where[jj - skippedLeft] = sample;
-            }
-
-            skippedRight = rectPortion.width - jj;
-            skipped = skippedRight + skippedLeft;
-            rectPortion.width -= skipped;
-
-            // where needs a sentinel
-            if (jj > 0)
-               fisheyeDisplay.where[jj - skippedLeft] =
-               1 + fisheyeDisplay.where[jj - skippedLeft - 1];
-            fisheyeDisplay.width -= skipped;
-            // Get a wave display for the fisheye, uncached.
-            if (rectPortion.width > 0)
-               if (!clip->GetWaveDisplay(
-                     fisheyeDisplay, t0, -1.0)) // ignored
-                  continue; // serious error.  just don't draw??
-            useMin = fisheyeDisplay.min;
-            useMax = fisheyeDisplay.max;
-            useRms = fisheyeDisplay.rms;
-            useBl = fisheyeDisplay.bl;
-         }
-      }
-      else {
-         const int pos = leftOffset - params.hiddenLeftOffset;
-         useMin = display.min + pos;
-         useMax = display.max + pos;
-         useRms = display.rms + pos;
-         useBl = display.bl + pos;
-      }
+      const int pos = leftOffset - params.hiddenLeftOffset;
+      useMin = display.min + pos;
+      useMax = display.max + pos;
+      useRms = display.rms + pos;
+      useBl = display.bl + pos;
 
       leftOffset += skippedLeft;
 

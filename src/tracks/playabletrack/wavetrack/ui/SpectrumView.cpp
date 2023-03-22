@@ -500,13 +500,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
       : settings.findBin( sqrt(freqLo * freqHi), binUnit );
 
    const bool isSpectral = settings.SpectralSelectionEnabled();
-   const bool hidden = (ZoomInfo::HIDDEN == zoomInfo.GetFisheyeState());
-   const int begin = hidden
-      ? 0
-      : std::max(0, (int)(zoomInfo.GetFisheyeLeftBoundary(-leftOffset)));
-   const int end = hidden
-      ? 0
-      : std::min(mid.width, (int)(zoomInfo.GetFisheyeRightBoundary(-leftOffset)));
+   const int begin = 0;
+   const int end = std::min(mid.width, 0);
    const size_t numPixels = std::max(0, end - begin);
 
    SpecCache specCache;
@@ -524,16 +519,13 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
           0, 0, numPixels,
           clip->GetPlaySamplesCount(),
           tOffset, rate,
-          0 // FIXME: PRL -- make reassignment work with fisheye
+          0
        );
    }
 
    // build color gradient tables (not thread safe)
    if (!AColor::gradient_inited)
       AColor::PreComputeGradient();
-
-   // left pixel column of the fisheye
-   int fisheyeLeft = zoomInfo.GetFisheyeLeftBoundary(-leftOffset);
 
    // Bug 2389 - always draw at least one pixel of selection.
    int selectedX = zoomInfo.TimeToPosition(selectedRegion.t0(), -leftOffset);
@@ -547,15 +539,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
       // in fisheye mode the time scale has changed, so the row values aren't cached
       // in the loop above, and must be fetched from fft cache
-      float* uncached;
-      if (!zoomInfo.InFisheye(xx, -leftOffset)) {
-          uncached = 0;
-      }
-      else {
-          int specIndex = (xx - fisheyeLeft) * nBins;
-          wxASSERT(specIndex >= 0 && specIndex < (int)specCache.freq.size());
-          uncached = &specCache.freq[specIndex];
-      }
+      // GP: since we no longer care about the fisheye, this cache will always be null.
+      float* uncached = nullptr;
 
       // zoomInfo must be queried for each column since with fisheye enabled
       // time between columns is variable
