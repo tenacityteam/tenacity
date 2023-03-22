@@ -2067,12 +2067,10 @@ void AdornedRulerPanel::DoDrawEdge(wxDC *dc)
 void AdornedRulerPanel::DoDrawMarks(wxDC * dc, bool /*text */ )
 {
    const double min = Pos2Time(0);
-   const double hiddenMin = Pos2Time(0);
    const double max = Pos2Time(mInner.width);
-   const double hiddenMax = Pos2Time(mInner.width);
 
    mRuler.SetTickColour( theTheme.Colour( clrTrackPanelText ) );
-   mRuler.SetRange( min, max, hiddenMin, hiddenMax );
+   mRuler.SetRange(min, max);
    mRuler.Draw( *dc );
 }
 

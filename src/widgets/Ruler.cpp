@@ -80,8 +80,8 @@ using std::max;
 
 Ruler::Ruler()
 {
-   mMin = mHiddenMin = 0.0;
-   mMax = mHiddenMax = 100.0;
+   mMin = 0.0;
+   mMax = 100.0;
    mOrientation = wxHORIZONTAL;
    mSpacing = 6;
    mHasSetSpacing = false;
@@ -189,26 +189,13 @@ void Ruler::SetOrientation(int orient)
 
 void Ruler::SetRange(double min, double max)
 {
-   SetRange(min, max, min, max);
-}
-
-void Ruler::SetRange
-   (double min, double max, double hiddenMin, double hiddenMax)
-{
    // For a horizontal ruler,
    // min is the value in the center of pixel "left",
    // max is the value in the center of pixel "right".
-
-   // In the special case of a time ruler,
-   // hiddenMin and hiddenMax are values that would be shown with the fisheye
-   // turned off.  In other cases they equal min and max respectively.
-
-   if (mMin != min || mMax != max ||
-      mHiddenMin != hiddenMin || mHiddenMax != hiddenMax) {
+   if (mMin != min || mMax != max)
+   {
       mMin = min;
       mMax = max;
-      mHiddenMin = hiddenMin;
-      mHiddenMax = hiddenMax;
 
       Invalidate();
    }
@@ -874,8 +861,6 @@ struct Ruler::Updater {
    const bool mCustom = mRuler.mCustom;
    const Fonts &mFonts = *mRuler.mpFonts;
    const bool mLog = mRuler.mLog;
-   const double mHiddenMin = mRuler.mHiddenMin;
-   const double mHiddenMax = mRuler.mHiddenMax;
    const bool mLabelEdges = mRuler.mLabelEdges;
    const double mMin = mRuler.mMin;
    const double mMax = mRuler.mMax;
@@ -1071,11 +1056,7 @@ void Ruler::Updater::UpdateLinear(
    TickOutputs majorOutputs{
       allOutputs.majorLabels, allOutputs.bits, allOutputs.box };
 
-   // Use the "hidden" min and max to determine the tick size.
-   // That may make a difference with fisheye.
-   // Otherwise you may see the tick size for the whole ruler change
-   // when the fisheye approaches start or end.
-   double UPP = (mHiddenMax-mHiddenMin)/mLength;  // Units per pixel
+   double UPP = (mMax-mMin)/mLength;  // Units per pixel
    TickSizes tickSizes{ UPP, mOrientation, mFormat, false };
 
    auto TickAtValue =
@@ -1222,7 +1203,7 @@ void Ruler::Updater::UpdateNonlinear(
       ? NumberScale( nstLogarithmic, mMin, mMax )
       : mNumberScale;
 
-   double UPP = (mHiddenMax-mHiddenMin)/mLength;  // Units per pixel
+   double UPP = (mMax-mMin)/mLength;  // Units per pixel
    TickSizes tickSizes{ UPP, mOrientation, mFormat, true };
 
    tickSizes.mDigits = 2; //TODO: implement dynamic digit computation

@@ -55,13 +55,6 @@ class TENACITY_DLL_API Ruler {
    // (at the center of the pixel, in both cases)
    void SetRange(double min, double max);
 
-   // An overload needed for the special case of fisheye
-   // min is the value at (x, y)
-   // max is the value at (x+width, y+height)
-   // hiddenMin, hiddenMax are the values that would be shown without the fisheye.
-   // (at the center of the pixel, in both cases)
-   void SetRange(double min, double max, double hiddenMin, double hiddenMax);
-
    //
    // Optional Ruler Parameters
    //
@@ -188,7 +181,6 @@ private:
    mutable std::unique_ptr<Fonts> mpFonts;
 
    double       mMin, mMax;
-   double       mHiddenMin, mHiddenMax;
 
    Bits mUserBits;
 
