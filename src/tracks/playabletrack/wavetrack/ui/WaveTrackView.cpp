@@ -1594,11 +1594,6 @@ ClipParameters::ClipParameters
 
       mid.width = std::max(0, distortedRightOffset - leftOffset);
    }
-
-   // GP: effectively, mid == hiddenMid, so we'll get rid of hiddenMid.
-   // For now, set hiddenMid equal to mid, since the calculations are the same.
-   hiddenMid = mid;
-   hiddenLeftOffset = leftOffset;
 }
 
 wxRect ClipParameters::GetClipRect(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect, bool* outShowSamples)

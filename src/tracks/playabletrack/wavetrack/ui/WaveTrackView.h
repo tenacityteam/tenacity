@@ -260,9 +260,6 @@ struct TENACITY_DLL_API ClipParameters
    sampleCount ssel0;
    sampleCount ssel1;
 
-   wxRect hiddenMid;
-   int hiddenLeftOffset;
-
    wxRect mid;
    int leftOffset;
 
