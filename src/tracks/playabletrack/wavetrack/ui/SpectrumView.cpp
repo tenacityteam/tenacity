@@ -22,6 +22,10 @@ Paul Licameli split from WaveTrackView.cpp
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/SpectrogramSettings.h"
 
+#ifdef PROFILE_WAVEFORM
+#include "../../../../Profiler.h"
+#endif
+
 // Tenacity libraries
 #include <lib-preferences/Prefs.h>
 #include <lib-screen-geometry/NumberScale.h>
@@ -183,7 +187,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    const auto &zoomInfo = *artist->pZoomInfo;
 
 #ifdef PROFILE_WAVEFORM
-   Profiler profiler;
+   BEGIN_TASK_PROFILING("Draw Clip Spectrum");
 #endif
 
    //If clip is "too small" draw a placeholder instead of
@@ -202,13 +206,13 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    enum { DASH_LENGTH = 10 /* pixels */ };
 
    const ClipParameters params{
-      true, track, clip, rect, selectedRegion, zoomInfo };
-   const wxRect &hiddenMid = params.hiddenMid;
-   // The "hiddenMid" rect contains the part of the display actually
-   // containing the waveform, as it appears without the fisheye.  If it's empty, we're done.
-   if (hiddenMid.width <= 0) {
-      return;
-   }
+      true,
+      track,
+      clip,
+      rect,
+      selectedRegion,
+      zoomInfo
+   };
 
    const double &t0 = params.t0;
    const double &tOffset = params.tOffset;
@@ -216,9 +220,15 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    const auto &ssel1 = params.ssel1;
    const double &averagePixelsPerSample = params.averagePixelsPerSample;
    const double &rate = params.rate;
-   const double &hiddenLeftOffset = params.hiddenLeftOffset;
    const double &leftOffset = params.leftOffset;
    const wxRect &mid = params.mid;
+
+   // The "mid" rect contains the part of the display actually
+   // containing the waveform. If it's empty, we're done.
+   if (mid.width <= 0)
+   {
+      return;
+   }
 
    double freqLo = SelectedRegion::UndefinedFrequency;
    double freqHi = SelectedRegion::UndefinedFrequency;
@@ -264,7 +274,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    {
       const double pps = averagePixelsPerSample * rate;
       updated = clip->GetSpectrogram(waveTrackCache, freq, where,
-                                     (size_t)hiddenMid.width,
+                                     (size_t)mid.width,
          t0, pps);
    }
    auto nBins = settings.NBins();
@@ -276,8 +286,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    // nearest frequency to each pixel row from number scale, for selecting
    // the desired fft bin(s) for display on that row
-   std::unique_ptr<float> _bins(new float[hiddenMid.height + 1]);
-   auto bins = _bins.get();
+   std::unique_ptr<float[]> bins(new float[mid.height + 1]);
    {
       const NumberScale numberScale( settings.GetScale( minFreq, maxFreq ) );
 
@@ -286,7 +295,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          settings.findBin( *it, binUnit ) ) );
 
       int yy;
-      for (yy = 0; yy < hiddenMid.height; ++yy) {
+      for (yy = 0; yy < mid.height; ++yy) {
          bins[yy] = nextBin;
          nextBin = std::max( 0.0f, std::min( float(nBins - 1),
             settings.findBin( *++it, binUnit ) ) );
@@ -316,7 +325,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 #endif //EXPERIMENTAL_FFT_Y_GRID
 
    if (!updated && clip->mSpecPxCache->valid &&
-      ((int)clip->mSpecPxCache->len == hiddenMid.height * hiddenMid.width)
+      ((int)clip->mSpecPxCache->len == mid.height * mid.width)
       && scaleType == clip->mSpecPxCache->scaleType
       && gain == clip->mSpecPxCache->gain
       && range == clip->mSpecPxCache->range
@@ -337,7 +346,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    }
    else {
       // Update the spectrum pixel cache
-      clip->mSpecPxCache = std::make_unique<SpecPxCache>(hiddenMid.width * hiddenMid.height);
+      clip->mSpecPxCache = std::make_unique<SpecPxCache>(mid.width * mid.height);
       clip->mSpecPxCache->valid = true;
       clip->mSpecPxCache->scaleType = scaleType;
       clip->mSpecPxCache->gain = gain;
@@ -357,9 +366,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          lmins = lmin,
          lmaxs = lmax
          ;
-#endif //EXPERIMENTAL_FIND_NOTES
 
-#ifdef EXPERIMENTAL_FIND_NOTES
       int maxima[128];
       float maxima0[128], maxima1[128];
       const float
@@ -376,7 +383,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 #ifdef _OPENMP
 #pragma omp parallel for
 #endif
-      for (int xx = 0; xx < hiddenMid.width; ++xx) {
+      for (int xx = 0; xx < mid.width; ++xx) {
 #ifdef EXPERIMENTAL_FIND_NOTES
          int maximas = 0;
          const int x0 = nBins * xx;
@@ -420,7 +427,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
             }
 
 // The f2pix helper macro converts a frequency into a pixel coordinate.
-#define f2pix(f) (logf(f)-lmins)/(lmaxs-lmins)*hiddenMid.height
+#define f2pix(f) (logf(f)-lmins)/(lmaxs-lmins)*mid.height
 
             // Possibly quantize the maxima frequencies and create the pixel block limits.
             for (int i = 0; i < maximas; i++) {
@@ -442,14 +449,14 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          bool inMaximum = false;
 #endif //EXPERIMENTAL_FIND_NOTES
 
-         for (int yy = 0; yy < hiddenMid.height; ++yy) {
+         for (int yy = 0; yy < mid.height; ++yy) {
             const float bin     = bins[yy];
             const float nextBin = bins[yy+1];
 
             if (settings.scaleType != SpectrogramSettings::stLogarithmic) {
                const float value = findValue
                   (freq + nBins * xx, bin, nextBin, nBins, autocorrelation, gain, range);
-               clip->mSpecPxCache->values[xx * hiddenMid.height + yy] = value;
+               clip->mSpecPxCache->values[xx * mid.height + yy] = value;
             }
             else {
                float value;
@@ -487,7 +494,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
                   value = findValue
                      (freq + nBins * xx, bin, nextBin, nBins, autocorrelation, gain, range);
                }
-               clip->mSpecPxCache->values[xx * hiddenMid.height + yy] = value;
+               clip->mSpecPxCache->values[xx * mid.height + yy] = value;
             } // logF
          } // each yy
       } // each xx
@@ -533,15 +540,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 #ifdef _OPENMP
 #pragma omp parallel for
 #endif
-   for (int xx = 0; xx < mid.width; ++xx) {
-
-      int correctedX = xx + leftOffset - hiddenLeftOffset;
-
-      // in fisheye mode the time scale has changed, so the row values aren't cached
-      // in the loop above, and must be fetched from fft cache
-      // GP: since we no longer care about the fisheye, this cache will always be null.
-      float* uncached = nullptr;
-
+   for (int xx = 0; xx < mid.width; ++xx)
+   {
       // zoomInfo must be queried for each column since with fisheye enabled
       // time between columns is variable
       auto w0 = sampleCount(0.5 + rate *
@@ -553,7 +553,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
       bool maybeSelected = ssel0 <= w0 && w1 < ssel1;
       maybeSelected = maybeSelected || (xx == selectedX);
 
-      for (int yy = 0; yy < hiddenMid.height; ++yy) {
+      for (int yy = 0; yy < mid.height; ++yy) {
          const float bin     = bins[yy];
          const float nextBin = bins[yy+1];
 
@@ -565,13 +565,18 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
          // If we are in the time selected range, then we may use a different color set.
          if (maybeSelected)
-            selected =
-               ChooseColorSet(bin, nextBin, selBinLo, selBinCenter, selBinHi,
-                  (xx + leftOffset - hiddenLeftOffset) / DASH_LENGTH, isSpectral);
+         {
+            selected = ChooseColorSet(
+                  bin,
+                  nextBin,
+                  selBinLo,
+                  selBinCenter,
+                  selBinHi,
+                  xx / DASH_LENGTH, isSpectral
+               );
+         }
 
-         const float value = uncached
-            ? findValue(uncached, bin, nextBin, nBins, autocorrelation, gain, range)
-            : clip->mSpecPxCache->values[correctedX * hiddenMid.height + yy];
+         const float value = clip->mSpecPxCache->values[xx * mid.height + yy];
 
          unsigned char rv, gv, bv;
          GetColorGradient(value, selected, colorScheme, &rv, &gv, &bv);
@@ -610,6 +615,10 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
       auto clipRect = ClipParameters::GetClipRect(*clip, zoomInfo, rect);
       TrackArt::DrawClipEdges(dc, clipRect, selected);
    }
+
+#ifdef PROFILE_WAVEFORM
+   END_TASK_PROFILING("Draw Clip Spectrum");
+#endif
 }
 
 }
