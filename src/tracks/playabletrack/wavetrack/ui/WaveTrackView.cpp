@@ -1563,41 +1563,9 @@ ClipParameters::ClipParameters
       ssel1 = sampleCount( 0.5 + trackLen * rate );
    }
 
-   // The variable "hiddenMid" will be the rectangle containing the
-   // actual waveform, as opposed to any blank area before
-   // or after the track, as it would appear without the fisheye.
-   hiddenMid = rect;
-
-   // If the left edge of the track is to the right of the left
-   // edge of the display, then there's some unused area to the
-   // left of the track.  Reduce the "hiddenMid"
-   hiddenLeftOffset = 0;
-   if (tpre < 0) {
-      // Fix Bug #1296 caused by premature conversion to (int).
-      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset, 0);
-      if( time64 < 0 )
-         time64 = 0;
-      hiddenLeftOffset = (time64 < rect.width) ? (int)time64 : rect.width;
-
-      hiddenMid.x += hiddenLeftOffset;
-      hiddenMid.width -= hiddenLeftOffset;
-   }
-
-   // If the right edge of the track is to the left of the right
-   // edge of the display, then there's some unused area to the right
-   // of the track.  Reduce the "hiddenMid" rect by the
-   // size of the blank area.
-   if (tpost > t1) {
-      wxInt64 time64 = zoomInfo.TimeToPosition(tOffset+t1, 0);
-      if( time64 < 0 )
-         time64 = 0;
-      const int hiddenRightOffset = (time64 < rect.width) ? (int)time64 : rect.width;
-
-      hiddenMid.width = std::max(0, hiddenRightOffset - hiddenLeftOffset);
-   }
    // The variable "mid" will be the rectangle containing the
-   // actual waveform, as distorted by the fisheye,
-   // as opposed to any blank area before or after the track.
+   // actual waveform, as opposed to any blank area before
+   // or after the track.
    mid = rect;
 
    // If the left edge of the track is to the right of the left
@@ -1626,6 +1594,11 @@ ClipParameters::ClipParameters
 
       mid.width = std::max(0, distortedRightOffset - leftOffset);
    }
+
+   // GP: effectively, mid == hiddenMid, so we'll get rid of hiddenMid.
+   // For now, set hiddenMid equal to mid, since the calculations are the same.
+   hiddenMid = mid;
+   hiddenLeftOffset = leftOffset;
 }
 
 wxRect ClipParameters::GetClipRect(const WaveClip& clip, const ZoomInfo& zoomInfo, const wxRect& viewRect, bool* outShowSamples)

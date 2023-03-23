@@ -31,6 +31,10 @@ Paul Licameli split from WaveTrackView.cpp
 #include "../../../../WaveTrack.h"
 #include "../../../../prefs/WaveformSettings.h"
 
+#ifdef PROFILE_WAVEFORM
+#include "../../../../Profiler.h"
+#endif
+
 #include <wx/graphics.h>
 #include <wx/dc.h>
 
@@ -294,7 +298,7 @@ void FindWavePortions
    (std::vector<WavePortion> &portions, const wxRect &rect, const ZoomInfo &zoomInfo,
     const ClipParameters &params)
 {
-   // If there is no fisheye, then only one rectangle has nonzero width.
+   // Only one rectangle has nonzero width.
 
    ZoomInfo::Intervals intervals;
    zoomInfo.FindIntervals(params.rate, intervals, rect.width, rect.x);
@@ -679,7 +683,7 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
    const auto &zoomInfo = *artist->pZoomInfo;
 
 #ifdef PROFILE_WAVEFORM
-   Profiler profiler;
+   BEGIN_TASK_PROFILING("Draw Clip Waveform");
 #endif
 
    bool highlightEnvelope = false;
@@ -698,13 +702,13 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
    }
 
    const ClipParameters params{
-      false, track, clip, rect, selectedRegion, zoomInfo };
-   const wxRect &hiddenMid = params.hiddenMid;
-   // The "hiddenMid" rect contains the part of the display actually
-   // containing the waveform, as it appears without the fisheye.  If it's empty, we're done.
-   if (hiddenMid.width <= 0) {
-      return;
-   }
+      false,
+      track,
+      clip,
+      rect,
+      selectedRegion,
+      zoomInfo
+   };
 
    const double &t0 = params.t0;
    const double &tOffset = params.tOffset;
@@ -716,6 +720,13 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
    const double &rate = params.rate;
    double leftOffset = params.leftOffset;
    const wxRect &mid = params.mid;
+
+   // The "mid" rect contains the part of the display actually
+   // containing the waveform. If it's empty, we're done.
+   if (mid.width <= 0)
+   {
+      return;
+   }
 
    const float dBRange = track->GetWaveformSettings().dBRange;
 
@@ -759,10 +770,9 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
          !track->GetSelected(), highlightEnvelope);
    }
 
-   WaveDisplay display(hiddenMid.width);
+   WaveDisplay display(mid.width);
 
-   const double pps =
-      averagePixelsPerSample * rate;
+   const double pps = averagePixelsPerSample * rate;
 
    // For each portion separately, we will decide to draw
    // it as min/max/rms or as individual samples.
@@ -788,11 +798,6 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
          // there's a serious error, like some of the waveform data can't
          // be loaded.  So if the function returns false, we can just exit.
 
-         // Note that we compute the full width display even if there is a
-         // fisheye hiding part of it, because of the caching.  If the
-         // fisheye moves over the background, there is then less to do when
-         // redrawing.
-
          if (!clip->GetWaveDisplay(display,t0, pps))
             return;
       }
@@ -808,16 +813,10 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
       rectPortion.Intersect(mid);
       wxASSERT(rectPortion.width >= 0);
 
-      float *useMin = 0, *useMax = 0, *useRms = 0;
-      int *useBl = 0;
-      int skipped = 0, skippedLeft = 0, skippedRight = 0;
-      const int pos = leftOffset - params.hiddenLeftOffset;
-      useMin = display.min + pos;
-      useMax = display.max + pos;
-      useRms = display.rms + pos;
-      useBl = display.bl + pos;
-
-      leftOffset += skippedLeft;
+      float *useMin = display.min,
+            *useMax = display.max,
+            *useRms = display.rms;
+      int   *useBl  = display.bl;
 
       if (rectPortion.width > 0) {
          if (!showIndividualSamples) {
@@ -850,7 +849,7 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
          }
       }
 
-      leftOffset += rectPortion.width + skippedRight;
+      leftOffset += rectPortion.width;
    }
 
    const auto drawEnvelope = artist->drawEnvelope;
@@ -870,6 +869,10 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
       auto clipRect = ClipParameters::GetClipRect(*clip, zoomInfo, rect);
       TrackArt::DrawClipEdges(dc, clipRect, selected);
    }
+
+#ifdef PROFILE_WAVEFORM
+   END_TASK_PROFILING("Draw Clip Waveform");
+#endif
 }
 
 void DrawTimeSlider( TrackPanelDrawingContext &context,
