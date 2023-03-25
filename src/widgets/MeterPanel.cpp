@@ -300,7 +300,7 @@ MeterPanel::MeterPanel(TenacityProject *project,
    mHeight(size.y),
    mIsInput(isInput),
    mDesiredStyle(style),
-   mGradient(true),
+   mSolidColors(true),
    mDB(true),
    mDBRange(DecibelScaleCutoff.GetDefault()),
    mDecay(true),
@@ -417,7 +417,7 @@ void MeterPanel::UpdatePrefs()
    mMeterRefreshRate =
       std::max(MIN_REFRESH_RATE, std::min(MAX_REFRESH_RATE,
          gPrefs->Read(Key(wxT("RefreshRate")), 30)));
-   mGradient = gPrefs->Read(Key(wxT("Bars")), wxT("Gradient")) == wxT("Gradient");
+   mSolidColors = gPrefs->Read(Key(wxT("Bars")), wxT("Gradient")) == wxT("Gradient");
    mDB = gPrefs->Read(Key(wxT("Type")), wxT("dB")) == wxT("dB");
    mMeterDisabled = gPrefs->Read(Key(wxT("Disabled")), (long)0);
 
@@ -550,7 +550,7 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
       {
          // Give it a recessed look
          AColor::Bevel(dc, false, mBar[i].b);
-   
+
          // Draw the clip indicator bevel
          if (mClip)
          {
@@ -560,7 +560,7 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
          // Cache bar rect
          wxRect r = mBar[i].r;
    
-         if (mGradient)
+         if (mSolidColors)
          {
             // Calculate the size of the two gradiant segments of the meter
             double gradw;
@@ -577,39 +577,46 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
             }
    
             if (mBar[i].vert)
-            {
+            { 
+               dc.SetPen(*wxTRANSPARENT_PEN);
+
                // Draw the "critical" segment (starts at top of meter and works down)
                r.SetHeight(gradh);
-               dc.GradientFillLinear(r, red, yellow, wxSOUTH);
+               dc.SetPen(*wxTRANSPARENT_PEN);
+               dc.SetBrush(red);
+               dc.DrawRectangle(r);
    
                // Draw the "warning" segment
                r.SetTop(r.GetBottom());
-               dc.GradientFillLinear(r, yellow, green, wxSOUTH);
+               dc.SetBrush(yellow);
+               dc.DrawRectangle(r);
    
                // Draw the "safe" segment
                r.SetTop(r.GetBottom());
                r.SetBottom(mBar[i].r.GetBottom());
-               dc.SetPen(*wxTRANSPARENT_PEN);
                dc.SetBrush(green);
                dc.DrawRectangle(r);
             }
             else
             {
+               dc.SetPen(*wxTRANSPARENT_PEN);
+
                // Draw the "safe" segment
                r.SetWidth(r.GetWidth() - (int) (gradw + gradw + 0.5));
-               dc.SetPen(*wxTRANSPARENT_PEN);
                dc.SetBrush(green);
                dc.DrawRectangle(r);
    
                // Draw the "warning"  segment
                r.SetLeft(r.GetRight() + 1);
                r.SetWidth(floor(gradw));
-               dc.GradientFillLinear(r, green, yellow);
+               dc.SetBrush(yellow);
+               dc.DrawRectangle(r);
    
                // Draw the "critical" segment
                r.SetLeft(r.GetRight() + 1);
                r.SetRight(mBar[i].r.GetRight());
-               dc.GradientFillLinear(r, yellow, red);
+               dc.SetBrush(red);
+               dc.DrawRectangle(r);
             }
 #ifdef EXPERIMENTAL_METER_LED_STYLE
             if (!mBar[i].vert)
@@ -1606,7 +1613,7 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
    dc.SetPen(*wxTRANSPARENT_PEN);
    dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mBkgndBrush);
 
-   if (mGradient)
+   if (mSolidColors)
    {
       // Map the predrawn bitmap into the source DC
       wxMemoryDC srcDC;
@@ -2015,8 +2022,8 @@ void MeterPanel::OnPreferences(wxCommandEvent & WXUNUSED(event))
         {
            S.StartVerticalLay();
            {
-              gradient = S.AddRadioButton(XXO("Gradient"), true, mGradient);
-              rms = S.AddRadioButtonToGroup(XXO("RMS"), false, mGradient);
+              gradient = S.AddRadioButton(XXO("Solid"), true, mSolidColors);
+              rms = S.AddRadioButtonToGroup(XXO("RMS"), false, mSolidColors);
            }
            S.EndVerticalLay();
         }
