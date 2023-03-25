@@ -548,13 +548,28 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
       // Draw the meter bars at maximum levels
       for (unsigned int i = 0; i < mNumBars; i++)
       {
+         dc.SetBrush(*wxTRANSPARENT_BRUSH);
+         AColor::Dark(&dc, false);
+
          // Give it a recessed look
-         AColor::Bevel(dc, false, mBar[i].b);
+         auto rect = mBar[i].b;
+         dc.DrawRectangle(
+            rect.x,
+            rect.y,
+            rect.x + rect.width + 1, // +1 to include the last point
+            rect.y + rect.height + 1 // +1 to include the last point
+         );
 
          // Draw the clip indicator bevel
          if (mClip)
          {
-            AColor::Bevel(dc, false, mBar[i].rClip);
+            rect = mBar[i].rClip;
+            dc.DrawRectangle(
+               rect.x,
+               rect.y,
+               rect.x + rect.width + 1, // +1 to include the last point
+               rect.y + rect.height + 1 // +1 to include the last point
+            );
          }
    
          // Cache bar rect
