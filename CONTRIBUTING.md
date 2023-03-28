@@ -11,7 +11,7 @@ Our IRC channel, [`#tenacity` on Libera](https://web.libera.chat/#tenacity)
 [Matrix](https://matrix.to/#/#tenacity:libera.chat)), is the best place to ask
 general questions about Tenacity and talk about feature requests in real time.
 
-You can use [GitHub Issues](https://github.com/tenacityteam/tenacity/issues)
+You can use [Codeberg Issues](https://codeberg.org/tenacityteam/tenacity/issues)
 to report bugs and propose feature requests. Support questions will also be
 accepted, but you must mark your support request with the 'Support' label, or
 else it will be ignored and closed.
@@ -29,23 +29,22 @@ Here are some general tips if you are unsure about submitting a bug report:
 
 ## Contributing
 
-Contributing code to Tenacity is done either via Codeberg or GitHub. Tenacity
-requires you to Sign-off your commits, which indicates you agree to the
-[Developer Certificate of Origin](#developer-certificate-of-origin). Details below.
+Contributing code to Tenacity is done via Codeberg. Tenacity also requires you
+to Sign-off your commits, which indicates you agree to the
+[Developer Certificate of Origin](#developer-certificate-of-origin). Details
+below.
 
 ### Submitting code
 
-#### Making pull requests on GitHub or Codeberg
+#### Making pull requests on Codeberg
 
-To contribute code using GitHub, first fork either our
-[GitHub repo](https://github.com/tenacityteam/tenacity) or our
-[Codeberg](https://github.com/tenacityteam/tenacity)
+To contribute code, first fork our
+[Codeberg repository](https://codeberg.org/tenacityteam/tenacity)
 and make your changes. Please use `git commit --amend` and
 `git push -f` for minor changes and only if they are **your** commits.
 
-_Note: be sure you open your pull request on the right platform. If you forked
-the repository on GitHub, you would open your pull request on GitHub. If you
-forked the repository on Codeberg, you would open your pull request on
+_Note: do **not** fork our GitHub mirror for contributing. We do not accept
+pull requests on GitHub anymore. All contributions **must** be made through
 Codeberg._
 
 See [git-rebase.io](https://git-rebase.io) for more details.
@@ -180,8 +179,8 @@ to.
 
 The following rules continue to support hosting our code on multiple platforms,
 such as both GitHub and Codeberg, without being unnecessarily locked in to
-GitHub. Moreover, they are also necessary for complying to the GPL license,
-ensuring our independence and just giving credit where it is due.
+any single platform. Moreover, they are also necessary for complying to the GPL
+license, ensuring our independence and just giving credit where it is due.
 
 Our stance on these rules is not very strict. Worst case scenario, we may
 correct the commit messages for you and inform you about what we had to correct
@@ -242,13 +241,13 @@ important:
   their explicit permission.
 
 * If your patch resolves an issue that was previously mentioned in the Issues
-  tab on GitHub or in our mailing list, please use the `Reference-to:` tag,
+  tab on Codeberg or in our mailing list, please use the `Reference-to:` tag,
   followed by the URL where the issue in question was mentioned.
 
    Example:
 
    ```
-   Reference-to: https://github.com/tenacityteam/tenacity/issues/2046
+   Reference-to: https://codeberg.org/tenacityteam/tenacity/issues/2046
    ```
 
 * Leave an empty line between tags such as `Signed-off-by:` and the rest of
@@ -267,23 +266,23 @@ important:
 
 ##### GitHub
 
-* Avoid using emojis or GitHub-specific references (e.g. `:tada:`) to emojis
-  in your commits. They may look just fine on GitHub, but they do not anywhere
-  else.
+* Avoid using emojis or GitHub-specific or Gitea-specific references (e.g.
+  `:tada:`) to emojis in your commits. They may look just fine on GitHub, but
+  they do not anywhere else.
 
 ##### Maintainers
 
-* When merging pull requests from GitHub, make sure to remove references to
+* When merging pull requests from Codeberg, make sure to remove references to
   issues or pull requests that have a numeric format (e.g. `(#1234)` or
   `Resolves #1234`). Please use the `Reference-to:` tag instead.
 
   Including a hyperlink to the said issue or pull request is preferred, because
-  these links will not break outside of GitHub and will also reduce confusion
+  these links will not break outside of Codeberg and will also reduce confusion
   between patches that refer to issues in the Audacity repository and patches
   that are meant to be used in Tenacity. If you use a hyperlink instead of just
-  the #nnn format, GitHub will still show the #nnn format on the website, but
-  other websites and/or the command line will show the full hyperlink.
-  This is good, because it reduces our dependency on GitHub.
+  the #nnn format, Codeberg will still show the #nnn format on the website, but
+  other websites and/or the command line will show the full hyperlink. It also
+  makes our commits friendlier to other platforms.
 
 ###### Merging branches
 
