@@ -95,7 +95,7 @@ ComponentInterfaceSymbol BuiltinCommandsModule::GetSymbol()
 
 VendorSymbol BuiltinCommandsModule::GetVendor()
 {
-   return XO("The Audacity and Tenacity Teams");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString BuiltinCommandsModule::GetVersion()
