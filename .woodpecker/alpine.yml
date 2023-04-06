@@ -1,9 +1,9 @@
 pipeline:
     build:
-        image: gperson/tenacity-fedora
+        image: codeberg.org/generic-pers0n/tenacity-alpine:latest
         commands:
             - mkdir build
-            - cmake -G Ninja -S . -B build -DMIDI=Off
+            - cmake -S . -B build
             - cmake --build ./build
         when:
             branch: main
