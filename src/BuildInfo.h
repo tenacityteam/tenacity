@@ -23,12 +23,11 @@
 // This define replaces the original that modified the macro in wxwidgets
 #define CUSTOM_wxMAKE_VERSION_DOT_STRING_T(x, y, z) wxSTRINGIZE_T(x) wxT(".") wxSTRINGIZE_T(y) wxT(".") wxSTRINGIZE_T(z)
 
-class BuildInfo
+namespace BuildInfo
 {
-public:
     enum class CompilerType { MSVC, MinGW, GCC, Clang, AppleClang, Unknown };
 
-    static constexpr auto CurrentBuildCompiler =
+    constexpr auto CurrentBuildCompiler =
         #if defined(_MSC_FULL_VER)
             CompilerType::MSVC;
         #elif defined(__GNUC_PATCHLEVEL__) && defined(__MINGW32__)
@@ -43,7 +42,7 @@ public:
             CompilerType::Unknown;
         #endif
 
-    static const inline wxString GetCompilerVersionString()
+    const inline wxString GetCompilerVersionString()
     {
         switch (BuildInfo::CurrentBuildCompiler)
         {
@@ -98,7 +97,7 @@ public:
         }
     }
 
-    static const inline wxString GetRevisionIdentifier()
+    const inline wxString GetRevisionIdentifier()
     {
         static wxString NoRevisionText = XO("No revision identifier was provided").Translation();
 
@@ -109,12 +108,12 @@ public:
         #endif
     }
 
-    static constexpr inline bool Is64Bit()
+    constexpr inline bool Is64Bit()
     {
         return (sizeof(void*) == 8);
     }
 
-    static constexpr inline bool IsDebugBuild()
+    constexpr inline bool IsDebugBuild()
     {
         #ifdef _DEBUG
             return true;
@@ -123,7 +122,7 @@ public:
         #endif
     }
 
-    static const wxString GetBuildType()
+    const wxString GetBuildType()
     {
         wxStringOutputStream o;
         wxTextOutputStream buildTypeString(o);
@@ -146,7 +145,7 @@ public:
         return o.GetString();
     }
 
-    static const wxString GetWxWidgetsVersion()
+    const wxString GetWxWidgetsVersion()
     {
         wxPlatformInfo info = wxPlatformInfo::Get();
         return wxString::Format(
@@ -157,6 +156,6 @@ public:
             info.GetToolkitMinorVersion()
         );
     }
-};
+} // namespace BuildInfo
 
 #endif // end BUILD_INFO_H
