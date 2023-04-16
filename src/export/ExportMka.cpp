@@ -291,12 +291,22 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         MyTracks.EnableChecksum();
 
         sampleFormat format;
+        uint64 bytesPerSample;
         if (bitDepthPref == wxT("24"))
+        {
             format = int24Sample;
+            bytesPerSample = 3 * numChannels;
+        }
         else if (bitDepthPref == wxT("f32"))
+        {
             format = floatSample;
+            bytesPerSample = 4 * numChannels;
+        }
         else
+        {
             format = int16Sample;
+            bytesPerSample = 2 * numChannels;
+        }
 
         // TODO support multiple tracks
         KaxTrackEntry & MyTrack1 = GetChild<KaxTrackEntry>(MyTracks);
@@ -310,27 +320,31 @@ ProgressResult ExportMka::Export(TenacityProject *project,
 #if LIBMATROSKA_VERSION >= 0x010406
         (EbmlString &) GetChild<KaxLanguageIETF>(MyTrack1) = "und";
 #endif
+        auto waveTracks = tracks.Selected< const WaveTrack >();
+        auto pT = waveTracks.begin();
+        if (*pT)
+        {
+            const auto sTrackName = (*pT)->GetName();
+            if (!sTrackName.empty() && sTrackName != (*pT)->GetDefaultName())
+                (EbmlUnicodeString &) GetChild<KaxTrackName>(MyTrack1) = (UTFstring)sTrackName;
+        }
 
         EbmlMaster & MyTrack1Audio = GetChild<KaxTrackAudio>(MyTrack1);
         (EbmlFloat &) GetChild<KaxAudioSamplingFreq>(MyTrack1Audio) = rate;
         (EbmlUInteger &) GetChild<KaxAudioChannels>(MyTrack1Audio) = numChannels;
-        uint64 bytesPerSample;
         switch(format)
         {
             case int16Sample:
                 (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = "A_PCM/INT/LIT";
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 16;
-                bytesPerSample = 2 * numChannels;
                 break;
             case int24Sample:
                 (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = "A_PCM/INT/LIT";
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 24;
-                bytesPerSample = 3 * numChannels;
                 break;
             case floatSample:
                 (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = "A_PCM/FLOAT/IEEE";
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 32;
-                bytesPerSample = 4 * numChannels;
                 break;
         }
         filepos_t TrackSize = MyTracks.Render(mka_file);
@@ -455,11 +469,15 @@ ProgressResult ExportMka::Export(TenacityProject *project,
                         // Create an edition with the track name
                         KaxEditionEntry &Edition = AddNewChild<KaxEditionEntry>(EditionList);
                         (EbmlUInteger &) GetChild<KaxEditionUID>(Edition) = GetRandomUID64();
+                        if (!lt->GetName().empty() && lt->GetName() != lt->GetDefaultName())
+                        {
 #if LIBMATROSKA_VERSION >= 0x010700
-                        KaxEditionDisplay & EditionDisplay = GetChild<KaxEditionDisplay>(Edition);
-                        (EbmlUnicodeString &) GetChild<KaxEditionString>(EditionDisplay) = (UTFstring)lt->GetName();
+                            KaxEditionDisplay & EditionDisplay = GetChild<KaxEditionDisplay>(Edition);
+                            (EbmlUnicodeString &) GetChild<KaxEditionString>(EditionDisplay) = (UTFstring)lt->GetName();
 #endif
-                        // TODO also write the Edition name in tags for older Matroska parsers
+                            // TODO also write the Edition name in tags for older Matroska parsers
+                        }
+
                         // Add markers and selections
                         for (const auto & label : lt->GetLabels())
                         {
