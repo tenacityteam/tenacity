@@ -25,13 +25,14 @@
 # Gerhard Beck <privat@gerhardbeck.de>, 2022.
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2022, 2023.
 # Avery King <avery98@pm.me>, 2022, 2023.
+# Jörn Weigend <das.jott@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: audacity 3.0.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2021-07-15 12:48-0400\n"
-"PO-Revision-Date: 2023-04-15 22:49+0000\n"
-"Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
+"PO-Revision-Date: 2023-04-18 10:51+0000\n"
+"Last-Translator: Jörn Weigend <das.jott@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "de/>\n"
 "Language: de\n"
@@ -39,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.17\n"
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
@@ -1323,9 +1324,7 @@ msgstr "Wiedergabekanäle: %d\n"
 #: src/AudioIOBase.cpp
 #, c-format
 msgid "Low Recording Latency: %g\n"
-msgstr ""
-"Niedrige Aufnahmelatenz: %g\n"
-"\n"
+msgstr "Niedrige Aufnahmelatenz: %g\n"
 
 #: src/AudioIOBase.cpp
 #, c-format
@@ -1335,9 +1334,7 @@ msgstr "Niedrige Wiedergabelatenz: %g\n"
 #: src/AudioIOBase.cpp
 #, c-format
 msgid "High Recording Latency: %g\n"
-msgstr ""
-"Hohe Aufnahmelatenz: %g\n"
-"\n"
+msgstr "Hohe Aufnahmelatenz: %g\n"
 
 #: src/AudioIOBase.cpp
 #, c-format
@@ -2919,7 +2916,7 @@ msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Audacity team at https://forum.audacityteam.org/."
 msgstr ""
-"Interner Fehler bei %s Zeile %d.\n"
+"Interner Fehler in %s bei %s Zeile %d.\n"
 "Bitte das Tenacity-Team informieren unter https://tenacityaudio.org/."
 
 #: src/InconsistencyException.h
@@ -3079,8 +3076,8 @@ msgid ""
 "this is a bug, please tell us exactly where it occurred."
 msgstr ""
 "Es gab ein Problem mit Ihrer letzten Aktion. Wenn Sie denken,\n"
-"dass es sich um einen Programmfehler handelt, schreiben Sie uns\n"
-"genau, wo er auftrat."
+"es handele sich um einen Fehler, teilen Sie uns bitte mit, wo genau er "
+"auftrat."
 
 #: src/Menus.cpp
 msgid "Disallowed"
@@ -3459,10 +3456,7 @@ msgid ""
 "Enabling effects or commands:\n"
 "\n"
 "%s"
-msgstr ""
-"Effekte oder Befehle werden aktiviert:\n"
-"\n"
-"%s"
+msgstr "Effekte oder Befehle wird aktiviert: %s"
 
 #: src/PluginManager.cpp
 #, c-format
@@ -3470,19 +3464,14 @@ msgid ""
 "Enabling effect or command:\n"
 "\n"
 "%s"
-msgstr ""
-"Effekt oder Befehl wird aktiviert:\n"
-"\n"
-"%s"
+msgstr "Effekt oder Befehl wird aktiviert: %s"
 
 #: src/PluginManager.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr ""
-"Effekt oder Befehl an %s konnte nicht registriert werden:\n"
-"%s"
+msgstr "Effekt oder Befehl bei %s konnte nicht registriert werden: %s"
 
 #: src/PluginManager.cpp
 #, c-format
@@ -3502,9 +3491,7 @@ msgstr "Erweiterungsdatei in Verwendung. Konnte nicht überschrieben werden"
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr ""
-"Konnte nicht registriert werden:\n"
-"%s"
+msgstr "Registrierung fehlgeschlagen: %s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -3539,7 +3526,8 @@ msgid ""
 "Directories Preferences."
 msgstr ""
 "Es ist nur noch sehr wenig Speicherplatz auf %s verfügbar.\n"
-"Bitte wählen Sie einen größeren temporären Verzeichnisort in den Verzeichniseinstellungen."
+"Bitte wählen Sie ein größeres temporäres Verzeichnis in\n"
+"den Verzeichniseinstellungen."
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -3551,8 +3539,9 @@ msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
 msgstr ""
-"Fehler beim Öffnen des Audiogerätes.\n"
-"Versuchen Sie den Audiohost, das Wiedergabegerät und die Abtastrate des Projektes zu ändern."
+"Fehler beim Öffnen des Audiogerätes. Versuchen Sie den Audiohost, das "
+"Wiedergabegerät\n"
+"und die Abtastrate des Projektes zu ändern."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
@@ -4109,7 +4098,8 @@ msgstr ""
 "gespeichert.\n"
 "\n"
 "Es wurde bis zum letzten Snapshot wiederhergestellt. Sie müssen es aber "
-"speichern, um seine Inhalte zu bewahren."
+"speichern,\n"
+"um seine Inhalte zu bewahren."
 
 #: src/ProjectFileManager.cpp
 msgid "Project Recovered"
@@ -5097,9 +5087,8 @@ msgid ""
 "for Timer Recording because it would overwrite another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Der ausgewählte Dateiname kann nicht\n"
-"für zeitgesteuerte Aufnahmen verwendet werden,\n"
-"weil er ein anderes Projekt überschreiben würde.\n"
+"Der ausgewählte Dateiname kann nicht für Timer Aufnahmen\n"
+"verwendet werden, da er ein anderes Projekt überschreiben würde.\n"
 "Bitte verwenden Sie einen anderen Namen."
 
 #: src/TimerRecordDialog.cpp
@@ -5413,7 +5402,7 @@ msgstr "Spur %d"
 #. this track is muted. (The mute button is on.)
 #: src/TrackPanelAx.cpp
 msgid " Muted"
-msgstr " Mute an"
+msgstr "Stummgeschaltet"
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this track is soloed. (The Solo button is on.)
@@ -11717,9 +11706,8 @@ msgstr ""
 "„%s“ ist eine Wiedergabeliste.\n"
 "Tenacity kann diese Datei nicht öffnen, weil sie nur Verweise auf andere "
 "Dateien enthält.\n"
-"\n"
-"Diese Dateien können Sie eventuell ausfindig machen,\n"
-"indem Sie die Wiedergabeliste mit einem Texteditor öffnen."
+"Sie können sie vielleicht in einem Texteditor öffnen um die tatsächlichen "
+"Audiodateien herunterzuladen."
 
 #. i18n-hint: %s will be the filename
 #: src/import/Import.cpp
@@ -11934,10 +11922,11 @@ msgid ""
 "you may import it with this version of Audacity."
 msgstr ""
 "Dieses Projekt wurde von Audacity Version 1.0 oder früher gespeichert. Das "
-"Format hat sich geändert und diese Version von Tenacity kann das Projekt "
-"nicht importieren.\n"
+"Format hat\n"
+"sich geändert und diese Version von Tenacity kann das Projekt nicht "
+"importieren.\n"
 "\n"
-"Verwenden Sie eine Audacity-Version vor 3.0.0, um das Projekt zu "
+"Verwenden Sie eine Tenacity-Version vor 3.0.0, um das Projekt zu "
 "aktualisieren.\n"
 "Anschließend können Sie es mit dieser Version von Tenacity importieren."
 
@@ -20406,3 +20395,11 @@ msgstr "%s, führender Tenacity-Entwickler"
 #, c-format
 msgid "%s, Tenacity developer"
 msgstr "%s, Tenacity-Entwickler"
+
+#: src/FreqWindow.cpp
+msgid "Scroll Horizontal"
+msgstr "Horizontal Scrollen"
+
+#: src/FreqWindow.cpp
+msgid "Zoom Horizontal"
+msgstr "Horizontal vergrößern"
