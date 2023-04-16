@@ -558,6 +558,10 @@ list( APPEND SOURCES
          export/ExportFLAC.cpp
       >
 
+      $<$<BOOL:${USE_LIBMATROSKA}>:
+         export/ExportMka.cpp
+      >
+
       $<$<BOOL:${USE_LIBTWOLAME}>:
          export/ExportMP2.cpp
       >

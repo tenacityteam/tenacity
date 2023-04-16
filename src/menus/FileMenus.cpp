@@ -251,6 +251,12 @@ void OnExportWav(const CommandContext &context)
    DoExport(project, "WAV");
 }
 
+void OnExportMka(const CommandContext &context)
+{
+   auto &project = context.project;
+   DoExport(project, "MKA");
+}
+
 void OnExportOgg(const CommandContext &context)
 {
    auto &project = context.project;
@@ -652,6 +658,9 @@ BaseItemSharedPtr FileMenu()
                AudioIONotBusyFlag() | WaveTracksExistFlag() ),
 
             Command( wxT("ExportWav"), XXO("Export as &WAV"), FN(OnExportWav),
+               AudioIONotBusyFlag() | WaveTracksExistFlag() ),
+
+            Command( wxT("ExportMka"), XXO("Export as &MKA"), FN(OnExportMka),
                AudioIONotBusyFlag() | WaveTracksExistFlag() ),
 
             Command( wxT("ExportOgg"), XXO("Export as &OGG"), FN(OnExportOgg),
