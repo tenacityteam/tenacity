@@ -1057,6 +1057,7 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_LIBID3TAG}>:id3tag::id3tag>
       $<$<BOOL:${USE_LIBFLAC}>:FLAC++::FLAC++>
       $<$<BOOL:${USE_LIBMAD}>:MAD::MAD>
+      $<$<BOOL:${USE_LIBMATROSKA}>:Matroska::matroska>
       $<$<BOOL:${USE_LIBOGG}>:Ogg::ogg>
       $<$<BOOL:${USE_LIBVORBIS}>:Vorbis::vorbis>
       $<$<BOOL:${USE_LIBVORBIS}>:Vorbis::vorbisenc>
@@ -1248,6 +1249,14 @@ else()
    if( USE_LIBMAD )
       list( APPEND MIMETYPES
          audio/mpeg
+      )
+   endif()
+   if( USE_LIBMATROSKA )
+      list( APPEND MIMETYPES
+         audio/matroska
+         video/matroska
+         audio/x-matroska
+         video/x-matroska
       )
    endif()
    if( USE_SNDFILE )
