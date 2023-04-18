@@ -52,16 +52,9 @@ It handles initialization and termination by subclassing wxApp.
 
 // chmod, lstat, geteuid
 #ifdef __UNIX__
-
-// IPC includes
-#include <fcntl.h>
-#include <semaphore.h>
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/stat.h>
-#include <sys/mman.h>
-
-#include <cerrno>
 #include <cstdio>
 #endif
 
@@ -793,9 +786,6 @@ TenacityApp::TenacityApp()
 
 TenacityApp::~TenacityApp()
 {
-   #ifdef __UNIX__
-      CleanupIPCResources();
-   #endif
 }
 
 // The `main program' equivalent, creating the windows and returning the
@@ -907,14 +897,14 @@ bool TenacityApp::OnInit()
    wxString installPrefix = standardPaths.GetInstallPrefix();
 
    /* Search path (for plug-ins, translations etc) is (in this order):
-      * The SAUCEDACITY_PATH environment variable
+      * The TENACITY_PATH environment variable
       * The current directory
       * The user's "~/.Tenacity-data" or "Portable Settings" directory
       * The user's "~/.Tenacity-files" directory
       * The "share" and "share/doc" directories in their install path */
    wxString home = wxGetHomeDir();
    wxString envTempDir = wxGetenv(wxT("TMPDIR"));
-   wxString pathVar = wxGetenv(wxT("SAUCEDACITY_PATH"));
+   wxString pathVar = wxGetenv(wxT("TENACITY_PATH"));
    wxString configHome;
 
    if (!envTempDir.empty())
@@ -1536,6 +1526,12 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
          return false;
       }
 
+      if (parser->Found(wxT("v")))
+      {
+         wxPrintf("Tenacity v%s\n", AUDACITY_VERSION_STRING);
+         return false;
+      }
+
       // Windows and Linux require absolute file names as command may
       // not come from current working directory.
       FilePaths filenames;
@@ -1604,30 +1600,28 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #if defined(__UNIX__)
 
-void TenacityApp::CleanupIPCResources()
-{
-   if (mWasServer)
-   {
-      // Remove the lock semaphore from the system
-      sem_unlink(TenacityApp::LockSemName);
-
-      // Remove the shared memory segment.
-      shm_unlink(TenacityApp::SharedMemName);
-
-      // Remove the failsafe memory segment
-      sem_unlink(TenacityApp::FailsafeSemName);
-   }
-}
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
 
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
-bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
+
+bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
    mIPCServ.reset();
 
    bool isServer = false;
    wxIPV4address addr;
    addr.LocalHost();
+
+   struct sembuf op = {};
+
+   // Generate the IPC key we'll use for both shared memory and semaphores.
+   wxString datadir = FileNames::DataDir();
+   key_t memkey = ftok(datadir.c_str(), 0);
+   key_t servkey = ftok(datadir.c_str(), 1);
+   key_t lockkey = ftok(datadir.c_str(), 2);
 
    // Create and map the shared memory segment where the port number
    // will be stored.
@@ -1642,53 +1636,39 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
                          wxOK
       );
 
-      return false;
-   }
+   // Create (or return) the SERVER semaphore ID
+   int servid = semget(servkey, 1, IPC_CREAT | S_IRUSR | S_IWUSR);
 
-   if (ftruncate(memFd, sizeof(int)) != 0)
+   // Create the LOCK semaphore only if it doesn't already exist.
+   int lockid = semget(lockkey, 1, IPC_CREAT | IPC_EXCL | S_IRUSR | S_IWUSR);
+
+   // If the LOCK semaphore was successfully created, then this is the first
+   // time Audacity has been run during this boot of the system. In this
+   // case we know we'll become the "server" application, so set up the
+   // semaphores to prepare for it.
+   if (lockid != -1)
    {
-      AudacityMessageBox(XO("IPC: Cannot truncate shared memory.\n\n"
-                            "Error: %s").Format(strerror(errno)),
-                         XO("Tenacity startup failure"),
-                         wxOK
-      );
+      // Initialize value of each semaphore, 1 indicates released and 0
+      // indicates acquired.
+      //
+      // Note that this action is NOT recorded in the semaphore's
+      // UNDO buffer.
+      semctl(servid, 0, SETVAL, 1);
+      semctl(lockid, 0, SETVAL, 1);
 
-      return false;
-   }
-
-   int* portnum = static_cast<int*>(
-                     mmap(nullptr, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, memFd, 0)
-                  );
-   if (portnum == MAP_FAILED)
-   {
-      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
-      // is intended for the developers to look at.
-      AudacityMessageBox(XO("Unable to map shared memory region for IPC.\n\n"
-                            "Error: %s").Format(strerror(errno)),
-                         XO("Tenacity Startup Failure"),
-                         wxOK
-      );
-   }
-
-   // Create the lock and server semaphores. 0 means acquired (locked),
-   // 1 means released (unlocked).
-   mLockSemaphore = sem_open(TenacityApp::LockSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
-
-   // If the semaphore was successfully created, then we are going to be the
-   // server. "Server" processes clean them up on exit (unless something werid
-   // happens).
-   if (mLockSemaphore != SEM_FAILED)
-   {
-      // Lock both the server and lock semaphores. The server isn't ready yet.
-      if (sem_wait(mLockSemaphore) !=0)
+      // Now acquire them so the semaphores will be set to the
+      // released state when the process terminates.
+      op.sem_num = 0;
+      op.sem_op = -1;
+      op.sem_flg = SEM_UNDO;
+      if (semop(lockid, &op, 1) == -1 || semop(servid, &op, 1) == -1)
       {
          AudacityMessageBox(
             XO("Unable to acquire semaphores.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
             XO("Tenacity Startup Failure"),
-            wxOK | wxICON_ERROR
-         );
+            wxOK | wxICON_ERROR);
 
          return false;
       }
@@ -1696,51 +1676,6 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       // We will be the server...
       isServer = true;
    }
-
-   // Otherwise we'll be the client.
-   else if (errno == EEXIST)
-   {
-      // Retrieve the server semaphore since we wouldn't have gotten it above.
-      // It should already exist given the exclusive creation failed.
-      mLockSemaphore = sem_open(TenacityApp::LockSemName, 0);
-
-      // Lock the semaphore. We may block here if another process is setting up
-      // the server.
-      if (sem_wait(mLockSemaphore) == -1)
-      {
-         AudacityMessageBox(
-            XO("Unable to acquire lock semaphore.\n\n"
-               "This is likely due to a resource shortage\n"
-               "and a reboot may be required."),
-            XO("Tenacity Startup Failure"),
-            wxOK | wxICON_ERROR
-         );
-
-         return false;
-      }
-
-      // Bug #101: If Tenacity crashes, processes created after the crash will
-      // think a server process is running. In reality, this is not the case,
-      // and a time-out occurs.
-      // To fix this problem, we have a "failsafe" semaphore that can be
-      // leftover on the system if not cleaned up properly. If it exists,
-      // we'll actually be the server instead of a client.
-      mFailsafeSemaphore = sem_open(TenacityApp::FailsafeSemName, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR);
-      if (!mFailsafeSemaphore)
-      {
-         AudacityMessageBox(
-            XO("Tenacity has detected that it previously crashed. "
-               "Please report any problems to https://codeberg.org/tenacityteam/tenacity/issues.\n\n"
-               "You should see the recovery dialog when Tenacity finishes starting up to recover any "
-               "unsaved projects"),
-            XO(""),
-            wxOK | wxICON_INFORMATION
-         );
-
-         isServer = true;
-      }
-   }
-
    // Something catastrophic must have happened, so bail.
    else
    {
@@ -1749,13 +1684,56 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
             "This is likely due to a resource shortage\n"
             "and a reboot may be required."),
          XO("Tenacity Startup Failure"),
-         wxOK | wxICON_ERROR
-      );
+         wxOK | wxICON_ERROR);
 
       return false;
    }
+   // Otherwise it's a normal startup and we need to determine whether
+   // we'll be the server or the client.
+   else
+   {
+      // Retrieve the LOCK semaphore since we wouldn't have gotten it above.
+      lockid = semget(lockkey, 1, 0);
 
-   mWasServer = isServer;
+      // Acquire the LOCK semaphore. We may block here if another
+      // process is currently setting up the server.
+      op.sem_num = 0;
+      op.sem_op = -1;
+      op.sem_flg = SEM_UNDO;
+      if (semop(lockid, &op, 1) == -1)
+      {
+         AudacityMessageBox(
+            XO("Unable to acquire lock semaphore.\n\n"
+               "This is likely due to a resource shortage\n"
+               "and a reboot may be required."),
+            XO("Tenacity Startup Failure"),
+            wxOK | wxICON_ERROR);
+
+         return false;
+      }
+
+      // Try to acquire the SERVER semaphore. If it's not currently active, then
+      // we will become the server. Otherwise, this will fail and we'll know that
+      // the server is already active and we will become the client.
+      op.sem_num = 0;
+      op.sem_op = -1;
+      op.sem_flg = IPC_NOWAIT | SEM_UNDO;
+      if (semop(servid, &op, 1) == 0)
+      {
+         isServer = true;
+      }
+      else if (errno != EAGAIN)
+      {
+         AudacityMessageBox(
+            XO("Unable to acquire server semaphore.\n\n"
+               "This is likely due to a resource shortage\n"
+               "and a reboot may be required."),
+            XO("Tenacity Startup Failure"),
+            wxOK | wxICON_ERROR);
+
+         return false;
+      }
+   }
 
    // Initialize the socket server if we're to be the server.
    if (isServer)
@@ -1778,6 +1756,14 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
          *portnum = addr.Service();
       }
 
+      // Now that the server is active, we release the LOCK semaphore
+      // to allow any waiters to continue. The SERVER semaphore will
+      // remain locked for the duration of this processes execution
+      // and will be cleaned up by the system.
+      op.sem_num = 0;
+      op.sem_op = 1;
+      semop(lockid, &op, 1);
+
       // Bail if the server creation failed.
       if (mIPCServ == nullptr)
       {
@@ -1791,13 +1777,6 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
          return false;
       }
 
-      // The server has successfully initialized, so we can unlock the server
-      // semaphore now.
-      sem_post(mLockSemaphore);
-
-      // We don't need our shared memory FD mapped to our address space anymore.
-      munmap(portnum, sizeof(int));
-
       // We've successfully created the socket server and the app
       // should continue to initialize.
       return true;
@@ -1806,8 +1785,10 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
    // Retrieve the port number that the server is listening on.
    addr.Service(*portnum);
 
-   // Now release the SERVER semaphore.
-   sem_post(mLockSemaphore);
+   // Now release the LOCK semaphore.
+   op.sem_num = 0;
+   op.sem_op = 1;
+   semop(lockid, &op, 1);
 
    // If we get here, then Audacity is currently active. So, we connect
    // to it and we forward all filenames listed on the command line to
@@ -1844,6 +1825,14 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
       return false;
    }
 
+   // Display Audacity's version if requested
+   if (parser->Found(wxT("v")))
+   {
+      wxPrintf("Tenacity v%s\n", AUDACITY_VERSION_STRING);
+
+      return false;
+   }
+
 #if defined(__WXMAC__)
    // On macOS the client gets events from the wxWidgets framework that
    // go to TenacityApp::MacOpenFile. Forward the file names to the prior
@@ -1875,10 +1864,6 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString& /* unused */)
          sock->WriteMsg((const wxChar *) param, (param.length() + 1) * sizeof(wxChar));
       }
    }
-
-   // We're already done with server interaction, so we can release the server
-   // semaphore now.
-   sem_post(mLockSemaphore);
 
    // Send an empty string to force existing Audacity to front
    sock->WriteMsg(wxEmptyString, sizeof(wxChar));

@@ -23,10 +23,6 @@
 
 #include <memory>
 
-#ifdef __UNIX__
-#include <semaphore.h>
-#endif
-
 class wxSingleInstanceChecker;
 class wxSocketEvent;
 class wxSocketServer;
@@ -114,23 +110,6 @@ class TenacityApp final : public wxApp {
    std::unique_ptr<IPCServ> mIPCServ;
 #else
    std::unique_ptr<wxSocketServer> mIPCServ;
-
-   sem_t* mLockSemaphore;
-   sem_t* mFailsafeSemaphore;
-
-   static constexpr const char* LockSemName     = "/TenacityLock";
-   static constexpr const char* FailsafeSemName = "/TenacityFailsafe";
-   static constexpr const char* SharedMemName   = "/TenacityMem";
-   bool mWasServer;
-
-   /** @brief Cleans up ALL IPC resources created by any "server" processes.
-    *
-    * It is GUARANTEED that ALL RESOURCES created by the "server" process are
-    * cleaned up and removed from the system at exit, unless something
-    * catastrophic happens.
-    *
-    **/
-   void CleanupIPCResources();
 #endif
 
  public:
