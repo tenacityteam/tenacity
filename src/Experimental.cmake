@@ -118,12 +118,12 @@ set( EXPERIMENTAL_OPTIONS_LIST
    # Paul Licameli (PRL) 29 Nov 2014
    #IMPROVED_SEEKING
 
-   #MIDI_IN
+   #$<$<BOOL:${USE_MIDI}>:MIDI_IN>
 
    # RBD, 1 Sep 2008
    # Enables MIDI Output of NoteTrack (MIDI) data during playback
    # USE_MIDI must be defined in order for MIDI_OUT to work
-   MIDI_OUT
+   $<$<BOOL:${USE_MIDI}>:MIDI_OUT>
 
    # JKC, 17 Aug 2017
    # Enables the MIDI note stretching feature, which currently
