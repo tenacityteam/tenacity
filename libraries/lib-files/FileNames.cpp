@@ -612,7 +612,10 @@ void FileNames::AddUniquePathToPathList(const FilePath &pathArg,
                                           FilePaths &pathList)
 {
    wxFileNameWrapper pathNorm { pathArg };
-   pathNorm.Normalize();
+   pathNorm.Normalize(
+      wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
+      wxPATH_NORM_SHORTCUT | wxPATH_NORM_ABSOLUTE
+   );
    const wxString newpath{ pathNorm.GetFullPath() };
 
    for(const auto &path : pathList) {
