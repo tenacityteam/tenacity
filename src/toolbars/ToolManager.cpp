@@ -533,16 +533,16 @@ static struct DefaultConfigEntry {
    // Top dock row, may wrap
    { TransportBarID,         NoBarID,                NoBarID                },
    { ToolsBarID,             TransportBarID,         NoBarID                }, 
-   { TimeBarID,              TimeBarID,              NoBarID                },
-   { RecordMeterBarID,       ToolsBarID,             NoBarID                },
-   { PlayMeterBarID,         RecordMeterBarID,       NoBarID                },
-   { EditBarID,              PlayMeterBarID,         NoBarID                },
+   { TimeBarID,              ToolsBarID,             NoBarID                },
+   { RecordMeterBarID,       TimeBarID,              NoBarID                },
+   { PlayMeterBarID,         TimeBarID,              RecordMeterBarID       },
+   { EditBarID,              NoBarID,                TransportBarID         },
 
    { TranscriptionBarID,     EditBarID,              NoBarID                },
 
    // start another top dock row
    { ScrubbingBarID,         NoBarID,                TransportBarID         },
-   { DeviceBarID,            ScrubbingBarID,         TransportBarID         },
+   { DeviceBarID,            NoBarID,                EditBarID              },
 
    // Hidden by default in top dock
    { MeterBarID,             NoBarID,                NoBarID                },
