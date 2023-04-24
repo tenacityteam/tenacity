@@ -155,8 +155,8 @@ list( APPEND SOURCES
       ModuleManager.h
       ModuleSettings.cpp
       ModuleSettings.h
-      NoteTrack.cpp
-      NoteTrack.h
+      $<$<BOOL:${USE_MIDI}>:NoteTrack.cpp>
+      $<$<BOOL:${USE_MIDI}>:NoteTrack.h>
       PitchName.cpp
       PitchName.h
       PlaybackSchedule.cpp
@@ -791,23 +791,23 @@ list( APPEND SOURCES
       tracks/labeltrack/ui/LabelTrackVRulerControls.h
       tracks/labeltrack/ui/LabelTrackView.cpp
       tracks/labeltrack/ui/LabelTrackView.h
-      tracks/playabletrack/notetrack/ui/NoteTrackAffordanceControls.h
-      tracks/playabletrack/notetrack/ui/NoteTrackAffordanceControls.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackButtonHandle.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackButtonHandle.h
-      tracks/playabletrack/notetrack/ui/NoteTrackControls.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackControls.h
-      tracks/playabletrack/notetrack/ui/NoteTrackShifter.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.h
-      tracks/playabletrack/notetrack/ui/NoteTrackVRulerControls.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackVRulerControls.h
-      tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.h
-      tracks/playabletrack/notetrack/ui/NoteTrackView.cpp
-      tracks/playabletrack/notetrack/ui/NoteTrackView.h
-      tracks/playabletrack/notetrack/ui/StretchHandle.cpp
-      tracks/playabletrack/notetrack/ui/StretchHandle.h
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackAffordanceControls.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackAffordanceControls.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackButtonHandle.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackButtonHandle.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackControls.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackControls.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackShifter.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackVRulerControls.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackVRulerControls.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackView.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/NoteTrackView.h>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/StretchHandle.cpp>
+      $<$<BOOL:${USE_MIDI}>:tracks/playabletrack/notetrack/ui/StretchHandle.h>
       tracks/playabletrack/ui/PlayableTrackButtonHandles.cpp
       tracks/playabletrack/ui/PlayableTrackButtonHandles.h
       tracks/playabletrack/ui/PlayableTrackControls.cpp
