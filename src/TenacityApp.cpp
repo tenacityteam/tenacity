@@ -711,11 +711,6 @@ void TenacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 
 void TenacityApp::OnFatalException()
 {
-   #ifdef __UNIX__
-      // Cleanup our IPC resources. Error checking isn't that important given
-      // we're crashing already.
-      CleanupIPCResources();
-   #endif
    exit(-1);
 }
 
@@ -1625,16 +1620,8 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
    // Create and map the shared memory segment where the port number
    // will be stored.
-   int memFd = shm_open(TenacityApp::SharedMemName, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
-   if (memFd == -1)
-   {
-      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
-      // is intended for the developers to look at.
-      AudacityMessageBox(XO("IPC: Failed to create shared memory region.\n\n"
-                            "Error: %s").Format(strerror(errno)),
-                         XO("Tenacity startup failure"),
-                         wxOK
-      );
+   int memid = shmget(memkey, sizeof(int), IPC_CREAT | S_IRUSR | S_IWUSR);
+   int *portnum = (int *) shmat(memid, nullptr, 0);
 
    // Create (or return) the SERVER semaphore ID
    int servid = semget(servkey, 1, IPC_CREAT | S_IRUSR | S_IWUSR);
@@ -1677,7 +1664,7 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
       isServer = true;
    }
    // Something catastrophic must have happened, so bail.
-   else
+   else if (errno != EEXIST)
    {
       AudacityMessageBox(
          XO("Unable to create semaphores.\n\n"
@@ -1867,8 +1854,6 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
    // Send an empty string to force existing Audacity to front
    sock->WriteMsg(wxEmptyString, sizeof(wxChar));
-
-   munmap(portnum, sizeof(int));
 
    // We've forwarded all of the filenames, so let the caller know
    // to terminate.
