@@ -127,7 +127,7 @@ void DeviceToolBar::Populate()
    // so that name can be set on a standard control
    mHost->SetAccessible(safenew WindowAccessible(mHost));
 #endif
-   Add(mHost, 5, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
+   Add(mHost, 15, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
    // Input device
    Add(safenew AStaticBitmap(this,
@@ -141,7 +141,7 @@ void DeviceToolBar::Populate()
    // so that name can be set on a standard control
    mInput->SetAccessible(safenew WindowAccessible(mInput));
 #endif
-   Add(mInput, 15, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
+   Add(mInput, 30, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
    // Input channels
    mInputChannels = safenew wxChoice(this,
@@ -152,7 +152,7 @@ void DeviceToolBar::Populate()
    // so that name can be set on a standard control
    mInputChannels->SetAccessible(safenew WindowAccessible(mInputChannels));
 #endif
-   Add(mInputChannels, 10, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
+   Add(mInputChannels, 20, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
    // Output device
    Add(safenew AStaticBitmap(this,
@@ -166,10 +166,11 @@ void DeviceToolBar::Populate()
    // so that name can be set on a standard control
    mOutput->SetAccessible(safenew WindowAccessible(mOutput));
 #endif
-   Add(mOutput, 10, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
+   Add(mOutput, 30, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
-// AK: obsolete code below. See discussion#23 for details.
-#if defined(__WXGTK__) && !defined(__WXGTK3__)
+#if defined(__WXGTK3__)
+   // Nothing special
+#elif defined(__WXGTK__)
    // Scale the font to fit inside (hopefully)
    wxFont font = mHost->GetFont();
    font.Scale((double) toolbarSingle / mHost->GetSize().GetHeight());
