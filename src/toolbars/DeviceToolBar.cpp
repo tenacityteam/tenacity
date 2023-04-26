@@ -168,20 +168,6 @@ void DeviceToolBar::Populate()
 #endif
    Add(mOutput, 30, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
-#if defined(__WXGTK3__)
-   // Nothing special
-#elif defined(__WXGTK__)
-   // Scale the font to fit inside (hopefully)
-   wxFont font = mHost->GetFont();
-   font.Scale((double) toolbarSingle / mHost->GetSize().GetHeight());
-
-   // Set it
-   mHost->SetFont(font);
-   mInput->SetFont(font);
-   mInputChannels->SetFont(font);
-   mOutput->SetFont(font);
-#endif
-
    mHost->Bind(wxEVT_SET_FOCUS,
                &DeviceToolBar::OnFocus,
                this);
