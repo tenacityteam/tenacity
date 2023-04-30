@@ -111,7 +111,6 @@ private:
    void OnMouseEvent(wxMouseEvent& event);
    void OnPaint(wxPaintEvent& evt);
 
-   void OnButton_MusicalInstrument(wxCommandEvent& event);
    void OnSlider_Gain(wxCommandEvent& event);
 #ifdef EXPERIMENTAL_MIDI_OUT
    void OnSlider_Velocity(wxCommandEvent& event);
@@ -131,7 +130,6 @@ private:
 
    // controls
    AuStaticText* mStaticText_TrackName;
-   wxBitmapButton* mBitmapButton_MusicalInstrument;
    AButton* mToggleButton_Mute;
    AButton* mToggleButton_Solo;
    MixerTrackSlider* mSlider_Pan;
@@ -144,21 +142,6 @@ private:
 public:
    DECLARE_EVENT_TABLE()
 };
-
-
-class MusicalInstrument
-{
-public:
-   MusicalInstrument(std::unique_ptr<wxBitmap> &&pBitmap, const wxString & strXPMfilename);
-   virtual ~MusicalInstrument();
-
-   std::unique_ptr<wxBitmap> mBitmap;
-   wxArrayString  mKeywords;
-};
-
-using MusicalInstrumentArray = std::vector<std::unique_ptr<MusicalInstrument>>;
-
-
 
 // wxScrolledWindow ignores mouse clicks in client area,
 // but they don't get passed to Mixerboard.
@@ -206,9 +189,6 @@ public:
 
    int GetTrackClustersWidth();
 
-
-   wxBitmap* GetMusicalInstrumentBitmap(const Track *pTrack);
-
    bool HasSolo();
 
    void RefreshTrackClusters(bool bEraseBackground = true);
@@ -226,7 +206,6 @@ private:
    void CreateMuteSoloImages();
    int FindMixerTrackCluster(const PlayableTrack* pTrack,
                               MixerTrackCluster** hMixerTrackCluster) const;
-   void LoadMusicalInstruments();
 
    // event handlers
    void OnPaint(wxPaintEvent& evt);
@@ -248,7 +227,6 @@ private:
    // Track clusters are maintained in the same order as the WaveTracks.
    std::vector<MixerTrackCluster*> mMixerTrackClusters;
 
-   MusicalInstrumentArray     mMusicalInstruments;
    TenacityProject*           mProject;
    MixerBoardScrolledWindow*  mScrolledWindow; // Holds the MixerTrackClusters and handles scrolling.
    double                     mPrevT1;

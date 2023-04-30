@@ -53,7 +53,6 @@
 #include "widgets/AuStaticText.h"
 #include "widgets/MeterPanel.h"
 
-#include "../images/MusicalInstruments.h"
 #ifdef __WXMSW__
    #include "../images/TenacityLogo.xpm"
 #else
@@ -133,16 +132,14 @@ const int kTripleInset    = (3 * kInset);
 const int kQuadrupleInset = (4 * kInset);
 
 const int TRACK_NAME_HEIGHT                   = 18;
-const int MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH = 48;
 const int MUTE_SOLO_HEIGHT                    = 19;
 const int  PAN_HEIGHT                         = 24;
 
-const int kLeftSideStackWidth     = MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH - kDoubleInset; //vvv Change when numbers shown on slider scale.
-const int kRightSideStackWidth    = MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH + kDoubleInset;
+const int kLeftSideStackWidth     = 48 - kDoubleInset; //vvv Change when numbers shown on slider scale.
+const int kRightSideStackWidth    = 48 + kDoubleInset;
 const int kMixerTrackClusterWidth = kLeftSideStackWidth + kRightSideStackWidth + kQuadrupleInset; // kDoubleInset margin on both sides
 
 enum {
-   ID_BITMAPBUTTON_MUSICAL_INSTRUMENT = 13000,
    ID_SLIDER_PAN,
    ID_SLIDER_GAIN,
 #ifdef EXPERIMENTAL_MIDI_OUT
@@ -156,7 +153,6 @@ BEGIN_EVENT_TABLE(MixerTrackCluster, wxPanelWrapper)
    EVT_MOUSE_EVENTS(MixerTrackCluster::OnMouseEvent)
    EVT_PAINT(MixerTrackCluster::OnPaint)
 
-   EVT_BUTTON(ID_BITMAPBUTTON_MUSICAL_INSTRUMENT, MixerTrackCluster::OnButton_MusicalInstrument)
    EVT_SLIDER(ID_SLIDER_PAN, MixerTrackCluster::OnSlider_Pan)
    EVT_SLIDER(ID_SLIDER_GAIN, MixerTrackCluster::OnSlider_Gain)
 #ifdef EXPERIMENTAL_MIDI_OUT
@@ -233,23 +229,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
 #endif
 
    // other controls and meter at right
-
-   // musical instrument image
    ctrlPos.x += kLeftSideStackWidth + kInset; // + kInset to center it in right side stack
-   ctrlSize.Set(MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH, MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH);
-   wxBitmap* bitmap = mMixerBoard->GetMusicalInstrumentBitmap(mTrack.get());
-   wxASSERT(bitmap);
-   mBitmapButton_MusicalInstrument =
-      safenew wxBitmapButton(this, ID_BITMAPBUTTON_MUSICAL_INSTRUMENT, *bitmap,
-                           ctrlPos, ctrlSize,
-                           wxBU_AUTODRAW, wxDefaultValidator,
-                           _("Musical Instrument"));
-   mBitmapButton_MusicalInstrument->SetName(_("Musical Instrument"));
-
-
-   // pan slider
-   ctrlPos.x -= kInset; // Remove inset for instrument, so Pan is at leftmost of left side stack.
-   ctrlPos.y += MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH + kDoubleInset;
    ctrlSize.Set(kRightSideStackWidth, PAN_HEIGHT);
 
    // The width of the pan slider must be odd (don't ask).
@@ -299,7 +279,6 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
    ctrlPos.y += (bSoloNone ? 0 : MUTE_SOLO_HEIGHT) + kDoubleInset;
    const int nMeterHeight =
       nGainSliderHeight -
-      (MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH + kDoubleInset) -
       (PAN_HEIGHT + kDoubleInset) -
       (MUTE_SOLO_HEIGHT + (bSoloNone ? 0 : MUTE_SOLO_HEIGHT) + kDoubleInset);
    ctrlSize.Set(kRightSideStackWidth, nMeterHeight);
@@ -395,7 +374,6 @@ void MixerTrackCluster::HandleResize() // For wxSizeEvents, update gain slider a
    mToggleButton_Solo->Show(!bSoloNone);
 
    const int nRequiredHeightAboveMeter =
-      MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH + kDoubleInset +
       PAN_HEIGHT + kDoubleInset +
       MUTE_SOLO_HEIGHT + (bSoloNone ? 0 : MUTE_SOLO_HEIGHT) + kDoubleInset;
    const int nMeterY =
@@ -473,8 +451,6 @@ void MixerTrackCluster::UpdateForStateChange()
 #if wxUSE_TOOLTIPS
          mStaticText_TrackName->SetToolTip(newName);
 #endif
-      mBitmapButton_MusicalInstrument->SetBitmapLabel(
-         *(mMixerBoard->GetMusicalInstrumentBitmap(mTrack.get())));
    }
 
    mToggleButton_Mute->SetAlternateIdx(mTrack->GetSolo() ? 1 : 0);
@@ -712,13 +688,6 @@ void MixerTrackCluster::OnPaint(wxPaintEvent & WXUNUSED(event))
    AColor::Bevel(dc, true, bev);// same bevel whether selected or not.
 }
 
-
-void MixerTrackCluster::OnButton_MusicalInstrument(wxCommandEvent& WXUNUSED(event))
-{
-   const auto &state = ::wxGetMouseState();
-   this->HandleSelect(state.ShiftDown(), state.ControlDown());
-}
-
 void MixerTrackCluster::OnSlider_Gain(wxCommandEvent& WXUNUSED(event))
 {
    this->HandleSliderGain();
@@ -776,33 +745,6 @@ void MixerTrackCluster::OnButton_Solo(wxCommandEvent& WXUNUSED(event))
    // Bug 509: Must repaint all, as many tracks can change with one Solo change.
    ProjectWindow::Get( *mProject ).RedrawProject();
 }
-
-
-// class MusicalInstrument
-
-MusicalInstrument::MusicalInstrument(std::unique_ptr<wxBitmap> &&pBitmap, const wxString & strXPMfilename)
-{
-   mBitmap = std::move(pBitmap);
-
-   int nUnderscoreIndex;
-   wxString strFilename = strXPMfilename;
-   strFilename.MakeLower(); // Make sure, so we don't have to do case insensitive comparison.
-   wxString strKeyword;
-   while ((nUnderscoreIndex = strFilename.Find(wxT('_'))) != -1)
-   {
-      strKeyword = strFilename.Left(nUnderscoreIndex);
-      mKeywords.push_back(strKeyword);
-      strFilename = strFilename.Mid(nUnderscoreIndex + 1);
-   }
-   if (!strFilename.empty()) // Skip trailing underscores.
-      mKeywords.push_back(strFilename); // Add the last one.
-}
-
-MusicalInstrument::~MusicalInstrument()
-{
-   mKeywords.clear();
-}
-
 
 // class MixerBoardScrolledWindow
 
@@ -875,7 +817,6 @@ MixerBoard::MixerBoard(TenacityProject* pProject,
    mMuteSoloWidth = kRightSideStackWidth - kInset; // correct for max width, but really set in MixerBoard::CreateMuteSoloImages
 
    // private data members
-   this->LoadMusicalInstruments(); // Set up mMusicalInstruments.
    mProject = pProject;
 
    wxASSERT(pProject); // to justify safenew
@@ -1068,51 +1009,6 @@ void MixerBoard::RemoveTrackCluster(size_t nIndex)
    this->UpdateWidth();
 }
 
-
-wxBitmap* MixerBoard::GetMusicalInstrumentBitmap(const Track* pTrack)
-{
-   if (mMusicalInstruments.empty())
-      return NULL;
-
-   // random choice:    return mMusicalInstruments[(int)pTrack % mMusicalInstruments.size()].mBitmap;
-
-   const wxString strTrackName(pTrack->GetName().MakeLower());
-   size_t nBestItemIndex = 0;
-   unsigned int nBestScore = 0;
-   unsigned int nInstrIndex = 0;
-   unsigned int nKeywordIndex;
-   unsigned int nNumKeywords;
-   unsigned int nPointsPerMatch;
-   unsigned int nScore;
-   for (nInstrIndex = 0; nInstrIndex < mMusicalInstruments.size(); nInstrIndex++)
-   {
-      nScore = 0;
-
-      nNumKeywords = mMusicalInstruments[nInstrIndex]->mKeywords.size();
-      if (nNumKeywords > 0)
-      {
-         nPointsPerMatch = 10 / nNumKeywords;
-         for (nKeywordIndex = 0; nKeywordIndex < nNumKeywords; nKeywordIndex++)
-            if (strTrackName.Contains(mMusicalInstruments[nInstrIndex]->mKeywords[nKeywordIndex]))
-            {
-               nScore +=
-                  nPointsPerMatch +
-                  // Longer keywords get more points.
-                  (2 * mMusicalInstruments[nInstrIndex]->mKeywords[nKeywordIndex].length());
-            }
-      }
-
-      // Choose later one if just matching nBestScore, for better variety,
-      // and so default works as last element.
-      if (nScore >= nBestScore)
-      {
-         nBestScore = nScore;
-         nBestItemIndex = nInstrIndex;
-      }
-   }
-   return mMusicalInstruments[nBestItemIndex]->mBitmap.get();
-}
-
 bool MixerBoard::HasSolo()
 {
    return !(( mTracks->Any<PlayableTrack>() + &PlayableTrack::GetSolo ).empty());
@@ -1267,48 +1163,6 @@ int MixerBoard::FindMixerTrackCluster(const PlayableTrack* pTrack,
       }
    }
    return -1;
-}
-
-void MixerBoard::LoadMusicalInstruments()
-{
-   const struct Data { const char * const *bitmap; wxString name; } table[] = {
-      {acoustic_guitar_gtr_xpm, wxT("acoustic_guitar_gtr")},
-      {acoustic_piano_pno_xpm, wxT("acoustic_piano_pno")},
-      {back_vocal_bg_vox_xpm, wxT("back_vocal_bg_vox")},
-      {clap_xpm, wxT("clap")},
-      {drums_dr_xpm, wxT("drums_dr")},
-      {electric_bass_guitar_bs_gtr_xpm, wxT("electric_bass_guitar_bs_gtr")},
-      {electric_guitar_gtr_xpm, wxT("electric_guitar_gtr")},
-      {electric_piano_pno_key_xpm, wxT("electric_piano_pno_key")},
-      {kick_xpm, wxT("kick")},
-      {loop_xpm, wxT("loop")},
-      {organ_org_xpm, wxT("organ_org")},
-      {perc_xpm, wxT("perc")},
-      {sax_xpm, wxT("sax")},
-      {snare_xpm, wxT("snare")},
-      {string_violin_cello_xpm, wxT("string_violin_cello")},
-      {synth_xpm, wxT("synth")},
-      {tambo_xpm, wxT("tambo")},
-      {trumpet_horn_xpm, wxT("trumpet_horn")},
-      {turntable_xpm, wxT("turntable")},
-      {vibraphone_vibes_xpm, wxT("vibraphone_vibes")},
-      {vocal_vox_xpm, wxT("vocal_vox")},
-
-      // This one must be last, so it wins when best score is 0.
-      {_default_instrument_xpm, wxEmptyString},
-   };
-
-   wxRect bev(1, 1, MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH - 2, MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH - 2);
-   wxMemoryDC dc;
-
-   for (const auto &data : table) {
-      auto bmp = std::make_unique<wxBitmap>( data.bitmap );
-      dc.SelectObject(*bmp);
-      AColor::Bevel(dc, false, bev);
-      mMusicalInstruments.push_back(std::make_unique<MusicalInstrument>(
-         std::move(bmp), data.name
-      ));
-   };
 }
 
 // event handlers
