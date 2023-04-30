@@ -945,17 +945,7 @@ void MixerBoard::UpdateTrackClusters()
       }
       else
       {
-         // Not already showing it. Add a NEW MixerChannel.
-         wxPoint clusterPos(
-            kInset + nClusterIndex * kMixerChannelWidth,
-            kInset);
-         wxSize clusterSize(kMixerChannelWidth, nClusterHeight);
-         pMixerChannel =
-            safenew MixerChannel(mScrolledWindow, this, mProject,
-                                    spTrack,
-                                    clusterPos, clusterSize);
-         if (pMixerChannel)
-            mMixerChannels.push_back(pMixerChannel);
+         pMixerChannel = AddChannel(spTrack, nClusterIndex, nClusterHeight);
       }
       nClusterIndex++;
    }
@@ -1012,6 +1002,30 @@ void MixerBoard::RemoveTrackCluster(size_t nIndex)
 bool MixerBoard::HasSolo()
 {
    return !(( mTracks->Any<PlayableTrack>() + &PlayableTrack::GetSolo ).empty());
+}
+
+MixerChannel* MixerBoard::AddChannel(const std::shared_ptr<PlayableTrack>& track, size_t index, int height)
+{
+   wxASSERT(track);
+
+   wxPoint clusterPos(
+      kInset + index * kMixerChannelWidth,
+      kInset
+   );
+
+   wxSize clusterSize(kMixerChannelWidth, height);
+
+   auto mixerChannel = new MixerChannel(
+      mScrolledWindow,
+      this,
+      mProject,
+      track,
+      clusterPos,
+      clusterSize
+   );
+
+   mMixerChannels.push_back(mixerChannel);
+   return mixerChannel;
 }
 
 void MixerBoard::RefreshTrackClusters(bool bEraseBackground /*= true*/)

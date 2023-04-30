@@ -191,6 +191,7 @@ public:
 
    bool HasSolo();
 
+   MixerChannel* AddChannel(const std::shared_ptr<PlayableTrack>& track, size_t index, int height);
    void RefreshTrackClusters(bool bEraseBackground = true);
    void ResizeTrackClusters();
 
