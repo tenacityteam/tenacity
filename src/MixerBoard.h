@@ -28,7 +28,7 @@ class AButton;
 struct TrackListEvent;
 
 // containment hierarchy:
-//    MixerBoardFrame -> MixerBoard -> MixerBoardScrolledWindow -> MixerTrackCluster(s)
+//    MixerBoardFrame -> MixerBoard -> MixerBoardScrolledWindow -> MixerChannel(s)
 
 
 // MixerTrackSlider is a subclass just to override OnMouseEvent,
@@ -70,15 +70,15 @@ class PlayableTrack;
 class WaveTrack;
 class AuStaticText;
 
-class MixerTrackCluster final : public wxPanelWrapper
+class MixerChannel final : public wxPanelWrapper
 {
 public:
-   MixerTrackCluster(wxWindow* parent,
+   MixerChannel(wxWindow* parent,
                      MixerBoard* grandParent, TenacityProject* project,
                      const std::shared_ptr<PlayableTrack> &pTrack,
                      const wxPoint& pos = wxDefaultPosition,
                      const wxSize& size = wxDefaultSize);
-   virtual ~MixerTrackCluster() {}
+   virtual ~MixerChannel() {}
 
    WaveTrack *GetWave() const;
    WaveTrack *GetRight() const;
@@ -204,8 +204,8 @@ private:
    void MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & bitmap,
       wxRect & bev, const TranslatableString & str, bool up );
    void CreateMuteSoloImages();
-   int FindMixerTrackCluster(const PlayableTrack* pTrack,
-                              MixerTrackCluster** hMixerTrackCluster) const;
+   int FindMixerChannel(const PlayableTrack* pTrack,
+                              MixerChannel** hMixerChannel) const;
 
    // event handlers
    void OnPaint(wxPaintEvent& evt);
@@ -216,7 +216,7 @@ private:
    void OnStartStop(wxCommandEvent &event);
 
 public:
-   // mute & solo button images: Create once and store on MixerBoard for use in all MixerTrackClusters.
+   // mute & solo button images: Create once and store on MixerBoard for use in all MixerChannels.
    std::unique_ptr<wxImage> mImageMuteUp, mImageMuteOver, mImageMuteDown,
       mImageMuteDownWhileSolo, // the one actually alternate image
       mImageMuteDisabled, mImageSoloUp, mImageSoloOver, mImageSoloDown, mImageSoloDisabled;
@@ -225,10 +225,10 @@ public:
 
 private:
    // Track clusters are maintained in the same order as the WaveTracks.
-   std::vector<MixerTrackCluster*> mMixerTrackClusters;
+   std::vector<MixerChannel*> mMixerChannels;
 
    TenacityProject*           mProject;
-   MixerBoardScrolledWindow*  mScrolledWindow; // Holds the MixerTrackClusters and handles scrolling.
+   MixerBoardScrolledWindow*  mScrolledWindow; // Holds the MixerChannels and handles scrolling.
    double                     mPrevT1;
    TrackList*                 mTracks;
    bool                       mUpToDate{ false };

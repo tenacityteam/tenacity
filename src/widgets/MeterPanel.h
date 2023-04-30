@@ -104,7 +104,7 @@ class TENACITY_DLL_API MeterPanel final
       AutomaticStereo,
       HorizontalStereo,
       VerticalStereo,
-      MixerTrackCluster, // Doesn't show menu, icon, or L/R labels, but otherwise like VerticalStereo.
+      MixerChannel, // Doesn't show menu, icon, or L/R labels, but otherwise like VerticalStereo.
       HorizontalStereoCompact, // Thinner.
       VerticalStereoCompact, // Narrower.
    };
@@ -158,7 +158,7 @@ class TENACITY_DLL_API MeterPanel final
    void UpdateDisplay(unsigned numChannels,
                       int numFrames, const float *sampleData) override;
 
-   // Vaughan, 2010-11-29: This not currently used. See comments in MixerTrackCluster::UpdateMeter().
+   // Vaughan, 2010-11-29: This not currently used. See comments in MixerChannel::UpdateMeter().
    //void UpdateDisplay(int numChannels, int numFrames,
    //                     // Need to make these double-indexed max and min arrays if we handle more than 2 channels.
    //                     float* maxLeft, float* rmsLeft,
