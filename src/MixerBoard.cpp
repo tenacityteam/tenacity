@@ -1553,7 +1553,7 @@ CommandHandlerObject &findCommandHandler(TenacityProject &) {
 using namespace MenuTable;
 AttachedItem sAttachment{ wxT("View/Windows"),
    ( FinderScope{ findCommandHandler },
-      Command( wxT("MixerBoard"), XXO("&Mixer Board..."), &Handler::OnMixerBoard,
+      Command( wxT("MixerBoard"), XXO("&Mixer..."), &Handler::OnMixerBoard,
          PlayableTracksExistFlag()) )
 };
 
