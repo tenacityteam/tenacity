@@ -103,10 +103,10 @@ void ExportMKAOptions::PopulateOrExchange(ShuttleGui & S)
             S.StartMultiColumn(2, wxCENTER);
             {
                 S.TieChoice( XXO("Bit depth:"), MKAFormat);
-                // TODO select the emphasis type
-                // TODO make chapter export optional
                 // TODO select OK of the dialog by default ?
                 // TODO select the language to use for strings (app, und, or a list ?)
+                // TODO select the emphasis type
+                S.TieCheckBox(XXO("Keep Labels"), {wxT("/FileFormats/MkaExportLabels"), true});
             }
             S.EndMultiColumn();
         }
@@ -439,11 +439,59 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         if (CueSize != 0)
             MetaSeek.IndexThis(AllCues, FileSegment);
 
-        // TODO add markers as chapters
+        uint64 lastElementEnd = AllCues.GetEndPosition();
+
+        // add markers as chapters
+        if (gPrefs->Read(wxT("/FileFormats/MkaExportLabels"), true))
+        {
+            const auto trackRange = tracks.Any<const LabelTrack>();
+            if (!trackRange.empty())
+            {
+                KaxChapters & EditionList = GetChild<KaxChapters>(FileSegment);
+                for (const auto *lt : trackRange)
+                {
+                    if (lt->GetNumLabels())
+                    {
+                        // Create an edition with the track name
+                        KaxEditionEntry &Edition = AddNewChild<KaxEditionEntry>(EditionList);
+                        (EbmlUInteger &) GetChild<KaxEditionUID>(Edition) = GetRandomUID64();
+#if LIBMATROSKA_VERSION >= 0x010700
+                        KaxEditionDisplay & EditionDisplay = GetChild<KaxEditionDisplay>(Edition);
+                        (EbmlUnicodeString &) GetChild<KaxEditionString>(EditionDisplay) = (UTFstring)lt->GetName();
+#endif
+                        // TODO also write the Edition name in tags for older Matroska parsers
+                        // Add markers and selections
+                        for (const auto & label : lt->GetLabels())
+                        {
+                            KaxChapterAtom & Chapter = AddNewChild<KaxChapterAtom>(Edition);
+                            (EbmlUInteger &) GetChild<KaxChapterUID>(Chapter) = GetRandomUID64();
+                            (EbmlUInteger &) GetChild<KaxChapterTimeStart>(Chapter) = label.getT0() * UINT64_C(1000000000);
+                            if (label.getDuration() != 0.0)
+                                (EbmlUInteger &) GetChild<KaxChapterTimeEnd>(Chapter) = label.getT1() * UINT64_C(1000000000);
+                            if (!label.title.empty())
+                            {
+                                KaxChapterDisplay & ChapterDisplay = GetChild<KaxChapterDisplay>(Chapter);
+                                (EbmlUnicodeString &) GetChild<KaxChapterString>(ChapterDisplay) = (UTFstring)label.title;
+                                (EbmlString &) GetChild<KaxChapterLanguage>(ChapterDisplay) = "und";
+#if LIBMATROSKA_VERSION >= 0x010600
+                                (EbmlString &) GetChild<KaxChapLanguageIETF>(ChapterDisplay) = "und";
+#endif
+                            }
+                        }
+                    }
+                }
+                filepos_t ChaptersSize = EditionList.Render(mka_file);
+                if (ChaptersSize != 0)
+                {
+                    MetaSeek.IndexThis(EditionList, FileSegment);
+                    lastElementEnd = EditionList.GetEndPosition();
+                }
+            }
+        }
 
         auto MetaSeekSize = DummyStart.ReplaceWith(MetaSeek, mka_file);
 
-        if (FileSegment.ForceSize(AllCues.GetEndPosition() - FileSegment.GetDataStart()))
+        if (FileSegment.ForceSize(lastElementEnd - FileSegment.GetDataStart()))
         {
             FileSegment.OverwriteHead(mka_file);
         }
