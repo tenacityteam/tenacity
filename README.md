@@ -71,3 +71,7 @@ If you are planning to make a big change or if you are otherwise hesitant as to 
 ### Translating
 
 You can help us translate Tenacity and make it more accessible on [Weblate](https://hosted.weblate.org/projects/tenacity).
+
+## License
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. For more information, see [LICENSE.txt](LICENSE.txt)
