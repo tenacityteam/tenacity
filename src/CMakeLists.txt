@@ -631,6 +631,10 @@ list( APPEND SOURCES
          import/ImportOGG.cpp
       >
 
+      $<$<BOOL:${USE_LIBMATROSKA}>:
+         import/ImportMka.cpp
+      >
+
       # Menus
 
       menus/ClipMenus.cpp

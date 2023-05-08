@@ -22,7 +22,7 @@
 
 \class ImportFileHandle
 \brief Base class for FlacImportFileHandle, LOFImportFileHandle,
-MP3ImportFileHandle, OggImportFileHandle and PCMImportFileHandle.
+MP3ImportFileHandle, OggImportFileHandle, MkaImportFileHandle and PCMImportFileHandle.
 Gives API for sound file import.
 
 *//****************************************************************//**

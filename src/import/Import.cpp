@@ -15,7 +15,7 @@
   and return the tracks that were imported.  This function just
   figures out which one to call; the actual importers are in
   ImportPCM, ImportMP3, ImportOGG, ImportRawData, ImportLOF,
-  ImportQT, ImportFLAC and ImportAUP.
+  ImportQT, ImportFLAC, ImportMka and ImportAUP.
 
 *//***************************************************************//**
 
@@ -29,7 +29,7 @@ It's defined in Import.h
 \class Importer
 \brief Class which actually imports the auido, using functions defined
 in ImportPCM.cpp, ImportMP3.cpp, ImportOGG.cpp, ImportRawData.cpp,
-ImportLOF.cpp, and ImportAUP.cpp.
+ImportLOF.cpp, ImportMka.cpp, and ImportAUP.cpp.
 
 *//******************************************************************/
 
