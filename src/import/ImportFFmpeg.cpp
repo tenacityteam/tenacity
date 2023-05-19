@@ -91,6 +91,7 @@ static const auto exts = {
    wxT("nut"),
    wxT("lmlm4"),
    wxT("m4v"),
+   wxT("mka"),
    wxT("mkv"),
    wxT("mm"),
    wxT("mmf"),
@@ -151,6 +152,7 @@ static const auto exts = {
    wxT("wc3movie"),
    wxT("wsaud"),
    wxT("wsvqa"),
+   wxT("webm"),
    wxT("wv")
 };
 
