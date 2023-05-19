@@ -164,7 +164,7 @@ class QTImportFileHandle final : public ImportFileHandle
 
    ProgressResult Import(TrackFactory *trackFactory,
               TrackHolders &outTracks,
-              Tags *tags) override;
+              Tags *tags, LabelHolders &labelTracks) override;
 
  private:
    void AddMetadata(Tags *tags);
@@ -235,7 +235,8 @@ auto QTImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 
 ProgressResult QTImportFileHandle::Import(TrackFactory *trackFactory,
                                TrackHolders &outTracks,
-                               Tags *tags)
+                               Tags *tags,
+                               LabelHolders &)
 {
    outTracks.clear();
 

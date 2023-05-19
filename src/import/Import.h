@@ -36,9 +36,11 @@ typedef bool (*progress_callback_t)( void *userData, float percent );
 
 class ExtImportItem;
 class WaveTrack;
+class LabelTrack;
 
 using ExtImportItems = std::vector< std::unique_ptr<ExtImportItem> >;
 using TrackHolders = std::vector< std::vector< std::shared_ptr<WaveTrack> > >;
+using LabelHolders = std::vector< std::shared_ptr<LabelTrack> >;
 
 class ExtImportItem
 {
@@ -175,6 +177,7 @@ public:
               WaveTrackFactory *trackFactory,
               TrackHolders &tracks,
               Tags *tags,
+              LabelHolders &labelTracks,
               TranslatableString &errorMessage);
 
 private:

@@ -457,6 +457,7 @@ bool Importer::Import( TenacityProject &project,
                      WaveTrackFactory *trackFactory,
                      TrackHolders &tracks,
                      Tags *tags,
+                     LabelHolders &labels,
                      TranslatableString &errorMessage)
 {
    TenacityProject *pProj = &project;
@@ -625,7 +626,7 @@ bool Importer::Import( TenacityProject &project,
          else
             inFile->SetStreamUsage(0,TRUE);
 
-         auto res = inFile->Import(trackFactory, tracks, tags);
+         auto res = inFile->Import(trackFactory, tracks, tags, labels);
 
          if (res == ProgressResult::Success || res == ProgressResult::Stopped)
          {

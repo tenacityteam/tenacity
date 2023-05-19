@@ -166,7 +166,7 @@ void DoImport(const CommandContext &context, bool isRaw)
 
          if (newTracks.size() > 0) {
             ProjectFileManager::Get( project )
-               .AddImportedTracks(fileName, std::move(newTracks));
+               .AddImportedTracks(fileName, std::move(newTracks), {});
          }
       }
       else {

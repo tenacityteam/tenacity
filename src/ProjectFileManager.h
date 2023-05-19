@@ -26,10 +26,12 @@ class TenacityProject;
 class Track;
 class TrackList;
 class WaveTrack;
+class LabelTrack;
 class XMLTagHandler;
 
 using WaveTrackArray = std::vector < std::shared_ptr < WaveTrack > >;
 using TrackHolders = std::vector< WaveTrackArray >;
+using LabelHolders = std::vector< std::shared_ptr<LabelTrack> >;
 
 class TENACITY_DLL_API ProjectFileManager final
    : public ClientData::Base
@@ -103,7 +105,7 @@ public:
    void Compact();
 
    void AddImportedTracks(const FilePath &fileName,
-                     TrackHolders &&newTracks);
+                     TrackHolders &&newTracks, LabelHolders &&labelTracks);
 
    bool GetMenuClose() const { return mMenuClose; }
    void SetMenuClose(bool value) { mMenuClose = value; }

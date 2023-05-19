@@ -183,7 +183,7 @@ public:
    ///\return import status (see Import.cpp)
    int Import(TrackFactory *trackFactory,
               TrackHolders &outTracks,
-              Tags *tags) override;
+              Tags *tags, LabelHolders &labelTracks) override;
 
    // =========================================================================
    // Handled within the gstreamer threads
@@ -1014,7 +1014,8 @@ GStreamerImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 int
 GStreamerImportFileHandle::Import(TrackFactory *trackFactory,
                                   TrackHolders &outTracks,
-                                  Tags *tags)
+                                  Tags *tags,
+                                  LabelHolders &)
 {
    outTracks.clear();
 

@@ -106,7 +106,7 @@ public:
 
    TranslatableString GetFileDescription() override;
    ByteCount GetFileUncompressedBytes() override;
-   ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks, Tags *tags) override;
+   ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks, Tags *tags, LabelHolders &labelTracks) override;
    wxInt32 GetStreamCount() override;
    const TranslatableStrings &GetStreamInfo() override;
    void SetStreamUsage(wxInt32 StreamID, bool Use) override;
@@ -250,7 +250,8 @@ void MP3ImportFileHandle::SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUS
 
 ProgressResult MP3ImportFileHandle::Import(WaveTrackFactory *trackFactory,
                                            TrackHolders &outTracks,
-                                           Tags *tags)
+                                           Tags *tags,
+                                           LabelHolders &)
 {
    outTracks.clear();
 

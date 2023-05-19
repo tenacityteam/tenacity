@@ -45,6 +45,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "TrackPanelAx.h"
 #include "TrackPanel.h"
 #include "UndoManager.h"
+#include "LabelTrack.h"
 #include "WaveTrack.h"
 #include "WaveClip.h"
 #include "wxFileNameWrapper.h"
@@ -1076,7 +1077,8 @@ TenacityProject *ProjectFileManager::OpenProjectFile(
 
 void
 ProjectFileManager::AddImportedTracks(const FilePath &fileName,
-                                      TrackHolders &&newTracks)
+                                      TrackHolders &&newTracks,
+                                      LabelHolders &&newLabelTracks)
 {
    auto &project = mProject;
    auto &history = ProjectHistory::Get( project );
@@ -1121,7 +1123,13 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
       tracks.MakeMultiChannelTrack(*first, nChannels, true);
    }
    newTracks.clear();
-      
+
+   for (auto &uNewTrack : newLabelTracks) {
+      auto newTrack = tracks.Add( uNewTrack );
+      results.push_back(newTrack->SharedPointer());
+   }
+   newLabelTracks.clear();
+
    // Now name them
 
    // Add numbers to track names only if there is more than one (mono or stereo)
@@ -1218,6 +1226,7 @@ bool ProjectFileManager::Import(
    auto oldTags = Tags::Get( project ).shared_from_this();
    bool initiallyEmpty = TrackList::Get(project).empty();
    TrackHolders newTracks;
+   LabelHolders labelTracks;
    TranslatableString errorMessage;
 
 #ifdef EXPERIMENTAL_IMPORT_AUP3
@@ -1281,6 +1290,7 @@ bool ProjectFileManager::Import(
                                             &WaveTrackFactory::Get( project ),
                                             newTracks,
                                             newTags.get(),
+                                            labelTracks,
                                             errorMessage);
       if (!errorMessage.empty()) {
          // Error message derived from Importer::Import
@@ -1329,7 +1339,7 @@ bool ProjectFileManager::Import(
    }
 
    // PRL: Undo history is incremented inside this:
-   AddImportedTracks(fileName, std::move(newTracks));
+   AddImportedTracks(fileName, std::move(newTracks), std::move(labelTracks));
 
    return true;
 }

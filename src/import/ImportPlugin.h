@@ -60,6 +60,10 @@ class WaveTrackFactory;
 class Track;
 class Tags;
 
+class LabelTrack;
+using LabelHolders = std::vector< std::shared_ptr<LabelTrack> >;
+
+
 class ImportFileHandle;
 
 class TENACITY_DLL_API ImportPlugin /* not final */
@@ -144,7 +148,7 @@ public:
    // If resulting outTracks is not empty,
    // then each member of it must be a nonempty vector.
    virtual ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks,
-                      Tags *tags) = 0;
+                      Tags *tags, LabelHolders &labelTracks) = 0;
 
    //! Choose appropriate format, which will not be narrower than the specified one
    static sampleFormat ChooseFormat(sampleFormat effectiveFormat);

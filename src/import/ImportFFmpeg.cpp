@@ -218,7 +218,7 @@ public:
    ///! Imports audio
    ///\return import status (see Import.cpp)
    ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks,
-      Tags *tags) override;
+      Tags *tags, LabelHolders &labelTracks) override;
 
    ///! Writes decoded data into WaveTracks.
    ///\param sc - stream context
@@ -457,7 +457,8 @@ auto FFmpegImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 
 ProgressResult FFmpegImportFileHandle::Import(WaveTrackFactory *trackFactory,
               TrackHolders &outTracks,
-              Tags *tags)
+              Tags *tags,
+              LabelHolders &)
 {
    outTracks.clear();
 
