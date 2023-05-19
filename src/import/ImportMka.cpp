@@ -21,6 +21,8 @@ static const auto exts = {wxT("mka"), wxT("mkv")};
 #include "../widgets/ProgressDialog.h"
 #include "../WaveTrack.h"
 
+#include "TenacityHeaders.h"
+
 #if defined(_CRTDBG_MAP_ALLOC) && LIBMATROSKA_VERSION < 0x010702
 // older libmatroska headers use std::nothrow which is incompatible with <crtdbg.h>
 #undef new
@@ -103,7 +105,7 @@ public:
 class MkaImportFileHandle final : public ImportFileHandle
 {
 public:
-   MkaImportFileHandle(const FilePath &name,
+   MkaImportFileHandle(const FilePath               &,
                        std::unique_ptr<StdIOCallback> &,
                        std::unique_ptr<EbmlStream>  &,
                        std::unique_ptr<KaxSegment>  &,
@@ -111,12 +113,13 @@ public:
                        std::unique_ptr<KaxInfo>     &,
                        std::unique_ptr<KaxTracks>   &,
                        std::unique_ptr<KaxTags>     &,
+                       std::unique_ptr<KaxChapters> &,
                        std::unique_ptr<KaxCluster>  &);
    ~MkaImportFileHandle();
 
    TranslatableString GetFileDescription() override;
    ByteCount GetFileUncompressedBytes() override;
-   ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks, Tags *tags) override;
+   ProgressResult Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks, Tags *tags, LabelHolders &labelTracks) override;
 
    wxInt32 GetStreamCount() override;
 
@@ -132,12 +135,21 @@ private:
     std::unique_ptr<KaxInfo>     SegmentInfo;
     std::unique_ptr<KaxTracks>   Tracks;
     std::unique_ptr<KaxTags>     mTags;
+    std::unique_ptr<KaxChapters> mChapters;
     std::unique_ptr<KaxCluster>  Cluster;
 
+    struct LabelTrackInfo {
+        bool                  mSelected;
+        wxString              mName;
+        KaxEditionEntry       &Edition;
+    };
+
     std::vector<AudioTrackInfo>  audioTracks;
+    std::vector<LabelTrackInfo>  labelTracks;
     TranslatableStrings          mStreamInfo;
 
-    void InitTracks();
+    void LoadTrackEntries();
+    void ImportChapterEdition(LabelHolders &, LabelTrackInfo &);
 };
 
 TranslatableString MkaImportPlugin::GetPluginFormatDescription()
@@ -173,7 +185,7 @@ Type * SeekHeadLoad(KaxSeekHead & SeekHead, KaxSegment & Segment, EbmlStream & S
 
 
 std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
-   const FilePath &filename, TenacityProject*)
+   const FilePath &filename, TenacityProject*project)
 {
     try
     {
@@ -220,6 +232,7 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
         std::unique_ptr<KaxInfo>     SegmentInfo;
         std::unique_ptr<KaxTracks>   Tracks;
         std::unique_ptr<KaxTags>     _Tags;
+        std::unique_ptr<KaxChapters> _Chapters;
         std::unique_ptr<KaxCluster>  FirstCluster;
 
         int UpperElementLevel = 0;
@@ -269,6 +282,15 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
                 assert(found == nullptr);
                 assert(UpperElementLevel == 0);
             }
+            else if (EbmlId(*elt) == EBML_ID(KaxChapters))
+            {
+                _Chapters = std::unique_ptr<KaxChapters>(static_cast<KaxChapters*>(elt));
+                EbmlElement *found = nullptr;
+                assert(UpperElementLevel == 0);
+                _Chapters->Read(*aStream, EBML_CONTEXT(_Chapters), UpperElementLevel, found, true);
+                assert(found == nullptr);
+                assert(UpperElementLevel == 0);
+            }
             else if (EbmlId(*elt) == EBML_ID(KaxCluster))
             {
                 // now we can start reading the data
@@ -307,6 +329,14 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
                 }
                 Tracks = std::unique_ptr<KaxTracks>(segTrack);
             }
+            if (!_Chapters)
+            {
+                auto segChapters = SeekHeadLoad<KaxChapters>(*SeekHead, *Segment, *aStream);
+                if (segChapters)
+                {
+                    _Chapters = std::unique_ptr<KaxChapters>(segChapters);
+                }
+            }
         }
 
         if (!FirstCluster)
@@ -333,7 +363,8 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
         if (!Tracks->VerifyChecksum())
             wxLogWarning(wxT("Matroska : Tracks in %s has bogus checksum, using anyway"), filename);
 
-        return std::make_unique<MkaImportFileHandle>(filename, mka_file, aStream, Segment, SeekHead, SegmentInfo, Tracks, _Tags, FirstCluster);
+        return std::make_unique<MkaImportFileHandle>(filename, mka_file, aStream, Segment,
+                                                     SeekHead, SegmentInfo, Tracks, _Tags, _Chapters, FirstCluster);
 
     } catch (const std::bad_alloc &) {
         return nullptr;
@@ -344,7 +375,8 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
     return nullptr;
 }
 
-MkaImportFileHandle::MkaImportFileHandle(const FilePath &name,
+MkaImportFileHandle::MkaImportFileHandle(
+                       const FilePath               &_name,
                        std::unique_ptr<StdIOCallback> &_mkfile,
                        std::unique_ptr<EbmlStream>  &_aStream,
                        std::unique_ptr<KaxSegment>  &_Segment,
@@ -352,8 +384,9 @@ MkaImportFileHandle::MkaImportFileHandle(const FilePath &name,
                        std::unique_ptr<KaxInfo>     &_SegmentInfo,
                        std::unique_ptr<KaxTracks>   &_Tracks,
                        std::unique_ptr<KaxTags>     &_Tags,
+                       std::unique_ptr<KaxChapters> &_Chapters,
                        std::unique_ptr<KaxCluster>  &_firstCluster)
-:ImportFileHandle(name)
+:ImportFileHandle(_name)
 {
     mkfile.swap(_mkfile);
     stream.swap(_aStream);
@@ -362,9 +395,10 @@ MkaImportFileHandle::MkaImportFileHandle(const FilePath &name,
     SegmentInfo.swap(_SegmentInfo);
     Tracks.swap(_Tracks);
     mTags.swap(_Tags);
+    mChapters.swap(_Chapters);
     Cluster.swap(_firstCluster);
 
-    InitTracks();
+    LoadTrackEntries();
 }
 
 MkaImportFileHandle::~MkaImportFileHandle()
@@ -529,7 +563,7 @@ private:
 };
 #endif
 
-void MkaImportFileHandle::InitTracks()
+void MkaImportFileHandle::LoadTrackEntries()
 {
     KaxTrackEntry *elt = FindChild<KaxTrackEntry>(*Tracks);
     while (elt != nullptr)
@@ -637,6 +671,40 @@ void MkaImportFileHandle::InitTracks()
         }
         elt = FindNextChild<KaxTrackEntry>(*Tracks, *elt);
     }
+
+    if (mChapters && mChapters->CheckMandatory())
+    {
+        auto elt = FindChild<KaxEditionEntry>(*mChapters);
+        while (elt)
+        {
+            wxString sTrackName;
+#if LIBMATROSKA_VERSION >= 0x010700
+            const auto EditionDisplay = FindChild<KaxEditionDisplay>(*elt);
+            if (EditionDisplay)
+            {
+                const auto EditionName = FindChild<KaxEditionString>(*EditionDisplay);
+                if (EditionName)
+                    sTrackName = (const wchar_t*)(UTFstring) *EditionName;
+            }
+#endif
+            // TODO also get the name from tags
+
+            auto strinfo = XO("Label Edition[%02zx] Name[%s]")
+                .Format(
+                labelTracks.size(),
+                sTrackName);
+            mStreamInfo.push_back(strinfo);
+
+            LabelTrackInfo track {
+                true,
+                sTrackName,
+                *elt,
+            };
+            labelTracks.push_back(track);
+
+            elt = FindNextChild<KaxEditionEntry>(*mChapters, *elt);
+        }
+    }
 }
 
 const TranslatableStrings & MkaImportFileHandle::GetStreamInfo()
@@ -646,10 +714,52 @@ const TranslatableStrings & MkaImportFileHandle::GetStreamInfo()
 
 void MkaImportFileHandle::SetStreamUsage(wxInt32 StreamID, bool Use)
 {
-    audioTracks.at(StreamID).mSelected = Use;
+    if (StreamID < audioTracks.size())
+        audioTracks.at(StreamID).mSelected = Use;
+    else
+    {
+        StreamID -= audioTracks.size();
+        assert(StreamID < labelTracks.size());
+        labelTracks.at(StreamID).mSelected = Use;
+    }
 }
 
-ProgressResult MkaImportFileHandle::Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks, Tags *tags)
+void MkaImportFileHandle::ImportChapterEdition(LabelHolders &labels, LabelTrackInfo & label)
+{
+    auto newTrack = std::make_shared<LabelTrack>();
+    if (!label.mName.empty())
+        newTrack->SetName(label.mName);
+
+    auto Chapter = FindChild<KaxChapterAtom>(label.Edition);
+    while (Chapter)
+    {
+        uint64 startTime = GetChild<KaxChapterTimeStart>(*Chapter);
+        uint64 endTime;
+        auto pEndTime = FindChild<KaxChapterTimeEnd>(*Chapter);
+        if (pEndTime)
+            endTime = *pEndTime;
+        else
+            endTime = startTime;
+        SelectedRegion region(startTime / 1000000000., endTime / 1000000000.);
+
+        wxString sChapterName;
+        auto ChapterDisplay = FindChild<KaxChapterDisplay>(*Chapter);
+        if (ChapterDisplay)
+        {
+            const auto ChapterTitle = FindChild<KaxChapterString>(*ChapterDisplay);
+            if (ChapterTitle)
+                sChapterName = (const wchar_t*)(UTFstring) *ChapterTitle;
+        }
+
+        newTrack->AddLabel(region, sChapterName);
+        Chapter = FindNextChild<KaxChapterAtom>(label.Edition, *Chapter);
+    }
+
+    labels.push_back(newTrack);
+}
+
+ProgressResult MkaImportFileHandle::Import(WaveTrackFactory *trackFactory, TrackHolders &outTracks, Tags *tags,
+                                           LabelHolders &labels)
 {
     outTracks.clear();
 
@@ -836,7 +946,14 @@ ProgressResult MkaImportFileHandle::Import(WaveTrackFactory *trackFactory, Track
         }
     }
 
-    // TODO load markers from chapters
+    if (mChapters.get() && mChapters->CheckMandatory())
+    {
+        for (auto label : labelTracks)
+        {
+            if (label.mSelected)
+                ImportChapterEdition(labels, label);
+        }
+    }
 
     return ProgressResult::Success;
 }
