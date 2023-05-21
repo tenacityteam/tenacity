@@ -48,6 +48,10 @@ typedef enum {
 } MatroskaTargetTypeValue;
 #endif
 
+#ifdef USE_LIBFLAC
+#include "FLAC++/encoder.h"
+#endif
+
 using namespace libmatroska;
 using namespace Tenacity;
 
@@ -85,11 +89,19 @@ ChoiceSetting MKAFormat {
           XO("PCM 16-bit (Little Endian)") ,
           XO("PCM 24-bit (Little Endian)") ,
           XO("PCM Float 32-bit") ,
+#ifdef USE_LIBFLAC
+          XO("FLAC 16-bit"),
+          XO("FLAC 24-bit"),
+#endif
         },
         {
           wxT("16"),
           wxT("24"),
           wxT("f32"),
+#ifdef USE_LIBFLAC
+          wxT("flac16"),
+          wxT("flac24"),
+#endif
         }
     },
 };
@@ -313,6 +325,94 @@ private:
     uint64_t                      sampleWritten{0};
 };
 
+#ifdef USE_LIBFLAC
+class MkaFLACEncoder : public FLAC::Encoder::Stream
+{
+public:
+    ::FLAC__StreamEncoderInitStatus init()
+    {
+        auto ret = FLAC::Encoder::Stream::init();
+        initializing = false;
+        return ret;
+    }
+
+    const std::vector<FLAC__byte> & GetInitBuffer()
+    {
+        return initBuffer;
+    }
+
+    bool Process(std::unique_ptr<ClusterMuxer> & Muxer, const FLAC__int32 * const buffer[], uint32_t samples)
+    {
+        muxer     = &Muxer;
+        muxer_full = false;
+        bool ret = process(buffer, samples);
+        if (!ret)
+            return true; // on error assume the Cluster is full
+        return muxer_full;
+    }
+
+    bool finish() override
+    {
+        finishing = true;
+        return FLAC::Encoder::Stream::finish();
+    }
+
+    bool hasNewCodecPrivate() const
+    {
+        return initializing || overwriting;
+    }
+
+protected:
+    ::FLAC__StreamEncoderWriteStatus write_callback(const FLAC__byte buffer[], size_t bytes, uint32_t samples, uint32_t /*current_frame*/) override
+    {
+        if (initializing)
+        {
+            std::size_t size = initBuffer.size();
+            initBuffer.resize(size + bytes);
+            memcpy(&initBuffer[size], buffer, bytes);
+            return FLAC__STREAM_ENCODER_WRITE_STATUS_OK;
+        }
+        if (overwriting)
+        {
+            if (initOffset + bytes > initBuffer.size())
+            {
+                // we can't expand the CodePrivate
+                return FLAC__STREAM_ENCODER_WRITE_STATUS_FATAL_ERROR;
+            }
+            memcpy(&initBuffer[initOffset], buffer, bytes);
+            return FLAC__STREAM_ENCODER_WRITE_STATUS_OK;
+        }
+
+        DataBuffer *dataBuff = new DataBuffer((binary*)buffer, bytes, nullptr, true);
+        if ((*muxer)->AddBuffer(*dataBuff, samples))
+            muxer_full = true;
+
+        return FLAC__STREAM_ENCODER_WRITE_STATUS_OK;
+    }
+
+    ::FLAC__StreamEncoderSeekStatus seek_callback(FLAC__uint64 absolute_byte_offset) override
+    {
+        // support overwriting the CodecPrivate with the checksum
+        if (finishing && absolute_byte_offset < (initBuffer.size() + initOffset))
+        {
+            overwriting = true;
+            initOffset = absolute_byte_offset;
+            return FLAC__STREAM_ENCODER_SEEK_STATUS_OK;
+        }
+        return FLAC__STREAM_ENCODER_SEEK_STATUS_UNSUPPORTED;
+    }
+
+    bool initializing{true};
+    bool finishing{false};
+    bool overwriting{false};
+    std::vector<FLAC__byte> initBuffer;
+    FLAC__uint64 initOffset{0};
+
+    std::unique_ptr<ClusterMuxer> *muxer = nullptr;
+    bool                          muxer_full;
+};
+#endif
+
 ProgressResult ExportMka::Export(TenacityProject *project,
                                 std::unique_ptr<ProgressDialog> &pDialog,
                                 unsigned numChannels,
@@ -409,6 +509,22 @@ ProgressResult ExportMka::Export(TenacityProject *project,
             bytesPerSample = 4 * numChannels;
             outInterleaved = true;
         }
+#ifdef USE_LIBFLAC
+        else if (bitDepthPref == wxT("flac16"))
+        {
+            codecID = "A_FLAC";
+            format = int16Sample;
+            bytesPerSample = 2 * numChannels;
+            outInterleaved = false;
+        }
+        else if (bitDepthPref == wxT("flac24"))
+        {
+            codecID = "A_FLAC";
+            format = int24Sample;
+            bytesPerSample = 3 * numChannels;
+            outInterleaved = false;
+        }
+#endif
 
         // TODO support multiple tracks
         KaxTrackEntry & MyTrack1 = GetChild<KaxTrackEntry>(MyTracks);
@@ -447,6 +563,23 @@ ProgressResult ExportMka::Export(TenacityProject *project,
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 32;
                 break;
         }
+#ifdef USE_LIBFLAC
+        MkaFLACEncoder encoder;
+        if (bitDepthPref == wxT("flac16") || bitDepthPref == wxT("flac24"))
+        {
+            encoder.set_bits_per_sample(format == int24Sample ? 24 : 16);
+
+            encoder.set_channels(numChannels) &&
+            encoder.set_sample_rate(lrint(rate));
+            auto status = encoder.init();
+            if (status != FLAC__STREAM_ENCODER_INIT_STATUS_OK)
+            {
+                throw new std::runtime_error("toto");
+            }
+            const auto & buf = encoder.GetInitBuffer();
+            GetChild<KaxCodecPrivate>(MyTrack1).CopyBuffer(buf.data(), buf.size());
+        }
+#endif
         filepos_t TrackSize = MyTracks.Render(mka_file);
         if (TrackSize != 0)
             MetaSeek.IndexThis(MyTracks, FileSegment);
@@ -488,6 +621,9 @@ ProgressResult ExportMka::Export(TenacityProject *project,
 
         // add clusters
         std::unique_ptr<ClusterMuxer> Muxer;
+#ifdef USE_LIBFLAC
+        ArraysOf<FLAC__int32> splitBuff{ numChannels, SAMPLES_PER_RUN, true };
+#endif
 
         ClusterMuxer::MuxerTime prevTime{0, 0, TIMESTAMP_UNIT, rate};
         while (updateResult == ProgressResult::Success)
@@ -495,6 +631,28 @@ ProgressResult ExportMka::Export(TenacityProject *project,
             auto samplesThisRun = mixer->Process(SAMPLES_PER_RUN);
             if (samplesThisRun == 0)
             {
+#ifdef USE_LIBFLAC
+                if (bitDepthPref == wxT("flac16") || bitDepthPref == wxT("flac24"))
+                {
+                    if (!Muxer)
+                    {
+                        Muxer = std::make_unique<ClusterMuxer>(FileSegment, MyTrack1, AllCues, prevTime);
+                    }
+                    encoder.finish();
+#if 0 // doesn't work and is not necessary
+                    if (encoder.hasNewCodecPrivate())
+                    {
+                        const auto & buf = encoder.GetInitBuffer();
+                        KaxCodecPrivate &replacePrivate = GetChild<KaxCodecPrivate>(MyTrack1);
+                        if (buf.size() && replacePrivate.GetSize())
+                        {
+                            replacePrivate.CopyBuffer(buf.data(), buf.size());
+                            MyTracks.OverwriteData(mka_file);
+                        }
+                    }
+#endif
+                }
+#endif
                 if (Muxer)
                 {
                     prevTime = Muxer->Finish(mka_file, MetaSeek);
@@ -508,6 +666,30 @@ ProgressResult ExportMka::Export(TenacityProject *project,
                 Muxer = std::make_unique<ClusterMuxer>(FileSegment, MyTrack1, AllCues, prevTime);
             }
 
+#ifdef USE_LIBFLAC
+            if (bitDepthPref == wxT("flac16") || bitDepthPref == wxT("flac24"))
+            {
+                for (size_t i = 0; i < numChannels; i++)
+                {
+                    samplePtr mixed = mixer->GetBuffer(i);
+                    if (format == int24Sample) {
+                        for (decltype(samplesThisRun) j = 0; j < samplesThisRun; j++)
+                            splitBuff[i][j] = ((int *)mixed)[j];
+                    }
+                    else {
+                        for (decltype(samplesThisRun) j = 0; j < samplesThisRun; j++)
+                            splitBuff[i][j] = ((short *)mixed)[j];
+                    }
+                }
+                auto b = reinterpret_cast<FLAC__int32**>( splitBuff.get() );
+                if (encoder.Process(Muxer, b, samplesThisRun))
+                {
+                    prevTime = Muxer->Finish(mka_file, MetaSeek);
+                    Muxer = nullptr;
+                }
+            }
+            else
+#endif
             {
                 samplePtr mixed = mixer->GetBuffer();
                 DataBuffer *dataBuff = new DataBuffer((binary*)mixed, samplesThisRun * bytesPerSample, nullptr, true);
