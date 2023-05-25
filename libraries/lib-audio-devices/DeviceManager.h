@@ -32,7 +32,7 @@
 wxDECLARE_EXPORTED_EVENT(AUDIO_DEVICES_API,
                          EVT_RESCANNED_DEVICES, wxEvent);
 
-typedef struct DeviceSourceMap {
+struct DeviceSourceMap {
    int deviceIndex;
    int sourceIndex;
    int hostIndex;
@@ -41,7 +41,7 @@ typedef struct DeviceSourceMap {
    wxString sourceString;
    wxString deviceString;
    wxString hostString;
-} DeviceSourceMap;
+};
 
 AUDIO_DEVICES_API
 wxString MakeDeviceSourceString(const DeviceSourceMap *map);

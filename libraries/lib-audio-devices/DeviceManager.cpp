@@ -59,7 +59,7 @@ wxString MakeDeviceSourceString(const DeviceSourceMap *map)
 DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, int isInput)
 {
    if (hostIndex < 0 || hostIndex >= Pa_GetHostApiCount()) {
-      return NULL;
+      return nullptr;
    }
 
    const struct PaHostApiInfo *apiinfo = Pa_GetHostApiInfo(hostIndex);   // get info on API
@@ -73,7 +73,7 @@ DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, int isInput)
    }
 
    wxLogDebug(wxT("GetDefaultDevice() no default device"));
-   return NULL;
+   return nullptr;
 }
 
 DeviceSourceMap* DeviceManager::GetDefaultOutputDevice(int hostIndex)
