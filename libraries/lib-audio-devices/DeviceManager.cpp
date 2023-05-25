@@ -87,17 +87,6 @@ DeviceSourceMap* DeviceManager::GetDefaultInputDevice(int hostIndex)
 
 //--------------- Device Enumeration --------------------------
 
-//Port Audio requires we open the stream with a callback or a lot of devices will fail
-//as this means open in blocking mode, so we use a dummy one.
-static int DummyPaStreamCallback(
-    const void *WXUNUSED(input), void * WXUNUSED(output),
-    unsigned long WXUNUSED(frameCount),
-    const PaStreamCallbackTimeInfo* WXUNUSED(timeInfo),
-    PaStreamCallbackFlags WXUNUSED(statusFlags),
-    void *WXUNUSED(userData) )
-{
-   return 0;
-}
 
 static void FillHostDeviceInfo(DeviceSourceMap *map, const PaDeviceInfo *info, int deviceIndex, int isInput)
 {
@@ -109,21 +98,6 @@ static void FillHostDeviceInfo(DeviceSourceMap *map, const PaDeviceInfo *info, i
    map->deviceString = infoName;
    map->hostString   = hostapiName;
    map->numChannels  = isInput ? info->maxInputChannels : info->maxOutputChannels;
-}
-
-static void AddSourcesFromStream(int deviceIndex, const PaDeviceInfo *info, std::vector<DeviceSourceMap> *maps, PaStream *stream)
-{
-   DeviceSourceMap map;
-
-   map.sourceIndex  = -1;
-   map.totalSources = 0;
-   // Only inputs have sources, so we call FillHostDeviceInfo with a 1 to indicate this
-   FillHostDeviceInfo(&map, info, deviceIndex, 1);
-
-   if (map.totalSources <= 1) {
-      map.sourceIndex = 0;
-      maps->push_back(map);
-   }
 }
 
 static bool IsInputDeviceAMapperDevice(const PaDeviceInfo *info)
@@ -147,58 +121,15 @@ static bool IsInputDeviceAMapperDevice(const PaDeviceInfo *info)
 
 static void AddSources(int deviceIndex, int rate, std::vector<DeviceSourceMap> *maps, int isInput)
 {
-   int error = 0;
    DeviceSourceMap map;
    const PaDeviceInfo *info = Pa_GetDeviceInfo(deviceIndex);
 
-   // This tries to open the device with the samplerate worked out above, which
-   // will be the highest available for play and record on the device, or
-   // 44.1kHz if the info cannot be fetched.
+   map.sourceIndex  = 0;
+   map.totalSources = 0;
+   // Only inputs have sources, so we call FillHostDeviceInfo with a 1 to indicate this
+   FillHostDeviceInfo(&map, info, deviceIndex, 1);
 
-   PaStream *stream = NULL;
-
-   PaStreamParameters parameters;
-
-   parameters.device = deviceIndex;
-   parameters.sampleFormat = paFloat32;
-   parameters.hostApiSpecificStreamInfo = NULL;
-   parameters.channelCount = 1;
-
-   // If the device is for input, open a stream so we can use portmixer to query
-   // the number of inputs.  We skip this for outputs because there are no 'sources'
-   // and some platforms (e.g. XP) have the same device for input and output, (while
-   // Vista/Win7 separate these into two devices with the same names (but different
-   // portaudio indices)
-   // Also, for mapper devices we don't want to keep any sources, so check for it here
-   if (isInput && !IsInputDeviceAMapperDevice(info)) {
-      if (info)
-         parameters.suggestedLatency = info->defaultLowInputLatency;
-      else
-         parameters.suggestedLatency = 10.0;
-
-      error = Pa_OpenStream(&stream,
-                            &parameters,
-                            NULL,
-                            rate, paFramesPerBufferUnspecified,
-                            paClipOff | paDitherOff,
-                            DummyPaStreamCallback, NULL);
-   }
-
-   if (stream && !error) {
-      AddSourcesFromStream(deviceIndex, info, maps, stream);
-      Pa_CloseStream(stream);
-   } else {
-      map.sourceIndex  = -1;
-      map.totalSources = 0;
-      FillHostDeviceInfo(&map, info, deviceIndex, isInput);
-      maps->push_back(map);
-   }
-
-   if(error) {
-      wxLogDebug(wxT("PortAudio stream error creating device list: ") +
-                 map.hostString + wxT(":") + map.deviceString + wxT(": ") +
-                 wxString(wxSafeConvertMB2WX(Pa_GetErrorText((PaError)error))));
-   }
+   maps->push_back(map);
 }
 
 namespace {
@@ -276,7 +207,6 @@ float DeviceManager::GetTimeSinceRescan() {
    auto dur = std::chrono::duration_cast<std::chrono::duration<float>>(now - mRescanTime);
    return dur.count();
 }
-
 
 //private constructor - Singleton.
 DeviceManager::DeviceManager()
