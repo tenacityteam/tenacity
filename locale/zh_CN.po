@@ -10,13 +10,14 @@
 # mkpoli <snowwolf1001@gmail.com>, 2017-2018
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Tang Yin <bingyuanshiye@126.com>, 2023.
+# 135e2 <shangshangzikun@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: audacity 3.0.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2021-07-15 12:48-0400\n"
-"PO-Revision-Date: 2023-04-12 16:51+0000\n"
-"Last-Translator: Tang Yin <bingyuanshiye@126.com>\n"
+"PO-Revision-Date: 2023-05-27 04:48+0000\n"
+"Last-Translator: 135e2 <shangshangzikun@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tenacity/tenacity/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: crashreports/crashreporter/CrashReportApp.cpp src/Tags.cpp
 #: src/prefs/MousePrefs.cpp src/widgets/ErrorReportDialog.cpp
@@ -2760,7 +2761,7 @@ msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Audacity team at https://forum.audacityteam.org/."
 msgstr ""
-"内部错误在 %s 行 %d。\n"
+"在 %s 的第 %s 行 %d 出现内部错误。\n"
 "请通过 https://forum.audacityteam.org/ 来通知 Audacity 团队。"
 
 #: src/InconsistencyException.h
@@ -3693,7 +3694,7 @@ msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
-msgstr "无法初始化项目文件"
+msgstr "无法从 \"%s\" 读取预设"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3762,7 +3763,7 @@ msgstr "正在压实项目"
 #: src/ProjectFileIO.cpp
 #, c-format
 msgid "[Project %02i] Audacity \"%s\""
-msgstr "[项目 %02i] Audacity \"%s\""
+msgstr "[项目 %02i] Tenacity \"%s\""
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -21969,3 +21970,140 @@ msgstr "%s %s 1999-%s %s 贡献者"
 #, c-format
 msgid "%s, lead Tenacity developer"
 msgstr "%s, Tenacity 主导开发者"
+
+#: src/AudacityApp.cpp
+msgid "&About Tenacity..."
+msgstr "关于 Tenacity...(&A)"
+
+#: src/AudacityFileConfig.cpp
+msgid "&Retry"
+msgstr "重试(&R)"
+
+#: src/AutoRecoveryDialog.cpp
+msgid "&Skip"
+msgstr "跳过(&S)"
+
+#: src/FreqWindow.cpp
+msgid "Scroll Horizontal"
+msgstr "水平滚动"
+
+#: src/FreqWindow.cpp
+msgid "Zoom Horizontal"
+msgstr "水平缩放"
+
+#: src/AudacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr "Tenacity 正在启动 ......"
+
+#: src/ProjectFileIO.cpp
+#, c-format
+msgid "[Project %02i] Audacity "
+msgstr "[项目 %02i] Tenacity "
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to acquire semaphores.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"无法获取信号量 (semaphores)。\n"
+"\n"
+"这可能是系统资源短缺导致的，\n"
+"尝试重新启动系统。"
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to create semaphores.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"无法获取信号量 (semaphores)。\n"
+"\n"
+"这可能是系统资源短缺导致的，\n"
+"尝试重新启动系统。"
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to acquire lock semaphore.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"无法获取锁信号量 (lock semaphore)。\n"
+"\n"
+"这可能是系统资源短缺导致的，\n"
+"尝试重新启动系统。"
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to acquire server semaphore.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"无法获取服务器信号量 (server semaphore)。\n"
+"\n"
+"这可能是系统资源短缺导致的，\n"
+"尝试重新启动系统。"
+
+#: src/AudacityApp.cpp
+msgid ""
+"The Audacity IPC server failed to initialize.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"Tenacity IPC 初始化失败。\n"
+"\n"
+"这可能是系统资源短缺导致的，\n"
+"尝试重新启动系统。"
+
+#: src/AudacityFileConfig.cpp
+#, c-format
+msgid ""
+"The following configuration file could not be accessed:\n"
+"\n"
+"\t%s\n"
+"\n"
+"This could be caused by many reasons, but the most likely are that the disk is full or you do not have write permissions to the file. More information can be obtained by clicking the help button below.\n"
+"\n"
+"You can attempt to correct the issue and then click \"Retry\" to continue.\n"
+"\n"
+"If you choose to \"Quit Audacity\", your project may be left in an unsaved state which will be recovered the next time you open it."
+msgstr ""
+"无法访问以下配置文件：\n"
+"\n"
+"\t%s\n"
+"\n"
+"可能有很多原因导致这一问题，但最有可能的是磁盘已满或您没有对该文件的写入权限"
+"。点击下方的帮助按钮获取更多信息。\n"
+"\n"
+"您可以尝试纠正此问题，然后点击“重试”继续。\n"
+"\n"
+"如果您选择“退出 Tenacity”，您的项目可能会处于未保存状态，下次打开时将恢复。"
+
+#: src/DBConnection.cpp src/ProjectFileIO.cpp
+msgid "This may take several seconds"
+msgstr "这一操作可能需要花费几秒"
+
+#: src/DBConnection.cpp
+#, c-format
+msgid ""
+"Disk is full.\n"
+"%s\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"磁盘已满\n"
+"%s\n"
+"点击帮助按钮查看更多关于清理磁盘空间的建议。"
+
+#: src/DBConnection.cpp
+msgid "Database error.  Sorry, but we don't have more details."
+msgstr "数据库错误。 抱歉，我们无法进一步提供具体细节。"
+
+#: src/HistoryWindow.cpp src/ProjectFileManager.cpp
+#, c-format
+msgid "Compacting actually freed %s of disk space."
+msgstr "实际释放了 %s 的磁盘空间。"
