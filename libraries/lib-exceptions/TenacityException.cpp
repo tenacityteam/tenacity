@@ -109,7 +109,7 @@ void MessageBoxException::DelayedHandlerAction()
      // give the user no useful added information.
       
      using namespace GenericUI;
-     if ( ++sOutstandingMessages == 0 )
+     if ( --sOutstandingMessages == 0 )
      {
         if (exceptionType != ExceptionType::Internal
             && ErrorHelpUrl().IsEmpty())
