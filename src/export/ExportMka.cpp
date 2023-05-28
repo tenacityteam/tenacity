@@ -188,21 +188,6 @@ static void FillRandomUUID(binary UID[16])
     memcpy(&UID[8], &rand, 8);
 }
 
-static void FinishFrameBlock(std::unique_ptr<KaxBlockBlob> & framesBlob, KaxCluster & Cluster,
-                                      const size_t lessSamples, const double rate, const uint64 TimestampScale)
-{
-    if (framesBlob)
-    {
-        if (lessSamples != 0)
-        {
-            // last block, write the duration
-            // TODO get frames from the blob and add them in a BLOCK_BLOB_NO_SIMPLE one
-            // framesBlob->SetBlockDuration(lessSamples * TimestampScale / rate);
-        }
-        Cluster.AddBlockBlob(framesBlob.release());
-    }
-}
-
 static void SetMetadata(const Tags *tags, KaxTag * & PrevTag, KaxTags & Tags, const wxChar *tagName, const MatroskaTargetTypeValue TypeValue, const wchar_t *mkaName)
 {
     if (tags != nullptr && tags->HasTag(tagName))
@@ -217,6 +202,116 @@ static void SetMetadata(const Tags *tags, KaxTag * & PrevTag, KaxTags & Tags, co
     }
 }
 
+constexpr uint64 MS_PER_FRAME = 40;
+
+class ClusterMuxer
+{
+public:
+    struct MuxerTime
+    {
+        uint64        prevEndTime{0};
+        uint64        samplesRead{0};
+
+        /*const*/ uint64  TimeUnit;
+        /*const*/ double  rate;
+
+        // MuxerTime(uint64 _TimeUnit, double _rate)
+        //     :TimeUnit(_TimeUnit)
+        //     ,rate(_rate)
+        // {
+        // }
+
+        // MuxerTime(const MuxerTime & source) = default;
+
+        void AddSample(size_t samplesThisRun)
+        {
+            samplesRead += samplesThisRun;
+            // in rounded TimeUnit as the drift with the actual time accumulates
+            prevEndTime = std::llround(samplesRead * 1000000000. / (TimeUnit * rate));
+        }
+    };
+
+public:
+    ClusterMuxer(KaxSegment &_FileSegment, KaxTrackEntry &_Track, KaxCues &_AllCues, MuxerTime _muxerTime)
+        :FileSegment(_FileSegment)
+        ,MyTrack1(_Track)
+        ,AllCues(_AllCues)
+        ,Time(_muxerTime)
+        ,maxFrameSamples(MS_PER_FRAME * _muxerTime.rate / 1000) // match mkvmerge
+    {
+
+        Cluster = std::make_unique<KaxCluster>();
+        Cluster->SetParent(FileSegment); // mandatory to store references in this Cluster
+        Cluster->InitTimecode(Time.prevEndTime, Time.TimeUnit);
+        Cluster->EnableChecksum();
+
+        framesBlob = std::make_unique<KaxBlockBlob>(BLOCK_BLOB_SIMPLE_AUTO);
+        framesBlob->SetParent(*Cluster);
+        AllCues.AddBlockBlob(*framesBlob);
+    }
+
+    // return true when the Muxer is full
+    bool AddBuffer(DataBuffer &dataBuff, size_t samplesThisRun)
+    {
+        if (!framesBlob)
+        {
+            framesBlob = std::make_unique<KaxBlockBlob>(BLOCK_BLOB_SIMPLE_AUTO);
+            framesBlob->SetParent(*Cluster);
+        }
+        // TODO check the timestamp is OK within the Cluster first
+        if (!framesBlob->AddFrameAuto(MyTrack1, Time.prevEndTime * Time.TimeUnit, dataBuff, LACING_NONE))
+        {
+            // last frame allowed in the lace, we need a new frame blob
+            FinishFrameBlock(maxFrameSamples - samplesThisRun);
+        }
+
+        Time.AddSample(samplesThisRun);
+
+        sampleWritten += samplesThisRun;
+
+        if (sampleWritten >= (uint64)(10 * maxFrameSamples))
+            return true;
+        return false;
+    }
+
+    MuxerTime Finish(IOCallback & mka_file, KaxSeekHead & MetaSeek)
+    {
+        if (sampleWritten)
+        {
+            FinishFrameBlock(maxFrameSamples);
+            Cluster->Render(mka_file, AllCues);
+            // No need to use SeekHead for Cluster, there's Cues for that
+            // MetaSeek.IndexThis(*Cluster, FileSegment);
+        }
+        return Time;
+    }
+
+private:
+    void FinishFrameBlock(const size_t lessSamples)
+    {
+        if (framesBlob)
+        {
+            if (lessSamples != 0)
+            {
+                // last block, write the duration
+                // TODO get frames from the blob and add them in a BLOCK_BLOB_NO_SIMPLE one
+                // framesBlob->SetBlockDuration(lessSamples * Time.TimestampScale / Time.rate);
+            }
+            Cluster->AddBlockBlob(framesBlob.release());
+        }
+    }
+
+    KaxSegment    &FileSegment;
+    KaxTrackEntry &MyTrack1;
+    KaxCues       &AllCues;
+    const size_t  maxFrameSamples;
+
+    MuxerTime                     Time;
+
+    std::unique_ptr<KaxCluster>   Cluster;
+    std::unique_ptr<KaxBlockBlob> framesBlob;
+    uint64_t                      sampleWritten{0};
+};
 
 ProgressResult ExportMka::Export(TenacityProject *project,
                                 std::unique_ptr<ProgressDialog> &pDialog,
@@ -270,7 +365,6 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         const double rate = ProjectRate::Get( *project ).GetRate();
         const uint64 TIMESTAMP_UNIT = std::llround(UINT64_C(1000000000) / rate);
         // const uint64 TIMESTAMP_UNIT = 1000000; // 1 ms
-        constexpr uint64 MS_PER_FRAME = 40;
 
         EbmlMaster & MyInfos = GetChild<KaxInfo>(FileSegment);
         MyInfos.EnableChecksum();
@@ -292,20 +386,28 @@ ProgressResult ExportMka::Export(TenacityProject *project,
 
         sampleFormat format;
         uint64 bytesPerSample;
+        const char *codecID;
+        bool outInterleaved;
         if (bitDepthPref == wxT("24"))
         {
+            codecID = "A_PCM/INT/LIT";
             format = int24Sample;
             bytesPerSample = 3 * numChannels;
+            outInterleaved = true;
+        }
+        else if (bitDepthPref == wxT("16"))
+        {
+            codecID = "A_PCM/INT/LIT";
+            format = int16Sample;
+            bytesPerSample = 2 * numChannels;
+            outInterleaved = true;
         }
         else if (bitDepthPref == wxT("f32"))
         {
+            codecID = "A_PCM/FLOAT/IEEE";
             format = floatSample;
             bytesPerSample = 4 * numChannels;
-        }
-        else
-        {
-            format = int16Sample;
-            bytesPerSample = 2 * numChannels;
+            outInterleaved = true;
         }
 
         // TODO support multiple tracks
@@ -332,18 +434,16 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         EbmlMaster & MyTrack1Audio = GetChild<KaxTrackAudio>(MyTrack1);
         (EbmlFloat &) GetChild<KaxAudioSamplingFreq>(MyTrack1Audio) = rate;
         (EbmlUInteger &) GetChild<KaxAudioChannels>(MyTrack1Audio) = numChannels;
+        (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = codecID;
         switch(format)
         {
             case int16Sample:
-                (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = "A_PCM/INT/LIT";
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 16;
                 break;
             case int24Sample:
-                (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = "A_PCM/INT/LIT";
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 24;
                 break;
             case floatSample:
-                (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = "A_PCM/FLOAT/IEEE";
                 (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 32;
                 break;
         }
@@ -379,73 +479,46 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         AllCues.EnableChecksum();
 
         const size_t maxFrameSamples = MS_PER_FRAME * rate / 1000; // match mkvmerge
+        const auto SAMPLES_PER_RUN = maxFrameSamples * bytesPerSample;
+
         auto mixer = CreateMixer(tracks, selectionOnly,
-                                        t0, t1,
-                                        numChannels, maxFrameSamples * bytesPerSample, true,
-                                        rate, format, mixerSpec);
+                                 t0, t1,
+                                 numChannels, SAMPLES_PER_RUN, outInterleaved,
+                                 rate, format, mixerSpec);
 
         // add clusters
-        std::unique_ptr<KaxCluster> Cluster;
-        std::unique_ptr<KaxBlockBlob> framesBlob;
+        std::unique_ptr<ClusterMuxer> Muxer;
 
-        uint64 prevEndTime = 0;
-        uint64_t samplesRead = 0; // TODO handle selection starting at t0
-        uint64_t clusterSamplesWritten;
-        while (updateResult == ProgressResult::Success) {
-            auto samplesThisRun = mixer->Process(maxFrameSamples);
+        ClusterMuxer::MuxerTime prevTime{0, 0, TIMESTAMP_UNIT, rate};
+        while (updateResult == ProgressResult::Success)
+        {
+            auto samplesThisRun = mixer->Process(SAMPLES_PER_RUN);
             if (samplesThisRun == 0)
-// || samplesRead / 48000 > 3) // test first 3s
             {
-                if (Cluster)
+                if (Muxer)
                 {
-                    FinishFrameBlock(framesBlob, *Cluster, maxFrameSamples - samplesThisRun, rate, TIMESTAMP_UNIT);
-                    Cluster->Render(mka_file, AllCues);
-                    MetaSeek.IndexThis(*Cluster, FileSegment);
-                    Cluster = nullptr;
+                    prevTime = Muxer->Finish(mka_file, MetaSeek);
+                    Muxer = nullptr;
                 }
                 break; //finished
             }
 
-            if (!Cluster)
+            if (!Muxer)
             {
-                Cluster = std::make_unique<KaxCluster>();
-                Cluster->SetParent(FileSegment); // mandatory to store references in this Cluster
-                Cluster->InitTimecode(prevEndTime, TIMESTAMP_UNIT);
-                Cluster->EnableChecksum();
-                clusterSamplesWritten = 0;
-                assert(!framesBlob);
-                framesBlob = std::make_unique<KaxBlockBlob>(BLOCK_BLOB_SIMPLE_AUTO);
-                framesBlob->SetParent(*Cluster);
-                AllCues.AddBlockBlob(*framesBlob);
-            }
-            else if (!framesBlob)
-            {
-                framesBlob = std::make_unique<KaxBlockBlob>(BLOCK_BLOB_SIMPLE_AUTO);
-                framesBlob->SetParent(*Cluster);
+                Muxer = std::make_unique<ClusterMuxer>(FileSegment, MyTrack1, AllCues, prevTime);
             }
 
-            samplePtr mixed = mixer->GetBuffer();
-            DataBuffer *dataBuff = new DataBuffer((binary*)mixed, samplesThisRun * bytesPerSample, nullptr, true);
-
-            if (!framesBlob->AddFrameAuto(MyTrack1, prevEndTime * TIMESTAMP_UNIT, *dataBuff))
             {
-                // last frame allowed in the lace, we need a new frame blob
-                FinishFrameBlock(framesBlob, *Cluster, maxFrameSamples - samplesThisRun, rate, TIMESTAMP_UNIT);
+                samplePtr mixed = mixer->GetBuffer();
+                DataBuffer *dataBuff = new DataBuffer((binary*)mixed, samplesThisRun * bytesPerSample, nullptr, true);
+                if (Muxer->AddBuffer(*dataBuff, samplesThisRun))
+                {
+                    prevTime = Muxer->Finish(mka_file, MetaSeek);
+                    Muxer = nullptr;
+                }
             }
 
-            samplesRead += samplesThisRun;
-            // in rounded TIMESTAMP_UNIT as the drift with the actual time accumulates
-            prevEndTime = std::llround(samplesRead * 1000000000. / (TIMESTAMP_UNIT * rate));
-            clusterSamplesWritten += samplesThisRun;
             updateResult = progress.Update(mixer->MixGetCurrentTime() - t0, t1 - t0);
-
-            if (clusterSamplesWritten >= (uint64)(18 * maxFrameSamples)) // match mkvmerge: 18 blocks per clusters
-            {
-                FinishFrameBlock(framesBlob, *Cluster, maxFrameSamples - samplesThisRun, rate, TIMESTAMP_UNIT);
-                Cluster->Render(mka_file, AllCues);
-                MetaSeek.IndexThis(*Cluster, FileSegment);
-                Cluster = nullptr;
-            }
         }
 
         // add cues
