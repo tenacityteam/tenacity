@@ -829,6 +829,7 @@ void MeterPanel::OnContext(wxContextMenuEvent &evt)
 {
 #if defined(__WXMSW__)
    if (mHadKeyDown)
+   {
 #endif
    if (mStyle != MixerTrackCluster) // MixerTrackCluster style has no menu.
    {
@@ -840,6 +841,7 @@ void MeterPanel::OnContext(wxContextMenuEvent &evt)
    }
 
 #if defined(__WXMSW__)
+   }
    mHadKeyDown = false;
 #endif
 }
