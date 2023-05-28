@@ -253,8 +253,8 @@ function( audacity_append_common_compiler_options var use_pch )
          $<$<CXX_COMPILER_ID:AppleClang,Clang>:-Werror=return-stack-address>
 	      # Yes, CMake will change -D to /D as needed for Windows:
          -DWXINTL_NO_GETTEXT_MACRO
-         $<$<CXX_COMPILER_ID:MSVC>:-D_USE_MATH_DEFINES>
-         $<$<CXX_COMPILER_ID:MSVC>:-DNOMINMAX>
+         $<$<PLATFORM_ID:Windows>:-D_USE_MATH_DEFINES>
+         $<$<PLATFORM_ID:Windows>:-DNOMINMAX>
 
          # Define/undefine _DEBUG
 	 # Yes, -U to /U too as needed for Windows:
