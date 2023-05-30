@@ -100,8 +100,7 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
       return;
 
    auto &trackPanel = TrackPanel::Get( *mProject );
-   //NOTE: point selection cursor drawing over tracks moved to TrackPanel.cpp(see also TrackArt::DrawCursor)
-   /*if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
+   if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
       wxASSERT(mIsMaster);
       AColor::CursorColor(&dc);
 
@@ -125,7 +124,7 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
       AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
    }
    else
-      wxASSERT(false);*/
+      wxASSERT(false);
    if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
        wxASSERT(!mIsMaster);
        dc.SetPen(*wxBLACK_PEN);
