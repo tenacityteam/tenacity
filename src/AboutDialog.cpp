@@ -140,7 +140,7 @@ void AboutDialog::CreateCreditsList()
 
    // The Tenacity Team
    AddCredit("Avery \"Generic Person\" King ([[https://github.com/generic-pers0n|GitHub]])", tenacity_leadDeveloperFormat, roleTeamMember);
-   AddCredit("caughtquick ([[https://caughtquick.tech|Website]]", tenacity_contributorFormat, roleTeamMember);
+   AddCredit("caughtquick ([[https://caughtquick.tech|Website]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("TheEvilSkeleton ([[https://github.com/theevilskeleton|GitHub]])", tenacity_contributorFormat,roleContributor);
    AddCredit("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])", tenacity_contributorFormat, roleTeamMember);
