@@ -231,7 +231,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << wxT("</li><li>")
          << XO(
 /* i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.*/
-" [[help:Main_Page|Audacity Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]")
+" [[help:Main_Page|Tenacity Manual]] - if not installed locally, [[https://tenacityaudio.org/docs/index.html|view online]]")
          << wxT("</li></ul></p><p>")
          << wxT("<b>")
          << XO("More:</b> Visit our [[https://codeberg.org/tenacityteam/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins.")
@@ -240,7 +240,6 @@ static wxString HelpTextBuiltIn( const wxString & Key )
       auto result = o.GetString();
 #ifdef USE_ALPHA_MANUAL
       result.Replace( "//manual.audacityteam.org/quick_help.html","//alphamanual.audacityteam.org/man/Quick_Help" );
-      result.Replace( "//manual.audacityteam.org/","//alphamanual.audacityteam.org/man/" );
 #endif
 
       return WrapText( result );

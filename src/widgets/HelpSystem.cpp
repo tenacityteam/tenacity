@@ -50,13 +50,13 @@
 #include "../prefs/GUIPrefs.h"
 
 #ifdef USE_ALPHA_MANUAL
-const wxString HelpSystem::HelpHostname = wxT("alphamanual.audacityteam.org");
-const wxString HelpSystem::HelpServerHomeDir = wxT("/man/");
-const wxString HelpSystem::HelpServerManDir = wxT("/man/");
+const wxString HelpSystem::HelpHostname = wxT("tenacityaudio.org");
+const wxString HelpSystem::HelpServerHomeDir = wxT("/docs/");
+const wxString HelpSystem::HelpServerManDir = wxT("/docs/_content/");
 #else
-const wxString HelpSystem::HelpHostname = wxT("manual.audacityteam.org");
-const wxString HelpSystem::HelpServerHomeDir = wxT("/");
-const wxString HelpSystem::HelpServerManDir = wxT("/man/");
+const wxString HelpSystem::HelpHostname = wxT("tenacityaudio.org");
+const wxString HelpSystem::HelpServerHomeDir = wxT("/docs/");
+const wxString HelpSystem::HelpServerManDir = wxT("/docs/_content/");
 #endif
 const wxString HelpSystem::LocalHelpManDir = wxT("/man/");
 
@@ -391,11 +391,7 @@ void HelpSystem::ShowHelp(wxWindow *parent,
       webHelpPath = L"https://" + HelpSystem::HelpHostname + HelpSystem::HelpServerManDir;
    }
 
-#ifdef USE_ALPHA_MANUAL
-   webHelpPage = webHelpPath + PageName.GET();
-#else
    webHelpPage = webHelpPath + releasePageName;
-#endif
 
    wxLogMessage(wxT("Help button pressed: PageName %s, releasePageName %s"),
               PageName.GET(), releasePageName);
