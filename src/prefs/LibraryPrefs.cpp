@@ -173,7 +173,7 @@ void LibraryPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
 
 void LibraryPrefs::OnFFmpegDownButton(wxCommandEvent & WXUNUSED(event))
 {
-   HelpSystem::ShowHelp(this, L"FAQ:Installing_the_FFmpeg_Import_Export_Library", true);
+   HelpSystem::ShowHelp(this, L"FFmpeg", true);
 }
 
 bool LibraryPrefs::Commit()

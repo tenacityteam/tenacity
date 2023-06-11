@@ -252,7 +252,7 @@ public:
 
    void OnDownload(wxCommandEvent & WXUNUSED(event))
    {
-      HelpSystem::ShowHelp(this, L"FAQ:Installing_the_FFmpeg_Import_Export_Library");
+      HelpSystem::ShowHelp(this, L"FFmpeg");
    }
 
    void UpdatePath()
