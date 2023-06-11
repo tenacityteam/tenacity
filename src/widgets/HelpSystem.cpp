@@ -326,19 +326,16 @@ void HelpSystem::ShowHelp(wxWindow *parent,
       releasePageName = PageName.GET();
       anchor = wxT("");
    }
-   // The wiki pages are transformed to static HTML by
-   // scripts/mw2html_audacity/mw2html.py
-   // The name is first transformed to lower case, then all
-   // 'special characters' are replaced by underscores. Spaces are
-   // transformed to "+".
+
+   // Tenacity manual page names are typically the page names themselves. For
+   // example, the FFmpeg manual page is named 'FFmpeg'.
    //
-   // The transformations are handled in mw2html by first applying
-   // 'urllib.parse.quote_plus' (escape chars that are not in "always safe" list)
-   // then replacing escape characters (%xx) with underscores,
-   // and finally removing duplicate / redundant underscores.
+   // Unlike with Audacity manual page names, our manual page names do not need
+   // any transformation before showing the pages.
    //
-   // The front page and 'quick_help' are treated as special cases and placed in
-   // the root of the help directory rather than the "/man/" sub-directory.
+   // There is one special case, however: Main_Page. The reason why this was
+   // preserved was to help differ the main manual page differently from just
+   // "index.html".
    if (releasePageName == L"Main_Page")
    {
       releasePageName = L"index" + ReleaseSuffix + anchor;
@@ -359,11 +356,11 @@ void HelpSystem::ShowHelp(wxWindow *parent,
       releasePageName += anchor;
       // webHelpPath remains empty
    }
+
+   // GP: FIXME: page name transformation might not be necessary anymore.
    else
    {
       // Handle all other pages.
-      // Change to lower case.
-      releasePageName = releasePageName.Lower();
       wxRegEx re;
       // replace 'special characters' with underscores.
       // RFC 2396 defines the characters a-z, A-Z, 0-9 and ".-_" as "always safe"
