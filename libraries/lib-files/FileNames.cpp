@@ -216,10 +216,10 @@ void FileNames::MakeNameUnique(FilePaths &otherNames,
 wxString FileNames::LowerCaseAppNameInPath( const wxString & dirIn){
    wxString dir = dirIn;
    // BUG 1577 Capitalisation of Audacity in path...
-   if( dir.EndsWith( "Audacity" ) )
+   if( dir.EndsWith( "Tenacity" ) )
    {
-      int nChars = dir.length() - wxString( "Audacity" ).length();
-      dir = dir.Left( nChars ) + "audacity";
+      int nChars = dir.length() - wxString( "Tenacity" ).length();
+      dir = dir.Left( nChars ) + "tenacity";
    }
    return dir;
 }
