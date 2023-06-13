@@ -164,25 +164,6 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
       .Prop(true)
       .StartPanel();
    {
-      S.StartHorizontalLay( wxEXPAND, false );
-      {
-         S.Id( wxID_BACKWARD )
-            .Disable()
-#if wxUSE_TOOLTIPS
-            .ToolTip( XO("Backwards" ) )
-#endif
-            /* i18n-hint arrowhead meaning backward movement */
-            .AddButton( XXO("<") );
-         S.Id( wxID_FORWARD  )
-            .Disable()
-#if wxUSE_TOOLTIPS
-            .ToolTip( XO("Forwards" ) )
-#endif
-            /* i18n-hint arrowhead meaning forward movement */
-            .AddButton( XXO(">") );
-      }
-      S.EndHorizontalLay();
-
       html = safenew LinkingHtmlWindow(S.GetParent(), wxID_ANY,
                                    wxDefaultPosition,
                                    bIsFile ? wxSize(500, 400) : wxSize(480, 240),
@@ -403,8 +384,6 @@ void HelpSystem::ShowHelp(wxWindow *parent,
 #include <wx/uri.h>
 
 BEGIN_EVENT_TABLE(BrowserDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_FORWARD,  BrowserDialog::OnForward)
-   EVT_BUTTON(wxID_BACKWARD, BrowserDialog::OnBackward)
    EVT_BUTTON(wxID_CANCEL,   BrowserDialog::OnClose)
    EVT_KEY_DOWN(BrowserDialog::OnKeyDown)
 END_EVENT_TABLE()
@@ -427,18 +406,6 @@ BrowserDialog::BrowserDialog(wxWindow *pParent, const TranslatableString &title)
 
    SetMinSize(wxSize(minWidth, minHeight));
    SetSize(wxDefaultPosition.x, wxDefaultPosition.y, width, height, wxSIZE_AUTO);
-}
-
-void BrowserDialog::OnForward(wxCommandEvent & WXUNUSED(event))
-{
-   mpHtml->HistoryForward();
-   UpdateButtons();
-}
-
-void BrowserDialog::OnBackward(wxCommandEvent & WXUNUSED(event))
-{
-   mpHtml->HistoryBack();
-   UpdateButtons();
 }
 
 void BrowserDialog::OnClose(wxCommandEvent & WXUNUSED(event))
@@ -476,20 +443,6 @@ void BrowserDialog::OnKeyDown(wxKeyEvent & event)
       Close(false);
    }
    event.Skip(bSkip);
-}
-
-
-void BrowserDialog::UpdateButtons()
-{
-   wxWindow * pWnd;
-   if( (pWnd = FindWindowById( wxID_BACKWARD, this )) != NULL )
-   {
-      pWnd->Enable(mpHtml->HistoryCanBack());
-   }
-   if( (pWnd = FindWindowById( wxID_FORWARD, this )) != NULL )
-   {
-      pWnd->Enable(mpHtml->HistoryCanForward());
-   }
 }
 
 void OpenInDefaultBrowser(const URLString& link)
@@ -553,5 +506,4 @@ void LinkingHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
    BrowserDialog * pDlg = wxDynamicCast( pWnd , BrowserDialog );
    if( !pDlg )
       return;
-   pDlg->UpdateButtons();
 }

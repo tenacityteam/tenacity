@@ -141,12 +141,9 @@ public:
    enum { ID = 0 };
    BrowserDialog(wxWindow *pParent, const TranslatableString &title);
 
-   void OnForward(wxCommandEvent & event);
-   void OnBackward(wxCommandEvent & event);
    void OnClose(wxCommandEvent & event);
    void OnKeyDown(wxKeyEvent & event);
 
-   void UpdateButtons();
    //void SetLabel(const wxString& label) override;
 
 
