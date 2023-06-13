@@ -53,7 +53,6 @@ public:
    bool IsBeingDeleted() const { return mIsDeleting; }
    void SetIsBeingDeleted() { mIsDeleting = true; }
 
-   wxWindow *GetMainPage() { return mMainPage; }
    wxPanel *GetMainPanel() { return mMainPanel; }
    wxPanel *GetTopPanel() { return mTopPanel; }
 
@@ -181,7 +180,6 @@ private:
    wxRect mNormalizedWindowState;
 
    wxPanel *mTopPanel{};
-   wxWindow * mMainPage{};
    wxPanel * mMainPanel{};
    wxScrollBar *mHsbar{};
    wxScrollBar *mVsbar{};

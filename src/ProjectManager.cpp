@@ -414,14 +414,14 @@ void InitProjectWindow( ProjectWindow &window )
    // irrespective of the order in which they were created.
    ToolManager::Get(project).GetTopDock()->MoveBeforeInTabOrder(&ruler);
 
-   const auto pPage = window.GetMainPage();
+   auto mainPanel = window.GetMainPanel();
 
    wxBoxSizer *bs;
    {
       auto ubs = std::make_unique<wxBoxSizer>(wxVERTICAL);
       bs = ubs.get();
       bs->Add(topPanel, 0, wxEXPAND | wxALIGN_TOP);
-      bs->Add(pPage, 1, wxEXPAND);
+      bs->Add(mainPanel, 1, wxEXPAND);
       bs->Add( ToolManager::Get( project ).GetBotDock(), 0, wxEXPAND );
       window.SetAutoLayout(true);
       window.SetSizer(ubs.release());
@@ -435,9 +435,9 @@ void InitProjectWindow( ProjectWindow &window )
    //      will be given the focus even if we try to SetFocus().  By
    //      making the TrackPanel that first window, we resolve several
    //      keyboard focus problems.
-   pPage->MoveBeforeInTabOrder(topPanel);
+   mainPanel->MoveBeforeInTabOrder(topPanel);
 
-   bs = (wxBoxSizer *)pPage->GetSizer();
+   bs = (wxBoxSizer *)mainPanel->GetSizer();
 
    auto vsBar = &window.GetVerticalScrollBar();
    auto hsBar = &window.GetHorizontalScrollBar();
@@ -473,11 +473,7 @@ void InitProjectWindow( ProjectWindow &window )
    }
 
    // Lay it out
-   pPage->SetAutoLayout(true);
-   pPage->Layout();
-
-   auto mainPanel = window.GetMainPanel();
-
+   mainPanel->SetAutoLayout(true);
    mainPanel->Layout();
 
    wxASSERT( trackPanel.GetProject() == &project );

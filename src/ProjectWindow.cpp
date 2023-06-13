@@ -596,8 +596,6 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
    mTopPanel->SetBackgroundColour(theTheme.Colour( clrMedium ));
 #endif
 
-   wxWindow    * pPage;
-
    // We place the track panel inside another panel keeping the notebook code
    // and normal code consistent and also paves the way for adding additional
    // windows inside the track panel.
@@ -607,20 +605,13 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
       wxNO_BORDER);
    mMainPanel->SetSizer( safenew wxBoxSizer(wxVERTICAL) );
    mMainPanel->SetLabel("Main Panel");// Not localised.
-   pPage = mMainPanel;
    // Set the colour here to the track panel background to avoid
    // flicker when Audacity starts up.
    // However, that leads to areas next to the horizontal scroller
    // being painted in background colour and not scroller background
    // colour, so suppress this for now.
    //pPage->SetBackgroundColour( theTheme.Colour( clrDark ));
-   pPage->SetLayoutDirection(wxLayout_LeftToRight);
-
-#ifdef EXPERIMENTAL_DA2
-   pPage->SetBackgroundColour(theTheme.Colour( clrMedium ));
-#endif
-
-   mMainPage = pPage;
+   mMainPanel->SetLayoutDirection(wxLayout_LeftToRight);
 
    mPlaybackScroller = std::make_unique<PlaybackScroller>( &project );
 
@@ -633,8 +624,8 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
    //      creating the scrollbars after the TrackPanel, we resolve
    //      several focus problems.
 
-   mHsbar = safenew ScrollBar(pPage, HSBarID, wxSB_HORIZONTAL);
-   mVsbar = safenew ScrollBar(pPage, VSBarID, wxSB_VERTICAL);
+   mHsbar = safenew ScrollBar(mMainPanel, HSBarID, wxSB_HORIZONTAL);
+   mVsbar = safenew ScrollBar(mMainPanel, VSBarID, wxSB_VERTICAL);
 #if wxUSE_ACCESSIBILITY
    // so that name can be set on a standard control
    mHsbar->SetAccessible(safenew WindowAccessible(mHsbar));
