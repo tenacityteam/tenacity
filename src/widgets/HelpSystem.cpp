@@ -247,16 +247,6 @@ void HelpSystem::ShowHelp(wxWindow *parent,
 
    gPrefs->Read(wxT("/GUI/Help"), &HelpMode, wxT("Local") );
 
-   {
-      // these next lines are for legacy cfg files (pre 2.0) where we had different modes
-      if( (HelpMode == wxT("Standard")) || (HelpMode == wxT("InBrowser")) )
-      {
-         HelpMode = GUIManualLocation.Default().Internal();
-         GUIManualLocation.Write(HelpMode);
-         gPrefs->Flush();
-      }
-   }
-
    // Anchors (URLs with a '#' in them) are not supported by many OSs for local file names
    // See, for example, https://groups.google.com/forum/#!topic/wx-users/pC0uOZJalRQ
    // Problems have been reported on Win, Mac and some versions of Linux.
