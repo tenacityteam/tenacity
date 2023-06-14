@@ -58,7 +58,7 @@ const wxString HelpSystem::HelpHostname = wxT("tenacityaudio.org");
 const wxString HelpSystem::HelpServerHomeDir = wxT("/docs/");
 const wxString HelpSystem::HelpServerManDir = wxT("/docs/_content/");
 #endif
-const wxString HelpSystem::LocalHelpManDir = wxT("/man/");
+const wxString HelpSystem::LocalHelpManDir = wxT("/_content/");
 
 namespace {
 
