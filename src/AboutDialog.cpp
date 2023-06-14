@@ -54,12 +54,6 @@ hold information about one contributor to Audacity.
 
 #include "../images/TenacityLogoWithName.xpm"
 
-#include "RevisionIdent.h"
-
-#ifndef REV_TIME
-#define REV_TIME "unknown date and time"
-#endif
-
 // To substitute into many other translatable strings
 static const auto ProgramName =
    //XO("Tenacity");
