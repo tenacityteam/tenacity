@@ -1239,7 +1239,7 @@ void EffectUIHost::OnHelp(wxCommandEvent & WXUNUSED(event))
    if (mEffect && mEffect->GetFamily() == NYQUISTEFFECTS_FAMILY && (mEffect->ManualPage().empty())) {
       // Old ShowHelp required when there is no on-line manual.
       // Always use default web browser to allow full-featured HTML pages.
-      HelpSystem::ShowHelp(FindWindow(wxID_HELP), mEffect->HelpPage(), wxEmptyString, true, true);
+      HelpSystem::ShowHelp(FindWindow(wxID_HELP), mEffect->HelpPage(), wxEmptyString, true);
    }
    else if( mEffect )
    {

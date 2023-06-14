@@ -190,8 +190,7 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
 void HelpSystem::ShowHelp(wxWindow *parent,
                     const FilePath &localFileName,
                     const URLString &remoteURL,
-                    bool bModal,
-                    bool alwaysDefaultBrowser)
+                    bool bModal)
 {
    wxASSERT(parent); // to justify safenew
    wxString HelpMode = wxT("Local");
@@ -231,15 +230,10 @@ void HelpSystem::ShowHelp(wxWindow *parent,
       // Fixes Bug 1411.
       ShowHtmlText( parent, XO("Help on the Internet"), Text, false, true );
    }
-   else if( HelpMode == wxT("Local") || alwaysDefaultBrowser)
+   else if( HelpMode == wxT("Local"))
    {
       // Local file, External browser
       OpenInDefaultBrowser( L"file:" + localFileName );
-   }
-   else
-   {
-      // Local file, Built-in browser
-      ShowHtmlText( parent, {}, localFileName, true, bModal );
    }
 }
 
