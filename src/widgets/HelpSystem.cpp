@@ -60,32 +60,6 @@ const wxString HelpSystem::HelpServerManDir = wxT("/docs/_content/");
 #endif
 const wxString HelpSystem::LocalHelpManDir = wxT("/_content/");
 
-namespace {
-
-// Helper class to make browser "simulate" a modal dialog
-class HtmlTextHelpDialog final : public BrowserDialog
-{
-public:
-   HtmlTextHelpDialog(wxWindow *pParent, const TranslatableString &title)
-      : BrowserDialog{ pParent, title }
-   {
-#if !wxCHECK_VERSION(3, 0, 0)
-      MakeModal( true );
-#endif
-   }
-   virtual ~HtmlTextHelpDialog()
-   {
-#if !wxCHECK_VERSION(3, 0, 0)
-      MakeModal( false );
-#endif
-      // On Windows, for some odd reason, the Audacity window will be sent to
-      // the back.  So, make sure that doesn't happen.
-      GetParent()->Raise();
-   }
-};
-
-}
-
 /// Mostly we use this so that we have the code for resizability
 /// in one place.  Other considerations like screen readers are also
 /// handled by having the code in one place.
@@ -150,11 +124,7 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
       wxDEFAULT_FRAME_STYLE
    };
 
-   BrowserDialog * pWnd;
-   if( bModal )
-      pWnd = safenew HtmlTextHelpDialog{ pFrame, Title };
-   else
-      pWnd = safenew BrowserDialog{ pFrame, Title };
+   BrowserDialog * pWnd = safenew BrowserDialog{ pFrame, Title };
 
    // Bug 1412 workaround for 'extra window'.  Hide the 'fake' window.
    pFrame->SetTransparent(0);
@@ -406,6 +376,13 @@ BrowserDialog::BrowserDialog(wxWindow *pParent, const TranslatableString &title)
 
    SetMinSize(wxSize(minWidth, minHeight));
    SetSize(wxDefaultPosition.x, wxDefaultPosition.y, width, height, wxSIZE_AUTO);
+}
+
+BrowserDialog::~BrowserDialog()
+{
+   // On Windows, for some odd reason, the Audacity window will be sent to
+   // the back.  So, make sure that doesn't happen.
+   GetParent()->Raise();
 }
 
 void BrowserDialog::OnClose(wxCommandEvent & WXUNUSED(event))
