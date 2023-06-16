@@ -46,16 +46,12 @@ public:
                      const int xSize, const int ySize);
 
    /// Displays a NEW window with wxHTML help.
-   /// @param HtmlText Either the literal HTML code to go into the window,
-   /// or the name of the file to read said HTML code from (see below).
-   /// @param bIsFile If true, treat HtmlText argument as a file name, if false
-   /// (default), then it is the HTML code to display.
+   /// @param HtmlText The literal HTML code to go into the window.
    /// @param bModal Whether the resulting window should be modal or not.
    /// Default is modeless dialogue
    static void ShowHtmlText( wxWindow * pParent, 
                    const TranslatableString &Title,
                    const wxString &HtmlText,
-                   bool bIsFile = false,
                    bool bModal = false);
 
    /// Displays a file in your browser, if it's available locally,

@@ -140,7 +140,6 @@ void ErrorDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
          this,
          TitleText(str.Mid( 10 ) ),
          HelpText( str.Mid( 10 )),
-         false,
          true );
       return;
    }

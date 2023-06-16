@@ -101,7 +101,6 @@ void HelpSystem::ShowInfoDialog( wxWindow *parent,
 void HelpSystem::ShowHtmlText(wxWindow *pParent,
                   const TranslatableString &Title,
                   const wxString &HtmlText,
-                  bool bIsFile,
                   bool bModal)
 {
    LinkingHtmlWindow *html;
@@ -136,13 +135,10 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
    {
       html = safenew LinkingHtmlWindow(S.GetParent(), wxID_ANY,
                                    wxDefaultPosition,
-                                   bIsFile ? wxSize(500, 400) : wxSize(480, 240),
+                                   wxSize(480, 240),
                                    wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER);
 
       html->SetRelatedFrame( pFrame, wxT("Help: %s") );
-      if( bIsFile )
-         html->LoadFile( HtmlText );
-      else
          html->SetPage( HtmlText);
 
       S.Prop(1).Focus().Position( wxEXPAND )
@@ -228,7 +224,7 @@ void HelpSystem::ShowHelp(wxWindow *parent,
       Text.Replace( wxT("*URL*"), remoteURL.GET() );
       // Always make the 'help on the internet' dialog modal.
       // Fixes Bug 1411.
-      ShowHtmlText( parent, XO("Help on the Internet"), Text, false, true );
+      ShowHtmlText( parent, XO("Help on the Internet"), Text, true );
    }
    else if( HelpMode == wxT("Local"))
    {
