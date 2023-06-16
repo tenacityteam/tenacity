@@ -572,10 +572,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
    file( TO_NATIVE_PATH "${pkgdir}/tools/python.exe" PYTHON )
 endif()
 
-# define EXPERIMENTAL flags
-# Do this before consistency checks for added third-party libraries
-include( "src/Experimental.cmake" )
-
 find_package(ZLIB REQUIRED)
 find_package(EXPAT REQUIRED)
 find_package(mp3lame REQUIRED)
@@ -748,6 +744,9 @@ if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       message(STATUS "Audio Units support disabled.")
    endif()
 endif()
+
+# define EXPERIMENTAL flags
+include("src/Experimental.cmake")
 
 find_package(wxWidgets 3.1 REQUIRED COMPONENTS adv base core html qa xml net)
 include(${wxWidgets_USE_FILE})
