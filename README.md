@@ -40,17 +40,17 @@ Nevertheless, the goal of this project is to pick up what the original developer
 
 ### Tenacity
 
-You can find the latest release here: https://codeberg.org/tenacityteam/tenacity/releases.
+You can find the latest release here: https://codeberg.org/tenacityteam/tenacity/releases
 
-Additionally, the following unavailable packages are available for you to try the latest nightly versions of Tenacity:
-https://community.chocolatey.org/packages/tenacity
+Additionally, the following unofficial packages are available for you to try Tenacity:
+
 **Windows**:
 - [Unofficial Tenacity Chocolatey Package](https://community.chocolatey.org/packages/tenacity)
 
 **Linux**:
-- [Unofficial Arch Linux (AUR) Package](https://aur.archlinux.org/packages/tenacity-git/)
+- [Unofficial Arch Linux (AUR) Git Package](https://aur.archlinux.org/packages/tenacity-git/)
 
-If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue regard Tenacity, please report the issue here.
+If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue is not specific to the package, please report the issue here.
 
 ### Audacity
 
