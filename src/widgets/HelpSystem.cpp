@@ -103,50 +103,10 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
                   const wxString &HtmlText,
                   bool bModal)
 {
-   LinkingHtmlWindow *html;
+   wxASSERT(pParent);
 
-   wxASSERT(pParent); // to justify safenew
-   // JKC: ANSWER-ME: Why do we create a fake 'frame' and then put a BrowserDialog
-   // inside it, rather than have a variant of the BrowserDialog that is a
-   // frame??
-   // Bug 1412 seems to be related to the extra frame.
-   auto pFrame = safenew wxFrame {
-      pParent, wxID_ANY, Title.Translation(), wxDefaultPosition, wxDefaultSize,
-#if defined(__WXMAC__)
-      // On OSX, the html frame can go behind the help dialog and if the help
-      // html frame is modal, you can't get back to it.  Pressing escape gets
-      // you out of this, but it's just easier to add the wxSTAY_ON_TOP flag
-      // to prevent it from falling behind the dialog.  Not the perfect solution
-      // but acceptable in this case.
-      wxSTAY_ON_TOP |
-#endif
-      wxDEFAULT_FRAME_STYLE
-   };
-
-   BrowserDialog * pWnd = safenew BrowserDialog{ pFrame, Title };
-
-   // Bug 1412 workaround for 'extra window'.  Hide the 'fake' window.
-   pFrame->SetTransparent(0);
-   ShuttleGui S( pWnd, eIsCreating );
-
-   S.Style( wxNO_BORDER | wxTAB_TRAVERSAL )
-      .Prop(true)
-      .StartPanel();
-   {
-      html = safenew LinkingHtmlWindow(S.GetParent(), wxID_ANY,
-                                   wxDefaultPosition,
-                                   wxSize(480, 240),
-                                   wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER);
-
-      html->SetRelatedFrame( pFrame, wxT("Help: %s") );
-         html->SetPage( HtmlText);
-
-      S.Prop(1).Focus().Position( wxEXPAND )
-         .AddWindow( html );
-
-      S.Id( wxID_CANCEL ).AddButton( XXO("Close"), wxALIGN_CENTER, true );
-   }
-   S.EndPanel();
+   HtmlTextDialog pWnd(pParent, Title);
+   pWnd.SetHtml(HtmlText);
 
    // -- START of ICON stuff -----
    // If this section (providing an icon) causes compilation errors on linux, comment it out for now.
@@ -157,29 +117,16 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
    wxIcon ic{};
       ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
    #endif
-   pFrame->SetIcon( ic );
+   pWnd.SetIcon( ic );
    // -- END of ICON stuff -----
 
-
-   pWnd->mpHtml = html;
-   pWnd->SetBackgroundColour( wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
-
-   pFrame->CreateStatusBar();
-   pFrame->Centre();
-   pFrame->Layout();
-   pFrame->SetSizeHints(pWnd->GetSize());
-
-   pFrame->SetName(Title.Translation());
    if (bModal)
-      pWnd->ShowModal();
-   else {
-      pWnd->Show(true);
-      pFrame->Show(true);
+   {
+      pWnd.ShowModal();
+   } else
+   {
+      pWnd.Show(true);
    }
-
-   html->SetRelatedStatusBar( 0 );
-
-   return;
 }
 
 // Shows help in browser, or possibly in own dialog.
@@ -343,65 +290,55 @@ void HelpSystem::ShowHelp(wxWindow *parent,
 #include <wx/filename.h>
 #include <wx/uri.h>
 
-BEGIN_EVENT_TABLE(BrowserDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_CANCEL,   BrowserDialog::OnClose)
-   EVT_KEY_DOWN(BrowserDialog::OnKeyDown)
+BEGIN_EVENT_TABLE(HtmlTextDialog, wxDialogWrapper)
+   EVT_BUTTON(wxID_CANCEL,   HtmlTextDialog::OnClose)
+   EVT_KEY_DOWN(HtmlTextDialog::OnKeyDown)
 END_EVENT_TABLE()
 
 
-BrowserDialog::BrowserDialog(wxWindow *pParent, const TranslatableString &title)
+HtmlTextDialog::HtmlTextDialog(wxWindow *pParent, const TranslatableString &title)
    : wxDialogWrapper{ pParent, ID, title, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER /*| wxMAXIMIZE_BOX */  }
 {
-   int width, height;
-   const int minWidth = 400;
-   const int minHeight = 250;
+   ShuttleGui S(this, eIsCreating);
 
-   gPrefs->Read(wxT("/GUI/BrowserWidth"), &width, minWidth);
-   gPrefs->Read(wxT("/GUI/BrowserHeight"), &height, minHeight);
+   S.Style( wxNO_BORDER | wxTAB_TRAVERSAL )
+      .Prop(true)
+      .StartPanel();
+   {
+      mpHtml = new LinkingHtmlWindow(
+         S.GetParent(),
+         wxID_ANY,
+         wxDefaultPosition,
+         wxSize(480, 240),
+         wxHW_SCROLLBAR_AUTO
+      );
 
-   if (width < minWidth || width > wxSystemSettings::GetMetric(wxSYS_SCREEN_X))
-      width = minWidth;
-   if (height < minHeight || height > wxSystemSettings::GetMetric(wxSYS_SCREEN_Y))
-      height = minHeight;
-
-   SetMinSize(wxSize(minWidth, minHeight));
-   SetSize(wxDefaultPosition.x, wxDefaultPosition.y, width, height, wxSIZE_AUTO);
+      S.Prop(1).Focus().Position( wxEXPAND );
+      S.AddWindow(mpHtml);
+      S.Id( wxID_CANCEL ).AddButton( XXO("Close"), wxALIGN_CENTER, true );
+   }
+   S.EndPanel();
 }
 
-BrowserDialog::~BrowserDialog()
+HtmlTextDialog::~HtmlTextDialog()
 {
-   // On Windows, for some odd reason, the Audacity window will be sent to
-   // the back.  So, make sure that doesn't happen.
-   GetParent()->Raise();
 }
 
-void BrowserDialog::OnClose(wxCommandEvent & WXUNUSED(event))
+void HtmlTextDialog::SetHtml(const wxString& text)
+{
+   mpHtml->SetPage(text);
+}
+
+void HtmlTextDialog::OnClose(wxCommandEvent & WXUNUSED(event))
 {
    if (IsModal() && !mDismissed)
    {
       mDismissed = true;
       EndModal(wxID_CANCEL);
    }
-   auto parent = GetParent();
-
-   gPrefs->Write(wxT("/GUI/BrowserWidth"), GetSize().GetX());
-   gPrefs->Write(wxT("/GUI/BrowserHeight"), GetSize().GetY());
-   gPrefs->Flush();
-
-#ifdef __WXMAC__
-   auto grandparent = GetParent()->GetParent();
-#endif
-
-   parent->Destroy();
-
-#ifdef __WXMAC__
-   if(grandparent && grandparent->IsShown()) {
-      grandparent->Raise();
-   }
-#endif
 }
 
-void BrowserDialog::OnKeyDown(wxKeyEvent & event)
+void HtmlTextDialog::OnKeyDown(wxKeyEvent & event)
 {
    bool bSkip = true;
    if (event.GetKeyCode() == WXK_ESCAPE)
@@ -467,10 +404,10 @@ void LinkingHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
    wxFrame * pFrame = GetRelatedFrame();
    if( !pFrame )
       return;
-   wxWindow * pWnd = pFrame->FindWindow(BrowserDialog::ID);
+   wxWindow * pWnd = pFrame->FindWindow(HtmlTextDialog::ID);
    if( !pWnd )
       return;
-   BrowserDialog * pDlg = wxDynamicCast( pWnd , BrowserDialog );
+   HtmlTextDialog * pDlg = wxDynamicCast( pWnd , HtmlTextDialog );
    if( !pDlg )
       return;
 }

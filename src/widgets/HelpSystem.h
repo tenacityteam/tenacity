@@ -128,20 +128,20 @@ class TENACITY_DLL_API LinkingHtmlWindow final : public HtmlWindow
 
 
 /// Adds some event handling to an HtmlWindow
-class BrowserDialog final : public wxDialogWrapper
+class HtmlTextDialog final : public wxDialogWrapper
 {
 public:
    enum { ID = 0 };
-   BrowserDialog(wxWindow *pParent, const TranslatableString &title);
-   ~BrowserDialog() override;
+   HtmlTextDialog(wxWindow *pParent, const TranslatableString &title);
+   ~HtmlTextDialog() override;
 
+   void SetHtml(const wxString& text);
+
+private:
    void OnClose(wxCommandEvent & event);
    void OnKeyDown(wxKeyEvent & event);
 
-   //void SetLabel(const wxString& label) override;
-
-
-   HtmlWindow * mpHtml;
+   LinkingHtmlWindow* mpHtml;
    bool mDismissed{};
    DECLARE_EVENT_TABLE()
 };
