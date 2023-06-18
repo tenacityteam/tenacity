@@ -254,25 +254,28 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
             }
         }
 
-        if (!SegmentInfo)
+        if (SeekHead != nullptr)
         {
-            auto segInfo = SeekHeadLoad<KaxInfo>(*SeekHead, *Segment, *aStream);
-            if (!segInfo)
+            if (!SegmentInfo)
             {
-                wxLogError(wxT("Matroska : %s has no SegmentInfo"), filename);
-                return nullptr;
+                auto segInfo = SeekHeadLoad<KaxInfo>(*SeekHead, *Segment, *aStream);
+                if (!segInfo)
+                {
+                    wxLogError(wxT("Matroska : %s has no SegmentInfo"), filename);
+                    return nullptr;
+                }
+                SegmentInfo = std::unique_ptr<KaxInfo>(segInfo);
             }
-            SegmentInfo = std::unique_ptr<KaxInfo>(segInfo);
-        }
-        if (!Tracks)
-        {
-            auto segTrack = SeekHeadLoad<KaxTracks>(*SeekHead, *Segment, *aStream);
-            if (!segTrack)
+            if (!Tracks)
             {
-                wxLogError(wxT("Matroska : %s has no Track"), filename);
-                return nullptr;
+                auto segTrack = SeekHeadLoad<KaxTracks>(*SeekHead, *Segment, *aStream);
+                if (!segTrack)
+                {
+                    wxLogError(wxT("Matroska : %s has no Track"), filename);
+                    return nullptr;
+                }
+                Tracks = std::unique_ptr<KaxTracks>(segTrack);
             }
-            Tracks = std::unique_ptr<KaxTracks>(segTrack);
         }
 
         if (!FirstCluster)
