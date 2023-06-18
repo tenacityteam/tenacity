@@ -505,31 +505,11 @@ msgstr "Izdano pod pogoji dovoljenja GNU General Public License razl. 2"
 msgid "~aPlease select frequencies."
 msgstr "~aIzberite frekvence."
 
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                       frequencies are both ~a Hz).~%~\n"
-"                       Please select a frequency range."
-msgstr ""
-
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aNotch filter parameters cannot be applied.~%~\n"
-"                      Try increasing the low frequency bound~%~\n"
-"                      or reduce the filter 'Width'."
-msgstr ""
-
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
 #, lisp-format
 msgid "Error.~%"
 msgstr "Napaka.~%"
-
-#: plug-ins/SpectralEditParametricEQ.ny
-msgid "Spectral edit parametric EQ"
-msgstr ""
 
 #: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
 msgid "Gain (dB)"
@@ -561,14 +541,6 @@ msgstr ""
 "                 Mera vzorčenja steze je ~a Hz~%~\n"
 "                 Frekvenca mora biti manjša od ~a Hz."
 
-#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                         frequencies are both ~a Hz).~%~\n"
-"                         Please select a frequency range."
-msgstr ""
-
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -591,15 +563,6 @@ msgstr "Izvajanje pojemanja ..."
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
-
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-#, fuzzy
-msgid "GNU General Public License v2.0 or later"
-msgstr "Izdano pod pogoji dovoljenja GNU General Public License razl. 2 ali novejšega."
 
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
@@ -630,10 +593,6 @@ msgstr "S-krivulja navzgor"
 #: plug-ins/adjustable-fade.ny
 msgid "S-Curve Down"
 msgstr "S-krivulja navzdol"
-
-#: plug-ins/adjustable-fade.ny
-msgid "Mid-fade Adjust (%)"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 msgid "Start/End as"
@@ -1107,10 +1066,6 @@ msgid "Frequency (Hz)"
 msgstr "Frekvenca (Hz)"
 
 #: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "Roll-off (dB per octave)"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
 msgid "6 dB"
 msgstr "6 dB"
 
@@ -1228,16 +1183,6 @@ msgstr "Zaznanih preveč tišin.~%Dodanih zgolj prvih 10000 oznak."
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Napaka.~%Izbor mora biti krajši od ~a."
 
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
-msgstr ""
-
 #: plug-ins/limiter.ny
 msgid "Limiter"
 msgstr "Omejevalnik"
@@ -1286,10 +1231,6 @@ msgstr ""
 #: plug-ins/limiter.ny
 msgid "Limit to (dB)"
 msgstr "Omeji na (dB)"
-
-#: plug-ins/limiter.ny plug-ins/noisegate.ny
-msgid "Hold (ms)"
-msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Apply Make-up Gain"
@@ -1355,15 +1296,6 @@ msgstr "Upad (ms)"
 #, lisp-format
 msgid ""
 "Error.\n"
-"\"Gate frequencies above: ~s kHz\"\n"
-"is too high for selected track.\n"
-"Set the control below ~a kHz."
-msgstr ""
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr ""
@@ -1381,13 +1313,6 @@ msgstr ""
 "Napaka.\n"
 "Izbran je nezadosten zvokovni zapis.\n"
 "Opravite izbor, daljši od ~a ms."
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Peak based on first ~a seconds ~a dB~%\n"
-"Suggested Threshold Setting ~a dB."
-msgstr ""
 
 #. i18n-hint: hours and minutes. Do not translate "~a".
 #: plug-ins/noisegate.ny
@@ -1513,10 +1438,6 @@ msgid "Error.~%No file selected."
 msgstr "Napaka.~%Izbrana ni nobena datoteka."
 
 #: plug-ins/pluck.ny
-msgid "Pluck"
-msgstr ""
-
-#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Generating pluck sound..."
 msgstr "Tvorjenje Rissetovega bobna ..."
@@ -1528,10 +1449,6 @@ msgstr "Vrednosti MIDI za note C: 36, 48, 60 [srednji C], 72, 84, 96."
 #: plug-ins/pluck.ny
 msgid "David R.Sky"
 msgstr "David R.Sky"
-
-#: plug-ins/pluck.ny
-msgid "Pluck MIDI pitch"
-msgstr ""
 
 #: plug-ins/pluck.ny
 msgid "Fade-out type"
@@ -1583,10 +1500,6 @@ msgid "+/- 1"
 msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
 msgstr "Število taktov"
 
@@ -1620,14 +1533,6 @@ msgid "Metronome Tick"
 msgstr "Bitje metronoma"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Ping (short)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Ping (long)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "Cowbell"
 msgstr "Kravji zvonec"
 
@@ -1641,30 +1546,8 @@ msgid "Noise Click"
 msgstr "Tla šuma"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Drip (short)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Drip (long)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of strong beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "18 - 116"
 msgstr "18 - 116"
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of weak beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid ""
-"Set either 'Number of bars' or\n"
-"'Rhythm track duration' to greater than zero."
-msgstr ""
 
 #: plug-ins/rissetdrum.ny
 msgid "Risset Drum"
@@ -1783,10 +1666,6 @@ msgstr "Postavitev kanalov za stereo"
 msgid "L-R on Same Line"
 msgstr "L-D na isti črti"
 
-#: plug-ins/sample-data-export.ny
-msgid "Alternate Lines"
-msgstr ""
-
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
 msgid "L Channel First"
@@ -1819,31 +1698,6 @@ msgstr "~%~%Desni kanal.~%~%"
 #, lisp-format
 msgid "~aData written to:~%~a"
 msgstr "~aPodatki zapisani v:~%~a"
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
-"                     Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
-"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
-"                  DC offset: ~a~a"
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -1941,14 +1795,6 @@ msgstr "Levo (dB)"
 #: plug-ins/sample-data-export.ny
 msgid "Right (dB)"
 msgstr "Desno (dB)"
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
-"Daulton"
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "linear"
@@ -2166,24 +2012,6 @@ msgstr "Nizka porezava za vokale (Hz)"
 #: plug-ins/vocalrediso.ny
 msgid "High Cut for Vocals (Hz)"
 msgstr "Visoka porezava za vokale (Hz)"
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid ""
-"Average x: ~a, y: ~a\n"
-"                    Covariance x y: ~a\n"
-"                    Average variance x: ~a, y: ~a\n"
-"                    Standard deviation x: ~a, y: ~a\n"
-"                    Coefficient of correlation: ~a\n"
-"                    Coefficient of determination: ~a\n"
-"                    Variation of residuals: ~a\n"
-"                    y equals ~a plus ~a times x~%"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
-msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid ""
