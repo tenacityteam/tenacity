@@ -8,7 +8,6 @@ set( MODULES
 if( NOT CMAKE_SYSTEM_NAME MATCHES "Windows" )
    list( APPEND MODULES
       mod-null
-      mod-nyq-bench
    )
 endif()
 
