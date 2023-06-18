@@ -4,7 +4,7 @@ pipeline:
         commands:
             - mkdir build
             - cmake -DMIDI=Off -S . -B build
-            - cmake --build ./build
+            - cmake --build ./build -j $(nproc)
         when:
             branch: main
             event: pull_request
