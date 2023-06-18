@@ -39,6 +39,10 @@ static const auto exts = {wxT("mka"), wxT("mkv")};
 
 #include <wx/log.h>
 
+#ifdef USE_LIBFLAC
+#include "FLAC++/decoder.h"
+#endif
+
 using namespace libmatroska;
 
 class MkaImportPlugin final : public ImportPlugin
@@ -382,6 +386,149 @@ wxInt32 MkaImportFileHandle::GetStreamCount()
     return mStreamInfo.size();
 }
 
+#ifdef USE_LIBFLAC
+class MkaFLACDecoder : public FLAC::Decoder::Stream, public MkaDecoder
+{
+public:
+    MkaFLACDecoder(const KaxCodecPrivate & codecPrivate)
+    {
+        init();
+        set_metadata_ignore_all();
+
+#if 1
+        set_metadata_respond(FLAC__METADATA_TYPE_STREAMINFO);
+        PushFrame(codecPrivate.GetBuffer(), codecPrivate.GetSize());
+#else
+        mSampleRate = 48000;
+        mNumChannels = 2;
+        mBitsPerSample = 16;
+#endif
+    }
+
+    void PushTrackFrame(const AudioTrackInfo & tk, const binary *buf, uint32 bufsize) override
+    {
+        currentTrack = &tk;
+        PushFrame(buf, bufsize);
+    }
+
+    void Drain(const AudioTrackInfo & tk) override
+    {
+        currentTrack = &tk;
+        PushFrame(nullptr, 0);
+    }
+
+    uint32_t GetSampleRate() const
+    {
+        return mSampleRate;
+    }
+    uint32_t GetNumChannels() const
+    {
+        return mNumChannels;
+    }
+    uint32_t GetBitsPerSample() const
+    {
+        return mBitsPerSample;
+    }
+
+protected:
+    ::FLAC__StreamDecoderReadStatus read_callback(FLAC__byte buffer[], size_t *bytes) override
+    {
+        size_t copySize = std::min<size_t>(*bytes, currentBufsize);
+        *bytes = copySize;
+        if (copySize == 0)
+            return FLAC__STREAM_DECODER_READ_STATUS_END_OF_STREAM;
+
+        if (currentBuf == nullptr)
+        {
+            wxASSERT(currentBufsize == 0);
+            return FLAC__STREAM_DECODER_READ_STATUS_END_OF_STREAM;
+        }
+
+        memcpy(buffer, currentBuf, copySize);
+
+        currentBuf += copySize;
+        currentBufsize -= copySize;
+
+        return FLAC__STREAM_DECODER_READ_STATUS_CONTINUE;
+    }
+
+    ::FLAC__StreamDecoderWriteStatus write_callback(const ::FLAC__Frame *frame, const FLAC__int32 * const buffer[]) override
+    {
+#if 1
+        // Don't let C++ exceptions propagate through libflac
+        return GuardedCall< FLAC__StreamDecoderWriteStatus > ( [&] {
+            auto tmp = ArrayOf< short >{ frame->header.blocksize };
+
+            auto iter = currentTrack->importChannels.begin();
+            for (unsigned int chn=0; chn<mNumChannels; ++iter, ++chn)
+            {
+                if (frame->header.bits_per_sample <= 16)
+                {
+                    if (frame->header.bits_per_sample == 8) {
+                        for (unsigned int s = 0; s < frame->header.blocksize; s++)
+                            tmp[s] = buffer[chn][s] << 8;
+                    } else {
+                        for (unsigned int s = 0; s < frame->header.blocksize; s++)
+                            tmp[s] = buffer[chn][s];
+                    }
+
+                    iter->get()->Append((constSamplePtr)tmp.get(),
+                                int16Sample,
+                                frame->header.blocksize);
+                } else {
+                    iter->get()->Append((constSamplePtr)buffer[chn],
+                                int24Sample,
+                                frame->header.blocksize);
+                }
+            }
+
+            mSamplesDone += frame->header.blocksize;
+
+            return FLAC__STREAM_DECODER_WRITE_STATUS_CONTINUE;
+        }, MakeSimpleGuard(FLAC__STREAM_DECODER_WRITE_STATUS_ABORT) );
+#else
+        return FLAC__STREAM_DECODER_WRITE_STATUS_CONTINUE;
+#endif
+    }
+
+    void metadata_callback(const FLAC__StreamMetadata *metadata) override
+    {
+        if (metadata->type == FLAC__METADATA_TYPE_STREAMINFO)
+        {
+            mSampleRate    = metadata->data.stream_info.sample_rate;
+            mNumChannels   = metadata->data.stream_info.channels;
+            mBitsPerSample = metadata->data.stream_info.bits_per_sample;
+        }
+    }
+
+    void error_callback(::FLAC__StreamDecoderErrorStatus status) override
+    {
+
+    }
+
+    void PushFrame(const binary *buf, uint32 bufsize)
+    {
+        wxASSERT(currentBuf == nullptr);
+        currentBuf = buf;
+        currentBufsize = bufsize;
+        do {
+            process_single();
+        } while (currentBufsize != 0);
+        currentBuf = nullptr;
+    }
+
+private:
+    const binary   *currentBuf = nullptr;
+    uint32         currentBufsize;
+    const AudioTrackInfo *currentTrack = nullptr;
+
+    wxULongLong_t  mSamplesDone = 0;
+    uint32_t       mSampleRate;
+    uint32_t       mNumChannels;
+    uint32_t       mBitsPerSample;
+};
+#endif
+
 void MkaImportFileHandle::InitTracks()
 {
     KaxTrackEntry *elt = FindChild<KaxTrackEntry>(*Tracks);
@@ -421,10 +568,46 @@ void MkaImportFileHandle::InitTracks()
                         dec = std::make_shared<MkaPCMDecoder>();
                     }
                 }
-                        track.mFormat = floatSample;
-                        audioTracks.push_back(track);
+#ifdef USE_LIBFLAC
+                else if ((const std::string &) CodedId == "A_FLAC")
+                {
+                    const auto CodecPrivate = FindChild<KaxCodecPrivate>(*elt);
+                    if (CodecPrivate == nullptr)
+                    {
+                        wxLogWarning(wxT("Matroska : missing FLAC CodecPrivate, skipping track number %lld"), (uint64) elt->TrackNumber());
+                    }
+                    else
+                    {
+                        std::shared_ptr<MkaFLACDecoder> flacDec = std::make_shared<MkaFLACDecoder>(*CodecPrivate);
+                        dec = flacDec;
+                        if (bitDepth != nullptr)
+                        {
+                            if (flacDec->GetBitsPerSample() != (uint64)*bitDepth)
+                                wxLogWarning(wxT("Matroska : mismatching FLAC bitdepth %ld vs %lld track number %lld"),
+                                             flacDec->GetBitsPerSample(), (uint64)*bitDepth, (uint64) elt->TrackNumber());
+                        }
+                        if (flacDec->GetBitsPerSample() == 8)
+                            fm = int16Sample;
+                        else if (flacDec->GetBitsPerSample() == 16)
+                            fm = int16Sample;
+                        else if (flacDec->GetBitsPerSample() == 24)
+                            fm = int24Sample;
+
+                        if (flacDec->GetNumChannels() != channels)
+                        {
+                            wxLogWarning(wxT("Matroska : mismatching FLAC channels %ld vs %u track number %lld"),
+                                            flacDec->GetNumChannels(), channels, (uint64) elt->TrackNumber());
+                            channels = flacDec->GetNumChannels();
+                        }
+                        if (flacDec->GetSampleRate() != rate)
+                        {
+                            wxLogWarning(wxT("Matroska : mismatching FLAC sample rate %ld vs %f track number %lld"),
+                                            flacDec->GetSampleRate(), rate, (uint64) elt->TrackNumber());
+                            rate = flacDec->GetSampleRate();
+                        }
                     }
                 }
+#endif
 
                 if (fm != (sampleFormat)0)
                 {
