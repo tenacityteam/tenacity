@@ -57,6 +57,44 @@ class MkaImportPlugin final : public ImportPlugin
 };
 
 using WaveTracks = std::vector< std::shared_ptr<WaveTrack> >;
+class MkaDecoder;
+
+struct AudioTrackInfo {
+    bool                  mSelected;
+    wxString              mName;
+    wxString              mCodec;
+    sampleFormat          mFormat;
+    const size_t          bytesPerSample;
+    const unsigned        mChannels;
+    const double          mRate;
+    const uint16          mTrackNumber;
+    std::shared_ptr<MkaDecoder> decoder;
+    WaveTracks            importChannels;
+};
+
+class MkaDecoder
+{
+public:
+    virtual ~MkaDecoder() {}
+    virtual void PushTrackFrame(const AudioTrackInfo & tk, const binary *buf, uint32 bufsize) = 0;
+    virtual void Drain(const AudioTrackInfo & tk) {}
+};
+
+class MkaPCMDecoder : public MkaDecoder
+{
+public:
+    void PushTrackFrame(const AudioTrackInfo & tk, const binary *buf, uint32 bufsize) override
+    {
+        const size_t samples = bufsize / tk.bytesPerSample / tk.mChannels;
+        wxASSERT(samples * tk.bytesPerSample * tk.mChannels == bufsize);
+        // FIXME generate missing samples on gaps
+        for (unsigned chn = 0; chn < tk.mChannels; chn++)
+        {
+            auto trackStart = (constSamplePtr)(buf) + tk.bytesPerSample * chn;
+            tk.importChannels[chn]->Append(trackStart, tk.mFormat, samples, tk.mChannels);
+        }
+    }
+};
 
 class MkaImportFileHandle final : public ImportFileHandle
 {
@@ -91,17 +129,6 @@ private:
     std::unique_ptr<KaxTracks>   Tracks;
     std::unique_ptr<KaxTags>     mTags;
     std::unique_ptr<KaxCluster>  Cluster;
-
-    struct AudioTrackInfo {
-        bool                  mSelected;
-        wxString              mName;
-        sampleFormat          mFormat;
-        const size_t          bytesPerSample;
-        const unsigned        mChannels;
-        const double          mRate;
-        const uint16          mTrackNumber;
-        WaveTracks            importChannels;
-    };
 
     std::vector<AudioTrackInfo>  audioTracks;
     TranslatableStrings          mStreamInfo;
@@ -373,35 +400,47 @@ void MkaImportFileHandle::InitTracks()
                 const auto & CodedId = (const std::string &) GetChild<KaxCodecID>(*elt);
                 const auto *TrackName = FindChild<KaxTrackName>(*elt);
 
-                AudioTrackInfo track{
-                    true,
-                    TrackName ? (const wchar_t*)(UTFstring)*TrackName : L"",
-                    (sampleFormat)0,
-                    (uint32)*bitDepth / 8,
-                    GetChild<KaxAudioChannels>(*AudioTrack),
-                    (double) GetChild<KaxAudioSamplingFreq>(*AudioTrack),
-                    (uint16) elt->TrackNumber(),
-                };
+                sampleFormat fm = (sampleFormat)0;
+                std::shared_ptr<MkaDecoder> dec;
+                unsigned channels = GetChild<KaxAudioChannels>(*AudioTrack);
+                double rate = GetChild<KaxAudioSamplingFreq>(*AudioTrack);
 
                 if ((const std::string &) CodedId == "A_PCM/INT/LIT")
                 {
                     if (bitDepth != nullptr && ((uint64)*bitDepth == 16 || (uint64)*bitDepth == 24))
                     {
-                        track.mFormat = (uint32)*bitDepth == 16 ? int16Sample : int24Sample;
-                        audioTracks.push_back(track);
+                        fm = (uint32)*bitDepth == 16 ? int16Sample : int24Sample;
+                        dec = std::make_shared<MkaPCMDecoder>();
                     }
                 }
                 else if ((const std::string &) CodedId == "A_PCM/FLOAT/IEEE")
                 {
                     if (bitDepth != nullptr && (uint64)*bitDepth == 32)
                     {
+                        fm = floatSample;
+                        dec = std::make_shared<MkaPCMDecoder>();
+                    }
+                }
                         track.mFormat = floatSample;
                         audioTracks.push_back(track);
                     }
                 }
 
-                if (track.mFormat != (sampleFormat)0)
+                if (fm != (sampleFormat)0)
                 {
+                    AudioTrackInfo track{
+                        true,
+                        TrackName ? (const wchar_t*)(UTFstring)*TrackName : L"",
+                        CodedId,
+                        fm,
+                        (uint32)*bitDepth / 8,
+                        channels,
+                        rate,
+                        (uint16) elt->TrackNumber(),
+                        dec,
+                    };
+                    audioTracks.push_back(track);
+
                     auto strinfo = XO("Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]")
                         .Format(
                         audioTracks.size(),
@@ -523,14 +562,7 @@ ProgressResult MkaImportFileHandle::Import(WaveTrackFactory *trackFactory, Track
                                 for (unsigned i = 0; i < sblock->NumberFrames() ; i++)
                                 {
                                     auto & buffer = sblock->GetBuffer(i);
-                                    const size_t samples = buffer.Size() / tk.bytesPerSample / tk.mChannels;
-                                    wxASSERT(samples * tk.bytesPerSample * tk.mChannels == buffer.Size());
-                                    // FIXME generate missing samples on gaps
-                                    for (unsigned chn = 0; chn < tk.mChannels; chn++)
-                                    {
-                                        auto trackStart = (constSamplePtr)(buffer.Buffer()) + tk.bytesPerSample * chn;
-                                        tk.importChannels[chn]->Append(trackStart, tk.mFormat, samples, tk.mChannels);
-                                    }
+                                    tk.decoder->PushTrackFrame(tk, buffer.Buffer(), buffer.Size());
                                 }
                             }
                             break; // audioTracks
@@ -557,10 +589,15 @@ ProgressResult MkaImportFileHandle::Import(WaveTrackFactory *trackFactory, Track
         Cluster = std::unique_ptr<KaxCluster>(static_cast<KaxCluster*>(elt));
     }
 
-    for (const auto tk : audioTracks)
+    for (auto & tk : audioTracks)
     {
         if (tk.mSelected)
         {
+            if (tk.decoder)
+            {
+                tk.decoder->Drain(tk);
+                tk.decoder.reset();
+            }
             for (auto &channel : tk.importChannels)
                 channel->Flush();
             outTracks.push_back(std::move(tk.importChannels));
