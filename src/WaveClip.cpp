@@ -331,7 +331,6 @@ bool WaveClip::GetWaveDisplay(WaveDisplay &display, double t0,
       min = &display.min[0];
       max = &display.max[0];
       rms = &display.rms[0];
-      bl = &display.bl[0];
       pWhere = &display.ownWhere;
    }
    else {
@@ -358,7 +357,6 @@ bool WaveClip::GetWaveDisplay(WaveDisplay &display, double t0,
          display.min = &mWaveCache->min[0];
          display.max = &mWaveCache->max[0];
          display.rms = &mWaveCache->rms[0];
-         display.bl = &mWaveCache->bl[0];
          display.where = &mWaveCache->where[0];
          return true;
       }
@@ -508,7 +506,6 @@ bool WaveClip::GetWaveDisplay(WaveDisplay &display, double t0,
       display.min = min;
       display.max = max;
       display.rms = rms;
-      display.bl = bl;
       display.where = &(*pWhere)[0];
    }
 

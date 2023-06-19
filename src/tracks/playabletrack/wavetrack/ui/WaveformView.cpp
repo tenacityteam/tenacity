@@ -329,7 +329,7 @@ void DrawMinMaxRMS(
    TrackPanelDrawingContext &context, const wxRect & rect, const double env[],
    float zoomMin, float zoomMax,
    bool dB, float dBRange,
-   const float *min, const float *max, const float *rms, const int *bl,
+   const float *min, const float *max, const float *rms,
    bool muted)
 {
    auto &dc = context.dc;
@@ -412,39 +412,7 @@ void DrawMinMaxRMS(
          r2[x0] = r1[x0];
       }
 
-      if (bl[x0] <= -1) {
-         if (drawStripes) {
-            // TODO:unify with buffer drawing.
-            dc.SetPen((bl[x0] % 2) ? muteSamplePen : samplePen);
-            for (int yy = 0; yy < rect.height / 25 + 1; ++yy) {
-               // we are drawing over the buffer, but I think DrawLine takes care of this.
-               AColor::Line(dc,
-                            xx,
-                            rect.y + 25 * yy + (x0 /*+pixAnimOffset*/) % 25,
-                            xx,
-                            rect.y + 25 * yy + (x0 /*+pixAnimOffset*/) % 25 + 6); //take the min so we don't draw past the edge
-            }
-         }
-
-         // draw a dummy waveform - some kind of sinusoid.  We want to animate it so the user knows it's a dummy.  Use the second's unit of a get time function.
-         // Lets use a triangle wave for now since it's easier - I don't want to use sin() or make a wavetable just for this.
-         if (drawWaveform) {
-            int triX;
-            dc.SetPen(samplePen);
-            triX = fabs((double)((x0 + pixAnimOffset) % (2 * rect.height)) - rect.height) + rect.height;
-            for (int yy = 0; yy < rect.height; ++yy) {
-               if ((yy + triX) % rect.height == 0) {
-                  dc.DrawPoint(xx, rect.y + yy);
-               }
-            }
-         }
-
-         // Restore the pen for remaining pixel columns!
-         dc.SetPen(muted ? muteSamplePen : samplePen);
-      }
-      else {
-         AColor::Line(dc, xx, rect.y + h2, xx, rect.y + h1);
-      }
+      AColor::Line(dc, xx, rect.y + h2, xx, rect.y + h1);
    }
 
    // Stroke rms over the min-max
@@ -454,11 +422,7 @@ void DrawMinMaxRMS(
    dc.SetPen(muted ? muteRmsPen : rmsPen);
    for (int x0 = 0; x0 < rect.width; ++x0) {
       int xx = rect.x + x0;
-      if (bl[x0] <= -1) {
-      }
-      else if (r1[x0] != r2[x0]) {
-         AColor::Line(dc, xx, rect.y + r2[x0], xx, rect.y + r1[x0]);
-      }
+      AColor::Line(dc, xx, rect.y + r2[x0], xx, rect.y + r1[x0]);
    }
 
    // Draw the clipping lines
@@ -816,7 +780,6 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
       float *useMin = display.min,
             *useMax = display.max,
             *useRms = display.rms;
-      int   *useBl  = display.bl;
 
       if (rectPortion.width > 0) {
          if (!showIndividualSamples) {
@@ -833,7 +796,7 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
             DrawMinMaxRMS( context, rectPortion, env2,
                zoomMin, zoomMax,
                dB, dBRange,
-               useMin, useMax, useRms, useBl, muted );
+               useMin, useMax, useRms, muted );
          }
          else {
             bool highlight = false;
