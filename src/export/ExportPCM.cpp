@@ -321,7 +321,7 @@ void ExportPCMOptions::GetEncodings(int enc)
 {
    // Setup for queries
    SF_INFO info = {};
-   info.samplerate = 44100;
+   info.samplerate = 48000;
    info.channels = 1;
    info.sections = 1;
 

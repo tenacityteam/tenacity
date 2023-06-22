@@ -402,7 +402,7 @@ MeterPanel::MeterPanel(TenacityProject *project,
    // JKC: I've looked at this, and it's benignish.  It just means that the meter
    // balistics are right for 44KHz and a bit more frisky than they should be
    // for higher sample rates.
-   Reset(44100.0, true);
+   Reset(48000.0, true);
 }
 
 void MeterPanel::Clear()

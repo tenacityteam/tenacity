@@ -1007,7 +1007,7 @@ void OnScoreAlign(const CommandContext &context)
          0.0,                     // double startTime
          endTime,                 // double stopTime
          2,                       // int numOutChannels
-         44100u,                   // size_t outBufferSize
+         48000u,                   // size_t outBufferSize
          true,                    // bool outInterleaved
          rate,                   // double outRate
          floatSample,             // sampleFormat outFormat

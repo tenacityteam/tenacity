@@ -331,7 +331,7 @@ ImportRawDialog::ImportRawDialog(wxWindow * parent, const wxString & fileName)
       int subtype = sf_encoding_index_to_subtype(i);
       info.format = SF_FORMAT_RAW + SF_ENDIAN_LITTLE + subtype;
       info.channels = 1;
-      info.samplerate = 44100;
+      info.samplerate = 48000;
 
       if (sf_format_check(&info)) {
          mEncodingSubtype.push_back(subtype);
@@ -523,7 +523,7 @@ void ImportRawDialog::OnChoice(wxCommandEvent & WXUNUSED(event))
 
    info.format = mEncoding | SF_FORMAT_RAW;
    info.channels = mChannelChoice->GetSelection() + 1;
-   info.samplerate = 44100;
+   info.samplerate = 48000;
 
    //mOK = (wxButton *)wxWindow::FindWindowById(wxID_OK, this);
    if (sf_format_check(&info)) {

@@ -187,7 +187,7 @@ public:
     * default.
     *
     * Currently, this uses the first supported rate in the list
-    * [44100, 48000, highest sample rate]. Used in Project as a default value
+    * [48000, 44100, highest sample rate]. Used in Project as a default value
     * for project rates if one cannot be retrieved from the preferences.
     * So all in all not that useful or important really
     */

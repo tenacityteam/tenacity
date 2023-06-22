@@ -202,7 +202,7 @@ class TENACITY_DLL_API NumericTextCtrl final
                    NumericConverter::Type type,
                    const NumericFormatSymbol &formatName = {},
                    double value = 0.0,
-                   double sampleRate = 44100,
+                   double sampleRate = 48000,
                    const Options &options = {},
                    const wxPoint &pos = wxDefaultPosition,
                    const wxSize &size = wxDefaultSize);

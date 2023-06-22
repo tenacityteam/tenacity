@@ -378,18 +378,18 @@ int AudioIOBase::GetOptimalSupportedSampleRate()
 {
    auto rates = GetSupportedSampleRates();
 
-   if (make_iterator_range(rates).contains(44100))
-      return 44100;
-
    if (make_iterator_range(rates).contains(48000))
       return 48000;
+
+   if (make_iterator_range(rates).contains(44100))
+      return 44100;
 
    // if there are no supported rates, the next bit crashes. So check first,
    // and give them a "sensible" value if there are no valid values. They
    // will still get an error later, but with any luck may have changed
    // something by then. It's no worse than having an invalid default rate
    // stored in the preferences, which we don't check for
-   if (rates.empty()) return 44100;
+   if (rates.empty()) return 48000;
 
    return rates.back();
 }

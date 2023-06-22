@@ -1053,7 +1053,7 @@ void Status1DrawFunction
    /// Returns the string to be displayed in the track label
    /// indicating whether the track is mono, left, right, or
    /// stereo and what sample rate it's using.
-   auto rate = wt ? wt->GetRate() : 44100.0;
+   auto rate = wt ? wt->GetRate() : 48000.0;
    TranslatableString s;
    if (!pTrack || TrackList::Channels(pTrack).size() > 1)
       // TODO: more-than-two-channels-message

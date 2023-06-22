@@ -1132,7 +1132,7 @@ VSTEffect::VSTEffect(const PluginPath & path, VSTEffect *master)
    mAudioOuts = 0;
    mMidiIns = 0;
    mMidiOuts = 0;
-   mSampleRate = 44100;
+   mSampleRate = 48000;
    mBlockSize = mUserBlockSize = 8192;
    mBufferDelay = 0;
    mProcessLevel = 1;         // in GUI thread
@@ -1144,7 +1144,7 @@ VSTEffect::VSTEffect(const PluginPath & path, VSTEffect *master)
 
    memset(&mTimeInfo, 0, sizeof(mTimeInfo));
    mTimeInfo.samplePos = 0.0;
-   mTimeInfo.sampleRate = 44100.0;  // this is a bogus value, but it's only for the display
+   mTimeInfo.sampleRate = 48000.0;  // this is a bogus value, but it's only for the display
    mTimeInfo.nanoSeconds = wxGetUTCTimeMillis().ToDouble();
    mTimeInfo.tempo = 120.0;
    mTimeInfo.timeSigNumerator = 4;
@@ -1600,7 +1600,7 @@ bool VSTEffect::ShowInterface(
    // normal or realtime processing begins
    if (!IsReady())
    {
-      mSampleRate = 44100;
+      mSampleRate = 48000;
       mBlockSize = 8192;
       ProcessInitialize(0, NULL);
    }
