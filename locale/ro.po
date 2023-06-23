@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2015-06-28 03:24+0200\n"
 "Last-Translator: Cristian Secară <cristi AT secarica DOT ro>\n"
 "Language-Team: Gnome Romanian Team <gnomero-list@lists.sourceforge.net>\n"
@@ -19,6 +19,10 @@ msgstr ""
 "X-Generator: Poedit 1.6.11\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "Selectați dispozitivul de înregistrare"
@@ -27,6 +31,11 @@ msgstr "Selectați dispozitivul de înregistrare"
 #, fuzzy, c-format
 msgid "Default playback device number: %d\n"
 msgstr "Selectați dispozitivul de înregistrare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "No devices found\n"
+msgstr "Selectați dispozitivul de redare"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -104,11 +113,26 @@ msgstr "Selectați dispozitivul de redare"
 msgid "No playback device found for '%s'.\n"
 msgstr "Selectați dispozitivul de redare"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Importat '%s'"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Importat '%s'"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -136,6 +160,20 @@ msgstr "Selectați dispozitivul de redare"
 msgid "Message"
 msgstr "&Reeșantionează..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -150,6 +188,19 @@ msgstr "Audacity se bazează pe codul din următoarele proiecte:"
 #, fuzzy, c-format
 msgid "Audacity failed to read from a file in %s."
 msgstr "Audacity se bazează pe codul din următoarele proiecte:"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid ""
+"Audacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -190,12 +241,21 @@ msgstr "Selectați un fișier MIDI..."
 msgid "XML files"
 msgstr "Încarcă fișiere"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "Toate Fișierele|*"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -211,6 +271,20 @@ msgstr "Eroare"
 msgid "Unsuitable"
 msgstr "Activează"
 
+#: libraries/lib-files/TempDirectory.cpp
+msgid ""
+"The temporary files directory is on a FAT formatted drive.\n"
+"Resetting to default location."
+msgstr ""
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
+
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
 msgid "None"
@@ -224,6 +298,10 @@ msgstr "Dreptunghi"
 msgid "Triangle"
 msgstr "Triunghi"
 
+#: libraries/lib-math/Dither.cpp
+msgid "Shaped"
+msgstr ""
+
 #: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Rectangular"
@@ -231,9 +309,49 @@ msgstr "Dreptunghi"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "Bun venit !"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -248,6 +366,11 @@ msgstr "Calitate"
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
 msgid "High Quality"
+msgstr "Calitate"
+
+#: libraries/lib-math/Resample.cpp
+#, fuzzy
+msgid "Best Quality (Slowest)"
 msgstr "Calitate"
 
 #. i18n-hint: Audio data bit depth (precision): 16-bit integers
@@ -281,6 +404,21 @@ msgstr "16 biți PCM"
 msgid "24-bit"
 msgstr "24 biți PCM"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Nu s-a putut determina"
@@ -290,10 +428,32 @@ msgstr "Nu s-a putut determina"
 msgid "%s bytes"
 msgstr "%ld octeți"
 
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
+
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
 msgid "Simplified"
 msgstr "Simplu"
+
+#: libraries/lib-strings/Languages.cpp
+msgid "System"
+msgstr ""
 
 #: libraries/lib-xml/XMLFileReader.cpp
 #, c-format
@@ -338,9 +498,39 @@ msgstr "Lungime"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Liniște"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -359,14 +549,44 @@ msgid "Gain (dB)"
 msgstr "Bași (dB):"
 
 #: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Frecvența maximă trebuie să fie 100 Hz sau peste"
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
 msgstr "Potrivește selecția"
+
+#: plug-ins/StudioFadeOut.ny
+msgid "Studio Fade Out"
+msgstr ""
 
 #: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -382,6 +602,23 @@ msgstr "Se aplică"
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "Stabilește ca &implicit"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Adjustable Fade"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -409,9 +646,17 @@ msgid "S-Curve Down"
 msgstr "Mută mai jos"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "Început"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 # hm ? sau Amplificare ?
 #: plug-ins/adjustable-fade.ny
@@ -423,6 +668,14 @@ msgstr "Câștig"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "Început"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -438,6 +691,14 @@ msgstr "&Liniar"
 #, fuzzy
 msgid "Linear Out"
 msgstr "&Liniar"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -484,10 +745,32 @@ msgstr "Curba există"
 msgid "Error~%~%"
 msgstr "Eroare"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
 msgstr "Repetă"
+
+#: plug-ins/beat.ny
+msgid "Finding beats..."
+msgstr ""
 
 #: plug-ins/beat.ny
 msgid "Audacity"
@@ -499,9 +782,29 @@ msgid "Threshold Percentage"
 msgstr "Liniște în locul audio"
 
 #: plug-ins/clipfix.ny
+msgid "Clip Fix"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Reconstructing clips..."
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Liniște în locul audio"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -513,6 +816,21 @@ msgstr "&Restrânge toate pistele"
 msgid "Crossfading..."
 msgstr "&Restrânge toate pistele"
 
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
+
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
 msgid "Crossfade Tracks"
@@ -522,6 +840,18 @@ msgstr "&Restrânge toate pistele"
 #, fuzzy
 msgid "Fade type"
 msgstr "Tipul de compilare:"
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Gain"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Power 1"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Power 2"
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -537,6 +867,23 @@ msgstr "Nume pistă"
 #, fuzzy
 msgid "Fade direction"
 msgstr "Reducere de zgomot"
+
+#: plug-ins/crossfadetracks.ny
+msgid "Automatic"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -555,6 +902,19 @@ msgstr "Tipul de compilare:"
 
 #: plug-ins/delay.ny
 #, fuzzy
+msgid "Regular"
+msgstr "Dreptunghi"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+#, fuzzy
 msgid "Delay level per echo (dB)"
 msgstr "Re&ducere de zgomot (dB):"
 
@@ -569,6 +929,14 @@ msgid "Pitch change effect"
 msgstr "Pre&vizualizare"
 
 #: plug-ins/delay.ny
+msgid "Pitch/Tempo"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Low-quality Pitch Shift"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Pitch change per echo (semitones)"
 msgstr "Pre&vizualizare"
@@ -577,6 +945,10 @@ msgstr "Pre&vizualizare"
 #, fuzzy
 msgid "Number of echoes"
 msgstr "De câte ori să se repete:"
+
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
 
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #: plug-ins/sample-data-export.ny
@@ -588,9 +960,17 @@ msgid "No"
 msgstr "Nu"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "Repetă ultimul efect"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Graphic EQ"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -598,14 +978,26 @@ msgid "Filter Curve EQ"
 msgstr "Presetări de fabrică"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Equalization XML file"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "XML file"
 msgstr "Încarcă fișiere"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr ") / Adaugă înregistrarea ("
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Overwrite"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy, lisp-format
@@ -622,6 +1014,14 @@ msgstr "Eroare (este posibil ca fișierul să nu fi fost scris): %s"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Eroare (este posibil ca fișierul să nu fi fost scris): %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -659,6 +1059,10 @@ msgstr "Timpul de întârziere (secunde):"
 msgid "Length of label region (seconds)"
 msgstr "Timpul de întârziere (secunde):"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -668,6 +1072,42 @@ msgstr "Editare etichetă"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "Etichetă"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -684,6 +1124,11 @@ msgstr "Detașează"
 msgid "Warnings only"
 msgstr "Avertismente"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -695,6 +1140,17 @@ msgstr "Sal&vează zona"
 msgid "point labels"
 msgstr "Importă etichetele"
 
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~aRegion length = ~a seconds."
+msgstr ""
+
 #: plug-ins/highpass.ny
 #, fuzzy
 msgid "High-Pass Filter"
@@ -705,16 +1161,52 @@ msgstr "Încarcă fișiere"
 msgid "Performing High-Pass Filter..."
 msgstr "Încarcă fișiere"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/rhythmtrack.ny
+msgid "Dominic Mazzoni"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
 #, fuzzy
 msgid "Frequency (Hz)"
 msgstr "N&etezire de frecvență (Hz):"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Frecvența maximă trebuie să fie 100 Hz sau peste"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -762,6 +1254,65 @@ msgstr "Editare etichetă"
 msgid "Label type"
 msgstr "Editare etichetă"
 
+#: plug-ins/label-sounds.ny
+msgid "Point before sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Point after sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region around sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region between sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Maximum leading silence"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Maximum trailing silence"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
+#. i18n-hint: '~a' will be replaced by a time duration
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Error.~%Selection must be less than ~a."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Limiter"
+msgstr ""
+
 #: plug-ins/limiter.ny
 #, fuzzy
 msgid "Limiting..."
@@ -796,6 +1347,13 @@ msgstr "Arată li&mitarea"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Canalul drept"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Canalul drept"
 
@@ -803,6 +1361,14 @@ msgstr "Canalul drept"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "Nive&l (dB):"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Apply Make-up Gain"
+msgstr ""
 
 #: plug-ins/lowpass.ny
 #, fuzzy
@@ -823,6 +1389,18 @@ msgstr "Zgomot:"
 #, fuzzy
 msgid "Select Function"
 msgstr "Selecție"
+
+#: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Stereo Linking"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -859,6 +1437,44 @@ msgstr "Timpul de întârziere (secunde):"
 msgid "Decay (ms)"
 msgstr "Timpul de întârziere (secunde):"
 
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Selection too long.\n"
+"Maximum length is ~a."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
+
 #: plug-ins/notch.ny
 #, fuzzy
 msgid "Notch Filter"
@@ -873,6 +1489,18 @@ msgstr "Se aplică efectul Nyquist..."
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "Stabilește ca &implicit"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -932,9 +1560,19 @@ msgid "Allow"
 msgstr "Dezactivat"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Nu s-a putut salva fișierul de genuri muzicale."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -947,14 +1585,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Selectați un fișier MIDI..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Filtre neutilizate:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Selectați un fișier MIDI..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -962,9 +1617,33 @@ msgid "Generating pluck sound..."
 msgstr "Schimbă gazda audio"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "Tipul de compilare:"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Duration (60s max)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -973,8 +1652,45 @@ msgstr "Elimină pista"
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
+msgid "Generating Rhythm..."
+msgstr "Schimbă gazda audio"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "30 - 300 beats/minute"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Beats per bar"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 20 beats/measure"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Swing amount"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+#, fuzzy
 msgid "Number of bars"
 msgstr "De câte ori să se repete:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -992,9 +1708,29 @@ msgid "Start time offset"
 msgstr "Timpul de început"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Silence before first beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Beat sound"
 msgstr "Repetă"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1005,6 +1741,41 @@ msgstr "Rezonanța:"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Zgomot:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
+msgid "Risset Drum"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
+#, fuzzy
+msgid "Generating Risset Drum..."
+msgstr "Schimbă gazda audio"
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1022,9 +1793,17 @@ msgid "Center frequency of noise (Hz)"
 msgstr "Frecvență centrală:"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "N&etezire de frecvență (Hz):"
+
+#: plug-ins/rissetdrum.ny
+msgid "Amplitude (0 - 1)"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1035,6 +1814,10 @@ msgstr "NU s-a putut exporta"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "&Analizare"
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1076,6 +1859,10 @@ msgid "HTML files"
 msgstr "Încarcă fișiere"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Editare eșantion"
@@ -1091,8 +1878,33 @@ msgid "Include header information"
 msgstr "Informații despre compilare"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Standard"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "Tot"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1110,6 +1922,11 @@ msgstr "Activat"
 msgid "Errors Only"
 msgstr "Eroare:"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1121,6 +1938,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Canalul drept"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "Simplu"
@@ -1129,6 +1986,43 @@ msgstr "Simplu"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "Timpul de întârziere (secunde):"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1156,6 +2050,10 @@ msgid "Value (dB)"
 msgstr "Înal&te (dB):"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "Nive&l (dB):"
@@ -1176,6 +2074,14 @@ msgid "Right (dB)"
 msgstr "Dreapta, "
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "&Liniar"
@@ -1191,6 +2097,35 @@ msgid "1 channel (mono)"
 msgstr "1 canal (mono)"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Error.~%\"~a\" cannot be written."
 msgstr "Eroare (este posibil ca fișierul să nu fi fost scris): %s"
@@ -1201,14 +2136,50 @@ msgid "Sample Data Import"
 msgstr "Con&vertor al ratei de eșantionare:"
 
 #: plug-ins/sample-data-import.ny
+msgid "Reading and rendering samples..."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Select file"
 msgstr "Selectați un fișier MIDI..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Eroare"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1219,6 +2190,15 @@ msgstr "Nu s-a putut deschide fișierul de genuri muzicale."
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Potrivește selecția"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1231,13 +2211,41 @@ msgid "Waveform type"
 msgstr "Nive&l (dB):"
 
 #: plug-ins/tremolo.ny
+msgid "Sine"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Sawtooth"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Inverse Sawtooth"
+msgstr ""
+
+#: plug-ins/tremolo.ny
 msgid "Square"
 msgstr "Pătrat"
+
+#: plug-ins/tremolo.ny
+msgid "Starting phase (degrees)"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Wet level (percent)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Se aplică"
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1293,10 +2301,101 @@ msgstr "&Analizare"
 msgid "Strength"
 msgstr "Lungime"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "&Restrânge toate pistele"
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Output choice"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1333,236 +2432,193 @@ msgstr "N&etezire de frecvență (Hz):"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "N&etezire de frecvență (Hz):"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Efecte Nyquist"
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Efecte Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "Li&pește"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "Li&pește"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "Li&pește"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "Li&pește"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "Li&pește"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "Li&pește"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "Li&pește"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "Li&pește"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "&Selectează"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "&Selectează"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "&Font..."
+#~ msgid "Select &Font..."
+#~ msgstr "&Font..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Potrivește &vertical"
+#~ msgid "Split &Vertically"
+#~ msgstr "Potrivește &vertical"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Orizontal"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Orizontal"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "Salvat %s"
+#~ msgid "Show S&cript"
+#~ msgstr "Salvat %s"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "Bare de instrumen&te"
+#~ msgid "Toolbar"
+#~ msgstr "Bare de instrumen&te"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "Stop"
+#~ msgid "&Stop\tF6"
+#~ msgstr "Stop"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "Salvat %s"
+#~ msgid "Script"
+#~ msgstr "Salvat %s"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Efecte Nyquist"
+#~ msgid "Load Nyquist script"
+#~ msgstr "Efecte Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Avertisment"
+#~ msgid "Warning"
+#~ msgstr "Avertisment"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Efecte Nyquist"
+#~ msgid "Save Nyquist script"
+#~ msgstr "Efecte Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Efecte Nyquist"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Efecte Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Efecte Nyquist"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Efecte Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "New"
-msgstr "Nou"
+#~ msgid "New"
+#~ msgstr "Nou"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Deschide fișiere recente"
+#~ msgid "New script"
+#~ msgstr "Deschide fișiere recente"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&Deschide..."
+#~ msgid "Open"
+#~ msgstr "&Deschide..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Deschide fișiere recente"
+#~ msgid "Open script"
+#~ msgstr "Deschide fișiere recente"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "&Salvează..."
+#~ msgid "Save"
+#~ msgstr "&Salvează..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Salvat %s"
+#~ msgid "Save script"
+#~ msgstr "Salvat %s"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Salvat %s"
+#~ msgid "Save As"
+#~ msgstr "Salvat %s"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "Salvează proiectul c&a..."
+#~ msgid "Save script as..."
+#~ msgstr "Salvează proiectul c&a..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Copiază"
+#~ msgid "Copy"
+#~ msgstr "Copiază"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Taie și copiază în clipboard"
+#~ msgid "Copy to clipboard"
+#~ msgstr "Taie și copiază în clipboard"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Taie"
+#~ msgid "Cut"
+#~ msgstr "Taie"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Taie și copiază în clipboard"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Taie și copiază în clipboard"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Lipește"
+#~ msgid "Paste"
+#~ msgstr "Lipește"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Lipit din clipboard"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Lipit din clipboard"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "&Curăță"
+#~ msgid "Clear"
+#~ msgstr "&Curăță"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Taie selecția"
+#~ msgid "Clear selection"
+#~ msgstr "Taie selecția"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "&Selectează"
+#~ msgid "Select All"
+#~ msgstr "&Selectează"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "&Selectează"
+#~ msgid "Select all text"
+#~ msgstr "&Selectează"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Anulează"
+#~ msgid "Undo"
+#~ msgstr "Anulează"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Schimbare de format"
+#~ msgid "Undo last change"
+#~ msgstr "Schimbare de format"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "Refă"
+#~ msgid "Redo"
+#~ msgstr "Refă"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Schimbare de format"
+#~ msgid "Redo previous change"
+#~ msgstr "Schimbare de format"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Nicio etichetă de exportat."
+#~ msgid "Go to top S-expr"
+#~ msgstr "Nicio etichetă de exportat."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Instrumentul precedent"
+#~ msgid "Previous"
+#~ msgstr "Instrumentul precedent"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Lipește textul într-o etichetă nouă"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Lipește textul într-o etichetă nouă"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "Instrumentul următor"
+#~ msgid "Next"
+#~ msgstr "Instrumentul următor"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Început"
+#~ msgid "Start"
+#~ msgstr "Început"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Timpul de început"
+#~ msgid "Start script"
+#~ msgstr "Timpul de început"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Stop"
+#~ msgid "Stop"
+#~ msgstr "Stop"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "Timpul de început"
+#~ msgid "Stop script"
+#~ msgstr "Timpul de început"
 
 #~ msgid "Comments"
 #~ msgstr "Comentarii"
@@ -1587,18 +2643,11 @@ msgstr "Timpul de început"
 #~ msgstr "OK"
 
 #~ msgid "translator_credits"
-#~ msgstr ""
-#~ "<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam.org"
-#~ "\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian "
-#~ "Secară</a> (2014-2015)"
+#~ msgstr "<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam.org\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian Secară</a> (2014-2015)"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "%s the free, open source, cross-platform software for recording and "
-#~ "editing sounds."
-#~ msgstr ""
-#~ "software gratuit, cu sursă deschisă, multiplatformă, pentru editarea și "
-#~ "codarea sunetelor<br>"
+#~ msgid "%s the free, open source, cross-platform software for recording and editing sounds."
+#~ msgstr "software gratuit, cu sursă deschisă, multiplatformă, pentru editarea și codarea sunetelor<br>"
 
 #~ msgid "Credits"
 #~ msgstr "Credite"
@@ -1613,10 +2662,7 @@ msgstr "Timpul de început"
 
 #, fuzzy
 #~ msgid "Translators"
-#~ msgstr ""
-#~ "<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam.org"
-#~ "\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian "
-#~ "Secară</a> (2014-2015)"
+#~ msgstr "<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam.org\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian Secară</a> (2014-2015)"
 
 #~ msgid "Libraries"
 #~ msgstr "Biblioteci"
@@ -1634,9 +2680,7 @@ msgstr "Timpul de început"
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr ""
-#~ "Numele <b>Audacity&reg;</b> este o marcă înregistrată a lui Dominic "
-#~ "Mazzoni."
+#~ msgstr "Numele <b>Audacity&reg;</b> este o marcă înregistrată a lui Dominic Mazzoni."
 
 #~ msgid "Build Information"
 #~ msgstr "Informații despre compilare"
@@ -1718,16 +2762,14 @@ msgstr "Timpul de început"
 #~ msgstr "Suport pentru modificarea înălțimii și tempoului sunetului"
 
 #~ msgid "Extreme Pitch and Tempo Change support"
-#~ msgstr ""
-#~ "Suport pentru modificarea extremă a înălțimii și tempoului sunetului"
+#~ msgstr "Suport pentru modificarea extremă a înălțimii și tempoului sunetului"
 
 #~ msgid "GPL License"
 #~ msgstr "Licență GPL"
 
 #, fuzzy
 #~ msgid "Click and drag to adjust, double-click to reset"
-#~ msgstr ""
-#~ "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+#~ msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #, fuzzy
 #~ msgid "Record/Play head"
@@ -1789,8 +2831,7 @@ msgstr "Timpul de început"
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Audacity nu a putut găsi un loc unde să stocheze fișierele temporare.\n"
@@ -1803,12 +2844,8 @@ msgstr "Timpul de început"
 #~ "Audacity nu a putut găsi un loc unde să stocheze fișierele temporare.\n"
 #~ "Introduceți un director adecvat în dialogul de preferințe."
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Audacity este pe cale de a se închide. Reporniți Audacity pentru a folosi "
-#~ "noul director pentru fișiere temporare."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Audacity este pe cale de a se închide. Reporniți Audacity pentru a folosi noul director pentru fișiere temporare."
 
 #~ msgid "Audacity is already running"
 #~ msgstr "Audacity rulează deja"
@@ -2173,8 +3210,7 @@ msgstr "Timpul de început"
 #~ "To use FFmpeg import, go to Edit > Preferences > Libraries\n"
 #~ "to download or locate the FFmpeg libraries."
 #~ msgstr ""
-#~ "Audacity a încercat să folosească FFmpeg pentru importul unui fișier "
-#~ "audio,\n"
+#~ "Audacity a încercat să folosească FFmpeg pentru importul unui fișier audio,\n"
 #~ "însă bibliotecile nu au fost găsite.\n"
 #~ "\n"
 #~ "Pentru a folosi importul FFmpeg, mergeți la Preferințe > Biblioteci\n"
@@ -2191,12 +3227,8 @@ msgstr "Timpul de început"
 #~ msgid "As&k"
 #~ msgstr "Întreabă utili&zatorul"
 
-#~ msgid ""
-#~ "The specified filename could not be converted due to Unicode character "
-#~ "use."
-#~ msgstr ""
-#~ "Numele specificat de fișier nu a putut fi convertit datorită folosirii "
-#~ "caracterelor Unicode."
+#~ msgid "The specified filename could not be converted due to Unicode character use."
+#~ msgstr "Numele specificat de fișier nu a putut fi convertit datorită folosirii caracterelor Unicode."
 
 #~ msgid "Specify New Filename:"
 #~ msgstr "Specificați un nou nume de fișier:"
@@ -2239,12 +3271,8 @@ msgstr "Timpul de început"
 #~ msgstr "Repetă..."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
-#~ msgstr ""
-#~ "A fost selectat prea mult audio. Numai primele %.1f secunde de audio vor "
-#~ "fi analizate."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+#~ msgstr "A fost selectat prea mult audio. Numai primele %.1f secunde de audio vor fi analizate."
 
 #~ msgid "Not enough data selected."
 #~ msgstr "Nu sunt selectate suficiente date."
@@ -2264,38 +3292,20 @@ msgstr "Timpul de început"
 #~ msgstr "Acestea sunt modalitățile noastre de suport:"
 
 #, fuzzy
-#~ msgid ""
-#~ "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://"
-#~ "manual.audacityteam.org/quick_help.html|view online]]"
-#~ msgstr ""
-#~ " [[file:quick_help.html|Ajutor rapid]] (ar trebui să fie instalat local, "
-#~ "sau dacă nu, <a href=\"http://manual.audacityteam.org/o/quick_help.html"
-#~ "\">versiunea pe internet</a>)"
+#~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
+#~ msgstr " [[file:quick_help.html|Ajutor rapid]] (ar trebui să fie instalat local, sau dacă nu, <a href=\"http://manual.audacityteam.org/o/quick_help.html\">versiunea pe internet</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual."
-#~ "audacityteam.org/|view online]]"
-#~ msgstr ""
-#~ " [[file:index.html|Manual]] (ar trebui să fie instalat local, sau dacă "
-#~ "nu, <a href=\"http://manual.audacityteam.org/o/\">versiunea pe internet</"
-#~ "a>)"
+#~ msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
+#~ msgstr " [[file:index.html|Manual]] (ar trebui să fie instalat local, sau dacă nu, <a href=\"http://manual.audacityteam.org/o/\">versiunea pe internet</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
-#~ "online."
-#~ msgstr ""
-#~ " <a href=\"http://forum.audacityteam.org/\">Forum</a> (formulați "
-#~ "întrebări directe, pe internet)"
+#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
+#~ msgstr " <a href=\"http://forum.audacityteam.org/\">Forum</a> (formulați întrebări directe, pe internet)"
 
 #, fuzzy
-#~ msgid ""
-#~ "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for "
-#~ "tips, tricks, extra tutorials and effects plug-ins."
-#~ msgstr ""
-#~ " [[http://wiki.audacityteam.org/index.php|Wiki]] (cele mai recente "
-#~ "sfaturi utile și tutoriale, pe internet)"
+#~ msgid "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
+#~ msgstr " [[http://wiki.audacityteam.org/index.php|Wiki]] (cele mai recente sfaturi utile și tutoriale, pe internet)"
 
 #, fuzzy
 #~ msgid "History"
@@ -2393,12 +3403,8 @@ msgstr "Timpul de început"
 #~ msgstr "Alegeți limba care să fie folosită de Audacity:"
 
 #, c-format
-#~ msgid ""
-#~ "The language you have chosen, %s (%s), is not the same as the system "
-#~ "language, %s (%s)."
-#~ msgstr ""
-#~ "Limba pe care ați ales-o, %s (%s), nu este aceeași cu limba sistemului, "
-#~ "%s (%s)."
+#~ msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
+#~ msgstr "Limba pe care ați ales-o, %s (%s), nu este aceeași cu limba sistemului, %s (%s)."
 
 #~ msgid "Confirm"
 #~ msgstr "Confirmă"
@@ -2626,12 +3632,10 @@ msgstr "Timpul de început"
 #, c-format
 #~ msgid ""
 #~ "This file was saved using Audacity %s.\n"
-#~ "You are using Audacity %s. You may need to upgrade to a newer version to "
-#~ "open this file."
+#~ "You are using Audacity %s. You may need to upgrade to a newer version to open this file."
 #~ msgstr ""
 #~ "Fișierul a fost salvat folosind Audacity %s.\n"
-#~ "În prezent folosiți Audacity %s. Pentru a putea deschide acest fișier "
-#~ "trebuie să treceți la versiunea mai nouă."
+#~ "În prezent folosiți Audacity %s. Pentru a putea deschide acest fișier trebuie să treceți la versiunea mai nouă."
 
 #~ msgid "Can't open project file"
 #~ msgstr "Nu se poate deschide fișierul de proiect"
@@ -2826,9 +3830,7 @@ msgstr "Timpul de început"
 #~ msgstr "Gen muzical"
 
 #~ msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-#~ msgstr ""
-#~ "Folosiți tastele săgeți (sau tasta ENTER după editare) pentru a naviga "
-#~ "între câmpuri."
+#~ msgstr "Folosiți tastele săgeți (sau tasta ENTER după editare) pentru a naviga între câmpuri."
 
 #~ msgid "Tag"
 #~ msgstr "Etichetă"
@@ -2868,8 +3870,7 @@ msgstr "Timpul de început"
 #~ msgstr "Resetare genuri muzicale"
 
 #~ msgid "Are you sure you want to reset the genre list to defaults?"
-#~ msgstr ""
-#~ "Sigur vreți ca lista de genuri muzicale să fie resetată la implicit ?"
+#~ msgstr "Sigur vreți ca lista de genuri muzicale să fie resetată la implicit ?"
 
 #~ msgid "Unable to open genre file."
 #~ msgstr "Nu s-a putut deschide fișierul de genuri muzicale."
@@ -3002,11 +4003,8 @@ msgstr "Timpul de început"
 #~ msgstr "Selectare"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
-#~ msgstr ""
-#~ "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+#~ msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #~ msgid "Click and drag to resize the track."
 #~ msgstr "Clic și trageți pentru a redimensiona pista."
@@ -4388,18 +5386,15 @@ msgstr "Timpul de început"
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquist"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Nu se pot aplica efecte pe piste stereo în care pistele nu se potrivesc."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Nu se pot aplica efecte pe piste stereo în care pistele nu se potrivesc."
 
 #, fuzzy
 #~ msgid "plug-in"
 #~ msgstr "Nyquist"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Aceasră versiune Audacity nu a fost compilată cu suport pentru %s."
 
 #, fuzzy
@@ -4919,9 +5914,7 @@ msgstr "Timpul de început"
 
 #, c-format
 #~ msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-#~ msgstr ""
-#~ "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio "
-#~ "selectate"
+#~ msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 # în meniul Edit -> Edit Special
 # ca tooltip
@@ -6289,12 +7282,8 @@ msgstr "Timpul de început"
 #~ msgid "Directory %s is not writable"
 #~ msgstr "Directorul %s nu este scriibil"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Schimbările asupra directorului temporar vor avea efect numai după "
-#~ "repornirea Audacity"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Schimbările asupra directorului temporar vor avea efect numai după repornirea Audacity"
 
 #, fuzzy
 #~ msgid "Preferences for Effects"
@@ -6370,9 +7359,7 @@ msgstr "Timpul de început"
 #~ msgstr "&Importă..."
 
 #~ msgid "Select an XML file containing Audacity keyboard shortcuts..."
-#~ msgstr ""
-#~ "Selectați un fișier XML care conține scurtăturile din tastatură "
-#~ "Audacity..."
+#~ msgstr "Selectați un fișier XML care conține scurtăturile din tastatură Audacity..."
 
 #~ msgid "Export Keyboard Shortcuts As:"
 #~ msgstr "Exportă scurtăturile de tastatură ca:"
@@ -6410,9 +7397,7 @@ msgstr "Timpul de început"
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Schimbările asupra directorului temporar vor avea efect numai după "
-#~ "repornirea Audacity"
+#~ msgstr "Schimbările asupra directorului temporar vor avea efect numai după repornirea Audacity"
 
 #~ msgid "Ask"
 #~ msgstr "Întreabă"
@@ -7328,10 +8313,8 @@ msgstr "Timpul de început"
 #~ msgstr "%.1f dB"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-#~ msgstr ""
-#~ "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #, fuzzy
 #~ msgid "Click and drag to rearrange sub-views"
@@ -7460,8 +8443,7 @@ msgstr "Timpul de început"
 #~ msgstr "Clic și trageți pentru a modifica limita stângă a selecției."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Clic și trageți pentru a modifica limita stângă a selecției."
 
 #, fuzzy
@@ -7470,8 +8452,7 @@ msgstr "Timpul de început"
 
 #, fuzzy
 #~ msgid "Click and drag to adjust frequency bandwidth."
-#~ msgstr ""
-#~ "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+#~ msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #~ msgid "Edit, Preferences..."
 #~ msgstr "Editare, Preferințe..."
@@ -7497,15 +8478,11 @@ msgstr "Timpul de început"
 
 #, fuzzy, c-format
 #~ msgid "Time shifted tracks/clips right %.02f seconds"
-#~ msgstr ""
-#~ "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio "
-#~ "selectate"
+#~ msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #, fuzzy, c-format
 #~ msgid "Time shifted tracks/clips left %.02f seconds"
-#~ msgstr ""
-#~ "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio "
-#~ "selectate"
+#~ msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #, fuzzy
 #~ msgid "Command+Click to deselect"
@@ -7744,24 +8721,20 @@ msgstr "Timpul de început"
 #, fuzzy
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was "
-#~ "unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
-#~ "locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
 #~ msgstr ""
 #~ "Unul sau mai multe fișiere audio externe nu au putut fi găsite.\n"
-#~ "Este posibil să fi fost mutat sau șters, sau unitatea pe care se afla(u) "
-#~ "a fost demontată.\n"
+#~ "Este posibil să fi fost mutat sau șters, sau unitatea pe care se afla(u) a fost demontată.\n"
 #~ "Zona audio afectată este în curs de substituire cu liniște.\n"
 #~ "Primul fișier lipsă detectat este:\n"
 #~ "%s\n"
 #~ "Pot exista fișiere lipsă adiționale.\n"
-#~ "Alegeți Fișier > Verifică dependințele pentru a vizualiza o listă a "
-#~ "locațiilor fișierelor lipsă."
+#~ "Alegeți Fișier > Verifică dependințele pentru a vizualiza o listă a locațiilor fișierelor lipsă."
 
 #~ msgid "Files Missing"
 #~ msgstr "Lipsesc fișierele"
@@ -7812,8 +8785,7 @@ msgstr "Timpul de început"
 #~ msgstr "Înregistrare"
 
 #~ msgid "Ogg Vorbis support is not included in this build of Audacity"
-#~ msgstr ""
-#~ "Suportul pentru Ogg Vorbis nu este inclus în această versiune Audacity"
+#~ msgstr "Suportul pentru Ogg Vorbis nu este inclus în această versiune Audacity"
 
 #, fuzzy
 #~ msgid "Cleaning project temporary files"
@@ -7838,12 +8810,8 @@ msgstr "Timpul de început"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Salvează proiectul „%s” ca..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Audacity nu a putut converti un proiect Audacity 1.0 în noul format de "
-#~ "proiect."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Audacity nu a putut converti un proiect Audacity 1.0 în noul format de proiect."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -7898,9 +8866,7 @@ msgstr "Timpul de început"
 #~ msgstr "Dezvoltatori Audacity"
 
 #, fuzzy
-#~ msgid ""
-#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
-#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "Programul <b>Audacity&reg;</b> este copyright"
 
 #~ msgid "KB"
@@ -7957,12 +8923,8 @@ msgstr "Timpul de început"
 #~ msgid "Unlock Play Region"
 #~ msgstr "Zona de re&dare"
 
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Numai avformat.dll|*avformat*.dll|Biblioteci legate dinamic (*.dll)|*.dll|"
-#~ "Toate fișierele|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Numai avformat.dll|*avformat*.dll|Biblioteci legate dinamic (*.dll)|*.dll|Toate fișierele|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -7980,38 +8942,21 @@ msgstr "Timpul de început"
 #~ msgstr "Fișiere XML (*.xml)|*.xml|Toate fișierele|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|"
-#~ "Toate fișierele (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|Toate fișierele (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|"
-#~ "Toate fișierele (*.*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|Toate fișierele (*.*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Numai libmp3lame.so.0|libmp3lame.so.0|Fișierele obiect partajate primar "
-#~ "(*.so)|*.so|Biblioteci extinse (*.so*)|*.so*|Toate fișierele (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Numai libmp3lame.so.0|libmp3lame.so.0|Fișierele obiect partajate primar (*.so)|*.so|Biblioteci extinse (*.so*)|*.so*|Toate fișierele (*)|*"
 
 #~ msgid "MIDI file (*.mid)|*.mid|Allegro file (*.gro)|*.gro"
 #~ msgstr "Fișier MIDI (*.mid)|*.mid|Fișier Allegro (*.gro)|*.gro"
 
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "Fișiere MIDI și Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Fișiere "
-#~ "MIDI (*.mid;*.midi)|*.mid;*.midi|Fișiere Allegro (*.gro)|*.gro|Toate "
-#~ "fișierele|*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "Fișiere MIDI și Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Fișiere MIDI (*.mid;*.midi)|*.mid;*.midi|Fișiere Allegro (*.gro)|*.gro|Toate fișierele|*"
 
 #, fuzzy
 #~ msgid "Remove Center Classic: Mono"
@@ -8363,12 +9308,8 @@ msgstr "Timpul de început"
 #~ msgid "Welcome to Audacity "
 #~ msgstr "Bun venit la Audacity "
 
-#~ msgid ""
-#~ " For even quicker answers, all the online resources above are "
-#~ "<b>searchable</b>."
-#~ msgstr ""
-#~ " Pentru aflarea și mai rapidă a unor răspunsuri, toate resursele online "
-#~ "de mai sus <b>au funcții de căutare</b>."
+#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
+#~ msgstr " Pentru aflarea și mai rapidă a unor răspunsuri, toate resursele online de mai sus <b>au funcții de căutare</b>."
 
 #~ msgid "Edit Metadata"
 #~ msgstr "Editare metadate"

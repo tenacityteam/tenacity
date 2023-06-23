@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2013-01-30 13:38-0000\n"
 "Last-Translator: gale <gale@audacityteam.org>\n"
 "Language-Team: Heb\n"
@@ -19,6 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "בחר התקן כניסה"
@@ -26,6 +30,11 @@ msgstr "בחר התקן כניסה"
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default playback device number: %d\n"
+msgstr "בחר התקן כניסה"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "No devices found\n"
 msgstr "בחר התקן כניסה"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
@@ -104,11 +113,26 @@ msgstr "בחר התקן כניסה"
 msgid "No playback device found for '%s'.\n"
 msgstr "בחר התקן כניסה"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "קצבי דגימה"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "קצבי דגימה"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -136,6 +160,20 @@ msgstr "בחר התקן כניסה"
 msgid "Message"
 msgstr "&...דגימה מחדש"
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -154,6 +192,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "לא יכול לכתוב קובץ:\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -204,12 +247,21 @@ msgstr ":תן לבצים שמות לפי:"
 msgid "XML files"
 msgstr "MP3 קבצי"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3 קבצי"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -231,6 +283,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "תקיה לקבצים זמניים"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -255,9 +315,49 @@ msgstr "Rectangular"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "!ברוכים הבאים"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -295,6 +395,10 @@ msgstr "24-bit PCM"
 msgid "32-bit float"
 msgstr "32-bit float"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -305,6 +409,21 @@ msgstr "16-bit PCM"
 msgid "24-bit"
 msgstr "24-bit PCM"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "לא מסוגל להחליט"
@@ -314,10 +433,32 @@ msgstr "לא מסוגל להחליט"
 msgid "%s bytes"
 msgstr "בתים"
 
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
+
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
 msgid "Simplified"
 msgstr "מגביר"
+
+#: libraries/lib-strings/Languages.cpp
+msgid "System"
+msgstr ""
 
 #: libraries/lib-xml/XMLFileReader.cpp
 #, c-format
@@ -362,9 +503,39 @@ msgstr "אורך "
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "(Hz) תדר"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -383,9 +554,35 @@ msgid "Gain (dB)"
 msgstr "הגבר"
 
 #: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "0Hz התדר חייב להיות לפחות "
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
@@ -411,6 +608,19 @@ msgstr "...מיישם"
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "Steve Daulton ע\"י"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -443,9 +653,17 @@ msgid "S-Curve Down"
 msgstr "הזז &למטה"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "התחלה"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -456,6 +674,14 @@ msgstr "הגבר"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "התחלה"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -471,6 +697,14 @@ msgstr "לינארי"
 #, fuzzy
 msgid "Linear Out"
 msgstr "לינארי"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -517,6 +751,24 @@ msgstr "הזז &למטה"
 msgid "Error~%~%"
 msgstr "שגיאה"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -548,9 +800,21 @@ msgid "Reconstructing clips..."
 msgstr "...מסיר קליקים ופופים"
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "רמת סף: %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -561,6 +825,21 @@ msgstr "הערה לרצועה"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "הערה לרצועה"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -607,6 +886,19 @@ msgstr "מקטע נבחר"
 msgid "Automatic"
 msgstr "התאוששות שגיאה אוטומטית "
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 #, fuzzy
 msgid "Delay"
@@ -626,6 +918,14 @@ msgstr "סוג מקש"
 #, fuzzy
 msgid "Regular"
 msgstr "Rectangular"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -648,6 +948,10 @@ msgid "Pitch/Tempo"
 msgstr "(EAC) גובה צליל "
 
 #: plug-ins/delay.ny
+msgid "Low-quality Pitch Shift"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Pitch change per echo (semitones)"
 msgstr "&הצג קודם"
@@ -657,15 +961,32 @@ msgstr "&הצג קודם"
 msgid "Number of echoes"
 msgstr ":מספר פעמים לחזרה"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
 msgid "No"
 msgstr "כלום"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "ערכים קבועים מראש"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Graphic EQ"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -683,9 +1004,17 @@ msgid "XML file"
 msgstr "MP3 קבצי"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "הקלטה"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Overwrite"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy, lisp-format
@@ -702,6 +1031,14 @@ msgstr "%s :(שגיאה (ייתכן והקובץ לא נשמר"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "%s :(שגיאה (ייתכן והקובץ לא נשמר"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -739,6 +1076,10 @@ msgstr "(אורך (שניות"
 msgid "Length of label region (seconds)"
 msgstr "(אורך (שניות"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -750,14 +1091,59 @@ msgid "Label"
 msgstr "תווית"
 
 #: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Message on completion"
 msgstr "קומבינציית מפתחות"
 
 #: plug-ins/equalabel.ny
+msgid "Details"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Warnings only"
 msgstr "אזהרות"
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -769,6 +1155,17 @@ msgstr "אחד תוויות"
 #, fuzzy
 msgid "point labels"
 msgstr "אחד תוויות"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~aRegion length = ~a seconds."
+msgstr ""
 
 #: plug-ins/highpass.ny
 #, fuzzy
@@ -790,10 +1187,42 @@ msgstr "Dominic Mazzoni הסרת רעש ע\"י"
 msgid "Frequency (Hz)"
 msgstr "(Hz) תדר"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "0Hz התדר חייב להיות לפחות "
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -842,6 +1271,22 @@ msgid "Label type"
 msgstr "ערוך תווית"
 
 #: plug-ins/label-sounds.ny
+msgid "Point before sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Point after sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region around sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region between sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
 #, fuzzy
 msgid "Maximum leading silence"
 msgstr "...חתוך שקט"
@@ -851,11 +1296,40 @@ msgstr "...חתוך שקט"
 msgid "Maximum trailing silence"
 msgstr "...חתוך שקט"
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "השם לא יכול להשאר ריק"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Limiter"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -892,6 +1366,13 @@ msgstr "מצא מקטע"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "ערוץ ימני"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "ערוץ ימני"
 
@@ -899,6 +1380,10 @@ msgstr "ערוץ ימני"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr ":(dB) טרבל"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -924,6 +1409,14 @@ msgstr "סוג רעש"
 #, fuzzy
 msgid "Select Function"
 msgstr "מקטע נבחר"
+
+#: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -966,12 +1459,42 @@ msgid "Decay (ms)"
 msgstr ":(זמן מתקף/דעיכה (בשניות"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "השם לא יכול להשאר ריק"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -987,6 +1510,18 @@ msgstr "מיישם התאמת עוצמות"
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "Steve Daulton ע\"י"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1045,9 +1580,19 @@ msgid "Allow"
 msgstr "מושבת"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr ".'%s' לא ניתן למחוק את"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1060,14 +1605,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "...MIDI בחר קובץ"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr ":יצא למיקום"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "...MIDI בחר קובץ"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1075,9 +1637,29 @@ msgid "Generating pluck sound..."
 msgstr "מייצר טון"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "סוג רעש"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1095,9 +1677,41 @@ msgid "Generating Rhythm..."
 msgstr "מייצר ציוץ"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "30 - 300 beats/minute"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Beats per bar"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 20 beats/measure"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Swing amount"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr ":מספר פעמים לחזרה"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1125,6 +1739,22 @@ msgid "Beat sound"
 msgstr "חזור שוב"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "מסיר רעש"
@@ -1133,6 +1763,32 @@ msgstr "מסיר רעש"
 #, fuzzy
 msgid "Noise Click"
 msgstr "...רעש"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1160,6 +1816,10 @@ msgid "Center frequency of noise (Hz)"
 msgstr "תדירות לינארית"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "(Hz) תדר"
@@ -1178,6 +1838,10 @@ msgstr "לא מסוגל לייצא"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "...מיישם"
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1217,6 +1881,10 @@ msgid "HTML files"
 msgstr "MP3 קבצי"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "עריכת דגימה"
@@ -1232,6 +1900,10 @@ msgid "Include header information"
 msgstr "מידע על בניית התוכנה"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "סטנדרטי"
 
@@ -1239,6 +1911,23 @@ msgstr "סטנדרטי"
 #, fuzzy
 msgid "All"
 msgstr "&הכל"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1256,6 +1945,11 @@ msgstr "\t-help (הודעה זו)"
 msgid "Errors Only"
 msgstr ":שגיאה"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1267,6 +1961,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "ערוץ ימני"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "דגימות"
@@ -1275,6 +2009,43 @@ msgstr "דגימות"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "שניות"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1302,6 +2073,10 @@ msgid "Value (dB)"
 msgstr ":(dB) טרבל"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "לינארי"
@@ -1322,6 +2097,14 @@ msgid "Right (dB)"
 msgstr ",ימינה"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "לינארי"
@@ -1335,6 +2118,35 @@ msgstr "2 ערוצים (סטריאו)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "ערוץ 1 (מונו)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1357,9 +2169,41 @@ msgid "Select file"
 msgstr "...MIDI בחר קובץ"
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "שגיאה"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1370,6 +2214,15 @@ msgstr ".לא יכול לפתןח קובץ סגנון"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "מקטע נבחר"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1403,10 +2256,22 @@ msgstr "ריבועי"
 msgid "Starting phase (degrees)"
 msgstr ":(deg.) LFO פאזת התחלה של"
 
+#: plug-ins/tremolo.ny
+msgid "Wet level (percent)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "...מיישם"
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1462,10 +2327,97 @@ msgstr "&נתח"
 msgid "Strength"
 msgstr "אורך "
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "...מעבד"
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1507,278 +2459,227 @@ msgstr "(Hz) תדר"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "(Hz) תדר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "...Nyquist מיישם אפקט"
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "...Nyquist מיישם אפקט"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&הדבק"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&הדבק"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&הדבק"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&הדבק"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&הדבק"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&הדבק"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&הדבק"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&הדבק"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "בחר"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "בחר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "...גופן"
+#~ msgid "Select &Font..."
+#~ msgstr "...גופן"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "התאם &אנכית"
+#~ msgid "Split &Vertically"
+#~ msgstr "התאם &אנכית"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "סטריאו אופקי"
+#~ msgid "Split &Horizontally"
+#~ msgstr "סטריאו אופקי"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "הצג תוצר"
+#~ msgid "Show S&cript"
+#~ msgstr "הצג תוצר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "הצג תוצר"
+#~ msgid "Show &Output"
+#~ msgstr "הצג תוצר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "כלי"
+#~ msgid "Toolbar"
+#~ msgstr "כלי"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "עצור"
+#~ msgid "&Stop\tF6"
+#~ msgstr "עצור"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "משתנה"
+#~ msgid "Script"
+#~ msgstr "משתנה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "מד יציאה"
+#~ msgid "Output"
+#~ msgstr "מד יציאה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "...Nyquist פקודת"
+#~ msgid "Load Nyquist script"
+#~ msgstr "...Nyquist פקודת"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "התראה"
+#~ msgid "Warning"
+#~ msgstr "התראה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "...Nyquist פקודת"
+#~ msgid "Save Nyquist script"
+#~ msgstr "...Nyquist פקודת"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Leland Lucius"
-msgstr "Leland Lucius ע\"י"
+#~ msgid "Leland Lucius"
+#~ msgstr "Leland Lucius ע\"י"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "(C) 2009 by Leland Lucius"
-msgstr "Leland Lucius ע\"י"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "Leland Lucius ע\"י"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "...Nyquist מיישם אפקט"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "...Nyquist מיישם אפקט"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Untitled"
-msgstr "<ללא שם>"
+#~ msgid "Untitled"
+#~ msgstr "<ללא שם>"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "...Nyquist מיישם אפקט"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "...Nyquist מיישם אפקט"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&חדש"
+#~ msgid "New"
+#~ msgstr "&חדש"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "פתח אחרונים"
+#~ msgid "New script"
+#~ msgstr "פתח אחרונים"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&...פתח"
+#~ msgid "Open"
+#~ msgstr "&...פתח"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "פתח אחרונים"
+#~ msgid "Open script"
+#~ msgstr "פתח אחרונים"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "שמור"
+#~ msgid "Save"
+#~ msgstr "שמור"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "...Nyquist פקודת"
+#~ msgid "Save script"
+#~ msgstr "...Nyquist פקודת"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "...שמור בשם"
+#~ msgid "Save As"
+#~ msgstr "...שמור בשם"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "...שמור פרויקט &בתור"
+#~ msgid "Save script as..."
+#~ msgstr "...שמור פרויקט &בתור"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "העתק"
+#~ msgid "Copy"
+#~ msgstr "העתק"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "גזור ללוח העתקה"
+#~ msgid "Copy to clipboard"
+#~ msgstr "גזור ללוח העתקה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "גזור"
+#~ msgid "Cut"
+#~ msgstr "גזור"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "גזור ללוח העתקה"
+#~ msgid "Cut to clipboard"
+#~ msgstr "גזור ללוח העתקה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "הדבק"
+#~ msgid "Paste"
+#~ msgstr "הדבק"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "הדבק מלוח ההעתקה"
+#~ msgid "Paste from clipboard"
+#~ msgstr "הדבק מלוח ההעתקה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "&נקה"
+#~ msgid "Clear"
+#~ msgstr "&נקה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "התאם מקטע נבחר"
+#~ msgid "Clear selection"
+#~ msgstr "התאם מקטע נבחר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "בחר"
+#~ msgid "Select All"
+#~ msgstr "בחר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "בחר"
+#~ msgid "Select all text"
+#~ msgstr "בחר"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "ביטול-ביצוע"
+#~ msgid "Undo"
+#~ msgstr "ביטול-ביצוע"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "שנה פורמט"
+#~ msgid "Undo last change"
+#~ msgstr "שנה פורמט"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo"
-msgstr "&בצע שוב"
+#~ msgid "Redo"
+#~ msgstr "&בצע שוב"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "שנה פורמט"
+#~ msgid "Redo previous change"
+#~ msgstr "שנה פורמט"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "מצא תווים"
+#~ msgid "Find"
+#~ msgstr "מצא תווים"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "מצא תווים"
+#~ msgid "Find text"
+#~ msgstr "מצא תווים"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "אצווה"
+#~ msgid "Match"
+#~ msgstr "אצווה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr ".אין תוויות לייצא"
+#~ msgid "Go to top S-expr"
+#~ msgstr ".אין תוויות לייצא"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "כלי קודם"
+#~ msgid "Previous"
+#~ msgstr "כלי קודם"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "הזז מיקוד לרצועה קודמת"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "הזז מיקוד לרצועה קודמת"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "הכלי הבא"
+#~ msgid "Next"
+#~ msgstr "הכלי הבא"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "התחלה"
+#~ msgid "Start"
+#~ msgstr "התחלה"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "...Nyquist פקודת"
+#~ msgid "Start script"
+#~ msgstr "...Nyquist פקודת"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "עצור"
+#~ msgid "Stop"
+#~ msgstr "עצור"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "...Nyquist פקודת"
+#~ msgid "Stop script"
+#~ msgstr "...Nyquist פקודת"
 
 #~ msgid "Comments"
 #~ msgstr "הערות"
@@ -1976,8 +2877,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid ""
 #~ "Reset Preferences?\n"
 #~ "\n"
-#~ "This is a one-time question, after an 'install' where you asked to have "
-#~ "the Preferences reset."
+#~ "This is a one-time question, after an 'install' where you asked to have the Preferences reset."
 #~ msgstr ""
 #~ "?אתה רוצה לשחזר העדפות\n"
 #~ "\n"
@@ -2015,8 +2915,7 @@ msgstr "...Nyquist פקודת"
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ ".התוכנה לא מצאה מקום לאחסון קבצים זמניים\n"
@@ -2029,11 +2928,8 @@ msgstr "...Nyquist פקודת"
 #~ ".התוכנה לא מצאה מקום לאחסון קבצים זמניים\n"
 #~ "\"אנא בחר מיקום מתאים בתיבת \"העדפות"
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ ".התוכנה עומדת להיסגר. אנא פתח אותה שוב בכדי להשתמש בספריה הזמנית החדשה"
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr ".התוכנה עומדת להיסגר. אנא פתח אותה שוב בכדי להשתמש בספריה הזמנית החדשה"
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -2174,51 +3070,31 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "!אין זיכרון פנוי"
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ ".כוונון עוצמת כניסה אוטומטית הופסקה. לא ניתן למטב יותר. עדיין הרמה גבוהה "
-#~ "מדי"
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
+#~ msgstr ".כוונון עוצמת כניסה אוטומטית הופסקה. לא ניתן למטב יותר. עדיין הרמה גבוהה מדי"
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
 #~ msgstr ".%f כוונון עוצמת כניסה אוטומטי הפחית לעוצמה ברמה"
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "כוונון עוצמת כניסה אוטומטי הופסקה. לא ניתן למטב יותר. הרמה עדיין נמוכה "
-#~ "מדי."
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
+#~ msgstr "כוונון עוצמת כניסה אוטומטי הופסקה. לא ניתן למטב יותר. הרמה עדיין נמוכה מדי."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
 #~ msgstr ".%.2f כוונון עוצמת כניסה אוטומטית הגביר את העוצמה לרמה"
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "כוונון עוצמת כניסה אוטומטית הופסקה. חרג ממספר הנסיונות ולא התקבל רמת שמע "
-#~ "תקינה. הרמה עדיין גבוהה מדי."
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
+#~ msgstr "כוונון עוצמת כניסה אוטומטית הופסקה. חרג ממספר הנסיונות ולא התקבל רמת שמע תקינה. הרמה עדיין גבוהה מדי."
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "כוונון עוצמת כניסה אוטומטית הופסקה. חרג ממספר הנסיונות ולא התקבל רמת שמע "
-#~ "תקינה. הרמה עדיין נמוכה מדי."
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
+#~ msgstr "כוונון עוצמת כניסה אוטומטית הופסקה. חרג ממספר הנסיונות ולא התקבל רמת שמע תקינה. הרמה עדיין נמוכה מדי."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
 #~ msgstr "היא רמת שמע תקינה %.2f כוונון עוצמת כניסה אוטומטית הופסקה. כנראה."
 
 #, fuzzy
@@ -2254,8 +3130,7 @@ msgstr "...Nyquist פקודת"
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
@@ -2648,15 +3523,12 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Missing"
 #~ msgstr "קבצים חסרים"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
 #~ msgstr "?אם תמשיך, הפרוייקט לא יישמר בדיסק. זה מה שאתה רוצה"
 
 #, fuzzy
 #~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio "
-#~ "files. \n"
+#~ "Your project is self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
 #~ "Some older Audacity projects may not be self-contained, and care \n"
 #~ "is needed to keep their external dependencies in the right place.\n"
@@ -2664,8 +3536,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr ""
 #~ "כעת הפרוייקט הוא עצמאי, ואינו תלוי באף קובץ אודיו חיצוני.\n"
 #~ "\n"
-#~ "אם תשנה את הפרוייקט למצב תלות חיצוני או שתייבא קבצים, יפסיק להיות פרוייקט "
-#~ "עצמאי, ושמירתו ללא העתקת הקבצים יגרום לאיבוד מידע."
+#~ "אם תשנה את הפרוייקט למצב תלות חיצוני או שתייבא קבצים, יפסיק להיות פרוייקט עצמאי, ושמירתו ללא העתקת הקבצים יגרום לאיבוד מידע."
 
 #~ msgid "Dependency Check"
 #~ msgstr "בדיקת תלויות"
@@ -2742,16 +3613,11 @@ msgstr "...Nyquist פקודת"
 #~ msgid "&Replot..."
 #~ msgstr "...חזור על"
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב "
-#~ "דגימה"
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב דגימה"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
 #~ msgstr ""
 #~ "%.1f -יותר מדי שמע נבחר. רק ה\n"
 #~ ".השניות הראשונות של השמע ינותחו"
@@ -3081,16 +3947,11 @@ msgstr "...Nyquist פקודת"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Error while opening sound device. Please check the output device settings "
-#~ "and the project sample rate."
+#~ msgstr "Error while opening sound device. Please check the output device settings and the project sample rate."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב "
-#~ "דגימה"
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב דגימה"
 
 #~ msgid "Recorded Audio"
 #~ msgstr "שמע מוקלט"
@@ -3104,13 +3965,9 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Close project immediately with no changes"
 #~ msgstr "סגור פרוייקט מיידי ללא שמירת שינויים"
 
-#~ msgid ""
-#~ "Continue with repairs noted in log, and check for more errors. This will "
-#~ "save the project in its current state, unless you \"Close project "
-#~ "immediately\" on further error alerts."
+#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
 #~ msgstr ""
-#~ "המשך בתיקונים הרשומים בדוח, ובדוק שגיאות נוספות. זה ישמור את הפרוייקט "
-#~ "במצבו בנוכחי\n"
+#~ "המשך בתיקונים הרשומים בדוח, ובדוק שגיאות נוספות. זה ישמור את הפרוייקט במצבו בנוכחי\n"
 #~ "אלא אם תבחר ב- \"סגור פרוייקט מיידי\" בתיבת הודעת שגיאות."
 
 #~ msgid "Warning - Problems Reading Sequence Tags"
@@ -3722,9 +4579,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "בחירה מופעלת"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
 #~ msgstr ".בחר וגרור בכדי לכוון גודל יחסי של רצועות סטריאו"
 
 #~ msgid "Click and drag to resize the track."
@@ -4831,11 +5686,8 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "(dB) טרבל"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב "
-#~ "דגימה"
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב דגימה"
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -5080,8 +5932,7 @@ msgstr "...Nyquist פקודת"
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
 #~ ",בחר את כל השמע שברצונך לסנן\n"
@@ -5127,8 +5978,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "הסרת רעש"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
 #~ ",בחר את כל השמע שברצונך לסנן\n"
@@ -5297,11 +6147,8 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "מייצא את חלק השמע הנבחר בתור קובץ %s"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב "
-#~ "דגימה"
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr ".בכדי לצייר את הספקטרום, כלל הרצועות הנבחרות חייבות להיות בעלות אותו קצב דגימה"
 
 #, fuzzy
 #~ msgid "&Subtype:"
@@ -5628,10 +6475,8 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquist"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "מצטער, לא יכול לבצע אפקט עבור ערוצי סטריאו כאשר הערוצים אינם מתואמים"
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "מצטער, לא יכול לבצע אפקט עבור ערוצי סטריאו כאשר הערוצים אינם מתואמים"
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -5677,8 +6522,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "לא החזיר שמע Nyquist\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "This version of Audacity was not compiled with %s support."
 
 #, fuzzy
@@ -5722,12 +6566,8 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Vamp Effects"
 #~ msgstr "&אפקטים"
 
-#~ msgid ""
-#~ "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-#~ "channels of the track do not match."
-#~ msgstr ""
-#~ ".מוספים לא יכולים להתבצע עבור ערוצי סטריאו כאשר הערוצים של הרצועה אינם "
-#~ "מתואמים Vamp מצטער, אפקטי"
+#~ msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
+#~ msgstr ".מוספים לא יכולים להתבצע עבור ערוצי סטריאו כאשר הערוצים של הרצועה אינם מתואמים Vamp מצטער, אפקטי"
 
 #~ msgid "Sorry, failed to load Vamp Plug-in."
 #~ msgstr "Vamp מצטער, כישלון בטעינת תוסף"
@@ -5767,15 +6607,13 @@ msgstr "...Nyquist פקודת"
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ ".%s את הקובץ %s הינך מתעתד לשמור תחת השם.\n"
 #~ "\n"
-#~ ".ומספר תוכנות לא יוכלו לפתוח קבצים בעלי סיומת לא סטנדרטית ,%s-בדרך כלל "
-#~ "קבצים אלו מסתימים ב\n"
+#~ ".ומספר תוכנות לא יוכלו לפתוח קבצים בעלי סיומת לא סטנדרטית ,%s-בדרך כלל קבצים אלו מסתימים ב\n"
 #~ "\n"
 #~ "?האם אתה בטוח ברצונך לשמור את הקובץ בשם זה"
 
@@ -5795,9 +6633,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr ".הרצועות יעורבבו ויומרו לשני ערוצי סטריאו בקבצים שייוצאו"
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
 #~ msgstr ".הרצועות יעורבבו ויומרו לשני ערוצי סטריאו בקבצים שייוצאו"
 
 #~ msgid "Advanced Mixing Options"
@@ -6230,10 +7066,8 @@ msgstr "...Nyquist פקודת"
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ ".הינו קובץ שמע בקידוד מתקדם \"%s\" \n"
 #~ ". אינה יכולה לפתוח קובץ זה Audacity\n"
@@ -8123,9 +8957,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Directory %s is not writable"
 #~ msgstr " אינה ברת כתיבה %s ספריה"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
 #~ msgstr "שינויים לספרייה הזמנית לא יכנסו לתוקף עד שהתוכנה תאותחל"
 
 #, fuzzy
@@ -8344,8 +9176,7 @@ msgstr "...Nyquist פקודת"
 
 #, fuzzy
 #~ msgid ""
-#~ "These are experimental modules. Enable them only if you've read the "
-#~ "Audacity Manual\n"
+#~ "These are experimental modules. Enable them only if you've read the Audacity Manual\n"
 #~ "and know what you are doing."
 #~ msgstr ""
 #~ "These are experimental. Enable them only if you've read the manual\n"
@@ -9276,9 +10107,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "אוקטבה נמוכה יותר"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
 #~ msgstr "...להקטנה, גרור לקביעת גודל ההגדלה Shift בחר להגדלה אנכית, הוסף "
 
 #, fuzzy
@@ -9464,8 +10293,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr ",ימינה"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
 #~ msgstr ".בחר וגרור בכדי לכוון גודל יחסי של רצועות סטריאו"
 
 #, fuzzy
@@ -9622,8 +10450,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr ".בחר וגרור בכדי להזיז את קצה קטע הבחירה השמאלי"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr ".בחר וגרור בכדי להזיז את קצה קטע הבחירה השמאלי"
 
 #, fuzzy
@@ -9964,14 +10791,12 @@ msgstr "...Nyquist פקודת"
 #, fuzzy
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was "
-#~ "unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
-#~ "locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
 #~ msgstr ""
 #~ "אחד או יותר מקבצי אודיו חיצוני/ים לא נמצא/ו.\n"
 #~ "ייתכן כי הועבר/ו, נמחק/ו או שהכונן אינו מחובר כעת.\n"
@@ -10050,17 +10875,13 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "לא מומשה עדיין %s הפקודה "
 
 #~ msgid ""
-#~ "Your project is currently self-contained; it does not depend on any "
-#~ "external audio files. \n"
+#~ "Your project is currently self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
-#~ "If you change the project to a state that has external dependencies on "
-#~ "imported files, it will no longer be self-contained. If you then Save "
-#~ "without copying those files in, you may lose data."
+#~ "If you change the project to a state that has external dependencies on imported files, it will no longer be self-contained. If you then Save without copying those files in, you may lose data."
 #~ msgstr ""
 #~ "כעת הפרוייקט הוא עצמאי, ואינו תלוי באף קובץ אודיו חיצוני.\n"
 #~ "\n"
-#~ "אם תשנה את הפרוייקט למצב תלות חיצוני או שתייבא קבצים, יפסיק להיות פרוייקט "
-#~ "עצמאי, ושמירתו ללא העתקת הקבצים יגרום לאיבוד מידע."
+#~ "אם תשנה את הפרוייקט למצב תלות חיצוני או שתייבא קבצים, יפסיק להיות פרוייקט עצמאי, ושמירתו ללא העתקת הקבצים יגרום לאיבוד מידע."
 
 #, fuzzy
 #~ msgid "Cleaning project temporary files"
@@ -10110,12 +10931,8 @@ msgstr "...Nyquist פקודת"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "...שמור העתק דחוס מהפרוייקט"
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Audacity was unable to convert an Audacity 1.0 project to the new project format."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Could not remove old auto save file"
@@ -10189,9 +11006,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "Audacity %s של הפיתוח צוות"
 
 #, fuzzy
-#~ msgid ""
-#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
-#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "יוצרים זכויות מוגנת התוכנה <b>Audacity&reg;</b>"
 
 #~ msgid "mkdir in DirManager::MakeBlockFilePath failed."
@@ -10199,8 +11014,7 @@ msgstr "...Nyquist פקודת"
 
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete "
-#~ "project check."
+#~ "Please consider saving and reloading the project to perform a complete project check."
 #~ msgstr ""
 #~ ".%s מצא בלוק ללא שיוך קובץ: Audacity \n"
 #~ "נסה לשמור ולטעון את הפרוייקט שוב לבדיקה מלאה על תקינות קבצי הפרוייקט."
@@ -10280,20 +11094,12 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "אפשר כלי מדידה"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files (*.*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -10315,28 +11121,16 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "XML קבצי (*.xml)|*.xml|כל הקבצים (*.*)|*.*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files (*.*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Only libmp3lame.so|libmp3lame.so|Primary Shared Object files (*.so)|*.so|"
-#~ "Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Only libmp3lame.so|libmp3lame.so|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "(dB) צורת הגל"
@@ -10437,11 +11231,9 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "ימינה"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden "
-#~ "before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
-#~ "to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
 #~ msgstr ""
 #~ ".הגדרות תיקון ההשעיה גרמו להסתרת הקלטת אודיו לפני 0\n"
 #~ ".מיקם אותו חזרה בכדי שיתחיל מנקודת ה-0 Audacity\n"
@@ -10506,9 +11298,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Time Scale"
 #~ msgstr "ציר הזמן"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
 #~ msgstr ".הרצועות יעורבבו ויומרו לערוץ אחדבמונו בקבצים שייוצאו"
 
 #~ msgid "Playthrough"
@@ -10522,9 +11312,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Error while opening sound device. Please check the output device settings "
-#~ "and the project sample rate."
+#~ msgstr "Error while opening sound device. Please check the output device settings and the project sample rate."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -10656,9 +11444,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "תאריך וזמן התחלה"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
 #~ msgstr "...להקטנה, גרור לקביעת גודל ההגדלה Shift בחר להגדלה אנכית, הוסף "
 
 #~ msgid "up"
@@ -11138,9 +11924,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Command-line options supported:"
 #~ msgstr ":אפשרויות שורות פקודה נתמכות"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
 #~ msgstr ".בנוסף, ניתן לציין את שם קובץ האודיו או הפרויקט לפתיחה"
 
 #~ msgid "Stereo to Mono Effect not found"
@@ -11151,8 +11935,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "%d Hz (%s) = %d dB    Peak: %d Hz (%s) :סמן"
 
 #, fuzzy
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
 #~ msgstr "%.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) :סמן"
 
 #, fuzzy
@@ -11287,16 +12070,13 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "...נירמול"
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "%s : יושם אפקט%f -השהייה בשניות%f - מקדם דעיכה"
 
 #~ msgid "Stretching with Paulstretch"
 #~ msgstr "Paulstretch מותח עם"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
 #~ msgstr ""
 #~ "%s : יושם אפקט\n"
 #~ "%d -שלבים\n"
@@ -11349,9 +12129,7 @@ msgstr "...Nyquist פקודת"
 #~ msgstr "%.6lf :יושם אפקט: ייצור שקט, משך בשניות"
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
 #~ msgstr ""
 #~ "%s %s יושם אפקט: ייצור גל\n"
 #~ "%.2f Hz -תדר\n"
@@ -11368,9 +12146,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "קומבינציית מפתחות"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
 #~ msgstr ""
 #~ "%s : יושם אפקט\n"
 #~ "%.1f Hz -תדר\n"
@@ -11391,12 +12167,8 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Author: "
 #~ msgstr "מחברr: "
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ ".מצטער, אפקטים מוספים לא יכולים להתבצע עבור ערוצי סטריאו כאשר הערוצים "
-#~ "עצמם של הרצועה אינם מתואמים"
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr ".מצטער, אפקטים מוספים לא יכולים להתבצע עבור ערוצי סטריאו כאשר הערוצים עצמם של הרצועה אינם מתואמים"
 
 #~ msgid "Extracting features: %s"
 #~ msgstr "%s :מחלץ תכונות "
@@ -11439,8 +12211,7 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Input Meter"
 #~ msgstr "מד כניסה"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgid "Recovering a project will not change any files on disk before you save it."
 #~ msgstr "שחזור פרוייקט לא יבצע שינוי הקובץ בדיסק לפני שמירה."
 
 #~ msgid "Do Not Recover"
@@ -11609,12 +12380,8 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Attempt to run Noise Removal without a noise profile.\n"
 #~ msgstr "נסה להריץ את מסיר הרעש ללו פרופיל רעש.\n"
 
-#~ msgid ""
-#~ "Sorry, this effect cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ ".מצטער, אפקט זה לא יכולי להתבצע עבור ערוצי סטריאו כאשר הערוצים עצמם של "
-#~ "הרצועה אינם מתואמים  "
+#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr ".מצטער, אפקט זה לא יכולי להתבצע עבור ערוצי סטריאו כאשר הערוצים עצמם של הרצועה אינם מתואמים  "
 
 #~ msgid "Threshold for silence:"
 #~ msgstr "רמת סף לשקט:"
@@ -11716,17 +12483,5 @@ msgstr "...Nyquist פקודת"
 #~ msgid "Calibrate"
 #~ msgstr "כייל"
 
-#~ msgid ""
-#~ "This is a Beta version of the program. It may contain bugs and unfinished "
-#~ "features. We depend on your feedback: please send bug reports and feature "
-#~ "requests to our <a href=\"mailto:feedback@audacityteam.org\">Feedback</a> "
-#~ "address. For help, use the Help menu in the program, view the tips and "
-#~ "tricks on our <a href=\"http://wiki.audacityteam.org/\">Wiki</a> or visit "
-#~ "our <a href=\"http://forum.audacityteam.org/\">Forum</a>."
-#~ msgstr ""
-#~ "תוכנה זו היא גירסת פיתוח. ועלול להכיל שגיאות ותכונות שלא הושלמו. אנו "
-#~ "זקוקים למשוב שלכם: נא שלח דיווחי קריסה ובקשת תכונות לכתובת שלנו <a href="
-#~ "\"mailto:feedback@audacityteam.org\">Feedback</a>. לעזרה, נא העזר בפתריט "
-#~ "העזרה דרך התוכנה, עיין בעצות וטריקים בדף הויקי שלנו <a href=\"http://wiki."
-#~ "audacityteam.org/\">Wiki</a> או בקר בפורום שלנו <a href=\"http://forum."
-#~ "audacityteam.org/\">Forum</a>."
+#~ msgid "This is a Beta version of the program. It may contain bugs and unfinished features. We depend on your feedback: please send bug reports and feature requests to our <a href=\"mailto:feedback@audacityteam.org\">Feedback</a> address. For help, use the Help menu in the program, view the tips and tricks on our <a href=\"http://wiki.audacityteam.org/\">Wiki</a> or visit our <a href=\"http://forum.audacityteam.org/\">Forum</a>."
+#~ msgstr "תוכנה זו היא גירסת פיתוח. ועלול להכיל שגיאות ותכונות שלא הושלמו. אנו זקוקים למשוב שלכם: נא שלח דיווחי קריסה ובקשת תכונות לכתובת שלנו <a href=\"mailto:feedback@audacityteam.org\">Feedback</a>. לעזרה, נא העזר בפתריט העזרה דרך התוכנה, עיין בעצות וטריקים בדף הויקי שלנו <a href=\"http://wiki.audacityteam.org/\">Wiki</a> או בקר בפורום שלנו <a href=\"http://forum.audacityteam.org/\">Forum</a>."

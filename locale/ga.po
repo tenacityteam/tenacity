@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2020-06-18 18:43+0200\n"
 "Last-Translator: Seanán Ó Coistín <seananoc@gmail.com>\n"
 "Language-Team: Seanán Ó Coistín <seananoc@gmail.com>\n"
@@ -14,9 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n>=3 && n<=6 ? 2 : "
-"n>=7 && n<=10 ? 3 : 4);\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n>=3 && n<=6 ? 2 : n>=7 && n<=10 ? 3 : 4);\n"
 "X-Generator: Poedit 2.3.1\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -107,6 +110,16 @@ msgstr "Seinnt"
 msgid "No playback device found for '%s'.\n"
 msgstr "Seinnt"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Luasanna a dtugtar Tacaíocht Dóibh:\n"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -143,6 +156,20 @@ msgstr "Gléas athsheanma MIDI a roghnaíodh: %d - %s\n"
 msgid "Message"
 msgstr "Teachtaireacht"
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "Earráid Inmheánach"
@@ -156,6 +183,19 @@ msgstr "Theip ar Audacity comhad a oscailt in %s."
 #, fuzzy, c-format
 msgid "Audacity failed to read from a file in %s."
 msgstr "Theip ar Audacity comhad a oscailt in %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid ""
+"Audacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -228,6 +268,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Comhadlann na gcomhad sealadach"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -321,6 +369,12 @@ msgstr "16-bit PCM"
 msgid "24-bit PCM"
 msgstr "24-bit PCM"
 
+#. i18n-hint: Audio data bit depth (precision): 32-bit floating point
+#: libraries/lib-math/SampleFormat.cpp
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "32-bit float"
+msgstr ""
+
 #: libraries/lib-math/SampleFormat.cpp
 #, fuzzy
 msgid "Unknown format"
@@ -333,6 +387,21 @@ msgstr "16-bheart"
 #: libraries/lib-project-rate/QualitySettings.cpp
 msgid "24-bit"
 msgstr "24-bheart"
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -415,10 +484,35 @@ msgid "Paul Licameli"
 msgstr "Paul Licameli"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
 #, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "~aRoghnaigh minicíochtaí."
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -436,9 +530,35 @@ msgid "Gain (dB)"
 msgstr "Neartúchán (dB):"
 
 #: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Minicíocht líneach"
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
@@ -464,6 +584,23 @@ msgstr "Phaser á Fhorchur"
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Adjustable Fade"
+msgstr ""
+
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Fade Type"
@@ -488,8 +625,16 @@ msgid "S-Curve Down"
 msgstr "Bog an Rian Síos"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 msgid "Start/End as"
 msgstr "Tosaigh/Críochnaigh ag"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 msgid "dB Gain"
@@ -504,6 +649,10 @@ msgid "End (or start)"
 msgstr "Críoch (nó an tús)"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 msgid "None Selected"
 msgstr "Faic Roghnaithe"
 
@@ -514,6 +663,14 @@ msgstr "Líneach Isteach"
 #: plug-ins/adjustable-fade.ny
 msgid "Linear Out"
 msgstr "Líneach Amach"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -560,6 +717,24 @@ msgstr "Bog an Rian Síos"
 msgid "Error~%~%"
 msgstr "Earráid~%~%"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -590,9 +765,21 @@ msgid "Reconstructing clips..."
 msgstr "Cnaga is plaib á n-asbhaint..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Tairseach %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -603,6 +790,21 @@ msgstr "Rian Nótaí"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "Rian Nótaí"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -645,6 +847,19 @@ msgstr "Céimnigh Isteach"
 #: plug-ins/crossfadetracks.ny
 msgid "Automatic"
 msgstr "Uathoibríoch"
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
 
 #: plug-ins/delay.ny
 msgid "Delay"
@@ -694,13 +909,35 @@ msgid "Pitch/Tempo"
 msgstr "Airde (EAC)"
 
 #: plug-ins/delay.ny
+msgid "Low-quality Pitch Shift"
+msgstr ""
+
+#: plug-ins/delay.ny
+#, fuzzy
+msgid "Pitch change per echo (semitones)"
+msgstr "Réamhamharc an maisiú"
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Number of echoes"
 msgstr "Líon uaireanta le hathdhéanamh:"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Ná"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -727,6 +964,10 @@ msgid "XML file"
 msgstr "Comhad XML"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Déan Taifeadadh"
@@ -750,6 +991,14 @@ msgstr "Earráid (seans nár scríobhadh an comhad): %s"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Earráid (seans nár scríobhadh an comhad): %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -784,6 +1033,10 @@ msgstr "Fad (soicindí)"
 msgid "Length of label region (seconds)"
 msgstr "Fad (soicindí)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 msgid "Label text"
@@ -792,6 +1045,10 @@ msgstr "Téacs an lipéid"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "Lipéad"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 msgid "None - Text Only"
@@ -837,6 +1094,11 @@ msgstr "Mionsonraí"
 msgid "Warnings only"
 msgstr "Rabhaí amháin"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -847,6 +1109,17 @@ msgstr "Lipéad a cuireadh leis"
 #, fuzzy
 msgid "point labels"
 msgstr "Iompórtáil Lipéid"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, fuzzy, lisp-format
+msgid "~aRegion length = ~a seconds."
+msgstr "Comhsteiréó"
 
 #: plug-ins/highpass.ny
 #, fuzzy
@@ -866,6 +1139,10 @@ msgstr "Dominic Mazzoni"
 #: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
 msgid "Frequency (Hz)"
 msgstr "Minicíocht (Hz):"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
 
 #: plug-ins/highpass.ny plug-ins/lowpass.ny
 msgid "6 dB"
@@ -890,6 +1167,14 @@ msgstr "48 dB"
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Ní mór don mhinicíocht a bheith 0.1 Hz ar a laghad."
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -949,6 +1234,11 @@ msgstr "Comhsteiréó"
 
 #: plug-ins/label-sounds.ny
 #, fuzzy
+msgid "Region around sounds"
+msgstr "Comhsteiréó"
+
+#: plug-ins/label-sounds.ny
+#, fuzzy
 msgid "Region between sounds"
 msgstr "Comhsteiréó"
 
@@ -962,17 +1252,36 @@ msgstr "Ciúnas á aimsiú..."
 msgid "Maximum trailing silence"
 msgstr "Ciúnas á aimsiú..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
 #. i18n-hint: hours minutes and seconds. Do not translate "~a".
 #: plug-ins/label-sounds.ny
 #, lisp-format
 msgid "~ah ~am ~as"
 msgstr "~ah ~am ~as"
 
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Ní mór don luach a bheith níos mó ná %s"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -1008,6 +1317,13 @@ msgstr "Gearrthóg Chrua"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Cainéal Deas"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Cainéal Deas"
 
@@ -1018,6 +1334,10 @@ msgstr "Teorannaigh go (dB)"
 #: plug-ins/limiter.ny plug-ins/noisegate.ny
 msgid "Hold (ms)"
 msgstr "Greim (ms)"
+
+#: plug-ins/limiter.ny
+msgid "Apply Make-up Gain"
+msgstr ""
 
 #: plug-ins/lowpass.ny
 #, fuzzy
@@ -1042,6 +1362,10 @@ msgstr "Roghnú"
 #: plug-ins/noisegate.ny
 msgid "Gate"
 msgstr "Geata"
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -1084,12 +1408,36 @@ msgid "Decay (ms)"
 msgstr "Meath (soicindí):"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Ní mór don luach a bheith níos mó ná %s"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
 
 #. i18n-hint: hours and minutes. Do not translate "~a".
 #: plug-ins/noisegate.ny
@@ -1110,6 +1458,18 @@ msgstr "Phaser á Fhorchur"
 #: plug-ins/notch.ny
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "Steve Daulton agus Bill Wharrie"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Nyquist Plug-in Installer"
@@ -1169,6 +1529,11 @@ msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Theip ar bhaint %s"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Plug-ins updated:"
 msgstr "Breiseáin %i go %i"
@@ -1179,14 +1544,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Roghnaigh comhad breiseáin"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Scagairí gan úsáid:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Roghnaigh comhad breiseáin"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1194,8 +1576,16 @@ msgid "Generating pluck sound..."
 msgstr "Ton á Cheapadh"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
 msgid "David R.Sky"
 msgstr "David R.Sky"
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1229,12 +1619,36 @@ msgid "Tempo (bpm)"
 msgstr "Luas (bpm)"
 
 #: plug-ins/rhythmtrack.ny
+msgid "30 - 300 beats/minute"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Beats per bar"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 20 beats/measure"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Swing amount"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 msgid "+/- 1"
 msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
 msgstr "Líon na mbarraí"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1260,6 +1674,18 @@ msgid "Beat sound"
 msgstr "Fuaim buillí"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 msgid "Cowbell"
 msgstr "Clog bó"
 
@@ -1274,8 +1700,30 @@ msgid "Noise Click"
 msgstr "Cléchnagadh"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 msgid "18 - 116"
 msgstr "18 - 116"
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1301,6 +1749,10 @@ msgid "Center frequency of noise (Hz)"
 msgstr "Minicíocht líneach"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "Minicíocht LFO (Hz):"
@@ -1317,6 +1769,10 @@ msgstr "Déan Eagarthóireacht ar Shamplaí"
 #: plug-ins/sample-data-export.ny
 msgid "Analyzing..."
 msgstr "Ag miondealú..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1352,6 +1808,10 @@ msgid "HTML files"
 msgstr "Comhaid HTML"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Déan Eagarthóireacht ar Shamplaí"
@@ -1377,6 +1837,19 @@ msgstr "Caighdeánach"
 #: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "Uile"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "Alternate Lines"
@@ -1412,8 +1885,43 @@ msgstr "~%~%Bealach Deas.~%~%"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
 msgid "~a linear, ~a dB."
 msgstr "~a líneach, ~a dB."
+
+#: plug-ins/sample-data-export.ny
+#, fuzzy, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr "~a líneach, &nbsp;&nbsp;~a dB."
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1426,14 +1934,30 @@ msgid "~a seconds."
 msgstr "~a soicindí."
 
 #: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr "~a líneach, &nbsp;&nbsp;~a dB."
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, fuzzy, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
 msgstr "~a líneach, &nbsp;&nbsp;~a dB."
 
 #. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr "~a líneach, &nbsp;&nbsp;~a dB."
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, fuzzy, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
 msgstr "~a líneach, &nbsp;&nbsp;~a dB."
 
 #: plug-ins/sample-data-export.ny
@@ -1467,6 +1991,10 @@ msgid "Value (dB)"
 msgstr "Luach (dB)"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Left (linear)"
 msgstr "Clé (líneach)"
 
@@ -1481,6 +2009,14 @@ msgstr "Clé (dB)"
 #: plug-ins/sample-data-export.ny
 msgid "Right (dB)"
 msgstr "Deas (dB)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "linear"
@@ -1498,6 +2034,35 @@ msgstr "1Cainéal (Aonfhónach)"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
 msgid "Error.~%\"~a\" cannot be written."
 msgstr "Earráid.~% Ní féidir \"~a\" a scríobh."
 
@@ -1507,8 +2072,16 @@ msgid "Sample Data Import"
 msgstr "Ráta samplaithe:"
 
 #: plug-ins/sample-data-import.ny
+msgid "Reading and rendering samples..."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 msgid "Select file"
 msgstr "Roghnaigh comhad"
+
+#: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy
@@ -1521,6 +2094,30 @@ msgstr "Léigh mar Náid é"
 
 #: plug-ins/sample-data-import.ny
 #, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
 msgid "Error.~%Unable to open file"
 msgstr "Earráid.~%Ní féidir an comhad a oscailt"
 
@@ -1528,6 +2125,11 @@ msgstr "Earráid.~%Ní féidir an comhad a oscailt"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Socraigh Pointe an Rogha"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
 
 #: plug-ins/tremolo.ny
 msgid "Tremolo"
@@ -1563,6 +2165,14 @@ msgstr "Cearnóg"
 #, fuzzy
 msgid "Starting phase (degrees)"
 msgstr "Pas Tosaigh LFO (céim.):"
+
+#: plug-ins/tremolo.ny
+msgid "Wet level (percent)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Applying Action..."
@@ -1618,6 +2228,81 @@ msgstr "Scrúdaigh"
 msgid "Strength"
 msgstr "Láidreacht"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
 #: plug-ins/vocoder.ny
 msgid "Vocoder"
 msgstr "Vocoder"
@@ -1672,323 +2357,249 @@ msgstr "Minicíocht LFO (Hz):"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Minicíocht LFO (Hz):"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Nyquist Workbench..."
-msgstr "&Binse Oibre Maisiúchán Nyquist..."
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Undo\tCtrl+Z"
-msgstr "&Cealaigh\tCtrl+Z"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Redo\tCtrl+Y"
-msgstr "&Athdhéan\tCtrl+Y"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cu&t\tCtrl+X"
-msgstr "Gearr\tCtrl+X"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Copy\tCtrl+C"
-msgstr "&Cóipeáil\tCtrl+C"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Paste\tCtrl+V"
-msgstr "G&reamaigh\tCtrl+V"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cle&ar\tCtrl+L"
-msgstr "Glan\tCtrl+L"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Select A&ll\tCtrl+A"
-msgstr "Roghnaigh Ui&le\tCtrl+A"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Find...\tCtrl+F"
-msgstr "&Aimsigh... Ctrl+F"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-#, fuzzy
-msgid "&Top S-expr\tF9"
-msgstr "&S-expr ar aghaidh\tF12"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-#, fuzzy
-msgid "&Higher S-expr\tF10"
-msgstr "&S-expr ar aghaidh\tF12"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Previous S-expr\tF11"
-msgstr "&S-expr roimhe\tF11"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Next S-expr\tF12"
-msgstr "&S-expr ar aghaidh\tF12"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Go to"
-msgstr "Téi&gh chuig"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Select &Font..."
-msgstr "Roghnaigh Cló&fhoireann..."
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Split &Vertically"
-msgstr "Scoilt go hIn&gearach"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Split &Horizontally"
-msgstr "Scoilt go Cothrománach"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Show S&cript"
-msgstr "Taispeáin s&cript"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Show &Output"
-msgstr "Taispeáin an tAschur"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Large Icons"
-msgstr "Deilbhíní móra"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Small Icons"
-msgstr "Deilbhíní beaga"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Toolbar"
-msgstr "Barra Uirlisí"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Go\tF5"
-msgstr "&Téigh\tF5"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&Stop\tF6"
-msgstr "&Stad\tF6"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "&About"
-msgstr "M&aidir leis"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Script"
-msgstr "Script"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Output"
-msgstr "Aschur"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Load Nyquist script"
-msgstr "Luchtaigh script Nyquist"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
 msgstr ""
-"Scripteanna Nyquist (*.ny)|*.ny|scripteanna Lisp (*.lsp)|*.lsp|Gach comhad|*"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "&Binse Oibre Maisiúchán Nyquist..."
+
+#~ msgid "&Undo\tCtrl+Z"
+#~ msgstr "&Cealaigh\tCtrl+Z"
+
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&Athdhéan\tCtrl+Y"
+
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "Gearr\tCtrl+X"
+
+#~ msgid "&Copy\tCtrl+C"
+#~ msgstr "&Cóipeáil\tCtrl+C"
+
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "G&reamaigh\tCtrl+V"
+
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "Glan\tCtrl+L"
+
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Roghnaigh Ui&le\tCtrl+A"
+
+#~ msgid "&Find...\tCtrl+F"
+#~ msgstr "&Aimsigh... Ctrl+F"
+
 #, fuzzy
-msgid "Script was not saved."
-msgstr "níor bogadh an ghearrthóg"
+#~ msgid "&Top S-expr\tF9"
+#~ msgstr "&S-expr ar aghaidh\tF12"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Foláireamh"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Save Nyquist script"
-msgstr "Taisc script Nyquist"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Find dialog"
-msgstr "An fhuinneog aimsithe"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Harvey Lubin (logo)"
-msgstr "Harvey Lubin (lógó)"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Leland Lucius"
-msgstr "Leland Lucius"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "(C) 2009 by Leland Lucius"
-msgstr "(C) 2009 le Leland Lucius"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Nyquist Effect Workbench"
-msgstr "Binse Oibre Maisiúchán Nyquist"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "No matches found"
-msgstr "Níor aimsíodh aon rud cosúil leis"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Code has been modified. Are you sure?"
-msgstr "Athraíodh an cód. An bhfuil tú cinnte?"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Untitled"
-msgstr "Gan teideal"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Nyquist Effect Workbench - "
-msgstr "Binse Oibre Maisiúchán Nyquist - "
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "New"
-msgstr "Nua"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "New script"
-msgstr "Script nua"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Open"
-msgstr "Oscail"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Open script"
-msgstr "Oscail script"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Save"
-msgstr "Taisc"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Save script"
-msgstr "Taisc an script"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Save As"
-msgstr "Taisc Mar"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Save script as..."
-msgstr "Taisc an script mar..."
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Cóipeáil"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy to clipboard"
-msgstr "Cóipeáil chuig an nghearrthaisce"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Gearr"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut to clipboard"
-msgstr "Gearr agus cuir sa ghearrthaisce é"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Greamaigh"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste from clipboard"
-msgstr "Greamaigh ón ghearrthaisce"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Clear"
-msgstr "Glan"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Clear selection"
-msgstr "Glan an roghnúchán"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Select All"
-msgstr "Roghnaigh Uile"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Select all text"
-msgstr "Roghnaigh gach téacs"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Cealaigh"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo last change"
-msgstr "Cealaigh an t-athrú sin"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "Déan arís é"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo previous change"
-msgstr "Déan arís an t-athrú roimhe"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Find"
-msgstr "Aimsigh"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Find text"
-msgstr "Aimsigh téacs"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Match"
-msgstr "Comhoiriúnaigh"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Top"
-msgstr "Go barr"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Téigh chuig an S-expr ar aghaidh"
+#~ msgid "&Higher S-expr\tF10"
+#~ msgstr "&S-expr ar aghaidh\tF12"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "Suas"
+#~ msgid "&Previous S-expr\tF11"
+#~ msgstr "&S-expr roimhe\tF11"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "&Next S-expr\tF12"
+#~ msgstr "&S-expr ar aghaidh\tF12"
+
+#~ msgid "&Go to"
+#~ msgstr "Téi&gh chuig"
+
+#~ msgid "Select &Font..."
+#~ msgstr "Roghnaigh Cló&fhoireann..."
+
+#~ msgid "Split &Vertically"
+#~ msgstr "Scoilt go hIn&gearach"
+
+#~ msgid "Split &Horizontally"
+#~ msgstr "Scoilt go Cothrománach"
+
+#~ msgid "Show S&cript"
+#~ msgstr "Taispeáin s&cript"
+
+#~ msgid "Show &Output"
+#~ msgstr "Taispeáin an tAschur"
+
+#~ msgid "&Large Icons"
+#~ msgstr "Deilbhíní móra"
+
+#~ msgid "&Small Icons"
+#~ msgstr "Deilbhíní beaga"
+
+#~ msgid "Toolbar"
+#~ msgstr "Barra Uirlisí"
+
+#~ msgid "&Go\tF5"
+#~ msgstr "&Téigh\tF5"
+
+#~ msgid "&Stop\tF6"
+#~ msgstr "&Stad\tF6"
+
+#~ msgid "&About"
+#~ msgstr "M&aidir leis"
+
+#~ msgid "Script"
+#~ msgstr "Script"
+
+#~ msgid "Output"
+#~ msgstr "Aschur"
+
+#~ msgid "Load Nyquist script"
+#~ msgstr "Luchtaigh script Nyquist"
+
+#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
+#~ msgstr "Scripteanna Nyquist (*.ny)|*.ny|scripteanna Lisp (*.lsp)|*.lsp|Gach comhad|*"
+
 #, fuzzy
-msgid "Go to higher S-expr"
-msgstr "Téigh chuig an S-expr ar aghaidh"
+#~ msgid "Script was not saved."
+#~ msgstr "níor bogadh an ghearrthóg"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Previous"
-msgstr "Roimhe"
+#~ msgid "Warning"
+#~ msgstr "Foláireamh"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Go to previous S-expr"
-msgstr "Téigh chuig an S-expr roimhe"
+#~ msgid "Save Nyquist script"
+#~ msgstr "Taisc script Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Next"
-msgstr "Ar aghaidh"
+#~ msgid "Find dialog"
+#~ msgstr "An fhuinneog aimsithe"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Go to next S-expr"
-msgstr "Téigh chuig an S-expr ar aghaidh"
+#~ msgid "Harvey Lubin (logo)"
+#~ msgstr "Harvey Lubin (lógó)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Tosaigh"
+#~ msgid "Leland Lucius"
+#~ msgstr "Leland Lucius"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start script"
-msgstr "Tosaigh an script"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "(C) 2009 le Leland Lucius"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Stad"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Binse Oibre Maisiúchán Nyquist"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop script"
-msgstr "Stad an script"
+#~ msgid "No matches found"
+#~ msgstr "Níor aimsíodh aon rud cosúil leis"
+
+#~ msgid "Code has been modified. Are you sure?"
+#~ msgstr "Athraíodh an cód. An bhfuil tú cinnte?"
+
+#~ msgid "Untitled"
+#~ msgstr "Gan teideal"
+
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Binse Oibre Maisiúchán Nyquist - "
+
+#~ msgid "New"
+#~ msgstr "Nua"
+
+#~ msgid "New script"
+#~ msgstr "Script nua"
+
+#~ msgid "Open"
+#~ msgstr "Oscail"
+
+#~ msgid "Open script"
+#~ msgstr "Oscail script"
+
+#~ msgid "Save"
+#~ msgstr "Taisc"
+
+#~ msgid "Save script"
+#~ msgstr "Taisc an script"
+
+#~ msgid "Save As"
+#~ msgstr "Taisc Mar"
+
+#~ msgid "Save script as..."
+#~ msgstr "Taisc an script mar..."
+
+#~ msgid "Copy"
+#~ msgstr "Cóipeáil"
+
+#~ msgid "Copy to clipboard"
+#~ msgstr "Cóipeáil chuig an nghearrthaisce"
+
+#~ msgid "Cut"
+#~ msgstr "Gearr"
+
+#~ msgid "Cut to clipboard"
+#~ msgstr "Gearr agus cuir sa ghearrthaisce é"
+
+#~ msgid "Paste"
+#~ msgstr "Greamaigh"
+
+#~ msgid "Paste from clipboard"
+#~ msgstr "Greamaigh ón ghearrthaisce"
+
+#~ msgid "Clear"
+#~ msgstr "Glan"
+
+#~ msgid "Clear selection"
+#~ msgstr "Glan an roghnúchán"
+
+#~ msgid "Select All"
+#~ msgstr "Roghnaigh Uile"
+
+#~ msgid "Select all text"
+#~ msgstr "Roghnaigh gach téacs"
+
+#~ msgid "Undo"
+#~ msgstr "Cealaigh"
+
+#~ msgid "Undo last change"
+#~ msgstr "Cealaigh an t-athrú sin"
+
+#~ msgid "Redo"
+#~ msgstr "Déan arís é"
+
+#~ msgid "Redo previous change"
+#~ msgstr "Déan arís an t-athrú roimhe"
+
+#~ msgid "Find"
+#~ msgstr "Aimsigh"
+
+#~ msgid "Find text"
+#~ msgstr "Aimsigh téacs"
+
+#~ msgid "Match"
+#~ msgstr "Comhoiriúnaigh"
+
+#~ msgid "Top"
+#~ msgstr "Go barr"
+
+#, fuzzy
+#~ msgid "Go to top S-expr"
+#~ msgstr "Téigh chuig an S-expr ar aghaidh"
+
+#~ msgid "Up"
+#~ msgstr "Suas"
+
+#, fuzzy
+#~ msgid "Go to higher S-expr"
+#~ msgstr "Téigh chuig an S-expr ar aghaidh"
+
+#~ msgid "Previous"
+#~ msgstr "Roimhe"
+
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Téigh chuig an S-expr roimhe"
+
+#~ msgid "Next"
+#~ msgstr "Ar aghaidh"
+
+#~ msgid "Go to next S-expr"
+#~ msgstr "Téigh chuig an S-expr ar aghaidh"
+
+#~ msgid "Start"
+#~ msgstr "Tosaigh"
+
+#~ msgid "Start script"
+#~ msgstr "Tosaigh an script"
+
+#~ msgid "Stop"
+#~ msgstr "Stad"
+
+#~ msgid "Stop script"
+#~ msgstr "Stad an script"
 
 #~ msgid "Comments"
 #~ msgstr "Nótaí"
@@ -2071,12 +2682,8 @@ msgstr "Stad an script"
 #~ msgstr "<h3>"
 
 #, c-format
-#~ msgid ""
-#~ "%s the free, open source, cross-platform software for recording and "
-#~ "editing sounds."
-#~ msgstr ""
-#~ "%s an t-oideasra saor in aisce, foinse oscailte, tras-ardán chun "
-#~ "fuaimeanna a thaifeadadh agus a chur in eagar."
+#~ msgid "%s the free, open source, cross-platform software for recording and editing sounds."
+#~ msgstr "%s an t-oideasra saor in aisce, foinse oscailte, tras-ardán chun fuaimeanna a thaifeadadh agus a chur in eagar."
 
 #~ msgid "Credits"
 #~ msgstr "Creidiúintí"
@@ -2109,9 +2716,7 @@ msgstr "Stad an script"
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr ""
-#~ "&nbsp; &nbsp; Is trádmharc cláraithe de chuid Dhominic Mazzoni é an t-"
-#~ "ainm <b>Audacity</b>.<br><br>"
+#~ msgstr "&nbsp; &nbsp; Is trádmharc cláraithe de chuid Dhominic Mazzoni é an t-ainm <b>Audacity</b>.<br><br>"
 
 #~ msgid "Build Information"
 #~ msgstr "Faisnéis na Tógála"
@@ -2170,8 +2775,7 @@ msgstr "Stad an script"
 
 #, fuzzy
 #~ msgid "Click and drag to adjust, double-click to reset"
-#~ msgstr ""
-#~ "Cnag is tarraing chun méad coibhneasta rianta déthónacha a ghléasadh."
+#~ msgstr "Cnag is tarraing chun méad coibhneasta rianta déthónacha a ghléasadh."
 
 #, fuzzy
 #~ msgid "Record/Play head"
@@ -2244,29 +2848,22 @@ msgstr "Stad an script"
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
-#~ "Theip ar Audacity áit a aimsiú chun comhaid shealadacha a chur i "
-#~ "dtaisce.\n"
+#~ "Theip ar Audacity áit a aimsiú chun comhaid shealadacha a chur i dtaisce.\n"
 #~ "Luaigh comhadlann chuí i mbosca caidrimh na roghanna."
 
 #~ msgid ""
 #~ "Audacity could not find a place to store temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
-#~ "Theip ar Audacity áit a aimsiú chun comhaid shealadacha a chur i "
-#~ "dtaisce.\n"
+#~ "Theip ar Audacity áit a aimsiú chun comhaid shealadacha a chur i dtaisce.\n"
 #~ "Luaigh comhadlann chuí i mbosca caidrimh na roghanna."
 
 #, fuzzy
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Tá Audacity ar tí scuir.  Múscail arís é chun an chomhadlann shealadach "
-#~ "nua a úsáid."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Tá Audacity ar tí scuir.  Múscail arís é chun an chomhadlann shealadach nua a úsáid."
 
 #~ msgid "Do you still want to start Audacity?"
 #~ msgstr "An mian leat fós Audacity a thosú?"
@@ -2838,19 +3435,12 @@ msgstr "Stad an script"
 #~ msgid "&Replot..."
 #~ msgstr "Athdhéan..."
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag "
-#~ "an ráta samplaithe céanna."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag an ráta samplaithe céanna."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
-#~ msgstr ""
-#~ "Roghnaíodh an iomad fuaime.  Ní dhéanfar anailís ach ar an gcéad %.1f "
-#~ "soicind di."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+#~ msgstr "Roghnaíodh an iomad fuaime.  Ní dhéanfar anailís ach ar an gcéad %.1f soicind di."
 
 #~ msgid "Not enough data selected."
 #~ msgstr "Níl dóthain sonraí roghnaithe."
@@ -2926,12 +3516,8 @@ msgstr "Stad an script"
 #~ msgid "These are our support methods:"
 #~ msgstr "Seo iad na modhanna tacaíochta atá againn:"
 
-#~ msgid ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
-#~ "online."
-#~ msgstr ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - cuir do cheist go díreach, "
-#~ "ar an ngréasán."
+#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
+#~ msgstr " [[https://forum.audacityteam.org/|Forum]] - cuir do cheist go díreach, ar an ngréasán."
 
 #~ msgid "History"
 #~ msgstr "&Stair"
@@ -3019,12 +3605,8 @@ msgstr "Stad an script"
 #~ msgstr "Roghnaigh teanga  d'Audacity:"
 
 #, c-format
-#~ msgid ""
-#~ "The language you have chosen, %s (%s), is not the same as the system "
-#~ "language, %s (%s)."
-#~ msgstr ""
-#~ "Ní hionann an teanga ar roghnaigh tú %s (%s), agus teanga an chórais, %s "
-#~ "(%s)."
+#~ msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
+#~ msgstr "Ní hionann an teanga ar roghnaigh tú %s (%s), agus teanga an chórais, %s (%s)."
 
 #~ msgid "Confirm"
 #~ msgstr "Deimhnigh"
@@ -3286,16 +3868,11 @@ msgstr "Stad an script"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Earráid le linn oscailt ghléas fuaime. Deimhnigh socruithe ghléas an "
-#~ "aschuir, is ráta samplaithe an tionscadail."
+#~ msgstr "Earráid le linn oscailt ghléas fuaime. Deimhnigh socruithe ghléas an aschuir, is ráta samplaithe an tionscadail."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag "
-#~ "an ráta samplaithe céanna."
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag an ráta samplaithe céanna."
 
 #~ msgid "Recorded Audio"
 #~ msgstr "Fuaim Thaifeadta"
@@ -3615,9 +4192,7 @@ msgstr "Stad an script"
 #~ msgstr "Rianta Arda"
 
 #~ msgid "Choose a location to save screenshot images"
-#~ msgstr ""
-#~ "Roghnaigh suíomh inar mhaith leat na híomhánna gabhála scáileáin a chur i "
-#~ "dtaisce ann"
+#~ msgstr "Roghnaigh suíomh inar mhaith leat na híomhánna gabhála scáileáin a chur i dtaisce ann"
 
 #~ msgid "Capture failed!"
 #~ msgstr "Theip ar an ngabháil!"
@@ -3935,11 +4510,8 @@ msgstr "Stad an script"
 #~ msgstr " Roghnaigh Ar"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
-#~ msgstr ""
-#~ "Cnag is tarraing chun méad coibhneasta rianta déthónacha a ghléasadh."
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+#~ msgstr "Cnag is tarraing chun méad coibhneasta rianta déthónacha a ghléasadh."
 
 #~ msgid "Click and drag to resize the track."
 #~ msgstr "Cnag is tarraing chun an rian a athmhéadú."
@@ -5185,11 +5757,8 @@ msgstr "Stad an script"
 #~ msgstr "Eag. Lipéid"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag "
-#~ "an ráta samplaithe céanna."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag an ráta samplaithe céanna."
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -5401,9 +5970,7 @@ msgstr "Stad an script"
 
 #, fuzzy
 #~ msgid "All noise profile data must have the same sample rate."
-#~ msgstr ""
-#~ "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag "
-#~ "an ráta samplaithe céanna."
+#~ msgstr "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag an ráta samplaithe céanna."
 
 #, fuzzy
 #~ msgid "Selected noise profile is too short."
@@ -5661,11 +6228,8 @@ msgstr "Stad an script"
 #~ msgstr "Cineál Chebyshev II"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag "
-#~ "an ráta samplaithe céanna."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "Chun an speictream a rianadh, ní foláir gach rian roghnaithe a bheith ag an ráta samplaithe céanna."
 
 #~ msgid "&Filter Type:"
 #~ msgstr "An Cineál Scagaire:"
@@ -5996,11 +6560,8 @@ msgstr "Stad an script"
 #~ msgid "Nyquist Error"
 #~ msgstr "Earráid Nyquist"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Fóiríor, ní féidir an maisiúchán a chur i gcrích ar rianta défhónacha "
-#~ "nuair nach dtagann na rianta le chéile."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Fóiríor, ní féidir an maisiúchán a chur i gcrích ar rianta défhónacha nuair nach dtagann na rianta le chéile."
 
 #~ msgid "Debug Output: "
 #~ msgstr "Aschur Dífhabhtaithe: "
@@ -6035,8 +6596,7 @@ msgstr "Stad an script"
 #~ msgstr "Níor sheol Nyquist fuaim thar n-ais.\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Tiomsaíodh an leagan seo d'Audacity gan cumas láimhseála %s."
 
 #~ msgid "Could not open file"
@@ -6089,8 +6649,7 @@ msgstr "Stad an script"
 #~ msgstr "Maisiúchán Réthionlacain"
 
 #~ msgid "Provides Vamp Effects support to Audacity"
-#~ msgstr ""
-#~ "Cuireann sé tacaíocht Mhaisiúcháin Réthionlacain ar fáil do Audacity"
+#~ msgstr "Cuireann sé tacaíocht Mhaisiúcháin Réthionlacain ar fáil do Audacity"
 
 #~ msgid "Plugin Settings"
 #~ msgstr "Socruithe an Bhreiseáin"
@@ -6119,12 +6678,10 @@ msgstr "Stad an script"
 
 #, fuzzy, c-format
 #~ msgid "Are you sure you want to export the file as \"%s\"?\n"
-#~ msgstr ""
-#~ "An bhfuil tú deimhnitheach gur mian leat an comhad a shábháil mar \""
+#~ msgstr "An bhfuil tú deimhnitheach gur mian leat an comhad a shábháil mar \""
 
 #~ msgid "Sorry, pathnames longer than 256 characters not supported."
-#~ msgstr ""
-#~ "Fóiríor, ní ghlactar le hainmneacha conairí níos sia ná 256 carachtar."
+#~ msgstr "Fóiríor, ní ghlactar le hainmneacha conairí níos sia ná 256 carachtar."
 
 #, c-format
 #~ msgid "A file named \"%s\" already exists. Replace?"
@@ -6132,20 +6689,15 @@ msgstr "Stad an script"
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one mono file."
-#~ msgstr ""
-#~ "Meascfar do chuid rianta i dhá chainéal défhónach sa chomhad easpórtálta."
+#~ msgstr "Meascfar do chuid rianta i dhá chainéal défhónach sa chomhad easpórtálta."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one stereo file."
-#~ msgstr ""
-#~ "Meascfar do chuid rianta i dhá chainéal défhónach sa chomhad easpórtálta."
+#~ msgstr "Meascfar do chuid rianta i dhá chainéal défhónach sa chomhad easpórtálta."
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
-#~ msgstr ""
-#~ "Meascfar do chuid rianta i dhá chainéal défhónach sa chomhad easpórtálta."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+#~ msgstr "Meascfar do chuid rianta i dhá chainéal défhónach sa chomhad easpórtálta."
 
 #~ msgid "Advanced Mixing Options"
 #~ msgstr "Ardroghanna Measctha"
@@ -6562,8 +7114,7 @@ msgstr "Stad an script"
 #~ msgstr "Theip ar oscailt aon leabharlann inchódaithe MP3!"
 
 #~ msgid "Not a valid or supported MP3 encoding library!"
-#~ msgstr ""
-#~ "Tá an leabharlann inchódaithe MP3 neamhdhlistineach, nó ní láimhseáltar é!"
+#~ msgstr "Tá an leabharlann inchódaithe MP3 neamhdhlistineach, nó ní láimhseáltar é!"
 
 #, fuzzy, c-format
 #~ msgid "Exporting the audio with %s preset"
@@ -6761,9 +7312,7 @@ msgstr "Stad an script"
 
 #, fuzzy
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "Ní féidir rianta MIDI a thaobhrianadh ceann ar cheann; comhaid fhuaime "
-#~ "amháin a cheadaítear."
+#~ msgstr "Ní féidir rianta MIDI a thaobhrianadh ceann ar cheann; comhaid fhuaime amháin a cheadaítear."
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "Taobhrianadh neamhdhlistineach riain sa chomhad LOF."
@@ -7843,8 +8392,7 @@ msgstr "Stad an script"
 #~ msgstr "Rian nua ama arna cheapadh"
 
 #~ msgid "Please select at least one audio track and one MIDI track."
-#~ msgstr ""
-#~ "Roghnaigh aon rian fuaime amháin agus aon rian MIDI amháin ar a laghad."
+#~ msgstr "Roghnaigh aon rian fuaime amháin agus aon rian MIDI amháin ar a laghad."
 
 #~ msgid "Sort by Time"
 #~ msgstr "Eagraigh de réir Ama"
@@ -8354,12 +8902,8 @@ msgstr "Stad an script"
 #~ msgid "Directory %s is not writable"
 #~ msgstr "Ní comhadlann inscríofa í %s"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Ní chuirfear athruithe ar an gcomhadlann shealadach i gcrích go dtí go n-"
-#~ "athmhúsclófar Audacity"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Ní chuirfear athruithe ar an gcomhadlann shealadach i gcrích go dtí go n-athmhúsclófar Audacity"
 
 #~ msgid "Preferences for Effects"
 #~ msgstr "Sainroghanna do na Maisiúcháin"
@@ -8437,8 +8981,7 @@ msgstr "Stad an script"
 #~ msgstr "Sainroghanna an Chomhéadain"
 
 #~ msgid "-36 dB (shallow range for high-amplitude editing)"
-#~ msgstr ""
-#~ "-36 dB (réimse éadoimhin i gcomhair eagarthóireacht ard-aimplitiúide)"
+#~ msgstr "-36 dB (réimse éadoimhin i gcomhair eagarthóireacht ard-aimplitiúide)"
 
 #~ msgid "-48 dB (PCM range of 8 bit samples)"
 #~ msgstr "-48 dB (réimse PCM de shamplaí 8 giotán)"
@@ -8649,9 +9192,7 @@ msgstr "Stad an script"
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Ní chuirfear athruithe ar an gcomhadlann shealadach i gcrích go dtí go n-"
-#~ "athmhúsclófar Audacity"
+#~ msgstr "Ní chuirfear athruithe ar an gcomhadlann shealadach i gcrích go dtí go n-athmhúsclófar Audacity"
 
 #~ msgid "Ask"
 #~ msgstr "Fiafraigh"
@@ -9412,12 +9953,8 @@ msgstr "Stad an script"
 #~ msgstr "Ochtáibh Síos"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Cnag chun zúmáil isteach go hingearach, Iomlaoid-cnag le zúmáil amach, "
-#~ "Tarraing chun ceantar fé leith zúmála a cheapadh."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Cnag chun zúmáil isteach go hingearach, Iomlaoid-cnag le zúmáil amach, Tarraing chun ceantar fé leith zúmála a cheapadh."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -9630,10 +10167,8 @@ msgstr "Stad an script"
 #~ msgstr "%.0f%% Deas"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-#~ msgstr ""
-#~ "Cnag is tarraing chun méad coibhneasta rianta déthónacha a ghléasadh."
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgstr "Cnag is tarraing chun méad coibhneasta rianta déthónacha a ghléasadh."
 
 #, fuzzy
 #~ msgid "Click and drag to rearrange sub-views"
@@ -9774,8 +10309,7 @@ msgstr "Stad an script"
 #~ msgstr "Cnag is tarraing chun teorainn chlé an rogha a bhogadh."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Cnag is tarraing chun teorainn chlé an rogha a bhogadh."
 
 #, fuzzy
@@ -9853,12 +10387,10 @@ msgstr "Stad an script"
 #~ msgstr "Bog an Rian"
 
 #~ msgid "Click to Zoom In, Shift-Click to Zoom Out"
-#~ msgstr ""
-#~ "Cnag i gcomhair Zúmáil Isteach, Iomlaoid-Cnag i gcomhair Zúmáil Amach"
+#~ msgstr "Cnag i gcomhair Zúmáil Isteach, Iomlaoid-Cnag i gcomhair Zúmáil Amach"
 
 #~ msgid "Drag to Zoom Into Region, Right-Click to Zoom Out"
-#~ msgstr ""
-#~ "Tarraing Chun Zúmáil Isteach sa Cheantar, Deaschnag chun Zúmáil Amach"
+#~ msgstr "Tarraing Chun Zúmáil Isteach sa Cheantar, Deaschnag chun Zúmáil Amach"
 
 #~ msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 #~ msgstr "Clé=Zúmáil Isteach, Deas=Zúmáil Amach, Lár=Gnáth"
@@ -9884,9 +10416,7 @@ msgstr "Stad an script"
 
 #, c-format
 #~ msgid "File '%s' already exists, do you really want to overwrite it?"
-#~ msgstr ""
-#~ "Tá an comhad '%s' ann cheana. An bhfuil tú cinnte gur mian leat "
-#~ "forscríobh air?"
+#~ msgstr "Tá an comhad '%s' ann cheana. An bhfuil tú cinnte gur mian leat forscríobh air?"
 
 #~ msgid "Please choose an existing file."
 #~ msgstr "Roghnaigh comhad atá ann cheana."
@@ -10283,8 +10813,7 @@ msgstr "Stad an script"
 #~ msgstr "Rabhadh - Ag Oscailt Comhad Seanthionscadail"
 
 #~ msgid "<unrecognized version -- possibly corrupt project file>"
-#~ msgstr ""
-#~ "<leagan neamhaitheanta -- b'fhéidir go bhfuil an comhad truaillithe>"
+#~ msgstr "<leagan neamhaitheanta -- b'fhéidir go bhfuil an comhad truaillithe>"
 
 #, fuzzy
 #~ msgid "Could not create autosave file: %s"
@@ -10298,12 +10827,8 @@ msgstr "Stad an script"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Sábháil Tionscadal M&ar..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Theip ar Audacity tionscadal Audacity 1.0 a aistriú go dtí an fhormáid "
-#~ "nua tionscadail."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Theip ar Audacity tionscadal Audacity 1.0 a aistriú go dtí an fhormáid nua tionscadail."
 
 #~ msgid "Compress"
 #~ msgstr "Comhbhrúigh"
@@ -10316,8 +10841,7 @@ msgstr "Stad an script"
 #~ msgstr "Taifeadadh á dhéanamh"
 
 #~ msgid "Don't &warn again and always use my choice above"
-#~ msgstr ""
-#~ "Ná tabhair rabhadh dom arís agus bain feidhm i gcónaí as mo rogha thuas"
+#~ msgstr "Ná tabhair rabhadh dom arís agus bain feidhm i gcónaí as mo rogha thuas"
 
 #, fuzzy
 #~ msgid "Clip Rig&ht"
@@ -10407,20 +10931,12 @@ msgstr "Stad an script"
 #~ msgstr "Ní féidir '%s' a bhaint."
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla "
-#~ "amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla "
-#~ "amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
 
 #, fuzzy
 #~ msgid "Text files (*.txt)|*.txt|All files|*"
@@ -10451,12 +10967,8 @@ msgstr "Stad an script"
 #~ msgid "xml files (*.xml;*.XML)|*.xml;*.XML"
 #~ msgstr "comhaid xml (*.xml;*.XML)|*.xml;*.XML"
 
-#~ msgid ""
-#~ "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|"
-#~ "*.txt|All files|*"
-#~ msgstr ""
-#~ "Scripteanna Nyquist (*.ny)|*.ny|scripteanna Lisp (*.lsp)|*.lsp|Comhad "
-#~ "téacs (*.txt)|*.txt|Gach comhad|*"
+#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|*.txt|All files|*"
+#~ msgstr "Scripteanna Nyquist (*.ny)|*.ny|scripteanna Lisp (*.lsp)|*.lsp|Comhad téacs (*.txt)|*.txt|Gach comhad|*"
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
@@ -10468,28 +10980,16 @@ msgstr "Stad an script"
 #~ msgstr "%s kbps"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla "
-#~ "amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla "
-#~ "amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "lame_enc.dll|lame_enc.dll|Dynamically Leabharlanna Naisceacha Dinimiciúla amháin (*.dll)|*.dll|Gach Comhad (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "libmp3lame.so|libmp3lame.so|Comhaid Oibiacht Phríomhúil Chomhroinnte "
-#~ "amháin (*.so)|*.so|Leabharlanna Breisithe (*.so*)|*.so*|Gach Comhad (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "libmp3lame.so|libmp3lame.so|Comhaid Oibiacht Phríomhúil Chomhroinnte amháin (*.so)|*.so|Leabharlanna Breisithe (*.so*)|*.so*|Gach Comhad (*)|*"
 
 #~ msgid "MIDI file (*.mid)|*.mid|Allegro file (*.gro)|*.gro"
 #~ msgstr "Comhad MIDI (*.mid)|*.mid|comhad Allegro (*.gro)|*.gro"
@@ -10605,20 +11105,14 @@ msgstr "Stad an script"
 #~ msgid "Transcri&ption"
 #~ msgstr "Uirlis an Roghnaithe"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
-#~ msgstr ""
-#~ "Meascfar do chuid rianta in aon chainéal aonfhónach amháin sa chomhad "
-#~ "easpórtáilte."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgstr "Meascfar do chuid rianta in aon chainéal aonfhónach amháin sa chomhad easpórtáilte."
 
 #, fuzzy
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Earráid le linn oscailt ghléas fuaime. Deimhnigh socruithe ghléas an "
-#~ "aschuir, is ráta samplaithe an tionscadail."
+#~ msgstr "Earráid le linn oscailt ghléas fuaime. Deimhnigh socruithe ghléas an aschuir, is ráta samplaithe an tionscadail."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -10700,12 +11194,8 @@ msgstr "Stad an script"
 #~ msgstr "go Deireadh an Rogha"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Cnag chun zúmáil isteach go hingearach, Iomlaoid-cnag le zúmáil amach, "
-#~ "Tarraing chun ceantar fé leith zúmála a cheapadh."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Cnag chun zúmáil isteach go hingearach, Iomlaoid-cnag le zúmáil amach, Tarraing chun ceantar fé leith zúmála a cheapadh."
 
 #~ msgid "up"
 #~ msgstr "suas"
@@ -11059,16 +11549,11 @@ msgstr "Stad an script"
 #~ msgstr "Normalú..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Maisiúchán forchurtha: %s moill = %f soicind, fachtóir meatha = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Maisiúchán forchurtha: %s %d céimeanna, %.0f%% fliuch, minicíocht = %.1f "
-#~ "Hz, pas tosaigh = %.0f céim, doimhneacht = %d, aisfhotha = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Maisiúchán forchurtha: %s %d céimeanna, %.0f%% fliuch, minicíocht = %.1f Hz, pas tosaigh = %.0f céim, doimhneacht = %d, aisfhotha = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Phaser..."
@@ -11087,12 +11572,8 @@ msgstr "Stad an script"
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "Teaglaim Cnaipí"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Maisiúchán forchurtha: %s minicíocht = %.1f Hz, pas tosaigh = %.0f céim, "
-#~ "doimhneacht = %.0f%%, macalla = %.1f, taobhrian minicíochta = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Maisiúchán forchurtha: %s minicíocht = %.1f Hz, pas tosaigh = %.0f céim, doimhneacht = %.0f%%, macalla = %.1f, taobhrian minicíochta = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."

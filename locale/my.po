@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2010-01-27 06:35-0000\n"
 "Last-Translator: g <g@g>\n"
 "Language-Team: Burmese <my@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -27,6 +31,11 @@ msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှ�
 #, fuzzy, c-format
 msgid "Default playback device number: %d\n"
 msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "No devices found\n"
+msgstr "ပူးတွဲထားတဲ့ စတီရီယို"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -104,11 +113,26 @@ msgstr "အမြန်နှုန်းကို ပြန်ဖွင့်�
 msgid "No playback device found for '%s'.\n"
 msgstr "အမြန်နှုန်းကို ပြန်ဖွင့်ပါ"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "နမူနာ နှုန်းထားများ"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "နမူနာ နှုန်းထားများ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -136,6 +160,20 @@ msgstr "အမြန်နှုန်းကို ပြန်ဖွင့်�
 msgid "Message"
 msgstr "နမူနာပြန်တင်ပါ..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -154,6 +192,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "အိုဒေးစီးတီးက မရေးသားနိုင်တဲ့ ဖိုင် -\n"
 "  %s။"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -204,12 +247,21 @@ msgstr "ဖိုင်များကို အမည်ပေးပါ -"
 msgid "XML files"
 msgstr "MP3 ဖိုင်များ"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3 ဖိုင်များ"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -231,6 +283,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "ယာယီ ဖိုင်များ ဖိုင်တွဲ"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -255,9 +315,49 @@ msgstr "စတုဂံပုံ"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "ကြိုဆိုပါတယ်!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -295,6 +395,10 @@ msgstr "၁၄-ဘစ် PCM"
 msgid "32-bit float"
 msgstr "၃၂-ဘစ် PCM"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -305,6 +409,21 @@ msgstr "၁၆-ဘစ် PCM"
 msgid "24-bit"
 msgstr "၁၄-ဘစ် PCM"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "မဆုံးဖြတ်နိုင်ဘူး"
@@ -313,6 +432,24 @@ msgstr "မဆုံးဖြတ်နိုင်ဘူး"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "ဘိုက်များ"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -367,9 +504,39 @@ msgstr "စစ်ထုတ်ကိရိယာ"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "ကြိမ်နှုန်း (Hz)"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -402,6 +569,22 @@ msgstr "စက္ကန့်များပါတဲ့ ကြိမ်နှ�
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "အနည်းဆုံး ကြိမ်နှုန်းဟာ အလွန်ဆုံး ၀ Hz ရှိရမယ်"
 
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
+
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -416,6 +599,28 @@ msgstr "မှေးမှိန်ပျောက်ကွယ်စေပါ"
 #, fuzzy
 msgid "Applying Fade..."
 msgstr "အသုံးချနေတယ်..."
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny plug-ins/delay.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/equalabel.ny
+#: plug-ins/label-sounds.ny plug-ins/limiter.ny plug-ins/noisegate.ny
+#: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
+#: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
+msgid "Steve Daulton"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -448,9 +653,17 @@ msgid "S-Curve Down"
 msgstr "အောက်ကို ရွှေ့ပါ"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "စတင်မှု"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -461,6 +674,14 @@ msgstr "တိုးတက်မှု"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "စတင်မှု"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -476,6 +697,14 @@ msgstr "အစဉ်လိုက်"
 #, fuzzy
 msgid "Linear Out"
 msgstr "အစဉ်လိုက်"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -522,6 +751,24 @@ msgstr "အောက်ကို ရွှေ့ပါ"
 msgid "Error~%~%"
 msgstr "အမှားအယွင်း"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -553,9 +800,21 @@ msgid "Reconstructing clips..."
 msgstr "နှိုပ်ချက်များနဲ့ ပွင့်ထွက်ချက်များကို ဖယ်ရှားခြင်း"
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "အတိုင်းအတာ %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -566,6 +825,21 @@ msgstr "အသံလမ်းကြောကို မှတ်သားပါ"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "အသံလမ်းကြောကို မှတ်သားပါ"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -612,6 +886,19 @@ msgstr "ဆူညံသံ လျှော့ချခြင်း"
 msgid "Automatic"
 msgstr "ပျက်စီးမှု အလိုအလျှောက် ဆယ်တင်ရေး"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "နှောင့်နှေးစေပါ"
@@ -630,6 +917,14 @@ msgstr "သော့ချက် အမျိုးအစား"
 #, fuzzy
 msgid "Regular"
 msgstr "စတုဂံပုံ"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -666,10 +961,23 @@ msgstr "အစမ်းမြင်ကွင်း"
 msgid "Number of echoes"
 msgstr "ထပ်လုပ်မဲ့ အကြိမ် အရေအတွက် -"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
 msgid "No"
 msgstr "ဘာမျှမရှိ"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -696,6 +1004,10 @@ msgid "XML file"
 msgstr "MP3 ဖိုင်များ"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "ပူးတွဲချက် မှတ်တမ်း"
@@ -720,6 +1032,14 @@ msgstr "အမှားအယွင်း (ဖိုင်ကို ရေးထ
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "အမှားအယွင်း (ဖိုင်ကို ရေးထားတာ မဖြစ်နိုင်ဘူး) - %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -757,6 +1077,10 @@ msgstr "အရှည် (စက္ကန့်များ)"
 msgid "Length of label region (seconds)"
 msgstr "အရှည် (စက္ကန့်များ)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -768,14 +1092,59 @@ msgid "Label"
 msgstr "အမှတ်အသား"
 
 #: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Message on completion"
 msgstr "ဖိသိပ်မှုကို ငြိမ်သက်​စေပါ -"
 
 #: plug-ins/equalabel.ny
+msgid "Details"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Warnings only"
 msgstr "သတိပေးချက်များ"
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -787,6 +1156,12 @@ msgstr "အမှတ်အသားများကို ဆက်စပ်ပ�
 #, fuzzy
 msgid "point labels"
 msgstr "အမှတ်အသားများကို ဆက်စပ်ပါ"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -813,10 +1188,42 @@ msgstr "ဒိုမီနစ် မာဇုံနီ အားဖြင့်"
 msgid "Frequency (Hz)"
 msgstr "ကြိမ်နှုန်း (Hz)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "အနည်းဆုံး ကြိမ်နှုန်းဟာ အလွန်ဆုံး ၀ Hz ရှိရမယ်"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -894,11 +1301,36 @@ msgstr "တိတ်ဆိတ်မှုကို တိဖြတ်ခြင�
 msgid "Maximum trailing silence"
 msgstr "တိတ်ဆိတ်မှုကို တိဖြတ်ခြင်း..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "အမည်ဟာ ဗလာ မဖြစ်ရဘူး"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -940,6 +1372,13 @@ msgstr "တွဲညှပ်မှုကို ​ရှာ​ပါ"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "ညာဖက် ချာနယ်"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "ညာဖက် ချာနယ်"
 
@@ -947,6 +1386,10 @@ msgstr "ညာဖက် ချာနယ်"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "အဆင့် -"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -976,6 +1419,10 @@ msgstr "ရွေးချယ်မှု"
 #: plug-ins/noisegate.ny
 msgid "Gate"
 msgstr "ဂိတ်ပေါက်"
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -1018,12 +1465,42 @@ msgid "Decay (ms)"
 msgstr "တိုက်ခိုက်/ယိုယွင်းတဲ့ အချိန်"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "အမည်ဟာ ဗလာ မဖြစ်ရဘူး"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1034,6 +1511,22 @@ msgstr "အသံပေါက် ရွှေ့ပြောင်းကိရ�
 #, fuzzy
 msgid "Applying Notch Filter..."
 msgstr "ချိန်ညှိကိရိယာကို သုံးစွဲနေခြင်း..."
+
+#: plug-ins/notch.ny
+msgid "Steve Daulton and Bill Wharrie"
+msgstr ""
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1092,9 +1585,19 @@ msgid "Allow"
 msgstr "ခွင့်ပြုမထားချက်"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1107,14 +1610,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "MIDI ဖိုင်တခုကို ရွေးပါ..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "တည်နေရာ တင်ပို့ပါ -"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "MIDI ဖိုင်တခုကို ရွေးပါ..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1122,9 +1642,29 @@ msgid "Generating pluck sound..."
 msgstr "အသံ ထုတ်လုပ်နေခြင်း"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "စစ်ထုတ်ကိရိယာ"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1140,6 +1680,10 @@ msgstr "အသံလမ်းကြောကို ဖယ်ရှားပါ"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "မြည်သံ ထုတ်လုပ်နေခြင်း"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1162,9 +1706,21 @@ msgid "Swing amount"
 msgstr "တွန့်လိမ်ခြင်း"
 
 #: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "ထပ်လုပ်မဲ့ အကြိမ် အရေအတွက် -"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1192,6 +1748,22 @@ msgid "Beat sound"
 msgstr "ထပ်လုပ်ပါ"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "ဆူညံသံ ဖယ်ရှားခြင်း"
@@ -1200,6 +1772,32 @@ msgstr "ဆူညံသံ ဖယ်ရှားခြင်း"
 #, fuzzy
 msgid "Noise Click"
 msgstr "ဆူညံသံ..."
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1212,6 +1810,10 @@ msgid "Generating Risset Drum..."
 msgstr "ဆူညံသံ ထုတ်လုပ်ခြင်း"
 
 #: plug-ins/rissetdrum.ny
+msgid "Steven Jones"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Decay (seconds)"
 msgstr "နှောင့်နှေးချိန် (စက္ကန့်များ) -"
@@ -1220,6 +1822,10 @@ msgstr "နှောင့်နှေးချိန် (စက္ကန့်�
 #, fuzzy
 msgid "Center frequency of noise (Hz)"
 msgstr "အစဉ်လိုက် ကြိမ်နှုန်း"
+
+#: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1240,6 +1846,10 @@ msgstr "မတင်ပို့နိုင်ဘူး"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "အသုံးချနေတယ်..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1279,6 +1889,10 @@ msgid "HTML files"
 msgstr "MP3 ဖိုင်များ"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "နမူနာ တည်းဖြတ်မှု"
@@ -1294,6 +1908,10 @@ msgid "Include header information"
 msgstr "တည်ဆောက်မှု အချက်အလက်"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "စံညွှန်း"
 
@@ -1301,6 +1919,23 @@ msgstr "စံညွှန်း"
 #, fuzzy
 msgid "All"
 msgstr "အားလုံး"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1318,6 +1953,11 @@ msgstr "\t-help (ဒီသတင်းတို အတွက်)"
 msgid "Errors Only"
 msgstr "အမှားအယွင်း -"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1329,6 +1969,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "ညာဖက် ချာနယ်"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "နမူနာများ"
@@ -1337,6 +2017,43 @@ msgstr "နမူနာများ"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "စက္ကန့်များ"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1364,6 +2081,10 @@ msgid "Value (dB)"
 msgstr "အဆင့် -"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "အစဉ်လိုက်"
@@ -1384,6 +2105,14 @@ msgid "Right (dB)"
 msgstr "ညာဖက်၊"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "အစဉ်လိုက်"
@@ -1397,6 +2126,35 @@ msgstr "ချာနယ် နှစ်ခု (စတီရီယို)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "၁ ချာနယ် (မိုနို)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1419,9 +2177,41 @@ msgid "Select file"
 msgstr "MIDI ဖိုင်တခုကို ရွေးပါ..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "အမှားအယွင်း"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1432,6 +2222,15 @@ msgstr "အမျိုအစားဖိုင်ကို မဖွင့်�
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "ရွေးချယ်မှု"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1471,9 +2270,17 @@ msgid "Wet level (percent)"
 msgstr "၂-အဆင့်"
 
 #: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "အသုံးချနေတယ်..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1529,10 +2336,97 @@ msgstr "စီစစ်ပါ"
 msgid "Strength"
 msgstr "စစ်ထုတ်ကိရိယာ"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "အော်တို ဒတ်ကို ဆောင်ရွတ်နေတယ်..."
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1574,286 +2468,229 @@ msgstr "ကြိမ်နှုန်း (Hz)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "ကြိမ်နှုန်း (Hz)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "ပွားယူပါ"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "ပွားယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "ပွားယူပါ"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "ပွားယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "ပွားယူပါ"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "ပွားယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "ပွားယူပါ"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "ပွားယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "ရွေးချယ်ပါ"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "ရွေးချယ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "ဖောင့်..."
+#~ msgid "Select &Font..."
+#~ msgstr "ဖောင့်..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "ဒေါင်လိုက် အံကိုက်ဖြစ်စေပါ"
+#~ msgid "Split &Vertically"
+#~ msgstr "ဒေါင်လိုက် အံကိုက်ဖြစ်စေပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "ပြင်ညီ စတီရီယို"
+#~ msgid "Split &Horizontally"
+#~ msgstr "ပြင်ညီ စတီရီယို"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "ရလဒ်ကို ပြသပါ"
+#~ msgid "Show S&cript"
+#~ msgstr "ရလဒ်ကို ပြသပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "ရလဒ်ကို ပြသပါ"
+#~ msgid "Show &Output"
+#~ msgstr "ရလဒ်ကို ပြသပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "ခလုတ်တန်းများ"
+#~ msgid "Toolbar"
+#~ msgstr "ခလုတ်တန်းများ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "ရပ်နားပါ"
+#~ msgid "&Stop\tF6"
+#~ msgstr "ရပ်နားပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "ကိန်းရှင်"
+#~ msgid "Script"
+#~ msgstr "ကိန်းရှင်"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "ရလဒ် မီတာ"
+#~ msgid "Output"
+#~ msgstr "ရလဒ် မီတာ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
+#~ msgid "Load Nyquist script"
+#~ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "သတိပေးချက်"
+#~ msgid "Warning"
+#~ msgstr "သတိပေးချက်"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
+#~ msgid "Save Nyquist script"
+#~ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Leland Lucius"
-msgstr "လီလဲန် လူစီယက် အားဖြင့်"
+#~ msgid "Leland Lucius"
+#~ msgstr "လီလဲန် လူစီယက် အားဖြင့်"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "(C) 2009 by Leland Lucius"
-msgstr "လီလဲန် လူစီယက် အားဖြင့်"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "လီလဲန် လူစီယက် အားဖြင့်"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "ပူးတွဲထားတဲ့ စတီရီယို"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
+#~ msgid "New"
+#~ msgstr "အသစ်"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "အသစ်"
+#~ msgid "New script"
+#~ msgstr "လတ်တလောအရာကို ဖွင့်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "လတ်တလောအရာကို ဖွင့်ပါ"
+#~ msgid "Open"
+#~ msgstr "ဖွင့်ပါ..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "ဖွင့်ပါ..."
+#~ msgid "Open script"
+#~ msgstr "လတ်တလောအရာကို ဖွင့်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "လတ်တလောအရာကို ဖွင့်ပါ"
+#~ msgid "Save"
+#~ msgstr "သိမ်းဆည်းပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "သိမ်းဆည်းပါ"
+#~ msgid "Save script"
+#~ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
+#~ msgid "Save As"
+#~ msgstr "သိမ်းဆည်းမဲ့ ပုံစံ..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "သိမ်းဆည်းမဲ့ ပုံစံ..."
+#~ msgid "Save script as..."
+#~ msgstr "စီမံချက်ကို သိမ်းဆည်းမဲ့ ပုံစံ..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Copy"
+#~ msgstr "မိတ္တူကူးပါ"
+
 #, fuzzy
-msgid "Save script as..."
-msgstr "စီမံချက်ကို သိမ်းဆည်းမဲ့ ပုံစံ..."
+#~ msgid "Copy to clipboard"
+#~ msgstr "အောက်ခံကတ်ပြားကို ဖြတ်ယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "မိတ္တူကူးပါ"
+#~ msgid "Cut"
+#~ msgstr "ဖြတ်ယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "အောက်ခံကတ်ပြားကို ဖြတ်ယူပါ"
+#~ msgid "Cut to clipboard"
+#~ msgstr "အောက်ခံကတ်ပြားကို ဖြတ်ယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "ဖြတ်ယူပါ"
+#~ msgid "Paste"
+#~ msgstr "ပွားယူပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "အောက်ခံကတ်ပြားကို ဖြတ်ယူပါ"
+#~ msgid "Paste from clipboard"
+#~ msgstr "အောက်ခံကတ်ပြားမှ ပွားယူထားချက်"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "ပွားယူပါ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "အောက်ခံကတ်ပြားမှ ပွားယူထားချက်"
+#~ msgid "Clear"
+#~ msgstr "ရှင်းလင်းပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "ရှင်းလင်းပါ"
+#~ msgid "Clear selection"
+#~ msgstr "ရွေးချယ်ချက်ကို ငြိမ်သက်စေပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "ရွေးချယ်ချက်ကို ငြိမ်သက်စေပါ"
+#~ msgid "Select All"
+#~ msgstr "ရွေးချယ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "ရွေးချယ်ပါ"
+#~ msgid "Select all text"
+#~ msgstr "ရွေးချယ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Undo"
+#~ msgstr "ပြန်ဖြည်ပါ"
+
 #, fuzzy
-msgid "Select all text"
-msgstr "ရွေးချယ်ပါ"
+#~ msgid "Undo last change"
+#~ msgstr "အမျိုးအစား ပြောင်းလဲမှု"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "ပြန်ဖြည်ပါ"
+#~ msgid "Redo"
+#~ msgstr "ပြန်ပြင်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "အမျိုးအစား ပြောင်းလဲမှု"
+#~ msgid "Redo previous change"
+#~ msgstr "အမျိုးအစား ပြောင်းလဲမှု"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "ပြန်ပြင်ပါ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "အမျိုးအစား ပြောင်းလဲမှု"
+#~ msgid "Find"
+#~ msgstr "မှတ်စုများကို ရှာပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "မှတ်စုများကို ရှာပါ"
+#~ msgid "Find text"
+#~ msgstr "မှတ်စုများကို ရှာပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "မှတ်စုများကို ရှာပါ"
+#~ msgid "Match"
+#~ msgstr "စုစည်းမှု"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "စုစည်းမှု"
+#~ msgid "Top"
+#~ msgstr "သို့ -"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Top"
-msgstr "သို့ -"
+#~ msgid "Go to top S-expr"
+#~ msgstr "တင်ပို့မဲ့ အမှတ်အသားများ မရှိဘူး။"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Up"
+#~ msgstr "အထက်"
+
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "တင်ပို့မဲ့ အမှတ်အသားများ မရှိဘူး။"
+#~ msgid "Previous"
+#~ msgstr "အလျင် ကိရိယာ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "အထက်"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "အလျင် ကိရိယာ"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "အလျင် လမ်းကြောင်းဆီ ဗဟိုပြုချက်ကို ရွှေ့ပြီး ရွေးချယ်ပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "အလျင် လမ်းကြောင်းဆီ ဗဟိုပြုချက်ကို ရွှေ့ပြီး ရွေးချယ်ပါ"
+#~ msgid "Next"
+#~ msgstr "နောက် ကိရိယာ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Start"
+#~ msgstr "စတင်မှု"
+
 #, fuzzy
-msgid "Next"
-msgstr "နောက် ကိရိယာ"
+#~ msgid "Start script"
+#~ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "စတင်မှု"
+#~ msgid "Stop"
+#~ msgstr "ရပ်နားပါ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "ရပ်နားပါ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-#, fuzzy
-msgid "Stop script"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
+#~ msgid "Stop script"
+#~ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
 
 #~ msgid "Comments"
 #~ msgstr "မှတ်ချက်များ"
@@ -2075,8 +2912,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "အိုဒေးစီးတီးက ယာယီဖိုင်များကို သိုထားမဲ့ နေရာတခု မတွေ့နိုင်ဘူး။\n"
@@ -2089,9 +2925,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ "အိုဒေးစီးတီးက ယာယီဖိုင်များကို သိုထားမဲ့ နေရာတခု မတွေ့နိုင်ဘူး။\n"
 #~ "ဦးစားပေးချက်များ အညွှန်းစာမျက်နှာထဲမှာ သင့်လျှော်တဲ့ ဖိုင်တွဲတခုကို ရေးသွင်းပါ။"
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
 #~ msgstr "အိုဒေးစီးတီးဟာ ယခု ထွက်ခွါတော့မယ်။ ယာယီ ဖိုင်တွဲ အသစ်တခုကို သုံးစွဲဖို့ အိုဒေးစီးတီးကို ပြန်ဖွင့်ပါ။"
 
 #~ msgid ""
@@ -2230,9 +3064,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အသံ သက်၀င်စေတဲ့ အသံသွင်းမှု (အဖွင့်/အပိတ်)"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
 #~ msgstr "အသံ သက်၀င်စေတဲ့ အသံသွင်းမှု (အဖွင့်/အပိတ်)"
 
 #, fuzzy
@@ -2268,8 +3100,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
@@ -2653,12 +3484,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Missing"
 #~ msgstr "သုံးစွဲခြင်း -"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
-#~ msgstr ""
-#~ "သင် ဆက်လက် ဆောင်​ရွတ်ရင်၊ သင့်ရဲ့ စီမံချက်ကို ဓါတ်ပြားထဲ သိမ်းဆည်းထားမှာ မဟုတ်ဘူး။ ဒါဟာ သင်လိုချင်တဲ့ "
-#~ "အရာလား။"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+#~ msgstr "သင် ဆက်လက် ဆောင်​ရွတ်ရင်၊ သင့်ရဲ့ စီမံချက်ကို ဓါတ်ပြားထဲ သိမ်းဆည်းထားမှာ မဟုတ်ဘူး။ ဒါဟာ သင်လိုချင်တဲ့ အရာလား။"
 
 #, fuzzy
 #~ msgid "Dependency Check"
@@ -2738,9 +3565,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "&Copy all audio into project (safest)"
 #~ msgstr "အသံ အချက်အလက်ကြမ်းကို စီမံချက်ထဲမှာ မိတ္တူကူးနေခြင်း..."
 
-#~ msgid ""
-#~ "The specified filename could not be converted due to Unicode character "
-#~ "use."
+#~ msgid "The specified filename could not be converted due to Unicode character use."
 #~ msgstr "သတ်မှတ်ထားတဲ့ ဖိုင်အမည်ကို ယူနီကုဒ် အက္ခရာ သုံးစွဲမှုကြောင့် အသွင်မပြောင်းနိုင်ဘူး။"
 
 #~ msgid "Specify New Filename:"
@@ -2811,14 +3636,11 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "&Replot..."
 #~ msgstr "ပြန်ရေးမှတ်ပါ"
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
 #~ msgstr "ရောင်စဉ်ကို ရေးမှတ်ဖို့၊ ရွေးထားတဲ့ အသံလမ်းကြောများ အားလုံးဟာ တူညီတဲ့ နမူနာ အဆင့်ဖြစ်ရမယ်။"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
 #~ msgstr "ရွေးထားတဲ့ အသံ အရမ်းများလွန်းတယ်။ အသံရဲ့ ပထမဆုံး %.1f စက္ကန့်များကိုသာ ဆန်းစစ်ပေးမယ်။"
 
 #~ msgid "Not enough data selected."
@@ -3153,13 +3975,10 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "အသံ ကိရိယာကို ဖွင့်နေစဉ် အမှားအယွင်း။ ကိရိယာ ရလဒ် တပ်ဆင်ချက်များနဲ့ စီမံချက် နမူနာ နှုန်းထားကို "
-#~ "စစ်ဆေးပါ။"
+#~ msgstr "အသံ ကိရိယာကို ဖွင့်နေစဉ် အမှားအယွင်း။ ကိရိယာ ရလဒ် တပ်ဆင်ချက်များနဲ့ စီမံချက် နမူနာ နှုန်းထားကို စစ်ဆေးပါ။"
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
 #~ msgstr "ရောင်စဉ်ကို ရေးမှတ်ဖို့၊ ရွေးထားတဲ့ အသံလမ်းကြောများ အားလုံးဟာ တူညီတဲ့ နမူနာ အဆင့်ဖြစ်ရမယ်။"
 
 #~ msgid "Recorded Audio"
@@ -3639,8 +4458,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #, fuzzy
 #~ msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-#~ msgstr ""
-#~ "နေရာကွက်များကို ကူးသန်းကြည့်ရှုဖို့ မြှား ခလုတ်များ ((သို့) တည်းဖြတ်အပြီးမှာ RETURN ခလုတ်) ကို သုံးပါ။"
+#~ msgstr "နေရာကွက်များကို ကူးသန်းကြည့်ရှုဖို့ မြှား ခလုတ်များ ((သို့) တည်းဖြတ်အပြီးမှာ RETURN ခလုတ်) ကို သုံးပါ။"
 
 #~ msgid "&Add"
 #~ msgstr "ပေါင်းထည့်ပါ"
@@ -3994,9 +4812,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ရွေးချယ်မှု ဖွင့်ထားပါ"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
 #~ msgstr "စတီရီယို အသံလမ်းကြောများရဲ့ သက်ဆိုင်ရာ အရွယ်ကို ချိန်ညှိဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ။"
 
 #~ msgid "Click and drag to resize the track."
@@ -4563,18 +5379,11 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Auto Duck"
 #~ msgstr "အော်တို ဒတ်"
 
-#~ msgid ""
-#~ "You selected a track which does not contain audio. AutoDuck can only "
-#~ "process audio tracks."
-#~ msgstr ""
-#~ "အသံမပါတဲ့ အသံလမ်းကြောတခုကို သင်ရွေးချယ်ခဲ့တယ်။ အော်တိုဒတ်က အသံလမ်းကြောများကိုသာ လုပ်ဆောင်နိုင်တယ်။"
+#~ msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
+#~ msgstr "အသံမပါတဲ့ အသံလမ်းကြောတခုကို သင်ရွေးချယ်ခဲ့တယ်။ အော်တိုဒတ်က အသံလမ်းကြောများကိုသာ လုပ်ဆောင်နိုင်တယ်။"
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
-#~ msgstr ""
-#~ "အော်တို ဒတ်က ရွေးချယ်ထားတဲ့ အသံလမ်းကြော(များ) အောက်မှာ ထားရှိရမဲ့ ထိန်းချုပ်မှု အသံလမ်းကြော တခု "
-#~ "လိုအပ်တယ်။"
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+#~ msgstr "အော်တို ဒတ်က ရွေးချယ်ထားတဲ့ အသံလမ်းကြော(များ) အောက်မှာ ထားရှိရမဲ့ ထိန်းချုပ်မှု အသံလမ်းကြော တခု လိုအပ်တယ်။"
 
 #, fuzzy
 #~ msgid "Duck &amount:"
@@ -5436,8 +6245,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အမှတ်အသား တည်းဖြတ်မှု"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
 #~ msgstr "ရောင်စဉ်ကို ရေးမှတ်ဖို့၊ ရွေးထားတဲ့ အသံလမ်းကြောများ အားလုံးဟာ တူညီတဲ့ နမူနာ အဆင့်ဖြစ်ရမယ်။"
 
 #, fuzzy
@@ -5694,8 +6502,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
 #~ "သင် စစ်ထုတ်လိုတဲ့ အသံ အားလုံးကို ရွေးပြီး၊ သင် စစ်ထုတ်လိုတဲ့ ဆူညံသံ အတိုင်းအတာကို \n"
@@ -5759,8 +6566,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ဆူညံသံ ဖယ်ရှားမှု"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
 #~ "သင် စစ်ထုတ်လိုတဲ့ အသံ အားလုံးကို ရွေးပြီး၊ သင် စစ်ထုတ်လိုတဲ့ ဆူညံသံ အတိုင်းအတာကို \n"
@@ -5866,13 +6672,11 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ပြုပြင်ပါ"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
-#~ "ပြုပြင်တဲ့ သက်ရောက်မှုကို ပျက်စီးတဲ့ အသံ (နမူနာများ ၁၂၈ အထိ) ရဲ့ အလွန် တိုတောင်းတဲ့ အပိုင်းများမှာ သုံးစွဲဖို့ "
-#~ "ရည်ရွယ်ထားတယ်။\n"
+#~ "ပြုပြင်တဲ့ သက်ရောက်မှုကို ပျက်စီးတဲ့ အသံ (နမူနာများ ၁၂၈ အထိ) ရဲ့ အလွန် တိုတောင်းတဲ့ အပိုင်းများမှာ သုံးစွဲဖို့ ရည်ရွယ်ထားတယ်။\n"
 #~ "\n"
 #~ "ချဲ့ကားပြီး စက္ကန့်တခုရဲ့ သေးငယ်တဲ့ အစိတ်အပိုင်းတခုကို ရွေးပါ။"
 
@@ -5945,8 +6749,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အမြင့်ဖြတ်သန်းမှု"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
 #~ msgstr "ရောင်စဉ်ကို ရေးမှတ်ဖို့၊ ရွေးထားတဲ့ အသံလမ်းကြောများ အားလုံးဟာ တူညီတဲ့ နမူနာ အဆင့်ဖြစ်ရမယ်။"
 
 #, fuzzy
@@ -6328,11 +7131,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Nyquist Error"
 #~ msgstr "နိုင်ခွီးစ်ထ်"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "၀မ်းနည်းပါတယ်၊ အသံလမ်းကြောများ မကိုက်ညီတဲ့ နေရာမှ စတီရိယို အသံလမ်းကြောများပေါ်မှာ သက်ရောက်မှုကို "
-#~ "အသုံးမချနိုင်ဘူး။"
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "၀မ်းနည်းပါတယ်၊ အသံလမ်းကြောများ မကိုက်ညီတဲ့ နေရာမှ စတီရိယို အသံလမ်းကြောများပေါ်မှာ သက်ရောက်မှုကို အသုံးမချနိုင်ဘူး။"
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -6378,8 +7178,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "နိုင်ခွီးစ်ထ်က အသံကို မထုတ်ပေးခဲ့ဘူး။\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "အိုဒေးစီးတီးရဲ့ ဒီမူအဆင့်ကို %s ပံ့ပိုးမှုနဲ့ ပြုစုမထားဘူး"
 
 #, fuzzy
@@ -6423,12 +7222,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Vamp Effects"
 #~ msgstr "သက်ရောက်မှု"
 
-#~ msgid ""
-#~ "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-#~ "channels of the track do not match."
-#~ msgstr ""
-#~ "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်များကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ နေရာမှ "
-#~ "စတီရီယို အသံ​လမ်းကြောများပေါ်မှာ မဖွင့်နိုင်ဘူး။"
+#~ msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်များကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ နေရာမှ စတီရီယို အသံ​လမ်းကြောများပေါ်မှာ မဖွင့်နိုင်ဘူး။"
 
 #~ msgid "Sorry, failed to load Vamp Plug-in."
 #~ msgstr "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်ကို ဖွင့်ဖို့ မအောင်မြင်ဘူး။"
@@ -6470,15 +7265,13 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ "သင်ဟာ ဖိုင် %s တခုကို \"%s\" အမည်နဲ့ သိမ်းဆည်းတော့မယ်။\n"
 #~ "\n"
-#~ "သာမန်အားဖြင့် ဒီဖိုင်များဟာ \".%s\" နဲ့ ဆုံးပြီး၊ တချို့ ပရိုဂရမ်များဟာ ဖိုင်များကို စံညွှန်းမဟုတ်တဲ့ "
-#~ "တိုးချဲ့ချက်များနဲ့ ဖွင့်ပေးမှာ မဟုတ်ဘူး။\n"
+#~ "သာမန်အားဖြင့် ဒီဖိုင်များဟာ \".%s\" နဲ့ ဆုံးပြီး၊ တချို့ ပရိုဂရမ်များဟာ ဖိုင်များကို စံညွှန်းမဟုတ်တဲ့ တိုးချဲ့ချက်များနဲ့ ဖွင့်ပေးမှာ မဟုတ်ဘူး။\n"
 #~ "\n"
 #~ "ဒီ​အမည်နဲ့ ဖိုင်ကို သင်တကယ် သိမ်းဆည်းလိုသလား?"
 
@@ -6498,9 +7291,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "သင့်ရဲ့ အသံလမ်းကြောများဟာ တင်ပို့ထားတဲ့ ဖိုင်ထဲမှာ စတီရီယို ချာနယ် နှစ်ခုမှာ ပေါင်းစပ်သွားလိမ့်မယ်။"
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
 #~ msgstr "သင့်ရဲ့ အသံလမ်းကြောများဟာ တင်ပို့ထားတဲ့ ဖိုင်ထဲမှာ စတီရီယို ချာနယ် နှစ်ခုမှာ ပေါင်းစပ်သွားလိမ့်မယ်။"
 
 #~ msgid "Advanced Mixing Options"
@@ -7169,12 +7960,10 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #, fuzzy, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
-#~ "with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "သင်ဟာ lame_enc.dll v%d.%d ကို ချိတ်ဆက်နေတယ်။ ဒီမူအဆင့်ဟာ အိုဒေးစီးတီး %d.%d.%d နဲ့ "
-#~ "မလိုက်ဖက်ဘူး။\n"
+#~ "သင်ဟာ lame_enc.dll v%d.%d ကို ချိတ်ဆက်နေတယ်။ ဒီမူအဆင့်ဟာ အိုဒေးစီးတီး %d.%d.%d နဲ့ မလိုက်ဖက်ဘူး။\n"
 #~ "လမ် MP3 စုစည်းခန်း နောက်ဆုံး မူအဆင့်ကို ဆွဲချပါ။"
 
 #, fuzzy
@@ -7317,8 +8106,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အောက်ပါ %lld ဖိုင်(များ) တင်ပို့ပြီးနောက် တင်ပို့မှု ရပ်နားသွားတယ်။"
 
 #, c-format
-#~ msgid ""
-#~ "Something went really wrong after exporting the following %lld file(s)."
+#~ msgid "Something went really wrong after exporting the following %lld file(s)."
 #~ msgstr "အောက်ပါ %lld ဖိုင်(များ)ကကို တင်ပို့ပြီးနောက် တစုံတခု တကယ်ပဲ ချို့ယွင်းသွားတယ်။"
 
 #, c-format
@@ -7425,15 +8213,12 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #, c-format
 #~ msgid ""
 #~ "\"%s\" is a playlist file. \n"
-#~ "Audacity cannot open this file because it only contains links to other "
-#~ "files. \n"
-#~ "You may be able to open it in a text editor and download the actual audio "
-#~ "files."
+#~ "Audacity cannot open this file because it only contains links to other files. \n"
+#~ "You may be able to open it in a text editor and download the actual audio files."
 #~ msgstr ""
 #~ "\"%s\" ဟာ ဖွင့်ပြစာရင်း ဖိုင်တခု ဖြစ်တယ်။\n"
 #~ "​အိုဒေးစီးတီးက ဒီဖိုင်ကို မဖွင့်နိုင်ဘူး ဘာကြောင့်လဲဆိုတော့ ၄င်းမှာ အခြား ဖိုင်များအတွက်\n"
-#~ " အချိတ်အဆက်များသာ ပါရှိတယ်။ ၄င်းကို စာသားတည်းဖြတ်ကိရိယာ တခုမှ သင် ဖွင့်ဖိုင်ပြီး တကယ့် အသံဖိုင်များကို "
-#~ "ဆွဲချနိုင်တယ်။"
+#~ " အချိတ်အဆက်များသာ ပါရှိတယ်။ ၄င်းကို စာသားတည်းဖြတ်ကိရိယာ တခုမှ သင် ဖွင့်ဖိုင်ပြီး တကယ့် အသံဖိုင်များကို ဆွဲချနိုင်တယ်။"
 
 #, c-format
 #~ msgid ""
@@ -7449,10 +8234,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" ဟာ အဆင့်မြင့် အသံ ကုဒ်ရေးသားခြင်း ဖိုင်တခု ဖြစ်တယ် \n"
 #~ "အိုဒေးစီးတီးက ဒီလို ဖိုင်အမျိုးအစားကို မဖွင့်နိုင်ဘူး။\n"
@@ -7501,8 +8284,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" မြူးပက် အသံ ဖိုင် တခုဖြစ်တယ်။ \n"
@@ -7613,12 +8395,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "FFmpeg-လိုက်ဖက်တဲ့ ဖိုင်များ"
 
 #, c-format
-#~ msgid ""
-#~ "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], "
-#~ "Duration[%d]"
-#~ msgstr ""
-#~ "အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], "
-#~ "ကြာမြင့်ချိန်[%d]"
+#~ msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+#~ msgstr "အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
 
 #~ msgid "FLAC files"
 #~ msgstr "FLAC ဖိုင်များ"
@@ -7640,9 +8418,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #, fuzzy, c-format
 #~ msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-#~ msgstr ""
-#~ "အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], "
-#~ "ကြာမြင့်ချိန်[%d]"
+#~ msgstr "အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
 
 #, fuzzy
 #~ msgid "Unable to import file, state change failed."
@@ -7699,9 +8475,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #, fuzzy, c-format
 #~ msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-#~ msgstr ""
-#~ "အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], "
-#~ "ကြာမြင့်ချိန်[%d]"
+#~ msgstr "အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
 
 #~ msgid "Media read error"
 #~ msgstr "မီဒီယာ ဖတ်ရှုမှု အမှားအယွင်း"
@@ -9587,9 +10361,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Directory %s is not writable"
 #~ msgstr "ဖိုင်တွဲ %s ကို ရေးလို့မရဘူး"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
 #~ msgstr "ယာယီ ဖိုင်တွဲမှာ ပြင်ဆင်မှုများဟာ အိုဒေးစီးတီးကို ပြန်မဖွင့်မှီတိုင်အောင် သက်ရောက်မှု ရှိမှာ မဟုတ်ဘူး"
 
 #, fuzzy
@@ -10268,15 +11040,12 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
 #~ "အဓိကကျစေခြင်းဟာ စမ်းသပ်နေဆဲ အင်္ဂါရပ်တခု ဖြစ်တယ်။\n"
@@ -10284,15 +11053,12 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ "၄င်းကို စမ်းကြည့်ပါ၊\"အဓိက သိမ်းဆည်းချက်ကို သိမ်းဆည်းပါ\" ကို နှိုပ်ပြီး Gimp လို ရုပ်ပုံ တည်းဖြတ်\n"
 #~ " ကိရိယာ တခုကို သုံးစွဲပြီး ImageCacheVxx.png ထဲမှ ရုပ်ပုံများနဲ့ အရောင်များကို ရှာပြီး ပြုပြင်ပါ။\n"
 #~ "\n"
-#~ "အိုဒေးစီးတီးထဲမှာ ပြောင်းလဲထားတဲ့ ရုပ်ပုံများနဲ့ အရောင်များကို \"အဓိက သိမ်းဆည်းချက်ကို သိမ်းဆည်းပါ\" "
-#~ "ဖွင့်ဖို့ နှိုပ်ပါ\n"
+#~ "အိုဒေးစီးတီးထဲမှာ ပြောင်းလဲထားတဲ့ ရုပ်ပုံများနဲ့ အရောင်များကို \"အဓိက သိမ်းဆည်းချက်ကို သိမ်းဆည်းပါ\" ဖွင့်ဖို့ နှိုပ်ပါ\n"
 #~ "\n"
-#~ "[ရုပ်ပုံ ဖိုင်က အခြား ပုံသင်္ကေတများကို ပြသပေမဲ့ လှိုင်းလမ်းကြောင်း ပေါ်မှ အထိန်း ခလုတ်တန်းနဲ့ "
-#~ "အရောင်များသာ လတ်တလော ထိခိုက်နေတယ်။]"
+#~ "[ရုပ်ပုံ ဖိုင်က အခြား ပုံသင်္ကေတများကို ပြသပေမဲ့ လှိုင်းလမ်းကြောင်း ပေါ်မှ အထိန်း ခလုတ်တန်းနဲ့ အရောင်များသာ လတ်တလော ထိခိုက်နေတယ်။]"
 
 #~ msgid ""
-#~ "Saving and loading individual theme files uses a separate file for each "
-#~ "image, but is\n"
+#~ "Saving and loading individual theme files uses a separate file for each image, but is\n"
 #~ "otherwise the same idea."
 #~ msgstr ""
 #~ "အဓိက ဖိုင်များ တခုချင်း သိမ်းဆည်းမှုနဲ့ ဖွင့်ပြမှုအတွက် ရုပ်ပုံတခုစီက သီးခြား ဖိုင်တခုကို သုံးစွဲတယ်၊\n"
@@ -10866,11 +11632,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ရှစ်သံတွဲ အောက်"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "ဒေါင်လိုက် ချဲ့ကားဖို့ နှိုပ်ပါ၊ ကျုံ့ဖို့ Shift-နှိုပ်ပါ၊ သီးခြား ချဲ့ထွင် နယ်ပယ်တခုကို ဖန်တီးဖို့ ဒရွတ်ဆွဲပါ။"
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "ဒေါင်လိုက် ချဲ့ကားဖို့ နှိုပ်ပါ၊ ကျုံ့ဖို့ Shift-နှိုပ်ပါ၊ သီးခြား ချဲ့ထွင် နယ်ပယ်တခုကို ဖန်တီးဖို့ ဒရွတ်ဆွဲပါ။"
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -10918,8 +11681,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Click and drag to edit the samples"
 #~ msgstr "နမူနာများကို တည်းဖြတ်ဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ"
 
-#~ msgid ""
-#~ "To use Draw, zoom in further until you can see the individual samples."
+#~ msgid "To use Draw, zoom in further until you can see the individual samples."
 #~ msgstr "ရေးဆွဲမှုကို သုံးစွဲဖို့၊ နမူနာများ တခုချင်း သင် မတွေ့မချင်း နောက်က် ချဲ့ထွင်ပါ။"
 
 #, fuzzy
@@ -11066,8 +11828,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "%.1f dB"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
 #~ msgstr "စတီရီယို အသံလမ်းကြောများရဲ့ သက်ဆိုင်ရာ အရွယ်ကို ချိန်ညှိဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ။"
 
 #, fuzzy
@@ -11221,8 +11982,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ဘယ်ဖက် ရွေးချယ်မှု နယ်သတ်မျဉ်းဆီ ရွှေ့ဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ။"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "ဘယ်ဖက် ရွေးချယ်မှု နယ်သတ်မျဉ်းဆီ ရွှေ့ဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ။"
 
 #, fuzzy
@@ -11816,27 +12576,17 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "စီမံချက်ရဲ့ ဖိသိပ်ထားတဲ့ မိတ္တူကို သိမ်းဆည်းပါ..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
 #~ msgstr "အိုဒေးစီးတီးက အိုဒေးစီးတီး ၁.၀ စီမံချက် တခုကို စီမံချက် အမျိုးအစား သစ်ကို အသွင်မပြောင်းနိုင်ဘူး။"
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "အလိုအလျှောက် သိမ်းဆည်းတဲ့ ဖိုင်ဟောင်းကို မဖယ်ရှားနိုင်ဘူး"
 
-#~ msgid ""
-#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
-#~ "%2.0f%% complete."
-#~ msgstr ""
-#~ "တင်သွင်းချက်(များ) ပြီးသွားပြီ။ တောင်းဆိုချက်အရ လှိုင်းသဏ္ဍာန် တွက်ချက်မှုများအတွက် %d လည်ပတ်မှု။ "
-#~ "စုစုပေါင်း %2.0f%% ပြီးသွားပြီ။"
+#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
+#~ msgstr "တင်သွင်းချက်(များ) ပြီးသွားပြီ။ တောင်းဆိုချက်အရ လှိုင်းသဏ္ဍာန် တွက်ချက်မှုများအတွက် %d လည်ပတ်မှု။ စုစုပေါင်း %2.0f%% ပြီးသွားပြီ။"
 
-#~ msgid ""
-#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
-#~ "complete."
-#~ msgstr ""
-#~ "တင်သွင်းချက် ပြီးသွားပြီ။ တောင်းဆိုချက်အရ လှိုင်းသဏ္ဍာန် တွက်ချက်မှု တခုအတွက် လည်ပတ်မှု။ %2.0f%% "
-#~ "ပြီးသွားပြီ။"
+#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgstr "တင်သွင်းချက် ပြီးသွားပြီ။ တောင်းဆိုချက်အရ လှိုင်းသဏ္ဍာန် တွက်ချက်မှု တခုအတွက် လည်ပတ်မှု။ %2.0f%% ပြီးသွားပြီ။"
 
 #, fuzzy
 #~ msgid "Compress"
@@ -11880,8 +12630,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အနည်းဆုံး မှတ်ဉာဏ် အလွတ် (MB) -"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no "
-#~ "longer\n"
+#~ "If the available system memory falls below this value, audio will no longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
 #~ "ရနိုင်တဲ့ စက်ရဲ့ မှတ်ဉာဏ်ကို ဒီတန်ဖိုး အောက်ကို ကျနေရင်၊ အသံကို\n"
@@ -12014,23 +12763,15 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "မီတာကို ဖွင့်ပါ"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "avformat.dll|*avformat*.dll|တက်တက်ကြွကြွ ချိတ်ဆက်ထားတဲ့ စုစည်းချက်များ (*.dll)|*.dll|"
-#~ "ဖိုင်များ အားလုံး (*.*)|* ကိုသာ"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "avformat.dll|*avformat*.dll|တက်တက်ကြွကြွ ချိတ်ဆက်ထားတဲ့ စုစည်းချက်များ (*.dll)|*.dll|ဖိုင်များ အားလုံး (*.*)|* ကိုသာ"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "တက်ကြွ စုစည်းချက်များ (*.dylib)|*.dylib|ဖိုင်များ အားလုံး (*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "libavformat.so|libavformat.so*|တက်တက်ကြွကြွ ချိတ်ဆက်ထားတဲ့ စုစည်းချက်များ  (*.so*)|*."
-#~ "so*|ဖိုင်များ အားလုံး (*)|* ကိုသာ"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "libavformat.so|libavformat.so*|တက်တက်ကြွကြွ ချိတ်ဆက်ထားတဲ့ စုစည်းချက်များ  (*.so*)|*.so*|ဖိုင်များ အားလုံး (*)|* ကိုသာ"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -12056,34 +12797,18 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "kbps"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "lame_enc.dll|lame_enc.dll|တက်ကြွစွာ ချိတ်ဆက်ထားတဲ့ စုစည်းခန်းများ (*.dll)|*.dll|"
-#~ "ဖိုင်များ အားလုံး (*.*)|* ကိုသာ"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "lame_enc.dll|lame_enc.dll|တက်ကြွစွာ ချိတ်ဆက်ထားတဲ့ စုစည်းခန်းများ (*.dll)|*.dll|ဖိုင်များ အားလုံး (*.*)|* ကိုသာ"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "libmp3lame.dylib|libmp3lame.dylib|တက်ကြွတဲ့ စုစည်းခန်းများ (*.dylib)|*.dylib|"
-#~ "ဖိုင်များ အားလုံး (*)|* ကိုသာ"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "libmp3lame.dylib|libmp3lame.dylib|တက်ကြွတဲ့ စုစည်းခန်းများ (*.dylib)|*.dylib|ဖိုင်များ အားလုံး (*)|* ကိုသာ"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "libmp3lame.dylib|libmp3lame.dylib|တက်ကြွတဲ့ စုစည်းခန်းများ (*.dylib)|*.dylib|"
-#~ "ဖိုင်များ အားလုံး (*)|* ကိုသာ"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "libmp3lame.dylib|libmp3lame.dylib|တက်ကြွတဲ့ စုစည်းခန်းများ (*.dylib)|*.dylib|ဖိုင်များ အားလုံး (*)|* ကိုသာ"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "libmp3lame.so.0|libmp3lame.so.0|အဓိက မျှဝေထားတဲ့ ၀တ္ထူဖိုင်များ (*.so)|*.so|"
-#~ "တိုးချဲ့ထားတဲ့ စုစည်းခန်းများ (*.so*)|*.so*|ဖိုင်များ အားလုံး (*)|* ကိုသာ"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "libmp3lame.so.0|libmp3lame.so.0|အဓိက မျှဝေထားတဲ့ ၀တ္ထူဖိုင်များ (*.so)|*.so|တိုးချဲ့ထားတဲ့ စုစည်းခန်းများ (*.so*)|*.so*|ဖိုင်များ အားလုံး (*)|* ကိုသာ"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -12101,18 +12826,12 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "MIDI ဖိုင် (*.mid)|*.mid|အဲလက်ဂရို ဖိုင် (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "MIDI နဲ့ အဲလက်ဂရို ဖိုင်များ (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI ဖိုင်များ "
-#~ "(*.mid;*.midi)|*.mid;*.midi|အဲလက်ဂရို ဖိုင်များ (*.gro)|*.gro|ဖိုင်များ အားလုံး (*.*)|"
-#~ "*.*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "MIDI နဲ့ အဲလက်ဂရို ဖိုင်များ (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI ဖိုင်များ (*.mid;*.midi)|*.mid;*.midi|အဲလက်ဂရို ဖိုင်များ (*.gro)|*.gro|ဖိုင်များ အားလုံး (*.*)|*.*"
 
 #, fuzzy
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output "
-#~ "Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
 #~ "အိုဒေးစီးတီးကို အပို ခလုတ်၊ 'ရလဒ် အရင်းခံချက်' တခုနဲ့ သင် ပြုစုနိုင်တယ်။ ဒီအရာက စံထားချက်\n"
@@ -12141,9 +12860,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "စီမံချက်ထဲမှာ အသံကြောများ အာလုံးကို ပုံမှန်ဖြစ်စေပါ"
 
 #, fuzzy
-#~ msgid ""
-#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
-#~ "Menu."
+#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
 #~ msgstr "ရေးဆွဲမှုကို သုံးစွဲဖို့၊ အသံလမ်းကြော ရွေးနိုင်တဲ့ စာရင်းတွဲ စာရင်းမှတ်ထဲမှ 'လှိုင်းသဏ္ဍာန်' ကို ရွေးပါ။"
 
 #, fuzzy
@@ -12237,16 +12954,13 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ညာဖက်"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden "
-#~ "before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
-#~ "to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
 #~ msgstr ""
 #~ "အောင်းနေတဲ့ ပြုပြင်မှု တပ်ဆင်ချက်က မှတ်တမ်းတင်ထားတဲ့ အသံကို သုည မတိုင်ခင် ဖျောက်ပေး ထားတယ်။\n"
 #~ "အိုဒေးစီးတီးက ၄င်းကို သုညမှာ စတင်ဖို့ ပြန်ယူဆောင်ပေးတယ်။\n"
-#~ "အသံလမ်းကြောကို နေရာမှန်ဆီ ဒရွတ်ဆွဲဖို့ အချိန် ပြောင်းရွေ့ရေး ကိရိယာ (<---> (သို့) F5) ကို သင် "
-#~ "သုံးစွဲနိုင်တယ်။"
+#~ "အသံလမ်းကြောကို နေရာမှန်ဆီ ဒရွတ်ဆွဲဖို့ အချိန် ပြောင်းရွေ့ရေး ကိရိယာ (<---> (သို့) F5) ကို သင် သုံးစွဲနိုင်တယ်။"
 
 #~ msgid "Latency problem"
 #~ msgstr "အောင်းနေတဲ့ ပြဿနာ"
@@ -12310,9 +13024,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Time Scale"
 #~ msgstr "အချိန် စကေး"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
 #~ msgstr "သင့်ရဲ့ အသံလမ်းကြောများဟာ တင်ပို့ထားတဲ့ ဖိုင်ထဲမှာ မိုနို ချာနယ် တခုမှာ ပေါင်းစပ်သွားလိမ့်မယ်။"
 
 #~ msgid "Playthrough"
@@ -12326,9 +13038,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "အသံ ကိရိယာကို ဖွင့်နေစဉ် အမှားအယွင်း။ ကိရိယာ ရလဒ် တပ်ဆင်ချက်များနဲ့ စီမံချက် နမူနာ နှုန်းထားကို "
-#~ "စစ်ဆေးပါ။"
+#~ msgstr "အသံ ကိရိယာကို ဖွင့်နေစဉ် အမှားအယွင်း။ ကိရိယာ ရလဒ် တပ်ဆင်ချက်များနဲ့ စီမံချက် နမူနာ နှုန်းထားကို စစ်ဆေးပါ။"
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -12486,11 +13196,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အနီးကပ်မြင်ကွင်း ပြီးဆုံးချိန်"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "ဒေါင်လိုက် ချဲ့ကားဖို့ နှိုပ်ပါ၊ ကျုံ့ဖို့ Shift-နှိုပ်ပါ၊ သီးခြား ချဲ့ထွင် နယ်ပယ်တခုကို ဖန်တီးဖို့ ဒရွတ်ဆွဲပါ။"
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "ဒေါင်လိုက် ချဲ့ကားဖို့ နှိုပ်ပါ၊ ကျုံ့ဖို့ Shift-နှိုပ်ပါ၊ သီးခြား ချဲ့ထွင် နယ်ပယ်တခုကို ဖန်တီးဖို့ ဒရွတ်ဆွဲပါ။"
 
 #~ msgid "up"
 #~ msgstr "အထက်"
@@ -12799,8 +13506,7 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "အသံလမ်းကြော အမှတ်စဉ်"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
-#~ "loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
 #~ "when the program starts up."
 #~ msgstr ""
 #~ "'အစပြုချိန်မှာ အဓိက ယာယီသိမ်းဆည်းချက်ကို ဖွင့်ပါ' ကို ရွေးထားရင်၊ ပ​ရိုဂရမ်ကို စတင်တဲ့အခါ\n"
@@ -13098,12 +13804,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "သင့်ရဲ့ ဖိုင်ကို GSM ၆.၁၀ WAV ဖိုင်တခု အဖြစ် တင်ပို့လိမ့်မယ်။\n"
 
 #, fuzzy
-#~ msgid ""
-#~ "If you need more control over the export format please use the \"%s\" "
-#~ "format."
-#~ msgstr ""
-#~ "တင်ပို့ချက် အမျိုးအစား အပေါ် ပိုမို ထိန်းချုပ်ဖို့ သင်လိုအပ်ရင်၊ 'အခြား ဖိသိပ်မထားတဲ့ ဖိုင်များ' "
-#~ "အမျိုးအစားကို သုံးစွဲပါ။"
+#~ msgid "If you need more control over the export format please use the \"%s\" format."
+#~ msgstr "တင်ပို့ချက် အမျိုးအစား အပေါ် ပိုမို ထိန်းချုပ်ဖို့ သင်လိုအပ်ရင်၊ 'အခြား ဖိသိပ်မထားတဲ့ ဖိုင်များ' အမျိုးအစားကို သုံးစွဲပါ။"
 
 #~ msgid "Ctrl-Left-Drag"
 #~ msgstr "Ctrl-ဘယ်-ဒရွတ်ဆွဲပါ"
@@ -13125,11 +13827,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Command-line options supported:"
 #~ msgstr "အမိန့်ပေး-လိုင်း ရွေးစရာများ ပံ့ပိုးထားမှု -"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
-#~ msgstr ""
-#~ "ဖြည့်စွက်ချက် အနေဖြင့်၊ ၄င်းကို ဖွင့်ဖို့ အသံဖိုင်တခုရဲ့ အမည် (သို့) အိုဒေးစီးတီး စီမံချက်တခုရဲ့ အမည်ကို သတ်မှတ်ပါ။"
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
+#~ msgstr "ဖြည့်စွက်ချက် အနေဖြင့်၊ ၄င်းကို ဖွင့်ဖို့ အသံဖိုင်တခုရဲ့ အမည် (သို့) အိုဒေးစီးတီး စီမံချက်တခုရဲ့ အမည်ကို သတ်မှတ်ပါ။"
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "စတီရီယိုမှ မိုနို သက်ရောက်မှုကို မတွေ့ရဘူး"
@@ -13137,11 +13836,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "ခါဆာ - %d Hz (%s) = %d dB    အထွတ်အထိပ် - %d Hz (%s) = %.1f dB"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "ခါဆာ - %.4f sec (%d Hz) (%s) = %f,    အထွတ်အထိပ် - %.4f sec (%d Hz) (%s) = "
-#~ "%.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "ခါဆာ - %.4f sec (%d Hz) (%s) = %f,    အထွတ်အထိပ် - %.4f sec (%d Hz) (%s) = %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -13339,16 +14035,11 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "ပုံမှန်ဖြစ်စေပါ..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s နှောင့်နှေးမှု = %f စက္ကန့်၊ ယိုယွင်းမှု အကြောင်းရင်း = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "သုံးစွဲတဲ့ သက်ရောက်မှု - %s %d အဆင့်များ၊ %.0f%% စိုစွတ်မှု၊ ကြိမ်နှုန်း = %.1f Hz, အဆင့် စတင်မှု = "
-#~ "%.0f deg, အနက် = %d, တုံ့ပြန်ချက် = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "သုံးစွဲတဲ့ သက်ရောက်မှု - %s %d အဆင့်များ၊ %.0f%% စိုစွတ်မှု၊ ကြိမ်နှုန်း = %.1f Hz, အဆင့် စတင်မှု = %.0f deg, အနက် = %d, တုံ့ပြန်ချက် = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "ဖေးဇာ..."
@@ -13412,12 +14103,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Changing Tempo/Pitch"
 #~ msgstr "နရီအနှေးအမြန်/အသံပေါက် ပြောင်းလဲ​ခြင်း"
 
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
-#~ msgstr ""
-#~ "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s လှိုင်း %s ကို ထုတ်လုပ်ပါ၊ ကြိမ်နှုန်း = %.2f Hz, ကျယ်ပြန့်မှု = %.2f, "
-#~ "%.6lf စက္ကန့်များ"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
+#~ msgstr "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s လှိုင်း %s ကို ထုတ်လုပ်ပါ၊ ကြိမ်နှုန်း = %.2f Hz, ကျယ်ပြန့်မှု = %.2f, %.6lf စက္ကန့်များ"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "မြည်သံ ထုတ်လုပ်ကိရိယာ"
@@ -13436,12 +14123,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Rescan Effects"
 #~ msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "သုံးစွဲတဲ့ သက်ရောက်မှု - %s ကြိမ်နှုန်း = %.1f Hz, အဆင့် စတင်မှု = %.0f deg, အနက် = %.0f%%, "
-#~ "အသံသြဇာ = %.1f, ကြိမ်နှုန်း အော့ဖ်ဆက် = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "သုံးစွဲတဲ့ သက်ရောက်မှု - %s ကြိမ်နှုန်း = %.1f Hz, အဆင့် စတင်မှု = %.0f deg, အနက် = %.0f%%, အသံသြဇာ = %.1f, ကြိမ်နှုန်း အော့ဖ်ဆက် = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "ဝါဝါ..."
@@ -13455,12 +14138,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Author: "
 #~ msgstr "ရေးသားသူ -"
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "၀မ်းနည်းပါတယ်၊ ဒီယန္တရားငယ် သက်ရောက်မှုများကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ "
-#~ "နေရာမှ စတီရီယို အသံလမ်းကြောများပေါ်မှာ မဆောင်​ရွတ်နိုင်ဘူး။"
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "၀မ်းနည်းပါတယ်၊ ဒီယန္တရားငယ် သက်ရောက်မှုများကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ နေရာမှ စတီရီယို အသံလမ်းကြောများပေါ်မှာ မဆောင်​ရွတ်နိုင်ဘူး။"
 
 #~ msgid "Note length (seconds)"
 #~ msgstr "အရှည် (စက္ကန့်များ) ကို မှတ်သားပါ"
@@ -13531,10 +14210,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Input Meter"
 #~ msgstr "ထည့်သွင်းရေး မီတာ"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
-#~ msgstr ""
-#~ "စီမံချက်တခုကို ဆယ်တင်မှုက ၄င်းကို မသိမ်းဆည်းခင် ဓါတ်ပြားပေါ်က ဖိုင်များကို ပြောင်းလဲစေမှာ မဟုတ်ဘူး။"
+#~ msgid "Recovering a project will not change any files on disk before you save it."
+#~ msgstr "စီမံချက်တခုကို ဆယ်တင်မှုက ၄င်းကို မသိမ်းဆည်းခင် ဓါတ်ပြားပေါ်က ဖိုင်များကို ပြောင်းလဲစေမှာ မဟုတ်ဘူး။"
 
 #~ msgid "Do Not Recover"
 #~ msgstr "မဆယ်တင်နဲ့"
@@ -13619,15 +14296,12 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 
 #~ msgid ""
 #~ "GStreamer was configured in preferences and successfully loaded before,\n"
-#~ "                      but this time Audacity failed to load it at "
-#~ "startup.\n"
-#~ "                      You may want to go back to Preferences > Libraries "
-#~ "and re-configure it."
+#~ "                      but this time Audacity failed to load it at startup.\n"
+#~ "                      You may want to go back to Preferences > Libraries and re-configure it."
 #~ msgstr ""
 #~ "ဂျီစထရီးမားကို ဦးစားပေးချက်များမှာ စီစဉ်ဖန်တီးခဲ့ပြီး အရင်က အောင်အောင်မြင်မြင် ထည့်သွင်းခဲ့တယ်၊\n"
 #~ "                      ဒါပေမဲ့ ဒီချိန်မှာ အိုဒေးစီးတီးက အစပြုချိန်မှာ မဖွင့်နိုင်ဘူး။\n"
-#~ "                      ဦးစားပေးချက်များ > စုစည်းချက်များဆီ သွားပြီး ၄င်းကို သင် "
-#~ "ပြန်စီစဉ်ဖန်တီးနိုင်တယ်။"
+#~ "                      ဦးစားပေးချက်များ > စုစည်းချက်များဆီ သွားပြီး ၄င်းကို သင် ပြန်စီစဉ်ဖန်တီးနိုင်တယ်။"
 
 #~ msgid ""
 #~ "You have left blank label names.  These will be\n"
@@ -13707,24 +14381,17 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgstr "၀င်းဒိုး PCM အသံ ဖိုင် (*.wav)|*.wav"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, "
-#~ "compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, "
-#~ "because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each "
-#~ "compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select "
-#~ "one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "အိုဒေးစီးတီး ဖိသိပ်မှု စီမံချက် ဖိုင်များ (.aup) က သင့်ရဲ့ လုပ်ငန်းကို ပိုမို သေးငယ်ပြီး၊ ဖိသိပ်မှု (.ogg) "
-#~ "အမျိုးအစားနဲ့ သိမ်းပေးတယ်။ \n"
-#~ "ဖိသိပ်ထားတဲ့ စီမံချက် ဖိုင်များဟာ သင့်ရဲ့ စီမံချက်ကို အွန်လိုင်းနဲ့ ထုတ်လွှင့်ဖို့ နည်းလမ်းကောင်း တရပ် ဖြစ်တယ်၊ "
-#~ "ဘာကြောင့်လဲ ဆိုတော့ အလွန် ပိုသေးငယ်တဲ့ အတွက် ဖြစ်တယ်။\n"
-#~ "ဖိသိပ်ထားတဲ့ စီမံချက်တခုကို ဖွင့်ဖို့ ဖိသိပ်ထားတဲ့ အသံလမ်းကြောတိုင်းကို ၄င်းက တင်သွင်းတဲ့ အတွက် သာမန်ထက် "
-#~ "ပိုအချိန်ကြာတယ်။\n"
+#~ "အိုဒေးစီးတီး ဖိသိပ်မှု စီမံချက် ဖိုင်များ (.aup) က သင့်ရဲ့ လုပ်ငန်းကို ပိုမို သေးငယ်ပြီး၊ ဖိသိပ်မှု (.ogg) အမျိုးအစားနဲ့ သိမ်းပေးတယ်။ \n"
+#~ "ဖိသိပ်ထားတဲ့ စီမံချက် ဖိုင်များဟာ သင့်ရဲ့ စီမံချက်ကို အွန်လိုင်းနဲ့ ထုတ်လွှင့်ဖို့ နည်းလမ်းကောင်း တရပ် ဖြစ်တယ်၊ ဘာကြောင့်လဲ ဆိုတော့ အလွန် ပိုသေးငယ်တဲ့ အတွက် ဖြစ်တယ်။\n"
+#~ "ဖိသိပ်ထားတဲ့ စီမံချက်တခုကို ဖွင့်ဖို့ ဖိသိပ်ထားတဲ့ အသံလမ်းကြောတိုင်းကို ၄င်းက တင်သွင်းတဲ့ အတွက် သာမန်ထက် ပိုအချိန်ကြာတယ်။\n"
 #~ "\n"
 #~ "အခြား ပရိုဂရမ်များ အများစုက အိုဒေးစီးတီး စီမံချက် ဖိုင်များကို မဖွင့်နိုင်ဘူး။\n"
 #~ "အခြား ပရိုဂရမ်များနဲ့ ဖွင့်တဲ့ ဖိုင်တခုကို သင် သိမ်းဆည်းတဲ့ အခါ၊ တင်ပို့မှု \n"
@@ -13735,15 +14402,13 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export"
-#~ "\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
 #~ msgstr ""
 #~ "သင်ဟာ အိုဒေးစီးတီး စီမံချက် ဖိုင် တခုကို သိမ်းဆည်းနေတယ် (.aup).\n"
 #~ "\n"
 #~ "စီမံချက် တခုကို ဖန်တီးခြင်းက အိုဒေးစီးတီး ကသာ ဖွင့်​နိုင်တဲ့ ဖိုင်တခုကို ဖန်တီးပေးတယ်။\n"
 #~ "\n"
-#~ "အခြား ပရိုဂရမ်များအတွက် အသံဖိုင်တခုကို သိမ်းဆည်းဖို့၊ \"ဖိုင် > တင်ပို့ပါ\" ညွှန်ကြားချက်များထဲမှ တခုကို "
-#~ "သုံးစွဲပါ။\n"
+#~ "အခြား ပရိုဂရမ်များအတွက် အသံဖိုင်တခုကို သိမ်းဆည်းဖို့၊ \"ဖိုင် > တင်ပို့ပါ\" ညွှန်ကြားချက်များထဲမှ တခုကို သုံးစွဲပါ။\n"
 
 #~ msgid "Libresample by Dominic Mazzoni and Julius Smith"
 #~ msgstr "ဒိုမီနစ် မာဇုံနီနဲ့ ဂျုလီယက် စမစ် ပြုစုတဲ့ Libresample"
@@ -13820,12 +14485,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Noise Removal by Dominic Mazzoni"
 #~ msgstr "ဒိုမီနစ် မာဇုံနီ စီမံတဲ့ ဆူညံသံ ဖယ်ရှားခြင်း"
 
-#~ msgid ""
-#~ "Sorry, this effect cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "၀မ်းနည်းပါတယ်၊ ဒီသက်ရောက်မှုကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ နေရာမှ စတီရီယို "
-#~ "အသံလမ်းကြောများပေါ်မှာ မဆောင်​ရွတ်နိုင်ဘူး။"
+#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "၀မ်းနည်းပါတယ်၊ ဒီသက်ရောက်မှုကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ နေရာမှ စတီရီယို အသံလမ်းကြောများပေါ်မှာ မဆောင်​ရွတ်နိုင်ဘူး။"
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "စပိုက် ရှင်းလင်းကိရိယာ"
@@ -13908,12 +14569,8 @@ msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ခ�
 #~ msgid "Record (Shift for Append Record)"
 #~ msgstr "အသံသွင်းပါ (အသံသွင်းချက်ကို ပူးတွဲဖို့ ရွှေ့ပြောင်းပါ)"
 
-#~ msgid ""
-#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
-#~ "one project, is already open."
-#~ msgstr ""
-#~ "အသံကြော တခု၊ (သို့) စီမံချက် တခုထက် ပိုဖွင့်ထားရင်၊ ရှင်းလင်းတဲ့ဟောပြောမှု စနစ်မှာ အသံသွင်းခြင်းဟာ "
-#~ "မဖြစ်နိုင်ဘူး။"
+#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
+#~ msgstr "အသံကြော တခု၊ (သို့) စီမံချက် တခုထက် ပိုဖွင့်ထားရင်၊ ရှင်းလင်းတဲ့ဟောပြောမှု စနစ်မှာ အသံသွင်းခြင်းဟာ မဖြစ်နိုင်ဘူး။"
 
 #~ msgid "Output level meter"
 #~ msgstr "ရလဒ် အဆင့် မီတာ"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2009-01-16 03:10-0000\n"
 "Last-Translator: g <g@g>\n"
 "Language-Team:  <en@li.org>\n"
@@ -21,6 +21,10 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "ჩაწერის დასასრული"
@@ -29,6 +33,11 @@ msgstr "ჩაწერის დასასრული"
 #, fuzzy, c-format
 msgid "Default playback device number: %d\n"
 msgstr "ჩაწერის დასასრული"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "No devices found\n"
+msgstr "გაერთიანებული სტერეო"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -106,11 +115,26 @@ msgstr "დაკვრის სიჩქარე"
 msgid "No playback device found for '%s'.\n"
 msgstr "დაკვრის სიჩქარე"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "სემპლის კ0ოეფიციენტები"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "სემპლის კ0ოეფიციენტები"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -138,6 +162,20 @@ msgstr "დაკვრის სიჩქარე"
 msgid "Message"
 msgstr "&რესემპლირება..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -156,6 +194,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Audacity ვერ შეძლო ფაილის ჩაწერა:\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -206,12 +249,21 @@ msgstr "ფაილების სახელების დარქმე�
 msgid "XML files"
 msgstr "MP3 ფაილები"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3 ფაილები"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -233,6 +285,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "დროებითი ფაილების დირექტორია"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -257,9 +317,49 @@ msgstr "მართკუთხედი"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "მოგესალმებით!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -297,6 +397,10 @@ msgstr "24-ბიტიანი PCM"
 msgid "32-bit float"
 msgstr "32-ბიტიანი მცოცავი"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -307,6 +411,21 @@ msgstr "16-ბიტიანი PCM"
 msgid "24-bit"
 msgstr "24-ბიტიანი PCM"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "შეუძლებელია დადგენა"
@@ -315,6 +434,24 @@ msgstr "შეუძლებელია დადგენა"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr " ბაიტები"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -369,9 +506,39 @@ msgstr "ფილტრი"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "სიხშირე (Hz)"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -404,6 +571,22 @@ msgstr "სიხშირეზე წამებში"
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "მინიმალური სიხშირე 0 Hz მაინც უნდა იყოს"
 
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
+
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -418,6 +601,28 @@ msgstr "გამკვეთრება"
 #, fuzzy
 msgid "Applying Fade..."
 msgstr "გააქტიურება..."
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny plug-ins/delay.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/equalabel.ny
+#: plug-ins/label-sounds.ny plug-ins/limiter.ny plug-ins/noisegate.ny
+#: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
+#: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
+msgid "Steve Daulton"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -450,9 +655,17 @@ msgid "S-Curve Down"
 msgstr "ჩამოწევა"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "დაწყება"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -463,6 +676,14 @@ msgstr "Gain"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "დაწყება"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -478,6 +699,14 @@ msgstr "ლინეარული"
 #, fuzzy
 msgid "Linear Out"
 msgstr "ლინეარული"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -524,6 +753,24 @@ msgstr "ჩამოწევა"
 msgid "Error~%~%"
 msgstr "შეცდომა"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -555,9 +802,21 @@ msgid "Reconstructing clips..."
 msgstr "წკაპუნისა და ხტუნვის წაშლა..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "ზღვარი %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -568,6 +827,21 @@ msgstr "გაითვალისწინეთ ტრეკი"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "გაითვალისწინეთ ტრეკი"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -614,6 +888,19 @@ msgstr "მონიშვნა"
 msgid "Automatic"
 msgstr "ავტომატური აღდგენა მარცხის მერე"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "შეყოვნება"
@@ -632,6 +919,14 @@ msgstr "გასაღების ტიპი"
 #, fuzzy
 msgid "Regular"
 msgstr "მართკუთხედი"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -668,10 +963,23 @@ msgstr "ეს&კიზი"
 msgid "Number of echoes"
 msgstr "გასამეორებელი ჯერების ოდენობა:"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
 msgid "No"
 msgstr "არცერთიი"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -698,6 +1006,10 @@ msgid "XML file"
 msgstr "MP3 ფაილები"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "ჩაწერის დამატება"
@@ -722,6 +1034,14 @@ msgstr "შეცდომა (ფაილი შეიძლება არ �
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "შეცდომა (ფაილი შეიძლება არ ჩაწერილა): %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -759,6 +1079,10 @@ msgstr "სიგრძე (წამებო)"
 msgid "Length of label region (seconds)"
 msgstr "სიგრძე (წამებო)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -770,14 +1094,59 @@ msgid "Label"
 msgstr "იარლიყი"
 
 #: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Message on completion"
 msgstr "კლავიშთა კომბინაცია"
 
 #: plug-ins/equalabel.ny
+msgid "Details"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Warnings only"
 msgstr "გაფრთხილება"
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -789,6 +1158,12 @@ msgstr "იარლიყების შეერთება"
 #, fuzzy
 msgid "point labels"
 msgstr "იარლიყების შეერთება"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -815,10 +1190,42 @@ msgstr "Dominic Mazzoni-ის მიერ"
 msgid "Frequency (Hz)"
 msgstr "სიხშირე (Hz)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "მინიმალური სიხშირე 0 Hz მაინც უნდა იყოს"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -896,11 +1303,36 @@ msgstr "სიჩუმის ამოჭრა..."
 msgid "Maximum trailing silence"
 msgstr "სიჩუმის ამოჭრა..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "სახელი არ უნდა იყოს ცარიელი"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -942,6 +1374,13 @@ msgstr "კლიპინგის მოძიება"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "მარჯვენა არხი"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "მარჯვენა არხი"
 
@@ -949,6 +1388,10 @@ msgstr "მარჯვენა არხი"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "დონე:"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -978,6 +1421,10 @@ msgstr "მონიშვნა"
 #: plug-ins/noisegate.ny
 msgid "Gate"
 msgstr "გეითი"
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -1020,12 +1467,42 @@ msgid "Decay (ms)"
 msgstr "შეტევის/დანებების დრო (წამები):"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "სახელი არ უნდა იყოს ცარიელი"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1036,6 +1513,22 @@ msgstr "ხმის სიმაღლის წამნაცვლებე�
 #, fuzzy
 msgid "Applying Notch Filter..."
 msgstr "გამასწორებლის გააქტიურება"
+
+#: plug-ins/notch.ny
+msgid "Steve Daulton and Bill Wharrie"
+msgstr ""
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1094,9 +1587,19 @@ msgid "Allow"
 msgstr "გაუქმებული."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "შეუძლებელია '%s'-ის წაშლა"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1109,14 +1612,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "MIDI ფაილის ამორჩევა"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "მდებარეობის ექსპორტირება:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "MIDI ფაილის ამორჩევა"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1124,9 +1644,29 @@ msgid "Generating pluck sound..."
 msgstr "ტონის გენერაცია"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "ფილტრი"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1142,6 +1682,10 @@ msgstr "ტრეკის წაშლა"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "Chirp გენერაცია"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1164,9 +1708,21 @@ msgid "Swing amount"
 msgstr "რღვევა"
 
 #: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "გასამეორებელი ჯერების ოდენობა:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1194,6 +1750,22 @@ msgid "Beat sound"
 msgstr "გამეორება"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "ხარვეზის წაშლა"
@@ -1202,6 +1774,32 @@ msgstr "ხარვეზის წაშლა"
 #, fuzzy
 msgid "Noise Click"
 msgstr "ხარვეზი..."
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1214,6 +1812,10 @@ msgid "Generating Risset Drum..."
 msgstr "ხარვეზის გენერაცია"
 
 #: plug-ins/rissetdrum.ny
+msgid "Steven Jones"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Decay (seconds)"
 msgstr "შეყოვნების დრო (წამები):"
@@ -1222,6 +1824,10 @@ msgstr "შეყოვნების დრო (წამები):"
 #, fuzzy
 msgid "Center frequency of noise (Hz)"
 msgstr "ლინეარული სიხშირე"
+
+#: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1242,6 +1848,10 @@ msgstr "შეუძლებელია ესპორტირება"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "გააქტიურება..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1281,6 +1891,10 @@ msgid "HTML files"
 msgstr "MP3 ფაილები"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "სემპლის რედაქტირება"
@@ -1296,6 +1910,10 @@ msgid "Include header information"
 msgstr "აგების ინფორმაცია"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "სტანდარტული"
 
@@ -1303,6 +1921,23 @@ msgstr "სტანდარტული"
 #, fuzzy
 msgid "All"
 msgstr "&All"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1320,6 +1955,11 @@ msgstr "\t-დახმარება (ეს შეტყობინება
 msgid "Errors Only"
 msgstr "შეცდომა: "
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1331,6 +1971,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "მარჯვენა არხი"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "სემპლები"
@@ -1339,6 +2019,43 @@ msgstr "სემპლები"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "წამები"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1366,6 +2083,10 @@ msgid "Value (dB)"
 msgstr "დონე:"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "ლინეარული"
@@ -1386,6 +2107,14 @@ msgid "Right (dB)"
 msgstr "მარჯვენა,"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "ლინეარული"
@@ -1399,6 +2128,35 @@ msgstr "2 არხი (სტერეო)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "1 არხი (მონო)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1421,9 +2179,41 @@ msgid "Select file"
 msgstr "MIDI ფაილის ამორჩევა"
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "შეცდომა"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1434,6 +2224,15 @@ msgstr "შეუძლებელია ჟანრის ფაილის 
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "მონიშვნა"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1473,9 +2272,17 @@ msgid "Wet level (percent)"
 msgstr "2-დონე"
 
 #: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "გააქტიურება..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1531,10 +2338,97 @@ msgstr "&ანალიზი"
 msgid "Strength"
 msgstr "ფილტრი"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Auto Duck დამუშავება..."
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1576,287 +2470,230 @@ msgstr "სიხშირე (Hz)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "სიხშირე (Hz)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Nyquist ეფექტის გააქტიურება..."
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Nyquist ეფექტის გააქტიურება..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&ჩასმა"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&ჩასმა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&ჩასმა"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&ჩასმა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&ჩასმა"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&ჩასმა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&ჩასმა"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&ჩასმა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "მონიშვნა"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "მონიშვნა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "შრიფტი..."
+#~ msgid "Select &Font..."
+#~ msgstr "შრიფტი..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "&ვერტიკალური მორგება"
+#~ msgid "Split &Vertically"
+#~ msgstr "&ვერტიკალური მორგება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "ჰორიზონტალური სტერეო"
+#~ msgid "Split &Horizontally"
+#~ msgstr "ჰორიზონტალური სტერეო"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "გამონატანის ჩვენება"
+#~ msgid "Show S&cript"
+#~ msgstr "გამონატანის ჩვენება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "გამონატანის ჩვენება"
+#~ msgid "Show &Output"
+#~ msgstr "გამონატანის ჩვენება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "&ხელსაწყოთა ზოლები"
+#~ msgid "Toolbar"
+#~ msgstr "&ხელსაწყოთა ზოლები"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "გაჩერება"
+#~ msgid "&Stop\tF6"
+#~ msgstr "გაჩერება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "ცვლადი"
+#~ msgid "Script"
+#~ msgstr "ცვლადი"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "გამონატანის მთვლელი"
+#~ msgid "Output"
+#~ msgstr "გამონატანის მთვლელი"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Nyquist Prompt..."
+#~ msgid "Load Nyquist script"
+#~ msgstr "Nyquist Prompt..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "გაფრთხილება"
+#~ msgid "Warning"
+#~ msgstr "გაფრთხილება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Nyquist Prompt..."
+#~ msgid "Save Nyquist script"
+#~ msgstr "Nyquist Prompt..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Leland Lucius"
-msgstr "Leland Lucius-ის მიერ"
+#~ msgid "Leland Lucius"
+#~ msgstr "Leland Lucius-ის მიერ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "(C) 2009 by Leland Lucius"
-msgstr "Leland Lucius-ის მიერ"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "Leland Lucius-ის მიერ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Nyquist ეფექტის გააქტიურება..."
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Nyquist ეფექტის გააქტიურება..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "გაერთიანებული სტერეო"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Nyquist ეფექტის გააქტიურება..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Nyquist ეფექტის გააქტიურება..."
+#~ msgid "New"
+#~ msgstr "&ახალი"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&ახალი"
+#~ msgid "New script"
+#~ msgstr "უკანასკნელის გახსნა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "უკანასკნელის გახსნა"
+#~ msgid "Open"
+#~ msgstr "&გახსნა..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&გახსნა..."
+#~ msgid "Open script"
+#~ msgstr "უკანასკნელის გახსნა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "უკანასკნელის გახსნა"
+#~ msgid "Save"
+#~ msgstr "&შენახვა..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "&შენახვა..."
+#~ msgid "Save script"
+#~ msgstr "Nyquist Prompt..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Nyquist Prompt..."
+#~ msgid "Save As"
+#~ msgstr "შენახვა, როგორც..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "შენახვა, როგორც..."
+#~ msgid "Save script as..."
+#~ msgstr "პროექტის შენახვა, &როგორც..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Copy"
+#~ msgstr "კოპირება"
+
 #, fuzzy
-msgid "Save script as..."
-msgstr "პროექტის შენახვა, &როგორც..."
+#~ msgid "Copy to clipboard"
+#~ msgstr "გაცვლის ბუფერში დამატება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "კოპირება"
+#~ msgid "Cut"
+#~ msgstr "ამოჭრა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "გაცვლის ბუფერში დამატება"
+#~ msgid "Cut to clipboard"
+#~ msgstr "გაცვლის ბუფერში დამატება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "ამოჭრა"
+#~ msgid "Paste"
+#~ msgstr "ჩასმა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "გაცვლის ბუფერში დამატება"
+#~ msgid "Paste from clipboard"
+#~ msgstr "გაცვლის ბუფერიდან ჩასმული"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "ჩასმა"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "გაცვლის ბუფერიდან ჩასმული"
+#~ msgid "Clear"
+#~ msgstr "&გაწმენდა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "&გაწმენდა"
+#~ msgid "Clear selection"
+#~ msgstr "სიჩუმის მონიშვნა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "სიჩუმის მონიშვნა"
+#~ msgid "Select All"
+#~ msgstr "მონიშვნა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "მონიშვნა"
+#~ msgid "Select all text"
+#~ msgstr "მონიშვნა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Undo"
+#~ msgstr "დაბრუნება"
+
 #, fuzzy
-msgid "Select all text"
-msgstr "მონიშვნა"
+#~ msgid "Undo last change"
+#~ msgstr "ფორმატის შეცვლა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "დაბრუნება"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "ფორმატის შეცვლა"
+#~ msgid "Redo"
+#~ msgstr "&გამეორება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo"
-msgstr "&გამეორება"
+#~ msgid "Redo previous change"
+#~ msgstr "ფორმატის შეცვლა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "ფორმატის შეცვლა"
+#~ msgid "Find"
+#~ msgstr "&შენიშვნების ძება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "&შენიშვნების ძება"
+#~ msgid "Find text"
+#~ msgstr "&შენიშვნების ძება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "&შენიშვნების ძება"
+#~ msgid "Match"
+#~ msgstr "ჯგუფური"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "ჯგუფური"
+#~ msgid "Top"
+#~ msgstr "კენ:"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Top"
-msgstr "კენ:"
+#~ msgid "Go to top S-expr"
+#~ msgstr "საექსპორტო იარლიყები არ მოიძებნა."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Up"
+#~ msgstr "ზემოთ"
+
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "საექსპორტო იარლიყები არ მოიძებნა."
+#~ msgid "Previous"
+#~ msgstr "წინა ხელსაწყო"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "ზემოთ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "წინა ხელსაწყო"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "ფოკუსის წინა ტრეკზე გადატანა"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "ფოკუსის წინა ტრეკზე გადატანა"
+#~ msgid "Next"
+#~ msgstr "შემდეგი ხელსაწყო"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Start"
+#~ msgstr "დაწყება"
+
 #, fuzzy
-msgid "Next"
-msgstr "შემდეგი ხელსაწყო"
+#~ msgid "Start script"
+#~ msgstr "Nyquist Prompt..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "დაწყება"
+#~ msgid "Stop"
+#~ msgstr "გაჩერება"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Nyquist Prompt..."
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "გაჩერება"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-#, fuzzy
-msgid "Stop script"
-msgstr "Nyquist Prompt..."
+#~ msgid "Stop script"
+#~ msgstr "Nyquist Prompt..."
 
 #~ msgid "Comments"
 #~ msgstr "კომენტარები"
@@ -2007,8 +2844,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "Click and drag to adjust, double-click to reset"
-#~ msgstr ""
-#~ "სტერეო ტრეკების რელატიური ზომის მოსარგებად დააწკაპუნეთ და გადაათრიეთ."
+#~ msgstr "სტერეო ტრეკების რელატიური ზომის მოსარგებად დააწკაპუნეთ და გადაათრიეთ."
 
 #, fuzzy
 #~ msgid "Record/Play head"
@@ -2073,8 +2909,7 @@ msgstr "Nyquist Prompt..."
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Audacity ვერ პოულობს დროებითი ფაილების შესანახ ადგილს.\n"
@@ -2087,12 +2922,8 @@ msgstr "Nyquist Prompt..."
 #~ "Audacity ვერ პოულობს დროებითი ფაილების შესანახ ადგილს.\n"
 #~ "გთხოვთ, შეიყვანოთ შესაბამისი დირექტორია პარამეტრების დიალოგურ სარკმელში."
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Audacity  ახლა დაიხურება. გთხოვთ, გაუშვათ თავიდან ახალი დროებითი "
-#~ "დირექტორიის გამოსაყენებლად."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Audacity  ახლა დაიხურება. გთხოვთ, გაუშვათ თავიდან ახალი დროებითი დირექტორიის გამოსაყენებლად."
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -2132,8 +2963,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "set max disk block size in bytes"
-#~ msgstr ""
-#~ "\t-ბლოკის ზომა nnn (დისკის ბლოკის მაქსიმალური ზომის მომართვა ბაიტებში)"
+#~ msgstr "\t-ბლოკის ზომა nnn (დისკის ბლოკის მაქსიმალური ზომის მომართვა ბაიტებში)"
 
 #, fuzzy
 #~ msgid "this help message"
@@ -2227,9 +3057,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "ხმა-გააქტიურებული ჩაწერა (ჩართვა/გამორთვა)"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
 #~ msgstr "ხმა-გააქტიურებული ჩაწერა (ჩართვა/გამორთვა)"
 
 #, fuzzy
@@ -2265,13 +3093,11 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
-#~ "ზოგიერთი პროექტი არ შეინახა სწორად, როდესაც Audacity იყო გაშვებული "
-#~ "ბოლოს.\n"
+#~ "ზოგიერთი პროექტი არ შეინახა სწორად, როდესაც Audacity იყო გაშვებული ბოლოს.\n"
 #~ "საბედნიეროდ, შემდეგი პროექტების ავტომატური აღდგენა შესაძლებელია:"
 
 #, fuzzy
@@ -2640,9 +3466,7 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Missing"
 #~ msgstr "გამოყენებით:"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
 #~ msgstr "თუ გააგრძელებთ, თქვენი პროექტი არ შეინახება დისკზე. ასე გსურთ?"
 
 #, fuzzy
@@ -2657,9 +3481,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy, c-format
 #~ msgid "Audacity needs the file '%s' to import and export audio via FFmpeg."
-#~ msgstr ""
-#~ "Audacity-ის სჭირდება ფაილი %s აუდიოს იმპორტისა და ექსპორტისთვის FFmpeg-ის "
-#~ "საშუალებით."
+#~ msgstr "Audacity-ის სჭირდება ფაილი %s აუდიოს იმპორტისა და ექსპორტისთვის FFmpeg-ის საშუალებით."
 
 #~ msgid "To get a free copy of FFmpeg, click here -->"
 #~ msgstr "FFmpeg-ის უფასო ასლის მისაღებად აქ დააწკაპუნეთ -->"
@@ -2673,13 +3495,11 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "&Copy uncompressed files into the project (safer)"
-#~ msgstr ""
-#~ "&შექმენით არაკომპრესირებული აუდიო ფაილების ასლი რედაქტირებამდე (უსაფრთხოა)"
+#~ msgstr "&შექმენით არაკომპრესირებული აუდიო ფაილების ასლი რედაქტირებამდე (უსაფრთხოა)"
 
 #, fuzzy
 #~ msgid "&Read uncompressed files from original location (faster)"
-#~ msgstr ""
-#~ "არაკომპრესირებული ფაილების &წაკითხვა პირდაპირ ორიგინალიდან (უფრო სწრაფია)"
+#~ msgstr "არაკომპრესირებული ფაილების &წაკითხვა პირდაპირ ორიგინალიდან (უფრო სწრაფია)"
 
 #, fuzzy
 #~ msgid "&Copy all audio into project (safest)"
@@ -2746,18 +3566,12 @@ msgstr "Nyquist Prompt..."
 #~ msgid "&Replot..."
 #~ msgstr "გამეორება..."
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი "
-#~ "კოეფიციენტი."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი კოეფიციენტი."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
-#~ msgstr ""
-#~ "ზედმეტი აუდიო იყო მონიშნული. მხოლოდ პირველი %.1f წამის ანალიზი მოხდება."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+#~ msgstr "ზედმეტი აუდიო იყო მონიშნული. მხოლოდ პირველი %.1f წამის ანალიზი მოხდება."
 
 #~ msgid "Not enough data selected."
 #~ msgstr "არ არის საკმარისი მონაცემები მონიშნული."
@@ -3079,16 +3893,11 @@ msgstr "Nyquist Prompt..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "ხმის მოწყობილობის გახსნის შეცდომა. გთხოვთ, შეამოწმოთ გამონატანი "
-#~ "მოწყობილობის პარამეტრები და პროექტის სემპლის კოეფიციენტი."
+#~ msgstr "ხმის მოწყობილობის გახსნის შეცდომა. გთხოვთ, შეამოწმოთ გამონატანი მოწყობილობის პარამეტრები და პროექტის სემპლის კოეფიციენტი."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი "
-#~ "კოეფიციენტი."
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი კოეფიციენტი."
 
 #~ msgid "Recorded Audio"
 #~ msgstr "ჩაწერილი აუდიო"
@@ -3211,8 +4020,7 @@ msgstr "Nyquist Prompt..."
 #~ "\n"
 #~ "It has been recovered to the last snapshot."
 #~ msgstr ""
-#~ "ზოგიერთი პროექტი არ შეინახა სწორად, როდესაც Audacity იყო გაშვებული "
-#~ "ბოლოს.\n"
+#~ "ზოგიერთი პროექტი არ შეინახა სწორად, როდესაც Audacity იყო გაშვებული ბოლოს.\n"
 #~ "საბედნიეროდ, შემდეგი პროექტების ავტომატური აღდგენა შესაძლებელია:"
 
 #, fuzzy
@@ -3768,11 +4576,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "მონიშვნა ჩართულია"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
-#~ msgstr ""
-#~ "სტერეო ტრეკების რელატიური ზომის მოსარგებად დააწკაპუნეთ და გადაათრიეთ."
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+#~ msgstr "სტერეო ტრეკების რელატიური ზომის მოსარგებად დააწკაპუნეთ და გადაათრიეთ."
 
 #~ msgid "Click and drag to resize the track."
 #~ msgstr "ტრეკის ზომის შესაცვლელად დაუწკაპუნეთ და გადაათრიეთ."
@@ -4324,19 +5129,11 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Auto Duck"
 #~ msgstr "Auto Duck"
 
-#~ msgid ""
-#~ "You selected a track which does not contain audio. AutoDuck can only "
-#~ "process audio tracks."
-#~ msgstr ""
-#~ "მონიშნული გაქვთ ტრეკი, რომელიც არ შეიცავს აუდიოს. AutoDuck-ს მხოლოდ აუდიო "
-#~ "ტრეკების დამუშავება შეუძლია."
+#~ msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
+#~ msgstr "მონიშნული გაქვთ ტრეკი, რომელიც არ შეიცავს აუდიოს. AutoDuck-ს მხოლოდ აუდიო ტრეკების დამუშავება შეუძლია."
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
-#~ msgstr ""
-#~ "Auto Duck სჭირდება საკონტროლო ტრეკი, რომელიც მოთავსებული უნდა იყოს "
-#~ "მონიშნული ტრეკ(ებ)ის ქვემოთ."
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+#~ msgstr "Auto Duck სჭირდება საკონტროლო ტრეკი, რომელიც მოთავსებული უნდა იყოს მონიშნული ტრეკ(ებ)ის ქვემოთ."
 
 #, fuzzy
 #~ msgid "Duck &amount:"
@@ -5093,11 +5890,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "იარლიყის რედაქტირება"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი "
-#~ "კოეფიციენტი."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი კოეფიციენტი."
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -5319,8 +6113,7 @@ msgstr "Nyquist Prompt..."
 #~ "Select a few seconds of just noise so Audacity knows what to filter out,\n"
 #~ "then click Get Noise Profile:"
 #~ msgstr ""
-#~ "მონიშნეთ ხარვეზის რამდენიმე წამი, რათა Audacity-მ იცოდეს რა უნდა "
-#~ "გაფილტროს,\n"
+#~ "მონიშნეთ ხარვეზის რამდენიმე წამი, რათა Audacity-მ იცოდეს რა უნდა გაფილტროს,\n"
 #~ "შემდეგ დაუწკაპუნეთ ხარვეზის პროფილს:"
 
 #, fuzzy
@@ -5332,8 +6125,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
 #~ "ამოირჩეით ყველა გასაფილტრი აუდიო, შემდეგ კი გასაფილტრი ხარვეზის ოდენობა\n"
@@ -5378,8 +6170,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "ხარვეზების გაწმენდა"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
 #~ "ამოირჩეით ყველა გასაფილტრი აუდიო, შემდეგ კი გასაფილტრი ხარვეზის ოდენობა\n"
@@ -5481,13 +6272,11 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "აღდგნა"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
-#~ "აღდგენის ეფექტი გათვალისწინებულია დაზიანებული აუდიოს ძალზე მცირე "
-#~ "მონაკვეთებზე (128 ნიმუშამდე).\n"
+#~ "აღდგენის ეფექტი გათვალისწინებულია დაზიანებული აუდიოს ძალზე მცირე მონაკვეთებზე (128 ნიმუშამდე).\n"
 #~ "\n"
 #~ "გაადიდეთ და მონიშნეთ წამის მცირე ფრაქცია აღსადგენად."
 
@@ -5500,8 +6289,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr ""
 #~ "აღდგენა მუშაობს მონიშვნის არეს გარეთა უდიო მონაცემების გამოყენებით.\n"
 #~ "\n"
-#~ "გთხოვთ მონიშნოთ არე, რომელსაც გააჩნია აუდიოს შეხება ერთი მისი ერთი "
-#~ "გვერდით მაინც.\n"
+#~ "გთხოვთ მონიშნოთ არე, რომელსაც გააჩნია აუდიოს შეხება ერთი მისი ერთი გვერდით მაინც.\n"
 #~ "\n"
 #~ "რაც მეტია მოცულობითი აუდიო, მით უკეთ მუშაობს."
 
@@ -5561,11 +6349,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "მაღალი სიხშირის ფილტრი"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი "
-#~ "კოეფიციენტი."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "სპექტრის აგებისთვის ყველა მონიშნული ტრეკს უნდა ჰქონდეს სემპლის თანაბარი კოეფიციენტი."
 
 #, fuzzy
 #~ msgid "&Filter Type:"
@@ -5916,11 +6701,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquist"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "ვწუხვართ, შეუძლებელია ეფექტის გააქტიურება სტერეო ტრეკებზე, სადაც ტრეკები "
-#~ "არ ემთხვევა."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "ვწუხვართ, შეუძლებელია ეფექტის გააქტიურება სტერეო ტრეკებზე, სადაც ტრეკები არ ემთხვევა."
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -5966,8 +6748,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "Nyquist არ დააბრუნა აუდიო.\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Audacity ეს ვერსია არ იყო კომპილირებული %s მხარდაჭერით."
 
 #, fuzzy
@@ -6011,12 +6792,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Vamp Effects"
 #~ msgstr "ეფ&ექტი"
 
-#~ msgid ""
-#~ "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-#~ "channels of the track do not match."
-#~ msgstr ""
-#~ "ვწუხვართ, Vamp მოდულების გაშვება შეუძლებელია სტერეო ტრეკებზე, სადაც "
-#~ "ტრეკების ინდივიდუალური არხები არ ემთხვევა."
+#~ msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "ვწუხვართ, Vamp მოდულების გაშვება შეუძლებელია სტერეო ტრეკებზე, სადაც ტრეკების ინდივიდუალური არხები არ ემთხვევა."
 
 #~ msgid "Sorry, failed to load Vamp Plug-in."
 #~ msgstr "Vamp მოდულის გაშვებამ მარცხი განიცადა."
@@ -6054,15 +6831,13 @@ msgstr "Nyquist Prompt..."
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ "თქვენ ახლა ინახავთ %s ფაილს სახელით \"%s\".\n"
 #~ "\n"
-#~ "ჩვეულებისამებრ ეს ფაილები მთავრდება \".%s\"-ით, და ზოგიერთი პროგრამა არ "
-#~ "გახსნის არასტანდარტული გაფართოების ფაილებს.\n"
+#~ "ჩვეულებისამებრ ეს ფაილები მთავრდება \".%s\"-ით, და ზოგიერთი პროგრამა არ გახსნის არასტანდარტული გაფართოების ფაილებს.\n"
 #~ "\n"
 #~ "მაინც გსურთ ფაილების შენახვა ამ სახელით?"
 
@@ -6075,20 +6850,15 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one mono file."
-#~ msgstr ""
-#~ "თქვენი ტრეკების მიქსირება მოხდება ორი სტერო არხით ექსპორტირებულ ფაილში."
+#~ msgstr "თქვენი ტრეკების მიქსირება მოხდება ორი სტერო არხით ექსპორტირებულ ფაილში."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one stereo file."
-#~ msgstr ""
-#~ "თქვენი ტრეკების მიქსირება მოხდება ორი სტერო არხით ექსპორტირებულ ფაილში."
+#~ msgstr "თქვენი ტრეკების მიქსირება მოხდება ორი სტერო არხით ექსპორტირებულ ფაილში."
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
-#~ msgstr ""
-#~ "თქვენი ტრეკების მიქსირება მოხდება ორი სტერო არხით ექსპორტირებულ ფაილში."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+#~ msgstr "თქვენი ტრეკების მიქსირება მოხდება ორი სტერო არხით ექსპორტირებულ ფაილში."
 
 #~ msgid "Advanced Mixing Options"
 #~ msgstr "მიქსირების დამატებითი პარამეტრები"
@@ -6193,8 +6963,7 @@ msgstr "Nyquist Prompt..."
 #~ "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 #~ "supported by the current output file format. "
 #~ msgstr ""
-#~ "პროექტის სემპლისა (%d) და ბიტური კოეფიციენტის (%d kbps) კომბინაცია "
-#~ "მხარდაჭერილი არ არის\n"
+#~ "პროექტის სემპლისა (%d) და ბიტური კოეფიციენტის (%d kbps) კომბინაცია მხარდაჭერილი არ არის\n"
 #~ "მიმდინარე გამონატანის ფაილის ფორმატით."
 
 #~ msgid "You may resample to one of the rates below."
@@ -6395,10 +7164,8 @@ msgstr "Nyquist Prompt..."
 #~ "0 - automatic\n"
 #~ "Recommended - 192000"
 #~ msgstr ""
-#~ "ბიტური კოეფიციენტი (ბიტები/წამი) -გავლენას ახდენს შედეგად მიღებულ ფაილის "
-#~ "ზომასა და ხარისხზე\n"
-#~ "ზოგიერთი კოდეკი მხოლოდ სპეციფიურ მნიშვნელობებს იღებს (128k, 192k, 256k "
-#~ "etc)\n"
+#~ "ბიტური კოეფიციენტი (ბიტები/წამი) -გავლენას ახდენს შედეგად მიღებულ ფაილის ზომასა და ხარისხზე\n"
+#~ "ზოგიერთი კოდეკი მხოლოდ სპეციფიურ მნიშვნელობებს იღებს (128k, 192k, 256k etc)\n"
 #~ "0 -ავტომატური\n"
 #~ "რეკომენდებული - 19200"
 
@@ -6757,8 +7524,7 @@ msgstr "Nyquist Prompt..."
 #~ "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 #~ "supported by the MP3 file format. "
 #~ msgstr ""
-#~ "პროექტის სემპლის (%d) და ბიტის (%d kbps)  კოეფიციენტის კომბინაცია არ არის "
-#~ "მხარდაჭერილი არცერთი MP3\n"
+#~ "პროექტის სემპლის (%d) და ბიტის (%d kbps)  კოეფიციენტის კომბინაცია არ არის მხარდაჭერილი არცერთი MP3\n"
 #~ "ფაილის ფორმატით"
 
 #~ msgid "Export Multiple"
@@ -6917,16 +7683,12 @@ msgstr "Nyquist Prompt..."
 #, c-format
 #~ msgid ""
 #~ "\"%s\" is a playlist file. \n"
-#~ "Audacity cannot open this file because it only contains links to other "
-#~ "files. \n"
-#~ "You may be able to open it in a text editor and download the actual audio "
-#~ "files."
+#~ "Audacity cannot open this file because it only contains links to other files. \n"
+#~ "You may be able to open it in a text editor and download the actual audio files."
 #~ msgstr ""
 #~ "\"%s\" რეპერტუარის ფაილია \n"
-#~ "Audacity-ს არ შეუძლია ამ ფაილია გახსნა, რადგან ის შეიცავს მხოლოდ ბმულებს "
-#~ "სხვა ფაილებზე. \n"
-#~ "მისი გახსნა შეგიძლიათ ტექსტურ რედაქტორში და შემდეგ რეალური აუდიო ფაილების "
-#~ "ჩამოტვირთვა."
+#~ "Audacity-ს არ შეუძლია ამ ფაილია გახსნა, რადგან ის შეიცავს მხოლოდ ბმულებს სხვა ფაილებზე. \n"
+#~ "მისი გახსნა შეგიძლიათ ტექსტურ რედაქტორში და შემდეგ რეალური აუდიო ფაილების ჩამოტვირთვა."
 
 #, c-format
 #~ msgid ""
@@ -6941,10 +7703,8 @@ msgstr "Nyquist Prompt..."
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" is an Advanced Audio Coding file. \n"
 #~ "Audacity cannot open this type of file. \n"
@@ -6991,15 +7751,13 @@ msgstr "Nyquist Prompt..."
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 
 #, c-format
@@ -7053,8 +7811,7 @@ msgstr "Nyquist Prompt..."
 #~ "%sFor uncompressed files, also try File > Import > Raw Data."
 #~ msgstr ""
 #~ "Audacity ვერ ამოიცნო ფაილი '%s'-ის ტიპი.\n"
-#~ "ის არაკომპრესირებულია, შეეცადეთ მის იმპორტირებას  \"დაუმუშავებელის იმპორტი"
-#~ "\"-ის საშალებით."
+#~ "ის არაკომპრესირებულია, შეეცადეთ მის იმპორტირებას  \"დაუმუშავებელის იმპორტი\"-ის საშალებით."
 
 #, fuzzy, c-format
 #~ msgid ""
@@ -7132,8 +7889,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "LOF ფაილში არასწორი ხანგრძლივობაა."
 
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "MIDI ტრეკების ინდივიდუალური ოფსეტი შეუძებელია. მხოლოდ აუდიო ფაილები."
+#~ msgstr "MIDI ტრეკების ინდივიდუალური ოფსეტი შეუძებელია. მხოლოდ აუდიო ფაილები."
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "LOF ფაილში არასწორი ტრეკის ოფსეტი."
@@ -8871,9 +9627,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy, c-format
 #~ msgid "%s %2.0f%% complete. Click to change task focal point."
-#~ msgstr ""
-#~ "%s %2.0f%% დასრულებულია. დაუწკაპუნეთ დავალების ფოკუსის წერტილის "
-#~ "შესაცვლელად."
+#~ msgstr "%s %2.0f%% დასრულებულია. დაუწკაპუნეთ დავალების ფოკუსის წერტილის შესაცვლელად."
 
 #, fuzzy
 #~ msgid "Preferences for Application"
@@ -9003,12 +9757,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Directory %s is not writable"
 #~ msgstr "%s დირექტორია არაჩაწერადია"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "დროებით დირექტორიაში შეტანილიც ცვლილებები არ გააქტიურდება Audacity-ის "
-#~ "გადატვირთვამდე"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "დროებით დირექტორიაში შეტანილიც ცვლილებები არ გააქტიურდება Audacity-ის გადატვირთვამდე"
 
 #, fuzzy
 #~ msgid "Preferences for Effects"
@@ -9147,9 +9897,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "კლავიატურის ბმები"
 
 #~ msgid "Note: Pressing Cmd+Q will quit. All other keys are valid."
-#~ msgstr ""
-#~ "შენიშნვა: Cmd+Q-ზე დაჭერა გამოწვევს დახურვას. ყველა სხვა კლავიში "
-#~ "დასაშვებია."
+#~ msgstr "შენიშნვა: Cmd+Q-ზე დაჭერა გამოწვევს დახურვას. ყველა სხვა კლავიში დასაშვებია."
 
 #~ msgid "&Import..."
 #~ msgstr "&იმპორტი..."
@@ -9158,8 +9906,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "&ნაგულისხმევი პარამეტრები"
 
 #~ msgid "Select an XML file containing Audacity keyboard shortcuts..."
-#~ msgstr ""
-#~ "მონიშნეთ XML ფაილი, რომელიც შეიცავს Audacity კლავიშების მალსახმობებს..."
+#~ msgstr "მონიშნეთ XML ფაილი, რომელიც შეიცავს Audacity კლავიშების მალსახმობებს..."
 
 #, fuzzy
 #~ msgid "Error Importing Keyboard Shortcuts"
@@ -9227,9 +9974,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "დროებით დირექტორიაში შეტანილიც ცვლილებები არ გააქტიურდება Audacity-ის "
-#~ "გადატვირთვამდე"
+#~ msgstr "დროებით დირექტორიაში შეტანილიც ცვლილებები არ გააქტიურდება Audacity-ის გადატვირთვამდე"
 
 #, fuzzy
 #~ msgid "Ask"
@@ -9633,15 +10378,12 @@ msgstr "Nyquist Prompt..."
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
 #~ "Themability is an experimental feature.\n"
@@ -10211,12 +10953,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "ოქტავით დაბლა"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "ვერტიკალური შემცირებისთვის დაუწკაპუნეთ, Shift-დაწკაპუნება გადიდებისთვის, "
-#~ "გადათრევა კი ქმნის მასშტაბირების კონკრეტული არეს."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "ვერტიკალური შემცირებისთვის დაუწკაპუნეთ, Shift-დაწკაპუნება გადიდებისთვის, გადათრევა კი ქმნის მასშტაბირების კონკრეტული არეს."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -10264,11 +11002,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Click and drag to edit the samples"
 #~ msgstr "დააწკაპუნეთ და გადაათრიეთ  სემპლების რედაქტირებისთვის"
 
-#~ msgid ""
-#~ "To use Draw, zoom in further until you can see the individual samples."
-#~ msgstr ""
-#~ "აგების გამოსაყენებლად გაადიდეთ იქამდე, სანამ არ დაინახავთ ინდივიდუალურ "
-#~ "სემპლებს."
+#~ msgid "To use Draw, zoom in further until you can see the individual samples."
+#~ msgstr "აგების გამოსაყენებლად გაადიდეთ იქამდე, სანამ არ დაინახავთ ინდივიდუალურ სემპლებს."
 
 #, fuzzy
 #~ msgid "Moved Samples"
@@ -10414,10 +11149,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "%.1f dB"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-#~ msgstr ""
-#~ "სტერეო ტრეკების რელატიური ზომის მოსარგებად დააწკაპუნეთ და გადაათრიეთ."
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgstr "სტერეო ტრეკების რელატიური ზომის მოსარგებად დააწკაპუნეთ და გადაათრიეთ."
 
 #, fuzzy
 #~ msgid "Click and drag to rearrange sub-views"
@@ -10556,33 +11289,26 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "წინ"
 
 #~ msgid "Click and drag to move left selection boundary."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
 
 #~ msgid "Click and drag to move right selection boundary."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარჯვნივ გადატანისთვის."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარჯვნივ გადატანისთვის."
 
 #, fuzzy
 #~ msgid "Click and drag to move bottom selection frequency."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
 
 #, fuzzy
 #~ msgid "Click and drag to move top selection frequency."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
 
 #, fuzzy
 #~ msgid "Click and drag to move center selection frequency."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
 
 #, fuzzy
 #~ msgid "Click and drag to adjust frequency bandwidth."
@@ -10594,8 +11320,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy, c-format
 #~ msgid "Multi-Tool Mode: %s for Mouse and Keyboard Preferences."
-#~ msgstr ""
-#~ "მრავალ-ხელსაწყოიანი რეჟიმი: Cmd-, მაუსისა და კლავიატურის პარამეტრებისთვის"
+#~ msgstr "მრავალ-ხელსაწყოიანი რეჟიმი: Cmd-, მაუსისა და კლავიატურის პარამეტრებისთვის"
 
 #, fuzzy
 #~ msgid "Click and drag to set frequency bandwidth."
@@ -10908,8 +11633,7 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "(Use context menu to change format.)"
-#~ msgstr ""
-#~ "ფორმატის შესაცვლელად გამოიყენეთ მარჯვენა კლავიში ან კონტექსტური გასაღები"
+#~ msgstr "ფორმატის შესაცვლელად გამოიყენეთ მარჯვენა კლავიში ან კონტექსტური გასაღები"
 
 #~ msgid "Elapsed Time:"
 #~ msgstr "გასული დრო:"
@@ -11154,29 +11878,17 @@ msgstr "Nyquist Prompt..."
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "პროექტის კომპრესირებული ასლის შენახვა..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Audacity-იმ ვერ შეძლოა  Audacity 1.0 პროექტის კონვერტაცია ახალი პროექტის "
-#~ "ფორმატად."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Audacity-იმ ვერ შეძლოა  Audacity 1.0 პროექტის კონვერტაცია ახალი პროექტის ფორმატად."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "შეუძლებელია ძველი ავტოშენახული ფაილის წაშლა"
 
-#~ msgid ""
-#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
-#~ "%2.0f%% complete."
-#~ msgstr ""
-#~ "იმპორტირება დასრულებულია. გაშვებულია %d მოთხოვნადი ტალღოვანი გამოთვლები. "
-#~ "სულ %2.0f%%-ია დასრულებული"
+#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
+#~ msgstr "იმპორტირება დასრულებულია. გაშვებულია %d მოთხოვნადი ტალღოვანი გამოთვლები. სულ %2.0f%%-ია დასრულებული"
 
-#~ msgid ""
-#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
-#~ "complete."
-#~ msgstr ""
-#~ "მპორტირება დასრულებულია. გაშვებულია მოთხოვნადი ტალღოვანი გამოთვლები. "
-#~ "დასრულებულია %2.0f%%."
+#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgstr "მპორტირება დასრულებულია. გაშვებულია მოთხოვნადი ტალღოვანი გამოთვლები. დასრულებულია %2.0f%%."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -11331,20 +12043,12 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "მთვლელის გააქტიურება"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "მხოლოდ avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "მხოლოდ avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "მხოლოდ avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files (*.*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "მხოლოდ avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -11370,34 +12074,18 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "კბწ"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "მხოლოდ lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "მხოლოდ lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "მხოლოდ libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "მხოლოდ libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "მხოლოდ libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "მხოლოდ libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "მხოლოდ ibmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|"
-#~ "*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "მხოლოდ ibmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -11415,13 +12103,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "MIDI ფაილი (*.mid)|*.mid|Allegro ფაილი (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "MIDI და Allegro ფაილები(*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files (*.*)|*."
-#~ "*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "MIDI და Allegro ფაილები(*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files (*.*)|*.*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "ტალღოვანი (dB)"
@@ -11446,11 +12129,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "ყველა ტრეკის &ნორმალიზაცია პროექტში"
 
 #, fuzzy
-#~ msgid ""
-#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
-#~ "Menu."
-#~ msgstr ""
-#~ "აგების გამოსაყენებლად ამოირჩიეთ  'ტალღოვანი' ტრეკის ჩამოსაშლელი სიიდან."
+#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
+#~ msgstr "აგების გამოსაყენებლად ამოირჩიეთ  'ტალღოვანი' ტრეკის ჩამოსაშლელი სიიდან."
 
 #, fuzzy
 #~ msgid "Vocal Remover"
@@ -11579,9 +12259,7 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Transcription"
 #~ msgstr "ტრანსკრიპცია"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
 #~ msgstr "თქვენი ტრეკების მიქსირება მოხდება მონო არხით ექსპორტირებულ ფაილში."
 
 #~ msgid "Playthrough"
@@ -11595,9 +12273,7 @@ msgstr "Nyquist Prompt..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "ხმის მოწყობილობის გახსნის შეცდომა. გთხოვთ, შეამოწმოთ გამონატანი "
-#~ "მოწყობილობის პარამეტრები და პროექტის სემპლის კოეფიციენტი."
+#~ msgstr "ხმის მოწყობილობის გახსნის შეცდომა. გთხოვთ, შეამოწმოთ გამონატანი მოწყობილობის პარამეტრები და პროექტის სემპლის კოეფიციენტი."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -11755,12 +12431,8 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "სიგრძიდან წამებში"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "ვერტიკალური შემცირებისთვის დაუწკაპუნეთ, Shift-დაწკაპუნება გადიდებისთვის, "
-#~ "გადათრევა კი ქმნის მასშტაბირების კონკრეტული არეს."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "ვერტიკალური შემცირებისთვის დაუწკაპუნეთ, Shift-დაწკაპუნება გადიდებისთვის, გადათრევა კი ქმნის მასშტაბირების კონკრეტული არეს."
 
 #~ msgid "up"
 #~ msgstr "ზემოთ"
@@ -12014,21 +12686,17 @@ msgstr "Nyquist Prompt..."
 
 #, fuzzy
 #~ msgid "Click to move selection boundary to cursor."
-#~ msgstr ""
-#~ "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
+#~ msgstr "დაუწკაპუნეთ და გადაათრიეთ მონიშვნის საზღვრის მარცხნივ გადატანისთვის."
 
 #~ msgid "To use Draw, choose 'Waveform' in the Track Drop-down Menu."
-#~ msgstr ""
-#~ "აგების გამოსაყენებლად ამოირჩიეთ  'ტალღოვანი' ტრეკის ჩამოსაშლელი სიიდან."
+#~ msgstr "აგების გამოსაყენებლად ამოირჩიეთ  'ტალღოვანი' ტრეკის ჩამოსაშლელი სიიდან."
 
 #, fuzzy
 #~ msgid "You must select audio in the project window."
 #~ msgstr "ჯერ უნდა ამოირჩიოთ ტრეკი"
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr ""
-#~ "&ინდივიდუალური მიქსინგის გამოყენება (მაგ.  5.1 მულტიარხოვანი ფაილის "
-#~ "ექსპორტირებისთვის)"
+#~ msgstr "&ინდივიდუალური მიქსინგის გამოყენება (მაგ.  5.1 მულტიარხოვანი ფაილის ექსპორტირებისთვის)"
 
 #, fuzzy
 #~ msgid "&Length of preview:"
@@ -12318,12 +12986,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Command-line options supported:"
 #~ msgstr "ბრძანების სტრიქონის მხარდაჭერილი პარამეტრები:"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
-#~ msgstr ""
-#~ "ასევე, გთხოვთ, გახსნისთვის მიუთითოთ აუდიო ფაილის ან Audacity პროექტის "
-#~ "სახელი."
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
+#~ msgstr "ასევე, გთხოვთ, გახსნისთვის მიუთითოთ აუდიო ფაილის ან Audacity პროექტის სახელი."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "Stereo-დან  Mono-ზე ეფექტი ვერ მოიძებნა"
@@ -12331,10 +12995,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "კურსორი: %d Hz (%s) = %d dB   პიკი: %d Hz (%s) = %.1f dB"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "კურსორი: %.4f წ (%d Hz) (%s) = %f,   პიკი: %.4f წ (%d Hz) (%s) = %.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "კურსორი: %.4f წ (%d Hz) (%s) = %f,   პიკი: %.4f წ (%d Hz) (%s) = %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -12418,8 +13080,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "DTMF ტონების გენერაცია"
 
 #~ msgid "Applied effect: %s delay = %f seconds, decay factor = %f"
-#~ msgstr ""
-#~ "გამოყენებული ეფექტი: %s შეყოვნება = %f წამი, დაყოვნების ფაქტორი = %f"
+#~ msgstr "გამოყენებული ეფექტი: %s შეყოვნება = %f წამი, დაყოვნების ფაქტორი = %f"
 
 #~ msgid "Echo..."
 #~ msgstr "ექო..."
@@ -12529,17 +13190,11 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "ნორმალიზაცია..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
-#~ msgstr ""
-#~ "გამოყენებული ეფექტი: %s შეყოვნება = %f წამი, დაყოვნების ფაქტორი = %f"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgstr "გამოყენებული ეფექტი: %s შეყოვნება = %f წამი, დაყოვნების ფაქტორი = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "გააქტიურებული ეფექტი: %s %d დონე, %.0f%% wet, სიხშირე = %.1f Hz, საწყისი "
-#~ "ფაზა= %.0f deg, სიღრმე = %d, გამოხმაურება = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "გააქტიურებული ეფექტი: %s %d დონე, %.0f%% wet, სიხშირე = %.1f Hz, საწყისი ფაზა= %.0f deg, სიღრმე = %d, გამოხმაურება = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "ფეიზერი:"
@@ -12591,12 +13246,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Applied effect: Generate Silence, %.6lf seconds"
 #~ msgstr "დამატებული ეფექტი:  სიჩუმის გენერაცია,%.6lf წამი"
 
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
-#~ msgstr ""
-#~ "დამატებული ეფექტი: გენერაცია %s ტალღა %s, სიხშირე = %.2f Hz,ამპლიტუდა = "
-#~ "%.2f, %.6lf წამები"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
+#~ msgstr "დამატებული ეფექტი: გენერაცია %s ტალღა %s, სიხშირე = %.2f Hz,ამპლიტუდა = %.2f, %.6lf წამები"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "ჩირპის გენერატორი"
@@ -12608,12 +13259,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "კლავიშთა კომბინაცია"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "გამოყენებული ეფექტი: %s სიხშირე= %.1f Hz, საწყისი ფაზა = %.0f deg, სიღრმე "
-#~ "= %.0f%%, რეზონანსი= %.1f, სიხშირის ოფსეტი = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "გამოყენებული ეფექტი: %s სიხშირე= %.1f Hz, საწყისი ფაზა = %.0f deg, სიღრმე = %.0f%%, რეზონანსი= %.1f, სიხშირის ოფსეტი = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -12627,12 +13274,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Author: "
 #~ msgstr "ავტორი:"
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "ვწუხვართ, მოდულის ეფექტის შესულება შეუძლებელია სტერეო ტრეკებზე, სადაც "
-#~ "ტრეკის ინდივიდუალური არხები არ ემთხვევა."
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "ვწუხვართ, მოდულის ეფექტის შესულება შეუძლებელია სტერეო ტრეკებზე, სადაც ტრეკის ინდივიდუალური არხები არ ემთხვევა."
 
 #~ msgid "Note velocity"
 #~ msgstr "შენიშვნის სიჩქარე"
@@ -12677,9 +13320,7 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "ვერტიკალური სახაზავი"
 
 #~ msgid "Multi-Tool Mode: Ctrl-P for Mouse and Keyboard Preferences"
-#~ msgstr ""
-#~ "მრავალ-ხელსაწყოიანი რეჟიმი: Ctrl-P   მაუსისა და კლავიატურის "
-#~ "პარამეტრებისთვის"
+#~ msgstr "მრავალ-ხელსაწყოიანი რეჟიმი: Ctrl-P   მაუსისა და კლავიატურის პარამეტრებისთვის"
 
 #~ msgid "To RPM"
 #~ msgstr "RPM-ზე"
@@ -12687,8 +13328,7 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Input Meter"
 #~ msgstr "შენატანის მთვლელი"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgid "Recovering a project will not change any files on disk before you save it."
 #~ msgstr "პროექტის აღდენა არ შეცვლის ფაილებს დისკებს სანამ შეინახავთ."
 
 #~ msgid "Do Not Recover"
@@ -12837,24 +13477,17 @@ msgstr "Nyquist Prompt..."
 #~ msgstr "Windows PCM აუდიო ფაილი(*.wav)|*.wav"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, "
-#~ "compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, "
-#~ "because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each "
-#~ "compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select "
-#~ "one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "Audacity-ს კომპრესირებული პროექტის ფაილები (.aup)  თქვენს ნამუშევარს "
-#~ "შეინახავს უფრო მცირე, კომპრესირებულ (.ogg) ფორმატში. \n"
-#~ "კომპრესირებული პროექტის ფაილები კარგი საშუალებაა თქვენი პროექტის "
-#~ "ინტერნეტში გადასატანად, სიმცირის გამო. \n"
-#~ "შეკუმშული პროექტის გახსნა უფრო მეტ დროს მოითხოვს, რადგან ახდენს თითოეული "
-#~ "ტრეკის იმპორტირებას. \n"
+#~ "Audacity-ს კომპრესირებული პროექტის ფაილები (.aup)  თქვენს ნამუშევარს შეინახავს უფრო მცირე, კომპრესირებულ (.ogg) ფორმატში. \n"
+#~ "კომპრესირებული პროექტის ფაილები კარგი საშუალებაა თქვენი პროექტის ინტერნეტში გადასატანად, სიმცირის გამო. \n"
+#~ "შეკუმშული პროექტის გახსნა უფრო მეტ დროს მოითხოვს, რადგან ახდენს თითოეული ტრეკის იმპორტირებას. \n"
 #~ "\n"
 #~ "უმეტესობა სხვა პროგრამებისა ვერ ხსნის Audacity პროექტის ფაილებს.\n"
 #~ "როდესაც გსურთ ფაილის გახსნა პროგრამით, რომელსაც შეუძლია გახსნა, მონიშნეთ\n"
@@ -12865,15 +13498,13 @@ msgstr "Nyquist Prompt..."
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export"
-#~ "\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
 #~ msgstr ""
 #~ "თქვენ ინხავთ  Audacity პროექტის ფაილს (.aup).\n"
 #~ "\n"
 #~ "პროექტის შენახვა ქმნის ფაილს, რომლის გახსნაც მხოლოდ Audacity-ის შეუძლია.\n"
 #~ "\n"
-#~ "აუდიო ფაილის სხვა პროგრამებით შენახვისთვის გამოიყენეთ ერთ-ერთი \"ფაილი "
-#~ ">ექსპორტი\"  ბრძანება.\n"
+#~ "აუდიო ფაილის სხვა პროგრამებით შენახვისთვის გამოიყენეთ ერთ-ერთი \"ფაილი >ექსპორტი\"  ბრძანება.\n"
 
 #~ msgid "Libresample by Dominic Mazzoni and Julius Smith"
 #~ msgstr "Libresample Dominic Mazzoni და Julius Smith მიერ"
@@ -12944,12 +13575,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Noise Removal by Dominic Mazzoni"
 #~ msgstr "ხარვეზის გაწმენდა Dominic Mazzoni-ის მიერ"
 
-#~ msgid ""
-#~ "Sorry, this effect cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "ვწუხვართ, ეს ეფექტი ვერ შესრულდება სტერეო ტრეკებზე, სადაც ტრეკების "
-#~ "ინდივიდუალური არხები არ ემთხვევა."
+#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "ვწუხვართ, ეს ეფექტი ვერ შესრულდება სტერეო ტრეკებზე, სადაც ტრეკების ინდივიდუალური არხები არ ემთხვევა."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "Spike Cleaner"
@@ -13000,12 +13627,8 @@ msgstr "Nyquist Prompt..."
 #~ msgid "Record (Shift for Append Record)"
 #~ msgstr "ჩაწერა (ჩაწერის დამატებაზე გადასვლა)"
 
-#~ msgid ""
-#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
-#~ "one project, is already open."
-#~ msgstr ""
-#~ "CleanSpeech ის რეჟიმში ჩაწერა შეუძლებელია როდესაც პროექტში გახსნილია ერთი "
-#~ "ან მეტი ტრეკი."
+#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
+#~ msgstr "CleanSpeech ის რეჟიმში ჩაწერა შეუძლებელია როდესაც პროექტში გახსნილია ერთი ან მეტი ტრეკი."
 
 #~ msgid "Output level meter"
 #~ msgstr "გამონატანის დონის მთვლელი"

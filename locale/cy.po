@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2006-03-07 11:16-0000\n"
 "Last-Translator: \n"
 "Language-Team: Audacity Cymru <f00@hushmail.com>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "Recordio"
@@ -26,6 +30,16 @@ msgstr "Recordio"
 #, fuzzy, c-format
 msgid "Default playback device number: %d\n"
 msgstr "Recordio"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "No devices found\n"
+msgstr "Chwarae Nôl"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -98,11 +112,26 @@ msgstr "Chwarae Nôl"
 msgid "No playback device found for '%s'.\n"
 msgstr "Chwarae Nôl"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Mewnforwyd '%s'"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Mewnforwyd '%s'"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -130,6 +159,20 @@ msgstr "Chwarae Nôl"
 msgid "Message"
 msgstr "Gosod Amrediad..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -139,6 +182,24 @@ msgstr "Gwall LOF"
 #, fuzzy, c-format
 msgid "Audacity failed to open a file in %s."
 msgstr "Methwyd agor y ffeil: \"%s\""
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Audacity failed to read from a file in %s."
+msgstr "Methwyd agor y ffeil: \"%s\""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid ""
+"Audacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -160,6 +221,14 @@ msgid "AUP3 project files"
 msgstr "Ffeiliau Cywaith Audacity"
 
 #: libraries/lib-files/FileNames.cpp
+msgid "Dynamically Linked Libraries"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
+msgid "Dynamic Libraries"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
 #, fuzzy
 msgid "Text files"
 msgstr "Enwi ffeiliau:"
@@ -169,12 +238,21 @@ msgstr "Enwi ffeiliau:"
 msgid "XML files"
 msgstr "Enwi ffeiliau:"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "Enwi ffeiliau:"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -189,6 +267,20 @@ msgstr "Gwall"
 #, fuzzy
 msgid "Unsuitable"
 msgstr "Galluogwyd"
+
+#: libraries/lib-files/TempDirectory.cpp
+msgid ""
+"The temporary files directory is on a FAT formatted drive.\n"
+"Resetting to default location."
+msgstr ""
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -211,6 +303,51 @@ msgstr "Wedi shapio"
 msgid "Rectangular"
 msgstr "Petryalog"
 
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Welch"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
+
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
 msgid "Low Quality (Fastest)"
@@ -226,6 +363,54 @@ msgstr "Ansawdd"
 msgid "High Quality"
 msgstr "Ansawdd"
 
+#: libraries/lib-math/Resample.cpp
+#, fuzzy
+msgid "Best Quality (Slowest)"
+msgstr "Ansawdd"
+
+#. i18n-hint: Audio data bit depth (precision): 16-bit integers
+#: libraries/lib-math/SampleFormat.cpp
+msgid "16-bit PCM"
+msgstr ""
+
+#. i18n-hint: Audio data bit depth (precision): 24-bit integers
+#: libraries/lib-math/SampleFormat.cpp
+msgid "24-bit PCM"
+msgstr ""
+
+#. i18n-hint: Audio data bit depth (precision): 32-bit floating point
+#: libraries/lib-math/SampleFormat.cpp
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "32-bit float"
+msgstr ""
+
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "16-bit"
+msgstr ""
+
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "24-bit"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Methu penodi"
@@ -235,10 +420,32 @@ msgstr "Methu penodi"
 msgid "%s bytes"
 msgstr "beit"
 
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
+
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
 msgid "Simplified"
 msgstr "Yn chwyddo"
+
+#: libraries/lib-strings/Languages.cpp
+msgid "System"
+msgstr ""
 
 #: libraries/lib-xml/XMLFileReader.cpp
 #, c-format
@@ -283,9 +490,39 @@ msgstr "Yn Normaleiddio..."
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Amledd (Hz):"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -304,9 +541,35 @@ msgid "Gain (dB)"
 msgstr "Chwyddo (dB)"
 
 #: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Amledd Linellol"
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
@@ -322,6 +585,32 @@ msgstr "Allhidlo"
 #, fuzzy
 msgid "Applying Fade..."
 msgstr "Gweithredu'r Gweddydd"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny plug-ins/delay.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/equalabel.ny
+#: plug-ins/label-sounds.ny plug-ins/limiter.ny plug-ins/noisegate.ny
+#: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
+#: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
+msgid "Steve Daulton"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Adjustable Fade"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -349,6 +638,18 @@ msgid "S-Curve Down"
 msgstr "Symud Trac i Lawr"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Start/End as"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "dB Gain"
 msgstr "Cynnydd"
@@ -357,6 +658,14 @@ msgstr "Cynnydd"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "i Ddiwedd y Dewisiad"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -372,6 +681,14 @@ msgstr "Llinellol"
 #, fuzzy
 msgid "Linear Out"
 msgstr "Llinellol"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -418,6 +735,24 @@ msgstr "Symud Trac i Lawr"
 msgid "Error~%~%"
 msgstr "Gwall"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -449,9 +784,21 @@ msgid "Reconstructing clips..."
 msgstr "Yn tynnu cliciau a popiau..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Trothwy: %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -463,6 +810,21 @@ msgstr "Trac Nodau"
 msgid "Crossfading..."
 msgstr "Trac Nodau"
 
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
+
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
 msgid "Crossfade Tracks"
@@ -472,6 +834,18 @@ msgstr "Trac Nodau"
 #, fuzzy
 msgid "Fade type"
 msgstr "Allhidlo"
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Gain"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Power 1"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Power 2"
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -487,6 +861,23 @@ msgstr "Enw Trac"
 #, fuzzy
 msgid "Fade direction"
 msgstr "Mewnhidlo"
+
+#: plug-ins/crossfadetracks.ny
+msgid "Automatic"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -509,6 +900,14 @@ msgid "Regular"
 msgstr "Petryalog"
 
 #: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Delay level per echo (dB)"
 msgstr "Tonffurf (dB)"
@@ -519,14 +918,35 @@ msgid "Delay time (seconds)"
 msgstr "Amser oedi (eiliadau):"
 
 #: plug-ins/delay.ny
+msgid "Pitch change effect"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Pitch/Tempo"
 msgstr "Traw (EAC)"
 
 #: plug-ins/delay.ny
+msgid "Low-quality Pitch Shift"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Pitch change per echo (semitones)"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Number of echoes"
 msgstr "Nifer o weithiau i ailadrodd: "
+
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
 
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
@@ -534,9 +954,17 @@ msgid "No"
 msgstr "Dim"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "Dewis"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Graphic EQ"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -554,9 +982,17 @@ msgid "XML file"
 msgstr "Enwi ffeiliau:"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Recordio"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Overwrite"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy, lisp-format
@@ -573,6 +1009,14 @@ msgstr "Gwall (efallai na gadwyd y ffeil): %s"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Gwall (efallai na gadwyd y ffeil): %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -610,6 +1054,10 @@ msgstr "Hyd (eiliadau)"
 msgid "Length of label region (seconds)"
 msgstr "Hyd (eiliadau)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -621,14 +1069,59 @@ msgid "Label"
 msgstr "Label"
 
 #: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Message on completion"
 msgstr "Cyfuniad Bysyll"
 
 #: plug-ins/equalabel.ny
+msgid "Details"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Warnings only"
 msgstr "Rhybudd"
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -640,6 +1133,17 @@ msgstr "Wedi ychwanegu label"
 #, fuzzy
 msgid "point labels"
 msgstr "Mewnforio Labeli"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~aRegion length = ~a seconds."
+msgstr ""
 
 #: plug-ins/highpass.ny
 #, fuzzy
@@ -662,10 +1166,42 @@ msgstr "Tynnu Sŵn gan Dominic Mazzoni"
 msgid "Frequency (Hz)"
 msgstr "Amledd LFO (Hz):"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Amledd LFO (Hz):"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -714,6 +1250,22 @@ msgid "Label type"
 msgstr "Golygu Label"
 
 #: plug-ins/label-sounds.ny
+msgid "Point before sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Point after sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region around sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region between sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
 #, fuzzy
 msgid "Maximum leading silence"
 msgstr "Yn Cynhyrchu  Distawrwydd"
@@ -722,6 +1274,41 @@ msgstr "Yn Cynhyrchu  Distawrwydd"
 #, fuzzy
 msgid "Maximum trailing silence"
 msgstr "Yn Cynhyrchu  Distawrwydd"
+
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
+#. i18n-hint: '~a' will be replaced by a time duration
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Error.~%Selection must be less than ~a."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Limiter"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -758,6 +1345,13 @@ msgstr "Caniatau Clipio"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Sianel Dde"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Sianel Dde"
 
@@ -765,6 +1359,14 @@ msgstr "Sianel Dde"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "Tonffurf (dB)"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Apply Make-up Gain"
+msgstr ""
 
 #: plug-ins/lowpass.ny
 #, fuzzy
@@ -785,6 +1387,18 @@ msgstr "Tynnu Sŵn"
 #, fuzzy
 msgid "Select Function"
 msgstr "Amledd (Hz):"
+
+#: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Stereo Linking"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -821,6 +1435,44 @@ msgstr "Amser Ymosod:"
 msgid "Decay (ms)"
 msgstr "Amser oedi (eiliadau):"
 
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Selection too long.\n"
+"Maximum length is ~a."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
+
 #: plug-ins/notch.ny
 #, fuzzy
 msgid "Notch Filter"
@@ -830,6 +1482,22 @@ msgstr "Gweithredu'r Gweddydd"
 #, fuzzy
 msgid "Applying Notch Filter..."
 msgstr "Gweithredu'r Gweddydd"
+
+#: plug-ins/notch.ny
+msgid "Steve Daulton and Bill Wharrie"
+msgstr ""
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -889,9 +1557,19 @@ msgid "Allow"
 msgstr " (analluogwyd)"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Methu penodi"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -904,14 +1582,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Dewis ffeil MIDI..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Lleoliad allforio:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Dewis ffeil MIDI..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -919,9 +1614,33 @@ msgid "Generating pluck sound..."
 msgstr "Yn Cynhyrchu Tôn"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "Allhidlo"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Duration (60s max)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -934,9 +1653,41 @@ msgid "Generating Rhythm..."
 msgstr "Yn Cynhyrchu Tôn"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "30 - 300 beats/minute"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Beats per bar"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 20 beats/measure"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Swing amount"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "Nifer o weithiau i ailadrodd: "
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -964,6 +1715,22 @@ msgid "Beat sound"
 msgstr "Ailadrodd"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "Yn Tynnu Sŵn"
@@ -972,6 +1739,32 @@ msgstr "Yn Tynnu Sŵn"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Clic-Chwith"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -984,6 +1777,10 @@ msgid "Generating Risset Drum..."
 msgstr "Yn Cynhyrchu  Distawrwydd"
 
 #: plug-ins/rissetdrum.ny
+msgid "Steven Jones"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Decay (seconds)"
 msgstr "Amser oedi (eiliadau):"
@@ -992,6 +1789,10 @@ msgstr "Amser oedi (eiliadau):"
 #, fuzzy
 msgid "Center frequency of noise (Hz)"
 msgstr "Amledd Linellol"
+
+#: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1012,6 +1813,10 @@ msgstr "Golygu Sampl"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "&Dadansoddi"
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1052,6 +1857,10 @@ msgid "HTML files"
 msgstr "Enwi ffeiliau:"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Golygu Sampl"
@@ -1067,9 +1876,34 @@ msgid "Include header information"
 msgstr "Methu penodi"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Standard"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "All"
 msgstr "&Popeth"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1087,6 +1921,11 @@ msgstr "Galluogwyd"
 msgid "Errors Only"
 msgstr "Gwall:"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1098,6 +1937,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Sianel Dde"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "Symudwyd y Sampl"
@@ -1106,6 +1985,43 @@ msgstr "Symudwyd y Sampl"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "Amser oedi (eiliadau):"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1133,6 +2049,10 @@ msgid "Value (dB)"
 msgstr "Tonffurf (dB)"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "Llinellol"
@@ -1153,6 +2073,14 @@ msgid "Right (dB)"
 msgstr "Dde,"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "Llinellol"
@@ -1168,6 +2096,35 @@ msgid "1 channel (mono)"
 msgstr "1 Sianel (Mono)"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Error.~%\"~a\" cannot be written."
 msgstr "Gwall (efallai na gadwyd y ffeil): %s"
@@ -1178,14 +2135,50 @@ msgid "Sample Data Import"
 msgstr "Graddfa Samplo:"
 
 #: plug-ins/sample-data-import.ny
+msgid "Reading and rendering samples..."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Select file"
 msgstr "Dewis ffeil MIDI..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Gwall"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1196,6 +2189,15 @@ msgstr "Gwall wrth agor ffeil"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Gosod Pwynt Dewisiad"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1229,10 +2231,22 @@ msgstr "Sgwâr"
 msgid "Starting phase (degrees)"
 msgstr "Gwedd Gychwyn LFO (gradd):"
 
+#: plug-ins/tremolo.ny
+msgid "Wet level (percent)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Gweithredu'r Gweddydd"
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1288,10 +2302,97 @@ msgstr "&Dadansoddi"
 msgid "Strength"
 msgstr "i Ddiwedd y Dewisiad"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Trac Nodau"
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1333,239 +2434,196 @@ msgstr "Amledd LFO (Hz):"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Amledd LFO (Hz):"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Gweithredu'r Effaith Nyquist..."
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Gweithredu'r Effaith Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&Gludo"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&Gludo"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&Gludo"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&Gludo"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&Gludo"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&Gludo"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&Gludo"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&Gludo"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "Dewis"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Dewis"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "Ffont..."
+#~ msgid "Select &Font..."
+#~ msgstr "Ffont..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Ffitio'n &Fertigol"
+#~ msgid "Split &Vertically"
+#~ msgstr "Ffitio'n &Fertigol"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Stereo Llorweddol"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Stereo Llorweddol"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "Annog Nyquist..."
+#~ msgid "Show S&cript"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "Mesurydd Allbwn"
+#~ msgid "Show &Output"
+#~ msgstr "Mesurydd Allbwn"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "Erfyn"
+#~ msgid "Toolbar"
+#~ msgstr "Erfyn"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "Aros"
+#~ msgid "&Stop\tF6"
+#~ msgstr "Aros"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "Annog Nyquist..."
+#~ msgid "Script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "Mesurydd Allbwn"
+#~ msgid "Output"
+#~ msgstr "Mesurydd Allbwn"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Annog Nyquist..."
+#~ msgid "Load Nyquist script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Rhybudd"
+#~ msgid "Warning"
+#~ msgstr "Rhybudd"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Annog Nyquist..."
+#~ msgid "Save Nyquist script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Gweithredu'r Effaith Nyquist..."
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Gweithredu'r Effaith Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Gweithredu'r Effaith Nyquist..."
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Gweithredu'r Effaith Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&Newydd"
+#~ msgid "New"
+#~ msgstr "&Newydd"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Annog Nyquist..."
+#~ msgid "New script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&Agor..."
+#~ msgid "Open"
+#~ msgstr "&Agor..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Annog Nyquist..."
+#~ msgid "Open script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "Cadwyd %s"
+#~ msgid "Save"
+#~ msgstr "Cadwyd %s"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Annog Nyquist..."
+#~ msgid "Save script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Cadwyd %s"
+#~ msgid "Save As"
+#~ msgstr "Cadwyd %s"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "Cadw Cywaith &Fel..."
+#~ msgid "Save script as..."
+#~ msgstr "Cadw Cywaith &Fel..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Copio"
+#~ msgid "Copy"
+#~ msgstr "Copio"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Torri i'r clipfwrdd"
+#~ msgid "Copy to clipboard"
+#~ msgstr "Torri i'r clipfwrdd"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Torri"
+#~ msgid "Cut"
+#~ msgstr "Torri"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Torri i'r clipfwrdd"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Torri i'r clipfwrdd"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Gludo"
+#~ msgid "Paste"
+#~ msgstr "Gludo"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Gludo o'r clipfwrdd"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Gludo o'r clipfwrdd"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Distewi'r dewisiad"
+#~ msgid "Clear selection"
+#~ msgstr "Distewi'r dewisiad"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "Dewis"
+#~ msgid "Select All"
+#~ msgstr "Dewis"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "Dewis"
+#~ msgid "Select all text"
+#~ msgstr "Dewis"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Dadwneud"
+#~ msgid "Undo"
+#~ msgstr "Dadwneud"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Newid Fformat"
+#~ msgid "Undo last change"
+#~ msgstr "Newid Fformat"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo"
-msgstr "&Ailwneud"
+#~ msgid "Redo"
+#~ msgstr "&Ailwneud"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Newid Fformat"
+#~ msgid "Redo previous change"
+#~ msgstr "Newid Fformat"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Erfyn Blaenorol"
+#~ msgid "Previous"
+#~ msgstr "Erfyn Blaenorol"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Symud Trac i Fynu"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Symud Trac i Fynu"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "Erfyn Nesaf"
+#~ msgid "Next"
+#~ msgstr "Erfyn Nesaf"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start"
-msgstr "Atred gychwyn:"
+#~ msgid "Start"
+#~ msgstr "Atred gychwyn:"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Annog Nyquist..."
+#~ msgid "Start script"
+#~ msgstr "Annog Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Aros"
+#~ msgid "Stop"
+#~ msgstr "Aros"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "Annog Nyquist..."
+#~ msgid "Stop script"
+#~ msgstr "Annog Nyquist..."
 
 #~ msgid "Comments"
 #~ msgstr "Sylwadau"
@@ -1673,8 +2731,7 @@ msgstr "Annog Nyquist..."
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Methodd Audacity ganfod lle i storio ffeiliau dros dro.\n"
@@ -1688,9 +2745,7 @@ msgstr "Annog Nyquist..."
 #~ "Dewisiwch ffolder addas yn yr ymgom hoffterau."
 
 #, fuzzy
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
 #~ msgstr ""
 #~ "Mae Audacity am orffen nawr. Rhedwch Audacity eto i ddefnyddio'r\n"
 #~ "ffolder dros dro newydd, os gwelwch yn dda."
@@ -1988,18 +3043,12 @@ msgstr "Annog Nyquist..."
 #~ msgid "&Replot..."
 #~ msgstr "Ailadrodd..."
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa "
-#~ "samplo."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa samplo."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
-#~ msgstr ""
-#~ "Dewiswyd gormod o sain. Dim ond y %.1f eiliad o sain gaith ei ddadansoddi."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+#~ msgstr "Dewiswyd gormod o sain. Dim ond y %.1f eiliad o sain gaith ei ddadansoddi."
 
 #~ msgid "Not enough data selected."
 #~ msgstr "Ni ddewiswyd digon o ddata."
@@ -2219,16 +3268,11 @@ msgstr "Annog Nyquist..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Gwall wrth agor y ddyfais sain. Gwiriwch osodiadau'r ddyfais allbwn a "
-#~ "graddfa samplo y cywaith."
+#~ msgstr "Gwall wrth agor y ddyfais sain. Gwiriwch osodiadau'r ddyfais allbwn a graddfa samplo y cywaith."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa "
-#~ "samplo."
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa samplo."
 
 #~ msgid "Recorded Audio"
 #~ msgstr "Sain a Recordwyd"
@@ -2537,9 +3581,7 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Dewis"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
 #~ msgstr "Cliciwch a llusgwch i newid maint cymharol y traciau stereo."
 
 #~ msgid "Click and drag to resize the track."
@@ -3339,11 +4381,8 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Golygu Label"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa "
-#~ "samplo."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa samplo."
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -3424,9 +4463,7 @@ msgstr "Annog Nyquist..."
 
 #, fuzzy
 #~ msgid "All noise profile data must have the same sample rate."
-#~ msgstr ""
-#~ "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa "
-#~ "samplo."
+#~ msgstr "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa samplo."
 
 #, fuzzy
 #~ msgid "Selected noise profile is too short."
@@ -3570,11 +4607,8 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Lleoliad allforio:"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa "
-#~ "samplo."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "I blotio'r sbectrwm, rhaid i bob trac dewisiedig fod o'r un graddfa samplo."
 
 #, fuzzy
 #~ msgid "Align MIDI to Audio"
@@ -3820,11 +4854,8 @@ msgstr "Annog Nyquist..."
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquist"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Mae'n ddrwg gen i, nid yw'n bosib cyflawni effeithiau pan fo traciau "
-#~ "unigol y sianeli ddim yn cydweddu."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Mae'n ddrwg gen i, nid yw'n bosib cyflawni effeithiau pan fo traciau unigol y sianeli ddim yn cydweddu."
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -3862,8 +4893,7 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Ni ddychwelodd Nyquist unrhyw sain.\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Ni grynhöwyd y fersiwn yma o Audacity â chynhaliaeth %s."
 
 #, fuzzy
@@ -3916,23 +4946,15 @@ msgstr "Annog Nyquist..."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one mono file."
-#~ msgstr ""
-#~ "Bydd eich traciau yn cael eu cymysgu i ddau sianel stereo yn y ffeil "
-#~ "allforedig."
+#~ msgstr "Bydd eich traciau yn cael eu cymysgu i ddau sianel stereo yn y ffeil allforedig."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one stereo file."
-#~ msgstr ""
-#~ "Bydd eich traciau yn cael eu cymysgu i ddau sianel stereo yn y ffeil "
-#~ "allforedig."
+#~ msgstr "Bydd eich traciau yn cael eu cymysgu i ddau sianel stereo yn y ffeil allforedig."
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
-#~ msgstr ""
-#~ "Bydd eich traciau yn cael eu cymysgu i ddau sianel stereo yn y ffeil "
-#~ "allforedig."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+#~ msgstr "Bydd eich traciau yn cael eu cymysgu i ddau sianel stereo yn y ffeil allforedig."
 
 #, fuzzy
 #~ msgid "Format Options"
@@ -3949,13 +4971,11 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Methu allforio sain i %s"
 
 #~ msgid "Exporting the selected audio using command-line encoder"
-#~ msgstr ""
-#~ "Allforio'r sain ddewisiedig gan ddefnyddio'r amgodydd llinell orchymun"
+#~ msgstr "Allforio'r sain ddewisiedig gan ddefnyddio'r amgodydd llinell orchymun"
 
 #, fuzzy
 #~ msgid "Exporting the audio using command-line encoder"
-#~ msgstr ""
-#~ "Allforio'r sain ddewisiedig gan ddefnyddio'r amgodydd llinell orchymun"
+#~ msgstr "Allforio'r sain ddewisiedig gan ddefnyddio'r amgodydd llinell orchymun"
 
 #, fuzzy
 #~ msgid "FFmpeg Error"
@@ -4181,9 +5201,7 @@ msgstr "Annog Nyquist..."
 
 #, fuzzy
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "Ni ellir atredu traciau MIDI yn unigol, dim ond â thraciau sain mae posib "
-#~ "gwneud hyn."
+#~ msgstr "Ni ellir atredu traciau MIDI yn unigol, dim ond â thraciau sain mae posib gwneud hyn."
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "Atred trac annilys yn y ffeil LOF."
@@ -5458,12 +6476,8 @@ msgstr "Annog Nyquist..."
 #~ msgid "Directory %s is not writable"
 #~ msgstr "Nid oes posib ysgrifennu i'r ffolder %s"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Ni fydd newidiadau i'r ffolder dros dro yn cael effaith tan ailgychwyn "
-#~ "Audacity"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Ni fydd newidiadau i'r ffolder dros dro yn cael effaith tan ailgychwyn Audacity"
 
 #, fuzzy
 #~ msgid "Preferences for Effects"
@@ -5603,9 +6617,7 @@ msgstr "Annog Nyquist..."
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Ni fydd newidiadau i'r ffolder dros dro yn cael effaith tan ailgychwyn "
-#~ "Audacity"
+#~ msgstr "Ni fydd newidiadau i'r ffolder dros dro yn cael effaith tan ailgychwyn Audacity"
 
 #~ msgid "Mouse"
 #~ msgstr "Llygoden"
@@ -5615,8 +6627,7 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Hoffterau Audacity"
 
 #~ msgid "Mouse Bindings (default values, not configurable)"
-#~ msgstr ""
-#~ "Rhwymiadau'r Llygoden (gwerthoedd rhagosodedig,  nid yw'n ffurfweddadwy)"
+#~ msgstr "Rhwymiadau'r Llygoden (gwerthoedd rhagosodedig,  nid yw'n ffurfweddadwy)"
 
 #~ msgid "Tool"
 #~ msgstr "Erfyn"
@@ -6264,12 +7275,8 @@ msgstr "Annog Nyquist..."
 #~ msgstr "I Lawr Wythfed"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Clico i chywddo yn fertigol,  Shift-Clic i bellhau, Llusgo i greu ardal "
-#~ "chwyddo benodol."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Clico i chywddo yn fertigol,  Shift-Clic i bellhau, Llusgo i greu ardal chwyddo benodol."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -6430,8 +7437,7 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Dde,"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
 #~ msgstr "Cliciwch a llusgwch i newid maint cymharol y traciau stereo."
 
 #, fuzzy
@@ -6569,8 +7575,7 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Cliciwch a llusgwch i symud terfyn chwith y dewisiad."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Cliciwch a llusgwch i symud terfyn chwith y dewisiad."
 
 #, fuzzy
@@ -6834,11 +7839,8 @@ msgstr "Annog Nyquist..."
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Cadw Cywaith &Fel..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Methodd Audacity drosi'r cywaith Audacity 1.0 i'r fformat cywaith newydd."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Methodd Audacity drosi'r cywaith Audacity 1.0 i'r fformat cywaith newydd."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -6930,20 +7932,12 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Distewi'r dewisiad"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil "
-#~ "(*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil "
-#~ "(*.*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil (*.*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -6962,28 +7956,16 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Ffeiliau XML (*.xml)|*.xml|Pob ffeil (*.*)|*.*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil "
-#~ "(*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil "
-#~ "(*.*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Dim ond lame_enc.dll|lame_enc.dll|Rhaglengelloedd (*.dll)|*.dll|Pob Ffeil (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Dim ond libmp3lame.so|libmp3lame.so|Ffeiliau Prif Wrthrych Cyfrannol (*."
-#~ "so)|*.so|Rhaglengelloedd Estynedig (*.so*)|*.so*|Pob ffeil (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Dim ond libmp3lame.so|libmp3lame.so|Ffeiliau Prif Wrthrych Cyfrannol (*.so)|*.so|Rhaglengelloedd Estynedig (*.so*)|*.so*|Pob ffeil (*)|*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Tonffurf (dB)"
@@ -7072,20 +8054,14 @@ msgstr "Annog Nyquist..."
 #~ msgid "Transcri&ption"
 #~ msgstr "Erfyn Dewis"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
-#~ msgstr ""
-#~ "Fydd eich traciau yn cael eu cymysgu i lawr i un sianel mono yn y ffeil a "
-#~ "allforwyd."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgstr "Fydd eich traciau yn cael eu cymysgu i lawr i un sianel mono yn y ffeil a allforwyd."
 
 #, fuzzy
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Gwall wrth agor y ddyfais sain. Gwiriwch osodiadau'r ddyfais allbwn a "
-#~ "graddfa samplo y cywaith."
+#~ msgstr "Gwall wrth agor y ddyfais sain. Gwiriwch osodiadau'r ddyfais allbwn a graddfa samplo y cywaith."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -7163,12 +8139,8 @@ msgstr "Annog Nyquist..."
 #~ msgstr "i Ddiwedd y Dewisiad"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Clico i chywddo yn fertigol,  Shift-Clic i bellhau, Llusgo i greu ardal "
-#~ "chwyddo benodol."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Clico i chywddo yn fertigol,  Shift-Clic i bellhau, Llusgo i greu ardal chwyddo benodol."
 
 #~ msgid "up"
 #~ msgstr "i fynu"
@@ -7519,16 +8491,11 @@ msgstr "Annog Nyquist..."
 #~ msgstr "Normaleiddio..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Gweithredwyd effaith: %s oedi = %f eiliad, ffactor gwanhau = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Gweithredwyd effaith: %s %d rhan, %.0f%% gwlyb, amledd = %.1f Hz, gwedd "
-#~ "gychwyn = %.0f gradd, dyfnder = %d, adlif = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Gweithredwyd effaith: %s %d rhan, %.0f%% gwlyb, amledd = %.1f Hz, gwedd gychwyn = %.0f gradd, dyfnder = %d, adlif = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Gweddydd..."
@@ -7547,12 +8514,8 @@ msgstr "Annog Nyquist..."
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "Cyfuniad Bysyll"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Gweithredwyd effaith: %s amledd = %.1f Hz, gwedd gychwyn = %.0f gradd, "
-#~ "dyfnder = %.0f%%, cyseiniant = %.1f, atred amledd = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Gweithredwyd effaith: %s amledd = %.1f Hz, gwedd gychwyn = %.0f gradd, dyfnder = %.0f%%, cyseiniant = %.1f, atred amledd = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wa-wa..."

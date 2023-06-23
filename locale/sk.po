@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2023-05-12 06:50+0000\n"
 "Last-Translator: trieska <gh@drevaren.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/tenacity/tenacity/sk/>\n"
@@ -596,6 +596,14 @@ msgstr "Aplikácia zoslabovania..."
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
 
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
@@ -1216,11 +1224,20 @@ msgstr "Vyhľadávanie ticha..."
 msgid "Maximum trailing silence"
 msgstr "Vyhľadávanie ticha..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
 #. i18n-hint: hours minutes and seconds. Do not translate "~a".
 #: plug-ins/label-sounds.ny
 #, lisp-format
 msgid "~ah ~am ~as"
 msgstr "~ah ~am ~as"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -1232,6 +1249,11 @@ msgstr "Výber musí byť väčší ako %d vzorky."
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "Žiadny zvuk nebol nájdený. Skúste znížiť úroveň~%ticha a minimálnu dĺžku ticha."
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"

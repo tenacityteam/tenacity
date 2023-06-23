@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2014-11-21 21:02-0000\n"
 "Last-Translator: Aram Vardanyan\n"
 "Language-Team: Armenian <aramvardanyan@gmx.com>\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -106,11 +110,26 @@ msgstr "Նշել նվագարկման սարք"
 msgid "No playback device found for '%s'.\n"
 msgstr "Նշել նվագարկման սարք"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Ձայնի բաժին"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Ձայնի բաժին"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -138,6 +157,20 @@ msgstr "Նշել նվագարկման սարք"
 msgid "Message"
 msgstr "Վերկտրում..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -156,6 +189,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Աուդասիթին չի կարողանում գրել ֆայլը՝\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -206,12 +244,21 @@ msgstr "Անուն ֆայլեր՝"
 msgid "XML files"
 msgstr "MP3 ֆայլեր"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3 ֆայլեր"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -233,6 +280,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Ժամանակավոր ֆայլերի ճանապարհներ"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -257,9 +312,49 @@ msgstr "Ողղանկյուն"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "Բարի գալուստ"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -297,6 +392,10 @@ msgstr "24-բիթ Պրոց. հիշ."
 msgid "32-bit float"
 msgstr "32-բիթ վերբեռն."
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -307,6 +406,21 @@ msgstr "16-բիթ Պրոց. հիշ."
 msgid "24-bit"
 msgstr "24-բիթ Պրոց. հիշ."
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Անհնար է որոշել"
@@ -315,6 +429,24 @@ msgstr "Անհնար է որոշել"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "բիթեր"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -369,9 +501,39 @@ msgstr "Զտիչ"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Հաճախություն"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -390,9 +552,35 @@ msgid "Gain (dB)"
 msgstr "Հզորացում (դԲ)՝"
 
 #: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Նվազագույն հաճախությունը պետք է լինի առնվազն 0 Հց"
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
@@ -418,6 +606,14 @@ msgstr "Հաստատվում է..."
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "Դնել լռ&ելյայն"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
 
 #: plug-ins/StudioFadeOut.ny
 #, fuzzy, lisp-format
@@ -455,9 +651,17 @@ msgid "S-Curve Down"
 msgstr "Տեղափոխել &ներգև"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "Սկսել"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -468,6 +672,14 @@ msgstr "Որակի ամրապնդում"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "Սկսել"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -483,6 +695,14 @@ msgstr "Գծային"
 #, fuzzy
 msgid "Linear Out"
 msgstr "Գծային"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -539,6 +759,14 @@ msgstr "Հաճախության ավելացումը չպետք է լինի բա�
 msgid "~aPercentage values cannot be more than 1000 %."
 msgstr "Հաճախության ավելացումը չպետք է լինի բացասական"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -570,9 +798,21 @@ msgid "Reconstructing clips..."
 msgstr "Հեռացվող սեմղմումներ և խցաններ..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Շեմը %d դԲ"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -583,6 +823,21 @@ msgstr "Հավելում ձայնագրություն"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "Հավելում ձայնագրություն"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -629,6 +884,19 @@ msgstr "կարդալ անմիջապես"
 msgid "Automatic"
 msgstr "Ավտոմատ հետ բերում վթարային իրավիճակից հետո:"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "Ուշացնող"
@@ -647,6 +915,14 @@ msgstr "Ուշացնող"
 #, fuzzy
 msgid "Regular"
 msgstr "Ողղանկյուն"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -683,6 +959,10 @@ msgstr "Դիտում"
 msgid "Number of echoes"
 msgstr "Ժամաքանակ կրկնելու՝"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #: plug-ins/sample-data-export.ny
 msgid "Yes"
@@ -691,6 +971,10 @@ msgstr "Այո"
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Ոչ"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -717,6 +1001,10 @@ msgid "XML file"
 msgstr "MP3 ֆայլեր"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Կցվող ձայնագրում"
@@ -741,6 +1029,14 @@ msgstr "Սխալ (ֆայլը կարող է չգրվել)՝ %s"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Սխալ (ֆայլը կարող է չգրվել)՝ %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -778,6 +1074,10 @@ msgstr "Երկարություն (վարկյան)"
 msgid "Length of label region (seconds)"
 msgstr "Երկարություն (վարկյան)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -787,6 +1087,42 @@ msgstr "Փոխել նշում"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "Նշիչ"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -803,6 +1139,11 @@ msgstr "Բաժանել"
 msgid "Warnings only"
 msgstr "Զգուշացումներ"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -813,6 +1154,12 @@ msgstr "Մասի պահպանում"
 #, fuzzy
 msgid "point labels"
 msgstr "Փոփոխված մասեր"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -829,16 +1176,52 @@ msgstr "Դասական զտումներ"
 msgid "Performing High-Pass Filter..."
 msgstr "Դասական զտման կատարում"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/rhythmtrack.ny
+msgid "Dominic Mazzoni"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
 #, fuzzy
 msgid "Frequency (Hz)"
 msgstr "Հաճախականություն (Հց)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Նվազագույն հաճախությունը պետք է լինի առնվազն 0 Հց"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -916,11 +1299,36 @@ msgstr "Լռության ընդհատում..."
 msgid "Maximum trailing silence"
 msgstr "Լռության ընդհատում..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Նշվածը պետք է մեծ լինի քան %d նշումները:"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -962,6 +1370,13 @@ msgstr "Գտնել անջատում"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Աջ ալիք"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Աջ ալիք"
 
@@ -969,6 +1384,10 @@ msgstr "Աջ ալիք"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "Փուլ (դԲ)՝"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -1045,12 +1464,42 @@ msgid "Decay (ms)"
 msgstr "Հարձակման/հետ քաշման ժամ"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Նշվածը պետք է մեծ լինի քան %d նշումները:"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1066,6 +1515,18 @@ msgstr "Փուլավորման հաստատում..."
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "Դնել լռ&ելյայն"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1124,9 +1585,19 @@ msgid "Allow"
 msgstr "Արգելված"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Անհաջող հեռացում %s"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1139,14 +1610,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Ընտրել MIDI ֆայլ..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Չվերցված զտումներ՝"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Ընտրել MIDI ֆայլ..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1154,9 +1642,29 @@ msgid "Generating pluck sound..."
 msgstr "Տոնի ստեղծում"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "&Զտման տեսակը՝"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1172,6 +1680,10 @@ msgstr "Հեռացնել ձայնագրությունը"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "Ձայնի ստեղծում"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1194,9 +1706,21 @@ msgid "Swing amount"
 msgstr "Այլակերպում"
 
 #: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "Ժամաքանակ կրկնելու՝"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1224,6 +1748,22 @@ msgid "Beat sound"
 msgstr "Կրկնել"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "Աղմուկի հեռացում"
@@ -1232,6 +1772,32 @@ msgstr "Աղմուկի հեռացում"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Աղմուկի ծածկ"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1259,6 +1825,10 @@ msgid "Center frequency of noise (Hz)"
 msgstr "Գծային հաճախականություն"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "Հաճախականություն (Հց)"
@@ -1277,6 +1847,10 @@ msgstr "Չի ստացվում վերցնել"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "Հաստատվում է..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1316,6 +1890,10 @@ msgid "HTML files"
 msgstr "MP3 ֆայլեր"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Փոխել նմուշ"
@@ -1331,12 +1909,33 @@ msgid "Include header information"
 msgstr "Ստեղծման տեղեկություն"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Ստանդարտ"
 
 #: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "Բոլորը"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1354,6 +1953,11 @@ msgstr "\t-help (Տ-Օգնություն)"
 msgid "Errors Only"
 msgstr "Եղավ սխալ՝"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1365,6 +1969,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Աջ ալիք"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "նմուշներ"
@@ -1373,6 +2017,43 @@ msgstr "նմուշներ"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "վարկյան"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1400,6 +2081,10 @@ msgid "Value (dB)"
 msgstr "Եռատակ (դԲ)՝"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "Գծային"
@@ -1420,6 +2105,14 @@ msgid "Right (dB)"
 msgstr "Աջ"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "Գծային"
@@ -1433,6 +2126,35 @@ msgstr "2 Ալիքներ (Ստերեո-երկու դինամիկ)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "1 Ալիք (Մոնո-մեկ դինամիկ)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1455,9 +2177,41 @@ msgid "Select file"
 msgstr "Ընտրել MIDI ֆայլ..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Եղավ սխալ"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1468,6 +2222,15 @@ msgstr "Չի հաջողվում բացել ոճի ֆայլը:"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Տեղավորել նշվածը"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1507,9 +2270,17 @@ msgid "Wet level (percent)"
 msgstr "2 փուլ"
 
 #: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Հաստատվում է..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1565,10 +2336,97 @@ msgstr "Ստուգել"
 msgid "Strength"
 msgstr "Զտիչ"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Ընթացքի մեջ է"
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1610,290 +2468,236 @@ msgstr "Հաճախականություն (Հց)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Հաճախականություն (Հց)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Nyquist հրահանգ..."
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Nyquist հրահանգ..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "Տեղադրել"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "Տեղադրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "Տեղադրել"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "Տեղադրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "Տեղադրել"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "Տեղադրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "Տեղադրել"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "Տեղադրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "Նշել &բոլորը"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Նշել &բոլորը"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "&Տառատեսակ..."
+#~ msgid "Select &Font..."
+#~ msgstr "&Տառատեսակ..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Ուղղահայաց"
+#~ msgid "Split &Vertically"
+#~ msgstr "Ուղղահայաց"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Հորիզոնական ստերեո"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Հորիզոնական ստերեո"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "ցուցադրել ելքը"
+#~ msgid "Show S&cript"
+#~ msgstr "ցուցադրել ելքը"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "ցուցադրել ելքը"
+#~ msgid "Show &Output"
+#~ msgstr "ցուցադրել ելքը"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Large Icons"
-msgstr "Մեծ տարածք"
+#~ msgid "&Large Icons"
+#~ msgstr "Մեծ տարածք"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Small Icons"
-msgstr "Մեծ տարածք"
+#~ msgid "&Small Icons"
+#~ msgstr "Մեծ տարածք"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "Գործիքադարակներ"
+#~ msgid "Toolbar"
+#~ msgstr "Գործիքադարակներ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "Դադարեցնել"
+#~ msgid "&Stop\tF6"
+#~ msgstr "Դադարեցնել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "Փոփոխական"
+#~ msgid "Script"
+#~ msgstr "Փոփոխական"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "Էֆեկտի կարգավորումներ"
+#~ msgid "Output"
+#~ msgstr "Էֆեկտի կարգավորումներ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Nyquist հրահանգ"
+#~ msgid "Load Nyquist script"
+#~ msgstr "Nyquist հրահանգ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Ուշադրություն"
+#~ msgid "Warning"
+#~ msgstr "Ուշադրություն"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Nyquist հրահանգ"
+#~ msgid "Save Nyquist script"
+#~ msgstr "Nyquist հրահանգ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Nyquist էֆեկտի հաստատում..."
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Nyquist էֆեկտի հաստատում..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "Սարքեր չեն գտնվել"
+#~ msgid "No matches found"
+#~ msgstr "Սարքեր չեն գտնվել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Untitled"
-msgstr "անվերնագիր"
+#~ msgid "Untitled"
+#~ msgstr "անվերնագիր"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Nyquist էֆեկտի հաստատում..."
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Nyquist էֆեկտի հաստատում..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "New"
-msgstr "Նոր"
+#~ msgid "New"
+#~ msgstr "Նոր"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Բացել նախկիններից"
+#~ msgid "New script"
+#~ msgstr "Բացել նախկիններից"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&Բացել..."
+#~ msgid "Open"
+#~ msgstr "&Բացել..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Բացել նախկիններից"
+#~ msgid "Open script"
+#~ msgstr "Բացել նախկիններից"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "&Պահպանել"
+#~ msgid "Save"
+#~ msgstr "&Պահպանել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Nyquist հրահանգ"
+#~ msgid "Save script"
+#~ msgstr "Nyquist հրահանգ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Պահպանել որպես..."
+#~ msgid "Save As"
+#~ msgstr "Պահպանել որպես..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "Պահպանել պրոեկտը &որպես..."
+#~ msgid "Save script as..."
+#~ msgstr "Պահպանել պրոեկտը &որպես..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Պատճենել"
+#~ msgid "Copy"
+#~ msgstr "Պատճենել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Կտրել ժամանակավոր փոխանցողի մեջ"
+#~ msgid "Copy to clipboard"
+#~ msgstr "Կտրել ժամանակավոր փոխանցողի մեջ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Կտրել"
+#~ msgid "Cut"
+#~ msgstr "Կտրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Կտրել ժամանակավոր փոխանցողի մեջ"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Կտրել ժամանակավոր փոխանցողի մեջ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Տեղադրել"
+#~ msgid "Paste"
+#~ msgstr "Տեղադրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Տեղադրում ժամանակավոր փոխանցողից"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Տեղադրում ժամանակավոր փոխանցողից"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "Մաքրել"
+#~ msgid "Clear"
+#~ msgstr "Մաքրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Հավասարեցման նշում"
+#~ msgid "Clear selection"
+#~ msgstr "Հավասարեցման նշում"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "Նշել &բոլորը"
+#~ msgid "Select All"
+#~ msgstr "Նշել &բոլորը"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "Նշել &բոլորը"
+#~ msgid "Select all text"
+#~ msgstr "Նշել &բոլորը"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Քայլ հետ"
+#~ msgid "Undo"
+#~ msgstr "Քայլ հետ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Ֆորմատի փոխում"
+#~ msgid "Undo last change"
+#~ msgstr "Ֆորմատի փոխում"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "Քայլ առաջ"
+#~ msgid "Redo"
+#~ msgstr "Քայլ առաջ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Ֆորմատի փոխում"
+#~ msgid "Redo previous change"
+#~ msgstr "Ֆորմատի փոխում"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "Գտնել գրառում"
+#~ msgid "Find"
+#~ msgstr "Գտնել գրառում"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "Գտնել գրառում"
+#~ msgid "Find text"
+#~ msgstr "Գտնել գրառում"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "Կապոց"
+#~ msgid "Match"
+#~ msgstr "Կապոց"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Top"
-msgstr "Մեջտեղ"
+#~ msgid "Top"
+#~ msgstr "Մեջտեղ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Չկան նշումներ վերցման համար:"
+#~ msgid "Go to top S-expr"
+#~ msgstr "Չկան նշումներ վերցման համար:"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "Վերև"
+#~ msgid "Up"
+#~ msgstr "Վերև"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Նախորդը գործիք"
+#~ msgid "Previous"
+#~ msgstr "Նախորդը գործիք"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Փոխել կենտրոնացումը նախորդ և ընտրել"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Փոխել կենտրոնացումը նախորդ և ընտրել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "Հաջորդը գործիք"
+#~ msgid "Next"
+#~ msgstr "Հաջորդը գործիք"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Սկսել"
+#~ msgid "Start"
+#~ msgstr "Սկսել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Nyquist հրահանգ"
+#~ msgid "Start script"
+#~ msgstr "Nyquist հրահանգ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Դադարեցնել"
+#~ msgid "Stop"
+#~ msgstr "Դադարեցնել"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "Nyquist հրահանգ"
+#~ msgid "Stop script"
+#~ msgstr "Nyquist հրահանգ"
 
 #~ msgid "Comments"
 #~ msgstr "Նկարագրություն"
@@ -1930,17 +2734,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Լավ"
 
 #~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Ծրագրի հայաֆիկացում — Արամ բլոգ (www.aramblog.yn.lt - aramvardanyan@gmx."
-#~ "com)"
+#~ msgstr "Ծրագրի հայաֆիկացում — Արամ բլոգ (www.aramblog.yn.lt - aramvardanyan@gmx.com)"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "%s the free, open source, cross-platform software for recording and "
-#~ "editing sounds."
-#~ msgstr ""
-#~ "Անվճար, բաց կոդով, խաչաձև հարթակ ունեցող ծրագիր, ձայնագրման և "
-#~ "ձայնագրությունների փոփոխման համար<br>"
+#~ msgid "%s the free, open source, cross-platform software for recording and editing sounds."
+#~ msgstr "Անվճար, բաց կոդով, խաչաձև հարթակ ունեցող ծրագիր, ձայնագրման և ձայնագրությունների փոփոխման համար<br>"
 
 #~ msgid "Credits"
 #~ msgstr "Հեղինակներ"
@@ -1973,9 +2771,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr ""
-#~ "Անունը <b>Audacity&reg;</b> գրանցված է Դոմինիկ Մացոնիի ապրանքանշանով "
-#~ "(Dominic Mazzoni):"
+#~ msgstr "Անունը <b>Audacity&reg;</b> գրանցված է Դոմինիկ Մացոնիի ապրանքանշանով (Dominic Mazzoni):"
 
 #~ msgid "Build Information"
 #~ msgstr "Ստեղծման տեղեկություն"
@@ -2064,9 +2860,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid "Click and drag to adjust, double-click to reset"
-#~ msgstr ""
-#~ "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական "
-#~ "չափերը:"
+#~ msgstr "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական չափերը:"
 
 #, fuzzy
 #~ msgid "Record/Play head"
@@ -2118,13 +2912,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgid ""
 #~ "Reset Preferences?\n"
 #~ "\n"
-#~ "This is a one-time question, after an 'install' where you asked to have "
-#~ "the Preferences reset."
+#~ "This is a one-time question, after an 'install' where you asked to have the Preferences reset."
 #~ msgstr ""
 #~ "Վերափոխե՞լ կարգավորումները:\n"
 #~ "\n"
-#~ "Սա միայն մեկ անգամվա երկխոսություն է, 'նստեցումից' հետո, որտեղ որ "
-#~ "հրահանգել եք Կարգավորումների վերնշում:"
+#~ "Սա միայն մեկ անգամվա երկխոսություն է, 'նստեցումից' հետո, որտեղ որ հրահանգել եք Կարգավորումների վերնշում:"
 
 #~ msgid "Reset Audacity Preferences"
 #~ msgstr "Վերնշել Աուդասիթի կարգավորումները"
@@ -2157,8 +2949,7 @@ msgstr "Nyquist հրահանգ"
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Աուդասիթին չի գտնում տեղ պահելու համար ժամանակավոր ֆայլերը:\n"
@@ -2171,12 +2962,8 @@ msgstr "Nyquist հրահանգ"
 #~ "Աուդասիթին չի գտնում տեղ պահելու համար ժամանակավոր ֆայլերը:\n"
 #~ "Խնդրում ենք մուտքագրել կարգավորումների համապատասխան վայրում այդ տեղը:"
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Աուդասիթին պատրաստվում է փակվել: Խնդրում ենք կրկին բացել Աուդասիթին "
-#~ "օգտվելու համար պահպանման վայրից:"
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Աուդասիթին պատրաստվում է փակվել: Խնդրում ենք կրկին բացել Աուդասիթին օգտվելու համար պահպանման վայրից:"
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -2207,8 +2994,7 @@ msgstr "Nyquist հրահանգ"
 #~ "Use the New or Open commands in the currently running Audacity\n"
 #~ "process to open multiple projects simultaneously.\n"
 #~ msgstr ""
-#~ "Օգտագործեք նոր կամ բացված հրահանգների կետերը, ներկայիս բացված "
-#~ "Աուդասիթիում\n"
+#~ "Օգտագործեք նոր կամ բացված հրահանգների կետերը, ներկայիս բացված Աուդասիթիում\n"
 #~ "ընթացք բացելու համար մի քանի պրոեկտ միաժամանակ:\n"
 
 #~ msgid "Audacity is already running"
@@ -2327,50 +3113,29 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Out of memory!"
 #~ msgstr "Հիշողությունից բարձր է"
 
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Հնարավոր չէր այն ավելի "
-#~ "օպտիմալացնել: Շատ բարձր է:"
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
+#~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Հնարավոր չէր այն ավելի օպտիմալացնել: Շատ բարձր է:"
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
 #~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը հատեց ձայնի մակարդաչափը %f."
 
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Հնարավոր չէր այն ավելի "
-#~ "օպտիմալացնել: Շատ ցածր է:"
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
+#~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Հնարավոր չէր այն ավելի օպտիմալացնել: Շատ ցածր է:"
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
 #~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը մինչ %f."
 
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Վերլուծությունների ընդհանուր "
-#~ "թիվը գերազանցել է, չգտնելով ձայնաչափը: Կրկին բարձր է:"
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
+#~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Վերլուծությունների ընդհանուր թիվը գերազանցել է, չգտնելով ձայնաչափը: Կրկին բարձր է:"
 
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Վերլուծությունների ընդհանուր "
-#~ "թիվը գերազանցել է, չգտնելով ձայնաչափը: Կրկին ցածր է:"
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
+#~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: Վերլուծությունների ընդհանուր թիվը գերազանցել է, չգտնելով ձայնաչափը: Կրկին ցածր է:"
 
 #, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: %.2f թվաց ընդհանուր ձայնաչափ:"
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
+#~ msgstr "Ավտոմատ ձայնագրման փուլի սանդղակը դադարեց: %.2f թվաց ընդհանուր ձայնաչափ:"
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -2405,13 +3170,11 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
-#~ "Որոշ պրոեկտներ պահպանված չեն, վերջին անգամ Աուդասիթիի բաց լինելու "
-#~ "պատճառով:\n"
+#~ "Որոշ պրոեկտներ պահպանված չեն, վերջին անգամ Աուդասիթիի բաց լինելու պատճառով:\n"
 #~ "Բարեբախտաբար հետևյալ պրոեկտները կարող են վերականգնվել:"
 
 #, fuzzy
@@ -2847,15 +3610,12 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Missing"
 #~ msgstr "Ֆայլերը բացակայում են"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
 #~ msgstr "Եթե սկսեք, ձեր պրոեկտը չի պահպանվի սկավառակում: Դուք դա ուզու՞մ եք:"
 
 #, fuzzy
 #~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio "
-#~ "files. \n"
+#~ "Your project is self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
 #~ "Some older Audacity projects may not be self-contained, and care \n"
 #~ "is needed to keep their external dependencies in the right place.\n"
@@ -2863,9 +3623,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr ""
 #~ "Ձեր պրոեկտը այս պահին առանձնացած է, այն կախված չէ որևէ աուդիո ֆայլից: \n"
 #~ "\n"
-#~ "Եթե հիմա պրոեկտում փոփոխություն կատարեք, որի միացվածությունը ներմուծված "
-#~ "ֆայլերի հետ արտաքին է, փոփոխությունից հետո առանձնացած չի լինի: Եթե "
-#~ "պահպանեք առանց պատճենման այդ ֆայլերը, կարող եք կորցնել ինֆորմացիան:"
+#~ "Եթե հիմա պրոեկտում փոփոխություն կատարեք, որի միացվածությունը ներմուծված ֆայլերի հետ արտաքին է, փոփոխությունից հետո առանձնացած չի լինի: Եթե պահպանեք առանց պատճենման այդ ֆայլերը, կարող եք կորցնել ինֆորմացիան:"
 
 #~ msgid "Dependency Check"
 #~ msgstr "Կախվածության ստուգում"
@@ -2880,10 +3638,8 @@ msgstr "Nyquist հրահանգ"
 #~ "\n"
 #~ "You may want to go back to Preferences > Libraries and re-configure it."
 #~ msgstr ""
-#~ "FFmpeg կարգավորվեց կարգավորումներից հաջողությամբ բեռնվեց "
-#~ "մինչ,                         \n"
-#~ "բայց այս անգամ Աուդասիթին չկարողացավ բեռնել դա բեռնման "
-#~ "տեղում:                         \n"
+#~ "FFmpeg կարգավորվեց կարգավորումներից հաջողությամբ բեռնվեց մինչ,                         \n"
+#~ "բայց այս անգամ Աուդասիթին չկարողացավ բեռնել դա բեռնման տեղում:                         \n"
 #~ "\n"
 #~ "Դուք պետք է մտնեք կարգավորումներ > Գրադարան և վերակազմեք դա:"
 
@@ -2898,9 +3654,7 @@ msgstr "Nyquist հրահանգ"
 
 #, c-format
 #~ msgid "Audacity needs the file '%s' to import and export audio via FFmpeg."
-#~ msgstr ""
-#~ "Աուդասիթիին պետք է ֆայլ '%s' ներմուծման և աուդիո ֆայլի վերցման համար "
-#~ "FFmpeg-ի միջոցով:"
+#~ msgstr "Աուդասիթիին պետք է ֆայլ '%s' ներմուծման և աուդիո ֆայլի վերցման համար FFmpeg-ի միջոցով:"
 
 #, c-format
 #~ msgid "Location of '%s':"
@@ -2931,8 +3685,7 @@ msgstr "Nyquist հրահանգ"
 #~ "To use FFmpeg import, go to Edit > Preferences > Libraries\n"
 #~ "to download or locate the FFmpeg libraries."
 #~ msgstr ""
-#~ "Աուդասիթին փորձարկեց FFmpeg-ի օգտագործումը աուդիո ֆայլի ներմուծման "
-#~ "համար,\n"
+#~ "Աուդասիթին փորձարկեց FFmpeg-ի օգտագործումը աուդիո ֆայլի ներմուծման համար,\n"
 #~ "բայց գրադարանը գոյություն չունի.\n"
 #~ "\n"
 #~ "FFmpeg ներմուծումն օգտագործելու համար, մտեք Կարգավորումներ > Գրադարան\n"
@@ -2967,9 +3720,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "As&k"
 #~ msgstr "Հարցնել օգտվողին"
 
-#~ msgid ""
-#~ "The specified filename could not be converted due to Unicode character "
-#~ "use."
+#~ msgid "The specified filename could not be converted due to Unicode character use."
 #~ msgstr "Նշված ֆայլը չի կարող վերափոխվել Յունիկոդ տառատեսակներ են ընտրված:"
 
 #~ msgid "Specify New Filename:"
@@ -3040,16 +3791,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "&Replot..."
 #~ msgstr "&Վերագրաֆիկավորում"
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "Սպեկտրները գրաֆիկավորելու համար, բոլոր նշված ձայնային ֆայլերը պետք է մի "
-#~ "շառավիղի վրա լինեն նույն հաճախականությամբ:"
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "Սպեկտրները գրաֆիկավորելու համար, բոլոր նշված ձայնային ֆայլերը պետք է մի շառավիղի վրա լինեն նույն հաճախականությամբ:"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
 #~ msgstr "Շատ աուդիո է ընտրված:  Միայն առաջին %.1f վարկյանը ստուգվեց:"
 
 #~ msgid "Not enough data selected."
@@ -3117,88 +3863,36 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Սրանք մեր օգնության մեթոդներն են՝"
 
 #, fuzzy
-#~ msgid ""
-#~ "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://"
-#~ "manual.audacityteam.org/quick_help.html|view online]]"
-#~ msgstr ""
-#~ " [[file:quick_help.html|Արագ օգնություն]] (ներսում տեղադրված, <a href="
-#~ "\"http://manual.audacityteam.org/o/quick_help.html\">Ինտերնետ տարբերակ "
-#~ "եթե չի ստացվում</a>)"
+#~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
+#~ msgstr " [[file:quick_help.html|Արագ օգնություն]] (ներսում տեղադրված, <a href=\"http://manual.audacityteam.org/o/quick_help.html\">Ինտերնետ տարբերակ եթե չի ստացվում</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual."
-#~ "audacityteam.org/|view online]]"
-#~ msgstr ""
-#~ " [[file:index.html|Դուք ինքներդ]] (ներսում տեղադրված, <a href=\"http://"
-#~ "manual.audacityteam.org/o/\">Ինտերնետ տարբերակ եթե չի ստացվում</a>)"
+#~ msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
+#~ msgstr " [[file:index.html|Դուք ինքներդ]] (ներսում տեղադրված, <a href=\"http://manual.audacityteam.org/o/\">Ինտերնետ տարբերակ եթե չի ստացվում</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
-#~ "online."
-#~ msgstr ""
-#~ " <a href=\"http://forum.audacityteam.org/\">Ֆորում</a> (տուր քո հարցը "
-#~ "միանգամից ինտերնետում)"
+#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
+#~ msgstr " <a href=\"http://forum.audacityteam.org/\">Ֆորում</a> (տուր քո հարցը միանգամից ինտերնետում)"
 
 #, fuzzy
-#~ msgid ""
-#~ "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for "
-#~ "tips, tricks, extra tutorials and effects plug-ins."
-#~ msgstr ""
-#~ " [[http://wiki.audacityteam.org/index.php|Wiki]] (վերջին տեսակները, "
-#~ "հնարքներն ու ուսուցանող ձեռնարկները, ինտերնետում)"
+#~ msgid "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
+#~ msgstr " [[http://wiki.audacityteam.org/index.php|Wiki]] (վերջին տեսակները, հնարքներն ու ուսուցանող ձեռնարկները, ինտերնետում)"
 
 #, fuzzy
-#~ msgid ""
-#~ "Audacity can import unprotected files in many other formats (such as M4A "
-#~ "and WMA, compressed WAV files from portable recorders and audio from "
-#~ "video files) if you download and install the optional [[https://manual."
-#~ "audacityteam.org/man/faq_opening_and_saving_files.html#foreign| FFmpeg "
-#~ "library]] to your computer."
-#~ msgstr ""
-#~ "Աուդասիթին կարող է ներմուծել չպաշտպանված ֆայլերը շատ տարբեր ֆայլերում "
-#~ "(ինչպես M4A և WMA, խտացված WAV ֆայլեր պորտաբլ ձայնագրվածներից և վիդեո "
-#~ "ֆայլերից աուդիո) եթե դուք բեռնել և նստացրել եք մանրամասն <a href=\"http://"
-#~ "manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#foreign"
-#~ "\"> FFmpeg գրադարանը</a> ձեր համակարգչում:"
+#~ msgid "Audacity can import unprotected files in many other formats (such as M4A and WMA, compressed WAV files from portable recorders and audio from video files) if you download and install the optional [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#foreign| FFmpeg library]] to your computer."
+#~ msgstr "Աուդասիթին կարող է ներմուծել չպաշտպանված ֆայլերը շատ տարբեր ֆայլերում (ինչպես M4A և WMA, խտացված WAV ֆայլեր պորտաբլ ձայնագրվածներից և վիդեո ֆայլերից աուդիո) եթե դուք բեռնել և նստացրել եք մանրամասն <a href=\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#foreign\"> FFmpeg գրադարանը</a> ձեր համակարգչում:"
 
 #, fuzzy
-#~ msgid ""
-#~ "You can also read our help on importing [[https://manual.audacityteam.org/"
-#~ "man/playing_and_recording.html#midi|MIDI files]] and tracks from "
-#~ "[[https://manual.audacityteam.org/man/faq_opening_and_saving_files."
-#~ "html#fromcd| audio CDs]]."
-#~ msgstr ""
-#~ "Դուք մշտապես կարող եք կարդալ մեր օգնությունը ներմուծման համար <a href="
-#~ "\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files."
-#~ "html#midi\">MIDI ֆայլեր</a> և ձայնագրություններ <a href=\"http://manual."
-#~ "audacityteam.org/o/man/faq_opening_and_saving_files.html#fromcd\"> աուդիո "
-#~ "CD-ներից</a>:"
+#~ msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
+#~ msgstr "Դուք մշտապես կարող եք կարդալ մեր օգնությունը ներմուծման համար <a href=\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#midi\">MIDI ֆայլեր</a> և ձայնագրություններ <a href=\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#fromcd\"> աուդիո CD-ներից</a>:"
 
 #, fuzzy
-#~ msgid ""
-#~ "The Manual does not appear to be installed. Please [[*URL*|view the "
-#~ "Manual online]].<br><br>To always view the Manual online, change "
-#~ "\"Location of Manual\" in Interface Preferences to \"From Internet\"."
-#~ msgstr ""
-#~ "Դուք հնարավոր է չունեք 'օգնություն' թղթապանակը նստեցված:<br> Խնդրում ենք "
-#~ "<a href=\"*URL*\">տեսնել դա օնլայն</a> կամ <a href=\"http://manual."
-#~ "audacityteam.org/o/man/unzipping_the_manual.html\"> բեռնել ամբողջ "
-#~ "ցանկըal</a>."
+#~ msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
+#~ msgstr "Դուք հնարավոր է չունեք 'օգնություն' թղթապանակը նստեցված:<br> Խնդրում ենք <a href=\"*URL*\">տեսնել դա օնլայն</a> կամ <a href=\"http://manual.audacityteam.org/o/man/unzipping_the_manual.html\"> բեռնել ամբողջ ցանկըal</a>."
 
 #, fuzzy
-#~ msgid ""
-#~ "The Manual does not appear to be installed. Please [[*URL*|view the "
-#~ "Manual online]] or [[https://manual.audacityteam.org/man/"
-#~ "unzipping_the_manual.html| download the Manual]].<br><br>To always view "
-#~ "the Manual online, change \"Location of Manual\" in Interface Preferences "
-#~ "to \"From Internet\"."
-#~ msgstr ""
-#~ "Դուք հնարավոր է չունեք 'օգնություն' թղթապանակը նստեցված:<br> Խնդրում ենք "
-#~ "<a href=\"*URL*\">տեսնել դա օնլայն</a> կամ <a href=\"http://manual."
-#~ "audacityteam.org/o/man/unzipping_the_manual.html\"> բեռնել ամբողջ "
-#~ "ցանկըal</a>."
+#~ msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
+#~ msgstr "Դուք հնարավոր է չունեք 'օգնություն' թղթապանակը նստեցված:<br> Խնդրում ենք <a href=\"*URL*\">տեսնել դա օնլայն</a> կամ <a href=\"http://manual.audacityteam.org/o/man/unzipping_the_manual.html\"> բեռնել ամբողջ ցանկըal</a>."
 
 #, fuzzy
 #~ msgid "History"
@@ -3290,12 +3984,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Ընտրել լեզու Աուդասիթին օգտագործելու համար՝"
 
 #, c-format
-#~ msgid ""
-#~ "The language you have chosen, %s (%s), is not the same as the system "
-#~ "language, %s (%s)."
-#~ msgstr ""
-#~ "Ձեր ընտրած լեզուն, %s (%s), չի համապատասխանում որպես համակարգի լեզու, %s "
-#~ "(%s)."
+#~ msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
+#~ msgstr "Ձեր ընտրած լեզուն, %s (%s), չի համապատասխանում որպես համակարգի լեզու, %s (%s)."
 
 #~ msgid "Confirm"
 #~ msgstr "Հաստատել"
@@ -3589,16 +4279,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Կա սխալ երբ բացվում է ձայնի սարքը: Խնդրում ենք ստուգել նվագարկման սարքի "
-#~ "կարգավորումները և պրոեկտի ձայնային որակի չափը:"
+#~ msgstr "Կա սխալ երբ բացվում է ձայնի սարքը: Խնդրում ենք ստուգել նվագարկման սարքի կարգավորումները և պրոեկտի ձայնային որակի չափը:"
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "Զտման հաստատման համար, բոլոր նշված ձայնագրությունները պետք է լինեն նույն "
-#~ "ձայնաչափի բաժնի:"
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "Զտման հաստատման համար, բոլոր նշված ձայնագրությունները պետք է լինեն նույն ձայնաչափի բաժնի:"
 
 #~ msgid "Recorded Audio"
 #~ msgstr "Ձայնագրված աուդիո"
@@ -3612,14 +4297,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Close project immediately with no changes"
 #~ msgstr "Փակել պրոեկտը հիմա առանց փոփոխության"
 
-#~ msgid ""
-#~ "Continue with repairs noted in log, and check for more errors. This will "
-#~ "save the project in its current state, unless you \"Close project "
-#~ "immediately\" on further error alerts."
-#~ msgstr ""
-#~ "Շարունակել կարգավորումները գրառման հետ պատմության գրքույկում և ստուգել "
-#~ "այլ սխալներ: Սա կպահպանի պրոեկտը այս տեսքով մինչ դուք \"Փակեք պրոեկտը "
-#~ "անհապաղ\" հետագա տագնապային նշանների վրա:"
+#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
+#~ msgstr "Շարունակել կարգավորումները գրառման հետ պատմության գրքույկում և ստուգել այլ սխալներ: Սա կպահպանի պրոեկտը այս տեսքով մինչ դուք \"Փակեք պրոեկտը անհապաղ\" հետագա տագնապային նշանների վրա:"
 
 #~ msgid "Warning - Problems Reading Sequence Tags"
 #~ msgstr "Ուշադրություն - խնդիրները կարդացվում են հետևող տեգերում"
@@ -3686,8 +4365,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Վերականգնել կեղծված կարճ ֆայլերը (ապահով և առաջարկված)"
 
 #~ msgid "Fill in silence for missing display data (this session only)"
-#~ msgstr ""
-#~ "Լռելյայն, բացակայող արտաքին ինֆորմացիայի համար (ծրագրի այս անգամվա միայն)"
+#~ msgstr "Լռելյայն, բացակայող արտաքին ինֆորմացիայի համար (ծրագրի այս անգամվա միայն)"
 
 #~ msgid "Close project immediately with no further changes"
 #~ msgstr "Փակել պրոեկտը անմիջապես առանց փոփոխությունների"
@@ -3833,12 +4511,10 @@ msgstr "Nyquist հրահանգ"
 #, c-format
 #~ msgid ""
 #~ "This file was saved using Audacity %s.\n"
-#~ "You are using Audacity %s. You may need to upgrade to a newer version to "
-#~ "open this file."
+#~ "You are using Audacity %s. You may need to upgrade to a newer version to open this file."
 #~ msgstr ""
 #~ "Ֆայլը պահպանվել է նշված Աուդասիթի %s. -ի կողմից\n"
-#~ "Դուք օգտագործում եք Աուդասիթի %s: Պետք է թարմացնեք նոր տարբերակի, բացելու "
-#~ "համար այս ֆայլը:"
+#~ "Դուք օգտագործում եք Աուդասիթի %s: Պետք է թարմացնեք նոր տարբերակի, բացելու համար այս ֆայլը:"
 
 #~ msgid "Can't open project file"
 #~ msgstr "Չի հաջողվում բացել պրոեկտ ֆայլը"
@@ -3872,8 +4548,7 @@ msgstr "Nyquist հրահանգ"
 #~ "\n"
 #~ "It has been recovered to the last snapshot."
 #~ msgstr ""
-#~ "Որոշ պրոեկտներ պահպանված չեն, վերջին անգամ Աուդասիթիի բաց լինելու "
-#~ "պատճառով:\n"
+#~ "Որոշ պրոեկտներ պահպանված չեն, վերջին անգամ Աուդասիթիի բաց լինելու պատճառով:\n"
 #~ "Բարեբախտաբար հետևյալ պրոեկտները կարող են վերականգնվել:"
 
 #, fuzzy
@@ -3911,12 +4586,10 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Պահպանված %s"
 
 #~ msgid ""
-#~ "The project was not saved because the file name provided would overwrite "
-#~ "another project.\n"
+#~ "The project was not saved because the file name provided would overwrite another project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի "
-#~ "համար:\n"
+#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի համար:\n"
 #~ "Խնդրում ենք փորձել կրկին և նշել իսկական անունը:"
 
 #, fuzzy, c-format
@@ -3928,8 +4601,7 @@ msgstr "Nyquist հրահանգ"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ msgstr ""
 #~ "'Պահպանել պրոեկտը' Աուդասիթի պրոեկտի համար չի լինի աուդի ֆայլ:\n"
-#~ "Աուդիո ֆայլի համար, որը պետք է բացվի այլ ծրագրերի միջոցով, ընտրեք "
-#~ "'Վերցնել':\n"
+#~ "Աուդիո ֆայլի համար, որը պետք է բացվի այլ ծրագրերի միջոցով, ընտրեք 'Վերցնել':\n"
 
 #, fuzzy
 #~ msgid "Overwrite Project Warning"
@@ -3937,12 +4609,10 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "The project was not saved because the selected project is open in another "
-#~ "window.\n"
+#~ "The project was not saved because the selected project is open in another window.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի "
-#~ "համար:\n"
+#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի համար:\n"
 #~ "Խնդրում ենք փորձել կրկին և նշել իսկական անունը:"
 
 #, fuzzy, c-format
@@ -3954,8 +4624,7 @@ msgstr "Nyquist հրահանգ"
 #~ "Saving a copy must not overwrite an existing saved project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի "
-#~ "համար:\n"
+#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի համար:\n"
 #~ "Խնդրում ենք փորձել կրկին և նշել իսկական անունը:"
 
 #, fuzzy
@@ -4295,9 +4964,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Ոճը"
 
 #~ msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-#~ msgstr ""
-#~ "Օգտագործել մկնիկի ստեղները (կամ ՆՇԻ՛Ր ստեղն փոփոխումից հետո) կառավարելու "
-#~ "համար դաշտերը:"
+#~ msgstr "Օգտագործել մկնիկի ստեղները (կամ ՆՇԻ՛Ր ստեղն փոփոխումից հետո) կառավարելու համար դաշտերը:"
 
 #~ msgid "Tag"
 #~ msgstr "Տեգ"
@@ -4479,8 +5146,7 @@ msgstr "Nyquist հրահանգ"
 #~ "for Timer Recording because it would overwrite another project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի "
-#~ "համար:\n"
+#~ "Պրոեկտը չի պահպանվել, որովհետև ֆայլի անունը ապահովում է այլ պրոեկտի համար:\n"
 #~ "Խնդրում ենք փորձել կրկին և նշել իսկական անունը:"
 
 #, fuzzy
@@ -4685,12 +5351,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Նշում միացնել"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
-#~ msgstr ""
-#~ "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական "
-#~ "չափերը:"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+#~ msgstr "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական չափերը:"
 
 #~ msgid "Click and drag to resize the track."
 #~ msgstr "Սեղմեք և քաշեք, ձայնագրության չափը փոփոխելու համար:"
@@ -5281,19 +5943,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Auto Duck"
 #~ msgstr "Ինքնախուսափում"
 
-#~ msgid ""
-#~ "You selected a track which does not contain audio. AutoDuck can only "
-#~ "process audio tracks."
-#~ msgstr ""
-#~ "Դուք ընտրել եք ֆայլ, որը աուդիո չէ: ԱվտոԽուսափումը-ը աշխատում է աուդիո "
-#~ "ֆայլերում միայն:"
+#~ msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
+#~ msgstr "Դուք ընտրել եք ֆայլ, որը աուդիո չէ: ԱվտոԽուսափումը-ը աշխատում է աուդիո ֆայլերում միայն:"
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
-#~ msgstr ""
-#~ "Ավտո խուսափմանն անհրաժեշտ է վերահսկել ձայնագրությունները, որը ներգևում "
-#~ "պիտի տեղադրվի, նշված ձայնագրությունը (ները):"
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+#~ msgstr "Ավտո խուսափմանն անհրաժեշտ է վերահսկել ձայնագրությունները, որը ներգևում պիտի տեղադրվի, նշված ձայնագրությունը (ները):"
 
 #, fuzzy
 #~ msgid "Duck &amount:"
@@ -5672,12 +6326,8 @@ msgstr "Nyquist հրահանգ"
 #~ "Խնդրում ենք ընտրել ձայնագրության մաս:"
 
 #, fuzzy
-#~ msgid ""
-#~ "Contrast Analyzer, for measuring RMS volume differences between two "
-#~ "selections of audio."
-#~ msgstr ""
-#~ "Մթացման անալիզ միջին քառակուսային ձայնաչափի տարբերության համար, երկու "
-#~ "աուդիոների արանքում:"
+#~ msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
+#~ msgstr "Մթացման անալիզ միջին քառակուսային ձայնաչափի տարբերության համար, երկու աուդիոների արանքում:"
 
 #~ msgid "End"
 #~ msgstr "Ավարտ"
@@ -6234,23 +6884,17 @@ msgstr "Nyquist հրահանգ"
 #, fuzzy
 #~ msgid ""
 #~ "To use this filter curve in a macro, please choose a new name for it.\n"
-#~ "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-#~ "then use that one."
+#~ "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
 #~ msgstr ""
-#~ "Տատանման կորի օգտագործման համար նշանատեղի շղթայում, խնդրում ենք ընտրել "
-#~ "նոր անուն սրա համար:\n"
-#~ "Ընտրել 'Պահպանել/Փոփոխել կորերը...' ստեղնը և անվանափոխել 'անանուն' կորը, "
-#~ "երբ վերցված է այդ մեկը:"
+#~ "Տատանման կորի օգտագործման համար նշանատեղի շղթայում, խնդրում ենք ընտրել նոր անուն սրա համար:\n"
+#~ "Ընտրել 'Պահպանել/Փոփոխել կորերը...' ստեղնը և անվանափոխել 'անանուն' կորը, երբ վերցված է այդ մեկը:"
 
 #, fuzzy
 #~ msgid "Filter Curve EQ needs a different name"
 #~ msgstr "Տատանման կորին պետք է տարբեր անուն"
 
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Հաստատել տատանումները, բոլոր նշված ձայնագրությունները պետք է լինեն նույն "
-#~ "ձայնաչափի բաժնի"
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "Հաստատել տատանումները, բոլոր նշված ձայնագրությունները պետք է լինեն նույն ձայնաչափի բաժնի"
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -6567,9 +7211,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid "All noise profile data must have the same sample rate."
-#~ msgstr ""
-#~ "Զտման հաստատման համար, բոլոր նշված ձայնագրությունները պետք է լինեն նույն "
-#~ "ձայնաչափի բաժնի:"
+#~ msgstr "Զտման հաստատման համար, բոլոր նշված ձայնագրությունները պետք է լինեն նույն ձայնաչափի բաժնի:"
 
 #, fuzzy
 #~ msgid "Selected noise profile is too short."
@@ -6627,8 +7269,7 @@ msgstr "Nyquist հրահանգ"
 #~ "Select a few seconds of just noise so Audacity knows what to filter out,\n"
 #~ "then click Get Noise Profile:"
 #~ msgstr ""
-#~ "Նշել մի քանի վարկյան աղմուկի համար, որ Աուդասիթին իմանա, որ մասը զտի "
-#~ "հանի,\n"
+#~ "Նշել մի քանի վարկյան աղմուկի համար, որ Աուդասիթին իմանա, որ մասը զտի հանի,\n"
 #~ "ապա սեղմել Ստանալ աղմուկի պրոֆիլ՝"
 
 #~ msgid "&Get Noise Profile"
@@ -6639,8 +7280,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
 #~ "Նշել բոլոր ձեր զտած աուդիոները, ընտրել ինչքան աղմուկ եք ուզում լինի\n"
@@ -6691,8 +7331,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Աղմուկի հեռացում"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
 #~ "Նշել բոլոր ձեր զտած աուդիոները, ընտրել ինչքան աղմուկ եք ուզում լինի\n"
@@ -6833,13 +7472,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Նորոգել"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
-#~ "Վերականգնման էֆեկտը նախատեսված է օգտագործելու, վնասված աուդիոյի շատ կարճ "
-#~ "մասերում (մինչև 128 մաս):\n"
+#~ "Վերականգնման էֆեկտը նախատեսված է օգտագործելու, վնասված աուդիոյի շատ կարճ մասերում (մինչև 128 մաս):\n"
 #~ "\n"
 #~ "Մեծացնել և ընտրել փոքր խումբ երկրորդից, նորոգման համար:"
 
@@ -6850,8 +7487,7 @@ msgstr "Nyquist հրահանգ"
 #~ "\n"
 #~ "The more surrounding audio, the better it performs."
 #~ msgstr ""
-#~ "Նորոգումն աշխատում է օգտագործելով աուդիո տվյալները դուրս, ընտրված "
-#~ "տարածքում:\n"
+#~ "Նորոգումն աշխատում է օգտագործելով աուդիո տվյալները դուրս, ընտրված տարածքում:\n"
 #~ "\n"
 #~ "Խնդրում ենք ընտրել տարածք որն ունի աուդիո շփում առնվազն մեկ կողմը:\n"
 #~ "\n"
@@ -6969,11 +7605,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Classic Filters"
 #~ msgstr "Դասական զտումներ"
 
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Զտման հաստատման համար, բոլոր նշված ձայնագրությունները պետք է լինեն նույն "
-#~ "ձայնաչափի բաժնի:"
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "Զտման հաստատման համար, բոլոր նշված ձայնագրությունները պետք է լինեն նույն ձայնաչափի բաժնի:"
 
 #~ msgid "&Filter Type:"
 #~ msgstr "&Զտման տեսակը՝"
@@ -7195,13 +7828,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Գրաֆիկական տեսք"
 
 #, fuzzy
-#~ msgid ""
-#~ "Most VST effects have a graphical interface for setting parameter values. "
-#~ "A basic text-only method is also available.  Reopen the effect for this "
-#~ "to take effect."
-#~ msgstr ""
-#~ "Շատ VST էֆեկտներ ունեն գրաֆիկական ինտերֆեյսի, կարգավորման պարամերտ "
-#~ "արժեքների համար:"
+#~ msgid "Most VST effects have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
+#~ msgstr "Շատ VST էֆեկտներ ունեն գրաֆիկական ինտերֆեյսի, կարգավորման պարամերտ արժեքների համար:"
 
 #, fuzzy
 #~ msgid "Enable &graphical interface"
@@ -7403,13 +8031,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "&Բուֆեր չափ (8 ից 1048576 նմուշներ)՝"
 
 #, fuzzy
-#~ msgid ""
-#~ "LV2 effects can have a graphical interface for setting parameter values. "
-#~ "A basic text-only method is also available.  Reopen the effect for this "
-#~ "to take effect."
-#~ msgstr ""
-#~ "Շատ VST էֆեկտներ ունեն գրաֆիկական ինտերֆեյսի, կարգավորման պարամերտ "
-#~ "արժեքների համար:"
+#~ msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
+#~ msgstr "Շատ VST էֆեկտներ ունեն գրաֆիկական ինտերֆեյսի, կարգավորման պարամերտ արժեքների համար:"
 
 #, fuzzy, c-format
 #~ msgid "%s requires unsupported feature %s\n"
@@ -7449,11 +8072,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquist հրահանգ"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Ներեցեք, չի կարող հաստատվել էֆեկտը ստերեո ձայնագրությունների վրա,  ուր "
-#~ "ձայնագրությունները անհավասար են:"
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Ներեցեք, չի կարող հաստատվել էֆեկտը ստերեո ձայնագրությունների վրա,  ուր ձայնագրությունները անհավասար են:"
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -7496,16 +8116,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Nyquist returned nil audio.\n"
 #~ msgstr "Nyquist չի վերադառնում աուդիոն:\n"
 
-#~ msgid ""
-#~ "[Warning: Nyquist returned invalid UTF-8 string, converted here as "
-#~ "Latin-1]"
-#~ msgstr ""
-#~ "Ուշադրություն՝ Nyquist-ը վերադառնում է վնասված UTF-8 շարքով, վերստեղծված "
-#~ "այստեղ որպես Latin-1]"
+#~ msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
+#~ msgstr "Ուշադրություն՝ Nyquist-ը վերադառնում է վնասված UTF-8 շարքով, վերստեղծված այստեղ որպես Latin-1]"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Այս Աուդասիթի տարբերակը չի աջակցում %s օգնություն:"
 
 #, fuzzy
@@ -7521,8 +8136,7 @@ msgstr "Nyquist հրահանգ"
 #~ "\t(mult *track* 0.1)\n"
 #~ " ."
 #~ msgstr ""
-#~ "Ձեր կոդը նման է SAL syntax-ի, բայց չկա վերադարձի հաղորդագրություն: "
-#~ "Նույնպես օգտագոծումը վերադարձի նման է\n"
+#~ "Ձեր կոդը նման է SAL syntax-ի, բայց չկա վերադարձի հաղորդագրություն: Նույնպես օգտագոծումը վերադարձի նման է\n"
 #~ "\treturn s * 0.1\n"
 #~ "SAL-ի համար, կամ սկսումը բաց կլոր փակագծերի այսպես\n"
 #~ "\t(mult s 0.1)\n"
@@ -7570,12 +8184,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Vamp Effects"
 #~ msgstr "VST էֆեկտներ"
 
-#~ msgid ""
-#~ "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-#~ "channels of the track do not match."
-#~ msgstr ""
-#~ "Ներեցեք, Vamp պլագինները չեն կարող բացվել ստերեո ձայնագրությունների վրա, "
-#~ "որտեղ ձայնագրության անհատական ալիքները անհավասար են:"
+#~ msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Ներեցեք, Vamp պլագինները չեն կարող բացվել ստերեո ձայնագրությունների վրա, որտեղ ձայնագրության անհատական ալիքները անհավասար են:"
 
 #~ msgid "Sorry, failed to load Vamp Plug-in."
 #~ msgstr "Ներեցեք, չի ստացվում բեռնել Vamp պլագինը:"
@@ -7613,15 +8223,13 @@ msgstr "Nyquist հրահանգ"
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ "Դուք պատրաստվում եք վերցնել %s ֆայլը \"%s\" անունով:\n"
 #~ "\n"
-#~ "Ճիշտ տարբերակում այս ֆայլերը ավարտվում են \".%s\" -ով և որոշ ծրագրեր չեն "
-#~ "բացում ոչ ստանդարտ ֆայլի տեսակները:\n"
+#~ "Ճիշտ տարբերակում այս ֆայլերը ավարտվում են \".%s\" -ով և որոշ ծրագրեր չեն բացում ոչ ստանդարտ ֆայլի տեսակները:\n"
 #~ "\n"
 #~ "Իսկապե՞ս ցանկանում եք վերցնել ֆայլը այս նույն անունով:"
 
@@ -7634,20 +8242,15 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one mono file."
-#~ msgstr ""
-#~ "Ձեր ձայնագրությունները կմիախառնվեն երկու ստերեո ալիքներով վերցված ֆայլում:"
+#~ msgstr "Ձեր ձայնագրությունները կմիախառնվեն երկու ստերեո ալիքներով վերցված ֆայլում:"
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one stereo file."
-#~ msgstr ""
-#~ "Ձեր ձայնագրությունները կմիախառնվեն երկու ստերեո ալիքներով վերցված ֆայլում:"
+#~ msgstr "Ձեր ձայնագրությունները կմիախառնվեն երկու ստերեո ալիքներով վերցված ֆայլում:"
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
-#~ msgstr ""
-#~ "Ձեր ձայնագրությունները կմիախառնվեն երկու ստերեո ալիքներով վերցված ֆայլում:"
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+#~ msgstr "Ձեր ձայնագրությունները կմիախառնվեն երկու ստերեո ալիքներով վերցված ֆայլում:"
 
 #~ msgid "Advanced Mixing Options"
 #~ msgstr "Հավելյալ միախառնման կարգավորում"
@@ -7685,12 +8288,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "ցուցադրել ելքը"
 
 #, c-format
-#~ msgid ""
-#~ "Data will be piped to standard in. \"%f\" uses the file name in the "
-#~ "export window."
-#~ msgstr ""
-#~ "Տվյալները պետք է ուղղվեն ստանդարտ: \"%f\" ֆայլի անվան օգտագործում վերցման "
-#~ "պատուհանում:"
+#~ msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
+#~ msgstr "Տվյալները պետք է ուղղվեն ստանդարտ: \"%f\" ֆայլի անվան օգտագործում վերցման պատուհանում:"
 
 #, fuzzy
 #~ msgid "Executables"
@@ -7752,12 +8351,8 @@ msgstr "Nyquist հրահանգ"
 #~ "Հավանաբար այս կոդեկը չի աջակցում:"
 
 #, c-format
-#~ msgid ""
-#~ "Attempted to export %d channels, but maximum number of channels for "
-#~ "selected output format is %d"
-#~ msgstr ""
-#~ "Փորձվում է վերցնել %d ալիքներ, բայց նշված ելքայի ֆորմատի ալիքների "
-#~ "առավելագույն քանակը %d է"
+#~ msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
+#~ msgstr "Փորձվում է վերցնել %d ալիքներ, բայց նշված ելքայի ֆորմատի ալիքների առավելագույն քանակը %d է"
 
 #, c-format
 #~ msgid "Exporting selected audio as %s"
@@ -7977,12 +8572,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Codec:"
 #~ msgstr "Կոդեկ՝"
 
-#~ msgid ""
-#~ "Not all formats and codecs are compatible. Nor are all option "
-#~ "combinations compatible with all codecs."
-#~ msgstr ""
-#~ "Ոչ բոլոր կոդեկներն ու ֆորմատներն են համատեղելի: Բոլոր կոդեկների հետ ոչ "
-#~ "բոլոր հավաքման կարգավորումներն են համատեղելի:"
+#~ msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
+#~ msgstr "Ոչ բոլոր կոդեկներն ու ֆորմատներն են համատեղելի: Բոլոր կոդեկների հետ ոչ բոլոր հավաքման կարգավորումներն են համատեղելի:"
 
 #~ msgid "Show All Formats"
 #~ msgstr "Ցուցադրել բոլոր ֆորմատները"
@@ -8030,8 +8621,7 @@ msgstr "Nyquist հրահանգ"
 #~ "Recommended - 192000"
 #~ msgstr ""
 #~ "Բիթի չափ (բիթ/վարկյանում) - ազդում արֆյունքի, ֆայլի չափի և որակի վրա\n"
-#~ "Որոշ կոդեկներ կարող են միայն ընդունել առանձին արժեքներ ինչպես՝ (128k, "
-#~ "192k, 256k և այլն)\n"
+#~ "Որոշ կոդեկներ կարող են միայն ընդունել առանձին արժեքներ ինչպես՝ (128k, 192k, 256k և այլն)\n"
 #~ "0 - ավտոմատ\n"
 #~ "Առաջարկված - 192000"
 
@@ -8390,12 +8980,10 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
-#~ "with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "Դուք նշել եք՝ lame_enc.dll v%d.%d. Այս տարբերակը չի աջակցում Աուդասիթիին "
-#~ "%d.%d.%d.\n"
+#~ "Դուք նշել եք՝ lame_enc.dll v%d.%d. Այս տարբերակը չի աջակցում Աուդասիթիին %d.%d.%d.\n"
 #~ "Խնդրում ենք, բեռնլ LAME MP3 գրադարան-ի վերջին տարբերակը:"
 
 #, fuzzy
@@ -8550,10 +9138,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Վերցնունը կանգնեցվեց, վերցնումից հետո նշված %ld ֆայլը(երը):"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Something went really wrong after exporting the following %lld file(s)."
-#~ msgstr ""
-#~ "Ինչ-որ բան իսկապես ընթացավ սխալ, վերցնումից հետո նշված %ld ֆայլը(երը):"
+#~ msgid "Something went really wrong after exporting the following %lld file(s)."
+#~ msgstr "Ինչ-որ բան իսկապես ընթացավ սխալ, վերցնումից հետո նշված %ld ֆայլը(երը):"
 
 #, c-format
 #~ msgid ""
@@ -8578,8 +9164,7 @@ msgstr "Nyquist հրահանգ"
 #~ "\n"
 #~ "Suggested replacement:"
 #~ msgstr ""
-#~ "Նշումը կամ ձայնագրությունը \"%s\" ոչ իրավական ֆայլի անուն է: Դուք չեք "
-#~ "կարող օգտագործել որևէ՝ %s\n"
+#~ "Նշումը կամ ձայնագրությունը \"%s\" ոչ իրավական ֆայլի անուն է: Դուք չեք կարող օգտագործել որևէ՝ %s\n"
 #~ "Օգտվել..."
 
 #, fuzzy, c-format
@@ -8588,8 +9173,7 @@ msgstr "Nyquist հրահանգ"
 #~ "\n"
 #~ "Suggested replacement:"
 #~ msgstr ""
-#~ "Նշումը կամ ձայնագրությունը \"%s\" ոչ իրավական ֆայլի անուն է: Դուք չեք "
-#~ "կարող օգտագործել որևէ՝ %s\n"
+#~ "Նշումը կամ ձայնագրությունը \"%s\" ոչ իրավական ֆայլի անուն է: Դուք չեք կարող օգտագործել որևէ՝ %s\n"
 #~ "Օգտվել..."
 
 #~ msgid "Save As..."
@@ -8658,8 +9242,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr ""
 #~ "\"%s\" \n"
 #~ "MIDI ֆայլ է, ոչ աուդիո ֆայլ: \n"
-#~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը նվագարկման համար, բայց դուք "
-#~ "կարող եք\n"
+#~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը նվագարկման համար, բայց դուք կարող եք\n"
 #~ "փոփոխել այն սեղմելով՝ Ֆայլ > Ներմուծել > MIDI:"
 
 #, fuzzy, c-format
@@ -8670,8 +9253,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr ""
 #~ "\"%s\" \n"
 #~ "MIDI ֆայլ է, ոչ աուդիո ֆայլ: \n"
-#~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը նվագարկման համար, բայց դուք "
-#~ "կարող եք\n"
+#~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը նվագարկման համար, բայց դուք կարող եք\n"
 #~ "փոփոխել այն սեղմելով՝ Ֆայլ > Ներմուծել > MIDI:"
 
 #~ msgid "Select stream(s) to import"
@@ -8696,16 +9278,12 @@ msgstr "Nyquist հրահանգ"
 #, c-format
 #~ msgid ""
 #~ "\"%s\" is a playlist file. \n"
-#~ "Audacity cannot open this file because it only contains links to other "
-#~ "files. \n"
-#~ "You may be able to open it in a text editor and download the actual audio "
-#~ "files."
+#~ "Audacity cannot open this file because it only contains links to other files. \n"
+#~ "You may be able to open it in a text editor and download the actual audio files."
 #~ msgstr ""
 #~ "\"%s\" երգացանկի ֆայլ է: \n"
-#~ "Աուդասիթին չի կարող բացել այս ֆայլը, որովհետև դա միայն պարունակում է "
-#~ "հղումներ այլ ֆայլերից: \n"
-#~ "Դուք կարող եք բացել այն տեքստային փոփոխիչում և բեռնել հիմնական աուդիո "
-#~ "ֆայլը:"
+#~ "Աուդասիթին չի կարող բացել այս ֆայլը, որովհետև դա միայն պարունակում է հղումներ այլ ֆայլերից: \n"
+#~ "Դուք կարող եք բացել այն տեքստային փոփոխիչում և բեռնել հիմնական աուդիո ֆայլը:"
 
 #, c-format
 #~ msgid ""
@@ -8714,17 +9292,14 @@ msgstr "Nyquist հրահանգ"
 #~ "You need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" Windows Media աուդիո ֆայլ է: \n"
-#~ "Աուդասիթին չի կարող բացել այս ֆայլը, արտոնագրի սահմանափակումների "
-#~ "պատճառով: \n"
+#~ "Աուդասիթին չի կարող բացել այս ֆայլը, արտոնագրի սահմանափակումների պատճառով: \n"
 #~ "Դուք պետք է վերափոխեք աջակցող աուդիո ֆորմատի, ինչպիսիք են՝ WAV կամ AIFF:"
 
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" Ընդլայնված Աուդիո Կոդավորման ֆայլ է (AAC): \n"
 #~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը: \n"
@@ -8741,10 +9316,8 @@ msgstr "Nyquist հրահանգ"
 #~ "\"%s\" կոդավորված աուդիո ֆայլ է: \n"
 #~ "Սրանք սովորաբար լինում են ինտերնետ երաժշտական խանութներում: \n"
 #~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը կոդավորման պատճառով: \n"
-#~ "Փորձեք այն ձայնագրել Աուդասիթիի միջոցով, կամ գրեք այն աուդիո CD-ի վրա "
-#~ "ապա \n"
-#~ "բացեք CD ձայնագրությունը աջակցող աուդիո ֆորմատի, ինչպիսիք են՝ WAV կամ "
-#~ "AIFF:"
+#~ "Փորձեք այն ձայնագրել Աուդասիթիի միջոցով, կամ գրեք այն աուդիո CD-ի վրա ապա \n"
+#~ "բացեք CD ձայնագրությունը աջակցող աուդիո ֆորմատի, ինչպիսիք են՝ WAV կամ AIFF:"
 
 #, c-format
 #~ msgid ""
@@ -8754,8 +9327,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr ""
 #~ "\"%s\" RealPlayer-ի մեդիա ֆայլ է: \n"
 #~ "Աուդասիթին չի կարող բացել այլ սեփականության ֆորմատը: \n"
-#~ "Դուք պետք է վերափոխեք այն աջակցող աուդիո ֆորմատի, ինչպիսիք են՝ WAV կամ "
-#~ "AIFF:"
+#~ "Դուք պետք է վերափոխեք այն աջակցող աուդիո ֆորմատի, ինչպիսիք են՝ WAV կամ AIFF:"
 
 #, c-format
 #~ msgid ""
@@ -8774,14 +9346,12 @@ msgstr "Nyquist հրահանգ"
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" Musepack աուդիո ֆայլ է: \n"
 #~ "Աուդասիթին չի կարող բացել այս տեսակի ֆայլը: \n"
-#~ "Եթե կարծում եք. որ կարող է լինել mp3 ֆայլ, անվանափոխեք վերջում նշելով՝ \"."
-#~ "mp3\" \n"
+#~ "Եթե կարծում եք. որ կարող է լինել mp3 ֆայլ, անվանափոխեք վերջում նշելով՝ \".mp3\" \n"
 #~ "և փորձեք ներմուծել կրկին: Այլակերպ պետք է վերափխել աջակցող աուդիո \n"
 #~ "ֆորմատի, ինչպիսիք են՝ WAV կամ AIFF:"
 
@@ -8813,8 +9383,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr ""
 #~ "\"%s\" Ogg Speex աուդիո ֆայլ է: \n"
 #~ "Աուդասիթին չի կարող ճիշտ բացել այս ֆայլը: \n"
-#~ "Դուք պետք է վերափոխեք այն աջակցող ֆայլի ֆորմատի, ինչպիսիք են՝ WAV կամ "
-#~ "AIFF:"
+#~ "Դուք պետք է վերափոխեք այն աջակցող ֆայլի ֆորմատի, ինչպիսիք են՝ WAV կամ AIFF:"
 
 #, c-format
 #~ msgid ""
@@ -8900,12 +9469,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "FFmpeg համատեղելի ֆայլեր"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], "
-#~ "Duration[%d]"
-#~ msgstr ""
-#~ "Ինդեքս[%02x] Կոդեկ[%S], Լեզու[%S], Բիթաչափ[%S], Ալիքներ[%d], "
-#~ "Տևողություն[%d]"
+#~ msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+#~ msgstr "Ինդեքս[%02x] Կոդեկ[%S], Լեզու[%S], Բիթաչափ[%S], Ալիքներ[%d], Տևողություն[%d]"
 
 #~ msgid "FLAC files"
 #~ msgstr "FLAC ֆայլեր"
@@ -8928,9 +9493,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy, c-format
 #~ msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-#~ msgstr ""
-#~ "Ինդեքս[%02x] Կոդեկ[%S], Լեզու[%S], Բիթաչափ[%S], Ալիքներ[%d], "
-#~ "Տևողություն[%d]"
+#~ msgstr "Ինդեքս[%02x] Կոդեկ[%S], Լեզու[%S], Բիթաչափ[%S], Ալիքներ[%d], Տևողություն[%d]"
 
 #, fuzzy
 #~ msgid "Unable to import file, state change failed."
@@ -8949,9 +9512,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Վնասված տևողություն LOF ֆայլերում:"
 
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "MIDI ձայնագրությունները չեն կարող հատուցվել առանձին, միայն աուդիո ֆայլերն "
-#~ "են կարող:"
+#~ msgstr "MIDI ձայնագրությունները չեն կարող հատուցվել առանձին, միայն աուդիո ֆայլերն են կարող:"
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "Ձայնագրության վնասված հատուցում LOF ֆայլում:"
@@ -8983,9 +9544,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy, c-format
 #~ msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-#~ msgstr ""
-#~ "Ինդեքս[%02x] Կոդեկ[%S], Լեզու[%S], Բիթաչափ[%S], Ալիքներ[%d], "
-#~ "Տևողություն[%d]"
+#~ msgstr "Ինդեքս[%02x] Կոդեկ[%S], Լեզու[%S], Բիթաչափ[%S], Ալիքներ[%d], Տևողություն[%d]"
 
 #~ msgid "Media read error"
 #~ msgstr "Մեդիայի կարդացման սխալ"
@@ -10170,14 +10729,11 @@ msgstr "Nyquist հրահանգ"
 
 #, c-format
 #~ msgid "Mixed and rendered %d tracks into one new stereo track"
-#~ msgstr ""
-#~ "Միախառնված և ստեղծված %d ձայնագրությունները որպես նոր ստերեո "
-#~ "ձայնագրություն"
+#~ msgstr "Միախառնված և ստեղծված %d ձայնագրությունները որպես նոր ստերեո ձայնագրություն"
 
 #, c-format
 #~ msgid "Mixed and rendered %d tracks into one new mono track"
-#~ msgstr ""
-#~ "Միախառնված և ստեղծված %d ձայնագրությունները որպես նոր մոնո ձայնագրություն"
+#~ msgstr "Միախառնված և ստեղծված %d ձայնագրությունները որպես նոր մոնո ձայնագրություն"
 
 #, fuzzy
 #~ msgid "Panned audio track(s)"
@@ -10314,12 +10870,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Created new label track"
 #~ msgstr "Ստեղծվել է նոր նշում ձայնագրություն"
 
-#~ msgid ""
-#~ "This version of Audacity only allows one time track for each project "
-#~ "window."
-#~ msgstr ""
-#~ "Աուդասիթիի այս տարբերակը միայն աջակցում է մեկ ժամի ձայն. ֆայլ, պրեկտի "
-#~ "ոշոր պատուհաններում:"
+#~ msgid "This version of Audacity only allows one time track for each project window."
+#~ msgstr "Աուդասիթիի այս տարբերակը միայն աջակցում է մեկ ժամի ձայն. ֆայլ, պրեկտի ոշոր պատուհաններում:"
 
 #~ msgid "Created new time track"
 #~ msgstr "Ստեղծված նոր ժամ. ձայնագրություն"
@@ -10345,23 +10897,15 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Խնդրում ենք ընտրել որևէ գործողություն"
 
 #, c-format
-#~ msgid ""
-#~ "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f "
-#~ "secs."
-#~ msgstr ""
-#~ "Հավասարեցումն ավարտվեց՝ MIDI-ն %.2f -ից %.2f վարկ, Աուդիո %.2f -ից %.2f "
-#~ "վարկ."
+#~ msgid "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
+#~ msgstr "Հավասարեցումն ավարտվեց՝ MIDI-ն %.2f -ից %.2f վարկ, Աուդիո %.2f -ից %.2f վարկ."
 
 #~ msgid "Sync MIDI with Audio"
 #~ msgstr "Սինք MIDI աուդիո"
 
 #, c-format
-#~ msgid ""
-#~ "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from "
-#~ "%.2f to %.2f secs."
-#~ msgstr ""
-#~ "Հավասարեցման սխալ՝ մուտքագրվածը շատ կարճ է՝ MIDI-ն %.2f -ից %.2f վարկ, "
-#~ "Աուդիոն %.2f -ից %.2f վարկ."
+#~ msgid "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
+#~ msgstr "Հավասարեցման սխալ՝ մուտքագրվածը շատ կարճ է՝ MIDI-ն %.2f -ից %.2f վարկ, Աուդիոն %.2f -ից %.2f վարկ."
 
 #~ msgid "Internal error reported by alignment process."
 #~ msgstr "Ներքին սխալ է հաղորդվում հավասարման գործընթացից:"
@@ -10970,11 +11514,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Directory %s is not writable"
 #~ msgstr "%s ճանապարհը գրման անհասանելի է"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Ժամանակավոր ֆայլերի փոփոխումը էֆեկտ չի տա, մինչև չվերբեռնվի Աուդասիթին"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Ժամանակավոր ֆայլերի փոփոխումը էֆեկտ չի տա, մինչև չվերբեռնվի Աուդասիթին"
 
 #~ msgid "Temp Directory Update"
 #~ msgstr "Տեմպ ճանապարհի թարմացում"
@@ -11059,16 +11600,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Unused filters:"
 #~ msgstr "Չվերցված զտումներ՝"
 
-#~ msgid ""
-#~ "There are space characters (spaces, newlines, tabs or linefeeds) in one "
-#~ "of the items. They are likely to break the pattern matching. Unless you "
-#~ "know what you are doing, it is recommended to trim spaces. Do you want "
-#~ "Audacity to trim spaces for you?"
-#~ msgstr ""
-#~ "Կան տարածական նշաններ (տարածություններ, նոր տողեր, բրաուզերի էջեր կամ "
-#~ "տողային սնուցումներ) մեկը այդ կետերից: Դրանք հավանաբար կոտրել են օրինական "
-#~ "համապատասխանությունը: Եթե գիտեք ձեր անելիքները, ապա խորհուրդ է տրվում "
-#~ "կտրել տարածքները: Ցանկանու՞մ եք, որ Աուդասիթին կտրի տարածքներ ձեզ համար:"
+#~ msgid "There are space characters (spaces, newlines, tabs or linefeeds) in one of the items. They are likely to break the pattern matching. Unless you know what you are doing, it is recommended to trim spaces. Do you want Audacity to trim spaces for you?"
+#~ msgstr "Կան տարածական նշաններ (տարածություններ, նոր տողեր, բրաուզերի էջեր կամ տողային սնուցումներ) մեկը այդ կետերից: Դրանք հավանաբար կոտրել են օրինական համապատասխանությունը: Եթե գիտեք ձեր անելիքները, ապա խորհուրդ է տրվում կտրել տարածքները: Ցանկանու՞մ եք, որ Աուդասիթին կտրի տարածքներ ձեզ համար:"
 
 #~ msgid "Spaces detected"
 #~ msgstr "Տարածքներ են գտնվել"
@@ -11139,9 +11672,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid "Show 'How to Get &Help' at launch"
-#~ msgstr ""
-#~ "Ցուցադրել 'Իչպե՞ս ստանալ օգնություն' երկխոսության պատուհանը, ծրագրի "
-#~ "մեկնարկի ժամանակ"
+#~ msgstr "Ցուցադրել 'Իչպե՞ս ստանալ օգնություն' երկխոսության պատուհանը, ծրագրի մեկնարկի ժամանակ"
 
 #, fuzzy
 #~ msgid "Show e&xtra menus"
@@ -11379,32 +11910,21 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "These are experimental modules. Enable them only if you've read the "
-#~ "Audacity Manual\n"
+#~ "These are experimental modules. Enable them only if you've read the Audacity Manual\n"
 #~ "and know what you are doing."
-#~ msgstr ""
-#~ "Սրանք փորձնական մոդուլներ են: Միացնել դրանք միայն, երբ դուք կարդացել եք "
-#~ "ձեռնարկը և տեղյակ եք ձեր անելիքից:"
+#~ msgstr "Սրանք փորձնական մոդուլներ են: Միացնել դրանք միայն, երբ դուք կարդացել եք ձեռնարկը և տեղյակ եք ձեր անելիքից:"
 
 #, fuzzy
-#~ msgid ""
-#~ "  'Ask' means Audacity will ask if you want to load the module each time "
-#~ "it starts."
-#~ msgstr ""
-#~ "'Հարցնել' նշանակում է, որ Աուդասիթին կհարցնի, երբ ցանկանում եք բեռնել "
-#~ "պլագին ամեն անգամ ծրագիրը մեկնարկելիս:"
+#~ msgid "  'Ask' means Audacity will ask if you want to load the module each time it starts."
+#~ msgstr "'Հարցնել' նշանակում է, որ Աուդասիթին կհարցնի, երբ ցանկանում եք բեռնել պլագին ամեն անգամ ծրագիրը մեկնարկելիս:"
 
 #, fuzzy
-#~ msgid ""
-#~ "  'Failed' means Audacity thinks the module is broken and won't run it."
-#~ msgstr ""
-#~ "'Չհաջողվեց' նշանակում է, որ Աուդասիթին կարծում է, թե պլագինը կոտրված է և "
-#~ "չի աշխատելու դրա հետ:"
+#~ msgid "  'Failed' means Audacity thinks the module is broken and won't run it."
+#~ msgstr "'Չհաջողվեց' նշանակում է, որ Աուդասիթին կարծում է, թե պլագինը կոտրված է և չի աշխատելու դրա հետ:"
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Ժամանակավոր ֆայլերի փոփոխումը էֆեկտ չի տա, մինչև չվերբեռնվի Աուդասիթին"
+#~ msgstr "Ժամանակավոր ֆայլերի փոփոխումը էֆեկտ չի տա, մինչև չվերբեռնվի Աուդասիթին"
 
 #~ msgid "Ask"
 #~ msgstr "Հարցնել"
@@ -11774,8 +12294,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Նվազագույն հաճախությունը պետք է լինի առնվազն 0 Հց"
 
 #~ msgid "Minimum frequency must be less than maximum frequency"
-#~ msgstr ""
-#~ "Նվազագույն հաճախությունը պետք է լինի ավել քան առավելագույն հաճախությունը"
+#~ msgstr "Նվազագույն հաճախությունը պետք է լինի ավել քան առավելագույն հաճախությունը"
 
 #~ msgid "The range must be at least 1 dB"
 #~ msgstr "Դիապազոնը պետք է լինի ոչ պակաս 1 դԲ-ից"
@@ -11912,37 +12431,29 @@ msgstr "Nyquist հրահանգ"
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
 #~ "Նմուշի կառուցվածքը փորձնական առանձնահատկություն է:\n"
 #~ "\n"
-#~ "Փորձելու համար սեղմե՛ք \"Պահպանել նմուշի կեշը\" երբ գտնվել են որևէ "
-#~ "մոդիֆիկացված նկարներ և գույներ\n"
+#~ "Փորձելու համար սեղմե՛ք \"Պահպանել նմուշի կեշը\" երբ գտնվել են որևէ մոդիֆիկացված նկարներ և գույներ\n"
 #~ "ImageCacheVxx.png օգտվելով նկարի փոփոխիչից ինչպիսիք են՝ Gimp:\n"
 #~ "\n"
-#~ "Սեղմե՛ք \"Բեռնել նմուշի կեշը\" հետ բեռնելու փոփոխված նկարներն ու գույները "
-#~ "դեպի Աուդասիթի:\n"
+#~ "Սեղմե՛ք \"Բեռնել նմուշի կեշը\" հետ բեռնելու փոփոխված նկարներն ու գույները դեպի Աուդասիթի:\n"
 #~ "\n"
-#~ "(Միայն շարժ գործիքադարակն ու գույները ալիք ձայնագրությունում ազդեցություն "
-#~ "ունեն, նույնիսկ\n"
+#~ "(Միայն շարժ գործիքադարակն ու գույները ալիք ձայնագրությունում ազդեցություն ունեն, նույնիսկ\n"
 #~ "եթե նկար ֆայլը այլ նշանները մեծ է ցուցադրում:)"
 
 #~ msgid ""
-#~ "Saving and loading individual theme files uses a separate file for each "
-#~ "image, but is\n"
+#~ "Saving and loading individual theme files uses a separate file for each image, but is\n"
 #~ "otherwise the same idea."
 #~ msgstr ""
-#~ "Բեռնումը և պահպանումը անհատական թեմա ֆայլերի օգտագործում է անհատական "
-#~ "ֆայլեր որոշ նկարների համար, բայց\n"
+#~ "Բեռնումը և պահպանումը անհատական թեմա ֆայլերի օգտագործում է անհատական ֆայլեր որոշ նկարների համար, բայց\n"
 #~ "հակառակ դեպքում նույն միտքը:"
 
 #~ msgid "Theme Cache - Images && Color"
@@ -11994,9 +12505,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Մասի փոփոխումը կարող է տեղափոխել այլ մասեր"
 
 #~ msgid "\"Move track focus\" c&ycles repeatedly through tracks"
-#~ msgstr ""
-#~ "\"Ձայնագրության տեղափոխման հավասարություն\" բազմակի ցիկլեր "
-#~ "ձայնագրություններով"
+#~ msgstr "\"Ձայնագրության տեղափոխման հավասարություն\" բազմակի ցիկլեր ձայնագրություններով"
 
 #, fuzzy
 #~ msgid "Advanced &vertical zooming"
@@ -12539,12 +13048,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Down Octa&ve"
 #~ msgstr "Ցածր օկտավ&ա"
 
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Սեղմեք հորիզոնական մեծացման համար: Shift-սեղմում փոքրացման համար: Քաշելով "
-#~ "գցել հատուկ մեծացված մաս:"
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Սեղմեք հորիզոնական մեծացման համար: Shift-սեղմում փոքրացման համար: Քաշելով գցել հատուկ մեծացված մաս:"
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -12590,10 +13095,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Click and drag to edit the samples"
 #~ msgstr "Սեղմեք և քաշեք, ձայնագրության չափը փոփոխելու համար:"
 
-#~ msgid ""
-#~ "To use Draw, zoom in further until you can see the individual samples."
-#~ msgstr ""
-#~ "Գծում անելու համար, խոշորացրեք ընթացքում, մինչ  տեսնելը անհատական նմուշը:"
+#~ msgid "To use Draw, zoom in further until you can see the individual samples."
+#~ msgstr "Գծում անելու համար, խոշորացրեք ընթացքում, մինչ  տեսնելը անհատական նմուշը:"
 
 #, fuzzy
 #~ msgid "Moved Samples"
@@ -12732,11 +13235,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "%.1f դԲ"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-#~ msgstr ""
-#~ "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական "
-#~ "չափերը:"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgstr "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական չափերը:"
 
 #, fuzzy
 #~ msgid "Click and drag to rearrange sub-views"
@@ -12894,8 +13394,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Սեղմեք և քաշեք, տեղափոխելու համար ձախ նշված տարածքը:"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Սեղմեք և քաշեք, տեղափոխելու համար ձախ նշված տարածքը:"
 
 #, fuzzy
@@ -12904,9 +13403,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid "Click and drag to adjust frequency bandwidth."
-#~ msgstr ""
-#~ "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական "
-#~ "չափերը:"
+#~ msgstr "Սեղմեք և քաշեք, հարմարեցնելով ստերեո ձայնագրությունների հարաբերական չափերը:"
 
 #, fuzzy
 #~ msgid "Edit, Preferences..."
@@ -13372,24 +13869,20 @@ msgstr "Nyquist հրահանգ"
 #, fuzzy
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was "
-#~ "unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
-#~ "locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
 #~ msgstr ""
 #~ "Մեկ կամ մի քանի աուդիո ֆայլեր գոյություն չունեն:\n"
-#~ "Հնարավոր է որ, լինեն տեղափոխված, ջնջված կամ գործողություն կատարելիս դուրս "
-#~ "են մնացել:\n"
+#~ "Հնարավոր է որ, լինեն տեղափոխված, ջնջված կամ գործողություն կատարելիս դուրս են մնացել:\n"
 #~ "Լռելյայն փոխարինվել են մասնատված աուդիոյով:\n"
 #~ "Առաջին գտնված բացակայող ֆայլն է՝\n"
 #~ "%s\n"
 #~ "Հնարավոր է այլ բացակայող ֆայլեր\n"
-#~ "Ընտրել ֆայլը > Ստուգեք միացվածությունը, դիտելու համար անհայտացած ֆայլերի "
-#~ "գտնման վայրերի ցուցակը:"
+#~ "Ընտրել ֆայլը > Ստուգեք միացվածությունը, դիտելու համար անհայտացած ֆայլերի գտնման վայրերի ցուցակը:"
 
 #~ msgid "Files Missing"
 #~ msgstr "Ֆայլերը բացակայում են"
@@ -13403,8 +13896,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Ֆայլի բացումը անհաջող էր"
 
 #~ msgid "After recovery, save the project to save the changes to disk."
-#~ msgstr ""
-#~ "Մինչ վերականգնումը պահպանեք պրոեկտը, պահպանելով փոփոխությունը սկավառակում:"
+#~ msgstr "Մինչ վերականգնումը պահպանեք պրոեկտը, պահպանելով փոփոխությունը սկավառակում:"
 
 #~ msgid "Discard Projects"
 #~ msgstr "Հրաժարվել պրոեկտներից"
@@ -13466,18 +13958,13 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Հրահանգ %s չի իրականացվել"
 
 #~ msgid ""
-#~ "Your project is currently self-contained; it does not depend on any "
-#~ "external audio files. \n"
+#~ "Your project is currently self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
-#~ "If you change the project to a state that has external dependencies on "
-#~ "imported files, it will no longer be self-contained. If you then Save "
-#~ "without copying those files in, you may lose data."
+#~ "If you change the project to a state that has external dependencies on imported files, it will no longer be self-contained. If you then Save without copying those files in, you may lose data."
 #~ msgstr ""
 #~ "Ձեր պրոեկտը այս պահին առանձնացած է, այն կախված չէ որևէ աուդիո ֆայլից: \n"
 #~ "\n"
-#~ "Եթե հիմա պրոեկտում փոփոխություն կատարեք, որի միացվածությունը ներմուծված "
-#~ "ֆայլերի հետ արտաքին է, փոփոխությունից հետո առանձնացած չի լինի: Եթե "
-#~ "պահպանեք առանց պատճենման այդ ֆայլերը, կարող եք կորցնել ինֆորմացիան:"
+#~ "Եթե հիմա պրոեկտում փոփոխություն կատարեք, որի միացվածությունը ներմուծված ֆայլերի հետ արտաքին է, փոփոխությունից հետո առանձնացած չի լինի: Եթե պահպանեք առանց պատճենման այդ ֆայլերը, կարող եք կորցնել ինֆորմացիան:"
 
 #, fuzzy
 #~ msgid "Cleaning project temporary files"
@@ -13527,20 +14014,16 @@ msgstr "Nyquist հրահանգ"
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up "
-#~ "first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
 #~ "Այս ֆայլը պահպանվել է %s Աուդասիթի տարբերակի կողմից: Ֆորմատը փոխվել է: \n"
 #~ "\n"
-#~ "Աուդասիթին փորձում է բացել և պահպանել այս ֆայլը, բայց դրա պահպանումը "
-#~ "այս \n"
-#~ "տարբերակում կլինի, եթե նախնական բացված լինի 1.2 -ի կամ այլ տարբերակների "
-#~ "կողմից: \n"
+#~ "Աուդասիթին փորձում է բացել և պահպանել այս ֆայլը, բայց դրա պահպանումը այս \n"
+#~ "տարբերակում կլինի, եթե նախնական բացված լինի 1.2 -ի կամ այլ տարբերակների կողմից: \n"
 #~ "\n"
-#~ "Աուդասիթին կարող է ֆայլերի կորուստ ունենալ, եթե բացի սա, այսպիսով պետք է "
-#~ "հետ տաք սա առաջինը: \n"
+#~ "Աուդասիթին կարող է ֆայլերի կորուստ ունենալ, եթե բացի սա, այսպիսով պետք է հետ տաք սա առաջինը: \n"
 #~ "\n"
 #~ "Բացե՞լ այս ֆայլը հիմա:"
 
@@ -13578,8 +14061,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio "
-#~ "file.\n"
+#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
 #~ "Lossless copies of project are a good way to backup your project, \n"
@@ -13600,12 +14082,10 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "'Save Compressed Copy of Project' is for an Audacity project, not an "
-#~ "audio file.\n"
+#~ "'Save Compressed Copy of Project' is for an Audacity project, not an audio file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
-#~ "Compressed project files are a good way to transmit your project "
-#~ "online, \n"
+#~ "Compressed project files are a good way to transmit your project online, \n"
 #~ "but they have some loss of fidelity.\n"
 #~ msgstr ""
 #~ "'Պահպանումը խտացված պրոեկտի' Աուդասիթի պրոեկտի համար, աուդիո ֆայլ չէ:\n"
@@ -13617,12 +14097,8 @@ msgstr "Nyquist հրահանգ"
 #~ "Խտացված պրոեկտի բացումը երկար է քան հիմնականը, որպես ներմուծում \n"
 #~ "որոշ խտացված ձայնագրությունների համար:\n"
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Աուդասիթին միացված է վերստեղծելու Աուդասիթի 1.0 պրոեկտը նոր պրոեկտ "
-#~ "ֆորմատի:"
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Աուդասիթին միացված է վերստեղծելու Աուդասիթի 1.0 պրոեկտը նոր պրոեկտ ֆորմատի:"
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Չի ստացվում հեռացնել հին ավտոմատ պահպանման ֆայլը"
@@ -13630,19 +14106,11 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "Ներմուծման և waveform-ի հաշվարկները ավարտվեց ըստ պահանջի:"
 
-#~ msgid ""
-#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
-#~ "%2.0f%% complete."
-#~ msgstr ""
-#~ "Ներմուծումը(ները) ավարտվեց: Բացված է %d ըստ պահանջի waveform-ի "
-#~ "հաշվարկները: Ընդհանուր %2.0f%% ավարտվեց:"
+#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
+#~ msgstr "Ներմուծումը(ները) ավարտվեց: Բացված է %d ըստ պահանջի waveform-ի հաշվարկները: Ընդհանուր %2.0f%% ավարտվեց:"
 
-#~ msgid ""
-#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
-#~ "complete."
-#~ msgstr ""
-#~ "Ներմուծումն ավարտվեց: Բացված է ըստ պահանջի waveform-ի հաշվարկներ: %2.0f%% "
-#~ "ավարտվեց:"
+#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgstr "Ներմուծումն ավարտվեց: Բացված է ըստ պահանջի waveform-ի հաշվարկներ: %2.0f%% ավարտվեց:"
 
 #, fuzzy
 #~ msgid "Compress"
@@ -13651,19 +14119,14 @@ msgstr "Nyquist հրահանգ"
 #, fuzzy
 #~ msgid ""
 #~ "You are attempting to overwrite an aliased file that is missing.\n"
-#~ "The file cannot be written because the path is needed to restore the "
-#~ "original audio to the project.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of "
-#~ "all missing files.\n"
+#~ "The file cannot be written because the path is needed to restore the original audio to the project.\n"
+#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of all missing files.\n"
 #~ "If you still wish to export, please choose a different filename or folder."
 #~ msgstr ""
 #~ "Դուք փորձում եք վերագրել կեղծված ֆայլ, որը բացակայում է:\n"
-#~ "Ֆայլը չի կարող գրվել, որովհետև պետք է ճանապարհ հետ բերելու օրիգինալ "
-#~ "աուդիոն դեպի պրոեկտ:\n"
-#~ "Ընտրել ֆայլ> Ստուգել կախվածությունը, որպեսզի տեսնել բոլոր բացակայող "
-#~ "ֆայլերի տեղերը:\n"
-#~ "Եթե դուք կրկին ցանկանում եք վերցնել ֆայլը, խնդրում ենք ընտրել տարբեր "
-#~ "ֆայլի անուն կամ թղթապանակ:"
+#~ "Ֆայլը չի կարող գրվել, որովհետև պետք է ճանապարհ հետ բերելու օրիգինալ աուդիոն դեպի պրոեկտ:\n"
+#~ "Ընտրել ֆայլ> Ստուգել կախվածությունը, որպեսզի տեսնել բոլոր բացակայող ֆայլերի տեղերը:\n"
+#~ "Եթե դուք կրկին ցանկանում եք վերցնել ֆայլը, խնդրում ենք ընտրել տարբեր ֆայլի անուն կամ թղթապանակ:"
 
 #, fuzzy
 #~ msgid ""
@@ -13674,24 +14137,17 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid ""
-#~ "Reading the files directly allows you to play or edit them almost "
-#~ "immediately. This is less safe than copying in, because you must retain "
-#~ "the files with their original names in their original locations.\n"
-#~ "Help > Diagnostics > Check Dependencies will show the original names and "
-#~ "locations of any files that you are reading directly.\n"
+#~ "Reading the files directly allows you to play or edit them almost immediately. This is less safe than copying in, because you must retain the files with their original names in their original locations.\n"
+#~ "Help > Diagnostics > Check Dependencies will show the original names and locations of any files that you are reading directly.\n"
 #~ "\n"
 #~ "How do you want to import the current file(s)?"
 #~ msgstr ""
-#~ "Երբ ներմուծվում են ոչ խտացված աուդիո ֆայլեր, դուք կարող եք պատճենել "
-#~ "պրոեկտի մեջ կամ կարդալ անմիջապես դրանց ճիշտ տեղից (պատճենման հետ):\n"
+#~ "Երբ ներմուծվում են ոչ խտացված աուդիո ֆայլեր, դուք կարող եք պատճենել պրոեկտի մեջ կամ կարդալ անմիջապես դրանց ճիշտ տեղից (պատճենման հետ):\n"
 #~ "\n"
 #~ "Ձեր ներկա նշումները տեղադրված են՝ %s.\n"
 #~ "\n"
-#~ "Անմիջապես ֆայլերի կարդալը թույլ է տալիս ձեզ նվագարկել կամ փոփոխել գրեթե "
-#~ "մի անգամից:  Դա ավելի քիչ անվտանգ է, քան պատճենումը, քանի որ դուք պետք է "
-#~ "պահպանեք ֆայլիերը իրենց անուններով իրենց սկզբնական տեղերում:\n"
-#~ "Ֆայլ > Ստուգելով կախվածությունը կցուցադրվի իսկական անունը և տեղը ֆայլի, "
-#~ "որը կարդում եք անմիջապես:\n"
+#~ "Անմիջապես ֆայլերի կարդալը թույլ է տալիս ձեզ նվագարկել կամ փոփոխել գրեթե մի անգամից:  Դա ավելի քիչ անվտանգ է, քան պատճենումը, քանի որ դուք պետք է պահպանեք ֆայլիերը իրենց անուններով իրենց սկզբնական տեղերում:\n"
+#~ "Ֆայլ > Ստուգելով կախվածությունը կցուցադրվի իսկական անունը և տեղը ֆայլի, որը կարդում եք անմիջապես:\n"
 #~ "\n"
 #~ "Ինչպե՞ս եք ցանկանում ներմուծել ընթացիկ ֆայլը (երը):"
 
@@ -13733,20 +14189,16 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Աուդիո կեշ"
 
 #~ msgid "Play and/or record using &RAM (useful for slow drives)"
-#~ msgstr ""
-#~ "Նվագարկել և/կամ ձայնագրել օգտագործելով Օպ. Հիշ. (օգտակար թույլ "
-#~ "դրայվերների համար)"
+#~ msgstr "Նվագարկել և/կամ ձայնագրել օգտագործելով Օպ. Հիշ. (օգտակար թույլ դրայվերների համար)"
 
 #~ msgid "Mi&nimum Free Memory (MB):"
 #~ msgstr "Նվազագույն դատարկ հիշողություն (ՄԲ)`"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no "
-#~ "longer\n"
+#~ "If the available system memory falls below this value, audio will no longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
-#~ "Եթե համակարգի առկա հիշողությունընշված արժեքից ընկնում է, ձայնագրությունը "
-#~ "չի\n"
+#~ "Եթե համակարգի առկա հիշողությունընշված արժեքից ընկնում է, ձայնագրությունը չի\n"
 #~ " պահեստավորում հիշողություն և կարող է գրվել սկավառակում:"
 
 #~ msgid "When importing audio files"
@@ -13812,9 +14264,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Աուդասիթին ստեղծողներ"
 
 #, fuzzy
-#~ msgid ""
-#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
-#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "<b>Audacity&reg;</b> ծրագիրն արտոնագրված է"
 
 #~ msgid "mkdir in DirManager::MakeBlockFilePath failed."
@@ -13822,12 +14272,10 @@ msgstr "Nyquist հրահանգ"
 
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete "
-#~ "project check."
+#~ "Please consider saving and reloading the project to perform a complete project check."
 #~ msgstr ""
 #~ "Աուդասիթին գտավ առանձին բլոկ ֆայլ՝ %s. \n"
-#~ "Խնդրում ենք հաշվի առնել պահպանումը և վերբեռնումը պրոեկտի, իրականացնելու "
-#~ "պրոեկտի եզրափակիչ անալիզ:"
+#~ "Խնդրում ենք հաշվի առնել պահպանումը և վերբեռնումը պրոեկտի, իրականացնելու պրոեկտի եզրափակիչ անալիզ:"
 
 #~ msgid "Unable to open/create test file."
 #~ msgstr "Անհնար է բացել/ստեղծել թեստային ֆայլ:"
@@ -13857,18 +14305,12 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "ԳԲ"
 
 #, fuzzy
-#~ msgid ""
-#~ "The module \"%s\" does not provide a version string. It will not be "
-#~ "loaded."
+#~ msgid "The module \"%s\" does not provide a version string. It will not be loaded."
 #~ msgstr "Մոդուլը %s չի ապահովում տարբերատողը: Այն չի կարող բեռնվել:"
 
 #, fuzzy
-#~ msgid ""
-#~ "The module \"%s\" is matched with Audacity version \"%s\". It will not be "
-#~ "loaded."
-#~ msgstr ""
-#~ "Մոդուլը %s համապատասխանում է Աուդասիթիի տարբերակի հետ %s. Այն չի կարող "
-#~ "բեռնվել:"
+#~ msgid "The module \"%s\" is matched with Audacity version \"%s\". It will not be loaded."
+#~ msgstr "Մոդուլը %s համապատասխանում է Աուդասիթիի տարբերակի հետ %s. Այն չի կարող բեռնվել:"
 
 #, fuzzy
 #~ msgid ""
@@ -13879,9 +14321,7 @@ msgstr "Nyquist հրահանգ"
 #~ "Այն չի կարող բեռնվել:"
 
 #, fuzzy
-#~ msgid ""
-#~ "The module \"%s\" does not provide any of the required functions. It will "
-#~ "not be loaded."
+#~ msgid "The module \"%s\" does not provide any of the required functions. It will not be loaded."
 #~ msgstr "Մոդուլը %s չի ապահովում տարբերատողը: Այն չի կարող բեռնվել:"
 
 #~ msgid "   Project check replaced missing aliased file(s) with silence."
@@ -13890,25 +14330,14 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "   Project check regenerated missing alias summary file(s)."
 #~ msgstr " Պրոեկտ ստուգումը վերստեղծում է բացակայող կեղծ համառոտ ֆայլը(երը):"
 
-#~ msgid ""
-#~ "   Project check replaced missing audio data block file(s) with silence."
-#~ msgstr ""
-#~ " Պրոեկտ ստուգումը փոխարինում է բացակայող ժամանակավոր բլոկ ֆայլը(երը) "
-#~ "լռելյայն:"
+#~ msgid "   Project check replaced missing audio data block file(s) with silence."
+#~ msgstr " Պրոեկտ ստուգումը փոխարինում է բացակայող ժամանակավոր բլոկ ֆայլը(երը) լռելյայն:"
 
-#~ msgid ""
-#~ "   Project check ignored orphan block file(s). They will be deleted when "
-#~ "project is saved."
-#~ msgstr ""
-#~ " Պրոեկտ ստուգումը չեղարկեց առանձին բլոկ ֆայլը(երը): Որոնք ջնջվել էին, երբ "
-#~ "պրեկտը պահպանվել էր:"
+#~ msgid "   Project check ignored orphan block file(s). They will be deleted when project is saved."
+#~ msgstr " Պրոեկտ ստուգումը չեղարկեց առանձին բլոկ ֆայլը(երը): Որոնք ջնջվել էին, երբ պրեկտը պահպանվել էր:"
 
-#~ msgid ""
-#~ "Project check found file inconsistencies inspecting the loaded project "
-#~ "data."
-#~ msgstr ""
-#~ "Պրոեկտը ստուգում է գտնված թերի ֆայլերը, կախված պրոեկտի ժամանակային "
-#~ "բեռնումից"
+#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
+#~ msgstr "Պրոեկտը ստուգում է գտնված թերի ֆայլերը, կախված պրոեկտի ժամանակային բեռնումից"
 
 #, fuzzy
 #~ msgid "Presets (*.txt)|*.txt|All files|*"
@@ -13991,22 +14420,14 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Կտրման գծերի միացում"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Միայն avformat.dll|*avformat*.dll|Դինամիկ միացված գրադարաններ (*.dll)|*."
-#~ "dll|Բոլոր ֆայլերը (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Միայն avformat.dll|*avformat*.dll|Դինամիկ միացված գրադարաններ (*.dll)|*.dll|Բոլոր ֆայլերը (*.*)|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Դինամիկ գրադարաններ (*.dylib)|*.dylib|Բոլոր ֆայլերը (*)|*"
 
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Միայն libavformat.so|libavformat*.so*|Դինամիկ միացված գրադարաններ (*.so*)|"
-#~ "*.so*|Բոլոր ֆայլերը (*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Միայն libavformat.so|libavformat*.so*|Դինամիկ միացված գրադարաններ (*.so*)|*.so*|Բոլոր ֆայլերը (*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -14030,26 +14451,19 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Բուֆեր չափը վերահսկում է մի շարք նմուշներ ուղարկված դեպի էֆեկտ "
 
 #~ msgid "on each iteration. Smaller values will cause slower processing and "
-#~ msgstr ""
-#~ "յուրաքանչյուր կրկնության վրա: Փոքր արժեքները կառաջացնի դանդաղ մշակում և"
+#~ msgstr "յուրաքանչյուր կրկնության վրա: Փոքր արժեքները կառաջացնի դանդաղ մշակում և"
 
 #~ msgid "some effects require 8192 samples or less to work properly. However "
-#~ msgstr ""
-#~ "որոշ էֆեկտներ պահանջում են 8192 նմուշներ կամ ավելի քիչ, պատշաճ աշխատանքի "
-#~ "համար: Սակայն "
+#~ msgstr "որոշ էֆեկտներ պահանջում են 8192 նմուշներ կամ ավելի քիչ, պատշաճ աշխատանքի համար: Սակայն "
 
 #~ msgid "most effects can accept large buffers and using them will greatly "
-#~ msgstr ""
-#~ "որոշ էֆեկտներ կարող են ընդունել մեծ բուֆերներ և օգտագործելով նրանց "
-#~ "մեծապես "
+#~ msgstr "որոշ էֆեկտներ կարող են ընդունել մեծ բուֆերներ և օգտագործելով նրանց մեծապես "
 
 #~ msgid "reduce processing time."
 #~ msgstr "նվազեցնել մշակման ժամանակը:"
 
 #~ msgid "As part of their processing, some VST effects must delay returning "
-#~ msgstr ""
-#~ "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել "
-#~ "վերադառնալը:"
+#~ msgstr "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել վերադառնալը:"
 
 #~ msgid "audio to Audacity. When not compensating for this delay, you will "
 #~ msgstr "աուդիոից Աուդասիթի: Երբ չի հատուցվում այս ձգձգումը, դուք"
@@ -14071,22 +14485,16 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Վերաբացել էֆեկտը, որպեսզի լինի ներկա տեսքի:"
 
 #, fuzzy
-#~ msgid ""
-#~ "As part of their processing, some Audio Unit effects must delay returning "
-#~ msgstr ""
-#~ "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել "
-#~ "վերադառնալը:"
+#~ msgid "As part of their processing, some Audio Unit effects must delay returning "
+#~ msgstr "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել վերադառնալը:"
 
 #, fuzzy
 #~ msgid "not work for all Audio Unit effects."
 #~ msgstr "չգործել ոչ բոլոր VST էֆեկտների համար:"
 
 #, fuzzy
-#~ msgid ""
-#~ "As part of their processing, some LADSPA effects must delay returning "
-#~ msgstr ""
-#~ "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել "
-#~ "վերադառնալը:"
+#~ msgid "As part of their processing, some LADSPA effects must delay returning "
+#~ msgstr "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել վերադառնալը:"
 
 #, fuzzy
 #~ msgid "not work for all LADSPA effects."
@@ -14094,9 +14502,7 @@ msgstr "Nyquist հրահանգ"
 
 #, fuzzy
 #~ msgid "As part of their processing, some LV2 effects must delay returning "
-#~ msgstr ""
-#~ "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել "
-#~ "վերադառնալը:"
+#~ msgstr "Որպես մաս նրանցից ընթացքի մեջ, որոշ VST էֆեկտների պետք է հետաձգել վերադառնալը:"
 
 #~ msgid "Enabling this setting will provide that compensation, but it may "
 #~ msgstr "Միացումը այս կարգավորման կապահովի հատուցում, բայց դա կարող է "
@@ -14117,34 +14523,18 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "%i kbps"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Միայն lame_enc.dll|lame_enc.dll|Դինամիկ նշված գրադարան (*.dll)|*.dll|"
-#~ "Բոլոր ֆայլերը (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Միայն lame_enc.dll|lame_enc.dll|Դինամիկ նշված գրադարան (*.dll)|*.dll|Բոլոր ֆայլերը (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Միայն libmp3lame.dylib|libmp3lame.dylib|Դինամիկ գրադարան (*.dylib)|*."
-#~ "dylib|Բոլոր ֆայլերը (*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Միայն libmp3lame.dylib|libmp3lame.dylib|Դինամիկ գրադարան (*.dylib)|*.dylib|Բոլոր ֆայլերը (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Միայն libmp3lame.dylib|libmp3lame.dylib|Դինամիկ գրադարան (*.dylib)|*."
-#~ "dylib|Բոլոր ֆայլերը (*)|*"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Միայն libmp3lame.dylib|libmp3lame.dylib|Դինամիկ գրադարան (*.dylib)|*.dylib|Բոլոր ֆայլերը (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Միայն libmp3lame.so.0|libmp3lame.so.0|Տարրական հղված օբյեկտ ֆայլեր (*.so)|"
-#~ "*.so|Տարածական գրադարան (*.so*)|*.so*|Բոլոր ֆայլերը (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Միայն libmp3lame.so.0|libmp3lame.so.0|Տարրական հղված օբյեկտ ֆայլեր (*.so)|*.so|Տարածական գրադարան (*.so*)|*.so*|Բոլոր ֆայլերը (*)|*"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -14162,22 +14552,15 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "MIDI ֆայլ (*.mid)|*.mid|Ալեգրո ֆայլ (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "MIDI և Ալեգրո ֆայլեր (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI ֆայլեր "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Ալեգրո ֆայլեր (*.gro)|*.gro|Բոլոր ֆայլերը (*."
-#~ "*)|*.*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "MIDI և Ալեգրո ֆայլեր (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI ֆայլեր (*.mid;*.midi)|*.mid;*.midi|Ալեգրո ֆայլեր (*.gro)|*.gro|Բոլոր ֆայլերը (*.*)|*.*"
 
 #, fuzzy
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output "
-#~ "Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
-#~ "Դուք պետք է կազմեք Աուդասիթին լրացուցիչ կոճակի հետ 'Արդյունքի աղբյուր': "
-#~ "Սա կպահպանի\n"
+#~ "Դուք պետք է կազմեք Աուդասիթին լրացուցիչ կոճակի հետ 'Արդյունքի աղբյուր': Սա կպահպանի\n"
 #~ "C տարբերակի նկար կեշը, որը կազմվել է լռելյայն:"
 
 #~ msgid "Waveform (dB)"
@@ -14202,9 +14585,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Կարգավորել բոլոր ձայնագրությունները պրոեկտում"
 
 #, fuzzy
-#~ msgid ""
-#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
-#~ "Menu."
+#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
 #~ msgstr "Գծում անելու համար, ընտրեք 'Waveform' ուղղայահաց ցանկից:"
 
 #, fuzzy
@@ -14306,16 +14687,13 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Աջ"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden "
-#~ "before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
-#~ "to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
 #~ msgstr ""
 #~ "Արագ արձանագրումն բացահայտել է, որ ձայնագրությունը թաքնված է մինչ զրո:\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
-#~ "to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
 
 #~ msgid "Latency problem"
 #~ msgstr "Հիմնական խնդիր"
@@ -14398,9 +14776,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Time Scale"
 #~ msgstr "Մասշտաբ"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
 #~ msgstr "Ձեր ձայնագրությունները կմիախառնվեն մեկ մոնո ալիքով վերցված ֆայլում:"
 
 #~ msgid "kbps"
@@ -14420,9 +14796,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Սխալ երբ բացվում է ձայնի սարքը: Խնդրում ենք ստուգել ձայնագրման սարքի "
-#~ "կարգավորումները և պրոեկտի ձայնի բաժինը"
+#~ msgstr "Սխալ երբ բացվում է ձայնի սարքը: Խնդրում ենք ստուգել ձայնագրման սարքի կարգավորումները և պրոեկտի ձայնի բաժինը"
 
 #~ msgid "Slider Recording"
 #~ msgstr "Փոփոխվող ձայնագրում"
@@ -14596,12 +14970,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Show length and end time"
 #~ msgstr "Առաջին պլանի ֆոն ավարտի ժամանակ"
 
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Սեղմեք հորիզոնական մեծացման համար: Shift-սեղմում փոքրացման համար: Քաշել "
-#~ "ստեղծելու համար առանձին մեծացված մաս:"
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Սեղմեք հորիզոնական մեծացման համար: Shift-սեղմում փոքրացման համար: Քաշել ստեղծելու համար առանձին մեծացված մաս:"
 
 #~ msgid "up"
 #~ msgstr "Վերև"
@@ -14914,12 +15284,10 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Շարժ գործիքադարակի կոճակների էրգոնոմիկ պատվեր"
 
 #~ msgid "&Always mix all tracks down to Stereo or Mono channel(s)"
-#~ msgstr ""
-#~ "Միշտ միախառնել բոլոր ձայնագրությունները ստերեո կամ մոնո ալիքի (ների)"
+#~ msgstr "Միշտ միախառնել բոլոր ձայնագրությունները ստերեո կամ մոնո ալիքի (ների)"
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr ""
-#~ "Օգտագործել ընտրովի միախառնում (օրինակ՝ վերցնելիս 5.1 մւլտիալիքային ֆայլը)"
+#~ msgstr "Օգտագործել ընտրովի միախառնում (օրինակ՝ վերցնելիս 5.1 մւլտիալիքային ֆայլը)"
 
 #~ msgid "When exporting track to an Allegro (.gro) file"
 #~ msgstr "Երբ վերցվում է ձայնագրությունը որպես Ալեգրո (.gro) ֆայլ"
@@ -14975,12 +15343,10 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Տատանումների ցուցադրում օգտվելով գորշ սանդղակի գույներից"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
-#~ "loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
 #~ "when the program starts up."
 #~ msgstr ""
-#~ "Եթե 'Բեռնվող կեշի թեման ստուգվում է' ծրագիրը մեկնարկելիս, ապա թեմա կեշը "
-#~ "բեռնվում է,\n"
+#~ "Եթե 'Բեռնվող կեշի թեման ստուգվում է' ծրագիրը մեկնարկելիս, ապա թեմա կեշը բեռնվում է,\n"
 #~ "երբ ծրագիրը մեկնարկվում է:"
 
 #~ msgid "Load Theme Cache At Startup"
@@ -15053,9 +15419,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Welcome to Audacity "
 #~ msgstr "Բարի գալուստ Աուդասիթի"
 
-#~ msgid ""
-#~ " For even quicker answers, all the online resources above are "
-#~ "<b>searchable</b>."
+#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
 #~ msgstr "Արագ արձագանքման համար բոլոր առցանց տվյալները կան <b>փնտրվող</b>."
 
 #~ msgid "Edit Metadata"
@@ -15087,9 +15451,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Աջ ալիք"
 
 #~ msgid "Drag the track vertically to change the order of the tracks."
-#~ msgstr ""
-#~ "Քաշել ձայնագրությունը ուղղահայաց, փոխելու համար ձայնագրությանների "
-#~ "հրահանգը:"
+#~ msgstr "Քաշել ձայնագրությունը ուղղահայաց, փոխելու համար ձայնագրությանների հրահանգը:"
 
 #~ msgid "&Bass (dB):"
 #~ msgstr "&Բաս (դԲ)՝"
@@ -15168,8 +15530,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Ձախ երկակի սեղմում"
 
 #~ msgid "Time shift clip or move up/down between tracks"
-#~ msgstr ""
-#~ "Մասի ժամային հերթափոխ կամ տեղափոխել վերև/ցած ձայնագրությունների միջև"
+#~ msgstr "Մասի ժամային հերթափոխ կամ տեղափոխել վերև/ցած ձայնագրությունների միջև"
 
 #~ msgid "Zoom in or out on Mouse Pointer"
 #~ msgstr "Խոշորացնել կամ փոքրացնել մկնիկի ցուցումով"
@@ -15254,12 +15615,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Ընդլայնված վեկտոր հավելում թափանցած"
 
 #, fuzzy
-#~ msgid ""
-#~ "Most Audio Unit effects have a graphical interface for setting parameter "
-#~ "values."
-#~ msgstr ""
-#~ "Շատ VST էֆեկտներ ունեն գրաֆիկական ինտերֆեյսի, կարգավորման պարամերտ "
-#~ "արժեքների համար:"
+#~ msgid "Most Audio Unit effects have a graphical interface for setting parameter values."
+#~ msgstr "Շատ VST էֆեկտներ ունեն գրաֆիկական ինտերֆեյսի, կարգավորման պարամերտ արժեքների համար:"
 
 #, fuzzy
 #~ msgid "LV2 Effects Module"
@@ -15345,12 +15702,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Ձեր ֆայլը կվերցվի որպես GSM 6.10 WAV ֆայլ:\n"
 
 #, fuzzy
-#~ msgid ""
-#~ "If you need more control over the export format please use the \"%s\" "
-#~ "format."
-#~ msgstr ""
-#~ "Եթե անհրաժեշտ է ավել գործիքներ ֆորմատի վերցման համար, խնդրում ենք "
-#~ "օգտագործել 'Չխտացված ֆայլի' ֆորմատ:"
+#~ msgid "If you need more control over the export format please use the \"%s\" format."
+#~ msgstr "Եթե անհրաժեշտ է ավել գործիքներ ֆորմատի վերցման համար, խնդրում ենք օգտագործել 'Չխտացված ֆայլի' ֆորմատ:"
 
 #~ msgid "Ctrl-Left-Drag"
 #~ msgstr "Ctrl և ձախ քաշում"
@@ -15375,9 +15728,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Command-line options supported:"
 #~ msgstr "Աջակցում է հրահանգատեղի կարգավորմանը՝"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
 #~ msgstr "Նաև նշեք ֆայլի անունը կամ Աուդասիթի պրոեկտ ֆայլ բացելու համար դա"
 
 #~ msgid "Stereo to Mono Effect not found"
@@ -15386,11 +15737,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Կուրսոր՝ %d Հց (%s) = %d դԲ    Պիկ՝ %d Հց (%s) = %.1f դԲ"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "Կուրսոր: %.4f վարկ (%d Հց) (%s) = %f,    Պիկ՝ %.4f վարկ (%d Հց) (%s) = "
-#~ "%.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "Կուրսոր: %.4f վարկ (%d Հց) (%s) = %f,    Պիկ՝ %.4f վարկ (%d Հց) (%s) = %.3f"
 
 #~ msgid "Plot Spectrum"
 #~ msgstr "Գրաֆիկական սպեկտրում"
@@ -15590,12 +15938,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Creating Noise Profile"
 #~ msgstr "Աղմուկի պրոֆիլի ստեղծում"
 
-#~ msgid ""
-#~ "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, "
-#~ "stereo independent %s"
-#~ msgstr ""
-#~ "Կիրառված էֆեկտ՝ %s հեռացնել dc ճյուղերը = %s, կարգավորում ամպլիտուդը = "
-#~ "%s, անկախ ստերեո %s"
+#~ msgid "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, stereo independent %s"
+#~ msgstr "Կիրառված էֆեկտ՝ %s հեռացնել dc ճյուղերը = %s, կարգավորում ամպլիտուդը = %s, անկախ ստերեո %s"
 
 #~ msgid "true"
 #~ msgstr "ճիշտ"
@@ -15606,19 +15950,14 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Normalize..."
 #~ msgstr "Կարգավորում..."
 
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Կիրառված էֆեկտ: %s ձգվող գործոն = %f ժամ, ժամաչափ = %f վարկյան"
 
 #~ msgid "Stretching with Paulstretch"
 #~ msgstr "Ձգում Paulstretch-ի հետ"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Կիրառված էֆեկտ՝ %s %d փուլեր, %.0f%% խոնավ, հաճախություն = %.1f Հց, սկս. "
-#~ "փուլ = %.0f աստիճան, խորություն = %d, հետադարձ = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Կիրառված էֆեկտ՝ %s %d փուլեր, %.0f%% խոնավ, հաճախություն = %.1f Հց, սկս. փուլ = %.0f աստիճան, խորություն = %d, հետադարձ = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Փուլավորում"
@@ -15716,12 +16055,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Changing Tempo/Pitch"
 #~ msgstr "Տեմպի փոխում/ձայնի բարձրություն"
 
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
-#~ msgstr ""
-#~ "Կիրառված էֆեկտ՝ Ստեղծում %s wave %s, հաճախականություն = %.2f Hz, "
-#~ "ամպլիտուդա = %.2f, %.6lf վարկյան"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
+#~ msgstr "Կիրառված էֆեկտ՝ Ստեղծում %s wave %s, հաճախականություն = %.2f Hz, ամպլիտուդա = %.2f, %.6lf վարկյան"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Ձայնի գեներատոր"
@@ -15747,12 +16082,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Truncate Silence..."
 #~ msgstr "Ընդհատել լռւթյունը..."
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Կիրառված էֆեկտ՝ %s հաճախականություն = %.1f Հց, սկսման մաս = %.0f դեգ, "
-#~ "խորություն = %.0f%%, ռեզոնանս = %.1f, ճյուղի հաճախականություն = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Կիրառված էֆեկտ՝ %s հաճախականություն = %.1f Հց, սկսման մաս = %.0f դեգ, խորություն = %.0f%%, ռեզոնանս = %.1f, ճյուղի հաճախականություն = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -15763,12 +16094,8 @@ msgstr "Nyquist հրահանգ"
 #~ msgid "Performing Effect: %s"
 #~ msgstr "Կիրառված էֆեկտ՝ %s"
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Ներեցեք, պլագին էֆեկտները չեն կարող կատարվել ստերեո ձայնագրությունների "
-#~ "վրա, որտեղ անհատական ալիքները ձայնագրության չեն համապատասխանում:"
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Ներեցեք, պլագին էֆեկտները չեն կարող կատարվել ստերեո ձայնագրությունների վրա, որտեղ անհատական ալիքները ձայնագրության չեն համապատասխանում:"
 
 #~ msgid "Author: "
 #~ msgstr "Հեղինակ՝"
@@ -15792,8 +16119,7 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Նստեցնել VST էֆեկտներ"
 
 #~ msgid "&Select Plug-ins to Install or press ENTER to Install All"
-#~ msgstr ""
-#~ "&Նշեք պլագիններ նստեցման համար կամ սեղմեք ENTER բոլորը նստեցնելու համար"
+#~ msgstr "&Նշեք պլագիններ նստեցման համար կամ սեղմեք ENTER բոլորը նստեցնելու համար"
 
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "Բուֆեր ձգման հատուցում"
@@ -15802,13 +16128,10 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Աուդասիթիի մեկնարկի լավացման համար, փնտրել VST էֆեկտներ ներկայացված"
 
 #~ msgid "once and relevant information is recorded. When you add VST effects "
-#~ msgstr ""
-#~ "մեկ և համապատասխան ձայնագրված տեղեկություն: Երբ դուք ավելացնում եք VST "
-#~ "էֆեկտներ "
+#~ msgstr "մեկ և համապատասխան ձայնագրված տեղեկություն: Երբ դուք ավելացնում եք VST էֆեկտներ "
 
 #~ msgid "to your system, you need to tell Audacity to rescan so the new "
-#~ msgstr ""
-#~ "ձեր համակարգում, պետք է տեղեկացնեք Աուդասիթիին, որպեսզի վերստուգի կրկին"
+#~ msgstr "ձեր համակարգում, պետք է տեղեկացնեք Աուդասիթիին, որպեսզի վերստուգի կրկին"
 
 #~ msgid "&Rescan effects on next launch"
 #~ msgstr "&Վերստուգել էֆեկտները հաջորդ մեկնարկի ժամանակ"
@@ -15823,24 +16146,16 @@ msgstr "Nyquist հրահանգ"
 #~ msgstr "Իրագործված էֆեկտ՝"
 
 #~ msgid "Both channels of a stereo track must be the same sample rate."
-#~ msgstr ""
-#~ "Ստերեո ձայնագրության երկու ալիքները պետք է լինեն նույն ձայնային բաժնի:"
+#~ msgstr "Ստերեո ձայնագրության երկու ալիքները պետք է լինեն նույն ձայնային բաժնի:"
 
 #~ msgid "Both channels of a stereo track must be the same length."
 #~ msgstr "Ստերեո ձայնագրության երկու ալիքները պետք է լինեն նույն երկարության:"
 
-#~ msgid ""
-#~ "This effect does not support a textual interface. At this time, you may "
-#~ "not use this effect on Linux."
-#~ msgstr ""
-#~ "Այս էֆեկտը չի աջակցում տեքստային տեսքում: Այս պահին դուք չեք կարող "
-#~ "կիրառել այս էֆեկտը Linux-ի վրա:"
+#~ msgid "This effect does not support a textual interface. At this time, you may not use this effect on Linux."
+#~ msgstr "Այս էֆեկտը չի աջակցում տեքստային տեսքում: Այս պահին դուք չեք կարող կիրառել այս էֆեկտը Linux-ի վրա:"
 
-#~ msgid ""
-#~ "This effect does not support a textual interface.  Falling back to "
-#~ "graphical display."
-#~ msgstr ""
-#~ "Այս էֆեկտը չի աջակցում տեքստային տեսքում: Հետ քայ՝ գրաֆիկական էկրան:"
+#~ msgid "This effect does not support a textual interface.  Falling back to graphical display."
+#~ msgstr "Այս էֆեկտը չի աջակցում տեքստային տեսքում: Հետ քայ՝ գրաֆիկական էկրան:"
 
 #~ msgid "GSM 6.10 WAV (mobile)"
 #~ msgstr "GSM 6.10 WAV (հեռախոսի)"

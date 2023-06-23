@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2007-08-30 07:25-0400\n"
 "Last-Translator: Victor Ibragimov <youth_opportunities@tajikngo.org>\n"
 "Language-Team: Tajik Language\n"
@@ -23,6 +23,10 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "Афзори вурудӣ"
@@ -31,6 +35,11 @@ msgstr "Афзори вурудӣ"
 #, fuzzy, c-format
 msgid "Default playback device number: %d\n"
 msgstr "Афзори вурудӣ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "No devices found\n"
+msgstr "Стереои муттаҳидшуда"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -108,11 +117,26 @@ msgstr "Суръати иҷро"
 msgid "No playback device found for '%s'.\n"
 msgstr "Суръати иҷро"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Содирот"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Содирот"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -140,6 +164,20 @@ msgstr "Суръати иҷро"
 msgid "Message"
 msgstr "&Бознамунагузорӣ..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -158,6 +196,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Audacity натавонист файлро сабт кунад:\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -189,6 +232,14 @@ msgid "AUP3 project files"
 msgstr "Сабти додаҳои лоиҳа"
 
 #: libraries/lib-files/FileNames.cpp
+msgid "Dynamically Linked Libraries"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
+msgid "Dynamic Libraries"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
 #, fuzzy
 msgid "Text files"
 msgstr "Номи файлҳо:"
@@ -198,12 +249,21 @@ msgstr "Номи файлҳо:"
 msgid "XML files"
 msgstr "Файлҳои MP2"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "Номи файлҳо:"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -226,6 +286,14 @@ msgid ""
 "Resetting to default location."
 msgstr "Рӯйхатҳои файлҳои муваққатӣ"
 
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
+
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
 msgid "None"
@@ -247,6 +315,51 @@ msgstr "Аз руи хаткашӣ"
 msgid "Rectangular"
 msgstr "Устувор"
 
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Welch"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
+
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
 msgid "Low Quality (Fastest)"
@@ -261,6 +374,11 @@ msgstr "Сифат"
 #, fuzzy
 msgid "High Quality"
 msgstr "Сифат"
+
+#: libraries/lib-math/Resample.cpp
+#, fuzzy
+msgid "Best Quality (Slowest)"
+msgstr "Сифат:"
 
 #. i18n-hint: Audio data bit depth (precision): 16-bit integers
 #: libraries/lib-math/SampleFormat.cpp
@@ -278,6 +396,10 @@ msgstr "24-бит ПСМ"
 msgid "32-bit float"
 msgstr "32-бит float"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -288,6 +410,21 @@ msgstr "16-бит ПСM"
 msgid "24-bit"
 msgstr "24-бит ПСМ"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Муайяншавӣ номумкин аст"
@@ -297,10 +434,32 @@ msgstr "Муайяншавӣ номумкин аст"
 msgid "%s bytes"
 msgstr "байтҳо"
 
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
+
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
 msgid "Simplified"
 msgstr "Тақвиятдиҳанда"
+
+#: libraries/lib-strings/Languages.cpp
+msgid "System"
+msgstr ""
 
 #: libraries/lib-xml/XMLFileReader.cpp
 #, c-format
@@ -345,9 +504,39 @@ msgstr "Дарозӣ"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Басомад (Ҳз)"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -366,9 +555,35 @@ msgid "Gain (dB)"
 msgstr "Шабакаҳои бурунӣ: %2d"
 
 #: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Имконияти камтари басомад бояд 0 Hz бошад"
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
@@ -384,6 +599,28 @@ msgstr "Харобшавии мӯътадил"
 #, fuzzy
 msgid "Applying Fade..."
 msgstr "Истифодабарӣ..."
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny plug-ins/delay.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/equalabel.ny
+#: plug-ins/label-sounds.ny plug-ins/limiter.ny plug-ins/noisegate.ny
+#: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
+#: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
+msgid "Steve Daulton"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -416,9 +653,17 @@ msgid "S-Curve Down"
 msgstr "Ҳаракат &ба поён"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "Ибтидо"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -429,6 +674,14 @@ msgstr "Шиддат"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "Ибтидо"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -444,6 +697,14 @@ msgstr "Хатӣ"
 #, fuzzy
 msgid "Linear Out"
 msgstr "Хатӣ"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -490,6 +751,24 @@ msgstr "Ҳаракат &ба поён"
 msgid "Error~%~%"
 msgstr "Хато"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -521,9 +800,21 @@ msgid "Reconstructing clips..."
 msgstr "Ҷойивазсозии пахшҳо ва мусиқаҳо..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Остона: %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -534,6 +825,21 @@ msgstr "Қайди Роҳча"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "Қайди Роҳча"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -580,6 +886,19 @@ msgstr "Интихобкунӣ"
 msgid "Automatic"
 msgstr "Ба таври автоматӣ барқарорсозӣ баъди садама"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 #, fuzzy
 msgid "Delay"
@@ -599,6 +918,14 @@ msgstr "Намуди тугма"
 #, fuzzy
 msgid "Regular"
 msgstr "Устувор"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -621,6 +948,10 @@ msgid "Pitch/Tempo"
 msgstr "Баландии садо (EAC)"
 
 #: plug-ins/delay.ny
+msgid "Low-quality Pitch Shift"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Pitch change per echo (semitones)"
 msgstr "Пеш&намоиш"
@@ -630,10 +961,23 @@ msgstr "Пеш&намоиш"
 msgid "Number of echoes"
 msgstr "Миқдори вақтҳои такроршаванда: "
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
 msgid "No"
 msgstr "Ҳеҷ чиз"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -660,9 +1004,17 @@ msgid "XML file"
 msgstr "Файлҳои MP2"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Сабт"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Overwrite"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy, lisp-format
@@ -679,6 +1031,14 @@ msgstr "Хато (файл сабт намешавад): %hs"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Хато (файл сабт намешавад): %hs"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -716,6 +1076,10 @@ msgstr "Давомнокӣ (сония)"
 msgid "Length of label region (seconds)"
 msgstr "Давомнокӣ (сония)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -727,14 +1091,59 @@ msgid "Label"
 msgstr "Нишона"
 
 #: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Message on completion"
 msgstr "Таркиббандии калид"
 
 #: plug-ins/equalabel.ny
+msgid "Details"
+msgstr ""
+
+#: plug-ins/equalabel.ny
 #, fuzzy
 msgid "Warnings only"
 msgstr "Огоҳӣ"
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -746,6 +1155,17 @@ msgstr "Муттаҳидшавии Нишонаҳо "
 #, fuzzy
 msgid "point labels"
 msgstr "Муттаҳидшавии Нишонаҳо "
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, fuzzy, lisp-format
+msgid "~aRegion length = ~a seconds."
+msgstr "Стереои муттаҳидшуда"
 
 #: plug-ins/highpass.ny
 #, fuzzy
@@ -767,10 +1187,42 @@ msgstr "Ҷудосозии Хаш бо ёрии Доминик Мазони"
 msgid "Frequency (Hz)"
 msgstr "Басомад (Ҳз)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Имконияти камтари басомад бояд 0 Hz бошад"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -830,6 +1282,11 @@ msgstr "Стереои муттаҳидшуда"
 
 #: plug-ins/label-sounds.ny
 #, fuzzy
+msgid "Region around sounds"
+msgstr "Стереои муттаҳидшуда"
+
+#: plug-ins/label-sounds.ny
+#, fuzzy
 msgid "Region between sounds"
 msgstr "Стереои муттаҳидшуда"
 
@@ -843,11 +1300,40 @@ msgstr "Буридашавии қисматҳои хомӯшӣ..."
 msgid "Maximum trailing silence"
 msgstr "Буридашавии қисматҳои хомӯшӣ..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Ном набояд ҷои холӣ дошта бошад"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Limiter"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -884,6 +1370,13 @@ msgstr "Иҷозати буриш"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Шабакаи чап рост"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Шабакаи чап рост"
 
@@ -891,6 +1384,10 @@ msgstr "Шабакаи чап рост"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "Сатҳ:"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -916,6 +1413,14 @@ msgstr "Навъи хаш:"
 #, fuzzy
 msgid "Select Function"
 msgstr "Интихобкунӣ"
+
+#: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -958,12 +1463,42 @@ msgid "Decay (ms)"
 msgstr "Ҳуҷум/вақти хомушшавӣ (сон-ҳо):"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Ном набояд ҷои холӣ дошта бошад"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -974,6 +1509,22 @@ msgstr "Ба кор бурдани дараҷакунанда..."
 #, fuzzy
 msgid "Applying Notch Filter..."
 msgstr "Ба кор бурдани дараҷакунанда..."
+
+#: plug-ins/notch.ny
+msgid "Steve Daulton and Bill Wharrie"
+msgstr ""
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1032,9 +1583,19 @@ msgid "Allow"
 msgstr "Хомӯш карда шуд"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "'%s' тоза намешавад"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1047,14 +1608,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Интихоби MIDI файл..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Мавқеи вуруд:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Интихоби MIDI файл..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1062,9 +1640,29 @@ msgid "Generating pluck sound..."
 msgstr "Муваллиди оҳанг"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "Навъи хаш:"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1082,9 +1680,41 @@ msgid "Generating Rhythm..."
 msgstr "Муваллиди набз"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "30 - 300 beats/minute"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Beats per bar"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 20 beats/measure"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Swing amount"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "Миқдори вақтҳои такроршаванда: "
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1112,6 +1742,22 @@ msgid "Beat sound"
 msgstr "Такрор"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "Тозашавии хаш"
@@ -1120,6 +1766,32 @@ msgstr "Тозашавии хаш"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Навъи хаш:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1132,6 +1804,10 @@ msgid "Generating Risset Drum..."
 msgstr "Муваллиди хаш"
 
 #: plug-ins/rissetdrum.ny
+msgid "Steven Jones"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Decay (seconds)"
 msgstr "Таваққуфи вақт (сонияҳо):"
@@ -1140,6 +1816,10 @@ msgstr "Таваққуфи вақт (сонияҳо):"
 #, fuzzy
 msgid "Center frequency of noise (Hz)"
 msgstr "Басомади хаттӣ"
+
+#: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1160,6 +1840,10 @@ msgstr "Содирот номумкин аст"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "Истифодабарӣ..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1199,6 +1883,10 @@ msgid "HTML files"
 msgstr "Файлҳои MP2"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Намунаи Таҳрир"
@@ -1214,6 +1902,10 @@ msgid "Include header information"
 msgstr "Кушодан/сохтани файлҳои санҷишӣ номумкин аст"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Танзимшуда"
 
@@ -1221,6 +1913,23 @@ msgstr "Танзимшуда"
 #, fuzzy
 msgid "All"
 msgstr "&Ҳама"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1238,6 +1947,11 @@ msgstr "Фаъол шуд"
 msgid "Errors Only"
 msgstr "Хато: "
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1249,6 +1963,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Шабакаи чап рост"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "намунаҳо"
@@ -1257,6 +2011,43 @@ msgstr "намунаҳо"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "сонияҳо"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1284,6 +2075,10 @@ msgid "Value (dB)"
 msgstr "Сатҳ:"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "Хатӣ"
@@ -1304,6 +2099,14 @@ msgid "Right (dB)"
 msgstr "Рост, "
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "Хатӣ"
@@ -1317,6 +2120,35 @@ msgstr "2 Шабака (Стерео)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "1 Шабака (Моно)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1339,9 +2171,41 @@ msgid "Select file"
 msgstr "Интихоби MIDI файл..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Хато"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1352,6 +2216,15 @@ msgstr "Хатои кушодашавии файл"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Интихобкунӣ"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1385,10 +2258,22 @@ msgstr "Росткунҷа"
 msgid "Starting phase (degrees)"
 msgstr "Ибтидои марҳилаи LFO (дараҷа):"
 
+#: plug-ins/tremolo.ny
+msgid "Wet level (percent)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Истифодабарӣ..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1444,10 +2329,97 @@ msgstr "&Таҳлил"
 msgid "Strength"
 msgstr "Дарозӣ"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Пардозиши Auto Duck..."
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1489,258 +2461,207 @@ msgstr "Басомад (Ҳз)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Басомад (Ҳз)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Корбарии натиҷаи Nyquist..."
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Корбарии натиҷаи Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&Гузоштан"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&Гузоштан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&Гузоштан"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&Гузоштан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&Гузоштан"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&Гузоштан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&Гузоштан"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&Гузоштан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "Ҷудокунӣ"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Ҷудокунӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "Ҳарфҳо..."
+#~ msgid "Select &Font..."
+#~ msgstr "Ҳарфҳо..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Дар шакли &Амудӣ"
+#~ msgid "Split &Vertically"
+#~ msgstr "Дар шакли &Амудӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Стереои уфуқӣ"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Стереои уфуқӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "Намоиши бурунӣ"
+#~ msgid "Show S&cript"
+#~ msgstr "Намоиши бурунӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "Намоиши бурунӣ"
+#~ msgid "Show &Output"
+#~ msgstr "Намоиши бурунӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "Афзор"
+#~ msgid "Toolbar"
+#~ msgstr "Афзор"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "Боздорӣ"
+#~ msgid "&Stop\tF6"
+#~ msgstr "Боздорӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "Тағирёбанда"
+#~ msgid "Script"
+#~ msgstr "Тағирёбанда"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "Индикатори баромад"
+#~ msgid "Output"
+#~ msgstr "Индикатори баромад"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Дархости Nyquist..."
+#~ msgid "Load Nyquist script"
+#~ msgstr "Дархости Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Огоҳӣ"
+#~ msgid "Warning"
+#~ msgstr "Огоҳӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Дархости Nyquist..."
+#~ msgid "Save Nyquist script"
+#~ msgstr "Дархости Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Корбарии натиҷаи Nyquist..."
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Корбарии натиҷаи Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "Стереои муттаҳидшуда"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Корбарии натиҷаи Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Корбарии натиҷаи Nyquist..."
+#~ msgid "New"
+#~ msgstr "&Нав"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&Нав"
+#~ msgid "New script"
+#~ msgstr "Кушодани файлҳои Қаблӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Кушодани файлҳои Қаблӣ"
+#~ msgid "Open"
+#~ msgstr "&Кушодан..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&Кушодан..."
+#~ msgid "Open script"
+#~ msgstr "Кушодани файлҳои Қаблӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Кушодани файлҳои Қаблӣ"
+#~ msgid "Save"
+#~ msgstr "&Захира кардан..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "&Захира кардан..."
+#~ msgid "Save script"
+#~ msgstr "Дархости Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Дархости Nyquist..."
+#~ msgid "Save As"
+#~ msgstr "Сабт ҳамчун..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Сабт ҳамчун..."
+#~ msgid "Save script as..."
+#~ msgstr "Сабти Лоиҳа &Ҳамчун..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Copy"
+#~ msgstr "Нусха"
+
 #, fuzzy
-msgid "Save script as..."
-msgstr "Сабти Лоиҳа &Ҳамчун..."
+#~ msgid "Copy to clipboard"
+#~ msgstr "Буриш барои буфер"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Нусха"
+#~ msgid "Cut"
+#~ msgstr "Буридан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Буриш барои буфер"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Буриш барои буфер"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Буридан"
+#~ msgid "Paste"
+#~ msgstr "Гузоштан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Буриш барои буфер"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Гузориш аз буфери табадулот"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Гузоштан"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Гузориш аз буфери табадулот"
+#~ msgid "Clear"
+#~ msgstr "&Тоза кардан"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "&Тоза кардан"
+#~ msgid "Clear selection"
+#~ msgstr "Интихоб аз рӯи хомӯшӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Интихоб аз рӯи хомӯшӣ"
+#~ msgid "Select All"
+#~ msgstr "Ҷудокунӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "Ҷудокунӣ"
+#~ msgid "Select all text"
+#~ msgstr "Ҷудокунӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Undo"
+#~ msgstr "Барҳамдиҳӣ"
+
 #, fuzzy
-msgid "Select all text"
-msgstr "Ҷудокунӣ"
+#~ msgid "Undo last change"
+#~ msgstr "Ивази Шакл"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Барҳамдиҳӣ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Ивази Шакл"
+#~ msgid "Redo"
+#~ msgstr "&Такрор"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo"
-msgstr "&Такрор"
+#~ msgid "Redo previous change"
+#~ msgstr "Ивази Шакл"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Ивази Шакл"
+#~ msgid "Match"
+#~ msgstr "Баста"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "Баста"
+#~ msgid "Go to top S-expr"
+#~ msgstr "Нишона барои содирот ҷой надорад."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Нишона барои содирот ҷой надорад."
+#~ msgid "Previous"
+#~ msgstr "Афзори Пешина"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Афзори Пешина"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Ҷойгузори Ботартиб ба Роҳчаи Пешина"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Ҷойгузори Ботартиб ба Роҳчаи Пешина"
+#~ msgid "Next"
+#~ msgstr "Афзори Навбатӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#~ msgid "Start"
+#~ msgstr "Ибтидо"
+
 #, fuzzy
-msgid "Next"
-msgstr "Афзори Навбатӣ"
+#~ msgid "Start script"
+#~ msgstr "Дархости Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Ибтидо"
+#~ msgid "Stop"
+#~ msgstr "Боздорӣ"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Дархости Nyquist..."
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Боздорӣ"
-
-#: modules/mod-nyq-bench/NyqBench.cpp
-#, fuzzy
-msgid "Stop script"
-msgstr "Дархости Nyquist..."
+#~ msgid "Stop script"
+#~ msgstr "Дархости Nyquist..."
 
 #~ msgid "Comments"
 #~ msgstr "Шарҳ"
@@ -1773,10 +2694,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "ОК"
 
 #~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина "
-#~ "Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: "
-#~ "youth_opportunities@tajikngo.org"
+#~ msgstr "Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: youth_opportunities@tajikngo.org"
 
 #~ msgid "Credits"
 #~ msgstr "Ташаккур ба"
@@ -1791,10 +2709,7 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid "Translators"
-#~ msgstr ""
-#~ "Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина "
-#~ "Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: "
-#~ "youth_opportunities@tajikngo.org"
+#~ msgstr "Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: youth_opportunities@tajikngo.org"
 
 #, fuzzy, c-format
 #~ msgid "%s includes code from the following projects:"
@@ -1884,28 +2799,21 @@ msgstr "Дархости Nyquist..."
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
-#~ "Audacity наметавонад каталогро барои ба таври муваққатӣ нигоҳ доштани "
-#~ "файлҳо ёбад.\n"
+#~ "Audacity наметавонад каталогро барои ба таври муваққатӣ нигоҳ доштани файлҳо ёбад.\n"
 #~ "Каталоги мувофиқро дар равзанаи муколамавии барнома нишон диҳед."
 
 #~ msgid ""
 #~ "Audacity could not find a place to store temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
-#~ "Audacity наметавонад каталогро барои ба таври муваққатӣ нигоҳ доштани "
-#~ "файлҳо ёбад.\n"
+#~ "Audacity наметавонад каталогро барои ба таври муваққатӣ нигоҳ доштани файлҳо ёбад.\n"
 #~ "Каталоги мувофиқро дар равзанаи муколамавии барнома нишон диҳед."
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Audacity барои баромадан омода аст.  Барнома барои истифодаи файлҳои "
-#~ "муваққатии каталоги нав такроран бор карда шавад."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Audacity барои баромадан омода аст.  Барнома барои истифодаи файлҳои муваққатии каталоги нав такроран бор карда шавад."
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -1932,9 +2840,7 @@ msgstr "Дархости Nyquist..."
 #~ msgid ""
 #~ "Use the New or Open commands in the currently running Audacity\n"
 #~ "process to open multiple projects simultaneously.\n"
-#~ msgstr ""
-#~ "Фармонҳои «Сохтан» ё «Кушодан»-ро барои кор бо якчанд лоиҳа дар ин нусхаи "
-#~ "Audacity истифода баред.\n"
+#~ msgstr "Фармонҳои «Сохтан» ё «Кушодан»-ро барои кор бо якчанд лоиҳа дар ин нусхаи Audacity истифода баред.\n"
 
 #~ msgid "Audacity is already running"
 #~ msgstr "Audacity аллакай бор шудааст"
@@ -1961,8 +2867,7 @@ msgstr "Дархости Nyquist..."
 #~ "Файлҳои лоиҳаи Audacity (.AUP) бо Audacity\n"
 #~ "ҳамробит нестанд. \n"
 #~ "\n"
-#~ "Онҳоро якҷоя намоед, оё онҳо бо пахши дукаратаи муш кушода шуда  "
-#~ "метавонанд?"
+#~ "Онҳоро якҷоя намоед, оё онҳо бо пахши дукаратаи муш кушода шуда  метавонанд?"
 
 #~ msgid "Audacity Project Files"
 #~ msgstr "Файлҳои лоиҳаи Audacity"
@@ -2045,14 +2950,12 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
 #~ "Қаблан баъзе лоиҳаҳо таҳрир ва нигоҳ дошта нашуда буданд \n"
-#~ "бо Audacity кор мекарданд. Хушбахтона, баъзеи онҳоро барқарор сохтан "
-#~ "мумкин аст:"
+#~ "бо Audacity кор мекарданд. Хушбахтона, баъзеи онҳоро барқарор сохтан мумкин аст:"
 
 #, fuzzy
 #~ msgid "Recoverable &projects"
@@ -2378,11 +3281,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Missing"
 #~ msgstr "Истифодаи:"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
-#~ msgstr ""
-#~ "Агар идома диҳед лоиҳаи Шумо дар диск сабт намешавад. Шумо инро мехоҳед?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+#~ msgstr "Агар идома диҳед лоиҳаи Шумо дар диск сабт намешавад. Шумо инро мехоҳед?"
 
 #, fuzzy
 #~ msgid "Dependency Check"
@@ -2453,19 +3353,12 @@ msgstr "Дархости Nyquist..."
 #~ msgid "&Replot..."
 #~ msgstr "Такрор..."
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела "
-#~ "дошта бошанд."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
-#~ msgstr ""
-#~ "Аудио барзиёд интихоб шуд.  Танҳо %.1f сонияҳои аввали аудио ташхис "
-#~ "мешаванд."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+#~ msgstr "Аудио барзиёд интихоб шуд.  Танҳо %.1f сонияҳои аввали аудио ташхис мешаванд."
 
 #~ msgid "Not enough data selected."
 #~ msgstr "Додаҳо кам интихоб шуданд."
@@ -2561,8 +3454,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Нав..."
 
 #~ msgid "Press F2 or double click to edit cell contents."
-#~ msgstr ""
-#~ "Барои таҳрири маркази қисматҳои селул F2 ё пахши дукаратаро иҷро намоед."
+#~ msgstr "Барои таҳрири маркази қисматҳои селул F2 ё пахши дукаратаро иҷро намоед."
 
 #, fuzzy
 #~ msgid "Select a text file containing labels"
@@ -2759,16 +3651,11 @@ msgstr "Дархости Nyquist..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва "
-#~ "суръати намунаи лоиҳаро санҷед."
+#~ msgstr "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва суръати намунаи лоиҳаро санҷед."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела "
-#~ "дошта бошанд."
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
 
 #~ msgid "Recorded Audio"
 #~ msgstr "Аудиои Сабтшуда"
@@ -2781,9 +3668,7 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid "Fill in silence for missing display data (this session only)"
-#~ msgstr ""
-#~ "Барои додаҳои намоишии гумшуда аз рӯи хомӯшӣ пурра намоед [танҳо ин "
-#~ "қисмат]"
+#~ msgstr "Барои додаҳои намоишии гумшуда аз рӯи хомӯшӣ пурра намоед [танҳо ин қисмат]"
 
 #~ msgid "Close project immediately with no further changes"
 #~ msgstr "Лоиҳаро бе иловаи тағиротҳо, фавран пӯшонед"
@@ -2890,8 +3775,7 @@ msgstr "Дархости Nyquist..."
 #~ "It has been recovered to the last snapshot."
 #~ msgstr ""
 #~ "Қаблан баъзе лоиҳаҳо таҳрир ва нигоҳ дошта нашуда буданд \n"
-#~ "бо Audacity кор мекарданд. Хушбахтона, баъзеи онҳоро барқарор сохтан "
-#~ "мумкин аст:"
+#~ "бо Audacity кор мекарданд. Хушбахтона, баъзеи онҳоро барқарор сохтан мумкин аст:"
 
 #, fuzzy
 #~ msgid "Project Recovered"
@@ -3354,9 +4238,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr " Интихоб фаъол аст"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
 #~ msgstr "Пахш ва кашидан барои ба тартибоварии андозаи роҳчаҳои стереоӣ."
 
 #~ msgid "Click and drag to resize the track."
@@ -3873,19 +4755,11 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Auto Duck"
 #~ msgstr "Даки худкор"
 
-#~ msgid ""
-#~ "You selected a track which does not contain audio. AutoDuck can only "
-#~ "process audio tracks."
-#~ msgstr ""
-#~ "Шумо роҳчаеро интихоб кардед, ки аудио надорад. AutoDuck танҳо роҳчаҳои "
-#~ "аудиоро дар бар мегирад."
+#~ msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
+#~ msgstr "Шумо роҳчаеро интихоб кардед, ки аудио надорад. AutoDuck танҳо роҳчаҳои аудиоро дар бар мегирад."
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
-#~ msgstr ""
-#~ "Ба Auto Duck роҳчаи назоратие, ки аз поёни роҳча(ҳо)и интихобшуда "
-#~ "ҷойгузор мешавад, лозим аст."
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+#~ msgstr "Ба Auto Duck роҳчаи назоратие, ки аз поёни роҳча(ҳо)и интихобшуда ҷойгузор мешавад, лозим аст."
 
 #, fuzzy
 #~ msgid "Duck &amount:"
@@ -4429,11 +5303,8 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Таҳрири Нишона"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела "
-#~ "дошта бошанд."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -4577,9 +5448,7 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid "All noise profile data must have the same sample rate."
-#~ msgstr ""
-#~ "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела "
-#~ "дошта бошанд."
+#~ msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
 
 #, fuzzy
 #~ msgid "Selected noise profile is too short."
@@ -4631,8 +5500,7 @@ msgstr "Дархости Nyquist..."
 #~ "Select a few seconds of just noise so Audacity knows what to filter out,\n"
 #~ "then click Get Noise Profile:"
 #~ msgstr ""
-#~ "Якчанд сония барои полоиши хаш ҷудо кунед, то ки Audacity дарк кунад, ки "
-#~ "кадом амалиётро ичро карда истодааст,\n"
+#~ "Якчанд сония барои полоиши хаш ҷудо кунед, то ки Audacity дарк кунад, ки кадом амалиётро ичро карда истодааст,\n"
 #~ "баъдан ба воситаи мушак тугмаи \"Сохтани шакли хаш\"-ро пахш намоед:"
 
 #, fuzzy
@@ -4644,12 +5512,10 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
-#~ "Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб "
-#~ "кунед\n"
+#~ "Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб кунед\n"
 #~ "ва баъдан -ро пахш кунед.\n"
 
 #, fuzzy
@@ -4691,12 +5557,10 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Ҷудосозии Хаш"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
-#~ "Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб "
-#~ "кунед\n"
+#~ "Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб кунед\n"
 #~ "ва баъдан -ро пахш кунед.\n"
 
 #, fuzzy
@@ -4769,13 +5633,11 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Таъмир"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
-#~ "Натиҷаи таъмир дар қисматҳои кӯтоҳи вайроншавии аудиоӣ истифода бурда "
-#~ "мешавад (то 128 намуна).\n"
+#~ "Натиҷаи таъмир дар қисматҳои кӯтоҳи вайроншавии аудиоӣ истифода бурда мешавад (то 128 намуна).\n"
 #~ "\n"
 #~ "Намудро наздик созед ва пораи хурдтарини додаҳои савтиро интихоб кунед."
 
@@ -4826,11 +5688,8 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Вуруди аудиоҳои интихобшуда ба монанди FLAC"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела "
-#~ "дошта бошанд."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
 
 #, fuzzy
 #~ msgid "Align MIDI to Audio"
@@ -5122,11 +5981,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Nyquist Error"
 #~ msgstr "Оҳанг"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Бубахшед, аммо натиҷае, ки стереороҳчаҳое, ки роҳчаҳо мутобиқ нестанд, "
-#~ "истифода намешавад."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Бубахшед, аммо натиҷае, ки стереороҳчаҳое, ки роҳчаҳо мутобиқ нестанд, истифода намешавад."
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -5168,8 +6024,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Nyquist аудиоро барнагардонид.\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Тариқаи Audacity бо дастгирии %s ҳамгардонӣ нашуда буд."
 
 #, fuzzy
@@ -5229,15 +6084,13 @@ msgstr "Дархости Nyquist..."
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ "Шумо %s-и файлро бо номи \"%s\" сабт кардан мехоҳед.\n"
 #~ "\n"
-#~ "Одатан ин файлҳо дар \".%s\" ба охир мерасанд ва баъзе барномаҳо файлҳоро "
-#~ "бо пасвандҳои ғайритартибӣ намекушоянд.\n"
+#~ "Одатан ин файлҳо дар \".%s\" ба охир мерасанд ва баъзе барномаҳо файлҳоро бо пасвандҳои ғайритартибӣ намекушоянд.\n"
 #~ "\n"
 #~ "Шумо файлро бо ин ном сабт кардан мехоҳед?"
 
@@ -5250,20 +6103,15 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one mono file."
-#~ msgstr ""
-#~ "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
+#~ msgstr "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one stereo file."
-#~ msgstr ""
-#~ "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
+#~ msgstr "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
-#~ msgstr ""
-#~ "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+#~ msgstr "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
 
 #~ msgid "Advanced Mixing Options"
 #~ msgstr "Қисматҳои омехтаи пешрафта"
@@ -5692,9 +6540,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Давомнокии хароб дар файли LOF."
 
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "MIDI роҳчаҳо ба таври муққарарӣ ҷудо намешаванд, танҳо аудио файлҳо "
-#~ "метавонанд ин амалро иҷро кунанд."
+#~ msgstr "MIDI роҳчаҳо ба таври муққарарӣ ҷудо намешаванд, танҳо аудио файлҳо метавонанд ин амалро иҷро кунанд."
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "Роҳчаи хароби ҷудошуда дар файли LOF."
@@ -5895,9 +6741,7 @@ msgstr "Дархости Nyquist..."
 
 #, c-format
 #~ msgid "Silenced selected tracks for %.2f seconds at %.2f"
-#~ msgstr ""
-#~ "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи "
-#~ "%.2f"
+#~ msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #, fuzzy
 #~ msgctxt "command"
@@ -5906,9 +6750,7 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-#~ msgstr ""
-#~ "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи "
-#~ "%.2f"
+#~ msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #~ msgid "Split"
 #~ msgstr "Ҷудокунӣ"
@@ -7359,12 +8201,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Directory %s is not writable"
 #~ msgstr "Рӯйхати %s навишта намешавад"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Тағиротҳо ба рӯйхати муваққатӣ то аз навборкунии Audacity натиҷагирӣ "
-#~ "намешаванд"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Тағиротҳо ба рӯйхати муваққатӣ то аз навборкунии Audacity натиҷагирӣ намешаванд"
 
 #, fuzzy
 #~ msgid "Preferences for Effects"
@@ -7480,9 +8318,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Тугмаҳои фаъол"
 
 #~ msgid "Note: Pressing Cmd+Q will quit. All other keys are valid."
-#~ msgstr ""
-#~ "Эзоҳ: Cmd+Q барои хомӯш намудан истифода бурда мешаванд. Дигар калидҳо "
-#~ "истифоданашавандаанд."
+#~ msgstr "Эзоҳ: Cmd+Q барои хомӯш намудан истифода бурда мешаванд. Дигар калидҳо истифоданашавандаанд."
 
 #~ msgid "&Import..."
 #~ msgstr "&Воридот..."
@@ -7491,8 +8327,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "&Аз рӯи хомӯшӣ"
 
 #~ msgid "Select an XML file containing Audacity keyboard shortcuts..."
-#~ msgstr ""
-#~ "Интихоби файли XML, ки дорои тугмаҳои фаъоли саҳфакалиди Audacity..."
+#~ msgstr "Интихоби файли XML, ки дорои тугмаҳои фаъоли саҳфакалиди Audacity..."
 
 #, fuzzy
 #~ msgid "Error Importing Keyboard Shortcuts"
@@ -7539,9 +8374,7 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Тағиротҳо ба рӯйхати муваққатӣ то аз навборкунии Audacity натиҷагирӣ "
-#~ "намешаванд"
+#~ msgstr "Тағиротҳо ба рӯйхати муваққатӣ то аз навборкунии Audacity натиҷагирӣ намешаванд"
 
 #, fuzzy
 #~ msgid "Ask"
@@ -7860,15 +8693,12 @@ msgstr "Дархости Nyquist..."
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
 #~ "Масъалагузорӣ хусусияти санҷишӣ дорад.\n"
@@ -8421,12 +9251,8 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Актаваи Поён"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-"
-#~ "ро барои сохтани наздиксозии муҳити махсус истифода кунед."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-ро барои сохтани наздиксозии муҳити махсус истифода кунед."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -8608,8 +9434,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Рост, "
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
 #~ msgstr "Пахш ва кашидан барои ба тартибоварии андозаи роҳчаҳои стереоӣ."
 
 #, fuzzy
@@ -8751,8 +9576,7 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Пахш ва кашидан барои ҷойивазкунии интихоби сарҳади чап."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Пахш ва кашидан барои ҷойивазкунии интихоби сарҳади чап."
 
 #, fuzzy
@@ -8791,15 +9615,11 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Time shifted tracks/clips right %.02f seconds"
-#~ msgstr ""
-#~ "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи "
-#~ "%.2f"
+#~ msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #, fuzzy, c-format
 #~ msgid "Time shifted tracks/clips left %.02f seconds"
-#~ msgstr ""
-#~ "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи "
-#~ "%.2f"
+#~ msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #, fuzzy
 #~ msgid "Command+Click to deselect"
@@ -9056,9 +9876,7 @@ msgstr "Дархости Nyquist..."
 
 #, fuzzy
 #~ msgid "(Use context menu to change format.)"
-#~ msgstr ""
-#~ "Барои иваз намудани қолаб тугмаи рости мушро ё калиди матниро истифода "
-#~ "баред"
+#~ msgstr "Барои иваз намудани қолаб тугмаи рости мушро ё калиди матниро истифода баред"
 
 #, fuzzy
 #~ msgid "Are you sure you wish to cancel?"
@@ -9271,11 +10089,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Сабти Лоиҳа &Ҳамчун..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Audacity натавонист Audacity 1.0-ро дар қолаби лоиҳаи нав дигар кунад."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Audacity натавонист Audacity 1.0-ро дар қолаби лоиҳаи нав дигар кунад."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Файлҳои қаблии худсабт ҷойиваз карда нашуданд"
@@ -9418,20 +10233,12 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Масрафсанҷи ғайрифаъол"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи "
-#~ "файлҳо (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи файлҳо (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи "
-#~ "файлҳо (*.*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи файлҳо (*.*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -9453,35 +10260,19 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Файлҳои XML (*.xml)|*.xml|Ҳамаи файлҳо (*.*)|*.*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи "
-#~ "файлҳо (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи файлҳо (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|"
-#~ "Ҳамаи файлҳо (*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|Ҳамаи файлҳо (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|"
-#~ "Ҳамаи файлҳо (*)|*"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|Ҳамаи файлҳо (*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Танҳо libmp3lame.so|libmp3lame.so|Феҳристҳои ибтидоии пӯёии боршаванда (*."
-#~ "so)|*.so|Феҳристҳои васеъшуда (*.so*)|*.so*|Ҳамаи файлҳо(*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Танҳо libmp3lame.so|libmp3lame.so|Феҳристҳои ибтидоии пӯёии боршаванда (*.so)|*.so|Феҳристҳои васеъшуда (*.so*)|*.so*|Ҳамаи файлҳо(*)|*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Мавҷшакл (dB)"
@@ -9619,11 +10410,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Transcription"
 #~ msgstr "Луғат"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
-#~ msgstr ""
-#~ "Роҳчаҳои Шумо дар як шабакаи моноӣ, дар файли дохилӣ омехта мешаванд."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgstr "Роҳчаҳои Шумо дар як шабакаи моноӣ, дар файли дохилӣ омехта мешаванд."
 
 #~ msgid "Playthrough"
 #~ msgstr "Иҷрогари убурӣ"
@@ -9632,9 +10420,7 @@ msgstr "Дархости Nyquist..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва "
-#~ "суръати намунаи лоиҳаро санҷед."
+#~ msgstr "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва суръати намунаи лоиҳаро санҷед."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -9760,12 +10546,8 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Оғози Сана ва Вақт "
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-"
-#~ "ро барои сохтани наздиксозии муҳити махсус истифода кунед."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-ро барои сохтани наздиксозии муҳити махсус истифода кунед."
 
 #~ msgid "up"
 #~ msgstr "боло"
@@ -10174,11 +10956,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Курсор: %d Ҳертз (%s) = %d дБ    Қулла: %d Ҳертз (%s) = %.1f дБ"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "Курсор: %.4f сон (%d Ҳертз) (%s) = %f,    Қулла: %.4f сон (%d Ҳертз) (%s) "
-#~ "= %.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "Курсор: %.4f сон (%d Ҳертз) (%s) = %f,    Қулла: %.4f сон (%d Ҳертз) (%s) = %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -10303,16 +11082,11 @@ msgstr "Дархости Nyquist..."
 #~ msgstr "Батартибдарорӣ..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Натиҷаи корбурдашуда: %s таваққуф = %f сониҳо, харобшавии омил = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Натиҷаи корбурдашуда: %s %d марҳилаҳо, %.0f%% wet, басомад= %.1f Hz, "
-#~ "ибтидои марҳила = %.0f deg, амиқӣ= %d, feedback = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Натиҷаи корбурдашуда: %s %d марҳилаҳо, %.0f%% wet, басомад= %.1f Hz, ибтидои марҳила = %.0f deg, амиқӣ= %d, feedback = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Марҳиласози..."
@@ -10353,12 +11127,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Applied effect: Generate Silence, %.6lf seconds"
 #~ msgstr "Корбарандаи натиҷа: Муваллиди хомӯшӣ, %.6lf сонияҳо"
 
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
-#~ msgstr ""
-#~ "Корбурди натиҷавӣ: Тавлиди мавҷи %s ба басомади %s = %.2f Ҳертз, домана= "
-#~ "%.2f, %.6lf сонияҳо"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
+#~ msgstr "Корбурди натиҷавӣ: Тавлиди мавҷи %s ба басомади %s = %.2f Ҳертз, домана= %.2f, %.6lf сонияҳо"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Муваллиди набз"
@@ -10370,12 +11140,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "Таркиббандии калид"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Натиҷаи корбурдашуда: %s басомади = %.1f Ҳз, марҳилаи шурӯӣ = %.0f deg, "
-#~ "амиқӣ = %.0f%%, зарбазанӣ= %.1f, истифодаи басомад = %.0f%% "
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Натиҷаи корбурдашуда: %s басомади = %.1f Ҳз, марҳилаи шурӯӣ = %.0f deg, амиқӣ = %.0f%%, зарбазанӣ= %.1f, истифодаи басомад = %.0f%% "
 
 #~ msgid "Wahwah..."
 #~ msgstr "Вах-Вах..."
@@ -10386,12 +11152,8 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Author: "
 #~ msgstr "Муаллиф: "
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Бубахшед, аммо натиҷаҳои Plug-in дар стереороҳчаҳое, ки шабакаҳои "
-#~ "индивидуалии мутобиқ надоранд истифода намешавад."
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Бубахшед, аммо натиҷаҳои Plug-in дар стереороҳчаҳое, ки шабакаҳои индивидуалии мутобиқ надоранд истифода намешавад."
 
 #, fuzzy
 #~ msgid "Recording Level (Click to monitor.)"
@@ -10410,8 +11172,7 @@ msgstr "Дархости Nyquist..."
 #~ msgid "Input Meter"
 #~ msgstr "Индикатори даромад"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgid "Recovering a project will not change any files on disk before you save it."
 #~ msgstr ""
 #~ "Дар вақти барқарорсозии лоиҳа ягон файл дар диск тағир намеёбанд, \n"
 #~ "то вақти нигоҳдории лоиҳа."
@@ -10579,12 +11340,8 @@ msgstr "Дархости Nyquist..."
 #~ ".\n"
 
 #, fuzzy
-#~ msgid ""
-#~ "Sorry, this effect cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Бубахшед, ин амал дар роҳчаҳои стереоӣ иҷро шуда наметавонад зеро дар он "
-#~ "ҷо шабакаи индивидуалии роҳча мутобиқат намекунад."
+#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Бубахшед, ин амал дар роҳчаҳои стереоӣ иҷро шуда наметавонад зеро дар он ҷо шабакаи индивидуалии роҳча мутобиқат намекунад."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "Баробаркунандаи дандонадор"

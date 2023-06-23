@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2010-04-19 16:57+0300\n"
 "Last-Translator: FatCow <zhr@tut.by>\n"
 "Language-Team: Patricia Clausnitzer <by.marcis@gmail.com>\n"
@@ -14,11 +14,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Belarusian\n"
 "X-Poedit-Country: BELARUS\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -111,11 +114,26 @@ msgstr "Хуткасць прайгравання"
 msgid "No playback device found for '%s'.\n"
 msgstr "Хуткасць прайгравання"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Чашчыні сэмпліравання"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Чашчыні сэмпліравання"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -143,6 +161,20 @@ msgstr "Хуткасць прайгравання"
 msgid "Message"
 msgstr "Змяніць чашчыню дыск&ретізаціі дарожкі"
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -161,6 +193,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Audacity не атрымалася запісаць файл:\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -211,12 +248,21 @@ msgstr "Найменне файлаў:"
 msgid "XML files"
 msgstr "MP3"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -238,6 +284,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Каталог для часавых файлаў"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -262,9 +316,49 @@ msgstr "Rectangular"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "Сардэчна запрашаем!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -302,6 +396,10 @@ msgstr "24-bit PCM"
 msgid "32-bit float"
 msgstr "32-bit float"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -312,6 +410,21 @@ msgstr "16-bit PCM"
 msgid "24-bit"
 msgstr "24-bit PCM"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Немагчыма вызначыць"
@@ -320,6 +433,24 @@ msgstr "Немагчыма вызначыць"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "байтаў"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -374,9 +505,39 @@ msgstr "Фільтры"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Чашчыня (Гц)"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -407,8 +568,23 @@ msgstr "У чашчыню ў секундах"
 #: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
+msgstr "Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
 msgstr ""
-"Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
@@ -434,6 +610,19 @@ msgstr "Ужываецца..."
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "Выкарыстоўваць &усюды"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -466,9 +655,17 @@ msgid "S-Curve Down"
 msgstr "Перамясціць у&ніз"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "Пачатак"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -479,6 +676,14 @@ msgstr "Гучнасць"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "Пачатак"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -494,6 +699,14 @@ msgstr "Лінейны"
 #, fuzzy
 msgid "Linear Out"
 msgstr "Лінейны"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -540,6 +753,24 @@ msgstr "Перамясціць у&ніз"
 msgid "Error~%~%"
 msgstr "Памылка"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -571,9 +802,21 @@ msgid "Reconstructing clips..."
 msgstr "Выконваецца выдаленне пстрычак і трэска..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Парог: %d Дб"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -584,6 +827,21 @@ msgstr "Дарожка для пазнак"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "Дарожка для пазнак"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -630,6 +888,19 @@ msgstr "Прыгнечанне шуму"
 msgid "Automatic"
 msgstr "Аўтаматычнае аднаўленне пасля аварыі"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "Затрымка"
@@ -648,6 +919,14 @@ msgstr "Тып клавішы"
 #, fuzzy
 msgid "Regular"
 msgstr "Rectangular"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -684,10 +963,23 @@ msgstr "Пра&слухаць"
 msgid "Number of echoes"
 msgstr "Колькасць паўтораў: "
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
 msgid "No"
 msgstr "Не"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -714,6 +1006,10 @@ msgid "XML file"
 msgstr "MP3"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Запісаць у канец"
@@ -738,6 +1034,14 @@ msgstr "Памылка (магчыма, файл не запісаны): %hs"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Памылка (магчыма, файл не запісаны): %hs"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -775,6 +1079,10 @@ msgstr "Працягласць (з)"
 msgid "Length of label region (seconds)"
 msgstr "Працягласць (з)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -784,6 +1092,42 @@ msgstr "Праўка пазнакі"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "Пазнака"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -800,6 +1144,11 @@ msgstr "Адчапіць"
 msgid "Warnings only"
 msgstr "Папярэджанні"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -810,6 +1159,12 @@ msgstr "Аб'яднаць пазнакі"
 #, fuzzy
 msgid "point labels"
 msgstr "Аб'яднаць пазнакі"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -836,11 +1191,42 @@ msgstr "Аўтар - Дамінік Маццоні"
 msgid "Frequency (Hz)"
 msgstr "Чашчыня (Гц)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
+msgstr "Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
 msgstr ""
-"Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -918,11 +1304,36 @@ msgstr "Выразаецца цішыня..."
 msgid "Maximum trailing silence"
 msgstr "Выразаецца цішыня..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Поле імя павінна быць запоўнена"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -964,6 +1375,13 @@ msgstr "Пошук перагрузкі"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Правы канал"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Правы канал"
 
@@ -971,6 +1389,10 @@ msgstr "Правы канал"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "&Дыяпазон (Дб):"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -998,6 +1420,14 @@ msgid "Select Function"
 msgstr "Вылучэнне"
 
 #: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Stereo Linking"
 msgstr "Стэрэа"
@@ -1020,8 +1450,7 @@ msgstr "Парог: %d Дб"
 #: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Gate frequencies above (kHz)"
-msgstr ""
-"Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
+msgstr "Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -1039,12 +1468,42 @@ msgid "Decay (ms)"
 msgstr "Напад/згасанне (з):"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Поле імя павінна быць запоўнена"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1060,6 +1519,18 @@ msgstr "Ужываецца эфект выраўноўвання"
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "Выкарыстоўваць &усюды"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1120,9 +1591,19 @@ msgid "Allow"
 msgstr "Не дазволена"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Немагчыма выдаліць '%s'"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1135,14 +1616,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Абраць MIDI-файл..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Каталог для экспарту:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Абраць MIDI-файл..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1150,9 +1648,29 @@ msgid "Generating pluck sound..."
 msgstr "Ствараецца хваля"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "Фільтры"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1168,6 +1686,10 @@ msgstr "Выдаліць дарожку"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "Ствараецца імпульс"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1190,9 +1712,21 @@ msgid "Swing amount"
 msgstr "Скажэнне"
 
 #: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "Колькасць паўтораў: "
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1220,6 +1754,22 @@ msgid "Beat sound"
 msgstr "Паўтор..."
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "Выдаленне шуму"
@@ -1228,6 +1778,32 @@ msgstr "Выдаленне шуму"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Шум..."
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1255,6 +1831,10 @@ msgid "Center frequency of noise (Hz)"
 msgstr "Лінейны маштаб"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "Чашчыня (Гц)"
@@ -1273,6 +1853,10 @@ msgstr "Немагчыма экспартаваць"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "Ужываецца..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1312,6 +1896,10 @@ msgid "HTML files"
 msgstr "MP3"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Праўка сэмпла"
@@ -1327,12 +1915,33 @@ msgid "Include header information"
 msgstr "Інфармацыя пра зборку"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Як звычайна"
 
 #: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "Усё"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1350,6 +1959,11 @@ msgstr "\t-help (гэта паведамленне)"
 msgid "Errors Only"
 msgstr "Памылка: "
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1361,6 +1975,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Правы канал"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "сэмплы"
@@ -1369,6 +2023,43 @@ msgstr "сэмплы"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "секунд"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1396,6 +2087,10 @@ msgid "Value (dB)"
 msgstr "&Дыяпазон (Дб):"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "Лінейны"
@@ -1416,6 +2111,14 @@ msgid "Right (dB)"
 msgstr "Правы, "
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "Лінейны"
@@ -1429,6 +2132,35 @@ msgstr "2 канала (стэрэа)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "1 канал (мана)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1451,9 +2183,41 @@ msgid "Select file"
 msgstr "Абраць MIDI-файл..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Памылка"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1464,6 +2228,15 @@ msgstr "Немагчыма адкрыць файл з жанрамі."
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Вылучэнне"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1503,9 +2276,17 @@ msgid "Wet level (percent)"
 msgstr "2-уровень"
 
 #: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Ужываецца..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1561,10 +2342,97 @@ msgstr "&Аналіз"
 msgid "Strength"
 msgstr "Фільтры"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Ужываецца эфект автопріглушенія..."
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1606,286 +2474,233 @@ msgstr "Чашчыня (Гц)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Чашчыня (Гц)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Эфекты"
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Эфекты"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&Уставіць"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&Уставіць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&Уставіць"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&Уставіць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&Уставіць"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&Уставіць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&Уставіць"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&Уставіць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "Вылучэнне"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Вылучэнне"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "Шрыфт..."
+#~ msgid "Select &Font..."
+#~ msgstr "Шрыфт..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Змясціць па &вертыкалі"
+#~ msgid "Split &Vertically"
+#~ msgstr "Змясціць па &вертыкалі"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Гарызантальная арыентацыя"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Гарызантальная арыентацыя"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "Паказаць выснову"
+#~ msgid "Show S&cript"
+#~ msgstr "Паказаць выснову"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "Паказаць выснову"
+#~ msgid "Show &Output"
+#~ msgstr "Паказаць выснову"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "&Панэлі"
+#~ msgid "Toolbar"
+#~ msgstr "&Панэлі"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "&Стоп"
+#~ msgid "&Stop\tF6"
+#~ msgstr "&Стоп"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "Зменная"
+#~ msgid "Script"
+#~ msgstr "Зменная"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "Індыкатар узроўня на выйсці"
+#~ msgid "Output"
+#~ msgstr "Індыкатар узроўня на выйсці"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Запыт Nyquist..."
+#~ msgid "Load Nyquist script"
+#~ msgstr "Запыт Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Папярэджанне"
+#~ msgid "Warning"
+#~ msgstr "Папярэджанне"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Запыт Nyquist..."
+#~ msgid "Save Nyquist script"
+#~ msgstr "Запыт Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Leland Lucius"
-msgstr "Аўтар - Леланд Люшес"
+#~ msgid "Leland Lucius"
+#~ msgstr "Аўтар - Леланд Люшес"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "(C) 2009 by Leland Lucius"
-msgstr "Аўтар - Леланд Люшес"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "Аўтар - Леланд Люшес"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Эфекты"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Эфекты"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "Прылады не выяўлены"
+#~ msgid "No matches found"
+#~ msgstr "Прылады не выяўлены"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Эфекты"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Эфекты"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&Стварыць праект"
+#~ msgid "New"
+#~ msgstr "&Стварыць праект"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Нядаўнія файлы"
+#~ msgid "New script"
+#~ msgstr "Нядаўнія файлы"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&Адкрыць..."
+#~ msgid "Open"
+#~ msgstr "&Адкрыць..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Нядаўнія файлы"
+#~ msgid "Open script"
+#~ msgstr "Нядаўнія файлы"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "Захаваць"
+#~ msgid "Save"
+#~ msgstr "Захаваць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Запыт Nyquist..."
+#~ msgid "Save script"
+#~ msgstr "Запыт Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Захаваць як..."
+#~ msgid "Save As"
+#~ msgstr "Захаваць як..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "Захаваць праект &як..."
+#~ msgid "Save script as..."
+#~ msgstr "Захаваць праект &як..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Скапіяваць"
+#~ msgid "Copy"
+#~ msgstr "Скапіяваць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Выразаць у буфер"
+#~ msgid "Copy to clipboard"
+#~ msgstr "Выразаць у буфер"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Выразаць"
+#~ msgid "Cut"
+#~ msgstr "Выразаць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Выразаць у буфер"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Выразаць у буфер"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Уставіць"
+#~ msgid "Paste"
+#~ msgstr "Уставіць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Устаўка з буфера абмену"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Устаўка з буфера абмену"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "Пра&чысціць"
+#~ msgid "Clear"
+#~ msgstr "Пра&чысціць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Запоўніць цішынёй"
+#~ msgid "Clear selection"
+#~ msgstr "Запоўніць цішынёй"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "Вылучэнне"
+#~ msgid "Select All"
+#~ msgstr "Вылучэнне"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "Вылучэнне"
+#~ msgid "Select all text"
+#~ msgstr "Вылучэнне"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Адмяніць"
+#~ msgid "Undo"
+#~ msgstr "Адмяніць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Змена фармату"
+#~ msgid "Undo last change"
+#~ msgstr "Змена фармату"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "Вярнуць"
+#~ msgid "Redo"
+#~ msgstr "Вярнуць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Змена фармату"
+#~ msgid "Redo previous change"
+#~ msgstr "Змена фармату"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "&Знайсці ноты"
+#~ msgid "Find"
+#~ msgstr "&Знайсці ноты"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "&Знайсці ноты"
+#~ msgid "Find text"
+#~ msgstr "&Знайсці ноты"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "Пакетная апрацоўка"
+#~ msgid "Match"
+#~ msgstr "Пакетная апрацоўка"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Top"
-msgstr "Да:"
+#~ msgid "Top"
+#~ msgstr "Да:"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Няма пазнак для экспарту."
+#~ msgid "Go to top S-expr"
+#~ msgstr "Няма пазнак для экспарту."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "Угару"
+#~ msgid "Up"
+#~ msgstr "Угару"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Папярэдняя прылада"
+#~ msgid "Previous"
+#~ msgstr "Папярэдняя прылада"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Перамясціць фокус на дарожку вышэй і вылучыць"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Перамясціць фокус на дарожку вышэй і вылучыць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "Наступная прылада"
+#~ msgid "Next"
+#~ msgstr "Наступная прылада"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Пачатак"
+#~ msgid "Start"
+#~ msgstr "Пачатак"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Запыт Nyquist..."
+#~ msgid "Start script"
+#~ msgstr "Запыт Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Спыніць"
+#~ msgid "Stop"
+#~ msgstr "Спыніць"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "Запыт Nyquist..."
+#~ msgid "Stop script"
+#~ msgstr "Запыт Nyquist..."
 
 #~ msgid "Comments"
 #~ msgstr "Каментары"
@@ -2039,8 +2854,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid "Click and drag to adjust, double-click to reset"
-#~ msgstr ""
-#~ "Пстрыкніце і перацягніце для рэгуляцыі адноснага памеру стереодорожек"
+#~ msgstr "Пстрыкніце і перацягніце для рэгуляцыі адноснага памеру стереодорожек"
 
 #, fuzzy
 #~ msgid "Record/Play head"
@@ -2118,8 +2932,7 @@ msgstr "Запыт Nyquist..."
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Праграма не можа знайсці каталог для захоўвання часавых файлаў.\n"
@@ -2132,12 +2945,8 @@ msgstr "Запыт Nyquist..."
 #~ "Праграма не можа знайсці каталог для захоўвання часавых файлаў.\n"
 #~ "Пакажыце падыходны каталог у дыялогу параметраў праграмы."
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Audacity рыхтуецца да выйсця.  Паўторна загрузіце праграму для "
-#~ "выкарыстання новага каталога для часавых файлаў."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Audacity рыхтуецца да выйсця.  Паўторна загрузіце праграму для выкарыстання новага каталога для часавых файлаў."
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -2293,9 +3102,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Запіс з актывацыяй па ўзроўні гучнасці (вкл/выкл)"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
 #~ msgstr "Запіс з актывацыяй па ўзроўні гучнасці (вкл/выкл)"
 
 #, fuzzy
@@ -2331,8 +3138,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
@@ -2702,12 +3508,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Missing"
 #~ msgstr "Выкарыстоўваецца:"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
-#~ msgstr ""
-#~ "Калі працягнуць, ваш праект не будзе запісаны на дыск. Вы сапраўды гэтага "
-#~ "жадаеце?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+#~ msgstr "Калі працягнуць, ваш праект не будзе запісаны на дыск. Вы сапраўды гэтага жадаеце?"
 
 #, fuzzy
 #~ msgid "Dependency Check"
@@ -2727,8 +3529,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Audacity needs the file '%s' to import and export audio via FFmpeg."
-#~ msgstr ""
-#~ "Audacity неабходзен файл %s для імпарту і экспарту пры дапамозе FFmpeg."
+#~ msgstr "Audacity неабходзен файл %s для імпарту і экспарту пры дапамозе FFmpeg."
 
 #~ msgid "To get a free copy of FFmpeg, click here -->"
 #~ msgstr "Каб атрымаць копію FFmpeg, пстрыкніце тут ?"
@@ -2752,8 +3553,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid "&Copy uncompressed files into the project (safer)"
-#~ msgstr ""
-#~ "Ствараць &копію несціснутых гукавых дадзеных перад рэдагаванне (бяспечней)"
+#~ msgstr "Ствараць &копію несціснутых гукавых дадзеных перад рэдагаванне (бяспечней)"
 
 #, fuzzy
 #~ msgid "&Read uncompressed files from original location (faster)"
@@ -2838,16 +3638,13 @@ msgstr "Запыт Nyquist..."
 #~ msgid "&Replot..."
 #~ msgstr "&Нанова"
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
 #~ msgstr ""
 #~ "Для пабудовы спектраграмы ўсе абраныя дарожкі\n"
 #~ "павінны мець аднолькавую чашчыню"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
 #~ msgstr ""
 #~ "Вылучаны занадта вялікі гукавы фрагмент.\n"
 #~ "Будуць прааналізаваны толькі першыя %.1f секунд."
@@ -2917,38 +3714,20 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Спосабы атрымаць падтрымку такія:"
 
 #, fuzzy
-#~ msgid ""
-#~ "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://"
-#~ "manual.audacityteam.org/quick_help.html|view online]]"
-#~ msgstr ""
-#~ " [[file:quick_help.html|Уступны курс]] (павінен быць усталяваны лакальна; "
-#~ "<a href=\"http://manual.audacityteam.org/index.php?title=Quick_Help"
-#~ "\">адкрыць у Інтэрнэце, калі яго няма</a>)"
+#~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
+#~ msgstr " [[file:quick_help.html|Уступны курс]] (павінен быць усталяваны лакальна; <a href=\"http://manual.audacityteam.org/index.php?title=Quick_Help\">адкрыць у Інтэрнэце, калі яго няма</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual."
-#~ "audacityteam.org/|view online]]"
-#~ msgstr ""
-#~ " [[file:index.html|Кіраўніцтва карыстача]] (павінна быць усталявана "
-#~ "лакальна; <a href=\"http://manual.audacityteam.org/index.php\">адкрыць "
-#~ "версію ў Інтэрнэце, калі яго няма</a>)"
+#~ msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
+#~ msgstr " [[file:index.html|Кіраўніцтва карыстача]] (павінна быць усталявана лакальна; <a href=\"http://manual.audacityteam.org/index.php\">адкрыць версію ў Інтэрнэце, калі яго няма</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
-#~ "online."
-#~ msgstr ""
-#~ " <a href=\"http://forum.audacityteam.org/\">Форум</a> (вы самі задаяце "
-#~ "пытанні іншым карыстачам)"
+#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
+#~ msgstr " <a href=\"http://forum.audacityteam.org/\">Форум</a> (вы самі задаяце пытанні іншым карыстачам)"
 
 #, fuzzy
-#~ msgid ""
-#~ "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for "
-#~ "tips, tricks, extra tutorials and effects plug-ins."
-#~ msgstr ""
-#~ " [[http://wiki.audacityteam.org/index.php|Вікі]] (самыя свежыя рады, "
-#~ "хітрасці і ўрокі; даступныя толькі ў Інтэрнэце)"
+#~ msgid "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
+#~ msgstr " [[http://wiki.audacityteam.org/index.php|Вікі]] (самыя свежыя рады, хітрасці і ўрокі; даступныя толькі ў Інтэрнэце)"
 
 #, fuzzy
 #~ msgid "History"
@@ -3259,8 +4038,7 @@ msgstr "Запыт Nyquist..."
 #~ "Праверце параметры прылады і чашчыню сэмпліравання."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
 #~ msgstr ""
 #~ "Для пабудовы спектраграмы ўсе абраныя дарожкі\n"
 #~ "павінны мець аднолькавую чашчыню"
@@ -3717,9 +4495,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-#~ msgstr ""
-#~ "Выкарыстоўвайце для перасоўвання па палях клавішы-стрэлкі і ўвод для "
-#~ "завяршэння праўкі"
+#~ msgstr "Выкарыстоўвайце для перасоўвання па палях клавішы-стрэлкі і ўвод для завяршэння праўкі"
 
 #~ msgid "Tag"
 #~ msgstr "Поле"
@@ -4076,11 +4852,8 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Сола вкл."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
-#~ msgstr ""
-#~ "Пстрыкніце і перацягніце для рэгуляцыі адноснага памеру стереодорожек"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+#~ msgstr "Пстрыкніце і перацягніце для рэгуляцыі адноснага памеру стереодорожек"
 
 #~ msgid "Click and drag to resize the track."
 #~ msgstr "Пстрыкніце і перацягніце для змены вышыні дарожкі"
@@ -4650,12 +5423,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Auto Duck"
 #~ msgstr "Автопріглушеніе"
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
-#~ msgstr ""
-#~ "Эфекту автопріглушенія патрэбна кантрольная дарожка, змешчаная ніжэй "
-#~ "абранай."
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+#~ msgstr "Эфекту автопріглушенія патрэбна кантрольная дарожка, змешчаная ніжэй абранай."
 
 #, fuzzy
 #~ msgid "Duck &amount:"
@@ -5528,8 +6297,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Крывы эквалайзера трэба іншая назва"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
 #~ msgstr ""
 #~ "Для пабудовы спектраграмы ўсе абраныя дарожкі\n"
 #~ "павінны мець аднолькавую чашчыню"
@@ -5794,8 +6562,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
 #~ "Вылучыце тую частку дарожкі, да якой жадаеце ўжыць фільтр, пакажыце,\n"
@@ -5859,8 +6626,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Выдаліць шум"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
 #~ "Вылучыце тую частку дарожкі, да якой жадаеце ўжыць фільтр, пакажыце,\n"
@@ -5956,16 +6722,13 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Аднавіць"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
-#~ "Эфект аднаўлення прызначаны для аднаўлення кароткіх участкаў сапсаванага "
-#~ "гуку (да 128 сэмплаў).\n"
+#~ "Эфект аднаўлення прызначаны для аднаўлення кароткіх участкаў сапсаванага гуку (да 128 сэмплаў).\n"
 #~ "\n"
-#~ "Наблізьце адлюстраванні да максімуму і абярыце вельмі кароткі адрэзак "
-#~ "гукавых дадзеных."
+#~ "Наблізьце адлюстраванні да максімуму і абярыце вельмі кароткі адрэзак гукавых дадзеных."
 
 #~ msgid "Repeat"
 #~ msgstr "Паўтор..."
@@ -6039,8 +6802,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Фільтры верхніх чашчынь"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
 #~ msgstr ""
 #~ "Для пабудовы спектраграмы ўсе абраныя дарожкі\n"
 #~ "павінны мець аднолькавую чашчыню"
@@ -6433,8 +7195,7 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquist"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
 #~ msgstr ""
 #~ "Выбачыце, але эфект немагчыма дастасаваць да стереодорожкам\n"
 #~ "з несупадаючымі індывідуальнымі дарожкамі"
@@ -6479,8 +7240,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Nyquist не перадаў гукавы сігнал.\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Гэта версія Audacity была скампілявана без падтрымкі %s."
 
 #, fuzzy
@@ -6561,8 +7321,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Вы ўпэўнены, што жадаеце захаваць файл як \""
 
 #~ msgid "Sorry, pathnames longer than 256 characters not supported."
-#~ msgstr ""
-#~ "Выбачыце, але шляхі, якія змяшчаюць больш 256 знакаў, не падтрымліваюцца."
+#~ msgstr "Выбачыце, але шляхі, якія змяшчаюць больш 256 знакаў, не падтрымліваюцца."
 
 #, fuzzy, c-format
 #~ msgid "A file named \"%s\" already exists. Replace?"
@@ -6577,9 +7336,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "У экспартуемым файле дарожкі будуць зведзены ў два стереоканала"
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
 #~ msgstr "У экспартуемым файле дарожкі будуць зведзены ў два стереоканала"
 
 #~ msgid "Advanced Mixing Options"
@@ -6928,9 +7685,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Файлы MP2"
 
 #~ msgid "Cannot export MP2 with this sample rate and bit rate"
-#~ msgstr ""
-#~ "Немагчыма экспартаваць MP2 з гэтай чашчынёй сэмпліравання і хуткасцю "
-#~ "струменя."
+#~ msgstr "Немагчыма экспартаваць MP2 з гэтай чашчынёй сэмпліравання і хуткасцю струменя."
 
 #~ msgid "Unable to open target file for writing"
 #~ msgstr "Немагчыма адкрыць канчатковы файл для запісу"
@@ -7200,10 +7955,8 @@ msgstr "Запыт Nyquist..."
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" з'яўляецца файлам Advanced Audio Coding. \n"
 #~ "Audacity не можа адкрыць файл гэтага фармату. Вам прыйдзецца спачатку\n"
@@ -7226,13 +7979,11 @@ msgstr "Запыт Nyquist..."
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" з'яўляецца файлам Musepack. \n"
-#~ "Audacity не можа адкрыць файл гэтага фармату.Калі вы лічыце, што гэта "
-#~ "можа быць файл MP3,\n"
+#~ "Audacity не можа адкрыць файл гэтага фармату.Калі вы лічыце, што гэта можа быць файл MP3,\n"
 #~ "паспрабуйце памяняць яго пашырэнне на .mp3 і\n"
 #~ "паспрабаваць ізноў. У адваротным выпадку вам\n"
 #~ "прыйдзецца спачатку пераўтварыць яго ў зразумелы\n"
@@ -7366,9 +8117,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Няправільная працягласць LOF"
 
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "MIDI-дарожкі не могуць быць адлучаны адзін ад аднаго - толькі гукавыя "
-#~ "файлы."
+#~ msgstr "MIDI-дарожкі не могуць быць адлучаны адзін ад аднаго - толькі гукавыя файлы."
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "Знойдзена некарэктны падзел дарожак у LOF."
@@ -7589,8 +8338,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Выдалена %.2f з пачынальна з t=%.2f"
 
 #~ msgid "Pasting one type of track into another is not allowed."
-#~ msgstr ""
-#~ "Устаўка дадзеных дарожкі аднаго тыпу ў дарожку іншага тыпу немагчымая"
+#~ msgstr "Устаўка дадзеных дарожкі аднаго тыпу ў дарожку іншага тыпу немагчымая"
 
 #~ msgid "Copying stereo audio into a mono track is not allowed."
 #~ msgstr "Капіяванне стэрэагуку ў монафанічныя дарожкі немагчыма"
@@ -9158,9 +9906,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "%s %2.0f%% complete. Click to change task focal point."
-#~ msgstr ""
-#~ "%s %2.0f%% завершана. Пстрыкніце мышкай, каб паказаць іншую вобласць "
-#~ "апрацоўкі."
+#~ msgstr "%s %2.0f%% завершана. Пстрыкніце мышкай, каб паказаць іншую вобласць апрацоўкі."
 
 #, fuzzy
 #~ msgid "Preferences for Application"
@@ -9306,9 +10052,7 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Directory %s is not writable"
 #~ msgstr "У вас няма правоў на запіс у каталог %s"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
 #~ msgstr ""
 #~ "Змены датычна каталога для захоўвання часавых файлаў \n"
 #~ "не падзейнічаюць эфекту, пакуль праграма Audacity не будзе перазагружана."
@@ -9473,9 +10217,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Нізкія дарожкі"
 
 #~ msgid "Note: Pressing Cmd+Q will quit. All other keys are valid."
-#~ msgstr ""
-#~ "Нататка: націск камбінацыі клавіш Cmd+Q прывядзе да завяршэння працы "
-#~ "праграмы. Усе астатнія камбінацыі сапраўдныя.."
+#~ msgstr "Нататка: націск камбінацыі клавіш Cmd+Q прывядзе да завяршэння працы праграмы. Усе астатнія камбінацыі сапраўдныя.."
 
 #~ msgid "&Import..."
 #~ msgstr "&Імпартаваць"
@@ -9906,8 +10648,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Вышыня тону (EAC)"
 
 #~ msgid "Minimum frequency must be at least 0 Hz"
-#~ msgstr ""
-#~ "Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
+#~ msgstr "Мінімальная чашчыня павінна знаходзіцца ў межах ад 100 Гц да 100 000 Гц"
 
 #~ msgid "The range must be at least 1 dB"
 #~ msgstr "Дыяпазон павінен быць роўны хоць бы 1 Дб"
@@ -10030,37 +10771,26 @@ msgstr "Запыт Nyquist..."
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
-#~ "Магчымасць выкарыстання альтэрнатыўных стыляў афармлення з'яўляецца "
-#~ "эксперыментальнай функцыяй.\n"
+#~ "Магчымасць выкарыстання альтэрнатыўных стыляў афармлення з'яўляецца эксперыментальнай функцыяй.\n"
 #~ "\n"
-#~ "Каб паглядзець, як гэта працуйце, націсніце кнопку Захаваць кэш тэмы, а "
-#~ "затым знайдзіце і змяніце ўсе малюнкі і колеры ў файлах ImageCacheVxx.png "
-#~ "пры дапамозе якога-небудзь рэдактара накшталт GIMP.\n"
+#~ "Каб паглядзець, як гэта працуйце, націсніце кнопку Захаваць кэш тэмы, а затым знайдзіце і змяніце ўсе малюнкі і колеры ў файлах ImageCacheVxx.png пры дапамозе якога-небудзь рэдактара накшталт GIMP.\n"
 #~ "\n"
-#~ "Націсніце кнопку Загрузіць кэш тэмы, каб загрузіць змененыя малюнкі і "
-#~ "колеры зваротна ў Audacity.\n"
+#~ "Націсніце кнопку Загрузіць кэш тэмы, каб загрузіць змененыя малюнкі і колеры зваротна ў Audacity.\n"
 #~ "\n"
-#~ "Пакуль што магчыма змяняць толькі кнопкі транспарта і колеры гукавой "
-#~ "дарожкі."
+#~ "Пакуль што магчыма змяняць толькі кнопкі транспарта і колеры гукавой дарожкі."
 
 #~ msgid ""
-#~ "Saving and loading individual theme files uses a separate file for each "
-#~ "image, but is\n"
+#~ "Saving and loading individual theme files uses a separate file for each image, but is\n"
 #~ "otherwise the same idea."
-#~ msgstr ""
-#~ "Захаванне і загрузка асобных файлаў тым мае на ўвазе выкарыстанне "
-#~ "асобнага файла для кожнага малюнка, але ў астатнім ідэя тая ж."
+#~ msgstr "Захаванне і загрузка асобных файлаў тым мае на ўвазе выкарыстанне асобнага файла для кожнага малюнка, але ў астатнім ідэя тая ж."
 
 #~ msgid "Theme Cache - Images && Color"
 #~ msgstr "Кэш стылю афармлення"
@@ -10645,13 +11375,8 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Актавай ніжэй"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Выкарыстоўвайце пстрычку для набліжэння па вертыкалі, Shift і пстрычка - "
-#~ "для аддалення, перацягванне з націснутай кнопкай для вылучэння вобласці "
-#~ "маштабавання."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Выкарыстоўвайце пстрычку для набліжэння па вертыкалі, Shift і пстрычка - для аддалення, перацягванне з націснутай кнопкай для вылучэння вобласці маштабавання."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -10843,10 +11568,8 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "%.1f Дб"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-#~ msgstr ""
-#~ "Пстрыкніце і перацягніце для рэгуляцыі адноснага памеру стереодорожек"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgstr "Пстрыкніце і перацягніце для рэгуляцыі адноснага памеру стереодорожек"
 
 #, fuzzy
 #~ msgid "Click and drag to rearrange sub-views"
@@ -10988,8 +11711,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Пстрыкніце і перацягніце адзнаку для ўсталёўкі левай мяжы вылучэння"
 
 #~ msgid "Click and drag to move right selection boundary."
-#~ msgstr ""
-#~ "Пстрыкніце і перацягніце адзнаку для ўсталёўкі правай мяжы вылучэння"
+#~ msgstr "Пстрыкніце і перацягніце адзнаку для ўсталёўкі правай мяжы вылучэння"
 
 #, fuzzy
 #~ msgid "Click and drag to move bottom selection frequency."
@@ -11000,8 +11722,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Пстрыкніце і перацягніце адзнаку для ўсталёўкі левай мяжы вылучэння"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Пстрыкніце і перацягніце адзнаку для ўсталёўкі левай мяжы вылучэння"
 
 #, fuzzy
@@ -11018,8 +11739,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Multi-Tool Mode: %s for Mouse and Keyboard Preferences."
-#~ msgstr ""
-#~ "Універсальная прылада: націсніце Ctrl-P для налады мышы і клавіятуры"
+#~ msgstr "Універсальная прылада: націсніце Ctrl-P для налады мышы і клавіятуры"
 
 #, fuzzy
 #~ msgid "Click and drag to set frequency bandwidth."
@@ -11090,9 +11810,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Пстрычка для набліжэння, Shift+пстрычка для аддалення"
 
 #~ msgid "Drag to Zoom Into Region, Right-Click to Zoom Out"
-#~ msgstr ""
-#~ "Перацягнуць для набліжэння вобласці, пстрыкнуць правай кнопкай мышы дял "
-#~ "аддаленні"
+#~ msgstr "Перацягнуць для набліжэння вобласці, пстрыкнуць правай кнопкай мышы дял аддаленні"
 
 #~ msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 #~ msgstr "Левая=Наблізіць, Правая=Аддаліць, Сярэдняя=Звычайны выгляд"
@@ -11590,12 +12308,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Захаваць сціснутую копію праекта..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Audacity не атрымалася проеобразовать праект фармату Audacity 1.0 у "
-#~ "праект новага фармату."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Audacity не атрымалася проеобразовать праект фармату Audacity 1.0 у праект новага фармату."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Не атрымалася выдаліць стары файл аўтазахавання"
@@ -11603,19 +12317,11 @@ msgstr "Запыт Nyquist..."
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "Імпарт і разлік хвалевай формы дарожкі па патрабаванні завершаны"
 
-#~ msgid ""
-#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
-#~ "%2.0f%% complete."
-#~ msgstr ""
-#~ "Імпарт завершаны. Выконваецца разлік хвалевай формы (у колькасці %d) на "
-#~ "лёце. Агульная гатовасць: %2.0f%%."
+#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
+#~ msgstr "Імпарт завершаны. Выконваецца разлік хвалевай формы (у колькасці %d) на лёце. Агульная гатовасць: %2.0f%%."
 
-#~ msgid ""
-#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
-#~ "complete."
-#~ msgstr ""
-#~ "Імпарт завершаны. Выконваецца разлік хвалевай формы на лёце. Гатовасць: "
-#~ "%2.0f%%."
+#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgstr "Імпарт завершаны. Выконваецца разлік хвалевай формы на лёце. Гатовасць: %2.0f%%."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -11660,12 +12366,10 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "&Мінімум вольнай памяці (МБ):"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no "
-#~ "longer\n"
+#~ "If the available system memory falls below this value, audio will no longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
-#~ "Калі даступная колькасць вольнай віртуальнай памяці ніжэй гэтага "
-#~ "значэння,\n"
+#~ "Калі даступная колькасць вольнай віртуальнай памяці ніжэй гэтага значэння,\n"
 #~ "гук больш не будзе кэшавацца ў памяці і будзе пісаць на цвёрды дыск."
 
 #~ msgid "When importing audio files"
@@ -11799,23 +12503,15 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Паказваць &лініі адрэзу"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Толькі avformat.dll|*avformat*.dll|Дынамічна слінкованные бібліятэкі (*."
-#~ "dll)|*.dll|Усе файлы (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Толькі avformat.dll|*avformat*.dll|Дынамічна слінкованные бібліятэкі (*.dll)|*.dll|Усе файлы (*.*)|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Дынамічныя бібліятэкі (*.dylib)|*.dylib|Усе файлы (*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Толькі libavformat.so|libavformat.so*|Дынамічна слінкованные бібліятэкі "
-#~ "(*.so)|*.so*|Усе файлы (*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Толькі libavformat.so|libavformat.so*|Дынамічна слінкованные бібліятэкі (*.so)|*.so*|Усе файлы (*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -11845,34 +12541,18 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Кбіт/з"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Толькі lame_enc.dll|lame_enc.dll| Дынамічна слінкованные бібліятэкі (*."
-#~ "dll|*.dll Усе файлы (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Толькі lame_enc.dll|lame_enc.dll| Дынамічна слінкованные бібліятэкі (*.dll|*.dll Усе файлы (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Толькі libmp3lame.dylib|libmp3lame.dylib|Дынамічныя бібліятэкі (*.dylib)|"
-#~ "*.dylib|Усе файлы (*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Толькі libmp3lame.dylib|libmp3lame.dylib|Дынамічныя бібліятэкі (*.dylib)|*.dylib|Усе файлы (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Толькі libmp3lame.dylib|libmp3lame.dylib|Дынамічныя бібліятэкі (*.dylib)|"
-#~ "*.dylib|Усе файлы (*)|*"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Толькі libmp3lame.dylib|libmp3lame.dylib|Дынамічныя бібліятэкі (*.dylib)|*.dylib|Усе файлы (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Толькі libmp3lame.so.0|libmp3lame.so.0|Першасныя дынамічна загружаныя "
-#~ "бібліятэкі (*.so)|*.so|Пашыраныя бібліятэкі (*.so*)|*.so*|Усе файлы (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Толькі libmp3lame.so.0|libmp3lame.so.0|Першасныя дынамічна загружаныя бібліятэкі (*.so)|*.so|Пашыраныя бібліятэкі (*.so*)|*.so*|Усе файлы (*)|*"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -11890,13 +12570,8 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Файлы MIDI (*.mid)|*.mid|Файлы Allegro (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "Файлы MIDI і Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Файлы MIDI "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Файлы Allegro (*.gro)|*.gro|Усе файлы (*.*)|*."
-#~ "*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "Файлы MIDI і Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Файлы MIDI (*.mid;*.midi)|*.mid;*.midi|Файлы Allegro (*.gro)|*.gro|Усе файлы (*.*)|*.*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Хваля (Дб)"
@@ -12021,8 +12696,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Пяры&называць"
 
 #~ msgid "C&hain (Double-Click or press SPACE to edit)"
-#~ msgstr ""
-#~ "&Ланцужок дзеянняў (змяніць падвойнай пстрычкай ці націскам прабелу)"
+#~ msgstr "&Ланцужок дзеянняў (змяніць падвойнай пстрычкай ці націскам прабелу)"
 
 #~ msgid "Insert &After"
 #~ msgstr "Уставіць &пасля"
@@ -12061,9 +12735,7 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Time Scale"
 #~ msgstr "Плыўная змена тэмпу і вышыні тону"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
 #~ msgstr "У экспартуемым файле дарожкі будуць зведзены ў адзін моноканал"
 
 #~ msgid "Playthrough"
@@ -12228,13 +12900,8 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Час завяршэння фрагмента задняга плану"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Выкарыстоўвайце пстрычку для набліжэння па вертыкалі, Shift і пстрычка - "
-#~ "для аддалення, перацягванне з націснутай кнопкай для вылучэння вобласці "
-#~ "маштабавання."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Выкарыстоўвайце пстрычку для набліжэння па вертыкалі, Shift і пстрычка - для аддалення, перацягванне з націснутай кнопкай для вылучэння вобласці маштабавання."
 
 #~ msgid "up"
 #~ msgstr "угару"
@@ -12505,9 +13172,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "&Заўсёды зводзіць дарожкі ў стэрэа ці мана"
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr ""
-#~ "&Запытваць спосаб звесткі (напрыклад, для экспарту шматканальнага 5.1 "
-#~ "файла)"
+#~ msgstr "&Запытваць спосаб звесткі (напрыклад, для экспарту шматканальнага 5.1 файла)"
 
 #, fuzzy
 #~ msgid "Host:"
@@ -12518,15 +13183,11 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid "&Hardware Playthrough: Listen to input while recording or monitoring"
-#~ msgstr ""
-#~ "&Апаратнае скразное прайграванне: новая дарожка чутная пры яе запісе ці "
-#~ "маніторынгу"
+#~ msgstr "&Апаратнае скразное прайграванне: новая дарожка чутная пры яе запісе ці маніторынгу"
 
 #, fuzzy
 #~ msgid "&Software Playthrough: Listen to input while recording or monitoring"
-#~ msgstr ""
-#~ "&Праграмнае скразное прайграванне: новая дарожка чутная пры яе запісе ці "
-#~ "маніторынгу"
+#~ msgstr "&Праграмнае скразное прайграванне: новая дарожка чутная пры яе запісе ці маніторынгу"
 
 #, fuzzy
 #~ msgid "(uncheck when recording computer playback)"
@@ -12558,12 +13219,9 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "&Паказваць спектраграмы ў градацыях шэрага"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
-#~ "loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
 #~ "when the program starts up."
-#~ msgstr ""
-#~ "Калі параметр Загружаць кэш тэмы пры запуску ўключаны, кэш тэмы будзе "
-#~ "загружацца пры запуску праграмы."
+#~ msgstr "Калі параметр Загружаць кэш тэмы пры запуску ўключаны, кэш тэмы будзе загружацца пры запуску праграмы."
 
 #~ msgid "Load Theme Cache At Startup"
 #~ msgstr "Загружаць кэш тэмы пры запуску"
@@ -12629,12 +13287,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Welcome to Audacity "
 #~ msgstr "Сардэчна запрашаем у Audacity"
 
-#~ msgid ""
-#~ " For even quicker answers, all the online resources above are "
-#~ "<b>searchable</b>."
-#~ msgstr ""
-#~ "Усе сеткавыя рэсурсы ўтрымоўваюць функцыю <b>пошуку</b>, так што знайсці "
-#~ "адказ можна яшчэ хутчэй."
+#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
+#~ msgstr "Усе сеткавыя рэсурсы ўтрымоўваюць функцыю <b>пошуку</b>, так што знайсці адказ можна яшчэ хутчэй."
 
 #~ msgid "Edit Metadata"
 #~ msgstr "Праўка метададзеных"
@@ -12873,12 +13527,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Command-line options supported:"
 #~ msgstr "Падтрымоўваныя ключы для каманднага радка:"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
-#~ msgstr ""
-#~ "Акрамя таго, пакажыце імя гукавога файла ці праекта Audacity, які трэба "
-#~ "адкрыць."
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
+#~ msgstr "Акрамя таго, пакажыце імя гукавога файла ці праекта Audacity, які трэба адкрыць."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "Эфект Стэрэа ў мана не знойдзены"
@@ -12886,10 +13536,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Курсор: %d Гц (%s) = %d Дб    Пік: %d Гц (%s) = %.1f Дб"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "Курсор: %.4f з (%d Гц) (%s) = %f,    Пік: %.4f з (%d Гц) (%s) = %.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "Курсор: %.4f з (%d Гц) (%s) = %f,    Пік: %.4f з (%d Гц) (%s) = %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -13077,16 +13725,11 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Нармалізацыя..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Ужыты эфект: %s затрымка = %f секунд, каэфіцыент згасання = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Ужыты эфект: %s. %d этапаў, %.0f%% апрацавана, чашчыня = %.1f Гц, "
-#~ "пачатковая фаза = %.0f deg, глыбіня = %d, аддача = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Ужыты эфект: %s. %d этапаў, %.0f%% апрацавана, чашчыня = %.1f Гц, пачатковая фаза = %.0f deg, глыбіня = %d, аддача = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Фейзер..."
@@ -13168,12 +13811,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "VST Effect"
 #~ msgstr "Эфекты VST"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Ужыты эфект: чашчыня %s = %.1f Гц, пачатковая фаза = %.0f deg, глыбіня = "
-#~ "%.0f%%, рэзананс = %.1f, зрушэнне чашчыні = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Ужыты эфект: чашчыня %s = %.1f Гц, пачатковая фаза = %.0f deg, глыбіня = %.0f%%, рэзананс = %.1f, зрушэнне чашчыні = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -13203,12 +13842,10 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "GSM 6.10 WAV (mobile)"
 
 #~ msgid "Your file will be exported as a 16-bit AIFF (Apple/SGI) file.\n"
-#~ msgstr ""
-#~ "Ваш файл будзе экспартаваны ў файл фармату 16-bit AIFF (Apple/SGI).\n"
+#~ msgstr "Ваш файл будзе экспартаваны ў файл фармату 16-bit AIFF (Apple/SGI).\n"
 
 #~ msgid "Your file will be exported as a 16-bit WAV (Microsoft) file.\n"
-#~ msgstr ""
-#~ "Ваш файл будзе экспартаваны ў файл фармату 16-bit WAV (Microsoft).\n"
+#~ msgstr "Ваш файл будзе экспартаваны ў файл фармату 16-bit WAV (Microsoft).\n"
 
 #~ msgid "Restart Audacity to apply changes."
 #~ msgstr "Змены падзейнічаюць сілу пры наступным запуску Audacity."
@@ -13219,9 +13856,7 @@ msgstr "Запыт Nyquist..."
 
 #, fuzzy
 #~ msgid "Recording Level (Click to monitor.)"
-#~ msgstr ""
-#~ "Індыкатар узроўня на ўваходзе. Пстрыкніце для ўключэння маніторынгу "
-#~ "ўваходу."
+#~ msgstr "Індыкатар узроўня на ўваходзе. Пстрыкніце для ўключэння маніторынгу ўваходу."
 
 #, fuzzy
 #~ msgid "Spectral Selection Specifications"
@@ -13252,8 +13887,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "&Кіраўніцтва карыстача (у браўзары)"
 
 #~ msgid "Multi-Tool Mode: Ctrl-P for Mouse and Keyboard Preferences"
-#~ msgstr ""
-#~ "Універсальная прылада: націсніце Ctrl-P для налады мышы і клавіятуры"
+#~ msgstr "Універсальная прылада: націсніце Ctrl-P для налады мышы і клавіятуры"
 
 #~ msgid "To RPM"
 #~ msgstr "У іншую колькасць зваротаў у хвіліну"
@@ -13272,8 +13906,7 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Input Meter"
 #~ msgstr "Індыкатар узроўня на ўваходзе"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgid "Recovering a project will not change any files on disk before you save it."
 #~ msgstr ""
 #~ "Пры аднаўленні праекта ніводны файл на дыску не зменіцца, \n"
 #~ "пакуль вы не захаваеце праект."
@@ -13353,12 +13986,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Select vocal file(s) for batch CleanSpeech Chain..."
 #~ msgstr "Абярыце файлы з запісам голасу для пакетнай апрацоўкі"
 
-#~ msgid ""
-#~ "<p>You do not appear to have 'help' installed on your computer.<br> "
-#~ "Please <a href=\"*URL*\">view or download it online</a>."
-#~ msgstr ""
-#~ "<p>Падобна, што ўступны курс не ўсталяваны.<br> Вы можаце <a href=\"*URL*"
-#~ "\">прачытаць яго ў Інтэрнэце ці запампаваць</a>."
+#~ msgid "<p>You do not appear to have 'help' installed on your computer.<br> Please <a href=\"*URL*\">view or download it online</a>."
+#~ msgstr "<p>Падобна, што ўступны курс не ўсталяваны.<br> Вы можаце <a href=\"*URL*\">прачытаць яго ў Інтэрнэце ці запампаваць</a>."
 
 #~ msgid "Open Me&tadata Editor..."
 #~ msgstr "Адкрыць рэдактар &метададзеных..."
@@ -13427,20 +14056,15 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "Файлы Windows PCM Audio (*.wav)|*.wav"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, "
-#~ "compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, "
-#~ "because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each "
-#~ "compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select "
-#~ "one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "Сціснутыя праектныя файлы Audacity (.aup) захоўваюць вашу працу ў "
-#~ "невялікіх\n"
+#~ "Сціснутыя праектныя файлы Audacity (.aup) захоўваюць вашу працу ў невялікіх\n"
 #~ "файлах фармату Ogg Vorbis (.ogg) з некаторай стратай у якасці гучання.\n"
 #~ "Такі варыянт добра падыходзіць для перадачы вашых праектаў па сетцы.\n"
 #~ "Адкрыццё сціснутага праекта займае больш часу чым звычайна, паколькі\n"
@@ -13455,8 +14079,7 @@ msgstr "Запыт Nyquist..."
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export"
-#~ "\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
 #~ msgstr ""
 #~ "Вы захоўваеце файл праекта Audacity (.aup).\n"
 #~ "\n"
@@ -13577,8 +14200,7 @@ msgstr "Запыт Nyquist..."
 #~ msgstr "36"
 
 #~ msgid "Clea&nSpeech Mode (Customized GUI)"
-#~ msgstr ""
-#~ "Рэ&жым CleanSpeech з інтэрфейсам, аптымізаваным для апрацоўкі гаворкі"
+#~ msgstr "Рэ&жым CleanSpeech з інтэрфейсам, аптымізаваным для апрацоўкі гаворкі"
 
 #~ msgid "Don't a&pply effects in batch mode"
 #~ msgstr "&Не ўжываць эфекты ў пакетным рэжыме"
@@ -13599,12 +14221,8 @@ msgstr "Запыт Nyquist..."
 #~ msgid "Record (Shift for Append Record)"
 #~ msgstr "Запісаць (з Shift - для дадання ў канец)"
 
-#~ msgid ""
-#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
-#~ "one project, is already open."
-#~ msgstr ""
-#~ "Запіс у рэжыме CleanSpeech немагчымая, калі ўжо адкрыта дарожка ці больш "
-#~ "аднаго праекта."
+#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
+#~ msgstr "Запіс у рэжыме CleanSpeech немагчымая, калі ўжо адкрыта дарожка ці больш аднаго праекта."
 
 #~ msgid "Output level meter"
 #~ msgstr "Індыкатар узроўня на выйсці"

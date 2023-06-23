@@ -10,17 +10,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2023-03-25 07:37+0000\n"
 "Last-Translator: Fadilah Riczky <friczky@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/tenacity/"
-"tenacity/id/>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/tenacity/tenacity/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.17-dev\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -113,11 +116,26 @@ msgstr "Pilih Sumber Input"
 msgid "No playback device found for '%s'.\n"
 msgstr "Pilih Sumber Input"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Rate Sampel"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Rate Sampel"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -145,6 +163,20 @@ msgstr "Pilih Sumber Input"
 msgid "Message"
 msgstr "&Sampel Ulang..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -163,6 +195,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Audacity tidak bisa menulis file:\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -213,12 +250,21 @@ msgstr "Nama file:"
 msgid "XML files"
 msgstr "File MP3"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "File MP3"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -240,6 +286,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Direktori file sementara"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -264,9 +318,49 @@ msgstr "Bersiku"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "Selamat Datang!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -304,6 +398,10 @@ msgstr "24-bit PCM"
 msgid "32-bit float"
 msgstr "32-bit float"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -313,6 +411,21 @@ msgstr "16-bit PCM"
 #, fuzzy
 msgid "24-bit"
 msgstr "24-bit PCM"
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -392,9 +505,39 @@ msgstr "Penyaring"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Frekuensi (Hz)"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -427,6 +570,22 @@ msgstr "Ke Frekuensi dalam Detik"
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Frekuensi minimum harus lebih atau sama dengan 0 Hz"
 
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
+
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -451,6 +610,19 @@ msgstr "Mengaplikasikan..."
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "Atur Nor&mal"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -483,9 +655,17 @@ msgid "S-Curve Down"
 msgstr "Pindak ke &Bawah"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "Awal"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -496,6 +676,14 @@ msgstr "Kekuatan"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "Awal"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -511,6 +699,14 @@ msgstr "Linier"
 #, fuzzy
 msgid "Linear Out"
 msgstr "Linier"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -567,6 +763,14 @@ msgstr "Penguatan frekuensi tidak boleh negatif"
 msgid "~aPercentage values cannot be more than 1000 %."
 msgstr "Penguatan frekuensi tidak boleh negatif"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -598,9 +802,21 @@ msgid "Reconstructing clips..."
 msgstr "Membuang klik dan pop..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Ambang Batas %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -611,6 +827,21 @@ msgstr "Trek Nada"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "Trek Nada"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -657,6 +888,19 @@ msgstr "Pengurangan bising"
 msgid "Automatic"
 msgstr "Pengembalian Otomatis Akibat Crash"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "Pembeda"
@@ -675,6 +919,14 @@ msgstr "Kunci Ketikan"
 #, fuzzy
 msgid "Regular"
 msgstr "Bersiku"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -711,10 +963,23 @@ msgstr "Pre&view"
 msgid "Number of echoes"
 msgstr "Number of times to repeat:"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
 msgid "No"
 msgstr "Tidak Ada"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -741,6 +1006,10 @@ msgid "XML file"
 msgstr "File MP3"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Tambah Rekaman"
@@ -765,6 +1034,14 @@ msgstr "Error (file tidak mungkin ditulis): %s"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Error (file tidak mungkin ditulis): %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -802,6 +1079,10 @@ msgstr "Panjang (detik)"
 msgid "Length of label region (seconds)"
 msgstr "Panjang (detik)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -811,6 +1092,42 @@ msgstr "Label Edit"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "Label"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -827,6 +1144,11 @@ msgstr "Lepas"
 msgid "Warnings only"
 msgstr "Peringatan"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -837,6 +1159,12 @@ msgstr "Gabungkan Label"
 #, fuzzy
 msgid "point labels"
 msgstr "Gabungkan Label"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -863,10 +1191,42 @@ msgstr "dari Dominic Mazzoni"
 msgid "Frequency (Hz)"
 msgstr "Frekuensi (Hz)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Frekuensi minimum harus lebih atau sama dengan 0 Hz"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -944,11 +1304,36 @@ msgstr "Memangkas Diam.."
 msgid "Maximum trailing silence"
 msgstr "Memangkas Diam.."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Nama seharusnya tidak kosong"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -990,6 +1375,13 @@ msgstr "Mencari Clipping"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Bagian Kanan"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Bagian Kanan"
 
@@ -997,6 +1389,10 @@ msgstr "Bagian Kanan"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "Ja&rak (dB):"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -1073,12 +1469,42 @@ msgid "Decay (ms)"
 msgstr "Waktu baru/usang"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Nama seharusnya tidak kosong"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1094,6 +1520,18 @@ msgstr "Mengaplikasikan Leveller..."
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "Atur Nor&mal"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1152,9 +1590,19 @@ msgid "Allow"
 msgstr "Tidak Diperbolehkan"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Tidak bisa membuang '%s'"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1167,14 +1615,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Pilih file MIDI..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Nama file:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Pilih file MIDI..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1182,9 +1647,29 @@ msgid "Generating pluck sound..."
 msgstr "Membuat Nada"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "Penyaring"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1200,6 +1685,10 @@ msgstr "Buang Trek"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "Membuat Chirp"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1222,9 +1711,21 @@ msgid "Swing amount"
 msgstr "Distorsi"
 
 #: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "Number of times to repeat:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1252,6 +1753,22 @@ msgid "Beat sound"
 msgstr "Ulang"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "Membuang Bising"
@@ -1260,6 +1777,32 @@ msgstr "Membuang Bising"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Dasar Bising"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1287,6 +1830,10 @@ msgid "Center frequency of noise (Hz)"
 msgstr "Frekuensi linier"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "Frekuensi (Hz)"
@@ -1305,6 +1852,10 @@ msgstr "Tidak bisa mengekspor"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "Mengaplikasikan..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1344,6 +1895,10 @@ msgid "HTML files"
 msgstr "File MP3"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Sampel Edit"
@@ -1359,12 +1914,33 @@ msgid "Include header information"
 msgstr "Informasi Perubahan"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Standar"
 
 #: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "Semua"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1382,6 +1958,11 @@ msgstr "\t-bantuan (pesan ini)"
 msgid "Errors Only"
 msgstr "Error:"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1393,6 +1974,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Bagian Kanan"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "sampel"
@@ -1401,6 +2022,43 @@ msgstr "sampel"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "detik"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1428,6 +2086,10 @@ msgid "Value (dB)"
 msgstr "Ja&rak (dB):"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "Linier"
@@ -1448,6 +2110,14 @@ msgid "Right (dB)"
 msgstr "Kanan,"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "Linier"
@@ -1461,6 +2131,35 @@ msgstr "2 Saluran (Stereo)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "1 Saluran (Mono)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1483,9 +2182,41 @@ msgid "Select file"
 msgstr "Pilih file MIDI..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Error"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1496,6 +2227,15 @@ msgstr "Tidak bisa membuka file genre."
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Pilihan"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1535,9 +2275,17 @@ msgid "Wet level (percent)"
 msgstr "2 level"
 
 #: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Mengaplikasikan..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1593,10 +2341,97 @@ msgstr "&Analisa"
 msgid "Strength"
 msgstr "Penyaring"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Memproses Auto Duck..."
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1638,291 +2473,237 @@ msgstr "Frekuensi (Hz)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Frekuensi (Hz)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Prompt Nyquist..."
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Prompt Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&Tempel"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&Tempel"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&Tempel"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&Tempel"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&Tempel"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&Tempel"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&Tempel"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&Tempel"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "Pilih"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Pilih"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "Huruf..."
+#~ msgid "Select &Font..."
+#~ msgstr "Huruf..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Samakan Secara &Vertikal"
+#~ msgid "Split &Vertically"
+#~ msgstr "Samakan Secara &Vertikal"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Stereo Horizontal"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Stereo Horizontal"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "Tunjukkan output"
+#~ msgid "Show S&cript"
+#~ msgstr "Tunjukkan output"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "Tunjukkan output"
+#~ msgid "Show &Output"
+#~ msgstr "Tunjukkan output"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "&Toolbar"
+#~ msgid "Toolbar"
+#~ msgstr "&Toolbar"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "&Berhenti"
+#~ msgid "&Stop\tF6"
+#~ msgstr "&Berhenti"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "Variabel"
+#~ msgid "Script"
+#~ msgstr "Variabel"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "Meter Output"
+#~ msgid "Output"
+#~ msgstr "Meter Output"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Prompt Nyquist..."
+#~ msgid "Load Nyquist script"
+#~ msgstr "Prompt Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Perhatian"
+#~ msgid "Warning"
+#~ msgstr "Perhatian"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Prompt Nyquist..."
+#~ msgid "Save Nyquist script"
+#~ msgstr "Prompt Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Leland Lucius"
-msgstr "dari Leland Lucius"
+#~ msgid "Leland Lucius"
+#~ msgstr "dari Leland Lucius"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "(C) 2009 by Leland Lucius"
-msgstr "dari Leland Lucius"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "dari Leland Lucius"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Efek"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Efek"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "Tidak ada perangkat"
+#~ msgid "No matches found"
+#~ msgstr "Tidak ada perangkat"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Untitled"
-msgstr "tak berjudul"
+#~ msgid "Untitled"
+#~ msgstr "tak berjudul"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Efek"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Efek"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&Baru"
+#~ msgid "New"
+#~ msgstr "&Baru"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Buka yang Sebelumnya"
+#~ msgid "New script"
+#~ msgstr "Buka yang Sebelumnya"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "B&uka..."
+#~ msgid "Open"
+#~ msgstr "B&uka..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Buka yang Sebelumnya"
+#~ msgid "Open script"
+#~ msgstr "Buka yang Sebelumnya"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "Simpan"
+#~ msgid "Save"
+#~ msgstr "Simpan"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Prompt Nyquist..."
+#~ msgid "Save script"
+#~ msgstr "Prompt Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Simpan Sebagai..."
+#~ msgid "Save As"
+#~ msgstr "Simpan Sebagai..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "Simpan &Proyek Sebagai..."
+#~ msgid "Save script as..."
+#~ msgstr "Simpan &Proyek Sebagai..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Salin"
+#~ msgid "Copy"
+#~ msgstr "Salin"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Potong ke Clipboard"
+#~ msgid "Copy to clipboard"
+#~ msgstr "Potong ke Clipboard"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Potong"
+#~ msgid "Cut"
+#~ msgstr "Potong"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Potong ke Clipboard"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Potong ke Clipboard"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Tempel"
+#~ msgid "Paste"
+#~ msgstr "Tempel"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Ditempel dari clipboard"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Ditempel dari clipboard"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "&Hapus"
+#~ msgid "Clear"
+#~ msgstr "&Hapus"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Seleksi pengukuran"
+#~ msgid "Clear selection"
+#~ msgstr "Seleksi pengukuran"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "Pilih"
+#~ msgid "Select All"
+#~ msgstr "Pilih"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "Pilih"
+#~ msgid "Select all text"
+#~ msgstr "Pilih"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Batalkan"
+#~ msgid "Undo"
+#~ msgstr "Batalkan"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Perubahan Format"
+#~ msgid "Undo last change"
+#~ msgstr "Perubahan Format"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "Lakukan Kembali"
+#~ msgid "Redo"
+#~ msgstr "Lakukan Kembali"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Perubahan Format"
+#~ msgid "Redo previous change"
+#~ msgstr "Perubahan Format"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "&Cari Nada"
+#~ msgid "Find"
+#~ msgstr "&Cari Nada"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "&Cari Nada"
+#~ msgid "Find text"
+#~ msgstr "&Cari Nada"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "Batch"
+#~ msgid "Match"
+#~ msgstr "Batch"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Top"
-msgstr "Ke:"
+#~ msgid "Top"
+#~ msgstr "Ke:"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Tidak ada label untuk diekspor."
+#~ msgid "Go to top S-expr"
+#~ msgstr "Tidak ada label untuk diekspor."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "Atas"
+#~ msgid "Up"
+#~ msgstr "Atas"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Alat Sebelumnya"
+#~ msgid "Previous"
+#~ msgstr "Alat Sebelumnya"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Pindahkan Fokus ke Trek Sebelumnya dan Pilih"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Pindahkan Fokus ke Trek Sebelumnya dan Pilih"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "Alat Selanjutnya"
+#~ msgid "Next"
+#~ msgstr "Alat Selanjutnya"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Awal"
+#~ msgid "Start"
+#~ msgstr "Awal"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Prompt Nyquist..."
+#~ msgid "Start script"
+#~ msgstr "Prompt Nyquist..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Berhenti"
+#~ msgid "Stop"
+#~ msgstr "Berhenti"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "Prompt Nyquist..."
+#~ msgid "Stop script"
+#~ msgstr "Prompt Nyquist..."
 
 #~ msgid "Comments"
 #~ msgstr "Kommentar"
@@ -1988,8 +2769,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr ""
-#~ "<br>Nama <b>Audacity&reg;</b> adalah merk terdaftar dari Dominic Mazzoni."
+#~ msgstr "<br>Nama <b>Audacity&reg;</b> adalah merk terdaftar dari Dominic Mazzoni."
 
 #~ msgid "Build Information"
 #~ msgstr "Informasi Perubahan"
@@ -2159,8 +2939,7 @@ msgstr "Prompt Nyquist..."
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Audacity tidak bisa mencari tempat untuk meletakkan file temporary.\n"
@@ -2173,12 +2952,8 @@ msgstr "Prompt Nyquist..."
 #~ "Audacity tidak bisa mencari tempat untuk meletakkan file temporary.\n"
 #~ "Tolong masukkan direktori yang benar ke dalam dialog preferensi."
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Audacity sekarang ingin keluar. Tolong aktifkan Audacity kembali untuk "
-#~ "menggunakan direktori file temporary yang baru."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Audacity sekarang ingin keluar. Tolong aktifkan Audacity kembali untuk menggunakan direktori file temporary yang baru."
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -2204,8 +2979,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Error dalam mengunci folder temporary"
 
 #~ msgid "The system has detected that another copy of Audacity is running.\n"
-#~ msgstr ""
-#~ "Sistem telah mendeteksi bahwa Audacity yang lainnya sedang berjalan.\n"
+#~ msgstr "Sistem telah mendeteksi bahwa Audacity yang lainnya sedang berjalan.\n"
 
 #~ msgid ""
 #~ "Use the New or Open commands in the currently running Audacity\n"
@@ -2251,8 +3025,7 @@ msgstr "Prompt Nyquist..."
 #~ "File Proyek Audacity (.AUP) tidak\n"
 #~ "berasosiasi dengan Audacity.\n"
 #~ "\n"
-#~ "Hubungkan terlebih dahulu baru file tersebut bisa dibuka dengan klik "
-#~ "ganda?"
+#~ "Hubungkan terlebih dahulu baru file tersebut bisa dibuka dengan klik ganda?"
 
 #~ msgid "Audacity Project Files"
 #~ msgstr "File Proyek Audacity"
@@ -2330,54 +3103,32 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Error ketika membuka perangkat suara."
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih "
-#~ "jauh. Tetap terlalu tinggi."
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
+#~ msgstr "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih jauh. Tetap terlalu tinggi."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
 #~ msgstr "Perubahan Level Input Otomatis mengurangi volume ke %f"
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih "
-#~ "jauh. Tetap terlalu rendah."
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
+#~ msgstr "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih jauh. Tetap terlalu rendah."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
 #~ msgstr "Perubahan Level Input Otomatis menaikkan volume ke %f"
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah "
-#~ "melebihi batas tanpa menemukan volume yang cocok. tetap terlalu tinggi."
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
+#~ msgstr "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah melebihi batas tanpa menemukan volume yang cocok. tetap terlalu tinggi."
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah "
-#~ "melebihi batas tanpa menemukan volume yang cocok. tetap terlalu rendah."
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
+#~ msgstr "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah melebihi batas tanpa menemukan volume yang cocok. tetap terlalu rendah."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "Perubahan Level Input Otomatis dihentikan. %.2f sepertinya volume yang "
-#~ "cocok."
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
+#~ msgstr "Perubahan Level Input Otomatis dihentikan. %.2f sepertinya volume yang cocok."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -2412,15 +3163,12 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
-#~ "Beberapa proyek tidak disimpan sebelumnya waktu Audacity terakhir "
-#~ "dijalankan.\n"
-#~ "Pada yang akan datang, proyek-proyek ini bisa dikembalikan secara "
-#~ "otomatis:"
+#~ "Beberapa proyek tidak disimpan sebelumnya waktu Audacity terakhir dijalankan.\n"
+#~ "Pada yang akan datang, proyek-proyek ini bisa dikembalikan secara otomatis:"
 
 #, fuzzy
 #~ msgid "Recoverable &projects"
@@ -2794,8 +3542,7 @@ msgstr "Prompt Nyquist..."
 #~ "Copying these files into your project will remove this dependency.\n"
 #~ "This is safer, but needs more disk space."
 #~ msgstr ""
-#~ "Menyalin file-file ini ke dalam proyek dapat menghapus ketergantungan "
-#~ "ini.\n"
+#~ "Menyalin file-file ini ke dalam proyek dapat menghapus ketergantungan ini.\n"
 #~ "Ini membutuhkan ruang lebih banyak, tetapi lebih aman."
 
 #~ msgid "Project Dependencies"
@@ -2846,9 +3593,7 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Missing"
 #~ msgstr "Lima Mnt"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
 #~ msgstr "Proyek Anda tidak akan disimpad di disk. Itukan yang Anda mau?"
 
 #, fuzzy
@@ -2865,13 +3610,10 @@ msgstr "Prompt Nyquist..."
 #~ "\n"
 #~ "You may want to go back to Preferences > Libraries and re-configure it."
 #~ msgstr ""
-#~ "FFmpeg terkonfigurasi pada Preferensi dan diambil dengan sukses "
-#~ "sebelumnya,                       \n"
-#~ "tapi kali ini Audacity gagal mengambilnya pada awal "
-#~ "dinyalakan.                       \n"
+#~ "FFmpeg terkonfigurasi pada Preferensi dan diambil dengan sukses sebelumnya,                       \n"
+#~ "tapi kali ini Audacity gagal mengambilnya pada awal dinyalakan.                       \n"
 #~ "\n"
-#~ "Anda butuh kembali ke Preferensi > Impor/Ekspor dan mengkonfigurasikan "
-#~ "ulang."
+#~ "Anda butuh kembali ke Preferensi > Impor/Ekspor dan mengkonfigurasikan ulang."
 
 #~ msgid "FFmpeg startup failed"
 #~ msgstr "Awalan FFMpeg gagal"
@@ -2884,8 +3626,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Audacity needs the file '%s' to import and export audio via FFmpeg."
-#~ msgstr ""
-#~ "Audacity memerlukan file %s untuk menegkspor dan mengimpor dengan FFmpeg.."
+#~ msgstr "Audacity memerlukan file %s untuk menegkspor dan mengimpor dengan FFmpeg.."
 
 #, fuzzy, c-format
 #~ msgid "Location of '%s':"
@@ -2952,12 +3693,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "As&k"
 #~ msgstr "Tan&ya pengguna"
 
-#~ msgid ""
-#~ "The specified filename could not be converted due to Unicode character "
-#~ "use."
-#~ msgstr ""
-#~ "Nama file yang dipilih tidak bisa diubah karena penggunaan karakter "
-#~ "Unicode."
+#~ msgid "The specified filename could not be converted due to Unicode character use."
+#~ msgstr "Nama file yang dipilih tidak bisa diubah karena penggunaan karakter Unicode."
 
 #~ msgid "Specify New Filename:"
 #~ msgstr "Tentukan Nama File Baru:"
@@ -3027,19 +3764,12 @@ msgstr "Prompt Nyquist..."
 #~ msgid "&Replot..."
 #~ msgstr "&Plot Ulang"
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate "
-#~ "sampel yang sama."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
-#~ msgstr ""
-#~ "Terlalu banyak yang dipilih. Hanya awal %.1f detik audio yang akan "
-#~ "dianalisis."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+#~ msgstr "Terlalu banyak yang dipilih. Hanya awal %.1f detik audio yang akan dianalisis."
 
 #~ msgid "Not enough data selected."
 #~ msgstr "Data yang dipilih tidak cukup"
@@ -3110,38 +3840,20 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Ini adalah metode dukungan kami:"
 
 #, fuzzy
-#~ msgid ""
-#~ "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://"
-#~ "manual.audacityteam.org/quick_help.html|view online]]"
-#~ msgstr ""
-#~ " [[file:quick_help.html|Bantuan Kilat]] (seharusnya diinstal dahulu, <a "
-#~ "href=\"http://manual.audacityteam.org/index.php?title=Quick_Help"
-#~ "\">gunakan versi internet jika tidak ada</a>)"
+#~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
+#~ msgstr " [[file:quick_help.html|Bantuan Kilat]] (seharusnya diinstal dahulu, <a href=\"http://manual.audacityteam.org/index.php?title=Quick_Help\">gunakan versi internet jika tidak ada</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual."
-#~ "audacityteam.org/|view online]]"
-#~ msgstr ""
-#~ " [[file:index.html|Manual]] (seharusnya diinstal dahulu, <a href=\"http://"
-#~ "manual.audacityteam.org/index.php\">gunakan versi internet jika tidak "
-#~ "ada</a>)"
+#~ msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
+#~ msgstr " [[file:index.html|Manual]] (seharusnya diinstal dahulu, <a href=\"http://manual.audacityteam.org/index.php\">gunakan versi internet jika tidak ada</a>)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
-#~ "online."
-#~ msgstr ""
-#~ " <a href=\"http://forum.audacityteam.org/\">Forum</a> (tanyakan secara "
-#~ "langsung di internet)"
+#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
+#~ msgstr " <a href=\"http://forum.audacityteam.org/\">Forum</a> (tanyakan secara langsung di internet)"
 
 #, fuzzy
-#~ msgid ""
-#~ "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for "
-#~ "tips, tricks, extra tutorials and effects plug-ins."
-#~ msgstr ""
-#~ " [[http://wiki.audacityteam.org/index.php|Wiki]] (tips, trik dan tutorial "
-#~ "terbaru di internet)"
+#~ msgid "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
+#~ msgstr " [[http://wiki.audacityteam.org/index.php|Wiki]] (tips, trik dan tutorial terbaru di internet)"
 
 #, fuzzy
 #~ msgid "History"
@@ -3233,12 +3945,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Pilih Bahasa untuk digunakan pada Audacity:"
 
 #, c-format
-#~ msgid ""
-#~ "The language you have chosen, %s (%s), is not the same as the system "
-#~ "language, %s (%s)."
-#~ msgstr ""
-#~ "Bahasa yang Anda gunakan, %s (%s), tidak sama dengan bahasa sistem, %s "
-#~ "(%s)."
+#~ msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
+#~ msgstr "Bahasa yang Anda gunakan, %s (%s), tidak sama dengan bahasa sistem, %s (%s)."
 
 #~ msgid "Confirm"
 #~ msgstr "Konfirmasi"
@@ -3476,16 +4184,11 @@ msgstr "Prompt Nyquist..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat "
-#~ "output dan rate sampel proyek."
+#~ msgstr "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat output dan rate sampel proyek."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate "
-#~ "sampel yang sama."
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
 
 #~ msgid "Recorded Audio"
 #~ msgstr "Rekaman Audio"
@@ -3506,9 +4209,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid "Treat missing audio as silence (this session only)"
-#~ msgstr ""
-#~ "Mengembalikan data yang hilang diam-diam secara sementara [hanya sesi ini "
-#~ "saja]"
+#~ msgstr "Mengembalikan data yang hilang diam-diam secara sementara [hanya sesi ini saja]"
 
 #, fuzzy
 #~ msgid "Warning - Missing Aliased File(s)"
@@ -3558,8 +4259,7 @@ msgstr "Prompt Nyquist..."
 #~ "mungkin karena bug, crash, atau ketidaksengajaan. \n"
 #~ "Tidak ada jalan lain selain mengembalikan data yang hilang\n"
 #~ "secara otomatis; Anda bisa memilih untuk tetap mengosongkan data tadi\n"
-#~ "atau secara sementara atau tutup proyek dan mencoba mengembalikannya "
-#~ "sendiri."
+#~ "atau secara sementara atau tutup proyek dan mencoba mengembalikannya sendiri."
 
 #, fuzzy
 #~ msgid "Replace missing audio with silence (permanent immediately)"
@@ -3567,8 +4267,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid "Continue without deleting; ignore the extra files this session"
-#~ msgstr ""
-#~ "Terus tanpa penghapusan; bekerja di sekitar file tambahan secara diam-diam"
+#~ msgstr "Terus tanpa penghapusan; bekerja di sekitar file tambahan secara diam-diam"
 
 #, fuzzy
 #~ msgid "Delete orphan files (permanent immediately)"
@@ -3673,8 +4372,7 @@ msgstr "Prompt Nyquist..."
 #, fuzzy, c-format
 #~ msgid ""
 #~ "This file was saved using Audacity %s.\n"
-#~ "You are using Audacity %s. You may need to upgrade to a newer version to "
-#~ "open this file."
+#~ "You are using Audacity %s. You may need to upgrade to a newer version to open this file."
 #~ msgstr ""
 #~ "File ini disimpan dengan Audacity %s.\n"
 #~ "Anda menggunakan Audacity %s - anda diharuskan untuk\n"
@@ -3712,10 +4410,8 @@ msgstr "Prompt Nyquist..."
 #~ "\n"
 #~ "It has been recovered to the last snapshot."
 #~ msgstr ""
-#~ "Beberapa proyek tidak disimpan sebelumnya waktu Audacity terakhir "
-#~ "dijalankan.\n"
-#~ "Pada yang akan datang, proyek-proyek ini bisa dikembalikan secara "
-#~ "otomatis:"
+#~ "Beberapa proyek tidak disimpan sebelumnya waktu Audacity terakhir dijalankan.\n"
+#~ "Pada yang akan datang, proyek-proyek ini bisa dikembalikan secara otomatis:"
 
 #, fuzzy
 #~ msgid "Project Recovered"
@@ -3753,12 +4449,10 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Tersimpan %s"
 
 #~ msgid ""
-#~ "The project was not saved because the file name provided would overwrite "
-#~ "another project.\n"
+#~ "The project was not saved because the file name provided would overwrite another project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
-#~ "lainnya.\n"
+#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
 #~ "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #, fuzzy, c-format
@@ -3771,12 +4465,10 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "The project was not saved because the selected project is open in another "
-#~ "window.\n"
+#~ "The project was not saved because the selected project is open in another window.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
-#~ "lainnya.\n"
+#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
 #~ "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #, fuzzy, c-format
@@ -3788,8 +4480,7 @@ msgstr "Prompt Nyquist..."
 #~ "Saving a copy must not overwrite an existing saved project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
-#~ "lainnya.\n"
+#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
 #~ "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #, fuzzy
@@ -4121,8 +4812,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-#~ msgstr ""
-#~ "Gunakan tombol arah (atau tombol RETURN setelah mengedit) untuk navigasi."
+#~ msgstr "Gunakan tombol arah (atau tombol RETURN setelah mengedit) untuk navigasi."
 
 #~ msgid "Tag"
 #~ msgstr "Tag"
@@ -4302,8 +4992,7 @@ msgstr "Prompt Nyquist..."
 #~ "for Timer Recording because it would overwrite another project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
-#~ "lainnya.\n"
+#~ "Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
 #~ "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #, fuzzy
@@ -4506,9 +5195,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr " Pilihan Hidup"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
 #~ msgstr "Klik dan dorong untuk mengubah ukuran relatif trek stereo."
 
 #~ msgid "Click and drag to resize the track."
@@ -5088,19 +5775,11 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Auto Duck"
 #~ msgstr "Auto Duck"
 
-#~ msgid ""
-#~ "You selected a track which does not contain audio. AutoDuck can only "
-#~ "process audio tracks."
-#~ msgstr ""
-#~ "Anda memilih trek yang tidak ada suaranya. AutoDuck hanya bisa memproses "
-#~ "trek beraudio."
+#~ msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
+#~ msgstr "Anda memilih trek yang tidak ada suaranya. AutoDuck hanya bisa memproses trek beraudio."
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
-#~ msgstr ""
-#~ "Auto Duck membutuhkan trek pengendali yang harus ditempatkan dibawah trek "
-#~ "yang dipilih."
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+#~ msgstr "Auto Duck membutuhkan trek pengendali yang harus ditempatkan dibawah trek yang dipilih."
 
 #, fuzzy
 #~ msgid "Duck &amount:"
@@ -5457,12 +6136,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Silahkan pilih aksinya"
 
 #, fuzzy
-#~ msgid ""
-#~ "Contrast Analyzer, for measuring RMS volume differences between two "
-#~ "selections of audio."
-#~ msgstr ""
-#~ "Penganalisis kontras, untuk mengukur perbedaan volume rms diantara dua "
-#~ "audio yang dipilih."
+#~ msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
+#~ msgstr "Penganalisis kontras, untuk mengukur perbedaan volume rms diantara dua audio yang dipilih."
 
 #~ msgid "End"
 #~ msgstr "Akhir"
@@ -6013,22 +6688,16 @@ msgstr "Prompt Nyquist..."
 #, fuzzy
 #~ msgid ""
 #~ "To use this filter curve in a macro, please choose a new name for it.\n"
-#~ "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-#~ "then use that one."
-#~ msgstr ""
-#~ "Untuk menggunakan kurva EQ pada untaian batch, silahkan pilih nama baru "
-#~ "untuknya."
+#~ "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
+#~ msgstr "Untuk menggunakan kurva EQ pada untaian batch, silahkan pilih nama baru untuknya."
 
 #, fuzzy
 #~ msgid "Filter Curve EQ needs a different name"
 #~ msgstr "Kurva EQ memerlukan nama yang berbeda"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate "
-#~ "sampel yang sama."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -6375,8 +7044,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
 #~ msgstr ""
 #~ "Pilih seluruh audio yang anda mau disaring, pilih seberapa banyak bising\n"
@@ -6444,8 +7112,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Pembuang Bising"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
 #~ msgstr ""
 #~ "Pilih seluruh audio yang anda mau disaring, pilih seberapa banyak bising\n"
@@ -6563,13 +7230,11 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Perbaiki"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
-#~ "Efek perbaikan hanya digunakan pada sesi sangat pendek pada audio yang "
-#~ "hancur (lebih dari 128 sampel).\n"
+#~ "Efek perbaikan hanya digunakan pada sesi sangat pendek pada audio yang hancur (lebih dari 128 sampel).\n"
 #~ "\n"
 #~ "Perbesar dan pilih fraksi kecil untuk memperbaikinya."
 
@@ -6580,11 +7245,9 @@ msgstr "Prompt Nyquist..."
 #~ "\n"
 #~ "The more surrounding audio, the better it performs."
 #~ msgstr ""
-#~ "Perbaikan bekerja dengan menggunakan data audio di luar wilayah yang "
-#~ "dipilih.\n"
+#~ "Perbaikan bekerja dengan menggunakan data audio di luar wilayah yang dipilih.\n"
 #~ "\n"
-#~ "Silahkan pilih wilayah yang mempinyai sentuhan audio sedikitnya satu sisi "
-#~ "ini.\n"
+#~ "Silahkan pilih wilayah yang mempinyai sentuhan audio sedikitnya satu sisi ini.\n"
 #~ "\n"
 #~ "Audio lebih mengelegar, lebih baik performanya."
 
@@ -6660,11 +7323,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Batas Atas"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate "
-#~ "sampel yang sama."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
 
 #, fuzzy
 #~ msgid "&Filter Type:"
@@ -7106,11 +7766,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Nyquist Error"
 #~ msgstr "Prompt Nyquist..."
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Maaf, efek tidak bisa dipakai padatrek stereo yang trek-terknya tidak "
-#~ "cocok."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Maaf, efek tidak bisa dipakai padatrek stereo yang trek-terknya tidak cocok."
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -7156,8 +7813,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Nyquist tidak menghasilkan audio.\n"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Versi Audacity ini tidak di-compile dengan dukungan %s."
 
 #, fuzzy
@@ -7208,12 +7864,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Vamp Effects"
 #~ msgstr "Efek VST"
 
-#~ msgid ""
-#~ "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-#~ "channels of the track do not match."
-#~ msgstr ""
-#~ "Maaf, Plug-in Vamp tidak bisa dipakai pada trek stereo yang masing-masing "
-#~ "salurannya tidak cocok."
+#~ msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Maaf, Plug-in Vamp tidak bisa dipakai pada trek stereo yang masing-masing salurannya tidak cocok."
 
 #~ msgid "Sorry, failed to load Vamp Plug-in."
 #~ msgstr "Maaf, gagal mengambil Plug-in Vamp."
@@ -7255,15 +7907,13 @@ msgstr "Prompt Nyquist..."
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ "Anda ingin menyimpan file %s dengan nama \"%s\".\n"
 #~ "\n"
-#~ "Biasanya file berakhiran dengan \".%s\", dan beberapa program tidak dapat "
-#~ "membuka file dengan ekstensi nonstandar.\n"
+#~ "Biasanya file berakhiran dengan \".%s\", dan beberapa program tidak dapat membuka file dengan ekstensi nonstandar.\n"
 #~ "\n"
 #~ "Anda yakin ingin menyimpan file dangan nama ini?"
 
@@ -7283,9 +7933,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Trek Anda akan di-mix ke stereo pada pengeksporan file."
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
 #~ msgstr "Trek Anda akan di-mix ke stereo pada pengeksporan file."
 
 #~ msgid "Advanced Mixing Options"
@@ -7324,11 +7972,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Tunjukkan output"
 
 #, c-format
-#~ msgid ""
-#~ "Data will be piped to standard in. \"%f\" uses the file name in the "
-#~ "export window."
-#~ msgstr ""
-#~ "Data akan distandarkan. \"%f\" menguunakan nama file pada jendela ekspor."
+#~ msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
+#~ msgstr "Data akan distandarkan. \"%f\" menguunakan nama file pada jendela ekspor."
 
 #, fuzzy
 #~ msgid "Executables"
@@ -7387,12 +8032,8 @@ msgstr "Prompt Nyquist..."
 #~ "Pendukuk codec ini mungkin belum dibuat."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Attempted to export %d channels, but maximum number of channels for "
-#~ "selected output format is %d"
-#~ msgstr ""
-#~ "Sedang mengekspor %d saluran, tapi saluran maksimal untuk format ini "
-#~ "adalah %d"
+#~ msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
+#~ msgstr "Sedang mengekspor %d saluran, tapi saluran maksimal untuk format ini adalah %d"
 
 #, c-format
 #~ msgid "Exporting selected audio as %s"
@@ -7620,12 +8261,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Codec:"
 #~ msgstr "Codec:"
 
-#~ msgid ""
-#~ "Not all formats and codecs are compatible. Nor are all option "
-#~ "combinations compatible with all codecs."
-#~ msgstr ""
-#~ "Tidak semua format dan codec kompetibel. Begitu pula kombinasi opsi yang "
-#~ "belum tentu kompetibel dengan semua codec."
+#~ msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
+#~ msgstr "Tidak semua format dan codec kompetibel. Begitu pula kombinasi opsi yang belum tentu kompetibel dengan semua codec."
 
 #~ msgid "Show All Formats"
 #~ msgstr "Tunjukkan Semua Format"
@@ -7673,8 +8310,7 @@ msgstr "Prompt Nyquist..."
 #~ "Recommended - 192000"
 #~ msgstr ""
 #~ "Bit Rate (bit/detik) - menunjukkan hasil pada ukuran file dan kualitas\n"
-#~ "Beberapa codec mungkin hanya menunjukkan nilai spesifik (128k, 192k, "
-#~ "256k, dll)\n"
+#~ "Beberapa codec mungkin hanya menunjukkan nilai spesifik (128k, 192k, 256k, dll)\n"
 #~ "0 - otomatis\n"
 #~ "Direkomendasikan - 192000"
 
@@ -8033,12 +8669,10 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
-#~ "with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "Anda menghubungkan lame_enc.dll v%d.%d. Viersi ini tidak cocok dengan "
-#~ "Audacity %d.%d.%d.\n"
+#~ "Anda menghubungkan lame_enc.dll v%d.%d. Viersi ini tidak cocok dengan Audacity %d.%d.%d.\n"
 #~ "Silahkan download versi akhir referensi LAME MP3."
 
 #, fuzzy
@@ -8188,8 +8822,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Ekspor dihentikan setelah mengekspor %lld file."
 
 #, c-format
-#~ msgid ""
-#~ "Something went really wrong after exporting the following %lld file(s)."
+#~ msgid "Something went really wrong after exporting the following %lld file(s)."
 #~ msgstr "Ada sesuatu yang fatal setelah mengekspor %lld file."
 
 #, c-format
@@ -8293,8 +8926,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr ""
 #~ "\"%s\" \n"
 #~ "adalah file MIDI, buka file audio. \n"
-#~ "Audacity tidak bisa membuka tipe file ini untuk dimainkan, tapi Anda "
-#~ "bisa \n"
+#~ "Audacity tidak bisa membuka tipe file ini untuk dimainkan, tapi Anda bisa \n"
 #~ "mengeditnya dengan mengklik Berkas > Impor > MIDI."
 
 #, fuzzy, c-format
@@ -8305,8 +8937,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr ""
 #~ "\"%s\" \n"
 #~ "adalah file MIDI, buka file audio. \n"
-#~ "Audacity tidak bisa membuka tipe file ini untuk dimainkan, tapi Anda "
-#~ "bisa \n"
+#~ "Audacity tidak bisa membuka tipe file ini untuk dimainkan, tapi Anda bisa \n"
 #~ "mengeditnya dengan mengklik Berkas > Impor > MIDI."
 
 #~ msgid "Select stream(s) to import"
@@ -8331,16 +8962,12 @@ msgstr "Prompt Nyquist..."
 #, c-format
 #~ msgid ""
 #~ "\"%s\" is a playlist file. \n"
-#~ "Audacity cannot open this file because it only contains links to other "
-#~ "files. \n"
-#~ "You may be able to open it in a text editor and download the actual audio "
-#~ "files."
+#~ "Audacity cannot open this file because it only contains links to other files. \n"
+#~ "You may be able to open it in a text editor and download the actual audio files."
 #~ msgstr ""
 #~ "\"%s\" adalah file playlist. \n"
-#~ "Audacity tidak bisa membuka file karena ini hanya mempunyai link ke file "
-#~ "lain. \n"
-#~ "Anda bisa membuka file ini pada editor teks dan download file audio yang "
-#~ "asli."
+#~ "Audacity tidak bisa membuka file karena ini hanya mempunyai link ke file lain. \n"
+#~ "Anda bisa membuka file ini pada editor teks dan download file audio yang asli."
 
 #, c-format
 #~ msgid ""
@@ -8350,21 +8977,17 @@ msgstr "Prompt Nyquist..."
 #~ msgstr ""
 #~ "\"%s\" adalah file Windows Media Audio. \n"
 #~ "Audacity tidak bisa membuka tipe file ini karena pelarangan paten. \n"
-#~ "Anda perlu mengubahnya ke format audio yang mendukung, seperti WAV atau "
-#~ "AIFF."
+#~ "Anda perlu mengubahnya ke format audio yang mendukung, seperti WAV atau AIFF."
 
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" adalah file Advanced Audio Coding. \n"
 #~ "Audacity tidak bisa membuka file ini. \n"
-#~ "Anda perlu mengubahnya ke format audio yang mendukung, seperti WAV atau "
-#~ "AIFF."
+#~ "Anda perlu mengubahnya ke format audio yang mendukung, seperti WAV atau AIFF."
 
 #, c-format
 #~ msgid ""
@@ -8407,16 +9030,13 @@ msgstr "Prompt Nyquist..."
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" adalah file audio Musepack. \n"
 #~ "Audacity tidak bisa membuka tipe file ini. \n"
-#~ "Jika anda berpikir ini adalah file mp3, ganti nama ekstensi file Anda ke "
-#~ "\".mp3\" \n"
-#~ "dan coba mengimpor lagi. Atau anda perlu mengubah ke format audio yang "
-#~ "mendukung, \n"
+#~ "Jika anda berpikir ini adalah file mp3, ganti nama ekstensi file Anda ke \".mp3\" \n"
+#~ "dan coba mengimpor lagi. Atau anda perlu mengubah ke format audio yang mendukung, \n"
 #~ "seperti WAV atau AIFF."
 
 #, c-format
@@ -8457,8 +9077,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr ""
 #~ "\"%s\" adalah file video. \n"
 #~ "Audacity belum bisa membuka tipe file ini. \n"
-#~ "Anda perlu mengekstrak audio ke format yang mendukung, seperti WAV atau "
-#~ "AIFF."
+#~ "Anda perlu mengekstrak audio ke format yang mendukung, seperti WAV atau AIFF."
 
 #, fuzzy, c-format
 #~ msgid "File \"%s\" not found."
@@ -8471,8 +9090,7 @@ msgstr "Prompt Nyquist..."
 #~ "%sFor uncompressed files, also try File > Import > Raw Data."
 #~ msgstr ""
 #~ "Audacity tidak dapat membaca tipe file '%s'.\n"
-#~ "Jika ini tidak dikompres, coba mengimpornya dengan menggunakan \"Import "
-#~ "Raw\""
+#~ "Jika ini tidak dikompres, coba mengimpornya dengan menggunakan \"Import Raw\""
 
 #, c-format
 #~ msgid ""
@@ -8531,11 +9149,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "File yang berkompetibel dengan FFmpeg"
 
 #, c-format
-#~ msgid ""
-#~ "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], "
-#~ "Duration[%d]"
-#~ msgstr ""
-#~ "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+#~ msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+#~ msgstr "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
 
 #~ msgid "FLAC files"
 #~ msgstr "File FLAC"
@@ -8557,8 +9172,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-#~ msgstr ""
-#~ "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+#~ msgstr "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
 
 #, fuzzy
 #~ msgid "Unable to import file, state change failed."
@@ -8581,9 +9195,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Durasi file LOF tidak valid"
 
 #~ msgid "MIDI tracks cannot be offset individually, only audio files can be."
-#~ msgstr ""
-#~ "Trek MIDI tidak bisa diseimbangkan dengan sendirinya, hanya file audio "
-#~ "yang bisa."
+#~ msgstr "Trek MIDI tidak bisa diseimbangkan dengan sendirinya, hanya file audio yang bisa."
 
 #~ msgid "Invalid track offset in LOF file."
 #~ msgstr "trek offset pada file LOF tidak valid."
@@ -8617,8 +9229,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy, c-format
 #~ msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-#~ msgstr ""
-#~ "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+#~ msgstr "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
 
 #~ msgid "Media read error"
 #~ msgstr "Pembaca media error"
@@ -10615,12 +11226,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Directory %s is not writable"
 #~ msgstr "Direktori %s tidak bisa ditulis"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Pengubahan direktori temporer tidak berefek sampai Audacity dihidupkan "
-#~ "ulang"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Pengubahan direktori temporer tidak berefek sampai Audacity dihidupkan ulang"
 
 #, fuzzy
 #~ msgid "Temp Directory Update"
@@ -10951,9 +11558,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Pengubahan direktori temporer tidak berefek sampai Audacity dihidupkan "
-#~ "ulang"
+#~ msgstr "Pengubahan direktori temporer tidak berefek sampai Audacity dihidupkan ulang"
 
 #, fuzzy
 #~ msgid "Ask"
@@ -11460,36 +12065,29 @@ msgstr "Prompt Nyquist..."
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
 #~ "Tema adalah fitur percobaan.\n"
 #~ "\n"
-#~ "Untuk mencobanya, klik \"Simpan Cache Tema\" kemudian cari dan ubah "
-#~ "gambar dan\n"
+#~ "Untuk mencobanya, klik \"Simpan Cache Tema\" kemudian cari dan ubah gambar dan\n"
 #~ "warna pada ImageCacheVxx.png dengan editor gambar seperti Gimp.\n"
 #~ "\n"
-#~ "Klik \"Ambil Cache Tema\" Untuk mengambil gambar dan warna yang telah "
-#~ "diubah ke Audacity.\n"
+#~ "Klik \"Ambil Cache Tema\" Untuk mengambil gambar dan warna yang telah diubah ke Audacity.\n"
 #~ "\n"
 #~ "[Hanya toolbar kontrol dan warna wavetrack \n"
 #~ "yang berubah, walaupun file gambar mempunyai icon juga.]"
 
 #~ msgid ""
-#~ "Saving and loading individual theme files uses a separate file for each "
-#~ "image, but is\n"
+#~ "Saving and loading individual theme files uses a separate file for each image, but is\n"
 #~ "otherwise the same idea."
 #~ msgstr ""
-#~ "Menyimpan atau mengambil file tema sendiri menggunakan file terpisah "
-#~ "untuk setiap\n"
+#~ "Menyimpan atau mengambil file tema sendiri menggunakan file terpisah untuk setiap\n"
 #~ "gambar, tapi tetap berhubungan."
 
 #~ msgid "Theme Cache - Images && Color"
@@ -12109,12 +12707,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Oktaf Bawah"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, "
-#~ "Dorong untuk membuat wilayah zoom kecil."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, Dorong untuk membuat wilayah zoom kecil."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -12162,11 +12756,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Click and drag to edit the samples"
 #~ msgstr "Kik dan dorong untuk mengedit sampel"
 
-#~ msgid ""
-#~ "To use Draw, zoom in further until you can see the individual samples."
-#~ msgstr ""
-#~ "Untuk emnggunakan Gambar, perbesar sampai Anda melihat sampel berdiri "
-#~ "sendiri."
+#~ msgid "To use Draw, zoom in further until you can see the individual samples."
+#~ msgstr "Untuk emnggunakan Gambar, perbesar sampai Anda melihat sampel berdiri sendiri."
 
 #, fuzzy
 #~ msgid "Moved Samples"
@@ -12312,8 +12903,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "%.1f dB"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
 #~ msgstr "Klik dan dorong untuk mengubah ukuran relatif trek stereo."
 
 #, fuzzy
@@ -12467,8 +13057,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Klik dan dorong untuk memindahkan batasan kiri."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Klik dan dorong untuk memindahkan batasan kiri."
 
 #, fuzzy
@@ -13074,8 +13663,7 @@ msgstr "Prompt Nyquist..."
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up "
-#~ "first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
@@ -13112,12 +13700,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Simpan Proyek Terkompres Sebagai..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
-#~ msgstr ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgstr "Audacity was unable to convert an Audacity 1.0 project to the new project format."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Tidak bisa membuang file simpan otomatis yang lama"
@@ -13125,19 +13709,11 @@ msgstr "Prompt Nyquist..."
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "Mengimpor di tempat dan perhitungan waveform selesai."
 
-#~ msgid ""
-#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
-#~ "%2.0f%% complete."
-#~ msgstr ""
-#~ "Mengimpor selesai. Menjalankan %d perhitungan waveform di tempat. %2.0f%% "
-#~ "selesai dari semuanya."
+#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
+#~ msgstr "Mengimpor selesai. Menjalankan %d perhitungan waveform di tempat. %2.0f%% selesai dari semuanya."
 
-#~ msgid ""
-#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
-#~ "complete."
-#~ msgstr ""
-#~ "Mengimpor selesai. Menjalankan perhitungan waveform di tempat. %2.0f%% "
-#~ "selesai."
+#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgstr "Mengimpor selesai. Menjalankan perhitungan waveform di tempat. %2.0f%% selesai."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -13194,8 +13770,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Memori Bebas Mi&nimum (MB):"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no "
-#~ "longer\n"
+#~ "If the available system memory falls below this value, audio will no longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
 #~ "Jika memori sistem yang ada di bawah biasanya, audio tidak akan\n"
@@ -13255,20 +13830,16 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Tim Pengembang Audacity %s"
 
 #, fuzzy
-#~ msgid ""
-#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
-#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "Perangkat lunak <b>Audacity&reg;</b> sudah terdaftar"
 
 #, fuzzy
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete "
-#~ "project check."
+#~ "Please consider saving and reloading the project to perform a complete project check."
 #~ msgstr ""
 #~ "Audacity menemukan anak file blok %s! \n"
-#~ "Silahkan Anda simpan dan buka kembali proyek Anda untuk melakukan "
-#~ "pengecekan penuh."
+#~ "Silahkan Anda simpan dan buka kembali proyek Anda untuk melakukan pengecekan penuh."
 
 #, fuzzy
 #~ msgid "Unable to open/create test file."
@@ -13304,14 +13875,10 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "GB"
 
 #, fuzzy
-#~ msgid ""
-#~ "Project check found file inconsistencies inspecting the loaded project "
-#~ "data."
+#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
 #~ msgstr ""
-#~ "Pengecekan menemukan ketidakkonsistenan keteka memeriksa data yang "
-#~ "diambil;\n"
-#~ "Tekan 'Detail' untuk daftar error, atau 'OK' untuk meneruskan ke opsi "
-#~ "lainnya."
+#~ "Pengecekan menemukan ketidakkonsistenan keteka memeriksa data yang diambil;\n"
+#~ "Tekan 'Detail' untuk daftar error, atau 'OK' untuk meneruskan ke opsi lainnya."
 
 #, fuzzy
 #~ msgid "Presets (*.txt)|*.txt|All files|*"
@@ -13378,23 +13945,15 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Bolehkan memotong ba&tas"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Hanya avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Hanya avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Referensi Dinamis (*.dylib)|*.dylib|Semua File (*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Hanya libavformat.so|libavformat.so*|Referensi Terhubung Dinamis (*.so*)|"
-#~ "*.so*|Semua File (*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Hanya libavformat.so|libavformat.so*|Referensi Terhubung Dinamis (*.so*)|*.so*|Semua File (*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -13428,34 +13987,18 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "kbps"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Hanya lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Hanya lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|Semua File (*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|Semua File (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|Semua File (*)|*"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|Semua File (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Hanya libmp3lame.so.0|libmp3lame.so.0|File Primary Shared Object (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|Semua File (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Hanya libmp3lame.so.0|libmp3lame.so.0|File Primary Shared Object (*.so)|*.so|Extended Libraries (*.so*)|*.so*|Semua File (*)|*"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -13473,24 +14016,16 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "File MIDI (*.mid)|*.mid|File Allegro (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "File MIDI dan Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|File MIDI "
-#~ "(*.mid;*.midi)|*.mid;*.midi|File Allegro (*.gro)|*.gro|Semua file (*.*)|*."
-#~ "*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "File MIDI dan Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|File MIDI (*.mid;*.midi)|*.mid;*.midi|File Allegro (*.gro)|*.gro|Semua file (*.*)|*.*"
 
 #, fuzzy
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output "
-#~ "Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
-#~ "Anda telah mengkompilasikan Audacity dengan tombol tambahan, 'Sumber "
-#~ "Output'.\n"
-#~ "Ini akan menyimpan gambar versi C yang bisa dikompilasi sebagaimana "
-#~ "mestinya."
+#~ "Anda telah mengkompilasikan Audacity dengan tombol tambahan, 'Sumber Output'.\n"
+#~ "Ini akan menyimpan gambar versi C yang bisa dikompilasi sebagaimana mestinya."
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Waveform (db)"
@@ -13515,9 +14050,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "&Normalkan semua trek pada proyek"
 
 #, fuzzy
-#~ msgid ""
-#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
-#~ "Menu."
+#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
 #~ msgstr "Untuk menggunakan Gambar, pilih 'Waveform' pada Menu Trek."
 
 #, fuzzy
@@ -13619,17 +14152,13 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Kanan"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden "
-#~ "before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
-#~ "to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
 #~ msgstr ""
-#~ "Aturan perbaikan laten telah menyebabkan audio yang direkam dihilangkan "
-#~ "sebelum nol.\n"
+#~ "Aturan perbaikan laten telah menyebabkan audio yang direkam dihilangkan sebelum nol.\n"
 #~ "Audacity telah mengembalikannya untuk mulai dari nol.\n"
-#~ "Anda bisa menggunakan Alat Time Shift (<--> atau F5) untuk memindahkan "
-#~ "trak ke tempat yang tepat."
+#~ "Anda bisa menggunakan Alat Time Shift (<--> atau F5) untuk memindahkan trak ke tempat yang tepat."
 
 #~ msgid "Latency problem"
 #~ msgstr "Masalah Laten"
@@ -13701,9 +14230,7 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Time Scale"
 #~ msgstr "Skala Waktu"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
 #~ msgstr "Trek Anda akan di-mix ke mono pada pengeksporan file."
 
 #~ msgid "kbps"
@@ -13723,9 +14250,7 @@ msgstr "Prompt Nyquist..."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat "
-#~ "output dan rate sampel proyek."
+#~ msgstr "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat output dan rate sampel proyek."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -13891,12 +14416,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Waktu selesai latar depan"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, "
-#~ "Dorong untuk membuat wilayah zoom kecil."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, Dorong untuk membuat wilayah zoom kecil."
 
 #~ msgid "up"
 #~ msgstr "atas"
@@ -14198,8 +14719,7 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Sel&alu mix semua trek ke Stereo atau Mono."
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr ""
-#~ "&Gunakan mix pilihan sendiri (contohnya untuk emngekspor file saluran 5.1)"
+#~ msgstr "&Gunakan mix pilihan sendiri (contohnya untuk emngekspor file saluran 5.1)"
 
 #, fuzzy
 #~ msgid "When exporting track to an Allegro (.gro) file"
@@ -14214,15 +14734,11 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid "&Hardware Playthrough: Listen to input while recording or monitoring"
-#~ msgstr ""
-#~ "Selama Bermain pada &Hardware: Dengarkan ketika merekam atau memantau "
-#~ "trek baru"
+#~ msgstr "Selama Bermain pada &Hardware: Dengarkan ketika merekam atau memantau trek baru"
 
 #, fuzzy
 #~ msgid "&Software Playthrough: Listen to input while recording or monitoring"
-#~ msgstr ""
-#~ "Selama Bermain pada &Software: Dengarkan ketika merekam atau memantau "
-#~ "trek baru"
+#~ msgstr "Selama Bermain pada &Software: Dengarkan ketika merekam atau memantau trek baru"
 
 #, fuzzy
 #~ msgid "(uncheck when recording computer playback)"
@@ -14254,12 +14770,10 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "S&how the spectrum using grayscale colors"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
-#~ "loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
 #~ "when the program starts up."
 #~ msgstr ""
-#~ "Jika 'Ambil Cache Tema Pada Permulaan' ditandai, Cache Tema akan diambil "
-#~ "ketika\n"
+#~ "Jika 'Ambil Cache Tema Pada Permulaan' ditandai, Cache Tema akan diambil ketika\n"
 #~ "program dimulai."
 
 #~ msgid "Load Theme Cache At Startup"
@@ -14338,12 +14852,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Welcome to Audacity "
 #~ msgstr "Selamat Datang di Audacity "
 
-#~ msgid ""
-#~ " For even quicker answers, all the online resources above are "
-#~ "<b>searchable</b>."
-#~ msgstr ""
-#~ "Untuk jawaban yang lebih cepat, semua sumber online di atas <b>bisa "
-#~ "dicari</b>."
+#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
+#~ msgstr "Untuk jawaban yang lebih cepat, semua sumber online di atas <b>bisa dicari</b>."
 
 #~ msgid "Edit Metadata"
 #~ msgstr "Edit Metadata"
@@ -14393,9 +14903,7 @@ msgstr "Prompt Nyquist..."
 #~ msgid ""
 #~ "Start time after end time!\n"
 #~ "Please enter reasonable times."
-#~ msgstr ""
-#~ "Waktu mulai jauh setelah waktu selesai!]nSilahkan masukkan watu yang "
-#~ "logis."
+#~ msgstr "Waktu mulai jauh setelah waktu selesai!]nSilahkan masukkan watu yang logis."
 
 #~ msgid ""
 #~ "Times are not reasonable!\n"
@@ -14597,12 +15105,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "File Anda akan diekspor sebagai file WAV GSM 6.10.\n"
 
 #, fuzzy
-#~ msgid ""
-#~ "If you need more control over the export format please use the \"%s\" "
-#~ "format."
-#~ msgstr ""
-#~ "Jika Anda butuh kendali lebih dalam format ekspor, silahkan gunakan "
-#~ "format \"file tanpa terkompres lainnya\"."
+#~ msgid "If you need more control over the export format please use the \"%s\" format."
+#~ msgstr "Jika Anda butuh kendali lebih dalam format ekspor, silahkan gunakan format \"file tanpa terkompres lainnya\"."
 
 #~ msgid "Ctrl-Left-Drag"
 #~ msgstr "Klik kiri dorong dengan Ctrl"
@@ -14628,12 +15132,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Command-line options supported:"
 #~ msgstr "Dukungan opsi baris komando"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
-#~ msgstr ""
-#~ "Tambahan, spesifikasikan nama file audio atau proyek audacity terlebih "
-#~ "dahul untuk membukanya."
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
+#~ msgstr "Tambahan, spesifikasikan nama file audio atau proyek audacity terlebih dahul untuk membukanya."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "Efek Stereo ke Mono tidak ditemukan"
@@ -14641,10 +15141,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Kursor: %d Hz (%s) = %d dB    Pik: %d Hz (%s) = %.1f dB"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "Kursor: %.4f det (%d Hz) (%s) = %f,    Pik: %.4f det (%d Hz) (%s) = %.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "Kursor: %.4f det (%d Hz) (%s) = %f,    Pik: %.4f det (%d Hz) (%s) = %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -14842,11 +15340,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Membuat Profil Bising"
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, "
-#~ "stereo independent %s"
-#~ msgstr ""
-#~ "Efek teraplikasi: %s membuang dc offset = %s, amplitudo penormalan = %s"
+#~ msgid "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, stereo independent %s"
+#~ msgstr "Efek teraplikasi: %s membuang dc offset = %s, amplitudo penormalan = %s"
 
 #~ msgid "true"
 #~ msgstr "benar"
@@ -14858,16 +15353,11 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Normalize..."
 
 #, fuzzy
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Efek teraplikasi: jarak %s = %f detik, faktor kekurangan = %f"
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Efek teraplikasi: %s %d tingkatan, %.0f%% basah, frekuensi = %.1f Hz, "
-#~ "fase awal = %.0f derajat, dalam = %d, umpan balik = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Efek teraplikasi: %s %d tingkatan, %.0f%% basah, frekuensi = %.1f Hz, fase awal = %.0f derajat, dalam = %d, umpan balik = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Phaser..."
@@ -14931,12 +15421,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Changing Tempo/Pitch"
 #~ msgstr "Mengubah Tempo/Pitch"
 
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
-#~ msgstr ""
-#~ "Efek teraplikasi: Membuat %s gelombang %s, frekuensi = %.2f Hz, amplitudo "
-#~ "= %.2f, %.6lf detik"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
+#~ msgstr "Efek teraplikasi: Membuat %s gelombang %s, frekuensi = %.2f Hz, amplitudo = %.2f, %.6lf detik"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Pembuat Chirp"
@@ -14959,12 +15445,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "VST Effect"
 #~ msgstr "Efek VST"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Efek teraplikasi: %s frekuensi = %.1f Hz, fase mulai = %.0f deerjat, "
-#~ "kedalaman = %.0f%%, resonansi = %.1f, frekuensi offset = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Efek teraplikasi: %s frekuensi = %.1f Hz, fase mulai = %.0f deerjat, kedalaman = %.0f%%, resonansi = %.1f, frekuensi offset = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -14978,12 +15460,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Author: "
 #~ msgstr "Pengarang:"
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Maaf, Efek Pulg-in tidak bisa dipakai pada trek stereo yang masing-masing "
-#~ "salurannya tidak cocok."
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Maaf, Efek Pulg-in tidak bisa dipakai pada trek stereo yang masing-masing salurannya tidak cocok."
 
 #~ msgid "Note length (seconds)"
 #~ msgstr "Panjang nada(detik)"
@@ -15037,8 +15515,7 @@ msgstr "Prompt Nyquist..."
 
 #, fuzzy
 #~ msgid "Automated Recording Level Adjustment stopped as requested by user."
-#~ msgstr ""
-#~ "Perubahan Level Input Otomatis dihentikan sesuai yang pengguna minta."
+#~ msgstr "Perubahan Level Input Otomatis dihentikan sesuai yang pengguna minta."
 
 #~ msgid "Vertical Ruler"
 #~ msgstr "Penunjuk Vertikal"
@@ -15078,11 +15555,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Input Meter"
 #~ msgstr "Meter Input"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
-#~ msgstr ""
-#~ "Mengembalikan proyek tidak akan mengubah file apapun pada disk sebelum "
-#~ "anda menyimpan ini."
+#~ msgid "Recovering a project will not change any files on disk before you save it."
+#~ msgstr "Mengembalikan proyek tidak akan mengubah file apapun pada disk sebelum anda menyimpan ini."
 
 #~ msgid "Do Not Recover"
 #~ msgstr "Jangan dikembalikan"
@@ -15172,21 +15646,8 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "Selesai merekam"
 
 #, fuzzy
-#~ msgid ""
-#~ "This is a Beta version of the program. It may contain bugs and unfinished "
-#~ "features. We depend on your feedback: please send bug reports and feature "
-#~ "requests to our <a href=\"mailto:feedback@audacityteam.org\">Feedback</a> "
-#~ "address. For help, use the Help menu in the program, view the tips and "
-#~ "tricks on our <a href=\"http://wiki.audacityteam.org/\">Wiki</a> or visit "
-#~ "our <a href=\"http://forum.audacityteam.org/\">Forum</a>."
-#~ msgstr ""
-#~ "Ini adalah program versi beta. Program ini mungkin mengandung beberapa "
-#~ "bug dan fitur yang belum sempurna. Kami mengharapkan pendapat Anda: ohon "
-#~ "kirimkan laporan bug dan permintaan fitur ke alamat <a href=\"mailto:"
-#~ "feedback@audacityteam.org\">Tanggapan</a> kami. Untuk bantuan, gunakan "
-#~ "menu Bantuan di program, lihat tips dan trik di <a href=\"http://wiki."
-#~ "audacityteam.org/index.php?title=Audacity_Wiki_Home_Page\">Wiki</a> kami, "
-#~ "atau kunjungi <a href=\"http://audacityteam.org/forum/\">Forum</a> kami."
+#~ msgid "This is a Beta version of the program. It may contain bugs and unfinished features. We depend on your feedback: please send bug reports and feature requests to our <a href=\"mailto:feedback@audacityteam.org\">Feedback</a> address. For help, use the Help menu in the program, view the tips and tricks on our <a href=\"http://wiki.audacityteam.org/\">Wiki</a> or visit our <a href=\"http://forum.audacityteam.org/\">Forum</a>."
+#~ msgstr "Ini adalah program versi beta. Program ini mungkin mengandung beberapa bug dan fitur yang belum sempurna. Kami mengharapkan pendapat Anda: ohon kirimkan laporan bug dan permintaan fitur ke alamat <a href=\"mailto:feedback@audacityteam.org\">Tanggapan</a> kami. Untuk bantuan, gunakan menu Bantuan di program, lihat tips dan trik di <a href=\"http://wiki.audacityteam.org/index.php?title=Audacity_Wiki_Home_Page\">Wiki</a> kami, atau kunjungi <a href=\"http://audacityteam.org/forum/\">Forum</a> kami."
 
 #~ msgid "A Free Digital Audio Editor<br>"
 #~ msgstr "Editor Audio Digital Bebas dan Gratis <br>"
@@ -15199,24 +15660,15 @@ msgstr "Prompt Nyquist..."
 
 #~ msgid ""
 #~ "GStreamer was configured in preferences and successfully loaded before,\n"
-#~ "                      but this time Audacity failed to load it at "
-#~ "startup.\n"
-#~ "                      You may want to go back to Preferences > Libraries "
-#~ "and re-configure it."
+#~ "                      but this time Audacity failed to load it at startup.\n"
+#~ "                      You may want to go back to Preferences > Libraries and re-configure it."
 #~ msgstr ""
-#~ "GStreamer terkonfigurasi pada Preferensi dan diambil dengan sukses "
-#~ "sebelumnya,\n"
-#~ "                      tapi kali ini Audacity gagal mengambilnya pada awal "
-#~ "dinyalakan.\n"
-#~ "                      Anda butuh kembali ke Preferensi > Preferensi dan "
-#~ "mengkonfigurasikannya kembali."
+#~ "GStreamer terkonfigurasi pada Preferensi dan diambil dengan sukses sebelumnya,\n"
+#~ "                      tapi kali ini Audacity gagal mengambilnya pada awal dinyalakan.\n"
+#~ "                      Anda butuh kembali ke Preferensi > Preferensi dan mengkonfigurasikannya kembali."
 
-#~ msgid ""
-#~ "<p>You do not appear to have 'help' installed on your computer.<br> "
-#~ "Please <a href=\"*URL*\">view or download it online</a>."
-#~ msgstr ""
-#~ "<p>Anda tidak menginstal 'help' pada komputer Anda.<br> Silahkan <a href="
-#~ "\"*URL*\">lihat atau download ini secara online</a>."
+#~ msgid "<p>You do not appear to have 'help' installed on your computer.<br> Please <a href=\"*URL*\">view or download it online</a>."
+#~ msgstr "<p>Anda tidak menginstal 'help' pada komputer Anda.<br> Silahkan <a href=\"*URL*\">lihat atau download ini secara online</a>."
 
 #~ msgid ""
 #~ "You have left blank label names.  These will be\n"
@@ -15299,28 +15751,20 @@ msgstr "Prompt Nyquist..."
 #~ msgstr "File Windows PCM Audio(*.wav)|*.wav"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, "
-#~ "compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, "
-#~ "because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each "
-#~ "compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select "
-#~ "one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "File proyek Audacity (.aup) menyimpan pekerjaan Anda lebih kecil, karena "
-#~ "format terkompres (.ogg) \n"
-#~ "Proyek yang terkompres baik untuk menyebarkan proyek Anda secara online "
-#~ "karena saking kecilnya.\n"
-#~ "Untuk membuka proyek terkompres butuh waktu lebih lama, karena harus "
-#~ "mengimpor setiap trek yang terkompres.\n"
+#~ "File proyek Audacity (.aup) menyimpan pekerjaan Anda lebih kecil, karena format terkompres (.ogg) \n"
+#~ "Proyek yang terkompres baik untuk menyebarkan proyek Anda secara online karena saking kecilnya.\n"
+#~ "Untuk membuka proyek terkompres butuh waktu lebih lama, karena harus mengimpor setiap trek yang terkompres.\n"
 #~ "\n"
 #~ "Kebanyakan program tidak bisa membuka file proyek Audacity.\n"
-#~ "Ketika anda ingin menyimpan file yang bisa dibuka oleh program lain, "
-#~ "Pilih salah satu\n"
+#~ "Ketika anda ingin menyimpan file yang bisa dibuka oleh program lain, Pilih salah satu\n"
 #~ "perintah Ekspor."
 
 #~ msgid ""
@@ -15328,16 +15772,13 @@ msgstr "Prompt Nyquist..."
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export"
-#~ "\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
 #~ msgstr ""
 #~ "Anda sedang menyimpan file proyek Audacity (.aup).\n"
 #~ "\n"
-#~ "Menyimpan proyek akan membuat file dimana hanya Audacity yang bisa "
-#~ "membukanya.\n"
+#~ "Menyimpan proyek akan membuat file dimana hanya Audacity yang bisa membukanya.\n"
 #~ "\n"
-#~ "Untuk menyimpan file untuk program lainnya, gunakan salah satu perintah "
-#~ "\"Berkas > Ekspor\".\n"
+#~ "Untuk menyimpan file untuk program lainnya, gunakan salah satu perintah \"Berkas > Ekspor\".\n"
 
 #~ msgid "Libresample by Dominic Mazzoni and Julius Smith"
 #~ msgstr "Libresample dari Dominic Mazzoni and Julius Smith"
@@ -15421,12 +15862,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Noise Removal by Dominic Mazzoni"
 #~ msgstr "Pembuang Bising dari Dominic Mazzoni"
 
-#~ msgid ""
-#~ "Sorry, this effect cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Maaf, efek ini tidak bisa dipakai pada trek stereo yang masing-masing "
-#~ "salurannya tidak cocok."
+#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Maaf, efek ini tidak bisa dipakai pada trek stereo yang masing-masing salurannya tidak cocok."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "Pembersih Spike"
@@ -15485,13 +15922,10 @@ msgstr "Prompt Nyquist..."
 #~ "This Project does not meet the above criteria for\n"
 #~ "exporting multiple files."
 #~ msgstr ""
-#~ "Jika Anda mempunyai lebih dari satu Trek Audio, Anda bisa mengekspor "
-#~ "setiap trek dalam file-file terpisah,\n"
-#~ "atau jika Anda mempunyai label pada trek, Anda bisa mengekspornya "
-#~ "berdasarkan labelnya.\n"
+#~ "Jika Anda mempunyai lebih dari satu Trek Audio, Anda bisa mengekspor setiap trek dalam file-file terpisah,\n"
+#~ "atau jika Anda mempunyai label pada trek, Anda bisa mengekspornya berdasarkan labelnya.\n"
 #~ "\n"
-#~ "Proyek ini tidak mempunyai trek atau label yang banyak, jadi Anda tidak "
-#~ "bisa mengekspor file seperti yang Anda perintahkan."
+#~ "Proyek ini tidak mempunyai trek atau label yang banyak, jadi Anda tidak bisa mengekspor file seperti yang Anda perintahkan."
 
 #~ msgid "Can't export multiple files"
 #~ msgstr "Tidak bisa mengekspor file-file"
@@ -15540,12 +15974,8 @@ msgstr "Prompt Nyquist..."
 #~ msgid "Record (Shift for Append Record)"
 #~ msgstr "Rekam (Shift untuk Tambahan Rekam)"
 
-#~ msgid ""
-#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
-#~ "one project, is already open."
-#~ msgstr ""
-#~ "Merekam pada Mode CleanSpeech tidak mungkin ketika trek, atau lebih dari "
-#~ "satu proyek telah dibuka."
+#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
+#~ msgstr "Merekam pada Mode CleanSpeech tidak mungkin ketika trek, atau lebih dari satu proyek telah dibuka."
 
 #~ msgid "Output level meter"
 #~ msgstr "Pengukur level output"

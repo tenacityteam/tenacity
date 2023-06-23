@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-17 21:14-0700\n"
+"POT-Creation-Date: 2023-06-23 08:09-0700\n"
 "PO-Revision-Date: 2013-09-19 05:24-0000\n"
 "Last-Translator: Martin Bagic\n"
 "Language-Team: Martin Srebotnjak <miles@filmsi.net>\n"
@@ -11,10 +11,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.5\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -107,11 +110,26 @@ msgstr "Izaberite ulazni uređaj"
 msgid "No playback device found for '%s'.\n"
 msgstr "Izaberite ulazni uređaj"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "Uzorkovna brzina"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Uzorkovna brzina"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -139,6 +157,20 @@ msgstr "Izaberite ulazni uređaj"
 msgid "Message"
 msgstr "&Preuzorkuj..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Audacity team at https://forum.audacityteam.org/."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -157,6 +189,11 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Audacity ne može pisati u datoteku:\n"
 "  %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -207,12 +244,21 @@ msgstr "Imena datoteka:"
 msgid "XML files"
 msgstr "MP3"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -234,6 +280,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Mapa privremenih datoteka"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -258,9 +312,49 @@ msgstr "Pravokutno"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "Dobro došli!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -298,6 +392,10 @@ msgstr "24-bitni PCM"
 msgid "32-bit float"
 msgstr "32-bitni brojevi"
 
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -308,6 +406,21 @@ msgstr "16-bitni PCM"
 msgid "24-bit"
 msgstr "24-bitni PCM"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Nemoguće odrediti"
@@ -316,6 +429,24 @@ msgstr "Nemoguće odrediti"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "B"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -370,9 +501,39 @@ msgstr "Filtar"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "Frekvencija (Hz)"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -405,6 +566,22 @@ msgstr "Do frekvencije (u sekundama)"
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "Najmanja frekvencija mora biti barem 0 Hz"
 
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
+
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -429,6 +606,19 @@ msgstr "Primjenjivanje..."
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "napravio Steve Daulton"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -461,9 +651,17 @@ msgid "S-Curve Down"
 msgstr "Pomakni &dolje"
 
 #: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "Početak"
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -474,6 +672,14 @@ msgstr "Pojačanje"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "Početak"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -489,6 +695,14 @@ msgstr "0-1"
 #, fuzzy
 msgid "Linear Out"
 msgstr "0-1"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -545,6 +759,14 @@ msgstr "Pojačanje frekvencije ne može biti negativno"
 msgid "~aPercentage values cannot be more than 1000 %."
 msgstr "Pojačanje frekvencije ne može biti negativno"
 
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -576,9 +798,21 @@ msgid "Reconstructing clips..."
 msgstr "Uklanjanje škljocaja i pucketaja..."
 
 #: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "Prag %d dB"
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -589,6 +823,21 @@ msgstr "Zabilježni zapis"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "Zabilježni zapis"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -635,6 +884,19 @@ msgstr "Izravno čitaj"
 msgid "Automatic"
 msgstr "Samoobnova pri urušenju"
 
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
+
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "Odgoda"
@@ -653,6 +915,14 @@ msgstr "Odgoda"
 #, fuzzy
 msgid "Regular"
 msgstr "Pravokutno"
+
+#: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -689,6 +959,10 @@ msgstr "Pret&poslušaj"
 msgid "Number of echoes"
 msgstr "Broj ponova:"
 
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #: plug-ins/sample-data-export.ny
 msgid "Yes"
@@ -697,6 +971,10 @@ msgstr "Da"
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Ne"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -723,6 +1001,10 @@ msgid "XML file"
 msgstr "MP3"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "Snimi na &kraj"
@@ -747,6 +1029,14 @@ msgstr "Pogrješka (datoteka možda nije zapisana): %s"
 #, fuzzy, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
 msgstr "Pogrješka (datoteka možda nije zapisana): %s"
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -784,6 +1074,10 @@ msgstr "Dužina (u sekundama)"
 msgid "Length of label region (seconds)"
 msgstr "Dužina (u sekundama)"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -793,6 +1087,42 @@ msgstr "Uredi oznaku"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "Oznaka"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -809,6 +1139,11 @@ msgstr "Otrgni"
 msgid "Warnings only"
 msgstr "Upozorenje"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -819,6 +1154,12 @@ msgstr "Oznake spajanja"
 #, fuzzy
 msgid "point labels"
 msgstr "Oznake spajanja"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -845,10 +1186,42 @@ msgstr "napravio Dominic Mazzoni"
 msgid "Frequency (Hz)"
 msgstr "Frekvencija (Hz)"
 
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "Najmanja frekvencija mora biti barem 0 Hz"
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -926,11 +1299,36 @@ msgstr "Izrezivanje tišine..."
 msgid "Maximum trailing silence"
 msgstr "Izrezivanje tišine..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Ime ne smije biti prazno"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -972,6 +1370,13 @@ msgstr "Nađi porezano"
 #, fuzzy
 msgid ""
 "Input Gain (dB)\n"
+"mono/Left"
+msgstr "Desni kanal"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid ""
+"Input Gain (dB)\n"
 "Right channel"
 msgstr "Desni kanal"
 
@@ -979,6 +1384,10 @@ msgstr "Desni kanal"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "&Razina (dB):"
+
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -1055,12 +1464,42 @@ msgid "Decay (ms)"
 msgstr "Vrijeme napada/raspada"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Ime ne smije biti prazno"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1076,6 +1515,18 @@ msgstr "Primjenjivanje uravnavaoca..."
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "napravio Steve Daulton"
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1134,9 +1585,19 @@ msgid "Allow"
 msgstr "Nedopušteno"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Uklanjanje %s nije uspjelo"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1149,14 +1610,31 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Izaberite datoteku MIDI..."
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Neuporabljeni filtri:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Izaberite datoteku MIDI..."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1164,9 +1642,29 @@ msgid "Generating pluck sound..."
 msgstr "Stvaranje zvuka"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "Filtar"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1182,6 +1680,10 @@ msgstr "Ukloni zapis"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "Stvaranje zujanja"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1204,9 +1706,21 @@ msgid "Swing amount"
 msgstr "Izobličavalac"
 
 #: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "Broj ponova:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1234,6 +1748,22 @@ msgid "Beat sound"
 msgstr "Ponavljač"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "Uklanjanje šuma"
@@ -1242,6 +1772,32 @@ msgstr "Uklanjanje šuma"
 #, fuzzy
 msgid "Noise Click"
 msgstr "Tlo šuma"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1269,6 +1825,10 @@ msgid "Center frequency of noise (Hz)"
 msgstr "Linearna frekvencija"
 
 #: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "Frekvencija (Hz)"
@@ -1287,6 +1847,10 @@ msgstr "Nemoguće izvoziti"
 #, fuzzy
 msgid "Analyzing..."
 msgstr "Primjenjivanje..."
+
+#: plug-ins/sample-data-export.ny
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1326,6 +1890,10 @@ msgid "HTML files"
 msgstr "MP3"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "Uređivanje uzoraka"
@@ -1341,12 +1909,33 @@ msgid "Include header information"
 msgstr "Podatci o gradnji"
 
 #: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Obično"
 
 #: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "Sve"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1364,6 +1953,11 @@ msgstr "\t-help (ovu poruku)"
 msgid "Errors Only"
 msgstr "Pogrješka:"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1375,6 +1969,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "Desni kanal"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "obični uzorci"
@@ -1383,6 +2017,43 @@ msgstr "obični uzorci"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "sekunda"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1410,6 +2081,10 @@ msgid "Value (dB)"
 msgstr "&Treble (dB):"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "0-1"
@@ -1430,6 +2105,14 @@ msgid "Right (dB)"
 msgstr "Desno, "
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Audacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "0-1"
@@ -1443,6 +2126,35 @@ msgstr "2 kanala (stereo)"
 #, fuzzy
 msgid "1 channel (mono)"
 msgstr "1 kanal (mono)"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
@@ -1465,9 +2177,41 @@ msgid "Select file"
 msgstr "Izaberite datoteku MIDI..."
 
 #: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Pogrješka"
+
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -1478,6 +2222,15 @@ msgstr "Datoteke žanra nije moguće otvoriti."
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Izbor"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -1517,9 +2270,17 @@ msgid "Wet level (percent)"
 msgstr "2-razinski"
 
 #: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "Primjenjivanje..."
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -1575,10 +2336,97 @@ msgstr "&Prouči"
 msgid "Strength"
 msgstr "Filtar"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "Obrađivanje: "
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -1620,301 +2468,245 @@ msgstr "Frekvencija (Hz)"
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "Frekvencija (Hz)"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
+
 #, fuzzy
-msgid "&Nyquist Workbench..."
-msgstr "Nyquistov upit..."
+#~ msgid "&Nyquist Workbench..."
+#~ msgstr "Nyquistov upit..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Redo\tCtrl+Y"
-msgstr "&Zalijepi"
+#~ msgid "&Redo\tCtrl+Y"
+#~ msgstr "&Zalijepi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cu&t\tCtrl+X"
-msgstr "&Zalijepi"
+#~ msgid "Cu&t\tCtrl+X"
+#~ msgstr "&Zalijepi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Paste\tCtrl+V"
-msgstr "&Zalijepi"
+#~ msgid "&Paste\tCtrl+V"
+#~ msgstr "&Zalijepi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cle&ar\tCtrl+L"
-msgstr "&Zalijepi"
+#~ msgid "Cle&ar\tCtrl+L"
+#~ msgstr "&Zalijepi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select A&ll\tCtrl+A"
-msgstr "Izabire"
+#~ msgid "Select A&ll\tCtrl+A"
+#~ msgstr "Izabire"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select &Font..."
-msgstr "&Font..."
+#~ msgid "Select &Font..."
+#~ msgstr "&Font..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Vertically"
-msgstr "Prilagodi &okomito"
+#~ msgid "Split &Vertically"
+#~ msgstr "Prilagodi &okomito"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Split &Horizontally"
-msgstr "Vodoravni prikaz"
+#~ msgid "Split &Horizontally"
+#~ msgstr "Vodoravni prikaz"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show S&cript"
-msgstr "Prikaži izlaz"
+#~ msgid "Show S&cript"
+#~ msgstr "Prikaži izlaz"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Show &Output"
-msgstr "Prikaži izlaz"
+#~ msgid "Show &Output"
+#~ msgstr "Prikaži izlaz"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Large Icons"
-msgstr "Velika soba"
+#~ msgid "&Large Icons"
+#~ msgstr "Velika soba"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Small Icons"
-msgstr "Velika soba"
+#~ msgid "&Small Icons"
+#~ msgstr "Velika soba"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Toolbar"
-msgstr "&Alatne trake"
+#~ msgid "Toolbar"
+#~ msgstr "&Alatne trake"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "&Stop\tF6"
-msgstr "Ob&ustavi"
+#~ msgid "&Stop\tF6"
+#~ msgstr "Ob&ustavi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Script"
-msgstr "promijenjivi"
+#~ msgid "Script"
+#~ msgstr "promijenjivi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Output"
-msgstr "Mjerilo izlaza"
+#~ msgid "Output"
+#~ msgstr "Mjerilo izlaza"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Load Nyquist script"
-msgstr "Nyquistov upit"
+#~ msgid "Load Nyquist script"
+#~ msgstr "Nyquistov upit"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Warning"
-msgstr "Upozorenje"
+#~ msgid "Warning"
+#~ msgstr "Upozorenje"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save Nyquist script"
-msgstr "Nyquistov upit"
+#~ msgid "Save Nyquist script"
+#~ msgstr "Nyquistov upit"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Leland Lucius"
-msgstr "napravio Lelanda Luciusa"
+#~ msgid "Leland Lucius"
+#~ msgstr "napravio Lelanda Luciusa"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "(C) 2009 by Leland Lucius"
-msgstr "napravio Lelanda Luciusa"
+#~ msgid "(C) 2009 by Leland Lucius"
+#~ msgstr "napravio Lelanda Luciusa"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench"
-msgstr "Učinci"
+#~ msgid "Nyquist Effect Workbench"
+#~ msgstr "Učinci"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "No matches found"
-msgstr "Nema uređaja"
+#~ msgid "No matches found"
+#~ msgstr "Nema uređaja"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Untitled"
-msgstr "neimenovano"
+#~ msgid "Untitled"
+#~ msgstr "neimenovano"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Nyquist Effect Workbench - "
-msgstr "Učinci"
+#~ msgid "Nyquist Effect Workbench - "
+#~ msgstr "Učinci"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New"
-msgstr "&Novo"
+#~ msgid "New"
+#~ msgstr "&Novo"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "New script"
-msgstr "Otvori nedavne"
+#~ msgid "New script"
+#~ msgstr "Otvori nedavne"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open"
-msgstr "&Otvori..."
+#~ msgid "Open"
+#~ msgstr "&Otvori..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Open script"
-msgstr "Otvori nedavne"
+#~ msgid "Open script"
+#~ msgstr "Otvori nedavne"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save"
-msgstr "Spremi"
+#~ msgid "Save"
+#~ msgstr "Spremi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script"
-msgstr "Nyquistov upit"
+#~ msgid "Save script"
+#~ msgstr "Nyquistov upit"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save As"
-msgstr "Spremi kao..."
+#~ msgid "Save As"
+#~ msgstr "Spremi kao..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Save script as..."
-msgstr "Spremi projekt &kao..."
+#~ msgid "Save script as..."
+#~ msgstr "Spremi projekt &kao..."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Copy"
-msgstr "Kopiraj"
+#~ msgid "Copy"
+#~ msgstr "Kopiraj"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Copy to clipboard"
-msgstr "Izreži u međuspremnik"
+#~ msgid "Copy to clipboard"
+#~ msgstr "Izreži u međuspremnik"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Cut"
-msgstr "Izreži"
+#~ msgid "Cut"
+#~ msgstr "Izreži"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Cut to clipboard"
-msgstr "Izreži u međuspremnik"
+#~ msgid "Cut to clipboard"
+#~ msgstr "Izreži u međuspremnik"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Paste"
-msgstr "Zalijepi"
+#~ msgid "Paste"
+#~ msgstr "Zalijepi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Paste from clipboard"
-msgstr "Zaplijepljeno iz međuspremnika"
+#~ msgid "Paste from clipboard"
+#~ msgstr "Zaplijepljeno iz međuspremnika"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear"
-msgstr "Po&čisti"
+#~ msgid "Clear"
+#~ msgstr "Po&čisti"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Clear selection"
-msgstr "Izmjeri izbor"
+#~ msgid "Clear selection"
+#~ msgstr "Izmjeri izbor"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select All"
-msgstr "Izabire"
+#~ msgid "Select All"
+#~ msgstr "Izabire"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Select all text"
-msgstr "Izabire"
+#~ msgid "Select all text"
+#~ msgstr "Izabire"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Undo"
-msgstr "Vrati"
+#~ msgid "Undo"
+#~ msgstr "Vrati"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Undo last change"
-msgstr "Promjena formata"
+#~ msgid "Undo last change"
+#~ msgstr "Promjena formata"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Redo"
-msgstr "Poništi"
+#~ msgid "Redo"
+#~ msgstr "Poništi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Redo previous change"
-msgstr "Promjena formata"
+#~ msgid "Redo previous change"
+#~ msgstr "Promjena formata"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find"
-msgstr "&Nađi note"
+#~ msgid "Find"
+#~ msgstr "&Nađi note"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Find text"
-msgstr "&Nađi note"
+#~ msgid "Find text"
+#~ msgstr "&Nađi note"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Match"
-msgstr "Svežanj"
+#~ msgid "Match"
+#~ msgstr "Svežanj"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Top"
-msgstr "Do:"
+#~ msgid "Top"
+#~ msgstr "Do:"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to top S-expr"
-msgstr "Nema oznaka za izvoz."
+#~ msgid "Go to top S-expr"
+#~ msgstr "Nema oznaka za izvoz."
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Up"
-msgstr "gore"
+#~ msgid "Up"
+#~ msgstr "gore"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Previous"
-msgstr "Prethodni alat"
+#~ msgid "Previous"
+#~ msgstr "Prethodni alat"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Go to previous S-expr"
-msgstr "Premjesti žarište na prethodni zapis i izaberi"
+#~ msgid "Go to previous S-expr"
+#~ msgstr "Premjesti žarište na prethodni zapis i izaberi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Next"
-msgstr "Sljedeći alat"
+#~ msgid "Next"
+#~ msgstr "Sljedeći alat"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Start"
-msgstr "Početak"
+#~ msgid "Start"
+#~ msgstr "Početak"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Start script"
-msgstr "Nyquistov upit"
+#~ msgid "Start script"
+#~ msgstr "Nyquistov upit"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
-msgid "Stop"
-msgstr "Zaustavi"
+#~ msgid "Stop"
+#~ msgstr "Zaustavi"
 
-#: modules/mod-nyq-bench/NyqBench.cpp
 #, fuzzy
-msgid "Stop script"
-msgstr "Nyquistov upit"
+#~ msgid "Stop script"
+#~ msgstr "Nyquistov upit"
 
 #~ msgid "Comments"
 #~ msgstr "Komentari"
@@ -1954,12 +2746,8 @@ msgstr "Nyquistov upit"
 #~ msgstr "Hrvatski prijevod napravio Martin Bagić uz pomoć Mislava Lukšića."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "%s the free, open source, cross-platform software for recording and "
-#~ "editing sounds."
-#~ msgstr ""
-#~ "besplatan program otvorena koda za snimanje i uređivanje zvuka ugradiv na "
-#~ "različitim sustavima<br>"
+#~ msgid "%s the free, open source, cross-platform software for recording and editing sounds."
+#~ msgstr "besplatan program otvorena koda za snimanje i uređivanje zvuka ugradiv na različitim sustavima<br>"
 
 #~ msgid "Credits"
 #~ msgstr "Zasluge"
@@ -2136,13 +2924,11 @@ msgstr "Nyquistov upit"
 #~ msgid ""
 #~ "Reset Preferences?\n"
 #~ "\n"
-#~ "This is a one-time question, after an 'install' where you asked to have "
-#~ "the Preferences reset."
+#~ "This is a one-time question, after an 'install' where you asked to have the Preferences reset."
 #~ msgstr ""
 #~ "Resetirati Postavke?\n"
 #~ "\n"
-#~ "Ovo se pitanje samo jednom prikazuje nakon 'ugradbe' koja je pitala za "
-#~ "prepostavljanje (reset) postavaka."
+#~ "Ovo se pitanje samo jednom prikazuje nakon 'ugradbe' koja je pitala za prepostavljanje (reset) postavaka."
 
 #~ msgid "Reset Audacity Preferences"
 #~ msgstr "Preprilagodi Audacity"
@@ -2175,8 +2961,7 @@ msgstr "Nyquistov upit"
 #, fuzzy
 #~ msgid ""
 #~ "Audacity could not find a safe place to store temporary files.\n"
-#~ "Audacity needs a place where automatic cleanup programs won't delete the "
-#~ "temporary files.\n"
+#~ "Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 #~ "Please enter an appropriate directory in the preferences dialog."
 #~ msgstr ""
 #~ "Audacity nije našao prostora za spremanje privremenih datoteka.\n"
@@ -2189,12 +2974,8 @@ msgstr "Nyquistov upit"
 #~ "Audacity nije našao prostora za spremanje privremenih datoteka.\n"
 #~ "Molimo unijeti prikladnu mapu u postavkama."
 
-#~ msgid ""
-#~ "Audacity is now going to exit. Please launch Audacity again to use the "
-#~ "new temporary directory."
-#~ msgstr ""
-#~ "Audacity se zatvara. Molimo ponovno upaliti Audacity za uporabu novih "
-#~ "privremenih mapa."
+#~ msgid "Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."
+#~ msgstr "Audacity se zatvara. Molimo ponovno upaliti Audacity za uporabu novih privremenih mapa."
 
 #~ msgid ""
 #~ "Running two copies of Audacity simultaneously may cause\n"
@@ -2237,8 +3018,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid "set max disk block size in bytes"
-#~ msgstr ""
-#~ "\t-blocksize nnn (postavite najveću veličinu diskovnoga bloka; u bajtima)"
+#~ msgstr "\t-blocksize nnn (postavite najveću veličinu diskovnoga bloka; u bajtima)"
 
 #, fuzzy
 #~ msgid "this help message"
@@ -2346,58 +3126,32 @@ msgstr "Nyquistov upit"
 #~ msgstr "Nema više mjesta!"
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "Automatsko prilagođivanje razine ulaza je stalo. Nije moguće bolje "
-#~ "postaviti. Još uvijek previsoka."
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
+#~ msgstr "Automatsko prilagođivanje razine ulaza je stalo. Nije moguće bolje postaviti. Još uvijek previsoka."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr ""
-#~ "Zbog automatskoga prilagođivanja razine ulaza, glasnoća se snizila na %f. "
+#~ msgstr "Zbog automatskoga prilagođivanja razine ulaza, glasnoća se snizila na %f. "
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "Automatsko prilagođivanje razine ulaza je stalo. Nije moguće bolje "
-#~ "postaviti. Još uvijek preniska."
+#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
+#~ msgstr "Automatsko prilagođivanje razine ulaza je stalo. Nije moguće bolje postaviti. Još uvijek preniska."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr ""
-#~ "Zbog automatskoga prilagođivanja razine ulaza, glasnoća se povisila na %f."
+#~ msgstr "Zbog automatskoga prilagođivanja razine ulaza, glasnoća se povisila na %f."
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "Automatsko prilagođivanje razine ulaza je stalo. Ukupan broj analiza "
-#~ "prešao je granicu a da nije našao prihvatljivu glasnoću. Još uvijek "
-#~ "previsoka."
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
+#~ msgstr "Automatsko prilagođivanje razine ulaza je stalo. Ukupan broj analiza prešao je granicu a da nije našao prihvatljivu glasnoću. Još uvijek previsoka."
 
 #, fuzzy
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "Automatsko prilagođivanje razine ulaza je stalo. Ukupan broj analiza "
-#~ "prešao je granicu a da nije našao prihvatljivu glasnoću. Još uvijek "
-#~ "preniska."
+#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
+#~ msgstr "Automatsko prilagođivanje razine ulaza je stalo. Ukupan broj analiza prešao je granicu a da nije našao prihvatljivu glasnoću. Još uvijek preniska."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "Automatsko prilagođivanje razine ulaza je stalo. %.2f izgleda kao "
-#~ "prihvatljiva glasnoća."
+#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
+#~ msgstr "Automatsko prilagođivanje razine ulaza je stalo. %.2f izgleda kao prihvatljiva glasnoća."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -2432,8 +3186,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid ""
-#~ "The following projects were not saved properly the last time Audacity was "
-#~ "run and can be automatically recovered.\n"
+#~ "The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
 #~ "\n"
 #~ "After recovery, save the projects to ensure changes are written to disk."
 #~ msgstr ""
@@ -2821,8 +3574,7 @@ msgstr "Nyquistov upit"
 #~ msgstr ""
 #~ "\n"
 #~ "\n"
-#~ "Datoteke s pridjevom NEDOSTAJE premještene su ili izbrisane i ne mogu se "
-#~ "kopirati.\n"
+#~ "Datoteke s pridjevom NEDOSTAJE premještene su ili izbrisane i ne mogu se kopirati.\n"
 #~ "Vratite ih na izvorno mjesto kako bi se kopiranje omogućilo."
 
 #~ msgid "Project Dependencies"
@@ -2874,26 +3626,20 @@ msgstr "Nyquistov upit"
 #~ msgid "Missing"
 #~ msgstr "Nedostaju datoteke"
 
-#~ msgid ""
-#~ "If you proceed, your project will not be saved to disk. Is this what you "
-#~ "want?"
+#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
 #~ msgstr "Ako nastavite, vaš projekt ne će se spremiti. Zbilja to želite?"
 
 #, fuzzy
 #~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio "
-#~ "files. \n"
+#~ "Your project is self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
 #~ "Some older Audacity projects may not be self-contained, and care \n"
 #~ "is needed to keep their external dependencies in the right place.\n"
 #~ "New projects will be self-contained and are less risky."
 #~ msgstr ""
-#~ "Vaš projekt trenutačno je samosadržajan, to jest ne ovisi o podatcima "
-#~ "koji su izvan njega.\n"
+#~ "Vaš projekt trenutačno je samosadržajan, to jest ne ovisi o podatcima koji su izvan njega.\n"
 #~ "\n"
-#~ "Ako promijenite to stanje u vanjsku ovisnost, više ne će biti "
-#~ "samosadržajan. U tom bi slučaju pri spremanju bez potrebnih podataka "
-#~ "unesenih u projekt mogli izgubiti unutarnje podatke."
+#~ "Ako promijenite to stanje u vanjsku ovisnost, više ne će biti samosadržajan. U tom bi slučaju pri spremanju bez potrebnih podataka unesenih u projekt mogli izgubiti unutarnje podatke."
 
 #~ msgid "Dependency Check"
 #~ msgstr "Provjera ovisnosti"
@@ -2908,10 +3654,8 @@ msgstr "Nyquistov upit"
 #~ "\n"
 #~ "You may want to go back to Preferences > Libraries and re-configure it."
 #~ msgstr ""
-#~ "FFmpeg je bio postavljen u Prilagodbama i već uspješno "
-#~ "učitan,                       \n"
-#~ "ali ga pri ovom pogonu Audacity nije mogao "
-#~ "učitati.                       \n"
+#~ "FFmpeg je bio postavljen u Prilagodbama i već uspješno učitan,                       \n"
+#~ "ali ga pri ovom pogonu Audacity nije mogao učitati.                       \n"
 #~ "\n"
 #~ "Pokušajte otići u Postavke > Knjižnice te ga ponovno postavite."
 
@@ -2975,8 +3719,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid "&Copy uncompressed files into the project (safer)"
-#~ msgstr ""
-#~ "&Napravi kopiju nesažetih zvučnih datoteka prije uređivanja (sigurnije)"
+#~ msgstr "&Napravi kopiju nesažetih zvučnih datoteka prije uređivanja (sigurnije)"
 
 #, fuzzy
 #~ msgid "&Read uncompressed files from original location (faster)"
@@ -2993,11 +3736,8 @@ msgstr "Nyquistov upit"
 #~ msgid "As&k"
 #~ msgstr "Pitaj &korisnika"
 
-#~ msgid ""
-#~ "The specified filename could not be converted due to Unicode character "
-#~ "use."
-#~ msgstr ""
-#~ "Navedeno ime datoteke nije moguće prevesti zbog uporabe znakova Unicodea."
+#~ msgid "The specified filename could not be converted due to Unicode character use."
+#~ msgstr "Navedeno ime datoteke nije moguće prevesti zbog uporabe znakova Unicodea."
 
 #~ msgid "Specify New Filename:"
 #~ msgstr "Odredite novo ime datoteke:"
@@ -3067,15 +3807,11 @@ msgstr "Nyquistov upit"
 #~ msgid "&Replot..."
 #~ msgstr "&Prenacrtaj"
 
-#~ msgid ""
-#~ "To plot the spectrum, all selected tracks must be the same sample rate."
-#~ msgstr ""
-#~ "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
+#~ msgid "To plot the spectrum, all selected tracks must be the same sample rate."
+#~ msgstr "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "Too much audio was selected. Only the first %.1f seconds of audio will be "
-#~ "analyzed."
+#~ msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
 #~ msgstr "Izabrali ste previše zvuka. Analiziram samo prvih %.1f sekunda."
 
 #~ msgid "Not enough data selected."
@@ -3146,82 +3882,36 @@ msgstr "Nyquistov upit"
 #~ msgstr "Ovdje ćete naći odgovore na sva pitanja:"
 
 #, fuzzy
-#~ msgid ""
-#~ "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://"
-#~ "manual.audacityteam.org/quick_help.html|view online]]"
-#~ msgstr ""
-#~ " [[file:quick_help.html|Brza pomoć]] ako je ugrađena na računalu (ako ne, "
-#~ "postoji i <a href=\"http://manual.audacityteam.org/o/quick_help.html"
-#~ "\">mrežna</a> inačica)"
+#~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
+#~ msgstr " [[file:quick_help.html|Brza pomoć]] ako je ugrađena na računalu (ako ne, postoji i <a href=\"http://manual.audacityteam.org/o/quick_help.html\">mrežna</a> inačica)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual."
-#~ "audacityteam.org/|view online]]"
-#~ msgstr ""
-#~ " [[file:index.html|Vodič]] ako je ugrađen na računalu (ako ne, postoji i "
-#~ "<a href=\"http://manual.audacityteam.org/o/\">mrežna</a> inačica)"
+#~ msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
+#~ msgstr " [[file:index.html|Vodič]] ako je ugrađen na računalu (ako ne, postoji i <a href=\"http://manual.audacityteam.org/o/\">mrežna</a> inačica)"
 
 #, fuzzy
-#~ msgid ""
-#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
-#~ "online."
+#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
 #~ msgstr " <a href=\"http://forum.audacityteam.org/\">Forum</a>"
 
 #, fuzzy
-#~ msgid ""
-#~ "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for "
-#~ "tips, tricks, extra tutorials and effects plug-ins."
-#~ msgstr ""
-#~ " [[http://wiki.audacityteam.org/index.php|Wikipedija]] s najnovijim "
-#~ "savjetima, trikovima i mrežnim priručnicima"
+#~ msgid "More:</b> Visit our [[https://wiki.audacityteam.org/index.php|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
+#~ msgstr " [[http://wiki.audacityteam.org/index.php|Wikipedija]] s najnovijim savjetima, trikovima i mrežnim priručnicima"
 
 #, fuzzy
-#~ msgid ""
-#~ "Audacity can import unprotected files in many other formats (such as M4A "
-#~ "and WMA, compressed WAV files from portable recorders and audio from "
-#~ "video files) if you download and install the optional [[https://manual."
-#~ "audacityteam.org/man/faq_opening_and_saving_files.html#foreign| FFmpeg "
-#~ "library]] to your computer."
-#~ msgstr ""
-#~ "Audacity može uvoziti nezaštićene datoteke u mnogim drugim formatima (kao "
-#~ "M4A i WMA, sažeti WAV s prenosivih snimača i zvuk iz video zapisa) ako "
-#~ "ste preuzeli i ugradili dodatnu <a href=\"http://manual.audacityteam.org/"
-#~ "o/man/faq_opening_and_saving_files.html#foreign\"> knjižnicu FFmpeg</a>."
+#~ msgid "Audacity can import unprotected files in many other formats (such as M4A and WMA, compressed WAV files from portable recorders and audio from video files) if you download and install the optional [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#foreign| FFmpeg library]] to your computer."
+#~ msgstr "Audacity može uvoziti nezaštićene datoteke u mnogim drugim formatima (kao M4A i WMA, sažeti WAV s prenosivih snimača i zvuk iz video zapisa) ako ste preuzeli i ugradili dodatnu <a href=\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#foreign\"> knjižnicu FFmpeg</a>."
 
 #, fuzzy
-#~ msgid ""
-#~ "You can also read our help on importing [[https://manual.audacityteam.org/"
-#~ "man/playing_and_recording.html#midi|MIDI files]] and tracks from "
-#~ "[[https://manual.audacityteam.org/man/faq_opening_and_saving_files."
-#~ "html#fromcd| audio CDs]]."
-#~ msgstr ""
-#~ "Možete pročitati pomoć za uvoz <a href=\"http://manual.audacityteam.org/o/"
-#~ "man/faq_opening_and_saving_files.html#midi\">datoteka MIDI</a> i zapisa "
-#~ "sa <a href=\"http://manual.audacityteam.org/o/man/"
-#~ "faq_opening_and_saving_files.html#fromcd\">zvučnih CD-a</a>."
+#~ msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
+#~ msgstr "Možete pročitati pomoć za uvoz <a href=\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#midi\">datoteka MIDI</a> i zapisa sa <a href=\"http://manual.audacityteam.org/o/man/faq_opening_and_saving_files.html#fromcd\">zvučnih CD-a</a>."
 
 #, fuzzy
-#~ msgid ""
-#~ "The Manual does not appear to be installed. Please [[*URL*|view the "
-#~ "Manual online]].<br><br>To always view the Manual online, change "
-#~ "\"Location of Manual\" in Interface Preferences to \"From Internet\"."
-#~ msgstr ""
-#~ "Izgleda da nemate ugrađenu datoteku za pomoć.<br> Poslužite se <a href="
-#~ "\"*URL*\">mrežnim sadržajem</a> ili <a href=\"http://manual.audacityteam."
-#~ "org/o/man/unzipping_the_manual.html\"> preuzmite cjeloviti Priručnik</a>."
+#~ msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
+#~ msgstr "Izgleda da nemate ugrađenu datoteku za pomoć.<br> Poslužite se <a href=\"*URL*\">mrežnim sadržajem</a> ili <a href=\"http://manual.audacityteam.org/o/man/unzipping_the_manual.html\"> preuzmite cjeloviti Priručnik</a>."
 
 #, fuzzy
-#~ msgid ""
-#~ "The Manual does not appear to be installed. Please [[*URL*|view the "
-#~ "Manual online]] or [[https://manual.audacityteam.org/man/"
-#~ "unzipping_the_manual.html| download the Manual]].<br><br>To always view "
-#~ "the Manual online, change \"Location of Manual\" in Interface Preferences "
-#~ "to \"From Internet\"."
-#~ msgstr ""
-#~ "Izgleda da nemate ugrađenu datoteku za pomoć.<br> Poslužite se <a href="
-#~ "\"*URL*\">mrežnim sadržajem</a> ili <a href=\"http://manual.audacityteam."
-#~ "org/o/man/unzipping_the_manual.html\"> preuzmite cjeloviti Priručnik</a>."
+#~ msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://manual.audacityteam.org/man/unzipping_the_manual.html| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
+#~ msgstr "Izgleda da nemate ugrađenu datoteku za pomoć.<br> Poslužite se <a href=\"*URL*\">mrežnim sadržajem</a> ili <a href=\"http://manual.audacityteam.org/o/man/unzipping_the_manual.html\"> preuzmite cjeloviti Priručnik</a>."
 
 #, fuzzy
 #~ msgid "History"
@@ -3313,9 +4003,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Izaberite jezik za Audacity:"
 
 #, c-format
-#~ msgid ""
-#~ "The language you have chosen, %s (%s), is not the same as the system "
-#~ "language, %s (%s)."
+#~ msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
 #~ msgstr "Izabran jezik, %s (%s), nije isti kao jezik sustava, %s (%s)."
 
 #~ msgid "Confirm"
@@ -3609,15 +4297,11 @@ msgstr "Nyquistov upit"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, playback device and the project sample rate."
-#~ msgstr ""
-#~ "Pogrješka pri otvaranju zvučnoga uređaja. Molimo provjeriti postavke "
-#~ "izlaznoga uređaja i (uzorkovnu) brzinu projekta."
+#~ msgstr "Pogrješka pri otvaranju zvučnoga uređaja. Molimo provjeriti postavke izlaznoga uređaja i (uzorkovnu) brzinu projekta."
 
 #, fuzzy
-#~ msgid ""
-#~ "The tracks selected for recording must all have the same sampling rate"
-#~ msgstr ""
-#~ "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
+#~ msgid "The tracks selected for recording must all have the same sampling rate"
+#~ msgstr "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
 
 #~ msgid "Recorded Audio"
 #~ msgstr "Snimljen zvuk"
@@ -3631,14 +4315,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Close project immediately with no changes"
 #~ msgstr "Odmah i bez promjena zatvori projekt"
 
-#~ msgid ""
-#~ "Continue with repairs noted in log, and check for more errors. This will "
-#~ "save the project in its current state, unless you \"Close project "
-#~ "immediately\" on further error alerts."
-#~ msgstr ""
-#~ "Nastavi s popravcima u dnevniku i provjeri ima li još pogrješaka. To će "
-#~ "spremiti projekt u tekućem stanju, jedino ako na sljedeća upozorenja "
-#~ "\"odmah ne zatvorite projekt\"."
+#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
+#~ msgstr "Nastavi s popravcima u dnevniku i provjeri ima li još pogrješaka. To će spremiti projekt u tekućem stanju, jedino ako na sljedeća upozorenja \"odmah ne zatvorite projekt\"."
 
 #~ msgid "Warning - Problems Reading Sequence Tags"
 #~ msgstr "Upozorenje: teškoće pri čitanju nizova znački"
@@ -3675,8 +4353,7 @@ msgstr "Nyquistov upit"
 #~ "Napomena: u drugoj mogućnosti valni oblik možda \n"
 #~ "ne će pokazati tišinu.\n"
 #~ "Ako izaberete treću mogućnost, projekt će se spremiti \n"
-#~ "u trenutačnom stanju, jedino ako ne izaberete \"Odmah zatvorite projekt"
-#~ "\"\n"
+#~ "u trenutačnom stanju, jedino ako ne izaberete \"Odmah zatvorite projekt\"\n"
 #~ " na sljedeća upozorenja."
 
 #~ msgid "Treat missing audio as silence (this session only)"
@@ -3849,8 +4526,7 @@ msgstr "Nyquistov upit"
 #, c-format
 #~ msgid ""
 #~ "This file was saved using Audacity %s.\n"
-#~ "You are using Audacity %s. You may need to upgrade to a newer version to "
-#~ "open this file."
+#~ "You are using Audacity %s. You may need to upgrade to a newer version to open this file."
 #~ msgstr ""
 #~ "Ova datoteka spremljena je u Audacityju %s.\n"
 #~ "Vi rabite Audacity %s. Možda biste ga trebali nadograditi prije otvaranja."
@@ -3925,12 +4601,10 @@ msgstr "Nyquistov upit"
 #~ msgstr "Spremljeno %s"
 
 #~ msgid ""
-#~ "The project was not saved because the file name provided would overwrite "
-#~ "another project.\n"
+#~ "The project was not saved because the file name provided would overwrite another project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi "
-#~ "istoimeni postojeći projekt.\n"
+#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi istoimeni postojeći projekt.\n"
 #~ "Pokušajte ponovno i izaberite jedinstveno ime."
 
 #, fuzzy, c-format
@@ -3943,12 +4617,10 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid ""
-#~ "The project was not saved because the selected project is open in another "
-#~ "window.\n"
+#~ "The project was not saved because the selected project is open in another window.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi "
-#~ "istoimeni postojeći projekt.\n"
+#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi istoimeni postojeći projekt.\n"
 #~ "Pokušajte ponovno i izaberite jedinstveno ime."
 
 #, fuzzy, c-format
@@ -3960,8 +4632,7 @@ msgstr "Nyquistov upit"
 #~ "Saving a copy must not overwrite an existing saved project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi "
-#~ "istoimeni postojeći projekt.\n"
+#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi istoimeni postojeći projekt.\n"
 #~ "Pokušajte ponovno i izaberite jedinstveno ime."
 
 #, fuzzy
@@ -4470,8 +5141,7 @@ msgstr "Nyquistov upit"
 #~ "for Timer Recording because it would overwrite another project.\n"
 #~ "Please try again and select an original name."
 #~ msgstr ""
-#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi "
-#~ "istoimeni postojeći projekt.\n"
+#~ "Projekt nije spremljen jer bi njegovo spremanje prekopisalo drugi istoimeni postojeći projekt.\n"
 #~ "Pokušajte ponovno i izaberite jedinstveno ime."
 
 #, fuzzy
@@ -4676,9 +5346,7 @@ msgstr "Nyquistov upit"
 #~ msgstr " Izabrano"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust relative size of stereo tracks, double-click to "
-#~ "make heights equal"
+#~ msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
 #~ msgstr "Kliknite i povucite za prilagođivanje omjer veličina stereo zapisa."
 
 #~ msgid "Click and drag to resize the track."
@@ -5262,16 +5930,10 @@ msgstr "Nyquistov upit"
 #~ msgid "Auto Duck"
 #~ msgstr "Samospust"
 
-#~ msgid ""
-#~ "You selected a track which does not contain audio. AutoDuck can only "
-#~ "process audio tracks."
-#~ msgstr ""
-#~ "Izabrali ste zapis bez zvuka. Samospust može obraditi jedino zvučne "
-#~ "zapise."
+#~ msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
+#~ msgstr "Izabrali ste zapis bez zvuka. Samospust može obraditi jedino zvučne zapise."
 
-#~ msgid ""
-#~ "Auto Duck needs a control track which must be placed below the selected "
-#~ "track(s)."
+#~ msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
 #~ msgstr "Samospust treba upravljajući zapis ispod izabranoga zapisa."
 
 #, fuzzy
@@ -5647,12 +6309,8 @@ msgstr "Nyquistov upit"
 #~ "Izaberite dio zapisa."
 
 #, fuzzy
-#~ msgid ""
-#~ "Contrast Analyzer, for measuring RMS volume differences between two "
-#~ "selections of audio."
-#~ msgstr ""
-#~ "Analizator kontrasta mjeri razliku glasnoće RMS dvaju područja izbora (ne "
-#~ "upisujte brojeve!)."
+#~ msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
+#~ msgstr "Analizator kontrasta mjeri razliku glasnoće RMS dvaju područja izbora (ne upisujte brojeve!)."
 
 #~ msgid "End"
 #~ msgstr "Kraj"
@@ -6223,23 +6881,18 @@ msgstr "Nyquistov upit"
 #, fuzzy
 #~ msgid ""
 #~ "To use this filter curve in a macro, please choose a new name for it.\n"
-#~ "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-#~ "then use that one."
+#~ "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
 #~ msgstr ""
-#~ "Za porabu ove krivulje EQ u lancu svežnja (batch), molimo izabrati novo "
-#~ "ime za nju.\n"
-#~ "Stisnite gumb 'Spremi/Upravljaj krivuljama...' i imenujte 'neimenovane' "
-#~ "krivulje, pa uporabite tu željenu."
+#~ "Za porabu ove krivulje EQ u lancu svežnja (batch), molimo izabrati novo ime za nju.\n"
+#~ "Stisnite gumb 'Spremi/Upravljaj krivuljama...' i imenujte 'neimenovane' krivulje, pa uporabite tu željenu."
 
 #, fuzzy
 #~ msgid "Filter Curve EQ needs a different name"
 #~ msgstr "Krivulja EQ treba drukčije ime"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply Equalization, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
+#~ msgid "To apply Equalization, all selected tracks must have the same sample rate."
+#~ msgstr "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
 
 #, fuzzy
 #~ msgid "Track sample rate is too low for this effect."
@@ -6605,8 +7258,7 @@ msgstr "Nyquistov upit"
 #~ "Select a few seconds of just noise so Audacity knows what to filter out,\n"
 #~ "then click Get Noise Profile:"
 #~ msgstr ""
-#~ "Izaberite par sekundi samo šuma kako bi Audacity znao što treba "
-#~ "ukloniti,\n"
+#~ "Izaberite par sekundi samo šuma kako bi Audacity znao što treba ukloniti,\n"
 #~ "zatim stisnite \"Nauči što je šum\":"
 
 #~ msgid "&Get Noise Profile"
@@ -6617,12 +7269,9 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to reduce noise.\n"
-#~ msgstr ""
-#~ "Izaberite sav zvuk koji želite obraditi, izaberite čimbenike šuma i "
-#~ "stisnite \"U redu\".\n"
+#~ msgstr "Izaberite sav zvuk koji želite obraditi, izaberite čimbenike šuma i stisnite \"U redu\".\n"
 
 #~ msgid "Noise:"
 #~ msgstr "Radnja:"
@@ -6669,12 +7318,9 @@ msgstr "Nyquistov upit"
 #~ msgstr "Uklanjanje šuma"
 
 #~ msgid ""
-#~ "Select all of the audio you want filtered, choose how much noise you "
-#~ "want\n"
+#~ "Select all of the audio you want filtered, choose how much noise you want\n"
 #~ "filtered out, and then click 'OK' to remove noise.\n"
-#~ msgstr ""
-#~ "Izaberite sav zvuk koji želite obraditi, izaberite čimbenike šuma i "
-#~ "stisnite \"U redu\".\n"
+#~ msgstr "Izaberite sav zvuk koji želite obraditi, izaberite čimbenike šuma i stisnite \"U redu\".\n"
 
 #~ msgid "Noise re&duction (dB):"
 #~ msgstr "Uklanjanje &šuma (dB):"
@@ -6811,8 +7457,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Popravi"
 
 #~ msgid ""
-#~ "The Repair effect is intended to be used on very short sections of "
-#~ "damaged audio (up to 128 samples).\n"
+#~ "The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
 #~ "\n"
 #~ "Zoom in and select a tiny fraction of a second to repair."
 #~ msgstr ""
@@ -6943,10 +7588,8 @@ msgstr "Nyquistov upit"
 #~ msgstr "Visokopropusni"
 
 #, fuzzy
-#~ msgid ""
-#~ "To apply a filter, all selected tracks must have the same sample rate."
-#~ msgstr ""
-#~ "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
+#~ msgid "To apply a filter, all selected tracks must have the same sample rate."
+#~ msgstr "Za crtanje spektra svi izabrani zapisi moraju imati istu uzorkovnu brzinu."
 
 #, fuzzy
 #~ msgid "&Filter Type:"
@@ -7397,11 +8040,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Nyquist Error"
 #~ msgstr "Nyquistov upit"
 
-#~ msgid ""
-#~ "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-#~ msgstr ""
-#~ "Oprostite, učinak nije moguće primijeniti na stereo zapise čiji se "
-#~ "zasebni zapisi ne poklapaju."
+#~ msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+#~ msgstr "Oprostite, učinak nije moguće primijeniti na stereo zapise čiji se zasebni zapisi ne poklapaju."
 
 #, fuzzy
 #~ msgid "Debug Output: "
@@ -7444,16 +8084,11 @@ msgstr "Nyquistov upit"
 #~ msgid "Nyquist returned nil audio.\n"
 #~ msgstr "Nyquist nije vratio zvuk.\n"
 
-#~ msgid ""
-#~ "[Warning: Nyquist returned invalid UTF-8 string, converted here as "
-#~ "Latin-1]"
-#~ msgstr ""
-#~ "[Upozorenje: Nyquist je vratio nevaljan niz UTF-8, tu pretvoren kao "
-#~ "Latin-1]"
+#~ msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
+#~ msgstr "[Upozorenje: Nyquist je vratio nevaljan niz UTF-8, tu pretvoren kao Latin-1]"
 
 #, fuzzy, c-format
-#~ msgid ""
-#~ "This version of Audacity does not support Nyquist plug-in version %ld"
+#~ msgid "This version of Audacity does not support Nyquist plug-in version %ld"
 #~ msgstr "Podrška %s nije prevedena za ovu inačicu Audacityja."
 
 #, fuzzy
@@ -7469,8 +8104,7 @@ msgstr "Nyquistov upit"
 #~ "\t(mult *track* 0.1)\n"
 #~ " ."
 #~ msgstr ""
-#~ "Vaš kod izgleda kao sintaksa SAL, ali nema povratne naredbe. Ili napišite "
-#~ "povratnu naredbu kao\n"
+#~ "Vaš kod izgleda kao sintaksa SAL, ali nema povratne naredbe. Ili napišite povratnu naredbu kao\n"
 #~ "\treturn s * 0.1\n"
 #~ "za SAL ili počnite s otvorenom parentezom (umetkom) kao\n"
 #~ "\t(mult s 0.1)\n"
@@ -7519,12 +8153,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Vamp Effects"
 #~ msgstr "Učinci VST"
 
-#~ msgid ""
-#~ "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-#~ "channels of the track do not match."
-#~ msgstr ""
-#~ "Oprostite, priključci Vamp neprimjenjivi su na stereo zapisima čiji se "
-#~ "zasebni kanali ne poklapaju."
+#~ msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Oprostite, priključci Vamp neprimjenjivi su na stereo zapisima čiji se zasebni kanali ne poklapaju."
 
 #~ msgid "Sorry, failed to load Vamp Plug-in."
 #~ msgstr "Oprostite, učitavanje priključka Vamp nije uspjelo."
@@ -7563,15 +8193,13 @@ msgstr "Nyquistov upit"
 #~ msgid ""
 #~ "You are about to export a %s file with the name \"%s\".\n"
 #~ "\n"
-#~ "Normally these files end in \".%s\", and some programs will not open "
-#~ "files with nonstandard extensions.\n"
+#~ "Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
 #~ "\n"
 #~ "Are you sure you want to export the file under this name?"
 #~ msgstr ""
 #~ "Datoteku %s izvest ćete pod imenom \"%s\".\n"
 #~ "\n"
-#~ "Običajno te datoteke imaju nastavak \".%s\", a neki programi ne će "
-#~ "otvoriti datoteke s nestandardnim nastavkom.\n"
+#~ "Običajno te datoteke imaju nastavak \".%s\", a neki programi ne će otvoriti datoteke s nestandardnim nastavkom.\n"
 #~ "\n"
 #~ "Želite li sigurno spremiti datoteku pod tim imenom?"
 
@@ -7584,20 +8212,15 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one mono file."
-#~ msgstr ""
-#~ "Vaši zapisi bit će smiješani u dva stereo kanala u izvoznoj datoteci."
+#~ msgstr "Vaši zapisi bit će smiješani u dva stereo kanala u izvoznoj datoteci."
 
 #, fuzzy
 #~ msgid "Your tracks will be mixed down and exported as one stereo file."
-#~ msgstr ""
-#~ "Vaši zapisi bit će smiješani u dva stereo kanala u izvoznoj datoteci."
+#~ msgstr "Vaši zapisi bit će smiješani u dva stereo kanala u izvoznoj datoteci."
 
 #, fuzzy
-#~ msgid ""
-#~ "Your tracks will be mixed down to one exported file according to the "
-#~ "encoder settings."
-#~ msgstr ""
-#~ "Vaši zapisi bit će smiješani u dva stereo kanala u izvoznoj datoteci."
+#~ msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+#~ msgstr "Vaši zapisi bit će smiješani u dva stereo kanala u izvoznoj datoteci."
 
 #~ msgid "Advanced Mixing Options"
 #~ msgstr "Napredne mogućnosti miješanja"
@@ -7635,12 +8258,8 @@ msgstr "Nyquistov upit"
 #~ msgstr "Prikaži izlaz"
 
 #, c-format
-#~ msgid ""
-#~ "Data will be piped to standard in. \"%f\" uses the file name in the "
-#~ "export window."
-#~ msgstr ""
-#~ "Podatci će biti dani u cjevovod na standardni ulaz. \"%f\" rabi ime "
-#~ "datoteke u prozoru izvoza."
+#~ msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
+#~ msgstr "Podatci će biti dani u cjevovod na standardni ulaz. \"%f\" rabi ime datoteke u prozoru izvoza."
 
 #, fuzzy
 #~ msgid "Executables"
@@ -7702,12 +8321,8 @@ msgstr "Nyquistov upit"
 #~ "Podrška za taj kodek vjerojatno nije prevedena."
 
 #, c-format
-#~ msgid ""
-#~ "Attempted to export %d channels, but maximum number of channels for "
-#~ "selected output format is %d"
-#~ msgstr ""
-#~ "Pokušaj izvoza %d kanala, ali najveći mogući broj kanala za izabrani "
-#~ "izlazni format jest %d"
+#~ msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
+#~ msgstr "Pokušaj izvoza %d kanala, ali najveći mogući broj kanala za izabrani izlazni format jest %d"
 
 #, c-format
 #~ msgid "Exporting selected audio as %s"
@@ -7927,12 +8542,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Codec:"
 #~ msgstr "Kodek:"
 
-#~ msgid ""
-#~ "Not all formats and codecs are compatible. Nor are all option "
-#~ "combinations compatible with all codecs."
-#~ msgstr ""
-#~ "Nisu svi formati i kodeki uskladivi niti su sve kombinacije mogućnosti "
-#~ "uskladive sa svim kodekima."
+#~ msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
+#~ msgstr "Nisu svi formati i kodeki uskladivi niti su sve kombinacije mogućnosti uskladive sa svim kodekima."
 
 #~ msgid "Show All Formats"
 #~ msgstr "Prikaži sve formate"
@@ -7979,8 +8590,7 @@ msgstr "Nyquistov upit"
 #~ "0 - automatic\n"
 #~ "Recommended - 192000"
 #~ msgstr ""
-#~ "Bitova brzina (bitova/sekundi) - utječe na veličinu i kakvoću konačne "
-#~ "datoteke\n"
+#~ "Bitova brzina (bitova/sekundi) - utječe na veličinu i kakvoću konačne datoteke\n"
 #~ "Neki kodeki rabe samo određene vrijednosti (128k, 192k, 256k itd.).\n"
 #~ "0 - automatsko\n"
 #~ "Preporučeno - 192000"
@@ -8340,12 +8950,10 @@ msgstr "Nyquistov upit"
 
 #, fuzzy, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
-#~ "with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "Poveznica usmjeruje na lame_enc.dll razl%d.%d. Ta inačica nije uskladiva "
-#~ "s Audacityjem %d.%d.%d.\n"
+#~ "Poveznica usmjeruje na lame_enc.dll razl%d.%d. Ta inačica nije uskladiva s Audacityjem %d.%d.%d.\n"
 #~ "Preuzmite najnoviju inačicu knjižnice LAME MP3."
 
 #, fuzzy
@@ -8498,8 +9106,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Izvoz se zaustavio nakon izvoza datoteka %lld."
 
 #, c-format
-#~ msgid ""
-#~ "Something went really wrong after exporting the following %lld file(s)."
+#~ msgid "Something went really wrong after exporting the following %lld file(s)."
 #~ msgstr "Došlo je do ozbiljne pogrješke nakon izvoza datoteka %lld."
 
 #, c-format
@@ -8639,15 +9246,12 @@ msgstr "Nyquistov upit"
 #, c-format
 #~ msgid ""
 #~ "\"%s\" is a playlist file. \n"
-#~ "Audacity cannot open this file because it only contains links to other "
-#~ "files. \n"
-#~ "You may be able to open it in a text editor and download the actual audio "
-#~ "files."
+#~ "Audacity cannot open this file because it only contains links to other files. \n"
+#~ "You may be able to open it in a text editor and download the actual audio files."
 #~ msgstr ""
 #~ "\"%s\" je datoteka popisa izvođenja.\n"
 #~ "Audacity ju ne može otvoriti jer sadrži poveznice na druge datoteke.\n"
-#~ "Možda ju uspijete otvoriti u tekstnom uređivaču pa preuzeti zvučne "
-#~ "datoteke."
+#~ "Možda ju uspijete otvoriti u tekstnom uređivaču pa preuzeti zvučne datoteke."
 
 #, c-format
 #~ msgid ""
@@ -8662,10 +9266,8 @@ msgstr "Nyquistov upit"
 #, fuzzy, c-format
 #~ msgid ""
 #~ "\"%s\" is an Advanced Audio Coding file.\n"
-#~ "Without the optional FFmpeg library, Audacity cannot open this type of "
-#~ "file.\n"
-#~ "Otherwise, you need to convert it to a supported audio format, such as "
-#~ "WAV or AIFF."
+#~ "Without the optional FFmpeg library, Audacity cannot open this type of file.\n"
+#~ "Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" je datoteka Advanced Audio Coding. \n"
 #~ "Audacity ju ne može otvoriti.\n"
@@ -8683,8 +9285,7 @@ msgstr "Nyquistov upit"
 #~ "Te su obično iz mrežne glazbene trgovine. \n"
 #~ "Audacity ih ne može otvoriti zbog šifriranosti.\n"
 #~ "Pokušajte snimiti datoteku u Audacity ili ju spržiti na zvučni CD,\n"
-#~ "zatim CD zapis prenijeti u podržanu vrstu zvučnih datoteka kao WAV ili "
-#~ "AIFF-"
+#~ "zatim CD zapis prenijeti u podržanu vrstu zvučnih datoteka kao WAV ili AIFF-"
 
 #, c-format
 #~ msgid ""
@@ -8713,8 +9314,7 @@ msgstr "Nyquistov upit"
 #~ "\"%s\" is a Musepack audio file. \n"
 #~ "Audacity cannot open this type of file. \n"
 #~ "If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-#~ "and try importing it again. Otherwise you need to convert it to a "
-#~ "supported audio \n"
+#~ "and try importing it again. Otherwise you need to convert it to a supported audio \n"
 #~ "format, such as WAV or AIFF."
 #~ msgstr ""
 #~ "\"%s\" je zvučna datoteka Musepack. \n"
@@ -8837,12 +9437,8 @@ msgstr "Nyquistov upit"
 #~ msgstr "FFmpeg (uskladive datoteke)"
 
 #, c-format
-#~ msgid ""
-#~ "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], "
-#~ "Duration[%d]"
-#~ msgstr ""
-#~ "Kazalo[%02x], kodek[%s], jezik[%s], uzorkovna brzina[%s], kanali[%d], "
-#~ "trajanje[%d]"
+#~ msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+#~ msgstr "Kazalo[%02x], kodek[%s], jezik[%s], uzorkovna brzina[%s], kanali[%d], trajanje[%d]"
 
 #~ msgid "FLAC files"
 #~ msgstr "FLAC"
@@ -8864,9 +9460,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy, c-format
 #~ msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-#~ msgstr ""
-#~ "Kazalo[%02x], kodek[%s], jezik[%s], uzorkovna brzina[%s], kanali[%d], "
-#~ "trajanje[%d]"
+#~ msgstr "Kazalo[%02x], kodek[%s], jezik[%s], uzorkovna brzina[%s], kanali[%d], trajanje[%d]"
 
 #, fuzzy
 #~ msgid "Unable to import file, state change failed."
@@ -8923,9 +9517,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy, c-format
 #~ msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-#~ msgstr ""
-#~ "Kazalo[%02x], kodek[%s], jezik[%s], uzorkovna brzina[%s], kanali[%d], "
-#~ "trajanje[%d]"
+#~ msgstr "Kazalo[%02x], kodek[%s], jezik[%s], uzorkovna brzina[%s], kanali[%d], trajanje[%d]"
 
 #~ msgid "Media read error"
 #~ msgstr "Pogrješka pri čitanju"
@@ -10257,11 +10849,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Created new label track"
 #~ msgstr "Napravljen novi oznakovni zapis"
 
-#~ msgid ""
-#~ "This version of Audacity only allows one time track for each project "
-#~ "window."
-#~ msgstr ""
-#~ "Ova inačica Audacityja dopušta samo jedan vremenski zapis po prozoru."
+#~ msgid "This version of Audacity only allows one time track for each project window."
+#~ msgstr "Ova inačica Audacityja dopušta samo jedan vremenski zapis po prozoru."
 
 #~ msgid "Created new time track"
 #~ msgstr "Napravljen novi vremenski zapis"
@@ -10287,22 +10876,15 @@ msgstr "Nyquistov upit"
 #~ msgstr "Molimo izabrati radnju"
 
 #, c-format
-#~ msgid ""
-#~ "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f "
-#~ "secs."
-#~ msgstr ""
-#~ "Poravnanje obavljeno: Midi od %.2f do %.2f s, zvuk od %.2f do %.2f s."
+#~ msgid "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
+#~ msgstr "Poravnanje obavljeno: Midi od %.2f do %.2f s, zvuk od %.2f do %.2f s."
 
 #~ msgid "Sync MIDI with Audio"
 #~ msgstr "Sinkroniziraj MIDI sa zvukom"
 
 #, c-format
-#~ msgid ""
-#~ "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from "
-#~ "%.2f to %.2f secs."
-#~ msgstr ""
-#~ "Pogrješka u poravnanju: unos prekratak: MIDI od %.2f do %.2f s, zvuk od "
-#~ "%.2f do %.2f s."
+#~ msgid "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
+#~ msgstr "Pogrješka u poravnanju: unos prekratak: MIDI od %.2f do %.2f s, zvuk od %.2f do %.2f s."
 
 #~ msgid "Internal error reported by alignment process."
 #~ msgstr "Postupak poravnanja javio je unutarnju pogrješku."
@@ -10914,12 +11496,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Directory %s is not writable"
 #~ msgstr "U mapi %s zapisivanje nije dopušteno"
 
-#~ msgid ""
-#~ "Changes to temporary directory will not take effect until Audacity is "
-#~ "restarted"
-#~ msgstr ""
-#~ "Promjene privremene mape primjenit će se tek pri sljedećem pogonu "
-#~ "Audacityja"
+#~ msgid "Changes to temporary directory will not take effect until Audacity is restarted"
+#~ msgstr "Promjene privremene mape primjenit će se tek pri sljedećem pogonu Audacityja"
 
 #~ msgid "Temp Directory Update"
 #~ msgstr "Osvježenje privremene mape"
@@ -11002,16 +11580,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Unused filters:"
 #~ msgstr "Neuporabljeni filtri:"
 
-#~ msgid ""
-#~ "There are space characters (spaces, newlines, tabs or linefeeds) in one "
-#~ "of the items. They are likely to break the pattern matching. Unless you "
-#~ "know what you are doing, it is recommended to trim spaces. Do you want "
-#~ "Audacity to trim spaces for you?"
-#~ msgstr ""
-#~ "U stavkama postoje određeni znaci (razmaci, novi red, tab, linefeed) koji "
-#~ "bi mogli dovesti do neuspješnoga pridruživanja. Jedino ako ste sigurni "
-#~ "što radite, preporučamo da uklonite razmake. Želite li da ih Audacity "
-#~ "ukloni za Vas?  "
+#~ msgid "There are space characters (spaces, newlines, tabs or linefeeds) in one of the items. They are likely to break the pattern matching. Unless you know what you are doing, it is recommended to trim spaces. Do you want Audacity to trim spaces for you?"
+#~ msgstr "U stavkama postoje određeni znaci (razmaci, novi red, tab, linefeed) koji bi mogli dovesti do neuspješnoga pridruživanja. Jedino ako ste sigurni što radite, preporučamo da uklonite razmake. Želite li da ih Audacity ukloni za Vas?  "
 
 #~ msgid "Spaces detected"
 #~ msgstr "Uočeni razmaci"
@@ -11275,18 +11845,13 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid ""
-#~ "These are experimental modules. Enable them only if you've read the "
-#~ "Audacity Manual\n"
+#~ "These are experimental modules. Enable them only if you've read the Audacity Manual\n"
 #~ "and know what you are doing."
-#~ msgstr ""
-#~ "Još u razvoju. Omogućite ih samo ako ste pročitali priručnik i znate što "
-#~ "radite."
+#~ msgstr "Još u razvoju. Omogućite ih samo ako ste pročitali priručnik i znate što radite."
 
 #, fuzzy
 #~ msgid "Changes to these settings only take effect when Audacity starts up."
-#~ msgstr ""
-#~ "Promjene privremene mape primjenit će se tek pri sljedećem pogonu "
-#~ "Audacityja"
+#~ msgstr "Promjene privremene mape primjenit će se tek pri sljedećem pogonu Audacityja"
 
 #, fuzzy
 #~ msgid "Ask"
@@ -11792,37 +12357,29 @@ msgstr "Nyquistov upit"
 #~ msgid ""
 #~ "Themability is an experimental feature.\n"
 #~ "\n"
-#~ "To try it out, click \"Save Theme Cache\" then find and modify the images "
-#~ "and colors in\n"
+#~ "To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
 #~ "ImageCacheVxx.png using an image editor such as the Gimp.\n"
 #~ "\n"
-#~ "Click \"Load Theme Cache\" to load the changed images and colors back "
-#~ "into Audacity.\n"
+#~ "Click \"Load Theme Cache\" to load the changed images and colors back into Audacity.\n"
 #~ "\n"
-#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently "
-#~ "affected, even\n"
+#~ "(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
 #~ "though the image file shows other icons too.)"
 #~ msgstr ""
 #~ "Teme su još u pokusnoj fazi.\n"
 #~ "\n"
-#~ "Za iskušavanje, stisnite \"Spremi predspremnik teme\", zatim potražite i "
-#~ "promijenite \n"
+#~ "Za iskušavanje, stisnite \"Spremi predspremnik teme\", zatim potražite i promijenite \n"
 #~ "slike i boje u ImageCacheVxx.png uređivačem poput Gimpa.\n"
 #~ "\n"
-#~ "Stisnite \"Učitaj predspremnik teme\" za učitavanje promijenjenih slika i "
-#~ "boja nazad u Audacity.\n"
+#~ "Stisnite \"Učitaj predspremnik teme\" za učitavanje promijenjenih slika i boja nazad u Audacity.\n"
 #~ "\n"
-#~ "(Trenutačno su samo traka za gibanje i boje zapisa valna oblika "
-#~ "postavljivi,\n"
+#~ "(Trenutačno su samo traka za gibanje i boje zapisa valna oblika postavljivi,\n"
 #~ "iako slike datoteka prikazuju i druge ikone.)"
 
 #~ msgid ""
-#~ "Saving and loading individual theme files uses a separate file for each "
-#~ "image, but is\n"
+#~ "Saving and loading individual theme files uses a separate file for each image, but is\n"
 #~ "otherwise the same idea."
 #~ msgstr ""
-#~ "Spremanje i učitavanje zasebnih datoteka tema izvodi se rabeći zasebne "
-#~ "datoteke za svaku sliku,\n"
+#~ "Spremanje i učitavanje zasebnih datoteka tema izvodi se rabeći zasebne datoteke za svaku sliku,\n"
 #~ "ali je inače ista stvar."
 
 #~ msgid "Theme Cache - Images && Color"
@@ -12436,12 +12993,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Down Octa&ve"
 #~ msgstr "Snizi za o&ktavu"
 
-#~ msgid ""
-#~ "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a "
-#~ "zoom region."
-#~ msgstr ""
-#~ "Kliknite za okomito povećanje, shift-kliknite za umanjenje. Vucite kako "
-#~ "biste odredili područja povećanja."
+#~ msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+#~ msgstr "Kliknite za okomito povećanje, shift-kliknite za umanjenje. Vucite kako biste odredili područja povećanja."
 
 #, fuzzy
 #~ msgid "Right-click for menu."
@@ -12486,11 +13039,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Click and drag to edit the samples"
 #~ msgstr "Kliknite i povucite za uređivanje uzoraka"
 
-#~ msgid ""
-#~ "To use Draw, zoom in further until you can see the individual samples."
-#~ msgstr ""
-#~ "Za uporabu Crtanja, povećavajte prikaz dok se ne mogu razaznati zasebni "
-#~ "uzorci."
+#~ msgid "To use Draw, zoom in further until you can see the individual samples."
+#~ msgstr "Za uporabu Crtanja, povećavajte prikaz dok se ne mogu razaznati zasebni uzorci."
 
 #, fuzzy
 #~ msgid "Moved Samples"
@@ -12633,8 +13183,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "%.1f dB"
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+#~ msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
 #~ msgstr "Kliknite i povucite za prilagođivanje omjer veličina stereo zapisa."
 
 #, fuzzy
@@ -12795,8 +13344,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Kliknite i povucite za micanje lijeve granice izbora."
 
 #, fuzzy
-#~ msgid ""
-#~ "Click and drag to move center selection frequency to a spectral peak."
+#~ msgid "Click and drag to move center selection frequency to a spectral peak."
 #~ msgstr "Kliknite i povucite za micanje lijeve granice izbora."
 
 #, fuzzy
@@ -13289,24 +13837,20 @@ msgstr "Nyquistov upit"
 #, fuzzy
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was "
-#~ "unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
-#~ "locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
 #~ msgstr ""
 #~ "Jedna ili više vanjskih datoteka nije nađeno.\n"
-#~ "Možda su premještene, izbrisane ili je pogon na kojem su bile spremljene "
-#~ "isključen.\n"
+#~ "Možda su premještene, izbrisane ili je pogon na kojem su bile spremljene isključen.\n"
 #~ "Tišinom se nadomješta utjecani zvuk.\n"
 #~ "Prva uočena nedostajuća datoteka jest:\n"
 #~ "%s\n"
 #~ "Možda ih ima još.\n"
-#~ "Stisnite Datoteka > Provjeri ovisnosti za prikaz popisa mjesta "
-#~ "nedostajućih datoteka."
+#~ "Stisnite Datoteka > Provjeri ovisnosti za prikaz popisa mjesta nedostajućih datoteka."
 
 #~ msgid "Files Missing"
 #~ msgstr "Nedostaju datoteke"
@@ -13377,19 +13921,13 @@ msgstr "Nyquistov upit"
 #~ msgstr "Naredba %s još nije usađena"
 
 #~ msgid ""
-#~ "Your project is currently self-contained; it does not depend on any "
-#~ "external audio files. \n"
+#~ "Your project is currently self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
-#~ "If you change the project to a state that has external dependencies on "
-#~ "imported files, it will no longer be self-contained. If you then Save "
-#~ "without copying those files in, you may lose data."
+#~ "If you change the project to a state that has external dependencies on imported files, it will no longer be self-contained. If you then Save without copying those files in, you may lose data."
 #~ msgstr ""
-#~ "Vaš projekt trenutačno je samosadržajan, to jest ne ovisi o podatcima "
-#~ "koji su izvan njega.\n"
+#~ "Vaš projekt trenutačno je samosadržajan, to jest ne ovisi o podatcima koji su izvan njega.\n"
 #~ "\n"
-#~ "Ako promijenite to stanje u vanjsku ovisnost, više ne će biti "
-#~ "samosadržajan. U tom bi slučaju pri spremanju bez potrebnih podataka "
-#~ "unesenih u projekt mogli izgubiti unutarnje podatke."
+#~ "Ako promijenite to stanje u vanjsku ovisnost, više ne će biti samosadržajan. U tom bi slučaju pri spremanju bez potrebnih podataka unesenih u projekt mogli izgubiti unutarnje podatke."
 
 #, fuzzy
 #~ msgid "Cleaning project temporary files"
@@ -13439,19 +13977,16 @@ msgstr "Nyquistov upit"
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up "
-#~ "first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
-#~ "Ova je  datoteka spremljena u Audacityjevoj inačici %s. Format se "
-#~ "promijenio.\n"
+#~ "Ova je  datoteka spremljena u Audacityjevoj inačici %s. Format se promijenio.\n"
 #~ "\n"
 #~ "Audacity ju može pokušati otvoriti i spremiti, ali spremanje u ovoj \n"
 #~ "inačici onemogućit će otvaranje u 1.2 i svim ranijim. \n"
 #~ "\n"
-#~ "Audacity bi mogao pokvariti datoteku otvarajući ju, zato napravite "
-#~ "pričuvak (back-up). \n"
+#~ "Audacity bi mogao pokvariti datoteku otvarajući ju, zato napravite pričuvak (back-up). \n"
 #~ "\n"
 #~ "Želite li ju otvoriti?"
 
@@ -13491,9 +14026,7 @@ msgstr "Nyquistov upit"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Spremi sažeti projekt \"%s\" kao..."
 
-#~ msgid ""
-#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
-#~ "format."
+#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
 #~ msgstr "Audacity ne može pretvoriti Audacity 1.0 projekt u novi format."
 
 #~ msgid "Could not remove old auto save file"
@@ -13502,19 +14035,11 @@ msgstr "Nyquistov upit"
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "Uvoz na zahtjev i izračun valna oblika završeni su."
 
-#~ msgid ""
-#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
-#~ "%2.0f%% complete."
-#~ msgstr ""
-#~ "Uvozi završeni. Traje %d izračun valna oblika na zahtjev. Ukupno završeno "
-#~ "%2.0f%%."
+#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
+#~ msgstr "Uvozi završeni. Traje %d izračun valna oblika na zahtjev. Ukupno završeno %2.0f%%."
 
-#~ msgid ""
-#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
-#~ "complete."
-#~ msgstr ""
-#~ "Uvozi završeni. Traje izračun valna oblika na zahtjev. Do sad završeno "
-#~ "%2.0f%%."
+#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgstr "Uvozi završeni. Traje izračun valna oblika na zahtjev. Do sad završeno %2.0f%%."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -13523,19 +14048,14 @@ msgstr "Nyquistov upit"
 #, fuzzy
 #~ msgid ""
 #~ "You are attempting to overwrite an aliased file that is missing.\n"
-#~ "The file cannot be written because the path is needed to restore the "
-#~ "original audio to the project.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of "
-#~ "all missing files.\n"
+#~ "The file cannot be written because the path is needed to restore the original audio to the project.\n"
+#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of all missing files.\n"
 #~ "If you still wish to export, please choose a different filename or folder."
 #~ msgstr ""
 #~ "Pokušavate prekopisati nedostajuću aliased datoteku.\n"
-#~ "Datoteka ne može biti napisana jer je potrebna staza za obnovu izvornoga "
-#~ "zvuka u projekt.\n"
-#~ "Izaberite Datoteka > Provjeri ovisnosti za prikaz mjesta svih "
-#~ "nedostajućih datoteka.\n"
-#~ "Ako još uvijek želite da se izvede izvoz, molimo izabrati drukčiju mapu "
-#~ "ili ime datoteke."
+#~ "Datoteka ne može biti napisana jer je potrebna staza za obnovu izvornoga zvuka u projekt.\n"
+#~ "Izaberite Datoteka > Provjeri ovisnosti za prikaz mjesta svih nedostajućih datoteka.\n"
+#~ "Ako još uvijek želite da se izvede izvoz, molimo izabrati drukčiju mapu ili ime datoteke."
 
 #, fuzzy
 #~ msgid ""
@@ -13546,24 +14066,17 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid ""
-#~ "Reading the files directly allows you to play or edit them almost "
-#~ "immediately. This is less safe than copying in, because you must retain "
-#~ "the files with their original names in their original locations.\n"
-#~ "Help > Diagnostics > Check Dependencies will show the original names and "
-#~ "locations of any files that you are reading directly.\n"
+#~ "Reading the files directly allows you to play or edit them almost immediately. This is less safe than copying in, because you must retain the files with their original names in their original locations.\n"
+#~ "Help > Diagnostics > Check Dependencies will show the original names and locations of any files that you are reading directly.\n"
 #~ "\n"
 #~ "How do you want to import the current file(s)?"
 #~ msgstr ""
-#~ "Pri uvozu nesažetih zvučnih datoteka možete ih: kopirati u projekt ili "
-#~ "izravno čitati (s njihovoga mjesta bez kopiranja).\n"
+#~ "Pri uvozu nesažetih zvučnih datoteka možete ih: kopirati u projekt ili izravno čitati (s njihovoga mjesta bez kopiranja).\n"
 #~ "\n"
 #~ "Vaša trenutačna postavka: %s.\n"
 #~ "\n"
-#~ "Izravno čitanje datoteka omogućuje trenutačno sviranje i uređivanje. "
-#~ "Doduše, to je nesigurnije od kopiranja (datoteka zadržava svoje ime i "
-#~ "mjesto).\n"
-#~ "'Datoteka > Provjeri ovisnosti' pokazuje izvorna imena i mjesta svih "
-#~ "izravno čitanih datoteka.\n"
+#~ "Izravno čitanje datoteka omogućuje trenutačno sviranje i uređivanje. Doduše, to je nesigurnije od kopiranja (datoteka zadržava svoje ime i mjesto).\n"
+#~ "'Datoteka > Provjeri ovisnosti' pokazuje izvorna imena i mjesta svih izravno čitanih datoteka.\n"
 #~ "\n"
 #~ "Kako želite uvesti te datoteke?"
 
@@ -13611,12 +14124,10 @@ msgstr "Nyquistov upit"
 #~ msgstr "&Najmanje slobodne memorije (MB):"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no "
-#~ "longer\n"
+#~ "If the available system memory falls below this value, audio will no longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
-#~ "Ako raspoloživa memorija sustava padne ispod ove vrijednost, zvuk se više "
-#~ "ne će\n"
+#~ "Ako raspoloživa memorija sustava padne ispod ove vrijednost, zvuk se više ne će\n"
 #~ "predspremati (cache), nego će se zapisivati na disk."
 
 #~ msgid "When importing audio files"
@@ -13675,9 +14186,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Ravijatelji Audacityja"
 
 #, fuzzy
-#~ msgid ""
-#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
-#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "<b>Audacity&reg;</b> je pod autorskom zaštitom"
 
 #~ msgid "mkdir in DirManager::MakeBlockFilePath failed."
@@ -13685,12 +14194,10 @@ msgstr "Nyquistov upit"
 
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete "
-#~ "project check."
+#~ "Please consider saving and reloading the project to perform a complete project check."
 #~ msgstr ""
 #~ "Audacity je našao osamljenu blokovsku datoteku: %s. \n"
-#~ "Preporučujemo spremanje i ponovno otvaranje projekta radi potpune "
-#~ "provjere projekta."
+#~ "Preporučujemo spremanje i ponovno otvaranje projekta radi potpune provjere projekta."
 
 #~ msgid "Unable to open/create test file."
 #~ msgstr "Nemoguće otvoriti/stvoriti pokusne datoteke."
@@ -13720,15 +14227,11 @@ msgstr "Nyquistov upit"
 #~ msgstr "GB"
 
 #, fuzzy
-#~ msgid ""
-#~ "The module \"%s\" does not provide a version string. It will not be "
-#~ "loaded."
+#~ msgid "The module \"%s\" does not provide a version string. It will not be loaded."
 #~ msgstr "Modul %s nema string inačice. Ne će biti učitan."
 
 #, fuzzy
-#~ msgid ""
-#~ "The module \"%s\" is matched with Audacity version \"%s\". It will not be "
-#~ "loaded."
+#~ msgid "The module \"%s\" is matched with Audacity version \"%s\". It will not be loaded."
 #~ msgstr "Modul %s je pridružen Audacityjevoj inačici %s. Ne će biti učitan."
 
 #, fuzzy
@@ -13740,35 +14243,22 @@ msgstr "Nyquistov upit"
 #~ "Ne će biti učitan."
 
 #, fuzzy
-#~ msgid ""
-#~ "The module \"%s\" does not provide any of the required functions. It will "
-#~ "not be loaded."
+#~ msgid "The module \"%s\" does not provide any of the required functions. It will not be loaded."
 #~ msgstr "Modul %s nema string inačice. Ne će biti učitan."
 
 #~ msgid "   Project check replaced missing aliased file(s) with silence."
-#~ msgstr ""
-#~ "   Provjera projekta nadomjestila je nedostajuću aliased datoteku tišinom."
+#~ msgstr "   Provjera projekta nadomjestila je nedostajuću aliased datoteku tišinom."
 
 #~ msgid "   Project check regenerated missing alias summary file(s)."
-#~ msgstr ""
-#~ "   Provjera projekta obnovila je nedostajuće alias summary datoteke."
+#~ msgstr "   Provjera projekta obnovila je nedostajuće alias summary datoteke."
 
-#~ msgid ""
-#~ "   Project check replaced missing audio data block file(s) with silence."
-#~ msgstr ""
-#~ "   Provjera projekta zamijenila je nedostajuće podatke blokovske datoteke "
-#~ "tišinom."
+#~ msgid "   Project check replaced missing audio data block file(s) with silence."
+#~ msgstr "   Provjera projekta zamijenila je nedostajuće podatke blokovske datoteke tišinom."
 
-#~ msgid ""
-#~ "   Project check ignored orphan block file(s). They will be deleted when "
-#~ "project is saved."
-#~ msgstr ""
-#~ "   Provjera projekta zanemarila je osamljene blokovske datoteke. Bit će "
-#~ "izbrisane pri spremanju projekta."
+#~ msgid "   Project check ignored orphan block file(s). They will be deleted when project is saved."
+#~ msgstr "   Provjera projekta zanemarila je osamljene blokovske datoteke. Bit će izbrisane pri spremanju projekta."
 
-#~ msgid ""
-#~ "Project check found file inconsistencies inspecting the loaded project "
-#~ "data."
+#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
 #~ msgstr "Provjera projekta našla je nesuglasice u podatcima."
 
 #, fuzzy
@@ -13794,8 +14284,7 @@ msgstr "Nyquistov upit"
 #~ "Bad Nyquist 'control' type specification: '%s' in plug-in file '%s'.\n"
 #~ "Control not created."
 #~ msgstr ""
-#~ "Loša Nyquistova 'kontrolna' vrsta odredbe: '%s' u datoteci priključka "
-#~ "'%s'.\n"
+#~ "Loša Nyquistova 'kontrolna' vrsta odredbe: '%s' u datoteci priključka '%s'.\n"
 #~ "Kontrola nije stvorena."
 
 #, fuzzy
@@ -13853,23 +14342,15 @@ msgstr "Nyquistov upit"
 #~ msgstr "Omogući &rezne crte"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
-#~ "dll|All Files|*"
-#~ msgstr ""
-#~ "Samo avformat.dll|*avformat*.dll|Dinamično povezane knjižnice (*.dll)|*."
-#~ "dll|Sve datoteke (*.*)|*"
+#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Samo avformat.dll|*avformat*.dll|Dinamično povezane knjižnice (*.dll)|*.dll|Sve datoteke (*.*)|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Dinamične knjižnice (*.dylib)|*.dylib|Sve datoteke (*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
-#~ "*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Samo libavformat.so|libavformat.so*|Dinamično povezane knjižnice (*.so)|*."
-#~ "so|Sve datoteke (*)|*"
+#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Samo libavformat.so|libavformat.so*|Dinamično povezane knjižnice (*.so)|*.so|Sve datoteke (*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -13917,34 +14398,18 @@ msgstr "Nyquistov upit"
 #~ msgstr "%i kb/s"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
-#~ "All Files|*"
-#~ msgstr ""
-#~ "Samo lame_enc.dll|lame_enc.dll|Dinamično povezane knjižnice (*.dll)|*.dll|"
-#~ "Sve datoteke (*.*)|*"
+#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
+#~ msgstr "Samo lame_enc.dll|lame_enc.dll|Dinamično povezane knjižnice (*.dll)|*.dll|Sve datoteke (*.*)|*"
 
 #, fuzzy
-#~ msgid ""
-#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
-#~ "dylib)|*.dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Samo libmp3lame.dylib|libmp3lame.dylib|Dinamične knjižnice (*.dylib)|*."
-#~ "dylib|Sve datoteke (*)|*"
+#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Samo libmp3lame.dylib|libmp3lame.dylib|Dinamične knjižnice (*.dylib)|*.dylib|Sve datoteke (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
-#~ "dylib|All Files (*)|*"
-#~ msgstr ""
-#~ "Samo libmp3lame.dylib|libmp3lame.dylib|Dinamične knjižnice (*.dylib)|*."
-#~ "dylib|Sve datoteke (*)|*"
+#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
+#~ msgstr "Samo libmp3lame.dylib|libmp3lame.dylib|Dinamične knjižnice (*.dylib)|*.dylib|Sve datoteke (*)|*"
 
-#~ msgid ""
-#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
-#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr ""
-#~ "Samo libmp3lame.so.0|libmp3lame.so.0|Primarne dijeljene objektne datoteke "
-#~ "(*.so)|*.so|Raširene knjižnice (*.so*)|*.so*|Sve datoteke (*)|*"
+#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr "Samo libmp3lame.so.0|libmp3lame.so.0|Primarne dijeljene objektne datoteke (*.so)|*.so|Raširene knjižnice (*.so*)|*.so*|Sve datoteke (*)|*"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -13962,21 +14427,15 @@ msgstr "Nyquistov upit"
 #~ msgstr "Datoteke MIDI (*.mid)|*.mid|DatotekeAllegro (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid ""
-#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
-#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr ""
-#~ "Datoteke MIDI i Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Datoteke "
-#~ "MIDI (*.mid)|*.mid|Datoteke Allegro (*.gro)|*.gro|Sve datoteke(*.*)|*.*"
+#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr "Datoteke MIDI i Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Datoteke MIDI (*.mid)|*.mid|Datoteke Allegro (*.gro)|*.gro|Sve datoteke(*.*)|*.*"
 
 #, fuzzy
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output "
-#~ "Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
-#~ "Audacity ste preveli (kompilirali) s dodatnim gumbom - 'Output Sourcery'. "
-#~ "To će spremiti\n"
+#~ "Audacity ste preveli (kompilirali) s dodatnim gumbom - 'Output Sourcery'. To će spremiti\n"
 #~ "inačicu C slikovnoga predspremnika koji se može predzadano prevesti."
 
 #~ msgid "Waveform (dB)"
@@ -14002,11 +14461,8 @@ msgstr "Nyquistov upit"
 #~ msgstr "&Normaliziraj sve zapise u projektu"
 
 #, fuzzy
-#~ msgid ""
-#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
-#~ "Menu."
-#~ msgstr ""
-#~ "Za uporabu Crtanja, izaberite 'Valni oblik' u padajućem izborniku Zapis."
+#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
+#~ msgstr "Za uporabu Crtanja, izaberite 'Valni oblik' u padajućem izborniku Zapis."
 
 #, fuzzy
 #~ msgid "Vocal Remover"
@@ -14107,16 +14563,13 @@ msgstr "Nyquistov upit"
 #~ msgstr "desno"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden "
-#~ "before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
-#~ "to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
 #~ msgstr ""
 #~ "Zbog postavki latencije snimljen zvuk prije nule je skriven.\n"
 #~ "Audacity je snimku vratio nazad na vrijednost nula.\n"
-#~ "Možda ćete morati uporabiti Vremenski pomak (<---> ili F5) da povučete "
-#~ "zapis na pravo mjesto."
+#~ "Možda ćete morati uporabiti Vremenski pomak (<---> ili F5) da povučete zapis na pravo mjesto."
 
 #~ msgid "Latency problem"
 #~ msgstr "Teškoća s latencijom"
@@ -14194,11 +14647,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Time Scale"
 #~ msgstr "Vremensko rastezanje"
 
-#~ msgid ""
-#~ "Your tracks will be mixed down to a single mono channel in the exported "
-#~ "file."
-#~ msgstr ""
-#~ "Vaši zapisi bit će smiješani u jedan mono kanal u izvoznoj datoteci."
+#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgstr "Vaši zapisi bit će smiješani u jedan mono kanal u izvoznoj datoteci."
 
 #~ msgid "kbps"
 #~ msgstr "kb/s"
@@ -14217,9 +14667,7 @@ msgstr "Nyquistov upit"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr ""
-#~ "Pogrješka pri otvaranju zvučnoga uređaja. Molimo provjeriti postavke "
-#~ "izlaznoga uređaja i (uzorkovnu) brzinu projekta."
+#~ msgstr "Pogrješka pri otvaranju zvučnoga uređaja. Molimo provjeriti postavke izlaznoga uređaja i (uzorkovnu) brzinu projekta."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -14397,12 +14845,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Show length and end time"
 #~ msgstr "Završno vrijeme prednine"
 
-#~ msgid ""
-#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
-#~ "particular zoom region."
-#~ msgstr ""
-#~ "Kliknite za okomito povećanje, shift-kliknite za umanjenje. Vucite kako "
-#~ "biste stvorili određeno područje povećanja."
+#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
+#~ msgstr "Kliknite za okomito povećanje, shift-kliknite za umanjenje. Vucite kako biste stvorili određeno područje povećanja."
 
 #~ msgid "up"
 #~ msgstr "gore"
@@ -14681,8 +15125,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Kliknite i povucite za micanje lijeve granice izbora."
 
 #~ msgid "To use Draw, choose 'Waveform' in the Track Drop-down Menu."
-#~ msgstr ""
-#~ "Za uporabu Crtanja, izaberite 'Valni oblik' u padajućem izborniku Zapis."
+#~ msgstr "Za uporabu Crtanja, izaberite 'Valni oblik' u padajućem izborniku Zapis."
 
 #, fuzzy
 #~ msgid "%.2f dB Average RMS"
@@ -14711,8 +15154,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Uvijek &smiješaj sve zapise u stereo ili mono oblik."
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr ""
-#~ "&Uporabi miješanje po mjeri (npr. za izvoz 5.1 višekanalne datoteke)"
+#~ msgstr "&Uporabi miješanje po mjeri (npr. za izvoz 5.1 višekanalne datoteke)"
 
 #~ msgid "When exporting track to an Allegro (.gro) file"
 #~ msgstr "Pri izvozu zapisa u datoteku Allegro (.gro)"
@@ -14732,9 +15174,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid "&Hardware Playthrough: Listen to input while recording or monitoring"
-#~ msgstr ""
-#~ "&Strojno popratno sviranje: za vrijeme snimanja i nadziranja čuje se i "
-#~ "ulaz na drugom uređaju"
+#~ msgstr "&Strojno popratno sviranje: za vrijeme snimanja i nadziranja čuje se i ulaz na drugom uređaju"
 
 #, fuzzy
 #~ msgid "&Software Playthrough: Listen to input while recording or monitoring"
@@ -14770,8 +15210,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "Pri&kaži spektar u crno-bijelom"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
-#~ "loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
 #~ "when the program starts up."
 #~ msgstr ""
 #~ "Ako je uključeno 'Učitaj predspremnik teme pri pogonu',\n"
@@ -14851,9 +15290,7 @@ msgstr "Nyquistov upit"
 #~ msgid "Welcome to Audacity "
 #~ msgstr "Dobro došli u Audacity "
 
-#~ msgid ""
-#~ " For even quicker answers, all the online resources above are "
-#~ "<b>searchable</b>."
+#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
 #~ msgstr " Svi gornji izvori lako su <b>pretraživi</b>."
 
 #~ msgid "Edit Metadata"
@@ -15132,12 +15569,8 @@ msgstr "Nyquistov upit"
 #~ msgstr "Vaša datoteka izvest će se kao datoteka GSM 6.10 WAV.\n"
 
 #, fuzzy
-#~ msgid ""
-#~ "If you need more control over the export format please use the \"%s\" "
-#~ "format."
-#~ msgstr ""
-#~ "Za više mogućnosti s izvoznim formatom uporabite format 'Druge nesažete "
-#~ "datoteke'."
+#~ msgid "If you need more control over the export format please use the \"%s\" format."
+#~ msgstr "Za više mogućnosti s izvoznim formatom uporabite format 'Druge nesažete datoteke'."
 
 #~ msgid "Ctrl-Left-Drag"
 #~ msgstr "CTRL + lijeva povlaka"
@@ -15162,12 +15595,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Command-line options supported:"
 #~ msgstr "Podržane mogućnosti naredbene trake:"
 
-#~ msgid ""
-#~ "In addition, specify the name of an audio file or Audacity project to "
-#~ "open it."
-#~ msgstr ""
-#~ "Također, navedite ime zvučne datoteke ili Audacityjeva projekta koji "
-#~ "želite otvoriti."
+#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
+#~ msgstr "Također, navedite ime zvučne datoteke ili Audacityjeva projekta koji želite otvoriti."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "Učinak Stereo u mono nije nađen"
@@ -15175,10 +15604,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Okomica: %d Hz (%s) = %d dB    Vrh: %d Hz (%s) = %.1f dB"
 
-#~ msgid ""
-#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr ""
-#~ "Okomica: %.4f s (%d Hz) (%s) = %f,    Vrh: %.4f s (%d Hz) (%s) = %.3f"
+#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr "Okomica: %.4f s (%d Hz) (%s) = %f,    Vrh: %.4f s (%d Hz) (%s) = %.3f"
 
 #~ msgid "Plot Spectrum"
 #~ msgstr "Nacrtaj spektar"
@@ -15377,12 +15804,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Creating Noise Profile"
 #~ msgstr "Stvaram definiciju šuma"
 
-#~ msgid ""
-#~ "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, "
-#~ "stereo independent %s"
-#~ msgstr ""
-#~ "Primjenjen učinak: %s ukloni otklon DC-a = %s, normaliziraj amplitudu = "
-#~ "%s, stereo neovisan %s"
+#~ msgid "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, stereo independent %s"
+#~ msgstr "Primjenjen učinak: %s ukloni otklon DC-a = %s, normaliziraj amplitudu = %s, stereo neovisan %s"
 
 #~ msgid "true"
 #~ msgstr "istina"
@@ -15393,21 +15816,14 @@ msgstr "Nyquistov upit"
 #~ msgid "Normalize..."
 #~ msgstr "Normaliziraj..."
 
-#~ msgid ""
-#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
-#~ msgstr ""
-#~ "Uporabljen učinak: %s, čimbenik rastezanja = %f-struko, vremenska "
-#~ "razlučivost = %f sekundi"
+#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgstr "Uporabljen učinak: %s, čimbenik rastezanja = %f-struko, vremenska razlučivost = %f sekundi"
 
 #~ msgid "Stretching with Paulstretch"
 #~ msgstr "Rastezanje s Paulovim rastezanjem..."
 
-#~ msgid ""
-#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
-#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr ""
-#~ "Uporabljen učinak: %s %d stupnjeva, %.0f%% mokar, frekvencija = %.1f Hz, "
-#~ "početna faza = %.0f stupnjeva, dubina = %d, odboj = %.0f%%"
+#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr "Uporabljen učinak: %s %d stupnjeva, %.0f%% mokar, frekvencija = %.1f Hz, početna faza = %.0f stupnjeva, dubina = %d, odboj = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Faznik..."
@@ -15498,12 +15914,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Changing Tempo/Pitch"
 #~ msgstr "Promjena tempa ili visine zvuka"
 
-#~ msgid ""
-#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
-#~ "%.2f, %.6lf seconds"
-#~ msgstr ""
-#~ "Uporabljen učinak: 'Stvori %s %s val, frekvencija = %.2f Hz, amplituda = "
-#~ "%.2f, %.6lf sekunda'"
+#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
+#~ msgstr "Uporabljen učinak: 'Stvori %s %s val, frekvencija = %.2f Hz, amplituda = %.2f, %.6lf sekunda'"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Stvarač zujanja"
@@ -15526,12 +15938,8 @@ msgstr "Nyquistov upit"
 #~ msgid "VST Effect"
 #~ msgstr "Učinci VST"
 
-#~ msgid ""
-#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
-#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr ""
-#~ "Uporabljen učinak: frekvencija %s = %.1f Hz, početna faza = %.0f stupnja, "
-#~ "dubina = %.0f%%, rezonancija = %.1f, otklon frekvencije = %.0f%%"
+#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr "Uporabljen učinak: frekvencija %s = %.1f Hz, početna faza = %.0f stupnja, dubina = %.0f%%, rezonancija = %.1f, otklon frekvencije = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -15545,12 +15953,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Author: "
 #~ msgstr "Autor: "
 
-#~ msgid ""
-#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Oprostite, učinci priključaka ne mogu se primijeniti na stereo zapise "
-#~ "čiji se zasebni kanali ne poklapaju."
+#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Oprostite, učinci priključaka ne mogu se primijeniti na stereo zapise čiji se zasebni kanali ne poklapaju."
 
 #~ msgid "Note length (seconds)"
 #~ msgstr "Dužina nota (u sekundama)"
@@ -15571,8 +15975,7 @@ msgstr "Nyquistov upit"
 #~ msgstr "GSM 6.10 WAV (mobilno)"
 
 #~ msgid "Your file will be exported as a 16-bit AIFF (Apple/SGI) file.\n"
-#~ msgstr ""
-#~ "Vaša datoteka izvest će se kao 16-bitna datoteka AIFF (Apple/SGI).\n"
+#~ msgstr "Vaša datoteka izvest će se kao 16-bitna datoteka AIFF (Apple/SGI).\n"
 
 #~ msgid "Your file will be exported as a 16-bit WAV (Microsoft) file.\n"
 #~ msgstr "Vaša datoteka izvest će se kao 16-bitna datoteka WAV (Microsoft).\n"
@@ -15605,9 +16008,7 @@ msgstr "Nyquistov upit"
 
 #, fuzzy
 #~ msgid "Automated Recording Level Adjustment stopped as requested by user."
-#~ msgstr ""
-#~ "Automatsko prilagođivanje razine ulaza zaustavljeno je na zahtjev "
-#~ "korisnika."
+#~ msgstr "Automatsko prilagođivanje razine ulaza zaustavljeno je na zahtjev korisnika."
 
 #~ msgid "Vertical Ruler"
 #~ msgstr "Okomito ravnalo"
@@ -15646,10 +16047,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Input Meter"
 #~ msgstr "Mjerilo ulaza"
 
-#~ msgid ""
-#~ "Recovering a project will not change any files on disk before you save it."
-#~ msgstr ""
-#~ "Obnavljanje projekta ne mijenja ništa na disku dok se projekt ne spremi."
+#~ msgid "Recovering a project will not change any files on disk before you save it."
+#~ msgstr "Obnavljanje projekta ne mijenja ništa na disku dok se projekt ne spremi."
 
 #~ msgid "Do Not Recover"
 #~ msgstr "Nemoj obnoviti"
@@ -15748,15 +16147,12 @@ msgstr "Nyquistov upit"
 
 #~ msgid ""
 #~ "GStreamer was configured in preferences and successfully loaded before,\n"
-#~ "                      but this time Audacity failed to load it at "
-#~ "startup.\n"
-#~ "                      You may want to go back to Preferences > Libraries "
-#~ "and re-configure it."
+#~ "                      but this time Audacity failed to load it at startup.\n"
+#~ "                      You may want to go back to Preferences > Libraries and re-configure it."
 #~ msgstr ""
 #~ "GStreamer je već bio uspješno postavljen i učitan,\n"
 #~ "                      ali se ovaj put nije uspio učitati.\n"
-#~ "                      Pokušajte se vratiti na Postavke > Knjižnice i opet "
-#~ "ga postaviti."
+#~ "                      Pokušajte se vratiti na Postavke > Knjižnice i opet ga postaviti."
 
 #~ msgid ""
 #~ "You have left blank label names.  These will be\n"
@@ -15809,40 +16205,31 @@ msgstr "Nyquistov upit"
 #~ msgstr "Kraj poravnan s počekom izbora"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, "
-#~ "compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, "
-#~ "because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each "
-#~ "compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select "
-#~ "one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "Datoteka projekta (.aup) znatno je veća od sažete datoteke projekta (."
-#~ "ogg),\n"
-#~ "pa je zgodna za mrežni prijenos. Otvaranje sažete datoteke traje nešto "
-#~ "duže\n"
+#~ "Datoteka projekta (.aup) znatno je veća od sažete datoteke projekta (.ogg),\n"
+#~ "pa je zgodna za mrežni prijenos. Otvaranje sažete datoteke traje nešto duže\n"
 #~ "nego obično jer uvozi svaki sažet zapis.\n"
 #~ "\n"
 #~ "Većina drugih programa ne zna otvoriti datoteku Audacityjeva projekta.\n"
-#~ "Zato, ako vam datoteka treba biti čitljiva drugim programima, radije ju "
-#~ "izvezite."
+#~ "Zato, ako vam datoteka treba biti čitljiva drugim programima, radije ju izvezite."
 
 #~ msgid ""
 #~ "You are saving an Audacity project file (.aup).\n"
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export"
-#~ "\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
 #~ msgstr ""
 #~ "Projekt spremate u obliku čitljivom samo za Audacity (.aup).\n"
 #~ "\n"
-#~ "Spremljena datoteka bit će čitljiva ako ju spremite naredbom \"Datoteka > "
-#~ "Izvezi\".\n"
+#~ "Spremljena datoteka bit će čitljiva ako ju spremite naredbom \"Datoteka > Izvezi\".\n"
 
 #~ msgid "Waveform (d&B)"
 #~ msgstr "&Valni oblik (dB)"
@@ -15884,12 +16271,8 @@ msgstr "Nyquistov upit"
 #~ msgid "mod-&track-panel"
 #~ msgstr "mod-&track-panel"
 
-#~ msgid ""
-#~ "<p>You do not appear to have 'help' installed on your computer.<br> "
-#~ "Please <a href=\"*URL*\">view or download it online</a>."
-#~ msgstr ""
-#~ "<p>Izgleda da nemate ugrađenu 'pomoć' na svojem računalu.<br> Molimo <a "
-#~ "href=\"*URL*\">pregledati ju mrežno ili preuzeti</a>."
+#~ msgid "<p>You do not appear to have 'help' installed on your computer.<br> Please <a href=\"*URL*\">view or download it online</a>."
+#~ msgstr "<p>Izgleda da nemate ugrađenu 'pomoć' na svojem računalu.<br> Molimo <a href=\"*URL*\">pregledati ju mrežno ili preuzeti</a>."
 
 #~ msgid "Open Me&tadata Editor..."
 #~ msgstr "Uredi &metapodatke..."
@@ -16026,12 +16409,8 @@ msgstr "Nyquistov upit"
 #~ msgid "Attempt to run Noise Removal without a noise profile.\n"
 #~ msgstr "Pokušaj uklanjanja šuma bez profila šuma.\n"
 
-#~ msgid ""
-#~ "Sorry, this effect cannot be performed on stereo tracks where the "
-#~ "individual channels of the track do not match."
-#~ msgstr ""
-#~ "Oprostite, ti se učinci ne mogu se primijeniti na stereo zapise čiji se  "
-#~ "zasebni kanali zapisa ne poklapaju."
+#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
+#~ msgstr "Oprostite, ti se učinci ne mogu se primijeniti na stereo zapise čiji se  zasebni kanali zapisa ne poklapaju."
 
 #~ msgid ""
 #~ "If you have more than one Audio Track, you can\n"
@@ -16065,9 +16444,5 @@ msgstr "Nyquistov upit"
 #~ msgid "Don't a&pply effects in batch mode"
 #~ msgstr "Ne &rabi učinke u svežnju"
 
-#~ msgid ""
-#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
-#~ "one project, is already open."
-#~ msgstr ""
-#~ "Snimanje u načinu CleanSpeech nije moguće ako je zapis, ili više "
-#~ "projekata, već otvoreno."
+#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
+#~ msgstr "Snimanje u načinu CleanSpeech nije moguće ako je zapis, ili više projekata, već otvoreno."
