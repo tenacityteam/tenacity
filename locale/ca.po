@@ -18,10 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
-msgid "Stream is active ... unable to gather information.\n"
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "Seleccioneu el dispositiu d'enregistrament"
@@ -112,10 +108,6 @@ msgstr "Seleccioneu el dispositiu de reproducció"
 msgid "No playback device found for '%s'.\n"
 msgstr "Seleccioneu el dispositiu de reproducció"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-msgid "Cannot check mutual sample rates without both devices.\n"
-msgstr ""
-
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -127,11 +119,6 @@ msgstr "Freqüències de mostreig"
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Freqüències de mostreig"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Opened: %d\n"
-msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -157,20 +144,6 @@ msgstr "Seleccioneu el dispositiu de reproducció"
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "Missatge"
-
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
-msgstr ""
-
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
-msgstr ""
 
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
@@ -239,21 +212,12 @@ msgstr "Anomena els fitxers:"
 msgid "XML files"
 msgstr "Fitxers MP3"
 
-#: libraries/lib-files/FileNames.cpp
-msgid ", "
-msgstr ""
-
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "Fitxers MP3"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "(%s)"
-msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -275,14 +239,6 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Directori dels fitxers temporals"
-
-#: libraries/lib-files/TempDirectory.cpp
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"For tips on suitable drives, click the help button."
-msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -307,49 +263,9 @@ msgstr "Rectangular"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
-msgid "Bartlett"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
-msgid "Hamming"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
-msgid "Hann"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
-msgid "Blackman"
-msgstr ""
-
-#. i18n-hint two proper names
-#: libraries/lib-math/FFT.cpp
-msgid "Blackman-Harris"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "Hola!"
-
-#. i18n-hint a mathematical function named for C. F. Gauss
-#: libraries/lib-math/FFT.cpp
-msgid "Gaussian(a=2.5)"
-msgstr ""
-
-#. i18n-hint a mathematical function named for C. F. Gauss
-#: libraries/lib-math/FFT.cpp
-msgid "Gaussian(a=3.5)"
-msgstr ""
-
-#. i18n-hint a mathematical function named for C. F. Gauss
-#: libraries/lib-math/FFT.cpp
-msgid "Gaussian(a=4.5)"
-msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 msgid "Low Quality (Fastest)"
@@ -396,21 +312,6 @@ msgstr "16 bits"
 msgid "24-bit"
 msgstr "24 bits"
 
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in group at %s was merged with a previously defined group"
-msgstr ""
-
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
-msgstr ""
-
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in items at %s specify conflicting placements"
-msgstr ""
-
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "No es pot determinar"
@@ -419,24 +320,6 @@ msgstr "No es pot determinar"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "bytes"
-
-#. i18n-hint: Abbreviation for Kilo bytes
-#: libraries/lib-strings/Internat.cpp
-#, c-format
-msgid "%s KB"
-msgstr ""
-
-#. i18n-hint: Abbreviation for Mega bytes
-#: libraries/lib-strings/Internat.cpp
-#, c-format
-msgid "%s MB"
-msgstr ""
-
-#. i18n-hint: Abbreviation for Giga bytes
-#: libraries/lib-strings/Internat.cpp
-#, c-format
-msgid "%s GB"
-msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -507,22 +390,6 @@ msgstr "Publicat sota els termes de la versió 2 de la llicència pública gener
 msgid "~aPlease select frequencies."
 msgstr "~aSeleccioneu les freqüències."
 
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                       frequencies are both ~a Hz).~%~\n"
-"                       Please select a frequency range."
-msgstr ""
-
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aNotch filter parameters cannot be applied.~%~\n"
-"                      Try increasing the low frequency bound~%~\n"
-"                      or reduce the filter 'Width'."
-msgstr ""
-
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
 #, lisp-format
@@ -553,22 +420,6 @@ msgstr "~aLa freqüència alta està sense definir."
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "~aLa freqüència del centre ha de ser superior a 0 Hz."
 
-#: plug-ins/SpectralEditParametricEQ.ny
-#, lisp-format
-msgid ""
-"~aFrequency selection is too high for track sample rate.~%~\n"
-"                        For the current track, the high frequency setting cannot~%~\n"
-"                        be greater than ~a Hz"
-msgstr ""
-
-#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                         frequencies are both ~a Hz).~%~\n"
-"                         Please select a frequency range."
-msgstr ""
-
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -592,15 +443,6 @@ msgstr "S'està aplicant..."
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
-
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-#, fuzzy
-msgid "GNU General Public License v2.0 or later"
-msgstr "Publicat sota els termes de la versió 2 de la llicència pública general GNU"
 
 #: plug-ins/StudioFadeOut.ny
 #, fuzzy, lisp-format
@@ -634,10 +476,6 @@ msgid "S-Curve Down"
 msgstr "Mou avall"
 
 #: plug-ins/adjustable-fade.ny
-msgid "Mid-fade Adjust (%)"
-msgstr ""
-
-#: plug-ins/adjustable-fade.ny
 msgid "Start/End as"
 msgstr "Començament/acabament com"
 
@@ -656,10 +494,6 @@ msgstr "Començament (o acabament)"
 #: plug-ins/adjustable-fade.ny
 msgid "End (or start)"
 msgstr "Acabament (o començament)"
-
-#: plug-ins/adjustable-fade.ny
-msgid "Handy Presets (override controls)"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -735,14 +569,6 @@ msgstr "El guany de freqüència no pot ser negatiu"
 msgid "~aPercentage values cannot be more than 1000 %."
 msgstr "El guany de freqüència no pot ser negatiu"
 
-#: plug-ins/adjustable-fade.ny
-#, lisp-format
-msgid ""
-"~adB values cannot be more than +100 dB.~%~%~\n"
-"                                 Hint: 6 dB doubles the amplitude~%~\n"
-"                                 -6 dB halves the amplitude."
-msgstr ""
-
 #: plug-ins/beat.ny
 msgid "Beat Finder"
 msgstr "Cercador de pulsacions"
@@ -766,14 +592,6 @@ msgid "Clip Fix"
 msgstr "Escapçament dels pics"
 
 #: plug-ins/clipfix.ny
-msgid "Reconstructing clips..."
-msgstr ""
-
-#: plug-ins/clipfix.ny
-msgid "Benjamin Schwartz and Steve Daulton"
-msgstr ""
-
-#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Licensing confirmed under terms of the GNU General Public License version 2"
 msgstr "Publicat sota els termes de la versió 2 de la llicència pública general GNU"
@@ -783,10 +601,6 @@ msgstr "Publicat sota els termes de la versió 2 de la llicència pública gener
 msgid "Threshold of Clipping (%)"
 msgstr "Llindar %d dB"
 
-#: plug-ins/clipfix.ny
-msgid "Reduce amplitude to allow for restored peaks (dB)"
-msgstr ""
-
 #: plug-ins/crossfadeclips.ny
 msgid "Crossfade Clips"
 msgstr "Fosa de transició de clips"
@@ -794,16 +608,6 @@ msgstr "Fosa de transició de clips"
 #: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
 msgid "Crossfading..."
 msgstr "S'està realitzant la fosa de transició..."
-
-#: plug-ins/crossfadeclips.ny
-#, lisp-format
-msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
-msgstr ""
-
-#: plug-ins/crossfadeclips.ny
-#, lisp-format
-msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
-msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, lisp-format
@@ -876,14 +680,6 @@ msgid "Regular"
 msgstr "Regular"
 
 #: plug-ins/delay.ny
-msgid "Bouncing Ball"
-msgstr ""
-
-#: plug-ins/delay.ny
-msgid "Reverse Bouncing Ball"
-msgstr ""
-
-#: plug-ins/delay.ny
 #, fuzzy
 msgid "Delay level per echo (dB)"
 msgstr "&Reducció de soroll (dB):"
@@ -913,10 +709,6 @@ msgstr "Canvi d'altura per eco (semitons)"
 msgid "Number of echoes"
 msgstr "Nombre d'ecos"
 
-#: plug-ins/delay.ny
-msgid "Allow duration to change"
-msgstr ""
-
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #: plug-ins/sample-data-export.ny
 msgid "Yes"
@@ -925,10 +717,6 @@ msgstr "Sí"
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "No"
-
-#: plug-ins/eq-xml-to-txt-converter.ny
-msgid "EQ XML to TXT Converter"
-msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -953,10 +741,6 @@ msgstr "Equalització"
 #, fuzzy
 msgid "XML file"
 msgstr "Fitxers MP3"
-
-#: plug-ins/eq-xml-to-txt-converter.ny
-msgid "If output text file exists"
-msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -987,10 +771,6 @@ msgstr "Error (podria ser que el fitxer no s'hagués escrit): %s"
 #: plug-ins/equalabel.ny
 msgid "Regular Interval Labels"
 msgstr "Etiquetes d'intervals regulars"
-
-#: plug-ins/equalabel.ny
-msgid "Adding equally-spaced labels to the label track..."
-msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -1088,11 +868,6 @@ msgstr "&Detalls"
 msgid "Warnings only"
 msgstr "Advertències"
 
-#: plug-ins/equalabel.ny
-#, lisp-format
-msgid "Warning: Overlapping region labels.~%"
-msgstr ""
-
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -1103,12 +878,6 @@ msgstr "Etiqueta nova"
 #, fuzzy
 msgid "point labels"
 msgstr "S'han editat les etiquetes"
-
-#. i18n-hint:  Number of labels produced at specified intervals.
-#: plug-ins/equalabel.ny
-#, lisp-format
-msgid "~a~a ~a at intervals of ~a seconds.~%"
-msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -1159,14 +928,6 @@ msgstr "48 dB"
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "La freqüència ha de ser com a mínim de 0,1 Hz."
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-#, lisp-format
-msgid ""
-"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
-"                   Track sample rate is ~a Hz~%~\n"
-"                   Frequency must be less than ~a Hz."
-msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -1244,21 +1005,6 @@ msgstr "S'està cercant el silenci..."
 msgid "Maximum trailing silence"
 msgstr "S'està cercant el silenci..."
 
-#: plug-ins/label-sounds.ny
-msgid "Sound ##1"
-msgstr ""
-
-#. i18n-hint: hours minutes and seconds. Do not translate "~a".
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "~ah ~am ~as"
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Too many silences detected.~%Only the first 10000 labels added."
-msgstr ""
-
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
@@ -1269,11 +1015,6 @@ msgstr "La selecció ha de tenir més de %d mostres."
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "No s'ha trobat cap silenci. Proveu de reduir el nivell~%i la durada del silenci."
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
-msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -1327,14 +1068,6 @@ msgstr ""
 msgid "Limit to (dB)"
 msgstr "Esquerre (dB)"
 
-#: plug-ins/limiter.ny plug-ins/noisegate.ny
-msgid "Hold (ms)"
-msgstr ""
-
-#: plug-ins/limiter.ny
-msgid "Apply Make-up Gain"
-msgstr ""
-
 #: plug-ins/lowpass.ny
 msgid "Low-Pass Filter"
 msgstr "Filtre passabaix"
@@ -1352,10 +1085,6 @@ msgstr "Tipus de soroll:"
 #, fuzzy
 msgid "Select Function"
 msgstr "Selecció"
-
-#: plug-ins/noisegate.ny
-msgid "Gate"
-msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -1403,42 +1132,12 @@ msgid "Decay (ms)"
 msgstr "Temps d'atac/caiguda"
 
 #: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
-"\"Gate frequencies above: ~s kHz\"\n"
-"is too high for selected track.\n"
-"Set the control below ~a kHz."
-msgstr ""
-
-#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "La selecció ha de tenir més de %d mostres."
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
-"Insufficient audio selected.\n"
-"Make the selection longer than ~a ms."
-msgstr ""
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Peak based on first ~a seconds ~a dB~%\n"
-"Suggested Threshold Setting ~a dB."
-msgstr ""
-
-#. i18n-hint: hours and minutes. Do not translate "~a".
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid "~ah ~am"
-msgstr ""
 
 #: plug-ins/notch.ny
 msgid "Notch Filter"
@@ -1455,14 +1154,6 @@ msgstr "Steve Daulton i Bill Wharrie"
 #: plug-ins/notch.ny
 msgid "Q (higher value reduces width)"
 msgstr "Q (els valors més elevats redueixen l'amplada)"
-
-#: plug-ins/notch.ny
-#, lisp-format
-msgid ""
-"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
-"                 Track sample rate is ~a Hz.~%~\n"
-"                 Frequency must be less than ~a Hz."
-msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1521,19 +1212,9 @@ msgid "Allow"
 msgstr "Inhabilitat"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, lisp-format
-msgid "Success.~%Files written to:~%~s~%"
-msgstr ""
-
-#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "No s'ha pogut suprimir %s"
-
-#: plug-ins/nyquist-plug-in-installer.ny
-#, lisp-format
-msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
-msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1546,31 +1227,14 @@ msgid "Files copied to plug-ins folder:"
 msgstr "Seleccioneu un fitxer"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-msgid "Not found or cannot be read:"
-msgstr ""
-
-#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "Filtres no utilitzats:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-msgid "Files already installed ('Allow Overwriting' disabled):"
-msgstr ""
-
-#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Seleccioneu un fitxer"
-
-#: plug-ins/nyquist-plug-in-installer.ny
-#, lisp-format
-msgid "Error.~%No file selected."
-msgstr ""
-
-#: plug-ins/pluck.ny
-msgid "Pluck"
-msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1578,16 +1242,8 @@ msgid "Generating pluck sound..."
 msgstr "S'està generant el tambor Risset..."
 
 #: plug-ins/pluck.ny
-msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
-msgstr ""
-
-#: plug-ins/pluck.ny
 msgid "David R.Sky"
 msgstr "David R.Sky"
-
-#: plug-ins/pluck.ny
-msgid "Pluck MIDI pitch"
-msgstr ""
 
 #: plug-ins/pluck.ny
 msgid "Fade-out type"
@@ -1639,10 +1295,6 @@ msgid "+/- 1"
 msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
 msgstr "Nombre de barres"
 
@@ -1674,20 +1326,12 @@ msgid "Beat sound"
 msgstr "Cercador de pulsacions"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Metronome Tick"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "Ping (short)"
 msgstr "Ping (curt)"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Ping (long)"
 msgstr "Ping (llarg)"
-
-#: plug-ins/rhythmtrack.ny
-msgid "Cowbell"
-msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1710,22 +1354,8 @@ msgid "Drip (long)"
 msgstr "Ping (llarg)"
 
 #: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of strong beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "18 - 116"
 msgstr "18 - 116"
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of weak beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid ""
-"Set either 'Number of bars' or\n"
-"'Rhythm track duration' to greater than zero."
-msgstr ""
 
 #: plug-ins/rissetdrum.ny
 msgid "Risset Drum"
@@ -1886,31 +1516,6 @@ msgstr "~aS'han escrit les dades a:~%~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
-msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
-"                     Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
-"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
-"                  DC offset: ~a~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
 msgid "~a linear, ~a dB."
 msgstr "~a lineal, ~a dB."
 
@@ -2040,25 +1645,6 @@ msgid "One row per channel.~%"
 msgstr "Una fila per canal.~%"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left channel then Right channel on same line.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left and right channels on alternate lines.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left channel first then right channel.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-msgid "Unspecified channel order"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Error.~%\"~a\" cannot be written."
 msgstr "Error (podria ser que el fitxer no s'hagués escrit): %s"
@@ -2077,10 +1663,6 @@ msgid "Select file"
 msgstr "Seleccioneu un fitxer"
 
 #: plug-ins/sample-data-import.ny
-msgid "Invalid data handling"
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "Error"
@@ -2091,30 +1673,6 @@ msgstr "Llegeix com a zero"
 
 #: plug-ins/sample-data-import.ny
 #, lisp-format
-msgid ""
-"Error~%~\n"
-"                        '~a' could not be opened.~%~\n"
-"                        Check that file exists."
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
-#, lisp-format
-msgid ""
-"Error:~%~\n"
-"              The file must contain only plain ASCII text.~%~\n"
-"              (Invalid byte '~a' at byte number: ~a)"
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
-#, lisp-format
-msgid ""
-"Error~%~\n"
-"              Data must be numbers in plain ASCII text.~%~\n"
-"              '~a' is not a numeric value."
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
-#, lisp-format
 msgid "Error.~%Unable to open file"
 msgstr "Error.~%No es pot obrir el fitxer"
 
@@ -2122,11 +1680,6 @@ msgstr "Error.~%No es pot obrir el fitxer"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Selecció espectral"
-
-#: plug-ins/spectral-delete.ny
-#, lisp-format
-msgid "Error.~%Track sample rate below 100 Hz is not supported."
-msgstr ""
 
 #: plug-ins/tremolo.ny
 msgid "Tremolo"
@@ -2232,69 +1785,6 @@ msgid "High Cut for Vocals (Hz)"
 msgstr "Retall alt per a les veus (Hz)"
 
 #: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid ""
-"Average x: ~a, y: ~a\n"
-"                    Covariance x y: ~a\n"
-"                    Average variance x: ~a, y: ~a\n"
-"                    Standard deviation x: ~a, y: ~a\n"
-"                    Coefficient of correlation: ~a\n"
-"                    Coefficient of determination: ~a\n"
-"                    Variation of residuals: ~a\n"
-"                    y equals ~a plus ~a times x~%"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two channels are identical, i.e. dual mono.\n"
-"                The center can't be removed.\n"
-"                Any remaining difference may be caused by lossy encoding."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
-"                Most likely, the center extraction will be poor."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid " - A fairly good value, at least stereo in average and not too wide spread."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - An ideal value for Stereo.\n"
-"                However, the center extraction depends also on the used reverb."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two channels are almost not related.\n"
-"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
-"                The center extraction can still be good though."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - Although the Track is stereo, the field is obviously extra wide.\n"
-"                This can cause strange effects.\n"
-"                Especially when played by only one speaker."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two channels are nearly identical.\n"
-"                  Obviously, a pseudo stereo effect has been used\n"
-"                  to spread the signal over the physical distance between the speakers.\n"
-"                  Don't expect good results from a center removal."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
 msgid "This plug-in works only with stereo tracks."
 msgstr "Aquest complement només funciona amb pistes estèreo."
 
@@ -2305,10 +1795,6 @@ msgstr "Vocoder"
 #: plug-ins/vocoder.ny
 msgid "Processing Vocoder..."
 msgstr "S'està processant Vocoder..."
-
-#: plug-ins/vocoder.ny
-msgid "Edgar-RFT"
-msgstr ""
 
 #: plug-ins/vocoder.ny
 msgid "Distance: (1 to 120, default = 20)"

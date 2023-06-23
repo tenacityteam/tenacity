@@ -20,10 +20,6 @@ msgstr ""
 "X-Generator: Poedit 1.6.9\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
-msgid "Stream is active ... unable to gather information.\n"
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Default recording device number: %d\n"
 msgstr "உள்ளீட்டு சாதனத்தை தெரிவுசெய்"
@@ -114,10 +110,6 @@ msgstr "உள்ளீட்டு சாதனத்தை தெரிவு�
 msgid "No playback device found for '%s'.\n"
 msgstr "உள்ளீட்டு சாதனத்தை தெரிவுசெய்"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-msgid "Cannot check mutual sample rates without both devices.\n"
-msgstr ""
-
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -129,11 +121,6 @@ msgstr "மாதிரி அளவுகள்"
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "மாதிரி அளவுகள்"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Opened: %d\n"
-msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -161,20 +148,6 @@ msgstr "உள்ளீட்டு சாதனத்தை தெரிவு�
 msgid "Message"
 msgstr "புது&பிக்கவும்"
 
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
-msgstr ""
-
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
-msgstr ""
-
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
@@ -193,11 +166,6 @@ msgid "Audacity failed to read from a file in %s."
 msgstr ""
 "Audacity யால் கோப்பை எழுத முடியவில்லை:\n"
 " %s."
-
-#: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
-msgstr ""
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -248,26 +216,12 @@ msgstr "கோப்புகளின் பெயர்கள்:"
 msgid "XML files"
 msgstr "MP3 கோப்புகள்"
 
-#: libraries/lib-files/FileNames.cpp
-msgid ", "
-msgstr ""
-
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3 கோப்புகள்"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "(%s)"
-msgstr ""
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "Directory %s does not have write permissions"
-msgstr ""
 
 #: libraries/lib-files/FileNames.cpp plug-ins/eq-xml-to-txt-converter.ny
 msgid "Error"
@@ -277,20 +231,6 @@ msgstr "வழு."
 #, fuzzy
 msgid "Unsuitable"
 msgstr "கூறு பொருத்தமற்றது"
-
-#: libraries/lib-files/TempDirectory.cpp
-msgid ""
-"The temporary files directory is on a FAT formatted drive.\n"
-"Resetting to default location."
-msgstr ""
-
-#: libraries/lib-files/TempDirectory.cpp
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"For tips on suitable drives, click the help button."
-msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -315,49 +255,9 @@ msgstr "செவ்வகம் "
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
-msgid "Bartlett"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
-msgid "Hamming"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
-msgid "Hann"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
-msgid "Blackman"
-msgstr ""
-
-#. i18n-hint two proper names
-#: libraries/lib-math/FFT.cpp
-msgid "Blackman-Harris"
-msgstr ""
-
-#. i18n-hint a proper name
-#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "நல்வரவு!"
-
-#. i18n-hint a mathematical function named for C. F. Gauss
-#: libraries/lib-math/FFT.cpp
-msgid "Gaussian(a=2.5)"
-msgstr ""
-
-#. i18n-hint a mathematical function named for C. F. Gauss
-#: libraries/lib-math/FFT.cpp
-msgid "Gaussian(a=3.5)"
-msgstr ""
-
-#. i18n-hint a mathematical function named for C. F. Gauss
-#: libraries/lib-math/FFT.cpp
-msgid "Gaussian(a=4.5)"
-msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -395,10 +295,6 @@ msgstr "24-bit PCM"
 msgid "32-bit float"
 msgstr "32-bit float"
 
-#: libraries/lib-math/SampleFormat.cpp
-msgid "Unknown format"
-msgstr ""
-
 #: libraries/lib-project-rate/QualitySettings.cpp
 #, fuzzy
 msgid "16-bit"
@@ -409,21 +305,6 @@ msgstr "16-bit PCM"
 msgid "24-bit"
 msgstr "24-bit PCM"
 
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in group at %s was merged with a previously defined group"
-msgstr ""
-
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
-msgstr ""
-
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in items at %s specify conflicting placements"
-msgstr ""
-
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "தீர்மானிக்க முடியாதுள்ளது"
@@ -432,24 +313,6 @@ msgstr "தீர்மானிக்க முடியாதுள்ளத�
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "பைட்டுகள்"
-
-#. i18n-hint: Abbreviation for Kilo bytes
-#: libraries/lib-strings/Internat.cpp
-#, c-format
-msgid "%s KB"
-msgstr ""
-
-#. i18n-hint: Abbreviation for Mega bytes
-#: libraries/lib-strings/Internat.cpp
-#, c-format
-msgid "%s MB"
-msgstr ""
-
-#. i18n-hint: Abbreviation for Giga bytes
-#: libraries/lib-strings/Internat.cpp
-#, c-format
-msgid "%s GB"
-msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -504,39 +367,9 @@ msgstr "வடிகட்டி"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
-msgid "Paul Licameli"
-msgstr ""
-
-#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
-#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
-#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
-#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
-#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
-#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
-msgid "Released under terms of the GNU General Public License version 2"
-msgstr ""
-
-#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
-#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "அதிர்வெண் (hz)"
-
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                       frequencies are both ~a Hz).~%~\n"
-"                       Please select a frequency range."
-msgstr ""
-
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aNotch filter parameters cannot be applied.~%~\n"
-"                      Try increasing the low frequency bound~%~\n"
-"                      or reduce the filter 'Width'."
-msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -555,44 +388,14 @@ msgid "Gain (dB)"
 msgstr "உயர்வு (dB):"
 
 #: plug-ins/SpectralEditParametricEQ.ny
-#, lisp-format
-msgid "~aLow frequency is undefined."
-msgstr ""
-
-#: plug-ins/SpectralEditParametricEQ.ny
-#, lisp-format
-msgid "~aHigh frequency is undefined."
-msgstr ""
-
-#: plug-ins/SpectralEditParametricEQ.ny
 #, fuzzy, lisp-format
 msgid "~aCenter frequency must be above 0 Hz."
 msgstr "குறைந்த  மீடிறன் கட்டாயம் குறைந்தது 0 Hz ஆக இருக்க வேண்டும்"
-
-#: plug-ins/SpectralEditParametricEQ.ny
-#, lisp-format
-msgid ""
-"~aFrequency selection is too high for track sample rate.~%~\n"
-"                        For the current track, the high frequency setting cannot~%~\n"
-"                        be greater than ~a Hz"
-msgstr ""
-
-#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                         frequencies are both ~a Hz).~%~\n"
-"                         Please select a frequency range."
-msgstr ""
 
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
 msgstr "தேர்வு"
-
-#: plug-ins/StudioFadeOut.ny
-msgid "Studio Fade Out"
-msgstr ""
 
 #: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -608,23 +411,6 @@ msgstr "நிறைவேற்றபடுகிறது....."
 #, fuzzy
 msgid "Steve Daulton"
 msgstr "இயல்பாக அ&amp;மைக்க"
-
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-msgid "GNU General Public License v2.0 or later"
-msgstr ""
-
-#: plug-ins/StudioFadeOut.ny
-#, lisp-format
-msgid "Selection too short.~%It must be more than 2 samples."
-msgstr ""
-
-#: plug-ins/adjustable-fade.ny
-msgid "Adjustable Fade"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -652,17 +438,9 @@ msgid "S-Curve Down"
 msgstr "கிழே நகர்த்&த"
 
 #: plug-ins/adjustable-fade.ny
-msgid "Mid-fade Adjust (%)"
-msgstr ""
-
-#: plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Start/End as"
 msgstr "ஆரம்பி"
-
-#: plug-ins/adjustable-fade.ny
-msgid "% of Original"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -673,14 +451,6 @@ msgstr "பெறு"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "ஆரம்பி"
-
-#: plug-ins/adjustable-fade.ny
-msgid "End (or start)"
-msgstr ""
-
-#: plug-ins/adjustable-fade.ny
-msgid "Handy Presets (override controls)"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -696,14 +466,6 @@ msgstr "நேர்கோடு"
 #, fuzzy
 msgid "Linear Out"
 msgstr "நேர்கோடு"
-
-#: plug-ins/adjustable-fade.ny
-msgid "Exponential In"
-msgstr ""
-
-#: plug-ins/adjustable-fade.ny
-msgid "Exponential Out"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -760,14 +522,6 @@ msgstr "மீடிறன் உயர்வு மறை எண்ணாக �
 msgid "~aPercentage values cannot be more than 1000 %."
 msgstr "மீடிறன் உயர்வு மறை எண்ணாக இருக்க முடியாது"
 
-#: plug-ins/adjustable-fade.ny
-#, lisp-format
-msgid ""
-"~adB values cannot be more than +100 dB.~%~%~\n"
-"                                 Hint: 6 dB doubles the amplitude~%~\n"
-"                                 -6 dB halves the amplitude."
-msgstr ""
-
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -789,29 +543,9 @@ msgid "Threshold Percentage"
 msgstr "அமைதிக்கான தொடக்க நிலை"
 
 #: plug-ins/clipfix.ny
-msgid "Clip Fix"
-msgstr ""
-
-#: plug-ins/clipfix.ny
-msgid "Reconstructing clips..."
-msgstr ""
-
-#: plug-ins/clipfix.ny
-msgid "Benjamin Schwartz and Steve Daulton"
-msgstr ""
-
-#: plug-ins/clipfix.ny
-msgid "Licensing confirmed under terms of the GNU General Public License version 2"
-msgstr ""
-
-#: plug-ins/clipfix.ny
 #, fuzzy
 msgid "Threshold of Clipping (%)"
 msgstr "அமைதிக்கான தொடக்கநிலை"
-
-#: plug-ins/clipfix.ny
-msgid "Reduce amplitude to allow for restored peaks (dB)"
-msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -822,21 +556,6 @@ msgstr "குறிப்பு தடம்"
 #, fuzzy
 msgid "Crossfading..."
 msgstr "குறிப்பு தடம்"
-
-#: plug-ins/crossfadeclips.ny
-#, lisp-format
-msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
-msgstr ""
-
-#: plug-ins/crossfadeclips.ny
-#, lisp-format
-msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
-msgstr ""
-
-#: plug-ins/crossfadeclips.ny
-#, lisp-format
-msgid "Error.~%Crossfade Clips may only be applied to one track."
-msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -883,19 +602,6 @@ msgstr "நேரடியாக வாசிக்கவும்"
 msgid "Automatic"
 msgstr "தானியங்கி பாதிப்பு மீட்பு."
 
-#: plug-ins/crossfadetracks.ny
-msgid "Alternating Out / In"
-msgstr ""
-
-#: plug-ins/crossfadetracks.ny
-msgid "Alternating In / Out"
-msgstr ""
-
-#: plug-ins/crossfadetracks.ny
-#, lisp-format
-msgid "Error.~%Select 2 (or more) tracks to crossfade."
-msgstr ""
-
 #: plug-ins/delay.ny
 msgid "Delay"
 msgstr "தாமதம்"
@@ -914,14 +620,6 @@ msgstr "தாமதம்"
 #, fuzzy
 msgid "Regular"
 msgstr "செவ்வகம் "
-
-#: plug-ins/delay.ny
-msgid "Bouncing Ball"
-msgstr ""
-
-#: plug-ins/delay.ny
-msgid "Reverse Bouncing Ball"
-msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -958,10 +656,6 @@ msgstr "முற்&amp;பார்வை"
 msgid "Number of echoes"
 msgstr "திரும்ப செய்ய வேண்டிய தடவைகள்"
 
-#: plug-ins/delay.ny
-msgid "Allow duration to change"
-msgstr ""
-
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #: plug-ins/sample-data-export.ny
 msgid "Yes"
@@ -972,17 +666,9 @@ msgid "No"
 msgstr "இல்லை"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-msgid "EQ XML to TXT Converter"
-msgstr ""
-
-#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "பிந்திய மெருகூட்டலை திரும்பச்செய்"
-
-#: plug-ins/eq-xml-to-txt-converter.ny
-msgid "Graphic EQ"
-msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -1000,10 +686,6 @@ msgid "XML file"
 msgstr "MP3 கோப்புகள்"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-msgid "If output text file exists"
-msgstr ""
-
-#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "மு&டிவில் எழுதி சேர்"
@@ -1017,25 +699,6 @@ msgstr "மேலெழுவதை உறுதிப்படுத்து"
 #, fuzzy, lisp-format
 msgid "Error.~%Unable to open file~%~s"
 msgstr "வகை கோப்பை திறக்க முடியவில்லை"
-
-#. i18n-hint: Do not translate "~a".txt
-#: plug-ins/eq-xml-to-txt-converter.ny
-#, lisp-format
-msgid "Error.~%File overwrite disallowed:~%\"~a.txt\""
-msgstr ""
-
-#: plug-ins/eq-xml-to-txt-converter.ny
-#, lisp-format
-msgid "Error.~%File cannot be written:~%\"~a.txt\""
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "Regular Interval Labels"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "Adding equally-spaced labels to the label track..."
-msgstr ""
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -1073,10 +736,6 @@ msgstr "நீளம் (நொடிகள்)"
 msgid "Length of label region (seconds)"
 msgstr "நீளம் (நொடிகள்)"
 
-#: plug-ins/equalabel.ny
-msgid "Adjust label interval to fit length"
-msgstr ""
-
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -1086,42 +745,6 @@ msgstr "சிட்டை  தொகு"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "சிட்டை"
-
-#: plug-ins/equalabel.ny
-msgid "Minimum number of digits in label"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "None - Text Only"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "1 (Before Label)"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "2 (Before Label)"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "3 (Before Label)"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "1 (After Label)"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "2 (After Label)"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "3 (After Label)"
-msgstr ""
-
-#: plug-ins/equalabel.ny
-msgid "Begin numbering from"
-msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -1138,11 +761,6 @@ msgstr "பிரி"
 msgid "Warnings only"
 msgstr "எச்சரிக்கைகள்"
 
-#: plug-ins/equalabel.ny
-#, lisp-format
-msgid "Warning: Overlapping region labels.~%"
-msgstr ""
-
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -1153,12 +771,6 @@ msgstr "பகு&தியை சேமி "
 #, fuzzy
 msgid "point labels"
 msgstr "தொகுக்கப்பட்ட சிட்டைகள்"
-
-#. i18n-hint:  Number of labels produced at specified intervals.
-#: plug-ins/equalabel.ny
-#, lisp-format
-msgid "~a~a ~a at intervals of ~a seconds.~%"
-msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -1175,52 +787,16 @@ msgstr "கோப்புகளை சுமையேற்று "
 msgid "Performing High-Pass Filter..."
 msgstr "விஞ்ஞான வடிகட்டி செயற்படுத்தபடுகிறது"
 
-#: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/rhythmtrack.ny
-msgid "Dominic Mazzoni"
-msgstr ""
-
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
 #, fuzzy
 msgid "Frequency (Hz)"
 msgstr "அதிர்வெண் (hz)"
 
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "Roll-off (dB per octave)"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "6 dB"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "12 dB"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "24 dB"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "36 dB"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "48 dB"
-msgstr ""
-
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #, fuzzy
 msgid "Frequency must be at least 0.1 Hz."
 msgstr "குறைந்த  மீடிறன் கட்டாயம் குறைந்தது 0 Hz ஆக இருக்க வேண்டும்"
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
-#, lisp-format
-msgid ""
-"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
-"                   Track sample rate is ~a Hz~%~\n"
-"                   Frequency must be less than ~a Hz."
-msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
@@ -1298,36 +874,11 @@ msgstr "சத்தமற்றதை துண்டிக்கிறது..
 msgid "Maximum trailing silence"
 msgstr "சத்தமற்றதை துண்டிக்கிறது..."
 
-#: plug-ins/label-sounds.ny
-msgid "Sound ##1"
-msgstr ""
-
-#. i18n-hint: hours minutes and seconds. Do not translate "~a".
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "~ah ~am ~as"
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Too many silences detected.~%Only the first 10000 labels added."
-msgstr ""
-
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Selection must be less than ~a."
 msgstr "பெயரானது காலியாக இருக்க கூடாது"
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
-msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -1383,10 +934,6 @@ msgstr "வலது சானெல்"
 #, fuzzy
 msgid "Limit to (dB)"
 msgstr "மட்டம் (dB)"
-
-#: plug-ins/limiter.ny plug-ins/noisegate.ny
-msgid "Hold (ms)"
-msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -1463,42 +1010,12 @@ msgid "Decay (ms)"
 msgstr "சிதைவு நேரம்"
 
 #: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
-"\"Gate frequencies above: ~s kHz\"\n"
-"is too high for selected track.\n"
-"Set the control below ~a kHz."
-msgstr ""
-
-#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "பெயரானது காலியாக இருக்க கூடாது"
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
-"Insufficient audio selected.\n"
-"Make the selection longer than ~a ms."
-msgstr ""
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Peak based on first ~a seconds ~a dB~%\n"
-"Suggested Threshold Setting ~a dB."
-msgstr ""
-
-#. i18n-hint: hours and minutes. Do not translate "~a".
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid "~ah ~am"
-msgstr ""
 
 #: plug-ins/notch.ny
 #, fuzzy
@@ -1514,18 +1031,6 @@ msgstr "Nyquist மெருகூட்டல் நிகழ்கிறது
 #, fuzzy
 msgid "Steve Daulton and Bill Wharrie"
 msgstr "இயல்பாக அ&amp;மைக்க"
-
-#: plug-ins/notch.ny
-msgid "Q (higher value reduces width)"
-msgstr ""
-
-#: plug-ins/notch.ny
-#, lisp-format
-msgid ""
-"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
-"                 Track sample rate is ~a Hz.~%~\n"
-"                 Frequency must be less than ~a Hz."
-msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1584,19 +1089,9 @@ msgid "Allow"
 msgstr "அனுமதிக்கப்படவில்லை"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, lisp-format
-msgid "Success.~%Files written to:~%~s~%"
-msgstr ""
-
-#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "%s இனை நீக்க முடியாதுள்ளது"
-
-#: plug-ins/nyquist-plug-in-installer.ny
-#, lisp-format
-msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
-msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1609,31 +1104,14 @@ msgid "Files copied to plug-ins folder:"
 msgstr "ஒரு MIDI கோப்பினை தெரியவும்... "
 
 #: plug-ins/nyquist-plug-in-installer.ny
-msgid "Not found or cannot be read:"
-msgstr ""
-
-#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "உபயோகிக்கப்படாத வடிகட்டிகள்"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-msgid "Files already installed ('Allow Overwriting' disabled):"
-msgstr ""
-
-#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "ஒரு MIDI கோப்பினை தெரியவும்... "
-
-#: plug-ins/nyquist-plug-in-installer.ny
-#, lisp-format
-msgid "Error.~%No file selected."
-msgstr ""
-
-#: plug-ins/pluck.ny
-msgid "Pluck"
-msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1641,29 +1119,9 @@ msgid "Generating pluck sound..."
 msgstr "சத்தத்தை உருவாக்கிறது"
 
 #: plug-ins/pluck.ny
-msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
-msgstr ""
-
-#: plug-ins/pluck.ny
-msgid "David R.Sky"
-msgstr ""
-
-#: plug-ins/pluck.ny
-msgid "Pluck MIDI pitch"
-msgstr ""
-
-#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "வடிகட்டும் வகை"
-
-#: plug-ins/pluck.ny
-msgid "Abrupt"
-msgstr ""
-
-#: plug-ins/pluck.ny
-msgid "Gradual"
-msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -1679,10 +1137,6 @@ msgstr "தடத்தை அகற்ற"
 #, fuzzy
 msgid "Generating Rhythm..."
 msgstr "கீச்சிடுதலை உருவாக்கிறது"
-
-#: plug-ins/rhythmtrack.ny
-msgid "Tempo (bpm)"
-msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1705,21 +1159,9 @@ msgid "Swing amount"
 msgstr "Distortion"
 
 #: plug-ins/rhythmtrack.ny
-msgid "+/- 1"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "திரும்ப செய்ய வேண்டிய தடவைகள்"
-
-#: plug-ins/rhythmtrack.ny
-msgid "1 - 1000 bars"
-msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -1747,22 +1189,6 @@ msgid "Beat sound"
 msgstr "திரும்ப செய்"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Metronome Tick"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Ping (short)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Ping (long)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Cowbell"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "இரைச்சல் நீக்கபடுகிறது"
@@ -1771,32 +1197,6 @@ msgstr "இரைச்சல் நீக்கபடுகிறது"
 #, fuzzy
 msgid "Noise Click"
 msgstr "இரைச்சல் தளம்"
-
-#: plug-ins/rhythmtrack.ny
-msgid "Drip (short)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Drip (long)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of strong beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "18 - 116"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of weak beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid ""
-"Set either 'Number of bars' or\n"
-"'Rhythm track duration' to greater than zero."
-msgstr ""
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -1824,10 +1224,6 @@ msgid "Center frequency of noise (Hz)"
 msgstr "நேரியல் நிகழ்வெண்"
 
 #: plug-ins/rissetdrum.ny
-msgid "Width of noise band (Hz)"
-msgstr ""
-
-#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Amount of noise in mix (percent)"
 msgstr "அதிர்வெண் (hz)"
@@ -1846,10 +1242,6 @@ msgstr "ஏற்றுமதி செய்ய முடியவில்ல�
 #, fuzzy
 msgid "Analyzing..."
 msgstr "நிறைவேற்றபடுகிறது....."
-
-#: plug-ins/sample-data-export.ny
-msgid "Limit output to first"
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "samples"
@@ -1889,10 +1281,6 @@ msgid "HTML files"
 msgstr "MP3 கோப்புகள்"
 
 #: plug-ins/sample-data-export.ny
-msgid "Index (text files only)"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "மாதிரி தொகு"
@@ -1908,33 +1296,12 @@ msgid "Include header information"
 msgstr "உருவாக்கிய தகவல்"
 
 #: plug-ins/sample-data-export.ny
-msgid "Minimal"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "நியமம்"
 
 #: plug-ins/sample-data-export.ny
 msgid "All"
 msgstr "எல்லா"
-
-#: plug-ins/sample-data-export.ny
-msgid "Optional header text"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-msgid "Channel layout for stereo"
-msgstr ""
-
-#. i18n-hint: Left and Right
-#: plug-ins/sample-data-export.ny
-msgid "L-R on Same Line"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-msgid "Alternate Lines"
-msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -1952,11 +1319,6 @@ msgstr "\t-help (இச்செய்தி)"
 msgid "Errors Only"
 msgstr "பிழை:"
 
-#. i18n-hint abbreviates negative infinity
-#: plug-ins/sample-data-export.ny
-msgid "[-inf]"
-msgstr ""
-
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -1968,46 +1330,6 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "வலது சானெல்"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~aData written to:~%~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
-"                     Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
-"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
-"                  DC offset: ~a~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~a linear, ~a dB."
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "மாதிரிகள்"
@@ -2016,43 +1338,6 @@ msgstr "மாதிரிகள்"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "விநாடிகள்"
-
-#: plug-ins/sample-data-export.ny
-msgid "Audio data analysis:"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
-msgstr ""
-
-#. i18n-hint: abbreviates "decibels"
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
-msgstr ""
-
-#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
-msgstr ""
-
-#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~a linear, &nbsp;&nbsp;~a dB."
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -2080,10 +1365,6 @@ msgid "Value (dB)"
 msgstr "வீச்சு (dB):"
 
 #: plug-ins/sample-data-export.ny
-msgid "audio sample value analysis"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "நேர்கோடு"
@@ -2104,59 +1385,9 @@ msgid "Right (dB)"
 msgstr "வலது, "
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
-"Daulton"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "நேர்கோடு"
-
-#: plug-ins/sample-data-export.ny
-msgid "2 channels (stereo)"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-msgid "1 channel (mono)"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "One column per channel.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "One row per channel.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left channel then Right channel on same line.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left and right channels on alternate lines.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Left channel first then right channel.~%"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-msgid "Unspecified channel order"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Error.~%\"~a\" cannot be written."
-msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy
@@ -2174,41 +1405,9 @@ msgid "Select file"
 msgstr "ஒரு MIDI கோப்பினை தெரியவும்... "
 
 #: plug-ins/sample-data-import.ny
-msgid "Invalid data handling"
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "வழு."
-
-#: plug-ins/sample-data-import.ny
-msgid "Read as Zero"
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
-#, lisp-format
-msgid ""
-"Error~%~\n"
-"                        '~a' could not be opened.~%~\n"
-"                        Check that file exists."
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
-#, lisp-format
-msgid ""
-"Error:~%~\n"
-"              The file must contain only plain ASCII text.~%~\n"
-"              (Invalid byte '~a' at byte number: ~a)"
-msgstr ""
-
-#: plug-ins/sample-data-import.ny
-#, lisp-format
-msgid ""
-"Error~%~\n"
-"              Data must be numbers in plain ASCII text.~%~\n"
-"              '~a' is not a numeric value."
-msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy, lisp-format
@@ -2219,15 +1418,6 @@ msgstr "வகை கோப்பை திறக்க முடியவில
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "தேர்வு"
-
-#: plug-ins/spectral-delete.ny
-#, lisp-format
-msgid "Error.~%Track sample rate below 100 Hz is not supported."
-msgstr ""
-
-#: plug-ins/tremolo.ny
-msgid "Tremolo"
-msgstr ""
 
 #: plug-ins/tremolo.ny
 #, fuzzy
@@ -2267,17 +1457,9 @@ msgid "Wet level (percent)"
 msgstr "2-மட்டம்"
 
 #: plug-ins/vocalrediso.ny
-msgid "Vocal Reduction and Isolation"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "நிறைவேற்றபடுகிறது....."
-
-#: plug-ins/vocalrediso.ny
-msgid "Robert Haenggi"
-msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -2333,97 +1515,10 @@ msgstr "பகுப்பாய்"
 msgid "Strength"
 msgstr "வடிகட்டி"
 
-#: plug-ins/vocalrediso.ny
-msgid "Low Cut for Vocals (Hz)"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid "High Cut for Vocals (Hz)"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid ""
-"Average x: ~a, y: ~a\n"
-"                    Covariance x y: ~a\n"
-"                    Average variance x: ~a, y: ~a\n"
-"                    Standard deviation x: ~a, y: ~a\n"
-"                    Coefficient of correlation: ~a\n"
-"                    Coefficient of determination: ~a\n"
-"                    Variation of residuals: ~a\n"
-"                    y equals ~a plus ~a times x~%"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two channels are identical, i.e. dual mono.\n"
-"                The center can't be removed.\n"
-"                Any remaining difference may be caused by lossy encoding."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
-"                Most likely, the center extraction will be poor."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid " - A fairly good value, at least stereo in average and not too wide spread."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - An ideal value for Stereo.\n"
-"                However, the center extraction depends also on the used reverb."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two channels are almost not related.\n"
-"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
-"                The center extraction can still be good though."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - Although the Track is stereo, the field is obviously extra wide.\n"
-"                This can cause strange effects.\n"
-"                Especially when played by only one speaker."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid ""
-" - The two channels are nearly identical.\n"
-"                  Obviously, a pseudo stereo effect has been used\n"
-"                  to spread the signal over the physical distance between the speakers.\n"
-"                  Don't expect good results from a center removal."
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-msgid "This plug-in works only with stereo tracks."
-msgstr ""
-
-#: plug-ins/vocoder.ny
-msgid "Vocoder"
-msgstr ""
-
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Processing Vocoder..."
 msgstr "நடைமுறைப்படுத்தபடுகிறது : "
-
-#: plug-ins/vocoder.ny
-msgid "Edgar-RFT"
-msgstr ""
-
-#: plug-ins/vocoder.ny
-msgid "Distance: (1 to 120, default = 20)"
-msgstr ""
 
 #: plug-ins/vocoder.ny
 #, fuzzy
@@ -2464,11 +1559,6 @@ msgstr "அதிர்வெண் (hz)"
 #, fuzzy
 msgid "Frequency of Radar Needles (Hz)"
 msgstr "அதிர்வெண் (hz)"
-
-#: plug-ins/vocoder.ny
-#, lisp-format
-msgid "Error.~%Stereo track required."
-msgstr ""
 
 #, fuzzy
 #~ msgid "&Nyquist Workbench..."
