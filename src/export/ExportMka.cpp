@@ -508,6 +508,18 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         }
 
         auto MetaSeekSize = DummyStart.ReplaceWith(MetaSeek, mka_file);
+        if (MetaSeekSize == INVALID_FILEPOS_T)
+        {
+            // writing at the beginning failed, write at the end and provide a
+            // short metaseek at the front
+            MetaSeek.Render(mka_file);
+            lastElementEnd = MetaSeek.GetEndPosition();
+
+            KaxSeekHead ShortMetaSeek;
+            ShortMetaSeek.EnableChecksum();
+            ShortMetaSeek.IndexThis(MetaSeek, FileSegment);
+            MetaSeekSize = DummyStart.ReplaceWith(ShortMetaSeek, mka_file);
+        }
 
         if (FileSegment.ForceSize(lastElementEnd - FileSegment.GetDataStart()))
         {
