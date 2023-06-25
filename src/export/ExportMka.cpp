@@ -260,7 +260,7 @@ ProgressResult ExportMka::Export(TenacityProject *project,
 
         // reserve some space for the Meta Seek writen at the end
         EbmlVoid DummyStart;
-        DummyStart.SetSize(4099);
+        DummyStart.SetSize(128);
         DummyStart.Render(mka_file);
 
         KaxSeekHead MetaSeek;
@@ -352,9 +352,9 @@ ProgressResult ExportMka::Export(TenacityProject *project,
             MetaSeek.IndexThis(MyTracks, FileSegment);
 
         // reserve some space after the track (to match mkvmerge for now)
-        EbmlVoid DummyTrack;
-        DummyTrack.SetSize(1068);
-        DummyTrack.Render(mka_file);
+        // EbmlVoid DummyTrack;
+        // DummyTrack.SetSize(1068);
+        // DummyTrack.Render(mka_file);
 
         // add tags
         KaxTags & Tags = GetChild<KaxTags>(FileSegment);
