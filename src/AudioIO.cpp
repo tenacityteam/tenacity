@@ -422,7 +422,9 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <optional>
 
 #include "portaudio.h"
+#ifdef PA_USE_JACK
 #include "pa_jack.h"
+#endif
 
 #include <wx/app.h>
 #include <wx/wxcrtvararg.h>
@@ -1077,6 +1079,7 @@ AudioIO::AudioIO()
    mOwningProject = NULL;
    mOutputMeter.reset();
 
+#ifdef PA_USE_JACK
    // Set JACK client name
    {
       PaError error = PaJack_SetClientName("Tenacity");
@@ -1085,6 +1088,7 @@ AudioIO::AudioIO()
          wxLogWarning("Failed to set JACK client name");
       }
    }
+#endif
 
    PaError err = Pa_Initialize();
 

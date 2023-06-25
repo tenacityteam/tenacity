@@ -473,6 +473,7 @@ check_include_file( "sys/param.h" HAVE_SYS_PARAM_H )
 check_include_file( "sys/stat.h" HAVE_SYS_STAT_H )
 check_include_file( "sys/types.h" HAVE_SYS_TYPES_H )
 check_include_file( "sys/wait.h" HAVE_SYS_WAIT_H )
+check_include_file( "pa_jack.h" PA_USE_JACK)
 
 check_symbol_exists( fileno "stdio.h" HAVE_FILENO )
 check_symbol_exists( flock "sys/file.h" HAVE_FLOCK )

@@ -1026,6 +1026,9 @@ list( APPEND DEFINES
       $<$<BOOL:${HAVE_MLOCK}>:
          HAVE_MLOCK
       >
+      $<$<BOOL:${PA_USE_JACK}>:
+         PA_USE_JACK
+      >
       $<$<PLATFORM_ID:Windows>:
          _CRT_SECURE_NO_WARNINGS
          __STDC_CONSTANT_MACROS
