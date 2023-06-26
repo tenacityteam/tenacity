@@ -20,13 +20,16 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"PO-Revision-Date: 2023-06-26 04:38+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/tenacity/ru/>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
+"tenacity/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.18.1\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
@@ -2392,105 +2395,6 @@ msgstr "Ошибка.~%Требуется стереотрек."
 
 #~ msgid "ID3 tag support"
 #~ msgstr "Поддержка тегов ID3"
-
-#~ msgid "&Nyquist Workbench..."
-#~ msgstr "&Редактор скриптов Найквиста..."
-
-#~ msgid "&Undo\tCtrl+Z"
-#~ msgstr "&Отменить\tCtrl+Z"
-
-#~ msgid "&Redo\tCtrl+Y"
-#~ msgstr "&Повторить\tCtrl+Y"
-
-#~ msgid "Cu&t\tCtrl+X"
-#~ msgstr "Вырезат&ь\tCtrl+X"
-
-#~ msgid "&Copy\tCtrl+C"
-#~ msgstr "&Копировать\tCtrl+C"
-
-#~ msgid "&Paste\tCtrl+V"
-#~ msgstr "&Вставить\tCtrl+V"
-
-#~ msgid "Cle&ar\tCtrl+L"
-#~ msgstr "О&чистить\tCtrl+L"
-
-#~ msgid "Select A&ll\tCtrl+A"
-#~ msgstr "В&ыбрать всё\tCtrl+A"
-
-#~ msgid "&Find...\tCtrl+F"
-#~ msgstr "&Найти...\tCtrl+F"
-
-#~ msgid "&Matching Paren\tF8"
-#~ msgstr "Соответствующ&ая скобка\tF8"
-
-#~ msgid "&Top S-expr\tF9"
-#~ msgstr "S-expr &сверху\tF9"
-
-#~ msgid "&Higher S-expr\tF10"
-#~ msgstr "S-expr &выше\tF10"
-
-#~ msgid "&Previous S-expr\tF11"
-#~ msgstr "&Предыдущий S-expr\tF11"
-
-#~ msgid "&Next S-expr\tF12"
-#~ msgstr "&Следующий S-expr\tF12"
-
-#~ msgid "&Go to"
-#~ msgstr "&Перейти"
-
-#~ msgid "Select &Font..."
-#~ msgstr "Выбр&ать шрифт"
-
-#~ msgid "Split &Vertically"
-#~ msgstr "Разделить &вертикально"
-
-#~ msgid "Split &Horizontally"
-#~ msgstr "Разделить &горизонтально"
-
-#~ msgid "Show S&cript"
-#~ msgstr "Показать с&крипт"
-
-#~ msgid "Show &Output"
-#~ msgstr "Показать &вывод"
-
-#~ msgid "&Large Icons"
-#~ msgstr "&Крупные значки"
-
-#~ msgid "&Small Icons"
-#~ msgstr "&Мелкие значки"
-
-#~ msgid "Toolbar"
-#~ msgstr "Панель инструментов"
-
-#~ msgid "&Go\tF5"
-#~ msgstr "&Перейти\tF5"
-
-#~ msgid "&Stop\tF6"
-#~ msgstr "&Стоп\tF6"
-
-#~ msgid "&About"
-#~ msgstr "&О программе"
-
-#~ msgid "Script"
-#~ msgstr "Скрипт"
-
-#~ msgid "Output"
-#~ msgstr "Вывод"
-
-#~ msgid "Load Nyquist script"
-#~ msgstr "Загрузить скрипт Найквиста"
-
-#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
-#~ msgstr "Скрипты Найквиста (*.ny)|*.ny|Скрипты Lisp (*.lsp)|*.lsp|Все файлы|*"
-
-#~ msgid "Script was not saved."
-#~ msgstr "Скрипт не сохранён."
-
-#~ msgid "Warning"
-#~ msgstr "Предупреждение"
-
-#~ msgid "Save Nyquist script"
-#~ msgstr "Сохранить скрипт Найквиста"
 
 #~ msgid "Find dialog"
 #~ msgstr "Окно поиска"
@@ -15347,3 +15251,143 @@ msgstr "Ошибка.~%Требуется стереотрек."
 
 #~ msgid "Scroll Horizontal"
 #~ msgstr "Прокрутить горизонтально"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cle&ar\tCtrl+L"
+msgstr "О&чистить\tCtrl+L"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Select A&ll\tCtrl+A"
+msgstr "Вы&брать всё\tCtrl+A"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Script"
+msgstr "Сценарий"
+
+#. i18n-hint noun
+#: modules/mod-nyq-bench/NyqBench.cpp src/Benchmark.cpp
+#: src/effects/BassTreble.cpp
+msgid "Output"
+msgstr "Вывод"
+
+#: modules/mod-nyq-bench/NyqBench.cpp src/effects/nyquist/Nyquist.cpp
+msgid "Load Nyquist script"
+msgstr "Загрузить сценарий Nyquist"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Undo\tCtrl+Z"
+msgstr "&Отменить\tCtrl+Z"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Redo\tCtrl+Y"
+msgstr "&Повторить\tCtrl+Y"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cu&t\tCtrl+X"
+msgstr "Выр&езать\tCtrl+X"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Paste\tCtrl+V"
+msgstr "Вставит&ь\tCtrl+V"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Find...\tCtrl+F"
+msgstr "&Найти…\tCtrl+F"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Top S-expr\tF9"
+msgstr "Высш&ее S-выражение\tF9"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Higher S-expr\tF10"
+msgstr "Ве&рхнее S-выражение\tF10"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Previous S-expr\tF11"
+msgstr "Предыду&щее S-выражение\tF11"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Next S-expr\tF12"
+msgstr "С&ледующее S-выражение\tF12"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+#, fuzzy
+msgid "&Go to"
+msgstr "&Перейти к"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Select &Font..."
+msgstr "Выбр&ать шрифт"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Split &Vertically"
+msgstr "Р&азделить вертикально"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Split &Horizontally"
+msgstr "&Разделить горизонтально"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Show S&cript"
+msgstr "Показать &сценарий"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Show &Output"
+msgstr "Показать выво&д"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Large Icons"
+msgstr "Бо&льшие значки"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Small Icons"
+msgstr "&Маленькие значки"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Stop\tF6"
+msgstr "&Стоп\tF6"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&About"
+msgstr "&О модуле"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Script was not saved."
+msgstr "Сценарий не был сохранён."
+
+#: modules/mod-nyq-bench/NyqBench.cpp src/effects/nyquist/Nyquist.cpp
+msgid "Save Nyquist script"
+msgstr "Сохранить сценарий Nyquist"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Matching Paren\tF8"
+msgstr "Совпадаю&щее с родителем\tF8"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Nyquist Workbench..."
+msgstr "&Nyquist Workbench..."
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Copy\tCtrl+C"
+msgstr "&Копировать\tCtrl+C"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Toolbar"
+msgstr "Панель инструментов"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Go\tF5"
+msgstr "&Перейти\tF5"
+
+#: modules/mod-nyq-bench/NyqBench.cpp src/AudacityLogger.cpp
+#: src/DBConnection.cpp src/Project.cpp src/ProjectFileIO.cpp
+#: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
+#: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
+#: src/export/ExportMultiple.cpp src/import/RawAudioGuess.cpp
+#: src/menus/EditMenus.cpp src/prefs/KeyConfigPrefs.cpp src/widgets/Warning.cpp
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
+msgstr "Сценарии Nyquist (*.ny)|*.ny|Сценарии Lisp (*.lsp)|*.lsp|Все файлы|*"
