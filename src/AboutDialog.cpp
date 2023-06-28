@@ -490,7 +490,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
-      << wxT("[[https://codeberg.org/tenacityteam/tenacity/|https://codeberg.org/tenacityteam/tenacity]]<br>")
+      << wxT("[[https://tenacityaudio.org|https://tenacityaudio.org]]<br>")
 
       /* i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
          name substitues the 2nd. */
