@@ -40,6 +40,7 @@ other settings.
 #include <lib-audio-devices/AudioIOBase.h>
 #include <lib-audio-devices/DeviceManager.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-project-rate/QualitySettings.h>
 
 #include "../shuttle/ShuttleGui.h"
 
@@ -188,19 +189,14 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
    {
       S.StartThreeColumn();
       {
-         wxTextCtrl *w;
-         // only show the following controls if we use Portaudio v19, because
-         // for Portaudio v18 we always use default buffer sizes
-         w = S
-            .NameSuffix(XO("milliseconds"))
-            .TieNumericTextBox(XXO("&Buffer length:"),
+         S.NameSuffix(XO("milliseconds"))
+          .TieNumericTextBox(XXO("&Buffer length:"),
                                  AudioIOLatencyDuration,
                                  9);
-         S.AddUnits(XO("milliseconds"));
+         S.TieChoice(XO(""), AudioIOLatencyUnit);
 
-         w = S
-            .NameSuffix(XO("milliseconds"))
-            .TieNumericTextBox(XXO("&Latency compensation:"),
+         S.NameSuffix(XO("milliseconds"))
+          .TieNumericTextBox(XXO("&Latency compensation:"),
                AudioIOLatencyCorrection, 9);
          S.AddUnits(XO("milliseconds"));
       }

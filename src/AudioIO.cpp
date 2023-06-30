@@ -1238,8 +1238,6 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
    PaStreamParameters playbackParameters{};
    PaStreamParameters captureParameters{};
 
-   auto latencyDuration = AudioIOLatencyDuration.Read();
-
    if( numPlaybackChannels > 0)
    {
       usePlayback = true;
@@ -1259,19 +1257,9 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       playbackParameters.hostApiSpecificStreamInfo = NULL;
       playbackParameters.channelCount = mNumPlaybackChannels;
 
-      if (mSoftwarePlaythrough)
-         playbackParameters.suggestedLatency =
-            playbackDeviceInfo->defaultLowOutputLatency;
-      else {
-         // When using WASAPI, the suggested latency does not affect
-         // the latency of the playback, but the position of playback is given as if
-         // there was the suggested latency. This results in the last "suggested latency"
-         // of a selection not being played. So for WASAPI use 0.0 for the suggested
-         // latency regardless of user setting. See bug 1949.
-         const PaHostApiInfo* hostInfo = Pa_GetHostApiInfo(playbackDeviceInfo->hostApi);
-         bool isWASAPI = (hostInfo && hostInfo->type == paWASAPI);
-         playbackParameters.suggestedLatency = isWASAPI ? 0.0 : latencyDuration/1000.0;
-      }
+      playbackParameters.suggestedLatency = mSoftwarePlaythrough ?
+         playbackDeviceInfo->defaultLowOutputLatency :
+         0.0;
 
       mOutputMeter = options.playbackMeter;
    }
@@ -1296,12 +1284,9 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 
       captureParameters.hostApiSpecificStreamInfo = NULL;
       captureParameters.channelCount = mNumCaptureChannels;
-
-      if (mSoftwarePlaythrough)
-         captureParameters.suggestedLatency =
-            captureDeviceInfo->defaultHighInputLatency;
-      else
-         captureParameters.suggestedLatency = latencyDuration/1000.0;
+      captureParameters.suggestedLatency = mSoftwarePlaythrough ?
+         captureDeviceInfo->defaultHighInputLatency :
+         0.0;
 
       SetCaptureMeter( mOwningProject, options.captureMeter );
    }
@@ -1322,11 +1307,35 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       maxTries = 5;
 #endif
 
+   // Find out frames per buffer
+   double latency = AudioIOLatencyDuration.Read();
+   bool isMilliseconds = AudioIOLatencyUnit.Read() == L"milliseconds";
+
+   if (isMilliseconds)
+   {
+      // The minimum latency setting is limited to either 32 samples or an
+      // equivalent time in milliseconds at the current sample rate at minimum.
+      // If the preference is below this setting, automatically set it to
+      // either 32 samples or the equivalent sample rate based on mRate.
+      latency *= mRate;
+      if (latency < 32.0)
+      {
+         latency = 32.0;
+      }
+
+      // Save the new latency preference.
+      AudioIOLatencyDuration.Write(latency / mRate);
+   } else if (latency < 32)
+   {
+      latency = 32;
+      AudioIOLatencyDuration.Write(latency);
+   }
+
    for (unsigned int tries = 0; tries < maxTries; tries++) {
       mLastPaError = Pa_OpenStream( &mPortStreamV19,
                                     useCapture ? &captureParameters : NULL,
                                     usePlayback ? &playbackParameters : NULL,
-                                    mRate, paFramesPerBufferUnspecified,
+                                    mRate, latency,
                                     paNoFlag,
                                     audacityAudioCallback, lpUserData );
       if (mLastPaError == paNoError) {

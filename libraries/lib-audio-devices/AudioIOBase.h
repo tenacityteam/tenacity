@@ -311,6 +311,7 @@ protected:
 extern AUDIO_DEVICES_API StringSetting AudioIOHost;
 extern AUDIO_DEVICES_API DoubleSetting AudioIOLatencyCorrection;
 extern AUDIO_DEVICES_API DoubleSetting AudioIOLatencyDuration;
+extern AUDIO_DEVICES_API ChoiceSetting AudioIOLatencyUnit;
 extern AUDIO_DEVICES_API StringSetting AudioIOPlaybackDevice;
 extern AUDIO_DEVICES_API IntSetting    AudioIORecordChannels;
 extern AUDIO_DEVICES_API StringSetting AudioIORecordingDevice;
