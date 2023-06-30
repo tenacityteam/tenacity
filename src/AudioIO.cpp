@@ -1324,7 +1324,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       }
 
       // Save the new latency preference.
-      AudioIOLatencyDuration.Write(latency / mRate);
+      AudioIOLatencyDuration.Write(latency / (mRate/1000));
    } else if (latency < 32)
    {
       latency = 32;
