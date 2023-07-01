@@ -678,7 +678,7 @@ bool Importer::Import( TenacityProject &project,
    {
       if( unusableImportPlugin->SupportsExtension(extension) )
       {
-         errorMessage = XO("This version of Saucedactiy was not compiled with %s support.")
+         errorMessage = XO("This version of Tenacity was not compiled with %s support.")
             .Format( unusableImportPlugin->GetPluginFormatDescription() );
          return false;
       }
@@ -742,7 +742,7 @@ bool Importer::Import( TenacityProject &project,
       if ((extension.IsSameAs(wxT("kar"), false))||(extension.IsSameAs(wxT("mod"), false))||(extension.IsSameAs(wxT("rmi"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a notes-based file, not an audio file. \nAudacity cannot open this type of file. \nTry converting it to an audio file such as WAV or AIFF and \nthen import it, or record it into Audacity.")
+"\"%s\" is a notes-based file, not an audio file. \nTenacity cannot open this type of file. \nTry converting it to an audio file such as WAV or AIFF and \nthen import it, or record it into Tenacity.")
             .Format( fName );
          return false;
       }
@@ -751,7 +751,7 @@ bool Importer::Import( TenacityProject &project,
       if ((extension.IsSameAs(wxT("mp+"), false))||(extension.IsSameAs(wxT("mpc"), false))||(extension.IsSameAs(wxT("mpp"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a Musepack audio file. \nAudacity cannot open this type of file. \nIf you think it might be an mp3 file, rename it to end with \".mp3\" \nand try importing it again. Otherwise you need to convert it to a supported audio \nformat, such as WAV or AIFF.")
+"\"%s\" is a Musepack audio file. \nTenacity cannot open this type of file. \nIf you think it might be an mp3 file, rename it to end with \".mp3\" \nand try importing it again. Otherwise you need to convert it to a supported audio \nformat, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -760,7 +760,7 @@ bool Importer::Import( TenacityProject &project,
       if ((extension.IsSameAs(wxT("wv"), false))||(extension.IsSameAs(wxT("wvc"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a Wavpack audio file. \nAudacity cannot open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
+"\"%s\" is a Wavpack audio file. \nTenacity cannot open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -778,7 +778,7 @@ bool Importer::Import( TenacityProject &project,
       if ((extension.IsSameAs(wxT("spx"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is an Ogg Speex audio file. \nAudacity cannot currently open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
+"\"%s\" is an Ogg Speex audio file. \nTenacity cannot currently open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
