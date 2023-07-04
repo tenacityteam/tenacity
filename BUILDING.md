@@ -26,10 +26,20 @@ To install Tenacity's dependencies, run:
 sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-dev liblilv-dev libmad0-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev
 ```
 
-wxWidgets 3.1 is required but not packaged in Debian or Ubuntu. Refer
-to the
-[wxWidgets documentation](https://docs.wxwidgets.org/3.1/overview_cmake.html)
-for how to install it from source code. The above package list
+wxWidgets 3.1 is required but not packaged in Debian or Ubuntu. Refer to the
+[wxWidgets documentation](https://docs.wxwidgets.org/latest/plat_gtk_install.html)
+for how to install it from source code. 
+
+> **NOTE**  The wxWidgets for GTK installation instructions don't mention that 
+> you have to have all of the git sub-modules in place and at the right versions 
+> before starting.  So make sure you clone it like this first:
+> 
+> ```
+> $ git clone  --recurse-submodules  https://github.com/wxWidgets/wxWidgets.git
+> $ cd wxWidgets
+> ```
+
+The above package list
 includes wxWidgets' build dependencies. If you install wxWidgets
 somewhere other than the default /usr/local, you need to set the
 `WX_CONFIG` environment variable to the location of the `wx-config`
