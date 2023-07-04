@@ -119,10 +119,8 @@ sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio
 
 #### vcpkg on Linux
 
-Optionally, you can build dependencies from source using vcpkg, with the
-exception of wxWidgets due to
-[bugs in vcpkg's wxwidgets package](https://github.com/microsoft/vcpkg/pull/17111).
-vcpkg is not set up to build GTK or GLib either. To use vcpkg for
+Optionally, you can build dependencies from source using vcpkg, although vcpkg
+is not set up to build GTK or GLib either for wxWidgets. To use vcpkg for
 dependencies, pass `-D VCPKG=ON` to the CMake configure command. You will need
 [nasm](https://www.nasm.us/) installed to build ffmpeg from vcpkg which you can
 install from your distribution's package manager. If you use vcpkg, you need to
