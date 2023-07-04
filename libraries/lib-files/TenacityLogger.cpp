@@ -81,7 +81,7 @@ void TenacityLogger::DoLogText(const wxString & str)
 
       TimeStamp(&stamp);
 
-      mBuffer << stamp << "Tenacity " << AUDACITY_VERSION_STRING << wxT("\n");
+      mBuffer << stamp << "Tenacity " << TENACITY_VERSION_STRING << wxT("\n");
    }
 
    mBuffer << str << wxT("\n");
