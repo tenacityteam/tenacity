@@ -2070,7 +2070,7 @@ bool AudioIoCallback::StartPortMidiStream()
    /* get midi playback device */
    PmDeviceID playbackDevice = Pm_GetDefaultOutputDeviceID();
    std::string playbackDeviceName = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"),
-                                              wxT(""));
+                                              wxT("")).ToStdString(); // ANERRUPTION: Remove std::string conversion
    mSynthLatency = gPrefs->Read(wxT("/MidiIO/SynthLatency"),
                                 DEFAULT_SYNTH_LATENCY);
    if (wxStrcmp(playbackDeviceName, wxT("")) != 0) {
@@ -2080,7 +2080,7 @@ bool AudioIoCallback::StartPortMidiStream()
          if (!info->output) continue;
          std::string interf = std::string(info->interf);
          std::string name = std::string(info->name);
-         interf.Append(wxT(": ")).Append(name);
+         interf.append(": ").append(name);
          if (wxStrcmp(interf, playbackDeviceName) == 0) {
             playbackDevice = i;
          }

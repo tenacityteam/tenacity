@@ -622,7 +622,8 @@ std::string AudioIOBase::GetMidiDeviceInfo()
 
    if (IsStreamActive()) {
       return XO("Stream is active ... unable to gather information.\n")
-         .Translation();
+         .Translation()
+         .ToStdString(); // ANERRUPTION: Remove std::string conversion
    }
 
 
@@ -638,8 +639,9 @@ std::string AudioIOBase::GetMidiDeviceInfo()
    s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation() << std::endl;
    s << XO("Default playback device number: %d").Format( playDeviceNum ).Translation() << std::endl;
 
-   std::string recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT(""));
-   std::string playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT(""));
+   // ANERRUPTION: Remove std::string conversion
+   std::string recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT("")).ToStdString();
+   std::string playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT("")).ToStdString();
 
    // This gets info on all available audio devices (input and output)
    if (cnt <= 0) {
