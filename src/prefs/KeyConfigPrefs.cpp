@@ -489,10 +489,10 @@ void KeyConfigPrefs::OnShow(wxShowEvent & event)
 
 void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
 {
-   wxString file = wxT("Audacity-keys.xml");
+   wxString file = wxT("Tenacity-keys.xml");
 
    file = SelectFile(FileNames::Operation::Open,
-      XO("Select an XML file containing Tenacity (Audacity) keyboard shortcuts..."),
+      XO("Select an XML file containing Tenacity keyboard shortcuts..."),
       wxEmptyString,
       file,
       wxT(""),
@@ -568,7 +568,7 @@ void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
 
 void KeyConfigPrefs::OnExport(wxCommandEvent & WXUNUSED(event))
 {
-   wxString file = wxT("Audacity-keys.xml");
+   wxString file = wxT("Tenacity-keys.xml");
 
    file = SelectFile(FileNames::Operation::Export,
       XO("Export Keyboard Shortcuts As:"),

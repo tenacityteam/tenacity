@@ -169,7 +169,7 @@ VendorSymbol Effect::GetVendor()
       return mClient->GetVendor();
    }
 
-   return XO("Audacity");
+   return XO("Tenacity");
 }
 
 wxString Effect::GetVersion()
@@ -201,7 +201,7 @@ EffectFamilySymbol Effect::GetFamily()
 
    // Unusually, the internal and visible strings differ for the built-in
    // effect family.
-   return { wxT("Audacity"), XO("Built-in") };
+   return { wxT("Tenacity"), XO("Built-in") };
 }
 
 bool Effect::IsInteractive()

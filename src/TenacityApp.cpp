@@ -854,13 +854,13 @@ bool TenacityApp::OnInit()
    g_object_unref(provider);
    g_object_unref(combo);
 #elif defined(__WXGTK__) && defined(HAVE_GTK)
-   gtk_rc_parse_string("style \"audacity\" {\n"
+   gtk_rc_parse_string("style \"tenacity\" {\n"
                        " GtkButton::inner_border = { 0, 0, 0, 0 }\n"
                        " GtkEntry::inner_border = { 0, 0, 0, 0 }\n"
                        " xthickness = 4\n"
                        " ythickness = 0\n"
                        "}\n"
-                       "widget_class \"*GtkCombo*\" style \"audacity\"");
+                       "widget_class \"*GtkCombo*\" style \"tenacity\"");
 #endif
    wxTheApp->SetAppName(AppName);
    // Explicitly set since OSX will use it for the "Quit" menu item
@@ -1333,7 +1333,7 @@ bool TenacityApp::InitPart2()
    bool permsReset = false;
    gPrefs->Read(wxT("/MicrophonePermissionsReset"), &permsReset, false);
    if (!permsReset) {
-      system("tccutil reset Microphone org.audacityteam.audacity");
+      system("tccutil reset Microphone org.tenacityaudio.tenacity");
       gPrefs->Write(wxT("/MicrophonePermissionsReset"), true);
    }
 #endif
@@ -1575,7 +1575,7 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // There is another copy of Audacity running.  Force quit.
 
       auto prompt =  XO(
-"The system has detected that another copy of Tenacity (or a copy of Audacity) is running.\n")
+"The system has detected that another copy of Tenacity is running.\n")
          + runningTwoCopiesStr
          + XO(
 "Use the New or Open commands in the currently running Tenacity\n process to open multiple projects simultaneously.\n");

@@ -154,7 +154,7 @@ END_EVENT_TABLE()
 
 TimerRecordDialog::TimerRecordDialog(
    wxWindow* parent, TenacityProject &project, bool bAlreadySaved)
-: wxDialogWrapper(parent, -1, XO("Audacity Timer Record"), wxDefaultPosition,
+: wxDialogWrapper(parent, -1, XO("Tenacity Timer Record"), wxDefaultPosition,
            wxDefaultSize, wxCAPTION)
 , mProject{ project }
 {
@@ -526,7 +526,7 @@ int TimerRecordDialog::RunWaitDialog()
 
          TimerProgressDialog
             progress(m_TimeSpan_Duration.GetMilliseconds().GetValue(),
-                     XO("Audacity Timer Record Progress"),
+                     XO("Tenacity Timer Record Progress"),
                      columns,
                      pdlgHideCancelButton | pdlgConfirmStopCancel);
 
@@ -896,7 +896,7 @@ void TimerRecordDialog::PopulateOrExchange(ShuttleGui& S)
                m_pTimerAfterCompleteChoiceCtrl = S.AddChoice(XXO("After Recording completes:"),
                      {
                         XO("Do nothing") ,
-                        XO("Exit Audacity") ,
+                        XO("Exit Tenacity") ,
                   #ifdef __WINDOWS__
                         XO("Restart system") ,
                         XO("Shutdown system") ,
@@ -1025,7 +1025,7 @@ ProgressResult TimerRecordDialog::WaitForStart()
    wxDateTime startWait_DateTime = wxDateTime::UNow();
    wxTimeSpan waitDuration = m_DateTime_Start - startWait_DateTime;
    TimerProgressDialog progress(waitDuration.GetMilliseconds().GetValue(),
-      XO("Audacity Timer Record - Waiting for Start"),
+      XO("Tenacity Timer Record - Waiting for Start"),
       columns,
       pdlgHideStopButton | pdlgConfirmStopCancel | pdlgHideElapsedTime,
       /* i18n-hint: "in" means after a duration of time,
@@ -1048,7 +1048,7 @@ ProgressResult TimerRecordDialog::PreActionDelay(int iActionIndex, TimerRecordCo
    auto sAction = Verbatim( m_pTimerAfterCompleteChoiceCtrl
       ->GetString(iActionIndex) );
 
-   /* i18n-hint: %s is one of "Do nothing", "Exit Audacity", "Restart system",
+   /* i18n-hint: %s is one of "Do nothing", "Exit Tenacity", "Restart system",
       or "Shutdown system", and
       "in" means after a duration of time, shown below this string */
    auto sCountdownLabel = XO("%s in:").Format( sAction );
@@ -1077,7 +1077,7 @@ ProgressResult TimerRecordDialog::PreActionDelay(int iActionIndex, TimerRecordCo
    wxDateTime dtActionTime = dtNow.Add(tsWait);
 
    TimerProgressDialog dlgAction(tsWait.GetMilliseconds().GetValue(),
-                          XO("Audacity Timer Record - Waiting"),
+                          XO("Tenacity Timer Record - Waiting"),
                           columns,
                           pdlgHideStopButton | pdlgHideElapsedTime,
                           sCountdownLabel);

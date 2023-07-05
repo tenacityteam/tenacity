@@ -92,7 +92,7 @@ ComponentInterfaceSymbol BuiltinEffectsModule::GetSymbol()
 
 VendorSymbol BuiltinEffectsModule::GetVendor()
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString BuiltinEffectsModule::GetVersion()
@@ -103,7 +103,7 @@ wxString BuiltinEffectsModule::GetVersion()
 
 TranslatableString BuiltinEffectsModule::GetDescription()
 {
-   return XO("Provides builtin effects to Audacity");
+   return XO("Provides builtin effects to Tenacity");
 }
 
 // ============================================================================

@@ -162,7 +162,7 @@ void SpectrumVZoomHandle::DoZoom(
    default:
       // If we have covered all the cases, this won't happen.
       // In release builds Audacity will ignore the zoom.
-      wxFAIL_MSG("Zooming Case not implemented by Audacity");
+      wxFAIL_MSG("Zooming Case not implemented by Tenacity");
       break;
 
    // VZooming on spectral we don't implement the other zoom presets.

@@ -699,12 +699,12 @@ bool NyquistEffect::Process()
 
       mProps = wxEmptyString;
 
-      mProps += wxString::Format(wxT("(putprop '*AUDACITY* (list %d %d %d) 'VERSION)\n"), AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION);
+      mProps += wxString::Format(wxT("(putprop '*TENACITY* (list %d %d %d) 'VERSION)\n"), AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION);
       wxString lang = gPrefs->Read(wxT("/Locale/Language"), wxT(""));
       lang = (lang.empty())
          ? Languages::GetSystemLanguageCode(FileNames::AudacityPathList())
          : lang;
-      mProps += wxString::Format(wxT("(putprop '*AUDACITY* \"%s\" 'LANGUAGE)\n"), lang);
+      mProps += wxString::Format(wxT("(putprop '*TENACITY* \"%s\" 'LANGUAGE)\n"), lang);
 
       mProps += wxString::Format(wxT("(setf *DECIMAL-SEPARATOR* #\\%c)\n"), wxNumberFormatter::GetDecimalSeparator());
 
@@ -1378,7 +1378,7 @@ bool NyquistEffect::ProcessOne()
       // error will be raised when we try to return the value of aud:result
       // which is unbound
       cmd += wxT("(setf aud:result nil)\n");
-      cmd += wxT("(sal-compile-audacity \"") + str + wxT("\" t t nil)\n");
+      cmd += wxT("(sal-compile-tenacity \"") + str + wxT("\" t t nil)\n");
       // Capture the value returned by main (saved in aud:result), but
       // set aud:result to nil so sound results can be evaluated without
       // retaining audio in memory

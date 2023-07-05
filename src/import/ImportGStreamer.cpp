@@ -55,7 +55,7 @@ extern "C"
 }
 
 // Convenience macros
-#define AUDCTX "audacity::context"
+#define AUDCTX "tenacity::context"
 #define GETCTX(o) (GStreamContext *) g_object_get_data(G_OBJECT((o)), AUDCTX)
 #define SETCTX(o, c) g_object_set_data(G_OBJECT((o)), AUDCTX, (gpointer) (c))
 #define WARN(e, msg) GST_ELEMENT_WARNING((e), STREAM, FAILED, msg, (NULL));

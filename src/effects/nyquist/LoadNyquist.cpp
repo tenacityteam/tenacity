@@ -105,7 +105,7 @@ ComponentInterfaceSymbol NyquistEffectsModule::GetSymbol()
 
 VendorSymbol NyquistEffectsModule::GetVendor()
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString NyquistEffectsModule::GetVersion()
@@ -116,7 +116,7 @@ wxString NyquistEffectsModule::GetVersion()
 
 TranslatableString NyquistEffectsModule::GetDescription()
 {
-   return XO("Provides Nyquist Effects support to Audacity");
+   return XO("Provides Nyquist Effects support to Tenacity");
 }
 
 // ============================================================================

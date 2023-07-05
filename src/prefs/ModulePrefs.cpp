@@ -115,7 +115,7 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
    S.StartStatic( {} );
    {
       S.AddFixedText(XO(
-"These are experimental modules. Enable them only if you've read the Audacity Manual\nand know what you are doing.") );
+"These are experimental modules. Enable them only if you've read the Tenacity Manual\nand know what you are doing.") );
       S.AddFixedText(XO(
 /* i18n-hint preserve the leading spaces */
 "  'Ask' means Tenacity will ask if you want to load the module each time it starts.") );

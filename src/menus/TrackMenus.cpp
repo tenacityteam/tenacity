@@ -691,7 +691,7 @@ void OnNewTimeTrack(const CommandContext &context)
    if ( *tracks.Any<TimeTrack>().begin() ) {
       AudacityMessageBox(
          XO(
-"This version of Audacity only allows one time track for each project window.") );
+"This version of Tenacity only allows one time track for each project window.") );
       return;
    }
 
