@@ -1392,7 +1392,7 @@ else()
                DESTINATION "${_DATADIR}/applications" )
       install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
-      install( FILES "${_SRCDIR}/audacity.xml"
+      install( FILES "${_SRCDIR}/tenacity.xml"
                DESTINATION "${_DATADIR}/mime/packages" )
       install( FILES "${topdir}/presets/EQDefaultCurves.xml"
                DESTINATION "${_PKGDATA}" )

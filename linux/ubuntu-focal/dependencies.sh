@@ -9,6 +9,7 @@ apt_packages_basic=(
     libstdc++-9-dev
     cmake
     git
+    ninja
 )
 
 apt_packages_minimal_deps=(

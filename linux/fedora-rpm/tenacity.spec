@@ -1,19 +1,19 @@
 # Spec file is based on https://src.fedoraproject.org/fork/imcinerney/rpms/audacity/tree/im/depupdate
 # Compile options:
-# invoke with: rpmbuild --with ffmpeg --with local_ffmpeg audacity.spec to use local ffmpeg
+# invoke with: rpmbuild --with ffmpeg --with local_ffmpeg tenacity.spec to use local ffmpeg
 %bcond_with     ffmpeg
 %bcond_with     local_ffmpeg
 
 #global commit0 53a5c930a4b5b053ab06a8b975458fc51cf41f6c
 #global shortcommit0 #(c=#{commit0}; echo ${c:0:7})
 
-Name: audacity
+Name: tenacity
 
-Version: 3.0.3
+Version: 1.3
 Release: 0%{?dist}
 Summary: Multitrack audio editor
 License: GPLv2
-URL:     https://www.audacityteam.org/
+URL:     https://tenacityaudio.org/
 
 #Source0: http://www.fosshub.com/Audacity.html/%{name}-minsrc-%{version}.tar.xz
 # For alpha git snapshots for testing use the github archive as upstream source:
@@ -23,10 +23,8 @@ URL:     https://www.audacityteam.org/
 Source0: %{name}.tar.gz
 
 #define tartopdir audacity-minsrc-%{version}
-#define tartopdir audacity-#{commit0}
-%define tartopdir audacity
-
-Source1: http://www.fosshub.com/Audacity.html/%{name}-manual-3.0.2.zip
+#define tartopdir tenacity-#{commit0}
+%define tartopdir tenacity
 
 BuildRequires: cmake
 BuildRequires: gettext-devel
@@ -103,23 +101,11 @@ Requires:      portaudio%{?_isa} >= 19-16
 ExcludeArch: s390x
 
 %description
-Audacity is a cross-platform multitrack audio editor. It allows you to
+Tenacity is a cross-platform multitrack audio editor. It allows you to
 record sounds directly or to import files in various formats. It features
 a few simple effects, all of the editing features you should need, and
 unlimited undo. The GUI was built with wxWidgets and the audio I/O
 supports PulseAudio, OSS and ALSA under Linux.
-
-%package manual
-Summary: Manual for Audacity - Offline Install
-BuildArch: noarch
-# -manual suits either audacity or audacity-freeworld; both create the path:
-Requires: /usr/bin/audacity
-
-%description manual
-Audacity Manual can be installed locally if preferred, or accessed on-line
-if internet connection is available.
-For the most up to date manual content, use the on-line manual.
-
 
 %prep
 %setup -q -n %{tartopdir}
@@ -188,7 +174,7 @@ cd -
 
 rm -Rf $RPM_BUILD_ROOT%{_datadir}/%{name}/include
 
-# Remove a helper script, that runs audacity in GitHub CI builds
+# Remove a helper script, that runs tenacity in GitHub CI builds
 rm -f $RPM_BUILD_ROOT/usr/%{name}
 
 %if 0%{?rhel} >= 8 || 0%{?fedora}
@@ -199,15 +185,10 @@ if appstream-util --help | grep -q replace-screenshots ; then
 #
 # See http://people.freedesktop.org/~hughsient/appdata/#screenshots for more details.
 #
-appstream-util replace-screenshots $RPM_BUILD_ROOT%{_datadir}/metainfo/audacity.appdata.xml \
+appstream-util replace-screenshots $RPM_BUILD_ROOT%{_datadir}/metainfo/tenacity.appdata.xml \
   https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/audacity/a.png
 fi
 %endif
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/help/manual
-# audacity manual must be unzipped to correct location
-unzip %{SOURCE1} -d $RPM_BUILD_ROOT%{_datadir}/%{name}/help
-
 
 %{find_lang} %{name}
 
@@ -238,8 +219,3 @@ rm %{buildroot}%{_datadir}/doc/%{name}/LICENSE.txt
 %{_datadir}/mime/packages/*
 %{_datadir}/doc/%{name}
 %license LICENSE.txt
-
-%files manual
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/help
-%{_datadir}/%{name}/help/manual/

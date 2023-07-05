@@ -233,7 +233,7 @@ else()
 endif()
 
 # Load our functions/macros
-include( AudacityFunctions )
+include( TenacityFunctions )
 
 set_from_env(AUDACITY_ARCH_LABEL) # e.g. x86_64
 
@@ -763,13 +763,13 @@ add_subdirectory( "scripts" )
 
 # Generate config file
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   configure_file( src/audacity_config.h.in src/private/configwin.h )
+   configure_file( src/tenacity_config.h.in src/private/configwin.h )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    set( HAVE_VISIBILITY 1 )
-   configure_file( src/audacity_config.h.in src/private/configmac.h )
+   configure_file( src/tenacity_config.h.in src/private/configmac.h )
 else()
    set( HAVE_VISIBILITY 1 )
-   configure_file( src/audacity_config.h.in src/private/configunix.h )
+   configure_file( src/tenacity_config.h.in src/private/configunix.h )
 endif()
 
 # Generate a picture of module dependencies
@@ -802,7 +802,7 @@ cmake_dependent_option(
 )
 
 if( PERFORM_CODESIGN )
-   include( AudacityCodeSigning )
+   include( TenacityCodeSigning )
 endif()
 
 #
@@ -817,7 +817,7 @@ option( PACKAGE_MANUAL
 # Variables, that are common for all package targets
 
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   include( AudacityInnoSetup )
+   include( TenacityInnoSetup )
 endif()
 
 # Uncomment what follows for symbol values.

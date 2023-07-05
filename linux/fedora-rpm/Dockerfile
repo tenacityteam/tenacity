@@ -1,22 +1,20 @@
 FROM fedora:latest
 
-LABEL maintainer="d.vedenko@audacityteam.org"
+LABEL maintainer="avery98@pm.me"
 LABEL description="A build environment to check the builds for Fedora package maintainers"
-LABEL version="3.0"
+LABEL version="1.3"
 
 RUN dnf install -y dos2unix wget
 
 RUN dnf install -y fedora-packager @development-tools
 
-COPY ["audacity.spec", "/root/rpmbuild/SPEC/audacity.spec"]
+COPY ["tenacity.spec", "/root/rpmbuild/SPEC/tenacity.spec"]
 
-RUN dos2unix /root/rpmbuild/SPEC/audacity.spec
+RUN dos2unix /root/rpmbuild/SPEC/tenacity.spec
 
-COPY ["audacity.cfg", "/etc/mock/audacity.cfg"]
+COPY ["tenacity.cfg", "/etc/mock/tenacity.cfg"]
 
-RUN dos2unix /etc/mock/audacity.cfg
-
-RUN wget -P /root/rpmbuild/SOURCES/ https://github.com/audacity/audacity/releases/download/Audacity-3.0.2/audacity-manual-3.0.2.zip
+RUN dos2unix /etc/mock/tenacity.cfg
 
 COPY ["entrypoint.sh", "/entrypoint.sh"]
 RUN dos2unix /entrypoint.sh
