@@ -87,7 +87,7 @@ if sys.platform == 'win32':
     EOL = '\r\n\0'
 else:
     # Linux or Mac
-    PIPE_BASE = '/tmp/audacity_script_pipe.'
+    PIPE_BASE = '/tmp/tenacity_script_pipe.'
     WRITE_NAME = PIPE_BASE + 'to.' + str(os.getuid())
     READ_NAME = PIPE_BASE + 'from.' + str(os.getuid())
     EOL = '\n'

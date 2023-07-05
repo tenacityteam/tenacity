@@ -62,8 +62,8 @@ if sys.platform == 'win32':
     EOL = '\r\n\0'
 else:
     print("recording-test.py, running on linux or mac")
-    PIPE_TO_AUDACITY = '/tmp/audacity_script_pipe.to.' + str(os.getuid())
-    PIPE_FROM_AUDACITY = '/tmp/audacity_script_pipe.from.' + str(os.getuid())
+    PIPE_TO_AUDACITY = '/tmp/tenacity_script_pipe.to.' + str(os.getuid())
+    PIPE_FROM_AUDACITY = '/tmp/tenacity_script_pipe.from.' + str(os.getuid())
     EOL = '\n'
 
 

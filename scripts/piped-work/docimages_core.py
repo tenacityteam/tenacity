@@ -19,8 +19,8 @@ def startPipes() :
         EOL = '\r\n\0'
     else:
         print( "pipe-test.py, running on linux or mac" )
-        toname = '/tmp/audacity_script_pipe.to.' + str(os.getuid())
-        fromname = '/tmp/audacity_script_pipe.from.' + str(os.getuid())
+        toname = '/tmp/tenacity_script_pipe.to.' + str(os.getuid())
+        fromname = '/tmp/tenacity_script_pipe.from.' + str(os.getuid())
         EOL = '\n'
 
     print( "Write to  \"" + toname +"\"" )

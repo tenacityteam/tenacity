@@ -33,12 +33,12 @@ if ($^O eq 'MSWin32') {
    $FromSrvName = '\\\\.\\pipe\\From'.$Name.'Pipe';
 } elsif ($^O eq 'linux') {
    $UID = $<;
-   $ToSrvName = '/tmp/audacity_script_pipe.to.'.$UID;
-   $FromSrvName = '/tmp/audacity_script_pipe.from.'.$UID;
+   $ToSrvName = '/tmp/tenacity_script_pipe.to.'.$UID;
+   $FromSrvName = '/tmp/tenacity_script_pipe.from.'.$UID;
 } elsif ($^O eq 'darwin') {
    $UID = $<;
-   $ToSrvName = '/tmp/audacity_script_pipe.to.'.$UID;
-   $FromSrvName = '/tmp/audacity_script_pipe.from.'.$UID;
+   $ToSrvName = '/tmp/tenacity_script_pipe.to.'.$UID;
+   $FromSrvName = '/tmp/tenacity_script_pipe.from.'.$UID;
 }
 
 # Open pipes
@@ -74,7 +74,9 @@ sub stopTiming{
 sub sendCommand{
    my $command = shift;
    if ($^O eq 'MSWin32') {
-      print TO_SRV "$command\r\n\0";
+      print TO_SRV "$command
+
+\r\n\0";
    } else {
       # Don't explicitly send \0 on Linux or reads after the first one fail...
       print TO_SRV "$command\n";

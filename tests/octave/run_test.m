@@ -32,8 +32,8 @@ end
 global TMP_FILENAME;
 global EXPORT_TEST_SIGNALS;
 UID=num2str(getuid());
-PIPE_TO_PATH=strcat("/tmp/audacity_script_pipe.to.", UID);
-PIPE_FROM_PATH=strcat("/tmp/audacity_script_pipe.from.", UID);
+PIPE_TO_PATH=strcat("/tmp/tenacity_script_pipe.to.", UID);
+PIPE_FROM_PATH=strcat("/tmp/tenacity_script_pipe.from.", UID);
 TMP_FILENAME=strcat(pwd(), "/tmp.wav");
 EXPORT_TEST_SIGNALS = false;
 
