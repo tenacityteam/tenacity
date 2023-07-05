@@ -98,7 +98,7 @@ namespace FileNames
     *
     * On Unix this will include the directory Audacity was installed into,
     * plus the current user's .audacity-data/Plug-Ins directory.  Additional
-    * directories can be specified using the AUDACITY_PATH environment
+    * directories can be specified using the TENACITY_PATH environment
     * variable.  On Windows or Mac OS, this will include the directory
     * which contains the Audacity program. */
    FILES_API const FilePaths &AudacityPathList();
