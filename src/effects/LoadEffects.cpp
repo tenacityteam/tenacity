@@ -98,7 +98,7 @@ VendorSymbol BuiltinEffectsModule::GetVendor()
 wxString BuiltinEffectsModule::GetVersion()
 {
    // This "may" be different if this were to be maintained as a separate DLL
-   return AUDACITY_VERSION_STRING;
+   return TENACITY_VERSION_STRING;
 }
 
 TranslatableString BuiltinEffectsModule::GetDescription()

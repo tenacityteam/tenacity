@@ -415,7 +415,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << XO("<h1>")
       << ProgramName
       << wxT(" ")
-      << wxString(AUDACITY_VERSION_STRING)
+      << wxString(TENACITY_VERSION_STRING)
       << wxT("</center></h1>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s is a free, open source, cross-platform software for recording and editing audio.<br><br>")

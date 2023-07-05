@@ -9,8 +9,8 @@ CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "Tenacity.exe.manifest"
 // Version
 //
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION AUDACITY_VERSION,AUDACITY_RELEASE,AUDACITY_REVISION,0
- PRODUCTVERSION AUDACITY_VERSION,AUDACITY_RELEASE,AUDACITY_REVISION,0
+ FILEVERSION TENACITY_VERSION,TENACITY_RELEASE,TENACITY_REVISION,0
+ PRODUCTVERSION TENACITY_VERSION,TENACITY_RELEASE,TENACITY_REVISION,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -27,13 +27,13 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Tenacity Contributors"
             VALUE "FileDescription", "A cross-platform audio editor."
-            VALUE "FileVersion", AUDACITY_FILE_VERSION
+            VALUE "FileVersion", TENACITY_FILE_VERSION
             VALUE "InternalName", "Tenacity"
             VALUE "LegalCopyright", "Copyright © 2021-2023 under GPLv2+"
             VALUE "LegalTrademarks", "Audacity® is a registered trademark."
             VALUE "OriginalFilename", "Tenacity.exe"
             VALUE "ProductName", "Tenacity"
-            VALUE "ProductVersion", AUDACITY_FILE_VERSION
+            VALUE "ProductVersion", TENACITY_FILE_VERSION
         END
     END
     BLOCK "VarFileInfo"

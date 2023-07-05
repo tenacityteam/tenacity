@@ -84,7 +84,7 @@ AudacityCommand::~AudacityCommand()
 
 PluginPath AudacityCommand::GetPath(){        return BUILTIN_GENERIC_COMMAND_PREFIX + GetSymbol().Internal(); }
 VendorSymbol AudacityCommand::GetVendor(){      return XO("Tenacity");}
-wxString AudacityCommand::GetVersion(){     return AUDACITY_VERSION_STRING;}
+wxString AudacityCommand::GetVersion(){     return TENACITY_VERSION_STRING;}
 
 
 bool AudacityCommand::Init(){

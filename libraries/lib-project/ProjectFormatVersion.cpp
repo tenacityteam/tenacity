@@ -50,7 +50,7 @@ bool ProjectFormatVersion::IsValid() const noexcept
 }
 
 const ProjectFormatVersion SupportedProjectFormatVersion = {
-   AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION, AUDACITY_MODLEVEL, true
+   TENACITY_VERSION, TENACITY_RELEASE, TENACITY_REVISION, TENACITY_MODLEVEL, true
 };
 
 const ProjectFormatVersion SupportedTenacityProjectFormatVersion = { 3, 1, 0, 0, false };

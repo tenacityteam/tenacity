@@ -471,7 +471,7 @@ ProgressResult ExportMka::Export(TenacityProject *project,
         (EbmlFloat &) GetChild<KaxDuration>(MyInfos) = (t1 - t0) * UINT64_C(1000000000) / TIMESTAMP_UNIT; // in TIMESTAMP_UNIT
         GetChild<KaxDuration>(MyInfos).SetPrecision(EbmlFloat::FLOAT_64);
         (EbmlUnicodeString &) GetChild<KaxMuxingApp>(MyInfos)  = ToWString(std::string("libebml ") + EbmlCodeVersion + std::string(" + libmatroska ") + KaxCodeVersion);
-        (EbmlUnicodeString &) GetChild<KaxWritingApp>(MyInfos) = ToWString(APP_NAME) + L" " + AUDACITY_VERSION_STRING;
+        (EbmlUnicodeString &) GetChild<KaxWritingApp>(MyInfos) = ToWString(APP_NAME) + L" " + TENACITY_VERSION_STRING;
         (EbmlUInteger &) GetChild<KaxTimecodeScale>(MyInfos) = TIMESTAMP_UNIT;
         GetChild<KaxDateUTC>(MyInfos).SetEpochDate(time(nullptr));
         binary SegUID[16];

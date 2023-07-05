@@ -103,9 +103,9 @@ SRCROOT=$(realpath "${SRCROOT}")
 DSTROOT=$(realpath "${DSTROOT}")
 
 # Setup
-VERSION=`awk '/^#define+ AUDACITY_VERSION / {print $3}' ${SRCROOT}/../src/Audacity.h`
-RELEASE=`awk '/^#define+ AUDACITY_RELEASE / {print $3}' ${SRCROOT}/../src/Audacity.h`
-REVISION=`awk '/^#define+ AUDACITY_REVISION / {print $3}' ${SRCROOT}/../src/Audacity.h`
+VERSION=`awk '/^#define+ TENACITY_VERSION / {print $3}' ${SRCROOT}/../src/Audacity.h`
+RELEASE=`awk '/^#define+ TENACITY_RELEASE / {print $3}' ${SRCROOT}/../src/Audacity.h`
+REVISION=`awk '/^#define+ TENACITY_REVISION / {print $3}' ${SRCROOT}/../src/Audacity.h`
 VERSION=$VERSION.$RELEASE.$REVISION
 IDENT=$(plist "${DSTROOT}/Tenacity.app/Contents/Info.plist" "CFBundleIdentifier")
 

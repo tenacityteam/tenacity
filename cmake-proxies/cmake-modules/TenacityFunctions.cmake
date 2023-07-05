@@ -214,7 +214,7 @@ macro( check_for_platform_version )
 endmacro()
 
 # To be used to compile all C++ in the application and modules
-function( audacity_append_common_compiler_options var use_pch )
+function( tenacity_append_common_compiler_options var use_pch )
    if( NOT use_pch )
       list( APPEND ${var}
          PRIVATE
@@ -226,16 +226,16 @@ function( audacity_append_common_compiler_options var use_pch )
       )
    endif()
    list( APPEND ${var}
-         -DAUDACITY_VERSION=${AUDACITY_VERSION}
-         -DAUDACITY_RELEASE=${AUDACITY_RELEASE}
-         -DAUDACITY_REVISION=${AUDACITY_REVISION}
-         -DAUDACITY_MODLEVEL=${AUDACITY_MODLEVEL}
+         -DTENACITY_VERSION=${TENACITY_VERSION}
+         -DTENACITY_RELEASE=${TENACITY_RELEASE}
+         -DTENACITY_REVISION=${TENACITY_REVISION}
+         -DTENACITY_MODLEVEL=${TENACITY_MODLEVEL}
 
          # Version string for visual display
-         -DAUDACITY_VERSION_STRING=L"${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION}${GIT_VERSION_TAG}"
+         -DTENACITY_VERSION_STRING=L"${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION}${GIT_VERSION_TAG}"
 
          # This value is used in the resource compiler for Windows
-         -DAUDACITY_FILE_VERSION=L"${AUDACITY_VERSION},${AUDACITY_RELEASE},${AUDACITY_REVISION},${AUDACITY_MODLEVEL}"
+         -DTENACITY_FILE_VERSION=L"${TENACITY_VERSION},${TENACITY_RELEASE},${TENACITY_REVISION},${TENACITY_MODLEVEL}"
 
          # Reviewed, certified, non-leaky uses of NEW that immediately entrust
 	      # their results to RAII objects.
@@ -260,10 +260,10 @@ function( audacity_append_common_compiler_options var use_pch )
 	 # Yes, -U to /U too as needed for Windows:
 	 $<IF:$<CONFIG:Debug>,-D_DEBUG=1,-U_DEBUG>
    )   
-   # Definitions controlled by the AUDACITY_BUILD_LEVEL switch
-   if( AUDACITY_BUILD_LEVEL EQUAL 0 )
+   # Definitions controlled by the TENACITY_BUILD_LEVEL switch
+   if( TENACITY_BUILD_LEVEL EQUAL 0 )
       list( APPEND ${var} -DIS_ALPHA -DUSE_ALPHA_MANUAL )
-   elseif( AUDACITY_BUILD_LEVEL EQUAL 1 )
+   elseif( TENACITY_BUILD_LEVEL EQUAL 1 )
       list( APPEND ${var} -DIS_BETA -DUSE_ALPHA_MANUAL )
    else()
       list( APPEND ${var} -DIS_RELEASE )
@@ -319,7 +319,7 @@ function( canonicalize_node_name var node )
    set( "${var}" "${node}" PARENT_SCOPE )
 endfunction()
 
-function( audacity_module_fn NAME SOURCES IMPORT_TARGETS
+function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
    ADDITIONAL_DEFINES ADDITIONAL_LIBRARIES LIBTYPE )
 
    set( TARGET ${NAME} )
@@ -370,7 +370,7 @@ function( audacity_module_fn NAME SOURCES IMPORT_TARGETS
             COMMAND ${CMAKE_COMMAND}
 	       -D SRC="${_MODDIR}/${TARGET}.so"
                -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
-               -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
+               -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
             POST_BUILD )
       endif()
    else()
@@ -416,7 +416,7 @@ function( audacity_module_fn NAME SOURCES IMPORT_TARGETS
    # Compute compilation options.
    # Perhaps a another function argument in future to customize this too.
    set( OPTIONS )
-   audacity_append_common_compiler_options( OPTIONS NO )
+   tenacity_append_common_compiler_options( OPTIONS NO )
 
    organize_source( "${TARGET_ROOT}" "" "${SOURCES}" )
    target_sources( ${TARGET} PRIVATE ${SOURCES} )
@@ -494,14 +494,14 @@ endfunction()
 # other targets, and link to them.
 # More defines, and more target libraries (maybe generator expressions)
 # may be given too.
-macro( audacity_module NAME SOURCES IMPORT_TARGETS
+macro( tenacity_module NAME SOURCES IMPORT_TARGETS
    ADDITIONAL_DEFINES ADDITIONAL_LIBRARIES )
    # The extra indirection of a function call from this macro, and
    # re-assignment of GRAPH_EDGES, is so that a module definition may
    # call this macro, and it will (correctly) collect edges for the
    # CMakeLists.txt in the directory above it; but otherwise we take
    # advantage of function scoping of variables.
-   audacity_module_fn(
+   tenacity_module_fn(
       "${NAME}"
       "${SOURCES}"
       "${IMPORT_TARGETS}"
@@ -523,7 +523,7 @@ macro( tenacity_library NAME SOURCES IMPORT_TARGETS
    ADDITIONAL_DEFINES ADDITIONAL_LIBRARIES )
    # ditto comment in the previous macro
    if (${BUILD_STATIC_LIBS})
-      audacity_module_fn(
+      tenacity_module_fn(
          "${NAME}"
          "${SOURCES}"
          "${IMPORT_TARGETS}"
@@ -532,7 +532,7 @@ macro( tenacity_library NAME SOURCES IMPORT_TARGETS
          "STATIC"
       )
    else()
-      audacity_module_fn(
+      tenacity_module_fn(
          "${NAME}"
          "${SOURCES}"
          "${IMPORT_TARGETS}"
@@ -549,7 +549,7 @@ endmacro()
 
 # A special macro for header only libraries
 
-macro( audacity_header_only_library NAME SOURCES IMPORT_TARGETS
+macro( tenacity_header_only_library NAME SOURCES IMPORT_TARGETS
    ADDITIONAL_DEFINES )
    # ditto comment in the previous macro
    add_library( ${NAME} INTERFACE )

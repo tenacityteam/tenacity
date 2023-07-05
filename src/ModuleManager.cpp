@@ -105,7 +105,7 @@ bool Module::Load(wxString &deferredErrorMessage)
    }
 
    wxString moduleVersion = versionFn();
-   if( moduleVersion != AUDACITY_VERSION_STRING) {
+   if( moduleVersion != TENACITY_VERSION_STRING) {
       AudacityMessageBox(
          XO("The module \"%s\" is matched with Tenacity version \"%s\".\n\nIt will not be loaded.")
             .Format(ShortName, moduleVersion),

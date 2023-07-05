@@ -220,7 +220,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << wxT("</h2></center><br>")
 
          /* i18n-hint: %s is the program's version string */
-         << XO("You are using Tenacity %s. Tenacity is a fork of Audacity").Format(AUDACITY_VERSION_STRING)
+         << XO("You are using Tenacity %s. Tenacity is a fork of Audacity").Format(TENACITY_VERSION_STRING)
          << wxT("<center><h2>")
          << XO("Need Help?")
          << wxT("</h2></center>")

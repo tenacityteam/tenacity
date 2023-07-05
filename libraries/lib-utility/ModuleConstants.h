@@ -45,7 +45,7 @@ extern "C" {                                                           \
       of Audacity it is built with.                                    \
       For now, the versions must match exactly for Audacity to         \
       agree to load the module. */                                     \
-      return AUDACITY_VERSION_STRING;                                  \
+      return TENACITY_VERSION_STRING;                                  \
    }                                                                   \
 }
 

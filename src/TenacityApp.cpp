@@ -312,9 +312,9 @@ void PopulatePreferences()
    }
 
    // write out the version numbers to the prefs file for future checking
-   gPrefs->Write(wxT("/Version/Major"), AUDACITY_VERSION);
-   gPrefs->Write(wxT("/Version/Minor"), AUDACITY_RELEASE);
-   gPrefs->Write(wxT("/Version/Micro"), AUDACITY_REVISION);
+   gPrefs->Write(wxT("/Version/Major"), TENACITY_VERSION);
+   gPrefs->Write(wxT("/Version/Minor"), TENACITY_RELEASE);
+   gPrefs->Write(wxT("/Version/Micro"), TENACITY_REVISION);
 
    gPrefs->Flush();
 }
@@ -1092,7 +1092,7 @@ bool TenacityApp::InitPart2()
 
    if (parser->Found(wxT("v")))
    {
-      wxPrintf("Tenacity v%s\n", AUDACITY_VERSION_STRING);
+      wxPrintf("Tenacity v%s\n", TENACITY_VERSION_STRING);
       exit(0);
    }
 
@@ -1262,8 +1262,8 @@ bool TenacityApp::InitPart2()
       // Remove duplicate shortcuts when there's a change of version
       int vMajorInit, vMinorInit, vMicroInit;
       gPrefs->GetVersionKeysInit(vMajorInit, vMinorInit, vMicroInit);
-      if (vMajorInit != AUDACITY_VERSION || vMinorInit != AUDACITY_RELEASE
-         || vMicroInit != AUDACITY_REVISION) {
+      if (vMajorInit != TENACITY_VERSION || vMinorInit != TENACITY_RELEASE
+         || vMicroInit != TENACITY_REVISION) {
          CommandManager::Get(*project).RemoveDuplicateShortcuts();
       }
       //
@@ -1523,7 +1523,7 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
       if (parser->Found(wxT("v")))
       {
-         wxPrintf("Tenacity v%s\n", AUDACITY_VERSION_STRING);
+         wxPrintf("Tenacity v%s\n", TENACITY_VERSION_STRING);
          return false;
       }
 
@@ -1815,7 +1815,7 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
    // Display Audacity's version if requested
    if (parser->Found(wxT("v")))
    {
-      wxPrintf("Tenacity v%s\n", AUDACITY_VERSION_STRING);
+      wxPrintf("Tenacity v%s\n", TENACITY_VERSION_STRING);
 
       return false;
    }

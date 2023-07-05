@@ -1727,7 +1727,7 @@ bool ProjectFileIO::HandleXMLTag(const std::string_view& tag, const AttributesLi
    {
       /* i18n-hint: %s will be replaced by the version number.*/
       auto msg = XO("This file was saved using Audacity %s (or a derivative of the same version, possibly Tenacity).\nYou are using Tenacity %s. You may need to upgrade to a newer version to open this file.")
-         .Format(audacityVersion, AUDACITY_VERSION_STRING);
+         .Format(audacityVersion, TENACITY_VERSION_STRING);
 
       ShowError( *ProjectFramePlacement(&project),
          XO("Can't open project file"),
@@ -1788,7 +1788,7 @@ void ProjectFileIO::WriteXML(XMLWriter &xmlFile,
    xmlFile.WriteAttr(wxT("xmlns"), wxT("http://audacity.sourceforge.net/"));
 
    xmlFile.WriteAttr(wxT("version"), wxT(AUDACITY_FILE_FORMAT_VERSION));
-   xmlFile.WriteAttr(wxT("audacityversion"), AUDACITY_VERSION_STRING);
+   xmlFile.WriteAttr(wxT("audacityversion"), TENACITY_VERSION_STRING);
 
    ProjectFileIORegistry::Get().CallAttributeWriters(proj, xmlFile);
    ProjectFileIORegistry::Get().CallObjectWriters(proj, xmlFile);

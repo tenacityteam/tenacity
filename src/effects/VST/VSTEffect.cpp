@@ -331,7 +331,7 @@ VendorSymbol VSTEffectsModule::GetVendor()
 wxString VSTEffectsModule::GetVersion()
 {
    // This "may" be different if this were to be maintained as a separate DLL
-   return AUDACITY_VERSION_STRING;
+   return TENACITY_VERSION_STRING;
 }
 
 TranslatableString VSTEffectsModule::GetDescription()
@@ -955,10 +955,10 @@ intptr_t VSTEffect::AudioMaster(AEffect * effect,
          return 1;
 
       case audioMasterGetVendorVersion:
-         return (intptr_t) (AUDACITY_VERSION << 24 |
-                            AUDACITY_RELEASE << 16 |
-                            AUDACITY_REVISION << 8 |
-                            AUDACITY_MODLEVEL);
+         return (intptr_t) (TENACITY_VERSION << 24 |
+                            TENACITY_RELEASE << 16 |
+                            TENACITY_REVISION << 8 |
+                            TENACITY_MODLEVEL);
 
       // Some (older) effects depend on an effIdle call when requested.  An
       // example is the Antress Modern plugins which uses the call to update

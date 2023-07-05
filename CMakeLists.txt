@@ -76,31 +76,23 @@ if( EXISTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
 endif()
 
 # We only do alpha builds, beta builds, and release versions.
-# Most of the time we're in development, so AUDACITY_BUILD_LEVEL should be
+# Most of the time we're in development, so TENACITY_BUILD_LEVEL should be
 # defined to 0.
 # Its value may be more than 0 for pre-release "Beta" builds that differ only
 # in the welcome screen, and hiding of some development menu commands, but
 # still link to the alpha manual online.
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
-if( NOT DEFINED AUDACITY_BUILD_LEVEL )
-   set( AUDACITY_BUILD_LEVEL 1 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
+if( NOT DEFINED TENACITY_BUILD_LEVEL )
+   set( TENACITY_BUILD_LEVEL 1 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 endif()
 
-# The Tenacity version
-# Increment as appropriate after release of a new version, and set back
-# AUDACITY_BUILD_LEVEL to 0
-set( AUDACITY_VERSION 1 )
-set( AUDACITY_RELEASE 3 )
-set( AUDACITY_REVISION 0 )
-set( AUDACITY_MODLEVEL 0 )
-
-if( AUDACITY_BUILD_LEVEL EQUAL 0 )
-   set( AUDACITY_SUFFIX "-alpha" )
-elseif(  AUDACITY_BUILD_LEVEL EQUAL 1 )
-   set( AUDACITY_SUFFIX "-beta" )
+if( TENACITY_BUILD_LEVEL EQUAL 0 )
+   set( TENACITY_SUFFIX "-alpha" )
+elseif(  TENACITY_BUILD_LEVEL EQUAL 1 )
+   set( TENACITY_SUFFIX "-beta" )
 else()
-   set( AUDACITY_SUFFIX "" )
+   set( TENACITY_SUFFIX "" )
 endif()
 
 # Don't allow in-source builds...no real reason, just
@@ -123,10 +115,10 @@ set( topdir "${CMAKE_SOURCE_DIR}" )
 set( libsrc "${topdir}/lib-src" )
 
 # Default build type is 'Debug' if CMAKE_BUILD_TYPE and
-# CMAKE_CONFIGURATION_TYPES are not set AND AUDACITY_BUILD_LEVEL is less
+# CMAKE_CONFIGURATION_TYPES are not set AND TENACITY_BUILD_LEVEL is less
 # than 2 (meaing alpha or beta).
 if( NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES )
-   if ( AUDACITY_BUILD_LEVEL LESS 2)
+   if ( TENACITY_BUILD_LEVEL LESS 2)
      set( CMAKE_BUILD_TYPE "Debug" )
    else()
      set( CMAKE_BUILD_TYPE "Release" )
@@ -167,9 +159,9 @@ endif()
 
 # Add our module path
 # CMAKE_BINARY_DIR is required for Conan to work
-set( AUDACITY_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules")
+set( TENACITY_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules")
 set( CMAKE_MODULE_PATH
-   ${AUDACITY_MODULE_PATH}
+   ${TENACITY_MODULE_PATH}
    ${CMAKE_BINARY_DIR}
    ${CMAKE_MODULE_PATH}
    "${CMAKE_SOURCE_DIR}/cmake-modules"
@@ -235,7 +227,7 @@ endif()
 # Load our functions/macros
 include( TenacityFunctions )
 
-set_from_env(AUDACITY_ARCH_LABEL) # e.g. x86_64
+set_from_env(TENACITY_ARCH_LABEL) # e.g. x86_64
 
 # Pull all the modules we'll need
 include( CheckCXXCompilerFlag )
@@ -291,9 +283,9 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
 endif()
 
 # Current version and commit info
-set( AUDACITY_VERSION 1 )
-set( AUDACITY_RELEASE 3 )
-set( AUDACITY_REVISION 0 )
+set( TENACITY_VERSION 1 )
+set( TENACITY_RELEASE 3 )
+set( TENACITY_REVISION 0 )
 set( GIT_DESCRIBE "unknown" )
 find_package( Git QUIET )
 if( GIT_FOUND )
@@ -310,7 +302,7 @@ if( GIT_FOUND )
 
     # Get the number of commits since the last tag and the current commit from
     # Git describe. This is only if we're not building a release version.
-    if( GIT_DESCRIBE AND AUDACITY_BUILD_LEVEL LESS 2)
+    if( GIT_DESCRIBE AND TENACITY_BUILD_LEVEL LESS 2)
         string( REGEX MATCHALL "-.*" GIT_VERSION_TAG "${GIT_DESCRIBE}" )
     endif()
 endif()
@@ -318,7 +310,7 @@ message( STATUS "  Current Commit: ${GIT_DESCRIBE}" )
 message( STATUS )
 
 # Not sure what this even does
-set( AUDACITY_MODLEVEL 0 )
+set( TENACITY_MODLEVEL 0 )
 
 # Organize subdirectories/targets into folders for the IDEs
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
@@ -550,8 +542,8 @@ endif()
 set( APP_ID "org.tenacityaudio.Tenacity" )
 
 # Create short and full version strings
-set( AUDACITY_DIST_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION} )
-set( AUDACITY_INFO_VERSION ${AUDACITY_VERSION}.${AUDACITY_RELEASE}.${AUDACITY_REVISION}.${AUDACITY_MODLEVEL} )
+set( TENACITY_DIST_VERSION ${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION} )
+set( TENACITY_INFO_VERSION ${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION}.${TENACITY_MODLEVEL} )
 
 # Build our custom libraries as either static or shared
 # NOTE: this does not affect external libraries (e.g., wxWidgets).

@@ -431,9 +431,9 @@ void OnResetConfig(const CommandContext &context)
    gPrefs->Write(wxT("/PrefsVersion"), wxString(wxT(AUDACITY_PREFS_VERSION_STRING)));
 
    // write out the version numbers to the prefs file for future checking
-   gPrefs->Write(wxT("/Version/Major"), AUDACITY_VERSION);
-   gPrefs->Write(wxT("/Version/Minor"), AUDACITY_RELEASE);
-   gPrefs->Write(wxT("/Version/Micro"), AUDACITY_REVISION);
+   gPrefs->Write(wxT("/Version/Major"), TENACITY_VERSION);
+   gPrefs->Write(wxT("/Version/Minor"), TENACITY_RELEASE);
+   gPrefs->Write(wxT("/Version/Micro"), TENACITY_REVISION);
 
    gPrefs->Flush();
 

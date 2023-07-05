@@ -7,20 +7,20 @@ set(appimage "${CPACK_PACKAGE_DIRECTORY}/${CPACK_PACKAGE_FILE_NAME}.AppImage")
 
 set(CPACK_EXTERNAL_BUILT_PACKAGES "${appimage}")
 
-if(DEFINED CPACK_AUDACITY_APPIMAGE_UPDATE_INFO)
-   set(ENV{AUDACITY_UPDATE_INFO} "${CPACK_AUDACITY_APPIMAGE_UPDATE_INFO}")
+if(DEFINED CPACK_TENACITY_APPIMAGE_UPDATE_INFO)
+   set(ENV{AUDACITY_UPDATE_INFO} "${CPACK_TENACITY_APPIMAGE_UPDATE_INFO}")
    list(APPEND CPACK_EXTERNAL_BUILT_PACKAGES "${appimage}.zsync")
 endif()
 
-configure_file("${CPACK_AUDACITY_SOURCE_DIR}/linux/AppImage/AppRun.sh" "${appdir}/AppRun" ESCAPE_QUOTES @ONLY)
-configure_file("${CPACK_AUDACITY_SOURCE_DIR}/linux/AppImage/apprun-hooks/00-preserve-environment.sh" "${appdir}/apprun-hooks/00-preserve-environment.sh" ESCAPE_QUOTES @ONLY)
-configure_file("${CPACK_AUDACITY_SOURCE_DIR}/linux/check_dependencies.sh" "${appdir}/bin/check_dependencies" ESCAPE_QUOTES @ONLY)
-configure_file("${CPACK_AUDACITY_SOURCE_DIR}/linux/ldd_recursive.pl" "${appdir}/bin/ldd_recursive" COPYONLY)
-file(COPY "${CPACK_AUDACITY_FINDLIB_LOCATION}/findlib" DESTINATION "${appdir}/bin/")
+configure_file("${CPACK_TENACITY_SOURCE_DIR}/linux/AppImage/AppRun.sh" "${appdir}/AppRun" ESCAPE_QUOTES @ONLY)
+configure_file("${CPACK_TENACITY_SOURCE_DIR}/linux/AppImage/apprun-hooks/00-preserve-environment.sh" "${appdir}/apprun-hooks/00-preserve-environment.sh" ESCAPE_QUOTES @ONLY)
+configure_file("${CPACK_TENACITY_SOURCE_DIR}/linux/check_dependencies.sh" "${appdir}/bin/check_dependencies" ESCAPE_QUOTES @ONLY)
+configure_file("${CPACK_TENACITY_SOURCE_DIR}/linux/ldd_recursive.pl" "${appdir}/bin/ldd_recursive" COPYONLY)
+file(COPY "${CPACK_TENACITY_FINDLIB_LOCATION}/findlib" DESTINATION "${appdir}/bin/")
 
 execute_process(
-   COMMAND "${CPACK_AUDACITY_SOURCE_DIR}/linux/create_appimage.sh" "${appdir}" "${appimage}"
-   WORKING_DIRECTORY "${CPACK_AUDACITY_BUILD_DIR}"
+   COMMAND "${CPACK_TENACITY_SOURCE_DIR}/linux/create_appimage.sh" "${appdir}" "${appimage}"
+   WORKING_DIRECTORY "${CPACK_TENACITY_BUILD_DIR}"
    RESULT_VARIABLE exit_status
 )
 

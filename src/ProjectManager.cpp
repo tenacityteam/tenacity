@@ -505,7 +505,7 @@ void InitProjectWindow( ProjectWindow &window )
 
    window.UpdateStatusWidths();
    auto msg = XO("Welcome to Tenacity version %s")
-      .Format( AUDACITY_VERSION_STRING );
+      .Format( TENACITY_VERSION_STRING );
    ProjectManager::Get( project ).SetStatusText( msg, mainStatusBarField );
 
 #ifdef EXPERIMENTAL_DA2

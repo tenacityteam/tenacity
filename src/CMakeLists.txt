@@ -1046,7 +1046,7 @@ if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
    )
 endif()
 
-audacity_append_common_compiler_options( OPTIONS "${PCH}" )
+tenacity_append_common_compiler_options( OPTIONS "${PCH}" )
 
 list( APPEND LDFLAGS
    PRIVATE
@@ -1127,7 +1127,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
          ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Tenacity.exe"
                           -D DST="${_EXEDIR}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>/"
-                          -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
+                          -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
       POST_BUILD
    )
 
@@ -1216,7 +1216,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
          ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Tenacity"
                           -D DST="${_PKGLIB}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
-                          -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
+                          -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
       POST_BUILD
    )
 
@@ -1296,7 +1296,7 @@ else()
          ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/tenacity"
                           -D DST="${_DEST}/${_PKGLIB}"
                           -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
-                          -P ${AUDACITY_MODULE_PATH}/CopyLibs.cmake
+                          -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
       POST_BUILD
    )
 

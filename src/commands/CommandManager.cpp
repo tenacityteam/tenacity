@@ -1588,7 +1588,7 @@ void CommandManager::WriteXML(XMLWriter &xmlFile) const
 // may throw
 {
    xmlFile.StartTag(wxT("audacitykeyboard"));
-   xmlFile.WriteAttr(wxT("audacityversion"), AUDACITY_VERSION_STRING);
+   xmlFile.WriteAttr(wxT("audacityversion"), TENACITY_VERSION_STRING);
 
    for(const auto &entry : mCommandList) {
 

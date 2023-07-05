@@ -72,7 +72,7 @@ VendorSymbol PrefsPanel::GetVendor()
 {  return XO("Tenacity");}
 
 wxString PrefsPanel::GetVersion()
-{     return AUDACITY_VERSION_STRING;}
+{     return TENACITY_VERSION_STRING;}
 
 PrefsPanel::Registration::Registration( const wxString &name,
    const Factory &factory, bool expanded,

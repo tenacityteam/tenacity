@@ -179,7 +179,7 @@ wxString Effect::GetVersion()
       return mClient->GetVersion();
    }
 
-   return AUDACITY_VERSION_STRING;
+   return TENACITY_VERSION_STRING;
 }
 
 TranslatableString Effect::GetDescription()

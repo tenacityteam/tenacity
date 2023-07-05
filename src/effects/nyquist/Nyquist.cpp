@@ -699,7 +699,7 @@ bool NyquistEffect::Process()
 
       mProps = wxEmptyString;
 
-      mProps += wxString::Format(wxT("(putprop '*TENACITY* (list %d %d %d) 'VERSION)\n"), AUDACITY_VERSION, AUDACITY_RELEASE, AUDACITY_REVISION);
+      mProps += wxString::Format(wxT("(putprop '*TENACITY* (list %d %d %d) 'VERSION)\n"), TENACITY_VERSION, TENACITY_RELEASE, TENACITY_REVISION);
       wxString lang = gPrefs->Read(wxT("/Locale/Language"), wxT(""));
       lang = (lang.empty())
          ? Languages::GetSystemLanguageCode(FileNames::AudacityPathList())
