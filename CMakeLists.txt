@@ -138,8 +138,8 @@ cmake_policy( SET CMP0075 NEW )
 
 # Definitions that must happen before the project() command
 if( APPLE )
-   set( MIN_MACOS_VERSION 10.12 )
-   set( TARGET_MACOS_VERSION 10.13 )
+   set( MIN_MACOS_VERSION 10.13 )
+   set( TARGET_MACOS_VERSION 10.15 )
    # Generate schema files
    set( CMAKE_XCODE_GENERATE_SCHEME ON )
 
