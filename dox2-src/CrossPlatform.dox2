@@ -18,29 +18,13 @@ that we can get the comments to show correctly in the output files.
 \page CrossPlatform Cross Platform Coding Tips
 \brief Guidelines for making the code compile and work on all supported platforms.
 
-\section PragmaOnce \#pragma once
-
-The following is not supported under gcc 2.x:
-
-\code
-// WRONG
-#pragma once
-\endcode
-
-Instead use the traditional:
-
-\code
-#ifndef __AUDACITY_HEADER_FILE_NAME__
-#define __AUDACITY_HEADER_FILE_NAME__
-
-// your header file contents goes here.
-
-#endif
-\endcode
+\warning This page likely contains obsolete material. Some material may no
+longer apply to modern compilers. This page will likely be removed in the
+future.
 
 \section UnicodeStrings Unicode strings
 
-Audacity code is translated, and it may be built in Unicode versions.  
+Tenacity code is translated, and it may be built in Unicode versions.  
 For this reason all strings should be wrapped like this:
 
 \code
