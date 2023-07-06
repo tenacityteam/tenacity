@@ -19,9 +19,9 @@ def_vars()
 # Add a target that will provide the git revision info
 # whenever it changes.  (Must be done at build time, not
 # configuration time.)
-if( DEFINED AUDACITY_REV_LONG AND DEFINED AUDACITY_REV_TIME )
+if( DEFINED TENACITY_REV_LONG AND DEFINED AUDACITY_REV_TIME )
    file( WRITE "${_PRVDIR}/RevisionIdent.h"
-      "#define REV_LONG \"${AUDACITY_REV_LONG}\"\n#define REV_TIME \"${AUDACITY_REV_TIME}\"\n"
+      "#define REV_LONG \"${TENACITY_REV_LONG}\"\n#define REV_TIME \"${TENACITY_REV_TIME}\"\n"
    )
 elseif( GIT_FOUND )
    add_custom_target(
