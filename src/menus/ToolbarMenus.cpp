@@ -38,7 +38,8 @@ void OnEditMode(const CommandContext &context)
    gPrefs->Flush();
    commandManager.Check(wxT("EditMode"), checked);
 
-   wxTheApp->AddPendingEvent(wxCommandEvent{ EVT_PREFS_UPDATE });
+   // Force all toolbars to refresh themselves
+   PrefsListener::Broadcast(0);
 }
 
 }; // struct Handler
