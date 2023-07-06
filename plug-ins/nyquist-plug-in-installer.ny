@@ -27,10 +27,10 @@ $control overwrite (_ "Allow overwriting") choice ((_ "Disallow") (_ "Allow")) 0
 
 
 (defun audacity-version-ok (min-version)
-  ;; No longer required as this plug-in is shipped with Audacity.
+  ;; No longer required as this plug-in is shipped with Tenacity.
   ;; Left in for illustration purposes.
-  ;; min-version is a list of three numbers (the minimum Audacity version number).
-  ;; Example, if the minimum version required is Audacity 2.4.0, then
+  ;; min-version is a list of three numbers (the minimum Tenacity version number).
+  ;; Example, if the minimum version required is Tenacity 2.4.0, then
   ;; call (audacity-version-ok '(2 4 0))
   ;; Treturns t if plug-in is running on 2.4.0 or later, otherwise nil.
   (cond

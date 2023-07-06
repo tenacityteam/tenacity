@@ -136,7 +136,7 @@ $control radar-f (_ "Frequency of Radar Needles (Hz)") real "" 30 1 100
     ;; Now normalize s to 0 db peak
     (setf s (scale (/ (peak s ny:all)) s))
     (case mst
-          (0 s)             ; let Audacity coerce back to stereo
+          (0 s)             ; let Tenacity coerce back to stereo
           (1 (vector original s)))))
  (t                         ; this effect isn't meant for mono
   (format nil (_ "Error.~%Stereo track required."))))
