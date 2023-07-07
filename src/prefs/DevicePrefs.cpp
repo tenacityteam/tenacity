@@ -42,6 +42,7 @@ other settings.
 #include <lib-preferences/Prefs.h>
 #include <lib-project-rate/QualitySettings.h>
 
+#include "AudioIO.h"
 #include "../shuttle/ShuttleGui.h"
 
 enum {
@@ -409,6 +410,8 @@ bool DevicePrefs::Commit()
          AudioIORecordingSource.Reset();
       AudioIORecordChannels.Write(mChannels->GetSelection() + 1);
    }
+
+   AudioIO::Get()->UpdateBuffers();
 
    return true;
 }

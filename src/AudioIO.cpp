@@ -1338,7 +1338,11 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 #endif
 
    ConvertLatencyPreference();
-   UpdateBuffers();
+
+   if (!mBuffersPrepared)
+   {
+      UpdateBuffers();
+   }
 
    unsigned long latency = AudioIOLatencyDuration.Read();
 
