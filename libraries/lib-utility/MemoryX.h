@@ -217,14 +217,22 @@ class AutoAllocator
       /** @brief Deallocates all*/
       void DeallocateAll()
       {
-         for (auto& x : mSingleObjects)
+         for (auto& buffer : mSingleObjects)
          {
-            delete x;
+            if (buffer)
+            {
+               delete buffer;
+               buffer = nullptr;
+            }
          }
 
-         for (auto& x : mArrayObjects)
+         for (auto& buffer : mArrayObjects)
          {
-            delete[] x;
+            if (buffer)
+            {
+               delete[] buffer;
+               buffer = nullptr;
+            }
          }
       }
 };
