@@ -1109,6 +1109,8 @@ AudioIO::AudioIO()
    mOwningProject = NULL;
    mOutputMeter.reset();
 
+   mBuffersPrepared = false;
+
 #ifdef PA_USE_JACK
    // Set JACK client name
    {
