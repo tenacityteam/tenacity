@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2022-12-28 15:56+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/tenacity/tenacity/hi/>\n"
@@ -158,25 +158,33 @@ msgstr "चयनित मिडी प्लेबैक यंत्र : %d 
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "कोई MIDI प्लेबैक उपकरण '%s' के लिए नहीं मिला.\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "नमूने"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "मिलिसेकेंड"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "संदेश"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "%s में %s की %d पंक्ति पर अंदरुनी त्रुटि.\n"
 "Audacity टीम को कृपया https://forum.audacityteam.org/ पर सूचित करें."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "%s में अंदरुनी त्रुटि %s पर %d पंक्ति में .\n"
 "Tenacity टीम को कृपया https://tenacityaudio.org/ पर सूचित करें."
@@ -186,24 +194,24 @@ msgid "Internal Error"
 msgstr "आंतरिक त्रुटि"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Tenacity %s में एक फ़ाइल खोलने में विफल रहा."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Tenacity %s में एक फ़ाइल से पढ़ने में असमर्थ रहा."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Tenacity ने सफलतापूर्वक एक फ़ाइल %s में लिखा, लेकिन इसका नामकरण %s करने में नाकाम रहा."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -601,6 +609,14 @@ msgstr "फ़ेड लागू करना..."
 msgid "Steve Daulton"
 msgstr "स्टीव डॉल्टन"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -745,7 +761,8 @@ msgid "Finding beats..."
 msgstr "ताल की खोज..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -1714,10 +1731,6 @@ msgid "Limit output to first"
 msgstr "आउटपुट सीमा पहले तक"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "नमूने"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "नापने का पैमाना"
 
@@ -1951,10 +1964,10 @@ msgid "Right (dB)"
 msgstr "दायाँ (dB)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "<span>डेटा निर्यात नमूना</span> से स्टीव डॉल्टन द्वारा\n"
@@ -11786,7 +11799,7 @@ msgstr "त्रुटि.~%स्टिरियो ट्रैक चाह�
 #~ msgid "&Generate"
 #~ msgstr "उत्पत्ति (&G)"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "प्लग-इन्स जोड़ें या हटाएं..."
 
 #~ msgid "Repeat Last Generator"
@@ -12749,9 +12762,6 @@ msgstr "त्रुटि.~%स्टिरियो ट्रैक चाह�
 
 #~ msgid "Latency"
 #~ msgstr "विलंबता"
-
-#~ msgid "milliseconds"
-#~ msgstr "मिलिसेकेंड"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "बफ़र (&B) आकार:"

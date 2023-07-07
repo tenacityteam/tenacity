@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2020-10-18 18:31+0530\n"
 "Last-Translator: Prof. Mukul Kulkarni <mlk.imcc@mespune.in>\n"
 "Language-Team: Prof. Mukul Kulkarni <mlk.imcc@mespune.in>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "X-Generator: Poedit 2.4.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -109,6 +113,10 @@ msgstr "पुनर्मुद्रण उपकरण निवडा"
 msgid "No playback device found for '%s'.\n"
 msgstr "पुनर्मुद्रण उपकरण निवडा"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -120,6 +128,11 @@ msgstr "नमूना रेट"
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "नमूना रेट"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -141,25 +154,33 @@ msgstr "पुनर्मुद्रण उपकरण निवडा"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "पुनर्मुद्रण उपकरण निवडा"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "नमुने"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "मिलीसेकंद"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "संदेश"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "%s मधील %s रेषे %d वर अंतर्गत त्रुटी.\n"
 "कृपया ऑड्यासिटी संघाला https://forum.audacityteam.org/ वर कळवा."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "अंतर्गत त्रुटी %s रेषे %d वर.\n"
 "कृपया ऑड्यासिटी संघ https://forum.audacityteam.org/ वर कळवा."
@@ -169,24 +190,24 @@ msgid "Internal Error"
 msgstr "अंतर्गत त्रुटी"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "ऑड्यासिटी %s मध्ये धारिका  उघडण्यात अयशस्वी."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "ऑड्यासिटी %s मधील धारिका वाचण्यात अयशस्वी."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "ऑड्यासिटी%s मध्ये धारिका  यशस्वीरित्या लिहिली परंतु %s असे पुनर्निर्मित करण्यात अयशस्वी."
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -231,12 +252,21 @@ msgstr "धारिका नाव :"
 msgid "XML files"
 msgstr "एमपी३ (MP3) धारिका"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "एमपी३ (MP3) धारिका"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -258,6 +288,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "तात्पुरती धारिका  निर्देशिका"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -282,9 +320,49 @@ msgstr "आयताकृती"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Welch"
 msgstr "स्वागत आहे!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 msgid "Low Quality (Fastest)"
@@ -331,6 +409,21 @@ msgstr "16-बिट्"
 msgid "24-bit"
 msgstr "24-बिट्"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "निर्धारित करण्यात अक्षम"
@@ -339,6 +432,24 @@ msgstr "निर्धारित करण्यात अक्षम"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "बाइट्स"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -503,6 +614,14 @@ msgstr "फिकट लावत आहे ..."
 msgid "Steve Daulton"
 msgstr "स्टीव डॉल्टन"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -647,7 +766,8 @@ msgid "Finding beats..."
 msgstr "ताल शोध ..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "ऑड्यासिटी"
 
 #: plug-ins/beat.ny
@@ -816,6 +936,10 @@ msgid "No"
 msgstr "नाही"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "शेवटचा प्रभाव पुन्हा करा"
@@ -823,6 +947,10 @@ msgstr "शेवटचा प्रभाव पुन्हा करा"
 #: plug-ins/eq-xml-to-txt-converter.ny
 msgid "Graphic EQ"
 msgstr "ग्राफ़िक EQ"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Filter Curve EQ"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -833,6 +961,10 @@ msgstr "बरोबरी"
 #, fuzzy
 msgid "XML file"
 msgstr "एमपी३ (MP3) धारिका"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -964,6 +1096,11 @@ msgstr "तपशील(&D)"
 msgid "Warnings only"
 msgstr "चेतावणी"
 
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -974,6 +1111,12 @@ msgstr "नवीन नावपट्टी"
 #, fuzzy
 msgid "point labels"
 msgstr "संपादित नावपट्टी"
+
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy, lisp-format
@@ -1112,6 +1255,21 @@ msgstr "मौन शोधत आहे ..."
 msgid "Maximum trailing silence"
 msgstr "मौन शोधत आहे ..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
@@ -1122,6 +1280,11 @@ msgstr "निवड %d नमुन्यांपेक्षा मोठी 
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "ध्वनी सापडला नाही. मौन ~% पातळी कमी करण्याचा प्रयत्न करा आणि कमीतकमी मौन कालावधी."
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -1197,6 +1360,14 @@ msgid "Select Function"
 msgstr "निवड"
 
 #: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Stereo Linking"
 msgstr "शोधणे"
@@ -1237,12 +1408,42 @@ msgid "Decay (ms)"
 msgstr "क्षय (सेकंद)"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "निवड %d नमुन्यांपेक्षा मोठी असणे आवश्यक आहे."
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 msgid "Notch Filter"
@@ -1328,9 +1529,19 @@ msgid "Allow"
 msgstr "प्रतिबंधित"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "ऑड्यासिटी %s मध्ये धारिका  उघडण्यात अयशस्वी."
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1338,9 +1549,25 @@ msgid "Plug-ins updated:"
 msgstr "प्लग-इन समर्थन"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files copied to plug-ins folder:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Unsupported file type:"
 msgstr "न वापरलेले चाळण:"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
+msgid "Cannot be written to plug-ins folder:"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
@@ -1549,10 +1776,6 @@ msgid "Limit output to first"
 msgstr "प्रथम उत्पादित मर्यादा"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "नमुने"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "मोजणे पट्टी"
 
@@ -1582,6 +1805,10 @@ msgstr "एफएलएसी(FLAC) धारिका"
 #, fuzzy
 msgid "HTML files"
 msgstr "एमपी३ (MP3) धारिका"
+
+#: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -1788,10 +2015,10 @@ msgid "Right (dB)"
 msgstr "उजवा(डीबी)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "स्टीव्ह डॉल्टन यांच्याकडून <a href=\"~a\">ऑड्यासिटी </a> \n"
@@ -1910,6 +2137,11 @@ msgstr "त्रुटी. ~% धारिका उघडू शकत ना�
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "वर्णक्रमी निवडा"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
 
 #: plug-ins/tremolo.ny
 msgid "Tremolo"
@@ -10953,7 +11185,7 @@ msgstr "त्रुटी.% स्टीरिओ गीतपट्टा आ�
 #~ msgid "&Generate"
 #~ msgstr "उत्पन्न करा(&G)"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "प्लग-इन जोडा / काढा ..."
 
 #, fuzzy
@@ -11949,9 +12181,6 @@ msgstr "त्रुटी.% स्टीरिओ गीतपट्टा आ�
 
 #~ msgid "Latency"
 #~ msgstr "विलंबता"
-
-#~ msgid "milliseconds"
-#~ msgstr "मिलीसेकंद"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "तात्पुरती साठवण लांबी(&B):"

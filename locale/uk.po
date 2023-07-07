@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2023-05-20 20:50+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/tenacity/tenacity/uk/>\n"
@@ -156,25 +156,33 @@ msgstr "Вибраний пристрій відтворення MIDI: %d – %s
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "Не знайдено пристрою відтворення MIDI для «%s».\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "семпли"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "мілісекунд"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "Повідомлення"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Внутрішня помилка у %s, %s, рядок %d.\n"
 "Будь ласка, повідомте про цю помилку команду розробників Audacity за допомогою форуму: https://forum.audacityteam.org/."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Внутрішня помилка у %s %s, рядок %d.\n"
 "Будь ласка, повідомте про цю помилку команду розробників Audacity за допомогою форуму: https://forum.audacityteam.org/."
@@ -184,24 +192,24 @@ msgid "Internal Error"
 msgstr "Внутрішня помилка"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Audacity не вдалося відкрити файл у %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Audacity не вдалося прочитати дані з файла у %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Audacity вдалося успішно записати файл до %s, але не вдалося перейменувати його на %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -599,6 +607,14 @@ msgstr "Застосовуємо спадання…"
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -743,7 +759,8 @@ msgid "Finding beats..."
 msgstr "Шукаємо біти…"
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -1711,10 +1728,6 @@ msgid "Limit output to first"
 msgstr "Обмежити виведення першим"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "семпли"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "Шкала вимірювання"
 
@@ -1948,10 +1961,10 @@ msgid "Right (dB)"
 msgstr "Правий (дБ)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "Створено за допомогою <span> Експортування даних семплів</span>\n"
@@ -11801,7 +11814,7 @@ msgstr "Помилка.~%Потрібна стереодоріжка."
 #~ msgid "&Generate"
 #~ msgstr "&Створення"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "Додати або вилучити додатки…"
 
 #~ msgid "Repeat Last Generator"
@@ -12764,9 +12777,6 @@ msgstr "Помилка.~%Потрібна стереодоріжка."
 
 #~ msgid "Latency"
 #~ msgstr "Затримка"
-
-#~ msgid "milliseconds"
-#~ msgstr "мілісекунд"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "&Розмір буфера:"

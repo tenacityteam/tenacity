@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2018-11-29 15:52+0100\n"
 "Last-Translator: Imre Kristoffer Eilertsen <imreeil42@gmail.com>\n"
 "Language-Team: Imre Kristoffer Eilertsen <imreeil42@gmail.com>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-Bookmarks: 1429,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -110,6 +114,10 @@ msgstr "Velg avspillingsenhet"
 msgid "No playback device found for '%s'.\n"
 msgstr "Velg avspillingsenhet"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -121,6 +129,11 @@ msgstr "Datarater"
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "Datarater"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -142,25 +155,33 @@ msgstr "Velg avspillingsenhet"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "Velg avspillingsenhet"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "datapunkter"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "millisekunder"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "Melding"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Intern feil i %s i %s linje %d.\n"
 "Vennligst informer Audacity-teamet om dette hos https://forum.audacityteam.org/."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Intern feil i %s linje %d.\n"
 "Vennligst informer Audacity-teamet om dette hos https://forum.audacityteam.org/."
@@ -170,24 +191,24 @@ msgid "Internal Error"
 msgstr "Intern feil"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Audacity klarte ikke å åpne filen i %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Audacity klarte ikke å lese fra en fil i %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Audacity lyktes i å lagre en fil i %s, men mislyktes i å gi den det nye navnet %s."
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -233,12 +254,21 @@ msgstr "Gi navn til filer:"
 msgid "XML files"
 msgstr "MP3-filer"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3-filer"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
@@ -260,6 +290,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Mappe for midlertidige filer"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -284,9 +322,19 @@ msgstr "Rektangulær"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Hamming"
 msgstr "Hamming, ingen"
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
@@ -305,6 +353,21 @@ msgstr "Blackman, Hann"
 #, fuzzy
 msgid "Welch"
 msgstr "Velkommen!"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 msgid "Low Quality (Fastest)"
@@ -351,6 +414,21 @@ msgstr "16-bit"
 msgid "24-bit"
 msgstr "24-bit"
 
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "Kan ikke fastslå"
@@ -359,6 +437,24 @@ msgstr "Kan ikke fastslå"
 #, fuzzy, c-format
 msgid "%s bytes"
 msgstr "bytes"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
 
 #: libraries/lib-strings/Languages.cpp
 #, fuzzy
@@ -523,6 +619,14 @@ msgstr "Benytter utfasing ..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -669,7 +773,8 @@ msgid "Finding beats..."
 msgstr "Oppdager slag ..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -838,6 +943,10 @@ msgid "No"
 msgstr "Nei"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "Gjenta siste effekt"
@@ -860,6 +969,10 @@ msgstr "Tonekontroll (EQ)"
 #, fuzzy
 msgid "XML file"
 msgstr "MP3-filer"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -1142,6 +1255,21 @@ msgstr "Oppdager stillhet..."
 msgid "Maximum trailing silence"
 msgstr "Oppdager stillhet..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
@@ -1152,6 +1280,11 @@ msgstr "Utvalget må være mer enn %d samplinger."
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "Ingen lyder ble funnet. Prøv å redusere stillhets~%nivået og minimumsstillhetsvarigheten."
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -1229,6 +1362,10 @@ msgid "Select Function"
 msgstr "Markering"
 
 #: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Analyze Noise Level"
 msgstr "Analysetid:"
@@ -1274,12 +1411,42 @@ msgid "Decay (ms)"
 msgstr "Kompresserings-/forfalnings-tid"
 
 #: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr "Utvalget må være mer enn %d samplinger."
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 #: plug-ins/notch.ny
 msgid "Notch Filter"
@@ -1365,9 +1532,19 @@ msgid "Allow"
 msgstr "Ikke tillatt"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
 msgstr "Klarte ikke å fjerne %s"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -1390,9 +1567,18 @@ msgid "Unsupported file type:"
 msgstr "Ubrukte filtre:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "Velg en fil"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
 
 #: plug-ins/pluck.ny
 msgid "Pluck"
@@ -1589,10 +1775,6 @@ msgstr "Analyserer ..."
 #: plug-ins/sample-data-export.ny
 msgid "Limit output to first"
 msgstr "Begrens utdataen til den første"
-
-#: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "datapunkter"
 
 #: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
@@ -1832,10 +2014,10 @@ msgid "Right (dB)"
 msgstr "Høyre (dB)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "Produsert med <span>Sample Data Export</span> for\n"
@@ -1954,6 +2136,11 @@ msgstr "Feil.~%Klarte ikke å åpne filen"
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "Spekterutvalg"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
 
 #: plug-ins/tremolo.ny
 msgid "Tremolo"
@@ -11122,7 +11309,7 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "&Generate"
 #~ msgstr "&Lag"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "Legg til / fjern tillegg ..."
 
 #, fuzzy
@@ -12106,9 +12293,6 @@ msgstr "Feil.~%Stereospor er påkrevd."
 
 #~ msgid "Latency"
 #~ msgstr "Latens"
-
-#~ msgid "milliseconds"
-#~ msgstr "millisekunder"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "&Bufferlengde:"

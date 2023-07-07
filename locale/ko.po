@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2023-05-20 20:50+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/tenacity/tenacity/ko/>\n"
@@ -158,25 +158,33 @@ msgstr "선택된 MIDI 녹음 장치: %d - %s\n"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "'%s'를 위한 MIDI 재생 장치를 찾을 수 없습니다.\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "샘플"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "밀리초"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "메시지"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "내부 오류 : %s at %s line %d.\n"
 "Tenacity 개발팀에 알려 주십시오. https://forum.audacityteam.org/."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "%s의 의 내부 오류가 %s의 %d 라인에서 발생하였습니다.\n"
 "Tenacity 팀(https://tenacityaudio.org/)으로 알려주세요."
@@ -186,24 +194,24 @@ msgid "Internal Error"
 msgstr "내부 오류"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Tenacity에서 1%s의 파일을 열지 못했습니다."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Tenacity는 1%s의 파일에서 읽지 못했습니다."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Tenacity에서 %s파일에 기록라는 성공했으나, 이름을 %s로 바꾸는데 실패했습니다."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -601,6 +609,14 @@ msgstr "페이드 적용 중..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -745,7 +761,8 @@ msgid "Finding beats..."
 msgstr "비트 찾는 중..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Tenacity"
 
 #: plug-ins/beat.ny
@@ -1713,10 +1730,6 @@ msgid "Limit output to first"
 msgstr "첫번째로 출력 제하"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "샘플"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "측정 스케일"
 
@@ -1950,10 +1963,10 @@ msgid "Right (dB)"
 msgstr "오른쪽 (dB)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "<span>샘플 데이터 내보내기</span> 로 만들어짐\n"
@@ -11764,7 +11777,7 @@ msgstr "오류.~%스테레오 트랙이 필요합니다."
 #~ msgid "&Generate"
 #~ msgstr "생성(&G)"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "플러그인 추가/제거..."
 
 #~ msgid "Repeat Last Generator"
@@ -12727,9 +12740,6 @@ msgstr "오류.~%스테레오 트랙이 필요합니다."
 
 #~ msgid "Latency"
 #~ msgstr "지연 시간"
-
-#~ msgid "milliseconds"
-#~ msgstr "밀리초"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "버퍼 길이(&B):"

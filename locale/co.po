@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2021-06-08 18:36+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/tree/ceppu/Prughjetti/Audacity>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
@@ -154,25 +154,33 @@ msgstr "Apparechju di lettura MIDI selezziunatu : %d - %s\n"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "Alcunu apparechju di lettura MIDI trovu per « %s ».\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "campioni"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "milliseconde"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "Messaghju"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Sbagliu internu in %s à %s linea %d.\n"
 "Ci vole à infurmà a squadra Audacity à https://forum.audacityteam.org/."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Sbagliu internu à %s linea %d.\n"
 "Ci vole à infurmà a squadra Audacity à https://forum.audacityteam.org/."
@@ -182,24 +190,24 @@ msgid "Internal Error"
 msgstr "Sbagliu Internu"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Fiascu d’Audacity per apre un schedariu in %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Fiascu d’Audacity per leghje un schedariu in %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Audacity hà riesciutu à scrive un schedariu in %s ma hà fiascatu à rinuminallu cum’è %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -596,6 +604,14 @@ msgstr "Appiecazione di a scaghjatura…"
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -740,7 +756,8 @@ msgid "Finding beats..."
 msgstr "Ricerca di palpiti…"
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -1708,10 +1725,6 @@ msgid "Limit output to first"
 msgstr "Limità l’esciuta à i primi"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "campioni"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "Scala di misura"
 
@@ -1945,10 +1958,10 @@ msgid "Right (dB)"
 msgstr "Diritta (dB)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "Pruduttu cù <span>Espurtazione di dati di campioni</span> per\n"
@@ -11787,7 +11800,7 @@ msgstr "Sbagliu.~%Traccia stereo richiesta."
 #~ msgid "&Generate"
 #~ msgstr "&Ingenerà"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "Aghjunghje / Caccià l’estensioni…"
 
 #~ msgid "Repeat Last Generator"
@@ -12751,9 +12764,6 @@ msgstr "Sbagliu.~%Traccia stereo richiesta."
 
 #~ msgid "Latency"
 #~ msgstr "Tempu d’attesa"
-
-#~ msgid "milliseconds"
-#~ msgstr "milliseconde"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "&Longhezza di stampone :"

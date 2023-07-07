@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2020-10-04 17:26+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -156,25 +156,33 @@ msgstr "Valgte MIDI-afspilningsenhed: %d - %s\n"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "Ingen MIDI-afspilningsenhed fundet for '%s'.\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "datapunkter"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "millisekunder"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "Meddelelse"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Internfejl i %s ved %s, linje %d.\n"
 "Informer venligst Audacity-teamet hos https://forum.audacityteam.org/."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Internfejl ved %s, linje %d.\n"
 "Informer venligst Audacity-teamet hos https://forum.audacityteam.org/."
@@ -184,24 +192,24 @@ msgid "Internal Error"
 msgstr "Ekstern fejl"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Audacity kunne ikke åbne en fil i %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Audacity kunne ikke læse fra en fil i %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Audacity skrev en fil i %s, men kunne ikke omdøbe den til %s."
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -277,6 +285,14 @@ msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr "Mappe til midlertidige filer"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -591,6 +607,14 @@ msgstr "Anvender fade..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -735,7 +759,8 @@ msgid "Finding beats..."
 msgstr "Finder taktslag..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -1200,11 +1225,28 @@ msgstr "~aOmrådelængde = ~a sekunder."
 msgid "Region between sounds"
 msgstr "~aOmrådelængde = ~a sekunder."
 
+#: plug-ins/label-sounds.ny
+msgid "Maximum leading silence"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Maximum trailing silence"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
 #. i18n-hint: hours minutes and seconds. Do not translate "~a".
 #: plug-ins/label-sounds.ny
 #, lisp-format
 msgid "~ah ~am ~as"
 msgstr "~at ~am ~as"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -1216,6 +1258,11 @@ msgstr "Markeringen skal være større end %d datapunkter."
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "Ingen lyde fundet. Prøv at reducere stilhedens~%niveau og stilhedens minimum varighed."
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -1693,10 +1740,6 @@ msgid "Limit output to first"
 msgstr "Begræns output til første"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "datapunkter"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "Målingsskala"
 
@@ -1930,10 +1973,10 @@ msgid "Right (dB)"
 msgstr "Højre (dB)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "Lavet med <span>Eksport af datapunktsdata</span> til\n"
@@ -11363,7 +11406,7 @@ msgstr "Fejl.~%Stereospor kræves."
 #~ msgid "&Generate"
 #~ msgstr "&Generér"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "Tilføj/fjern plugins..."
 
 #, fuzzy
@@ -12333,9 +12376,6 @@ msgstr "Fejl.~%Stereospor kræves."
 
 #~ msgid "Latency"
 #~ msgstr "Forsinkelse"
-
-#~ msgid "milliseconds"
-#~ msgstr "millisekunder"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "&Bufferstørrelse:"

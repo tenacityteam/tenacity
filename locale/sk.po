@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2023-05-12 06:50+0000\n"
 "Last-Translator: trieska <gh@drevaren.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/tenacity/tenacity/sk/>\n"
@@ -153,25 +153,33 @@ msgstr "Vybrané prehrávacie zariadenie MIDI: %d - %s\n"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "Nenájdené žiadne prehrávacie zariadenie MIDI pre '%s'.\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "vzorky"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "milisekúnd"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "Správa"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Vnútorná chyba v %s pri %s riadok %d.\n"
 "Informujte, prosím, Audacity tím na https://forum.audacityteam.org/."
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "Interná chyba v %s na %s riadku %d.\n"
 "Informujte prosím tím Tenacity na adrese https://tenacityaudio.org/."
@@ -181,24 +189,24 @@ msgid "Internal Error"
 msgstr "Vnútorná chyba"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr "Audacity zlyhalo pri otváraní súboru v %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr "Audacity zlyhalo pri načítaní súboru z %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Audacity úspešne zapísalo súbor v %s ale zlyhalo pri jeho premenovať na %s."
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -597,6 +605,14 @@ msgstr "Aplikácia zoslabovania..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -741,7 +757,8 @@ msgid "Finding beats..."
 msgstr "Hľadám údery..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -1216,11 +1233,20 @@ msgstr "Vyhľadávanie ticha..."
 msgid "Maximum trailing silence"
 msgstr "Vyhľadávanie ticha..."
 
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
 #. i18n-hint: hours minutes and seconds. Do not translate "~a".
 #: plug-ins/label-sounds.ny
 #, lisp-format
 msgid "~ah ~am ~as"
 msgstr "~ah ~am ~as"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -1232,6 +1258,11 @@ msgstr "Výber musí byť väčší ako %d vzorky."
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "Žiadny zvuk nebol nájdený. Skúste znížiť úroveň~%ticha a minimálnu dĺžku ticha."
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -1709,10 +1740,6 @@ msgid "Limit output to first"
 msgstr "Limit na prvý výstup"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "vzorky"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "Stupnica merania"
 
@@ -1946,10 +1973,10 @@ msgid "Right (dB)"
 msgstr "Pravý (dB)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "Vytvorený <span>Exportom údajov vzoriek</span> pre\n"
@@ -11356,7 +11383,7 @@ msgstr "Chyba.~%Požadovaná stereo stopa."
 #~ msgid "&Generate"
 #~ msgstr "Vy&generovať"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "Pridať/odstrániť rozšírenia..."
 
 #, fuzzy
@@ -12326,9 +12353,6 @@ msgstr "Chyba.~%Požadovaná stereo stopa."
 
 #~ msgid "Latency"
 #~ msgstr "Odozva"
-
-#~ msgid "milliseconds"
-#~ msgstr "milisekúnd"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "Dĺžka zá&sobníka:"

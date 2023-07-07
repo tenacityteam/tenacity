@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2005-09-26 13:47-0800\n"
 "Last-Translator: mak <makl10n@yahoo.com>\n"
 "Language-Team: Bangladeshi <makl10n@yahoo.com>\n"
@@ -14,6 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -29,6 +33,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy
 msgid "No devices found\n"
 msgstr "প্লেব্যাক"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -101,11 +110,26 @@ msgstr "প্লেব্যাক"
 msgid "No playback device found for '%s'.\n"
 msgstr "প্লেব্যাক"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d\n"
+msgstr "সকল ফাইল (*)|*"
+
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
 msgid "Supports input: %d\n"
 msgstr "সকল ফাইল (*)|*"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr ""
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, fuzzy, c-format
@@ -127,16 +151,63 @@ msgstr "প্লেব্যাক"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "প্লেব্যাক"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+#, fuzzy
+msgid "samples"
+msgstr "নমুনা পরিবর্তন"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "milliseconds"
+msgstr "নমুনা পরিবর্তন"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 #, fuzzy
 msgid "Message"
 msgstr "নাম..."
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 #, fuzzy
 msgid "Internal Error"
 msgstr "সমস্যা"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity failed to read from a file in %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -158,6 +229,14 @@ msgid "AUP3 project files"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
 #: libraries/lib-files/FileNames.cpp
+msgid "Dynamically Linked Libraries"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
+msgid "Dynamic Libraries"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
 #, fuzzy
 msgid "Text files"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
@@ -167,12 +246,26 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 msgid "XML files"
 msgstr "সকল ফাইল (*)|*"
 
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ""
+
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "সকল ফাইল (*)|*"
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "(%s)"
+msgstr ""
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid "Directory %s does not have write permissions"
+msgstr ""
 
 #: libraries/lib-files/FileNames.cpp plug-ins/eq-xml-to-txt-converter.ny
 msgid "Error"
@@ -182,6 +275,20 @@ msgstr "সমস্যা"
 #, fuzzy
 msgid "Unsuitable"
 msgstr "সক্রিয়"
+
+#: libraries/lib-files/TempDirectory.cpp
+msgid ""
+"The temporary files directory is on a FAT formatted drive.\n"
+"Resetting to default location."
+msgstr ""
+
+#: libraries/lib-files/TempDirectory.cpp
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
+msgstr ""
 
 #: libraries/lib-math/Dither.cpp plug-ins/equalabel.ny
 #: plug-ins/sample-data-export.ny
@@ -193,10 +300,63 @@ msgstr "কোনটিই নয়"
 msgid "Rectangle"
 msgstr "আয়তক্ষেত্র"
 
+#: libraries/lib-math/Dither.cpp plug-ins/tremolo.ny
+msgid "Triangle"
+msgstr ""
+
+#: libraries/lib-math/Dither.cpp
+msgid "Shaped"
+msgstr ""
+
 #: libraries/lib-math/FFT.cpp
 #, fuzzy
 msgid "Rectangular"
 msgstr "আয়তকার"
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Bartlett"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hamming"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Hann"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman"
+msgstr ""
+
+#. i18n-hint two proper names
+#: libraries/lib-math/FFT.cpp
+msgid "Blackman-Harris"
+msgstr ""
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+msgid "Welch"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr ""
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-math/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr ""
 
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
@@ -218,15 +378,111 @@ msgstr "মান"
 msgid "Best Quality (Slowest)"
 msgstr "মান"
 
+#. i18n-hint: Audio data bit depth (precision): 16-bit integers
+#: libraries/lib-math/SampleFormat.cpp
+msgid "16-bit PCM"
+msgstr ""
+
+#. i18n-hint: Audio data bit depth (precision): 24-bit integers
+#: libraries/lib-math/SampleFormat.cpp
+msgid "24-bit PCM"
+msgstr ""
+
+#. i18n-hint: Audio data bit depth (precision): 32-bit floating point
+#: libraries/lib-math/SampleFormat.cpp
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "32-bit float"
+msgstr ""
+
+#: libraries/lib-math/SampleFormat.cpp
+msgid "Unknown format"
+msgstr ""
+
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "16-bit"
+msgstr ""
+
+#: libraries/lib-project-rate/QualitySettings.cpp
+msgid "24-bit"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+
 #: libraries/lib-strings/Internat.cpp
 #, fuzzy
 msgid "Unable to determine"
 msgstr "নির্বাচনের শেষে"
 
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s bytes"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr ""
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr ""
+
+#: libraries/lib-strings/Languages.cpp
+msgid "Simplified"
+msgstr ""
+
+#: libraries/lib-strings/Languages.cpp
+msgid "System"
+msgstr ""
+
+#: libraries/lib-xml/XMLFileReader.cpp
+#, c-format
+msgid "Could not open file: \"%s\""
+msgstr ""
+
 #: libraries/lib-xml/XMLFileReader.cpp
 #, fuzzy, c-format
 msgid "Error: %s at line %lu"
 msgstr "সমস্যা:"
+
+#: libraries/lib-xml/XMLFileReader.cpp
+#, c-format
+msgid "Could not load file: \"%s\""
+msgstr ""
+
+#: libraries/lib-xml/XMLFileReader.cpp
+msgid "Could not parse XML"
+msgstr ""
+
+#: modules/mod-null/ModNullCallback.cpp
+msgid "1st Experimental Command..."
+msgstr ""
+
+#: modules/mod-null/ModNullCallback.cpp
+msgid "2nd Experimental Command"
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny
 #, fuzzy
@@ -235,9 +491,44 @@ msgstr "নির্বাচনের শেষে"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
+msgid "Filtering..."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
+msgid "Paul Licameli"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
+#: plug-ins/equalabel.ny plug-ins/highpass.ny plug-ins/lowpass.ny
+#: plug-ins/notch.ny plug-ins/nyquist-plug-in-installer.ny plug-ins/pluck.ny
+#: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+#: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
+msgid "Released under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
+#: plug-ins/SpectralEditShelves.ny
 #, fuzzy, lisp-format
 msgid "~aPlease select frequencies."
 msgstr "নির্বাচন"
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                       frequencies are both ~a Hz).~%~\n"
+"                       Please select a frequency range."
+msgstr ""
+
+#: plug-ins/SpectralEditMulti.ny
+#, lisp-format
+msgid ""
+"~aNotch filter parameters cannot be applied.~%~\n"
+"                      Try increasing the low frequency bound~%~\n"
+"                      or reduce the filter 'Width'."
+msgstr ""
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -255,16 +546,77 @@ msgstr "নির্বাচনের শেষে"
 msgid "Gain (dB)"
 msgstr "গতি বৃদ্ধি"
 
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aLow frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aHigh frequency is undefined."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid "~aCenter frequency must be above 0 Hz."
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny
+#, lisp-format
+msgid ""
+"~aFrequency selection is too high for track sample rate.~%~\n"
+"                        For the current track, the high frequency setting cannot~%~\n"
+"                        be greater than ~a Hz"
+msgstr ""
+
+#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
+#, lisp-format
+msgid ""
+"~aBandwidth is zero (the upper and lower~%~\n"
+"                         frequencies are both ~a Hz).~%~\n"
+"                         Please select a frequency range."
+msgstr ""
+
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
 msgstr "নির্বাচনের শেষে"
+
+#: plug-ins/StudioFadeOut.ny
+msgid "Studio Fade Out"
+msgstr ""
 
 # I guess in should be গেইন - mak
 #: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
 #, fuzzy
 msgid "Applying Fade..."
 msgstr "লাভ"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny plug-ins/delay.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/equalabel.ny
+#: plug-ins/label-sounds.ny plug-ins/limiter.ny plug-ins/noisegate.ny
+#: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
+#: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
+msgid "Steve Daulton"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+#: plug-ins/StudioFadeOut.ny
+#, lisp-format
+msgid "Selection too short.~%It must be more than 2 samples."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Adjustable Fade"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -281,6 +633,26 @@ msgstr "গতি বৃদ্ধি"
 msgid "Fade Down"
 msgstr "গতি বৃদ্ধি"
 
+#: plug-ins/adjustable-fade.ny
+msgid "S-Curve Up"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "S-Curve Down"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Mid-fade Adjust (%)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Start/End as"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "% of Original"
+msgstr ""
+
 # I guess in should be গেইন - mak
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -291,6 +663,14 @@ msgstr "লাভ"
 #, fuzzy
 msgid "Start (or end)"
 msgstr "নির্বাচনের শেষে"
+
+#: plug-ins/adjustable-fade.ny
+msgid "End (or start)"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Handy Presets (override controls)"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -306,6 +686,14 @@ msgstr "লিনিয়ার"
 #, fuzzy
 msgid "Linear Out"
 msgstr "লিনিয়ার"
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "Exponential Out"
+msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -338,9 +726,35 @@ msgid "Cosine Out"
 msgstr "লিনিয়ার"
 
 #: plug-ins/adjustable-fade.ny
+msgid "S-Curve In"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+msgid "S-Curve Out"
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy, lisp-format
 msgid "Error~%~%"
 msgstr "সমস্যা"
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid "~aPercentage values cannot be more than 1000 %."
+msgstr ""
+
+#: plug-ins/adjustable-fade.ny
+#, lisp-format
+msgid ""
+"~adB values cannot be more than +100 dB.~%~%~\n"
+"                                 Hint: 6 dB doubles the amplitude~%~\n"
+"                                 -6 dB halves the amplitude."
+msgstr ""
 
 #: plug-ins/beat.ny
 #, fuzzy
@@ -348,14 +762,66 @@ msgid "Beat Finder"
 msgstr "পুনরাবৃত্তি"
 
 #: plug-ins/beat.ny
+msgid "Finding beats..."
+msgstr ""
+
+#: plug-ins/beat.ny
 #, fuzzy
-msgid "Audacity"
+msgid "Tenacity"
 msgstr "&অডিওসিটি পরিচিতি..."
+
+#: plug-ins/beat.ny
+msgid "Threshold Percentage"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Clip Fix"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Reconstructing clips..."
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Benjamin Schwartz and Steve Daulton"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Threshold of Clipping (%)"
+msgstr ""
+
+#: plug-ins/clipfix.ny
+msgid "Reduce amplitude to allow for restored peaks (dB)"
+msgstr ""
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
 msgid "Crossfade Clips"
 msgstr "নির্বাচন"
+
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#, fuzzy
+msgid "Crossfading..."
+msgstr "নির্বাচন"
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
+msgstr ""
+
+#: plug-ins/crossfadeclips.ny
+#, lisp-format
+msgid "Error.~%Crossfade Clips may only be applied to one track."
+msgstr ""
 
 #: plug-ins/crossfadetracks.ny
 #, fuzzy
@@ -368,9 +834,46 @@ msgid "Fade type"
 msgstr "গতি বৃদ্ধি"
 
 #: plug-ins/crossfadetracks.ny
+msgid "Constant Gain"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Power 1"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Constant Power 2"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Custom Curve"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Custom curve"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
 #, fuzzy
 msgid "Fade direction"
 msgstr "কাজ"
+
+#: plug-ins/crossfadetracks.ny
+msgid "Automatic"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating Out / In"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+msgid "Alternating In / Out"
+msgstr ""
+
+#: plug-ins/crossfadetracks.ny
+#, lisp-format
+msgid "Error.~%Select 2 (or more) tracks to crossfade."
+msgstr ""
 
 #: plug-ins/delay.ny
 #, fuzzy
@@ -394,6 +897,14 @@ msgid "Regular"
 msgstr "আয়তকার"
 
 #: plug-ins/delay.ny
+msgid "Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Reverse Bouncing Ball"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Delay level per echo (dB)"
 msgstr "গতি বৃদ্ধি"
@@ -404,9 +915,34 @@ msgid "Delay time (seconds)"
 msgstr "নির্বাচনের শেষে"
 
 #: plug-ins/delay.ny
+msgid "Pitch change effect"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Pitch/Tempo"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Low-quality Pitch Shift"
+msgstr ""
+
+#: plug-ins/delay.ny
+msgid "Pitch change per echo (semitones)"
+msgstr ""
+
+#: plug-ins/delay.ny
 #, fuzzy
 msgid "Number of echoes"
 msgstr "চ্যানেল"
+
+#: plug-ins/delay.ny
+msgid "Allow duration to change"
+msgstr ""
+
+#: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
+#: plug-ins/sample-data-export.ny
+msgid "Yes"
+msgstr ""
 
 #: plug-ins/delay.ny plug-ins/equalabel.ny plug-ins/limiter.ny
 #, fuzzy
@@ -414,9 +950,17 @@ msgid "No"
 msgstr "কোনটিই নয়"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Select target EQ effect"
 msgstr "নির্বাচন"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Graphic EQ"
+msgstr ""
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
@@ -434,9 +978,46 @@ msgid "XML file"
 msgstr "সকল ফাইল (*)|*"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy
 msgid "Append number"
 msgstr "রেকর্ড"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Overwrite"
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+#, lisp-format
+msgid "Error.~%Unable to open file~%~s"
+msgstr ""
+
+#. i18n-hint: Do not translate "~a".txt
+#: plug-ins/eq-xml-to-txt-converter.ny
+#, lisp-format
+msgid "Error.~%File overwrite disallowed:~%\"~a.txt\""
+msgstr ""
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+#, lisp-format
+msgid "Error.~%File cannot be written:~%\"~a.txt\""
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Regular Interval Labels"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Adding equally-spaced labels to the label track..."
+msgstr ""
+
+#. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
+#: plug-ins/equalabel.ny
+msgid "Create labels based on"
+msgstr ""
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -468,6 +1049,10 @@ msgstr "লেবেল"
 msgid "Length of label region (seconds)"
 msgstr "লেবেল"
 
+#: plug-ins/equalabel.ny
+msgid "Adjust label interval to fit length"
+msgstr ""
+
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
 #, fuzzy
@@ -477,6 +1062,59 @@ msgstr "লেবেল"
 #: plug-ins/equalabel.ny
 msgid "Label"
 msgstr "লেবেল"
+
+#: plug-ins/equalabel.ny
+msgid "Minimum number of digits in label"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "None - Text Only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (Before Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "1 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "2 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "3 (After Label)"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Begin numbering from"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Message on completion"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Details"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+msgid "Warnings only"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "Warning: Overlapping region labels.~%"
+msgstr ""
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -489,11 +1127,83 @@ msgstr "চ্যানেল"
 msgid "point labels"
 msgstr "চ্যানেল"
 
+#. i18n-hint:  Number of labels produced at specified intervals.
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~a~a ~a at intervals of ~a seconds.~%"
+msgstr ""
+
+#: plug-ins/equalabel.ny
+#, lisp-format
+msgid "~aRegion length = ~a seconds."
+msgstr ""
+
+#: plug-ins/highpass.ny
+msgid "High-Pass Filter"
+msgstr ""
+
+#: plug-ins/highpass.ny
+msgid "Performing High-Pass Filter..."
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/rhythmtrack.ny
+msgid "Dominic Mazzoni"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
+#: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
+msgid "Frequency (Hz)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "Roll-off (dB per octave)"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "6 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "12 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "24 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "36 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+msgid "48 dB"
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
+msgid "Frequency must be at least 0.1 Hz."
+msgstr ""
+
+#: plug-ins/highpass.ny plug-ins/lowpass.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                   Track sample rate is ~a Hz~%~\n"
+"                   Frequency must be less than ~a Hz."
+msgstr ""
+
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
 #, fuzzy
 msgid "Label Sounds"
 msgstr "লেবেল"
+
+#: plug-ins/label-sounds.ny
+msgid "Threshold level (dB)"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Threshold measurement"
+msgstr ""
 
 #: plug-ins/label-sounds.ny
 #, fuzzy
@@ -525,10 +1235,90 @@ msgstr "লেবেল"
 msgid "Label type"
 msgstr "লেবেল"
 
+#: plug-ins/label-sounds.ny
+msgid "Point before sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Point after sound"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region around sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Region between sounds"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Maximum leading silence"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Maximum trailing silence"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr ""
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+
+#. i18n-hint: '~a' will be replaced by a time duration
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Error.~%Selection must be less than ~a."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
+msgstr ""
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Limiter"
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Limiting..."
+msgstr ""
+
 #: plug-ins/limiter.ny
 #, fuzzy
 msgid "Type"
 msgstr "গতি বৃদ্ধি"
+
+#: plug-ins/limiter.ny
+msgid "Soft Limit"
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Hard Limit"
+msgstr ""
+
+#. i18n-hint: clipping of wave peaks and troughs, not division of a track into clips
+#: plug-ins/limiter.ny
+msgid "Soft Clip"
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Hard Clip"
+msgstr ""
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -549,10 +1339,42 @@ msgstr "চ্যানেল"
 msgid "Limit to (dB)"
 msgstr "গতি বৃদ্ধি"
 
+#: plug-ins/limiter.ny plug-ins/noisegate.ny
+msgid "Hold (ms)"
+msgstr ""
+
+#: plug-ins/limiter.ny
+msgid "Apply Make-up Gain"
+msgstr ""
+
+#: plug-ins/lowpass.ny
+msgid "Low-Pass Filter"
+msgstr ""
+
+#: plug-ins/lowpass.ny
+msgid "Performing Low-Pass Filter..."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Noise Gate"
+msgstr ""
+
 #: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Select Function"
 msgstr "নির্বাচন"
+
+#: plug-ins/noisegate.ny
+msgid "Gate"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Analyze Noise Level"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Stereo Linking"
+msgstr ""
 
 #: plug-ins/noisegate.ny
 #, fuzzy
@@ -565,14 +1387,64 @@ msgid "Don't Link Stereo"
 msgstr "নির্বাচন"
 
 #: plug-ins/noisegate.ny
+msgid "Gate threshold (dB)"
+msgstr ""
+
+#: plug-ins/noisegate.ny
+msgid "Gate frequencies above (kHz)"
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Level reduction (dB)"
 msgstr "গতি বৃদ্ধি"
 
 #: plug-ins/noisegate.ny
+msgid "Attack (ms)"
+msgstr ""
+
+#: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Decay (ms)"
 msgstr "নির্বাচনের শেষে"
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Selection too long.\n"
+"Maximum length is ~a."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Peak based on first ~a seconds ~a dB~%\n"
+"Suggested Threshold Setting ~a dB."
+msgstr ""
+
+#. i18n-hint: hours and minutes. Do not translate "~a".
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid "~ah ~am"
+msgstr ""
 
 # I guess in should be গেইন - mak
 #: plug-ins/notch.ny
@@ -585,6 +1457,26 @@ msgstr "লাভ"
 #, fuzzy
 msgid "Applying Notch Filter..."
 msgstr "লাভ"
+
+#: plug-ins/notch.ny
+msgid "Steve Daulton and Bill Wharrie"
+msgstr ""
+
+#: plug-ins/notch.ny
+msgid "Q (higher value reduces width)"
+msgstr ""
+
+#: plug-ins/notch.ny
+#, lisp-format
+msgid ""
+"Error:~%~%Frequency (~a Hz) is too high for track sample rate.~%~%~\n"
+"                 Track sample rate is ~a Hz.~%~\n"
+"                 Frequency must be less than ~a Hz."
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
+msgid "Nyquist Plug-in Installer"
+msgstr ""
 
 #. i18n-hint: "Browse..." is text on a button that launches a file browser.
 #: plug-ins/nyquist-plug-in-installer.ny
@@ -624,6 +1516,10 @@ msgid "All supported"
 msgstr "সকল ফাইল (*)|*"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Allow overwriting"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Disallow"
 msgstr "(নিষ্ক্রিয়)"
@@ -634,9 +1530,32 @@ msgid "Allow"
 msgstr "(নিষ্ক্রিয়)"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Success.~%Files written to:~%~s~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Warning.~%Failed to copy some files:~%"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
+msgid "Plug-ins updated:"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Files copied to plug-ins folder:"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+msgid "Not found or cannot be read:"
+msgstr ""
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -644,9 +1563,22 @@ msgid "Unsupported file type:"
 msgstr "সকল ফাইল (*)|*"
 
 #: plug-ins/nyquist-plug-in-installer.ny
+msgid "Files already installed ('Allow Overwriting' disabled):"
+msgstr ""
+
+#: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Cannot be written to plug-ins folder:"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, lisp-format
+msgid "Error.~%No file selected."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck"
+msgstr ""
 
 #: plug-ins/pluck.ny
 #, fuzzy
@@ -654,9 +1586,33 @@ msgid "Generating pluck sound..."
 msgstr "নমুনা পরিবর্তন"
 
 #: plug-ins/pluck.ny
+msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "David R.Sky"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Pluck MIDI pitch"
+msgstr ""
+
+#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Fade-out type"
 msgstr "গতি বৃদ্ধি"
+
+#: plug-ins/pluck.ny
+msgid "Abrupt"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Gradual"
+msgstr ""
+
+#: plug-ins/pluck.ny
+msgid "Duration (60s max)"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -669,9 +1625,41 @@ msgid "Generating Rhythm..."
 msgstr "নমুনা পরিবর্তন"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Tempo (bpm)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "30 - 300 beats/minute"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Beats per bar"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 20 beats/measure"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Swing amount"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "+/- 1"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Number of bars"
 msgstr "চ্যানেল"
+
+#: plug-ins/rhythmtrack.ny
+msgid "1 - 1000 bars"
+msgstr ""
 
 #: plug-ins/rhythmtrack.ny
 #, fuzzy
@@ -684,14 +1672,73 @@ msgid "Used if 'Number of bars' = 0"
 msgstr "চ্যানেল"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Start time offset"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Silence before first beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Beat sound"
 msgstr "পুনরাবৃত্তি"
 
 #: plug-ins/rhythmtrack.ny
+msgid "Metronome Tick"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Ping (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Cowbell"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
 #, fuzzy
 msgid "Resonant Noise"
 msgstr "রেজোনেন্স:"
+
+#: plug-ins/rhythmtrack.ny
+msgid "Noise Click"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (short)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "Drip (long)"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of strong beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "18 - 116"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid "MIDI pitch of weak beat"
+msgstr ""
+
+#: plug-ins/rhythmtrack.ny
+msgid ""
+"Set either 'Number of bars' or\n"
+"'Rhythm track duration' to greater than zero."
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
+#, fuzzy
+msgid "Risset Drum"
+msgstr "নমুনা পরিবর্তন"
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -699,9 +1746,29 @@ msgid "Generating Risset Drum..."
 msgstr "নমুনা পরিবর্তন"
 
 #: plug-ins/rissetdrum.ny
+msgid "Steven Jones"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
 #, fuzzy
 msgid "Decay (seconds)"
 msgstr "নির্বাচনের শেষে"
+
+#: plug-ins/rissetdrum.ny
+msgid "Center frequency of noise (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
+msgid "Width of noise band (Hz)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
+msgid "Amount of noise in mix (percent)"
+msgstr ""
+
+#: plug-ins/rissetdrum.ny
+msgid "Amplitude (0 - 1)"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -714,14 +1781,17 @@ msgid "Analyzing..."
 msgstr "&এনালাইজ"
 
 #: plug-ins/sample-data-export.ny
-#, fuzzy
-msgid "samples"
-msgstr "নমুনা পরিবর্তন"
+msgid "Limit output to first"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Measurement scale"
 msgstr "লিনিয়ার"
+
+#: plug-ins/sample-data-export.ny
+msgid "dB"
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "Linear"
@@ -748,6 +1818,10 @@ msgid "HTML files"
 msgstr "সকল ফাইল (*)|*"
 
 #: plug-ins/sample-data-export.ny
+msgid "Index (text files only)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Sample Count"
 msgstr "নমুনা পরিবর্তন"
@@ -758,9 +1832,38 @@ msgid "Time Indexed"
 msgstr "লেবেল"
 
 #: plug-ins/sample-data-export.ny
+msgid "Include header information"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Minimal"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Standard"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "All"
 msgstr "(নিষ্ক্রিয়)"
+
+#: plug-ins/sample-data-export.ny
+msgid "Optional header text"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Channel layout for stereo"
+msgstr ""
+
+#. i18n-hint: Left and Right
+#: plug-ins/sample-data-export.ny
+msgid "L-R on Same Line"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Alternate Lines"
+msgstr ""
 
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
@@ -778,6 +1881,11 @@ msgstr "সক্রিয়"
 msgid "Errors Only"
 msgstr "সমস্যা:"
 
+#. i18n-hint abbreviates negative infinity
+#: plug-ins/sample-data-export.ny
+msgid "[-inf]"
+msgstr ""
+
 #: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "Left Channel.~%~%"
@@ -789,6 +1897,46 @@ msgid "~%~%Right Channel.~%~%"
 msgstr "চ্যানেল"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~aData written to:~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
+"                     Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"                  DC offset: ~a~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a lin, ~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy, lisp-format
 msgid "~a samples."
 msgstr "নমুনা পরিবর্তন"
@@ -797,6 +1945,43 @@ msgstr "নমুনা পরিবর্তন"
 #, fuzzy, lisp-format
 msgid "~a seconds."
 msgstr "নমুনা পরিবর্তন"
+
+#: plug-ins/sample-data-export.ny
+msgid "Audio data analysis:"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Sample Rate:</b> &nbsp;&nbsp;~a Hz."
+msgstr ""
+
+#. i18n-hint: abbreviates "decibels"
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>Peak Amplitude:</b> &nbsp;&nbsp;~a (linear) &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: RMS abbreviates root-mean-square, a method of averaging a signal; there also "weighted" versions of it but this isn't that
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "<b>DC Offset:</b> &nbsp;&nbsp;~a"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left: ~a lin, ~a dB | Right: ~a linear, &nbsp;&nbsp;~a dB."
+msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -824,6 +2009,10 @@ msgid "Value (dB)"
 msgstr "গতি বৃদ্ধি"
 
 #: plug-ins/sample-data-export.ny
+msgid "audio sample value analysis"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "Left (linear)"
 msgstr "লিনিয়ার"
@@ -844,9 +2033,59 @@ msgid "Right (dB)"
 msgstr "ডান,"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 #, fuzzy
 msgid "linear"
 msgstr "লিনিয়ার"
+
+#: plug-ins/sample-data-export.ny
+msgid "2 channels (stereo)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "1 channel (mono)"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One column per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "One row per channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel then Right channel on same line.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left and right channels on alternate lines.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Left channel first then right channel.~%"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+msgid "Unspecified channel order"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid "Error.~%\"~a\" cannot be written."
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy
@@ -854,19 +2093,69 @@ msgid "Sample Data Import"
 msgstr "নমুনা পরিবর্তন"
 
 #: plug-ins/sample-data-import.ny
+msgid "Reading and rendering samples..."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Select file"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: plug-ins/sample-data-import.ny
+msgid "Invalid data handling"
+msgstr ""
 
 #: plug-ins/sample-data-import.ny
 #, fuzzy
 msgid "Throw Error"
 msgstr "সমস্যা"
 
+#: plug-ins/sample-data-import.ny
+msgid "Read as Zero"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"                        '~a' could not be opened.~%~\n"
+"                        Check that file exists."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error:~%~\n"
+"              The file must contain only plain ASCII text.~%~\n"
+"              (Invalid byte '~a' at byte number: ~a)"
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid ""
+"Error~%~\n"
+"              Data must be numbers in plain ASCII text.~%~\n"
+"              '~a' is not a numeric value."
+msgstr ""
+
+#: plug-ins/sample-data-import.ny
+#, lisp-format
+msgid "Error.~%Unable to open file"
+msgstr ""
+
 #: plug-ins/spectral-delete.ny
 #, fuzzy
 msgid "Spectral Delete"
 msgstr "নির্বাচনের শেষে"
+
+#: plug-ins/spectral-delete.ny
+#, lisp-format
+msgid "Error.~%Track sample rate below 100 Hz is not supported."
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Tremolo"
+msgstr ""
 
 # I guess in should be গেইন - mak
 #: plug-ins/tremolo.ny
@@ -879,11 +2168,43 @@ msgstr "লাভ"
 msgid "Waveform type"
 msgstr "গতি বৃদ্ধি"
 
+#: plug-ins/tremolo.ny
+msgid "Sine"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Sawtooth"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Inverse Sawtooth"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Square"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Starting phase (degrees)"
+msgstr ""
+
+#: plug-ins/tremolo.ny
+msgid "Wet level (percent)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "Vocal Reduction and Isolation"
+msgstr ""
+
 # I guess in should be গেইন - mak
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid "Applying Action..."
 msgstr "লাভ"
+
+#: plug-ins/vocalrediso.ny
+msgid "Robert Haenggi"
+msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid "Action"
@@ -939,6 +2260,101 @@ msgstr "&এনালাইজ"
 msgid "Strength"
 msgstr "নির্বাচনের শেষে"
 
+#: plug-ins/vocalrediso.ny
+msgid "Low Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "High Cut for Vocals (Hz)"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid ""
+"Average x: ~a, y: ~a\n"
+"                    Covariance x y: ~a\n"
+"                    Average variance x: ~a, y: ~a\n"
+"                    Standard deviation x: ~a, y: ~a\n"
+"                    Coefficient of correlation: ~a\n"
+"                    Coefficient of determination: ~a\n"
+"                    Variation of residuals: ~a\n"
+"                    y equals ~a plus ~a times x~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+#, lisp-format
+msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are identical, i.e. dual mono.\n"
+"                The center can't be removed.\n"
+"                Any remaining difference may be caused by lossy encoding."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+"                Most likely, the center extraction will be poor."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - An ideal value for Stereo.\n"
+"                However, the center extraction depends also on the used reverb."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are almost not related.\n"
+"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                The center extraction can still be good though."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - Although the Track is stereo, the field is obviously extra wide.\n"
+"                This can cause strange effects.\n"
+"                Especially when played by only one speaker."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid ""
+" - The two channels are nearly identical.\n"
+"                  Obviously, a pseudo stereo effect has been used\n"
+"                  to spread the signal over the physical distance between the speakers.\n"
+"                  Don't expect good results from a center removal."
+msgstr ""
+
+#: plug-ins/vocalrediso.ny
+msgid "This plug-in works only with stereo tracks."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Vocoder"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Processing Vocoder..."
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Edgar-RFT"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Distance: (1 to 120, default = 20)"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Output choice"
+msgstr ""
+
 #: plug-ins/vocoder.ny
 #, fuzzy
 msgid "Both Channels"
@@ -953,6 +2369,27 @@ msgstr "চ্যানেল"
 #, fuzzy
 msgid "Number of vocoder bands"
 msgstr "চ্যানেল"
+
+#: plug-ins/vocoder.ny
+msgid "Amplitude of original audio (percent)"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Amplitude of white noise (percent)"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Amplitude of Radar Needles (percent)"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+msgid "Frequency of Radar Needles (Hz)"
+msgstr ""
+
+#: plug-ins/vocoder.ny
+#, lisp-format
+msgid "Error.~%Stereo track required."
+msgstr ""
 
 #, fuzzy
 #~ msgid "Select A&ll\tCtrl+A"

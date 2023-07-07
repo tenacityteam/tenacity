@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-06-23 08:09-0700\n"
+"POT-Creation-Date: 2023-07-08 00:51+0200\n"
 "PO-Revision-Date: 2023-05-28 08:51+0000\n"
 "Last-Translator: Newson Parker <2434843612@qq.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/tenacity/tenacity/zh_Hant/>\n"
@@ -162,25 +162,33 @@ msgstr "所選的 MIDI 播放裝置：%d - %s\n"
 msgid "No MIDI playback device found for '%s'.\n"
 msgstr "找不到「%s」的 MIDI 播放裝置。\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp plug-ins/sample-data-export.ny
+msgid "samples"
+msgstr "取樣點"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "milliseconds"
+msgstr "毫秒"
+
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h
 msgid "Message"
 msgstr "訊息"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error in %s at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "%s 發生內部錯誤：位於 %s，第 %d 行。\n"
 "請在 https://forum.audacityteam.org/ 通知 Audacity 團隊。"
 
 #: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Internal error at %s line %d.\n"
-"Please inform the Audacity team at https://forum.audacityteam.org/."
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
 "內部錯誤：位於 %s，第 %d 行。\n"
 "請在 https://forum.audacityteam.org/ 通知 Audacity 團隊。"
@@ -190,28 +198,28 @@ msgid "Internal Error"
 msgstr "內部錯誤"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to open a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
 msgstr ""
 "Audacity 無法開啟檔案：\n"
 "  %s。"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity failed to read from a file in %s."
+#, fuzzy, c-format
+msgid "Tenacity failed to read from a file in %s."
 msgstr ""
 "Audacity 無法讀入檔案：\n"
 "  %s。"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Audacity successfully wrote a file in %s but failed to rename it as %s."
+#, fuzzy, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
 msgstr "Audacity 成功寫入 %s 檔案，但未能將之重新命名為 %s。"
 
 #: libraries/lib-files/FileException.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Audacity failed to write to a file.\n"
+"Tenacity failed to write to a file.\n"
 "Perhaps %s is not writable or the disk is full.\n"
 "For tips on freeing up space, click the help button."
 msgstr ""
@@ -609,6 +617,14 @@ msgstr "正在套用淡入淡出..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -753,7 +769,8 @@ msgid "Finding beats..."
 msgstr "正在尋找拍子..."
 
 #: plug-ins/beat.ny
-msgid "Audacity"
+#, fuzzy
+msgid "Tenacity"
 msgstr "Audacity"
 
 #: plug-ins/beat.ny
@@ -1721,10 +1738,6 @@ msgid "Limit output to first"
 msgstr "限制輸出為首"
 
 #: plug-ins/sample-data-export.ny
-msgid "samples"
-msgstr "取樣點"
-
-#: plug-ins/sample-data-export.ny
 msgid "Measurement scale"
 msgstr "量測比例"
 
@@ -1958,10 +1971,10 @@ msgid "Right (dB)"
 msgstr "右 (分貝)"
 
 #: plug-ins/sample-data-export.ny
-#, lisp-format
+#, fuzzy, lisp-format
 msgid ""
 "Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Audacity</a> by Steve\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
 "Daulton"
 msgstr ""
 "使用 Steve Daulton 所製作之\n"
@@ -11780,7 +11793,7 @@ msgstr "錯誤。~%必須是立體聲。"
 #~ msgid "&Generate"
 #~ msgstr "生成(&G)"
 
-#~ msgid "Add / Remove Plug-ins..."
+#~ msgid "Manage Plug-ins..."
 #~ msgstr "加入/移除外掛軟體..."
 
 #~ msgid "Repeat Last Generator"
@@ -12737,9 +12750,6 @@ msgstr "錯誤。~%必須是立體聲。"
 
 #~ msgid "Latency"
 #~ msgstr "遲滯"
-
-#~ msgid "milliseconds"
-#~ msgstr "毫秒"
 
 #~ msgid "&Buffer length:"
 #~ msgstr "緩衝區長度(&B)："
