@@ -13,6 +13,8 @@ Does not contain an audio engine.
 set( SOURCES
    AudioIOBase.cpp
    AudioIOBase.h
+   AudioMemoryManager.cpp
+   AudioMemoryManager.h
    DeviceChange.cpp
    DeviceChange.h
    DeviceManager.cpp
