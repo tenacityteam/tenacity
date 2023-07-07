@@ -388,6 +388,8 @@ public:
 
 protected:
 
+   void ConvertLatencyPreference();
+
    bool                mUpdateMeters;
    volatile bool       mUpdatingMeters;
 
