@@ -436,6 +436,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #endif
 
 // Tenacity libraries
+#include <lib-audio-devices/AudioMemoryManager.h>
 #include <lib-basic-ui/BasicUI.h>
 #include <lib-exceptions/TenacityException.h>
 #include <lib-math/float_cast.h>
@@ -1330,6 +1331,8 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       latency = 32;
       AudioIOLatencyDuration.Write(latency);
    }
+
+   UpdateBuffers();
 
    for (unsigned int tries = 0; tries < maxTries; tries++) {
       mLastPaError = Pa_OpenStream( &mPortStreamV19,
@@ -3561,12 +3564,12 @@ void AudioIoCallback::AddToOutputChannel(unsigned int chan,
                                          float * tempBuf,
                                          bool drop,
                                          unsigned long len,
-                                         std::shared_ptr<WaveTrack>& vt
+                                         WaveTrack& vt
                                         )
 {
    const auto numPlaybackChannels = mNumPlaybackChannels;
 
-   float gain = vt->GetChannelGain(chan);
+   float gain = vt.GetChannelGain(chan);
    if (drop || !mAudioThreadFillBuffersLoopRunning || mPaused)
       gain = 0.0;
 
@@ -3577,9 +3580,9 @@ void AudioIoCallback::AddToOutputChannel(unsigned int chan,
          outputMeterFloats[numPlaybackChannels*i+chan] +=
             gain*tempBuf[i];
 
-   float oldGain = vt->GetOldChannelGain(chan);
+   float oldGain = vt.GetOldChannelGain(chan);
    if( gain != oldGain )
-      vt->SetOldChannelGain(chan, gain);
+      vt.SetOldChannelGain(chan, gain);
    // if no microfades, jump in volume.
    if( !mbMicroFades )
       oldGain =gain;
@@ -3597,6 +3600,46 @@ void ClampBuffer(float * pBuffer, unsigned long len){
       pBuffer[i] = wxClip( pBuffer[i], -1.0f, 1.0f);
 };
 
+void AudioIoCallback::UpdateBuffers()
+{
+   mBuffersPrepared = false;
+
+   if (IsStreamActive())
+   {
+      // Don't modify buffers if there's a stream active
+      return;
+   }
+
+   unsigned long newBufferSize = AudioIOLatencyDuration.Read();
+   auto& memoryManager = AudioMemoryManager::Get();
+
+   mTemporaryBuffer.reset();
+   mTemporaryBuffer = memoryManager.GetBuffer(newBufferSize);
+   if (!mTemporaryBuffer)
+   {
+      memoryManager.CreateBuffer(newBufferSize);
+      mTemporaryBuffer = memoryManager.GetBuffer(newBufferSize);
+   }
+
+   if (mTrackChannelsBuffer.size() < mNumPlaybackChannels ||
+       mTrackChannelsBuffer.size() < mNumCaptureChannels)
+   {
+      mTrackChannelsBuffer.resize(
+         mNumPlaybackChannels > mNumCaptureChannels ?
+            mNumPlaybackChannels :
+            mNumCaptureChannels
+      );
+   }
+
+   mScratchBufferAllocator.DeallocateAll();
+   mScratchBuffers.resize(mNumPlaybackChannels);
+   for (auto& buffer : mScratchBuffers)
+   {
+      buffer = mScratchBufferAllocator.Allocate(true, newBufferSize);
+   }
+
+   mBuffersPrepared = true;
+}
 
 // return true, IFF we have fully handled the callback.
 //
@@ -3607,6 +3650,9 @@ bool AudioIoCallback::FillOutputBuffers(
    unsigned long framesPerBuffer, float *outputMeterFloats
 )
 {
+   // Debug
+   assert(mBuffersPrepared);
+
    const auto numPlaybackTracks = mPlaybackTracks.size();
    const auto numPlaybackChannels = mNumPlaybackChannels;
    const auto numCaptureChannels = mNumCaptureChannels;
@@ -3633,22 +3679,6 @@ bool AudioIoCallback::FillOutputBuffers(
       mCallbackReturn = CallbackDoSeek();
       return true;
    }
-
-   // ------ MEMORY ALLOCATION ----------------------
-   // These are small structures.
-   WaveTrackArray chans;
-   AutoAllocator<float>  floatAllocator;
-   std::unique_ptr<float*> tempBufs(new float*[numPlaybackChannels]);
-   chans.resize(numPlaybackChannels);
-
-   // And these are larger structures....
-   // GP: not needed
-   for (unsigned int c = 0; c < numPlaybackChannels; c++)
-   {
-      auto& buf = tempBufs.get()[c];
-      buf = floatAllocator.Allocate(true, framesPerBuffer);
-   }
-   // ------ End of MEMORY ALLOCATION ---------------
 
    auto & em = RealtimeEffectManager::Get();
    em.RealtimeProcessStart();
@@ -3678,8 +3708,8 @@ bool AudioIoCallback::FillOutputBuffers(
    bool dropQuickly = false; // Track has already been faded to silence.
    for (unsigned t = 0; t < numPlaybackTracks; t++)
    {
-      std::shared_ptr<WaveTrack> vt = mPlaybackTracks[t];
-      chans[chanCnt] = vt;
+      WaveTrack* vt = mPlaybackTracks[t].get();
+      mTrackChannelsBuffer[chanCnt] = vt;
 
       // TODO: more-than-two-channels
       auto nextTrack =
@@ -3699,7 +3729,7 @@ bool AudioIoCallback::FillOutputBuffers(
          if ( lastChannel && (numPlaybackChannels>1))
          {
             // TODO: more-than-two-channels
-            auto buf = tempBufs.get()[1];
+            auto buf = mScratchBuffers[1];
             memset(buf, 0, framesPerBuffer * sizeof(float));
          }
          drop = TrackShouldBeSilent( *vt );
@@ -3719,7 +3749,7 @@ bool AudioIoCallback::FillOutputBuffers(
       }
       else
       {
-         len = mPlaybackBuffers[t]->Get((samplePtr)tempBufs.get()[chanCnt],
+         len = mPlaybackBuffers[t]->Get((samplePtr)mScratchBuffers[chanCnt],
                                                    floatSample,
                                                    toGet);
          // wxASSERT( len == toGet );
@@ -3731,7 +3761,7 @@ bool AudioIoCallback::FillOutputBuffers(
             // real-time demand in this thread (see bug 1932).  We
             // must supply something to the sound card, so pad it with
             // zeroes and not random garbage.
-            memset((void*)&tempBufs.get()[chanCnt][len], 0,
+            memset((void*)&mScratchBuffers[chanCnt][len], 0,
                (framesPerBuffer - len) * sizeof(float));
          }
          chanCnt++;
@@ -3753,7 +3783,7 @@ bool AudioIoCallback::FillOutputBuffers(
       len = mMaxFramesOutput;
 
       if( !dropQuickly && selected )
-         len = em.RealtimeProcess(group, chanCnt, tempBufs.get(), len);
+         len = em.RealtimeProcess(group, chanCnt, mScratchBuffers.data(), len);
       group++;
 
       CallbackCheckCompletion(mCallbackReturn, len);
@@ -3772,17 +3802,17 @@ bool AudioIoCallback::FillOutputBuffers(
       // For example mono channels output to both left and right output channels.
       if (len > 0) for (int c = 0; c < chanCnt; c++)
       {
-         vt = chans[c];
+         vt = mTrackChannelsBuffer[c];
 
          if (vt->GetChannelIgnoringPan() == Track::LeftChannel ||
                vt->GetChannelIgnoringPan() == Track::MonoChannel )
             AddToOutputChannel( 0, outputMeterFloats, outputFloats,
-               tempBufs.get()[c], drop, len, vt);
+               mScratchBuffers[c], drop, len, *vt);
 
          if (vt->GetChannelIgnoringPan() == Track::RightChannel ||
                vt->GetChannelIgnoringPan() == Track::MonoChannel  )
             AddToOutputChannel( 1, outputMeterFloats, outputFloats,
-               tempBufs.get()[c], drop, len, vt);
+               mScratchBuffers[c], drop, len, *vt);
       }
 
       chanCnt = 0;

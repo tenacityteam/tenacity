@@ -211,7 +211,7 @@ public:
       float * tempBuf,
       bool drop,
       unsigned long len,
-      std::shared_ptr<WaveTrack>& vt
+      WaveTrack& vt
       );
    bool FillOutputBuffers(
       void *outputBuffer,
@@ -241,6 +241,21 @@ public:
       unsigned long framesPerBuffer
    );
 
+protected:
+
+   // Buffers
+   std::vector<WaveTrack*> mTrackChannelsBuffer;
+   std::vector<float*>     mScratchBuffers;
+   AutoAllocator<float>    mScratchBufferAllocator;
+   std::shared_ptr<float>  mTemporaryBuffer;
+
+   // Bufer preparation status
+   bool mBuffersPrepared;
+
+public:
+
+   /// @brief Reallocate all buffers to their new sizes.
+   void UpdateBuffers();
 
 // Required by these functions...
 #ifdef EXPERIMENTAL_MIDI_OUT
