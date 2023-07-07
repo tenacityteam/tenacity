@@ -227,7 +227,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << XO("We have several support methods:")
          << wxT("<p><ul><li>")
          /* i18n-hint: Preserve '[[help:Quick_Help|' as it's the name of a link.*/
-         << XO("[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]")
+         << XO("[[help:Quick_Help|Quick Help]]")
          << wxT("</li><li>")
          << XO(
 /* i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.*/
@@ -238,9 +238,6 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << wxT("</p>");
 
       auto result = o.GetString();
-#ifdef USE_ALPHA_MANUAL
-      result.Replace( "//manual.audacityteam.org/quick_help.html","//alphamanual.audacityteam.org/man/Quick_Help" );
-#endif
 
       return WrapText( result );
    }
@@ -254,8 +251,7 @@ static wxString HelpTextBuiltIn( const wxString & Key )
          << XO(
 "Tenacity can import unprotected files in many other formats (such as M4A and WMA, \
 compressed WAV files from portable recorders and audio from video files) if you download and install \
-the optional [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#foreign| \
-FFmpeg library]] to your computer.")
+the optional [[https://tenacityaudio.org/docs/_content/FFmpeg.html|FFmpeg library]] to your computer.")
          << wxT("</p><p>")
          <<  XO(
 "You can also read our help on importing \
@@ -279,7 +275,7 @@ audio CDs]].")
          << XO(
 "The Manual does not appear to be installed. \
 Please [[*URL*|view the Manual online]] or \
-[[https://manual.audacityteam.org/man/unzipping_the_manual.html| \
+[[https://codeberg.org/tenacityteam/tenacity-manual/releases| \
 download the Manual]].<br><br>\
 To always view the Manual online, change \"Location of Manual\" in \
 Interface Preferences to \"From Internet\".")

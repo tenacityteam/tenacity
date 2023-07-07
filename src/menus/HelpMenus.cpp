@@ -317,10 +317,7 @@ void OnQuickFix(const CommandContext &context)
 
 void OnQuickHelp(const CommandContext &context)
 {
-   auto &project = context.project;
-   HelpSystem::ShowHelp(
-      &GetProjectFrame( project ),
-      L"Quick_Help");
+   OpenInDefaultBrowser("https://tenacityaudio.org/#community-buttons");
 }
 
 void OnManual(const CommandContext &context)
