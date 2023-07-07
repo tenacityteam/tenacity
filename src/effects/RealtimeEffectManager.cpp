@@ -332,7 +332,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 
    // Allocate the in/out buffer arrays
    // GP: temporary fix until we convert Effect
-   StackAllocator<float>  floatAllocator;
+   AutoAllocator<float>  floatAllocator;
 
    // And populate the input with the buffers we've been given while allocating
    // NEW output buffers
@@ -519,7 +519,7 @@ size_t RealtimeEffectState::RealtimeProcess(int group,
    const auto numAudioIn = mEffect.GetAudioInCount();
    const auto numAudioOut = mEffect.GetAudioOutCount();
 
-   StackAllocator<float> floatAllocator;
+   AutoAllocator<float> floatAllocator;
    std::unique_ptr<float*> _clientIn(new float*[numAudioIn]);
    std::unique_ptr<float*> _clientOut(new float*[numAudioIn]);
    std::unique_ptr<float>  _dummybuf(new float[numSamples]);

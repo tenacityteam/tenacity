@@ -138,11 +138,11 @@ struct freer { void operator() (void *p) const { free(p); } };
  * This is intended as a shim for anything that doesn't use a smart pointer,
  * namely in EffectsInterface, RealtimeEffectManager, AudioIO, etc. It allows
  * for allocating memory for use with regular pointers. The memory is actually
- * owned by a StackAllocator object.
+ * owned by a AutoAllocator object.
  * 
  **/
 template<class T>
-class StackAllocator
+class AutoAllocator
 {
    private:
       /// @brief Holds memory allocated with `new` (single objects).
@@ -153,7 +153,7 @@ class StackAllocator
 
    public:
       /// Default constructor.
-      StackAllocator() = default;
+      AutoAllocator() = default;
 
       /** @brief Allocates `ptr`.
        * 
@@ -165,28 +165,20 @@ class StackAllocator
        * @param count How many elements there should be in the new array.
        * Default is 1, ignored if `isArray` is false.
        * 
-       * @warning StackAllocator does **not** take ownership of `ptr` and
+       * @warning AutoAllocator does **not** take ownership of `ptr` and
        * deallocate it for you. You must do this yourself before passing `ptr`
        * to ensure no memory leaks occur.
        * 
        **/
-      StackAllocator(T* ptr, bool isArray = false, size_t count = 1)
+      AutoAllocator(T* ptr, bool isArray = false, size_t count = 1)
       {
          ptr = Allocate(isArray, count);
       }
 
-      /// Deallocates any memory allocated by the StackAllocator object.
-      ~StackAllocator()
+      /// Deallocates any memory allocated by the AutoAllocator object.
+      ~AutoAllocator()
       {
-         for (auto& x : mSingleObjects)
-         {
-            delete x;
-         }
-
-         for (auto& x : mArrayObjects)
-         {
-            delete[] x;
-         }
+         DeallocateAll();
       }
 
       /** @brief Allocates memory.
@@ -219,6 +211,20 @@ class StackAllocator
          } catch(const std::bad_alloc&)
          {
             throw;
+         }
+      }
+
+      /** @brief Deallocates all*/
+      void DeallocateAll()
+      {
+         for (auto& x : mSingleObjects)
+         {
+            delete x;
+         }
+
+         for (auto& x : mArrayObjects)
+         {
+            delete[] x;
          }
       }
 };

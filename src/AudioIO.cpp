@@ -3637,7 +3637,7 @@ bool AudioIoCallback::FillOutputBuffers(
    // ------ MEMORY ALLOCATION ----------------------
    // These are small structures.
    WaveTrackArray chans;
-   StackAllocator<float>  floatAllocator;
+   AutoAllocator<float>  floatAllocator;
    std::unique_ptr<float*> tempBufs(new float*[numPlaybackChannels]);
    chans.resize(numPlaybackChannels);
 
