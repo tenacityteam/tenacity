@@ -49,7 +49,7 @@ TranslatableString BatchPrefs::GetDescription()
 
 ManualPageID BatchPrefs::HelpPageName()
 {
-   return  "Batch_Preferences";
+   return "Preferences";
 }
 
 /// Creates the dialog and its contents.

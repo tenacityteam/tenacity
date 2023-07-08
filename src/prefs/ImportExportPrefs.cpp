@@ -47,7 +47,7 @@ TranslatableString ImportExportPrefs::GetDescription()
 
 ManualPageID ImportExportPrefs::HelpPageName()
 {
-   return "Import_-_Export_Preferences";
+   return "Preferences#import-export";
 }
 
 /// Creates the dialog and its contents.

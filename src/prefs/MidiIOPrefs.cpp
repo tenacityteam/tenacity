@@ -79,7 +79,7 @@ TranslatableString MidiIOPrefs::GetDescription()
 
 ManualPageID MidiIOPrefs::HelpPageName()
 {
-   return "MIDI_Devices_Preferences";
+   return "Preferences#midi-devices";
 }
 
 void MidiIOPrefs::Populate()

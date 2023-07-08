@@ -289,7 +289,7 @@ TranslatableString TracksPrefs::GetDescription()
 
 ManualPageID TracksPrefs::HelpPageName()
 {
-   return "Tracks_Preferences";
+   return "Preferences#tracks";
 }
 
 void TracksPrefs::Populate()

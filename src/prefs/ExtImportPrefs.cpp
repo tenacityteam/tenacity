@@ -88,7 +88,7 @@ TranslatableString ExtImportPrefs::GetDescription()
 
 ManualPageID ExtImportPrefs::HelpPageName()
 {
-   return "Extended_Import_Preferences";
+   return "Preferences#extended-import";
 }
 
 /// Creates the dialog and its contents.

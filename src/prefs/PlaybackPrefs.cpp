@@ -51,7 +51,7 @@ TranslatableString PlaybackPrefs::GetDescription()
 
 ManualPageID PlaybackPrefs::HelpPageName()
 {
-   return "Playback_Preferences";
+   return "Preferences#playback";
 }
 
 void PlaybackPrefs::Populate()

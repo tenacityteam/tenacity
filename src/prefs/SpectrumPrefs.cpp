@@ -86,9 +86,10 @@ ManualPageID SpectrumPrefs::HelpPageName()
    // We do so when it is configuring spectrums for a track.
    // Because this happens, we want to visit a different help page.
    // So we change the page name in the case of a page on its own.
-   return mWt
-      ? "Spectrogram_Settings"
-      : "Spectrograms_Preferences";
+   // return mWt
+   //    ? "Spectrogram_Settings"
+   //    : "Spectrograms_Preferences";
+   return "Preferences#tracks";
 }
 
 enum {

@@ -67,7 +67,7 @@ TranslatableString RecordingPrefs::GetDescription()
 
 ManualPageID RecordingPrefs::HelpPageName()
 {
-   return "Recording_Preferences";
+   return "Preferences#recording";
 }
 
 void RecordingPrefs::Populate()

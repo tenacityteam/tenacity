@@ -86,7 +86,7 @@ TranslatableString MousePrefs::GetDescription()
 
 ManualPageID MousePrefs::HelpPageName()
 {
-   return "Mouse_Preferences";
+   return "Preferences#mouse";
 }
 
 /// Creates the dialog and its contents.

@@ -60,7 +60,7 @@ TranslatableString GUIPrefs::GetDescription()
 
 ManualPageID GUIPrefs::HelpPageName()
 {
-   return "Interface_Preferences";
+   return "Preferences#interface";
 }
 
 void GUIPrefs::GetRangeChoices(

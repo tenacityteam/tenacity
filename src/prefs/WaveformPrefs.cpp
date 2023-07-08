@@ -68,7 +68,7 @@ TranslatableString WaveformPrefs::GetDescription()
 
 ManualPageID WaveformPrefs::HelpPageName()
 {
-   return "Waveform_Preferences";
+   return "Preferences#tracks";
 }
 
 enum {

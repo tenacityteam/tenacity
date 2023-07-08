@@ -64,7 +64,7 @@ TranslatableString QualityPrefs::GetDescription()
 
 ManualPageID QualityPrefs::HelpPageName()
 {
-   return "Quality_Preferences";
+   return "Preferences#quality";
 }
 
 void QualityPrefs::Populate()

@@ -52,7 +52,7 @@ TranslatableString EffectsPrefs::GetDescription()
 
 ManualPageID EffectsPrefs::HelpPageName()
 {
-   return "Effects_Preferences";
+   return "Preferences#effects";
 }
 
 void EffectsPrefs::Populate()

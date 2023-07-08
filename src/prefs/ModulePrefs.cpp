@@ -52,7 +52,7 @@ TranslatableString ModulePrefs::GetDescription()
 
 ManualPageID ModulePrefs::HelpPageName()
 {
-   return "Modules_Preferences";
+   return "Preferences#modules";
 }
 
 void ModulePrefs::GetAllModuleStatuses(){

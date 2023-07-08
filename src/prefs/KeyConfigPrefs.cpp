@@ -123,7 +123,7 @@ TranslatableString KeyConfigPrefs::GetDescription()
 
 ManualPageID KeyConfigPrefs::HelpPageName()
 {
-   return "Keyboard_Preferences";
+   return "Preferences#keyboard";
 }
 
 void KeyConfigPrefs::Populate()

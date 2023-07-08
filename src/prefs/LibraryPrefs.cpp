@@ -64,7 +64,7 @@ TranslatableString LibraryPrefs::GetDescription()
 
 ManualPageID LibraryPrefs::HelpPageName()
 {
-   return "Libraries_Preferences";
+   return "Preferences#libraries";
 }
 
 /// Creates the dialog and its contents.

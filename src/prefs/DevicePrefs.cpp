@@ -80,7 +80,7 @@ TranslatableString DevicePrefs::GetDescription()
 
 ManualPageID DevicePrefs::HelpPageName()
 {
-   return "Devices_Preferences";
+   return "Preferences#devices";
 }
 
 void DevicePrefs::Populate()

@@ -87,7 +87,7 @@ TranslatableString ThemePrefs::GetDescription()
 
 ManualPageID ThemePrefs::HelpPageName()
 {
-   return "Theme_Preferences";
+   return "Preferences#theme";
 }
 
 /// Creates the dialog and its contents.

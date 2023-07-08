@@ -51,7 +51,7 @@ TranslatableString WarningsPrefs::GetDescription()
 
 ManualPageID WarningsPrefs::HelpPageName()
 {
-   return "Warnings_Preferences";
+   return "Preferences#warnings";
 }
 
 void WarningsPrefs::Populate()

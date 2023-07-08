@@ -167,7 +167,7 @@ TranslatableString DirectoriesPrefs::GetDescription()
 
 ManualPageID DirectoriesPrefs::HelpPageName()
 {
-   return "Directories_Preferences";
+   return "Preferences#directories";
 }
 
 /// Creates the dialog and its contents.
