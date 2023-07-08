@@ -84,7 +84,7 @@ endif()
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
 if( NOT DEFINED TENACITY_BUILD_LEVEL )
-   set( TENACITY_BUILD_LEVEL 1 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
+   set( TENACITY_BUILD_LEVEL 2 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 endif()
 
 if( TENACITY_BUILD_LEVEL EQUAL 0 )
