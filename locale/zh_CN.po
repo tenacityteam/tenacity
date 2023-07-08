@@ -176,15 +176,6 @@ msgstr "消息"
 #: libraries/lib-exceptions/InconsistencyException.cpp
 #, fuzzy, c-format
 msgid ""
-"Internal error in %s at %s line %d.\n"
-"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
-msgstr ""
-"内部错误在 %s 于 %s 行 %d。\n"
-"请通过 https://forum.audacityteam.org/ 来通知 Audacity 团队。"
-
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, fuzzy, c-format
-msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
@@ -197,18 +188,8 @@ msgstr "内部错误"
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
-msgid "Tenacity failed to open a file in %s."
-msgstr "Audacity 无法打开文件： %s。"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
 msgid "Tenacity failed to read from a file in %s."
 msgstr "Audacity 无法读取文件： %s。"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
-msgstr "Audacity 成功写入了文件 %s 但是改名为 %s 时失败。"
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -610,14 +591,6 @@ msgstr "正在应用淡出..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-msgid "GNU General Public License v2.0 or later"
-msgstr ""
-
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -760,11 +733,6 @@ msgstr "节拍寻找"
 #: plug-ins/beat.ny
 msgid "Finding beats..."
 msgstr "正在寻找节拍..."
-
-#: plug-ins/beat.ny
-#, fuzzy
-msgid "Tenacity"
-msgstr "Audacity"
 
 #: plug-ins/beat.ny
 msgid "Threshold Percentage"
@@ -1238,20 +1206,11 @@ msgstr "正在寻找静音……"
 msgid "Maximum trailing silence"
 msgstr "正在寻找静音……"
 
-#: plug-ins/label-sounds.ny
-msgid "Sound ##1"
-msgstr ""
-
 #. i18n-hint: hours minutes and seconds. Do not translate "~a".
 #: plug-ins/label-sounds.ny
 #, lisp-format
 msgid "~ah ~am ~as"
 msgstr "~a时 ~a分 ~a秒"
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Too many silences detected.~%Only the first 10000 labels added."
-msgstr ""
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -1263,11 +1222,6 @@ msgstr "选区必须大于 %d 个采样点。"
 #, fuzzy, lisp-format
 msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
 msgstr "未找到声音。尝试减少静音水平和最小静音持续时长。"
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
-msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -1976,17 +1930,6 @@ msgstr "左（dB）"
 #: plug-ins/sample-data-export.ny
 msgid "Right (dB)"
 msgstr "右（dB）"
-
-#: plug-ins/sample-data-export.ny
-#, fuzzy, lisp-format
-msgid ""
-"Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Tenacity</a> by Steve\n"
-"Daulton"
-msgstr ""
-"利用 Audacity 的 <span>样本数据导出</span>生成\n"
-"<a href=\"~a\">Audacity</a> 作者：Steve\n"
-"Daulton"
 
 #: plug-ins/sample-data-export.ny
 msgid "linear"

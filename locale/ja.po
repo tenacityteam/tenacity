@@ -169,16 +169,6 @@ msgstr "メッセージ"
 #: libraries/lib-exceptions/InconsistencyException.cpp
 #, fuzzy, c-format
 msgid ""
-"Internal error in %s at %s line %d.\n"
-"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
-msgstr ""
-"Internal error in %s at %s line %d.\n"
-"是非、Audacity チーム (https://forum.audacityteam.org/) にご報告ください。"
-
-# ja: 運営に報告してねとあるので、報告しやすくするために内部エラー部分は原文ママとする。
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, fuzzy, c-format
-msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
 msgstr ""
@@ -191,18 +181,8 @@ msgstr "内部エラー"
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
-msgid "Tenacity failed to open a file in %s."
-msgstr "ファイル %s が書き込めません"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
 msgid "Tenacity failed to read from a file in %s."
 msgstr "ファイル %s が書き込めません"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
-msgstr "ファイルを %s に書き込むことはできましたが、%s にリネームすることはできませんでした。"
 
 #: libraries/lib-files/FileException.cpp
 #, fuzzy, c-format
@@ -405,21 +385,6 @@ msgstr "16bit"
 msgid "24-bit"
 msgstr "24bit"
 
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in group at %s was merged with a previously defined group"
-msgstr ""
-
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in item at %s conflicts with a previously defined item and was discarded"
-msgstr ""
-
-#: libraries/lib-registries/Registry.cpp
-#, c-format
-msgid "Plug-in items at %s specify conflicting placements"
-msgstr ""
-
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
 msgstr "測定できません"
@@ -609,14 +574,6 @@ msgstr "フェードを適用中..."
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
 
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-msgid "GNU General Public License v2.0 or later"
-msgstr ""
-
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
@@ -761,11 +718,6 @@ msgstr "拍の検出(&B)"
 #: plug-ins/beat.ny
 msgid "Finding beats..."
 msgstr "拍の検出中..."
-
-#: plug-ins/beat.ny
-#, fuzzy
-msgid "Tenacity"
-msgstr "Audacity"
 
 #: plug-ins/beat.ny
 msgid "Threshold Percentage"
@@ -1028,10 +980,6 @@ msgstr "ラベルの間隔 (秒)"
 #: plug-ins/equalabel.ny
 msgid "Length of label region (seconds)"
 msgstr "ラベル領域の長さ (秒)"
-
-#: plug-ins/equalabel.ny
-msgid "Adjust label interval to fit length"
-msgstr ""
 
 #. i18n-hint: Do not translate '##1'
 #: plug-ins/equalabel.ny plug-ins/label-sounds.ny
@@ -1999,14 +1947,6 @@ msgstr "左 (dB)"
 #: plug-ins/sample-data-export.ny
 msgid "Right (dB)"
 msgstr "右 (dB)"
-
-#: plug-ins/sample-data-export.ny
-#, fuzzy, lisp-format
-msgid ""
-"Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Tenacity</a> by Steve\n"
-"Daulton"
-msgstr "<a href=\"~a\">Audacity</a> プラグイン「<span>サンプルデータの書き出し</span>」によって生成。- Steve Daulton"
 
 #: plug-ins/sample-data-export.ny
 msgid "linear"
