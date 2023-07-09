@@ -84,7 +84,7 @@ endif()
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
 if( NOT DEFINED TENACITY_BUILD_LEVEL )
-   set( TENACITY_BUILD_LEVEL 2 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
+   set( TENACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 endif()
 
 if( TENACITY_BUILD_LEVEL EQUAL 0 )
@@ -280,7 +280,7 @@ endif()
 
 # Current version and commit info
 set( TENACITY_VERSION 1 )
-set( TENACITY_RELEASE 3 )
+set( TENACITY_RELEASE 4 )
 set( TENACITY_REVISION 0 )
 set( GIT_DESCRIBE "unknown" )
 find_package( Git QUIET )
