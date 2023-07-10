@@ -134,7 +134,6 @@ static const int kFactoryPresetsID = 23000;
 
 BEGIN_EVENT_TABLE(EffectUIHost, wxDialogWrapper)
 EVT_INIT_DIALOG(EffectUIHost::OnInitDialog)
-EVT_ERASE_BACKGROUND(EffectUIHost::OnErase)
 EVT_PAINT(EffectUIHost::OnPaint)
 EVT_CLOSE(EffectUIHost::OnClose)
 EVT_BUTTON(wxID_APPLY, EffectUIHost::OnApply)
@@ -166,6 +165,7 @@ EffectUIHost::EffectUIHost(wxWindow *parent,
 , mEffect{ effect }
 , mClient{ client }
 {
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
 #if defined(__WXMAC__)
    // Make sure the effect window actually floats above the main window
    [ [((NSView *)GetHandle()) window] setLevel:NSFloatingWindowLevel];
@@ -485,11 +485,6 @@ void EffectUIHost::OnInitDialog(wxInitDialogEvent & evt)
    {
       focused->SelectAll();
    }
-}
-
-void EffectUIHost::OnErase(wxEraseEvent & WXUNUSED(evt))
-{
-   // Ignore it
 }
 
 void EffectUIHost::OnPaint(wxPaintEvent & WXUNUSED(evt))

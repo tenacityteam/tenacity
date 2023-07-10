@@ -1581,7 +1581,6 @@ BEGIN_EVENT_TABLE(ASlider, wxPanel)
    EVT_MOUSE_CAPTURE_LOST(ASlider::OnCaptureLost)
    EVT_PAINT(ASlider::OnPaint)
    EVT_SIZE(ASlider::OnSize)
-   EVT_ERASE_BACKGROUND(ASlider::OnErase)
    EVT_SLIDER(wxID_ANY, ASlider::OnSlider)
    EVT_SET_FOCUS(ASlider::OnSetFocus)
    EVT_KILL_FOCUS(ASlider::OnKillFocus)
@@ -1598,6 +1597,7 @@ ASlider::ASlider( wxWindow * parent,
 {
    //wxColour Col(parent->GetBackgroundColour());
    //SetBackgroundColour( Col );
+   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    SetBackgroundColour( theTheme.Colour( clrMedium ) );
    mLWSlider = std::make_unique<LWSlider>( this,
                              name,
@@ -1661,11 +1661,6 @@ void ASlider::OnSlider(wxCommandEvent &event)
 void ASlider::OnSize(wxSizeEvent &event)
 {
    mLWSlider->OnSize( event );
-}
-
-void ASlider::OnErase(wxEraseEvent & WXUNUSED(event))
-{
-   // Ignore it to prevent flashing
 }
 
 void ASlider::OnPaint(wxPaintEvent & WXUNUSED(event))

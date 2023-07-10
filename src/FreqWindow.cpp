@@ -1276,7 +1276,6 @@ void FrequencyPlotDialog::UpdatePrefs()
 }
 
 BEGIN_EVENT_TABLE(FreqPlot, wxWindow)
-   EVT_ERASE_BACKGROUND(FreqPlot::OnErase)
    EVT_PAINT(FreqPlot::OnPaint)
    EVT_MOUSE_EVENTS(FreqPlot::OnMouseEvent)
 END_EVENT_TABLE()
@@ -1284,17 +1283,13 @@ END_EVENT_TABLE()
 FreqPlot::FreqPlot(wxWindow *parent, wxWindowID winid)
 :  wxWindow(parent, winid)
 {
+   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    freqWindow = (FrequencyPlotDialog *) parent;
 }
 
 bool FreqPlot::AcceptsFocus() const
 {
    return false;
-}
-
-void FreqPlot::OnErase(wxEraseEvent & WXUNUSED(event))
-{
-   // Ignore it to prevent flashing
 }
 
 void FreqPlot::OnPaint(wxPaintEvent & evt)

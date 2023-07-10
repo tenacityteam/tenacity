@@ -47,7 +47,6 @@ public:
 
 private:
    void OnPaint(wxPaintEvent & event);
-   void OnErase(wxEraseEvent & event);
    void OnMouseEvent(wxMouseEvent & event);
 
 private:

@@ -55,7 +55,6 @@ private:
    wxPanel *BuildButtonBar( wxWindow *parent );
 
    void OnInitDialog(wxInitDialogEvent & evt);
-   void OnErase(wxEraseEvent & evt);
    void OnPaint(wxPaintEvent & evt);
    void OnClose(wxCloseEvent & evt);
    void OnApply(wxCommandEvent & evt);

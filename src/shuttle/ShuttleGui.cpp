@@ -12,7 +12,7 @@
 **********************************************************************//**
 
 \file ShuttleGui.cpp
-\brief Implements ShuttleGui, ShuttleGuiBase and InvisiblePanel.
+\brief Implements ShuttleGui and ShuttleGuiBase.
 
 *//***************************************************************//**
 
@@ -75,20 +75,6 @@ ShuttleGui.
 
 There is DOxygen documentation on how to use the ShuttleGui
 class in \ref ShuttleSystem .
-
-*//***************************************************************//**
-
-\class InvisiblePanel
-\brief An InvisiblePanel is a panel which does not repaint its
-own background.
-
-It is used (a) To group together widgets which need to be refreshed
-together.  A single refresh of the panel causes all the subwindows to
-refresh.  (b) as a base class for some flicker-free classes for which
-the background is never repainted.
-
-JKC: InvisiblePanel will probably be replaced in time by a mechanism
-for registering for changes.
 
 *//******************************************************************/
 
@@ -1147,68 +1133,6 @@ void ShuttleGuiBase::EndNotebookPage()
    PopSizer();
    mpParent = mpParent->GetParent();
 }
-
-// Doxygen description is at the start of the file
-// this is a wxPanel with erase background disabled.
-class InvisiblePanel final : public wxPanelWrapper
-{
-public:
-   InvisiblePanel(
-      wxWindow* parent,
-      wxWindowID id = -1,
-      const wxPoint& pos = wxDefaultPosition,
-      const wxSize& size = wxDefaultSize,
-      long style = wxTAB_TRAVERSAL ) :
-      wxPanelWrapper( parent, id, pos, size, style )
-   {
-   };
-   ~InvisiblePanel(){;};
-   void OnPaint( wxPaintEvent &event );
-   void OnErase(wxEraseEvent &/*evt*/){;};
-   DECLARE_EVENT_TABLE()
-};
-
-
-BEGIN_EVENT_TABLE(InvisiblePanel, wxPanelWrapper)
-//   EVT_PAINT(InvisiblePanel::OnPaint)
-     EVT_ERASE_BACKGROUND( InvisiblePanel::OnErase)
-END_EVENT_TABLE()
-
-void InvisiblePanel::OnPaint( wxPaintEvent & WXUNUSED(event))
-{
-   // Don't repaint my background.
-   wxPaintDC dc(this);
-   // event.Skip(); // swallow the paint event.
-}
-
-wxPanel * ShuttleGuiBase::StartInvisiblePanel()
-{
-   UseUpId();
-   if( mShuttleMode != eIsCreating )
-      return wxDynamicCast(wxWindow::FindWindowById( miId, mpDlg), wxPanel);
-   wxPanel * pPanel;
-   mpWind = pPanel = safenew wxPanelWrapper(GetParent(), miId, wxDefaultPosition, wxDefaultSize,
-      wxNO_BORDER);
-
-   mpWind->SetBackgroundColour(
-      wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE)
-      );
-   SetProportions( 1 );
-   miBorder=0;
-   UpdateSizers();  // adds window in to current sizer.
-
-   // create a sizer within the window...
-   mpParent = pPanel;
-   pPanel->SetSizer(mpSizer = safenew wxBoxSizer(wxVERTICAL));
-   PushSizer();
-   return pPanel;
-}
-
-void ShuttleGuiBase::EndInvisiblePanel()
-{
-   EndPanel();
-}
-
 
 /// Starts a Horizontal Layout.
 ///  - Use wxEXPAND and 0 to expand horizontally but not vertically.

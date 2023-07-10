@@ -274,7 +274,6 @@ BEGIN_EVENT_TABLE(MeterPanel, MeterPanelBase)
    EVT_KEY_UP(MeterPanel::OnKeyUp)
    EVT_SET_FOCUS(MeterPanel::OnSetFocus)
    EVT_KILL_FOCUS(MeterPanel::OnKillFocus)
-   EVT_ERASE_BACKGROUND(MeterPanel::OnErase)
    EVT_PAINT(MeterPanel::OnPaint)
    EVT_SIZE(MeterPanel::OnSize)
    EVT_MENU(OnMonitorID, MeterPanel::OnMonitor)
@@ -317,6 +316,8 @@ MeterPanel::MeterPanel(TenacityProject *project,
    SetName( XO("Meter") );
    // Suppress warnings about the header file
    wxUnusedVar(PrefStyles);
+
+   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
 
    mStyle = mDesiredStyle;
 
@@ -457,11 +458,6 @@ void MeterPanel::UpdateSelectedPrefs(int id)
 {
    if (id == MeterPrefsID())
       UpdatePrefs();
-}
-
-void MeterPanel::OnErase(wxEraseEvent & WXUNUSED(event))
-{
-   // Ignore it to prevent flashing
 }
 
 void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))

@@ -1339,7 +1339,6 @@ DEFINE_EVENT_TYPE(EVT_FREQUENCYTEXTCTRL_UPDATED)
 DEFINE_EVENT_TYPE(EVT_BANDWIDTHTEXTCTRL_UPDATED)
 
 BEGIN_EVENT_TABLE(NumericTextCtrl, wxControl)
-   EVT_ERASE_BACKGROUND(NumericTextCtrl::OnErase)
    EVT_PAINT(NumericTextCtrl::OnPaint)
    EVT_CONTEXT_MENU(NumericTextCtrl::OnContext)
    EVT_MOUSE_EVENTS(NumericTextCtrl::OnMouse)
@@ -1367,6 +1366,8 @@ NumericTextCtrl::NumericTextCtrl(wxWindow *parent, wxWindowID id,
    mAutoPos(options.autoPos)
    , mType(type)
 {
+   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
+
    mAllowInvalidValue = false;
 
    mDigitBoxW = 11;
@@ -1694,11 +1695,6 @@ void NumericTextCtrl::Fit()
    sz.y = mHeight + (sz.y - csz.y);
 
    SetInitialSize(sz);
-}
-
-void NumericTextCtrl::OnErase(wxEraseEvent & WXUNUSED(event))
-{
-   // Ignore it to prevent flashing
 }
 
 void NumericTextCtrl::OnPaint(wxPaintEvent & WXUNUSED(event))

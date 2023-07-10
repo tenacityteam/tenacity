@@ -366,7 +366,6 @@ void ToolBarConfiguration::Write
 
 BEGIN_EVENT_TABLE( ToolDock, wxPanelWrapper )
    EVT_GRABBER( wxID_ANY, ToolDock::OnGrabber )
-   EVT_ERASE_BACKGROUND( ToolDock::OnErase )
    EVT_PAINT( ToolDock::OnPaint )
    EVT_SIZE( ToolDock::OnSize )
    EVT_MOUSE_EVENTS( ToolDock::OnMouseEvents )
@@ -380,6 +379,7 @@ ToolDock::ToolDock( wxEvtHandler *manager, wxWindow *parent, int dockid ):
 {
    SetLabel( XO( "ToolDock" ) );
    SetName( XO( "ToolDock" ) );
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
 
    // Init
    mManager = manager;
@@ -875,14 +875,6 @@ void ToolDock::OnGrabber( GrabberEvent & event )
 void ToolDock::OnSize( wxSizeEvent & WXUNUSED(event) )
 {
 //   event.Skip();
-}
-
-//
-// Prevent flicker
-//
-void ToolDock::OnErase( wxEraseEvent & WXUNUSED(event) )
-{
-   // Ignore it to prevent flashing
 }
 
 //

@@ -511,7 +511,6 @@ public:
    virtual ~LadspaEffectMeter();
 
 private:
-   void OnErase(wxEraseEvent & evt);
    void OnPaint(wxPaintEvent & evt);
    void OnIdle(wxIdleEvent & evt);
    void OnSize(wxSizeEvent & evt);
@@ -527,7 +526,6 @@ private:
 
 BEGIN_EVENT_TABLE(LadspaEffectMeter, wxWindow)
    EVT_IDLE(LadspaEffectMeter::OnIdle)
-   EVT_ERASE_BACKGROUND(LadspaEffectMeter::OnErase)
    EVT_PAINT(LadspaEffectMeter::OnPaint)
    EVT_SIZE(LadspaEffectMeter::OnSize)
 END_EVENT_TABLE()
@@ -536,6 +534,8 @@ LadspaEffectMeter::LadspaEffectMeter(wxWindow *parent, const float & val, float 
 :  wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDEFAULT_CONTROL_BORDER),
    mVal(val)
 {
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
+
    mMin = min;
    mMax = max;
    mLastValue = -mVal;
@@ -554,11 +554,6 @@ void LadspaEffectMeter::OnIdle(wxIdleEvent &evt)
    {
       Refresh(false);
    }
-}
-
-void LadspaEffectMeter::OnErase(wxEraseEvent & WXUNUSED(evt))
-{
-   // Just ignore it to prevent flashing
 }
 
 void LadspaEffectMeter::OnPaint(wxPaintEvent & WXUNUSED(evt))

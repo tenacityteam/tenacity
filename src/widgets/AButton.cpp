@@ -126,7 +126,6 @@ BEGIN_EVENT_TABLE(AButton, wxWindow)
    EVT_KILL_FOCUS(AButton::OnKillFocus)
    EVT_PAINT(AButton::OnPaint)
    EVT_SIZE(AButton::OnSize)
-   EVT_ERASE_BACKGROUND(AButton::OnErase)
 END_EVENT_TABLE()
 
 // LL:  An alternative to this might be to just use the wxEVT_KILL_FOCUS
@@ -231,6 +230,7 @@ void AButton::Init(wxWindow * parent,
    // that OnKeyDown now has to handle navigation.
    Create(parent, id, pos, size, wxWANTS_CHARS);
 
+   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    mWasShiftDown = false;
    mWasControlDown = false;
    mButtonIsDown = false;
@@ -394,11 +394,6 @@ void AButton::OnPaint(wxPaintEvent & WXUNUSED(event))
    {
       AColor::DrawFocus( dc, mFocusRect );
    }
-}
-
-void AButton::OnErase(wxEraseEvent & WXUNUSED(event))
-{
-   // Ignore it to prevent flashing
 }
 
 void AButton::OnSize(wxSizeEvent & WXUNUSED(event))

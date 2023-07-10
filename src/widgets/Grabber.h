@@ -126,7 +126,6 @@ class TENACITY_DLL_API Grabber final : public wxWindow
    void OnLeftUp(wxMouseEvent & event);
    void OnEnter(wxMouseEvent & event);
    void OnLeave(wxMouseEvent & event);
-   void OnErase(wxEraseEvent & event);
    void OnPaint(wxPaintEvent & event);
    void OnKeyDown(wxKeyEvent & event);
 
@@ -163,11 +162,9 @@ class TENACITY_DLL_API AStaticBitmap : public wxStaticBitmap {
                    size ,
                    style,
                    name )
-    {};
-    void OnErase(wxEraseEvent& event) {
-       static_cast<void>(event);
+    {
+       SetBackgroundStyle(wxBG_STYLE_SYSTEM);
     };
-    DECLARE_EVENT_TABLE()
 };
 
 

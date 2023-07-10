@@ -81,7 +81,6 @@ public:
    bool AcceptsFocusFromKeyboard() const override {return false;}
 
 private:
-   void OnErase(wxEraseEvent & event);
    void OnPaint(wxPaintEvent & event);
    void OnLeftDown(wxMouseEvent & event);
    void OnLeftUp(wxMouseEvent & event);
@@ -105,7 +104,6 @@ private:
 // Event table
 //
 BEGIN_EVENT_TABLE( ToolBarResizer, wxWindow )
-   EVT_ERASE_BACKGROUND( ToolBarResizer::OnErase )
    EVT_PAINT( ToolBarResizer::OnPaint )
    EVT_LEFT_DOWN( ToolBarResizer::OnLeftDown )
    EVT_LEFT_UP( ToolBarResizer::OnLeftUp )
@@ -120,6 +118,7 @@ ToolBarResizer::ToolBarResizer(ToolBar *bar)
 :  wxWindow(bar, wxID_ANY, wxDefaultPosition, wxSize(RWIDTH, -1))
 {
    mBar = bar;
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
    SetCursor( wxCURSOR_SIZEWE );
 }
 
@@ -127,14 +126,6 @@ ToolBarResizer::~ToolBarResizer()
 {
    if(HasCapture())
       ReleaseMouse();
-}
-
-//
-// Handle background erasure
-//
-void ToolBarResizer::OnErase( wxEraseEvent & WXUNUSED(event) )
-{
-   // Ignore it to prevent flashing
 }
 
 //
@@ -316,7 +307,6 @@ DEFINE_EVENT_TYPE(EVT_TOOLBAR_UPDATED)
 //
 BEGIN_EVENT_TABLE( ToolBar, wxPanelWrapper )
    EVT_PAINT( ToolBar::OnPaint )
-   EVT_ERASE_BACKGROUND( ToolBar::OnErase )
    EVT_MOUSE_EVENTS( ToolBar::OnMouseEvents )
 END_EVENT_TABLE()
 
@@ -331,6 +321,8 @@ ToolBar::ToolBar( TenacityProject &project,
 : wxPanelWrapper()
 , mProject{ project }
 {
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
+
    // Save parameters
    mType = type;
    mLabel = label;
@@ -913,14 +905,6 @@ void ToolBar::SetButton( bool down, AButton * button )
    {
       button->PopUp();
    }
-}
-
-//
-// Handle background erasure
-//
-void ToolBar::OnErase( wxEraseEvent & WXUNUSED(event) )
-{
-   // Ignore it to prevent flashing
 }
 
 //

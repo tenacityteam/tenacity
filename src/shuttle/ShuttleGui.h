@@ -396,9 +396,6 @@ public:
 
    void EndNotebookPage();
 
-   wxPanel * StartInvisiblePanel();
-   void EndInvisiblePanel();
-
    // SettingName is a key in Preferences.
    void StartRadioButtonGroup( const ChoiceSetting &Setting );
    void EndRadioButtonGroup();

@@ -24,10 +24,5 @@ class TENACITY_DLL_API AuStaticText : public wxWindow
         void OnPaint(wxPaintEvent & evt);
         bool AcceptsFocus() const override { return false; }
 
-        void OnErase(wxEraseEvent& event)
-        {
-            static_cast<void>(event);
-        };
-
         DECLARE_EVENT_TABLE();
 };

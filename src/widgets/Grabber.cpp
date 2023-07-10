@@ -47,7 +47,6 @@ BEGIN_EVENT_TABLE(Grabber, wxWindow)
    EVT_LEAVE_WINDOW(Grabber::OnLeave)
    EVT_LEFT_DOWN(Grabber::OnLeftDown)
    EVT_LEFT_UP(Grabber::OnLeftUp)
-   EVT_ERASE_BACKGROUND( Grabber::OnErase )
    EVT_PAINT(Grabber::OnPaint)
    EVT_KEY_DOWN(Grabber::OnKeyDown)
 END_EVENT_TABLE()
@@ -65,6 +64,7 @@ Grabber::Grabber(wxWindow * parent, wxWindowID id)
    mOver = false;
    mPressed = false;
    mAsSpacer = false;
+   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    SetBackgroundColour( theTheme.Colour( clrMedium ) );
 
    /* i18n-hint: A 'Grabber' is a region you can click and drag on
@@ -264,11 +264,6 @@ void Grabber::OnLeave(wxMouseEvent & WXUNUSED(event))
    }
 }
 
-void Grabber::OnErase( wxEraseEvent & WXUNUSED(event) )
-{
-   // Ignore it to prevent flashing
-}
-
 //
 // Handle the paint events
 //
@@ -291,11 +286,3 @@ void Grabber::OnKeyDown(wxKeyEvent &event)
       SendEvent(EVT_GRABBER_CLICKED, wxPoint{ -1, -1 }, true);
    }
 }
-
-// Piggy back in same source file as Grabber.
-// Audacity Flicker-free StaticBitmap.
-BEGIN_EVENT_TABLE(AStaticBitmap,wxStaticBitmap)
-    EVT_ERASE_BACKGROUND(AStaticBitmap::OnErase)
-END_EVENT_TABLE()
-
-

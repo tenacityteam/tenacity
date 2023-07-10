@@ -16,12 +16,12 @@
 
 BEGIN_EVENT_TABLE(AuStaticText, wxWindow)
     EVT_PAINT(AuStaticText::OnPaint)
-    EVT_ERASE_BACKGROUND(AuStaticText::OnErase)
 END_EVENT_TABLE()
  
 AuStaticText::AuStaticText(wxWindow* parent, wxString textIn) :
  wxWindow(parent, wxID_ANY)
 {
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
    int textWidth, textHeight;
 
    int fontSize = 11;

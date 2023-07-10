@@ -225,7 +225,6 @@ public:
    virtual void Populate() = 0;
    virtual void Repaint(wxDC *dc) = 0;
 
-   void OnErase(wxEraseEvent & event);
    void OnPaint(wxPaintEvent & event);
    void OnMouseEvents(wxMouseEvent &event);
 

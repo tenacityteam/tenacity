@@ -108,7 +108,6 @@ public:
    virtual ~LV2EffectMeter();
 
 private:
-   void OnErase(wxEraseEvent &evt);
    void OnPaint(wxPaintEvent &evt);
    void OnIdle(wxIdleEvent &evt);
    void OnSize(wxSizeEvent &evt);
@@ -122,7 +121,6 @@ private:
 
 BEGIN_EVENT_TABLE(LV2EffectMeter, wxWindow)
    EVT_IDLE(LV2EffectMeter::OnIdle)
-   EVT_ERASE_BACKGROUND(LV2EffectMeter::OnErase)
    EVT_PAINT(LV2EffectMeter::OnPaint)
    EVT_SIZE(LV2EffectMeter::OnSize)
 END_EVENT_TABLE()
@@ -133,6 +131,7 @@ LV2EffectMeter::LV2EffectMeter(wxWindow *parent, const LV2ControlPortPtr port)
 {
    mLastValue = -mControlPort->mVal;
 
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
    SetBackgroundColour(*wxWHITE);
 }
 
@@ -147,11 +146,6 @@ void LV2EffectMeter::OnIdle(wxIdleEvent &evt)
    {
       Refresh(false);
    }
-}
-
-void LV2EffectMeter::OnErase(wxEraseEvent &WXUNUSED(evt))
-{
-   // Just ignore it to prevent flashing
 }
 
 void LV2EffectMeter::OnPaint(wxPaintEvent &WXUNUSED(evt))

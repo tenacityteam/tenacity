@@ -92,7 +92,6 @@ class TENACITY_DLL_API AButton final : public wxWindow {
    void PushDown();
    void PopUp();
 
-   void OnErase(wxEraseEvent & event);
    void OnPaint(wxPaintEvent & event);
    void OnSize(wxSizeEvent & event);
    void OnMouseEvent(wxMouseEvent & event);

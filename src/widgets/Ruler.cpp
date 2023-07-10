@@ -1678,7 +1678,6 @@ void Ruler::SetUseZoomInfo(int leftOffset, const ZoomInfo *zoomInfo)
 //
 
 BEGIN_EVENT_TABLE(RulerPanel, wxPanelWrapper)
-   EVT_ERASE_BACKGROUND(RulerPanel::OnErase)
    EVT_PAINT(RulerPanel::OnPaint)
    EVT_SIZE(RulerPanel::OnSize)
 END_EVENT_TABLE()
@@ -1694,6 +1693,8 @@ RulerPanel::RulerPanel(wxWindow* parent, wxWindowID id,
                        const wxSize& size /*= wxDefaultSize*/):
    wxPanelWrapper(parent, id, pos, size)
 {
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
+
    ruler.SetBounds( 0, 0, bounds.x, bounds.y );
    ruler.SetOrientation(orientation);
    ruler.SetRange( range.first, range.second );
@@ -1719,11 +1720,6 @@ RulerPanel::RulerPanel(wxWindow* parent, wxWindowID id,
 
 RulerPanel::~RulerPanel()
 {
-}
-
-void RulerPanel::OnErase(wxEraseEvent & WXUNUSED(evt))
-{
-   // Ignore it to prevent flashing
 }
 
 void RulerPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))

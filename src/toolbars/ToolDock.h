@@ -321,7 +321,6 @@ public:
 
  protected:
 
-   void OnErase( wxEraseEvent & event );
    void OnSize( wxSizeEvent & event );
    void OnPaint( wxPaintEvent & event );
    void OnGrabber( GrabberEvent & event );
