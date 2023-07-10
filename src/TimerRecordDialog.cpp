@@ -142,8 +142,6 @@ BEGIN_EVENT_TABLE(TimerRecordDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_OK, TimerRecordDialog::OnOK)
    EVT_BUTTON(wxID_HELP, TimerRecordDialog::OnHelpButtonClick)
 
-   EVT_TIMER(TIMER_ID, TimerRecordDialog::OnTimer)
-
    EVT_BUTTON(ID_AUTOSAVEPATH_BUTTON, TimerRecordDialog::OnAutoSavePathButton_Click)
    EVT_BUTTON(ID_AUTOEXPORTPATH_BUTTON, TimerRecordDialog::OnAutoExportPathButton_Click)
 
@@ -177,6 +175,14 @@ TimerRecordDialog::TimerRecordDialog(
    // Do we allow the user to change the Automatic Save file?
    m_bProjectAlreadySaved = bAlreadySaved;
 
+   Bind(
+      wxEVT_TIMER,
+      [this](wxTimerEvent&){
+         OnTimer();
+      },
+      TIMER_ID
+   );
+
    ShuttleGui S(this, eIsCreating);
    this->PopulateOrExchange(S);
 
@@ -193,10 +199,11 @@ TimerRecordDialog::~TimerRecordDialog()
 {
 }
 
-void TimerRecordDialog::OnTimer(wxTimerEvent& WXUNUSED(event))
+void TimerRecordDialog::OnTimer()
 {
    wxDateTime dateTime_UNow = wxDateTime::UNow();
-   if (m_DateTime_Start < dateTime_UNow) {
+   if (m_DateTime_Start < dateTime_UNow)
+   {
       m_DateTime_Start = dateTime_UNow;
       m_pDatePickerCtrl_Start->SetValue(m_DateTime_Start);
       m_pTimeTextCtrl_Start->SetValue(wxDateTime_to_AudacityTime(m_DateTime_Start));
@@ -217,8 +224,7 @@ void TimerRecordDialog::OnDatePicker_Start(wxDateEvent& WXUNUSED(event))
 
    // User might have had the dialog up for a while, or
    // had a future day, set hour of day less than now's, then changed day to today.
-   wxTimerEvent dummyTimerEvent;
-   this->OnTimer(dummyTimerEvent);
+   OnTimer();
 
    // Always update End for changed Start, keeping Duration constant.
    // Note that OnTimer sometimes calls UpdateEnd, so sometimes this is redundant,
@@ -532,8 +538,7 @@ int TimerRecordDialog::RunWaitDialog()
 
          // Make sure that start and end time are updated, so we always get the full
          // duration, even if there's some delay getting here.
-         wxTimerEvent dummyTimerEvent;
-         this->OnTimer(dummyTimerEvent);
+         OnTimer();
 
          // Loop for progress display during recording.
          while (bIsRecording && (updateResult == ProgressResult::Success)) {
