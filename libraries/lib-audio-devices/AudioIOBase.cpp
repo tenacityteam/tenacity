@@ -706,14 +706,14 @@ std::string AudioIOBase::GetMidiDeviceInfo()
    // Not internationalizing these alpha-only messages
    s << std::string("==============================") << std::endl;
 #ifdef EXPERIMENTAL_MIDI_OUT
-   s << "EXPERIMENTAL_MIDI_OUT is enabled" << std::endl;
+   s << std::string("EXPERIMENTAL_MIDI_OUT is enabled") << std::endl;
 #else
-   s << "EXPERIMENTAL_MIDI_OUT is NOT enabled" << std::endl;
+   s << std::string("EXPERIMENTAL_MIDI_OUT is NOT enabled") << std::endl;
 #endif
 #ifdef EXPERIMENTAL_MIDI_IN
-   s << "EXPERIMENTAL_MIDI_IN is enabled" << std::endl;
+   s << std::string("EXPERIMENTAL_MIDI_IN is enabled") << std::endl;
 #else
-   s << "EXPERIMENTAL_MIDI_IN is NOT enabled" << std::endl;
+   s << std::string("EXPERIMENTAL_MIDI_IN is NOT enabled") << std::endl;
 #endif
 
 #endif
