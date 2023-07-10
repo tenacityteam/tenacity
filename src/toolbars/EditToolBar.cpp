@@ -61,8 +61,6 @@
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
 
-IMPLEMENT_CLASS(EditToolBar, ToolBar);
-
 const int BUTTON_WIDTH = 27;
 const int SEPARATOR_WIDTH = 14;
 

@@ -49,8 +49,6 @@ It \TODO: description
 
 static std::unique_ptr<ScoreAlignDialog> gScoreAlignDialog{};
 
-//IMPLEMENT_CLASS(ScoreAlignDialog, wxDialogWrapper)
-
 ScoreAlignDialog::ScoreAlignDialog(ScoreAlignParams &params)
    : wxDialogWrapper(NULL, -1, XO("Align MIDI to Audio"),
               wxDefaultPosition, wxDefaultSize,

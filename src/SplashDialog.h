@@ -21,7 +21,6 @@ class HtmlWindow;
 /// Tenacity's welcome dialog. This should probably be renamed to
 /// WelcomeDialog (or something alone the likes) which might happen in the future.
 class SplashDialog final : public wxDialogWrapper {
-   DECLARE_DYNAMIC_CLASS(SplashDialog)
 public:
 
    static void DoHelpWelcome( TenacityProject &project );

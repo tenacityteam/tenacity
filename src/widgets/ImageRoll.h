@@ -68,8 +68,6 @@ class TENACITY_DLL_API ImageRoll
 class ImageRollPanel final : public wxPanelWrapper
 {
  public:
-   DECLARE_DYNAMIC_CLASS(ImageRollPanel)
-
    ImageRollPanel(wxWindow *parent,
                   wxWindowID id,
                   //ImageRoll &imgRoll,

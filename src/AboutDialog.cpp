@@ -314,8 +314,6 @@ BEGIN_EVENT_TABLE(AboutDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_OK, AboutDialog::OnOK)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(AboutDialog, wxDialogWrapper)
-
 namespace {
    AboutDialog *sActiveInstance{};
 }

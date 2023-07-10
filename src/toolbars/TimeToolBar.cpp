@@ -34,8 +34,6 @@
 #include "../ProjectSettings.h"
 #include "ViewInfo.h"
 
-IMPLEMENT_CLASS(TimeToolBar, ToolBar);
-
 // Having a fixed ID for the Audio Position is helpful for
 // the Jaws screen reader script for Audacity.
 enum {

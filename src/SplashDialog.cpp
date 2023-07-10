@@ -59,8 +59,6 @@ BEGIN_EVENT_TABLE(SplashDialog, wxDialogWrapper)
    EVT_CHECKBOX( DontShowID, SplashDialog::OnDontShow )
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(SplashDialog, wxDialogWrapper)
-
 void SplashDialog::DoHelpWelcome( TenacityProject &project )
 {
    Show2( &GetProjectFrame( project ) );

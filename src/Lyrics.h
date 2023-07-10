@@ -75,15 +75,13 @@ class LyricsPanel final
    : public wxPanelWrapper
    , public NonKeystrokeInterceptingWindow
 {
-   DECLARE_DYNAMIC_CLASS(LyricsPanel)
-
+public:
    enum LyricsStyle {
       kBouncingBallLyrics, // Lyrics move from right to left with bouncing ball.
       // kGuitarTab,       //v <<future>> Guitar Tablature moves from right to left.
       kHighlightLyrics,    // Lyrics show in scrolling page and syllables highlight successively.
    };
 
- public:
    LyricsPanel(wxWindow* parent, wxWindowID id,
           TenacityProject *project,
           const wxPoint& pos = wxDefaultPosition,

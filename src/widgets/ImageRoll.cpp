@@ -443,8 +443,6 @@ BEGIN_EVENT_TABLE(ImageRollPanel, wxPanelWrapper)
    EVT_SIZE(ImageRollPanel::OnSize)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(ImageRollPanel, wxPanelWrapper)
-
 ImageRollPanel::ImageRollPanel(wxWindow *parent,
                                wxWindowID id,
                                //ImageRoll &imgRoll,

@@ -249,9 +249,6 @@ public:
    bool mPositioned; // true if position floating determined.
    bool mEditMode;
 
- public:
-
-   DECLARE_CLASS(ToolBar)
    DECLARE_EVENT_TABLE()
 
    friend class ToolBarResizer;

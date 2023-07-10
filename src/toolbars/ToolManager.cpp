@@ -312,8 +312,6 @@ void ToolFrame::Resize( const wxSize &size )
    Refresh( false );
 }
 
-IMPLEMENT_CLASS( ToolFrame, wxFrame );
-
 BEGIN_EVENT_TABLE( ToolFrame, wxFrame )
    EVT_GRABBER( wxID_ANY, ToolFrame::OnGrabber )
    EVT_PAINT( ToolFrame::OnPaint )
@@ -323,8 +321,6 @@ BEGIN_EVENT_TABLE( ToolFrame, wxFrame )
    EVT_COMMAND( wxID_ANY, EVT_TOOLBAR_UPDATED, ToolFrame::OnToolBarUpdate )
    EVT_KEY_DOWN( ToolFrame::OnKeyDown )
 END_EVENT_TABLE()
-
-IMPLEMENT_CLASS( ToolManager, wxEvtHandler );
 
 ////////////////////////////////////////////////////////////
 /// Methods for ToolManager

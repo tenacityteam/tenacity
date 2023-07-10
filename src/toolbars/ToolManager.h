@@ -153,9 +153,6 @@ class TENACITY_DLL_API ToolManager final
    bool mDidDrag{};
    bool mClicked{};
 
- public:
-
-   DECLARE_CLASS( ToolManager )
    DECLARE_EVENT_TABLE()
 };
 
@@ -213,9 +210,6 @@ private:
    wxSize mMinSize;
    wxSize mOrigSize;
 
-public:
-
-   DECLARE_CLASS( ToolFrame )
    DECLARE_EVENT_TABLE()
 };
 

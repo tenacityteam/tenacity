@@ -1683,8 +1683,6 @@ BEGIN_EVENT_TABLE(RulerPanel, wxPanelWrapper)
    EVT_SIZE(RulerPanel::OnSize)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(RulerPanel, wxPanelWrapper)
-
 RulerPanel::RulerPanel(wxWindow* parent, wxWindowID id,
                        wxOrientation orientation,
                        const wxSize &bounds,

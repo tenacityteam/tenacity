@@ -76,9 +76,6 @@ private:
 
    int mHeight;   // height of main sizer after creation - used by OnChoice()
 
-public:
-
-   DECLARE_CLASS(SpectralSelectionBar)
    DECLARE_EVENT_TABLE()
 };
 

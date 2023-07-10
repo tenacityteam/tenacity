@@ -85,8 +85,6 @@ BEGIN_EVENT_TABLE(LyricsPanel, wxPanelWrapper)
    //    EVT_COMMAND_LEFT_CLICK(kHighlightTextCtrlID, LyricsPanel::OnHighlightTextCtrl)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(LyricsPanel, wxPanel)
-
 LyricsPanel::LyricsPanel(wxWindow* parent, wxWindowID id,
                TenacityProject *project,
                const wxPoint& pos /*= wxDefaultPosition*/,

@@ -59,9 +59,6 @@ private:
    static const int minDigitH = 17;
    static const int maxDigitH = 100;
 
-public:
-   
-   DECLARE_CLASS(TimeToolBar)
    DECLARE_EVENT_TABLE()
 };
 

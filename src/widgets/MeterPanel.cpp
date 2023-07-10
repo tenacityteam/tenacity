@@ -284,8 +284,6 @@ BEGIN_EVENT_TABLE(MeterPanel, MeterPanelBase)
    EVT_MENU(OnPreferencesID, MeterPanel::OnPreferences)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(MeterPanel, wxPanelWrapper)
-
 MeterPanel::MeterPanel(TenacityProject *project,
              wxWindow* parent, wxWindowID id,
              bool isInput,

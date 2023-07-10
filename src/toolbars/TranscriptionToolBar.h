@@ -151,9 +151,6 @@ class TranscriptionToolBar final : public ToolBar {
 
    std::shared_ptr<BoundedEnvelope> mEnvelope;
 
- public:
-
-   DECLARE_CLASS(TranscriptionToolBar)
    DECLARE_EVENT_TABLE()
 };
 

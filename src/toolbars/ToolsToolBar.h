@@ -70,9 +70,6 @@ class ToolsToolBar final : public ToolBar {
    wxGridSizer *mToolSizer;
    int mCurrentTool;
 
- public:
-
-   DECLARE_CLASS(ToolsToolBar)
    DECLARE_EVENT_TABLE()
 };
 

@@ -69,8 +69,6 @@ with changes in the SpectralSelectionBar.
 
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
 
-IMPLEMENT_CLASS(SpectralSelectionBar, ToolBar);
-
 enum {
    SpectralSelectionBarFirstID = 2750,
    OnCenterID,

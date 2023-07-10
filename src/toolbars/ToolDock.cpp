@@ -355,8 +355,6 @@ void ToolBarConfiguration::Write
    gPrefs->Write( wxT("Show"), bar->IsVisible() );
 }
 
-IMPLEMENT_CLASS( ToolDock, wxPanelWrapper );
-
 ////////////////////////////////////////////////////////////
 /// Methods for ToolDock
 ////////////////////////////////////////////////////////////

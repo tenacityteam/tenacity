@@ -64,8 +64,6 @@ class MeterToolBar final : public ToolBar {
    MeterPanel *mRecordMeter;
 
  public:
-
-   DECLARE_CLASS(MeterToolBar)
    DECLARE_EVENT_TABLE()
 
 };

@@ -107,8 +107,6 @@ BEGIN_EVENT_TABLE(ExpandingToolBar, wxPanelWrapper)
    EVT_BUTTON(kToggleButtonID, ExpandingToolBar::OnToggle)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(ExpandingToolBar, wxPanelWrapper)
-
 //static
 int ExpandingToolBar::msNoAutoExpandStack = 0;
 
@@ -660,8 +658,6 @@ BEGIN_EVENT_TABLE(ToolBarGrabber, wxPanelWrapper)
    EVT_MOUSE_EVENTS(ToolBarGrabber::OnMouse)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(ToolBarGrabber, wxPanelWrapper)
-
 ToolBarGrabber::ToolBarGrabber(wxWindow *parent,
                                wxWindowID id,
                                ExpandingToolBar *ownerToolbar,
@@ -734,8 +730,6 @@ void ToolBarGrabber::OnSize(wxSizeEvent & WXUNUSED(event))
 BEGIN_EVENT_TABLE(ToolBarDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(ToolBarDialog, wxDialogWrapper)
-
 ToolBarDialog::ToolBarDialog(wxWindow* parent,
                            wxWindowID id,
                            const TranslatableString& name,
@@ -785,8 +779,6 @@ void ToolBarDialog::Fit()
 
 BEGIN_EVENT_TABLE(ToolBarFrame, wxMiniFrame)
 END_EVENT_TABLE()
-
-IMPLEMENT_CLASS(ToolBarFrame, wxMiniFrame)
 
 ToolBarFrame::ToolBarFrame(wxWindow* parent,
                            wxWindowID id,
@@ -839,8 +831,6 @@ BEGIN_EVENT_TABLE(ToolBarArea, wxPanelWrapper)
    EVT_SIZE(ToolBarArea::OnSize)
    EVT_MOUSE_EVENTS(ToolBarArea::OnMouse)
 END_EVENT_TABLE()
-
-IMPLEMENT_CLASS(ToolBarArea, wxPanelWrapper)
 
 ToolBarArea::ToolBarArea(wxWindow* parent,
                          wxWindowID id,

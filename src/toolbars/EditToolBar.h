@@ -100,9 +100,6 @@ class EditToolBar final : public ToolBar {
    wxImage *downImage;
    wxImage *hiliteImage;
 
- public:
-
-   DECLARE_CLASS(EditToolBar)
    DECLARE_EVENT_TABLE()
 };
 

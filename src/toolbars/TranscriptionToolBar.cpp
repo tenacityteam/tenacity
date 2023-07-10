@@ -54,8 +54,6 @@
 #include "../ProjectWindow.h"
 #endif
 
-IMPLEMENT_CLASS(TranscriptionToolBar, ToolBar);
-
 ///////////////////////////////////////////
 ///  Methods for TranscriptionToolBar
 ///////////////////////////////////////////

@@ -131,9 +131,6 @@ class TENACITY_DLL_API ControlToolBar final : public ToolBar {
 
    wxBoxSizer *mSizer;
 
- public:
-
-   DECLARE_CLASS(ControlToolBar)
    DECLARE_EVENT_TABLE()
 };
 

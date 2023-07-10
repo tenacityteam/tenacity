@@ -97,8 +97,6 @@ or playback.
 class TENACITY_DLL_API MeterPanel final
    : public MeterPanelBase, private PrefsListener
 {
-   DECLARE_DYNAMIC_CLASS(MeterPanel)
-
  public:
    // These should be kept in the same order as they appear
    // in the menu

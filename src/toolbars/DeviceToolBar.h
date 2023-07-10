@@ -74,9 +74,6 @@ class DeviceToolBar final : public ToolBar {
    wxChoice *mInputChannels;
    wxChoice *mHost;
 
- public:
-
-   DECLARE_CLASS(DeviceToolBar)
    DECLARE_EVENT_TABLE()
 };
 

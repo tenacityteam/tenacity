@@ -40,9 +40,6 @@ public:
    wxEvent *Clone() const override;
    void SetCommand(const OldStyleCommandPointer &cmd);
    OldStyleCommandPointer GetCommand();
-
-private:
-   DECLARE_DYNAMIC_CLASS(AppCommandEvent)
 };
 
 typedef void (wxEvtHandler::*wxAppCommandEventFunction)(AppCommandEvent&);

@@ -25,7 +25,6 @@ event loop.
 #include "AppCommandEvent.h"
 
 DEFINE_EVENT_TYPE(wxEVT_APP_COMMAND_RECEIVED)
-IMPLEMENT_DYNAMIC_CLASS(AppCommandEvent, wxEvent)
 
 AppCommandEvent::AppCommandEvent(wxEventType commandType, int id)
 : wxCommandEvent(commandType, id)

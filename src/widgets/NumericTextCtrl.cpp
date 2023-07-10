@@ -1350,8 +1350,6 @@ BEGIN_EVENT_TABLE(NumericTextCtrl, wxControl)
    EVT_COMMAND(wxID_ANY, EVT_CAPTURE_KEY, NumericTextCtrl::OnCaptureKey)
 END_EVENT_TABLE()
 
-IMPLEMENT_CLASS(NumericTextCtrl, wxControl)
-
 NumericTextCtrl::NumericTextCtrl(wxWindow *parent, wxWindowID id,
                            NumericConverter::Type type,
                            const NumericFormatSymbol &formatName,

@@ -74,9 +74,6 @@ private:
 
    void OnIdle( wxIdleEvent &evt );
 
-public:
-
-   DECLARE_CLASS(ScrubbingToolBar)
    DECLARE_EVENT_TABLE()
 
 private:

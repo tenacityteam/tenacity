@@ -307,11 +307,6 @@ void ToolBarResizer::OnKeyDown(wxKeyEvent &event)
 ////////////////////////////////////////////////////////////
 
 //
-// Define class to RTTI
-//
-IMPLEMENT_CLASS( ToolBar, wxPanelWrapper );
-
-//
 // Custom event
 //
 DEFINE_EVENT_TYPE(EVT_TOOLBAR_UPDATED)

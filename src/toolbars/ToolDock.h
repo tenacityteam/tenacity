@@ -344,9 +344,6 @@ public:
 
    ToolBar *mBars[ ToolBarCount ];
 
- public:
-
-   DECLARE_CLASS( ToolDock )
    DECLARE_EVENT_TABLE()
 };
 

@@ -218,8 +218,6 @@ private:
 };
 
 class TENACITY_DLL_API RulerPanel final : public wxPanelWrapper {
-   DECLARE_DYNAMIC_CLASS(RulerPanel)
-
  public:
    using Range = std::pair<double, double>;
 

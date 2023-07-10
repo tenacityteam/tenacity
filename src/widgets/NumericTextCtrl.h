@@ -172,8 +172,6 @@ class TENACITY_DLL_API NumericTextCtrl final
    friend class NumericTextCtrlAx;
 
  public:
-   DECLARE_DYNAMIC_CLASS(NumericTextCtrl)
-
    struct Options {
       bool autoPos { true };
       bool readOnly { false };
