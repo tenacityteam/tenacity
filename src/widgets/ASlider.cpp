@@ -182,6 +182,8 @@ TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
 : wxPopupWindow(parent, wxFRAME_SHAPED | wxBORDER_NONE | wxFRAME_FLOAT_ON_PARENT | wxPU_CONTAINS_CONTROLS)
 #endif
 {
+   Bind(wxEVT_PAINT, &TipWindow::OnPaint, this);
+
    SetBackgroundStyle(wxBG_STYLE_PAINT);
    SetBackgroundColour(wxTransparentColour);
    Bind(wxEVT_PAINT, &TipWindow::OnPaint, this);

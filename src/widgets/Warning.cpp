@@ -40,13 +40,7 @@ class WarningDialog final : public wxDialogWrapper
    void OnOK(wxCommandEvent& event);
 
    wxCheckBox *mCheckBox;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(WarningDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, WarningDialog::OnOK)
-END_EVENT_TABLE()
 
 const TranslatableString &DefaultWarningFooter()
 {
@@ -61,6 +55,8 @@ WarningDialog::WarningDialog(wxWindow *parent, const TranslatableString &message
             wxDefaultPosition, wxDefaultSize,
             (showCancelButton ? wxDEFAULT_DIALOG_STYLE : wxCAPTION | wxSYSTEM_MENU)) // Unlike wxDEFAULT_DIALOG_STYLE, no wxCLOSE_BOX.
 {
+   Bind(wxEVT_BUTTON, &WarningDialog::OnOK, this, wxID_OK);
+
    SetName();
 
    SetIcon(wxArtProvider::GetIcon(wxART_WARNING, wxART_MESSAGE_BOX));

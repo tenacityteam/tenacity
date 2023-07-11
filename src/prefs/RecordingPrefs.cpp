@@ -34,18 +34,14 @@
 
 using std::min;
 
-enum {
-   UseCustomTrackNameID = 1000,
-};
-
-BEGIN_EVENT_TABLE(RecordingPrefs, PrefsPanel)
-   EVT_CHECKBOX(UseCustomTrackNameID, RecordingPrefs::OnToggleCustomName)
-END_EVENT_TABLE()
+constexpr int UseCustomTrackNameID = 1000;
 
 RecordingPrefs::RecordingPrefs(wxWindow * parent, wxWindowID winid)
 // i18n-hint: modifier as in "Recording preferences", not progressive verb
 :  PrefsPanel(parent, winid, XC("Recording", "preference"))
 {
+   Bind(wxEVT_CHECKBOX, &RecordingPrefs::OnToggleCustomName, this, UseCustomTrackNameID);
+
    gPrefs->Read(wxT("/GUI/TrackNames/RecordingNameCustom"), &mUseCustomTrackName, false);
    mOldNameChoice = mUseCustomTrackName;
    Populate();

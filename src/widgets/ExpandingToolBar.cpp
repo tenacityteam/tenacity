@@ -727,9 +727,6 @@ void ToolBarGrabber::OnSize(wxSizeEvent & WXUNUSED(event))
 // ToolBarDialog
 //
 
-BEGIN_EVENT_TABLE(ToolBarDialog, wxDialogWrapper)
-END_EVENT_TABLE()
-
 ToolBarDialog::ToolBarDialog(wxWindow* parent,
                            wxWindowID id,
                            const TranslatableString& name,

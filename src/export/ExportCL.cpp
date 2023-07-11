@@ -69,21 +69,17 @@ public:
 private:
    wxComboBox *mCmd;
    FileHistory mHistory;
-
-   DECLARE_EVENT_TABLE()
 };
 
-#define ID_BROWSE 5000
-
-BEGIN_EVENT_TABLE(ExportCLOptions, wxPanelWrapper)
-   EVT_BUTTON(ID_BROWSE, ExportCLOptions::OnBrowse)
-END_EVENT_TABLE()
+constexpr int ID_BROWSE = 5000;
 
 ///
 ///
 ExportCLOptions::ExportCLOptions(wxWindow *parent, int WXUNUSED(format))
 :  wxPanelWrapper(parent, wxID_ANY)
 {
+   Bind(wxEVT_BUTTON, &ExportCLOptions::OnBrowse, this, ID_BROWSE);
+
    mHistory.Load(*gPrefs, wxT("/FileFormats/ExternalProgramHistory"));
 
    if (mHistory.empty()) {

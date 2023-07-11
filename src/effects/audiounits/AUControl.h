@@ -74,8 +74,6 @@ private:
    WindowRef mWindowRef;
    HIViewRef mHIView;
 #endif
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

@@ -50,15 +50,11 @@ enum {
    ChannelsID
 };
 
-BEGIN_EVENT_TABLE(MidiIOPrefs, PrefsPanel)
-   EVT_CHOICE(HostID, MidiIOPrefs::OnHost)
-//   EVT_CHOICE(RecordID, MidiIOPrefs::OnDevice)
-END_EVENT_TABLE()
-
 MidiIOPrefs::MidiIOPrefs(wxWindow * parent, wxWindowID winid)
 /* i18n-hint: untranslatable acronym for "Musical Instrument Device Interface" */
 :  PrefsPanel(parent, winid, XO("MIDI Devices"))
 {
+   Bind(wxEVT_CHOICE, &MidiIOPrefs::OnHost, this, HostID);
    Populate();
 }
 

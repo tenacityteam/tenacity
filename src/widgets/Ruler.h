@@ -276,9 +276,6 @@ class TENACITY_DLL_API RulerPanel final : public wxPanelWrapper {
  public:
 
    Ruler  ruler;
-
-private:
-    DECLARE_EVENT_TABLE()
 };
 
 #endif //define __AUDACITY_RULER__

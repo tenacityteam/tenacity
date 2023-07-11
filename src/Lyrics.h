@@ -155,8 +155,6 @@ private:
 
    wxWeakRef<TenacityProject> mProject;
    bool           mDelayedUpdate{ false };
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif // __AUDACITY_LYRICS__

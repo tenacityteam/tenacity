@@ -156,8 +156,6 @@ class ToolBarDialog final : public wxDialogWrapper
 
  protected:
    ExpandingToolBar *mChild;
-
-   DECLARE_EVENT_TABLE()
 };
 
 class ToolBarFrame final : public wxMiniFrame

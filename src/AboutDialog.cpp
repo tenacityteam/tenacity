@@ -310,10 +310,6 @@ void AboutDialog::CreateCreditsList()
 
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(AboutDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, AboutDialog::OnOK)
-END_EVENT_TABLE()
-
 namespace {
    AboutDialog *sActiveInstance{};
 }
@@ -331,6 +327,18 @@ AboutDialog::AboutDialog(wxWindow * parent)
 {
    wxASSERT(!sActiveInstance);
    sActiveInstance = this;
+
+   Bind(
+      wxEVT_BUTTON,
+      [this](wxCommandEvent&) {
+         #ifdef __WXMAC__
+            Destroy();
+         #else
+            EndModal(wxID_OK);
+         #endif
+      },
+      wxID_OK
+   );
 
    SetName();
    icon = NULL;
@@ -1132,13 +1140,4 @@ void AboutDialog::AddBuildinfoRow(
 AboutDialog::~AboutDialog()
 {
    sActiveInstance = {};
-}
-
-void AboutDialog::OnOK(wxCommandEvent & WXUNUSED(event))
-{
-#ifdef __WXMAC__
-   Destroy();
-#else
-   EndModal(wxID_OK);
-#endif
 }

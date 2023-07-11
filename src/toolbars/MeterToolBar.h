@@ -62,10 +62,6 @@ class MeterToolBar final : public ToolBar {
    wxGridBagSizer *mSizer;
    MeterPanel *mPlayMeter;
    MeterPanel *mRecordMeter;
-
- public:
-   DECLARE_EVENT_TABLE()
-
 };
 
 #endif

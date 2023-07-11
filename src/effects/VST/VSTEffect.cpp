@@ -767,13 +767,7 @@ private:
    int mBufferSize;
    bool mUseLatency;
    bool mUseGUI;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(VSTEffectOptionsDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, VSTEffectOptionsDialog::OnOk)
-END_EVENT_TABLE()
 
 VSTEffectOptionsDialog::VSTEffectOptionsDialog(wxWindow * parent,
    EffectHostInterface &host, EffectDefinitionInterface &effect)
@@ -781,6 +775,8 @@ VSTEffectOptionsDialog::VSTEffectOptionsDialog(wxWindow * parent,
 , mHost{ host }
 , mEffect{ effect }
 {
+   Bind(wxEVT_BUTTON, &VSTEffectOptionsDialog::OnOk, this, wxID_OK);
+
    mHost = host;
 
    GetConfig(mEffect, PluginSettings::Shared, wxT("Options"),

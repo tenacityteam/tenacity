@@ -125,17 +125,11 @@ public:
    bool mbSyncLocked;
    bool mbInSnapTo;
    bool mbSoundActivated;
-   DECLARE_EVENT_TABLE()
 };
 
 
 #define FixButtonID           7001
 #define HelpButtonID          7011
-
-BEGIN_EVENT_TABLE(QuickFixDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK,                                            QuickFixDialog::OnOk)
-   EVT_BUTTON(wxID_CANCEL,                                        QuickFixDialog::OnCancel)
-END_EVENT_TABLE();
 
 QuickFixDialog::QuickFixDialog(wxWindow * pParent, TenacityProject &project) :
       wxDialogWrapper(pParent, wxID_ANY, XO("Do you have these problems?"),
@@ -143,6 +137,9 @@ QuickFixDialog::QuickFixDialog(wxWindow * pParent, TenacityProject &project) :
             wxDEFAULT_DIALOG_STYLE )
       , mProject{ project }
 {
+   Bind(wxEVT_BUTTON, &QuickFixDialog::OnOk, this, wxID_OK);
+   Bind(wxEVT_BUTTON, &QuickFixDialog::OnCancel, this, wxID_CANCEL);
+
    const long SNAP_OFF = 0;
 
    gPrefs->Read(wxT("/GUI/SyncLockTracks"), &mbSyncLocked, false);

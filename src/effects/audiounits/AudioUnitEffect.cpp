@@ -516,13 +516,7 @@ private:
 
    bool mUseLatency;
    TranslatableString mUIType;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(AudioUnitEffectOptionsDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, AudioUnitEffectOptionsDialog::OnOk)
-END_EVENT_TABLE()
 
 AudioUnitEffectOptionsDialog::AudioUnitEffectOptionsDialog(wxWindow * parent,
    EffectHostInterface &host, EffectDefinitionInterface &effect)
@@ -530,6 +524,8 @@ AudioUnitEffectOptionsDialog::AudioUnitEffectOptionsDialog(wxWindow * parent,
 , mHost{ host }
 , mEffect{ effect }
 {
+   Bind(wxEVT_BUTTON, &AudioUnitEffectOptionsDialog::OnOk, this, wxID_OK);
+
    GetConfig(mEffect, PluginSettings::Shared, wxT("Options"),
       wxT("UseLatency"), mUseLatency, true);
 
@@ -658,17 +654,13 @@ private:
    AudioUnitEffect *mEffect;
 
    wxListCtrl *mList;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(AudioUnitEffectImportDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, AudioUnitEffectImportDialog::OnOk)
-END_EVENT_TABLE()
 
 AudioUnitEffectImportDialog::AudioUnitEffectImportDialog(wxWindow * parent, AudioUnitEffect *effect)
 :  wxDialogWrapper(parent, wxID_ANY, XO("Import Audio Unit Presets"))
 {
+   Bind(wxEVT_BUTTON, &AudioUnitEffectImportDialog::OnOk, this, wxID_OK);
+
    mEffect = effect;
 
    ShuttleGui S(this, eIsCreating);

@@ -74,20 +74,12 @@
 
 // Separate numerical range from the additional buttons
 // in the expanded view (which start at 10,000).
-#define MacrosListID       7001
-#define CommandsListID     7002
-#define ApplyToProjectID   7003
-#define ApplyToFilesID     7004
-#define ExpandID           7005
-#define ShrinkID           7006
-
-BEGIN_EVENT_TABLE(ApplyMacroDialog, wxDialogWrapper)
-   EVT_BUTTON(ApplyToProjectID, ApplyMacroDialog::OnApplyToProject)
-   EVT_BUTTON(ApplyToFilesID, ApplyMacroDialog::OnApplyToFiles)
-   EVT_BUTTON(wxID_CANCEL, ApplyMacroDialog::OnCancel)
-   EVT_BUTTON(wxID_CLOSE, ApplyMacroDialog::OnCancel)
-   EVT_BUTTON(wxID_HELP, ApplyMacroDialog::OnHelp)
-END_EVENT_TABLE()
+constexpr int MacrosListID     = 7001;
+constexpr int CommandsListID   = 7002;
+constexpr int ApplyToProjectID = 7003;
+constexpr int ApplyToFilesID   = 7004;
+constexpr int ExpandID         = 7005;
+constexpr int ShrinkID         = 7006;
 
 ApplyMacroDialog::ApplyMacroDialog(
    wxWindow * parent, TenacityProject &project, bool bInherited):
@@ -98,6 +90,12 @@ ApplyMacroDialog::ApplyMacroDialog(
    , mProject{ project }
    , mCatalog( &project )
 {
+   Bind(wxEVT_BUTTON, &ApplyMacroDialog::OnApplyToProject, this, ApplyToProjectID);
+   Bind(wxEVT_BUTTON, &ApplyMacroDialog::OnApplyToFiles, this, ApplyToFilesID);
+   Bind(wxEVT_BUTTON, &ApplyMacroDialog::OnCancel, this, wxID_CANCEL);
+   Bind(wxEVT_BUTTON, &ApplyMacroDialog::OnCancel, this, wxID_CLOSE);
+   Bind(wxEVT_BUTTON, &ApplyMacroDialog::OnHelp, this, wxID_HELP);
+
    mAbort = false;
    mbExpanded = false;
    if( bInherited )

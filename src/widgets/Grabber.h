@@ -18,12 +18,6 @@
 \brief The widget to the left of a ToolBar that allows it to be dragged
 around to NEW positions.
 
-*//*******************************************************************//**
-
-\class AStaticBitmap
-\brief A widget for bitmaps which ignores the erase event for 
-flicker-free use.
-
 *//**********************************************************************/
 
 #ifndef __AUDACITY_WIDGETS_GRABBER__
@@ -142,31 +136,5 @@ class TENACITY_DLL_API Grabber final : public wxWindow
 
    DECLARE_EVENT_TABLE()
 };
-
-// Piggy back in same source file as Grabber.
-// Audacity Flicker-free StaticBitmap.
-class TENACITY_DLL_API AStaticBitmap : public wxStaticBitmap {
-  public:
-    AStaticBitmap(wxWindow *parent,
-                   wxWindowID id,
-                   const wxBitmap& label,
-                   const wxPoint& pos = wxDefaultPosition,
-                   const wxSize& size = wxDefaultSize,
-                   long style = 0,
-                   const wxString& name = wxStaticBitmapNameStr) :
-
-    wxStaticBitmap(parent,
-                   id,
-                   label,
-                   pos ,
-                   size ,
-                   style,
-                   name )
-    {
-       SetBackgroundStyle(wxBG_STYLE_SYSTEM);
-    };
-};
-
-
 
 #endif

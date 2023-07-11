@@ -79,12 +79,10 @@ const ComponentInterfaceSymbol EffectCompressor::Symbol
 
 namespace{ BuiltinEffectsModule::Registration< EffectCompressor > reg; }
 
-BEGIN_EVENT_TABLE(EffectCompressor, wxEvtHandler)
-   EVT_SLIDER(wxID_ANY, EffectCompressor::OnSlider)
-END_EVENT_TABLE()
-
 EffectCompressor::EffectCompressor()
 {
+   Bind(wxEVT_SLIDER, &EffectCompressor::OnSlider, this);
+
    mThresholdDB = DEF_Threshold;
    mNoiseFloorDB = DEF_NoiseFloor;
    mAttackTime = DEF_AttackTime;          // seconds
@@ -701,11 +699,6 @@ void EffectCompressor::UpdateUI()
 // EffectCompressorPanel
 //----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(EffectCompressorPanel, wxPanelWrapper)
-   EVT_PAINT(EffectCompressorPanel::OnPaint)
-   EVT_SIZE(EffectCompressorPanel::OnSize)
-END_EVENT_TABLE()
-
 EffectCompressorPanel::EffectCompressorPanel(wxWindow *parent, wxWindowID winid,
                                              double & threshold,
                                              double & noiseFloor,
@@ -715,6 +708,8 @@ EffectCompressorPanel::EffectCompressorPanel(wxWindow *parent, wxWindowID winid,
    noiseFloor(noiseFloor),
    ratio(ratio)
 {
+   Bind(wxEVT_PAINT, &EffectCompressorPanel::OnPaint, this);
+   Bind(wxEVT_SIZE, &EffectCompressorPanel::OnSize, this);
 }
 
 void EffectCompressorPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))

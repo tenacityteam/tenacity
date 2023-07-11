@@ -115,20 +115,16 @@ private:
 private:
    const LV2ControlPortPtr mControlPort;
    float mLastValue;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(LV2EffectMeter, wxWindow)
-   EVT_IDLE(LV2EffectMeter::OnIdle)
-   EVT_PAINT(LV2EffectMeter::OnPaint)
-   EVT_SIZE(LV2EffectMeter::OnSize)
-END_EVENT_TABLE()
 
 LV2EffectMeter::LV2EffectMeter(wxWindow *parent, const LV2ControlPortPtr port)
 :  wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDEFAULT_CONTROL_BORDER),
    mControlPort(port)
 {
+   Bind(wxEVT_IDLE, &LV2EffectMeter::OnIdle, this);
+   Bind(wxEVT_PAINT, &LV2EffectMeter::OnPaint, this);
+   Bind(wxEVT_SIZE, &LV2EffectMeter::OnSize, this);
+
    mLastValue = -mControlPort->mVal;
 
    SetBackgroundStyle(wxBG_STYLE_PAINT);
@@ -207,19 +203,15 @@ private:
    int mBufferSize;
    bool mUseLatency;
    bool mUseGUI;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(LV2EffectSettingsDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, LV2EffectSettingsDialog::OnOk)
-END_EVENT_TABLE()
 
 LV2EffectSettingsDialog::LV2EffectSettingsDialog(
    wxWindow *parent, LV2Effect &effect)
 :  wxDialogWrapper(parent, wxID_ANY, XO("LV2 Effect Settings"))
 , mEffect{ effect }
 {
+   Bind(wxEVT_BUTTON, &LV2EffectSettingsDialog::OnOk, this, wxID_OK);
+
    GetConfig(mEffect, PluginSettings::Shared, wxT("Settings"),
       wxT("BufferSize"), mBufferSize, 8192);
    GetConfig(mEffect, PluginSettings::Shared, wxT("Settings"),

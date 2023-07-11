@@ -290,15 +290,12 @@ void HelpSystem::ShowHelp(wxWindow *parent,
 #include <wx/filename.h>
 #include <wx/uri.h>
 
-BEGIN_EVENT_TABLE(HtmlTextDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_CANCEL,   HtmlTextDialog::OnClose)
-   EVT_KEY_DOWN(HtmlTextDialog::OnKeyDown)
-END_EVENT_TABLE()
-
-
 HtmlTextDialog::HtmlTextDialog(wxWindow *pParent, const TranslatableString &title)
    : wxDialogWrapper{ pParent, ID, title, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER /*| wxMAXIMIZE_BOX */  }
 {
+   Bind(wxEVT_BUTTON, &HtmlTextDialog::OnClose, this, wxID_CANCEL);
+   Bind(wxEVT_KEY_DOWN, &HtmlTextDialog::OnKeyDown, this);
+
    ShuttleGui S(this, eIsCreating);
 
    S.Style( wxNO_BORDER | wxTAB_TRAVERSAL )

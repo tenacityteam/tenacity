@@ -30,6 +30,13 @@ Paul Licameli
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
 
+enum {
+   ID_DEFAULTS = 10001,
+
+   ID_SCALE,
+   ID_RANGE,
+};
+
 WaveformPrefs::WaveformPrefs(wxWindow * parent, wxWindowID winid,
    TenacityProject *pProject, WaveTrack *wt)
 /* i18n-hint: A waveform is a visual representation of vibration */
@@ -38,6 +45,10 @@ WaveformPrefs::WaveformPrefs(wxWindow * parent, wxWindowID winid,
 , mWt(wt)
 , mPopulating(false)
 {
+   Bind(wxEVT_CHOICE,   &WaveformPrefs::OnScale,    this, ID_SCALE);
+   Bind(wxEVT_CHOICE,   &WaveformPrefs::OnControl,  this, ID_RANGE);
+   Bind(wxEVT_CHECKBOX, &WaveformPrefs::OnDefaults, this);
+
    if (mWt) {
       WaveformSettings &settings = wt->GetWaveformSettings();
       mDefaulted = (&WaveformSettings::defaults() == &settings);
@@ -70,13 +81,6 @@ ManualPageID WaveformPrefs::HelpPageName()
 {
    return "Preferences#tracks";
 }
-
-enum {
-   ID_DEFAULTS = 10001,
-
-   ID_SCALE,
-   ID_RANGE,
-};
 
 void WaveformPrefs::Populate()
 {
@@ -245,14 +249,6 @@ void WaveformPrefs::EnableDisableRange()
    mRangeChoice->Enable
       (mScaleChoice->GetSelection() == WaveformSettings::stLogarithmic);
 }
-
-BEGIN_EVENT_TABLE(WaveformPrefs, PrefsPanel)
-
-EVT_CHOICE(ID_SCALE, WaveformPrefs::OnScale)
-EVT_CHOICE(ID_RANGE, WaveformPrefs::OnControl)
-
-EVT_CHECKBOX(ID_DEFAULTS, WaveformPrefs::OnDefaults)
-END_EVENT_TABLE()
 
 PrefsPanel::Factory
 WaveformPrefsFactory(WaveTrack *wt)

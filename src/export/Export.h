@@ -203,9 +203,6 @@ private:
    void OnMixerPanelHelp( wxCommandEvent &event );
    void OnSlider( wxCommandEvent &event );
    void OnSize( wxSizeEvent &event );
-
-private:
-   DECLARE_EVENT_TABLE()
 };
 
 TENACITY_DLL_API TranslatableString AudacityExportCaptionStr();

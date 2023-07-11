@@ -254,9 +254,6 @@ private:
    double                     mPrevT1;
    TrackList*                 mTracks;
    bool                       mUpToDate{ false };
-
-public:
-   DECLARE_EVENT_TABLE()
 };
 
 
@@ -282,9 +279,6 @@ private:
    TenacityProject *mProject;
 public:
    MixerBoard* mMixerBoard;
-
-public:
-   DECLARE_EVENT_TABLE()
 };
 
 #endif // __AUDACITY_MIXER_BOARD__

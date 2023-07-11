@@ -59,17 +59,9 @@ private:
 
    wxRadioBox* mRadioBox;
    ManualPageID mHelpPage;
-
-   DECLARE_EVENT_TABLE()
 };
 
-#define ID_SHOW_LOG_BUTTON 3333
-
-BEGIN_EVENT_TABLE(MultiDialog, wxDialogWrapper)
-   EVT_BUTTON( wxID_OK, MultiDialog::OnOK )
-   EVT_BUTTON(ID_SHOW_LOG_BUTTON, MultiDialog::OnShowLog)
-   EVT_BUTTON(wxID_HELP, MultiDialog::OnHelp)
-END_EVENT_TABLE()
+constexpr int ID_SHOW_LOG_BUTTON = 3333;
 
 MultiDialog::MultiDialog(wxWindow * pParent,
                          const TranslatableString &message,
@@ -84,6 +76,10 @@ MultiDialog::MultiDialog(wxWindow * pParent,
                wxCAPTION), // not wxDEFAULT_DIALOG_STYLE because we don't want wxCLOSE_BOX and wxSYSTEM_MENU
     mHelpPage( helpPage)
 {
+   Bind(wxEVT_BUTTON, &MultiDialog::OnOK,      this, wxID_OK);
+   Bind(wxEVT_BUTTON, &MultiDialog::OnShowLog, this, ID_SHOW_LOG_BUTTON);
+   Bind(wxEVT_BUTTON, &MultiDialog::OnHelp,    this, wxID_HELP);
+
    SetName();
 
    ShuttleGui S{ this, eIsCreating };

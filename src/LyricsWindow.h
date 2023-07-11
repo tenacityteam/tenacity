@@ -44,9 +44,6 @@ class LyricsWindow final : public wxFrame,
 
    std::weak_ptr<TenacityProject> mProject;
    LyricsPanel *mLyricsPanel;
-
- public:
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

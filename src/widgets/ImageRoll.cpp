@@ -438,11 +438,6 @@ void ImageRoll::Draw(wxDC &dc, wxRect rect)
    } // switch
 }
 
-BEGIN_EVENT_TABLE(ImageRollPanel, wxPanelWrapper)
-   EVT_PAINT(ImageRollPanel::OnPaint)
-   EVT_SIZE(ImageRollPanel::OnSize)
-END_EVENT_TABLE()
-
 ImageRollPanel::ImageRollPanel(wxWindow *parent,
                                wxWindowID id,
                                //ImageRoll &imgRoll,
@@ -453,6 +448,8 @@ ImageRollPanel::ImageRollPanel(wxWindow *parent,
    //mImageRoll(imgRoll),
    mLogicalFunction(wxCOPY)
 {
+   Bind(wxEVT_PAINT, &ImageRollPanel::OnPaint, this);
+   Bind(wxEVT_SIZE, &ImageRollPanel::OnSize, this);
 //   SetMinSize(mImageRoll.GetMinSize());
 //   SetMaxSize(mImageRoll.GetMaxSize());
 }

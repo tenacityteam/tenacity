@@ -161,7 +161,6 @@ private:
    int mAdditionalButtons;
    AudacityCommand * mpCommand;
 
-   DECLARE_EVENT_TABLE()
    wxDECLARE_NO_COPY_CLASS(AudacityCommandDialog);
 };
 

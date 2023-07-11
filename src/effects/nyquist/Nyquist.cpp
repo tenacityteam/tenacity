@@ -3326,17 +3326,14 @@ void NyquistEffect::OnText(wxCommandEvent & evt)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-
-BEGIN_EVENT_TABLE(NyquistOutputDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, NyquistOutputDialog::OnOk)
-END_EVENT_TABLE()
-
 NyquistOutputDialog::NyquistOutputDialog(wxWindow * parent, wxWindowID id,
                                        const TranslatableString & title,
                                        const TranslatableString & prompt,
                                        const TranslatableString &message)
 : wxDialogWrapper{ parent, id, title, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER }
 {
+   Bind(wxEVT_BUTTON, &NyquistOutputDialog::OnOk, this, wxID_OK);
+
    SetName();
 
    ShuttleGui S{ this, eIsCreating };

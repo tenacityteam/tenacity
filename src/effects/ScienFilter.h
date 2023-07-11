@@ -165,8 +165,6 @@ private:
    int mHeight;
 
    friend class EffectScienFilter;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

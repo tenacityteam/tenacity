@@ -45,8 +45,6 @@ private:
    void Compress();
    std::vector< OverlayPtr > mOverlays;
    
-   
-   DECLARE_EVENT_TABLE()
    friend class GetInfoCommand;
 };
 

@@ -930,8 +930,6 @@ void EffectEqualization::PopulateOrExchange(ShuttleGui & S)
                mEQVals[i] = 0.;
                S.Prop(1)
                   .Name(freq)
-                  .ConnectRoot(
-                     wxEVT_ERASE_BACKGROUND, &EffectEqualization::OnErase)
                   .Position(wxEXPAND)
                   .Size({ -1, 50 })
                   .AddWindow(mSliders[i]);
@@ -2818,10 +2816,6 @@ double EffectEqualization::splint(double x[], double y[], size_t n, double y2[],
    a = ( x[k+1] - xr )/h;
    b = (xr - x[k])/h;
    return( a*y[k]+b*y[k+1]+((a*a*a-a)*y2[k]+(b*b*b-b)*y2[k+1])*h*h/6.);
-}
-
-void EffectEqualization::OnErase( wxEvent& )
-{
 }
 
 void EffectEqualization::OnSize(wxSizeEvent & event)

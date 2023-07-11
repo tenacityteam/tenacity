@@ -145,8 +145,6 @@ private:
    wxStaticText *mMessage{} ;
    int mLastW{ 0 };
    int mLastH{ 0 };
-
-   DECLARE_EVENT_TABLE()
 };
 
 class TENACITY_DLL_API TimerProgressDialog final : public ProgressDialog

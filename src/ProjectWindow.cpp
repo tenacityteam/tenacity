@@ -322,15 +322,14 @@ public:
    void SetScrollbar(int position, int thumbSize,
                      int range, int pageSize,
                      bool refresh = true) override;
-
-private:
-   DECLARE_EVENT_TABLE()
 };
 
 void ScrollBar::SetScrollbar(int position, int thumbSize,
                              int range, int pageSize,
                              bool refresh)
 {
+   Bind(wxEVT_SET_FOCUS, &ScrollBar::OnSetFocus, this);
+
    // Mitigate flashing of scrollbars by refreshing only when something really changes.
 
    // PRL:  This may have been made unnecessary by other fixes for flashing, see
@@ -346,10 +345,6 @@ void ScrollBar::SetScrollbar(int position, int thumbSize,
 
    wxScrollBar::SetScrollbar(position, thumbSize, range, pageSize, refresh);
 }
-
-BEGIN_EVENT_TABLE(ScrollBar, wxScrollBar)
-   EVT_SET_FOCUS(ScrollBar::OnSetFocus)
-END_EVENT_TABLE()
 
 // Common mouse wheel handling in track panel cells, moved here to avoid
 // compilation dependencies on Track, TrackPanel, and Scrubbing at low levels

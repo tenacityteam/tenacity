@@ -34,17 +34,13 @@
 #include "Prefs.h"
 #include "Resample.h"
 
-#define ID_SAMPLE_RATE_CHOICE           7001
-
-//////////
-BEGIN_EVENT_TABLE(QualityPrefs, PrefsPanel)
-   EVT_CHOICE(ID_SAMPLE_RATE_CHOICE, QualityPrefs::OnSampleRateChoice)
-END_EVENT_TABLE()
+constexpr int ID_SAMPLE_RATE_CHOICE = 7001;
 
 QualityPrefs::QualityPrefs(wxWindow * parent, wxWindowID winid)
 /* i18n-hint: meaning accuracy in reproduction of sounds */
 :  PrefsPanel(parent, winid, XO("Quality"))
 {
+   Bind(wxEVT_CHOICE, &QualityPrefs::OnSampleRateChoice, this, ID_SAMPLE_RATE_CHOICE);
    Populate();
 }
 

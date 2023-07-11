@@ -1172,19 +1172,17 @@ enum
    ID_SLIDER_CHANNEL
 };
 
-BEGIN_EVENT_TABLE( ExportMixerDialog, wxDialogWrapper )
-   EVT_BUTTON( wxID_OK, ExportMixerDialog::OnOk )
-   EVT_BUTTON( wxID_CANCEL, ExportMixerDialog::OnCancel )
-   EVT_BUTTON( wxID_HELP, ExportMixerDialog::OnMixerPanelHelp )
-   EVT_SIZE( ExportMixerDialog::OnSize )
-   EVT_SLIDER( ID_SLIDER_CHANNEL, ExportMixerDialog::OnSlider )
-END_EVENT_TABLE()
-
 ExportMixerDialog::ExportMixerDialog( const TrackList *tracks, bool selectedOnly,
       unsigned maxNumChannels, wxWindow *parent, wxWindowID id, const TranslatableString &title,
       const wxPoint &position, const wxSize& size, long style ) :
    wxDialogWrapper( parent, id, title, position, size, style | wxRESIZE_BORDER )
 {
+   Bind(wxEVT_BUTTON, &ExportMixerDialog::OnOk, this, wxID_OK);
+   Bind(wxEVT_BUTTON, &ExportMixerDialog::OnCancel, this, wxID_CANCEL);
+   Bind(wxEVT_BUTTON, &ExportMixerDialog::OnMixerPanelHelp, this, wxID_HELP);
+   Bind(wxEVT_SIZE, &ExportMixerDialog::OnSize, this);
+   Bind(wxEVT_SLIDER, &ExportMixerDialog::OnSlider, this, ID_SLIDER_CHANNEL);
+
    SetName();
 
    unsigned numTracks = 0;

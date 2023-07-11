@@ -303,9 +303,6 @@ public:
 
 private:
    void OnOk(wxCommandEvent & event);
-
-private:
-   DECLARE_EVENT_TABLE()
 };
 
 

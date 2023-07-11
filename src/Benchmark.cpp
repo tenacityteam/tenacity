@@ -88,9 +88,6 @@ private:
    bool      mEditDetail;
 
    wxTextCtrl  *mText;
-
-private:
-   DECLARE_EVENT_TABLE()
 };
 
 void RunBenchmark( wxWindow *parent, TenacityProject &project )
@@ -131,13 +128,6 @@ enum {
    RandSeedID
 };
 
-BEGIN_EVENT_TABLE(BenchmarkDialog, wxDialogWrapper)
-   EVT_BUTTON( RunID,   BenchmarkDialog::OnRun )
-   EVT_BUTTON( BSaveID,  BenchmarkDialog::OnSave )
-   EVT_BUTTON( ClearID, BenchmarkDialog::OnClear )
-   EVT_BUTTON( wxID_CANCEL, BenchmarkDialog::OnClose )
-END_EVENT_TABLE()
-
 BenchmarkDialog::BenchmarkDialog(
    wxWindow *parent, TenacityProject &project)
    :
@@ -149,6 +139,11 @@ BenchmarkDialog::BenchmarkDialog(
    , mProject(project)
    , mRate{ ProjectRate::Get(project) }
 {
+   Bind(wxEVT_BUTTON, &BenchmarkDialog::OnRun, this, RunID);
+   Bind(wxEVT_BUTTON, &BenchmarkDialog::OnSave, this, BSaveID);
+   Bind(wxEVT_BUTTON, &BenchmarkDialog::OnClear, this, ClearID);
+   Bind(wxEVT_BUTTON, &BenchmarkDialog::OnClose, this, wxID_CANCEL);
+
    SetName();
 
    mBlockSizeStr = wxT("64");

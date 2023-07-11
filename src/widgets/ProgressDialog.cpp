@@ -985,18 +985,15 @@ static const unsigned char beep[] =
 /// Methods for ProgressDialog
 ////////////////////////////////////////////////////////////
 
-BEGIN_EVENT_TABLE(ProgressDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_CANCEL, ProgressDialog::OnCancel)
-   EVT_BUTTON(wxID_OK, ProgressDialog::OnStop)
-   EVT_CLOSE(ProgressDialog::OnCloseWindow)
-END_EVENT_TABLE()
-
 //
 // Constructor
 //
 ProgressDialog::ProgressDialog()
 :  wxDialogWrapper()
 {
+   Bind(wxEVT_BUTTON, &ProgressDialog::OnCancel, this);
+   Bind(wxEVT_BUTTON, &ProgressDialog::OnStop, this);
+   Bind(wxEVT_CLOSE_WINDOW, &ProgressDialog::OnCloseWindow, this);
 }
 
 ProgressDialog::ProgressDialog(const TranslatableString & title,

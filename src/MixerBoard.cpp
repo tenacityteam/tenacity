@@ -850,18 +850,14 @@ void MixerBoardScrolledWindow::OnMouseEvent(wxMouseEvent& event)
 // Min width is one cluster wide, plus margins.
 #define MIXER_BOARD_MIN_WIDTH       kTripleInset + kMixerTrackClusterWidth*2 + kTripleInset
 
-
-BEGIN_EVENT_TABLE(MixerBoard, wxWindow)
-   EVT_PAINT(MixerBoard::OnPaint)
-   EVT_SIZE(MixerBoard::OnSize)
-END_EVENT_TABLE()
-
 MixerBoard::MixerBoard(TenacityProject* pProject,
                         wxFrame* parent,
                         const wxPoint& pos /*= wxDefaultPosition*/,
                         const wxSize& size /*= wxDefaultSize*/)
 : wxWindow(parent, -1, pos, size)
 {
+   Bind(wxEVT_PAINT, &MixerBoard::OnPaint, this);
+   Bind(wxEVT_SIZE, &MixerBoard::OnSize, this);
    // public data members
 
    // mute & solo button images
@@ -1396,13 +1392,6 @@ void MixerBoard::OnStartStop(wxCommandEvent &evt)
 
 // class MixerBoardFrame
 
-BEGIN_EVENT_TABLE(MixerBoardFrame, wxFrame)
-   EVT_KEY_DOWN(MixerBoardFrame::OnKeyEvent)
-   EVT_CLOSE(MixerBoardFrame::OnCloseWindow)
-   EVT_MAXIMIZE(MixerBoardFrame::OnMaximize)
-   EVT_SIZE(MixerBoardFrame::OnSize)
-END_EVENT_TABLE()
-
 // Default to fitting one track.
 const wxSize kDefaultSize =
    wxSize(MIXER_BOARD_MIN_WIDTH, MIXER_BOARD_MIN_HEIGHT);
@@ -1413,6 +1402,11 @@ MixerBoardFrame::MixerBoardFrame(TenacityProject* parent)
             wxDEFAULT_FRAME_STYLE | wxFRAME_FLOAT_ON_PARENT)
    , mProject(parent)
 {
+   Bind(wxEVT_KEY_DOWN, &MixerBoardFrame::OnKeyEvent, this);
+   Bind(wxEVT_CLOSE_WINDOW, &MixerBoardFrame::OnCloseWindow, this);
+   Bind(wxEVT_MAXIMIZE, &MixerBoardFrame::OnMaximize, this);
+   Bind(wxEVT_SIZE, &MixerBoardFrame::OnSize, this);
+
    SetWindowTitle();
    auto titleChanged = [&](wxCommandEvent &evt)
    {

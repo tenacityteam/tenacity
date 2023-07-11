@@ -43,12 +43,6 @@ enum {
    kID_RadioButton_Highlight,
 };
 
-BEGIN_EVENT_TABLE(LyricsWindow, wxFrame)
-   EVT_CLOSE(LyricsWindow::OnCloseWindow)
-   EVT_RADIOBUTTON(kID_RadioButton_BouncingBall, LyricsWindow::OnStyle_BouncingBall)
-   EVT_RADIOBUTTON(kID_RadioButton_Highlight, LyricsWindow::OnStyle_Highlight)
-END_EVENT_TABLE()
-
 const wxSize gSize = wxSize(LYRICS_DEFAULT_WIDTH, LYRICS_DEFAULT_HEIGHT);
 
 LyricsWindow::LyricsWindow(TenacityProject *parent)
@@ -61,6 +55,10 @@ LyricsWindow::LyricsWindow(TenacityProject *parent)
             //    wxDEFAULT_FRAME_STYLE | wxFRAME_FLOAT_ON_PARENT)
             wxDEFAULT_FRAME_STYLE)
 {
+   Bind(wxEVT_CLOSE_WINDOW, &LyricsWindow::OnCloseWindow, this);
+   Bind(wxEVT_RADIOBUTTON, &LyricsWindow::OnStyle_BouncingBall, this, kID_RadioButton_BouncingBall);
+   Bind(wxEVT_RADIOBUTTON, &LyricsWindow::OnStyle_Highlight, this, kID_RadioButton_Highlight);
+
    //vvv Still necessary? It's commented out in ToolManager and Meter, so I did so here.
    //   #ifdef __WXMAC__
    //      // WXMAC doesn't support wxFRAME_FLOAT_ON_PARENT, so we do

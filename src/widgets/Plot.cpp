@@ -34,6 +34,11 @@ Plot::Plot(wxWindow *parent, wxWindowID winid,
    m_xmin(x_min), m_xmax(x_max), m_ymin(y_min), m_ymax(y_max),
    m_plots(count)
 {
+   Bind(wxEVT_PAINT, &Plot::OnPaint, this);
+   Bind(wxEVT_SIZE, [this](wxSizeEvent) { // Resize handler
+      Refresh(false);
+   });
+
    m_xruler = std::unique_ptr<Ruler>(safenew Ruler);
    m_xruler->SetOrientation(wxHORIZONTAL);
    m_xruler->SetFormat(static_cast<Ruler::RulerFormat>(xformat));
@@ -127,8 +132,3 @@ int Plot::YToScreen(float y, wxRect& rect)
 {
    return rect.y + rect.height - lrint((y-m_ymin)*rect.height/(m_ymax-m_ymin));
 }
-
-BEGIN_EVENT_TABLE(Plot, wxPanelWrapper)
-   EVT_PAINT(Plot::OnPaint)
-   EVT_SIZE(Plot::OnSize)
-END_EVENT_TABLE()

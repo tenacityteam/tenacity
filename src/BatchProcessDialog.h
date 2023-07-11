@@ -65,8 +65,6 @@ class ApplyMacroDialog : public wxDialogWrapper {
 protected:
    TenacityProject &mProject;
    const MacroCommandsCatalog mCatalog;
-
-   DECLARE_EVENT_TABLE()
 };
 
 class MacrosWindow final : public ApplyMacroDialog,

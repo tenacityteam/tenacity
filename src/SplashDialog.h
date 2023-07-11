@@ -30,8 +30,6 @@ public:
    void OnOK(wxCommandEvent & event);
    static void Show2( wxWindow * pParent );
 
-   DECLARE_EVENT_TABLE()
-
 private:
 
    void OnChar(wxMouseEvent &event);

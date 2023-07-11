@@ -84,9 +84,6 @@ class ImageRollPanel final : public wxPanelWrapper
    //ImageRoll mImageRoll;
 
    int /*wxRasterOperationMode*/ mLogicalFunction;
-
-   DECLARE_EVENT_TABLE()
-
 };
 
 #endif // __AUDACITY_IMAGE_ROLL__

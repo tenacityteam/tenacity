@@ -51,8 +51,6 @@ class Plot : public wxPanelWrapper
 
       int XToScreen(float x, wxRect& rect);
       int YToScreen(float y, wxRect& rect);
-
-      DECLARE_EVENT_TABLE()
 };
 
 #endif

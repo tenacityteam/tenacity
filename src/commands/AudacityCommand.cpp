@@ -247,12 +247,6 @@ int AudacityCommand::MessageBox(
    return AudacityMessageBox(message, title, style, mUIParent);
 }
 
-BEGIN_EVENT_TABLE(AudacityCommandDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, AudacityCommandDialog::OnOk)
-   EVT_BUTTON(wxID_HELP, AudacityCommandDialog::OnHelp)
-   EVT_BUTTON(wxID_CANCEL, AudacityCommandDialog::OnCancel)
-END_EVENT_TABLE()
-
 AudacityCommandDialog::AudacityCommandDialog(wxWindow * parent,
                            const TranslatableString & title,
                            AudacityCommand * pCommand,
@@ -261,6 +255,10 @@ AudacityCommandDialog::AudacityCommandDialog(wxWindow * parent,
                            int additionalButtons)
 : wxDialogWrapper(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, flags)
 {
+   Bind(wxEVT_BUTTON, &AudacityCommandDialog::OnOk,     this, wxID_OK);
+   Bind(wxEVT_BUTTON, &AudacityCommandDialog::OnHelp,   this, wxID_OK);
+   Bind(wxEVT_BUTTON, &AudacityCommandDialog::OnCancel, this, wxID_OK);
+
    mType = type;
    wxASSERT( pCommand );
    mpCommand = pCommand;

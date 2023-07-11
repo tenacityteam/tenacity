@@ -14,13 +14,17 @@
 #include "../theme/AllThemeResources.h"
 #include "../theme/Theme.h"
 
-BEGIN_EVENT_TABLE(AuStaticText, wxWindow)
-    EVT_PAINT(AuStaticText::OnPaint)
-END_EVENT_TABLE()
- 
 AuStaticText::AuStaticText(wxWindow* parent, wxString textIn) :
  wxWindow(parent, wxID_ANY)
 {
+   // Set a paint handler
+   Bind(wxEVT_PAINT, [this](wxPaintEvent&) {
+      wxPaintDC dc(this);
+      //dc.SetTextForeground( theTheme.Colour( clrTrackPanelText));
+      dc.Clear();
+      dc.DrawText( GetLabel(), 0,0);
+   });
+
    SetBackgroundStyle(wxBG_STYLE_PAINT);
    int textWidth, textHeight;
 
@@ -37,12 +41,4 @@ AuStaticText::AuStaticText(wxWindow* parent, wxString textIn) :
    SetForegroundColour( theTheme.Colour( clrTrackPanelText));
    SetName(textIn);
    SetLabel(textIn);
-}
- 
-void AuStaticText::OnPaint(wxPaintEvent&)
-{
-   wxPaintDC dc(this);
-   //dc.SetTextForeground( theTheme.Colour( clrTrackPanelText));
-   dc.Clear();
-   dc.DrawText( GetLabel(), 0,0);
 }

@@ -18,6 +18,20 @@
 FFmpegNotFoundDialog::FFmpegNotFoundDialog(wxWindow *parent)
    :  wxDialogWrapper(parent, wxID_ANY, XO("FFmpeg not found"))
 {
+   // Handle OK button
+   Bind(
+      wxEVT_BUTTON,
+      [this](wxCommandEvent&) {
+         if (mDontShow->GetValue())
+         {
+            FFmpegNotFoundDontShow.Write(true);
+            gPrefs->Flush();
+         }
+         EndModal(0);
+      },
+      wxID_OK
+   );
+
    SetName();
    ShuttleGui S(this, eIsCreating);
    PopulateOrExchange(S);
@@ -52,17 +66,3 @@ void FFmpegNotFoundDialog::PopulateOrExchange(ShuttleGui & S)
 
    return;
 }
-
-void FFmpegNotFoundDialog::OnOk(wxCommandEvent & WXUNUSED(event))
-{
-   if (mDontShow->GetValue())
-   {
-      FFmpegNotFoundDontShow.Write(true);
-      gPrefs->Flush();
-   }
-   this->EndModal(0);
-}
-
-BEGIN_EVENT_TABLE(FFmpegNotFoundDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, FFmpegNotFoundDialog::OnOk)
-END_EVENT_TABLE()

@@ -16,15 +16,13 @@
 #include "prefs/PrefsDialog.h"
 #include "ui/AccessibleLinksFormatter.h"
 
-BEGIN_EVENT_TABLE(UnwritableLocationErrorDialog, wxDialogWrapper)
-    EVT_BUTTON(wxID_OK, UnwritableLocationErrorDialog::OnOk)
-    EVT_BUTTON(wxID_HELP, UnwritableLocationErrorDialog::OnError)
-END_EVENT_TABLE()
-
 UnwritableLocationErrorDialog::UnwritableLocationErrorDialog(wxWindow* parent, const wxString& path)
     : wxDialogWrapper(
          parent, -1, XO("Error"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
+   Bind(wxEVT_BUTTON, &UnwritableLocationErrorDialog::OnOk,    this, wxID_OK);
+   Bind(wxEVT_BUTTON, &UnwritableLocationErrorDialog::OnError, this, wxID_HELP);
+
    ShuttleGui S(this, eIsCreating);
 
    S.SetBorder(8);
@@ -88,7 +86,6 @@ UnwritableLocationErrorDialog::UnwritableLocationErrorDialog(wxWindow* parent, c
 
 UnwritableLocationErrorDialog::~UnwritableLocationErrorDialog()
 {
-   
 }
 
 void UnwritableLocationErrorDialog::OnOk(wxCommandEvent&)

@@ -54,11 +54,6 @@ enum
    DontShowID=1000,
 };
 
-BEGIN_EVENT_TABLE(SplashDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, SplashDialog::OnOK)
-   EVT_CHECKBOX( DontShowID, SplashDialog::OnDontShow )
-END_EVENT_TABLE()
-
 void SplashDialog::DoHelpWelcome( TenacityProject &project )
 {
    Show2( &GetProjectFrame( project ) );
@@ -69,6 +64,9 @@ SplashDialog::SplashDialog(wxWindow * parent)
       wxPoint( -1, 60 ), // default x position, y position 60 pixels from top of screen.
       wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
+   Bind(wxEVT_BUTTON, &SplashDialog::OnOK, this, wxID_OK);
+   Bind(wxEVT_CHECKBOX, &SplashDialog::OnDontShow, this, DontShowID);
+
    SetName();
    m_pLogo = NULL; //v
    ShuttleGui S( this, eIsCreating );

@@ -60,8 +60,6 @@ class MidiIOPrefs final : public PrefsPanel
    wxChoice *mRecord;
 #endif
 //   wxChoice *mChannels;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

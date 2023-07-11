@@ -43,7 +43,6 @@ private:
    void OnControl(wxCommandEvent&);
    void OnScale(wxCommandEvent&);
    void OnDefaults(wxCommandEvent&);
-   DECLARE_EVENT_TABLE()
 
    void EnableDisableRange();
 

@@ -52,8 +52,6 @@ class DevicePrefs final : public PrefsPanel
    wxChoice *mRecord;
    wxChoice *mChannels;
    TenacityProject* mProject;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

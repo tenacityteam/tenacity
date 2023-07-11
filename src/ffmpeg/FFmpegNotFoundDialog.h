@@ -31,8 +31,6 @@ public:
 
 private:
    wxCheckBox *mDontShow;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif // end __SAUCEDACITY_FFMPEGNOTFOUNDDIALOG_H__

@@ -73,18 +73,6 @@ void HighlightTextCtrl::OnMouseEvent(wxMouseEvent& event)
    event.Skip();
 }
 
-
-//v static const kHighlightTextCtrlID = 7654;
-
-BEGIN_EVENT_TABLE(LyricsPanel, wxPanelWrapper)
-   EVT_KEY_DOWN(LyricsPanel::OnKeyEvent)
-   EVT_PAINT(LyricsPanel::OnPaint)
-   EVT_SIZE(LyricsPanel::OnSize)
-
-   //v Doesn't seem to be a way to capture a selection event in a read-only wxTextCtrl.
-   //    EVT_COMMAND_LEFT_CLICK(kHighlightTextCtrlID, LyricsPanel::OnHighlightTextCtrl)
-END_EVENT_TABLE()
-
 LyricsPanel::LyricsPanel(wxWindow* parent, wxWindowID id,
                TenacityProject *project,
                const wxPoint& pos /*= wxDefaultPosition*/,
@@ -93,6 +81,10 @@ LyricsPanel::LyricsPanel(wxWindow* parent, wxWindowID id,
    mWidth(size.x), mHeight(size.y)
    , mProject(project)
 {
+   Bind(wxEVT_KEY_DOWN, &LyricsPanel::OnKeyEvent, this);
+   Bind(wxEVT_PAINT, &LyricsPanel::OnPaint, this);
+   Bind(wxEVT_SIZE, &LyricsPanel::OnSize, this);
+
    mKaraokeHeight = mHeight;
    mLyricsStyle = kBouncingBallLyrics; // default
    mKaraokeFontSize = this->GetDefaultFontSize(); // Call only after mLyricsPanelStyle is set.

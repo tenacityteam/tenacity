@@ -174,7 +174,6 @@ private:
    int mType;
    int mAdditionalButtons;
 
-   DECLARE_EVENT_TABLE()
    wxDECLARE_NO_COPY_CLASS(EffectDialog);
 };
 

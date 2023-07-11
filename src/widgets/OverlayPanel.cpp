@@ -135,9 +135,6 @@ void OverlayPanel::Compress()
       mOverlays.resize( newEnd - begin );
 }
 
-BEGIN_EVENT_TABLE(OverlayPanel, BackedPanel)
-END_EVENT_TABLE()
-
 // Maybe this class needs a better home
 void DCUnchanger::operator () (wxDC *pDC) const
 {

@@ -143,7 +143,6 @@ private:
 
    LinkingHtmlWindow* mpHtml;
    bool mDismissed{};
-   DECLARE_EVENT_TABLE()
 };
 
 #endif // __AUDACITY_HELPSYSTEM__

@@ -53,14 +53,12 @@ enum {
    ChannelsID
 };
 
-BEGIN_EVENT_TABLE(DevicePrefs, PrefsPanel)
-   EVT_CHOICE(HostID, DevicePrefs::OnHost)
-   EVT_CHOICE(RecordID, DevicePrefs::OnDevice)
-END_EVENT_TABLE()
-
 DevicePrefs::DevicePrefs(wxWindow * parent, wxWindowID winid, TenacityProject* project)
 :  PrefsPanel(parent, winid, XO("Devices")), mProject{project}
 {
+   Bind(wxEVT_CHOICE, &DevicePrefs::OnHost, this, HostID);
+   Bind(wxEVT_CHOICE, &DevicePrefs::OnDevice, this, RecordID);
+
    Populate();
 }
 

@@ -412,12 +412,7 @@ private:
    EffectDefinitionInterface &mEffect;
    bool mUseLatency;
 
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(LadspaEffectOptionsDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, LadspaEffectOptionsDialog::OnOk)
-END_EVENT_TABLE()
 
 LadspaEffectOptionsDialog::LadspaEffectOptionsDialog(wxWindow * parent,
    EffectHostInterface &host, EffectDefinitionInterface &effect)
@@ -425,6 +420,8 @@ LadspaEffectOptionsDialog::LadspaEffectOptionsDialog(wxWindow * parent,
 , mHost{ host }
 , mEffect{ effect }
 {
+   Bind(wxEVT_BUTTON, &LadspaEffectOptionsDialog::OnOk, this, wxID_OK);
+
    GetConfig(mEffect,
       PluginSettings::Shared, wxT("Options"), wxT("UseLatency"),
       mUseLatency, true);
@@ -520,20 +517,16 @@ private:
    float mMin;
    float mMax;
    float mLastValue;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(LadspaEffectMeter, wxWindow)
-   EVT_IDLE(LadspaEffectMeter::OnIdle)
-   EVT_PAINT(LadspaEffectMeter::OnPaint)
-   EVT_SIZE(LadspaEffectMeter::OnSize)
-END_EVENT_TABLE()
 
 LadspaEffectMeter::LadspaEffectMeter(wxWindow *parent, const float & val, float min, float max)
 :  wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDEFAULT_CONTROL_BORDER),
    mVal(val)
 {
+   Bind(wxEVT_IDLE, &LadspaEffectMeter::OnIdle, this);
+   Bind(wxEVT_PAINT, &LadspaEffectMeter::OnPaint, this);
+   Bind(wxEVT_SIZE, &LadspaEffectMeter::OnSize, this);
+
    SetBackgroundStyle(wxBG_STYLE_PAINT);
 
    mMin = min;

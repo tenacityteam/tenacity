@@ -188,8 +188,6 @@ public:
 private:
    wxTextCtrl *mFormat;
    wxTextCtrl *mCodec;
-
-   DECLARE_EVENT_TABLE()
 };
 
 /// Entry for the Applicability table

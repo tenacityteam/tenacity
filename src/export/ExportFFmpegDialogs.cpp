@@ -771,17 +771,15 @@ bool ExportFFmpegWMAOptions::TransferDataFromWindow()
 // ExportFFmpegCustomOptions Class
 //----------------------------------------------------------------------------
 
-#define OpenID 9000
-
-BEGIN_EVENT_TABLE(ExportFFmpegCustomOptions, wxPanelWrapper)
-   EVT_BUTTON(OpenID, ExportFFmpegCustomOptions::OnOpen)
-END_EVENT_TABLE()
+constexpr int OpenID = 9000;
 
 ExportFFmpegCustomOptions::ExportFFmpegCustomOptions(wxWindow *parent, int WXUNUSED(format))
 :  wxPanelWrapper(parent, wxID_ANY),
    mFormat(NULL),
    mCodec(NULL)
 {
+   Bind(wxEVT_BUTTON, &ExportFFmpegCustomOptions::OnOpen, this, OpenID);
+
    ShuttleGui S(this, eIsCreatingFromPrefs);
    PopulateOrExchange(S);
 

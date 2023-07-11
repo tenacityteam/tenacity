@@ -36,15 +36,21 @@ Audacity as well.
 constexpr int ID_FFMPEG_FIND_BUTTON = 7003;
 constexpr int ID_FFMPEG_DOWN_BUTTON = 7004;
 
-BEGIN_EVENT_TABLE(LibraryPrefs, PrefsPanel)
-   EVT_BUTTON(ID_FFMPEG_FIND_BUTTON, LibraryPrefs::OnFFmpegFindButton)
-   EVT_BUTTON(ID_FFMPEG_DOWN_BUTTON, LibraryPrefs::OnFFmpegDownButton)
-END_EVENT_TABLE()
-
 LibraryPrefs::LibraryPrefs(wxWindow * parent, wxWindowID winid)
 /* i18-hint: refers to optional plug-in software libraries */
 :   PrefsPanel(parent, winid, XO("Libraries"))
 {
+   Bind(wxEVT_BUTTON, &LibraryPrefs::OnFFmpegFindButton, this, ID_FFMPEG_FIND_BUTTON);
+
+   // FFmpeg download button handler
+   Bind(
+      wxEVT_BUTTON,
+      [this](wxCommandEvent&) {
+         HelpSystem::ShowHelp(this, L"FFmpeg", true);
+      },
+      ID_FFMPEG_DOWN_BUTTON
+   );
+
    Populate();
 }
 
@@ -169,11 +175,6 @@ void LibraryPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
 
    SetFFmpegVersionText();
 #endif
-}
-
-void LibraryPrefs::OnFFmpegDownButton(wxCommandEvent & WXUNUSED(event))
-{
-   HelpSystem::ShowHelp(this, L"FFmpeg", true);
 }
 
 bool LibraryPrefs::Commit()

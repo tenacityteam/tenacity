@@ -50,6 +50,8 @@ public:
    FilesystemValidator(const TranslatableString &message)
    :  wxValidator()
    {
+      Bind(wxEVT_CHAR, &FilesystemValidator::OnChar, this);
+
       mMessage = message;
    }
 
@@ -106,13 +108,7 @@ public:
    }
 
    TranslatableString mMessage;
-
-   wxDECLARE_EVENT_TABLE();
 };
-
-wxBEGIN_EVENT_TABLE(FilesystemValidator, wxValidator)
-    EVT_CHAR(FilesystemValidator::OnChar)
-wxEND_EVENT_TABLE()
 
 enum
 {

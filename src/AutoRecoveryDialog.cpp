@@ -54,17 +54,7 @@ private:
    FilePaths mFiles;
    wxDataViewListCtrl *mFileList;
    TenacityProject *mProject;
-
-public:
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(AutoRecoveryDialog, wxDialogWrapper)
-   EVT_BUTTON(ID_QUIT_AUDACITY, AutoRecoveryDialog::OnQuitAudacity)
-   EVT_BUTTON(ID_DISCARD_SELECTED, AutoRecoveryDialog::OnDiscardSelected)
-   EVT_BUTTON(ID_RECOVER_SELECTED, AutoRecoveryDialog::OnRecoverSelected)
-   EVT_BUTTON(ID_SKIP, AutoRecoveryDialog::OnSkip)
-END_EVENT_TABLE()
 
 AutoRecoveryDialog::AutoRecoveryDialog(TenacityProject *project)
 :  wxDialogWrapper(nullptr, wxID_ANY, XO("Automatic Crash Recovery"),
@@ -72,6 +62,11 @@ AutoRecoveryDialog::AutoRecoveryDialog(TenacityProject *project)
                    (wxDEFAULT_DIALOG_STYLE & (~wxCLOSE_BOX)) | wxRESIZE_BORDER), // no close box
    mProject(project)
 {
+   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnQuitAudacity,    this, ID_QUIT_AUDACITY);
+   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnDiscardSelected, this, ID_DISCARD_SELECTED);
+   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnRecoverSelected, this, ID_RECOVER_SELECTED);
+   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnSkip,            this, ID_SKIP);
+
    SetName();
    ShuttleGui S(this, eIsCreating);
    Populate(S);

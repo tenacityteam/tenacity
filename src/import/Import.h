@@ -211,9 +211,6 @@ private:
 private:
    void OnOk( wxCommandEvent &event );
    void OnCancel( wxCommandEvent &event );
-
-private:
-   DECLARE_EVENT_TABLE()
 };
 
 extern TENACITY_DLL_API BoolSetting NewImportingSession;

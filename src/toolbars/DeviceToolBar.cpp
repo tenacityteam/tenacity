@@ -46,7 +46,6 @@
 #include "../theme/AllThemeResources.h"
 #include "../ImageManipulation.h"
 #include "../KeyboardCapture.h"
-#include "../widgets/Grabber.h"
 #include "DeviceManager.h"
 #include "../widgets/AudacityMessageBox.h"
 #include "../widgets/Grabber.h"
@@ -128,9 +127,14 @@ void DeviceToolBar::Populate()
    Add(mHost, 15, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
    // Input device
-   Add(safenew AStaticBitmap(this,
-                             wxID_ANY,
-                             theTheme.Bitmap(bmpMic)), 0, wxALIGN_CENTER_VERTICAL);
+   auto inputDeviceBitmap = new wxStaticBitmap(
+      this,
+      wxID_ANY,
+      theTheme.Bitmap(bmpMic)
+   );
+   inputDeviceBitmap->SetBackgroundStyle(wxBG_STYLE_SYSTEM);
+
+   Add(inputDeviceBitmap, 0, wxALIGN_CENTER_VERTICAL);
    mInput = safenew wxChoice(this,
                              wxID_ANY,
                              wxDefaultPosition,
@@ -153,9 +157,14 @@ void DeviceToolBar::Populate()
    Add(mInputChannels, 20, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 1);
 
    // Output device
-   Add(safenew AStaticBitmap(this,
-                             wxID_ANY,
-                             theTheme.Bitmap(bmpSpeaker)), 0, wxALIGN_CENTER_VERTICAL);
+   auto outputDeviceBitmap = new wxStaticBitmap(
+      this,
+      wxID_ANY,
+      theTheme.Bitmap(bmpSpeaker)
+   );
+   outputDeviceBitmap->SetBackgroundStyle(wxBG_STYLE_SYSTEM);
+
+   Add(outputDeviceBitmap, 0, wxALIGN_CENTER_VERTICAL);
    mOutput = safenew wxChoice(this,
                               wxID_ANY,
                               wxDefaultPosition,

@@ -328,17 +328,11 @@ private:
    int mType;
    int mAdditionalButtons;
 
-   DECLARE_EVENT_TABLE()
    wxDECLARE_NO_COPY_CLASS(LongMessageDialog);
 };
 
 
 LongMessageDialog * LongMessageDialog::pDlg = NULL;
-
-
-BEGIN_EVENT_TABLE(LongMessageDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, LongMessageDialog::OnOk)
-END_EVENT_TABLE()
 
 LongMessageDialog::LongMessageDialog(wxWindow * parent,
                            const TranslatableString & title,
@@ -347,6 +341,8 @@ LongMessageDialog::LongMessageDialog(wxWindow * parent,
                            int additionalButtons)
 : wxDialogWrapper(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, flags | wxRESIZE_BORDER)
 {
+   Bind(wxEVT_BUTTON, &LongMessageDialog::OnOk, this, wxID_OK);
+
    mType = type;
    mAdditionalButtons = additionalButtons;
    SetName(XO("Long Message"));

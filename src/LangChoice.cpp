@@ -46,8 +46,6 @@ private:
    int mNumLangs;
    wxArrayString mLangCodes;
    TranslatableStrings mLangNames;
-
-   DECLARE_EVENT_TABLE()
 };
 
 wxString ChooseLanguage(wxWindow *parent)
@@ -64,15 +62,13 @@ wxString ChooseLanguage(wxWindow *parent)
    return returnVal;
 }
 
-BEGIN_EVENT_TABLE(LangChoiceDialog, wxDialogWrapper)
-    EVT_BUTTON(wxID_OK, LangChoiceDialog::OnOk)
-END_EVENT_TABLE()
-
 LangChoiceDialog::LangChoiceDialog(wxWindow * parent,
                                    wxWindowID id,
                                    const TranslatableString & title):
    wxDialogWrapper(parent, id, title)
 {
+   Bind(wxEVT_BUTTON, &LangChoiceDialog::OnOk, this, wxID_OK);
+
    SetName();
    const auto &paths = FileNames::AudacityPathList();
    Languages::GetLanguages(paths, mLangCodes, mLangNames);

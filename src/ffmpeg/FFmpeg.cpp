@@ -153,6 +153,9 @@ public:
        , mName(name)
        , mFullPath(path, {})
    {
+      Bind(wxEVT_BUTTON, &FindFFmpegDialog::OnBrowse, this, ID_FFMPEG_BROWSE);
+      Bind(wxEVT_BUTTON, &FindFFmpegDialog::OnDownload, this, ID_FFMPEG_DLOAD);
+
       SetName();
 
       ShuttleGui S(this, eIsCreating);
@@ -276,14 +279,7 @@ private:
    wxFileName mFullPath;
 
    wxTextCtrl *mPathText;
-
-   DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(FindFFmpegDialog, wxDialogWrapper)
-   EVT_BUTTON(ID_FFMPEG_BROWSE, FindFFmpegDialog::OnBrowse)
-   EVT_BUTTON(ID_FFMPEG_DLOAD,  FindFFmpegDialog::OnDownload)
-END_EVENT_TABLE()
 
 bool FindFFmpegLibs(wxWindow* parent)
 {

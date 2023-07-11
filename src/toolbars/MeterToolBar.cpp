@@ -41,14 +41,12 @@
 /// Methods for MeterToolBar
 ////////////////////////////////////////////////////////////
 
-BEGIN_EVENT_TABLE( MeterToolBar, ToolBar )
-   EVT_SIZE( MeterToolBar::OnSize )
-END_EVENT_TABLE()
-
 //Standard constructor
 MeterToolBar::MeterToolBar(TenacityProject &project, int type)
 : ToolBar(project, type, XO("Combined Meter"), wxT("CombinedMeter"), true)
 {
+   Bind(wxEVT_SIZE, &MeterToolBar::OnSize, this);
+
    if( mType == RecordMeterBarID ){
       mWhichMeters = kWithRecordMeter;
       mLabel = XO("Recording Meter");

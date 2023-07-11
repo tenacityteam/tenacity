@@ -835,15 +835,13 @@ bool Importer::Import( TenacityProject &project,
 // ImportStreamDialog
 //-------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE( ImportStreamDialog, wxDialogWrapper )
-   EVT_BUTTON( wxID_OK, ImportStreamDialog::OnOk )
-   EVT_BUTTON( wxID_CANCEL, ImportStreamDialog::OnCancel )
-END_EVENT_TABLE()
-
 ImportStreamDialog::ImportStreamDialog( ImportFileHandle *_mFile, wxWindow *parent, wxWindowID id, const TranslatableString &title,
                                        const wxPoint &position, const wxSize& size, long style ):
 wxDialogWrapper( parent, id, title, position, size, style | wxRESIZE_BORDER )
 {
+   Bind(wxEVT_BUTTON, &ImportStreamDialog::OnOk, this, wxID_OK);
+   Bind(wxEVT_BUTTON, &ImportStreamDialog::OnCancel, this, wxID_CANCEL);
+
    SetName();
 
    mFile = _mFile;

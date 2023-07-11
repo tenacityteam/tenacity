@@ -27,11 +27,7 @@ public:
    ~SoundActivatedRecordDialog();
 
 private:
-   void OnOK(wxCommandEvent& event);
-
    void PopulateOrExchange(ShuttleGui& S);
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

@@ -37,11 +37,7 @@ class TENACITY_DLL_API AboutDialog final : public wxDialogWrapper {
 
    static AboutDialog *ActiveInstance();
 
-   void OnOK(wxCommandEvent & event);
-
    wxStaticBitmap *icon;
-
-   DECLARE_EVENT_TABLE()
 
  private:
    enum Role {

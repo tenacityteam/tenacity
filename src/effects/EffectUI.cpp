@@ -1383,9 +1383,6 @@ wxDialog *EffectUI::DialogFactory( wxWindow &parent, EffectHostInterface &host,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-BEGIN_EVENT_TABLE(EffectDialog, wxDialogWrapper)
-   EVT_BUTTON(wxID_OK, EffectDialog::OnOk)
-END_EVENT_TABLE()
 
 EffectDialog::EffectDialog(wxWindow * parent,
                            const TranslatableString & title,
@@ -1394,6 +1391,8 @@ EffectDialog::EffectDialog(wxWindow * parent,
                            int additionalButtons)
 : wxDialogWrapper(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, flags)
 {
+   Bind(wxEVT_BUTTON, &EffectDialog::OnOk, this, wxID_OK);
+
    mType = type;
    mAdditionalButtons = additionalButtons;
 }

@@ -112,12 +112,10 @@ AUControlImpl::~AUControlImpl()
 {
 }
 
-BEGIN_EVENT_TABLE(AUControl, wxControl)
-   EVT_SIZE(AUControl::OnSize)
-END_EVENT_TABLE()
-
 AUControl::AUControl()
 {
+   Bind(wxEVT_SIZE, &AUControl::OnSize, this);
+
    mComponent = NULL;
    mUnit = NULL;
 

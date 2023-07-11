@@ -41,11 +41,8 @@ class LibraryPrefs final : public PrefsPanel
    void SetFFmpegVersionText();
 
    void OnFFmpegFindButton(wxCommandEvent & e);
-   void OnFFmpegDownButton(wxCommandEvent & e);
 
    ReadOnlyText *mFFmpegVersion;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

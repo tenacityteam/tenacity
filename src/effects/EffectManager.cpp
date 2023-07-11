@@ -408,8 +408,6 @@ private:
    RegistryPaths mFactoryPresets;
    RegistryPaths mUserPresets;
    wxString mSelection;
-
-   DECLARE_EVENT_TABLE()
 };
 
 enum
@@ -417,16 +415,14 @@ enum
    ID_Type = 10000
 };
 
-BEGIN_EVENT_TABLE(EffectPresetsDialog, wxDialogWrapper)
-   EVT_CHOICE(ID_Type, EffectPresetsDialog::OnType)
-   EVT_LISTBOX_DCLICK(wxID_ANY, EffectPresetsDialog::OnOk)
-   EVT_BUTTON(wxID_OK, EffectPresetsDialog::OnOk)
-   EVT_BUTTON(wxID_CANCEL, EffectPresetsDialog::OnCancel)
-END_EVENT_TABLE()
-
 EffectPresetsDialog::EffectPresetsDialog(wxWindow *parent, Effect *effect)
 :  wxDialogWrapper(parent, wxID_ANY, XO("Select Preset"))
 {
+   Bind(wxEVT_CHOICE, &EffectPresetsDialog::OnType, this, ID_Type);
+   Bind(wxEVT_LISTBOX_DCLICK, &EffectPresetsDialog::OnOk, this);
+   Bind(wxEVT_BUTTON, &EffectPresetsDialog::OnOk, this, wxID_OK);
+   Bind(wxEVT_BUTTON, &EffectPresetsDialog::OnCancel, this, wxID_CANCEL);
+
    ShuttleGui S(this, eIsCreating);
    S.StartVerticalLay();
    {

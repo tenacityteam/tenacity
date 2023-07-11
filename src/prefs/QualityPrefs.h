@@ -48,8 +48,6 @@ class TENACITY_DLL_API QualityPrefs final : public PrefsPanel
    wxChoice *mSampleRates;
    wxTextCtrl *mOtherSampleRate;
    int mOtherSampleRateValue;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

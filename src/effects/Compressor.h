@@ -126,8 +126,6 @@ private:
 
    wxCheckBox *mGainCheckBox;
    wxCheckBox *mPeakCheckBox;
-
-   DECLARE_EVENT_TABLE()
 };
 
 class EffectCompressorPanel final : public wxPanelWrapper
@@ -146,8 +144,6 @@ private:
    double & threshold;
    double & noiseFloor;
    double & ratio;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif
