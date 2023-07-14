@@ -1336,10 +1336,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 
    ConvertLatencyPreference();
 
-   if (!mBuffersPrepared)
-   {
-      UpdateBuffers();
-   }
+   UpdateBuffers();
 
    unsigned long latency = AudioIOLatencyDuration.Read();
 
@@ -3609,6 +3606,7 @@ void ClampBuffer(float * pBuffer, unsigned long len){
 void AudioIoCallback::UpdateBuffers()
 {
    mBuffersPrepared = false;
+   auto channels = std::max(mNumPlaybackChannels, mNumCaptureChannels);
 
    if (IsStreamActive())
    {
@@ -3629,14 +3627,9 @@ void AudioIoCallback::UpdateBuffers()
       mTemporaryBuffer = memoryManager.GetBuffer(newBufferSize);
    }
 
-   if (mTrackChannelsBuffer.size() < mNumPlaybackChannels ||
-       mTrackChannelsBuffer.size() < mNumCaptureChannels)
+   if (mTrackChannelsBuffer.size() < channels)
    {
-      mTrackChannelsBuffer.resize(
-         mNumPlaybackChannels > mNumCaptureChannels ?
-            mNumPlaybackChannels :
-            mNumCaptureChannels
-      );
+      mTrackChannelsBuffer.resize(channels);
    }
 
    mScratchBufferAllocator.DeallocateAll();
