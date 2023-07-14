@@ -52,14 +52,7 @@ if(VCPKG)
         set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
       endif()
     elseif(DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
-      if (CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
-        # Use the dynamic triplet by default. Linking against a static version
-        # of wxWidgets is currently not supported and, if building succeeds,
-        # will result in an unusable executable.
-        set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}-dynamic")
-      else()
         set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
-      endif()
     endif()
   endif()
 
