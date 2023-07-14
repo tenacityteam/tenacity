@@ -1201,6 +1201,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    if(USE_AUDIO_UNITS)
       list(APPEND LIBRARIES
         PRIVATE
+          "-framework AudioToolbox"
           "-framework AudioUnit"
           "-framework CoreAudioKit")
    endif()
