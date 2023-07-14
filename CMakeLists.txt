@@ -43,10 +43,10 @@ if(VCPKG)
   else()
     if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
       if(APPLE)
-         if(CMAKE_APPLE_SILICON_PROCESSOR MATCHES "x86_64") # Intel
-            set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
-         elseif(CMAKE_APPLE_SILICON_PROCESSOR MATCHES "arm64") # Apple Silicon
+         if(CMAKE_APPLE_SILICON_PROCESSOR MATCHES "arm64") # Apple Silicon
             set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
+         else() # Intel
+            set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
          endif()
       elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
         set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
