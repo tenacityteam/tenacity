@@ -80,7 +80,7 @@ jobs:
       CMAKE_BUILD_TYPE: RelWithDebInfo
       CMAKE_C_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
       CMAKE_CXX_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
-      MACOSX_DEPLOYMENT_TARGET: 10.12
+      MACOSX_DEPLOYMENT_TARGET: 10.15
 
       VCPKG_DISABLE_METRICS: true
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.config.vcpkg_triplet }}
