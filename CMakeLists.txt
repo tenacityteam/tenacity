@@ -42,7 +42,7 @@ if(VCPKG)
     message(STATUS "vcpkg triplet overriden. Using triplet '$ENV{TENACITY_TRIPLET_OVERRIDE}'")
   else()
     if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
-      if(APPLE AND CMAKE_APPLE_SILICON_PROCESSOR)
+      if(APPLE)
          if(CMAKE_APPLE_SILICON_PROCESSOR MATCHES "x86_64") # Intel
             set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
          elseif(CMAKE_APPLE_SILICON_PROCESSOR MATCHES "arm64") # Apple Silicon
