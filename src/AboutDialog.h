@@ -60,7 +60,6 @@ class TENACITY_DLL_API AboutDialog final : public wxDialogWrapper {
       roleAudacityDeceased,
       roleAudacityContributor,
       roleAudacityGraphics,
-      roleAudacityLibrary,
       roleAudacityThanks
    };
 

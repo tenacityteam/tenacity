@@ -249,11 +249,11 @@ void AboutDialog::CreateCreditsList()
    AddCredit(wxT("Bayu Rizaldhan Rayes"), graphicsFormat, roleAudacityGraphics);
 
    // Libraries
-   AddCredit(wxT("[[https://libexpat.github.io/|expat]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://xiph.org/flac/|FLAC]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://lame.sourceforge.net/|LAME]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.mega-nerd.com/libsndfile/|libsndfile]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://sourceforge.net/p/soxr/wiki/Home/|libsoxr]]"), roleAudacityLibrary);
+   AddCredit(wxT("[[https://libexpat.github.io/|expat]]"), roleLibrary);
+   AddCredit(wxT("[[https://xiph.org/flac/|FLAC]]"), roleLibrary);
+   AddCredit(wxT("[[http://lame.sourceforge.net/|LAME]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.mega-nerd.com/libsndfile/|libsndfile]]"), roleLibrary);
+   AddCredit(wxT("[[https://sourceforge.net/p/soxr/wiki/Home/|libsoxr]]"), roleLibrary);
    AddCredit(
       XO("%s (incorporating %s, %s, %s, %s and %s)")
          .Format(
@@ -264,17 +264,17 @@ void AboutDialog::CreateCreditsList()
             "sord",
             "sratom"
          ).Translation(),
-      roleAudacityLibrary);
-   AddCredit(wxT("[[https://www.cs.cmu.edu/~music/nyquist/|Nyquist]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://xiph.org/vorbis/|Ogg Vorbis]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.portaudio.com/|PortAudio]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.portmedia.sourceforge.net/portmidi/|PortMidi]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://sourceforge.net/p/portmedia/wiki/portsmf/|portsmf]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://sbsms.sourceforge.net/|sbsms]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://www.surina.net/soundtouch/|SoundTouch]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://wxwidgets.org/|wxWidgets]]"), roleAudacityLibrary);
+      roleLibrary);
+   AddCredit(wxT("[[https://www.cs.cmu.edu/~music/nyquist/|Nyquist]]"), roleLibrary);
+   AddCredit(wxT("[[https://xiph.org/vorbis/|Ogg Vorbis]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.portaudio.com/|PortAudio]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.portmedia.sourceforge.net/portmidi/|PortMidi]]"), roleLibrary);
+   AddCredit(wxT("[[https://sourceforge.net/p/portmedia/wiki/portsmf/|portsmf]]"), roleLibrary);
+   AddCredit(wxT("[[http://sbsms.sourceforge.net/|sbsms]]"), roleLibrary);
+   AddCredit(wxT("[[https://www.surina.net/soundtouch/|SoundTouch]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleLibrary);
+   AddCredit(wxT("[[https://wxwidgets.org/|wxWidgets]]"), roleLibrary);
    AddCredit(wxT("[[https://www.underbit.com/products/mad/|libmad]]"), roleLibrary);
 
 
@@ -435,10 +435,6 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("</h3><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s includes code from the following projects:").Format( ProgramName )
-      << wxT("<br><br>")
-      << GetCreditsByRole(roleAudacityLibrary)
-      << wxT("<br><br>")
-      << XO("In addition, %s also includes these libraries (some forks) from Tenacity:").Format(ProgramName)
       << wxT("<br><br>")
       << GetCreditsByRole(roleLibrary)
 
