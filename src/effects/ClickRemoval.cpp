@@ -279,14 +279,11 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    Floats b2{ windowSize };
 
    for( i=0; i<windowSize; i++)
-      b2[i] = buffer[i]*buffer[i];
+      ms_seq[i] = b2[i] = buffer[i]*buffer[i];
 
    /* Shortcut for rms - multiple passes through b2, accumulating
     * as we go.
     */
-   for(i=0;i<windowSize;i++)
-      ms_seq[i]=b2[i];
-
    for(i=1; i < sep; i *= 2) {
       for(j=0;j<windowSize-i; j++)
          ms_seq[j] += ms_seq[j+i];
