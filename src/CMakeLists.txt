@@ -388,6 +388,7 @@ list( APPEND SOURCES
       effects/Equalization48x.h
       effects/Fade.cpp
       effects/Fade.h
+      effects/FindClicks.cpp
       effects/FindClipping.cpp
       effects/FindClipping.h
       effects/Generator.cpp
@@ -718,7 +719,7 @@ list( APPEND SOURCES
       theme/AudaciumDarkBlueThemeAsCeeCode.h
       theme/AudaciumDarkGreenThemeAsCeeCode.cpp
       theme/AudaciumDarkGreenThemeAsCeeCode.h
-      theme/AudaciumDarkPinkThemeAsCeeCode.cpp      
+      theme/AudaciumDarkPinkThemeAsCeeCode.cpp
       theme/AudaciumDarkPinkThemeAsCeeCode.h
       theme/AudaciumDarkPurpleThemeAsCeeCode.cpp
       theme/AudaciumDarkPurpleThemeAsCeeCode.h
