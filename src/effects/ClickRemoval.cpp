@@ -311,10 +311,10 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
             }
          } else if(clickStart != SIZE_MAX) {
             if((i-clickStart) <= ww*2) {
+               bResult = true;
                float lv = buffer[clickStart+s2];
                float rv = buffer[i+ww+s2];
                for(j=clickStart+s2; j<i+ww+s2; j++) {
-                  bResult = true;
                   buffer[j]= (rv*(j-(clickStart+s2)) + lv*(i+ww+s2-j))/(float)(i+ww-clickStart);
                   b2[j] = buffer[j]*buffer[j];
                }
