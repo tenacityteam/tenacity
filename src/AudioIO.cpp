@@ -419,6 +419,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include <stdexcept>
 #include <thread>
 #include <optional>
+#include <iostream>
 
 #include "portaudio.h"
 #ifdef PA_USE_JACK
