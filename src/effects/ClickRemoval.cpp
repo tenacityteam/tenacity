@@ -272,7 +272,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    int left = 0;
 
    float msw;
-   int ww;
+   size_t ww;
    size_t s2 = windowSize/4;
    Floats ms_seq{ windowSize };
    Floats b2{ windowSize };
@@ -294,13 +294,13 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    /* ww runs from about 4 to mClickWidth.  wrc is the reciprocal;
     * chosen so that integer roundoff doesn't clobber us.
     */
-   int wrc;
-   for(wrc=mClickWidth/4; wrc>=1; wrc /= 2) {
-      ww = mClickWidth/wrc;
+   size_t wrc;
+   for(wrc=(size_t)mClickWidth/4; wrc>=1; wrc /= 2) {
+      ww = (size_t)mClickWidth/wrc;
 
       for( i=0; i<windowSize/2; i++ ){
          msw = 0;
-         for( j=0; (int)j<ww; j++) {
+         for( j=0; j<ww; j++) {
             msw += b2[i+s2+j];
          }
          msw /= ww;
