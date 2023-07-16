@@ -245,7 +245,7 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
          for(auto j = wcopy; j < windowSize; j++)
             datawindow[j] = 0;
 
-         mbDidSomething |= RemoveClicks(datawindow.get());
+         mbDidSomething |= RemoveClicks(datawindow);
 
          for(decltype(wcopy) j = 0; j < wcopy; j++)
            buffer[i+j] = datawindow[j];
@@ -266,7 +266,7 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
    return bResult;
 }
 
-bool EffectClickRemoval::RemoveClicks(float *buffer)
+bool EffectClickRemoval::RemoveClicks(Floats & buffer)
 {
    bool bResult = false; // This effect usually does nothing.
    size_t i;
