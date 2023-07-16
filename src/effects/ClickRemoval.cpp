@@ -307,15 +307,15 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
 
          if(msw >= mThresholdLevel * ms_seq[i]/10) {
             if( clickStart == SIZE_MAX ) {
-               clickStart = i+s2;
+               clickStart = i;
             }
          } else if(clickStart != SIZE_MAX) {
-            if((i-clickStart+s2) <= ww*2) {
-               float lv = buffer[clickStart];
+            if((i-(clickStart+s2)+s2) <= ww*2) {
+               float lv = buffer[clickStart+s2];
                float rv = buffer[i+ww+s2];
-               for(j=clickStart; j<i+ww+s2; j++) {
+               for(j=clickStart+s2; j<i+ww+s2; j++) {
                   bResult = true;
-                  buffer[j]= (rv*(j-clickStart) + lv*(i+ww+s2-j))/(float)(i+ww+s2-clickStart);
+                  buffer[j]= (rv*(j-(clickStart+s2)) + lv*(i+ww+s2-j))/(float)(i+ww+s2-(clickStart+s2));
                   b2[j] = buffer[j]*buffer[j];
                }
             }
