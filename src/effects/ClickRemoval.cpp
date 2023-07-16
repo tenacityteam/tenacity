@@ -75,7 +75,6 @@ EffectClickRemoval::EffectClickRemoval()
 
    SetLinearEffectFlag(false);
 
-   windowSize = 8192;
    sep = 2049;
 }
 

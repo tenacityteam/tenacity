@@ -71,7 +71,7 @@ private:
    Envelope *mEnvelope;
 
    bool mbDidSomething; // This effect usually does nothing on real-world data.
-   size_t windowSize;
+   const size_t windowSize = 8192;
    int mThresholdLevel;
    int mClickWidth;
    int sep;
