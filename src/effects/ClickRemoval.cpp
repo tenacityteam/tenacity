@@ -266,7 +266,6 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
 
 bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
 {
-   const size_t sep = 4096;
    bool bResult = false; // This effect usually does nothing.
    size_t i;
    size_t j;
@@ -274,7 +273,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
 
    float msw;
    int ww;
-   size_t s2 = sep/2;
+   size_t s2 = windowSize/4;
    Floats ms_seq{ windowSize };
    Floats b2{ windowSize };
 
@@ -284,13 +283,13 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    /* Shortcut for rms - multiple passes through b2, accumulating
     * as we go.
     */
-   for(i=1; i < sep; i *= 2) {
+   for(i=1; i <windowSize/2; i *= 2) {
       for(j=0;j<windowSize-i; j++)
          ms_seq[j] += ms_seq[j+i];
    }
 
-   for( i=0; i<windowSize-sep; i++ ) {
-      ms_seq[i] /= sep;
+   for( i=0; i<windowSize/2; i++ ) {
+      ms_seq[i] /= windowSize/2;
    }
    /* ww runs from about 4 to mClickWidth.  wrc is the reciprocal;
     * chosen so that integer roundoff doesn't clobber us.
@@ -299,7 +298,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    for(wrc=mClickWidth/4; wrc>=1; wrc /= 2) {
       ww = mClickWidth/wrc;
 
-      for( i=0; i<windowSize-sep; i++ ){
+      for( i=0; i<windowSize/2; i++ ){
          msw = 0;
          for( j=0; (int)j<ww; j++) {
             msw += b2[i+s2+j];
@@ -311,7 +310,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
                left = i+s2;
             }
          } else {
-            if(left != 0 && ((int)i-left+s2) <= ww*2) {
+            if(left != 0 && (i-left+s2) <= ww*2) {
                float lv = buffer[left];
                float rv = buffer[i+ww+s2];
                for(j=left; j<i+ww+s2; j++) {
