@@ -61,10 +61,10 @@ else()
   message(STATUS "Searching for dependencies from system, not using vcpkg.")
 endif()
 
-# If building with GNU compiler, then must be 4.9 or later.
+# If building with GNU compiler, then must be 6 or later.
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
-    CMAKE_CXX_COMPILER_VERSION VERSION_LESS "4.9")
-   message(FATAL_ERROR "Tenacity requires at least GCC 4.9")
+    CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6")
+   message(FATAL_ERROR "Tenacity requires at least GCC 6")
 endif ()
 
 if( EXISTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
