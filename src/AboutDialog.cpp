@@ -623,6 +623,14 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
          disabled);
    #endif
 
+   #ifdef USE_LIBMATROSKA
+   AddBuildinfoRow(&informationStr, wxT("libmatroska"), XO("Matroska import and export"),
+         enabled);
+   #else
+   AddBuildinfoRow(&informationStr, wxT("libmatroska"), XO("Matroska import and export"),
+         disabled);
+   #endif
+
    # if USE_LIBFLAC
    /* i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
     * a proper noun and so shouldn't be translated */
