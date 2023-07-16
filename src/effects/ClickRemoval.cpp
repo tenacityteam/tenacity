@@ -246,7 +246,7 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
          for(auto j = wcopy; j < windowSize; j++)
             datawindow[j] = 0;
 
-         mbDidSomething |= RemoveClicks(windowSize, datawindow.get());
+         mbDidSomething |= RemoveClicks(datawindow.get());
 
          for(decltype(wcopy) j = 0; j < wcopy; j++)
            buffer[i+j] = datawindow[j];
@@ -267,7 +267,7 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
    return bResult;
 }
 
-bool EffectClickRemoval::RemoveClicks(size_t len, float *buffer)
+bool EffectClickRemoval::RemoveClicks(float *buffer)
 {
    bool bResult = false; // This effect usually does nothing.
    size_t i;
@@ -277,27 +277,27 @@ bool EffectClickRemoval::RemoveClicks(size_t len, float *buffer)
    float msw;
    int ww;
    int s2 = sep/2;
-   Floats ms_seq{ len };
-   Floats b2{ len };
+   Floats ms_seq{ windowSize };
+   Floats b2{ windowSize };
 
-   for( i=0; i<len; i++)
+   for( i=0; i<windowSize; i++)
       b2[i] = buffer[i]*buffer[i];
 
    /* Shortcut for rms - multiple passes through b2, accumulating
     * as we go.
     */
-   for(i=0;i<len;i++)
+   for(i=0;i<windowSize;i++)
       ms_seq[i]=b2[i];
 
    for(i=1; (int)i < sep; i *= 2) {
-      for(j=0;j<len-i; j++)
+      for(j=0;j<windowSize-i; j++)
          ms_seq[j] += ms_seq[j+i];
    }
 
    /* Cheat by truncating sep to next-lower power of two... */
    sep = i;
 
-   for( i=0; i<len-sep; i++ ) {
+   for( i=0; i<windowSize-sep; i++ ) {
       ms_seq[i] /= sep;
    }
    /* ww runs from about 4 to mClickWidth.  wrc is the reciprocal;
@@ -307,7 +307,7 @@ bool EffectClickRemoval::RemoveClicks(size_t len, float *buffer)
    for(wrc=mClickWidth/4; wrc>=1; wrc /= 2) {
       ww = mClickWidth/wrc;
 
-      for( i=0; i<len-sep; i++ ){
+      for( i=0; i<windowSize-sep; i++ ){
          msw = 0;
          for( j=0; (int)j<ww; j++) {
             msw += b2[i+s2+j];
