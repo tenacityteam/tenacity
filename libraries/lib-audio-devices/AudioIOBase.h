@@ -16,6 +16,7 @@ Paul Licameli split from AudioIO.h
 #include <functional>
 #include <vector>
 #include <limits>
+#include <string>
 
 // Tenacity libraries
 #include "MemoryX.h"
