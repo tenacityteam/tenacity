@@ -75,7 +75,7 @@ EffectClickRemoval::EffectClickRemoval()
 
    SetLinearEffectFlag(false);
 
-   sep = 2049;
+   sep = 4096;
 }
 
 EffectClickRemoval::~EffectClickRemoval()
@@ -292,9 +292,6 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer)
       for(j=0;j<windowSize-i; j++)
          ms_seq[j] += ms_seq[j+i];
    }
-
-   /* Cheat by truncating sep to next-lower power of two... */
-   sep = i;
 
    for( i=0; i<windowSize-sep; i++ ) {
       ms_seq[i] /= sep;
