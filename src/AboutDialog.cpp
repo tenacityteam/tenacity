@@ -141,6 +141,10 @@ void AboutDialog::CreateCreditsList()
    AddCredit("AnotherFoxGuy ([[https://github.com/AnotherFoxGuy|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("James \"jamesp\" Pearson ([[https://jamespearson.xyz|Website]])", tenacity_contributorFormat, roleTeamMember);
 
+   // Tenacity contributors
+   AddCredit("Steve \"robUx4\" Lhomme ([[https://github.com/robUx4|GitHub]])", tenacity_contributorFormat, roleContributor);
+   AddCredit("David Karoly ([[https://github.com/davidkaroly|GitHub]])", tenacity_contributorFormat, roleContributor);
+
    // Tenacity Team Emeritus
    AddCredit("Emily \"emabrey\" Mabrey ([[https://github.com/emabrey|GitHub]])", tenacity_leadDeveloperFormat, roleEmeritus);
    AddCredit("Panagiotis \"Ivory\" Vasilopoulos (n0toose) ([[https://n0toose.net|Website]])", tenacity_leadDeveloperFormat, roleEmeritus);
@@ -249,6 +253,7 @@ void AboutDialog::CreateCreditsList()
    // Libraries
    AddCredit(wxT("[[https://libexpat.github.io/|expat]]"), roleLibrary);
    AddCredit(wxT("[[https://xiph.org/flac/|FLAC]]"), roleLibrary);
+   AddCredit("[[https://www.matroska.org/index.html|Matroska]]", roleLibrary);
    AddCredit(wxT("[[http://lame.sourceforge.net/|LAME]]"), roleLibrary);
    AddCredit(wxT("[[http://www.mega-nerd.com/libsndfile/|libsndfile]]"), roleLibrary);
    AddCredit(wxT("[[https://sourceforge.net/p/soxr/wiki/Home/|libsoxr]]"), roleLibrary);
@@ -387,6 +392,11 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << XO("%s Team Members").Format( ProgramName )
       << wxT("</h2><br>")
       << GetCreditsByRole(roleTeamMember)
+
+      << "<h3>"
+      << XO("Contributors")
+      << "</h3><br/>"
+      << GetCreditsByRole(roleContributor)
 
       << wxT("<h3>")
       << XO("Emeritus")
