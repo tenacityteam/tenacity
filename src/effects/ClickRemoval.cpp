@@ -74,8 +74,6 @@ EffectClickRemoval::EffectClickRemoval()
    mClickWidth = DEF_Width;
 
    SetLinearEffectFlag(false);
-
-   sep = 4096;
 }
 
 EffectClickRemoval::~EffectClickRemoval()
@@ -268,6 +266,7 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
 
 bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
 {
+   const size_t sep = 4096;
    bool bResult = false; // This effect usually does nothing.
    size_t i;
    size_t j;
@@ -275,7 +274,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
 
    float msw;
    int ww;
-   int s2 = sep/2;
+   size_t s2 = sep/2;
    Floats ms_seq{ windowSize };
    Floats b2{ windowSize };
 
@@ -288,7 +287,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    for(i=0;i<windowSize;i++)
       ms_seq[i]=b2[i];
 
-   for(i=1; (int)i < sep; i *= 2) {
+   for(i=1; i < sep; i *= 2) {
       for(j=0;j<windowSize-i; j++)
          ms_seq[j] += ms_seq[j+i];
    }

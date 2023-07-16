@@ -74,7 +74,6 @@ private:
    const size_t windowSize = 8192;
    int mThresholdLevel;
    int mClickWidth;
-   int sep;
 
    wxSlider *mWidthS;
    wxSlider *mThreshS;
