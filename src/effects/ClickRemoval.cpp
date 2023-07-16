@@ -309,8 +309,8 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
             if( left == 0 ) {
                left = i+s2;
             }
-         } else {
-            if(left != 0 && (i-left+s2) <= ww*2) {
+         } else if(left != 0) {
+            if((i-left+s2) <= ww*2) {
                float lv = buffer[left];
                float rv = buffer[i+ww+s2];
                for(j=left; j<i+ww+s2; j++) {
@@ -318,10 +318,8 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
                   buffer[j]= (rv*(j-left) + lv*(i+ww+s2-j))/(float)(i+ww+s2-left);
                   b2[j] = buffer[j]*buffer[j];
                }
-               left=0;
-            } else if(left != 0) {
-               left = 0;
             }
+            left = 0;
          }
       }
    }
