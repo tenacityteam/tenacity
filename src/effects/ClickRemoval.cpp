@@ -269,7 +269,7 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
    bool bResult = false; // This effect usually does nothing.
    size_t i;
    size_t j;
-   int left = 0;
+   size_t clickStart = SIZE_MAX;
 
    float msw;
    size_t ww;
@@ -306,20 +306,20 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
          msw /= ww;
 
          if(msw >= mThresholdLevel * ms_seq[i]/10) {
-            if( left == 0 ) {
-               left = i+s2;
+            if( clickStart == SIZE_MAX ) {
+               clickStart = i+s2;
             }
-         } else if(left != 0) {
-            if((i-left+s2) <= ww*2) {
-               float lv = buffer[left];
+         } else if(clickStart != SIZE_MAX) {
+            if((i-clickStart+s2) <= ww*2) {
+               float lv = buffer[clickStart];
                float rv = buffer[i+ww+s2];
-               for(j=left; j<i+ww+s2; j++) {
+               for(j=clickStart; j<i+ww+s2; j++) {
                   bResult = true;
-                  buffer[j]= (rv*(j-left) + lv*(i+ww+s2-j))/(float)(i+ww+s2-left);
+                  buffer[j]= (rv*(j-clickStart) + lv*(i+ww+s2-j))/(float)(i+ww+s2-clickStart);
                   b2[j] = buffer[j]*buffer[j];
                }
             }
-            left = 0;
+            clickStart = SIZE_MAX;
          }
       }
    }
