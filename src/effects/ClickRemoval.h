@@ -60,7 +60,7 @@ private:
    bool ProcessOne(int count, WaveTrack * track,
                    sampleCount start, sampleCount len);
 
-   bool RemoveClicks(Floats &buffer);
+   bool RemoveClicks(Floats &buffer) const;
 
    void OnWidthText(wxCommandEvent & evt);
    void OnThreshText(wxCommandEvent & evt);

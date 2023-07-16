@@ -266,7 +266,7 @@ bool EffectClickRemoval::ProcessOne(int count, WaveTrack * track, sampleCount st
    return bResult;
 }
 
-bool EffectClickRemoval::RemoveClicks(Floats & buffer)
+bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
 {
    bool bResult = false; // This effect usually does nothing.
    size_t i;
