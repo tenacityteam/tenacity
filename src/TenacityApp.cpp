@@ -2173,8 +2173,10 @@ void TenacityApp::AssociateFileTypes()
    // File types are not currently associated.
    int wantAssoc =
       AudacityMessageBox(
-         XO(
-"Audacity project (.aup3) files are not currently \nassociated with Tenacity. \n\nYou can associate them so they open on double-click for convenience."),
+         XO("Audacity project files (.aup3) are currently not associated with "
+            "Tenacity. Double clicking an Audacity project file will not open "
+            "in Tenacity by default.\n\nWould you like to associate Audacity "
+            "project files with Tenacity?"),
          XO("Audacity Project Files"),
          wxYES_NO | wxICON_QUESTION);
 
