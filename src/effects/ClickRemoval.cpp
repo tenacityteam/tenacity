@@ -310,12 +310,12 @@ bool EffectClickRemoval::RemoveClicks(Floats & buffer) const
                clickStart = i;
             }
          } else if(clickStart != SIZE_MAX) {
-            if((i-(clickStart+s2)+s2) <= ww*2) {
+            if((i-clickStart) <= ww*2) {
                float lv = buffer[clickStart+s2];
                float rv = buffer[i+ww+s2];
                for(j=clickStart+s2; j<i+ww+s2; j++) {
                   bResult = true;
-                  buffer[j]= (rv*(j-(clickStart+s2)) + lv*(i+ww+s2-j))/(float)(i+ww+s2-(clickStart+s2));
+                  buffer[j]= (rv*(j-(clickStart+s2)) + lv*(i+ww+s2-j))/(float)(i+ww-clickStart);
                   b2[j] = buffer[j]*buffer[j];
                }
             }
