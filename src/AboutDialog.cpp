@@ -453,19 +453,18 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("</h3><br>")
       << GetCreditsByRole(roleAudacityThanks)
 
-      << wxT("<p><br>")
+      << wxT("<p><br><center>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
       << wxT("[[https://tenacityaudio.org|https://tenacityaudio.org]]<br>")
 
       /* i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
          name substitues the 2nd. */
-      << XO("<center>Copyright %s 2021-2023 %s Team.</center>")
+      << XO("Copyright %s 2021-2023 %s Team.")
          .Format( wxT("&copy;"), ProgramName )
 
-      << wxT("<center>")
+      << "<br/>"
       << XO("\'Audacity\' is a registered trademark of MuseCY SM Ltd")
-      << XO("</center>")
       << wxT("</center>");
 
    auto pPage = S.StartNotebookPage( ProgramName );
