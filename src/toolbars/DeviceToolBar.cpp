@@ -249,12 +249,12 @@ void DeviceToolBar::UpdatePrefs()
       FillInputChannels();
    } else if (mInput->GetStringSelection() != desc && mInput->GetCount()) {
       for (size_t i = 0; i < inMaps.size(); i++) {
-         if (inMaps[i].hostString == hostName &&
-             MakeDeviceSourceString(&inMaps[i]) == mInput->GetString(0)) {
+         if (inMaps[i].hostString   == hostName &&
+             inMaps[i].deviceString == mInput->GetString(0)) {
             // use the default.  It should exist but check just in case, falling back on the 0 index.
             DeviceSourceMap *defaultMap = DeviceManager::Instance()->GetDefaultInputDevice(inMaps[i].hostIndex);
             if (defaultMap) {
-               mInput->SetStringSelection(MakeDeviceSourceString(defaultMap));
+               mInput->SetStringSelection(defaultMap->deviceString);
                SetDevices(defaultMap, NULL);
             } else {
                //use the first item (0th index) if we have no familiar devices
@@ -275,12 +275,12 @@ void DeviceToolBar::UpdatePrefs()
    } else if (mOutput->GetStringSelection() != desc &&
               mOutput->GetCount()) {
       for (size_t i = 0; i < outMaps.size(); i++) {
-         if (outMaps[i].hostString == hostName &&
-             MakeDeviceSourceString(&outMaps[i]) == mOutput->GetString(0)) {
+         if (outMaps[i].hostString   == hostName &&
+             outMaps[i].deviceString == mOutput->GetString(0)) {
             // use the default.  It should exist but check just in case, falling back on the 0 index.
             DeviceSourceMap *defaultMap = DeviceManager::Instance()->GetDefaultOutputDevice(outMaps[i].hostIndex);
             if (defaultMap) {
-               mOutput->SetStringSelection(MakeDeviceSourceString(defaultMap));
+               mOutput->SetStringSelection(defaultMap->deviceString);
                SetDevices(NULL, defaultMap);
             } else {
                //use the first item (0th index) if we have no familiar devices
@@ -456,7 +456,7 @@ void DeviceToolBar::FillHostDevices()
    // Repopulate the Input/Output device list available to the user
    for (auto & device : inMaps) {
       if (foundHostIndex == device.hostIndex) {
-         mInput->Append(MakeDeviceSourceString(&device));
+         mInput->Append(device.deviceString);
          if (host.empty()) {
             host = device.hostString;
             AudioIOHost.Write(host);
@@ -470,7 +470,7 @@ void DeviceToolBar::FillHostDevices()
 
    for (auto & device : outMaps) {
       if (foundHostIndex == device.hostIndex) {
-         mOutput->Append(MakeDeviceSourceString(&device));
+         mOutput->Append(device.deviceString);
          if (host.empty()) {
             host = device.hostString;
             AudioIOHost.Write(host);
@@ -591,7 +591,7 @@ void DeviceToolBar::ChangeDevice(bool isInput)
       wxString newDevice = combo->GetStringSelection();
       for (i = 0; i < maps.size(); ++i) {
          wxString name;
-         name = MakeDeviceSourceString(&maps[i]);
+         name = maps[i].deviceString;
          if (name == newDevice && maps[i].hostString == host) {
             newIndex = i;
          }

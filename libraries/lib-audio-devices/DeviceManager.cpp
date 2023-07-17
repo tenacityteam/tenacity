@@ -45,13 +45,7 @@ const std::vector<DeviceSourceMap> &DeviceManager::GetOutputDeviceMaps()
    return mOutputDeviceSourceMaps;
 }
 
-
-wxString MakeDeviceSourceString(const DeviceSourceMap *map)
-{
-   return map->deviceString;
-}
-
-DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, int isInput)
+DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, bool isInput)
 {
    if (hostIndex < 0 || hostIndex >= Pa_GetHostApiCount()) {
       return nullptr;
@@ -73,17 +67,17 @@ DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, int isInput)
 
 DeviceSourceMap* DeviceManager::GetDefaultOutputDevice(int hostIndex)
 {
-   return GetDefaultDevice(hostIndex, 0);
+   return GetDefaultDevice(hostIndex, false);
 }
 DeviceSourceMap* DeviceManager::GetDefaultInputDevice(int hostIndex)
 {
-   return GetDefaultDevice(hostIndex, 1);
+   return GetDefaultDevice(hostIndex, true);
 }
 
 //--------------- Device Enumeration --------------------------
 
 
-static void FillHostDeviceInfo(DeviceSourceMap *map, const PaDeviceInfo *info, int deviceIndex, int isInput)
+static void FillHostDeviceInfo(DeviceSourceMap *map, const PaDeviceInfo *info, int deviceIndex, bool isInput)
 {
    wxString hostapiName = wxSafeConvertMB2WX(Pa_GetHostApiInfo(info->hostApi)->name);
    wxString infoName = wxSafeConvertMB2WX(info->name);
@@ -114,13 +108,13 @@ static bool IsInputDeviceAMapperDevice(const PaDeviceInfo *info)
    return false;
 }
 
-static void AddSources(int deviceIndex, int rate, std::vector<DeviceSourceMap> *maps, int isInput)
+static void AddSources(int deviceIndex, int rate, std::vector<DeviceSourceMap> *maps, bool isInput)
 {
    DeviceSourceMap map;
    const PaDeviceInfo *info = Pa_GetDeviceInfo(deviceIndex);
 
    // Only inputs have sources, so we call FillHostDeviceInfo with a 1 to indicate this
-   FillHostDeviceInfo(&map, info, deviceIndex, 1);
+   FillHostDeviceInfo(&map, info, deviceIndex, true);
 
    maps->push_back(map);
 }
@@ -170,7 +164,7 @@ void DeviceManager::Rescan()
    for (int i = 0; i < nDevices; i++) {
       const PaDeviceInfo *info = Pa_GetDeviceInfo(i);
       if (info->maxOutputChannels > 0) {
-         AddSources(i, info->defaultSampleRate, &mOutputDeviceSourceMaps, 0);
+         AddSources(i, info->defaultSampleRate, &mOutputDeviceSourceMaps, false);
       }
 
       if (info->maxInputChannels > 0) {
@@ -180,7 +174,7 @@ void DeviceManager::Rescan()
              PaWasapi_IsLoopback(i) > 0)
 #endif
 #endif
-         AddSources(i, info->defaultSampleRate, &mInputDeviceSourceMaps, 1);
+         AddSources(i, info->defaultSampleRate, &mInputDeviceSourceMaps, true);
       }
    }
 

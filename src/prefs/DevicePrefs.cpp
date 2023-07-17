@@ -254,7 +254,7 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    mRecord->Clear();
    for (i = 0; i < inMaps.size(); i++) {
       if (index == inMaps[i].hostIndex) {
-         device   = MakeDeviceSourceString(&inMaps[i]);
+         device   = inMaps[i].deviceString;
          devindex = mRecord->Append(device);
          // We need to const cast here because SetClientData is a wx function
          // It is okay because the original variable is non-const.
@@ -268,7 +268,7 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    mPlay->Clear();
    for (i = 0; i < outMaps.size(); i++) {
       if (index == outMaps[i].hostIndex) {
-         device   = MakeDeviceSourceString(&outMaps[i]);
+         device   = outMaps[i].deviceString;
          devindex = mPlay->Append(device);
          mPlay->SetClientData(devindex, const_cast<DeviceSourceMap *>(&outMaps[i]));
          if (device == mPlayDevice) {  /* if this is the default device, select it */
@@ -295,7 +295,7 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    if (mPlay->GetCount() && mPlay->GetSelection() == wxNOT_FOUND) {
       DeviceSourceMap *defaultMap = DeviceManager::Instance()->GetDefaultOutputDevice(index);
       if (defaultMap)
-         mPlay->SetStringSelection(MakeDeviceSourceString(defaultMap));
+         mPlay->SetStringSelection(defaultMap->deviceString);
 
       if (mPlay->GetSelection() == wxNOT_FOUND) {
          mPlay->SetSelection(0);
@@ -305,7 +305,7 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    if (mRecord->GetCount() && mRecord->GetSelection() == wxNOT_FOUND) {
       DeviceSourceMap *defaultMap = DeviceManager::Instance()->GetDefaultInputDevice(index);
       if (defaultMap)
-         mRecord->SetStringSelection(MakeDeviceSourceString(defaultMap));
+         mRecord->SetStringSelection(defaultMap->deviceString);
 
       if (mPlay->GetSelection() == wxNOT_FOUND) {
          mPlay->SetSelection(0);

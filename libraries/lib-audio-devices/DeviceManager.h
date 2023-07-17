@@ -41,9 +41,6 @@ struct DeviceSourceMap {
    wxString hostString;
 };
 
-AUDIO_DEVICES_API
-wxString MakeDeviceSourceString(const DeviceSourceMap *map);
-
 class AUDIO_DEVICES_API DeviceManager final
 #if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER) && defined(HAVE_DEVICE_CHANGE)
 : public DeviceChangeHandler
@@ -86,7 +83,7 @@ private:
    /// Called by GetInputDeviceMaps and GetOutputDeviceMaps when needed.
    void Init();
 
-   DeviceSourceMap* GetDefaultDevice(int hostIndex, int isInput);
+   DeviceSourceMap* GetDefaultDevice(int hostIndex, bool isInput);
 
    bool m_inited;
 
