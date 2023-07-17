@@ -91,7 +91,6 @@ void DevicePrefs::Populate()
    // Get current setting for devices
    mPlayDevice = AudioIOPlaybackDevice.Read();
    mRecordDevice = AudioIORecordingDevice.Read();
-   mRecordSource = AudioIORecordingSource.Read();
    mRecordChannels = AudioIORecordChannels.Read();
 
    //------------------------- Main section --------------------
@@ -251,8 +250,6 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    wxString recDevice;
 
    recDevice = mRecordDevice;
-   if (!this->mRecordSource.empty())
-      recDevice += wxT(": ") + mRecordSource;
 
    mRecord->Clear();
    for (i = 0; i < inMaps.size(); i++) {
@@ -403,11 +400,6 @@ bool DevicePrefs::Commit()
    }
    if (map) {
       AudioIORecordingDevice.Write(map->deviceString);
-      AudioIORecordingSourceIndex.Write(map->sourceIndex);
-      if (map->totalSources >= 1)
-         AudioIORecordingSource.Write(map->sourceString);
-      else
-         AudioIORecordingSource.Reset();
       AudioIORecordChannels.Write(mChannels->GetSelection() + 1);
    }
 

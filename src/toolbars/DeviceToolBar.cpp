@@ -241,11 +241,7 @@ void DeviceToolBar::UpdatePrefs()
       FillHostDevices();
 
    auto devName = AudioIORecordingDevice.Read();
-   auto sourceName = AudioIORecordingSource.Read();
-   if (sourceName.empty())
-      desc = devName;
-   else
-      desc = devName + wxT(": ") + sourceName;
+   desc = devName;
 
    if (mInput->GetStringSelection() != desc &&
        mInput->FindString(desc) != wxNOT_FOUND) {
@@ -271,11 +267,7 @@ void DeviceToolBar::UpdatePrefs()
    }
 
    devName = AudioIOPlaybackDevice.Read();
-   sourceName = gPrefs->Read(wxT("/AudioIO/PlaybackSource"), wxT(""));
-   if (sourceName.empty())
-      desc = devName;
-   else
-      desc = devName + wxT(": ") + sourceName;
+   desc = devName;
 
    if (mOutput->GetStringSelection() != desc &&
        mOutput->FindString(desc) != wxNOT_FOUND) {
@@ -499,14 +491,12 @@ void DeviceToolBar::FillInputChannels()
    const std::vector<DeviceSourceMap> &inMaps = DeviceManager::Instance()->GetInputDeviceMaps();
    auto host = AudioIOHost.Read();
    auto device = AudioIORecordingDevice.Read();
-   auto source = AudioIORecordingSource.Read();
    long newChannels;
 
    auto oldChannels = AudioIORecordChannels.Read();
    mInputChannels->Clear();
    for (auto & dev: inMaps) {
-      if (source == dev.sourceString &&
-          device == dev.deviceString &&
+      if (device == dev.deviceString &&
           host   == dev.hostString) {
 
          // add one selection for each channel of this source
@@ -574,11 +564,6 @@ void DeviceToolBar::SetDevices(const DeviceSourceMap *in, const DeviceSourceMap 
 {
    if (in) {
       AudioIORecordingDevice.Write(in->deviceString);
-      AudioIORecordingSourceIndex.Write(in->sourceIndex);
-      if (in->totalSources >= 1)
-         AudioIORecordingSource.Write(in->sourceString);
-      else
-         AudioIORecordingSource.Reset();
       gPrefs->Flush();
 
       FillInputChannels();
@@ -586,11 +571,6 @@ void DeviceToolBar::SetDevices(const DeviceSourceMap *in, const DeviceSourceMap 
 
    if (out) {
       AudioIOPlaybackDevice.Write(out->deviceString);
-      if (out->totalSources >= 1) {
-         gPrefs->Write(wxT("/AudioIO/PlaybackSource"), out->sourceString);
-      } else {
-         gPrefs->Write(wxT("/AudioIO/PlaybackSource"), wxT(""));
-      }
       gPrefs->Flush();
    }
 }

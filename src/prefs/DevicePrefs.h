@@ -45,7 +45,6 @@ class DevicePrefs final : public PrefsPanel
 
    wxString mPlayDevice;
    wxString mRecordDevice;
-   wxString mRecordSource;
    long mRecordChannels;
 
    wxChoice *mHost;

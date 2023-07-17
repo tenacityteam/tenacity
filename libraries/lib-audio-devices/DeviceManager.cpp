@@ -48,12 +48,7 @@ const std::vector<DeviceSourceMap> &DeviceManager::GetOutputDeviceMaps()
 
 wxString MakeDeviceSourceString(const DeviceSourceMap *map)
 {
-   wxString ret;
-   ret = map->deviceString;
-   if (map->totalSources > 1)
-      ret += wxT(": ") + map->sourceString;
-
-   return ret;
+   return map->deviceString;
 }
 
 DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, int isInput)
@@ -124,8 +119,6 @@ static void AddSources(int deviceIndex, int rate, std::vector<DeviceSourceMap> *
    DeviceSourceMap map;
    const PaDeviceInfo *info = Pa_GetDeviceInfo(deviceIndex);
 
-   map.sourceIndex  = 0;
-   map.totalSources = 0;
    // Only inputs have sources, so we call FillHostDeviceInfo with a 1 to indicate this
    FillHostDeviceInfo(&map, info, deviceIndex, 1);
 

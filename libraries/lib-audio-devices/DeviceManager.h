@@ -34,9 +34,7 @@ wxDECLARE_EXPORTED_EVENT(AUDIO_DEVICES_API,
 
 struct DeviceSourceMap {
    int deviceIndex;
-   int sourceIndex;
    int hostIndex;
-   int totalSources;
    int numChannels;
    wxString sourceString;
    wxString deviceString;

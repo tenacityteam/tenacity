@@ -742,7 +742,3 @@ IntSetting AudioIORecordChannels{
    L"/AudioIO/RecordChannels", 2 };
 StringSetting AudioIORecordingDevice{
    L"/AudioIO/RecordingDevice", L"" };
-StringSetting AudioIORecordingSource{
-   L"/AudioIO/RecordingSource", L"" };
-IntSetting AudioIORecordingSourceIndex{
-   L"/AudioIO/RecordingSourceIndex", -1 };
