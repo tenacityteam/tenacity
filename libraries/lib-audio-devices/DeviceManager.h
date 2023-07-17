@@ -36,7 +36,6 @@ struct DeviceSourceMap {
    int deviceIndex;
    int hostIndex;
    int numChannels;
-   wxString sourceString;
    wxString deviceString;
    wxString hostString;
 };
