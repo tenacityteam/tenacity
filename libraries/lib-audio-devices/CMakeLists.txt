@@ -15,6 +15,8 @@ set( SOURCES
    AudioIOBase.h
    AudioMemoryManager.cpp
    AudioMemoryManager.h
+   Device.cpp
+   Device.h
    DeviceChange.cpp
    DeviceChange.h
    DeviceManager.cpp
