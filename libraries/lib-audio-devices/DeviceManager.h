@@ -28,17 +28,11 @@
 #include "DeviceChange.h"
 #endif
 
+#include "Device.h"
+
 // Event sent to the application
 wxDECLARE_EXPORTED_EVENT(AUDIO_DEVICES_API,
                          EVT_RESCANNED_DEVICES, wxEvent);
-
-struct DeviceSourceMap {
-   int deviceIndex;
-   int hostIndex;
-   int numChannels;
-   wxString deviceString;
-   wxString hostString;
-};
 
 class AUDIO_DEVICES_API DeviceManager final
 #if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER) && defined(HAVE_DEVICE_CHANGE)
@@ -58,11 +52,11 @@ class AUDIO_DEVICES_API DeviceManager final
    // Time since devices scanned in seconds.
    float GetTimeSinceRescan();
 
-   DeviceSourceMap* GetDefaultOutputDevice(int hostIndex);
-   DeviceSourceMap* GetDefaultInputDevice(int hostIndex);
+   Device* GetDefaultOutputDevice(int hostIndex);
+   Device* GetDefaultInputDevice(int hostIndex);
 
-   const std::vector<DeviceSourceMap> &GetInputDeviceMaps();
-   const std::vector<DeviceSourceMap> &GetOutputDeviceMaps();
+   const std::vector<Device> &GetInputDevices();
+   const std::vector<Device> &GetOutputDevices();
 
 #if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER)
 #if defined(HAVE_DEVICE_CHANGE)
@@ -82,12 +76,12 @@ private:
    /// Called by GetInputDeviceMaps and GetOutputDeviceMaps when needed.
    void Init();
 
-   DeviceSourceMap* GetDefaultDevice(int hostIndex, bool isInput);
+   Device* GetDefaultDevice(int hostIndex, bool isInput);
 
    bool m_inited;
 
-   std::vector<DeviceSourceMap> mInputDeviceSourceMaps;
-   std::vector<DeviceSourceMap> mOutputDeviceSourceMaps;
+   std::vector<Device> mInputDeviceSources;
+   std::vector<Device> mOutputDeviceSources;
 
    static DeviceManager dm;
 };

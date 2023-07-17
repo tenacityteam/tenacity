@@ -32,44 +32,47 @@ DeviceManager* DeviceManager::Instance()
    return &dm;
 }
 
-const std::vector<DeviceSourceMap> &DeviceManager::GetInputDeviceMaps()
+const std::vector<Device> &DeviceManager::GetInputDevices()
 {
    if (!m_inited)
       Init();
-   return mInputDeviceSourceMaps;
+   return mInputDeviceSources;
 }
-const std::vector<DeviceSourceMap> &DeviceManager::GetOutputDeviceMaps()
+const std::vector<Device> &DeviceManager::GetOutputDevices()
 {
    if (!m_inited)
       Init();
-   return mOutputDeviceSourceMaps;
+   return mOutputDeviceSources;
 }
 
-DeviceSourceMap* DeviceManager::GetDefaultDevice(int hostIndex, bool isInput)
+Device* DeviceManager::GetDefaultDevice(int hostIndex, bool isInput)
 {
    if (hostIndex < 0 || hostIndex >= Pa_GetHostApiCount()) {
       return nullptr;
    }
 
    const struct PaHostApiInfo *apiinfo = Pa_GetHostApiInfo(hostIndex);   // get info on API
-   std::vector<DeviceSourceMap> & maps = isInput ? mInputDeviceSourceMaps : mOutputDeviceSourceMaps;
+   std::vector<Device>& devices = isInput ? mInputDeviceSources : mOutputDeviceSources;
    size_t i;
    int targetDevice = isInput ? apiinfo->defaultInputDevice : apiinfo->defaultOutputDevice;
 
-   for (i = 0; i < maps.size(); i++) {
-      if (maps[i].deviceIndex == targetDevice)
-         return &maps[i];
+   for (i = 0; i < devices.size(); i++)
+   {
+      if (devices[i].GetDeviceIndex() == targetDevice)
+      {
+         return &devices[i];
+      }
    }
 
    wxLogDebug(wxT("GetDefaultDevice() no default device"));
    return nullptr;
 }
 
-DeviceSourceMap* DeviceManager::GetDefaultOutputDevice(int hostIndex)
+Device* DeviceManager::GetDefaultOutputDevice(int hostIndex)
 {
    return GetDefaultDevice(hostIndex, false);
 }
-DeviceSourceMap* DeviceManager::GetDefaultInputDevice(int hostIndex)
+Device* DeviceManager::GetDefaultInputDevice(int hostIndex)
 {
    return GetDefaultDevice(hostIndex, true);
 }
@@ -77,16 +80,17 @@ DeviceSourceMap* DeviceManager::GetDefaultInputDevice(int hostIndex)
 //--------------- Device Enumeration --------------------------
 
 
-static void FillHostDeviceInfo(DeviceSourceMap *map, const PaDeviceInfo *info, int deviceIndex, bool isInput)
+static void FillHostDeviceInfo(Device* device, const PaDeviceInfo* info, int deviceIndex, bool isInput)
 {
-   wxString hostapiName = wxSafeConvertMB2WX(Pa_GetHostApiInfo(info->hostApi)->name);
-   wxString infoName = wxSafeConvertMB2WX(info->name);
+   std::string hostapiName = Pa_GetHostApiInfo(info->hostApi)->name;
+   std::string infoName = info->name;
 
-   map->deviceIndex  = deviceIndex;
-   map->hostIndex    = info->hostApi;
-   map->deviceString = infoName;
-   map->hostString   = hostapiName;
-   map->numChannels  = isInput ? info->maxInputChannels : info->maxOutputChannels;
+   device->SetDeviceIndex(deviceIndex);
+   device->SetHostIndex(info->hostApi);
+   device->SetName(infoName);
+   device->SetHostName(hostapiName);
+   device->SetNumChannels(isInput ? info->maxInputChannels : info->maxOutputChannels);
+   device->SetDeviceType(isInput ? Device::Type::Input : Device::Type::Output);
 }
 
 static bool IsInputDeviceAMapperDevice(const PaDeviceInfo *info)
@@ -108,15 +112,15 @@ static bool IsInputDeviceAMapperDevice(const PaDeviceInfo *info)
    return false;
 }
 
-static void AddSources(int deviceIndex, int rate, std::vector<DeviceSourceMap> *maps, bool isInput)
+static void AddSources(int deviceIndex, int rate, std::vector<Device>& devices, bool isInput)
 {
-   DeviceSourceMap map;
+   Device device;
    const PaDeviceInfo *info = Pa_GetDeviceInfo(deviceIndex);
 
    // Only inputs have sources, so we call FillHostDeviceInfo with a 1 to indicate this
-   FillHostDeviceInfo(&map, info, deviceIndex, true);
+   FillHostDeviceInfo(&device, info, deviceIndex, true);
 
-   maps->push_back(map);
+   devices.push_back(device);
 }
 
 namespace {
@@ -131,8 +135,8 @@ struct MyEvent : wxEvent {
 void DeviceManager::Rescan()
 {
    // get rid of the previous scan info
-   this->mInputDeviceSourceMaps.clear();
-   this->mOutputDeviceSourceMaps.clear();
+   this->mInputDeviceSources.clear();
+   this->mOutputDeviceSources.clear();
 
    // if we are doing a second scan then restart portaudio to get NEW devices
    if (m_inited) {
@@ -164,7 +168,7 @@ void DeviceManager::Rescan()
    for (int i = 0; i < nDevices; i++) {
       const PaDeviceInfo *info = Pa_GetDeviceInfo(i);
       if (info->maxOutputChannels > 0) {
-         AddSources(i, info->defaultSampleRate, &mOutputDeviceSourceMaps, false);
+         AddSources(i, info->defaultSampleRate, mOutputDeviceSources, false);
       }
 
       if (info->maxInputChannels > 0) {
@@ -174,7 +178,7 @@ void DeviceManager::Rescan()
              PaWasapi_IsLoopback(i) > 0)
 #endif
 #endif
-         AddSources(i, info->defaultSampleRate, &mInputDeviceSourceMaps, true);
+         AddSources(i, info->defaultSampleRate, mInputDeviceSources, true);
       }
    }
 

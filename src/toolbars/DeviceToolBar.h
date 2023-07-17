@@ -17,7 +17,7 @@
 class wxSize;
 class wxPoint;
 class wxChoice;
-struct DeviceSourceMap;
+class Device;
 
 class TenacityProject;
 
@@ -64,7 +64,7 @@ class DeviceToolBar final : public ToolBar {
    void FillHosts();
    void FillHostDevices();
    void FillInputChannels();
-   void SetDevices(const DeviceSourceMap *in, const DeviceSourceMap *out);
+   void SetDevices(const Device* in, const Device* out);
    void SetNames();
    void RegenerateTooltips() override;
    void ShowComboDialog(wxChoice *combo, const TranslatableString &title);

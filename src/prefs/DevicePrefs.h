@@ -43,8 +43,8 @@ class DevicePrefs final : public PrefsPanel
    TranslatableStrings mHostNames;
    wxArrayStringEx mHostLabels;
 
-   wxString mPlayDevice;
-   wxString mRecordDevice;
+   std::string mPlayDevice;
+   std::string mRecordDevice;
    long mRecordChannels;
 
    wxChoice *mHost;
