@@ -2,7 +2,7 @@
 # Run this script with locale as the current directory
 set -o errexit
 echo ";; Recreating tenacity.pot using .h, .cpp and .mm files"
-for path in ../modules/mod-* ../libraries/lib-* ../include ../src ; do
+for path in ../modules/mod-* ../libraries/lib-* ../src ; do
    find $path -name \*.h -o -name \*.cpp -o -name \*.mm
 done | LANG=c sort | \
 sed -E 's/\.\.\///g' |\
