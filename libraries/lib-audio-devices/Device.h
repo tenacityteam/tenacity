@@ -13,6 +13,7 @@
 #pragma once
 
 #include <string>
+#include <any>
 
 /** @brief Represents an input or output device in Tenacity.
  * 
@@ -38,6 +39,7 @@ class Device
         int mDeviceIndex; /// PortAudio device index.
         int mHostIndex; /// PortAudio host index for the device.
         int mNumChannels; /// Number of input or output channels.
+        bool mDefaultDevice; /// If this device is the default device.
 
     public:
         Device();
@@ -119,4 +121,9 @@ class Device
 
         /// Returns the device's PortAudio host index.
         int GetHostIndex() const;
+
+        void SetDefaultDevice(bool isDefault) noexcept;
+
+        /// Returns if this device is the default device. 
+        bool IsDefaultDevice() const noexcept;
 };

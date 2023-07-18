@@ -14,18 +14,19 @@
 
 Device::Device() : mDeviceType{Device::Type::Null}, mName{"(null)"},
                    mHostName{"(null)"}, mDeviceIndex{-1}, mHostIndex{-1},
-                   mNumChannels{-1}
+                   mNumChannels{-1}, mDefaultDevice{false}
 {
 }
 
 Device::Device(const Device& other)
 {
-    mDeviceType  = other.mDeviceType;
-    mName        = other.mName;
-    mHostName    = other.mHostName;
-    mDeviceIndex = other.mDeviceIndex;
-    mHostIndex   = other.mHostIndex;
-    mNumChannels = other.mNumChannels;
+    mDeviceType    = other.mDeviceType;
+    mName          = other.mName;
+    mHostName      = other.mHostName;
+    mDeviceIndex   = other.mDeviceIndex;
+    mHostIndex     = other.mHostIndex;
+    mNumChannels   = other.mNumChannels;
+    mDefaultDevice = other.mDefaultDevice;
 }
 
 Device::operator bool() const
@@ -93,4 +94,14 @@ int Device::GetDeviceIndex() const
 int Device::GetHostIndex() const
 {
     return mHostIndex;
+}
+
+void Device::SetDefaultDevice(bool isDefault) noexcept
+{
+    mDefaultDevice = isDefault;
+}
+
+bool Device::IsDefaultDevice() const noexcept
+{
+    return mDefaultDevice;
 }
