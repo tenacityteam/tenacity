@@ -7,10 +7,10 @@
 # سيف الباش <syfa3528@gmail.com>, 2022.
 msgid ""
 msgstr ""
-    "Project-Id-Version: tenacity 1.3\n"
+"Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2021-07-20 03:55-0400\n"
-"PO-Revision-Date: 2023-06-26 04:38+0000\n"
+"PO-Revision-Date: 2023-07-18 18:18+0000\n"
 "Last-Translator: Avery King <avery98@pm.me>\n"
 "Language-Team: English <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/en/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: libraries/lib-strings/Internat.cpp
 msgid "Unable to determine"
@@ -3752,6 +3752,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Failed to open database file:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to discard connection"
@@ -3768,6 +3771,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Failed to execute a project file command:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -3776,6 +3782,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Unable to prepare project file command:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -3785,6 +3794,10 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Failed to retrieve data from the project file.\n"
+"The following command failed:\n"
+"\n"
+"%s"
 
 #. i18n-hint: An error message.
 #: src/ProjectFileIO.cpp
@@ -3792,6 +3805,8 @@ msgid ""
 "Project is in a read only directory\n"
 "(Unable to create the required temporary files)"
 msgstr ""
+"Project is in a read only directory\n"
+"(Unable to create the required temporary files)"
 
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
@@ -3822,6 +3837,8 @@ msgid ""
 "Project is read only\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"Project is read only\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3829,6 +3846,8 @@ msgid ""
 "Project is locked\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"Project is locked\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3836,6 +3855,8 @@ msgid ""
 "Project is busy\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"Project is busy\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3843,6 +3864,8 @@ msgid ""
 "Project is corrupt\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"Project is corrupt\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3850,6 +3873,8 @@ msgid ""
 "Some permissions issue\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"Some permissions issue\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3857,6 +3882,8 @@ msgid ""
 "A disk I/O error\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"A disk I/O error\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3864,6 +3891,8 @@ msgid ""
 "Not authorized\n"
 "(Unable to work with the blockfiles)"
 msgstr ""
+"Not authorized\n"
+"(Unable to work with the blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -3899,6 +3928,10 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Failed to update the project file.\n"
+"The following command failed:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 msgid "Destination project could not be detached"
@@ -3992,6 +4025,10 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"The project failed to open, possibly due to limited space\n"
+"on the storage device.\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -4001,6 +4038,11 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"\n"
+"Unable to remove autosave information, possibly due to limited space\n"
+"on the storage device.\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 msgid "Backing up project"
@@ -4047,6 +4089,14 @@ msgid ""
 "\n"
 "Save anyway?"
 msgstr ""
+"Your project is now empty.\n"
+"If saved, the project will have no tracks.\n"
+"\n"
+"To save any previously open tracks:\n"
+"Click 'No', Edit > Undo until all tracks\n"
+"are open, then File > Save Project.\n"
+"\n"
+"Save anyway?"
 
 #: src/ProjectFileManager.cpp
 msgid "Warning - Empty Project"
@@ -4062,6 +4112,9 @@ msgid ""
 "\n"
 "Please select a different disk with more free space."
 msgstr ""
+"The project size exceeds the available free space on the target disk.\n"
+"\n"
+"Please select a different disk with more free space."
 
 #: src/ProjectFileManager.cpp
 msgid "The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."
@@ -4117,6 +4170,9 @@ msgid ""
 "The project was not saved because the selected project is open in another window.\n"
 "Please try again and select an original name."
 msgstr ""
+"The project was not saved because the selected project is open in another "
+"window.\n"
+"Please try again and select an original name."
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -4128,6 +4184,8 @@ msgid ""
 "Saving a copy must not overwrite an existing saved project.\n"
 "Please try again and select an original name."
 msgstr ""
+"Saving a copy must not overwrite an existing saved project.\n"
+"Please try again and select an original name."
 
 #: src/ProjectFileManager.cpp
 msgid "Error Saving Copy of Project"
@@ -4561,55 +4619,55 @@ msgstr ""
 
 #: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
 msgid "Second Track"
-msgstr ""
+msgstr "Second Track"
 
 #: src/Screenshot.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Scale"
-msgstr ""
+msgstr "Scale"
 
 #: src/Screenshot.cpp
 msgid "One Sec"
-msgstr ""
+msgstr "One Sec"
 
 #: src/Screenshot.cpp
 msgid "Ten Sec"
-msgstr ""
+msgstr "ten Sec"
 
 #: src/Screenshot.cpp
 msgid "One Min"
-msgstr ""
+msgstr "One Min"
 
 #: src/Screenshot.cpp
 msgid "Five Min"
-msgstr ""
+msgstr "Five Min"
 
 #: src/Screenshot.cpp
 msgid "One Hour"
-msgstr ""
+msgstr "One Hour"
 
 #: src/Screenshot.cpp
 msgid "Short Tracks"
-msgstr ""
+msgstr "Short tracks"
 
 #: src/Screenshot.cpp
 msgid "Medium Tracks"
-msgstr ""
+msgstr "Medium Tracks"
 
 #: src/Screenshot.cpp
 msgid "Tall Tracks"
-msgstr ""
+msgstr "Tall Tracks"
 
 #: src/Screenshot.cpp
 msgid "Choose a location to save screenshot images"
-msgstr ""
+msgstr "Choose a location to save screenshot images"
 
 #: src/Screenshot.cpp
 msgid "Capture failed!"
-msgstr ""
+msgstr "Capture failed!"
 
 #: src/Screenshot.cpp src/commands/CommandTargets.cpp
 msgid "Long Message"
-msgstr ""
+msgstr "Long Message"
 
 #: src/Sequence.cpp
 #, c-format
@@ -4617,46 +4675,49 @@ msgid ""
 "Sequence has block file exceeding maximum %s samples per block.\n"
 "Truncating to this maximum length."
 msgstr ""
+"\n"
+"Sequence has block file exceeding maximum %s samples per block.\n"
+"Truncating to this maximum length."
 
 #: src/Sequence.cpp
 msgid "Warning - Truncating Overlong Block File"
-msgstr ""
+msgstr "Warning - Truncating Overlong Block File"
 
 #: src/ShuttleGui.cpp src/effects/EffectUI.cpp
 msgid "&Preview"
-msgstr ""
+msgstr "&Preview"
 
 #: src/ShuttleGui.cpp
 msgid "Dry Previe&w"
-msgstr ""
+msgstr "Dry Previe&w"
 
 #: src/ShuttleGui.cpp
 msgid "&Settings"
-msgstr ""
+msgstr "&Settings"
 
 #: src/ShuttleGui.cpp
 msgid "Debu&g"
-msgstr ""
+msgstr "Debu&g"
 
 #: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
 msgid "Off"
-msgstr ""
+msgstr "Off"
 
 #: src/Snap.cpp
 msgid "Nearest"
-msgstr ""
+msgstr "Nearest"
 
 #: src/Snap.cpp
 msgid "Prior"
-msgstr ""
+msgstr "Prior"
 
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
-msgstr ""
+msgstr "Sound Activated Record"
 
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
-msgstr ""
+msgstr "Activation level"
 
 #: src/SplashDialog.cpp
 msgid "Welcome to Audacity!"
@@ -4664,35 +4725,35 @@ msgstr "Welcome to Tenacity!"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
-msgstr ""
+msgstr "Don't show this again at start up"
 
 #: src/SqliteSampleBlock.cpp
 msgid "Connection to project file is null"
-msgstr ""
+msgstr "Connection to project file is null"
 
 #: src/Tags.cpp
 msgid "Artist Name"
-msgstr ""
+msgstr "Artist Name"
 
 #: src/Tags.cpp
 msgid "Track Title"
-msgstr ""
+msgstr "Track Title"
 
 #: src/Tags.cpp
 msgid "Album Title"
-msgstr ""
+msgstr "Album Title"
 
 #: src/Tags.cpp
 msgid "Track Number"
-msgstr ""
+msgstr "Track Number"
 
 #: src/Tags.cpp
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 #: src/Tags.cpp
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 #: src/Tags.cpp src/prefs/MousePrefs.cpp
 msgid "Comments"
@@ -4700,39 +4761,39 @@ msgstr "Comments"
 
 #: src/Tags.cpp
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr ""
+msgstr "Use arrow keys (or ENTER key after editing) to navigate fields"
 
 #: src/Tags.cpp
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: src/Tags.cpp
 msgid "Value"
-msgstr ""
+msgstr "Value"
 
 #: src/Tags.cpp
 msgid "&Add"
-msgstr ""
+msgstr "&Add"
 
 #: src/Tags.cpp
 msgid "&Remove"
-msgstr ""
+msgstr "&Remove"
 
 #: src/Tags.cpp
 msgid "Genres"
-msgstr ""
+msgstr "Genres"
 
 #: src/Tags.cpp
 msgid "E&dit..."
-msgstr ""
+msgstr "E&dit"
 
 #: src/Tags.cpp
 msgid "Rese&t..."
-msgstr ""
+msgstr "Rese&t"
 
 #: src/Tags.cpp
 msgid "Template"
-msgstr ""
+msgstr "Template"
 
 #: src/Tags.cpp
 msgid "&Load..."
@@ -4740,31 +4801,31 @@ msgstr "&Load..."
 
 #: src/Tags.cpp
 msgid "Set De&fault"
-msgstr ""
+msgstr "Set De&fault"
 
 #: src/Tags.cpp
 msgid "Don't show this when exporting audio"
-msgstr ""
+msgstr "Don't show this when exporting audio"
 
 #: src/Tags.cpp
 msgid "Edit Genres"
-msgstr ""
+msgstr "Edit Genres"
 
 #: src/Tags.cpp
 msgid "Unable to save genre file."
-msgstr ""
+msgstr "Unable to save genre file."
 
 #: src/Tags.cpp
 msgid "Reset Genres"
-msgstr ""
+msgstr "Reset Genres"
 
 #: src/Tags.cpp
 msgid "Are you sure you want to reset the genre list to defaults?"
-msgstr ""
+msgstr "Are you sure you want to reset the genre list to defaults?"
 
 #: src/Tags.cpp
 msgid "Unable to open genre file."
-msgstr ""
+msgstr "Unable to open genre file."
 
 #: src/Tags.cpp
 msgid "Load Metadata As:"
@@ -4776,21 +4837,23 @@ msgstr "Error Loading Metadata"
 
 #: src/Tags.cpp
 msgid "Save Metadata As:"
-msgstr ""
+msgstr "Save Metadata As:"
 
 #: src/Tags.cpp
 msgid "Error Saving Tags File"
-msgstr ""
+msgstr "Error Saving Tags File"
 
 #: src/TempDirectory.cpp
 msgid "Unsuitable"
-msgstr ""
+msgstr "Unsuitable"
 
 #: src/TempDirectory.cpp
 msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
 msgstr ""
+"The temporary files directory is on a FAT formatted drive.\n"
+"Resetting to default location."
 
 #: src/TempDirectory.cpp
 #, c-format
@@ -4799,6 +4862,9 @@ msgid ""
 "\n"
 "For tips on suitable drives, click the help button."
 msgstr ""
+"%s\n"
+"\n"
+"For tips on suitable drives, click the help button."
 
 #: src/Theme.cpp
 #, c-format
@@ -4818,7 +4884,7 @@ msgstr ""
 msgid ""
 "Theme written to:\n"
 "  %s."
-msgstr ""
+msgstr "Theme written to:%s."
 
 #: src/Theme.cpp
 #, c-format
@@ -4847,6 +4913,8 @@ msgid ""
 "Theme as Cee code written to:\n"
 "  %s."
 msgstr ""
+"Theme as Cee code written to:\n"
+"  %s."
 
 #: src/Theme.cpp
 #, c-format
@@ -4886,6 +4954,9 @@ msgid ""
 " were found in:\n"
 "  %s."
 msgstr ""
+"None of the expected theme component files\n"
+" were found in:\n"
+"  %s."
 
 #: src/Theme.cpp
 #, c-format
@@ -4893,6 +4964,9 @@ msgid ""
 "Could not create directory:\n"
 "  %s"
 msgstr ""
+"\n"
+"Could not create directory:\n"
+"  %s"
 
 #: src/Theme.cpp
 #, c-format
