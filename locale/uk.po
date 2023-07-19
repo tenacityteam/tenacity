@@ -26,138 +26,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Активовано потокове передавання… неможливо зібрати дані.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default recording device number: %d"
-msgstr "Номер типового пристрою записування: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default playback device number: %d"
-msgstr "Номер типового пристрою відтворення: %d\n"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Пристроїв не виявлено"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device info unavailable for: %d"
-msgstr "Недоступні дані щодо пристрою: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device ID: %d"
-msgstr "Ідентифікатор пристрою: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device name: %s"
-msgstr "Назва пристрою: %s\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Host name: %s"
-msgstr "Назва вузла: %s\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Recording channels: %d"
-msgstr "Канали запису: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Playback channels: %d"
-msgstr "Канали відтворення: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Low Recording Latency: %g"
-msgstr "Низька латентність запису: %g\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Low Playback Latency: %g"
-msgstr "Низька латентність відтворення: %g\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "High Recording Latency: %g"
-msgstr "Висока латентність запису: %g\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "High Playback Latency: %g"
-msgstr "Висока латентність відтворення: %g\n"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-msgid "Supported Rates:"
-msgstr "Підтримувані частоти:\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected recording device: %d - %s"
-msgstr "Вибраний пристрій записування: %d – %s\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No recording device found for '%s'."
-msgstr "Не знайдено пристрою записування для «%s».\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected playback device: %d - %s"
-msgstr "Вибраний пристрій відтворення: %d - %s\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No playback device found for '%s'."
-msgstr "Не знайдено пристрою відтворення для «%s».\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-msgid "Cannot check mutual sample rates without both devices."
-msgstr "Неможливо перевірити взаємні частоти дискретизації без обох пристроїв.\n"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Supports output: %d"
-msgstr "Підтримує вихід: %d\n"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Supports input: %d"
-msgstr "Підтримує вхід: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Opened: %d"
-msgstr "Відкрито: %d\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Вибраний пристрій записування MIDI: %d – %s\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No MIDI recording device found for '%s'."
-msgstr "Не знайдено пристрою записування MIDI для «%s».\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Вибраний пристрій відтворення MIDI: %d – %s\n"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No MIDI playback device found for '%s'."
-msgstr "Не знайдено пристрою відтворення MIDI для «%s».\n"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -179,52 +51,9 @@ msgstr "мілісекунд"
 msgid "Message"
 msgstr "Повідомлення"
 
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error in %s at %s line %d.\n"
-"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
-msgstr ""
-
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error at %s line %d.\n"
-"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
-msgstr ""
-
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "Внутрішня помилка"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid "Tenacity failed to open a file in %s."
-msgstr ""
-"Не вдалося відкрити файл бази даних:\n"
-"\n"
-"%s"
-
-#: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Tenacity failed to read from a file in %s."
-msgstr ""
-
-#: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
-msgstr ""
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity не вдалося записати файл %s.\n"
-"Ймовірно, диск переповнено або диск є непридатним до запису.\n"
-"Щоб дізнатися більше про вивільнення місця на диску, натисніть кнопку «Довідка»."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -595,11 +424,6 @@ msgstr "%s, веброзробник"
 msgid "%s, graphics"
 msgstr "%s, графіка"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, співзасновник проєкту, розробник"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -607,23 +431,11 @@ msgstr "%s, співзасновник проєкту, розробник"
 msgid "%s, Tenacity developer"
 msgstr "%s, розробник Tenacity"
 
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "%s, розробник Tenacity"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
 msgid "%s, lead Tenacity developer"
 msgstr "%s, головний розробник Tenacity"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity contributor"
-msgstr "%s, розробник Tenacity"
 
 #: src/AboutDialog.cpp
 #, c-format
@@ -656,16 +468,6 @@ msgstr ""
 "<a href=\"mailto:yurchor@ukr.net\">Юрій Чорноіван</a>"
 
 #: src/AboutDialog.cpp
-msgid "<h1>"
-msgstr ""
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s is a free, open source, cross-platform software for recording and editing audio.<br><br>"
-msgstr "%s — вільне програмне забезпечення з відкритим кодом, здатне працювати на багатьох програмних платформах і призначене для запису і редагування звукових даних."
-
-#: src/AboutDialog.cpp
 msgid "Credits"
 msgstr "Подяки"
 
@@ -676,28 +478,8 @@ msgid "%s Team Members"
 msgstr "Учасники команди %s"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-msgid "Emeritus"
-msgstr "Заслужені колишні учасники:"
-
-#: src/AboutDialog.cpp
-msgid "Distinguished Tenacity Team members that aren't currently active"
-msgstr ""
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Audacity Team Members"
-msgstr "Учасники команди %s"
-
-#: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Заслужені колишні учасники:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-msgid "Distinguished Audacity Team members, not currently active"
-msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "Contributors"
@@ -722,11 +504,6 @@ msgid "%s includes code from the following projects:"
 msgstr "У %s міститься код з таких проєктів:"
 
 #: src/AboutDialog.cpp
-#, c-format
-msgid "In addition, %s also includes these libraries (some forks) from Tenacity:"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "Special thanks:"
 msgstr "Особливі подяки:"
 
@@ -735,22 +512,6 @@ msgstr "Особливі подяки:"
 #, c-format
 msgid "%s website: "
 msgstr "Сайт %s: "
-
-#. i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
-#. name substitues the 2nd.
-#: src/AboutDialog.cpp
-#, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
-msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Центр"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -765,12 +526,6 @@ msgstr "Увімкнено"
 #: src/export/ExportFFmpegDialogs.cpp src/prefs/ModulePrefs.cpp
 msgid "Disabled"
 msgstr "Вимкнено"
-
-#. i18n-hint: Information about when audacity was compiled follows
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "This Build"
-msgstr "Збірка"
 
 #: src/AboutDialog.cpp
 msgid "Program build date:"
@@ -788,10 +543,6 @@ msgstr "Тип випуску:"
 msgid "Compiler:"
 msgstr "Компілятор:"
 
-#: src/AboutDialog.cpp
-msgid "wxWidgets:"
-msgstr ""
-
 #. i18n-hint: The directory audacity is installed into (on *nix systems)
 #: src/AboutDialog.cpp
 msgid "Installation Prefix:"
@@ -800,25 +551,6 @@ msgstr "Префікс встановлення:"
 #: src/AboutDialog.cpp
 msgid "Settings folder:"
 msgstr "Тека з параметрами:"
-
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Core Libraries"
-msgstr "Бібліотеки"
-
-#: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Sample rate conversion"
-msgstr "Перетвор&ювач част. дискр.:"
 
 #: src/AboutDialog.cpp
 msgid "File Format Support"
@@ -1009,11 +741,6 @@ msgid "Error: %s"
 msgstr "Помилка: %s"
 
 #: src/AudioIO.cpp
-#, fuzzy
-msgid "PortAudio Error"
-msgstr "Повідомити про помилку"
-
-#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
 msgstr "Під час спроби ініціалізації шару вводу-виводу midi сталася помилка.\n"
 
@@ -1024,15 +751,6 @@ msgid ""
 msgstr ""
 "Ви не зможете відтворювати midi.\n"
 "\n"
-
-#: src/AudioIO.cpp
-msgid "PortMidi Error"
-msgstr ""
-
-#: src/AudioIO.cpp
-#, fuzzy
-msgid "Tenacity Audio"
-msgstr "Звук Audacity"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -1046,17 +764,6 @@ msgstr ""
 #: src/AutoRecoveryDialog.cpp
 msgid "Automatic Crash Recovery"
 msgstr "Автоматичне відновлення після краху"
-
-#: src/AutoRecoveryDialog.cpp
-#, fuzzy
-msgid ""
-"The following projects were not saved properly the last time Tenacity was run and can be automatically recovered.\n"
-"\n"
-"After recovery, save the projects to ensure changes are written to disk."
-msgstr ""
-"Вказані нижче проєкти не було належним чином збережено під час останнього сеансу роботи з Audacity. Їх можна відновити у автоматичному режимі.\n"
-"\n"
-"Після відновлення збережіть проєкти, щоб забезпечити запис внесених змін на диск."
 
 #: src/AutoRecoveryDialog.cpp
 msgid "Recoverable &projects"
@@ -1073,11 +780,6 @@ msgstr "Позначення"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "Назва"
-
-#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
-#, fuzzy
-msgid "&Quit Tenacity"
-msgstr "Ви&йти з Audacity"
 
 #: src/AutoRecoveryDialog.cpp
 msgid "&Discard Selected"
@@ -1607,11 +1309,6 @@ msgstr "Діагностична збірка (рівень діагностик
 msgid "Release build (debug level %d)"
 msgstr "Остаточна версія (рівень діагностики %d)"
 
-#: src/BuildInfo.h
-#, fuzzy
-msgid ", 64 bits"
-msgstr "%s, 64-бітова"
-
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
@@ -2018,59 +1715,9 @@ msgstr "Запис на CD"
 msgid "No Local Help"
 msgstr "Відсутня локальна довідка"
 
-#: src/HelpText.cpp src/SplashDialog.cpp
-#, fuzzy
-msgid "Welcome to Tenacity!"
-msgstr "Ласкаво просимо до Audacity!"
-
-#. i18n-hint: %s is the program's version string
-#: src/HelpText.cpp
-#, c-format
-msgid "You are using Tenacity %s. Tenacity is a fork of Audacity"
-msgstr ""
-
-#: src/HelpText.cpp
-msgid "Need Help?"
-msgstr ""
-
-#: src/HelpText.cpp
-#, fuzzy
-msgid "We have several support methods:"
-msgstr "Ось перелік підтримуваних методів:"
-
-#. i18n-hint: Preserve '[[help:Quick_Help|' as it's the name of a link.
-#: src/HelpText.cpp
-msgid "[[help:Quick_Help|Quick Help]]"
-msgstr ""
-
-#. i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.
-#: src/HelpText.cpp
-#, fuzzy
-msgid " [[help:Main_Page|Tenacity Manual]] - if not installed locally, [[https://tenacityaudio.org/docs/index.html|view online]]"
-msgstr " [[help:indexhtml|Підручник]] — якщо не встановлено локально, [[https://manual.audacityteam.org/|переглянути у інтернеті]]"
-
-#: src/HelpText.cpp
-#, fuzzy
-msgid "More:</b> Visit our [[https://codeberg.org/tenacityteam/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
-msgstr "Докладніше:</b> відвідайте нашу [[https://wiki.audacityteam.org/index.php|Вікі]], там можна знайти поради, підказки додаткові настанови та документацію щодо плаґінів ефектів."
-
-#: src/HelpText.cpp
-#, fuzzy
-msgid "Tenacity can import unprotected files in many other formats (such as M4A and WMA, compressed WAV files from portable recorders and audio from video files) if you download and install the optional [[https://tenacityaudio.org/docs/_content/FFmpeg.html|FFmpeg library]] to your computer."
-msgstr "Audacity може імпортувати незахищені файли в багатьох інших форматах (наприклад, M4A та WMA, стиснуті файли WAV з портативних реєстраторів та аудіо з відео файлів), якщо ви завантажите та встановите необов'язкові файли [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#foreign| FFmpeg library]] на свій комп'ютер."
-
 #: src/HelpText.cpp
 msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
 msgstr "Ви також можете ознайомитися з нашою довідкою щодо імпортування [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI|файлів MIDI]] та доріжок зі [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd|звукових компакт-дисків]]."
-
-#: src/HelpText.cpp
-#, fuzzy
-msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://codeberg.org/tenacityteam/tenacity-manual/releases| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
-msgstr "У вашій системі не встановлено дані до каталогу «help». Будь ласка, [[*URL*|ознайомтеся з підручником у інтернеті]] або [[https://manual.audacityteam.org/man/unzipping_the_manual.html|отримайте локальну копію поточної версії підручника]].<br><br>Щоб завжди звертатися до підручника у інтернеті, змініть «Розташування підручника» у налаштуваннях інтерфейсу на «У інтернеті»."
-
-#: src/HelpText.cpp
-msgid "View latest stable release"
-msgstr ""
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -2127,11 +1774,6 @@ msgstr "Ущільнення вивільнило %s місця на диску.
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "&Журнал змін…"
-
-#: src/JournalEvents.cpp
-#, fuzzy
-msgid "Journal recording failed"
-msgstr "Запис збережено:"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -2214,18 +1856,6 @@ msgstr "Позначити доріжку"
 msgid "One or more saved labels could not be read."
 msgstr "Одну або декілька збережених міток не вдалося прочитати."
 
-#. i18n-hint: Title on a dialog indicating that this is the first
-#. * time Audacity has been run.
-#: src/LangChoice.cpp
-#, fuzzy
-msgid "Tenacity First Run"
-msgstr "Перший запуск Audacity"
-
-#: src/LangChoice.cpp
-#, fuzzy
-msgid "Choose Language for Tenacity to use:"
-msgstr "Виберіть мову інтерфейсу для Audacity:"
-
 #. i18n-hint: The %s's are replaced by translated and untranslated
 #. * versions of language names.
 #: src/LangChoice.cpp
@@ -2254,11 +1884,6 @@ msgstr ""
 msgid "Opening Audacity Project"
 msgstr "Відкривається проєкт Audacity"
 
-#: src/LogWindow.cpp
-#, fuzzy
-msgid "Tenacity Log"
-msgstr "Журнал Audacity"
-
 #: src/LogWindow.cpp src/Tags.cpp
 msgid "&Save..."
 msgstr "З&берегти…"
@@ -2285,11 +1910,6 @@ msgstr "Зберігати журнал до:"
 #, c-format
 msgid "Couldn't save log to file: %s"
 msgstr "Не вдалося зберегти журнал до цього файла: %s"
-
-#: src/LyricsWindow.cpp
-#, fuzzy, c-format
-msgid "Tenacity Karaoke%s"
-msgstr "Audacity Караоке%s"
 
 #: src/LyricsWindow.cpp
 msgid "&Karaoke..."
@@ -2337,11 +1957,6 @@ msgstr "Змікшувати і перетворити"
 #: src/Mix.cpp
 msgid "Mixing and rendering tracks"
 msgstr "Мікшування та зведення доріжок"
-
-#: src/MixerBoard.cpp
-#, fuzzy, c-format
-msgid "Tenacity Mixer Board%s"
-msgstr "Панель мікшера Audacity%s"
 
 #. i18n-hint: title of the Gain slider, used to adjust the volume
 #. i18n-hint: Title of the Gain slider, used to adjust the volume
@@ -2434,17 +2049,6 @@ msgstr ""
 "Його не буде завантажено."
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
-msgid ""
-"The module \"%s\" is matched with Tenacity version \"%s\".\n"
-"\n"
-"It will not be loaded."
-msgstr ""
-"Модуль «%s» призначено для Audacity версії «%s».\n"
-"\n"
-"Його не буде завантажено."
-
-#: src/ModuleManager.cpp
 #, c-format
 msgid ""
 "The module \"%s\" failed to initialize.\n"
@@ -2479,11 +2083,6 @@ msgstr "Так"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Ні"
-
-#: src/ModuleManager.cpp
-#, fuzzy
-msgid "Tenacity Module Loader"
-msgstr "Завантажувач модулів Audacity"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2794,26 +2393,8 @@ msgid "Mismatched Sampling Rates"
 msgstr "Невідповідні частоти дискретизації"
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
-#, fuzzy
-msgid ""
-"Too few tracks are selected for recording at this sample rate.\n"
-"(Tenacity requires two channels at the same sample rate for\n"
-"each stereo track)"
-msgstr ""
-"Позначено надто мало доріжок для запису із цією частотою дискретизації.\n"
-"(Audacity потрібні два канали із однаковою частотою дискретизації для\n"
-"кожної стерео-доріжки)"
-
-#: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "Too Few Compatible Tracks Selected"
 msgstr "Позначено надто мало сумісних доріжок"
-
-#. i18n-hint a numerical suffix added to distinguish otherwise like-named clips when new record started
-#: src/ProjectAudioManager.cpp
-#, c-format
-msgctxt "clip name template"
-msgid "%s #%d"
-msgstr ""
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -2833,32 +2414,12 @@ msgid "Dropouts"
 msgstr "Провали"
 
 #: src/ProjectAudioManager.cpp
-#, fuzzy
-msgid ""
-"Recorded audio was lost at the labeled locations. Possible causes:\n"
-"\n"
-"Other applications are competing with Tenacity for processor time\n"
-"\n"
-"You are saving directly to a slow external storage device\n"
-msgstr ""
-"У позначених мітками місцях записаний звук було втрачено. Можливі причини:\n"
-"\n"
-"Конкуренція за процесорний час Audacity з іншими програмами\n"
-"\n"
-"Безпосереднє збереження даних на зовнішній пристрій із повільним доступом\n"
-
-#: src/ProjectAudioManager.cpp
 msgid "Turn off dropout detection"
 msgstr "Вимкнути виявлення провалів"
 
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<без назви>"
-
-#: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid "[Project %02i] "
-msgstr "[Проєкт %02i] Tenacity "
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2917,17 +2478,6 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
 msgstr "Цей файл не є файлом проєкту Audacity"
-
-#: src/ProjectFileIO.cpp
-#, fuzzy
-msgid ""
-"This project was created with a version of Audacity that is not supported by Tenacity.\n"
-"\n"
-"You will need to use that version to open it."
-msgstr ""
-"Цей проєкт було створено у новішій версії Audacity:\n"
-"\n"
-"Щоб відкрити його, вам доведеться встановити новішу версію."
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
@@ -3070,17 +2620,6 @@ msgid "Error Writing to File"
 msgstr "Помилка під час спроби запису файла"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity не вдалося записати файл %s.\n"
-"Ймовірно, диск переповнено або диск є непридатним до запису.\n"
-"Щоб дізнатися більше про вивільнення місця на диску, натисніть кнопку «Довідка»."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Ущільнення проєкту"
 
@@ -3094,17 +2633,6 @@ msgstr "[Проєкт %02i] Audacity «%s»"
 #: src/ProjectFileIO.cpp
 msgid "(Recovered)"
 msgstr "(Відновлено)"
-
-#. i18n-hint: %s will be replaced by the version number.
-#: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"This file was saved using Audacity %s (or a derivative of the same version, possibly Tenacity).\n"
-"You are using Tenacity %s. You may need to upgrade to a newer version to open this file."
-msgstr ""
-"Файл збережений Audacity версії %s.\n"
-"Ви використовуєте Audacity версії %s. Щоб відкрити цей файл, слід оновити\n"
-"версію."
 
 #: src/ProjectFileIO.cpp
 msgid "Can't open project file"
@@ -3167,30 +2695,6 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "Backing up project"
 msgstr "Резервне копіювання проєкту"
-
-#: src/ProjectFileManager.cpp
-#, fuzzy
-msgid ""
-"This project was not saved properly the last time Tenacity ran.\n"
-"\n"
-"It has been recovered to the last snapshot."
-msgstr ""
-"Цей проєкт не було належним чином збережено під час останнього сеансу роботи з Audacity.\n"
-"\n"
-"Його відновлено з останнього зробленого знімка."
-
-#: src/ProjectFileManager.cpp
-#, fuzzy
-msgid ""
-"This project was not saved properly the last time Tenacity ran.\n"
-"\n"
-"It has been recovered to the last snapshot, but you must save it\n"
-"to preserve its contents."
-msgstr ""
-"Цей проєкт не було належним чином збережено під час останнього сеансу роботи з Audacity.\n"
-"\n"
-"Його відновлено з останнього зробленого знімка, але вам слід зберегти\n"
-"його, щоб не втратити дані."
 
 #: src/ProjectFileManager.cpp
 msgid "Project Recovered"
@@ -3384,13 +2888,6 @@ msgstr "Проєкт було відновлено"
 msgid "Recover"
 msgstr "Відновити"
 
-#. i18n-hint Name default name assigned to a clip on track import
-#: src/ProjectFileManager.cpp
-#, fuzzy, c-format
-msgctxt "clip name template"
-msgid "%s %d"
-msgstr "%s %d з %d"
-
 #: src/ProjectFileManager.cpp
 #, c-format
 msgid "Imported '%s'"
@@ -3451,11 +2948,6 @@ msgstr "Створено новий проєкт"
 msgid "Automatic database backup failed."
 msgstr "Не вдалося виконати автоматичне резервне копіювання бази даних."
 
-#: src/ProjectManager.cpp
-#, fuzzy, c-format
-msgid "Welcome to Tenacity version %s"
-msgstr "Ласкаво просимо до Audacity версії %s"
-
 #. i18n-hint: The first %s numbers the project, the second %s is the project name.
 #: src/ProjectManager.cpp
 #, c-format
@@ -3515,15 +3007,6 @@ msgstr[3] "%d хвилин"
 #, c-format
 msgid "%s and %s."
 msgstr "%s і %s."
-
-#: src/ProjectSerializer.cpp
-#, fuzzy
-msgid ""
-"This recovery file was saved by Audacity 2.3.0 or before.\n"
-"You need to run that version of Audacity (NOT Tenacity) to recover the project."
-msgstr ""
-"Цей файл для відновлення було збережено у Audacity 2.3.0 або ще ранішій версії.\n"
-"Для відновлення проєкту вам слід відкрити проєкт у відповідній версії Audacity."
 
 #: src/ProjectWindow.cpp
 msgid "Horizontal Scrollbar"
@@ -3793,15 +3276,6 @@ msgid "Activation level (dB):"
 msgstr "Рівень активації (дБ):"
 
 #: src/SplashDialog.cpp
-msgid "The version of Tenacity you are using is a pre-release version. Use of these releases in production environments is discouraged. This version of Tenacity might contain (unknown) bugs along with possible data loss."
-msgstr ""
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "%s, розробник Tenacity"
-
-#: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
 msgstr "Не показувати цього знову під час запуску"
 
@@ -3941,11 +3415,6 @@ msgstr ""
 "Це питання буде задано лише один раз, після встановлення, де програма запитувала вас щодо відновлення початкових значень налаштувань."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid "Reset Tenacity Preferences"
-msgstr "Відновити налаштування Audacity"
-
-#: src/TenacityApp.cpp
 #, c-format
 msgid ""
 "%s could not be found.\n"
@@ -3957,30 +3426,12 @@ msgstr ""
 "Його вилучено зі списку нещодавніх файлів."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid "SQLite library failed to initialize. Tenacity cannot continue."
-msgstr "Не вдалося ініціалізувати бібліотеку SQLite. Неможливо продовжити роботу Audacity."
-
-#: src/TenacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Розмір блоку має належати діапазону від 256 до 100000000\n"
 
 #: src/TenacityApp.cpp
 msgid "Tenacity is starting up..."
 msgstr "Tenacity починається..."
-
-#: src/TenacityApp.cpp
-#, c-format
-msgid ""
-"Tenacity has encountered a critical error. This is likely to do with your platform.\n"
-"\n"
-"Error message (for devs): %s"
-msgstr ""
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Tenacity - Critical Error"
-msgstr "Помилка у налаштуваннях Audacity"
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -4004,78 +3455,8 @@ msgid "&File"
 msgstr "&Файл"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"Tenacity could not find a safe place to store temporary files.\n"
-"\n"
-"Tenacity needs a place where automatic cleanup programs won't delete the temporary files. Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-"Програмі не вдалося знайти безпечне місце для зберігання тимчасових файлів.\n"
-"Audacity потрібне місце, де програми для автоматичного вилучення файлів не пошкодять тимчасові файли.\n"
-"Вкажіть відповідний каталог у діалоговому вікні уподобань."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"Tenacity could not find a place to store temporary files.\n"
-"Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-"Програмі не вдається знайти каталог для зберігання тимчасових файлів.\n"
-"Вкажіть відповідний каталог у діалоговому вікні уподобань."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Tenacity is now going to exit. Please launch Tenacity again to use the new temporary directory."
-msgstr "Audacity готується до завершення. Повторно завантажте програму для використання нової теки тимчасових файлів."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"Running two copies of Tenacity simultaneously may cause\n"
-"data loss or cause your system to crash.\n"
-"\n"
-msgstr ""
-"Запуск двох копій Audacity одночасно може призвести\n"
-"до втрати даних або краху системи.\n"
-"\n"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"Tenacity was not able to lock the temporary files directory.\n"
-"This folder may be in use by another copy of Tenacity.\n"
-msgstr ""
-"Audacity не може заблокувати теку з тимчасовими файлами.\n"
-"Можливо цю теку вже використовує інша копія Audacity.\n"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Do you still want to start Tenacity?"
-msgstr "Досі бажаєте запустити Audacity?"
-
-#: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "Помилка при блокуванні теки тимчасових фалів"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "The system has detected that another copy of Tenacity is running.\n"
-msgstr "Система визначила, що вже запущено іншу копію Audacity.\n"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"Use the New or Open commands in the currently running Tenacity\n"
-" process to open multiple projects simultaneously.\n"
-msgstr ""
-"Щоб відкрити одночасно декілька проєктів використовуйте\n"
-"команди «Створити» або «Відкрити» у копії\n"
-"Audacity, що зараз виконується.\n"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Tenacity is already running"
-msgstr "Audacity вже запущено"
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -4088,11 +3469,6 @@ msgstr ""
 "\n"
 "Ймовірною причиною є нестача ресурсів,\n"
 "і може знадобитися перезавантаження системи."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Tenacity Startup Failure"
-msgstr "Помилка під час запуску Audacity"
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -4131,28 +3507,8 @@ msgstr ""
 "і може знадобитися перезавантаження системи."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"The Tenacity IPC server failed to initialize.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
-"Не вдалося ініціалізувати сервер IPC Audacity.\n"
-"\n"
-"Ймовірною причиною є нестача ресурсів,\n"
-"і може знадобитися перезавантаження системи."
-
-#: src/TenacityApp.cpp
 msgid "An unrecoverable error has occurred during startup"
 msgstr "Під час запуску сталася невиправна помилка"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Another copy of Tenacity has been detectedrunning on this system. Running multiple copies ofTenacity is not supported\n"
-"\n"
-"You will now be redirected to the running copy."
-msgstr ""
 
 #. i18n-hint: This controls the number of bytes that Audacity will
 #. *           use when writing files to the disk
@@ -4170,12 +3526,6 @@ msgstr "це повідомлення"
 msgid "run self diagnostics"
 msgstr "запуск самодіагностики"
 
-#. i18n-hint: This displays the Audacity version
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "display Tenacity version"
-msgstr "показати версію Audacity"
-
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -4183,49 +3533,8 @@ msgid "audio or project file name"
 msgstr "назва файла звукових даних або проєкту"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"Audacity project (.aup3) files are not currently \n"
-"associated with Tenacity. \n"
-"\n"
-"You can associate them so they open on double-click for convenience."
-msgstr ""
-"Файли проєктів Audacity (.aup3) зараз\n"
-"не пов'язані з Audacity. \n"
-"\n"
-"Пов'язати їх, щоб вони відкривались подвійним клацанням?"
-
-#: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Файли проєктів Audacity"
-
-#: src/TenacityFileConfig.cpp
-#, fuzzy
-msgid "Tenacity Configuration Error"
-msgstr "Помилка у налаштуваннях Audacity"
-
-#: src/TenacityFileConfig.cpp
-#, fuzzy, c-format
-msgid ""
-"The following configuration file could not be accessed:\n"
-"\n"
-"\t%s\n"
-"\n"
-"This could be caused by many reasons, but the most likely are that the disk is full or you do not have write permissions to the file. More information can be obtained by clicking the help button below.\n"
-"\n"
-"You can attempt to correct the issue and then click \"Retry\" to continue.\n"
-"\n"
-"If you choose to \"Quit Tenacity\", your project may be left in an unsaved state which will be recovered the next time you open it."
-msgstr ""
-"Не вдалося отримати доступ до цього файла налаштувань:\n"
-"\n"
-"\t%s\n"
-"\n"
-"Причин може бути багато, але найімовірнішою є переповнення диска або недостатні права доступу до запису до файла. Докладніші відомості можна отримати у відповідь на натискання кнопки «Довідка», розташованої нижче.\n"
-"\n"
-"Ви можете спробувати усунути причину помилки і натиснути кнопку «Повторити», щоб продовжити роботу програми.\n"
-"\n"
-"Якщо ви натиснете кнопку «Вийти з Audacity», ваш проєкт може залишитися у незбереженому стані — програма намагатиметься його відновити під час наступного запуску."
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -4258,11 +3567,6 @@ msgstr "Тривалість"
 #: src/TimeTrack.cpp src/TrackPanelAx.cpp
 msgid "Time Track"
 msgstr "Доріжка часу"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record"
-msgstr "Таймер запису Audacity"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -4355,11 +3659,6 @@ msgstr "Увімкнено автоматичне експортування:"
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
 msgstr "Дія після записування за таймером:"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record Progress"
-msgstr "Поступ запису за таймером Audacity"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -4513,11 +3812,6 @@ msgid "Do nothing"
 msgstr "Нічого не робити"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Exit Tenacity"
-msgstr "Вийти з Audacity"
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Перезапустити систему"
 
@@ -4536,11 +3830,6 @@ msgstr "Тривалість запису:"
 #: src/TimerRecordDialog.cpp
 msgid "Scheduled to stop at:"
 msgstr "Заплановано зупинку о:"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record - Waiting for Start"
-msgstr "Запис за таймером Audacity — Очікування початку"
 
 #. i18n-hint: "in" means after a duration of time,
 #. which is shown below this string
@@ -4563,11 +3852,6 @@ msgstr "Запис збережено:"
 #: src/TimerRecordDialog.cpp
 msgid "Recording Exported:"
 msgstr "Запис експортовано:"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record - Waiting"
-msgstr "Запис за таймером Audacity — очікування"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
@@ -4733,20 +4017,6 @@ msgstr "Калібрування завершено"
 msgid "Resampling failed."
 msgstr "Не вдалося змінити частоту дискретизації."
 
-#. i18n-hint Template for clip name generation on copy-paste
-#: src/WaveTrack.cpp
-#, c-format
-msgctxt "clip name template"
-msgid "%s.%i"
-msgstr ""
-
-#. i18n-hint Template for clip name generation on inserting new empty clip
-#: src/WaveTrack.cpp
-#, c-format
-msgctxt "clip name template"
-msgid "%s %i"
-msgstr ""
-
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "Не вистачає місця для вставки вибраного фрагмента"
@@ -4754,12 +4024,6 @@ msgstr "Не вистачає місця для вставки вибраног�
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "Недостатньо простору для поширення лінії вирізання"
-
-#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
-#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
-#, fuzzy
-msgid "Tenacity"
-msgstr "Швидкість"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -5023,18 +4287,6 @@ msgstr "Експортує дані до файла."
 #: src/commands/LoadCommands.cpp
 msgid "Builtin Commands"
 msgstr "Вбудовані команди"
-
-#: src/commands/LoadCommands.cpp src/effects/LoadEffects.cpp
-#: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
-#: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LoadLV2.cpp
-#: src/effects/nyquist/LoadNyquist.cpp src/effects/vamp/LoadVamp.cpp
-msgid "The Tenacity Team and contributors"
-msgstr ""
-
-#: src/commands/LoadCommands.cpp
-#, fuzzy
-msgid "Provides builtin commands to Tenacity"
-msgstr "Надає вбудовані команди Audacity"
 
 #: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
@@ -6083,156 +5335,14 @@ msgstr "Час наростання: %.2f секунд"
 msgid "Release Time %.1f secs"
 msgstr "Час випуску: %.1f секунд"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Exponential-Fit"
-msgstr "Експоненційний вихід"
-
-#: src/effects/Compressor2.cpp
-msgid "Analog Model"
-msgstr ""
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "peak amplitude"
-msgstr "Пікова амплітуда, дБ"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "СКВ"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Reduction"
-msgstr "Зменшення шумності"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Peak Reduction"
-msgstr "Зменшення шумності"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Analog Limiter"
-msgstr "Обмежувач"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Compressor"
-msgstr "Компресор"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Встановлює гучність для однієї або декількох доріжок"
-
-#: src/effects/Compressor2.cpp
-msgid "Envelope dependent gain"
-msgstr ""
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compressor step response"
-msgstr "Стисн&ути на основі пікових значень"
-
-#: src/effects/Compressor2.cpp
-msgid "Compressor step response plot"
-msgstr ""
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Алгоритм"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Envelope Algorithm:"
-msgstr "&Алгоритм:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress based on:"
-msgstr "Стисн&ути на основі пікових значень"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress stereo channels independently"
-msgstr "Но&рмалізувати канали стерео окремо"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Ratio:"
-msgstr "&Коефіцієнт:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width:"
-msgstr "Ширина:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width"
-msgstr "Ширина:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain:"
-msgstr "Пі&дсилення на виході (дБ):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain"
-msgstr "Підсилення на виході (дБ)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack:"
-msgstr "&Час наростання:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack"
-msgstr "Зростання (мс)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release:"
-msgstr "Ч&ас випуску:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release"
-msgstr "Час випуску"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time:"
-msgstr "Інтервал згладжування:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time"
-msgstr "Інтервал згладжування"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time:"
-msgstr "Час завершення:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time"
-msgstr "Час закінчення"
-
-#: src/effects/Compressor2.cpp
-#, c-format
-msgid "Compressor gain reduction: %.1f dB"
-msgstr ""
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -7588,31 +6698,6 @@ msgstr "Застосовує лінійне зростання гучності 
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Застосовує лінійне спадання гучності для позначених звукових даних"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Find Clicks"
-msgstr "Знайти зрізання"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Creates labels where clicks are detected"
-msgstr "Створить мітки там, де виявлено обрізання"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Clicks"
-msgstr "Клацання"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Right"
-msgstr "Клацання"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Left"
-msgstr "Клацання"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Знайти зрізання"
@@ -7648,11 +6733,6 @@ msgstr "Віддзеркалює звукові семпли вертикаль�
 #: src/effects/LoadEffects.cpp
 msgid "Builtin Effects"
 msgstr "Вбудовані ефекти"
-
-#: src/effects/LoadEffects.cpp
-#, fuzzy
-msgid "Provides builtin effects to Tenacity"
-msgstr "Надає підтримку вбудованих ефектів у Audacity"
 
 #: src/effects/LoadEffects.cpp
 msgid "Unknown built-in effect name"
@@ -7875,15 +6955,6 @@ msgstr "Стара чутливість"
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "Step 1"
 msgstr "Крок 1"
-
-#: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid ""
-"Select a few seconds of just noise so Tenacity knows what to filter out,\n"
-"then click Get Noise Profile:"
-msgstr ""
-"Позначте декілька секунд чистого шуму, щоб Audacity знала, що фільтрувати,\n"
-"а потім натисніть кнопку «Створити модель шуму»:"
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "&Get Noise Profile"
@@ -8736,11 +7807,6 @@ msgid "VST Effects"
 msgstr "Ефекти VST"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
-msgid "Adds the ability to use VST effects in Tenacity."
-msgstr "Додає можливість використання ефектів VST у Audacity."
-
-#: src/effects/VST/VSTEffect.cpp
 msgid "Scanning Shell VST"
 msgstr "Пошук оболонки VST"
 
@@ -8775,11 +7841,6 @@ msgstr "Розмір &буфера (від 8 до 1048576 семплів):"
 msgid "Latency Compensation"
 msgstr "Компенсація латентності"
 
-#: src/effects/VST/VSTEffect.cpp
-#, fuzzy
-msgid "As part of their processing, some VST effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all VST effects."
-msgstr "У межах частини процедури обробки, деякі ефекти VST мають затримати повернення даних до Audacity. Якщо не компенсувати цю затримку, ви помітите, що до звукових даних вставляються невеличкі фрагменти тиші. Позначення цього пункту надасть змогу компенсувати затримку, але таке компенсування працює не для усіх ефектів VST."
-
 #: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
 #: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LV2Effect.cpp
 msgid "Enable &compensation"
@@ -8813,11 +7874,6 @@ msgstr "Стандартний файл банку даних VST"
 #: src/effects/VST/VSTEffect.cpp
 msgid "Standard VST program file"
 msgstr "Стандартний файл програми VST"
-
-#: src/effects/VST/VSTEffect.cpp
-#, fuzzy
-msgid "Tenacity VST preset file"
-msgstr "Файли набору шаблонів VST Audacity"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -8901,11 +7957,6 @@ msgid "Audio Unit Effects"
 msgstr "Ефекти Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Надає підтримку ефектів Audio Unit у Audacity"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
 msgstr "Не вдалося знайти компонент"
 
@@ -8916,11 +7967,6 @@ msgstr "Не вдалося ініціалізувати компонент"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Audio Unit Effect Options"
 msgstr "Параметри ефектів Audio Unit"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "As part of their processing, some Audio Unit effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all Audio Unit effects."
-msgstr "У межах частини процедури обробки, деякі ефекти Audio Unit мають затримати повернення даних до Audacity. Якщо не компенсувати цю затримку, ви помітите, що до звукових даних вставляються невеличкі фрагменти тиші. Позначення цього пункту надасть змогу компенсувати затримку, але таке компенсування працює не для усіх ефектів Audio Unit."
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "User Interface"
@@ -9073,18 +8119,8 @@ msgid "Provides LADSPA Effects"
 msgstr "Забезпечує роботу ефектів LADSPA"
 
 #: src/effects/ladspa/LadspaEffect.cpp
-#, fuzzy
-msgid "Tenacity no longer uses vst-bridge"
-msgstr "Audacity більше не використовує vst-bridge"
-
-#: src/effects/ladspa/LadspaEffect.cpp
 msgid "LADSPA Effect Options"
 msgstr "Параметри ефектів LADSPA"
-
-#: src/effects/ladspa/LadspaEffect.cpp
-#, fuzzy
-msgid "As part of their processing, some LADSPA effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all LADSPA effects."
-msgstr "У межах частини процедури обробки, деякі ефекти LADSPA мають затримати повернення даних до Audacity. Якщо не компенсувати цю затримку, ви помітите, що до звукових даних вставляються невеличкі фрагменти тиші. Позначення цього пункту надасть змогу компенсувати затримку, але таке компенсування працює не для усіх ефектів LADSPA."
 
 #. i18n-hint: An item name introducing a value, which is not part of the string but
 #. appears in a following text box window; translate with appropriate punctuation
@@ -9114,11 +8150,6 @@ msgstr "Параметри ефектів LV2"
 #, c-format
 msgid "&Buffer Size (8 to %d) samples:"
 msgstr "Розмір &буфера (від 8 до %d семплів):"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, fuzzy
-msgid "As part of their processing, some LV2 effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this setting will provide that compensation, but it may not work for all LV2 effects."
-msgstr "У межах частини процедури обробки, деякі ефекти LV2 мають затримати повернення даних до Audacity. Якщо не компенсувати цю затримку, ви помітите, що до звукових даних вставляються невеличкі фрагменти тиші. Позначення цього пункту надасть змогу компенсувати затримку, але таке компенсування працює не для усіх ефектів LV2."
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
@@ -9152,19 +8183,9 @@ msgstr "LV2"
 msgid "LV2 Effects"
 msgstr "Ефекти LV2"
 
-#: src/effects/lv2/LoadLV2.cpp
-#, fuzzy
-msgid "Provides LV2 Effects support to Tenacity"
-msgstr "Надає підтримку ефектів LV2 у Audacity"
-
 #: src/effects/nyquist/LoadNyquist.cpp
 msgid "Nyquist Effects"
 msgstr "Ефекти Nyquist"
-
-#: src/effects/nyquist/LoadNyquist.cpp
-#, fuzzy
-msgid "Provides Nyquist Effects support to Tenacity"
-msgstr "Надає підтримку ефектів Nyquist у Audacity"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Applying Nyquist Effect..."
@@ -9288,11 +8309,6 @@ msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-
 msgstr "[Попередження: Nyquist повернуто некоректний рядок UTF-8, його перетворено до кодування Latin-1]"
 
 #: src/effects/nyquist/Nyquist.cpp
-#, fuzzy, c-format
-msgid "This version of Tenacity does not support Nyquist plug-in version %ld"
-msgstr "У цій версії Audacity не передбачено підтримки плаґінів Nyquist версії %ld"
-
-#: src/effects/nyquist/Nyquist.cpp
 msgid "Could not open file"
 msgstr "Не вдалося відкрити файл"
 
@@ -9406,11 +8422,6 @@ msgstr "без назви"
 #: src/effects/vamp/LoadVamp.cpp
 msgid "Vamp Effects"
 msgstr "Ефекти Vamp"
-
-#: src/effects/vamp/LoadVamp.cpp
-#, fuzzy
-msgid "Provides Vamp Effects support to Tenacity"
-msgstr "Надає підтримку ефектів Vamp у Audacity"
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
@@ -9617,11 +8628,6 @@ msgstr "Не вдалося знайти «%s»."
 msgid "Unable to locate \"%s\" in your path."
 msgstr "Не вдалося знайти «%s» у каталогах зі змінної PATH вашої системи."
 
-#: src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Export Options"
-msgstr "Параметри форматування"
-
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Скасувати"
@@ -9697,27 +8703,12 @@ msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
 msgstr "FFmpeg: помилка не вдалося розмістити буфер для читання даних зі звукового потоку FIFO."
 
 #: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr "FFmpeg: помилка, не вдалося записати останній фрагмент звукових даних до файла результатів."
-
-#: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
 msgstr "FFmpeg: помилка, не вдалося отримати розмір буфера семплів"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
 msgstr "FFmpeg: помилка, не вдалося розмістити байти для буфера семплів"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg: помилка, не вдалося налаштувати фрагмент звукових даних"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg: помилка під час кодування фрагмента"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
@@ -10650,48 +9641,6 @@ msgstr ""
 "Набір частоти дискретизації проєкту (%d) та швидкості (%d кб/с)\n"
 "не підтримується форматом файлів MP3."
 
-#: src/export/ExportMka.cpp
-msgid "PCM 16-bit (Little Endian)"
-msgstr ""
-
-#: src/export/ExportMka.cpp
-msgid "PCM 24-bit (Little Endian)"
-msgstr ""
-
-#: src/export/ExportMka.cpp
-msgid "PCM Float 32-bit"
-msgstr ""
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 16-bit"
-msgstr "16-бітовий"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 24-bit"
-msgstr "24-бітовий"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Keep Labels"
-msgstr "Мітки"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Matroska Audio Files"
-msgstr "Аудіофайл"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the selected audio as MKA"
-msgstr "Експорт вибраного аудіо як FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the audio as MKA"
-msgstr "Експорт звукових даних у форматі FLAC"
-
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
 msgstr "Експорт у декілька файлів"
@@ -10908,26 +9857,8 @@ msgid "Other uncompressed files"
 msgstr "Інші нестиснуті файли"
 
 #: src/export/ExportPCM.cpp
-#, fuzzy
-msgid ""
-"You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
-"Tenacity cannot do this, the Export was abandoned."
-msgstr ""
-"Вами зроблено спробу експортувати файл WAV або AIFF, розмір якого перевищує 4 ГБ.\n"
-"Audacity не зможе виконати потрібну вам дію. Експортування було скасовано."
-
-#: src/export/ExportPCM.cpp
 msgid "Error Exporting"
 msgstr "Помилка під час експортування"
-
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid ""
-"Your exported WAV file has been truncated as Tenacity cannot export WAV\n"
-"files bigger than 4GB."
-msgstr ""
-"Експортований вами файл WAV було обрізано, оскільки Audacity не може експортувати\n"
-"файли WAV, розмір яких перевищує 4 ГБ."
 
 #: src/export/ExportPCM.cpp
 msgid "GSM 6.10 requires mono"
@@ -10967,19 +9898,6 @@ msgid "FFmpeg support not compiled in"
 msgstr "Програму зібрано без підтримки FFmpeg"
 
 #: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid ""
-"FFmpeg was configured in Preferences and successfully loaded before, \n"
-"but this time Tenacity failed to load it at startup. \n"
-"\n"
-"You may want to go back to Preferences > Libraries and re-configure it."
-msgstr ""
-"FFmpeg було налаштовано у «Параметрах», бібліотека успішно завантажувалася раніше, \n"
-"але цього разу Audacity не вдалося завантажити її під час запуску. \n"
-"\n"
-"Можливо, вам слід повернутися до сторінки «Параметри > Бібліотеки» і повторно налаштувати параметри бібліотеки."
-
-#: src/ffmpeg/FFmpeg.cpp
 msgid "FFmpeg startup failed"
 msgstr "Спроба запуску FFmpeg була невдалою"
 
@@ -10990,11 +9908,6 @@ msgstr "Бібліотеки FFmpeg не знайдено"
 #: src/ffmpeg/FFmpeg.cpp
 msgid "Locate FFmpeg"
 msgstr "Вказати адресу FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Tenacity needs the file '%s' to import and export audio via FFmpeg."
-msgstr "Audacity потребує файла «%s» для імпортування та експортування звукових даних за допомогою FFmpeg."
 
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
@@ -11018,11 +9931,6 @@ msgstr "Звантажити"
 msgid "Only avformat.dll"
 msgstr "Лише avformat.dll"
 
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid "Only ffmpeg.*.dylib"
-msgstr "Лише libmp3lame.dylib"
-
 #. i18n-hint: It's asking for the location of a file, for
 #. example, "Where is lame_enc.dll?" - you could translate
 #. "Where would I find the file '%s'?" instead if you want.
@@ -11036,21 +9944,6 @@ msgid "FFmpeg not found"
 msgstr "FFmpeg не знайдено"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
-#, fuzzy
-msgid ""
-"Tenacity attempted to use FFmpeg to import an audio file,\n"
-"but the libraries were not found.\n"
-"\n"
-"To use FFmpeg import, go to Edit > Preferences > Libraries\n"
-"to download or locate the FFmpeg libraries."
-msgstr ""
-"Програма Audacity намагалася скористатися FFmpeg для імпортування звукового файла,\n"
-"але потрібних бібліотек не було виявлено.\n"
-"\n"
-"Щоб мати змогу користуватися імпортом за допомогою FFmpeg, відкрийте сторінку «Зміни > Параметри > Бібліотеки»,\n"
-"щоб звантажити або вказати адресу потрібних бібліотек FFmpeg."
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
 msgid "Do not show this warning again"
 msgstr "Більше не показувати це попередження"
 
@@ -11059,209 +9952,13 @@ msgid "All supported files"
 msgstr "всі файли, що підтримуються"
 
 #: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" \n"
-"is a MIDI file, not an audio file. \n"
-"Tenacity cannot open this type of file for playing, but you can\n"
-"edit it by clicking File > Import > MIDI."
-msgstr ""
-"«%s» \n"
-"є файлом MIDI, а не файлом аудіо. \n"
-"Audacity не може відкривати цей тип файлів для відтворення, але ви можете редагувати їх, якщо виберете пункт меню Файл > Імпорт > MIDI."
-
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" \n"
-"is a not an audio file. \n"
-"Tenacity cannot open this type of file."
-msgstr ""
-"«%s» \n"
-"не є файлом звукових даних. \n"
-"Audacity не може відкривати файли цього типу."
-
-#: src/import/Import.cpp
 msgid "Select stream(s) to import"
 msgstr "Оберіть потоки для імпортування"
-
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid "This version of Tenacity was not compiled with %s support."
-msgstr "Ця версія Audacity була зібрана без підтримки %s."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is an audio CD track. \n"
-"Tenacity cannot open audio CDs directly. \n"
-"Extract (rip) the CD tracks to an audio format that \n"
-"Tenacity can import, such as WAV or AIFF."
-msgstr ""
-"«%s» є доріжкою аудіо-КД. \n"
-"Audacity не може відкрити аудіо-КД напряму. \n"
-"Експортуйте (виріжте) доріжки КД у імпортований \n"
-"Audacity формат, на зразок WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a playlist file. \n"
-"Tenacity cannot open this file because it only contains links to other files. \n"
-"You may be able to open it in a text editor and download the actual audio files."
-msgstr ""
-"«%s» є файлом списку програвання.\n"
-"Audacity не може відкрити цей файл, оскільки він містить тільки посилання на файли.\n"
-"Ви можете відкрити його у текстовому редакторі та завантажити справжні звукові файли."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a Windows Media Audio file. \n"
-"Tenacity cannot open this type of file due to patent restrictions. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом Windows Media Audio. \n"
-"Audacity не може відкривати цей тип файлів через патентні обмеження. \n"
-"слід перетворити цей файл на файл підтримуваного аудіоформату, такого як WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is an Advanced Audio Coding file.\n"
-"Without the optional FFmpeg library, Tenacity cannot open this type of file.\n"
-"Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом вдосконаленого аудіокодування (AAC). \n"
-"Без додаткової бібліотеки FFmpeg Audacity не може відкривати цей тип файлів.\n"
-"Слід перетворити цей файл на файл підтримуваного аудіоформату, зокрема WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is an encrypted audio file. \n"
-"These typically are from an online music store. \n"
-"Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Tenacity, or burn it to audio CD then \n"
-"extract the CD track to a supported audio format such as WAV or AIFF."
-msgstr ""
-"«%s» є шифрованим аудіофайлом. \n"
-"Такі зазвичай продають у магазинах. \n"
-"Audacity не може відкривати цей тип файлів через шифрування. \n"
-"Спробуйте записати файл у Audacity, або записати його на CD, а потім \n"
-"копіювати доріжку CD у підтримуваний аудіоформат, на зразок WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a RealPlayer media file. \n"
-"Tenacity cannot open this proprietary format. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом RealPlayer. \n"
-"Audacity не може відкрити цей закритий формат. \n"
-"слід перетворити цей файл у файл підтримуваного аудіоформату, такого як WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a notes-based file, not an audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Tenacity."
-msgstr ""
-"«%s» є нотним файлом, а не файлом аудіо. \n"
-"Audacity не може відкривати цей тип файлів. \n"
-"Спробуйте перетворити його на файл аудіо, на зразок WAV або AIFF, а потім \n"
-"імпортувати, або записати за допомогою Audacity."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a Musepack audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-"and try importing it again. Otherwise you need to convert it to a supported audio \n"
-"format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом аудіоформату Musepack. \n"
-"Audacity не може відкривати цей тип файлів. \n"
-"Якщо ви впевнені, що насправді це файл mp3, змініть його суфікс назви на «.mp3»\n"
-"і ще раз спробуйте його імпортувати. У іншому випадку Вам слід спочатку перетворити цей файл на файл формату, \n"
-"що підтримується, на зразок WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a Wavpack audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом аудіоформату Wavpack. \n"
-"Audacity не може відкривати цей тип файлів. \n"
-"Вам слід спочатку перетворити цей файл на файл формату, що підтримується, на зразок WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a Dolby Digital audio file. \n"
-"Tenacity cannot currently open this type of file. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом аудіоформату Dolby Digital. \n"
-"Audacity на даний момент не може відкривати цей тип файлів. \n"
-"Вам слід спочатку перетворити цей файл на файл формату, що підтримується, на зразок WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is an Ogg Speex audio file. \n"
-"Tenacity cannot currently open this type of file. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом аудіо Ogg Speex. \n"
-"Audacity на даний момент не може відкривати цей тип файлів. \n"
-"Вам слід спочатку перетворити цей файл на файл формату, що підтримується, на зразок WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"\"%s\" is a video file. \n"
-"Tenacity cannot currently open this type of file. \n"
-"You need to extract the audio to a supported format, such as WAV or AIFF."
-msgstr ""
-"«%s» є файлом відео. \n"
-"Audacity на даний момент не може відкривати цей тип файлів. \n"
-"Вам слід спочатку видобути звукові дані до файла у форматі, що підтримується, на зразок WAV або AIFF."
 
 #: src/import/Import.cpp
 #, c-format
 msgid "File \"%s\" not found."
 msgstr "Файла «%s» не знайдено."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity did not recognize the type of the file '%s'.\n"
-"\n"
-"%sFor uncompressed files, also try File > Import > Raw Data."
-msgstr ""
-"Програмі не вдалося розпізнати тип файла «%s».\n"
-"\n"
-"%sДля нестиснених файлів також можна спробувати пункт меню «Файл > Імпорт > Необроблені дані»."
 
 #: src/import/Import.cpp
 msgid ""
@@ -11275,20 +9972,6 @@ msgstr ""
 #, c-format
 msgid "%s, %s"
 msgstr "%s, %s"
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity recognized the type of the file '%s'.\n"
-"Importers supposedly supporting such files are:\n"
-"%s,\n"
-"but none of them understood this file format."
-msgstr ""
-"Audacity визначено тип файла «%s».\n"
-"Серед інструментів імпортування, які могли б підтримувати такі файли:\n"
-"%s,\n"
-"але жоден з інструментів не може обробити файл у цьому форматі."
 
 #: src/import/ImportAUP.cpp
 msgid "AUP project files (*.aup)"
@@ -11308,21 +9991,6 @@ msgstr ""
 #: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "Імпортувати проєкт"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid ""
-"This project was saved by Audacity version 1.0 or earlier. The format has\n"
-"changed and Tenacity is unable to import the project.\n"
-"\n"
-"Use a version of Audacity prior to v3.0.0 to upgrade the project and then\n"
-"you may import it with Tenacity."
-msgstr ""
-"Цей проєкт було збережено у версії 1.0 Audacity або старішій версії. З того часу,\n"
-"формат було змінено, і ця версія Audacity не може імпортувати дані проєкту.\n"
-"\n"
-"Скористайтеся версією Audacity до 3.0.0, щоб оновити дані проєкту. Оновлені дані\n"
-"можна буде імпортувати до цієї версії Audacity."
 
 #: src/import/ImportAUP.cpp
 msgid "Internal error in importer...tag not recognized"
@@ -11360,11 +10028,6 @@ msgstr "Некоректний атрибут «selHigh» проєкту."
 #, c-format
 msgid "Couldn't find the project data folder: \"%s\""
 msgstr "Не вдалося знайти теку з даними проєкту: «%s»"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "MIDI tracks found in project file, but this build of Tenacity does not include MIDI support, bypassing track."
-msgstr "У файлі проєкту виявлено доріжки MIDI, але у цій збірці Audacity не передбачено підтримки MIDI. Пропускаємо доріжку."
 
 #: src/import/ImportAUP.cpp
 msgid "Project Import"
@@ -11569,21 +10232,6 @@ msgstr ""
 "\n"
 "Ймовірно, причиною цього є помилкове форматування MP3.\n"
 "\n"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-msgid "Matroska files"
-msgstr "файли %s"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "Індекс[%02d], тип[%s], канали[%d], частота[%d]"
-
-#: src/import/ImportMka.cpp
-#, c-format
-msgid "Label Edition[%02zx] Name[%s]"
-msgstr ""
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -11900,12 +10548,6 @@ msgstr "Величина яку імпортувати:"
 msgid "Sample rate:"
 msgstr "Частота дискретизації:"
 
-#. i18n-hint: Guess format of raw file
-#: src/import/ImportRaw.cpp
-#, fuzzy
-msgid "Detect"
-msgstr "Виявлення тиші"
-
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "&Імпорт"
@@ -11926,25 +10568,6 @@ msgstr "%s, лівий"
 msgid "%s right"
 msgstr "%s, правий"
 
-#. i18n-hint:
-#. First %s is replaced with the noun "start" or "end"
-#. identifying one end of a clip,
-#. second string is the name of that clip,
-#. first number gives the position of that clip in a sequence
-#. of clips,
-#. last number counts all clips,
-#. and the last string is the name of the track containing the
-#. clips.
-#.
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s %s, %d of %d clip %s"
-msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%s %d з %d кліпу %s"
-msgstr[1] "%s %d з %d кліпів %s"
-msgstr[2] "%s %d з %d кліпів %s"
-msgstr[3] "%s %d з %d кліпів %s"
-
 #: src/menus/ClipMenus.cpp
 msgid "start"
 msgstr "початок"
@@ -11952,40 +10575,6 @@ msgstr "початок"
 #: src/menus/ClipMenus.cpp
 msgid "end"
 msgstr "кінець"
-
-#. i18n-hint:
-#. First and third %s are each replaced with the noun "start"
-#. or with "end", identifying and end of a clip,
-#. second and fourth strings are the names of those clips,
-#. first and second numbers give the position of those clips in
-#. a sequence of clips,
-#. last number counts all clips,
-#. and the last string is the name of the track containing the
-#. clips.
-#.
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s %s and %s %s, %d and %d of %d clip %s"
-msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
-msgstr[0] "%s %d і %s %d з %d кліпу %s"
-msgstr[1] "%s %d і %s %d з %d кліпів %s"
-msgstr[2] "%s %d і %s %d з %d кліпів %s"
-msgstr[3] "%s %d і %s %d з %d кліпів %s"
-
-#. i18n-hint:
-#. first string is the name of a clip,
-#. first number gives the position of that clip
-#. in a sequence of clips,
-#. last number counts all clips,
-#. last string names a track
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s, %d of %d clip %s"
-msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%s %d з %d кліпу %s"
-msgstr[1] "%s %d з %d кліпів %s"
-msgstr[2] "%s %d з %d кліпів %s"
-msgstr[3] "%s %d з %d кліпів %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -12408,11 +10997,6 @@ msgstr "Експортувати як MP&3"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
-msgstr "Експортувати як &WAV"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export as &MKA"
 msgstr "Експортувати як &WAV"
 
 #: src/menus/FileMenus.cpp
@@ -13463,11 +12047,6 @@ msgid "Created new label track"
 msgstr "Створено нову доріжку для позначок"
 
 #: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "This version of Tenacity only allows one time track for each project window."
-msgstr "У цій версії Audacity можна використовувати лише по одній доріжці у кожному з вікон проєкту."
-
-#: src/menus/TrackMenus.cpp
 msgid "Created new time track"
 msgstr "Створено нову доріжку часу"
 
@@ -14134,14 +12713,6 @@ msgstr "Відтворення"
 msgid "&Device:"
 msgstr "П&ристрій:"
 
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Запис"
-
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
 msgstr "Пр&истрій:"
@@ -14284,11 +12855,6 @@ msgid "Directory %s is not writable"
 msgstr "Немає прав на запис у каталог %s"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
-msgid "Changes to temporary directory will not take effect until Tenacity is restarted"
-msgstr "Зміни каталогу для зберігання тимчасових файлів не наберуть сили, доки програму Audacity не буде перезавантажено"
-
-#: src/prefs/DirectoriesPrefs.cpp
 msgid "Temp Directory Update"
 msgstr "Оновлення теки тимчасових даних"
 
@@ -14368,16 +12934,6 @@ msgstr "&Макс. к-ть ефектів на групу (0 — вимкнут�
 #: src/prefs/EffectsPrefs.cpp
 msgid "Plugin Options"
 msgstr "Параметри додатків"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Check for updated plugins when Tenacity starts"
-msgstr "Шукати оновлення плаґінів під час запуску Audacity"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Rescan plugins next time Tenacity is started"
-msgstr "Виконати повторний пошук плаґінів під час наступного запуску Audacity"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -14555,11 +13111,6 @@ msgstr "&Гудок після завершення довготривалих �
 msgid "Re&tain labels if selection snaps to a label"
 msgstr "З&берігати мітки, якщо позначення прилипає до мітки"
 
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
-msgid "B&lend system and Tenacity theme"
-msgstr "О&б'єднати загальносистемну тему та тему Audacity"
-
 #. i18n-hint: RTL stands for 'Right to Left'
 #: src/prefs/GUIPrefs.cpp
 msgid "Use mostly Left-to-Right layouts in RTL languages"
@@ -14735,11 +13286,6 @@ msgstr ""
 "   *   «%s»  (оскільки скорочення «%s» вже використано для «%s»)\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
-#, fuzzy
-msgid "Select an XML file containing Tenacity keyboard shortcuts..."
-msgstr "Виберіть XML-файл, що містить комбінації клавіш Audacity…"
-
-#: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
 msgstr "Помилка під час імпортування клавіатурних скорочень"
 
@@ -14860,15 +13406,6 @@ msgid "Dow&nload"
 msgstr "Зва&нтажити"
 
 #: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid ""
-"Tenacity has automatically detected valid FFmpeg libraries.\n"
-"Do you still want to locate them manually?"
-msgstr ""
-"Audacity було у автоматичному режимі визначено належні бібліотеки FFmpeg.\n"
-"Бажаєте вказати розташування цих бібліотек вручну?"
-
-#: src/prefs/LibraryPrefs.cpp
 msgid "Success"
 msgstr "Успіх"
 
@@ -14920,36 +13457,10 @@ msgstr "Модулі"
 msgid "Preferences for Module"
 msgstr "Налаштування модуля"
 
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid ""
-"These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
-"and know what you are doing."
-msgstr ""
-"Ці модулі є недостатньо перевіреними. Вмикайте їх, лише якщо ви ознайомилися\n"
-"з підручником із Audacity, і вам відомі наслідки ваших дій."
-
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "  'Ask' means Tenacity will ask if you want to load the module each time it starts."
-msgstr "  «Запитувати» — під час кожного запуску запитувати, чи слід завантажувати модуль."
-
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "  'Failed' means Tenacity thinks the module is broken and won't run it."
-msgstr "  «Помилка» — модуль непрацездатний, він не завантажуватиметься."
-
 #. i18n-hint preserve the leading spaces
 #: src/prefs/ModulePrefs.cpp
 msgid "  'New' means no choice has been made yet."
 msgstr "  «Новий» означає, що вибору ще не було зроблено."
-
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "Changes to these settings only take effect when Tenacity starts up."
-msgstr "Зміни цих параметрів набудуть чинності лише після перезапуску Audacity."
 
 #: src/prefs/ModulePrefs.cpp
 msgid "Ask"
@@ -15102,15 +13613,6 @@ msgstr "-перетягування лівою"
 msgid "Move clip up/down between tracks"
 msgstr "Пересунути ділянку вгору або вниз між доріжками"
 
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Alt-Left-Drag"
-msgstr "-перетягування лівою"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clips ignoring Sync-lock"
-msgstr ""
-
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -15232,11 +13734,6 @@ msgstr "&Мікропереходи"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Always scrub un&pinned"
 msgstr "Завжди витирати непри&шпилене"
-
-#: src/prefs/PrefsDialog.cpp
-#, fuzzy
-msgid "Tenacity Preferences"
-msgstr "Параметри Audacity"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -15621,29 +14118,6 @@ msgid "Info"
 msgstr "Інформація"
 
 #: src/prefs/ThemePrefs.cpp
-#, fuzzy
-msgid ""
-"Themability is an experimental feature.\n"
-"\n"
-"To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
-"ImageCacheVxx.png using an image editor such as the Gimp.\n"
-"\n"
-"Click \"Load Theme Cache\" to load the changed images and colors back into Tenacity.\n"
-"\n"
-"(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
-"though the image file shows other icons too.)"
-msgstr ""
-"Зміна тем є експериментальною.\n"
-"\n"
-"Щоб спробувати її, натисніть «Зберегти кеш тем», потім знайдіть та змініть зображення та кольори у \n"
-"ImageCacheVxx.png використовуючи редактор зображень, наприклад, Gimp.\n"
-"\n"
-"Натисніть «Завантажити кеш тем», щоб завантажити змінені зображення та кольори до Audacity.\n"
-"\n"
-"(У поточній версії підтримуються панель керування та кольори звукової доріжки, незважаючи на те, що файли\n"
-"зображень показують також інші піктограми.)"
-
-#: src/prefs/ThemePrefs.cpp
 msgid ""
 "Saving and loading individual theme files uses a separate file for each image, but is\n"
 "otherwise the same idea."
@@ -15949,48 +14423,6 @@ msgstr "Класична"
 msgid "Audacity"
 msgstr "Журнал Audacity"
 
-#: src/theme/AudaciumDarkBlueThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacium Dark Blue"
-msgstr "Помилка під час запуску Audacity"
-
-#: src/theme/AudaciumDarkGreenThemeAsCeeCode.cpp
-msgid "Audacium Dark Green"
-msgstr ""
-
-#: src/theme/AudaciumDarkOrangeThemeAsCeeCode.cpp
-msgid "Audacium Dark Orange"
-msgstr ""
-
-#: src/theme/AudaciumDarkPinkThemeAsCeeCode.cpp
-msgid "Audacium Dark Pink"
-msgstr ""
-
-#: src/theme/AudaciumDarkPurpleThemeAsCeeCode.cpp
-msgid "Audacium Dark Purple"
-msgstr ""
-
-#: src/theme/AudaciumLightBlueThemeAsCeeCode.cpp
-msgid "Audacium Light Blue"
-msgstr ""
-
-#: src/theme/AudaciumLightGreenThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacium Light Green"
-msgstr "Параметри Audacity"
-
-#: src/theme/AudaciumLightOrangeThemeAsCeeCode.cpp
-msgid "Audacium Light Orange"
-msgstr ""
-
-#: src/theme/AudaciumLightPinkThemeAsCeeCode.cpp
-msgid "Audacium Light Pink"
-msgstr ""
-
-#: src/theme/AudaciumLightPurpleThemeAsCeeCode.cpp
-msgid "Audacium Light Purple"
-msgstr ""
-
 #: src/theme/DarkThemeAsCeeCode.cpp
 msgid "Dark"
 msgstr "Темна"
@@ -16006,25 +14438,6 @@ msgstr "Висококонтрастна"
 msgid "Light"
 msgstr "Світла"
 
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Pro Tools"
-msgstr "Інструменти"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Журнал Audacity"
-
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not write file:\n"
-"  %s."
-msgstr ""
-"Audacity не може записати файл:\n"
-"  %s."
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -16038,26 +14451,6 @@ msgstr ""
 "Тему записано сюди:\n"
 "  %s."
 
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not open file:\n"
-"  %s\n"
-"for writing."
-msgstr ""
-"Audacity не може відкрити файл:\n"
-"  %s\n"
-"для запису."
-
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not write images to file:\n"
-"  %s."
-msgstr ""
-"Audacity не може записати зображення у файл:\n"
-"  %s."
-
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
 #, c-format
@@ -16067,38 +14460,6 @@ msgid ""
 msgstr ""
 "Тему у форматі коду мовою C записано сюди:\n"
 "  %s."
-
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not find file:\n"
-"  %s.\n"
-"Theme not loaded."
-msgstr ""
-"Audacity не може знайти файл:\n"
-"  %s.\n"
-"Тему не завантажено."
-
-#. i18n-hint: Do not translate png.  It is the name of a file format.
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not load file:\n"
-"  %s.\n"
-"Bad png format perhaps?"
-msgstr ""
-"Audacity не може завантажити файл:\n"
-"  %s.\n"
-"Можливо неправильний формат png?"
-
-#: src/theme/Theme.cpp
-#, fuzzy
-msgid ""
-"Tenacity could not read its default theme.\n"
-"Please report this problem."
-msgstr ""
-"Audacity не може прочитати свою типову тему.\n"
-"Будь ласка, повідомте авторів про проблему."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -16131,15 +14492,6 @@ msgstr ""
 "  %s\n"
 "вже були наявні. Перезаписати їх?"
 
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not save file:\n"
-"  %s"
-msgstr ""
-"Audacity не може зберегти файл:\n"
-"  %s"
-
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
 msgid "Custom"
@@ -16155,11 +14507,6 @@ msgstr "Зупинено"
 #: src/toolbars/ControlToolBar.cpp
 msgid "Pause"
 msgstr "Призупинити"
-
-#: src/toolbars/ControlToolBar.cpp
-#, fuzzy
-msgid "Loop"
-msgstr "Циклічне відтворення"
 
 #: src/toolbars/ControlToolBar.cpp
 msgid "Skip to Start"
@@ -16523,12 +14870,6 @@ msgstr "Час"
 msgid "&Time Toolbar"
 msgstr "Панель &часу"
 
-#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
-#: src/toolbars/ToolBar.cpp
-#, fuzzy, c-format
-msgid "Tenacity %s Toolbar"
-msgstr "Панель інструментів Audacity %s"
-
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
 msgstr "Клацніть і перетягніть для зміни розміру панелі інструментів"
@@ -16609,10 +14950,6 @@ msgstr "Циклічне відтворення на швидкості"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Pla&y-at-Speed Toolbar"
 msgstr "Панель ві&дтворення на швидкості"
-
-#: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
-msgid "Drag label. Hold shift and drag to move all labels on the same track."
-msgstr ""
 
 #: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
 msgid "Drag one or more label boundaries."
@@ -16813,53 +15150,6 @@ msgstr "Спочатку припиніть відтворення"
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "S&pectrogram Settings..."
 msgstr "Пара&метри спектрограми…"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-msgid "Clip-Trim-Left"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, c-format
-msgid "Moved by %.02f"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-msgid "Clip-Trim-Right"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-msgid "Clip-Trim-Between"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, fuzzy
-msgid "Click and drag to move clip boundary in time"
-msgstr "Натисніть кнопку миші і перетягніть, щоб пересунути доріжку у часі"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Set Wave Clip Name"
-msgstr "Встановлення назви доріжки"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Click and drag to select text"
-msgstr "Натисніть кнопку миші і перетягніть вказівник, щоб позначити звукові дані"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Modified Clip Name"
-msgstr "Мітку змінено"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Clip Name Edit"
-msgstr "Редагування семплу"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Rename Clip..."
-msgstr "Перейменувати…"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -17091,34 +15381,6 @@ msgstr "Перевпорядкувати підпанелі"
 msgid "Close sub-view"
 msgstr "Закрити підпанель"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Split Clip"
-msgstr "Встановити обрізання"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Mute/Unmute Track"
-msgstr "&Вимкнути або увімкнути звук на фокусованій доріжці"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Rename clip..."
-msgstr "Перейменувати…"
-
-#. i18n-hint:
-#. string is the name of a clip
-#. first number is the position of that clip in a sequence of clips,
-#. second number counts the clips
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy, c-format
-msgid "%s, %d of %d clip"
-msgid_plural "%s, %d of %d clips"
-msgstr[0] "%s %d з %d кліпу %s"
-msgstr[1] "%s %d з %d кліпів %s"
-msgstr[2] "%s %d з %d кліпів %s"
-msgstr[3] "%s %d з %d кліпів %s"
-
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
 msgstr "Масштаб x1/2"
@@ -17219,26 +15481,6 @@ msgstr "Логарифмічна &інтерполяція"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Натисніть кнопку миші і перетягніть, щоб пересунути доріжку у часі"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Add Mono Track"
-msgstr "&Монодоріжку"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Add Stereo Track"
-msgstr "&Стереодоріжку"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Add Label Track"
-msgstr "Позначити доріжку"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Export Audio..."
-msgstr "&Експортувати звукові дані…"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -18222,14 +16464,6 @@ msgstr "Застосовуємо спадання…"
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
-
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-msgid "GNU General Public License v2.0 or later"
-msgstr ""
 
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
@@ -19521,14 +17755,6 @@ msgstr "Лівий (дБ)"
 #: plug-ins/sample-data-export.ny
 msgid "Right (dB)"
 msgstr "Правий (дБ)"
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Tenacity</a> by Steve\n"
-"Daulton"
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "linear"
