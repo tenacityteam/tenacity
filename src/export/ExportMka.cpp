@@ -38,6 +38,17 @@
 
 #if LIBMATROSKA_VERSION < 0x010700
 typedef enum {
+  MATROSKA_TRACK_TYPE_VIDEO            = 0x1, // An image.
+  MATROSKA_TRACK_TYPE_AUDIO            = 0x2, // Audio samples.
+  MATROSKA_TRACK_TYPE_COMPLEX          = 0x3, // A mix of different other TrackType. The codec needs to define how the `Matroska Player` should interpret such data.
+  MATROSKA_TRACK_TYPE_LOGO             = 0x10, // An image to be rendered over the video track(s).
+  MATROSKA_TRACK_TYPE_SUBTITLE         = 0x11, // Subtitle or closed caption data to be rendered over the video track(s).
+  MATROSKA_TRACK_TYPE_BUTTONS          = 0x12, // Interactive button(s) to be rendered over the video track(s).
+  MATROSKA_TRACK_TYPE_CONTROL          = 0x20, // Metadata used to control the player of the `Matroska Player`.
+  MATROSKA_TRACK_TYPE_METADATA         = 0x21, // Timed metadata that can be passed on to the `Matroska Player`.
+} MatroskaTrackType;
+
+typedef enum {
   MATROSKA_TARGET_TYPE_COLLECTION       = 70, // The highest hierarchical level that tags can describe.
   MATROSKA_TARGET_TYPE_EDITION          = 60, // A list of lower levels grouped together.
   MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (equals to an episode for TV series).
