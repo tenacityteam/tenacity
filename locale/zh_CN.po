@@ -17,9 +17,10 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-07-18 11:32-0700\n"
-"PO-Revision-Date: 2023-07-10 19:51+0000\n"
+"PO-Revision-Date: 2023-07-20 01:50+0000\n"
 "Last-Translator: Liu Wenyuan <15816141883@163.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/tenacity/tenacity/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"tenacity/tenacity/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,27 +128,27 @@ msgid "Error"
 msgstr "错误"
 
 #: libraries/lib-files/TempDirectory.cpp
-#, fuzzy
 msgid "Unsuitable"
-msgstr "模块不合适"
+msgstr "不合适"
 
 #: libraries/lib-files/TempDirectory.cpp
-#, fuzzy
 msgid ""
 "The temporary files directory is on a FAT formatted drive.\n"
 "Resetting to default location."
-msgstr "临时文件目录"
+msgstr ""
+"临时文件目录所处的驱动器使用 FAT 文件系统。\n"
+"将把它重置为默认位置。"
 
 #: libraries/lib-files/TempDirectory.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s\n"
 "\n"
 "For tips on suitable drives, click the help button."
 msgstr ""
-"磁盘已满\n"
 "%s\n"
-"点击帮助按钮查看更多关于清理磁盘空间的建议。"
+"\n"
+"点击帮助按钮以查看关于合适驱动器的建议。"
 
 #: libraries/lib-math/Dither.cpp src/commands/ScreenshotCommand.cpp
 #: src/effects/EffectManager.cpp src/effects/EffectUI.cpp
@@ -2431,13 +2432,13 @@ msgid "Failed to open the project's database"
 msgstr "无法打开项目数据库"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to open database file:\n"
 "\n"
 "%s"
 msgstr ""
-"无法打开项目文件:\n"
+"无法打开项目数据库文件：\n"
 "\n"
 "%s"
 
@@ -2474,59 +2475,66 @@ msgstr "添加“inset”函数失败，因此无法验证 blockids"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is read only\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"项目是只读的\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is locked\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"项目已被锁定\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is busy\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"项目正忙\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is corrupt\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"项目已损坏\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Some permissions issue\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"出现了一些权限问题\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "A disk I/O error\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"出现了磁盘 I/O 错误\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Not authorized\n"
 "(Unable to work with the blockfiles)"
-msgstr "无法使用块文件（blockfiles）"
+msgstr ""
+"没有权限\n"
+"（无法使用块文件【blockfiles】）"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -2645,22 +2653,28 @@ msgid "Syncing"
 msgstr "同步中"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The project failed to open, possibly due to limited space\n"
 "on the storage device.\n"
 "\n"
 "%s"
-msgstr "项目数据库未能重新打开，可能是由于存储空间不足。"
+msgstr ""
+"无法打开项目。这可能是由于存储空间\n"
+"不足。\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to remove autosave information, possibly due to limited space\n"
 "on the storage device.\n"
 "\n"
 "%s"
-msgstr "无法从项目文件中删去自动保存信息。"
+msgstr ""
+"\n"
+"无法从项目文件中删去自动保存信息。"
 
 #: src/ProjectFileIO.cpp
 msgid "Backing up project"
@@ -3212,9 +3226,8 @@ msgid "Don't show this again at start up"
 msgstr "启动时不再显示"
 
 #: src/SqliteSampleBlock.cpp
-#, fuzzy
 msgid "Connection to project file is null"
-msgstr "正在检查项目文件数据"
+msgstr "到项目文件的连接为空"
 
 #: src/Tags.cpp
 msgid "Artist Name"
@@ -17970,363 +17983,11 @@ msgstr "脉冲列频率（Hz）"
 msgid "Error.~%Stereo track required."
 msgstr "错误。~%需要立体声轨。"
 
-#~ msgid "No devices found\n"
-#~ msgstr "未找到设备\n"
-
-#~ msgid "Split &Vertically"
-#~ msgstr "垂直分割(&V)"
-
-#~ msgid "Split &Horizontally"
-#~ msgstr "水平分割(&H)"
-
-#~ msgid "Show S&cript"
-#~ msgstr "显示脚本(&C)"
-
-#~ msgid "Show &Output"
-#~ msgstr "显示输出(&O)"
-
-#~ msgid "&Large Icons"
-#~ msgstr "大图标(&L)"
-
-#~ msgid "&Small Icons"
-#~ msgstr "小图标(&S)"
-
-#~ msgid "Toolbar"
-#~ msgstr "工具栏"
-
-#~ msgid "&Go\tF5"
-#~ msgstr "转到(&G)\tF5"
-
-#~ msgid "&Stop\tF6"
-#~ msgstr "停止(&S)\tF6"
-
-#~ msgid "&About"
-#~ msgstr "关于(&A)"
-
-#~ msgid "Script"
-#~ msgstr "脚本"
-
-#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
-#~ msgstr "Nyquist 脚本 (*.ny)|*.ny|Lisp 脚本 (*.lsp)|*.lsp|所有文件|*"
-
-#~ msgid "Script was not saved."
-#~ msgstr "脚本未被保存。"
-
-#~ msgid "Find dialog"
-#~ msgstr "搜索对话框"
-
-#~ msgid "Harvey Lubin (logo)"
-#~ msgstr "Harvey Lubin (LOGO)"
-
-#~ msgid "Tango Icon Gallery (toolbar icons)"
-#~ msgstr "Tango 图标库 （工具栏图标）"
-
-#~ msgid "Nyquist Effect Workbench"
-#~ msgstr "Nyquist 效果工作台"
-
-#~ msgid "No matches found"
-#~ msgstr "未找到匹配项"
-
-#~ msgid "Untitled"
-#~ msgstr "无标题"
-
-#~ msgid "Nyquist Effect Workbench - "
-#~ msgstr "Nyquist 效果工作台 - "
-
-#~ msgid "New script"
-#~ msgstr "新建脚本"
-
-#~ msgid "Open"
-#~ msgstr "打开"
-
-#~ msgid "Open script"
-#~ msgstr "打开脚本"
-
-#~ msgid "Save script"
-#~ msgstr "保存脚本"
-
-#~ msgid "Save As"
-#~ msgstr "另存为"
-
-#~ msgid "Save script as..."
-#~ msgstr "脚本另存为..."
-
-#~ msgid "Copy to clipboard"
-#~ msgstr "复制到剪贴板"
-
-#~ msgid "Cut to clipboard"
-#~ msgstr "剪切到剪贴板"
-
-#~ msgid "Paste from clipboard"
-#~ msgstr "从剪贴板粘贴"
-
-#~ msgid "Clear selection"
-#~ msgstr "清除所选"
-
-#~ msgid "Select all text"
-#~ msgstr "选择所有文本"
-
-#~ msgid "Undo last change"
-#~ msgstr "撤消上次更改"
-
-#~ msgid "Redo previous change"
-#~ msgstr "重做上一次更改"
-
-#~ msgid "Find"
-#~ msgstr "查找"
-
-#~ msgid "Find text"
-#~ msgstr "查找文本"
-
-#~ msgid "Match"
-#~ msgstr "匹配"
-
-#~ msgid "Go to matching paren"
-#~ msgstr "转到匹配的括号"
-
-#~ msgid "Top"
-#~ msgstr "顶部"
-
-#~ msgid "Go to top S-expr"
-#~ msgstr "转到顶部的 S-expr"
-
-#~ msgid "Up"
-#~ msgstr "向上"
-
-#~ msgid "Go to higher S-expr"
-#~ msgstr "转到上层 S-expr"
-
-#~ msgid "Previous"
-#~ msgstr "上一个"
-
-#~ msgid "Go to previous S-expr"
-#~ msgstr "转到上一个 S-expr"
-
-#~ msgid "Next"
-#~ msgstr "下一个"
-
-#~ msgid "Go to next S-expr"
-#~ msgstr "转到下一个 S-expr"
-
-#~ msgid "Start script"
-#~ msgstr "启动脚本"
-
-#~ msgid "Stop script"
-#~ msgstr "停止脚本"
-
-#~ msgid "Sound card mixer support"
-#~ msgstr "声卡混音器支持"
-
-#~ msgid "Error Initializing Audio"
-#~ msgstr "音频初始化错误"
-
-#~ msgid "Error Initializing Midi"
-#~ msgstr "MIDI初始化错误"
-
-#~ msgid "Out of memory!"
-#~ msgstr "内存空间不足！"
-
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
-#~ msgstr "录制音量自动调整已停止。无法进一步优化。音量依然过高。"
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr "录制音量自动调整器已将音量降低到 %f。"
-
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
-#~ msgstr "录制音量自动调整已停止。无法进一步优化。音量依然过低。"
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr "录制音量自动调整器已将音量提高到 %.2f。"
-
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
-#~ msgstr "录制音量自动调整已停止。分析数值已经超过上限，但仍未找到合适的音量值。音量依然过高。"
-
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
-#~ msgstr "录制音量自动调整已停止。分析数值已经超过上限，但仍未找到合适的音量值。音量依然过低。"
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
-#~ msgstr "录制音量自动调整已停止。 %.2f 似乎是合适的音量。"
-
-#, c-format
-#~ msgid "Received %d while opening devices\n"
-#~ msgstr "打开设备时收到%d\n"
-
-#~ msgid "Unable to open Portmixer\n"
-#~ msgstr "不能打开 Portmixer\n"
-
-#~ msgid "Available mixers:\n"
-#~ msgstr "有效的混合器：\n"
-
-#~ msgid "Available recording sources:\n"
-#~ msgstr "可用录制源：\n"
-
-#~ msgid "Available playback volumes:\n"
-#~ msgstr "可用播放音量：\n"
-
-#~ msgid "Recording volume is emulated\n"
-#~ msgstr "模拟录制音量\n"
-
-#~ msgid "Recording volume is native\n"
-#~ msgstr "本地录制音量\n"
-
-#~ msgid "Playback volume is emulated\n"
-#~ msgstr "模拟播放音量\n"
-
-#~ msgid "Playback volume is native\n"
-#~ msgstr "本地播放音量\n"
-
-#~ msgid "Removing Dependencies"
-#~ msgstr "正在删除依赖"
-
-#~ msgid "Copying audio data into project..."
-#~ msgstr "正在复制音频文件到项目..."
-
-#~ msgid "Project Depends on Other Audio Files"
-#~ msgstr "项目依赖其它音频文件"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Files shown as MISSING have been moved or deleted and cannot be copied.\n"
-#~ "Restore them to their original location to be able to copy into project."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "标签为丢失 (MISSING) 的文件无法复制，可能被移动或删除了。\n"
-#~ "请把这些文件回复到原有位置从而能被复制到项目。"
-
-#~ msgid "Project Dependencies"
-#~ msgstr "项目的依赖"
-
-#~ msgid "Disk Space"
-#~ msgstr "磁盘空间"
-
-#~ msgid "Copy Selected Files"
-#~ msgstr "复制选中的文件"
-
-#~ msgid "Cancel Save"
-#~ msgstr "取消保存"
-
-#~ msgid "Save Without Copying"
-#~ msgstr "保存但不复制"
-
-#~ msgid "Do Not Copy"
-#~ msgstr "不要复制"
-
-#~ msgid "Copy All Files (Safer)"
-#~ msgstr "复制全部文件 [更安全]"
-
-#~ msgid "Whenever a project depends on other files:"
-#~ msgstr "当项目依赖其他文件时："
-
-#~ msgid "Ask me"
-#~ msgstr "问我"
-
-#~ msgid "Always copy all files (safest)"
-#~ msgstr "总是复制全部文件 [最安全]"
-
-#~ msgid "Never copy any files"
-#~ msgstr "总不复制任何文件"
-
-#, c-format
-#~ msgid "MISSING %s"
-#~ msgstr "丢失的 %s"
-
-#~ msgid "&Copy Names to Clipboard"
-#~ msgstr "复制名称到剪贴板(&C)"
-
-#~ msgid "Missing"
-#~ msgstr "丢失"
-
-#~ msgid "Failed to find compatible FFmpeg libraries."
-#~ msgstr "找不到兼容的 FFmpeg 库。"
-
-#~ msgid "Only libavformat.so"
-#~ msgstr "仅 libavformat.so"
-
-#~ msgid "How to get help"
-#~ msgstr "如何获取帮助"
-
 #~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
 #~ msgstr "[[help:Quick_Help|快速帮助]] - 如果没有被安装到本地，请参阅[[https://manual.audacityteam.org/quick_help.html|在线版]]"
 
 #~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
 #~ msgstr " [[https://forum.audacityteam.org/|论坛]] - 请直接在线提问。"
-
-#~ msgid "Project check read faulty Sequence tags."
-#~ msgstr "项目检查读取到错误的序列标签。"
-
-#~ msgid "Close project immediately with no changes"
-#~ msgstr "不保存修改，立即关闭项目"
-
-#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
-#~ msgstr "继续打开，执行修复并记录修复日志，同时检查其它错误。这将按现状保存项目，除非您在未来错误警告时选择\"立即关闭项目\"。"
-
-#~ msgid "Warning - Problems Reading Sequence Tags"
-#~ msgstr "警告 - 在读取序列标签时出现问题"
-
-#~ msgid "Inspecting project file data"
-#~ msgstr "正在检查项目文件数据"
-
-#~ msgid "Treat missing audio as silence (this session only)"
-#~ msgstr "暂时用静音替换丢失的数据 [只限本次编辑操作期间]"
-
-#~ msgid "Replace missing audio with silence (permanent immediately)."
-#~ msgstr "将丢失的音频数据替换为静音 [立即永久替换]。"
-
-#~ msgid "Warning - Missing Aliased File(s)"
-#~ msgstr "警告 - 缺失替身文件"
-
-#~ msgid "Regenerate alias summary files (safe and recommended)"
-#~ msgstr "重新生成替身概要文件 [安全，推荐使用]"
-
-#~ msgid "Fill in silence for missing display data (this session only)"
-#~ msgstr "对于缺失的显示数据以静音填充 [只限本次编辑操作期间]"
-
-#~ msgid "Close project immediately with no further changes"
-#~ msgstr "不保存进一步的修改，立即关闭项目"
-
-#~ msgid "Warning - Missing Alias Summary File(s)"
-#~ msgstr "警告 - 缺失替身概要文件"
-
-#~ msgid "Replace missing audio with silence (permanent immediately)"
-#~ msgstr "用静音替换丢失的数据 [永久替换，立即生效]"
-
-#~ msgid "Warning - Missing Audio Data Block File(s)"
-#~ msgstr "警告 - 音频数据块文件丢失"
-
-#~ msgid "Continue without deleting; ignore the extra files this session"
-#~ msgstr "继续打开项目但不删除孤立块；在本次编辑操作中忽略它们"
-
-#~ msgid "Delete orphan files (permanent immediately)"
-#~ msgstr "删除孤立文件 [永久删除，立即生效]"
-
-#~ msgid "Warning - Orphan Block File(s)"
-#~ msgstr "警告 - 孤立的块文件"
-
-#~ msgid "Cleaning up unused directories in project data"
-#~ msgstr "正在清理项目数据中未用的目录"
-
-#~ msgid "Warning: Problems in Automatic Recovery"
-#~ msgstr "警告：自动恢复时发生问题"
-
-#, c-format
-#~ msgid ""
-#~ "Failed to retrieve data from the project file.\n"
-#~ "The following command failed:\n"
-#~ "\n"
-#~ "%s"
-#~ msgstr ""
-#~ "无法从项目文件中检索数据。\n"
-#~ "下列命令执行失败: \n"
-#~ "\n"
-#~ "%s"
-
-#~ msgid "Unable to decode project document"
-#~ msgstr "无法解码项目文件"
 
 #~ msgid "Main Mix"
 #~ msgstr "主混音"
@@ -18501,9 +18162,6 @@ msgstr "错误。~%需要立体声轨。"
 
 #~ msgid "Playback Volume (Unavailable; use system mixer.)"
 #~ msgstr "播放音量 (不可用；使用系统混音器。)"
-
-#~ msgid "Mi&xer Toolbar"
-#~ msgstr "混音器工具栏(&X)"
 
 #~ msgid "Time Shift Tool"
 #~ msgstr "时间移动工具"
@@ -20656,34 +20314,8 @@ msgstr "错误。~%需要立体声轨。"
 #~ msgid "External Audacity module which provides a simple IDE for writing effects."
 #~ msgstr "外部 Tenacity 模块，提供一个用于编写效果的简单 IDE。"
 
-#~ msgid "<h3>"
-#~ msgstr "<h3>"
-
-#, c-format
-#~ msgid "%d - %s\n"
-#~ msgstr "%d - %s\n"
-
-#~ msgid ""
-#~ "Copying these files into your project will remove this dependency.\n"
-#~ "This is safer, but needs more disk space."
-#~ msgstr ""
-#~ "把以下文件复制到项目中会去除此依赖关系。\n"
-#~ "这样更安全，但需要更多的磁盘空间。"
-
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
-#~ msgstr "如果继续，项目将不会保存到磁盘上。确定要这样做吗？"
-
-#~ msgid "Dependency Check"
-#~ msgstr "依赖性检查"
-
-#~ msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
-#~ msgstr "我们强烈建议使用我们最新的稳定版本，它具有完整的文档和支持。<br><br>"
-
 #~ msgid "You can help us get Audacity ready for release by joining our [[https://www.audacityteam.org/community/|community]].<hr><br><br>"
 #~ msgstr "您可以加入我们的[[https://tenacityaudio.org|社区]]来帮助我们让 Tenacity 变得更好。<hr><br><br>"
-
-#~ msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
-#~ msgstr "使用手册似乎没有被安装。请[[*URL*|在线浏览使用手册]]。<br><br>若要始终在线浏览使用手册，请将界面偏好设置中“使用手册的位置”更改为“从互联网”。"
 
 #~ msgid "The Audacity Team"
 #~ msgstr "Tenacity 团队"
@@ -20700,84 +20332,8 @@ msgstr "错误。~%需要立体声轨。"
 #~ "您链接的 lame_enc.dll 版本为 v%d.%d。此版本与 Tenacity %d.%d.%d 不兼容。\n"
 #~ "请下载最新版本的“LAME for Tenacity”。"
 
-#~ msgid "Error opening a new empty project"
-#~ msgstr "打开新的空白项目时发生错误"
-
-#~ msgid "&Undo\tCtrl+Z"
-#~ msgstr "撤消(&U)\tCtrl+Z"
-
-#~ msgid "&Redo\tCtrl+Y"
-#~ msgstr "重做(&R)\tCtrl+Y"
-
-#~ msgid "&Copy\tCtrl+C"
-#~ msgstr "复制(&C)\tCtrl+C"
-
-#~ msgid "&Paste\tCtrl+V"
-#~ msgstr "粘贴(&P)\tCtrl+V"
-
-#, c-format
-#~ msgid "%s %s 1999-%s %s contributors"
-#~ msgstr "%s %s 1999-%s %s 贡献者"
-
 #~ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</b>."
 #~ msgstr "<br><br>您所使用的 Tenacity 版本是 <b>Beta 测试版</b>。"
-
-#~ msgid "&Matching Paren\tF8"
-#~ msgstr "匹配的括号(&M)\tF8"
-
-#~ msgid "&Top S-expr\tF9"
-#~ msgstr "顶部的 S-expr(&T)\tF9"
-
-#~ msgid "&Previous S-expr\tF11"
-#~ msgstr "上一个 S-expr(&P)\tF11"
-
-#~ msgid "Cu&t\tCtrl+X"
-#~ msgstr "剪切(&T)\tCtrl+X"
-
-#~ msgid "Cle&ar\tCtrl+L"
-#~ msgstr "清除(&A)\tCtrl+L"
-
-#~ msgid "Select A&ll\tCtrl+A"
-#~ msgstr "全选(&L)\tCtrl+A"
-
-#~ msgid "&Next S-expr\tF12"
-#~ msgstr "下一个 S-expr(&N)\tF12"
-
-#~ msgid "&Go to"
-#~ msgstr "转到(&G)"
-
-#~ msgid "Code has been modified. Are you sure?"
-#~ msgstr "代码已被修改。您确定吗？"
-
-#~ msgid "&Nyquist Workbench..."
-#~ msgstr "Nyquist 工作台(&N)..."
-
-#~ msgid "&Find...\tCtrl+F"
-#~ msgstr "查找(&F)...\tCtrl+F"
-
-#~ msgid "Can't open new empty project"
-#~ msgstr "无法打开新的空白项目"
-
-#~ msgid "Leland Lucius"
-#~ msgstr "Leland Lucius"
-
-#, c-format
-#~ msgid "The name %s is a registered trademark."
-#~ msgstr "名称 %s 是注册商标。"
-
-#, c-format
-#~ msgid "\"%s\", \"%s\", \"%s\"\n"
-#~ msgstr "“%s”、“%s”、“%s”\n"
-
-#, c-format
-#~ msgid ""
-#~ "You must first select some audio for '%s' to act on.\n"
-#~ "\n"
-#~ "Ctrl + A selects all audio."
-#~ msgstr ""
-#~ "必须先选择一段音频才能使用“%s” 。\n"
-#~ "\n"
-#~ "按 Ctrl + A 以选择全部音频。"
 
 #, c-format
 #~ msgid ""
@@ -20856,9 +20412,6 @@ msgstr "错误。~%需要立体声轨。"
 #~ "注意，如果你选择第二个选项，波形\n"
 #~ "可能不会显示静音。"
 
-#~ msgid "(C) 2009 by Leland Lucius"
-#~ msgstr "(C) 2009 by Leland Lucius"
-
 #~ msgid ""
 #~ "Your project is self-contained; it does not depend on any external audio files. \n"
 #~ "\n"
@@ -20872,8 +20425,790 @@ msgstr "错误。~%需要立体声轨。"
 #~ "需要注意将其外部依赖放置在正确位置。\n"
 #~ "新工程将是自包含的，并且风险更低。"
 
-#~ msgid "&Higher S-expr\tF10"
-#~ msgstr "更高的 S-expr(&H)\tF10"
-
 #~ msgid "Select &Font..."
 #~ msgstr "选择字体(&F)"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "%d 的设备信息不可用。\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "未找到匹配“%s”的播放设备。\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Supports output: %d\n"
+msgstr "支持输出：%d\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Selected MIDI recording device: %d - %s\n"
+msgstr "选定的 MIDI 录制设备：%d - %s\n"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Orphan Block File(s)"
+msgstr "警告 - 孤立块文件"
+
+#: src/ProjectFileManager.cpp
+msgid ""
+"The project size exceeds the available free space on the target disk.\n"
+"\n"
+"Please select a different disk with more free space."
+msgstr ""
+"项目大小超过目标磁盘上的剩余空间。\n"
+"\n"
+"请选择具有更多可用空间的其他磁盘。"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Show S&cript"
+msgstr "显示脚本(&C)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Show &Output"
+msgstr "显示输出(&O)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Untitled"
+msgstr "未命名"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Nyquist Effect Workbench - "
+msgstr "Nyquist 效果工作台 - "
+
+#: src/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr "不同时拥有两种设备，不能查询共同采样率。\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "No MIDI playback device found for '%s'.\n"
+msgstr "未找到匹配“%s”的 MIDI 播放设备。\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr "已打开：%d\n"
+
+#: src/ProjectFSCK.cpp
+msgid "Treat missing audio as silence (this session only)"
+msgstr "暂时用静音替代丢失的音频（仅限此会话）"
+
+#: src/ProjectFSCK.cpp
+msgid "Replace missing audio with silence (permanent immediately)."
+msgstr "用静音替代丢失的音频（立即、永久）。"
+
+#: src/Dependencies.cpp
+msgid "Do Not Copy"
+msgstr "不复制"
+
+#: src/Dependencies.cpp
+msgid "Dependency Check"
+msgstr "依赖性检查"
+
+#. i18n-hint: The audacity project file is XML and has 'tags' in it,
+#. rather like html tags <something>some stuff</something>.
+#. This error message is about the tags that hold the sequence information.
+#. The error message is confusing to users in English, and could just say
+#. "Found problems with <sequence> when checking project file."
+#: src/ProjectFSCK.cpp
+msgid "Project check read faulty Sequence tags."
+msgstr "项目检查读取到错误的序列标签。"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Stop\tF6"
+msgstr "停止(&S)\tF6"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&About"
+msgstr "关于(&A)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
+msgstr "Nyquist 脚本 (*.ny)|*.ny|Lisp 脚本 (*.lsp)|*.lsp|所有文件|*"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Tango Icon Gallery (toolbar icons)"
+msgstr "Tango 图标库（工具栏图标）"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Code has been modified. Are you sure?"
+msgstr "代码已被修改。您确定吗？"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Save As"
+msgstr "另存为"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Save script as..."
+msgstr "将脚本另存为..."
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cut to clipboard"
+msgstr "剪切到剪贴板"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Go to higher S-expr"
+msgstr "转到上层 S-expr"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Previous"
+msgstr "上一个"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Go to previous S-expr"
+msgstr "转到上一个 S-expr"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Next"
+msgstr "下一个"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Go to next S-expr"
+msgstr "转到下一个 S-expr"
+
+#: src/AudioIO.cpp
+msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
+msgstr "录制音量自动调整已停止。无法进一步优化。音量依然过低。"
+
+#: src/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr "录制音量自动调整已将音量提高到 %.2f。"
+
+#: src/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
+msgstr "录制音量自动调整已停止。 %.2f 似乎是合适的音量。"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "默认录制设备编号：%d\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Default playback device number: %d\n"
+msgstr "默认播放设备编号：%d\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "设备 ID：%d\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "设备名：%s\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Host name: %s\n"
+msgstr "主机名：%s\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: src/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "受支持的采样率：\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "选定的录制设备：%d - %s\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "未找到匹配“%s”的录制设备。\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "选定的播放设备：%d - %s\n"
+
+#: src/AudioIOBase.cpp
+msgid "Unable to open Portmixer\n"
+msgstr "无法打开 Portmixer\n"
+
+#: src/AudioIOBase.cpp
+msgid "Available mixers:\n"
+msgstr "可用的混音器：\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Supports input: %d\n"
+msgstr "支持输入：%d\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "No MIDI recording device found for '%s'.\n"
+msgstr "未找到匹配“%s”的 MIDI 录制设备。\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Selected MIDI playback device: %d - %s\n"
+msgstr "选定的 MIDI 播放设备：%d - %s\n"
+
+#: src/Dependencies.cpp
+msgid ""
+"Copying these files into your project will remove this dependency.\n"
+"This is safer, but needs more disk space."
+msgstr ""
+"把以下文件复制到项目中会去除此依赖关系。\n"
+"这样更安全，但需要更多的磁盘空间。"
+
+#: src/Dependencies.cpp
+msgid "Project Dependencies"
+msgstr "项目依赖"
+
+#: src/Dependencies.cpp
+msgid "Disk Space"
+msgstr "磁盘空间"
+
+#: src/Dependencies.cpp
+msgid "Copy Selected Files"
+msgstr "复制选中的文件"
+
+#: src/Dependencies.cpp
+msgid "Cancel Save"
+msgstr "取消保存"
+
+#: src/Dependencies.cpp
+msgid "Save Without Copying"
+msgstr "保存而不复制"
+
+#: src/Dependencies.cpp
+msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+msgstr "如果继续，项目将不会保存到磁盘上。确定要这样做吗？"
+
+#: src/ProjectFSCK.cpp
+msgid "Cleaning up unused directories in project data"
+msgstr "正在清理项目数据中未使用的目录"
+
+#: src/AboutDialog.cpp
+msgid "Sound card mixer support"
+msgstr "声卡混音器支持"
+
+#: src/AboutDialog.cpp
+msgid "<h3>"
+msgstr "<h3>"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s the free, open source, cross-platform software for recording and editing sounds."
+msgstr "%s，免费、开源、跨平台的声音录制编辑软件。"
+
+#: src/AudioIO.cpp
+msgid "Error Initializing Midi"
+msgstr "MIDI 初始化错误"
+
+#: src/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "内存不足！"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "%d - %s\n"
+msgstr "%d - %s\n"
+
+#: src/AudioIOBase.cpp
+msgid "Available recording sources:\n"
+msgstr "可用录制源：\n"
+
+#: src/AudioIOBase.cpp
+msgid "Recording volume is emulated\n"
+msgstr "录音音量是模拟的\n"
+
+#: src/AudioIOBase.cpp
+msgid "Recording volume is native\n"
+msgstr "原生支持录制音量\n"
+
+#: src/AudioIOBase.cpp
+msgid "Playback volume is emulated\n"
+msgstr "播放音量是模拟的\n"
+
+#: src/Dependencies.cpp
+msgid "Removing Dependencies"
+msgstr "正在删除依赖"
+
+#: src/Dependencies.cpp
+msgid "Copying audio data into project..."
+msgstr "正在复制音频数据到项目..."
+
+#: src/Dependencies.cpp
+msgid "Project Depends on Other Audio Files"
+msgstr "项目依赖于其它音频文件"
+
+#: src/Dependencies.cpp
+msgid ""
+"\n"
+"\n"
+"Files shown as MISSING have been moved or deleted and cannot be copied.\n"
+"Restore them to their original location to be able to copy into project."
+msgstr ""
+"\n"
+"\n"
+"标记为丢失的文件已被移动或删除，无法被复制。\n"
+"请将它们恢复到初始位置，以便复制到项目中。"
+
+#: src/Dependencies.cpp
+msgid "Audio File"
+msgstr "音频文件"
+
+#: src/Dependencies.cpp
+msgid "Copy All Files (Safer)"
+msgstr "复制全部文件（更保险）"
+
+#: src/Dependencies.cpp
+msgid "Whenever a project depends on other files:"
+msgstr "当项目依赖于其他文件时："
+
+#. i18n-hint: One of the choices of what you want Audacity to do when
+#. * Audacity finds a project depends on another file.
+#: src/Dependencies.cpp
+msgid "Ask me"
+msgstr "询问"
+
+#. i18n-hint: One of the choices of what you want Audacity to do when
+#. * Audacity finds a project depends on another file.
+#: src/Dependencies.cpp
+msgid "Always copy all files (safest)"
+msgstr "总是复制全部文件（最保险）"
+
+#. i18n-hint: One of the choices of what you want Audacity to do when
+#. * Audacity finds a project depends on another file.
+#: src/Dependencies.cpp
+msgid "Never copy any files"
+msgstr "从不复制任何文件"
+
+#: src/Dependencies.cpp
+#, c-format
+msgid "MISSING %s"
+msgstr "丢失 %s"
+
+#: src/Dependencies.cpp
+msgid "&Copy Names to Clipboard"
+msgstr "复制名称到剪贴板(&C)"
+
+#: src/Dependencies.cpp
+msgid "Missing"
+msgstr "丢失"
+
+#: src/FFmpeg.cpp
+msgid "Failed to find compatible FFmpeg libraries."
+msgstr "无法找到兼容的 FFmpeg 库。"
+
+#: src/FFmpeg.h
+msgid "Only libavformat.so"
+msgstr "仅 libavformat.so"
+
+#: src/HelpText.cpp
+msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
+msgstr "我们强烈建议使用我们最新的稳定版本，它具有完整的文档和支持。<br><br>"
+
+#: src/HelpText.cpp
+msgid "How to get help"
+msgstr "如何获取帮助"
+
+#: src/HelpText.cpp
+msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
+msgstr ""
+"使用手册似乎没有被安装。请[[*URL*|在线浏览使用手册]]。<br><br>若要始终在线浏"
+"览使用手册，请在界面偏好设置中将“使用手册的位置”更改为“从互联网”。"
+
+#: src/ProjectFSCK.cpp
+msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
+msgstr "保留已记录的修复并继续，同时检查更多错误。这将保存项目的当前状态，除非您在下"
+"次错误警报时选择“立即关闭项目”。"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Problems Reading Sequence Tags"
+msgstr "警告 - 读取序列标签时出现问题"
+
+#: src/ProjectFSCK.cpp
+msgid "Inspecting project file data"
+msgstr "正在检查项目文件数据"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Missing Aliased File(s)"
+msgstr "警告 - 替身文件缺失"
+
+#: src/ProjectFSCK.cpp
+msgid "Regenerate alias summary files (safe and recommended)"
+msgstr "重新生成替身概要文件（安全，推荐使用）"
+
+#: src/ProjectFSCK.cpp
+msgid "Close project immediately with no further changes"
+msgstr "不做进一步修改，立即关闭工程"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Missing Alias Summary File(s)"
+msgstr "警告 - 替身概要文件缺失"
+
+#: src/ProjectFSCK.cpp
+msgid "Replace missing audio with silence (permanent immediately)"
+msgstr "用静音替代丢失的音频（立即、永久）"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Missing Audio Data Block File(s)"
+msgstr "警告 - 音频数据块文件丢失"
+
+#: src/ProjectFileIO.cpp
+msgid "Unable to decode project document"
+msgstr "无法解码项目文件"
+
+#. i18n-hint: Clicking this menu item shows the toolbar
+#. with the mixer
+#: src/toolbars/MixerToolBar.cpp
+msgid "Mi&xer Toolbar"
+msgstr "混音器工具栏(&X)"
+
+#: src/ProjectFileManager.cpp
+msgid "Error opening a new empty project"
+msgstr "打开新的空白项目时发生错误"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Open"
+msgstr "打开"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Copy\tCtrl+C"
+msgstr "复制(&C)\tCtrl+C"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Select all text"
+msgstr "选择所有文本"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Find"
+msgstr "查找"
+
+#. i18n-hint Tenacity's name substitutes for first and fourth %s, and the second and third %s are the copyright symbol and final year of copyright
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s %s 1999-%s %s contributors"
+msgstr "%s %s 1999-%s %s 贡献者"
+
+#: src/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "音频初始化错误"
+
+#: src/AudioIO.cpp
+msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
+msgstr "录制音量自动调整已停止。无法进一步优化。音量依然过高。"
+
+#: src/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr "录制音量自动调整已将音量降低到 %f。"
+
+#: src/AudioIO.cpp
+msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
+msgstr "录制音量自动调整已停止。分析次数已经超过上限，但仍未找到合适的音量值。音量依"
+"然过高。"
+
+#: src/AudioIO.cpp
+msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
+msgstr "录制音量自动调整已停止。分析次数已经超过上限，但仍未找到合适的音量值。音量依"
+"然过低。"
+
+#: src/AudioIOBase.cpp
+msgid "No devices found\n"
+msgstr "未找到设备\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "录制声道：%d\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "低录制延迟：%g\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "低播放延迟：%g\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "高录制延迟：%g\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "高播放延迟：%g\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Received %d while opening devices\n"
+msgstr "打开设备时收到%d\n"
+
+#: src/AudioIOBase.cpp
+msgid "Available playback volumes:\n"
+msgstr "可用播放音量：\n"
+
+#: src/AudioIOBase.cpp
+msgid "Playback volume is native\n"
+msgstr "原生支持播放音量\n"
+
+#: src/HelpText.cpp
+msgid "These are our support methods:"
+msgstr "以下是我们的支持方式："
+
+#: src/ProjectFSCK.cpp
+msgid "Fill in silence for missing display data (this session only)"
+msgstr "以静音填充缺失的显示数据（仅限此会话）"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Matching Paren\tF8"
+msgstr "匹配的括号(&M)\tF8"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Top S-expr\tF9"
+msgstr "顶部的 S-expr(&T)\tF9"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Large Icons"
+msgstr "大图标(&L)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "New script"
+msgstr "新建脚本"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Copy to clipboard"
+msgstr "复制到剪贴板"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Undo last change"
+msgstr "撤消上次更改"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Redo previous change"
+msgstr "重做上一次更改"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Find text"
+msgstr "查找文字"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Match"
+msgstr "匹配"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Go to matching paren"
+msgstr "转到匹配的括号"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Top"
+msgstr "顶部"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Stop script"
+msgstr "停止脚本"
+
+#: src/ProjectFSCK.cpp
+msgid "Close project immediately with no changes"
+msgstr "不做任何修改，立即关闭项目"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cu&t\tCtrl+X"
+msgstr "剪切(&T)\tCtrl+X"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cle&ar\tCtrl+L"
+msgstr "清除(&A)\tCtrl+L"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Select A&ll\tCtrl+A"
+msgstr "全选(&L)\tCtrl+A"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Split &Vertically"
+msgstr "垂直分割(&V)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Split &Horizontally"
+msgstr "水平分割(&H)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Small Icons"
+msgstr "小图标(&S)"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Toolbar"
+msgstr "工具栏"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Go\tF5"
+msgstr "转到(&G)\tF5"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Script"
+msgstr "脚本"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Script was not saved."
+msgstr "脚本未被保存。"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Find dialog"
+msgstr "搜索对话框"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Harvey Lubin (logo)"
+msgstr "Harvey Lubin（logo）"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Nyquist Effect Workbench"
+msgstr "Nyquist 效果工作台"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "No matches found"
+msgstr "未找到匹配项"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Open script"
+msgstr "打开脚本"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Save script"
+msgstr "保存脚本"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Paste from clipboard"
+msgstr "从剪贴板粘贴"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Clear selection"
+msgstr "清除所选"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Go to top S-expr"
+msgstr "转到顶部的 S-expr"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Up"
+msgstr "向上"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Start script"
+msgstr "启动脚本"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Nyquist Workbench..."
+msgstr "Nyquist 工作台(&N)..."
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Find...\tCtrl+F"
+msgstr "查找(&F)...\tCtrl+F"
+
+#: src/ProjectFSCK.cpp
+msgid "Continue without deleting; ignore the extra files this session"
+msgstr "继续打开而不删除；在此会话中忽略它们"
+
+#: src/ProjectFSCK.cpp
+msgid "Delete orphan files (permanent immediately)"
+msgstr "删除孤立文件（立即、永久）"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning: Problems in Automatic Recovery"
+msgstr "警告：自动恢复出现问题"
+
+#. i18n-hint: An error message.
+#: src/ProjectFileIO.cpp
+msgid ""
+"Project is in a read only directory\n"
+"(Unable to create the required temporary files)"
+msgstr ""
+"项目位于只读目录中\n"
+"（无法创建所需的临时文件）"
+
+#: src/ProjectFileManager.cpp
+msgid "Can't open new empty project"
+msgstr "无法打开新的空白项目"
+
+#: src/ProjectFileIO.cpp
+#, c-format
+msgid ""
+"Failed to retrieve data from the project file.\n"
+"The following command failed:\n"
+"\n"
+"%s"
+msgstr ""
+"无法从项目文件中获取数据。\n"
+"以下命令执行失败：\n"
+"\n"
+"%s"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Leland Lucius"
+msgstr "Leland Lucius"
+
+#. i18n-hint Tenacity's name substitutes for %s
+#: src/AboutDialog.cpp
+#, c-format
+msgid "The name %s is a registered trademark."
+msgstr "名称 %s 是注册商标。"
+
+#: src/Dependencies.cpp
+#, c-format
+msgid "\"%s\", \"%s\", \"%s\"\n"
+msgstr "“%s”、“%s”、“%s”\n"
+
+#. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
+#: src/CommonCommandFlags.cpp
+#, c-format
+msgid ""
+"You must first select some audio for '%s' to act on.\n"
+"\n"
+"Ctrl + A selects all audio."
+msgstr ""
+"必须先选择要让“%s”处理的音频。\n"
+"\n"
+"按 Ctrl + A 以选择全部音频。"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "(C) 2009 by Leland Lucius"
+msgstr "(C) 2009 Leland Lucius"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Higher S-expr\tF10"
+msgstr "更高的 S-expr(&H)\tF10"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Undo\tCtrl+Z"
+msgstr "撤消(&U)\tCtrl+Z"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Redo\tCtrl+Y"
+msgstr "重做(&R)\tCtrl+Y"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Paste\tCtrl+V"
+msgstr "粘贴(&P)\tCtrl+V"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Previous S-expr\tF11"
+msgstr "上一个 S-expr(&P)\tF11"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Next S-expr\tF12"
+msgstr "下一个 S-expr(&N)\tF12"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Go to"
+msgstr "转到(&G)"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "回放声道：%d\n"
