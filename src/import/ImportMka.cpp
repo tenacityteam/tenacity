@@ -23,6 +23,8 @@ static const auto exts = {wxT("mka"), wxT("mkv")};
 
 #include "TenacityHeaders.h"
 
+#include <matroska/KaxVersion.h>
+
 #if defined(_CRTDBG_MAP_ALLOC) && LIBMATROSKA_VERSION < 0x010702
 // older libmatroska headers use std::nothrow which is incompatible with <crtdbg.h>
 #undef new
@@ -60,7 +62,6 @@ typedef enum {
 #include <matroska/KaxSegment.h>
 #include <matroska/KaxSeekHead.h>
 #include <matroska/KaxCluster.h>
-#include <matroska/KaxVersion.h>
 
 #include <wx/log.h>
 
