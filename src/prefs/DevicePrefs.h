@@ -24,7 +24,7 @@ class ShuttleGui;
 class DevicePrefs final : public PrefsPanel
 {
  public:
-   DevicePrefs(wxWindow * parent, wxWindowID winid);
+   DevicePrefs(wxWindow * parent, wxWindowID winid, TenacityProject* project);
    virtual ~DevicePrefs();
    ComponentInterfaceSymbol GetSymbol() override;
    TranslatableString GetDescription() override;
@@ -51,6 +51,7 @@ class DevicePrefs final : public PrefsPanel
    wxChoice *mPlay;
    wxChoice *mRecord;
    wxChoice *mChannels;
+   TenacityProject* mProject;
 
    DECLARE_EVENT_TABLE()
 };

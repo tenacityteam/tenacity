@@ -43,6 +43,7 @@ other settings.
 #include <lib-project-rate/QualitySettings.h>
 
 #include "AudioIO.h"
+#include "ProjectAudioManager.h"
 #include "../shuttle/ShuttleGui.h"
 
 enum {
@@ -57,8 +58,8 @@ BEGIN_EVENT_TABLE(DevicePrefs, PrefsPanel)
    EVT_CHOICE(RecordID, DevicePrefs::OnDevice)
 END_EVENT_TABLE()
 
-DevicePrefs::DevicePrefs(wxWindow * parent, wxWindowID winid)
-:  PrefsPanel(parent, winid, XO("Devices"))
+DevicePrefs::DevicePrefs(wxWindow * parent, wxWindowID winid, TenacityProject* project)
+:  PrefsPanel(parent, winid, XO("Devices")), mProject{project}
 {
    Populate();
 }
@@ -403,17 +404,29 @@ bool DevicePrefs::Commit()
       AudioIORecordChannels.Write(mChannels->GetSelection() + 1);
    }
 
+   auto* audioIO = AudioIO::Get();
+   bool monitoring = audioIO->IsMonitoring();
+   if (monitoring)
+   {
+      audioIO->StopStream();
+   }
+
    AudioIO::Get()->UpdateBuffers();
+
+   if (monitoring)
+   {
+      audioIO->StartMonitoring(DefaultPlayOptions(*mProject));
+   }
 
    return true;
 }
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Device",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, TenacityProject* project)
    {
       wxASSERT(parent); // to justify safenew
-      return safenew DevicePrefs(parent, winid);
+      return safenew DevicePrefs(parent, winid, project);
    }
 };
 }
