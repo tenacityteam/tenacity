@@ -1030,7 +1030,7 @@ BaseItemSharedPtr ToolsMenu()
 
    #endif
 
-         Section( "RepeatLast",
+      Section( "RepeatLast",
          // Delayed evaluation:
          [](TenacityProject &project)
          {
