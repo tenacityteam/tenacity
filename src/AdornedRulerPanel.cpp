@@ -1231,8 +1231,8 @@ void AdornedRulerPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
    // Stroke extras direct to the client area,
    // maybe outside of the damaged area
    // As with TrackPanel, do not make a NEW wxClientDC or else Mac flashes badly!
-   dc.DestroyClippingRegion();
-   DrawOverlays(true, &dc);
+   // dc.DestroyClippingRegion();
+   DrawOverlays(true, dc);
 }
 
 void AdornedRulerPanel::OnSize(wxSizeEvent &evt)
@@ -1773,8 +1773,8 @@ void AdornedRulerPanel::DrawBothOverlays()
       wxASSERT( false );
    }
    else
-      pCellularPanel->DrawOverlays( false );
-   DrawOverlays( false );
+      pCellularPanel->Refresh();
+   Refresh();
 }
 
 void AdornedRulerPanel::UpdateButtonStates()
