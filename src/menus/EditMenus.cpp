@@ -305,7 +305,7 @@ void OnCut(const CommandContext &context)
 
    // Bug 1663
    //mRuler->ClearPlayRegion();
-   ruler.DrawOverlays( true );
+   ruler.Refresh();
 }
 
 void OnDelete(const CommandContext &context)

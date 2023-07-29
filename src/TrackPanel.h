@@ -211,7 +211,6 @@ protected:
 
    bool mRefreshBacking;
 
-
 protected:
 
    SelectedRegion mLastDrawnSelectedRegion {};

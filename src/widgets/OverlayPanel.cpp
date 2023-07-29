@@ -43,7 +43,7 @@ void OverlayPanel::ClearOverlays()
    mOverlays.clear();
 }
 
-void OverlayPanel::DrawOverlays(bool repaint_all, wxDC *pDC)
+void OverlayPanel::DrawOverlays(bool repaint_all, wxPaintDC& dc)
 {
    if ( !IsShownOnScreen() )
       return;
@@ -101,9 +101,6 @@ void OverlayPanel::DrawOverlays(bool repaint_all, wxDC *pDC)
          }
       } while (!done);
    }
-
-   std::optional<wxClientDC> myDC;
-   auto &dc = pDC ? *pDC : (myDC.emplace(this), *myDC);
 
    // Erase
    auto it2 = pairs.begin();

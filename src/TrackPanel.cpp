@@ -426,8 +426,8 @@ void TrackPanel::OnTimer(wxTimerEvent& )
       p->ProcessEvent(e);
    }
 
-   DrawOverlays(false);
-   mRuler->DrawOverlays(false);
+   Refresh();
+   mRuler->Refresh();
 
    if(IsAudioActive() && gAudioIO->GetNumCaptureChannels()) {
 
@@ -505,7 +505,7 @@ void TrackPanel::OnPaint(wxPaintEvent & /* event */)
       // (Used to make a NEW, separate wxClientDC, but that risks flashing
       // problems on Mac.)
       dc.DestroyClippingRegion();
-      DrawOverlays(true, &dc);
+      DrawOverlays(true, dc);
    }
 
 #if DEBUG_DRAW_TIMING
@@ -563,8 +563,8 @@ void TrackPanel::ProcessUIHandleResult
       panel->UpdateVRuler(pClickedTrack);
 
    if (refreshResult & RefreshCode::DrawOverlays) {
-      panel->DrawOverlays(false);
-      mRuler->DrawOverlays(false);
+      panel->Refresh();
+      mRuler->Refresh();
    }
 
    // Refresh all if told to do so, or if told to refresh a track that
@@ -778,7 +778,6 @@ void TrackPanel::RefreshTrack(Track *trk, bool refreshbacking)
 
    Refresh( false, &rect );
 }
-
 
 /// This method overrides Refresh() of wxWindow so that the
 /// boolean play indicator can be set to false, so that an old play indicator that is
