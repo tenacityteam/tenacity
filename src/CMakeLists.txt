@@ -1380,9 +1380,9 @@ else()
                DESTINATION "${_LIBDIR}"
                USE_SOURCE_PERMISSIONS
                FILES_MATCHING PATTERN "*.so*" )
-      install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
+      install( FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_SOURCE_DIR}/README.md"
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
-      install( FILES "${topdir}/presets/EQDefaultCurves.xml"
+      install( FILES "${CMAKE_SOURCE_DIR}/presets/EQDefaultCurves.xml"
                DESTINATION "${_PKGDATA}" )
    else()
       install( TARGETS ${TARGET} RUNTIME )
