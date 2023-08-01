@@ -241,6 +241,17 @@ Optionally, install Tenacity:
 cmake --install build
 ```
 
+### Linux: Building an AppImage
+
+You can build an AppImage yourself. This requires that you have previously
+built Tenacity. Note that you do not need to have installed Tenacity in order
+to make an AppImage as it is unnecessary.
+
+First, you need to set `VCPKG_LIB_PATH` to the directory vcpkg copied libraries
+too if you are using vcpkg. If not, set this to an empty string. Next, run
+`cpack` from the root of your build directory. The AppImage will be in the
+`package/` directory of the build folder.
+
 ## Build options
 
   * **VCPKG** (ON|OFF): whether to use dependencies from vcpkg. ON by default
