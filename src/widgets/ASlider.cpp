@@ -179,7 +179,7 @@ TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
 : wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
           wxFRAME_SHAPED | wxNO_BORDER | wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT)
 #else
-: wxPopupWindow(parent, wxFRAME_SHAPED | wxBORDER_NONE | wxFRAME_FLOAT_ON_PARENT)
+: wxPopupWindow(parent, wxFRAME_SHAPED | wxBORDER_NONE | wxFRAME_FLOAT_ON_PARENT | wxPU_CONTAINS_CONTROLS)
 #endif
 {
    SetBackgroundStyle(wxBG_STYLE_PAINT);
