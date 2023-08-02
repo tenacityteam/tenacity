@@ -209,9 +209,13 @@ other operating systems, run them from a normal shell.
 First, download the Tenacity source code:
 
 ```
-git clone https://codeberg.org/tenacityteam/tenacity
+git clone --recurse-submodules https://codeberg.org/tenacityteam/tenacity
 cd tenacity
 ```
+
+This will clone Tenacity and all of its submodules, libnyquist and vcpkg. If
+you don't want vcpkg, you can remove `--recurse-submodules` and do
+`git submodule update --init lib-src/libnyquist` afterwards.
 
 Then, configure CMake. This will take a long time the first time on macOS and
 Windows (or if you use `-D VCPKG=ON` on Linux) because vcpkg will compile
