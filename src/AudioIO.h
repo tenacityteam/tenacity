@@ -368,8 +368,8 @@ public:
    /// True if Sound Activated Recording is enabled
    bool                mPauseRec;
    float               mSilenceLevel;
-   unsigned int        mNumCaptureChannels;
-   unsigned int        mNumPlaybackChannels;
+   unsigned int        mNumCaptureChannels{ 0 };
+   unsigned int        mNumPlaybackChannels{ 0 };
    sampleFormat        mCaptureFormat;
    unsigned long long  mLostSamples{ 0 };
    volatile bool       mAudioThreadShouldCallFillBuffersOnce;
