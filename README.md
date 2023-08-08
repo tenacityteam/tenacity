@@ -36,6 +36,20 @@ Our project initially started as a fork of [Audacity](https://audacityteam.org) 
 
 Nevertheless, the goal of this project is to pick up what the original developers of Audacity the decades-long work by the original creators of Audacity and create an audio editor that is fresh, more modern, convenient and practical to use, with the help and the guidance of our users and our community.
 
+## Differences from Audacity
+
+Tenacity is not merely an Audacity fork that removes error reporting and update checking, although it might seem like it. We have been hard at work implementing our own features and fixes and want to take Tenacity in a direction our users and community like. So far, we have fulfilled part of this endless goal by implementing the following:
+
+- New, modern themes.
+- Improved support for more platforms such as [Haiku](https://haiku-os.org).
+- Matroska importing and exporting without needing FFmpeg.
+- Support for importing, editing, exporting Matroska chapters as label tracks.
+- Sync-lock improvements, including the ability to temporarily override sync-lock.
+- Horizontal scrolling in the Frequency Analysis window.
+- Under-the-hood changes, such as a revamped build system allowing for modern upstream dependencies.
+
+More changes are yet to come, big or small. We are always welcoming contributions to Tenacity, no matter how big or small, feature or fix. For more info, see the Contributing section.
+
 ## Download
 
 ### Tenacity
@@ -67,6 +81,8 @@ Build instructions for Tenacity are available in the [BUILDING.md file](BUILDING
 To start contributing, please consult the [CONTRIBUTING.md file](CONTRIBUTING.md).
 
 If you are planning to make a big change or if you are otherwise hesitant as to whether we want to incorporate something you want to work on in Tenacity itself, simply open an issue about it in our [Codeberg issue tracker](https://codeberg.org/tenacityteam/tenacity/issues). We can discuss it and work together, so that neither our time or your time and hard effort goes to waste.
+
+Note that we don't require a corresponding issue for each pull request. 
 
 ### Translating
 
