@@ -622,8 +622,6 @@ private:
 
    SampleBlockFactoryPtr mpFactory;
 
-   wxCriticalSection mFlushCriticalSection;
-   wxCriticalSection mAppendCriticalSection;
    double mLegacyProjectFileOffset;
 
    std::unique_ptr<SpectrogramSettings> mpSpectrumSettings;
