@@ -1,12 +1,6 @@
-#ifdef USE_AQUA_THEME
-#include "Aqua/Up.xpm"
-#include "Aqua/Down.xpm"    
-#include "Aqua/Hilite.xpm"
-#else
 #include "EditButtons/Up.xpm"
 #include "EditButtons/Down.xpm"      
 #include "EditButtons/Hilite.xpm"       
-#endif
 
 #include "EditButtons/CopyAlpha.xpm"
 #include "EditButtons/CutAlpha.xpm"

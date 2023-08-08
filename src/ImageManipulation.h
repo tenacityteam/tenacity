@@ -58,16 +58,6 @@ std::unique_ptr<wxImage> OverlayImage(teBmps eBack, teBmps eForeground,
 TENACITY_DLL_API
 std::unique_ptr<wxImage> CreateBackground(int width, int height, wxColour colour);
 
-// Creates an image with the Mac OS X Aqua stripes, to be used
-// as a background
-TENACITY_DLL_API
-std::unique_ptr<wxImage> CreateAquaBackground(int width, int height, int offset);
-
-// Uses color on all OS except Mac, uses Aqua
-TENACITY_DLL_API
-std::unique_ptr<wxImage> CreateSysBackground(int width, int height, int offset,
-                             wxColour colour);
-
 // Pastes one image into another at specified location.
 TENACITY_DLL_API
 void PasteSubImage( wxImage * pDest, wxImage * pSrc, int x, int y );

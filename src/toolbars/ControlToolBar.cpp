@@ -468,11 +468,8 @@ void ControlToolBar::ReCreateButtons()
 
 void ControlToolBar::Repaint( wxDC *dc )
 {
-#ifndef USE_AQUA_THEME
    wxSize s = mSizer->GetSize();
    wxPoint p = mSizer->GetPosition();
-
-#endif
 }
 
 void ControlToolBar::EnableDisableButtons()

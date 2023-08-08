@@ -1207,9 +1207,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
           "-framework CoreAudioKit")
    endif()
 
-   # Use the Aqua theme
-   set( USE_AQUA_THEME 1 )
-
    # Copy the required wxWidgets libs into the bundle
    add_custom_command(
       TARGET
