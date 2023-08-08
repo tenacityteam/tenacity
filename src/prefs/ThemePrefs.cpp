@@ -110,6 +110,18 @@ void ThemePrefs::PopulateOrExchange(ShuttleGui & S)
    S.SetBorder(2);
    S.StartScroller();
 
+   S.StartStatic(XO("Theme Settings"));
+   {
+      S.StartMultiColumn(2);
+      {
+         S.TieChoice( XXO("Th&eme:"), GUITheme());
+
+      }
+      S.EndMultiColumn();
+      S.TieCheckBox(XXO("B&lend system and Tenacity theme"), GUIBlendThemes);
+   }
+   S.EndStatic();
+
    S.StartStatic(XO("Info"));
    {
       S.AddFixedText(
