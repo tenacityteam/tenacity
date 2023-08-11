@@ -298,7 +298,8 @@ has outdated libraries that do not build with Tenacity.
     Requires FFmpeg libraries.
   * **AUDIO_UNITS** (ON|OFF): Apple Audio Units plugin support. _macOS only._
   * **LADSPA** (ON|OFF): LADSPA plugin hosting support.
-  * **LV2** (ON|OFF): LV2 plugin hosting support. Requires LV2, lilv, and
+  * **LV2** (ON|OFF): LV2 plugin hosting support. Requires LV2, lilv, and suil
+    libraries.
   * **VAMP** (ON|OFF): VAMP plugin hosting support. Requires VAMP host SDK.
     suil libraries.
   * **VST2** (ON|OFF): VST2 plugin hosting support. No libraries are required.
