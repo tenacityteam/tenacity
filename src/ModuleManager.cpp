@@ -222,7 +222,7 @@ void ModuleManager::FindModules(FilePaths &files)
    wxString pathVar;
 
    // Code from LoadLadspa that might be useful in load modules.
-   pathVar = wxGetenv(wxT("AUDACITY_MODULES_PATH"));
+   pathVar = wxGetenv(wxT("TENACITY_MODULES_PATH"));
    if (!pathVar.empty())
       FileNames::AddMultiPathsToPathList(pathVar, pathList);
 
@@ -429,7 +429,7 @@ bool ModuleManager::DiscoverProviders()
    FilePaths pathList;
 
    // Code from LoadLadspa that might be useful in load modules.
-   wxString pathVar = wxString::FromUTF8(getenv("AUDACITY_MODULES_PATH"));
+   wxString pathVar = wxString::FromUTF8(getenv("TENACITY_MODULES_PATH"));
 
    if (!pathVar.empty())
    {
