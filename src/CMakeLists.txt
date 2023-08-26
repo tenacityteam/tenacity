@@ -207,8 +207,6 @@ list( APPEND SOURCES
       TenacityFileConfig.h
       TenacityHeaders.cpp
       TenacityHeaders.h
-      Screenshot.cpp
-      Screenshot.h
       SelectUtilities.cpp
       SelectUtilities.h
       SelectFile.cpp
