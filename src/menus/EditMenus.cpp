@@ -29,7 +29,6 @@
 #include "../WaveTrack.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
-#include "../commands/ScreenshotCommand.h"
 #include "../effects/TimeWarper.h"
 #include "../export/Export.h"
 #include "../prefs/PrefsDialog.h"
@@ -979,9 +978,6 @@ void OnPreferences(const CommandContext &context)
    auto &project = context.project;
 
    GlobalPrefsDialog dialog(&GetProjectFrame( project ) /* parent */, &project );
-
-   if( ScreenshotCommand::MayCapture( &dialog ) )
-      return;
 
    if (!dialog.ShowModal()) {
       // Canceled

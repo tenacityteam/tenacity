@@ -324,8 +324,6 @@ list( APPEND SOURCES
       commands/PreferenceCommands.h
       commands/ResponseQueue.cpp
       commands/ResponseQueue.h
-      commands/ScreenshotCommand.cpp
-      commands/ScreenshotCommand.h
       commands/ScriptCommandRelay.cpp
       commands/ScriptCommandRelay.h
       commands/SelectCommand.cpp

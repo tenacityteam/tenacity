@@ -655,7 +655,6 @@ void ContrastDialog::OnReset(wxCommandEvent & /*event*/)
 #include "commands/CommandContext.h"
 #include "commands/CommandManager.h"
 #include "ProjectWindows.h"
-#include "../commands/ScreenshotCommand.h"
 
 namespace {
 
@@ -680,8 +679,6 @@ struct Handler : CommandHandlerObject {
          .Get< ContrastDialog >( sContrastDialogKey );
 
       contrastDialog->CentreOnParent();
-      if( ScreenshotCommand::MayCapture( contrastDialog ) )
-         return;
       contrastDialog->Show();
    }
 };

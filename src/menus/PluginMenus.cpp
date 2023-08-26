@@ -26,7 +26,6 @@
 #include "../UndoManager.h"
 #include "../commands/CommandContext.h"
 #include "../commands/CommandManager.h"
-#include "../commands/ScreenshotCommand.h"
 #include "../effects/EffectManager.h"
 #include "../effects/EffectUI.h"
 #include "../effects/RealtimeEffectManager.h"
@@ -1197,10 +1196,6 @@ BaseItemSharedPtr ExtraScriptablesIIMenu()
       Command( wxT("Drag"), XXO("Move Mouse..."), FN(OnAudacityCommand),
          AudioIONotBusyFlag() ),
       Command( wxT("CompareAudio"), XXO("Compare Audio..."),
-         FN(OnAudacityCommand),
-         AudioIONotBusyFlag() ),
-      // i18n-hint: Screenshot in the help menu has a much bigger dialog.
-      Command( wxT("Screenshot"), XXO("Screenshot (short format)..."),
          FN(OnAudacityCommand),
          AudioIONotBusyFlag() )
    ) ) };
