@@ -44,9 +44,6 @@ jobs:
           language: 'cpp'  # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-linux
-          wxwidgets_git_url: https://github.com/wxWidgets/wxWidgets.git
-          wxwidgets_git_ref: v3.1.5
-          WX_CONFIG: /home/runner/work/tenacity/tenacity/wxwidgets-install/bin/wx-config
 
     steps:
 
@@ -61,27 +58,6 @@ jobs:
 
     - name: Get Git commit of vcpkg submodule
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
-
-    - name: "Set up wxWidgets cache"
-      uses: actions/cache@v3
-      id: wxwidgets-cache
-      with:
-        path: ${{ github.workspace }}/wxwidgets-install
-        key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ matrix.config.wxwidgets_git_url }}-${{ matrix.config.wxwidgets_git_ref }}
-
-    # FIXME: use wxWidgets from vcpkg for all OSes when bugs are fixed for Linux and macOS
-    # https://github.com/microsoft/vcpkg/pull/17111
-    - name: Build and install wxWidgets
-      if: steps.wxwidgets-cache.outputs.cache-hit != 'true' && runner.os != 'Windows'
-      run: |
-        # wxWidgets' build system does not find dependencies from vcpkg, so use its vendored Git submodules
-        git clone --recurse-submodules ${{ matrix.config.wxwidgets_git_url }}
-        cd wxWidgets
-        git checkout ${{ matrix.config.wxwidgets_git_ref }}
-        cmake -G Ninja -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/wxwidgets-install \
-          -S . -B cmake_build
-        cmake --build cmake_build
-        cmake --install cmake_build
 
     - name: "Set up compiler cache"
       uses: actions/cache@v3
