@@ -195,7 +195,7 @@ jobs:
         && rm -r package/_CPack_Packages
       env:
         # VCPKG_LIB_PATH is the location that vcpkg stores its libs once built
-        VCPKG_LIB_PATH: ${{ github.workspace }}/build/vcpkg-install/x64-linux-dynamic/debug/lib
+        VCPKG_LIB_PATH: ${{ github.workspace }}/build/vcpkg_installed/x64-linux-dynamic/debug/lib
 
     - name: Upload package artifact
       uses: actions/upload-artifact@v3
