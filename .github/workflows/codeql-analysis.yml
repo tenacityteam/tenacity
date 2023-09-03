@@ -80,9 +80,6 @@ jobs:
       env:
         CC: ${{ matrix.config.cc }}
         CXX: ${{ matrix.config.cxx }}
-        # hack to get CMake to find wxWidgets until vcpkg wxWidgets port is fixed
-        # https://github.com/microsoft/vcpkg/pull/17111
-        WX_CONFIG: ${{ matrix.config.WX_CONFIG }}
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
