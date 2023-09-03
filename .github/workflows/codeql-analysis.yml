@@ -59,6 +59,19 @@ jobs:
     - name: Get Git commit of vcpkg submodule
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
 
+    - name: Setup vcpkg cache
+      uses: actions/cache@v3
+      with:
+        # cache the vcpkg executable to avoid having to bootstrap vcpkg every time
+        path: |
+          ${{ github.workspace }}/vcpkg/vcpkg${{ matrix.config.exe_suffix }}
+          ${{ matrix.config.vcpkg_binary_cache }}
+        key: ${{ matrix.config.name }}-${{ hashFiles('**/vcpkg.json') }}-${{ env.VCPKG_COMMIT }}-${{ github.run_number }}
+        restore-keys: |
+          ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-${{ env.VCPKG_COMMIT }}-
+          ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-
+          ${{ matrix.config.name }}-
+
     - name: "Set up compiler cache"
       uses: actions/cache@v3
       with:
