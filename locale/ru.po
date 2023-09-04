@@ -15,13 +15,14 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Andrei Stepanov <adem4ik@gmail.com>, 2023.
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2023.
+# Evgeniy Khramov <thejenjagamertjg@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-07-18 11:32-0700\n"
-"PO-Revision-Date: 2023-07-29 09:05+0000\n"
-"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
+"PO-Revision-Date: 2023-09-04 21:54+0000\n"
+"Last-Translator: Evgeniy Khramov <thejenjagamertjg@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
 "Language: ru\n"
@@ -30,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -18118,9 +18119,6 @@ msgstr "Ошибка.~%Требуется стереотрек."
 #~ "\n"
 #~ "Ctrl+A выделяет все аудиоданные."
 
-#~ msgid "Removing Dependencies"
-#~ msgstr "Удаление зависимостей"
-
 #~ msgid "Copying audio data into project..."
 #~ msgstr "Копирование аудиоданных в проект..."
 
@@ -18145,17 +18143,8 @@ msgstr "Ошибка.~%Требуется стереотрек."
 #~ "Файлы из списка «ОТСУТСТВУЮТ» были перемещены или удалены, и их копирование невозможно.\n"
 #~ "Чтобы можно было их скопировать в проект, восстановите их в исходном местоположении."
 
-#~ msgid "Project Dependencies"
-#~ msgstr "Зависимости проекта"
-
-#~ msgid "Disk Space"
-#~ msgstr "Место на диске"
-
 #~ msgid "Copy Selected Files"
 #~ msgstr "Копировать выбранные файлы"
-
-#~ msgid "Cancel Save"
-#~ msgstr "Отменить сохранение"
 
 #~ msgid "Save Without Copying"
 #~ msgstr "Сохранить без копирования"
@@ -19291,3 +19280,33 @@ msgstr "Открыт: %d\n"
 #, c-format
 msgid "No MIDI recording device found for '%s'.\n"
 msgstr "Не найдено MIDI-устройство записи для «%s».\n"
+
+#: src/Dependencies.cpp
+msgid "Cancel Save"
+msgstr "Отменить сохранение"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "Selected MIDI playback device: %d - %s\n"
+msgstr "Выбранное устройство воспроизведения MIDI: %d - %s\n"
+
+#: src/AudioIOBase.cpp
+#, c-format
+msgid "No MIDI playback device found for '%s'.\n"
+msgstr "Не было найдено устройство воспроизведения MIDI для '%s'.\n"
+
+#: src/Dependencies.cpp
+msgid "Removing Dependencies"
+msgstr "Удаление зависимостей"
+
+#: src/Dependencies.cpp
+msgid "Project Dependencies"
+msgstr "Зависимости проекта"
+
+#: src/Dependencies.cpp
+msgid "Audio File"
+msgstr "Аудиофайл"
+
+#: src/Dependencies.cpp
+msgid "Disk Space"
+msgstr "Место на диске"
