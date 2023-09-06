@@ -411,6 +411,34 @@ bool DevicePrefs::Commit()
       audioIO->StopStream();
    }
 
+   double latency = AudioIOLatencyDuration.Read();
+   bool isMilliseconds = AudioIOLatencyUnit.Read() == "milliseconds";
+
+   // If in milliseconds, convert the latency to samples
+   if (isMilliseconds)
+   {
+      latency *= QualitySettings::DefaultSampleRate.Read() / 1000;
+   }
+
+   // The minimum latency setting is limited to either 32 samples or an
+   // equivalent time in milliseconds at the current sample rate. If the
+   // preference is below this setting, automatically set it to either 32
+   // samples or the equivalent time in milliseconds.
+   //
+   // Why limit the preference to 32 samples? No reason, except it's a pretty
+   // small value already :)
+   if (static_cast<int>(latency) < 32)
+   {
+      latency = 32.0;
+
+      if (isMilliseconds)
+      {
+         latency /= QualitySettings::DefaultSampleRate.Read() / 1000;
+      }
+
+      AudioIOLatencyDuration.Write(latency);
+   }
+
    AudioIO::Get()->UpdateBuffers();
 
    if (monitoring)
