@@ -388,7 +388,15 @@ public:
 
 protected:
 
-   void ConvertLatencyPreference();
+   /** @brief Convert's the user's latency preference to samples.
+    * 
+    * Internally, we use number of samples instead of milliseconds as that's
+    * just a preference based on what unit the user wants shown.
+    * 
+    * @return Returns the converted latency preference.
+    * 
+   */
+   long GetConvertedLatencyPreference();
 
    bool                mUpdateMeters;
    volatile bool       mUpdatingMeters;

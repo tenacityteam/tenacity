@@ -590,31 +590,18 @@ using std::min;
 
 /// @brief Converts the latency preference to samples and updates the user's
 /// preference.
-void AudioIoCallback::ConvertLatencyPreference()
+long AudioIoCallback::GetConvertedLatencyPreference()
 {
    // Find out frames per buffer
-   double latency = AudioIOLatencyDuration.Read();
+   long latency = AudioIOLatencyDuration.Read();
    bool isMilliseconds = AudioIOLatencyUnit.Read() == L"milliseconds";
 
    if (isMilliseconds)
    {
-      // The minimum latency setting is limited to either 32 samples or an
-      // equivalent time in milliseconds at the current sample rate at minimum.
-      // If the preference is below this setting, automatically set it to
-      // either 32 samples or the equivalent sample rate based on mRate.
-      latency *= mRate;
-      if (latency < 32.0)
-      {
-         latency = 32.0;
-      }
-
-      // Save the new latency preference.
-      AudioIOLatencyDuration.Write(latency / (mRate/1000));
-   } else if (latency < 32)
-   {
-      latency = 32;
-      AudioIOLatencyDuration.Write(latency);
+      latency *= mRate / 1000;
    }
+
+   return latency;
 }
 
 AudioIO *AudioIO::Get()
@@ -1339,11 +1326,9 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       maxTries = 5;
 #endif
 
-   ConvertLatencyPreference();
-
    UpdateBuffers();
 
-   unsigned long latency = AudioIOLatencyDuration.Read();
+   unsigned long latency = GetConvertedLatencyPreference();
 
    for (unsigned int tries = 0; tries < maxTries; tries++) {
       mLastPaError = Pa_OpenStream( &mPortStreamV19,
@@ -3622,9 +3607,7 @@ void AudioIoCallback::UpdateBuffers()
       return;
    }
 
-   ConvertLatencyPreference();
-
-   unsigned long newBufferSize = AudioIOLatencyDuration.Read();
+   unsigned long newBufferSize = GetConvertedLatencyPreference();
    auto& memoryManager = AudioMemoryManager::Get();
 
    mTemporaryBuffer.reset();
