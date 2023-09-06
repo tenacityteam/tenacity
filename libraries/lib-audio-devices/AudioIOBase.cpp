@@ -729,7 +729,7 @@ StringSetting AudioIOHost{
 DoubleSetting AudioIOLatencyCorrection{
    L"/AudioIO/LatencyCorrection", -130.0 };
 DoubleSetting AudioIOLatencyDuration{
-   L"/AudioIO/LatencyDuration", 512.0 };
+   L"/AudioIO/LatencyDuration", 2048.0 };
 ChoiceSetting AudioIOLatencyUnit{
    L"/AudioIO/LatencyUnit",
    {
