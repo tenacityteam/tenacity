@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-07-18 11:32-0700\n"
-"PO-Revision-Date: 2023-09-04 21:54+0000\n"
-"Last-Translator: Evgeniy Khramov <thejenjagamertjg@gmail.com>\n"
+"PO-Revision-Date: 2023-09-10 15:56+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
 "Language: ru\n"
@@ -18109,29 +18109,6 @@ msgstr "Частота игл радара (Гц)"
 msgid "Error.~%Stereo track required."
 msgstr "Ошибка.~%Требуется стереотрек."
 
-#, c-format
-#~ msgid ""
-#~ "You must first select some audio for '%s' to act on.\n"
-#~ "\n"
-#~ "Ctrl + A selects all audio."
-#~ msgstr ""
-#~ "Сначала выделите аудиоданные для применения «%s».\n"
-#~ "\n"
-#~ "Ctrl+A выделяет все аудиоданные."
-
-#~ msgid "Copying audio data into project..."
-#~ msgstr "Копирование аудиоданных в проект..."
-
-#~ msgid "Project Depends on Other Audio Files"
-#~ msgstr "Проект зависит от других аудиофайлов"
-
-#~ msgid ""
-#~ "Copying these files into your project will remove this dependency.\n"
-#~ "This is safer, but needs more disk space."
-#~ msgstr ""
-#~ "Копирование этих файлов в проект приведёт к удалению этой зависимости.\n"
-#~ "Это безопаснее, но требует больше места на диске."
-
 #~ msgid ""
 #~ "\n"
 #~ "\n"
@@ -19310,3 +19287,43 @@ msgstr "Аудиофайл"
 #: src/Dependencies.cpp
 msgid "Disk Space"
 msgstr "Место на диске"
+
+#: src/Dependencies.cpp
+msgid ""
+"Copying these files into your project will remove this dependency.\n"
+"This is safer, but needs more disk space."
+msgstr ""
+"Копирование этих файлов в проект приведёт к удалению этой зависимости.\n"
+"Это безопаснее, но требует больше места на диске."
+
+#: src/Dependencies.cpp
+msgid "Copying audio data into project..."
+msgstr "Копируются аудиоданные в проект…"
+
+#. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
+#: src/CommonCommandFlags.cpp
+#, c-format
+msgid ""
+"You must first select some audio for '%s' to act on.\n"
+"\n"
+"Ctrl + A selects all audio."
+msgstr ""
+"Сначала выделите аудиоданные для применения «%s».\n"
+"\n"
+"Ctrl+A выделяет все аудиоданные."
+
+#: src/AutoRecoveryDialog.cpp
+msgid ""
+"The following projects were not saved properly the last time Audacity was run and can be automatically recovered.\n"
+"\n"
+"After recovery, save the projects to ensure changes are written to disk."
+msgstr ""
+"При последнем запуске Tenacity следующие проекты не были сохранены должным "
+"образом и могут быть восстановлены автоматически.\n"
+"\n"
+"После восстановления сохраните проекты, чтобы изменения были записаны на "
+"диск."
+
+#: src/Dependencies.cpp
+msgid "Project Depends on Other Audio Files"
+msgstr "Проект зависит от других аудиофайлов"
