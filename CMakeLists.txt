@@ -448,6 +448,7 @@ check_include_file( "xmmintrin.h" HAVE_XMMINTRIN_H )
 check_include_file( "sys/stat.h" HAVE_SYS_STAT_H )
 check_include_file( "sys/types.h" HAVE_SYS_TYPES_H )
 check_include_file( "pa_jack.h" PA_USE_JACK)
+check_include_file( "pa_win_wmme.h" PA_USE_WMME )
 
 check_symbol_exists( gettimeofday "sys/time.h" HAVE_GETTIMEOFDAY )
 check_symbol_exists( lrint "math.h" HAVE_LRINT )
