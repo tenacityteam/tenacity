@@ -1,5 +1,5 @@
 
-set( TARGET nyquist )
+set( TARGET nyquist-support )
 set( TARGET_ROOT ${CMAKE_SOURCE_DIR}/nyquist )
 
 message( STATUS "========== Configuring ${TARGET} ==========" )
