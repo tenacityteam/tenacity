@@ -18,7 +18,7 @@ if( IS_64_BIT )
     set( INSTALLER_X64_MODE "ArchitecturesInstallIn64BitMode=x64")
 else()
     set( INSTALLER_SUFFIX "x86" )
-    set( INSTALLER_X64_MODE "ArchitecturesInstallIn64BitMode=x64")
+    set( INSTALLER_X64_MODE "")
 endif()
 
 if( SIGN )
