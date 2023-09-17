@@ -66,6 +66,9 @@ InfoBeforeFile=".\tenacity_InnoWizard_InfoBefore.rtf"
 @SIGN_TOOL@
 OutputBaseFilename=tenacity-win-{#AppVersion}-@INSTALLER_SUFFIX@
 
+; Allow installation in non-administrative mode
+PrivilegesRequiredOverridesAllowed=commandline dialog
+
 [INI]
 Filename: "{app}\FirstTime.ini"; Section: "FromInno"; Key: "ResetPrefs"; String: "1"; Tasks: resetPrefs;
 Filename: "{app}\FirstTime.ini"; Section: "FromInno"; Key: "Language"; String: "{language}"
