@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-07-18 11:32-0700\n"
-"PO-Revision-Date: 2023-09-10 15:56+0000\n"
+"PO-Revision-Date: 2023-09-21 13:23+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -18109,79 +18109,9 @@ msgstr "Частота игл радара (Гц)"
 msgid "Error.~%Stereo track required."
 msgstr "Ошибка.~%Требуется стереотрек."
 
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Files shown as MISSING have been moved or deleted and cannot be copied.\n"
-#~ "Restore them to their original location to be able to copy into project."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Файлы из списка «ОТСУТСТВУЮТ» были перемещены или удалены, и их копирование невозможно.\n"
-#~ "Чтобы можно было их скопировать в проект, восстановите их в исходном местоположении."
-
-#~ msgid "Copy Selected Files"
-#~ msgstr "Копировать выбранные файлы"
-
-#~ msgid "Save Without Copying"
-#~ msgstr "Сохранить без копирования"
-
-#~ msgid "Do Not Copy"
-#~ msgstr "Не копировать"
-
-#~ msgid "Copy All Files (Safer)"
-#~ msgstr "Копировать все файлы (безопасно)"
-
-#~ msgid "Whenever a project depends on other files:"
-#~ msgstr "Всякий раз, когда проект зависит от других файлов:"
-
-#~ msgid "Ask me"
-#~ msgstr "Спросить меня"
-
-#~ msgid "Always copy all files (safest)"
-#~ msgstr "Всегда копировать все файлы (наиболее безопасно)"
-
-#~ msgid "Never copy any files"
-#~ msgstr "Не копировать никакие файлы"
-
-#, c-format
-#~ msgid "MISSING %s"
-#~ msgstr "ОТСУТСТВУЮТ %s"
-
-#~ msgid "&Copy Names to Clipboard"
-#~ msgstr "&Копировать имена в буфер обмена"
-
 #, c-format
 #~ msgid "\"%s\", \"%s\", \"%s\"\n"
 #~ msgstr "\"%s\", \"%s\", \"%s\"\n"
-
-#~ msgid "Missing"
-#~ msgstr "Отсутствует"
-
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
-#~ msgstr "Если продолжить, ваш проект не будет сохранён на диск. Всё равно продолжить?"
-
-#~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio files. \n"
-#~ "\n"
-#~ "Some older Audacity projects may not be self-contained, and care \n"
-#~ "is needed to keep their external dependencies in the right place.\n"
-#~ "New projects will be self-contained and are less risky."
-#~ msgstr ""
-#~ "Ваш проект автономен. Он не зависит от внешних аудиофайлов.\n"
-#~ "\n"
-#~ "Некоторые проекты, созданные в более ранних версиях Tenacity,\n"
-#~ "зависят от внешних аудиофайлов, которые нельзя перемещать.\n"
-#~ "Новые проекты будут автономными, что снижает риск потери данных."
-
-#~ msgid "Dependency Check"
-#~ msgstr "Проверка зависимостей"
-
-#~ msgid "Failed to find compatible FFmpeg libraries."
-#~ msgstr "Не удалось найти совместимые библиотеки FFmpeg."
-
-#~ msgid "Only libavformat.so"
-#~ msgstr "Только libavformat.so"
 
 #~ msgid "<br><br>The version of Audacity you are using is an <b>Alpha test version</b>."
 #~ msgstr "<br><br>Вы используете <b>тестовую альфа-версию</b> Tenacity."
@@ -19327,3 +19257,130 @@ msgstr ""
 #: src/Dependencies.cpp
 msgid "Project Depends on Other Audio Files"
 msgstr "Проект зависит от других аудиофайлов"
+
+#. i18n-hint: One of the choices of what you want Audacity to do when
+#. * Audacity finds a project depends on another file.
+#: src/Dependencies.cpp
+msgid "Never copy any files"
+msgstr "Не копировать никакие файлы"
+
+#: src/FFmpeg.cpp
+msgid "Failed to find compatible FFmpeg libraries."
+msgstr "Не удалось найти совместимые библиотеки FFmpeg."
+
+#: src/FFmpeg.h
+msgid "Only libavformat.so"
+msgstr "Только libavformat.so"
+
+#: src/Dependencies.cpp
+msgid "Dependency Check"
+msgstr "Проверка зависимостей"
+
+#: src/Dependencies.cpp
+msgid "Save Without Copying"
+msgstr "Сохранить без копирования"
+
+#: src/Dependencies.cpp
+#, c-format
+msgid "MISSING %s"
+msgstr "ОТСУТСТВУЮТ %s"
+
+#: src/Dependencies.cpp
+msgid ""
+"\n"
+"\n"
+"Files shown as MISSING have been moved or deleted and cannot be copied.\n"
+"Restore them to their original location to be able to copy into project."
+msgstr ""
+"\n"
+"\n"
+"Файлы из списка «ОТСУТСТВУЮТ» были перемещены или удалены, и их копирование "
+"невозможно.\n"
+"Чтобы можно было их скопировать в проект, восстановите их в исходном "
+"местоположении."
+
+#: src/Dependencies.cpp
+msgid "&Copy Names to Clipboard"
+msgstr "&Копировать имена в буфер обмена"
+
+#. i18n-hint: One of the choices of what you want Audacity to do when
+#. * Audacity finds a project depends on another file.
+#: src/Dependencies.cpp
+msgid "Always copy all files (safest)"
+msgstr "Всегда копировать все файлы (наиболее безопасно)"
+
+#. i18n-hint: One of the choices of what you want Audacity to do when
+#. * Audacity finds a project depends on another file.
+#: src/Dependencies.cpp
+msgid "Ask me"
+msgstr "Спросить меня"
+
+#: src/FFmpeg.cpp
+#, c-format
+msgid "Audacity needs the file '%s' to import and export audio via FFmpeg."
+msgstr ""
+"Tenacity нужен файл «%s» для импорта и экспорта аудиоданных с помощью FFmpeg."
+
+#: src/Dependencies.cpp
+msgid "Copy Selected Files"
+msgstr "Копировать выбранные файлы"
+
+#: src/Dependencies.cpp
+msgid ""
+"Your project is self-contained; it does not depend on any external audio files. \n"
+"\n"
+"Some older Audacity projects may not be self-contained, and care \n"
+"is needed to keep their external dependencies in the right place.\n"
+"New projects will be self-contained and are less risky."
+msgstr ""
+"Ваш проект автономен. Он не зависит от внешних аудиофайлов.\n"
+"\n"
+"Некоторые проекты, созданные в более ранних версиях Tenacity,\n"
+"зависят от внешних аудиофайлов, которые нельзя перемещать.\n"
+"Новые проекты будут автономными, что снижает риск потери данных."
+
+#: src/FFmpeg.cpp
+msgid ""
+"Audacity attempted to use FFmpeg to import an audio file,\n"
+"but the libraries were not found.\n"
+"\n"
+"To use FFmpeg import, go to Edit > Preferences > Libraries\n"
+"to download or locate the FFmpeg libraries."
+msgstr ""
+"Tenacity пытается использовать FFmpeg для\n"
+"импорта аудиофайла, но эти библиотеки не найдены.\n"
+"\n"
+"Для импорта данных через FFmpeg перейдите в Правка > Настройки > Библиотеки\n"
+"и загрузите или укажите расположение библиотек FFmpeg."
+
+#: src/Dependencies.cpp
+msgid "Copy All Files (Safer)"
+msgstr "Копировать все файлы (безопасно)"
+
+#: src/Dependencies.cpp
+msgid "Whenever a project depends on other files:"
+msgstr "Всякий раз, когда проект зависит от других файлов:"
+
+#: src/Dependencies.cpp
+msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+msgstr "Если продолжить, ваш проект не будет сохранён на диск. Уверены?"
+
+#: src/Dependencies.cpp
+msgid "Missing"
+msgstr "Отсутствует"
+
+#: src/Dependencies.cpp
+msgid "Do Not Copy"
+msgstr "Не копировать"
+
+#: src/FFmpeg.cpp
+msgid ""
+"FFmpeg was configured in Preferences and successfully loaded before, \n"
+"but this time Audacity failed to load it at startup. \n"
+"\n"
+"You may want to go back to Preferences > Libraries and re-configure it."
+msgstr ""
+"Ранее библиотека FFmpeg была указана в настройках и успешно загружена,\n"
+"но в этот раз загрузить её при запуске Tenacity не удалось.\n"
+"\n"
+"Можно перейти в Настройки > Библиотеки и настроить её повторно."
