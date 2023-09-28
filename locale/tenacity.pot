@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 11:32-0700\n"
+"POT-Creation-Date: 2023-09-27 17:46-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,10 +298,9 @@ msgid ""
 "For tips on suitable drives, click the help button."
 msgstr ""
 
-#: libraries/lib-math/Dither.cpp src/commands/ScreenshotCommand.cpp
-#: src/effects/EffectManager.cpp src/effects/EffectUI.cpp
-#: src/prefs/TracksBehaviorsPrefs.cpp plug-ins/equalabel.ny
-#: plug-ins/sample-data-export.ny
+#: libraries/lib-math/Dither.cpp src/effects/EffectManager.cpp
+#: src/effects/EffectUI.cpp src/prefs/TracksBehaviorsPrefs.cpp
+#: plug-ins/equalabel.ny plug-ins/sample-data-export.ny
 msgid "None"
 msgstr ""
 
@@ -655,6 +654,10 @@ msgid "%s Team Members"
 msgstr ""
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr ""
+
+#: src/AboutDialog.cpp
 msgid "Emeritus"
 msgstr ""
 
@@ -677,10 +680,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr ""
 
@@ -699,11 +698,6 @@ msgid "%s includes code from the following projects:"
 msgstr ""
 
 #: src/AboutDialog.cpp
-#, c-format
-msgid "In addition, %s also includes these libraries (some forks) from Tenacity:"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "Special thanks:"
 msgstr ""
 
@@ -717,15 +711,11 @@ msgstr ""
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2023 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "</center>"
 msgstr ""
 
 #: src/AboutDialog.cpp
@@ -810,6 +800,10 @@ msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
+msgstr ""
+
+#: src/AboutDialog.cpp
+msgid "Matroska import and export"
 msgstr ""
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
@@ -3047,7 +3041,7 @@ msgstr ""
 msgid "The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."
 msgstr ""
 
-#: src/ProjectFileManager.cpp src/commands/ScreenshotCommand.cpp
+#: src/ProjectFileManager.cpp
 #, c-format
 msgid "Saved %s"
 msgstr ""
@@ -3292,224 +3286,6 @@ msgstr ""
 
 #: src/ProjectWindow.cpp
 msgid "Vertical Scrollbar"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Screen Capture Frame"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Choose location to save files"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Save images to:"
-msgstr ""
-
-#: src/Screenshot.cpp src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture entire window or screen"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Resize Small"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Resize Large"
-msgstr ""
-
-#. i18n-hint: Bkgnd is short for background and appears on a small button
-#. * It is OK to just translate this item as if it said 'Blue'
-#: src/Screenshot.cpp
-msgid "Blue Bkgnd"
-msgstr ""
-
-#. i18n-hint: Bkgnd is short for background and appears on a small button
-#. * It is OK to just translate this item as if it said 'White'
-#: src/Screenshot.cpp
-msgid "White Bkgnd"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture Window Only"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture Full Window"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture Window Plus"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture Full Screen"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Wait 5 seconds and capture frontmost window/dialog"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture part of a project window"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "All Toolbars"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "All Effects"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "All Scriptables"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "All Preferences"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "SelectionBar"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/SpectralSelectionBar.cpp
-msgid "Spectral Selection"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "Timer"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/ToolsToolBar.cpp
-msgid "Tools"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/ControlToolBar.cpp
-msgid "Transport"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Mixer"
-msgstr ""
-
-#. i18n-hint: Noun (the meter is used for playback or record level monitoring)
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/MeterToolBar.cpp src/widgets/MeterPanel.cpp
-msgid "Meter"
-msgstr ""
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr ""
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio being recorded.
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/MeterToolBar.cpp
-msgid "Record Meter"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/EditToolBar.cpp
-msgid "Edit"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/prefs/DevicePrefs.h src/toolbars/DeviceToolBar.cpp
-msgid "Device"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Play-at-Speed"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr ""
-
-#: src/Screenshot.cpp src/TrackPanel.cpp
-msgid "Track Panel"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "Ruler"
-msgstr ""
-
-#. i18n-hint: "Tracks" include audio recordings but also other collections of
-#. * data associated with a time line, such as sequences of labels, and musical
-#. * notes
-#: src/Screenshot.cpp src/commands/GetInfoCommand.cpp
-#: src/commands/ScreenshotCommand.cpp src/export/ExportMultiple.cpp
-#: src/prefs/TracksPrefs.cpp src/prefs/TracksPrefs.h
-msgid "Tracks"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "First Track"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "Second Track"
-msgstr ""
-
-#: src/Screenshot.cpp src/prefs/SpectrumPrefs.cpp
-msgid "Scale"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "One Sec"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Ten Sec"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "One Min"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Five Min"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "One Hour"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Short Tracks"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Medium Tracks"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Tall Tracks"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Choose a location to save screenshot images"
-msgstr ""
-
-#: src/Screenshot.cpp
-msgid "Capture failed!"
-msgstr ""
-
-#: src/Screenshot.cpp src/commands/CommandTargets.cpp
-msgid "Long Message"
 msgstr ""
 
 #: src/SelectFile.cpp
@@ -3888,10 +3664,9 @@ msgstr ""
 
 #: src/TenacityApp.cpp
 msgid ""
-"Audacity project (.aup3) files are not currently \n"
-"associated with Tenacity. \n"
+"Audacity project files (.aup3) are currently not associated with Tenacity. Double clicking an Audacity project file will not open in Tenacity by default.\n"
 "\n"
-"You can associate them so they open on double-click for convenience."
+"Would you like to associate Audacity project files with Tenacity?"
 msgstr ""
 
 #: src/TenacityApp.cpp
@@ -4230,6 +4005,10 @@ msgstr ""
 msgid "Stereo, 999999Hz"
 msgstr ""
 
+#: src/TrackPanel.cpp
+msgid "Track Panel"
+msgstr ""
+
 #. i18n-hint Esc is a key on the keyboard
 #: src/TrackPanel.cpp
 msgid "(Esc to cancel)"
@@ -4487,6 +4266,10 @@ msgstr ""
 msgid "Shortcuts have been removed"
 msgstr ""
 
+#: src/commands/CommandTargets.cpp
+msgid "Long Message"
+msgstr ""
+
 #: src/commands/CompareAudioCommand.cpp
 msgid "Compare Audio"
 msgstr ""
@@ -4580,8 +4363,16 @@ msgstr ""
 msgid "Menus"
 msgstr ""
 
-#: src/commands/GetInfoCommand.cpp src/commands/ScreenshotCommand.cpp
+#: src/commands/GetInfoCommand.cpp
 msgid "Preferences"
+msgstr ""
+
+#. i18n-hint: "Tracks" include audio recordings but also other collections of
+#. * data associated with a time line, such as sequences of labels, and musical
+#. * notes
+#: src/commands/GetInfoCommand.cpp src/export/ExportMultiple.cpp
+#: src/prefs/TracksPrefs.cpp src/prefs/TracksPrefs.h
+msgid "Tracks"
 msgstr ""
 
 #: src/commands/GetInfoCommand.cpp
@@ -4772,106 +4563,6 @@ msgstr ""
 
 #: src/commands/PreferenceCommands.h
 msgid "Sets the value of a single preference."
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Screenshot"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Window"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Full Window"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Window Plus"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Fullscreen"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Toolbars"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp src/prefs/EffectsPrefs.cpp
-#: src/prefs/EffectsPrefs.h
-msgid "Effects"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Scriptables"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Selectionbar"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Trackpanel"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Two Tracks"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Three Tracks"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Four Tracks"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Tracks Plus"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Track Plus"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "All Tracks"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "All Tracks Plus"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Blue"
-msgstr ""
-
-#. i18n-hint:  This really means the color, not as in "white noise"
-#: src/commands/ScreenshotCommand.cpp
-msgctxt "color"
-msgid "White"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Path:"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Capture What:"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Background:"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Bring To Top"
-msgstr ""
-
-#: src/commands/ScreenshotCommand.cpp
-#, c-format
-msgid "Error trying to save file: %s"
 msgstr ""
 
 #: src/commands/SelectCommand.cpp
@@ -10138,6 +9829,10 @@ msgid "Folder:"
 msgstr ""
 
 #: src/export/ExportMultiple.cpp
+msgid "Choose..."
+msgstr ""
+
+#: src/export/ExportMultiple.cpp
 msgid "Create"
 msgstr ""
 
@@ -12172,10 +11867,6 @@ msgid "Reset &Configuration"
 msgstr ""
 
 #: src/menus/PluginMenus.cpp
-msgid "&Screenshot..."
-msgstr ""
-
-#: src/menus/PluginMenus.cpp
 msgid "&Run Benchmark..."
 msgstr ""
 
@@ -12275,11 +11966,6 @@ msgstr ""
 
 #: src/menus/PluginMenus.cpp
 msgid "Compare Audio..."
-msgstr ""
-
-#. i18n-hint: Screenshot in the help menu has a much bigger dialog.
-#: src/menus/PluginMenus.cpp
-msgid "Screenshot (short format)..."
 msgstr ""
 
 #: src/menus/SelectMenus.cpp
@@ -13461,6 +13147,10 @@ msgstr ""
 msgid "2 (Stereo)"
 msgstr ""
 
+#: src/prefs/DevicePrefs.h src/toolbars/DeviceToolBar.cpp
+msgid "Device"
+msgstr ""
+
 #. i18n-hint:  Directories, also called directories, in computer file systems
 #: src/prefs/DirectoriesPrefs.cpp src/prefs/DirectoriesPrefs.h
 #: src/widgets/UnwritableLocationErrorDialog.cpp
@@ -13574,6 +13264,10 @@ msgstr ""
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Temp Directory Update"
+msgstr ""
+
+#: src/prefs/EffectsPrefs.cpp src/prefs/EffectsPrefs.h
+msgid "Effects"
 msgstr ""
 
 #: src/prefs/EffectsPrefs.cpp
@@ -13823,10 +13517,6 @@ msgstr ""
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show e&xtra menus"
-msgstr ""
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Show alternative &styling (Mac vs PC)"
 msgstr ""
 
 #: src/prefs/GUIPrefs.cpp
@@ -14724,6 +14414,10 @@ msgstr ""
 msgid "&Use Preferences"
 msgstr ""
 
+#: src/prefs/SpectrumPrefs.cpp
+msgid "Scale"
+msgstr ""
+
 #: src/prefs/SpectrumPrefs.cpp src/prefs/WaveformPrefs.cpp
 msgid "S&cale:"
 msgstr ""
@@ -15355,6 +15049,10 @@ msgid "Stopped"
 msgstr ""
 
 #: src/toolbars/ControlToolBar.cpp
+msgid "Transport"
+msgstr ""
+
+#: src/toolbars/ControlToolBar.cpp
 msgid "Pause"
 msgstr ""
 
@@ -15457,6 +15155,10 @@ msgid "&Device Toolbar"
 msgstr ""
 
 #: src/toolbars/EditToolBar.cpp
+msgid "Edit"
+msgstr ""
+
+#: src/toolbars/EditToolBar.cpp
 msgid "Cut selection"
 msgstr ""
 
@@ -15533,6 +15235,11 @@ msgid "Playback Meter"
 msgstr ""
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio being recorded.
+#: src/toolbars/MeterToolBar.cpp
+msgid "Record Meter"
+msgstr ""
+
+#. i18n-hint: (noun) The meter that shows the loudness of the audio being recorded.
 #. This is the name used in screen reader software, where having 'Meter' first
 #. apparently is helpful to partially sighted people.
 #: src/toolbars/MeterToolBar.cpp
@@ -15540,10 +15247,20 @@ msgid "Meter-Record"
 msgstr ""
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
+#: src/toolbars/MeterToolBar.cpp
+msgid "Play Meter"
+msgstr ""
+
+#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
 #. apparently is helpful to partially sighted people.
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Play"
+msgstr ""
+
+#. i18n-hint: Noun (the meter is used for playback or record level monitoring)
+#: src/toolbars/MeterToolBar.cpp src/widgets/MeterPanel.cpp
+msgid "Meter"
 msgstr ""
 
 #: src/toolbars/MeterToolBar.cpp
@@ -15564,6 +15281,10 @@ msgstr ""
 #. with the playback level meter
 #: src/toolbars/MeterToolBar.cpp
 msgid "&Playback Meter Toolbar"
+msgstr ""
+
+#: src/toolbars/ScrubbingToolBar.cpp
+msgid "Scrub"
 msgstr ""
 
 #: src/toolbars/ScrubbingToolBar.cpp
@@ -15693,6 +15414,10 @@ msgid "&Selection Toolbar"
 msgstr ""
 
 #: src/toolbars/SpectralSelectionBar.cpp
+msgid "Spectral Selection"
+msgstr ""
+
+#: src/toolbars/SpectralSelectionBar.cpp
 msgid "Center frequency and Width"
 msgstr ""
 
@@ -15736,6 +15461,10 @@ msgstr ""
 
 #: src/toolbars/ToolDock.cpp
 msgid "ToolDock"
+msgstr ""
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "Tools"
 msgstr ""
 
 #: src/toolbars/ToolsToolBar.cpp
@@ -15791,6 +15520,10 @@ msgstr ""
 
 #: src/toolbars/ToolsToolBar.cpp
 msgid "&Next Tool"
+msgstr ""
+
+#: src/toolbars/TranscriptionToolBar.cpp
+msgid "Play-at-Speed"
 msgstr ""
 
 #: src/toolbars/TranscriptionToolBar.cpp

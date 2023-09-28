@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 11:32-0700\n"
+"POT-Creation-Date: 2023-09-27 17:46-0700\n"
 "PO-Revision-Date: 2022-12-28 15:56+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/tenacity/tenacity/hi/>\n"
@@ -28,10 +28,137 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "प्रवाह कार्यरत है ... सूचना एकत्र करने में असमर्थ.\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default recording device number: %d"
+msgstr "रिकार्डिंग यंत्र चुनें"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default playback device number: %d"
+msgstr "प्लेबैक यंत्र चुनें"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "कोई यंत्र नहीं मिला"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device info unavailable for: %d"
+msgstr "यंत्र की जानकारी उपलब्ध नहीं है."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device ID: %d"
+msgstr "यंत्र (&D):"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device name: %s"
+msgstr "डिवाईस"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Host name: %s"
+msgstr "नाम : %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Recording channels: %d"
+msgstr "रिकार्डिंग चैनल"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Playback channels: %d"
+msgstr "प्लेबैक लेवल"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Low Recording Latency: %g"
+msgstr "ध्वन्यांकन समाप्ति :"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "High Recording Latency: %g"
+msgstr "ध्वन्यांकन समाप्ति :"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g"
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "Supported Rates:"
+msgstr "सैंपल रेट"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected recording device: %d - %s"
+msgstr "रिकार्डिंग यंत्र चुनें"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'."
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected playback device: %d - %s"
+msgstr "प्लेबैक यंत्र चुनें"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "No playback device found for '%s'."
+msgstr "कोई यंत्र नहीं मिला"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices."
+msgstr ""
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d"
+msgstr "आउटपुट दिखाएं"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Supports input: %d"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Opened: %d"
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "रिकार्डिंग यंत्र चुनें"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No MIDI recording device found for '%s'."
+msgstr ""
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI playback device: %d - %s"
+msgstr "प्लेबैक यंत्र चुनें"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No MIDI playback device found for '%s'."
+msgstr ""
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -53,9 +180,52 @@ msgstr "मिलिसेकेंड"
 msgid "Message"
 msgstr "संदेश"
 
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
+msgstr ""
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
+msgstr ""
+
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "आंतरिक त्रुटि"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr ""
+"डेटाबेस फ़ाइल खोलने में विफल :\n"
+"\n"
+"%s"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity failed to read from a file in %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"डिस्क भरी हुई है.\n"
+"%s\n"
+"स्थान खाली करने की युक्तियों के लिए, मदद बटन पर क्लिक करें."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -146,10 +316,9 @@ msgstr ""
 "\n"
 "उपयुक्त ड्राइव के सुझाव के लिए, मदद बटन पर क्लिक करें."
 
-#: libraries/lib-math/Dither.cpp src/commands/ScreenshotCommand.cpp
-#: src/effects/EffectManager.cpp src/effects/EffectUI.cpp
-#: src/prefs/TracksBehaviorsPrefs.cpp plug-ins/equalabel.ny
-#: plug-ins/sample-data-export.ny
+#: libraries/lib-math/Dither.cpp src/effects/EffectManager.cpp
+#: src/effects/EffectUI.cpp src/prefs/TracksBehaviorsPrefs.cpp
+#: plug-ins/equalabel.ny plug-ins/sample-data-export.ny
 msgid "None"
 msgstr "कुछ नहीं"
 
@@ -426,6 +595,11 @@ msgstr "%s, वेब डेवलपर"
 msgid "%s, graphics"
 msgstr "%s, ग्राफिक्स"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "%s, सह-संस्थापक और डेवलपर"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -433,10 +607,22 @@ msgstr "%s, ग्राफिक्स"
 msgid "%s, Tenacity developer"
 msgstr "%s, वेब डेवलपर"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "%s, वेब डेवलपर"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "%s, वेब डेवलपर"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "%s, वेब डेवलपर"
 
 #: src/AboutDialog.cpp
@@ -466,6 +652,16 @@ msgid "translator_credits"
 msgstr "हिन्दी अनुवाद<br>Bashishtha Singh,<br>Tushar Raj"
 
 #: src/AboutDialog.cpp
+msgid "<h1>"
+msgstr ""
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s is a free, open source, cross-platform software for recording and editing audio.<br><br>"
+msgstr ""
+
+#: src/AboutDialog.cpp
 msgid "Credits"
 msgstr "श्रेयसूची"
 
@@ -476,12 +672,32 @@ msgid "%s Team Members"
 msgstr "%s टीम के सदस्य"
 
 #: src/AboutDialog.cpp
-msgid "Emeritus:"
+msgid "Contributors"
+msgstr "योगदानकर्ता"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Emeritus"
 msgstr "अवकाश-प्राप्त :"
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "योगदानकर्ता"
+msgid "Distinguished Tenacity Team members that aren't currently active"
+msgstr ""
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "%s टीम के सदस्य"
+
+#: src/AboutDialog.cpp
+msgid "Emeritus:"
+msgstr "अवकाश-प्राप्त :"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+msgid "Distinguished Audacity Team members, not currently active"
+msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "Website and Graphics"
@@ -511,6 +727,17 @@ msgstr "विशेष आभार :"
 msgid "%s website: "
 msgstr "%s वेबसाइट : "
 
+#. i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
+#. name substitues the 2nd.
+#: src/AboutDialog.cpp
+#, c-format
+msgid "Copyright %s 2021-2023 %s Team."
+msgstr ""
+
+#: src/AboutDialog.cpp
+msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
+msgstr ""
+
 #: src/AboutDialog.cpp
 msgid "Build Information"
 msgstr "निर्माण जानकारी"
@@ -524,6 +751,11 @@ msgstr "सक्रिय"
 #: src/export/ExportFFmpegDialogs.cpp src/prefs/ModulePrefs.cpp
 msgid "Disabled"
 msgstr "निष्क्रिय"
+
+#. i18n-hint: Information about when audacity was compiled follows
+#: src/AboutDialog.cpp
+msgid "This Build"
+msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "Program build date:"
@@ -541,6 +773,10 @@ msgstr "निर्माण प्रकार:"
 msgid "Compiler:"
 msgstr "कम्पाइलर :"
 
+#: src/AboutDialog.cpp
+msgid "wxWidgets:"
+msgstr ""
+
 #. i18n-hint: The directory audacity is installed into (on *nix systems)
 #: src/AboutDialog.cpp
 msgid "Installation Prefix:"
@@ -549,6 +785,25 @@ msgstr "स्थापना उपसर्ग :"
 #: src/AboutDialog.cpp
 msgid "Settings folder:"
 msgstr "सेटिग्स फोल्डर :"
+
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Core Libraries"
+msgstr "लाइब्रेरी"
+
+#: src/AboutDialog.cpp
+msgid "Cross-platform GUI library"
+msgstr ""
+
+#: src/AboutDialog.cpp
+msgid "Audio playback and recording"
+msgstr ""
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Sample rate conversion"
+msgstr "नमूना दर परिवर्तक(&t):"
 
 #: src/AboutDialog.cpp
 msgid "File Format Support"
@@ -568,6 +823,11 @@ msgstr "Ogg Vorbis आयात और निर्यात"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "ID3 टैग समर्थन"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "FLAC आयात और निर्यात"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -739,6 +999,11 @@ msgid "Error: %s"
 msgstr "त्रुटि : %s"
 
 #: src/AudioIO.cpp
+#, fuzzy
+msgid "PortAudio Error"
+msgstr "त्रुटि भेजें"
+
+#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
 msgstr "MIDI i/o परत की शुरुआत में एक त्रुटि हुई.\n"
 
@@ -749,6 +1014,15 @@ msgid ""
 msgstr ""
 "आप midi रिकार्ड या प्ले नहीं कर सकते.\n"
 "\n"
+
+#: src/AudioIO.cpp
+msgid "PortMidi Error"
+msgstr ""
+
+#: src/AudioIO.cpp
+#, fuzzy
+msgid "Tenacity Audio"
+msgstr "आडियो छाँटें"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -762,6 +1036,13 @@ msgstr ""
 #: src/AutoRecoveryDialog.cpp
 msgid "Automatic Crash Recovery"
 msgstr "दुर्घटना से स्वचालित बचाव"
+
+#: src/AutoRecoveryDialog.cpp
+msgid ""
+"The following projects were not saved properly the last time Tenacity was run and can be automatically recovered.\n"
+"\n"
+"After recovery, save the projects to ensure changes are written to disk."
+msgstr ""
 
 #: src/AutoRecoveryDialog.cpp
 msgid "Recoverable &projects"
@@ -778,6 +1059,10 @@ msgstr "चुनें"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "नाम"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+msgid "&Quit Tenacity"
+msgstr ""
 
 #: src/AutoRecoveryDialog.cpp
 msgid "&Discard Selected"
@@ -1307,6 +1592,11 @@ msgstr "डीबग निर्माण (डीबग स्तर%d)"
 msgid "Release build (debug level %d)"
 msgstr "प्रकाशन निर्माण (डीबग स्तर%d)"
 
+#: src/BuildInfo.h
+#, fuzzy
+msgid ", 64 bits"
+msgstr "24 बिट्"
+
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
@@ -1715,9 +2005,55 @@ msgstr "CD में लिखें"
 msgid "No Local Help"
 msgstr "स्थानीय सहायता अनुपलब्ध"
 
+#: src/HelpText.cpp src/SplashDialog.cpp
+msgid "Welcome to Tenacity!"
+msgstr ""
+
+#. i18n-hint: %s is the program's version string
+#: src/HelpText.cpp
+#, c-format
+msgid "You are using Tenacity %s. Tenacity is a fork of Audacity"
+msgstr ""
+
+#: src/HelpText.cpp
+msgid "Need Help?"
+msgstr ""
+
+#: src/HelpText.cpp
+msgid "We have several support methods:"
+msgstr ""
+
+#. i18n-hint: Preserve '[[help:Quick_Help|' as it's the name of a link.
+#: src/HelpText.cpp
+msgid "[[help:Quick_Help|Quick Help]]"
+msgstr ""
+
+#. i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.
+#: src/HelpText.cpp
+#, fuzzy
+msgid " [[help:Main_Page|Tenacity Manual]] - if not installed locally, [[https://tenacityaudio.org/docs/index.html|view online]]"
+msgstr "[[help:Quick_Help|त्वरित सहायता]] - यदि स्थानीय स्तर पर स्थापित नहीं है, तो ऑनलाइन देखें"
+
+#: src/HelpText.cpp
+msgid "More:</b> Visit our [[https://codeberg.org/tenacityteam/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
+msgstr ""
+
+#: src/HelpText.cpp
+msgid "Tenacity can import unprotected files in many other formats (such as M4A and WMA, compressed WAV files from portable recorders and audio from video files) if you download and install the optional [[https://tenacityaudio.org/docs/_content/FFmpeg.html|FFmpeg library]] to your computer."
+msgstr ""
+
 #: src/HelpText.cpp
 msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
 msgstr "आप MIDI फ़ाइलें और ऑडियो CD ट्रैकों से आयात के बारे में भी हमारी मदद पढ़ सकते हैं."
+
+#: src/HelpText.cpp
+#, fuzzy
+msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://codeberg.org/tenacityteam/tenacity-manual/releases| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
+msgstr "लगता है मदद पुस्तिका स्थापित नहीं है. कृपया [[*URL*|मदद सामग्री ऑनलाइन देखें]].<br><br>हमेशा मैनुअल ऑनलाइन देखने के लिए, \"मैनुअल निवासस्थान\" को इंटरफेस में पसंद बदलकर \"इंटरनेट से\" करें."
+
+#: src/HelpText.cpp
+msgid "View latest stable release"
+msgstr ""
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -1774,6 +2110,11 @@ msgstr "संपीड़न से वास्तव में %s डिस�
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "इतिहास..."
+
+#: src/JournalEvents.cpp
+#, fuzzy
+msgid "Journal recording failed"
+msgstr "ध्वन्यांकन संचित किया :"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -1856,6 +2197,16 @@ msgstr "नाम ट्रैक"
 msgid "One or more saved labels could not be read."
 msgstr "एक या अधिक संचित लेबल पढ़ा नहीं जा सका."
 
+#. i18n-hint: Title on a dialog indicating that this is the first
+#. * time Audacity has been run.
+#: src/LangChoice.cpp
+msgid "Tenacity First Run"
+msgstr ""
+
+#: src/LangChoice.cpp
+msgid "Choose Language for Tenacity to use:"
+msgstr ""
+
 #. i18n-hint: The %s's are replaced by translated and untranslated
 #. * versions of language names.
 #: src/LangChoice.cpp
@@ -1884,6 +2235,10 @@ msgstr ""
 msgid "Opening Audacity Project"
 msgstr "Audacity परियोजना खोलते हैं"
 
+#: src/LogWindow.cpp
+msgid "Tenacity Log"
+msgstr ""
+
 #: src/LogWindow.cpp src/Tags.cpp
 msgid "&Save..."
 msgstr "संचित करें..."
@@ -1910,6 +2265,11 @@ msgstr "लॉग यहाँ संचित करें :"
 #, c-format
 msgid "Couldn't save log to file: %s"
 msgstr "लॉग फाईल में संचित नहीं हुआ : %s"
+
+#: src/LyricsWindow.cpp
+#, c-format
+msgid "Tenacity Karaoke%s"
+msgstr ""
 
 #: src/LyricsWindow.cpp
 msgid "&Karaoke..."
@@ -1955,6 +2315,11 @@ msgstr "मिश्रण और प्रतिपादन"
 #: src/Mix.cpp
 msgid "Mixing and rendering tracks"
 msgstr "मिश्रण द्वारा ट्रैक निर्माण"
+
+#: src/MixerBoard.cpp
+#, c-format
+msgid "Tenacity Mixer Board%s"
+msgstr ""
 
 #. i18n-hint: title of the Gain slider, used to adjust the volume
 #. i18n-hint: Title of the Gain slider, used to adjust the volume
@@ -2047,6 +2412,17 @@ msgstr ""
 "इसे लोड नहीं किया जाएगा."
 
 #: src/ModuleManager.cpp
+#, fuzzy, c-format
+msgid ""
+"The module \"%s\" is matched with Tenacity version \"%s\".\n"
+"\n"
+"It will not be loaded."
+msgstr ""
+"मॉड्यूल \"%s\" एक संस्करण स्ट्रिंग प्रदान नहीं करता है.\n"
+"\n"
+"इसे लोड नहीं किया जाएगा."
+
+#: src/ModuleManager.cpp
 #, c-format
 msgid ""
 "The module \"%s\" failed to initialize.\n"
@@ -2081,6 +2457,11 @@ msgstr "हाँ"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "ना"
+
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "%s, वेब डेवलपर"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2395,8 +2776,22 @@ msgid "Mismatched Sampling Rates"
 msgstr "बेमेल नमूना दरें"
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
+msgid ""
+"Too few tracks are selected for recording at this sample rate.\n"
+"(Tenacity requires two channels at the same sample rate for\n"
+"each stereo track)"
+msgstr ""
+
+#: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "Too Few Compatible Tracks Selected"
 msgstr "बहुत कम संगत टैकों का चयन किया गया है"
+
+#. i18n-hint a numerical suffix added to distinguish otherwise like-named clips when new record started
+#: src/ProjectAudioManager.cpp
+#, c-format
+msgctxt "clip name template"
+msgid "%s #%d"
+msgstr ""
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -2416,12 +2811,26 @@ msgid "Dropouts"
 msgstr "लापता"
 
 #: src/ProjectAudioManager.cpp
+msgid ""
+"Recorded audio was lost at the labeled locations. Possible causes:\n"
+"\n"
+"Other applications are competing with Tenacity for processor time\n"
+"\n"
+"You are saving directly to a slow external storage device\n"
+msgstr ""
+
+#: src/ProjectAudioManager.cpp
 msgid "Turn off dropout detection"
 msgstr "ड्रॉपआउट का पता लगाना बंद करें"
 
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<बेनामी>"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid "[Project %02i] "
+msgstr "[परियोजना %02i] Tenacity \"%s\""
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2480,6 +2889,13 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
 msgstr "यह एक Audacity प्रोजेक्ट फ़ाइल नहीं है"
+
+#: src/ProjectFileIO.cpp
+msgid ""
+"This project was created with a version of Audacity that is not supported by Tenacity.\n"
+"\n"
+"You will need to use that version to open it."
+msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
@@ -2622,6 +3038,17 @@ msgid "Error Writing to File"
 msgstr "फ़ाइल में लिखने में त्रुटि"
 
 #: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"डिस्क भरी हुई है.\n"
+"%s\n"
+"स्थान खाली करने की युक्तियों के लिए, मदद बटन पर क्लिक करें."
+
+#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "परियोजना का सघन रूप बना रहे हैं"
 
@@ -2635,6 +3062,14 @@ msgstr "[परियोजना %02i] Tenacity \"%s\""
 #: src/ProjectFileIO.cpp
 msgid "(Recovered)"
 msgstr "(बरामद हुआ)"
+
+#. i18n-hint: %s will be replaced by the version number.
+#: src/ProjectFileIO.cpp
+#, c-format
+msgid ""
+"This file was saved using Audacity %s (or a derivative of the same version, possibly Tenacity).\n"
+"You are using Tenacity %s. You may need to upgrade to a newer version to open this file."
+msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "Can't open project file"
@@ -2699,6 +3134,21 @@ msgid "Backing up project"
 msgstr "परियोजना का बैकअप बन रहा है"
 
 #: src/ProjectFileManager.cpp
+msgid ""
+"This project was not saved properly the last time Tenacity ran.\n"
+"\n"
+"It has been recovered to the last snapshot."
+msgstr ""
+
+#: src/ProjectFileManager.cpp
+msgid ""
+"This project was not saved properly the last time Tenacity ran.\n"
+"\n"
+"It has been recovered to the last snapshot, but you must save it\n"
+"to preserve its contents."
+msgstr ""
+
+#: src/ProjectFileManager.cpp
 msgid "Project Recovered"
 msgstr "परियोजना पुनर्प्राप्त किया"
 
@@ -2748,7 +3198,7 @@ msgstr ""
 msgid "The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."
 msgstr "FAT32 प्रारूप फाइल सिस्टम पर लिखते समय प्रोजेक्ट का आकार 4GB की अधिकतम सीमा को पार कर रहा है."
 
-#: src/ProjectFileManager.cpp src/commands/ScreenshotCommand.cpp
+#: src/ProjectFileManager.cpp
 #, c-format
 msgid "Saved %s"
 msgstr "सुरक्षित किया %s"
@@ -2889,6 +3339,13 @@ msgstr "परियोजना बरामद किया गया"
 msgid "Recover"
 msgstr "बरामद करें"
 
+#. i18n-hint Name default name assigned to a clip on track import
+#: src/ProjectFileManager.cpp
+#, fuzzy, c-format
+msgctxt "clip name template"
+msgid "%s %d"
+msgstr "%s %d कुल %d"
+
 #: src/ProjectFileManager.cpp
 #, c-format
 msgid "Imported '%s'"
@@ -2949,6 +3406,11 @@ msgstr "नई परियोजना निर्मित"
 msgid "Automatic database backup failed."
 msgstr "स्वचालित डेटाबेस बैकअप विफल हो गया."
 
+#: src/ProjectManager.cpp
+#, c-format
+msgid "Welcome to Tenacity version %s"
+msgstr ""
+
 #. i18n-hint: The first %s numbers the project, the second %s is the project name.
 #: src/ProjectManager.cpp
 #, c-format
@@ -3004,6 +3466,12 @@ msgstr[1] "%d मिनट"
 msgid "%s and %s."
 msgstr "%s और %s."
 
+#: src/ProjectSerializer.cpp
+msgid ""
+"This recovery file was saved by Audacity 2.3.0 or before.\n"
+"You need to run that version of Audacity (NOT Tenacity) to recover the project."
+msgstr ""
+
 #: src/ProjectWindow.cpp
 msgid "Horizontal Scrollbar"
 msgstr "समतल स्क्रौलबार"
@@ -3011,224 +3479,6 @@ msgstr "समतल स्क्रौलबार"
 #: src/ProjectWindow.cpp
 msgid "Vertical Scrollbar"
 msgstr "लंबवत स्क्रौलबार"
-
-#: src/Screenshot.cpp
-msgid "Screen Capture Frame"
-msgstr "स्क्रीन कतरन फ़्रेम"
-
-#: src/Screenshot.cpp
-msgid "Choose location to save files"
-msgstr "फ़ाइलें संचित करने की जगह बताएं"
-
-#: src/Screenshot.cpp
-msgid "Save images to:"
-msgstr "तस्वीरें यहाँ संचित करें :"
-
-#: src/Screenshot.cpp src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "चुनें..."
-
-#: src/Screenshot.cpp
-msgid "Capture entire window or screen"
-msgstr "पूरी विंडो या स्क्रीन का दृश्य कैद करें"
-
-#: src/Screenshot.cpp
-msgid "Resize Small"
-msgstr "आकार घटाएं"
-
-#: src/Screenshot.cpp
-msgid "Resize Large"
-msgstr "आकार बढ़ाएं"
-
-#. i18n-hint: Bkgnd is short for background and appears on a small button
-#. * It is OK to just translate this item as if it said 'Blue'
-#: src/Screenshot.cpp
-msgid "Blue Bkgnd"
-msgstr "नीला परिपेक्ष्य"
-
-#. i18n-hint: Bkgnd is short for background and appears on a small button
-#. * It is OK to just translate this item as if it said 'White'
-#: src/Screenshot.cpp
-msgid "White Bkgnd"
-msgstr "सफ़ेद परिपेक्ष्य"
-
-#: src/Screenshot.cpp
-msgid "Capture Window Only"
-msgstr "सिर्फ़ झरोखे का कतरन बनाएं"
-
-#: src/Screenshot.cpp
-msgid "Capture Full Window"
-msgstr "पूर्ण झरोखे का कतरन बनाएं"
-
-#: src/Screenshot.cpp
-msgid "Capture Window Plus"
-msgstr "झरोखे से बाहर तक कतरन बनाएं"
-
-#: src/Screenshot.cpp
-msgid "Capture Full Screen"
-msgstr "पूर्ण स्क्रीन का कतरन बनाएं"
-
-#: src/Screenshot.cpp
-msgid "Wait 5 seconds and capture frontmost window/dialog"
-msgstr "5 सेकंड रुककर सबसे ऊपरी झरोखे/संवाद को कैद करें"
-
-#: src/Screenshot.cpp
-msgid "Capture part of a project window"
-msgstr "परियोजना झरोखे के एक भाग का कतरन बनाएं"
-
-#: src/Screenshot.cpp
-msgid "All Toolbars"
-msgstr "औजार-पट्टियाँ"
-
-#: src/Screenshot.cpp
-msgid "All Effects"
-msgstr "सभी प्रभाव"
-
-#: src/Screenshot.cpp
-msgid "All Scriptables"
-msgstr "सब स्क्रिप्टयोग्य"
-
-#: src/Screenshot.cpp
-msgid "All Preferences"
-msgstr "सभी वरीयतायें"
-
-#: src/Screenshot.cpp
-msgid "SelectionBar"
-msgstr "चयनपट्टी"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/SpectralSelectionBar.cpp
-msgid "Spectral Selection"
-msgstr "वर्णक्रम चयन"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "Timer"
-msgstr "टाइमर"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/ToolsToolBar.cpp
-msgid "Tools"
-msgstr "औज़ार"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/ControlToolBar.cpp
-msgid "Transport"
-msgstr "भ्रमण"
-
-#: src/Screenshot.cpp
-msgid "Mixer"
-msgstr "मिक्सर"
-
-#. i18n-hint: Noun (the meter is used for playback or record level monitoring)
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/MeterToolBar.cpp src/widgets/MeterPanel.cpp
-msgid "Meter"
-msgstr "मीटर"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "बजाने का मीटर"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio being recorded.
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/MeterToolBar.cpp
-msgid "Record Meter"
-msgstr "ध्वन्यांकन मीटर"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/EditToolBar.cpp
-msgid "Edit"
-msgstr "संपादन"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/prefs/DevicePrefs.h src/toolbars/DeviceToolBar.cpp
-msgid "Device"
-msgstr "यंत्र"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Play-at-Speed"
-msgstr "इस-गति-पर बजाएं"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "Scrub"
-
-#: src/Screenshot.cpp src/TrackPanel.cpp
-msgid "Track Panel"
-msgstr "ट्रैक पैनल"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "Ruler"
-msgstr "मापक"
-
-#. i18n-hint: "Tracks" include audio recordings but also other collections of
-#. * data associated with a time line, such as sequences of labels, and musical
-#. * notes
-#: src/Screenshot.cpp src/commands/GetInfoCommand.cpp
-#: src/commands/ScreenshotCommand.cpp src/export/ExportMultiple.cpp
-#: src/prefs/TracksPrefs.cpp src/prefs/TracksPrefs.h
-msgid "Tracks"
-msgstr "ट्रैक"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "First Track"
-msgstr "पहला ट्रैक"
-
-#: src/Screenshot.cpp src/commands/ScreenshotCommand.cpp
-msgid "Second Track"
-msgstr "दूसरा ट्रैक"
-
-#: src/Screenshot.cpp src/prefs/SpectrumPrefs.cpp
-msgid "Scale"
-msgstr "पैमाना"
-
-#: src/Screenshot.cpp
-msgid "One Sec"
-msgstr "एक सेकेंड"
-
-#: src/Screenshot.cpp
-msgid "Ten Sec"
-msgstr "दस सेकेंड"
-
-#: src/Screenshot.cpp
-msgid "One Min"
-msgstr "एक मिनट"
-
-#: src/Screenshot.cpp
-msgid "Five Min"
-msgstr "पाँच मिनट"
-
-#: src/Screenshot.cpp
-msgid "One Hour"
-msgstr "एक घंटा"
-
-#: src/Screenshot.cpp
-msgid "Short Tracks"
-msgstr "लघु ट्रैक"
-
-#: src/Screenshot.cpp
-msgid "Medium Tracks"
-msgstr "मध्यम ट्रैक"
-
-#: src/Screenshot.cpp
-msgid "Tall Tracks"
-msgstr "लंबा ट्रैक"
-
-#: src/Screenshot.cpp
-msgid "Choose a location to save screenshot images"
-msgstr "स्क्रीनशॉट छवियों को सहेजने का स्थान चुनें"
-
-#: src/Screenshot.cpp
-msgid "Capture failed!"
-msgstr "कैद करना असफल!"
-
-#: src/Screenshot.cpp src/commands/CommandTargets.cpp
-msgid "Long Message"
-msgstr "लंबा संदेश"
 
 #: src/SelectFile.cpp
 msgid "The specified filename could not be converted due to Unicode character use."
@@ -3270,6 +3520,15 @@ msgstr "ध्वनि-चालित अंकन"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "ध्वनि-चालन स्तर (dB):"
+
+#: src/SplashDialog.cpp
+msgid "The version of Tenacity you are using is a pre-release version. Use of these releases in production environments is discouraged. This version of Tenacity might contain (unknown) bugs along with possible data loss."
+msgstr ""
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "%s, वेब डेवलपर"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3411,6 +3670,11 @@ msgstr ""
 "यह प्रश्न केवल एक बार 'स्थापना' के बाद पूछा जाएगा, जहां आप वरीयताएँ पहली बार संचित करते हैं."
 
 #: src/TenacityApp.cpp
+#, fuzzy
+msgid "Reset Tenacity Preferences"
+msgstr "वरीयतायें प्रयोग(&U) करें"
+
+#: src/TenacityApp.cpp
 #, c-format
 msgid ""
 "%s could not be found.\n"
@@ -3422,8 +3686,28 @@ msgstr ""
 "इसे हाल की फ़ाइलों की सूची से हटा दिया गया है."
 
 #: src/TenacityApp.cpp
+msgid "SQLite library failed to initialize. Tenacity cannot continue."
+msgstr ""
+
+#: src/TenacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "ब्लॉक आकार 256 से 100000000 के बीच ही होना चाहिए\n"
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr ""
+
+#: src/TenacityApp.cpp
+#, c-format
+msgid ""
+"Tenacity has encountered a critical error. This is likely to do with your platform.\n"
+"\n"
+"Error message (for devs): %s"
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid "Tenacity - Critical Error"
+msgstr ""
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -3434,6 +3718,10 @@ msgstr "खोलें (&O)..."
 msgid "Open &Recent..."
 msgstr "खोलें हाल की फ़ाइलें (&R)..."
 
+#: src/TenacityApp.cpp src/menus/HelpMenus.cpp
+msgid "&About Tenacity..."
+msgstr ""
+
 #: src/TenacityApp.cpp
 msgid "&Preferences..."
 msgstr "वरीयतायें (&P)..."
@@ -3443,8 +3731,57 @@ msgid "&File"
 msgstr "फ़ाइल(&F)"
 
 #: src/TenacityApp.cpp
+msgid ""
+"Tenacity could not find a safe place to store temporary files.\n"
+"\n"
+"Tenacity needs a place where automatic cleanup programs won't delete the temporary files. Please enter an appropriate directory in the preferences dialog."
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid ""
+"Tenacity could not find a place to store temporary files.\n"
+"Please enter an appropriate directory in the preferences dialog."
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is now going to exit. Please launch Tenacity again to use the new temporary directory."
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid ""
+"Running two copies of Tenacity simultaneously may cause\n"
+"data loss or cause your system to crash.\n"
+"\n"
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid ""
+"Tenacity was not able to lock the temporary files directory.\n"
+"This folder may be in use by another copy of Tenacity.\n"
+msgstr ""
+
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "Do you still want to start Tenacity?"
+msgstr "क्या आप परिवर्तनों को सहेजना चाहते हैं?"
+
+#: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "अस्थायी निर्देशिका (फ़ोल्डर) को तालाबंद करने में त्रुटि"
+
+#: src/TenacityApp.cpp
+msgid "The system has detected that another copy of Tenacity is running.\n"
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid ""
+"Use the New or Open commands in the currently running Tenacity\n"
+" process to open multiple projects simultaneously.\n"
+msgstr ""
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is already running"
+msgstr ""
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3457,6 +3794,10 @@ msgstr ""
 "\n"
 "यह एक संसाधन की कमी के कारण होने की संभावना है\n"
 "तथा एक रिबूट की आवश्यकता हो सकती है."
+
+#: src/TenacityApp.cpp
+msgid "Tenacity Startup Failure"
+msgstr ""
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3495,8 +3836,28 @@ msgstr ""
 "तथा एक रिबूट की आवश्यकता हो सकती है."
 
 #: src/TenacityApp.cpp
+#, fuzzy
+msgid ""
+"The Tenacity IPC server failed to initialize.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"सर्वर संकेत प्राप्त करने में असमर्थ.\n"
+"\n"
+"संसाधन की कमी के कारण यह संभव है\n"
+"तथा एक रिबूट की आवश्यकता हो सकती है."
+
+#: src/TenacityApp.cpp
 msgid "An unrecoverable error has occurred during startup"
 msgstr "स्टार्टअप के समय एक अप्राप्य त्रुटि हुई है"
+
+#: src/TenacityApp.cpp
+msgid ""
+"Another copy of Tenacity has been detectedrunning on this system. Running multiple copies ofTenacity is not supported\n"
+"\n"
+"You will now be redirected to the running copy."
+msgstr ""
 
 #. i18n-hint: This controls the number of bytes that Audacity will
 #. *           use when writing files to the disk
@@ -3514,6 +3875,12 @@ msgstr "यह मददगार संदेश"
 msgid "run self diagnostics"
 msgstr "आत्म-निदान चलाएं"
 
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "%s, वेब डेवलपर"
+
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -3521,8 +3888,34 @@ msgid "audio or project file name"
 msgstr "ऑडियो या परियोजना फ़ाइल का नाम"
 
 #: src/TenacityApp.cpp
+msgid ""
+"Audacity project files (.aup3) are currently not associated with Tenacity. Double clicking an Audacity project file will not open in Tenacity by default.\n"
+"\n"
+"Would you like to associate Audacity project files with Tenacity?"
+msgstr ""
+
+#: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Tenacity परियोजना फ़ाइलें"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "कॉन्फ़िगरेशन रीसेट करें"
+
+#: src/TenacityFileConfig.cpp
+#, c-format
+msgid ""
+"The following configuration file could not be accessed:\n"
+"\n"
+"\t%s\n"
+"\n"
+"This could be caused by many reasons, but the most likely are that the disk is full or you do not have write permissions to the file. More information can be obtained by clicking the help button below.\n"
+"\n"
+"You can attempt to correct the issue and then click \"Retry\" to continue.\n"
+"\n"
+"If you choose to \"Quit Tenacity\", your project may be left in an unsaved state which will be recovered the next time you open it."
+msgstr ""
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3555,6 +3948,11 @@ msgstr "अवधि"
 #: src/TimeTrack.cpp src/TrackPanelAx.cpp
 msgid "Time Track"
 msgstr "समय ट्रैक"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record"
+msgstr "समयबद्ध रिकार्डिंग"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -3647,6 +4045,11 @@ msgstr "स्वचालित निर्यात सक्रिय :"
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
 msgstr "घड़ी से रिकार्डिंग के बाद की कार्यवाही:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record Progress"
+msgstr "समय से रिकार्डिंग परियोजना सहेजने में त्रुटि"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3800,6 +4203,10 @@ msgid "Do nothing"
 msgstr "कुछ भी नहीं"
 
 #: src/TimerRecordDialog.cpp
+msgid "Exit Tenacity"
+msgstr ""
+
+#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "सिस्टम पुन: शुरु करें"
 
@@ -3818,6 +4225,10 @@ msgstr "रिकॉर्डिंग अवधि :"
 #: src/TimerRecordDialog.cpp
 msgid "Scheduled to stop at:"
 msgstr "इस समय रोक दें:"
+
+#: src/TimerRecordDialog.cpp
+msgid "Tenacity Timer Record - Waiting for Start"
+msgstr ""
 
 #. i18n-hint: "in" means after a duration of time,
 #. which is shown below this string
@@ -3841,9 +4252,18 @@ msgstr "ध्वन्यांकन संचित किया :"
 msgid "Recording Exported:"
 msgstr "ध्वन्यांकन निर्यात किया :"
 
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record - Waiting"
+msgstr "समयबद्ध रिकार्डिंग"
+
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
 msgstr "स्टिरियो, 999999Hz"
+
+#: src/TrackPanel.cpp
+msgid "Track Panel"
+msgstr "ट्रैक पैनल"
 
 #. i18n-hint Esc is a key on the keyboard
 #: src/TrackPanel.cpp
@@ -4005,6 +4425,20 @@ msgstr "अंशांकन पूर्ण"
 msgid "Resampling failed."
 msgstr "पुनर्नमूना विफल."
 
+#. i18n-hint Template for clip name generation on copy-paste
+#: src/WaveTrack.cpp
+#, c-format
+msgctxt "clip name template"
+msgid "%s.%i"
+msgstr ""
+
+#. i18n-hint Template for clip name generation on inserting new empty clip
+#: src/WaveTrack.cpp
+#, c-format
+msgctxt "clip name template"
+msgid "%s %i"
+msgstr ""
+
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "चयनित भाग चिपकाने के लिए पर्याप्त जगह नहीं है"
@@ -4012,6 +4446,12 @@ msgstr "चयनित भाग चिपकाने के लिए पर�
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "काट-रेखा के विस्तार के लिए पर्याप्त जगह नहीं है"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "Tenacity लॉग"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -4087,6 +4527,10 @@ msgstr "निम्नलिखित आदेशों में उनके
 #: src/commands/CommandManager.cpp
 msgid "Shortcuts have been removed"
 msgstr "शॉर्टकट हटा दिए गए हैं"
+
+#: src/commands/CommandTargets.cpp
+msgid "Long Message"
+msgstr "लंबा संदेश"
 
 #: src/commands/CompareAudioCommand.cpp
 msgid "Compare Audio"
@@ -4181,9 +4625,17 @@ msgstr "आदेश"
 msgid "Menus"
 msgstr "मेन्यु"
 
-#: src/commands/GetInfoCommand.cpp src/commands/ScreenshotCommand.cpp
+#: src/commands/GetInfoCommand.cpp
 msgid "Preferences"
 msgstr "वरीयतायें"
+
+#. i18n-hint: "Tracks" include audio recordings but also other collections of
+#. * data associated with a time line, such as sequences of labels, and musical
+#. * notes
+#: src/commands/GetInfoCommand.cpp src/export/ExportMultiple.cpp
+#: src/prefs/TracksPrefs.cpp src/prefs/TracksPrefs.h
+msgid "Tracks"
+msgstr "ट्रैक"
 
 #: src/commands/GetInfoCommand.cpp
 msgid "Clips"
@@ -4276,6 +4728,18 @@ msgstr "फाइल में निर्यात करें."
 msgid "Builtin Commands"
 msgstr "अंतर्निहित आदेश"
 
+#: src/commands/LoadCommands.cpp src/effects/LoadEffects.cpp
+#: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
+#: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LoadLV2.cpp
+#: src/effects/nyquist/LoadNyquist.cpp src/effects/vamp/LoadVamp.cpp
+msgid "The Tenacity Team and contributors"
+msgstr ""
+
+#: src/commands/LoadCommands.cpp
+#, fuzzy
+msgid "Provides builtin commands to Tenacity"
+msgstr "बेनाम अंतर्निर्मित आदेश का नाम"
+
 #: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "बेनाम अंतर्निर्मित आदेश का नाम"
@@ -4363,106 +4827,6 @@ msgstr "केवल एक पसंद का मूल्य प्राप�
 #: src/commands/PreferenceCommands.h
 msgid "Sets the value of a single preference."
 msgstr "एक पसंद के मूल्य को सेट करता है."
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Screenshot"
-msgstr "स्क्रीनशॉट"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Window"
-msgstr "विंडो"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Full Window"
-msgstr "पूर्ण विंडो"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Window Plus"
-msgstr "विंडो प्लस"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Fullscreen"
-msgstr "पूर्ण स्क्रीन"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Toolbars"
-msgstr "औजार-पट्टी"
-
-#: src/commands/ScreenshotCommand.cpp src/prefs/EffectsPrefs.cpp
-#: src/prefs/EffectsPrefs.h
-msgid "Effects"
-msgstr "प्रभाव"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Scriptables"
-msgstr "स्क्रिप्टेबल्स"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Selectionbar"
-msgstr "चयनपट्टी"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Trackpanel"
-msgstr "ट्रैक पैनल"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Two Tracks"
-msgstr "पहले दो ट्रैक"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Three Tracks"
-msgstr "पहले तीन ट्रैक"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Four Tracks"
-msgstr "पहले चार ट्रैक"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Tracks Plus"
-msgstr "ट्रैक प्लस"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "First Track Plus"
-msgstr "पहला ट्रैक प्लस"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "All Tracks"
-msgstr "सभी ट्रैक"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "All Tracks Plus"
-msgstr "सभी लंबे ट्रैक"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Blue"
-msgstr "नीला"
-
-#. i18n-hint:  This really means the color, not as in "white noise"
-#: src/commands/ScreenshotCommand.cpp
-msgctxt "color"
-msgid "White"
-msgstr "सफ़ेद"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Path:"
-msgstr "पथ :"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Capture What:"
-msgstr "क्या कैद करें:"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Background:"
-msgstr "परिदृश्य :"
-
-#: src/commands/ScreenshotCommand.cpp
-msgid "Bring To Top"
-msgstr "सबसे ऊपर लाएं"
-
-#: src/commands/ScreenshotCommand.cpp
-#, c-format
-msgid "Error trying to save file: %s"
-msgstr "फ़ाइल संचयन में त्रुटि : %s"
 
 #: src/commands/SelectCommand.cpp
 msgid "Select Time"
@@ -5323,14 +5687,156 @@ msgstr "उठान समय %.2f सेकेंड"
 msgid "Release Time %.1f secs"
 msgstr "क्षय समय %.1f सेकेंड"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Exponential-Fit"
+msgstr "घातीय निकास"
+
+#: src/effects/Compressor2.cpp
+msgid "Analog Model"
+msgstr ""
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "peak amplitude"
+msgstr "पीक ऐम्पलिच्यूड dB"
+
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Reduction"
+msgstr "शोर घटाना"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Peak Reduction"
+msgstr "शोर घटाना"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Analog Limiter"
+msgstr "लिमिटर"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Compressor"
+msgstr "संपीड़क"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "एक या एक से अधिक ट्रैकों का लाउडनेस नियत करता है"
+
+#: src/effects/Compressor2.cpp
+msgid "Envelope dependent gain"
+msgstr ""
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "शिखर आधारित संपीड़न"
+
+#: src/effects/Compressor2.cpp
+msgid "Compressor step response plot"
+msgstr ""
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "एल्गोरिथ्म"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Envelope Algorithm:"
+msgstr "एल्गोरिथ्म :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "शिखर आधारित संपीड़न"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress stereo channels independently"
+msgstr "स्वतंत्र रूप से स्टीरियो चैनलों को सामान्य करें"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "अनुपात :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width:"
+msgstr "चौड़ाई :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width"
+msgstr "चौड़ाई :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain:"
+msgstr "आउटपुट गेन (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain"
+msgstr "आउटपुट गेन (dB)"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "आरोह समय :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack"
+msgstr "चढ़ाई समय"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "अवरोह समय :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release"
+msgstr "उतार समय"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time:"
+msgstr "Smooth Time:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "Smooth Time"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time:"
+msgstr "समापन समय :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time"
+msgstr "समापन समय"
+
+#: src/effects/Compressor2.cpp
+#, c-format
+msgid "Compressor gain reduction: %.1f dB"
+msgstr ""
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6686,6 +7192,31 @@ msgstr "चयनित ऑडियो पर रेखीय धुंध घ�
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "चयनित ऑडियो पर रेखीय रूप से घटते-हुए लागू करता है"
 
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Find Clicks"
+msgstr "कतरन ढूंढें"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Creates labels where clicks are detected"
+msgstr "जहां क्लिपिंग का पता चला है वहाँ नामपट्टी लगाता है"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Clicks"
+msgstr "क्लिक"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Right"
+msgstr "क्लिक"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Left"
+msgstr "क्लिक"
+
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "कतरन ढूंढें"
@@ -6721,6 +7252,10 @@ msgstr "ऑडियो नमूनो को ऊपर-से-नीचे प
 #: src/effects/LoadEffects.cpp
 msgid "Builtin Effects"
 msgstr "अंतर्निहित प्रभाव"
+
+#: src/effects/LoadEffects.cpp
+msgid "Provides builtin effects to Tenacity"
+msgstr ""
 
 #: src/effects/LoadEffects.cpp
 msgid "Unknown built-in effect name"
@@ -6943,6 +7478,12 @@ msgstr "पूर्व संवेदनशीलता"
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "Step 1"
 msgstr "चरण 1"
+
+#: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
+msgid ""
+"Select a few seconds of just noise so Tenacity knows what to filter out,\n"
+"then click Get Noise Profile:"
+msgstr ""
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "&Get Noise Profile"
@@ -7793,6 +8334,10 @@ msgid "VST Effects"
 msgstr "VST प्रभाव"
 
 #: src/effects/VST/VSTEffect.cpp
+msgid "Adds the ability to use VST effects in Tenacity."
+msgstr ""
+
+#: src/effects/VST/VSTEffect.cpp
 msgid "Scanning Shell VST"
 msgstr "Shell VST ढूंढ रहे हैं"
 
@@ -7827,6 +8372,10 @@ msgstr "&बफ़र आकार (8 से 1048576 नमूनों तक) 
 msgid "Latency Compensation"
 msgstr "विलंबता भरपाई"
 
+#: src/effects/VST/VSTEffect.cpp
+msgid "As part of their processing, some VST effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all VST effects."
+msgstr ""
+
 #: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
 #: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LV2Effect.cpp
 msgid "Enable &compensation"
@@ -7860,6 +8409,11 @@ msgstr "मानक VST बैंक फ़ाइल"
 #: src/effects/VST/VSTEffect.cpp
 msgid "Standard VST program file"
 msgstr "मानक VST प्रोग्राम फ़ाइल"
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "VST पूर्व निर्धारित फ़ाइलें"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -7943,6 +8497,11 @@ msgid "Audio Unit Effects"
 msgstr "आडियो युनिट प्रभाव"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Provides Audio Unit Effects support to Tenacity"
+msgstr "आडियो युनिट प्रभाव विकल्प"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
 msgstr "पुर्जा नहीं मिला"
 
@@ -7953,6 +8512,10 @@ msgstr "पुर्जा इनिशियलाइज नहीं कर �
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Audio Unit Effect Options"
 msgstr "आडियो युनिट प्रभाव विकल्प"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+msgid "As part of their processing, some Audio Unit effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all Audio Unit effects."
+msgstr ""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "User Interface"
@@ -8105,8 +8668,16 @@ msgid "Provides LADSPA Effects"
 msgstr "LADSPA प्रभाव प्रदान करता है"
 
 #: src/effects/ladspa/LadspaEffect.cpp
+msgid "Tenacity no longer uses vst-bridge"
+msgstr ""
+
+#: src/effects/ladspa/LadspaEffect.cpp
 msgid "LADSPA Effect Options"
 msgstr "LADSPA प्रभाव विकल्प"
+
+#: src/effects/ladspa/LadspaEffect.cpp
+msgid "As part of their processing, some LADSPA effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all LADSPA effects."
+msgstr ""
 
 #. i18n-hint: An item name introducing a value, which is not part of the string but
 #. appears in a following text box window; translate with appropriate punctuation
@@ -8136,6 +8707,10 @@ msgstr "LV2 प्रभाव सेटिंग्स"
 #, c-format
 msgid "&Buffer Size (8 to %d) samples:"
 msgstr "बफर आकार (8 से %d) नमूने :"
+
+#: src/effects/lv2/LV2Effect.cpp
+msgid "As part of their processing, some LV2 effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this setting will provide that compensation, but it may not work for all LV2 effects."
+msgstr ""
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
@@ -8169,9 +8744,17 @@ msgstr "LV2"
 msgid "LV2 Effects"
 msgstr "LV2 प्रभाव"
 
+#: src/effects/lv2/LoadLV2.cpp
+msgid "Provides LV2 Effects support to Tenacity"
+msgstr ""
+
 #: src/effects/nyquist/LoadNyquist.cpp
 msgid "Nyquist Effects"
 msgstr "Nyquist प्रभाव"
+
+#: src/effects/nyquist/LoadNyquist.cpp
+msgid "Provides Nyquist Effects support to Tenacity"
+msgstr ""
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Applying Nyquist Effect..."
@@ -8292,6 +8875,11 @@ msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-
 msgstr "[चेतावनी : Nyquist ने अमान्य UTF-8 स्ट्रिंग लौटाया, यहाँ लैटिन-1 के रूप में परिवर्तित किया गया]"
 
 #: src/effects/nyquist/Nyquist.cpp
+#, c-format
+msgid "This version of Tenacity does not support Nyquist plug-in version %ld"
+msgstr ""
+
+#: src/effects/nyquist/Nyquist.cpp
 msgid "Could not open file"
 msgstr "फ़ाइल खोल नहीं सका"
 
@@ -8405,6 +8993,10 @@ msgstr "बेनाम"
 #: src/effects/vamp/LoadVamp.cpp
 msgid "Vamp Effects"
 msgstr "Vamp प्रभाव"
+
+#: src/effects/vamp/LoadVamp.cpp
+msgid "Provides Vamp Effects support to Tenacity"
+msgstr ""
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
@@ -8611,6 +9203,11 @@ msgstr "\"%s\" नहीं मिला."
 msgid "Unable to locate \"%s\" in your path."
 msgstr "आपके पथ में  \"%s\" का पता लगाने में असमर्थ."
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+msgid "Export Options"
+msgstr "प्रारूप विकल्प"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "निरस्त"
@@ -8686,12 +9283,27 @@ msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
 msgstr "FFmpeg: त्रुटि - ऑडियो FIFO में पढ़ने के लिए बफर आवंटित नहीं कर सकता."
 
 #: src/export/ExportFFmpeg.cpp
+#, fuzzy
+msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
+msgstr "FFmpeg: त्रुटि - आउटपुट फ़ाइल \"%s\" से ऑडियो स्ट्रीम नहीं जोड़ सकता."
+
+#: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
 msgstr "FFmpeg: त्रुटि -  नमूना बफ़र के आकार की जानकारी नहीं मिल सकी"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
 msgstr "FFmpeg: त्रुटि -  नमूने बफर के लिए बाइट्स आबंटित नहीं कर पाया"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
+msgstr "FFmpeg: त्रुटि -  नमूना बफ़र के आकार की जानकारी नहीं मिल सकी"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+msgid "FFmpeg : ERROR - encoding frame failed with error %d"
+msgstr "FFmpeg: त्रुटि - ऑडियो फ़्रेम एनकोड नहीं कर सका."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
@@ -9624,6 +10236,48 @@ msgstr ""
 "परियोजना का नमूना दर (%d) और बिट् दर (%d kbps) एक साथ में\n"
 "MP3 फ़ाइल प्रारूप द्वारा समर्थित नहीं है. "
 
+#: src/export/ExportMka.cpp
+msgid "PCM 16-bit (Little Endian)"
+msgstr ""
+
+#: src/export/ExportMka.cpp
+msgid "PCM 24-bit (Little Endian)"
+msgstr ""
+
+#: src/export/ExportMka.cpp
+msgid "PCM Float 32-bit"
+msgstr ""
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 16-bit"
+msgstr "16-बिट्"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 24-bit"
+msgstr "24-बिट्"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Keep Labels"
+msgstr "लेबल"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Matroska Audio Files"
+msgstr "ऑडियो फ़ाइल निर्यात कर रहे हैं"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the selected audio as MKA"
+msgstr "चयनित ऑडियो का निर्यात FLAC में कर रहे हैं"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the audio as MKA"
+msgstr "ऑडियो का निर्यात FLAC में कर रहे हैं"
+
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
 msgstr "अनेक निर्यात"
@@ -9647,6 +10301,10 @@ msgstr "फ़ाइलों का निर्यात यहाँ कर�
 #: src/export/ExportMultiple.cpp
 msgid "Folder:"
 msgstr "निर्देशिका:"
+
+#: src/export/ExportMultiple.cpp
+msgid "Choose..."
+msgstr "चुनें..."
 
 #: src/export/ExportMultiple.cpp
 msgid "Create"
@@ -9840,8 +10498,20 @@ msgid "Other uncompressed files"
 msgstr "अन्य असंपीड़ित फ़ाइलें"
 
 #: src/export/ExportPCM.cpp
+msgid ""
+"You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
+"Tenacity cannot do this, the Export was abandoned."
+msgstr ""
+
+#: src/export/ExportPCM.cpp
 msgid "Error Exporting"
 msgstr "त्रुटि निर्यात"
+
+#: src/export/ExportPCM.cpp
+msgid ""
+"Your exported WAV file has been truncated as Tenacity cannot export WAV\n"
+"files bigger than 4GB."
+msgstr ""
 
 #: src/export/ExportPCM.cpp
 msgid "GSM 6.10 requires mono"
@@ -9881,6 +10551,14 @@ msgid "FFmpeg support not compiled in"
 msgstr "FFmpeg समर्थन यहाँ समायोजित नहीं"
 
 #: src/ffmpeg/FFmpeg.cpp
+msgid ""
+"FFmpeg was configured in Preferences and successfully loaded before, \n"
+"but this time Tenacity failed to load it at startup. \n"
+"\n"
+"You may want to go back to Preferences > Libraries and re-configure it."
+msgstr ""
+
+#: src/ffmpeg/FFmpeg.cpp
 msgid "FFmpeg startup failed"
 msgstr "FFmpeg शुरुआत विफल"
 
@@ -9891,6 +10569,11 @@ msgstr "FFmpeg लाईब्रेरी नहीं मिला"
 #: src/ffmpeg/FFmpeg.cpp
 msgid "Locate FFmpeg"
 msgstr "FFmpeg ढूंढें"
+
+#: src/ffmpeg/FFmpeg.cpp
+#, c-format
+msgid "Tenacity needs the file '%s' to import and export audio via FFmpeg."
+msgstr ""
 
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
@@ -9914,6 +10597,11 @@ msgstr "डाउनलोड"
 msgid "Only avformat.dll"
 msgstr "केवल avformat.dll"
 
+#: src/ffmpeg/FFmpeg.cpp
+#, fuzzy
+msgid "Only ffmpeg.*.dylib"
+msgstr "केवल libmp3lame64bit.dylib"
+
 #. i18n-hint: It's asking for the location of a file, for
 #. example, "Where is lame_enc.dll?" - you could translate
 #. "Where would I find the file '%s'?" instead if you want.
@@ -9927,6 +10615,15 @@ msgid "FFmpeg not found"
 msgstr "FFmpeg नहीं मिला"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
+msgid ""
+"Tenacity attempted to use FFmpeg to import an audio file,\n"
+"but the libraries were not found.\n"
+"\n"
+"To use FFmpeg import, go to Edit > Preferences > Libraries\n"
+"to download or locate the FFmpeg libraries."
+msgstr ""
+
+#: src/ffmpeg/FFmpegNotFoundDialog.cpp
 msgid "Do not show this warning again"
 msgstr "यह चेतावनी फिर न दिखाएँ"
 
@@ -9935,13 +10632,158 @@ msgid "All supported files"
 msgstr "सभी समर्थित फ़ाइलें"
 
 #: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" \n"
+"is a MIDI file, not an audio file. \n"
+"Tenacity cannot open this type of file for playing, but you can\n"
+"edit it by clicking File > Import > MIDI."
+msgstr ""
+
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" \n"
+"is a not an audio file. \n"
+"Tenacity cannot open this type of file."
+msgstr ""
+
+#: src/import/Import.cpp
 msgid "Select stream(s) to import"
 msgstr "आयात के लिए प्रवाह(stream)चुनें"
 
 #: src/import/Import.cpp
 #, c-format
+msgid "This version of Tenacity was not compiled with %s support."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is an audio CD track. \n"
+"Tenacity cannot open audio CDs directly. \n"
+"Extract (rip) the CD tracks to an audio format that \n"
+"Tenacity can import, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a playlist file. \n"
+"Tenacity cannot open this file because it only contains links to other files. \n"
+"You may be able to open it in a text editor and download the actual audio files."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a Windows Media Audio file. \n"
+"Tenacity cannot open this type of file due to patent restrictions. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is an Advanced Audio Coding file.\n"
+"Without the optional FFmpeg library, Tenacity cannot open this type of file.\n"
+"Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is an encrypted audio file. \n"
+"These typically are from an online music store. \n"
+"Tenacity cannot open this type of file due to the encryption. \n"
+"Try recording the file into Tenacity, or burn it to audio CD then \n"
+"extract the CD track to a supported audio format such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a RealPlayer media file. \n"
+"Tenacity cannot open this proprietary format. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a notes-based file, not an audio file. \n"
+"Tenacity cannot open this type of file. \n"
+"Try converting it to an audio file such as WAV or AIFF and \n"
+"then import it, or record it into Tenacity."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a Musepack audio file. \n"
+"Tenacity cannot open this type of file. \n"
+"If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
+"and try importing it again. Otherwise you need to convert it to a supported audio \n"
+"format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a Wavpack audio file. \n"
+"Tenacity cannot open this type of file. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a Dolby Digital audio file. \n"
+"Tenacity cannot currently open this type of file. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is an Ogg Speex audio file. \n"
+"Tenacity cannot currently open this type of file. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a video file. \n"
+"Tenacity cannot currently open this type of file. \n"
+"You need to extract the audio to a supported format, such as WAV or AIFF."
+msgstr ""
+
+#: src/import/Import.cpp
+#, c-format
 msgid "File \"%s\" not found."
 msgstr "\"%s\" फ़ाइल नहीं मिला."
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"Tenacity did not recognize the type of the file '%s'.\n"
+"\n"
+"%sFor uncompressed files, also try File > Import > Raw Data."
+msgstr ""
 
 #: src/import/Import.cpp
 msgid ""
@@ -9955,6 +10797,16 @@ msgstr ""
 #, c-format
 msgid "%s, %s"
 msgstr "%s, %s"
+
+#. i18n-hint: %s will be the filename
+#: src/import/Import.cpp
+#, c-format
+msgid ""
+"Tenacity recognized the type of the file '%s'.\n"
+"Importers supposedly supporting such files are:\n"
+"%s,\n"
+"but none of them understood this file format."
+msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "AUP project files (*.aup)"
@@ -9974,6 +10826,15 @@ msgstr ""
 #: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "परियोजना आयात करें"
+
+#: src/import/ImportAUP.cpp
+msgid ""
+"This project was saved by Audacity version 1.0 or earlier. The format has\n"
+"changed and Tenacity is unable to import the project.\n"
+"\n"
+"Use a version of Audacity prior to v3.0.0 to upgrade the project and then\n"
+"you may import it with Tenacity."
+msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "Internal error in importer...tag not recognized"
@@ -10011,6 +10872,10 @@ msgstr "अमान्य प्रोजेक्ट 'selHigh' विशेष
 #, c-format
 msgid "Couldn't find the project data folder: \"%s\""
 msgstr "परियोजना डाटा फ़ोल्डर नहीं मिला : \"%s\""
+
+#: src/import/ImportAUP.cpp
+msgid "MIDI tracks found in project file, but this build of Tenacity does not include MIDI support, bypassing track."
+msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "Project Import"
@@ -10215,6 +11080,21 @@ msgstr ""
 "\n"
 "यह संभवतः विकृत MP3 के कारण होता है.\n"
 "\n"
+
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "%s फ़ाइलें"
+
+#: src/import/ImportMka.cpp
+#, fuzzy, c-format
+msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
+msgstr "इंडेक्स[%02d], प्रकार[%s], चैनल[%d], दर[%d]"
+
+#: src/import/ImportMka.cpp
+#, c-format
+msgid "Label Edition[%02zx] Name[%s]"
+msgstr ""
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -10531,6 +11411,12 @@ msgstr "आयात की मात्रा:"
 msgid "Sample rate:"
 msgstr "सैंपल रेट:"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+msgid "Detect"
+msgstr "चुप्पी पता करें"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "आयात(&I)"
@@ -10551,6 +11437,23 @@ msgstr "%s बायाँ"
 msgid "%s right"
 msgstr "%s दायाँ"
 
+#. i18n-hint:
+#. First %s is replaced with the noun "start" or "end"
+#. identifying one end of a clip,
+#. second string is the name of that clip,
+#. first number gives the position of that clip in a sequence
+#. of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s %s, %d of %d clip %s"
+msgid_plural "%s %s, %d of %d clips %s"
+msgstr[0] "%d कुल %d क्लिप %s"
+msgstr[1] "%d कुल %d क्लिप्स %s"
+
 #: src/menus/ClipMenus.cpp
 msgid "start"
 msgstr "आरंभ"
@@ -10558,6 +11461,36 @@ msgstr "आरंभ"
 #: src/menus/ClipMenus.cpp
 msgid "end"
 msgstr "अंत"
+
+#. i18n-hint:
+#. First and third %s are each replaced with the noun "start"
+#. or with "end", identifying and end of a clip,
+#. second and fourth strings are the names of those clips,
+#. first and second numbers give the position of those clips in
+#. a sequence of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%s %s and %s %s, %d and %d of %d clip %s"
+msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#. i18n-hint:
+#. first string is the name of a clip,
+#. first number gives the position of that clip
+#. in a sequence of clips,
+#. last number counts all clips,
+#. last string names a track
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip %s"
+msgid_plural "%s, %d of %d clips %s"
+msgstr[0] "%d कुल %d क्लिप %s"
+msgstr[1] "%d कुल %d क्लिप्स %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -10980,6 +11913,11 @@ msgstr "MP&3 में निर्यात करें"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
+msgstr "&WAV में निर्यात करें"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
+msgid "Export as &MKA"
 msgstr "&WAV में निर्यात करें"
 
 #: src/menus/FileMenus.cpp
@@ -11443,10 +12381,6 @@ msgid "Reset &Configuration"
 msgstr "कॉन्फ़िगरेशन रीसेट करें"
 
 #: src/menus/PluginMenus.cpp
-msgid "&Screenshot..."
-msgstr "स्क्रीनशॉट...(&S)"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Run Benchmark..."
 msgstr "मान-दंड बनाएं...(&R)"
 
@@ -11547,11 +12481,6 @@ msgstr "माउस घुमाएं..."
 #: src/menus/PluginMenus.cpp
 msgid "Compare Audio..."
 msgstr "आडियो की तुलना करें..."
-
-#. i18n-hint: Screenshot in the help menu has a much bigger dialog.
-#: src/menus/PluginMenus.cpp
-msgid "Screenshot (short format)..."
-msgstr "स्क्रीनशॉट (छोटा प्रारूप)..."
 
 #: src/menus/SelectMenus.cpp
 msgid "Set Left Selection Boundary"
@@ -12028,6 +12957,10 @@ msgstr "नया स्टिरियो ट्रैक बनाया"
 #: src/menus/TrackMenus.cpp
 msgid "Created new label track"
 msgstr "नया नाम ट्रैक बनाया गया"
+
+#: src/menus/TrackMenus.cpp
+msgid "This version of Tenacity only allows one time track for each project window."
+msgstr ""
 
 #: src/menus/TrackMenus.cpp
 msgid "Created new time track"
@@ -12696,6 +13629,14 @@ msgstr "बजाएं"
 msgid "&Device:"
 msgstr "यंत्र (&D):"
 
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+msgctxt "preference"
+msgid "Recording"
+msgstr "ध्वन्यांकन"
+
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
 msgstr "यंत्र :"
@@ -12727,6 +13668,10 @@ msgstr "1 (मोनो)"
 #: src/prefs/DevicePrefs.cpp
 msgid "2 (Stereo)"
 msgstr "2 (स्टिरियो)"
+
+#: src/prefs/DevicePrefs.h src/toolbars/DeviceToolBar.cpp
+msgid "Device"
+msgstr "यंत्र"
 
 #. i18n-hint:  Directories, also called directories, in computer file systems
 #: src/prefs/DirectoriesPrefs.cpp src/prefs/DirectoriesPrefs.h
@@ -12838,8 +13783,16 @@ msgid "Directory %s is not writable"
 msgstr "निर्देशिका %s लेख्य नहीं है"
 
 #: src/prefs/DirectoriesPrefs.cpp
+msgid "Changes to temporary directory will not take effect until Tenacity is restarted"
+msgstr ""
+
+#: src/prefs/DirectoriesPrefs.cpp
 msgid "Temp Directory Update"
 msgstr "Temp डायरेक्टरी अद्यतन"
+
+#: src/prefs/EffectsPrefs.cpp src/prefs/EffectsPrefs.h
+msgid "Effects"
+msgstr "प्रभाव"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Preferences for Effects"
@@ -12917,6 +13870,14 @@ msgstr "अधिकतम (&M) प्रभाव प्रति समूह 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Plugin Options"
 msgstr "प्लगइन विकल्प"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Check for updated plugins when Tenacity starts"
+msgstr ""
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Rescan plugins next time Tenacity is started"
+msgstr ""
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13083,16 +14044,16 @@ msgid "Show e&xtra menus"
 msgstr "अतिरिक्त (&x) मेन्यु"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Show alternative &styling (Mac vs PC)"
-msgstr "दूसरे स्टाइल दिखाएं (Mac बनाम PC)"
-
-#: src/prefs/GUIPrefs.cpp
 msgid "&Beep on completion of longer activities"
 msgstr "लंबी गतिविधियों के पूरा होने पर बीप की आवाज करें(&B)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Re&tain labels if selection snaps to a label"
 msgstr "नामपट्ट यथावत (&t) रखें यदि चयन नामपट्ट से चिपका हो"
+
+#: src/prefs/GUIPrefs.cpp
+msgid "B&lend system and Tenacity theme"
+msgstr ""
 
 #. i18n-hint: RTL stands for 'Right to Left'
 #: src/prefs/GUIPrefs.cpp
@@ -13269,6 +14230,11 @@ msgstr ""
 "   *   \"%s\"  (क्योंकि  '%s'  शॉर्टकट  '%s' द्वारा प्रयोग किया जाता है)\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "एक टेक्सट फ़ाइल चुनें जिसमें नामपट्टी हो"
+
+#: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
 msgstr "लघु कुंजी आयात में त्रुटि"
 
@@ -13390,6 +14356,12 @@ msgid "Dow&nload"
 msgstr "डाउनलोड(&n)"
 
 #: src/prefs/LibraryPrefs.cpp
+msgid ""
+"Tenacity has automatically detected valid FFmpeg libraries.\n"
+"Do you still want to locate them manually?"
+msgstr ""
+
+#: src/prefs/LibraryPrefs.cpp
 msgid "Success"
 msgstr "सफल"
 
@@ -13441,10 +14413,30 @@ msgstr "मोड्यूल्स"
 msgid "Preferences for Module"
 msgstr "मोड्यूल के लिए वरीयतायें"
 
+#: src/prefs/ModulePrefs.cpp
+msgid ""
+"These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
+"and know what you are doing."
+msgstr ""
+
+#. i18n-hint preserve the leading spaces
+#: src/prefs/ModulePrefs.cpp
+msgid "  'Ask' means Tenacity will ask if you want to load the module each time it starts."
+msgstr ""
+
+#. i18n-hint preserve the leading spaces
+#: src/prefs/ModulePrefs.cpp
+msgid "  'Failed' means Tenacity thinks the module is broken and won't run it."
+msgstr ""
+
 #. i18n-hint preserve the leading spaces
 #: src/prefs/ModulePrefs.cpp
 msgid "  'New' means no choice has been made yet."
 msgstr " 'नया' का मतलब अभी तक कोई विकल्प नहीं चुना गया है."
+
+#: src/prefs/ModulePrefs.cpp
+msgid "Changes to these settings only take effect when Tenacity starts up."
+msgstr ""
 
 #: src/prefs/ModulePrefs.cpp
 msgid "Ask"
@@ -13597,6 +14589,15 @@ msgstr "-बायाँ-खीचें"
 msgid "Move clip up/down between tracks"
 msgstr "क्लिप को ट्रैकों के बीच ऊपर/नीचे स्थानांतरित करें"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "Alt-Left-Drag"
+msgstr "-बायाँ-खीचें"
+
+#: src/prefs/MousePrefs.cpp
+msgid "Move clips ignoring Sync-lock"
+msgstr ""
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -13718,6 +14719,11 @@ msgstr "माइक्रो-फे़ड्स (&M)"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Always scrub un&pinned"
 msgstr "बिना पिन लगे  को हमेशा स्क्रब करें"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+msgid "Tenacity Preferences"
+msgstr "पसंद जानें"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -13956,6 +14962,10 @@ msgstr "वर्णक्रम के लिए वरीयतायें"
 msgid "&Use Preferences"
 msgstr "वरीयतायें प्रयोग(&U) करें"
 
+#: src/prefs/SpectrumPrefs.cpp
+msgid "Scale"
+msgstr "पैमाना"
+
 #: src/prefs/SpectrumPrefs.cpp src/prefs/WaveformPrefs.cpp
 msgid "S&cale:"
 msgstr "मापदंड (&c):"
@@ -14100,6 +15110,19 @@ msgstr "थीम के लिए वरीयतायें"
 #: src/prefs/ThemePrefs.cpp
 msgid "Info"
 msgstr "सूचना"
+
+#: src/prefs/ThemePrefs.cpp
+msgid ""
+"Themability is an experimental feature.\n"
+"\n"
+"To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
+"ImageCacheVxx.png using an image editor such as the Gimp.\n"
+"\n"
+"Click \"Load Theme Cache\" to load the changed images and colors back into Tenacity.\n"
+"\n"
+"(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
+"though the image file shows other icons too.)"
+msgstr ""
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
@@ -14407,6 +15430,46 @@ msgstr "क्लासिक"
 msgid "Audacity"
 msgstr "Tenacity लॉग"
 
+#: src/theme/AudaciumDarkBlueThemeAsCeeCode.cpp
+msgid "Audacium Dark Blue"
+msgstr ""
+
+#: src/theme/AudaciumDarkGreenThemeAsCeeCode.cpp
+msgid "Audacium Dark Green"
+msgstr ""
+
+#: src/theme/AudaciumDarkOrangeThemeAsCeeCode.cpp
+msgid "Audacium Dark Orange"
+msgstr ""
+
+#: src/theme/AudaciumDarkPinkThemeAsCeeCode.cpp
+msgid "Audacium Dark Pink"
+msgstr ""
+
+#: src/theme/AudaciumDarkPurpleThemeAsCeeCode.cpp
+msgid "Audacium Dark Purple"
+msgstr ""
+
+#: src/theme/AudaciumLightBlueThemeAsCeeCode.cpp
+msgid "Audacium Light Blue"
+msgstr ""
+
+#: src/theme/AudaciumLightGreenThemeAsCeeCode.cpp
+msgid "Audacium Light Green"
+msgstr ""
+
+#: src/theme/AudaciumLightOrangeThemeAsCeeCode.cpp
+msgid "Audacium Light Orange"
+msgstr ""
+
+#: src/theme/AudaciumLightPinkThemeAsCeeCode.cpp
+msgid "Audacium Light Pink"
+msgstr ""
+
+#: src/theme/AudaciumLightPurpleThemeAsCeeCode.cpp
+msgid "Audacium Light Purple"
+msgstr ""
+
 #: src/theme/DarkThemeAsCeeCode.cpp
 msgid "Dark"
 msgstr "अंधेरा"
@@ -14422,6 +15485,23 @@ msgstr "अति विरोभासी"
 msgid "Light"
 msgstr "थोड़ा"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Pro Tools"
+msgstr "औज़ार"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "Tenacity लॉग"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "फ़ाइल में लिख नहीं सका: %s"
+
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14435,6 +15515,21 @@ msgstr ""
 "रूप-रंग यहाँ लिखा गया :\n"
 "  %s."
 
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "लिखने के लिए इंगित फ़ाइल को खोलने में असमर्थ"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "फ़ाइल में लिख नहीं सका: %s"
+
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
 #, c-format
@@ -14444,6 +15539,29 @@ msgid ""
 msgstr ""
 "रूप-रंग C कोड जैसा यहाँ लिखा गया :\n"
 "  %s."
+
+#: src/theme/Theme.cpp
+#, c-format
+msgid ""
+"Tenacity could not find file:\n"
+"  %s.\n"
+"Theme not loaded."
+msgstr ""
+
+#. i18n-hint: Do not translate png.  It is the name of a file format.
+#: src/theme/Theme.cpp
+#, c-format
+msgid ""
+"Tenacity could not load file:\n"
+"  %s.\n"
+"Bad png format perhaps?"
+msgstr ""
+
+#: src/theme/Theme.cpp
+msgid ""
+"Tenacity could not read its default theme.\n"
+"Please report this problem."
+msgstr ""
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -14476,6 +15594,13 @@ msgstr ""
 " %s\n"
 "में पहले से ही मौजूद थीं. उसीके ऊपर लिखें?"
 
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "फ़ाइल खोला नहीं जा सका : %s"
+
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
 msgid "Custom"
@@ -14489,8 +15614,16 @@ msgid "Stopped"
 msgstr "रुक गया"
 
 #: src/toolbars/ControlToolBar.cpp
+msgid "Transport"
+msgstr "भ्रमण"
+
+#: src/toolbars/ControlToolBar.cpp
 msgid "Pause"
 msgstr "ठहरें"
+
+#: src/toolbars/ControlToolBar.cpp
+msgid "Loop"
+msgstr ""
 
 #: src/toolbars/ControlToolBar.cpp
 msgid "Skip to Start"
@@ -14587,6 +15720,10 @@ msgid "&Device Toolbar"
 msgstr "यंत्र-प्रबन्ध औजार-पट्टी"
 
 #: src/toolbars/EditToolBar.cpp
+msgid "Edit"
+msgstr "संपादन"
+
+#: src/toolbars/EditToolBar.cpp
 msgid "Cut selection"
 msgstr "चयन काटें"
 
@@ -14663,6 +15800,11 @@ msgid "Playback Meter"
 msgstr "प्लेबैक मीटर"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio being recorded.
+#: src/toolbars/MeterToolBar.cpp
+msgid "Record Meter"
+msgstr "ध्वन्यांकन मीटर"
+
+#. i18n-hint: (noun) The meter that shows the loudness of the audio being recorded.
 #. This is the name used in screen reader software, where having 'Meter' first
 #. apparently is helpful to partially sighted people.
 #: src/toolbars/MeterToolBar.cpp
@@ -14670,11 +15812,21 @@ msgid "Meter-Record"
 msgstr "मीटर-ध्वन्यांकन"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
+#: src/toolbars/MeterToolBar.cpp
+msgid "Play Meter"
+msgstr "बजाने का मीटर"
+
+#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
 #. apparently is helpful to partially sighted people.
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Play"
 msgstr "मीटर - बजाना"
+
+#. i18n-hint: Noun (the meter is used for playback or record level monitoring)
+#: src/toolbars/MeterToolBar.cpp src/widgets/MeterPanel.cpp
+msgid "Meter"
+msgstr "मीटर"
 
 #: src/toolbars/MeterToolBar.cpp
 msgid "Playback Level"
@@ -14695,6 +15847,10 @@ msgstr "रिकार्डिंग मीटर औजार-पट्टी
 #: src/toolbars/MeterToolBar.cpp
 msgid "&Playback Meter Toolbar"
 msgstr "प्लेबैक मीटर औजार-पट्टी"
+
+#: src/toolbars/ScrubbingToolBar.cpp
+msgid "Scrub"
+msgstr "Scrub"
 
 #: src/toolbars/ScrubbingToolBar.cpp
 msgid "Seek"
@@ -14823,6 +15979,10 @@ msgid "&Selection Toolbar"
 msgstr "चयन औजार-पट्टी"
 
 #: src/toolbars/SpectralSelectionBar.cpp
+msgid "Spectral Selection"
+msgstr "वर्णक्रम चयन"
+
+#: src/toolbars/SpectralSelectionBar.cpp
 msgid "Center frequency and Width"
 msgstr "केंद्र आवृत्ति और चौड़ाई"
 
@@ -14854,6 +16014,12 @@ msgstr "समय"
 msgid "&Time Toolbar"
 msgstr "घड़ी औजार-पट्टी"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+msgid "Tenacity %s Toolbar"
+msgstr "संपादन औजार-पट्टी"
+
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
 msgstr "औजारपट्टी के आकार परिवर्तनके लिए क्लिक कर खींचें"
@@ -14861,6 +16027,10 @@ msgstr "औजारपट्टी के आकार परिवर्तन
 #: src/toolbars/ToolDock.cpp
 msgid "ToolDock"
 msgstr "औजार बक्सा"
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "Tools"
+msgstr "औज़ार"
 
 #: src/toolbars/ToolsToolBar.cpp
 msgid "Selection Tool"
@@ -14918,6 +16088,10 @@ msgid "&Next Tool"
 msgstr "अगला औजार (&N)"
 
 #: src/toolbars/TranscriptionToolBar.cpp
+msgid "Play-at-Speed"
+msgstr "इस-गति-पर बजाएं"
+
+#: src/toolbars/TranscriptionToolBar.cpp
 msgid "Play at selected speed"
 msgstr "बजाएं-चयनित गति पर"
 
@@ -14934,6 +16108,10 @@ msgstr "इस-गति-पर-बारंबार-बजाएं"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Pla&y-at-Speed Toolbar"
 msgstr "गति-पर-बजाएं औजारपट्टी"
+
+#: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
+msgid "Drag label. Hold shift and drag to move all labels on the same track."
+msgstr ""
 
 #: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
 msgid "Drag one or more label boundaries."
@@ -15134,6 +16312,53 @@ msgstr "पहले ऑडियो को रोकें"
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "S&pectrogram Settings..."
 msgstr "स्पेक्ट्रोग्राम सेटिंग्स..."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+msgid "Clip-Trim-Left"
+msgstr ""
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, c-format
+msgid "Moved by %.02f"
+msgstr ""
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+msgid "Clip-Trim-Right"
+msgstr ""
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+msgid "Clip-Trim-Between"
+msgstr ""
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+msgid "Click and drag to move clip boundary in time"
+msgstr "ट्रैक को समय में खिसकाने के लिए क्लिक कर खींचें"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "ट्रैक का नाम सेट करें"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Click and drag to select text"
+msgstr "ऑडियो चुनने के लिए क्लिक कर खींचें"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Modified Clip Name"
+msgstr "परिवर्तित नाम"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Clip Name Edit"
+msgstr "संपादन नमूना"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Rename Clip..."
+msgstr "पुनः नामकरण ..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -15365,6 +16590,32 @@ msgstr "उप-दृश्यों को पुनर्व्यवस्थ
 msgid "Close sub-view"
 msgstr "उप-दृश्य बंद करें"
 
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Split Clip"
+msgstr "क्लिप सेट करें"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "केंद्रित ट्रैक बजाएं/मौन (&u) करें"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Rename clip..."
+msgstr "पुनः नामकरण ..."
+
+#. i18n-hint:
+#. string is the name of a clip
+#. first number is the position of that clip in a sequence of clips,
+#. second number counts the clips
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip"
+msgid_plural "%s, %d of %d clips"
+msgstr[0] "%d कुल %d क्लिप %s"
+msgstr[1] "%d कुल %d क्लिप्स %s"
+
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
 msgstr "छोटा करें x1/2"
@@ -15465,6 +16716,26 @@ msgstr "लघुगणकीय अंतर्वेषण"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "ट्रैक को समय में खिसकाने के लिए क्लिक कर खींचें"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Mono Track"
+msgstr "मोनो ट्रैक"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Stereo Track"
+msgstr "स्टिरियो ट्रैक"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Label Track"
+msgstr "नाम ट्रैक"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Export Audio..."
+msgstr "ऑडियो निर्यात...(&E)"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -16448,6 +17719,14 @@ msgstr "फ़ेड लागू करना..."
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
 msgstr "स्टीव डॉल्टन"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
 
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
@@ -17742,6 +19021,14 @@ msgid "Right (dB)"
 msgstr "दायाँ (dB)"
 
 #: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+
+#: plug-ins/sample-data-export.ny
 msgid "linear"
 msgstr "रैखिक"
 
@@ -18086,6 +19373,188 @@ msgstr "रडार सुई की आवृति (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "त्रुटि.~%स्टिरियो ट्रैक चाहिए."
+
+#~ msgid "Screen Capture Frame"
+#~ msgstr "स्क्रीन कतरन फ़्रेम"
+
+#~ msgid "Choose location to save files"
+#~ msgstr "फ़ाइलें संचित करने की जगह बताएं"
+
+#~ msgid "Save images to:"
+#~ msgstr "तस्वीरें यहाँ संचित करें :"
+
+#~ msgid "Capture entire window or screen"
+#~ msgstr "पूरी विंडो या स्क्रीन का दृश्य कैद करें"
+
+#~ msgid "Resize Small"
+#~ msgstr "आकार घटाएं"
+
+#~ msgid "Resize Large"
+#~ msgstr "आकार बढ़ाएं"
+
+#~ msgid "Blue Bkgnd"
+#~ msgstr "नीला परिपेक्ष्य"
+
+#~ msgid "White Bkgnd"
+#~ msgstr "सफ़ेद परिपेक्ष्य"
+
+#~ msgid "Capture Window Only"
+#~ msgstr "सिर्फ़ झरोखे का कतरन बनाएं"
+
+#~ msgid "Capture Full Window"
+#~ msgstr "पूर्ण झरोखे का कतरन बनाएं"
+
+#~ msgid "Capture Window Plus"
+#~ msgstr "झरोखे से बाहर तक कतरन बनाएं"
+
+#~ msgid "Capture Full Screen"
+#~ msgstr "पूर्ण स्क्रीन का कतरन बनाएं"
+
+#~ msgid "Wait 5 seconds and capture frontmost window/dialog"
+#~ msgstr "5 सेकंड रुककर सबसे ऊपरी झरोखे/संवाद को कैद करें"
+
+#~ msgid "Capture part of a project window"
+#~ msgstr "परियोजना झरोखे के एक भाग का कतरन बनाएं"
+
+#~ msgid "All Toolbars"
+#~ msgstr "औजार-पट्टियाँ"
+
+#~ msgid "All Effects"
+#~ msgstr "सभी प्रभाव"
+
+#~ msgid "All Scriptables"
+#~ msgstr "सब स्क्रिप्टयोग्य"
+
+#~ msgid "All Preferences"
+#~ msgstr "सभी वरीयतायें"
+
+#~ msgid "SelectionBar"
+#~ msgstr "चयनपट्टी"
+
+#~ msgid "Timer"
+#~ msgstr "टाइमर"
+
+#~ msgid "Mixer"
+#~ msgstr "मिक्सर"
+
+#~ msgid "Ruler"
+#~ msgstr "मापक"
+
+#~ msgid "First Track"
+#~ msgstr "पहला ट्रैक"
+
+#~ msgid "Second Track"
+#~ msgstr "दूसरा ट्रैक"
+
+#~ msgid "One Sec"
+#~ msgstr "एक सेकेंड"
+
+#~ msgid "Ten Sec"
+#~ msgstr "दस सेकेंड"
+
+#~ msgid "One Min"
+#~ msgstr "एक मिनट"
+
+#~ msgid "Five Min"
+#~ msgstr "पाँच मिनट"
+
+#~ msgid "One Hour"
+#~ msgstr "एक घंटा"
+
+#~ msgid "Short Tracks"
+#~ msgstr "लघु ट्रैक"
+
+#~ msgid "Medium Tracks"
+#~ msgstr "मध्यम ट्रैक"
+
+#~ msgid "Tall Tracks"
+#~ msgstr "लंबा ट्रैक"
+
+#~ msgid "Choose a location to save screenshot images"
+#~ msgstr "स्क्रीनशॉट छवियों को सहेजने का स्थान चुनें"
+
+#~ msgid "Capture failed!"
+#~ msgstr "कैद करना असफल!"
+
+#~ msgid "Screenshot"
+#~ msgstr "स्क्रीनशॉट"
+
+#~ msgid "Window"
+#~ msgstr "विंडो"
+
+#~ msgid "Full Window"
+#~ msgstr "पूर्ण विंडो"
+
+#~ msgid "Window Plus"
+#~ msgstr "विंडो प्लस"
+
+#~ msgid "Fullscreen"
+#~ msgstr "पूर्ण स्क्रीन"
+
+#~ msgid "Toolbars"
+#~ msgstr "औजार-पट्टी"
+
+#~ msgid "Scriptables"
+#~ msgstr "स्क्रिप्टेबल्स"
+
+#~ msgid "Selectionbar"
+#~ msgstr "चयनपट्टी"
+
+#~ msgid "Trackpanel"
+#~ msgstr "ट्रैक पैनल"
+
+#~ msgid "First Two Tracks"
+#~ msgstr "पहले दो ट्रैक"
+
+#~ msgid "First Three Tracks"
+#~ msgstr "पहले तीन ट्रैक"
+
+#~ msgid "First Four Tracks"
+#~ msgstr "पहले चार ट्रैक"
+
+#~ msgid "Tracks Plus"
+#~ msgstr "ट्रैक प्लस"
+
+#~ msgid "First Track Plus"
+#~ msgstr "पहला ट्रैक प्लस"
+
+#~ msgid "All Tracks"
+#~ msgstr "सभी ट्रैक"
+
+#~ msgid "All Tracks Plus"
+#~ msgstr "सभी लंबे ट्रैक"
+
+#~ msgid "Blue"
+#~ msgstr "नीला"
+
+#~ msgctxt "color"
+#~ msgid "White"
+#~ msgstr "सफ़ेद"
+
+#~ msgid "Path:"
+#~ msgstr "पथ :"
+
+#~ msgid "Capture What:"
+#~ msgstr "क्या कैद करें:"
+
+#~ msgid "Background:"
+#~ msgstr "परिदृश्य :"
+
+#~ msgid "Bring To Top"
+#~ msgstr "सबसे ऊपर लाएं"
+
+#, c-format
+#~ msgid "Error trying to save file: %s"
+#~ msgstr "फ़ाइल संचयन में त्रुटि : %s"
+
+#~ msgid "&Screenshot..."
+#~ msgstr "स्क्रीनशॉट...(&S)"
+
+#~ msgid "Screenshot (short format)..."
+#~ msgstr "स्क्रीनशॉट (छोटा प्रारूप)..."
+
+#~ msgid "Show alternative &styling (Mac vs PC)"
+#~ msgstr "दूसरे स्टाइल दिखाएं (Mac बनाम PC)"
 
 #~ msgid "No devices found\n"
 #~ msgstr "कोई यंत्र नहीं मिला\n"
@@ -18490,14 +19959,8 @@ msgstr "त्रुटि.~%स्टिरियो ट्रैक चाह�
 #~ msgid "How to get help"
 #~ msgstr "मदद कैसे पाएं"
 
-#~ msgid "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://manual.audacityteam.org/quick_help.html|view online]]"
-#~ msgstr "[[help:Quick_Help|त्वरित सहायता]] - यदि स्थानीय स्तर पर स्थापित नहीं है, तो ऑनलाइन देखें"
-
 #~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
 #~ msgstr " [[https://forum.audacityteam.org/|फोरम]] - अपने प्रश्न सीधे ऑनलाइन पूछें."
-
-#~ msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
-#~ msgstr "लगता है मदद पुस्तिका स्थापित नहीं है. कृपया [[*URL*|मदद सामग्री ऑनलाइन देखें]].<br><br>हमेशा मैनुअल ऑनलाइन देखने के लिए, \"मैनुअल निवासस्थान\" को इंटरफेस में पसंद बदलकर \"इंटरनेट से\" करें."
 
 #~ msgid "Project check read faulty Sequence tags."
 #~ msgstr "परियोजना जाँच ने त्रुटिपूर्ण टैग क्रमांकों को पढ़ा."
@@ -18700,9 +20163,6 @@ msgstr "त्रुटि.~%स्टिरियो ट्रैक चाह�
 #~ msgid "Only lame_enc.dll"
 #~ msgstr "Only lame_enc.dll"
 
-#~ msgid "Only libmp3lame64bit.dylib"
-#~ msgstr "केवल libmp3lame64bit.dylib"
-
 #~ msgid "Only libmp3lame.so.0"
 #~ msgstr "केवल libmp3lame.so.0"
 
@@ -18730,12 +20190,6 @@ msgstr "त्रुटि.~%स्टिरियो ट्रैक चाह�
 #, c-format
 #~ msgid "Invalid project '%s' attribute."
 #~ msgstr "अमान्य प्रोजेक्ट '%s' विशेषण."
-
-#, c-format
-#~ msgid "%d of %d clip %s"
-#~ msgid_plural "%d of %d clips %s"
-#~ msgstr[0] "%d कुल %d क्लिप %s"
-#~ msgstr[1] "%d कुल %d क्लिप्स %s"
 
 #~ msgid "Mi&xer"
 #~ msgstr "मिक्सर औजार-पट्टी (&x)"
