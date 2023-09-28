@@ -25,137 +25,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Tok je aktiven … ni mogoče zbrati informacij.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default recording device number: %d"
-msgstr "Izberite snemalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default playback device number: %d"
-msgstr "Izberite predvajalno napravo"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Ni naprav"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device info unavailable for: %d"
-msgstr "Podatki o napravi niso na voljo."
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device ID: %d"
-msgstr "&Naprava:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device name: %s"
-msgstr "Naprave"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Host name: %s"
-msgstr "Ime: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Recording channels: %d"
-msgstr "Snemalni kanali"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Playback channels: %d"
-msgstr "Raven predvajanja"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Low Recording Latency: %g"
-msgstr "Konec snemanja:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Low Playback Latency: %g"
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "High Recording Latency: %g"
-msgstr "Konec snemanja:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "High Playback Latency: %g"
-msgstr ""
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-msgid "Supported Rates:"
-msgstr "Mere vzorčenja"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected recording device: %d - %s"
-msgstr "Izberite snemalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "No recording device found for '%s'."
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected playback device: %d - %s"
-msgstr "Izberite predvajalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No playback device found for '%s'."
-msgstr "Ni naprav"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-msgid "Cannot check mutual sample rates without both devices."
-msgstr ""
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Supports output: %d"
-msgstr "Pokaži izhod"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Supports input: %d"
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Opened: %d"
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Izberite snemalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "No MIDI recording device found for '%s'."
-msgstr ""
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Izberite predvajalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "No MIDI playback device found for '%s'."
-msgstr ""
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -177,52 +50,9 @@ msgstr "milisekund"
 msgid "Message"
 msgstr "Sporočilo"
 
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error in %s at %s line %d.\n"
-"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
-msgstr ""
-
-#: libraries/lib-exceptions/InconsistencyException.cpp
-#, c-format
-msgid ""
-"Internal error at %s line %d.\n"
-"Please inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues."
-msgstr ""
-
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "Notranja napaka"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid "Tenacity failed to open a file in %s."
-msgstr ""
-"Odpiranje datoteke zbirke podatkov je spodletelo:\n"
-"\n"
-"%s"
-
-#: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Tenacity failed to read from a file in %s."
-msgstr ""
-
-#: libraries/lib-files/FileException.cpp
-#, c-format
-msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
-msgstr ""
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je poln.\n"
-"%s\n"
-"Za namige o sproščanju prostora kliknite gumb za pomoč."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -592,11 +422,6 @@ msgstr "%s, spletni razvijalec"
 msgid "%s, graphics"
 msgstr "%s, grafično oblikovanje"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, razvijalec in soustanovitelj"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -604,22 +429,10 @@ msgstr "%s, razvijalec in soustanovitelj"
 msgid "%s, Tenacity developer"
 msgstr "%s, spletni razvijalec"
 
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "%s, spletni razvijalec"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
-msgstr "%s, spletni razvijalec"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity contributor"
 msgstr "%s, spletni razvijalec"
 
 #: src/AboutDialog.cpp
@@ -649,16 +462,6 @@ msgid "translator_credits"
 msgstr "Slovenski prevod: Martin Srebotnjak"
 
 #: src/AboutDialog.cpp
-msgid "<h1>"
-msgstr ""
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s is a free, open source, cross-platform software for recording and editing audio.<br><br>"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "Credits"
 msgstr "Zasluge"
 
@@ -673,28 +476,8 @@ msgid "Contributors"
 msgstr "Avtorji prispevkov"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-msgid "Emeritus"
-msgstr "Zaslužni člani ekipe:"
-
-#: src/AboutDialog.cpp
-msgid "Distinguished Tenacity Team members that aren't currently active"
-msgstr ""
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Audacity Team Members"
-msgstr "Člani ekipe %s"
-
-#: src/AboutDialog.cpp
 msgid "Emeritus:"
 msgstr "Zaslužni člani ekipe:"
-
-#. i18n-hint: The program's name substitutes for %s
-#: src/AboutDialog.cpp
-msgid "Distinguished Audacity Team members, not currently active"
-msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "Website and Graphics"
@@ -724,17 +507,6 @@ msgstr "Posebna zahvala:"
 msgid "%s website: "
 msgstr "Spletišče %s: "
 
-#. i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
-#. name substitues the 2nd.
-#: src/AboutDialog.cpp
-#, c-format
-msgid "Copyright %s 2021-2023 %s Team."
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
-msgstr ""
-
 #: src/AboutDialog.cpp
 msgid "Build Information"
 msgstr "Informacije o gradnji"
@@ -748,11 +520,6 @@ msgstr "Omogočeno"
 #: src/export/ExportFFmpegDialogs.cpp src/prefs/ModulePrefs.cpp
 msgid "Disabled"
 msgstr "Onemogočeno"
-
-#. i18n-hint: Information about when audacity was compiled follows
-#: src/AboutDialog.cpp
-msgid "This Build"
-msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "Program build date:"
@@ -770,10 +537,6 @@ msgstr "Vrsta gradnje:"
 msgid "Compiler:"
 msgstr "Prevajalnik:"
 
-#: src/AboutDialog.cpp
-msgid "wxWidgets:"
-msgstr ""
-
 #. i18n-hint: The directory audacity is installed into (on *nix systems)
 #: src/AboutDialog.cpp
 msgid "Installation Prefix:"
@@ -782,25 +545,6 @@ msgstr "Namestitvena predpona poti:"
 #: src/AboutDialog.cpp
 msgid "Settings folder:"
 msgstr "Mapa z nastavitvami:"
-
-#. i18n-hint: Libraries that are essential to audacity
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Core Libraries"
-msgstr "Knjižnice"
-
-#: src/AboutDialog.cpp
-msgid "Cross-platform GUI library"
-msgstr ""
-
-#: src/AboutDialog.cpp
-msgid "Audio playback and recording"
-msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Sample rate conversion"
-msgstr "Pretvornik &frekvence vzorčenja:"
 
 #: src/AboutDialog.cpp
 msgid "File Format Support"
@@ -820,11 +564,6 @@ msgstr "Uvoz in izvoz Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Podpora značkam ID3"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Matroska import and export"
-msgstr "Uvoz in izvoz FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -994,11 +733,6 @@ msgid "Error: %s"
 msgstr "Napaka:  %s"
 
 #: src/AudioIO.cpp
-#, fuzzy
-msgid "PortAudio Error"
-msgstr "Vrzi napako"
-
-#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
 msgstr "Pri inicializaciji V/I ravni MIDI je prišlo do napake.\n"
 
@@ -1009,15 +743,6 @@ msgid ""
 msgstr ""
 "Ne boste mogli predvajati MIDI.\n"
 "\n"
-
-#: src/AudioIO.cpp
-msgid "PortMidi Error"
-msgstr ""
-
-#: src/AudioIO.cpp
-#, fuzzy
-msgid "Tenacity Audio"
-msgstr "Poreži zvok"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -1031,13 +756,6 @@ msgstr ""
 #: src/AutoRecoveryDialog.cpp
 msgid "Automatic Crash Recovery"
 msgstr "Samodejna obnovitev po sesutju"
-
-#: src/AutoRecoveryDialog.cpp
-msgid ""
-"The following projects were not saved properly the last time Tenacity was run and can be automatically recovered.\n"
-"\n"
-"After recovery, save the projects to ensure changes are written to disk."
-msgstr ""
 
 #: src/AutoRecoveryDialog.cpp
 msgid "Recoverable &projects"
@@ -1054,10 +772,6 @@ msgstr "Izberi"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "Ime"
-
-#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
-msgid "&Quit Tenacity"
-msgstr ""
 
 #: src/AutoRecoveryDialog.cpp
 msgid "&Discard Selected"
@@ -1587,11 +1301,6 @@ msgstr "Gradnja za razhroščevanje (raven razhroščevanja %d)"
 msgid "Release build (debug level %d)"
 msgstr "Uradna izdaja (raven razhroščevanja %d)"
 
-#: src/BuildInfo.h
-#, fuzzy
-msgid ", 64 bits"
-msgstr "24-bitno"
-
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
@@ -2001,55 +1710,9 @@ msgstr "Zapeci na CD"
 msgid "No Local Help"
 msgstr "Ni krajevne pomoči"
 
-#: src/HelpText.cpp src/SplashDialog.cpp
-msgid "Welcome to Tenacity!"
-msgstr ""
-
-#. i18n-hint: %s is the program's version string
-#: src/HelpText.cpp
-#, c-format
-msgid "You are using Tenacity %s. Tenacity is a fork of Audacity"
-msgstr ""
-
-#: src/HelpText.cpp
-msgid "Need Help?"
-msgstr ""
-
-#: src/HelpText.cpp
-msgid "We have several support methods:"
-msgstr ""
-
-#. i18n-hint: Preserve '[[help:Quick_Help|' as it's the name of a link.
-#: src/HelpText.cpp
-msgid "[[help:Quick_Help|Quick Help]]"
-msgstr ""
-
-#. i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.
-#: src/HelpText.cpp
-#, fuzzy
-msgid " [[help:Main_Page|Tenacity Manual]] - if not installed locally, [[https://tenacityaudio.org/docs/index.html|view online]]"
-msgstr " [[file:Quick_Help|Hitra pomoč]] - če ni nameščena na računalniku, si jo [[https://manual.audacityteam.org/quick_help.html|oglejte na spletu]]."
-
-#: src/HelpText.cpp
-msgid "More:</b> Visit our [[https://codeberg.org/tenacityteam/tenacity/wiki|Wiki]] for tips, tricks, extra tutorials and effects plug-ins."
-msgstr ""
-
-#: src/HelpText.cpp
-msgid "Tenacity can import unprotected files in many other formats (such as M4A and WMA, compressed WAV files from portable recorders and audio from video files) if you download and install the optional [[https://tenacityaudio.org/docs/_content/FFmpeg.html|FFmpeg library]] to your computer."
-msgstr ""
-
 #: src/HelpText.cpp
 msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
 msgstr "Preberete si lahko tudi pomoč pri uvažanju [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#midi|datotek MIDI]] in posnetkov z [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd|zvočnih zgoščenk]]."
-
-#: src/HelpText.cpp
-#, fuzzy
-msgid "The Manual does not appear to be installed. Please [[*URL*|view the Manual online]] or [[https://codeberg.org/tenacityteam/tenacity-manual/releases| download the Manual]].<br><br>To always view the Manual online, change \"Location of Manual\" in Interface Preferences to \"From Internet\"."
-msgstr "Priročnik ni nameščen. [[*URL*|Oglejte si priročnik na spletu (v angl.)]].<br><br>Če želite priročnik vedno brskati prek spleta, spremenite »Mesto priročnika« nastavitvah vmesnika na »Z interneta«."
-
-#: src/HelpText.cpp
-msgid "View latest stable release"
-msgstr ""
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -2106,11 +1769,6 @@ msgstr "S strnjevanjem se je sprostilo %s prostora na disku."
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "&Zgodovina ..."
-
-#: src/JournalEvents.cpp
-#, fuzzy
-msgid "Journal recording failed"
-msgstr "Posnetek shranjen:"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -2193,16 +1851,6 @@ msgstr "Steza z oznakami"
 msgid "One or more saved labels could not be read."
 msgstr "Ene ali več shranjenih oznak ni mogoče prebrati."
 
-#. i18n-hint: Title on a dialog indicating that this is the first
-#. * time Audacity has been run.
-#: src/LangChoice.cpp
-msgid "Tenacity First Run"
-msgstr ""
-
-#: src/LangChoice.cpp
-msgid "Choose Language for Tenacity to use:"
-msgstr ""
-
 #. i18n-hint: The %s's are replaced by translated and untranslated
 #. * versions of language names.
 #: src/LangChoice.cpp
@@ -2231,10 +1879,6 @@ msgstr ""
 msgid "Opening Audacity Project"
 msgstr "Odpiranje projekta Audacity"
 
-#: src/LogWindow.cpp
-msgid "Tenacity Log"
-msgstr ""
-
 #: src/LogWindow.cpp src/Tags.cpp
 msgid "&Save..."
 msgstr "&Shrani ..."
@@ -2261,11 +1905,6 @@ msgstr "Shrani zapisnik v:"
 #, c-format
 msgid "Couldn't save log to file: %s"
 msgstr "Zapisnika ni mogoče shraniti v datoteko: %s"
-
-#: src/LyricsWindow.cpp
-#, c-format
-msgid "Tenacity Karaoke%s"
-msgstr ""
 
 #: src/LyricsWindow.cpp
 msgid "&Karaoke..."
@@ -2313,11 +1952,6 @@ msgstr "Zmešaj in izdelaj"
 #: src/Mix.cpp
 msgid "Mixing and rendering tracks"
 msgstr "Mešanje in izdelava stez"
-
-#: src/MixerBoard.cpp
-#, c-format
-msgid "Tenacity Mixer Board%s"
-msgstr ""
 
 #. i18n-hint: title of the Gain slider, used to adjust the volume
 #. i18n-hint: Title of the Gain slider, used to adjust the volume
@@ -2410,17 +2044,6 @@ msgstr ""
 "Ne bo naložen."
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
-msgid ""
-"The module \"%s\" is matched with Tenacity version \"%s\".\n"
-"\n"
-"It will not be loaded."
-msgstr ""
-"Modul »%s« ne ponuja niza različice.\n"
-"\n"
-"Ne bo naložen."
-
-#: src/ModuleManager.cpp
 #, c-format
 msgid ""
 "The module \"%s\" failed to initialize.\n"
@@ -2455,11 +2078,6 @@ msgstr "Da"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Ne"
-
-#: src/ModuleManager.cpp
-#, fuzzy
-msgid "Tenacity Module Loader"
-msgstr "%s, spletni razvijalec"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2776,22 +2394,8 @@ msgid "Mismatched Sampling Rates"
 msgstr "Neujemajoče mere vzorčenja"
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
-msgid ""
-"Too few tracks are selected for recording at this sample rate.\n"
-"(Tenacity requires two channels at the same sample rate for\n"
-"each stereo track)"
-msgstr ""
-
-#: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "Too Few Compatible Tracks Selected"
 msgstr "Izbranih je premalo združljivih stez"
-
-#. i18n-hint a numerical suffix added to distinguish otherwise like-named clips when new record started
-#: src/ProjectAudioManager.cpp
-#, c-format
-msgctxt "clip name template"
-msgid "%s #%d"
-msgstr ""
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -2811,26 +2415,12 @@ msgid "Dropouts"
 msgstr "Izpuščeni deli"
 
 #: src/ProjectAudioManager.cpp
-msgid ""
-"Recorded audio was lost at the labeled locations. Possible causes:\n"
-"\n"
-"Other applications are competing with Tenacity for processor time\n"
-"\n"
-"You are saving directly to a slow external storage device\n"
-msgstr ""
-
-#: src/ProjectAudioManager.cpp
 msgid "Turn off dropout detection"
 msgstr "Izključi zaznavo izpuščenih delov"
 
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<neimenovano>"
-
-#: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid "[Project %02i] "
-msgstr "[Projekt %02i] Audacity »%s«"
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2888,13 +2478,6 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
 msgstr "To ni projektna datoteka Audacity"
-
-#: src/ProjectFileIO.cpp
-msgid ""
-"This project was created with a version of Audacity that is not supported by Tenacity.\n"
-"\n"
-"You will need to use that version to open it."
-msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
@@ -2979,10 +2562,6 @@ msgid "Total orphan blocks deleted %d"
 msgstr "Skupaj izbrisanih osirotelih blokov: %d"
 
 #: src/ProjectFileIO.cpp
-msgid "Failed to rollback transaction during import"
-msgstr ""
-
-#: src/ProjectFileIO.cpp
 msgid "Unable to attach destination database"
 msgstr "Ciljne zbirke podatkov ni mogoče pripeti."
 
@@ -3037,17 +2616,6 @@ msgid "Error Writing to File"
 msgstr "Napaka pri pisanju v datoteko"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je poln.\n"
-"%s\n"
-"Za namige o sproščanju prostora kliknite gumb za pomoč."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Strnjevanje projekta"
 
@@ -3061,14 +2629,6 @@ msgstr "[Projekt %02i] Audacity »%s«"
 #: src/ProjectFileIO.cpp
 msgid "(Recovered)"
 msgstr "(obnovljeno)"
-
-#. i18n-hint: %s will be replaced by the version number.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid ""
-"This file was saved using Audacity %s (or a derivative of the same version, possibly Tenacity).\n"
-"You are using Tenacity %s. You may need to upgrade to a newer version to open this file."
-msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "Can't open project file"
@@ -3132,21 +2692,6 @@ msgstr ""
 #: src/ProjectFileIO.cpp
 msgid "Backing up project"
 msgstr "Varnostno kopiranje projekta"
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"This project was not saved properly the last time Tenacity ran.\n"
-"\n"
-"It has been recovered to the last snapshot."
-msgstr ""
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"This project was not saved properly the last time Tenacity ran.\n"
-"\n"
-"It has been recovered to the last snapshot, but you must save it\n"
-"to preserve its contents."
-msgstr ""
 
 #: src/ProjectFileManager.cpp
 msgid "Project Recovered"
@@ -3339,13 +2884,6 @@ msgstr "Projekt je bil obnovljen"
 msgid "Recover"
 msgstr "Obnovi"
 
-#. i18n-hint Name default name assigned to a clip on track import
-#: src/ProjectFileManager.cpp
-#, fuzzy, c-format
-msgctxt "clip name template"
-msgid "%s %d"
-msgstr "%s %d od %d"
-
 #: src/ProjectFileManager.cpp
 #, c-format
 msgid "Imported '%s'"
@@ -3372,18 +2910,6 @@ msgid "Compact Project"
 msgstr "Strni projekt"
 
 #: src/ProjectFileManager.cpp
-#, c-format
-msgid ""
-"Compacting this project will free up disk space by removing unused bytes within the file.\n"
-"\n"
-"There is %s of free disk space and this project is currently using %s.\n"
-"\n"
-"If you proceed, the current Undo/Redo History and clipboard contents will be discarded and you will recover approximately %s of disk space.\n"
-"\n"
-"Do you want to continue?"
-msgstr ""
-
-#: src/ProjectFileManager.cpp
 msgid "Compacted project file"
 msgstr "Strnjena projektna datoteka"
 
@@ -3398,11 +2924,6 @@ msgstr "Ustvarjen nov projekt"
 #: src/ProjectHistory.cpp
 msgid "Automatic database backup failed."
 msgstr "Samodejno varnostno kopiranje zbirke podatkov je spodletelo."
-
-#: src/ProjectManager.cpp
-#, c-format
-msgid "Welcome to Tenacity version %s"
-msgstr ""
 
 #. i18n-hint: The first %s numbers the project, the second %s is the project name.
 #: src/ProjectManager.cpp
@@ -3463,12 +2984,6 @@ msgstr[3] "%d minut"
 msgid "%s and %s."
 msgstr "%s in %s."
 
-#: src/ProjectSerializer.cpp
-msgid ""
-"This recovery file was saved by Audacity 2.3.0 or before.\n"
-"You need to run that version of Audacity (NOT Tenacity) to recover the project."
-msgstr ""
-
 #: src/ProjectWindow.cpp
 msgid "Horizontal Scrollbar"
 msgstr "Vodoravni drsni trak"
@@ -3517,15 +3032,6 @@ msgstr "Z zvokom aktivirano snemanje Audacity"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Raven aktivacije (dB):"
-
-#: src/SplashDialog.cpp
-msgid "The version of Tenacity you are using is a pre-release version. Use of these releases in production environments is discouraged. This version of Tenacity might contain (unknown) bugs along with possible data loss."
-msgstr ""
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "%s, spletni razvijalec"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3667,11 +3173,6 @@ msgstr ""
 "To je enkratno vprašanje po 'namestitvi', kjer ste zahtevali ponastavitev možnosti."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid "Reset Tenacity Preferences"
-msgstr "&Uporabi nastavitve"
-
-#: src/TenacityApp.cpp
 #, c-format
 msgid ""
 "%s could not be found.\n"
@@ -3683,28 +3184,8 @@ msgstr ""
 "Odstranjeno s seznama nedavnih datotek."
 
 #: src/TenacityApp.cpp
-msgid "SQLite library failed to initialize. Tenacity cannot continue."
-msgstr ""
-
-#: src/TenacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
 msgstr "Velikost bloka mora biti med 256 in 100000000\n"
-
-#: src/TenacityApp.cpp
-msgid "Tenacity is starting up..."
-msgstr ""
-
-#: src/TenacityApp.cpp
-#, c-format
-msgid ""
-"Tenacity has encountered a critical error. This is likely to do with your platform.\n"
-"\n"
-"Error message (for devs): %s"
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid "Tenacity - Critical Error"
-msgstr ""
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -3715,10 +3196,6 @@ msgstr "&Odpri ..."
 msgid "Open &Recent..."
 msgstr "Odpri ne&davne ..."
 
-#: src/TenacityApp.cpp src/menus/HelpMenus.cpp
-msgid "&About Tenacity..."
-msgstr ""
-
 #: src/TenacityApp.cpp
 msgid "&Preferences..."
 msgstr "&Nastavitve ..."
@@ -3728,57 +3205,8 @@ msgid "&File"
 msgstr "&Datoteka"
 
 #: src/TenacityApp.cpp
-msgid ""
-"Tenacity could not find a safe place to store temporary files.\n"
-"\n"
-"Tenacity needs a place where automatic cleanup programs won't delete the temporary files. Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid ""
-"Tenacity could not find a place to store temporary files.\n"
-"Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid "Tenacity is now going to exit. Please launch Tenacity again to use the new temporary directory."
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid ""
-"Running two copies of Tenacity simultaneously may cause\n"
-"data loss or cause your system to crash.\n"
-"\n"
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid ""
-"Tenacity was not able to lock the temporary files directory.\n"
-"This folder may be in use by another copy of Tenacity.\n"
-msgstr ""
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Do you still want to start Tenacity?"
-msgstr "Želite shraniti spremembe?"
-
-#: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "Napaka pri zaklepu začasne mape"
-
-#: src/TenacityApp.cpp
-msgid "The system has detected that another copy of Tenacity is running.\n"
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid ""
-"Use the New or Open commands in the currently running Tenacity\n"
-" process to open multiple projects simultaneously.\n"
-msgstr ""
-
-#: src/TenacityApp.cpp
-msgid "Tenacity is already running"
-msgstr ""
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3791,10 +3219,6 @@ msgstr ""
 "\n"
 "Razlog je verjetno pomanjkanje virov\n"
 "in morda je potreben ponovne zagon."
-
-#: src/TenacityApp.cpp
-msgid "Tenacity Startup Failure"
-msgstr ""
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3833,28 +3257,8 @@ msgstr ""
 "in morda je potreben ponovne zagon."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-msgid ""
-"The Tenacity IPC server failed to initialize.\n"
-"\n"
-"This is likely due to a resource shortage\n"
-"and a reboot may be required."
-msgstr ""
-"Semaforja strežnika ni mogoče pridobiti.\n"
-"\n"
-"Razlog je verjetno pomanjkanje virov\n"
-"in morda je potreben ponovne zagon."
-
-#: src/TenacityApp.cpp
 msgid "An unrecoverable error has occurred during startup"
 msgstr "Pri zagonu je prišlo do nepopravljive napake"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Another copy of Tenacity has been detectedrunning on this system. Running multiple copies ofTenacity is not supported\n"
-"\n"
-"You will now be redirected to the running copy."
-msgstr ""
 
 #. i18n-hint: This controls the number of bytes that Audacity will
 #. *           use when writing files to the disk
@@ -3872,12 +3276,6 @@ msgstr "to sporočilo pomoči"
 msgid "run self diagnostics"
 msgstr "izvedi samodiagnostiko"
 
-#. i18n-hint: This displays the Audacity version
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "display Tenacity version"
-msgstr "%s, spletni razvijalec"
-
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -3885,34 +3283,8 @@ msgid "audio or project file name"
 msgstr "ime datoteke zvoka ali projekta"
 
 #: src/TenacityApp.cpp
-msgid ""
-"Audacity project files (.aup3) are currently not associated with Tenacity. Double clicking an Audacity project file will not open in Tenacity by default.\n"
-"\n"
-"Would you like to associate Audacity project files with Tenacity?"
-msgstr ""
-
-#: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Projektne datoteke Audacity"
-
-#: src/TenacityFileConfig.cpp
-#, fuzzy
-msgid "Tenacity Configuration Error"
-msgstr "Ponastavi prila&goditev"
-
-#: src/TenacityFileConfig.cpp
-#, c-format
-msgid ""
-"The following configuration file could not be accessed:\n"
-"\n"
-"\t%s\n"
-"\n"
-"This could be caused by many reasons, but the most likely are that the disk is full or you do not have write permissions to the file. More information can be obtained by clicking the help button below.\n"
-"\n"
-"You can attempt to correct the issue and then click \"Retry\" to continue.\n"
-"\n"
-"If you choose to \"Quit Tenacity\", your project may be left in an unsaved state which will be recovered the next time you open it."
-msgstr ""
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3945,11 +3317,6 @@ msgstr "Trajanje"
 #: src/TimeTrack.cpp src/TrackPanelAx.cpp
 msgid "Time Track"
 msgstr "Časovna steza"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record"
-msgstr "Časovno omejeno snemanje"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -4042,11 +3409,6 @@ msgstr "Samodejni izvoz omogočen:"
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
 msgstr "Dejanje po časovno omejenem snemanju:"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record Progress"
-msgstr "Napaka pri shranjevanju časovno omejenega projekta"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -4200,10 +3562,6 @@ msgid "Do nothing"
 msgstr "Ne naredi ničesar"
 
 #: src/TimerRecordDialog.cpp
-msgid "Exit Tenacity"
-msgstr ""
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Ponovno zaženi računalnik"
 
@@ -4222,10 +3580,6 @@ msgstr "Trajanje snemanja:"
 #: src/TimerRecordDialog.cpp
 msgid "Scheduled to stop at:"
 msgstr "Načrtovan zaključek ob:"
-
-#: src/TimerRecordDialog.cpp
-msgid "Tenacity Timer Record - Waiting for Start"
-msgstr ""
 
 #. i18n-hint: "in" means after a duration of time,
 #. which is shown below this string
@@ -4248,11 +3602,6 @@ msgstr "Posnetek shranjen:"
 #: src/TimerRecordDialog.cpp
 msgid "Recording Exported:"
 msgstr "Posnetek izvožen:"
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Tenacity Timer Record - Waiting"
-msgstr "Časovno omejeno snemanje"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
@@ -4422,20 +3771,6 @@ msgstr "Kalibracija zaključena"
 msgid "Resampling failed."
 msgstr "Prevzorčenje je spodletelo."
 
-#. i18n-hint Template for clip name generation on copy-paste
-#: src/WaveTrack.cpp
-#, c-format
-msgctxt "clip name template"
-msgid "%s.%i"
-msgstr ""
-
-#. i18n-hint Template for clip name generation on inserting new empty clip
-#: src/WaveTrack.cpp
-#, c-format
-msgctxt "clip name template"
-msgid "%s %i"
-msgstr ""
-
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "Ni dovolj prostora, da bi prilepili izbor"
@@ -4443,12 +3778,6 @@ msgstr "Ni dovolj prostora, da bi prilepili izbor"
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "Ni dovolj prostora, da bi razpostrli črto reza"
-
-#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
-#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
-#, fuzzy
-msgid "Tenacity"
-msgstr "Zapisnik Audacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -4646,10 +3975,6 @@ msgstr "Ovojnice"
 msgid "Labels"
 msgstr "Oznake"
 
-#: src/commands/GetInfoCommand.cpp
-msgid "Boxes"
-msgstr ""
-
 #. i18n-hint JavaScript Object Notation
 #: src/commands/GetInfoCommand.cpp src/commands/HelpCommand.cpp
 msgid "JSON"
@@ -4724,18 +4049,6 @@ msgstr "Izvoz v datoteko."
 #: src/commands/LoadCommands.cpp
 msgid "Builtin Commands"
 msgstr "Vgrajeni ukazi"
-
-#: src/commands/LoadCommands.cpp src/effects/LoadEffects.cpp
-#: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
-#: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LoadLV2.cpp
-#: src/effects/nyquist/LoadNyquist.cpp src/effects/vamp/LoadVamp.cpp
-msgid "The Tenacity Team and contributors"
-msgstr ""
-
-#: src/commands/LoadCommands.cpp
-#, fuzzy
-msgid "Provides builtin commands to Tenacity"
-msgstr "Neznano ime vgrajenega ukaza"
 
 #: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
@@ -5686,156 +4999,14 @@ msgstr "Čas napada %.2f s"
 msgid "Release Time %.1f secs"
 msgstr "Čas upada %.1f s"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Exponential-Fit"
-msgstr "Eksponentni izhod"
-
-#: src/effects/Compressor2.cpp
-msgid "Analog Model"
-msgstr ""
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "peak amplitude"
-msgstr "Vrhnja amplituda (dB)"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Reduction"
-msgstr "Odstranjevanje šuma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Peak Reduction"
-msgstr "Odstranjevanje šuma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Analog Limiter"
-msgstr "Omejevalnik"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Compressor"
-msgstr "Stiskalnik"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Določi glasnost ene ali več stez"
-
-#: src/effects/Compressor2.cpp
-msgid "Envelope dependent gain"
-msgstr ""
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compressor step response"
-msgstr "&Stisni na osnovi vrhov"
-
-#: src/effects/Compressor2.cpp
-msgid "Compressor step response plot"
-msgstr ""
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritem"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Envelope Algorithm:"
-msgstr "&Algoritem:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress based on:"
-msgstr "&Stisni na osnovi vrhov"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress stereo channels independently"
-msgstr "Stereo kanala n&ormaliziraj neodvisno"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Ratio:"
-msgstr "&Razmerje:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width:"
-msgstr "Širina:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width"
-msgstr "Širina:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain:"
-msgstr "&Izhodna ojačitev (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain"
-msgstr "Izhodna ojačitev (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack:"
-msgstr "&Napadalni čas:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack"
-msgstr "Napadalni čas"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release:"
-msgstr "Čas &upada:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release"
-msgstr "Čas upada"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time:"
-msgstr "Trajanje glajenja:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time"
-msgstr "Trajanje glajenja"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time:"
-msgstr "Končni čas:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time"
-msgstr "Končni čas"
-
-#: src/effects/Compressor2.cpp
-#, c-format
-msgid "Compressor gain reduction: %.1f dB"
-msgstr ""
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6823,10 +5994,6 @@ msgid "Bass Cut"
 msgstr "Porezava nizkih tonov"
 
 #: src/effects/Equalization.cpp
-msgid "Low rolloff for speech"
-msgstr ""
-
-#: src/effects/Equalization.cpp
 msgid "RIAA"
 msgstr "RIAA"
 
@@ -7194,31 +6361,6 @@ msgstr "Na izbranem zvoku uveljavi linearno pojemanje"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Na izbranem zvoku uveljavi linearno pojemanje"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Find Clicks"
-msgstr "Najdi porezano"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Creates labels where clicks are detected"
-msgstr "Ustvari oznake, kjer zazna porezavo"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Clicks"
-msgstr "Klikni"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Right"
-msgstr "Klikni"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Left"
-msgstr "Klikni"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Najdi porezano"
@@ -7254,10 +6396,6 @@ msgstr "Obrne zvočne vzorce, preobrne njihovo polarnost"
 #: src/effects/LoadEffects.cpp
 msgid "Builtin Effects"
 msgstr "Vgrajeni učinki"
-
-#: src/effects/LoadEffects.cpp
-msgid "Provides builtin effects to Tenacity"
-msgstr ""
 
 #: src/effects/LoadEffects.cpp
 msgid "Unknown built-in effect name"
@@ -7480,12 +6618,6 @@ msgstr "Stara občutljivost"
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "Step 1"
 msgstr "1. korak"
-
-#: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
-msgid ""
-"Select a few seconds of just noise so Tenacity knows what to filter out,\n"
-"then click Get Noise Profile:"
-msgstr ""
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "&Get Noise Profile"
@@ -8337,10 +7469,6 @@ msgid "VST Effects"
 msgstr "Učinki VST"
 
 #: src/effects/VST/VSTEffect.cpp
-msgid "Adds the ability to use VST effects in Tenacity."
-msgstr ""
-
-#: src/effects/VST/VSTEffect.cpp
 msgid "Scanning Shell VST"
 msgstr "Pregledovanje vstavkov VST"
 
@@ -8362,10 +7490,6 @@ msgstr "Možnosti učinkov VST"
 msgid "Buffer Size"
 msgstr "Velikost medpomnilnika"
 
-#: src/effects/VST/VSTEffect.cpp src/effects/lv2/LV2Effect.cpp
-msgid "The buffer size controls the number of samples sent to the effect on each iteration. Smaller values will cause slower processing and some effects require 8192 samples or less to work properly. However most effects can accept large buffers and using them will greatly reduce processing time."
-msgstr ""
-
 #: src/effects/VST/VSTEffect.cpp
 msgid "&Buffer Size (8 to 1048576 samples):"
 msgstr "Velikost &medpomnilnika (8-1048576 vzorcev):"
@@ -8374,10 +7498,6 @@ msgstr "Velikost &medpomnilnika (8-1048576 vzorcev):"
 #: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LV2Effect.cpp
 msgid "Latency Compensation"
 msgstr "Kompenzacija latence"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "As part of their processing, some VST effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all VST effects."
-msgstr ""
 
 #: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
 #: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LV2Effect.cpp
@@ -8413,11 +7533,6 @@ msgstr "Standardna programska datoteka VST"
 #: src/effects/VST/VSTEffect.cpp
 msgid "Standard VST program file"
 msgstr "Standardna programska datoteka VST"
-
-#: src/effects/VST/VSTEffect.cpp
-#, fuzzy
-msgid "Tenacity VST preset file"
-msgstr "Datoteke prednastavitev VST"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -8501,11 +7616,6 @@ msgid "Audio Unit Effects"
 msgstr "Učinki zvočne enote"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Možnosti učinkov Audio Unit"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
 msgstr "Komponente ni mogoče najti"
 
@@ -8518,16 +7628,8 @@ msgid "Audio Unit Effect Options"
 msgstr "Možnosti učinkov Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "As part of their processing, some Audio Unit effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all Audio Unit effects."
-msgstr ""
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "User Interface"
 msgstr "Uporabniški vmesnik"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Select \"Full\" to use the graphical interface if supplied by the Audio Unit. Select \"Generic\" to use the system supplied generic interface. Select \"Basic\" for a basic text-only interface. Reopen the effect for this to take effect."
-msgstr ""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Select &interface"
@@ -8672,16 +7774,8 @@ msgid "Provides LADSPA Effects"
 msgstr "Zagotavlja učinke LADSPA"
 
 #: src/effects/ladspa/LadspaEffect.cpp
-msgid "Tenacity no longer uses vst-bridge"
-msgstr ""
-
-#: src/effects/ladspa/LadspaEffect.cpp
 msgid "LADSPA Effect Options"
 msgstr "Nastavitve učinka LADSPA"
-
-#: src/effects/ladspa/LadspaEffect.cpp
-msgid "As part of their processing, some LADSPA effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all LADSPA effects."
-msgstr ""
 
 #. i18n-hint: An item name introducing a value, which is not part of the string but
 #. appears in a following text box window; translate with appropriate punctuation
@@ -8711,10 +7805,6 @@ msgstr "Nastavitve učinka LV2"
 #, c-format
 msgid "&Buffer Size (8 to %d) samples:"
 msgstr "Velikost &medpomnilnika (8-%d vzorcev):"
-
-#: src/effects/lv2/LV2Effect.cpp
-msgid "As part of their processing, some LV2 effects must delay returning audio to Tenacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this setting will provide that compensation, but it may not work for all LV2 effects."
-msgstr ""
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
@@ -8748,17 +7838,9 @@ msgstr "LV2"
 msgid "LV2 Effects"
 msgstr "Učinki LV2"
 
-#: src/effects/lv2/LoadLV2.cpp
-msgid "Provides LV2 Effects support to Tenacity"
-msgstr ""
-
 #: src/effects/nyquist/LoadNyquist.cpp
 msgid "Nyquist Effects"
 msgstr "Učinki Nyquist"
-
-#: src/effects/nyquist/LoadNyquist.cpp
-msgid "Provides Nyquist Effects support to Tenacity"
-msgstr ""
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Applying Nyquist Effect..."
@@ -8882,11 +7964,6 @@ msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-
 msgstr "[Opozorilo: Nyquist je vrnil neveljaven niz UTF-8, tukaj je pretvorjen kot Latin-1]"
 
 #: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid "This version of Tenacity does not support Nyquist plug-in version %ld"
-msgstr ""
-
-#: src/effects/nyquist/Nyquist.cpp
 msgid "Could not open file"
 msgstr "Datoteke ni mogoče odpreti"
 
@@ -9001,10 +8078,6 @@ msgstr "neimenovano"
 #: src/effects/vamp/LoadVamp.cpp
 msgid "Vamp Effects"
 msgstr "Učinki Vamp"
-
-#: src/effects/vamp/LoadVamp.cpp
-msgid "Provides Vamp Effects support to Tenacity"
-msgstr ""
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
@@ -9211,11 +8284,6 @@ msgstr "»%s« ni mogoče najti."
 msgid "Unable to locate \"%s\" in your path."
 msgstr "»%s« ni mogoče locirati v vaši poti."
 
-#: src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Export Options"
-msgstr "Možnosti zapisa"
-
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Prekliči"
@@ -9291,27 +8359,12 @@ msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
 msgstr "FFmpeg : NAPAKA - Ni mogoče dodeliti medpomnilnika za branje vanj iz zvočne vrste FIFO."
 
 #: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr "FFmpeg: NAPAKA – ni mogoče dodati zvočnega toka v odhodno datoteko »%s«."
-
-#: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
 msgstr "FFmpeg: NAPAKA – ni mogoče pridobiti velikosti medpomnilnika vzorcev"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
 msgstr "FFmpeg: NAPAKA – ni mogoče dodeliti bajtov za medpomnilnik vzorcev"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg: NAPAKA – ni mogoče pridobiti velikosti medpomnilnika vzorcev"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg: NAPAKA – zvočne sličice ni mogoče kodirati."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
@@ -10242,48 +9295,6 @@ msgstr ""
 "Kombinacije mer vzorčenja projekta (%d) in bitnega vzorčenja (%d kb/s)\n"
 "zapis MP3 ne podpira.  "
 
-#: src/export/ExportMka.cpp
-msgid "PCM 16-bit (Little Endian)"
-msgstr ""
-
-#: src/export/ExportMka.cpp
-msgid "PCM 24-bit (Little Endian)"
-msgstr ""
-
-#: src/export/ExportMka.cpp
-msgid "PCM Float 32-bit"
-msgstr ""
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 16-bit"
-msgstr "16-bitno"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 24-bit"
-msgstr "24-bitno"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Keep Labels"
-msgstr "Oznake"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Matroska Audio Files"
-msgstr "Izvažanje zvočne datoteke"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the selected audio as MKA"
-msgstr "Izvažanje izbranega zvoka kot FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the audio as MKA"
-msgstr "Izvažanje zvoka kot FLAC"
-
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
 msgstr "Izvoz večih"
@@ -10504,20 +9515,8 @@ msgid "Other uncompressed files"
 msgstr "Druge nestisnjene datoteke"
 
 #: src/export/ExportPCM.cpp
-msgid ""
-"You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
-"Tenacity cannot do this, the Export was abandoned."
-msgstr ""
-
-#: src/export/ExportPCM.cpp
 msgid "Error Exporting"
 msgstr "Napaka pri izvozu"
-
-#: src/export/ExportPCM.cpp
-msgid ""
-"Your exported WAV file has been truncated as Tenacity cannot export WAV\n"
-"files bigger than 4GB."
-msgstr ""
 
 #: src/export/ExportPCM.cpp
 msgid "GSM 6.10 requires mono"
@@ -10557,14 +9556,6 @@ msgid "FFmpeg support not compiled in"
 msgstr "Podpora za FFmpeg ni prevedena v"
 
 #: src/ffmpeg/FFmpeg.cpp
-msgid ""
-"FFmpeg was configured in Preferences and successfully loaded before, \n"
-"but this time Tenacity failed to load it at startup. \n"
-"\n"
-"You may want to go back to Preferences > Libraries and re-configure it."
-msgstr ""
-
-#: src/ffmpeg/FFmpeg.cpp
 msgid "FFmpeg startup failed"
 msgstr "Zagon FFmpeg ni uspel"
 
@@ -10575,11 +9566,6 @@ msgstr "Knjižnice FFmpeg ni mogoče najti"
 #: src/ffmpeg/FFmpeg.cpp
 msgid "Locate FFmpeg"
 msgstr "Najdi FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Tenacity needs the file '%s' to import and export audio via FFmpeg."
-msgstr ""
 
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
@@ -10603,11 +9589,6 @@ msgstr "Prenesi"
 msgid "Only avformat.dll"
 msgstr "Samo avformat.dll"
 
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid "Only ffmpeg.*.dylib"
-msgstr "Samo libmp3lame64bit.dylib"
-
 #. i18n-hint: It's asking for the location of a file, for
 #. example, "Where is lame_enc.dll?" - you could translate
 #. "Where would I find the file '%s'?" instead if you want.
@@ -10621,15 +9602,6 @@ msgid "FFmpeg not found"
 msgstr "FFmpeg ni mogoče najti"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid ""
-"Tenacity attempted to use FFmpeg to import an audio file,\n"
-"but the libraries were not found.\n"
-"\n"
-"To use FFmpeg import, go to Edit > Preferences > Libraries\n"
-"to download or locate the FFmpeg libraries."
-msgstr ""
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
 msgid "Do not show this warning again"
 msgstr "Tega opozorila ne prikaži več"
 
@@ -10638,158 +9610,13 @@ msgid "All supported files"
 msgstr "Vse podprte datoteke"
 
 #: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" \n"
-"is a MIDI file, not an audio file. \n"
-"Tenacity cannot open this type of file for playing, but you can\n"
-"edit it by clicking File > Import > MIDI."
-msgstr ""
-
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" \n"
-"is a not an audio file. \n"
-"Tenacity cannot open this type of file."
-msgstr ""
-
-#: src/import/Import.cpp
 msgid "Select stream(s) to import"
 msgstr "Izberite toke za uvoz"
 
 #: src/import/Import.cpp
 #, c-format
-msgid "This version of Tenacity was not compiled with %s support."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an audio CD track. \n"
-"Tenacity cannot open audio CDs directly. \n"
-"Extract (rip) the CD tracks to an audio format that \n"
-"Tenacity can import, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a playlist file. \n"
-"Tenacity cannot open this file because it only contains links to other files. \n"
-"You may be able to open it in a text editor and download the actual audio files."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a Windows Media Audio file. \n"
-"Tenacity cannot open this type of file due to patent restrictions. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an Advanced Audio Coding file.\n"
-"Without the optional FFmpeg library, Tenacity cannot open this type of file.\n"
-"Otherwise, you need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an encrypted audio file. \n"
-"These typically are from an online music store. \n"
-"Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Tenacity, or burn it to audio CD then \n"
-"extract the CD track to a supported audio format such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a RealPlayer media file. \n"
-"Tenacity cannot open this proprietary format. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a notes-based file, not an audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Tenacity."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a Musepack audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"If you think it might be an mp3 file, rename it to end with \".mp3\" \n"
-"and try importing it again. Otherwise you need to convert it to a supported audio \n"
-"format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a Wavpack audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a Dolby Digital audio file. \n"
-"Tenacity cannot currently open this type of file. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an Ogg Speex audio file. \n"
-"Tenacity cannot currently open this type of file. \n"
-"You need to convert it to a supported audio format, such as WAV or AIFF."
-msgstr ""
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a video file. \n"
-"Tenacity cannot currently open this type of file. \n"
-"You need to extract the audio to a supported format, such as WAV or AIFF."
-msgstr ""
-
-#: src/import/Import.cpp
-#, c-format
 msgid "File \"%s\" not found."
 msgstr "Datoteke »%s« ni mogoče najti."
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"Tenacity did not recognize the type of the file '%s'.\n"
-"\n"
-"%sFor uncompressed files, also try File > Import > Raw Data."
-msgstr ""
 
 #: src/import/Import.cpp
 msgid ""
@@ -10803,16 +9630,6 @@ msgstr ""
 #, c-format
 msgid "%s, %s"
 msgstr "%s, %s"
-
-#. i18n-hint: %s will be the filename
-#: src/import/Import.cpp
-#, c-format
-msgid ""
-"Tenacity recognized the type of the file '%s'.\n"
-"Importers supposedly supporting such files are:\n"
-"%s,\n"
-"but none of them understood this file format."
-msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "AUP project files (*.aup)"
@@ -10832,15 +9649,6 @@ msgstr ""
 #: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "Uvozi projekt"
-
-#: src/import/ImportAUP.cpp
-msgid ""
-"This project was saved by Audacity version 1.0 or earlier. The format has\n"
-"changed and Tenacity is unable to import the project.\n"
-"\n"
-"Use a version of Audacity prior to v3.0.0 to upgrade the project and then\n"
-"you may import it with Tenacity."
-msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "Internal error in importer...tag not recognized"
@@ -10880,10 +9688,6 @@ msgid "Couldn't find the project data folder: \"%s\""
 msgstr "Mape s projektnimi podatki ni mogoče najti: »%s«"
 
 #: src/import/ImportAUP.cpp
-msgid "MIDI tracks found in project file, but this build of Tenacity does not include MIDI support, bypassing track."
-msgstr ""
-
-#: src/import/ImportAUP.cpp
 msgid "Project Import"
 msgstr "Uvoz projekta"
 
@@ -10902,10 +9706,6 @@ msgstr "Neveljavni sekvenčni atribut »sampleformat«."
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'numsamples' attribute."
 msgstr "Neveljavni sekvenčni atribut »numsamples«."
-
-#: src/import/ImportAUP.cpp
-msgid "Unable to parse the waveblock 'start' attribute"
-msgstr ""
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -11088,21 +9888,6 @@ msgstr ""
 "\n"
 "To je najverjetneje povzročil slabo oblikovan MP3.\n"
 "\n"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-msgid "Matroska files"
-msgstr "%s datotek"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "Kazalo[%02d] vrsta[%s], kanali[%d], mera[%d]"
-
-#: src/import/ImportMka.cpp
-#, c-format
-msgid "Label Edition[%02zx] Name[%s]"
-msgstr ""
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -11419,12 +10204,6 @@ msgstr "Količina za uvoz:"
 msgid "Sample rate:"
 msgstr "Mera vzorčenja:"
 
-#. i18n-hint: Guess format of raw file
-#: src/import/ImportRaw.cpp
-#, fuzzy
-msgid "Detect"
-msgstr "Zaznaj tišino"
-
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "&Uvozi"
@@ -11445,25 +10224,6 @@ msgstr "%s levo"
 msgid "%s right"
 msgstr "%s desno"
 
-#. i18n-hint:
-#. First %s is replaced with the noun "start" or "end"
-#. identifying one end of a clip,
-#. second string is the name of that clip,
-#. first number gives the position of that clip in a sequence
-#. of clips,
-#. last number counts all clips,
-#. and the last string is the name of the track containing the
-#. clips.
-#.
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s %s, %d of %d clip %s"
-msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%d od %d posnetka %s"
-msgstr[1] "%d od %d posnetkov %s"
-msgstr[2] "%d od %d posnetkov %s"
-msgstr[3] "%d od %d posnetkov %s"
-
 #: src/menus/ClipMenus.cpp
 msgid "start"
 msgstr "začetek"
@@ -11471,40 +10231,6 @@ msgstr "začetek"
 #: src/menus/ClipMenus.cpp
 msgid "end"
 msgstr "konec"
-
-#. i18n-hint:
-#. First and third %s are each replaced with the noun "start"
-#. or with "end", identifying and end of a clip,
-#. second and fourth strings are the names of those clips,
-#. first and second numbers give the position of those clips in
-#. a sequence of clips,
-#. last number counts all clips,
-#. and the last string is the name of the track containing the
-#. clips.
-#.
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s %s and %s %s, %d and %d of %d clip %s"
-msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-
-#. i18n-hint:
-#. first string is the name of a clip,
-#. first number gives the position of that clip
-#. in a sequence of clips,
-#. last number counts all clips,
-#. last string names a track
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s, %d of %d clip %s"
-msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%d od %d posnetka %s"
-msgstr[1] "%d od %d posnetkov %s"
-msgstr[2] "%d od %d posnetkov %s"
-msgstr[3] "%d od %d posnetkov %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -11927,11 +10653,6 @@ msgstr "Izvozi kot MP&3"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
-msgstr "Izvozi kot &WAV"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export as &MKA"
 msgstr "Izvozi kot &WAV"
 
 #: src/menus/FileMenus.cpp
@@ -12977,10 +11698,6 @@ msgid "Created new label track"
 msgstr "Ustvarjena nova datoteka z oznakami"
 
 #: src/menus/TrackMenus.cpp
-msgid "This version of Tenacity only allows one time track for each project window."
-msgstr ""
-
-#: src/menus/TrackMenus.cpp
 msgid "Created new time track"
 msgstr "Ustvarjena nova časovna steza"
 
@@ -13647,14 +12364,6 @@ msgstr "Predvajanje"
 msgid "&Device:"
 msgstr "&Naprava:"
 
-#. i18n-hint: modifier as in "Recording preferences", not progressive verb
-#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
-#: src/prefs/RecordingPrefs.h
-#, fuzzy
-msgctxt "preference"
-msgid "Recording"
-msgstr "Snemanje"
-
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
 msgstr "Napra&va:"
@@ -13801,10 +12510,6 @@ msgid "Directory %s is not writable"
 msgstr "V mapi %s zapisovanje ni dovoljeno"
 
 #: src/prefs/DirectoriesPrefs.cpp
-msgid "Changes to temporary directory will not take effect until Tenacity is restarted"
-msgstr ""
-
-#: src/prefs/DirectoriesPrefs.cpp
 msgid "Temp Directory Update"
 msgstr "Posodobitev začasne mape"
 
@@ -13888,14 +12593,6 @@ msgstr "&Največ učinkov na skupini (0 za onemogočene):"
 #: src/prefs/EffectsPrefs.cpp
 msgid "Plugin Options"
 msgstr "Možnosti vstavka"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Check for updated plugins when Tenacity starts"
-msgstr ""
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Rescan plugins next time Tenacity is started"
-msgstr ""
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -14070,10 +12767,6 @@ msgstr "&Zapiskaj ob zaključku daljših operacij"
 #: src/prefs/GUIPrefs.cpp
 msgid "Re&tain labels if selection snaps to a label"
 msgstr "O&bdrži oznake, če se izbor pripne na oznako"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "B&lend system and Tenacity theme"
-msgstr ""
 
 #. i18n-hint: RTL stands for 'Right to Left'
 #: src/prefs/GUIPrefs.cpp
@@ -14251,31 +12944,13 @@ msgstr ""
 "   *   \"%s\"  (ker so tipke za bližnjico '%s' že zasedene za \"%s\")\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
-#, fuzzy
-msgid "Select an XML file containing Tenacity keyboard shortcuts..."
-msgstr "Izberite besedilno datoteko z oznakami"
-
-#: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
 msgstr "Napaka pri uvažanju tipk za bližnjice"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, c-format
-msgid ""
-"The file with the shortcuts contains illegal shortcut duplicates for \"%s\" and \"%s\".\n"
-"Nothing is imported."
-msgstr ""
-
-#: src/prefs/KeyConfigPrefs.cpp
-#, c-format
 msgid "Loaded %d keyboard shortcuts\n"
 msgstr "Naloženih %d bližnjic\n"
-
-#: src/prefs/KeyConfigPrefs.cpp
-msgid ""
-"\n"
-"The following commands are not mentioned in the imported file, but have their shortcuts removed because of the conflict with other new shortcuts:\n"
-msgstr ""
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Loading Keyboard Shortcuts"
@@ -14373,12 +13048,6 @@ msgid "Dow&nload"
 msgstr "Pre&nesi"
 
 #: src/prefs/LibraryPrefs.cpp
-msgid ""
-"Tenacity has automatically detected valid FFmpeg libraries.\n"
-"Do you still want to locate them manually?"
-msgstr ""
-
-#: src/prefs/LibraryPrefs.cpp
 msgid "Success"
 msgstr "Uspešno"
 
@@ -14430,30 +13099,10 @@ msgstr "Moduli"
 msgid "Preferences for Module"
 msgstr "Nastavitve modula"
 
-#: src/prefs/ModulePrefs.cpp
-msgid ""
-"These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
-"and know what you are doing."
-msgstr ""
-
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'Ask' means Tenacity will ask if you want to load the module each time it starts."
-msgstr ""
-
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'Failed' means Tenacity thinks the module is broken and won't run it."
-msgstr ""
-
 #. i18n-hint preserve the leading spaces
 #: src/prefs/ModulePrefs.cpp
 msgid "  'New' means no choice has been made yet."
 msgstr " »Nov« pomeni, da izbor še ni bil opravljen."
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Changes to these settings only take effect when Tenacity starts up."
-msgstr ""
 
 #: src/prefs/ModulePrefs.cpp
 msgid "Ask"
@@ -14606,15 +13255,6 @@ msgstr "-levi povlek"
 msgid "Move clip up/down between tracks"
 msgstr "Premakni posnetek gor/dol med stezami"
 
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Alt-Left-Drag"
-msgstr "-levi povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clips ignoring Sync-lock"
-msgstr ""
-
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -14736,11 +13376,6 @@ msgstr "&Mikro pojemanja"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Always scrub un&pinned"
 msgstr "Vedno drsaj ne&pripeto"
-
-#: src/prefs/PrefsDialog.cpp
-#, fuzzy
-msgid "Tenacity Preferences"
-msgstr "Pridobi nastavitev"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -15130,19 +13765,6 @@ msgstr "Podatki"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
-"Themability is an experimental feature.\n"
-"\n"
-"To try it out, click \"Save Theme Cache\" then find and modify the images and colors in\n"
-"ImageCacheVxx.png using an image editor such as the Gimp.\n"
-"\n"
-"Click \"Load Theme Cache\" to load the changed images and colors back into Tenacity.\n"
-"\n"
-"(Only the Transport Toolbar and the colors on the wavetrack are currently affected, even\n"
-"though the image file shows other icons too.)"
-msgstr ""
-
-#: src/prefs/ThemePrefs.cpp
-msgid ""
 "Saving and loading individual theme files uses a separate file for each image, but is\n"
 "otherwise the same idea."
 msgstr ""
@@ -15327,10 +13949,6 @@ msgid "Sho&w track name as overlay"
 msgstr "Pokaži ime zvočne steze &čeznjo"
 
 #: src/prefs/TracksPrefs.cpp
-msgid "Use &half-wave display when collapsed"
-msgstr ""
-
-#: src/prefs/TracksPrefs.cpp
 msgid "&Pinned Recording/Playback head"
 msgstr "&Pripeta glava snemanja/predvajanja"
 
@@ -15447,46 +14065,6 @@ msgstr "Klasično"
 msgid "Audacity"
 msgstr "Zapisnik Audacity"
 
-#: src/theme/AudaciumDarkBlueThemeAsCeeCode.cpp
-msgid "Audacium Dark Blue"
-msgstr ""
-
-#: src/theme/AudaciumDarkGreenThemeAsCeeCode.cpp
-msgid "Audacium Dark Green"
-msgstr ""
-
-#: src/theme/AudaciumDarkOrangeThemeAsCeeCode.cpp
-msgid "Audacium Dark Orange"
-msgstr ""
-
-#: src/theme/AudaciumDarkPinkThemeAsCeeCode.cpp
-msgid "Audacium Dark Pink"
-msgstr ""
-
-#: src/theme/AudaciumDarkPurpleThemeAsCeeCode.cpp
-msgid "Audacium Dark Purple"
-msgstr ""
-
-#: src/theme/AudaciumLightBlueThemeAsCeeCode.cpp
-msgid "Audacium Light Blue"
-msgstr ""
-
-#: src/theme/AudaciumLightGreenThemeAsCeeCode.cpp
-msgid "Audacium Light Green"
-msgstr ""
-
-#: src/theme/AudaciumLightOrangeThemeAsCeeCode.cpp
-msgid "Audacium Light Orange"
-msgstr ""
-
-#: src/theme/AudaciumLightPinkThemeAsCeeCode.cpp
-msgid "Audacium Light Pink"
-msgstr ""
-
-#: src/theme/AudaciumLightPurpleThemeAsCeeCode.cpp
-msgid "Audacium Light Purple"
-msgstr ""
-
 #: src/theme/DarkThemeAsCeeCode.cpp
 msgid "Dark"
 msgstr "Temno"
@@ -15502,23 +14080,6 @@ msgstr "Visoki kontrast"
 msgid "Light"
 msgstr "Svetlo"
 
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Pro Tools"
-msgstr "Orodja"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Zapisnik Audacity"
-
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not write file:\n"
-"  %s."
-msgstr "Zapisovanje v datoteko ni možno: %s"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -15532,21 +14093,6 @@ msgstr ""
 "Tema zapisana v:\n"
 "  %s."
 
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not open file:\n"
-"  %s\n"
-"for writing."
-msgstr "Datoteke za zapisovanje ni mogoče odpreti"
-
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not write images to file:\n"
-"  %s."
-msgstr "Zapisovanje v datoteko ni možno: %s"
-
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
 #, c-format
@@ -15556,29 +14102,6 @@ msgid ""
 msgstr ""
 "Tema zapisana kot koda Cee v:\n"
 "  %s."
-
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Tenacity could not find file:\n"
-"  %s.\n"
-"Theme not loaded."
-msgstr ""
-
-#. i18n-hint: Do not translate png.  It is the name of a file format.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Tenacity could not load file:\n"
-"  %s.\n"
-"Bad png format perhaps?"
-msgstr ""
-
-#: src/theme/Theme.cpp
-msgid ""
-"Tenacity could not read its default theme.\n"
-"Please report this problem."
-msgstr ""
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -15611,13 +14134,6 @@ msgstr ""
 "  %s\n"
 "so že prisotne. Jih želite prepisati?"
 
-#: src/theme/Theme.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity could not save file:\n"
-"  %s"
-msgstr "Datoteke ni mogoče odpreti: %s"
-
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
 msgid "Custom"
@@ -15637,10 +14153,6 @@ msgstr "Transport"
 #: src/toolbars/ControlToolBar.cpp
 msgid "Pause"
 msgstr "Prekinitev"
-
-#: src/toolbars/ControlToolBar.cpp
-msgid "Loop"
-msgstr ""
 
 #: src/toolbars/ControlToolBar.cpp
 msgid "Skip to Start"
@@ -16032,12 +14544,6 @@ msgstr "Čas"
 msgid "&Time Toolbar"
 msgstr "&Časovna vrstica"
 
-#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
-#: src/toolbars/ToolBar.cpp
-#, fuzzy, c-format
-msgid "Tenacity %s Toolbar"
-msgstr "Vrstica &urejanja"
-
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
 msgstr "Kliknite in povlecite za spremembo velikosti orodne vrstice"
@@ -16126,10 +14632,6 @@ msgstr "Predvajaj zankano pri hitrosti"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Pla&y-at-Speed Toolbar"
 msgstr "Orodna vrstica Predvajaj pri &hitrosti"
-
-#: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
-msgid "Drag label. Hold shift and drag to move all labels on the same track."
-msgstr ""
 
 #: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
 msgid "Drag one or more label boundaries."
@@ -16330,53 +14832,6 @@ msgstr "Najprej ustavi zvok"
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "S&pectrogram Settings..."
 msgstr "Nastavitve s&pektrograma …"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-msgid "Clip-Trim-Left"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, c-format
-msgid "Moved by %.02f"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-msgid "Clip-Trim-Right"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-msgid "Clip-Trim-Between"
-msgstr ""
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, fuzzy
-msgid "Click and drag to move clip boundary in time"
-msgstr "Kliknite in povlecite, da bi premaknili posnetek vzdolž časovne linije"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Set Wave Clip Name"
-msgstr "Določi ime steze"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Click and drag to select text"
-msgstr "Kliknite in povlecite, da izberete posnetek"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Modified Clip Name"
-msgstr "Spremenjena oznaka"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Clip Name Edit"
-msgstr "Urejanje vzorcev"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-msgid "Rename Clip..."
-msgstr "Preimenuj ..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -16608,34 +15063,6 @@ msgstr "Prerazporedi podpoglede"
 msgid "Close sub-view"
 msgstr "Zapri podpogled"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Split Clip"
-msgstr "Določite posnetek"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Mute/Unmute Track"
-msgstr "&Utišaj/odtišaj stezo s pozornostjo"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Rename clip..."
-msgstr "Preimenuj ..."
-
-#. i18n-hint:
-#. string is the name of a clip
-#. first number is the position of that clip in a sequence of clips,
-#. second number counts the clips
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy, c-format
-msgid "%s, %d of %d clip"
-msgid_plural "%s, %d of %d clips"
-msgstr[0] "%d od %d posnetka %s"
-msgstr[1] "%d od %d posnetkov %s"
-msgstr[2] "%d od %d posnetkov %s"
-msgstr[3] "%d od %d posnetkov %s"
-
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
 msgstr "Povečaj x1/2"
@@ -16736,26 +15163,6 @@ msgstr "Logaritemska &interpolacija"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Kliknite in povlecite, da bi premaknili posnetek vzdolž časovne linije"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Add Mono Track"
-msgstr "&Mono steza"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Add Stereo Track"
-msgstr "&Stereo steza"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Add Label Track"
-msgstr "Steza z oznakami"
-
-#: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-msgid "Export Audio..."
-msgstr "&Izvozi zvok …"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -17647,22 +16054,6 @@ msgstr "Izdano pod pogoji dovoljenja GNU General Public License razl. 2"
 msgid "~aPlease select frequencies."
 msgstr "~aIzberite frekvence."
 
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                       frequencies are both ~a Hz).~%~\n"
-"                       Please select a frequency range."
-msgstr ""
-
-#: plug-ins/SpectralEditMulti.ny
-#, lisp-format
-msgid ""
-"~aNotch filter parameters cannot be applied.~%~\n"
-"                      Try increasing the low frequency bound~%~\n"
-"                      or reduce the filter 'Width'."
-msgstr ""
-
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
 #, lisp-format
@@ -17704,14 +16095,6 @@ msgstr ""
 "                 Mera vzorčenja steze je ~a Hz~%~\n"
 "                 Frekvenca mora biti manjša od ~a Hz."
 
-#: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
-#, lisp-format
-msgid ""
-"~aBandwidth is zero (the upper and lower~%~\n"
-"                         frequencies are both ~a Hz).~%~\n"
-"                         Please select a frequency range."
-msgstr ""
-
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -17734,14 +16117,6 @@ msgstr "Izvajanje pojemanja ..."
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
 msgstr "Steve Daulton"
-
-#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
-#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
-#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
-#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
-#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
-msgid "GNU General Public License v2.0 or later"
-msgstr ""
 
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
@@ -17772,10 +16147,6 @@ msgstr "S-krivulja navzgor"
 #: plug-ins/adjustable-fade.ny
 msgid "S-Curve Down"
 msgstr "S-krivulja navzdol"
-
-#: plug-ins/adjustable-fade.ny
-msgid "Mid-fade Adjust (%)"
-msgstr ""
 
 #: plug-ins/adjustable-fade.ny
 msgid "Start/End as"
@@ -18220,10 +16591,6 @@ msgid "Frequency (Hz)"
 msgstr "Frekvenca (Hz)"
 
 #: plug-ins/highpass.ny plug-ins/lowpass.ny
-msgid "Roll-off (dB per octave)"
-msgstr ""
-
-#: plug-ins/highpass.ny plug-ins/lowpass.ny
 msgid "6 dB"
 msgstr "6 dB"
 
@@ -18341,16 +16708,6 @@ msgstr "Zaznanih preveč tišin.~%Dodanih zgolj prvih 10000 oznak."
 msgid "Error.~%Selection must be less than ~a."
 msgstr "Napaka.~%Izbor mora biti krajši od ~a."
 
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
-msgstr ""
-
-#: plug-ins/label-sounds.ny
-#, lisp-format
-msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
-msgstr ""
-
 #: plug-ins/limiter.ny
 msgid "Limiter"
 msgstr "Omejevalnik"
@@ -18399,10 +16756,6 @@ msgstr ""
 #: plug-ins/limiter.ny
 msgid "Limit to (dB)"
 msgstr "Omeji na (dB)"
-
-#: plug-ins/limiter.ny plug-ins/noisegate.ny
-msgid "Hold (ms)"
-msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Apply Make-up Gain"
@@ -18468,15 +16821,6 @@ msgstr "Upad (ms)"
 #, lisp-format
 msgid ""
 "Error.\n"
-"\"Gate frequencies above: ~s kHz\"\n"
-"is too high for selected track.\n"
-"Set the control below ~a kHz."
-msgstr ""
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
 msgstr ""
@@ -18494,13 +16838,6 @@ msgstr ""
 "Napaka.\n"
 "Izbran je nezadosten zvokovni zapis.\n"
 "Opravite izbor, daljši od ~a ms."
-
-#: plug-ins/noisegate.ny
-#, lisp-format
-msgid ""
-"Peak based on first ~a seconds ~a dB~%\n"
-"Suggested Threshold Setting ~a dB."
-msgstr ""
 
 #. i18n-hint: hours and minutes. Do not translate "~a".
 #: plug-ins/noisegate.ny
@@ -18622,10 +16959,6 @@ msgid "Error.~%No file selected."
 msgstr "Napaka.~%Izbrana ni nobena datoteka."
 
 #: plug-ins/pluck.ny
-msgid "Pluck"
-msgstr ""
-
-#: plug-ins/pluck.ny
 #, fuzzy
 msgid "Generating pluck sound..."
 msgstr "Tvorjenje Rissetovega bobna ..."
@@ -18637,10 +16970,6 @@ msgstr "Vrednosti MIDI za note C: 36, 48, 60 [srednji C], 72, 84, 96."
 #: plug-ins/pluck.ny
 msgid "David R.Sky"
 msgstr "David R.Sky"
-
-#: plug-ins/pluck.ny
-msgid "Pluck MIDI pitch"
-msgstr ""
 
 #: plug-ins/pluck.ny
 msgid "Fade-out type"
@@ -18692,10 +17021,6 @@ msgid "+/- 1"
 msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
 msgstr "Število taktov"
 
@@ -18729,14 +17054,6 @@ msgid "Metronome Tick"
 msgstr "Bitje metronoma"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Ping (short)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Ping (long)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "Cowbell"
 msgstr "Kravji zvonec"
 
@@ -18750,30 +17067,8 @@ msgid "Noise Click"
 msgstr "Tla šuma"
 
 #: plug-ins/rhythmtrack.ny
-msgid "Drip (short)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "Drip (long)"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of strong beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
 msgid "18 - 116"
 msgstr "18 - 116"
-
-#: plug-ins/rhythmtrack.ny
-msgid "MIDI pitch of weak beat"
-msgstr ""
-
-#: plug-ins/rhythmtrack.ny
-msgid ""
-"Set either 'Number of bars' or\n"
-"'Rhythm track duration' to greater than zero."
-msgstr ""
 
 #: plug-ins/rissetdrum.ny
 msgid "Risset Drum"
@@ -18872,10 +17167,6 @@ msgstr "Postavitev kanalov za stereo"
 msgid "L-R on Same Line"
 msgstr "L-D na isti črti"
 
-#: plug-ins/sample-data-export.ny
-msgid "Alternate Lines"
-msgstr ""
-
 #. i18n-hint: L for Left
 #: plug-ins/sample-data-export.ny
 msgid "L Channel First"
@@ -18908,31 +17199,6 @@ msgstr "~%~%Desni kanal.~%~%"
 #, lisp-format
 msgid "~aData written to:~%~a"
 msgstr "~aPodatki zapisani v:~%~a"
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "Sample Rate: ~a Hz.  Sample values on ~a scale.~%~a~%~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a   ~a~%~aSample Rate: ~a Hz. Sample values on ~a scale.~%~\n"
-"                     Length processed: ~a samples ~a seconds.~a"
-msgstr ""
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
-"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
-"                  DC offset: ~a~a"
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -19026,14 +17292,6 @@ msgstr "Levo (dB)"
 #: plug-ins/sample-data-export.ny
 msgid "Right (dB)"
 msgstr "Desno (dB)"
-
-#: plug-ins/sample-data-export.ny
-#, lisp-format
-msgid ""
-"Produced with <span>Sample Data Export</span> for\n"
-"<a href=\"~a\">Tenacity</a> by Steve\n"
-"Daulton"
-msgstr ""
 
 #: plug-ins/sample-data-export.ny
 msgid "linear"
@@ -19235,24 +17493,6 @@ msgstr "Nizka porezava za vokale (Hz)"
 #: plug-ins/vocalrediso.ny
 msgid "High Cut for Vocals (Hz)"
 msgstr "Visoka porezava za vokale (Hz)"
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid ""
-"Average x: ~a, y: ~a\n"
-"                    Covariance x y: ~a\n"
-"                    Average variance x: ~a, y: ~a\n"
-"                    Standard deviation x: ~a, y: ~a\n"
-"                    Coefficient of correlation: ~a\n"
-"                    Coefficient of determination: ~a\n"
-"                    Variation of residuals: ~a\n"
-"                    y equals ~a plus ~a times x~%"
-msgstr ""
-
-#: plug-ins/vocalrediso.ny
-#, lisp-format
-msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
-msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid ""
