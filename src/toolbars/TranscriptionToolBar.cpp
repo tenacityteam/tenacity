@@ -488,8 +488,10 @@ void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
    // VariSpeed play reuses Scrubbing.
    bool bFixedSpeedPlay = !gPrefs->ReadBool(wxT("/AudioIO/VariSpeedPlay"), true);
    // Scrubbing doesn't support note tracks, but the fixed-speed method using time tracks does.
+   #ifdef USE_MIDI
    if ( TrackList::Get( *p ).Any< NoteTrack >() )
       bFixedSpeedPlay = true;
+   #endif
 
    // Scrubbing only supports straight through play.
    // So if looped or cutPreview, we have to fall back to fixed speed.
