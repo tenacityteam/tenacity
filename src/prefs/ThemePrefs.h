@@ -50,6 +50,8 @@ class ThemePrefs final : public PrefsPanel
    void OnReadThemeInternal(wxCommandEvent & e);
    void OnSaveThemeAsCode(wxCommandEvent & e);
 
+   void OnLoadThemePackage(wxCommandEvent&);
+
    DECLARE_EVENT_TABLE()
 };
 

@@ -32,14 +32,22 @@ Provides:
 #include "ThemePrefs.h"
 
 #include <wx/app.h>
+#include <wx/button.h>
 #include <wx/wxprec.h>
 
 // Tenacity preferences
+#include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
+#include <lib-theme/ThemePackage.h>
+#include <lib-theme/exceptions/ArchiveError.h>
+#include <lib-theme/exceptions/IncompatibleTheme.h>
 
 #include "../theme/Theme.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../AColor.h"
+#include "../widgets/AudacityMessageBox.h"
+
+using namespace ThemeExceptions;
 
 wxDEFINE_EVENT(EVT_THEME_CHANGE, wxCommandEvent);
 
@@ -182,8 +190,65 @@ void ThemePrefs::PopulateOrExchange(ShuttleGui & S)
       S.EndHorizontalLay();
    }
    S.EndStatic();
+
+   S.StartStatic(XO("Experimental - Theme Packages"));
+   {
+      S.StartHorizontalLay(wxALIGN_LEFT);
+      {
+         S.AddButton(XO("Load Theme Package"))->Bind(wxEVT_BUTTON, &ThemePrefs::OnLoadThemePackage, this);
+      }
+      S.EndHorizontalLay();
+   }
+   S.EndStatic();
+
    S.EndScroller();
 
+}
+
+void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
+{
+   FileDialogWrapper fileDialog(
+      nullptr,
+      XO("Load Theme"),
+      wxEmptyString,
+      wxEmptyString,
+      { FileNames::AllFiles }
+   );
+
+   if (fileDialog.ShowModal() == wxID_CANCEL)
+   {
+      return;
+   }
+
+   wxString path = fileDialog.GetPath();
+   ThemePackage theme;
+
+   try
+   {
+      theme.OpenPackage(path.ToStdString(wxConvUTF8));
+      theme.ParsePackage();
+      AudacityMessageBox(XO("Package OK!"), XO("Success!"), wxOK);
+   } catch (std::invalid_argument& e)
+   {
+      AudacityMessageBox(XO("Error: %s").Format(e.what()), XO("Invalid theme"), wxOK);
+   } catch (std::bad_alloc& e)
+   {
+      AudacityMessageBox(XO("Cannot allocate memory"), XO("Memory error"), wxOK);
+   } catch (ThemeExceptions::IncompatibleTheme& ite)
+   {
+      AudacityMessageBox(XO("Theme package incompatible with this version of Tenacity"), XO("Incompatible theme"), wxOK);
+   } catch (ThemeExceptions::ArchiveError& aee)
+   {
+      switch (aee.GetErrorType())
+      {
+         case ArchiveError::Type::InvalidArchive:
+            AudacityMessageBox(XO("Theme package invalid"), XO("Invalid archive"), wxOK);
+            break;
+         case ArchiveError::Type::OperationalError:
+            AudacityMessageBox(XO("Error while working on archive"), XO("Operational error"), wxOK);
+            break;
+      }
+   }
 }
 
 /// Load Theme from multiple png files.
