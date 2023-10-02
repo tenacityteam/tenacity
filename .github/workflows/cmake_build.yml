@@ -162,6 +162,7 @@ jobs:
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
         -D VCPKG=ON
+        -D SBSMS=ON
         -S .
         -B build
       env:
