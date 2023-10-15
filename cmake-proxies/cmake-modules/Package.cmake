@@ -61,6 +61,8 @@ elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
    endif()
 elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
    set( CPACK_GENERATOR WIX )
+   # Use only a numerical version string for Wix
+   set( CPACK_PACKAGE_VERSION "${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION}")
 endif()
 
 if( CMAKE_GENERATOR MATCHES "Makefiles|Ninja" )
