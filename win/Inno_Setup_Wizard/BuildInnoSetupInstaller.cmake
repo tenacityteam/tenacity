@@ -13,7 +13,7 @@
 # Allow if statements to use the new IN_LIST operator (compatibility override for CMake <3.3)
 cmake_policy( SET CMP0057 NEW )
 
-if( IS_64_BIT )
+if( BUILDING_64_BIT )
     set( INSTALLER_SUFFIX "x64" )
     set( INSTALLER_X64_MODE "ArchitecturesInstallIn64BitMode=x64")
 else()
