@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-10-17 04:14+0000\n"
+"PO-Revision-Date: 2023-10-17 20:58+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "pl/>\n"
@@ -8464,8 +8464,8 @@ msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the current output file format. "
 msgstr ""
-"Kombinacja częstotliwości próbkowania (%d) i szybkości transmisji (%d kbps)\n"
-"projektu nie są obsługiwane przez bieżący format pliku wyjściowego."
+"Kombinacja częstotliwości próbkowania (%d) i bitrate'u (%d kbps)\n"
+"projektu nie są obsługiwane przez bieżący format pliku wyjściowego. "
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 msgid "You may resample to one of the rates below."
@@ -8607,7 +8607,7 @@ msgstr "Długość ramki:"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Vbr Mode:"
-msgstr "Tryb Vbr:"
+msgstr "Tryb VBR:"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Application:"
@@ -8806,7 +8806,7 @@ msgid ""
 "0 - automatic\n"
 "Recommended - 192000"
 msgstr ""
-"Szybkość transmisji (bity na sekundę) - wpływa na rozmiar i jakość pliku\n"
+"Bitrate (bity na sekundę) - wpływa na rozmiar i jakość pliku\n"
 "Niektóre kodeki akceptują tylko niektóre wartości (128k, 192k, 256k itp.)\n"
 "0 - automatycznie\n"
 "Zalecane - 192000"
@@ -8821,7 +8821,7 @@ msgstr ""
 "Ogólna jakość używana różnie przez różne kodeki\n"
 "Wymagane dla Vorbis\n"
 "0 - automatycznie\n"
-"-1 - wyłączone (zamiast tego użyj częstotliwości próbkowania)"
+"-1 - wyłączone (zamiast tego użyj bitrate'u)"
 
 #: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
 msgid "Quality:"
@@ -9025,7 +9025,7 @@ msgid ""
 "Optional\n"
 "0 - default"
 msgstr ""
-"Maksymalna szybkość transmisji multipleksowego strumienia\n"
+"Maksymalny bitrate multipleksowego strumienia\n"
 "Opcjonalna\n"
 "0 - domyślna"
 
@@ -9155,7 +9155,7 @@ msgstr "Pliki MP2"
 
 #: src/export/ExportMP2.cpp
 msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "Nie można eksportować MP2 z tą częstotliwością próbkowania i szybkością transmisji"
+msgstr "Nie można eksportować MP2 z tą częstotliwością próbkowania i bitrate'em"
 
 #: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
 msgid "Unable to open target file for writing"
@@ -9268,7 +9268,7 @@ msgstr "Stereo"
 
 #: src/export/ExportMP3.cpp
 msgid "Bit Rate Mode:"
-msgstr "Tryb szybkości transmisji:"
+msgstr "Tryb bitrate'u:"
 
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
@@ -9341,8 +9341,8 @@ msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the MP3 file format. "
 msgstr ""
-"Kombinacja częstotliwości próbkowania (%d) i szybkości transmisji (%d kbps)\n"
-"projektu nie są obsługiwane przez format plików MP3."
+"Kombinacja częstotliwości próbkowania (%d) i bitrate'u (%d kbps)\n"
+"projektu nie są obsługiwane przez format plików MP3. "
 
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
@@ -9834,7 +9834,7 @@ msgstr "Pliki kompatybilne z FFmpeg"
 #: src/import/ImportFFmpeg.cpp
 #, c-format
 msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr "Indeks[%02x] Kodek[%s], Język[%s], Częstotliwość próbkowania[%s], Kanały[%d], Długość[%d]"
+msgstr "Indeks[%02x] Kodek[%s], Język[%s], Bitrate[%s], Kanały[%d], Długość[%d]"
 
 #: src/import/ImportFLAC.cpp
 msgid "FLAC files"
@@ -10241,7 +10241,7 @@ msgstr "Kanały:"
 #. i18n-hint: (noun)
 #: src/import/ImportRaw.cpp
 msgid "Start offset:"
-msgstr "Początkowe przesunięcie:"
+msgstr "Przesunięcie początkowe:"
 
 #: src/import/ImportRaw.cpp
 msgid "bytes"
@@ -18107,10 +18107,6 @@ msgstr "Błąd.~%Wymagana ścieżka stereo."
 #~ msgid "&Time Shift Tool"
 #~ msgstr "Narzędzie do przesuwania w &czasie"
 
-#, c-format
-#~ msgid "File '%s' already exists, do you really want to overwrite it?"
-#~ msgstr "Plik '%s' już istnieje, na pewno chcesz go zastąpić?"
-
 #~ msgid "Please choose an existing file."
 #~ msgstr "Wybierz istniejący plik."
 
@@ -20191,3 +20187,8 @@ msgstr "Kopiuj do schowka"
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Cut to clipboard"
 msgstr "Wytnij do schowka"
+
+#: src/widgets/FileDialog/gtk/FileDialogPrivate.cpp
+#, c-format
+msgid "File '%s' already exists, do you really want to overwrite it?"
+msgstr "Plik '%s' już istnieje. Na pewno chcesz go zastąpić?"
