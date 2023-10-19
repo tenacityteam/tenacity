@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2021-07-20 03:55-0400\n"
-"PO-Revision-Date: 2023-10-18 20:41+0000\n"
-"Last-Translator: Avery King <avery98@pm.me>\n"
+"PO-Revision-Date: 2023-10-19 01:37+0000\n"
+"Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: English <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/en/>\n"
 "Language: en\n"
@@ -6610,7 +6610,7 @@ msgstr ""
 #: src/effects/ChangeSpeed.cpp
 msgctxt "change speed"
 msgid "&from"
-msgstr ""
+msgstr "change speed.&from"
 
 #. i18n-hint: changing speed of audio "from" one value "to" another
 #. "rpm" means "revolutions per minute" as on a vinyl record turntable
@@ -6623,7 +6623,7 @@ msgstr ""
 #: src/effects/ChangeSpeed.cpp
 msgctxt "change speed"
 msgid "&to"
-msgstr ""
+msgstr "change speed.&to"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "Selection Length"
@@ -6641,7 +6641,7 @@ msgstr ""
 #: src/effects/ChangeSpeed.cpp
 msgctxt "change speed"
 msgid "from"
-msgstr ""
+msgstr "change speed.from"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&New Length:"
@@ -10576,6 +10576,9 @@ msgid ""
 "Optional\n"
 "empty - automatic"
 msgstr ""
+"ISO 639 3-letter language code\n"
+"Optional\n"
+"empty - automatic"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Language:"
@@ -10645,6 +10648,9 @@ msgid ""
 "Optional\n"
 "0 - automatic"
 msgstr ""
+"Audio cutoff bandwidth (Hz)\n"
+"Optional\n"
+"0 - automatic"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -10698,6 +10704,11 @@ msgid ""
 "min - 1\n"
 "max - 15"
 msgstr ""
+"LPC coefficients precision\n"
+"Optional\n"
+"0 - default\n"
+"min - 1\n"
+"max - 15"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "LPC"
@@ -10710,10 +10721,14 @@ msgid ""
 "Log search - slowest, best compression\n"
 "Full search - default"
 msgstr ""
+"Prediction Order Method\n"
+"Estimate - fastest, lower compression\n"
+"Log search - slowest, best compression\n"
+"Full search - default"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "PdO Method:"
-msgstr ""
+msgstr "PdO Method:"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -10723,10 +10738,15 @@ msgid ""
 "min - 0\n"
 "max - 32 (with LPC) or 4 (without LPC)"
 msgstr ""
+"Minimal prediction order\n"
+"Optional\n"
+"-1 - default\n"
+"min - 0\n"
+"max - 32 (with LPC) or 4 (without LPC)"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Min. PdO"
-msgstr ""
+msgstr "Min. PdO"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -10736,10 +10756,15 @@ msgid ""
 "min - 0\n"
 "max - 32 (with LPC) or 4 (without LPC)"
 msgstr ""
+"Maximal prediction order\n"
+"Optional\n"
+"-1 - default\n"
+"min - 0\n"
+"max - 32 (with LPC) or 4 (without LPC)"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Max. PdO"
-msgstr ""
+msgstr "Max. PdO"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -10749,10 +10774,15 @@ msgid ""
 "min - 0\n"
 "max - 8"
 msgstr ""
+"Minimal partition order\n"
+"Optional\n"
+"-1 - default\n"
+"min - 0\n"
+"max - 8"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Min. PtO"
-msgstr ""
+msgstr "Min. PtO"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -10762,10 +10792,15 @@ msgid ""
 "min - 0\n"
 "max - 8"
 msgstr ""
+"Maximal partition order\n"
+"Optional\n"
+"-1 - default\n"
+"min - 0\n"
+"max - 8"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Max. PtO"
-msgstr ""
+msgstr "Max. PtO"
 
 #. i18n-hint:  Abbreviates "Linear Predictive Coding",
 #. but this text needs to be kept very short
@@ -13249,7 +13284,7 @@ msgstr ""
 #. i18n-hint: Scriptables are commands normally used from Python, Perl etc.
 #: src/menus/PluginMenus.cpp
 msgid "Script&ables I"
-msgstr ""
+msgstr "Script&ables I"
 
 #: src/menus/PluginMenus.cpp
 msgid "Select Time..."
@@ -13302,7 +13337,7 @@ msgstr ""
 #. i18n-hint: Scriptables are commands normally used from Python, Perl etc.
 #: src/menus/PluginMenus.cpp
 msgid "Scripta&bles II"
-msgstr ""
+msgstr "Scripta&bles II"
 
 #: src/menus/PluginMenus.cpp
 msgid "Set Track..."

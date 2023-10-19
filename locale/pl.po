@@ -22,10 +22,10 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-10-18 14:37+0000\n"
+"PO-Revision-Date: 2023-10-19 01:37+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/tenacity/"
-"tenacity-testing/pl/>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/tenacity/tenacity/"
+"pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1292,7 +1292,7 @@ msgid ""
 "At 44100 Hz, %d bytes per sample, the estimated number of\n"
 " simultaneous tracks that could be played at once: %.1f\n"
 msgstr ""
-"Przy 44100 Hz, %d-bitowym próbkowaniu szacowana liczba\n"
+"Przy 44100 Hz, %d-bitowym próbkowaniu, szacowana liczba\n"
 "jednoczesnych ścieżek, które mogą być odtwarzane od razu: %.1f\n"
 
 #: src/Benchmark.cpp
@@ -3642,7 +3642,7 @@ msgstr "Stereo, "
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
-msgstr "Panel śledzący"
+msgstr "Panel ścieżki"
 
 #. i18n-hint Esc is a key on the keyboard
 #: src/TrackPanel.cpp
@@ -4504,7 +4504,7 @@ msgstr "Wzmocnienie dB"
 
 #: src/effects/Amplify.cpp
 msgid "&New Peak Amplitude (dB):"
-msgstr "&Nowa amplituda szczytowa (dB):"
+msgstr "&Nowa amplituda szczytowa"
 
 #: src/effects/Amplify.cpp
 msgid "Allo&w clipping"
@@ -4684,7 +4684,7 @@ msgstr "Półtony (pół-kroki)"
 
 #: src/effects/ChangePitch.cpp
 msgid "&Semitones (half-steps):"
-msgstr "Pół&tony (pół-kroki):"
+msgstr "Pół&tony"
 
 #: src/effects/ChangePitch.cpp
 msgid "Frequency"
@@ -7934,8 +7934,8 @@ msgstr "Błąd Nyquista"
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
 msgstr ""
-"Niestety, ale nie można używać efektu na ścieżkach stereo, w których ścieżki "
-"nie pasują do siebie."
+"Niestety, ale nie można używać efektu na ścieżkach stereo, jeśli ścieżki nie "
+"pasują do siebie."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -8772,7 +8772,7 @@ msgid ""
 msgstr ""
 "ISO 639 3-literowy kod języka\n"
 "Opcjonalny\n"
-"pusty - automatycznie"
+"pusty - automatyczny"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Language:"
@@ -8810,8 +8810,8 @@ msgid ""
 msgstr ""
 "Bitrate (bity na sekundę) - wpływa na rozmiar i jakość pliku\n"
 "Niektóre kodeki akceptują tylko niektóre wartości (128k, 192k, 256k itp.)\n"
-"0 - automatycznie\n"
-"Zalecane - 192000"
+"0 - automatyczny\n"
+"Zalecany - 192000"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -8821,9 +8821,9 @@ msgid ""
 "-1 - off (use bitrate instead)"
 msgstr ""
 "Ogólna jakość używana różnie przez różne kodeki\n"
-"Wymagane dla Vorbis\n"
-"0 - automatycznie\n"
-"-1 - wyłączone (zamiast tego użyj bitrate'u)"
+"Wymagana dla Vorbis\n"
+"0 - automatyczna\n"
+"-1 - wyłączona (zamiast tego użyj bitrate'u)"
 
 #: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
 msgid "Quality:"
@@ -8848,8 +8848,8 @@ msgid ""
 "0 - automatic"
 msgstr ""
 "Pasmo odcinania dźwięku (Hz)\n"
-"Opcjonalna\n"
-"0 - automatyczna"
+"Opcjonalne\n"
+"0 - automatyczne"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -8913,9 +8913,9 @@ msgid ""
 "min - 1\n"
 "max - 15"
 msgstr ""
-"Precyzja LPC\n"
+"Precyzja współczynników LPC\n"
 "Opcjonalna\n"
-"0 - domyślne\n"
+"0 - domyślna\n"
 "min. - 1\n"
 "maks. - 15"
 
@@ -8930,14 +8930,14 @@ msgid ""
 "Log search - slowest, best compression\n"
 "Full search - default"
 msgstr ""
-"Metoda zlecenia\n"
-"Oszacowana - najszybsza, niska kompresja\n"
+"Metoda kolejności przewidywań\n"
+"Szacunkowa - najszybsza, niska kompresja\n"
 "Szukany rejestr - najwolniejsza, najlepsza kompresja\n"
 "Pełny rejestr - domyślna"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "PdO Method:"
-msgstr "Metoda PdO:"
+msgstr "Metoda KPd:"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -8947,15 +8947,15 @@ msgid ""
 "min - 0\n"
 "max - 32 (with LPC) or 4 (without LPC)"
 msgstr ""
-"Minimalne zlecenie\n"
-"Opcjonalne\n"
-"-1 - domyślne\n"
+"Minimalna kolejność przewidywań\n"
+"Opcjonalna\n"
+"-1 - domyślna\n"
 "min. - 0\n"
 "maks. - 32 (z LPC) lub 4 (bez LPC)"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Min. PdO"
-msgstr "Min. PdO"
+msgstr "Min. KPd"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -8965,15 +8965,15 @@ msgid ""
 "min - 0\n"
 "max - 32 (with LPC) or 4 (without LPC)"
 msgstr ""
-"Maksymalne zlecenie\n"
-"Opcjonalne\n"
-"-1 - domyślne\n"
+"Maksymalna kolejność przewidywań\n"
+"Opcjonalna\n"
+"-1 - domyślna\n"
 "min. - 0\n"
 "maks. - 32 (z LPC) lub 4 (bez LPC)"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Max. PdO"
-msgstr "Maks. PdO"
+msgstr "Maks. KPd"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -8983,15 +8983,15 @@ msgid ""
 "min - 0\n"
 "max - 8"
 msgstr ""
-"Minimalne zlecenie partycji\n"
-"Opcjonalne\n"
-"-1 - domyślne\n"
+"Minimalna kolejność partycji\n"
+"Opcjonalna\n"
+"-1 - domyślna\n"
 "min. - 0\n"
 "maks. - 8"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Min. PtO"
-msgstr "Min. PtO"
+msgstr "Min. KPt"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -9001,15 +9001,15 @@ msgid ""
 "min - 0\n"
 "max - 8"
 msgstr ""
-"Maksymalne zlecenie partycji\n"
-"Opcjonalne\n"
-"-1 - domyślne\n"
+"Maksymalna kolejność partycji\n"
+"Opcjonalna\n"
+"-1 - domyślna\n"
 "min. - 0\n"
 "maks. - 8"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Max. PtO"
-msgstr "Maks. PtO"
+msgstr "Maks. KPt"
 
 #. i18n-hint:  Abbreviates "Linear Predictive Coding",
 #. but this text needs to be kept very short
@@ -9028,8 +9028,8 @@ msgid ""
 "0 - default"
 msgstr ""
 "Maksymalny bitrate multipleksowego strumienia\n"
-"Opcjonalna\n"
-"0 - domyślna"
+"Opcjonalny\n"
+"0 - domyślny"
 
 #. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
 #. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
@@ -11184,7 +11184,7 @@ msgstr "Wykryj przerwy pod prąd"
 #. i18n-hint: Scriptables are commands normally used from Python, Perl etc.
 #: src/menus/PluginMenus.cpp
 msgid "Script&ables I"
-msgstr "&Biblioteki I"
+msgstr "Skr&ypty I"
 
 #: src/menus/PluginMenus.cpp
 msgid "Select Time..."
@@ -11237,7 +11237,7 @@ msgstr "Ustaw projekt..."
 #. i18n-hint: Scriptables are commands normally used from Python, Perl etc.
 #: src/menus/PluginMenus.cpp
 msgid "Scripta&bles II"
-msgstr "&Biblioteki II"
+msgstr "Skry&pty II"
 
 #: src/menus/PluginMenus.cpp
 msgid "Set Track..."
@@ -17857,51 +17857,6 @@ msgstr "Częstotliwość igieł radaru (Hz)"
 msgid "Error.~%Stereo track required."
 msgstr "Błąd.~%Wymagana ścieżka stereo."
 
-#~ msgid "Screenshot"
-#~ msgstr "Zrzut ekranu"
-
-#~ msgid "Window"
-#~ msgstr "Okno"
-
-#~ msgid "Full Window"
-#~ msgstr "Pełne okno"
-
-#~ msgid "Window Plus"
-#~ msgstr "Plus okno"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Pełny ekran"
-
-#~ msgid "Scriptables"
-#~ msgstr "Skryptowalne"
-
-#~ msgid "Selectionbar"
-#~ msgstr "Pasek zaznaczenia"
-
-#~ msgid "Trackpanel"
-#~ msgstr "Panel ścieżki"
-
-#~ msgid "First Two Tracks"
-#~ msgstr "Pierwsze dwie ścieżki"
-
-#~ msgid "First Three Tracks"
-#~ msgstr "Pierwsze trzy ścieżki"
-
-#~ msgid "First Four Tracks"
-#~ msgstr "Pierwsze cztery ścieżki"
-
-#~ msgid "Tracks Plus"
-#~ msgstr "Plus ścieżki"
-
-#~ msgid "First Track Plus"
-#~ msgstr "Plus pierwsza ścieżka"
-
-#~ msgid "All Tracks"
-#~ msgstr "Wszystkie ścieżki"
-
-#~ msgid "All Tracks Plus"
-#~ msgstr "Plus wszystkie ścieżki"
-
 #~ msgid "Blue"
 #~ msgstr "Niebieski"
 
@@ -17921,10 +17876,6 @@ msgstr "Błąd.~%Wymagana ścieżka stereo."
 #~ msgid "Bring To Top"
 #~ msgstr "Przesuń na samą górę"
 
-#, c-format
-#~ msgid "Error trying to save file: %s"
-#~ msgstr "Błąd zapisu pliku: %s"
-
 #~ msgid "&Screenshot..."
 #~ msgstr "&Zrzut ekranu..."
 
@@ -17937,19 +17888,6 @@ msgstr "Błąd.~%Wymagana ścieżka stereo."
 #, c-format
 #~ msgid "\"%s\", \"%s\", \"%s\"\n"
 #~ msgstr "\"%s\", \"%s\", \"%s\"\n"
-
-#, c-format
-#~ msgid "This operation cannot be done until importation of %s completes."
-#~ msgstr "Ta operacja nie może być wykonana do czasu ukończenia importowania %s."
-
-#~ msgid "Get Track Info"
-#~ msgstr "Uzyskaj informacje o ścieżce"
-
-#~ msgid "Types:"
-#~ msgstr "Typy:"
-
-#~ msgid "Gets track values as JSON."
-#~ msgstr "Pobiera wartości ścieżek jako JSON."
 
 #~ msgid "Takes screenshots."
 #~ msgstr "Wykonuje zrzuty ekranu."
@@ -18663,7 +18601,7 @@ msgstr "Wybierz plik XML zawierający skróty klawiaturowe programu Tenacity..."
 
 #: src/Screenshot.cpp
 msgid "All Scriptables"
-msgstr "Wszystkie skryptowalne"
+msgstr "Wszystkie skrypty"
 
 #: src/effects/ladspa/LadspaEffect.cpp
 msgid "As part of their processing, some LADSPA effects must delay returning audio to Audacity. When not compensating for this delay, you will notice that small silences have been inserted into the audio. Enabling this option will provide that compensation, but it may not work for all LADSPA effects."
@@ -20194,3 +20132,85 @@ msgstr "Wytnij do schowka"
 #, c-format
 msgid "File '%s' already exists, do you really want to overwrite it?"
 msgstr "Plik '%s' już istnieje. Na pewno chcesz go zastąpić?"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Tracks Plus"
+msgstr "Plus ścieżki"
+
+#: src/commands/GetTrackInfoCommand.cpp
+msgid "Types:"
+msgstr "Typy:"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Trackpanel"
+msgstr "Panel ścieżki"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Fullscreen"
+msgstr "Pełny ekran"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Four Tracks"
+msgstr "Pierwsze cztery ścieżki"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "All Tracks Plus"
+msgstr "Plus wszystkie ścieżki"
+
+#: src/commands/GetTrackInfoCommand.h
+msgid "Gets track values as JSON."
+msgstr "Pobiera wartości ścieżek jako JSON."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Window Plus"
+msgstr "Plus okno"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Full Window"
+msgstr "Pełne okno"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Three Tracks"
+msgstr "Pierwsze trzy ścieżki"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Screenshot"
+msgstr "Zrzut ekranu"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Window"
+msgstr "Okno"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "All Tracks"
+msgstr "Wszystkie ścieżki"
+
+#: src/blockfile/NotYetAvailableException.cpp
+#, c-format
+msgid "This operation cannot be done until importation of %s completes."
+msgstr "Tej operacji nie można wykonać do czasu zakończenia importowania %s."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Selectionbar"
+msgstr "Pasek zaznaczenia"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Track Plus"
+msgstr "Plus pierwsza ścieżka"
+
+#: src/commands/ScreenshotCommand.cpp
+#, c-format
+msgid "Error trying to save file: %s"
+msgstr "Błąd zapisu pliku: %s"
+
+#: src/commands/GetTrackInfoCommand.cpp
+msgid "Get Track Info"
+msgstr "Uzyskaj informacje o ścieżce"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Two Tracks"
+msgstr "Pierwsze dwie ścieżki"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Scriptables"
+msgstr "Skrypty"
