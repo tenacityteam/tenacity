@@ -11,6 +11,8 @@ Please note that **we do NOT accept any pull requests or issues on GitHub anymor
 
 ---
 
+**This is an experimental Qt version of Tenacity. It will contain bugs and is intended for developers only**.
+
 Tenacity is an easy-to-use multi-track audio editor and recorder for Windows, macOS, Linux and other operating systems. It is built on top of the widely popular [Audacity](https://audacityteam.org/) and is being developed by a wide, diverse group of volunteers.
 
 **Are you coming from [Audacium](https://github.com/Audacium/audacium) or [Saucedacity](https://codeberg.org/tenacityteam/saucedacity-legacy)? You're in the right place!** We'd like to welcome all Audacium and Saucedacity users to Tenacity and our community. We've implemented new features from Audacity 3.1 to make editing easier. Additionally, we've preserved the themes of these two forks with only very slight modifications so they look better with our new editing features and slight track changes.

@@ -728,14 +728,27 @@ endif()
 # define EXPERIMENTAL flags
 include("src/Experimental.cmake")
 
-find_package(wxWidgets 3.1 REQUIRED COMPONENTS adv base core html qa xml net)
-include(${wxWidgets_USE_FILE})
-# The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
-# This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
-if(NOT TARGET wxWidgets::wxWidgets)
-  add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
-  target_link_libraries(wxWidgets::wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
-  target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
+option(QT "Enable the experimental Qt frontend. Requires Qt" OFF)
+
+if (NOT QT)
+   find_package(wxWidgets 3.1 REQUIRED COMPONENTS adv base core html qa xml net)
+   include(${wxWidgets_USE_FILE})
+   # The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
+   # This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
+   if(NOT TARGET wxWidgets::wxWidgets)
+   add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
+   target_link_libraries(wxWidgets::wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
+   target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
+   endif()
+else()
+   message(WARNING "You are enabling the experimental frontend. It is intended for developers only.")
+   set(CMAKE_AUTOMOC ON)
+   set(CMAKE_AUTOUIC ON)
+
+   # Find Qt. We prefer Qt 6 over Qt 5, so if both are found then we'll use
+   # Qt 6.
+   find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Gui Quick Widgets)
+   find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Quick Widgets)
 endif()
 
 add_subdirectory(lib-src/libnyquist)
@@ -743,13 +756,21 @@ set(USE_NYQUIST ON)
 
 add_subdirectory( "help" )
 add_subdirectory( "images" )
-add_subdirectory( "libraries" )
 add_subdirectory( "locale" )
-add_subdirectory( "src" )
-add_subdirectory( "modules" )
 add_subdirectory( "nyquist" )
 add_subdirectory( "plug-ins" )
 add_subdirectory( "scripts" )
+
+# If the Qt frontend is enabled, include qt-src instead of src/ because
+# compiling won't work. libraries/ won't be included either mainly for
+# a similar reason.
+if (${QT})
+   add_subdirectory("qt-src")
+else()
+   add_subdirectory("src")
+   add_subdirectory("libraries")
+   add_subdirectory( "modules" )
+endif()
 
 # Generate config file
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
