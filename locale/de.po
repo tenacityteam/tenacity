@@ -33,7 +33,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-10-17 04:14+0000\n"
+"PO-Revision-Date: 2023-10-24 04:11+0000\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "de/>\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -349,7 +349,7 @@ msgstr "XML konnte nicht analysiert werden"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "1st Experimental Command..."
-msgstr "1. Experimenteller Befehl"
+msgstr "1. Experimenteller Befehl …"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "2nd Experimental Command"
@@ -2250,7 +2250,9 @@ msgstr "Erweiterungsdatei in Verwendung. Konnte nicht überschrieben werden"
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr "Registrierung fehlgeschlagen: %s"
+msgstr ""
+"Registrierung fehlgeschlagen:\n"
+"%s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -2357,7 +2359,10 @@ msgid ""
 "Enabling effects or commands:\n"
 "\n"
 "%s"
-msgstr "Effekte oder Befehle werden aktiviert: %s"
+msgstr ""
+"Effekte oder Befehle werden aktiviert:\n"
+"\n"
+"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2365,14 +2370,19 @@ msgid ""
 "Enabling effect or command:\n"
 "\n"
 "%s"
-msgstr "Effekt oder Befehl wird aktiviert: %s"
+msgstr ""
+"Effekt oder Befehl wird aktiviert:\n"
+"\n"
+"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr "Effekt oder Befehl bei %s konnte nicht registriert werden: %s"
+msgstr ""
+"Effekt oder Befehl bei %s konnte nicht registriert werden:\n"
+"%s"
 
 #: src/Printing.cpp
 msgid "There was a problem printing."
@@ -2391,7 +2401,10 @@ msgstr "Aktuelle Rate: %d"
 msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
-msgstr "Fehler beim Öffnen des Audiogerätes. Versuchen Sie den Audiohost, das Wiedergabegerät und die Abtastrate des Projektes zu ändern."
+msgstr ""
+"Fehler beim Öffnen des Audiogerätes.\n"
+"Versuchen Sie den Audiohost, das Wiedergabegerät und die Abtastrate des "
+"Projektes zu ändern."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
@@ -2795,10 +2808,10 @@ msgid ""
 "   will be irreversibly overwritten."
 msgstr ""
 "   Möchten Sie das Projekt überschreiben:\n"
-"\"%s\"?\n"
+"„%s“?\n"
 "\n"
-"   Wenn Sie \"Ja\" wählen, wird das Projekt\n"
-"\"%s\"\n"
+"   Wenn Sie „Ja“ wählen, wird das Projekt\n"
+"„%s“\n"
 "   unwiderruflich überschrieben."
 
 #. i18n-hint: Heading: A warning that a project is about to be overwritten.
@@ -3059,7 +3072,7 @@ msgstr "Pegelgesteuerte Aufnahme"
 
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
-msgstr "Startpegel"
+msgstr "Startpegel (dB):"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3101,7 +3114,7 @@ msgstr "Kommentare"
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
 msgstr ""
 "Benutzen Sie die Pfeiltasten (oder die Eingabetaste nach dem Bearbeiten), um "
-"durch die Felder zu navigieren"
+"durch die Felder zu navigieren."
 
 #: src/Tags.cpp
 msgid "Tag"
@@ -3125,11 +3138,11 @@ msgstr "Genres"
 
 #: src/Tags.cpp
 msgid "E&dit..."
-msgstr "Be&arbeiten"
+msgstr "Be&arbeiten …"
 
 #: src/Tags.cpp
 msgid "Rese&t..."
-msgstr "Zurückse&tzen"
+msgstr "Zurückse&tzen …"
 
 #: src/Tags.cpp
 msgid "Template"
@@ -3384,7 +3397,7 @@ msgstr "Fehler in Dauer"
 
 #: src/TimerRecordDialog.cpp
 msgid "Automatic Save path is invalid."
-msgstr "Pfad für automatisches Speichern ist ungültig"
+msgstr "Pfad für automatisches Speichern ist ungültig."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error in Automatic Save"
@@ -3392,7 +3405,7 @@ msgstr "Fehler beim automatischen Speichern"
 
 #: src/TimerRecordDialog.cpp
 msgid "Automatic Export path is invalid."
-msgstr "Pfad für automatisches Exportieren ist ungültig"
+msgstr "Pfad für automatisches Exportieren ist ungültig."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error in Automatic Export"
@@ -3617,7 +3630,7 @@ msgstr "Aufnahmedauer:"
 
 #: src/TimerRecordDialog.cpp
 msgid "Scheduled to stop at:"
-msgstr "Geplant "
+msgstr "Stopp geplant bei:"
 
 #. i18n-hint: "in" means after a duration of time,
 #. which is shown below this string
@@ -3643,11 +3656,11 @@ msgstr "Aufnahme exportiert:"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
-msgstr "Stereo, "
+msgstr "Stereo, 999999Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
-msgstr "Spurbereich"
+msgstr "Spur-Panel"
 
 #. i18n-hint Esc is a key on the keyboard
 #: src/TrackPanel.cpp
@@ -5528,7 +5541,7 @@ msgstr "Nivellierungsgrad"
 
 #: src/effects/Distortion.cpp
 msgid "dB Limit"
-msgstr "dB Limit"
+msgstr "dB-Limit"
 
 #: src/effects/Distortion.cpp
 msgid "Wet level"
@@ -5746,7 +5759,8 @@ msgstr ""
 "\n"
 "%s\n"
 "\n"
-"Weitere Informationen sind eventuell unter 'Hilfe > Diagnose > Protokoll anzeigen' verfügbar."
+"Weitere Informationen sind eventuell unter „Hilfe > Diagnose > Protokoll "
+"anzeigen“ verfügbar"
 
 #: src/effects/EffectManager.cpp
 msgid "Effect failed to initialize"
@@ -5765,7 +5779,8 @@ msgstr ""
 "\n"
 "%s\n"
 "\n"
-"Weitere Informationen sind eventuell unter 'Hilfe > Diagonse > Protokoll anzeigen' verfügbar"
+"Weitere Informationen sind eventuell unter „Hilfe > Diagonse > Protokoll "
+"anzeigen“ verfügbar"
 
 #: src/effects/EffectManager.cpp
 msgid "Command failed to initialize"
@@ -6289,7 +6304,7 @@ msgstr "„unbenannt“ ist ein Sonderfall"
 #: src/effects/Equalization.cpp
 #, c-format
 msgid "Rename '%s' to..."
-msgstr "'%s' umbenennen zu..."
+msgstr "„%s“ umbenennen zu …"
 
 #: src/effects/Equalization.cpp
 msgid "Rename..."
@@ -6298,7 +6313,7 @@ msgstr "Umbenennen..."
 #: src/effects/Equalization.cpp
 #, c-format
 msgid "Rename '%s'"
-msgstr "'%s' umbenennen"
+msgstr "„%s“ umbenennen"
 
 #: src/effects/Equalization.cpp
 msgid "Name is the same as the original one"
@@ -6311,7 +6326,7 @@ msgstr "Gleicher Name"
 #: src/effects/Equalization.cpp
 #, c-format
 msgid "Overwrite existing curve '%s'?"
-msgstr "Existierende Kurve '%s' überschreiben?"
+msgstr "Existierende Kurve „%s“ überschreiben?"
 
 #: src/effects/Equalization.cpp
 msgid "Curve exists"
@@ -6328,7 +6343,7 @@ msgstr "„Unbenannt“ kann nicht gelöscht werden"
 #: src/effects/Equalization.cpp
 #, c-format
 msgid "Delete '%s'?"
-msgstr "'%s' löschen?"
+msgstr "„%s“ löschen?"
 
 #: src/effects/Equalization.cpp src/export/ExportFFmpegDialogs.cpp
 msgid "Confirm Deletion"
@@ -6885,7 +6900,9 @@ msgstr "Paulstretch"
 
 #: src/effects/Paulstretch.cpp
 msgid "Paulstretch is only for an extreme time-stretch or \"stasis\" effect"
-msgstr "Paulstretch ist nur für eine extreme Zeitdehnung oder einen \"Stillstand\"-Effekt"
+msgstr ""
+"Paulstretch ist nur für eine extreme Zeitdehnung oder einen "
+"„Stillstand“-Effekt"
 
 #. i18n-hint: This is how many times longer the sound will be, e.g. applying
 #. * the effect to a 1-second sample, with the default Stretch Factor of 10.0
@@ -6911,7 +6928,7 @@ msgstr ""
 "Audioauswahl zu kurz zum Vorhören.\n"
 "\n"
 "Versuchen Sie, die Audioauswahl um mindestens %.1f Sekunden zu verlängern,\n"
-"oder reduzieren Sie die 'Zeitauflösung' auf weniger als %.1f Sekunden."
+"oder reduzieren Sie die „Zeitauflösung“ auf weniger als %.1f Sekunden."
 
 #. i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.
 #: src/effects/Paulstretch.cpp
@@ -6925,7 +6942,7 @@ msgstr ""
 "Vorhören nicht möglich.\n"
 "\n"
 "Für die aktuelle Audioauswahl beträgt die\n"
-"maximale 'Zeitauflösung' %.1f Sekunden."
+"maximale „Zeitauflösung“ %.1f Sekunden."
 
 #. i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.
 #: src/effects/Paulstretch.cpp
@@ -6936,10 +6953,10 @@ msgid ""
 "Try increasing the audio selection to at least %.1f seconds,\n"
 "or reducing the 'Time Resolution' to less than %.1f seconds."
 msgstr ""
-"Die 'Zeitauflösung' ist zu lang für die Auswahl.\n"
+"Die „Zeitauflösung“ ist zu lang für die Auswahl.\n"
 "\n"
 "Versuchen Sie, die Audioauswahl um mindestens %.1f Sekunden zu verlängern,\n"
-"oder reduzieren Sie die 'Zeitauflösung' auf weniger als %.1f Sekunden."
+"oder reduzieren Sie die „Zeitauflösung“ auf weniger als %.1f Sekunden."
 
 #: src/effects/Phaser.cpp
 msgid "Phaser"
@@ -7680,7 +7697,12 @@ msgstr "Benutzeroberfläche"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Select \"Full\" to use the graphical interface if supplied by the Audio Unit. Select \"Generic\" to use the system supplied generic interface. Select \"Basic\" for a basic text-only interface. Reopen the effect for this to take effect."
-msgstr "Wählen Sie \"Voll\", um die grafische Oberfläche zu verwenden, sofern diese von der Audio-Unit bereitgestellt wird. Wählen Sie \"Generisch\", um die vom System bereitgestellte generische Schnittstelle zu verwenden. Wählen Sie \"Einfach\" für eine einfache Nur-Text-Oberfläche. Öffnen Sie den Effekt erneut, damit dies wirksam wird."
+msgstr ""
+"Wählen Sie „Voll“, um die grafische Oberfläche zu verwenden, sofern diese "
+"von der Audio-Unit bereitgestellt wird. Wählen Sie „Generisch“, um die vom "
+"System bereitgestellte generische Schnittstelle zu verwenden. Wählen Sie "
+"„Einfach“ für eine einfache Nur-Text-Oberfläche. Öffnen Sie den Effekt "
+"erneut, damit dies wirksam wird."
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Select &interface"
@@ -7722,7 +7744,7 @@ msgstr "Konnte „%s“ nicht öffnen"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Unable to read the preset from \"%s\""
-msgstr "Konnte die Voreinstellung von \"%s\" nicht lesen"
+msgstr "Konnte die Voreinstellung von „%s“ nicht lesen"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -7912,7 +7934,7 @@ msgid ""
 "applying 'Spectral' effects."
 msgstr ""
 "Aktivieren Sie die Spurspektrogrammansicht,\n"
-"bevor Sie 'Spektral'-Effekte anwenden."
+"bevor Sie „Spektral“-Effekte anwenden."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid ""
@@ -7920,9 +7942,9 @@ msgid ""
 "in the track Spectrogram settings and select the\n"
 "frequency range for the effect to act on."
 msgstr ""
-"Um 'Spektraleffekte' zu verwenden, aktivieren Sie 'Spektralauswahl'\n"
+"Um „Spektraleffekte“ zu verwenden, aktivieren Sie „Spektralauswahl“\n"
 "in den Spektrogramm-Einstellungen der Spur und wählen Sie\n"
-"den Frequenzbereich auf dem der Effekt ausgeführt werden soll."
+"den Frequenzbereich, auf dem der Effekt ausgeführt werden soll."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -7963,12 +7985,12 @@ msgstr "Verarbeitung beendet."
 #. i18n-hint: Don't translate ';type tool'.
 #: src/effects/nyquist/Nyquist.cpp
 msgid "';type tool' effects cannot return audio from Nyquist.\n"
-msgstr "';type tool' Effekte können aus Nyquist keinen Ton zurückgeben.\n"
+msgstr "„;type tool“-Effekte können aus Nyquist keinen Ton zurückgeben.\n"
 
 #. i18n-hint: Don't translate ';type tool'.
 #: src/effects/nyquist/Nyquist.cpp
 msgid "';type tool' effects cannot return labels from Nyquist.\n"
-msgstr "';type tool' Effekte können aus Nyquist keine Textmarken zurückgeben.\n"
+msgstr "„;type tool“-Effekte können aus Nyquist keine Textmarken zurückgeben.\n"
 
 #. i18n-hint: "%s" is replaced by name of plug-in.
 #: src/effects/nyquist/Nyquist.cpp
@@ -8028,7 +8050,7 @@ msgid ""
 " ."
 msgstr ""
 "Ihr Code sieht nach SAL-Syntax aus, aber es gibt keine „return“-Anweisung.\n"
-"Für SAL verwenden Sie eine 'return' Anweisung:\n"
+"Für SAL verwenden Sie eine „return“-Anweisung:\n"
 "\treturn *track* * 0.1\n"
 "oder beginnen Sie für LISP mit einem offenen Einschub:\n"
 "\t(mult *track* 0.1)\n"
@@ -8046,7 +8068,7 @@ msgstr "Konnte Sprache nicht bestimmen"
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
 msgid "\"%s\" is not a valid file path."
-msgstr "\"%s\" ist kein gültiger Pfad."
+msgstr "„%s“ ist kein gültiger Pfad."
 
 #. i18n-hint: Warning that there is one quotation mark rather than a pair.
 #: src/effects/nyquist/Nyquist.cpp
@@ -8181,7 +8203,7 @@ msgstr "Sämtlicher Ton ist stummgestellt."
 #: src/export/Export.cpp
 #, c-format
 msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Möchten Sie die Datei wirklich als \"%s\" exportieren?\n"
+msgstr "Möchten Sie die Datei wirklich als „%s“ exportieren?\n"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8330,12 +8352,12 @@ msgstr "Programmname scheint zu fehlen."
 #: src/export/ExportCL.cpp
 #, c-format
 msgid "\"%s\" couldn't be found."
-msgstr "\"%s\" konnte nicht gefunden werden."
+msgstr "„%s“ konnte nicht gefunden werden."
 
 #: src/export/ExportCL.cpp
 #, c-format
 msgid "Unable to locate \"%s\" in your path."
-msgstr "\"%s\" konnte in Ihrem Pfad nicht gefunden werden."
+msgstr "„%s“ konnte in Ihrem Pfad nicht gefunden werden."
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
@@ -8352,7 +8374,9 @@ msgstr ""
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg : FEHLER - Formatbeschreibung für Datei „%s“ kann nicht ermittelt werden."
+msgstr ""
+"FFmpeg: FEHLER – Formatbeschreibung für Datei „%s“ kann nicht ermittelt "
+"werden."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg Error"
@@ -8360,22 +8384,27 @@ msgstr "FFmpeg-Fehler"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg : FEHLER - Kann Ausgabeformat-Kontext nicht zuweisen."
+msgstr "FFmpeg: FEHLER – Kann Ausgabeformat-Kontext nicht zuweisen."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr "FFmpeg : FEHLER - Kann Audiostream nicht zur Ausgabedatei „%s“ hinzufügen."
+msgstr ""
+"FFmpeg: FEHLER – Kann Audiostream nicht zur Ausgabedatei „%s“ hinzufügen."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid "FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "FFmpeg : FEHLER - In Ausgabedatei \"%s\" kann nicht geschrieben werden. Fehlercode ist %d."
+msgstr ""
+"FFmpeg: FEHLER – In Ausgabedatei „%s“ kann nicht geschrieben werden. "
+"Fehlercode ist %d."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid "FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr "FFmpeg : FEHLER - Kann Kopfzeilen nicht in die Ausgabedatei „%s“ schreiben. Fehlercode ist %d."
+msgstr ""
+"FFmpeg: FEHLER – Kann Kopfzeilen nicht in die Ausgabedatei „%s“ schreiben. "
+"Fehlercode ist %d."
 
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/export/ExportFFmpeg.cpp
@@ -8403,33 +8432,33 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Kann Audiocodec \"%s\" nicht öffnen (0x%x)\n"
+"Kann Audiocodec „%s“ nicht öffnen (0x%x)\n"
 "\n"
 "%s"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg : FEHLER - Kann Puffer zum Lesen von Audio-FIFO nicht zuweisen."
+msgstr "FFmpeg: FEHLER – Kann Puffer zum Lesen von Audio-FIFO nicht zuweisen."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg : FEHLER - Konnte die Sample-Puffergröße nicht erhalten"
+msgstr "FFmpeg: FEHLER – Konnte die Sample-Puffergröße nicht erhalten"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "FFmpeg : FEHLER - Konnte Bytes für Samplepuffer nicht zuweisen"
+msgstr "FFmpeg: FEHLER – Konnte Bytes für Samplepuffer nicht zuweisen"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "FFmpeg : FEHLER - Zu viele verbleibende Daten."
+msgstr "FFmpeg: FEHLER – Zu viele verbleibende Daten."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg : FEHLER - nAudioFrameSizeOut zu groß."
+msgstr "FFmpeg: FEHLER – nAudioFrameSizeOut zu groß."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg : FEHLER - Kann Audioframe nicht encodieren."
+msgstr "FFmpeg: FEHLER – Kann Audioframe nicht kodieren."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -9490,7 +9519,7 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"Textmarke oder Spur \"%s\" ist kein zulässiger Dateiname.\n"
+"Textmarke oder Spur „%s“ ist kein zulässiger Dateiname.\n"
 "Sie dürfen keine dieser Zeichen verwenden:\n"
 "\n"
 "%s\n"
@@ -9505,7 +9534,8 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"Textmarke oder Spur \"%s\" ist kein zulässiger Dateiname. Sie dürfen \"%s\" nicht verwenden.\n"
+"Textmarke oder Spur „%s“ ist kein zulässiger Dateiname. Sie dürfen „%s“ "
+"nicht verwenden.\n"
 "\n"
 "Vorgeschlagene Alternative:"
 
@@ -9671,7 +9701,7 @@ msgstr "Stream(s) für den Import auswählen"
 #: src/import/Import.cpp
 #, c-format
 msgid "File \"%s\" not found."
-msgstr "Datei \"%s\" nicht gefunden."
+msgstr "Datei „%s“ nicht gefunden."
 
 #: src/import/Import.cpp
 msgid ""
@@ -9711,31 +9741,31 @@ msgstr "Interner Fehler im Importer...Tag nicht erkannt"
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'vpos' attribute."
-msgstr "Ungültiges Projektattribut 'vpos'."
+msgstr "Ungültiges Projektattribut „vpos“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'h' attribute."
-msgstr "Ungültiges Projektattribut 'h'."
+msgstr "Ungültiges Projektattribut „h“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'zoom' attribute."
-msgstr "Ungültiges Projektattribut 'zoom'."
+msgstr "Ungültiges Projektattribut „zoom“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'sel0' attribute."
-msgstr "Ungültiges Projektattribut 'sel0'."
+msgstr "Ungültiges Projektattribut „sel0“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'sel1' attribute."
-msgstr "Ungültiges Projektattribut 'sel1'."
+msgstr "Ungültiges Projektattribut „sel1“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'selLow' attribute."
-msgstr "Ungültiges Projektattribut 'selLow'."
+msgstr "Ungültiges Projektattribut „selLow“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid project 'selHigh' attribute."
-msgstr "Ungültiges Projektattribut 'selHigh'."
+msgstr "Ungültiges Projektattribut „selHigh“."
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -9752,19 +9782,19 @@ msgstr "Das aktive Projekt enthält bereits eine Zeitspur und das importierte Pr
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Ungültiges Sequenzattribut 'maxsamples'."
+msgstr "Ungültiges Sequenzattribut „maxsamples“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Ungültiges Sequenzattribut 'sampleformat'."
+msgstr "Ungültiges Sequenzattribut „sampleformat“."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Ungültiges Sequenzattribut 'numsamples'."
+msgstr "Ungültiges Sequenzattribut „numsamples“."
 
 #: src/import/ImportAUP.cpp
 msgid "Unable to parse the waveblock 'start' attribute"
-msgstr "Wellenblock-Startattribut kann nicht analysiert werden."
+msgstr "Wellenblock-Startattribut kann nicht analysiert werden"
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -9779,11 +9809,11 @@ msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Fehlendes oder ungültiges simpleblockfile 'len' Attribut."
+msgstr "Fehlendes oder ungültiges simpleblockfile-„len“-Attribut."
 
 #: src/import/ImportAUP.cpp
 msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Fehlendes oder ungültiges silentblockfile 'len' Attribut."
+msgstr "Fehlendes oder ungültiges silentblockfile-„len“-Attribut."
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -9798,11 +9828,11 @@ msgstr ""
 
 #: src/import/ImportAUP.cpp
 msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Fehlendes oder ungültiges pcmaliasblockfile 'aliasstart' Attribut."
+msgstr "Fehlendes oder ungültiges pcmaliasblockfile-„aliasstart“-Attribut."
 
 #: src/import/ImportAUP.cpp
 msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Fehlendes oder ungültiges pcmaliasblockfile 'aliaslen' Attribut."
+msgstr "Fehlendes oder ungültiges pcmaliasblockfile-„aliaslen“-Attribut."
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -10603,7 +10633,7 @@ msgid ""
 "Cannot create directory '%s'. \n"
 "File already exists that is not a directory"
 msgstr ""
-"Verzeichnis '%s' kann nicht angelegt werden.\n"
+"Verzeichnis „%s“-kann nicht angelegt werden.\n"
 "Es existiert bereits eine Datei, die kein Verzeichnis ist"
 
 #: src/menus/FileMenus.cpp
@@ -11168,7 +11198,7 @@ msgstr "Makro &anwenden"
 
 #: src/menus/PluginMenus.cpp
 msgid "Palette..."
-msgstr "Palette..."
+msgstr "Palette …"
 
 #: src/menus/PluginMenus.cpp
 msgid "Reset &Configuration"
@@ -12133,7 +12163,7 @@ msgstr "&Zeitgesteuerte Aufnahme..."
 
 #: src/menus/TransportMenus.cpp
 msgid "Punch and Rol&l Record"
-msgstr "\"Punch and Rol&l\" Aufnahme"
+msgstr "„Punch and Rol&l“-Aufnahme"
 
 #: src/menus/TransportMenus.cpp
 msgid "Pla&y Region"
@@ -12668,7 +12698,7 @@ msgstr "Einstellungen für Erw. Import"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "A&ttempt to use filter in OpenFile dialog first"
-msgstr "&Zuerst versuchen, den Filter im \"Datei öffnen\"-Dialog zu verwenden"
+msgstr "&Zuerst versuchen, den Filter im „Datei öffnen“-Dialog zu verwenden"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Rules to choose import filters"
@@ -12806,7 +12836,7 @@ msgstr "Aussteuerungsanzeige dB-&Bereich:"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show 'How to Get &Help' at launch"
-msgstr "'Wie man &Hilfe erhält' beim Start anzeigen"
+msgstr "„Wie man &Hilfe erhält“ beim Start anzeigen"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show e&xtra menus"
@@ -12840,7 +12870,7 @@ msgstr "Schrub-Regler anzeigen"
 #: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
-msgstr "Sprache \"%s\" ist unbekannt"
+msgstr "Sprache „%s“ ist unbekannt"
 
 #: src/prefs/GUIPrefs.h
 msgid "GUI"
@@ -12922,7 +12952,7 @@ msgstr "Öffnen Sie ein neues Projekt um Tastaturkürzel zu ändern."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "&Hotkey:"
-msgstr "&Hotkey:"
+msgstr "Sc&hnelltaste:"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Key Bindings"
@@ -12992,7 +13022,7 @@ msgid ""
 "   *   \"%s\"  (because the shortcut '%s' is used by \"%s\")\n"
 msgstr ""
 "\n"
-"   *   \"%s\"  (weil die Verknüpfung '%s' von \"%s\" verwendet wird)\n"
+"   *   „%s“  (weil die Verknüpfung ‚%s‘ von „%s“ verwendet wird)\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -13004,7 +13034,8 @@ msgid ""
 "The file with the shortcuts contains illegal shortcut duplicates for \"%s\" and \"%s\".\n"
 "Nothing is imported."
 msgstr ""
-"Die Datei mit den Verknüpfungen enthält ungültige Verknüpfungsduplikate für \"%s\" und \"%s\".\n"
+"Die Datei mit den Verknüpfungen enthält ungültige Verknüpfungsduplikate für "
+"„%s“ und „%s“.\n"
 "Nichts wird importiert."
 
 #: src/prefs/KeyConfigPrefs.cpp
@@ -13068,12 +13099,12 @@ msgid ""
 "\n"
 "instead. Otherwise, click Cancel."
 msgstr ""
-"Die Tastaturverknüpfung '%s' ist bereits zugewiesen:\n"
+"Das Tastenkürzel „%s“ ist bereits zugewiesen:\n"
 "\n"
 "\t%s\n"
 "\n"
 "\n"
-"Drücken Sie OK, um die Verknüpfung nun\n"
+"Drücken Sie OK, um das Tastenkürzel zu\n"
 "\n"
 "\t%s\n"
 "\n"
@@ -13170,7 +13201,7 @@ msgstr "Einstellungen für Modul"
 #. i18n-hint preserve the leading spaces
 #: src/prefs/ModulePrefs.cpp
 msgid "  'New' means no choice has been made yet."
-msgstr "  \"Neu\" bedeutet, dass noch keine Auswahl getroffen wurde."
+msgstr "  „Neu“ bedeutet, dass noch keine Auswahl getroffen wurde."
 
 #: src/prefs/ModulePrefs.cpp
 msgid "Ask"
@@ -13573,7 +13604,7 @@ msgstr "Systemze&it"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Punch and Roll Recording"
-msgstr "\"Punch and Roll\" Aufnahmen"
+msgstr "„Punch and Roll“-Aufnahme"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Pre-ro&ll:"
@@ -13901,7 +13932,7 @@ msgstr "Einen Clip zu bearbeiten kann andere Clips &verschieben"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "\"Move track focus\" c&ycles repeatedly through tracks"
-msgstr "\"Spurfokus bewegen\" sprin&gt wiederholt über alle Spuren"
+msgstr "„Spurfokus bewegen“ sprin&gt wiederholt über alle Spuren"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "&Type to create a label"
@@ -14160,7 +14191,9 @@ msgstr "Hell"
 msgid ""
 "Theme written to:\n"
 "  %s."
-msgstr "Thema geschrieben nach:%s."
+msgstr ""
+"Thema geschrieben nach:\n"
+"  %s."
 
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
@@ -14833,7 +14866,7 @@ msgstr "Zum Aufklappen links klicken, zum Entfernen rechts klicken"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to merge clips"
-msgstr "Um Clips zusammenzuführen links klicken"
+msgstr "Um Clips zusammenzuführen, links klicken"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Merged Clips"
@@ -16141,8 +16174,9 @@ msgid ""
 "                      or reduce the filter 'Width'."
 msgstr ""
 "~aKerbfilter-Parameter können nicht angewendet werden.~%~\n"
-"                      Versuchen Sie die niedrige Frequenzgrenze zu erhören~%~\n"
-"                      oder reduzieren Sie die 'Breite' des Filters."
+"                      Versuchen Sie die niedrige Frequenzgrenze zu erhören~%~"
+"\n"
+"                      oder reduzieren Sie die „Breite“ des Filters."
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/nyquist-plug-in-installer.ny
@@ -16369,7 +16403,7 @@ msgstr "Übersteuerungen beheben"
 
 #: plug-ins/clipfix.ny
 msgid "Reconstructing clips..."
-msgstr "Rekonstruiere Übersteuerungen..."
+msgstr "Rekonstruiere Übersteuerungen ..."
 
 #: plug-ins/clipfix.ny
 msgid "Benjamin Schwartz and Steve Daulton"
@@ -16457,15 +16491,15 @@ msgstr "Fehler.~%Wählen Sie 2 (oder mehr) Spuren zur Überblendung aus."
 
 #: plug-ins/delay.ny
 msgid "Delay"
-msgstr "Delay"
+msgstr "Verzögerung"
 
 #: plug-ins/delay.ny
 msgid "Applying Delay Effect..."
-msgstr "Delayeffekt wird angewendet..."
+msgstr "Verzögerungseffekt wird angewendet …"
 
 #: plug-ins/delay.ny
 msgid "Delay type"
-msgstr "Delaytyp"
+msgstr "Verzögerungstyp"
 
 #: plug-ins/delay.ny
 msgid "Regular"
@@ -16481,7 +16515,7 @@ msgstr "Umgekehrt springender Ball"
 
 #: plug-ins/delay.ny
 msgid "Delay level per echo (dB)"
-msgstr "Pegel pro Echo (dB)"
+msgstr "Verzögerungsstufe pro Echo (dB)"
 
 #: plug-ins/delay.ny
 msgid "Delay time (seconds)"
@@ -16548,12 +16582,12 @@ msgstr "Fehler.~%Kann Datei nicht öffnen~%~s"
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, lisp-format
 msgid "Error.~%File overwrite disallowed:~%\"~a.txt\""
-msgstr "Fehler.~%Datei überschreiben verweigert:~%\"~a.txt\""
+msgstr "Fehler.~%Datei überschreiben verweigert:~%„~a.txt“"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
 #, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
-msgstr "Fehler.~%Datei kann nicht geschrieben werden:~%\"~a.txt\""
+msgstr "Fehler.~%Datei kann nicht geschrieben werden:~%„~a.txt“"
 
 #: plug-ins/equalabel.ny
 msgid "Regular Interval Labels"
@@ -16944,7 +16978,7 @@ msgid ""
 "Set the control below ~a kHz."
 msgstr ""
 "Fehler.\n"
-"\"Gatefrequenzen über: ~s kHz\"\n"
+"„Gatefrequenzen über: ~s kHz“\n"
 "ist für ausgewählte Spur zu hoch.\n"
 "Stellen Sie das Steuerelement unter ~a kHz."
 
@@ -17087,7 +17121,7 @@ msgstr "Nicht unterstützter Dateityp:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Files already installed ('Allow Overwriting' disabled):"
-msgstr "Bereits installierte Dateien ('Überschreiben erlauben' deaktiviert):"
+msgstr "Bereits installierte Dateien („Überschreiben erlauben“ deaktiviert):"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Cannot be written to plug-ins folder:"
@@ -17168,7 +17202,8 @@ msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr "Stellen Sie 'Taktanzahl' auf Null um die 'Rhythmusspurdauer' zu aktivieren."
+msgstr ""
+"Stellen Sie „Taktanzahl“ auf Null, um die „Rhythmusspurdauer“ zu aktivieren."
 
 #: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
@@ -17184,7 +17219,7 @@ msgstr "Rhythmusspurdauer"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Used if 'Number of bars' = 0"
-msgstr "Verwendet wenn 'Taktanzahl' = 0"
+msgstr "Verwendet, wenn „Taktanzahl“ = 0"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Start time offset"
@@ -17247,8 +17282,8 @@ msgid ""
 "Set either 'Number of bars' or\n"
 "'Rhythm track duration' to greater than zero."
 msgstr ""
-"Stellen Sie entweder 'Taktanzahl' oder\n"
-"'Rhythmusspurdauer' auf größer als Null."
+"Stellen Sie entweder „Taktanzahl“ oder\n"
+"„Rhythmusspurdauer“ auf größer als Null."
 
 #: plug-ins/rissetdrum.ny
 msgid "Risset Drum"
@@ -17551,7 +17586,7 @@ msgstr "Unspezifizierte Kanalreihenfolge"
 #: plug-ins/sample-data-export.ny
 #, lisp-format
 msgid "Error.~%\"~a\" cannot be written."
-msgstr "Fehler.~%\"~a\" kann nicht geschrieben werden."
+msgstr "Fehler.~%„~a“ kann nicht geschrieben werden."
 
 #: plug-ins/sample-data-import.ny
 msgid "Sample Data Import"
@@ -17585,7 +17620,7 @@ msgid ""
 "                        Check that file exists."
 msgstr ""
 "Fehler~%~%\n"
-"                          '~a' konnte nicht geöffnet werden.~%~\n"
+"                          „~a“ konnte nicht geöffnet werden.~%~\n"
 "                          Prüfen Sie, ob die Datei existiert."
 
 #: plug-ins/sample-data-import.ny
@@ -17856,71 +17891,6 @@ msgstr "Fehler.~%Stereospur erforderlich."
 #~ msgid "Screenshot"
 #~ msgstr "Screenshot"
 
-#~ msgid "Window"
-#~ msgstr "Fenster"
-
-#~ msgid "Full Window"
-#~ msgstr "Ganzes Fenster"
-
-#~ msgid "Window Plus"
-#~ msgstr "Fenster Plus"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Vollbild"
-
-#~ msgid "Scriptables"
-#~ msgstr "Skriptfähiges"
-
-#~ msgid "Selectionbar"
-#~ msgstr "Auswahlleiste"
-
-#~ msgid "Trackpanel"
-#~ msgstr "Spurpanel"
-
-#~ msgid "First Two Tracks"
-#~ msgstr "Erste beide Spuren"
-
-#~ msgid "First Three Tracks"
-#~ msgstr "Erste drei Spuren"
-
-#~ msgid "First Four Tracks"
-#~ msgstr "Erste vier Spuren"
-
-#~ msgid "Tracks Plus"
-#~ msgstr "Spuren Plus"
-
-#~ msgid "First Track Plus"
-#~ msgstr "Erste Spur Plus"
-
-#~ msgid "All Tracks"
-#~ msgstr "Alle Spuren"
-
-#~ msgid "All Tracks Plus"
-#~ msgstr "Alle Spuren Plus"
-
-#~ msgid "Blue"
-#~ msgstr "Blau"
-
-#~ msgctxt "color"
-#~ msgid "White"
-#~ msgstr "Weiß"
-
-#~ msgid "Path:"
-#~ msgstr "Pfad:"
-
-#~ msgid "Capture What:"
-#~ msgstr "Was erfassen:"
-
-#~ msgid "Background:"
-#~ msgstr "Hintergrund:"
-
-#~ msgid "Bring To Top"
-#~ msgstr "Nach vorne bringen"
-
-#, c-format
-#~ msgid "Error trying to save file: %s"
-#~ msgstr "Fehler beim Speichern der Datei: %s"
-
 #~ msgid "&Screenshot..."
 #~ msgstr "&Screenshot..."
 
@@ -17934,198 +17904,8 @@ msgstr "Fehler.~%Stereospur erforderlich."
 #~ msgid "\"%s\", \"%s\", \"%s\"\n"
 #~ msgstr "\"%s\", \"%s\", \"%s\"\n"
 
-#, c-format
-#~ msgid "This operation cannot be done until importation of %s completes."
-#~ msgstr "Diese Operation kann erst ausgeführt werden, wenn der Import von %s abgeschlossen ist."
-
-#~ msgid "Get Track Info"
-#~ msgstr "Spurinfo erhalten"
-
-#~ msgid "Types:"
-#~ msgstr "Typen:"
-
-#~ msgid "Gets track values as JSON."
-#~ msgstr "Spurwerte als JSON erhalten."
-
 #~ msgid "Takes screenshots."
 #~ msgstr "Erstellt Screenshots."
-
-#~ msgid "Locate LAME"
-#~ msgstr "LAME suchen"
-
-#, c-format
-#~ msgid "Location of %s:"
-#~ msgstr "%s befindet sich in:"
-
-#, c-format
-#~ msgid "To find %s, click here -->"
-#~ msgstr "Um %s zu suchen, hier klicken -->"
-
-#~ msgid "To get a free copy of LAME, click here -->"
-#~ msgstr "Um eine kostenlose Version von LAME zu erhalten, hier klicken -->"
-
-#, c-format
-#~ msgid "Where is %s?"
-#~ msgstr "Wo befindet sich die Datei „%s“?"
-
-#~ msgid "Only lame_enc.dll"
-#~ msgstr "Nur lame_enc.dll"
-
-#~ msgid "Only libmp3lame.so.0"
-#~ msgstr "Nur libmp3lame.so.0"
-
-#~ msgid "Primary shared object files"
-#~ msgstr "Primäre geteilte Objektdateien"
-
-#~ msgid "Extended libraries"
-#~ msgstr "Erweiterte Bibliotheken"
-
-#~ msgid "Could not open MP3 encoding library!"
-#~ msgstr "Konnte MP3-Encoder nicht öffnen!"
-
-#~ msgid "Could not initialize MP3 encoding library!"
-#~ msgstr "Konnte MP3-Encoder nicht initialisieren!"
-
-#~ msgid "Not a valid or supported MP3 encoding library!"
-#~ msgstr "Ungültige Bibliothek oder nicht unterstützter MP3-Encoder!"
-
-#~ msgid "MP3 export library not found"
-#~ msgstr "MP3-Export-Bibliothek nicht gefunden"
-
-#~ msgid "(Built-in)"
-#~ msgstr "(Integriert)"
-
-#, c-format
-#~ msgid "Invalid project '%s' attribute."
-#~ msgstr "Ungültiges Projektattribut '%s'."
-
-#~ msgid "Mi&xer"
-#~ msgstr "Mi&xer"
-
-#~ msgid "Ad&just Playback Volume..."
-#~ msgstr "Wiedergabe&lautstärke einstellen..."
-
-#~ msgid "&Increase Playback Volume"
-#~ msgstr "W&iedergabelautstärke erhöhen"
-
-#~ msgid "&Decrease Playback Volume"
-#~ msgstr "Wiedergabelautstär&ke reduzieren"
-
-#~ msgid "Adj&ust Recording Volume..."
-#~ msgstr "Aufnahmela&utstärke einstellen..."
-
-#~ msgid "I&ncrease Recording Volume"
-#~ msgstr "Auf&nahmelautstärke erhöhen"
-
-#~ msgid "D&ecrease Recording Volume"
-#~ msgstr "Aufnahmelautstärke v&erringern"
-
-#~ msgid "&Quick Fix..."
-#~ msgstr "&Schnellkorrektur..."
-
-#~ msgid "&Getting Started"
-#~ msgstr "&Loslegen"
-
-#~ msgid "A&utomated Recording Level Adjustment (on/off)"
-#~ msgstr "A&utomatische Aufnahmeeinpegelung (ein/aus)"
-
-#~ msgid "Import complete. Calculating waveform"
-#~ msgstr "Import vollständig. Berechne Wellenform"
-
-#~ msgid "Decoding Waveform"
-#~ msgstr "Wellenform dekodieren"
-
-#, c-format
-#~ msgid "%s %2.0f%% complete. Click to change task focal point."
-#~ msgstr "%s %2.0f%% erledigt. Klicken um Fokus der Aufgabe zu ändern."
-
-#~ msgid "Preferences for Application"
-#~ msgstr "Einstellungen für Anwendung"
-
-#~ msgid "LAME MP3 Export Library"
-#~ msgstr "LAME-MP3-Export-Bibliothek"
-
-#~ msgid "MP3 Library Version:"
-#~ msgstr "MP3-Bibliothekversion:"
-
-#~ msgid "Automated Recording Level Adjustment"
-#~ msgstr "Automatische Aufnahmepegeleinstellung"
-
-#~ msgid "Enable Automated Recording Level Adjustment."
-#~ msgstr "Automatische Aufnahmepegeleinstellung aktivieren."
-
-#~ msgid "Target Peak:"
-#~ msgstr "Höchstwert-Ziel:"
-
-#~ msgid "Within:"
-#~ msgstr "Innerhalb:"
-
-#~ msgid "Analysis Time:"
-#~ msgstr "Analysezeit:"
-
-#~ msgid "milliseconds (time of one analysis)"
-#~ msgstr "Millisekunden (Zeit einer Analyse)"
-
-#~ msgid "Number of consecutive analysis:"
-#~ msgstr "Anzahl fortlaufender Analysen:"
-
-#~ msgid "0 means endless"
-#~ msgstr "0 bedeutet endlos"
-
-#~ msgid "Recording Volume"
-#~ msgstr "Aufnahmelautstärke"
-
-#~ msgid "Playback Volume"
-#~ msgstr "Wiedergabelautstärke"
-
-#, c-format
-#~ msgid "Recording Volume: %.2f"
-#~ msgstr "Aufnahmelautstärke: %.2f"
-
-#~ msgid "Recording Volume (Unavailable; use system mixer.)"
-#~ msgstr "Aufnahmelautstärke (Nicht verfügbar; Systemmixer verwenden.)"
-
-#, c-format
-#~ msgid "Playback Volume: %.2f (emulated)"
-#~ msgstr "Wiedergabelautstärke: %.2f (emuliert)"
-
-#, c-format
-#~ msgid "Playback Volume: %.2f"
-#~ msgstr "Wiedergabelautstärke: %.2f"
-
-#~ msgid "Playback Volume (Unavailable; use system mixer.)"
-#~ msgstr "Wiedergabelautstärke (Nicht verfügbar; Systemmixer verwenden.)"
-
-#~ msgid "Time Shift Tool"
-#~ msgstr "Verschiebewerkzeug"
-
-#~ msgid "Slide Tool"
-#~ msgstr "Verschiebungswerkzeug"
-
-#~ msgid "&Time Shift Tool"
-#~ msgstr "&Zeitverschiebewerkzeug"
-
-#, c-format
-#~ msgid "File '%s' already exists, do you really want to overwrite it?"
-#~ msgstr "Datei '%s' existiert bereits, möchten Sie diese wirklich überschreiben?"
-
-#~ msgid "Please choose an existing file."
-#~ msgstr "Bitte wählen Sie eine existierende Datei."
-
-#~ msgid "File type:"
-#~ msgstr "Dateityp:"
-
-#~ msgid "Backwards"
-#~ msgstr "Rückwärts"
-
-#~ msgid "<"
-#~ msgstr "<"
-
-#~ msgid "Forwards"
-#~ msgstr "Vorwärts"
-
-#~ msgid ">"
-#~ msgstr ">"
 
 #~ msgid "Unknown assertion"
 #~ msgstr "Unbekannte Assertion"
@@ -18250,7 +18030,9 @@ msgstr ""
 
 #: src/HelpText.cpp
 msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-msgstr "Forum – stellen Sie Ihre Frage direkt, online"
+msgstr ""
+" [[https://forum.audacityteam.org/|Forum]] – stellen Sie Ihre Frage direkt, "
+"online."
 
 #. i18n-hint: One of the choices of what you want Audacity to do when
 #. * Audacity finds a project depends on another file.
@@ -19243,7 +19025,8 @@ msgstr "Warnung – Verwaiste Blockdatei(en)"
 #: src/HelpText.cpp
 msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
 msgstr ""
-"[[help:Main_Page|Anleitung]] – falls nicht lokal installiert, online ansehen"
+" [[help:Main_Page|Anleitung]] – falls nicht lokal installiert, "
+"[[https://manual.audacityteam.org/|online ansehen]]"
 
 #: src/ModuleManager.cpp
 msgid "Audacity Module Loader"
@@ -19626,8 +19409,8 @@ msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Audacity team at https://forum.audacityteam.org/."
 msgstr ""
-"Interner Fehler in %s bei %s Zeile %d.\n"
-"Bitte informieren Sie das Tenacity-Team bei https://tenacityaudio.org/."
+"Interner Fehler in %s Zeile %d.\n"
+"Bitte informieren Sie das Tenacity-Team bei https://forum.audacityteam.org/."
 
 #: src/AudacityFileConfig.cpp src/AutoRecoveryDialog.cpp
 msgid "&Quit Audacity"
@@ -19919,7 +19702,7 @@ msgstr ""
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Select &Font..."
-msgstr "&Schrift wählen"
+msgstr "&Schrift wählen …"
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Toolbar"
@@ -20219,3 +20002,422 @@ msgstr "&Höhere S-expr\tF10"
 #: src/prefs/GUIPrefs.cpp
 msgid "Show alternative &styling (Mac vs PC)"
 msgstr "Zeige alternatives &styling (Mac vs PC)"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "milliseconds (time of one analysis)"
+msgstr "Millisekunden (Zeit von einer Analyse)"
+
+#: plug-ins/label-sounds.ny plug-ins/noisegate.ny
+msgid "Released under terms of the GNU General Public License version 2 or later."
+msgstr ""
+"Unter den Bedingungen der GNU General Public License Version 2 oder später "
+"veröffentlicht."
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Analysis Time:"
+msgstr "Analysezeit:"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Tracks Plus"
+msgstr "Spuren Plus"
+
+#: src/export/ExportFFmpeg.cpp
+msgid "FFmpeg : ERROR - encoding frame failed"
+msgstr "FFmpeg: FEHLER – Fehler beim Kodieren eines Frames"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "0 means endless"
+msgstr "0 bedeutet endlos"
+
+#: src/prefs/LibraryPrefs.cpp
+msgid "LAME MP3 Export Library"
+msgstr "LAME-MP3-Exportbibliothek"
+
+#: src/menus/ExtraMenus.cpp
+msgid "I&ncrease Recording Volume"
+msgstr "Auf&nahmelautstärke erhöhen"
+
+#: src/commands/GetTrackInfoCommand.cpp
+msgid "Types:"
+msgstr "Typen:"
+
+#. i18n-hint:
+#. first number identifies one of a sequence of clips,
+#. last number counts the clips,
+#. string names a track
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%d of %d clip %s"
+msgid_plural "%d of %d clips %s"
+msgstr[0] "%d von %d Clip %s"
+msgstr[1] "%d von %d Clips %s"
+
+#: src/export/ExportMP3.cpp
+msgid "Only libmp3lame.so.0"
+msgstr "Nur libmp3lame.so.0"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Trackpanel"
+msgstr "Spur-Panel"
+
+#: src/export/ExportFFmpeg.cpp
+msgid "FFmpeg : ERROR - Could not setup audio frame"
+msgstr "FFmpeg: FEHLER – Audio-Frame konnte nicht aufgesetzt werden"
+
+#. i18n-hint:
+#. First %s is replaced with the noun "start" or "end"
+#. identifying one end of a clip,
+#. first number gives the position of that clip in a sequence
+#. of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%s %d of %d clip %s"
+msgid_plural "%s %d of %d clips %s"
+msgstr[0] "%s %d von %d Clip %s"
+msgstr[1] "%s %d von %d Clips %s"
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Recording Volume"
+msgstr "Aufnahmelautstärke"
+
+#: src/prefs/ApplicationPrefs.cpp
+msgid "Preferences for Application"
+msgstr "Einstellungen für Anwendung"
+
+#: src/menus/HelpMenus.cpp
+msgid "&Getting Started"
+msgstr "&Erste Schritte"
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Playback Volume"
+msgstr "Wiedergabelautstärke"
+
+#: src/export/ExportFFmpeg.cpp
+msgid "FFmpeg : ERROR - Couldn't write last audio frame to output file."
+msgstr ""
+"FFmpeg: FEHLER – Konnte nicht das letzte Audio-Frame zu Ausgabedatei "
+"schreiben."
+
+#: src/export/ExportMP3.cpp
+msgid "Only lame_enc.dll"
+msgstr "Nur lame_enc.dll"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#: src/widgets/FileDialog/mac/FileDialogPrivate.mm
+msgid "File type:"
+msgstr "Dateityp:"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Automated Recording Level Adjustment"
+msgstr "Automatische Aufnahmepegelanpassung"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Four Tracks"
+msgstr "Erste vier Spuren"
+
+#: src/menus/ExtraMenus.cpp
+msgid "Adj&ust Recording Volume..."
+msgstr "A&ufnahmelautstärke anpassen …"
+
+#. i18n-hint arrowhead meaning backward movement
+#: src/widgets/HelpSystem.cpp
+msgid "<"
+msgstr "<"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Path:"
+msgstr "Pfad:"
+
+#: src/toolbars/MixerToolBar.cpp
+#, c-format
+msgid "Playback Volume: %.2f (emulated)"
+msgstr "Wiedergabelautstärke: %.2f (emuliert)"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "All Tracks Plus"
+msgstr "Alle Spuren Plus"
+
+#: src/export/ExportMP3.cpp
+msgid "Could not open MP3 encoding library!"
+msgstr "MP3-Kodierungs-Bibliothek konnte nicht geöffnet werden!"
+
+#: src/export/ExportMP3.cpp
+msgid "Only libmp3lame64bit.dylib"
+msgstr "Nur libmp3lame64bit.dylib"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Within:"
+msgstr "Innerhalb:"
+
+#: src/commands/GetTrackInfoCommand.h
+msgid "Gets track values as JSON."
+msgstr "Holt Spurwerte als JSON ab."
+
+#. i18n-hint: Desired maximum (peak) volume for sound
+#: src/prefs/RecordingPrefs.cpp
+msgid "Target Peak:"
+msgstr "Spitze anvisieren:"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Window Plus"
+msgstr "Fenster Plus"
+
+#: src/menus/HelpMenus.cpp
+msgid "&Quick Fix..."
+msgstr "&Schnellkorrektur …"
+
+#. i18n-hint: There is a  button to the right of the arrow.
+#: src/export/ExportMP3.cpp
+#, c-format
+msgid "To find %s, click here -->"
+msgstr "Um %s zu finden, hier klicken -->"
+
+#. i18n-hint:
+#. First two %s are each replaced with the noun "start"
+#. or with "end", identifying and end of a clip,
+#. first and second numbers give the position of those clips in
+#. a sequence of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%s %d and %s %d of %d clip %s"
+msgid_plural "%s %d and %s %d of %d clips %s"
+msgstr[0] "%s %d und %s %d von %d Clip %s"
+msgstr[1] "%s %d und %s %d von %d Clips %s"
+
+#: src/prefs/LibraryPrefs.cpp
+msgid "MP3 Library Version:"
+msgstr "MP3-Bibliotheksversion:"
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "Time Shift Tool"
+msgstr "Zeitverschiebungswerkzeug"
+
+#: src/menus/TransportMenus.cpp
+msgid "A&utomated Recording Level Adjustment (on/off)"
+msgstr "&Automatische Aufnahmepegelanpassung (ein/aus)"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Full Window"
+msgstr "Vollfenster"
+
+#. i18n-hint: LAME is the name of an MP3 converter and should not be translated
+#: src/export/ExportMP3.cpp
+msgid "Locate LAME"
+msgstr "LAME finden"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Three Tracks"
+msgstr "Erste drei Spuren"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Capture What:"
+msgstr "Was aufnehmen:"
+
+#: src/export/ExportMP3.cpp
+#, c-format
+msgid "Location of %s:"
+msgstr "Ort von %s:"
+
+#: src/ondemand/ODComputeSummaryTask.h
+msgid "Import complete. Calculating waveform"
+msgstr "Import fertig. Wellenform wird berechnet"
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "Slide Tool"
+msgstr "Schiebewerkzeug"
+
+#: src/menus/ExtraMenus.cpp
+msgid "D&ecrease Recording Volume"
+msgstr "Aufnahmelautstärke &verringern"
+
+#: src/export/ExportMP3.cpp
+msgid "MP3 export library not found"
+msgstr "MP3-Exportbibliothek nicht gefunden"
+
+#: src/import/ImportAUP.cpp
+#, c-format
+msgid "Invalid project '%s' attribute."
+msgstr "Ungültiges Projekt-„%s“-Attribut."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Window"
+msgstr "Fenster"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "All Tracks"
+msgstr "Alle Spuren"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Blue"
+msgstr "Blau"
+
+#: src/ondemand/ODDecodeTask.h
+msgid "Decoding Waveform"
+msgstr "Wellenform wird dekodiert"
+
+#: src/blockfile/NotYetAvailableException.cpp
+#, c-format
+msgid "This operation cannot be done until importation of %s completes."
+msgstr ""
+"Diese Operation kann nicht abgeschlossen werden, bis die Importierung von %s "
+"fertig ist."
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Playback Volume (Unavailable; use system mixer.)"
+msgstr "Wiedergabelautstärke (nicht verfügbar; Systemmischer benutzen.)"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Selectionbar"
+msgstr "Auswahlleiste"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Track Plus"
+msgstr "Erste Spur Plus"
+
+#. i18n-hint: It's asking for the location of a file, for
+#. * example, "Where is lame_enc.dll?" - you could translate
+#. * "Where would I find the file %s" instead if you want.
+#: src/export/ExportMP3.cpp
+#, c-format
+msgid "Where is %s?"
+msgstr "Wo ist %s?"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Number of consecutive analysis:"
+msgstr "Zahl von aufeinanderfolgender Analyse:"
+
+#: src/export/ExportMP3.cpp
+msgid "(Built-in)"
+msgstr "(eingebaut)"
+
+#: src/export/ExportMP3.cpp
+msgid "Extended libraries"
+msgstr "Erweiterte Bibliotheken"
+
+#: src/widgets/FileDialog/gtk/FileDialogPrivate.cpp
+msgid "Please choose an existing file."
+msgstr "Bitte wählen Sie eine existierende Datei."
+
+#. i18n-hint:  This really means the color, not as in "white noise"
+#: src/commands/ScreenshotCommand.cpp
+msgctxt "color"
+msgid "White"
+msgstr "Weiß"
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Recording Volume (Unavailable; use system mixer.)"
+msgstr "Aufnahmelautstärke (nicht verfügbar; Systemmischer benutzen.)"
+
+#: src/menus/ExtraMenus.cpp
+msgid "&Decrease Playback Volume"
+msgstr "Wie&dergabelautstärke verringern"
+
+#: src/widgets/FileDialog/gtk/FileDialogPrivate.cpp
+#, c-format
+msgid "File '%s' already exists, do you really want to overwrite it?"
+msgstr "Datei „%s“ existiert bereits, wollen Sie sie wirklich überschreiben?"
+
+#: src/commands/ScreenshotCommand.cpp
+#, c-format
+msgid "Error trying to save file: %s"
+msgstr "Fehler beim Versuch, Datei zu speichern: %s"
+
+#: src/export/ExportMP3.cpp
+msgid "Could not initialize MP3 encoding library!"
+msgstr "MP3-Kodierungs-Bibliothek konnte nicht initialisiert werden!"
+
+#. i18n-hint: There is a  button to the right of the arrow.
+#: src/export/ExportMP3.cpp
+msgid "To get a free copy of LAME, click here -->"
+msgstr "Um eine freie Kopie von LAME zu erhalten, hier klicken -->"
+
+#: src/widgets/HelpSystem.cpp
+msgid "Forwards"
+msgstr "Vorwärts"
+
+#: src/menus/ExtraMenus.cpp
+msgid "Ad&just Playback Volume..."
+msgstr "Wie&dergabelautstärke anpassen …"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Background:"
+msgstr "Hintergrund:"
+
+#: src/toolbars/MixerToolBar.cpp
+#, c-format
+msgid "Playback Volume: %.2f"
+msgstr "Wiedergabelautstärke: %.2f"
+
+#: src/export/ExportMP3.cpp
+msgid "Only libmp3lame.dylib"
+msgstr "Nur libmp3lame.dylib"
+
+#: src/export/ExportMP3.cpp
+msgid "Primary shared object files"
+msgstr "Primär Shared-Object-Dateien"
+
+#: src/commands/GetTrackInfoCommand.cpp
+msgid "Get Track Info"
+msgstr "Spurinfo holen"
+
+#. i18n-hint arrowhead meaning forward movement
+#: src/widgets/HelpSystem.cpp
+msgid ">"
+msgstr ">"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Enable Automated Recording Level Adjustment."
+msgstr "Automatische Aufnahmepegelanpassung aktivieren."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Bring To Top"
+msgstr "Nach oben bringen"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "First Two Tracks"
+msgstr "Erste zwei Spuren"
+
+#: src/export/ExportMP3.cpp
+msgid "Not a valid or supported MP3 encoding library!"
+msgstr "Keine gültige oder unterstützte MP3-Kodierungs-Bibliothek!"
+
+#: src/menus/ExtraMenus.cpp
+msgid "&Increase Playback Volume"
+msgstr "W&iedergabelautstärke erhöhen"
+
+#: src/ondemand/ODWaveTrackTaskQueue.cpp
+#, c-format
+msgid "%s %2.0f%% complete. Click to change task focal point."
+msgstr "%s %2.0f%% fertig. Klicken, um den Schwerpunkt der Aufgabe zu ändern."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Scriptables"
+msgstr "Scriptables"
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "&Time Shift Tool"
+msgstr "Zei&tverschiebungswerkzeug"
+
+#: src/widgets/HelpSystem.cpp
+msgid "Backwards"
+msgstr "Rückwärts"
+
+#: src/toolbars/MixerToolBar.cpp
+#, c-format
+msgid "Recording Volume: %.2f"
+msgstr "Aufnahmelautstärke: %.2f"
+
+#: src/menus/ExtraMenus.cpp
+msgid "Mi&xer"
+msgstr "Mi&xer"
