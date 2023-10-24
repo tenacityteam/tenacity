@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-10-19 02:24+0000\n"
+"PO-Revision-Date: 2023-10-24 04:11+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "pl/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
 "n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -340,7 +340,7 @@ msgstr "Nie można przeanalizować XML"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "1st Experimental Command..."
-msgstr "Pierwsze polecenie eksperymentalne"
+msgstr "Pierwsze polecenie eksperymentalne..."
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "2nd Experimental Command"
@@ -2241,7 +2241,9 @@ msgstr "Plik wtyczki jest w użyciu. Nie udało się zastąpić"
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr "Nie udało się zarejestrować: %s"
+msgstr ""
+"Nie udało się zarejestrować:\n"
+"%s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -2350,7 +2352,10 @@ msgid ""
 "Enabling effects or commands:\n"
 "\n"
 "%s"
-msgstr "Włączone efekty lub polecenia: %s"
+msgstr ""
+"Włączone efekty lub polecenia:\n"
+"\n"
+"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2358,14 +2363,19 @@ msgid ""
 "Enabling effect or command:\n"
 "\n"
 "%s"
-msgstr "Włączony efekt lub polecenie: %s"
+msgstr ""
+"Włączony efekt lub polecenie:\n"
+"\n"
+"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr "Efektu lub polecenia w %s nie udało się zarejestrować: %s"
+msgstr ""
+"Efektu lub polecenia w %s nie udało się zarejestrować:\n"
+"%s"
 
 #: src/Printing.cpp
 msgid "There was a problem printing."
@@ -2384,7 +2394,10 @@ msgstr "Rzeczywiste próbkowanie: %d"
 msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
-msgstr "Błąd otwierania urządzenia dźwiękowego. Spróbuj zmienić host dźwięku, urządzenie odtwarzające dźwięk i częstotliwość próbkowania projektu."
+msgstr ""
+"Błąd otwierania urządzenia dźwiękowego.\n"
+"Spróbuj zmienić host dźwięku, urządzenie odtwarzające dźwięk i częstotliwość "
+"próbkowania projektu."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
@@ -3056,7 +3069,7 @@ msgstr "Nagrywanie aktywowane dźwiękiem"
 
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
-msgstr "Poziom aktywacji"
+msgstr "Poziom aktywacji (dB):"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3096,7 +3109,9 @@ msgstr "Komentarze"
 
 #: src/Tags.cpp
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr "Użyj klawiszy strzałek (lub klawisza ENTER po edytowaniu), aby nawigować polami"
+msgstr ""
+"Użyj klawiszy strzałek (lub klawisza ENTER po edytowaniu), aby nawigować "
+"polami."
 
 #: src/Tags.cpp
 msgid "Tag"
@@ -3120,11 +3135,11 @@ msgstr "Gatunki"
 
 #: src/Tags.cpp
 msgid "E&dit..."
-msgstr "E&dytuj"
+msgstr "E&dytuj..."
 
 #: src/Tags.cpp
 msgid "Rese&t..."
-msgstr "Wy&zeruj"
+msgstr "Wy&zeruj..."
 
 #: src/Tags.cpp
 msgid "Template"
@@ -3227,7 +3242,7 @@ msgstr "Otwó&rz ostatnie..."
 
 #: src/TenacityApp.cpp src/menus/HelpMenus.cpp
 msgid "&About Tenacity..."
-msgstr "O Ten&acity…"
+msgstr "O Ten&acity..."
 
 #: src/TenacityApp.cpp
 msgid "&Preferences..."
@@ -3379,7 +3394,7 @@ msgstr "Błąd w długości"
 
 #: src/TimerRecordDialog.cpp
 msgid "Automatic Save path is invalid."
-msgstr "Ścieżka automatycznego zapisu jest nieprawidłowa"
+msgstr "Ścieżka automatycznego zapisu jest nieprawidłowa."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error in Automatic Save"
@@ -3387,7 +3402,7 @@ msgstr "Błąd w automatycznym zapisie"
 
 #: src/TimerRecordDialog.cpp
 msgid "Automatic Export path is invalid."
-msgstr "Ścieżka automatycznego eksportu jest nieprawidłowa"
+msgstr "Ścieżka automatycznego eksportu jest nieprawidłowa."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error in Automatic Export"
@@ -3412,7 +3427,7 @@ msgstr ""
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording Disk Space Warning"
-msgstr "Nagrywanie czasowe Miejsce na dysku Ostrzeżenie"
+msgstr "Ostrzeżenie o miejscu na dysku podczas nagrywania czasowego"
 
 #: src/TimerRecordDialog.cpp
 msgid "Current Project"
@@ -3612,7 +3627,7 @@ msgstr "Długość nagrywania:"
 
 #: src/TimerRecordDialog.cpp
 msgid "Scheduled to stop at:"
-msgstr "Zaplanowane: "
+msgstr "Zaplanowane:"
 
 #. i18n-hint: "in" means after a duration of time,
 #. which is shown below this string
@@ -3638,7 +3653,7 @@ msgstr "Nagrywanie wyeksportowane:"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
-msgstr "Stereo, "
+msgstr "Stereo, 999999 Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -4504,7 +4519,7 @@ msgstr "Wzmocnienie dB"
 
 #: src/effects/Amplify.cpp
 msgid "&New Peak Amplitude (dB):"
-msgstr "&Nowa amplituda szczytowa"
+msgstr "&Nowa amplituda szczytowa (dB):"
 
 #: src/effects/Amplify.cpp
 msgid "Allo&w clipping"
@@ -4684,7 +4699,7 @@ msgstr "Półtony (pół-kroki)"
 
 #: src/effects/ChangePitch.cpp
 msgid "&Semitones (half-steps):"
-msgstr "Pół&tony"
+msgstr "Pół&tony (pół-kroki):"
 
 #: src/effects/ChangePitch.cpp
 msgid "Frequency"
@@ -5088,7 +5103,7 @@ msgstr "Koniec"
 
 #: src/effects/Contrast.cpp
 msgid "Volume    "
-msgstr "Głośność"
+msgstr "Głośność    "
 
 #: src/effects/Contrast.cpp
 msgid "&Foreground:"
@@ -6175,7 +6190,7 @@ msgstr "Pokaż linie &siatki"
 
 #: src/effects/Equalization.cpp
 msgid "&Processing: "
-msgstr "&Przetwarzanie:"
+msgstr "&Przetwarzanie: "
 
 #: src/effects/Equalization.cpp
 msgid "D&efault"
@@ -7950,7 +7965,7 @@ msgstr ""
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
-msgstr "Wyjście diagnostyczne:"
+msgstr "Wyjście diagnostyczne: "
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Processing complete."
@@ -8056,7 +8071,7 @@ msgstr ""
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Enter Nyquist Command: "
-msgstr "Podaj polecenie Nyquista:"
+msgstr "Podaj polecenie Nyquista: "
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "&Load"
@@ -8458,7 +8473,7 @@ msgid ""
 "file format. "
 msgstr ""
 "Częstotliwość próbkowania (%d) projektu nie jest obsługiwana\n"
-"przez bieżący format pliku wyjściowego."
+"przez bieżący format pliku wyjściowego. "
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -8847,7 +8862,7 @@ msgid ""
 "Optional\n"
 "0 - automatic"
 msgstr ""
-"Pasmo odcinania dźwięku (Hz)\n"
+"Pasmo odcięcia dźwięku (Hz)\n"
 "Opcjonalne\n"
 "0 - automatyczne"
 
@@ -9335,7 +9350,7 @@ msgid ""
 "file format. "
 msgstr ""
 "Częstotliwość próbkowania (%d) nie jest obsługiwana przez\n"
-"format plików MP3."
+"format plików MP3. "
 
 #: src/export/ExportMP3.cpp
 #, c-format
@@ -9942,6 +9957,7 @@ msgstr ""
 "Importowanie zakończone niepowodzeniem\n"
 "\n"
 "Jest to prawdopodobnie spowodowane nieprawidłowym formatem MP3.\n"
+"\n"
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -11245,7 +11261,7 @@ msgstr "Ustaw ścieżkę..."
 
 #: src/menus/PluginMenus.cpp
 msgid "Get Info..."
-msgstr "&Uzyskaj informacje..."
+msgstr "Uzyskaj informacje..."
 
 #: src/menus/PluginMenus.cpp
 msgid "Message..."
@@ -14161,7 +14177,9 @@ msgstr "Jasny"
 msgid ""
 "Theme written to:\n"
 "  %s."
-msgstr "Motyw zapisany do:%s."
+msgstr ""
+"Motyw zapisany do:\n"
+"  %s."
 
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
@@ -14507,11 +14525,11 @@ msgstr "Pasek narzędzi &przewijania"
 
 #: src/toolbars/SelectionBar.cpp
 msgid "Project Rate (Hz)"
-msgstr "Częstotliwość projektu (Hz):"
+msgstr "Częstotliwość projektu (Hz)"
 
 #: src/toolbars/SelectionBar.cpp
 msgid "Snap-To"
-msgstr "Przyczep do:"
+msgstr "Przyczep do"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -15574,7 +15592,7 @@ msgstr "Częstotliwość odświeżania miernika na sekundę [1-100]"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Meter refresh rate per second [1-100]: "
-msgstr "Częstotliwość odświeżania miernika na sekundę [1-100]:"
+msgstr "Częstotliwość odświeżania miernika na sekundę [1-100]: "
 
 #: src/widgets/MeterPanel.cpp
 msgid "Meter Style"
@@ -17857,25 +17875,6 @@ msgstr "Częstotliwość igieł radaru (Hz)"
 msgid "Error.~%Stereo track required."
 msgstr "Błąd.~%Wymagana ścieżka stereo."
 
-#~ msgid "Blue"
-#~ msgstr "Niebieski"
-
-#~ msgctxt "color"
-#~ msgid "White"
-#~ msgstr "Biały"
-
-#~ msgid "Path:"
-#~ msgstr "Ścieżka:"
-
-#~ msgid "Capture What:"
-#~ msgstr "Przechwyć co:"
-
-#~ msgid "Background:"
-#~ msgstr "Tło:"
-
-#~ msgid "Bring To Top"
-#~ msgstr "Przesuń na samą górę"
-
 #~ msgid "&Screenshot..."
 #~ msgstr "&Zrzut ekranu..."
 
@@ -17891,179 +17890,6 @@ msgstr "Błąd.~%Wymagana ścieżka stereo."
 
 #~ msgid "Takes screenshots."
 #~ msgstr "Wykonuje zrzuty ekranu."
-
-#~ msgid "Locate LAME"
-#~ msgstr "Ustal położenie LAME"
-
-#, c-format
-#~ msgid "Location of %s:"
-#~ msgstr "Położenie %s:"
-
-#, c-format
-#~ msgid "To find %s, click here -->"
-#~ msgstr "Aby znaleźć %s, kliknij tutaj -->"
-
-#~ msgid "To get a free copy of LAME, click here -->"
-#~ msgstr "Aby uzyskać darmową kopię LAME, kliknij tutaj -->"
-
-#, c-format
-#~ msgid "Where is %s?"
-#~ msgstr "Gdzie jest %s?"
-
-#~ msgid "Only lame_enc.dll"
-#~ msgstr "Tylko lame_enc.dll"
-
-#~ msgid "Only libmp3lame.so.0"
-#~ msgstr "Tylko libmp3lame.so.0"
-
-#~ msgid "Primary shared object files"
-#~ msgstr "Podstawowe pliki obiektów współdzielonych"
-
-#~ msgid "Extended libraries"
-#~ msgstr "Biblioteki rozszerzone"
-
-#~ msgid "Could not open MP3 encoding library!"
-#~ msgstr "Nie można otworzyć biblioteki kodowania MP3!"
-
-#~ msgid "Could not initialize MP3 encoding library!"
-#~ msgstr "Nie można zainicjować biblioteki kodowania MP3!"
-
-#~ msgid "Not a valid or supported MP3 encoding library!"
-#~ msgstr "Nieaktualna lub niewspierana biblioteka kodowania MP3!"
-
-#~ msgid "MP3 export library not found"
-#~ msgstr "Nie znaleziono biblioteki eksportu MP3"
-
-#~ msgid "(Built-in)"
-#~ msgstr "(Wbudowany)"
-
-#, c-format
-#~ msgid "Invalid project '%s' attribute."
-#~ msgstr "Nieprawidłowy atrybut '%s' projektu."
-
-#~ msgid "Mi&xer"
-#~ msgstr "Mi&kser"
-
-#~ msgid "Ad&just Playback Volume..."
-#~ msgstr "Do&stosuj głośność odtwarzania..."
-
-#~ msgid "&Increase Playback Volume"
-#~ msgstr "Z&większ głośność odtwarzania"
-
-#~ msgid "&Decrease Playback Volume"
-#~ msgstr "Z&mniejsz głośność odtwarzania"
-
-#~ msgid "Adj&ust Recording Volume..."
-#~ msgstr "Dos&tosuj głośność nagrywania..."
-
-#~ msgid "I&ncrease Recording Volume"
-#~ msgstr "Zwię&ksz głośność nagrywania"
-
-#~ msgid "D&ecrease Recording Volume"
-#~ msgstr "Zmnie&jsz głośność nagrywania"
-
-#~ msgid "&Quick Fix..."
-#~ msgstr "&Szybka poprawka..."
-
-#~ msgid "&Getting Started"
-#~ msgstr "&Pierwsze kroki"
-
-#~ msgid "A&utomated Recording Level Adjustment (on/off)"
-#~ msgstr "A&utomatyczna regulacja poziomu nagrywania (włącz/wyłącz)"
-
-#~ msgid "Import complete. Calculating waveform"
-#~ msgstr "Importowanie ukończone. Obliczanie kształtu fali"
-
-#~ msgid "Decoding Waveform"
-#~ msgstr "Dekodowanie kształtu fali"
-
-#, c-format
-#~ msgid "%s %2.0f%% complete. Click to change task focal point."
-#~ msgstr "%s %2.0f%% ukończone. Kliknij, aby zmienić punkt centralny."
-
-#~ msgid "Preferences for Application"
-#~ msgstr "Ustawienia aplikacji"
-
-#~ msgid "LAME MP3 Export Library"
-#~ msgstr "Biblioteka eksportu LAME MP3"
-
-#~ msgid "MP3 Library Version:"
-#~ msgstr "Wersja biblioteki MP3:"
-
-#~ msgid "Automated Recording Level Adjustment"
-#~ msgstr "Automatyczna regulacja poziomu nagrywania"
-
-#~ msgid "Enable Automated Recording Level Adjustment."
-#~ msgstr "Włącz automatyczną regulację poziomu nagrywania."
-
-#~ msgid "Target Peak:"
-#~ msgstr "Szczyt docelowy:"
-
-#~ msgid "Within:"
-#~ msgstr "Wewnątrz:"
-
-#~ msgid "Analysis Time:"
-#~ msgstr "Czas analizy:"
-
-#~ msgid "milliseconds (time of one analysis)"
-#~ msgstr "milisekundy (czas jednej analizy)"
-
-#~ msgid "Number of consecutive analysis:"
-#~ msgstr "Liczba kolejnych analiz:"
-
-#~ msgid "0 means endless"
-#~ msgstr "0 oznacza bez końca"
-
-#~ msgid "Recording Volume"
-#~ msgstr "Głośność nagrywania"
-
-#~ msgid "Playback Volume"
-#~ msgstr "Głośność odtwarzania"
-
-#, c-format
-#~ msgid "Recording Volume: %.2f"
-#~ msgstr "Głośność nagrywania: %.2f"
-
-#~ msgid "Recording Volume (Unavailable; use system mixer.)"
-#~ msgstr "Głośność nagrywania (Niedostępna; użyj miksera systemowego.)"
-
-#, c-format
-#~ msgid "Playback Volume: %.2f (emulated)"
-#~ msgstr "Głośność odtwarzania: %.2f (emulowana)"
-
-#, c-format
-#~ msgid "Playback Volume: %.2f"
-#~ msgstr "Głośność odtwarzania: %.2f"
-
-#~ msgid "Playback Volume (Unavailable; use system mixer.)"
-#~ msgstr "Głośność odtwarzania (Niedostępna; użyj miksera systemowego.)"
-
-#~ msgid "Time Shift Tool"
-#~ msgstr "Narzędzie do przesuwania w czasie"
-
-#~ msgid "Slide Tool"
-#~ msgstr "Narzędzie przesuwania"
-
-#~ msgid "&Time Shift Tool"
-#~ msgstr "Narzędzie do przesuwania w &czasie"
-
-#~ msgid "Please choose an existing file."
-#~ msgstr "Wybierz istniejący plik."
-
-#~ msgid "File type:"
-#~ msgstr "Typ pliku:"
-
-#~ msgid "Backwards"
-#~ msgstr "Do tyłu"
-
-#~ msgid "<"
-#~ msgstr "<"
-
-#~ msgid "Forwards"
-#~ msgstr "Do przodu"
-
-#~ msgid ">"
-#~ msgstr ">"
 
 #~ msgid "Unknown assertion"
 #~ msgstr "Nieznane potwierdzenie"
@@ -18171,7 +17997,7 @@ msgstr ""
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Select &Font..."
-msgstr "Wybierz &czcionkę"
+msgstr "Wybierz &czcionkę..."
 
 #: modules/mod-nyq-bench/NyqBench.cpp
 msgid "Script"
@@ -18314,7 +18140,7 @@ msgstr ""
 
 #: src/HelpText.cpp
 msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-msgstr "Forum - zadaj swoje pytanie bezpośrednio w Internecie"
+msgstr " Forum - zadaj swoje pytanie bezpośrednio w Internecie"
 
 #. i18n-hint: One of the choices of what you want Audacity to do when
 #. * Audacity finds a project depends on another file.
@@ -19231,7 +19057,7 @@ msgstr "Ostrzeżenie - Porzucony(e) plik(i) blokowy(e)"
 #. i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.
 #: src/HelpText.cpp
 msgid " [[help:Main_Page|Manual]] - if not installed locally, [[https://manual.audacityteam.org/|view online]]"
-msgstr "[[help:Main_Page|Podręcznik]]"
+msgstr " [[help:Main_Page|Podręcznik]]"
 
 #: src/ModuleManager.cpp
 msgid "Audacity Module Loader"
@@ -19548,7 +19374,7 @@ msgid ""
 "Internal error at %s line %d.\n"
 "Please inform the Audacity team at https://forum.audacityteam.org/."
 msgstr ""
-"Błąd wewnętrzny w %s w %s, linia %d.\n"
+"Błąd wewnętrzny w %s, linia %d.\n"
 "Poinformuj Zespół Tenacity przez https://tenacityaudio.org/."
 
 #: src/AudacityFileConfig.cpp src/AutoRecoveryDialog.cpp
@@ -19614,7 +19440,7 @@ msgstr ""
 "\n"
 "Niektóre starsze projekty Tenacity mogą być niesamodzielne i należy zachować "
 "ostrożność, \n"
-"aby utrzymać ich zewnętrzne zależności we właściwym miejscu.\n"
+"aby zachować ich zewnętrzne zależności we właściwym miejscu.\n"
 "Nowe projekty będą niezależne i mniej ryzykowne."
 
 #: src/HelpText.cpp
@@ -20181,3 +20007,294 @@ msgstr "Pierwsze dwie ścieżki"
 #: src/commands/ScreenshotCommand.cpp
 msgid "Scriptables"
 msgstr "Skrypty"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "milliseconds (time of one analysis)"
+msgstr "milisekundy (czas jednej analizy)"
+
+#: plug-ins/label-sounds.ny plug-ins/noisegate.ny
+msgid "Released under terms of the GNU General Public License version 2 or later."
+msgstr ""
+"Wydany na warunkach licencji GNU General Public License wersja 2 lub "
+"następnej."
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Analysis Time:"
+msgstr "Czas analizy:"
+
+#: src/export/ExportFFmpeg.cpp
+msgid "FFmpeg : ERROR - encoding frame failed"
+msgstr "FFmpeg : BŁĄD - Kodowanie ramki zakończone niepowodzeniem."
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "0 means endless"
+msgstr "0 oznacza bez końca"
+
+#: src/prefs/LibraryPrefs.cpp
+msgid "LAME MP3 Export Library"
+msgstr "Biblioteka eksportu LAME MP3"
+
+#: src/menus/ExtraMenus.cpp
+msgid "I&ncrease Recording Volume"
+msgstr "Zwiększ głoś&ność nagrywania"
+
+#: src/export/ExportMP3.cpp
+msgid "Only libmp3lame.so.0"
+msgstr "Tylko libmp3lame.so.0"
+
+#: src/export/ExportFFmpeg.cpp
+msgid "FFmpeg : ERROR - Could not setup audio frame"
+msgstr "FFmpeg : BŁĄD - Nie można skonfigurować ramki dźwięku."
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Recording Volume"
+msgstr "Głośność nagrywania"
+
+#: src/prefs/ApplicationPrefs.cpp
+msgid "Preferences for Application"
+msgstr "Ustawienia aplikacji"
+
+#: src/menus/HelpMenus.cpp
+msgid "&Getting Started"
+msgstr "&Pierwsze kroki"
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Playback Volume"
+msgstr "Głośności odtwarzania"
+
+#: src/export/ExportFFmpeg.cpp
+msgid "FFmpeg : ERROR - Couldn't write last audio frame to output file."
+msgstr ""
+"FFmpeg : BŁĄD - Nie udało się zapisać ostatniej ramki dźwięku do pliku "
+"wyjściowego."
+
+#: src/export/ExportMP3.cpp
+msgid "Only lame_enc.dll"
+msgstr "Tylko lame_enc.dll"
+
+#: src/widgets/FileDialog/mac/FileDialogPrivate.mm
+msgid "File type:"
+msgstr "Typ pliku:"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Automated Recording Level Adjustment"
+msgstr "Automatyczna regulacja poziomu nagrywania"
+
+#: src/menus/ExtraMenus.cpp
+msgid "Adj&ust Recording Volume..."
+msgstr "Dostos&uj głośność nagrywania..."
+
+#. i18n-hint arrowhead meaning backward movement
+#: src/widgets/HelpSystem.cpp
+msgid "<"
+msgstr "<"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Path:"
+msgstr "Ścieżka:"
+
+#: src/toolbars/MixerToolBar.cpp
+#, c-format
+msgid "Playback Volume: %.2f (emulated)"
+msgstr "Głośność odtwarzania: %.2f (emulowana)"
+
+#: src/export/ExportMP3.cpp
+msgid "Could not open MP3 encoding library!"
+msgstr "Nie można otworzyć biblioteki kodowania MP3!"
+
+#: src/export/ExportMP3.cpp
+msgid "Only libmp3lame64bit.dylib"
+msgstr "Tylko libmp3lame64bit.dylib"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Within:"
+msgstr "Wewnątrz:"
+
+#. i18n-hint: Desired maximum (peak) volume for sound
+#: src/prefs/RecordingPrefs.cpp
+msgid "Target Peak:"
+msgstr "Szczyt docelowy:"
+
+#: src/menus/HelpMenus.cpp
+msgid "&Quick Fix..."
+msgstr "&Szybka poprawka..."
+
+#. i18n-hint: There is a  button to the right of the arrow.
+#: src/export/ExportMP3.cpp
+#, c-format
+msgid "To find %s, click here -->"
+msgstr "Aby znaleźć %s, kliknij tutaj -->"
+
+#: src/prefs/LibraryPrefs.cpp
+msgid "MP3 Library Version:"
+msgstr "Wersja biblioteki MP3:"
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "Time Shift Tool"
+msgstr "Narzędzie do przesuwania w czasie"
+
+#: src/menus/TransportMenus.cpp
+msgid "A&utomated Recording Level Adjustment (on/off)"
+msgstr "A&utomatyczna regulacja poziomu nagrywania (włącz/wyłącz)"
+
+#. i18n-hint: LAME is the name of an MP3 converter and should not be translated
+#: src/export/ExportMP3.cpp
+msgid "Locate LAME"
+msgstr "Ustal położenie FFmpeg"
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Capture What:"
+msgstr "Przechwyć co:"
+
+#: src/export/ExportMP3.cpp
+#, c-format
+msgid "Location of %s:"
+msgstr "Położenie %s:"
+
+#: src/ondemand/ODComputeSummaryTask.h
+msgid "Import complete. Calculating waveform"
+msgstr "Importowanie zakończone. Obliczanie kształtu fali"
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "Slide Tool"
+msgstr "Narzędzie przesuwania"
+
+#: src/menus/ExtraMenus.cpp
+msgid "D&ecrease Recording Volume"
+msgstr "Zmni&ejsz głośność nagrywania"
+
+#: src/export/ExportMP3.cpp
+msgid "MP3 export library not found"
+msgstr "Nie znaleziono biblioteki eksportu MP3"
+
+#: src/import/ImportAUP.cpp
+#, c-format
+msgid "Invalid project '%s' attribute."
+msgstr "Nieprawidłowy atrybut '%s' projektu."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Blue"
+msgstr "Niebieski"
+
+#: src/ondemand/ODDecodeTask.h
+msgid "Decoding Waveform"
+msgstr "Dekodowanie kształtu fali"
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Playback Volume (Unavailable; use system mixer.)"
+msgstr "Głośność odtwarzania (Niedostępna; użyj miksera systemowego.)"
+
+#. i18n-hint: It's asking for the location of a file, for
+#. * example, "Where is lame_enc.dll?" - you could translate
+#. * "Where would I find the file %s" instead if you want.
+#: src/export/ExportMP3.cpp
+#, c-format
+msgid "Where is %s?"
+msgstr "Gdzie jest %s?"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Number of consecutive analysis:"
+msgstr "Liczba kolejnych analiz:"
+
+#: src/export/ExportMP3.cpp
+msgid "(Built-in)"
+msgstr "(Wbudowany)"
+
+#: src/export/ExportMP3.cpp
+msgid "Extended libraries"
+msgstr "Biblioteki rozszerzone"
+
+#: src/widgets/FileDialog/gtk/FileDialogPrivate.cpp
+msgid "Please choose an existing file."
+msgstr "Wybierz istniejący plik."
+
+#. i18n-hint:  This really means the color, not as in "white noise"
+#: src/commands/ScreenshotCommand.cpp
+msgctxt "color"
+msgid "White"
+msgstr "Biały"
+
+#: src/toolbars/MixerToolBar.cpp
+msgid "Recording Volume (Unavailable; use system mixer.)"
+msgstr "Głośność nagrywania (Niedostępna; użyj miksera systemowego.)"
+
+#: src/menus/ExtraMenus.cpp
+msgid "&Decrease Playback Volume"
+msgstr "Zmniejsz głośność o&dtwarzania"
+
+#: src/export/ExportMP3.cpp
+msgid "Could not initialize MP3 encoding library!"
+msgstr "Nie można zainicjować biblioteki kodowania MP3!"
+
+#. i18n-hint: There is a  button to the right of the arrow.
+#: src/export/ExportMP3.cpp
+msgid "To get a free copy of LAME, click here -->"
+msgstr "Aby uzyskać darmową kopię LAME, kliknij tutaj -->"
+
+#: src/widgets/HelpSystem.cpp
+msgid "Forwards"
+msgstr "Do przodu"
+
+#: src/menus/ExtraMenus.cpp
+msgid "Ad&just Playback Volume..."
+msgstr "Dostosu&j głośność odtwarzania..."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Background:"
+msgstr "Tło:"
+
+#: src/toolbars/MixerToolBar.cpp
+#, c-format
+msgid "Playback Volume: %.2f"
+msgstr "Głośność odtwarzania: %.2f"
+
+#: src/export/ExportMP3.cpp
+msgid "Only libmp3lame.dylib"
+msgstr "Tylko libmp3lame.dylib"
+
+#: src/export/ExportMP3.cpp
+msgid "Primary shared object files"
+msgstr "Podstawowe pliki obiektów współdzielonych"
+
+#. i18n-hint arrowhead meaning forward movement
+#: src/widgets/HelpSystem.cpp
+msgid ">"
+msgstr ">"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Enable Automated Recording Level Adjustment."
+msgstr "Włącz automatyczną regulację poziomu nagrywania."
+
+#: src/commands/ScreenshotCommand.cpp
+msgid "Bring To Top"
+msgstr "Przesuń na samą górę"
+
+#: src/export/ExportMP3.cpp
+msgid "Not a valid or supported MP3 encoding library!"
+msgstr "Nieaktualna lub niewspierana biblioteka kodowania MP3!"
+
+#: src/menus/ExtraMenus.cpp
+msgid "&Increase Playback Volume"
+msgstr "Zw&iększ głośność odtwarzania"
+
+#: src/ondemand/ODWaveTrackTaskQueue.cpp
+#, c-format
+msgid "%s %2.0f%% complete. Click to change task focal point."
+msgstr "%s %2.0f%% zakończone. Kliknij, aby zmienić punkt centralny."
+
+#: src/toolbars/ToolsToolBar.cpp
+msgid "&Time Shift Tool"
+msgstr "Narzędzie do przesuwania w &czasie"
+
+#: src/widgets/HelpSystem.cpp
+msgid "Backwards"
+msgstr "Do tyłu"
+
+#: src/toolbars/MixerToolBar.cpp
+#, c-format
+msgid "Recording Volume: %.2f"
+msgstr "Głośność nagrywania: %.2f"
+
+#: src/menus/ExtraMenus.cpp
+msgid "Mi&xer"
+msgstr "Mi&kser"
