@@ -3,20 +3,22 @@
 # Eng Vannak <evannak@khmeros.info>, 2008.
 # translation of audacity.po to
 # Avery King <avery98@pm.me>, 2023.
+# កុសិនារា <kursinarapok@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2008-07-09 13:48+0700\n"
-"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
-"Language-Team: Khmer <en@li.org>\n"
+"PO-Revision-Date: 2023-10-28 14:00+0000\n"
+"Last-Translator: កុសិនារា <kursinarapok@gmail.com>\n"
+"Language-Team: Khmer (Central) <https://hosted.weblate.org/projects/tenacity/"
+"tenacity/km/>\n"
 "Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
@@ -204,14 +206,13 @@ msgid "Unable to determine"
 msgstr "មិន​អាច​​កំណត់"
 
 #: libraries/lib-strings/Internat.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s bytes"
-msgstr "បៃ"
+msgstr "%s បៃ"
 
 #: libraries/lib-strings/Languages.cpp
-#, fuzzy
 msgid "Simplified"
-msgstr "ពង្រីក"
+msgstr "សាមញ្ញ"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -235,14 +236,12 @@ msgid "Could not parse XML"
 msgstr "មិន​​អាច​​បើក​​ឯកសារ ៖ "
 
 #: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
 msgid "1st Experimental Command..."
-msgstr "ជ្រើស​​ពាក្យ​បញ្ជា"
+msgstr "ពាក្យបញ្ជាពិសោធន៍ដំបូង…"
 
 #: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
 msgid "2nd Experimental Command"
-msgstr "ជ្រើស​​ពាក្យ​បញ្ជា"
+msgstr "ពាក្យបញ្ជាពិសោធន៍ទីពីរ"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -1000,9 +999,8 @@ msgid "Number of edits should be in the range 1 - 10000."
 msgstr "ប្រេកង់​អតិបរមា​ត្រូវតែ​ជា​លេខ​គត់"
 
 #: src/Benchmark.cpp
-#, fuzzy
 msgid "Preparing...\n"
-msgstr "រៀបចំការ​​មើល​ជា​មុន"
+msgstr "កំពុងត្រៀមទុក…\n"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
@@ -14385,26 +14383,6 @@ msgstr "ប្រេកង់ (Hz)"
 #~ msgstr "អនុវត្ត​បែបផែន Nyquist..."
 
 #, fuzzy
-#~ msgid "&Redo\tCtrl+Y"
-#~ msgstr "បិទភ្ជាប់"
-
-#, fuzzy
-#~ msgid "Cu&t\tCtrl+X"
-#~ msgstr "បិទភ្ជាប់"
-
-#, fuzzy
-#~ msgid "&Paste\tCtrl+V"
-#~ msgstr "បិទភ្ជាប់"
-
-#, fuzzy
-#~ msgid "Cle&ar\tCtrl+L"
-#~ msgstr "បិទភ្ជាប់"
-
-#, fuzzy
-#~ msgid "Select A&ll\tCtrl+A"
-#~ msgstr "ជ្រើស"
-
-#, fuzzy
 #~ msgid "Select &Font..."
 #~ msgstr "ពុម្ពអក្សរ..."
 
@@ -16177,3 +16155,61 @@ msgstr "ប្រេកង់ (Hz)"
 
 #~ msgid "Calibrate"
 #~ msgstr "ក្រិត​តាម​ខ្នាត"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Find...\tCtrl+F"
+msgstr "រកមើល...\tCtrl+F"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cle&ar\tCtrl+L"
+msgstr "ជម្រះ(&a)\tCtrl+L"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Redo\tCtrl+Y"
+msgstr "រីឌូ(&R)\tCtrl+Y"
+
+#. i18n-hint: Abbreviation for Mega bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s MB"
+msgstr "%s មប"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Undo\tCtrl+Z"
+msgstr "អាន់ឌូ(&U)\tCtrl+Z"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Paste\tCtrl+V"
+msgstr "បិតភ្ជាប់(&P)\tCtrl+V"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "&Copy\tCtrl+C"
+msgstr "ចម្លង(&C)\tCtrl+C"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Select A&ll\tCtrl+A"
+msgstr "ជ្រើសទាំងអស់(&l)\tCtrl+A"
+
+#: src/Benchmark.cpp
+msgid "Run"
+msgstr "រត់"
+
+#: libraries/lib-strings/Languages.cpp
+msgid "System"
+msgstr "ប្រព័ន្ធ"
+
+#. i18n-hint: Abbreviation for Giga bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s GB"
+msgstr "%s ជប"
+
+#. i18n-hint: Abbreviation for Kilo bytes
+#: libraries/lib-strings/Internat.cpp
+#, c-format
+msgid "%s KB"
+msgstr "%s គប"
+
+#: modules/mod-nyq-bench/NyqBench.cpp
+msgid "Cu&t\tCtrl+X"
+msgstr "កាត់(&t)\tCtrl+X"
