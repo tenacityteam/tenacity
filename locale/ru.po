@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-10-28 14:29+0000\n"
+"PO-Revision-Date: 2023-10-28 15:23+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
@@ -54,7 +54,7 @@ msgstr "сэмплы"
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/RecordingPrefs.cpp src/widgets/NumericTextCtrl.cpp
 msgid "milliseconds"
-msgstr "миллисек."
+msgstr "мс"
 
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h src/commands/MessageCommand.cpp
@@ -236,7 +236,7 @@ msgstr "Высокое качество"
 
 #: libraries/lib-math/Resample.cpp
 msgid "Best Quality (Slowest)"
-msgstr "Наилучшее качество (медленно)"
+msgstr "Лучшее качество (медленно)"
 
 #. i18n-hint: Audio data bit depth (precision): 16-bit integers
 #: libraries/lib-math/SampleFormat.cpp
@@ -1604,7 +1604,9 @@ msgstr "Для отрисовки спектрограммы все выбран
 #: src/FreqWindow.cpp
 #, c-format
 msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
-msgstr "Выделен слишком большой фрагмент аудиоданных. Будут проанализированы только первые %.1f сек."
+msgstr ""
+"Выделен слишком большой фрагмент аудиоданных. Будут проанализированы только "
+"первые %.1f секунд."
 
 #: src/FreqWindow.cpp
 msgid "Not enough data selected."
@@ -1632,14 +1634,14 @@ msgstr "%d Гц (%s) = %.1f дБ"
 #: src/FreqWindow.cpp
 #, c-format
 msgid "%.4f sec (%d Hz) (%s) = %f"
-msgstr "%.4f сек. (%d Гц) (%s) = %f"
+msgstr "%.4f с (%d Гц) (%s) = %f"
 
 #. i18n-hint: The %d's are replaced by numbers, the %s by musical notes, e.g. A#
 #. * the %.4f are numbers, and 'sec' should be an abbreviation for seconds
 #: src/FreqWindow.cpp
 #, c-format
 msgid "%.4f sec (%d Hz) (%s) = %.3f"
-msgstr "%.4f сек. (%d Гц) (%s) = %.3f"
+msgstr "%.4f с (%d Гц) (%s) = %.3f"
 
 #: src/FreqWindow.cpp
 msgid "spectrum.txt"
@@ -3909,7 +3911,7 @@ msgstr "Демо"
 
 #: src/commands/Demo.cpp
 msgid "Delay time (seconds):"
-msgstr "Время задержки (сек.):"
+msgstr "Время задержки (секунды):"
 
 #: src/commands/Demo.cpp
 msgid "Decay factor:"
@@ -4543,7 +4545,7 @@ msgstr "&Значение приглушения:"
 #: src/prefs/PlaybackPrefs.cpp src/prefs/RecordingPrefs.cpp
 #: src/widgets/NumericTextCtrl.cpp
 msgid "seconds"
-msgstr "сек."
+msgstr "с"
 
 #: src/effects/AutoDuck.cpp
 msgid "Ma&ximum pause:"
@@ -4928,12 +4930,12 @@ msgstr "%3d дБ"
 #: src/effects/Compressor.cpp src/effects/ScoreAlignDialog.cpp
 #, c-format
 msgid "%.2f secs"
-msgstr "%.2f сек."
+msgstr "%.2f с"
 
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "%.1f secs"
-msgstr "%.1f сек."
+msgstr "%.1f с"
 
 #. i18n-hint: Unless your language has a different convention for ratios,
 #. * like 8:1, leave as is.
@@ -5027,12 +5029,12 @@ msgstr "Нижний порог шумов %d дБ"
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "Attack Time %.2f secs"
-msgstr "Время атаки %.2f сек."
+msgstr "Время атаки %.2f с"
 
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "Release Time %.1f secs"
-msgstr "Время затухания %.1f сек."
+msgstr "Время затухания %.1f с"
 
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
@@ -5634,7 +5636,7 @@ msgstr "\"Указанное значение превышает объём до
 
 #: src/effects/Echo.cpp
 msgid "&Delay time (seconds):"
-msgstr "Время &задержки (сек.):"
+msgstr "Время &задержки (секунды):"
 
 #: src/effects/Echo.cpp
 msgid "D&ecay factor:"
@@ -6623,7 +6625,7 @@ msgstr "Чувствительность"
 
 #: src/effects/NoiseReduction.cpp
 msgid "Attac&k time (secs):"
-msgstr "Время &атаки (сек.):"
+msgstr "Время &атаки (секунды):"
 
 #: src/effects/NoiseReduction.cpp
 msgid "Attack time"
@@ -6631,7 +6633,7 @@ msgstr "Время атаки"
 
 #: src/effects/NoiseReduction.cpp
 msgid "R&elease time (secs):"
-msgstr "Время &затухания (сек.)"
+msgstr "Время &затухания (секунды):"
 
 #: src/effects/NoiseReduction.cpp
 msgid "Release time"
@@ -6798,7 +6800,7 @@ msgstr "С&глаживание частоты (Гц):"
 
 #: src/effects/NoiseRemoval.cpp
 msgid "Attac&k/decay time (secs):"
-msgstr "Время &атаки/затухания (сек.):"
+msgstr "Время &атаки/затухания (секунды):"
 
 #: src/effects/NoiseRemoval.cpp
 msgid "Attack/decay time"
@@ -6891,7 +6893,7 @@ msgstr "Ко&эффициент растяжения:"
 
 #: src/effects/Paulstretch.cpp
 msgid "&Time Resolution (seconds):"
-msgstr "Мас&штаб времени (сек.):"
+msgstr "Мас&штаб времени (секунды):"
 
 #. i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.
 #: src/effects/Paulstretch.cpp
@@ -6904,8 +6906,8 @@ msgid ""
 msgstr ""
 "Выделенный фрагмент слишком мал для прослушивания\n"
 "\n"
-"Попробуйте увеличить выделение хотя бы до %.1f сек.,\n"
-"или уменьшить 'Разрешение по времени' до менее чем %.1f сек."
+"Попробуйте увеличить выделение хотя бы до %.1f с,\n"
+"или уменьшить «Разрешение по времени» до менее чем %.1f с."
 
 #. i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.
 #: src/effects/Paulstretch.cpp
@@ -6919,7 +6921,7 @@ msgstr ""
 "Прослушивание невозможно.\n"
 "\n"
 "Для текущего выделения максимальное\n"
-"'Разрешение по времени'  %.1f сек."
+"«Разрешение по времени» %.1f с."
 
 #. i18n-hint: 'Time Resolution' is the name of a control in the Paulstretch effect.
 #: src/effects/Paulstretch.cpp
@@ -6930,10 +6932,10 @@ msgid ""
 "Try increasing the audio selection to at least %.1f seconds,\n"
 "or reducing the 'Time Resolution' to less than %.1f seconds."
 msgstr ""
-"Для текущего выделения 'Разрешение по времени' слишком велико.\n"
+"Для текущего выделения «Разрешение по времени» слишком велико.\n"
 "\n"
-"Попробуйте увеличить выделение хотя бы до %.1f сек.,\n"
-"или уменьшить 'Разрешение по времени' до менее чем %.1f сек."
+"Попробуйте увеличить выделение хотя бы до %.1f с,\n"
+"или уменьшить «Разрешение по времени» до менее чем %.1f с."
 
 #: src/effects/Phaser.cpp
 msgid "Phaser"
@@ -8804,10 +8806,11 @@ msgid ""
 "0 - automatic\n"
 "Recommended - 192000"
 msgstr ""
-"Битрейт (бит/сек.) влияет на размер и качество полученного файла.\n"
-"В некоторых кодеках можно использовать только определённые значения (128k, 192k, 256k и т.д.)\n"
-"0 - автоматически\n"
-"Рекомендовано - 192000"
+"Битрейт (бит/секунду) влияет на размер и качество полученного файла.\n"
+"В некоторых кодеках можно использовать только определённые значения (128, "
+"192, 256 и т. д.)\n"
+"0 — автоматически\n"
+"Рекомендовано — 192000"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid ""
@@ -9622,7 +9625,7 @@ msgstr "Расположение '%s':"
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
 msgid "To find '%s', click here -->"
-msgstr "Чтобы найти '%s', щёлкните здесь -->"
+msgstr "Щёлкните сюда для поиска «%s» -->"
 
 #: src/ffmpeg/FFmpeg.cpp
 msgid "To get a free copy of FFmpeg, click here -->"
@@ -10382,7 +10385,7 @@ msgstr "Вырезать"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Deleted %.2f seconds at t=%.2f"
-msgstr "Удалено %.2f сек. при t=%.2f"
+msgstr "Удалено %.2f с при t=%.2f"
 
 #: src/menus/EditMenus.cpp
 msgid "Pasting one type of track into another is not allowed."
@@ -10411,7 +10414,7 @@ msgstr "Вырезать с разделением"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Split-deleted %.2f seconds at t=%.2f"
-msgstr "Удалено с разделением %.2f сек. при t=%.2f"
+msgstr "Удалено с разделением %.2f с при t=%.2f"
 
 #: src/menus/EditMenus.cpp
 msgid "Split Delete"
@@ -10420,7 +10423,7 @@ msgstr "Удалить с разделением"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Silenced selected tracks for %.2f seconds at %.2f"
-msgstr "Выбранные треки заглушены на %.2f сек. с %.2f"
+msgstr "Выбранные треки заглушены на %.2f с при %.2f"
 
 #. i18n-hint: verb
 #: src/menus/EditMenus.cpp
@@ -10431,7 +10434,7 @@ msgstr "Тишину"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-msgstr "Обрезать выделенные треки с %.2f сек. до %.2f сек."
+msgstr "Обрезать выделенные треки с %.2f с до %.2f с"
 
 #: src/menus/EditMenus.cpp
 msgid "Trim Audio"
@@ -10462,7 +10465,7 @@ msgstr "Присоединить"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Detached %.2f seconds at t=%.2f"
-msgstr "Откреплено %.2f сек. начиная с t=%.2f"
+msgstr "Откреплено %.2f с начиная с t=%.2f"
 
 #: src/menus/EditMenus.cpp
 msgid "Detach"
@@ -10701,9 +10704,7 @@ msgstr "В MP&3"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
-msgstr ""
-"В &WAVЭкспортированный WAV-файл был усечён - Audacity не может экспортировать\n"
-"WAV-файлы размером более 4 ГБ."
+msgstr "Э&кспорт в WAV"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
@@ -10815,11 +10816,11 @@ msgstr "Исправлено"
 
 #: src/menus/HelpMenus.cpp
 msgid "Audio Device Info"
-msgstr "Информация об аудио-устройствах"
+msgstr "Сведения об аудиоустройствах"
 
 #: src/menus/HelpMenus.cpp
 msgid "MIDI Device Info"
-msgstr "Информация о MIDI-устройствах"
+msgstr "Сведения об устройствах MIDI"
 
 #: src/menus/HelpMenus.cpp
 msgid "&Quick Help..."
@@ -10835,11 +10836,11 @@ msgstr "&Диагностика"
 
 #: src/menus/HelpMenus.cpp
 msgid "Au&dio Device Info..."
-msgstr "Информация об аудио-&устройствах..."
+msgstr "С&ведения об аудиоустройствах…"
 
 #: src/menus/HelpMenus.cpp
 msgid "&MIDI Device Info..."
-msgstr "Информация о &MIDI-устройствах..."
+msgstr "Сведения о&б устройствах MIDI…"
 
 #: src/menus/HelpMenus.cpp src/widgets/ErrorDialog.cpp
 msgid "Show &Log..."
@@ -11776,7 +11777,7 @@ msgstr "Выберите хотя бы один трек аудио и один 
 #: src/menus/TrackMenus.cpp
 #, c-format
 msgid "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "Выравнивание завершено: MIDI от %.2f до %.2f сек., Аудио от %.2f до %.2f сек."
+msgstr "Выравнивание завершено: MIDI от %.2f до %.2f с, звук от %.2f до %.2f с."
 
 #: src/menus/TrackMenus.cpp
 msgid "Sync MIDI with Audio"
@@ -11785,7 +11786,9 @@ msgstr "Синхронизация MIDI с аудио"
 #: src/menus/TrackMenus.cpp
 #, c-format
 msgid "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "Ошибка выравнивания: входных данных слишком мало: MIDI от %.2f до %.2f сек., аудио от %.2f до %.2f сек."
+msgstr ""
+"Ошибка выравнивания: входных данных слишком мало: MIDI от %.2f до %.2f с, "
+"звук от %.2f до %.2f с."
 
 #: src/menus/TrackMenus.cpp
 msgid "Internal error reported by alignment process."
@@ -12140,7 +12143,7 @@ msgstr "&Разблокировать"
 
 #: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
-msgstr "Повторный пои&ск аудиоустройств"
+msgstr "Повторить поиск аудио&устройств"
 
 #: src/menus/TransportMenus.cpp
 msgid "Transport &Options"
@@ -12814,7 +12817,9 @@ msgstr "Со&хранять метки, если выделение привяз
 #. i18n-hint: RTL stands for 'Right to Left'
 #: src/prefs/GUIPrefs.cpp
 msgid "Use mostly Left-to-Right layouts in RTL languages"
-msgstr "Использовать диалоги с расположением элементов слева направо для языков с обратным направлением письма"
+msgstr ""
+"Использовать расположение элементов слева направо в языках с обратным "
+"направлением письма"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Never use comma as decimal point"
@@ -13702,7 +13707,7 @@ msgstr "&Диапазон (дБ):"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "High &boost (dB/dec):"
-msgstr "&Крутизна подъёма ВЧ (дБ/дек):"
+msgstr "&Крутизна подъёма ВЧ (дБ/окт):"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "A&lgorithm:"
@@ -15382,12 +15387,12 @@ msgstr "Клипы перемещёны на другой трек"
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, c-format
 msgid "Time shifted tracks/clips right %.02f seconds"
-msgstr "Треки/клипы сдвинуты вправо на %.02f сек."
+msgstr "Треки/клипы сдвинуты вправо на %.02f с"
 
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, c-format
 msgid "Time shifted tracks/clips left %.02f seconds"
-msgstr "Треки/клипы сдвинуты влево на %.02f сек."
+msgstr "Треки/клипы сдвинуты влево на %.02f с"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Collapse"
@@ -15682,7 +15687,7 @@ msgstr "0100 ч 060 м 060.0100 с"
 #. * minutes, seconds and milliseconds (1/1000 second)
 #: src/widgets/NumericTextCtrl.cpp
 msgid "hh:mm:ss + milliseconds"
-msgstr "чч:мм:сс + миллисек."
+msgstr "чч:мм:сс + миллисекунды"
 
 #. i18n-hint: Format string for displaying time in hours, minutes, seconds
 #. * and milliseconds. Change the 'h' to the abbreviation for hours, 'm' to the
@@ -16477,7 +16482,7 @@ msgstr "Уровень задержки для эхо-сигнала (дБ)"
 
 #: plug-ins/delay.ny
 msgid "Delay time (seconds)"
-msgstr "Время задержки (сек.)"
+msgstr "Время задержки (секунды)"
 
 #: plug-ins/delay.ny
 msgid "Pitch change effect"
@@ -16578,11 +16583,11 @@ msgstr "Количество меток"
 
 #: plug-ins/equalabel.ny
 msgid "Label interval (seconds)"
-msgstr "Интервал между метками (сек.)"
+msgstr "Период между метками (секунды)"
 
 #: plug-ins/equalabel.ny
 msgid "Length of label region (seconds)"
-msgstr "Длина создаваемых меток (сек.)"
+msgstr "Длина создаваемых меток (секунды)"
 
 #: plug-ins/equalabel.ny
 msgid "Adjust label interval to fit length"
@@ -16659,12 +16664,12 @@ msgstr "метки точек"
 #: plug-ins/equalabel.ny
 #, lisp-format
 msgid "~a~a ~a at intervals of ~a seconds.~%"
-msgstr "~a~a ~a с интервалом ~a сек.~%\""
+msgstr "~a~a ~a с интервалом ~a секунд.~%"
 
 #: plug-ins/equalabel.ny
 #, lisp-format
 msgid "~aRegion length = ~a seconds."
-msgstr "~aДлина области = ~a сек."
+msgstr "~aДлина области = ~a секунд."
 
 #: plug-ins/highpass.ny
 msgid "High-Pass Filter"
@@ -17383,7 +17388,9 @@ msgstr "Частота дискретизации: ~a Гц. Значения с�
 #: plug-ins/sample-data-export.ny
 #, lisp-format
 msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr "~a   ~a~%~aЧастота дискретизации: ~a Гц.~%Длина обработки: ~a сэмплов ~a сек.~a"
+msgstr ""
+"~a   ~a~%~aЧастота дискретизации: ~a Гц.~%Длина обработки: ~a сэмплов ~a "
+"секунд.~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -17392,7 +17399,7 @@ msgid ""
 "                     Length processed: ~a samples ~a seconds.~a"
 msgstr ""
 "~a   ~a~%~aЧастота дискретизации: ~a Гц. Значение сэмпла на шкале ~a.~%~\n"
-"                    Длина обработки: ~a сэмплов ~a сек.~a"
+"                    Длина обработки: ~a сэмплов ~a секунд.~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -17401,9 +17408,11 @@ msgid ""
 "                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
 "                  DC offset: ~a~a"
 msgstr ""
-"~a~%Частота дискретизации: ~a Гц. Значение сэмпла на шкале ~a. ~a.~%~aДлина обработки: \"~a ~\n"
-"                 сэмплов ~a сек.~%Пик амплитуды: ~a (линейная) ~a дБ.  Невзвешанная RMS: ~a дБ.~%~\n"
-"                  DC-смещение: ~a~a"
+"~a~%Частота дискретизации: ~a Гц. Значение сэмпла на шкале ~a. ~a.~%~aДлина "
+"обработки: ~a ~\n"
+"                 сэмплов ~a секунд.~%Пик амплитуды: ~a (линейная) ~a дБ.  "
+"Невзвешанное СКВ: ~a дБ.~%~\n"
+"                  Смещение постоянной: ~a~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -19043,7 +19052,7 @@ msgstr "Есть несколько способов получить техпо
 #: src/export/ExportMP3.cpp
 #, c-format
 msgid "To find %s, click here -->"
-msgstr "Чтобы найти %s, щёлкните здесь -->"
+msgstr "Щёлкните сюда для поиска «%s» -->"
 
 #. i18n-hint:
 #. First two %s are each replaced with the noun "start"
