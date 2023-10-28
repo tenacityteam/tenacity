@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-10-28 15:23+0000\n"
+"PO-Revision-Date: 2023-10-28 16:15+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
@@ -752,7 +752,7 @@ msgstr "Ошибка: %s"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
-msgstr "Ошибка при инициализации слоя I/O MIDI.\n"
+msgstr "Ошибка при инициализации слоя ввода-вывода MIDI.\n"
 
 #: src/AudioIO.cpp
 msgid ""
@@ -1323,7 +1323,9 @@ msgstr "Сборка для выпуска (уровень отладки %d)"
 #: src/CommonCommandFlags.cpp
 #, c-format
 msgid "Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
-msgstr "Чтобы использовать «%s», выделите аудиоданные (Cmd+A выделяет всё) и повторите попытку."
+msgstr ""
+"Чтобы использовать «%s», выделите аудиоданные (напр., выбрав всё с помощью "
+"Cmd+A) и повторите попытку."
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
@@ -6004,7 +6006,7 @@ msgstr "EQ (эквалайзер)"
 
 #: src/effects/Equalization.cpp plug-ins/eq-xml-to-txt-converter.ny
 msgid "Filter Curve EQ"
-msgstr "Кривая EQ"
+msgstr "Кривая фильтра эквалайзера"
 
 #: src/effects/Equalization.cpp plug-ins/eq-xml-to-txt-converter.ny
 msgid "Graphic EQ"
@@ -6055,8 +6057,10 @@ msgid ""
 "To use this filter curve in a macro, please choose a new name for it.\n"
 "Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
 msgstr ""
-"Чтобы использовать эту кривую эквалайзера в макросе, выберите для неё новое имя.\n"
-"Выберите 'Сохранить/'Менеджер кривых...', переименуйте кривую 'без_названия' и используйте её."
+"Чтобы использовать эту кривую эквалайзера в макросе, выберите для неё новое "
+"имя.\n"
+"Выберите «Сохранить/Менеджер кривых...», переименуйте кривую «без_названия» "
+"и используйте её."
 
 #: src/effects/Equalization.cpp
 msgid "Filter Curve EQ needs a different name"
@@ -6232,7 +6236,7 @@ msgstr "Ошибка сохранения кривых EQ"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
-msgstr "Запрашиваемая кривая не найдена, используется 'без_названия'"
+msgstr "Запрашиваемая кривая не найдена, используется «без_названия»"
 
 #: src/effects/Equalization.cpp
 msgid "Curve not found"
@@ -6311,7 +6315,7 @@ msgstr "Перезаписать существующую кривую '%s'?"
 
 #: src/effects/Equalization.cpp
 msgid "Curve exists"
-msgstr "Такая кривая уже есть"
+msgstr "Кривая уже существует"
 
 #: src/effects/Equalization.cpp
 msgid "You cannot delete the 'unnamed' curve."
@@ -7243,7 +7247,7 @@ msgstr "Минимальн&ое ослабление полосы затухан
 
 #: src/effects/ScoreAlignDialog.cpp
 msgid "Align MIDI to Audio"
-msgstr "Синхронизировать MIDI со звуком"
+msgstr "Выровнить MIDI со звуком"
 
 #: src/effects/ScoreAlignDialog.cpp
 msgid "Frame Period:"
@@ -7676,7 +7680,11 @@ msgstr "Интерфейс пользователя"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Select \"Full\" to use the graphical interface if supplied by the Audio Unit. Select \"Generic\" to use the system supplied generic interface. Select \"Basic\" for a basic text-only interface. Reopen the effect for this to take effect."
-msgstr "Выберите 'Полный', чтобы использовать графический интерфейс, если он предоставляется аудиомодулем. Выберите 'Типовой', чтобы использовать универсальный интерфейс системы. Выберите 'Простой' для простого текстового интерфейса. Повторно  откройте эффект, чтобы изменение вступило в силу."
+msgstr ""
+"Выберите «Полный», чтобы использовать графический интерфейс, если он "
+"предоставляется аудиомодулем. Выберите «Типовой», чтобы использовать "
+"универсальный интерфейс системы. Выберите «Простой» для простого текстового "
+"интерфейса. Повторно откройте эффект, чтобы изменение вступило в силу."
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Select &interface"
@@ -7916,8 +7924,8 @@ msgid ""
 "in the track Spectrogram settings and select the\n"
 "frequency range for the effect to act on."
 msgstr ""
-"Чтобы использовать 'Эффекты спектра', отметьте пункт\n"
-"'Включить выбор спектра' в окне спектрограммы трека и\n"
+"Чтобы использовать «Эффекты спектра», отметьте пункт\n"
+"«Включить выбор спектра» в окне спектрограммы трека и\n"
 "выберите диапазон частот, в котором будет работать эффект."
 
 #: src/effects/nyquist/Nyquist.cpp
@@ -9904,7 +9912,7 @@ msgstr "Недопустимое смещение трека в LOF-файле."
 #: src/import/ImportMIDI.cpp
 #, c-format
 msgid "Imported MIDI from '%s'"
-msgstr "Импортированы данные MIDI из '%s'"
+msgstr "Импортированы данные MIDI из «%s»"
 
 #: src/import/ImportMIDI.cpp
 msgid "Import MIDI"
@@ -10625,7 +10633,7 @@ msgstr "Экспорт MIDI как:"
 
 #: src/menus/FileMenus.cpp
 msgid "MIDI file"
-msgstr "MIDI-файл"
+msgstr "файл MIDI"
 
 #: src/menus/FileMenus.cpp
 msgid "Allegro file"
@@ -10654,7 +10662,7 @@ msgstr "Импорт меток"
 
 #: src/menus/FileMenus.cpp
 msgid "Select a MIDI file"
-msgstr "Выбрать MIDI-файл"
+msgstr "Выбрать файл MIDI"
 
 #: src/menus/FileMenus.cpp
 msgid "MIDI and Allegro files"
@@ -12800,7 +12808,7 @@ msgstr "&Диапазон индикатора (дБ):"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show 'How to Get &Help' at launch"
-msgstr "Показывать при запуске диалог 'Как получить &справку'"
+msgstr "Показывать при запуске диалог «Как получить &справку»"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show e&xtra menus"
@@ -13143,11 +13151,11 @@ msgstr "Используется: PortMidi"
 
 #: src/prefs/MidiIOPrefs.cpp
 msgid "MIDI Synth L&atency (ms):"
-msgstr "Задер&жка Midi-синтезатора (мс):"
+msgstr "Задержка &синтезатора MIDI (мс):"
 
 #: src/prefs/MidiIOPrefs.cpp
 msgid "The MIDI Synthesizer Latency must be an integer"
-msgstr "Задержка Midi-синтезатора должна быть целым числом"
+msgstr "Задержка синтезатора MIDI должна быть целым числом"
 
 #: src/prefs/MidiIOPrefs.h
 msgid "Midi IO"
@@ -13418,7 +13426,7 @@ msgstr "После &вырезаемой области:"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Seek Time when playing"
-msgstr "Интервал поиска при проигрывании"
+msgstr "Время перемотки при проигрывании"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "&Short period:"
@@ -13896,7 +13904,7 @@ msgstr "&Правка клипа может переместить другие 
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "\"Move track focus\" c&ycles repeatedly through tracks"
-msgstr "'Перемещение фокуса трека' повторяется в &цикле по всем трекам"
+msgstr "«Перемеще&ние фокуса трека» повторяется в цикле по всем трекам"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "&Type to create a label"
