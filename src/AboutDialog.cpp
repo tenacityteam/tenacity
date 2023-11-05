@@ -377,7 +377,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
    wxTextOutputStream informationStr( o );   // string to build up list of information in
    informationStr
       << wxT("<center>")
-      << XO("<h1>")
+      << wxT("<h1>")
       << ProgramName
       << wxT(" ")
       << wxString(TENACITY_VERSION_STRING)
