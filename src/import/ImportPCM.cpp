@@ -220,7 +220,7 @@ using Unevaluated = decltype(
    , XO("AVR (Audio Visual Research)")
    , XO("CAF (Apple Core Audio File)")
    /* i18n-hint: "codec" is short for a "coder-decoder" algorithm */
-   , XO("FLAC (FLAC Lossless Audio Codec)")
+   , XO("FLAC (Free Lossless Audio Codec)")
    , XO("HTK (HMM Tool Kit)")
    , XO("IFF (Amiga IFF/SVX8/SV16)")
    , XO("MAT4 (GNU Octave 2.0 / Matlab 4.2)")

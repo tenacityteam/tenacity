@@ -442,7 +442,13 @@ void BenchmarkDialog::OnRun( wxCommandEvent & WXUNUSED(event))
       goto fail;
    }
 
-   Printf( XO("Performing %d edits...\n").Format( trials ) );
+   Printf(
+      XP(
+         "Performing %d edit...\n",
+         "Performing %d edits...\n",
+	 0
+      )( trials )
+   );
    wxTheApp->Yield();
    FlushPrint();
 
