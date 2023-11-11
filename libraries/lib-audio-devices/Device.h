@@ -21,7 +21,7 @@
  * glorified version of that class apart from the addition of device types.
  * 
  */
-class Device
+class AUDIO_DEVICES_API Device
 {
     public:
         enum class Type
