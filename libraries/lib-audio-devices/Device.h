@@ -46,7 +46,7 @@ class Device
         ~Device() = default;
 
         Device(const Device& other);
-        Device(const Device&&);
+        Device(Device&& other);
 
         operator bool() const;
 

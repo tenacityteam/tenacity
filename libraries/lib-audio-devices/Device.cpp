@@ -29,7 +29,7 @@ Device::Device(const Device& other)
     mDefaultDevice = other.mDefaultDevice;
 }
 
-Device::Device(const Device&& other)
+Device::Device(Device&& other)
 {
     mDeviceType    = other.mDeviceType;
     mName          = other.mName;
