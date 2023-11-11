@@ -29,6 +29,19 @@ Device::Device(const Device& other)
     mDefaultDevice = other.mDefaultDevice;
 }
 
+Device::Device(const Device&& other)
+{
+    mDeviceType    = other.mDeviceType;
+    mName          = other.mName;
+    mHostName      = other.mHostName;
+    mDeviceIndex   = other.mDeviceIndex;
+    mHostIndex     = other.mHostIndex;
+    mNumChannels   = other.mNumChannels;
+    mDefaultDevice = other.mDefaultDevice;
+
+    other.Reset();
+}
+
 Device::operator bool() const
 {
     return mDeviceType  != Device::Type::Null || mName != "(null)"   ||
@@ -105,3 +118,15 @@ bool Device::IsDefaultDevice() const noexcept
 {
     return mDefaultDevice;
 }
+
+void Device::Reset() noexcept
+{
+    mDeviceType = Device::Type::Null;
+    mName          = "(null)";
+    mHostName      = "(null)";
+    mDeviceIndex   = -1;
+    mHostIndex     = -1;
+    mNumChannels   = -1;
+    mDefaultDevice = false;
+}
+

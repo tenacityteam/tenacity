@@ -46,7 +46,7 @@ class Device
         ~Device() = default;
 
         Device(const Device& other);
-        Device(const Device&&) = delete;
+        Device(const Device&&);
 
         operator bool() const;
 
@@ -126,4 +126,7 @@ class Device
 
         /// Returns if this device is the default device. 
         bool IsDefaultDevice() const noexcept;
+
+	/// Resets the device info, reverting back to an invalid device.
+	void Reset() noexcept;
 };
