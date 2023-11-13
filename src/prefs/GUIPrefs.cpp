@@ -80,7 +80,7 @@ void GUIPrefs::GetRangeChoices(
       wxT("145") ,
    };
    if (pCodes)
-      *pCodes = sCodes;
+      *pCodes = static_cast<const wxArrayStringEx&>(sCodes);
 
    static const std::initializer_list<TranslatableString> sChoices = {
       XO("-36 dB (shallow range for high-amplitude editing)") ,
