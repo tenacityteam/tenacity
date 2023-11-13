@@ -288,7 +288,7 @@ endif()
 # Current version and commit info
 set( TENACITY_VERSION 1 )
 set( TENACITY_RELEASE 3 )
-set( TENACITY_REVISION 2 )
+set( TENACITY_REVISION 3 )
 set( GIT_DESCRIBE "unknown" )
 find_package( Git QUIET )
 if( GIT_FOUND )
