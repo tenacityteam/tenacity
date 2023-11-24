@@ -255,7 +255,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
-   steady_clock::time_point start = steady_clock::now();
+   auto start = steady_clock::now();
 
    // Allocate the in/out buffer arrays
    // GP: temporary fix until we convert Effect
@@ -301,7 +301,7 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
    }
 
    // Remember the latency
-   mRealtimeLatency = duration_cast<milliseconds>(steady_clock::now() - start);
+   mLatency = duration_cast<std::chrono::microseconds>(steady_clock::now() - start);
 
    //
    // This is wrong...needs to handle tails
@@ -329,7 +329,7 @@ void RealtimeEffectManager::RealtimeProcessEnd() noexcept
    }
 }
 
-std::chrono::milliseconds RealtimeEffectManager::GetRealtimeLatency()
+auto RealtimeEffectManager::GetRealtimeLatency() const -> Latency
 {
-   return mRealtimeLatency;
+   return mLatency;
 }

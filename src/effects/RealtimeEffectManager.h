@@ -15,6 +15,7 @@
 #include <mutex>
 #include <vector>
 #include <thread>
+#include <chrono>
 
 class EffectProcessor;
 class RealtimeEffectState;
@@ -22,6 +23,7 @@ class RealtimeEffectState;
 class TENACITY_DLL_API RealtimeEffectManager final
 {
 public:
+   using Latency = std::chrono::microseconds;
    using EffectArray = std::vector <EffectProcessor*> ;
 
    /** Get the singleton instance of the RealtimeEffectManager. **/
@@ -39,7 +41,7 @@ public:
    void RealtimeSuspendOne( EffectProcessor &effect );
    void RealtimeResume() noexcept;
    void RealtimeResumeOne( EffectProcessor &effect );
-   std::chrono::milliseconds GetRealtimeLatency();
+   Latency GetRealtimeLatency() const;
 
    //! Object whose lifetime encompasses one suspension of processing in one thread
    class SuspensionScope {
@@ -120,7 +122,7 @@ private:
 
    std::mutex mLock;
    std::vector< std::unique_ptr<RealtimeEffectState> > mStates;
-   std::chrono::milliseconds mRealtimeLatency;
+   Latency mLatency{0};
    bool mRealtimeSuspended;
    bool mRealtimeActive;
    std::vector<unsigned> mRealtimeChans;
