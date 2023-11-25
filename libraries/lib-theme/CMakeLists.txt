@@ -15,7 +15,7 @@ set(SOURCES
 
 set(LIBRARIES
     PRIVATE
-        jsoncpp
+        JsonCpp::JsonCpp
         libzip::zip
 )
 

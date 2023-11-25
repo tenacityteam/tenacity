@@ -14,8 +14,8 @@
 
 #include <stdexcept>
 
-#include <jsoncpp/json/value.h>
-#include <jsoncpp/json/reader.h>
+#include <json/value.h>
+#include <json/reader.h>
 
 #include "exceptions/ArchiveError.h"
 #include "exceptions/IncompatibleTheme.h"
