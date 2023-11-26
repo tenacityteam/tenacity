@@ -29,20 +29,25 @@ This will define the following variables:
 
 find_package(PkgConfig QUIET)
 if (pkgConfig_FOUND)
-	pkg_check_modules(JsonCpp jsoncpp)
+    pkg_check_modules(JSONCPP_PC jsoncpp)
 endif()
 
 find_path(JsonCpp_INCLUDE_DIRS
-    NAMES json
-    PATHS ${JsonCpp_INCLUDE_DIRS}
+    NAMES json/json.h
+    PATHS ${JSONCPP_PC_INCLUDE_DIRS}
+    PATH_SUFFIXES jsoncpp
     DOC "JsonCpp include directory"
 )
 
+mark_as_advanced(JsonCpp_INCLUDE_DIRS)
+
 find_library(JsonCpp_LIBRARIES
     NAMES jsoncpp
-    PATHS ${JsonCpp_LIBRARIES} #LIBRARY_DIRS}
+    PATHS ${JSONCPP_PC_LIBRARIES}
     DOC "JsonCpp library"
 )
+
+mark_as_advanced(JsonCpp_INCLUDE_DIRS)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
