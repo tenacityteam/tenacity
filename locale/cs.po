@@ -2,20 +2,22 @@
 #
 # Pavel Fric <pavelfric@seznam.cz>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 # Avery King <avery98@pm.me>, 2022, 2023.
+# Václav Černý <vaclav.vatoz.cerny@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2021-03-20 09:04+0100\n"
-"Last-Translator: Pavel Fric <pavelfric@seznam.cz>\n"
-"Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2023-12-04 17:29+0000\n"
+"Last-Translator: Václav Černý <vaclav.vatoz.cerny@gmail.com>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/tenacity/tenacity/"
+"cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -91,7 +93,7 @@ msgstr ", "
 #: libraries/lib-files/FileNames.cpp
 #, c-format
 msgid "%s files"
-msgstr "% souborů"
+msgstr "%s souborů"
 
 #: libraries/lib-files/FileNames.cpp src/BatchCommands.cpp
 #, c-format
@@ -99,9 +101,9 @@ msgid "(%s)"
 msgstr "(%s)"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Directory %s does not have write permissions"
-msgstr "Adresář %s neexistuje. Vytvořit?"
+msgstr "Adresář %s nemá práva pro zápis"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -321,14 +323,12 @@ msgid "Could not parse XML"
 msgstr "Nepodařilo se zpracovat XML"
 
 #: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
 msgid "1st Experimental Command..."
-msgstr "Zvláštní příkaz"
+msgstr "1. experimentální příkaz..."
 
 #: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
 msgid "2nd Experimental Command"
-msgstr "Zvláštní příkaz"
+msgstr "2. experimentální příkaz"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -350,9 +350,9 @@ msgstr "%s, vývojář"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, developer and support"
-msgstr "%s, dokumentace a podpora"
+msgstr "%s, vývojář a podpora"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -362,9 +362,9 @@ msgstr "%s, dokumentace a podpora"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, QA tester, documentation and support"
-msgstr "%s, dokumentace a podpora"
+msgstr "%s, tester, dokumentace a podpora"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -423,15 +423,15 @@ msgstr "%s, grafika"
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, Tenacity developer"
-msgstr "%s, vývojář stránek"
+msgstr "%s, vývojář Tenacity"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, lead Tenacity developer"
-msgstr "%s, vývojář stránek"
+msgstr "%s, hlavní vývojář Tenacity"
 
 #: src/AboutDialog.cpp
 #, c-format
@@ -557,7 +557,7 @@ msgstr "Nahrávání MP3"
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
 msgid "Ogg Vorbis Import and Export"
-msgstr "Nahrávání a ukládání do Ogg Vorbis "
+msgstr "Nahrávání a ukládání do Ogg Vorbis"
 
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
@@ -1166,7 +1166,7 @@ msgstr "Velikost bloku má být v rozsahu 1 - 1024 KB."
 
 #: src/Benchmark.cpp
 msgid "Number of edits should be in the range 1 - 10000."
-msgstr "Počet úprav má být v rozsahu 1  - 10000."
+msgstr "Počet úprav má být v rozsahu 1 - 10000."
 
 #: src/Benchmark.cpp
 msgid "Test data size should be in the range 1 - 2000 MB."
@@ -1355,19 +1355,19 @@ msgstr ""
 "zvuk. (S jinými typy stop to nejde.)"
 
 #: src/DBConnection.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "(%d): %s"
-msgstr "%s: %s"
+msgstr "(%d): %s"
 
 #: src/DBConnection.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set safe mode on primary connection to %s"
-msgstr "Nepodařilo se zahodit spojení"
+msgstr "Nepodařilo se nastavit bezpečný režim na primárním spojení k %s"
 
 #: src/DBConnection.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set safe mode on checkpoint connection to %s"
-msgstr "Nepodařilo se obnovit spojení"
+msgstr "Nepodařilo se nastavit bezpečný režim na kontrole spojení k %s"
 
 #: src/DBConnection.cpp
 msgid "Checkpointing project"
@@ -1404,7 +1404,7 @@ msgstr ""
 #: src/export/ExportMultiple.cpp src/import/RawAudioGuess.cpp
 #: src/menus/EditMenus.cpp src/prefs/KeyConfigPrefs.cpp src/widgets/Warning.cpp
 msgid "Warning"
-msgstr "Varování "
+msgstr "Varování"
 
 #: src/DBConnection.cpp
 #, c-format
@@ -1531,14 +1531,12 @@ msgid "Hz"
 msgstr "Hz"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Scroll Horizontal"
-msgstr "Vodorovné"
+msgstr "Posouvat vodorovně"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Zoom Horizontal"
-msgstr "Vodorovné"
+msgstr "Přibližovat vodorovně"
 
 #: src/FreqWindow.cpp
 msgid "Cursor:"
@@ -2431,12 +2429,15 @@ msgid "Failed to open the project's database"
 msgstr "Nepodařilo se otevřít databázi projektu"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to open database file:\n"
 "\n"
 "%s"
-msgstr "Nepodařilo se otevřít %s"
+msgstr ""
+"Nepodařilo se otevřít databázi\n"
+"\n"
+" %s"
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to discard connection"
@@ -2459,11 +2460,12 @@ msgstr ""
 
 #. i18n-hint: An error message.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is in a read only directory\n"
 "(Unable to create the required temporary files)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Projekt je v adresáři jen pro čtení\n"
+"(Nepodařilo se vytvořit vyžadované dočasné soubory)"
 
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
@@ -2475,65 +2477,71 @@ msgstr "Nelze inicializovat soubor s projektem"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is read only\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Projekt je jen pro čtení\n"
+"(Nejde pracovat s blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is locked\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Projekt je uzamčen\n"
+"(Nejde pracovat s blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is busy\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Projekt je zaměstnaný\n"
+"(Nejde pracovat s blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is corrupt\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Projekt je poškozený\n"
+"(Nejde pracovat s blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Some permissions issue\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Chyba oprávnění\n"
+"(Nejde pracovat s blockfiles)Nelze inicializovat soubor s projektem"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "A disk I/O error\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Chyby I/O na disku\n"
+"(Nejde pracovat s blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Not authorized\n"
 "(Unable to work with the blockfiles)"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr ""
+"Nneí autorizováno\n"
+"(Nejde pracovat s blockfiles)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Unable to work with the blockfiles"
-msgstr "Nelze inicializovat soubor s projektem"
+msgstr "Nejde pracovat s blockfiles"
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2622,9 +2630,8 @@ msgid "Failed to remove the autosave information from the project file."
 msgstr "Nepodařilo se odstranit informaci o automatickém uložení ze souboru s projektem."
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Unable to bind to blob"
-msgstr "Nepodařilo se najít kodek"
+msgstr "Nepodařilo se připojit blob"
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to parse project information."
@@ -3039,9 +3046,8 @@ msgid "Don't show this again at start up"
 msgstr "Tento dialog už neukazovat"
 
 #: src/SqliteSampleBlock.cpp
-#, fuzzy
 msgid "Connection to project file is null"
-msgstr "Kontrola dat souboru projektu"
+msgstr "Připojení k souboru projektu je null"
 
 #: src/Tags.cpp
 msgid "Artist Name"
@@ -3183,7 +3189,7 @@ msgid ""
 msgstr ""
 "%s nelze nalézt.\n"
 "\n"
-"Byl odstraněno ze seznamu posledních souborů. "
+"Byl odstraněno ze seznamu posledních souborů."
 
 #: src/TenacityApp.cpp
 msgid "Block size must be within 256 to 100000000\n"
@@ -3199,9 +3205,8 @@ msgid "Open &Recent..."
 msgstr "Otevřít &Nedávné..."
 
 #: src/TenacityApp.cpp src/menus/HelpMenus.cpp
-#, fuzzy
 msgid "&About Tenacity..."
-msgstr "O programu Audacity"
+msgstr "O progr&amu Tenacity..."
 
 #: src/TenacityApp.cpp
 msgid "&Preferences..."
@@ -4292,9 +4297,8 @@ msgid "Delete"
 msgstr "Smazat"
 
 #: src/commands/SetEnvelopeCommand.cpp
-#, fuzzy
 msgid "Edited Envelope"
-msgstr "Nastavit obálku"
+msgstr "Upravená obálka"
 
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/commands/SetEnvelopeCommand.cpp src/prefs/MousePrefs.cpp
@@ -4323,9 +4327,8 @@ msgid "Selected"
 msgstr "Vybráno"
 
 #: src/commands/SetLabelCommand.cpp
-#, fuzzy
 msgid "Edited Label"
-msgstr "Upravené štítky"
+msgstr "Upravený štítek"
 
 #: src/commands/SetLabelCommand.h
 msgid "Sets various values for a label."
@@ -9453,7 +9456,8 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"Štítek nebo stopa \"s\" není možný souborový název. Nemůžete použít \"%s\".\n"
+"Štítek nebo stopa \"%s\" není možný souborový název. Nemůžete použít \"%s\"."
+"\n"
 "\n"
 "Navrhovaná náhrada:"
 
@@ -9573,12 +9577,12 @@ msgstr "Vyhledat FFmpeg"
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
 msgid "Location of '%s':"
-msgstr "Umístění '% s':"
+msgstr "Umístění '%s':"
 
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
 msgid "To find '%s', click here -->"
-msgstr "Chcete-li najít '% s', klepněte zde →"
+msgstr "Chcete-li najít '%s', klepněte zde →"
 
 #: src/ffmpeg/FFmpeg.cpp
 msgid "To get a free copy of FFmpeg, click here -->"
@@ -9598,7 +9602,7 @@ msgstr "Jen avformat.dll"
 #: src/ffmpeg/FFmpeg.cpp
 #, c-format
 msgid "Where is '%s'?"
-msgstr "Kde je '% s'?"
+msgstr "Kde je '%s'?"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
 msgid "FFmpeg not found"
@@ -10383,7 +10387,7 @@ msgstr "Ticho"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-msgstr "Oříznout vybrané zvukové stopy od %.2f sekund %.2f sekund"
+msgstr "Oříznout vybrané zvukové stopy od %.2f sekund do  %.2f sekund"
 
 #: src/menus/EditMenus.cpp
 msgid "Trim Audio"
@@ -11508,9 +11512,8 @@ msgstr "&Nástrojové panely"
 
 #. i18n-hint: (verb)
 #: src/menus/ToolbarMenus.cpp
-#, fuzzy
 msgid "Edit &Mode (on/off)"
-msgstr "&Další nabídky (zapnout/vypnout)"
+msgstr "Editeční reži&m (zapnout/vypnout)"
 
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
@@ -12279,9 +12282,8 @@ msgid "&Extra Menus (on/off)"
 msgstr "&Další nabídky (zapnout/vypnout)"
 
 #: src/menus/ViewMenus.cpp
-#, fuzzy
 msgid "Track &Name (on/off)"
-msgstr "&Další nabídky (zapnout/vypnout)"
+msgstr "&Název stopy (zapnout/vypnout)"
 
 #: src/menus/ViewMenus.cpp
 msgid "&Show Clipping (on/off)"
@@ -12452,9 +12454,8 @@ msgid "Bro&wse..."
 msgstr "Pro&cházet..."
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Macro output:"
-msgstr "Ukázat výstup"
+msgstr "Výstup &makra:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Temporary files directory"
@@ -13544,31 +13545,27 @@ msgstr "Perioda"
 
 #. i18n-hint: New color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Color (default)"
-msgstr "4 (výchozí)"
+msgstr "Barva (výchozí)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Color (classic)"
-msgstr "Klasický"
+msgstr "Barva (klasická)"
 
 #. i18n-hint: Grayscale color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Grayscale"
-msgstr "Odstíny še&di"
+msgstr "Odstíny šedi"
 
 #. i18n-hint: Inverse grayscale color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Inverse grayscale"
-msgstr "&Lineární stupnice"
+msgstr "Inverzní odstíny šedi"
 
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Frequencies"
@@ -14076,9 +14073,8 @@ msgid "Classic"
 msgstr "Klasický"
 
 #: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
 msgid "Audacity"
-msgstr "Zápis Audacity"
+msgstr "Audacity"
 
 #: src/theme/DarkThemeAsCeeCode.cpp
 msgid "Dark"
@@ -15174,9 +15170,10 @@ msgstr "Logaritmická &interpolace"
 
 #. i18n-hint Appears on hovering mouse over clip affordance
 #: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Klepněte a táhněte pro přesunutí zvukové stopy na časové ose"
+msgstr ""
+"Klepněte a táhněte pro přesunutí klipu na časové ose, či klikněte pro jeho "
+"vybrání"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -15942,23 +15939,20 @@ msgstr "Potvrdit zavření"
 
 #. i18n-hint: %s is replaced with a directory path.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write files to directory: %s."
-msgstr "Nelze přečíst přednastavení z \"%s\""
+msgstr "Nelze zapsat soubory do adresáře: %s."
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "You can change the directory in %s."
-msgstr ""
-"Nepodařilo se vytvořit adresář:\n"
-"  %s"
+msgstr "Můžete změnit adresáře v %s."
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy
 msgid "Preferences > Directories"
-msgstr "Nastavení adresářů"
+msgstr "Nastavení > Adresáře"
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
@@ -16741,9 +16735,10 @@ msgid "~ah ~am ~as"
 msgstr "~ah ~am ~as"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Too many silences detected.~%Only the first 10000 labels added."
-msgstr "Bylo zjištěno příliš mnoho ticha. Přidáno pouze prvních 10 000 štítků."
+msgstr ""
+"Bylo zjištěno příliš mnoho ticha. ~%Přidáno pouze prvních 10 000 štítků."
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -16999,14 +16994,16 @@ msgid "Success.~%Files written to:~%~s~%"
 msgstr "Úspěch.~%Soubory zapsány do:~%~s~%"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
-msgstr "Varování.nNepodařilo se zkopírovat některé soubory:n"
+msgstr "Varování. ~%Nepodařilo se zkopírovat některé soubory: ~%"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
-msgstr "Přídavné moduly nainstalovány.n(Pro povolení efektu použijte správce přídavného modulu):"
+msgstr ""
+"Přídavné moduly nainstalovány. ~%(Pro povolení efektu použijte správce "
+"přídavného modulu):"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Plug-ins updated:"
@@ -21801,3 +21798,36 @@ msgstr "Chyba.~%Požadována stopa sterea."
 
 #~ msgid "Unable to load the module \"%s\". Error: %s"
 #~ msgstr "Nelze nahrát modul \"%s\". Chyba: %s"
+
+#: src/prefs/GUIPrefs.cpp
+msgid "Never use comma as decimal point"
+msgstr "Nikdy nepoužívat čárku jako desetinný oddělovač"
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr "Tenacity startuje..."
+
+#: src/effects/nyquist/Nyquist.cpp
+msgid ""
+"Enable track spectrogram view before\n"
+"applying 'Spectral' effects."
+msgstr ""
+"Před použitím spektrálních efektů povolte\n"
+"zobrazení spektrogramu stopy."
+
+#. i18n-hint Scheme refers to a color scheme for spectrogram colors
+#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
+msgctxt "spectrum prefs"
+msgid "Sche&me"
+msgstr "Schéma"
+
+#. i18n-hint: This message describes the error in the Error dialog.
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
+msgstr ""
+"Zkontrolujte, zda adresář existuje, máte nezbytná práva a disk není zaplněn."
+
+#. i18n-hint: An error message.  Don't translate inset or blockids.
+#: src/ProjectFileIO.cpp
+msgid "Unable to add 'inset' function (can't verify blockids)"
+msgstr "Nepodařilo se přidat 'inset' funkci (nemohu ověřit blockids)"
