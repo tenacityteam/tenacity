@@ -16,8 +16,9 @@
 // Tenacity libraries
 #include <lib-components/EffectInterface.h>
 #include <lib-components/ModuleInterface.h>
-#include <lib-components/PluginInterface.h>
 #include <lib-utility/MemoryX.h>
+
+#include "PluginInterface.h"
 
 #include <vector>
 
