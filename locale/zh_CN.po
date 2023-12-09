@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-11-04 11:00+0000\n"
+"PO-Revision-Date: 2023-12-09 17:36+0000\n"
 "Last-Translator: Liu Wenyuan <15816141883@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tenacity/tenacity/zh_Hans/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -1919,7 +1919,7 @@ msgstr "撤消 %s(&U)"
 
 #: src/Menus.cpp src/menus/EditMenus.cpp
 msgid "&Undo"
-msgstr "撤消(&U)"
+msgstr "撤销(&U)"
 
 #: src/Menus.cpp
 #, c-format
@@ -3709,7 +3709,7 @@ msgstr "删除轨道"
 #: src/TrackUtilities.cpp
 #, c-format
 msgid "Removed track '%s.'"
-msgstr "已删除音轨“%s”。"
+msgstr "已删除轨道“%s”。"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4290,9 +4290,8 @@ msgid "Delete"
 msgstr "删除"
 
 #: src/commands/SetEnvelopeCommand.cpp
-#, fuzzy
 msgid "Edited Envelope"
-msgstr "设置包络"
+msgstr "编辑包络"
 
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/commands/SetEnvelopeCommand.cpp src/prefs/MousePrefs.cpp
@@ -4321,7 +4320,6 @@ msgid "Selected"
 msgstr "已选"
 
 #: src/commands/SetLabelCommand.cpp
-#, fuzzy
 msgid "Edited Label"
 msgstr "编辑标签"
 
@@ -12796,7 +12794,6 @@ msgid "&Ignore blank space at the beginning"
 msgstr "忽略开始和结束位置的静音(&I)"
 
 #: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
 msgid "Exported Label Style:"
 msgstr "标签导出样式："
 
@@ -16637,9 +16634,8 @@ msgid "Threshold level (dB)"
 msgstr "阈值（dB）"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Threshold measurement"
-msgstr "阈值百分比"
+msgstr "阈值测量"
 
 #: plug-ins/label-sounds.ny
 msgid "Peak level"
@@ -20710,3 +20706,93 @@ msgstr "错误。~%需要立体声轨。"
 #: src/widgets/UnwritableLocationErrorDialog.cpp
 msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
 msgstr "请检查目录是否存在，是否具有必要的权限，以及驱动器是否已满。"
+
+#: src/commands/OpenSaveCommands.h
+msgid "Saves the log contents."
+msgstr "保存日志内容。"
+
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr "声音 ##1"
+
+#: src/commands/HelpCommand.cpp
+msgid "_"
+msgstr "_"
+
+#: src/prefs/GUIPrefs.cpp
+msgid "Never use comma as decimal point"
+msgstr "切勿使用逗号作为小数点"
+
+#: src/import/RawAudioGuess.cpp
+msgid "Bad data size. Could not import audio"
+msgstr "数据大小无效。无法导入音频"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "O&pen:"
+msgstr "打开(&P)："
+
+#: src/effects/nyquist/Nyquist.cpp
+msgid ""
+"Enable track spectrogram view before\n"
+"applying 'Spectral' effects."
+msgstr ""
+"请在应用“光谱”效果前\n"
+"启用轨道声谱视图。"
+
+#: src/UndoManager.cpp
+msgid "Discarding undo/redo history"
+msgstr "正在丢弃撤销/重做历史"
+
+#: src/import/Import.cpp
+msgid ""
+"Try installing FFmpeg.\n"
+"\n"
+msgstr ""
+"请尝试安装 FFmpeg。\n"
+"\n"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr "检测到过多的静音。~%只添加了前 10000 个标签。"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid ""
+"Leave a field empty to go to the last directory used for that operation.\n"
+"Fill in a field to always go to that directory for that operation."
+msgstr ""
+"留空字段，以转到用于该操作的上一个目录。\n"
+"填写字段，则该操作将始终转到该目录。"
+
+#: src/menus/FileMenus.cpp
+msgid "Hidden File Menu"
+msgstr "隐藏的文件菜单"
+
+#: src/commands/OpenSaveCommands.h
+msgid "Clears the log contents."
+msgstr "清除日志内容。"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Labelling regions between sounds requires~%at least two sounds.~%Only one sound detected."
+msgstr "标记声音之间的区域需要~%至少两段声音。~%仅检测到一段声音。"
+
+#: src/import/ImportMP3.cpp
+msgid ""
+"Import failed\n"
+"\n"
+"This is likely caused by a malformed MP3.\n"
+"\n"
+msgstr ""
+"导入失败\n"
+"\n"
+"这可能是由于畸形的 MP3 造成的。\n"
+"\n"
+
+#: src/commands/HelpCommand.h
+msgid "For comments in a macro."
+msgstr "用于宏中的注释。"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "S&ave:"
+msgstr "保存(&A)："
