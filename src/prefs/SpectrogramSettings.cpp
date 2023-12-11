@@ -286,7 +286,7 @@ void SpectrogramSettings::LoadPrefs()
 {
    minFreq = gPrefs->Read(wxT("/Spectrum/MinFreq"), 0L);
 
-   maxFreq = gPrefs->Read(wxT("/Spectrum/MaxFreq"), 8000L);
+   maxFreq = gPrefs->Read(wxT("/Spectrum/MaxFreq"), 20000L);
 
    range = gPrefs->Read(wxT("/Spectrum/Range"), 80L);
    gain = gPrefs->Read(wxT("/Spectrum/Gain"), 20L);
@@ -378,7 +378,7 @@ void SpectrogramSettings::UpdatePrefs()
    }
 
    if (maxFreq == defaults().maxFreq) {
-      gPrefs->Read(wxT("/Spectrum/MaxFreq"), &maxFreq, 8000L);
+      gPrefs->Read(wxT("/Spectrum/MaxFreq"), &maxFreq, 20000L);
    }
 
    if (range == defaults().range) {

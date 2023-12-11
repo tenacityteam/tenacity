@@ -124,7 +124,7 @@ void SpectrumVZoomHandle::DoZoom(
    float min, max, minBand = 0;
    const double rate = pTrack->GetRate();
    const float halfrate = rate / 2;
-   float maxFreq = 8000.0;
+   float maxFreq = 20000.0;
    const SpectrogramSettings &specSettings = pTrack->GetSpectrogramSettings();
    NumberScale scale;
    const bool spectrumLinear =
@@ -147,7 +147,7 @@ void SpectrumVZoomHandle::DoZoom(
       scale = (specSettings.GetScale(min, max));
       const auto fftLength = specSettings.GetFFTLength();
       const float binSize = rate / fftLength;
-      maxFreq = gPrefs->Read(wxT("/Spectrum/MaxFreq"), 8000L);
+      maxFreq = gPrefs->Read(wxT("/Spectrum/MaxFreq"), 20000L);
       // JKC:  Following discussions of Bug 1208 I'm allowing zooming in
       // down to one bin.
       //      const int minBins =
