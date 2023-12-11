@@ -124,7 +124,7 @@ void WaveformVZoomHandle::DoZoom(
    float min, max, minBand = 0;
    const double rate = pTrack->GetRate();
    const float halfrate = rate / 2;
-   float maxFreq = 8000.0;
+   float maxFreq = 20000.0;
 
    bool bDragZoom = WaveTrackVZoomHandle::IsDragZooming(zoomStart, zoomEnd);
 
