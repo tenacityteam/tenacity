@@ -710,7 +710,12 @@ bool FileNames::IsOnFATFileSystem(const FilePath &path)
    if (statfs(wxPathOnly(path).c_str(), &fs))
       // Error from statfs
       return false;
+
+   #ifdef __FreeBSD__
+   return 0 == strcmp(fs.f_fstypename, "msdosfs");
+   #else
    return 0 == strcmp(fs.f_fstypename, "msdos");
+   #endif
 }
 #elif defined(__linux__)
 #include <sys/statfs.h>
