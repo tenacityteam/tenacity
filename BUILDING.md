@@ -287,6 +287,8 @@ too if you are using vcpkg. If not, set this to an empty string. Next, run
     are both installed, sccache will be prefered.
   * **PCH** (ON|OFF): Enables the use of precompiled headers. ON by default if
     either ccache or sccache was not found or was disabled.
+  * **ENABLE_INTERPROCEDURAL_OPTIMIZATION** (ON|OFF): Enables interprocedural
+    optimization. Off by default.
   * **PERFORM_CODESIGN** (ON|OFF): Performs codesigning during the install step.
     This only works on Windows and macOS and requires the appropriate certificates
     to be installed in order for signing to work. **Note that codesigning and
