@@ -15,8 +15,8 @@ Resolves: *(direct link to the issue)*
 - [ ] I made sure the title of the PR reflects the core meaning of the issue I am solving
 - [ ] I made sure the commit message(s) contain a description and answer the question "Why do those changes fix that particular issue?" or "Why are those changes really necessary as improvements?"
 
-</details>
-
 \*Indicates required.
+
+</details>
 
 *(an optional longer description of the changes)*
