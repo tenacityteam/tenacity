@@ -60,6 +60,7 @@ Additionally, the following unofficial packages are available for you to try Ten
 - [Unofficial Tenacity Chocolatey Package](https://community.chocolatey.org/packages/tenacity)
 
 **Linux**:
+- [Arch Linux Package](https://archlinux.org/packages/extra/x86_64/tenacity/)
 - [Unofficial Arch Linux (AUR) Git Package](https://aur.archlinux.org/packages/tenacity-git/)
 
 If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue is not specific to the package, please report the issue here.
