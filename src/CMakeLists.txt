@@ -1096,6 +1096,7 @@ list( APPEND LIBRARIES
       nyquist
       $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
+      Rubberband::Rubberband
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:${GLIB_LIBRARIES}>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN,Haiku>:GTK::GTK>

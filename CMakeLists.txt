@@ -662,6 +662,8 @@ else()
     message(STATUS "SoundTouch timestretching support disabled. Requires SoundTouch library.")
 endif()
 
+find_package(Rubberband REQUIRED)
+
 find_package(FFMPEG)
 cmake_dependent_option(FFMPEG "FFMPEG codecs support." ON "FFMPEG_FOUND" OFF)
 if(FFMPEG)
