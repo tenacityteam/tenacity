@@ -28,6 +28,9 @@
 ]]#
 
 set( EXPERIMENTAL_OPTIONS_LIST
+   # Experimental project import
+   IMPORT_AUP3
+  
    # ACH 08 Jan 2014
    # EQ accelerated code
    #EQ_SSE_THREADED
