@@ -11,14 +11,16 @@
 *******************************************************************************/
 
 #include "TenacityApp.h"
-#include <QMainWindow>
+#include "Forms/MainWindow/MainWindow.h"
 
 int main(int argc, char** argv)
 {
-    QApplication app(argc, argv);
-    QMainWindow frame;
-    app.setApplicationName("QTenacity");
+    QCoreApplication::setApplicationName("Tenacity");
 
-    frame.show();
-    return app.exec();
+    QApplication a(argc, argv);
+
+    MainWindow mainWindow {};
+    mainWindow.show();
+
+    return QApplication::exec();
 }
