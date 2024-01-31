@@ -73,6 +73,8 @@ list( APPEND SOURCES
     # Main source files
     TenacityApp.cpp
     TenacityApp.h
+    Forms/MainWindow/MainWindow.cpp
+    Forms/MainWindow/MainWindow.h
 )
 
 #
