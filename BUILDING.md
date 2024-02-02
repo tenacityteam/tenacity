@@ -5,7 +5,7 @@
 ### Linux
 
 Not all distros package the right versions of Tenacity's dependencies, if at
-all. For example, wxWidgets 3.1.3 or later is required for building Tenacity,
+all. For example, wxWidgets 3.1.5 or later is required for building Tenacity,
 but some (mostly older) distributions only package wxWidgets 3.0.
 [PortMidi](https://github.com/mixxxdj/portmidi) and
 [PortSMF](https://github.com/tenacityteam/portsmf) are required for MIDI support
