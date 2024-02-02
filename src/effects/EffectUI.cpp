@@ -473,10 +473,6 @@ void EffectUIHost::OnInitDialog(wxInitDialogEvent & evt)
    // Do default handling
    wxDialogWrapper::OnInitDialog(evt);
    
-#if wxCHECK_VERSION(3, 0, 0)
-   //#warning "check to see if this still needed in wx3"
-#endif
-   
    // Pure hackage coming down the pike...
    //
    // I have no idea why, but if a wxTextCtrl is the first control in the

@@ -13,13 +13,9 @@
 #define __AUDACITY_IMAGE_ROLL__
 
 #include <vector>
-// #include <wx/dc.h> // for enum wxRasterOperationMode
+#include <wx/dc.h> // for enum wxRasterOperationMode
 #include <wx/defs.h>
 #include "wxPanelWrapper.h" // to inherit
-
-#if !wxCHECK_VERSION(3,0,0)
-#define wxRasterOperationMode int
-#endif
 
 // wxImage copies cheaply with reference counting
 using ImageArray = std::vector<wxImage>;

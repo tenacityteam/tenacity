@@ -114,10 +114,8 @@ wxString TranslatableString::DoChooseFormat(
       ? ( nn == 1 ? singular : plural )
       : wxGetTranslation(
             singular, plural, nn
-#if HAS_I18N_CONTEXTS
             , wxString{} // domain
             , context
-#endif
          );
 }
 

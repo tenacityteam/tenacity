@@ -665,7 +665,6 @@ list( APPEND SOURCES
       menus/TrackMenus.cpp
       menus/TransportMenus.cpp
       menus/ViewMenus.cpp
-      menus/WindowMenus.cpp
 
       # Preferences
 
@@ -1199,7 +1198,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       effects/EffectUI.cpp
       effects/VST/VSTControlOSX.mm
       effects/audiounits/AUControl.mm
-      menus/WindowMenus.cpp
       PROPERTIES
          COMPILE_FLAGS "-ObjC++"
          SKIP_PRECOMPILE_HEADERS YES
