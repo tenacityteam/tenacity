@@ -65,6 +65,9 @@ Additionally, the following unofficial packages are available for you to try Ten
 
 If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue is not specific to the package, please report the issue here.
 
+### Package Matrix
+[![Packaging status](https://repology.org/badge/vertical-allrepos/tenacity.svg)](https://repology.org/project/tenacity/versions)
+
 ### Audacity
 
 The latest official version of Audacity that does not implement telemetry is `3.0.2`. Some Linux-based operating systems also ship Audacity with telemetry and networking features disabled by default.
