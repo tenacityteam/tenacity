@@ -12,9 +12,8 @@
 
 #include <QApplication>
 
-
 class TenacityApp final : public QApplication
 {
-    public:
-        TenacityApp(int& argc, char** argv);
+public:
+    static void Start();
 };

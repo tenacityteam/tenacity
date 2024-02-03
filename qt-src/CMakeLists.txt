@@ -71,6 +71,7 @@ endif()
 #
 list( APPEND SOURCES
     # Main source files
+    main.cpp
     TenacityApp.cpp
     TenacityApp.h
     Forms/MainWindow/MainWindow.cpp
@@ -172,7 +173,6 @@ list( APPEND LIBRARIES
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:rt>
       Qt${QT_VERSION_MAJOR}::Core
       Qt${QT_VERSION_MAJOR}::Gui
-      Qt${QT_VERSION_MAJOR}::Quick
       Qt${QT_VERSION_MAJOR}::Widgets
 )
 
