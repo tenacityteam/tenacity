@@ -745,10 +745,10 @@ else()
    set(CMAKE_AUTOMOC ON)
    set(CMAKE_AUTOUIC ON)
 
-   # Find Qt. We prefer Qt 6 over Qt 5, so if both are found then we'll use
-   # Qt 6.
-   find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Gui Quick Widgets)
-   find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Quick Widgets)
+   # Find Qt. We will only officially support Qt 6 as it's the most recent
+   # version.
+   find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+   find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets)
 endif()
 
 add_subdirectory(lib-src/libnyquist)
