@@ -1374,7 +1374,7 @@ void ProjectWindow::OnUndoReset( wxCommandEvent &evt )
    // RedrawProject();  // Should we do this here too?
 }
 
-void ProjectWindow::OnScroll(wxScrollEvent & WXUNUSED(event))
+void ProjectWindow::OnScroll(wxScrollEvent & /* event */)
 {
    auto &project = mProject;
    auto &viewInfo = ViewInfo::Get( project );
@@ -1454,7 +1454,7 @@ void ProjectWindow::OnMenu(wxCommandEvent & event)
    }
 }
 
-void ProjectWindow::OnUpdateUI(wxUpdateUIEvent & WXUNUSED(event))
+void ProjectWindow::OnUpdateUI(wxUpdateUIEvent & /* event */)
 {
    auto &project = mProject;
    MenuManager::Get( project ).UpdateMenus();

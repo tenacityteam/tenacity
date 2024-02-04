@@ -459,14 +459,14 @@ void ImageRollPanel::SetLogicalFunction(int /*wxRasterOperationMode*/ func)
    mLogicalFunction = func;
 }
 
-void ImageRollPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
+void ImageRollPanel::OnPaint(wxPaintEvent & /* event */)
 {
    wxPaintDC dc(this);
 
 //   mImageRoll.Draw(dc, GetClientRect(), mLogicalFunction);
 }
 
-void ImageRollPanel::OnSize(wxSizeEvent & WXUNUSED(event))
+void ImageRollPanel::OnSize(wxSizeEvent & /* event */)
 {
    Refresh(false);
 }

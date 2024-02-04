@@ -208,7 +208,7 @@ wxAccStatus TreeCtrlAx::GetChildCount(int* childCount)
    return wxACC_OK;
 }
 
-wxAccStatus TreeCtrlAx::GetDefaultAction(int WXUNUSED(childId), wxString* actionName)
+wxAccStatus TreeCtrlAx::GetDefaultAction(int /* childId */, wxString* actionName)
 {
    actionName->clear();
 
@@ -216,7 +216,7 @@ wxAccStatus TreeCtrlAx::GetDefaultAction(int WXUNUSED(childId), wxString* action
 }
 
 // Returns the description for this object or a child.
-wxAccStatus TreeCtrlAx::GetDescription( int WXUNUSED(childId), wxString *description )
+wxAccStatus TreeCtrlAx::GetDescription( int /* childId */, wxString *description )
 {
    description->clear();
 
@@ -240,7 +240,7 @@ wxAccStatus TreeCtrlAx::GetFocus( int *childId, wxAccessible **child )
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus TreeCtrlAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
+wxAccStatus TreeCtrlAx::GetHelpText( int /* childId */, wxString *helpText )
 {
    helpText->clear();
 
@@ -249,7 +249,7 @@ wxAccStatus TreeCtrlAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus TreeCtrlAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
+wxAccStatus TreeCtrlAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
 {
    shortcut->clear();
 
@@ -618,7 +618,7 @@ int PrefsDialog::ShowModal()
    return wxDialogWrapper::ShowModal();
 }
 
-void PrefsDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void PrefsDialog::OnCancel(wxCommandEvent & /* event */)
 {
    RecordExpansionState();
 
@@ -652,12 +652,12 @@ PrefsPanel * PrefsDialog::GetCurrentPanel()
    }
 }
 
-void PrefsDialog::OnPreview(wxCommandEvent & WXUNUSED(event))
+void PrefsDialog::OnPreview(wxCommandEvent & /* event */)
 {
    GetCurrentPanel()->Preview();
 }
 
-void PrefsDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void PrefsDialog::OnHelp(wxCommandEvent & /* event */)
 {
    const auto &page = GetCurrentPanel()->HelpPageName();
    HelpSystem::ShowHelp(this, page, true);
@@ -688,7 +688,7 @@ void PrefsDialog::OnTreeKeyDown(wxTreeEvent & event)
       event.Skip(); // Ensure standard behavior when enter is not pressed
 }
 
-void PrefsDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+void PrefsDialog::OnOK(wxCommandEvent & /* event */)
 {
    RecordExpansionState();
 

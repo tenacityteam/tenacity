@@ -181,7 +181,7 @@ void ToolFrame::OnToolBarUpdate( wxCommandEvent & event )
    event.Skip();
 }
 
-void ToolFrame::OnPaint( wxPaintEvent & WXUNUSED(event) )
+void ToolFrame::OnPaint( wxPaintEvent & /* event */ )
 {
    wxPaintDC dc( this );
    wxSize sz = GetSize();
@@ -282,7 +282,7 @@ void ToolFrame::OnMotion( wxMouseEvent & event )
    }
 }
 
-void ToolFrame::OnCaptureLost( wxMouseCaptureLostEvent & WXUNUSED(event) )
+void ToolFrame::OnCaptureLost( wxMouseCaptureLostEvent & /* event */ )
 {
    if( HasCapture() )
    {

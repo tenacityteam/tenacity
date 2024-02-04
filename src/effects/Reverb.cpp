@@ -177,7 +177,7 @@ unsigned EffectReverb::GetAudioOutCount()
 
 static size_t BLOCK = 16384;
 
-bool EffectReverb::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames chanMap)
+bool EffectReverb::ProcessInitialize(sampleCount /* totalLen */, ChannelNames chanMap)
 {
    bool isStereo = false;
    mNumChans = 1;

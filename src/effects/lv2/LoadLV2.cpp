@@ -232,12 +232,12 @@ const FileExtensions &LV2EffectsModule::GetFileExtensions()
    return empty;
 }
 
-bool LV2EffectsModule::AutoRegisterPlugins(PluginManagerInterface & WXUNUSED(pm))
+bool LV2EffectsModule::AutoRegisterPlugins(PluginManagerInterface & /* pm */)
 {
    return false;
 }
 
-PluginPaths LV2EffectsModule::FindPluginPaths(PluginManagerInterface & WXUNUSED(pm))
+PluginPaths LV2EffectsModule::FindPluginPaths(PluginManagerInterface & /* pm */)
 {
    // Retrieve data about all LV2 plugins
    const LilvPlugins *plugs = lilv_world_get_all_plugins(gWorld);

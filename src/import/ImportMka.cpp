@@ -149,7 +149,7 @@ public:
 
    const TranslatableStrings &GetStreamInfo() override;
 
-   void SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUSED(Use)) override;
+   void SetStreamUsage(wxInt32 /* StreamID */, bool /* Use */) override;
 
 private:
     std::unique_ptr<StdIOCallback> mkfile;

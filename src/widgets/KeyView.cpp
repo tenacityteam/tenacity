@@ -1316,7 +1316,7 @@ KeyView::OnDrawItem(wxDC & dc, const wxRect & rect, size_t line) const
 // This is called by the listbox when it needs to redraw the view.
 //
 wxCoord
-KeyView::OnMeasureItem(size_t WXUNUSED(line)) const
+KeyView::OnMeasureItem(size_t /* line */) const
 {
    // All lines are of equal height
    //
@@ -1382,7 +1382,7 @@ KeyView::OnKillFocus(wxFocusEvent & event)
 // Handle the wxEVT_SIZE event
 //
 void
-KeyView::OnSize(wxSizeEvent & WXUNUSED(event))
+KeyView::OnSize(wxSizeEvent & /* event */)
 {
    // Update horizontal scrollbar
    UpdateHScroll();
@@ -2059,7 +2059,7 @@ KeyViewAx::GetChildCount(int *childCount)
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
 wxAccStatus
-KeyViewAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName)
+KeyViewAx::GetDefaultAction(int /* childId */, wxString *actionName)
 {
    actionName->clear();
 
@@ -2068,7 +2068,7 @@ KeyViewAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName)
 
 // Returns the description for this object or a child.
 wxAccStatus
-KeyViewAx::GetDescription(int WXUNUSED(childId), wxString *description)
+KeyViewAx::GetDescription(int /* childId */, wxString *description)
 {
    description->clear();
 
@@ -2077,7 +2077,7 @@ KeyViewAx::GetDescription(int WXUNUSED(childId), wxString *description)
 
 // Returns help text for this object or a child, similar to tooltip text.
 wxAccStatus
-KeyViewAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
+KeyViewAx::GetHelpText(int /* childId */, wxString *helpText)
 {
    helpText->clear();
 
@@ -2087,7 +2087,7 @@ KeyViewAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
 wxAccStatus
-KeyViewAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
+KeyViewAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
 {
    shortcut->clear();
 
@@ -2137,10 +2137,10 @@ KeyViewAx::GetLocation(wxRect & rect, int elementId)
 }
 
 wxAccStatus
-KeyViewAx::Navigate(wxNavDir WXUNUSED(navDir),
-                    int WXUNUSED(fromId),
-                    int *WXUNUSED(toId),
-                    wxAccessible **WXUNUSED(toObject))
+KeyViewAx::Navigate(wxNavDir /* navDir */,
+                    int /* fromId */,
+                    int* /* toId */,
+                    wxAccessible** /* toObject */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -2167,7 +2167,7 @@ KeyViewAx::GetName(int childId, wxString *name)
 }
 
 wxAccStatus
-KeyViewAx::GetParent(wxAccessible ** WXUNUSED(parent))
+KeyViewAx::GetParent(wxAccessible ** /* parent */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -2332,7 +2332,7 @@ KeyViewAx::Select(int childId, wxAccSelectionFlags selectFlags)
 // this subhierarchy has the focus.
 // If this object has the focus, child should be 'this'.
 wxAccStatus
-KeyViewAx::GetFocus(int * WXUNUSED(childId), wxAccessible **child)
+KeyViewAx::GetFocus(int * /* childId */, wxAccessible **child)
 {
    *child = this;
 

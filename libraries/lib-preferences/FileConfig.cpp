@@ -140,7 +140,7 @@ bool FileConfig::HasEntry(const wxString& strName) const
    return mConfig->HasEntry(strName);
 }
 
-bool FileConfig::Flush(bool WXUNUSED(bCurrentOnly))
+bool FileConfig::Flush(bool /* bCurrentOnly */)
 {
    if (!mDirty)
    {

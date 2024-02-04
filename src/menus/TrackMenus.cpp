@@ -934,7 +934,7 @@ void OnAlignMoveSel(int index)
 }
 */
 
-void OnMoveSelectionWithTracks(const CommandContext &WXUNUSED(context) )
+void OnMoveSelectionWithTracks(const CommandContext &/* context */ )
 {
    bool bMoveWith;
    gPrefs->Read(wxT("/GUI/MoveSelectionWithTracks"), &bMoveWith, false);

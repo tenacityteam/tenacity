@@ -135,7 +135,7 @@ unsigned EffectWahwah::GetAudioOutCount()
    return 1;
 }
 
-bool EffectWahwah::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames chanMap)
+bool EffectWahwah::ProcessInitialize(sampleCount /* totalLen */, ChannelNames chanMap)
 {
    InstanceInit(mMaster, mSampleRate);
 
@@ -161,7 +161,7 @@ bool EffectWahwah::RealtimeInitialize()
    return true;
 }
 
-bool EffectWahwah::RealtimeAddProcessor(unsigned WXUNUSED(numChannels), float sampleRate)
+bool EffectWahwah::RealtimeAddProcessor(unsigned /* numChannels */, float sampleRate)
 {
    EffectWahwahState slave;
 
@@ -453,7 +453,7 @@ void EffectWahwah::OnGainSlider(wxCommandEvent & evt)
    EnableApply(mUIParent->Validate());
 }
 
-void EffectWahwah::OnFreqText(wxCommandEvent & WXUNUSED(evt))
+void EffectWahwah::OnFreqText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -463,7 +463,7 @@ void EffectWahwah::OnFreqText(wxCommandEvent & WXUNUSED(evt))
    mFreqS->SetValue((int) (mFreq * SCL_Freq));
 }
 
-void EffectWahwah::OnPhaseText(wxCommandEvent & WXUNUSED(evt))
+void EffectWahwah::OnPhaseText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -473,7 +473,7 @@ void EffectWahwah::OnPhaseText(wxCommandEvent & WXUNUSED(evt))
    mPhaseS->SetValue((int) (mPhase * SCL_Phase));
 }
 
-void EffectWahwah::OnDepthText(wxCommandEvent & WXUNUSED(evt))
+void EffectWahwah::OnDepthText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -483,7 +483,7 @@ void EffectWahwah::OnDepthText(wxCommandEvent & WXUNUSED(evt))
    mDepthS->SetValue((int) (mDepth * SCL_Depth));
 }
 
-void EffectWahwah::OnResonanceText(wxCommandEvent & WXUNUSED(evt))
+void EffectWahwah::OnResonanceText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -493,7 +493,7 @@ void EffectWahwah::OnResonanceText(wxCommandEvent & WXUNUSED(evt))
    mResS->SetValue((int) (mRes * SCL_Res));
 }
 
-void EffectWahwah::OnFreqOffText(wxCommandEvent & WXUNUSED(evt))
+void EffectWahwah::OnFreqOffText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -503,7 +503,7 @@ void EffectWahwah::OnFreqOffText(wxCommandEvent & WXUNUSED(evt))
    mFreqOfsS->SetValue((int) (mFreqOfs * SCL_FreqOfs));
 }
 
-void EffectWahwah::OnGainText(wxCommandEvent & WXUNUSED(evt))
+void EffectWahwah::OnGainText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {

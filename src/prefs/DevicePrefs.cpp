@@ -320,7 +320,7 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    OnDevice(e);
 }
 
-void DevicePrefs::OnDevice(wxCommandEvent & WXUNUSED(event))
+void DevicePrefs::OnDevice(wxCommandEvent & /* event */)
 {
    int ndx = mRecord->GetCurrentSelection();
    if (ndx == wxNOT_FOUND) {

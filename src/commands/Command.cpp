@@ -93,8 +93,8 @@ classes derived from it.
 
 
 
-bool OldStyleCommand::SetParameter(const wxString & WXUNUSED(paramName),
-                           const wxVariant & WXUNUSED(paramValue))
+bool OldStyleCommand::SetParameter(const wxString & /* paramName */,
+                           const wxVariant & /* paramValue */)
 {
    wxASSERT_MSG(false, wxT("Tried to set parameter for command which doesn't support parameters!"));
    return false;
@@ -128,7 +128,7 @@ ApplyAndSendResponse::ApplyAndSendResponse(
 }
 
 
-bool ApplyAndSendResponse::Apply(const CommandContext &WXUNUSED(context))
+bool ApplyAndSendResponse::Apply(const CommandContext &/* context */)
 {
    wxLogMessage( "Context was passed in, but was ignored.  ApplyAndSendResponse has its own one");
    return Apply();
@@ -291,7 +291,7 @@ bool CommandImplementation::SetParameter(const wxString &paramName, const wxVari
    return true;
 }
 
-bool CommandImplementation::Apply(const CommandContext & WXUNUSED(context))
+bool CommandImplementation::Apply(const CommandContext & /* context */)
 {
    return true;
 }

@@ -1697,7 +1697,7 @@ void NumericTextCtrl::Fit()
    SetInitialSize(sz);
 }
 
-void NumericTextCtrl::OnPaint(wxPaintEvent & WXUNUSED(event))
+void NumericTextCtrl::OnPaint(wxPaintEvent & /* event */)
 {
    wxBufferedPaintDC dc(this);
    bool focused = (FindFocus() == this);
@@ -2124,7 +2124,7 @@ NumericTextCtrlAx::~NumericTextCtrlAx()
 // or > 0 (the action for a child).
 // Return wxACC_NOT_SUPPORTED if there is no default action for this
 // window (e.g. an edit control).
-wxAccStatus NumericTextCtrlAx::DoDefaultAction(int WXUNUSED(childId))
+wxAccStatus NumericTextCtrlAx::DoDefaultAction(int /* childId */)
 {
    return wxACC_NOT_SUPPORTED;
 }
@@ -2158,7 +2158,7 @@ wxAccStatus NumericTextCtrlAx::GetChildCount(int *childCount)
 // object, not what the object does as a result. For example, a
 // toolbar button that prints a document has a default action of
 // "Press" rather than "Prints the current document."
-wxAccStatus NumericTextCtrlAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName)
+wxAccStatus NumericTextCtrlAx::GetDefaultAction(int /* childId */, wxString *actionName)
 {
    actionName->clear();
 
@@ -2166,7 +2166,7 @@ wxAccStatus NumericTextCtrlAx::GetDefaultAction(int WXUNUSED(childId), wxString 
 }
 
 // Returns the description for this object or a child.
-wxAccStatus NumericTextCtrlAx::GetDescription(int WXUNUSED(childId), wxString *description)
+wxAccStatus NumericTextCtrlAx::GetDescription(int /* childId */, wxString *description)
 {
    description->clear();
 
@@ -2186,7 +2186,7 @@ wxAccStatus NumericTextCtrlAx::GetFocus(int *childId, wxAccessible **child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus NumericTextCtrlAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
+wxAccStatus NumericTextCtrlAx::GetHelpText(int /* childId */, wxString *helpText)
 {
 // removed help text, as on balance it's more of an irritation than useful
 #if 0    // was #if wxUSE_TOOLTIPS
@@ -2205,7 +2205,7 @@ wxAccStatus NumericTextCtrlAx::GetHelpText(int WXUNUSED(childId), wxString *help
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus NumericTextCtrlAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
+wxAccStatus NumericTextCtrlAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
 {
    shortcut->clear();
 
@@ -2340,7 +2340,7 @@ wxAccStatus NumericTextCtrlAx::GetName(int childId, wxString *name)
 }
 
 // Returns a role constant.
-wxAccStatus NumericTextCtrlAx::GetRole(int WXUNUSED(childId), wxAccRole *role)
+wxAccStatus NumericTextCtrlAx::GetRole(int /* childId */, wxAccRole *role)
 {
    *role = wxROLE_SYSTEM_STATICTEXT;
    return wxACC_OK;
@@ -2354,13 +2354,13 @@ wxAccStatus NumericTextCtrlAx::GetRole(int WXUNUSED(childId), wxAccRole *role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus NumericTextCtrlAx::GetSelections(wxVariant * WXUNUSED(selections))
+wxAccStatus NumericTextCtrlAx::GetSelections(wxVariant * /* selections */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }
 
 // Returns a state constant.
-wxAccStatus NumericTextCtrlAx::GetState(int WXUNUSED(childId), long *state)
+wxAccStatus NumericTextCtrlAx::GetState(int /* childId */, long *state)
 {
    *state = wxACC_STATE_SYSTEM_FOCUSABLE;
    *state |= (mCtrl == wxWindow::FindFocus() ? wxACC_STATE_SYSTEM_FOCUSED : 0);
@@ -2370,7 +2370,7 @@ wxAccStatus NumericTextCtrlAx::GetState(int WXUNUSED(childId), long *state)
 
 // Returns a localized string representing the value for the object
 // or child.
-wxAccStatus NumericTextCtrlAx::GetValue(int WXUNUSED(childId), wxString * WXUNUSED(strValue))
+wxAccStatus NumericTextCtrlAx::GetValue(int /* childId */, wxString * /* strValue */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }

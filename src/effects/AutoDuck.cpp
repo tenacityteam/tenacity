@@ -597,7 +597,7 @@ bool EffectAutoDuck::ApplyDuckFade(int trackNum, WaveTrack* t,
    return cancel;
 }
 
-void EffectAutoDuck::OnValueChanged(wxCommandEvent & WXUNUSED(evt))
+void EffectAutoDuck::OnValueChanged(wxCommandEvent & /* evt */)
 {
    mPanel->Refresh(false);
 }
@@ -664,7 +664,7 @@ void EffectAutoDuckPanel::ResetControlPoints()
    mControlPoints[duckAmount] = wxPoint(-100,-100);
 }
 
-void EffectAutoDuckPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void EffectAutoDuckPanel::OnPaint(wxPaintEvent & /* evt */)
 {
    int clientWidth, clientHeight;
    GetSize(&clientWidth, &clientHeight);
@@ -828,14 +828,14 @@ void EffectAutoDuckPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
 }
 
 void EffectAutoDuckPanel::OnMouseCaptureChanged(
-   wxMouseCaptureChangedEvent & WXUNUSED(evt))
+   wxMouseCaptureChangedEvent & /* evt */)
 {
    SetCursor(wxNullCursor);
    mCurrentControlPoint = none;
 }
 
 void EffectAutoDuckPanel::OnMouseCaptureLost(
-   wxMouseCaptureLostEvent & WXUNUSED(evt))
+   wxMouseCaptureLostEvent & /* evt */)
 {
    mCurrentControlPoint = none;
 
@@ -885,7 +885,7 @@ void EffectAutoDuckPanel::OnLeftDown(wxMouseEvent & evt)
    }
 }
 
-void EffectAutoDuckPanel::OnLeftUp(wxMouseEvent & WXUNUSED(evt))
+void EffectAutoDuckPanel::OnLeftUp(wxMouseEvent & /* evt */)
 {
    if (mCurrentControlPoint != none)
    {

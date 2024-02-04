@@ -612,7 +612,7 @@ bool EffectChangeSpeed::ProcessOne(WaveTrack * track,
 
 // handler implementations for EffectChangeSpeed
 
-void EffectChangeSpeed::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeSpeed::OnText_PercentChange(wxCommandEvent & /* evt */)
 {
    if (mbLoopDetect)
       return;
@@ -628,7 +628,7 @@ void EffectChangeSpeed::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
    mbLoopDetect = false;
 }
 
-void EffectChangeSpeed::OnText_Multiplier(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeSpeed::OnText_Multiplier(wxCommandEvent & /* evt */)
 {
    if (mbLoopDetect)
       return;
@@ -645,7 +645,7 @@ void EffectChangeSpeed::OnText_Multiplier(wxCommandEvent & WXUNUSED(evt))
    mbLoopDetect = false;
 }
 
-void EffectChangeSpeed::OnSlider_PercentChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeSpeed::OnSlider_PercentChange(wxCommandEvent & /* evt */)
 {
    if (mbLoopDetect)
       return;
@@ -664,7 +664,7 @@ void EffectChangeSpeed::OnSlider_PercentChange(wxCommandEvent & WXUNUSED(evt))
    mbLoopDetect = false;
 }
 
-void EffectChangeSpeed::OnChoice_Vinyl(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeSpeed::OnChoice_Vinyl(wxCommandEvent & /* evt */)
 {
    // Treat mpChoice_FromVinyl and mpChoice_ToVinyl as one control since we need
    // both to calculate Percent Change.
@@ -705,7 +705,7 @@ void EffectChangeSpeed::OnChoice_Vinyl(wxCommandEvent & WXUNUSED(evt))
    mbLoopDetect = false;
 }
 
-void EffectChangeSpeed::OnTimeCtrl_ToLength(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeSpeed::OnTimeCtrl_ToLength(wxCommandEvent & /* evt */)
 {
    if (mbLoopDetect)
       return;

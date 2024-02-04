@@ -1021,7 +1021,7 @@ void EffectTruncSilence::UpdateUI()
    }
 }
 
-void EffectTruncSilence::OnControlChange(wxCommandEvent & WXUNUSED(evt))
+void EffectTruncSilence::OnControlChange(wxCommandEvent & /* evt */)
 {
    mActionChoice->GetValidator()->TransferFromWindow();
 

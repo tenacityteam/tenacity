@@ -96,7 +96,7 @@ UIHandle::Result ButtonHandle::Release
    return result;
 }
 
-UIHandle::Result ButtonHandle::Cancel(TenacityProject *WXUNUSED(pProject))
+UIHandle::Result ButtonHandle::Cancel(TenacityProject* /* pProject */)
 {
    using namespace RefreshCode;
    return RefreshCell; // perhaps unnecessarily if pointer is out of the box

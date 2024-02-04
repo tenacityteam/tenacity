@@ -391,25 +391,25 @@ bool EffectClickRemoval::TransferDataFromWindow()
    return true;
 }
 
-void EffectClickRemoval::OnWidthText(wxCommandEvent & WXUNUSED(evt))
+void EffectClickRemoval::OnWidthText(wxCommandEvent & /* evt */)
 {
    mWidthT->GetValidator()->TransferFromWindow();
    mWidthS->GetValidator()->TransferToWindow();
 }
 
-void EffectClickRemoval::OnThreshText(wxCommandEvent & WXUNUSED(evt))
+void EffectClickRemoval::OnThreshText(wxCommandEvent & /* evt */)
 {
    mThreshT->GetValidator()->TransferFromWindow();
    mThreshS->GetValidator()->TransferToWindow();
 }
 
-void EffectClickRemoval::OnWidthSlider(wxCommandEvent & WXUNUSED(evt))
+void EffectClickRemoval::OnWidthSlider(wxCommandEvent & /* evt */)
 {
    mWidthS->GetValidator()->TransferFromWindow();
    mWidthT->GetValidator()->TransferToWindow();
 }
 
-void EffectClickRemoval::OnThreshSlider(wxCommandEvent & WXUNUSED(evt))
+void EffectClickRemoval::OnThreshSlider(wxCommandEvent & /* evt */)
 {
    mThreshS->GetValidator()->TransferFromWindow();
    mThreshT->GetValidator()->TransferToWindow();

@@ -270,7 +270,7 @@ void ToolBarResizer::ResizeBar(const wxSize &size)
    mBar->GetParent()->Update();
 }
 
-void ToolBarResizer::OnCaptureLost( wxMouseCaptureLostEvent & WXUNUSED(event) )
+void ToolBarResizer::OnCaptureLost( wxMouseCaptureLostEvent & /* event */ )
 {
    if( HasCapture() )
    {
@@ -910,7 +910,7 @@ void ToolBar::SetButton( bool down, AButton * button )
 //
 // This draws the background of a toolbar
 //
-void ToolBar::OnPaint( wxPaintEvent & WXUNUSED(event) )
+void ToolBar::OnPaint( wxPaintEvent & /* event */ )
 {
    wxPaintDC dc( this );
 

@@ -1564,7 +1564,7 @@ bool ProgressDialog::SearchForWindow(const wxWindowList & list, const wxWindow *
    return false;
 }
 
-void ProgressDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void ProgressDialog::OnCancel(wxCommandEvent & /* event */)
 {
    if (!ConfirmAction(
          XO("Are you sure you wish to cancel?"),
@@ -1575,7 +1575,7 @@ void ProgressDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
    mCancel = true;
 }
 
-void ProgressDialog::OnStop(wxCommandEvent & WXUNUSED(event))
+void ProgressDialog::OnStop(wxCommandEvent & /* event */)
 {
    if (!ConfirmAction(
          XO("Are you sure you wish to stop?"),
@@ -1587,7 +1587,7 @@ void ProgressDialog::OnStop(wxCommandEvent & WXUNUSED(event))
    mStop = true;
 }
 
-void ProgressDialog::OnCloseWindow(wxCloseEvent & WXUNUSED(event))
+void ProgressDialog::OnCloseWindow(wxCloseEvent & /* event */)
 {
    if (!ConfirmAction(
          XO("Are you sure you wish to close?"), XO("Confirm Close"))) {

@@ -483,7 +483,7 @@ void LabelStruct::Export(wxTextFile &file) const
 }
 
 auto LabelStruct::RegionRelation(
-      double reg_t0, double reg_t1, const LabelTrack * WXUNUSED(parent)) const
+      double reg_t0, double reg_t1, const LabelTrack * /* parent */) const
 -> TimeRelations
 {
    bool retainLabels = false;

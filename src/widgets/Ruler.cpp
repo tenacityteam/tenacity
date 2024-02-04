@@ -1719,7 +1719,7 @@ RulerPanel::~RulerPanel()
 {
 }
 
-void RulerPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void RulerPanel::OnPaint(wxPaintEvent & /* evt */)
 {
    wxPaintDC dc(this);
 
@@ -1730,7 +1730,7 @@ void RulerPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
    ruler.Draw(dc);
 }
 
-void RulerPanel::OnSize(wxSizeEvent & WXUNUSED(evt))
+void RulerPanel::OnSize(wxSizeEvent & /* evt */)
 {
    Refresh();
 }

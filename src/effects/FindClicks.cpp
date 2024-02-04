@@ -235,25 +235,25 @@ bool EffectFindClick::TransferDataFromWindow()
     return mUIParent->TransferDataFromWindow();
 }
 
-void EffectFindClick::OnWidthText(wxCommandEvent & WXUNUSED(evt))
+void EffectFindClick::OnWidthText(wxCommandEvent & /* evt */)
 {
     mWidthT->GetValidator()->TransferFromWindow();
     mWidthS->GetValidator()->TransferToWindow();
 }
 
-void EffectFindClick::OnThreshText(wxCommandEvent & WXUNUSED(evt))
+void EffectFindClick::OnThreshText(wxCommandEvent & /* evt */)
 {
     mThreshT->GetValidator()->TransferFromWindow();
     mThreshS->GetValidator()->TransferToWindow();
 }
 
-void EffectFindClick::OnWidthSlider(wxCommandEvent & WXUNUSED(evt))
+void EffectFindClick::OnWidthSlider(wxCommandEvent & /* evt */)
 {
     mWidthS->GetValidator()->TransferFromWindow();
     mWidthT->GetValidator()->TransferToWindow();
 }
 
-void EffectFindClick::OnThreshSlider(wxCommandEvent & WXUNUSED(evt))
+void EffectFindClick::OnThreshSlider(wxCommandEvent & /* evt */)
 {
     mThreshS->GetValidator()->TransferFromWindow();
     mThreshT->GetValidator()->TransferToWindow();

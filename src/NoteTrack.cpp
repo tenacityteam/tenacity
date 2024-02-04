@@ -949,7 +949,7 @@ bool NoteTrack::HandleXMLTag(const std::string_view& tag, const AttributesList &
    return false;
 }
 
-XMLTagHandler *NoteTrack::HandleXMLChild(const std::string_view&  WXUNUSED(tag))
+XMLTagHandler *NoteTrack::HandleXMLChild(const std::string_view&  /* tag */)
 {
    return NULL;
 }

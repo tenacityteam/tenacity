@@ -686,7 +686,7 @@ void MixerTrackCluster::OnMouseEvent(wxMouseEvent& event)
       event.Skip();
 }
 
-void MixerTrackCluster::OnPaint(wxPaintEvent & WXUNUSED(event))
+void MixerTrackCluster::OnPaint(wxPaintEvent & /* event */)
 {
    UpdateForStateChange();
 
@@ -713,25 +713,25 @@ void MixerTrackCluster::OnPaint(wxPaintEvent & WXUNUSED(event))
 }
 
 
-void MixerTrackCluster::OnButton_MusicalInstrument(wxCommandEvent& WXUNUSED(event))
+void MixerTrackCluster::OnButton_MusicalInstrument(wxCommandEvent& /* event */)
 {
    const auto &state = ::wxGetMouseState();
    this->HandleSelect(state.ShiftDown(), state.ControlDown());
 }
 
-void MixerTrackCluster::OnSlider_Gain(wxCommandEvent& WXUNUSED(event))
+void MixerTrackCluster::OnSlider_Gain(wxCommandEvent& /* event */)
 {
    this->HandleSliderGain();
 }
 
 #ifdef EXPERIMENTAL_MIDI_OUT
-void MixerTrackCluster::OnSlider_Velocity(wxCommandEvent& WXUNUSED(event))
+void MixerTrackCluster::OnSlider_Velocity(wxCommandEvent& /* event */)
 {
    this->HandleSliderVelocity();
 }
 #endif
 
-//v void MixerTrackCluster::OnSliderScroll_Gain(wxScrollEvent& WXUNUSED(event))
+//v void MixerTrackCluster::OnSliderScroll_Gain(wxScrollEvent& /* event */)
 //{
    //int sliderValue = (int)(mSlider_Gain->Get()); //v mSlider_Gain->GetValue();
    //#ifdef __WXMSW__
@@ -746,12 +746,12 @@ void MixerTrackCluster::OnSlider_Velocity(wxCommandEvent& WXUNUSED(event))
    //mSlider_Gain->SetToolTip(str);
 //}
 
-void MixerTrackCluster::OnSlider_Pan(wxCommandEvent& WXUNUSED(event))
+void MixerTrackCluster::OnSlider_Pan(wxCommandEvent& /* event */)
 {
    this->HandleSliderPan();
 }
 
-void MixerTrackCluster::OnButton_Mute(wxCommandEvent& WXUNUSED(event))
+void MixerTrackCluster::OnButton_Mute(wxCommandEvent& /* event */)
 {
    TrackUtilities::DoTrackMute(
       *mProject, mTrack.get(), mToggleButton_Mute->WasShiftDown());
@@ -765,7 +765,7 @@ void MixerTrackCluster::OnButton_Mute(wxCommandEvent& WXUNUSED(event))
       TrackPanel::Get( *mProject ).RefreshTrack(mTrack.get());
 }
 
-void MixerTrackCluster::OnButton_Solo(wxCommandEvent& WXUNUSED(event))
+void MixerTrackCluster::OnButton_Solo(wxCommandEvent& /* event */)
 {
    TrackUtilities::DoTrackSolo(
       *mProject, mTrack.get(), mToggleButton_Solo->WasShiftDown());
@@ -1186,7 +1186,7 @@ void MixerBoard::UpdateWidth()
 //
 
 
-void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & WXUNUSED(bitmap), wxRect & bev, const TranslatableString & str, bool up )
+void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & /* bitmap */, wxRect & bev, const TranslatableString & str, bool up )
 {
 
    const auto translation = str.Translation();
@@ -1441,7 +1441,7 @@ MixerBoardFrame::~MixerBoardFrame()
 
 
 // event handlers
-void MixerBoardFrame::OnCloseWindow(wxCloseEvent &WXUNUSED(event))
+void MixerBoardFrame::OnCloseWindow(wxCloseEvent &/* event */)
 {
    // Fix for bug #2175.
    //
@@ -1461,7 +1461,7 @@ void MixerBoardFrame::OnMaximize(wxMaximizeEvent &event)
    event.Skip();
 }
 
-void MixerBoardFrame::OnSize(wxSizeEvent & WXUNUSED(event))
+void MixerBoardFrame::OnSize(wxSizeEvent & /* event */)
 {
    mMixerBoard->SetSize(this->GetClientSize());
 }

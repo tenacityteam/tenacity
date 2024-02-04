@@ -224,23 +224,23 @@ void BriefCommandMessageTarget::EndStruct(){
    if( mCounts.size() <= 3 )
       Update( " " );
 }
-void BriefCommandMessageTarget::AddItem(const wxString &value, const wxString &WXUNUSED(name)){
+void BriefCommandMessageTarget::AddItem(const wxString &value, const wxString &/* name */){
    if( mCounts.size() <= 3 )
       Update( wxString::Format( "%s\"%s\"", (mCounts.back()>0)?" ":"",Escaped(value)));
    mCounts.back() += 1;
 }
-void BriefCommandMessageTarget::AddBool(const bool value,      const wxString &WXUNUSED(name)){
+void BriefCommandMessageTarget::AddBool(const bool value,      const wxString &/* name */){
    if( mCounts.size() <= 3 )
       Update( wxString::Format( "%s%s", (mCounts.back()>0)?" ":"",value?"True":"False"));
    mCounts.back() += 1;
 }
-void BriefCommandMessageTarget::AddItem(const double value,    const wxString &WXUNUSED(name)){
+void BriefCommandMessageTarget::AddItem(const double value,    const wxString &/* name */){
    if( mCounts.size() <= 3 )
       Update( wxString::Format( "%s%g", (mCounts.back()>0)?" ":"", value));
    mCounts.back() += 1;
 }
 
-void BriefCommandMessageTarget::StartField(const wxString &WXUNUSED(name)){
+void BriefCommandMessageTarget::StartField(const wxString &/* name */){
    mCounts.back() += 1;
    mCounts.push_back( 0 );
 }
@@ -377,12 +377,12 @@ bool LongMessageDialog::Init()
    return true;
 }
 
-void LongMessageDialog::OnOk(wxCommandEvent & WXUNUSED(evt)){
+void LongMessageDialog::OnOk(wxCommandEvent & /* evt */){
    //Close(true);
    Destroy();
 }
 
-void LongMessageDialog::OnCancel(wxCommandEvent & WXUNUSED(evt)){
+void LongMessageDialog::OnCancel(wxCommandEvent & /* evt */){
    //Close(true);
    Destroy();
 }

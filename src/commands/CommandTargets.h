@@ -151,7 +151,7 @@ class NullProgressTarget final : public CommandProgressTarget
 {
 public:
    virtual ~NullProgressTarget() {}
-   void Update(double WXUNUSED(completed)) override {}
+   void Update(double /* completed */) override {}
 };
 
 #if 0

@@ -80,14 +80,14 @@ UIHandle::Result LabelDefaultClickHandle::Click
 }
 
 UIHandle::Result LabelDefaultClickHandle::Drag
-(const TrackPanelMouseEvent &WXUNUSED(evt), TenacityProject *WXUNUSED(pProject))
+(const TrackPanelMouseEvent &/* evt */, TenacityProject* /* pProject */)
 {
    return RefreshCode::RefreshNone;
 }
 
 UIHandle::Result LabelDefaultClickHandle::Release
-(const TrackPanelMouseEvent &WXUNUSED(evt), TenacityProject *WXUNUSED(pProject),
- wxWindow *WXUNUSED(pParent))
+(const TrackPanelMouseEvent &/* evt */, TenacityProject* /* pProject */,
+ wxWindow* /* pParent */)
 {
    mLabelState.reset();
    return RefreshCode::RefreshNone;

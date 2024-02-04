@@ -186,11 +186,11 @@ public:
    //
    // Handle frame paint events
    //
-   void OnPaint( wxPaintEvent & WXUNUSED(event) );
+   void OnPaint( wxPaintEvent & /* event */ );
 
    void OnMotion( wxMouseEvent & event );
 
-   void OnCaptureLost( wxMouseCaptureLostEvent & WXUNUSED(event) );
+   void OnCaptureLost( wxMouseCaptureLostEvent & /* event */ );
 
    //
    // Do not allow the window to close through keyboard accelerators

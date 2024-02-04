@@ -877,7 +877,7 @@ ImportStreamDialog::~ImportStreamDialog()
 
 }
 
-void ImportStreamDialog::OnOk(wxCommandEvent & WXUNUSED(event))
+void ImportStreamDialog::OnOk(wxCommandEvent & /* event */)
 {
    wxArrayInt selitems;
    int sels = StreamList->GetSelections(selitems);
@@ -886,7 +886,7 @@ void ImportStreamDialog::OnOk(wxCommandEvent & WXUNUSED(event))
    EndModal( wxID_OK );
 }
 
-void ImportStreamDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void ImportStreamDialog::OnCancel(wxCommandEvent & /* event */)
 {
    EndModal( wxID_CANCEL );
 }

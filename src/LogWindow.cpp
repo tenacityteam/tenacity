@@ -180,7 +180,7 @@ void LogWindow::Destroy()
 }
 
 namespace {
-void OnCloseWindow(wxCloseEvent & WXUNUSED(e))
+void OnCloseWindow(wxCloseEvent & /* e */)
 {
 #if defined(__WXMAC__)
    // On the Mac, destroy the window rather than hiding it since the
@@ -192,20 +192,20 @@ void OnCloseWindow(wxCloseEvent & WXUNUSED(e))
 #endif
 }
 
-void OnClose(wxCommandEvent & WXUNUSED(e))
+void OnClose(wxCommandEvent & /* e */)
 {
    wxCloseEvent dummy;
    OnCloseWindow(dummy);
 }
 
-void OnClear(wxCommandEvent & WXUNUSED(e))
+void OnClear(wxCommandEvent & /* e */)
 {
    auto pLogger = TenacityLogger::Get();
    if (pLogger)
       pLogger->ClearLog();
 }
 
-void OnSave(wxCommandEvent & WXUNUSED(e))
+void OnSave(wxCommandEvent & /* e */)
 {
    wxString fName = _("log.txt");
 

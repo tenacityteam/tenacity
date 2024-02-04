@@ -671,7 +671,7 @@ void GetInfoCommand::ExploreMenu( const CommandContext &context, wxMenu * pMenu,
 }
 
 void GetInfoCommand::ExploreAdornments( const CommandContext &context,
-   wxPoint WXUNUSED(P), wxWindow * pWin, int WXUNUSED(Id), int depth )
+   wxPoint /* P */, wxWindow * pWin, int /* Id */, int depth )
 {
    // Dang! wxMenuBar returns bogus screen rect.
    // We're going to have to fake it instead.

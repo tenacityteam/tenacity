@@ -610,7 +610,7 @@ void AudioUnitEffectOptionsDialog::PopulateOrExchange(ShuttleGui & S)
    Center();
 }
 
-void AudioUnitEffectOptionsDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
+void AudioUnitEffectOptionsDialog::OnOk(wxCommandEvent & /* evt */)
 {
    if (!Validate())
    {
@@ -1238,7 +1238,7 @@ size_t AudioUnitEffect::GetTailSize()
    return tailTime * mSampleRate;
 }
 
-bool AudioUnitEffect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool AudioUnitEffect::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    OSStatus result;
 

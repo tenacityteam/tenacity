@@ -1377,17 +1377,17 @@ public:
       Center();
    }
 
-   void OnYes(wxCommandEvent &WXUNUSED(evt))
+   void OnYes(wxCommandEvent &/* evt */)
    {
       EndModal(wxYES);
    }
 
-   void OnNo(wxCommandEvent &WXUNUSED(evt))
+   void OnNo(wxCommandEvent &/* evt */)
    {
       EndModal(wxNO);
    }
 
-   void OnGetURL(wxCommandEvent &WXUNUSED(evt))
+   void OnGetURL(wxCommandEvent &/* evt */)
    {
       HelpSystem::ShowHelp(this, L"File_Menu:_Compact_Project", true);
    }

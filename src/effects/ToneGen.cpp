@@ -162,7 +162,7 @@ unsigned EffectToneGen::GetAudioOutCount()
    return 1;
 }
 
-bool EffectToneGen::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool EffectToneGen::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    mPositionInCycles = 0.0;
    mSample = 0;
@@ -170,7 +170,7 @@ bool EffectToneGen::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNam
    return true;
 }
 
-size_t EffectToneGen::ProcessBlock(float **WXUNUSED(inBlock), float **outBlock, size_t blockLen)
+size_t EffectToneGen::ProcessBlock(float** /* inBlock */, float **outBlock, size_t blockLen)
 {
    float *buffer = outBlock[0];
    double throwaway = 0;        //passed to modf but never used
@@ -504,7 +504,7 @@ bool EffectToneGen::TransferDataFromWindow()
 
 // EffectToneGen implementation
 
-void EffectToneGen::OnControlUpdate(wxCommandEvent & WXUNUSED(evt))
+void EffectToneGen::OnControlUpdate(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {

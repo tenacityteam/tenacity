@@ -813,7 +813,7 @@ ArrayOf<char> ExportPCM::AdjustString(const wxString & wxStr, int sf_format)
    return pDest;
 }
 
-bool ExportPCM::AddStrings(TenacityProject * WXUNUSED(project), SNDFILE *sf, const Tags *tags, int sf_format)
+bool ExportPCM::AddStrings(TenacityProject * /* project */, SNDFILE *sf, const Tags *tags, int sf_format)
 {
    if (tags->HasTag(TAG_TITLE)) {
       auto ascii7Str = AdjustString(tags->GetTag(TAG_TITLE), sf_format);

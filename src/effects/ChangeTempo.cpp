@@ -369,7 +369,7 @@ bool EffectChangeTempo::TransferDataFromWindow()
 
 // handler implementations for EffectChangeTempo
 
-void EffectChangeTempo::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeTempo::OnText_PercentChange(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -383,7 +383,7 @@ void EffectChangeTempo::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangeTempo::OnSlider_PercentChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeTempo::OnSlider_PercentChange(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -400,7 +400,7 @@ void EffectChangeTempo::OnSlider_PercentChange(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangeTempo::OnText_FromBPM(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeTempo::OnText_FromBPM(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -414,7 +414,7 @@ void EffectChangeTempo::OnText_FromBPM(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangeTempo::OnText_ToBPM(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeTempo::OnText_ToBPM(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -437,7 +437,7 @@ void EffectChangeTempo::OnText_ToBPM(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangeTempo::OnText_ToLength(wxCommandEvent & WXUNUSED(evt))
+void EffectChangeTempo::OnText_ToLength(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;

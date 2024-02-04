@@ -56,7 +56,7 @@ public:
          return false;
    }
 
-   XMLTagHandler *HandleXMLChild(const std::string_view&  WXUNUSED(tag)) override
+   XMLTagHandler *HandleXMLChild(const std::string_view&  /* tag */) override
    {
       return NULL;
    }

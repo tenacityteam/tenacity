@@ -180,7 +180,7 @@ void NumericEditor::BeginEdit(int row, int col, wxGrid *grid)
 }
 
 
-bool NumericEditor::EndEdit(int WXUNUSED(row), int WXUNUSED(col), const wxGrid *WXUNUSED(grid), const wxString &WXUNUSED(oldval), wxString *newval)
+bool NumericEditor::EndEdit(int /* row */, int /* col */, const wxGrid* /* grid */, const wxString& /* oldval */, wxString *newval)
 {
    double newtime = GetNumericTextControl()->GetValue();
    bool changed = newtime != mOld;
@@ -312,8 +312,8 @@ void NumericRenderer::Draw(wxGrid &grid,
 }
 
 wxSize NumericRenderer::GetBestSize(wxGrid &grid,
-                                 wxGridCellAttr & WXUNUSED(attr),
-                                 wxDC & WXUNUSED(dc),
+                                 wxGridCellAttr & /* attr */,
+                                 wxDC & /* dc */,
                                  int row,
                                  int col)
 {
@@ -419,9 +419,9 @@ bool ChoiceEditor::EndEdit(int row, int col, wxGrid *grid)
     return changed;
 }
 
-bool ChoiceEditor::EndEdit(int WXUNUSED(row), int WXUNUSED(col),
-                           const wxGrid* WXUNUSED(grid),
-                           const wxString &WXUNUSED(oldval), wxString *newval)
+bool ChoiceEditor::EndEdit(int /* row */, int /* col */,
+                           const wxGrid* /* grid */,
+                           const wxString& /* oldval */, wxString *newval)
 {
    int sel = Choice()->GetSelection();
 
@@ -894,7 +894,7 @@ wxAccStatus GridAx::GetChildCount(int *childCount)
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus GridAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName)
+wxAccStatus GridAx::GetDefaultAction(int /* childId */, wxString *actionName)
 {
    actionName->clear();
 
@@ -902,7 +902,7 @@ wxAccStatus GridAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName
 }
 
 // Returns the description for this object or a child.
-wxAccStatus GridAx::GetDescription(int WXUNUSED(childId), wxString *description)
+wxAccStatus GridAx::GetDescription(int /* childId */, wxString *description)
 {
    description->clear();
 
@@ -910,7 +910,7 @@ wxAccStatus GridAx::GetDescription(int WXUNUSED(childId), wxString *description)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus GridAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
+wxAccStatus GridAx::GetHelpText(int /* childId */, wxString *helpText)
 {
    helpText->clear();
 
@@ -919,7 +919,7 @@ wxAccStatus GridAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus GridAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
+wxAccStatus GridAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
 {
    shortcut->clear();
 
@@ -992,7 +992,7 @@ wxAccStatus GridAx::GetName(int childId, wxString *name)
    return wxACC_OK;
 }
 
-wxAccStatus GridAx::GetParent(wxAccessible ** WXUNUSED(parent))
+wxAccStatus GridAx::GetParent(wxAccessible ** /* parent */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -1024,7 +1024,7 @@ wxAccStatus GridAx::GetRole(int childId, wxAccRole *role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus GridAx::GetSelections(wxVariant * WXUNUSED(selections))
+wxAccStatus GridAx::GetSelections(wxVariant * /* selections */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -1078,7 +1078,7 @@ wxAccStatus GridAx::GetState(int childId, long *state)
 #if defined(__WXMAC__)
 wxAccStatus GridAx::GetValue(int childId, wxString *strValue)
 #else
-wxAccStatus GridAx::GetValue(int WXUNUSED(childId), wxString *strValue)
+wxAccStatus GridAx::GetValue(int /* childId */, wxString *strValue)
 #endif
 {
    strValue->clear();

@@ -107,7 +107,7 @@ public:
 
    const TranslatableStrings &GetStreamInfo() override;
 
-   void SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUSED(Use)) override;
+   void SetStreamUsage(wxInt32 /* StreamID */, bool /* Use */) override;
 
    bool Open();
 
@@ -305,8 +305,8 @@ auto AUPImportFileHandle::GetFileUncompressedBytes() -> ByteCount
    return 0;
 }
 
-ProgressResult AUPImportFileHandle::Import(WaveTrackFactory *WXUNUSED(trackFactory),
-                                           TrackHolders &WXUNUSED(outTracks),
+ProgressResult AUPImportFileHandle::Import(WaveTrackFactory* /* trackFactory */,
+                                           TrackHolders& /* outTracks */,
                                            Tags *tags,
                                            LabelHolders &)
 {
@@ -490,7 +490,7 @@ const TranslatableStrings &AUPImportFileHandle::GetStreamInfo()
    return empty;
 }
 
-void AUPImportFileHandle::SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUSED(Use))
+void AUPImportFileHandle::SetStreamUsage(wxInt32 /* StreamID */, bool /* Use */)
 {
 }
 

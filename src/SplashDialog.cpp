@@ -168,7 +168,7 @@ void SplashDialog::OnDontShow( wxCommandEvent & Evt )
    gPrefs->Flush();
 }
 
-void SplashDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+void SplashDialog::OnOK(wxCommandEvent & /* event */)
 {
    Show( false );
 }

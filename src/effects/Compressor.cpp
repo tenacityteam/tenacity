@@ -660,7 +660,7 @@ float EffectCompressor::DoCompression(float value, double env)
    return out;
 }
 
-void EffectCompressor::OnSlider(wxCommandEvent & WXUNUSED(evt))
+void EffectCompressor::OnSlider(wxCommandEvent & /* evt */)
 {
    TransferDataFromWindow();
    UpdateUI();
@@ -712,7 +712,7 @@ EffectCompressorPanel::EffectCompressorPanel(wxWindow *parent, wxWindowID winid,
    Bind(wxEVT_SIZE, &EffectCompressorPanel::OnSize, this);
 }
 
-void EffectCompressorPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void EffectCompressorPanel::OnPaint(wxPaintEvent & /* evt */)
 {
    wxPaintDC dc(this);
 
@@ -806,7 +806,7 @@ void EffectCompressorPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
    hRuler.Draw(dc);
 }
 
-void EffectCompressorPanel::OnSize(wxSizeEvent & WXUNUSED(evt))
+void EffectCompressorPanel::OnSize(wxSizeEvent & /* evt */)
 {
    Refresh(false);
 }

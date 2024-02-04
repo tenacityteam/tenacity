@@ -56,12 +56,12 @@ class XML_API XMLTagHandler /* not final */ {
 
    // This method will be called when a closing tag is encountered.
    // It is optional to override this method.
-   virtual void HandleXMLEndTag(const std::string_view& WXUNUSED(tag)) {}
+   virtual void HandleXMLEndTag(const std::string_view& /* tag */) {}
 
    // This method will be called when element content has been
    // encountered.
    // It is optional to override this method.
-   virtual void HandleXMLContent(const std::string_view& WXUNUSED(content)) {}
+   virtual void HandleXMLContent(const std::string_view& /* content */) {}
 
    // If the XML document has children of your tag, this method
    // should be called.  Typically you should construct a NEW

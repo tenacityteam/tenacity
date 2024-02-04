@@ -165,7 +165,7 @@ public:
       {
          w->GetEventHandler()->Unbind(wxEVT_KILL_FOCUS, OnKillFocus);
       };
-      static void OnKillFocus(wxFocusEvent & WXUNUSED(event))
+      static void OnKillFocus(wxFocusEvent & /* event */)
       {
          return;
       };

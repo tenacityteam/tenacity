@@ -58,7 +58,7 @@ void TimeShiftHandle::Enter(bool, TenacityProject *)
 }
 
 HitTestPreview TimeShiftHandle::HitPreview
-(const TenacityProject *WXUNUSED(pProject), bool unsafe)
+(const TenacityProject* /* pProject */, bool unsafe)
 {
    static auto disabledCursor =
       ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);

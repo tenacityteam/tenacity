@@ -799,8 +799,8 @@ void ProjectAudioManager::OnPause()
 }
 
 /*! @excsafety{Strong} -- For state of mCutPreviewTracks*/
-void ProjectAudioManager::SetupCutPreviewTracks(double WXUNUSED(playStart), double cutStart,
-                                           double cutEnd, double  WXUNUSED(playEnd))
+void ProjectAudioManager::SetupCutPreviewTracks(double /* playStart */, double cutStart,
+                                           double cutEnd, double  /* playEnd */)
 
 {
    ClearCutPreviewTracks();
@@ -1039,8 +1039,6 @@ TransportTracks ProjectAudioManager::GetAllPlaybackTracks(
             result.otherPlayableTracks.push_back(
                pTrack->SharedPointer< const PlayableTrack >() );
    }
-#else
-   WXUNUSED(useMidi);
 #endif
    return result;
 }

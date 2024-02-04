@@ -569,7 +569,7 @@ void SelectionBar::SetDrivers( int driver1, int driver2 )
    }
 }
 
-void SelectionBar::OnChoice(wxCommandEvent & WXUNUSED(event))
+void SelectionBar::OnChoice(wxCommandEvent & /* event */)
 {
    int mode = mChoice->GetSelection();
    SetSelectionMode( mode );
@@ -720,7 +720,7 @@ void SelectionBar::SetRate(double rate)
    }
 }
 
-void SelectionBar::OnRate(wxCommandEvent & WXUNUSED(event))
+void SelectionBar::OnRate(wxCommandEvent & /* event */)
 {
    auto value = mRateBox->GetValue();
 
@@ -791,7 +791,7 @@ void SelectionBar::OnCaptureKey(wxCommandEvent &event)
    event.Skip();
 }
 
-void SelectionBar::OnSnapTo(wxCommandEvent & WXUNUSED(event))
+void SelectionBar::OnSnapTo(wxCommandEvent & /* event */)
 {
    mListener->AS_SetSnapTo(mSnapTo->GetSelection());
 }

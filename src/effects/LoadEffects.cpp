@@ -160,7 +160,7 @@ bool BuiltinEffectsModule::AutoRegisterPlugins(PluginManagerInterface & pm)
    return false;
 }
 
-PluginPaths BuiltinEffectsModule::FindPluginPaths(PluginManagerInterface & WXUNUSED(pm))
+PluginPaths BuiltinEffectsModule::FindPluginPaths(PluginManagerInterface & /* pm */)
 {
    PluginPaths names;
    for ( const auto &pair : mEffects )

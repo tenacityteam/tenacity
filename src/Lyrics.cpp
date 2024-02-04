@@ -527,7 +527,7 @@ void LyricsPanel::OnKeyEvent(wxKeyEvent & event)
    event.Skip();
 }
 
-void LyricsPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
+void LyricsPanel::OnPaint(wxPaintEvent & /* event */)
 {
    wxPaintDC dc(this);
    DoPaint(dc);
@@ -562,7 +562,7 @@ void LyricsPanel::DoPaint(wxDC &dc)
    }
 }
 
-void LyricsPanel::OnSize(wxSizeEvent & WXUNUSED(event))
+void LyricsPanel::OnSize(wxSizeEvent & /* event */)
 {
    GetClientSize(&mWidth, &mHeight);
 

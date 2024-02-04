@@ -215,12 +215,12 @@ bool AutoRecoveryDialog::HaveChecked()
    return false;
 }
 
-void AutoRecoveryDialog::OnQuitAudacity(wxCommandEvent &WXUNUSED(evt))
+void AutoRecoveryDialog::OnQuitAudacity(wxCommandEvent &/* evt */)
 {
    EndModal(ID_QUIT_AUDACITY);
 }
 
-void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &WXUNUSED(evt))
+void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &/* evt */)
 {
    if (!HaveChecked())
    {
@@ -299,7 +299,7 @@ void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &WXUNUSED(evt))
    }
 }
 
-void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &WXUNUSED(evt))
+void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &/* evt */)
 {
    if (!HaveChecked())
    {
@@ -328,7 +328,7 @@ void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &WXUNUSED(evt))
    EndModal(ID_RECOVER_SELECTED);
 }
 
-void AutoRecoveryDialog::OnSkip(wxCommandEvent &WXUNUSED(evt))
+void AutoRecoveryDialog::OnSkip(wxCommandEvent &/* evt */)
 {
    EndModal(ID_SKIP);
 }

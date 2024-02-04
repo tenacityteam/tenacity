@@ -387,7 +387,7 @@ void EffectTimeScale::Update_Text_PitchPercentChangeEnd()
    m_pTextCtrl_PitchPercentChangeEnd->GetValidator()->TransferToWindow();
 }
 
-void EffectTimeScale::OnText_RatePercentChangeStart(wxCommandEvent & WXUNUSED(evt))
+void EffectTimeScale::OnText_RatePercentChangeStart(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -397,7 +397,7 @@ void EffectTimeScale::OnText_RatePercentChangeStart(wxCommandEvent & WXUNUSED(ev
    Update_Slider_RatePercentChangeStart();
 }
 
-void EffectTimeScale::OnText_RatePercentChangeEnd(wxCommandEvent & WXUNUSED(evt))
+void EffectTimeScale::OnText_RatePercentChangeEnd(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -421,7 +421,7 @@ void EffectTimeScale::OnSlider_RatePercentChangeEnd(wxCommandEvent & evt)
    Update_Text_RatePercentChangeEnd();
 }
 
-void EffectTimeScale::OnText_PitchHalfStepsStart(wxCommandEvent & WXUNUSED(evt))
+void EffectTimeScale::OnText_PitchHalfStepsStart(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -432,7 +432,7 @@ void EffectTimeScale::OnText_PitchHalfStepsStart(wxCommandEvent & WXUNUSED(evt))
    Update_Text_PitchPercentChangeStart();
 }
 
-void EffectTimeScale::OnText_PitchHalfStepsEnd(wxCommandEvent & WXUNUSED(evt))
+void EffectTimeScale::OnText_PitchHalfStepsEnd(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -443,7 +443,7 @@ void EffectTimeScale::OnText_PitchHalfStepsEnd(wxCommandEvent & WXUNUSED(evt))
    Update_Text_PitchPercentChangeEnd();
 }
 
-void EffectTimeScale::OnText_PitchPercentChangeStart(wxCommandEvent & WXUNUSED(evt))
+void EffectTimeScale::OnText_PitchPercentChangeStart(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -454,7 +454,7 @@ void EffectTimeScale::OnText_PitchPercentChangeStart(wxCommandEvent & WXUNUSED(e
    Update_Text_PitchHalfStepsStart();
 }
 
-void EffectTimeScale::OnText_PitchPercentChangeEnd(wxCommandEvent & WXUNUSED(evt))
+void EffectTimeScale::OnText_PitchPercentChangeEnd(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {

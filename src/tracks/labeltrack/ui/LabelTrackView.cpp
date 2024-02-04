@@ -181,7 +181,7 @@ std::shared_ptr<const LabelTrack> LabelTrackView::FindLabelTrack() const
 
 std::vector<UIHandlePtr> LabelTrackView::DetailedHitTest
 (const TrackPanelMouseState &st,
- const TenacityProject *WXUNUSED(pProject), int, bool)
+ const TenacityProject* /* pProject */, int, bool)
 {
    UIHandlePtr result;
    std::vector<UIHandlePtr> results;
@@ -1429,7 +1429,7 @@ unsigned LabelTrackView::CaptureKey(
 }
 
 unsigned LabelTrackView::KeyDown(
-   wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *WXUNUSED(pParent),
+   wxKeyEvent & event, ViewInfo &viewInfo, wxWindow* /* pParent */,
    TenacityProject *project)
 {
    double bkpSel0 = viewInfo.selectedRegion.t0(),
@@ -1796,7 +1796,7 @@ bool LabelTrackView::DoKeyDown(
 /// OnChar is called for incoming characters -- that's any keypress not handled
 /// by OnKeyDown.
 bool LabelTrackView::DoChar(
-   TenacityProject &project, NotifyingSelectedRegion &WXUNUSED(newSel),
+   TenacityProject &project, NotifyingSelectedRegion& /* newSel */,
    wxKeyEvent & event)
 {
    // Check for modifiers and only allow shift.

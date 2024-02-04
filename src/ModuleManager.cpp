@@ -522,7 +522,7 @@ std::unique_ptr<ComponentInterface> ModuleManager::CreateInstance(
       return iter->second->CreateInstance(path);
 }
 
-bool ModuleManager::IsProviderValid(const PluginID & WXUNUSED(providerID),
+bool ModuleManager::IsProviderValid(const PluginID & /* providerID */,
                                     const PluginPath & path)
 {
    // Builtin modules do not have a path

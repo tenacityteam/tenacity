@@ -137,7 +137,7 @@ public:
 
 ///
 ///
-ExportMP2Options::ExportMP2Options(wxWindow *parent, int WXUNUSED(format))
+ExportMP2Options::ExportMP2Options(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -245,7 +245,7 @@ ProgressResult ExportMP2::Export(TenacityProject *project,
    std::unique_ptr<ProgressDialog> &pDialog,
    unsigned channels, const wxFileNameWrapper &fName,
    bool selectionOnly, double t0, double t1, MixerSpec *mixerSpec, const Tags *metadata,
-   int WXUNUSED(subformat))
+   int /* subformat */)
 {
    bool stereo = (channels == 2);
    long bitrate = gPrefs->Read(wxT("/FileFormats/MP2Bitrate"), 160);
@@ -395,7 +395,7 @@ using id3_tag_holder = std::unique_ptr<id3_tag, id3_tag_deleter>;
 
 // returns buffer len; caller frees
 int ExportMP2::AddTags(
-   TenacityProject * WXUNUSED(project), ArrayOf< char > &buffer,
+   TenacityProject * /* project */, ArrayOf< char > &buffer,
    bool *endOfFile, const Tags *tags)
 {
 #ifdef USE_LIBID3TAG

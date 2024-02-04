@@ -192,7 +192,7 @@ public:
    {
    }
 
-   bool IsSupportedFormat(const wxDataFormat & format, Direction WXUNUSED(dir = Get)) const
+   bool IsSupportedFormat(const wxDataFormat & format, Direction /* dir = Get */) const
       // PRL:  This function does NOT override any inherited virtual!  What does it do?
    {
       if (format.GetType() == wxDF_FILENAME) {
@@ -228,7 +228,7 @@ public:
 
 #endif
 
-   bool OnDropFiles(wxCoord WXUNUSED(x), wxCoord WXUNUSED(y), const wxArrayString& filenames) override
+   bool OnDropFiles(wxCoord /* x */, wxCoord /* y */, const wxArrayString& filenames) override
    {
       // Experiment shows that this function can be reached while there is no
       // catch block above in wxWidgets.  So stop all exceptions here.
@@ -894,7 +894,7 @@ void ProjectManager::RestartTimer()
    }
 }
 
-void ProjectManager::OnTimer(wxTimerEvent& WXUNUSED(event))
+void ProjectManager::OnTimer(wxTimerEvent& /* event */)
 {
    auto &project = mProject;
    auto &projectAudioIO = ProjectAudioIO::Get( project );

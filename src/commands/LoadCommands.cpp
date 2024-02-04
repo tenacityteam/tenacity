@@ -163,7 +163,7 @@ bool BuiltinCommandsModule::AutoRegisterPlugins(PluginManagerInterface & pm)
    return false;
 }
 
-PluginPaths BuiltinCommandsModule::FindPluginPaths(PluginManagerInterface & WXUNUSED(pm))
+PluginPaths BuiltinCommandsModule::FindPluginPaths(PluginManagerInterface & /* pm */)
 {
    PluginPaths names;
    for ( const auto &pair : mCommands )

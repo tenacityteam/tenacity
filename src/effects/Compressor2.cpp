@@ -637,7 +637,7 @@ bool EffectCompressor2::RealtimeInitialize()
 }
 
 bool EffectCompressor2::RealtimeAddProcessor(
-   unsigned WXUNUSED(numChannels), float sampleRate)
+   unsigned /* numChannels */, float sampleRate)
 {
    mSampleRate = sampleRate;
    mProcStereo = true;
@@ -1663,7 +1663,7 @@ bool EffectCompressor2::UpdateProgress()
    return !TotalProgress(mProgressVal);
 }
 
-void EffectCompressor2::OnUpdateUI(wxCommandEvent & WXUNUSED(evt))
+void EffectCompressor2::OnUpdateUI(wxCommandEvent & /* evt */)
 {
    if(!mIgnoreGuiEvents)
       TransferDataFromWindow();

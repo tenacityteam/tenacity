@@ -382,7 +382,7 @@ AButton::AButtonState AButton::GetState()
    return state;
 }
 
-void AButton::OnPaint(wxPaintEvent & WXUNUSED(event))
+void AButton::OnPaint(wxPaintEvent & /* event */)
 {
    wxBufferedPaintDC dc(this);
 
@@ -396,7 +396,7 @@ void AButton::OnPaint(wxPaintEvent & WXUNUSED(event))
    }
 }
 
-void AButton::OnSize(wxSizeEvent & WXUNUSED(event))
+void AButton::OnSize(wxSizeEvent & /* event */)
 {
    if (!mForceFocusRect)
    {
@@ -505,7 +505,7 @@ void AButton::UpdateStatus()
    }
 }
 
-void AButton::OnCaptureLost(wxMouseCaptureLostEvent & WXUNUSED(event))
+void AButton::OnCaptureLost(wxMouseCaptureLostEvent & /* event */)
 {
    wxMouseEvent e(wxEVT_LEFT_UP);
    e.m_x = -1;
@@ -543,12 +543,12 @@ void AButton::OnKeyDown(wxKeyEvent & event)
    }
 }
 
-void AButton::OnSetFocus(wxFocusEvent & WXUNUSED(event))
+void AButton::OnSetFocus(wxFocusEvent & /* event */)
 {
    Refresh( false );
 }
 
-void AButton::OnKillFocus(wxFocusEvent & WXUNUSED(event))
+void AButton::OnKillFocus(wxFocusEvent & /* event */)
 {
    Refresh( false );
 }
@@ -648,7 +648,7 @@ AButtonAx::~AButtonAx()
 // or > 0 (the action for a child).
 // Return wxACC_NOT_SUPPORTED if there is no default action for this
 // window (e.g. an edit control).
-wxAccStatus AButtonAx::DoDefaultAction(int WXUNUSED(childId))
+wxAccStatus AButtonAx::DoDefaultAction(int /* childId */)
 {
    AButton *ab = wxDynamicCast( GetWindow(), AButton );
 
@@ -692,7 +692,7 @@ wxAccStatus AButtonAx::GetChildCount(int* childCount)
 // object, not what the object does as a result. For example, a
 // toolbar button that prints a document has a default action of
 // "Press" rather than "Prints the current document."
-wxAccStatus AButtonAx::GetDefaultAction(int WXUNUSED(childId), wxString* actionName)
+wxAccStatus AButtonAx::GetDefaultAction(int /* childId */, wxString* actionName)
 {
    *actionName = _( "Press" );
 
@@ -700,7 +700,7 @@ wxAccStatus AButtonAx::GetDefaultAction(int WXUNUSED(childId), wxString* actionN
 }
 
 // Returns the description for this object or a child.
-wxAccStatus AButtonAx::GetDescription( int WXUNUSED(childId), wxString *description )
+wxAccStatus AButtonAx::GetDescription( int /* childId */, wxString *description )
 {
    description->clear();
 
@@ -720,7 +720,7 @@ wxAccStatus AButtonAx::GetFocus(int* childId, wxAccessible** child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus AButtonAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
+wxAccStatus AButtonAx::GetHelpText( int /* childId */, wxString *helpText )
 {
 #if wxUSE_TOOLTIPS // Not available in wxX11
    AButton *ab = wxDynamicCast( GetWindow(), AButton );
@@ -741,7 +741,7 @@ wxAccStatus AButtonAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus AButtonAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
+wxAccStatus AButtonAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
 {
    shortcut->clear();
 
@@ -750,7 +750,7 @@ wxAccStatus AButtonAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *sho
 
 // Returns the rectangle for this object (id = 0) or a child element (id > 0).
 // rect is in screen coordinates.
-wxAccStatus AButtonAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
+wxAccStatus AButtonAx::GetLocation( wxRect& rect, int /* elementId */ )
 {
    AButton *ab = wxDynamicCast( GetWindow(), AButton );
 
@@ -761,7 +761,7 @@ wxAccStatus AButtonAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
 }
 
 // Gets the name of the specified object.
-wxAccStatus AButtonAx::GetName(int WXUNUSED(childId), wxString* name)
+wxAccStatus AButtonAx::GetName(int /* childId */, wxString* name)
 {
    AButton *ab = wxDynamicCast( GetWindow(), AButton );
 
@@ -780,7 +780,7 @@ wxAccStatus AButtonAx::GetName(int WXUNUSED(childId), wxString* name)
 }
 
 // Returns a role constant.
-wxAccStatus AButtonAx::GetRole(int WXUNUSED(childId), wxAccRole* role)
+wxAccStatus AButtonAx::GetRole(int /* childId */, wxAccRole* role)
 {
    *role = wxROLE_SYSTEM_PUSHBUTTON;
 
@@ -795,13 +795,13 @@ wxAccStatus AButtonAx::GetRole(int WXUNUSED(childId), wxAccRole* role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus AButtonAx::GetSelections( wxVariant * WXUNUSED(selections) )
+wxAccStatus AButtonAx::GetSelections( wxVariant * /* selections */ )
 {
    return wxACC_NOT_IMPLEMENTED;
 }
 
 // Returns a state constant.
-wxAccStatus AButtonAx::GetState(int WXUNUSED(childId), long* state)
+wxAccStatus AButtonAx::GetState(int /* childId */, long* state)
 {
    AButton *ab = wxDynamicCast( GetWindow(), AButton );
 
@@ -836,7 +836,7 @@ wxAccStatus AButtonAx::GetState(int WXUNUSED(childId), long* state)
 
 // Returns a localized string representing the value for the object
 // or child.
-wxAccStatus AButtonAx::GetValue(int WXUNUSED(childId), wxString* WXUNUSED(strValue))
+wxAccStatus AButtonAx::GetValue(int /* childId */, wxString* /* strValue */)
 {
    return wxACC_NOT_SUPPORTED;
 }

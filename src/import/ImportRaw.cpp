@@ -448,7 +448,7 @@ ImportRawDialog::~ImportRawDialog()
 {
 }
 
-void ImportRawDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+void ImportRawDialog::OnOK(wxCommandEvent & /* event */)
 {
    long l;
 
@@ -477,12 +477,12 @@ void ImportRawDialog::OnOK(wxCommandEvent & WXUNUSED(event))
    EndModal(true);
 }
 
-void ImportRawDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void ImportRawDialog::OnCancel(wxCommandEvent & /* event */)
 {
    EndModal(false);
 }
 
-void ImportRawDialog::OnPlay(wxCommandEvent & WXUNUSED(event))
+void ImportRawDialog::OnPlay(wxCommandEvent & /* event */)
 {
 }
 
@@ -512,7 +512,7 @@ void ImportRawDialog::OnDetect(wxCommandEvent & event)
    OnChoice(event);
 }
 
-void ImportRawDialog::OnChoice(wxCommandEvent & WXUNUSED(event))
+void ImportRawDialog::OnChoice(wxCommandEvent & /* event */)
 {
    SF_INFO info;
 

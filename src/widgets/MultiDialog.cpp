@@ -157,17 +157,17 @@ MultiDialog::MultiDialog(wxWindow * pParent,
    GetSizer()->SetSizeHints(this);
 }
 
-void MultiDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+void MultiDialog::OnOK(wxCommandEvent & /* event */)
 {
    EndModal(mRadioBox->GetSelection());
 }
 
-void MultiDialog::OnShowLog(wxCommandEvent & WXUNUSED(event))
+void MultiDialog::OnShowLog(wxCommandEvent & /* event */)
 {
    LogWindow::Show();
 }
 
-void MultiDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void MultiDialog::OnHelp(wxCommandEvent & /* event */)
 {
    HelpSystem::ShowHelp(FindWindow(wxID_HELP), mHelpPage, true);
 }

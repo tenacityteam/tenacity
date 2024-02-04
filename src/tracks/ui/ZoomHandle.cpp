@@ -40,7 +40,7 @@ ZoomHandle::ZoomHandle()
 {}
 
 HitTestPreview ZoomHandle::HitPreview
-   (const wxMouseState &state, const TenacityProject *WXUNUSED(pProject))
+   (const wxMouseState &state, const TenacityProject* /* pProject */)
 {
    static auto zoomInCursor =
       ::MakeCursor(wxCURSOR_MAGNIFIER, ZoomInCursorXpm, 19, 15);

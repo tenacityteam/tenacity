@@ -168,7 +168,7 @@ Exporter::~Exporter()
 {
 }
 
-void Exporter::OnHelp(wxCommandEvent& WXUNUSED(evt))
+void Exporter::OnHelp(wxCommandEvent& /* evt */)
 {
    wxWindow * pWin = FindProjectFrame( mProject );
    HelpSystem::ShowHelp(pWin, L"File_Export_Dialog", true);
@@ -978,7 +978,7 @@ void ExportMixerPanel::SetFont(wxMemoryDC &memDC, const wxString &text, int widt
    memDC.SetFont( font );
 }
 
-void ExportMixerPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
+void ExportMixerPanel::OnPaint(wxPaintEvent & /* event */)
 {
    wxPaintDC dc( this );
 
@@ -1278,7 +1278,7 @@ void ExportMixerDialog::OnSize(wxSizeEvent &event)
    event.Skip();
 }
 
-void ExportMixerDialog::OnSlider( wxCommandEvent & WXUNUSED(event))
+void ExportMixerDialog::OnSlider( wxCommandEvent & /* event */)
 {
    wxSlider *channels = ( wxSlider* )FindWindow( ID_SLIDER_CHANNEL );
    ExportMixerPanel *pnl = ( ( ExportMixerPanel* ) FindWindow( ID_MIXERPANEL ) );
@@ -1290,17 +1290,17 @@ void ExportMixerDialog::OnSlider( wxCommandEvent & WXUNUSED(event))
    channels->SetName( label );
 }
 
-void ExportMixerDialog::OnOk(wxCommandEvent & WXUNUSED(event))
+void ExportMixerDialog::OnOk(wxCommandEvent & /* event */)
 {
    EndModal( wxID_OK );
 }
 
-void ExportMixerDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void ExportMixerDialog::OnCancel(wxCommandEvent & /* event */)
 {
    EndModal( wxID_CANCEL );
 }
 
-void ExportMixerDialog::OnMixerPanelHelp(wxCommandEvent & WXUNUSED(event))
+void ExportMixerDialog::OnMixerPanelHelp(wxCommandEvent & /* event */)
 {
    HelpSystem::ShowHelp(this, L"Advanced_Mixing_Options", true);
 }

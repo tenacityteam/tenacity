@@ -79,7 +79,7 @@ unsigned EffectFade::GetAudioOutCount()
    return 1;
 }
 
-bool EffectFade::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool EffectFade::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    mSample = 0;
 

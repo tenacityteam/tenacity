@@ -60,7 +60,7 @@ public:
       return safenew FilesystemValidator(mMessage);
    }
 
-   virtual bool Validate(wxWindow* WXUNUSED(parent)) wxOVERRIDE
+   virtual bool Validate(wxWindow* /* parent */) wxOVERRIDE
    {
       wxTextCtrl* tc = wxDynamicCast(GetWindow(), wxTextCtrl);
       if (!tc) {
@@ -329,7 +329,7 @@ void DirectoriesPrefs::OnTempBrowse(wxCommandEvent &evt)
    }
 }
 
-void DirectoriesPrefs::OnTempText(wxCommandEvent & WXUNUSED(evt))
+void DirectoriesPrefs::OnTempText(wxCommandEvent & /* evt */)
 {
    TranslatableString label;
 

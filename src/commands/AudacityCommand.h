@@ -67,7 +67,7 @@ class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
    virtual bool IsBatchProcessing(){ return mIsBatch;}
    virtual void SetBatchProcessing(bool start){ mIsBatch = start;};
    
-   virtual bool Apply(const CommandContext & WXUNUSED(context) ) {return false;};
+   virtual bool Apply(const CommandContext & /* context */ ) {return false;};
 
    bool ShowInterface(wxWindow *parent, bool forceModal = false);
 
@@ -116,7 +116,7 @@ class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
    // effect, after either successful or failed or exception-aborted processing.
    // Invoked inside a "finally" block so it must be no-throw.
    virtual void End(){;};
-   virtual void PopulateOrExchange(ShuttleGui & WXUNUSED(S)){return;};
+   virtual void PopulateOrExchange(ShuttleGui & /* S */){return;};
    virtual bool TransferDataToWindow();
    virtual bool TransferDataFromWindow();
 

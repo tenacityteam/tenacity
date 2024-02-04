@@ -253,7 +253,7 @@ ExportFFmpeg::~ExportFFmpeg()
 {
 }
 
-bool ExportFFmpeg::CheckFileName(wxFileName & WXUNUSED(filename), int WXUNUSED(format))
+bool ExportFFmpeg::CheckFileName(wxFileName & /* filename */, int /* format */)
 {
    bool result = true;
 

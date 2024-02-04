@@ -244,7 +244,7 @@ const TranslatableStrings &MP3ImportFileHandle::GetStreamInfo()
    return empty;
 }
 
-void MP3ImportFileHandle::SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUSED(Use))
+void MP3ImportFileHandle::SetStreamUsage(wxInt32 /* StreamID */, bool /* Use */)
 {
 }
 
@@ -1019,7 +1019,7 @@ mad_flow MP3ImportFileHandle::output_cb(void *that,
    return GuardedCall<mad_flow>(cb, MakeSimpleGuard(MAD_FLOW_BREAK));
 }
 
-enum mad_flow MP3ImportFileHandle::OutputCB(struct mad_header const * WXUNUSED(header),
+enum mad_flow MP3ImportFileHandle::OutputCB(struct mad_header const * /* header */,
                                             struct mad_pcm *pcm)
 {
    // If this is the first run, we need to create the WaveTracks that

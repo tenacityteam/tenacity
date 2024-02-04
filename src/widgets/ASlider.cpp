@@ -243,7 +243,7 @@ bool TipWindow::Show(bool show)
    #endif
 }
 
-void TipWindow::OnPaint(wxPaintEvent & WXUNUSED(event))
+void TipWindow::OnPaint(wxPaintEvent & /* event */)
 {
    wxAutoBufferedPaintDC dc(this);
 
@@ -1665,7 +1665,7 @@ void ASlider::OnSize(wxSizeEvent &event)
    mLWSlider->OnSize( event );
 }
 
-void ASlider::OnPaint(wxPaintEvent & WXUNUSED(event))
+void ASlider::OnPaint(wxPaintEvent & /* event */)
 {
    wxBufferedPaintDC dc(this);
 
@@ -1699,7 +1699,7 @@ void ASlider::OnMouseEvent(wxMouseEvent &event)
    mLWSlider->OnMouseEvent(event);
 }
 
-void ASlider::OnCaptureLost(wxMouseCaptureLostEvent & WXUNUSED(event))
+void ASlider::OnCaptureLost(wxMouseCaptureLostEvent & /* event */)
 {
    wxMouseEvent e(wxEVT_LEFT_UP);
    mLWSlider->OnMouseEvent(e);
@@ -1710,19 +1710,19 @@ void ASlider::OnKeyDown(wxKeyEvent &event)
    mLWSlider->OnKeyDown(event);
 }
 
-void ASlider::OnSetFocus(wxFocusEvent & WXUNUSED(event))
+void ASlider::OnSetFocus(wxFocusEvent & /* event */)
 {
    mSliderIsFocused = true;
    Refresh();
 }
 
-void ASlider::OnKillFocus(wxFocusEvent & WXUNUSED(event))
+void ASlider::OnKillFocus(wxFocusEvent & /* event */)
 {
    mSliderIsFocused = false;
    Refresh();
 }
 
-void ASlider::OnTimer(wxTimerEvent & WXUNUSED(event))
+void ASlider::OnTimer(wxTimerEvent & /* event */)
 {
    mLWSlider->ShowTip(true);
 }
@@ -1846,7 +1846,7 @@ wxAccStatus ASliderAx::GetChildCount(int* childCount)
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus ASliderAx::GetDefaultAction( int WXUNUSED(childId), wxString *actionName )
+wxAccStatus ASliderAx::GetDefaultAction( int /* childId */, wxString *actionName )
 {
    actionName->clear();
 
@@ -1854,7 +1854,7 @@ wxAccStatus ASliderAx::GetDefaultAction( int WXUNUSED(childId), wxString *action
 }
 
 // Returns the description for this object or a child.
-wxAccStatus ASliderAx::GetDescription( int WXUNUSED(childId), wxString *description )
+wxAccStatus ASliderAx::GetDescription( int /* childId */, wxString *description )
 {
    description->clear();
 
@@ -1874,7 +1874,7 @@ wxAccStatus ASliderAx::GetFocus(int* childId, wxAccessible** child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus ASliderAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
+wxAccStatus ASliderAx::GetHelpText( int /* childId */, wxString *helpText )
 {
    helpText->clear();
 
@@ -1883,7 +1883,7 @@ wxAccStatus ASliderAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus ASliderAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
+wxAccStatus ASliderAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
 {
    shortcut->clear();
 
@@ -1892,7 +1892,7 @@ wxAccStatus ASliderAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *sho
 
 // Returns the rectangle for this object (id = 0) or a child element (id > 0).
 // rect is in screen coordinates.
-wxAccStatus ASliderAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
+wxAccStatus ASliderAx::GetLocation( wxRect& rect, int /* elementId */ )
 {
    ASlider *as = wxDynamicCast( GetWindow(), ASlider );
 
@@ -1903,7 +1903,7 @@ wxAccStatus ASliderAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
 }
 
 // Gets the name of the specified object.
-wxAccStatus ASliderAx::GetName(int WXUNUSED(childId), wxString* name)
+wxAccStatus ASliderAx::GetName(int /* childId */, wxString* name)
 {
    ASlider *as = wxDynamicCast( GetWindow(), ASlider );
 
@@ -1942,7 +1942,7 @@ wxAccStatus ASliderAx::GetRole(int childId, wxAccRole* role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus ASliderAx::GetSelections( wxVariant * WXUNUSED(selections) )
+wxAccStatus ASliderAx::GetSelections( wxVariant * /* selections */ )
 {
    return wxACC_NOT_IMPLEMENTED;
 }

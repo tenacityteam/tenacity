@@ -68,7 +68,7 @@ public:
    ShuttleParams() { mpEap = NULL; pOptionalFlag = NULL; }
    virtual ~ShuttleParams() {}
    bool ShouldSet();
-   virtual ShuttleParams & Optional( bool & WXUNUSED(var) ){ pOptionalFlag = NULL;return *this;};
+   virtual ShuttleParams & Optional( bool & /* var */ ){ pOptionalFlag = NULL;return *this;};
    virtual ShuttleParams & OptionalY( bool & var ){ return Optional( var );};
    virtual ShuttleParams & OptionalN( bool & var ){ return Optional( var );};
    virtual void Define( bool & var,     const wxChar * key, const bool vdefault, const bool vmin=false, const bool vmax=false, const bool vscl=false );
@@ -136,29 +136,29 @@ public:
    virtual ShuttleParams & OptionalY( bool & var )override{ var = true; pOptionalFlag = NULL;return *this;};
    virtual ShuttleParams & OptionalN( bool & var )override{ var = false;pOptionalFlag = NULL;return *this;};
 
-   void Define( bool & var,          const wxChar * WXUNUSED(key),  const bool     vdefault, 
-      const bool     WXUNUSED(vmin), const bool     WXUNUSED(vmax), const bool     WXUNUSED(vscl) ) 
+   void Define( bool & var,      const wxChar * /* key */,  const bool     vdefault, 
+      const bool     /* vmin */, const bool     /* vmax */, const bool     /* vscl */ ) 
       override { var = vdefault;};
-   void Define( int & var,           const wxChar * WXUNUSED(key),  const int      vdefault, 
-      const int      WXUNUSED(vmin), const int      WXUNUSED(vmax), const int      WXUNUSED(vscl) ) 
+   void Define( int & var,       const wxChar * /* key */,  const int      vdefault, 
+      const int      /* vmin */, const int      /* vmax */, const int      /* vscl */ ) 
       override { var = vdefault;};
-   void Define( size_t & var,        const wxChar * WXUNUSED(key),  const int      vdefault, 
-      const int      WXUNUSED(vmin), const int      WXUNUSED(vmax), const int      WXUNUSED(vscl) ) 
+   void Define( size_t & var,    const wxChar * /* key */,  const int      vdefault, 
+      const int      /* vmin */, const int      /* vmax */, const int      /* vscl */ ) 
       override{ var = vdefault;};
-   void Define( float & var,         const wxChar * WXUNUSED(key),  const float    vdefault, 
-      const float    WXUNUSED(vmin), const float    WXUNUSED(vmax), const float    WXUNUSED(vscl) ) 
+   void Define( float & var,     const wxChar * /* key */,  const float    vdefault, 
+      const float    /* vmin */, const float    /* vmax */, const float    /* vscl */ ) 
       override { var = vdefault;};
-   void Define( double & var,        const wxChar * WXUNUSED(key),  const float    vdefault, 
-      const float    WXUNUSED(vmin), const float    WXUNUSED(vmax), const float    WXUNUSED(vscl) ) 
+   void Define( double & var,    const wxChar * /* key */,  const float    vdefault, 
+      const float    /* vmin */, const float    /* vmax */, const float    /* vscl */ ) 
       override { var = vdefault;};
-   void Define( double & var,        const wxChar * WXUNUSED(key),  const double   vdefault, 
-      const double   WXUNUSED(vmin), const double   WXUNUSED(vmax), const double   WXUNUSED(vscl) ) 
+   void Define( double & var,    const wxChar * /* key */,  const double   vdefault, 
+      const double   /* vmin */, const double   /* vmax */, const double   /* vscl */ ) 
       override { var = vdefault;};
-   void Define( wxString &var,       const wxChar * WXUNUSED(key),  const wxString vdefault, 
-      const wxString WXUNUSED(vmin), const wxString WXUNUSED(vmax), const wxString WXUNUSED(vscl) ) 
+   void Define( wxString &var,   const wxChar * /* key */,  const wxString vdefault, 
+      const wxString /* vmin */, const wxString /* vmax */, const wxString /* vscl */ ) 
       override { var = vdefault;};
-   void DefineEnum( int &var,        const wxChar * WXUNUSED(key),  const int vdefault,
-      const EnumValueSymbol WXUNUSED(strings) [], size_t WXUNUSED( nStrings ) )
+   void DefineEnum( int &var,    const wxChar * /* key */,  const int vdefault,
+      const EnumValueSymbol /* strings */ [], size_t /* nStrings */ )
       override { var = vdefault;};
 };
 

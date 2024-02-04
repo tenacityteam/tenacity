@@ -211,7 +211,7 @@ public:
       (void) sqlite3_shutdown();
    }
 
-   static void LogCallback(void *WXUNUSED(arg), int code, const char *msg)
+   static void LogCallback(void* /* arg */, int code, const char *msg)
    {
       wxLogMessage("sqlite3 message: (%d) %s", code, msg);
    }

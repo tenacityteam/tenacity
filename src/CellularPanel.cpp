@@ -473,7 +473,7 @@ bool CellularPanel::IsMouseCaptured()
    return state.mUIHandle != NULL;
 }
 
-void CellularPanel::OnContextMenu(wxContextMenuEvent & WXUNUSED(event))
+void CellularPanel::OnContextMenu(wxContextMenuEvent & /* event */)
 {
    DoContextMenu();
 }
@@ -660,7 +660,7 @@ void CellularPanel::OnKeyUp(wxKeyEvent & event)
 }
 
 /// Should handle the case when the mouse capture is lost. (MSW only)
-void CellularPanel::OnCaptureLost(wxMouseCaptureLostEvent & WXUNUSED(event))
+void CellularPanel::OnCaptureLost(wxMouseCaptureLostEvent & /* event */)
 {
    auto &state = *mState;
    state.mUIHandle.reset();
@@ -959,7 +959,7 @@ void CellularPanel::OnSetFocus(wxFocusEvent &event)
    Refresh( false);
 }
 
-void CellularPanel::OnKillFocus(wxFocusEvent & WXUNUSED(event))
+void CellularPanel::OnKillFocus(wxFocusEvent & /* event */)
 {
    if (auto pCell = GetFocusedCell()) {
       auto refreshResult = pCell->LoseFocus(GetProject());

@@ -190,7 +190,7 @@ void MidiIOPrefs::PopulateOrExchange( ShuttleGui & S ) {
 
 }
 
-void MidiIOPrefs::OnHost(wxCommandEvent & WXUNUSED(e))
+void MidiIOPrefs::OnHost(wxCommandEvent & /* e */)
 {
    wxString itemAtIndex;
    int index = mHost->GetCurrentSelection();

@@ -140,7 +140,7 @@ public:
       return empty;
    }
 
-   void SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUSED(Use)) override
+   void SetStreamUsage(wxInt32 /* StreamID */, bool /* Use */) override
    {}
 
 private:
@@ -226,8 +226,8 @@ auto LOFImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 }
 
 ProgressResult LOFImportFileHandle::Import(
-   WaveTrackFactory * WXUNUSED(trackFactory), TrackHolders &outTracks,
-   Tags * WXUNUSED(tags), LabelHolders &)
+   WaveTrackFactory * /* trackFactory */, TrackHolders &outTracks,
+   Tags * /* tags */, LabelHolders &)
 {
    // Unlike other ImportFileHandle subclasses, this one never gives any tracks
    // back to the caller.

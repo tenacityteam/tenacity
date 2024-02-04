@@ -75,7 +75,7 @@ constexpr int ID_BROWSE = 5000;
 
 ///
 ///
-ExportCLOptions::ExportCLOptions(wxWindow *parent, int WXUNUSED(format))
+ExportCLOptions::ExportCLOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    Bind(wxEVT_BUTTON, &ExportCLOptions::OnBrowse, this, ID_BROWSE);
@@ -172,7 +172,7 @@ bool ExportCLOptions::TransferDataFromWindow()
 
 ///
 ///
-void ExportCLOptions::OnBrowse(wxCommandEvent& WXUNUSED(event))
+void ExportCLOptions::OnBrowse(wxCommandEvent& /* event */)
 {
    wxString path;
    FileExtension ext;
@@ -244,7 +244,7 @@ public:
       return mActive;
    }
 
-   void OnTerminate(int WXUNUSED( pid ), int status)
+   void OnTerminate(int /* pid */, int status)
    {
       Drain(GetInputStream(), mOutput);
       Drain(GetErrorStream(), mOutput);
@@ -360,7 +360,7 @@ ProgressResult ExportCL::Export(TenacityProject *project,
                                 double t1,
                                 MixerSpec *mixerSpec,
                                 const Tags *metadata,
-                                int WXUNUSED(subformat))
+                                int /* subformat */)
 {
    ExtendPath ep;
    wxString output;
@@ -713,7 +713,7 @@ void ExportCL::OptionsCreate(ShuttleGui &S, int format)
    S.AddWindow( safenew ExportCLOptions{ S.GetParent(), format } );
 }
 
-bool ExportCL::CheckFileName(wxFileName &filename, int WXUNUSED(format))
+bool ExportCL::CheckFileName(wxFileName &filename, int /* format */)
 {
    ExtendPath ep;
 

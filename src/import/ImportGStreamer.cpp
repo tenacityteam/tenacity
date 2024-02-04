@@ -440,11 +440,11 @@ std::unique_ptr<ImportFileHandle> GStreamerImportPlugin::Open(
 //
 // This "gint" is really GstAutoplugSelectResult enum
 static gint
-GStreamerAutoplugSelectCallback(GstElement * WXUNUSED(element),
-                                GstPad * WXUNUSED(pad),
-                                GstCaps * WXUNUSED(caps),
+GStreamerAutoplugSelectCallback(GstElement * /* element */,
+                                GstPad * /* pad */,
+                                GstCaps * /* caps */,
                                 GstElementFactory *factory,
-                                gpointer WXUNUSED(data))
+                                gpointer /* data */)
 {
    // Check factory class
    const gchar *fclass = gst_element_factory_get_klass(factory);
@@ -461,7 +461,7 @@ GStreamerAutoplugSelectCallback(GstElement * WXUNUSED(element),
 // ----------------------------------------------------------------------------
 // Handle the "pad-added" signal from uridecodebin
 static void
-GStreamerPadAddedCallback(GstElement * WXUNUSED(element),
+GStreamerPadAddedCallback(GstElement * /* element */,
                           GstPad *pad,
                           gpointer data)
 {
@@ -473,7 +473,7 @@ GStreamerPadAddedCallback(GstElement * WXUNUSED(element),
 // ----------------------------------------------------------------------------
 // Handle the "pad-removed" signal from uridecodebin
 static void
-GStreamerPadRemovedCallback(GstElement * WXUNUSED(element),
+GStreamerPadRemovedCallback(GstElement * /* element */,
                             GstPad *pad,
                             gpointer data)
 {
@@ -1310,7 +1310,7 @@ GStreamerImportFileHandle::ProcessBusMessage(bool & success)
 // ----------------------------------------------------------------------------
 // Handle the "tag" message
 void
-GStreamerImportFileHandle::OnTag(GstAppSink * WXUNUSED(appsink), GstTagList *tags)
+GStreamerImportFileHandle::OnTag(GstAppSink * /* appsink */, GstTagList *tags)
 {
    // Collect all of the associates tags
    for (guint i = 0, icnt = gst_tag_list_n_tags(tags); i < icnt; i++)

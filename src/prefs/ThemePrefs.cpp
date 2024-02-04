@@ -252,41 +252,41 @@ void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
 }
 
 /// Load Theme from multiple png files.
-void ThemePrefs::OnLoadThemeComponents(wxCommandEvent & WXUNUSED(event))
+void ThemePrefs::OnLoadThemeComponents(wxCommandEvent & /* event */)
 {
    theTheme.LoadComponents();
    ApplyUpdatedImages();
 }
 
 /// Save Theme to multiple png files.
-void ThemePrefs::OnSaveThemeComponents(wxCommandEvent & WXUNUSED(event))
+void ThemePrefs::OnSaveThemeComponents(wxCommandEvent & /* event */)
 {
    theTheme.SaveComponents();
 }
 
 /// Load Theme from single png file.
-void ThemePrefs::OnLoadThemeCache(wxCommandEvent & WXUNUSED(event))
+void ThemePrefs::OnLoadThemeCache(wxCommandEvent & /* event */)
 {
    theTheme.ReadImageCache();
    ApplyUpdatedImages();
 }
 
 /// Save Theme to single png file.
-void ThemePrefs::OnSaveThemeCache(wxCommandEvent & WXUNUSED(event))
+void ThemePrefs::OnSaveThemeCache(wxCommandEvent & /* event */)
 {
    theTheme.CreateImageCache();
    theTheme.WriteImageMap();// bonus - give them the html version.
 }
 
 /// Read Theme from internal storage.
-void ThemePrefs::OnReadThemeInternal(wxCommandEvent & WXUNUSED(event))
+void ThemePrefs::OnReadThemeInternal(wxCommandEvent & /* event */)
 {
    theTheme.ReadImageCache( theTheme.GetFallbackThemeType() );
    ApplyUpdatedImages();
 }
 
 /// Save Theme as C source code.
-void ThemePrefs::OnSaveThemeAsCode(wxCommandEvent & WXUNUSED(event))
+void ThemePrefs::OnSaveThemeAsCode(wxCommandEvent & /* event */)
 {
    theTheme.SaveThemeAsCode();
    theTheme.WriteImageDefs();// bonus - give them the Defs too.

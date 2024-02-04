@@ -382,7 +382,7 @@ FilePath VSTEffectsModule::InstallPath()
    return {};
 }
 
-bool VSTEffectsModule::AutoRegisterPlugins(PluginManagerInterface & WXUNUSED(pm))
+bool VSTEffectsModule::AutoRegisterPlugins(PluginManagerInterface & /* pm */)
 {
    // We don't auto-register
    return true;
@@ -867,7 +867,7 @@ void VSTEffectOptionsDialog::PopulateOrExchange(ShuttleGui & S)
    Center();
 }
 
-void VSTEffectOptionsDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
+void VSTEffectOptionsDialog::OnOk(wxCommandEvent & /* evt */)
 {
    if (!Validate())
    {
@@ -1395,7 +1395,7 @@ bool VSTEffect::IsReady()
    return mReady;
 }
 
-bool VSTEffect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool VSTEffect::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    // Initialize time info
    memset(&mTimeInfo, 0, sizeof(mTimeInfo));

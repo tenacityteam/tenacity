@@ -487,7 +487,7 @@ void KeyConfigPrefs::OnShow(wxShowEvent & event)
    }
 }
 
-void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
+void KeyConfigPrefs::OnImport(wxCommandEvent & /* event */)
 {
    wxString file = wxT("Tenacity-keys.xml");
 
@@ -566,7 +566,7 @@ void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
    AudacityMessageBox(message, XO("Loading Keyboard Shortcuts"), wxOK | wxCENTRE);
 }
 
-void KeyConfigPrefs::OnExport(wxCommandEvent & WXUNUSED(event))
+void KeyConfigPrefs::OnExport(wxCommandEvent & /* event */)
 {
    wxString file = wxT("Tenacity-keys.xml");
 
@@ -594,7 +594,7 @@ void KeyConfigPrefs::OnExport(wxCommandEvent & WXUNUSED(event))
 
 // There currently is only one clickable AButton
 // so we just do what it needs.
-void KeyConfigPrefs::OnDefaults(wxCommandEvent & WXUNUSED(event))
+void KeyConfigPrefs::OnDefaults(wxCommandEvent & /* event */)
 {
    wxMenu Menu;
    Menu.Append( 1, _("Standard") );
@@ -653,7 +653,7 @@ void KeyConfigPrefs::OnHotkeyKeyDown(wxKeyEvent & e)
    t->SetValue(KeyEventToKeyString(e).Display());
 }
 
-void KeyConfigPrefs::OnHotkeyChar(wxEvent & WXUNUSED(e))
+void KeyConfigPrefs::OnHotkeyChar(wxEvent & /* e */)
 {
    // event.Skip() not performed, so event will not be processed further.
 }
@@ -667,12 +667,12 @@ void KeyConfigPrefs::OnHotkeyKillFocus(wxEvent & e)
    e.Skip();
 }
 
-void KeyConfigPrefs::OnHotkeyContext(wxEvent & WXUNUSED(e))
+void KeyConfigPrefs::OnHotkeyContext(wxEvent & /* e */)
 {
    // event.Skip() not performed, so event will not be processed further.
 }
 
-void KeyConfigPrefs::OnFilterTimer(wxTimerEvent & WXUNUSED(e))
+void KeyConfigPrefs::OnFilterTimer(wxTimerEvent & /* e */)
 {
    // The filter timer has expired, so set the filter
    if (mFilterPending)
@@ -761,7 +761,7 @@ void KeyConfigPrefs::SetKeyForSelected(const NormalizedKeyString & key)
 }
 
 
-void KeyConfigPrefs::OnSet(wxCommandEvent & WXUNUSED(event))
+void KeyConfigPrefs::OnSet(wxCommandEvent & /* event */)
 {
    if (mCommandSelected == wxNOT_FOUND) {
       AudacityMessageBox(
@@ -838,7 +838,7 @@ void KeyConfigPrefs::OnSet(wxCommandEvent & WXUNUSED(event))
    SetKeyForSelected(enteredKey);
 }
 
-void KeyConfigPrefs::OnClear(wxCommandEvent& WXUNUSED(event))
+void KeyConfigPrefs::OnClear(wxCommandEvent& /* event */)
 {
    mKey->Clear();
 
@@ -847,7 +847,7 @@ void KeyConfigPrefs::OnClear(wxCommandEvent& WXUNUSED(event))
    }
 }
 
-void KeyConfigPrefs::OnSelected(wxCommandEvent & WXUNUSED(e))
+void KeyConfigPrefs::OnSelected(wxCommandEvent & /* e */)
 {
    mCommandSelected = mView->GetSelected();
    mKey->Clear();

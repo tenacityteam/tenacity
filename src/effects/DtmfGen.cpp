@@ -126,7 +126,7 @@ unsigned EffectDtmf::GetAudioOutCount()
    return 1;
 }
 
-bool EffectDtmf::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool EffectDtmf::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    if (dtmfNTones <= 0) {   // Bail if no DTFM sequence.
       ::Effect::MessageBox(
@@ -176,7 +176,7 @@ bool EffectDtmf::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames 
    return true;
 }
 
-size_t EffectDtmf::ProcessBlock(float **WXUNUSED(inbuf), float **outbuf, size_t size)
+size_t EffectDtmf::ProcessBlock(float** /* inbuf */, float **outbuf, size_t size)
 {
    float *buffer = outbuf[0];
    decltype(size) processed = 0;
@@ -607,14 +607,14 @@ void EffectDtmf::UpdateUI(void)
    mDtmfToneT->SetName(mDtmfToneT->GetLabel()); // fix for bug 577 (NVDA/Narrator screen readers do not read static text in dialogs)
 }
 
-void EffectDtmf::OnSequence(wxCommandEvent & WXUNUSED(evt))
+void EffectDtmf::OnSequence(wxCommandEvent & /* evt */)
 {
    dtmfSequence = mDtmfSequenceT->GetValue();
    Recalculate();
    UpdateUI();
 }
 
-void EffectDtmf::OnAmplitude(wxCommandEvent & WXUNUSED(evt))
+void EffectDtmf::OnAmplitude(wxCommandEvent & /* evt */)
 {
    if (!mDtmfAmplitudeT->GetValidator()->TransferFromWindow())
    {
@@ -623,7 +623,7 @@ void EffectDtmf::OnAmplitude(wxCommandEvent & WXUNUSED(evt))
    Recalculate();
    UpdateUI();
 }
-void EffectDtmf::OnDuration(wxCommandEvent & WXUNUSED(evt))
+void EffectDtmf::OnDuration(wxCommandEvent & /* evt */)
 {
    SetDuration(mDtmfDurationT->GetValue());
    Recalculate();

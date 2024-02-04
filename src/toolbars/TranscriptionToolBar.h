@@ -75,7 +75,7 @@ class TranscriptionToolBar final : public ToolBar {
    void OnSpeedSlider(wxCommandEvent & event);
 
    void Populate() override;
-   void Repaint(wxDC * WXUNUSED(dc)) override {};
+   void Repaint(wxDC * /* dc */) override {};
    void EnableDisableButtons() override;
    void UpdatePrefs() override;
    int GetInitialWidth()  override { return 191; }
@@ -97,7 +97,7 @@ class TranscriptionToolBar final : public ToolBar {
    void OnSensitivitySlider(wxCommandEvent & event);
 
    //void Populate() override;
-   //void Repaint(wxDC * WXUNUSED(dc)) override {}
+   //void Repaint(wxDC * /* dc */) override {}
    //void EnableDisableButtons() override;
 
    //void OnFocus(wxFocusEvent &event);

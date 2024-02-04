@@ -123,7 +123,7 @@ void ErrorDialog::OnPane(wxCollapsiblePaneEvent & event)
    }
 }
 
-void ErrorDialog::OnOk(wxCommandEvent & WXUNUSED(event))
+void ErrorDialog::OnOk(wxCommandEvent & /* event */)
 {
    if (dModal)
       EndModal(true);
@@ -131,7 +131,7 @@ void ErrorDialog::OnOk(wxCommandEvent & WXUNUSED(event))
       Destroy();
 }
 
-void ErrorDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void ErrorDialog::OnHelp(wxCommandEvent & /* event */)
 {
    const auto &str = dhelpPage.GET();
    if( str.StartsWith(wxT("innerlink:")) )

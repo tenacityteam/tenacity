@@ -88,7 +88,7 @@ SoloButtonHandle::~SoloButtonHandle()
 }
 
 UIHandle::Result SoloButtonHandle::CommitChanges
-(const wxMouseEvent &event, TenacityProject *pProject, wxWindow *WXUNUSED(pParent))
+(const wxMouseEvent &event, TenacityProject *pProject, wxWindow* /* pParent */)
 {
    auto pTrack = mpTrack.lock();
    if ( dynamic_cast< PlayableTrack* >( pTrack.get() ) )

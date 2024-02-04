@@ -269,7 +269,7 @@ public:
 
 private:
    // event handlers
-   void OnCloseWindow(wxCloseEvent &WXUNUSED(event));
+   void OnCloseWindow(wxCloseEvent &/* event */);
    void OnMaximize(wxMaximizeEvent &event);
    void OnSize(wxSizeEvent &evt);
    void OnKeyEvent(wxKeyEvent &evt);

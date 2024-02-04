@@ -281,7 +281,7 @@ wxAccStatus TrackPanelAx::GetChildCount( int* childCount )
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus TrackPanelAx::GetDefaultAction( int WXUNUSED(childId), wxString *actionName )
+wxAccStatus TrackPanelAx::GetDefaultAction( int /* childId */, wxString *actionName )
 {
    actionName->clear();
 
@@ -289,7 +289,7 @@ wxAccStatus TrackPanelAx::GetDefaultAction( int WXUNUSED(childId), wxString *act
 }
 
 // Returns the description for this object or a child.
-wxAccStatus TrackPanelAx::GetDescription( int WXUNUSED(childId), wxString *description )
+wxAccStatus TrackPanelAx::GetDescription( int /* childId */, wxString *description )
 {
    description->clear();
 
@@ -297,7 +297,7 @@ wxAccStatus TrackPanelAx::GetDescription( int WXUNUSED(childId), wxString *descr
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus TrackPanelAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
+wxAccStatus TrackPanelAx::GetHelpText( int /* childId */, wxString *helpText )
 {
    helpText->clear();
 
@@ -306,7 +306,7 @@ wxAccStatus TrackPanelAx::GetHelpText( int WXUNUSED(childId), wxString *helpText
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus TrackPanelAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
+wxAccStatus TrackPanelAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
 {
    shortcut->clear();
 
@@ -490,7 +490,7 @@ wxAccStatus TrackPanelAx::GetRole( int childId, wxAccRole* role )
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus TrackPanelAx::GetSelections( wxVariant * WXUNUSED(selections) )
+wxAccStatus TrackPanelAx::GetSelections( wxVariant * /* selections */ )
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -553,7 +553,7 @@ wxAccStatus TrackPanelAx::GetState( int childId, long* state )
 #if defined(__WXMAC__)
 wxAccStatus TrackPanelAx::GetValue( int childId, wxString* strValue )
 #else
-wxAccStatus TrackPanelAx::GetValue( int WXUNUSED(childId), wxString* WXUNUSED(strValue) )
+wxAccStatus TrackPanelAx::GetValue( int /* childId */, wxString* /* strValue */ )
 #endif
 {
 #if defined(__WXMSW__)

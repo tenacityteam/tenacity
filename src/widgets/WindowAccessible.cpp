@@ -82,7 +82,7 @@ wxAccStatus SliderAx::GetChildCount(int* childCount)
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus SliderAx::GetDefaultAction( int WXUNUSED(childId), wxString *actionName )
+wxAccStatus SliderAx::GetDefaultAction( int /* childId */, wxString *actionName )
 {
    actionName->clear();
 
@@ -90,7 +90,7 @@ wxAccStatus SliderAx::GetDefaultAction( int WXUNUSED(childId), wxString *actionN
 }
 
 // Returns the description for this object or a child.
-wxAccStatus SliderAx::GetDescription( int WXUNUSED(childId), wxString *description )
+wxAccStatus SliderAx::GetDescription( int /* childId */, wxString *description )
 {
    description->clear();
 
@@ -110,7 +110,7 @@ wxAccStatus SliderAx::GetFocus(int* childId, wxAccessible** child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus SliderAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
+wxAccStatus SliderAx::GetHelpText( int /* childId */, wxString *helpText )
 {
    helpText->clear();
 
@@ -119,7 +119,7 @@ wxAccStatus SliderAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus SliderAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
+wxAccStatus SliderAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
 {
    shortcut->clear();
 
@@ -128,7 +128,7 @@ wxAccStatus SliderAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shor
 
 // Returns the rectangle for this object (id = 0) or a child element (id > 0).
 // rect is in screen coordinates.
-wxAccStatus SliderAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
+wxAccStatus SliderAx::GetLocation( wxRect& rect, int /* elementId */ )
 {
    wxSlider *s = wxDynamicCast( GetWindow(), wxSlider );
 
@@ -139,7 +139,7 @@ wxAccStatus SliderAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
 }
 
 // Gets the name of the specified object.
-wxAccStatus SliderAx::GetName(int WXUNUSED(childId), wxString* name)
+wxAccStatus SliderAx::GetName(int /* childId */, wxString* name)
 {
    wxSlider *s = wxDynamicCast( GetWindow(), wxSlider );
 
@@ -178,7 +178,7 @@ wxAccStatus SliderAx::GetRole(int childId, wxAccRole* role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus SliderAx::GetSelections( wxVariant * WXUNUSED(selections) )
+wxAccStatus SliderAx::GetSelections( wxVariant * /* selections */ )
 {
    return wxACC_NOT_IMPLEMENTED;
 }

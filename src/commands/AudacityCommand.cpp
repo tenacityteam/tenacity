@@ -93,7 +93,7 @@ bool AudacityCommand::Init(){
    return DefineParams( DefaultSettingShuttle );
 }
 
-bool AudacityCommand::ShowInterface(wxWindow *parent, bool WXUNUSED(forceModal))
+bool AudacityCommand::ShowInterface(wxWindow *parent, bool /* forceModal */)
 {
    if (mUIDialog)
    {
@@ -122,7 +122,7 @@ bool AudacityCommand::ShowInterface(wxWindow *parent, bool WXUNUSED(forceModal))
    return res;
 }
 
-wxDialog *AudacityCommand::CreateUI(wxWindow *parent, AudacityCommand * WXUNUSED(client))
+wxDialog *AudacityCommand::CreateUI(wxWindow *parent, AudacityCommand * /* client */)
 {
    Destroy_ptr<AudacityCommandDialog> dlg { safenew AudacityCommandDialog{
       parent, GetName(), this}};
@@ -316,7 +316,7 @@ bool AudacityCommandDialog::Validate()
    return true;
 }
 
-void AudacityCommandDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
+void AudacityCommandDialog::OnOk(wxCommandEvent & /* evt */)
 {
    // On wxGTK (wx2.8.12), the default action is still executed even if
    // the button is disabled.  This appears to affect all wxDialogs, not
@@ -330,12 +330,12 @@ void AudacityCommandDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
 }
 
 
-void AudacityCommandDialog::OnCancel(wxCommandEvent & WXUNUSED(evt))
+void AudacityCommandDialog::OnCancel(wxCommandEvent & /* evt */)
 {
    EndModal(false);
 }
 
-void AudacityCommandDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void AudacityCommandDialog::OnHelp(wxCommandEvent & /* event */)
 {
    if( mpCommand )
    {

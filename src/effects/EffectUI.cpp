@@ -487,14 +487,14 @@ void EffectUIHost::OnInitDialog(wxInitDialogEvent & evt)
    }
 }
 
-void EffectUIHost::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void EffectUIHost::OnPaint(wxPaintEvent & /* evt */)
 {
    wxPaintDC dc(this);
    
    dc.Clear();
 }
 
-void EffectUIHost::OnClose(wxCloseEvent & WXUNUSED(evt))
+void EffectUIHost::OnClose(wxCloseEvent & /* evt */)
 {
    DoCancel();
    
@@ -586,13 +586,13 @@ void EffectUIHost::DoCancel()
    }
 }
 
-void EffectUIHost::OnCancel(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnCancel(wxCommandEvent & /* evt */)
 {
    DoCancel();
    Close();
 }
 
-void EffectUIHost::OnHelp(wxCommandEvent & WXUNUSED(event))
+void EffectUIHost::OnHelp(wxCommandEvent & /* event */)
 {
    if (mEffect.GetFamily() == NYQUISTEFFECTS_FAMILY && (mEffect.ManualPage().empty())) {
       // Old ShowHelp required when there is no on-line manual.
@@ -610,7 +610,7 @@ void EffectUIHost::OnDebug(wxCommandEvent & evt)
    OnApply(evt);
 }
 
-void EffectUIHost::OnMenu(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnMenu(wxCommandEvent & /* evt */)
 {
    wxMenu menu;
    menu.Bind(wxEVT_MENU, [](auto&){}, kUserPresetsDummyID);
@@ -712,7 +712,7 @@ void EffectUIHost::Resume()
    RealtimeEffectManager::Get(*mProject).RealtimeResumeOne( mEffect );
 }
 
-void EffectUIHost::OnEnable(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnEnable(wxCommandEvent & /* evt */)
 {
    mEnabled = mEnableCb->GetValue();
    
@@ -729,7 +729,7 @@ void EffectUIHost::OnEnable(wxCommandEvent & WXUNUSED(evt))
    UpdateControls();
 }
 
-void EffectUIHost::OnPlay(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnPlay(wxCommandEvent & /* evt */)
 {
    if (!mSupportsRealtime)
    {
@@ -780,7 +780,7 @@ void EffectUIHost::OnPlay(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void EffectUIHost::OnRewind(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnRewind(wxCommandEvent & /* evt */)
 {
    if (mPlaying)
    {
@@ -802,7 +802,7 @@ void EffectUIHost::OnRewind(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void EffectUIHost::OnFFwd(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnFFwd(wxCommandEvent & /* evt */)
 {
    if (mPlaying)
    {
@@ -915,7 +915,7 @@ void EffectUIHost::OnDeletePreset(wxCommandEvent & evt)
    return;
 }
 
-void EffectUIHost::OnSaveAs(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnSaveAs(wxCommandEvent & /* evt */)
 {
    wxTextCtrl *text;
    wxString name;
@@ -993,7 +993,7 @@ void EffectUIHost::OnSaveAs(wxCommandEvent & WXUNUSED(evt))
    return;
 }
 
-void EffectUIHost::OnImport(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnImport(wxCommandEvent & /* evt */)
 {
    mClient.ImportPresets();
    
@@ -1002,7 +1002,7 @@ void EffectUIHost::OnImport(wxCommandEvent & WXUNUSED(evt))
    return;
 }
 
-void EffectUIHost::OnExport(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnExport(wxCommandEvent & /* evt */)
 {
    // may throw
    // exceptions are handled in TenacityApp::OnExceptionInMainLoop
@@ -1011,14 +1011,14 @@ void EffectUIHost::OnExport(wxCommandEvent & WXUNUSED(evt))
    return;
 }
 
-void EffectUIHost::OnOptions(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnOptions(wxCommandEvent & /* evt */)
 {
    mClient.ShowOptions();
    
    return;
 }
 
-void EffectUIHost::OnDefaults(wxCommandEvent & WXUNUSED(evt))
+void EffectUIHost::OnDefaults(wxCommandEvent & /* evt */)
 {
    mEffect.LoadFactoryDefaults();
    
@@ -1428,7 +1428,7 @@ void EffectDialog::Init()
 /// This is a virtual function which will be overridden to
 /// provide the actual parameters that we want for each
 /// kind of dialog.
-void EffectDialog::PopulateOrExchange(ShuttleGui & WXUNUSED(S))
+void EffectDialog::PopulateOrExchange(ShuttleGui & /* S */)
 {
    return;
 }
@@ -1454,12 +1454,12 @@ bool EffectDialog::Validate()
    return true;
 }
 
-void EffectDialog::OnPreview(wxCommandEvent & WXUNUSED(evt))
+void EffectDialog::OnPreview(wxCommandEvent & /* evt */)
 {
    return;
 }
 
-void EffectDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
+void EffectDialog::OnOk(wxCommandEvent & /* evt */)
 {
    // On wxGTK (wx2.8.12), the default action is still executed even if
    // the button is disabled.  This appears to affect all wxDialogs, not

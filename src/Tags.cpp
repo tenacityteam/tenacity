@@ -636,7 +636,7 @@ public:
    {
    }
 
-   void PaintBackground(wxDC&, const wxRect& WXUNUSED(rectCell), const wxGridCellAttr & WXUNUSED(attr)) override
+   void PaintBackground(wxDC&, const wxRect& /* rectCell */, const wxGridCellAttr & /* attr */) override
    {
       // Ignore it (a must on the Mac as the erasure causes problems.)
    }
@@ -969,7 +969,7 @@ void TagsEditorDialog::OnDontShow( wxCommandEvent & Evt )
    gPrefs->Flush();
 }
 
-void TagsEditorDialog::OnHelp(wxCommandEvent& WXUNUSED(event))
+void TagsEditorDialog::OnHelp(wxCommandEvent& /* event */)
 {
    HelpSystem::ShowHelp(this, L"Metadata_Editor", true);
 }
@@ -1127,7 +1127,7 @@ void TagsEditorDialog::OnChange(wxGridEvent & event)
    return;
 }
 
-void TagsEditorDialog::OnEdit(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnEdit(wxCommandEvent & /* event */)
 {
    if (mGrid->IsCellEditControlShown()) {
       mGrid->SaveEditControlValue();
@@ -1180,7 +1180,7 @@ void TagsEditorDialog::OnEdit(wxCommandEvent & WXUNUSED(event))
    PopulateGenres();
 }
 
-void TagsEditorDialog::OnReset(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnReset(wxCommandEvent & /* event */)
 {
    int id = AudacityMessageBox(
       XO("Are you sure you want to reset the genre list to defaults?"),
@@ -1225,14 +1225,14 @@ void TagsEditorDialog::OnReset(wxCommandEvent & WXUNUSED(event))
    PopulateGenres();
 }
 
-void TagsEditorDialog::OnClear(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnClear(wxCommandEvent & /* event */)
 {
    mLocal.Clear();
 
    TransferDataToWindow();
 }
 
-void TagsEditorDialog::OnLoad(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnLoad(wxCommandEvent & /* event */)
 {
    wxString fn;
 
@@ -1287,7 +1287,7 @@ void TagsEditorDialog::OnLoad(wxCommandEvent & WXUNUSED(event))
    return;
 }
 
-void TagsEditorDialog::OnSave(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnSave(wxCommandEvent & /* event */)
 {
    wxString fn;
 
@@ -1346,7 +1346,7 @@ void TagsEditorDialog::OnSave(wxCommandEvent & WXUNUSED(event))
    } );
 }
 
-void TagsEditorDialog::OnSaveDefaults(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnSaveDefaults(wxCommandEvent & /* event */)
 {
    // Refresh tags
    TransferDataFromWindow();
@@ -1387,12 +1387,12 @@ void TagsEditorDialog::OnSaveDefaults(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void TagsEditorDialog::OnAdd(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnAdd(wxCommandEvent & /* event */)
 {
    mGrid->AppendRows();
 }
 
-void TagsEditorDialog::OnRemove(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnRemove(wxCommandEvent & /* event */)
 {
    size_t row = mGrid->GetGridCursorRow();
 
@@ -1413,7 +1413,7 @@ void TagsEditorDialog::OnRemove(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void TagsEditorDialog::OnOk(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnOk(wxCommandEvent & /* event */)
 {
    if (mGrid->IsCellEditControlShown()) {
       mGrid->SaveEditControlValue();
@@ -1442,7 +1442,7 @@ void TagsEditorDialog::OnOk(wxCommandEvent & WXUNUSED(event))
    EndModal(wxID_OK);
 }
 
-void TagsEditorDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void TagsEditorDialog::OnCancel(wxCommandEvent & /* event */)
 {
    DoCancel(false);
 }

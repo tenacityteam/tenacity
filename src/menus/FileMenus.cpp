@@ -538,7 +538,7 @@ void OnPrint(const CommandContext &context)
    HandlePrint(&window, name, &tracks, TrackPanel::Get( project ));
 }
 
-void OnExit(const CommandContext &WXUNUSED(context) )
+void OnExit(const CommandContext &/* context */ )
 {
    // Simulate the application Exit menu item
    wxCommandEvent evt{ wxEVT_MENU, wxID_EXIT };

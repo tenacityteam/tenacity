@@ -172,7 +172,7 @@ void MeterToolBar::RegenerateTooltips()
 #endif
 }
 
-void MeterToolBar::OnSize( wxSizeEvent & event) //WXUNUSED(event) )
+void MeterToolBar::OnSize( wxSizeEvent & event) ///* event */ )
 {
    event.Skip();
    int width, height;

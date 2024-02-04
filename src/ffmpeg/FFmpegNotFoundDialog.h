@@ -27,7 +27,7 @@ public:
    FFmpegNotFoundDialog(wxWindow *parent);
 
    void PopulateOrExchange(ShuttleGui & S);
-   void OnOk(wxCommandEvent & WXUNUSED(event));
+   void OnOk(wxCommandEvent & /* event */);
 
 private:
    wxCheckBox *mDontShow;

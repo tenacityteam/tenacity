@@ -119,7 +119,7 @@ private:
 };
 
 // Returns a state constant.
-wxAccStatus DatePickerCtrlAx::GetState(int WXUNUSED(childId), long *state)
+wxAccStatus DatePickerCtrlAx::GetState(int /* childId */, long *state)
 {
    *state = wxACC_STATE_SYSTEM_FOCUSABLE;
    *state |= (mCtrl == wxWindow::FindFocus() ? wxACC_STATE_SYSTEM_FOCUSED : 0);
@@ -211,7 +211,7 @@ void TimerRecordDialog::OnTimer()
    }
 }
 
-void TimerRecordDialog::OnDatePicker_Start(wxDateEvent& WXUNUSED(event))
+void TimerRecordDialog::OnDatePicker_Start(wxDateEvent& /* event */)
 {
    m_DateTime_Start = m_pDatePickerCtrl_Start->GetValue();
    double dTime = m_pTimeTextCtrl_Start->GetValue();
@@ -232,7 +232,7 @@ void TimerRecordDialog::OnDatePicker_Start(wxDateEvent& WXUNUSED(event))
    this->UpdateEnd();
 }
 
-void TimerRecordDialog::OnTimeText_Start(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnTimeText_Start(wxCommandEvent& /* event */)
 {
    //v NumericTextCtrl doesn't implement upper ranges, i.e.,
    // if I tell it "024 h 060 m 060 s", then
@@ -252,7 +252,7 @@ void TimerRecordDialog::OnTimeText_Start(wxCommandEvent& WXUNUSED(event))
    this->OnDatePicker_Start(dummyDateEvent);
 }
 
-void TimerRecordDialog::OnDatePicker_End(wxDateEvent& WXUNUSED(event))
+void TimerRecordDialog::OnDatePicker_End(wxDateEvent& /* event */)
 {
    m_DateTime_End = m_pDatePickerCtrl_End->GetValue();
    double dTime = m_pTimeTextCtrl_End->GetValue();
@@ -274,7 +274,7 @@ void TimerRecordDialog::OnDatePicker_End(wxDateEvent& WXUNUSED(event))
    this->UpdateDuration(); // Keep Start constant and update Duration for changed End.
 }
 
-void TimerRecordDialog::OnTimeText_End(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnTimeText_End(wxCommandEvent& /* event */)
 {
    //v NumericTextCtrl doesn't implement upper ranges, i.e.,
    // if I tell it "024 h 060 m 060 s", then
@@ -294,7 +294,7 @@ void TimerRecordDialog::OnTimeText_End(wxCommandEvent& WXUNUSED(event))
    this->OnDatePicker_End(dummyDateEvent);
 }
 
-void TimerRecordDialog::OnTimeText_Duration(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnTimeText_Duration(wxCommandEvent& /* event */)
 {
    double dTime = m_pTimeTextCtrl_Duration->GetValue();
    long hr = (long)(dTime / 3600.0);
@@ -306,7 +306,7 @@ void TimerRecordDialog::OnTimeText_Duration(wxCommandEvent& WXUNUSED(event))
 }
 
 // New events for timer recording automation
-void TimerRecordDialog::OnAutoSavePathButton_Click(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnAutoSavePathButton_Click(wxCommandEvent& /* event */)
 {
    auto &projectFileIO = ProjectFileIO::Get(mProject);
 
@@ -344,7 +344,7 @@ would overwrite another project.\nPlease try again and select an original name."
    this->UpdateTextBoxControls();
 }
 
-void TimerRecordDialog::OnAutoExportPathButton_Click(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnAutoExportPathButton_Click(wxCommandEvent& /* event */)
 {
    Exporter eExporter{ mProject };
 
@@ -361,20 +361,20 @@ void TimerRecordDialog::OnAutoExportPathButton_Click(wxCommandEvent& WXUNUSED(ev
    }
 }
 
-void TimerRecordDialog::OnAutoSaveCheckBox_Change(wxCommandEvent& WXUNUSED(event)) {
+void TimerRecordDialog::OnAutoSaveCheckBox_Change(wxCommandEvent& /* event */) {
    EnableDisableAutoControls(m_pTimerAutoSaveCheckBoxCtrl->GetValue(), CONTROL_GROUP_SAVE);
 }
 
-void TimerRecordDialog::OnAutoExportCheckBox_Change(wxCommandEvent& WXUNUSED(event)) {
+void TimerRecordDialog::OnAutoExportCheckBox_Change(wxCommandEvent& /* event */) {
    EnableDisableAutoControls(m_pTimerAutoExportCheckBoxCtrl->GetValue(), CONTROL_GROUP_EXPORT);
 }
 
-void TimerRecordDialog::OnHelpButtonClick(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnHelpButtonClick(wxCommandEvent& /* event */)
 {
    HelpSystem::ShowHelp(this, L"Timer_Record", true);
 }
 
-void TimerRecordDialog::OnOK(wxCommandEvent& WXUNUSED(event))
+void TimerRecordDialog::OnOK(wxCommandEvent& /* event */)
 {
    this->TransferDataFromWindow();
    if (!m_TimeSpan_Duration.IsPositive())

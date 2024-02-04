@@ -63,7 +63,7 @@ public:
 
 ///
 ///
-ExportFLACOptions::ExportFLACOptions(wxWindow *parent, int WXUNUSED(format))
+ExportFLACOptions::ExportFLACOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -254,7 +254,7 @@ ProgressResult ExportFLAC::Export(TenacityProject *project,
                         double t1,
                         MixerSpec *mixerSpec,
                         const Tags *metadata,
-                        int WXUNUSED(subformat))
+                        int /* subformat */)
 {
    double    rate    = ProjectRate::Get(*project).GetRate();
    const auto &tracks = TrackList::Get( *project );

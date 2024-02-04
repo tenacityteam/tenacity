@@ -215,7 +215,7 @@ public:
       return;
    }
 
-   void OnBrowse(wxCommandEvent & WXUNUSED(event))
+   void OnBrowse(wxCommandEvent & /* event */)
    {
       static const FileNames::FileTypes types = {
 #   if defined(__WXMSW__)
@@ -253,7 +253,7 @@ public:
       }
    }
 
-   void OnDownload(wxCommandEvent & WXUNUSED(event))
+   void OnDownload(wxCommandEvent & /* event */)
    {
       HelpSystem::ShowHelp(this, L"FFmpeg");
    }

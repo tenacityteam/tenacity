@@ -179,7 +179,7 @@ wxAccStatus CheckListAx::GetChildCount( int *childCount )
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus CheckListAx::GetDefaultAction( int WXUNUSED(childId), wxString *actionName )
+wxAccStatus CheckListAx::GetDefaultAction( int /* childId */, wxString *actionName )
 {
    actionName->clear();
 
@@ -187,7 +187,7 @@ wxAccStatus CheckListAx::GetDefaultAction( int WXUNUSED(childId), wxString *acti
 }
 
 // Returns the description for this object or a child.
-wxAccStatus CheckListAx::GetDescription( int WXUNUSED(childId), wxString *description )
+wxAccStatus CheckListAx::GetDescription( int /* childId */, wxString *description )
 {
    description->clear();
 
@@ -207,7 +207,7 @@ wxAccStatus CheckListAx::GetFocus( int *childId, wxAccessible **child )
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus CheckListAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
+wxAccStatus CheckListAx::GetHelpText( int /* childId */, wxString *helpText )
 {
    helpText->clear();
 
@@ -216,7 +216,7 @@ wxAccStatus CheckListAx::GetHelpText( int WXUNUSED(childId), wxString *helpText 
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus CheckListAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
+wxAccStatus CheckListAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
 {
    shortcut->clear();
 
@@ -245,7 +245,7 @@ wxAccStatus CheckListAx::GetLocation( wxRect& rect, int elementId )
 }
 
 // Gets the name of the specified object.
-wxAccStatus CheckListAx::GetName( int WXUNUSED(childId), wxString *name )
+wxAccStatus CheckListAx::GetName( int /* childId */, wxString *name )
 {
    *name = mParent->GetName();
 
@@ -275,7 +275,7 @@ wxAccStatus CheckListAx::GetRole( int childId, wxAccRole *role )
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus CheckListAx::GetSelections( wxVariant * WXUNUSED(selections) )
+wxAccStatus CheckListAx::GetSelections( wxVariant * /* selections */ )
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -817,7 +817,7 @@ void PluginRegistrationDialog::OnListChar(wxKeyEvent & evt)
    }
 }
 
-void PluginRegistrationDialog::OnSelectAll(wxCommandEvent & WXUNUSED(evt))
+void PluginRegistrationDialog::OnSelectAll(wxCommandEvent & /* evt */)
 {
    for (int i = 0, cnt = mEffects->GetItemCount(); i < cnt; i++)
    {
@@ -825,7 +825,7 @@ void PluginRegistrationDialog::OnSelectAll(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void PluginRegistrationDialog::OnClearAll(wxCommandEvent & WXUNUSED(evt))
+void PluginRegistrationDialog::OnClearAll(wxCommandEvent & /* evt */)
 {
    for (int i = 0, cnt = mEffects->GetItemCount(); i < cnt; i++)
    {
@@ -833,7 +833,7 @@ void PluginRegistrationDialog::OnClearAll(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void PluginRegistrationDialog::OnEnable(wxCommandEvent & WXUNUSED(evt))
+void PluginRegistrationDialog::OnEnable(wxCommandEvent & /* evt */)
 {
    std::vector<long> items;
 
@@ -852,7 +852,7 @@ void PluginRegistrationDialog::OnEnable(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void PluginRegistrationDialog::OnDisable(wxCommandEvent & WXUNUSED(evt))
+void PluginRegistrationDialog::OnDisable(wxCommandEvent & /* evt */)
 {
    std::vector<long> items;
 
@@ -871,7 +871,7 @@ void PluginRegistrationDialog::OnDisable(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void PluginRegistrationDialog::OnOK(wxCommandEvent & WXUNUSED(evt))
+void PluginRegistrationDialog::OnOK(wxCommandEvent & /* evt */)
 {
    PluginManager & pm = PluginManager::Get();
    ModuleManager & mm = ModuleManager::Get();
@@ -966,7 +966,7 @@ void PluginRegistrationDialog::OnOK(wxCommandEvent & WXUNUSED(evt))
    EndModal(wxID_OK);
 }
 
-void PluginRegistrationDialog::OnCancel(wxCommandEvent & WXUNUSED(evt))
+void PluginRegistrationDialog::OnCancel(wxCommandEvent & /* evt */)
 {
    EndModal(wxID_CANCEL);
 }

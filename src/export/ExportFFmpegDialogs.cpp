@@ -195,7 +195,7 @@ const std::vector< int > AC3BitRateValues{
 
 const int ExportFFmpegAC3Options::iAC3SampleRates[] = { 32000, 44100, 48000, 0 };
 
-ExportFFmpegAC3Options::ExportFFmpegAC3Options(wxWindow *parent, int WXUNUSED(format))
+ExportFFmpegAC3Options::ExportFFmpegAC3Options(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -257,7 +257,7 @@ bool ExportFFmpegAC3Options::TransferDataFromWindow()
 // ExportFFmpegAACOptions Class
 //----------------------------------------------------------------------------
 
-ExportFFmpegAACOptions::ExportFFmpegAACOptions(wxWindow *parent, int WXUNUSED(format))
+ExportFFmpegAACOptions::ExportFFmpegAACOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -350,7 +350,7 @@ const std::vector< int > AMRNBBitRateValues
 
 }
 
-ExportFFmpegAMRNBOptions::ExportFFmpegAMRNBOptions(wxWindow *parent, int WXUNUSED(format))
+ExportFFmpegAMRNBOptions::ExportFFmpegAMRNBOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -581,7 +581,7 @@ namespace {
    };
 }
 
-ExportFFmpegOPUSOptions::ExportFFmpegOPUSOptions(wxWindow *parent, int WXUNUSED(format))
+ExportFFmpegOPUSOptions::ExportFFmpegOPUSOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -709,7 +709,7 @@ const std::vector< int > WMABitRateValues{
 
 }
 
-ExportFFmpegWMAOptions::ExportFFmpegWMAOptions(wxWindow *parent, int WXUNUSED(format))
+ExportFFmpegWMAOptions::ExportFFmpegWMAOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    ShuttleGui S(this, eIsCreatingFromPrefs);
@@ -773,7 +773,7 @@ bool ExportFFmpegWMAOptions::TransferDataFromWindow()
 
 constexpr int OpenID = 9000;
 
-ExportFFmpegCustomOptions::ExportFFmpegCustomOptions(wxWindow *parent, int WXUNUSED(format))
+ExportFFmpegCustomOptions::ExportFFmpegCustomOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY),
    mFormat(NULL),
    mCodec(NULL)
@@ -835,7 +835,7 @@ bool ExportFFmpegCustomOptions::TransferDataFromWindow()
 
 ///
 ///
-void ExportFFmpegCustomOptions::OnOpen(wxCommandEvent & WXUNUSED(evt))
+void ExportFFmpegCustomOptions::OnOpen(wxCommandEvent & /* evt */)
 {
    // Show "Locate FFmpeg" dialog
    auto ffmpeg = FFmpegFunctions::Load();
@@ -2218,7 +2218,7 @@ int ExportFFmpegOptions::FetchCompatibleFormatList(
 
 ///
 ///
-void ExportFFmpegOptions::OnDeletePreset(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnDeletePreset(wxCommandEvent& /* event */)
 {
    wxComboBox *preset = dynamic_cast<wxComboBox*>(FindWindowById(FEPresetID,this));
    wxString presetname = preset->GetValue();
@@ -2246,7 +2246,7 @@ void ExportFFmpegOptions::OnDeletePreset(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportFFmpegOptions::OnSavePreset(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnSavePreset(wxCommandEvent& /* event */)
 {  const bool kCheckForOverwrite = true;
    SavePreset(kCheckForOverwrite);
 }
@@ -2278,7 +2278,7 @@ bool ExportFFmpegOptions::SavePreset(bool bCheckForOverwrite)
 
 ///
 ///
-void ExportFFmpegOptions::OnLoadPreset(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnLoadPreset(wxCommandEvent& /* event */)
 {
    wxComboBox *preset = dynamic_cast<wxComboBox*>(FindWindowById(FEPresetID,this));
    wxString presetname = preset->GetValue();
@@ -2308,7 +2308,7 @@ static const FileNames::FileTypes &FileTypes()
 
 ///
 ///
-void ExportFFmpegOptions::OnImportPresets(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnImportPresets(wxCommandEvent& /* event */)
 {
    wxString path;
    FileDialogWrapper dlg(this,
@@ -2327,7 +2327,7 @@ void ExportFFmpegOptions::OnImportPresets(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportFFmpegOptions::OnExportPresets(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnExportPresets(wxCommandEvent& /* event */)
 {
    const bool kCheckForOverwrite = true;
    // Bug 1180 save any pending preset before exporting the lot.
@@ -2357,7 +2357,7 @@ void ExportFFmpegOptions::OnExportPresets(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportFFmpegOptions::OnAllFormats(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnAllFormats(wxCommandEvent& /* event */)
 {
    mShownFormatNames = mFormatNames;
    mShownFormatLongNames = mFormatLongNames;
@@ -2367,7 +2367,7 @@ void ExportFFmpegOptions::OnAllFormats(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportFFmpegOptions::OnAllCodecs(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnAllCodecs(wxCommandEvent& /* event */)
 {
    mShownCodecNames = mCodecNames;
    mShownCodecLongNames = mCodecLongNames;
@@ -2578,14 +2578,14 @@ void ExportFFmpegOptions::DoOnCodecList()
 
 ///
 ///
-void ExportFFmpegOptions::OnFormatList(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnFormatList(wxCommandEvent& /* event */)
 {
    DoOnFormatList();
 }
 
 ///
 ///
-void ExportFFmpegOptions::OnCodecList(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnCodecList(wxCommandEvent& /* event */)
 {
    DoOnCodecList();
 }
@@ -2593,7 +2593,7 @@ void ExportFFmpegOptions::OnCodecList(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportFFmpegOptions::OnOK(wxCommandEvent& WXUNUSED(event))
+void ExportFFmpegOptions::OnOK(wxCommandEvent& /* event */)
 {
    if( ReportIfBadCombination() )
       return;
@@ -2614,7 +2614,7 @@ void ExportFFmpegOptions::OnOK(wxCommandEvent& WXUNUSED(event))
    return;
 }
 
-void ExportFFmpegOptions::OnGetURL(wxCommandEvent & WXUNUSED(event))
+void ExportFFmpegOptions::OnGetURL(wxCommandEvent & /* event */)
 {
    HelpSystem::ShowHelp(this, L"Custom_FFmpeg_Export_Options");
 }

@@ -130,7 +130,7 @@ unsigned EffectBassTreble::GetAudioOutCount()
    return 1;
 }
 
-bool EffectBassTreble::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool EffectBassTreble::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    InstanceInit(mMaster, mSampleRate);
 
@@ -151,7 +151,7 @@ bool EffectBassTreble::RealtimeInitialize()
    return true;
 }
 
-bool EffectBassTreble::RealtimeAddProcessor(unsigned WXUNUSED(numChannels), float sampleRate)
+bool EffectBassTreble::RealtimeAddProcessor(unsigned /* numChannels */, float sampleRate)
 {
    EffectBassTrebleState slave;
 
@@ -443,7 +443,7 @@ float EffectBassTreble::DoFilter(EffectBassTrebleState & data, float in)
 }
 
 
-void EffectBassTreble::OnBassText(wxCommandEvent & WXUNUSED(evt))
+void EffectBassTreble::OnBassText(wxCommandEvent & /* evt */)
 {
    double oldBass = mBass;
 
@@ -456,7 +456,7 @@ void EffectBassTreble::OnBassText(wxCommandEvent & WXUNUSED(evt))
    mBassS->SetValue((int) (mBass * SCL_Bass));
 }
 
-void EffectBassTreble::OnTrebleText(wxCommandEvent & WXUNUSED(evt))
+void EffectBassTreble::OnTrebleText(wxCommandEvent & /* evt */)
 {
    double oldTreble = mTreble;
 
@@ -469,7 +469,7 @@ void EffectBassTreble::OnTrebleText(wxCommandEvent & WXUNUSED(evt))
    mTrebleS->SetValue((int) (mTreble * SCL_Treble));
 }
 
-void EffectBassTreble::OnGainText(wxCommandEvent & WXUNUSED(evt))
+void EffectBassTreble::OnGainText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {

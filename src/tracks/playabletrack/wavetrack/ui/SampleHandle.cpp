@@ -48,7 +48,7 @@ void SampleHandle::Enter(bool, TenacityProject *)
 }
 
 HitTestPreview SampleHandle::HitPreview
-(const wxMouseState &state, const TenacityProject *WXUNUSED(pProject), bool unsafe)
+(const wxMouseState &state, const TenacityProject* /* pProject */, bool unsafe)
 {
    static auto disabledCursor =
       ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
@@ -73,7 +73,7 @@ HitTestPreview SampleHandle::HitPreview
 
 UIHandlePtr SampleHandle::HitAnywhere
 (std::weak_ptr<SampleHandle> &holder,
- const wxMouseState &WXUNUSED(state), const std::shared_ptr<WaveTrack> &pTrack)
+ const wxMouseState& /* state */, const std::shared_ptr<WaveTrack> &pTrack)
 {
    auto result = std::make_shared<SampleHandle>( pTrack );
    result = AssignUIHandlePtr(holder, result);

@@ -339,7 +339,7 @@ void EffectAmplify::CheckClip()
    EnableApply(mClip->GetValue() || (mPeak > 0.0 && mRatio <= mRatioClip));
 }
 
-void EffectAmplify::OnAmpText(wxCommandEvent & WXUNUSED(evt))
+void EffectAmplify::OnAmpText(wxCommandEvent & /* evt */)
 {
    if (!mAmpT->GetValidator()->TransferFromWindow())
    {
@@ -357,7 +357,7 @@ void EffectAmplify::OnAmpText(wxCommandEvent & WXUNUSED(evt))
    CheckClip();
 }
 
-void EffectAmplify::OnPeakText(wxCommandEvent & WXUNUSED(evt))
+void EffectAmplify::OnPeakText(wxCommandEvent & /* evt */)
 {
    if (!mNewPeakT->GetValidator()->TransferFromWindow())
    {
@@ -404,7 +404,7 @@ void EffectAmplify::OnAmpSlider(wxCommandEvent & evt)
    CheckClip();
 }
 
-void EffectAmplify::OnClipCheckBox(wxCommandEvent & WXUNUSED(evt))
+void EffectAmplify::OnClipCheckBox(wxCommandEvent & /* evt */)
 {
    CheckClip();
 }

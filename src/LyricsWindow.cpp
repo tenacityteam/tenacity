@@ -143,17 +143,17 @@ LyricsWindow::LyricsWindow(TenacityProject *parent)
    Center();
 }
 
-void LyricsWindow::OnCloseWindow(wxCloseEvent & WXUNUSED(event))
+void LyricsWindow::OnCloseWindow(wxCloseEvent & /* event */)
 {
   this->Hide();
 }
 
-void LyricsWindow::OnStyle_BouncingBall(wxCommandEvent & WXUNUSED(event))
+void LyricsWindow::OnStyle_BouncingBall(wxCommandEvent & /* event */)
 {
    mLyricsPanel->SetLyricsStyle(LyricsPanel::kBouncingBallLyrics);
 }
 
-void LyricsWindow::OnStyle_Highlight(wxCommandEvent & WXUNUSED(event))
+void LyricsWindow::OnStyle_Highlight(wxCommandEvent & /* event */)
 {
    mLyricsPanel->SetLyricsStyle(LyricsPanel::kHighlightLyrics);
 }

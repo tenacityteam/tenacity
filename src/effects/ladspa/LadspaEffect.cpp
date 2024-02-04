@@ -471,7 +471,7 @@ void LadspaEffectOptionsDialog::PopulateOrExchange(ShuttleGui & S)
    Center();
 }
 
-void LadspaEffectOptionsDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
+void LadspaEffectOptionsDialog::OnOk(wxCommandEvent & /* evt */)
 {
    if (!Validate())
    {
@@ -549,7 +549,7 @@ void LadspaEffectMeter::OnIdle(wxIdleEvent &evt)
    }
 }
 
-void LadspaEffectMeter::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void LadspaEffectMeter::OnPaint(wxPaintEvent & /* evt */)
 {
    wxPaintDC dc(this);
 
@@ -582,7 +582,7 @@ void LadspaEffectMeter::OnPaint(wxPaintEvent & WXUNUSED(evt))
    mLastValue = mVal;
 }
 
-void LadspaEffectMeter::OnSize(wxSizeEvent & WXUNUSED(evt))
+void LadspaEffectMeter::OnSize(wxSizeEvent & /* evt */)
 {
    Refresh(false);
 }
@@ -933,7 +933,7 @@ size_t LadspaEffect::GetTailSize()
    return 0;
 }
 
-bool LadspaEffect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool LadspaEffect::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    /* Instantiate the plugin */
    if (!mReady)
@@ -988,7 +988,7 @@ bool LadspaEffect::RealtimeInitialize()
    return true;
 }
 
-bool LadspaEffect::RealtimeAddProcessor(unsigned WXUNUSED(numChannels), float sampleRate)
+bool LadspaEffect::RealtimeAddProcessor(unsigned /* numChannels */, float sampleRate)
 {
    LADSPA_Handle slave = InitInstance(sampleRate);
    if (!slave)
@@ -1132,7 +1132,7 @@ RegistryPaths LadspaEffect::GetFactoryPresets()
    return {};
 }
 
-bool LadspaEffect::LoadFactoryPreset(int WXUNUSED(id))
+bool LadspaEffect::LoadFactoryPreset(int /* id */)
 {
    return true;
 }

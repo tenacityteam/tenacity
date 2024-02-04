@@ -220,13 +220,13 @@ void ApplyMacroDialog::PopulateMacros()
    }
 }
 
-void ApplyMacroDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void ApplyMacroDialog::OnHelp(wxCommandEvent & /* event */)
 {
    const auto &page = GetHelpPageName();
    HelpSystem::ShowHelp(this, page, true);
 }
 
-void ApplyMacroDialog::OnApplyToProject(wxCommandEvent & WXUNUSED(event))
+void ApplyMacroDialog::OnApplyToProject(wxCommandEvent & /* event */)
 {
    long item = mMacros->GetNextItem(-1,
                                     wxLIST_NEXT_ALL,
@@ -325,7 +325,7 @@ void ApplyMacroDialog::ApplyMacroToProject( int iMacro, bool bHasGui )
    Raise();
 }
 
-void ApplyMacroDialog::OnApplyToFiles(wxCommandEvent & WXUNUSED(event))
+void ApplyMacroDialog::OnApplyToFiles(wxCommandEvent & /* event */)
 {
    long item = mMacros->GetNextItem(-1,
                                     wxLIST_NEXT_ALL,
@@ -494,7 +494,7 @@ void ApplyMacroDialog::OnApplyToFiles(wxCommandEvent & WXUNUSED(event))
    Raise();
 }
 
-void ApplyMacroDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void ApplyMacroDialog::OnCancel(wxCommandEvent & /* event */)
 {
    Hide();
 }
@@ -819,10 +819,10 @@ void MacrosWindow::UpdateDisplay( bool bExpanded )
    SetTitle( Title );
 }
 
-void MacrosWindow::OnExpand(wxCommandEvent &WXUNUSED(event))
+void MacrosWindow::OnExpand(wxCommandEvent &/* event */)
 {  UpdateDisplay( true );}
 
-void MacrosWindow::OnShrink(wxCommandEvent &WXUNUSED(event))
+void MacrosWindow::OnShrink(wxCommandEvent &/* event */)
 {  
    if( ChangeOK() )
       UpdateDisplay( false );
@@ -892,13 +892,13 @@ void MacrosWindow::ShowActiveMacro()
 }
 
 /// An item in the macros list has been selected.
-void MacrosWindow::OnListSelected(wxListEvent & WXUNUSED(event))
+void MacrosWindow::OnListSelected(wxListEvent & /* event */)
 {
    FitColumns();
 }
 
 /// The window has been resized.
-void MacrosWindow::OnSize(wxSizeEvent & WXUNUSED(event))
+void MacrosWindow::OnSize(wxSizeEvent & /* event */)
 {
    // Refresh the layout and re-fit the columns.
    Layout();
@@ -988,7 +988,7 @@ void MacrosWindow::OnMacrosEndEdit(wxListEvent &event)
 }
 
 ///
-void MacrosWindow::OnAdd(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnAdd(wxCommandEvent & /* event */)
 {
    // Similar to Bug 2284 we may need to save a changed macro.
    if (!ChangeOK()) {
@@ -1043,7 +1043,7 @@ void MacrosWindow::OnAdd(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnRemove(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnRemove(wxCommandEvent & /* event */)
 {
    long item = mMacros->GetNextItem(-1,
                                     wxLIST_NEXT_ALL,
@@ -1084,7 +1084,7 @@ void MacrosWindow::OnRemove(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnRename(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnRename(wxCommandEvent & /* event */)
 {
    long item = mMacros->GetNextItem(-1,
                                     wxLIST_NEXT_ALL,
@@ -1098,7 +1098,7 @@ void MacrosWindow::OnRename(wxCommandEvent & WXUNUSED(event))
 }
 
 /// Reset a built in macro.
-void MacrosWindow::OnRestore(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnRestore(wxCommandEvent & /* event */)
 {
    mMacroCommands.RestoreMacro(mActiveMacro);
 
@@ -1109,7 +1109,7 @@ void MacrosWindow::OnRestore(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnImport(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnImport(wxCommandEvent & /* event */)
 {
    if (!ChangeOK()) {
       return;
@@ -1136,7 +1136,7 @@ void MacrosWindow::OnImport(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnExport(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnExport(wxCommandEvent & /* event */)
 {
    long item = mMacros->GetNextItem(-1,
                                     wxLIST_NEXT_ALL,
@@ -1148,7 +1148,7 @@ void MacrosWindow::OnExport(wxCommandEvent & WXUNUSED(event))
    mMacroCommands.WriteMacro(mMacros->GetItemText(item), this);
 }
 
-void MacrosWindow::OnSave(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnSave(wxCommandEvent & /* event */)
 {
    SaveChanges();
 }
@@ -1156,14 +1156,14 @@ void MacrosWindow::OnSave(wxCommandEvent & WXUNUSED(event))
 
 /// An item in the list has been selected.
 /// Bring up a dialog to allow its parameters to be edited.
-void MacrosWindow::OnCommandActivated(wxListEvent & WXUNUSED(event))
+void MacrosWindow::OnCommandActivated(wxListEvent & /* event */)
 {
    wxCommandEvent dummy;
    OnEditCommandParams( dummy );
 }
 
 ///
-void MacrosWindow::OnInsert(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnInsert(wxCommandEvent & /* event */)
 {
    long item = mList->GetNextItem(-1,
                                   wxLIST_NEXT_ALL,
@@ -1202,7 +1202,7 @@ void MacrosWindow::InsertCommandAt(int item)
 
 }
 
-void MacrosWindow::OnEditCommandParams(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnEditCommandParams(wxCommandEvent & /* event */)
 {
    int item = mList->GetNextItem( -1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED );
 
@@ -1242,7 +1242,7 @@ void MacrosWindow::OnEditCommandParams(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnDelete(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnDelete(wxCommandEvent & /* event */)
 {
    long item = mList->GetNextItem(-1,
                                   wxLIST_NEXT_ALL,
@@ -1264,7 +1264,7 @@ void MacrosWindow::OnDelete(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnUp(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnUp(wxCommandEvent & /* event */)
 {
    long item = mList->GetNextItem(-1,
                                   wxLIST_NEXT_ALL,
@@ -1286,7 +1286,7 @@ void MacrosWindow::OnUp(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnDown(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnDown(wxCommandEvent & /* event */)
 {
    long item = mList->GetNextItem(-1,
                                   wxLIST_NEXT_ALL,
@@ -1339,7 +1339,7 @@ bool MacrosWindow::SaveChanges(){
 }
 
 /// Send changed values back to Prefs, and update Audacity.
-void MacrosWindow::OnOK(wxCommandEvent & WXUNUSED(event))
+void MacrosWindow::OnOK(wxCommandEvent & /* event */)
 {
    if( !SaveChanges() )
       return;
@@ -1348,7 +1348,7 @@ void MacrosWindow::OnOK(wxCommandEvent & WXUNUSED(event))
 }
 
 ///
-void MacrosWindow::OnCancel(wxCommandEvent &WXUNUSED(event))
+void MacrosWindow::OnCancel(wxCommandEvent &/* event */)
 {
    bool bWasChanged = mChanged;
    if (!ChangeOK()) {

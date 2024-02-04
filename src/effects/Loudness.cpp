@@ -571,7 +571,7 @@ bool EffectLoudness::UpdateProgress()
    return !TotalProgress(mProgressVal, mProgressMsg);
 }
 
-void EffectLoudness::OnChoice(wxCommandEvent & WXUNUSED(evt))
+void EffectLoudness::OnChoice(wxCommandEvent & /* evt */)
 {
    mChoice->GetValidator()->TransferFromWindow();
    mBook->SetSelection( mNormalizeTo );
@@ -579,7 +579,7 @@ void EffectLoudness::OnChoice(wxCommandEvent & WXUNUSED(evt))
    mDualMonoCheckBox->Enable(mNormalizeTo == kLoudness);
 }
 
-void EffectLoudness::OnUpdateUI(wxCommandEvent & WXUNUSED(evt))
+void EffectLoudness::OnUpdateUI(wxCommandEvent & /* evt */)
 {
    UpdateUI();
 }

@@ -550,7 +550,7 @@ void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
 }
 
 // Come here from button clicks only
-void TranscriptionToolBar::OnPlaySpeed(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnPlaySpeed(wxCommandEvent & /* event */)
 {
    auto button = mButtons[TTB_PlaySpeed];
 
@@ -561,7 +561,7 @@ void TranscriptionToolBar::OnPlaySpeed(wxCommandEvent & WXUNUSED(event))
    PlayAtSpeed(looped, cutPreview);
 }
 
-void TranscriptionToolBar::OnSpeedSlider(wxCommandEvent& WXUNUSED(event))
+void TranscriptionToolBar::OnSpeedSlider(wxCommandEvent& /* event */)
 {
    SetPlaySpeed( (mPlaySpeedSlider->Get()) * 100 );
    RegenerateTooltips();
@@ -576,7 +576,7 @@ void TranscriptionToolBar::OnSpeedSlider(wxCommandEvent& WXUNUSED(event))
 }
 
 #ifdef EXPERIMENTAL_VOICE_DETECTION
-void TranscriptionToolBar::OnStartOn(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnStartOn(wxCommandEvent & /* event */)
 {
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
@@ -608,7 +608,7 @@ void TranscriptionToolBar::OnStartOn(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void TranscriptionToolBar::OnStartOff(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnStartOff(wxCommandEvent & /* event */)
 {
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
@@ -641,7 +641,7 @@ void TranscriptionToolBar::OnStartOff(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void TranscriptionToolBar::OnEndOn(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnEndOn(wxCommandEvent & /* event */)
 {
 
    //If IO is busy, abort immediately
@@ -678,7 +678,7 @@ void TranscriptionToolBar::OnEndOn(wxCommandEvent & WXUNUSED(event))
 
 
 
-void TranscriptionToolBar::OnEndOff(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnEndOff(wxCommandEvent & /* event */)
 {
 
    //If IO is busy, abort immediately
@@ -714,7 +714,7 @@ void TranscriptionToolBar::OnEndOff(wxCommandEvent & WXUNUSED(event))
 
 
 
-void TranscriptionToolBar::OnSelectSound(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnSelectSound(wxCommandEvent & /* event */)
 {
 
    //If IO is busy, abort immediately
@@ -753,7 +753,7 @@ void TranscriptionToolBar::OnSelectSound(wxCommandEvent & WXUNUSED(event))
    SetButton(false,mButtons[TTB_SelectSound]);
 }
 
-void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & /* event */)
 {
 
    //If IO is busy, abort immediately
@@ -793,7 +793,7 @@ void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & WXUNUSED(event))
 
 
 
-void TranscriptionToolBar::OnCalibrate(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnCalibrate(wxCommandEvent & /* event */)
 {
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
@@ -891,7 +891,7 @@ int DoAddLabel(
 //This automates selection through a selected region,
 //selecting its best guess for words and creating labels at those points.
 
-void TranscriptionToolBar::OnAutomateSelection(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnAutomateSelection(wxCommandEvent & /* event */)
 {
 
 
@@ -974,7 +974,7 @@ void TranscriptionToolBar::OnAutomateSelection(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void TranscriptionToolBar::OnMakeLabel(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnMakeLabel(wxCommandEvent & /* event */)
 {
    SetButton(false, mButtons[TTB_MakeLabel]);
    DoAddLabel( mProject, ViewInfo::Get( mProject ).selectedRegion );
@@ -986,12 +986,12 @@ double TranscriptionToolBar::GetSensitivity()
    return (double)mSensitivity;
 }
 
-void TranscriptionToolBar::OnSensitivitySlider(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::OnSensitivitySlider(wxCommandEvent & /* event */)
 {
    mSensitivity = (mSensitivitySlider->Get());
 }
 
-void TranscriptionToolBar::SetKeyType(wxCommandEvent & WXUNUSED(event))
+void TranscriptionToolBar::SetKeyType(wxCommandEvent & /* event */)
 {
    int value = mKeyTypeChoice->GetSelection();
 

@@ -154,7 +154,7 @@ public:
       return empty;
    }
 
-   void SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUSED(Use)) override
+   void SetStreamUsage(wxInt32 /* StreamID */, bool /* Use */) override
    {}
 
 private:
@@ -213,7 +213,7 @@ void MyFLACFile::metadata_callback(const FLAC__StreamMetadata *metadata)
    }
 }
 
-void MyFLACFile::error_callback(FLAC__StreamDecoderErrorStatus WXUNUSED(status))
+void MyFLACFile::error_callback(FLAC__StreamDecoderErrorStatus /* status */)
 {
    mWasError = true;
 

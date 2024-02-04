@@ -548,7 +548,7 @@ void EffectChangePitch::Calc_PercentChange()
 
 
 // handlers
-void EffectChangePitch::OnChoice_FromPitch(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnChoice_FromPitch(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -570,7 +570,7 @@ void EffectChangePitch::OnChoice_FromPitch(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnSpin_FromOctave(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnSpin_FromOctave(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -592,7 +592,7 @@ void EffectChangePitch::OnSpin_FromOctave(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnChoice_ToPitch(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnChoice_ToPitch(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -613,7 +613,7 @@ void EffectChangePitch::OnChoice_ToPitch(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnSpin_ToOctave(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnSpin_ToOctave(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -644,7 +644,7 @@ void EffectChangePitch::OnSpin_ToOctave(wxCommandEvent & WXUNUSED(evt))
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnText_SemitonesChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnText_SemitonesChange(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -677,7 +677,7 @@ void EffectChangePitch::OnText_SemitonesChange(wxCommandEvent & WXUNUSED(evt))
    EnableApply(bIsGoodValue);
 }
 
-void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -712,7 +712,7 @@ void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & WXUNUSED(evt))
    EnableApply(true);
 }
 
-void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -749,7 +749,7 @@ void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & WXUNUSED(evt))
    EnableApply(bIsGoodValue);
 }
 
-void EffectChangePitch::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnText_PercentChange(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;
@@ -779,7 +779,7 @@ void EffectChangePitch::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
    EnableApply(true);
 }
 
-void EffectChangePitch::OnSlider_PercentChange(wxCommandEvent & WXUNUSED(evt))
+void EffectChangePitch::OnSlider_PercentChange(wxCommandEvent & /* evt */)
 {
    if (m_bLoopDetect)
       return;

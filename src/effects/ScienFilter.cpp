@@ -219,7 +219,7 @@ unsigned EffectScienFilter::GetAudioOutCount()
    return 1;
 }
 
-bool EffectScienFilter::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool EffectScienFilter::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    for (int iPair = 0; iPair < (mOrder + 1) / 2; iPair++)
       mpBiquad[iPair].Reset();
@@ -715,27 +715,27 @@ float EffectScienFilter::FilterMagnAtFreq(float Freq)
    return Magn;
 }
 
-void EffectScienFilter::OnOrder(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnOrder(wxCommandEvent & /* evt */)
 {
    mOrderIndex = mFilterOrderCtl->GetSelection();
    mOrder = mOrderIndex + 1;	// 0..n-1 -> 1..n
    mPanel->Refresh(false);
 }
 
-void EffectScienFilter::OnFilterType(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnFilterType(wxCommandEvent & /* evt */)
 {
    mFilterType = mFilterTypeCtl->GetSelection();
    EnableDisableRippleCtl(mFilterType);
    mPanel->Refresh(false);
 }
 
-void EffectScienFilter::OnFilterSubtype(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnFilterSubtype(wxCommandEvent & /* evt */)
 {
    mFilterSubtype = mFilterSubTypeCtl->GetSelection();
    mPanel->Refresh(false);
 }
 
-void EffectScienFilter::OnCutoff(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnCutoff(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -745,7 +745,7 @@ void EffectScienFilter::OnCutoff(wxCommandEvent & WXUNUSED(evt))
    mPanel->Refresh(false);
 }
 
-void EffectScienFilter::OnRipple(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnRipple(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -755,7 +755,7 @@ void EffectScienFilter::OnRipple(wxCommandEvent & WXUNUSED(evt))
    mPanel->Refresh(false);
 }
 
-void EffectScienFilter::OnStopbandRipple(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnStopbandRipple(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -765,12 +765,12 @@ void EffectScienFilter::OnStopbandRipple(wxCommandEvent & WXUNUSED(evt))
    mPanel->Refresh(false);
 }
 
-void EffectScienFilter::OnSliderDBMIN(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnSliderDBMIN(wxCommandEvent & /* evt */)
 {
    TransferGraphLimitsFromWindow();
 }
 
-void EffectScienFilter::OnSliderDBMAX(wxCommandEvent & WXUNUSED(evt))
+void EffectScienFilter::OnSliderDBMAX(wxCommandEvent & /* evt */)
 {
    TransferGraphLimitsFromWindow();
 }
@@ -866,12 +866,12 @@ bool EffectScienFilterPanel::AcceptsFocusFromKeyboard() const
    return false;
 }
 
-void EffectScienFilterPanel::OnSize(wxSizeEvent & WXUNUSED(evt))
+void EffectScienFilterPanel::OnSize(wxSizeEvent & /* evt */)
 {
    Refresh(false);
 }
 
-void EffectScienFilterPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void EffectScienFilterPanel::OnPaint(wxPaintEvent & /* evt */)
 {
    wxPaintDC dc(this);
    int width, height;

@@ -39,7 +39,7 @@ protected:
    // Actions to perform at the respective points in the generation process
    // NEW virtuals
    virtual void BeforeGenerate() { };
-   virtual void BeforeTrack(const WaveTrack & WXUNUSED(track)) { };
+   virtual void BeforeTrack(const WaveTrack & /* track */) { };
 
    // Actions to perform upon respective outcomes
    // (For example, Success might save the parameters that were used.)

@@ -40,7 +40,7 @@ void BatchEvalCommandType::BuildSignature(CommandSignature &signature)
 }
 
 OldStyleCommandPointer BatchEvalCommandType::Create( TenacityProject &project,
-   std::unique_ptr<CommandOutputTargets> && WXUNUSED(target))
+   std::unique_ptr<CommandOutputTargets> && /* target */)
 {
    return std::make_shared<BatchEvalCommand>(project, *this);
 }

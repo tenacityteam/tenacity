@@ -38,7 +38,7 @@ class DeviceToolBar final : public ToolBar {
 
    void DeinitChildren();
    void Populate() override;
-   void Repaint(wxDC * WXUNUSED(dc)) override {};
+   void Repaint(wxDC * /* dc */) override {};
    void EnableDisableButtons() override;
    void OnFocus(wxFocusEvent &event);
    void OnCaptureKey(wxCommandEvent &event);

@@ -614,19 +614,19 @@ void EffectPresetsDialog::UpdateUI()
    }
 }
 
-void EffectPresetsDialog::OnType(wxCommandEvent & WXUNUSED(evt))
+void EffectPresetsDialog::OnType(wxCommandEvent & /* evt */)
 {
    UpdateUI();
 }
 
-void EffectPresetsDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
+void EffectPresetsDialog::OnOk(wxCommandEvent & /* evt */)
 {
    UpdateUI();
 
    EndModal(true);
 }
 
-void EffectPresetsDialog::OnCancel(wxCommandEvent & WXUNUSED(evt))
+void EffectPresetsDialog::OnCancel(wxCommandEvent & /* evt */)
 {
    mSelection = wxEmptyString;
 

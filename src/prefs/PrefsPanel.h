@@ -116,7 +116,7 @@ class TENACITY_DLL_API PrefsPanel /* not final */
    // If it returns True, the Preview button is added below the panel
    // Default returns false
    virtual bool ShowsPreviewButton();
-   virtual void PopulateOrExchange( ShuttleGui & WXUNUSED(S) ){};
+   virtual void PopulateOrExchange( ShuttleGui & /* S */ ){};
 
    //! If not empty string, the Help button is added below the panel
    /*! Default returns empty string. */

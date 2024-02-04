@@ -291,7 +291,7 @@ void EnvelopeEditor::MoveDragPoint(const wxMouseEvent & event, wxRect & r,
 bool EnvelopeEditor::HandleDragging(const wxMouseEvent & event, wxRect & r,
                                const ZoomInfo &zoomInfo, bool dB, double dBRange,
                                float zoomMin, float zoomMax,
-                               float WXUNUSED(eMin), float WXUNUSED(eMax))
+                               float eMin, float eMax)
 {
    mDirty = true;
 

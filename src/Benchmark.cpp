@@ -161,7 +161,7 @@ BenchmarkDialog::BenchmarkDialog(
 
 // WDR: handler implementations for BenchmarkDialog
 
-void BenchmarkDialog::OnClose(wxCommandEvent & WXUNUSED(event))
+void BenchmarkDialog::OnClose(wxCommandEvent & /* event */)
 {
    EndModal(0);
 }
@@ -263,7 +263,7 @@ void BenchmarkDialog::MakeBenchmarkDialog()
    SetSizeHints(GetSize());
 }
 
-void BenchmarkDialog::OnSave( wxCommandEvent & WXUNUSED(event))
+void BenchmarkDialog::OnSave( wxCommandEvent & /* event */)
 {
 /* i18n-hint: Benchmark means a software speed test;
    leave untranslated file extension .txt */
@@ -284,7 +284,7 @@ void BenchmarkDialog::OnSave( wxCommandEvent & WXUNUSED(event))
    mText->SaveFile(fName);
 }
 
-void BenchmarkDialog::OnClear(wxCommandEvent & WXUNUSED(event))
+void BenchmarkDialog::OnClear(wxCommandEvent & /* event */)
 {
    mText->Clear();
 }
@@ -316,7 +316,7 @@ void BenchmarkDialog::FlushPrint()
    mToPrint = wxT("");
 }
 
-void BenchmarkDialog::OnRun( wxCommandEvent & WXUNUSED(event))
+void BenchmarkDialog::OnRun( wxCommandEvent & /* event */)
 {
    TransferDataFromWindow();
 

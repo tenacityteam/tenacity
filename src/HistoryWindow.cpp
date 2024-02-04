@@ -273,7 +273,7 @@ void HistoryDialog::UpdateLevels()
 #endif
 }
 
-void HistoryDialog::OnDiscard(wxCommandEvent & WXUNUSED(event))
+void HistoryDialog::OnDiscard(wxCommandEvent & /* event */)
 {
    int i = mLevels->GetValue();
 
@@ -287,12 +287,12 @@ void HistoryDialog::OnDiscard(wxCommandEvent & WXUNUSED(event))
    DoUpdate();
 }
 
-void HistoryDialog::OnDiscardClipboard(wxCommandEvent & WXUNUSED(event))
+void HistoryDialog::OnDiscardClipboard(wxCommandEvent & /* event */)
 {
    Clipboard::Get().Clear();
 }
 
-void HistoryDialog::OnCompact(wxCommandEvent & WXUNUSED(event))
+void HistoryDialog::OnCompact(wxCommandEvent & /* event */)
 {
    auto &projectFileIO = ProjectFileIO::Get(*mProject);
 
@@ -312,7 +312,7 @@ void HistoryDialog::OnCompact(wxCommandEvent & WXUNUSED(event))
       XO("History"));
 }
 
-void HistoryDialog::OnGetURL(wxCommandEvent & WXUNUSED(event))
+void HistoryDialog::OnGetURL(wxCommandEvent & /* event */)
 {
    HelpSystem::ShowHelp(this, L"Undo,_Redo_and_History");
 }
@@ -365,7 +365,7 @@ void HistoryDialog::OnListKeyDown(wxKeyEvent & event)
    }
 }
 
-void HistoryDialog::OnCloseWindow(wxCloseEvent & WXUNUSED(event))
+void HistoryDialog::OnCloseWindow(wxCloseEvent & /* event */)
 {
    this->Show(false);
 }
@@ -378,7 +378,7 @@ void HistoryDialog::OnShow(wxShowEvent & event)
    }
 }
 
-void HistoryDialog::OnSize(wxSizeEvent & WXUNUSED(event))
+void HistoryDialog::OnSize(wxSizeEvent & /* event */)
 {
    Layout();
    mList->SetColumnWidth(0, mList->GetClientSize().x - mList->GetColumnWidth(1));

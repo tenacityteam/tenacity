@@ -229,7 +229,7 @@ unsigned EffectDistortion::GetAudioOutCount()
    return 1;
 }
 
-bool EffectDistortion::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool EffectDistortion::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    InstanceInit(mMaster, mSampleRate);
    return true;
@@ -249,7 +249,7 @@ bool EffectDistortion::RealtimeInitialize()
    return true;
 }
 
-bool EffectDistortion::RealtimeAddProcessor(unsigned WXUNUSED(numChannels), float sampleRate)
+bool EffectDistortion::RealtimeAddProcessor(unsigned /* numChannels */, float sampleRate)
 {
    EffectDistortionState slave;
 

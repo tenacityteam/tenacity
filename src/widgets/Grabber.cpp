@@ -216,7 +216,7 @@ void Grabber::OnLeftUp(wxMouseEvent & event)
 //
 // Handle mouse enter events
 //
-void Grabber::OnEnter(wxMouseEvent & WXUNUSED(event))
+void Grabber::OnEnter(wxMouseEvent & /* event */)
 {
 #if defined(__WXMAC__)
    // Bug 2416:  On Mac, we can get Enter events from grabbers other
@@ -245,7 +245,7 @@ void Grabber::OnEnter(wxMouseEvent & WXUNUSED(event))
 //
 // Handle mouse leave events
 //
-void Grabber::OnLeave(wxMouseEvent & WXUNUSED(event))
+void Grabber::OnLeave(wxMouseEvent & /* event */)
 {
 #if defined(__WXMAC__)
    // Bug 2416:  On Mac, we can get Leave events from grabbers other
@@ -267,7 +267,7 @@ void Grabber::OnLeave(wxMouseEvent & WXUNUSED(event))
 //
 // Handle the paint events
 //
-void Grabber::OnPaint(wxPaintEvent & WXUNUSED(event))
+void Grabber::OnPaint(wxPaintEvent & /* event */)
 {
    wxPaintDC dc(this);
 

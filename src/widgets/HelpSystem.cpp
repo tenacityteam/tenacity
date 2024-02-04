@@ -326,7 +326,7 @@ void HtmlTextDialog::SetHtml(const wxString& text)
    mpHtml->SetPage(text);
 }
 
-void HtmlTextDialog::OnClose(wxCommandEvent & WXUNUSED(event))
+void HtmlTextDialog::OnClose(wxCommandEvent & /* event */)
 {
    if (IsModal() && !mDismissed)
    {

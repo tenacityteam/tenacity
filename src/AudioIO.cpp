@@ -2971,7 +2971,7 @@ int AudioIoCallback::AudioCallback(
    constSamplePtr inputBuffer, float *outputBuffer,
    unsigned long framesPerBuffer,
    const PaStreamCallbackTimeInfo *timeInfo,
-   const PaStreamCallbackFlags statusFlags, void * WXUNUSED(userData) )
+   const PaStreamCallbackFlags statusFlags, void * /* userData */ )
 {
    // Poll tracks for change of state.  User might click mute and solo buttons.
    mbHasSoloTracks = CountSoloingTracks() > 0 ;

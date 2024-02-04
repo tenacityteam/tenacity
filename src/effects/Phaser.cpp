@@ -144,7 +144,7 @@ unsigned EffectPhaser::GetAudioOutCount()
    return 1;
 }
 
-bool EffectPhaser::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames chanMap)
+bool EffectPhaser::ProcessInitialize(sampleCount /* totalLen */, ChannelNames chanMap)
 {
    InstanceInit(mMaster, mSampleRate);
    if (chanMap[0] == ChannelNameFrontRight)
@@ -169,7 +169,7 @@ bool EffectPhaser::RealtimeInitialize()
    return true;
 }
 
-bool EffectPhaser::RealtimeAddProcessor(unsigned WXUNUSED(numChannels), float sampleRate)
+bool EffectPhaser::RealtimeAddProcessor(unsigned /* numChannels */, float sampleRate)
 {
    EffectPhaserState slave;
 
@@ -501,7 +501,7 @@ void EffectPhaser::OnGainSlider(wxCommandEvent & evt)
    EnableApply(mUIParent->Validate());
 }
 
-void EffectPhaser::OnStagesText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnStagesText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -511,7 +511,7 @@ void EffectPhaser::OnStagesText(wxCommandEvent & WXUNUSED(evt))
    mStagesS->SetValue((int) (mStages * SCL_Stages));
 }
 
-void EffectPhaser::OnDryWetText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnDryWetText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -521,7 +521,7 @@ void EffectPhaser::OnDryWetText(wxCommandEvent & WXUNUSED(evt))
    mDryWetS->SetValue((int) (mDryWet * SCL_DryWet));
 }
 
-void EffectPhaser::OnFreqText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnFreqText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -531,7 +531,7 @@ void EffectPhaser::OnFreqText(wxCommandEvent & WXUNUSED(evt))
    mFreqS->SetValue((int) (mFreq * SCL_Freq));
 }
 
-void EffectPhaser::OnPhaseText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnPhaseText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -541,7 +541,7 @@ void EffectPhaser::OnPhaseText(wxCommandEvent & WXUNUSED(evt))
    mPhaseS->SetValue((int) (mPhase * SCL_Phase));
 }
 
-void EffectPhaser::OnDepthText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnDepthText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -551,7 +551,7 @@ void EffectPhaser::OnDepthText(wxCommandEvent & WXUNUSED(evt))
    mDepthS->SetValue((int) (mDepth * SCL_Depth));
 }
 
-void EffectPhaser::OnFeedbackText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnFeedbackText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {
@@ -561,7 +561,7 @@ void EffectPhaser::OnFeedbackText(wxCommandEvent & WXUNUSED(evt))
    mFeedbackS->SetValue((int) (mFeedback * SCL_Feedback));
 }
 
-void EffectPhaser::OnGainText(wxCommandEvent & WXUNUSED(evt))
+void EffectPhaser::OnGainText(wxCommandEvent & /* evt */)
 {
    if (!EnableApply(mUIParent->TransferDataFromWindow()))
    {

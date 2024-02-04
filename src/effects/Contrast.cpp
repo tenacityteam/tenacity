@@ -359,14 +359,14 @@ ContrastDialog::ContrastDialog(wxWindow * parent, wxWindowID id,
    Center();
 }
 
-void ContrastDialog::OnGetURL(wxCommandEvent & WXUNUSED(event))
+void ContrastDialog::OnGetURL(wxCommandEvent & /* event */)
 {
    // Original help page is back on-line (March 2016), but the manual should be more reliable.
    // http://www.eramp.com/WCAG_2_audio_contrast_tool_help.htm
    HelpSystem::ShowHelp(this, L"Contrast");
 }
 
-void ContrastDialog::OnClose(wxCommandEvent & WXUNUSED(event))
+void ContrastDialog::OnClose(wxCommandEvent & /* event */)
 {
    wxCommandEvent dummyEvent;
    OnReset(dummyEvent);
@@ -528,7 +528,7 @@ void ContrastDialog::results()
    }
 }
 
-void ContrastDialog::OnExport(wxCommandEvent & WXUNUSED(event))
+void ContrastDialog::OnExport(wxCommandEvent & /* event */)
 {
    // TODO: Handle silence checks better (-infinity dB)
    auto project = FindProjectFromWindow( this );

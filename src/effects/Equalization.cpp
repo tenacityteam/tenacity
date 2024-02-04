@@ -2862,7 +2862,7 @@ void EffectEqualization::OnSlider(wxCommandEvent & event)
    EnvelopeUpdated();
 }
 
-void EffectEqualization::OnInterp(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnInterp(wxCommandEvent & /* event */)
 {
    bool bIsGraphic = !mDrawMode;
    if (bIsGraphic)
@@ -2873,30 +2873,30 @@ void EffectEqualization::OnInterp(wxCommandEvent & WXUNUSED(event))
    mInterp = mInterpChoice->GetSelection();
 }
 
-void EffectEqualization::OnDrawMode(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnDrawMode(wxCommandEvent & /* event */)
 {
    mDrawMode = true;
    UpdateDraw();
 }
 
-void EffectEqualization::OnGraphicMode(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnGraphicMode(wxCommandEvent & /* event */)
 {
    mDrawMode = false;
    UpdateGraphic();
 }
 
-void EffectEqualization::OnSliderM(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnSliderM(wxCommandEvent & /* event */)
 {
    TransferDataFromWindow();
    ForceRecalc();
 }
 
-void EffectEqualization::OnSliderDBMIN(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnSliderDBMIN(wxCommandEvent & /* event */)
 {
    TransferDataFromWindow();
 }
 
-void EffectEqualization::OnSliderDBMAX(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnSliderDBMAX(wxCommandEvent & /* event */)
 {
    TransferDataFromWindow();
 }
@@ -2904,7 +2904,7 @@ void EffectEqualization::OnSliderDBMAX(wxCommandEvent & WXUNUSED(event))
 //
 // New curve was selected
 //
-void EffectEqualization::OnCurve(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnCurve(wxCommandEvent & /* event */)
 {
    // Select NEW curve
    wxASSERT( mCurve != NULL );
@@ -2916,7 +2916,7 @@ void EffectEqualization::OnCurve(wxCommandEvent & WXUNUSED(event))
 //
 // User wants to modify the list in some way
 //
-void EffectEqualization::OnManage(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnManage(wxCommandEvent & /* event */)
 {
    EditCurvesDialog d(mUIParent, this, mCurve->GetSelection());
    d.ShowModal();
@@ -2928,12 +2928,12 @@ void EffectEqualization::OnManage(wxCommandEvent & WXUNUSED(event))
    mUIParent->Layout();
 }
 
-void EffectEqualization::OnClear(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnClear(wxCommandEvent & /* event */)
 {
    Flatten();
 }
 
-void EffectEqualization::OnInvert(wxCommandEvent & WXUNUSED(event)) // Inverts any curve
+void EffectEqualization::OnInvert(wxCommandEvent & /* event */) // Inverts any curve
 {
    if(!mDrawMode)   // Graphic (Slider) mode. Invert the sliders.
    {
@@ -3001,13 +3001,13 @@ void EffectEqualization::OnInvert(wxCommandEvent & WXUNUSED(event)) // Inverts a
    EnvelopeUpdated();
 }
 
-void EffectEqualization::OnGridOnOff(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnGridOnOff(wxCommandEvent & /* event */)
 {
    mDrawGrid = mGridOnOff->IsChecked();
    mPanel->Refresh(false);
 }
 
-void EffectEqualization::OnLinFreq(wxCommandEvent & WXUNUSED(event))
+void EffectEqualization::OnLinFreq(wxCommandEvent & /* event */)
 {
    mLin = mLinFreq->IsChecked();
    if(IsLinear())  //going from log to lin freq scale
@@ -3110,13 +3110,13 @@ void EqualizationPanel::Recalc()
    InverseRealFFT(mEffect->mWindowSize, mEffect->mFilterFuncR.get(), mEffect->mFilterFuncI.get(), mOutr.get());
 }
 
-void EqualizationPanel::OnSize(wxSizeEvent &  WXUNUSED(event))
+void EqualizationPanel::OnSize(wxSizeEvent &  /* event */)
 {
    Refresh( false );
 }
 
 #include "../TrackPanelDrawingContext.h"
-void EqualizationPanel::OnPaint(wxPaintEvent &  WXUNUSED(event))
+void EqualizationPanel::OnPaint(wxPaintEvent &  /* event */)
 {
    wxPaintDC dc(this);
    if(mRecalcRequired) {
@@ -3326,7 +3326,7 @@ void EqualizationPanel::OnMouseEvent(wxMouseEvent & event)
    }
 }
 
-void EqualizationPanel::OnCaptureLost(wxMouseCaptureLostEvent & WXUNUSED(event))
+void EqualizationPanel::OnCaptureLost(wxMouseCaptureLostEvent & /* event */)
 {
    if (HasCapture())
    {
@@ -3445,7 +3445,7 @@ void EditCurvesDialog::PopulateList(int position)
    mList->SetItemState(position, wxLIST_STATE_SELECTED|wxLIST_STATE_FOCUSED, wxLIST_STATE_SELECTED|wxLIST_STATE_FOCUSED);
 }
 
-void EditCurvesDialog::OnUp(wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnUp(wxCommandEvent & /* event */)
 {
    long item = mList->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
    if ( item == -1 )
@@ -3483,7 +3483,7 @@ void EditCurvesDialog::OnUp(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void EditCurvesDialog::OnDown(wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnDown(wxCommandEvent & /* event */)
 {  // looks harder than OnUp as we need to seek backwards up the list, hence GetPreviousItem
    long item = GetPreviousItem(mList->GetItemCount());
    if( item == -1 )
@@ -3528,7 +3528,7 @@ long EditCurvesDialog::GetPreviousItem(long item)  // wx doesn't have this
 }
 
 // Rename curve/curves
-void EditCurvesDialog::OnRename(wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnRename(wxCommandEvent & /* event */)
 {
    wxString name;
    int numCurves = mEditCurves.size();
@@ -3644,7 +3644,7 @@ void EditCurvesDialog::OnRename(wxCommandEvent & WXUNUSED(event))
 }
 
 // Delete curve/curves
-void EditCurvesDialog::OnDelete(wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnDelete(wxCommandEvent & /* event */)
 {
    // We could count them here
    // And then put in a 'Delete N items?' prompt.
@@ -3743,7 +3743,7 @@ static const FileNames::FileTypes &XMLtypes()
    return results;
 }
 
-void EditCurvesDialog::OnImport( wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnImport( wxCommandEvent & /* event */)
 {
    FileDialogWrapper filePicker(
       this,
@@ -3766,7 +3766,7 @@ void EditCurvesDialog::OnImport( wxCommandEvent & WXUNUSED(event))
    return;
 }
 
-void EditCurvesDialog::OnExport( wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnExport( wxCommandEvent & /* event */)
 {
    FileDialogWrapper filePicker(this, XO("Export EQ curves as..."),
       FileNames::DataDir(), wxT(""),
@@ -3818,13 +3818,13 @@ void EditCurvesDialog::OnExport( wxCommandEvent & WXUNUSED(event))
          XO("No curves exported") );
 }
 
-void EditCurvesDialog::OnLibrary( wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnLibrary( wxCommandEvent & /* event */)
 {
    // full path to wiki.
    wxLaunchDefaultBrowser(wxT("https://wiki.audacityteam.org/wiki/EQCurvesDownload"));
 }
 
-void EditCurvesDialog::OnDefaults( wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnDefaults( wxCommandEvent & /* event */)
 {
    EQCurveArray temp;
    temp = mEffect->mCurves;
@@ -3835,7 +3835,7 @@ void EditCurvesDialog::OnDefaults( wxCommandEvent & WXUNUSED(event))
    PopulateList(0);  // update the EditCurvesDialog dialog
 }
 
-void EditCurvesDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+void EditCurvesDialog::OnOK(wxCommandEvent & /* event */)
 {
    // Make a backup of the current curves
    wxString backupPlace = wxFileName( FileNames::DataDir(), wxT("EQBackup.xml") ).GetFullPath();

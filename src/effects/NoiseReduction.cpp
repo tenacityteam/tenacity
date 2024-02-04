@@ -1656,7 +1656,7 @@ void EffectNoiseReduction::Dialog::EnableDisableSensitivityControls()
 }
 #endif
 
-void EffectNoiseReduction::Dialog::OnGetProfile(wxCommandEvent & WXUNUSED(event))
+void EffectNoiseReduction::Dialog::OnGetProfile(wxCommandEvent & /* event */)
 {
    // Project has not be changed so skip pushing state
    EffectManager::Get().SetSkipStateFlag(true);
@@ -1669,7 +1669,7 @@ void EffectNoiseReduction::Dialog::OnGetProfile(wxCommandEvent & WXUNUSED(event)
 }
 
 // This handles the whole radio group
-void EffectNoiseReduction::Dialog::OnNoiseReductionChoice( wxCommandEvent & WXUNUSED(event))
+void EffectNoiseReduction::Dialog::OnNoiseReductionChoice( wxCommandEvent & /* event */)
 {
    if (mKeepSignal->GetValue())
       mTempSettings.mNoiseReductionChoice = NRC_REDUCE_NOISE;
@@ -1691,7 +1691,7 @@ void EffectNoiseReduction::Dialog::OnMethodChoice(wxCommandEvent &)
 }
 #endif
 
-void EffectNoiseReduction::Dialog::OnPreview(wxCommandEvent & WXUNUSED(event))
+void EffectNoiseReduction::Dialog::OnPreview(wxCommandEvent & /* event */)
 {
    if (!TransferDataFromWindow())
       return;
@@ -1704,7 +1704,7 @@ void EffectNoiseReduction::Dialog::OnPreview(wxCommandEvent & WXUNUSED(event))
    m_pEffect->Preview( false );
 }
 
-void EffectNoiseReduction::Dialog::OnReduceNoise( wxCommandEvent & WXUNUSED(event))
+void EffectNoiseReduction::Dialog::OnReduceNoise( wxCommandEvent & /* event */)
 {
    if (!TransferDataFromWindow())
       return;
@@ -1712,12 +1712,12 @@ void EffectNoiseReduction::Dialog::OnReduceNoise( wxCommandEvent & WXUNUSED(even
    EndModal(2);
 }
 
-void EffectNoiseReduction::Dialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void EffectNoiseReduction::Dialog::OnCancel(wxCommandEvent & /* event */)
 {
    EndModal(0);
 }
 
-void EffectNoiseReduction::Dialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void EffectNoiseReduction::Dialog::OnHelp(wxCommandEvent & /* event */)
 {
    HelpSystem::ShowHelp(this, "Noise_Reduction", true);
 }

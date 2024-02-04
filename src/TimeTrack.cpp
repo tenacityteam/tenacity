@@ -216,7 +216,7 @@ void TimeTrack::Paste(double t, const Track * src)
       (void)0;// intentionally do nothing.
 }
 
-void TimeTrack::Silence(double WXUNUSED(t0), double WXUNUSED(t1))
+void TimeTrack::Silence(double /* t0 */, double /* t1 */)
 {
 }
 
@@ -283,7 +283,7 @@ bool TimeTrack::HandleXMLTag(const std::string_view& tag, const AttributesList &
    return false;
 }
 
-void TimeTrack::HandleXMLEndTag(const std::string_view&  WXUNUSED(tag))
+void TimeTrack::HandleXMLEndTag(const std::string_view&  /* tag */)
 {
    if(mRescaleXMLValues)
    {

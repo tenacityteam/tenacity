@@ -2438,7 +2438,7 @@ int NyquistEffect::StaticGetCallback(float *buffer, int channel,
 }
 
 int NyquistEffect::GetCallback(float *buffer, int ch,
-                               int64_t start, int64_t len, int64_t WXUNUSED(totlen))
+                               int64_t start, int64_t len, int64_t /* totlen */)
 {
    if (mCurBuffer[ch]) {
       if ((mCurStart[ch] + start) < mCurBufferStart[ch] ||
@@ -3001,7 +3001,7 @@ static const FileNames::FileType
    , LispScripts = { XO("Lisp scripts"), { wxT("lsp") }, true }
 ;
 
-void NyquistEffect::OnLoad(wxCommandEvent & WXUNUSED(evt))
+void NyquistEffect::OnLoad(wxCommandEvent & /* evt */)
 {
    if (mCommandText->IsModified())
    {
@@ -3039,7 +3039,7 @@ void NyquistEffect::OnLoad(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void NyquistEffect::OnSave(wxCommandEvent & WXUNUSED(evt))
+void NyquistEffect::OnSave(wxCommandEvent & /* evt */)
 {
    FileDialogWrapper dlog(
       mUIParent,

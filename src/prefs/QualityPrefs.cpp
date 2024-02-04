@@ -190,7 +190,7 @@ void QualityPrefs::PopulateOrExchange(ShuttleGui & S)
 
 /// Enables or disables the Edit box depending on
 /// whether we selected 'Other...' or not.
-void QualityPrefs::OnSampleRateChoice(wxCommandEvent & WXUNUSED(e))
+void QualityPrefs::OnSampleRateChoice(wxCommandEvent & /* e */)
 {
    int sel = mSampleRates->GetSelection();
    mOtherSampleRate->Enable(sel == (int)mSampleRates->GetCount() - 1);

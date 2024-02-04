@@ -1802,7 +1802,7 @@ void Sequence::ConsistencyCheck(const wxChar *whereStr, bool mayThrow) const
 void Sequence::ConsistencyCheck
    (const BlockArray &mBlock, size_t maxSamples, size_t from,
     sampleCount mNumSamples, const wxChar *whereStr,
-    bool WXUNUSED(mayThrow))
+    bool /* mayThrow */)
 {
    // Construction of the exception at the appropriate line of the function
    // gives a little more discrimination

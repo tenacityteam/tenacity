@@ -460,7 +460,7 @@ void MeterPanel::UpdateSelectedPrefs(int id)
       UpdatePrefs();
 }
 
-void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
+void MeterPanel::OnPaint(wxPaintEvent & /* event */)
 {
 #if defined(__WXMAC__)
    auto paintDC = std::make_unique<wxPaintDC>(this);
@@ -749,7 +749,7 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
    }
 }
 
-void MeterPanel::OnSize(wxSizeEvent & WXUNUSED(event))
+void MeterPanel::OnSize(wxSizeEvent & /* event */)
 {
    GetClientSize(&mWidth, &mHeight);
 
@@ -909,13 +909,13 @@ void MeterPanel::OnKeyUp(wxKeyEvent &evt)
    }
 }
 
-void MeterPanel::OnSetFocus(wxFocusEvent & WXUNUSED(evt))
+void MeterPanel::OnSetFocus(wxFocusEvent & /* evt */)
 {
    mIsFocused = true;
    Refresh(false);
 }
 
-void MeterPanel::OnKillFocus(wxFocusEvent & WXUNUSED(evt))
+void MeterPanel::OnKillFocus(wxFocusEvent & /* evt */)
 {
    mIsFocused = false;
    Refresh(false);
@@ -1075,7 +1075,7 @@ void MeterPanel::UpdateDisplay(
 //   mQueue.Put(msg);
 //}
 
-void MeterPanel::OnMeterUpdate(wxTimerEvent & WXUNUSED(event))
+void MeterPanel::OnMeterUpdate(wxTimerEvent & /* event */)
 {
    MeterUpdateMsg msg;
    int numChanges = 0;
@@ -1974,12 +1974,12 @@ void MeterPanel::ShowMenu(const wxPoint & pos)
 #endif
 }
 
-void MeterPanel::OnMonitor(wxCommandEvent & WXUNUSED(event))
+void MeterPanel::OnMonitor(wxCommandEvent & /* event */)
 {
    StartMonitoring();
 }
 
-void MeterPanel::OnPreferences(wxCommandEvent & WXUNUSED(event))
+void MeterPanel::OnPreferences(wxCommandEvent & /* event */)
 {
    wxTextCtrl *rate;
    wxRadioButton *gradient;
@@ -2134,7 +2134,7 @@ MeterAx::~MeterAx()
 // or > 0 (the action for a child).
 // Return wxACC_NOT_SUPPORTED if there is no default action for this
 // window (e.g. an edit control).
-wxAccStatus MeterAx::DoDefaultAction(int WXUNUSED(childId))
+wxAccStatus MeterAx::DoDefaultAction(int /* childId */)
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
@@ -2169,14 +2169,14 @@ wxAccStatus MeterAx::GetChildCount(int* childCount)
 // object, not what the object does as a result. For example, a
 // toolbar button that prints a document has a default action of
 // "Press" rather than "Prints the current document."
-wxAccStatus MeterAx::GetDefaultAction(int WXUNUSED(childId), wxString* actionName)
+wxAccStatus MeterAx::GetDefaultAction(int /* childId */, wxString* actionName)
 {
    *actionName = _("Press");
    return wxACC_OK;
 }
 
 // Returns the description for this object or a child.
-wxAccStatus MeterAx::GetDescription(int WXUNUSED(childId), wxString *description)
+wxAccStatus MeterAx::GetDescription(int /* childId */, wxString *description)
 {
    description->clear();
    return wxACC_NOT_SUPPORTED;
@@ -2194,7 +2194,7 @@ wxAccStatus MeterAx::GetFocus(int* childId, wxAccessible** child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus MeterAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
+wxAccStatus MeterAx::GetHelpText(int /* childId */, wxString *helpText)
 {
    helpText->clear();
    return wxACC_NOT_SUPPORTED;
@@ -2202,7 +2202,7 @@ wxAccStatus MeterAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus MeterAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
+wxAccStatus MeterAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
 {
    shortcut->clear();
    return wxACC_OK;
@@ -2210,7 +2210,7 @@ wxAccStatus MeterAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortc
 
 // Returns the rectangle for this object (id = 0) or a child element (id > 0).
 // rect is in screen coordinates.
-wxAccStatus MeterAx::GetLocation(wxRect & rect, int WXUNUSED(elementId))
+wxAccStatus MeterAx::GetLocation(wxRect & rect, int /* elementId */)
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
@@ -2221,7 +2221,7 @@ wxAccStatus MeterAx::GetLocation(wxRect & rect, int WXUNUSED(elementId))
 }
 
 // Gets the name of the specified object.
-wxAccStatus MeterAx::GetName(int WXUNUSED(childId), wxString* name)
+wxAccStatus MeterAx::GetName(int /* childId */, wxString* name)
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
@@ -2269,7 +2269,7 @@ wxAccStatus MeterAx::GetName(int WXUNUSED(childId), wxString* name)
 }
 
 // Returns a role constant.
-wxAccStatus MeterAx::GetRole(int WXUNUSED(childId), wxAccRole* role)
+wxAccStatus MeterAx::GetRole(int /* childId */, wxAccRole* role)
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
@@ -2289,13 +2289,13 @@ wxAccStatus MeterAx::GetRole(int WXUNUSED(childId), wxAccRole* role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus MeterAx::GetSelections(wxVariant * WXUNUSED(selections))
+wxAccStatus MeterAx::GetSelections(wxVariant * /* selections */)
 {
    return wxACC_NOT_IMPLEMENTED;
 }
 
 // Returns a state constant.
-wxAccStatus MeterAx::GetState(int WXUNUSED(childId), long* state)
+wxAccStatus MeterAx::GetState(int /* childId */, long* state)
 {
    MeterPanel *m = wxDynamicCast( GetWindow(), MeterPanel );
 
@@ -2307,7 +2307,7 @@ wxAccStatus MeterAx::GetState(int WXUNUSED(childId), long* state)
 
 // Returns a localized string representing the value for the object
 // or child.
-wxAccStatus MeterAx::GetValue(int WXUNUSED(childId), wxString* WXUNUSED(strValue))
+wxAccStatus MeterAx::GetValue(int /* childId */, wxString* /* strValue */)
 {
    return wxACC_NOT_SUPPORTED;
 }

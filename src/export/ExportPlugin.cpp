@@ -147,12 +147,12 @@ bool ExportPlugin::IsExtension(const FileExtension & ext, int index)
     return isext;
 }
 
-bool ExportPlugin::DisplayOptions(wxWindow * WXUNUSED(parent), int WXUNUSED(format))
+bool ExportPlugin::DisplayOptions(wxWindow * /* parent */, int /* format */)
 {
     return false;
 }
 
-void ExportPlugin::OptionsCreate(ShuttleGui &S, int WXUNUSED(format))
+void ExportPlugin::OptionsCreate(ShuttleGui &S, int /* format */)
 {
     S.StartHorizontalLay(wxCENTER);
     {

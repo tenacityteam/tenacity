@@ -872,7 +872,7 @@ void ToolDock::OnGrabber( GrabberEvent & event )
 //
 // Handle sizing
 //
-void ToolDock::OnSize( wxSizeEvent & WXUNUSED(event) )
+void ToolDock::OnSize( wxSizeEvent & /* event */ )
 {
 //   event.Skip();
 }
@@ -880,7 +880,7 @@ void ToolDock::OnSize( wxSizeEvent & WXUNUSED(event) )
 //
 // Repaint toolbar gap lines
 //
-void ToolDock::OnPaint( wxPaintEvent & WXUNUSED(event) )
+void ToolDock::OnPaint( wxPaintEvent & /* event */ )
 {
    // Don't use a wxBufferedPaintDC() here.  It produces a bogus
    // background on Windows and GTK.

@@ -58,7 +58,7 @@ public:
    size_t get_nsamples_for_fill();//how many samples are required to be added for a complete buffer refill (at start of the song or after seek)
 
 private:
-   void process_spectrum(float *WXUNUSED(freq)) {};
+   void process_spectrum(float* /* freq */) {};
 
    const float samplerate;
    const float rap;
@@ -239,7 +239,7 @@ bool EffectPaulstretch::TransferDataFromWindow()
 
 // EffectPaulstretch implementation
 
-void EffectPaulstretch::OnText(wxCommandEvent & WXUNUSED(evt))
+void EffectPaulstretch::OnText(wxCommandEvent & /* evt */)
 {
    EnableApply(mUIParent->TransferDataFromWindow());
 }

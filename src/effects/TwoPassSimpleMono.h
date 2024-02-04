@@ -42,11 +42,11 @@ protected:
 
    // Override this method to actually process audio
    virtual bool ProcessPass1
-      (float * WXUNUSED(buffer), size_t WXUNUSED(len))
+      (float * /* buffer */, size_t /* len */)
    { return false; }
 
    virtual bool ProcessPass2
-      (float * WXUNUSED(buffer), size_t WXUNUSED(len))
+      (float * /* buffer */, size_t /* len */)
    { return false; }
 
    // Override this method to actually process audio with access to 2 sequential buffers at a time
@@ -54,10 +54,10 @@ protected:
    // This allows implementation of processing with delays
    // The default just calls the one-buffer-at-a-time method
    virtual bool TwoBufferProcessPass1
-      (float *buffer1, size_t len1, float * WXUNUSED(buffer2), size_t WXUNUSED(len2))
+      (float *buffer1, size_t len1, float * /* buffer2 */, size_t /* len2 */)
    { if(buffer1 != NULL) return ProcessPass1(buffer1, len1); else return true; }
    virtual bool TwoBufferProcessPass2
-      (float *buffer1, size_t len1, float * WXUNUSED(buffer2), size_t WXUNUSED(len2))
+      (float *buffer1, size_t len1, float * /* buffer2 */, size_t /* len2 */)
    { if(buffer1 != NULL) return ProcessPass2(buffer1, len1); else return true; }
 
    // End of NEW virtuals

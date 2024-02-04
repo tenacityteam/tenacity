@@ -151,7 +151,7 @@ UIHandle::Result TrackPanelResizeHandle::Drag
    }
 
    // Common pieces of code for MONO_WAVE_PAN and otherwise.
-   auto doResizeBelow = [&] (Track *prev, bool WXUNUSED(vStereo)) {
+   auto doResizeBelow = [&] (Track *prev, bool /* vStereo */) {
       // TODO: more-than-two-channels
       
       auto &prevView = TrackView::Get( *prev );
@@ -175,7 +175,7 @@ UIHandle::Result TrackPanelResizeHandle::Drag
       prevView.SetExpandedHeight(newUpperTrackHeight);
    };
 
-   auto doResizeBetween = [&] (Track *next, bool WXUNUSED(vStereo)) {
+   auto doResizeBetween = [&] (Track *next, bool /* vStereo */) {
       // TODO: more-than-two-channels
 
       auto &nextView = TrackView::Get( *next );

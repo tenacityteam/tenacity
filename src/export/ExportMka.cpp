@@ -78,7 +78,7 @@ public:
     bool TransferDataFromWindow() override;
 };
 
-ExportMKAOptions::ExportMKAOptions(wxWindow *parent, int WXUNUSED(format))
+ExportMKAOptions::ExportMKAOptions(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
     ShuttleGui S(this, eIsCreatingFromPrefs);

@@ -359,7 +359,7 @@ UIHandle::Result NoteTrackVZoomHandle::Release
    return RefreshAll;
 }
 
-UIHandle::Result NoteTrackVZoomHandle::Cancel(TenacityProject *WXUNUSED(pProject))
+UIHandle::Result NoteTrackVZoomHandle::Cancel(TenacityProject* /* pProject */)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.

@@ -386,7 +386,7 @@ void OnPasteNewLabel(const CommandContext &context)
    }
 }
 
-void OnToggleTypeToCreateLabel(const CommandContext &WXUNUSED(context) )
+void OnToggleTypeToCreateLabel(const CommandContext &/* context */ )
 {
    bool typeToCreateLabel;
    gPrefs->Read(wxT("/GUI/TypeToCreateLabel"), &typeToCreateLabel, false);

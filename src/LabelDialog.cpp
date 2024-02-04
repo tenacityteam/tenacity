@@ -286,7 +286,7 @@ void LabelDialog::PopulateOrExchange( ShuttleGui & S )
    S.EndHorizontalLay();
 }
 
-void LabelDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void LabelDialog::OnHelp(wxCommandEvent & /* event */)
 {
    const auto &page = GetHelpPageName();
    HelpSystem::ShowHelp(this, page, true);
@@ -592,7 +592,7 @@ void LabelDialog::OnInsert(wxCommandEvent &event)
    mGrid->ShowCellEditControl();
 }
 
-void LabelDialog::OnRemove(wxCommandEvent & WXUNUSED(event))
+void LabelDialog::OnRemove(wxCommandEvent & /* event */)
 {
    int row = mGrid->GetGridCursorRow();
    int col = mGrid->GetGridCursorCol();
@@ -630,7 +630,7 @@ void LabelDialog::OnRemove(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void LabelDialog::OnImport(wxCommandEvent & WXUNUSED(event))
+void LabelDialog::OnImport(wxCommandEvent & /* event */)
 {
    // Ask user for a filename
    wxString fileName =
@@ -670,7 +670,7 @@ void LabelDialog::OnImport(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void LabelDialog::OnExport(wxCommandEvent & WXUNUSED(event))
+void LabelDialog::OnExport(wxCommandEvent & /* event */)
 {
    int cnt = mData.size();
 
@@ -812,7 +812,7 @@ void LabelDialog::OnCellChange(wxGridEvent &event)
    return;
 }
 
-void LabelDialog::OnChangeTrack(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
+void LabelDialog::OnChangeTrack(wxGridEvent & /* event */, int row, RowData *rd)
 {
    wxString val = mGrid->GetCellValue(row, Col_Track);
 
@@ -846,7 +846,7 @@ void LabelDialog::OnChangeTrack(wxGridEvent & WXUNUSED(event), int row, RowData 
    return;
 }
 
-void LabelDialog::OnChangeLabel(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
+void LabelDialog::OnChangeLabel(wxGridEvent & /* event */, int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    rd->title = mGrid->GetCellValue(row, Col_Label);
@@ -854,7 +854,7 @@ void LabelDialog::OnChangeLabel(wxGridEvent & WXUNUSED(event), int row, RowData 
    return;
 }
 
-void LabelDialog::OnChangeStime(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
+void LabelDialog::OnChangeStime(wxGridEvent & /* event */, int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double t {};
@@ -866,7 +866,7 @@ void LabelDialog::OnChangeStime(wxGridEvent & WXUNUSED(event), int row, RowData 
    return;
 }
 
-void LabelDialog::OnChangeEtime(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
+void LabelDialog::OnChangeEtime(wxGridEvent & /* event */, int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double t {};
@@ -878,7 +878,7 @@ void LabelDialog::OnChangeEtime(wxGridEvent & WXUNUSED(event), int row, RowData 
    return;
 }
 
-void LabelDialog::OnChangeLfreq(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
+void LabelDialog::OnChangeLfreq(wxGridEvent & /* event */, int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double f;
@@ -890,7 +890,7 @@ void LabelDialog::OnChangeLfreq(wxGridEvent & WXUNUSED(event), int row, RowData 
    return;
 }
 
-void LabelDialog::OnChangeHfreq(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
+void LabelDialog::OnChangeHfreq(wxGridEvent & /* event */, int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double f;
@@ -921,7 +921,7 @@ void LabelDialog::WriteSize(){
    gPrefs->Flush();
 }
 
-void LabelDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+void LabelDialog::OnOK(wxCommandEvent & /* event */)
 {
    if (mGrid->IsCellEditControlShown()) {
       mGrid->SaveEditControlValue();
@@ -938,7 +938,7 @@ void LabelDialog::OnOK(wxCommandEvent & WXUNUSED(event))
    return;
 }
 
-void LabelDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void LabelDialog::OnCancel(wxCommandEvent & /* event */)
 {
    if (mGrid->IsCellEditControlShown()) {
       auto editor = mGrid->GetCellEditor(mGrid->GetGridCursorRow(),

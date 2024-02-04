@@ -151,11 +151,11 @@ void MacroCommandDialog::ValidateChoices()
 {
 }
 
-void MacroCommandDialog::OnChoice(wxCommandEvent & WXUNUSED(event))
+void MacroCommandDialog::OnChoice(wxCommandEvent & /* event */)
 {
 }
 
-void MacroCommandDialog::OnOk(wxCommandEvent & WXUNUSED(event))
+void MacroCommandDialog::OnOk(wxCommandEvent & /* event */)
 {
    mSelectedCommand = mInternalCommandName
       // .Strip(wxString::both) // PRL: used to do this, here only,
@@ -166,12 +166,12 @@ void MacroCommandDialog::OnOk(wxCommandEvent & WXUNUSED(event))
    EndModal(true);
 }
 
-void MacroCommandDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void MacroCommandDialog::OnCancel(wxCommandEvent & /* event */)
 {
    EndModal(false);
 }
 
-void MacroCommandDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+void MacroCommandDialog::OnHelp(wxCommandEvent & /* event */)
 {
    const auto &page = GetHelpPageName();
    HelpSystem::ShowHelp(this, page, true);
@@ -213,7 +213,7 @@ void MacroCommandDialog::OnItemSelected(wxListEvent &event)
    mParameters->SetValue(params);
 }
 
-void MacroCommandDialog::OnEditParams(wxCommandEvent & WXUNUSED(event))
+void MacroCommandDialog::OnEditParams(wxCommandEvent & /* event */)
 {
    auto command = mInternalCommandName;
    wxString params  = mParameters->GetValue();
@@ -224,7 +224,7 @@ void MacroCommandDialog::OnEditParams(wxCommandEvent & WXUNUSED(event))
    mParameters->Refresh();
 }
 
-void MacroCommandDialog::OnUsePreset(wxCommandEvent & WXUNUSED(event))
+void MacroCommandDialog::OnUsePreset(wxCommandEvent & /* event */)
 {
    auto command = mInternalCommandName;
    wxString params  = mParameters->GetValue();

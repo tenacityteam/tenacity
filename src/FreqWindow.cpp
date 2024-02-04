@@ -622,7 +622,7 @@ void FrequencyPlotDialog::Populate()
 #endif
 }
 
-void FrequencyPlotDialog::OnGetURL(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnGetURL(wxCommandEvent & /* event */)
 {
    // Original help page is back on-line (March 2016), but the manual should be more reliable.
    // http://www.eramp.com/WCAG_2_audio_contrast_tool_help.htm
@@ -712,7 +712,7 @@ void FrequencyPlotDialog::GetAudio()
    }
 }
 
-void FrequencyPlotDialog::OnSize(wxSizeEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnSize(wxSizeEvent & /* event */)
 {
    Layout();
 
@@ -979,17 +979,17 @@ void FrequencyPlotDialog::PlotMouseEvent(wxMouseEvent & event)
    }
 }
 
-void FrequencyPlotDialog::OnPanScroller(wxScrollEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnPanScroller(wxScrollEvent & /* event */)
 {
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnZoomSlider(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnZoomSlider(wxCommandEvent & /* event */)
 {
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnAlgChoice(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnAlgChoice(wxCommandEvent & /* event */)
 {
    mAlg = SpectrumAnalyst::Algorithm(mAlgChoice->GetSelection());
 
@@ -1006,7 +1006,7 @@ void FrequencyPlotDialog::OnAlgChoice(wxCommandEvent & WXUNUSED(event))
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnSizeChoice(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnSizeChoice(wxCommandEvent & /* event */)
 {
    long windowSize = 0;
    mSizeChoice->GetStringSelection().ToLong(&windowSize);
@@ -1015,12 +1015,12 @@ void FrequencyPlotDialog::OnSizeChoice(wxCommandEvent & WXUNUSED(event))
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnFuncChoice(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnFuncChoice(wxCommandEvent & /* event */)
 {
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnAxisChoice(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnAxisChoice(wxCommandEvent & /* event */)
 {
    mLogAxis = mAxisChoice->GetSelection() ? true : false;
    DrawPlot();
@@ -1100,12 +1100,12 @@ void FrequencyPlotDialog::PlotPaint(wxPaintEvent & event)
    dc.DrawRectangle(r);
 }
 
-void FrequencyPlotDialog::OnCloseWindow(wxCloseEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnCloseWindow(wxCloseEvent & /* event */)
 {
    Show(false);
 }
 
-void FrequencyPlotDialog::OnCloseButton(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnCloseButton(wxCommandEvent & /* event */)
 {
    gPrefs->Write(wxT("/FrequencyPlotDialog/DrawGrid"), mDrawGrid);
    gPrefs->Write(wxT("/FrequencyPlotDialog/SizeChoice"), mSizeChoice->GetSelection());
@@ -1167,7 +1167,7 @@ void FrequencyPlotDialog::Recalc()
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnExport(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnExport(wxCommandEvent & /* event */)
 {
    wxString fName = _("spectrum.txt");
 
@@ -1211,7 +1211,7 @@ void FrequencyPlotDialog::OnExport(wxCommandEvent & WXUNUSED(event))
    }
 }
 
-void FrequencyPlotDialog::OnReplot(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnReplot(wxCommandEvent & /* event */)
 {
    dBRange = DecibelScaleCutoff.Read();
    if(dBRange < 90.)
@@ -1220,14 +1220,14 @@ void FrequencyPlotDialog::OnReplot(wxCommandEvent & WXUNUSED(event))
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnGridOnOff(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnGridOnOff(wxCommandEvent & /* event */)
 {
    mDrawGrid = mGridOnOff->IsChecked();
 
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnRecalc(wxCommandEvent & WXUNUSED(event))
+void FrequencyPlotDialog::OnRecalc(wxCommandEvent & /* event */)
 {
    Recalc();
 }

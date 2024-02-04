@@ -121,12 +121,12 @@ const FileExtensions &VampEffectsModule::GetFileExtensions()
    return empty;
 }
 
-bool VampEffectsModule::AutoRegisterPlugins(PluginManagerInterface & WXUNUSED(pm))
+bool VampEffectsModule::AutoRegisterPlugins(PluginManagerInterface & /* pm */)
 {
    return false;
 }
 
-PluginPaths VampEffectsModule::FindPluginPaths(PluginManagerInterface & WXUNUSED(pm))
+PluginPaths VampEffectsModule::FindPluginPaths(PluginManagerInterface & /* pm */)
 {
    PluginPaths names;
 

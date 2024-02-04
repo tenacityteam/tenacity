@@ -50,7 +50,7 @@ void GetWideMuteSoloHorizontalBounds( const wxRect & rect, wxRect &dest )
 
 void MuteOrSoloDrawFunction
 ( wxDC *dc, const wxRect &bev, const Track *pTrack, bool down, 
-  bool WXUNUSED(captured),
+  bool /* captured */,
   bool solo, bool hit )
 {
    //bev.Inflate(-1, -1);

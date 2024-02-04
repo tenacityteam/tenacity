@@ -536,7 +536,7 @@ void EffectNormalize::ProcessData(float *buffer, size_t len, float offset)
    }
 }
 
-void EffectNormalize::OnUpdateUI(wxCommandEvent & WXUNUSED(evt))
+void EffectNormalize::OnUpdateUI(wxCommandEvent & /* evt */)
 {
    UpdateUI();
 }

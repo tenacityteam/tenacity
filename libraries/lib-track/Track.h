@@ -450,30 +450,29 @@ public:
    // Create a NEW track and modify this track
    // Return non-NULL or else throw
    // May assume precondition: t0 <= t1
-   virtual Holder Cut(double WXUNUSED(t0), double WXUNUSED(t1)) = 0;
+   virtual Holder Cut(double t0, double t1) = 0;
 
    // Create a NEW track and don't modify this track
    // Return non-NULL or else throw
    // Note that subclasses may want to distinguish tracks stored in a clipboard
    // from those stored in a project
    // May assume precondition: t0 <= t1
-   virtual Holder Copy
-      (double WXUNUSED(t0), double WXUNUSED(t1), bool forClipboard = true) const = 0;
+   virtual Holder Copy(double t0, double t1, bool forClipboard = true) const = 0;
 
    // May assume precondition: t0 <= t1
-   virtual void Clear(double WXUNUSED(t0), double WXUNUSED(t1)) = 0;
+   virtual void Clear(double t0, double t1) = 0;
 
-   virtual void Paste(double WXUNUSED(t), const Track * WXUNUSED(src)) = 0;
+   virtual void Paste(double t, const Track * src) = 0;
 
    // This can be used to adjust a sync-lock selected track when the selection
    // is replaced by one of a different length.
    virtual void SyncLockAdjust(double oldT1, double newT1);
 
    // May assume precondition: t0 <= t1
-   virtual void Silence(double WXUNUSED(t0), double WXUNUSED(t1)) = 0;
+   virtual void Silence(double t0, double t1) = 0;
 
    // May assume precondition: t0 <= t1
-   virtual void InsertSilence(double WXUNUSED(t), double WXUNUSED(len)) = 0;
+   virtual void InsertSilence(double t, double len) = 0;
 
 private:
    // Subclass responsibility implements only a part of Duplicate(), copying
@@ -864,7 +863,7 @@ public:
    static const TypeInfo &ClassTypeInfo();
 
    // Serialize, not with tags of its own, but as attributes within a tag.
-   void WriteXMLAttributes(XMLWriter &WXUNUSED(xmlFile)) const {}
+   void WriteXMLAttributes(XMLWriter& /* xmlFile */) const {}
 
    // Return true iff the attribute is recognized.
    bool HandleXMLAttribute(const std::string_view & /*attr*/, const XMLAttributeValueView &/*value*/)

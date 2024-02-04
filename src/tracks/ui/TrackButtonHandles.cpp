@@ -217,7 +217,7 @@ MenuButtonHandle::~MenuButtonHandle()
 }
 
 UIHandle::Result MenuButtonHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject, wxWindow *WXUNUSED(pParent))
+(const wxMouseEvent &, TenacityProject *pProject, wxWindow* /* pParent */)
 {
    auto &trackPanel = TrackPanel::Get( *pProject );
    auto pCell = mpCell.lock();

@@ -21,7 +21,7 @@
 
 bool ComputeSpectrum(const float * data, size_t width,
                      size_t windowSize,
-                     double WXUNUSED(rate), float *output,
+                     double /* rate */, float *output,
                      bool autocorrelation, int windowFunc)
 {
    if (width < windowSize)

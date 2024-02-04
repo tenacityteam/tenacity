@@ -144,7 +144,7 @@ void LV2EffectMeter::OnIdle(wxIdleEvent &evt)
    }
 }
 
-void LV2EffectMeter::OnPaint(wxPaintEvent &WXUNUSED(evt))
+void LV2EffectMeter::OnPaint(wxPaintEvent &/* evt */)
 {
    std::unique_ptr<wxDC> dc {wxAutoBufferedPaintDCFactory(this)};
 
@@ -177,7 +177,7 @@ void LV2EffectMeter::OnPaint(wxPaintEvent &WXUNUSED(evt))
    mLastValue = mControlPort->mVal;
 }
 
-void LV2EffectMeter::OnSize(wxSizeEvent &WXUNUSED(evt))
+void LV2EffectMeter::OnSize(wxSizeEvent &/* evt */)
 {
    Refresh(false);
 }
@@ -308,7 +308,7 @@ void LV2EffectSettingsDialog::PopulateOrExchange(ShuttleGui &S)
    Center();
 }
 
-void LV2EffectSettingsDialog::OnOk(wxCommandEvent &WXUNUSED(evt))
+void LV2EffectSettingsDialog::OnOk(wxCommandEvent &/* evt */)
 {
    if (!Validate())
    {
@@ -1037,7 +1037,7 @@ size_t LV2Effect::GetTailSize()
    return 0;
 }
 
-bool LV2Effect::ProcessInitialize(sampleCount WXUNUSED(totalLen), ChannelNames WXUNUSED(chanMap))
+bool LV2Effect::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* chanMap */)
 {
    mProcess = InitInstance(mSampleRate);
    if (!mProcess)
@@ -1209,7 +1209,7 @@ bool LV2Effect::RealtimeFinalize()
    return true;
 }
 
-bool LV2Effect::RealtimeAddProcessor(unsigned WXUNUSED(numChannels), float sampleRate)
+bool LV2Effect::RealtimeAddProcessor(unsigned /* numChannels */, float sampleRate)
 {
    LV2Wrapper *slave = InitInstance(sampleRate);
    if (!slave)
@@ -2902,8 +2902,8 @@ void LV2Effect::OnSize(wxSizeEvent & evt)
 
 // static callback
 uint32_t LV2Effect::uri_to_id(LV2_URI_Map_Callback_Data callback_data,
-                              const char *WXUNUSED(map),
-                              const char *uri)
+                              const char* /* map */,
+                              const char* uri)
 {
    return ((LV2Effect *) callback_data)->URID_Map(uri);
 }

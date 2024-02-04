@@ -264,7 +264,7 @@ END_EVENT_TABLE()
 
 ///
 ///
-ExportMP3Options::ExportMP3Options(wxWindow *parent, int WXUNUSED(format))
+ExportMP3Options::ExportMP3Options(wxWindow *parent, int /* format */)
 :  wxPanelWrapper(parent, wxID_ANY)
 {
    mSetRate = gPrefs->Read(wxT("/FileFormats/MP3SetRate"), PRESET_STANDARD);
@@ -486,7 +486,7 @@ int ValidateIndex( const std::vector<int> &values, int value, int defaultIndex )
 
 ///
 ///
-void ExportMP3Options::OnSET(wxCommandEvent& WXUNUSED(event))
+void ExportMP3Options::OnSET(wxCommandEvent& /* event */)
 {
    LoadNames(setRateNames);
 
@@ -497,7 +497,7 @@ void ExportMP3Options::OnSET(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportMP3Options::OnVBR(wxCommandEvent& WXUNUSED(event))
+void ExportMP3Options::OnVBR(wxCommandEvent& /* event */)
 {
    LoadNames(varRateNames);
 
@@ -508,7 +508,7 @@ void ExportMP3Options::OnVBR(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportMP3Options::OnABR(wxCommandEvent& WXUNUSED(event))
+void ExportMP3Options::OnABR(wxCommandEvent& /* event */)
 {
    LoadNames(fixRateNames);
 
@@ -519,7 +519,7 @@ void ExportMP3Options::OnABR(wxCommandEvent& WXUNUSED(event))
 
 ///
 ///
-void ExportMP3Options::OnCBR(wxCommandEvent& WXUNUSED(event))
+void ExportMP3Options::OnCBR(wxCommandEvent& /* event */)
 {
    LoadNames(fixRateNames);
 
@@ -528,7 +528,7 @@ void ExportMP3Options::OnCBR(wxCommandEvent& WXUNUSED(event))
    //mMode->Enable(false);
 }
 
-void ExportMP3Options::OnQuality(wxCommandEvent& WXUNUSED(event))
+void ExportMP3Options::OnQuality(wxCommandEvent& /* event */)
 {
    int sel = mRate->GetSelection();
 
@@ -915,7 +915,7 @@ ExportMP3::ExportMP3()
    SetDescription(XO("MP3 Files"),0);
 }
 
-bool ExportMP3::CheckFileName(wxFileName & WXUNUSED(filename), int WXUNUSED(format))
+bool ExportMP3::CheckFileName(wxFileName & /* filename */, int /* format */)
 {
    return true;
 }
@@ -938,7 +938,7 @@ ProgressResult ExportMP3::Export(TenacityProject *project,
                        double t1,
                        MixerSpec *mixerSpec,
                        const Tags *metadata,
-                       int WXUNUSED(subformat))
+                       int /* subformat */)
 {
    int rate = lrint( ProjectRate::Get( *project ).GetRate());
    const auto &tracks = TrackList::Get( *project );
@@ -1259,7 +1259,7 @@ using id3_tag_holder = std::unique_ptr<id3_tag, id3_tag_deleter>;
 #endif
 
 // returns buffer len; caller frees
-unsigned long ExportMP3::AddTags(TenacityProject *WXUNUSED(project), ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags)
+unsigned long ExportMP3::AddTags(TenacityProject* /* project */, ArrayOf<char> &buffer, bool *endOfFile, const Tags *tags)
 {
 #ifdef USE_LIBID3TAG
    id3_tag_holder tp { id3_tag_new() };

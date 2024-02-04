@@ -1201,7 +1201,7 @@ void AdornedRulerPanel::OnAudioStartStop(wxCommandEvent & evt)
       DoSelectionChange( mViewInfo->selectedRegion );
 }
 
-void AdornedRulerPanel::OnPaint(wxPaintEvent & WXUNUSED(evt))
+void AdornedRulerPanel::OnPaint(wxPaintEvent & /* evt */)
 {
    auto &viewInfo = ViewInfo::Get( *GetProject() );
    mLastDrawnH = viewInfo.h;

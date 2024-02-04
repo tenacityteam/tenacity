@@ -253,7 +253,7 @@ void EffectRepeat::DisplayNewTime()
    mTotalTime->SetName(str); // fix for bug 577 (NVDA/Narrator screen readers do not read static text in dialogs)
 }
 
-void EffectRepeat::OnRepeatTextChange(wxCommandEvent & WXUNUSED(evt))
+void EffectRepeat::OnRepeatTextChange(wxCommandEvent & /* evt */)
 {
    DisplayNewTime();
 }

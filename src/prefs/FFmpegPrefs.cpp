@@ -142,7 +142,7 @@ void FFmpegPrefs::SetFFmpegVersionText()
    mFFmpegVersion->SetValue(GetFFmpegVersion());
 }
 
-void FFmpegPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
+void FFmpegPrefs::OnFFmpegFindButton(wxCommandEvent& /* event */)
 {
 #ifdef USE_FFMPEG
    bool showerrs =

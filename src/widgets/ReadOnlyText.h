@@ -85,7 +85,7 @@ public:
          event.Skip();
       });
 
-      Bind(wxEVT_PAINT, [&](wxPaintEvent & WXUNUSED(event))
+      Bind(wxEVT_PAINT, [&](wxPaintEvent & /* event */)
       {
          wxPaintDC dc(this);
 

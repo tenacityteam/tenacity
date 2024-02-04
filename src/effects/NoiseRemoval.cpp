@@ -660,17 +660,17 @@ NoiseRemovalDialog::NoiseRemovalDialog(EffectNoiseRemoval * effect,
       (wxButton *)wxWindow::FindWindowById(wxID_OK, this);
 }
 
-void NoiseRemovalDialog::OnGetProfile( wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnGetProfile( wxCommandEvent & /* event */)
 {
    EndModal(1);
 }
 
-void NoiseRemovalDialog::OnKeepNoise( wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnKeepNoise( wxCommandEvent & /* event */)
 {
    mbLeaveNoise = mKeepNoise->GetValue();
 }
 
-void NoiseRemovalDialog::OnPreview(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnPreview(wxCommandEvent & /* event */)
 {
    // Save & restore parameters around Preview, because we didn't do OK.
    bool oldDoProfile = m_pEffect->mDoProfile;
@@ -701,13 +701,13 @@ void NoiseRemovalDialog::OnPreview(wxCommandEvent & WXUNUSED(event))
    m_pEffect->Preview( false );
 }
 
-void NoiseRemovalDialog::OnRemoveNoise( wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnRemoveNoise( wxCommandEvent & /* event */)
 {
    mbLeaveNoise = mKeepNoise->GetValue();
    EndModal(2);
 }
 
-void NoiseRemovalDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnCancel(wxCommandEvent & /* event */)
 {
    EndModal(0);
 }
@@ -801,49 +801,49 @@ bool NoiseRemovalDialog::TransferDataFromWindow()
    return true;
 }
 
-void NoiseRemovalDialog::OnSensitivityText(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnSensitivityText(wxCommandEvent & /* event */)
 {
    mSensitivityT->GetValue().ToDouble(&mSensitivity);
    mSensitivityS->SetValue(TrapLong(mSensitivity*100.0 + (SENSITIVITY_MAX-SENSITIVITY_MIN+1)/2.0, SENSITIVITY_MIN, SENSITIVITY_MAX));
 }
 
-void NoiseRemovalDialog::OnGainText(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnGainText(wxCommandEvent & /* event */)
 {
    mGainT->GetValue().ToDouble(&mGain);
    mGainS->SetValue(TrapLong(mGain, GAIN_MIN, GAIN_MAX));
 }
 
-void NoiseRemovalDialog::OnFreqText(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnFreqText(wxCommandEvent & /* event */)
 {
    mFreqT->GetValue().ToDouble(&mFreq);
    mFreqS->SetValue(TrapLong(mFreq / 10, FREQ_MIN, FREQ_MAX));
 }
 
-void NoiseRemovalDialog::OnTimeText(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnTimeText(wxCommandEvent & /* event */)
 {
    mTimeT->GetValue().ToDouble(&mTime);
    mTimeS->SetValue(TrapLong(mTime * TIME_MAX + 0.5, TIME_MIN, TIME_MAX));
 }
 
-void NoiseRemovalDialog::OnSensitivitySlider(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnSensitivitySlider(wxCommandEvent & /* event */)
 {
    mSensitivity = mSensitivityS->GetValue()/100.0 - 20.0;
    mSensitivityT->SetValue(wxString::Format(wxT("%.2f"), mSensitivity));
 }
 
-void NoiseRemovalDialog::OnGainSlider(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnGainSlider(wxCommandEvent & /* event */)
 {
    mGain = mGainS->GetValue();
    mGainT->SetValue(wxString::Format(wxT("%d"), (int)mGain));
 }
 
-void NoiseRemovalDialog::OnFreqSlider(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnFreqSlider(wxCommandEvent & /* event */)
 {
    mFreq = mFreqS->GetValue() * 10;
    mFreqT->SetValue(wxString::Format(wxT("%d"), (int)mFreq));
 }
 
-void NoiseRemovalDialog::OnTimeSlider(wxCommandEvent & WXUNUSED(event))
+void NoiseRemovalDialog::OnTimeSlider(wxCommandEvent & /* event */)
 {
    mTime = mTimeS->GetValue() / (TIME_MAX*1.0);
    mTimeT->SetValue(wxString::Format(wxT("%.2f"), mTime));

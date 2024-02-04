@@ -31,7 +31,7 @@ class LyricsWindow final : public wxFrame,
    LyricsPanel *GetLyricsPanel() { return mLyricsPanel; };
 
  private:
-   void OnCloseWindow(wxCloseEvent & WXUNUSED(event));
+   void OnCloseWindow(wxCloseEvent & /* event */);
 
    void OnStyle_BouncingBall(wxCommandEvent &evt);
    void OnStyle_Highlight(wxCommandEvent &evt);

@@ -564,7 +564,7 @@ void ControlToolBar::OnKeyEvent(wxKeyEvent & event)
    event.Skip();
 }
 
-void ControlToolBar::OnPlay(wxCommandEvent & WXUNUSED(evt))
+void ControlToolBar::OnPlay(wxCommandEvent & /* evt */)
 {
    auto &projectAudioManager = ProjectAudioManager::Get( mProject );
    bool canStop = projectAudioManager.CanStopAudioStream();
@@ -593,7 +593,7 @@ void ControlToolBar::OnLoop(wxCommandEvent & evt)
   PlayLooped();
 }
 
-void ControlToolBar::OnStop(wxCommandEvent & WXUNUSED(evt))
+void ControlToolBar::OnStop(wxCommandEvent & /* evt */)
 {
    auto &projectAudioManager = ProjectAudioManager::Get( mProject );
    bool canStop = projectAudioManager.CanStopAudioStream();
@@ -626,7 +626,7 @@ void ControlToolBar::OnRecord(wxCommandEvent &evt)
    ProjectAudioManager::Get( mProject ).OnRecord( altAppearance );
 }
 
-void ControlToolBar::OnPause(wxCommandEvent & WXUNUSED(evt))
+void ControlToolBar::OnPause(wxCommandEvent & /* evt */)
 {
    ProjectAudioManager::Get( mProject ).OnPause();
 }
@@ -692,7 +692,7 @@ void ControlToolBar::OnIdle(wxIdleEvent & event)
    EnableDisableButtons();
 }
 
-void ControlToolBar::OnRewind(wxCommandEvent & WXUNUSED(evt))
+void ControlToolBar::OnRewind(wxCommandEvent & /* evt */)
 {
    mRewind->PushDown();
    mRewind->PopUp();
@@ -704,7 +704,7 @@ void ControlToolBar::OnRewind(wxCommandEvent & WXUNUSED(evt))
    }
 }
 
-void ControlToolBar::OnFF(wxCommandEvent & WXUNUSED(evt))
+void ControlToolBar::OnFF(wxCommandEvent & /* evt */)
 {
    mFF->PushDown();
    mFF->PopUp();

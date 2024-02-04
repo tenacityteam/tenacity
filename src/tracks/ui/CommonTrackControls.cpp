@@ -36,7 +36,7 @@ Paul Licameli split from TrackControls.cpp
 
 std::vector<UIHandlePtr> CommonTrackControls::HitTest
 (const TrackPanelMouseState &st,
- const TenacityProject *WXUNUSED(project))
+ const TenacityProject* /* project */)
 {
    // Hits are mutually exclusive, results single
 

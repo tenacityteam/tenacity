@@ -475,14 +475,14 @@ void ExportMultipleDialog::EnableControls()
    mExport->Enable(ok);
 }
 
-void ExportMultipleDialog::OnFormat(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnFormat(wxCommandEvent& /* event */)
 {
    mBook->ChangeSelection(mFormat->GetSelection());
 
    EnableControls();
 }
 
-void ExportMultipleDialog::OnOptions(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnOptions(wxCommandEvent& /* event */)
 {
    const int sel = mFormat->GetSelection();
    if (sel != wxNOT_FOUND)
@@ -506,7 +506,7 @@ void ExportMultipleDialog::OnOptions(wxCommandEvent& WXUNUSED(event))
    mPlugins[mPluginIndex]->DisplayOptions(this,mSubFormatIndex);
 }
 
-void ExportMultipleDialog::OnCreate(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnCreate(wxCommandEvent& /* event */)
 {
    wxFileName fn;
 
@@ -526,7 +526,7 @@ void ExportMultipleDialog::OnCreate(wxCommandEvent& WXUNUSED(event))
       this);
 }
 
-void ExportMultipleDialog::OnChoose(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnChoose(wxCommandEvent& /* event */)
 {
    wxDirDialogWrapper dlog(this,
       XO("Choose a location to save the exported files"),
@@ -536,52 +536,52 @@ void ExportMultipleDialog::OnChoose(wxCommandEvent& WXUNUSED(event))
       mDir->SetValue(dlog.GetPath());
 }
 
-void ExportMultipleDialog::OnLabel(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnLabel(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnFirst(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnFirst(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnFirstFileName(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnFirstFileName(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnTrack(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnTrack(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnByName(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnByName(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnByNumber(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnByNumber(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnPrefix(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnPrefix(wxCommandEvent& /* event */)
 {
    EnableControls();
 }
 
-void ExportMultipleDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnCancel(wxCommandEvent& /* event */)
 {
    EndModal(0);
 }
 
-void ExportMultipleDialog::OnHelp(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnHelp(wxCommandEvent& /* event */)
 {
    HelpSystem::ShowHelp(this, L"Export_Multiple", true);
 }
 
-void ExportMultipleDialog::OnExport(wxCommandEvent& WXUNUSED(event))
+void ExportMultipleDialog::OnExport(wxCommandEvent& /* event */)
 {
    ShuttleGui S(this, eIsSavingToPrefs);
    PopulateOrExchange(S);
@@ -1197,7 +1197,7 @@ void SuccessDialog::OnKeyDown(wxListEvent& event)
       event.Skip(); // allow standard behaviour
 }
 
-void SuccessDialog::OnItemActivated(wxListEvent& WXUNUSED(event))
+void SuccessDialog::OnItemActivated(wxListEvent& /* event */)
 {
    EndModal(1);
 }

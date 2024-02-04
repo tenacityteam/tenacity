@@ -445,7 +445,7 @@ public:
    {
    };
 
-   bool OnExec(const wxString & WXUNUSED(topic),
+   bool OnExec(const wxString & /* topic */,
                const wxString & data)
    {
       // Add the filename to the queue.  It will be opened by
@@ -612,7 +612,7 @@ bool TenacityApp::SafeMRUOpen(const wxString &fullPathStr)
    return GuardedCall< bool >( [&]{ return MRUOpen( fullPathStr ); } );
 }
 
-void TenacityApp::OnMRUClear(wxCommandEvent& WXUNUSED(event))
+void TenacityApp::OnMRUClear(wxCommandEvent& /* event */)
 {
    FileHistory::Global().Clear();
 }
@@ -637,7 +637,7 @@ void TenacityApp::OnMRUFile(wxCommandEvent& event) {
       history.Remove(n);
 }
 
-void TenacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
+void TenacityApp::OnTimer(wxTimerEvent& /* event */)
 {
    // Filenames are queued when Audacity receives a few of the
    // AppleEvent messages (via wxWidgets).  So, open any that are

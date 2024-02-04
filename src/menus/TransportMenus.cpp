@@ -669,7 +669,7 @@ void OnUnlockPlayRegion(const CommandContext &context)
    AdornedRulerPanel::Get( context.project ).UnlockPlayRegion();
 }
 
-void OnRescanDevices(const CommandContext &WXUNUSED(context) )
+void OnRescanDevices(const CommandContext &/* context */ )
 {
    DeviceManager::Instance()->Rescan();
 }
@@ -682,7 +682,7 @@ void OnSoundActivated(const CommandContext &context)
    dialog.ShowModal();
 }
 
-void OnToggleSoundActivated(const CommandContext &WXUNUSED(context) )
+void OnToggleSoundActivated(const CommandContext &/* context */ )
 {
    bool pause;
    gPrefs->Read(wxT("/AudioIO/SoundActivatedRecord"), &pause, false);
@@ -696,7 +696,7 @@ void OnTogglePinnedHead(const CommandContext &context)
    AdornedRulerPanel::Get( context.project ).TogglePinnedHead();
 }
 
-void OnTogglePlayRecording(const CommandContext &WXUNUSED(context) )
+void OnTogglePlayRecording(const CommandContext &/* context */ )
 {
    bool Duplex;
    gPrefs->Read(wxT("/AudioIO/Duplex"), &Duplex, true);
@@ -705,7 +705,7 @@ void OnTogglePlayRecording(const CommandContext &WXUNUSED(context) )
    MenuManager::ModifyAllProjectToolbarMenus();
 }
 
-void OnToggleSWPlaythrough(const CommandContext &WXUNUSED(context) )
+void OnToggleSWPlaythrough(const CommandContext &/* context */ )
 {
    bool SWPlaythrough;
    gPrefs->Read(wxT("/AudioIO/SWPlaythrough"), &SWPlaythrough, false);

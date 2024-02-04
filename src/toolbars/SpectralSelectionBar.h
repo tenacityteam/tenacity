@@ -38,7 +38,7 @@ public:
    void Create(wxWindow *parent) override;
 
    void Populate() override;
-   void Repaint(wxDC * WXUNUSED(dc)) override {};
+   void Repaint(wxDC * /* dc */) override {};
    void EnableDisableButtons() override {};
    void UpdatePrefs() override;
 
