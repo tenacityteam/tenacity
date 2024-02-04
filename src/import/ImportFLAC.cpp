@@ -78,11 +78,9 @@ extern "C" {
 }
 #endif
 
-/* FLACPP_API_VERSION_CURRENT is 6 for libFLAC++ from flac-1.1.3 (see <FLAC++/export.h>) */
-#if !defined FLACPP_API_VERSION_CURRENT || FLACPP_API_VERSION_CURRENT < 6
-#define LEGACY_FLAC
-#else
-#undef LEGACY_FLAC
+// FLACPP_API_VERSION_CURRENT is 9 starting in libFLAC++ 1.3.0 (see <FLAC++/export.h>)
+#if FLACPP_API_VERSION_CURRENT < 9
+#error Unsupported libFLAC++ version. You need libFLAC+++ 1.3.0 or later.
 #endif
 
 
@@ -345,18 +343,6 @@ FLACImportFileHandle::FLACImportFileHandle(const FilePath & name)
 
 bool FLACImportFileHandle::Init()
 {
-#ifdef LEGACY_FLAC
-   bool success = mFile->set_filename(OSINPUT(mFilename));
-   if (!success) {
-      return false;
-   }
-   mFile->set_metadata_respond(FLAC__METADATA_TYPE_STREAMINFO);
-   mFile->set_metadata_respond(FLAC__METADATA_TYPE_VORBIS_COMMENT);
-   FLAC::Decoder::File::State state = mFile->init();
-   if (state != FLAC__FILE_DECODER_OK) {
-      return false;
-   }
-#else
    if (!mHandle.Open(mFilename, wxT("rb"))) {
       return false;
    }
@@ -373,20 +359,13 @@ bool FLACImportFileHandle::Init()
    if (result != FLAC__STREAM_DECODER_INIT_STATUS_OK) {
       return false;
    }
-#endif
+
    mFile->process_until_end_of_metadata();
 
-#ifdef LEGACY_FLAC
-   state = mFile->get_state();
-   if (state != FLAC__FILE_DECODER_OK) {
-      return false;
-   }
-#else
-   // not necessary to check state, error callback will catch errors, but here's how:
+   // error callback will catch errors, but here's how:
    if (mFile->get_state() > FLAC__STREAM_DECODER_READ_FRAME) {
       return false;
    }
-#endif
 
    if (!mFile->is_valid() || mFile->get_was_error()) {
       // This probably is not a FLAC file at all
@@ -429,11 +408,7 @@ ProgressResult FLACImportFileHandle::Import(WaveTrackFactory *trackFactory,
 
    // TODO: Vigilant Sentry: Variable res unused after assignment (error code DA1)
    //    Should check the result.
-   #ifdef LEGACY_FLAC
-      bool res = (mFile->process_until_end_of_file() != 0);
-   #else
       bool res = (mFile->process_until_end_of_stream() != 0);
-   #endif
       wxUnusedVar(res);
 
    if (mUpdateResult == ProgressResult::Failed || mUpdateResult == ProgressResult::Cancelled) {

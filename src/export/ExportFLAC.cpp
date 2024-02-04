@@ -166,11 +166,9 @@ bool ExportFLACOptions::TransferDataFromWindow()
 
 #define SAMPLES_PER_RUN 8192u
 
-/* FLACPP_API_VERSION_CURRENT is 6 for libFLAC++ from flac-1.1.3 (see <FLAC++/export.h>) */
-#if !defined FLACPP_API_VERSION_CURRENT || FLACPP_API_VERSION_CURRENT < 6
-#define LEGACY_FLAC
-#else
-#undef LEGACY_FLAC
+// FLACPP_API_VERSION_CURRENT is 9 starting in libFLAC++ 1.3.0 (see <FLAC++/export.h>)
+#if FLACPP_API_VERSION_CURRENT < 9
+#error Unsupported libFLAC++ version. You need libFLAC+++ 1.3.0 or later.
 #endif
 
 static struct
@@ -271,13 +269,8 @@ ProgressResult ExportFLAC::Export(TenacityProject *project,
 
    FLAC::Encoder::File encoder;
 
-   bool success = true;
-   success = success &&
-#ifdef LEGACY_FLAC
-   encoder.set_filename(OSOUTPUT(fName)) &&
-#endif
-   encoder.set_channels(numChannels) &&
-   encoder.set_sample_rate(lrint(rate));
+   bool success = encoder.set_channels(numChannels) &&
+                  encoder.set_sample_rate(lrint(rate));
 
    // See note in GetMetadata() about a bug in libflac++ 1.1.2
    if (success && !GetMetadata(project, metadata)) {
@@ -339,9 +332,6 @@ ProgressResult ExportFLAC::Export(TenacityProject *project,
       return ProgressResult::Cancelled;
    }
 
-#ifdef LEGACY_FLAC
-   encoder.init();
-#else
    wxFFile f;     // will be closed when it goes out of scope
    const auto path = fName.GetFullPath();
    if (!f.Open(path, wxT("w+b"))) {
@@ -359,16 +349,13 @@ ProgressResult ExportFLAC::Export(TenacityProject *project,
             .Format( status ) );
       return ProgressResult::Cancelled;
    }
-#endif
 
    mMetadata.reset();
 
    auto cleanup2 = finally( [&] {
       if (!(updateResult == ProgressResult::Success ||
             updateResult == ProgressResult::Stopped)) {
-#ifndef LEGACY_FLAC
          f.Detach(); // libflac closes the file
-#endif
          encoder.finish();
       }
    } );
@@ -421,16 +408,10 @@ ProgressResult ExportFLAC::Export(TenacityProject *project,
 
    if (updateResult == ProgressResult::Success ||
        updateResult == ProgressResult::Stopped) {
-#ifndef LEGACY_FLAC
       f.Detach(); // libflac closes the file
-#endif
       if (!encoder.finish())
          // Do not reassign updateResult, see cleanup2
          return ProgressResult::Failed;
-#ifdef LEGACY_FLAC
-      if (!f.Flush() || !f.Close())
-         return ProgressResult::Failed;
-#endif
    }
 
    return updateResult;
