@@ -16,14 +16,14 @@
 # Riccardo Di Maio <riccardodimaio11@gmail.com>, 2015
 # Saverio <saverio.brancaccio@gmail.com>, 2015
 # Avery King <avery98@pm.me>, 2022, 2023.
-# Massimo Pissarello <mapi68@gmail.com>, 2023.
+# Massimo Pissarello <mapi68@gmail.com>, 2023, 2024.
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-11-17 04:06+0000\n"
+"PO-Revision-Date: 2024-01-18 00:38+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/it/>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -1315,13 +1315,17 @@ msgstr "Versione di produzione (livello di debug %d)"
 #: src/CommonCommandFlags.cpp
 #, c-format
 msgid "Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
-msgstr "Selezionare l'audio da utilizzare per l'azione %s (ad esempio, Cmd + A per selezionare tutto) quindi riprovare."
+msgstr ""
+"Selezionare l'audio da usare per l'azione %s (ad esempio, Cmd + A per "
+"selezionare tutto) quindi riprovare."
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
 msgid "Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
-msgstr "Selezionare l'audio da utilizzare per l'azione %s (ad esempio, Ctrl + A per selezionare tutto) quindi riprovare."
+msgstr ""
+"Selezionare l'audio da usare per l'azione %s (ad esempio, Ctrl + A per "
+"selezionare tutto) quindi riprovare."
 
 #: src/CommonCommandFlags.cpp
 msgid "No Audio Selected"
@@ -1338,11 +1342,13 @@ msgid ""
 "2. When you have got your noise profile, select the audio you want to change\n"
 "and use %s to change that audio."
 msgstr ""
-"Seleziona l'audio che %s utilizzerà.\n"
+"Seleziona l'audio che userà %s.\n"
 "\n"
-"1. Seleziona l'audio che rappresenta il rumore e usa %s per ottenere il \"profilo rumore\".\n"
+"1. Seleziona l'audio che rappresenta il rumore e usa %s per ottenere il "
+"\"profilo rumore\".\n"
 "\n"
-"2. Una volta ottenuto il profilo rumore, seleziona l'audio che desideri modificare\n"
+"2. Una volta ottenuto il profilo rumore, seleziona l'audio che desideri "
+"modificare\n"
 "e usa %s per cambiare l'audio."
 
 #: src/CommonCommandFlags.cpp
@@ -1359,7 +1365,7 @@ msgid ""
 "action. (You cannot use this with mono.)"
 msgstr ""
 "Prima di eseguire questa azione è necessario selezionare un\n"
-"audio stereo (non è possibile utilizzarla con audio mono)"
+"audio stereo (non è possibile usarla con audio mono)"
 
 #: src/CommonCommandFlags.cpp
 msgid ""
@@ -2930,11 +2936,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"La compressione di questo progetto libererà spazio disco rimuovendo i byte del file non utilizzati.\n"
+"La compressione di questo progetto libererà spazio disco rimuovendo i byte "
+"del file non usati.\n"
 "\n"
-"Il disco ha %s di spazio libero e questo progetto sta attualmente usando %s.\n"
+"Il disco ha %s di spazio libero e questo progetto sta attualmente usando %s."
 "\n"
-"Se si procede, lo storico Annulla/Ripristina attuale e il contenuto degli appunti verranno scartati e si libereranno circa %s di spazio disco.\n"
+"\n"
+"Se si procede, lo storico Annulla/Ripristina attuale e il contenuto degli "
+"appunti verranno scartati e si libereranno circa %s di spazio disco.\n"
 "\n"
 "Proseguire?"
 
@@ -3019,7 +3028,9 @@ msgstr "Barra di scorrimento verticale"
 
 #: src/SelectFile.cpp
 msgid "The specified filename could not be converted due to Unicode character use."
-msgstr "Il nome di file specificato non può essere convertito a causa dell'utilizzo di caratteri Unicode."
+msgstr ""
+"Il nome di file specificato non può essere convertito a causa dell'uso di "
+"caratteri Unicode."
 
 #: src/SelectFile.cpp
 msgid "Specify New Filename:"
@@ -3821,7 +3832,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"%s: impossibile caricare le impostazioni seguenti. Verranno utilizzate le impostazioni predefinite.\n"
+"%s: impossibile caricare le impostazioni seguenti. Verranno usate le "
+"impostazioni predefinite.\n"
 "\n"
 "%s"
 
@@ -7015,9 +7027,11 @@ msgid ""
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"L'effetto ripara è studiato per essere utilizzato su sezioni molto brevi di audio danneggiato (fino a 128 campioni).\n"
+"L'effetto ripara è studiato per essere usato su sezioni molto brevi di audio "
+"danneggiato (fino a 128 campioni).\n"
 " \n"
-"Fare lo zoom in avanti e selezionare una piccola frazione di secondo da riparare."
+"Fare lo zoom in avanti e selezionare una piccola frazione di secondo da "
+"riparare."
 
 #: src/effects/Repair.cpp
 msgid ""
@@ -7027,9 +7041,11 @@ msgid ""
 "\n"
 "The more surrounding audio, the better it performs."
 msgstr ""
-"La funzione ripara lavora utilizzando dati audio al di fuori della regione selezionata.\n"
+"La funzione ripara lavora usando dati audio al di fuori della regione "
+"selezionata.\n"
 "\n"
-"Selezionare una zona che abbia un segnale audio a contatto con almeno uno dei suoi lati.\n"
+"Selezionare una zona che abbia un segnale audio a contatto con almeno uno "
+"dei suoi lati.\n"
 "\n"
 "Più audio circostante, migliore il risultato."
 
@@ -12699,7 +12715,7 @@ msgstr "E&limina regola selezionata"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
-msgstr "Filtri inutilizzati:"
+msgstr "Filtri non usati:"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "There are space characters (spaces, newlines, tabs or linefeeds) in one of the items. They are likely to break the pattern matching. Unless you know what you are doing, it is recommended to trim spaces. Do you want Audacity to trim spaces for you?"
@@ -14380,7 +14396,7 @@ msgstr "Monitor combinato"
 
 #: src/toolbars/MeterToolBar.cpp
 msgid "Recording Meter"
-msgstr "Monitor registrazione"
+msgstr "Misuratore registrazione"
 
 #: src/toolbars/MeterToolBar.cpp
 msgid "Playback Meter"

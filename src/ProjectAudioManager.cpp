@@ -113,11 +113,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
    if ( !canStop )
       return -1;
 
-   bool useMidi = true;
-
-   // Remove these lines to experiment with scrubbing/seeking of note tracks
-   if (options.pScrubbingOptions)
-      useMidi = false;
+   bool nonWaveToo = options.playNonWaveTracks;
 
    // Uncomment this for laughs!
    // backwards = true;
@@ -151,7 +147,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
    mLastPlayMode = mode;
 
    bool hasaudio;
-   if (useMidi)
+   if (nonWaveToo)
       hasaudio = ! tracks.Any<PlayableTrack>().empty();
    else
       hasaudio = ! tracks.Any<WaveTrack>().empty();
@@ -235,7 +231,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
             myOptions.cutPreviewGapStart = t0;
             myOptions.cutPreviewGapLen = t1 - t0;
             token = gAudioIO->StartStream(
-               GetAllPlaybackTracks(*mCutPreviewTracks, false, useMidi),
+               GetAllPlaybackTracks(*mCutPreviewTracks, false, nonWaveToo),
                tcp0, tcp1, myOptions);
          }
          else
@@ -244,7 +240,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
       }
       else {
          token = gAudioIO->StartStream(
-            GetAllPlaybackTracks( tracks, false, useMidi ),
+            GetAllPlaybackTracks( tracks, false, nonWaveToo ),
             t0, t1, options);
       }
       if (token != 0) {
@@ -1012,28 +1008,19 @@ DefaultPlayOptions( TenacityProject &project )
 AudioIOStartStreamOptions
 DefaultSpeedPlayOptions( TenacityProject &project )
 {
-   auto &projectAudioIO = ProjectAudioIO::Get( project );
+   auto result = DefaultPlayOptions( project );
    auto gAudioIO = AudioIO::Get();
    auto PlayAtSpeedRate = gAudioIO->GetBestRate(
       false,     //not capturing
       true,      //is playing
       ProjectRate::Get( project ).GetRate()  //suggested rate
    );
-   AudioIOStartStreamOptions options{ project.shared_from_this(), PlayAtSpeedRate };
-   options.captureMeter = projectAudioIO.GetCaptureMeter();
-   options.playbackMeter = projectAudioIO.GetPlaybackMeter();
-   auto timeTrack = *TrackList::Get( project ).Any<TimeTrack>().begin();
-   options.envelope = timeTrack ? timeTrack->GetEnvelope() : nullptr;
-   options.listener = ProjectAudioManager::Get( project ).shared_from_this();
-   return options;
+   result.rate = PlayAtSpeedRate;
+   return result;
 }
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-#include "NoteTrack.h"
-#endif
-
 TransportTracks ProjectAudioManager::GetAllPlaybackTracks(
-   TrackList &trackList, bool selectedOnly, bool useMidi)
+   TrackList &trackList, bool selectedOnly, bool nonWaveToo)
 {
    TransportTracks result;
    {
@@ -1044,12 +1031,13 @@ TransportTracks ProjectAudioManager::GetAllPlaybackTracks(
             pTrack->SharedPointer< WaveTrack >() );
    }
 #ifdef EXPERIMENTAL_MIDI_OUT
-   if (useMidi) {
-      auto range = trackList.Any< const NoteTrack >() +
+   if (nonWaveToo) {
+      auto range = trackList.Any< const PlayableTrack >() +
          (selectedOnly ? &Track::IsSelected : &Track::Any );
       for (auto pTrack: range)
-         result.midiTracks.push_back(
-            pTrack->SharedPointer< const NoteTrack >() );
+         if (!track_cast<const WaveTrack *>(pTrack))
+            result.otherPlayableTracks.push_back(
+               pTrack->SharedPointer< const PlayableTrack >() );
    }
 #else
    WXUNUSED(useMidi);

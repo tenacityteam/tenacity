@@ -95,6 +95,8 @@ struct AudioIOStartStreamOptions
    double * pStartTime;
    double preRoll;
 
+   bool playNonWaveTracks{ true };
+
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
    // Non-null value indicates that scrubbing will happen
    // (do not specify a time track, looping, or recording, which
@@ -111,6 +113,25 @@ struct AudioIOStartStreamOptions
    std::function< unsigned long() > playbackStreamPrimer;
 };
 
+struct AudioIODiagnostics{
+   std::string filename;    /// For crash report bundle
+   std::string text;        /// One big string, may be localized
+   std::string description; /// Non-localized short description
+};
+
+//! Abstract interface to alternative, concurrent playback with the main audio (such as MIDI events)
+class AUDIO_DEVICES_API AudioIOExtBase
+{
+public:
+   virtual ~AudioIOExtBase();
+
+   // Formerly in AudioIOBase
+   virtual bool IsOtherStreamActive() const = 0;
+
+   //! Get diagnostic information for audio devices and also for extensions
+   virtual AudioIODiagnostics Dump() const = 0;
+};
+
 ///\brief A singleton object supporting queries of the state of any active
 /// audio streams, and audio device capabilities
 class AUDIO_DEVICES_API AudioIOBase /* not final */
@@ -119,7 +140,11 @@ class AUDIO_DEVICES_API AudioIOBase /* not final */
 public:
    static AudioIOBase *Get();
 
+   AudioIOBase();
    virtual ~AudioIOBase();
+
+   AudioIOBase(const AudioIOBase &) = delete;
+   AudioIOBase &operator=(const AudioIOBase &) = delete;
 
    void SetCaptureMeter(
       const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &meter);
@@ -205,12 +230,10 @@ public:
    /** \brief Get diagnostic information on all the available audio I/O devices
     *
     */
-   std::string GetDeviceInfo();
+   std::string GetDeviceInfo() const;
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-   /** \brief Get diagnostic information on all the available MIDI I/O devices */
-   std::string GetMidiDeviceInfo();
-#endif
+   //! Get diagnostic information for audio devices and also for extensions
+   std::vector<AudioIODiagnostics> GetAllDeviceInfo();
 
    /** \brief Find out if playback / recording is currently paused */
    bool IsPaused() const;
@@ -252,12 +275,6 @@ protected:
 
    /// True if audio playback is paused
    bool                mPaused;
-
-   /// True when output reaches mT1
-   bool             mMidiOutputComplete{ true };
-
-   /// mMidiStreamActive tells when mMidiStream is open for output
-   bool             mMidiStreamActive;
 
    volatile int        mStreamToken;
 
@@ -303,9 +320,12 @@ protected:
    static const int RatesToTry[];
    /** \brief How many sample rates to try */
    static const int NumRatesToTry;
-};
 
-#endif
+   /*! This class needs to iterate this array for one limited purpose but does
+    not populate it and does not give access to it except to subclasses
+    */
+   std::vector<std::unique_ptr<AudioIOExtBase>> mAudioIOExt;
+};
 
 #include "Prefs.h"
 
@@ -316,3 +336,5 @@ extern AUDIO_DEVICES_API ChoiceSetting AudioIOLatencyUnit;
 extern AUDIO_DEVICES_API StringSetting AudioIOPlaybackDevice;
 extern AUDIO_DEVICES_API IntSetting    AudioIORecordChannels;
 extern AUDIO_DEVICES_API StringSetting AudioIORecordingDevice;
+
+#endif

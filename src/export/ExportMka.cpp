@@ -682,14 +682,14 @@ ProgressResult ExportMka::Export(TenacityProject *project,
             {
                 for (size_t i = 0; i < numChannels; i++)
                 {
-                    samplePtr mixed = mixer->GetBuffer(i);
+                    auto mixed = mixer->GetBuffer(i);
                     if (format == int24Sample) {
                         for (decltype(samplesThisRun) j = 0; j < samplesThisRun; j++)
-                            splitBuff[i][j] = ((int *)mixed)[j];
+                            splitBuff[i][j] = ((const int *)mixed)[j];
                     }
                     else {
                         for (decltype(samplesThisRun) j = 0; j < samplesThisRun; j++)
-                            splitBuff[i][j] = ((short *)mixed)[j];
+                            splitBuff[i][j] = ((const short *)mixed)[j];
                     }
                 }
                 auto b = reinterpret_cast<FLAC__int32**>( splitBuff.get() );
@@ -702,7 +702,7 @@ ProgressResult ExportMka::Export(TenacityProject *project,
             else
 #endif
             {
-                samplePtr mixed = mixer->GetBuffer();
+                auto mixed = mixer->GetBuffer();
                 DataBuffer *dataBuff = new DataBuffer((binary*)mixed, samplesThisRun * bytesPerSample, nullptr, true);
                 if (Muxer->AddBuffer(*dataBuff, samplesThisRun))
                 {

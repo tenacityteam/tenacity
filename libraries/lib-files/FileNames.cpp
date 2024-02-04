@@ -702,7 +702,7 @@ wxString FileNames::UnsavedProjectExtension()
 
 // How to detect whether the file system of a path is FAT
 // No apparent way to do it with wxWidgets
-#if defined(__DARWIN__)
+#if defined(__DARWIN__) || defined(__FreeBSD__)
 #include <sys/mount.h>
 bool FileNames::IsOnFATFileSystem(const FilePath &path)
 {
@@ -710,7 +710,12 @@ bool FileNames::IsOnFATFileSystem(const FilePath &path)
    if (statfs(wxPathOnly(path).c_str(), &fs))
       // Error from statfs
       return false;
+
+   #ifdef __FreeBSD__
+   return 0 == strcmp(fs.f_fstypename, "msdosfs");
+   #else
    return 0 == strcmp(fs.f_fstypename, "msdos");
+   #endif
 }
 #elif defined(__linux__)
 #include <sys/statfs.h>

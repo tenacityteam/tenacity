@@ -2,10 +2,8 @@
 
 [![Chat on IRC](https://badgen.net/badge/irc/%23tenacity/green)](https://web.libera.chat/gamja/?channels=#tenacity)
 [![License](https://badgen.net/badge/license/GPLv2/blue)](LICENSE.txt)
-[![Open issues](https://badgen.net/github/open-issues/tenacityteam/tenacity)](https://github.com/tenacityteam/tenacity/issues)
-[![GitHub builds](https://badgen.net/github/status/tenacityteam/tenacity)](https://github.com/tenacityteam/tenacity/actions?query=branch%3Amaster+event%3Apush)
-<!--[![builds.sr.ht](https://builds.sr.ht/~tenacity/tenacity/commits/.svg)](https://builds.sr.ht/~tenacity/tenacity/commits/?)-->
 [![Translation status](https://hosted.weblate.org/widgets/tenacity/-/tenacity/svg-badge.svg)](https://hosted.weblate.org/engage/tenacity/)
+<!--[![builds.sr.ht](https://builds.sr.ht/~tenacity/tenacity/commits/.svg)](https://builds.sr.ht/~tenacity/tenacity/commits/?)-->
 
 Please note that **we do NOT accept any pull requests or issues on GitHub anymore**. See https://codeberg.org/tenacityteam/tenacity to file your bug report or submit your pull request.
 
@@ -64,9 +62,13 @@ Additionally, the following unofficial packages are available for you to try Ten
 - [Unofficial Tenacity Chocolatey Package](https://community.chocolatey.org/packages/tenacity)
 
 **Linux**:
+- [Arch Linux Package](https://archlinux.org/packages/extra/x86_64/tenacity/)
 - [Unofficial Arch Linux (AUR) Git Package](https://aur.archlinux.org/packages/tenacity-git/)
 
 If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue is not specific to the package, please report the issue here.
+
+### Package Matrix
+[![Packaging status](https://repology.org/badge/vertical-allrepos/tenacity.svg)](https://repology.org/project/tenacity/versions)
 
 ### Audacity
 

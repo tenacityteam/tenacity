@@ -1,4 +1,3 @@
-
 set( TARGET Tenacity )
 set( TARGET_ROOT ${CMAKE_SOURCE_DIR}/qt-src )
 
@@ -164,7 +163,6 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_LV2}>:suil::suil>
       $<$<BOOL:${USE_MIDI}>:PortMidi::PortMidi>
       $<$<BOOL:${USE_MIDI}>:PortSMF::PortSMF>
-      libnyquist
       $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>

@@ -84,6 +84,8 @@ list( APPEND SOURCES
       AdornedRulerPanel.h
       AudioIO.cpp
       AudioIO.h
+      AudioIOExt.cpp
+      AudioIOExt.h
       AudioIOListener.h
       AutoRecoveryDialog.cpp
       AutoRecoveryDialog.h
@@ -153,6 +155,8 @@ list( APPEND SOURCES
       MacroMagic.h
       Menus.cpp
       Menus.h
+      MIDIPlay.cpp
+      MIDIPlay.h
       Mix.cpp
       Mix.h
       MixerBoard.cpp
@@ -1089,12 +1093,12 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_LV2}>:suil::suil>
       $<$<BOOL:${USE_MIDI}>:PortMidi::PortMidi>
       $<$<BOOL:${USE_MIDI}>:PortSMF::PortSMF>
-      libnyquist
+      nyquist
       $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:${GLIB_LIBRARIES}>
-      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:GTK::GTK>
+      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN,Haiku>:GTK::GTK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:pthread>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:rt>
 )

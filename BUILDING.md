@@ -24,7 +24,7 @@ not required. CMake will automatically use ccache if it is installed.
 To install Tenacity's dependencies, run:
 
 ```
-sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-jackd2-dev liblilv-dev libmad0-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev
+sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-jackd2-dev liblilv-dev libmad0-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev libzip-dev zipcmp zipmerge ziptool libjsoncpp-dev 
 ```
 
 On earlier versions of Ubuntu (< 22.10), Debian (< 12), and their derivatives,
@@ -36,7 +36,7 @@ On Ubuntu 22.10 or later, Debian 12 or later, or their derivatives, you can
 install the correct wxWidgets packages like so:
 
 ```
-$ sudo apt install wx-common wx3.2-headers libwxgtk3.2-1
+sudo apt install wx-common wx3.2-headers libwxgtk3.2-dev
 ```
 
 The above package list
@@ -99,7 +99,7 @@ wxWidgets is packaged in FreeBSD's repositories. Install it and the rest
 of Tenacity's dependencies:
 
 ```
-sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg
+sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg libzip jsoncpp
 ```
 
 #### vcpkg on Linux
@@ -215,8 +215,8 @@ you have to have all of the git submodules in place and at the right versions
 before starting. Make sure you clone it like this first:
 
 ```
-$ git clone  --recurse-submodules  https://github.com/wxWidgets/wxWidgets.git
-$ cd wxWidgets
+git clone --recurse-submodules https://github.com/wxWidgets/wxWidgets.git
+cd wxWidgets
 ```
 
 ## Building Tenacity

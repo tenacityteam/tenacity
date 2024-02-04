@@ -18,10 +18,6 @@ Paul Licameli split from AudioIO.cpp
 #include <iostream>
 #include <sstream>
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-#include <portmidi.h>
-#endif
-
 int AudioIOBase::mCachedPlaybackIndex = -1;
 std::vector<long> AudioIOBase::mCachedPlaybackRates;
 int AudioIOBase::mCachedCaptureIndex = -1;
@@ -84,10 +80,14 @@ std::string AudioIOBase::HostName(const PaDeviceInfo* info)
 
 std::unique_ptr<AudioIOBase> AudioIOBase::ugAudioIO;
 
+AudioIOExtBase::~AudioIOExtBase() = default;
+
 AudioIOBase *AudioIOBase::Get()
 {
    return ugAudioIO.get();
 }
+
+AudioIOBase::AudioIOBase() = default;
 
 AudioIOBase::~AudioIOBase() = default;
 
@@ -173,10 +173,9 @@ bool AudioIOBase::IsStreamActive() const
    if( mPortStreamV19 )
       isActive = (Pa_IsStreamActive( mPortStreamV19 ) > 0);
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-   if( mMidiStreamActive && !mMidiOutputComplete )
-      isActive = true;
-#endif
+   isActive = isActive ||
+      std::any_of(mAudioIOExt.begin(), mAudioIOExt.end(),
+         [](auto &pExt){ return pExt && pExt->IsOtherStreamActive(); });
    return isActive;
 }
 
@@ -506,7 +505,7 @@ int AudioIOBase::getRecordDevIndex(const std::string &devNameArg)
    return deviceNum;
 }
 
-std::string AudioIOBase::GetDeviceInfo()
+std::string AudioIOBase::GetDeviceInfo() const
 {
    std::ostringstream s;
 
@@ -616,113 +615,25 @@ std::string AudioIOBase::GetDeviceInfo()
    return s.str();
 }
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-// FIXME: When EXPERIMENTAL_MIDI_IN is added (eventually) this should also be enabled -- Poke
-std::string AudioIOBase::GetMidiDeviceInfo()
+auto AudioIOBase::GetAllDeviceInfo() -> std::vector<AudioIODiagnostics>
 {
-   std::ostringstream s;
+   std::vector<AudioIODiagnostics> result;
+   result.push_back({
+      "audiodev.txt",
+      GetDeviceInfo(),
+      "Audio Device Info"
+   });
 
-   if (IsStreamActive()) {
-      return XO("Stream is active ... unable to gather information.\n")
-         .Translation()
-         .ToStdString(); // ANERRUPTION: Remove std::string conversion
-   }
-
-
-   // XXX: May need to trap errors as with the normal device info
-   int recDeviceNum = Pm_GetDefaultInputDeviceID();
-   int playDeviceNum = Pm_GetDefaultOutputDeviceID();
-   int cnt = Pm_CountDevices();
-
-   // PRL:  why only into the log?
-   std::cout << "PortMidi reports " << cnt << " MIDI devices" << std::endl;
-
-   s << std::string("==============================") << std::endl;
-   s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation() << std::endl;
-   s << XO("Default playback device number: %d").Format( playDeviceNum ).Translation() << std::endl;
-
-   // ANERRUPTION: Remove std::string conversion
-   std::string recDevice = gPrefs->Read(wxT("/MidiIO/RecordingDevice"), wxT("")).ToStdString();
-   std::string playDevice = gPrefs->Read(wxT("/MidiIO/PlaybackDevice"), wxT("")).ToStdString();
-
-   // This gets info on all available audio devices (input and output)
-   if (cnt <= 0) {
-      s << XO("No devices found").Translation() << std::endl;
-      return s.str();
-   }
-
-   for (int i = 0; i < cnt; i++) {
-      s << std::string("==============================") << std::endl;
-
-      const PmDeviceInfo* info = Pm_GetDeviceInfo(i);
-      if (!info) {
-         s << XO("Device info unavailable for: %d").Format( i ).Translation() << std::endl;
-         continue;
-      }
-
-      std::string name = std::string(info->name);
-      std::string hostName = std::string(info->interf);
-
-      s << XO("Device ID: %d").Format( i ).Translation() << std::endl;
-      s << XO("Device name: %s").Format( name ).Translation() << std::endl;
-      s << XO("Host name: %s").Format( hostName ).Translation() << std::endl;
-      /* i18n-hint: Supported, meaning made available by the system */
-      s << XO("Supports output: %d").Format( info->output ).Translation() << std::endl;
-      /* i18n-hint: Supported, meaning made available by the system */
-      s << XO("Supports input: %d").Format( info->input ).Translation() << std::endl;
-      s << XO("Opened: %d").Format( info->opened ).Translation() << std::endl;
-
-      if (name == playDevice && info->output)
-         playDeviceNum = i;
-
-      if (name == recDevice && info->input)
-         recDeviceNum = i;
-
-      // XXX: This is only done because the same was applied with PortAudio
-      // If PortMidi returns -1 for the default device, use the first one
-      if (recDeviceNum < 0 && info->input){
-         recDeviceNum = i;
-      }
-      if (playDeviceNum < 0 && info->output){
-         playDeviceNum = i;
+   for (auto &pExt : mAudioIOExt)
+   {
+      if (pExt)
+      {
+         result.emplace_back(pExt->Dump());
       }
    }
 
-   bool haveRecDevice = (recDeviceNum >= 0);
-   bool havePlayDevice = (playDeviceNum >= 0);
-
-   s << std::string("==============================") << std::endl;
-   if (haveRecDevice)
-      s << XO("Selected MIDI recording device: %d - %s").Format( recDeviceNum, recDevice ).Translation() << std::endl;
-   else
-      s << XO("No MIDI recording device found for '%s'.").Format( recDevice ).Translation() << std::endl;
-
-   if (havePlayDevice)
-      s << XO("Selected MIDI playback device: %d - %s").Format( playDeviceNum, playDevice ).Translation() << std::endl;
-   else
-      s << XO("No MIDI playback device found for '%s'.").Format( playDevice ).Translation() << std::endl;
-
-   // Mention our conditional compilation flags for Alpha only
-#ifdef IS_ALPHA
-
-   // Not internationalizing these alpha-only messages
-   s << std::string("==============================") << std::endl;
-#ifdef EXPERIMENTAL_MIDI_OUT
-   s << std::string("EXPERIMENTAL_MIDI_OUT is enabled") << std::endl;
-#else
-   s << std::string("EXPERIMENTAL_MIDI_OUT is NOT enabled") << std::endl;
-#endif
-#ifdef EXPERIMENTAL_MIDI_IN
-   s << std::string("EXPERIMENTAL_MIDI_IN is enabled") << std::endl;
-#else
-   s << std::string("EXPERIMENTAL_MIDI_IN is NOT enabled") << std::endl;
-#endif
-
-#endif
-
-   return s.str();
+   return result;
 }
-#endif
 
 StringSetting AudioIOHost{
    L"/AudioIO/Host", L"" };

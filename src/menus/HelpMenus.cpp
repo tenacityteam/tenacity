@@ -23,6 +23,7 @@
 #include "../HelpText.h"
 #include "../LogWindow.h"
 #include "../Menus.h"
+#include "../NoteTrack.h"
 #include "../ProjectSelectionManager.h"
 #include "../ProjectWindows.h"
 #include "../SelectFile.h"
@@ -342,7 +343,7 @@ void OnMidiDeviceInfo(const CommandContext &context)
 {
    auto &project = context.project;
    auto gAudioIO = AudioIOBase::Get();
-   wxString info = gAudioIO->GetMidiDeviceInfo();
+   auto info = GetMIDIDeviceInfo();
    ShowDiagnostics( project, info,
       XO("MIDI Device Info"), wxT("midideviceinfo.txt") );
 }

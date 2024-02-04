@@ -1,19 +1,21 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Felipe Nogueira <contato.fnog@gmail.com>, 2023.
+# delvani <inavleb@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-03-12 20:08+0000\n"
-"Last-Translator: Felipe Nogueira <contato.fnog@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/tenacity/tenacity/pt_BR/>\n"
+"PO-Revision-Date: 2024-01-24 20:23+0000\n"
+"Last-Translator: delvani <inavleb@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"tenacity/tenacity/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -97,9 +99,9 @@ msgid "(%s)"
 msgstr "(%s)"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Directory %s does not have write permissions"
-msgstr "A pasta %s não existe. Deseja criá-la?"
+msgstr "O diretório %s não tem permissões de gravação"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -426,9 +428,9 @@ msgstr "%s, Desenvolvedor Tenacity"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, lead Tenacity developer"
-msgstr "%s, Desenvolvedor Tenacity"
+msgstr "%s, desenvolvedor líder do Tenacity"
 
 #: src/AboutDialog.cpp
 #, c-format
@@ -455,8 +457,17 @@ msgstr "OK"
 #: src/AboutDialog.cpp
 msgid "translator_credits"
 msgstr ""
-"Tradução para português do Brasil por Cleber Tavano (2002-2022), com contribuições, atualizações e revisões de Djavan Fagundes (2010), Paulo Castro (2013), Rogênio Belém (2013), Flávio Salgado Moreira (2014), Marcelo Thomaz de Aquino Filho (2014), Victor Westmann (2014-2015), Gutem (2015), Henrique Terto de Souza (2015-2017), Igor Rückert, (2015-2020), Marcos Nakamine, (2015), Pablo do Amaral Ferreira (2015), Thales Alexander Barné Peres (2015), Ciro (2016), J.Nylson (2016), Lourenço Schmid (2016), millemiglia (2016), Rodrigo de Araújo (2016), Diego Medeiros (2016-2017), Thomas De Rocker (2017), Bruno Ramalhete (2019), Aline Furlanetto Viero (2021). \n"
-"Comentários e sugestões são bem-vindos."
+"Tradução para português do Brasil por Cleber Tavano (2002-2022), com "
+"contribuições, atualizações e revisões de Djavan Fagundes (2010), Paulo "
+"Castro (2013), Rogênio Belém (2013), Flávio Salgado Moreira (2014), Marcelo "
+"Thomaz de Aquino Filho (2014), Victor Westmann (2014-2015), Gutem (2015), "
+"Henrique Terto de Souza (2015-2017), Igor Rückert, (2015-2020), Marcos "
+"Nakamine, (2015), Pablo do Amaral Ferreira (2015), Thales Alexander Barné "
+"Peres (2015), Ciro (2016), J.Nylson (2016), Lourenço Schmid (2016), "
+"millemiglia (2016), Rodrigo de Araújo (2016), Diego Medeiros (2016-2017), "
+"Thomas De Rocker (2017), Bruno Ramalhete (2019), Aline Furlanetto Viero "
+"(2021)\n"
+"Comentários e sugestões são bem-vindos"
 
 #: src/AboutDialog.cpp
 msgid "Credits"
@@ -664,11 +675,11 @@ msgstr "Mova para Percorrer"
 
 #: src/AdornedRulerPanel.cpp
 msgid "Drag to Seek. Release to stop seeking."
-msgstr "Arraste para Buscar.  Solte para parar busca."
+msgstr "Arraste para Buscar. Solte para parar busca."
 
 #: src/AdornedRulerPanel.cpp
 msgid "Drag to Seek. Release and move to Scrub."
-msgstr "Arraste para Buscar.  Solte e mova para Percorrer."
+msgstr "Arraste para Buscar. Solte e mova para Percorrer."
 
 #: src/AdornedRulerPanel.cpp
 msgid "Move to Scrub. Drag to Seek."
@@ -1200,7 +1211,7 @@ msgstr "Teste %d\n"
 #: src/Benchmark.cpp
 #, c-format
 msgid "Cut (%lld, %lld) failed.\n"
-msgstr "Corte em  (%lld, %lld) falhou\n"
+msgstr "Corte em (%lld, %lld) falhou\n"
 
 #: src/Benchmark.cpp
 #, c-format
@@ -1301,13 +1312,17 @@ msgstr "Compilação de lançamento (nível %d de depuração)"
 #: src/CommonCommandFlags.cpp
 #, c-format
 msgid "Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
-msgstr "Selecione o áudio a ser utilizado por %s (por exemplo, Cmd + A para selecionar tudo) e tente novamente."
+msgstr ""
+"Selecione o áudio a ser utilizado por %s (exemplo: \"Cmd + A\" para "
+"selecionar tudo) e tente novamente."
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
 msgid "Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
-msgstr "Selecione o áudio a ser utilizado por %s (por exemplo, Ctrl + A para selecionar tudo) e tente novamente."
+msgstr ""
+"Selecione o áudio a ser utilizado por %s (exemplo: \"Ctrl + A\" para "
+"selecionar tudo) e tente novamente."
 
 #: src/CommonCommandFlags.cpp
 msgid "No Audio Selected"
@@ -1336,16 +1351,16 @@ msgid ""
 "You can only do this when playing and recording are\n"
 "stopped. (Pausing is not sufficient.)"
 msgstr ""
-"Só é possível executar esse comando com a reprodução e \n"
-"gravação paradas (Pausa não é suficiente)."
+"Só é possível executar esse comando com a reprodução e\n"
+"gravação paradas (Pausa não é suficiente)"
 
 #: src/CommonCommandFlags.cpp
 msgid ""
 "You must first select some stereo audio to perform this\n"
 "action. (You cannot use this with mono.)"
 msgstr ""
-"Selecione áudio estéreo para executar esse comando. \n"
-"(Não pode ser usado com áudio mono)."
+"Selecione áudio estéreo para executar esse comando.\n"
+"(Não pode ser usado com áudio mono)"
 
 #: src/CommonCommandFlags.cpp
 msgid ""
@@ -1531,14 +1546,12 @@ msgid "Hz"
 msgstr "Hz"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Scroll Horizontal"
-msgstr "Horizontal"
+msgstr "Rolar horizontalmente"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Zoom Horizontal"
-msgstr "Horizontal"
+msgstr "Zoom Horizontal"
 
 #: src/FreqWindow.cpp
 msgid "Cursor:"
@@ -1867,7 +1880,7 @@ msgid ""
 "The old file has been saved as '%s'"
 msgstr ""
 "Foi convertido o arquivo de projeto da versão 1.0 para o novo formato.\n"
-"Uma cópia foi salva como  '%s'"
+"Uma cópia foi salva como '%s'"
 
 #: src/Legacy.cpp
 msgid "Opening Audacity Project"
@@ -2779,12 +2792,11 @@ msgid ""
 "\"%s\"\n"
 "   will be irreversibly overwritten."
 msgstr ""
-" Deseja substituir o projeto:\n"
+"   Deseja substituir o projeto:\n"
 "\"%s\"?\n"
-"\n"
-"Se você selecionar \"Sim\" o projeto \n"
+"   Se você selecionar \"Sim\" o projeto\n"
 "\"%s\"\n"
-"será substituído definitivamente."
+"   será substituído definitivamente."
 
 #. i18n-hint: Heading: A warning that a project is about to be overwritten.
 #: src/ProjectFileManager.cpp
@@ -2920,11 +2932,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"A compactação deste projeto liberará espaço em disco ao remover os bytes não utilizados dentro do arquivo.\n"
+"A compactação deste projeto liberará espaço em disco ao remover os bytes não "
+"utilizados dentro do arquivo.\n"
 "\n"
-"Há %sde  espaço livre em disco e este projeto está atualmente utilizando %s.\n"
+"Há %sde espaço livre em disco e este projeto está atualmente utilizando %s.\n"
 "\n"
-"Se você prosseguir, o Histórico de Desfazer/Refazer e o conteúdo da área de transferência será descartado e você recuperará aproximadamente %sde espaço em disco.\n"
+"Se você prosseguir, o Histórico de Desfazer/Refazer e o conteúdo da área de "
+"transferência será descartado e você recuperará aproximadamente %sde espaço "
+"em disco.\n"
 "\n"
 "Deseja continuar?"
 
@@ -6724,7 +6739,7 @@ msgstr "1024"
 
 #: src/effects/NoiseReduction.cpp
 msgid "2048 (default)"
-msgstr "2048  (padrão)"
+msgstr "2048 (padrão)"
 
 #: src/effects/NoiseReduction.cpp src/prefs/SpectrumPrefs.cpp
 msgid "4096"
@@ -6984,7 +6999,7 @@ msgstr "Ganh&o de saída (dB):"
 
 #: src/effects/Phaser.cpp src/effects/Wahwah.cpp
 msgid "Output gain (dB)"
-msgstr "Ganho úmido (dB):"
+msgstr "Ganho úmido (dB)"
 
 #: src/effects/Repair.cpp
 msgid "Repair"
@@ -7371,7 +7386,7 @@ msgstr "Mudança de tom Inicial"
 
 #: src/effects/TimeScale.cpp
 msgid "(&semitones) [-12 to 12]:"
-msgstr "(&semitons)  [-12 a 12]:"
+msgstr "(&semitons) [-12 a 12]:"
 
 #: src/effects/TimeScale.cpp
 msgid "(%) [-50 to 100]:"
@@ -7383,7 +7398,7 @@ msgstr "Mudança de tom final"
 
 #: src/effects/TimeScale.cpp
 msgid "(s&emitones) [-12 to 12]:"
-msgstr "(s&emitons)  [-12 a 12]:"
+msgstr "(s&emitons) [-12 a 12]:"
 
 #: src/effects/ToneGen.cpp src/prefs/SpectrogramSettings.cpp
 msgid "Logarithmic"
@@ -8708,7 +8723,7 @@ msgstr "Pesquisa logarítmica"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Configure custom FFmpeg options"
-msgstr "Configurar opções  FFmpeg personalizadas"
+msgstr "Configurar opções FFmpeg personalizadas"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Preset:"
@@ -8791,9 +8806,10 @@ msgid ""
 "0 - automatic\n"
 "Recommended - 192000"
 msgstr ""
-"Taxa de bits  (bits/segundo) - influencia o tamanho e qualidade do arquivo \n"
-"Alguns codificadores podem aceitar apenas valores específicos (128k, 192k, 256k, etc) \n"
-"0 - automático \n"
+"Taxa de bits (bits/segundo) - influencia o tamanho e qualidade do arquivo\n"
+"Alguns codificadores podem aceitar apenas valores específicos (128k, 192k, "
+"256k…)\n"
+"0 - automático\n"
 "Recomendado - 192000"
 
 #: src/export/ExportFFmpegDialogs.cpp
@@ -9132,7 +9148,7 @@ msgstr "Exportando o áudio selecionado para FLAC"
 
 #: src/export/ExportFLAC.cpp
 msgid "Exporting the audio as FLAC"
-msgstr "Exportando áudio como  FLAC"
+msgstr "Exportando áudio como FLAC"
 
 #: src/export/ExportMP2.cpp
 msgid "MP2 Files"
@@ -11536,9 +11552,8 @@ msgstr "&Barras de Ferramentas"
 
 #. i18n-hint: (verb)
 #: src/menus/ToolbarMenus.cpp
-#, fuzzy
 msgid "Edit &Mode (on/off)"
-msgstr "M&enus Extras (lig/desl)"
+msgstr "Editar &Mode (ligado/desligado)"
 
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
@@ -13139,7 +13154,7 @@ msgstr "Preferências para Módulo"
 #. i18n-hint preserve the leading spaces
 #: src/prefs/ModulePrefs.cpp
 msgid "  'New' means no choice has been made yet."
-msgstr " 'Novo' significa que nenhuma opção foi selecionada."
+msgstr "  'Novo' significa que nenhuma opção foi selecionada."
 
 #: src/prefs/ModulePrefs.cpp
 msgid "Ask"
@@ -14103,9 +14118,8 @@ msgid "Classic"
 msgstr "Clássico"
 
 #: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
 msgid "Audacity"
-msgstr "Log do Audacity"
+msgstr "Audacity"
 
 #: src/theme/DarkThemeAsCeeCode.cpp
 msgid "Dark"
@@ -14262,7 +14276,7 @@ msgstr "1 Canal de Gravação (Mono)"
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "2 (Stereo) Recording Channels"
-msgstr "2 Canais de  Gravação (Estéreo)"
+msgstr "2 Canais de Gravação (Estéreo)"
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "Select Recording Device"
@@ -15201,9 +15215,8 @@ msgstr "&Interpolação logarítmica"
 
 #. i18n-hint Appears on hovering mouse over clip affordance
 #: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Clique e arraste para mover uma faixa no tempo"
+msgstr "Clique e arraste para mover um clipe no tempo ou clique para selecionar"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -15970,23 +15983,20 @@ msgstr "Confirma sair"
 
 #. i18n-hint: %s is replaced with a directory path.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write files to directory: %s."
-msgstr "Não foi possível ler o arquivo de predefinições em \"%s\""
+msgstr "Não foi possível gravar arquivos no diretório: %s."
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "You can change the directory in %s."
-msgstr ""
-"Não foi possível criar a pasta:\n"
-"  %s"
+msgstr "Você pode alterar o diretório em %s."
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy
 msgid "Preferences > Directories"
-msgstr "Preferências para Pastas"
+msgstr "Preferências > Diretórios"
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
@@ -16032,7 +16042,7 @@ msgstr "Excesso de casas decimais"
 #: src/widgets/valnum.cpp
 #, c-format
 msgid "Value not in range: %s to %s"
-msgstr "Não tem valor na faixa: %s a  %s"
+msgstr "Não tem valor na faixa: %s a %s"
 
 #: src/widgets/valnum.cpp
 #, c-format
@@ -17452,7 +17462,7 @@ msgstr "Valor (linear)"
 
 #: plug-ins/sample-data-export.ny
 msgid "Value (dB)"
-msgstr "Valor (dB):"
+msgstr "Valor (dB)"
 
 #: plug-ins/sample-data-export.ny
 msgid "audio sample value analysis"
@@ -18834,3 +18844,10 @@ msgstr "Erro.~%Requer faixa estéreo."
 
 #~ msgid "Can't open new empty project"
 #~ msgstr "Não é possível abrir um novo projeto vazio"
+
+#. i18n-hint: This message describes the error in the Error dialog.
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+msgid "Please check that the directory exists, has the necessary permissions, and the drive isn't full."
+msgstr ""
+"Verifique se o diretório existe, tem as permissões necessárias e se a "
+"unidade não está cheia."

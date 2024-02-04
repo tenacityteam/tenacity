@@ -52,10 +52,6 @@ void TENACITY_DLL_API MixAndRender(TrackList * tracks, WaveTrackFactory *factory
                   std::shared_ptr<WaveTrack> &uLeft,
                   std::shared_ptr<WaveTrack> &uRight);
 
-void MixBuffers(unsigned numChannels, int *channelFlags, float *gains,
-                samplePtr src,
-                samplePtr *dests, int len, bool interleaved);
-
 class TENACITY_DLL_API MixerSpec
 {
    unsigned mNumTracks, mNumChannels, mMaxNumChannels;
@@ -142,10 +138,10 @@ class TENACITY_DLL_API Mixer {
    double MixGetCurrentTime();
 
    /// Retrieve the main buffer or the interleaved buffer
-   samplePtr GetBuffer();
+   constSamplePtr GetBuffer();
 
    /// Retrieve one of the non-interleaved buffers
-   samplePtr GetBuffer(int channel);
+   constSamplePtr GetBuffer(int channel);
 
  private:
 
@@ -190,7 +186,8 @@ class TENACITY_DLL_API Mixer {
    size_t              mInterleavedBufferSize;
    const sampleFormat mFormat;
    bool             mInterleaved;
-   ArrayOf<SampleBuffer> mBuffer, mTemp;
+   ArrayOf<SampleBuffer> mBuffer;
+   ArrayOf<Floats>  mTemp;
    Floats           mFloatBuffer;
    const double     mRate;
    double           mSpeed;

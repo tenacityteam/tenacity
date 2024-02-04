@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-12-04 17:29+0000\n"
+"PO-Revision-Date: 2023-12-05 20:03+0000\n"
 "Last-Translator: Václav Černý <vaclav.vatoz.cerny@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "cs/>\n"
@@ -1760,7 +1760,7 @@ msgstr "Scelení skutečně uvolnilo %s místa na disku."
 #. that have been taken.
 #: src/HistoryWindow.cpp
 msgid "&History..."
-msgstr "&Historie"
+msgstr "&Historie..."
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -2378,7 +2378,7 @@ msgstr ""
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
-msgstr "Všechny pro nahrávání vybrané stopy  musí mít stejný vzorkovací kmitočet"
+msgstr "Všechny pro nahrávání vybrané stopy musí mít stejný vzorkovací kmitočet"
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "Mismatched Sampling Rates"
@@ -3542,7 +3542,7 @@ msgstr "Povolit &automatické ukládání?"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Project As:"
-msgstr "Uložit projekt jako..."
+msgstr "Uložit projekt jako:"
 
 #: src/TimerRecordDialog.cpp src/menus/PluginMenus.cpp
 msgid "Select..."
@@ -3781,7 +3781,7 @@ msgstr "Kalibrace hotova"
 
 #: src/WaveClip.cpp
 msgid "Resampling failed."
-msgstr "Převzorkování selhalo"
+msgstr "Převzorkování selhalo."
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
@@ -4196,11 +4196,11 @@ msgstr "Vybrat kmitočty"
 
 #: src/commands/SelectCommand.cpp
 msgid "High:"
-msgstr "Vysoký"
+msgstr "Vysoký:"
 
 #: src/commands/SelectCommand.cpp
 msgid "Low:"
-msgstr "Nízký"
+msgstr "Nízký:"
 
 #: src/commands/SelectCommand.cpp
 msgid "Select Tracks"
@@ -4431,7 +4431,7 @@ msgstr "Měřítko:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "VZoom:"
-msgstr "Svislé zvětšení"
+msgstr "Svislé zvětšení:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "VZoom Top:"
@@ -5154,7 +5154,7 @@ msgstr "Rozdíl je neurčitý."
 #: src/effects/Contrast.cpp
 #, c-format
 msgid "Difference = %.2f RMS dB."
-msgstr "Rozdíl  = %.2f RMS dB."
+msgstr "Rozdíl = %.2f RMS dB."
 
 #. i18n-hint: dB abbreviates decibels
 #. RMS abbreviates root mean square, a certain averaging method
@@ -5601,7 +5601,7 @@ msgstr "Opakuje vybraný zvuk znovu a znovu"
 #: src/effects/Echo.cpp src/effects/FindClipping.cpp
 #: src/effects/Paulstretch.cpp
 msgid "Requested value exceeds memory capacity."
-msgstr "Požadovaná hodnota překračuje možnosti paměti"
+msgstr "Požadovaná hodnota překračuje možnosti paměti."
 
 #: src/effects/Echo.cpp
 msgid "&Delay time (seconds):"
@@ -6832,7 +6832,7 @@ msgstr "&Odstranit stejnosměrnou složku (střed na 0.0 svisle)"
 
 #: src/effects/Normalize.cpp
 msgid "&Normalize peak amplitude to   "
-msgstr "&Normalizovat vrcholový rozkmit na "
+msgstr "&Normalizovat vrcholový rozkmit na   "
 
 #: src/effects/Normalize.cpp
 msgid "Peak amplitude dB"
@@ -7206,7 +7206,7 @@ msgstr "Nejmenší zeslabování pásma za&stavení:"
 
 #: src/effects/ScienFilter.cpp
 msgid "Minimum S&topband Attenuation (dB)"
-msgstr "Nejmenší zeslabování pásma &zastavení (dB):"
+msgstr "Nejmenší zeslabování pásma &zastavení (dB)"
 
 #: src/effects/ScoreAlignDialog.cpp
 msgid "Align MIDI to Audio"
@@ -7894,7 +7894,9 @@ msgstr "Chyba v Nyquist"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "Promiňte, ale efekt nemůže být použit na stereo stopy, u kterých  nesouhlasí jednotlivé kanály."
+msgstr ""
+"Promiňte, ale efekt nemůže být použit na stereo stopy, u kterých nesouhlasí "
+"jednotlivé kanály."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -8087,7 +8089,9 @@ msgstr "Efekty Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "Promiňte, ale přídavný modul Vamp nelze použít na stereo stopy, u kterých  nesouhlasí jednotlivé kanály."
+msgstr ""
+"Promiňte, ale přídavný modul Vamp nelze použít na stereo stopy, u kterých "
+"nesouhlasí jednotlivé kanály."
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
@@ -8378,7 +8382,7 @@ msgstr "FFmpeg: CHYBA - Příliš mnoho zbývajících dat."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg: CHYBA -  nAudioFrameSizeOut příliš velký."
+msgstr "FFmpeg: CHYBA - nAudioFrameSizeOut příliš velký."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't encode audio frame."
@@ -8413,14 +8417,18 @@ msgstr "Převzorkovat"
 msgid ""
 "The project sample rate (%d) is not supported by the current output\n"
 "file format. "
-msgstr "Vzorkovací kmitočet projektu (%d) není podporován nynější výstupním souborovým formátem."
+msgstr ""
+"Vzorkovací kmitočet projektu (%d) není podporován\n"
+"nynější výstupním souborovým formátem. "
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the current output file format. "
-msgstr "Vzorkovací kmitočet projektu (%d) a datový tok (%d kb/s) není podporován nynější výstupním souborovým formátem."
+msgstr ""
+"Vzorkovací kmitočet projektu (%d) a datový tok (%d kb/s) \n"
+"není podporován nynější výstupním souborovým formátem. "
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 msgid "You may resample to one of the rates below."
@@ -10387,7 +10395,7 @@ msgstr "Ticho"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-msgstr "Oříznout vybrané zvukové stopy od %.2f sekund do  %.2f sekund"
+msgstr "Oříznout vybrané zvukové stopy od %.2f sekund do %.2f sekund"
 
 #: src/menus/EditMenus.cpp
 msgid "Trim Audio"
@@ -11392,7 +11400,7 @@ msgstr "Nastavit (nebo posunout) l&evou hranici výběru"
 
 #: src/menus/SelectMenus.cpp
 msgid "Set (or Extend) Rig&ht Selection"
-msgstr "Nastavit  (nebo posunout) prav&ou hranici výběru"
+msgstr "Nastavit (nebo posunout) prav&ou hranici výběru"
 
 #: src/menus/SelectMenus.cpp
 msgid "Selection Contract L&eft"
@@ -16803,7 +16811,7 @@ msgstr ""
 
 #: plug-ins/limiter.ny
 msgid "Limit to (dB)"
-msgstr "Omezit na (dB):"
+msgstr "Omezit na (dB)"
 
 #: plug-ins/limiter.ny plug-ins/noisegate.ny
 msgid "Hold (ms)"
@@ -16859,7 +16867,7 @@ msgstr "Bránové kmitočty nad (kHz)"
 
 #: plug-ins/noisegate.ny
 msgid "Level reduction (dB)"
-msgstr "Snížení hladiny (dB):"
+msgstr "Snížení hladiny (dB)"
 
 #: plug-ins/noisegate.ny
 msgid "Attack (ms)"
@@ -17011,7 +17019,7 @@ msgstr "Přídavné moduly aktualizovány:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Files copied to plug-ins folder:"
-msgstr "Soubory zkopírovány do složky s přídavným modulem"
+msgstr "Soubory zkopírovány do složky s přídavným modulem:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Not found or cannot be read:"
@@ -17200,7 +17208,7 @@ msgstr "Steven Jones"
 
 #: plug-ins/rissetdrum.ny
 msgid "Decay (seconds)"
-msgstr "Dozvuk (sekundy):"
+msgstr "Dozvuk (sekundy)"
 
 #: plug-ins/rissetdrum.ny
 msgid "Center frequency of noise (Hz)"

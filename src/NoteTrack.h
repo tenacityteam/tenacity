@@ -13,6 +13,7 @@
 
 
 #include <utility>
+#include "Prefs.h"
 #include "Track.h"
 
 #if defined(USE_MIDI)
@@ -273,6 +274,10 @@ public:
 
 ENUMERATE_TRACK_TYPE(NoteTrack);
 
+extern TENACITY_DLL_API StringSetting MIDIPlaybackDevice;
+extern TENACITY_DLL_API StringSetting MIDIRecordingDevice;
+extern TENACITY_DLL_API IntSetting MIDISynthLatency_ms;
+
 #endif // USE_MIDI
 
 #ifndef SONIFY
@@ -295,5 +300,7 @@ ENUMERATE_TRACK_TYPE(NoteTrack);
 #define SonifyEndModifyState()
 #endif
 
+
+TENACITY_DLL_API std::string GetMIDIDeviceInfo();
 
 #endif

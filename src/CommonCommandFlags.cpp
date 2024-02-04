@@ -17,7 +17,6 @@ Paul Licameli split from Menus.cpp
 #include "AudioIO.h"
 #include "LabelTrack.h"
 #include "Menus.h"
-#include "NoteTrack.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "ProjectFileIO.h"
@@ -284,20 +283,6 @@ const ReservedCommandFlag&
          return !TrackList::Get( project ).Any<const WaveTrack>().empty();
       }
    }; return flag; }
-#ifdef USE_MIDI
-const ReservedCommandFlag&
-   NoteTracksExistFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !TrackList::Get( project ).Any<const NoteTrack>().empty();
-      }
-   }; return flag; }  //gsw
-const ReservedCommandFlag&
-   NoteTracksSelectedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !TrackList::Get( project ).Selected<const NoteTrack>().empty();
-      }
-   }; return flag; }  //gsw
-#endif
 const ReservedCommandFlag&
    IsNotSyncLockedFlag() { static ReservedCommandFlag flag{
       [](const TenacityProject &project){
@@ -330,33 +315,6 @@ const ReservedCommandFlag&
          return AudioIOBase::Get()->IsPaused();
       },
       CommandFlagOptions{}.QuickTest()
-   }; return flag; }
-const ReservedCommandFlag&
-   PlayableTracksExistFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         auto &tracks = TrackList::Get( project );
-         return
-#ifdef EXPERIMENTAL_MIDI_OUT
-            !tracks.Any<const NoteTrack>().empty()
-         ||
-#endif
-            !tracks.Any<const WaveTrack>().empty()
-         ;
-      }
-   }; return flag; }
-const ReservedCommandFlag&
-   AudioTracksSelectedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         auto &tracks = TrackList::Get( project );
-         return
-#ifdef USE_MIDI
-            !tracks.Selected<const NoteTrack>().empty()
-            // even if not EXPERIMENTAL_MIDI_OUT
-         ||
-#endif
-            !tracks.Selected<const WaveTrack>().empty()
-         ;
-      }
    }; return flag; }
 const ReservedCommandFlag&
    NoAutoSelect() { static ReservedCommandFlag flag{
