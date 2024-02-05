@@ -13,9 +13,9 @@ int main(int argc, char** argv)
 
     TenacityApp::Start();
 
-    QApplication a { argc, argv };
+    QApplication a{argc, argv};
 
-    MainWindow mainWindow {};
+    MainWindow mainWindow{};
     mainWindow.show();
 
     return QApplication::exec();

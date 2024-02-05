@@ -27,6 +27,55 @@
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuRecent_Files">
+     <property name="title">
+      <string>Recent Files</string>
+     </property>
+     <addaction name="actionClear"/>
+    </widget>
+    <widget class="QMenu" name="menuSave_Project">
+     <property name="title">
+      <string>Save Project</string>
+     </property>
+     <addaction name="actionSave_Project_2"/>
+     <addaction name="actionSave_Project_As"/>
+     <addaction name="actionBackup_Project"/>
+    </widget>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionExport_as_MP3"/>
+     <addaction name="actionExport_as_WAV"/>
+     <addaction name="actionExport_as_MKA"/>
+     <addaction name="actionExport_as_OGG"/>
+     <addaction name="actionExport_Audio"/>
+     <addaction name="actionExport_Selected_Audio"/>
+     <addaction name="actionExport_Labels"/>
+     <addaction name="actionExport_Multiple"/>
+    </widget>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import</string>
+     </property>
+     <addaction name="actionAudio"/>
+     <addaction name="actionLabels"/>
+     <addaction name="actionRaw_Data"/>
+    </widget>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="menuRecent_Files"/>
+    <addaction name="actionClose"/>
+    <addaction name="separator"/>
+    <addaction name="menuSave_Project"/>
+    <addaction name="separator"/>
+    <addaction name="menuExport"/>
+    <addaction name="menuImport"/>
+    <addaction name="separator"/>
+    <addaction name="actionPage_Setup"/>
+    <addaction name="actionPrint"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -90,6 +139,144 @@
    <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionPage_Setup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Page Setup...</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Print...</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_2">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_As">
+   <property name="text">
+    <string>Save Project As...</string>
+   </property>
+  </action>
+  <action name="actionBackup_Project">
+   <property name="text">
+    <string>Backup Project...</string>
+   </property>
+  </action>
+  <action name="actionExport_as_MP3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export as MP3</string>
+   </property>
+  </action>
+  <action name="actionExport_as_WAV">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export as WAV</string>
+   </property>
+  </action>
+  <action name="actionExport_as_MKA">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export as MKA</string>
+   </property>
+  </action>
+  <action name="actionExport_as_OGG">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export as OGG</string>
+   </property>
+  </action>
+  <action name="actionExport_Audio">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export Audio...</string>
+   </property>
+  </action>
+  <action name="actionExport_Selected_Audio">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export Selected Audio...</string>
+   </property>
+  </action>
+  <action name="actionExport_Labels">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export Labels...</string>
+   </property>
+  </action>
+  <action name="actionExport_Multiple">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Export Multiple...</string>
+   </property>
+  </action>
+  <action name="actionAudio">
+   <property name="text">
+    <string>Audio...</string>
+   </property>
+  </action>
+  <action name="actionLabels">
+   <property name="text">
+    <string>Labels...</string>
+   </property>
+  </action>
+  <action name="actionRaw_Data">
+   <property name="text">
+    <string>Raw Data...</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
