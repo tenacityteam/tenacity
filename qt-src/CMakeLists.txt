@@ -75,6 +75,8 @@ list( APPEND SOURCES
     TenacityApp.h
     Forms/MainWindow/MainWindow.cpp
     Forms/MainWindow/MainWindow.h
+    Forms/ControlToolbar/ControlToolbar.cpp
+    Forms/ControlToolbar/ControlToolbar.h
 )
 
 #
