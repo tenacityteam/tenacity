@@ -1,0 +1,40 @@
+name: Pull Request
+about: Contribute to Tenacity!
+body:
+  - type: input
+    id: resolved-issue
+    attributes:
+      label: What issue does your PR resolve?
+  - type: textarea
+    id: pr-description
+    attributes:
+      label: Describe your PR
+      description: | 
+        Describe what your PR adds, removes, or changes in full detail. If
+        there are any major implications, please list them here.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: By submitting this PR, I agree to the following checklist.
+      options:
+        - label: This PR compiles on my machine
+          required: false
+        - label: | 
+            My contributions are licensed under GPL v2 or later (unless
+            otherwise exempted).
+          required: true
+        - label: All commits have been signed-off to comply with the DCO.
+          required: true
+        - label: |
+            I made sure the title of this PR reflects the core meaning of the
+            issue I am solving.  
+          required: true
+        - label: I did not make unnecessary changes to the code.
+          required: true
+        - label: |
+            I have descriptive commit message(s) that thoroughly cover my
+            changes.
+          required: true

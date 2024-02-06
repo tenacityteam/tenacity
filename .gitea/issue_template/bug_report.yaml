@@ -1,0 +1,58 @@
+name: Bug Report
+about: File a bug report.
+title: '[BUG] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to fill out this bug report. We will try
+        to respond as soon as we can, but it may take a while.
+  - type: textarea
+    id: describeIssue
+    attributes:
+      label: Describe the Issue
+      description: |
+        Please describe the issue you're having. Include what you were doing,
+        the last action before the bug, screenshots, etc. The more detailed,
+        the better we can help you.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: |
+        Please describe how to reproduce the issue. The more detailed you are,
+        the better we can help you.
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: The OS the bug was discovered on.
+    validations:
+      required: true
+  - type: input
+    id: arch
+    attributes:
+      label: Arch
+      description: The architecture the bug was discovered on.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+        label: Version
+        description: |
+          The version of Tenacity you were using. If applicable, please also
+          indicate the package you were using.
+    validations:
+      required: true
+  - type: textarea
+    id: additionalInfo
+    attributes:
+      label: Additional Information
+      description: | 
+        Put additional information, such as sound hardware, here if you think
+        it is relevant to the issue.

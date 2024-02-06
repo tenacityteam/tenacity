@@ -1,0 +1,39 @@
+name: Feature Request
+about: Suggest a new idea for this project
+title: '[FEATURE] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hey! We see you're interested in suggesting a feature or other idea for
+        Tenacity! Thank you for your interest!
+
+        We please ask that you propose your feature request separately of any
+        others. If your request depends on other ideas that are either not
+        actively being discussed or worked on, please create a page on the wiki
+        instead to detail your feature request. We do not have enough resources
+        to address everyone's feature request, let alone implementing them, as
+        we have to balance these requests with bug reports.
+
+        Once again, we thank you for your interest and hope to implement your
+        feature soon.
+  - type: textarea
+    id: describeSolution
+    attributes:
+      label: Describe Your Idea
+      description: Describe what feature you want in Tenacity.
+    validations:
+      required: true
+  - type: textarea
+    id: relatedToProblem
+      label: Is Your Request Related to a Problem?
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups
+      description: If you have any mockups, feel free to place them here.
+  - type: textarea
+    id: additionalInfo
+    attributes:
+      label: Additional Information
+      description: Put any other information about your request here.
