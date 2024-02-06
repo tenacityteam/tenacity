@@ -69,7 +69,7 @@ wxChar NumberFormatter::GetDecimalSeparator()
 #endif // wxUSE_INTL/!wxUSE_INTL
 }
 
-bool NumberFormatter::GetThousandsSeparatorIfUsed(wxChar *sep)
+bool NumberFormatter::GetThousandsSeparatorIfUsed([[maybe_unused]] wxChar *sep)
 {
 #if wxUSE_INTL
    struct lconv *info = localeconv();
@@ -83,7 +83,6 @@ bool NumberFormatter::GetThousandsSeparatorIfUsed(wxChar *sep)
    *sep = s[0];
    return true;
 #else // !wxUSE_INTL
-    wxUnusedVar(sep);
     return false;
 #endif // wxUSE_INTL/!wxUSE_INTL
 }

@@ -1903,11 +1903,10 @@ void AudioIO::FillPlayBuffers()
                produced = mPlaybackMixers[i]->Process( toProduce );
             //wxASSERT(produced <= toProduce);
             auto warpedSamples = mPlaybackMixers[i]->GetBuffer();
-            const auto put = mPlaybackBuffers[i]->Put(
+            /* const auto put = */ mPlaybackBuffers[i]->Put(
                warpedSamples, floatSample, produced, frames - produced);
             // wxASSERT(put == frames);
             // but we can't assert in this thread
-            wxUnusedVar(put);
          }
       }
 
@@ -2167,11 +2166,10 @@ void AudioIO::DrainRecordBuffers()
                else
                   format = trackFormat;
                temp.Allocate(size, format);
-               const auto got =
+               // const auto got =
                   mCaptureBuffers[i]->Get(temp.ptr(), format, toGet);
                // wxASSERT(got == toGet);
                // but we can't assert in this thread
-               wxUnusedVar(got);
                if (double(size) > remainingSamples)
                   size = floor(remainingSamples);
             }
@@ -2181,11 +2179,10 @@ void AudioIO::DrainRecordBuffers()
                format = floatSample;
                SampleBuffer temp1(toGet, floatSample);
                temp.Allocate(size, format);
-               const auto got =
+               // const auto got =
                   mCaptureBuffers[i]->Get(temp1.ptr(), floatSample, toGet);
                // wxASSERT(got == toGet);
                // but we can't assert in this thread
-               wxUnusedVar(got);
                /* we are re-sampling on the fly. The last resampling call
                 * must flush any samples left in the rate conversion buffer
                 * so that they get recorded

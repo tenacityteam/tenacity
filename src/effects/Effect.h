@@ -577,9 +577,9 @@ inline long TrapLong(long x, long min, long max)
 
 #define ReadBasic(type, name) \
    type name; \
-   wxUnusedVar(MIN_ ##name); \
-   wxUnusedVar(MAX_ ##name); \
-   wxUnusedVar(SCL_ ##name); \
+   (void)(MIN_ ##name); \
+   (void)(MAX_ ##name); \
+   (void)(SCL_ ##name); \
    if (!parms.ReadAndVerify(KEY_ ## name, &name, DEF_ ## name)) \
       return false;
 

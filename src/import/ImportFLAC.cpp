@@ -408,8 +408,7 @@ ProgressResult FLACImportFileHandle::Import(WaveTrackFactory *trackFactory,
 
    // TODO: Vigilant Sentry: Variable res unused after assignment (error code DA1)
    //    Should check the result.
-      bool res = (mFile->process_until_end_of_stream() != 0);
-      wxUnusedVar(res);
+   mFile->process_until_end_of_stream();
 
    if (mUpdateResult == ProgressResult::Failed || mUpdateResult == ProgressResult::Cancelled) {
       return mUpdateResult;

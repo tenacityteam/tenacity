@@ -46,10 +46,9 @@ void CommandHandler::OnReceiveCommand(AppCommandEvent &event)
       // command may change the context - for example, switching to a
       // different project.
       CommandContext context{ *pProject };
-      auto result = GuardedCall<bool>( [&] {
+      /* auto result = */ GuardedCall<bool>( [&] {
          return cmd->Apply( context );
       });
-      wxUnusedVar(result);
 
       // Redraw the project
       ProjectWindow::Get( context.project ).RedrawProject();

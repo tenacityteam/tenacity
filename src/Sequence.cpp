@@ -385,14 +385,13 @@ std::unique_ptr<Sequence> Sequence::Copy( const SampleBlockFactoryPtr &pFactory,
    // contents are used -- must copy if factories are different:
    auto pUseFactory = (pFactory == mpFactory) ? nullptr : pFactory.get();
 
-   int numBlocks = mBlock.size();
+   [[maybe_unused]] int numBlocks = mBlock.size();
 
    int b0 = FindBlock(s0);
    const int b1 = FindBlock(s1 - 1);
    wxASSERT(b0 >= 0);
    wxASSERT(b0 < numBlocks);
    wxASSERT(b1 < numBlocks);
-   wxUnusedVar(numBlocks);
    wxASSERT(b0 <= b1);
 
    dest->mBlock.reserve(b1 - b0 + 1);

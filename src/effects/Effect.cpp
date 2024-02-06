@@ -1497,7 +1497,7 @@ bool Effect::ProcessTrack(int count,
       }
 
       // Finally call the plugin to process the block
-      decltype(curBlockSize) processed;
+      [[maybe_unused]] decltype(curBlockSize) processed;
       try
       {
          processed = ProcessBlock(inBufPos.get(), outBufPos.get(), curBlockSize);
@@ -1517,7 +1517,6 @@ bool Effect::ProcessTrack(int count,
          return false;
       }
       wxASSERT(processed == curBlockSize);
-      wxUnusedVar(processed);
 
       // Bump to next input buffer position
       if (inputRemaining != 0)

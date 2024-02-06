@@ -253,12 +253,14 @@ bool MeterUpdateQueue::Get(MeterUpdateMsg &msg)
 // How many pixels between items?
 const static int gap = 2;
 
+/* Unused
 const static wxChar *PrefStyles[] =
 {
    wxT("AutomaticStereo"),
    wxT("HorizontalStereo"),
    wxT("VerticalStereo")
 };
+*/
 
 enum {
    OnMeterUpdateID = 6000,
@@ -314,8 +316,6 @@ MeterPanel::MeterPanel(TenacityProject *project,
 {
    // i18n-hint: Noun (the meter is used for playback or record level monitoring)
    SetName( XO("Meter") );
-   // Suppress warnings about the header file
-   wxUnusedVar(PrefStyles);
 
    SetBackgroundStyle(wxBG_STYLE_SYSTEM);
 

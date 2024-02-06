@@ -167,12 +167,6 @@ TranslatableString OggImportPlugin::GetPluginFormatDescription()
 std::unique_ptr<ImportFileHandle> OggImportPlugin::Open(
    const FilePath &filename, TenacityProject*)
 {
-   // Suppress some compiler warnings about unused global variables in the library header
-   wxUnusedVar(OV_CALLBACKS_DEFAULT);
-   wxUnusedVar(OV_CALLBACKS_NOCLOSE);
-   wxUnusedVar(OV_CALLBACKS_STREAMONLY);
-   wxUnusedVar(OV_CALLBACKS_STREAMONLY_NOCLOSE);
-
    auto vorbisFile = std::make_unique<OggVorbis_File>();
    auto file = std::make_unique<wxFFile>(filename, wxT("rb"));
 
