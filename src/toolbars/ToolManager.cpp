@@ -1266,7 +1266,7 @@ void ToolManager::OnMouse( wxMouseEvent & event )
                // needs to use that height, h, not the bar height
                // for calculating where to be drawn.
                const int tbs = toolbarSingle + toolbarGap;
-               int h = wxMin(r.GetHeight(), 2*tbs-1);
+               int h = std::min(r.GetHeight(), 2*tbs-1);
                p.x = dr.GetLeft() + r.GetLeft();
                p.y = dr.GetTop() + r.GetTop() +
                   ( ( h - mLeft->GetBox().GetHeight() ) / 2 );

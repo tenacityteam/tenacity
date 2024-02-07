@@ -1093,9 +1093,9 @@ bool LWSlider::DoShowDialog(wxPoint pos)
                      wxID_ANY,
                      mName,
                      pos,
-                     // Bug 2087.  wxMin takes care of case where
+                     // Bug 2087.  std::min takes care of case where
                      // slider is vertical (tall and narrow)
-                     wxSize( mWidth, wxMin( mWidth, mHeight) ),
+                     wxSize( mWidth, std::min( mWidth, mHeight) ),
                      mStyle,
                      Get(),
                      mScrollLine,

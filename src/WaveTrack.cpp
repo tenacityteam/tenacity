@@ -2097,7 +2097,7 @@ float WaveTrack::GetRMS(double t0, double t1, bool mayThrow) const
       if (t1 >= clip->GetPlayStartTime() && t0 <= clip->GetPlayEndTime())
       {
          auto clipStart = clip->TimeToSequenceSamples(wxMax(t0, clip->GetPlayStartTime()));
-         auto clipEnd = clip->TimeToSequenceSamples(wxMin(t1, clip->GetPlayEndTime()));
+         auto clipEnd = clip->TimeToSequenceSamples(std::min(t1, clip->GetPlayEndTime()));
 
          double cliprms = clip->GetRMS(t0, t1, mayThrow);
 

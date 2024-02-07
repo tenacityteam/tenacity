@@ -194,7 +194,7 @@ void MeterToolBar::OnSize( wxSizeEvent & event) ///* event */ )
       ((mPlayMeter ==NULL) ? 0:1);
 
    bool bHorizontal = ( width > height );
-   bool bEndToEnd   = ( nMeters > 1 ) && wxMin( width, height ) < (60 * nMeters);
+   bool bEndToEnd   = ( nMeters > 1 ) && std::min( width, height ) < (60 * nMeters);
 
    // Default location for second meter
    wxGBPosition pos( 0, 0 );

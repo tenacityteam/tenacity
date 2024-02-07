@@ -356,7 +356,7 @@ MacroCommandsCatalog::MacroCommandsCatalog( const TenacityProject *project )
             // uh oh, using GET for dubious comparison of (lengths of)
             // user-visible name and internal CommandID!
             // and doing this only for English locale!
-            suffix = squashed.length() < wxMin( 18, mNames[i].GET().length());
+            suffix = squashed.length() < std::min<size_t>(18, mNames[i].GET().length());
          }
 
          if( suffix )

@@ -596,8 +596,8 @@ void PluginRegistrationDialog::PopulateOrExchange(ShuttleGui &S)
    Fit();
 
    wxSize sz = GetSize();
-   sz.SetWidth(wxMin(sz.GetWidth(), r.GetWidth()));
-   sz.SetHeight(wxMin(sz.GetHeight(), r.GetHeight()));
+   sz.SetWidth(std::min(sz.GetWidth(), r.GetWidth()));
+   sz.SetHeight(std::min(sz.GetHeight(), r.GetHeight()));
    SetMinSize(sz);
 
    // Parent window is usually not there yet, so centre on screen rather than on parent.

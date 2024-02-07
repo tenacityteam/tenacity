@@ -246,7 +246,7 @@ bool EffectSBSMS::Process()
          //Set the current bounds to whichever left marker is
          //greater and whichever right marker is less
          mCurT0 = wxMax(mT0, mCurT0);
-         mCurT1 = wxMin(mT1, mCurT1);
+         mCurT1 = std::min(mT1, mCurT1);
 
          // Process only if the right marker is to the right of the left marker
          if (mCurT1 > mCurT0) {
@@ -264,9 +264,9 @@ bool EffectSBSMS::Process()
                //Adjust bounds by the right tracks markers
                t = rightTrack->GetStartTime();
                t = wxMax(mT0, t);
-               mCurT0 = wxMin(mCurT0, t);
+               mCurT0 = std::min(mCurT0, t);
                t = rightTrack->GetEndTime();
-               t = wxMin(mT1, t);
+               t = std::min(mT1, t);
                mCurT1 = wxMax(mCurT1, t);
 
                //Transform the marker timepoints to samples

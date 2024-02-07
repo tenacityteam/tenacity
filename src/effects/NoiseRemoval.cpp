@@ -255,7 +255,7 @@ void EffectNoiseRemoval::ApplyFreqSmoothing(float *spec)
 
    for(int i = 0; i < mSpectrumSize; i++) {
       j0 = wxMax(0, i - mFreqSmoothingBins);
-      j1 = wxMin(mSpectrumSize-1, i + mFreqSmoothingBins);
+      j1 = std::min(mSpectrumSize-1, i + mFreqSmoothingBins);
       tmp[i] = 0.0;
       for(j = j0; j <= j1; j++) {
          tmp[i] += spec[j];
@@ -352,7 +352,7 @@ void EffectNoiseRemoval::StartNewTrack()
 void EffectNoiseRemoval::ProcessSamples(size_t len, float *buffer)
 {
    while(len && mOutSampleCount < mInSampleCount) {
-      size_t avail = wxMin(len, mWindowSize - mInputPos);
+      size_t avail = std::min(len, mWindowSize - mInputPos);
       for(size_t i = 0; i < avail; i++)
          mInWaveBuffer[mInputPos + i] = buffer[i];
       buffer += avail;

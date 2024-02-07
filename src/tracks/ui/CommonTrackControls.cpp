@@ -403,7 +403,7 @@ void CommonTrackControls::Draw(
    if( bHasMuteSolo )
    {
       int ylast = rect.height-20;
-      int ybutton = wxMin(32,ylast-17);
+      int ybutton = std::min(32,ylast-17);
       int ybuttonEnd = 67;
 
       fill=wxRect( rect.x+1, rect.y+17, vrul-6, ybutton);

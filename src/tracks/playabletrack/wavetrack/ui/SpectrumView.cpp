@@ -593,7 +593,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          int px = ((mid.height - 1 - yy) * mid.width + xx);
 #ifdef EXPERIMENTAL_SPECTROGRAM_OVERLAY
          // More transparent the closer to zero intensity.
-         alpha[px]= wxMin( 200, (value+0.3) * 500) ;
+         alpha[px]= std::min( 200, (value+0.3) * 500) ;
 #endif
          px *=3;
          data[px++] = rv;

@@ -442,7 +442,7 @@ void LabelTrackView::ComputeLayout(const wxRect & r, const ZoomInfo &zoomInfo) c
    const int xExtra= (3 * mIconWidth)/2;
 
    bool bAvoidName = false;
-   const int nRows = wxMin((r.height / yRowHeight) + 1, MAX_NUM_ROWS);
+   const int nRows = std::min((r.height / yRowHeight) + 1, MAX_NUM_ROWS);
    if( nRows > 2 )
       bAvoidName = gPrefs->ReadBool(wxT("/GUI/ShowTrackNameInWaveform"), false);
    // Initially none of the rows have been used.
@@ -621,7 +621,7 @@ void LabelTrackView::DrawText(wxDC & dc, const LabelStruct &ls, const wxRect & r
    {
       auto &xText = ls.xText;
       const int xStart=wxMax(r.x,xText-mIconWidth/2);
-      const int xEnd=wxMin(r.x+r.width,xText+ls.width+mIconWidth/2);
+      const int xEnd=std::min(r.x+r.width,xText+ls.width+mIconWidth/2);
       const int xWidth = xEnd-xStart;
 
       if( (xStart < (r.x+r.width)) && (xEnd > r.x) && (xWidth>0))
@@ -650,7 +650,7 @@ void LabelTrackView::DrawTextBox(
     const auto textFrameHeight = GetTextFrameHeight();
     auto& xText = ls.xText;
     const int xStart = wxMax(r.x, xText - mIconWidth / 2);
-    const int xEnd = wxMin(r.x + r.width, xText + ls.width + mIconWidth / 2);
+    const int xEnd = std::min(r.x + r.width, xText + ls.width + mIconWidth / 2);
     const int xWidth = xEnd - xStart;
 
     if ((xStart < (r.x + r.width)) && (xEnd > r.x) && (xWidth > 0))
@@ -674,7 +674,7 @@ void LabelTrackView::DrawBar(wxDC& dc, const LabelStruct& ls, const wxRect& r)
    auto& x = ls.x;
    auto& x1 = ls.x1;
    const int xStart = wxMax(r.x, x + xBarShorten / 2);
-   const int xEnd = wxMin(r.x + r.width, x1 - xBarShorten / 2);
+   const int xEnd = std::min(r.x + r.width, x1 - xBarShorten / 2);
    const int xWidth = xEnd - xStart;
 
    if ((xStart < (r.x + r.width)) && (xEnd > r.x) && (xWidth > 0))

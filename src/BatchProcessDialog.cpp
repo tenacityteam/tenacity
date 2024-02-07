@@ -415,7 +415,7 @@ void ApplyMacroDialog::OnApplyToFiles(wxCommandEvent & /* event */)
    // Set the column size for the files list.
    fileList->SetColumnWidth(0, wxLIST_AUTOSIZE);
 
-   int width = wxMin( fileList->GetColumnWidth(0), 1000);
+   int width = std::min( fileList->GetColumnWidth(0), 1000);
    wxSize sz = fileList->GetClientSize();
    if (sz.GetWidth() < width ) {
       sz.SetWidth(width);

@@ -303,25 +303,25 @@ bool EffectScienFilter::Startup()
 	   double dTemp;
       gPrefs->Read(base + wxT("Order"), &mOrder, 1);
       mOrder = wxMax (1, mOrder);
-      mOrder = wxMin (MAX_Order, mOrder);
+      mOrder = std::min<int>(MAX_Order, mOrder);
       gPrefs->Read(base + wxT("FilterType"), &mFilterType, 0);
       mFilterType = wxMax (0, mFilterType);
-      mFilterType = wxMin (2, mFilterType);
+      mFilterType = std::min<int>(2, mFilterType);
       gPrefs->Read(base + wxT("FilterSubtype"), &mFilterSubtype, 0);
       mFilterSubtype = wxMax (0, mFilterSubtype);
-      mFilterSubtype = wxMin (1, mFilterSubtype);
+      mFilterSubtype = std::min<int>(1, mFilterSubtype);
       gPrefs->Read(base + wxT("Cutoff"), &dTemp, 1000.0);
       mCutoff = (float)dTemp;
       mCutoff = wxMax (1, mCutoff);
-      mCutoff = wxMin (100000, mCutoff);
+      mCutoff = std::min<float>(100000, mCutoff);
       gPrefs->Read(base + wxT("Ripple"), &dTemp, 1.0);
       mRipple = dTemp;
       mRipple = wxMax (0, mRipple);
-      mRipple = wxMin (100, mRipple);
+      mRipple = std::min<float>(100, mRipple);
       gPrefs->Read(base + wxT("StopbandRipple"), &dTemp, 30.0);
       mStopbandRipple = dTemp;
       mStopbandRipple = wxMax (0, mStopbandRipple);
-      mStopbandRipple = wxMin (100, mStopbandRipple);
+      mStopbandRipple = std::min<float>(100, mStopbandRipple);
 
       SaveUserPreset(GetCurrentSettingsGroup());
 

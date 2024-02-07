@@ -804,7 +804,7 @@ void ProjectWindow::OnScrollRight()
    // use wxInt64 for calculation to prevent temporary overflow
    pos += wxMax((wxInt64)(sbarHjump * viewInfo.sbarScale), 1);
    wxInt64 max = mHsbar->GetRange() - mHsbar->GetThumbSize();
-   pos = wxMin(pos, max);
+   pos = std::min(pos, max);
    viewInfo.sbarH += sbarHjump;
    viewInfo.sbarH = std::min(viewInfo.sbarH,
       viewInfo.sbarTotal
@@ -850,7 +850,7 @@ void ProjectWindow::OnScrollRightButton(wxScrollEvent & /*event*/)
    // use wxInt64 for calculation to prevent temporary overflow
    pos += wxMax((wxInt64)(sbarHjump * viewInfo.sbarScale), 1);
    wxInt64 max = mHsbar->GetRange() - mHsbar->GetThumbSize();
-   pos = wxMin(pos, max);
+   pos = std::min(pos, max);
    viewInfo.sbarH += sbarHjump;
    viewInfo.sbarH = std::min(viewInfo.sbarH,
       viewInfo.sbarTotal
