@@ -367,7 +367,7 @@ void TimeToolBar::OnIdle(wxIdleEvent &evt)
       audioTime = playRegion.GetStart();
    }
 
-   mAudioTime->SetValue(wxMax(0.0, audioTime));
+   mAudioTime->SetValue(std::max(0.0, audioTime));
 }
 
 static RegisteredToolbarFactory factory

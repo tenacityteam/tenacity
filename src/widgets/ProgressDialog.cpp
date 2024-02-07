@@ -1537,11 +1537,11 @@ void ProgressDialog::SetMessage(const TranslatableString & message)
       {
 #if defined(__WXMAC__)
          wxSize sz = mMessage->GetSize();
-         mMessage->SetMinSize(wxSize(wxMax(sz.x, mLastW), wxMax(sz.y, mLastH)));
+         mMessage->SetMinSize(wxSize(std::max(sz.x, mLastW), std::max(sz.y, mLastH)));
 #endif
          // No need to adjust for the margin here since we only add
          // to the existing dimensions.
-         ds.x = wxMax(wxMax(ds.x, mLastW), wxMax(ds.y, mLastH));
+         ds.x = std::max(std::max(ds.x, mLastW), std::max(ds.y, mLastH));
          SetClientSize(ds);
          wxDialogWrapper::Update();
       }

@@ -1266,8 +1266,8 @@ bool NyquistEffect::ProcessOne()
          float min, max;
          auto pair = mCurTrack[i]->GetMinMax(mT0, mT1); // may throw
          min = pair.first, max = pair.second;
-         maxPeak = wxMax(wxMax(fabs(min), fabs(max)), maxPeak);
-         maxPeakLevel = wxMax(maxPeakLevel, maxPeak);
+         maxPeak = std::max(std::max(fabs(min), fabs(max)), maxPeak);
+         maxPeakLevel = std::max(maxPeakLevel, maxPeak);
 
          // On Debian, NaN samples give maxPeak = 3.40282e+38 (FLT_MAX)
          if (!std::isinf(maxPeak) && !std::isnan(maxPeak) && (maxPeak < FLT_MAX)) {

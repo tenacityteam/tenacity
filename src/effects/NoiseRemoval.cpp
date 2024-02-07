@@ -254,7 +254,7 @@ void EffectNoiseRemoval::ApplyFreqSmoothing(float *spec)
    int j, j0, j1;
 
    for(int i = 0; i < mSpectrumSize; i++) {
-      j0 = wxMax(0, i - mFreqSmoothingBins);
+      j0 = std::max(0, i - mFreqSmoothingBins);
       j1 = std::min(mSpectrumSize-1, i + mFreqSmoothingBins);
       tmp[i] = 0.0;
       for(j = j0; j <= j1; j++) {

@@ -429,7 +429,7 @@ class ASAProgress final : public SAProgress {
          // per frame per iteration is SMOOTHING_WORK_UNIT
          if (smoothing) {
             work3 =
-               wxMax(mFrames[0], mFrames[1]) * SMOOTHING_WORK_UNIT * 40;
+               std::max(mFrames[0], mFrames[1]) * SMOOTHING_WORK_UNIT * 40;
             mTotalWork += work3;
          }
          #ifdef COLLECT_TIMING_DATA
@@ -455,8 +455,8 @@ class ASAProgress final : public SAProgress {
         wxFprintf(mTimeFile,
                 "Phase 3 took %d ms for %d iterations on %g frames, "
                 "coefficient = %g s per frame per iteration\n",
-                ms, iterations, wxMax(mFrames[0], mFrames[1]),
-                (ms * 0.001) / (wxMax(mFrames[0], mFrames[1]) * iterations));
+                ms, iterations, std::max(mFrames[0], mFrames[1]),
+                (ms * 0.001) / (std::max(mFrames[0], mFrames[1]) * iterations));
       }
    }
    bool set_feature_progress(float s) override {
@@ -487,7 +487,7 @@ class ASAProgress final : public SAProgress {
              (is_audio[0] ? AUDIO_WORK_UNIT : MIDI_WORK_UNIT) * mFrames[0] +
              (is_audio[1] ? AUDIO_WORK_UNIT : MIDI_WORK_UNIT) * mFrames[1] +
              MATRIX_WORK_UNIT * mFrames[0] * mFrames[1];
-      work += i * wxMax(mFrames[0], mFrames[1]) * SMOOTHING_WORK_UNIT;
+      work += i * std::max(mFrames[0], mFrames[1]) * SMOOTHING_WORK_UNIT;
       auto updateResult = mProgress->Update((int)(work), (int)(mTotalWork));
       return (updateResult == ProgressResult::Success);
    }

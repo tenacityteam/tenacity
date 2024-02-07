@@ -247,7 +247,7 @@ Envelope::Envelope(const Envelope &orig, double t0, double t1)
    , mMaxValue(orig.mMaxValue)
    , mDefaultValue(orig.mDefaultValue)
 {
-   mOffset = wxMax(t0, orig.mOffset);
+   mOffset = std::max(t0, orig.mOffset);
    mTrackLen = std::min(t1, orig.mOffset + orig.mTrackLen) - mOffset;
 
    auto range1 = orig.EqualRange( t0 - orig.mOffset, 0 );

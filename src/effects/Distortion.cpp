@@ -646,7 +646,7 @@ void EffectDistortion::OnThresholdText(wxCommandEvent& /*evt*/)
 void EffectDistortion::OnThresholdSlider(wxCommandEvent& evt)
 {
    mThreshold = (double) evt.GetInt() / SCL_Threshold_dB;
-   mParams.mThreshold_dB = wxMax(LINEAR_TO_DB(mThreshold), MIN_Threshold_dB);
+   mParams.mThreshold_dB = std::max(LINEAR_TO_DB(mThreshold), MIN_Threshold_dB);
    mThreshold = std::max(MIN_Threshold_Linear, mThreshold);
    mThresholdT->GetValidator()->TransferToWindow();
 }
@@ -1302,9 +1302,9 @@ float EffectDistortion::WaveShaper(float sample)
    }
 
    index = std::floor(sample * STEPS) + STEPS;
-   index = wxMax<int>(std::min(index, 2 * STEPS - 1), 0);
+   index = std::max<int>(std::min(index, 2 * STEPS - 1), 0);
    xOffset = ((1 + sample) * STEPS) - index;
-   xOffset = std::min(wxMax<double>(xOffset, 0.0), 1.0);   // Clip at 0dB
+   xOffset = std::min(std::max<double>(xOffset, 0.0), 1.0);   // Clip at 0dB
 
    // linear interpolation: y = y0 + (y1-y0)*(x-x0)
    out = mTable[index] + (mTable[index + 1] - mTable[index]) * xOffset;

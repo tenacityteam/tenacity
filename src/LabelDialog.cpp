@@ -208,7 +208,7 @@ void LabelDialog::PopulateLabels()
    // This should not be in TransferDataToWindow() since a user might
    // resize the column and we'd resize it back to the minimum.
    mGrid->AutoSizeColumn(Col_Label, false );
-   mGrid->SetColSize(Col_Label, wxMax(150, mGrid->GetColSize(Col_Label)));
+   mGrid->SetColSize(Col_Label, std::max(150, mGrid->GetColSize(Col_Label)));
    mGrid->SetColMinimalWidth(Col_Label, mGrid->GetColSize(Col_Label));
 
 }

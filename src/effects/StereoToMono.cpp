@@ -115,7 +115,7 @@ bool EffectStereoToMono::Process()
          {
             auto start = std::min(left->TimeToLongSamples(left->GetStartTime()),
                                right->TimeToLongSamples(right->GetStartTime()));
-            auto end = wxMax(left->TimeToLongSamples(left->GetEndTime()),
+            auto end = std::max(left->TimeToLongSamples(left->GetEndTime()),
                                right->TimeToLongSamples(right->GetEndTime()));
 
             totalTime += (end - start);
@@ -172,7 +172,7 @@ bool EffectStereoToMono::ProcessOne(sampleCount & curTime, sampleCount totalTime
    sampleCount processed = 0;
 
    auto start = std::min(left->GetStartTime(), right->GetStartTime());
-   auto end = wxMax(left->GetEndTime(), right->GetEndTime());
+   auto end = std::max(left->GetEndTime(), right->GetEndTime());
 
    WaveTrackConstArray tracks;
    tracks.push_back(left->SharedPointer< const WaveTrack >());

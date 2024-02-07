@@ -693,7 +693,7 @@ void OnDuplicate(const CommandContext &context)
       auto dest = n->Copy(selectedRegion.t0(),
               selectedRegion.t1(), false);
       dest->Init(*n);
-      dest->SetOffset(wxMax(selectedRegion.t0(), n->GetOffset()));
+      dest->SetOffset(std::max(selectedRegion.t0(), n->GetOffset()));
       tracks.Add( dest );
 
       // This break is really needed, else we loop infinitely
@@ -855,7 +855,7 @@ void OnSplit(const CommandContext &context)
 
          dest = n->Copy(sel0, sel1);
          dest->Init(*n);
-         dest->SetOffset(wxMax(sel0, n->GetOffset()));
+         dest->SetOffset(std::max(sel0, n->GetOffset()));
 
          if (sel1 >= n->GetEndTime())
             n->Clear(sel0, sel1);
@@ -907,7 +907,7 @@ void OnSplitNew(const CommandContext &context)
                selectedRegion.t1()));
             dest = wt->SplitCut(newt0, newt1);
             if (dest) {
-               dest->SetOffset(wxMax(newt0, offset));
+               dest->SetOffset(std::max(newt0, offset));
                FinishCopy(wt, dest, tracks);
             }
          }
@@ -919,7 +919,7 @@ void OnSplitNew(const CommandContext &context)
             dest = n->Cut(viewInfo.selectedRegion.t0(),
                    viewInfo.selectedRegion.t1());
             if (dest) {
-               dest->SetOffset(wxMax(0, n->GetOffset()));
+               dest->SetOffset(std::max(0, n->GetOffset()));
                FinishCopy(n, dest, *tracks);
             }
          }

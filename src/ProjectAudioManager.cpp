@@ -1090,7 +1090,7 @@ bool ProjectAudioManager::DoPlayStopSelect( bool click, bool shift )
       }
       else if (click){
          // avoid a point at negative time.
-         time = wxMax( time, 0 );
+         time = std::max( time, 0.0 );
          // Set a point selection, as if by a click at the play head
          selection.setTimes(time, time);
       } else

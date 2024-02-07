@@ -302,25 +302,25 @@ bool EffectScienFilter::Startup()
    {
 	   double dTemp;
       gPrefs->Read(base + wxT("Order"), &mOrder, 1);
-      mOrder = wxMax (1, mOrder);
+      mOrder = std::max<int>(1, mOrder);
       mOrder = std::min<int>(MAX_Order, mOrder);
       gPrefs->Read(base + wxT("FilterType"), &mFilterType, 0);
-      mFilterType = wxMax (0, mFilterType);
+      mFilterType = std::max<int>(0, mFilterType);
       mFilterType = std::min<int>(2, mFilterType);
       gPrefs->Read(base + wxT("FilterSubtype"), &mFilterSubtype, 0);
-      mFilterSubtype = wxMax (0, mFilterSubtype);
+      mFilterSubtype = std::max<int>(0, mFilterSubtype);
       mFilterSubtype = std::min<int>(1, mFilterSubtype);
       gPrefs->Read(base + wxT("Cutoff"), &dTemp, 1000.0);
       mCutoff = (float)dTemp;
-      mCutoff = wxMax (1, mCutoff);
+      mCutoff = std::max<float>(1, mCutoff);
       mCutoff = std::min<float>(100000, mCutoff);
       gPrefs->Read(base + wxT("Ripple"), &dTemp, 1.0);
       mRipple = dTemp;
-      mRipple = wxMax (0, mRipple);
+      mRipple = std::max<float>(0, mRipple);
       mRipple = std::min<float>(100, mRipple);
       gPrefs->Read(base + wxT("StopbandRipple"), &dTemp, 30.0);
       mStopbandRipple = dTemp;
-      mStopbandRipple = wxMax (0, mStopbandRipple);
+      mStopbandRipple = std::max<float>(0, mStopbandRipple);
       mStopbandRipple = std::min<float>(100, mStopbandRipple);
 
       SaveUserPreset(GetCurrentSettingsGroup());
@@ -679,7 +679,7 @@ float EffectScienFilter::FilterMagnAtFreq(float Freq)
       break;
 
    case kChebyshevTypeI:     // Chebyshev Type 1
-      double eps; eps = sqrt(pow (10.0, wxMax(0.001, mRipple)/10.0) - 1);
+      double eps; eps = sqrt(pow (10.0, std::max<float>(0.001, mRipple)/10.0) - 1);
       double chebyPolyVal;
       switch (mFilterSubtype)
       {
@@ -696,7 +696,7 @@ float EffectScienFilter::FilterMagnAtFreq(float Freq)
       break;
 
    case kChebyshevTypeII:     // Chebyshev Type 2
-      eps = 1 / sqrt(pow (10.0, wxMax(0.001, mStopbandRipple)/10.0) - 1);
+      eps = 1 / sqrt(pow (10.0, std::max<float>(0.001, mStopbandRipple)/10.0) - 1);
       switch (mFilterSubtype)
       {
       case kLowPass:	// lowpass

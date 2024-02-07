@@ -1360,7 +1360,7 @@ size_t LV2Effect::RealtimeProcess(int group, float **inbuf, float **outbuf, size
                                  (port->mIsInput ? inbuf[i++] : outbuf[o++]));
    }
 
-   mNumSamples = wxMax(numSamples, mNumSamples);
+   mNumSamples = std::max(numSamples, mNumSamples);
 
    if (mRolling)
    {
@@ -2536,7 +2536,7 @@ bool LV2Effect::BuildPlain()
             for (size_t j = 0; j < items; j++)
             {
                wxSizerItem *item = gridSizer->GetItem(j);
-               widths[j % cols] = wxMax(widths[j % cols], item->GetSize().GetWidth());
+               widths[j % cols] = std::max(widths[j % cols], item->GetSize().GetWidth());
             }
          }
 

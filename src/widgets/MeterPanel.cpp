@@ -2251,7 +2251,7 @@ wxAccStatus MeterAx::GetName(int /* childId */, wxString* name)
       bool clipped = false;
       for (unsigned int i = 0; i < m->mNumBars; i++)
       {
-         peak = wxMax(peak, m->mBar[i].peakPeakHold);
+         peak = std::max(peak, m->mBar[i].peakPeakHold);
          if (m->mBar[i].clipping)
             clipped = true;
       }

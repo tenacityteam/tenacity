@@ -321,7 +321,7 @@ bool ExpandingToolBar::Layout()
 {
    mMainSize = mMainPanel->GetBestSize();
    mExtraSize = mExtraPanel->GetBestSize();
-   mButtonSize = wxSize(wxMax(mMainSize.x, mExtraSize.x),
+   mButtonSize = wxSize(std::max(mMainSize.x, mExtraSize.x),
                         kToggleButtonHeight);
 
    int left = 0;

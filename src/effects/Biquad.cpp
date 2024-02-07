@@ -156,7 +156,7 @@ ArrayOf<Biquad> Biquad::CalcChebyshevType1Filter(int order, double fn, double fc
    double fZZeroX;
    double beta = cos (fNorm*PI);
 
-   double eps; eps = sqrt (pow (10.0, wxMax(0.001, ripple) / 10.0) - 1);
+   double eps; eps = sqrt (pow (10.0, std::max(0.001, ripple) / 10.0) - 1);
    double a; a = log (1 / eps + sqrt(1 / square(eps) + 1)) / order;
    // Assume even order to start
    for (int iPair = 0; iPair < order/2; iPair++)
@@ -186,7 +186,7 @@ ArrayOf<Biquad> Biquad::CalcChebyshevType1Filter(int order, double fn, double fc
    }
    if ((order & 1) == 0)
    {
-      double fTemp = DB_TO_LINEAR(-wxMax(0.001, ripple));      // at DC the response is down R dB (for even-order)
+      double fTemp = DB_TO_LINEAR(-std::max(0.001, ripple));      // at DC the response is down R dB (for even-order)
       pBiquad[0].fNumerCoeffs [B0] *= fTemp;
       pBiquad[0].fNumerCoeffs [B1] *= fTemp;
       pBiquad[0].fNumerCoeffs [B2] *= fTemp;
@@ -240,7 +240,7 @@ ArrayOf<Biquad> Biquad::CalcChebyshevType2Filter(int order, double fn, double fc
 
    double fSZeroX, fSZeroY;
    double fSPoleX, fSPoleY;
-   double eps = DB_TO_LINEAR(-wxMax(0.001, ripple));
+   double eps = DB_TO_LINEAR(-std::max(0.001, ripple));
    double a = log (1 / eps + sqrt(1 / square(eps) + 1)) / order;
 
    // Assume even order

@@ -467,7 +467,7 @@ void MP3ImportFileHandle::CheckLyrics()
    // Found a v1 Lyrics footer?
    if (memcmp(mInputBuffer, "LYRICSEND", 9) == 0)
    {
-      wxFileOffset pos = wxMax(offset - 5100, 0);
+      wxFileOffset pos = std::max(offset - 5100, 0);
       size_t len = offset - pos;
 
       // Ensure file is positioned to start of (possible) lyrics

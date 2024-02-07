@@ -834,9 +834,9 @@ AButton * ToolBar::MakeButton(wxWindow *parent,
                               bool processdownevents,
                               wxSize size)
 {
-   // wxMax to cater for case of image being bigger than the button.
-   int xoff = wxMax( 0, (size.GetWidth() - theTheme.Image(eStandardUp).GetWidth())/2);
-   int yoff = wxMax( 0, (size.GetHeight() - theTheme.Image(eStandardUp).GetHeight())/2);
+   // std::max to cater for case of image being bigger than the button.
+   int xoff = std::max( 0, (size.GetWidth() - theTheme.Image(eStandardUp).GetWidth())/2);
+   int yoff = std::max( 0, (size.GetHeight() - theTheme.Image(eStandardUp).GetHeight())/2);
 
    typedef std::unique_ptr<wxImage> wxImagePtr;
    wxImagePtr up2        (OverlayImage(eUp,     eStandardUp, xoff, yoff));
@@ -864,9 +864,9 @@ void ToolBar::MakeAlternateImages(AButton &button, int idx,
                                   teBmps eDisabled,
                                   wxSize size)
 {
-   // wxMax to cater for case of image being bigger than the button.
-   int xoff = wxMax( 0, (size.GetWidth() - theTheme.Image(eStandardUp).GetWidth())/2);
-   int yoff = wxMax( 0, (size.GetHeight() - theTheme.Image(eStandardUp).GetHeight())/2);
+   // std::max to cater for case of image being bigger than the button.
+   int xoff = std::max( 0, (size.GetWidth() - theTheme.Image(eStandardUp).GetWidth())/2);
+   int yoff = std::max( 0, (size.GetHeight() - theTheme.Image(eStandardUp).GetHeight())/2);
 
    typedef std::unique_ptr<wxImage> wxImagePtr;
    wxImagePtr up        (OverlayImage(eUp,     eStandardUp, xoff, yoff));

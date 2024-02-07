@@ -170,7 +170,7 @@ void DrawWaveformBackground(TrackPanelDrawingContext &context,
    //    maxtop        maxbot                      mintop        minbot
 
    int h = rect.height;
-   int halfHeight = wxMax(h / 2, 1);
+   int halfHeight = std::max(h / 2, 1);
    int maxtop, lmaxtop = 0;
    int mintop, lmintop = 0;
    int maxbot, lmaxbot = 0;
