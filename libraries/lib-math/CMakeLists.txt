@@ -28,8 +28,6 @@ set( SOURCES
 set( LIBRARIES
    Soxr::soxr
    lib-preferences-interface
-   PRIVATE
-   wxWidgets::wxWidgets
 )
 tenacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
    "" ""
