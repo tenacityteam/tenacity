@@ -52,8 +52,6 @@ and get deterministic behaviour.
 //#include <sys/types.h>
 //#include <memory.h>
 
-#include <wx/defs.h>
-
 //////////////////////////////////////////////////////////////////////////
 
 // Constants for the noise shaping buffer
@@ -411,23 +409,23 @@ static auto intChoicesDither = {
 };
 
 EnumSetting< DitherType > Dither::FastSetting{
-   wxT("Quality/DitherAlgorithmChoice"),
+   "Quality/DitherAlgorithmChoice",
    choicesDither,
    0, // none
 
    // for migrating old preferences:
    intChoicesDither,
-   wxT("Quality/DitherAlgorithm")
+   "Quality/DitherAlgorithm"
 };
 
 EnumSetting< DitherType > Dither::BestSetting{
-   wxT("Quality/HQDitherAlgorithmChoice"),
+   "Quality/HQDitherAlgorithmChoice",
    choicesDither,
    3, // shaped
 
    // for migrating old preferences:
    intChoicesDither,
-   wxT("Quality/HQDitherAlgorithm")
+   "Quality/HQDitherAlgorithm"
 };
 
 DitherType Dither::FastDitherChoice()
