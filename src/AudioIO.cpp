@@ -585,7 +585,7 @@ AudioIO::AudioIO()
       // but any attempt to play or record will simply fail.
    }
 
-   mLastPlaybackTimeMillis = 0;
+   mLastPlaybackTimeMillis = std::chrono::milliseconds{};
 
 #ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
    mScrubState = NULL;
@@ -2599,7 +2599,9 @@ bool AudioIoCallback::FillOutputBuffers(
       // assert( maxLen == toGet );
    }
 
-   mLastPlaybackTimeMillis = ::wxGetUTCTimeMillis();
+   mLastPlaybackTimeMillis = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::steady_clock::now().time_since_epoch()
+   );
 
    ClampBuffer( outputFloats, framesPerBuffer*numPlaybackChannels );
    if (outputMeterFloats != outputFloats)

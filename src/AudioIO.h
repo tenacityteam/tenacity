@@ -23,6 +23,7 @@
 #include <string>
 #include <thread>
 #include <utility>
+#include <chrono>
 
 #include <wx/event.h> // to declare custom event types
 
@@ -282,7 +283,7 @@ public:
 
    std::atomic<bool>   mForceFadeOut{ false };
 
-   wxLongLong          mLastPlaybackTimeMillis;
+   std::chrono::milliseconds mLastPlaybackTimeMillis;
 
    volatile double     mLastRecordingOffset;
    PaError             mLastPaError;
@@ -456,7 +457,7 @@ public:
 public:
    std::string LastPaErrorString();
 
-   wxLongLong GetLastPlaybackTime() const { return mLastPlaybackTimeMillis; }
+   std::chrono::milliseconds GetLastPlaybackTime() const { return mLastPlaybackTimeMillis; }
    std::shared_ptr<TenacityProject> GetOwningProject() const
    { return mOwningProject.lock(); }
 

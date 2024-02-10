@@ -91,6 +91,8 @@
 #include "ConfigInterface.h"
 
 #include <cstring>
+#include <chrono>
+using namespace std::chrono;
 
 // Put this inclusion last.  On Linux it makes some unfortunate pollution of
 // preprocessor macro name space that interferes with other headers.
@@ -1159,7 +1161,7 @@ VSTEffect::VSTEffect(const PluginPath & path, VSTEffect *master)
    memset(&mTimeInfo, 0, sizeof(mTimeInfo));
    mTimeInfo.samplePos = 0.0;
    mTimeInfo.sampleRate = 48000.0;  // this is a bogus value, but it's only for the display
-   mTimeInfo.nanoSeconds = wxGetUTCTimeMillis().ToDouble();
+   mTimeInfo.nanoSeconds = steady_clock::now().time_since_epoch().count();
    mTimeInfo.tempo = 120.0;
    mTimeInfo.timeSigNumerator = 4;
    mTimeInfo.timeSigDenominator = 4;
@@ -1400,7 +1402,7 @@ bool VSTEffect::ProcessInitialize(sampleCount /* totalLen */, ChannelNames /* ch
    // Initialize time info
    memset(&mTimeInfo, 0, sizeof(mTimeInfo));
    mTimeInfo.sampleRate = mSampleRate;
-   mTimeInfo.nanoSeconds = wxGetUTCTimeMillis().ToDouble();
+   mTimeInfo.nanoSeconds = steady_clock::now().time_since_epoch().count();
    mTimeInfo.tempo = 120.0;
    mTimeInfo.timeSigNumerator = 4;
    mTimeInfo.timeSigDenominator = 4;
@@ -2426,7 +2428,7 @@ void VSTEffect::NeedEditIdle(bool state)
 
 VstTimeInfo *VSTEffect::GetTimeInfo()
 {
-   mTimeInfo.nanoSeconds = wxGetUTCTimeMillis().ToDouble();
+   mTimeInfo.nanoSeconds = steady_clock::now().time_since_epoch().count();
    return &mTimeInfo;
 }
 

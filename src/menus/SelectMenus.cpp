@@ -36,6 +36,9 @@
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"
 #include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
 
+#include <chrono>
+using namespace std::chrono;
+
 // private helper classes and functions
 namespace {
 
@@ -173,23 +176,23 @@ enum TimeUnit {
 
 struct SeekInfo
 {
-   wxLongLong mLastSelectionAdjustment { ::wxGetUTCTimeMillis() };
+   milliseconds mLastSelectionAdjustment{ duration_cast<milliseconds>(steady_clock::now().time_since_epoch()) };
    double mSeekShort{ 0.0 };
    double mSeekLong{ 0.0 };
 };
 
-void SeekWhenAudioActive(double seekStep, wxLongLong &lastSelectionAdjustment)
+void SeekWhenAudioActive(double seekStep, milliseconds& lastSelectionAdjustment)
 {
    auto gAudioIO = AudioIO::Get();
 #ifdef EXPERIMENTAL_IMPROVED_SEEKING
-   if (gAudioIO->GetLastPlaybackTime() < lastSelectionAdjustment) {
+   if (gAudioIO->GetLastPlaybackTime() < lastSelectionAdjustment.count()) {
       // Allow time for the last seek to output a buffer before
       // discarding samples again
       // Do not advance mLastSelectionAdjustment
       return;
    }
 #endif
-   lastSelectionAdjustment = ::wxGetUTCTimeMillis();
+   lastSelectionAdjustment = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
 
    gAudioIO->SeekStream(seekStep);
 }
@@ -361,10 +364,10 @@ void SeekLeftOrRight
 
    // If the last adjustment was very recent, we are
    // holding the key down and should move faster.
-   const wxLongLong curtime = ::wxGetUTCTimeMillis();
+   const auto curtime = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
    enum { MIN_INTERVAL = 50 };
    const bool fast =
-      (curtime - info.mLastSelectionAdjustment < MIN_INTERVAL);
+      (curtime - info.mLastSelectionAdjustment).count() < MIN_INTERVAL;
 
    info.mLastSelectionAdjustment = curtime;
 
@@ -378,14 +381,14 @@ void SeekLeftOrRight
 // Move the cursor forward or backward, while paused or while playing.
 void DoCursorMove(
    TenacityProject &project, double seekStep,
-   wxLongLong &lastSelectionAdjustment)
+   milliseconds& lastSelectionAdjustment)
 {
    if (ProjectAudioIO::Get( project ).IsAudioActive()) {
       SeekWhenAudioActive(seekStep, lastSelectionAdjustment);
    }
    else
    {
-      lastSelectionAdjustment = ::wxGetUTCTimeMillis();
+      lastSelectionAdjustment = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
       MoveWhenAudioInactive(project, seekStep, TIME_UNIT_SECONDS);
    }
 
@@ -403,9 +406,9 @@ void DoBoundaryMove(TenacityProject &project, int step, SeekInfo &info)
 
    // If the last adjustment was very recent, we are
    // holding the key down and should move faster.
-   wxLongLong curtime = ::wxGetUTCTimeMillis();
+   milliseconds curtime = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
    int pixels = step;
-   if( curtime - info.mLastSelectionAdjustment < 50 )
+   if ((curtime - info.mLastSelectionAdjustment).count() < 50)
    {
       pixels *= 4;
    }

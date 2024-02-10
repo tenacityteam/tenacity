@@ -19,9 +19,8 @@
 #define __AUDACITY_WIDGETS_PROGRESSDIALOG__
 
 
-
+#include <chrono>
 #include <vector>
-#include <wx/defs.h>
 #include <wx/evtloop.h> // member variable
 
 #include "wxPanelWrapper.h" // to inherit
@@ -107,9 +106,9 @@ protected:
    wxStaticText *mRemaining;
    wxGauge *mGauge;
 
-   wxLongLong_t mStartTime;
-   wxLongLong_t mLastUpdate;
-   wxLongLong_t mYieldTimer;
+   std::chrono::milliseconds mStartTime;
+   std::chrono::milliseconds mLastUpdate;
+   std::chrono::milliseconds mYieldTimer;
    int mLastValue; // gauge value, range = [0,1000]
 
    bool mCancel;

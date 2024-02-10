@@ -1072,7 +1072,9 @@ void ProgressDialog::Reinit()
 {
    mLastValue = 0;
 
-   mStartTime = wxGetUTCTimeMillis().GetValue();
+   mStartTime = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::steady_clock::now().time_since_epoch()
+   );
    mLastUpdate = mStartTime;
    mYieldTimer = mStartTime;
    mCancel = false;
@@ -1335,10 +1337,12 @@ ProgressResult ProgressDialog::Update(
       return ProgressResult::Stopped;
    }
 
-   wxLongLong_t now = wxGetUTCTimeMillis().GetValue();
-   wxLongLong_t elapsed = now - mStartTime;
+   auto now = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::steady_clock::now().time_since_epoch()
+   );
+   auto elapsed = now - mStartTime;
 
-   if (elapsed < 500)
+   if (elapsed.count() < 500)
    {
       return ProgressResult::Success;
    }
@@ -1359,8 +1363,8 @@ ProgressResult ProgressDialog::Update(
       value = 1000;
    }
 
-   wxLongLong_t estimate = elapsed * 1000ll / value;
-   wxLongLong_t remains = (estimate + mStartTime) - now;
+   long long estimate = elapsed.count() * 1000ll / value;
+   long long remains = (estimate + mStartTime.count()) - now.count();
 
    SetMessage(message);
 
@@ -1372,10 +1376,10 @@ ProgressResult ProgressDialog::Update(
    }
 
    // Only update if a full second has passed or track progress is complete
-   if ((now - mLastUpdate > 1000) || (value == 1000))
+   if (((now - mLastUpdate).count() > 1000) || (value == 1000))
    {
       if (m_bShowElapsedTime) {
-         wxTimeSpan tsElapsed(0, 0, 0, elapsed);
+         wxTimeSpan tsElapsed(0, 0, 0, elapsed.count());
          mElapsed->SetLabel(tsElapsed.Format(wxT("%H:%M:%S")));
          mElapsed->SetName(mElapsed->GetLabel()); // fix for bug 577 (NVDA/Narrator screen readers do not read static text in dialogs)
          mElapsed->Update();
@@ -1405,7 +1409,7 @@ ProgressResult ProgressDialog::Update(
 
    // Nyquist effects call Update on every callback, but YieldFor is
    // quite slow on Linux / Mac, so don't call too frequently. (bug 1575)
-   if ((now - mYieldTimer > 50) || (value == 1000)) {
+   if ((now - mYieldTimer).count() > 50 || value == 1000) {
       wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_UI | wxEVT_CATEGORY_USER_INPUT | wxEVT_CATEGORY_TIMER);
       mYieldTimer = now;
    }
@@ -1606,7 +1610,11 @@ void ProgressDialog::Beep() const
    gPrefs->Read(wxT("/GUI/BeepAfterDuration"), &after, 60);
    gPrefs->Read(wxT("/GUI/BeepFileName"), &name, wxEmptyString);
 
-   if (should && wxGetUTCTimeMillis().GetValue() - mStartTime > after * 1000)
+   auto time = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::steady_clock::now().time_since_epoch()
+   );
+
+   if (should && (time - mStartTime).count() > after * 1000)
    {
       wxBusyCursor busy;
       wxSound s;
@@ -1677,8 +1685,10 @@ ProgressResult TimerProgressDialog::UpdateProgress()
       return ProgressResult::Stopped;
    }
 
-   wxLongLong_t now = wxGetUTCTimeMillis().GetValue();
-   wxLongLong_t elapsed = now - mStartTime;
+   auto now = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::steady_clock::now().time_since_epoch()
+   );
+   auto elapsed = (now - mStartTime).count();
 
    if (elapsed < 500)
    {
@@ -1691,7 +1701,7 @@ ProgressResult TimerProgressDialog::UpdateProgress()
       mIsTransparent = false;
    }
 
-   wxLongLong_t remains = mStartTime + mDuration - now;
+   auto remains = mStartTime.count() + mDuration - now.count();
 
    int nGaugeValue = (1000 * elapsed) / mDuration; // range = [0,1000]
    // Running in TimerRecordDialog::RunWaitDialog(), for some unknown reason, 
@@ -1715,7 +1725,7 @@ ProgressResult TimerProgressDialog::UpdateProgress()
    }
 
    // Only update if a full second has passed.
-   if (now - mLastUpdate > 1000)
+   if ((now - mLastUpdate).count() > 1000)
    {
       // Bug 1952:
       // wxTimeSpan will assert on ridiculously large values.

@@ -25,7 +25,8 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include <wx/dir.h>
 #include <wx/log.h>
 #include <wx/textfile.h>
-#include <wx/time.h>
+#include <chrono>
+using namespace std::chrono;
 
 // Tenacity librarries
 #include <lib-files/FileNames.h>
@@ -774,18 +775,18 @@ bool MacroCommands::ApplyMacro(
            Verbatim( command.GET() )
          : iter->name.Msgid().Stripped();
 
-      wxTimeSpan before;
+      milliseconds before;
       if (trace) {
-         before = wxTimeSpan(0, 0, 0, wxGetUTCTimeMillis());
+         before = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
       }
 
       bool success = ApplyCommandInBatchMode(friendly, command, mParamsMacro[i]);
 
       if (trace) {
-         auto after = wxTimeSpan(0, 0, 0, wxGetUTCTimeMillis());
-         wxLogMessage(wxT("Macro line #%ld took %s : %s:%s"),
+         milliseconds after = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
+         wxLogMessage(wxT("Macro line #%ld took %ld ms : %s:%s"),
             i + 1,
-            (after - before).Format(wxT("%H:%M:%S.%l")),
+            (after - before).count(),
             command.GET(),
             mParamsMacro[i]);
       }
