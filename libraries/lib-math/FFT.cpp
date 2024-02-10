@@ -45,8 +45,7 @@
 
 #include "SampleFormat.h"
 
-#include <wx/wxcrtvararg.h>
-#include <wx/intl.h>
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <cmath>
@@ -74,7 +73,7 @@ static bool IsPowerOfTwo(size_t x)
 static size_t NumberOfBitsNeeded(size_t PowerOfTwo)
 {
    if (PowerOfTwo < 2) {
-      wxFprintf(stderr, "Error: FFT called with size %ld\n", PowerOfTwo);
+      std::cerr << "Error: FFT called with size " << PowerOfTwo << std::endl;
       exit(1);
    }
 
@@ -138,7 +137,7 @@ void FFT(size_t NumSamples,
    double tr, ti;                /* temp real, temp imaginary */
 
    if (!IsPowerOfTwo(NumSamples)) {
-      wxFprintf(stderr, "%ld is not a power of two\n", NumSamples);
+      std::cerr << NumSamples << " is not a power of two" << std::endl;
       exit(1);
    }
 
@@ -379,7 +378,7 @@ void NewWindowFunc(int whichFunction, size_t NumSamplesIn, bool extraSample, flo
 
    switch (whichFunction) {
    default:
-      wxFprintf(stderr, "FFT::WindowFunc - Invalid window function: %d\n", whichFunction);
+      std::cerr << "FFT::WindowFunc - Invalid window function: " << whichFunction << std::endl;
       break;
    case eWinFuncRectangular:
       // Multiply all by 1.0f -- do nothing
@@ -696,6 +695,6 @@ void DerivativeOfWindowFunc(int whichFunction, size_t NumSamples, bool extraSamp
    }
       break;
    default:
-      wxFprintf(stderr, "FFT::DerivativeOfWindowFunc - Invalid window function: %d\n", whichFunction);
+      std::cerr << "FFT::DerivativeOfWindowFunc - Invalid window function: " << whichFunction << std::endl;
    }
 }
