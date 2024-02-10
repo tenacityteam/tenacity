@@ -52,10 +52,10 @@ Resample::~Resample()
 
 //////////
 static const std::initializer_list<EnumValueSymbol> methodNames{
-   { wxT("LowQuality"), XO("Low Quality (Fastest)") },
-   { wxT("MediumQuality"), XO("Medium Quality") },
-   { wxT("HighQuality"), XO("High Quality") },
-   { wxT("BestQuality"), XO("Best Quality (Slowest)") }
+   { "LowQuality", XO("Low Quality (Fastest)") },
+   { "MediumQuality", XO("Medium Quality") },
+   { "HighQuality", XO("High Quality") },
+   { "BestQuality", XO("Best Quality (Slowest)") }
 };
 
 static auto intChoicesMethod = {
@@ -63,24 +63,24 @@ static auto intChoicesMethod = {
 };
 
 EnumSetting< int > Resample::FastMethodSetting{
-   wxT("/Quality/LibsoxrSampleRateConverterChoice"),
+   "/Quality/LibsoxrSampleRateConverterChoice",
    methodNames,
    1,  // Medium Quality
 
    // for migrating old preferences:
    intChoicesMethod,
-   wxT("/Quality/LibsoxrSampleRateConverter")
+   "/Quality/LibsoxrSampleRateConverter"
 };
 
 EnumSetting< int > Resample::BestMethodSetting
 {
-   wxT("/Quality/LibsoxrHQSampleRateConverterChoice"),
+   "/Quality/LibsoxrHQSampleRateConverterChoice",
    methodNames,
    3, // Best Quality,
 
    // for migrating old preferences:
    intChoicesMethod,
-   wxT("/Quality/LibsoxrHQSampleRateConverter")
+   "/Quality/LibsoxrHQSampleRateConverter"
 };
 
 //////////
