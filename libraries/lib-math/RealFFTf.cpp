@@ -43,7 +43,7 @@
 #include <stdio.h>
 #include <cmath>
 
-#include <wx/thread.h>
+#include <mutex>
 
 #ifndef M_PI
 #define	M_PI		3.14159265358979323846  /* pi */
@@ -98,7 +98,7 @@ enum : size_t { MAX_HFFT = 10 };
 
 // Maintain a pool:
 static std::vector< std::unique_ptr<FFTParam> > hFFTArray(MAX_HFFT);
-wxCriticalSection getFFTMutex;
+std::mutex getFFTMutex;
 
 /* Get a handle to the FFT tables of the desired length */
 /* This version keeps common tables rather than allocating a NEW table every time */
@@ -107,7 +107,7 @@ HFFT GetFFT(size_t fftlen)
    // To do:  smarter policy about when to retain in the pool and when to
    // allocate a unique instance.
 
-   wxCriticalSectionLocker locker{ getFFTMutex };
+   std::lock_guard<std::mutex> locker{ getFFTMutex };
    
    size_t h = 0;
    auto n = fftlen/2;
@@ -130,7 +130,7 @@ HFFT GetFFT(size_t fftlen)
 /* Release a previously requested handle to the FFT tables */
 void FFTDeleter::operator() (FFTParam *hFFT) const
 {
-   wxCriticalSectionLocker locker{ getFFTMutex };
+   std::lock_guard<std::mutex> locker{ getFFTMutex };
 
    auto it = hFFTArray.begin(), end = hFFTArray.end();
    while (it != end && it->get() != hFFT)
