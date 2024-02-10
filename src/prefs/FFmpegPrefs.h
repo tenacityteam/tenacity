@@ -1,8 +1,8 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Tenacity
 
-  FileFormatPrefs.h
+  FFmpegPrefs.h
 
   Joshua Haberman
   Dominic Mazzoni
@@ -10,8 +10,7 @@
 
 **********************************************************************/
 
-#ifndef __AUDACITY_FILE_FORMAT_PREFS__
-#define __AUDACITY_FILE_FORMAT_PREFS__
+#pragma once
 
 #include <wx/defs.h>
 
@@ -22,13 +21,13 @@ class wxTextCtrl;
 class ReadOnlyText;
 class ShuttleGui;
 
-#define LIBRARY_PREFS_PLUGIN_SYMBOL ComponentInterfaceSymbol{ XO("Library") }
+#define FFMPEG_PREFS_PLUGIN_SYMBOL ComponentInterfaceSymbol{ XO("FFmpeg") }
 
-class LibraryPrefs final : public PrefsPanel
+class FFmpegPrefs final : public PrefsPanel
 {
  public:
-   LibraryPrefs(wxWindow * parent, wxWindowID winid);
-   ~LibraryPrefs();
+   FFmpegPrefs(wxWindow * parent, wxWindowID winid);
+   ~FFmpegPrefs();
    ComponentInterfaceSymbol GetSymbol() override;
    TranslatableString GetDescription() override;
 
@@ -44,5 +43,3 @@ class LibraryPrefs final : public PrefsPanel
 
    ReadOnlyText *mFFmpegVersion;
 };
-
-#endif

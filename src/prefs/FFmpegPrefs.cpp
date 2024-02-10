@@ -1,8 +1,8 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Tenacity
 
-  LibraryPrefs.cpp
+  FFmpegPrefs.cpp
 
   Joshua Haberman
   Dominic Mazzoni
@@ -10,7 +10,7 @@
 
 *******************************************************************//**
 
-\class LibraryPrefs
+\class FFmpegPrefs
 \brief A PrefsPanel that is only used to manage FFmpeg libraries;
 historically, this PrefsPanel was also used to manage LAME in
 Audacity as well.
@@ -18,7 +18,7 @@ Audacity as well.
 *//*******************************************************************/
 
 
-#include "LibraryPrefs.h"
+#include "FFmpegPrefs.h"
 
 #include <wx/defs.h>
 #include <wx/button.h>
@@ -36,12 +36,11 @@ Audacity as well.
 constexpr int ID_FFMPEG_FIND_BUTTON = 7003;
 constexpr int ID_FFMPEG_DOWN_BUTTON = 7004;
 
-LibraryPrefs::LibraryPrefs(wxWindow * parent, wxWindowID winid)
-/* i18-hint: refers to optional plug-in software libraries */
-:   PrefsPanel(parent, winid, XO("Libraries"))
-{
-   Bind(wxEVT_BUTTON, &LibraryPrefs::OnFFmpegFindButton, this, ID_FFMPEG_FIND_BUTTON);
 
+FFmpegPrefs::FFmpegPrefs(wxWindow * parent, wxWindowID winid)
+/* i18-hint: refers to optional plug-in software libraries */
+:   PrefsPanel(parent, winid, XO("FFmpeg"))
+{
    // FFmpeg download button handler
    Bind(
       wxEVT_BUTTON,
@@ -54,27 +53,27 @@ LibraryPrefs::LibraryPrefs(wxWindow * parent, wxWindowID winid)
    Populate();
 }
 
-LibraryPrefs::~LibraryPrefs()
+FFmpegPrefs::~FFmpegPrefs()
 {
 }
 
-ComponentInterfaceSymbol LibraryPrefs::GetSymbol()
+ComponentInterfaceSymbol FFmpegPrefs::GetSymbol()
 {
-   return LIBRARY_PREFS_PLUGIN_SYMBOL;
+   return FFMPEG_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString LibraryPrefs::GetDescription()
+TranslatableString FFmpegPrefs::GetDescription()
 {
-   return XO("Preferences for Library");
+   return XO("Preferences for FFmpeg");
 }
 
-ManualPageID LibraryPrefs::HelpPageName()
+ManualPageID FFmpegPrefs::HelpPageName()
 {
-   return "Preferences#libraries";
+   return "Preferences#ffmpeg";
 }
 
 /// Creates the dialog and its contents.
-void LibraryPrefs::Populate()
+void FFmpegPrefs::Populate()
 {
    //------------------------- Main section --------------------
    // Now construct the GUI itself.
@@ -92,7 +91,7 @@ void LibraryPrefs::Populate()
 ///
 /// You'll notice that some of the Tie functions have Prefs identifiers in them
 /// and others don't.
-void LibraryPrefs::PopulateOrExchange(ShuttleGui & S)
+void FFmpegPrefs::PopulateOrExchange(ShuttleGui & S)
 {
    S.SetBorder(2);
    S.StartScroller();
@@ -138,12 +137,12 @@ void LibraryPrefs::PopulateOrExchange(ShuttleGui & S)
 
 }
 
-void LibraryPrefs::SetFFmpegVersionText()
+void FFmpegPrefs::SetFFmpegVersionText()
 {
    mFFmpegVersion->SetValue(GetFFmpegVersion());
 }
 
-void LibraryPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
+void FFmpegPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
 {
 #ifdef USE_FFMPEG
    bool showerrs =
@@ -177,7 +176,7 @@ void LibraryPrefs::OnFFmpegFindButton(wxCommandEvent & WXUNUSED(event))
 #endif
 }
 
-bool LibraryPrefs::Commit()
+bool FFmpegPrefs::Commit()
 {
    ShuttleGui S(this, eIsSavingToPrefs);
    PopulateOrExchange(S);
@@ -187,11 +186,11 @@ bool LibraryPrefs::Commit()
 
 #if !defined(DISABLE_DYNAMIC_LOADING_FFMPEG)
 namespace{
-PrefsPanel::Registration sAttachment{ "Library",
+PrefsPanel::Registration sAttachment{ "FFmpeg",
    [](wxWindow *parent, wxWindowID winid, TenacityProject *)
    {
       wxASSERT(parent); // to justify safenew
-      return safenew LibraryPrefs(parent, winid);
+      return safenew FFmpegPrefs(parent, winid);
    },
    false,
    // Register with an explicit ordering hint because this one is

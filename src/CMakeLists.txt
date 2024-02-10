@@ -678,6 +678,8 @@ list( APPEND SOURCES
       prefs/EffectsPrefs.h
       prefs/ExtImportPrefs.cpp
       prefs/ExtImportPrefs.h
+      prefs/FFmpegPrefs.cpp
+      prefs/FFmpegPrefs.h
       prefs/GUIPrefs.cpp
       prefs/GUIPrefs.h
       prefs/GUISettings.h
@@ -685,8 +687,6 @@ list( APPEND SOURCES
       prefs/ImportExportPrefs.h
       prefs/KeyConfigPrefs.cpp
       prefs/KeyConfigPrefs.h
-      prefs/LibraryPrefs.cpp
-      prefs/LibraryPrefs.h
       prefs/MidiIOPrefs.cpp
       prefs/MidiIOPrefs.h
       prefs/ModulePrefs.cpp
