@@ -25,6 +25,7 @@ used throughout Audacity into this one place.
 
 
 #include <memory>
+#include <filesystem>
 
 #include <wx/defs.h>
 #include <wx/filename.h>
@@ -143,53 +144,28 @@ wxString FileNames::FormatWildcard( const FileTypes &fileTypes )
    }
 }
 
-bool FileNames::DoCopyFile(
-   const FilePath& file1, const FilePath& file2, bool overwrite)
-{
-#ifdef __WXMSW__
-
-   // workaround not needed
-   return wxCopyFile(file1, file2, overwrite);
-
-#else
-   // PRL:  Compensate for buggy wxCopyFile that returns false success,
-   // which was a cause of case 4 in comment 10 of
-   // http://bugzilla.audacityteam.org/show_bug.cgi?id=1759
-   // Destination file was created, but was empty
-   // Bug was introduced after wxWidgets 2.8.12 at commit
-   // 0597e7f977c87d107e24bf3e95ebfa3d60efc249 of wxWidgets repo
-
-   bool existed = wxFileExists(file2);
-   bool result = wxCopyFile(file1, file2, overwrite) &&
-      wxFile{ file1 }.Length() == wxFile{ file2 }.Length();
-   if (!result && !existed)
-      wxRemoveFile(file2);
-   return result;
-
-#endif
-}
-
-bool FileNames::HardLinkFile( const FilePath& file1, const FilePath& file2 )
-{
-#ifdef __WXMSW__
-
-   // Fix forced ASCII conversions and wrong argument order - MJB - 29/01/2019
-   //return ::CreateHardLinkA( file1.c_str(), file2.c_str(), NULL );  
-   return ( 0 != ::CreateHardLink( file2, file1, NULL ) );
-
-#else
-
-   return 0 == ::link( file1.c_str(), file2.c_str() );
-
-#endif
-}
-
 wxString FileNames::MkDir(const wxString &Str)
 {
-   // Behaviour of wxFileName::DirExists() and wxFileName::MkDir() has
-   // changed between wx2.6 and wx2.8, so we use static functions instead.
-   if (!wxFileName::DirExists(Str))
-      wxFileName::Mkdir(Str, 511, wxPATH_MKDIR_FULL);
+   std::filesystem::path path = Str.utf8_string();
+
+   try
+   {
+      bool ok = std::filesystem::create_directories(path);
+      if (!ok)
+      {
+         return "";
+      }
+
+      // Set the permissions to r-x--x--x
+      std::filesystem::permissions(
+         path,
+         std::filesystem::perms::owner_read | std::filesystem::perms::owner_exec |
+         std::filesystem::perms::group_exec | std::filesystem::perms::others_exec
+      );
+   } catch(std::filesystem::filesystem_error& e)
+   {
+      return "";
+   }
 
    return Str;
 }

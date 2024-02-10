@@ -28,6 +28,8 @@ processing.  See also MacrosWindow and ApplyMacroDialog.
 #include <chrono>
 using namespace std::chrono;
 
+#include <filesystem>
+
 // Tenacity librarries
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
@@ -904,7 +906,7 @@ void MacroCommands::MigrateLegacyChains()
          newDir.SetFullName(name);
          const auto newPath = newDir.GetFullPath();
          if (!wxFileExists(newPath))
-            FileNames::DoCopyFile(file, newPath);
+            std::filesystem::copy_file(file.utf8_string(), newPath.utf8_string());
       }
       done = true;
    }

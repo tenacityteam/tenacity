@@ -79,16 +79,16 @@ namespace FileNames
    // selection dialog
    FILES_API wxString FormatWildcard( const FileTypes &fileTypes );
 
-   // This exists to compensate for bugs in wxCopyFile:
-   FILES_API bool DoCopyFile(
-      const FilePath& file1, const FilePath& file2, bool overwrite = true);
-
-   // wxWidgets doesn't have a function to do this:  make a hard file-system
-   // link if possible.  It might not be, as when the paths are on different
-   // storage devices.
-   FILES_API
-   bool HardLinkFile( const FilePath& file1, const FilePath& file2);
-
+   /** @brief Creates a directory.
+    * 
+    * If any other directories in the path don't exist, they are also created.
+    * Permissions are also set to read and execute for the owner and execute
+    * for everything else.
+    * 
+    * @return Returns the name of the newly created directory or an empty
+    * string on failure.
+    * 
+   */
    FILES_API wxString MkDir(const wxString &Str);
 
    FILES_API bool IsMidi(const FilePath &fName);

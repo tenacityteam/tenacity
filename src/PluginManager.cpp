@@ -23,6 +23,7 @@ for shared and private configs - which need to move out.
 
 
 #include <algorithm>
+#include <filesystem>
 
 #include <wx/log.h>
 #include <wx/tokenzr.h>
@@ -683,8 +684,11 @@ bool PluginManager::DropFile(const wxString &fileName)
             auto dstPath = dst.GetFullPath();
             if ( src.FileExists() )
                // A simple one-file plug-in
-               copied = FileNames::DoCopyFile(
-                  src.GetFullPath(), dstPath, true );
+               copied = std::filesystem::copy_file(
+                  src.GetFullPath().utf8_string(),
+                  dstPath.utf8_string(),
+                  std::filesystem::copy_options::overwrite_existing
+               );
             else {
                // A sub-folder
                // such as for some VST packages
