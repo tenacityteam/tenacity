@@ -615,13 +615,13 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
                      int n = 3;
                      while (n < 20) {
                         char name[8];
-                        sprintf(name, "x%dr", n);
+                        snprintf(name, 8, "x%dr", n);
                         Alg_attribute attr = symbol_table.insert_string(name);
                         double xn = LookupRealAttribute(note, attr, -1000000.0);
                         if (xn == -1000000.0) break;
                         points[n].x = TIME_TO_X(xn);
                         CLIP(points[n].x);
-                        sprintf(name, "y%dr", n - 1);
+                        snprintf(name, 8, "y%dr", n - 1);
                         attr = symbol_table.insert_string(name);
                         double yn = LookupRealAttribute(note, attr, -1000000.0);
                         if (yn == -1000000.0) break;
