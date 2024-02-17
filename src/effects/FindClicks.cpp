@@ -62,7 +62,7 @@ public:
     bool SetAutomationParameters(CommandParameters & parms) override;
 
     // Effect implementation
-    void PopulateOrExchange(ShuttleGui &);
+    void PopulateOrExchange(ShuttleGui &) override;
     bool TransferDataToWindow() override;
     bool TransferDataFromWindow() override;
     bool Process() override;

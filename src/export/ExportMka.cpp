@@ -340,7 +340,7 @@ private:
 class MkaFLACEncoder : public FLAC::Encoder::Stream
 {
 public:
-    ::FLAC__StreamEncoderInitStatus init()
+    ::FLAC__StreamEncoderInitStatus init() override
     {
         auto ret = FLAC::Encoder::Stream::init();
         initializing = false;
