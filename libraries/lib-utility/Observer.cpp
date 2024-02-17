@@ -20,7 +20,7 @@ void RecordBase::Unlink() noexcept
    assert(pPrev); // See RecordList constructor and PushFront
    // Do not move from next, see Visit
    if (auto &pNext = (pPrev->next = next))
-      pNext->prev = move(prev);
+      pNext->prev = std::move(prev);
 }
 
 RecordList::RecordList( ExceptionPolicy *pPolicy, Visitor visitor )
@@ -33,19 +33,19 @@ RecordList::RecordList( ExceptionPolicy *pPolicy, Visitor visitor )
 RecordList::~RecordList() noexcept
 {
    //! Non-defaulted destructor.  Beware stack growth
-   auto pRecord = move(next);
+   auto pRecord = std::move(next);
    while (pRecord)
-      pRecord = move(pRecord->next);
+      pRecord = std::move(pRecord->next);
 }
 
 Subscription RecordList::Subscribe(std::shared_ptr<RecordBase> pRecord)
 {
    assert(pRecord); // precondition
    auto result = Subscription{ pRecord };
-   if (auto &pNext = (pRecord->next = move(next)))
+   if (auto &pNext = (pRecord->next = std::move(next)))
       pNext->prev = pRecord;
    pRecord->prev = weak_from_this();
-   next = move(pRecord);
+   next = std::move(pRecord);
    return result;
 }
 
@@ -84,7 +84,7 @@ ExceptionPolicy::~ExceptionPolicy() noexcept = default;
 
 Subscription::Subscription() = default;
 Subscription::Subscription(std::weak_ptr<detail::RecordBase> pRecord)
-   : m_wRecord{ move(pRecord) } {}
+   : m_wRecord{ std::move(pRecord) } {}
 Subscription::Subscription(Subscription &&) = default;
 Subscription &Subscription::operator=(Subscription &&other)
 {
@@ -93,7 +93,7 @@ Subscription &Subscription::operator=(Subscription &&other)
       other.m_wRecord.owner_before(m_wRecord);
    if (inequivalent) {
       Reset();
-      m_wRecord = move(other.m_wRecord);
+      m_wRecord = std::move(other.m_wRecord);
    }
    return *this;
 }

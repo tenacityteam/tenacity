@@ -20,7 +20,7 @@ auto AudioIOExt::GetFactories() -> Factories &
 
 AudioIOExt::RegisteredFactory::RegisteredFactory(Factory factory)
 {
-   GetFactories().push_back( move(factory) );
+   GetFactories().push_back( std::move(factory) );
 }
 
 AudioIOExt::RegisteredFactory::~RegisteredFactory()

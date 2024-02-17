@@ -24,8 +24,8 @@ void XMLMethodRegistryBase::Register(
    // can be keyed by string_view.
    // Beware small-string optimization!  Be sure strings don't relocate for
    // growth of the container.  Use a list, not a vector.
-   auto &newtag = mTags.emplace_front(move(tag));
-   mTagTable[ newtag ] = move( accessor );
+   auto &newtag = mTags.emplace_front(std::move(tag));
+   mTagTable[ newtag ] = std::move( accessor );
 }
 
 XMLTagHandler *XMLMethodRegistryBase::CallObjectAccessor(
@@ -40,15 +40,15 @@ XMLTagHandler *XMLMethodRegistryBase::CallObjectAccessor(
 
 void XMLMethodRegistryBase::PushAccessor( TypeErasedAccessor accessor )
 {
-   mAccessors.emplace_back( move( accessor ) );
+   mAccessors.emplace_back( std::move( accessor ) );
 }
 
 void XMLMethodRegistryBase::Register(
    std::string tag, TypeErasedMutator mutator )
 {
    // Similar to the other overload of Register
-   auto &newtag = mMutatorTags.emplace_front(move(tag));
-   mMutatorTable[ newtag ] = { mAccessors.size() - 1, move( mutator ) };
+   auto &newtag = mMutatorTags.emplace_front(std::move(tag));
+   mMutatorTable[ newtag ] = { mAccessors.size() - 1, std::move( mutator ) };
 }
 
 bool XMLMethodRegistryBase::CallAttributeHandler( const std::string_view &tag,
@@ -68,7 +68,7 @@ bool XMLMethodRegistryBase::CallAttributeHandler( const std::string_view &tag,
 
 void XMLMethodRegistryBase::RegisterAttributeWriter( TypeErasedWriter writer )
 {
-   mAttributeWriterTable.emplace_back( move( writer ) );
+   mAttributeWriterTable.emplace_back( std::move( writer ) );
 }
 
 void XMLMethodRegistryBase::CallAttributeWriters(
@@ -82,7 +82,7 @@ void XMLMethodRegistryBase::CallAttributeWriters(
 
 void XMLMethodRegistryBase::RegisterObjectWriter( TypeErasedWriter writer )
 {
-   mObjectWriterTable.emplace_back( move( writer ) );
+   mObjectWriterTable.emplace_back( std::move( writer ) );
 }
 
 void XMLMethodRegistryBase::CallObjectWriters(
