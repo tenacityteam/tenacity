@@ -76,7 +76,7 @@ AVIOContextWrapper::Open(const wxString& fileName, bool forWriting)
       return OpenResult::NoMemory;
    }
 
-   mpFile = move(pFile);
+   mpFile = std::move(pFile);
 
    return OpenResult::Success;
 }

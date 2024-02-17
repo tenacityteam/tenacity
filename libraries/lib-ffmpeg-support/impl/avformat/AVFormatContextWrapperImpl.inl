@@ -540,7 +540,7 @@ public:
          return;
 
       mAVFormatContext->audio_codec = const_cast<AVCodec*>(audio_codec->GetWrappedValue());
-      mForcedAudioCodec = move(audio_codec);
+      mForcedAudioCodec = std::move(audio_codec);
    }
 
    void* GetOpaque() const noexcept override

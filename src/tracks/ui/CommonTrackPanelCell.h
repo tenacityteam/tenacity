@@ -54,7 +54,7 @@ public:
       MenuItem() = default;
       MenuItem( const Identifier &internal, const TranslatableString &msgid,
          Action action = {}, bool enabled = true )
-         : symbol{ internal, msgid }, action{ move(action) }, enabled{ enabled }
+         : symbol{ internal, msgid }, action{ std::move(action) }, enabled{ enabled }
       {}
 
       ComponentInterfaceSymbol symbol;

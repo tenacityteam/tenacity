@@ -2457,7 +2457,7 @@ AudioIoCallback::AudioIoCallback()
    auto &factories = AudioIOExt::GetFactories();
    for (auto &factory: factories)
       if (auto pExt = factory(mPlaybackSchedule))
-         mAudioIOExt.push_back( move(pExt) );
+         mAudioIOExt.push_back( std::move(pExt) );
 }
 
 
