@@ -67,7 +67,7 @@ public:
       const wxString &title = {},
       int restoreFocus = -1);
 
-   std::vector<MenuItem> GetMenuItems(const wxRect&, const wxPoint*, TenacityProject*);
+   std::vector<MenuItem> GetMenuItems(const wxRect&, const wxPoint*, TenacityProject*) override;
 
 private:
    void BindTo( LabelTrack *pParent );
