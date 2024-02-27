@@ -21,10 +21,6 @@ the pitch without changing the tempo.
 #include "ChangePitch.h"
 #include "LoadEffects.h"
 
-#if USE_SBSMS
-#include <wx/valgen.h>
-#endif
-
 #include <cfloat>
 #include <cmath>
 
@@ -76,7 +72,6 @@ enum {
 //
 //     Name          Type     Key               Def   Min      Max      Scale
 Param( Percentage,   double,  wxT("Percentage"), 0.0,  -99.0,   3000.0,  1  );
-Param( UseSBSMS,     bool,    wxT("SBSMS"),     false, false,   true,    1  );
 
 // We warp the slider to go up to 400%, but user can enter up to 3000%
 static const double kSliderMax = 100.0;          // warped above zero to actually go up to 400%
@@ -110,12 +105,6 @@ EffectChangePitch::EffectChangePitch()
    m_dSemitonesChange = 0.0;
    m_dStartFrequency = 0.0; // 0.0 => uninitialized
    m_bLoopDetect = false;
-
-#if USE_SBSMS
-   mUseSBSMS = DEF_UseSBSMS;
-#else
-   mUseSBSMS = false;
-#endif
 
    // NULL out these control members because there are some cases where the
    // event table handlers get called during this method, and those handlers that
@@ -167,14 +156,12 @@ EffectType EffectChangePitch::GetType()
 // EffectProcessor implementation
 bool EffectChangePitch::DefineParams( ShuttleParams & S ){
    S.SHUTTLE_PARAM( m_dPercentChange, Percentage );
-   S.SHUTTLE_PARAM( mUseSBSMS, UseSBSMS );
    return true;
 }
 
 bool EffectChangePitch::GetAutomationParameters(CommandParameters & parms)
 {
    parms.Write(KEY_Percentage, m_dPercentChange);
-   parms.Write(KEY_UseSBSMS, mUseSBSMS);
 
    return true;
 }
@@ -187,13 +174,6 @@ bool EffectChangePitch::SetAutomationParameters(CommandParameters & parms)
 
    m_dPercentChange = Percentage;
    Calc_SemitonesChange_fromPercentChange();
-
-#if USE_SBSMS
-   ReadAndVerifyBool(UseSBSMS);
-   mUseSBSMS = UseSBSMS;
-#else
-   mUseSBSMS = false;
-#endif
 
    return true;
 }
@@ -214,43 +194,29 @@ bool EffectChangePitch::Init()
 
 bool EffectChangePitch::Process()
 {
-#if USE_SBSMS
-   if (mUseSBSMS)
-   {
-      double pitchRatio = 1.0 + m_dPercentChange / 100.0;
-      EffectSBSMS proxy;
-      proxy.mProxyEffectName = XO("High Quality Pitch Change");
-      proxy.setParameters(1.0, pitchRatio);
+   // Macros save m_dPercentChange and not m_dSemitonesChange, so we must
+   // ensure that m_dSemitonesChange is set.
+   Calc_SemitonesChange_fromPercentChange();
 
-      return Delegate(proxy, *mUIParent, nullptr);
-   }
-   else
-#endif
+   auto initer = [&](soundtouch::SoundTouch *soundtouch)
    {
-      // Macros save m_dPercentChange and not m_dSemitonesChange, so we must
-      // ensure that m_dSemitonesChange is set.
-      Calc_SemitonesChange_fromPercentChange();
-
-      auto initer = [&](soundtouch::SoundTouch *soundtouch)
-      {
-         soundtouch->setPitchSemiTones((float)(m_dSemitonesChange));
-      };
-      IdentityTimeWarper warper;
+      soundtouch->setPitchSemiTones((float)(m_dSemitonesChange));
+   };
+   IdentityTimeWarper warper;
 #ifdef USE_MIDI
-      // Pitch shifting note tracks is currently only supported by SoundTouchEffect
-      // and non-real-time-preview effects require an audio track selection.
-      //
-      // Note: m_dSemitonesChange is private to ChangePitch because it only
-      // needs to pass it along to mSoundTouch (above). I added mSemitones
-      // to SoundTouchEffect (the super class) to convey this value
-      // to process Note tracks. This approach minimizes changes to existing
-      // code, but it would be cleaner to change all m_dSemitonesChange to
-      // mSemitones, make mSemitones exist with or without USE_MIDI, and
-      // eliminate the next line:
-      mSemitones = m_dSemitonesChange;
+   // Pitch shifting note tracks is currently only supported by SoundTouchEffect
+   // and non-real-time-preview effects require an audio track selection.
+   //
+   // Note: m_dSemitonesChange is private to ChangePitch because it only
+   // needs to pass it along to mSoundTouch (above). I added mSemitones
+   // to SoundTouchEffect (the super class) to convey this value
+   // to process Note tracks. This approach minimizes changes to existing
+   // code, but it would be cleaner to change all m_dSemitonesChange to
+   // mSemitones, make mSemitones exist with or without USE_MIDI, and
+   // eliminate the next line:
+   mSemitones = m_dSemitonesChange;
 #endif
-      return EffectSoundTouch::ProcessWithTimeWarper(initer, warper, true);
-   }
+   return EffectSoundTouch::ProcessWithTimeWarper(initer, warper, true);
 }
 
 bool EffectChangePitch::CheckWhetherSkipEffect()
@@ -372,17 +338,6 @@ void EffectChangePitch::PopulateOrExchange(ShuttleGui & S)
          S.EndHorizontalLay();
       }
       S.EndStatic();
-
-#if USE_SBSMS
-      S.StartMultiColumn(2);
-      {
-         mUseSBSMSCheckBox = S.Validator<wxGenericValidator>(&mUseSBSMS)
-            .AddCheckBox(XXO("&Use high quality stretching (slow)"),
-                                             mUseSBSMS);
-      }
-      S.EndMultiColumn();
-#endif
-
    }
    S.EndVerticalLay();
    return;

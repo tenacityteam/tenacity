@@ -273,7 +273,6 @@ void AboutDialog::CreateCreditsList()
    AddCredit(wxT("[[http://www.portaudio.com/|PortAudio]]"), roleLibrary);
    AddCredit(wxT("[[http://github.com/portmidi/portmidi/|PortMidi]]"), roleLibrary);
    AddCredit(wxT("[[https://codeberg.org/tenacityteam/portsmf/|portsmf]]"), roleLibrary);
-   AddCredit(wxT("[[http://sbsms.sourceforge.net/|sbsms]]"), roleLibrary);
    AddCredit(wxT("[[https://www.surina.net/soundtouch/|SoundTouch]]"), roleLibrary);
    AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleLibrary);
    AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleLibrary);
@@ -543,7 +542,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
       << XO("Build Information")
       << wxT("</center></h2>\n")
       << VerCheckHtml();
- 
+
    informationStr
       << wxT("<h3>")
    /* i18n-hint: Information about when audacity was compiled follows */
@@ -733,14 +732,6 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
          enabled);
    # else
    AddBuildinfoRow(&informationStr, wxT("SoundTouch"), XO("Pitch and Tempo Change support"),
-         disabled);
-   # endif
-
-   # if USE_SBSMS
-   AddBuildinfoRow(&informationStr, wxT("SBSMS"), XO("Extreme Pitch and Tempo Change support"),
-         enabled);
-   # else
-   AddBuildinfoRow(&informationStr, wxT("SBSMS"), XO("Extreme Pitch and Tempo Change support"),
          disabled);
    # endif
 
