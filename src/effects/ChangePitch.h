@@ -21,10 +21,6 @@ the pitch without changing the tempo.
 #ifndef __AUDACITY_EFFECT_CHANGEPITCH__
 #define __AUDACITY_EFFECT_CHANGEPITCH__
 
-#if USE_SBSMS
-#include "SBSMSEffect.h"
-#endif
-
 #include "SoundTouchEffect.h"
 
 class wxSlider;
@@ -113,7 +109,6 @@ private:
    void Update_Slider_PercentChange(); // Update control per current m_dPercentChange.
 
 private:
-   bool mUseSBSMS;
    // effect parameters
    int    m_nFromPitch;          // per PitchIndex()
    int    m_nFromOctave;         // per PitchOctave()
@@ -141,10 +136,6 @@ private:
    wxTextCtrl *   m_pTextCtrl_ToFrequency;
    wxTextCtrl *   m_pTextCtrl_PercentChange;
    wxSlider *     m_pSlider_PercentChange;
-
-#if USE_SBSMS
-   wxCheckBox *   mUseSBSMSCheckBox;
-#endif
 
    DECLARE_EVENT_TABLE()
 };

@@ -434,8 +434,6 @@ list( APPEND SOURCES
       effects/Reverb_libSoX.h
       effects/Reverse.cpp
       effects/Reverse.h
-      effects/SBSMSEffect.cpp
-      effects/SBSMSEffect.h
       effects/ScienFilter.cpp
       effects/ScienFilter.h
       effects/ScoreAlignDialog.cpp
@@ -1093,7 +1091,6 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_MIDI}>:PortMidi::PortMidi>
       $<$<BOOL:${USE_MIDI}>:PortSMF::PortSMF>
       nyquist
-      $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:${GLIB_LIBRARIES}>
