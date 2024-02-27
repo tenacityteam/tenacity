@@ -55,7 +55,7 @@ export WX_CONFIG=/home/user/local/bin/wx-config
 To install Tenacity's dependencies, run:
 
 ```
-sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
+sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel jsoncpp-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
 ```
 
 #### Arch
