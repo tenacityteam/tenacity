@@ -1089,6 +1089,7 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_MIDI}>:PortSMF::PortSMF>
       $<$<BOOL:${USE_NYQUIST}>:nyquist>
       $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
+      $<$<BOOL:${USE_RUBBERBAND}>:rubberband::rubberband>
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:${GLIB_LIBRARIES}>

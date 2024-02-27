@@ -234,6 +234,7 @@ include( CMakeDependentOption )
 include( CMakeDetermineASM_NASMCompiler )
 include( CMakePushCheckState )
 include( GNUInstallDirs )
+include( IsStaticLibrary )
 include( TestBigEndian )
 
 # Determine 32-bit or 64-bit target
@@ -579,6 +580,15 @@ if(SBSMS)
     message(STATUS "SBSMS timestretching support enabled.")
 else()
     message(STATUS "SBSMS timestretching support disabled. Requires libsbsms.")
+endif()
+
+find_package(rubberband)
+cmake_dependent_option(RUBBERBAND "Rubberband timestretching" ON "rubberband_FOUND" OFF)
+if(RUBBERBAND)
+    set(USE_RUBBERBAND ON)
+    message(STATUS "Rubberband timestretching support enabled.")
+else()
+    message(STATUS "Rubberband timestretching support disabled. Requires librubberband.")
 endif()
 
 find_package(SoundTouch)
