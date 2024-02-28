@@ -155,8 +155,8 @@ list( APPEND SOURCES
       MacroMagic.h
       Menus.cpp
       Menus.h
-      MIDIPlay.cpp
-      MIDIPlay.h
+      $<$<BOOL:${USE_MIDI}>:MIDIPlay.cpp>
+      $<$<BOOL:${USE_MIDI}>:MIDIPlay.h>
       Mix.cpp
       Mix.h
       MixerBoard.cpp
