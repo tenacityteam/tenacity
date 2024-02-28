@@ -132,6 +132,9 @@ cmake_policy( SET CMP0072 NEW )
 # Include file check macros honor ``CMAKE_REQUIRED_LIBRARIES``.
 cmake_policy( SET CMP0075 NEW )
 
+# ``cmake_dependent_option()`` supports full :ref:`Condition Syntax`.
+cmake_policy( SET CMP0127 NEW )
+
 # Definitions that must happen before the project() command
 if( APPLE )
    set( MIN_MACOS_VERSION 10.15 )
