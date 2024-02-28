@@ -48,6 +48,7 @@ else # Linux & others
             libgtk-3-dev
             libid3tag0-dev
             libjack-dev
+            libjsoncpp-dev
             liblilv-dev
             libmad0-dev
             libmp3lame-dev
