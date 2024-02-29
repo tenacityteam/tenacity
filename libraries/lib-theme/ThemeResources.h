@@ -27,7 +27,7 @@
  * in order to be used in Tenacity.
  * 
  **/
-class ThemeResources
+class THEME_API ThemeResources
 {
     public:
         using ResourceMap = std::unordered_map<std::string, std::any>;

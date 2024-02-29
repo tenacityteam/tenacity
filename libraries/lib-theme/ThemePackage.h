@@ -42,7 +42,7 @@
  * what is a recognized theme resource or not.
  * 
  **/
-class ThemePackage final
+class THEME_API ThemePackage final
 {
     public:
         using ResourceMap  = std::unordered_map<std::string, std::any>;
