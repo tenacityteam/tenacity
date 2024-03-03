@@ -1234,7 +1234,9 @@ bool AudioIO::AllocateBuffers(
             auto playbackBufferSize =
                (size_t)lrint(mRate * mPlaybackRingBufferSecs);
 
-            mPlaybackBuffers.reinit(mPlaybackTracks.size());
+            // Always make at least one playback buffer
+            mPlaybackBuffers.reinit(
+               std::max<size_t>(1, mPlaybackTracks.size()));
             mPlaybackMixers.reinit(mPlaybackTracks.size());
 
             const Mixer::WarpOptions &warpOptions =
@@ -1258,6 +1260,11 @@ bool AudioIO::AllocateBuffers(
             mPlaybackQueueMinimum =
                std::min( mPlaybackQueueMinimum, playbackBufferSize );
 
+            if (mPlaybackTracks.empty())
+               // Make at least one playback buffer
+               mPlaybackBuffers[0] =
+                  std::make_unique<RingBuffer>(floatSample, playbackBufferSize);
+
             for (unsigned int i = 0; i < mPlaybackTracks.size(); i++)
             {
                // Bug 1763 - We must fade in from zero to avoid a click on starting.
@@ -1266,11 +1273,6 @@ bool AudioIO::AllocateBuffers(
 
                mPlaybackBuffers[i] =
                   std::make_unique<RingBuffer>(floatSample, playbackBufferSize);
-               const auto timeQueueSize = 1 +
-                  (playbackBufferSize + TimeQueueGrainSize - 1)
-                     / TimeQueueGrainSize;
-               mPlaybackSchedule.mTimeQueue.mData.reinit( timeQueueSize );
-               mPlaybackSchedule.mTimeQueue.mSize = timeQueueSize;
 
                // use track time for the end time, not real time!
                WaveTrackConstArray mixTracks;
@@ -1303,6 +1305,12 @@ bool AudioIO::AllocateBuffers(
                   false // don't apply track gains
                );
             }
+
+            const auto timeQueueSize = 1 +
+               (playbackBufferSize + TimeQueueGrainSize - 1)
+                  / TimeQueueGrainSize;
+            mPlaybackSchedule.mTimeQueue.mData.reinit( timeQueueSize );
+            mPlaybackSchedule.mTimeQueue.mSize = timeQueueSize;
          }
 
          if( mNumCaptureChannels > 0 )
@@ -1806,9 +1814,6 @@ size_t AudioIO::GetCommonlyFreePlayback()
 
 size_t AudioIoCallback::GetCommonlyReadyPlayback()
 {
-   if (mPlaybackTracks.empty())
-      return 0;
-
    auto commonlyAvail = mPlaybackBuffers[0]->AvailForGet();
    for (unsigned i = 1; i < mPlaybackTracks.size(); ++i)
       commonlyAvail = std::min(commonlyAvail,
@@ -1836,7 +1841,7 @@ void AudioIO::TrackBufferExchange()
 
 void AudioIO::FillPlayBuffers()
 {
-   if (mPlaybackTracks.empty())
+   if (mNumPlaybackChannels == 0)
       return;
 
    // Though extremely unlikely, it is possible that some buffers
@@ -1905,6 +1910,10 @@ void AudioIO::FillPlayBuffers()
             wxUnusedVar(put);
          }
       }
+
+      if (mPlaybackTracks.empty())
+         // Produce silence in the single ring buffer
+         mPlaybackBuffers[0]->Put(nullptr, floatSample, 0, frames);
 
       available -= frames;
       wxASSERT(available >= 0);
@@ -2574,8 +2583,11 @@ bool AudioIoCallback::FillOutputBuffers(
       // Poke: If there are no playback tracks, then the earlier check
       // about the time indicator being past the end won't happen;
       // do it here instead (but not if looping or scrubbing)
-      if (numPlaybackTracks == 0)
+      // PRL:  Also consume from the single playback ring buffer
+      if (numPlaybackTracks == 0) {
+         mMaxFramesOutput = mPlaybackBuffers[0]->Discard(toGet);
          CallbackCheckCompletion(mCallbackReturn, 0);
+      }
 
       // assert( maxLen == toGet );
    }
