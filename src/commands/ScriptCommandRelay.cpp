@@ -92,6 +92,8 @@ void ScriptCommandRelay::StartScriptServer(tpRegScriptServerFunc scriptFn)
    std::thread(server, scriptFn).detach();
 }
 
+#ifdef USE_NYQUIST
+
 // FIXME: Why is this mixing private libnyquist symbols with wxString???????
 #include "../../lib-src/libnyquist/nyquist/xlisp/xlisp.h"
 void * nyq_reformat_aud_do_response(const wxString & Str) {
@@ -115,3 +117,5 @@ void * ExecForLisp( char * pIn )
 
    return nyq_reformat_aud_do_response(Str2);
 }
+
+#endif

@@ -11,8 +11,11 @@ set( CMAKE_ENABLE_EXPORTS ON )
 
 add_executable( ${TARGET} )
 add_dependencies( ${TARGET} locale )
-add_dependencies( ${TARGET} nyquist )
-add_dependencies( ${TARGET} plug-ins )
+
+if (USE_NYQUIST)
+   add_dependencies( ${TARGET} nyquist )
+   add_dependencies( ${TARGET} plug-ins )
+endif()
 
 def_vars()
 
@@ -1092,7 +1095,7 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_LV2}>:suil::suil>
       $<$<BOOL:${USE_MIDI}>:PortMidi::PortMidi>
       $<$<BOOL:${USE_MIDI}>:PortSMF::PortSMF>
-      nyquist
+      $<$<BOOL:${USE_NYQUIST}>:nyquist>
       $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>

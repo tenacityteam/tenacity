@@ -318,6 +318,8 @@ has outdated libraries that do not build with Tenacity.
   * **LADSPA** (ON|OFF): LADSPA plugin hosting support.
   * **LV2** (ON|OFF): LV2 plugin hosting support. Requires LV2, lilv, and suil
     libraries.
+  * **NYQUIST** (ON|OFF): Nyquist plugin support. Required the libnyquist
+    submodule to be initialized. **Nyquist plugins will not be installed**.
   * **VAMP** (ON|OFF): VAMP plugin hosting support. Requires VAMP host SDK.
     suil libraries.
   * **VST2** (ON|OFF): VST2 plugin hosting support. No libraries are required.

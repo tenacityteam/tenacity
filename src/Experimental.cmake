@@ -155,7 +155,7 @@ set( EXPERIMENTAL_OPTIONS_LIST
    NOISE_REDUCTION
 
    # Define to enable Nyquist audio clip boundary control (Steve Daulton Dec 2014)
-   NYQUIST_SPLIT_CONTROL
+   $<$<BOOL:${USE_NYQUIST}>:NYQUIST_SPLIT_CONTROL>
 
    # Paul Licameli (PRL) 16 Apr 2015
    # Support for scrubbing in the AudioIO engine, without calls to it
