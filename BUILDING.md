@@ -14,7 +14,12 @@ MIDI support). [libsbsms](https://github.com/claytonotey/libsbsms) is an
 optional dependency used for time stretching that is not available in many Linux
 distribution package managers either. Optionally,
 [vcpkg can be used](#vcpkg-on-Linux) to build dependencies from source which
-may be helpful if your distribution is missing some packages.
+may be helpful if your distribution is missing some packages. Note that we use our
+own fork of vcpkg for the time being, which is required for some features such as
+high-quality stretching (libsbsms), MP2 support (TwoLAME), and recording desktop
+audio on Windows. However, you may be able to use the latest vcpkg upstream,
+although the features mentioned prior will be unavailable and your build might not
+succeed.
 
 Installing ccache and ninja-build is highly recommended for faster builds but
 not required. CMake will automatically use ccache if it is installed.
@@ -120,7 +125,7 @@ If you switch between system packages and vcpkg, you may need to delete
 `CMakeCache.txt` inside your CMake build directory.
 
 **NOTE**: Building Tenacity with vcpkg for the first time and after an update
-will take a while, especially with FFmpeg Subsequent rebuilds will be much
+will take a while, especially with FFmpeg. Subsequent rebuilds will be much
 faster.
 
 ### Windows
