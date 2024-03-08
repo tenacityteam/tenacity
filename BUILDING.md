@@ -6,8 +6,8 @@
 
 Most distributions do not package all of Tenacity's dependencies (yet).
 wxWidgets 3.1 is required for building Tenacity but many distributions only
-package wxWidgets 3.0. [PortMidi](https://github.com/mixxxdj/portmidi) and
-[PortSMF](https://github.com/tenacityteam/portsmf) are required for MIDI support
+package wxWidgets 3.0. [PortMidi](https://github.com/portmidi/portmidi) and
+[PortSMF](https://codeberg.org/tenacityteam/portsmf) are required for MIDI support
 but some distributions do not package PortSMF (Tenacity can still build without
 MIDI support). [libsbsms](https://github.com/claytonotey/libsbsms) is an
 optional dependency used for time stretching that is not available in many Linux
