@@ -262,7 +262,7 @@ cmake --install build
     to be installed in order for signing to work. **Note that codesigning and
     notarization might be broken as they haven't been tested**.
   * **PERFORM_NOTARIZATION** (ON|OFF): [macOS Only] Performs notarizaiton during
-    the install step. This only works on macOS and if PERFORM_NTOARIZATION has
+    the install step. This only works on macOS and if PERFORM_NOTARIZATION has
     been enabled.
   * **PACKAGE_MANUAL** (ON|OFF): Packages the (Audacity) manual alongside DMG and
     InnoSetup targets.
