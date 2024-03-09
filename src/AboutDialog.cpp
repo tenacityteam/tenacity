@@ -285,27 +285,27 @@ void AboutDialog::CreateCreditsList()
 
    // Thanks
 
-   AddCredit(wxT("Dave Beydler"), roleAudacityThanks);
-   AddCredit(wxT("Brian Cameron"), roleAudacityThanks);
-   AddCredit(wxT("Jason Cohen"), roleAudacityThanks);
-   AddCredit(wxT("Dave Fancella"), roleAudacityThanks);
-   AddCredit(wxT("Steve Harris"), roleAudacityThanks);
-   AddCredit(wxT("Daniel James"), roleAudacityThanks);
-   AddCredit(wxT("Daniil Kolpakov"), roleAudacityThanks);
-   AddCredit(wxT("Robert Leidle"), roleAudacityThanks);
-   AddCredit(wxT("Logan Lewis"), roleAudacityThanks);
-   AddCredit(wxT("David Luff"), roleAudacityThanks);
-   AddCredit(wxT("Jason Pepas"), roleAudacityThanks);
-   AddCredit(wxT("Jonathan Ryshpan"), roleAudacityThanks);
-   AddCredit(wxT("Michael Schwendt"), roleAudacityThanks);
-   AddCredit(wxT("Patrick Shirkey"), roleAudacityThanks);
-   AddCredit(wxT("Tuomas Suutari"), roleAudacityThanks);
-   AddCredit(wxT("Mark Tomlinson"), roleAudacityThanks);
-   AddCredit(wxT("David Topper"), roleAudacityThanks);
-   AddCredit(wxT("Rudy Trubitt"), roleAudacityThanks);
-   AddCredit(wxT("StreetIQ.com"), roleAudacityThanks);
-   AddCredit(wxT("UmixIt Technologies, LLC"), roleAudacityThanks);
-   AddCredit(wxT("Verilogix, Inc."), roleAudacityThanks);
+   AddCredit(wxT("Dave Beydler"), roleThanks);
+   AddCredit(wxT("Brian Cameron"), roleThanks);
+   AddCredit(wxT("Jason Cohen"), roleThanks);
+   AddCredit(wxT("Dave Fancella"), roleThanks);
+   AddCredit(wxT("Steve Harris"), roleThanks);
+   AddCredit(wxT("Daniel James"), roleThanks);
+   AddCredit(wxT("Daniil Kolpakov"), roleThanks);
+   AddCredit(wxT("Robert Leidle"), roleThanks);
+   AddCredit(wxT("Logan Lewis"), roleThanks);
+   AddCredit(wxT("David Luff"), roleThanks);
+   AddCredit(wxT("Jason Pepas"), roleThanks);
+   AddCredit(wxT("Jonathan Ryshpan"), roleThanks);
+   AddCredit(wxT("Michael Schwendt"), roleThanks);
+   AddCredit(wxT("Patrick Shirkey"), roleThanks);
+   AddCredit(wxT("Tuomas Suutari"), roleThanks);
+   AddCredit(wxT("Mark Tomlinson"), roleThanks);
+   AddCredit(wxT("David Topper"), roleThanks);
+   AddCredit(wxT("Rudy Trubitt"), roleThanks);
+   AddCredit(wxT("StreetIQ.com"), roleThanks);
+   AddCredit(wxT("UmixIt Technologies, LLC"), roleThanks);
+   AddCredit(wxT("Verilogix, Inc."), roleThanks);
 }
 
 // ----------------------------------------------------------------------------
@@ -457,7 +457,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<h3>")
       << XO("Special thanks:")
       << wxT("</h3><br>")
-      << GetCreditsByRole(roleAudacityThanks)
+      << GetCreditsByRole(roleThanks)
 
       << wxT("<p><br><center>")
       /* i18n-hint: The program's name substitutes for %s */

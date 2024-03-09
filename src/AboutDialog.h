@@ -54,8 +54,7 @@ class TENACITY_DLL_API AboutDialog final : public wxDialogWrapper {
       roleAudacityEmeritusTeam,
       roleAudacityDeceased,
       roleAudacityContributor,
-      roleAudacityGraphics,
-      roleAudacityThanks
+      roleAudacityGraphics
    };
 
    AboutDialogCreditItemsList creditItems;
