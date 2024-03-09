@@ -134,8 +134,8 @@ void AboutDialog::CreateCreditsList()
 
    // The Tenacity Team
    AddCredit("Avery \"Generic Person\" King ([[https://github.com/generic-pers0n|GitHub]])", tenacity_leadDeveloperFormat, roleTeamMember);
-   AddCredit("caughtquick ([[https://caughtquick.tech|Website]])", tenacity_contributorFormat, roleTeamMember);
-   AddCredit("TheEvilSkeleton ([[https://github.com/theevilskeleton|GitHub]])", tenacity_contributorFormat,roleContributor);
+   AddCredit("caughtquick", tenacity_contributorFormat, roleTeamMember);
+   AddCredit("Hari \"TheEvilSkeleton\" Rana ([[https://github.com/theevilskeleton|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("Mart \"leio\" Raudsepp ([[https://github.com/leio|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("AnotherFoxGuy ([[https://github.com/AnotherFoxGuy|GitHub]])", tenacity_contributorFormat, roleTeamMember);
@@ -166,9 +166,7 @@ void AboutDialog::CreateCreditsList()
    // Emeritus: people who were "lead developers" or made an
    // otherwise distinguished contribution, but who are no
    // longer active.
-   AddCredit(
-      wxT("[[https://wiki.audacityteam.org/wiki/User:Galeandrews|Gale Andrews]]"),
-      qualityAssuranceFormat, roleAudacityEmeritusTeam);
+   AddCredit(wxT("Gale Andrews]]"), qualityAssuranceFormat, roleAudacityEmeritusTeam);
    AddCredit(wxT("Richard Ash"), developerFormat, roleAudacityEmeritusTeam);
    AddCredit(wxT("Christian Brochec"),
       documentationAndSupportFrenchFormat, roleAudacityEmeritusTeam);
@@ -268,14 +266,14 @@ void AboutDialog::CreateCreditsList()
    AddCredit(wxT("[[https://www.cs.cmu.edu/~music/nyquist/|Nyquist]]"), roleLibrary);
    AddCredit(wxT("[[https://xiph.org/vorbis/|Ogg Vorbis]]"), roleLibrary);
    AddCredit(wxT("[[http://www.portaudio.com/|PortAudio]]"), roleLibrary);
-   AddCredit(wxT("[[http://www.portmedia.sourceforge.net/portmidi/|PortMidi]]"), roleLibrary);
-   AddCredit(wxT("[[https://sourceforge.net/p/portmedia/wiki/portsmf/|portsmf]]"), roleLibrary);
+   AddCredit(wxT("[[http://github.com/portmidi/portmidi/|PortMidi]]"), roleLibrary);
+   AddCredit(wxT("[[https://codeberg.org/tenacityteam/portsmf/|portsmf]]"), roleLibrary);
    AddCredit(wxT("[[http://sbsms.sourceforge.net/|sbsms]]"), roleLibrary);
    AddCredit(wxT("[[https://www.surina.net/soundtouch/|SoundTouch]]"), roleLibrary);
    AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleLibrary);
    AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleLibrary);
    AddCredit(wxT("[[https://wxwidgets.org/|wxWidgets]]"), roleLibrary);
-   AddCredit(wxT("[[https://www.underbit.com/products/mad/|libmad]]"), roleLibrary);
+   AddCredit(wxT("[[https://codeberg.org/tenacityteam/libmad/|libmad]]"), roleLibrary);
 
 
    // Thanks
@@ -434,7 +432,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << XO("Libraries")
       << wxT("</h3><br>")
       /* i18n-hint: The program's name substitutes for %s */
-      << XO("%s includes code from the following projects:").Format( ProgramName )
+      << XO("%s uses the following libraries:").Format( ProgramName )
       << wxT("<br><br>")
       << GetCreditsByRole(roleLibrary)
       << wxT("<br><br>")
