@@ -249,11 +249,11 @@ void AboutDialog::CreateCreditsList()
    AddCredit(wxT("Bayu Rizaldhan Rayes"), graphicsFormat, roleAudacityGraphics);
 
    // Libraries
-   AddCredit(wxT("[[https://libexpat.github.io/|expat]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://xiph.org/flac/|FLAC]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://lame.sourceforge.net/|LAME]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.mega-nerd.com/libsndfile/|libsndfile]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://sourceforge.net/p/soxr/wiki/Home/|libsoxr]]"), roleAudacityLibrary);
+   AddCredit(wxT("[[https://libexpat.github.io/|expat]]"), roleLibrary);
+   AddCredit(wxT("[[https://xiph.org/flac/|FLAC]]"), roleLibrary);
+   AddCredit(wxT("[[http://lame.sourceforge.net/|LAME]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.mega-nerd.com/libsndfile/|libsndfile]]"), roleLibrary);
+   AddCredit(wxT("[[https://sourceforge.net/p/soxr/wiki/Home/|libsoxr]]"), roleLibrary);
    AddCredit(
       XO("%s (incorporating %s, %s, %s, %s and %s)")
          .Format(
@@ -264,43 +264,43 @@ void AboutDialog::CreateCreditsList()
             "sord",
             "sratom"
          ).Translation(),
-      roleAudacityLibrary);
-   AddCredit(wxT("[[https://www.cs.cmu.edu/~music/nyquist/|Nyquist]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://xiph.org/vorbis/|Ogg Vorbis]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.portaudio.com/|PortAudio]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.portmedia.sourceforge.net/portmidi/|PortMidi]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://sourceforge.net/p/portmedia/wiki/portsmf/|portsmf]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://sbsms.sourceforge.net/|sbsms]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://www.surina.net/soundtouch/|SoundTouch]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleAudacityLibrary);
-   AddCredit(wxT("[[https://wxwidgets.org/|wxWidgets]]"), roleAudacityLibrary);
+      roleLibrary);
+   AddCredit(wxT("[[https://www.cs.cmu.edu/~music/nyquist/|Nyquist]]"), roleLibrary);
+   AddCredit(wxT("[[https://xiph.org/vorbis/|Ogg Vorbis]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.portaudio.com/|PortAudio]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.portmedia.sourceforge.net/portmidi/|PortMidi]]"), roleLibrary);
+   AddCredit(wxT("[[https://sourceforge.net/p/portmedia/wiki/portsmf/|portsmf]]"), roleLibrary);
+   AddCredit(wxT("[[http://sbsms.sourceforge.net/|sbsms]]"), roleLibrary);
+   AddCredit(wxT("[[https://www.surina.net/soundtouch/|SoundTouch]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.twolame.org/|TwoLAME]]"), roleLibrary);
+   AddCredit(wxT("[[http://www.vamp-plugins.org/|Vamp]]"), roleLibrary);
+   AddCredit(wxT("[[https://wxwidgets.org/|wxWidgets]]"), roleLibrary);
    AddCredit(wxT("[[https://www.underbit.com/products/mad/|libmad]]"), roleLibrary);
 
 
    // Thanks
 
-   AddCredit(wxT("Dave Beydler"), roleAudacityThanks);
-   AddCredit(wxT("Brian Cameron"), roleAudacityThanks);
-   AddCredit(wxT("Jason Cohen"), roleAudacityThanks);
-   AddCredit(wxT("Dave Fancella"), roleAudacityThanks);
-   AddCredit(wxT("Steve Harris"), roleAudacityThanks);
-   AddCredit(wxT("Daniel James"), roleAudacityThanks);
-   AddCredit(wxT("Daniil Kolpakov"), roleAudacityThanks);
-   AddCredit(wxT("Robert Leidle"), roleAudacityThanks);
-   AddCredit(wxT("Logan Lewis"), roleAudacityThanks);
-   AddCredit(wxT("David Luff"), roleAudacityThanks);
-   AddCredit(wxT("Jason Pepas"), roleAudacityThanks);
-   AddCredit(wxT("Jonathan Ryshpan"), roleAudacityThanks);
-   AddCredit(wxT("Michael Schwendt"), roleAudacityThanks);
-   AddCredit(wxT("Patrick Shirkey"), roleAudacityThanks);
-   AddCredit(wxT("Tuomas Suutari"), roleAudacityThanks);
-   AddCredit(wxT("Mark Tomlinson"), roleAudacityThanks);
-   AddCredit(wxT("David Topper"), roleAudacityThanks);
-   AddCredit(wxT("Rudy Trubitt"), roleAudacityThanks);
-   AddCredit(wxT("StreetIQ.com"), roleAudacityThanks);
-   AddCredit(wxT("UmixIt Technologies, LLC"), roleAudacityThanks);
-   AddCredit(wxT("Verilogix, Inc."), roleAudacityThanks);
+   AddCredit(wxT("Dave Beydler"), roleThanks);
+   AddCredit(wxT("Brian Cameron"), roleThanks);
+   AddCredit(wxT("Jason Cohen"), roleThanks);
+   AddCredit(wxT("Dave Fancella"), roleThanks);
+   AddCredit(wxT("Steve Harris"), roleThanks);
+   AddCredit(wxT("Daniel James"), roleThanks);
+   AddCredit(wxT("Daniil Kolpakov"), roleThanks);
+   AddCredit(wxT("Robert Leidle"), roleThanks);
+   AddCredit(wxT("Logan Lewis"), roleThanks);
+   AddCredit(wxT("David Luff"), roleThanks);
+   AddCredit(wxT("Jason Pepas"), roleThanks);
+   AddCredit(wxT("Jonathan Ryshpan"), roleThanks);
+   AddCredit(wxT("Michael Schwendt"), roleThanks);
+   AddCredit(wxT("Patrick Shirkey"), roleThanks);
+   AddCredit(wxT("Tuomas Suutari"), roleThanks);
+   AddCredit(wxT("Mark Tomlinson"), roleThanks);
+   AddCredit(wxT("David Topper"), roleThanks);
+   AddCredit(wxT("Rudy Trubitt"), roleThanks);
+   AddCredit(wxT("StreetIQ.com"), roleThanks);
+   AddCredit(wxT("UmixIt Technologies, LLC"), roleThanks);
+   AddCredit(wxT("Verilogix, Inc."), roleThanks);
 }
 
 // ----------------------------------------------------------------------------
@@ -436,7 +436,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s includes code from the following projects:").Format( ProgramName )
       << wxT("<br><br>")
-      << GetCreditsByRole(roleAudacityLibrary)
+      << GetCreditsByRole(roleLibrary)
       << wxT("<br><br>")
       << XO("In addition, %s also includes these libraries (some forks) from Tenacity:").Format(ProgramName)
       << wxT("<br><br>")
@@ -445,7 +445,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<h3>")
       << XO("Special thanks:")
       << wxT("</h3><br>")
-      << GetCreditsByRole(roleAudacityThanks)
+      << GetCreditsByRole(roleThanks)
 
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
