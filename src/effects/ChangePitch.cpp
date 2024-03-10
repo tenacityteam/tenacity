@@ -462,12 +462,12 @@ void EffectChangePitch::DeduceFrequencies()
       // windowSize must be a power of 2.
       const size_t windowSize =
          // windowSize < 256 too inaccurate
-         std::max(256, wxRound(pow(2.0, floor((log(rate / 20.0)/log(2.0)) + 0.5))));
+         std::max(256l, std::lround(pow(2.0, floor((log(rate / 20.0)/log(2.0)) + 0.5))));
 
       // we want about 0.2 seconds to catch the first note.
       // number of windows rounded to nearest integer >= 1.
       const unsigned numWindows =
-         std::max(1, wxRound((double)(rate / (5.0f * windowSize))));
+         std::max(1l, std::lround((double)(rate / (5.0f * windowSize))));
 
       double trackStart = track->GetStartTime();
       double t0 = mT0 < trackStart? trackStart: mT0;
