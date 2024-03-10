@@ -745,7 +745,10 @@ bool ExportCL::CheckFileName(wxFileName &filename, int /* format */)
       
    // Normalize the path (makes absolute and resolves variables)   
    wxFileName cmd(argv[0]);
-   cmd.Normalize(wxPATH_NORM_ALL & ~wxPATH_NORM_ABSOLUTE);
+   cmd.Normalize(
+      wxPATH_NORM_DOTS | wxPATH_NORM_TILDE | wxPATH_NORM_CASE |
+      wxPATH_NORM_LONG | wxPATH_NORM_SHORTCUT
+   );
 
    // Just verify the given path exists if it is absolute.
    if (cmd.IsAbsolute()) {

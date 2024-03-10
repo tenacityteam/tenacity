@@ -390,7 +390,11 @@ void LOFImportFileHandle::lofOpenFiles(wxString* ln)
       // If path is relative, make absolute path from LOF path
       if(!wxIsAbsolutePath(targetfile)) {
          wxFileName fName(targetfile);
-         fName.Normalize(wxPATH_NORM_ALL, mLOFFileName.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR));
+         fName.Normalize(
+            wxPATH_NORM_DOTS | wxPATH_NORM_TILDE | wxPATH_NORM_CASE |
+            wxPATH_NORM_LONG | wxPATH_NORM_SHORTCUT,
+            mLOFFileName.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR)
+         );
          if(fName.FileExists()) {
             targetfile = fName.GetFullPath();
          }
