@@ -18,7 +18,10 @@ set( script_dir "${CMAKE_SOURCE_DIR}/scripts/mw2html_audacity" )
 set( script "mw2html.py" )
 set( out_dir "${_INTDIR}" )
 set( out "${out_dir}/${host}/index.html" )
-configure_file( ${APP_NAME}.metainfo.xml.in ${_INTDIR}/${APP_NAME}.metainfo.xml )
+
+if (NOT WIN32 AND NOT APPLE)
+   configure_file( ${APP_NAME}.metainfo.xml.in ${_INTDIR}/${APP_NAME}.metainfo.xml )
+endif()
 
 add_custom_command(
    COMMENT
