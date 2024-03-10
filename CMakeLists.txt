@@ -286,6 +286,10 @@ endif()
 set( TENACITY_VERSION 1 )
 set( TENACITY_RELEASE 4 )
 set( TENACITY_REVISION 0 )
+
+# Set a plain version string for situations that cannot include tag info
+set( TENACITY_VERSION_STRING_PLAIN "${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION}")
+
 set( GIT_DESCRIBE "unknown" )
 find_package( Git QUIET )
 if( GIT_FOUND )
@@ -304,6 +308,17 @@ if( GIT_FOUND )
     # Git describe. This is only if we're not building a release version.
     if( GIT_DESCRIBE AND TENACITY_BUILD_LEVEL LESS 2)
         string( REGEX MATCHALL "-.*" GIT_VERSION_TAG "${GIT_DESCRIBE}" )
+    endif()
+
+    # The Tenacity version string. Equal to the output of git-describe if git
+    # was found or to the plain version string otherwise.
+    set(TENACITY_VERSION_STRING "${GIT_DESCRIBE}")
+else()
+    set(TENACITY_VERSION_STRING "${TENACITY_VERSION_STRING_PLAIN}")
+    if (TENACITY_BUILD_LEVEL EQUAL 0)
+        string(APPEND TENACITY_VERSION_STRING "-alpha")
+    elseif (TENACITY_BUILD_LEVEL EQUAL 1)
+        string(APPEND TENACITY_VERSION_STRING "-beta")
     endif()
 endif()
 message( STATUS "  Current Commit: ${GIT_DESCRIBE}" )
