@@ -3,15 +3,12 @@
 //
 
 #include "Forms/MainWindow/MainWindow.h"
-#include "TenacityApp.h"
 
 #include <QApplication>
 
 int main(int argc, char** argv)
 {
     QCoreApplication::setApplicationName("Tenacity");
-
-    TenacityApp::Start();
 
     QApplication a{argc, argv};
 
