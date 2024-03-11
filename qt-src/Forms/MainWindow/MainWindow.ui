@@ -81,6 +81,73 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuRemove_Special">
+     <property name="title">
+      <string>Remove Special</string>
+     </property>
+     <addaction name="actionSplit_Cut"/>
+     <addaction name="actionSplit_Delete"/>
+     <addaction name="separator"/>
+     <addaction name="actionSilence_Audio"/>
+     <addaction name="actionTrim_Audio"/>
+    </widget>
+    <widget class="QMenu" name="menuClip_Boundaries">
+     <property name="title">
+      <string>Clip Boundaries</string>
+     </property>
+     <addaction name="actionSplit"/>
+     <addaction name="actionSplit_New"/>
+     <addaction name="separator"/>
+     <addaction name="actionJoin_2"/>
+     <addaction name="actionDetach_at_Silences"/>
+    </widget>
+    <widget class="QMenu" name="menuLabels">
+     <property name="title">
+      <string>Labels</string>
+     </property>
+     <addaction name="actionEdit_Labels"/>
+     <addaction name="separator"/>
+     <addaction name="actionAdd_Label_at_Selection"/>
+     <addaction name="actionAdd_Label_at_Playback_Position"/>
+     <addaction name="actionPaste_Text_to_New_Label"/>
+     <addaction name="separator"/>
+     <addaction name="actionType_to_Create_a_Label"/>
+    </widget>
+    <widget class="QMenu" name="menuLabeled_Audio">
+     <property name="title">
+      <string>Labeled Audio</string>
+     </property>
+     <addaction name="actionCut_2"/>
+     <addaction name="actionDelete_2"/>
+     <addaction name="separator"/>
+     <addaction name="actionSplit_Cut_2"/>
+     <addaction name="actionSplit_Delete_2"/>
+     <addaction name="separator"/>
+     <addaction name="actionSilence_Audio_2"/>
+     <addaction name="actionCopy_2"/>
+     <addaction name="separator"/>
+     <addaction name="actionSplit_2"/>
+     <addaction name="actionJoin_4"/>
+     <addaction name="actionDetach_at_Silences_2"/>
+    </widget>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionDelete"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionDuplicate"/>
+    <addaction name="separator"/>
+    <addaction name="menuRemove_Special"/>
+    <addaction name="separator"/>
+    <addaction name="menuClip_Boundaries"/>
+    <addaction name="menuLabels"/>
+    <addaction name="menuLabeled_Audio"/>
+    <addaction name="actionMetadata"/>
+    <addaction name="actionRename_Clip"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
    </widget>
    <widget class="QMenu" name="menuSelect">
     <property name="title">
@@ -143,15 +210,24 @@
    <property name="text">
     <string>New</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionClose">
    <property name="text">
     <string>Close</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
    </property>
   </action>
   <action name="actionPage_Setup">
@@ -174,10 +250,16 @@
    <property name="text">
     <string>Exit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionSave_Project_2">
    <property name="text">
     <string>Save Project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionSave_Project_As">
@@ -229,6 +311,9 @@
    <property name="text">
     <string>Export Audio...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+E</string>
+   </property>
   </action>
   <action name="actionExport_Selected_Audio">
    <property name="enabled">
@@ -253,10 +338,16 @@
    <property name="text">
     <string>Export Multiple...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
+   </property>
   </action>
   <action name="actionAudio">
    <property name="text">
     <string>Audio...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+I</string>
    </property>
   </action>
   <action name="actionLabels">
@@ -275,6 +366,354 @@
    </property>
    <property name="text">
     <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionDuplicate">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Duplicate</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionSplit_Cut">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+X</string>
+   </property>
+  </action>
+  <action name="actionSplit_Delete">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+K</string>
+   </property>
+  </action>
+  <action name="actionSilence_Audio">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Silence Audio</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionTrim_Audio">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Trim Audio</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionMetadata">
+   <property name="text">
+    <string>Metadata...</string>
+   </property>
+  </action>
+  <action name="actionRename_Clip">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Rename Clip...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F2</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionJoin">
+   <property name="text">
+    <string>Join</string>
+   </property>
+  </action>
+  <action name="actionSplit_Join">
+   <property name="text">
+    <string>Split Join</string>
+   </property>
+  </action>
+  <action name="actionSplit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionSplit_New">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+I</string>
+   </property>
+  </action>
+  <action name="actionJoin_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Join</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionDetach_at_Silences">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Detach at Silences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+J</string>
+   </property>
+  </action>
+  <action name="actionEdit_Labels">
+   <property name="text">
+    <string>Edit Labels...</string>
+   </property>
+  </action>
+  <action name="actionAdd_Label_at_Selection">
+   <property name="text">
+    <string>Add Label at Selection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionAdd_Label_at_Playback_Position">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Add Label at Playback Position</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionPaste_Text_to_New_Label">
+   <property name="text">
+    <string>Paste Text to New Label</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+V</string>
+   </property>
+  </action>
+  <action name="actionType_to_Create_a_Label">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Type to Create a Label</string>
+   </property>
+  </action>
+  <action name="actionCut_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+X</string>
+   </property>
+  </action>
+  <action name="actionDelete_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+K</string>
+   </property>
+  </action>
+  <action name="actionSplit_Cut_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Shift+X</string>
+   </property>
+  </action>
+  <action name="actionSplit_Delete_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Shift+K</string>
+   </property>
+  </action>
+  <action name="actionSilence_Audio_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Silence Audio</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+L</string>
+   </property>
+  </action>
+  <action name="actionCopy_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Shift+C</string>
+   </property>
+  </action>
+  <action name="actionJoin_3">
+   <property name="text">
+    <string>Join</string>
+   </property>
+  </action>
+  <action name="actionDetach_at_Silence">
+   <property name="text">
+    <string>Detach at Silence</string>
+   </property>
+  </action>
+  <action name="actionSplit_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Split</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+I</string>
+   </property>
+  </action>
+  <action name="actionJoin_4">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Join</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+J</string>
+   </property>
+  </action>
+  <action name="actionDetach_at_Silences_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Detach at Silences</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Shift+J</string>
    </property>
   </action>
  </widget>

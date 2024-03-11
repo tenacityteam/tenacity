@@ -7,12 +7,11 @@
 #include "ControlToolbar.h"
 #include "ui_ControlToolbar.h"
 
-ControlToolbar::ControlToolbar(QWidget *parent) :
-    QWidget(parent), ui(new Ui::ControlToolbar) {
+ControlToolbar::ControlToolbar(QWidget *parent) : QWidget(parent), ui(new Ui::ControlToolbar) {
     ui->setupUi(this);
 
     ui->pause->setIcon(QIcon::fromTheme("media-playback-pause"));
-    ui->play->setIcon(QIcon::fromTheme("media-playback-play"));
+    ui->play->setIcon(QIcon::fromTheme("media-playback-start"));
     ui->stop->setIcon(QIcon::fromTheme("media-playback-stop"));
     ui->loop->setIcon(QIcon::fromTheme("media-playlist-repeat"));
     ui->skipToStart->setIcon(QIcon::fromTheme("media-skip-backward"));

@@ -72,8 +72,6 @@ endif()
 list( APPEND SOURCES
     # Main source files
     main.cpp
-    TenacityApp.cpp
-    TenacityApp.h
     Forms/MainWindow/MainWindow.cpp
     Forms/MainWindow/MainWindow.h
     Forms/ControlToolbar/ControlToolbar.cpp
