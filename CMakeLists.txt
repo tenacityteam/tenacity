@@ -159,11 +159,9 @@ if( APPLE )
 endif()
 
 # Add our module path
-# CMAKE_BINARY_DIR is required for Conan to work
 set( TENACITY_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules")
 set( CMAKE_MODULE_PATH
    ${TENACITY_MODULE_PATH}
-   ${CMAKE_BINARY_DIR}
    ${CMAKE_MODULE_PATH}
    "${CMAKE_SOURCE_DIR}/cmake-modules"
 )
@@ -531,12 +529,11 @@ else()
    message(STATUS "Building shared Tenacity libraries")
 endif()
 
-# Python is used for the manual and (possibly) message catalogs
+# Python is possibly used for message catalogs
 find_package( Python3 )
 if( Python3_FOUND )
    set( PYTHON "${Python3_EXECUTABLE}" )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   # This is an odd case now, as Conan requires Python as well
    nuget_package( pkgdir "python3" "3.7.7" )
    file( TO_NATIVE_PATH "${pkgdir}/tools/python.exe" PYTHON )
 endif()
