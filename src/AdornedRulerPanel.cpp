@@ -55,6 +55,7 @@
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/Grabber.h"
 
+#include <wx/dcbuffer.h>
 #include <wx/dcclient.h>
 #include <wx/menu.h>
 
@@ -1205,7 +1206,7 @@ void AdornedRulerPanel::OnPaint(wxPaintEvent & /* evt */)
    mDirtySelectedRegion = (mLastDrawnSelectedRegion != viewInfo.selectedRegion);
    mLastDrawnSelectedRegion = viewInfo.selectedRegion;
 
-   wxPaintDC dc(this);
+   wxAutoBufferedPaintDC dc(this);
 
    auto &backDC = GetBackingDCForRepaint();
 
