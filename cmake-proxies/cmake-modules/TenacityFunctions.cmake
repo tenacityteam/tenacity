@@ -137,63 +137,6 @@ function( cmd_option name desc )
    set( ${name} "${${name}}" PARENT_SCOPE )
 endfunction()
 
-# Downloads NuGet packages
-#
-# Why this is needed...
-#
-# To get NuGet to work, you have to add the VS_PACKAGE_REFERENCES
-# property to a target. This target must NOT be a UTILITY target,
-# which is what we use to compile the message catalogs and assemble
-# the manual. We could add that property to the Audacity target and
-# CMake would add the required nodes to the VS project. And when the
-# Audacity target is built, the NuGet packages would get automatically
-# downloaded. This also means that the locale and manual targets
-# must be dependent on the Audacity target so the packages would get
-# downloaded before they execute. This would be handled by the CMake
-# provided ALL_BUILD target which is, by default, set as the startup
-# project in Visual Studio. Sweet right? Well, not quite...
-#
-# We want the Audacity target to be the startup project to provide
-# easier debugging. But, if we do that, the ALL_BUILD target is no
-# longer "in control" and any dependents of the Audacity target would
-# not get built. So, targets like "nyquist" and "plug-ins" would have
-# to be manually built. This is not what we want since Nyquist would
-# not be available during Audacity debugging because the Nyquist runtime
-# would not be copied into the destination folder alonside the Audacity
-# executable.
-#
-# To remedy this conundrum, we simply download the NuGet packages
-# ourselves and make the Audacity target dependent on the targets
-# mentioned above. This ensures that the dest folder is populated
-# and laid out like Audacity expects.
-#
-function( nuget_package dir name version )
-   # Generate the full package directory name
-   set( pkgdir "${CMAKE_BINARY_DIR}/packages/${name}/${version}" )
-
-   # Don't download it again if the package directory already exists
-   if( NOT EXISTS "${pkgdir}" )
-      set( pkgurl "https://www.nuget.org/api/v2/package/${name}/${version}" )
-
-      # Create the package directory
-      file( MAKE_DIRECTORY "${pkgdir}" )
-
-      # And download the package into the package directory
-      file( DOWNLOAD "${pkgurl}" "${pkgdir}/package.zip" )
-
-      # Extract the contents of the package into the package directory
-      execute_process(
-         COMMAND
-            ${CMAKE_COMMAND} -E tar x "${pkgdir}/package.zip"
-         WORKING_DIRECTORY
-            ${pkgdir}
-      )
-   endif()
-
-   # Return the package directory name to the caller
-   set( ${dir} "${pkgdir}" PARENT_SCOPE )
-endfunction()
-
 # Determines if the linker supports the "-platform_version" argument
 # on macOS.
 macro( check_for_platform_version )
