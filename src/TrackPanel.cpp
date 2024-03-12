@@ -91,6 +91,7 @@ is time to refresh some aspect of the screen.
 #include <algorithm>
 
 #include <wx/dc.h>
+#include <wx/dcbuffer.h>
 #include <wx/dcclient.h>
 #include <wx/graphics.h>
 
@@ -469,7 +470,7 @@ void TrackPanel::OnPaint(wxPaintEvent & /* event */)
 #endif
 
    {
-      wxPaintDC dc(this);
+      wxAutoBufferedPaintDC dc(this);
 
       // Retrieve the damage rectangle
       wxRect box = GetUpdateRegion().GetBox();
