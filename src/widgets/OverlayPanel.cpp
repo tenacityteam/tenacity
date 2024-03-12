@@ -43,7 +43,7 @@ void OverlayPanel::ClearOverlays()
    mOverlays.clear();
 }
 
-void OverlayPanel::DrawOverlays(bool repaint_all, wxPaintDC& dc)
+void OverlayPanel::DrawOverlays(bool repaint_all, wxDC& dc)
 {
    if ( !IsShownOnScreen() )
       return;
@@ -104,11 +104,11 @@ void OverlayPanel::DrawOverlays(bool repaint_all, wxPaintDC& dc)
 
    // Erase
    auto it2 = pairs.begin();
-   for (auto pOverlay : mOverlays) {
-      if (repaint_all || it2->second)
-         pOverlay.lock()->Erase(dc, GetBackingDC());
-      ++it2;
-   }
+   // for (auto pOverlay : mOverlays) {
+   //    if (repaint_all || it2->second)
+   //       pOverlay.lock()->Erase(dc, GetBackingDC());
+   //    ++it2;
+   // }
 
    // Draw
    it2 = pairs.begin();
