@@ -43,7 +43,7 @@ void OverlayPanel::ClearOverlays()
    mOverlays.clear();
 }
 
-void OverlayPanel::DrawOverlays(bool repaint_all, wxPaintDC& dc)
+void OverlayPanel::DrawOverlays(bool repaint_all, wxDC& dc)
 {
    if ( !IsShownOnScreen() )
       return;
