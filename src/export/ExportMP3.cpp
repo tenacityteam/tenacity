@@ -116,7 +116,7 @@ enum : int {
 };
 
 /* i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second*/
-inline TranslatableString n_kbps( int n ){ return XO("%d kbps").Format( n ); }
+inline TranslatableString n_kbps( int n ){ return XO("%d Kbps").Format( n ); }
 
 static const TranslatableStrings fixRateNames {
    n_kbps(320),
@@ -161,16 +161,16 @@ static const std::vector<int> fixRateValues {
 };
 
 static const TranslatableStrings varRateNames {
-   XO("220-260 kbps (Best Quality)"),
-   XO("200-250 kbps"),
-   XO("170-210 kbps"),
-   XO("155-195 kbps"),
-   XO("145-185 kbps"),
-   XO("110-150 kbps"),
-   XO("95-135 kbps"),
-   XO("80-120 kbps"),
-   XO("65-105 kbps"),
-   XO("45-85 kbps (Smaller files)"),
+   XO("220-260 Kbps (Best Quality)"),
+   XO("200-250 Kbps"),
+   XO("170-210 Kbps"),
+   XO("155-195 Kbps"),
+   XO("145-185 Kbps"),
+   XO("110-150 Kbps"),
+   XO("95-135 Kbps"),
+   XO("80-120 Kbps"),
+   XO("65-105 Kbps"),
+   XO("45-85 Kbps (Smaller files)"),
 };
 /*
 static const TranslatableStrings varModeNames {
@@ -180,10 +180,10 @@ static const TranslatableStrings varModeNames {
 */
 static const TranslatableStrings setRateNames {
    /* i18n-hint: Slightly humorous - as in use an insane precision with MP3.*/
-   XO("Insane, 320 kbps"),
-   XO("Extreme, 220-260 kbps"),
-   XO("Standard, 170-210 kbps"),
-   XO("Medium, 145-185 kbps"),
+   XO("Insane, 320 Kbps"),
+   XO("Extreme, 220-260 Kbps"),
+   XO("Standard, 170-210 Kbps"),
+   XO("Medium, 145-185 Kbps"),
 };
 
 static const TranslatableStrings setRateNamesShort {
@@ -1206,7 +1206,7 @@ int ExportMP3::AskResample(int bitrate, int rate, int lowrate, int highrate)
 "The project sample rate (%d) is not supported by the MP3\nfile format. ")
                        .Format( rate )
                   : XO(
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\nsupported by the MP3 file format. ")
+"The project sample rate (%d) and bit rate (%d Kbps) combination is not\nsupported by the MP3 file format. ")
                        .Format( rate, bitrate ))
                + XO("You may resample to one of the rates below.")
             );

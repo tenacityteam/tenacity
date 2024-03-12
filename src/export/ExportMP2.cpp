@@ -80,7 +80,7 @@
 namespace {
 
 // i18n-hint kbps abbreviates "thousands of bits per second"
-inline TranslatableString n_kbps( int n ) { return XO("%d kbps").Format( n ); }
+inline TranslatableString n_kbps( int n ) { return XO("%d Kbps").Format( n ); }
 
 const TranslatableStrings BitRateNames {
    n_kbps(16),
@@ -312,9 +312,9 @@ ProgressResult ExportMP2::Export(TenacityProject *project,
 
       InitProgress( pDialog, fName,
          selectionOnly
-            ? XO("Exporting selected audio at %ld kbps")
+            ? XO("Exporting selected audio at %ld Kbps")
                  .Format( bitrate )
-            : XO("Exporting the audio at %ld kbps")
+            : XO("Exporting the audio at %ld Kbps")
                  .Format( bitrate ) );
       auto &progress = *pDialog;
 

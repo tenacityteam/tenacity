@@ -145,7 +145,7 @@ namespace
 {
 
 // i18n-hint kbps abbreviates "thousands of bits per second"
-inline TranslatableString n_kbps(int n) { return XO("%d kbps").Format( n ); }
+inline TranslatableString n_kbps(int n) { return XO("%d Kbps").Format( n ); }
 
 const TranslatableStrings AC3BitRateNames{
    n_kbps( 32 ),
@@ -284,7 +284,7 @@ void ExportFFmpegAACOptions::PopulateOrExchange(ShuttleGui & S)
          {
             S.SetStretchyCol(1);
             S.Prop(1).TieSlider(
-               XXO("Quality (kbps):"),
+               XXO("Quality (Kbps):"),
                {wxT("/FileFormats/AACQuality"), 160},320, 98);
          }
          S.EndMultiColumn();

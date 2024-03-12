@@ -1296,7 +1296,7 @@ int ExportFFmpeg::AskResample(int bitrate, int rate, int lowrate, int highrate, 
 "The project sample rate (%d) is not supported by the current output\nfile format. ")
                        .Format( rate )
                   : XO(
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\nsupported by the current output file format. ")
+"The project sample rate (%d) and bit rate (%d Kbps) combination is not\nsupported by the current output file format. ")
                        .Format( rate, bitrate/1000))
                + XO("You may resample to one of the rates below.")
             );
