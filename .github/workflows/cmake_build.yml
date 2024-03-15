@@ -28,6 +28,8 @@ jobs:
           os: ubuntu-latest
           arch: x86_64 # as reported by `arch` or `uname -m`
           generator: Ninja
+          cc: cc
+          cxx: c++
           compiler_cache: ccache
           compiler_cache_path: ~/.ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
@@ -37,6 +39,8 @@ jobs:
           os: macos-latest
           arch: Intel # as reported by Apple menu > About This Mac
           generator: Ninja
+          cc: cc
+          cxx: c++
           compiler_cache: ccache
           compiler_cache_path: ~/Library/Caches/ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
