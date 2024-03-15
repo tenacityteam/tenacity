@@ -25,25 +25,25 @@ class LyricsWindow final : public wxFrame,
                            public PrefsListener
 {
 
- public:
-   LyricsWindow(TenacityProject* parent);
+public:
+  LyricsWindow(TenacityProject *parent);
 
-   LyricsPanel *GetLyricsPanel() { return mLyricsPanel; };
+  LyricsPanel *GetLyricsPanel() { return mLyricsPanel; };
 
- private:
-   void OnCloseWindow(wxCloseEvent & /* event */);
+private:
+  void OnCloseWindow(wxCloseEvent & /* event */);
 
-   void OnStyle_BouncingBall(wxCommandEvent &evt);
-   void OnStyle_Highlight(wxCommandEvent &evt);
-   void OnTimer(wxCommandEvent &event);
+  void OnStyle_BouncingBall(wxCommandEvent &evt);
+  void OnStyle_Highlight(wxCommandEvent &evt);
+  void OnTimer(wxCommandEvent &event);
 
-   void SetWindowTitle();
+  void SetWindowTitle();
 
-   // PrefsListener implementation
-   void UpdatePrefs() override;
+  // PrefsListener implementation
+  void UpdatePrefs() override;
 
-   std::weak_ptr<TenacityProject> mProject;
-   LyricsPanel *mLyricsPanel;
+  std::weak_ptr<TenacityProject> mProject;
+  LyricsPanel *mLyricsPanel;
 };
 
 #endif

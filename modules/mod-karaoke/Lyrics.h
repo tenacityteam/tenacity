@@ -12,7 +12,6 @@
 #ifndef __AUDACITY_LYRICS__
 #define __AUDACITY_LYRICS__
 
-
 #include <vector>
 #include <wx/textctrl.h> // to inherit
 #include "commands/CommandManagerWindowClasses.h"
@@ -21,18 +20,18 @@
 class TenacityProject;
 class LabelTrack;
 
-
 #define LYRICS_DEFAULT_WIDTH 608
 #define LYRICS_DEFAULT_HEIGHT 280
 
 /// \brief used in LyricsPanel, a Syllable gives positional information to
 /// be used with the bouncing ball effect.
-struct Syllable {
+struct Syllable
+{
    Syllable() = default;
-   Syllable( const Syllable& ) = default;
-   Syllable& operator= ( const Syllable& ) = default;
-   //Syllable( Syllable && ) = default;
-   //Syllable& operator= ( Syllable&& ) = default;
+   Syllable(const Syllable &) = default;
+   Syllable &operator=(const Syllable &) = default;
+   // Syllable( Syllable && ) = default;
+   // Syllable& operator= ( Syllable&& ) = default;
 
    double t;
    wxString text;
@@ -50,47 +49,47 @@ class LyricsPanel;
 class HighlightTextCtrl final : public wxTextCtrl
 {
 public:
-   HighlightTextCtrl(LyricsPanel* parent,
+   HighlightTextCtrl(LyricsPanel *parent,
                      wxWindowID id,
-                     const wxString& value = {},
-                     const wxPoint& pos = wxDefaultPosition,
-                     const wxSize& size = wxDefaultSize);
-   virtual ~HighlightTextCtrl() {};
+                     const wxString &value = {},
+                     const wxPoint &pos = wxDefaultPosition,
+                     const wxSize &size = wxDefaultSize);
+   virtual ~HighlightTextCtrl(){};
 
    void OnMouseEvent(wxMouseEvent &evt);
 
 private:
-   LyricsPanel* mLyricsPanel;
+   LyricsPanel *mLyricsPanel;
 
    DECLARE_EVENT_TABLE()
 };
 
+/**************************************************************/ /**
 
-/**************************************************************//**
-
-\brief LyricsPanel is a panel that paints the bouncing
-ball and the lyrics text.
-*******************************************************************/
+ \brief LyricsPanel is a panel that paints the bouncing
+ ball and the lyrics text.
+ *******************************************************************/
 class LyricsPanel final
-   : public wxPanelWrapper
-   , public NonKeystrokeInterceptingWindow
+    : public wxPanelWrapper,
+      public NonKeystrokeInterceptingWindow
 {
 public:
-   enum LyricsStyle {
+   enum LyricsStyle
+   {
       kBouncingBallLyrics, // Lyrics move from right to left with bouncing ball.
       // kGuitarTab,       //v <<future>> Guitar Tablature moves from right to left.
-      kHighlightLyrics,    // Lyrics show in scrolling page and syllables highlight successively.
+      kHighlightLyrics, // Lyrics show in scrolling page and syllables highlight successively.
    };
 
-   LyricsPanel(wxWindow* parent, wxWindowID id,
-          TenacityProject *project,
-          const wxPoint& pos = wxDefaultPosition,
-          const wxSize& size = wxDefaultSize);
+   LyricsPanel(wxWindow *parent, wxWindowID id,
+               TenacityProject *project,
+               const wxPoint &pos = wxDefaultPosition,
+               const wxSize &size = wxDefaultSize);
    virtual ~LyricsPanel();
 
    int FindSyllable(long startChar); // Find the syllable whose char0 <= startChar <= char1.
    int GetCurrentSyllableIndex() { return mCurrentSyllable; };
-   Syllable* GetSyllable(int nSyl) { return &(mSyllables[nSyl]); };
+   Syllable *GetSyllable(int nSyl) { return &(mSyllables[nSyl]); };
    void SetCurrentSyllableIndex(int nSyl) { mCurrentSyllable = nSyl; };
 
    LyricsStyle GetLyricsStyle() { return mLyricsStyle; };
@@ -98,13 +97,13 @@ public:
 
    void Update(double t);
    void UpdateLyrics(wxEvent &e);
-   void OnShow(wxShowEvent& e);
+   void OnShow(wxShowEvent &e);
    void OnStartStop(wxCommandEvent &e);
 
    //
    // Event handlers
    //
-   void OnKeyEvent(wxKeyEvent & event);
+   void OnKeyEvent(wxKeyEvent &event);
    void DoPaint(wxDC &dc);
    void OnPaint(wxPaintEvent &evt);
    void OnSize(wxSizeEvent &evt);
@@ -128,33 +127,33 @@ private:
    unsigned int GetDefaultFontSize() const; // Depends on mLyricsStyle. Call only after mLyricsStyle is set.
 
    void SetDrawnFont(wxDC *dc); // for kBouncingBallLyrics
-   void SetHighlightFont(); // for kHighlightLyrics
+   void SetHighlightFont();     // for kHighlightLyrics
 
    void Measure(wxDC *dc);
    int FindSyllable(double t);
    void GetKaraokePosition(double t, int *outX, double *outY);
 
 private:
-   int            mWidth;  // client width
-   int            mHeight; // client height
+   int mWidth;  // client width
+   int mHeight; // client height
 
-   int            mKaraokeHeight; //v mHeight - mBrandingHeight (so just mHeight now that Branding is removed).
-   unsigned int   mKaraokeFontSize;
+   int mKaraokeHeight; // v mHeight - mBrandingHeight (so just mHeight now that Branding is removed).
+   unsigned int mKaraokeFontSize;
 
-   LyricsStyle          mLyricsStyle; // default kHighlightLyrics
-   HighlightTextCtrl*   mHighlightTextCtrl; // only for kHighlightLyrics
+   LyricsStyle mLyricsStyle;              // default kHighlightLyrics
+   HighlightTextCtrl *mHighlightTextCtrl; // only for kHighlightLyrics
 
-   double         mT;
+   double mT;
 
-   int            mCurrentSyllable;
-   std::vector<Syllable>  mSyllables;
-   wxString       mText;
+   int mCurrentSyllable;
+   std::vector<Syllable> mSyllables;
+   wxString mText;
 
-   int            mTextHeight; // only for drawn text
-   bool           mMeasurementsDone; // only for drawn text
+   int mTextHeight;        // only for drawn text
+   bool mMeasurementsDone; // only for drawn text
 
    wxWeakRef<TenacityProject> mProject;
-   bool           mDelayedUpdate{ false };
+   bool mDelayedUpdate{false};
 };
 
 #endif // __AUDACITY_LYRICS__
