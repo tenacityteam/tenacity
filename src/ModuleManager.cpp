@@ -28,7 +28,7 @@ i.e. an alternative to the usual interface, for Audacity.
 #include <lib-files/FileNames.h>
 #include <lib-utility/MemoryX.h>
 
-#include <wx/dynlib.h>
+#include <boost/filesystem/path.hpp>
 #include <wx/log.h>
 #include <wx/string.h>
 #include <wx/filename.h>
@@ -53,7 +53,6 @@ typedef wxChar * (*tVersionFn)();
 Module::Module(const FilePath & name)
    : mName{ name }
 {
-   mLib = std::make_unique<wxDynamicLibrary>();
    mDispatch = NULL;
 }
 
@@ -73,7 +72,8 @@ bool Module::Load(wxString &deferredErrorMessage)
 {
    deferredErrorMessage.clear();
    // Will this ever happen???
-   if (mLib->IsLoaded()) {
+   if (mLib)
+   {
       if (mDispatch) {
          return true;
       }
@@ -84,23 +84,24 @@ bool Module::Load(wxString &deferredErrorMessage)
 
    auto ShortName = wxFileName(mName).GetName();
 
-   if (!mLib->Load(mName, wxDL_NOW | wxDL_QUIET | wxDL_GLOBAL)) {
-      // For this failure path, only, there is a possiblity of retrial
-      // after some other dependency of this module is loaded.  So the
-      // error is not immediately reported.
-      deferredErrorMessage = wxString(wxSysErrorMsg());
+   try
+   {
+      mLib.load(mName.utf8_string(), boost::dll::load_mode::rtld_now | boost::dll::load_mode::rtld_global);
+   } catch(...)
+   {
       return false;
    }
 
    // Check version string matches.  (For now, they must match exactly)
-   tVersionFn versionFn = (tVersionFn)(mLib->GetSymbol(wxT(versionFnName)));
-   if (versionFn == NULL){
+   auto versionFn = mLib.get<wxChar*()>(versionFnName);
+   if (versionFn == nullptr)
+   {
       AudacityMessageBox(
          XO("The module \"%s\" does not provide a version string.\n\nIt will not be loaded.")
             .Format( ShortName),
          XO("Module Unsuitable"));
       wxLogMessage(wxT("The module \"%s\" does not provide a version string. It will not be loaded."), mName);
-      mLib->Unload();
+      mLib.unload();
       return false;
    }
 
@@ -111,20 +112,23 @@ bool Module::Load(wxString &deferredErrorMessage)
             .Format(ShortName, moduleVersion),
          XO("Module Unsuitable"));
       wxLogMessage(wxT("The module \"%s\" is matched with Tenacity version \"%s\". It will not be loaded."), mName, moduleVersion);
-      mLib->Unload();
+      mLib.unload();
       return false;
    }
 
-   mDispatch = (fnModuleDispatch) mLib->GetSymbol(wxT(ModuleDispatchName));
-   if (!mDispatch) {
-      // Module does not provide a dispatch function.
-      return true;
-   }
+   if (mLib.has(ModuleDispatchName))
+   {
+      mDispatch = mLib.get<int(ModuleDispatchTypes)>(ModuleDispatchName);
 
-   // However if we do have it and it does not work, 
-   // then the module is bad.
-   bool res = ((mDispatch(ModuleInitialize))!=0);
-   if (res) {
+      // However if we do have it and it does not work, 
+      // then the module is bad.
+      bool res = mDispatch(ModuleInitialize) != 0;
+      if (res)
+      {
+         return true;
+      }
+   } else
+   {
       return true;
    }
 
@@ -134,7 +138,7 @@ bool Module::Load(wxString &deferredErrorMessage)
       XO("The module \"%s\" failed to initialize.\n\nIt will not be loaded.").Format(ShortName),
       XO("Module Unsuitable"));
    wxLogMessage(wxT("The module \"%s\" failed to initialize.\nIt will not be loaded."), mName);
-   mLib->Unload();
+   mLib.unload();
 
    return false;
 }
@@ -142,17 +146,18 @@ bool Module::Load(wxString &deferredErrorMessage)
 // This isn't yet used?
 void Module::Unload()
 {
-   if (mLib->IsLoaded()) {
+   if (mLib)
+   {
       if (mDispatch)
          mDispatch(ModuleTerminate);
    }
 
-   mLib->Unload();
+   mLib.unload();
 }
 
 int Module::Dispatch(ModuleDispatchTypes type)
 {
-   if (mLib->IsLoaded())
+   if (mLib)
       if( mDispatch != NULL )
          return mDispatch(type);
 
@@ -161,7 +166,7 @@ int Module::Dispatch(ModuleDispatchTypes type)
 
 void * Module::GetSymbol(const wxString &name)
 {
-   return mLib->GetSymbol(name);
+   return mLib.get<void*>(name.utf8_string());
 }
 
 // ============================================================================

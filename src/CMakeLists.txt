@@ -1071,7 +1071,8 @@ list( APPEND LDFLAGS
 list( APPEND LIBRARIES
    PUBLIC
       ${CMAKE_REQUIRED_LIBRARIES}
-      ${Boost_LIBRARIES}
+      # ${Boost_LIBRARIES}
+      Boost::filesystem
       ZLIB::ZLIB
       wxWidgets::wxWidgets
       mp3lame::mp3lame

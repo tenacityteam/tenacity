@@ -23,8 +23,9 @@
 #include <map>
 #include <vector>
 
+#include <boost/dll/shared_library.hpp>
+
 class wxArrayString;
-class wxDynamicLibrary;
 class ComponentInterface;
 class ModuleInterface;
 class wxWindow;
@@ -53,7 +54,7 @@ public:
 
 private:
    const FilePath mName;
-   std::unique_ptr<wxDynamicLibrary> mLib;
+   boost::dll::shared_library mLib;
    fnModuleDispatch mDispatch;
 };
 
@@ -66,7 +67,7 @@ using ModuleInterfaceHandle = std::unique_ptr<
 >;
 
 typedef std::map<wxString, ModuleInterfaceHandle> ModuleMap;
-typedef std::map<ModuleInterface *, std::unique_ptr<wxDynamicLibrary>> LibraryMap;
+typedef std::map<ModuleInterface *, std::unique_ptr<boost::dll::shared_library>> LibraryMap;
 
 class TENACITY_DLL_API ModuleManager final
 {
