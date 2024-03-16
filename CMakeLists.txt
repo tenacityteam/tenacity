@@ -533,6 +533,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
    file( TO_NATIVE_PATH "${pkgdir}/tools/python.exe" PYTHON )
 endif()
 
+find_package(Boost REQUIRED)
 find_package(JsonCpp REQUIRED)
 find_package(libzip REQUIRED)
 find_package(ZLIB REQUIRED)
