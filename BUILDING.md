@@ -139,22 +139,38 @@ test against the latest version of Visual Studio, so we may not catch bugs
 affecting older versions of Visual Studio, but please report them as we will
 still fix them.
 
-Installing [sccache](https://github.com/mozilla/sccache) is highly recommended
-for faster builds but not required. CMake will automatically use sccache if you
-have it installed. You can install it from
-[Chocolatey](https://community.chocolatey.org/packages/sccache):
+We srongly recommend using a package manager for managing build tools as it
+makes general management, such as updating or removing them, easier. We like to
+use [Scoop](https://scoop.sh) in CI. It contains all of the build tools needed
+for Tenacity. If you don't already have Scoop installed, open PowerShell and
+run the following commands:
 
-```
-choco install sccache
+``` powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression]
 ```
 
-Alternatively, if you have a [Rust toolchain
-installed](https://forge.rust-lang.org/infra/other-installation-methods.html),
-you can build sccache from source:
+Then, from the same PowerShell window, run the command to install Tenacity's
+build tools:
 
+``` powershell
+> scoop install git cmake ninja gettext
 ```
-cargo install sccache
+
+Optionally, you can install sccache for faster builds. We highly recommend you
+do so:
+
+``` powershell
+> scoop install sccache
 ```
+
+Alternatively, you can use a different package manager such as Chocolatey or
+winget. You may even use a package manager for a different language, such as
+Cargo, if that works for you. However, they might not contain all the build
+tools you need. For example, Chocolatey does not contain gettext, so you'll
+need to install it yourself. winget is also missing a few other build tools
+too. Finally, you can install all the build tools yourself, but once you
+starting using a package manager, you'll realize there's no going back :)
 
 Tenacity's dependencies will be built automatically with vcpkg when configuring
 CMake. You can turn off vcpkg by passing `-DVCPKG=OFF` to the CMake
