@@ -256,7 +256,7 @@ FilePath FileNames::DataDir()
 #if defined( __WXGTK__ )
          // ...except on Linux. We use XDG_CONFIG_HOME/tenacity (or
          // $HOME/.config/tenacity) instead.
-         wxString configHome = wxGetenv("XDG_CONFIG_HOME");
+         wxString configHome = wxGetenv("XDG_CONFIG_HOME") + wxString("/") + wxString(APP_NAME);
          if (configHome.empty())
          {
             configHome = wxGetenv("HOME") + wxString("/.config/") + wxString(APP_NAME);
