@@ -1077,7 +1077,7 @@ list( APPEND LIBRARIES
       SndFile::sndfile
       PortAudio::PortAudio
       ${SQLite3_LIBRARIES}
-      $<$<BOOL:${USE_FFMPEG}>:FFMPEG::FFMPEG>
+      $<$<BOOL:${USE_FFMPEG_LINKED}>:FFMPEG::FFMPEG>
       $<$<BOOL:${USE_LIBID3TAG}>:id3tag::id3tag>
       $<$<BOOL:${USE_LIBFLAC}>:FLAC++::FLAC++>
       $<$<BOOL:${USE_LIBMAD}>:MAD::MAD>
@@ -1105,15 +1105,6 @@ set( BUILDING_AUDACITY YES )
 set( PKGLIBDIR "${_PKGLIB}" )
 set( LIBDIR "${CMAKE_INSTALL_FULL_LIBDIR}" )
 set( HAVE_GTK ${GTK_FOUND} )
-
-# Do not define these for Windows or Mac until further testing
-# can be done against ExportMP3.cpp.  If either are defined, the
-# build will fail.
-if( NOT CMAKE_SYSTEM_NAME MATCHES "Windows|Darwin" )
-   if( FFMPEG_FOUND )
-      set( DISABLE_DYNAMIC_LOADING_FFMPEG YES )
-   endif()
-endif()
 
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
    set_target_properties(
