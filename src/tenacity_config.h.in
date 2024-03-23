@@ -4,9 +4,6 @@
    so it can find the files it needs at runtime */
 #cmakedefine APP_NAME "@APP_NAME@"
 
-/* Use system FFmpeg library and disable dynamic loading of it. */
-#cmakedefine DISABLE_DYNAMIC_LOADING_FFMPEG 1
-
 /* Define to 1 if you have the <alloca.h> header file. */
 #cmakedefine HAVE_ALLOCA_H 1
 
@@ -44,6 +41,9 @@
 /* Define if ffmpeg (multi-format import and export) support should be enabled
    */
 #cmakedefine USE_FFMPEG 1
+
+/* Use system FFmpeg library and disable dynamic loading of it. */
+#cmakedefine USE_FFMPEG_LINKED 1
 
 /* Define if GStreamer 1 is present */
 #cmakedefine USE_GSTREAMER 1

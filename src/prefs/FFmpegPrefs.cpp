@@ -115,7 +115,7 @@ void FFmpegPrefs::PopulateOrExchange(ShuttleGui & S)
             true, wxALL | wxALIGN_RIGHT | wxALIGN_CENTRE_VERTICAL);
          S.Id(ID_FFMPEG_FIND_BUTTON);
          S
-#if !defined(USE_FFMPEG) || defined(DISABLE_DYNAMIC_LOADING_FFMPEG)
+#if !defined(USE_FFMPEG) || defined(USE_FFMPEG_LINKED)
             .Disable()
 #endif
             .AddButton(XXO("Loca&te..."),
@@ -124,7 +124,7 @@ void FFmpegPrefs::PopulateOrExchange(ShuttleGui & S)
             true, wxALL | wxALIGN_RIGHT | wxALIGN_CENTRE_VERTICAL);
          S.Id(ID_FFMPEG_DOWN_BUTTON);
          S
-#if !defined(USE_FFMPEG) || defined(DISABLE_DYNAMIC_LOADING_FFMPEG)
+#if !defined(USE_FFMPEG) || defined(USE_FFMPEG_LINKED)
             .Disable()
 #endif
             .AddButton(XXO("Dow&nload"),
@@ -184,7 +184,7 @@ bool FFmpegPrefs::Commit()
    return true;
 }
 
-#if !defined(DISABLE_DYNAMIC_LOADING_FFMPEG)
+#ifdef USE_FFMPEG_LINKED
 namespace{
 PrefsPanel::Registration sAttachment{ "FFmpeg",
    [](wxWindow *parent, wxWindowID winid, TenacityProject *)
