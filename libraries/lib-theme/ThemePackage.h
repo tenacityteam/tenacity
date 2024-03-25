@@ -21,6 +21,8 @@
 
 #include <zip.h>
 
+#include "Types.h"
+
 /** @brief Represents a theme package.
  * 
  * Theme packages are Tenacity are mere ZIP archives that have the following
@@ -44,14 +46,9 @@
  **/
 class THEME_API ThemePackage final
 {
-    public:
-        using ResourceMap  = std::unordered_map<std::string, std::any>;
-        using ResourceList = std::list<std::string, std::any>;
-
     private:
         zip_t* mPackageArchive;
         std::ifstream mPackageStream;
-        ResourceMap mThemeResources;
         std::istringstream mJsonStream;
 
         // Atributes //////////////////////////////////////////////////////////
@@ -87,18 +84,6 @@ class THEME_API ThemePackage final
         */
         void ClosePackage();
 
-        /** @brief Returns the theme package's resurce map if available.
-         * 
-         * **It is possible that an empty or incomplete map is returned by this
-         * function**. Call @ref LoadAllResources() to ensure the resource map is
-         * fully loaded.
-         * 
-         * @return Returns the theme package's resource map in whatever stage
-         * it is.
-         * 
-         **/
-        ResourceMap& GetResourceMap();
-
         /** @brief Loads all resources in the theme package.
          * 
          * By default, no resources are loaded as ThemePackage does not know
@@ -115,14 +100,7 @@ class THEME_API ThemePackage final
 
         /// @brief Preloads multiple resources.
         /// @param names A list of resources to preload.
-        void LoadResources(const ResourceList& names);
-
-        /// @brief Returns associated data with the resource, loading it if it
-        /// has not been already loaded.
-        /// @param name The name of the resource to get the associated data
-        /// from.
-        /// @return Returns the data associated with the resource.
-        std::any& GetResource(const std::string name);
+        void LoadResources(const ThemeResourceList& names);
 
         /// Returns the theme package's name.
         std::string GetName() const;

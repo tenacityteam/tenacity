@@ -203,11 +203,6 @@ void ThemePackage::ClosePackage()
     }
 }
 
-ThemePackage::ResourceMap& ThemePackage::GetResourceMap()
-{
-    return mThemeResources;
-}
-
 void ThemePackage::LoadAllResources()
 {
     THROW_NOT_IMPLEMENTED;
@@ -218,14 +213,9 @@ void ThemePackage::LoadResource(const std::string name)
     THROW_NOT_IMPLEMENTED;
 }
 
-void ThemePackage::LoadResources(const ThemePackage::ResourceList& names)
+void ThemePackage::LoadResources(const ThemeResourceList& names)
 {
     THROW_NOT_IMPLEMENTED;
-}
-
-std::any& ThemePackage::GetResource(std::string name)
-{
-    return mThemeResources.at(name);
 }
 
 std::string ThemePackage::GetName() const

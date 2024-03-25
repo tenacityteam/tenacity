@@ -31,7 +31,7 @@ class THEME_API ThemeResources
 {
     public:
         using ResourceMap = std::unordered_map<std::string, std::any>;
-        using ResourceList = std::list<std::string>;
+        using ThemeResourceList = std::list<std::string>;
 
     private:
         ResourceMap mResources;
@@ -69,5 +69,5 @@ class THEME_API ThemeResources
         bool CheckIfExists(const std::string& name) const;
 
         /// Creates a list of all existing theme resource IDs on-demand.
-        ResourceList GetRegisteredResourceNames() const;
+        ThemeResourceList GetRegisteredResourceNames() const;
 };

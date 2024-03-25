@@ -42,9 +42,9 @@ bool ThemeResources::CheckIfExists(const std::string& name) const
     return true;
 }
 
-ThemeResources::ResourceList ThemeResources::GetRegisteredResourceNames() const
+ThemeResources::ThemeResourceList ThemeResources::GetRegisteredResourceNames() const
 {
-    ThemeResources::ResourceList resourceNames;
+    ThemeResources::ThemeResourceList resourceNames;
 
     for (auto& resource : mResources)
     {

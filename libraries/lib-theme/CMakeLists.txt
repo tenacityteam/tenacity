@@ -1,4 +1,6 @@
 set(SOURCES
+    Theme.cpp
+    Theme.h
     ThemePackage.cpp
     ThemePackage.h
     ThemeResources.cpp
