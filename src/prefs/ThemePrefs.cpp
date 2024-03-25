@@ -247,6 +247,11 @@ void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
          case ArchiveError::Type::OperationalError:
             AudacityMessageBox(XO("Error while working on archive"), XO("Operational error"), wxOK);
             break;
+         case ArchiveError::Type::MissingRequiredResource:
+            AudacityMessageBox(XO("Required resource is missing"), XO("Missing resource"), wxOK);
+            break;
+         default:
+            AudacityMessageBox(XO("Unknown error"), XO("Unknown error"), wxOK);
       }
    }
 }

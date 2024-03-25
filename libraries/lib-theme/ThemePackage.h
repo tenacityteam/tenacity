@@ -14,6 +14,7 @@
 
 #include <any>
 #include <list>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <fstream>
@@ -50,9 +51,16 @@ class THEME_API ThemePackage final
         zip_t* mPackageArchive;
         std::ifstream mPackageStream;
         std::istringstream mJsonStream;
+        std::istringstream mColorsStream;
 
         // Atributes //////////////////////////////////////////////////////////
         std::string mPackageName;
+
+        /// @brief Reads a file from the package archive and returns a buffer
+        /// containing all the file's contents.
+        /// @param name The name of the file to read from the archive.
+        /// @return Returns an allocated buffer of all the file's contents.
+        std::unique_ptr<char> ReadFileFromArchive(const std::string& name);
 
     public:
         ThemePackage();

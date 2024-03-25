@@ -20,8 +20,9 @@ class ArchiveError final
     public:
         enum class Type
         {
-            InvalidArchive,  // Invalid ZIP or theme.json
-            OperationalError // libzip or jsoncpp error
+            InvalidArchive,         /// Invalid ZIP or theme.json.
+            OperationalError,       /// libzip or jsoncpp error.
+            MissingRequiredResource /// Required resource missing.
         };
 
     public:
