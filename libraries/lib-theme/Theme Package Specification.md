@@ -212,8 +212,16 @@ Applications with multiple custom resource types MAY specify any loading order.
 
 ## 7.1 Paths
 
-Any paths specified MUST be relative to the root of the archive. Path also MUST
-a forward slash ('/') as the path separator.
+All paths MUST be relative to the root of the archive. Path MUST only use a
+forward slash ('/') as the path separator.
+
+## 7.2 Valid Resource Names
+
+Valid resource names MAY contains alphanumerical characters, dashes ('-'), and
+underscores ('_'). Resource names MUST NOT contain quotes, forward slashes
+('/') or, if the resource is a part of a multi-file resource type, dots ('.').
+For multi-file resource types, resources MAY contain a single dot for the file
+extension in the archive.
 
 # Changes To This Specification
 
