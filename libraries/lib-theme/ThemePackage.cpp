@@ -19,12 +19,16 @@
 
 #include "exceptions/ArchiveError.h"
 #include "exceptions/IncompatibleTheme.h"
+#include "exceptions/InvalidState.h"
 
 using namespace ThemeExceptions;
 
 #define THROW_NOT_IMPLEMENTED throw std::runtime_error("Not implemented")
 
-ThemePackage::ThemePackage() : mPackageArchive{nullptr}
+ThemePackage::ThemePackage()
+: mPackageArchive{nullptr},
+  mPackageRoot{Json::Value::null},
+  mColors{Json::Value::null}
 {
 }
 
@@ -250,10 +254,37 @@ void ThemePackage::ClosePackage()
     {
         zip_close(mPackageArchive);
     }
+
+    mPackageArchive = nullptr;
+}
+
+bool ThemePackage::IsValid() const
+{
+    if (!mPackageArchive) return false;
+
+    // Check the archive for errors
+    zip_error_t* err = zip_get_error(mPackageArchive);
+    int zipError = zip_error_code_zip(err);
+    int sysError = zip_error_code_system(err);
+
+    if (zipError != ZIP_ER_OK || sysError != 0)
+    {
+        return false;
+    }
+
+    // Check the JSON values for any errors
+    if (!mPackageRoot || !mColors)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 std::any ThemePackage::LoadResource(const std::string& name)
 {
+    if (!IsValid()) throw InvalidState();
+
     std::string currentResourceName;
     int status;
     std::any resourceData;
@@ -340,6 +371,8 @@ std::string ThemePackage::GetName() const
 
 bool ThemePackage::IsMultiThemePackage() const
 {
+    if (!IsValid()) throw InvalidState();
+
     // FIXME: Unimplemented.
     return false;
 }

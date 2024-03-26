@@ -13,6 +13,8 @@ set(SOURCES
     exceptions/ArchiveError.h
     exceptions/IncompatibleTheme.cpp
     exceptions/IncompatibleTheme.h
+    exceptions/InvalidState.cpp
+    exceptions/InvalidState.h
 )
 
 set(LIBRARIES

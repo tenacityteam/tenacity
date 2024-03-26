@@ -100,6 +100,16 @@ class THEME_API ThemePackage final
         */
         void ClosePackage();
 
+        /** @brief Check if the package is in a valid state.
+         * 
+         * A package is in a valid state if:
+         * 
+         * 1. It's open.
+         * 2. The archve contains no errors.
+         * 3. info.json and colors.json have been parsed.
+        */
+        bool IsValid() const;
+
         /** @brief Loads an entire resource into memory.
          * 
          * Depending on the found resource, this can either be a `int` (for
