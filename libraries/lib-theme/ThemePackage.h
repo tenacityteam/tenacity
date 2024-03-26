@@ -17,6 +17,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include <fstream>
 #include <sstream>
 
@@ -92,23 +93,26 @@ class THEME_API ThemePackage final
         */
         void ClosePackage();
 
-        /** @brief Loads all resources in the theme package.
+        /** @brief Loads an entire resource into memory.
          * 
-         * By default, no resources are loaded as ThemePackage does not know
-         * what resources the application will need. The application should
-         * take steps to ensure that it only loads the resources it knows it
-         * will use.
+         * Depending on the found resource, this can either be a `int` (for
+         * colors) or a `std::vector<char>` (for files). Other resource types
+         * may return different types.
          * 
-         **/
-        void LoadAllResources();
-
-        /// @brief Preloads a single resource.
-        /// @param name The name of the resource to load.
-        void LoadResource(const std::string name);
-
-        /// @brief Preloads multiple resources.
-        /// @param names A list of resources to preload.
-        void LoadResources(const ThemeResourceList& names);
+         * If loading a resource fails, or if the resource isn't found, an
+         * exception is thrown. This member function guarantees that a valid
+         * value for std::any is returned.
+         * 
+         * @exception ArchiveError Thrown when reading from the archive failed
+         * or when a resource wasn't found.
+         * 
+         * @param name The name of the resource to load.
+         * 
+         * @return Returns either an int (for color values) or a
+         * std::vector<char> containing all of the resource's data.
+         * 
+        */
+        std::any LoadResource(const std::string& name);
 
         /// Returns the theme package's name.
         std::string GetName() const;

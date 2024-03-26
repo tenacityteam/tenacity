@@ -22,6 +22,7 @@ class ArchiveError final
         {
             InvalidArchive,         /// Invalid ZIP or theme.json.
             OperationalError,       /// libzip or jsoncpp error.
+            ResourceNotFound,       /// Resource not found.
             MissingRequiredResource /// Required resource missing.
         };
 

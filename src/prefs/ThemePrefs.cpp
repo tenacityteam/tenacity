@@ -227,6 +227,15 @@ void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
    {
       theme.OpenPackage(path.ToStdString(wxConvUTF8));
       theme.ParsePackage();
+
+      // Test: load a color resource.
+      theme.LoadResource("dummyColor");
+      wxLogDebug("Successfully loaded color resource.");
+
+      // Test: load an image resource
+      theme.LoadResource("dummyImage");
+      wxLogDebug("Successfully loaded image resource");
+
       AudacityMessageBox(XO("Package OK!"), XO("Success!"), wxOK);
    } catch (std::invalid_argument& e)
    {

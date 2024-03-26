@@ -12,6 +12,7 @@
 
 #include "ThemePackage.h"
 
+#include <cassert>
 #include <stdexcept>
 
 #include <json/reader.h>
@@ -239,19 +240,85 @@ void ThemePackage::ClosePackage()
     }
 }
 
-void ThemePackage::LoadAllResources()
+std::any ThemePackage::LoadResource(const std::string& name)
 {
-    THROW_NOT_IMPLEMENTED;
-}
+    std::string currentResourceName;
+    int status;
+    std::any resourceData;
 
-void ThemePackage::LoadResource(const std::string name)
-{
-    THROW_NOT_IMPLEMENTED;
-}
+    // Search colors.json for any name matches first.
+    int colorData;
+    const Json::Value colorResource = mColors[name];
+    if (colorResource != Json::Value::null)
+    {
+        resourceData = colorResource.asInt();
+        return resourceData;
+    }
 
-void ThemePackage::LoadResources(const ThemeResourceList& names)
-{
-    THROW_NOT_IMPLEMENTED;
+    // If no resources matched in colors.json, find it in images/
+    std::vector<char> data;
+    zip_int64_t numEntries = zip_get_num_entries(mPackageArchive, ZIP_FL_UNCHANGED);
+    zip_stat_t currentFile;
+
+    for (zip_int64_t i = 0; i < numEntries; i++)
+    {
+        if (zip_stat_index(mPackageArchive, i, ZIP_STAT_NAME | ZIP_STAT_SIZE, &currentFile) != 0)
+        {
+            throw ArchiveError(ArchiveError::Type::OperationalError);
+        }
+
+        // Special case: remove any preceding directories from the name in case
+        // it's under any directory.
+        currentResourceName = currentFile.name;
+
+        size_t slash = currentResourceName.rfind("/");
+        if (slash != std::string::npos)
+        {
+            if (slash < currentResourceName.size())
+            {
+                slash++;
+            }
+
+            if (slash != currentResourceName.size())
+            {
+                currentResourceName = currentResourceName.substr(slash);
+            }
+        }
+
+        // Remove the file extension from the file name
+        size_t dot = currentResourceName.rfind(".");
+        if (dot != std::string::npos)
+        {
+            if (dot != currentResourceName.size())
+            {
+                currentResourceName = currentResourceName.substr(0, dot);
+            }
+        }
+
+        // Read the entire file into memory
+        if (currentResourceName == name)
+        {
+            // Use the original file name
+            auto data = ReadFileFromArchive(currentFile.name);
+            std::vector<char> buffer(data.get(), data.get() + currentFile.size);
+            if (buffer.size() == 0)
+            {
+                // Reading failed. Throw an operational error
+                throw ArchiveError(ArchiveError::Type::OperationalError);
+            }
+
+            resourceData = buffer;
+        }
+    }
+
+    // resourceData should contain a value. If there was an error, throw an
+    // exception since the resource wasn't found.
+    if (!resourceData.has_value())
+    {
+        throw ArchiveError(ArchiveError::Type::ResourceNotFound);
+    }
+
+    return resourceData;
 }
 
 std::string ThemePackage::GetName() const
