@@ -20,6 +20,7 @@
 #include <fstream>
 #include <sstream>
 
+#include <json/value.h>
 #include <zip.h>
 
 #include "Types.h"
@@ -49,9 +50,8 @@ class THEME_API ThemePackage final
 {
     private:
         zip_t* mPackageArchive;
-        std::ifstream mPackageStream;
-        std::istringstream mJsonStream;
-        std::istringstream mColorsStream;
+        Json::Value mPackageRoot;
+        Json::Value mColors;
 
         // Atributes //////////////////////////////////////////////////////////
         std::string mPackageName;

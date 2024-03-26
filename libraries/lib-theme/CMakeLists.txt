@@ -16,8 +16,10 @@ set(SOURCES
 )
 
 set(LIBRARIES
-    PRIVATE
+    PUBLIC
+        # JsonCpp must be public or else 'json/value.h' isn't found for some reason.
         JsonCpp::JsonCpp
+    PRIVATE
         libzip::zip
 )
 

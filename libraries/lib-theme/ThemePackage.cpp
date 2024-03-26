@@ -14,7 +14,6 @@
 
 #include <stdexcept>
 
-#include <json/value.h>
 #include <json/reader.h>
 
 #include "exceptions/ArchiveError.h"
@@ -106,7 +105,16 @@ void ThemePackage::OpenPackage(const std::string& path)
         throw ArchiveError(ArchiveError::Type::OperationalError);
     }
 
-    mJsonStream = std::istringstream(std::string(data.get()));
+    std::istringstream jsonStream = std::istringstream(std::string(data.get()));
+    {
+        Json::CharReaderBuilder builder;
+        std::string parserErrors;
+        bool ok = Json::parseFromStream(builder, jsonStream, &mPackageRoot, &parserErrors);
+        if (!ok)
+        {
+            throw ArchiveError(ArchiveError::Type::OperationalError);
+        }
+    }
 
     // Read colors.json from the archive all into memory.
     data = ReadFileFromArchive("colors.json");
@@ -115,7 +123,16 @@ void ThemePackage::OpenPackage(const std::string& path)
         throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
     }
 
-    mColorsStream = std::istringstream(std::string(data.get()));
+    jsonStream = std::istringstream(std::string(data.get()));
+    {
+        Json::CharReaderBuilder builder;
+        std::string parserErrors;
+        bool ok = Json::parseFromStream(builder, jsonStream, &mColors, &parserErrors);
+        if (!ok)
+        {
+            throw ArchiveError(ArchiveError::Type::OperationalError);
+        }
+    }
 
     // Check for the images/ subdir
     zip_stat_t imageDir;
@@ -170,33 +187,8 @@ std::vector<int> ParseVersionString(const std::string& versionString)
 
 void ThemePackage::ParsePackage()
 {
-    if (mJsonStream.str().empty())
-    {
-        return;
-    }
-
-    Json::Value packageRoot;
-    {
-        Json::CharReaderBuilder builder;
-        std::string parserErrors;
-        bool ok = Json::parseFromStream(builder, mJsonStream, &packageRoot, &parserErrors);
-        if (!ok)
-        {
-            throw ArchiveError(ArchiveError::Type::OperationalError);
-        }
-    }
-
-    // Check if the theme package is a multi-theme package. If so, parse those separately
-    const Json::Value subthemes = packageRoot["subthemes"];
-    if (subthemes)
-    {
-        // TODO: handles subthemes
-        // throw std::runtime_error("Not implemented yet!");
-        return;
-    }
-
-    const Json::Value themeName = packageRoot["name"];
-    Json::Value minAppVersionString = packageRoot.get("minAppVersion", "0.0.0");
+    const Json::Value themeName = mPackageRoot["name"];
+    Json::Value minAppVersionString = mPackageRoot.get("minAppVersion", "0.0.0");
     std::vector<int> minAppVersion = ParseVersionString(minAppVersionString.asString());
     int minVersionMajor    = TENACITY_VERSION;
     int minVersionRelease  = TENACITY_RELEASE;
