@@ -27,7 +27,7 @@ using namespace ThemeExceptions;
 
 ThemePackage::ThemePackage()
 : mPackageArchive{nullptr},
-  mPackageRoot{Json::Value::null},
+  mInfo{Json::Value::null},
   mColors{Json::Value::null}
 {
 }
@@ -45,7 +45,7 @@ ThemePackage::ThemePackage(ThemePackage&& other)
         other.mPackageArchive = nullptr;
     }
 
-    mPackageRoot = std::move(other.mPackageRoot);
+    mInfo = std::move(other.mInfo);
     mColors = std::move(other.mColors);
 }
 
@@ -126,7 +126,7 @@ void ThemePackage::OpenPackage(const std::string& path)
     {
         Json::CharReaderBuilder builder;
         std::string parserErrors;
-        bool ok = Json::parseFromStream(builder, jsonStream, &mPackageRoot, &parserErrors);
+        bool ok = Json::parseFromStream(builder, jsonStream, &mInfo, &parserErrors);
         if (!ok)
         {
             throw ArchiveError(ArchiveError::Type::OperationalError);
@@ -204,12 +204,19 @@ std::vector<int> ParseVersionString(const std::string& versionString)
 
 void ThemePackage::ParsePackage()
 {
-    const Json::Value themeName = mPackageRoot["name"];
-    Json::Value minAppVersionString = mPackageRoot.get("minAppVersion", "0.0.0");
+    const Json::Value themeName = mInfo["name"];
+    Json::Value minAppVersionString = mInfo.get("minAppVersion", "0.0.0");
     std::vector<int> minAppVersion = ParseVersionString(minAppVersionString.asString());
     int minVersionMajor    = TENACITY_VERSION;
     int minVersionRelease  = TENACITY_RELEASE;
     int minVersionRevision = TENACITY_REVISION;
+
+    // Handle theme name
+    if (themeName.asString().empty())
+    {
+        // TODO: Better exception handling
+        throw ArchiveError(ArchiveError::Type::MissingRequiredAttribute);
+    }
 
     try
     {
@@ -237,13 +244,6 @@ void ThemePackage::ParsePackage()
     //     // TODO: Better exception handling
     //     throw std::runtime_error("Incompatible theme");
     // }
-
-    // Handle theme name
-    if (themeName.asString().empty())
-    {
-        // TODO: Better exception handling
-        throw std::runtime_error("Theme package does not have a name!");
-    }
 
     // TODO: handle other properities.
 }
@@ -273,7 +273,7 @@ bool ThemePackage::IsValid() const
     }
 
     // Check the JSON values for any errors
-    if (!mPackageRoot || !mColors)
+    if (!mInfo || !mColors)
     {
         return false;
     }
@@ -364,9 +364,9 @@ std::any ThemePackage::LoadResource(const std::string& name)
     return resourceData;
 }
 
-std::string ThemePackage::GetName() const
+Json::Value ThemePackage::GetAttribute(const std::string& name)
 {
-    return mPackageName;
+    return mInfo.get(name, Json::Value::null);
 }
 
 bool ThemePackage::IsMultiThemePackage() const

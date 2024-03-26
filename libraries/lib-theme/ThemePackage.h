@@ -51,11 +51,8 @@ class THEME_API ThemePackage final
 {
     private:
         zip_t* mPackageArchive;
-        Json::Value mPackageRoot;
+        Json::Value mInfo;
         Json::Value mColors;
-
-        // Atributes //////////////////////////////////////////////////////////
-        std::string mPackageName;
 
         /// @brief Reads a file from the package archive and returns a buffer
         /// containing all the file's contents.
@@ -131,8 +128,14 @@ class THEME_API ThemePackage final
         */
         std::any LoadResource(const std::string& name);
 
-        /// Returns the theme package's name.
-        std::string GetName() const;
+        /** @brief Returns an attribute from the package's info.json.
+         * 
+         * @param name The name of the attribute to get.
+         * @return Returns the value of the attribute. Or Json::Value::null if
+         * it doesn't exist.
+         * 
+        */
+        Json::Value GetAttribute(const std::string& name);
 
         /// @brief Returns if the theme package contains multiple themes.
         bool IsMultiThemePackage() const;
