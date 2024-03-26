@@ -33,6 +33,18 @@ ThemePackage::~ThemePackage()
     ClosePackage();
 }
 
+ThemePackage::ThemePackage(ThemePackage&& other)
+{
+    if (other.mPackageArchive)
+    {
+        mPackageArchive = other.mPackageArchive;
+        other.mPackageArchive = nullptr;
+    }
+
+    mPackageRoot = std::move(other.mPackageRoot);
+    mColors = std::move(other.mColors);
+}
+
 std::unique_ptr<char> ThemePackage::ReadFileFromArchive(const std::string& name)
 {
     std::unique_ptr<char> fileData;

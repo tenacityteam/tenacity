@@ -67,6 +67,13 @@ class THEME_API ThemePackage final
         ThemePackage();
         ~ThemePackage();
 
+        // ThemePackage can only be moved, not copied.
+        ThemePackage(const ThemePackage&) = delete;
+        ThemePackage& operator=(const ThemePackage&) = delete;
+
+        ThemePackage(ThemePackage&& other);
+        ThemePackage& operator=(ThemePackage&& other);
+
         /** @brief Opens a theme package.
          * 
          * OpenPackage() first extracts a package with libzip and then attempts
