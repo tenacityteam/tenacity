@@ -123,14 +123,6 @@ It handles initialization and termination by subclassing wxApp.
 
 #include "import/Import.h"
 
-// Here lies some telemetry code that I unfortunately did not get. While
-// it was relatively harmless (thanks to the opt-in nature, making my
-// job easier), it was removed and purged from this world anyway.
-
-#ifdef EXPERIMENTAL_SCOREALIGN
-#include "effects/ScoreAlignDialog.h"
-#endif
-
 // Logo for Splash Screen
 #include "../images/TenacityLogoWithName.xpm"
 
@@ -383,10 +375,6 @@ static void QuitAudacity(bool bForce)
    }
 
    ModuleManager::Get().Dispatch(AppQuiting);
-
-#ifdef EXPERIMENTAL_SCOREALIGN
-   CloseScoreAlignDialog();
-#endif
 
    // Logger window is always destroyed on macOS,
    // on other platforms - it prevents the runloop

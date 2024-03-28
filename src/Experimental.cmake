@@ -135,9 +135,6 @@ set( EXPERIMENTAL_OPTIONS_LIST
    # c) Needs UI design review.
    #MIDI_STRETCHING
 
-   # USE_MIDI must be defined in order for SCOREALIGN to work
-   #SCOREALIGN
-
    # Module prefs provides a panel in prefs where users can choose which modules
    # to enable.
    MODULE_PREFS
