@@ -32,6 +32,17 @@ ThemePackage::ThemePackage()
 {
 }
 
+ThemePackage& ThemePackage::operator=(ThemePackage&& other)
+{
+    mPackageArchive = other.mPackageArchive;
+    other.mPackageArchive = nullptr;
+
+    mInfo = std::move(other.mInfo);
+    mColors = std::move(other.mColors);
+
+    return *this;
+}
+
 ThemePackage::~ThemePackage()
 {
     ClosePackage();
