@@ -6,20 +6,22 @@
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2022, 2023.
 # Juan <benitesjn@gmail.com>, 2023.
 # Iago <translate@delthia.com>, 2023.
+# emma peel <emma.peel@riseup.net>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2023-07-27 10:12+0000\n"
-"Last-Translator: Iago <translate@delthia.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/tenacity/tenacity/es/>\n"
+"PO-Revision-Date: 2024-03-28 11:01+0000\n"
+"Last-Translator: emma peel <emma.peel@riseup.net>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/tenacity/"
+"tenacity/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -326,7 +328,7 @@ msgstr "No se ha podido analizar el código XML"
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "1st Experimental Command..."
-msgstr "1.ª orden experimental"
+msgstr "1.ª orden experimental..."
 
 #: modules/mod-null/ModNullCallback.cpp
 msgid "2nd Experimental Command"
@@ -2331,7 +2333,10 @@ msgid ""
 "Enabling effects or commands:\n"
 "\n"
 "%s"
-msgstr "Activando efectos u órdenes: %s"
+msgstr ""
+"Activando efectos u órdenes:\n"
+"\n"
+" %s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2339,14 +2344,19 @@ msgid ""
 "Enabling effect or command:\n"
 "\n"
 "%s"
-msgstr "Activando efecto u orden: %s"
+msgstr ""
+"Activando efecto u orden:\n"
+"\n"
+" %s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
-msgstr "No se pudo registrar el efecto u orden en %s: %s"
+msgstr ""
+"No se pudo registrar el efecto u orden en %s:\n"
+" %s"
 
 #: src/Printing.cpp
 msgid "There was a problem printing."
@@ -2365,7 +2375,10 @@ msgstr "Frecuencia real: %d"
 msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
-msgstr "Error al abrir el dispositivo de sonido. Pruebe a modificar el servidor de audio, el dispositivo de reproducción y la frecuencia de muestreo del proyecto."
+msgstr ""
+"Error al abrir el dispositivo de sonido.\n"
+"Pruebe a modificar el servidor de audio, el dispositivo de reproducción y la "
+"frecuencia de muestreo del proyecto."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "The tracks selected for recording must all have the same sampling rate"
@@ -2610,7 +2623,7 @@ msgstr "Compactando proyecto"
 #: src/ProjectFileIO.cpp
 #, c-format
 msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Project %02i] Audacity \"%s\""
+msgstr "[Proyecto %02i] Audacity \"%s\""
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -2702,8 +2715,8 @@ msgstr ""
 "Si se guarda ahora, no tendrá pistas.\n"
 "\n"
 "Para guardar cualquier pista abierta anteriormente:\n"
-"Haga clic sobre 'No', Editar > Deshacer \n"
-"hasta que todas las pistas estén abiertas y \n"
+"Haga clic sobre 'No', Editar > Deshacer hasta que todas las pistas estén "
+"abiertas y \n"
 "entonces haga clic en Archivo > Guardar proyecto.\n"
 "\n"
 "¿Guardar de todos modos?"
@@ -2768,7 +2781,7 @@ msgid ""
 "\"%s\"\n"
 "   will be irreversibly overwritten."
 msgstr ""
-"  ¿Quiere sobrescribir el proyecto:\n"
+"   ¿Quiere sobrescribir el proyecto:\n"
 "\"%s\"?\n"
 "\n"
 "  Si selecciona \"Sí\" el proyecto\n"
@@ -2907,11 +2920,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"Compactar este proyecto liberará espacio en disco eliminando  partes no usadas dentro del archivo.\n"
+"Compactar este proyecto liberará espacio en disco eliminando partes no "
+"usadas dentro del archivo.\n"
 "\n"
 "Hay %s de espacio libre en disco y este proyecto está utilizando %s.\n"
 "\n"
-"Si continua las opciones de Deshacer/Rehacer historial y el contenido del portapapeles se descartarán y recuperará aproximadamente %s de espacio en disco.\n"
+"Si continua las opciones de Deshacer/Rehacer historial y el contenido del "
+"portapapeles se descartarán y recuperará aproximadamente %s de espacio en "
+"disco.\n"
 "\n"
 "¿Quiere continuar?"
 
@@ -2950,7 +2966,6 @@ msgid ""
 "Cancel, Edit > Undo until all tracks\n"
 "are open, then File > Save Project."
 msgstr ""
-"\n"
 "\n"
 "Si se guarda ahora, el proyecto no tendrá pistas.\n"
 "\n"
@@ -3366,7 +3381,7 @@ msgstr "Error en la grabación automática"
 
 #: src/TimerRecordDialog.cpp
 msgid "Automatic Export path is invalid."
-msgstr "La ruta de exportación automática no es válida"
+msgstr "La ruta de exportación automática no es válida."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error in Automatic Export"
@@ -3538,11 +3553,11 @@ msgstr "Grabación automática"
 
 #: src/TimerRecordDialog.cpp
 msgid "Enable &Automatic Save?"
-msgstr "Habilitar gr&abación automática"
+msgstr "¿Habilitar &grabación automática?"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Project As:"
-msgstr "Guardar proyecto como..."
+msgstr "Guardar proyecto como:"
 
 #: src/TimerRecordDialog.cpp src/menus/PluginMenus.cpp
 msgid "Select..."
@@ -3554,7 +3569,7 @@ msgstr "Exportación automática"
 
 #: src/TimerRecordDialog.cpp
 msgid "Enable Automatic &Export?"
-msgstr "Habilitar &exportación automática"
+msgstr "¿Habilitar &exportación automática?"
 
 #: src/TimerRecordDialog.cpp
 msgid "Export Project As:"
@@ -3643,19 +3658,19 @@ msgstr "Pista %d"
 #. this track is muted. (The mute button is on.)
 #: src/TrackPanelAx.cpp
 msgid " Muted"
-msgstr "Silenciado"
+msgstr " Silenciado"
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this track is soloed. (The Solo button is on.)
 #: src/TrackPanelAx.cpp
 msgid " Soloed"
-msgstr "Solo establecido"
+msgstr " Solo establecido"
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this track is selected.
 #: src/TrackPanelAx.cpp
 msgid " Selected"
-msgstr "Seleccionado"
+msgstr " Seleccionado"
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this track is shown with a sync-locked icon.
@@ -3663,7 +3678,7 @@ msgstr "Seleccionado"
 #. if present, Jaws reads it as "dash".
 #: src/TrackPanelAx.cpp
 msgid " Sync Locked"
-msgstr "Sincronización bloqueada"
+msgstr " Sincronización bloqueada"
 
 #: src/TrackPanelAx.cpp
 msgid " Mute On"
