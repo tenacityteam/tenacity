@@ -437,8 +437,6 @@ list( APPEND SOURCES
       effects/SBSMSEffect.h
       effects/ScienFilter.cpp
       effects/ScienFilter.h
-      effects/ScoreAlignDialog.cpp
-      effects/ScoreAlignDialog.h
       effects/Silence.cpp
       effects/Silence.h
       effects/SimpleMono.cpp
