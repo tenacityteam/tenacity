@@ -138,9 +138,6 @@ set( EXPERIMENTAL_OPTIONS_LIST
    # USE_MIDI must be defined in order for SCOREALIGN to work
    #SCOREALIGN
 
-   #Automatically tries to find an acceptable input volume
-   #AUTOMATED_INPUT_LEVEL_ADJUSTMENT
-
    # Module prefs provides a panel in prefs where users can choose which modules
    # to enable.
    MODULE_PREFS
