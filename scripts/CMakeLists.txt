@@ -13,27 +13,9 @@ list( APPEND EXCLUDES
    .git
    .gitattributes
    .github
+   .gitea
    .gitignore
-   .travis.yml
-   appveyor.yml
-#   lib-src/expat
-#   lib-src/libid3tag
-#   lib-src/libmad
-#   lib-src/libogg
-#   lib-src/libscorealign
-#   lib-src/libvorbis
-   lib-src/portaudio-v19/bindings
-   lib-src/portaudio-v19/doc
-   lib-src/portaudio-v19/testcvs
-   lib-src/portmidi/pm_csharp
-   lib-src/portmidi/pm_dylib
-   lib-src/portmidi/pm_java
-   lib-src/portmidi/pm_mingw
-   lib-src/portmidi/pm_python
-   lib-src/portmidi/pm_qt
-   lib-src/portmidi/pm_test
-   lib-src/portmidi/portmidi_cdt.zip
-#   lib-src/soundtouch
+   .woodpecker
    mac
    plug-ins/analyze.ny
    plug-ins/fadein.ny
