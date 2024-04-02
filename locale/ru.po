@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-09-27 17:46-0700\n"
-"PO-Revision-Date: 2024-04-02 11:46+0000\n"
+"PO-Revision-Date: 2024-04-02 12:21+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
@@ -3673,7 +3673,7 @@ msgstr "Трек %d"
 #. this track is muted. (The mute button is on.)
 #: src/TrackPanelAx.cpp
 msgid " Muted"
-msgstr "Без звука"
+msgstr " Без звука"
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this track is soloed. (The Solo button is on.)
@@ -3697,7 +3697,7 @@ msgstr " Синхронизация блокирована"
 
 #: src/TrackPanelAx.cpp
 msgid " Mute On"
-msgstr "Звук заглушён"
+msgstr " Звук заглушён"
 
 #: src/TrackPanelAx.cpp
 msgid " Solo On"
@@ -3705,7 +3705,7 @@ msgstr " Соло"
 
 #: src/TrackPanelAx.cpp
 msgid " Select On"
-msgstr "Выберите Вкл."
+msgstr " Выбор включён"
 
 #: src/TrackPanelResizeHandle.cpp
 msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
@@ -4066,7 +4066,7 @@ msgstr "Предоставляет справку о команде."
 
 #: src/commands/HelpCommand.h
 msgid "For comments in a macro."
-msgstr "Для комментариев в макросе"
+msgstr "Для комментариев в макросе."
 
 #: src/commands/ImportExportCommands.cpp
 msgid "Import2"
@@ -4150,7 +4150,7 @@ msgstr "Сохраняет содержимое журнала."
 
 #: src/commands/OpenSaveCommands.h
 msgid "Clears the log contents."
-msgstr "Очищает содержимое журнала"
+msgstr "Очищает содержимое журнала."
 
 #: src/commands/PreferenceCommands.cpp
 msgid "Get Preference"
@@ -4530,7 +4530,9 @@ msgstr "Уменьшает (приглушает) громкость одног�
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
 msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "Выбран трек без аудиоданных. Автоприглушение  может работать только с аудиотреками."
+msgstr ""
+"Выбран трек без аудиоданных. Автоприглушение может обрабатывать только "
+"дорожки аудио."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
@@ -4867,7 +4869,7 @@ msgstr "&до"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Length (seconds)"
-msgstr "Длина (секунд):"
+msgstr "Длина (секунды)"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
@@ -4914,7 +4916,7 @@ msgstr "Порог"
 
 #: src/effects/ClickRemoval.cpp src/effects/FindClicks.cpp
 msgid "Max &Spike Width (higher is more sensitive):"
-msgstr "Ма&ксимальная ширина пика (чем выше, тем чувствительней)"
+msgstr "Максимальная ширина пика (чем в&ыше, тем чувствительней):"
 
 #: src/effects/ClickRemoval.cpp src/effects/FindClicks.cpp
 msgid "Max Spike Width"
@@ -6428,7 +6430,7 @@ msgstr "Порог &начала (сэмплы):"
 
 #: src/effects/FindClipping.cpp
 msgid "St&op threshold (samples):"
-msgstr "Порог &остановки  (сэмплы):"
+msgstr "Порог &остановки (сэмплы):"
 
 #: src/effects/Generator.cpp
 msgid "There is not enough room available to generate the audio"
@@ -6650,7 +6652,7 @@ msgstr "Время затухания"
 
 #: src/effects/NoiseReduction.cpp
 msgid "&Frequency smoothing (bands):"
-msgstr "&Сглаживание частоты (в полосах)"
+msgstr "&Сглаживание частоты (в полосах):"
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 msgid "Frequency smoothing"
@@ -6874,7 +6876,7 @@ msgstr "Убрать &смещение по оси амплитуды (выро�
 
 #: src/effects/Normalize.cpp
 msgid "&Normalize peak amplitude to   "
-msgstr "Нормализовать &пик амплитуды до"
+msgstr "Нормализовать &пик амплитуды до   "
 
 #: src/effects/Normalize.cpp
 msgid "Peak amplitude dB"
@@ -6886,7 +6888,7 @@ msgstr "Нормализовать &стереоканалы раздельно"
 
 #: src/effects/Paulstretch.cpp
 msgid "Paulstretch"
-msgstr "Paulstretch"
+msgstr "Метод растяжения Пола Наска"
 
 #: src/effects/Paulstretch.cpp
 msgid "Paulstretch is only for an extreme time-stretch or \"stasis\" effect"
@@ -7122,7 +7124,7 @@ msgstr "Добавляет атмосферу или 'эффект зала'"
 
 #: src/effects/Reverb.cpp
 msgid "&Room Size (%):"
-msgstr "Размер комнаты (%)"
+msgstr "Размер &комнаты (%):"
 
 #: src/effects/Reverb.cpp
 msgid "&Pre-delay (ms):"
@@ -7600,7 +7602,7 @@ msgstr "Загрузить пресет VST:"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST preset files"
-msgstr "Файлы пресетов VST:"
+msgstr "Файлы предустановок VST"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Error Loading VST Presets"
@@ -7731,7 +7733,7 @@ msgstr "Не удалось открыть '%s'"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Unable to read the preset from \"%s\""
-msgstr "Не удалось прочесть пресет из %s."
+msgstr "Не удалось прочесть предустановку из «%s»"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -7920,8 +7922,8 @@ msgid ""
 "Enable track spectrogram view before\n"
 "applying 'Spectral' effects."
 msgstr ""
-"Включить просмотр спектрограммы трека\n"
-"перед применением эффектов.'Спектра'"
+"Включить просмотр спектрограммы\n"
+"перед применением эффектов «Спектра»."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid ""
@@ -8469,7 +8471,7 @@ msgid ""
 "file format. "
 msgstr ""
 "Частота дискретизации проекта (%d) текущим форматом\n"
-"файла вывода не поддерживается."
+"файла вывода не поддерживается. "
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -8502,7 +8504,7 @@ msgstr "Битрейт:"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Quality (kbps):"
-msgstr "Качество (кбит/c)"
+msgstr "Качество (кбит/c):"
 
 #. i18n-hint kbps abbreviates "thousands of bits per second"
 #: src/export/ExportFFmpegDialogs.cpp
@@ -9211,7 +9213,7 @@ msgstr "110-150 кбит/c"
 
 #: src/export/ExportMP3.cpp
 msgid "95-135 kbps"
-msgstr " 95-135 кб/с"
+msgstr "95-135 кбит/с"
 
 #: src/export/ExportMP3.cpp
 msgid "80-120 kbps"
@@ -9760,11 +9762,11 @@ msgstr "В активном проекте уже есть трек времен
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Недопустимый атрибут последовательности  'maxsamples'."
+msgstr "Недопустимый атрибут последовательности «maxsamples»."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Недопустимый атрибут последовательности  'sampleformat'."
+msgstr "Недопустимый атрибут последовательности «sampleformat»."
 
 #: src/import/ImportAUP.cpp
 msgid "Invalid sequence 'numsamples' attribute."
@@ -9781,9 +9783,9 @@ msgid ""
 "\n"
 "Inserting silence instead."
 msgstr ""
-"Отсутствует файл проекта% s\n"
+"Отсутствует файл проекта %s\n"
 "\n"
-"Вместо этого - тишина."
+"Вместо этого вставляется тишина."
 
 #: src/import/ImportAUP.cpp
 msgid "Missing or invalid simpleblockfile 'len' attribute."
@@ -9819,14 +9821,14 @@ msgid ""
 "\n"
 "Inserting silence."
 msgstr ""
-"Ошибка при обработке% s\n"
+"Ошибка при обработке %s\n"
 "\n"
-"Вставка тишины."
+"Вставляется тишина."
 
 #: src/import/ImportAUP.cpp
 #, c-format
 msgid "Failed to open %s"
-msgstr "Не удалось открыть %s."
+msgstr "Не удалось открыть %s"
 
 #: src/import/ImportAUP.cpp
 #, c-format
@@ -9836,7 +9838,7 @@ msgstr "Не удалось найти позицию %lld в %s"
 #: src/import/ImportAUP.cpp
 #, c-format
 msgid "Unable to read %lld samples from %s"
-msgstr "Не удалось прочесть сэмплы %lld из %s."
+msgstr "Не удалось прочесть сэмплы %lld из %s"
 
 #: src/import/ImportFFmpeg.cpp
 msgid "FFmpeg-compatible files"
@@ -9951,7 +9953,8 @@ msgid ""
 msgstr ""
 "Ошибка импорта\n"
 "\n"
-"Вероятно, неправильный формат MP3.\n"
+"Вероятно, неверный формат MP3.\n"
+"\n"
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -10088,7 +10091,7 @@ msgstr "Подписанный PCM 24-бита"
 
 #: src/import/ImportPCM.cpp
 msgid "Signed 32 bit PCM"
-msgstr "Подписанный  PCM 32-бит"
+msgstr "Подписанный 32-битный PCM"
 
 #: src/import/ImportPCM.cpp
 msgid "Unsigned 8 bit PCM"
@@ -11447,7 +11450,7 @@ msgstr "Задать (или расширить) &левую метку выбо
 
 #: src/menus/SelectMenus.cpp
 msgid "Set (or Extend) Rig&ht Selection"
-msgstr "Задать (или расширить) &правую  метку выбора"
+msgstr "Задать (или расширить) &правую метку выбора"
 
 #: src/menus/SelectMenus.cpp
 msgid "Selection Contract L&eft"
@@ -12480,7 +12483,7 @@ msgstr ""
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "O&pen:"
-msgstr "О&ткрыть"
+msgstr "О&ткрыть:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "&Browse..."
@@ -12492,11 +12495,11 @@ msgstr "&Сохранить:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "B&rowse..."
-msgstr "О&бзор"
+msgstr "О&бзор…"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "&Import:"
-msgstr "&Импорт..."
+msgstr "&Импорт:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Br&owse..."
@@ -12512,7 +12515,7 @@ msgstr "Обзо&р..."
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "&Macro output:"
-msgstr "Вывод макроса"
+msgstr "Выв&од макроса:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Temporary files directory"
@@ -12979,7 +12982,8 @@ msgstr "&Задать"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Note: Pressing Cmd+Q will quit. All other keys are valid."
-msgstr "Прим.: нажатие  Cmd+Q завершит работу. Все остальные клавиши действительны."
+msgstr ""
+"Примечание: нажатие Cmd+Q завершит работу. Все остальные клавиши допустимы."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "&Import..."
@@ -13072,15 +13076,16 @@ msgid ""
 "\n"
 "instead. Otherwise, click Cancel."
 msgstr ""
-"Сочетание клавиш '%s' уже назначено для:\n"
+"Сочетание клавиш «%s» уже назначено для:\n"
 "\n"
 "\t%s\n"
 "\n"
-"Щёлкните ОК, чтобы назначить сочетание\n"
+"\n"
+"Щёлкните «Хорошо», чтобы назначить сочетание\n"
 "\n"
 "\t%s\n"
 "\n"
-"вместо прежнего. В противном случае щёлкните Отмена."
+"вместо прежнего. В противном случае щёлкните «Отмена»."
 
 #: src/prefs/KeyConfigPrefs.h
 msgid "Key Config"
@@ -13173,7 +13178,7 @@ msgstr "Настройки для модуля"
 #. i18n-hint preserve the leading spaces
 #: src/prefs/ModulePrefs.cpp
 msgid "  'New' means no choice has been made yet."
-msgstr "'Новый' - не выбран ещё ни один вариант."
+msgstr "  «Новый» — не выбран ещё ни один вариант."
 
 #: src/prefs/ModulePrefs.cpp
 msgid "Ask"
@@ -13454,7 +13459,7 @@ msgstr "Категория"
 
 #: src/prefs/PrefsDialog.cpp src/prefs/PrefsDialog.h
 msgid "Preferences:"
-msgstr "Настройки: "
+msgstr "Настройки:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Preferences for Quality"
@@ -13548,15 +13553,15 @@ msgstr "Формат имени новых записанных треков"
 #. i18n-hint: end of two-part phrase, "Name newly recorded tracks with:"
 #: src/prefs/RecordingPrefs.cpp
 msgid "With:"
-msgstr "Включает: "
+msgstr "Включает:"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Custom Track &Name"
-msgstr " Заданное &имя трека"
+msgstr "Заданное &имя трека"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Custom name text"
-msgstr " Заданный текст имени"
+msgstr "Заданный текст имени"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Recorded_Audio"
@@ -13564,15 +13569,15 @@ msgstr "Записанный_звук"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "&Track Number"
-msgstr " &Номер трека"
+msgstr "&Номер дорожки"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "System &Date"
-msgstr " &Системную дату"
+msgstr "&Системную дату"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "System T&ime"
-msgstr " Системное &время"
+msgstr "Системное &время"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Punch and Roll Recording"
@@ -13594,7 +13599,7 @@ msgstr "Mel"
 #. i18n-hint: The name of a frequency scale in psychoacoustics, named for Heinrich Barkhausen
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Bark"
-msgstr "Bark"
+msgstr "Барк"
 
 #. i18n-hint: The name of a frequency scale in psychoacoustics, abbreviates Equivalent Rectangular Bandwidth
 #: src/prefs/SpectrogramSettings.cpp
@@ -13764,7 +13769,7 @@ msgstr "Поиск нот FFT"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Minimum Amplitude (dB):"
-msgstr "Минимальная амплитуда (дБ)"
+msgstr "Минимальная амплитуда (дБ):"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Max. Number of Notes (1..128):"
@@ -15104,7 +15109,7 @@ msgstr "Правый, %dГц"
 #: src/widgets/ASlider.cpp
 #, c-format
 msgid "%+.1f dB"
-msgstr "%.1f дБ"
+msgstr "%+.1f дБ"
 
 #. i18n-hint: Stereo pan setting
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -16106,7 +16111,7 @@ msgstr "Фильтрация..."
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
 msgid "Paul Licameli"
-msgstr "Paul Licameli"
+msgstr "Пол Ликамели"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny plug-ins/beat.ny plug-ins/delay.ny
@@ -16215,7 +16220,7 @@ msgstr "Применение фейдинга..."
 #: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
 #: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
 msgid "Steve Daulton"
-msgstr "Steve Daulton"
+msgstr "Стив Далтон"
 
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
@@ -16685,7 +16690,7 @@ msgstr "Выполнение ФВЧ..."
 
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/rhythmtrack.ny
 msgid "Dominic Mazzoni"
-msgstr "Dominic Mazzoni"
+msgstr "Доминик Маццони"
 
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
@@ -16742,11 +16747,11 @@ msgstr "Порог значения (дБ)"
 
 #: plug-ins/label-sounds.ny
 msgid "Threshold measurement"
-msgstr "Порог:"
+msgstr "Пороговое измерение"
 
 #: plug-ins/label-sounds.ny
 msgid "Peak level"
-msgstr "Пик: "
+msgstr "Уровень пика"
 
 #: plug-ins/label-sounds.ny
 msgid "Average level"
@@ -16926,7 +16931,7 @@ msgstr "Частоты шлюза выше (кГц)"
 
 #: plug-ins/noisegate.ny
 msgid "Level reduction (dB)"
-msgstr "Снижение уровня (дБ):"
+msgstr "Снижение уровня (дБ)"
 
 #: plug-ins/noisegate.ny
 msgid "Attack (ms)"
@@ -17169,7 +17174,8 @@ msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr "Чтобы включить 'Длительность ритм-трека', установите 'Количество тактов' "
+msgstr ""
+"Чтобы включить «Длительность ритм-трека», установите «Количество тактов»."
 
 #: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
@@ -17261,7 +17267,7 @@ msgstr "Создание Барабана Риссета..."
 
 #: plug-ins/rissetdrum.ny
 msgid "Steven Jones"
-msgstr "Steven Jones"
+msgstr "Стивен Джонс"
 
 #: plug-ins/rissetdrum.ny
 msgid "Decay (seconds)"
@@ -17663,7 +17669,7 @@ msgstr "Применяется действие..."
 
 #: plug-ins/vocalrediso.ny
 msgid "Robert Haenggi"
-msgstr "Robert Haenggi"
+msgstr "Роберт Хаенги"
 
 #: plug-ins/vocalrediso.ny
 msgid "Remove Vocals: to mono"
@@ -17759,7 +17765,9 @@ msgstr ""
 
 #: plug-ins/vocalrediso.ny
 msgid " - A fairly good value, at least stereo in average and not too wide spread."
-msgstr "- Достаточно хорошее значение, по крайней мере, стерео в среднем и не слишком расширенное."
+msgstr ""
+" - Достаточно хорошее значение, по крайней мере, стерео в среднем и не "
+"слишком расширенное."
 
 #: plug-ins/vocalrediso.ny
 msgid ""
