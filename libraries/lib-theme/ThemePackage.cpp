@@ -27,8 +27,8 @@ using namespace ThemeExceptions;
 
 ThemePackage::ThemePackage()
 : mPackageArchive{nullptr},
-  mInfo{Json::Value::null},
-  mColors{Json::Value::null}
+  mInfo{Json::Value::nullSingleton()},
+  mColors{Json::Value::nullSingleton()}
 {
 }
 
@@ -303,7 +303,7 @@ std::any ThemePackage::LoadResource(const std::string& name)
     // Search colors.json for any name matches first.
     int colorData;
     const Json::Value colorResource = mColors[name];
-    if (colorResource != Json::Value::null)
+    if (colorResource != Json::Value::nullSingleton())
     {
         resourceData = colorResource.asInt();
         return resourceData;
@@ -377,7 +377,7 @@ std::any ThemePackage::LoadResource(const std::string& name)
 
 Json::Value ThemePackage::GetAttribute(const std::string& name)
 {
-    return mInfo.get(name, Json::Value::null);
+    return mInfo.get(name, Json::Value::nullSingleton());
 }
 
 bool ThemePackage::IsMultiThemePackage() const
