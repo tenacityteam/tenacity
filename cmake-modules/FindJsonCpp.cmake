@@ -1,67 +1,109 @@
-# Copyright (C) 2023 Avery King
-# Distributed under the GNU General Public License (GPL) version 2 or any later
-# version. See the LICENSE.txt file for details
+# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+# file Copyright.txt or https://cmake.org/licensing for details.
+#
+# (Slightly) Modified for Tenacity (to fix a CMake include)
 
 #[=======================================================================[.rst:
-
 FindJsonCpp
 -----------
 
-Finds the jsoncpp library.
+Find JsonCpp includes and library.
 
 Imported Targets
 ^^^^^^^^^^^^^^^^
 
-If found, this module provides the following imported targets:
-
-``JsonCpp::JsonCpp``
-The JsonCpp library.
+An :ref:`imported target <Imported targets>` named
+``JsonCpp::JsonCpp`` is provided if JsonCpp has been found.
 
 Result Variables
 ^^^^^^^^^^^^^^^^
 
-This will define the following variables:
+This module defines the following variables:
 
 ``JsonCpp_FOUND``
-  True if JsonCpp was found on the system.
+  True if JsonCpp was found, false otherwise.
+``JsonCpp_INCLUDE_DIRS``
+  Include directories needed to include JsonCpp headers.
+``JsonCpp_LIBRARIES``
+  Libraries needed to link to JsonCpp.
+``JsonCpp_VERSION_STRING``
+  The version of JsonCpp found.
+  May not be set for JsonCpp versions prior to 1.0.
+``JsonCpp_VERSION_MAJOR``
+  The major version of JsonCpp.
+``JsonCpp_VERSION_MINOR``
+  The minor version of JsonCpp.
+``JsonCpp_VERSION_PATCH``
+  The patch version of JsonCpp.
 
+Cache Variables
+^^^^^^^^^^^^^^^
+
+This module uses the following cache variables:
+
+``JsonCpp_LIBRARY``
+  The location of the JsonCpp library file.
+``JsonCpp_INCLUDE_DIR``
+  The location of the JsonCpp include directory containing ``json/json.h``.
+
+The cache variables should not be used by project code.
+They may be set by end users to point at JsonCpp components.
 #]=======================================================================]
 
-find_package(PkgConfig QUIET)
-if (pkgConfig_FOUND)
-    pkg_check_modules(JSONCPP_PC jsoncpp)
+#-----------------------------------------------------------------------------
+find_library(JsonCpp_LIBRARY
+  NAMES jsoncpp
+  )
+mark_as_advanced(JsonCpp_LIBRARY)
+
+find_path(JsonCpp_INCLUDE_DIR
+  NAMES json/json.h
+  PATH_SUFFIXES jsoncpp
+  )
+mark_as_advanced(JsonCpp_INCLUDE_DIR)
+
+#-----------------------------------------------------------------------------
+# Extract version number if possible.
+set(_JsonCpp_H_REGEX "^#[ \t]*define[ \t]+JSONCPP_VERSION_STRING[ \t]+\"(([0-9]+)\\.([0-9]+)\\.([0-9]+)[^\"]*)\".*$")
+if(JsonCpp_INCLUDE_DIR AND EXISTS "${JsonCpp_INCLUDE_DIR}/json/version.h")
+  file(STRINGS "${JsonCpp_INCLUDE_DIR}/json/version.h" _JsonCpp_H REGEX "${_JsonCpp_H_REGEX}")
+else()
+  set(_JsonCpp_H "")
 endif()
+if(_JsonCpp_H MATCHES "${_JsonCpp_H_REGEX}")
+  set(JsonCpp_VERSION_STRING "${CMAKE_MATCH_1}")
+  set(JsonCpp_VERSION_MAJOR "${CMAKE_MATCH_2}")
+  set(JsonCpp_VERSION_MINOR "${CMAKE_MATCH_3}")
+  set(JsonCpp_VERSION_PATCH "${CMAKE_MATCH_4}")
+else()
+  set(JsonCpp_VERSION_STRING "")
+  set(JsonCpp_VERSION_MAJOR "")
+  set(JsonCpp_VERSION_MINOR "")
+  set(JsonCpp_VERSION_PATCH "")
+endif()
+unset(_JsonCpp_H_REGEX)
+unset(_JsonCpp_H)
 
-find_path(JsonCpp_INCLUDE_DIRS
-    NAMES json/json.h
-    PATHS ${JSONCPP_PC_INCLUDE_DIRS}
-    PATH_SUFFIXES jsoncpp
-    DOC "JsonCpp include directory"
-)
-
-mark_as_advanced(JsonCpp_INCLUDE_DIRS)
-
-find_library(JsonCpp_LIBRARIES
-    NAMES jsoncpp
-    PATHS ${JSONCPP_PC_LIBRARIES}
-    DOC "JsonCpp library"
-)
-
-mark_as_advanced(JsonCpp_INCLUDE_DIRS)
-
+#-----------------------------------------------------------------------------
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(
-    JsonCpp
-    DEFAULT_MSG
-    JsonCpp_LIBRARIES
-    JsonCpp_INCLUDE_DIRS
-)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(JsonCpp
+  FOUND_VAR JsonCpp_FOUND
+  REQUIRED_VARS JsonCpp_LIBRARY JsonCpp_INCLUDE_DIR
+  VERSION_VAR JsonCpp_VERSION_STRING
+  )
+set(JSONCPP_FOUND ${JsonCpp_FOUND})
 
-if (JsonCpp_FOUND)
-    if (NOT TARGET JsonCpp::JsonCpp)
-        add_library(JsonCpp::JsonCpp INTERFACE IMPORTED)
-	target_link_libraries(JsonCpp::JsonCpp INTERFACE "${JsonCpp_LIBRARIES}")
-	target_include_directories(JsonCpp::JsonCpp INTERFACE "${JsonCpp_INCLUDE_DIRS}")
-    endif()
+#-----------------------------------------------------------------------------
+# Provide documented result variables and targets.
+if(JsonCpp_FOUND)
+  set(JsonCpp_INCLUDE_DIRS ${JsonCpp_INCLUDE_DIR})
+  set(JsonCpp_LIBRARIES ${JsonCpp_LIBRARY})
+  if(NOT TARGET JsonCpp::JsonCpp)
+    add_library(JsonCpp::JsonCpp UNKNOWN IMPORTED)
+    set_target_properties(JsonCpp::JsonCpp PROPERTIES
+      IMPORTED_LOCATION "${JsonCpp_LIBRARY}"
+      INTERFACE_INCLUDE_DIRECTORIES "${JsonCpp_INCLUDE_DIRS}"
+      IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
+      )
+  endif()
 endif()
-
