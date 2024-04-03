@@ -31,15 +31,7 @@ std::any& ThemeResources::GetResourceData(const std::string& name)
 
 bool ThemeResources::CheckIfExists(const std::string& name) const
 {
-    try
-    {
-        mResources.at(name);
-    } catch (std::out_of_range&)
-    {
-        return false;
-    }
-
-    return true;
+    return mResources.find(name) != mResources.end();
 }
 
 ThemeResources::ThemeResourceList ThemeResources::GetRegisteredResourceNames() const
