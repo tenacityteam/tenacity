@@ -489,7 +489,7 @@ void PluginRegistrationDialog::PopulateOrExchange(ShuttleGui &S)
          S.EndHorizontalLay();
 
          mEffects = S.Id(ID_List)
-            .Style(wxSUNKEN_BORDER | wxLC_REPORT | wxLC_HRULES | wxLC_VRULES )
+            .Style(wxLC_REPORT | wxLC_HRULES | wxLC_VRULES)
             .ConnectRoot(wxEVT_KEY_DOWN,
                       &PluginRegistrationDialog::OnListChar)
             .AddListControlReportMode({ XO("Name"), XO("State"), XO("Path") });
