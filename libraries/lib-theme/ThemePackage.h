@@ -21,6 +21,12 @@
 #include <fstream>
 #include <sstream>
 
+// Undefine new because jsoncpp uses in-place initialization for
+// SecureAllocator
+#ifdef _CRTDBG_MAP_ALLOC
+#undef new
+#endif
+
 #include <json/value.h>
 #include <zip.h>
 

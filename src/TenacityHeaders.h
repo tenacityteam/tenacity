@@ -61,6 +61,10 @@
 
 #ifdef _MSC_VER
 #ifdef _DEBUG
+
+// Defines a debug new operator to hel pdiagnose bugs.
+// Note that this can cause some problems. If you experience any issues, #undef
+// new to use the regular version.
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 #undef new
