@@ -40,8 +40,6 @@ struct FFMPEG_SUPPORT_API AVCodecFunctions
    void               (*avcodec_free_context) (AVCodecContext** avctx) = nullptr;
    int                (*avcodec_parameters_to_context)(AVCodecContext* codec, const AVCodecParameters* par) = nullptr;
    int                (*avcodec_parameters_from_context)(AVCodecParameters *par, const AVCodecContext *codec)= nullptr;
-   int                (*avcodec_decode_audio4) (AVCodecContext *avctx, AVFrame *frame, int *got_output, const AVPacket *avpkt) = nullptr;
-   int                (*avcodec_encode_audio2) (AVCodecContext *avctx, AVPacket *pkt, const AVFrame *frame, int *got_output) = nullptr;
    void               (*avcodec_register_all)(void) = nullptr;
    AVCodec*           (*av_codec_next)(const AVCodec* c) = nullptr;
    const AVCodec*     (*av_codec_iterate)(void** opaque) = nullptr;
