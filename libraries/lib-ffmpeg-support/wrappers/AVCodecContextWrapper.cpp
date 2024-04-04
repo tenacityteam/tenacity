@@ -70,74 +70,25 @@ AVCodecContextWrapper::DecodeAudioPacket(const AVPacketWrapper* packet)
    auto frame = mFFmpeg.CreateAVFrameWrapper();
    std::vector<uint8_t> data;
 
-   if (mFFmpeg.avcodec_send_packet == nullptr)
+   auto ret = mFFmpeg.avcodec_send_packet(
+      mAVCodecContext,
+      packet != nullptr ? packet->GetWrappedValue() : nullptr);
+
+   if (ret < 0)
+      // send_packet has failed
+      return data;
+
+   while (ret >= 0)
    {
-      std::unique_ptr<AVPacketWrapper> packetCopy =
-         packet ? packet->Clone() : mFFmpeg.CreateAVPacketWrapper();
-
-      /*
-       "Flushing is done by calling this function [avcodec_decode_audio4]
-       with packets with avpkt->data set to NULL and avpkt->size set to 0
-       until it stops returning samples."
-       (That implies, not necessarily just one loop pass to flush)
-       */
-      bool flushing = packet
-         ? (packetCopy->GetSize() == 0 && packetCopy->GetData() == nullptr)
-         : true;
-      if (!flushing && packetCopy->GetData() == nullptr)
-         return {};
-
-      int bytesDecoded = 0;
-
-      do
-      {
-         int gotFrame;
-         // Deprecated?  https://ffmpeg.org/doxygen/3.3/group__lavc__decoding.html#gaaa1fbe477c04455cdc7a994090100db4
-         bytesDecoded = mFFmpeg.avcodec_decode_audio4(
-            mAVCodecContext, frame->GetWrappedValue(), &gotFrame,
-            packetCopy->GetWrappedValue());
-
-         if (bytesDecoded < 0)
-            return data; // Packet decoding has failed
-
-         if (gotFrame == 0)
-         {
-            /*
-             "Note that this field being set to zero does not mean that an
-             error has occurred. For decoders with AV_CODEC_CAP_DELAY set, no
-             given decode call is guaranteed to produce a frame."
-             */
-            // (Let's assume this doesn't happen when flushing)
-            continue;
-         }
-
-         ConsumeFrame(data, *frame);
-         packetCopy->OffsetPacket(bytesDecoded);
-      }
-      while ( flushing ? bytesDecoded > 0 : packetCopy->GetSize() > 0 );
-   }
-   else
-   {
-      auto ret = mFFmpeg.avcodec_send_packet(
-         mAVCodecContext,
-         packet != nullptr ? packet->GetWrappedValue() : nullptr);
-
-      if (ret < 0)
-         // send_packet has failed
+      ret = mFFmpeg.avcodec_receive_frame(mAVCodecContext, frame->GetWrappedValue());
+      if (ret == AUDACITY_AVERROR(EAGAIN) || ret == AUDACITY_AVERROR_EOF)
+         // The packet is fully consumed OR more data is needed
+         break;
+      else if (ret < 0)
+         // Decoding has failed
          return data;
 
-      while (ret >= 0)
-      {
-         ret = mFFmpeg.avcodec_receive_frame(mAVCodecContext, frame->GetWrappedValue());
-         if (ret == AUDACITY_AVERROR(EAGAIN) || ret == AUDACITY_AVERROR_EOF)
-            // The packet is fully consumed OR more data is needed
-            break;
-         else if (ret < 0)
-            // Decoding has failed
-            return data;
-
-         ConsumeFrame(data, *frame);
-      }
+      ConsumeFrame(data, *frame);
    }
 
    return data;

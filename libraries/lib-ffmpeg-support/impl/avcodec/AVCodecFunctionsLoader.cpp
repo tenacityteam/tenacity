@@ -39,8 +39,6 @@ bool LoadAVCodecFunctions(
    GET_SYMBOL(avcodec_parameters_to_context);
    GET_SYMBOL(avcodec_parameters_from_context);
    // Missing in FFmpeg 59
-   GET_SYMBOL(avcodec_decode_audio4);
-   GET_SYMBOL(avcodec_encode_audio2);
    GET_SYMBOL(avcodec_register_all);
    GET_SYMBOL(av_codec_next);
    GET_SYMBOL(av_codec_iterate);

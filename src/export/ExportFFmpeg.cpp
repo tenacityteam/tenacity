@@ -890,42 +890,27 @@ int ExportFFmpeg::EncodeAudio(AVPacketWrapper& pkt, int16_t* audio_samples, int 
 
    pkt.SetStreamIndex(mEncAudioStream->GetIndex());
 
-   if (mFFmpeg->avcodec_send_frame != nullptr)
+   ret = mFFmpeg->avcodec_send_frame(
+      mEncAudioCodecCtx->GetWrappedValue(),
+      frame ? frame->GetWrappedValue() : nullptr);
+
+   while (ret >= 0)
    {
-      ret = mFFmpeg->avcodec_send_frame(
-         mEncAudioCodecCtx->GetWrappedValue(),
-         frame ? frame->GetWrappedValue() : nullptr);
+      ret = mFFmpeg->avcodec_receive_packet(
+         mEncAudioCodecCtx->GetWrappedValue(), pkt.GetWrappedValue());
 
-      while (ret >= 0)
+      if (ret == AUDACITY_AVERROR(EAGAIN) || ret == AUDACITY_AVERROR_EOF)
       {
-         ret = mFFmpeg->avcodec_receive_packet(
-            mEncAudioCodecCtx->GetWrappedValue(), pkt.GetWrappedValue());
-
-         if (ret == AUDACITY_AVERROR(EAGAIN) || ret == AUDACITY_AVERROR_EOF)
-         {
-            ret = 0;
-            break;
-         }
-         else if (ret < 0)
-            break;
-
-         if (!WritePacket(pkt))
-            return -1;
-
-         got_output = true;
+         ret = 0;
+         break;
       }
-   }
-   else
-   {
-      ret = mFFmpeg->avcodec_encode_audio2(
-         mEncAudioCodecCtx->GetWrappedValue(), pkt.GetWrappedValue(),
-         frame ? frame->GetWrappedValue() : nullptr, &got_output);
+      else if (ret < 0)
+         break;
 
-      if (ret == 0)
-      {
-         if (!WritePacket(pkt))
-            return -1;
-      }
+      if (!WritePacket(pkt))
+         return -1;
+
+      got_output = true;
    }
 
    if (ret < 0 && ret != AUDACITY_AVERROR_EOF) {
