@@ -438,13 +438,8 @@ endif()
 
 check_include_file( "pa_jack.h" PA_USE_JACK)
 
-check_symbol_exists( gettimeofday "sys/time.h" HAVE_GETTIMEOFDAY )
 check_symbol_exists( lrint "math.h" HAVE_LRINT )
 check_symbol_exists( lrintf "math.h" HAVE_LRINTF )
-check_symbol_exists( lround "math.h" HAVE_LROUND )
-check_symbol_exists( lstat "sys/stat.h" HAVE_LSTAT )
-check_symbol_exists( memcpy "string.h" HAVE_MEMCPY )
-check_symbol_exists( memmove "string.h" HAVE_MEMMOVE )
 check_symbol_exists( mlock "sys/mman.h" HAVE_MLOCK )
 
 # We'll be using it if it's available
