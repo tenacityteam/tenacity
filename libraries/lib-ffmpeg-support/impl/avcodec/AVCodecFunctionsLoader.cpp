@@ -33,6 +33,12 @@ bool LoadAVCodecFunctions(
    RESOLVE(av_codec_is_encoder);
    RESOLVE(avcodec_fill_audio_frame);
 
+   // New decoding API
+   RESOLVE(avcodec_send_packet);
+   RESOLVE(avcodec_receive_frame);
+   RESOLVE(avcodec_send_frame);
+   RESOLVE(avcodec_receive_packet);
+
    GET_SYMBOL(av_packet_alloc);
    GET_SYMBOL(av_packet_free);
    GET_SYMBOL(avcodec_free_context);
@@ -42,11 +48,6 @@ bool LoadAVCodecFunctions(
    GET_SYMBOL(avcodec_register_all);
    GET_SYMBOL(av_codec_next);
    GET_SYMBOL(av_codec_iterate);
-   // New decoding API
-   GET_SYMBOL(avcodec_send_packet);
-   GET_SYMBOL(avcodec_receive_frame);
-   GET_SYMBOL(avcodec_send_frame);
-   GET_SYMBOL(avcodec_receive_packet);
    
    return GetAVVersion(lib, "avcodec_version", functions.AVCodecVersion);
 }
