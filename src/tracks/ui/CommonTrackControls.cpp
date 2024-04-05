@@ -75,6 +75,7 @@ std::vector<UIHandlePtr> CommonTrackControls::HitTest
 enum
 {
    OnSetNameID = 2000,
+   OnDuplicateTrackID,
    OnMoveUpID,
    OnMoveDownID,
    OnMoveTopID,
@@ -95,6 +96,7 @@ public:
 
 private:
    void OnSetName(wxCommandEvent &);
+   void OnDuplicateTrack(wxCommandEvent&);
    void OnMoveTrack(wxCommandEvent &event);
 
    void InitUserData(void *pUserData) override;
@@ -137,6 +139,7 @@ BEGIN_POPUP_MENU(TrackMenuTable)
 
    BeginSection( "Basic" );
       AppendItem( "Name", OnSetNameID, XXO("&Name..."), POPUP_MENU_FN( OnSetName ) );
+      AppendItem( "Duplicate", OnDuplicateTrackID, XXO("D&uplicate Entire Track"), POPUP_MENU_FN( OnDuplicateTrack ));
    EndSection();
    BeginSection( "Move" );
       AppendItem( "Up",
@@ -250,6 +253,21 @@ void TrackMenuTable::OnSetName(wxCommandEvent &)
 
          mpData->result = RefreshCode::RefreshAll;
       }
+   }
+}
+
+void TrackMenuTable::OnDuplicateTrack(wxCommandEvent&)
+{
+   Track* track = mpData->pTrack;
+   if (track)
+   {
+      TenacityProject& project = mpData->project;
+      TrackList& tracks = TrackList::Get(project);
+      auto dupTrack = track->Duplicate();
+      tracks.Add(dupTrack);
+
+      ProjectHistory::Get(project).PushState(XO("Duplicated"), XO("Duplicate"));
+      mpData->result = RefreshCode::RefreshAll;
    }
 }
 
