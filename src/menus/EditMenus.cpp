@@ -685,20 +685,36 @@ void OnDuplicate(const CommandContext &context)
    // This iteration is unusual because we add to the list inside the loop
    auto range = tracks.Selected();
    auto last = *range.rbegin();
-   for (auto n : range) {
-      if (!n->SupportsBasicEditing())
-         continue;
 
-      // Make copies not for clipboard but for direct addition to the project
-      auto dest = n->Copy(selectedRegion.t0(),
-              selectedRegion.t1(), false);
-      dest->Init(*n);
-      dest->SetOffset(std::max(selectedRegion.t0(), n->GetOffset()));
-      tracks.Add( dest );
+   if (selectedRegion.isPoint())
+   {
+      // Duplicate the entire track contents
+      for (auto track : range)
+      {
+         auto newTrack = track->Duplicate();
+         tracks.Add(newTrack);
 
-      // This break is really needed, else we loop infinitely
-      if (n == last)
-         break;
+         // Needed or we'll loop indefinitely.
+         if (track == last) break;
+      }
+   } else
+   {
+      // Duplicate only the selected regions
+      for (auto n : range) {
+         if (!n->SupportsBasicEditing())
+            continue;
+
+         // Make copies not for clipboard but for direct addition to the project
+         auto dest = n->Copy(selectedRegion.t0(),
+               selectedRegion.t1(), false);
+         dest->Init(*n);
+         dest->SetOffset(std::max(selectedRegion.t0(), n->GetOffset()));
+         tracks.Add( dest );
+
+         // This break is really needed, else we loop infinitely
+         if (n == last)
+            break;
+      }
    }
 
    ProjectHistory::Get( project )
@@ -1116,7 +1132,7 @@ BaseItemSharedPtr EditMenu()
             AudioIONotBusyFlag(), wxT("Ctrl+V") ),
          /* i18n-hint: (verb)*/
          Command( wxT("Duplicate"), XXO("Duplic&ate"), FN(OnDuplicate),
-            NotBusyTimeAndTracksFlags, wxT("Ctrl+D") ),
+                  AudioIONotBusyFlag() | EditableTracksSelectedFlag(), wxT("Ctrl+D") ),
 
          Section( "",
             Menu( wxT("RemoveSpecial"), XXO("R&emove Special"),
