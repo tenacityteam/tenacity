@@ -12,6 +12,8 @@
 #include "AudioIO.h"
 #include "Mix.h"
 
+#include <cmath>
+
 namespace {
 struct ScrubQueue : NonInterferingBase
 {
