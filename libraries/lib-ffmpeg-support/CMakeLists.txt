@@ -90,6 +90,7 @@ if (USE_FFMPEG)
       impl/avformat/AVInputFormatWrapperImpl.inl
       impl/avformat/AVOutputFormatWrapperImpl.inl
       impl/avformat/AVStreamWrapperImpl.inl
+      impl/avutil/AVChannelLayoutWrapperImpl.inl
       impl/avutil/AVFrameWrapperImpl.inl
       impl/avutil/FFmpegLogImpl.inl
    )
