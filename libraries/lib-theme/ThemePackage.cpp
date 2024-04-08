@@ -177,9 +177,11 @@ void ThemePackage::OpenPackage(const std::string& path)
 
 /** @brief Parses a version string.
  * 
- * This function works 
+ * This function expects a version string in the 'x.y.z' format and only
+ * parses the major, minor, and patch releases. Anything else is not parsed. If
+ * a version number can't be parsed, it defaults to 0.
  * 
- * @param versionString The version string to parse
+ * @param versionString The version string to parse.
  * @return Returns a std::vector<int> containing the version string values.
  * 
 */
