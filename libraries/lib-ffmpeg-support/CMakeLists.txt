@@ -98,6 +98,7 @@ if (USE_FFMPEG)
       lib-preferences
       lib-files
       lib-math
+      $<$<BOOL:${USE_FFMPEG_LINKED}>:FFMPEG::FFMPEG>
    )
 
    set( DEFINITIONS PUBLIC USE_FFMPEG )
