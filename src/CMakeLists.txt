@@ -1068,7 +1068,6 @@ list( APPEND LIBRARIES
       SndFile::sndfile
       PortAudio::PortAudio
       ${SQLite3_LIBRARIES}
-      $<$<BOOL:${USE_FFMPEG}>:FFMPEG::FFMPEG>
       $<$<BOOL:${USE_LIBID3TAG}>:id3tag::id3tag>
       $<$<BOOL:${USE_LIBFLAC}>:FLAC++::FLAC++>
       $<$<BOOL:${USE_LIBMAD}>:MAD::MAD>
