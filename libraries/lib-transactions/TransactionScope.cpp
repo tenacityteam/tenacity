@@ -57,5 +57,5 @@ bool TransactionScope::Commit()
    // later
    mInTrans = !mpImpl->TransactionCommit(mName);
 
-   return mInTrans;
+   return !mInTrans;
 }
