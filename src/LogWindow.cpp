@@ -95,7 +95,7 @@ void LogWindow::Show(bool show)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
 #if defined(__WXMSW__)
       wxIcon ic{wxICON(TenacityLogo)};
-#elif defined(__WXGTK__)
+#elif defined(__WXGTK__) || defined(__WXQT__)
       wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
       wxIcon ic{};

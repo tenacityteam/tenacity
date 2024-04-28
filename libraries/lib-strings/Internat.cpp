@@ -51,12 +51,12 @@ void Internat::Init()
 
    // Setup list of characters that aren't allowed in file names
    // Hey!  The default wxPATH_NATIVE does not do as it should.
-#if defined(__WXMAC__)
-   wxPathFormat format = wxPATH_MAC;
-#elif defined(__WXGTK__)
-   wxPathFormat format = wxPATH_UNIX;
-#elif defined(__WXMSW__)
+#if defined(__WXMSW__)
    wxPathFormat format = wxPATH_WIN;
+#elif defined(__WXMAC__)
+   wxPathFormat format = wxPATH_MAC;
+#else
+   wxPathFormat format = wxPATH_UNIX;
 #endif
 
    // This is supposed to return characters not permitted in paths to files

@@ -54,7 +54,7 @@ Paul Licameli split from TenacityProject.cpp
 #include <wx/scrolbar.h>
 #include <wx/sizer.h>
 
-#ifdef __WXGTK__
+#if defined(__WXGTK__) || defined(__WXQT__)
 #include "../images/TenacityLogoAlpha.xpm"
 #endif
 
@@ -403,7 +403,7 @@ void InitProjectWindow( ProjectWindow &window )
    {
 #if defined(__WXMSW__)
       wxIcon ic{ wxICON(TenacityLogo) };
-#elif defined(__WXGTK__)
+#elif defined(__WXGTK__) || defined(__WXQT__)
       wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
       wxIcon ic{};

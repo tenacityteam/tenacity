@@ -66,7 +66,13 @@ struct Settings : PrefsListener {
          return;
 
       int fontSize = 10;
-      gFont.Create(fontSize, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+      //gFont.Create(fontSize, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+      gFont = wxFont(
+         fontSize,
+         wxFONTFAMILY_SWISS,
+         wxFONTSTYLE_NORMAL,
+         wxFONTWEIGHT_NORMAL
+      );
 
       int allowableWidth =
          // PRL:  was it correct to include the margin?

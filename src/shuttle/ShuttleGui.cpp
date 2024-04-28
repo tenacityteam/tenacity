@@ -2273,7 +2273,7 @@ std::unique_ptr<wxSizer> CreateStdButtonSizer(wxWindow *parent, long buttons, wx
       margin = b.ConvertDialogToPixels(wxSize(2, 0)).x;
 #else
       wxButton b(parent, 0, wxEmptyString);
-      margin = b->ConvertDialogToPixels(wxSize(4, 0)).x;
+      margin = b.ConvertDialogToPixels(wxSize(4, 0)).x;
 #endif
    }
 

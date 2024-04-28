@@ -1614,6 +1614,9 @@ void ProgressDialog::Beep() const
       std::chrono::steady_clock::now().time_since_epoch()
    );
 
+// On Linux with Clang, wxSound is undefined, so only actually play the beep if
+// we're not under Qt.
+#ifndef __WXQT__
    if (should && (time - mStartTime).count() > after * 1000)
    {
       wxBusyCursor busy;
@@ -1633,6 +1636,7 @@ void ProgressDialog::Beep() const
          s.Play(wxSOUND_SYNC);
       }
    }
+#endif // end __WXQT__
 }
 
 // Confirm action taken by user.

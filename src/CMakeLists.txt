@@ -65,7 +65,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    set( wxIS_MAC on )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
    set ( wxIS_WIN on )
-else()
+elseif(NOT WXQT)
    set ( wxIS_GTK on)
 endif()
 
@@ -1094,9 +1094,10 @@ list( APPEND LIBRARIES
       $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
       $<$<BOOL:${USE_VAMP}>:VampHostSDK::VampHostSDK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:${GLIB_LIBRARIES}>
-      $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN,Haiku>:GTK::GTK>
+      $<$<BOOL:${WXGTK}>:GTK::GTK>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:pthread>
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:rt>
+      $<$<BOOL:${WXQT}>:Qt::Gui>
 )
 
 set( BUILDING_AUDACITY YES )
