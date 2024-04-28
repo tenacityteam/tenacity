@@ -974,8 +974,7 @@ intptr_t VSTEffect::AudioMaster(AEffect * effect,
       case audioMasterGetVendorVersion:
          return (intptr_t) (TENACITY_VERSION << 24 |
                             TENACITY_RELEASE << 16 |
-                            TENACITY_REVISION << 8 |
-                            TENACITY_MODLEVEL);
+                            TENACITY_REVISION << 8);
 
       // Some (older) effects depend on an effIdle call when requested.  An
       // example is the Antress Modern plugins which uses the call to update

@@ -303,9 +303,6 @@ endif()
 message( STATUS "  Current Commit: ${GIT_DESCRIBE}" )
 message( STATUS )
 
-# Not sure what this even does
-set( TENACITY_MODLEVEL 0 )
-
 # Organize subdirectories/targets into folders for the IDEs
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
@@ -470,7 +467,7 @@ set( APP_ID "org.tenacityaudio.Tenacity" )
 
 # Create short and full version strings
 set( TENACITY_DIST_VERSION ${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION} )
-set( TENACITY_INFO_VERSION ${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION}.${TENACITY_MODLEVEL} )
+set( TENACITY_INFO_VERSION ${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION} )
 
 # Build our custom libraries as either static or shared
 # NOTE: this does not affect external libraries (e.g., wxWidgets).
