@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2019-09-30 13:51+0200\n"
 "Last-Translator: Alfredo vicente <alviboi@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -23,10 +23,114 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "El flux està actiu ... no es pot recopilar informació.\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Default recording device number: %d"
+msgstr "Seleccioneu el dispositiu de gravació"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Default playback device number: %d"
+msgstr "Seleccioneu el dispositiu de reproducció"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "No s'ha trobat cap dispositiu"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Device information is not available."
+msgid "Device info unavailable for: %d"
+msgstr "La informació del dispositiu no està disponible."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "&Device:"
+msgid "Device ID: %d"
+msgstr "&Dispositiu:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Devices"
+msgid "Device name: %s"
+msgstr "Dispositius"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Name: %s"
+msgid "Host name: %s"
+msgstr "Nom: %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording Channels"
+msgid "Recording channels: %d"
+msgstr "Canals de gravació"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Playback Level"
+msgid "Playback channels: %d"
+msgstr "Nivell de reproducció"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording end:"
+msgid "Low Recording Latency: %g"
+msgstr "Fi de la gravació:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording end:"
+msgid "High Recording Latency: %g"
+msgstr "Fi de la gravació:"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+#| msgid "Sample Rates"
+msgid "Supported Rates:"
+msgstr "Freqüències de mostreig"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected recording device: %d - %s"
+msgstr "Seleccioneu el dispositiu de gravació"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected playback device: %d - %s"
+msgstr "Seleccioneu el dispositiu de reproducció"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "No devices found"
+msgid "No playback device found for '%s'."
+msgstr "No s'ha trobat cap dispositiu"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Show output"
+msgid "Supports output: %d"
+msgstr "Mostra l'eixida"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "Seleccioneu el dispositiu de gravació"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected MIDI playback device: %d - %s"
+msgstr "Seleccioneu el dispositiu de reproducció"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -51,6 +155,21 @@ msgstr "Missatge"
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "Error intern"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "No s'ha pogut eliminar %s"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Audacity no ha pogut escriure el fitxer %s.\n"
+"Potser el disc està ple o no s'hi pot escriure."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -162,6 +281,12 @@ msgstr "Rectangular"
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
 #, fuzzy
+msgid "Hamming"
+msgstr "4 (per defecte)"
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+#, fuzzy
 msgid "Welch"
 msgstr "Benvinguts!"
 
@@ -228,6 +353,23 @@ msgstr "Simple"
 #, fuzzy
 msgid "System"
 msgstr "&Data del sistema"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Generic"
+msgid "Generic Track"
+msgstr "Genèrica"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Pista d'àudio"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "Reproducció"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -350,6 +492,11 @@ msgstr "desenvolupador web"
 msgid "%s, graphics"
 msgstr "gràfics"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "cofundador i desenvolupador"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -357,10 +504,22 @@ msgstr "gràfics"
 msgid "%s, Tenacity developer"
 msgstr "desenvolupador web"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "desenvolupador web"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "desenvolupador web"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "desenvolupador web"
 
 #. i18n-hint: information about the program
@@ -397,6 +556,18 @@ msgstr "Membres de l'equip d'Audacity"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Col·laboradors"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Emeritus:"
+msgid "Emeritus"
+msgstr "Emèrits:"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "Membres de l'equip d'Audacity"
 
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
@@ -472,6 +643,19 @@ msgstr "Prefix d'instal·lació: "
 msgid "Settings folder:"
 msgstr "Carpeta de configuració: "
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Libraries"
+msgid "Core Libraries"
+msgstr "Biblioteques"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Sample Rate Conver&ter:"
+msgid "Sample rate conversion"
+msgstr "Conver&tidor de la freqüència de mostreig:"
+
 #: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Compatibilitat amb formats de fitxers"
@@ -490,6 +674,12 @@ msgstr "Importació i exportació Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Compatibilitat amb les etiquetes ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "FLAC import and export"
+msgid "Matroska import and export"
+msgstr "Importació i exportació  FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -663,8 +853,15 @@ msgid "Error: %s"
 msgstr "Error: "
 
 #: src/AudioIO.cpp
+#, fuzzy
+#| msgid "Throw Error"
+msgid "PortAudio Error"
+msgstr "Llança error"
+
+#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
-msgstr "Hi ha hagut un error en inicialitzar la capa d'entrada/eixida de MIDI.  \n"
+msgstr ""
+"Hi ha hagut un error en inicialitzar la capa d'entrada/eixida de MIDI.  \n"
 
 #: src/AudioIO.cpp
 msgid ""
@@ -673,6 +870,12 @@ msgid ""
 msgstr ""
 "No podeu reproduir MIDI\n"
 "\n"
+
+#: src/AudioIO.cpp
+#, fuzzy
+#| msgid "Trim Audio"
+msgid "Tenacity Audio"
+msgstr "Retalla l'àudio"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -704,6 +907,11 @@ msgstr "Selecciona"
 msgid "Name"
 msgstr "Nom"
 
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "Quant a  Audacity"
+
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
 msgid "&Discard Selected"
@@ -728,7 +936,8 @@ msgid ""
 msgstr ""
 "De segur que voleu descartar tots els projectes recuperables?\n"
 "\n"
-"Seleccioneu «sí» per a descartar tots els projectes recuperables immediatament."
+"Seleccioneu «sí» per a descartar tots els projectes recuperables "
+"immediatament."
 
 #: src/BatchCommandDialog.cpp
 msgid "Select Command"
@@ -1106,12 +1315,15 @@ msgstr "El nombre d'edicions ha d'estar dins l'interval 1 - 10000."
 
 #: src/Benchmark.cpp
 msgid "Test data size should be in the range 1 - 2000 MB."
-msgstr "La mida de les dades de la prova ha d'estar dins l'interval 1 - 2000 MB."
+msgstr ""
+"La mida de les dades de la prova ha d'estar dins l'interval 1 - 2000 MB."
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
 msgid "Using %lld chunks of %lld samples each, for a total of %.1f MB.\n"
-msgstr "S'estan utilitzant %d fragments de %d mostres cadascun, per a un total de %.1f MB. \n"
+msgstr ""
+"S'estan utilitzant %d fragments de %d mostres cadascun, per a un total de "
+"%.1f MB. \n"
 
 #: src/Benchmark.cpp
 msgid "Preparing...\n"
@@ -1123,6 +1335,14 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr ""
 "Llargària esperada %d, llargària de la pista %lld.\n"
 " \n"
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
+#| msgid "Performing Low-Pass Filter..."
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "S'està aplicant el filtre passabaix..."
+msgstr[1] "S'està aplicant el filtre passabaix..."
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
@@ -1233,17 +1453,31 @@ msgstr "Versió final"
 msgid "Release build (debug level %d)"
 msgstr "Versió final"
 
-#. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
-#: src/CommonCommandFlags.cpp
-#, c-format
-msgid "Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
-msgstr "Seleccioneu l'àudio per a utilitzar-lo amb %s (p. ex. Cmd+A per a seleccionar-ho tot), després torneu-ho a intentar."
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "24 bits"
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
-msgid "Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
-msgstr "Seleccioneu l'àudio per a utilitzar-lo amb %s (p. ex. Ctrl+A per a seleccionar-ho tot), després torneu-ho a intentar."
+msgid ""
+"Select the audio for %s to use (for example, Cmd + A to Select All) then try "
+"again."
+msgstr ""
+"Seleccioneu l'àudio per a utilitzar-lo amb %s (p. ex. Cmd+A per a "
+"seleccionar-ho tot), després torneu-ho a intentar."
+
+#. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
+#: src/CommonCommandFlags.cpp
+#, c-format
+msgid ""
+"Select the audio for %s to use (for example, Ctrl + A to Select All) then "
+"try again."
+msgstr ""
+"Seleccioneu l'àudio per a utilitzar-lo amb %s (p. ex. Ctrl+A per a "
+"seleccionar-ho tot), després torneu-ho a intentar."
 
 #: src/CommonCommandFlags.cpp
 msgid "No Audio Selected"
@@ -1255,14 +1489,17 @@ msgstr "No s'ha seleccionat cap àudio"
 msgid ""
 "Select the audio for %s to use.\n"
 "\n"
-"1. Select audio that represents noise and use %s to get your 'noise profile'.\n"
+"1. Select audio that represents noise and use %s to get your 'noise "
+"profile'.\n"
 "\n"
-"2. When you have got your noise profile, select the audio you want to change\n"
+"2. When you have got your noise profile, select the audio you want to "
+"change\n"
 "and use %s to change that audio."
 msgstr ""
 "Seleccioneu l'àudio per utilitzar-lo amb «%s».\n"
 "\n"
-"1. Seleccioneu l'àudio que represente el soroll i utilitzeu %s per a aconseguir el vostre «perfil de soroll».\n"
+"1. Seleccioneu l'àudio que represente el soroll i utilitzeu %s per a "
+"aconseguir el vostre «perfil de soroll».\n"
 "\n"
 "2. En tindre el perfil de soroll, seleccioneu l'àudio que vulgueu canviar\n"
 "i utilitzeu  %s per a canviar aquest àudio."
@@ -1280,7 +1517,8 @@ msgid ""
 "You must first select some stereo audio to perform this\n"
 "action. (You cannot use this with mono.)"
 msgstr ""
-"Cal que seleccioneu primer un fragment estèreo d'àudio per a realitzar aquesta\n"
+"Cal que seleccioneu primer un fragment estèreo d'àudio per a realitzar "
+"aquesta\n"
 "acció. (No podeu realitzar-la amb mono.)"
 
 #: src/CommonCommandFlags.cpp
@@ -1371,7 +1609,8 @@ msgstr "&Copia els fitxers sense comprimir en el projecte (més segur)"
 
 #: src/FileFormats.cpp
 msgid "&Read uncompressed files from original location (faster)"
-msgstr "&Llig els fitxers sense comprimir des de la ubicació original (més ràpid)"
+msgstr ""
+"&Llig els fitxers sense comprimir des de la ubicació original (més ràpid)"
 
 #: src/FileFormats.cpp
 msgid "&Copy all audio into project (safest)"
@@ -1505,12 +1744,18 @@ msgstr "&Redibuixa..."
 
 #: src/FreqWindow.cpp
 msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "Per a dibuixar l'espectre cal que totes les pistes seleccionades tinguen la mateixa freqüència de mostreig."
+msgstr ""
+"Per a dibuixar l'espectre cal que totes les pistes seleccionades tinguen la "
+"mateixa freqüència de mostreig."
 
 #: src/FreqWindow.cpp
 #, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
-msgstr "S'ha seleccionat un fragment de so massa llarg. Només s'analitzaran els primers %.1f segons."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
+msgstr ""
+"S'ha seleccionat un fragment de so massa llarg. Només s'analitzaran els "
+"primers %.1f segons."
 
 #: src/FreqWindow.cpp
 msgid "Not enough data selected."
@@ -1632,8 +1877,16 @@ msgid "No Local Help"
 msgstr "No hi ha cap ajuda local disponible"
 
 #: src/HelpText.cpp
-msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
-msgstr "També podeu llegir la nostra ajuda sobre la importació de [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|fitxers MIDI]] i pistes de [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| CD d'àudio]]."
+msgid ""
+"You can also read our help on importing [[https://manual.audacityteam.org/"
+"man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://"
+"manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio "
+"CDs]]."
+msgstr ""
+"També podeu llegir la nostra ajuda sobre la importació de [[https://manual."
+"audacityteam.org/man/playing_and_recording.html#midi|fitxers MIDI]] i pistes "
+"de [[https://manual.audacityteam.org/man/faq_opening_and_saving_files."
+"html#fromcd| CD d'àudio]]."
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -1689,6 +1942,12 @@ msgstr "&Ordre"
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "&Historial..."
+
+#: src/JournalEvents.cpp
+#, fuzzy
+#| msgid "Recording Saved:"
+msgid "Journal recording failed"
+msgstr "S'ha guardat la gravació:"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -1775,8 +2034,12 @@ msgstr "No es poden llegir una o més etiquetes guardades."
 #. * versions of language names.
 #: src/LangChoice.cpp
 #, c-format
-msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
-msgstr "La llengua que heu triat, %s (%s), no coincideix amb la llengua del sistema, %s (%s)."
+msgid ""
+"The language you have chosen, %s (%s), is not the same as the system "
+"language, %s (%s)."
+msgstr ""
+"La llengua que heu triat, %s (%s), no coincideix amb la llengua del sistema, "
+"%s (%s)."
 
 #: src/LangChoice.cpp src/effects/VST/VSTEffect.cpp
 msgid "Confirm"
@@ -1962,6 +2225,16 @@ msgstr ""
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
 msgid ""
+"The module \"%s\" is matched with Tenacity version \"%s\".\n"
+"\n"
+"It will not be loaded."
+msgstr ""
+"El mòdul %s no proporciona una cadena de versió.\n"
+"No s'hi carregarà."
+
+#: src/ModuleManager.cpp
+#, fuzzy, c-format
+msgid ""
 "The module \"%s\" failed to initialize.\n"
 "\n"
 "It will not be loaded."
@@ -1993,6 +2266,11 @@ msgstr "Sí"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "No"
+
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "desenvolupador web"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2174,7 +2452,9 @@ msgstr "Nou"
 
 #: src/PluginRegistrationDialog.cpp
 msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr "Seleccioneu efectes, feu clic en el botó Habilita o Inhabilita i després cliqueu en D'acord."
+msgstr ""
+"Seleccioneu efectes, feu clic en el botó Habilita o Inhabilita i després "
+"cliqueu en D'acord."
 
 #. i18n-hint: This is before radio buttons selecting which effects to show
 #: src/PluginRegistrationDialog.cpp
@@ -2296,12 +2576,15 @@ msgid ""
 "Try changing the audio host, playback device and the project sample rate."
 msgstr ""
 "S'ha produït un error mentre s'obria el dispositiu de so. \n"
-"Reviseu els paràmetres del servidor d'àudio, del dispositiu de reproducció i la freqüència de mostreig del projecte."
+"Reviseu els paràmetres del servidor d'àudio, del dispositiu de reproducció i "
+"la freqüència de mostreig del projecte."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "The tracks selected for recording must all have the same sampling rate"
-msgstr "Per aplicar el filtre, cal que totes les pistes seleccionades tinguen la mateixa freqüència de mostreig."
+msgstr ""
+"Per aplicar el filtre, cal que totes les pistes seleccionades tinguen la "
+"mateixa freqüència de mostreig."
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -2327,6 +2610,12 @@ msgstr "Desactiva la detecció de pèrdues"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<Sense títol>"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+#| msgid "Project"
+msgid "[Project %02i] "
+msgstr "Projecte"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy, c-format
@@ -2501,6 +2790,16 @@ msgid "Error Writing to File"
 msgstr "S'ha produït un error en escriure en el fitxer"
 
 #: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Audacity no ha pogut escriure el fitxer %s.\n"
+"Potser el disc està ple o no s'hi pot escriure."
+
+#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "S'estan guardant els &projectes"
@@ -2583,10 +2882,12 @@ msgstr "S'ha guardat %s"
 
 #: src/ProjectFileManager.cpp
 msgid ""
-"The project was not saved because the file name provided would overwrite another project.\n"
+"The project was not saved because the file name provided would overwrite "
+"another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"El projecte no s'ha guardat perquè el nom del fitxer proporcionat pot sobreescriure altre projecte.\n"
+"El projecte no s'ha guardat perquè el nom del fitxer proporcionat pot "
+"sobreescriure altre projecte.\n"
 "Seleccioneu un nom original i intenteu-ho altra vegada."
 
 #: src/ProjectFileManager.cpp
@@ -2599,8 +2900,10 @@ msgid ""
 "'Save Project' is for an Audacity project, not an audio file.\n"
 "For an audio file that will open in other apps, use 'Export'.\n"
 msgstr ""
-"«Guarda el projecte» és per a un projecte d'Audacity, no per a un fitxer d'àudio.\n"
-"Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu «Exporta».\n"
+"«Guarda el projecte» és per a un projecte d'Audacity, no per a un fitxer "
+"d'àudio.\n"
+"Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu "
+"«Exporta».\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -2628,10 +2931,12 @@ msgstr "Advertència de sobreescriptura del projecte"
 #: src/ProjectFileManager.cpp
 #, fuzzy
 msgid ""
-"The project was not saved because the selected project is open in another window.\n"
+"The project was not saved because the selected project is open in another "
+"window.\n"
 "Please try again and select an original name."
 msgstr ""
-"No s'ha guardat el projecte perquè el projecte seleccionat està obert en altra finestra.\n"
+"No s'ha guardat el projecte perquè el projecte seleccionat està obert en "
+"altra finestra.\n"
 "Seleccioneu un nom original i torneu-ho a intentar."
 
 #: src/ProjectFileManager.cpp
@@ -2644,7 +2949,8 @@ msgid ""
 "Saving a copy must not overwrite an existing saved project.\n"
 "Please try again and select an original name."
 msgstr ""
-"L'acció de guardar una còpia no ha de sobreescriure un projecte existent ja guardat.\n"
+"L'acció de guardar una còpia no ha de sobreescriure un projecte existent ja "
+"guardat.\n"
 "Seleccioneu un nom original i intenteu-ho altra vegada."
 
 #: src/ProjectFileManager.cpp
@@ -2671,7 +2977,8 @@ msgid ""
 "\n"
 "Please open the actual Audacity project file instead."
 msgstr ""
-"Esteu intentant obrir un fitxer de còpia de seguretat que es va crear automàticament. \n"
+"Esteu intentant obrir un fitxer de còpia de seguretat que es va crear "
+"automàticament. \n"
 "En fer açò es podria produir una pèrdua de dades important. \n"
 "\n"
 "En comptes d'això, obriu el corresponent fitxer de projecte Audacity."
@@ -2709,6 +3016,13 @@ msgstr "S'ha recuperat el projecte"
 #: src/ProjectFileManager.cpp
 msgid "Recover"
 msgstr "Recupera"
+
+#. i18n-hint Name default name assigned to a clip on track import
+#: src/ProjectFileManager.cpp
+#, fuzzy, c-format
+msgctxt "clip name template"
+msgid "%s %d"
+msgstr "%s %d de %d clip %s"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2816,8 +3130,11 @@ msgid "Vertical Scrollbar"
 msgstr "Barra de desplaçament vertical"
 
 #: src/SelectFile.cpp
-msgid "The specified filename could not be converted due to Unicode character use."
-msgstr "El nom de fitxer especificat no s'ha pogut convertir degut a l'ús de caràcters Unicode."
+msgid ""
+"The specified filename could not be converted due to Unicode character use."
+msgstr ""
+"El nom de fitxer especificat no s'ha pogut convertir degut a l'ús de "
+"caràcters Unicode."
 
 #: src/SelectFile.cpp
 msgid "Specify New Filename:"
@@ -2829,7 +3146,8 @@ msgid ""
 "Sequence has block file exceeding maximum %s samples per block.\n"
 "Truncating to this maximum length."
 msgstr ""
-"La seqüència té un fitxer de blocs que excedeix el nombre màxim de %s mostres per bloc. \n"
+"La seqüència té un fitxer de blocs que excedeix el nombre màxim de %s "
+"mostres per bloc. \n"
 "S'està  truncant en aquesta llargària màxima."
 
 #: src/Sequence.cpp
@@ -2855,6 +3173,11 @@ msgstr "Gravació activada per so"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Nivell d'activació (dB):"
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "desenvolupador web"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2895,7 +3218,9 @@ msgstr "Comentaris"
 
 #: src/Tags.cpp
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr "Utilitza les fletxes del teclat (o la tecla Retorn després d'editar) per a navegar pels camps."
+msgstr ""
+"Utilitza les fletxes del teclat (o la tecla Retorn després d'editar) per a "
+"navegar pels camps."
 
 #: src/Tags.cpp
 msgid "Tag"
@@ -2990,11 +3315,19 @@ msgstr "Ha fallat."
 msgid ""
 "Reset Preferences?\n"
 "\n"
-"This is a one-time question, after an 'install' where you asked to have the Preferences reset."
+"This is a one-time question, after an 'install' where you asked to have the "
+"Preferences reset."
 msgstr ""
 "Voleu restablir les preferències?\n"
 "\n"
-"Aquesta pregunta només es fa una vegada, després d'un «Instal·la» on heu demanat restablir les preferències."
+"Aquesta pregunta només es fa una vegada, després d'un «Instal·la» on heu "
+"demanat restablir les preferències."
+
+#: src/TenacityApp.cpp
+#, fuzzy
+#| msgid "&Use Preferences"
+msgid "Reset Tenacity Preferences"
+msgstr "&Utilitza les prefrències"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -3034,6 +3367,12 @@ msgid "&File"
 msgstr "&Fitxer"
 
 #: src/TenacityApp.cpp
+#, fuzzy
+#| msgid "Do you want to save the changes?"
+msgid "Do you still want to start Tenacity?"
+msgstr "Voleu guardar els canvis?"
+
+#: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "S'ha produït un error en bloquejar la carpeta de fitxers temporals"
 
@@ -3053,6 +3392,12 @@ msgstr "aquest missatge d'ajuda"
 msgid "run self diagnostics"
 msgstr "executa l'autodiagnòstic"
 
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "desenvolupador web"
+
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -3062,6 +3407,11 @@ msgstr "nom de fitxer d'àudio o de projecte"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Fitxers de projecte de l'Audacity"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "Confirmació de la supressió del criteri"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3090,6 +3440,12 @@ msgstr "Durada"
 #: src/TimeTrack.cpp src/TrackPanelAx.cpp
 msgid "Time Track"
 msgstr "Pista de temps"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Timer Recording"
+msgid "Tenacity Timer Record"
+msgstr "Gravació temporitzada"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -3136,14 +3492,16 @@ msgstr "S'ha produït un error mentre s'exportava automàticament"
 #: src/TimerRecordDialog.cpp
 #, c-format
 msgid ""
-"You may not have enough free disk space to complete this Timer Recording, based on your current settings.\n"
+"You may not have enough free disk space to complete this Timer Recording, "
+"based on your current settings.\n"
 "\n"
 "Do you wish to continue?\n"
 "\n"
 "Planned recording duration:   %s\n"
 "Recording time remaining on disk:   %s"
 msgstr ""
-"No teniu prou espai lliure de disc per completar aquesta gravació temporitzada, d'acord amb els ajustos actuals.\n"
+"No teniu prou espai lliure de disc per completar aquesta gravació "
+"temporitzada, d'acord amb els ajustos actuals.\n"
 "Voleu continuar?\n"
 "Duració de la gravació programada: %s\n"
 "Temps restant de gravació al disc: %s"
@@ -3180,6 +3538,12 @@ msgstr "S'ha activat l'exportació automàtica:"
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
 msgstr "Acció posterior a la gravació temporitzada:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Error Saving Timer Recording Project"
+msgid "Tenacity Timer Record Progress"
+msgstr "S'ha produït un error en guardar el Projecte de gravació temporitzada"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3334,6 +3698,11 @@ msgid "Do nothing"
 msgstr "No faces res"
 
 #: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Exit Tenacity"
+msgstr "Quant a  Audacity"
+
+#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Restableix el sistema"
 
@@ -3374,6 +3743,12 @@ msgstr "S'ha guardat la gravació:"
 #: src/TimerRecordDialog.cpp
 msgid "Recording Exported:"
 msgstr "S'ha exportat la gravació:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Timer Recording"
+msgid "Tenacity Timer Record - Waiting"
+msgstr "Gravació temporitzada"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
@@ -3439,8 +3814,11 @@ msgstr " S'ha activat la selecció "
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
-msgstr "Feu clic i arrossegueu per a ajustar la mida relativa de les pistes estèreo."
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
+msgstr ""
+"Feu clic i arrossegueu per a ajustar la mida relativa de les pistes estèreo."
 
 #: src/TrackPanelResizeHandle.cpp
 msgid "Click and drag to resize the track."
@@ -3541,6 +3919,12 @@ msgid "Resampling failed."
 msgstr "Ha fallat el remostreig."
 
 #: src/WaveTrack.cpp
+#, fuzzy
+#| msgid "Move Track"
+msgid "Wave Track"
+msgstr "Mou la pista"
+
+#: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "No hi ha prou espai per a apegarla selecció"
 
@@ -3549,13 +3933,20 @@ msgid "There is not enough room available to expand the cut line"
 msgstr "No hi ha prou espai disponible per a expandir la línia de tall"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "Registre d'Audacity"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
 msgid ""
 "%s: Could not load settings below. Default settings will be used.\n"
 "\n"
 "%s"
 msgstr ""
-"%s: No s'han pogut carregar els paràmetres a continuació. S'utilitzaran els paràmetres predeterminats.\n"
+"%s: No s'han pogut carregar els paràmetres a continuació. S'utilitzaran els "
+"paràmetres predeterminats.\n"
 "\n"
 "%s"
 
@@ -3794,6 +4185,12 @@ msgstr "Exporta a un fitxers."
 #: src/commands/LoadCommands.cpp
 msgid "Builtin Commands"
 msgstr "Ordres predefinides"
+
+#: src/commands/LoadCommands.cpp
+#, fuzzy
+#| msgid "Unknown built-in command name"
+msgid "Provides builtin commands to Tenacity"
+msgstr "Nom d'ordre integrada desconegut"
 
 #: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
@@ -4218,22 +4615,34 @@ msgid "Auto Duck"
 msgstr "Auto Duck"
 
 #: src/effects/AutoDuck.cpp
-msgid "Reduces (ducks) the volume of one or more tracks whenever the volume of a specified \"control\" track reaches a particular level"
-msgstr "Redueix el volum d'una o més pistes tan prompte com el volum de la pista marcada com a «control» arriba a un determinat nivell"
+msgid ""
+"Reduces (ducks) the volume of one or more tracks whenever the volume of a "
+"specified \"control\" track reaches a particular level"
+msgstr ""
+"Redueix el volum d'una o més pistes tan prompte com el volum de la pista "
+"marcada com a «control» arriba a un determinat nivell"
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "Heu seleccionat una pista sense àudio. AutoDuck només pot processar pistes d'àudio."
+msgid ""
+"You selected a track which does not contain audio. AutoDuck can only process "
+"audio tracks."
+msgstr ""
+"Heu seleccionat una pista sense àudio. AutoDuck només pot processar pistes "
+"d'àudio."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
-msgstr "Auto Duck necessita una pista de control situada sota la pista o pistes seleccionades."
+msgid ""
+"Auto Duck needs a control track which must be placed below the selected "
+"track(s)."
+msgstr ""
+"Auto Duck necessita una pista de control situada sota la pista o pistes "
+"seleccionades."
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -4604,7 +5013,9 @@ msgstr "Supressió de clics"
 
 #: src/effects/ClickRemoval.cpp
 msgid "Click Removal is designed to remove clicks on audio tracks"
-msgstr "La supressió de clics està dissenyada per a eliminar els clics en les pistes d'àudio"
+msgstr ""
+"La supressió de clics està dissenyada per a eliminar els clics en les pistes "
+"d'àudio"
 
 #: src/effects/ClickRemoval.cpp
 msgid "Algorithm not effective on this audio. Nothing changed."
@@ -4763,14 +5174,157 @@ msgstr "Temps d'atac %.2f segons"
 msgid "Release Time %.1f secs"
 msgstr "Temps de relaxació %.1f segons"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Exponential Out"
+msgid "Exponential-Fit"
+msgstr "Eixida exponencial"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Peak amplitude dB"
+msgid "peak amplitude"
+msgstr "Amplitud de pic dB"
+
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Dynamic Reduction"
+msgstr "Reducció de soroll"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Peak Reduction"
+msgstr "Reducció de soroll"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Limiter"
+msgid "Analog Limiter"
+msgstr "Limitador"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Compressor"
+msgid "Dynamic Compressor"
+msgstr "Compressor"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "Establiu el pic d'amplitud d'una o més pistes"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "Compressió basada en pics"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritme"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "&Algorithm:"
+msgid "Envelope Algorithm:"
+msgstr "&Algoritme:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "Compressió basada en pics"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress stereo channels independently"
+msgstr "Normalitza els canals estèreos de forma independent"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "Interval:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "1"
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Width:"
+msgid "Knee Width:"
+msgstr "Amplària:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Width:"
+msgid "Knee Width"
+msgstr "Amplària:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "&Output gain (dB):"
+msgid "Output Gain:"
+msgstr "Guany de l'e&ixida (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Output gain (dB)"
+msgid "Output Gain"
+msgstr "Guany de l'eixida (dB)"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "Temps d'atac:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Attack Time"
+msgid "Attack"
+msgstr "Temps d'atac"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "Temps de relaxació:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Release Time"
+msgid "Release"
+msgstr "Temps de relaxació"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Smooth Time:"
+msgid "Lookahead Time:"
+msgstr "Duració del suavitzat:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Smooth Time"
+msgid "Lookahead Time"
+msgstr "Duració del suavitzat"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time:"
+msgid "Hold Time:"
+msgstr "Temps final:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "Temps final"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -4798,8 +5352,12 @@ msgstr ""
 
 #. i18n-hint: RMS abbreviates root mean square, a certain averaging method
 #: src/effects/Contrast.cpp
-msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
-msgstr "Analitzador de contrast, per a mesurar diferències de volum RMS entre dues seccions d'àudio."
+msgid ""
+"Contrast Analyzer, for measuring RMS volume differences between two "
+"selections of audio."
+msgstr ""
+"Analitzador de contrast, per a mesurar diferències de volum RMS entre dues "
+"seccions d'àudio."
 
 #. i18n-hint noun
 #: src/effects/Contrast.cpp src/effects/ToneGen.cpp
@@ -5287,8 +5845,12 @@ msgid "DTMF Tones"
 msgstr "Tons DTMF"
 
 #: src/effects/DtmfGen.cpp
-msgid "Generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones"
-msgstr "Genera tons duals multifreqüència (DTMF) com els que produeixen els telèfons de tecles"
+msgid ""
+"Generates dual-tone multi-frequency (DTMF) tones like those produced by the "
+"keypad on telephones"
+msgstr ""
+"Genera tons duals multifreqüència (DTMF) com els que produeixen els telèfons "
+"de tecles"
 
 #: src/effects/DtmfGen.cpp
 #, fuzzy
@@ -5772,10 +6334,12 @@ msgstr "Reducció d'aguts"
 #: src/effects/Equalization.cpp
 msgid ""
 "To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
+"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
+"then use that one."
 msgstr ""
 "Per a utilitzar aquesta corba del filtre en una macro, trieu-ne un nom nom.\n"
-"Seleccioneu el botó «Guarda o gestiona corbes...» i canvieu el nom de la corba «sense nom» i seguidament, utilitzeu-la."
+"Seleccioneu el botó «Guarda o gestiona corbes...» i canvieu el nom de la "
+"corba «sense nom» i seguidament, utilitzeu-la."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5783,12 +6347,16 @@ msgid "Filter Curve EQ needs a different name"
 msgstr "La corba del filtre necessita un altre nom"
 
 #: src/effects/Equalization.cpp
-msgid "To apply Equalization, all selected tracks must have the same sample rate."
-msgstr "Per a aplicar l'equalització cal que totes les pistes seleccionades tinguen la mateixa freqüència de mostreig."
+msgid ""
+"To apply Equalization, all selected tracks must have the same sample rate."
+msgstr ""
+"Per a aplicar l'equalització cal que totes les pistes seleccionades tinguen "
+"la mateixa freqüència de mostreig."
 
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
-msgstr "La freqüència de mostreig de la pista és massa baixa per a aquest efecte."
+msgstr ""
+"La freqüència de mostreig de la pista és massa baixa per a aquest efecte."
 
 #: src/effects/Equalization.cpp
 msgid "Effect Unavailable"
@@ -6121,6 +6689,36 @@ msgstr "Aplica una fosa d'obertura lineal a l'àudio seleccionat"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Aplica una fosa d'eixida lineal a l'àudio seleccionat"
 
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Find Clipping"
+msgid "Find Clicks"
+msgstr "Troba l'escapçament"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Creates labels where clipping is detected"
+msgid "Creates labels where clicks are detected"
+msgstr "Crea etiquetes on es detecten escapçaments"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Clicks"
+msgstr "Feu clic"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Right"
+msgstr "Feu clic"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Left"
+msgstr "Feu clic"
+
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Troba l'escapçament"
@@ -6270,6 +6868,11 @@ msgstr "4 (per defecte)"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
+msgid "Blackman, Hann"
+msgstr "4 (per defecte)"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
 msgid "Hamming, none"
 msgstr "4 (per defecte)"
 
@@ -6278,13 +6881,20 @@ msgstr "4 (per defecte)"
 msgid "Hamming, Hann"
 msgstr "4 (per defecte)"
 
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "Hamming, Reciprocal Hamming"
+msgstr "4 (per defecte)"
+
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
 msgstr "Reducció de soroll"
 
 #: src/effects/NoiseReduction.cpp
 msgid "Removes background noise such as fans, tape noise, or hums"
-msgstr "Elimina sorolls de fons com ara els produïts per ventiladors, cintes o brunzits"
+msgstr ""
+"Elimina sorolls de fons com ara els produïts per ventiladors, cintes o "
+"brunzits"
 
 #: src/effects/NoiseReduction.cpp
 msgid "Steps per block are too few for the window types."
@@ -6296,7 +6906,9 @@ msgstr "Els passos per bloc no poden excedir la mida de la finestra."
 
 #: src/effects/NoiseReduction.cpp
 msgid "Median method is not implemented for more than four steps per window."
-msgstr "El mètode de la mediana no està implementat per a més de quatre passos per finestra."
+msgstr ""
+"El mètode de la mediana no està implementat per a més de quatre passos per "
+"finestra."
 
 #: src/effects/NoiseReduction.cpp
 msgid "You must specify the same window size for steps 1 and 2."
@@ -6304,15 +6916,23 @@ msgstr "Heu d'especificar la mateixa mida de finestra per als passos 1 i 2."
 
 #: src/effects/NoiseReduction.cpp
 msgid "Warning: window types are not the same as for profiling."
-msgstr "Advertència: els tipus de finestra no són els mateixos que per a l'anàlisi de perfils."
+msgstr ""
+"Advertència: els tipus de finestra no són els mateixos que per a l'anàlisi "
+"de perfils."
 
 #: src/effects/NoiseReduction.cpp
 msgid "All noise profile data must have the same sample rate."
-msgstr "Totes les dades del perfil de soroll han de tenir la mateixa freqüència de mostreig."
+msgstr ""
+"Totes les dades del perfil de soroll han de tenir la mateixa freqüència de "
+"mostreig."
 
 #: src/effects/NoiseReduction.cpp
-msgid "The sample rate of the noise profile must match that of the sound to be processed."
-msgstr "La freqüència de mostreig del perfil de soroll s'ha de correspondre amb la del so que cal processar."
+msgid ""
+"The sample rate of the noise profile must match that of the sound to be "
+"processed."
+msgstr ""
+"La freqüència de mostreig del perfil de soroll s'ha de correspondre amb la "
+"del so que cal processar."
 
 #: src/effects/NoiseReduction.cpp
 msgid "Selected noise profile is too short."
@@ -6383,7 +7003,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to reduce noise.\n"
 msgstr ""
-"Seleccioneu el fragment d'àudio on vulgueu aplicar el filtre, trieu la quantitat de soroll a filtrar\n"
+"Seleccioneu el fragment d'àudio on vulgueu aplicar el filtre, trieu la "
+"quantitat de soroll a filtrar\n"
 "i feu clic a «D'acord» per a reduir el soroll.\n"
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
@@ -6491,14 +7112,17 @@ msgstr "Supressió del soroll"
 
 #: src/effects/NoiseRemoval.cpp
 msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr "Suprimeix sorolls de fons constants com ara els produïts per ventiladors, cintes o brunzits"
+msgstr ""
+"Suprimeix sorolls de fons constants com ara els produïts per ventiladors, "
+"cintes o brunzits"
 
 #: src/effects/NoiseRemoval.cpp
 msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to remove noise.\n"
 msgstr ""
-"Seleccioneu tot l'àudio que voleu filtrar, trieu la quantitat de soroll a filtrar\n"
+"Seleccioneu tot l'àudio que voleu filtrar, trieu la quantitat de soroll a "
+"filtrar\n"
 "i feu clic a «D'acord» per a suprimir el soroll.\n"
 
 #: src/effects/NoiseRemoval.cpp
@@ -6543,7 +7167,8 @@ msgstr "S'està suprimint el desplaçament respecte al zero... \n"
 
 #: src/effects/Normalize.cpp
 msgid "Normalizing without removing DC offset...\n"
-msgstr "S'està normalitzant sense suprimir el desplaçament respecte al zero...\n"
+msgstr ""
+"S'està normalitzant sense suprimir el desplaçament respecte al zero...\n"
 
 #: src/effects/Normalize.cpp
 msgid "Not doing anything...\n"
@@ -6599,7 +7224,9 @@ msgstr "Paulstretch"
 
 #: src/effects/Paulstretch.cpp
 msgid "Paulstretch is only for an extreme time-stretch or \"stasis\" effect"
-msgstr "Paulstretch és sols per a un estirament de temps extrem o per a l'efecte «immobilitat»"
+msgstr ""
+"Paulstretch és sols per a un estirament de temps extrem o per a l'efecte "
+"«immobilitat»"
 
 #. i18n-hint: This is how many times longer the sound will be, e.g. applying
 #. * the effect to a 1-second sample, with the default Stretch Factor of 10.0
@@ -6731,11 +7358,13 @@ msgstr "Estableix l'amplitud de pic d'una o més pistes"
 
 #: src/effects/Repair.cpp
 msgid ""
-"The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
+"The Repair effect is intended to be used on very short sections of damaged "
+"audio (up to 128 samples).\n"
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"L'efecte Reparació és per a fer-lo servir en seccions molt curtes d'àudio danyat (fins a 128 mostres).\n"
+"L'efecte Reparació és per a fer-lo servir en seccions molt curtes d'àudio "
+"danyat (fins a 128 mostres).\n"
 "\n"
 "Feu zoom i seleccioneu una xicoteta fracció de segon per a reparar-la."
 
@@ -6747,8 +7376,10 @@ msgid ""
 "\n"
 "The more surrounding audio, the better it performs."
 msgstr ""
-"La reparació funciona utilitzant dades d'àudio que estan fora de la zona de la selecció. \n"
-"Seleccioneu un fragment que tinga àudio que estiga a tocant almenys un un dels seus costats. \n"
+"La reparació funciona utilitzant dades d'àudio que estan fora de la zona de "
+"la selecció. \n"
+"Seleccioneu un fragment que tinga àudio que estiga a tocant almenys un un "
+"dels seus costats. \n"
 "Com més àudio hi hagi als voltants del fragment, millor funcionarà."
 
 #: src/effects/Repeat.cpp
@@ -6921,7 +7552,9 @@ msgstr "Realitza un filtratge IIR que emula els filtres analògics"
 
 #: src/effects/ScienFilter.cpp
 msgid "To apply a filter, all selected tracks must have the same sample rate."
-msgstr "Per aplicar el filtre, cal que totes les pistes seleccionades tinguen la mateixa freqüència de mostreig."
+msgstr ""
+"Per aplicar el filtre, cal que totes les pistes seleccionades tinguen la "
+"mateixa freqüència de mostreig."
 
 #: src/effects/ScienFilter.cpp
 msgid "&Filter Type:"
@@ -7205,12 +7838,20 @@ msgid "Truncate Silence"
 msgstr "Trunca un silenci"
 
 #: src/effects/TruncSilence.cpp
-msgid "Automatically reduces the length of passages where the volume is below a specified level"
-msgstr "Redueix de forma automàtica la llargària de passatges que tinguen un volum inferior al nivell indicat"
+msgid ""
+"Automatically reduces the length of passages where the volume is below a "
+"specified level"
+msgstr ""
+"Redueix de forma automàtica la llargària de passatges que tinguen un volum "
+"inferior al nivell indicat"
 
 #: src/effects/TruncSilence.cpp
-msgid "When truncating independently, there may only be one selected audio track in each Sync-Locked Track Group."
-msgstr "Quan es trunca de forma independent, només hi pot haver una pista d'àudio seleccionada a cada grup de pistes de sincronització bloquejada."
+msgid ""
+"When truncating independently, there may only be one selected audio track in "
+"each Sync-Locked Track Group."
+msgstr ""
+"Quan es trunca de forma independent, només hi pot haver una pista d'àudio "
+"seleccionada a cada grup de pistes de sincronització bloquejada."
 
 #: src/effects/TruncSilence.cpp
 msgid "Detect Silence"
@@ -7281,8 +7922,13 @@ msgstr "Mode Gràfic"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
-msgid "Most VST effects have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
-msgstr "La majoria dels efectes VST tenen una interfície gràfica per a indicar-hi els valors dels paràmetres."
+msgid ""
+"Most VST effects have a graphical interface for setting parameter values. A "
+"basic text-only method is also available.  Reopen the effect for this to "
+"take effect."
+msgstr ""
+"La majoria dels efectes VST tenen una interfície gràfica per a indicar-hi "
+"els valors dels paràmetres."
 
 #: src/effects/VST/VSTEffect.cpp src/effects/lv2/LV2Effect.cpp
 msgid "Enable &graphical interface"
@@ -7306,6 +7952,11 @@ msgstr "Exporta els valors predefinits d'Audio Unit"
 #, fuzzy
 msgid "Standard VST program file"
 msgstr "Exporta els valors predefinits d'Audio Unit"
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "Seleccioneu un fitxer"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -7339,7 +7990,8 @@ msgstr "Paràmetres de l'efecte"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unable to allocate memory when loading presets file."
-msgstr "No s'ha pogut assignar memòria en carregar el fitxer dels valors predefinits."
+msgstr ""
+"No s'ha pogut assignar memòria en carregar el fitxer dels valors predefinits."
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unable to read presets file."
@@ -7361,8 +8013,12 @@ msgid "Wahwah"
 msgstr "Wahwah"
 
 #: src/effects/Wahwah.cpp
-msgid "Rapid tone quality variations, like that guitar sound so popular in the 1970's"
-msgstr "Variacions ràpides de la qualitat del to, semblants als sons de guitarra que es van fer populars als anys 70"
+msgid ""
+"Rapid tone quality variations, like that guitar sound so popular in the "
+"1970's"
+msgstr ""
+"Variacions ràpides de la qualitat del to, semblants als sons de guitarra que "
+"es van fer populars als anys 70"
 
 #: src/effects/Wahwah.cpp
 msgid "Dept&h (%):"
@@ -7388,6 +8044,12 @@ msgstr "Desplaçament de la freqüència Wah  percentual"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Audio Unit Effects"
 msgstr "Efectes d'Audio Unit"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+#| msgid "Audio Unit Effect Options"
+msgid "Provides Audio Unit Effects support to Tenacity"
+msgstr "Opcions dels efectes d'Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -7588,8 +8250,13 @@ msgstr "Mida de la &memòria intermèdia (de 8 a 1048576 mostres):"
 
 #: src/effects/lv2/LV2Effect.cpp
 #, fuzzy
-msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
-msgstr "Els efectes LV2 tenen una interfície gràfica per a indicar-hi els valors dels paràmetres."
+msgid ""
+"LV2 effects can have a graphical interface for setting parameter values. A "
+"basic text-only method is also available.  Reopen the effect for this to "
+"take effect."
+msgstr ""
+"Els efectes LV2 tenen una interfície gràfica per a indicar-hi els valors "
+"dels paràmetres."
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid "Couldn't instantiate effect"
@@ -7649,7 +8316,9 @@ msgstr ""
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
 msgid "error: File \"%s\" specified in header but not found in plug-in path.\n"
-msgstr "error: S'ha especificat el fitxer «%s» en la capçalera però no s'ha trobat en la ruta dels connectors.\n"
+msgstr ""
+"error: S'ha especificat el fitxer «%s» en la capçalera però no s'ha trobat "
+"en la ruta dels connectors.\n"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
@@ -7660,8 +8329,11 @@ msgid "Nyquist Error"
 msgstr "Error Nyquist"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "No es pot aplicar l'efecte a les pistes estèreo quan les dues pistes no coincideixen."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"No es pot aplicar l'efecte a les pistes estèreo quan les dues pistes no "
+"coincideixen."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -7734,9 +8406,11 @@ msgid "Nyquist returned nil audio.\n"
 msgstr "El Nyquist no ha retornat cap àudio.\n"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
+msgid ""
+"[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
 msgstr ""
-"[Advertència: Nyquist ha tornat una seqüència UTF-8 no vàlida, convertida en\n"
+"[Advertència: Nyquist ha tornat una seqüència UTF-8 no vàlida, convertida "
+"en\n"
 "Latin-1]"
 
 #: src/effects/nyquist/Nyquist.cpp
@@ -7752,7 +8426,8 @@ msgid ""
 "\t(mult *track* 0.1)\n"
 " ."
 msgstr ""
-"El vostre codi sembla tindre una sintaxi SAL, però no hi ha «retorn» de sentència.\n"
+"El vostre codi sembla tindre una sintaxi SAL, però no hi ha «retorn» de "
+"sentència.\n"
 "Per a SAL, useu una sentència de retorn com:\n"
 "\treturn *track* * 0.1\n"
 "o per a LISP,comenceu amb una obertura de parèntesi com:\n"
@@ -7857,8 +8532,12 @@ msgid "Vamp Effects"
 msgstr "Efectes Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "Els efectes Vamp no es poden aplicar a pistes estereofòniques on els dos canals no coincidisquen."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"Els efectes Vamp no es poden aplicar a pistes estereofòniques on els dos "
+"canals no coincidisquen."
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
@@ -7912,13 +8591,15 @@ msgstr "Segur que voleu exportar el fitxer com a «%s»?\n"
 msgid ""
 "You are about to export a %s file with the name \"%s\".\n"
 "\n"
-"Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
+"Normally these files end in \".%s\", and some programs will not open files "
+"with nonstandard extensions.\n"
 "\n"
 "Are you sure you want to export the file under this name?"
 msgstr ""
 "Esteu a punt d'exportar un fitxer %s amb el nom \"%s\".\n"
 "\n"
-"Normalment aquests fitxers acaben en «%s», i alguns programes no obriran fitxers amb extensions no estàndard.\n"
+"Normalment aquests fitxers acaben en «%s», i alguns programes no obriran "
+"fitxers amb extensions no estàndard.\n"
 "\n"
 "Segur que voleu exportar el fitxer amb aquest nom?"
 
@@ -7940,8 +8621,12 @@ msgid "Your tracks will be mixed down and exported as one stereo file."
 msgstr "Les pistes es mesclaran i s'exportaran com a un fitxer estèreo."
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
-msgstr "Les pistes es mesclaran en un fitxer exportat d'acord amb els paràmetres del codificador."
+msgid ""
+"Your tracks will be mixed down to one exported file according to the encoder "
+"settings."
+msgstr ""
+"Les pistes es mesclaran en un fitxer exportat d'acord amb els paràmetres del "
+"codificador."
 
 #: src/export/Export.cpp
 msgid "Advanced Mixing Options"
@@ -8000,8 +8685,12 @@ msgstr "Mostra l'eixida"
 #. in the program as a format string.  Keep %f unchanged.
 #: src/export/ExportCL.cpp
 #, c-format
-msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
-msgstr "Les dades seran canalitzades cap al canal d'entrada estàndard. «%f» utilitza el nom del fitxer en la finestra d'exportació."
+msgid ""
+"Data will be piped to standard in. \"%f\" uses the file name in the export "
+"window."
+msgstr ""
+"Les dades seran canalitzades cap al canal d'entrada estàndard. «%f» utilitza "
+"el nom del fitxer en la finestra d'exportació."
 
 #. i18n-hint files that can be run as programs
 #: src/export/ExportCL.cpp
@@ -8028,11 +8717,15 @@ msgstr "Exporta"
 
 #: src/export/ExportCL.cpp
 msgid "Exporting the selected audio using command-line encoder"
-msgstr "S'està exportant l'àudio seleccionat utilitzant el codificador de línia d'ordres"
+msgstr ""
+"S'està exportant l'àudio seleccionat utilitzant el codificador de línia "
+"d'ordres"
 
 #: src/export/ExportCL.cpp
 msgid "Exporting the audio using command-line encoder"
-msgstr "S'està exportant l'àudio seleccionat utilitzant el codificador de línia d'orders"
+msgstr ""
+"S'està exportant l'àudio seleccionat utilitzant el codificador de línia "
+"d'orders"
 
 #: src/export/ExportCL.cpp
 msgid "Command Output"
@@ -8059,6 +8752,12 @@ msgstr "No s'ha trobat el fitxer «%s»."
 msgid "Unable to locate \"%s\" in your path."
 msgstr "No s'han pogut carrega els fitxers predefinits."
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+#| msgid "Format Options"
+msgid "Export Options"
+msgstr "Opcions de format"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -8074,7 +8773,9 @@ msgstr ""
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg : ERROR - No es pot determinar la descripció de format del fitxer «%s»."
+msgstr ""
+"FFmpeg : ERROR - No es pot determinar la descripció de format del fitxer "
+"«%s»."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg Error"
@@ -8087,17 +8788,25 @@ msgstr "FFmpeg : ERROR - No es pot allotjar el context del format d'eixida."
 #: src/export/ExportFFmpeg.cpp
 #, c-format
 msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr "FFmpeg : ERROR - No s'ha pogut afegir el flux de dades d'àudio al fitxer d'eixida «%s»."
+msgstr ""
+"FFmpeg : ERROR - No s'ha pogut afegir el flux de dades d'àudio al fitxer "
+"d'eixida «%s»."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "FFmpeg : ERROR - No s'ha pogut obrir el fitxer d'eixida «%s» per a escriure. El codi d'error és %d."
+msgid ""
+"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
+msgstr ""
+"FFmpeg : ERROR - No s'ha pogut obrir el fitxer d'eixida «%s» per a escriure. "
+"El codi d'error és %d."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr "FFmpeg : ERROR - No es poden escriure les capçaleres en el fitxer d'eixida «%s» Codi d'error %d."
+msgid ""
+"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
+msgstr ""
+"FFmpeg : ERROR - No es poden escriure les capçaleres en el fitxer d'eixida "
+"«%s» Codi d'error %d."
 
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/export/ExportFFmpeg.cpp
@@ -8107,7 +8816,8 @@ msgid ""
 "Support for this codec is probably not compiled in."
 msgstr ""
 "FFmpeg no ha pogut trobar el còdec d'àudio 0x%x.\n"
-"És probable que aquest còdec no estiga suportat en la compilació de FFmpeg que utilitzeu."
+"És probable que aquest còdec no estiga suportat en la compilació de FFmpeg "
+"que utilitzeu."
 
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/export/ExportFFmpeg.cpp
@@ -8120,15 +8830,43 @@ msgstr "FFmpeg : ERROR - No es pot obrir el còdec d'àudio 0x%x."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg : ERROR - No s'ha pogut allotjar memòria intermèdia per a llegir des del FIFO d'àudio."
+msgstr ""
+"FFmpeg : ERROR - No s'ha pogut allotjar memòria intermèdia per a llegir des "
+"del FIFO d'àudio."
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy
+#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
+msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
+msgstr ""
+"FFmpeg : ERROR - No s'ha pogut afegir el flux de dades d'àudio al fitxer "
+"d'eixida «%s»."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg : ERROR - No s'ha pogut obtenir la mida de la memòria intermèdia de mostres"
+msgstr ""
+"FFmpeg : ERROR - No s'ha pogut obtenir la mida de la memòria intermèdia de "
+"mostres"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "Fmpeg : ERROR - No s'han pogut allotjar prou bytes a la memòria intermèdia de mostres"
+msgstr ""
+"Fmpeg : ERROR - No s'han pogut allotjar prou bytes a la memòria intermèdia "
+"de mostres"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
+msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
+msgstr ""
+"FFmpeg : ERROR - No s'ha pogut obtenir la mida de la memòria intermèdia de "
+"mostres"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+#| msgid "FFmpeg : ERROR - Can't encode audio frame."
+msgid "FFmpeg : ERROR - encoding frame failed with error %d"
+msgstr "FFmpeg : ERROR - No es pot codificar la trama d'àudio."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
@@ -8144,8 +8882,12 @@ msgstr "FFmpeg : ERROR - No es pot codificar la trama d'àudio."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
-msgstr "S'ha intentat exportar %d canals, però el format d'eixida seleccionat n'admet un màxim de %d"
+msgid ""
+"Attempted to export %d channels, but maximum number of channels for selected "
+"output format is %d"
+msgstr ""
+"S'ha intentat exportar %d canals, però el format d'eixida seleccionat "
+"n'admet un màxim de %d"
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -8181,12 +8923,15 @@ msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the current output file format. "
 msgstr ""
-"La combinació de freqüència de mostreig (%d) i cabal de bits (%d kbps) del projecte no està\n"
+"La combinació de freqüència de mostreig (%d) i cabal de bits (%d kbps) del "
+"projecte no està\n"
 "suportada per l'actual format de fitxer d'eixida. "
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 msgid "You may resample to one of the rates below."
-msgstr "Hauríeu de tornar a mostrejar-ho a algun dels valors que es mostren a continuació."
+msgstr ""
+"Hauríeu de tornar a mostrejar-ho a algun dels valors que es mostren a "
+"continuació."
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 msgid "Sample Rates"
@@ -8318,7 +9063,8 @@ msgstr "Projecte actual"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Error Saving FFmpeg Presets"
-msgstr "S'ha produït un error quan es guardaven els valors predefinits de FFmpeg"
+msgstr ""
+"S'ha produït un error quan es guardaven els valors predefinits de FFmpeg"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, c-format
@@ -8435,8 +9181,12 @@ msgid "Codec:"
 msgstr "Còdec"
 
 #: src/export/ExportFFmpegDialogs.cpp
-msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
-msgstr "No tots els formats i còdecs són compatibles. Ni totes les combinacions d'opcions són compatibles amb tots els còdecs."
+msgid ""
+"Not all formats and codecs are compatible. Nor are all option combinations "
+"compatible with all codecs."
+msgstr ""
+"No tots els formats i còdecs són compatibles. Ni totes les combinacions "
+"d'opcions són compatibles amb tots els còdecs."
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Show All Formats"
@@ -8494,7 +9244,8 @@ msgid ""
 "0 - automatic\n"
 "Recommended - 192000"
 msgstr ""
-"Taxa de bits (bits per segon) - té influència en la mida i qualitat del fitxer resultant\n"
+"Taxa de bits (bits per segon) - té influència en la mida i qualitat del "
+"fitxer resultant\n"
 "Alguns còdecs només accepten valors específics (128k, 192k, 256k etc.)\n"
 "0 - automàtic\n"
 "Valor recomanat - 192000"
@@ -8841,7 +9592,8 @@ msgstr "Fitxers MP2"
 
 #: src/export/ExportMP2.cpp
 msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "No es pot exportar MP2 amb aquesta de freqüència de mostreig i cabal de bits"
+msgstr ""
+"No es pot exportar MP2 amb aquesta de freqüència de mostreig i cabal de bits"
 
 #: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
 msgid "Unable to open target file for writing"
@@ -9029,8 +9781,45 @@ msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the MP3 file format. "
 msgstr ""
-"La combinació de freqüència de mostreig (%d) i cabal de bits (%d kbps) del projecte no\n"
+"La combinació de freqüència de mostreig (%d) i cabal de bits (%d kbps) del "
+"projecte no\n"
 "són compatibles amb el format de fitxer MP3. "
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "16-bit"
+msgid "FLAC 16-bit"
+msgstr "16 bits"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "24-bit"
+msgid "FLAC 24-bit"
+msgstr "24 bits"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "Etiquetes"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting an Audio File"
+msgid "Matroska Audio Files"
+msgstr "S'està exportant un fitxer d'àudio"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the selected audio as FLAC"
+msgid "Exporting the selected audio as MKA"
+msgstr "S'està exportant l'àudio seleccionat com a FLAC"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the audio as FLAC"
+msgid "Exporting the audio as MKA"
+msgstr "S'està exportant l'àudio com a FLAC"
 
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
@@ -9044,7 +9833,9 @@ msgstr "No es pot exportar múltiples fitxers"
 msgid ""
 "You have no unmuted Audio Tracks and no applicable \n"
 "labels, so you cannot export to separate audio files."
-msgstr "No teniu pistes d'àudio sense so ni sense etiquetes aplicables, així que no podeu exportar-les a fitxers d'àudio separats."
+msgstr ""
+"No teniu pistes d'àudio sense so ni sense etiquetes aplicables, així que no "
+"podeu exportar-les a fitxers d'àudio separats."
 
 #: src/export/ExportMultiple.cpp
 msgid "Export files to:"
@@ -9132,7 +9923,8 @@ msgstr "Alguna cosa ha anat malament després d'exportar aquests %lld fitxers."
 #: src/export/ExportMultiple.cpp
 #, c-format
 msgid "Export canceled after exporting the following %lld file(s)."
-msgstr "S'ha cancel·lat l'exportació després d'exportar els següents fitxers %lld."
+msgstr ""
+"S'ha cancel·lat l'exportació després d'exportar els següents fitxers %lld."
 
 #: src/export/ExportMultiple.cpp
 #, c-format
@@ -9142,7 +9934,8 @@ msgstr "S'ha parat l'exportació després d'exportar els següents fitxers %lld.
 #: src/export/ExportMultiple.cpp
 #, c-format
 msgid "Something went really wrong after exporting the following %lld file(s)."
-msgstr "Alguna cosa ha anat molt malament després d'exportar aquests %lld fitxers."
+msgstr ""
+"Alguna cosa ha anat molt malament després d'exportar aquests %lld fitxers."
 
 #: src/export/ExportMultiple.cpp
 #, c-format
@@ -9171,7 +9964,8 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"L'etiqueta o la pista «%s» no té un nom de fitxer vàlid. No podeu utilitzar cap dels caràcters: %s\n"
+"L'etiqueta o la pista «%s» no té un nom de fitxer vàlid. No podeu utilitzar "
+"cap dels caràcters: %s\n"
 "Utilitzeu..."
 
 #. i18n-hint: The second %s gives a letter that can't be used.
@@ -9182,7 +9976,8 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"L'etiqueta o la pista «%s» no té un nom de fitxer vàlid. No podeu utilitzar «%s».\n"
+"L'etiqueta o la pista «%s» no té un nom de fitxer vàlid. No podeu utilitzar "
+"«%s».\n"
 "Utilitzeu..."
 
 #: src/export/ExportMultiple.cpp
@@ -9473,8 +10268,10 @@ msgstr "Fitxers compatibles FFmpeg"
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/import/ImportFFmpeg.cpp
 #, c-format
-msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr "Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
+msgid ""
+"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+msgstr ""
+"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
 
 #: src/import/ImportFLAC.cpp
 msgid "FLAC files"
@@ -9499,7 +10296,8 @@ msgstr "No s'ha pogut establir l'estat del flux per a pausar-lo."
 #: src/import/ImportGStreamer.cpp
 #, fuzzy, c-format
 msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
+msgstr ""
+"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
 
 #: src/import/ImportGStreamer.cpp
 msgid "File doesn't contain any audio streams."
@@ -9535,7 +10333,9 @@ msgstr "Indicació incorrecta de duració en el fitxer LOF."
 
 #: src/import/ImportLOF.cpp
 msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "Les pistes MIDI no es poden desplaçar individualment, sols es pot fer amb fitxers d'àudio."
+msgstr ""
+"Les pistes MIDI no es poden desplaçar individualment, sols es pot fer amb "
+"fitxers d'àudio."
 
 #. i18n-hint: You do not need to translate "LOF"
 #: src/import/ImportLOF.cpp
@@ -9570,6 +10370,17 @@ msgstr "No s'ha pogut obrir el fitxer %s."
 msgid "MP3 files"
 msgstr "Fitxers MP3"
 
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "Fitxers MP3"
+
+#: src/import/ImportMka.cpp
+#, fuzzy, c-format
+msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
+msgstr ""
+"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
+
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
 msgstr "Fitxers Ogg Vorbis"
@@ -9577,7 +10388,8 @@ msgstr "Fitxers Ogg Vorbis"
 #: src/import/ImportOGG.cpp
 #, fuzzy, c-format
 msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
+msgstr ""
+"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
 
 #: src/import/ImportOGG.cpp
 msgid "Media read error"
@@ -9780,6 +10592,13 @@ msgstr "Quantitat a importar:"
 msgid "Sample rate:"
 msgstr "Freqüència de mostreig:"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+#| msgid "Detect Silence"
+msgid "Detect"
+msgstr "Detecta el silenci"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "&Importa"
@@ -9796,6 +10615,23 @@ msgstr "%s esquerra"
 msgid "%s right"
 msgstr "%s dreta"
 
+#. i18n-hint:
+#. First %s is replaced with the noun "start" or "end"
+#. identifying one end of a clip,
+#. second string is the name of that clip,
+#. first number gives the position of that clip in a sequence
+#. of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s %s, %d of %d clip %s"
+msgid_plural "%s %s, %d of %d clips %s"
+msgstr[0] "%s %d de %d clip %s"
+msgstr[1] "%s %d de %d clip %s"
+
 #: src/menus/ClipMenus.cpp
 msgid "start"
 msgstr "inici"
@@ -9803,6 +10639,19 @@ msgstr "inici"
 #: src/menus/ClipMenus.cpp
 msgid "end"
 msgstr "final"
+
+#. i18n-hint:
+#. first string is the name of a clip,
+#. first number gives the position of that clip
+#. in a sequence of clips,
+#. last number counts all clips,
+#. last string names a track
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip %s"
+msgid_plural "%s, %d of %d clips %s"
+msgstr[0] "%s %d de %d clip %s"
+msgstr[1] "%s %d de %d clip %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -9958,7 +10807,9 @@ msgstr "Silencia"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-msgstr "Retalla l'àudio de les pistes seleccionades des de %.2f segons fins a %.2f segons"
+msgstr ""
+"Retalla l'àudio de les pistes seleccionades des de %.2f segons fins a %.2f "
+"segons"
 
 #: src/menus/EditMenus.cpp
 msgid "Trim Audio"
@@ -10234,6 +11085,12 @@ msgstr "Exporta com a MP&3"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
+msgstr "Exporta com a &WAV"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
+#| msgid "Export as &WAV"
+msgid "Export as &MKA"
 msgstr "Exporta com a &WAV"
 
 #: src/menus/FileMenus.cpp
@@ -11304,8 +12161,12 @@ msgstr "Seleccioneu com a mínim una pista d'àudio i una pista MIDI."
 
 #: src/menus/TrackMenus.cpp
 #, c-format
-msgid "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "S'ha completat l'alineament: MIDI des de %.2f fins a %.2f segons, àudio des de %.2f fins a %.2f segons."
+msgid ""
+"Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f "
+"secs."
+msgstr ""
+"S'ha completat l'alineament: MIDI des de %.2f fins a %.2f segons, àudio des "
+"de %.2f fins a %.2f segons."
 
 #: src/menus/TrackMenus.cpp
 msgid "Sync MIDI with Audio"
@@ -11313,8 +12174,12 @@ msgstr "Sincronitza MIDI amb àudio"
 
 #: src/menus/TrackMenus.cpp
 #, c-format
-msgid "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "Hi ha hagut un error en l'alineament: entrada massa curta: MIDI des de %.2f fins a %.2f s, àudio des de %.2f fins a %.2f s."
+msgid ""
+"Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from "
+"%.2f to %.2f secs."
+msgstr ""
+"Hi ha hagut un error en l'alineament: entrada massa curta: MIDI des de %.2f "
+"fins a %.2f s, àudio des de %.2f fins a %.2f s."
 
 #: src/menus/TrackMenus.cpp
 msgid "Internal error reported by alignment process."
@@ -11574,7 +12439,8 @@ msgid ""
 "\n"
 "Please close any additional projects and try again."
 msgstr ""
-"La gravació temporitzada no es pot utilitzar si hi ha més d'un projecte obert.\n"
+"La gravació temporitzada no es pot utilitzar si hi ha més d'un projecte "
+"obert.\n"
 "\n"
 "Tanqueu qualsevol dels projectes addicionals i intente-ho de nou."
 
@@ -11584,7 +12450,8 @@ msgid ""
 "\n"
 "Please save or close this project and try again."
 msgstr ""
-"La gravació temporitzada no es pot utilitzar mentre hi haja canvis sense guardar.\n"
+"La gravació temporitzada no es pot utilitzar mentre hi haja canvis sense "
+"guardar.\n"
 "\n"
 "Guardeu o tanqueu aquest projecte i intenteu-ho de nou."
 
@@ -11945,6 +12812,15 @@ msgstr "Reproducció"
 msgid "&Device:"
 msgstr "&Dispositiu:"
 
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "Gravació"
+
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
 msgstr "Dis&positiu:"
@@ -12238,8 +13114,17 @@ msgid "Unused filters:"
 msgstr "Filtres no utilitzats:"
 
 #: src/prefs/ExtImportPrefs.cpp
-msgid "There are space characters (spaces, newlines, tabs or linefeeds) in one of the items. They are likely to break the pattern matching. Unless you know what you are doing, it is recommended to trim spaces. Do you want Audacity to trim spaces for you?"
-msgstr "Hi ha caràcters d'espai (espais, salts de línia, tabuladors o retorns de carro) en un dels elements. Aquests caràcters podrien trencar la cerca per patrons. A no ser que sabeu exactament què esteu fent, és recomanable que elimineu aquests espais en blanc. Voleu que Audacity netege els espais en blanc?"
+msgid ""
+"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
+"the items. They are likely to break the pattern matching. Unless you know "
+"what you are doing, it is recommended to trim spaces. Do you want Audacity "
+"to trim spaces for you?"
+msgstr ""
+"Hi ha caràcters d'espai (espais, salts de línia, tabuladors o retorns de "
+"carro) en un dels elements. Aquests caràcters podrien trencar la cerca per "
+"patrons. A no ser que sabeu exactament què esteu fent, és recomanable que "
+"elimineu aquests espais en blanc. Voleu que Audacity netege els espais en "
+"blanc?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -12319,10 +13204,6 @@ msgstr "&Idioma:"
 #: src/prefs/GUIPrefs.cpp
 msgid "Location of &Manual:"
 msgstr "Ubicació del &manual:"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Th&eme:"
-msgstr "T&ema:"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
@@ -12499,7 +13380,9 @@ msgstr "&Estableix"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Note: Pressing Cmd+Q will quit. All other keys are valid."
-msgstr "Nota: Prement Cmd+Q es tancarà el programa. Totes les altres tecles són vàlides."
+msgstr ""
+"Nota: Prement Cmd+Q es tancarà el programa. Totes les altres tecles són "
+"vàlides."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "&Import..."
@@ -12508,6 +13391,12 @@ msgstr "&Importa..."
 #: src/prefs/KeyConfigPrefs.cpp src/prefs/ThemePrefs.cpp
 msgid "&Defaults"
 msgstr "Valors per &defecte"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
+#| msgid "Select a text file containing labels"
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "Seleccioneu un fitxer de text que continga etiquetes"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -12804,6 +13693,12 @@ msgstr "-Arrossegament amb el botó esquerre"
 msgid "Move clip up/down between tracks"
 msgstr "Mou el clip amunt o avall entre pistes"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+#| msgid "-Left-Drag"
+msgid "Alt-Left-Drag"
+msgstr "-Arrossegament amb el botó esquerre"
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -12925,6 +13820,12 @@ msgstr "&Microfoses"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Always scrub un&pinned"
 msgstr "Rastreja sem&pre sense fixar"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+#| msgid "Get Preference"
+msgid "Tenacity Preferences"
+msgstr "Obtín la preferència"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -13312,15 +14213,27 @@ msgid "Preferences for Theme"
 msgstr "Preferències del tema"
 
 #: src/prefs/ThemePrefs.cpp
+#, fuzzy
+#| msgid "&Settings"
+msgid "Theme Settings"
+msgstr "&Paràmetres"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Th&eme:"
+msgstr "T&ema:"
+
+#: src/prefs/ThemePrefs.cpp
 msgid "Info"
 msgstr "Informació"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
-"Saving and loading individual theme files uses a separate file for each image, but is\n"
+"Saving and loading individual theme files uses a separate file for each "
+"image, but is\n"
 "otherwise the same idea."
 msgstr ""
-"Si guardeu i carregueu els fitxers individuals del tema us obligueu a utilitzar un fitxer individual per a cada imatge, però és\n"
+"Si guardeu i carregueu els fitxers individuals del tema us obligueu a "
+"utilitzar un fitxer individual per a cada imatge, però és\n"
 "la mateixa idea."
 
 #. i18n-hint: && in here is an escape character to get a single & on screen,
@@ -13535,11 +14448,6 @@ msgstr "Visualitza les mo&stres:"
 msgid "Default audio track &name:"
 msgstr "&Nom de la pista d'àudio per defecte:"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Pista d'àudio"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
 msgstr "Activa/desactiva el zoom"
@@ -13582,7 +14490,8 @@ msgstr "S'està mesclant a estèreo durant l'exportació"
 
 #: src/prefs/WarningsPrefs.cpp
 msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "S'està mesclant en l'exportació (FFmeg &personalitzat o programa extern)"
+msgstr ""
+"S'està mesclant en l'exportació (FFmeg &personalitzat o programa extern)"
 
 #: src/prefs/WarningsPrefs.cpp
 #, fuzzy
@@ -13641,6 +14550,25 @@ msgstr "Alt contrast"
 msgid "Light"
 msgstr "Clar"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+#| msgid "Tools"
+msgid "Pro Tools"
+msgstr "Eines"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "Registre d'Audacity"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Couldn't write to file: %s"
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "No s'ha pogut escriure al fitxer: %s"
+
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -13651,6 +14579,23 @@ msgid ""
 "Theme written to:\n"
 "  %s."
 msgstr "S'ha escrit el tema en: %s."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "No s'ha pogut obrir el fitxer de destinació per a escriure-hi"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Couldn't write to file: %s"
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "No s'ha pogut escriure al fitxer: %s"
 
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
@@ -13692,6 +14637,14 @@ msgstr ""
 "Alguns dels fitxers necessaris en:\n"
 "  %s\n"
 "són presents. Voleu sobreescriure'ls?"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Could not open file: %s"
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "No s'ha pogut obrir el fitxer: %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -14104,6 +15057,13 @@ msgstr "Temps:"
 msgid "&Time Toolbar"
 msgstr "Barra d'eines del &dispositiu"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+#| msgid "&Edit Toolbar"
+msgid "Tenacity %s Toolbar"
+msgstr "&Edita la barra d'eines"
+
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
 msgstr "Feu clic i arrossegueu per a canviar la mida de la pista"
@@ -14278,8 +15238,12 @@ msgstr "Abaixa-ho una octava"
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
-msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
-msgstr "Feu clic per a ampliar verticalment, Maj+clic per a allunyar. Arrossegueu per a ampliar una determinada zona."
+msgid ""
+"Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom "
+"region."
+msgstr ""
+"Feu clic per a ampliar verticalment, Maj+clic per a allunyar. Arrossegueu "
+"per a ampliar una determinada zona."
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
@@ -14360,7 +15324,9 @@ msgstr "Feu clic i arrossegueu per a modificar les mostres"
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "To use Draw, zoom in further until you can see the individual samples."
-msgstr "Per a utilitzar l'eina de dibuix, feu zoom fins que es vegen les mostres individualment."
+msgstr ""
+"Per a utilitzar l'eina de dibuix, feu zoom fins que es vegen les mostres "
+"individualment."
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Moved Samples"
@@ -14395,6 +15361,42 @@ msgstr "Pareu primer l'àudio"
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "S&pectrogram Settings..."
 msgstr "Configuració de l'espectrograma..."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "Feu clic i arrossegueu per a moure una pista en el temps"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Set Track Name"
+msgid "Set Wave Clip Name"
+msgstr "Estableix el nom de la pista"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Click and drag to select audio"
+msgid "Click and drag to select text"
+msgstr "Feu clic i arrossegueu per a seleccionar l'àudio"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Modified Label"
+msgid "Modified Clip Name"
+msgstr "S'ha modificat l'etiqueta"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "Edita la mostra"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename Clip..."
+msgstr "Canvia el nom..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -14614,7 +15616,8 @@ msgstr "%.0f%% dreta"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
 msgstr "Feu clic i arrossegueu per a ajustar , doble clic per a reiniciar"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
@@ -14631,6 +15634,35 @@ msgstr "Feu clic i arrossegueu per a moure una pista en el temps"
 #, fuzzy
 msgid "Close sub-view"
 msgstr "Feu clic i arrossegueu per a moure una pista en el temps"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Set Clip"
+msgid "Split Clip"
+msgstr "Defineix clip"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "M&ute/Unmute Focused Track"
+msgid "Mute/Unmute Track"
+msgstr "Emm&udix o deixa d'emmudir la pista enfocada"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename clip..."
+msgstr "Canvia el nom..."
+
+#. i18n-hint:
+#. string is the name of a clip
+#. first number is the position of that clip in a sequence of clips,
+#. second number counts the clips
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip"
+msgid_plural "%s, %d of %d clips"
+msgstr[0] "%s %d de %d clip %s"
+msgstr[1] "%s %d de %d clip %s"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
@@ -14732,6 +15764,30 @@ msgstr "&Interpolació logarítmica"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Feu clic i arrossegueu per a moure una pista en el temps"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Mono Track"
+msgid "Add Mono Track"
+msgstr "Pista &mono"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "Pista e&stèreo"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "Label Track"
+msgid "Add Label Track"
+msgstr "Pista de l'etiqueta"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Export Audio..."
+msgid "Export Audio..."
+msgstr "&Exporta l'àudio..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -14835,23 +15891,29 @@ msgstr "Feu clic i arrossegueu per a moure el límit dret de la selecció."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move bottom selection frequency."
-msgstr "Feu clic i arrossegueu per a moure la freqüència inferior de la selecció."
+msgstr ""
+"Feu clic i arrossegueu per a moure la freqüència inferior de la selecció."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move top selection frequency."
-msgstr "Feu clic i arrossegueu per a moure la freqüència superior de la selecció."
+msgstr ""
+"Feu clic i arrossegueu per a moure la freqüència superior de la selecció."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move center selection frequency to a spectral peak."
-msgstr "Feu clic i arrossegueu per a moure la freqüència central de la selecció a un pic espectral."
+msgstr ""
+"Feu clic i arrossegueu per a moure la freqüència central de la selecció a un "
+"pic espectral."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move center selection frequency."
-msgstr "Feu clic i arrossegueu per a moure la freqüència central de la selecció."
+msgstr ""
+"Feu clic i arrossegueu per a moure la freqüència central de la selecció."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to adjust frequency bandwidth."
-msgstr "Feu clic i arrossegueu per a ajustar l'ample de banda de la freqüència."
+msgstr ""
+"Feu clic i arrossegueu per a ajustar l'ample de banda de la freqüència."
 
 #. i18n-hint: These are the names of a menu and a command in that menu
 #: src/tracks/ui/SelectHandle.cpp
@@ -14866,7 +15928,8 @@ msgstr "Mode multi-eina: %s per a veure les preferències de ratolí i teclat."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to set frequency bandwidth."
-msgstr "Feu clic i arrossegueu per a establir l'amplària de banda de la freqüència."
+msgstr ""
+"Feu clic i arrossegueu per a establir l'amplària de banda de la freqüència."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to select audio"
@@ -14938,7 +16001,9 @@ msgstr "Ctrl+clic"
 #: src/tracks/ui/TrackSelectHandle.cpp
 #, c-format
 msgid "%s to select or deselect track. Drag up or down to change track order."
-msgstr "%s per a seleccionar o deixar de seleccionar una pista. Arrossegueu amunt o avall per a canviar l'ordre de la pista."
+msgstr ""
+"%s per a seleccionar o deixar de seleccionar una pista. Arrossegueu amunt o "
+"avall per a canviar l'ordre de la pista."
 
 #. i18n-hint: %s is replaced by (translation of) 'Ctrl+Click' on windows, 'Command+Click' on Mac
 #: src/tracks/ui/TrackSelectHandle.cpp
@@ -14967,7 +16032,9 @@ msgstr "Feu clic per a apropar , Maj.+clic per a allunyar"
 
 #: src/tracks/ui/ZoomHandle.cpp
 msgid "Drag to Zoom Into Region, Right-Click to Zoom Out"
-msgstr "Arrossegueu per a apropar en la zona, feu clic amb el botó dret per a allunyar"
+msgstr ""
+"Arrossegueu per a apropar en la zona, feu clic amb el botó dret per a "
+"allunyar"
 
 #: src/tracks/ui/ZoomHandle.cpp
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
@@ -15070,7 +16137,8 @@ msgid ""
 "changes. A rate of 30 per second or less should prevent\n"
 "the meter affecting audio quality on slower machines."
 msgstr ""
-"Les freqüències d'actualització més altes fan que el mesurador mostre els canvis\n"
+"Les freqüències d'actualització més altes fan que el mesurador mostre els "
+"canvis\n"
 "més freqüentment. Una freqüència de 30 per segon o inferior evitarà\n"
 "que el mesurador afecte a la qualitat de l'àudio en equips més lents."
 
@@ -15607,7 +16675,8 @@ msgstr "Paul Licameli"
 #: plug-ins/rhythmtrack.ny plug-ins/rissetdrum.ny plug-ins/tremolo.ny
 #: plug-ins/vocalrediso.ny plug-ins/vocoder.ny
 msgid "Released under terms of the GNU General Public License version 2"
-msgstr "Publicat sota els termes de la versió 2 de la llicència pública general GNU"
+msgstr ""
+"Publicat sota els termes de la versió 2 de la llicència pública general GNU"
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
 #: plug-ins/SpectralEditShelves.ny
@@ -15634,7 +16703,8 @@ msgid ""
 "                      or reduce the filter 'Width'."
 msgstr ""
 "~aAls paràmetres del filtre no es pot aplicar.~%~\n"
-"                      Intenteu incrementa el límit inferor de la freqüència~%~\n"
+"                      Intenteu incrementa el límit inferor de la "
+"freqüència~%~\n"
 "                      o reduïu el filtre «Amplària»."
 
 #: plug-ins/SpectralEditMulti.ny plug-ins/SpectralEditParametricEQ.ny
@@ -15670,11 +16740,14 @@ msgstr "~aLa freqüència central ha d'estar per damunt de 0 Hz."
 #, lisp-format
 msgid ""
 "~aFrequency selection is too high for track sample rate.~%~\n"
-"                        For the current track, the high frequency setting cannot~%~\n"
+"                        For the current track, the high frequency setting "
+"cannot~%~\n"
 "                        be greater than ~a Hz"
 msgstr ""
-"~aLa selecció de la freqüència és massa alta per a freqüència de mostreig de la pista.~%~\n"
-"                        Per a aquesta pista,la freqüència alta no pot ser~%~\n"
+"~aLa selecció de la freqüència és massa alta per a freqüència de mostreig de "
+"la pista.~%~\n"
+"                        Per a aquesta pista,la freqüència alta no pot "
+"ser~%~\n"
 "                        major que ~a Hz"
 
 #: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
@@ -15869,8 +16942,10 @@ msgid "Benjamin Schwartz and Steve Daulton"
 msgstr "Benjamin Schwartz i Steve Daulton"
 
 #: plug-ins/clipfix.ny
-msgid "Licensing confirmed under terms of the GNU General Public License version 2"
-msgstr "Publicat sota els termes de la versió 2 de la llicència pública general GNU"
+msgid ""
+"Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+"Publicat sota els termes de la versió 2 de la llicència pública general GNU"
 
 #: plug-ins/clipfix.ny
 msgid "Threshold of Clipping (%)"
@@ -15891,12 +16966,15 @@ msgstr "S'està realitzant la fosa de transició..."
 #: plug-ins/crossfadeclips.ny
 #, lisp-format
 msgid "Error.~%Invalid selection.~%More than 2 audio clips selected."
-msgstr "Error.~%La selecció és incorrecta.~% S'han seleccionat més de dos clips."
+msgstr ""
+"Error.~%La selecció és incorrecta.~% S'han seleccionat més de dos clips."
 
 #: plug-ins/crossfadeclips.ny
 #, lisp-format
 msgid "Error.~%Invalid selection.~%Empty space at start/ end of the selection."
-msgstr "Error.~%La selecció és incorrecta.~%Hi ha espai buit al principi o al final de la selecció."
+msgstr ""
+"Error.~%La selecció és incorrecta.~%Hi ha espai buit al principi o al final "
+"de la selecció."
 
 #: plug-ins/crossfadeclips.ny
 #, lisp-format
@@ -16051,7 +17129,8 @@ msgstr "Etiquetes d'intervals regulars"
 
 #: plug-ins/equalabel.ny
 msgid "Adding equally-spaced labels to the label track..."
-msgstr "S'estan afegint etiquetes a la mateixa distància en la pista d'etiquetes..."
+msgstr ""
+"S'estan afegint etiquetes a la mateixa distància en la pista d'etiquetes..."
 
 #. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
 #: plug-ins/equalabel.ny
@@ -16216,7 +17295,8 @@ msgid ""
 "                   Track sample rate is ~a Hz~%~\n"
 "                   Frequency must be less than ~a Hz."
 msgstr ""
-"Error:~%~%La freqüència (~a Hz) és massa alta per a la freqüència de mostreig de la pista. ~%~%~\n"
+"Error:~%~%La freqüència (~a Hz) és massa alta per a la freqüència de "
+"mostreig de la pista. ~%~%~\n"
 "                   La freqüència de mostreig és ~a Hz~%~\n"
 "                   La freqüència ha de ser menor que ~a Hz."
 
@@ -16304,8 +17384,12 @@ msgstr "La selecció ha de ser més llarga que %d mostres."
 
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
-msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
-msgstr "No s'ha trobat cap so. Proveu a reduir el nivell~% i a reduir al mínim la duració del silenci."
+msgid ""
+"No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound "
+"duration'."
+msgstr ""
+"No s'ha trobat cap so. Proveu a reduir el nivell~% i a reduir al mínim la "
+"duració del silenci."
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -16458,7 +17542,8 @@ msgid ""
 "                 Track sample rate is ~a Hz.~%~\n"
 "                 Frequency must be less than ~a Hz."
 msgstr ""
-"Error:~%~%La freqüència (~a Hz) és massa alta per a la freqüència de mostreig de la pista. ~%~%~\n"
+"Error:~%~%La freqüència (~a Hz) és massa alta per a la freqüència de "
+"mostreig de la pista. ~%~%~\n"
 "                   La freqüència de mostreig és ~a Hz~%~\n"
 "                   La freqüència ha de ser menor que ~a Hz."
 
@@ -16625,7 +17710,9 @@ msgstr "+/- 1"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Set 'Number of bars' to zero to enable the 'Rhythm track duration'."
-msgstr "Estableix el «Nombre de barres» a zero per a habilitar la «Duració de la pista de ritme»."
+msgstr ""
+"Estableix el «Nombre de barres» a zero per a habilitar la «Duració de la "
+"pista de ritme»."
 
 #: plug-ins/rhythmtrack.ny
 msgid "Number of bars"
@@ -16850,8 +17937,11 @@ msgstr "Freqüència de mostreig:~a Hz.  valors de mostra en ~a escala.~%~a~%~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
-msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr "~a   ~a~%~aFreqüència de mostreig: ~a Hz.~%S'ha processat la duració : ~a mostres ~a segons.~a"
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+"~a   ~a~%~aFreqüència de mostreig: ~a Hz.~%S'ha processat la duració : ~a "
+"mostres ~a segons.~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -16865,12 +17955,16 @@ msgstr ""
 #: plug-ins/sample-data-export.ny
 #, lisp-format
 msgid ""
-"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
-"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: "
+"~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  "
+"Unweighted RMS: ~a dB.~%~\n"
 "                  DC offset: ~a~a"
 msgstr ""
-"~a~%Freqüència de mostreig: ~a Hz. Valors de mostra en ~a escala. ~a.~%~aS'ha processat la duració: ~a ~\n"
-"                  mostres, ~a segons.~%Amplitud del pic: ~a (lineal) ~a dB.  RMS sense pes: ~a dB.~%~\n"
+"~a~%Freqüència de mostreig: ~a Hz. Valors de mostra en ~a escala. ~a."
+"~%~aS'ha processat la duració: ~a ~\n"
+"                  mostres, ~a segons.~%Amplitud del pic: ~a (lineal) ~a dB.  "
+"RMS sense pes: ~a dB.~%~\n"
 "                  Desplaçament DC : ~a~a"
 
 #: plug-ins/sample-data-export.ny
@@ -17186,8 +18280,12 @@ msgstr ""
 
 #: plug-ins/vocalrediso.ny
 #, lisp-format
-msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
-msgstr "Posició panoràmica:~a~%Els canals esquerre i dret són correlatius per aproximadament ~a %. Açò significa:~%~a~%"
+msgid ""
+"Pan position: ~a~%The left and right channels are correlated by about ~a %. "
+"This means:~%~a~%"
+msgstr ""
+"Posició panoràmica:~a~%Els canals esquerre i dret són correlatius per "
+"aproximadament ~a %. Açò significa:~%~a~%"
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
@@ -17198,39 +18296,47 @@ msgid ""
 msgstr ""
 " Els dos canals són idèntics, p. ex. dual mono.\n"
 "   No es pot eliminar el centre.\n"
-"      Qualsevol diferència restant pot derivar-se d'una codificació amb pèrdua."
+"      Qualsevol diferència restant pot derivar-se d'una codificació amb "
+"pèrdua."
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid ""
-" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+" - The two Channels are strongly related, i.e. nearly mono or extremely "
+"panned.\n"
 "                Most likely, the center extraction will be poor."
 msgstr ""
-" - Els dos canals estan estretament relacionats, p. ex. i.e. quasi mono o mono molt panoramitzat.\n"
+" - Els dos canals estan estretament relacionats, p. ex. i.e. quasi mono o "
+"mono molt panoramitzat.\n"
 "   El més probable és que l'extracció del centre siga pobra."
 
 #: plug-ins/vocalrediso.ny
-msgid " - A fairly good value, at least stereo in average and not too wide spread."
+msgid ""
+" - A fairly good value, at least stereo in average and not too wide spread."
 msgstr " - Un valor adequat, almenys estèreo en la mitjana i no massa  estés."
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid ""
 " - An ideal value for Stereo.\n"
-"                However, the center extraction depends also on the used reverb."
+"                However, the center extraction depends also on the used "
+"reverb."
 msgstr ""
 " - Un valor ideal per a estèreo.\n"
-"  Així i tot, l'extracció del centre també depén de la reverberació utilitzada."
+"  Així i tot, l'extracció del centre també depén de la reverberació "
+"utilitzada."
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid ""
 " - The two channels are almost not related.\n"
-"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                Either you have only noise or the piece is mastered in a "
+"unbalanced manner.\n"
 "                The center extraction can still be good though."
 msgstr ""
 " - Els dos canals quasi no estan relacionats.\n"
-"   O sols hi ha soroll o s'ha editat la peça original de manera desequilibrada.\n"
+"   O sols hi ha soroll o s'ha editat la peça original de manera "
+"desequilibrada.\n"
 "   De totes formes, es pot extraure el centre correctament."
 
 #: plug-ins/vocalrediso.ny
@@ -17249,7 +18355,8 @@ msgstr ""
 msgid ""
 " - The two channels are nearly identical.\n"
 "                  Obviously, a pseudo stereo effect has been used\n"
-"                  to spread the signal over the physical distance between the speakers.\n"
+"                  to spread the signal over the physical distance between "
+"the speakers.\n"
 "                  Don't expect good results from a center removal."
 msgstr ""
 " - Els dos canals són pràcticament idèntics.\n"
@@ -17351,7 +18458,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Captura tota la pantalla"
 
 #~ msgid "Wait 5 seconds and capture frontmost window/dialog"
-#~ msgstr "Espera 5 segons i captura la finestra o el diàleg que es trobe en primer pla"
+#~ msgstr ""
+#~ "Espera 5 segons i captura la finestra o el diàleg que es trobe en primer "
+#~ "pla"
 
 #~ msgid "Capture part of a project window"
 #~ msgstr "Captura part d'una finestra del projecte"
@@ -17587,7 +18696,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Script"
 
 #~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
-#~ msgstr "Scripts de Nyquist (*.ny)|*.ny|scripts de Lisp (*.lsp)|*.lsp|Tots els fitxers|*"
+#~ msgstr ""
+#~ "Scripts de Nyquist (*.ny)|*.ny|scripts de Lisp (*.lsp)|*.lsp|Tots els "
+#~ "fitxers|*"
 
 #~ msgid "Script was not saved."
 #~ msgstr "No s'ha guardat l'script."
@@ -17607,8 +18718,11 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "(C) 2009 by Leland Lucius"
 #~ msgstr "(C) 2009 per Leland Lucius"
 
-#~ msgid "External Audacity module which provides a simple IDE for writing effects."
-#~ msgstr "Mòdul extern d'Audacity que proporciona un IDE senzill per als efectes d'escriptura."
+#~ msgid ""
+#~ "External Audacity module which provides a simple IDE for writing effects."
+#~ msgstr ""
+#~ "Mòdul extern d'Audacity que proporciona un IDE senzill per als efectes "
+#~ "d'escriptura."
 
 #~ msgid "Nyquist Effect Workbench"
 #~ msgstr "Banc de treball d'efectes de Nyquist"
@@ -17708,7 +18822,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr "&nbsp; &nbsp; El nom <b>Audacity</b> és una marca registrada de Dominic Mazzoni.<br><br>"
+#~ msgstr ""
+#~ "&nbsp; &nbsp; El nom <b>Audacity</b> és una marca registrada de Dominic "
+#~ "Mazzoni.<br><br>"
 
 #~ msgid "Sound card mixer support"
 #~ msgstr "Compatibilitat del mesclador de la targeta de so"
@@ -17722,29 +18838,55 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "Out of memory!"
 #~ msgstr "No hi ha prou memòria."
 
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
-#~ msgstr "S'ha parat l'ajustament automàtic del nivell de gravació. No és possible optimitzar-lo més. Encara és massa alt."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too high."
+#~ msgstr ""
+#~ "S'ha parat l'ajustament automàtic del nivell de gravació. No és possible "
+#~ "optimitzar-lo més. Encara és massa alt."
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr "L'ajustament automàtic del nivell de gravació ha abaixat el volum a %f."
+#~ msgstr ""
+#~ "L'ajustament automàtic del nivell de gravació ha abaixat el volum a %f."
 
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
-#~ msgstr "S'ha parat l'ajustament automàtic del nivell de gravació. No és possible optimitzar-lo més. Encara és massa baix."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too low."
+#~ msgstr ""
+#~ "S'ha parat l'ajustament automàtic del nivell de gravació. No és possible "
+#~ "optimitzar-lo més. Encara és massa baix."
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr "L'ajustament automàtic del nivell de gravació ha apujat el volum a %.2f."
+#~ msgstr ""
+#~ "L'ajustament automàtic del nivell de gravació ha apujat el volum a %.2f."
 
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
-#~ msgstr "S'ha parat l'ajustament automàtic del nivell de gravació. S'ha excedit el nombre total d'anàlisis sense trobar un volum acceptable. Encara és massa alt."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too high."
+#~ msgstr ""
+#~ "S'ha parat l'ajustament automàtic del nivell de gravació. S'ha excedit el "
+#~ "nombre total d'anàlisis sense trobar un volum acceptable. Encara és massa "
+#~ "alt."
 
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
-#~ msgstr "S'ha parat l'ajustament automàtic del nivell de gravació. S'ha excedit el nombre total d'anàlisis sense trobar un volum acceptable. Encara és massa baix."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too low."
+#~ msgstr ""
+#~ "S'ha parat l'ajustament automàtic del nivell de gravació. S'ha excedit el "
+#~ "nombre total d'anàlisis sense trobar un volum acceptable. Encara és massa "
+#~ "baix."
 
 #, c-format
-#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
-#~ msgstr "S'ha parat l'ajustament automàtic del nivell de gravació. %.2f sembla un volum acceptable."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+#~ "volume."
+#~ msgstr ""
+#~ "S'ha parat l'ajustament automàtic del nivell de gravació. %.2f sembla un "
+#~ "volum acceptable."
 
 #, c-format
 #~ msgid "Received %d while opening devices\n"
@@ -17801,7 +18943,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "Copying these files into your project will remove this dependency.\n"
 #~ "This is safer, but needs more disk space."
 #~ msgstr ""
-#~ "Si copieu aquests fitxers en el vostre projecte s'eliminarà aquesta dependència.\n"
+#~ "Si copieu aquests fitxers en el vostre projecte s'eliminarà aquesta "
+#~ "dependència.\n"
 #~ "Açò és més segur però necessita més espai al disc."
 
 #~ msgid ""
@@ -17812,8 +18955,10 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr ""
 #~ "\n"
 #~ "\n"
-#~ "Els fitxers mostrats com DESAPAREGUTS s'han mogut o eliminat i no es poden copiar.\n"
-#~ "Recupereu-los en la seua ubicació original per tal de poder copiar-los en el projecte."
+#~ "Els fitxers mostrats com DESAPAREGUTS s'han mogut o eliminat i no es "
+#~ "poden copiar.\n"
+#~ "Recupereu-los en la seua ubicació original per tal de poder copiar-los en "
+#~ "el projecte."
 
 #~ msgid "Project Dependencies"
 #~ msgstr "Dependències del projecte"
@@ -17859,19 +19004,26 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "Missing"
 #~ msgstr "Fitxers desapareguts"
 
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
-#~ msgstr "Si ho feu, el vostre projecte no es guardarà al disc. És això el que voleu?"
+#~ msgid ""
+#~ "If you proceed, your project will not be saved to disk. Is this what you "
+#~ "want?"
+#~ msgstr ""
+#~ "Si ho feu, el vostre projecte no es guardarà al disc. És això el que "
+#~ "voleu?"
 
 #~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio files. \n"
+#~ "Your project is self-contained; it does not depend on any external audio "
+#~ "files. \n"
 #~ "\n"
 #~ "Some older Audacity projects may not be self-contained, and care \n"
 #~ "is needed to keep their external dependencies in the right place.\n"
 #~ "New projects will be self-contained and are less risky."
 #~ msgstr ""
-#~ "El vostre projecte actualment és «autosuficient»; no depén de cap fitxer extern d'àudio. \n"
+#~ "El vostre projecte actualment és «autosuficient»; no depén de cap fitxer "
+#~ "extern d'àudio. \n"
 #~ "\n"
-#~ "Alguns projectes antics d'Audacity poden no ser «autosuficients» , i cal tenir cura per a mantenir\n"
+#~ "Alguns projectes antics d'Audacity poden no ser «autosuficients» , i cal "
+#~ "tenir cura per a mantenir\n"
 #~ "les seues dependències externes en el lloc adequat.\n"
 #~ "Els nous projectes seran «autosuficients» i tenen menys risc."
 
@@ -17881,35 +19033,66 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "Failed to find compatible FFmpeg libraries."
 #~ msgstr "No s'han trobat biblioteques FFmpeg compatibles."
 
-#~ msgid "<br><br>The version of Audacity you are using is an <b>Alpha test version</b>."
-#~ msgstr "<br><br>La versió he version d' Audacity que esteu utilitzant és una <b>versió de prova Alpha</b>."
+#~ msgid ""
+#~ "<br><br>The version of Audacity you are using is an <b>Alpha test "
+#~ "version</b>."
+#~ msgstr ""
+#~ "<br><br>La versió he version d' Audacity que esteu utilitzant és una "
+#~ "<b>versió de prova Alpha</b>."
 
-#~ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</b>."
-#~ msgstr "<br><br>La versió he version d' Audacity que esteu utilitzant és una <b>versió de prova Beta</b>."
+#~ msgid ""
+#~ "<br><br>The version of Audacity you are using is a <b>Beta test version</"
+#~ "b>."
+#~ msgstr ""
+#~ "<br><br>La versió he version d' Audacity que esteu utilitzant és una "
+#~ "<b>versió de prova Beta</b>."
 
-#~ msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
-#~ msgstr "Us recomanem que utilitzeu la nostra versió estable alliberada més recent, que conté documentació i suport complet.<br><br>"
+#~ msgid ""
+#~ "We strongly recommend that you use our latest stable released version, "
+#~ "which has full documentation and support.<br><br>"
+#~ msgstr ""
+#~ "Us recomanem que utilitzeu la nostra versió estable alliberada més "
+#~ "recent, que conté documentació i suport complet.<br><br>"
 
-#~ msgid "You can help us get Audacity ready for release by joining our [[https://www.audacityteam.org/community/|community]].<hr><br><br>"
-#~ msgstr "Podeu ajudar-nos a fer que Audacity estiga preparat per al seu llançament unint-vos a la nostra [[https://www.audacityteam.org/community/|communitat]].<hr><br><br>"
+#~ msgid ""
+#~ "You can help us get Audacity ready for release by joining our [[https://"
+#~ "www.audacityteam.org/community/|community]].<hr><br><br>"
+#~ msgstr ""
+#~ "Podeu ajudar-nos a fer que Audacity estiga preparat per al seu llançament "
+#~ "unint-vos a la nostra [[https://www.audacityteam.org/community/|"
+#~ "communitat]].<hr><br><br>"
 
 #~ msgid "How to get help"
 #~ msgstr "Com obtenir ajuda"
 
-#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-#~ msgstr "[[https://forum.audacityteam.org/|Fòrum]] - plantegeu directament la vostra pregunta en línia."
+#~ msgid ""
+#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
+#~ "online."
+#~ msgstr ""
+#~ "[[https://forum.audacityteam.org/|Fòrum]] - plantegeu directament la "
+#~ "vostra pregunta en línia."
 
 #~ msgid "Project check read faulty Sequence tags."
-#~ msgstr "La comprovació del projecte ha llegit etiquetes de seqüència defectuoses."
+#~ msgstr ""
+#~ "La comprovació del projecte ha llegit etiquetes de seqüència defectuoses."
 
 #~ msgid "Close project immediately with no changes"
 #~ msgstr "Tanca el projecte ara mateix sense fer cap canvi"
 
-#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
-#~ msgstr "Continua amb les reparacions indicades en el registre, i comprova si hi ha més errors. Açò guardarà el projecte en el seu estat actual, a no ser que  trieu «Tanca el projecte de forma immediata» en avisos posteriors d'error."
+#~ msgid ""
+#~ "Continue with repairs noted in log, and check for more errors. This will "
+#~ "save the project in its current state, unless you \"Close project "
+#~ "immediately\" on further error alerts."
+#~ msgstr ""
+#~ "Continua amb les reparacions indicades en el registre, i comprova si hi "
+#~ "ha més errors. Açò guardarà el projecte en el seu estat actual, a no ser "
+#~ "que  trieu «Tanca el projecte de forma immediata» en avisos posteriors "
+#~ "d'error."
 
 #~ msgid "Warning - Problems Reading Sequence Tags"
-#~ msgstr "Advertència - Hi ha hagut problemes mentre es llegia la seqüència d'etiquetes"
+#~ msgstr ""
+#~ "Advertència - Hi ha hagut problemes mentre es llegia la seqüència "
+#~ "d'etiquetes"
 
 #~ msgid "Inspecting project file data"
 #~ msgstr "S'estan inspeccionant les dades del fitxer del projecte"
@@ -17937,7 +19120,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "(«fitxers referenciats per àlies»). Audacity no pot\n"
 #~ "recuperar aquests fitxers de manera automàtica.\n"
 #~ "\n"
-#~ "Si escolliu la primera o la segona opció de les que es mostren a continuació, \n"
+#~ "Si escolliu la primera o la segona opció de les que es mostren a "
+#~ "continuació, \n"
 #~ "podeu intentar localitzar i restablir els fitxers desapareguts \n"
 #~ "en la seua ubicació prèvia. \n"
 #~ "Observeu que en la segona opció, la forma d'ona \n"
@@ -17951,7 +19135,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Tracta l'àudio perdut com a silenci (només durant aquesta sessió)"
 
 #~ msgid "Replace missing audio with silence (permanent immediately)."
-#~ msgstr "Substitueix l'àudio perdut per silenci (de manera immediata i permanent)."
+#~ msgstr ""
+#~ "Substitueix l'àudio perdut per silenci (de manera immediata i permanent)."
 
 #~ msgid "Warning - Missing Aliased File(s)"
 #~ msgstr "Advertència - Falten fitxers referenciats per àlies"
@@ -17969,7 +19154,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "a partir de l'àudio actual en el projecte."
 
 #~ msgid "Regenerate alias summary files (safe and recommended)"
-#~ msgstr "Regenera el resum de fitxers amb àlies (l'opció més segura i recomanada)"
+#~ msgstr ""
+#~ "Regenera el resum de fitxers amb àlies (l'opció més segura i recomanada)"
 
 #~ msgid "Fill in silence for missing display data (this session only)"
 #~ msgstr "Ompli les dades perdudes amb silencis (només durant aquesta sessió)"
@@ -18009,13 +19195,15 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "podria no mostrar el silenci."
 
 #~ msgid "Replace missing audio with silence (permanent immediately)"
-#~ msgstr "Substitueix l'àudio perdut per silenci (de manera immediata i permanent)."
+#~ msgstr ""
+#~ "Substitueix l'àudio perdut per silenci (de manera immediata i permanent)."
 
 #~ msgid "Warning - Missing Audio Data Block File(s)"
 #~ msgstr "Advertència - Falten fitxers de blocs de dades d'àudio"
 
 #~ msgid "Continue without deleting; ignore the extra files this session"
-#~ msgstr "Continua sense eliminar; ignora els fitxers extres en aquesta sessió"
+#~ msgstr ""
+#~ "Continua sense eliminar; ignora els fitxers extres en aquesta sessió"
 
 #~ msgid "Delete orphan files (permanent immediately)"
 #~ msgstr "Elimina els fitxers orfes (de manera immediata i permanent)"
@@ -18038,7 +19226,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 
 #, c-format
 #~ msgid "This operation cannot be done until importation of %s completes."
-#~ msgstr "Aquesta operació no es pot realitzar fins que no es complete la importació de %s."
+#~ msgstr ""
+#~ "Aquesta operació no es pot realitzar fins que no es complete la "
+#~ "importació de %s."
 
 #~ msgid "Get Track Info"
 #~ msgstr "Obtín la informació de la pista"
@@ -18060,7 +19250,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 
 #, c-format
 #~ msgid "Audacity needs the file %s to create MP3s."
-#~ msgstr "Audacity necessita trobar el fitxer %s per a poder crear fitxers MP3."
+#~ msgstr ""
+#~ "Audacity necessita trobar el fitxer %s per a poder crear fitxers MP3."
 
 #, c-format
 #~ msgid "Location of %s:"
@@ -18079,10 +19270,12 @@ msgstr "Error.~%Es requereix la pista estèreo."
 
 #, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
+#~ "with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "Esteu enllaçant a lame_enc.dll v%d.%d. Aquesta versió no és compatible amb Audacity %d.%d.%d.\n"
+#~ "Esteu enllaçant a lame_enc.dll v%d.%d. Aquesta versió no és compatible "
+#~ "amb Audacity %d.%d.%d.\n"
 #~ "Descarregueu l'última versió de «LAME per a Audacity»."
 
 #, fuzzy
@@ -18145,7 +19338,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 
 #, c-format
 #~ msgid "%s %2.0f%% complete. Click to change task focal point."
-#~ msgstr "%s %2.0f%% completa. Feu clic per a canviar el punt focal de la tasca."
+#~ msgstr ""
+#~ "%s %2.0f%% completa. Feu clic per a canviar el punt focal de la tasca."
 
 #, fuzzy
 #~ msgid "Preferences for Application"
@@ -18192,7 +19386,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Volum de gravació: %.2f"
 
 #~ msgid "Recording Volume (Unavailable; use system mixer.)"
-#~ msgstr "Volum de gravació (no disponible; utilitzeu el mesclador del sistema.)"
+#~ msgstr ""
+#~ "Volum de gravació (no disponible; utilitzeu el mesclador del sistema.)"
 
 #, fuzzy, c-format
 #~ msgid "Playback Volume: %.2f (emulated)"
@@ -18203,7 +19398,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Volum de reproducció: %s"
 
 #~ msgid "Playback Volume (Unavailable; use system mixer.)"
-#~ msgstr "Volum de reproducció (no disponible; utilitzeu el mesclador del sistema.)"
+#~ msgstr ""
+#~ "Volum de reproducció (no disponible; utilitzeu el mesclador del sistema.)"
 
 #~ msgid "Mi&xer Toolbar"
 #~ msgstr "Barra d'eines del me&sclador"
@@ -18296,20 +19492,24 @@ msgstr "Error.~%Es requereix la pista estèreo."
 
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was "
+#~ "unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
+#~ "locations of the missing files."
 #~ msgstr ""
 #~ "No s'han trobat un o més fitxers d'àudio externs.\n"
-#~ "És possible que s'hagen mogut, eliminat o que s'haja desmuntat el controlador on estaven.\n"
+#~ "És possible que s'hagen mogut, eliminat o que s'haja desmuntat el "
+#~ "controlador on estaven.\n"
 #~ "S'ha substituït el silenci de l'àudio afectat.\n"
 #~ "El primer fitxer desaparegut detectat és:\n"
 #~ "%s\n"
 #~ "Pot haver-hi altres fitxers desapareguts.\n"
-#~ "Seleccioneu Ajuda > Diagnòstic >Comprova les dependències per a visualitzar una llista de les ubicacions dels fitxers desapareguts."
+#~ "Seleccioneu Ajuda > Diagnòstic >Comprova les dependències per a "
+#~ "visualitzar una llista de les ubicacions dels fitxers desapareguts."
 
 #~ msgid "Files Missing"
 #~ msgstr "Fitxers desapareguts"
@@ -18321,7 +19521,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "descodifica i guarda automàticament el fitxer"
 
 #~ msgid "After recovery, save the project to save the changes to disk."
-#~ msgstr "Després de recuperar-lo, guardeu el projecte per tal de guardar els canvis en el disc."
+#~ msgstr ""
+#~ "Després de recuperar-lo, guardeu el projecte per tal de guardar els "
+#~ "canvis en el disc."
 
 #~ msgid "Discard Projects"
 #~ msgstr "Descarta els projectes"
@@ -18333,7 +19535,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Confirmeu per a descartar els projectes"
 
 #~ msgid "Could not enumerate files in auto save directory."
-#~ msgstr "No s'han pogut enumerar els fitxers de la carpeta de guardament automàtic."
+#~ msgstr ""
+#~ "No s'han pogut enumerar els fitxers de la carpeta de guardament automàtic."
 
 #~ msgid "No Action"
 #~ msgstr "Cap acció"
@@ -18365,22 +19568,31 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "/%s/%s%s"
 
 #~ msgid "Ogg Vorbis support is not included in this build of Audacity"
-#~ msgstr "El suport al format Ogg Vorbis no s'ha inclòs en aquesta distribució d'Audacity"
+#~ msgstr ""
+#~ "El suport al format Ogg Vorbis no s'ha inclòs en aquesta distribució "
+#~ "d'Audacity"
 
 #~ msgid "FLAC support is not included in this build of Audacity"
-#~ msgstr "El suport al format FLAC no s'ha inclòs en aquesta distribució d'Audacity"
+#~ msgstr ""
+#~ "El suport al format FLAC no s'ha inclòs en aquesta distribució d'Audacity"
 
 #~ msgid "Command %s not implemented yet"
 #~ msgstr "L'ordre %s encara no s'ha implementat"
 
 #~ msgid ""
-#~ "Your project is currently self-contained; it does not depend on any external audio files. \n"
+#~ "Your project is currently self-contained; it does not depend on any "
+#~ "external audio files. \n"
 #~ "\n"
-#~ "If you change the project to a state that has external dependencies on imported files, it will no longer be self-contained. If you then Save without copying those files in, you may lose data."
+#~ "If you change the project to a state that has external dependencies on "
+#~ "imported files, it will no longer be self-contained. If you then Save "
+#~ "without copying those files in, you may lose data."
 #~ msgstr ""
-#~ "El vostre projecte actualment és «autosuficient»; no depèn de cap fitxer extern d'àudio. \n"
+#~ "El vostre projecte actualment és «autosuficient»; no depèn de cap fitxer "
+#~ "extern d'àudio. \n"
 #~ "\n"
-#~ "Si modifiqueu el projecte fent que tinga dependències externes de fitxers importats, deixarà de ser «autosuficient». Aleshores, si el guardeu sense copiar-hi tots els fitxers externs, podeu perdre dades."
+#~ "Si modifiqueu el projecte fent que tinga dependències externes de fitxers "
+#~ "importats, deixarà de ser «autosuficient». Aleshores, si el guardeu sense "
+#~ "copiar-hi tots els fitxers externs, podeu perdre dades."
 
 #~ msgid "Cleaning project temporary files"
 #~ msgstr "S'estan netejant els fitxers temporals"
@@ -18421,8 +19633,11 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "Reclaimable Space"
 #~ msgstr "Espai recuperable"
 
-#~ msgid "Audacity cannot start because the settings file at %s is not writable."
-#~ msgstr "Audacity no es pot iniciar perquè el fitxer de configuració en %s no es pot escriure."
+#~ msgid ""
+#~ "Audacity cannot start because the settings file at %s is not writable."
+#~ msgstr ""
+#~ "Audacity no es pot iniciar perquè el fitxer de configuració en %s no es "
+#~ "pot escriure."
 
 #~ msgid ""
 #~ "This file was saved by Audacity version %s. The format has changed. \n"
@@ -18430,15 +19645,20 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up "
+#~ "first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
-#~ "Aquest fitxer es va guardar amb la versió d'Audacity %s. El format ha canviat. \n"
+#~ "Aquest fitxer es va guardar amb la versió d'Audacity %s. El format ha "
+#~ "canviat. \n"
 #~ "\n"
-#~ "Audacity pot intentar obrir i guardar aquest fitxer, però el fet de guardar-lo amb el nou format\n"
-#~ "farà que no es puga obrir amb versions antigues (1.2 o anteriors) del programa. \n"
-#~ "Audacity pot fer malbé el fitxer en obrir-lo. Assegureu-vos de fer abans una còpia de seguretat. \n"
+#~ "Audacity pot intentar obrir i guardar aquest fitxer, però el fet de "
+#~ "guardar-lo amb el nou format\n"
+#~ "farà que no es puga obrir amb versions antigues (1.2 o anteriors) del "
+#~ "programa. \n"
+#~ "Audacity pot fer malbé el fitxer en obrir-lo. Assegureu-vos de fer abans "
+#~ "una còpia de seguretat. \n"
 #~ "Voleu obrir ara aquest fitxer?"
 
 #~ msgid "1.0 or earlier"
@@ -18467,53 +19687,74 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "Could not save project. Path not found. Try creating \n"
 #~ "directory \"%s\" before saving project with this name."
 #~ msgstr ""
-#~ "No s'ha pogut guardar el projecte. No s'ha trobat el camí. Intenteu-ho creant \n"
+#~ "No s'ha pogut guardar el projecte. No s'ha trobat el camí. Intenteu-ho "
+#~ "creant \n"
 #~ "un directori «%s» abans de guardar el projecte amb aquest nom."
 
 #~ msgid ""
-#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio file.\n"
+#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio "
+#~ "file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
 #~ "Lossless copies of project are a good way to backup your project, \n"
 #~ "with no loss of quality, but the projects are large.\n"
 #~ msgstr ""
-#~ "«Guarda una còpia del projecte sense pèrdua» és per a un projecte d'Audacity, no per a un fitxer d'àudio.\n"
-#~ "Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu «Exporta».\n"
+#~ "«Guarda una còpia del projecte sense pèrdua» és per a un projecte "
+#~ "d'Audacity, no per a un fitxer d'àudio.\n"
+#~ "Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu "
+#~ "«Exporta».\n"
 #~ "\n"
-#~ "Les còpies sense pèrdua del projecte són una bona manera de fer-ne una còpia de seguretat,\n"
+#~ "Les còpies sense pèrdua del projecte són una bona manera de fer-ne una "
+#~ "còpia de seguretat,\n"
 #~ "sense pèrdua de qualitat però engrandint-lo.\n"
 
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "%sAnomena i guarda una còpia comprimida del projecte «%s»..."
 
 #~ msgid ""
-#~ "'Save Compressed Copy of Project' is for an Audacity project, not an audio file.\n"
+#~ "'Save Compressed Copy of Project' is for an Audacity project, not an "
+#~ "audio file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
-#~ "Compressed project files are a good way to transmit your project online, \n"
+#~ "Compressed project files are a good way to transmit your project "
+#~ "online, \n"
 #~ "but they have some loss of fidelity.\n"
 #~ msgstr ""
-#~ "«Guarda una còpia comprimida del projecte» és per a projectes d'Audacity, no per a fitxers de so.\n"
-#~ "Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu «Exporta».\n"
+#~ "«Guarda una còpia comprimida del projecte» és per a projectes d'Audacity, "
+#~ "no per a fitxers de so.\n"
+#~ "Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu "
+#~ "«Exporta».\n"
 #~ " \n"
 #~ "\n"
-#~ "El fitxers del projecte comprimits són una bona manera de transmetre el projecte en línia,\n"
+#~ "El fitxers del projecte comprimits són una bona manera de transmetre el "
+#~ "projecte en línia,\n"
 #~ "però comporten algunes pèrdues de fidelitat.\n"
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
 #~ msgstr "No s'ha pogut convertir el projecte d'Audacity 1.0 al nou format."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "No s'ha pogut eliminar el fitxer de guardament automàtic antic"
 
 #~ msgid "On-demand import and waveform calculation complete."
-#~ msgstr "S'ha completat la importació sol·licitada i el càlcul de forma d'ona."
+#~ msgstr ""
+#~ "S'ha completat la importació sol·licitada i el càlcul de forma d'ona."
 
-#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
-#~ msgstr "S'ha completat la importació. S'està executant %d dels càlculs sol·licitats de la forma d'ona. S'ha completat un %2.0f%% del total."
+#~ msgid ""
+#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
+#~ "%2.0f%% complete."
+#~ msgstr ""
+#~ "S'ha completat la importació. S'està executant %d dels càlculs "
+#~ "sol·licitats de la forma d'ona. S'ha completat un %2.0f%% del total."
 
-#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
-#~ msgstr "S'ha completat la importació. S'està executant el càlcul sol·licitat de la forma d'ona. S'ha completat %2.0f%%."
+#~ msgid ""
+#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
+#~ "complete."
+#~ msgstr ""
+#~ "S'ha completat la importació. S'està executant el càlcul sol·licitat de "
+#~ "la forma d'ona. S'ha completat %2.0f%%."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -18528,14 +19769,19 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #, fuzzy
 #~ msgid ""
 #~ "You are attempting to overwrite an aliased file that is missing.\n"
-#~ "The file cannot be written because the path is needed to restore the original audio to the project.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of all missing files.\n"
+#~ "The file cannot be written because the path is needed to restore the "
+#~ "original audio to the project.\n"
+#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of "
+#~ "all missing files.\n"
 #~ "If you still wish to export, please choose a different filename or folder."
 #~ msgstr ""
 #~ "Esteu intentant sobreescriure un fitxer referenciat per àlies que falta.\n"
-#~ "               No es pot escriure el fitxer perquè es necessita el camí per a recuperar l'àudio original del projecte .\n"
-#~ "               Trieu Ajuda > Diagnòstics > Marqueu Dependències per a veure la ubicació dels fitxers desapareguts.\n"
-#~ "               Si encara voleu exportar-lo, trieu un nom de fitxer o una carpeta diferents."
+#~ "               No es pot escriure el fitxer perquè es necessita el camí "
+#~ "per a recuperar l'àudio original del projecte .\n"
+#~ "               Trieu Ajuda > Diagnòstics > Marqueu Dependències per a "
+#~ "veure la ubicació dels fitxers desapareguts.\n"
+#~ "               Si encara voleu exportar-lo, trieu un nom de fitxer o una "
+#~ "carpeta diferents."
 
 #~ msgid ""
 #~ "\"%s\" is an Audacity Project file. \n"
@@ -18552,10 +19798,14 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "S'ha produït un error en descodificar el fitxer"
 
 #~ msgid ""
-#~ "When importing uncompressed audio files you can either copy them into the project, or read them directly from their current location (without copying).\n"
+#~ "When importing uncompressed audio files you can either copy them into the "
+#~ "project, or read them directly from their current location (without "
+#~ "copying).\n"
 #~ "\n"
 #~ msgstr ""
-#~ "Quan importeu fitxers d'àudio sense comprimir, heu de copiar-los en el projecte o bé podeu llegir-los des de la seua ubicació (sense copiar-los).\n"
+#~ "Quan importeu fitxers d'àudio sense comprimir, heu de copiar-los en el "
+#~ "projecte o bé podeu llegir-los des de la seua ubicació (sense copiar-"
+#~ "los).\n"
 #~ "\n"
 
 #~ msgid ""
@@ -18569,17 +19819,26 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "Your current preference is set to read directly.\n"
 #~ "\n"
 #~ msgstr ""
-#~ "La vostra preferència actual s'ha configurat per a ser llegida directament.\n"
+#~ "La vostra preferència actual s'ha configurat per a ser llegida "
+#~ "directament.\n"
 #~ "\n"
 
 #~ msgid ""
-#~ "Reading the files directly allows you to play or edit them almost immediately. This is less safe than copying in, because you must retain the files with their original names in their original locations.\n"
-#~ "Help > Diagnostics > Check Dependencies will show the original names and locations of any files that you are reading directly.\n"
+#~ "Reading the files directly allows you to play or edit them almost "
+#~ "immediately. This is less safe than copying in, because you must retain "
+#~ "the files with their original names in their original locations.\n"
+#~ "Help > Diagnostics > Check Dependencies will show the original names and "
+#~ "locations of any files that you are reading directly.\n"
 #~ "\n"
 #~ "How do you want to import the current file(s)?"
 #~ msgstr ""
-#~ "Si llegiu els fitxers directament podeu reproduir-los o editar-los quasi de manera immediata. Açò és menys segur que copiar-los perquè heu de guardar els fitxers amb els seu nom original en les ubicacions originals.\n"
-#~ "Ajuda > Diagnòstic >Comprova les dependències, mostrarà els noms originals i les ubicacions de qualsevol fitxer que estigueu llegint directament.\n"
+#~ "Si llegiu els fitxers directament podeu reproduir-los o editar-los quasi "
+#~ "de manera immediata. Açò és menys segur que copiar-los perquè heu de "
+#~ "guardar els fitxers amb els seu nom original en les ubicacions "
+#~ "originals.\n"
+#~ "Ajuda > Diagnòstic >Comprova les dependències, mostrarà els noms "
+#~ "originals i les ubicacions de qualsevol fitxer que estigueu llegint "
+#~ "directament.\n"
 #~ "\n"
 #~ "Com voleu importar els fitxers actuals?"
 
@@ -18614,13 +19873,16 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Memòria intermèdia d'àudio"
 
 #~ msgid "Play and/or record using &RAM (useful for slow drives)"
-#~ msgstr "Reprodueix i/o grava utilitzant la &RAM (recomanable per a dispositius lents)"
+#~ msgstr ""
+#~ "Reprodueix i/o grava utilitzant la &RAM (recomanable per a dispositius "
+#~ "lents)"
 
 #~ msgid "Mi&nimum Free Memory (MB):"
 #~ msgstr "Memòria lliure mí&nima (MB):"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no longer\n"
+#~ "If the available system memory falls below this value, audio will no "
+#~ "longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
 #~ "Si la memòria disponible baixa per davall d'aquest valor, l'àudio\n"
@@ -18667,7 +19929,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "No silences found.\n"
 #~ "Try reducing the silence level and\n"
 #~ "the minimum silence duration."
-#~ msgstr "No s'ha trobat cap silenci. Proveu a reduir el nivell~% i a reduir al mínim la duració del silenci."
+#~ msgstr ""
+#~ "No s'ha trobat cap silenci. Proveu a reduir el nivell~% i a reduir al "
+#~ "mínim la duració del silenci."
 
 #~ msgid "Sound Finder"
 #~ msgstr "Cercador de so"
@@ -18710,18 +19974,24 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "<h3>Audacity "
 #~ msgstr "<h3>Audacity  "
 
-#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
-#~ msgstr "p><br>&nbsp; &nbsp; El programari d'<b>Audacity<sup>&reg;</sup></b> és propietat intel·lectual de l'equip d'Audacity &copy; 1999-2018.<br>"
+#~ msgid ""
+#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
+#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgstr ""
+#~ "p><br>&nbsp; &nbsp; El programari d'<b>Audacity<sup>&reg;</sup></b> és "
+#~ "propietat intel·lectual de l'equip d'Audacity &copy; 1999-2018.<br>"
 
 #~ msgid "mkdir in DirManager::MakeBlockFilePath failed."
 #~ msgstr "mkdir en DirManager:: ha fallat MakeBlockFilePath."
 
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete project check."
+#~ "Please consider saving and reloading the project to perform a complete "
+#~ "project check."
 #~ msgstr ""
 #~ "Audacity ha trobat un fitxer de blocs orfe: %s. \n"
-#~ "Considereu guardar i tornar a carregar el projecte per a fer una comprovació completa del projecte."
+#~ "Considereu guardar i tornar a carregar el projecte per a fer una "
+#~ "comprovació completa del projecte."
 
 #~ msgid "Unable to open/create test file."
 #~ msgstr "No s'ha pogut obrir o crear el fitxer de proves."
@@ -18751,7 +20021,9 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "GB"
 
 #, fuzzy
-#~ msgid "The module \"%s\" does not provide a version string. It will not be loaded."
+#~ msgid ""
+#~ "The module \"%s\" does not provide a version string. It will not be "
+#~ "loaded."
 #~ msgstr "El mòdul %s no proporciona una cadena de versió. No s'hi carregarà."
 
 #, fuzzy
@@ -18763,23 +20035,40 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "No s'hi carregarà."
 
 #, fuzzy
-#~ msgid "The module \"%s\" does not provide any of the required functions. It will not be loaded."
+#~ msgid ""
+#~ "The module \"%s\" does not provide any of the required functions. It will "
+#~ "not be loaded."
 #~ msgstr "El mòdul %s no proporciona una cadena de versió. No s'hi carregarà."
 
 #~ msgid "   Project check replaced missing aliased file(s) with silence."
-#~ msgstr " La comprovació del projecte ha substituït els fitxers referenciats amb àlies desapareguts perduts per silenci."
+#~ msgstr ""
+#~ " La comprovació del projecte ha substituït els fitxers referenciats amb "
+#~ "àlies desapareguts perduts per silenci."
 
 #~ msgid "   Project check regenerated missing alias summary file(s)."
-#~ msgstr "La comprovació del projecte ha regenerat els fitxers de resum d'àlies que falten."
+#~ msgstr ""
+#~ "La comprovació del projecte ha regenerat els fitxers de resum d'àlies que "
+#~ "falten."
 
-#~ msgid "   Project check replaced missing audio data block file(s) with silence."
-#~ msgstr "La comprovació del projecte ha substituït  els blocs de dades d'àudio desapareguts per silenci."
+#~ msgid ""
+#~ "   Project check replaced missing audio data block file(s) with silence."
+#~ msgstr ""
+#~ "La comprovació del projecte ha substituït  els blocs de dades d'àudio "
+#~ "desapareguts per silenci."
 
-#~ msgid "   Project check ignored orphan block file(s). They will be deleted when project is saved."
-#~ msgstr "La comprovació del projecte ha ignorat els fitxers de blocs orfes. Aquests fitxers s'eliminaran quan es guarde el projecte."
+#~ msgid ""
+#~ "   Project check ignored orphan block file(s). They will be deleted when "
+#~ "project is saved."
+#~ msgstr ""
+#~ "La comprovació del projecte ha ignorat els fitxers de blocs orfes. "
+#~ "Aquests fitxers s'eliminaran quan es guarde el projecte."
 
-#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
-#~ msgstr "La comprovació del projecte ha trobat inconsistències de fitxer en inspeccionar les dades del projecte carregat."
+#~ msgid ""
+#~ "Project check found file inconsistencies inspecting the loaded project "
+#~ "data."
+#~ msgstr ""
+#~ "La comprovació del projecte ha trobat inconsistències de fitxer en "
+#~ "inspeccionar les dades del projecte carregat."
 
 #, fuzzy
 #~ msgid "Presets (*.txt)|*.txt|All files|*"
@@ -18816,7 +20105,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ "Bad Nyquist 'control' type specification: '%s' in plug-in file '%s'.\n"
 #~ "Control not created."
 #~ msgstr ""
-#~ "Especificació no correcta del tipus de «control» de Nyquist: «%s» en el fitxer «%s» del connector.\n"
+#~ "Especificació no correcta del tipus de «control» de Nyquist: «%s» en el "
+#~ "fitxer «%s» del connector.\n"
 #~ "No s'ha creat el control."
 
 #~ msgid ""
@@ -18887,14 +20177,22 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "Enable Scrub Ruler"
 #~ msgstr "Habilita el regle de rastreig"
 
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Només avformat.dll|*avformat*.dll|Biblioteques enllaçades dinàmicament (*.dll)|*.dll|Tots els fitxers|*"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "Només avformat.dll|*avformat*.dll|Biblioteques enllaçades dinàmicament (*."
+#~ "dll)|*.dll|Tots els fitxers|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Biblioteques dinàmiques (*.dylib)|*.dylib|Tots els fitxers (*)|*"
 
-#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Només libavformat.so|libavformat*.so*|Biblioteques enllaçades dinàmicament (*.so*)|*.so*|Tots els fitxers (*)|*"
+#~ msgid ""
+#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
+#~ "*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Només libavformat.so|libavformat*.so*|Biblioteques enllaçades "
+#~ "dinàmicament (*.so*)|*.so*|Tots els fitxers (*)|*"
 
 #~ msgid "Add to History:"
 #~ msgstr "Afig a l'historial:"
@@ -18918,22 +20216,31 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "Utilitza la sonoritat en lloc de l'amplitud de pic"
 
 #~ msgid "The buffer size controls the number of samples sent to the effect "
-#~ msgstr "La mida de la memòria intermèdia controla el nombre de mostres que s'envien a l'efecte "
+#~ msgstr ""
+#~ "La mida de la memòria intermèdia controla el nombre de mostres que "
+#~ "s'envien a l'efecte "
 
 #~ msgid "on each iteration. Smaller values will cause slower processing and "
-#~ msgstr "en cada iteració. Si indiqueu valors xicotets, s'alentirà el processament i "
+#~ msgstr ""
+#~ "en cada iteració. Si indiqueu valors xicotets, s'alentirà el processament "
+#~ "i "
 
 #~ msgid "some effects require 8192 samples or less to work properly. However "
-#~ msgstr "alguns efectes requereixen 8192 mostres o menys per a funcionar correctament. Amb tot, "
+#~ msgstr ""
+#~ "alguns efectes requereixen 8192 mostres o menys per a funcionar "
+#~ "correctament. Amb tot, "
 
 #~ msgid "most effects can accept large buffers and using them will greatly "
-#~ msgstr "la majoria dels efectes poden acceptar memòries intermèdies grans i utilitzar-les correctament "
+#~ msgstr ""
+#~ "la majoria dels efectes poden acceptar memòries intermèdies grans i "
+#~ "utilitzar-les correctament "
 
 #~ msgid "reduce processing time."
 #~ msgstr "redueix el temps de procés."
 
 #~ msgid "As part of their processing, some VST effects must delay returning "
-#~ msgstr "A causa del seu processament, alguns efectes VST poden tardar a retornar "
+#~ msgstr ""
+#~ "A causa del seu processament, alguns efectes VST poden tardar a retornar "
 
 #~ msgid "audio to Audacity. When not compensating for this delay, you will "
 #~ msgstr "l'àudio a Audacity. Si no compenseu aquest retard, observareu "
@@ -18942,7 +20249,8 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "que alguns silencis xicotets apareixen inserits dins de l'àudio. "
 
 #~ msgid "Enabling this option will provide that compensation, but it may "
-#~ msgstr "Si marqueu aquesta opció activareu la compensació, però podria ser que "
+#~ msgstr ""
+#~ "Si marqueu aquesta opció activareu la compensació, però podria ser que "
 
 #~ msgid "not work for all VST effects."
 #~ msgstr "no funcionara en tots els efectes VST."
@@ -18953,38 +20261,56 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid " Reopen the effect for this to take effect."
 #~ msgstr " Torneu a obrir l'efecte per tal d'aplicar-lo."
 
-#~ msgid "As part of their processing, some Audio Unit effects must delay returning "
-#~ msgstr "A causa del seu processament, alguns efectes d'Audio Unit poden tardar a retornar "
+#~ msgid ""
+#~ "As part of their processing, some Audio Unit effects must delay returning "
+#~ msgstr ""
+#~ "A causa del seu processament, alguns efectes d'Audio Unit poden tardar a "
+#~ "retornar "
 
 #~ msgid "not work for all Audio Unit effects."
 #~ msgstr "no funciona per a tots els efectes d'Audio Unit."
 
-#~ msgid "Select \"Full\" to use the graphical interface if supplied by the Audio Unit."
-#~ msgstr "Seleccioneu «Completa» per a utilitzar la interfície gràfica si Audio Unit l'ha subministrada."
+#~ msgid ""
+#~ "Select \"Full\" to use the graphical interface if supplied by the Audio "
+#~ "Unit."
+#~ msgstr ""
+#~ "Seleccioneu «Completa» per a utilitzar la interfície gràfica si Audio "
+#~ "Unit l'ha subministrada."
 
 #~ msgid " Select \"Generic\" to use the system supplied generic interface."
-#~ msgstr "Seleccioneu «Genèrica» per a utilitzar la interfície genèrica subministrada pel sistema."
+#~ msgstr ""
+#~ "Seleccioneu «Genèrica» per a utilitzar la interfície genèrica "
+#~ "subministrada pel sistema."
 
 #~ msgid " Select \"Basic\" for a basic text-only interface."
 #~ msgstr "Seleccioneu «Bàsica» per a una interfície de només text bàsic."
 
-#~ msgid "As part of their processing, some LADSPA effects must delay returning "
-#~ msgstr "A causa del seu processament, alguns efectes LADSPA poden tardar a retornar "
+#~ msgid ""
+#~ "As part of their processing, some LADSPA effects must delay returning "
+#~ msgstr ""
+#~ "A causa del seu processament, alguns efectes LADSPA poden tardar a "
+#~ "retornar "
 
 #~ msgid "not work for all LADSPA effects."
 #~ msgstr "no funcionara en tots els efectes LADSPA."
 
 #~ msgid "As part of their processing, some LV2 effects must delay returning "
-#~ msgstr "A causa del seu processament, alguns efectes LV2 poden tardar a retornar "
+#~ msgstr ""
+#~ "A causa del seu processament, alguns efectes LV2 poden tardar a retornar "
 
 #~ msgid "Enabling this setting will provide that compensation, but it may "
-#~ msgstr "Si marqueu aquesta opció activareu la compensació, però podria ser que "
+#~ msgstr ""
+#~ "Si marqueu aquesta opció activareu la compensació, però podria ser que "
 
 #~ msgid "not work for all LV2 effects."
 #~ msgstr "no funcione en tots els efectes LV2."
 
-#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|*.txt|All files|*"
-#~ msgstr "Scripts Nyquist (*.ny)|*.ny|scripts Lisp (*.lsp)|*.lsp|Fitxers de text (*.txt)|*.txt|Tots els fitxers|*"
+#~ msgid ""
+#~ "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|"
+#~ "*.txt|All files|*"
+#~ msgstr ""
+#~ "Scripts Nyquist (*.ny)|*.ny|scripts Lisp (*.lsp)|*.lsp|Fitxers de text (*."
+#~ "txt)|*.txt|Tots els fitxers|*"
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
@@ -18995,17 +20321,34 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "%s kbps"
 #~ msgstr "%s kbps"
 
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Només lame_enc.dll|lame_enc.dll|Biblioteques enllaçades dinàmicament (*.dll)|*.dll|Tots els fitxers|*"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "Només lame_enc.dll|lame_enc.dll|Biblioteques enllaçades dinàmicament (*."
+#~ "dll)|*.dll|Tots els fitxers|*"
 
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Només libmp3lame64bit.dylib|libmp3lame64bit.dylib|Biblioteques dinàmiques (*.dylib)|*.dylib|Tots els fitxers (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Només libmp3lame64bit.dylib|libmp3lame64bit.dylib|Biblioteques dinàmiques "
+#~ "(*.dylib)|*.dylib|Tots els fitxers (*)|*"
 
-#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Només libmp3lame.dylib|libmp3lame.dylib|Biblioteques dinàmiques (*.dylib)|*.dylib|Tots els fitxers (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Només libmp3lame.dylib|libmp3lame.dylib|Biblioteques dinàmiques (*.dylib)|"
+#~ "*.dylib|Tots els fitxers (*)|*"
 
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Només libmp3lame.so.0|libmp3lame.so.0|Fitxers d'objectes primaris compartits (*.so)|*.so|Biblioteques ampliades (*.so*)|*.so*|Tots els fitxers (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Només libmp3lame.so.0|libmp3lame.so.0|Fitxers d'objectes primaris "
+#~ "compartits (*.so)|*.so|Biblioteques ampliades (*.so*)|*.so*|Tots els "
+#~ "fitxers (*)|*"
 
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
 #~ msgstr "AIFF (Apple) PCM de 16 bits amb signe"
@@ -19019,8 +20362,13 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgid "MIDI file (*.mid)|*.mid|Allegro file (*.gro)|*.gro"
 #~ msgstr "Fitxer MIDI (*.mid)|*.mid|fitxer Allegro (*.gro)|*.gro"
 
-#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr "Fitxers MIDI i Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|fitxers MIDI (*.mid;*.midi)|*.mid;*.midi|fitxers Allegro  (*.gro)|*.gro|Tots els fitxers|*"
+#~ msgid ""
+#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
+#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr ""
+#~ "Fitxers MIDI i Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|fitxers "
+#~ "MIDI (*.mid;*.midi)|*.mid;*.midi|fitxers Allegro  (*.gro)|*.gro|Tots els "
+#~ "fitxers|*"
 
 #~ msgid "F&ocus"
 #~ msgstr "F&ocus"
@@ -19029,11 +20377,14 @@ msgstr "Error.~%Es requereix la pista estèreo."
 #~ msgstr "%s - %s"
 
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output "
+#~ "Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
-#~ "Aquesta és una versió de depuració d'errors d'Audacity, amb un botó extra «Eixida Sourcery». Aquest guardarà una\n"
-#~ "versió C de la memòria cau de la imatge que es pot compilar com a predeterminada."
+#~ "Aquesta és una versió de depuració d'errors d'Audacity, amb un botó extra "
+#~ "«Eixida Sourcery». Aquest guardarà una\n"
+#~ "versió C de la memòria cau de la imatge que es pot compilar com a "
+#~ "predeterminada."
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Forma d'ona (dB)"

@@ -11,21 +11,127 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2023-01-03 05:51+0000\n"
 "Last-Translator: Lpo Plo <plop99g@gmail.com>\n"
-"Language-Team: Arabic <https://hosted.weblate.org/projects/tenacity/tenacity/ar/>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/tenacity/tenacity/"
+"ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 4.15.1-dev\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Default recording device number: %d"
+msgstr "اختر جهاز التسجيل"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Default playback device number: %d"
+msgstr "اختر جهاز التشغيل"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "لم يعثر على أجهزة"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Device information is not available."
+msgid "Device info unavailable for: %d"
+msgstr "معلومات الجهاز غير متاحة."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "&Device:"
+msgid "Device ID: %d"
+msgstr "الجهاز:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Devices"
+msgid "Device name: %s"
+msgstr "الأجهزة"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Name: %s"
+msgid "Host name: %s"
+msgstr "الاسم: %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording Channels"
+msgid "Recording channels: %d"
+msgstr "قنوات التسجيل"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Playback Level"
+msgid "Playback channels: %d"
+msgstr "مستوى التشغيل"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording end:"
+msgid "Low Recording Latency: %g"
+msgstr "نهاية التسجيل:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording end:"
+msgid "High Recording Latency: %g"
+msgstr "نهاية التسجيل:"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+#| msgid "Sample Rates"
+msgid "Supported Rates:"
+msgstr "معدَّلات العينة"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected recording device: %d - %s"
+msgstr "اختر جهاز التسجيل"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected playback device: %d - %s"
+msgstr "اختر جهاز التشغيل"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "No devices found"
+msgid "No playback device found for '%s'."
+msgstr "لم يعثر على أجهزة"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Show output"
+msgid "Supports output: %d"
+msgstr "اعرض المخرج"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "اختر جهاز التسجيل"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected MIDI playback device: %d - %s"
+msgstr "اختر جهاز التشغيل"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -50,6 +156,21 @@ msgstr "رسالة"
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "خطأ داخلي"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "أخفقت في إزالة %s"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"أخفق Audacity في الكتابة إلى ملف.\n"
+"ربما %s غير قابل للكتابة أو القرص ممتلئ."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -275,6 +396,23 @@ msgstr "!عرض مُبسَّط"
 msgid "System"
 msgstr "النظام"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Generic"
+msgid "Generic Track"
+msgstr "شامل"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "مقطع صوت"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "التشغيل"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -394,6 +532,12 @@ msgstr "مطور ويب"
 msgid "%s, graphics"
 msgstr "رسوميات"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+#| msgid "%s, co-founder and developer"
+msgid "%s, Tenacity founder and developer"
+msgstr "%s، مؤسس مشارك و مطور"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -401,10 +545,22 @@ msgstr "رسوميات"
 msgid "%s, Tenacity developer"
 msgstr "مطور ويب"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "مطور ويب"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "مطور ويب"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "مطور ويب"
 
 #: src/AboutDialog.cpp
@@ -446,6 +602,18 @@ msgstr "أعضاء قدماء آخرين من الفريق"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "المساهمون"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Emeritus:"
+msgid "Emeritus"
+msgstr "فخري:"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "أعضاء قدماء آخرين من الفريق"
 
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
@@ -519,6 +687,19 @@ msgstr "بادئة التثبيت:"
 msgid "Settings folder:"
 msgstr "مجلد الأوضاع: "
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Libraries"
+msgid "Core Libraries"
+msgstr "المكتبات"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Sample Rate Conver&ter:"
+msgid "Sample rate conversion"
+msgstr "محول معدل العينة:"
+
 #: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "دعم صيغة الملف"
@@ -537,6 +718,12 @@ msgstr "استيراد و تصدير Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "دعم علامة ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "FLAC import and export"
+msgid "Matroska import and export"
+msgstr "استيراد و تصدير FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -708,6 +895,11 @@ msgid "Error: %s"
 msgstr "خطأ: %s"
 
 #: src/AudioIO.cpp
+#, fuzzy
+msgid "PortAudio Error"
+msgstr "خطأ"
+
+#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
 msgstr "كان هناك خطأ في بدء طبقة المداخل\\المخارج للMIDI.\n"
 
@@ -716,6 +908,12 @@ msgid ""
 "You will not be able to play midi.\n"
 "\n"
 msgstr "لن يكون بإمكانك أن تعزف MIDI.\n"
+
+#: src/AudioIO.cpp
+#, fuzzy
+#| msgid "Trim Audio"
+msgid "Tenacity Audio"
+msgstr "قلم الصوت"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -746,6 +944,11 @@ msgstr "اختيار"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "الاسم"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "حول Audacity"
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -1165,6 +1368,17 @@ msgstr "الطول المتوقع %ld، طول المقطع %lld.\n"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "أؤدي %d تحريرات...\n"
+msgstr[1] "أؤدي %d تحريرات...\n"
+msgstr[2] "أؤدي %d تحريرات...\n"
+msgstr[3] "أؤدي %d تحريرات...\n"
+msgstr[4] "أؤدي %d تحريرات...\n"
+msgstr[5] "أؤدي %d تحريرات...\n"
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "قص: %d - %d\n"
 
@@ -1269,16 +1483,26 @@ msgstr "صيغة إطلاق"
 msgid "Release build (debug level %d)"
 msgstr "صيغة إطلاق"
 
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "24 بت"
+
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
-msgid "Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
+msgid ""
+"Select the audio for %s to use (for example, Cmd + A to Select All) then try "
+"again."
 msgstr "اختر الصوت ليستخدمه %s (مثلا، Cmd + A لتختار الجميع) ثم حاول من جديد."
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
-msgid "Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
+msgid ""
+"Select the audio for %s to use (for example, Ctrl + A to Select All) then "
+"try again."
 msgstr "اختر الصوت ليستخدمه %s (مثلا، Ctrl + A لتختار الجميع) ثم حاول من جديد."
 
 #: src/CommonCommandFlags.cpp
@@ -1523,7 +1747,9 @@ msgstr "لرسم الطيف، يجب أن يكون لجميع المقاطع ا�
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
 msgstr "الجزء المختار من الصوت كبير جدا. سوف تُحلّل منه الثواني %.1f اﻷولى فقط."
 
 #: src/FreqWindow.cpp
@@ -1646,8 +1872,16 @@ msgid "No Local Help"
 msgstr "لا توجد مساعدة محلية"
 
 #: src/HelpText.cpp
-msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
-msgstr "تستطيع أيضا قراءة مساعدتنا عن تصدير [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|ملفات MIDI]] و المقاطع من [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd|الأقراص المضغوطة الصوتية]]."
+msgid ""
+"You can also read our help on importing [[https://manual.audacityteam.org/"
+"man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://"
+"manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio "
+"CDs]]."
+msgstr ""
+"تستطيع أيضا قراءة مساعدتنا عن تصدير [[https://manual.audacityteam.org/man/"
+"playing_and_recording.html#midi|ملفات MIDI]] و المقاطع من [[https://manual."
+"audacityteam.org/man/faq_opening_and_saving_files.html#fromcd|الأقراص "
+"المضغوطة الصوتية]]."
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -1703,6 +1937,12 @@ msgstr "أمر"
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "التاريخ..."
+
+#: src/JournalEvents.cpp
+#, fuzzy
+#| msgid "Export recording"
+msgid "Journal recording failed"
+msgstr "صدر التسجيل"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -1789,7 +2029,9 @@ msgstr "لم بمكن قراءة واحد أو أكثر من العلامات ا
 #. * versions of language names.
 #: src/LangChoice.cpp
 #, c-format
-msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
+msgid ""
+"The language you have chosen, %s (%s), is not the same as the system "
+"language, %s (%s)."
 msgstr "اللغة التي اخترتها، %s (%s)، ليست نفس لغة النظام، %s (%s)."
 
 #: src/LangChoice.cpp src/effects/VST/VSTEffect.cpp
@@ -1976,6 +2218,16 @@ msgstr ""
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
 msgid ""
+"The module \"%s\" is matched with Tenacity version \"%s\".\n"
+"\n"
+"It will not be loaded."
+msgstr ""
+"لا توفر الوحدة %s سلسلة إصدار.\n"
+"لن تُحمَّل."
+
+#: src/ModuleManager.cpp
+#, fuzzy, c-format
+msgid ""
 "The module \"%s\" failed to initialize.\n"
 "\n"
 "It will not be loaded."
@@ -2007,6 +2259,11 @@ msgstr "نعم"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "لا"
+
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "مطور ويب"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2346,6 +2603,12 @@ msgstr "<غير معنون>"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy, c-format
+#| msgid "Project"
+msgid "[Project %02i] "
+msgstr "المشروع"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
 msgid ""
 "There is very little free disk space left on %s\n"
 "Please select a bigger temporary directory location in\n"
@@ -2514,6 +2777,16 @@ msgid "Error Writing to File"
 msgstr "خطأ في كتابة الملف: \"%s\""
 
 #: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"أخفق Audacity في الكتابة إلى ملف.\n"
+"ربما %s غير قابل للكتابة أو القرص ممتلئ."
+
+#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "احفظ المشاريع"
@@ -2597,7 +2870,8 @@ msgstr "حُفِظ %s"
 
 #: src/ProjectFileManager.cpp
 msgid ""
-"The project was not saved because the file name provided would overwrite another project.\n"
+"The project was not saved because the file name provided would overwrite "
+"another project.\n"
 "Please try again and select an original name."
 msgstr ""
 "لم يحفظ المشروع لأن اسم الملف المزود يستطيع أن بكتب على مشروع آخر.\n"
@@ -2625,7 +2899,8 @@ msgstr "اكتب على الملفات الموجودة"
 #: src/ProjectFileManager.cpp
 #, fuzzy
 msgid ""
-"The project was not saved because the selected project is open in another window.\n"
+"The project was not saved because the selected project is open in another "
+"window.\n"
 "Please try again and select an original name."
 msgstr ""
 "لم يحفظ المشروع لأن اسم الملف المزود يستطيع أن بكتب على مشروع آخر.\n"
@@ -2707,6 +2982,13 @@ msgstr "استرجع المشروع"
 #: src/ProjectFileManager.cpp
 msgid "Recover"
 msgstr "استرجاع"
+
+#. i18n-hint Name default name assigned to a clip on track import
+#: src/ProjectFileManager.cpp
+#, fuzzy, c-format
+msgctxt "clip name template"
+msgid "%s %d"
+msgstr "%s %d من %d مقطع مصغر %s"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2822,8 +3104,10 @@ msgid "Vertical Scrollbar"
 msgstr "شريط تمرير عمودي"
 
 #: src/SelectFile.cpp
-msgid "The specified filename could not be converted due to Unicode character use."
-msgstr "لم يكن من الممكن تحويل اسم-الملف المحدد بسبب استخدام شفرات الشفرة الموحدة."
+msgid ""
+"The specified filename could not be converted due to Unicode character use."
+msgstr ""
+"لم يكن من الممكن تحويل اسم-الملف المحدد بسبب استخدام شفرات الشفرة الموحدة."
 
 #: src/SelectFile.cpp
 msgid "Specify New Filename:"
@@ -2861,6 +3145,11 @@ msgstr "تسجيل مفعل بالصوت"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "مستوى التفعيل (dB):"
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "مطور ويب"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2996,11 +3285,18 @@ msgstr "أخفق!"
 msgid ""
 "Reset Preferences?\n"
 "\n"
-"This is a one-time question, after an 'install' where you asked to have the Preferences reset."
+"This is a one-time question, after an 'install' where you asked to have the "
+"Preferences reset."
 msgstr ""
 "أعد تعيين التفضيلات؟\n"
 "\n"
 "هذا سؤال مرة واحدة، بعد 'تثبيت' طلبت فيه أن يعاد تعيين التفضيلات."
+
+#: src/TenacityApp.cpp
+#, fuzzy
+#| msgid "&Use Preferences"
+msgid "Reset Tenacity Preferences"
+msgstr "استخدم التفضيلات"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -3040,6 +3336,12 @@ msgid "&File"
 msgstr "ملف"
 
 #: src/TenacityApp.cpp
+#, fuzzy
+#| msgid "Do you want to save the changes?"
+msgid "Do you still want to start Tenacity?"
+msgstr "هل تريد حفظ التغييرات؟"
+
+#: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "خطأ في إقفال وجهة الملفات المؤقتة"
 
@@ -3059,6 +3361,12 @@ msgstr "رسالة المساعدة هذه"
 msgid "run self diagnostics"
 msgstr "شغل التشخيصات الذاتية"
 
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "مطور ويب"
+
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -3068,6 +3376,11 @@ msgstr "اسم ملف صوتي أو مشروع"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "ملفات مشروع Audacity"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "تأكيد حذف القانون"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3096,6 +3409,12 @@ msgstr "الأمد"
 #: src/TimeTrack.cpp src/TrackPanelAx.cpp
 msgid "Time Track"
 msgstr "مقطع وقت"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Timer Recording"
+msgid "Tenacity Timer Record"
+msgstr "تسجيل المؤقت"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -3142,14 +3461,16 @@ msgstr "خطأ في التصدير التلقائي"
 #: src/TimerRecordDialog.cpp
 #, c-format
 msgid ""
-"You may not have enough free disk space to complete this Timer Recording, based on your current settings.\n"
+"You may not have enough free disk space to complete this Timer Recording, "
+"based on your current settings.\n"
 "\n"
 "Do you wish to continue?\n"
 "\n"
 "Planned recording duration:   %s\n"
 "Recording time remaining on disk:   %s"
 msgstr ""
-"قد لا يكون لديك مساحة قرص حرة كافية لإنهاء تسجيل المؤقت هذا، استنادا إلى أوضاعك الحالية.\n"
+"قد لا يكون لديك مساحة قرص حرة كافية لإنهاء تسجيل المؤقت هذا، استنادا إلى "
+"أوضاعك الحالية.\n"
 "\n"
 "هل تريد أن تستأنف؟\n"
 "\n"
@@ -3188,6 +3509,12 @@ msgstr "التصدير التلقائي ممكن:"
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
 msgstr "الفعل بعد تسجيل المؤقت:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Error Saving Timer Recording Project"
+msgid "Tenacity Timer Record Progress"
+msgstr "خطأ في حفظ مشروع تسجيل المؤقت"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3341,6 +3668,11 @@ msgid "Do nothing"
 msgstr "افعل لا شيء"
 
 #: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Exit Tenacity"
+msgstr "حول Audacity"
+
+#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "أعد بدأ النظام"
 
@@ -3381,6 +3713,12 @@ msgstr "حفظ التسجيل:"
 #: src/TimerRecordDialog.cpp
 msgid "Recording Exported:"
 msgstr "التسجيل المصدر:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Timer Recording"
+msgid "Tenacity Timer Record - Waiting"
+msgstr "تسجيل المؤقت"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
@@ -3446,7 +3784,9 @@ msgstr " الاختيار مشغل"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
 msgstr "انقر و اسحب لتعديل الحجم النسبي للمقاطع الثنائية."
 
 #: src/TrackPanelResizeHandle.cpp
@@ -3548,12 +3888,24 @@ msgid "Resampling failed."
 msgstr "إعادة أخذ العينات أخفقت."
 
 #: src/WaveTrack.cpp
+#, fuzzy
+#| msgid "Move Track"
+msgid "Wave Track"
+msgstr "حرك المقطع"
+
+#: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "ليست هناك مساحة كافية للصق الاختيار"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "ليست هناك مساحة كافية لتوسيع خط القص"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "سجل Audacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -3623,8 +3975,13 @@ msgstr ""
 "* %s، لأنك خصصت الاختصار %s لـ %s"
 
 #: src/commands/CommandManager.cpp
-msgid "The following commands have had their shortcuts removed, because their default shortcut is new or changed, and is the same shortcut that you have assigned to another command."
-msgstr "أزيلت اختصارات الأوامر التالية، لأن اختصارها الافتراضي جديد أو تغير، و هو الاختصار نفسه الذي عينته لأمر آخر."
+msgid ""
+"The following commands have had their shortcuts removed, because their "
+"default shortcut is new or changed, and is the same shortcut that you have "
+"assigned to another command."
+msgstr ""
+"أزيلت اختصارات الأوامر التالية، لأن اختصارها الافتراضي جديد أو تغير، و هو "
+"الاختصار نفسه الذي عينته لأمر آخر."
 
 #: src/commands/CommandManager.cpp
 msgid "Shortcuts have been removed"
@@ -3818,6 +4175,11 @@ msgstr "يصدر إلى ملف."
 #: src/commands/LoadCommands.cpp
 msgid "Builtin Commands"
 msgstr "أمر مبني داخليا"
+
+#: src/commands/LoadCommands.cpp
+#, fuzzy
+msgid "Provides builtin commands to Tenacity"
+msgstr "اسم تأثير مبني-داخليا مجهول"
 
 #: src/commands/LoadCommands.cpp
 #, fuzzy
@@ -4245,21 +4607,30 @@ msgid "Auto Duck"
 msgstr "غمر تلقائي للصوت"
 
 #: src/effects/AutoDuck.cpp
-msgid "Reduces (ducks) the volume of one or more tracks whenever the volume of a specified \"control\" track reaches a particular level"
-msgstr "يقلل حجم واحد أو أكثر من المقاطع كلما بلغ حجم مقطع تحكم معين إلى مستوى مفرد"
+msgid ""
+"Reduces (ducks) the volume of one or more tracks whenever the volume of a "
+"specified \"control\" track reaches a particular level"
+msgstr ""
+"يقلل حجم واحد أو أكثر من المقاطع كلما بلغ حجم مقطع تحكم معين إلى مستوى مفرد"
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "لقد اخترت مقطعا لا يحتوي صوتا. تأثير الغمر التلقائي يعالج المقاطع الصوتية فقط."
+msgid ""
+"You selected a track which does not contain audio. AutoDuck can only process "
+"audio tracks."
+msgstr ""
+"لقد اخترت مقطعا لا يحتوي صوتا. تأثير الغمر التلقائي يعالج المقاطع الصوتية "
+"فقط."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
+msgid ""
+"Auto Duck needs a control track which must be placed below the selected "
+"track(s)."
 msgstr "الغمر التلقائي يحتاج إلى مقطع تحكم يجب وضعه تحت المقطاطع المختارة."
 
 #: src/effects/AutoDuck.cpp
@@ -4789,14 +5160,152 @@ msgstr "وقت الهجوم:  %.1f ثواني"
 msgid "Release Time %.1f secs"
 msgstr "وقت الإطلاق: %.1f ثواني"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Peak amplitude dB"
+msgid "peak amplitude"
+msgstr "سعة القمة dB"
+
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "ج.م.م"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Dynamic Reduction"
+msgstr "تقليل الضجيج"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Peak Reduction"
+msgstr "تقليل الضجيج"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Limiter"
+msgid "Analog Limiter"
+msgstr "الحاصر"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Compressor"
+msgid "Dynamic Compressor"
+msgstr "ضاغط"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "يعين سعة القمة لمقطع أو أكثر"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "اضغط استنادا إلى القمم"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "الخوارزمية"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "&Algorithm:"
+msgid "Envelope Algorithm:"
+msgstr "الخوارزمية:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "اضغط استنادا إلى القمم"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "N&ormalize stereo channels independently"
+msgid "Compress stereo channels independently"
+msgstr "طبع القنوات الثنائية على حدة"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "نسبة:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "1"
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Width:"
+msgid "Knee Width:"
+msgstr "العرض:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Width:"
+msgid "Knee Width"
+msgstr "العرض:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "&Output gain (dB):"
+msgid "Output Gain:"
+msgstr "زيادة المخرج (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Output gain (dB)"
+msgid "Output Gain"
+msgstr "زيادة المخرج (dB)"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "وقت الهجوم:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Attack Time"
+msgid "Attack"
+msgstr "وقت الهجوم"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "وقت الإطلاق:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Release Time"
+msgid "Release"
+msgstr "وقت الإطلاق"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Smooth Time:"
+msgid "Lookahead Time:"
+msgstr "وقت التمليس:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Smooth Time"
+msgid "Lookahead Time"
+msgstr "نعم الوقت"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time:"
+msgid "Hold Time:"
+msgstr "وقت النهاية:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "وقت النهاية"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -4824,8 +5333,11 @@ msgstr ""
 
 #. i18n-hint: RMS abbreviates root mean square, a certain averaging method
 #: src/effects/Contrast.cpp
-msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
-msgstr "محلل التباين، لقياس اختلافات حجم جذر متوسط المربع بين اختيارين من الصوت."
+msgid ""
+"Contrast Analyzer, for measuring RMS volume differences between two "
+"selections of audio."
+msgstr ""
+"محلل التباين، لقياس اختلافات حجم جذر متوسط المربع بين اختيارين من الصوت."
 
 #. i18n-hint noun
 #: src/effects/Contrast.cpp src/effects/ToneGen.cpp
@@ -5315,8 +5827,12 @@ msgid "DTMF Tones"
 msgstr "نغمات ثنائية-النغمة متعددة-الترددات"
 
 #: src/effects/DtmfGen.cpp
-msgid "Generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones"
-msgstr "يولد نغمات ثنائية-النغمة متعددة-الترددات مثل تلك المنتجة بواسطة لوحة المفاتيح على الهواتف"
+msgid ""
+"Generates dual-tone multi-frequency (DTMF) tones like those produced by the "
+"keypad on telephones"
+msgstr ""
+"يولد نغمات ثنائية-النغمة متعددة-الترددات مثل تلك المنتجة بواسطة لوحة "
+"المفاتيح على الهواتف"
 
 #: src/effects/DtmfGen.cpp
 #, fuzzy
@@ -5795,10 +6311,12 @@ msgstr "الحدة المرتفعة"
 #, fuzzy
 msgid ""
 "To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
+"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
+"then use that one."
 msgstr ""
 "لكي تستخدم منحنى المرشحة في سلسلة دفعة، من فضلك اختر اسما جديدا له.\n"
-"اختر زر 'احفظ\\أدر المنحنيات...' و  أعد تسمية المنحنى 'الغير مسمى'، ثم استخدمه."
+"اختر زر 'احفظ\\أدر المنحنيات...' و  أعد تسمية المنحنى 'الغير مسمى'، ثم "
+"استخدمه."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5806,7 +6324,8 @@ msgid "Filter Curve EQ needs a different name"
 msgstr "منحنى المرشحة يحتاج إلى اسم مختلف"
 
 #: src/effects/Equalization.cpp
-msgid "To apply Equalization, all selected tracks must have the same sample rate."
+msgid ""
+"To apply Equalization, all selected tracks must have the same sample rate."
 msgstr "لرسم منحنى الطيف، يجب أن يكون لجميع المقاطع المختارة نفس معدل العينة."
 
 #: src/effects/Equalization.cpp
@@ -6014,7 +6533,9 @@ msgstr "الافتراضيات"
 msgid ""
 "Rename 'unnamed' to save a new entry.\n"
 "'OK' saves all changes, 'Cancel' doesn't."
-msgstr "أعد تسمية 'غير مسمى' لتحفظ جديدا. 'حسنا' تحفظ جميع التغييرات، 'ألغ' لا تحفظها."
+msgstr ""
+"أعد تسمية 'غير مسمى' لتحفظ جديدا. 'حسنا' تحفظ جميع التغييرات، 'ألغ' لا "
+"تحفظها."
 
 #: src/effects/Equalization.cpp
 msgid "'unnamed' always stays at the bottom of the list"
@@ -6142,6 +6663,36 @@ msgstr "يطبق خبوا خطيا للداخل على الصوت المختار
 #: src/effects/Fade.cpp
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "يطبق خبوا خطيا للخارج على الصوت المختار"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Find Clipping"
+msgid "Find Clicks"
+msgstr "اعثر على قطع"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Creates labels where clipping is detected"
+msgid "Creates labels where clicks are detected"
+msgstr "أنشئ علامات أينما يكتشف قطع"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Clicks"
+msgstr "نقرة"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Right"
+msgstr "نقرة"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Left"
+msgstr "نقرة"
 
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
@@ -6329,7 +6880,9 @@ msgid "All noise profile data must have the same sample rate."
 msgstr "جميع معطيات وصف الضجيج يجب أن بكون لها نفس معدَّل العينة."
 
 #: src/effects/NoiseReduction.cpp
-msgid "The sample rate of the noise profile must match that of the sound to be processed."
+msgid ""
+"The sample rate of the noise profile must match that of the sound to be "
+"processed."
 msgstr "معدل عينة وصف الضجيج يجب أن يكافئ معدل عينة الصوت الذي سعالج."
 
 #: src/effects/NoiseReduction.cpp
@@ -6401,7 +6954,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to reduce noise.\n"
 msgstr ""
-"اختر جميع الأصوات التي تريد ترشيحها، و اختر كمية الضجيج الذي ترغب في ترشيحها،\n"
+"اختر جميع الأصوات التي تريد ترشيحها، و اختر كمية الضجيج الذي ترغب في "
+"ترشيحها،\n"
 "ثم انقر 'حسنا' لتقلل الضجيج.\n"
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
@@ -6513,7 +7067,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to remove noise.\n"
 msgstr ""
-"اختر جميع الأصوات التي تريد ترشيحها، و اختر كمية الضجيج التي ترغب في ترشيحها،\n"
+"اختر جميع الأصوات التي تريد ترشيحها، و اختر كمية الضجيج التي ترغب في "
+"ترشيحها،\n"
 "ثم انقر 'حسنا' لتزيل الضجيج.\n"
 
 #: src/effects/NoiseRemoval.cpp
@@ -6744,11 +7299,13 @@ msgstr "يحدد أعلى مستوى لواحد أو أكثر من المقاط�
 
 #: src/effects/Repair.cpp
 msgid ""
-"The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
+"The Repair effect is intended to be used on very short sections of damaged "
+"audio (up to 128 samples).\n"
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"تأثير الإصلاح مخصص للاستخدام على المقاطع القصيرة جدا المتضررة من الصوت (حتى 128 عينة).\n"
+"تأثير الإصلاح مخصص للاستخدام على المقاطع القصيرة جدا المتضررة من الصوت (حتى "
+"128 عينة).\n"
 "\n"
 "زوم داخلا و اختر جزءا ضئيلا من ثانية لإصلاحه."
 
@@ -7196,12 +7753,18 @@ msgid "Truncate Silence"
 msgstr "قلم السكون"
 
 #: src/effects/TruncSilence.cpp
-msgid "Automatically reduces the length of passages where the volume is below a specified level"
+msgid ""
+"Automatically reduces the length of passages where the volume is below a "
+"specified level"
 msgstr "يقلل تلقائيا طول الممرات حيث الحجم تحت مستوى معين"
 
 #: src/effects/TruncSilence.cpp
-msgid "When truncating independently, there may only be one selected audio track in each Sync-Locked Track Group."
-msgstr "عند التقليم باسقلال، يمكن أن يكون هناك مقطع صوتي مختار واحد فقط في كل مجموعة مقاطع مقفولة تزامنيا."
+msgid ""
+"When truncating independently, there may only be one selected audio track in "
+"each Sync-Locked Track Group."
+msgstr ""
+"عند التقليم باسقلال، يمكن أن يكون هناك مقطع صوتي مختار واحد فقط في كل مجموعة "
+"مقاطع مقفولة تزامنيا."
 
 #: src/effects/TruncSilence.cpp
 msgid "Detect Silence"
@@ -7272,7 +7835,10 @@ msgstr "صيغة بيانية"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
-msgid "Most VST effects have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
+msgid ""
+"Most VST effects have a graphical interface for setting parameter values. A "
+"basic text-only method is also available.  Reopen the effect for this to "
+"take effect."
 msgstr "معظم تأثيرات VST لديها واجهة بيانية لضبط قيم المعاملات."
 
 #: src/effects/VST/VSTEffect.cpp src/effects/lv2/LV2Effect.cpp
@@ -7295,6 +7861,11 @@ msgstr "ملف بنك VST قياسي"
 #: src/effects/VST/VSTEffect.cpp
 msgid "Standard VST program file"
 msgstr "ملف برنامج VST قياسي"
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "اختر ملف"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -7350,7 +7921,9 @@ msgid "Wahwah"
 msgstr "واه واه"
 
 #: src/effects/Wahwah.cpp
-msgid "Rapid tone quality variations, like that guitar sound so popular in the 1970's"
+msgid ""
+"Rapid tone quality variations, like that guitar sound so popular in the "
+"1970's"
 msgstr "تغيرات نوع نغمة سريعة، مثل صوت القيثارة ذاك المشهور جدا في السبعينيات"
 
 #: src/effects/Wahwah.cpp
@@ -7377,6 +7950,12 @@ msgstr "تغير تردد واه في المئة"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Audio Unit Effects"
 msgstr "تأثيرات Audio Unit"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+#| msgid "Audio Unit Effect Options"
+msgid "Provides Audio Unit Effects support to Tenacity"
+msgstr "اختيارات تأثير وحدة الصوت"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -7577,7 +8156,10 @@ msgstr "حجم الصوان (8 إلى 1048576 عينة):"
 
 #: src/effects/lv2/LV2Effect.cpp
 #, fuzzy
-msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
+msgid ""
+"LV2 effects can have a graphical interface for setting parameter values. A "
+"basic text-only method is also available.  Reopen the effect for this to "
+"take effect."
 msgstr "يمكن أن يكون لتأثيرات LV2 واجهة بيناية لضبط قيم المعاملات."
 
 #: src/effects/lv2/LV2Effect.cpp
@@ -7649,8 +8231,11 @@ msgid "Nyquist Error"
 msgstr "خطأ Nyquist"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "عفوا، لا يمكنني تطبيق التأثير على المقاطع الثنائية إذا كانت المقطاطع غير متوافقة."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"عفوا، لا يمكنني تطبيق التأثير على المقاطع الثنائية إذا كانت المقطاطع غير "
+"متوافقة."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -7713,7 +8298,8 @@ msgid "Nyquist returned nil audio.\n"
 msgstr "أرجع Nyquist صوت nil.\n"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
+msgid ""
+"[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
 msgstr "[تحذير: أرجع Nyquist سلسلة UTF-8 غير صالحة، محول هنا كـ Latin-1]"
 
 #: src/effects/nyquist/Nyquist.cpp
@@ -7826,8 +8412,12 @@ msgid "Vamp Effects"
 msgstr "تأثيرات Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "عفوا، لا يمكن تشغيل برامج Vamp المساعدة على المقاطع الثنائية التي تكون فيها القنوات الفردية للمقطع غير متوافقة."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"عفوا، لا يمكن تشغيل برامج Vamp المساعدة على المقاطع الثنائية التي تكون فيها "
+"القنوات الفردية للمقطع غير متوافقة."
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
@@ -7882,13 +8472,15 @@ msgstr "هل أنت متأكد من أنك تريد تصدير الملف كـ \
 msgid ""
 "You are about to export a %s file with the name \"%s\".\n"
 "\n"
-"Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
+"Normally these files end in \".%s\", and some programs will not open files "
+"with nonstandard extensions.\n"
 "\n"
 "Are you sure you want to export the file under this name?"
 msgstr ""
 "أنت على وشك تصدير ملف %s بالاسم  \"%s\".\n"
 "\n"
-"تنتهي هذه الملفات عادة بـ \".%s\"، و بعض البرامج لن تفتح ملفات بامتدادات غير قياسية.\n"
+"تنتهي هذه الملفات عادة بـ \".%s\"، و بعض البرامج لن تفتح ملفات بامتدادات غير "
+"قياسية.\n"
 "\n"
 "هل أنت متأكد من أنك تريد أن تصدر الملف بهذا الاسم؟"
 
@@ -7912,7 +8504,9 @@ msgid "Your tracks will be mixed down and exported as one stereo file."
 msgstr "سوف يتم مزج مقاطعك في قناتين ثنائيتين في الملف المُصدَّر."
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+msgid ""
+"Your tracks will be mixed down to one exported file according to the encoder "
+"settings."
 msgstr "سوف يتم مزج مقاطعك في ملف مصدَّر واحد استنادا إلى أوضاع المشفر."
 
 #: src/export/Export.cpp
@@ -7972,8 +8566,11 @@ msgstr "اعرض المخرج"
 #. in the program as a format string.  Keep %f unchanged.
 #: src/export/ExportCL.cpp
 #, c-format
-msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
-msgstr "ستنقل البيانات إلى المدخل القياسي. \"%f\" يستخدم اسم الملف في نافذة التصدير."
+msgid ""
+"Data will be piped to standard in. \"%f\" uses the file name in the export "
+"window."
+msgstr ""
+"ستنقل البيانات إلى المدخل القياسي. \"%f\" يستخدم اسم الملف في نافذة التصدير."
 
 #. i18n-hint files that can be run as programs
 #: src/export/ExportCL.cpp
@@ -8031,6 +8628,12 @@ msgstr "\"%s\" لم يوجد."
 msgid "Unable to locate \"%s\" in your path."
 msgstr "لم أتمكن من إيجاد \"%s\" في طريقك."
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+#| msgid "Format Options"
+msgid "Export Options"
+msgstr "اختيارات الصيغة"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "ألغ"
@@ -8063,13 +8666,18 @@ msgstr "FFmpeg : خطأ - لا يمكنني إضافة مجرى الصوت لإ�
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "FFmpeg : خطأ - لا يمكنني فتح ملف المخرج \"%s\" لأكتب. شفرة الخطأ هي %d."
+msgid ""
+"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
+msgstr ""
+"FFmpeg : خطأ - لا يمكنني فتح ملف المخرج \"%s\" لأكتب. شفرة الخطأ هي %d."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr "FFmpeg : خطأ - لا يمكنني كتابة الترويسات لإخراج الملف \"%s\". رمز الخطأ هو %d."
+msgid ""
+"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
+msgstr ""
+"FFmpeg : خطأ - لا يمكنني كتابة الترويسات لإخراج الملف \"%s\". رمز الخطأ هو "
+"%d."
 
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/export/ExportFFmpeg.cpp
@@ -8095,12 +8703,30 @@ msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
 msgstr "FFmpeg : خطأ - لا يمكنني تحصيص الصوان للقراءة فيه من FIFO الصوت."
 
 #: src/export/ExportFFmpeg.cpp
+#, fuzzy
+#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
+msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
+msgstr "FFmpeg : خطأ - لا يمكنني إضافة مجرى الصوت لإخراج الملف \"%s\"."
+
+#: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
 msgstr "FFmpeg : خطأ - لم أتمكن من نيل حجم صوان العينة"
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
 msgstr "FFmpeg : خطأ - لم أتمكن من تحصيص البايتات لصوان العينات"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
+msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
+msgstr "FFmpeg : خطأ - لم أتمكن من نيل حجم صوان العينة"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+#| msgid "FFmpeg : ERROR - Can't encode audio frame."
+msgid "FFmpeg : ERROR - encoding frame failed with error %d"
+msgstr "FFmpeg : خطأ - لا يمكنني تشفير إطار الصوت."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
@@ -8116,8 +8742,11 @@ msgstr "FFmpeg : خطأ - لا يمكنني تشفير إطار الصوت."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
-msgstr "حاولت تصدير %d قنوات، لكن العدد الأقصى من القنوات لصيغة المخرج المختارة هو %d"
+msgid ""
+"Attempted to export %d channels, but maximum number of channels for selected "
+"output format is %d"
+msgstr ""
+"حاولت تصدير %d قنوات، لكن العدد الأقصى من القنوات لصيغة المخرج المختارة هو %d"
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -8410,8 +9039,12 @@ msgid "Codec:"
 msgstr "مشفر:"
 
 #: src/export/ExportFFmpegDialogs.cpp
-msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
-msgstr "ليست جميع البنيات و المشفرين متوافقين. كذلك ليست جميع تركيبات الاختيارات متوافقة مع جميع المشفرين."
+msgid ""
+"Not all formats and codecs are compatible. Nor are all option combinations "
+"compatible with all codecs."
+msgstr ""
+"ليست جميع البنيات و المشفرين متوافقين. كذلك ليست جميع تركيبات الاختيارات "
+"متوافقة مع جميع المشفرين."
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Show All Formats"
@@ -9003,6 +9636,42 @@ msgstr ""
 "تركيبات معدَّل العينة (%d) و معدَّل البِت (%d) المشروع غير مدعومة من قبل\n"
 "صيغة ملف MP3.  "
 
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "16-bit"
+msgid "FLAC 16-bit"
+msgstr "16-بِت"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "24-bit"
+msgid "FLAC 24-bit"
+msgstr "24-بِت"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "علامات"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting an Audio File"
+msgid "Matroska Audio Files"
+msgstr "صدار ملف صوت"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the selected audio as FLAC"
+msgid "Exporting the selected audio as MKA"
+msgstr "أصدر الصوت المختار كـ FLAC"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the audio as FLAC"
+msgid "Exporting the audio as MKA"
+msgstr "أصدر الصوت كـ FLAC"
+
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
 msgstr "صدر عددة"
@@ -9447,8 +10116,10 @@ msgstr "الملفات المتوافقة مع FFmpeg"
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/import/ImportFFmpeg.cpp
 #, c-format
-msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr "الفهرس[%02x] المشفر[%s]، اللغة[%s]، معدل العينة[%s]، القنوات[%d]، الأمد[%d]"
+msgid ""
+"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+msgstr ""
+"الفهرس[%02x] المشفر[%s]، اللغة[%s]، معدل العينة[%s]، القنوات[%d]، الأمد[%d]"
 
 #: src/import/ImportFLAC.cpp
 msgid "FLAC files"
@@ -9543,6 +10214,17 @@ msgstr "لم أتمكن من فتح الملف %s."
 #: src/import/ImportMP3.cpp
 msgid "MP3 files"
 msgstr "ملفات MP3"
+
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "ملفات MP3"
+
+#: src/import/ImportMka.cpp
+#, fuzzy, c-format
+#| msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
+msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
+msgstr "الفهرس[%02d]، النوع[%s]، القنوات[%d]، المعدل[%d]"
 
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
@@ -9759,6 +10441,13 @@ msgstr "المقدار الذي سيستورد:"
 msgid "Sample rate:"
 msgstr "معدَّل العينة:"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+#| msgid "Detect Silence"
+msgid "Detect"
+msgstr "اكتشف السكون"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "استورد"
@@ -9775,6 +10464,27 @@ msgstr "%s يسار"
 msgid "%s right"
 msgstr "%s يمين"
 
+#. i18n-hint:
+#. First %s is replaced with the noun "start" or "end"
+#. identifying one end of a clip,
+#. second string is the name of that clip,
+#. first number gives the position of that clip in a sequence
+#. of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s %s, %d of %d clip %s"
+msgid_plural "%s %s, %d of %d clips %s"
+msgstr[0] "%s %d من %d مقطع مصغر %s"
+msgstr[1] "%s %d من %d مقطع مصغر %s"
+msgstr[2] "%s %d من %d مقطع مصغر %s"
+msgstr[3] "%s %d من %d مقطع مصغر %s"
+msgstr[4] "%s %d من %d مقطع مصغر %s"
+msgstr[5] "%s %d من %d مقطع مصغر %s"
+
 #: src/menus/ClipMenus.cpp
 msgid "start"
 msgstr "بداية"
@@ -9782,6 +10492,23 @@ msgstr "بداية"
 #: src/menus/ClipMenus.cpp
 msgid "end"
 msgstr "نهاية"
+
+#. i18n-hint:
+#. first string is the name of a clip,
+#. first number gives the position of that clip
+#. in a sequence of clips,
+#. last number counts all clips,
+#. last string names a track
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip %s"
+msgid_plural "%s, %d of %d clips %s"
+msgstr[0] "%s %d من %d مقطع مصغر %s"
+msgstr[1] "%s %d من %d مقطع مصغر %s"
+msgstr[2] "%s %d من %d مقطع مصغر %s"
+msgstr[3] "%s %d من %d مقطع مصغر %s"
+msgstr[4] "%s %d من %d مقطع مصغر %s"
+msgstr[5] "%s %d من %d مقطع مصغر %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -10213,6 +10940,12 @@ msgstr "صدر كـ MP3"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
+msgstr "صدر كـ WAV"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
+#| msgid "Export as &WAV"
+msgid "Export as &MKA"
 msgstr "صدر كـ WAV"
 
 #: src/menus/FileMenus.cpp
@@ -11313,8 +12046,11 @@ msgstr "من فضلك اختر على الأقل مقطع صوت واحد و م�
 
 #: src/menus/TrackMenus.cpp
 #, c-format
-msgid "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "أنجزت المحاذاة: MIDI من %.2f إلى %.2f ثواني، الصوت من %.2f إلى %.2f ثواني."
+msgid ""
+"Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f "
+"secs."
+msgstr ""
+"أنجزت المحاذاة: MIDI من %.2f إلى %.2f ثواني، الصوت من %.2f إلى %.2f ثواني."
 
 #: src/menus/TrackMenus.cpp
 msgid "Sync MIDI with Audio"
@@ -11322,8 +12058,12 @@ msgstr "زامن MIDI مع الصوت"
 
 #: src/menus/TrackMenus.cpp
 #, c-format
-msgid "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "خطأ محاذاة: المدخلات قصيرة جدا: MIDI من %.2f إلى %.2f ثواني، الصوت من %.2f إلى %.2f ثواني."
+msgid ""
+"Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from "
+"%.2f to %.2f secs."
+msgstr ""
+"خطأ محاذاة: المدخلات قصيرة جدا: MIDI من %.2f إلى %.2f ثواني، الصوت من %.2f "
+"إلى %.2f ثواني."
 
 #: src/menus/TrackMenus.cpp
 msgid "Internal error reported by alignment process."
@@ -11966,6 +12706,15 @@ msgstr "التشغيل"
 msgid "&Device:"
 msgstr "الجهاز:"
 
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "التسجيل"
+
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
 msgstr "الجهاز:"
@@ -12259,8 +13008,15 @@ msgid "Unused filters:"
 msgstr "المراشح الغير مستخدمة:"
 
 #: src/prefs/ExtImportPrefs.cpp
-msgid "There are space characters (spaces, newlines, tabs or linefeeds) in one of the items. They are likely to break the pattern matching. Unless you know what you are doing, it is recommended to trim spaces. Do you want Audacity to trim spaces for you?"
-msgstr "هناك أحرف مسافات (مسافات، سطر جديدة، تبويبات أو تغذية سطر) في أحد البنود. من المرجح أن يكسروا مكافئة الأنماط. إلا إذا كنت تعرف ما تفعل، من المستحسن أن تقلم المسافات. هل تريد من Audacity أن يقلم المسافات من أجلك؟"
+msgid ""
+"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
+"the items. They are likely to break the pattern matching. Unless you know "
+"what you are doing, it is recommended to trim spaces. Do you want Audacity "
+"to trim spaces for you?"
+msgstr ""
+"هناك أحرف مسافات (مسافات، سطر جديدة، تبويبات أو تغذية سطر) في أحد البنود. من "
+"المرجح أن يكسروا مكافئة الأنماط. إلا إذا كنت تعرف ما تفعل، من المستحسن أن "
+"تقلم المسافات. هل تريد من Audacity أن يقلم المسافات من أجلك؟"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -12341,10 +13097,6 @@ msgstr "اللغة:"
 #: src/prefs/GUIPrefs.cpp
 msgid "Location of &Manual:"
 msgstr "موقع الكتيب:"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Th&eme:"
-msgstr "الموضوع:"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
@@ -12520,6 +13272,12 @@ msgstr "استورد..."
 #: src/prefs/KeyConfigPrefs.cpp src/prefs/ThemePrefs.cpp
 msgid "&Defaults"
 msgstr "الافتراضيات"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
+#| msgid "Select a text file containing labels"
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "اختر ملفا نصيا يحتوي علامات"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -12818,6 +13576,12 @@ msgstr "-يسار-سحب"
 msgid "Move clip up/down between tracks"
 msgstr "حرك المقطع الضمني إلى أعلى/أسفل بين المقاطع"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+#| msgid "-Left-Drag"
+msgid "Alt-Left-Drag"
+msgstr "-يسار-سحب"
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -12927,6 +13691,11 @@ msgstr "المدة القصيرة:"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Lo&ng period:"
 msgstr "المدة الطويلة:"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+msgid "Tenacity Preferences"
+msgstr "استخدم التفضيلات"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -13298,14 +14067,27 @@ msgid "Preferences for Theme"
 msgstr "تفضيلات للمظهر"
 
 #: src/prefs/ThemePrefs.cpp
+#, fuzzy
+#| msgid "&Settings"
+msgid "Theme Settings"
+msgstr "أوضاع"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Th&eme:"
+msgstr "الموضوع:"
+
+#: src/prefs/ThemePrefs.cpp
 msgid "Info"
 msgstr "معلومة"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
-"Saving and loading individual theme files uses a separate file for each image, but is\n"
+"Saving and loading individual theme files uses a separate file for each "
+"image, but is\n"
 "otherwise the same idea."
-msgstr "حفظ و تحميل ملفات موضوع مستقلة يستخدم ملفا منفصلا لكل صورة، و إلا أنه نفس الفكرة."
+msgstr ""
+"حفظ و تحميل ملفات موضوع مستقلة يستخدم ملفا منفصلا لكل صورة، و إلا أنه نفس "
+"الفكرة."
 
 #. i18n-hint: && in here is an escape character to get a single & on screen,
 #. * so keep it as is
@@ -13510,11 +14292,6 @@ msgstr "اعرض العينات:"
 msgid "Default audio track &name:"
 msgstr "اسم مقطع الصوت الأساسي:"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "مقطع صوت"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
 msgstr "مفصل التزويم"
@@ -13615,6 +14392,25 @@ msgstr "تباين مرتفع"
 msgid "Light"
 msgstr "خفيف"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+#| msgid "Tools"
+msgid "Pro Tools"
+msgstr "الأدوات"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "سجل Audacity"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Couldn't write to file: %s"
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "لم أتمكن من الكتابة إلى الملف: %s"
+
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -13627,6 +14423,23 @@ msgid ""
 msgstr ""
 "الموضوع كتب إلى:\n"
 "  %s."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "غير قادر على فتح الملف المُحدد للكتابة"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Couldn't write to file: %s"
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "لم أتمكن من الكتابة إلى الملف: %s"
 
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
@@ -13668,6 +14481,14 @@ msgstr ""
 "بعض الملفات المتطلبة في:\n"
 "  %s\n"
 "كانت موجودة بالفعل. اكتب عليها؟"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Could not open file: %s"
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "لم أتمكن من فتح الملف: %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -14078,6 +14899,13 @@ msgstr "الوقت"
 msgid "&Time Toolbar"
 msgstr "شريط أدوات الزمن"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+#| msgid "&Edit Toolbar"
+msgid "Tenacity %s Toolbar"
+msgstr "شريط أدوات التحرير"
+
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
 msgstr "انقر و اسحب لتغيير حجم المقطع"
@@ -14252,7 +15080,9 @@ msgstr "جواب أسفل"
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
-msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
+msgid ""
+"Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom "
+"region."
 msgstr "انقر لتزوم عموديا. Shift-نقرة لتزوم خارجا. اسحب لتعين منطقة تزويم."
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -14369,6 +15199,41 @@ msgstr "أوقف الصوت أولا"
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "S&pectrogram Settings..."
 msgstr "أوضاع الصورة الطيفية..."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "انقر و اسحب لتحريك المقطع في الوقت"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "اسم المقطع"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Click and drag to select audio"
+msgid "Click and drag to select text"
+msgstr "انقر و اسحب لاختيار الصوت"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Modified Label"
+msgid "Modified Clip Name"
+msgstr "علامةمعدَّلة"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "تحرير العينة"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename Clip..."
+msgstr "أعد تسمية..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -14588,7 +15453,8 @@ msgstr "%.0f%% يمين"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
 msgstr "انقر و اسحب لتعدل، نقرة-ثنائية لـ"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
@@ -14605,6 +15471,38 @@ msgstr "انقر و اسحب لتحريك المقطع في الوقت"
 #, fuzzy
 msgid "Close sub-view"
 msgstr "انقر و اسحب لتحريك المقطع في الوقت"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Set Clip"
+msgid "Split Clip"
+msgstr "عين المقطع الضمني"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "أصمت/ألغ إصمات المقطع المركز"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename clip..."
+msgstr "أعد تسمية..."
+
+#. i18n-hint:
+#. string is the name of a clip
+#. first number is the position of that clip in a sequence of clips,
+#. second number counts the clips
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip"
+msgid_plural "%s, %d of %d clips"
+msgstr[0] "%s %d من %d مقطع مصغر %s"
+msgstr[1] "%s %d من %d مقطع مصغر %s"
+msgstr[2] "%s %d من %d مقطع مصغر %s"
+msgstr[3] "%s %d من %d مقطع مصغر %s"
+msgstr[4] "%s %d من %d مقطع مصغر %s"
+msgstr[5] "%s %d من %d مقطع مصغر %s"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
@@ -14706,6 +15604,30 @@ msgstr "استيفاء لوغارثمي"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "انقر و اسحب لتحريك المقطع في الوقت"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Mono Track"
+msgid "Add Mono Track"
+msgstr "مقطع أحادي"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "مقطع ثنائي"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "Label Track"
+msgid "Add Label Track"
+msgstr "مقطع علامة"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Export Audio..."
+msgid "Export Audio..."
+msgstr "صدر الصوت..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -17112,7 +18034,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "(C) 2009 by Leland Lucius"
 #~ msgstr "(C) 2009 بواسطة Leland Lucius"
 
-#~ msgid "External Audacity module which provides a simple IDE for writing effects."
+#~ msgid ""
+#~ "External Audacity module which provides a simple IDE for writing effects."
 #~ msgstr "وحدة Audacity خارجية توفر بيئة تطوير متكاملة لكتابة التأثيرات."
 
 #~ msgid "Nyquist Effect Workbench"
@@ -17213,7 +18136,9 @@ msgstr "تردد إبر الرادار (هرتز)"
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr "&nbsp; &nbsp; الاسم<b>Audacity</b> علامة تجارية مسجلة لأجل Dominic Mazzoni.<br><br>"
+#~ msgstr ""
+#~ "&nbsp; &nbsp; الاسم<b>Audacity</b> علامة تجارية مسجلة لأجل Dominic "
+#~ "Mazzoni.<br><br>"
 
 #~ msgid "Sound card mixer support"
 #~ msgstr "دعم مازج بطاقة الصوت"
@@ -17227,28 +18152,48 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Out of memory!"
 #~ msgstr "نفذت الذاكرة!"
 
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
-#~ msgstr "توقف تعديل مستوى الصوت المؤتمت. لم بكن ممكنا تحسينه أكثر. لا يزال أعلى مما ينبغي."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too high."
+#~ msgstr ""
+#~ "توقف تعديل مستوى الصوت المؤتمت. لم بكن ممكنا تحسينه أكثر. لا يزال أعلى "
+#~ "مما ينبغي."
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
 #~ msgstr "أنقص تعديل مستوى الصوت المؤتمت الحجم إلى %.2f."
 
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
-#~ msgstr "توقف تعديل مستوى الصوت المؤتمت. لم بكن ممكنا تحسينه أكثر. لا يزال أخفض مما ينبغي."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too low."
+#~ msgstr ""
+#~ "توقف تعديل مستوى الصوت المؤتمت. لم بكن ممكنا تحسينه أكثر. لا يزال أخفض "
+#~ "مما ينبغي."
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
 #~ msgstr "زاد تعديل مستوى الصوت المؤتمت الحجم إلى %.2f."
 
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
-#~ msgstr "توقف تعديل مستوى الصوت المؤتمت. تخطي العدد الإجمالي للتحليلات بدون إيجاد حجم مقبول. لا يزال أعلى مما ينبغي."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too high."
+#~ msgstr ""
+#~ "توقف تعديل مستوى الصوت المؤتمت. تخطي العدد الإجمالي للتحليلات بدون إيجاد "
+#~ "حجم مقبول. لا يزال أعلى مما ينبغي."
 
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
-#~ msgstr "توقف تعديل مستوى الصوت المؤتمت. تخطي العدد الإجمالي للتحليلات بدون إيجاد حجم مقبول. لا يزال أخفض مما ينبغي."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too low."
+#~ msgstr ""
+#~ "توقف تعديل مستوى الصوت المؤتمت. تخطي العدد الإجمالي للتحليلات بدون إيجاد "
+#~ "حجم مقبول. لا يزال أخفض مما ينبغي."
 
 #, c-format
-#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+#~ "volume."
 #~ msgstr "توقف تعديل مستوى الصوت المؤتمت. يبدو %.2f حجما مقبولا."
 
 #, fuzzy
@@ -17360,11 +18305,14 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Missing"
 #~ msgstr "الملفات المفقودة"
 
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+#~ msgid ""
+#~ "If you proceed, your project will not be saved to disk. Is this what you "
+#~ "want?"
 #~ msgstr "إذا واصلت، لن يتم حفظ المشروع على القرص. هل هذا ما تريده؟"
 
 #~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio files. \n"
+#~ "Your project is self-contained; it does not depend on any external audio "
+#~ "files. \n"
 #~ "\n"
 #~ "Some older Audacity projects may not be self-contained, and care \n"
 #~ "is needed to keep their external dependencies in the right place.\n"
@@ -17385,23 +18333,41 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Only libavformat.so"
 #~ msgstr "فقط libavformat.so"
 
-#~ msgid "<br><br>The version of Audacity you are using is an <b>Alpha test version</b>."
-#~ msgstr "<br><br>الإصدار من Audacity الذي تستخدمه هو <b>إصدار اختبار ألفا</b>."
+#~ msgid ""
+#~ "<br><br>The version of Audacity you are using is an <b>Alpha test "
+#~ "version</b>."
+#~ msgstr ""
+#~ "<br><br>الإصدار من Audacity الذي تستخدمه هو <b>إصدار اختبار ألفا</b>."
 
-#~ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</b>."
-#~ msgstr "<br><br>الإصدار من Audacity الذي تستخدمه هو <b>إصدار اختبار بيتا</b>."
+#~ msgid ""
+#~ "<br><br>The version of Audacity you are using is a <b>Beta test version</"
+#~ "b>."
+#~ msgstr ""
+#~ "<br><br>الإصدار من Audacity الذي تستخدمه هو <b>إصدار اختبار بيتا</b>."
 
-#~ msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
-#~ msgstr "نحن ننصح أن تستخدم إصدارانا المطلق المستقر الأحدث، الذي يشتمل على توثيق و دعم كاملان.<br><br>"
+#~ msgid ""
+#~ "We strongly recommend that you use our latest stable released version, "
+#~ "which has full documentation and support.<br><br>"
+#~ msgstr ""
+#~ "نحن ننصح أن تستخدم إصدارانا المطلق المستقر الأحدث، الذي يشتمل على توثيق و "
+#~ "دعم كاملان.<br><br>"
 
-#~ msgid "You can help us get Audacity ready for release by joining our [[https://www.audacityteam.org/community/|community]].<hr><br><br>"
-#~ msgstr "يمكنك أن تساعدنا في جعل Audacity جاهزا للإطلاق بالالتحاق [[https://www.audacityteam.org/community/|بمجتمعنا]].<hr><br><br>"
+#~ msgid ""
+#~ "You can help us get Audacity ready for release by joining our [[https://"
+#~ "www.audacityteam.org/community/|community]].<hr><br><br>"
+#~ msgstr ""
+#~ "يمكنك أن تساعدنا في جعل Audacity جاهزا للإطلاق بالالتحاق [[https://www."
+#~ "audacityteam.org/community/|بمجتمعنا]].<hr><br><br>"
 
 #~ msgid "How to get help"
 #~ msgstr "كيف تحصل على المساعدة"
 
-#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-#~ msgstr " [[https://forum.audacityteam.org/|المنتدى]] - اسأل سؤالك مباشرة، على الشبكة العنكبوتية."
+#~ msgid ""
+#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
+#~ "online."
+#~ msgstr ""
+#~ " [[https://forum.audacityteam.org/|المنتدى]] - اسأل سؤالك مباشرة، على "
+#~ "الشبكة العنكبوتية."
 
 #~ msgid "Project check read faulty Sequence tags."
 #~ msgstr "قرأ فحص المشروع علامات تسلسل خاطئة."
@@ -17409,8 +18375,14 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Close project immediately with no changes"
 #~ msgstr "أغلق المشروع فورا دون أي تغييرات"
 
-#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
-#~ msgstr "استأنف مع الإصلاحات المذكورة في السجل، و تحقق من أخطاء أكثر. هذا سيحفظ المشروع في حالته الحالية، إلا إذا \"أغلقت المشروع فورا\" عند إنذارات الأخطاء القادمة."
+#~ msgid ""
+#~ "Continue with repairs noted in log, and check for more errors. This will "
+#~ "save the project in its current state, unless you \"Close project "
+#~ "immediately\" on further error alerts."
+#~ msgstr ""
+#~ "استأنف مع الإصلاحات المذكورة في السجل، و تحقق من أخطاء أكثر. هذا سيحفظ "
+#~ "المشروع في حالته الحالية، إلا إذا \"أغلقت المشروع فورا\" عند إنذارات "
+#~ "الأخطاء القادمة."
 
 #~ msgid "Warning - Problems Reading Sequence Tags"
 #~ msgstr "تحذير - مشاكل في قراءة علامات التسلسل"
@@ -17581,10 +18553,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 
 #, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
+#~ "with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "أنت تربط إلى lame_enc.dll v%d.%d.. هذا الإصدار غير متوافق مع Audacity %d.%d.%d.\n"
+#~ "أنت تربط إلى lame_enc.dll v%d.%d.. هذا الإصدار غير متوافق مع Audacity %d."
+#~ "%d.%d.\n"
 #~ "من فضلك نزل أحدث إصدار من 'LAME لـ Audacity'."
 
 #~ msgid "Only lame_enc.dll"
@@ -17808,25 +18782,33 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "<h3>Audacity "
 #~ msgstr "<h3>Audacity "
 
-#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
-#~ msgstr "<p><br>&nbsp; &nbsp; برمجيات <b>Audacity<sup>&reg;</sup></b> محمية بموجب حقوق النشر &copy; 1999-2018 فريق Audacity.<br>"
+#~ msgid ""
+#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
+#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgstr ""
+#~ "<p><br>&nbsp; &nbsp; برمجيات <b>Audacity<sup>&reg;</sup></b> محمية بموجب "
+#~ "حقوق النشر &copy; 1999-2018 فريق Audacity.<br>"
 
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was "
+#~ "unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
+#~ "locations of the missing files."
 #~ msgstr ""
 #~ "لم يتمكن من العثور على واحد أو أكثر من ملفات الصوت الخارجية.\n"
-#~ "من الممكن أن يكونوا قد نقلوا، حذفوا، أو يكون القرص الذي هم عليه غير مرتبط بنظام التشغيل.\n"
+#~ "من الممكن أن يكونوا قد نقلوا، حذفوا، أو يكون القرص الذي هم عليه غير مرتبط "
+#~ "بنظام التشغيل.\n"
 #~ "يتم استبدال الصوت المتضرر بالسكون.\n"
 #~ "أول ملف مفقود مكتشف هو:\n"
 #~ "%s\n"
 #~ "قد يكون هناك ملفات مفقودة إضافية.\n"
-#~ "اختر مساعدة > تشخيصات > تحقق من التبعيات لترى قائمة من مواقع الملفات المفقودة."
+#~ "اختر مساعدة > تشخيصات > تحقق من التبعيات لترى قائمة من مواقع الملفات "
+#~ "المفقودة."
 
 #~ msgid "File decoded successfully\n"
 #~ msgstr "حلت شفرة الملف بنجاح\n"
@@ -17878,9 +18860,6 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "صدر التسجيل إلى %s\n"
 #~ "/%s/%s.%s"
 
-#~ msgid "Export recording"
-#~ msgstr "صدر التسجيل"
-
 #~ msgid "Ogg Vorbis support is not included in this build of Audacity"
 #~ msgstr "هذه النسخة من Audacity لا تتضمن دعم Ogg Vorbis"
 
@@ -17891,9 +18870,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "الأمر %s ليس منفذا بعد"
 
 #~ msgid ""
-#~ "Your project is currently self-contained; it does not depend on any external audio files. \n"
+#~ "Your project is currently self-contained; it does not depend on any "
+#~ "external audio files. \n"
 #~ "\n"
-#~ "If you change the project to a state that has external dependencies on imported files, it will no longer be self-contained. If you then Save without copying those files in, you may lose data."
+#~ "If you change the project to a state that has external dependencies on "
+#~ "imported files, it will no longer be self-contained. If you then Save "
+#~ "without copying those files in, you may lose data."
 #~ msgstr "مشروعك محتوى ذاتيا الآن؛ أي أنه لا يعتمد على أية ملفات صوت خارجية."
 
 #~ msgid "Cleaning project temporary files"
@@ -17913,7 +18895,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete project check."
+#~ "Please consider saving and reloading the project to perform a complete "
+#~ "project check."
 #~ msgstr ""
 #~ "عثر Audacity على ملف كتلة يتيم: %s. \n"
 #~ "من فضلك فكر في حفظ و إعادة تشغيل المشروع لتقوم بفحص كامل للمشروع."
@@ -17975,7 +18958,9 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "GB"
 
 #, fuzzy
-#~ msgid "The module \"%s\" does not provide a version string. It will not be loaded."
+#~ msgid ""
+#~ "The module \"%s\" does not provide a version string. It will not be "
+#~ "loaded."
 #~ msgstr "لا توفر الوحدة %s سلسلة إصدار. لن تحمل."
 
 #, fuzzy
@@ -17987,23 +18972,32 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "لن تُحمَّل."
 
 #, fuzzy
-#~ msgid "The module \"%s\" does not provide any of the required functions. It will not be loaded."
+#~ msgid ""
+#~ "The module \"%s\" does not provide any of the required functions. It will "
+#~ "not be loaded."
 #~ msgstr "لا توفر الوحدة %s سلسلة إصدار. لن تحمل."
 
 #~ msgid "   Project check replaced missing aliased file(s) with silence."
 #~ msgstr "   تحقق المشروع استبدل ملف(ات) ذو(ذات) اسم مستعار مفقود(ة) بالسكون."
 
 #~ msgid "   Project check regenerated missing alias summary file(s)."
-#~ msgstr "   تحقق المشروع أعاد توليد ملف(ات) ملخص(ة) ذو(ذات) اسم مستعار المفقود(ة)."
+#~ msgstr ""
+#~ "   تحقق المشروع أعاد توليد ملف(ات) ملخص(ة) ذو(ذات) اسم مستعار المفقود(ة)."
 
-#~ msgid "   Project check replaced missing audio data block file(s) with silence."
+#~ msgid ""
+#~ "   Project check replaced missing audio data block file(s) with silence."
 #~ msgstr "   تحقق المشروع استبدل ملف(ات) كتلة بيانات صوتية مفقود(ة) بالسكون."
 
-#~ msgid "   Project check ignored orphan block file(s). They will be deleted when project is saved."
+#~ msgid ""
+#~ "   Project check ignored orphan block file(s). They will be deleted when "
+#~ "project is saved."
 #~ msgstr "   تحقق المشروع أهمل ملف(ات) كتلة يتيم(ة). سيحذفون عند حفظ المشروع."
 
-#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
-#~ msgstr "تحقق المشروع وجد تناقضات في الملفات عند تفتيش بيانات المشروع المحملة."
+#~ msgid ""
+#~ "Project check found file inconsistencies inspecting the loaded project "
+#~ "data."
+#~ msgstr ""
+#~ "تحقق المشروع وجد تناقضات في الملفات عند تفتيش بيانات المشروع المحملة."
 
 #~ msgid ""
 #~ "This file was saved by Audacity version %s. The format has changed. \n"
@@ -18011,7 +19005,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up "
+#~ "first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
@@ -18054,7 +19049,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "مجلد \"%s\" قبل حفظ المشروع بهذا الاسم."
 
 #~ msgid ""
-#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio file.\n"
+#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio "
+#~ "file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
 #~ "Lossless copies of project are a good way to backup your project, \n"
@@ -18073,10 +19069,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "%sاحفظ نسخة مضغوطة من المشروع \"%s\" كـ..."
 
 #~ msgid ""
-#~ "'Save Compressed Copy of Project' is for an Audacity project, not an audio file.\n"
+#~ "'Save Compressed Copy of Project' is for an Audacity project, not an "
+#~ "audio file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
-#~ "Compressed project files are a good way to transmit your project online, \n"
+#~ "Compressed project files are a good way to transmit your project "
+#~ "online, \n"
 #~ "but they have some loss of fidelity.\n"
 #~ msgstr ""
 #~ "'احفظ المشروع مضغوطا' هي لمشروع Audacity، ليست لملف صوت.\n"
@@ -18088,8 +19086,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "فتح مشروع مضغوط يأخذ فترة أطول من المعتاد، لأنه يستورد\n"
 #~ "كل مقطع مضغوط.\n"
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
-#~ msgstr "لم يستطع Audacity من تحويل مشروع Audacity إصدار 1.0 إلى الصيغة الجديدة للمشاريع."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
+#~ msgstr ""
+#~ "لم يستطع Audacity من تحويل مشروع Audacity إصدار 1.0 إلى الصيغة الجديدة "
+#~ "للمشاريع."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "لم أتمكن من حذف ملف حفظ تلقائي قديم"
@@ -18097,10 +19099,16 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "الاستيراد و حساب الشكل الموجي عند الطلب انتهيا."
 
-#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
-#~ msgstr "الاستيرادات انتهت. أشغل %d حسابات شكل موجي عند الطلب. إجماليا %2.0f%% انتهى."
+#~ msgid ""
+#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
+#~ "%2.0f%% complete."
+#~ msgstr ""
+#~ "الاستيرادات انتهت. أشغل %d حسابات شكل موجي عند الطلب. إجماليا %2.0f%% "
+#~ "انتهى."
 
-#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
+#~ msgid ""
+#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
+#~ "complete."
 #~ msgstr "انتهى الاستيراد. أشغل حساب شكل موجي عند الطلب. %2.0f%% انتهى."
 
 #, fuzzy
@@ -18153,14 +19161,19 @@ msgstr "تردد إبر الرادار (هرتز)"
 
 #~ msgid ""
 #~ "You are attempting to overwrite an aliased file that is missing.\n"
-#~ "The file cannot be written because the path is needed to restore the original audio to the project.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of all missing files.\n"
+#~ "The file cannot be written because the path is needed to restore the "
+#~ "original audio to the project.\n"
+#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of "
+#~ "all missing files.\n"
 #~ "If you still wish to export, please choose a different filename or folder."
 #~ msgstr ""
 #~ "أنت تحاول الكتابة على ملف مستعار مفقود.\n"
-#~ "               لا يمكن كتابة الملف لأن الطريق مطلوب لاستعادة الصوت الأصلي إلى المشروع.\n"
-#~ "               اختر مساعدة > تشخيصات > تحقق من التبعيات لترى مواقع جميع الملفات المفقودة.\n"
-#~ "               إذا كنت مصمما على التصدير، من فضلك اختر اسم ملف أو مجلدا آخر."
+#~ "               لا يمكن كتابة الملف لأن الطريق مطلوب لاستعادة الصوت الأصلي "
+#~ "إلى المشروع.\n"
+#~ "               اختر مساعدة > تشخيصات > تحقق من التبعيات لترى مواقع جميع "
+#~ "الملفات المفقودة.\n"
+#~ "               إذا كنت مصمما على التصدير، من فضلك اختر اسم ملف أو مجلدا "
+#~ "آخر."
 
 #, fuzzy
 #~ msgid "%d kpbs"
@@ -18174,10 +19187,13 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "استخدم أمر 'ملف > افتح' لتفتح مشاريع Audacity."
 
 #~ msgid ""
-#~ "When importing uncompressed audio files you can either copy them into the project, or read them directly from their current location (without copying).\n"
+#~ "When importing uncompressed audio files you can either copy them into the "
+#~ "project, or read them directly from their current location (without "
+#~ "copying).\n"
 #~ "\n"
 #~ msgstr ""
-#~ "عند استوراد ملفات صوت غير مضغوطة يمكنك إما أن تنسخها إلى المشروع، أو أن تقرأها مباشرة من موقعها الحالي (بدون نسخ).\n"
+#~ "عند استوراد ملفات صوت غير مضغوطة يمكنك إما أن تنسخها إلى المشروع، أو أن "
+#~ "تقرأها مباشرة من موقعها الحالي (بدون نسخ).\n"
 #~ "\n"
 
 #~ msgid ""
@@ -18196,13 +19212,19 @@ msgstr "تردد إبر الرادار (هرتز)"
 
 #, fuzzy
 #~ msgid ""
-#~ "Reading the files directly allows you to play or edit them almost immediately. This is less safe than copying in, because you must retain the files with their original names in their original locations.\n"
-#~ "Help > Diagnostics > Check Dependencies will show the original names and locations of any files that you are reading directly.\n"
+#~ "Reading the files directly allows you to play or edit them almost "
+#~ "immediately. This is less safe than copying in, because you must retain "
+#~ "the files with their original names in their original locations.\n"
+#~ "Help > Diagnostics > Check Dependencies will show the original names and "
+#~ "locations of any files that you are reading directly.\n"
 #~ "\n"
 #~ "How do you want to import the current file(s)?"
 #~ msgstr ""
-#~ "قراءة الملفات مباشرة تسمح لك أن تشغلها أو تحررها بشكل شبه فوري. هذا أقل أمانا من نسخها إلى المشروع، لأنه يجب عليك أن تبقى الملفات بأسمائها الأصلية في موقعها الأصلي.\n"
-#~ "مساعدة > تشخيصات > تحقق من التبعيات سيظهر الأسماء الأصلية و موقع أية ملفات تقرأها مباشرة.\n"
+#~ "قراءة الملفات مباشرة تسمح لك أن تشغلها أو تحررها بشكل شبه فوري. هذا أقل "
+#~ "أمانا من نسخها إلى المشروع، لأنه يجب عليك أن تبقى الملفات بأسمائها "
+#~ "الأصلية في موقعها الأصلي.\n"
+#~ "مساعدة > تشخيصات > تحقق من التبعيات سيظهر الأسماء الأصلية و موقع أية "
+#~ "ملفات تقرأها مباشرة.\n"
 #~ "\n"
 #~ "كيف تريد استيراد الملف(ات) الحالي(ة)؟"
 
@@ -18253,7 +19275,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "أدنى ذاكرة حرة:"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no longer\n"
+#~ "If the available system memory falls below this value, audio will no "
+#~ "longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
 #~ "إذا تدنت ذاكرة النظام المتاحة عن هذه القيمة،\n"
@@ -18345,14 +19368,22 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Enable Scrub Ruler"
 #~ msgstr "مكن مسطرة الفرك"
 
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "فقط avformat.dll|*avformat*.dll|مكتبات مترابطة ديناميكيا (*.dll)|*.dll|جميع الملفات|*"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "فقط avformat.dll|*avformat*.dll|مكتبات مترابطة ديناميكيا (*.dll)|*.dll|"
+#~ "جميع الملفات|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "مكتبات ديناميكية (*.dylib)|*.dylib|جميع الملفات (*)|*"
 
-#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "فقط libavformat.so|libavformat*.so*|مكتبات مترابطة ديناميكيا (*.so*)|*.so*|جميع الملفات (*)|*"
+#~ msgid ""
+#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
+#~ "*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libavformat.so|libavformat*.so*|مكتبات مترابطة ديناميكيا (*.so*)|*."
+#~ "so*|جميع الملفات (*)|*"
 
 #~ msgid "Add to History:"
 #~ msgstr "أضف إلى التاريخ:"
@@ -18411,14 +19442,18 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid " Reopen the effect for this to take effect."
 #~ msgstr " أعد فتح التأثير ليظهر مفعول هذا."
 
-#~ msgid "As part of their processing, some Audio Unit effects must delay returning "
+#~ msgid ""
+#~ "As part of their processing, some Audio Unit effects must delay returning "
 #~ msgstr "كجزء من معالجتها، وحدات الصوت يجب أن تأخر "
 
 #~ msgid "not work for all Audio Unit effects."
 #~ msgstr "لا يعمل لجميع وحدات الصوت."
 
-#~ msgid "Select \"Full\" to use the graphical interface if supplied by the Audio Unit."
-#~ msgstr "اختر \"كاملة\" لتستخدم الواجهة البيانية إذا كانت مزودة من وحدة الصوت."
+#~ msgid ""
+#~ "Select \"Full\" to use the graphical interface if supplied by the Audio "
+#~ "Unit."
+#~ msgstr ""
+#~ "اختر \"كاملة\" لتستخدم الواجهة البيانية إذا كانت مزودة من وحدة الصوت."
 
 #~ msgid " Select \"Generic\" to use the system supplied generic interface."
 #~ msgstr " اختر \"شاملة\" لتستخدم الواجهة الشاملة المزودة من النظام."
@@ -18426,7 +19461,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid " Select \"Basic\" for a basic text-only interface."
 #~ msgstr " اختر \"أساسية\" لواجهة نص-فقط أساسية."
 
-#~ msgid "As part of their processing, some LADSPA effects must delay returning "
+#~ msgid ""
+#~ "As part of their processing, some LADSPA effects must delay returning "
 #~ msgstr "كجزء من معالجتها، بعض تأثيرات LADSPA يجب أن تأخر "
 
 #~ msgid "not work for all LADSPA effects."
@@ -18441,8 +19477,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "not work for all LV2 effects."
 #~ msgstr "لا يعمل لجميع تأثيرات LV2."
 
-#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|*.txt|All files|*"
-#~ msgstr "نصوص Nyquist (*.ny)|*.ny|نصوص Lisp (*.lsp)|*.lsp|ملفات نصية (*.txt)|*.txt|جميع الملفات|*"
+#~ msgid ""
+#~ "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|"
+#~ "*.txt|All files|*"
+#~ msgstr ""
+#~ "نصوص Nyquist (*.ny)|*.ny|نصوص Lisp (*.lsp)|*.lsp|ملفات نصية (*.txt)|*.txt|"
+#~ "جميع الملفات|*"
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
@@ -18453,18 +19493,34 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "%s kbps"
 #~ msgstr "%s kbps"
 
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "فقط lame_enc.dll|lame_enc.dll|المكتبات المربوطة ديناميكيا (*.dll)|*.dll|جميع الملفات (*.*)|*"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "فقط lame_enc.dll|lame_enc.dll|المكتبات المربوطة ديناميكيا (*.dll)|*.dll|"
+#~ "جميع الملفات (*.*)|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "فقط libmp3lame.dylib|libmp3lame.dylib|المكتبات المربوطة ديناميكيا (*.dylib)|*.dylib|جميع الملفات (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libmp3lame.dylib|libmp3lame.dylib|المكتبات المربوطة ديناميكيا (*."
+#~ "dylib)|*.dylib|جميع الملفات (*)|*"
 
-#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "فقط libmp3lame.dylib|libmp3lame.dylib|المكتبات المربوطة ديناميكيا (*.dylib)|*.dylib|جميع الملفات (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libmp3lame.dylib|libmp3lame.dylib|المكتبات المربوطة ديناميكيا (*."
+#~ "dylib)|*.dylib|جميع الملفات (*)|*"
 
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "فقط libmp3lame.so.0|libmp3lame.so.0| ملفات البرامج المشتركة الابتدائية (*.so)|*.so|  المكتبات الموسّعة (*.so*)|*.so*|جميع الملفات (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libmp3lame.so.0|libmp3lame.so.0| ملفات البرامج المشتركة الابتدائية (*."
+#~ "so)|*.so|  المكتبات الموسّعة (*.so*)|*.so*|جميع الملفات (*)|*"
 
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
 #~ msgstr "AIFF (Apple) signed 16-bit PCM"
@@ -18478,8 +19534,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "MIDI file (*.mid)|*.mid|Allegro file (*.gro)|*.gro"
 #~ msgstr "ملف MIDI (*.mid)|*.mid|ملف Allegro (*.gro)|*.gro"
 
-#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr "ملفات MIDI و Allegro (*.mid;*.mid;*.gro)|*.mid;*.mid;*.gro|ملفات MIDI (*.mid;*.mid)|ملفات Allegro (*.gro)|*.gro|جميع الملفات|*"
+#~ msgid ""
+#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
+#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr ""
+#~ "ملفات MIDI و Allegro (*.mid;*.mid;*.gro)|*.mid;*.mid;*.gro|ملفات MIDI (*."
+#~ "mid;*.mid)|ملفات Allegro (*.gro)|*.gro|جميع الملفات|*"
 
 #~ msgid "F&ocus"
 #~ msgstr "ركز"
@@ -18488,7 +19548,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "%s - %s"
 
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output "
+#~ "Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
 #~ "هذا إصدار تنقيح من Audacity، مع زر إضافي، 'Output Sourcery'. هذا سيحفظ\n"
@@ -18516,8 +19577,11 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "&Use custom mix"
 #~ msgstr "استخدم خليطاً خاصاً"
 
-#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
-#~ msgstr "لاستعمال الرسم، اختر 'موجة' أو 'موجة (dB)' من القائمة المنسدلة للمقطع."
+#~ msgid ""
+#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
+#~ "Menu."
+#~ msgstr ""
+#~ "لاستعمال الرسم، اختر 'موجة' أو 'موجة (dB)' من القائمة المنسدلة للمقطع."
 
 #, fuzzy
 #~ msgid "Vocal Remover"
@@ -18613,13 +19677,16 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "يمين"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden "
+#~ "before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
+#~ "to the right place."
 #~ msgstr ""
 #~ "أوضاع تصحيح الكمون تسببت في إخفاء الصوت المسجل قبل الصفر.\n"
 #~ "جرأة أعاده إلى خط البداية عند الصفر.\n"
-#~ "ربما يجب عليك أن تستخدم أداة تحريك الوقت (<---> أو F5) لتسحب المقطع إلى المكان الصحيح."
+#~ "ربما يجب عليك أن تستخدم أداة تحريك الوقت (<---> أو F5) لتسحب المقطع إلى "
+#~ "المكان الصحيح."
 
 #~ msgid "Latency problem"
 #~ msgstr "مشكلة كمون"
@@ -18648,14 +19715,24 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "<br><br>DarkAudacity is based on Audacity:"
 #~ msgstr "<br><br>جرأة القاتم مبني على أساس جرأة:"
 
-#~ msgid " [[http://www.darkaudacity.com|www.darkaudacity.com]] - for differences between them."
-#~ msgstr " [[http://www.darkaudacity.com|www.darkaudacity.com]] - لاختلافات بينهما."
+#~ msgid ""
+#~ " [[http://www.darkaudacity.com|www.darkaudacity.com]] - for differences "
+#~ "between them."
+#~ msgstr ""
+#~ " [[http://www.darkaudacity.com|www.darkaudacity.com]] - لاختلافات بينهما."
 
-#~ msgid " email to [[mailto:james@audacityteam.org|james@audacityteam.org]] - for help using DarkAudacity."
-#~ msgstr " أرسل بريداً إلكترونياً إلى [[mailto:james@audacityteam.org|james@audacityteam.org]] - للمساعدة باستخدام جرأة المظلم."
+#~ msgid ""
+#~ " email to [[mailto:james@audacityteam.org|james@audacityteam.org]] - for "
+#~ "help using DarkAudacity."
+#~ msgstr ""
+#~ " أرسل بريداً إلكترونياً إلى [[mailto:james@audacityteam.org|"
+#~ "james@audacityteam.org]] - للمساعدة باستخدام جرأة المظلم."
 
-#~ msgid " [[http://www.darkaudacity.com/video.html|Tutorials]] - for getting started with DarkAudacity."
-#~ msgstr " [[http://www.darkaudacity.com/video.html|دروس]] - لتبدأ مع جرأة القاتم."
+#~ msgid ""
+#~ " [[http://www.darkaudacity.com/video.html|Tutorials]] - for getting "
+#~ "started with DarkAudacity."
+#~ msgstr ""
+#~ " [[http://www.darkaudacity.com/video.html|دروس]] - لتبدأ مع جرأة القاتم."
 
 #~ msgid "Insert &After"
 #~ msgstr "أدخل بعد"
@@ -18708,7 +19785,9 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Time Scale"
 #~ msgstr "مقياس الوقت"
 
-#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgid ""
+#~ "Your tracks will be mixed down to a single mono channel in the exported "
+#~ "file."
 #~ msgstr "سوف يتم مزج مقاطعك في قناة أحادية في الملف المُصدَّر."
 
 #~ msgid "kbps"
@@ -18729,7 +19808,9 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr "خطأ عند فتح جهاز الصوت. من فضلك تفقد أوضاع جهاز المخرج و معدل العينة في هذا المشروع."
+#~ msgstr ""
+#~ "خطأ عند فتح جهاز الصوت. من فضلك تفقد أوضاع جهاز المخرج و معدل العينة في "
+#~ "هذا المشروع."
 
 #~ msgid "Slider Recording"
 #~ msgstr "تسجيل المنزلق"
@@ -18900,8 +19981,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Show length and center"
 #~ msgstr "أظهر المدة و المركز"
 
-#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
-#~ msgstr "انقر لتكبر عمودياً، اضغط Shift و انقر لتصغر، اسحب لإنشاء منطقة تكبير/تصغير خاصة."
+#~ msgid ""
+#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
+#~ "particular zoom region."
+#~ msgstr ""
+#~ "انقر لتكبر عمودياً، اضغط Shift و انقر لتصغر، اسحب لإنشاء منطقة تكبير/تصغير "
+#~ "خاصة."
 
 #~ msgid "up"
 #~ msgstr "فوق"
@@ -19080,7 +20165,9 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Heaviest"
 #~ msgstr "اﻷثقل"
 
-#~ msgid "A simple, combined compressor and limiter effect for reducing the dynamic range of audio"
+#~ msgid ""
+#~ "A simple, combined compressor and limiter effect for reducing the dynamic "
+#~ "range of audio"
 #~ msgstr "تأثير ضاغط و حادد مجمع و بسيط لتقليل المدى الديناميكي للصوت"
 
 #, fuzzy
@@ -19103,8 +20190,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ "\n"
 #~ "'%s'"
 
-#~ msgid "Audacity website: [[http://www.audacityteam.org/|http://www.audacityteam.org/]]"
-#~ msgstr "موقع-ويب جرأة: [[http://www.audacityteam.org/|http://www.audacityteam.org/]]"
+#~ msgid ""
+#~ "Audacity website: [[http://www.audacityteam.org/|http://www.audacityteam."
+#~ "org/]]"
+#~ msgstr ""
+#~ "موقع-ويب جرأة: [[http://www.audacityteam.org/|http://www.audacityteam."
+#~ "org/]]"
 
 #~ msgid "Size"
 #~ msgstr "حجم"
@@ -19226,7 +20317,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "تحرير شعارات البيانات الوصفية للتصدير"
 
 #~ msgid "Error Flushing File"
-#~ msgstr "خطأ في كتابة -التغييرات المنتظرة المتبقية التي لم تكتب بعد- إلى القرص"
+#~ msgstr ""
+#~ "خطأ في كتابة -التغييرات المنتظرة المتبقية التي لم تكتب بعد- إلى القرص"
 
 #~ msgid "Error Closing File"
 #~ msgstr "خطأ في إغلاق الملف"
@@ -19422,18 +20514,24 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Command-line options supported:"
 #~ msgstr "خيارات سطر اﻷوامر المتوفرة:"
 
-#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
+#~ msgid ""
+#~ "In addition, specify the name of an audio file or Audacity project to "
+#~ "open it."
 #~ msgstr "أضف إلى الخيارات اسم ملف صوتي أو مشروع جُرأة لفتحه."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "التأثير من الثنائي إلى الأحادي غير موجود"
 
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
-#~ msgstr "المؤشر: %d هرتز (%s) = %d ديسيبل    الذروة: %d هرتز (%s) = %.1f ديسيبل"
+#~ msgstr ""
+#~ "المؤشر: %d هرتز (%s) = %d ديسيبل    الذروة: %d هرتز (%s) = %.1f ديسيبل"
 
 #, fuzzy
-#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr "المؤشر: %.4f ثا (%d هرتز) (%s) = %f،       الذروة: %.4f ثا (%d هرتز) (%s) = %.3f"
+#~ msgid ""
+#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr ""
+#~ "المؤشر: %.4f ثا (%d هرتز) (%s) = %f،       الذروة: %.4f ثا (%d هرتز) (%s) "
+#~ "= %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -19573,11 +20671,16 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr "تطبيع..."
 
 #, fuzzy
-#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid ""
+#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "التأثير المُطبَّق: %s تأخير = %f ثانية، مُعامل الإنحطاط = %f"
 
-#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr "التأثير المُطبَّق: %s %d طور، %.0f%% رطب، تردد = %.1f هرتز، المرحلة الأولى  = %.0f درجة، عمق = %d، تغذية خلفية = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
+#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr ""
+#~ "التأثير المُطبَّق: %s %d طور، %.0f%% رطب، تردد = %.1f هرتز، المرحلة الأولى  "
+#~ "= %.0f درجة، عمق = %d، تغذية خلفية = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "إشارة إلكترونية صوتية..."
@@ -19620,8 +20723,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Applying Stereo to Mono"
 #~ msgstr "تطبيق من الثنائي إلى الأحادي"
 
-#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
-#~ msgstr "التأثير المُطبَّق: توليد %s موجة %s، تردد = %.2f هرتز، سعة = %.2f، %.6lf ثانية"
+#~ msgid ""
+#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
+#~ "%.2f, %.6lf seconds"
+#~ msgstr ""
+#~ "التأثير المُطبَّق: توليد %s موجة %s، تردد = %.2f هرتز، سعة = %.2f، %.6lf "
+#~ "ثانية"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "مُولد الزقزقة"
@@ -19636,8 +20743,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "مجموعة مفاتيح"
 
-#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr "التأثير المُطبَّق: %s  تردد = %.1f هرتز، المرحلة اﻷولى =  %.0f درجة، عُمق = %.0f%%،  رنين = %.1f، تعديل التردد = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
+#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr ""
+#~ "التأثير المُطبَّق: %s  تردد = %.1f هرتز، المرحلة اﻷولى =  %.0f درجة، عُمق = "
+#~ "%.0f%%،  رنين = %.1f، تعديل التردد = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "واه واه..."
@@ -19651,8 +20762,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Author: "
 #~ msgstr "المؤلف: "
 
-#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "عفوا، لايمكن إجراء تأثيرات البرامج المساعدة على المسارات الثنائية التي تكون فيها القنوات الفردية للمسار غير متوافقة."
+#~ msgid ""
+#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "عفوا، لايمكن إجراء تأثيرات البرامج المساعدة على المسارات الثنائية التي "
+#~ "تكون فيها القنوات الفردية للمسار غير متوافقة."
 
 #~ msgid "Extracting features: %s"
 #~ msgstr "خدمات الاستخراج: %s"
@@ -19681,7 +20796,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Input Meter"
 #~ msgstr "عداد المدخل"
 
-#~ msgid "Recovering a project will not change any files on disk before you save it."
+#~ msgid ""
+#~ "Recovering a project will not change any files on disk before you save it."
 #~ msgstr "استرجاع أي مشروع لن يغير أي ملف على القرص إلى أن تقوم بحفظه."
 
 #~ msgid "Do Not Recover"
@@ -19833,8 +20949,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Attempt to run Noise Removal without a noise profile.\n"
 #~ msgstr "محاولة حذف الضجيج من دون وصف له.\n"
 
-#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "عفوا، لا يمكن إجراء هذا التأثير على المسارات الثنائية التي تكون فيها القنوات الفردية للمسار غير متوافقة."
+#~ msgid ""
+#~ "Sorry, this effect cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "عفوا، لا يمكن إجراء هذا التأثير على المسارات الثنائية التي تكون فيها "
+#~ "القنوات الفردية للمسار غير متوافقة."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "ماسح الشوكة"
@@ -19876,8 +20996,12 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Clean Speech"
 #~ msgstr "الخطاب النظيف"
 
-#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
-#~ msgstr "التسجيل بنمط الخطاب النظيف غير ممكن إذا كان هناك مسار مفتوح من قبل، أو هناك أكثر من مشروع واحد مفتوح."
+#~ msgid ""
+#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
+#~ "one project, is already open."
+#~ msgstr ""
+#~ "التسجيل بنمط الخطاب النظيف غير ممكن إذا كان هناك مسار مفتوح من قبل، أو "
+#~ "هناك أكثر من مشروع واحد مفتوح."
 
 #~ msgid "Output level meter"
 #~ msgstr "عداد مستوى المخرج"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2012-02-27 19:02-0000\n"
 "Last-Translator: Gale <gale@audacityteam.org>\n"
 "Language-Team: Persian\n"
@@ -20,10 +20,97 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default recording device number: %d"
+msgstr "دستگاه ورودی"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default playback device number: %d"
+msgstr "سرعت پخش"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "No devices found"
+msgstr "سرعت پخش"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device info unavailable for: %d"
+msgstr "پیش‌نمایش موجود نیست"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device ID: %d"
+msgstr "دستگاه"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device name: %s"
+msgstr "دستگاه"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Host name: %s"
+msgstr "نام"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Recording channels: %d"
+msgstr "کانال راست"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Playback channels: %d"
+msgstr "سرعت پخش"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Low Recording Latency: %g"
+msgstr "در حال ضبط"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "High Recording Latency: %g"
+msgstr "در حال ضبط"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "Supported Rates:"
+msgstr "نرخ نمونه‌برداری:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected recording device: %d - %s"
+msgstr "دستگاه ورودی"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected playback device: %d - %s"
+msgstr "سرعت پخش"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "No playback device found for '%s'."
+msgstr "سرعت پخش"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d"
+msgstr "دکمهٔ لغزنده-خروجی"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "دستگاه ورودی"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI playback device: %d - %s"
 msgstr "سرعت پخش"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
@@ -52,6 +139,21 @@ msgstr "نم&ونه‌برداری مجدد..."
 msgid "Internal Error"
 msgstr "خطای LOF"
 
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "حذف «‎%s» ممکن نیست"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"اوداسیتی نتوانست این پرونده را بنویسد:\n"
+"  %s."
+
 #: libraries/lib-files/FileException.h
 #, fuzzy
 msgid "File Error"
@@ -70,6 +172,11 @@ msgstr "همهٔ پرونده‌ها (*)|*"
 #, fuzzy
 msgid "AUP3 project files"
 msgstr "در حال ذخیره کردن پرونده‌های دادهٔ پروژه"
+
+#: libraries/lib-files/FileNames.cpp
+#, fuzzy
+msgid "Dynamically Linked Libraries"
+msgstr "شاخه‌ها"
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy
@@ -155,6 +262,12 @@ msgstr "شکل‌یافته"
 msgid "Rectangular"
 msgstr "مستطیلی"
 
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+#, fuzzy
+msgid "Hamming"
+msgstr "۲۵۶ ‐ پیش‌فرض"
+
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
 msgid "Low Quality (Fastest)"
@@ -210,6 +323,27 @@ msgstr "بایت"
 #, fuzzy
 msgid "Simplified"
 msgstr "در حال تقویت"
+
+#: libraries/lib-strings/Languages.cpp
+#, fuzzy
+msgid "System"
+msgstr "&زمان آغاز"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "&تولید"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "شیار صوتی"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "پخش"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -314,6 +448,11 @@ msgstr "پاکت"
 msgid "%s, graphics"
 msgstr "اکولایزر گرافیکی"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "پاکت"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -321,10 +460,22 @@ msgstr "اکولایزر گرافیکی"
 msgid "%s, Tenacity developer"
 msgstr "پاکت"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "پاکت"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "پاکت"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "پاکت"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
@@ -359,6 +510,12 @@ msgstr "اعضای دیگر تیم امیریتوس"
 #, fuzzy
 msgid "Contributors"
 msgstr "مشارکت‌کنندگان دیگر"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "اعضای دیگر تیم امیریتوس"
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -429,6 +586,17 @@ msgstr "فشرده‌ساز..."
 msgid "Settings folder:"
 msgstr "پوشهٔ تنظیمات: "
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Core Libraries"
+msgstr "شاخه‌ها"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Sample rate conversion"
+msgstr "مبدل نرخ نمونه‌"
+
 #. i18n-hint: This is what the library (libmad) does - imports MP3 files
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -446,6 +614,11 @@ msgstr "برپاسازی صدور FLAC"
 #, fuzzy
 msgid "ID3 tag support"
 msgstr "متصل‌شونده‌های %Ii تا %Ii"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "برپاسازی صدور FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -484,10 +657,17 @@ msgstr "متصل‌شونده‌های %Ii تا %Ii"
 msgid "Pitch and Tempo Change support"
 msgstr "کیفیت "
 
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Extreme Pitch and Tempo Change support"
+msgstr "کیفیت "
+
 #: src/AdornedRulerPanel.cpp
 #, fuzzy
 msgid "Click and drag to adjust, double-click to reset"
-msgstr "برای تنظیم اندازهٔ نسبی قطعات استریو کلیک کنید و در حالی که کلید را پایین نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای تنظیم اندازهٔ نسبی قطعات استریو کلیک کنید و در حالی که کلید را پایین "
+"نگاه داشته‌اید موشی را حرکت دهید."
 
 #. i18n-hint: This text is a tooltip on the icon (of a pin) representing
 #. the temporal position in the audio.
@@ -517,7 +697,9 @@ msgstr "برای ویرایش نمونه‌ها کلیک کنید و بکشید"
 #: src/AdornedRulerPanel.cpp
 #, fuzzy
 msgid "Click or drag to begin Scrub"
-msgstr "برای تغییر اندازهٔ شیار کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای تغییر اندازهٔ شیار کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را "
+"حرکت دهید."
 
 #. i18n-hint: These commands assist the user in finding a sound by ear. ...
 #. "Scrubbing" is variable-speed playback, ...
@@ -595,12 +777,22 @@ msgstr "خطا"
 
 #: src/AudioIO.cpp
 #, fuzzy
+msgid "PortAudio Error"
+msgstr "خطا"
+
+#: src/AudioIO.cpp
+#, fuzzy
 msgid ""
 "You will not be able to play midi.\n"
 "\n"
 msgstr ""
 "قادر به پخش یا ضبط صدا نخواهید بود.\n"
 "\n"
+
+#: src/AudioIO.cpp
+#, fuzzy
+msgid "Tenacity Audio"
+msgstr "آ&رایش"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, fuzzy, c-format
@@ -629,6 +821,11 @@ msgstr "انتخاب"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "نام"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "&دربارهٔ اوداسیتی..."
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -670,6 +867,11 @@ msgstr "&پارامترها"
 #, fuzzy
 msgid "Choose command"
 msgstr "ان&تخاب فرمان"
+
+#: src/BatchCommands.cpp
+#, fuzzy
+msgid "MP3 Conversion"
+msgstr "درون‌یابی همگامی با کیفیت بالا"
 
 #: src/BatchCommands.cpp
 #, fuzzy
@@ -963,13 +1165,30 @@ msgstr "صدور داده‌های طیفی به صورت:"
 
 #: src/Benchmark.cpp
 #, fuzzy
+msgid "Block size should be in the range 1 - 1024 KB."
+msgstr "فرکانس حداکثر باید یک عدد صحیح باشد"
+
+#: src/Benchmark.cpp
+#, fuzzy
 msgid "Number of edits should be in the range 1 - 10000."
+msgstr "فرکانس حداکثر باید یک عدد صحیح باشد"
+
+#: src/Benchmark.cpp
+#, fuzzy
+msgid "Test data size should be in the range 1 - 2000 MB."
 msgstr "فرکانس حداکثر باید یک عدد صحیح باشد"
 
 #: src/Benchmark.cpp
 #, fuzzy
 msgid "Preparing...\n"
 msgstr "طول"
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "در حال اِعمال اکولایزر"
+msgstr[1] "در حال اِعمال اکولایزر"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
@@ -980,6 +1199,12 @@ msgstr "چسباندن"
 #, fuzzy
 msgid "Reading data again...\n"
 msgstr "مدت زمان صوت:"
+
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "۲۴ بیتی"
 
 #: src/CommonCommandFlags.cpp
 #, fuzzy
@@ -1189,11 +1414,14 @@ msgstr "تکرار..."
 
 #: src/FreqWindow.cpp
 msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
+msgstr ""
+"برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
 msgstr "مقدار صوت انتخاب‌شده زیاد است. تنها %I.1f ثانیهٔ اول صوتتحلیل خواهد شد."
 
 #: src/FreqWindow.cpp
@@ -1323,6 +1551,11 @@ msgstr "&فرمان"
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "&تاریخچه"
+
+#: src/JournalEvents.cpp
+#, fuzzy
+msgid "Journal recording failed"
+msgstr "اندازه‌گیر ضبط"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
@@ -1565,6 +1798,11 @@ msgstr "سرعت پخش"
 msgid "No"
 msgstr "هیچ"
 
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "پاکت"
+
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
 #: src/NoteTrack.cpp src/TrackPanelAx.cpp
@@ -1740,12 +1978,15 @@ msgstr "نرخ واقعی %Id"
 msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
-msgstr "خطا در هنگام باز کردن دستگاه صدا. لطفاً تنظیمات خروجی دستگاه و نرخ نمونه‌برداری پروژه را بررسی کنید."
+msgstr ""
+"خطا در هنگام باز کردن دستگاه صدا. لطفاً تنظیمات خروجی دستگاه و نرخ "
+"نمونه‌برداری پروژه را بررسی کنید."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "The tracks selected for recording must all have the same sampling rate"
-msgstr "برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
+msgstr ""
+"برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -1754,6 +1995,11 @@ msgstr "صدای ضبط‌شده"
 #: src/ProjectAudioManager.cpp src/toolbars/ControlToolBar.cpp
 msgid "Record"
 msgstr "ضبط"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid "[Project %02i] "
+msgstr "جادادن پروژه"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -1908,6 +2154,16 @@ msgstr "پروژهٔ جدید"
 #, fuzzy
 msgid "Error Writing to File"
 msgstr "نمی‌توان در پرونده نوشت: "
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"اوداسیتی نتوانست این پرونده را بنویسد:\n"
+"  %s."
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -2121,6 +2377,11 @@ msgstr "میزان تقویت (دسی‌بل):"
 
 #: src/SplashDialog.cpp
 #, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "پاکت"
+
+#: src/SplashDialog.cpp
+#, fuzzy
 msgid "Don't show this again at start up"
 msgstr "این اخطار دیگر نشان داده نشود"
 
@@ -2251,6 +2512,11 @@ msgstr "خطا در باز کردن پرونده"
 msgid "Failed to remove %s"
 msgstr "حذف «‎%s» ممکن نیست"
 
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "Reset Tenacity Preferences"
+msgstr "ترجیحات..."
+
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
 msgid "&Open..."
@@ -2276,6 +2542,12 @@ msgstr "&پرونده"
 
 #: src/TenacityApp.cpp
 #, fuzzy
+#| msgid "Do you want to save the changes?"
+msgid "Do you still want to start Tenacity?"
+msgstr "آیا می‌خواهید تغییرات را ذخیره کنید؟"
+
+#: src/TenacityApp.cpp
+#, fuzzy
 msgid "Error Locking Temporary Folder"
 msgstr "خطا در باز کردن پرونده"
 
@@ -2284,6 +2556,12 @@ msgstr "خطا در باز کردن پرونده"
 #, fuzzy
 msgid "this help message"
 msgstr "روشن"
+
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "پاکت"
 
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
@@ -2295,6 +2573,11 @@ msgstr "نمی‌توان پروندهٔ پروژه را باز کرد"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "پرونده‌های پروژهٔ اوداسیتی"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "مدت زمان صوت:"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -2325,6 +2608,11 @@ msgstr "مدت زمان"
 #, fuzzy
 msgid "Time Track"
 msgstr "شیار &زمان"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record"
+msgstr "در حال ضبط"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2401,6 +2689,11 @@ msgstr "بازیابی خودکار پس از فروپاشی"
 #, fuzzy
 msgid "Action after Timer Recording:"
 msgstr "ضبط زمان‌بندی شدهٔ اوداسیتی"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record Progress"
+msgstr "اعمال جلوه: %s"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2533,6 +2826,11 @@ msgstr "اندازه‌گیر ضبط"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Exit Tenacity"
+msgstr "&دربارهٔ اوداسیتی..."
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Recording duration:"
 msgstr "مدت زمان صوت:"
 
@@ -2557,6 +2855,11 @@ msgstr "اندازه‌گیر ضبط"
 #, fuzzy
 msgid "Recording Exported:"
 msgstr "اندازه‌گیر ضبط"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record - Waiting"
+msgstr "در حال ضبط"
 
 #: src/TrackInfo.cpp
 #, fuzzy
@@ -2622,12 +2925,18 @@ msgstr " انتخاب روشن"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
-msgstr "برای تنظیم اندازهٔ نسبی قطعات استریو کلیک کنید و در حالی که کلید را پایین نگاه داشته‌اید موشی را حرکت دهید."
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
+msgstr ""
+"برای تنظیم اندازهٔ نسبی قطعات استریو کلیک کنید و در حالی که کلید را پایین "
+"نگاه داشته‌اید موشی را حرکت دهید."
 
 #: src/TrackPanelResizeHandle.cpp
 msgid "Click and drag to resize the track."
-msgstr "برای تغییر اندازهٔ شیار کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای تغییر اندازهٔ شیار کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را "
+"حرکت دهید."
 
 #: src/TrackUtilities.cpp
 msgid "Removed audio track(s)"
@@ -2730,12 +3039,24 @@ msgid "Resampling failed."
 msgstr "نمونه‌برداری مجدد از کار افتاد. "
 
 #: src/WaveTrack.cpp
+#, fuzzy
+#| msgid "Move Track"
+msgid "Wave Track"
+msgstr "جابه‌جایی شیار"
+
+#: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "برای چسباندن انتخاب به اندازهٔ کافی جا نیست"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "برای گسترش خط برشْ به اندازهٔ کافی جا نیست"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "میله ابزار %s اوداسیتی"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, fuzzy, c-format
@@ -3310,15 +3631,23 @@ msgstr "مخفی‌سازی خودکار"
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "شما شیاری را انتخاب کرده‌اید که حاوی صوت نیست. مخفی‌سازی خودکار فقط می‌تواند شیارهای صوتی را پردازش کند."
+msgid ""
+"You selected a track which does not contain audio. AutoDuck can only process "
+"audio tracks."
+msgstr ""
+"شما شیاری را انتخاب کرده‌اید که حاوی صوت نیست. مخفی‌سازی خودکار فقط می‌تواند "
+"شیارهای صوتی را پردازش کند."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
-msgstr "مخفی‌سازی خودکار به یک شیار کنترلی نیاز دارد که باید زیر شیار انتخاب‌شده قرار داده شود."
+msgid ""
+"Auto Duck needs a control track which must be placed below the selected "
+"track(s)."
+msgstr ""
+"مخفی‌سازی خودکار به یک شیار کنترلی نیاز دارد که باید زیر شیار انتخاب‌شده قرار "
+"داده شود."
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -3714,10 +4043,111 @@ msgstr "زمان حمله: %I.1f ثانیه"
 msgid "Release Time %.1f secs"
 msgstr "زمان حمله: %I.1f ثانیه"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "peak amplitude"
+msgstr "بیشینه دامنهٔ جدید (دسی‌بل) :"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Reduction"
+msgstr "کاهش نوفه (دسی‌بل):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Peak Reduction"
+msgstr "کاهش نوفه (دسی‌بل):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Analog Limiter"
+msgstr "اجازهٔ برش"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Compressor"
+msgstr "فشرده‌ساز..."
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "ایجاد شیار صوتی جدید"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "الگوریتم:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Envelope Algorithm:"
+msgstr "الگوریتم:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "ایجاد شیار صوتی جدید"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "مدت زمان"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width:"
+msgstr "استریو، "
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain:"
+msgstr "کانال‌های خروجی: %I2d"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain"
+msgstr "کانال‌های خروجی: %I2d"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "زمان حمله: "
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack"
+msgstr "زمان حمله: "
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "زمان حمله: %I.1f ثانیه"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release"
+msgstr "زمان حمله: %I.1f ثانیه"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time:"
+msgstr "مرتب‌سازی بر مبنای مدت"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "مرتب‌سازی بر مبنای مدت"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time:"
+msgstr "زمان پایان"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "زمان پایان"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3752,6 +4182,21 @@ msgstr "پایان"
 #, fuzzy
 msgid "Volume    "
 msgstr "شکل موج (دسی‌بل)"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "&Foreground:"
+msgstr "تکرار"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground start time"
+msgstr "تکرار"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground end time"
+msgstr "تکرار"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3808,6 +4253,13 @@ msgid "indeterminate"
 msgstr "نمی‌توان تعیین کرد"
 
 #. i18n-hint: dB abbreviates decibels
+#. * RMS abbreviates root mean square, a certain averaging method
+#: src/effects/Contrast.cpp
+#, fuzzy, c-format
+msgid "%.2f dB RMS"
+msgstr "زمان حمله: %I.1f ثانیه"
+
+#. i18n-hint: dB abbreviates decibels
 #: src/effects/Contrast.cpp
 #, fuzzy
 msgid "Infinite dB difference"
@@ -3819,6 +4271,18 @@ msgstr ""
 #, fuzzy
 msgid "Difference is indeterminate."
 msgstr "نمی‌توان تعیین کرد"
+
+#. i18n-hint: dB abbreviates decibels
+#. RMS abbreviates root mean square, a certain averaging method
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Difference = infinite RMS dB."
+msgstr "نمی‌توان تعیین کرد"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Background level too high"
+msgstr "تکرار"
 
 #. i18n-hint: i.e. difference in loudness at the moment.
 #: src/effects/Contrast.cpp
@@ -3833,6 +4297,21 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%.2f dB"
 msgstr "زمان حمله: %I.1f ثانیه"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground not yet measured"
+msgstr "پرونده باز نمی‌شود: "
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "No background measured"
+msgstr "تکرار"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Background not yet measured"
+msgstr "تکرار"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3886,6 +4365,11 @@ msgstr "تأیید"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
+msgid "Hard Overdrive"
+msgstr "تأیید"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
 msgid "Expand and Compress"
 msgstr "فشرده‌ساز با دامنهٔ پویا"
 
@@ -3903,6 +4387,21 @@ msgstr "مدت زمان"
 #, fuzzy
 msgid "Hard Limiter 1413"
 msgstr "اجازهٔ برش"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Light Crunch Overdrive"
+msgstr "تأیید"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Heavy Overdrive"
+msgstr "تأیید"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Valve Overdrive"
+msgstr "تأیید"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
@@ -4024,6 +4523,11 @@ msgstr "نسبت صوت/سکوت:"
 #: src/effects/DtmfGen.cpp
 msgid "Duty cycle:"
 msgstr "دورهٔ کار:"
+
+#: src/effects/DtmfGen.cpp
+#, fuzzy, c-format
+msgid "%.1f %%"
+msgstr "زمان حمله: %I.1f ثانیه"
 
 #: src/effects/DtmfGen.cpp
 msgid "Tone duration:"
@@ -4412,8 +4916,10 @@ msgstr "ویرایش برچسب"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
-msgid "To apply Equalization, all selected tracks must have the same sample rate."
-msgstr "برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
+msgid ""
+"To apply Equalization, all selected tracks must have the same sample rate."
+msgstr ""
+"برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -4535,6 +5041,11 @@ msgstr "در حال اِعمال اکولایزر"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "Curve not found"
+msgstr "برچسبی برای صدور نیست."
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Manage Curves List"
 msgstr "مدیریت تاریخچه"
 
@@ -4623,6 +5134,11 @@ msgstr "حذف برچسب‌ها"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "You cannot delete the 'unnamed' curve, it is special."
+msgstr "صدور صوت به %s ممکن نیست"
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Choose an EQ curve file"
 msgstr "پروندهٔ ذخیرهٔ خودکار حذف نشد"
 
@@ -4630,6 +5146,11 @@ msgstr "پروندهٔ ذخیرهٔ خودکار حذف نشد"
 #, fuzzy
 msgid "Export EQ curves as..."
 msgstr "صدور &برچسب‌ها..."
+
+#: src/effects/Equalization.cpp
+#, fuzzy
+msgid "You cannot export 'unnamed' curve, it is special."
+msgstr "صدور صوت به %s ممکن نیست"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -4668,6 +5189,26 @@ msgstr "برای انتخاب صوت کلیک کنید و بکشید"
 #, fuzzy
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "برای انتخاب صوت کلیک کنید و بکشید"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Find Clicks"
+msgstr "اجازهٔ برش"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Clicks"
+msgstr "کلیک چپ"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Right"
+msgstr "کلیک چپ"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Left"
+msgstr "کلیک چپ"
 
 #: src/effects/FindClipping.cpp
 #, fuzzy
@@ -4782,12 +5323,22 @@ msgstr "۲۵۶ ‐ پیش‌فرض"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
+msgid "Blackman, Hann"
+msgstr "۲۵۶ ‐ پیش‌فرض"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
 msgid "Hamming, none"
 msgstr "۲۵۶ ‐ پیش‌فرض"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
 msgid "Hamming, Hann"
+msgstr "۲۵۶ ‐ پیش‌فرض"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "Hamming, Reciprocal Hamming"
 msgstr "۲۵۶ ‐ پیش‌فرض"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
@@ -4798,7 +5349,8 @@ msgstr "کاهش نوفه (دسی‌بل):"
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
 msgid "All noise profile data must have the same sample rate."
-msgstr "برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
+msgstr ""
+"برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
@@ -4883,7 +5435,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to reduce noise.\n"
 msgstr ""
-"تمام صدایی که می‌خواهید صافی کنید را انتخاب نمایید، مشخص کنید که چه مقدار نوفه را می‌خواهید\n"
+"تمام صدایی که می‌خواهید صافی کنید را انتخاب نمایید، مشخص کنید که چه مقدار "
+"نوفه را می‌خواهید\n"
 "با استفاده از صافی حذف کنید، سپس روی «تأیید» کلیک کنید تا نوفه حذف گردد.\n"
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
@@ -4936,7 +5489,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to remove noise.\n"
 msgstr ""
-"تمام صدایی که می‌خواهید صافی کنید را انتخاب نمایید، مشخص کنید که چه مقدار نوفه را می‌خواهید\n"
+"تمام صدایی که می‌خواهید صافی کنید را انتخاب نمایید، مشخص کنید که چه مقدار "
+"نوفه را می‌خواهید\n"
 "با استفاده از صافی حذف کنید، سپس روی «تأیید» کلیک کنید تا نوفه حذف گردد.\n"
 
 #: src/effects/NoiseRemoval.cpp
@@ -5056,6 +5610,11 @@ msgstr "فاز شروع LFO (درجه):"
 msgid "Dept&h:"
 msgstr "عمق:"
 
+#: src/effects/Phaser.cpp src/effects/Wahwah.cpp
+#, fuzzy
+msgid "Depth in percent"
+msgstr "سرعت پخش"
+
 #: src/effects/Phaser.cpp
 #, fuzzy
 msgid "Feedbac&k (%):"
@@ -5077,11 +5636,13 @@ msgstr "تعمیر"
 
 #: src/effects/Repair.cpp
 msgid ""
-"The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
+"The Repair effect is intended to be used on very short sections of damaged "
+"audio (up to 128 samples).\n"
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"جلوهٔ تعمیر برای اعمال بر روی بخش بسیاری کوتاهی از صوت آسیب‌دیده مناسب است (حداکثر تا ۱۲۸ نمونه).\n"
+"جلوهٔ تعمیر برای اعمال بر روی بخش بسیاری کوتاهی از صوت آسیب‌دیده مناسب است "
+"(حداکثر تا ۱۲۸ نمونه).\n"
 "\n"
 "با استفاده از زوم کردن به داخل، کسر کوچکی از ثانیه را برای تعمیر انتخاب کنید."
 
@@ -5201,7 +5762,8 @@ msgstr "بارگ&ذاری پرونده..."
 #: src/effects/ScienFilter.cpp
 #, fuzzy
 msgid "To apply a filter, all selected tracks must have the same sample rate."
-msgstr "برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
+msgstr ""
+"برای رسم طیف، همهٔ شیارهای انتخاب‌شده باید نرخ نمونه‌برداری یکسان داشته باشند."
 
 #: src/effects/ScienFilter.cpp
 #, fuzzy
@@ -5486,6 +6048,11 @@ msgstr "صدور چندتایی"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "یک یا چند پروندهٔ MIDI انتخاب کنید..."
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
 msgid "Error Saving VST Presets"
 msgstr "اعمال جلوه: %s"
 
@@ -5557,6 +6124,11 @@ msgstr "اُفست فرکانس واو (٪):"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
 msgid "Audio Unit Effects"
+msgstr "تنظیمات جلوه"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Provides Audio Unit Effects support to Tenacity"
 msgstr "تنظیمات جلوه"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
@@ -5794,8 +6366,11 @@ msgid "Nyquist Error"
 msgstr "Nyquist"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "متاسفانه نمی‌توان جلوه را بر روی شیارهای استریو که با هم همخوانی ندارند، اعمال نمود."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"متاسفانه نمی‌توان جلوه را بر روی شیارهای استریو که با هم همخوانی ندارند، "
+"اعمال نمود."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -5937,8 +6512,12 @@ msgstr "ج&لوه"
 
 #: src/effects/vamp/VampEffect.cpp
 #, fuzzy
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "متاسفانه نمی‌توان جلوه را بر روی شیارهای استریو که با هم همخوانی ندارند، اعمال نمود."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"متاسفانه نمی‌توان جلوه را بر روی شیارهای استریو که با هم همخوانی ندارند، "
+"اعمال نمود."
 
 #: src/effects/vamp/VampEffect.cpp
 #, fuzzy
@@ -5975,6 +6554,11 @@ msgstr "‏«‎%s» وارد شد"
 msgid "All selected audio is muted."
 msgstr "صدور صوت انتخاب‌شده با سرعت %ld کیلوبیت در ثانیه"
 
+#: src/export/Export.cpp src/export/ExportMultiple.cpp
+#, fuzzy
+msgid "All audio is muted."
+msgstr "صدور صوت انتخاب‌شده با سرعت %ld کیلوبیت در ثانیه"
+
 #: src/export/Export.cpp
 #, fuzzy, c-format
 msgid "Are you sure you want to export the file as \"%s\"?\n"
@@ -5996,7 +6580,9 @@ msgstr "شیارهای شما بعنوان دو کانال استریو در پ�
 
 #: src/export/Export.cpp
 #, fuzzy
-msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+msgid ""
+"Your tracks will be mixed down to one exported file according to the encoder "
+"settings."
 msgstr "شیارهای شما بعنوان دو کانال استریو در پروندهٔ صادرشونده میکس خواهند شد."
 
 #: src/export/Export.cpp
@@ -6102,6 +6688,11 @@ msgstr "&تأیید"
 msgid "Unable to locate \"%s\" in your path."
 msgstr "باز کردن/ایجاد پروندهٔ آزمایشی مممکن نیست"
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+msgid "Export Options"
+msgstr "تنظیمات جلوه"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Cancel"
@@ -6136,6 +6727,14 @@ msgstr "نمونه‌برداری مجدد"
 #, fuzzy
 msgid "Sample Rates"
 msgstr "نرخ نمونه‌برداری:"
+
+#. i18n-hint kbps abbreviates "thousands of bits per second"
+#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
+#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
+#: src/export/ExportMP3.cpp
+#, fuzzy, c-format
+msgid "%d kbps"
+msgstr "زمان حمله: %I.1f ثانیه"
 
 #: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
 msgid "Bit Rate:"
@@ -6260,6 +6859,11 @@ msgstr "میکس اصلی"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
+msgid "LTP"
+msgstr "چ"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
 msgid "Custom FFmpeg Export"
 msgstr "خطای LOF"
 
@@ -6308,6 +6912,11 @@ msgstr "صدور برچسب‌ها به صورت:"
 #, fuzzy
 msgid "Codec:"
 msgstr "اِعمال بر پر&وژهٔ فعلی"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Show All Formats"
+msgstr "روشن"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
@@ -6377,6 +6986,11 @@ msgstr "تنظیم نرخ"
 #, fuzzy
 msgid "Packet Size:"
 msgstr "نمای شیار"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "You can't delete a preset without name"
+msgstr "صدور صوت به %s ممکن نیست"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy, c-format
@@ -6459,7 +7073,8 @@ msgstr "بار کردن پرونده‌ها"
 
 #: src/export/ExportMP2.cpp
 msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "با نرخ نمونه‌برداری و نرخ بیت تعیین‌شده نمی‌توان صدور به قالب MP2 را انجام داد"
+msgstr ""
+"با نرخ نمونه‌برداری و نرخ بیت تعیین‌شده نمی‌توان صدور به قالب MP2 را انجام داد"
 
 #: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
 msgid "Unable to open target file for writing"
@@ -6474,6 +7089,11 @@ msgstr "صدور صوت انتخاب‌شده با سرعت %ld کیلوبیت �
 #, fuzzy, c-format
 msgid "Exporting the audio at %ld kbps"
 msgstr "صدور صوت انتخاب‌شده با سرعت %ld کیلوبیت در ثانیه"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "80-120 kbps"
+msgstr "زمان حمله: %I.1f ثانیه"
 
 #: src/export/ExportMP3.cpp
 msgid "Medium"
@@ -6558,6 +7178,38 @@ msgstr "صدور صوت انتخاب‌شده با سرعت %ld کیلوبیت �
 #, fuzzy, c-format
 msgid "Exporting the audio at %d Kbps"
 msgstr "صدور صوت انتخاب‌شده با سرعت %ld کیلوبیت در ثانیه"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 16-bit"
+msgstr "۱۶ بیتی"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 24-bit"
+msgstr "۱۶ بیتی"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "برچسب‌ها"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Matroska Audio Files"
+msgstr "صدور چندتایی"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the selected audio as FLAC"
+msgid "Exporting the selected audio as MKA"
+msgstr "صدور صوت انتخاب‌شده بعنوان FLAC"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the audio as MKA"
+msgstr "صدور صوت انتخاب‌شده بعنوان FLAC"
 
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
@@ -6736,6 +7388,11 @@ msgstr "%s کجاست؟"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
 #, fuzzy
+msgid "FFmpeg not found"
+msgstr "نسخهٔ کتاب‌خانهٔ MP3"
+
+#: src/ffmpeg/FFmpegNotFoundDialog.cpp
+#, fuzzy
 msgid "Do not show this warning again"
 msgstr "این اخطار دیگر نشان داده نشود"
 
@@ -6748,6 +7405,11 @@ msgstr "‏«‎%s» وارد شد"
 #, fuzzy
 msgid "Select stream(s) to import"
 msgstr "انتخاب تا پایان"
+
+#: src/import/Import.cpp
+#, fuzzy, c-format
+msgid "File \"%s\" not found."
+msgstr "سرعت پخش"
 
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, fuzzy, c-format
@@ -6773,6 +7435,41 @@ msgid "Import Project"
 msgstr "صدور برچسب‌ها به صورت:"
 
 #: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'vpos' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'h' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'zoom' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel0' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel1' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selLow' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selHigh' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
 #, c-format
 msgid "Couldn't find the project data folder: \"%s\""
 msgstr "پوشهٔ داده‌های پروژه پیدا نمی‌شود: «%s»"
@@ -6789,7 +7486,17 @@ msgstr "نرخ نمونه‌برداری:"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
+msgid "Invalid sequence 'sampleformat' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
 msgid "Invalid sequence 'numsamples' attribute."
+msgstr "نرخ نمونه‌برداری:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Missing or invalid silentblockfile 'len' attribute."
 msgstr "نرخ نمونه‌برداری:"
 
 #: src/import/ImportAUP.cpp
@@ -6858,7 +7565,9 @@ msgstr "مدت زمان نامعتبر در پروندهٔ LOF"
 
 #: src/import/ImportLOF.cpp
 msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "شیارهای MIDI نمی‌توانند بطور مستقل از افست استفاده کنند. فقط پرونده‌های صوتی می‌توانند چنین کنند. "
+msgstr ""
+"شیارهای MIDI نمی‌توانند بطور مستقل از افست استفاده کنند. فقط پرونده‌های صوتی "
+"می‌توانند چنین کنند. "
 
 #. i18n-hint: You do not need to translate "LOF"
 #: src/import/ImportLOF.cpp
@@ -6893,6 +7602,11 @@ msgstr "باز کردن پروندهٔ «%s» مممکن نیست"
 #, fuzzy
 msgid "MP3 files"
 msgstr "بار کردن پرونده‌ها"
+
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "پرونده‌های نام:"
 
 #: src/import/ImportOGG.cpp
 #, fuzzy
@@ -7089,6 +7803,12 @@ msgstr "مقداری که باید وارد شود:"
 msgid "Sample rate:"
 msgstr "نرخ نمونه‌برداری:"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+msgid "Detect"
+msgstr "انتخاب سکوت"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 #, fuzzy
 msgid "&Import"
@@ -7119,12 +7839,14 @@ msgstr "پایان"
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "Time shifted clips to the right"
-msgstr "بریده‌ها/شیارهای  %s که زمان آنها به اندازهٔ %I.02f ثانیه به جابه‌جا شده است"
+msgstr ""
+"بریده‌ها/شیارهای  %s که زمان آنها به اندازهٔ %I.02f ثانیه به جابه‌جا شده است"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "Time shifted clips to the left"
-msgstr "بریده‌ها/شیارهای  %s که زمان آنها به اندازهٔ %I.02f ثانیه به جابه‌جا شده است"
+msgstr ""
+"بریده‌ها/شیارهای  %s که زمان آنها به اندازهٔ %I.02f ثانیه به جابه‌جا شده است"
 
 #: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
 #: src/tracks/ui/TimeShiftHandle.cpp
@@ -7557,6 +8279,11 @@ msgstr "صدور برچسب‌ها به صورت:"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
+msgid "Export as &MKA"
+msgstr "صدور برچسب‌ها به صورت:"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
 msgid "Export as &OGG"
 msgstr "‏«‎%s» وارد شد"
 
@@ -7677,6 +8404,11 @@ msgstr "یک یا چند پروندهٔ MIDI انتخاب کنید..."
 #, fuzzy
 msgid "&Quick Help..."
 msgstr "را&هنما"
+
+#: src/menus/HelpMenus.cpp
+#, fuzzy
+msgid "Au&dio Device Info..."
+msgstr "اندازه‌گیر ضبط"
 
 #: src/menus/HelpMenus.cpp
 #, fuzzy
@@ -8469,6 +9201,12 @@ msgstr "مکان‌نما به راست"
 #, fuzzy
 msgid "&Toolbars"
 msgstr "ابزار"
+
+#. i18n-hint: (verb)
+#: src/menus/ToolbarMenus.cpp
+#, fuzzy
+msgid "Edit &Mode (on/off)"
+msgstr "بریده‌های منتقل‌شده به شیاری دیگر"
 
 #: src/menus/ToolbarMenus.cpp
 #, fuzzy
@@ -9288,6 +10026,11 @@ msgstr "به پایان انتخاب"
 
 #: src/menus/ViewMenus.cpp
 #, fuzzy
+msgid "&Extra Menus (on/off)"
+msgstr "بریده‌های منتقل‌شده به شیاری دیگر"
+
+#: src/menus/ViewMenus.cpp
+#, fuzzy
 msgid "Track &Name (on/off)"
 msgstr "بریده‌های منتقل‌شده به شیاری دیگر"
 
@@ -9349,6 +10092,15 @@ msgstr "پخش"
 #, fuzzy
 msgid "&Device:"
 msgstr "دستگاه"
+
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "در حال ضبط"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 #, fuzzy
@@ -9828,6 +10580,11 @@ msgstr "&پیش‌فرض‌ها"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "پروندهٔ متنی حاوی برچسب‌ها را انتخاب کنید..."
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
 msgid "Error Importing Keyboard Shortcuts"
 msgstr "صدور میان‌بُرهای صفحه‌کلید با نام:"
 
@@ -9864,6 +10621,11 @@ msgstr "ترجیحات..."
 #, fuzzy
 msgid "FFmpeg Import/Export Library"
 msgstr "خطای LOF"
+
+#: src/prefs/LibraryPrefs.cpp
+#, fuzzy
+msgid "No compatible FFmpeg library was found"
+msgstr "نسخهٔ کتاب‌خانهٔ MP3"
 
 #: src/prefs/LibraryPrefs.cpp
 #, fuzzy
@@ -10070,6 +10832,11 @@ msgstr "کشیدن به چپ"
 msgid "Move clip up/down between tracks"
 msgstr "تغییر محل بریده بین شیارها (بالا/پایین)"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "Alt-Left-Drag"
+msgstr "کشیدن به چپ"
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -10169,6 +10936,11 @@ msgstr "طول"
 msgid "Cut Preview"
 msgstr "پیش‌نمایش برش"
 
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+msgid "Tenacity Preferences"
+msgstr "ترجیحات..."
+
 #: src/prefs/PrefsDialog.cpp src/prefs/PrefsDialog.h
 #, fuzzy
 msgid "Preferences:"
@@ -10227,6 +10999,12 @@ msgstr "ترجیحات..."
 msgid "Record on a new track"
 msgstr "شیار جدید"
 
+#. i18n-hint: Dropout is a loss of a short sequence audio sample data from the recording
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "Detect dropouts"
+msgstr "انتخاب تا پایان"
+
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "Sound Activated Recording"
@@ -10266,6 +11044,11 @@ msgstr "شمارهٔ شیار"
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "System &Date"
+msgstr "&زمان آغاز"
+
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "System T&ime"
 msgstr "&زمان آغاز"
 
 #: src/prefs/RecordingPrefs.cpp
@@ -10432,6 +11215,11 @@ msgstr "انتخاب"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
+msgid "Show a grid along the &Y-axis"
+msgstr "روشن"
+
+#: src/prefs/SpectrumPrefs.cpp
+#, fuzzy
 msgid "Minimum Amplitude (dB):"
 msgstr "بیشینه دامنهٔ جدید (دسی‌بل) :"
 
@@ -10495,6 +11283,11 @@ msgstr "تم"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "ترجیحات..."
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Theme Settings"
+msgstr "تنظیمات جلوه"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Info"
@@ -10683,11 +11476,6 @@ msgstr "نمونه‌ها"
 msgid "Default audio track &name:"
 msgstr "ایجاد شیار صوتی جدید"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "شیار صوتی"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
 msgid "Zoom Toggle"
@@ -10793,6 +11581,40 @@ msgstr "قلم..."
 msgid "Light"
 msgstr "سبک"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+#| msgid "Tools"
+msgid "Pro Tools"
+msgstr "ابزارها"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "میله ابزار %s اوداسیتی"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "نمی‌توان در پرونده نوشت: "
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "باز کردن پروندهٔ مقصد برای نوشتن ممکن نیست"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "نمی‌توان در پرونده نوشت: "
+
 #: src/theme/Theme.cpp
 #, c-format
 msgid ""
@@ -10823,6 +11645,13 @@ msgstr ""
 "همهٔ پرونده‌های لازم در:\n"
 "  %s\n"
 "از قبل موجود هستند."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "باز کردن پروندهٔ «%s» مممکن نیست"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -11266,10 +12095,18 @@ msgstr "زمان پایان"
 msgid "&Time Toolbar"
 msgstr "نوار ابزار دستگاه"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+msgid "Tenacity %s Toolbar"
+msgstr "نوار ابزار ویرایش"
+
 #: src/toolbars/ToolBar.cpp
 #, fuzzy
 msgid "Click and drag to resize toolbar"
-msgstr "برای تغییر اندازهٔ شیار کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای تغییر اندازهٔ شیار کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را "
+"حرکت دهید."
 
 #: src/toolbars/ToolDock.cpp
 msgid "ToolDock"
@@ -11464,8 +12301,12 @@ msgstr "اُکتاو پایین"
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
 #, fuzzy
-msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
-msgstr "برای زوم به داخل عمودی کلیک، برای زوم به خارج تبدیل-کلیک کنید و برای ایجاد محدودهٔ زوم خاص کلید موشی را نگه دارید و موشی را حرکت دهید."
+msgid ""
+"Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom "
+"region."
+msgstr ""
+"برای زوم به داخل عمودی کلیک، برای زوم به خارج تبدیل-کلیک کنید و برای ایجاد "
+"محدودهٔ زوم خاص کلید موشی را نگه دارید و موشی را حرکت دهید."
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
@@ -11561,6 +12402,40 @@ msgstr "طیف‌نما"
 #, fuzzy
 msgid "S&pectrogram Settings..."
 msgstr "طیف‌نما"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "برای جابه‌جایی یک شیار در زمان کلیک کنید و بکشید"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "نام شیار"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Click and drag to select audio"
+msgid "Click and drag to select text"
+msgstr "برای انتخاب صوت کلیک کنید و بکشید"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Modified Label"
+msgid "Modified Clip Name"
+msgstr "برچسب تغییریافته"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "ویرایش نمونه"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Rename Clip..."
+msgstr "نم&ونه‌برداری مجدد..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, fuzzy
@@ -11773,6 +12648,13 @@ msgstr "چپ، "
 msgid "Right, %dHz"
 msgstr "راست، "
 
+#. i18n-hint dB abbreviates decibels
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
+#: src/widgets/ASlider.cpp
+#, fuzzy, c-format
+msgid "%+.1f dB"
+msgstr "زمان حمله: %I.1f ثانیه"
+
 #. i18n-hint: Stereo pan setting
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 #: src/widgets/ASlider.cpp
@@ -11789,8 +12671,11 @@ msgstr "راست"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-msgstr "برای تنظیم اندازهٔ نسبی قطعات استریو کلیک کنید و در حالی که کلید را پایین نگاه داشته‌اید موشی را حرکت دهید."
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgstr ""
+"برای تنظیم اندازهٔ نسبی قطعات استریو کلیک کنید و در حالی که کلید را پایین "
+"نگاه داشته‌اید موشی را حرکت دهید."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
@@ -11806,6 +12691,21 @@ msgstr "برای جابه‌جایی یک شیار در زمان کلیک کنی
 #, fuzzy
 msgid "Close sub-view"
 msgstr "برای جابه‌جایی یک شیار در زمان کلیک کنید و بکشید"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Split Clip"
+msgstr "ابزار بعدی"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "بدون صدا/با صدا کردن شیار مورد تمرکز"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Rename clip..."
+msgstr "نم&ونه‌برداری مجدد..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 #, fuzzy
@@ -11893,6 +12793,27 @@ msgstr "درون‌یابی همگامی سریع"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "برای جابه‌جایی یک شیار در زمان کلیک کنید و بکشید"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Mono Track"
+msgstr "جابه‌جایی شیار"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "شیار ا&ستریو"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Label Track"
+msgstr "&شیار برچسب"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Export Audio..."
+msgstr "&صدور..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -12002,31 +12923,43 @@ msgstr "پرش به آغاز"
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move left selection boundary."
-msgstr "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید "
+"موشی را حرکت دهید."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move right selection boundary."
-msgstr "برای جابه‌جا کردن حد راست انتخاب، کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای جابه‌جا کردن حد راست انتخاب، کلیک کنید و در حالی که دکمه را نگاه "
+"داشته‌اید موشی را حرکت دهید."
 
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
 msgid "Click and drag to move bottom selection frequency."
-msgstr "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید "
+"موشی را حرکت دهید."
 
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
 msgid "Click and drag to move top selection frequency."
-msgstr "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید "
+"موشی را حرکت دهید."
 
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
 msgid "Click and drag to move center selection frequency to a spectral peak."
-msgstr "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید "
+"موشی را حرکت دهید."
 
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
 msgid "Click and drag to move center selection frequency."
-msgstr "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+msgstr ""
+"برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید "
+"موشی را حرکت دهید."
 
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
@@ -12139,11 +13072,13 @@ msgstr "جابه‌جایی شیار"
 
 #: src/tracks/ui/ZoomHandle.cpp
 msgid "Click to Zoom In, Shift-Click to Zoom Out"
-msgstr "برای زوم کردن کلیک کنید، برای زوم به عقب کلید تبدیل را نگه دارید و کلیک کنید"
+msgstr ""
+"برای زوم کردن کلیک کنید، برای زوم به عقب کلید تبدیل را نگه دارید و کلیک کنید"
 
 #: src/tracks/ui/ZoomHandle.cpp
 msgid "Drag to Zoom Into Region, Right-Click to Zoom Out"
-msgstr "برای زوم کردن روی یک ناحیه کلیک کنید و بکشید، برای زوم به عقب کلیک راست کنید"
+msgstr ""
+"برای زوم کردن روی یک ناحیه کلیک کنید و بکشید، برای زوم به عقب کلیک راست کنید"
 
 #: src/tracks/ui/ZoomHandle.cpp
 msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
@@ -12173,6 +13108,12 @@ msgstr "چ"
 #: src/widgets/ASlider.cpp src/widgets/MeterPanel.cpp
 msgid "R"
 msgstr "ر"
+
+#. i18n-hint: "x" suggests a multiplicative factor
+#: src/widgets/ASlider.cpp
+#, fuzzy, c-format
+msgid "%.2fx"
+msgstr "زمان حمله: %I.1f ثانیه"
 
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
@@ -12286,6 +13227,11 @@ msgstr "توقف پایشگر"
 #, fuzzy
 msgid " Active "
 msgstr "ردیف شد"
+
+#: src/widgets/MeterPanel.cpp
+#, fuzzy, c-format
+msgid " Peak %2.f dB"
+msgstr "زمان حمله: %I.1f ثانیه"
 
 #: src/widgets/MultiDialog.cpp
 #, fuzzy
@@ -12878,6 +13824,11 @@ msgstr "&پایین‌تر"
 msgid "Error~%~%"
 msgstr "خطا"
 
+#: plug-ins/adjustable-fade.ny
+#, fuzzy, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr "فرکانس حداکثر باید یک عدد صحیح باشد"
+
 #: plug-ins/beat.ny
 #, fuzzy
 msgid "Beat Finder"
@@ -13180,6 +14131,11 @@ msgstr "ساخت شیار استریو"
 
 #: plug-ins/label-sounds.ny
 #, fuzzy
+msgid "Region between sounds"
+msgstr "ساخت شیار استریو"
+
+#: plug-ins/label-sounds.ny
+#, fuzzy
 msgid "Maximum leading silence"
 msgstr "در حال حذف سکوت..."
 
@@ -13331,6 +14287,11 @@ msgstr "در حال ترازبندی..."
 #, fuzzy
 msgid "Applying Notch Filter..."
 msgstr "در حال ترازبندی..."
+
+#: plug-ins/notch.ny
+#, fuzzy
+msgid "Steve Daulton and Bill Wharrie"
+msgstr "پی&ش‌فرض‌ها"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -13488,6 +14449,11 @@ msgstr "در حال تولید نوفه"
 #, fuzzy
 msgid "Generating Risset Drum..."
 msgstr "در حال تولید نوفه"
+
+#: plug-ins/rissetdrum.ny
+#, fuzzy
+msgid "Steven Jones"
+msgstr "پی&ش‌فرض‌ها"
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -14167,8 +15133,11 @@ msgstr "بسامد (هرتز)"
 #~ msgid "Missing"
 #~ msgstr "با استفاده از:"
 
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
-#~ msgstr "اگر ادامه دهید پروژهٔ شما در دیسک ذخیره نخواهد شد. آیا منظورتان همین است؟"
+#~ msgid ""
+#~ "If you proceed, your project will not be saved to disk. Is this what you "
+#~ "want?"
+#~ msgstr ""
+#~ "اگر ادامه دهید پروژهٔ شما در دیسک ذخیره نخواهد شد. آیا منظورتان همین است؟"
 
 #, fuzzy
 #~ msgid "Dependency Check"
@@ -14386,8 +15355,11 @@ msgstr "بسامد (هرتز)"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "ذخیرهٔ پروژه به &نام..."
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
-#~ msgstr "اوداسیتی قادر نبود پروژهٔ اواسیتی 1.0 را به قالب جدید پروژه تبدیل کند."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
+#~ msgstr ""
+#~ "اوداسیتی قادر نبود پروژهٔ اواسیتی 1.0 را به قالب جدید پروژه تبدیل کند."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "پروندهٔ ذخیرهٔ خودکار حذف نشد"
@@ -14504,12 +15476,18 @@ msgstr "بسامد (هرتز)"
 #~ msgstr "به کار انداختن اندازه‌گیر"
 
 #, fuzzy
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "فقط lame_enc.dll|lame_enc.dll|کتابخانه‌های پیوندی پویا (*.dll)|*.dll|"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "فقط lame_enc.dll|lame_enc.dll|کتابخانه‌های پیوندی پویا (*.dll)|*.dll|"
 
 #, fuzzy
-#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "فقط lame_enc.dll|lame_enc.dll|کتابخانه‌های پیوندی پویا (*.dll)|*.dll|"
+#~ msgid ""
+#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
+#~ "*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط lame_enc.dll|lame_enc.dll|کتابخانه‌های پیوندی پویا (*.dll)|*.dll|"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -14531,19 +15509,34 @@ msgstr "بسامد (هرتز)"
 #~ msgstr "پرونده‌های XML (*.xml)|*.xml|تمام پرونده‌ها (*.*)|*.*"
 
 #, fuzzy
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "فقط lame_enc.dll|lame_enc.dll|کتابخانه‌های پیوندی پویا (*.dll)|*.dll|"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "فقط lame_enc.dll|lame_enc.dll|کتابخانه‌های پیوندی پویا (*.dll)|*.dll|"
 
 #, fuzzy
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "فقط libmp3lame.dylib|libmp3lame.dylib|کتابخانه‌های پویا (*.dylib)|*.dylibهمهٔ پرونده‌ها (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libmp3lame.dylib|libmp3lame.dylib|کتابخانه‌های پویا (*.dylib)|*."
+#~ "dylibهمهٔ پرونده‌ها (*)|*"
 
-#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "فقط libmp3lame.dylib|libmp3lame.dylib|کتابخانه‌های پویا (*.dylib)|*.dylibهمهٔ پرونده‌ها (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libmp3lame.dylib|libmp3lame.dylib|کتابخانه‌های پویا (*.dylib)|*."
+#~ "dylibهمهٔ پرونده‌ها (*)|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "فقط libmp3lame.so|libmp3lame.so|پرونده‌های اصلی اشیاء به‌اشتراک‌گذاشته‌شده (*.so)|*.so|کتابخانه‌های گسترش‌یافته (*.so*)|*.so*|همهٔ پرونده‌ها (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "فقط libmp3lame.so|libmp3lame.so|پرونده‌های اصلی اشیاء به‌اشتراک‌گذاشته‌شده (*."
+#~ "so)|*.so|کتابخانه‌های گسترش‌یافته (*.so*)|*.so*|همهٔ پرونده‌ها (*)|*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "شکل موج (دسی‌بل)"
@@ -14661,7 +15654,9 @@ msgstr "بسامد (هرتز)"
 #~ msgid "Transcription"
 #~ msgstr "آوانویسی"
 
-#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgid ""
+#~ "Your tracks will be mixed down to a single mono channel in the exported "
+#~ "file."
 #~ msgstr "شیارهای شما بعنوان یک کانال مونو در پروندهٔ صادرشونده میکس خواهند شد"
 
 #~ msgid "Playthrough"
@@ -14671,7 +15666,9 @@ msgstr "بسامد (هرتز)"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr "خطا در هنگام باز کردن دستگاه صدا. لطفاً تنظیمات خروجی دستگاه و نرخ نمونه‌برداری پروژه را بررسی کنید."
+#~ msgstr ""
+#~ "خطا در هنگام باز کردن دستگاه صدا. لطفاً تنظیمات خروجی دستگاه و نرخ "
+#~ "نمونه‌برداری پروژه را بررسی کنید."
 
 #, fuzzy
 #~ msgid "Slider Playback"
@@ -14779,8 +15776,12 @@ msgstr "بسامد (هرتز)"
 #~ msgstr "تاریخ و زمان آغاز"
 
 #, fuzzy
-#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
-#~ msgstr "برای زوم به داخل عمودی کلیک، برای زوم به خارج تبدیل-کلیک کنید و برای ایجاد محدودهٔ زوم خاص کلید موشی را نگه دارید و موشی را حرکت دهید."
+#~ msgid ""
+#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
+#~ "particular zoom region."
+#~ msgstr ""
+#~ "برای زوم به داخل عمودی کلیک، برای زوم به خارج تبدیل-کلیک کنید و برای "
+#~ "ایجاد محدودهٔ زوم خاص کلید موشی را نگه دارید و موشی را حرکت دهید."
 
 #~ msgid "up"
 #~ msgstr "بالا"
@@ -14966,7 +15967,9 @@ msgstr "بسامد (هرتز)"
 
 #, fuzzy
 #~ msgid "Click to move selection boundary to cursor."
-#~ msgstr "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه داشته‌اید موشی را حرکت دهید."
+#~ msgstr ""
+#~ "برای جابه‌جا کردن حد چپ انتخاب کلیک کنید و در حالی که دکمه را نگاه "
+#~ "داشته‌اید موشی را حرکت دهید."
 
 #, fuzzy
 #~ msgid "You must select audio in the project window."
@@ -15120,10 +16123,14 @@ msgstr "بسامد (هرتز)"
 #~ msgstr "در حال استفاده از اندازه بلوک %Ild\n"
 
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
-#~ msgstr "مکان‌نما: %Id هرتز (%s) = %Id دسی‌بل    Peak: %Id هرتز (%s) = %I.1f دسی‌بل"
+#~ msgstr ""
+#~ "مکان‌نما: %Id هرتز (%s) = %Id دسی‌بل    Peak: %Id هرتز (%s) = %I.1f دسی‌بل"
 
-#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr "مکان‌نما: %I.4f ثانیه (%Id هرتز) (%s) = %If,    قله: %I.4f ثانیه (%Id هرتز) (%s) = %I.3f"
+#~ msgid ""
+#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr ""
+#~ "مکان‌نما: %I.4f ثانیه (%Id هرتز) (%s) = %If,    قله: %I.4f ثانیه (%Id "
+#~ "هرتز) (%s) = %I.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -15239,11 +16246,16 @@ msgstr "بسامد (هرتز)"
 #~ msgstr "نرمال‌سازی..."
 
 #, fuzzy
-#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid ""
+#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "جلوه‌های اعمال‌شده: %s تأخیر = %If ثانیه، عامل میرایی = %If"
 
-#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr "جلوه‌های اعمال‌شده: %s،  %Id مرحله  ، صدای جلوه‌پذیرفته %I.0f%%، فرکانس = %I.1f هرتز، فاز شروع = %I.0f درجه، عمق  = %Id، بازخورد = %I.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
+#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr ""
+#~ "جلوه‌های اعمال‌شده: %s،  %Id مرحله  ، صدای جلوه‌پذیرفته %I.0f%%، فرکانس = "
+#~ "%I.1f هرتز، فاز شروع = %I.0f درجه، عمق  = %Id، بازخورد = %I.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "فاز..."
@@ -15272,8 +16284,12 @@ msgstr "بسامد (هرتز)"
 #~ msgid "Applied effect: Generate Silence, %.6lf seconds"
 #~ msgstr "جلوهٔ اعمال‌شده: تولید سکوت، %I.6lf ثانیه"
 
-#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
-#~ msgstr "جلوه‌های اعمال‌شده: تولید %s موج %s، فرکانس = %I.2f هرتز، دامنه = %I.2f، %I.6lf ثانیه"
+#~ msgid ""
+#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
+#~ "%.2f, %.6lf seconds"
+#~ msgstr ""
+#~ "جلوه‌های اعمال‌شده: تولید %s موج %s، فرکانس = %I.2f هرتز، دامنه = %I.2f، "
+#~ "%I.6lf ثانیه"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "تولیدکنندهٔ جیرجیر"
@@ -15282,8 +16298,12 @@ msgstr "بسامد (هرتز)"
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "ترکیب کلید‌ها"
 
-#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr "جلوه‌های اعمال شده: %s فرکانس = %I.1f هرتز، فاز شروع = %I.0f درجه، عمق = %I.0f%%، طنین = %I.1f، افست فرکانس = %I.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
+#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr ""
+#~ "جلوه‌های اعمال شده: %s فرکانس = %I.1f هرتز، فاز شروع = %I.0f درجه، عمق = "
+#~ "%I.0f%%، طنین = %I.1f، افست فرکانس = %I.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "واو‐واو..."
@@ -15311,8 +16331,10 @@ msgstr "بسامد (هرتز)"
 #~ msgid "Input Meter"
 #~ msgstr "اندازه‌گیر ورودی"
 
-#~ msgid "Recovering a project will not change any files on disk before you save it."
-#~ msgstr "بازیابی پروژه پیش از ذخیره کردن هیچ پرونده‌ای را در دیسک تغییر نخواهد داد."
+#~ msgid ""
+#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgstr ""
+#~ "بازیابی پروژه پیش از ذخیره کردن هیچ پرونده‌ای را در دیسک تغییر نخواهد داد."
 
 #, fuzzy
 #~ msgid "Change output device"
@@ -15456,7 +16478,8 @@ msgstr "بسامد (هرتز)"
 #, fuzzy
 #~ msgid "Attempt to run Noise Removal without a noise profile.\n"
 #~ msgstr ""
-#~ "تلاش برای اجرای عملیات حذف نوفه بدون وجود یک مجموعه تنظیمات مربوط به نوفه\n"
+#~ "تلاش برای اجرای عملیات حذف نوفه بدون وجود یک مجموعه تنظیمات مربوط به "
+#~ "نوفه\n"
 #~ ".\n"
 
 #~ msgid "Spike Cleaner"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2023-11-22 07:32+0000\n"
 "Last-Translator: \"Rangga Dwi Prasetyo (RANGGA)\" <bigherolitev2@users."
 "noreply.hosted.weblate.org>\n"
@@ -24,10 +24,101 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.2\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default recording device number: %d"
+msgstr "Pilih Sumber Input"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default playback device number: %d"
+msgstr "Pilih Sumber Input"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Tidak ada perangkat"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device info unavailable for: %d"
+msgstr "Informasi sumber input tidak ada"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device ID: %d"
+msgstr "&Perangkat"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Devices"
+msgid "Device name: %s"
+msgstr "Perangkat"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Host name: %s"
+msgstr "Nama"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Recording channels: %d"
+msgstr "Selesai merekam"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Playback channels: %d"
+msgstr "Memainkan Berdasarkan Kecepatan"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Low Recording Latency: %g"
+msgstr "Selesai merekam"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "High Recording Latency: %g"
+msgstr "Selesai merekam"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+#| msgid "Sample Rates"
+msgid "Supported Rates:"
+msgstr "Rate Sampel"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected recording device: %d - %s"
+msgstr "Pilih Sumber Input"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected playback device: %d - %s"
+msgstr "Pilih Sumber Input"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "No devices found"
+msgid "No playback device found for '%s'."
+msgstr "Tidak ada perangkat"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Show output"
+msgid "Supports output: %d"
+msgstr "Tunjukkan output"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "Pilih Sumber Input"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI playback device: %d - %s"
+msgstr "Pilih Sumber Input"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -54,6 +145,21 @@ msgstr "&Sampel Ulang..."
 #, fuzzy
 msgid "Internal Error"
 msgstr "(program eksternal)"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "Tidak bisa membuang '%s'"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Tidak bisa menyimpan proyek. Mungkin %s \n"
+"tidak bisa ditulis atau disk penuh."
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -166,6 +272,12 @@ msgstr "Bersiku"
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
 #, fuzzy
+msgid "Hamming"
+msgstr "Normalkan"
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+#, fuzzy
 msgid "Welch"
 msgstr "Selamat Datang!"
 
@@ -249,6 +361,22 @@ msgstr "Disederhanakan"
 #: libraries/lib-strings/Languages.cpp
 msgid "System"
 msgstr "Sistem"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "&Buat"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Trek Audio"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "Memainkan"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -353,6 +481,11 @@ msgstr "Amplop"
 msgid "%s, graphics"
 msgstr "Grafik EQ"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "Amplop"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -360,10 +493,22 @@ msgstr "Grafik EQ"
 msgid "%s, Tenacity developer"
 msgstr "Amplop"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "Amplop"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "Amplop"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "Amplop"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
@@ -395,6 +540,12 @@ msgstr "Anggota Tim Emeritus Lainnya"
 #, fuzzy
 msgid "Contributors"
 msgstr "Kontributor Lainnya"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "Anggota Tim Emeritus Lainnya"
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -465,6 +616,19 @@ msgstr "Awalan Instalasi:"
 msgid "Settings folder:"
 msgstr "Folder pengaturan:"
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Libraries"
+msgid "Core Libraries"
+msgstr "Referensi"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Sample Rate Conver&ter:"
+msgid "Sample rate conversion"
+msgstr "Pen&gkonversi Rate Sampel:"
+
 #: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Dukungan Format File"
@@ -483,6 +647,12 @@ msgstr "Impor dan Ekspor Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Dukungan Tag ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "FLAC import and export"
+msgid "Matroska import and export"
+msgstr "Impor dan Ekspor FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -649,6 +819,11 @@ msgid "Error: %s"
 msgstr "Error:"
 
 #: src/AudioIO.cpp
+#, fuzzy
+msgid "PortAudio Error"
+msgstr "Error"
+
+#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
 msgstr "Ada kesalahan daam menginisialisasi latar i/o midi.\n"
 
@@ -659,6 +834,11 @@ msgid ""
 msgstr ""
 "Anda tidak akan bisa memainkan midi.\n"
 "\n"
+
+#: src/AudioIO.cpp
+#, fuzzy
+msgid "Tenacity Audio"
+msgstr "Merekam Audio"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, fuzzy, c-format
@@ -687,6 +867,11 @@ msgstr "Pilih"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "Nama"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "Tentang Audacity..."
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -1097,6 +1282,12 @@ msgstr "Meyiapkan preview"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "Mengekualisasi"
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
 msgid "Paste: %lld\n"
 msgstr "Tempel"
 
@@ -1114,6 +1305,12 @@ msgstr "Versi Rilis"
 #, fuzzy, c-format
 msgid "Release build (debug level %d)"
 msgstr "Versi Rilis"
+
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "24 bit"
 
 #: src/CommonCommandFlags.cpp
 #, fuzzy
@@ -1355,12 +1552,18 @@ msgstr "&Plot Ulang"
 
 #: src/FreqWindow.cpp
 msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
+msgstr ""
+"Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel "
+"yang sama."
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
-msgstr "Terlalu banyak yang dipilih. Hanya awal %.1f detik audio yang akan dianalisis."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
+msgstr ""
+"Terlalu banyak yang dipilih. Hanya awal %.1f detik audio yang akan "
+"dianalisis."
 
 #: src/FreqWindow.cpp
 msgid "Not enough data selected."
@@ -1509,6 +1712,11 @@ msgstr "&Komando"
 msgid "&History..."
 msgstr "&History..."
 
+#: src/JournalEvents.cpp
+#, fuzzy
+msgid "Journal recording failed"
+msgstr "Selesai merekam"
+
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
 msgstr "Edit Label"
@@ -1593,8 +1801,11 @@ msgstr "Trek Label"
 #. * versions of language names.
 #: src/LangChoice.cpp
 #, c-format
-msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
-msgstr "Bahasa yang Anda gunakan, %s (%s), tidak sama dengan bahasa sistem, %s (%s)."
+msgid ""
+"The language you have chosen, %s (%s), is not the same as the system "
+"language, %s (%s)."
+msgstr ""
+"Bahasa yang Anda gunakan, %s (%s), tidak sama dengan bahasa sistem, %s (%s)."
 
 #: src/LangChoice.cpp src/effects/VST/VSTEffect.cpp
 msgid "Confirm"
@@ -1779,6 +1990,11 @@ msgstr "FFmpeg tidak ada"
 msgid "No"
 msgstr "Tidak Ada"
 
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "Amplop"
+
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
 #: src/NoteTrack.cpp src/TrackPanelAx.cpp
@@ -1955,12 +2171,16 @@ msgstr "Rate Asli: %d"
 msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
-msgstr "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat output dan rate sampel proyek."
+msgstr ""
+"Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat output "
+"dan rate sampel proyek."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "The tracks selected for recording must all have the same sampling rate"
-msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
+msgstr ""
+"Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel "
+"yang sama."
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -1984,6 +2204,11 @@ msgstr "Pilih stream untuk diimpor"
 #, fuzzy
 msgid "<untitled>"
 msgstr "tak berjudul"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid "[Project %02i] "
+msgstr "Proyek"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy, c-format
@@ -2155,6 +2380,16 @@ msgid "Error Writing to File"
 msgstr "Error menulis ke file"
 
 #: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Tidak bisa menyimpan proyek. Mungkin %s \n"
+"tidak bisa ditulis atau disk penuh."
+
+#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "Menyimpan &proyek"
@@ -2239,10 +2474,12 @@ msgstr "Tersimpan %s"
 
 #: src/ProjectFileManager.cpp
 msgid ""
-"The project was not saved because the file name provided would overwrite another project.\n"
+"The project was not saved because the file name provided would overwrite "
+"another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
+"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
+"lainnya.\n"
 "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #: src/ProjectFileManager.cpp
@@ -2259,10 +2496,12 @@ msgstr "Meniban file yang sudah ada"
 #: src/ProjectFileManager.cpp
 #, fuzzy
 msgid ""
-"The project was not saved because the selected project is open in another window.\n"
+"The project was not saved because the selected project is open in another "
+"window.\n"
 "Please try again and select an original name."
 msgstr ""
-"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
+"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
+"lainnya.\n"
 "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #: src/ProjectFileManager.cpp
@@ -2276,7 +2515,8 @@ msgid ""
 "Saving a copy must not overwrite an existing saved project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
+"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
+"lainnya.\n"
 "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #: src/ProjectFileManager.cpp
@@ -2433,8 +2673,10 @@ msgid "Vertical Scrollbar"
 msgstr "Stereo Vertikal"
 
 #: src/SelectFile.cpp
-msgid "The specified filename could not be converted due to Unicode character use."
-msgstr "Nama file yang dipilih tidak bisa diubah karena penggunaan karakter Unicode."
+msgid ""
+"The specified filename could not be converted due to Unicode character use."
+msgstr ""
+"Nama file yang dipilih tidak bisa diubah karena penggunaan karakter Unicode."
 
 #: src/SelectFile.cpp
 msgid "Specify New Filename:"
@@ -2457,6 +2699,11 @@ msgstr "Rekam dengan Suara Diaktifkan"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Level Aktivasi (dB):"
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "Amplop"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2498,7 +2745,8 @@ msgstr "Kommentar"
 #: src/Tags.cpp
 #, fuzzy
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr "Gunakan tombol arah (atau tombol RETURN setelah mengedit) untuk navigasi."
+msgstr ""
+"Gunakan tombol arah (atau tombol RETURN setelah mengedit) untuk navigasi."
 
 #: src/Tags.cpp
 msgid "Tag"
@@ -2589,6 +2837,11 @@ msgid "Failed to remove %s"
 msgstr "Tidak bisa membuang '%s'"
 
 #: src/TenacityApp.cpp
+#, fuzzy
+msgid "Reset Tenacity Preferences"
+msgstr "Preferensi..."
+
+#: src/TenacityApp.cpp
 #, c-format
 msgid ""
 "%s could not be found.\n"
@@ -2623,6 +2876,12 @@ msgstr "&Berkas"
 
 #: src/TenacityApp.cpp
 #, fuzzy
+#| msgid "Do you want to save the changes?"
+msgid "Do you still want to start Tenacity?"
+msgstr "Anda mau menyimpan perubahan?"
+
+#: src/TenacityApp.cpp
+#, fuzzy
 msgid "Error Locking Temporary Folder"
 msgstr "Error dalam mengunci folder temporary"
 
@@ -2645,6 +2904,12 @@ msgstr "\t-bantuan (pesan ini)"
 msgid "run self diagnostics"
 msgstr "\t-test (jalankan diagnosa otomatis)"
 
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "Amplop"
+
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -2655,6 +2920,11 @@ msgstr "Tidak bisa membuka file proyek"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "File Proyek Audacity"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "Informasi Perubahan"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -2686,6 +2956,11 @@ msgstr "Trek Waktu"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Tenacity Timer Record"
+msgstr "Merekam"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Save Timer Recording As"
 msgstr "Merekam"
 
@@ -2696,7 +2971,8 @@ msgid ""
 "for Timer Recording because it would overwrite another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek lainnya.\n"
+"Proyek ini tidak disimpan karena nama file yang ada akan menimpa proyek "
+"lainnya.\n"
 "Silahkan coba lagi dan pilih nama yang aslinya."
 
 #: src/TimerRecordDialog.cpp
@@ -2771,6 +3047,11 @@ msgstr "Pengeksporan FFmpeg Pilihan Sendiri"
 #, fuzzy
 msgid "Action after Timer Recording:"
 msgstr "Pencatat Waktu Rekaman Audacity"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record Progress"
+msgstr "Error Meyimpan Proyek"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2901,6 +3182,11 @@ msgstr "Pengukur Rekaman"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Exit Tenacity"
+msgstr "Tentang Audacity..."
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Waiting to start recording at:"
 msgstr "Menunggu untuk memulai rekaman pada %s.\n"
 
@@ -2930,6 +3216,11 @@ msgstr "Selesai merekam"
 #, fuzzy
 msgid "Recording Exported:"
 msgstr "Selesai merekam"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record - Waiting"
+msgstr "Merekam"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
@@ -2994,7 +3285,9 @@ msgstr " Pilihan Hidup"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
 msgstr "Klik dan dorong untuk mengubah ukuran relatif trek stereo."
 
 #: src/TrackPanelResizeHandle.cpp
@@ -3102,12 +3395,24 @@ msgid "Resampling failed."
 msgstr "Sampel ulang dimatikan."
 
 #: src/WaveTrack.cpp
+#, fuzzy
+#| msgid "Move Track"
+msgid "Wave Track"
+msgstr "Pindahkan Trek"
+
+#: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "Tidak ada ruang cukup untuk menempel itu"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "Tidak ada ruang yang tersedia untuk menyebarkan garis potong"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "Proyek Audacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, fuzzy, c-format
@@ -3696,15 +4001,23 @@ msgstr "Auto Duck"
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "Anda memilih trek yang tidak ada suaranya. AutoDuck hanya bisa memproses trek beraudio."
+msgid ""
+"You selected a track which does not contain audio. AutoDuck can only process "
+"audio tracks."
+msgstr ""
+"Anda memilih trek yang tidak ada suaranya. AutoDuck hanya bisa memproses "
+"trek beraudio."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
-msgstr "Auto Duck membutuhkan trek pengendali yang harus ditempatkan dibawah trek yang dipilih."
+msgid ""
+"Auto Duck needs a control track which must be placed below the selected "
+"track(s)."
+msgstr ""
+"Auto Duck membutuhkan trek pengendali yang harus ditempatkan dibawah trek "
+"yang dipilih."
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -4234,10 +4547,119 @@ msgstr "Waktu Serang %.1f dtk"
 msgid "Release Time %.1f secs"
 msgstr "Waktu Kekurangan %.1f dtk"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "peak amplitude"
+msgstr "Amplitudo yang baru (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Reduction"
+msgstr "Pengurangan bising"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Peak Reduction"
+msgstr "Pengurangan bising"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Analog Limiter"
+msgstr "Pembatas"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Compressor"
+msgid "Dynamic Compressor"
+msgstr "Kompresor"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "Pengompresan didasari oleh banyaknya Pik"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "Algoritma"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Envelope Algorithm:"
+msgstr "Algoritma"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "Pengompresan didasari oleh banyaknya Pik"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "Ratio:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "1"
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width:"
+msgstr "Stereo"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain:"
+msgstr "Pen&guatan (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain"
+msgstr "Pen&guatan (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "Attack Time:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Attack Time"
+msgid "Attack"
+msgstr "Waktu Serang"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "Waktu Berjalan:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release"
+msgstr "Versi Rilis"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time:"
+msgstr "Urutkan dari waktu"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "Urutkan dari waktu"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time:"
+msgstr "Waktu Selesai"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "Waktu Selesai"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -4259,8 +4681,12 @@ msgstr "Silahkan pilih aksinya"
 #. i18n-hint: RMS abbreviates root mean square, a certain averaging method
 #: src/effects/Contrast.cpp
 #, fuzzy
-msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
-msgstr "Penganalisis kontras, untuk mengukur perbedaan volume rms diantara dua audio yang dipilih."
+msgid ""
+"Contrast Analyzer, for measuring RMS volume differences between two "
+"selections of audio."
+msgstr ""
+"Penganalisis kontras, untuk mengukur perbedaan volume rms diantara dua audio "
+"yang dipilih."
 
 #. i18n-hint noun
 #: src/effects/Contrast.cpp src/effects/ToneGen.cpp
@@ -5086,8 +5512,11 @@ msgstr "Label Edit"
 #, fuzzy
 msgid ""
 "To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
-msgstr "Untuk menggunakan kurva EQ pada untaian batch, silahkan pilih nama baru untuknya."
+"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
+"then use that one."
+msgstr ""
+"Untuk menggunakan kurva EQ pada untaian batch, silahkan pilih nama baru "
+"untuknya."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5096,8 +5525,11 @@ msgstr "Kurva EQ memerlukan nama yang berbeda"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
-msgid "To apply Equalization, all selected tracks must have the same sample rate."
-msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
+msgid ""
+"To apply Equalization, all selected tracks must have the same sample rate."
+msgstr ""
+"Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel "
+"yang sama."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5378,6 +5810,27 @@ msgstr "Klik dan dorong untuk memilih audio"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Klik dan dorong untuk memilih audio"
 
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Find Clipping"
+msgid "Find Clicks"
+msgstr "Mencari Clipping"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Clicks"
+msgstr "Klik-Kiri"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Right"
+msgstr "Klik-Kiri"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Left"
+msgstr "Klik-Kiri"
+
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Mencari Clipping"
@@ -5493,12 +5946,22 @@ msgstr "Normalkan"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
+msgid "Blackman, Hann"
+msgstr "Normalkan"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
 msgid "Hamming, none"
 msgstr "Normalkan"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
 msgid "Hamming, Hann"
+msgstr "Normalkan"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "Hamming, Reciprocal Hamming"
 msgstr "Normalkan"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
@@ -5851,11 +6314,13 @@ msgstr "Perbaiki"
 
 #: src/effects/Repair.cpp
 msgid ""
-"The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
+"The Repair effect is intended to be used on very short sections of damaged "
+"audio (up to 128 samples).\n"
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"Efek perbaikan hanya digunakan pada sesi sangat pendek pada audio yang hancur (lebih dari 128 sampel).\n"
+"Efek perbaikan hanya digunakan pada sesi sangat pendek pada audio yang "
+"hancur (lebih dari 128 sampel).\n"
 "\n"
 "Perbesar dan pilih fraksi kecil untuk memperbaikinya."
 
@@ -5867,9 +6332,11 @@ msgid ""
 "\n"
 "The more surrounding audio, the better it performs."
 msgstr ""
-"Perbaikan bekerja dengan menggunakan data audio di luar wilayah yang dipilih.\n"
+"Perbaikan bekerja dengan menggunakan data audio di luar wilayah yang "
+"dipilih.\n"
 "\n"
-"Silahkan pilih wilayah yang mempinyai sentuhan audio sedikitnya satu sisi ini.\n"
+"Silahkan pilih wilayah yang mempinyai sentuhan audio sedikitnya satu sisi "
+"ini.\n"
 "\n"
 "Audio lebih mengelegar, lebih baik performanya."
 
@@ -5996,7 +6463,9 @@ msgstr "&Upload File..."
 #: src/effects/ScienFilter.cpp
 #, fuzzy
 msgid "To apply a filter, all selected tracks must have the same sample rate."
-msgstr "Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel yang sama."
+msgstr ""
+"Untuk memplot spektrum, semua trek yang dipilih harus mempunyai rate sampel "
+"yang sama."
 
 #: src/effects/ScienFilter.cpp
 #, fuzzy
@@ -6332,6 +6801,11 @@ msgstr "Mengambil Program VST:"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "Pilih file MIDI..."
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
 msgid "Error Saving VST Presets"
 msgstr "Error Meyimpan Proyek"
 
@@ -6412,6 +6886,11 @@ msgstr "Frekuensi Offset Wah dalam persen"
 #. i18n-hint: Audio Unit is the name of an Apple audio software protocol
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Audio Unit Effects"
+msgstr "Efek Unit Audio"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Provides Audio Unit Effects support to Tenacity"
 msgstr "Efek Unit Audio"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
@@ -6655,8 +7134,10 @@ msgid "Nyquist Error"
 msgstr "Prompt Nyquist..."
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "Maaf, efek tidak bisa dipakai padatrek stereo yang trek-terknya tidak cocok."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"Maaf, efek tidak bisa dipakai padatrek stereo yang trek-terknya tidak cocok."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -6808,8 +7289,12 @@ msgid "Vamp Effects"
 msgstr "Efek VST"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "Maaf, Plug-in Vamp tidak bisa dipakai pada trek stereo yang masing-masing salurannya tidak cocok."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"Maaf, Plug-in Vamp tidak bisa dipakai pada trek stereo yang masing-masing "
+"salurannya tidak cocok."
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
@@ -6862,13 +7347,15 @@ msgstr "Anda yakin ingin menyimpan file sebagai \""
 msgid ""
 "You are about to export a %s file with the name \"%s\".\n"
 "\n"
-"Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
+"Normally these files end in \".%s\", and some programs will not open files "
+"with nonstandard extensions.\n"
 "\n"
 "Are you sure you want to export the file under this name?"
 msgstr ""
 "Anda ingin menyimpan file %s dengan nama \"%s\".\n"
 "\n"
-"Biasanya file berakhiran dengan \".%s\", dan beberapa program tidak dapat membuka file dengan ekstensi nonstandar.\n"
+"Biasanya file berakhiran dengan \".%s\", dan beberapa program tidak dapat "
+"membuka file dengan ekstensi nonstandar.\n"
 "\n"
 "Anda yakin ingin menyimpan file dangan nama ini?"
 
@@ -6893,7 +7380,9 @@ msgstr "Trek Anda akan di-mix ke stereo pada pengeksporan file."
 
 #: src/export/Export.cpp
 #, fuzzy
-msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
+msgid ""
+"Your tracks will be mixed down to one exported file according to the encoder "
+"settings."
 msgstr "Trek Anda akan di-mix ke stereo pada pengeksporan file."
 
 #: src/export/Export.cpp
@@ -6954,8 +7443,11 @@ msgstr "Tunjukkan output"
 #. in the program as a format string.  Keep %f unchanged.
 #: src/export/ExportCL.cpp
 #, c-format
-msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
-msgstr "Data akan distandarkan. \"%f\" menguunakan nama file pada jendela ekspor."
+msgid ""
+"Data will be piped to standard in. \"%f\" uses the file name in the export "
+"window."
+msgstr ""
+"Data akan distandarkan. \"%f\" menguunakan nama file pada jendela ekspor."
 
 #. i18n-hint files that can be run as programs
 #: src/export/ExportCL.cpp
@@ -7015,6 +7507,11 @@ msgstr "FFmpeg tidak ada"
 msgid "Unable to locate \"%s\" in your path."
 msgstr "Tidak bisa membuka atau membuat file tes"
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+msgid "Export Options"
+msgstr "Opsi General"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Batal"
@@ -7044,8 +7541,12 @@ msgstr ""
 
 #: src/export/ExportFFmpeg.cpp
 #, fuzzy, c-format
-msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
-msgstr "Sedang mengekspor %d saluran, tapi saluran maksimal untuk format ini adalah %d"
+msgid ""
+"Attempted to export %d channels, but maximum number of channels for selected "
+"output format is %d"
+msgstr ""
+"Sedang mengekspor %d saluran, tapi saluran maksimal untuk format ini adalah "
+"%d"
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -7344,8 +7845,12 @@ msgid "Codec:"
 msgstr "Codec:"
 
 #: src/export/ExportFFmpegDialogs.cpp
-msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
-msgstr "Tidak semua format dan codec kompetibel. Begitu pula kombinasi opsi yang belum tentu kompetibel dengan semua codec."
+msgid ""
+"Not all formats and codecs are compatible. Nor are all option combinations "
+"compatible with all codecs."
+msgstr ""
+"Tidak semua format dan codec kompetibel. Begitu pula kombinasi opsi yang "
+"belum tentu kompetibel dengan semua codec."
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Show All Formats"
@@ -7404,7 +7909,8 @@ msgid ""
 "Recommended - 192000"
 msgstr ""
 "Bit Rate (bit/detik) - menunjukkan hasil pada ukuran file dan kualitas\n"
-"Beberapa codec mungkin hanya menunjukkan nilai spesifik (128k, 192k, 256k, dll)\n"
+"Beberapa codec mungkin hanya menunjukkan nilai spesifik (128k, 192k, 256k, "
+"dll)\n"
 "0 - otomatis\n"
 "Direkomendasikan - 192000"
 
@@ -7942,6 +8448,39 @@ msgstr ""
 "Kombinasi rate Sampel proyek (%d) dan bit ratenya (%d kbps) tidak\n"
 "mendukung format file MP3."
 
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 16-bit"
+msgstr "16-bit PCM"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 24-bit"
+msgstr "24-bit PCM"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "Label"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting an Audio File"
+msgid "Matroska Audio Files"
+msgstr "Mengekspor File Audio"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the selected audio as FLAC"
+msgid "Exporting the selected audio as MKA"
+msgstr "Mengekspor audio yang dipilih ke FLAC"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the audio as MKA"
+msgstr "Mengekspor audio yang dipilih ke FLAC"
+
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
 msgstr "Ekspor Banyak"
@@ -8375,8 +8914,10 @@ msgstr "File yang berkompetibel dengan FFmpeg"
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/import/ImportFFmpeg.cpp
 #, c-format
-msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+msgid ""
+"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+msgstr ""
+"Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
 
 #: src/import/ImportFLAC.cpp
 msgid "FLAC files"
@@ -8404,7 +8945,8 @@ msgstr "Tidak bisa meganti nama '%s' ke '%s'"
 #: src/import/ImportGStreamer.cpp
 #, fuzzy, c-format
 msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+msgstr ""
+"Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
 
 #: src/import/ImportGStreamer.cpp
 #, fuzzy
@@ -8437,7 +8979,9 @@ msgstr "Durasi file LOF tidak valid"
 
 #: src/import/ImportLOF.cpp
 msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "Trek MIDI tidak bisa diseimbangkan dengan sendirinya, hanya file audio yang bisa."
+msgstr ""
+"Trek MIDI tidak bisa diseimbangkan dengan sendirinya, hanya file audio yang "
+"bisa."
 
 #. i18n-hint: You do not need to translate "LOF"
 #: src/import/ImportLOF.cpp
@@ -8474,6 +9018,17 @@ msgstr "Tidak bisa membuka file"
 msgid "MP3 files"
 msgstr "File MP3"
 
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "File MP3"
+
+#: src/import/ImportMka.cpp
+#, fuzzy, c-format
+msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
+msgstr ""
+"Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
 msgstr "File Ogg Vorbis"
@@ -8481,7 +9036,8 @@ msgstr "File Ogg Vorbis"
 #: src/import/ImportOGG.cpp
 #, fuzzy, c-format
 msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
+msgstr ""
+"Indeks[%02x] Codec[%s], Bahasa[%s], Bitrate[%s], Saluran[%d], Durasi[%d]"
 
 #: src/import/ImportOGG.cpp
 msgid "Media read error"
@@ -8681,6 +9237,12 @@ msgstr "Besar yang diimpor:"
 #: src/import/ImportRaw.cpp
 msgid "Sample rate:"
 msgstr "Rate sampel:"
+
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+msgid "Detect"
+msgstr "Membuat tugas di Diam"
 
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
@@ -9155,6 +9717,11 @@ msgstr "Ekspor"
 #: src/menus/FileMenus.cpp
 #, fuzzy
 msgid "Export as &WAV"
+msgstr "Ekspor label sebagai:"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
+msgid "Export as &MKA"
 msgstr "Ekspor label sebagai:"
 
 #: src/menus/FileMenus.cpp
@@ -11032,6 +11599,15 @@ msgstr "Memainkan"
 msgid "&Device:"
 msgstr "&Perangkat"
 
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "Merekam"
+
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "De&vice:"
@@ -11534,6 +12110,11 @@ msgstr "&Normal"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "Pilih file teks yang berisi label..."
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
 msgid "Error Importing Keyboard Shortcuts"
 msgstr "Error mengambil jalan pintas keyboard"
 
@@ -11788,6 +12369,11 @@ msgstr "Klik Kiri dan Dorong"
 msgid "Move clip up/down between tracks"
 msgstr "Pindahkan klik ke atas/bawah diantara trek"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "Alt-Left-Drag"
+msgstr "Klik Kiri dan Dorong"
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -11907,6 +12493,11 @@ msgstr "Periode pen&dek:"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Lo&ng period:"
 msgstr "Periode pan&jang:"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+msgid "Tenacity Preferences"
+msgstr "Preferensi..."
 
 #: src/prefs/PrefsDialog.cpp
 #, fuzzy
@@ -12291,15 +12882,22 @@ msgid "Preferences for Theme"
 msgstr "Preferensi..."
 
 #: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Theme Settings"
+msgstr "&Opsi..."
+
+#: src/prefs/ThemePrefs.cpp
 msgid "Info"
 msgstr "Info"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
-"Saving and loading individual theme files uses a separate file for each image, but is\n"
+"Saving and loading individual theme files uses a separate file for each "
+"image, but is\n"
 "otherwise the same idea."
 msgstr ""
-"Menyimpan atau mengambil file tema sendiri menggunakan file terpisah untuk setiap\n"
+"Menyimpan atau mengambil file tema sendiri menggunakan file terpisah untuk "
+"setiap\n"
 "gambar, tapi tetap berhubungan."
 
 #. i18n-hint: && in here is an escape character to get a single & on screen,
@@ -12496,11 +13094,6 @@ msgstr "sampel"
 msgid "Default audio track &name:"
 msgstr "Trek audio baru telah dibuat"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Trek Audio"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
 msgid "Zoom Toggle"
@@ -12605,6 +13198,40 @@ msgstr "Kontras..."
 msgid "Light"
 msgstr "Cahaya"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+#| msgid "Tools"
+msgid "Pro Tools"
+msgstr "Alat"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "Proyek Audacity"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "Tidak bisa menulis file:"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "Tidak dapat membuka file target untuk ditulis"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "Tidak bisa menulis file:"
+
 #: src/theme/Theme.cpp
 #, c-format
 msgid ""
@@ -12635,6 +13262,13 @@ msgstr ""
 "Semua file yang dibutuhjkan di:\n"
 "  %s\n"
 "sudah ada."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "Tidak bisa membuka file:\"%s\""
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -13082,6 +13716,13 @@ msgstr "Waktu"
 msgid "&Time Toolbar"
 msgstr "Toolbar &Perangkat"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+#| msgid "&Edit Toolbar"
+msgid "Tenacity %s Toolbar"
+msgstr "Toolbar &Edit"
+
 #: src/toolbars/ToolBar.cpp
 #, fuzzy
 msgid "Click and drag to resize toolbar"
@@ -13277,8 +13918,12 @@ msgstr "Oktaf Bawah"
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
 #, fuzzy
-msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
-msgstr "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, Dorong untuk membuat wilayah zoom kecil."
+msgid ""
+"Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom "
+"region."
+msgstr ""
+"Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, "
+"Dorong untuk membuat wilayah zoom kecil."
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
@@ -13356,7 +14001,9 @@ msgstr "Kik dan dorong untuk mengedit sampel"
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "To use Draw, zoom in further until you can see the individual samples."
-msgstr "Untuk emnggunakan Gambar, perbesar sampai Anda melihat sampel berdiri sendiri."
+msgstr ""
+"Untuk emnggunakan Gambar, perbesar sampai Anda melihat sampel berdiri "
+"sendiri."
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 #, fuzzy
@@ -13381,6 +14028,40 @@ msgstr "Spektrogram"
 #, fuzzy
 msgid "S&pectrogram Settings..."
 msgstr "Spektrogram"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "Klik dan dorong ubtuk memindahkan trek ke waktu tertentu"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "Nama Trek"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Click and drag to select audio"
+msgid "Click and drag to select text"
+msgstr "Klik dan dorong untuk memilih audio"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Modified Label"
+msgid "Modified Clip Name"
+msgstr "Label yang Telah Diubah"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "Sampel Edit"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Rename Clip..."
+msgstr "&Sampel Ulang..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, fuzzy
@@ -13616,7 +14297,8 @@ msgstr "kanan"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
 msgstr "Klik dan dorong untuk mengubah ukuran relatif trek stereo."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
@@ -13633,6 +14315,21 @@ msgstr "Klik dan dorong ubtuk memindahkan trek ke waktu tertentu"
 #, fuzzy
 msgid "Close sub-view"
 msgstr "Klik dan dorong ubtuk memindahkan trek ke waktu tertentu"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Split Clip"
+msgstr "Alat Selanjutnya"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "Diam/Hidupkan suara trek yang terfokus"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Rename clip..."
+msgstr "&Sampel Ulang..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 #, fuzzy
@@ -13725,6 +14422,28 @@ msgstr "Interpolasi Sinc yang Cepat"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Klik dan dorong ubtuk memindahkan trek ke waktu tertentu"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Mono Track"
+msgstr "Pindahkan Trek"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "Trek &Stereo"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "Label Track"
+msgid "Add Label Track"
+msgstr "Trek Label"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Export Audio..."
+msgstr "&Ekspor"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -16140,7 +16859,8 @@ msgstr "Frekuensi (Hz)"
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr "<br>Nama <b>Audacity&reg;</b> adalah merk terdaftar dari Dominic Mazzoni."
+#~ msgstr ""
+#~ "<br>Nama <b>Audacity&reg;</b> adalah merk terdaftar dari Dominic Mazzoni."
 
 #~ msgid "Sound card mixer support"
 #~ msgstr "Dukungan Sound card mixer"
@@ -16152,32 +16872,54 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Error Menginisialisasi Midi"
 
 #, fuzzy
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
-#~ msgstr "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih jauh. Tetap terlalu tinggi."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too high."
+#~ msgstr ""
+#~ "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih "
+#~ "jauh. Tetap terlalu tinggi."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
 #~ msgstr "Perubahan Level Input Otomatis mengurangi volume ke %f"
 
 #, fuzzy
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
-#~ msgstr "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih jauh. Tetap terlalu rendah."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too low."
+#~ msgstr ""
+#~ "Perubahan Level Input Otomatis dihentikan. Tidak mungkin membenahi lebih "
+#~ "jauh. Tetap terlalu rendah."
 
 #, fuzzy, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
 #~ msgstr "Perubahan Level Input Otomatis menaikkan volume ke %f"
 
 #, fuzzy
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
-#~ msgstr "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah melebihi batas tanpa menemukan volume yang cocok. tetap terlalu tinggi."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too high."
+#~ msgstr ""
+#~ "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah "
+#~ "melebihi batas tanpa menemukan volume yang cocok. tetap terlalu tinggi."
 
 #, fuzzy
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
-#~ msgstr "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah melebihi batas tanpa menemukan volume yang cocok. tetap terlalu rendah."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too low."
+#~ msgstr ""
+#~ "Perubahan Level Input Otomatis dihentikan. Angka total analisis telah "
+#~ "melebihi batas tanpa menemukan volume yang cocok. tetap terlalu rendah."
 
 #, fuzzy, c-format
-#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
-#~ msgstr "Perubahan Level Input Otomatis dihentikan. %.2f sepertinya volume yang cocok."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+#~ "volume."
+#~ msgstr ""
+#~ "Perubahan Level Input Otomatis dihentikan. %.2f sepertinya volume yang "
+#~ "cocok."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -16229,7 +16971,8 @@ msgstr "Frekuensi (Hz)"
 #~ "Copying these files into your project will remove this dependency.\n"
 #~ "This is safer, but needs more disk space."
 #~ msgstr ""
-#~ "Menyalin file-file ini ke dalam proyek dapat menghapus ketergantungan ini.\n"
+#~ "Menyalin file-file ini ke dalam proyek dapat menghapus ketergantungan "
+#~ "ini.\n"
 #~ "Ini membutuhkan ruang lebih banyak, tetapi lebih aman."
 
 #~ msgid "Project Dependencies"
@@ -16276,7 +17019,9 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Missing"
 #~ msgstr "Lima Mnt"
 
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
+#~ msgid ""
+#~ "If you proceed, your project will not be saved to disk. Is this what you "
+#~ "want?"
 #~ msgstr "Proyek Anda tidak akan disimpad di disk. Itukan yang Anda mau?"
 
 #, fuzzy
@@ -16288,8 +17033,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Gagal untuk mencari referensi FFMpeg yang kompetibel"
 
 #, fuzzy
-#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-#~ msgstr " <a href=\"http://forum.audacityteam.org/\">Forum</a> (tanyakan secara langsung di internet)"
+#~ msgid ""
+#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
+#~ "online."
+#~ msgstr ""
+#~ " <a href=\"http://forum.audacityteam.org/\">Forum</a> (tanyakan secara "
+#~ "langsung di internet)"
 
 #, fuzzy
 #~ msgid "Project check read faulty Sequence tags."
@@ -16304,7 +17053,9 @@ msgstr "Frekuensi (Hz)"
 
 #, fuzzy
 #~ msgid "Treat missing audio as silence (this session only)"
-#~ msgstr "Mengembalikan data yang hilang diam-diam secara sementara [hanya sesi ini saja]"
+#~ msgstr ""
+#~ "Mengembalikan data yang hilang diam-diam secara sementara [hanya sesi ini "
+#~ "saja]"
 
 #, fuzzy
 #~ msgid "Warning - Missing Aliased File(s)"
@@ -16354,7 +17105,8 @@ msgstr "Frekuensi (Hz)"
 #~ "mungkin karena bug, crash, atau ketidaksengajaan. \n"
 #~ "Tidak ada jalan lain selain mengembalikan data yang hilang\n"
 #~ "secara otomatis; Anda bisa memilih untuk tetap mengosongkan data tadi\n"
-#~ "atau secara sementara atau tutup proyek dan mencoba mengembalikannya sendiri."
+#~ "atau secara sementara atau tutup proyek dan mencoba mengembalikannya "
+#~ "sendiri."
 
 #, fuzzy
 #~ msgid "Replace missing audio with silence (permanent immediately)"
@@ -16362,7 +17114,8 @@ msgstr "Frekuensi (Hz)"
 
 #, fuzzy
 #~ msgid "Continue without deleting; ignore the extra files this session"
-#~ msgstr "Terus tanpa penghapusan; bekerja di sekitar file tambahan secara diam-diam"
+#~ msgstr ""
+#~ "Terus tanpa penghapusan; bekerja di sekitar file tambahan secara diam-diam"
 
 #, fuzzy
 #~ msgid "Delete orphan files (permanent immediately)"
@@ -16417,10 +17170,12 @@ msgstr "Frekuensi (Hz)"
 
 #, fuzzy, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
+#~ "with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "Anda menghubungkan lame_enc.dll v%d.%d. Viersi ini tidak cocok dengan Audacity %d.%d.%d.\n"
+#~ "Anda menghubungkan lame_enc.dll v%d.%d. Viersi ini tidak cocok dengan "
+#~ "Audacity %d.%d.%d.\n"
 #~ "Silahkan download versi akhir referensi LAME MP3."
 
 #, fuzzy
@@ -16755,7 +17510,8 @@ msgstr "Frekuensi (Hz)"
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up "
+#~ "first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
@@ -16792,8 +17548,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Simpan Proyek Terkompres Sebagai..."
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
-#~ msgstr "Audacity was unable to convert an Audacity 1.0 project to the new project format."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
+#~ msgstr ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Tidak bisa membuang file simpan otomatis yang lama"
@@ -16801,11 +17561,19 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "Mengimpor di tempat dan perhitungan waveform selesai."
 
-#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
-#~ msgstr "Mengimpor selesai. Menjalankan %d perhitungan waveform di tempat. %2.0f%% selesai dari semuanya."
+#~ msgid ""
+#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
+#~ "%2.0f%% complete."
+#~ msgstr ""
+#~ "Mengimpor selesai. Menjalankan %d perhitungan waveform di tempat. %2.0f%% "
+#~ "selesai dari semuanya."
 
-#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
-#~ msgstr "Mengimpor selesai. Menjalankan perhitungan waveform di tempat. %2.0f%% selesai."
+#~ msgid ""
+#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
+#~ "complete."
+#~ msgstr ""
+#~ "Mengimpor selesai. Menjalankan perhitungan waveform di tempat. %2.0f%% "
+#~ "selesai."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -16858,7 +17626,8 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Memori Bebas Mi&nimum (MB):"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no longer\n"
+#~ "If the available system memory falls below this value, audio will no "
+#~ "longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
 #~ "Jika memori sistem yang ada di bawah biasanya, audio tidak akan\n"
@@ -16910,16 +17679,20 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Proyek Audacity"
 
 #, fuzzy
-#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid ""
+#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
+#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "Perangkat lunak <b>Audacity&reg;</b> sudah terdaftar"
 
 #, fuzzy
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete project check."
+#~ "Please consider saving and reloading the project to perform a complete "
+#~ "project check."
 #~ msgstr ""
 #~ "Audacity menemukan anak file blok %s! \n"
-#~ "Silahkan Anda simpan dan buka kembali proyek Anda untuk melakukan pengecekan penuh."
+#~ "Silahkan Anda simpan dan buka kembali proyek Anda untuk melakukan "
+#~ "pengecekan penuh."
 
 #, fuzzy
 #~ msgid "Unable to open/create test file."
@@ -16955,10 +17728,14 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "GB"
 
 #, fuzzy
-#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
+#~ msgid ""
+#~ "Project check found file inconsistencies inspecting the loaded project "
+#~ "data."
 #~ msgstr ""
-#~ "Pengecekan menemukan ketidakkonsistenan keteka memeriksa data yang diambil;\n"
-#~ "Tekan 'Detail' untuk daftar error, atau 'OK' untuk meneruskan ke opsi lainnya."
+#~ "Pengecekan menemukan ketidakkonsistenan keteka memeriksa data yang "
+#~ "diambil;\n"
+#~ "Tekan 'Detail' untuk daftar error, atau 'OK' untuk meneruskan ke opsi "
+#~ "lainnya."
 
 #, fuzzy
 #~ msgid "Presets (*.txt)|*.txt|All files|*"
@@ -17025,15 +17802,23 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Bolehkan memotong ba&tas"
 
 #, fuzzy
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Hanya avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "Hanya avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files (*.*)|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Referensi Dinamis (*.dylib)|*.dylib|Semua File (*)|*"
 
 #, fuzzy
-#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Hanya libavformat.so|libavformat.so*|Referensi Terhubung Dinamis (*.so*)|*.so*|Semua File (*)|*"
+#~ msgid ""
+#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
+#~ "*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Hanya libavformat.so|libavformat.so*|Referensi Terhubung Dinamis (*.so*)|"
+#~ "*.so*|Semua File (*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -17067,18 +17852,34 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "kbps"
 
 #, fuzzy
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Hanya lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files (*.*)|*"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "Hanya lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files (*.*)|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|Semua File (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|Semua File (*)|*"
 
-#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|Semua File (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Hanya libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|Semua File (*)|*"
 
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Hanya libmp3lame.so.0|libmp3lame.so.0|File Primary Shared Object (*.so)|*.so|Extended Libraries (*.so*)|*.so*|Semua File (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Hanya libmp3lame.so.0|libmp3lame.so.0|File Primary Shared Object (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|Semua File (*)|*"
 
 #, fuzzy
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
@@ -17096,16 +17897,24 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "File MIDI (*.mid)|*.mid|File Allegro (*.gro)|*.gro"
 
 #, fuzzy
-#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr "File MIDI dan Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|File MIDI (*.mid;*.midi)|*.mid;*.midi|File Allegro (*.gro)|*.gro|Semua file (*.*)|*.*"
+#~ msgid ""
+#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
+#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr ""
+#~ "File MIDI dan Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|File MIDI "
+#~ "(*.mid;*.midi)|*.mid;*.midi|File Allegro (*.gro)|*.gro|Semua file (*.*)|*."
+#~ "*"
 
 #, fuzzy
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output "
+#~ "Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
-#~ "Anda telah mengkompilasikan Audacity dengan tombol tambahan, 'Sumber Output'.\n"
-#~ "Ini akan menyimpan gambar versi C yang bisa dikompilasi sebagaimana mestinya."
+#~ "Anda telah mengkompilasikan Audacity dengan tombol tambahan, 'Sumber "
+#~ "Output'.\n"
+#~ "Ini akan menyimpan gambar versi C yang bisa dikompilasi sebagaimana "
+#~ "mestinya."
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Waveform (db)"
@@ -17130,7 +17939,9 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "&Normalkan semua trek pada proyek"
 
 #, fuzzy
-#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
+#~ msgid ""
+#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
+#~ "Menu."
 #~ msgstr "Untuk menggunakan Gambar, pilih 'Waveform' pada Menu Trek."
 
 #, fuzzy
@@ -17228,13 +18039,17 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Kanan"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden "
+#~ "before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
+#~ "to the right place."
 #~ msgstr ""
-#~ "Aturan perbaikan laten telah menyebabkan audio yang direkam dihilangkan sebelum nol.\n"
+#~ "Aturan perbaikan laten telah menyebabkan audio yang direkam dihilangkan "
+#~ "sebelum nol.\n"
 #~ "Audacity telah mengembalikannya untuk mulai dari nol.\n"
-#~ "Anda bisa menggunakan Alat Time Shift (<--> atau F5) untuk memindahkan trak ke tempat yang tepat."
+#~ "Anda bisa menggunakan Alat Time Shift (<--> atau F5) untuk memindahkan "
+#~ "trak ke tempat yang tepat."
 
 #~ msgid "Latency problem"
 #~ msgstr "Masalah Laten"
@@ -17302,7 +18117,9 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Time Scale"
 #~ msgstr "Skala Waktu"
 
-#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
+#~ msgid ""
+#~ "Your tracks will be mixed down to a single mono channel in the exported "
+#~ "file."
 #~ msgstr "Trek Anda akan di-mix ke mono pada pengeksporan file."
 
 #~ msgid "kbps"
@@ -17322,7 +18139,9 @@ msgstr "Frekuensi (Hz)"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat output dan rate sampel proyek."
+#~ msgstr ""
+#~ "Error ketika membuka perangkat suara. Tolong cek pengaturan perangkat "
+#~ "output dan rate sampel proyek."
 
 #, fuzzy
 #~ msgid "Slider Recording"
@@ -17478,8 +18297,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Waktu selesai latar depan"
 
 #, fuzzy
-#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
-#~ msgstr "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, Dorong untuk membuat wilayah zoom kecil."
+#~ msgid ""
+#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
+#~ "particular zoom region."
+#~ msgstr ""
+#~ "Klik untuk perbesar secara vertikal, klik dengan Shift untuk perkecil, "
+#~ "Dorong untuk membuat wilayah zoom kecil."
 
 #~ msgid "up"
 #~ msgstr "atas"
@@ -17761,7 +18584,8 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Sel&alu mix semua trek ke Stereo atau Mono."
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr "&Gunakan mix pilihan sendiri (contohnya untuk emngekspor file saluran 5.1)"
+#~ msgstr ""
+#~ "&Gunakan mix pilihan sendiri (contohnya untuk emngekspor file saluran 5.1)"
 
 #, fuzzy
 #~ msgid "When exporting track to an Allegro (.gro) file"
@@ -17776,11 +18600,15 @@ msgstr "Frekuensi (Hz)"
 
 #, fuzzy
 #~ msgid "&Hardware Playthrough: Listen to input while recording or monitoring"
-#~ msgstr "Selama Bermain pada &Hardware: Dengarkan ketika merekam atau memantau trek baru"
+#~ msgstr ""
+#~ "Selama Bermain pada &Hardware: Dengarkan ketika merekam atau memantau "
+#~ "trek baru"
 
 #, fuzzy
 #~ msgid "&Software Playthrough: Listen to input while recording or monitoring"
-#~ msgstr "Selama Bermain pada &Software: Dengarkan ketika merekam atau memantau trek baru"
+#~ msgstr ""
+#~ "Selama Bermain pada &Software: Dengarkan ketika merekam atau memantau "
+#~ "trek baru"
 
 #, fuzzy
 #~ msgid "(uncheck when recording computer playback)"
@@ -17812,10 +18640,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "S&how the spectrum using grayscale colors"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
+#~ "loaded\n"
 #~ "when the program starts up."
 #~ msgstr ""
-#~ "Jika 'Ambil Cache Tema Pada Permulaan' ditandai, Cache Tema akan diambil ketika\n"
+#~ "Jika 'Ambil Cache Tema Pada Permulaan' ditandai, Cache Tema akan diambil "
+#~ "ketika\n"
 #~ "program dimulai."
 
 #~ msgid "Load Theme Cache At Startup"
@@ -17891,8 +18721,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "<center><h3>How to Get Help</h3></center>"
 #~ msgstr "<center><h3>Bagaimana mendapatkan Bantuan</h3></center>"
 
-#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
-#~ msgstr "Untuk jawaban yang lebih cepat, semua sumber online di atas <b>bisa dicari</b>."
+#~ msgid ""
+#~ " For even quicker answers, all the online resources above are "
+#~ "<b>searchable</b>."
+#~ msgstr ""
+#~ "Untuk jawaban yang lebih cepat, semua sumber online di atas <b>bisa "
+#~ "dicari</b>."
 
 #~ msgid "Edit Metadata"
 #~ msgstr "Edit Metadata"
@@ -17942,7 +18776,9 @@ msgstr "Frekuensi (Hz)"
 #~ msgid ""
 #~ "Start time after end time!\n"
 #~ "Please enter reasonable times."
-#~ msgstr "Waktu mulai jauh setelah waktu selesai!]nSilahkan masukkan watu yang logis."
+#~ msgstr ""
+#~ "Waktu mulai jauh setelah waktu selesai!]nSilahkan masukkan watu yang "
+#~ "logis."
 
 #~ msgid ""
 #~ "Times are not reasonable!\n"
@@ -18140,8 +18976,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "File Anda akan diekspor sebagai file WAV GSM 6.10.\n"
 
 #, fuzzy
-#~ msgid "If you need more control over the export format please use the \"%s\" format."
-#~ msgstr "Jika Anda butuh kendali lebih dalam format ekspor, silahkan gunakan format \"file tanpa terkompres lainnya\"."
+#~ msgid ""
+#~ "If you need more control over the export format please use the \"%s\" "
+#~ "format."
+#~ msgstr ""
+#~ "Jika Anda butuh kendali lebih dalam format ekspor, silahkan gunakan "
+#~ "format \"file tanpa terkompres lainnya\"."
 
 #~ msgid "Ctrl-Left-Drag"
 #~ msgstr "Klik kiri dorong dengan Ctrl"
@@ -18167,8 +19007,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Command-line options supported:"
 #~ msgstr "Dukungan opsi baris komando"
 
-#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
-#~ msgstr "Tambahan, spesifikasikan nama file audio atau proyek audacity terlebih dahul untuk membukanya."
+#~ msgid ""
+#~ "In addition, specify the name of an audio file or Audacity project to "
+#~ "open it."
+#~ msgstr ""
+#~ "Tambahan, spesifikasikan nama file audio atau proyek audacity terlebih "
+#~ "dahul untuk membukanya."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "Efek Stereo ke Mono tidak ditemukan"
@@ -18176,8 +19020,10 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Kursor: %d Hz (%s) = %d dB    Pik: %d Hz (%s) = %.1f dB"
 
-#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr "Kursor: %.4f det (%d Hz) (%s) = %f,    Pik: %.4f det (%d Hz) (%s) = %.3f"
+#~ msgid ""
+#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr ""
+#~ "Kursor: %.4f det (%d Hz) (%s) = %f,    Pik: %.4f det (%d Hz) (%s) = %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -18372,8 +19218,11 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Membuat Profil Bising"
 
 #, fuzzy
-#~ msgid "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, stereo independent %s"
-#~ msgstr "Efek teraplikasi: %s membuang dc offset = %s, amplitudo penormalan = %s"
+#~ msgid ""
+#~ "Applied effect: %s remove dc offset = %s, normalize amplitude = %s, "
+#~ "stereo independent %s"
+#~ msgstr ""
+#~ "Efek teraplikasi: %s membuang dc offset = %s, amplitudo penormalan = %s"
 
 #~ msgid "true"
 #~ msgstr "benar"
@@ -18385,11 +19234,16 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Normalize..."
 
 #, fuzzy
-#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid ""
+#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Efek teraplikasi: jarak %s = %f detik, faktor kekurangan = %f"
 
-#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr "Efek teraplikasi: %s %d tingkatan, %.0f%% basah, frekuensi = %.1f Hz, fase awal = %.0f derajat, dalam = %d, umpan balik = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
+#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr ""
+#~ "Efek teraplikasi: %s %d tingkatan, %.0f%% basah, frekuensi = %.1f Hz, "
+#~ "fase awal = %.0f derajat, dalam = %d, umpan balik = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Phaser..."
@@ -18449,8 +19303,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Changing Tempo/Pitch"
 #~ msgstr "Mengubah Tempo/Pitch"
 
-#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
-#~ msgstr "Efek teraplikasi: Membuat %s gelombang %s, frekuensi = %.2f Hz, amplitudo = %.2f, %.6lf detik"
+#~ msgid ""
+#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
+#~ "%.2f, %.6lf seconds"
+#~ msgstr ""
+#~ "Efek teraplikasi: Membuat %s gelombang %s, frekuensi = %.2f Hz, amplitudo "
+#~ "= %.2f, %.6lf detik"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Pembuat Chirp"
@@ -18473,8 +19331,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "VST Effect"
 #~ msgstr "Efek VST"
 
-#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr "Efek teraplikasi: %s frekuensi = %.1f Hz, fase mulai = %.0f deerjat, kedalaman = %.0f%%, resonansi = %.1f, frekuensi offset = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
+#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr ""
+#~ "Efek teraplikasi: %s frekuensi = %.1f Hz, fase mulai = %.0f deerjat, "
+#~ "kedalaman = %.0f%%, resonansi = %.1f, frekuensi offset = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -18488,8 +19350,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Author: "
 #~ msgstr "Pengarang:"
 
-#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "Maaf, Efek Pulg-in tidak bisa dipakai pada trek stereo yang masing-masing salurannya tidak cocok."
+#~ msgid ""
+#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "Maaf, Efek Pulg-in tidak bisa dipakai pada trek stereo yang masing-masing "
+#~ "salurannya tidak cocok."
 
 #~ msgid "Note length (seconds)"
 #~ msgstr "Panjang nada(detik)"
@@ -18543,7 +19409,8 @@ msgstr "Frekuensi (Hz)"
 
 #, fuzzy
 #~ msgid "Automated Recording Level Adjustment stopped as requested by user."
-#~ msgstr "Perubahan Level Input Otomatis dihentikan sesuai yang pengguna minta."
+#~ msgstr ""
+#~ "Perubahan Level Input Otomatis dihentikan sesuai yang pengguna minta."
 
 #~ msgid "Vertical Ruler"
 #~ msgstr "Penunjuk Vertikal"
@@ -18580,8 +19447,11 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Input Meter"
 #~ msgstr "Meter Input"
 
-#~ msgid "Recovering a project will not change any files on disk before you save it."
-#~ msgstr "Mengembalikan proyek tidak akan mengubah file apapun pada disk sebelum anda menyimpan ini."
+#~ msgid ""
+#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgstr ""
+#~ "Mengembalikan proyek tidak akan mengubah file apapun pada disk sebelum "
+#~ "anda menyimpan ini."
 
 #~ msgid "Do Not Recover"
 #~ msgstr "Jangan dikembalikan"
@@ -18671,8 +19541,21 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "Selesai merekam"
 
 #, fuzzy
-#~ msgid "This is a Beta version of the program. It may contain bugs and unfinished features. We depend on your feedback: please send bug reports and feature requests to our <a href=\"mailto:feedback@audacityteam.org\">Feedback</a> address. For help, use the Help menu in the program, view the tips and tricks on our <a href=\"http://wiki.audacityteam.org/\">Wiki</a> or visit our <a href=\"http://forum.audacityteam.org/\">Forum</a>."
-#~ msgstr "Ini adalah program versi beta. Program ini mungkin mengandung beberapa bug dan fitur yang belum sempurna. Kami mengharapkan pendapat Anda: ohon kirimkan laporan bug dan permintaan fitur ke alamat <a href=\"mailto:feedback@audacityteam.org\">Tanggapan</a> kami. Untuk bantuan, gunakan menu Bantuan di program, lihat tips dan trik di <a href=\"http://wiki.audacityteam.org/index.php?title=Audacity_Wiki_Home_Page\">Wiki</a> kami, atau kunjungi <a href=\"http://audacityteam.org/forum/\">Forum</a> kami."
+#~ msgid ""
+#~ "This is a Beta version of the program. It may contain bugs and unfinished "
+#~ "features. We depend on your feedback: please send bug reports and feature "
+#~ "requests to our <a href=\"mailto:feedback@audacityteam.org\">Feedback</a> "
+#~ "address. For help, use the Help menu in the program, view the tips and "
+#~ "tricks on our <a href=\"http://wiki.audacityteam.org/\">Wiki</a> or visit "
+#~ "our <a href=\"http://forum.audacityteam.org/\">Forum</a>."
+#~ msgstr ""
+#~ "Ini adalah program versi beta. Program ini mungkin mengandung beberapa "
+#~ "bug dan fitur yang belum sempurna. Kami mengharapkan pendapat Anda: ohon "
+#~ "kirimkan laporan bug dan permintaan fitur ke alamat <a href=\"mailto:"
+#~ "feedback@audacityteam.org\">Tanggapan</a> kami. Untuk bantuan, gunakan "
+#~ "menu Bantuan di program, lihat tips dan trik di <a href=\"http://wiki."
+#~ "audacityteam.org/index.php?title=Audacity_Wiki_Home_Page\">Wiki</a> kami, "
+#~ "atau kunjungi <a href=\"http://audacityteam.org/forum/\">Forum</a> kami."
 
 #~ msgid "A Free Digital Audio Editor<br>"
 #~ msgstr "Editor Audio Digital Bebas dan Gratis <br>"
@@ -18683,8 +19566,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "FreqWindow"
 #~ msgstr "JendelaFrek"
 
-#~ msgid "<p>You do not appear to have 'help' installed on your computer.<br> Please <a href=\"*URL*\">view or download it online</a>."
-#~ msgstr "<p>Anda tidak menginstal 'help' pada komputer Anda.<br> Silahkan <a href=\"*URL*\">lihat atau download ini secara online</a>."
+#~ msgid ""
+#~ "<p>You do not appear to have 'help' installed on your computer.<br> "
+#~ "Please <a href=\"*URL*\">view or download it online</a>."
+#~ msgstr ""
+#~ "<p>Anda tidak menginstal 'help' pada komputer Anda.<br> Silahkan <a "
+#~ "href=\"*URL*\">lihat atau download ini secara online</a>."
 
 #~ msgid ""
 #~ "You have left blank label names.  These will be\n"
@@ -18764,20 +19651,28 @@ msgstr "Frekuensi (Hz)"
 #~ msgstr "File Windows PCM Audio(*.wav)|*.wav"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, "
+#~ "compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, "
+#~ "because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each "
+#~ "compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select "
+#~ "one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "File proyek Audacity (.aup) menyimpan pekerjaan Anda lebih kecil, karena format terkompres (.ogg) \n"
-#~ "Proyek yang terkompres baik untuk menyebarkan proyek Anda secara online karena saking kecilnya.\n"
-#~ "Untuk membuka proyek terkompres butuh waktu lebih lama, karena harus mengimpor setiap trek yang terkompres.\n"
+#~ "File proyek Audacity (.aup) menyimpan pekerjaan Anda lebih kecil, karena "
+#~ "format terkompres (.ogg) \n"
+#~ "Proyek yang terkompres baik untuk menyebarkan proyek Anda secara online "
+#~ "karena saking kecilnya.\n"
+#~ "Untuk membuka proyek terkompres butuh waktu lebih lama, karena harus "
+#~ "mengimpor setiap trek yang terkompres.\n"
 #~ "\n"
 #~ "Kebanyakan program tidak bisa membuka file proyek Audacity.\n"
-#~ "Ketika anda ingin menyimpan file yang bisa dibuka oleh program lain, Pilih salah satu\n"
+#~ "Ketika anda ingin menyimpan file yang bisa dibuka oleh program lain, "
+#~ "Pilih salah satu\n"
 #~ "perintah Ekspor."
 
 #~ msgid ""
@@ -18785,13 +19680,16 @@ msgstr "Frekuensi (Hz)"
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > "
+#~ "Export\" commands.\n"
 #~ msgstr ""
 #~ "Anda sedang menyimpan file proyek Audacity (.aup).\n"
 #~ "\n"
-#~ "Menyimpan proyek akan membuat file dimana hanya Audacity yang bisa membukanya.\n"
+#~ "Menyimpan proyek akan membuat file dimana hanya Audacity yang bisa "
+#~ "membukanya.\n"
 #~ "\n"
-#~ "Untuk menyimpan file untuk program lainnya, gunakan salah satu perintah \"Berkas > Ekspor\".\n"
+#~ "Untuk menyimpan file untuk program lainnya, gunakan salah satu perintah "
+#~ "\"Berkas > Ekspor\".\n"
 
 #~ msgid "Libresample by Dominic Mazzoni and Julius Smith"
 #~ msgstr "Libresample dari Dominic Mazzoni and Julius Smith"
@@ -18875,8 +19773,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Noise Removal by Dominic Mazzoni"
 #~ msgstr "Pembuang Bising dari Dominic Mazzoni"
 
-#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "Maaf, efek ini tidak bisa dipakai pada trek stereo yang masing-masing salurannya tidak cocok."
+#~ msgid ""
+#~ "Sorry, this effect cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "Maaf, efek ini tidak bisa dipakai pada trek stereo yang masing-masing "
+#~ "salurannya tidak cocok."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "Pembersih Spike"
@@ -18932,10 +19834,13 @@ msgstr "Frekuensi (Hz)"
 #~ "This Project does not meet the above criteria for\n"
 #~ "exporting multiple files."
 #~ msgstr ""
-#~ "Jika Anda mempunyai lebih dari satu Trek Audio, Anda bisa mengekspor setiap trek dalam file-file terpisah,\n"
-#~ "atau jika Anda mempunyai label pada trek, Anda bisa mengekspornya berdasarkan labelnya.\n"
+#~ "Jika Anda mempunyai lebih dari satu Trek Audio, Anda bisa mengekspor "
+#~ "setiap trek dalam file-file terpisah,\n"
+#~ "atau jika Anda mempunyai label pada trek, Anda bisa mengekspornya "
+#~ "berdasarkan labelnya.\n"
 #~ "\n"
-#~ "Proyek ini tidak mempunyai trek atau label yang banyak, jadi Anda tidak bisa mengekspor file seperti yang Anda perintahkan."
+#~ "Proyek ini tidak mempunyai trek atau label yang banyak, jadi Anda tidak "
+#~ "bisa mengekspor file seperti yang Anda perintahkan."
 
 #~ msgid "Can't export multiple files"
 #~ msgstr "Tidak bisa mengekspor file-file"
@@ -18984,8 +19889,12 @@ msgstr "Frekuensi (Hz)"
 #~ msgid "Record (Shift for Append Record)"
 #~ msgstr "Rekam (Shift untuk Tambahan Rekam)"
 
-#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
-#~ msgstr "Merekam pada Mode CleanSpeech tidak mungkin ketika trek, atau lebih dari satu proyek telah dibuka."
+#~ msgid ""
+#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
+#~ "one project, is already open."
+#~ msgstr ""
+#~ "Merekam pada Mode CleanSpeech tidak mungkin ketika trek, atau lebih dari "
+#~ "satu proyek telah dibuka."
 
 #~ msgid "Output level meter"
 #~ msgstr "Pengukur level output"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2015-06-28 03:24+0200\n"
 "Last-Translator: Cristian Secară <cristi AT secarica DOT ro>\n"
 "Language-Team: Gnome Romanian Team <gnomero-list@lists.sourceforge.net>\n"
@@ -18,10 +18,108 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.11\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Default recording device number: %d"
+msgstr "Selectați dispozitivul de înregistrare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Default playback device number: %d"
+msgstr "Selectați dispozitivul de redare"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "No devices found"
+msgstr "Selectați dispozitivul de redare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Device information is not available."
+msgid "Device info unavailable for: %d"
+msgstr "Informațiile despre dispozitiv nu sunt disponibile"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "&Device:"
+msgid "Device ID: %d"
+msgstr "&Dispozitiv:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Devices"
+msgid "Device name: %s"
+msgstr "Dispozitive"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Host name: %s"
+msgstr "Nume"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording Channels"
+msgid "Recording channels: %d"
+msgstr "Canale de înregistrare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Playback Level"
+msgid "Playback channels: %d"
+msgstr "Nivel de redare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Low Recording Latency: %g"
+msgstr "Înregistrare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "High Recording Latency: %g"
+msgstr "Înregistrare"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "Supported Rates:"
+msgstr "Simplu"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected recording device: %d - %s"
+msgstr "Selectați dispozitivul de înregistrare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected playback device: %d - %s"
+msgstr "Selectați dispozitivul de redare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "No playback device found for '%s'."
+msgstr "Selectați dispozitivul de redare"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d"
+msgstr "Salvat %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "Selectați dispozitivul de înregistrare"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected MIDI playback device: %d - %s"
 msgstr "Selectați dispozitivul de redare"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
@@ -51,6 +149,11 @@ msgstr "&Reeșantionează..."
 #, fuzzy
 msgid "Internal Error"
 msgstr "Eroare LOF"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "Nu s-a putut salva fișierul de genuri muzicale."
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -121,6 +224,13 @@ msgstr "Eroare"
 msgid "Unsuitable"
 msgstr "Activează"
 
+#: libraries/lib-files/TempDirectory.cpp
+#, fuzzy
+msgid ""
+"The temporary files directory is on a FAT formatted drive.\n"
+"Resetting to default location."
+msgstr "Director temporar nou"
+
 #: libraries/lib-math/Dither.cpp src/effects/EffectManager.cpp
 #: src/effects/EffectUI.cpp src/prefs/TracksBehaviorsPrefs.cpp
 #: plug-ins/equalabel.ny plug-ins/sample-data-export.ny
@@ -139,6 +249,12 @@ msgstr "Triunghi"
 #, fuzzy
 msgid "Rectangular"
 msgstr "Dreptunghi"
+
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+#, fuzzy
+msgid "Hamming"
+msgstr "Zoom implicit"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
@@ -210,6 +326,27 @@ msgstr "%ld octeți"
 #, fuzzy
 msgid "Simplified"
 msgstr "Simplu"
+
+#: libraries/lib-strings/Languages.cpp
+#, fuzzy
+msgid "System"
+msgstr "Timpul de început"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "&Generare"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Pistă audio"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "Redare"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -302,6 +439,11 @@ msgstr "Nyquist"
 msgid "%s, web developer"
 msgstr "Nivel"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "Nivel"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -309,10 +451,22 @@ msgstr "Nivel"
 msgid "%s, Tenacity developer"
 msgstr "Nivel"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "Nivel"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "Nivel"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "Nivel"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
@@ -328,7 +482,10 @@ msgstr "OK"
 #. *  For example:  "English translation by Dominic Mazzoni."
 #: src/AboutDialog.cpp
 msgid "translator_credits"
-msgstr "<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam.org\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian Secară</a> (2014-2015)"
+msgstr ""
+"<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam."
+"org\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian "
+"Secară</a> (2014-2015)"
 
 #: src/AboutDialog.cpp
 msgid "Credits"
@@ -345,10 +502,19 @@ msgstr " Membri emeriți ai echipei"
 msgid "Contributors"
 msgstr "Alți contribuitori"
 
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr " Membri emeriți ai echipei"
+
 #: src/AboutDialog.cpp
 #, fuzzy
 msgid "Translators"
-msgstr "<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam.org\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian Secară</a> (2014-2015)"
+msgstr ""
+"<b>Traducere în limba română</b><br><a href=\"mailto:gale@audacityteam."
+"org\">Gale</a> (20??-2012)<br><a href=\"mailto:cristi@secarica.ro\">Cristian "
+"Secară</a> (2014-2015)"
 
 #: src/AboutDialog.cpp src/prefs/LibraryPrefs.cpp
 msgid "Libraries"
@@ -413,6 +579,19 @@ msgstr "Prefix de instalare:"
 msgid "Settings folder:"
 msgstr "Dosar pentru setări:"
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Libraries"
+msgid "Core Libraries"
+msgstr "Biblioteci"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Sample Rate Conver&ter:"
+msgid "Sample rate conversion"
+msgstr "Conver&tor al ratei de eșantionare:"
+
 #: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Suportul formatelor de fișiere"
@@ -432,6 +611,12 @@ msgstr "Import și export Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Suport pentru etichetă ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "FLAC import and export"
+msgid "Matroska import and export"
+msgstr "Import și export FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -478,7 +663,8 @@ msgstr "Licență GPL"
 #: src/AdornedRulerPanel.cpp
 #, fuzzy
 msgid "Click and drag to adjust, double-click to reset"
-msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+msgstr ""
+"Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #. i18n-hint: This text is a tooltip on the icon (of a pin) representing
 #. the temporal position in the audio.
@@ -587,12 +773,25 @@ msgstr "Eroare:"
 
 #: src/AudioIO.cpp
 #, fuzzy
+msgid "PortAudio Error"
+msgstr "Eroare"
+
+#: src/AudioIO.cpp
+#, fuzzy
 msgid ""
 "You will not be able to play midi.\n"
 "\n"
 msgstr ""
 "Nu veți putea să ascultați sau să înregistrați audio.\n"
 "\n"
+
+# în meniul Edit -> Edit Special
+# ca tooltip
+#: src/AudioIO.cpp
+#, fuzzy
+#| msgid "Trim Audio"
+msgid "Tenacity Audio"
+msgstr "Suprimă audio în afara selecției"
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -610,6 +809,11 @@ msgstr "Selectare"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "Nume"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "Despre Audacity"
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -892,6 +1096,12 @@ msgstr "De câte ori să se repete:"
 msgid "Name of new macro"
 msgstr "De câte ori să se repete:"
 
+# titlu
+#: src/BatchProcessDialog.cpp
+#, fuzzy
+msgid "Name must not be blank"
+msgstr "Salvarea modificărilor"
+
 #. i18n-hint: %s will be replaced by the name of a file.
 #: src/BatchProcessDialog.cpp
 #, fuzzy, c-format
@@ -946,13 +1156,30 @@ msgstr "Exportă etichetele ca:"
 
 #: src/Benchmark.cpp
 #, fuzzy
+msgid "Block size should be in the range 1 - 1024 KB."
+msgstr "Frecvența maximă trebuie să fie un număr întreg"
+
+#: src/Benchmark.cpp
+#, fuzzy
 msgid "Number of edits should be in the range 1 - 10000."
+msgstr "Frecvența maximă trebuie să fie un număr întreg"
+
+#: src/Benchmark.cpp
+#, fuzzy
+msgid "Test data size should be in the range 1 - 2000 MB."
 msgstr "Frecvența maximă trebuie să fie un număr întreg"
 
 #: src/Benchmark.cpp
 #, fuzzy
 msgid "Preparing...\n"
 msgstr "Lungime"
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "Încarcă fișiere"
+msgstr[1] "Încarcă fișiere"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
@@ -978,6 +1205,12 @@ msgstr "Compilare pentru publicare"
 #, fuzzy, c-format
 msgid "Release build (debug level %d)"
 msgstr "Compilare pentru publicare"
+
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "24 de biți"
 
 #: src/CommonCommandFlags.cpp
 #, fuzzy
@@ -1163,8 +1396,12 @@ msgstr "Repetă..."
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
-msgstr "A fost selectat prea mult audio. Numai primele %.1f secunde de audio vor fi analizate."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
+msgstr ""
+"A fost selectat prea mult audio. Numai primele %.1f secunde de audio vor fi "
+"analizate."
 
 #: src/FreqWindow.cpp
 msgid "Not enough data selected."
@@ -1305,6 +1542,11 @@ msgstr "&Comandă"
 msgid "&History..."
 msgstr "&Istoric..."
 
+#: src/JournalEvents.cpp
+#, fuzzy
+msgid "Journal recording failed"
+msgstr "Nivel de înregistrare"
+
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
 msgstr "Editare etichete"
@@ -1389,8 +1631,12 @@ msgstr "Pistă de etichete"
 #. * versions of language names.
 #: src/LangChoice.cpp
 #, c-format
-msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
-msgstr "Limba pe care ați ales-o, %s (%s), nu este aceeași cu limba sistemului, %s (%s)."
+msgid ""
+"The language you have chosen, %s (%s), is not the same as the system "
+"language, %s (%s)."
+msgstr ""
+"Limba pe care ați ales-o, %s (%s), nu este aceeași cu limba sistemului, %s "
+"(%s)."
 
 #: src/LangChoice.cpp src/effects/VST/VSTEffect.cpp
 msgid "Confirm"
@@ -1565,6 +1811,11 @@ msgstr "Da"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Nu"
+
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "Nivel"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -1746,6 +1997,11 @@ msgstr "Sunete înregistrate"
 #: src/ProjectAudioManager.cpp src/toolbars/ControlToolBar.cpp
 msgid "Record"
 msgstr "Înregistrează"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid "[Project %02i] "
+msgstr "Proiecte"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -1946,6 +2202,11 @@ msgstr "Avertisment - proiect gol"
 msgid "Project Recovered"
 msgstr "Proiecte"
 
+#: src/ProjectFileManager.cpp src/prefs/DirectoriesPrefs.cpp
+#, fuzzy
+msgid "Projects cannot be saved to FAT drives."
+msgstr "Director temporar nou"
+
 #: src/ProjectFileManager.cpp
 msgid "Warning - Empty Project"
 msgstr "Avertisment - proiect gol"
@@ -2088,8 +2349,11 @@ msgid "Vertical Scrollbar"
 msgstr "Vertical"
 
 #: src/SelectFile.cpp
-msgid "The specified filename could not be converted due to Unicode character use."
-msgstr "Numele specificat de fișier nu a putut fi convertit datorită folosirii caracterelor Unicode."
+msgid ""
+"The specified filename could not be converted due to Unicode character use."
+msgstr ""
+"Numele specificat de fișier nu a putut fi convertit datorită folosirii "
+"caracterelor Unicode."
 
 #: src/SelectFile.cpp
 msgid "Specify New Filename:"
@@ -2112,6 +2376,11 @@ msgstr "Înregistrare"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Nivel de activare (dB):"
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "Nivel"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2152,7 +2421,9 @@ msgstr "Comentarii"
 
 #: src/Tags.cpp
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr "Folosiți tastele săgeți (sau tasta ENTER după editare) pentru a naviga între câmpuri."
+msgstr ""
+"Folosiți tastele săgeți (sau tasta ENTER după editare) pentru a naviga între "
+"câmpuri."
 
 #: src/Tags.cpp
 msgid "Tag"
@@ -2245,6 +2516,11 @@ msgid "Failed!"
 msgstr "Eșuat"
 
 #: src/TenacityApp.cpp
+#, fuzzy
+msgid "Reset Tenacity Preferences"
+msgstr "Preferințe:"
+
+#: src/TenacityApp.cpp
 #, c-format
 msgid ""
 "%s could not be found.\n"
@@ -2279,6 +2555,11 @@ msgstr "&Fișier"
 
 #: src/TenacityApp.cpp
 #, fuzzy
+msgid "Do you still want to start Tenacity?"
+msgstr "Sigur vreți să ștergeți „%s” ?"
+
+#: src/TenacityApp.cpp
+#, fuzzy
 msgid "Error Locking Temporary Folder"
 msgstr "Eroare la salvarea fișierului de etichete"
 
@@ -2287,6 +2568,12 @@ msgstr "Eroare la salvarea fișierului de etichete"
 #, fuzzy
 msgid "this help message"
 msgstr "Activat"
+
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "Nivel"
 
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
@@ -2297,6 +2584,11 @@ msgstr "numele de fișier audio sau al proiectului"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Fișiere de proiect Audacity"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "Canale de înregistrare"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -2328,6 +2620,11 @@ msgstr "&Durată:"
 #, fuzzy
 msgid "Time Track"
 msgstr "Pistă de &timp"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record"
+msgstr "Înregistrare"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2404,6 +2701,11 @@ msgstr "NU s-a putut exporta"
 #, fuzzy
 msgid "Action after Timer Recording:"
 msgstr "Înregistrare"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record Progress"
+msgstr "Eroare la deschiderea fișierului sau a proiectului"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2526,6 +2828,11 @@ msgstr "Dispozitiv de înregistrare"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Exit Tenacity"
+msgstr "Despre Audacity"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Recording duration:"
 msgstr "Canale de înregistrare"
 
@@ -2550,6 +2857,11 @@ msgstr "Nivel de înregistrare"
 #, fuzzy
 msgid "Recording Exported:"
 msgstr "Dispozitiv de înregistrare"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record - Waiting"
+msgstr "Înregistrare"
 
 #: src/TrackInfo.cpp
 #, fuzzy
@@ -2620,8 +2932,11 @@ msgstr "Selecție"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
-msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
+msgstr ""
+"Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #: src/TrackPanelResizeHandle.cpp
 msgid "Click and drag to resize the track."
@@ -2693,6 +3008,17 @@ msgstr "Mută pista mai &jos"
 msgid "Resampling failed."
 msgstr "Dispozitiv de înregistrare"
 
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Mută pista mai s&us"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "Jurnal Audacity"
+
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, fuzzy, c-format
 msgid "Applying %s..."
@@ -2740,6 +3066,11 @@ msgstr "A fost creată o nouă pistă audio"
 #: src/commands/Demo.cpp
 msgid "Delay time (seconds):"
 msgstr "Timpul de întârziere (secunde):"
+
+#: src/commands/Demo.cpp
+#, fuzzy
+msgid "Decay factor:"
+msgstr "Lungime"
 
 #: src/commands/DragCommand.cpp
 #, fuzzy
@@ -3654,10 +3985,125 @@ msgstr "Timpul de întârziere (secunde):"
 msgid "Release Time %.1f secs"
 msgstr "Repetat de %d ori"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "peak amplitude"
+msgstr "Amplificator"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Dynamic Reduction"
+msgstr "Reducere de zgomot"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Peak Reduction"
+msgstr "Reducere de zgomot"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Analog Limiter"
+msgstr "Arată li&mitarea"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Compressor"
+msgid "Dynamic Compressor"
+msgstr "Compresor"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "A fost creată o nouă pistă audio"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "L&ogaritmic"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Envelope Algorithm:"
+msgstr "L&ogaritmic"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "A fost creată o nouă pistă audio"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "&Durată:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "1"
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width:"
+msgstr "Lățime de bandă:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width"
+msgstr "Lățime de bandă:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain:"
+msgstr "Bași (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain"
+msgstr "Bași (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "Timpul de întârziere (secunde):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack"
+msgstr "Timpul de întârziere (secunde):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "Repetat de %d ori"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release"
+msgstr "Repetat de %d ori"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time:"
+msgstr "Ordonează după timp"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "Ordonează după timp"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time:"
+msgstr "Timpul de sfârșit"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "Timpul de sfârșit"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3781,6 +4227,18 @@ msgstr "Directorul curent:"
 msgid "Difference is indeterminate."
 msgstr "Nu s-a putut determina"
 
+#. i18n-hint: dB abbreviates decibels
+#. RMS abbreviates root mean square, a certain averaging method
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Difference = infinite RMS dB."
+msgstr "Nu s-a putut determina"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground level too high"
+msgstr "Înapoi"
+
 #: src/effects/Contrast.cpp
 #, fuzzy
 msgid "Background level too high"
@@ -3797,6 +4255,21 @@ msgstr "Directorul curent:"
 #, fuzzy, c-format
 msgid "%.2f dB"
 msgstr "%.1f dB"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "No foreground measured"
+msgstr "Înapoi"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground not yet measured"
+msgstr "Înapoi"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Measured background level"
+msgstr "Înapoi"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3859,6 +4332,11 @@ msgstr "Confirmă"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
+msgid "Hard Overdrive"
+msgstr "Confirmă"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
 msgid "Leveller"
 msgstr "Nivel"
 
@@ -3871,6 +4349,21 @@ msgstr "&Durată:"
 #, fuzzy
 msgid "Hard Limiter 1413"
 msgstr "Arată li&mitarea"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Light Crunch Overdrive"
+msgstr "Confirmă"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Heavy Overdrive"
+msgstr "Confirmă"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Valve Overdrive"
+msgstr "Confirmă"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
@@ -4001,6 +4494,11 @@ msgstr "Se exportă audio selectat ca Ogg Vorbis"
 #, fuzzy
 msgid "&Delay time (seconds):"
 msgstr "Timpul de întârziere (secunde):"
+
+#: src/effects/Echo.cpp
+#, fuzzy
+msgid "D&ecay factor:"
+msgstr "Lungime"
 
 #: src/effects/Effect.cpp
 #, fuzzy
@@ -4513,6 +5011,11 @@ msgstr "Curba există"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "You cannot delete the 'unnamed' curve."
+msgstr "Nu se poate exporta audioul către %s"
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Can't delete 'unnamed'"
 msgstr "Nu se poate exporta audioul către %s"
 
@@ -4581,6 +5084,29 @@ msgstr "Clic și trageți pentru a redimensiona pista."
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Clic și trageți pentru a redimensiona pista."
 
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Find Clicks"
+msgstr "Arată li&mitarea"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Clicks"
+msgstr "Clic"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Right"
+msgstr "Clic"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Left"
+msgstr "Clic"
+
 #: src/effects/FindClipping.cpp
 #, fuzzy
 msgid "Find Clipping"
@@ -4610,6 +5136,11 @@ msgstr "&Inversează"
 #, fuzzy
 msgid "Builtin Effects"
 msgstr "Efecte Nyquist"
+
+#: src/effects/Loudness.cpp
+#, fuzzy
+msgid "Normalizing Loudness...\n"
+msgstr "Elimină"
 
 #: src/effects/Loudness.cpp src/effects/Normalize.cpp
 #, fuzzy, c-format
@@ -4658,12 +5189,22 @@ msgstr "Zoom implicit"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
+msgid "Blackman, Hann"
+msgstr "Zoom implicit"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
 msgid "Hamming, none"
 msgstr "Zoom implicit"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
 msgid "Hamming, Hann"
+msgstr "Zoom implicit"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "Hamming, Reciprocal Hamming"
 msgstr "Zoom implicit"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
@@ -4943,6 +5484,11 @@ msgstr "N&etezire de frecvență (Hz):"
 #, fuzzy
 msgid "Dept&h:"
 msgstr "Profunzime:"
+
+#: src/effects/Phaser.cpp src/effects/Wahwah.cpp
+#, fuzzy
+msgid "Depth in percent"
+msgstr "Nivel de redare"
 
 #: src/effects/Phaser.cpp
 #, fuzzy
@@ -5346,6 +5892,11 @@ msgstr "Fișiere de proiect Audacity"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "Selectați un fișier MIDI..."
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
 msgid "Error Saving VST Presets"
 msgstr "Eroare la deschiderea fișierului sau a proiectului"
 
@@ -5416,6 +5967,11 @@ msgstr "N&etezire de frecvență (Hz):"
 #, fuzzy
 msgid "Audio Unit Effects"
 msgstr "Efecte Nyquist"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Provides Audio Unit Effects support to Tenacity"
+msgstr "Setările efectului"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
@@ -5656,8 +6212,15 @@ msgid "Nyquist Error"
 msgstr "Nyquist"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "Nu se pot aplica efecte pe piste stereo în care pistele nu se potrivesc."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"Nu se pot aplica efecte pe piste stereo în care pistele nu se potrivesc."
+
+#: src/effects/nyquist/Nyquist.cpp
+#, fuzzy
+msgid "Debug Output: "
+msgstr "Setările efectului"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -5759,8 +6322,11 @@ msgstr "Efecte Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
 #, fuzzy
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "Nu se pot aplica efecte pe piste stereo în care pistele nu se potrivesc."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"Nu se pot aplica efecte pe piste stereo în care pistele nu se potrivesc."
 
 #: src/effects/vamp/VampEffect.cpp
 #, fuzzy
@@ -5910,6 +6476,11 @@ msgstr "FFmpeg nu a fost găsit"
 #, fuzzy, c-format
 msgid "Unable to locate \"%s\" in your path."
 msgstr "Nu s-a putut încărca fișierul de setări predefinite."
+
+#: src/export/ExportDialog.cpp
+#, fuzzy
+msgid "Export Options"
+msgstr "Setările efectului"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
@@ -6101,6 +6672,11 @@ msgstr "'%s' a fost redenumit în '%s'"
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "LC"
+msgstr "L"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "LTP"
 msgstr "L"
 
 #: src/export/ExportFFmpegDialogs.cpp
@@ -6332,7 +6908,42 @@ msgstr "Se exportă audio selectat ca Ogg Vorbis"
 
 #: src/export/ExportMP3.cpp
 #, fuzzy
+msgid "200-250 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "170-210 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "155-195 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "145-185 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "110-150 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "95-135 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
 msgid "80-120 kbps"
+msgstr "%.1f dB"
+
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "65-105 kbps"
 msgstr "%.1f dB"
 
 #: src/export/ExportMP3.cpp
@@ -6418,6 +7029,37 @@ msgstr "Se exportă audio selectat ca Ogg Vorbis"
 #: src/export/ExportMP3.cpp
 #, fuzzy, c-format
 msgid "Exporting the audio at %d Kbps"
+msgstr "Se exportă audio selectat ca Ogg Vorbis"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 16-bit"
+msgstr "16 biți PCM"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 24-bit"
+msgstr "24 biți PCM"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "Etichete"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Matroska Audio Files"
+msgstr "Export audio"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the selected audio as MKA"
+msgstr "Se exportă audio selectat ca Ogg Vorbis"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the audio as MKA"
 msgstr "Se exportă audio selectat ca Ogg Vorbis"
 
 #: src/export/ExportMultiple.cpp
@@ -6661,6 +7303,41 @@ msgid "Import Project"
 msgstr "Exportă etichetele ca:"
 
 #: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'vpos' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'h' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'zoom' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel0' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel1' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selLow' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selHigh' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
 #, c-format
 msgid "Couldn't find the project data folder: \"%s\""
 msgstr "Nu s-a putut găsi dosarul cu datele proiectului: „%s”"
@@ -6677,7 +7354,17 @@ msgstr "Modifică eșantionul"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
+msgid "Invalid sequence 'sampleformat' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
 msgid "Invalid sequence 'numsamples' attribute."
+msgstr "Modifică eșantionul"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Missing or invalid silentblockfile 'len' attribute."
 msgstr "Modifică eșantionul"
 
 #: src/import/ImportAUP.cpp
@@ -6730,6 +7417,12 @@ msgstr "Eroare:"
 msgid "LOF Error"
 msgstr "Eroare LOF"
 
+#. i18n-hint: You do not need to translate "LOF"
+#: src/import/ImportLOF.cpp
+#, fuzzy
+msgid "Invalid duration in LOF file."
+msgstr "Se aplică"
+
 #: src/import/ImportMIDI.cpp
 #, c-format
 msgid "Imported MIDI from '%s'"
@@ -6758,6 +7451,11 @@ msgstr "Nu s-a putut deschide fișierul: „%s”"
 #, fuzzy
 msgid "MP3 files"
 msgstr "Încarcă fișiere"
+
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "Toate Fișierele|*"
 
 #: src/import/ImportOGG.cpp
 #, fuzzy
@@ -6895,6 +7593,13 @@ msgstr "Directoare"
 #. know the correct technical word.
 #: src/import/ImportRaw.cpp
 #, fuzzy
+msgid "Little-endian"
+msgstr "Calitate"
+
+#. i18n-hint: Refers to byte-order.  Don't translate this if you don't
+#. know the correct technical word.
+#: src/import/ImportRaw.cpp
+#, fuzzy
 msgid "Big-endian"
 msgstr "Calitate"
 
@@ -6948,6 +7653,13 @@ msgstr "Cantitate de importat:"
 msgid "Sample rate:"
 msgstr "Simplu"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+#| msgid "Detect Silence"
+msgid "Detect"
+msgstr "Detectează liniștea"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "&Importă"
@@ -6977,12 +7689,14 @@ msgstr "Sfârșit"
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "Time shifted clips to the right"
-msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
+msgstr ""
+"Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "Time shifted clips to the left"
-msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
+msgstr ""
+"Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
 #: src/tracks/ui/TimeShiftHandle.cpp
@@ -7123,7 +7837,8 @@ msgstr "Divize&ază și șterge"
 #: src/menus/EditMenus.cpp
 #, fuzzy, c-format
 msgid "Silenced selected tracks for %.2f seconds at %.2f"
-msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
+msgstr ""
+"Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #. i18n-hint: verb
 #: src/menus/EditMenus.cpp
@@ -7135,7 +7850,8 @@ msgstr "Liniște"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
+msgstr ""
+"Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 # în meniul Edit -> Edit Special
 # ca tooltip
@@ -7426,6 +8142,11 @@ msgstr "Exportă etichetele ca:"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
+msgid "Export as &MKA"
+msgstr "Exportă etichetele ca:"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
 msgid "Export as &OGG"
 msgstr "Importat '%s'"
 
@@ -7544,6 +8265,11 @@ msgstr "&Ajutor rapid"
 #, fuzzy
 msgid "&Manual..."
 msgstr "&Manual"
+
+#: src/menus/HelpMenus.cpp
+#, fuzzy
+msgid "Au&dio Device Info..."
+msgstr "Dispozitiv de înregistrare"
 
 #: src/menus/HelpMenus.cpp
 #, fuzzy
@@ -8546,6 +9272,11 @@ msgstr "&Aliniază sfârșit la sfârșit"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
+msgid "Synchronizing MIDI and Audio Tracks"
+msgstr "&Aliniază sfârșit la sfârșit"
+
+#: src/menus/TrackMenus.cpp
+#, fuzzy
 msgid "Adjusted gain"
 msgstr "Nivel"
 
@@ -9200,6 +9931,11 @@ msgstr "&Potrivește în fereastră"
 msgid "Preferences for Batch"
 msgstr "Preferințe:"
 
+#: src/prefs/BatchPrefs.cpp src/prefs/TracksBehaviorsPrefs.cpp
+#, fuzzy
+msgid "Behaviors"
+msgstr "Preferințe:"
+
 #: src/prefs/DevicePrefs.cpp
 msgid "Devices"
 msgstr "Dispozitive"
@@ -9234,6 +9970,15 @@ msgstr "Redare"
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "&Device:"
 msgstr "&Dispozitiv:"
+
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "Înregistrare"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
@@ -9408,6 +10153,14 @@ msgstr "Ordonează după nume"
 #, fuzzy
 msgid "Sorted by Type and Effect Name"
 msgstr "Ordonează după nume"
+
+#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
+#. (Application programming interface)
+#.
+#: src/prefs/EffectsPrefs.cpp
+#, fuzzy
+msgid "&LADSPA"
+msgstr "Efecte Vamp"
 
 #. i18n-hint: "Nyquist" is an embedded interpreted programming language in
 #. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
@@ -9682,6 +10435,11 @@ msgstr "Implicite"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "Selectați un fișier text ce conține etichete..."
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
 msgid "Error Importing Keyboard Shortcuts"
 msgstr "Exportă scurtăturile de tastatură ca:"
 
@@ -9941,6 +10699,11 @@ msgstr "Tragere spre stânga"
 msgid "Move clip up/down between tracks"
 msgstr "Mută clipul mai sus sau mai jos între piste"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "Alt-Left-Drag"
+msgstr "Tragere spre stânga"
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -10041,6 +10804,11 @@ msgstr "Taie previzualizarea"
 
 #: src/prefs/PrefsDialog.cpp
 #, fuzzy
+msgid "Tenacity Preferences"
+msgstr "Preferințe:"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
 msgid "Category"
 msgstr "C&ategorie:"
 
@@ -10097,6 +10865,12 @@ msgstr "Preferințe:"
 msgid "Record on a new track"
 msgstr "Pistă nouă"
 
+#. i18n-hint: Dropout is a loss of a short sequence audio sample data from the recording
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "Detect dropouts"
+msgstr "Sfârșitul selecției:"
+
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "Sound Activated Recording"
@@ -10136,6 +10910,11 @@ msgstr "Număr pistă"
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "System &Date"
+msgstr "Timpul de început"
+
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "System T&ime"
 msgstr "Timpul de început"
 
 #: src/prefs/RecordingPrefs.cpp
@@ -10359,6 +11138,12 @@ msgid "Preferences for Theme"
 msgstr "Preferințe:"
 
 #: src/prefs/ThemePrefs.cpp
+#, fuzzy
+#| msgid "&Settings"
+msgid "Theme Settings"
+msgstr "S&etări"
+
+#: src/prefs/ThemePrefs.cpp
 msgid "Info"
 msgstr "Informații"
 
@@ -10526,11 +11311,6 @@ msgstr "Simplu"
 msgid "Default audio track &name:"
 msgstr "A fost creată o nouă pistă audio"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Pistă audio"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
 msgid "Zoom Toggle"
@@ -10630,6 +11410,41 @@ msgstr "Contrast..."
 msgid "Light"
 msgstr "Dreapta"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Pro Tools"
+msgstr "Bare de instrumen&te"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "Jurnal Audacity"
+
+# hm ? urmează numele fișierului sau al unei erori ?
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "Nu s-a putut scrie în fișier:"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "Fișierul țintă nu a putut fi deschis pentru scriere"
+
+# hm ? urmează numele fișierului sau al unei erori ?
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "Nu s-a putut scrie în fișier:"
+
 # hm ? urmează numele fișierului sau al unei erori ?
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -10637,6 +11452,13 @@ msgid ""
 "Could not create directory:\n"
 "  %s"
 msgstr "Nu s-a putut scrie în fișier:"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "Nu s-a putut deschide fișierul: „%s”"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -11080,6 +11902,13 @@ msgstr "Timpul de sfârșit"
 msgid "&Time Toolbar"
 msgstr "&Editează bara de unelte"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+#| msgid "&Edit Toolbar"
+msgid "Tenacity %s Toolbar"
+msgstr "&Editează bara de unelte"
+
 #: src/toolbars/ToolBar.cpp
 #, fuzzy
 msgid "Click and drag to resize toolbar"
@@ -11361,6 +12190,39 @@ msgstr "Spectrogramă"
 msgid "S&pectrogram Settings..."
 msgstr "Spectrograme"
 
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "Click and Drag pentru a muta o piesă în timp"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "Nume pistă"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Click and drag to select text"
+msgstr "Clic și trageți pentru a redimensiona pista."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Modified Clip Name"
+msgstr "Editare etichete"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "Editare eșantion"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename Clip..."
+msgstr "Redenumește..."
+
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, fuzzy
 msgid "&Format"
@@ -11539,8 +12401,10 @@ msgstr "dreapta"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgstr ""
+"Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
@@ -11556,6 +12420,22 @@ msgstr "Click and Drag pentru a muta o piesă în timp"
 #, fuzzy
 msgid "Close sub-view"
 msgstr "Click and Drag pentru a muta o piesă în timp"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Split Clip"
+msgstr "Instrumentul următor"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "Mută pista mai s&us"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename clip..."
+msgstr "Redenumește..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 #, fuzzy
@@ -11640,6 +12520,30 @@ msgstr "Interfață"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Click and Drag pentru a muta o piesă în timp"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Mono Track"
+msgid "Add Mono Track"
+msgstr "Pistă &mono"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "Pistă stereo"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "Label Track"
+msgid "Add Label Track"
+msgstr "Pistă de etichete"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Export Audio..."
+msgid "Export Audio..."
+msgstr "&Exportă audio..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -11776,7 +12680,8 @@ msgstr "Clic și trageți pentru a muta selecția centrală."
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
 msgid "Click and drag to adjust frequency bandwidth."
-msgstr "Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
+msgstr ""
+"Clic și trageți pentru a ajusta dimensiunea relativă a pistelor stereo."
 
 #. i18n-hint: These are the names of a menu and a command in that menu
 #: src/tracks/ui/SelectHandle.cpp
@@ -11810,12 +12715,14 @@ msgstr "Mută efectul mai sus în rack"
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, fuzzy, c-format
 msgid "Time shifted tracks/clips right %.02f seconds"
-msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
+msgstr ""
+"Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, fuzzy, c-format
 msgid "Time shifted tracks/clips left %.02f seconds"
-msgstr "Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
+msgstr ""
+"Suprimă audio de la %.2f secunde la %.2f secunde din pistele audio selectate"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
 #, fuzzy
@@ -12027,6 +12934,13 @@ msgstr "%.1f dB"
 msgid "Please select an action"
 msgstr "A fost creată o nouă pistă audio"
 
+#. i18n-hint: Name of time display format that shows time in hours, minutes
+#. * and seconds
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss"
+msgstr "hh:mm:ss + milisecunde"
+
 #. i18n-hint: Name of time display format that shows time in hours,
 #. * minutes, seconds and hundredths of a second (1/100 second)
 #: src/widgets/NumericTextCtrl.cpp
@@ -12046,6 +12960,43 @@ msgstr "hh:mm:ss + milisecunde"
 #: src/widgets/NumericTextCtrl.cpp
 #, fuzzy
 msgid "hh:mm:ss + samples"
+msgstr "hh:mm:ss + milisecunde"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at 24 frames per second (commonly used for films)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + film frames (24 fps)"
+msgstr "hh:mm:ss + milisecunde"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at NTSC TV drop-frame rate (used for American /
+#. * Japanese TV, and very odd)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + NTSC drop frames"
+msgstr "hh:mm:ss + milisecunde"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at NTSC TV non-drop-frame rate (used for American /
+#. * Japanese TV, and doesn't quite match wall time
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + NTSC non-drop frames"
+msgstr "hh:mm:ss + milisecunde"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at PAL TV frame rate (used for European TV)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + PAL frames (25 fps)"
+msgstr "hh:mm:ss + milisecunde"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at CD Audio frame rate (75 frames per second)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + CDDA frames (75 fps)"
 msgstr "hh:mm:ss + milisecunde"
 
 #. i18n-hint: Name of display format that shows frequency in kilohertz
@@ -12253,6 +13204,11 @@ msgstr "Stabilește ca &implicit"
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
+msgid "Adjustable Fade"
+msgstr "Nivel"
+
+#: plug-ins/adjustable-fade.ny
+#, fuzzy
 msgid "Fade Type"
 msgstr "Tip"
 
@@ -12351,6 +13307,11 @@ msgstr "Curba există"
 #, fuzzy, lisp-format
 msgid "Error~%~%"
 msgstr "Eroare"
+
+#: plug-ins/adjustable-fade.ny
+#, fuzzy, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr "Frecvența maximă trebuie să fie un număr întreg"
 
 #: plug-ins/beat.ny
 #, fuzzy
@@ -12642,6 +13603,18 @@ msgstr "Pistă stereo"
 #, fuzzy
 msgid "Point after sound"
 msgstr "Pistă stereo"
+
+#: plug-ins/label-sounds.ny
+#, fuzzy
+msgid "Region between sounds"
+msgstr "Pistă stereo"
+
+# titlu
+#. i18n-hint: '~a' will be replaced by a time duration
+#: plug-ins/label-sounds.ny
+#, fuzzy, lisp-format
+msgid "Error.~%Selection must be less than ~a."
+msgstr "Salvarea modificărilor"
 
 #: plug-ins/limiter.ny
 #, fuzzy
@@ -13201,6 +14174,11 @@ msgstr "&Restrânge toate pistele"
 
 #: plug-ins/vocoder.ny
 #, fuzzy
+msgid "Output choice"
+msgstr "Nivel de redare"
+
+#: plug-ins/vocoder.ny
+#, fuzzy
 msgid "Both Channels"
 msgstr "%d canale"
 
@@ -13508,7 +14486,9 @@ msgstr "N&etezire de frecvență (Hz):"
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr "Numele <b>Audacity&reg;</b> este o marcă înregistrată a lui Dominic Mazzoni."
+#~ msgstr ""
+#~ "Numele <b>Audacity&reg;</b> este o marcă înregistrată a lui Dominic "
+#~ "Mazzoni."
 
 #~ msgid "Sound card mixer support"
 #~ msgstr "Suport pe baza mixerului plăcii de sunet"
@@ -13580,8 +14560,12 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgstr "Taie și copiază în clipboard"
 
 #, fuzzy
-#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-#~ msgstr " <a href=\"http://forum.audacityteam.org/\">Forum</a> (formulați întrebări directe, pe internet)"
+#~ msgid ""
+#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
+#~ "online."
+#~ msgstr ""
+#~ " <a href=\"http://forum.audacityteam.org/\">Forum</a> (formulați "
+#~ "întrebări directe, pe internet)"
 
 #, fuzzy
 #~ msgid "Unable to decode project document"
@@ -13723,20 +14707,24 @@ msgstr "N&etezire de frecvență (Hz):"
 #, fuzzy
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was "
+#~ "unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
+#~ "locations of the missing files."
 #~ msgstr ""
 #~ "Unul sau mai multe fișiere audio externe nu au putut fi găsite.\n"
-#~ "Este posibil să fi fost mutat sau șters, sau unitatea pe care se afla(u) a fost demontată.\n"
+#~ "Este posibil să fi fost mutat sau șters, sau unitatea pe care se afla(u) "
+#~ "a fost demontată.\n"
 #~ "Zona audio afectată este în curs de substituire cu liniște.\n"
 #~ "Primul fișier lipsă detectat este:\n"
 #~ "%s\n"
 #~ "Pot exista fișiere lipsă adiționale.\n"
-#~ "Alegeți Fișier > Verifică dependințele pentru a vizualiza o listă a locațiilor fișierelor lipsă."
+#~ "Alegeți Fișier > Verifică dependințele pentru a vizualiza o listă a "
+#~ "locațiilor fișierelor lipsă."
 
 #~ msgid "Files Missing"
 #~ msgstr "Lipsesc fișierele"
@@ -13779,7 +14767,8 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgstr "Înregistrare"
 
 #~ msgid "Ogg Vorbis support is not included in this build of Audacity"
-#~ msgstr "Suportul pentru Ogg Vorbis nu este inclus în această versiune Audacity"
+#~ msgstr ""
+#~ "Suportul pentru Ogg Vorbis nu este inclus în această versiune Audacity"
 
 #, fuzzy
 #~ msgid "Cleaning project temporary files"
@@ -13804,8 +14793,12 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Salvează proiectul „%s” ca..."
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
-#~ msgstr "Audacity nu a putut converti un proiect Audacity 1.0 în noul format de proiect."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
+#~ msgstr ""
+#~ "Audacity nu a putut converti un proiect Audacity 1.0 în noul format de "
+#~ "proiect."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -13853,7 +14846,9 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgstr "Audacity"
 
 #, fuzzy
-#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgid ""
+#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
+#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
 #~ msgstr "Programul <b>Audacity&reg;</b> este copyright"
 
 #~ msgid "KB"
@@ -13910,8 +14905,12 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgid "Unlock Play Region"
 #~ msgstr "Zona de re&dare"
 
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Numai avformat.dll|*avformat*.dll|Biblioteci legate dinamic (*.dll)|*.dll|Toate fișierele|*"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "Numai avformat.dll|*avformat*.dll|Biblioteci legate dinamic (*.dll)|*.dll|"
+#~ "Toate fișierele|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -13929,21 +14928,38 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgstr "Fișiere XML (*.xml)|*.xml|Toate fișierele|*"
 
 #, fuzzy
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|Toate fișierele (*.*)|*"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|"
+#~ "Toate fișierele (*.*)|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|Toate fișierele (*.*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Numai lame_enc.dll|lame_enc.dll|Biblioteci legate dinamic (*.dll)|*.dll|"
+#~ "Toate fișierele (*.*)|*"
 
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Numai libmp3lame.so.0|libmp3lame.so.0|Fișierele obiect partajate primar (*.so)|*.so|Biblioteci extinse (*.so*)|*.so*|Toate fișierele (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Numai libmp3lame.so.0|libmp3lame.so.0|Fișierele obiect partajate primar "
+#~ "(*.so)|*.so|Biblioteci extinse (*.so*)|*.so*|Toate fișierele (*)|*"
 
 #~ msgid "MIDI file (*.mid)|*.mid|Allegro file (*.gro)|*.gro"
 #~ msgstr "Fișier MIDI (*.mid)|*.mid|Fișier Allegro (*.gro)|*.gro"
 
-#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr "Fișiere MIDI și Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Fișiere MIDI (*.mid;*.midi)|*.mid;*.midi|Fișiere Allegro (*.gro)|*.gro|Toate fișierele|*"
+#~ msgid ""
+#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
+#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr ""
+#~ "Fișiere MIDI și Allegro (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|Fișiere "
+#~ "MIDI (*.mid;*.midi)|*.mid;*.midi|Fișiere Allegro (*.gro)|*.gro|Toate "
+#~ "fișierele|*"
 
 #, fuzzy
 #~ msgid "Remove Center Classic: Mono"
@@ -14222,8 +15238,12 @@ msgstr "N&etezire de frecvență (Hz):"
 #~ msgid "<center><h3>How to Get Help</h3></center>"
 #~ msgstr "<center><h3>Cum să obțineți ajutor</h3></center>"
 
-#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
-#~ msgstr " Pentru aflarea și mai rapidă a unor răspunsuri, toate resursele online de mai sus <b>au funcții de căutare</b>."
+#~ msgid ""
+#~ " For even quicker answers, all the online resources above are "
+#~ "<b>searchable</b>."
+#~ msgstr ""
+#~ " Pentru aflarea și mai rapidă a unor răspunsuri, toate resursele online "
+#~ "de mai sus <b>au funcții de căutare</b>."
 
 #~ msgid "Edit Metadata"
 #~ msgstr "Editare metadate"

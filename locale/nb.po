@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2018-11-29 15:52+0100\n"
 "Last-Translator: Imre Kristoffer Eilertsen <imreeil42@gmail.com>\n"
 "Language-Team: Imre Kristoffer Eilertsen <imreeil42@gmail.com>\n"
@@ -19,10 +19,114 @@ msgstr ""
 "X-Poedit-Bookmarks: 1429,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Default recording device number: %d"
+msgstr "Velg opptaksenhet"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Default playback device number: %d"
+msgstr "Velg avspillingsenhet"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Ingen enheter funnet"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Device information is not available."
+msgid "Device info unavailable for: %d"
+msgstr "Enhetsinformasjon er ikke tilgjengelig."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "&Device:"
+msgid "Device ID: %d"
+msgstr "En&het:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Devices"
+msgid "Device name: %s"
+msgstr "Enheter"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Name: %s"
+msgid "Host name: %s"
+msgstr "Navn: %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording Channels"
+msgid "Recording channels: %d"
+msgstr "Opptakskanaler"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Playback Level"
+msgid "Playback channels: %d"
+msgstr "Avspillingsnivå"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording end:"
+msgid "Low Recording Latency: %g"
+msgstr "Opptaksslutt:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Recording end:"
+msgid "High Recording Latency: %g"
+msgstr "Opptaksslutt:"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+#| msgid "Sample Rates"
+msgid "Supported Rates:"
+msgstr "Datarater"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected recording device: %d - %s"
+msgstr "Velg opptaksenhet"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected playback device: %d - %s"
+msgstr "Velg avspillingsenhet"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "No devices found"
+msgid "No playback device found for '%s'."
+msgstr "Ingen enheter funnet"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Show output"
+msgid "Supports output: %d"
+msgstr "Vis utdata"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Recording Device"
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "Velg opptaksenhet"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Select Playback Device"
+msgid "Selected MIDI playback device: %d - %s"
+msgstr "Velg avspillingsenhet"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -47,6 +151,21 @@ msgstr "Melding"
 #: libraries/lib-exceptions/InconsistencyException.h
 msgid "Internal Error"
 msgstr "Intern feil"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "Klarte ikke å fjerne %s"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Klarte ikke å lagre prosjektet.\n"
+"Kanskje %s ikke kan skrives til, eller disken er full."
 
 #  i18n-hint: You do not need to translate "LOF"
 #: libraries/lib-files/FileException.h
@@ -244,6 +363,23 @@ msgstr "!Forenklet visning"
 msgid "System"
 msgstr "System&dato"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Generic"
+msgid "Generic Track"
+msgstr "Generisk"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Lydspor"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "Avspilling"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -365,6 +501,11 @@ msgstr "nettutvikler"
 msgid "%s, graphics"
 msgstr "grafikk"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "medskaper og utvikler"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -372,10 +513,22 @@ msgstr "grafikk"
 msgid "%s, Tenacity developer"
 msgstr "nettutvikler"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "nettutvikler"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "nettutvikler"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "nettutvikler"
 
 #. i18n-hint: information about the program
@@ -401,7 +554,9 @@ msgstr "OK"
 #. *  For example:  "English translation by Dominic Mazzoni."
 #: src/AboutDialog.cpp
 msgid "translator_credits"
-msgstr "norsk (bokmål) oversettelse av Imre Kristoffer Eilertsen og Kevin Brubeck Unhammer"
+msgstr ""
+"norsk (bokmål) oversettelse av Imre Kristoffer Eilertsen og Kevin Brubeck "
+"Unhammer"
 
 #: src/AboutDialog.cpp
 msgid "Credits"
@@ -416,6 +571,18 @@ msgstr "Emeritus-medlemmer"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Bidragsytere"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Emeritus:"
+msgid "Emeritus"
+msgstr "Emeritus:"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "Emeritus-medlemmer"
 
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
@@ -491,6 +658,19 @@ msgstr "Installeringsprefiks: "
 msgid "Settings folder:"
 msgstr "Innstillingsmappe: "
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Libraries"
+msgid "Core Libraries"
+msgstr "Bibliotek"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "Sample Rate Conver&ter:"
+msgid "Sample rate conversion"
+msgstr "Datafrekvenskonver&terer:"
+
 #: src/AboutDialog.cpp
 msgid "File Format Support"
 msgstr "Filformatstøtte"
@@ -509,6 +689,12 @@ msgstr "Ogg Vorbis-importering og -eksportering"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Støtte for ID3-tagger"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+#| msgid "FLAC import and export"
+msgid "Matroska import and export"
+msgstr "FLAC-importering og -eksportering"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -682,6 +868,12 @@ msgid "Error: %s"
 msgstr "Feil: "
 
 #: src/AudioIO.cpp
+#, fuzzy
+#| msgid "Throw Error"
+msgid "PortAudio Error"
+msgstr "Kastefeil"
+
+#: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
 msgstr "Feil ved initialisering av MIDI I/O-laget.\n"
 
@@ -692,6 +884,12 @@ msgid ""
 msgstr ""
 "Du vil ikke kunne spille av MIDI.\n"
 "\n"
+
+#: src/AudioIO.cpp
+#, fuzzy
+#| msgid "Trim Audio"
+msgid "Tenacity Audio"
+msgstr "Trim lyd"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -722,6 +920,11 @@ msgstr "Velg"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "Navn"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "Om Audacity"
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -1147,6 +1350,14 @@ msgstr "Forventet lengden %d, sporlengde %lld.\n"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
+#| msgid "Performing Low-Pass Filter..."
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "Utfører lavpassfiltrering ..."
+msgstr[1] "Utfører lavpassfiltrering ..."
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Klipp ut: %d - %d \n"
 
@@ -1251,17 +1462,31 @@ msgstr "Utgivelsesversjon"
 msgid "Release build (debug level %d)"
 msgstr "Utgivelsesversjon"
 
-#. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
-#: src/CommonCommandFlags.cpp
-#, c-format
-msgid "Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
-msgstr "Velg lyden som %s skal bruke (for eksempel, ⌘+A for å velge alle), og så prøv igjen."
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "24 bit"
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
 #, c-format
-msgid "Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
-msgstr "Velg lyden som %s skal bruke (for eksempel, Ctrl + A for å velge alle), og så prøv igjen."
+msgid ""
+"Select the audio for %s to use (for example, Cmd + A to Select All) then try "
+"again."
+msgstr ""
+"Velg lyden som %s skal bruke (for eksempel, ⌘+A for å velge alle), og så "
+"prøv igjen."
+
+#. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
+#: src/CommonCommandFlags.cpp
+#, c-format
+msgid ""
+"Select the audio for %s to use (for example, Ctrl + A to Select All) then "
+"try again."
+msgstr ""
+"Velg lyden som %s skal bruke (for eksempel, Ctrl + A for å velge alle), og "
+"så prøv igjen."
 
 #: src/CommonCommandFlags.cpp
 msgid "No Audio Selected"
@@ -1518,8 +1743,12 @@ msgstr "For å tegne spektrumet må alle markerte spor være samme datafrekvens.
 
 #: src/FreqWindow.cpp
 #, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
-msgstr "For mye lyd ble markert. Bare de første %.1f sekundene med lyd vil bli analysert."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
+msgstr ""
+"For mye lyd ble markert. Bare de første %.1f sekundene med lyd vil bli "
+"analysert."
 
 #: src/FreqWindow.cpp
 msgid "Not enough data selected."
@@ -1642,8 +1871,16 @@ msgid "No Local Help"
 msgstr "Ingen lokale hjelpefiler"
 
 #: src/HelpText.cpp
-msgid "You can also read our help on importing [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio CDs]]."
-msgstr "Du kan også lese våre hjelpeveiledninger om å importere [[https://manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] og spor fra [[https://manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| lyd-CDer]]."
+msgid ""
+"You can also read our help on importing [[https://manual.audacityteam.org/"
+"man/playing_and_recording.html#midi|MIDI files]] and tracks from [[https://"
+"manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio "
+"CDs]]."
+msgstr ""
+"Du kan også lese våre hjelpeveiledninger om å importere [[https://manual."
+"audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] og spor "
+"fra [[https://manual.audacityteam.org/man/faq_opening_and_saving_files."
+"html#fromcd| lyd-CDer]]."
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -1701,6 +1938,12 @@ msgstr "&Kommando"
 #: src/HistoryWindow.cpp
 msgid "&History..."
 msgstr "&Historie..."
+
+#: src/JournalEvents.cpp
+#, fuzzy
+#| msgid "Recording Saved:"
+msgid "Journal recording failed"
+msgstr "Opptaket er lagret:"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -1787,8 +2030,11 @@ msgstr "En eller flere lagrede merker kunne ikke bli innlest."
 #. * versions of language names.
 #: src/LangChoice.cpp
 #, c-format
-msgid "The language you have chosen, %s (%s), is not the same as the system language, %s (%s)."
-msgstr "Det valgte språket, %s (%s), er ikke det samme som systemspråket, %s (%s)."
+msgid ""
+"The language you have chosen, %s (%s), is not the same as the system "
+"language, %s (%s)."
+msgstr ""
+"Det valgte språket, %s (%s), er ikke det samme som systemspråket, %s (%s)."
 
 #: src/LangChoice.cpp src/effects/VST/VSTEffect.cpp
 msgid "Confirm"
@@ -1977,6 +2223,16 @@ msgstr ""
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
 msgid ""
+"The module \"%s\" is matched with Tenacity version \"%s\".\n"
+"\n"
+"It will not be loaded."
+msgstr ""
+"%s-modulen nevner ikke et versjonnummer.\n"
+"Den vil ikke bli lastet inn."
+
+#: src/ModuleManager.cpp
+#, fuzzy, c-format
+msgid ""
 "The module \"%s\" failed to initialize.\n"
 "\n"
 "It will not be loaded."
@@ -2008,6 +2264,11 @@ msgstr "Ja"
 #: plug-ins/equalabel.ny plug-ins/limiter.ny
 msgid "No"
 msgstr "Nei"
+
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "nettutvikler"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2318,7 +2579,8 @@ msgstr ""
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "The tracks selected for recording must all have the same sampling rate"
-msgstr "For å bruke et filter, må alle markerte spor være av samme samplingsfrekvens."
+msgstr ""
+"For å bruke et filter, må alle markerte spor være av samme samplingsfrekvens."
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -2344,6 +2606,12 @@ msgstr "Skru av lydutfalloppdagelse"
 #: src/ProjectFileIO.cpp src/menus/WindowMenus.cpp
 msgid "<untitled>"
 msgstr "<uten tittel>"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+#| msgid "Project"
+msgid "[Project %02i] "
+msgstr "Prosjekt"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy, c-format
@@ -2518,6 +2786,16 @@ msgid "Error Writing to File"
 msgstr "Feil ved skriving til fil"
 
 #: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Klarte ikke å lagre prosjektet.\n"
+"Kanskje %s ikke kan skrives til, eller disken er full."
+
+#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "Å lagre &prosjekter"
@@ -2601,10 +2879,12 @@ msgstr "Lagret %s"
 
 #: src/ProjectFileManager.cpp
 msgid ""
-"The project was not saved because the file name provided would overwrite another project.\n"
+"The project was not saved because the file name provided would overwrite "
+"another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Prosjektet ble ikke lagret fordi filnavnet du brukte, ville ha overskrevet et annet prosjekt.\n"
+"Prosjektet ble ikke lagret fordi filnavnet du brukte, ville ha overskrevet "
+"et annet prosjekt.\n"
 "Vennligst prøv igjen og velg et unikt navn."
 
 #: src/ProjectFileManager.cpp
@@ -2647,10 +2927,12 @@ msgstr "Advarsel for overskriving av prosjekt"
 #: src/ProjectFileManager.cpp
 #, fuzzy
 msgid ""
-"The project was not saved because the selected project is open in another window.\n"
+"The project was not saved because the selected project is open in another "
+"window.\n"
 "Please try again and select an original name."
 msgstr ""
-"Prosjektet ble ikke lagret fordi det valgte prosjektet er åpent i et annet vindu.\n"
+"Prosjektet ble ikke lagret fordi det valgte prosjektet er åpent i et annet "
+"vindu.\n"
 "Vennligst prøv igjen og velg et unikt navn."
 
 #: src/ProjectFileManager.cpp
@@ -2727,6 +3009,13 @@ msgstr "Prosjektet ble gjenopprettet"
 #: src/ProjectFileManager.cpp
 msgid "Recover"
 msgstr "Gjenopprett"
+
+#. i18n-hint Name default name assigned to a clip on track import
+#: src/ProjectFileManager.cpp
+#, fuzzy, c-format
+msgctxt "clip name template"
+msgid "%s %d"
+msgstr "%s %d av %d klipp %s"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2834,7 +3123,8 @@ msgid "Vertical Scrollbar"
 msgstr "Vertikal skrollelinje"
 
 #: src/SelectFile.cpp
-msgid "The specified filename could not be converted due to Unicode character use."
+msgid ""
+"The specified filename could not be converted due to Unicode character use."
 msgstr "Kunne ikke konvertere filnavnet pga. bruk av Unicode-tegn."
 
 #: src/SelectFile.cpp
@@ -2847,7 +3137,8 @@ msgid ""
 "Sequence has block file exceeding maximum %s samples per block.\n"
 "Truncating to this maximum length."
 msgstr ""
-"Sekvensen har en blokkfil som overgår den maksimale mengden på %s per blokk.\n"
+"Sekvensen har en blokkfil som overgår den maksimale mengden på %s per "
+"blokk.\n"
 "Korter den ned til denne maksimumlengden."
 
 #: src/Sequence.cpp
@@ -2873,6 +3164,11 @@ msgstr "Lydaktivert opptak"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Aktiveringsnivå (dB):"
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "nettutvikler"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2913,7 +3209,9 @@ msgstr "Kommentarer"
 
 #: src/Tags.cpp
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr "Bruk piltastene (eller linjeskift etter redigering) for å navigere gjennom felt."
+msgstr ""
+"Bruk piltastene (eller linjeskift etter redigering) for å navigere gjennom "
+"felt."
 
 #: src/Tags.cpp
 msgid "Tag"
@@ -2974,7 +3272,8 @@ msgstr "Gjenopprett sjangere"
 
 #: src/Tags.cpp
 msgid "Are you sure you want to reset the genre list to defaults?"
-msgstr "Er du sikker på at du vil tilbakestille sjangerlisten til standardverdiene?"
+msgstr ""
+"Er du sikker på at du vil tilbakestille sjangerlisten til standardverdiene?"
 
 #: src/Tags.cpp
 msgid "Unable to open genre file."
@@ -3009,11 +3308,19 @@ msgstr "Mislyktes!"
 msgid ""
 "Reset Preferences?\n"
 "\n"
-"This is a one-time question, after an 'install' where you asked to have the Preferences reset."
+"This is a one-time question, after an 'install' where you asked to have the "
+"Preferences reset."
 msgstr ""
 "Tilbakestill preferanser?\n"
 "\n"
-"Dette er et éngangsspørsmål, etter en 'installering' hvor du ønsket å tilbakestille preferansene."
+"Dette er et éngangsspørsmål, etter en 'installering' hvor du ønsket å "
+"tilbakestille preferansene."
+
+#: src/TenacityApp.cpp
+#, fuzzy
+#| msgid "&Use Preferences"
+msgid "Reset Tenacity Preferences"
+msgstr "&Bruk innstillinger"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -3053,6 +3360,12 @@ msgid "&File"
 msgstr "&Fil"
 
 #: src/TenacityApp.cpp
+#, fuzzy
+#| msgid "Do you want to save the changes?"
+msgid "Do you still want to start Tenacity?"
+msgstr "Vil du lagre endringene?"
+
+#: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "Feil ved lukking av midlertidig mappe"
 
@@ -3072,6 +3385,12 @@ msgstr "denne hjelpebeskjeden"
 msgid "run self diagnostics"
 msgstr "kjør selvdiagnostikk"
 
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "nettutvikler"
+
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -3081,6 +3400,11 @@ msgstr "lyd- eller prosjekt-filnavn"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Audacity prosjektfiler"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "Bekreftelse for reglementssletting"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3111,6 +3435,12 @@ msgid "Time Track"
 msgstr "Tidsspor"
 
 #: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Timer Recording"
+msgid "Tenacity Timer Record"
+msgstr "Tidsinnstilt opptak"
+
+#: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
 msgstr "Lagre det tidsinnstilte opptaket som"
 
@@ -3121,7 +3451,8 @@ msgid ""
 "Please try again and select an original name."
 msgstr ""
 "Det valgte filnavnet kunne ikke bli brukt for\n"
-"for et tidsinnstilt opptak, fordi det ville ha overskrevet et annet prosjekt.\n"
+"for et tidsinnstilt opptak, fordi det ville ha overskrevet et annet "
+"prosjekt.\n"
 "Vennligst prøv igjen og velg et unikt navn."
 
 #: src/TimerRecordDialog.cpp
@@ -3155,14 +3486,16 @@ msgstr "Feil under automatisk eksportering"
 #: src/TimerRecordDialog.cpp
 #, c-format
 msgid ""
-"You may not have enough free disk space to complete this Timer Recording, based on your current settings.\n"
+"You may not have enough free disk space to complete this Timer Recording, "
+"based on your current settings.\n"
 "\n"
 "Do you wish to continue?\n"
 "\n"
 "Planned recording duration:   %s\n"
 "Recording time remaining on disk:   %s"
 msgstr ""
-"Du har kanskje ikke nok ledig diskplass til å fullføre dette tidsinnstilte opptaket, basert på dine nåværende innstillinger.\n"
+"Du har kanskje ikke nok ledig diskplass til å fullføre dette tidsinnstilte "
+"opptaket, basert på dine nåværende innstillinger.\n"
 "\n"
 "Vil du fortsette\n"
 "\n"
@@ -3201,6 +3534,12 @@ msgstr "Automatisk eksportering aktivert:"
 #: src/TimerRecordDialog.cpp
 msgid "Action after Timer Recording:"
 msgstr "Handling etter tidsinnstilt opptak:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Error Saving Timer Recording Project"
+msgid "Tenacity Timer Record Progress"
+msgstr "Feil ved lagring av tidsinnstilt opptaksprosjekt"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3354,6 +3693,11 @@ msgid "Do nothing"
 msgstr "Ikke gjør noe"
 
 #: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Exit Tenacity"
+msgstr "Om Audacity"
+
+#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Start maskinen på nytt"
 
@@ -3394,6 +3738,12 @@ msgstr "Opptaket er lagret:"
 #: src/TimerRecordDialog.cpp
 msgid "Recording Exported:"
 msgstr "Opptaket er eksportert:"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+#| msgid "Timer Recording"
+msgid "Tenacity Timer Record - Waiting"
+msgstr "Tidsinnstilt opptak"
 
 #: src/TrackInfo.cpp
 msgid "Stereo, 999999Hz"
@@ -3459,7 +3809,9 @@ msgstr " Markering på"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
 msgstr "Klikk og dra for å justere relativ størrelse på stereospor."
 
 #: src/TrackPanelResizeHandle.cpp
@@ -3561,6 +3913,12 @@ msgid "Resampling failed."
 msgstr "Gjensampling mislyktes."
 
 #: src/WaveTrack.cpp
+#, fuzzy
+#| msgid "Move Track"
+msgid "Wave Track"
+msgstr "Flytt spor"
+
+#: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "Det er ikke nok plass tilgjengelig til å lime inn markeringen"
 
@@ -3569,13 +3927,20 @@ msgid "There is not enough room available to expand the cut line"
 msgstr "Det er ikke nok plass tilgjengelig til å utvide utklippslinjen"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "Audacity-logg%s"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
 msgid ""
 "%s: Could not load settings below. Default settings will be used.\n"
 "\n"
 "%s"
 msgstr ""
-"%s: Kunne ikke laste inn de nedenstående innstillingene. Standardverdiene vil bli brukt.\n"
+"%s: Kunne ikke laste inn de nedenstående innstillingene. Standardverdiene "
+"vil bli brukt.\n"
 "\n"
 "%s"
 
@@ -3815,6 +4180,12 @@ msgstr "Eksporter til en fil."
 #: src/commands/LoadCommands.cpp
 msgid "Builtin Commands"
 msgstr "Innebygde kommandoer"
+
+#: src/commands/LoadCommands.cpp
+#, fuzzy
+#| msgid "Unknown built-in command name"
+msgid "Provides builtin commands to Tenacity"
+msgstr "Ukjent navn på innebygd kommando"
 
 #: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
@@ -4241,22 +4612,33 @@ msgid "Auto Duck"
 msgstr "Autodukk"
 
 #: src/effects/AutoDuck.cpp
-msgid "Reduces (ducks) the volume of one or more tracks whenever the volume of a specified \"control\" track reaches a particular level"
-msgstr "Senker volumet i et eller flere spor, når volumet i et spesifikt kontrollspor går over en bestemt grense"
+msgid ""
+"Reduces (ducks) the volume of one or more tracks whenever the volume of a "
+"specified \"control\" track reaches a particular level"
+msgstr ""
+"Senker volumet i et eller flere spor, når volumet i et spesifikt "
+"kontrollspor går over en bestemt grense"
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "Du valgte et spor som ikke inneholder lyd. Autodukk kan bare behandle lydspor."
+msgid ""
+"You selected a track which does not contain audio. AutoDuck can only process "
+"audio tracks."
+msgstr ""
+"Du valgte et spor som ikke inneholder lyd. Autodukk kan bare behandle "
+"lydspor."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
-msgstr "Autodukk trenger et kontrollspor som må plasseres under de valgte sporene."
+msgid ""
+"Auto Duck needs a control track which must be placed below the selected "
+"track(s)."
+msgstr ""
+"Autodukk trenger et kontrollspor som må plasseres under de valgte sporene."
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -4790,14 +5172,157 @@ msgstr "Kompresseringsoppstert %.2f sek"
 msgid "Release Time %.1f secs"
 msgstr "Slipptid: %.1f sek"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Exponential Out"
+msgid "Exponential-Fit"
+msgstr "Eksponent ut"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Peak amplitude dB"
+msgid "peak amplitude"
+msgstr "Topp-amplitude dB"
+
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Dynamic Reduction"
+msgstr "Støyreduksjon"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Noise Reduction"
+msgid "Peak Reduction"
+msgstr "Støyreduksjon"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Limiter"
+msgid "Analog Limiter"
+msgstr "Begrenser"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Compressor"
+msgid "Dynamic Compressor"
+msgstr "Komprimering"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "Velger toppbredden for én eller flere spor"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "Komprimer basert på bølgetopper"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritme"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "&Algorithm:"
+msgid "Envelope Algorithm:"
+msgstr "&Algoritme:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "Komprimer basert på bølgetopper"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress stereo channels independently"
+msgstr "Normaliser stereokanalene uavhengig"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "Forhold:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "1"
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Width:"
+msgid "Knee Width:"
+msgstr "Bredde:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Width:"
+msgid "Knee Width"
+msgstr "Bredde:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "&Output gain (dB):"
+msgid "Output Gain:"
+msgstr "&Utdatasporvolum (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Output gain (dB)"
+msgid "Output Gain"
+msgstr "Utdatasporvolum (dB)"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "Reaksjonstid:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Attack Time"
+msgid "Attack"
+msgstr "Reaksjonstid"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "Slipptid:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Release Time"
+msgid "Release"
+msgstr "Slipptid"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Smooth Time:"
+msgid "Lookahead Time:"
+msgstr "Rett ut varighet:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "Smooth Time"
+msgid "Lookahead Time"
+msgstr "Rett ut varighet"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time:"
+msgid "Hold Time:"
+msgstr "Sluttid:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "Sluttid"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -4825,8 +5350,12 @@ msgstr ""
 
 #. i18n-hint: RMS abbreviates root mean square, a certain averaging method
 #: src/effects/Contrast.cpp
-msgid "Contrast Analyzer, for measuring RMS volume differences between two selections of audio."
-msgstr "Kontrastanalyse, for å måle RMS-volumforskjeller mellom to merkede lydsekvenser."
+msgid ""
+"Contrast Analyzer, for measuring RMS volume differences between two "
+"selections of audio."
+msgstr ""
+"Kontrastanalyse, for å måle RMS-volumforskjeller mellom to merkede "
+"lydsekvenser."
 
 #. i18n-hint noun
 #: src/effects/Contrast.cpp src/effects/ToneGen.cpp
@@ -5314,8 +5843,12 @@ msgid "DTMF Tones"
 msgstr "DTMF-toner"
 
 #: src/effects/DtmfGen.cpp
-msgid "Generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones"
-msgstr "Lager dobbel-tone flerfrekvenstoner (DTMF) slik som de som lages av tastaturet på telefoner"
+msgid ""
+"Generates dual-tone multi-frequency (DTMF) tones like those produced by the "
+"keypad on telephones"
+msgstr ""
+"Lager dobbel-tone flerfrekvenstoner (DTMF) slik som de som lages av "
+"tastaturet på telefoner"
 
 #: src/effects/DtmfGen.cpp
 #, fuzzy
@@ -5791,10 +6324,12 @@ msgstr "Diskant"
 #, fuzzy
 msgid ""
 "To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, then use that one."
+"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
+"then use that one."
 msgstr ""
 "For å bruke en EQ-kurve i en makro, vennligst gi den et nytt navn.\n"
-"Velg 'Lagre/behandle kurver...'-knappen og gi et nytt navn til den unavngitte kurven, og så bruk den."
+"Velg 'Lagre/behandle kurver...'-knappen og gi et nytt navn til den "
+"unavngitte kurven, og så bruk den."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5802,8 +6337,10 @@ msgid "Filter Curve EQ needs a different name"
 msgstr "Tonekontrollkurven trenger et annet navn"
 
 #: src/effects/Equalization.cpp
-msgid "To apply Equalization, all selected tracks must have the same sample rate."
-msgstr "For å bruke Equaliseren, må alle markerte spor ha samme samplingsfrekvens."
+msgid ""
+"To apply Equalization, all selected tracks must have the same sample rate."
+msgstr ""
+"For å bruke Equaliseren, må alle markerte spor ha samme samplingsfrekvens."
 
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
@@ -6140,6 +6677,36 @@ msgstr "Legger til en lineær innfalming til den markerte lyden"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Legger til en lineær utfalming til den valgte lyden"
 
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Find Clipping"
+msgid "Find Clicks"
+msgstr "Finn klipping"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Creates labels where clipping is detected"
+msgid "Creates labels where clicks are detected"
+msgstr "Skaper merkinger der hvor klipping er oppdaget"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Clicks"
+msgstr "Klikk"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Right"
+msgstr "Klikk"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+#| msgid "Click"
+msgid "Click Left"
+msgstr "Klikk"
+
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Finn klipping"
@@ -6338,8 +6905,12 @@ msgid "All noise profile data must have the same sample rate."
 msgstr "All støyprofildataen må ha samme samplingsfrekvens."
 
 #: src/effects/NoiseReduction.cpp
-msgid "The sample rate of the noise profile must match that of the sound to be processed."
-msgstr "Samplingsraten til støyprofilen må være det samme som lyden som skal prosesseres."
+msgid ""
+"The sample rate of the noise profile must match that of the sound to be "
+"processed."
+msgstr ""
+"Samplingsraten til støyprofilen må være det samme som lyden som skal "
+"prosesseres."
 
 #: src/effects/NoiseReduction.cpp
 msgid "Selected noise profile is too short."
@@ -6518,7 +7089,8 @@ msgstr "Støyfjerning"
 
 #: src/effects/NoiseRemoval.cpp
 msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr "Fjerner konstant bakgrunnsstøy, slik som vifter, opptaksstøy eller skurring"
+msgstr ""
+"Fjerner konstant bakgrunnsstøy, slik som vifter, opptaksstøy eller skurring"
 
 #: src/effects/NoiseRemoval.cpp
 msgid ""
@@ -6758,11 +7330,13 @@ msgstr "Velger toppbredden for én eller flere spor"
 
 #: src/effects/Repair.cpp
 msgid ""
-"The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
+"The Repair effect is intended to be used on very short sections of damaged "
+"audio (up to 128 samples).\n"
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"Reparer-effekten er ment å brukes på veldig korte bolker med skadet lyd (opp til 128 datapunkter).\n"
+"Reparer-effekten er ment å brukes på veldig korte bolker med skadet lyd (opp "
+"til 128 datapunkter).\n"
 "\n"
 "Zoom inn og velg en liten brøkdel av et sekund som skal repareres."
 
@@ -6950,7 +7524,8 @@ msgstr "Utfører IIR-filtrering som etterligner analoge filtre"
 
 #: src/effects/ScienFilter.cpp
 msgid "To apply a filter, all selected tracks must have the same sample rate."
-msgstr "For å bruke et filter, må alle markerte spor være av samme samplingsfrekvens."
+msgstr ""
+"For å bruke et filter, må alle markerte spor være av samme samplingsfrekvens."
 
 #: src/effects/ScienFilter.cpp
 msgid "&Filter Type:"
@@ -7235,12 +7810,20 @@ msgid "Truncate Silence"
 msgstr "Fjern stillhet"
 
 #: src/effects/TruncSilence.cpp
-msgid "Automatically reduces the length of passages where the volume is below a specified level"
-msgstr "Reduserer automatisk varigheten av passasjer hvor volumet er under et bestemt nivå"
+msgid ""
+"Automatically reduces the length of passages where the volume is below a "
+"specified level"
+msgstr ""
+"Reduserer automatisk varigheten av passasjer hvor volumet er under et "
+"bestemt nivå"
 
 #: src/effects/TruncSilence.cpp
-msgid "When truncating independently, there may only be one selected audio track in each Sync-Locked Track Group."
-msgstr "Når du korter ned uavhengig, kan det bare være ett valgt lydspor i hver synk-låste sporgruppe."
+msgid ""
+"When truncating independently, there may only be one selected audio track in "
+"each Sync-Locked Track Group."
+msgstr ""
+"Når du korter ned uavhengig, kan det bare være ett valgt lydspor i hver synk-"
+"låste sporgruppe."
 
 #: src/effects/TruncSilence.cpp
 msgid "Detect Silence"
@@ -7311,8 +7894,12 @@ msgstr "Grafisk grensesnitt"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
-msgid "Most VST effects have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
-msgstr "De fleste VST-effekter har et grafisk grensesnitt å velge parameter-verdier."
+msgid ""
+"Most VST effects have a graphical interface for setting parameter values. A "
+"basic text-only method is also available.  Reopen the effect for this to "
+"take effect."
+msgstr ""
+"De fleste VST-effekter har et grafisk grensesnitt å velge parameter-verdier."
 
 #: src/effects/VST/VSTEffect.cpp src/effects/lv2/LV2Effect.cpp
 msgid "Enable &graphical interface"
@@ -7336,6 +7923,11 @@ msgstr "Åpne VST-program"
 #, fuzzy
 msgid "Standard VST program file"
 msgstr "Åpne VST-program"
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "Velg fil"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -7391,8 +7983,12 @@ msgid "Wahwah"
 msgstr "Wahwah"
 
 #: src/effects/Wahwah.cpp
-msgid "Rapid tone quality variations, like that guitar sound so popular in the 1970's"
-msgstr "Ville variasjoner i tonekvalitet, slik som i den gitarlyden som var så popular på 70-tallet"
+msgid ""
+"Rapid tone quality variations, like that guitar sound so popular in the "
+"1970's"
+msgstr ""
+"Ville variasjoner i tonekvalitet, slik som i den gitarlyden som var så "
+"popular på 70-tallet"
 
 #: src/effects/Wahwah.cpp
 msgid "Dept&h (%):"
@@ -7418,6 +8014,12 @@ msgstr "Starposisjon til Wah-frekvens i prosent"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Audio Unit Effects"
 msgstr "Lydenhetseffekter"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+#| msgid "Audio Unit Effect Options"
+msgid "Provides Audio Unit Effects support to Tenacity"
+msgstr "Innstillinger for lydenhetseffekter"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -7622,8 +8224,12 @@ msgstr "&Buffertid (8 til 1048576 samplinger):"
 
 #: src/effects/lv2/LV2Effect.cpp
 #, fuzzy
-msgid "LV2 effects can have a graphical interface for setting parameter values. A basic text-only method is also available.  Reopen the effect for this to take effect."
-msgstr "LV2-effekter kan ha et grafisk grensesnitt for å velge parameterverdier."
+msgid ""
+"LV2 effects can have a graphical interface for setting parameter values. A "
+"basic text-only method is also available.  Reopen the effect for this to "
+"take effect."
+msgstr ""
+"LV2-effekter kan ha et grafisk grensesnitt for å velge parameterverdier."
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid "Couldn't instantiate effect"
@@ -7683,7 +8289,9 @@ msgstr ""
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
 msgid "error: File \"%s\" specified in header but not found in plug-in path.\n"
-msgstr "feil: Filen «%s» er spesifisert i toppområdet, men ble ikke funnet i tilleggsfilbanen.\n"
+msgstr ""
+"feil: Filen «%s» er spesifisert i toppområdet, men ble ikke funnet i "
+"tilleggsfilbanen.\n"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
@@ -7694,8 +8302,11 @@ msgid "Nyquist Error"
 msgstr "Nyquist-feil"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "Beklager, kan ikke utføre effekten på stereospor hvor de enkelte kanalene ikke passer sammen."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"Beklager, kan ikke utføre effekten på stereospor hvor de enkelte kanalene "
+"ikke passer sammen."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, c-format
@@ -7768,8 +8379,11 @@ msgid "Nyquist returned nil audio.\n"
 msgstr "Nyquist sendte ikke tilbake noe lyd.\n"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
-msgstr "[Advarsel: Nyquist meldte fra med en ugyldig UTF-8 streng, som her er konvertert til Latin-1]"
+msgid ""
+"[Warning: Nyquist returned invalid UTF-8 string, converted here as Latin-1]"
+msgstr ""
+"[Advarsel: Nyquist meldte fra med en ugyldig UTF-8 streng, som her er "
+"konvertert til Latin-1]"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Could not open file"
@@ -7891,8 +8505,12 @@ msgid "Vamp Effects"
 msgstr "Vamp-effekter"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "Beklager, Vamp-tillegg kan ikke kjøres på stereospor hvor de individuelle kanalene i sporet ikke passer sammen."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"Beklager, Vamp-tillegg kan ikke kjøres på stereospor hvor de individuelle "
+"kanalene i sporet ikke passer sammen."
 
 #: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
@@ -7947,13 +8565,15 @@ msgstr "Er du sikker på at du vil eksportere filen som «%s»?\n"
 msgid ""
 "You are about to export a %s file with the name \"%s\".\n"
 "\n"
-"Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
+"Normally these files end in \".%s\", and some programs will not open files "
+"with nonstandard extensions.\n"
 "\n"
 "Are you sure you want to export the file under this name?"
 msgstr ""
 "Du er i ferd med å lagre en %s-fil med navnet \"%s\".\n"
 "\n"
-"Vanligvis pleier slike filer å slutte på \".%s\", og visse programer kommer ikke til å åpne filer med uvanlige filutvidelser.\n"
+"Vanligvis pleier slike filer å slutte på \".%s\", og visse programer kommer "
+"ikke til å åpne filer med uvanlige filutvidelser.\n"
 "\n"
 "Er du sikker på at du vil lagre filen med dette navnet?"
 
@@ -7975,8 +8595,12 @@ msgid "Your tracks will be mixed down and exported as one stereo file."
 msgstr "Sporene dine vil bli mikset ned og eksportert som én stereofil."
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
-msgstr "Sporene dine vil bli mikset ned til én eksportert fil i henhold til kodingsinnstillingene."
+msgid ""
+"Your tracks will be mixed down to one exported file according to the encoder "
+"settings."
+msgstr ""
+"Sporene dine vil bli mikset ned til én eksportert fil i henhold til "
+"kodingsinnstillingene."
 
 #: src/export/Export.cpp
 msgid "Advanced Mixing Options"
@@ -8035,7 +8659,9 @@ msgstr "Vis utdata"
 #. in the program as a format string.  Keep %f unchanged.
 #: src/export/ExportCL.cpp
 #, c-format
-msgid "Data will be piped to standard in. \"%f\" uses the file name in the export window."
+msgid ""
+"Data will be piped to standard in. \"%f\" uses the file name in the export "
+"window."
 msgstr "Data ledes til standard inn. «%f» bruker filnavnet i eksportvinduet."
 
 #. i18n-hint files that can be run as programs
@@ -8095,6 +8721,12 @@ msgstr "\"%s\"-modulen funnet."
 msgid "Unable to locate \"%s\" in your path."
 msgstr "Klarte ikke å åpne innstillingsfil."
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+#| msgid "Format Options"
+msgid "Export Options"
+msgstr "Formatinnstillinger"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Avbryt"
@@ -8127,13 +8759,19 @@ msgstr "FFmpreg : Feil - Kan ikke legge til lydstrøm til utdatafilen \"%s\"."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "FFmpeg: Feil - Kan ikke åpne utdatafilen «%s» for å skrive til den. Feilkoden er %d."
+msgid ""
+"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
+msgstr ""
+"FFmpeg: Feil - Kan ikke åpne utdatafilen «%s» for å skrive til den. "
+"Feilkoden er %d."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr "FFmpeg: Feil - Kan ikke skrive headers til utdatafilen \"%s\". Feilkoden er %d."
+msgid ""
+"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
+msgstr ""
+"FFmpeg: Feil - Kan ikke skrive headers til utdatafilen \"%s\". Feilkoden er "
+"%d."
 
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/export/ExportFFmpeg.cpp
@@ -8156,7 +8794,14 @@ msgstr "FFmpeg : Feil - Kan ikke åpne lydkodeksen 0x%x."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg: Feil - Kan ikke sette av buffer til å lese inn i fra lyd-FIFOen."
+msgstr ""
+"FFmpeg: Feil - Kan ikke sette av buffer til å lese inn i fra lyd-FIFOen."
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy
+#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
+msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
+msgstr "FFmpreg : Feil - Kan ikke legge til lydstrøm til utdatafilen \"%s\"."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
@@ -8165,6 +8810,18 @@ msgstr "FFmpeg: Feil - Kunne ikke hente inn bufferstørrelsen på samplingen"
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
 msgstr "FFmpeg: Feil - Kunne ikke sette av bytes til samplingsbufferen"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
+msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
+msgstr "FFmpeg: Feil - Kunne ikke hente inn bufferstørrelsen på samplingen"
+
+#: src/export/ExportFFmpeg.cpp
+#, fuzzy, c-format
+#| msgid "FFmpeg : ERROR - Can't encode audio frame."
+msgid "FFmpeg : ERROR - encoding frame failed with error %d"
+msgstr "FFmpeg: Feil - Kan ikke kode lydramme."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Too much remaining data."
@@ -8180,8 +8837,12 @@ msgstr "FFmpeg: Feil - Kan ikke kode lydramme."
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
-msgid "Attempted to export %d channels, but maximum number of channels for selected output format is %d"
-msgstr "Forsøkte å eksportere %d kanaler, men det maksimale antall kanaler for det valgte utdataformatet er %d"
+msgid ""
+"Attempted to export %d channels, but maximum number of channels for selected "
+"output format is %d"
+msgstr ""
+"Forsøkte å eksportere %d kanaler, men det maksimale antall kanaler for det "
+"valgte utdataformatet er %d"
 
 #: src/export/ExportFFmpeg.cpp
 #, c-format
@@ -8472,7 +9133,9 @@ msgid "Codec:"
 msgstr "Kodek:"
 
 #: src/export/ExportFFmpegDialogs.cpp
-msgid "Not all formats and codecs are compatible. Nor are all option combinations compatible with all codecs."
+msgid ""
+"Not all formats and codecs are compatible. Nor are all option combinations "
+"compatible with all codecs."
 msgstr ""
 "Ikke alle formater og kodekser er kompatible. Heller ikke alle\n"
 "valgkombinasjoner er kompatible med alle kodekser."
@@ -9070,6 +9733,42 @@ msgstr ""
 "Kombinasjonen av samplingsfrekvensen (%d) og bitfrekvensen (%d Kb/s) i\n"
 "prosjektet støttes ikke av MP3-filformatet. "
 
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "16-bit"
+msgid "FLAC 16-bit"
+msgstr "16-bit"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "24-bit"
+msgid "FLAC 24-bit"
+msgstr "24-bit"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "Kommentarer"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting an Audio File"
+msgid "Matroska Audio Files"
+msgstr "Eksporterer en lydfil"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the selected audio as FLAC"
+msgid "Exporting the selected audio as MKA"
+msgstr "Eksporter den markerte lyden som FLAC"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the audio as FLAC"
+msgid "Exporting the audio as MKA"
+msgstr "Eksporter lyden som FLAC"
+
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
 msgstr "Eksporter flere filer"
@@ -9211,7 +9910,8 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"Merket eller sporet \"%s\" er ikke et gyldig filnavn. Du kan ikke bruke noen av: %s\n"
+"Merket eller sporet \"%s\" er ikke et gyldig filnavn. Du kan ikke bruke noen "
+"av: %s\n"
 "Bruk..."
 
 #. i18n-hint: The second %s gives a letter that can't be used.
@@ -9222,7 +9922,8 @@ msgid ""
 "\n"
 "Suggested replacement:"
 msgstr ""
-"Merket eller sporet \"%s\" er ikke et gyldig filnavn. Du kan ikke bruke \"%s\".\n"
+"Merket eller sporet \"%s\" er ikke et gyldig filnavn. Du kan ikke bruke "
+"\"%s\".\n"
 "Bruk..."
 
 #: src/export/ExportMultiple.cpp
@@ -9514,8 +10215,10 @@ msgstr "FFmpeg-kompatible filer"
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/import/ImportFFmpeg.cpp
 #, c-format
-msgid "Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr "Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
+msgid ""
+"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
+msgstr ""
+"Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
 
 #: src/import/ImportFLAC.cpp
 msgid "FLAC files"
@@ -9540,7 +10243,8 @@ msgstr "Klarte ikke å sette strømmen på pause."
 #: src/import/ImportGStreamer.cpp
 #, fuzzy, c-format
 msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
+msgstr ""
+"Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
 
 #: src/import/ImportGStreamer.cpp
 msgid "File doesn't contain any audio streams."
@@ -9615,6 +10319,17 @@ msgstr "Klarte ikke å åpne filen %s."
 msgid "MP3 files"
 msgstr "MP3-filer"
 
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "MP3-filer"
+
+#: src/import/ImportMka.cpp
+#, fuzzy, c-format
+msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
+msgstr ""
+"Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
+
 #: src/import/ImportOGG.cpp
 msgid "Ogg Vorbis files"
 msgstr "Ogg Vorbis-filer"
@@ -9622,7 +10337,8 @@ msgstr "Ogg Vorbis-filer"
 #: src/import/ImportOGG.cpp
 #, fuzzy, c-format
 msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
+msgstr ""
+"Indeks[%02x] Kodek[%s], Språk[%s], Bitrate[%s], Kanaler[%d], Varighet[%d]"
 
 #: src/import/ImportOGG.cpp
 msgid "Media read error"
@@ -9833,6 +10549,13 @@ msgstr "Mengde å importere:"
 msgid "Sample rate:"
 msgstr "Datapunktrate:"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+#| msgid "Detect Silence"
+msgid "Detect"
+msgstr "Oppdag stillhet"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
 msgstr "&Importer"
@@ -9849,6 +10572,23 @@ msgstr "%s venstre"
 msgid "%s right"
 msgstr "%s høyre"
 
+#. i18n-hint:
+#. First %s is replaced with the noun "start" or "end"
+#. identifying one end of a clip,
+#. second string is the name of that clip,
+#. first number gives the position of that clip in a sequence
+#. of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s %s, %d of %d clip %s"
+msgid_plural "%s %s, %d of %d clips %s"
+msgstr[0] "%s %d av %d klipp %s"
+msgstr[1] "%s %d av %d klipp %s"
+
 #: src/menus/ClipMenus.cpp
 msgid "start"
 msgstr "start"
@@ -9856,6 +10596,19 @@ msgstr "start"
 #: src/menus/ClipMenus.cpp
 msgid "end"
 msgstr "slutt"
+
+#. i18n-hint:
+#. first string is the name of a clip,
+#. first number gives the position of that clip
+#. in a sequence of clips,
+#. last number counts all clips,
+#. last string names a track
+#: src/menus/ClipMenus.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip %s"
+msgid_plural "%s, %d of %d clips %s"
+msgstr[0] "%s %d av %d klipp %s"
+msgstr[1] "%s %d av %d klipp %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -10292,6 +11045,12 @@ msgstr "Eksporter som MP&3"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as &WAV"
+msgstr "Eksporter som &WAV"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
+#| msgid "Export as &WAV"
+msgid "Export as &MKA"
 msgstr "Eksporter som &WAV"
 
 # Visstnok brukt to ganger, men som substantiv begge gangene?
@@ -11366,8 +12125,12 @@ msgstr "Vennligst velg minst ett lydspor og ett MIDI-spor."
 
 #: src/menus/TrackMenus.cpp
 #, c-format
-msgid "Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "Koordinering fullført: MIDI fra %.2f til %.2f sekunder, lyd fra %.2f til %.2f sekunder."
+msgid ""
+"Alignment completed: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f "
+"secs."
+msgstr ""
+"Koordinering fullført: MIDI fra %.2f til %.2f sekunder, lyd fra %.2f til "
+"%.2f sekunder."
 
 #: src/menus/TrackMenus.cpp
 msgid "Sync MIDI with Audio"
@@ -11375,8 +12138,12 @@ msgstr "Synkroniser MIDI med lyd"
 
 #: src/menus/TrackMenus.cpp
 #, c-format
-msgid "Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from %.2f to %.2f secs."
-msgstr "Feil under koordinering - inndataten er for kort: MIDI fra %.2f til %.2f sekunder, lyd fra %.2f til %.2f sekunder."
+msgid ""
+"Alignment error: input too short: MIDI from %.2f to %.2f secs, Audio from "
+"%.2f to %.2f secs."
+msgstr ""
+"Feil under koordinering - inndataten er for kort: MIDI fra %.2f til %.2f "
+"sekunder, lyd fra %.2f til %.2f sekunder."
 
 #: src/menus/TrackMenus.cpp
 msgid "Internal error reported by alignment process."
@@ -12013,6 +12780,15 @@ msgstr "Avspilling"
 msgid "&Device:"
 msgstr "En&het:"
 
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "Opptak"
+
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 msgid "De&vice:"
 msgstr "En&het:"
@@ -12301,8 +13077,15 @@ msgid "Unused filters:"
 msgstr "Ubrukte filtre:"
 
 #: src/prefs/ExtImportPrefs.cpp
-msgid "There are space characters (spaces, newlines, tabs or linefeeds) in one of the items. They are likely to break the pattern matching. Unless you know what you are doing, it is recommended to trim spaces. Do you want Audacity to trim spaces for you?"
-msgstr "Det er mellomromstegn i noen av gjenstandene. De vil sannsynligvis forkludre mønsterletingen. Med mindre du vet hva du gjør, er det anbefalt å trimme vekk mellomrommer. Vil du at Audacity skal trimme vekk mellomrommene for deg?"
+msgid ""
+"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
+"the items. They are likely to break the pattern matching. Unless you know "
+"what you are doing, it is recommended to trim spaces. Do you want Audacity "
+"to trim spaces for you?"
+msgstr ""
+"Det er mellomromstegn i noen av gjenstandene. De vil sannsynligvis forkludre "
+"mønsterletingen. Med mindre du vet hva du gjør, er det anbefalt å trimme "
+"vekk mellomrommer. Vil du at Audacity skal trimme vekk mellomrommene for deg?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -12384,10 +13167,6 @@ msgstr "&Språk:"
 #: src/prefs/GUIPrefs.cpp
 msgid "Location of &Manual:"
 msgstr "&Bruksanvisningens beliggenhet:"
-
-#: src/prefs/GUIPrefs.cpp
-msgid "Th&eme:"
-msgstr "T&ema:"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
@@ -12570,6 +13349,12 @@ msgstr "&Importer..."
 #: src/prefs/KeyConfigPrefs.cpp src/prefs/ThemePrefs.cpp
 msgid "&Defaults"
 msgstr "Stan&darder"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
+#| msgid "Select a text file containing labels"
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "Velg en tekstfil som inneholder merker"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -12871,6 +13656,12 @@ msgstr "-Venstreklikk+dra"
 msgid "Move clip up/down between tracks"
 msgstr "Flytt klipp opp/ned mellom spor"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+#| msgid "-Left-Drag"
+msgid "Alt-Left-Drag"
+msgstr "-Venstreklikk+dra"
+
 # juster? endre? forandre? gjør om? still? (not all marked fuzzy)
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
@@ -12996,6 +13787,12 @@ msgstr "&Mikrouttoninger"
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Always scrub un&pinned"
 msgstr "Alltid gni lø&snede"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+#| msgid "Get Preference"
+msgid "Tenacity Preferences"
+msgstr "Hent innstilling"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -13387,15 +14184,27 @@ msgid "Preferences for Theme"
 msgstr "Innstillinger: "
 
 #: src/prefs/ThemePrefs.cpp
+#, fuzzy
+#| msgid "&Settings"
+msgid "Theme Settings"
+msgstr "&Valg"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Th&eme:"
+msgstr "T&ema:"
+
+#: src/prefs/ThemePrefs.cpp
 msgid "Info"
 msgstr "Info"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
-"Saving and loading individual theme files uses a separate file for each image, but is\n"
+"Saving and loading individual theme files uses a separate file for each "
+"image, but is\n"
 "otherwise the same idea."
 msgstr ""
-"Å lagre og laste inn individuelle temafile, benytter seg av en separat fil for hvert bilde,\n"
+"Å lagre og laste inn individuelle temafile, benytter seg av en separat fil "
+"for hvert bilde,\n"
 "men ellers fungerer det på samme vis."
 
 #. i18n-hint: && in here is an escape character to get a single & on screen,
@@ -13613,11 +14422,6 @@ msgstr "Vis &samplinger:"
 msgid "Default audio track &name:"
 msgstr "Standard lydspor&navn:"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Lydspor"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
 msgstr "Veksle forstørringen"
@@ -13661,7 +14465,8 @@ msgstr "Å mikse ned til &stereo under eksport"
 
 #: src/prefs/WarningsPrefs.cpp
 msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "Nedmiksing ved eksportering (med &tilpasset FFmpeg eller et eksternt program)"
+msgstr ""
+"Nedmiksing ved eksportering (med &tilpasset FFmpeg eller et eksternt program)"
 
 #: src/prefs/WarningsPrefs.cpp
 #, fuzzy
@@ -13721,6 +14526,25 @@ msgstr "Høykontrast"
 msgid "Light"
 msgstr "Lett"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+#| msgid "Tools"
+msgid "Pro Tools"
+msgstr "Verktøy"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "Audacity-logg%s"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Couldn't write to file: %s"
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "Kunne ikke skrive til filen: %s"
+
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -13733,6 +14557,23 @@ msgid ""
 msgstr ""
 "Temaet har blitt lagret til:\n"
 "  %s."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "Klarte ikke åpne målfil for skriving"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Couldn't write to file: %s"
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "Kunne ikke skrive til filen: %s"
 
 #. i18n-hint "Cee" means the C computer programming language
 #: src/theme/Theme.cpp
@@ -13774,6 +14615,14 @@ msgstr ""
 "Noen av de påkrevde filene i:\n"
 "  %s\n"
 "var allerede tilstede. Vil du overskrive dem?"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Could not open file: %s"
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "Kunne ikke åpne filen: %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -14187,6 +15036,13 @@ msgstr "Tid:"
 msgid "&Time Toolbar"
 msgstr "&Enhetsverktøylinje"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+#| msgid "&Edit Toolbar"
+msgid "Tenacity %s Toolbar"
+msgstr "&Redigeringsverktøylinje"
+
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
 msgstr "Klikk og dra for å endre størrelsen på verktøylinjen"
@@ -14361,8 +15217,12 @@ msgstr "Ned en oktav"
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
-msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
-msgstr "Klikk for å zoome inn loddrett. Skift-klikk for å zoome ut. Dra for å velge et område å zoome."
+msgid ""
+"Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom "
+"region."
+msgstr ""
+"Klikk for å zoome inn loddrett. Skift-klikk for å zoome ut. Dra for å velge "
+"et område å zoome."
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
@@ -14480,6 +15340,42 @@ msgstr "Stopp lyden først"
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "S&pectrogram Settings..."
 msgstr "S&pektrograminnstillinger ..."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "Klikk og dra for å flytte et spor i tid"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Set Track Name"
+msgid "Set Wave Clip Name"
+msgstr "Bestem sporets navn"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Click and drag to select audio"
+msgid "Click and drag to select text"
+msgstr "Klikk og dra for å velge lyd"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Modified Label"
+msgid "Modified Clip Name"
+msgstr "Endret kommentar"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "Datapunktredigering"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename Clip..."
+msgstr "Gi nytt navn..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -14699,7 +15595,8 @@ msgstr "%.0f%% høyre"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
 msgstr "Klikk og dra for å justere, dobbeltklikk for å tilbakestille"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
@@ -14716,6 +15613,35 @@ msgstr "Klikk og dra for å flytte et spor i tid"
 #, fuzzy
 msgid "Close sub-view"
 msgstr "Klikk og dra for å flytte et spor i tid"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Set Clip"
+msgid "Split Clip"
+msgstr "Bestem klipp"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "M&ute/Unmute Focused Track"
+msgid "Mute/Unmute Track"
+msgstr "D&emp/udemp fokusert spor"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+#| msgid "Rename..."
+msgid "Rename clip..."
+msgstr "Gi nytt navn..."
+
+#. i18n-hint:
+#. string is the name of a clip
+#. first number is the position of that clip in a sequence of clips,
+#. second number counts the clips
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy, c-format
+msgid "%s, %d of %d clip"
+msgid_plural "%s, %d of %d clips"
+msgstr[0] "%s %d av %d klipp %s"
+msgstr[1] "%s %d av %d klipp %s"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
@@ -14817,6 +15743,30 @@ msgstr "Logaritmisk interpolering"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Klikk og dra for å flytte et spor i tid"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Mono Track"
+msgid "Add Mono Track"
+msgstr "&Monospor"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "&Stereospor"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "Label Track"
+msgid "Add Label Track"
+msgstr "Kommentarspor"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Export Audio..."
+msgid "Export Audio..."
+msgstr "&Eksporter lyd..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "&Name..."
@@ -14928,7 +15878,8 @@ msgstr "Klikk og dra for å flytte toppfrekvensmarkeringen."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move center selection frequency to a spectral peak."
-msgstr "Klikk og dra for å flytte sentralmarkeringsfrekvensen til en spektrumstopp."
+msgstr ""
+"Klikk og dra for å flytte sentralmarkeringsfrekvensen til en spektrumstopp."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move center selection frequency."
@@ -15024,7 +15975,9 @@ msgstr "Ctrl+venstreklikk"
 #: src/tracks/ui/TrackSelectHandle.cpp
 #, c-format
 msgid "%s to select or deselect track. Drag up or down to change track order."
-msgstr "%s for å velge eller avvelge sporet. Dra opp eller ned for å endre sporrekkefølgen."
+msgstr ""
+"%s for å velge eller avvelge sporet. Dra opp eller ned for å endre "
+"sporrekkefølgen."
 
 #. i18n-hint: %s is replaced by (translation of) 'Ctrl+Click' on windows, 'Command+Click' on Mac
 #: src/tracks/ui/TrackSelectHandle.cpp
@@ -15759,11 +16712,13 @@ msgstr "~aMidtfrekvensen må være mer enn 0 Hz."
 #, lisp-format
 msgid ""
 "~aFrequency selection is too high for track sample rate.~%~\n"
-"                        For the current track, the high frequency setting cannot~%~\n"
+"                        For the current track, the high frequency setting "
+"cannot~%~\n"
 "                        be greater than ~a Hz"
 msgstr ""
 "~aFrekvensmarkeringen er for høy for sporets samplingsfrekvens.~%~\n"
-"                        For det nåværende sporet, kan høyfrekvensinnstillingen ikke~%~\n"
+"                        For det nåværende sporet, kan "
+"høyfrekvensinnstillingen ikke~%~\n"
 "                        være høyere enn ~a Hz"
 
 #: plug-ins/SpectralEditParametricEQ.ny plug-ins/SpectralEditShelves.ny
@@ -15960,8 +16915,11 @@ msgid "Benjamin Schwartz and Steve Daulton"
 msgstr "Benjamin Schwartz og Steve Daulton"
 
 #: plug-ins/clipfix.ny
-msgid "Licensing confirmed under terms of the GNU General Public License version 2"
-msgstr "Lisensiering er bekreftet under vilkårene til GNU General Public License versjon 2"
+msgid ""
+"Licensing confirmed under terms of the GNU General Public License version 2"
+msgstr ""
+"Lisensiering er bekreftet under vilkårene til GNU General Public License "
+"versjon 2"
 
 #: plug-ins/clipfix.ny
 msgid "Threshold of Clipping (%)"
@@ -16395,8 +17353,12 @@ msgstr "Utvalget må være mer enn %d samplinger."
 
 #: plug-ins/label-sounds.ny
 #, fuzzy, lisp-format
-msgid "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound duration'."
-msgstr "Ingen lyder ble funnet. Prøv å redusere stillhets~%nivået og minimumsstillhetsvarigheten."
+msgid ""
+"No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound "
+"duration'."
+msgstr ""
+"Ingen lyder ble funnet. Prøv å redusere stillhets~%nivået og "
+"minimumsstillhetsvarigheten."
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -16930,8 +17892,11 @@ msgstr "Samplingsfrekvens: ~a Hz.  Samplingsverdier på ~a skala.~%~a~%~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
-msgid "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
-msgstr "~a   ~a~%~aSamplingsfrekvens: ~a Hz.~%Behandlet lengde: ~a samplinger ~a sekunder.~a"
+msgid ""
+"~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
+msgstr ""
+"~a   ~a~%~aSamplingsfrekvens: ~a Hz.~%Behandlet lengde: ~a samplinger ~a "
+"sekunder.~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -16945,12 +17910,16 @@ msgstr ""
 #: plug-ins/sample-data-export.ny
 #, lisp-format
 msgid ""
-"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: ~a ~\n"
-"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  Unweighted RMS: ~a dB.~%~\n"
+"~a~%Sample Rate: ~a Hz. Sample values on ~a scale. ~a.~%~aLength processed: "
+"~a ~\n"
+"                  samples, ~a seconds.~%Peak amplitude: ~a (linear) ~a dB.  "
+"Unweighted RMS: ~a dB.~%~\n"
 "                  DC offset: ~a~a"
 msgstr ""
-"~a~%Samplingsfrekvens: ~a Hz. Samplingsverdier på ~a skala. ~a.~%~aBehandlet lengde: ~a ~\n"
-"                  samplinger, ~a seconds.~%Toppunkt-amplitude: ~a (lineær) ~a dB.  Uvektlagt RMS: ~a dB.~%~\n"
+"~a~%Samplingsfrekvens: ~a Hz. Samplingsverdier på ~a skala. ~a.~%~aBehandlet "
+"lengde: ~a ~\n"
+"                  samplinger, ~a seconds.~%Toppunkt-amplitude: ~a (lineær) "
+"~a dB.  Uvektlagt RMS: ~a dB.~%~\n"
 "                  DC-avvik: ~a~a"
 
 #: plug-ins/sample-data-export.ny
@@ -17270,8 +18239,12 @@ msgstr ""
 
 #: plug-ins/vocalrediso.ny
 #, lisp-format
-msgid "Pan position: ~a~%The left and right channels are correlated by about ~a %. This means:~%~a~%"
-msgstr "Panorer posisjon: ~a~%De venstre og høyre kanalene samsvarer med omtrent ~a %. Dette betyr at:~%~a~%"
+msgid ""
+"Pan position: ~a~%The left and right channels are correlated by about ~a %. "
+"This means:~%~a~%"
+msgstr ""
+"Panorer posisjon: ~a~%De venstre og høyre kanalene samsvarer med omtrent ~a "
+"%. Dette betyr at:~%~a~%"
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
@@ -17282,26 +18255,33 @@ msgid ""
 msgstr ""
 " - De to kanalene er identiske, dvs. dobbel mono.\n"
 "   Midten kan ikke bli fjernet.\n"
-"      Enhver gjenværende forskjell kan ha blitt forårsaket av komprimert omkoding."
+"      Enhver gjenværende forskjell kan ha blitt forårsaket av komprimert "
+"omkoding."
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid ""
-" - The two Channels are strongly related, i.e. nearly mono or extremely panned.\n"
+" - The two Channels are strongly related, i.e. nearly mono or extremely "
+"panned.\n"
 "                Most likely, the center extraction will be poor."
 msgstr ""
-" - De to kanalene er nært relatert, dvs. tilnærmet mono eller ekstremt panorert.\n"
+" - De to kanalene er nært relatert, dvs. tilnærmet mono eller ekstremt "
+"panorert.\n"
 "   Mest sannsynlig vil midtstillingsutvinningen være dårlig."
 
 #: plug-ins/vocalrediso.ny
-msgid " - A fairly good value, at least stereo in average and not too wide spread."
-msgstr " - En ganske og verdi, gjennomsnittlig minst stereo og ikke så altfor bredt spredt ut."
+msgid ""
+" - A fairly good value, at least stereo in average and not too wide spread."
+msgstr ""
+" - En ganske og verdi, gjennomsnittlig minst stereo og ikke så altfor bredt "
+"spredt ut."
 
 #: plug-ins/vocalrediso.ny
 #, fuzzy
 msgid ""
 " - An ideal value for Stereo.\n"
-"                However, the center extraction depends also on the used reverb."
+"                However, the center extraction depends also on the used "
+"reverb."
 msgstr ""
 " - En ideell verdi for stereo.\n"
 "  Men midtstillingsutvinningen avhenger også på den brukte diskanten."
@@ -17310,11 +18290,13 @@ msgstr ""
 #, fuzzy
 msgid ""
 " - The two channels are almost not related.\n"
-"                Either you have only noise or the piece is mastered in a unbalanced manner.\n"
+"                Either you have only noise or the piece is mastered in a "
+"unbalanced manner.\n"
 "                The center extraction can still be good though."
 msgstr ""
 " - De to kanalene er nesten ikke beslektet.\n"
-"   Enten har du bare støy, eller så er lydstykket mestret på en ubalansert måte.\n"
+"   Enten har du bare støy, eller så er lydstykket mestret på en ubalansert "
+"måte.\n"
 "   Midtstillingsutvinningen kan fortsatt bli bra nok."
 
 #: plug-ins/vocalrediso.ny
@@ -17333,7 +18315,8 @@ msgstr ""
 msgid ""
 " - The two channels are nearly identical.\n"
 "                  Obviously, a pseudo stereo effect has been used\n"
-"                  to spread the signal over the physical distance between the speakers.\n"
+"                  to spread the signal over the physical distance between "
+"the speakers.\n"
 "                  Don't expect good results from a center removal."
 msgstr ""
 " - De to kanalene er nesten identiske.\n"
@@ -17674,7 +18657,8 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Skript"
 
 #~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|All files|*"
-#~ msgstr "Nyquist-skripter (*.ny)|*.ny|Lisp-skripter (*.lsp)|*.lsp|Alle filer|*"
+#~ msgstr ""
+#~ "Nyquist-skripter (*.ny)|*.ny|Lisp-skripter (*.lsp)|*.lsp|Alle filer|*"
 
 #~ msgid "Script was not saved."
 #~ msgstr "Skriptet ble ikke lagret."
@@ -17694,7 +18678,8 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "(C) 2009 by Leland Lucius"
 #~ msgstr "© 2009 av Leland Lucius"
 
-#~ msgid "External Audacity module which provides a simple IDE for writing effects."
+#~ msgid ""
+#~ "External Audacity module which provides a simple IDE for writing effects."
 #~ msgstr "Ekstern Audacity-modul som har en enkel IDE for å skrive effekter."
 
 #~ msgid "Nyquist Effect Workbench"
@@ -17795,7 +18780,9 @@ msgstr "Feil.~%Stereospor er påkrevd."
 
 #, fuzzy, c-format
 #~ msgid "The name %s is a registered trademark."
-#~ msgstr "&nbsp; &nbsp; Navnet <b>Audacity</b> er et varemerke registert av Dominic Mazzoni.<br><br>"
+#~ msgstr ""
+#~ "&nbsp; &nbsp; Navnet <b>Audacity</b> er et varemerke registert av Dominic "
+#~ "Mazzoni.<br><br>"
 
 #~ msgid "Sound card mixer support"
 #~ msgstr "Støtte for lydkortmikser"
@@ -17809,37 +18796,56 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Out of memory!"
 #~ msgstr "Tom for minne!"
 
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too high."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too high."
 #~ msgstr ""
-#~ "Automatisk justering av inndatanivå stanset. Det var ikke mulig å optimisere mer.\n"
+#~ "Automatisk justering av inndatanivå stanset. Det var ikke mulig å "
+#~ "optimisere mer.\n"
 #~ "Fortsatt for høyt."
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
 #~ msgstr "Automatisk justering av inndatanivå senket lydnivået til %f."
 
-#~ msgid "Automated Recording Level Adjustment stopped. It was not possible to optimize it more. Still too low."
-#~ msgstr "Automatisk justering av opptaksnivå stanset. Det var ikke mulig å optimisere mer. Fortsatt for lavt."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. It was not possible to "
+#~ "optimize it more. Still too low."
+#~ msgstr ""
+#~ "Automatisk justering av opptaksnivå stanset. Det var ikke mulig å "
+#~ "optimisere mer. Fortsatt for lavt."
 
 #, c-format
 #~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
 #~ msgstr "Automatisk justering av opptaksnivå økte lydnivået til %.2f."
 
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too high."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too high."
 #~ msgstr ""
-#~ "Automatisk justering av opptaksnivå stanset. Det totale antallet analyser ble\n"
+#~ "Automatisk justering av opptaksnivå stanset. Det totale antallet analyser "
+#~ "ble\n"
 #~ "overskredet uten å komme fram til et akseptabelt lydnivå.\n"
 #~ "Fortsatt for høyt."
 
-#~ msgid "Automated Recording Level Adjustment stopped. The total number of analyses has been exceeded without finding an acceptable volume. Still too low."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. The total number of "
+#~ "analyses has been exceeded without finding an acceptable volume. Still "
+#~ "too low."
 #~ msgstr ""
-#~ "Automatisk justering av opptaksnivå stanset. Det totale antallet analyser ble\n"
+#~ "Automatisk justering av opptaksnivå stanset. Det totale antallet analyser "
+#~ "ble\n"
 #~ "overskredet uten å komme fram til et akseptabelt lydnivå.\n"
 #~ "Fortsatt for lavt."
 
 #, c-format
-#~ msgid "Automated Recording Level Adjustment stopped. %.2f seems an acceptable volume."
-#~ msgstr "Automatisk justering av opptaksnivå stanset. %.2f virker som et akseptabelt lydnivå."
+#~ msgid ""
+#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+#~ "volume."
+#~ msgstr ""
+#~ "Automatisk justering av opptaksnivå stanset. %.2f virker som et "
+#~ "akseptabelt lydnivå."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -17896,7 +18902,8 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "Copying these files into your project will remove this dependency.\n"
 #~ "This is safer, but needs more disk space."
 #~ msgstr ""
-#~ "Å kopiere disse filene inn i prosjektet ditt, vil fjerne denne avhengigheten.\n"
+#~ "Å kopiere disse filene inn i prosjektet ditt, vil fjerne denne "
+#~ "avhengigheten.\n"
 #~ "Dette er tryggere, men det bruker mer diskplass."
 
 #~ msgid ""
@@ -17907,8 +18914,10 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr ""
 #~ "\n"
 #~ "\n"
-#~ "Filer markert som MANGLER har blitt flyttet eller slettet, og kan ikke bli kopiert.\n"
-#~ "Flytt dem tilbake til sin opprinnelige plassering for å kunne kopiere dem inn i prosjektet."
+#~ "Filer markert som MANGLER har blitt flyttet eller slettet, og kan ikke "
+#~ "bli kopiert.\n"
+#~ "Flytt dem tilbake til sin opprinnelige plassering for å kunne kopiere dem "
+#~ "inn i prosjektet."
 
 #~ msgid "Project Dependencies"
 #~ msgstr "Prosjektavhengigheter"
@@ -17954,20 +18963,28 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Missing"
 #~ msgstr "Manglende filer"
 
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
-#~ msgstr "Hvis du fortsetter, vil prosjektet ikke bli lagret til disk. Er det dette du vil?"
+#~ msgid ""
+#~ "If you proceed, your project will not be saved to disk. Is this what you "
+#~ "want?"
+#~ msgstr ""
+#~ "Hvis du fortsetter, vil prosjektet ikke bli lagret til disk. Er det dette "
+#~ "du vil?"
 
 #, fuzzy
 #~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio files. \n"
+#~ "Your project is self-contained; it does not depend on any external audio "
+#~ "files. \n"
 #~ "\n"
 #~ "Some older Audacity projects may not be self-contained, and care \n"
 #~ "is needed to keep their external dependencies in the right place.\n"
 #~ "New projects will be self-contained and are less risky."
 #~ msgstr ""
-#~ "Ditt prosjekt kan i øyeblikket støtte opp seg selv; den er ikke avhengig av noen eksterne lydfiler. \n"
+#~ "Ditt prosjekt kan i øyeblikket støtte opp seg selv; den er ikke avhengig "
+#~ "av noen eksterne lydfiler. \n"
 #~ "\n"
-#~ "Hvis du endrer prosjektet dithen at den avhenger eksternt på importerte filer, vil den ikke lenger kunne støtte opp seg selv. Hvis du da lagrer uten å kopiere inn disse filene, kan du miste data."
+#~ "Hvis du endrer prosjektet dithen at den avhenger eksternt på importerte "
+#~ "filer, vil den ikke lenger kunne støtte opp seg selv. Hvis du da lagrer "
+#~ "uten å kopiere inn disse filene, kan du miste data."
 
 #~ msgid "Dependency Check"
 #~ msgstr "Avhengighetskontroll"
@@ -17975,23 +18992,43 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Failed to find compatible FFmpeg libraries."
 #~ msgstr "Fant ingen kompatible FFmpeg-bibliotek."
 
-#~ msgid "<br><br>The version of Audacity you are using is an <b>Alpha test version</b>."
-#~ msgstr "<br><br>Versjonen av Audacity som du bruker, er en <b>Alfa-testversjon</b>."
+#~ msgid ""
+#~ "<br><br>The version of Audacity you are using is an <b>Alpha test "
+#~ "version</b>."
+#~ msgstr ""
+#~ "<br><br>Versjonen av Audacity som du bruker, er en <b>Alfa-testversjon</"
+#~ "b>."
 
-#~ msgid "<br><br>The version of Audacity you are using is a <b>Beta test version</b>."
-#~ msgstr "<br><br>Versjonen av Audacity som du bruker, er en <b>Beta-testversjon</b>."
+#~ msgid ""
+#~ "<br><br>The version of Audacity you are using is a <b>Beta test version</"
+#~ "b>."
+#~ msgstr ""
+#~ "<br><br>Versjonen av Audacity som du bruker, er en <b>Beta-testversjon</"
+#~ "b>."
 
-#~ msgid "We strongly recommend that you use our latest stable released version, which has full documentation and support.<br><br>"
-#~ msgstr "Vi anbefaler sterkt at du bruker vår nyeste lanserte stabile versjon, som har full dokumentasjon og brukerstøtte.<br><br>"
+#~ msgid ""
+#~ "We strongly recommend that you use our latest stable released version, "
+#~ "which has full documentation and support.<br><br>"
+#~ msgstr ""
+#~ "Vi anbefaler sterkt at du bruker vår nyeste lanserte stabile versjon, som "
+#~ "har full dokumentasjon og brukerstøtte.<br><br>"
 
-#~ msgid "You can help us get Audacity ready for release by joining our [[https://www.audacityteam.org/community/|community]].<hr><br><br>"
-#~ msgstr "Du kan hjelpe oss å gjøre Audacity klar for lansering ved å bli med i vårt [[https://www.audacityteam.org/community/|fellesskap]].<hr><br><br>"
+#~ msgid ""
+#~ "You can help us get Audacity ready for release by joining our [[https://"
+#~ "www.audacityteam.org/community/|community]].<hr><br><br>"
+#~ msgstr ""
+#~ "Du kan hjelpe oss å gjøre Audacity klar for lansering ved å bli med i "
+#~ "vårt [[https://www.audacityteam.org/community/|fellesskap]].<hr><br><br>"
 
 #~ msgid "How to get help"
 #~ msgstr "Hvordan få hjelp"
 
-#~ msgid " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, online."
-#~ msgstr " [[https://forum.audacityteam.org/|Vårt forum]] - still dine spørsmål direkte på nettet."
+#~ msgid ""
+#~ " [[https://forum.audacityteam.org/|Forum]] - ask your question directly, "
+#~ "online."
+#~ msgstr ""
+#~ " [[https://forum.audacityteam.org/|Vårt forum]] - still dine spørsmål "
+#~ "direkte på nettet."
 
 #~ msgid "Project check read faulty Sequence tags."
 #~ msgstr "Fant problemer med sekvens(er) under prosjektfilsjekk."
@@ -17999,8 +19036,14 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Close project immediately with no changes"
 #~ msgstr "Lukk prosjekt omgående uten endringer"
 
-#~ msgid "Continue with repairs noted in log, and check for more errors. This will save the project in its current state, unless you \"Close project immediately\" on further error alerts."
-#~ msgstr "Fortsett, med reparasjonene notert i loggen, og let etter flere feil. Dette vil lagre prosjektet i sin nåværende tilstand, med mindre du velger \"Lukk prosjektet umiddelbart\" i senere feilmeldinger."
+#~ msgid ""
+#~ "Continue with repairs noted in log, and check for more errors. This will "
+#~ "save the project in its current state, unless you \"Close project "
+#~ "immediately\" on further error alerts."
+#~ msgstr ""
+#~ "Fortsett, med reparasjonene notert i loggen, og let etter flere feil. "
+#~ "Dette vil lagre prosjektet i sin nåværende tilstand, med mindre du velger "
+#~ "\"Lukk prosjektet umiddelbart\" i senere feilmeldinger."
 
 #~ msgid "Warning - Problems Reading Sequence Tags"
 #~ msgstr "Advarsel - Problemer med å lese sekvenstagger"
@@ -18134,7 +19177,9 @@ msgstr "Feil.~%Stereospor er påkrevd."
 
 #, c-format
 #~ msgid "This operation cannot be done until importation of %s completes."
-#~ msgstr "Denne operasjonen kan ikke bli utført frem til importeringen av %s gjør seg ferdig."
+#~ msgstr ""
+#~ "Denne operasjonen kan ikke bli utført frem til importeringen av %s gjør "
+#~ "seg ferdig."
 
 #~ msgid "Get Track Info"
 #~ msgstr "Hent sporinfo"
@@ -18178,10 +19223,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 
 #, fuzzy, c-format
 #~ msgid ""
-#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\n"
+#~ "You are linking to lame_enc.dll v%d.%d. This version is not compatible "
+#~ "with Audacity %d.%d.%d.\n"
 #~ "Please download the latest version of 'LAME for Audacity'."
 #~ msgstr ""
-#~ "Du lenker til lame_enc.dll v%d.%d. Denne utgaven er ikke kompatibel med Audacity\n"
+#~ "Du lenker til lame_enc.dll v%d.%d. Denne utgaven er ikke kompatibel med "
+#~ "Audacity\n"
 #~ "%d.%d.%d.\n"
 #~ "Vennligst last ned den nyeste utgaven av MP3-biblioteket LAME."
 
@@ -18398,20 +19445,24 @@ msgstr "Feil.~%Stereospor er påkrevd."
 
 #~ msgid ""
 #~ "One or more external audio files could not be found.\n"
-#~ "It is possible they were moved, deleted, or the drive they were on was unmounted.\n"
+#~ "It is possible they were moved, deleted, or the drive they were on was "
+#~ "unmounted.\n"
 #~ "Silence is being substituted for the affected audio.\n"
 #~ "The first detected missing file is:\n"
 #~ "%s\n"
 #~ "There may be additional missing files.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view a list of locations of the missing files."
+#~ "Choose Help > Diagnostics > Check Dependencies to view a list of "
+#~ "locations of the missing files."
 #~ msgstr ""
 #~ "Én eller flere eksterne lydfiler ble ikke funnet.\n"
-#~ "Det er mulig at de ble flyttet, slettet, eller at disken de var lagret i ble tatt ut av maskinen.\n"
+#~ "Det er mulig at de ble flyttet, slettet, eller at disken de var lagret i "
+#~ "ble tatt ut av maskinen.\n"
 #~ "Stillhet blir satt inn som erstatning for den påvirkede lyden.\n"
 #~ "Den først oppdagede manglende filen er:\n"
 #~ "%s\n"
 #~ "Det kan være flere manglende filer.\n"
-#~ "Velg Fil > Diagnostisering > Sjekk avhengigheter, for å se en liste til plasseringene til de manglende filene."
+#~ "Velg Fil > Diagnostisering > Sjekk avhengigheter, for å se en liste til "
+#~ "plasseringene til de manglende filene."
 
 #~ msgid "Files Missing"
 #~ msgstr "Manglende filer"
@@ -18423,7 +19474,8 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "dekode en autolagringsfil"
 
 #~ msgid "After recovery, save the project to save the changes to disk."
-#~ msgstr "Etter gjenoppretting, lagre prosjektet for å lagre endringene til disken."
+#~ msgstr ""
+#~ "Etter gjenoppretting, lagre prosjektet for å lagre endringene til disken."
 
 #~ msgid "Discard Projects"
 #~ msgstr "Skrot prosjekter"
@@ -18480,13 +19532,19 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Kommandoen %s er ikke implementert ennå"
 
 #~ msgid ""
-#~ "Your project is currently self-contained; it does not depend on any external audio files. \n"
+#~ "Your project is currently self-contained; it does not depend on any "
+#~ "external audio files. \n"
 #~ "\n"
-#~ "If you change the project to a state that has external dependencies on imported files, it will no longer be self-contained. If you then Save without copying those files in, you may lose data."
+#~ "If you change the project to a state that has external dependencies on "
+#~ "imported files, it will no longer be self-contained. If you then Save "
+#~ "without copying those files in, you may lose data."
 #~ msgstr ""
-#~ "Ditt prosjekt kan i øyeblikket støtte opp seg selv; den er ikke avhengig av noen eksterne lydfiler. \n"
+#~ "Ditt prosjekt kan i øyeblikket støtte opp seg selv; den er ikke avhengig "
+#~ "av noen eksterne lydfiler. \n"
 #~ "\n"
-#~ "Hvis du endrer prosjektet dithen at den avhenger eksternt på importerte filer, vil den ikke lenger kunne støtte opp seg selv. Hvis du da lagrer uten å kopiere inn disse filene, kan du miste data."
+#~ "Hvis du endrer prosjektet dithen at den avhenger eksternt på importerte "
+#~ "filer, vil den ikke lenger kunne støtte opp seg selv. Hvis du da lagrer "
+#~ "uten å kopiere inn disse filene, kan du miste data."
 
 #~ msgid "Cleaning project temporary files"
 #~ msgstr "Rensker opp midlertidige prosjektfiler"
@@ -18539,16 +19597,19 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "Audacity can try to open and save this file, but saving it in this \n"
 #~ "version will then prevent any 1.2 or earlier version opening it. \n"
 #~ "\n"
-#~ "Audacity might corrupt the file in opening it, so you should back it up first. \n"
+#~ "Audacity might corrupt the file in opening it, so you should back it up "
+#~ "first. \n"
 #~ "\n"
 #~ "Open this file now?"
 #~ msgstr ""
-#~ "Denne filen ble lagret av Audacity versjon %s. Formatet har blitt endret.\n"
+#~ "Denne filen ble lagret av Audacity versjon %s. Formatet har blitt "
+#~ "endret.\n"
 #~ "\n"
 #~ "Audacity kan prøve å åpne denne filen, men å lagre den i denne\n"
 #~ "versjonen vil da hindre versjoner fra 1.2 og tidligere fra å åpne den.\n"
 #~ "\n"
-#~ "Audacity kan korrumpere filen under åpning, så du bør gjøre backup på den først. \n"
+#~ "Audacity kan korrumpere filen under åpning, så du bør gjøre backup på den "
+#~ "først. \n"
 #~ "\n"
 #~ "Vil du åpne denne filen nå?"
 
@@ -18559,7 +19620,8 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Advarsel - Åpning av gammel prosjektfil"
 
 #~ msgid "<unrecognized version -- possibly corrupt project file>"
-#~ msgstr "<versjon ikke gjenkjent -- prosjektfilen kan muligens være korrumpert>"
+#~ msgstr ""
+#~ "<versjon ikke gjenkjent -- prosjektfilen kan muligens være korrumpert>"
 
 #~ msgid "Could not create autosave file: %s"
 #~ msgstr "Kunne ikke opprette autolagringsfil: %s"
@@ -18582,36 +19644,47 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "«%s»-mappen før du lagrer et prosjekt med dette navnet."
 
 #~ msgid ""
-#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio file.\n"
+#~ "'Save Lossless Copy of Project' is for an Audacity project, not an audio "
+#~ "file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
 #~ "Lossless copies of project are a good way to backup your project, \n"
 #~ "with no loss of quality, but the projects are large.\n"
 #~ msgstr ""
-#~ "'Lagre tapsfri kopi av prosjekt' er for Audacity-prosjekter, og er ikke en lydfil.\n"
+#~ "'Lagre tapsfri kopi av prosjekt' er for Audacity-prosjekter, og er ikke "
+#~ "en lydfil.\n"
 #~ "For en lydfil som kan åpnes i andre programmer, bruk 'Eksporter'.\n"
 #~ "\n"
-#~ "Tapsfrie kopier av prosjektfiler er en god måte å sikkerhetskopiere prosjektet ditt, \n"
+#~ "Tapsfrie kopier av prosjektfiler er en god måte å sikkerhetskopiere "
+#~ "prosjektet ditt, \n"
 #~ "uten å miste kvalitet, men prosjektene er store.\n"
 
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "%sLagre en komprimert kopi av «%s»-prosjektet som..."
 
 #~ msgid ""
-#~ "'Save Compressed Copy of Project' is for an Audacity project, not an audio file.\n"
+#~ "'Save Compressed Copy of Project' is for an Audacity project, not an "
+#~ "audio file.\n"
 #~ "For an audio file that will open in other apps, use 'Export'.\n"
 #~ "\n"
-#~ "Compressed project files are a good way to transmit your project online, \n"
+#~ "Compressed project files are a good way to transmit your project "
+#~ "online, \n"
 #~ "but they have some loss of fidelity.\n"
 #~ msgstr ""
-#~ "'Lagre komprimert kopi av prosjekt' er for Audacity-prosjekter, og er ikke en lydfil.\n"
+#~ "'Lagre komprimert kopi av prosjekt' er for Audacity-prosjekter, og er "
+#~ "ikke en lydfil.\n"
 #~ "For en lydfil som kan åpnes i andre programmer, bruk 'Eksporter'.\n"
 #~ "\n"
-#~ "Komprimerte prosjektfiler er en god måte å spre prosjektet ditt på nettet, \n"
+#~ "Komprimerte prosjektfiler er en god måte å spre prosjektet ditt på "
+#~ "nettet, \n"
 #~ "men de mister litt av lydbredden sin.\n"
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
-#~ msgstr "Audacity klarte ikke å konvertere et Audacity 1.0 prosjekt til det nye prosjektformatet."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
+#~ msgstr ""
+#~ "Audacity klarte ikke å konvertere et Audacity 1.0 prosjekt til det nye "
+#~ "prosjektformatet."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Kunne ikke fjerne gammel autolagringsfil"
@@ -18619,11 +19692,19 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "On-demand import and waveform calculation complete."
 #~ msgstr "Ferdig med importering og bølgeformutregning etter behov."
 
-#~ msgid "Import(s) complete. Running %d on-demand waveform calculations. Overall %2.0f%% complete."
-#~ msgstr "Importering fullført. Kjører %d bølgeformutregninger etter behov. Totalt %2.0f%% fullført."
+#~ msgid ""
+#~ "Import(s) complete. Running %d on-demand waveform calculations. Overall "
+#~ "%2.0f%% complete."
+#~ msgstr ""
+#~ "Importering fullført. Kjører %d bølgeformutregninger etter behov. Totalt "
+#~ "%2.0f%% fullført."
 
-#~ msgid "Import complete. Running an on-demand waveform calculation. %2.0f%% complete."
-#~ msgstr "Importering fullført. Kjører en bølgeformutregning etter behov. %2.0f%% fullført."
+#~ msgid ""
+#~ "Import complete. Running an on-demand waveform calculation. %2.0f%% "
+#~ "complete."
+#~ msgstr ""
+#~ "Importering fullført. Kjører en bølgeformutregning etter behov. %2.0f%% "
+#~ "fullført."
 
 #, fuzzy
 #~ msgid "Compress"
@@ -18638,14 +19719,19 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #, fuzzy
 #~ msgid ""
 #~ "You are attempting to overwrite an aliased file that is missing.\n"
-#~ "The file cannot be written because the path is needed to restore the original audio to the project.\n"
-#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of all missing files.\n"
+#~ "The file cannot be written because the path is needed to restore the "
+#~ "original audio to the project.\n"
+#~ "Choose Help > Diagnostics > Check Dependencies to view the locations of "
+#~ "all missing files.\n"
 #~ "If you still wish to export, please choose a different filename or folder."
 #~ msgstr ""
 #~ "Du er i ferd med å overskrive en aliasfil som mangler.\n"
-#~ "          Filen kan ikke bli skrevet til, fordi filbanen behøves for å gjenopprette den opprinnelige lyden til prosjektet.\n"
-#~ "          Velg Hjelp → Diagnostering → Sjekk avhengigheter for å se plasseringene til alle de savnede filene.\n"
-#~ "          Hvis du fortsatt ønsker å eksportere, vennligst velg et annet filnavn eller mappe."
+#~ "          Filen kan ikke bli skrevet til, fordi filbanen behøves for å "
+#~ "gjenopprette den opprinnelige lyden til prosjektet.\n"
+#~ "          Velg Hjelp → Diagnostering → Sjekk avhengigheter for å se "
+#~ "plasseringene til alle de savnede filene.\n"
+#~ "          Hvis du fortsatt ønsker å eksportere, vennligst velg et annet "
+#~ "filnavn eller mappe."
 
 #~ msgid ""
 #~ "\"%s\" is an Audacity Project file. \n"
@@ -18662,10 +19748,14 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Dekodingen mislyktes\n"
 
 #~ msgid ""
-#~ "When importing uncompressed audio files you can either copy them into the project, or read them directly from their current location (without copying).\n"
+#~ "When importing uncompressed audio files you can either copy them into the "
+#~ "project, or read them directly from their current location (without "
+#~ "copying).\n"
 #~ "\n"
 #~ msgstr ""
-#~ "Ved importering av ukomprimerte lydfiler, kan du enten kopiere dem inn i prosjektet, eller innlese dem direkte fra deres nåværende plasseringer (uten å kopiere).\n"
+#~ "Ved importering av ukomprimerte lydfiler, kan du enten kopiere dem inn i "
+#~ "prosjektet, eller innlese dem direkte fra deres nåværende plasseringer "
+#~ "(uten å kopiere).\n"
 #~ "\n"
 
 #~ msgid ""
@@ -18683,13 +19773,20 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "\n"
 
 #~ msgid ""
-#~ "Reading the files directly allows you to play or edit them almost immediately. This is less safe than copying in, because you must retain the files with their original names in their original locations.\n"
-#~ "Help > Diagnostics > Check Dependencies will show the original names and locations of any files that you are reading directly.\n"
+#~ "Reading the files directly allows you to play or edit them almost "
+#~ "immediately. This is less safe than copying in, because you must retain "
+#~ "the files with their original names in their original locations.\n"
+#~ "Help > Diagnostics > Check Dependencies will show the original names and "
+#~ "locations of any files that you are reading directly.\n"
 #~ "\n"
 #~ "How do you want to import the current file(s)?"
 #~ msgstr ""
-#~ "Å lese filene direkte lar deg spille dem av eller redigere dem nesten umiddelbart. Dette er mindre trygt enn å kopiere dem inn, siden du må beholde filene med sine opprinnelige navn i sine opprinnelige plasseringer.\n"
-#~ "Hjelp → Diagnotisering → Sjekk avhengigheter vil vise de opprinnelige navnene og plasseringene til enhver fil som du prøver å innlese direkte.\n"
+#~ "Å lese filene direkte lar deg spille dem av eller redigere dem nesten "
+#~ "umiddelbart. Dette er mindre trygt enn å kopiere dem inn, siden du må "
+#~ "beholde filene med sine opprinnelige navn i sine opprinnelige "
+#~ "plasseringer.\n"
+#~ "Hjelp → Diagnotisering → Sjekk avhengigheter vil vise de opprinnelige "
+#~ "navnene og plasseringene til enhver fil som du prøver å innlese direkte.\n"
 #~ "\n"
 #~ "Hvordan vil du importere de(n) nåværende filen(e)?"
 
@@ -18724,13 +19821,15 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Lydmellomlager"
 
 #~ msgid "Play and/or record using &RAM (useful for slow drives)"
-#~ msgstr "Spill av og/eller ta opp ved hjelp av &RAM (nyttig for trege disker)"
+#~ msgstr ""
+#~ "Spill av og/eller ta opp ved hjelp av &RAM (nyttig for trege disker)"
 
 #~ msgid "Mi&nimum Free Memory (MB):"
 #~ msgstr "Mi&nimum minne (MB) fritt:"
 
 #~ msgid ""
-#~ "If the available system memory falls below this value, audio will no longer\n"
+#~ "If the available system memory falls below this value, audio will no "
+#~ "longer\n"
 #~ "be cached in memory and will be written to disk."
 #~ msgstr ""
 #~ "Hvis det tilgjengelige systemminnet faller under denne verdien, vil lyd\n"
@@ -18778,7 +19877,9 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "No silences found.\n"
 #~ "Try reducing the silence level and\n"
 #~ "the minimum silence duration."
-#~ msgstr "Ingen stille perioder ble funnet. Prøv å redusere stillhets~%nivået og minimumsstillhetsvarigheten."
+#~ msgstr ""
+#~ "Ingen stille perioder ble funnet. Prøv å redusere stillhets~%nivået og "
+#~ "minimumsstillhetsvarigheten."
 
 #~ msgid "Sound Finder"
 #~ msgstr "Lydoppdager"
@@ -18821,18 +19922,24 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "<h3>Audacity "
 #~ msgstr "<h3>Audacity "
 
-#~ msgid "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is copyright &copy; 1999-2018 Audacity Team.<br>"
-#~ msgstr "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b>-programvaren er opphavsrett &copy; 1999-2018 Audacity Team<br>"
+#~ msgid ""
+#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b> software is "
+#~ "copyright &copy; 1999-2018 Audacity Team.<br>"
+#~ msgstr ""
+#~ "<p><br>&nbsp; &nbsp; <b>Audacity<sup>&reg;</sup></b>-programvaren er "
+#~ "opphavsrett &copy; 1999-2018 Audacity Team<br>"
 
 #~ msgid "mkdir in DirManager::MakeBlockFilePath failed."
 #~ msgstr "mkdir i DirManager::MakeBlockFilePath mislyktes."
 
 #~ msgid ""
 #~ "Audacity found an orphan block file: %s. \n"
-#~ "Please consider saving and reloading the project to perform a complete project check."
+#~ "Please consider saving and reloading the project to perform a complete "
+#~ "project check."
 #~ msgstr ""
 #~ "Audacity fant en enslig blokkfil: %s. \n"
-#~ "Du rådes til å lagre og laste inn prosjektet igjen for å gjøre en fullstendig prosjektsjekk."
+#~ "Du rådes til å lagre og laste inn prosjektet igjen for å gjøre en "
+#~ "fullstendig prosjektsjekk."
 
 #~ msgid "Unable to open/create test file."
 #~ msgstr "Klarte ikke å åpne/lage testfil."
@@ -18862,7 +19969,9 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "GB"
 
 #, fuzzy
-#~ msgid "The module \"%s\" does not provide a version string. It will not be loaded."
+#~ msgid ""
+#~ "The module \"%s\" does not provide a version string. It will not be "
+#~ "loaded."
 #~ msgstr "%s-modulen har ikke et versjonstreng. Den vil ikke bli lastet inn."
 
 #, fuzzy
@@ -18874,23 +19983,38 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "Den vil ikke bli lastet inn."
 
 #, fuzzy
-#~ msgid "The module \"%s\" does not provide any of the required functions. It will not be loaded."
+#~ msgid ""
+#~ "The module \"%s\" does not provide any of the required functions. It will "
+#~ "not be loaded."
 #~ msgstr "%s-modulen har ikke et versjonstreng. Den vil ikke bli lastet inn."
 
 #~ msgid "   Project check replaced missing aliased file(s) with silence."
-#~ msgstr "   Prosjektsjekken erstattet manglende forkortningsfil(er) med stillhet."
+#~ msgstr ""
+#~ "   Prosjektsjekken erstattet manglende forkortningsfil(er) med stillhet."
 
 #~ msgid "   Project check regenerated missing alias summary file(s)."
-#~ msgstr "   Prosjektsjekken gjenskapte de manglende forkortede oppsummeringsfil(ene)."
+#~ msgstr ""
+#~ "   Prosjektsjekken gjenskapte de manglende forkortede "
+#~ "oppsummeringsfil(ene)."
 
-#~ msgid "   Project check replaced missing audio data block file(s) with silence."
-#~ msgstr "  Prosjektsjekken erstattet manglende lyddatablokkfil(er) med stillhet."
+#~ msgid ""
+#~ "   Project check replaced missing audio data block file(s) with silence."
+#~ msgstr ""
+#~ "  Prosjektsjekken erstattet manglende lyddatablokkfil(er) med stillhet."
 
-#~ msgid "   Project check ignored orphan block file(s). They will be deleted when project is saved."
-#~ msgstr "   Prosjektsjekken ignorerte enslige blokkfil(er). De vil bli slettet når prosjektet blir lagret."
+#~ msgid ""
+#~ "   Project check ignored orphan block file(s). They will be deleted when "
+#~ "project is saved."
+#~ msgstr ""
+#~ "   Prosjektsjekken ignorerte enslige blokkfil(er). De vil bli slettet når "
+#~ "prosjektet blir lagret."
 
-#~ msgid "Project check found file inconsistencies inspecting the loaded project data."
-#~ msgstr "Prosjektsjekken fant uregelmessigheter i filene under inspisering av den innlastede prosjektdataen."
+#~ msgid ""
+#~ "Project check found file inconsistencies inspecting the loaded project "
+#~ "data."
+#~ msgstr ""
+#~ "Prosjektsjekken fant uregelmessigheter i filene under inspisering av den "
+#~ "innlastede prosjektdataen."
 
 #, fuzzy
 #~ msgid "Presets (*.txt)|*.txt|All files|*"
@@ -19002,14 +20126,22 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Enable Scrub Ruler"
 #~ msgstr "Aktiver gni-linjal"
 
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Bare avformat.dll|*avformat*.dll|Dynamisk lenkede bibliotek (*.dll)|*.dll|Alle filer|*"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "Bare avformat.dll|*avformat*.dll|Dynamisk lenkede bibliotek (*.dll)|*.dll|"
+#~ "Alle filer|*"
 
 #~ msgid "Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
 #~ msgstr "Dynamiske bibliotek (*.dylib)|*.dylib|Alle filer (*)|*"
 
-#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Bare libavformat.so|libavformat*.so*|Dynamisk lenkede bibliotek (*.so*)|*.so*|Alle filer (*)|*"
+#~ msgid ""
+#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
+#~ "*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Bare libavformat.so|libavformat*.so*|Dynamisk lenkede bibliotek (*.so*)|*."
+#~ "so*|Alle filer (*)|*"
 
 #~ msgid "Add to History:"
 #~ msgstr "Legg til i historikken:"
@@ -19033,31 +20165,39 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Bruk støynivå i stedet for topp-amplitude"
 
 #~ msgid "The buffer size controls the number of samples sent to the effect "
-#~ msgstr "Bufferstørrelsen styrer antall samplinger som sendes til effekten i "
+#~ msgstr ""
+#~ "Bufferstørrelsen styrer antall samplinger som sendes til effekten i "
 
 #~ msgid "on each iteration. Smaller values will cause slower processing and "
-#~ msgstr "hver utgave av den. Mindre verdier vil forårsake tregere behandlinger, og "
+#~ msgstr ""
+#~ "hver utgave av den. Mindre verdier vil forårsake tregere behandlinger, og "
 
 #~ msgid "some effects require 8192 samples or less to work properly. However "
-#~ msgstr "noen effekter krever 8192 samplinger eller mindre for å fungere riktig. "
+#~ msgstr ""
+#~ "noen effekter krever 8192 samplinger eller mindre for å fungere riktig. "
 
 #~ msgid "most effects can accept large buffers and using them will greatly "
-#~ msgstr "men de fleste effekter kan benytte store buffere, og det å bruke dem "
+#~ msgstr ""
+#~ "men de fleste effekter kan benytte store buffere, og det å bruke dem "
 
 #~ msgid "reduce processing time."
 #~ msgstr "merkbart redusere behandlingsstiden."
 
 #~ msgid "As part of their processing, some VST effects must delay returning "
-#~ msgstr "Som en del av prosesseringen deres, må noen VST-effekter forsinke det "
+#~ msgstr ""
+#~ "Som en del av prosesseringen deres, må noen VST-effekter forsinke det "
 
 #~ msgid "audio to Audacity. When not compensating for this delay, you will "
-#~ msgstr "å returnere lyd til Audacity. Når denne forsinkelsen ikke kompenseres for, "
+#~ msgstr ""
+#~ "å returnere lyd til Audacity. Når denne forsinkelsen ikke kompenseres "
+#~ "for, "
 
 #~ msgid "notice that small silences have been inserted into the audio. "
 #~ msgstr "vil du merke at korte stillheter har blitt lagt til i lyden. "
 
 #~ msgid "Enabling this option will provide that compensation, but it may "
-#~ msgstr "Å aktivere dette alternativet vil gi deg den kompenseringen, men det "
+#~ msgstr ""
+#~ "Å aktivere dette alternativet vil gi deg den kompenseringen, men det "
 
 #~ msgid "not work for all VST effects."
 #~ msgstr "kan kanskje ikke virke med alle VST-effekter."
@@ -19068,14 +20208,20 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid " Reopen the effect for this to take effect."
 #~ msgstr " Gjenåpne effekten for å aktivere endringene."
 
-#~ msgid "As part of their processing, some Audio Unit effects must delay returning "
-#~ msgstr "Som en del av prosesseringen deres, må noen lydenhetseffekter forsinke "
+#~ msgid ""
+#~ "As part of their processing, some Audio Unit effects must delay returning "
+#~ msgstr ""
+#~ "Som en del av prosesseringen deres, må noen lydenhetseffekter forsinke "
 
 #~ msgid "not work for all Audio Unit effects."
 #~ msgstr "virker ikke med alle lydenhetseffekter."
 
-#~ msgid "Select \"Full\" to use the graphical interface if supplied by the Audio Unit."
-#~ msgstr "Velg \"Full\" for å bruke det grafiske grensesnittet, hvis lydenheten har dette."
+#~ msgid ""
+#~ "Select \"Full\" to use the graphical interface if supplied by the Audio "
+#~ "Unit."
+#~ msgstr ""
+#~ "Velg \"Full\" for å bruke det grafiske grensesnittet, hvis lydenheten har "
+#~ "dette."
 
 #~ msgid " Select \"Generic\" to use the system supplied generic interface."
 #~ msgstr " Velg \"Generisk\" for å bruke systemets generelle grensesnitt."
@@ -19083,14 +20229,17 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid " Select \"Basic\" for a basic text-only interface."
 #~ msgstr " Velg «Grunnleggende» for et enkelt grensesnitt med kun tekst."
 
-#~ msgid "As part of their processing, some LADSPA effects must delay returning "
-#~ msgstr "Som en del av prosesseringen deres, må noen LADSPA-effekter forsinke det "
+#~ msgid ""
+#~ "As part of their processing, some LADSPA effects must delay returning "
+#~ msgstr ""
+#~ "Som en del av prosesseringen deres, må noen LADSPA-effekter forsinke det "
 
 #~ msgid "not work for all LADSPA effects."
 #~ msgstr "kanskje ikke virke med alle LADSPA.effekter."
 
 #~ msgid "As part of their processing, some LV2 effects must delay returning "
-#~ msgstr "Som en del av prosesseringen deres, må noen LV2-effekter forsinke det å "
+#~ msgstr ""
+#~ "Som en del av prosesseringen deres, må noen LV2-effekter forsinke det å "
 
 #~ msgid "Enabling this setting will provide that compensation, but it may "
 #~ msgstr "Å aktivere denne innstillingen vil gi deg den kompensasjonen, men "
@@ -19098,8 +20247,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "not work for all LV2 effects."
 #~ msgstr "det kan kanskje ikke virke med alle V2-effekter."
 
-#~ msgid "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|*.txt|All files|*"
-#~ msgstr "Nyquist-skripter (*.ny)|*.ny|Lisp-skripter (*.lsp)|*.lsp|Tekstfiler (*.txt)|*.txt|Alle filer|*"
+#~ msgid ""
+#~ "Nyquist scripts (*.ny)|*.ny|Lisp scripts (*.lsp)|*.lsp|Text files (*.txt)|"
+#~ "*.txt|All files|*"
+#~ msgstr ""
+#~ "Nyquist-skripter (*.ny)|*.ny|Lisp-skripter (*.lsp)|*.lsp|Tekstfiler (*."
+#~ "txt)|*.txt|Alle filer|*"
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kb/s"
@@ -19110,18 +20263,34 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "%s kbps"
 #~ msgstr "%s kb/s"
 
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Bare lame_enc.dll|lame_enc.dll|Dynamisk lenkede bibliotek (*.dll)|*.dll|Alle filer|*"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "Bare lame_enc.dll|lame_enc.dll|Dynamisk lenkede bibliotek (*.dll)|*.dll|"
+#~ "Alle filer|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Bare libmp3lame.dylib|libmp3lame.dylib|Dynamiske bibliotek (*.dylib)|*.dylib|Alle filer (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Bare libmp3lame.dylib|libmp3lame.dylib|Dynamiske bibliotek (*.dylib)|*."
+#~ "dylib|Alle filer (*)|*"
 
-#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Bare libmp3lame.dylib|libmp3lame.dylib|Dynamiske bibliotek (*.dylib)|*.dylib|Alle filer (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Bare libmp3lame.dylib|libmp3lame.dylib|Dynamiske bibliotek (*.dylib)|*."
+#~ "dylib|Alle filer (*)|*"
 
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Bare libmp3lame.so|libmp3lame.so|Primære delte objektfiler (*.so)|*.so|Utvidede bibliotek (*.so*)|*.so*|Alle filer (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Bare libmp3lame.so|libmp3lame.so|Primære delte objektfiler (*.so)|*.so|"
+#~ "Utvidede bibliotek (*.so*)|*.so*|Alle filer (*)|*"
 
 #~ msgid "AIFF (Apple) signed 16-bit PCM"
 #~ msgstr "AIFF (Apple) signert 16-bit PCM"
@@ -19135,8 +20304,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "MIDI file (*.mid)|*.mid|Allegro file (*.gro)|*.gro"
 #~ msgstr "MIDI-fil (*.mid)|*.mid|Allegro-fil (*.gro)|*.gro"
 
-#~ msgid "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files (*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
-#~ msgstr "MIDI- og Allegro-filer (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI-filer (*.mid;*.midi)|*.mid;*.midi|Allegro-filer (*.gro)|*.gro|Alle filer (*.*)|*"
+#~ msgid ""
+#~ "MIDI and Allegro files (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI files "
+#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro files (*.gro)|*.gro|All files|*"
+#~ msgstr ""
+#~ "MIDI- og Allegro-filer (*.mid;*.midi;*.gro)|*.mid;*.midi;*.gro|MIDI-filer "
+#~ "(*.mid;*.midi)|*.mid;*.midi|Allegro-filer (*.gro)|*.gro|Alle filer (*.*)|*"
 
 #~ msgid "F&ocus"
 #~ msgstr "F&okuser"
@@ -19145,11 +20318,14 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "%s - %s"
 
 #~ msgid ""
-#~ "This is a debug version of Audacity, with an extra button, 'Output Sourcery'. This will save a\n"
+#~ "This is a debug version of Audacity, with an extra button, 'Output "
+#~ "Sourcery'. This will save a\n"
 #~ "C version of the image cache that can be compiled in as a default."
 #~ msgstr ""
-#~ "Dette er en feilsøkingsversjon av Audacity, med en ekstra knapp, 'Utdata-magi\". Dette vil lagre en\n"
-#~ "C-versjon av bildemellomlageret, som kan bli brukt til kompilering som standard."
+#~ "Dette er en feilsøkingsversjon av Audacity, med en ekstra knapp, 'Utdata-"
+#~ "magi\". Dette vil lagre en\n"
+#~ "C-versjon av bildemellomlageret, som kan bli brukt til kompilering som "
+#~ "standard."
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Bølgeform (dB)"
@@ -19175,8 +20351,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "&Use custom mix"
 #~ msgstr "&Bruk en tilpasset miks"
 
-#~ msgid "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown Menu."
-#~ msgstr "For å bruke Tegn, velg «Bølgeform» eller «Bølgeform (dB)» i nedfallsmenyen til sporet."
+#~ msgid ""
+#~ "To use Draw, choose 'Waveform' or 'Waveform (dB)' in the Track Dropdown "
+#~ "Menu."
+#~ msgstr ""
+#~ "For å bruke Tegn, velg «Bølgeform» eller «Bølgeform (dB)» i "
+#~ "nedfallsmenyen til sporet."
 
 #~ msgid "Vocal Remover"
 #~ msgstr "Vokalfjerner"
@@ -19315,13 +20495,19 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "'~a' antall ekkoer er utenfor det gyldige området fra 1 til 50.~%~a"
 
 #~ msgid "Pitch change '~a' outside valid range -12 to +12 semitones.~%~a"
-#~ msgstr "Toneskiftet '~a' er utenfor det gyldige området mellom -12 og +12 semitoner.~%~a"
+#~ msgstr ""
+#~ "Toneskiftet '~a' er utenfor det gyldige området mellom -12 og +12 "
+#~ "semitoner.~%~a"
 
 #~ msgid "Delay time '~a' outside valid range 0 to 10 seconds.~%~a"
-#~ msgstr "Forsinkelsestiden '~a' er utenfor den gyldige rekkevidden mellom 0 og 10 sekunder.~%~a"
+#~ msgstr ""
+#~ "Forsinkelsestiden '~a' er utenfor den gyldige rekkevidden mellom 0 og 10 "
+#~ "sekunder.~%~a"
 
 #~ msgid "Delay level '~a' outside valid range -30 to +6 dB.~%~a"
-#~ msgstr "Forsinkelsesnivået '~a' er utenfor det gyldige området mellom -30 og +6 dB.~%~a"
+#~ msgstr ""
+#~ "Forsinkelsesnivået '~a' er utenfor det gyldige området mellom -30 og +6 "
+#~ "dB.~%~a"
 
 #~ msgid "Error.~%~a"
 #~ msgstr "Feil.~%~a"
@@ -19338,13 +20524,17 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Høyre"
 
 #~ msgid ""
-#~ "Latency Correction setting has caused the recorded audio to be hidden before zero.\n"
+#~ "Latency Correction setting has caused the recorded audio to be hidden "
+#~ "before zero.\n"
 #~ "Audacity has brought it back to start at zero.\n"
-#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track to the right place."
+#~ "You may have to use the Time Shift Tool (<---> or F5) to drag the track "
+#~ "to the right place."
 #~ msgstr ""
-#~ "Innstillingen for latenskorreksjon gjorde at innspilt lyd ble skjult før nullpunktet.\n"
+#~ "Innstillingen for latenskorreksjon gjorde at innspilt lyd ble skjult før "
+#~ "nullpunktet.\n"
 #~ "Audacity flyttet det tilbake slik at det starter ved null.\n"
-#~ "Du må kanskje bruke tidsforskyvningsverktøyet (<---> eller F5) for å dra sporet til\n"
+#~ "Du må kanskje bruke tidsforskyvningsverktøyet (<---> eller F5) for å dra "
+#~ "sporet til\n"
 #~ "rett posisjon."
 
 #~ msgid "Latency problem"
@@ -19423,8 +20613,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Time Scale"
 #~ msgstr "Tidsskalering"
 
-#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
-#~ msgstr "Sporene dine vil bli mikset ned til en enkel mono-kanal i den eksporterte fila."
+#~ msgid ""
+#~ "Your tracks will be mixed down to a single mono channel in the exported "
+#~ "file."
+#~ msgstr ""
+#~ "Sporene dine vil bli mikset ned til en enkel mono-kanal i den eksporterte "
+#~ "fila."
 
 #~ msgid "kbps"
 #~ msgstr "kbps"
@@ -19443,7 +20637,9 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr "Feil ved åpning av lydenheten. Prøv å endre lydverten, opptaksenheten, og datafrekvensen til prosjektet."
+#~ msgstr ""
+#~ "Feil ved åpning av lydenheten. Prøv å endre lydverten, opptaksenheten, og "
+#~ "datafrekvensen til prosjektet."
 
 #~ msgid "Slider Recording"
 #~ msgstr "Glideropptak"
@@ -19609,8 +20805,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Show length and end time"
 #~ msgstr "Sluttid for forgrunn"
 
-#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
-#~ msgstr "Klikk for å zoome inn vertikalt, skift-klikk for å zoome ut, dra for å lage et spesielt zoom-område."
+#~ msgid ""
+#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
+#~ "particular zoom region."
+#~ msgstr ""
+#~ "Klikk for å zoome inn vertikalt, skift-klikk for å zoome ut, dra for å "
+#~ "lage et spesielt zoom-område."
 
 #~ msgid "up"
 #~ msgstr "opp"
@@ -19703,8 +20903,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Passes"
 #~ msgstr "Passasjer"
 
-#~ msgid "A simple, combined compressor and limiter effect for reducing the dynamic range of audio"
-#~ msgstr "En enkel, kombinert kompressor og begrensningseffekt for å redusere den dynamiske bredden i lyd"
+#~ msgid ""
+#~ "A simple, combined compressor and limiter effect for reducing the dynamic "
+#~ "range of audio"
+#~ msgstr ""
+#~ "En enkel, kombinert kompressor og begrensningseffekt for å redusere den "
+#~ "dynamiske bredden i lyd"
 
 #~ msgid "Degree of Leveling:"
 #~ msgstr "Utjevningsgrad:"
@@ -19849,8 +21053,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "\n"
 #~ "'%s'"
 
-#~ msgid "Audacity website: [[http://www.audacityteam.org/|http://www.audacityteam.org/]]"
-#~ msgstr "Audacitys nettside: [[http://www.audacityteam.org/|http://www.audacityteam.org/]]"
+#~ msgid ""
+#~ "Audacity website: [[http://www.audacityteam.org/|http://www.audacityteam."
+#~ "org/]]"
+#~ msgstr ""
+#~ "Audacitys nettside: [[http://www.audacityteam.org/|http://www."
+#~ "audacityteam.org/]]"
 
 #~ msgid "Size"
 #~ msgstr "Størrelse"
@@ -19931,7 +21139,8 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "&Alltid miks aller spor ned til Stereo eller Mono-kanal(er)"
 
 #~ msgid "&Use custom mix (for example to export a 5.1 multichannel file)"
-#~ msgstr "&Bruk en egendefinert miks (f.eks. for å eksportere en 5.1 multikanalfil)"
+#~ msgstr ""
+#~ "&Bruk en egendefinert miks (f.eks. for å eksportere en 5.1 multikanalfil)"
 
 #~ msgid "When exporting track to an Allegro (.gro) file"
 #~ msgstr "Ved eksportering av spor til en Allegro-fil (.gro)"
@@ -19949,10 +21158,14 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "&Lengde på forhåndsvisning:"
 
 #~ msgid "&Hardware Playthrough: Listen to input while recording or monitoring"
-#~ msgstr "&Maskinvaregjennomspilling: Lytt til inndataen mens du tar opp eller overvåker"
+#~ msgstr ""
+#~ "&Maskinvaregjennomspilling: Lytt til inndataen mens du tar opp eller "
+#~ "overvåker"
 
 #~ msgid "&Software Playthrough: Listen to input while recording or monitoring"
-#~ msgstr "&Programvaregjennomspilling: Lytt til inndataen mens du tar opp eller overvåker"
+#~ msgstr ""
+#~ "&Programvaregjennomspilling: Lytt til inndataen mens du tar opp eller "
+#~ "overvåker"
 
 #~ msgid "(uncheck when recording computer playback)"
 #~ msgstr "(ikke huk av ved opptak av datamaskinavspilling)"
@@ -19982,24 +21195,28 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "V&is spektrumet med gråtoner"
 
 #~ msgid ""
-#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be loaded\n"
+#~ "If 'Load Theme Cache At Startup' is checked, then the Theme Cache will be "
+#~ "loaded\n"
 #~ "when the program starts up."
 #~ msgstr ""
-#~ "Hvis 'Lagre tema-mellomlager ved oppstart' er krysset av, vil tema-mellomlageret\n"
+#~ "Hvis 'Lagre tema-mellomlager ved oppstart' er krysset av, vil tema-"
+#~ "mellomlageret\n"
 #~ "bli lastet inn hver gang programmet starter opp."
 
 #~ msgid "Load Theme Cache At Startup"
 #~ msgstr "Åpne tema-mellomlager ved oppstart"
 
 #~ msgid "&Update display when Recording/Playback head unpinned"
-#~ msgstr "&Oppdater visningen når oversynet for opptak/avspilling har blitt avfestet"
+#~ msgstr ""
+#~ "&Oppdater visningen når oversynet for opptak/avspilling har blitt avfestet"
 
 # bedre formulering?
 #~ msgid "Automatically &fit tracks vertically zoomed"
 #~ msgstr "Vertikalt &zoom og tilpass spor automatisk"
 
 #~ msgid "&Select then act on entire project, if no audio selected"
-#~ msgstr "&Velg og så utfør handling for hele prosjektet, hvis ingen lyd er markert"
+#~ msgstr ""
+#~ "&Velg og så utfør handling for hele prosjektet, hvis ingen lyd er markert"
 
 #~ msgid "Enable &dragging of left and right selection edges"
 #~ msgstr "&Venstre og høyre markeringskanter kan dras"
@@ -20055,8 +21272,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "<center><h3>How to Get Help</h3></center>"
 #~ msgstr "<center><h3>Hvordan få hjelp</h3></center>"
 
-#~ msgid " For even quicker answers, all the online resources above are <b>searchable</b>."
-#~ msgstr " For at du skal få svar enda raskere er alle nettressursene over <b>søkbare</b>."
+#~ msgid ""
+#~ " For even quicker answers, all the online resources above are "
+#~ "<b>searchable</b>."
+#~ msgstr ""
+#~ " For at du skal få svar enda raskere er alle nettressursene over "
+#~ "<b>søkbare</b>."
 
 #~ msgid "Edit Metadata"
 #~ msgstr "Rediger metadata"
@@ -20088,8 +21309,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Drag the track vertically to change the order of the tracks."
 #~ msgstr "Dra sporet loddrett for å endre rekkefølgen på sporene."
 
-#~ msgid "Increases or decreases the lower frequencies and higher frequencies of your audio independently"
-#~ msgstr "Øker eller senker de lavere og høyere frekvensene i lyden din uavhengig av hverandre"
+#~ msgid ""
+#~ "Increases or decreases the lower frequencies and higher frequencies of "
+#~ "your audio independently"
+#~ msgstr ""
+#~ "Øker eller senker de lavere og høyere frekvensene i lyden din uavhengig "
+#~ "av hverandre"
 
 #~ msgid "&Bass (dB):"
 #~ msgstr "&Bass (dB):"
@@ -20158,8 +21383,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "Utvalget er for kort.\n"
 #~ " Det må være lengre enn tidsresolusjonen."
 
-#~ msgid "Generates four different types of tone waveform while allowing starting and ending amplitude and frequency"
-#~ msgstr "Skaper fire forskjellige typer tonebølgeformer, og tillater start- og slutt-amplitude og frekvens"
+#~ msgid ""
+#~ "Generates four different types of tone waveform while allowing starting "
+#~ "and ending amplitude and frequency"
+#~ msgstr ""
+#~ "Skaper fire forskjellige typer tonebølgeformer, og tillater start- og "
+#~ "slutt-amplitude og frekvens"
 
 #~ msgid "Generates four different types of tone waveform"
 #~ msgstr "Genererer fire forskjellige typer tonebølgeformer"
@@ -20191,11 +21420,19 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid ") / Append Record ("
 #~ msgstr ") / Fest på opptak ("
 
-#~ msgid "Click and drag to select audio, Command-Click to scrub, Command-Double-Click to scroll-scrub, Command-drag to seek"
-#~ msgstr "Klikk og dra for å velge lyd, ⌘+klikk for å gni, ⌘+dobbeltklikk for å skrolle og gni, ⌘+dra for å lete"
+#~ msgid ""
+#~ "Click and drag to select audio, Command-Click to scrub, Command-Double-"
+#~ "Click to scroll-scrub, Command-drag to seek"
+#~ msgstr ""
+#~ "Klikk og dra for å velge lyd, ⌘+klikk for å gni, ⌘+dobbeltklikk for å "
+#~ "skrolle og gni, ⌘+dra for å lete"
 
-#~ msgid "Click and drag to select audio, Ctrl-Click to scrub, Ctrl-Double-Click to scroll-scrub, Ctrl-drag to seek"
-#~ msgstr "Klikk og dra for å velge lyd, Ctrl+klikk for å gni, Ctrl+dobbelklikk for å skrolle og gni, Ctrl+dra for å lete"
+#~ msgid ""
+#~ "Click and drag to select audio, Ctrl-Click to scrub, Ctrl-Double-Click to "
+#~ "scroll-scrub, Ctrl-drag to seek"
+#~ msgstr ""
+#~ "Klikk og dra for å velge lyd, Ctrl+klikk for å gni, Ctrl+dobbelklikk for "
+#~ "å skrolle og gni, Ctrl+dra for å lete"
 
 #~ msgid "Multi-Tool Mode"
 #~ msgstr "Multiverktøysmodus"
@@ -20355,8 +21592,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Command-line options supported:"
 #~ msgstr "Støttede kommandolinjevalg:"
 
-#~ msgid "In addition, specify the name of an audio file or Audacity project to open it."
-#~ msgstr "I tillegg, gi navnet på en lydfil eller et Audacity-prosjekt for å åpne det."
+#~ msgid ""
+#~ "In addition, specify the name of an audio file or Audacity project to "
+#~ "open it."
+#~ msgstr ""
+#~ "I tillegg, gi navnet på en lydfil eller et Audacity-prosjekt for å åpne "
+#~ "det."
 
 #~ msgid "Stereo to Mono Effect not found"
 #~ msgstr "Fant ikke stereo til mono-effekt"
@@ -20364,8 +21605,11 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Markør: %d Hz (%s) = %d dB    Toppunkt: %d Hz (%s) = %.1f dB"
 
-#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr "Markør: %.4f sek (%d Hz) (%s) = %f,    Toppunkt: %.4f sek (%d Hz) (%s) = %.3f"
+#~ msgid ""
+#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr ""
+#~ "Markør: %.4f sek (%d Hz) (%s) = %f,    Toppunkt: %.4f sek (%d Hz) (%s) = "
+#~ "%.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -20554,11 +21798,16 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Normaliser..."
 
 #, fuzzy
-#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid ""
+#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Anvendt effekt: %s forsinkelse = %f sekunder, falltidsfaktor = %f"
 
-#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr "Anvendt effekt: %s %d trinn, %.0f%% våt, frekvens = %.1f Hz, startfase = %.0f grader, dybde = %d, feedback = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
+#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr ""
+#~ "Anvendt effekt: %s %d trinn, %.0f%% våt, frekvens = %.1f Hz, startfase = "
+#~ "%.0f grader, dybde = %d, feedback = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Phaser..."
@@ -20622,8 +21871,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Changing Tempo/Pitch"
 #~ msgstr "Endrer tempo/tonehøyde"
 
-#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
-#~ msgstr "Anvendt effekt: Lag %s bølge %s, frekvens = %.2f Hz, amplitude = %.2f, %.6lf sekunder"
+#~ msgid ""
+#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
+#~ "%.2f, %.6lf seconds"
+#~ msgstr ""
+#~ "Anvendt effekt: Lag %s bølge %s, frekvens = %.2f Hz, amplitude = %.2f, "
+#~ "%.6lf sekunder"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Kvittergenerator"
@@ -20642,8 +21895,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Rescan Effects"
 #~ msgstr "Gjenta siste effekt"
 
-#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr "Anvendt effekt: %s frekvens = %.1f Hz, startfase = %.0f grader, dybde = %.0f%%, resonans = %.1f, frekvens startposisjon = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
+#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr ""
+#~ "Anvendt effekt: %s frekvens = %.1f Hz, startfase = %.0f grader, dybde = "
+#~ "%.0f%%, resonans = %.1f, frekvens startposisjon = %.0f%%"
 
 #~ msgid "Wahwah..."
 #~ msgstr "Wahwah..."
@@ -20657,8 +21914,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Author: "
 #~ msgstr "Forfatter:"
 
-#~ msgid "Sorry, Plug-in Effects cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "Beklager, tilleggseffekter kan ikke benyttes på stereospor hvor de enkelte sporkanalene ikke passer sammen."
+#~ msgid ""
+#~ "Sorry, Plug-in Effects cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "Beklager, tilleggseffekter kan ikke benyttes på stereospor hvor de "
+#~ "enkelte sporkanalene ikke passer sammen."
 
 #~ msgid "Note length (seconds)"
 #~ msgstr "Notelengde (sekund)"
@@ -20729,8 +21990,11 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Input Meter"
 #~ msgstr "Indatamåler"
 
-#~ msgid "Recovering a project will not change any files on disk before you save it."
-#~ msgstr "Gjenoppretting av et prosjekt vil ikke endre filer på disken før du lagrer det."
+#~ msgid ""
+#~ "Recovering a project will not change any files on disk before you save it."
+#~ msgstr ""
+#~ "Gjenoppretting av et prosjekt vil ikke endre filer på disken før du "
+#~ "lagrer det."
 
 #~ msgid "Do Not Recover"
 #~ msgstr "Ikke gjenopprett"
@@ -20816,9 +22080,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "FreqWindow"
 #~ msgstr "Frekvensvindu"
 
-#~ msgid "<p>You do not appear to have 'help' installed on your computer.<br> Please <a href=\"*URL*\">view or download it online</a>."
+#~ msgid ""
+#~ "<p>You do not appear to have 'help' installed on your computer.<br> "
+#~ "Please <a href=\"*URL*\">view or download it online</a>."
 #~ msgstr ""
-#~ "<p>Det ser ut til at du ikke har «hjelp» installert på maskinen din.<br> Vennligst <a\n"
+#~ "<p>Det ser ut til at du ikke har «hjelp» installert på maskinen din.<br> "
+#~ "Vennligst <a\n"
 #~ "href=\"*URL*\">les eller last ned fra nettet</a>."
 
 #~ msgid ""
@@ -20896,17 +22163,24 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgstr "Windows PCM-lydfil (*.wav)|*.wav"
 
 #~ msgid ""
-#~ "Audacity compressed project files (.aup) save your work in a smaller, compressed (.ogg) format. \n"
-#~ "Compressed project files are a good way to transmit your project online, because they are much smaller. \n"
-#~ "To open a compressed project takes longer than usual, as it imports each compressed track. \n"
+#~ "Audacity compressed project files (.aup) save your work in a smaller, "
+#~ "compressed (.ogg) format. \n"
+#~ "Compressed project files are a good way to transmit your project online, "
+#~ "because they are much smaller. \n"
+#~ "To open a compressed project takes longer than usual, as it imports each "
+#~ "compressed track. \n"
 #~ "\n"
 #~ "Most other programs can't open Audacity project files.\n"
-#~ "When you want to save a file that can be opened by other programs, select one of the\n"
+#~ "When you want to save a file that can be opened by other programs, select "
+#~ "one of the\n"
 #~ "Export commands."
 #~ msgstr ""
-#~ "Audacitys komprimerte prosjektfiler (.aup) lagrer arbeidet ditt i et mindre, komprimert  format (.ogg).\n"
-#~ "Komprimerte prosjektfiler gjør det lett å sende prosjektet over nettet, siden de tar mye mindre plass.\n"
-#~ "Å åpne et komprimert prosjekt tar mer tid enn vanlig, siden hvert komprimerte spor må importeres.\n"
+#~ "Audacitys komprimerte prosjektfiler (.aup) lagrer arbeidet ditt i et "
+#~ "mindre, komprimert  format (.ogg).\n"
+#~ "Komprimerte prosjektfiler gjør det lett å sende prosjektet over nettet, "
+#~ "siden de tar mye mindre plass.\n"
+#~ "Å åpne et komprimert prosjekt tar mer tid enn vanlig, siden hvert "
+#~ "komprimerte spor må importeres.\n"
 #~ "\n"
 #~ "De fleste andre programmer kan ikke åpne Audacity prosjektfiler.\n"
 #~ "Når du vil lagre en fil som kan åpnes med andre programmer, velg en av\n"
@@ -20917,13 +22191,15 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ "\n"
 #~ "Saving a project creates a file that only Audacity can open.\n"
 #~ "\n"
-#~ "To save an audio file for other programs, use one of the \"File > Export\" commands.\n"
+#~ "To save an audio file for other programs, use one of the \"File > "
+#~ "Export\" commands.\n"
 #~ msgstr ""
 #~ "Du lagrer en Audacity prosjektfil (.aup).\n"
 #~ "\n"
 #~ "Når du lagrer et prosjekt får du en fil som bare Audacity kan åpne.\n"
 #~ "\n"
-#~ "Hvis vil lagre en fil som kan åpnes med andre programmer, velg en av \"Fil > Eksport\"-kommandoene.\n"
+#~ "Hvis vil lagre en fil som kan åpnes med andre programmer, velg en av "
+#~ "\"Fil > Eksport\"-kommandoene.\n"
 
 #~ msgid "Libresample by Dominic Mazzoni and Julius Smith"
 #~ msgstr "Libresample av Dominic Mazzoni og Julius Smith"
@@ -21003,8 +22279,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Noise Removal by Dominic Mazzoni"
 #~ msgstr "Støyfjerning av Dominic Mazzoni"
 
-#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "Beklager, denne effekten kan ikke utføres på stereospor hvor de enkelte sporkanalene ikke passer sammen."
+#~ msgid ""
+#~ "Sorry, this effect cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "Beklager, denne effekten kan ikke utføres på stereospor hvor de enkelte "
+#~ "sporkanalene ikke passer sammen."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "Spike-renser"
@@ -21074,8 +22354,12 @@ msgstr "Feil.~%Stereospor er påkrevd."
 #~ msgid "Record (Shift for Append Record)"
 #~ msgstr "Ta opp (skift for å føye til opptaket på slutten)"
 
-#~ msgid "Recording in CleanSpeech mode is not possible when a track, or more than one project, is already open."
-#~ msgstr "Innspilling i CleanSpeech-modus er ikke mulig når et spor, eller mer enn ett prosjekt, allerede er åpent."
+#~ msgid ""
+#~ "Recording in CleanSpeech mode is not possible when a track, or more than "
+#~ "one project, is already open."
+#~ msgstr ""
+#~ "Innspilling i CleanSpeech-modus er ikke mulig når et spor, eller mer enn "
+#~ "ett prosjekt, allerede er åpent."
 
 #~ msgid "Output level meter"
 #~ msgstr "Output-nivåmåler"

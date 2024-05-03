@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2007-08-30 07:25-0400\n"
 "Last-Translator: Victor Ibragimov <youth_opportunities@tajikngo.org>\n"
 "Language-Team: Tajik Language\n"
@@ -22,11 +22,99 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: KBabel 1.11.4\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default recording device number: %d"
+msgstr "Афзори вурудӣ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default playback device number: %d"
+msgstr "Суръати иҷро"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "No devices found"
 msgstr "Стереои муттаҳидшуда"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device info unavailable for: %d"
+msgstr "Пештасвир дастрас нест"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device ID: %d"
+msgstr "Афзор"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device name: %s"
+msgstr "Афзор"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Host name: %s"
+msgstr "Ном"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Recording channels: %d"
+msgstr "Шабакаи чап рост"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Playback channels: %d"
+msgstr "Суръати иҷро"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Low Recording Latency: %g"
+msgstr "Сабтшавӣ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "High Recording Latency: %g"
+msgstr "Сабтшавӣ"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "Supported Rates:"
+msgstr "Суръати намуна:"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected recording device: %d - %s"
+msgstr "Афзори вурудӣ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected playback device: %d - %s"
+msgstr "Суръати иҷро"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "No playback device found for '%s'."
+msgstr "Стереои муттаҳидшуда"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+#| msgid "Show output"
+msgid "Supports output: %d"
+msgstr "Намоиши бурунӣ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "Афзори вурудӣ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI playback device: %d - %s"
+msgstr "Суръати иҷро"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -54,6 +142,21 @@ msgstr "&Бознамунагузорӣ..."
 msgid "Internal Error"
 msgstr "(барномаи берунӣ)"
 
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "'%s' тоза намешавад"
+
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Audacity натавонист файлро сабт кунад:\n"
+"  %s."
+
 #: libraries/lib-files/FileException.h
 #, fuzzy
 msgid "File Error"
@@ -72,6 +175,11 @@ msgstr "Ҳамаи файлҳо (*)|*"
 #, fuzzy
 msgid "AUP3 project files"
 msgstr "Сабти додаҳои лоиҳа"
+
+#: libraries/lib-files/FileNames.cpp
+#, fuzzy
+msgid "Dynamically Linked Libraries"
+msgstr "Рӯйхатҳо"
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy
@@ -157,6 +265,12 @@ msgstr "Аз руи хаткашӣ"
 msgid "Rectangular"
 msgstr "Устувор"
 
+#. i18n-hint a proper name
+#: libraries/lib-math/FFT.cpp
+#, fuzzy
+msgid "Hamming"
+msgstr "256 - аз рӯи хомушӣ"
+
 #: libraries/lib-math/Resample.cpp
 #, fuzzy
 msgid "Low Quality (Fastest)"
@@ -216,6 +330,27 @@ msgstr "байтҳо"
 #, fuzzy
 msgid "Simplified"
 msgstr "Тақвиятдиҳанда"
+
+#: libraries/lib-strings/Languages.cpp
+#, fuzzy
+msgid "System"
+msgstr "&Вақти оғоз"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "&Тавлид кардан"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Роҳчаи Аудиоӣ"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "Бозигар"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -320,6 +455,11 @@ msgstr "Лифофа"
 msgid "%s, graphics"
 msgstr "Графики EQ"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "Лифофа"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -327,10 +467,22 @@ msgstr "Графики EQ"
 msgid "%s, Tenacity developer"
 msgstr "Лифофа"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "Лифофа"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "Лифофа"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "Лифофа"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
@@ -346,7 +498,10 @@ msgstr "ОК"
 #. *  For example:  "English translation by Dominic Mazzoni."
 #: src/AboutDialog.cpp
 msgid "translator_credits"
-msgstr "Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: youth_opportunities@tajikngo.org"
+msgstr ""
+"Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина "
+"Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: "
+"youth_opportunities@tajikngo.org"
 
 #: src/AboutDialog.cpp
 msgid "Credits"
@@ -363,10 +518,19 @@ msgstr "Собиқ аъзоҳои гурӯҳи дигар"
 msgid "Contributors"
 msgstr "Ширкаткунандаҳои дигари лоиҳа"
 
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "Собиқ аъзоҳои гурӯҳи дигар"
+
 #: src/AboutDialog.cpp
 #, fuzzy
 msgid "Translators"
-msgstr "Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: youth_opportunities@tajikngo.org"
+msgstr ""
+"Роҷер Ковакс, Виктор Ибрагимов, Акмал Саломов, Акбар Ватаншоев, Зарина "
+"Муродова, Сӯҳроб Рашидов, Абдураҳмон Холов. Почтаи электронӣ: "
+"youth_opportunities@tajikngo.org"
 
 #: src/AboutDialog.cpp src/prefs/LibraryPrefs.cpp
 #, fuzzy
@@ -429,6 +593,17 @@ msgstr "Фишордиҳандаи..."
 msgid "Settings folder:"
 msgstr "Танзимоти пӯша: "
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Core Libraries"
+msgstr "Рӯйхатҳо"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Sample rate conversion"
+msgstr "Табдилдиҳии басомади намуна"
+
 #. i18n-hint: This is what the library (libmad) does - imports MP3 files
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -446,6 +621,11 @@ msgstr "Насби вурудии FLAC"
 #, fuzzy
 msgid "ID3 tag support"
 msgstr "Дастаҳои иттисоли %i ба %i"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "Насби вурудии FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -482,6 +662,11 @@ msgstr "Дастаҳои иттисоли %i ба %i"
 #: src/AboutDialog.cpp
 #, fuzzy
 msgid "Pitch and Tempo Change support"
+msgstr "Сифат"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Extreme Pitch and Tempo Change support"
 msgstr "Сифат"
 
 #: src/AdornedRulerPanel.cpp
@@ -595,12 +780,22 @@ msgstr "Хато"
 
 #: src/AudioIO.cpp
 #, fuzzy
+msgid "PortAudio Error"
+msgstr "Хато"
+
+#: src/AudioIO.cpp
+#, fuzzy
 msgid ""
 "You will not be able to play midi.\n"
 "\n"
 msgstr ""
 "Шумо садоро наметавонед сабт кунед ё ин ки боз хонед.\n"
 "\n"
+
+#: src/AudioIO.cpp
+#, fuzzy
+msgid "Tenacity Audio"
+msgstr "Бур&иши қолабӣ"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, fuzzy, c-format
@@ -629,6 +824,11 @@ msgstr "Ҷудокунӣ"
 #: src/TrackInfo.cpp
 msgid "Name"
 msgstr "Ном"
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "&Дар бораи Audacity..."
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -670,6 +870,11 @@ msgstr "&Параметрҳо"
 #, fuzzy
 msgid "Choose command"
 msgstr "И&нтихоби фармон"
+
+#: src/BatchCommands.cpp
+#, fuzzy
+msgid "MP3 Conversion"
+msgstr "Интерполятсияи баландсифати синхронӣ"
 
 #: src/BatchCommands.cpp
 #, fuzzy
@@ -991,13 +1196,30 @@ msgstr "Содироти додаҳо ба монанди:"
 
 #: src/Benchmark.cpp
 #, fuzzy
+msgid "Block size should be in the range 1 - 1024 KB."
+msgstr "Имконияти бештари басомад бояд бузургии тағирёбанда бошад"
+
+#: src/Benchmark.cpp
+#, fuzzy
 msgid "Number of edits should be in the range 1 - 10000."
+msgstr "Имконияти бештари басомад бояд бузургии тағирёбанда бошад"
+
+#: src/Benchmark.cpp
+#, fuzzy
+msgid "Test data size should be in the range 1 - 2000 MB."
 msgstr "Имконияти бештари басомад бояд бузургии тағирёбанда бошад"
 
 #: src/Benchmark.cpp
 #, fuzzy
 msgid "Preparing...\n"
 msgstr "Омодасозии пешнамоиш"
+
+#: src/Benchmark.cpp
+#, fuzzy, c-format
+msgid "Performing %d edit...\n"
+msgid_plural "Performing %d edits...\n"
+msgstr[0] "Баробаркунии иҷроиш"
+msgstr[1] "Баробаркунии иҷроиш"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
@@ -1008,6 +1230,12 @@ msgstr "Гузоштан"
 #, fuzzy
 msgid "Reading data again...\n"
 msgstr "Давомнокии оҳанг:"
+
+#: src/BuildInfo.h
+#, fuzzy
+#| msgid "24 bit"
+msgid ", 64 bits"
+msgstr "24 бит"
 
 #: src/CommonCommandFlags.cpp
 #, fuzzy
@@ -1217,12 +1445,17 @@ msgstr "Такрор..."
 
 #: src/FreqWindow.cpp
 msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
+msgstr ""
+"Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта "
+"бошанд."
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
-msgid "Too much audio was selected. Only the first %.1f seconds of audio will be analyzed."
-msgstr "Аудио барзиёд интихоб шуд.  Танҳо %.1f сонияҳои аввали аудио ташхис мешаванд."
+msgid ""
+"Too much audio was selected. Only the first %.1f seconds of audio will be "
+"analyzed."
+msgstr ""
+"Аудио барзиёд интихоб шуд.  Танҳо %.1f сонияҳои аввали аудио ташхис мешаванд."
 
 #: src/FreqWindow.cpp
 msgid "Not enough data selected."
@@ -1352,6 +1585,11 @@ msgstr "&Фармон"
 msgid "&History..."
 msgstr "&Таърих..."
 
+#: src/JournalEvents.cpp
+#, fuzzy
+msgid "Journal recording failed"
+msgstr "Масрафсанҷи сабт"
+
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Edit Labels"
@@ -1398,7 +1636,8 @@ msgstr "Нав..."
 
 #: src/LabelDialog.cpp
 msgid "Press F2 or double click to edit cell contents."
-msgstr "Барои таҳрири маркази қисматҳои селул F2 ё пахши дукаратаро иҷро намоед."
+msgstr ""
+"Барои таҳрири маркази қисматҳои селул F2 ё пахши дукаратаро иҷро намоед."
 
 #: src/LabelDialog.cpp src/menus/FileMenus.cpp
 #, fuzzy
@@ -1593,6 +1832,11 @@ msgstr "Стереои муттаҳидшуда"
 msgid "No"
 msgstr "Ҳеҷ чиз"
 
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "Лифофа"
+
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
 #: src/NoteTrack.cpp src/TrackPanelAx.cpp
@@ -1768,12 +2012,16 @@ msgstr "Зудии Ҷойдошта %d"
 msgid ""
 "Error opening sound device.\n"
 "Try changing the audio host, playback device and the project sample rate."
-msgstr "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва суръати намунаи лоиҳаро санҷед."
+msgstr ""
+"Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва суръати "
+"намунаи лоиҳаро санҷед."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "The tracks selected for recording must all have the same sampling rate"
-msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
+msgstr ""
+"Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта "
+"бошанд."
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -1782,6 +2030,11 @@ msgstr "Аудиои Сабтшуда"
 #: src/ProjectAudioManager.cpp src/toolbars/ControlToolBar.cpp
 msgid "Record"
 msgstr "Сабт"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid "[Project %02i] "
+msgstr "Пурракунии лоиҳа"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -1936,6 +2189,16 @@ msgstr "Лоиҳаи Нав"
 #, fuzzy
 msgid "Error Writing to File"
 msgstr "Дар файл сабт намешавад: "
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity failed to write file %s.\n"
+"The disk might be full or isn't writable.\n"
+"For tips on freeing up space, click the help button."
+msgstr ""
+"Audacity натавонист файлро сабт кунад:\n"
+"  %s."
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -2149,6 +2412,11 @@ msgstr "Тақвиятдиҳӣ (dB):"
 
 #: src/SplashDialog.cpp
 #, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "Лифофа"
+
+#: src/SplashDialog.cpp
+#, fuzzy
 msgid "Don't show this again at start up"
 msgstr "Ин огоҳиро дигар нишон надиҳед"
 
@@ -2279,6 +2547,11 @@ msgstr "Хатои кушодашавии файл"
 msgid "Failed to remove %s"
 msgstr "'%s' тоза намешавад"
 
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "Reset Tenacity Preferences"
+msgstr "Қисматҳо..."
+
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
 msgid "&Open..."
@@ -2304,6 +2577,12 @@ msgstr "&Файл"
 
 #: src/TenacityApp.cpp
 #, fuzzy
+#| msgid "Do you want to save the changes?"
+msgid "Do you still want to start Tenacity?"
+msgstr "Шумо мехоҳед тағиротҳоро нигоҳ доред?"
+
+#: src/TenacityApp.cpp
+#, fuzzy
 msgid "Error Locking Temporary Folder"
 msgstr "Хатои кушодашавии файл"
 
@@ -2312,6 +2591,12 @@ msgstr "Хатои кушодашавии файл"
 #, fuzzy
 msgid "this help message"
 msgstr "Фаъол шуд"
+
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "Лифофа"
 
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
@@ -2323,6 +2608,11 @@ msgstr "Лоиҳаи файлро кушода наметавонад"
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
 msgstr "Файлҳои лоиҳаи Audacity"
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "Давомнокии оҳанг:"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -2353,6 +2643,11 @@ msgstr "Давомнокӣ"
 #, fuzzy
 msgid "Time Track"
 msgstr "&Роҳчаи Вақт"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record"
+msgstr "Сабтшавӣ"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2429,6 +2724,11 @@ msgstr "Ба таври автоматӣ барқарорсозӣ баъди с�
 #, fuzzy
 msgid "Action after Timer Recording:"
 msgstr "Сабти Замонсанҷи Audacity"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record Progress"
+msgstr "Натиҷаи корбурдашуда: %s"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -2561,6 +2861,11 @@ msgstr "Масрафсанҷи сабт"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Exit Tenacity"
+msgstr "&Дар бораи Audacity..."
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Recording duration:"
 msgstr "Давомнокии оҳанг:"
 
@@ -2585,6 +2890,11 @@ msgstr "Масрафсанҷи сабт"
 #, fuzzy
 msgid "Recording Exported:"
 msgstr "Масрафсанҷи сабт"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record - Waiting"
+msgstr "Сабтшавӣ"
 
 #: src/TrackInfo.cpp
 #, fuzzy
@@ -2650,7 +2960,9 @@ msgstr " Интихоб фаъол аст"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
-msgid "Click and drag to adjust relative size of stereo tracks, double-click to make heights equal"
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
 msgstr "Пахш ва кашидан барои ба тартибоварии андозаи роҳчаҳои стереоӣ."
 
 #: src/TrackPanelResizeHandle.cpp
@@ -2758,12 +3070,24 @@ msgid "Resampling failed."
 msgstr "Намунагирӣ бекор шуда."
 
 #: src/WaveTrack.cpp
+#, fuzzy
+#| msgid "Move Track"
+msgid "Wave Track"
+msgstr "Ҷойивазшавии Роҳча"
+
+#: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
 msgstr "Барои гузоштани интихоб пораи ҳофиза кам аст"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to expand the cut line"
 msgstr "Барои густурдани хати буриш пораи ҳофиза кам аст"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "Таблои %s Audacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, fuzzy, c-format
@@ -3336,15 +3660,23 @@ msgstr "Даки худкор"
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "You selected a track which does not contain audio. AutoDuck can only process audio tracks."
-msgstr "Шумо роҳчаеро интихоб кардед, ки аудио надорад. AutoDuck танҳо роҳчаҳои аудиоро дар бар мегирад."
+msgid ""
+"You selected a track which does not contain audio. AutoDuck can only process "
+"audio tracks."
+msgstr ""
+"Шумо роҳчаеро интихоб кардед, ки аудио надорад. AutoDuck танҳо роҳчаҳои "
+"аудиоро дар бар мегирад."
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
 #. * in 'Donald-Duck'!
 #: src/effects/AutoDuck.cpp
-msgid "Auto Duck needs a control track which must be placed below the selected track(s)."
-msgstr "Ба Auto Duck роҳчаи назоратие, ки аз поёни роҳча(ҳо)и интихобшуда ҷойгузор мешавад, лозим аст."
+msgid ""
+"Auto Duck needs a control track which must be placed below the selected "
+"track(s)."
+msgstr ""
+"Ба Auto Duck роҳчаи назоратие, ки аз поёни роҳча(ҳо)и интихобшуда ҷойгузор "
+"мешавад, лозим аст."
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -3750,10 +4082,117 @@ msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
 msgid "Release Time %.1f secs"
 msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "peak amplitude"
+msgstr "Доманаи Нави Қулла (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Reduction"
+msgstr "Табдили хаш (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Peak Reduction"
+msgstr "Табдили хаш (dB):"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Analog Limiter"
+msgstr "Иҷозати буриш"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Compressor"
+msgstr "Фишордиҳандаи..."
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compressor step response"
+msgstr "Созиши роҳчаи нави аудиоии нав"
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "Алгоритм:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Envelope Algorithm:"
+msgstr "Алгоритм:"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "Созиши роҳчаи нави аудиоии нав"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "Давомнокӣ"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "1"
+msgid ":1"
+msgstr "1"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Knee Width:"
+msgstr "Стерео"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain:"
+msgstr "Шабакаҳои бурунӣ: %2d"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain"
+msgstr "Шабакаҳои бурунӣ: %2d"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "Ҳамлаи вақт"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack"
+msgstr "Ҳамлаи вақт"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time:"
+msgstr "Ҷудокунӣ аз рӯи Вақт"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "Ҷудокунӣ аз рӯи Вақт"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time:"
+msgstr "Вақти охир"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+#| msgid "End Time"
+msgid "Hold Time"
+msgstr "Вақти охир"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3788,6 +4227,21 @@ msgstr "Интиҳо"
 #, fuzzy
 msgid "Volume    "
 msgstr "Сатҳ:"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "&Foreground:"
+msgstr "Такрор"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground start time"
+msgstr "Такрор"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground end time"
+msgstr "Такрор"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3844,6 +4298,13 @@ msgid "indeterminate"
 msgstr "Муайяншавӣ номумкин аст"
 
 #. i18n-hint: dB abbreviates decibels
+#. * RMS abbreviates root mean square, a certain averaging method
+#: src/effects/Contrast.cpp
+#, fuzzy, c-format
+msgid "%.2f dB RMS"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
+
+#. i18n-hint: dB abbreviates decibels
 #: src/effects/Contrast.cpp
 #, fuzzy
 msgid "Infinite dB difference"
@@ -3855,6 +4316,18 @@ msgstr ""
 #, fuzzy
 msgid "Difference is indeterminate."
 msgstr "Муайяншавӣ номумкин аст"
+
+#. i18n-hint: dB abbreviates decibels
+#. RMS abbreviates root mean square, a certain averaging method
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Difference = infinite RMS dB."
+msgstr "Муайяншавӣ номумкин аст"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Background level too high"
+msgstr "Такрор"
 
 #. i18n-hint: i.e. difference in loudness at the moment.
 #: src/effects/Contrast.cpp
@@ -3869,6 +4342,21 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%.2f dB"
 msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground not yet measured"
+msgstr "Файлро кушода натавонист: "
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "No background measured"
+msgstr "Такрор"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Background not yet measured"
+msgstr "Такрор"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -3922,6 +4410,11 @@ msgstr "Тасдиқ шудан"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
+msgid "Hard Overdrive"
+msgstr "Тасдиқ шудан"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
 msgid "Expand and Compress"
 msgstr "Фишордиҳандаи соҳаи пӯё"
 
@@ -3939,6 +4432,21 @@ msgstr "Давомнокӣ"
 #, fuzzy
 msgid "Hard Limiter 1413"
 msgstr "Иҷозати буриш"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Light Crunch Overdrive"
+msgstr "Тасдиқ шудан"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Heavy Overdrive"
+msgstr "Тасдиқ шудан"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Valve Overdrive"
+msgstr "Тасдиқ шудан"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
@@ -4060,6 +4568,11 @@ msgstr "Оҳанг/нисбати хомӯшӣ:"
 #: src/effects/DtmfGen.cpp
 msgid "Duty cycle:"
 msgstr "Даври вазифавӣ:"
+
+#: src/effects/DtmfGen.cpp
+#, fuzzy, c-format
+msgid "%.1f %%"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
 
 #: src/effects/DtmfGen.cpp
 msgid "Tone duration:"
@@ -4453,8 +4966,11 @@ msgstr "Таҳрири Нишона"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
-msgid "To apply Equalization, all selected tracks must have the same sample rate."
-msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
+msgid ""
+"To apply Equalization, all selected tracks must have the same sample rate."
+msgstr ""
+"Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта "
+"бошанд."
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -4576,6 +5092,11 @@ msgstr "Баробаркунии иҷроиш"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "Curve not found"
+msgstr "Нишона барои содирот ҷой надорад."
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Manage Curves List"
 msgstr "Идораи таърих"
 
@@ -4664,6 +5185,11 @@ msgstr "Тозакунии Нишонаҳо"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "You cannot delete the 'unnamed' curve, it is special."
+msgstr "Аудиоро дар %s ворид карда наметавонад"
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Choose an EQ curve file"
 msgstr "Файлҳои қаблии худсабт ҷойиваз карда нашуданд"
 
@@ -4671,6 +5197,11 @@ msgstr "Файлҳои қаблии худсабт ҷойиваз карда н�
 #, fuzzy
 msgid "Export EQ curves as..."
 msgstr "Содирот &Нишонаҳо..."
+
+#: src/effects/Equalization.cpp
+#, fuzzy
+msgid "You cannot export 'unnamed' curve, it is special."
+msgstr "Аудиоро дар %s ворид карда наметавонад"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -4709,6 +5240,26 @@ msgstr "Барои ҷудокунии аудио пахш ва кашишро и
 #, fuzzy
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Барои ҷудокунии аудио пахш ва кашишро иҷро кунед"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Find Clicks"
+msgstr "Иҷозати буриш"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Clicks"
+msgstr "Пахши чап"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Right"
+msgstr "Пахши чап"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Left"
+msgstr "Пахши чап"
 
 #: src/effects/FindClipping.cpp
 #, fuzzy
@@ -4823,12 +5374,22 @@ msgstr "256 - аз рӯи хомушӣ"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
+msgid "Blackman, Hann"
+msgstr "256 - аз рӯи хомушӣ"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
 msgid "Hamming, none"
 msgstr "256 - аз рӯи хомушӣ"
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
 msgid "Hamming, Hann"
+msgstr "256 - аз рӯи хомушӣ"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "Hamming, Reciprocal Hamming"
 msgstr "256 - аз рӯи хомушӣ"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
@@ -4839,7 +5400,9 @@ msgstr "Табдили хаш (dB):"
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
 msgid "All noise profile data must have the same sample rate."
-msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
+msgstr ""
+"Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта "
+"бошанд."
 
 #: src/effects/NoiseReduction.cpp
 #, fuzzy
@@ -4924,7 +5487,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to reduce noise.\n"
 msgstr ""
-"Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб кунед\n"
+"Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб "
+"кунед\n"
 "ва баъдан -ро пахш кунед.\n"
 
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
@@ -5002,7 +5566,8 @@ msgid ""
 "Select all of the audio you want filtered, choose how much noise you want\n"
 "filtered out, and then click 'OK' to remove noise.\n"
 msgstr ""
-"Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб кунед\n"
+"Ҳамаи аудиоҳои полоишшавандаро ҷудо кунед,миқдори зарурии хашҳоро интихоб "
+"кунед\n"
 "ва баъдан -ро пахш кунед.\n"
 
 #: src/effects/NoiseRemoval.cpp
@@ -5122,6 +5687,11 @@ msgstr "Ибтидои марҳилаи LFO (дараҷа):"
 msgid "Dept&h:"
 msgstr "Амиқӣ:"
 
+#: src/effects/Phaser.cpp src/effects/Wahwah.cpp
+#, fuzzy
+msgid "Depth in percent"
+msgstr "Суръати иҷро"
+
 #: src/effects/Phaser.cpp
 #, fuzzy
 msgid "Feedbac&k (%):"
@@ -5143,11 +5713,13 @@ msgstr "Таъмир"
 
 #: src/effects/Repair.cpp
 msgid ""
-"The Repair effect is intended to be used on very short sections of damaged audio (up to 128 samples).\n"
+"The Repair effect is intended to be used on very short sections of damaged "
+"audio (up to 128 samples).\n"
 "\n"
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
-"Натиҷаи таъмир дар қисматҳои кӯтоҳи вайроншавии аудиоӣ истифода бурда мешавад (то 128 намуна).\n"
+"Натиҷаи таъмир дар қисматҳои кӯтоҳи вайроншавии аудиоӣ истифода бурда "
+"мешавад (то 128 намуна).\n"
 "\n"
 "Намудро наздик созед ва пораи хурдтарини додаҳои савтиро интихоб кунед."
 
@@ -5267,7 +5839,9 @@ msgstr "&Боркунии Файл..."
 #: src/effects/ScienFilter.cpp
 #, fuzzy
 msgid "To apply a filter, all selected tracks must have the same sample rate."
-msgstr "Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта бошанд."
+msgstr ""
+"Барои сохтани спектрум, ҳамаи роҳчаҳои интихобшуда бояд навъи якхела дошта "
+"бошанд."
 
 #: src/effects/ScienFilter.cpp
 #, fuzzy
@@ -5552,6 +6126,11 @@ msgstr "Берунсозии файл"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "Интихоби MIDI файл..."
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
 msgid "Error Saving VST Presets"
 msgstr "Натиҷаи корбурдашуда: %s"
 
@@ -5623,6 +6202,11 @@ msgstr "Омезиши басомади Wah (%):"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
 msgid "Audio Unit Effects"
+msgstr "Танзимоти натиҷаҳо"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Provides Audio Unit Effects support to Tenacity"
 msgstr "Танзимоти натиҷаҳо"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
@@ -5863,8 +6447,11 @@ msgid "Nyquist Error"
 msgstr "Оҳанг"
 
 #: src/effects/nyquist/Nyquist.cpp
-msgid "Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "Бубахшед, аммо натиҷае, ки стереороҳчаҳое, ки роҳчаҳо мутобиқ нестанд, истифода намешавад."
+msgid ""
+"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
+msgstr ""
+"Бубахшед, аммо натиҷае, ки стереороҳчаҳое, ки роҳчаҳо мутобиқ нестанд, "
+"истифода намешавад."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -6006,8 +6593,12 @@ msgstr "Нати&ҷа"
 
 #: src/effects/vamp/VampEffect.cpp
 #, fuzzy
-msgid "Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match."
-msgstr "Бубахшед, аммо натиҷаҳои Plug-in дар стереороҳчаҳое, ки шабакаҳои индивидуалии мутобиқ надоранд истифода намешавад."
+msgid ""
+"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
+"channels of the track do not match."
+msgstr ""
+"Бубахшед, аммо натиҷаҳои Plug-in дар стереороҳчаҳое, ки шабакаҳои "
+"индивидуалии мутобиқ надоранд истифода намешавад."
 
 #: src/effects/vamp/VampEffect.cpp
 #, fuzzy
@@ -6044,6 +6635,11 @@ msgstr "Содирот"
 msgid "All selected audio is muted."
 msgstr "Вуруди аудиоҳои интихобшуда дар %ld kbps"
 
+#: src/export/Export.cpp src/export/ExportMultiple.cpp
+#, fuzzy
+msgid "All audio is muted."
+msgstr "Вуруди аудиоҳои интихобшуда дар %ld kbps"
+
 #: src/export/Export.cpp
 #, fuzzy, c-format
 msgid "Are you sure you want to export the file as \"%s\"?\n"
@@ -6054,13 +6650,15 @@ msgstr "Шумо файлро бо аломати \" сабт кардан ме�
 msgid ""
 "You are about to export a %s file with the name \"%s\".\n"
 "\n"
-"Normally these files end in \".%s\", and some programs will not open files with nonstandard extensions.\n"
+"Normally these files end in \".%s\", and some programs will not open files "
+"with nonstandard extensions.\n"
 "\n"
 "Are you sure you want to export the file under this name?"
 msgstr ""
 "Шумо %s-и файлро бо номи \"%s\" сабт кардан мехоҳед.\n"
 "\n"
-"Одатан ин файлҳо дар \".%s\" ба охир мерасанд ва баъзе барномаҳо файлҳоро бо пасвандҳои ғайритартибӣ намекушоянд.\n"
+"Одатан ин файлҳо дар \".%s\" ба охир мерасанд ва баъзе барномаҳо файлҳоро бо "
+"пасвандҳои ғайритартибӣ намекушоянд.\n"
 "\n"
 "Шумо файлро бо ин ном сабт кардан мехоҳед?"
 
@@ -6076,17 +6674,22 @@ msgstr "Файл бо номи \"%s\" аллакай мавҷуд аст.  Ҷо�
 #: src/export/Export.cpp
 #, fuzzy
 msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
+msgstr ""
+"Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
 
 #: src/export/Export.cpp
 #, fuzzy
 msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
+msgstr ""
+"Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
 
 #: src/export/Export.cpp
 #, fuzzy
-msgid "Your tracks will be mixed down to one exported file according to the encoder settings."
-msgstr "Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
+msgid ""
+"Your tracks will be mixed down to one exported file according to the encoder "
+"settings."
+msgstr ""
+"Роҳчаҳои Шумо дар ду шабакаи стереоӣ, дар файли дохилӣ омехта мешаванд."
 
 #: src/export/Export.cpp
 msgid "Advanced Mixing Options"
@@ -6186,6 +6789,11 @@ msgstr "&ОК"
 msgid "Unable to locate \"%s\" in your path."
 msgstr "Кушодан/сохтани файлҳои санҷишӣ номумкин аст"
 
+#: src/export/ExportDialog.cpp
+#, fuzzy
+msgid "Export Options"
+msgstr "Танзимоти натиҷаҳо"
+
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Cancel"
@@ -6220,6 +6828,14 @@ msgstr "Бознамунагирӣ"
 #, fuzzy
 msgid "Sample Rates"
 msgstr "Суръати намуна:"
+
+#. i18n-hint kbps abbreviates "thousands of bits per second"
+#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
+#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
+#: src/export/ExportMP3.cpp
+#, fuzzy, c-format
+msgid "%d kbps"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
 
 #: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
 msgid "Bit Rate:"
@@ -6383,6 +6999,11 @@ msgstr "Тасодуфан"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
+msgid "LTP"
+msgstr "Ч"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
 msgid "Custom FFmpeg Export"
 msgstr "Хатои LOF"
 
@@ -6431,6 +7052,11 @@ msgstr "Воридоти НишонаҳоҲамчун:"
 #, fuzzy
 msgid "Codec:"
 msgstr "Истифодаи ин &Лоиҳа"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Show All Formats"
+msgstr "Фаъол шуд"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
@@ -6499,6 +7125,11 @@ msgstr "Насби Босуръат"
 #, fuzzy
 msgid "Packet Size:"
 msgstr "НамудиРоҳча"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "You can't delete a preset without name"
+msgstr "Аудиоро дар %s ворид карда наметавонад"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy, c-format
@@ -6602,6 +7233,11 @@ msgstr "Вуруди аудиоҳои интихобшуда дар %ld kbps"
 msgid "Exporting the audio at %ld kbps"
 msgstr "Вуруди аудиоҳои интихобшуда дар %ld kbps"
 
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "80-120 kbps"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
+
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
@@ -6687,6 +7323,38 @@ msgstr "Вуруди аудиоҳои интихобшуда дар %ld kbps"
 #, fuzzy, c-format
 msgid "Exporting the audio at %d Kbps"
 msgstr "Вуруди аудиоҳои интихобшуда дар %ld kbps"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 16-bit"
+msgstr "16-бит ПСM"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "FLAC 24-bit"
+msgstr "24-бит ПСМ"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "Нишонаҳо"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Matroska Audio Files"
+msgstr "Берунсозии файл"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Exporting the selected audio as FLAC"
+msgid "Exporting the selected audio as MKA"
+msgstr "Вуруди аудиоҳои интихобшуда ба монанди FLAC"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the audio as MKA"
+msgstr "Вуруди аудиоҳои интихобшуда ба монанди FLAC"
 
 #: src/export/ExportMultiple.cpp
 msgid "Export Multiple"
@@ -6898,6 +7566,11 @@ msgstr "%s дар куҷо ҷойгир аст?"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
 #, fuzzy
+msgid "FFmpeg not found"
+msgstr "Тариқаи феҳристи MP3:"
+
+#: src/ffmpeg/FFmpegNotFoundDialog.cpp
+#, fuzzy
 msgid "Do not show this warning again"
 msgstr "Ин огоҳиро дигар нишон надиҳед"
 
@@ -6910,6 +7583,11 @@ msgstr "Содирот"
 #, fuzzy
 msgid "Select stream(s) to import"
 msgstr "Интихоб ба Интиҳо"
+
+#: src/import/Import.cpp
+#, fuzzy, c-format
+msgid "File \"%s\" not found."
+msgstr "Стереои муттаҳидшуда"
 
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, fuzzy, c-format
@@ -6937,6 +7615,41 @@ msgid "Import Project"
 msgstr "Воридоти НишонаҳоҲамчун:"
 
 #: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'vpos' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'h' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'zoom' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel0' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel1' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selLow' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selHigh' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
 #, c-format
 msgid "Couldn't find the project data folder: \"%s\""
 msgstr "Лоиҳаи додаи пӯша ёфт нашуд: \"%s\""
@@ -6953,7 +7666,17 @@ msgstr "Суръати намуна:"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
+msgid "Invalid sequence 'sampleformat' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
 msgid "Invalid sequence 'numsamples' attribute."
+msgstr "Суръати намуна:"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Missing or invalid silentblockfile 'len' attribute."
 msgstr "Суръати намуна:"
 
 #: src/import/ImportAUP.cpp
@@ -7022,7 +7745,9 @@ msgstr "Давомнокии хароб дар файли LOF."
 
 #: src/import/ImportLOF.cpp
 msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI роҳчаҳо ба таври муққарарӣ ҷудо намешаванд, танҳо аудио файлҳо метавонанд ин амалро иҷро кунанд."
+msgstr ""
+"MIDI роҳчаҳо ба таври муққарарӣ ҷудо намешаванд, танҳо аудио файлҳо "
+"метавонанд ин амалро иҷро кунанд."
 
 #. i18n-hint: You do not need to translate "LOF"
 #: src/import/ImportLOF.cpp
@@ -7057,6 +7782,11 @@ msgstr "Файлро \"%s\"-ро кушода натавонист"
 #, fuzzy
 msgid "MP3 files"
 msgstr "Файлҳои MP3"
+
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
+msgstr "Номи файлҳо:"
 
 #: src/import/ImportOGG.cpp
 #, fuzzy
@@ -7262,6 +7992,12 @@ msgstr "Миқдори вуруд:"
 msgid "Sample rate:"
 msgstr "Суръати намуна:"
 
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+msgid "Detect"
+msgstr "Интихоби хомӯшӣ"
+
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 #, fuzzy
 msgid "&Import"
@@ -7441,7 +8177,8 @@ msgstr "Ҷудокунӣ бо Тозакунӣ"
 #: src/menus/EditMenus.cpp
 #, c-format
 msgid "Silenced selected tracks for %.2f seconds at %.2f"
-msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
+msgstr ""
+"Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #. i18n-hint: verb
 #: src/menus/EditMenus.cpp
@@ -7453,7 +8190,8 @@ msgstr "Хомушӣ"
 #: src/menus/EditMenus.cpp
 #, fuzzy, c-format
 msgid "Trim selected audio tracks from %.2f seconds to %.2f seconds"
-msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
+msgstr ""
+"Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -7730,6 +8468,11 @@ msgstr "Воридоти НишонаҳоҲамчун:"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
+msgid "Export as &MKA"
+msgstr "Воридоти НишонаҳоҲамчун:"
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
 msgid "Export as &OGG"
 msgstr "Содирот"
 
@@ -7850,6 +8593,11 @@ msgstr "Интихоби MIDI файл..."
 #, fuzzy
 msgid "&Quick Help..."
 msgstr "&Мадад"
+
+#: src/menus/HelpMenus.cpp
+#, fuzzy
+msgid "Au&dio Device Info..."
+msgstr "Масрафсанҷи сабт"
 
 #: src/menus/HelpMenus.cpp
 #, fuzzy
@@ -8641,6 +9389,12 @@ msgstr "Курсори Рост"
 #, fuzzy
 msgid "&Toolbars"
 msgstr "Афзор"
+
+#. i18n-hint: (verb)
+#: src/menus/ToolbarMenus.cpp
+#, fuzzy
+msgid "Edit &Mode (on/off)"
+msgstr "Ҷойгузории муҳит барои роҳчаи дигар"
 
 #: src/menus/ToolbarMenus.cpp
 #, fuzzy
@@ -9460,6 +10214,11 @@ msgstr "Интиҳо ба интихоб"
 
 #: src/menus/ViewMenus.cpp
 #, fuzzy
+msgid "&Extra Menus (on/off)"
+msgstr "Ҷойгузории муҳит барои роҳчаи дигар"
+
+#: src/menus/ViewMenus.cpp
+#, fuzzy
 msgid "Track &Name (on/off)"
 msgstr "Ҷойгузории муҳит барои роҳчаи дигар"
 
@@ -9521,6 +10280,15 @@ msgstr "Бозигар"
 #, fuzzy
 msgid "&Device:"
 msgstr "Афзор"
+
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "Сабтшавӣ"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 #, fuzzy
@@ -9993,7 +10761,9 @@ msgstr "&Қисматҳо..."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Note: Pressing Cmd+Q will quit. All other keys are valid."
-msgstr "Эзоҳ: Cmd+Q барои хомӯш намудан истифода бурда мешаванд. Дигар калидҳо истифоданашавандаанд."
+msgstr ""
+"Эзоҳ: Cmd+Q барои хомӯш намудан истифода бурда мешаванд. Дигар калидҳо "
+"истифоданашавандаанд."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "&Import..."
@@ -10002,6 +10772,11 @@ msgstr "&Воридот..."
 #: src/prefs/KeyConfigPrefs.cpp src/prefs/ThemePrefs.cpp
 msgid "&Defaults"
 msgstr "&Аз рӯи хомӯшӣ"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
+msgid "Select an XML file containing Tenacity keyboard shortcuts..."
+msgstr "Интихобкунии файли матние, ки дорои нишонаҳои..."
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
@@ -10041,6 +10816,11 @@ msgstr "Қисматҳо..."
 #, fuzzy
 msgid "FFmpeg Import/Export Library"
 msgstr "Хатои LOF"
+
+#: src/prefs/LibraryPrefs.cpp
+#, fuzzy
+msgid "No compatible FFmpeg library was found"
+msgstr "Тариқаи феҳристи MP3:"
 
 #: src/prefs/LibraryPrefs.cpp
 #, fuzzy
@@ -10247,6 +11027,11 @@ msgstr "Тугмаи чап -кашидашавӣ "
 msgid "Move clip up/down between tracks"
 msgstr "Ҷойгузорӣ ба боло/поён байни роҳчаҳо"
 
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "Alt-Left-Drag"
+msgstr "Тугмаи чап -кашидашавӣ "
+
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/prefs/MousePrefs.cpp
 msgid "Change Amplification Envelope"
@@ -10346,6 +11131,11 @@ msgstr "Дарозӣ"
 msgid "Cut Preview"
 msgstr "Буриши пешнамоиш"
 
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+msgid "Tenacity Preferences"
+msgstr "Қисматҳо..."
+
 #: src/prefs/PrefsDialog.cpp src/prefs/PrefsDialog.h
 #, fuzzy
 msgid "Preferences:"
@@ -10404,6 +11194,12 @@ msgstr "Қисматҳо..."
 msgid "Record on a new track"
 msgstr "Роҳчаи Нав"
 
+#. i18n-hint: Dropout is a loss of a short sequence audio sample data from the recording
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "Detect dropouts"
+msgstr "Интихоб ба Интиҳо"
+
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "Sound Activated Recording"
@@ -10443,6 +11239,11 @@ msgstr "Рақами роҳча"
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "System &Date"
+msgstr "&Вақти оғоз"
+
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "System T&ime"
 msgstr "&Вақти оғоз"
 
 #: src/prefs/RecordingPrefs.cpp
@@ -10609,6 +11410,11 @@ msgstr "Интихобкунӣ"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
+msgid "Show a grid along the &Y-axis"
+msgstr "Фаъол шуд"
+
+#: src/prefs/SpectrumPrefs.cpp
+#, fuzzy
 msgid "Minimum Amplitude (dB):"
 msgstr "Доманаи Нави Қулла (dB):"
 
@@ -10672,6 +11478,11 @@ msgstr "Мавзӯъ"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "Қисматҳо..."
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Theme Settings"
+msgstr "&Қисматҳо..."
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Info"
@@ -10860,11 +11671,6 @@ msgstr "намунаҳо"
 msgid "Default audio track &name:"
 msgstr "Созиши роҳчаи нави аудиоии нав"
 
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Роҳчаи Аудиоӣ"
-
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
 msgid "Zoom Toggle"
@@ -10970,6 +11776,40 @@ msgstr "Ҳарфҳо..."
 msgid "Light"
 msgstr "Равшан"
 
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+#| msgid "Tools"
+msgid "Pro Tools"
+msgstr "Абзорҳо"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "Таблои %s Audacity"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "Дар файл сабт намешавад: "
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+#| msgid "Unable to open target file for writing"
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "Теғаи файлро барои сабт кушода наметавонад"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "Дар файл сабт намешавад: "
+
 #: src/theme/Theme.cpp
 #, c-format
 msgid ""
@@ -11000,6 +11840,13 @@ msgstr ""
 "Ҳамаи файлҳои дархостшуда :\n"
 "  %s\n"
 "аллакай мавҷуданд."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "Файлро \"%s\"-ро кушода натавонист"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -11443,6 +12290,12 @@ msgstr "Вақти охир"
 msgid "&Time Toolbar"
 msgstr "Лавҳаи таҷҳизот"
 
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+msgid "Tenacity %s Toolbar"
+msgstr "Лавҳаи таҳрирӣ"
+
 #: src/toolbars/ToolBar.cpp
 #, fuzzy
 msgid "Click and drag to resize toolbar"
@@ -11641,8 +12494,12 @@ msgstr "Актаваи Поён"
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
 #, fuzzy
-msgid "Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom region."
-msgstr "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-ро барои сохтани наздиксозии муҳити махсус истифода кунед."
+msgid ""
+"Click to vertically zoom in. Shift-click to zoom out. Drag to specify a zoom "
+"region."
+msgstr ""
+"Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-ро "
+"барои сохтани наздиксозии муҳити махсус истифода кунед."
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackVZoomHandle.cpp
@@ -11738,6 +12595,40 @@ msgstr "Спектограммаҳо"
 #, fuzzy
 msgid "S&pectrogram Settings..."
 msgstr "Спектограммаҳо"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+#| msgid "Click and drag to move a track in time"
+msgid "Click and drag to move clip boundary in time"
+msgstr "Барои ҷойивазкунии роҳча пахш ва кашишро иҷро кунед"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "Рақами роҳча"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Click and drag to select audio"
+msgid "Click and drag to select text"
+msgstr "Барои ҷудокунии аудио пахш ва кашишро иҷро кунед"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Modified Label"
+msgid "Modified Clip Name"
+msgstr "Тағиротҳои Нишонавӣ"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+#| msgid "Sample Edit"
+msgid "Clip Name Edit"
+msgstr "Намунаи Таҳрир"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Rename Clip..."
+msgstr "&Бознамунагузорӣ..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, fuzzy
@@ -11950,6 +12841,13 @@ msgstr "Чап, "
 msgid "Right, %dHz"
 msgstr "Рост, "
 
+#. i18n-hint dB abbreviates decibels
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
+#: src/widgets/ASlider.cpp
+#, fuzzy, c-format
+msgid "%+.1f dB"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
+
 #. i18n-hint: Stereo pan setting
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 #: src/widgets/ASlider.cpp
@@ -11966,7 +12864,8 @@ msgstr "рост"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
-msgid "Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
 msgstr "Пахш ва кашидан барои ба тартибоварии андозаи роҳчаҳои стереоӣ."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
@@ -11983,6 +12882,21 @@ msgstr "Барои ҷойивазкунии роҳча пахш ва кашиш�
 #, fuzzy
 msgid "Close sub-view"
 msgstr "Барои ҷойивазкунии роҳча пахш ва кашишро иҷро кунед"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Split Clip"
+msgstr "Афзори Навбатӣ"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "Хомӯшкунӣ/Баргардонидани роҳчаи садогӣ "
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Rename clip..."
+msgstr "&Бознамунагузорӣ..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 #, fuzzy
@@ -12070,6 +12984,27 @@ msgstr "Зудии Синхронӣ бо Иловашавӣ"
 #, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
 msgstr "Барои ҷойивазкунии роҳча пахш ва кашишро иҷро кунед"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Mono Track"
+msgstr "Ҷойивазшавии Роҳча"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+#| msgid "&Stereo Track"
+msgid "Add Stereo Track"
+msgstr "&Стерео Роҳча"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Label Track"
+msgstr "&Нишонаи Роҳча"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Export Audio..."
+msgstr "&Содирот..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -12248,12 +13183,14 @@ msgstr "Ҷойгузории муҳит барои роҳчаи дигар"
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, fuzzy, c-format
 msgid "Time shifted tracks/clips right %.02f seconds"
-msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
+msgstr ""
+"Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, fuzzy, c-format
 msgid "Time shifted tracks/clips left %.02f seconds"
-msgstr "Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
+msgstr ""
+"Дар роҳчаҳои ҷудокардашуда навишта шудааст %.2f нишонагузорӣ аз сонияи %.2f"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
 #, fuzzy
@@ -12350,6 +13287,12 @@ msgstr "Ч"
 #: src/widgets/ASlider.cpp src/widgets/MeterPanel.cpp
 msgid "R"
 msgstr "Р"
+
+#. i18n-hint: "x" suggests a multiplicative factor
+#: src/widgets/ASlider.cpp
+#, fuzzy, c-format
+msgid "%.2fx"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
 
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
@@ -12463,6 +13406,11 @@ msgstr "Мазмуни охирин"
 #, fuzzy
 msgid " Active "
 msgstr "Ҷобаҷогузошта"
+
+#: src/widgets/MeterPanel.cpp
+#, fuzzy, c-format
+msgid " Peak %2.f dB"
+msgstr "Ҳамлаи вақт: %.1f сон-ҳо"
 
 #: src/widgets/MultiDialog.cpp
 #, fuzzy
@@ -12757,7 +13705,8 @@ msgstr "01000,01000 кадрҳо|24"
 #: src/widgets/NumericTextCtrl.cpp
 #, fuzzy
 msgid "(Use context menu to change format.)"
-msgstr "Барои иваз намудани қолаб тугмаи рости мушро ё калиди матниро истифода баред"
+msgstr ""
+"Барои иваз намудани қолаб тугмаи рости мушро ё калиди матниро истифода баред"
 
 #: src/widgets/NumericTextCtrl.cpp
 #, fuzzy
@@ -13055,6 +14004,11 @@ msgstr "Ҳаракат &ба поён"
 #, fuzzy, lisp-format
 msgid "Error~%~%"
 msgstr "Хато"
+
+#: plug-ins/adjustable-fade.ny
+#, fuzzy, lisp-format
+msgid "~aPercentage values cannot be negative."
+msgstr "Имконияти бештари басомад бояд бузургии тағирёбанда бошад"
 
 #: plug-ins/beat.ny
 #, fuzzy
@@ -13540,6 +14494,11 @@ msgstr "Ба кор бурдани дараҷакунанда..."
 msgid "Applying Notch Filter..."
 msgstr "Ба кор бурдани дараҷакунанда..."
 
+#: plug-ins/notch.ny
+#, fuzzy
+msgid "Steve Daulton and Bill Wharrie"
+msgstr "Но&баён"
+
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
 msgid "Nyquist Plug-in Installer"
@@ -13696,6 +14655,11 @@ msgstr "Муваллиди хаш"
 #, fuzzy
 msgid "Generating Risset Drum..."
 msgstr "Муваллиди хаш"
+
+#: plug-ins/rissetdrum.ny
+#, fuzzy
+msgid "Steven Jones"
+msgstr "Но&баён"
 
 #: plug-ins/rissetdrum.ny
 #, fuzzy
@@ -14383,8 +15347,11 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "Missing"
 #~ msgstr "Истифодаи:"
 
-#~ msgid "If you proceed, your project will not be saved to disk. Is this what you want?"
-#~ msgstr "Агар идома диҳед лоиҳаи Шумо дар диск сабт намешавад. Шумо инро мехоҳед?"
+#~ msgid ""
+#~ "If you proceed, your project will not be saved to disk. Is this what you "
+#~ "want?"
+#~ msgstr ""
+#~ "Агар идома диҳед лоиҳаи Шумо дар диск сабт намешавад. Шумо инро мехоҳед?"
 
 #, fuzzy
 #~ msgid "Dependency Check"
@@ -14395,7 +15362,9 @@ msgstr "Басомад (Ҳз)"
 
 #, fuzzy
 #~ msgid "Fill in silence for missing display data (this session only)"
-#~ msgstr "Барои додаҳои намоишии гумшуда аз рӯи хомӯшӣ пурра намоед [танҳо ин қисмат]"
+#~ msgstr ""
+#~ "Барои додаҳои намоишии гумшуда аз рӯи хомӯшӣ пурра намоед [танҳо ин "
+#~ "қисмат]"
 
 #~ msgid "Close project immediately with no further changes"
 #~ msgstr "Лоиҳаро бе иловаи тағиротҳо, фавран пӯшонед"
@@ -14626,8 +15595,11 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "%sSave Compressed Copy of Project \"%s\" As..."
 #~ msgstr "Сабти Лоиҳа &Ҳамчун..."
 
-#~ msgid "Audacity was unable to convert an Audacity 1.0 project to the new project format."
-#~ msgstr "Audacity натавонист Audacity 1.0-ро дар қолаби лоиҳаи нав дигар кунад."
+#~ msgid ""
+#~ "Audacity was unable to convert an Audacity 1.0 project to the new project "
+#~ "format."
+#~ msgstr ""
+#~ "Audacity натавонист Audacity 1.0-ро дар қолаби лоиҳаи нав дигар кунад."
 
 #~ msgid "Could not remove old auto save file"
 #~ msgstr "Файлҳои қаблии худсабт ҷойиваз карда нашуданд"
@@ -14746,12 +15718,20 @@ msgstr "Басомад (Ҳз)"
 #~ msgstr "Масрафсанҷи ғайрифаъол"
 
 #, fuzzy
-#~ msgid "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи файлҳо (*.*)|*"
+#~ msgid ""
+#~ "Only avformat.dll|*avformat*.dll|Dynamically Linked Libraries (*.dll)|*."
+#~ "dll|All Files|*"
+#~ msgstr ""
+#~ "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи "
+#~ "файлҳо (*.*)|*"
 
 #, fuzzy
-#~ msgid "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи файлҳо (*.*)|*"
+#~ msgid ""
+#~ "Only libavformat.so|libavformat*.so*|Dynamically Linked Libraries (*.so*)|"
+#~ "*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи "
+#~ "файлҳо (*.*)|*"
 
 #, fuzzy
 #~ msgid "Add to History:"
@@ -14773,19 +15753,35 @@ msgstr "Басомад (Ҳз)"
 #~ msgstr "Файлҳои XML (*.xml)|*.xml|Ҳамаи файлҳо (*.*)|*.*"
 
 #, fuzzy
-#~ msgid "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|All Files|*"
-#~ msgstr "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи файлҳо (*.*)|*"
+#~ msgid ""
+#~ "Only lame_enc.dll|lame_enc.dll|Dynamically Linked Libraries (*.dll)|*.dll|"
+#~ "All Files|*"
+#~ msgstr ""
+#~ "Танҳо lame_enc.dll|lame_enc.dll|Феҳристи пӯёии пайваст(*.dll)|*.dll|Ҳамаи "
+#~ "файлҳо (*.*)|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|Ҳамаи файлҳо (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame64bit.dylib|libmp3lame64bit.dylib|Dynamic Libraries (*."
+#~ "dylib)|*.dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|"
+#~ "Ҳамаи файлҳо (*)|*"
 
-#~ msgid "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*.dylib|All Files (*)|*"
-#~ msgstr "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|Ҳамаи файлҳо (*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.dylib|libmp3lame.dylib|Dynamic Libraries (*.dylib)|*."
+#~ "dylib|All Files (*)|*"
+#~ msgstr ""
+#~ "Танҳо libmp3lame.dylib|libmp3lame.dylib|Феҳристи пӯёӣ (*.dylib)|*.dylib|"
+#~ "Ҳамаи файлҳо (*)|*"
 
 #, fuzzy
-#~ msgid "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*.so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
-#~ msgstr "Танҳо libmp3lame.so|libmp3lame.so|Феҳристҳои ибтидоии пӯёии боршаванда (*.so)|*.so|Феҳристҳои васеъшуда (*.so*)|*.so*|Ҳамаи файлҳо(*)|*"
+#~ msgid ""
+#~ "Only libmp3lame.so.0|libmp3lame.so.0|Primary Shared Object files (*.so)|*."
+#~ "so|Extended Libraries (*.so*)|*.so*|All Files (*)|*"
+#~ msgstr ""
+#~ "Танҳо libmp3lame.so|libmp3lame.so|Феҳристҳои ибтидоии пӯёии боршаванда (*."
+#~ "so)|*.so|Феҳристҳои васеъшуда (*.so*)|*.so*|Ҳамаи файлҳо(*)|*"
 
 #~ msgid "Waveform (dB)"
 #~ msgstr "Мавҷшакл (dB)"
@@ -14903,8 +15899,11 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "Transcription"
 #~ msgstr "Луғат"
 
-#~ msgid "Your tracks will be mixed down to a single mono channel in the exported file."
-#~ msgstr "Роҳчаҳои Шумо дар як шабакаи моноӣ, дар файли дохилӣ омехта мешаванд."
+#~ msgid ""
+#~ "Your tracks will be mixed down to a single mono channel in the exported "
+#~ "file."
+#~ msgstr ""
+#~ "Роҳчаҳои Шумо дар як шабакаи моноӣ, дар файли дохилӣ омехта мешаванд."
 
 #~ msgid "Playthrough"
 #~ msgstr "Иҷрогари убурӣ"
@@ -14913,7 +15912,9 @@ msgstr "Басомад (Ҳз)"
 #~ msgid ""
 #~ "Error opening sound device.\n"
 #~ "Try changing the audio host, recording device and the project sample rate."
-#~ msgstr "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва суръати намунаи лоиҳаро санҷед."
+#~ msgstr ""
+#~ "Хато ҳангоми кушодани афзори савтӣ. Лутфан, насби берунаи афзор ва "
+#~ "суръати намунаи лоиҳаро санҷед."
 
 #, fuzzy
 #~ msgid "Slider Playback"
@@ -15021,8 +16022,12 @@ msgstr "Басомад (Ҳз)"
 #~ msgstr "Оғози Сана ва Вақт "
 
 #, fuzzy
-#~ msgid "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a particular zoom region."
-#~ msgstr "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-ро барои сохтани наздиксозии муҳити махсус истифода кунед."
+#~ msgid ""
+#~ "Click to verticaly zoom in, Shift-click to zoom out, Drag to create a "
+#~ "particular zoom region."
+#~ msgstr ""
+#~ "Барои наздиксозии амудӣ пахшро иҷро кунед, Shift-ро барои дурсозӣ ва Drag-"
+#~ "ро барои сохтани наздиксозии муҳити махсус истифода кунед."
 
 #~ msgid "up"
 #~ msgstr "боло"
@@ -15380,8 +16385,11 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "Cursor: %d Hz (%s) = %d dB    Peak: %d Hz (%s) = %.1f dB"
 #~ msgstr "Курсор: %d Ҳертз (%s) = %d дБ    Қулла: %d Ҳертз (%s) = %.1f дБ"
 
-#~ msgid "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
-#~ msgstr "Курсор: %.4f сон (%d Ҳертз) (%s) = %f,    Қулла: %.4f сон (%d Ҳертз) (%s) = %.3f"
+#~ msgid ""
+#~ "Cursor: %.4f sec (%d Hz) (%s) = %f,    Peak: %.4f sec (%d Hz) (%s) = %.3f"
+#~ msgstr ""
+#~ "Курсор: %.4f сон (%d Ҳертз) (%s) = %f,    Қулла: %.4f сон (%d Ҳертз) (%s) "
+#~ "= %.3f"
 
 #, fuzzy
 #~ msgid "Plot Spectrum"
@@ -15497,11 +16505,16 @@ msgstr "Басомад (Ҳз)"
 #~ msgstr "Батартибдарорӣ..."
 
 #, fuzzy
-#~ msgid "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
+#~ msgid ""
+#~ "Applied effect: %s stretch factor = %f times, time resolution = %f seconds"
 #~ msgstr "Натиҷаи корбурдашуда: %s таваққуф = %f сониҳо, харобшавии омил = %f"
 
-#~ msgid "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start phase = %.0f deg, depth = %d, feedback = %.0f%%"
-#~ msgstr "Натиҷаи корбурдашуда: %s %d марҳилаҳо, %.0f%% wet, басомад= %.1f Hz, ибтидои марҳила = %.0f deg, амиқӣ= %d, feedback = %.0f%%"
+#~ msgid ""
+#~ "Applied effect: %s %d stages, %.0f%% wet, frequency = %.1f Hz, start "
+#~ "phase = %.0f deg, depth = %d, feedback = %.0f%%"
+#~ msgstr ""
+#~ "Натиҷаи корбурдашуда: %s %d марҳилаҳо, %.0f%% wet, басомад= %.1f Hz, "
+#~ "ибтидои марҳила = %.0f deg, амиқӣ= %d, feedback = %.0f%%"
 
 #~ msgid "Phaser..."
 #~ msgstr "Марҳиласози..."
@@ -15530,8 +16543,12 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "Applied effect: Generate Silence, %.6lf seconds"
 #~ msgstr "Корбарандаи натиҷа: Муваллиди хомӯшӣ, %.6lf сонияҳо"
 
-#~ msgid "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = %.2f, %.6lf seconds"
-#~ msgstr "Корбурди натиҷавӣ: Тавлиди мавҷи %s ба басомади %s = %.2f Ҳертз, домана= %.2f, %.6lf сонияҳо"
+#~ msgid ""
+#~ "Applied effect: Generate %s wave %s, frequency = %.2f Hz, amplitude = "
+#~ "%.2f, %.6lf seconds"
+#~ msgstr ""
+#~ "Корбурди натиҷавӣ: Тавлиди мавҷи %s ба басомади %s = %.2f Ҳертз, домана= "
+#~ "%.2f, %.6lf сонияҳо"
 
 #~ msgid "Chirp Generator"
 #~ msgstr "Муваллиди набз"
@@ -15540,8 +16557,12 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "Buffer Delay Compensation"
 #~ msgstr "Таркиббандии калид"
 
-#~ msgid "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = %.0f%%, resonance = %.1f, frequency offset = %.0f%%"
-#~ msgstr "Натиҷаи корбурдашуда: %s басомади = %.1f Ҳз, марҳилаи шурӯӣ = %.0f deg, амиқӣ = %.0f%%, зарбазанӣ= %.1f, истифодаи басомад = %.0f%% "
+#~ msgid ""
+#~ "Applied effect: %s frequency = %.1f Hz, start phase = %.0f deg, depth = "
+#~ "%.0f%%, resonance = %.1f, frequency offset = %.0f%%"
+#~ msgstr ""
+#~ "Натиҷаи корбурдашуда: %s басомади = %.1f Ҳз, марҳилаи шурӯӣ = %.0f deg, "
+#~ "амиқӣ = %.0f%%, зарбазанӣ= %.1f, истифодаи басомад = %.0f%% "
 
 #~ msgid "Wahwah..."
 #~ msgstr "Вах-Вах..."
@@ -15569,7 +16590,8 @@ msgstr "Басомад (Ҳз)"
 #~ msgid "Input Meter"
 #~ msgstr "Индикатори даромад"
 
-#~ msgid "Recovering a project will not change any files on disk before you save it."
+#~ msgid ""
+#~ "Recovering a project will not change any files on disk before you save it."
 #~ msgstr ""
 #~ "Дар вақти барқарорсозии лоиҳа ягон файл дар диск тағир намеёбанд, \n"
 #~ "то вақти нигоҳдории лоиҳа."
@@ -15734,8 +16756,12 @@ msgstr "Басомад (Ҳз)"
 #~ ".\n"
 
 #, fuzzy
-#~ msgid "Sorry, this effect cannot be performed on stereo tracks where the individual channels of the track do not match."
-#~ msgstr "Бубахшед, ин амал дар роҳчаҳои стереоӣ иҷро шуда наметавонад зеро дар он ҷо шабакаи индивидуалии роҳча мутобиқат намекунад."
+#~ msgid ""
+#~ "Sorry, this effect cannot be performed on stereo tracks where the "
+#~ "individual channels of the track do not match."
+#~ msgstr ""
+#~ "Бубахшед, ин амал дар роҳчаҳои стереоӣ иҷро шуда наметавонад зеро дар он "
+#~ "ҷо шабакаи индивидуалии роҳча мутобиқат намекунад."
 
 #~ msgid "Spike Cleaner"
 #~ msgstr "Баробаркунандаи дандонадор"

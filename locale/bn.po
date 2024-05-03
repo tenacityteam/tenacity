@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-09-27 17:46-0700\n"
+"POT-Creation-Date: 2023-11-05 09:26-0800\n"
 "PO-Revision-Date: 2005-09-26 13:47-0800\n"
 "Last-Translator: mak <makl10n@yahoo.com>\n"
 "Language-Team: Bangladeshi <makl10n@yahoo.com>\n"
@@ -15,10 +15,97 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default recording device number: %d"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Default playback device number: %d"
+msgstr "প্লেব্যাক"
+
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "No devices found"
+msgstr "প্লেব্যাক"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device info unavailable for: %d"
+msgstr "(নিষ্ক্রিয়)"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device ID: %d"
+msgstr "নাম..."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Device name: %s"
+msgstr "নাম..."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Host name: %s"
+msgstr "নাম..."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Recording channels: %d"
+msgstr "%d চ্যানেল"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Playback channels: %d"
+msgstr "প্লেব্যাক"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Low Recording Latency: %g"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "High Recording Latency: %g"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy
+msgid "Supported Rates:"
+msgstr "নমুনা পরিবর্তন"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected recording device: %d - %s"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected playback device: %d - %s"
+msgstr "প্লেব্যাক"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "No playback device found for '%s'."
+msgstr "প্লেব্যাক"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Supports output: %d"
+msgstr "সংরক্ষিত %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI recording device: %d - %s"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, fuzzy, c-format
+msgid "Selected MIDI playback device: %d - %s"
 msgstr "প্লেব্যাক"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
@@ -49,6 +136,11 @@ msgstr "নাম..."
 msgid "Internal Error"
 msgstr "সমস্যা"
 
+#: libraries/lib-files/FileException.cpp
+#, fuzzy, c-format
+msgid "Tenacity failed to open a file in %s."
+msgstr "নির্বাচনের শেষে"
+
 #: libraries/lib-files/FileException.h
 #, fuzzy
 msgid "File Error"
@@ -67,6 +159,11 @@ msgstr "সকল ফাইল (*)|*"
 #, fuzzy
 msgid "AUP3 project files"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: libraries/lib-files/FileNames.cpp
+#, fuzzy
+msgid "Dynamically Linked Libraries"
+msgstr "ডিরেক্টরি"
 
 #: libraries/lib-files/FileNames.cpp
 #, fuzzy
@@ -107,6 +204,13 @@ msgstr "সমস্যা"
 #, fuzzy
 msgid "Unsuitable"
 msgstr "সক্রিয়"
+
+#: libraries/lib-files/TempDirectory.cpp
+#, fuzzy
+msgid ""
+"The temporary files directory is on a FAT formatted drive.\n"
+"Resetting to default location."
+msgstr "নির্বাচন"
 
 #: libraries/lib-math/Dither.cpp src/effects/EffectManager.cpp
 #: src/effects/EffectUI.cpp src/prefs/TracksBehaviorsPrefs.cpp
@@ -154,6 +258,28 @@ msgstr "নির্বাচনের শেষে"
 msgid "Simplified"
 msgstr "নমুনা পরিবর্তন"
 
+#: libraries/lib-strings/Languages.cpp
+#, fuzzy
+msgid "System"
+msgstr "নির্বাচনের শুরুতে"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "নির্বাচন"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+#, fuzzy
+msgid "Audio Track"
+msgstr "মোনো"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+#| msgid "Playback"
+msgid "Playable Track"
+msgstr "প্লেব্যাক"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy, c-format
@@ -169,6 +295,11 @@ msgstr "সমস্যা:"
 #, fuzzy, c-format
 msgid "Could not load file: \"%s\""
 msgstr "রেকর্ডিং হচ্ছে"
+
+#: libraries/lib-xml/XMLFileReader.cpp
+#, fuzzy
+msgid "Could not parse XML"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -224,6 +355,11 @@ msgstr "খাম"
 msgid "%s, web developer"
 msgstr "খাম"
 
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity founder and developer"
+msgstr "খাম"
+
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -231,10 +367,22 @@ msgstr "খাম"
 msgid "%s, Tenacity developer"
 msgstr "খাম"
 
+#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity web developer"
+msgstr "খাম"
+
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, lead Tenacity developer"
+msgstr "খাম"
+
+#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
+#: src/AboutDialog.cpp
+#, fuzzy, c-format
+msgid "%s, Tenacity contributor"
 msgstr "খাম"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
@@ -255,6 +403,12 @@ msgstr "অঙ্কুর প্রকল্পের পক্ষে মাহ
 #: src/AboutDialog.cpp
 msgid "Credits"
 msgstr "স্বীকৃতি"
+
+#. i18n-hint: The program's name substitutes for %s
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Audacity Team Members"
+msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -308,6 +462,17 @@ msgstr "সংকোচক..."
 msgid "Settings folder:"
 msgstr "উল্টা করা হচ্ছে"
 
+#. i18n-hint: Libraries that are essential to audacity
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Core Libraries"
+msgstr "ডিরেক্টরি"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Sample rate conversion"
+msgstr "নমুনা পরিবর্তন"
+
 #. i18n-hint: This is what the library (libmad) does - imports MP3 files
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -325,6 +490,11 @@ msgstr "সংরক্ষিত %s"
 #, fuzzy
 msgid "ID3 tag support"
 msgstr "সকল ফাইল (*)|*"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "সংরক্ষিত %s"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -345,12 +515,22 @@ msgstr "সংরক্ষিত %s"
 
 #: src/AboutDialog.cpp
 #, fuzzy
+msgid "Import via GStreamer"
+msgstr "আমদানী"
+
+#: src/AboutDialog.cpp
+#, fuzzy
 msgid "Plug-in support"
 msgstr "সকল ফাইল (*)|*"
 
 #: src/AboutDialog.cpp
 #, fuzzy
 msgid "Pitch and Tempo Change support"
+msgstr "মান"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Extreme Pitch and Tempo Change support"
 msgstr "মান"
 
 #: src/AdornedRulerPanel.cpp
@@ -376,6 +556,15 @@ msgstr "নির্বাচনের শেষে"
 #.
 #: src/AdornedRulerPanel.cpp
 #, fuzzy
+msgid "Click or drag to begin Seek"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: These commands assist the user in finding a sound by ear. ...
+#. "Scrubbing" is variable-speed playback, ...
+#. "Seeking" is normal speed playback but with skips
+#.
+#: src/AdornedRulerPanel.cpp
+#, fuzzy
 msgid "Click or drag to begin Scrub"
 msgstr "নির্বাচনের শেষে"
 
@@ -385,7 +574,21 @@ msgstr "নির্বাচনের শেষে"
 #.
 #: src/AdornedRulerPanel.cpp
 #, fuzzy
+msgid "Move to Seek"
+msgstr "নির্বাচন"
+
+#. i18n-hint: These commands assist the user in finding a sound by ear. ...
+#. "Scrubbing" is variable-speed playback, ...
+#. "Seeking" is normal speed playback but with skips
+#.
+#: src/AdornedRulerPanel.cpp
+#, fuzzy
 msgid "Move to Scrub"
+msgstr "নির্বাচন"
+
+#: src/AdornedRulerPanel.cpp
+#, fuzzy
+msgid "Move to Scrub. Drag to Seek."
 msgstr "নির্বাচন"
 
 #: src/AdornedRulerPanel.cpp
@@ -418,6 +621,21 @@ msgstr "রেকর্ডিং হচ্ছে"
 msgid "Error: %s"
 msgstr "সমস্যা"
 
+#: src/AudioIO.cpp
+#, fuzzy
+msgid "PortAudio Error"
+msgstr "সমস্যা"
+
+#: src/AudioIO.cpp
+#, fuzzy
+msgid "Tenacity Audio"
+msgstr "মোনো"
+
+#: src/AutoRecoveryDialog.cpp
+#, fuzzy
+msgid "Automatic Crash Recovery"
+msgstr "নমুনা পরিবর্তন"
+
 #. i18n-hint: (verb).  It instruct the user to select items.
 #: src/AutoRecoveryDialog.cpp src/TrackInfo.cpp src/commands/SelectCommand.cpp
 #: src/prefs/MousePrefs.cpp
@@ -430,6 +648,11 @@ msgstr "নির্বাচন"
 #, fuzzy
 msgid "Name"
 msgstr "নাম..."
+
+#: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "&Quit Tenacity"
+msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/AutoRecoveryDialog.cpp
 #, fuzzy
@@ -499,6 +722,11 @@ msgstr "সকল ফাইল (*)|*"
 #: src/BatchCommands.cpp
 #, fuzzy
 msgid "Menu Command (With Parameters)"
+msgstr "প্লেব্যাক"
+
+#: src/BatchCommands.cpp
+#, fuzzy
+msgid "Menu Command (No Parameters)"
 msgstr "প্লেব্যাক"
 
 # I guess in should be গেইন - mak
@@ -742,6 +970,11 @@ msgid "Failed to set safe mode on primary connection to %s"
 msgstr "কাজ"
 
 #: src/DBConnection.cpp
+#, fuzzy, c-format
+msgid "Failed to set safe mode on checkpoint connection to %s"
+msgstr "কাজ"
+
+#: src/DBConnection.cpp
 #, fuzzy
 msgid "Checkpointing project"
 msgstr "সংরক্ষিত %s"
@@ -750,6 +983,27 @@ msgstr "সংরক্ষিত %s"
 #, fuzzy, c-format
 msgid "Checkpointing %s"
 msgstr "সংরক্ষিত %s"
+
+#: src/DBConnection.cpp
+#, fuzzy, c-format
+msgid "Could not write to %s.\n"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/DBConnection.cpp
+#, fuzzy, c-format
+msgid ""
+"Failed to create savepoint:\n"
+"\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
+
+#: src/DBConnection.cpp
+#, fuzzy, c-format
+msgid ""
+"Failed to release savepoint:\n"
+"\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
 
 #: src/FreqWindow.cpp
 #, fuzzy
@@ -815,6 +1069,11 @@ msgstr "নির্বাচনের শেষে"
 msgid "Cursor:"
 msgstr "ডান"
 
+#: src/FreqWindow.cpp
+#, fuzzy
+msgid "&Algorithm:"
+msgstr "ইন্টারফেস"
+
 #: src/FreqWindow.cpp src/LabelDialog.cpp src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
 msgid "&Export..."
@@ -849,6 +1108,11 @@ msgstr "সংরক্ষিত %s"
 #, fuzzy, c-format
 msgid "Couldn't write to file: %s"
 msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/FreqWindow.cpp
+#, fuzzy
+msgid "Frequency (Hz)\tLevel (dB)"
+msgstr "নির্বাচনের শুরুতে"
 
 #: src/FreqWindow.cpp
 #, fuzzy
@@ -944,6 +1208,11 @@ msgstr "সংরক্ষিত %s"
 msgid "&History..."
 msgstr "নির্বাচনের শেষে"
 
+#: src/JournalEvents.cpp
+#, fuzzy
+msgid "Journal recording failed"
+msgstr "রেকর্ডিং হচ্ছে"
+
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Edit Labels"
@@ -985,6 +1254,11 @@ msgstr "নির্বাচন"
 #, fuzzy
 msgid "High Frequency"
 msgstr "নির্বাচন"
+
+#: src/LabelDialog.cpp src/ProjectFileManager.cpp src/menus/FileMenus.cpp
+#, fuzzy, c-format
+msgid "Could not open file: %s"
+msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/LabelDialog.cpp
 #, fuzzy
@@ -1045,6 +1319,11 @@ msgstr "বন্ধ"
 #, fuzzy
 msgid "Save log to:"
 msgstr "সংরক্ষিত %s"
+
+#: src/LogWindow.cpp
+#, fuzzy, c-format
+msgid "Couldn't save log to file: %s"
+msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/LyricsWindow.cpp
 #, fuzzy
@@ -1131,6 +1410,11 @@ msgstr "প্লেব্যাক"
 msgid "No"
 msgstr "কোনটিই নয়"
 
+#: src/ModuleManager.cpp
+#, fuzzy
+msgid "Tenacity Module Loader"
+msgstr "খাম"
+
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
 #: src/NoteTrack.cpp src/TrackPanelAx.cpp
@@ -1144,6 +1428,18 @@ msgstr "রেকর্ড"
 #, fuzzy
 msgid "C"
 msgstr "L"
+
+#: src/PluginManager.cpp
+#, fuzzy, c-format
+msgid "Overwrite the plug-in file %s?"
+msgstr "মোছো"
+
+#: src/PluginManager.cpp
+#, fuzzy, c-format
+msgid ""
+"Failed to register:\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
@@ -1238,6 +1534,22 @@ msgstr "সক্রিয়"
 msgid "&Disable"
 msgstr "(নিষ্ক্রিয়)"
 
+#: src/PluginRegistrationDialog.cpp
+#, fuzzy, c-format
+msgid ""
+"Enabling effects or commands:\n"
+"\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
+
+#: src/PluginRegistrationDialog.cpp
+#, fuzzy, c-format
+msgid ""
+"Enabling effect or command:\n"
+"\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
+
 #: src/Printing.cpp
 msgid "Print"
 msgstr "মুদ্রণ"
@@ -1250,6 +1562,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #: src/ProjectAudioManager.cpp src/toolbars/ControlToolBar.cpp
 msgid "Record"
 msgstr "রেকর্ড"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid "[Project %02i] "
+msgstr "নির্বাচনের শুরুতে"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -1275,6 +1592,14 @@ msgid "Failed to restore connection"
 msgstr "কাজ"
 
 #: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Failed to execute a project file command:\n"
+"\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
+
+#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "This is not an Audacity project file"
 msgstr "&অডিওসিটি পরিচিতি..."
@@ -1287,7 +1612,68 @@ msgstr "নির্বাচনের শেষে"
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
 #, fuzzy
+msgid ""
+"Project is read only\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid ""
+"Project is locked\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid ""
+"Project is busy\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid ""
+"Project is corrupt\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid ""
+"Some permissions issue\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid ""
+"A disk I/O error\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid ""
+"Not authorized\n"
+"(Unable to work with the blockfiles)"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: An error message.  Don't translate blockfiles.
+#: src/ProjectFileIO.cpp
+#, fuzzy
 msgid "Unable to work with the blockfiles"
+msgstr "নির্বাচনের শেষে"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy
+msgid "Unable to attach destination database"
 msgstr "নির্বাচনের শেষে"
 
 #: src/ProjectFileIO.cpp
@@ -1308,6 +1694,15 @@ msgstr "অগ্রগতি"
 #, fuzzy
 msgid "Failed to bind SQL parameter"
 msgstr "সংরক্ষিত %s"
+
+#: src/ProjectFileIO.cpp
+#, fuzzy, c-format
+msgid ""
+"Failed to update the project file.\n"
+"The following command failed:\n"
+"\n"
+"%s"
+msgstr "নির্বাচনের শেষে"
 
 #: src/ProjectFileIO.cpp
 #, fuzzy
@@ -1364,6 +1759,11 @@ msgstr "সংরক্ষিত %s"
 #, fuzzy
 msgid "Project Recovered"
 msgstr "নির্বাচনের শুরুতে"
+
+#: src/ProjectFileManager.cpp src/prefs/DirectoriesPrefs.cpp
+#, fuzzy
+msgid "Projects cannot be saved to FAT drives."
+msgstr "নির্বাচন"
 
 #: src/ProjectFileManager.cpp
 #, fuzzy
@@ -1469,6 +1869,17 @@ msgstr "সংরক্ষিত %s"
 msgid "Created new project"
 msgstr "সংরক্ষিত %s"
 
+#. i18n-hint: The first %s numbers the project, the second %s is the project name.
+#: src/ProjectManager.cpp
+#, fuzzy, c-format
+msgid "%sSave changes to %s?"
+msgstr "মোনো"
+
+#: src/ProjectWindow.cpp
+#, fuzzy
+msgid "Horizontal Scrollbar"
+msgstr "নির্বাচনের শেষে"
+
 #: src/SoundActivatedRecord.cpp
 #, fuzzy
 msgid "Sound Activated Record"
@@ -1479,6 +1890,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy
 msgid "Activation level (dB):"
 msgstr "লাভ"
+
+#: src/SplashDialog.cpp
+#, fuzzy
+msgid "Tenacity Pre-Release"
+msgstr "খাম"
 
 #: src/SqliteSampleBlock.cpp
 #, fuzzy
@@ -1500,6 +1916,11 @@ msgstr "মোনো"
 msgid "Track Number"
 msgstr "নির্বাচনের শুরুতে"
 
+#: src/Tags.cpp
+#, fuzzy
+msgid "Genre"
+msgstr "মোছো"
+
 #: src/Tags.cpp src/prefs/MousePrefs.cpp
 msgid "Comments"
 msgstr "মন্তব্য"
@@ -1516,6 +1937,11 @@ msgstr "মাঝে"
 
 #: src/Tags.cpp
 #, fuzzy
+msgid "Genres"
+msgstr "মোছো"
+
+#: src/Tags.cpp
+#, fuzzy
 msgid "E&dit..."
 msgstr "&এডিট"
 
@@ -1523,6 +1949,11 @@ msgstr "&এডিট"
 #, fuzzy
 msgid "Rese&t..."
 msgstr "নির্বাচন"
+
+#: src/Tags.cpp
+#, fuzzy
+msgid "&Load..."
+msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/Tags.cpp
 #, fuzzy
@@ -1538,6 +1969,11 @@ msgstr "মোছো"
 #, fuzzy
 msgid "Unable to save genre file."
 msgstr "নির্বাচনের শেষে"
+
+#: src/Tags.cpp
+#, fuzzy
+msgid "Reset Genres"
+msgstr "মোছো"
 
 #: src/Tags.cpp
 #, fuzzy
@@ -1568,6 +2004,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy, c-format
 msgid "Failed to remove %s"
 msgstr "নির্বাচনের শেষে"
+
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "Reset Tenacity Preferences"
+msgstr "প্লেব্যাক"
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -1605,6 +2046,12 @@ msgstr "রেকর্ডিং হচ্ছে"
 msgid "this help message"
 msgstr "সক্রিয়"
 
+#. i18n-hint: This displays the Audacity version
+#: src/TenacityApp.cpp
+#, fuzzy
+msgid "display Tenacity version"
+msgstr "খাম"
+
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
 #: src/TenacityApp.cpp
@@ -1616,6 +2063,19 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 #, fuzzy
 msgid "Audacity Project Files"
 msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/TenacityFileConfig.cpp
+#, fuzzy
+msgid "Tenacity Configuration Error"
+msgstr "%d চ্যানেল"
+
+#: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp
+#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
+#, fuzzy
+msgid "Help"
+msgstr "মোছো"
 
 #. i18n-hint: This string is used to configure the controls which shows the recording
 #. * duration. As such it is important that only the alphabetic parts of the string
@@ -1642,6 +2102,11 @@ msgstr "রেকর্ড"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Tenacity Timer Record"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Save Timer Recording As"
 msgstr "রেকর্ডিং হচ্ছে"
 
@@ -1657,8 +2122,18 @@ msgstr "%d চ্যানেল"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Automatic Save path is invalid."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Error in Automatic Save"
 msgstr "%d চ্যানেল"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Automatic Export path is invalid."
+msgstr "নমুনা পরিবর্তন"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
@@ -1693,12 +2168,22 @@ msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Automatic Save enabled:"
+msgstr "নমুনা পরিবর্তন"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Automatic Export enabled:"
 msgstr "নমুনা পরিবর্তন"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
 msgid "Action after Timer Recording:"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record Progress"
 msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/TimerRecordDialog.cpp
@@ -1771,6 +2256,16 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "End Date"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Automatic Save"
+msgstr "%d চ্যানেল"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Enable &Automatic Save?"
 msgstr "নমুনা পরিবর্তন"
 
@@ -1812,6 +2307,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
+msgid "Exit Tenacity"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
 msgid "Recording duration:"
 msgstr "%d চ্যানেল"
 
@@ -1835,6 +2335,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #: src/TimerRecordDialog.cpp
 #, fuzzy
 msgid "Recording Exported:"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/TimerRecordDialog.cpp
+#, fuzzy
+msgid "Tenacity Timer Record - Waiting"
 msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/TrackInfo.cpp
@@ -1891,6 +2396,13 @@ msgstr "নিরব"
 #, fuzzy
 msgid " Select On"
 msgstr "নির্বাচনের শুরুতে"
+
+#: src/TrackPanelResizeHandle.cpp
+#, fuzzy
+msgid ""
+"Click and drag to adjust relative size of stereo tracks, double-click to "
+"make heights equal"
+msgstr "নির্বাচনের শেষে"
 
 #: src/TrackPanelResizeHandle.cpp
 #, fuzzy
@@ -1966,6 +2478,17 @@ msgstr "মোনো"
 msgid "Resampling failed."
 msgstr "রেকর্ডিং হচ্ছে"
 
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "মোনো"
+
+#: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
+#: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
+#, fuzzy
+msgid "Tenacity"
+msgstr "&অডিওসিটি পরিচিতি..."
+
 # I guess in should be গেইন - mak
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, fuzzy, c-format
@@ -2001,6 +2524,11 @@ msgstr "নাম..."
 msgid "Compare Audio"
 msgstr "সংকোচক..."
 
+#: src/commands/CompareAudioCommand.cpp src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Threshold:"
+msgstr "লেবেল"
+
 #: src/commands/CompareAudioCommand.h
 #, fuzzy
 msgid "Compares a range on two tracks."
@@ -2009,6 +2537,11 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 #: src/commands/Demo.cpp
 #, fuzzy
 msgid "Delay time (seconds):"
+msgstr "নির্বাচনের শেষে"
+
+#: src/commands/Demo.cpp
+#, fuzzy
+msgid "Decay factor:"
 msgstr "নির্বাচনের শেষে"
 
 #: src/commands/DragCommand.cpp
@@ -2150,6 +2683,11 @@ msgstr "সক্রিয়"
 #, fuzzy
 msgid "Open Project2"
 msgstr "সংরক্ষিত %s"
+
+#: src/commands/OpenSaveCommands.cpp
+#, fuzzy
+msgid "Add to History"
+msgstr "নির্বাচনের শেষে"
 
 #: src/commands/OpenSaveCommands.cpp
 #, fuzzy
@@ -2382,6 +2920,11 @@ msgstr "সংরক্ষিত %s"
 msgid "Rate:"
 msgstr "মোছো"
 
+#: src/commands/SetProjectCommand.cpp
+#, fuzzy
+msgid "Resize:"
+msgstr "প্লেব্যাক"
+
 #: src/commands/SetProjectCommand.cpp src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
 msgid "Height:"
@@ -2442,8 +2985,18 @@ msgstr "নির্বাচন"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
+msgid "Times 2"
+msgstr "নির্বাচনের শেষে"
+
+#: src/commands/SetTrackInfoCommand.cpp
+#, fuzzy
 msgid "Display:"
 msgstr "নমুনা পরিবর্তন"
+
+#: src/commands/SetTrackInfoCommand.cpp
+#, fuzzy
+msgid "VZoom:"
+msgstr "নির্বাচনের শেষে"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
@@ -2487,6 +3040,16 @@ msgstr "লাভ"
 msgid "Amplification dB"
 msgstr "লাভ"
 
+#: src/effects/Amplify.cpp
+#, fuzzy
+msgid "&New Peak Amplitude (dB):"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Amplify.cpp
+#, fuzzy
+msgid "Allo&w clipping"
+msgstr "নির্বাচন"
+
 #: src/effects/AutoDuck.cpp
 #, fuzzy
 msgid "Duck &amount:"
@@ -2499,6 +3062,12 @@ msgstr "নির্বাচনের শুরুতে"
 #, fuzzy
 msgid "seconds"
 msgstr "নমুনা পরিবর্তন"
+
+#: src/effects/AutoDuck.cpp src/effects/Compressor.cpp
+#: src/effects/TruncSilence.cpp
+#, fuzzy
+msgid "&Threshold:"
+msgstr "লেবেল"
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -2602,6 +3171,11 @@ msgstr "প্র/ন"
 msgid "Change Speed"
 msgstr "গতি পরিবর্তন"
 
+#: src/effects/ChangeSpeed.cpp
+#, fuzzy
+msgid "&Speed Multiplier:"
+msgstr "&অডিওসিটি পরিচিতি..."
+
 #. i18n-hint: changing speed of audio "from" one value "to" another
 #: src/effects/ChangeSpeed.cpp
 #, fuzzy
@@ -2675,14 +3249,30 @@ msgstr "নির্বাচনের শেষে"
 msgid "Click Removal"
 msgstr "নির্বাচনের শেষে"
 
+#: src/effects/ClickRemoval.cpp src/effects/Compressor.cpp
+#: src/effects/Compressor2.cpp src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Threshold"
+msgstr "লেবেল"
+
 #: src/effects/Compressor.cpp src/effects/Compressor2.cpp
 #, fuzzy
 msgid "Compressor"
 msgstr "সংকোচক..."
 
+#: src/effects/Compressor.cpp src/effects/ScoreAlignDialog.cpp
+#, fuzzy, c-format
+msgid "%.2f secs"
+msgstr "নির্বাচনের শেষে"
+
 #: src/effects/Compressor.cpp
 #, fuzzy
 msgid "&Noise Floor:"
+msgstr "উইন্ডো"
+
+#: src/effects/Compressor.cpp src/effects/Distortion.cpp
+#, fuzzy
+msgid "Noise Floor"
 msgstr "উইন্ডো"
 
 #: src/effects/Compressor.cpp
@@ -2727,6 +3317,23 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 msgid "Release Time"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
+#. i18n-hint: "Compress" here means reduce variations of sound volume,
+#. NOT related to file-size compression; Peaks means extremes in volume
+#: src/effects/Compressor.cpp
+#, fuzzy
+msgid "C&ompress based on Peaks"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor.cpp
+#, fuzzy, c-format
+msgid "Threshold %d dB"
+msgstr "গতি বৃদ্ধি"
+
+#: src/effects/Compressor.cpp
+#, fuzzy, c-format
+msgid "Noise Floor %d dB"
+msgstr "উইন্ডো"
+
 #: src/effects/Compressor.cpp
 #, fuzzy, c-format
 msgid "Attack Time %.2f secs"
@@ -2737,10 +3344,95 @@ msgstr "নির্বাচনের শেষে"
 msgid "Release Time %.1f secs"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "peak amplitude"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Reduction"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Peak Reduction"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Dynamic Compressor"
+msgstr "সংকোচক..."
+
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "ইন্টারফেস"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Envelope Algorithm:"
+msgstr "ইন্টারফেস"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Compress based on:"
+msgstr "সংকোচক..."
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "কাজ"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain:"
+msgstr "গতি বৃদ্ধি"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Output Gain"
+msgstr "গতি বৃদ্ধি"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack:"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Attack"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release:"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Release"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time:"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time:"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/Compressor2.cpp
+#, fuzzy
+msgid "Hold Time"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -2780,6 +3472,21 @@ msgstr "গতি বৃদ্ধি"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
+msgid "&Foreground:"
+msgstr "পুনরাবৃত্তি"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground start time"
+msgstr "পুনরাবৃত্তি"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Foreground end time"
+msgstr "পুনরাবৃত্তি"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
 msgid "&Measure selection"
 msgstr "নির্বাচনের শেষে"
 
@@ -2805,6 +3512,11 @@ msgstr "নির্বাচনের শেষে"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
+msgid "Co&ntrast Result:"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/effects/Contrast.cpp
+#, fuzzy
 msgid "R&eset"
 msgstr "নির্বাচন"
 
@@ -2812,6 +3524,11 @@ msgstr "নির্বাচন"
 #, fuzzy
 msgid "&Difference:"
 msgstr "প্লেব্যাক"
+
+#: src/effects/Contrast.cpp src/menus/HelpMenus.cpp src/prefs/GUIPrefs.cpp
+#, fuzzy
+msgid "&Help"
+msgstr "মোছো"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -2829,11 +3546,33 @@ msgstr "প্লেব্যাক"
 msgid "Difference is indeterminate."
 msgstr "নির্বাচনের শেষে"
 
+#. i18n-hint: dB abbreviates decibels
+#. RMS abbreviates root mean square, a certain averaging method
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Difference = infinite RMS dB."
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Background level too high"
+msgstr "পুনরাবৃত্তি"
+
 #. i18n-hint: i.e. difference in loudness at the moment.
 #: src/effects/Contrast.cpp
 #, fuzzy
 msgid "Current difference"
 msgstr "প্লেব্যাক"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "No background measured"
+msgstr "পুনরাবৃত্তি"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
+msgid "Background not yet measured"
+msgstr "পুনরাবৃত্তি"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -2857,8 +3596,18 @@ msgstr "পুনরাবৃত্তি"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
+msgid "Results"
+msgstr "ডিরেক্টরি"
+
+#: src/effects/Contrast.cpp
+#, fuzzy
 msgid "Contrast..."
 msgstr "ফন্ট..."
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Hard Clipping"
+msgstr "নির্বাচন"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
@@ -2867,8 +3616,28 @@ msgstr "নির্বাচন"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
+msgid "Soft Overdrive"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Medium Overdrive"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Leveller"
+msgstr "প্লেব্যাক"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
 msgid "Rectifier Distortion"
 msgstr "ইন্টারফেস"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Upper Threshold"
+msgstr "লেবেল"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
@@ -2894,6 +3663,16 @@ msgstr "ইন্টারফেস"
 #, fuzzy
 msgid "Distortion type:"
 msgstr "ইন্টারফেস"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Parameter controls"
+msgstr "প্লেব্যাক"
+
+#: src/effects/Distortion.cpp
+#, fuzzy
+msgid "Clipping threshold"
+msgstr "লেবেল"
 
 #: src/effects/Distortion.cpp
 #, fuzzy
@@ -2958,7 +3737,17 @@ msgstr "প্রতিধ্বনি"
 
 #: src/effects/Echo.cpp
 #, fuzzy
+msgid "Repeats the selected audio again and again"
+msgstr "নির্বাচন"
+
+#: src/effects/Echo.cpp
+#, fuzzy
 msgid "&Delay time (seconds):"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Echo.cpp
+#, fuzzy
+msgid "D&ecay factor:"
 msgstr "নির্বাচনের শেষে"
 
 #: src/effects/Effect.cpp
@@ -3001,6 +3790,11 @@ msgstr "&অডিওসিটি পরিচিতি..."
 #, fuzzy
 msgid "Preparing preview"
 msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/effects/Effect.cpp
+#, fuzzy
+msgid "Previewing"
+msgstr "নির্বাচন"
 
 #. i18n-hint: "Nyquist" is an embedded interpreted programming language in
 #. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
@@ -3129,10 +3923,30 @@ msgstr "প্লেব্যাক"
 msgid "Start &Playback"
 msgstr "প্লেব্যাক"
 
+#: src/effects/EffectUI.cpp
+#, fuzzy
+msgid "Preview effect"
+msgstr "নির্বাচন"
+
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 #, fuzzy
 msgid "&Preview"
 msgstr "নির্বাচন"
+
+#: src/effects/EffectUI.cpp
+#, fuzzy
+msgid "&Preview effect"
+msgstr "নির্বাচন"
+
+#: src/effects/EffectUI.cpp
+#, fuzzy
+msgid "Skip backward"
+msgstr "নির্বাচনের শুরুতে"
+
+#: src/effects/EffectUI.cpp
+#, fuzzy
+msgid "Skip &Backward"
+msgstr "নির্বাচনের শুরুতে"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -3277,6 +4091,11 @@ msgstr "নির্বাচনের শেষে"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "&Draw"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Interpolation type"
 msgstr "ইন্টারফেস"
 
@@ -3339,12 +4158,22 @@ msgstr "নির্বাচন"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
+msgid "D&efault"
+msgstr "ডিরেক্টরি"
+
+#: src/effects/Equalization.cpp
+#, fuzzy
 msgid "Error Loading EQ Curves"
 msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
 msgid "Error Saving Equalization Curves"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/effects/Equalization.cpp
+#, fuzzy
+msgid "Curve not found"
 msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/effects/Equalization.cpp
@@ -3378,6 +4207,11 @@ msgid "&Get More..."
 msgstr "বেছে নিন"
 
 #: src/effects/Equalization.cpp
+#, fuzzy
+msgid "De&faults"
+msgstr "ডিরেক্টরি"
+
+#: src/effects/Equalization.cpp
 #, fuzzy, c-format
 msgid "Rename '%s' to..."
 msgstr "মোছো"
@@ -3396,6 +4230,11 @@ msgstr "মোছো"
 #, fuzzy
 msgid "Same name"
 msgstr "চ্যানেল"
+
+#: src/effects/Equalization.cpp
+#, fuzzy, c-format
+msgid "Overwrite existing curve '%s'?"
+msgstr "মোছো"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -3428,6 +4267,11 @@ msgid "Export EQ curves as..."
 msgstr "মোছো"
 
 #: src/effects/Equalization.cpp
+#, fuzzy
+msgid "Cannot Export 'unnamed'"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/effects/Equalization.cpp
 #, fuzzy, c-format
 msgid "%d curves exported to %s"
 msgstr "রেকর্ডিং হচ্ছে"
@@ -3457,6 +4301,41 @@ msgstr "গতি বৃদ্ধি"
 msgid "Applies a linear fade-in to the selected audio"
 msgstr "নির্বাচনের শেষে"
 
+#: src/effects/Fade.cpp
+#, fuzzy
+msgid "Applies a linear fade-out to the selected audio"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Find Clicks"
+msgstr "Alt-বাম-ক্লিক"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Clicks"
+msgstr "Alt-বাম-ক্লিক"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Right"
+msgstr "Alt-বাম-ক্লিক"
+
+#: src/effects/FindClicks.cpp
+#, fuzzy
+msgid "Click Left"
+msgstr "Alt-বাম-ক্লিক"
+
+#: src/effects/FindClipping.cpp
+#, fuzzy
+msgid "Find Clipping"
+msgstr "নির্বাচন"
+
+#: src/effects/FindClipping.cpp
+#, fuzzy
+msgid "Clipping"
+msgstr "নির্বাচন"
+
 #: src/effects/Invert.cpp
 #, fuzzy
 msgid "Invert"
@@ -3476,6 +4355,16 @@ msgstr "&এনালাইজ"
 #, fuzzy, c-format
 msgid "Processing: %s"
 msgstr "নির্বাচন"
+
+#: src/effects/Loudness.cpp
+#, fuzzy
+msgid "&Normalize"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/Noise.cpp
+#, fuzzy
+msgid "Noise"
+msgstr "উইন্ডো"
 
 #: src/effects/Noise.cpp
 #, fuzzy
@@ -3537,6 +4426,11 @@ msgstr "নির্বাচনের শেষে"
 msgid "Release time"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "&Frequency smoothing (bands):"
+msgstr "নির্বাচন"
+
 #: src/effects/NoiseReduction.cpp src/effects/NoiseRemoval.cpp
 #, fuzzy
 msgid "Frequency smoothing"
@@ -3583,6 +4477,16 @@ msgstr "উইন্ডো"
 msgid "Window si&ze:"
 msgstr "উইন্ডো"
 
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "2048 (default)"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/NoiseReduction.cpp
+#, fuzzy
+msgid "4 (default)"
+msgstr "নির্বাচনের শেষে"
+
 #: src/effects/NoiseRemoval.cpp
 #, fuzzy
 msgid "Noise Removal"
@@ -3597,6 +4501,11 @@ msgstr "গতি বৃদ্ধি"
 #, fuzzy
 msgid "&Sensitivity (dB):"
 msgstr "গতি বৃদ্ধি"
+
+#: src/effects/NoiseRemoval.cpp
+#, fuzzy
+msgid "Fr&equency smoothing (Hz):"
+msgstr "নির্বাচন"
 
 #: src/effects/NoiseRemoval.cpp
 #, fuzzy
@@ -3643,6 +4552,11 @@ msgstr "ফেজার"
 
 #: src/effects/Phaser.cpp src/effects/Wahwah.cpp
 #, fuzzy
+msgid "LFO Freq&uency (Hz):"
+msgstr "নির্বাচনের শুরুতে"
+
+#: src/effects/Phaser.cpp src/effects/Wahwah.cpp
+#, fuzzy
 msgid "LFO frequency in hertz"
 msgstr "নির্বাচনের শুরুতে"
 
@@ -3650,6 +4564,11 @@ msgstr "নির্বাচনের শুরুতে"
 #, fuzzy
 msgid "Dept&h:"
 msgstr "গভীরতা"
+
+#: src/effects/Phaser.cpp src/effects/Wahwah.cpp
+#, fuzzy
+msgid "Depth in percent"
+msgstr "প্লেব্যাক"
 
 #: src/effects/Phaser.cpp
 #, fuzzy
@@ -3766,6 +4685,11 @@ msgstr "নির্বাচন"
 
 #: src/effects/ScienFilter.cpp
 #, fuzzy
+msgid "Classic Filters"
+msgstr "সকল ফাইল (*)|*"
+
+#: src/effects/ScienFilter.cpp
+#, fuzzy
 msgid "&Filter Type:"
 msgstr "গতি বৃদ্ধি"
 
@@ -3802,6 +4726,11 @@ msgstr "উইন্ডো"
 #: src/effects/ScoreAlignDialog.cpp
 #, fuzzy
 msgid "Silence Threshold:"
+msgstr "লেবেল"
+
+#: src/effects/ScoreAlignDialog.cpp
+#, fuzzy
+msgid "Silence Threshold"
 msgstr "লেবেল"
 
 #. i18n-hint: The English would be clearer if it had 'Duration' rather than 'Time'
@@ -3854,6 +4783,16 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 msgid "Smooth Time"
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
+#: src/effects/ScoreAlignDialog.cpp
+#, fuzzy
+msgid "Use Defaults"
+msgstr "ডিরেক্টরি"
+
+#: src/effects/ScoreAlignDialog.cpp
+#, fuzzy
+msgid "Restore Defaults"
+msgstr "নির্বাচন"
+
 #. i18n-hint: noun
 #: src/effects/Silence.cpp
 #, fuzzy
@@ -3875,6 +4814,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy
 msgid "Resampling right channel"
 msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/effects/StereoToMono.cpp
+#, fuzzy
+msgid "Mixing down to mono"
+msgstr "নির্বাচনের শেষে"
 
 #: src/effects/TimeScale.cpp
 #, fuzzy
@@ -3961,6 +4905,12 @@ msgstr "সংকোচক..."
 msgid "VST Effects"
 msgstr "সকল ফাইল (*)|*"
 
+#: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
+#: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
+#, fuzzy
+msgid "Could not load the library"
+msgstr "রেকর্ডিং হচ্ছে"
+
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
 msgid "VST Effect Options"
@@ -3997,6 +4947,11 @@ msgstr "&অডিওসিটি পরিচিতি..."
 #, fuzzy
 msgid "Standard VST program file"
 msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/effects/VST/VSTEffect.cpp
+#, fuzzy
+msgid "Tenacity VST preset file"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
@@ -4054,11 +5009,31 @@ msgstr "রেজোনেন্স:"
 msgid "Resonance"
 msgstr "রেজোনেন্স:"
 
+#: src/effects/Wahwah.cpp
+#, fuzzy
+msgid "Wah Frequency Offse&t (%):"
+msgstr "নির্বাচনের শুরুতে"
+
+#: src/effects/Wahwah.cpp
+#, fuzzy
+msgid "Wah frequency offset in percent"
+msgstr "নির্বাচনের শুরুতে"
+
 #. i18n-hint: Audio Unit is the name of an Apple audio software protocol
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
 msgid "Audio Unit Effects"
 msgstr "সকল ফাইল (*)|*"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Provides Audio Unit Effects support to Tenacity"
+msgstr "সকল ফাইল (*)|*"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Could not find component"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
@@ -4082,6 +5057,11 @@ msgstr "উইন্ডো"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
+msgid "Generic"
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
 msgid "Import Audio Unit Presets"
 msgstr "সংরক্ষিত %s"
 
@@ -4097,13 +5077,31 @@ msgstr "কাজ"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
+msgid "Couldn't open \"%s\""
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy, c-format
 msgid "Unable to read the preset from \"%s\""
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy, c-format
+msgid "Failed to encode preset from \"%s\""
 msgstr "নির্বাচনের শেষে"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
 msgid "Unable to store preset in config file"
 msgstr "নির্বাচনের শেষে"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy, c-format
+msgid ""
+"Could not import \"%s\" preset\n"
+"\n"
+"%s"
+msgstr "সংরক্ষিত %s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
@@ -4114,6 +5112,14 @@ msgstr "নির্বাচন"
 #, fuzzy
 msgid "Standard Audio Unit preset file"
 msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy, c-format
+msgid ""
+"Could not export \"%s\" preset\n"
+"\n"
+"%s"
+msgstr "সংরক্ষিত %s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
@@ -4133,6 +5139,31 @@ msgstr "সংরক্ষিত %s"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
 msgid "Failed to retrieve preset content"
+msgstr "সংরক্ষিত %s"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Failed to convert property list to XML data"
+msgstr "সংরক্ষিত %s"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy, c-format
+msgid "Failed to write XML preset to \"%s\""
+msgstr "নির্বাচনের শেষে"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Failed to convert preset to internal format"
+msgstr "সংরক্ষিত %s"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy
+msgid "Failed to create property list for preset"
+msgstr "সংরক্ষিত %s"
+
+#: src/effects/audiounits/AudioUnitEffect.cpp
+#, fuzzy, c-format
+msgid "Failed to set class info for \"%s\" preset"
 msgstr "সংরক্ষিত %s"
 
 #. i18n-hint: the name of an Apple audio software protocol
@@ -4227,6 +5258,11 @@ msgstr "সমস্যা"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
+msgid "Debug Output: "
+msgstr "সকল ফাইল (*)|*"
+
+#: src/effects/nyquist/Nyquist.cpp
+#, fuzzy
 msgid "Processing complete."
 msgstr "রেকর্ডিং হচ্ছে"
 
@@ -4244,6 +5280,12 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 #, fuzzy
 msgid "Error in Nyquist code"
 msgstr "%d চ্যানেল"
+
+#. i18n-hint: refers to programming "languages"
+#: src/effects/nyquist/Nyquist.cpp
+#, fuzzy
+msgid "Could not determine language"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy, c-format
@@ -4269,8 +5311,20 @@ msgstr "সংরক্ষিত %s"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
+msgid "File could not be loaded"
+msgstr "একটি মিডি ফাইল নির্বাচন করুন"
+
+#: src/effects/nyquist/Nyquist.cpp
+#, fuzzy
 msgid "Save Nyquist script"
 msgstr "সংরক্ষিত %s"
+
+#: src/effects/nyquist/Nyquist.cpp
+#, fuzzy, c-format
+msgid ""
+"Value range:\n"
+"%s to %s"
+msgstr "মোনো"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -4320,6 +5374,11 @@ msgstr "সংরক্ষিত %s"
 #: src/export/Export.cpp
 #, fuzzy
 msgid "Exported Tags"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/export/Export.cpp
+#, fuzzy
+msgid "All selected audio is muted."
 msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/export/Export.cpp
@@ -4381,9 +5440,19 @@ msgstr "কমান্ড একশন"
 msgid "(external program)"
 msgstr "সমস্যা"
 
+#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
+#, fuzzy, c-format
+msgid "Cannot export audio to %s"
+msgstr "&অডিওসিটি পরিচিতি..."
+
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 #, fuzzy
 msgid "Export"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/export/ExportCL.cpp
+#, fuzzy
+msgid "Exporting the selected audio using command-line encoder"
 msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/export/ExportCL.cpp
@@ -4400,6 +5469,21 @@ msgstr "কমান্ড একশন"
 #, fuzzy
 msgid "&OK"
 msgstr "ঠিক আছে"
+
+#: src/export/ExportCL.cpp
+#, fuzzy, c-format
+msgid "Unable to locate \"%s\" in your path."
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportDialog.cpp
+#, fuzzy
+msgid "Export Options"
+msgstr "কাজ"
+
+#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
+#, fuzzy
+msgid "Cancel"
+msgstr "নির্বাচনের শেষে"
 
 #: src/export/ExportFFmpeg.cpp
 #, fuzzy
@@ -4480,6 +5564,11 @@ msgstr "লাভ"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
+msgid "Open custom FFmpeg format options"
+msgstr "লেবেল"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
 msgid "Current Format:"
 msgstr "নির্বাচনের শেষে"
 
@@ -4508,6 +5597,12 @@ msgstr "নির্বাচনের শেষে"
 msgid "Please select format before saving a profile"
 msgstr "নির্বাচনের শেষে"
 
+#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Please select codec before saving a profile"
+msgstr "নির্বাচনের শেষে"
+
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy, c-format
 msgid "Replace preset '%s'?"
@@ -4517,6 +5612,12 @@ msgstr "মোছো"
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "LC"
+msgstr "L"
+
+# Professional music editors are more familiar with L for left channel of Audio; so leaving it as L - mak
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "LTP"
 msgstr "L"
 
 #: src/export/ExportFFmpegDialogs.cpp
@@ -4538,6 +5639,11 @@ msgstr "প্লেব্যাক"
 #, fuzzy
 msgid "8-level"
 msgstr "প্লেব্যাক"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Configure custom FFmpeg options"
+msgstr "লেবেল"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
@@ -4564,6 +5670,11 @@ msgstr "নির্বাচন"
 #, fuzzy
 msgid "Codec:"
 msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Show All Formats"
+msgstr "সক্রিয়"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
@@ -4615,6 +5726,14 @@ msgstr "নাম..."
 msgid "LPC"
 msgstr "L"
 
+#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
+#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
+#. it has a hard to predict effect on the degree of compression
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Mux Rate:"
+msgstr "মোছো"
+
 #. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
 #. compression.  It measures how big a chunk of audio is compressed in one piece.
 #: src/export/ExportFFmpegDialogs.cpp
@@ -4642,6 +5761,11 @@ msgstr "লেবেল"
 msgid "Select xml file to export presets into"
 msgstr "নির্বাচনের শেষে"
 
+#: src/export/ExportFFmpegDialogs.cpp
+#, fuzzy
+msgid "Failed to guess format"
+msgstr "নির্বাচনের শেষে"
+
 #. i18n-hint: "codec" is short for a "coder-decoder" algorithm
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
@@ -4652,6 +5776,11 @@ msgstr "সংরক্ষিত %s"
 #, fuzzy
 msgid "Level:"
 msgstr "প্লেব্যাক"
+
+#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
+#, fuzzy
+msgid "Bit depth:"
+msgstr "মোছো"
 
 #: src/export/ExportFLAC.cpp
 #, fuzzy
@@ -4720,6 +5849,11 @@ msgstr "নির্বাচন"
 msgid "Stereo"
 msgstr "নির্বাচন"
 
+#: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "Bit Rate Mode:"
+msgstr "মোছো"
+
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
@@ -4741,6 +5875,11 @@ msgid "MP3 Files"
 msgstr "সকল ফাইল (*)|*"
 
 #: src/export/ExportMP3.cpp
+#, fuzzy
+msgid "Unable to initialize MP3 stream"
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportMP3.cpp
 #, fuzzy, c-format
 msgid "Exporting selected audio with %s preset"
 msgstr "&অডিওসিটি পরিচিতি..."
@@ -4748,6 +5887,11 @@ msgstr "&অডিওসিটি পরিচিতি..."
 #: src/export/ExportMP3.cpp
 #, fuzzy, c-format
 msgid "Exporting the audio with %s preset"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/export/ExportMP3.cpp
+#, fuzzy, c-format
+msgid "Exporting selected audio with VBR quality %s"
 msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/export/ExportMP3.cpp
@@ -4763,6 +5907,27 @@ msgstr "নির্বাচন"
 #: src/export/ExportMP3.cpp
 #, fuzzy, c-format
 msgid "Exporting the audio at %d Kbps"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+#| msgid "Labels"
+msgid "Keep Labels"
+msgstr "লেবেল"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Matroska Audio Files"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the selected audio as MKA"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/export/ExportMka.cpp
+#, fuzzy
+msgid "Exporting the audio as MKA"
 msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/export/ExportMultiple.cpp
@@ -4816,6 +5981,11 @@ msgstr "নির্বাচনের শুরুতে"
 
 #: src/export/ExportMultiple.cpp
 #, fuzzy
+msgid "Numbering after File name prefix"
+msgstr "নাম..."
+
+#: src/export/ExportMultiple.cpp
+#, fuzzy
 msgid "File name prefix:"
 msgstr "নাম..."
 
@@ -4826,13 +5996,48 @@ msgstr "নাম..."
 
 #: src/export/ExportMultiple.cpp
 #, fuzzy
+msgid "Overwrite existing files"
+msgstr "মোছো"
+
+#: src/export/ExportMultiple.cpp
+#, fuzzy
 msgid "Choose a location to save the exported files"
 msgstr "কমান্ড একশন"
 
 #: src/export/ExportMultiple.cpp
 #, fuzzy
+msgid "Continue to export remaining files?"
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportMultiple.cpp
+#, fuzzy
 msgid "Save As..."
 msgstr "সংরক্ষিত %s"
+
+#: src/export/ExportOGG.cpp
+#, fuzzy
+msgid "Unable to export - rate or quality problem"
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportOGG.cpp
+#, fuzzy
+msgid "Unable to export - problem with metadata"
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportOGG.cpp
+#, fuzzy
+msgid "Unable to export - problem initialising"
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportOGG.cpp
+#, fuzzy
+msgid "Unable to export - problem creating stream"
+msgstr "নির্বাচনের শেষে"
+
+#: src/export/ExportOGG.cpp
+#, fuzzy
+msgid "Unable to export - problem with packets"
+msgstr "নির্বাচনের শেষে"
 
 #: src/export/ExportOGG.cpp
 #, fuzzy
@@ -4875,6 +6080,11 @@ msgid "No format specific options"
 msgstr "কাজ"
 
 #: src/ffmpeg/FFmpeg.cpp
+#, fuzzy
+msgid "FFmpeg library not found"
+msgstr "সমস্যা"
+
+#: src/ffmpeg/FFmpeg.cpp
 #, fuzzy, c-format
 msgid "Location of '%s':"
 msgstr "কাজ"
@@ -4896,6 +6106,11 @@ msgstr "সকল ফাইল (*)|*"
 #, fuzzy
 msgid "Select stream(s) to import"
 msgstr "নির্বাচনের শেষে"
+
+#: src/import/Import.cpp
+#, fuzzy, c-format
+msgid "File \"%s\" not found."
+msgstr "প্লেব্যাক"
 
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, fuzzy, c-format
@@ -4922,6 +6137,46 @@ msgstr "সংরক্ষিত %s"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
+msgid "Invalid project 'vpos' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'h' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'zoom' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel0' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'sel1' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selLow' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Invalid project 'selHigh' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy, c-format
+msgid "Couldn't find the project data folder: \"%s\""
+msgstr "সংরক্ষিত %s"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
 msgid "Project Import"
 msgstr "নির্বাচনের শুরুতে"
 
@@ -4932,13 +6187,28 @@ msgstr "নমুনা পরিবর্তন"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
+msgid "Invalid sequence 'sampleformat' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
 msgid "Invalid sequence 'numsamples' attribute."
+msgstr "নমুনা পরিবর্তন"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy
+msgid "Missing or invalid silentblockfile 'len' attribute."
 msgstr "নমুনা পরিবর্তন"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy, c-format
 msgid "Failed to open %s"
 msgstr "নির্বাচনের শেষে"
+
+#: src/import/ImportAUP.cpp
+#, fuzzy, c-format
+msgid "Failed to seek to position %lld in %s"
+msgstr "সংরক্ষিত %s"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy, c-format
@@ -5009,9 +6279,29 @@ msgstr "আমদানী"
 msgid "Import MIDI"
 msgstr "আমদানী"
 
+#: src/import/ImportMIDI.cpp
+#, fuzzy, c-format
+msgid "Could not open file %s: Filename too short."
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/import/ImportMIDI.cpp
+#, fuzzy, c-format
+msgid "Could not open file %s: Incorrect filetype."
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/import/ImportMIDI.cpp
+#, fuzzy, c-format
+msgid "Could not open file %s."
+msgstr "রেকর্ডিং হচ্ছে"
+
 #: src/import/ImportMP3.cpp
 #, fuzzy
 msgid "MP3 files"
+msgstr "সকল ফাইল (*)|*"
+
+#: src/import/ImportMka.cpp
+#, fuzzy
+msgid "Matroska files"
 msgstr "সকল ফাইল (*)|*"
 
 #: src/import/ImportPCM.cpp
@@ -5032,6 +6322,21 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 #: src/import/ImportQT.cpp
 #, fuzzy
 msgid "Unable to start QuickTime extraction"
+msgstr "নির্বাচনের শেষে"
+
+#: src/import/ImportQT.cpp
+#, fuzzy
+msgid "Unable to set QuickTime render quality"
+msgstr "নির্বাচনের শেষে"
+
+#: src/import/ImportQT.cpp
+#, fuzzy
+msgid "Unable to set QuickTime discrete channels property"
+msgstr "নির্বাচনের শেষে"
+
+#: src/import/ImportQT.cpp
+#, fuzzy
+msgid "Unable to get QuickTime sample size property"
 msgstr "নির্বাচনের শেষে"
 
 #: src/import/ImportQT.cpp
@@ -5061,6 +6366,13 @@ msgstr "আমদানী"
 #, fuzzy
 msgid "No endianness"
 msgstr "ডিরেক্টরি"
+
+#. i18n-hint: Refers to byte-order.  Don't translate this if you don't
+#. know the correct technical word.
+#: src/import/ImportRaw.cpp
+#, fuzzy
+msgid "Little-endian"
+msgstr "মান"
 
 #. i18n-hint: Refers to byte-order.  Don't translate this if you don't
 #. know the correct technical word.
@@ -5112,6 +6424,12 @@ msgstr "সংরক্ষিত %s"
 #, fuzzy
 msgid "Sample rate:"
 msgstr "নমুনা পরিবর্তন"
+
+#. i18n-hint: Guess format of raw file
+#: src/import/ImportRaw.cpp
+#, fuzzy
+msgid "Detect"
+msgstr "পুনরাবৃত্তি"
 
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 #, fuzzy
@@ -5330,6 +6648,11 @@ msgstr "পুনরাবৃত্তি"
 
 #: src/menus/EditMenus.cpp
 #, fuzzy
+msgid "&Metadata..."
+msgstr "সংরক্ষিত %s"
+
+#: src/menus/EditMenus.cpp
+#, fuzzy
 msgid "Pre&ferences..."
 msgstr "প্লেব্যাক"
 
@@ -5493,6 +6816,11 @@ msgstr "&অডিওসিটি পরিচিতি..."
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
+msgid "Export as &MKA"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/menus/FileMenus.cpp
+#, fuzzy
 msgid "Export as &OGG"
 msgstr "&অডিওসিটি পরিচিতি..."
 
@@ -5594,6 +6922,16 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 
 #: src/menus/HelpMenus.cpp
 #, fuzzy
+msgid "&Quick Help..."
+msgstr "মোছো"
+
+#: src/menus/HelpMenus.cpp
+#, fuzzy
+msgid "Au&dio Device Info..."
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/menus/HelpMenus.cpp
+#, fuzzy
 msgid "&MIDI Device Info..."
 msgstr "একটি মিডি ফাইল নির্বাচন করুন"
 
@@ -5601,6 +6939,18 @@ msgstr "একটি মিডি ফাইল নির্বাচন কর�
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Added label"
+msgstr "মোছো"
+
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Paste Text to New Label"
+msgstr "নির্বাচন"
+
+#. i18n-hint: (verb) past tense.  Audacity has just cut the labeled audio
+#. regions.
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Cut labeled audio regions to clipboard"
 msgstr "মোছো"
 
 #. i18n-hint: (verb)
@@ -5619,6 +6969,13 @@ msgstr "মোছো"
 #: src/menus/LabelMenus.cpp
 #, fuzzy
 msgid "Delete Labeled Audio"
+msgstr "মোছো"
+
+#. i18n-hint: (verb) Audacity has just split cut the labeled audio
+#. regions
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Split Cut labeled audio regions to clipboard"
 msgstr "মোছো"
 
 #. i18n-hint: (verb) Do a special kind of cut on the labels
@@ -5653,17 +7010,36 @@ msgstr "নির্বাচনের শেষে"
 msgid "Silence Labeled Audio"
 msgstr "মোছো"
 
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Copied labeled audio regions to clipboard"
+msgstr "নির্বাচনের শেষে"
+
 #. i18n-hint: (verb)
 #: src/menus/LabelMenus.cpp
 #, fuzzy
 msgid "Copy Labeled Audio"
 msgstr "সংকোচক..."
 
+#. i18n-hint: (verb) past tense.  Audacity has just split the labeled
+#. audio (a point or a region)
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Split labeled audio (points or regions)"
+msgstr "মোছো"
+
 #. i18n-hint: (verb)
 #: src/menus/LabelMenus.cpp
 #, fuzzy
 msgid "Split Labeled Audio"
 msgstr "নির্বাচন"
+
+#. i18n-hint: (verb) Audacity has just joined the labeled audio (points or
+#. regions)
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Joined labeled audio (points or regions)"
+msgstr "নির্বাচনের শেষে"
 
 #. i18n-hint: (verb)
 #: src/menus/LabelMenus.cpp
@@ -5704,6 +7080,11 @@ msgstr "নির্বাচনের শেষে"
 #, fuzzy
 msgid "Add Label at &Playback Position"
 msgstr "নির্বাচনের শেষে"
+
+#: src/menus/LabelMenus.cpp
+#, fuzzy
+msgid "Paste Te&xt to New Label"
+msgstr "নির্বাচন"
 
 #: src/menus/LabelMenus.cpp
 #, fuzzy
@@ -5774,6 +7155,11 @@ msgstr "লেবেল"
 
 #: src/menus/NavigationMenus.cpp
 #, fuzzy
+msgid "Move &Backward from Toolbars to Tracks"
+msgstr "মোনো"
+
+#: src/menus/NavigationMenus.cpp
+#, fuzzy
 msgid "Move F&orward from Toolbars to Tracks"
 msgstr "মোনো"
 
@@ -5830,6 +7216,11 @@ msgstr "পুনরাবৃত্তি"
 #: src/menus/PluginMenus.cpp
 #, fuzzy, c-format
 msgid "Plug-in %d to %d"
+msgstr "নির্বাচনের শেষে"
+
+#: src/menus/PluginMenus.cpp
+#, fuzzy
+msgid "&Generate"
 msgstr "নির্বাচনের শেষে"
 
 #: src/menus/PluginMenus.cpp
@@ -6158,6 +7549,11 @@ msgstr "নির্বাচনের শুরুতে"
 
 #: src/menus/SelectMenus.cpp
 #, fuzzy
+msgid "Store Cursor Pos&ition"
+msgstr "নমুনা পরিবর্তন"
+
+#: src/menus/SelectMenus.cpp
+#, fuzzy
 msgid "At &Zero Crossings"
 msgstr "নির্বাচন"
 
@@ -6293,7 +7689,17 @@ msgstr "ডান"
 
 #: src/menus/SelectMenus.cpp
 #, fuzzy
+msgid "Cursor Sh&ort Jump Left"
+msgstr "ডান"
+
+#: src/menus/SelectMenus.cpp
+#, fuzzy
 msgid "Cursor Shor&t Jump Right"
+msgstr "ডান"
+
+#: src/menus/SelectMenus.cpp
+#, fuzzy
+msgid "Cursor Long J&ump Left"
 msgstr "ডান"
 
 #: src/menus/SelectMenus.cpp
@@ -6310,6 +7716,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy
 msgid "Reset Toolb&ars"
 msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/menus/TrackMenus.cpp
+#, fuzzy, c-format
+msgid "Rendered all audio in track '%s'"
+msgstr "রেকর্ড"
 
 #. i18n-hint: One or more audio tracks have been panned
 #: src/menus/TrackMenus.cpp
@@ -6467,6 +7878,11 @@ msgstr "নির্বাচনের শুরুতে"
 #: src/menus/TrackMenus.cpp
 #, fuzzy
 msgid "Synchronize MIDI with Audio"
+msgstr "নির্বাচনের শেষে"
+
+#: src/menus/TrackMenus.cpp
+#, fuzzy
+msgid "Synchronizing MIDI and Audio Tracks"
 msgstr "নির্বাচনের শেষে"
 
 #: src/menus/TrackMenus.cpp
@@ -6788,6 +8204,11 @@ msgstr "নির্বাচন"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
+msgid "no label track at or below focused track"
+msgstr "নির্বাচন"
+
+#: src/menus/TransportMenus.cpp
+#, fuzzy
 msgid "no labels in label track"
 msgstr "নির্বাচন"
 
@@ -6894,6 +8315,12 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy
 msgid "T&ransport"
 msgstr "অঙ্কুর প্রকল্পের পক্ষে মাহে আলম খান (makl10n@yahoo.com)"
+
+#. i18n-hint: (verb) Start playing audio
+#: src/menus/TransportMenus.cpp
+#, fuzzy
+msgid "Pl&ay"
+msgstr "পরিবর্তনশীল গতি"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
@@ -7068,6 +8495,16 @@ msgstr "নির্বাচনের শুরুতে"
 msgid "Skip to Selection End"
 msgstr "নির্বাচনের শেষে"
 
+#: src/menus/ViewMenus.cpp
+#, fuzzy
+msgid "Track &Name (on/off)"
+msgstr "নির্বাচন"
+
+#: src/menus/ViewMenus.cpp
+#, fuzzy
+msgid "&Show Clipping (on/off)"
+msgstr "নির্বাচন"
+
 #: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
 msgid "Show Effects Rack"
@@ -7081,6 +8518,11 @@ msgstr "উইন্ডো"
 #: src/prefs/BatchPrefs.cpp
 #, fuzzy
 msgid "Preferences for Batch"
+msgstr "প্লেব্যাক"
+
+#: src/prefs/BatchPrefs.cpp src/prefs/TracksBehaviorsPrefs.cpp
+#, fuzzy
+msgid "Behaviors"
 msgstr "প্লেব্যাক"
 
 #: src/prefs/DevicePrefs.cpp
@@ -7109,6 +8551,15 @@ msgstr "প্লেব্যাক"
 #, fuzzy
 msgid "&Device:"
 msgstr "নাম..."
+
+#. i18n-hint: modifier as in "Recording preferences", not progressive verb
+#: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
+#: src/prefs/RecordingPrefs.h
+#, fuzzy
+#| msgid "Recording"
+msgctxt "preference"
+msgid "Recording"
+msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/prefs/DevicePrefs.cpp src/prefs/MidiIOPrefs.cpp
 #, fuzzy
@@ -7241,6 +8692,11 @@ msgstr "কমান্ড একশন"
 msgid "New Temporary Directory"
 msgstr "নির্বাচন"
 
+#: src/prefs/DirectoriesPrefs.cpp
+#, fuzzy
+msgid "Temp Directory Update"
+msgstr "নির্বাচন"
+
 #: src/prefs/EffectsPrefs.cpp src/prefs/EffectsPrefs.h
 #, fuzzy
 msgid "Effects"
@@ -7255,6 +8711,24 @@ msgstr "প্লেব্যাক"
 #, fuzzy
 msgid "Sorted by Effect Name"
 msgstr "নির্বাচনের শুরুতে"
+
+#: src/prefs/EffectsPrefs.cpp
+#, fuzzy
+msgid "Sorted by Publisher and Effect Name"
+msgstr "নির্বাচনের শুরুতে"
+
+#: src/prefs/EffectsPrefs.cpp
+#, fuzzy
+msgid "Sorted by Type and Effect Name"
+msgstr "নির্বাচনের শুরুতে"
+
+#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
+#. (Application programming interface)
+#.
+#: src/prefs/EffectsPrefs.cpp
+#, fuzzy
+msgid "&LADSPA"
+msgstr "সকল ফাইল (*)|*"
 
 #. i18n-hint: "Nyquist" is an embedded interpreted programming language in
 #. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
@@ -7339,6 +8813,11 @@ msgstr "নির্বাচন"
 
 #: src/prefs/ExtImportPrefs.cpp
 #, fuzzy
+msgid "Do you really want to delete selected rule?"
+msgstr "মোছো"
+
+#: src/prefs/ExtImportPrefs.cpp
+#, fuzzy
 msgid "Rule deletion confirmation"
 msgstr "%d চ্যানেল"
 
@@ -7364,6 +8843,11 @@ msgstr "প্লেব্যাক"
 msgid "Local"
 msgstr "কাজ"
 
+#: src/prefs/GUIPrefs.cpp src/prefs/TracksPrefs.cpp src/prefs/WaveformPrefs.cpp
+#, fuzzy
+msgid "Display"
+msgstr "নমুনা পরিবর্তন"
+
 #: src/prefs/GUIPrefs.cpp
 #, fuzzy
 msgid "&Language:"
@@ -7388,6 +8872,11 @@ msgstr "সক্রিয়"
 #, fuzzy
 msgid "Show Timeline Tooltips"
 msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
+#, fuzzy
+msgid "Show Scrub Ruler"
+msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -7465,9 +8954,24 @@ msgstr "উল্টা করা হচ্ছে"
 msgid "&Import..."
 msgstr "আমদানী"
 
+#: src/prefs/KeyConfigPrefs.cpp src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "&Defaults"
+msgstr "ডিরেক্টরি"
+
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
 msgid "Error Importing Keyboard Shortcuts"
+msgstr "আমদানী"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy, c-format
+msgid "Loaded %d keyboard shortcuts\n"
+msgstr "সংরক্ষিত %s"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, fuzzy
+msgid "Loading Keyboard Shortcuts"
 msgstr "আমদানী"
 
 #: src/prefs/KeyConfigPrefs.cpp
@@ -7489,6 +8993,11 @@ msgstr "প্লেব্যাক"
 #, fuzzy
 msgid "FFmpeg Import/Export Library"
 msgstr "সংরক্ষিত %s"
+
+#: src/prefs/LibraryPrefs.cpp
+#, fuzzy
+msgid "FFmpeg Library Version:"
+msgstr "সমস্যা"
 
 #: src/prefs/LibraryPrefs.cpp
 #, fuzzy
@@ -7635,6 +9144,11 @@ msgstr "ডান"
 
 #: src/prefs/MousePrefs.cpp
 #, fuzzy
+msgid "same as left-drag"
+msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
 msgid "Shift-Drag"
 msgstr "Alt-বাম-ক্লিক"
 
@@ -7655,6 +9169,11 @@ msgstr "নির্বাচনের শেষে"
 
 #: src/prefs/MousePrefs.cpp
 #, fuzzy
+msgid "Move clip left/right or between tracks"
+msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
 msgid "Shift-Left-Drag"
 msgstr "Alt-বাম-ক্লিক"
 
@@ -7667,6 +9186,11 @@ msgstr "Alt-বাম-ক্লিক"
 #, fuzzy
 msgid "Move clip up/down between tracks"
 msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "Alt-Left-Drag"
+msgstr "Alt-বাম-ক্লিক"
 
 # I guess in should be গেইন - mak
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
@@ -7712,6 +9236,11 @@ msgid "same as select tool"
 msgstr "নির্বাচনের শেষে"
 
 #: src/prefs/MousePrefs.cpp
+#, fuzzy
+msgid "same as zoom tool"
+msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/MousePrefs.cpp
 msgid "Any"
 msgstr "যেকোন"
 
@@ -7744,6 +9273,17 @@ msgstr "সকল ফাইল (*)|*"
 #, fuzzy
 msgid "&Length:"
 msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: (noun) this is a preview of the cut
+#: src/prefs/PlaybackPrefs.cpp
+#, fuzzy
+msgid "Cut Preview"
+msgstr "প্লেব্যাক"
+
+#: src/prefs/PrefsDialog.cpp
+#, fuzzy
+msgid "Tenacity Preferences"
+msgstr "প্লেব্যাক"
 
 #: src/prefs/PrefsDialog.cpp src/prefs/PrefsDialog.h
 #, fuzzy
@@ -7794,6 +9334,12 @@ msgstr "প্লেব্যাক"
 msgid "Record on a new track"
 msgstr "রেকর্ড"
 
+#. i18n-hint: Dropout is a loss of a short sequence audio sample data from the recording
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "Detect dropouts"
+msgstr "নির্বাচনের শেষে"
+
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "Sound Activated Recording"
@@ -7803,6 +9349,12 @@ msgstr "রেকর্ডিং হচ্ছে"
 #, fuzzy
 msgid "Le&vel (dB):"
 msgstr "গতি বৃদ্ধি"
+
+#. i18n-hint: start of two-part phrase, "Name newly recorded tracks with:"
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
+msgid "Name newly recorded tracks"
+msgstr "নির্বাচনের শেষে"
 
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
@@ -7831,6 +9383,11 @@ msgstr "নির্বাচনের শুরুতে"
 
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
+msgid "System T&ime"
+msgstr "নির্বাচনের শুরুতে"
+
+#: src/prefs/RecordingPrefs.cpp
+#, fuzzy
 msgid "Punch and Roll Recording"
 msgstr "প্লেব্যাক"
 
@@ -7838,6 +9395,19 @@ msgstr "প্লেব্যাক"
 #, fuzzy
 msgid "Cross&fade:"
 msgstr "নির্বাচন"
+
+#. i18n-hint: Time units, that is Period = 1 / Frequency
+#: src/prefs/SpectrogramSettings.cpp
+#, fuzzy
+msgid "Period"
+msgstr "কাজ"
+
+#. i18n-hint: New color scheme for spectrograms
+#: src/prefs/SpectrogramSettings.cpp
+#, fuzzy
+msgctxt "spectrum prefs"
+msgid "Color (default)"
+msgstr "নির্বাচনের শেষে"
 
 #. i18n-hint: Grayscale color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -7886,6 +9456,11 @@ msgstr "লিনিয়ার"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
+msgid "Ma&x Frequency (Hz):"
+msgstr "লিনিয়ার"
+
+#: src/prefs/SpectrumPrefs.cpp
+#, fuzzy
 msgid "&Gain (dB):"
 msgstr "গতি বৃদ্ধি"
 
@@ -7896,8 +9471,18 @@ msgstr "গতি বৃদ্ধি"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
+msgid "A&lgorithm:"
+msgstr "ইন্টারফেস"
+
+#: src/prefs/SpectrumPrefs.cpp
+#, fuzzy
 msgid "Window &size:"
 msgstr "উইন্ডো"
+
+#: src/prefs/SpectrumPrefs.cpp
+#, fuzzy
+msgid "1024 - default"
+msgstr "নির্বাচনের শেষে"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
@@ -7908,6 +9493,11 @@ msgstr "উইন্ডো"
 #, fuzzy
 msgid "Ena&ble Spectral Selection"
 msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/SpectrumPrefs.cpp
+#, fuzzy
+msgid "Show a grid along the &Y-axis"
+msgstr "সক্রিয়"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
@@ -7928,6 +9518,11 @@ msgstr "নির্বাচনের শেষে"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "প্লেব্যাক"
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Theme Settings"
+msgstr "উল্টা করা হচ্ছে"
 
 #: src/prefs/ThemePrefs.cpp
 #, fuzzy
@@ -8067,6 +9662,12 @@ msgid "Samples"
 msgstr "নমুনা পরিবর্তন"
 
 #: src/prefs/TracksPrefs.cpp
+#: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
+#, fuzzy
+msgid "Max Zoom"
+msgstr "নির্বাচনের শেষে"
+
+#: src/prefs/TracksPrefs.cpp
 #, fuzzy
 msgid "Preferences for Tracks"
 msgstr "প্লেব্যাক"
@@ -8091,11 +9692,10 @@ msgstr "ডিরেক্টরি"
 msgid "Display &samples:"
 msgstr "নমুনা পরিবর্তন"
 
-#. i18n-hint: The default name for an audio track.
 #: src/prefs/TracksPrefs.cpp
 #, fuzzy
-msgid "Audio Track"
-msgstr "মোনো"
+msgid "Default audio track &name:"
+msgstr "সংরক্ষিত %s"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -8127,6 +9727,11 @@ msgstr "সংরক্ষিত %s"
 msgid "Saving &empty project"
 msgstr "সংরক্ষিত %s"
 
+#: src/prefs/WarningsPrefs.cpp
+#, fuzzy
+msgid "Mixing down to &stereo during export"
+msgstr "নির্বাচনের শেষে"
+
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 #, fuzzy
@@ -8142,6 +9747,11 @@ msgstr "প্লেব্যাক"
 #, fuzzy
 msgid "Waveform dB &range:"
 msgstr "গতি বৃদ্ধি"
+
+#: src/shuttle/ShuttleGui.cpp
+#, fuzzy
+msgid "Dry Previe&w"
+msgstr "নির্বাচন"
 
 #: src/shuttle/ShuttleGui.cpp
 #, fuzzy
@@ -8165,6 +9775,58 @@ msgstr "ফন্ট..."
 #, fuzzy
 msgid "Light"
 msgstr "ডান"
+
+#: src/theme/ProToolsThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Pro Tools"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/theme/SaucedacityThemeAsCeeCode.cpp
+#, fuzzy
+msgid "Saucedacity"
+msgstr "&অডিওসিটি পরিচিতি..."
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write file:\n"
+"  %s."
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not open file:\n"
+"  %s\n"
+"for writing."
+msgstr "নির্বাচনের শেষে"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not write images to file:\n"
+"  %s."
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Could not create directory:\n"
+"  %s"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#: src/theme/Theme.cpp
+#, fuzzy, c-format
+msgid ""
+"Tenacity could not save file:\n"
+"  %s"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#. i18n-hint: user defined
+#: src/theme/Theme.cpp
+#, fuzzy
+msgid "Custom"
+msgstr "নির্বাচনের শুরুতে"
 
 #: src/toolbars/ControlToolBar.cpp
 #, fuzzy
@@ -8430,6 +10092,11 @@ msgstr "প্লেব্যাক"
 
 #: src/toolbars/ScrubbingToolBar.cpp
 #, fuzzy
+msgid "Scrub"
+msgstr "সংরক্ষিত %s"
+
+#: src/toolbars/ScrubbingToolBar.cpp
+#, fuzzy
 msgid "Seek"
 msgstr "নির্বাচনের শেষে"
 
@@ -8478,6 +10145,11 @@ msgstr "নির্বাচনের শেষে"
 #, fuzzy
 msgid "Start Seeking"
 msgstr "নির্বাচনের শেষে"
+
+#: src/toolbars/ScrubbingToolBar.cpp
+#, fuzzy
+msgid "Hide Scrub Ruler"
+msgstr "রেকর্ডিং হচ্ছে"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. that enables Scrub or Seek playback and Scrub Ruler
@@ -8583,6 +10255,12 @@ msgstr "নির্বাচনের শেষে"
 #: src/toolbars/TimeToolBar.cpp
 #, fuzzy
 msgid "&Time Toolbar"
+msgstr "রেকর্ডিং হচ্ছে"
+
+#. i18n-hint: %s will be replaced by the name of the kind of toolbar.
+#: src/toolbars/ToolBar.cpp
+#, fuzzy, c-format
+msgid "Tenacity %s Toolbar"
 msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/toolbars/ToolBar.cpp
@@ -8722,6 +10400,12 @@ msgstr "ফন্ট..."
 msgid "Label Track Font"
 msgstr "মোনো"
 
+#. i18n-hint: (noun) The name of the typeface
+#: src/tracks/labeltrack/ui/LabelTrackControls.cpp
+#, fuzzy
+msgid "Face name"
+msgstr "চ্যানেল"
+
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Cu&t Label text"
@@ -8851,6 +10535,36 @@ msgstr "নির্বাচনের শেষে"
 msgid "S&pectrogram Settings..."
 msgstr "নির্বাচনের শেষে"
 
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, fuzzy
+msgid "Click and drag to move clip boundary in time"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Set Wave Clip Name"
+msgstr "নির্বাচনের শুরুতে"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Click and drag to select text"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Modified Clip Name"
+msgstr "মোছো"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Clip Name Edit"
+msgstr "নমুনা পরিবর্তন"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+#, fuzzy
+msgid "Rename Clip..."
+msgstr "নাম..."
+
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, fuzzy
 msgid "&Format"
@@ -8888,6 +10602,12 @@ msgstr "চ্যানেল"
 #, fuzzy
 msgid "&Other..."
 msgstr "অন্যান্য..."
+
+#. i18n-hint: The string names a track
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
+#, fuzzy, c-format
+msgid "Changed '%s' to %s Hz"
+msgstr "মোনো"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, fuzzy
@@ -9018,7 +10738,38 @@ msgstr "ডান"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
+msgid ""
+"Click and drag to adjust sizes of sub-views, double-click to split evenly"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
 msgid "Click and drag to rearrange sub-views"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Rearrange sub-views"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Split Clip"
+msgstr "নির্বাচন"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Mute/Unmute Track"
+msgstr "মোনো"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
+#, fuzzy
+msgid "Rename clip..."
+msgstr "নাম..."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
+#, fuzzy
+msgid "Zoom x1/2"
 msgstr "নির্বাচনের শেষে"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
@@ -9077,6 +10828,32 @@ msgstr "নাম..."
 msgid "Logarithmic &Interpolation"
 msgstr "ইন্টারফেস"
 
+#. i18n-hint Appears on hovering mouse over clip affordance
+#: src/tracks/ui/AffordanceHandle.cpp
+#, fuzzy
+msgid "Click and drag to move a clip in time, or click to select"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Mono Track"
+msgstr "মোনো"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Stereo Track"
+msgstr "নির্বাচন"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Add Label Track"
+msgstr "রেকর্ড"
+
+#: src/tracks/ui/BackgroundCell.cpp
+#, fuzzy
+msgid "Export Audio..."
+msgstr "&অডিওসিটি পরিচিতি..."
+
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
 msgid "&Name..."
@@ -9133,6 +10910,15 @@ msgstr "নির্বাচনের শেষে"
 msgid "Adjusted envelope."
 msgstr "খাম"
 
+#. i18n-hint: These commands assist the user in finding a sound by ear. ...
+#. "Scrubbing" is variable-speed playback, ...
+#. "Seeking" is normal speed playback but with skips, ...
+#.
+#: src/tracks/ui/Scrubbing.cpp
+#, fuzzy
+msgid "&Scrub"
+msgstr "সংরক্ষিত %s"
+
 #: src/tracks/ui/Scrubbing.cpp
 #, fuzzy
 msgid "Seeking"
@@ -9154,8 +10940,18 @@ msgstr "পরিবর্তনশীল গতি"
 
 #: src/tracks/ui/Scrubbing.cpp
 #, fuzzy
+msgid "Move mouse pointer to Scrub"
+msgstr "নির্বাচন"
+
+#: src/tracks/ui/Scrubbing.cpp
+#, fuzzy
 msgid "Scru&bbing"
 msgstr "সংরক্ষিত %s"
+
+#: src/tracks/ui/Scrubbing.cpp
+#, fuzzy
+msgid "Scrub Bac&kwards"
+msgstr "রেকর্ডিং হচ্ছে"
 
 #: src/tracks/ui/Scrubbing.cpp
 #, fuzzy
@@ -9180,6 +10976,11 @@ msgstr "নির্বাচনের শেষে"
 #: src/tracks/ui/SelectHandle.cpp
 #, fuzzy
 msgid "Click and drag to move top selection frequency."
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/ui/SelectHandle.cpp
+#, fuzzy
+msgid "Click and drag to move center selection frequency to a spectral peak."
 msgstr "নির্বাচনের শেষে"
 
 #: src/tracks/ui/SelectHandle.cpp
@@ -9211,6 +11012,11 @@ msgstr "নির্বাচনের শেষে"
 #: src/tracks/ui/TimeShiftHandle.cpp
 #, fuzzy
 msgid "Click and drag to move a track in time"
+msgstr "নির্বাচনের শেষে"
+
+#: src/tracks/ui/TimeShiftHandle.cpp
+#, fuzzy
+msgid "Could not shift between tracks"
 msgstr "নির্বাচনের শেষে"
 
 #: src/tracks/ui/TimeShiftHandle.cpp
@@ -9249,6 +11055,12 @@ msgstr "কমান্ড একশন"
 #, fuzzy
 msgid "Ctrl+Click"
 msgstr "Alt-বাম-ক্লিক"
+
+#. i18n-hint: %s is replaced by (translation of) 'Ctrl+Click' on windows, 'Command+Click' on Mac
+#: src/tracks/ui/TrackSelectHandle.cpp
+#, fuzzy, c-format
+msgid "%s to select or deselect track. Drag up or down to change track order."
+msgstr "নির্বাচনের শেষে"
 
 #. i18n-hint: %s is replaced by (translation of) 'Ctrl+Click' on windows, 'Command+Click' on Mac
 #: src/tracks/ui/TrackSelectHandle.cpp
@@ -9371,6 +11183,11 @@ msgstr "গতি বৃদ্ধি"
 msgid "Orientation"
 msgstr "কাজ"
 
+#: src/widgets/MeterPanel.cpp plug-ins/crossfadetracks.ny
+#, fuzzy
+msgid "Automatic"
+msgstr "নমুনা পরিবর্তন"
+
 #: src/widgets/MeterPanel.cpp
 #, fuzzy
 msgid "Horizontal"
@@ -9391,6 +11208,13 @@ msgstr "নির্বাচনের শুরুতে"
 msgid "Please select an action"
 msgstr "নির্বাচনের শেষে"
 
+#. i18n-hint: Name of time display format that shows time in hours, minutes
+#. * and seconds
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss"
+msgstr "নমুনা পরিবর্তন"
+
 #. i18n-hint: Name of time display format that shows time in hours,
 #. * minutes, seconds and hundredths of a second (1/100 second)
 #: src/widgets/NumericTextCtrl.cpp
@@ -9410,6 +11234,43 @@ msgstr "নমুনা পরিবর্তন"
 #: src/widgets/NumericTextCtrl.cpp
 #, fuzzy
 msgid "hh:mm:ss + samples"
+msgstr "নমুনা পরিবর্তন"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at 24 frames per second (commonly used for films)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + film frames (24 fps)"
+msgstr "নমুনা পরিবর্তন"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at NTSC TV drop-frame rate (used for American /
+#. * Japanese TV, and very odd)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + NTSC drop frames"
+msgstr "নমুনা পরিবর্তন"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at NTSC TV non-drop-frame rate (used for American /
+#. * Japanese TV, and doesn't quite match wall time
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + NTSC non-drop frames"
+msgstr "নমুনা পরিবর্তন"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at PAL TV frame rate (used for European TV)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + PAL frames (25 fps)"
+msgstr "নমুনা পরিবর্তন"
+
+#. i18n-hint: Name of time display format that shows time in hours, minutes,
+#. * seconds and frames at CD Audio frame rate (75 frames per second)
+#: src/widgets/NumericTextCtrl.cpp
+#, fuzzy
+msgid "hh:mm:ss + CDDA frames (75 fps)"
 msgstr "নমুনা পরিবর্তন"
 
 #. i18n-hint: Name of display format that shows frequency in kilohertz
@@ -9446,6 +11307,12 @@ msgstr "নির্বাচনের শেষে"
 #: src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Confirm Close"
+msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: %s is replaced with a directory path.
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+#, fuzzy, c-format
+msgid "Unable to write files to directory: %s."
 msgstr "নির্বাচনের শেষে"
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
@@ -9518,6 +11385,11 @@ msgstr "নির্বাচনের শেষে"
 msgid "Gain (dB)"
 msgstr "গতি বৃদ্ধি"
 
+#: plug-ins/SpectralEditParametricEQ.ny
+#, fuzzy, lisp-format
+msgid "~aCenter frequency must be above 0 Hz."
+msgstr "নির্বাচন"
+
 #: plug-ins/SpectralEditShelves.ny
 #, fuzzy
 msgid "Spectral edit shelves"
@@ -9533,6 +11405,21 @@ msgstr "গতি বৃদ্ধি"
 #, fuzzy
 msgid "Applying Fade..."
 msgstr "লাভ"
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny plug-ins/delay.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/equalabel.ny
+#: plug-ins/label-sounds.ny plug-ins/limiter.ny plug-ins/noisegate.ny
+#: plug-ins/sample-data-export.ny plug-ins/sample-data-import.ny
+#: plug-ins/spectral-delete.ny plug-ins/tremolo.ny
+#, fuzzy
+msgid "Steve Daulton"
+msgstr "মোছো"
+
+#: plug-ins/adjustable-fade.ny
+#, fuzzy
+msgid "Adjustable Fade"
+msgstr "খাম"
 
 #: plug-ins/adjustable-fade.ny
 #, fuzzy
@@ -9626,6 +11513,11 @@ msgid "S-Curve In"
 msgstr "নাম..."
 
 #: plug-ins/adjustable-fade.ny
+#, fuzzy
+msgid "S-Curve Out"
+msgstr "নাম..."
+
+#: plug-ins/adjustable-fade.ny
 #, fuzzy, lisp-format
 msgid "Error~%~%"
 msgstr "সমস্যা"
@@ -9634,6 +11526,21 @@ msgstr "সমস্যা"
 #, fuzzy
 msgid "Beat Finder"
 msgstr "পুনরাবৃত্তি"
+
+#: plug-ins/beat.ny
+#, fuzzy
+msgid "Threshold Percentage"
+msgstr "গতি বৃদ্ধি"
+
+#: plug-ins/clipfix.ny
+#, fuzzy
+msgid "Clip Fix"
+msgstr "নির্বাচন"
+
+#: plug-ins/clipfix.ny
+#, fuzzy
+msgid "Threshold of Clipping (%)"
+msgstr "গতি বৃদ্ধি"
 
 #: plug-ins/crossfadeclips.ny
 #, fuzzy
@@ -9727,9 +11634,20 @@ msgid "Append number"
 msgstr "রেকর্ড"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
+#, fuzzy
+msgid "Overwrite"
+msgstr "নির্বাচনের শেষে"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
 #, fuzzy, lisp-format
 msgid "Error.~%Unable to open file~%~s"
 msgstr "নির্বাচনের শেষে"
+
+#. i18n-hint: Refers to the controls 'Number of labels' and 'Label interval'.
+#: plug-ins/equalabel.ny
+#, fuzzy
+msgid "Create labels based on"
+msgstr "নির্বাচন"
 
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -9767,6 +11685,11 @@ msgstr "লেবেল"
 msgid "Label text"
 msgstr "লেবেল"
 
+#: plug-ins/equalabel.ny
+#, fuzzy
+msgid "Message on completion"
+msgstr "নির্বাচনের শেষে"
+
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
 #, fuzzy
@@ -9777,6 +11700,11 @@ msgstr "চ্যানেল"
 #, fuzzy
 msgid "point labels"
 msgstr "চ্যানেল"
+
+#: plug-ins/highpass.ny
+#, fuzzy
+msgid "High-Pass Filter"
+msgstr "সকল ফাইল (*)|*"
 
 #: plug-ins/highpass.ny plug-ins/lowpass.ny plug-ins/notch.ny
 #: plug-ins/rissetdrum.ny plug-ins/tremolo.ny
@@ -9835,15 +11763,36 @@ msgstr "নির্বাচন"
 msgid "Point after sound"
 msgstr "নির্বাচন"
 
+#: plug-ins/label-sounds.ny
+#, fuzzy
+msgid "Region between sounds"
+msgstr "নির্বাচন"
+
+# I guess in should be গেইন - mak
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid "Limiting..."
+msgstr "লাভ"
+
 #: plug-ins/limiter.ny
 #, fuzzy
 msgid "Type"
 msgstr "গতি বৃদ্ধি"
 
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid "Soft Limit"
+msgstr "নির্বাচন"
+
 #. i18n-hint: clipping of wave peaks and troughs, not division of a track into clips
 #: plug-ins/limiter.ny
 #, fuzzy
 msgid "Soft Clip"
+msgstr "নির্বাচন"
+
+#: plug-ins/limiter.ny
+#, fuzzy
+msgid "Hard Clip"
 msgstr "নির্বাচন"
 
 #: plug-ins/limiter.ny
@@ -9870,6 +11819,11 @@ msgstr "গতি বৃদ্ধি"
 msgid "Low-Pass Filter"
 msgstr "সকল ফাইল (*)|*"
 
+#: plug-ins/lowpass.ny
+#, fuzzy
+msgid "Performing Low-Pass Filter..."
+msgstr "সকল ফাইল (*)|*"
+
 #: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Noise Gate"
@@ -9893,6 +11847,16 @@ msgstr "নির্বাচন"
 #: plug-ins/noisegate.ny
 #, fuzzy
 msgid "Don't Link Stereo"
+msgstr "নির্বাচন"
+
+#: plug-ins/noisegate.ny
+#, fuzzy
+msgid "Gate threshold (dB)"
+msgstr "গতি বৃদ্ধি"
+
+#: plug-ins/noisegate.ny
+#, fuzzy
+msgid "Gate frequencies above (kHz)"
 msgstr "নির্বাচন"
 
 #: plug-ins/noisegate.ny
@@ -9963,6 +11927,11 @@ msgstr "(নিষ্ক্রিয়)"
 #, fuzzy
 msgid "Allow"
 msgstr "(নিষ্ক্রিয়)"
+
+#: plug-ins/nyquist-plug-in-installer.ny
+#, fuzzy, lisp-format
+msgid "Warning.~%Failed to copy some files:~%"
+msgstr "নির্বাচনের শেষে"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
@@ -10113,6 +12082,11 @@ msgstr "নমুনা পরিবর্তন"
 #, fuzzy
 msgid "Time Indexed"
 msgstr "লেবেল"
+
+#: plug-ins/sample-data-export.ny
+#, fuzzy
+msgid "Include header information"
+msgstr "নির্বাচনের শেষে"
 
 #: plug-ins/sample-data-export.ny
 #, fuzzy
@@ -10314,6 +12288,11 @@ msgstr "রেকর্ডিং হচ্ছে"
 
 #: plug-ins/vocoder.ny
 #, fuzzy
+msgid "Output choice"
+msgstr "প্লেব্যাক"
+
+#: plug-ins/vocoder.ny
+#, fuzzy
 msgid "Both Channels"
 msgstr "%d চ্যানেল"
 
@@ -10326,6 +12305,11 @@ msgstr "চ্যানেল"
 #, fuzzy
 msgid "Number of vocoder bands"
 msgstr "চ্যানেল"
+
+#: plug-ins/vocoder.ny
+#, fuzzy
+msgid "Frequency of Radar Needles (Hz)"
+msgstr "নির্বাচনের শুরুতে"
 
 #, fuzzy
 #~ msgid "Capture Full Window"
