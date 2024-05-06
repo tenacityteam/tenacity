@@ -36,13 +36,15 @@ This specification aims to provide a base package format for shipping themes
 in applications. Not every application will follow the same behavior, but there
 should be enough similarities between applications.
 
-# 2. Package Format
+# 2. Format
+
+## 2.1 Package Format
 
 All valid theme packages MUST be valid ZIP archives in their most basic form.
 Applications MAY support ZIP extensions as necessary but MUST be able to open
 any valid ZIP archive without extensions.
 
-## 2.1 Layout
+## 2.2 Layout
 
 Theme packages have a file at the root of the archive that specifies
 information about the theme package. This file MUST be named `info.json`. Valid
@@ -54,7 +56,7 @@ Edition. Applications MAY support non-standard features.
 All theme resources MUST reside in a folder named `resources/` located at the
 root of the archive. Resource types MAY reside in a subfolder.
 
-## 2.2 Unsupported Archive Features
+## 2.3 Unsupported Archive Features
 
 Some ZIP features might be inappropriate for applications, including
 encryption. These features SHOULD NOT be present in theme packages and
@@ -63,13 +65,14 @@ MUST be supported by applications.
 
 # 3. Theme Resources
 
+## 3.1 Types
+
 A theme package consists of a set of theme resources. A theme resource is a
 component of a theme, such as an image or color. The format of the resource is
 the resource type. Theme packages MUST contain at least one resource type.
-Applications MAY define their own resource types. For performance reasons,
-applications SHOULD only load resources it needs.
+Applications MAY define their own resource types.
 
-## 3.1 Predefined Resource Types
+## 3.2 Predefined Types
 
 These resource types are two distinct examples that applications SHOULD follow
 when creating their own resource types. Applications SHOULD use these resource
@@ -81,7 +84,7 @@ of resources specified in a single JSON file. A multi-file resource type
 MUST consist of multiple files named after a valid resource names. Applications
 MAY define their own resource type formats.
 
-### 3.1.1 Color Resource Types
+### 3.2.1 Color Resource Types
 
 Color resources MUST be a single-file resource type. They are stored in
 `colors.json`.
@@ -89,18 +92,18 @@ Color resources MUST be a single-file resource type. They are stored in
 Colors MUST be specified as an HTML hexadecimal number. Applications MAY
 support other ways to describe colors.
 
-### 3.1.2 Image Resource Types
+### 3.2.2 Image Resource Types
 
 Image resources MUST be a multi-file resource type. They are stored in an
 `images/` subfolder.
 
-#### 3.1.2.1 Supported Image Formats
+#### 3.2.2.1 Supported Image Formats
 
 Applications MAY support any suitable bitmap format and MAY support multiple
 bitmap formats. Alternatively, applications MAY support any vector formats. At
 least one image format, vector or bitmap, MUST be supported by the application.
 
-## 3.2 Resource Type Requirements
+## 3.3 Resource Type Requirements
 
 Custom resource types that use multiple files MUST contain files named after
 valid resource names.
@@ -149,15 +152,19 @@ application-specific fields SHOULD be documented by the application.
 
 # 5. Subthemes
 
+## 5.1 Definitions
+
 A subtheme is a set of resources applied over a base theme. A base theme is a
 set of resources used across one or more subthemes. Theme packages MAY contain
 multiple subthemes. All subthemes MUST use only one base theme.
+
+## 5.2 Layout
 
 The layout of a subtheme MUST follow the layout described in Section 2.
 Subthemes MUST NOT specify further subthemes. Applications MUST ignore any
 `subtheme` section specified in a subtheme.
 
-## 5.1 Required Informational Fields
+## 5.3 Required Informational Fields
 
 A special field named `subthemes` MUST be specified in order to specify
 one or more subthemes. The provided value MUST be an array of strings. Each
@@ -172,13 +179,13 @@ to the required fields to prevent any subtheme from sharing the same
 information. If required fields are not specified here, applications MUST
 reject the theme package.
 
-### 5.1.1 Special Exception with `minAppVersion`
+### 5.3.1 Special Exception with `minAppVersion`
 
 The `minAppVersion` MUST NOT be specified in subthemes. For consistency, all
 subthemes MUST share the same `minAppVersion`, and thus it MUST be specified in
 the base theme.
 
-## 5.2 Theme Resource Loading Order
+## 5.4 Theme Resource Loading Order
 
 When loading a subtheme, applications MUST load base theme resources first
 before the subtheme's resources. Otherwise, resource loading follows the same
@@ -187,7 +194,7 @@ order as defined in Section 5.
 If a subtheme specifies a theme resource twice, applications MUST used the last
 resource specified by the subtheme.
 
-## 5.3 Error Handling
+## 5.5 Error Handling
 
 If any error occurs in a subtheme or a subtheme is invalid, applications MUST
 stop loading the current subtheme. Applications MUST continue loading other
@@ -223,7 +230,18 @@ underscores ('_'). Resource names MUST NOT contain quotes, forward slashes
 For multi-file resource types, resources MAY contain a single dot for the file
 extension in the archive.
 
-# Changes To This Specification
+## 7.3 Anything Not Specified by This Specification
+
+This specification intentionally leaves some aspects of theme packages
+undefined. Anything not defined in this specification is left up to
+applications to implement.
+
+Some parts of this specification are intentionally vague. It is also up to
+applications to specify these parts. However, not all parts of the
+specification are meant to be vague. Please see the section below for reporting
+issues.
+
+# Reporting Issues and Suggestions to this Specification
 
 If you want to propose an amendment to this specification, such as correcting a
 typo, adding a new feature, or clarifying an existing section, please fork
