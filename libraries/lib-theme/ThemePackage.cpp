@@ -28,7 +28,8 @@ using namespace ThemeExceptions;
 ThemePackage::ThemePackage()
 : mPackageArchive{nullptr},
   mInfo{Json::Value::nullSingleton()},
-  mColors{Json::Value::nullSingleton()}
+  mColors{Json::Value::nullSingleton()},
+  mIsMultiThemePackage{false}
 {
 }
 
@@ -124,6 +125,17 @@ void ThemePackage::OpenPackage(const std::string& path)
     }
 
     error = 0;
+
+    // Check if the theme package contains a "subthemes" element. If it does, it
+    // contains multiple subthemes.
+    if (mInfo.isMember("subthemes") && mInfo["subthemes"].isArray())
+    {
+        mIsMultiThemePackage = true;
+
+        // Don't parse the rest of the package. A compliant theme package will
+        // not have them at the root of the archive.
+        return;
+    }
 
     // Read info.json from the archive all into memory.
     std::unique_ptr<char> data = ReadFileFromArchive("info.json");
@@ -386,6 +398,5 @@ bool ThemePackage::IsMultiThemePackage() const
 {
     if (!IsValid()) throw InvalidState();
 
-    // FIXME: Unimplemented.
-    return false;
+    return mIsMultiThemePackage;
 }

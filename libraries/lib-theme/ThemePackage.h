@@ -59,6 +59,7 @@ class THEME_API ThemePackage final
         zip_t* mPackageArchive;
         Json::Value mInfo;
         Json::Value mColors;
+        bool mIsMultiThemePackage;
 
         /// @brief Reads a file from the package archive and returns a buffer
         /// containing all the file's contents.
