@@ -126,17 +126,6 @@ void ThemePackage::OpenPackage(const std::string& path)
 
     error = 0;
 
-    // Check if the theme package contains a "subthemes" element. If it does, it
-    // contains multiple subthemes.
-    if (mInfo.isMember("subthemes") && mInfo["subthemes"].isArray())
-    {
-        mIsMultiThemePackage = true;
-
-        // Don't parse the rest of the package. A compliant theme package will
-        // not have them at the root of the archive.
-        return;
-    }
-
     // Read info.json from the archive all into memory.
     std::unique_ptr<char> data = ReadFileFromArchive("info.json");
     if (!data)
@@ -154,6 +143,17 @@ void ThemePackage::OpenPackage(const std::string& path)
         {
             throw ArchiveError(ArchiveError::Type::OperationalError);
         }
+    }
+
+    // Check if the theme package contains a "subthemes" element. If it does, it
+    // contains multiple subthemes.
+    if (mInfo.isMember("subthemes") && mInfo["subthemes"].isArray())
+    {
+        mIsMultiThemePackage = true;
+
+        // Don't parse the rest of the package. A compliant theme package will
+        // not have them at the root of the archive.
+        return;
     }
 
     // Read colors.json from the archive all into memory.
@@ -284,6 +284,22 @@ void ThemePackage::ClosePackage()
 }
 
 bool ThemePackage::IsValid() const
+{
+    if (!SuccessfullyLoaded())
+    {
+        return false;
+    }
+
+    // Check if "subthemes", if a multi-theme package, is an array
+    if (IsMultiThemePackage() && !mInfo["subthemes"].isArray())
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool ThemePackage::SuccessfullyLoaded() const
 {
     if (!mPackageArchive) return false;
 

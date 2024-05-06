@@ -108,11 +108,28 @@ class THEME_API ThemePackage final
          * 
          * A package is in a valid state if:
          * 
-         * 1. It's open.
-         * 2. The archve contains no errors.
-         * 3. info.json and colors.json have been parsed.
+         * 1. The package was successfully loaded (see
+         *    @ref SuccessfullyLoaded()).
+         * 2. For multi-theme packages, the "subthemes" property is an array.
+         * 
         */
         bool IsValid() const;
+
+        /** @brief Checks if the theme package was successfully loaded.
+         * 
+         * This member function only checks if the package was successfully
+         * loaded. A package might have successfully loaded but not be in a
+         * valid state. For example, it may load successfully but might have
+         * the "subthemes" property in it's root info.json incorrectly defined.
+         * 
+         * A package is considered successfully loaded if:
+         * 
+         * 1. It was opened.
+         * 2. The archive contains no errors.
+         * 3. info.json and colors.json have been parsed.
+         * 
+        */
+        bool SuccessfullyLoaded() const;
 
         /** @brief Loads an entire resource into memory.
          * 
