@@ -29,6 +29,7 @@ ThemePackage::ThemePackage()
 : mPackageArchive{nullptr},
   mInfo{Json::Value::nullSingleton()},
   mColors{Json::Value::nullSingleton()},
+  mSelectedSubtheme{""},
   mIsMultiThemePackage{false}
 {
 }
@@ -150,6 +151,14 @@ void ThemePackage::OpenPackage(const std::string& path)
     if (mInfo.isMember("subthemes") && mInfo["subthemes"].isArray())
     {
         mIsMultiThemePackage = true;
+
+        auto subtheme = mInfo["subthemes"][0];
+
+        if (subtheme.isString())
+        {
+            mSelectedSubtheme = subtheme.asString();
+            mIsMultiThemePackage = true;
+        }
 
         // Don't parse the rest of the package. A compliant theme package will
         // not have them at the root of the archive.
