@@ -1,12 +1,13 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Ivi104 <ivan.jp104@outlook.com>, 2024.
+# Milo Ivir <mail@milotype.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2024-02-16 21:01+0000\n"
-"Last-Translator: Ivi104 <ivan.jp104@outlook.com>\n"
+"PO-Revision-Date: 2024-05-08 16:07+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/hr/>\n"
 "Language: hr\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
@@ -2050,76 +2051,73 @@ msgid "Try and load this module?"
 msgstr "Da pokušam preuzeti taj modul?"
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The module \"%s\" does not provide any of the required functions.\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"Modul %s nema string inačice.\n"
-"Ne će biti učitan."
+"Modul „%s” ne pruža nijednu potrebnu funkciju.\n"
+"\n"
+"Neće biti učitan."
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
 #: src/NoteTrack.cpp src/TrackPanelAx.cpp
 msgid "Note Track"
-msgstr "Zabilježni zapis"
+msgstr "Notni zapis"
 
 #. i18n-hint: Name of a musical note in the 12-tone chromatic scale
 #: src/PitchName.cpp
-#, fuzzy
 msgid "C"
-msgstr "LC"
+msgstr "C"
 
 #. i18n-hint: Name of a musical note in the 12-tone chromatic scale
 #: src/PitchName.cpp
-#, fuzzy
 msgid "G"
-msgstr "GB"
+msgstr "G"
 
 #. i18n-hint: Name of a musical note in the 12-tone chromatic scale
 #: src/PitchName.cpp
-#, fuzzy
 msgid "B"
-msgstr "dB"
+msgstr "B"
 
 #: src/PluginManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Overwrite the plug-in file %s?"
-msgstr "Prekopisanje postojeće datoteke"
+msgstr "Prepisati datoteku dodatka %s?"
 
 #: src/PluginManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to register:\n"
 "%s"
-msgstr "Uklanjanje %s nije uspjelo"
+msgstr ""
+"Neuspjelo registriranje:\n"
+"%s"
 
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
 #: src/PluginManager.cpp
-#, fuzzy
 msgctxt "plug-ins"
 msgid "Enable this plug-in?\n"
 msgid_plural "Enable these plug-ins?\n"
-msgstr[0] "Oprostite, učitavanje priključka Vamp nije uspjelo."
-msgstr[1] "Oprostite, učitavanje priključka Vamp nije uspjelo."
-msgstr[2] "Oprostite, učitavanje priključka Vamp nije uspjelo."
-msgstr[3] "Oprostite, učitavanje priključka Vamp nije uspjelo."
+msgstr[0] "Aktivirati ove priključke?\n"
+msgstr[1] "Aktivirati ovaj priključak?\n"
+msgstr[2] "Aktivirati ove priključke?\n"
+msgstr[3] "Aktivirati ove priključke?\n"
 
 #: src/PluginManager.cpp
-#, fuzzy
 msgid "Enable new plug-ins"
-msgstr "Oprostite, učitavanje priključka Vamp nije uspjelo."
+msgstr "Uključi nove dodatke"
 
 #: src/PluginManager.h
 msgid "Nyquist Prompt"
 msgstr "Nyquistov upit"
 
 #: src/PluginRegistrationDialog.cpp
-#, fuzzy
 msgid "Manage Plug-ins"
-msgstr "Oprostite, učitavanje priključka Vamp nije uspjelo."
+msgstr "Upravljaj dodatcima"
 
 #: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
 msgid "New"
@@ -2127,9 +2125,8 @@ msgstr "Novo"
 
 #. i18n-hint: This is before radio buttons selecting which effects to show
 #: src/PluginRegistrationDialog.cpp
-#, fuzzy
 msgid "Show:"
-msgstr "Prikaži sve kodeke"
+msgstr "Prikaži:"
 
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp
@@ -2139,7 +2136,7 @@ msgstr "Prikaži sve"
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
-msgstr "&Sve"
+msgstr "&Svi"
 
 #. i18n-hint: Radio button to show just the currently disabled effects
 #: src/PluginRegistrationDialog.cpp
@@ -20387,3 +20384,106 @@ msgstr "Frekvencija (Hz)"
 #~ msgstr ""
 #~ "Snimanje u načinu CleanSpeech nije moguće ako je zapis, ili više "
 #~ "projekata, već otvoreno."
+
+#. i18n-hint: Two, alternate names of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "C♯/D♭"
+msgstr "C♯/D♭"
+
+#: src/PluginManager.cpp
+msgid "Plug-in already exists"
+msgstr "Dodatak već postoji"
+
+#: src/PluginManager.cpp
+msgid "Plug-in file is in use. Failed to overwrite"
+msgstr "Datoteka dodatka se koristi. Prepisivanje nije uspjelo"
+
+#. i18n-hint: Two, alternate names of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "D♯/E♭"
+msgstr "D♯/E♭"
+
+#. i18n-hint: Two, alternate names of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "F♯/G♭"
+msgstr "F♯/G♭"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "A♭"
+msgstr "A♭"
+
+#. i18n-hint: Two, alternate names of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "G♯/A♭"
+msgstr "G♯/A♭"
+
+#. i18n-hint: Two, alternate names of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "A♯/B♭"
+msgstr "A♯/B♭"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "E"
+msgstr "E"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "F"
+msgstr "F"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "D♯"
+msgstr "D♯"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "F♯"
+msgstr "F♯"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "G♯"
+msgstr "G♯"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "A"
+msgstr "A"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "D♭"
+msgstr "D♭"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "E♭"
+msgstr "E♭"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "G♭"
+msgstr "G♭"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "B♭"
+msgstr "B♭"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "D"
+msgstr "D"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "A♯"
+msgstr "A♯"
+
+#. i18n-hint: Name of a musical note in the 12-tone chromatic scale
+#: src/PitchName.cpp
+msgid "C♯"
+msgstr "C♯"
