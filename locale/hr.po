@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2024-05-09 22:07+0000\n"
+"PO-Revision-Date: 2024-05-11 13:01+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/hr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.5.4\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
@@ -165,9 +165,8 @@ msgstr "Pogrješka LOF"
 #: libraries/lib-files/FileNames.cpp plug-ins/eq-xml-to-txt-converter.ny
 #: plug-ins/nyquist-plug-in-installer.ny plug-ins/sample-data-export.ny
 #: plug-ins/sample-data-import.ny
-#, fuzzy
 msgid "All files"
-msgstr "Sve datoteke (*)|*"
+msgstr "Sve datoteke"
 
 #. i18n-hint an Audacity project is the state of the program, stored as
 #. files that can be reopened to resume the session later
@@ -1740,7 +1739,7 @@ msgstr "Zapis"
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp plug-ins/equalabel.ny
 msgid "Label"
-msgstr "Oznaka"
+msgstr "Etiketa"
 
 #. i18n-hint: (noun) of a label
 #: src/LabelDialog.cpp src/TimerRecordDialog.cpp
@@ -2245,7 +2244,7 @@ msgstr "Snimljen zvuk"
 
 #: src/ProjectAudioManager.cpp src/toolbars/ControlToolBar.cpp
 msgid "Record"
-msgstr "Snimi"
+msgstr "Snimka"
 
 #. i18n-hint:  A name given to a track, appearing as its menu button.
 #. The translation should be short or else it will not display well.
@@ -2802,15 +2801,17 @@ msgstr "Komentari"
 
 #: src/Tags.cpp
 msgid "Use arrow keys (or ENTER key after editing) to navigate fields."
-msgstr "Rabite strelice (ili Enter poslije uređivanja) za gibanje poljima."
+msgstr ""
+"Koristi tipke strelica (ili tipku ENTER nakon uređivanja) za navigiranje po "
+"poljima."
 
 #: src/Tags.cpp
 msgid "Tag"
-msgstr "Osobina"
+msgstr "Oznaka"
 
 #: src/Tags.cpp
 msgid "Value"
-msgstr "Podatak"
+msgstr "Vrijednost"
 
 #: src/Tags.cpp
 msgid "&Add"
@@ -2822,7 +2823,7 @@ msgstr "&Ukloni"
 
 #: src/Tags.cpp
 msgid "Genres"
-msgstr "Popis žanrova"
+msgstr "Žanrovi"
 
 #: src/Tags.cpp
 msgid "E&dit..."
@@ -2830,7 +2831,7 @@ msgstr "&Uredi..."
 
 #: src/Tags.cpp
 msgid "Rese&t..."
-msgstr "Prepo&stavi..."
+msgstr "Rese&tiraj..."
 
 #: src/Tags.cpp
 msgid "Template"
@@ -2845,9 +2846,8 @@ msgid "Set De&fault"
 msgstr "&Predzadaj"
 
 #: src/Tags.cpp
-#, fuzzy
 msgid "Don't show this when exporting audio"
-msgstr "Više ne podsjećaj"
+msgstr "Ne prikazuj ovo prilikom izvoza audio snimke"
 
 #: src/Tags.cpp
 msgid "Edit Genres"
@@ -3539,14 +3539,12 @@ msgid "Drag"
 msgstr "Lijeva povlaka"
 
 #: src/commands/DragCommand.cpp src/widgets/wxPanelWrapper.h
-#, fuzzy
 msgid "Panel"
-msgstr "Za zapis"
+msgstr "Ploča"
 
 #: src/commands/DragCommand.cpp
-#, fuzzy
 msgid "Application"
-msgstr "Pojačanje (dB)"
+msgstr "Program"
 
 #: src/commands/DragCommand.cpp
 #, fuzzy
@@ -4220,23 +4218,20 @@ msgstr "Procijenjena početna visina tona: %s%d (%.3f Hz)"
 
 #. i18n-hint: (noun) Musical pitch.
 #: src/effects/ChangePitch.cpp
-#, fuzzy
 msgid "Pitch"
-msgstr "Visina zvuka:"
+msgstr "Visina zvuka"
 
 #. i18n-hint: changing musical pitch "from" one value "to" another
 #: src/effects/ChangePitch.cpp
-#, fuzzy
 msgctxt "change pitch"
 msgid "from"
 msgstr "od"
 
 #. i18n-hint: changing musical pitch "from" one value "to" another
 #: src/effects/ChangePitch.cpp
-#, fuzzy
 msgctxt "change pitch"
 msgid "&from"
-msgstr "od"
+msgstr "&od"
 
 #: src/effects/ChangePitch.cpp
 msgid "from Octave"
@@ -4244,17 +4239,15 @@ msgstr "od oktave"
 
 #. i18n-hint: changing musical pitch "from" one value "to" another
 #: src/effects/ChangePitch.cpp
-#, fuzzy
 msgctxt "change pitch"
 msgid "to"
 msgstr "do"
 
 #. i18n-hint: changing musical pitch "from" one value "to" another
 #: src/effects/ChangePitch.cpp
-#, fuzzy
 msgctxt "change pitch"
 msgid "&to"
-msgstr "do"
+msgstr "&do"
 
 #: src/effects/ChangePitch.cpp
 msgid "to Octave"
@@ -4351,10 +4344,9 @@ msgstr "Iz broja okretaja"
 
 #. i18n-hint: changing speed of audio "from" one value "to" another
 #: src/effects/ChangeSpeed.cpp
-#, fuzzy
 msgctxt "change speed"
 msgid "&from"
-msgstr "od"
+msgstr "&od"
 
 #. i18n-hint: changing speed of audio "from" one value "to" another
 #. "rpm" means "revolutions per minute" as on a vinyl record turntable
@@ -4366,10 +4358,9 @@ msgstr "Iz broja okretaja"
 
 #. i18n-hint: changing speed of audio "from" one value "to" another
 #: src/effects/ChangeSpeed.cpp
-#, fuzzy
 msgctxt "change speed"
 msgid "&to"
-msgstr "do"
+msgstr "&do"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "Selection Length"
@@ -4435,10 +4426,9 @@ msgstr "Udaraca po minuti (BPM):"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
-#, fuzzy
 msgctxt "change tempo"
 msgid "&from"
-msgstr "od"
+msgstr "&od"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
@@ -4448,10 +4438,9 @@ msgstr "Udaraca po minuti (BPM):"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
-#, fuzzy
 msgctxt "change tempo"
 msgid "&to"
-msgstr "do"
+msgstr "&do"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Length (seconds)"
@@ -5984,14 +5973,12 @@ msgid "Invert"
 msgstr "Obrni okomito"
 
 #: src/effects/LoadEffects.cpp
-#, fuzzy
 msgid "Builtin Effects"
-msgstr "Učinci zvučne jedinice"
+msgstr "Ugrađeni efekti"
 
 #: src/effects/Loudness.cpp
-#, fuzzy
 msgid "perceived loudness"
-msgstr "Normaliziraj najveću amplitudu na"
+msgstr "percipirana glasnoća"
 
 #: src/effects/Loudness.cpp
 #, fuzzy
@@ -7087,7 +7074,7 @@ msgstr "Uvezi predzadanosti"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
 msgid "Preset"
-msgstr "Predzadan"
+msgstr "Unaprijed postavljeno"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
@@ -10290,19 +10277,18 @@ msgid "Toggle Focuse&d Track"
 msgstr "Mijenjaj žarišni zapis"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "..."
-msgstr "Novo..."
+msgstr "…"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "&Repeat %s"
-msgstr "Ponovi %s"
+msgstr "&Ponovi %s"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Plug-in %d to %d"
-msgstr "Priključci %i do %i"
+msgstr "Priključak %d do %d"
 
 #: src/menus/PluginMenus.cpp
 msgid "&Generate"
@@ -20493,3 +20479,24 @@ msgstr "Emeritus:"
 #: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr "Web stranica i grafike"
+
+#: src/effects/Compressor2.cpp src/effects/Loudness.cpp
+#: src/widgets/MeterPanel.cpp
+msgid "RMS"
+msgstr "Kvadratna sredina"
+
+#: src/menus/PluginMenus.cpp
+msgid "Uncategorized"
+msgstr "Nekategorizirano"
+
+#: src/menus/PluginMenus.cpp
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: src/effects/LoadEffects.cpp
+msgid "Unknown built-in effect name"
+msgstr "Nepoznato ime ugrađenog efekta"
+
+#: src/effects/Loudness.cpp
+msgid "Loudness Normalization"
+msgstr "Normalizacija glasnoće"
