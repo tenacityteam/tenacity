@@ -227,6 +227,12 @@ void ThemePackage::ParsePackage()
     try
     {
         auto themeInfo = IsMultiThemePackage() ? mCurrentSubthemeInfo : mInfo;
+
+        if (!themeInfo.isMember("name"))
+        {
+            throw ArchiveError(ArchiveError::Type::Invalid);
+        }
+
         themeName = themeInfo["name"];
         minAppVersionString = themeInfo.get("minAppVersion", "0.0.0");
         minAppVersion = ParseVersionString(minAppVersionString.asString());
