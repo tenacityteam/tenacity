@@ -165,7 +165,8 @@ class THEME_API ThemePackage final
          * 
          * Depending on the found resource, this can either be a `int` (for
          * colors) or a `std::vector<char>` (for files). Other resource types
-         * may return different types.
+         * may return different types. If the package is a multi-theme package,
+         * resources are loaded from the currently selected subtheme.
          * 
          * If loading a resource fails, or if the resource isn't found, an
          * exception is thrown. This member function guarantees that a valid
@@ -174,7 +175,8 @@ class THEME_API ThemePackage final
          * @exception ArchiveError Thrown when reading from the archive failed
          * or when a resource wasn't found.
          * 
-         * @param name The name of the resource to load.
+         * @param name The name of the resource to load. This should NOT be a
+         * path relative to the archive.
          * 
          * @return Returns either an int (for color values) or a
          * std::vector<char> containing all of the resource's data.
