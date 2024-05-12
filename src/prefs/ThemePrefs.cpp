@@ -250,8 +250,8 @@ void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
    {
       switch (aee.GetErrorType())
       {
-         case ArchiveError::Type::InvalidArchive:
-            AudacityMessageBox(XO("Theme package invalid"), XO("Invalid archive"), wxOK);
+         case ArchiveError::Type::Invalid:
+            AudacityMessageBox(XO("Theme package invalid"), XO("Invalid theme"), wxOK);
             break;
          case ArchiveError::Type::OperationalError:
             AudacityMessageBox(XO("Error while working on archive"), XO("Operational error"), wxOK);

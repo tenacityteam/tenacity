@@ -69,6 +69,18 @@ class THEME_API ThemePackage final
         /// @return Returns an allocated buffer of all the file's contents.
         std::unique_ptr<char> ReadFileFromArchive(const std::string& name);
 
+        /** @brief Returns a parsed JSON file.
+         * 
+         * This member function reads an entire JSON file in memory and puts it
+         * in a string stream. It then parses the stream and returns it.
+         * 
+         * @param jsonFile The JSON file to parse.
+         * 
+         * @return Returns a parsed JSON data.
+         * 
+         **/
+        Json::Value GetParsedJsonData(const std::string& jsonFile);
+
     public:
         ThemePackage();
         ~ThemePackage();

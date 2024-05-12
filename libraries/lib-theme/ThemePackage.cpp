@@ -100,6 +100,28 @@ std::unique_ptr<char> ThemePackage::ReadFileFromArchive(const std::string& name)
     return fileData;
 }
 
+Json::Value ThemePackage::GetParsedJsonData(const std::string& jsonFile)
+{
+    std::unique_ptr<char> data = ReadFileFromArchive(jsonFile);
+    if (!data)
+    {
+        throw ArchiveError(ArchiveError::Type::OperationalError);
+    }
+
+    std::istringstream jsonStream = std::istringstream(std::string(data.get()));
+
+    Json::CharReaderBuilder builder;
+    Json::Value value;
+    std::string parserErrors;
+    bool ok = Json::parseFromStream(builder, jsonStream, &value, &parserErrors);
+    if (!ok)
+    {
+        throw ArchiveError(ArchiveError::Type::OperationalError);
+    }
+
+    return value;
+}
+
 void ThemePackage::OpenPackage(const std::string& path)
 {
     // Read the archive
@@ -117,7 +139,7 @@ void ThemePackage::OpenPackage(const std::string& path)
                 break;
             case ZIP_ER_NOZIP:
             case ZIP_ER_INVAL:
-                throw ArchiveError(ArchiveError::Type::InvalidArchive);
+                throw ArchiveError(ArchiveError::Type::Invalid);
                 break;
             case ZIP_ER_MEMORY:
                 throw std::bad_alloc();
@@ -128,23 +150,7 @@ void ThemePackage::OpenPackage(const std::string& path)
     error = 0;
 
     // Read info.json from the archive all into memory.
-    std::unique_ptr<char> data = ReadFileFromArchive("info.json");
-    if (!data)
-    {
-        // TODO: Better error handling
-        throw ArchiveError(ArchiveError::Type::OperationalError);
-    }
-
-    std::istringstream jsonStream = std::istringstream(std::string(data.get()));
-    {
-        Json::CharReaderBuilder builder;
-        std::string parserErrors;
-        bool ok = Json::parseFromStream(builder, jsonStream, &mInfo, &parserErrors);
-        if (!ok)
-        {
-            throw ArchiveError(ArchiveError::Type::OperationalError);
-        }
-    }
+    mInfo = GetParsedJsonData("info.json");
 
     // Check if the theme package contains a "subthemes" element. If it does, it
     // contains multiple subthemes.
@@ -224,15 +230,14 @@ void ThemePackage::ParsePackage()
         themeName = themeInfo["name"];
         minAppVersionString = themeInfo.get("minAppVersion", "0.0.0");
         minAppVersion = ParseVersionString(minAppVersionString.asString());
-    } catch (Json::LogicError& /* err */)
+    } catch (Json::LogicError&)
     {
-        throw ArchiveError(ArchiveError::Type::OperationalError);
+        throw ArchiveError(ArchiveError::Type::Invalid);
     }
 
     // Handle theme name
     if (themeName.asString().empty())
     {
-        // TODO: Better exception handling
         throw ArchiveError(ArchiveError::Type::MissingRequiredAttribute);
     }
 
@@ -322,53 +327,15 @@ bool ThemePackage::SuccessfullyLoaded() const
 
 void ThemePackage::LoadTheme(const std::string& theme)
 {
-    // Read the subtheme's info from `theme`/info.json
-    std::unique_ptr<char> data = ReadFileFromArchive(theme + "info.json");
-
-    if (!data)
-    {
-        // TODO: Better error handling
-        throw ArchiveError(ArchiveError::Type::OperationalError);
-    }
-
-    // Read the subtheme's info.json into memory, but only if we're dealing with
-    // a multi-theme package.
-    std::istringstream jsonStream;
-
+    // Parse the subtheme's info.json into memory, but only if we're dealing
+    // with a multi-theme package.
     if (mIsMultiThemePackage)
     {
-        jsonStream = std::istringstream(std::string(data.get()));
-        {
-            Json::CharReaderBuilder builder;
-            std::string parserErrors;
-            bool ok = mIsMultiThemePackage ?
-                Json::parseFromStream(builder, jsonStream, &mCurrentSubthemeInfo, &parserErrors) :
-                Json::parseFromStream(builder, jsonStream, &mInfo, &parserErrors);
-
-            if (!ok)
-            {
-                throw ArchiveError(ArchiveError::Type::OperationalError);
-            }
-        }
+        mCurrentSubthemeInfo = GetParsedJsonData(theme + "info.json");
     }
 
-    // Read colors.json from the archive all into memory.
-    data = ReadFileFromArchive(theme + "colors.json");
-    if (!data)
-    {
-        throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
-    }
-
-    jsonStream = std::istringstream(std::string(data.get()));
-    {
-        Json::CharReaderBuilder builder;
-        std::string parserErrors;
-        bool ok = Json::parseFromStream(builder, jsonStream, &mColors, &parserErrors);
-        if (!ok)
-        {
-            throw ArchiveError(ArchiveError::Type::OperationalError);
-        }
-    }
+    // Parse colors.json from the archive all into memory.
+    mColors = GetParsedJsonData(theme + "colors.json");
 
     // Check for the images/ subdir
     zip_stat_t imageDir;
