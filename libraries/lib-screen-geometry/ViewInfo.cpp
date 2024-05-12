@@ -138,9 +138,10 @@ bool NotifyingSelectedRegion::setF1(double f, bool maySwap)
 void NotifyingSelectedRegion::Notify( bool delayed )
 {
    if (delayed)
-      GenericUI::CallAfter([This = wxWeakRef(this)]{
-         if (This)
-            This->Publish({});
+      GenericUI::CallAfter([This = weak_from_this()]{
+         auto pThis = This.lock();
+         if (pThis)
+            pThis->Publish({});
       });
    else
       Publish({});

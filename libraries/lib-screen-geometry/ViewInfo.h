@@ -14,7 +14,6 @@
 #include <utility>
 #include <vector>
 #include <cstdint>
-#include <wx/weakref.h> // member variable
 #include "SelectedRegion.h"
 #include <memory>
 #include "Observer.h"
@@ -27,8 +26,8 @@ struct NotifyingSelectedRegionMessage : Observer::Message {};
 // This heavyweight wrapper of the SelectedRegion structure emits events
 // on mutating operations, that other classes can listen for.
 class SCREEN_GEOMETRY_API NotifyingSelectedRegion
-   : public Observer::Publisher<NotifyingSelectedRegionMessage>
-   , public wxTrackable
+   : public Observer::Publisher<NotifyingSelectedRegionMessage>,
+     public std::enable_shared_from_this<NotifyingSelectedRegion>
 {
 public:
    // Expose SelectedRegion's const accessors
@@ -57,7 +56,7 @@ public:
 
    // These are the event-emitting operations
    NotifyingSelectedRegion& operator = ( const SelectedRegion &other );
-   
+
    // Returns true iff the bounds got swapped
    bool setTimes(double t0, double t1);
 
