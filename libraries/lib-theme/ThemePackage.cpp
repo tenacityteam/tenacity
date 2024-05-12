@@ -156,43 +156,13 @@ void ThemePackage::OpenPackage(const std::string& path)
 
         if (subtheme.isString())
         {
-            mSelectedSubtheme = subtheme.asString();
+            mSelectedSubtheme = subtheme.asString() + "/";
             mIsMultiThemePackage = true;
         }
 
         // Don't parse the rest of the package. A compliant theme package will
         // not have them at the root of the archive.
         return;
-    }
-
-    // Read colors.json from the archive all into memory.
-    data = ReadFileFromArchive("colors.json");
-    if (!data)
-    {
-        throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
-    }
-
-    jsonStream = std::istringstream(std::string(data.get()));
-    {
-        Json::CharReaderBuilder builder;
-        std::string parserErrors;
-        bool ok = Json::parseFromStream(builder, jsonStream, &mColors, &parserErrors);
-        if (!ok)
-        {
-            throw ArchiveError(ArchiveError::Type::OperationalError);
-        }
-    }
-
-    // Check for the images/ subdir
-    zip_stat_t imageDir;
-
-    error = zip_stat(mPackageArchive, "images/", ZIP_STAT_NAME, &imageDir);
-
-    // If this fails, chances are it doesn't exist. Throw a missing required
-    // resource error.
-    if (error != 0)
-    {
-        throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
     }
 }
 
@@ -238,12 +208,26 @@ std::vector<int> ParseVersionString(const std::string& versionString)
 
 void ThemePackage::ParsePackage()
 {
-    const Json::Value themeName = mInfo["name"];
-    Json::Value minAppVersionString = mInfo.get("minAppVersion", "0.0.0");
-    std::vector<int> minAppVersion = ParseVersionString(minAppVersionString.asString());
+    // Prepare the package first.
+    LoadTheme(mSelectedSubtheme);
+
+    Json::Value themeName;
+    Json::Value minAppVersionString;
+    std::vector<int> minAppVersion;
     int minVersionMajor    = TENACITY_VERSION;
     int minVersionRelease  = TENACITY_RELEASE;
     int minVersionRevision = TENACITY_REVISION;
+
+    try
+    {
+        auto themeInfo = IsMultiThemePackage() ? mCurrentSubthemeInfo : mInfo;
+        themeName = themeInfo["name"];
+        minAppVersionString = themeInfo.get("minAppVersion", "0.0.0");
+        minAppVersion = ParseVersionString(minAppVersionString.asString());
+    } catch (Json::LogicError& /* err */)
+    {
+        throw ArchiveError(ArchiveError::Type::OperationalError);
+    }
 
     // Handle theme name
     if (themeName.asString().empty())
@@ -290,6 +274,11 @@ void ThemePackage::ClosePackage()
     }
 
     mPackageArchive = nullptr;
+
+    mInfo = Json::Value::nullSingleton();
+    mColors = Json::Value::nullSingleton();
+    mCurrentSubthemeInfo = Json::Value::nullSingleton();
+    mSelectedSubtheme.clear();
 }
 
 bool ThemePackage::IsValid() const
@@ -300,7 +289,7 @@ bool ThemePackage::IsValid() const
     }
 
     // Check if "subthemes", if a multi-theme package, is an array
-    if (IsMultiThemePackage() && !mInfo["subthemes"].isArray())
+    if (mIsMultiThemePackage && !mInfo["subthemes"].isArray())
     {
         return false;
     }
@@ -329,6 +318,70 @@ bool ThemePackage::SuccessfullyLoaded() const
     }
 
     return true;
+}
+
+void ThemePackage::LoadTheme(const std::string& theme)
+{
+    // Read the subtheme's info from `theme`/info.json
+    std::unique_ptr<char> data = ReadFileFromArchive(theme + "info.json");
+
+    if (!data)
+    {
+        // TODO: Better error handling
+        throw ArchiveError(ArchiveError::Type::OperationalError);
+    }
+
+    // Read the subtheme's info.json into memory, but only if we're dealing with
+    // a multi-theme package.
+    std::istringstream jsonStream;
+
+    if (mIsMultiThemePackage)
+    {
+        jsonStream = std::istringstream(std::string(data.get()));
+        {
+            Json::CharReaderBuilder builder;
+            std::string parserErrors;
+            bool ok = mIsMultiThemePackage ?
+                Json::parseFromStream(builder, jsonStream, &mCurrentSubthemeInfo, &parserErrors) :
+                Json::parseFromStream(builder, jsonStream, &mInfo, &parserErrors);
+
+            if (!ok)
+            {
+                throw ArchiveError(ArchiveError::Type::OperationalError);
+            }
+        }
+    }
+
+    // Read colors.json from the archive all into memory.
+    data = ReadFileFromArchive(theme + "colors.json");
+    if (!data)
+    {
+        throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
+    }
+
+    jsonStream = std::istringstream(std::string(data.get()));
+    {
+        Json::CharReaderBuilder builder;
+        std::string parserErrors;
+        bool ok = Json::parseFromStream(builder, jsonStream, &mColors, &parserErrors);
+        if (!ok)
+        {
+            throw ArchiveError(ArchiveError::Type::OperationalError);
+        }
+    }
+
+    // Check for the images/ subdir
+    zip_stat_t imageDir;
+
+    std::string imagesPath = theme + "images/";
+    int error = zip_stat(mPackageArchive, imagesPath.c_str(), ZIP_STAT_NAME, &imageDir);
+
+    // If this fails, chances are it doesn't exist. Throw a missing required
+    // resource error.
+    if (error != 0)
+    {
+        throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
+    }
 }
 
 std::any ThemePackage::LoadResource(const std::string& name)

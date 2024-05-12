@@ -259,6 +259,9 @@ void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
          case ArchiveError::Type::MissingRequiredResource:
             AudacityMessageBox(XO("Required resource is missing"), XO("Missing resource"), wxOK);
             break;
+         case ArchiveError::Type::MissingRequiredAttribute:
+            AudacityMessageBox(XO("Required attribute is missing"), XO("Missing attribute"), wxOK);
+            break;
          default:
             AudacityMessageBox(XO("Unknown error"), XO("Unknown error"), wxOK);
       }

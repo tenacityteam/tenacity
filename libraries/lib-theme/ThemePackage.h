@@ -59,6 +59,7 @@ class THEME_API ThemePackage final
         zip_t* mPackageArchive;
         Json::Value mInfo;
         Json::Value mColors;
+        Json::Value mCurrentSubthemeInfo;
         std::string mSelectedSubtheme;
         bool mIsMultiThemePackage;
 
@@ -131,6 +132,22 @@ class THEME_API ThemePackage final
          * 
         */
         bool SuccessfullyLoaded() const;
+
+        /** @brief Loads a subtheme.
+         * 
+         * This member function loads a subtheme based on `theme`. If `theme` is
+         * empty, it loads the theme at the root of the pakcage (i.e., a
+         * single-theme package). If the theme in `theme` doesn't exist, a
+         * NonExistentTheme exception is thronw. If the package is a
+         * single-theme package, this function ignores `theme` and loads the
+         * current theme.
+         * 
+         * @param theme The theme to load. This should be a path relative to
+         * the root of the archive. By default, it loads the theme from the
+         * root.
+         * 
+        */
+        void LoadTheme(const std::string& theme = {});
 
         /** @brief Loads an entire resource into memory.
          * 
