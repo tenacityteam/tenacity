@@ -13,6 +13,7 @@
 
 #include <utility>
 #include <vector>
+#include <cstdint>
 #include <wx/weakref.h> // member variable
 #include "SelectedRegion.h"
 #include <memory>
@@ -176,7 +177,7 @@ public:
    {
       return h * zoom;
    }
-   void SetBeforeScreenWidth(wxInt64 beforeWidth, wxInt64 screenWidth, double lowerBoundTime = 0.0);
+   void SetBeforeScreenWidth(long long beforeWidth, long long screenWidth, double lowerBoundTime = 0.0);
 
    double GetTotalWidth() const
    { return total * zoom; }
@@ -190,9 +191,9 @@ public:
 
    double total;                // total width in secs
    // Current horizontal scroll bar positions, in pixels
-   wxInt64 sbarH;
-   wxInt64 sbarScreen;
-   wxInt64 sbarTotal;
+   long long sbarH;
+   long long sbarScreen;
+   long long sbarTotal;
 
    // Internal wxScrollbar positions are only int in range, so multiply
    // the above values with the following member to get the actual

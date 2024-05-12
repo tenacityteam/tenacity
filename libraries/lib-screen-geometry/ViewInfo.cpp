@@ -197,7 +197,7 @@ void ViewInfo::UpdatePrefs()
    UpdateSelectedPrefs( UpdateScrollPrefsID() );
 }
 
-void ViewInfo::SetBeforeScreenWidth(wxInt64 beforeWidth, wxInt64 screenWidth, double lowerBoundTime)
+void ViewInfo::SetBeforeScreenWidth(long long beforeWidth, long long screenWidth, double lowerBoundTime)
 {
    h =
       std::max(lowerBoundTime,

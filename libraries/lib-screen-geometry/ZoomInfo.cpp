@@ -12,6 +12,7 @@
 #include "Decibels.h"
 
 #include <cmath>
+#include <limits>
 
 namespace {
 static const double gMaxZoom = 6000000;
@@ -38,20 +39,20 @@ void ZoomInfo::UpdatePrefs()
 /// Converts a position (mouse X coordinate) to
 /// project time, in seconds.  Needs the left edge of
 /// the track as an additional parameter.
-double ZoomInfo::PositionToTime(wxInt64 position, wxInt64 origin) const
+double ZoomInfo::PositionToTime(long long position, long long origin) const
 {
    return h + (position - origin) / zoom;
 }
 
 
 /// STM: Converts a project time to screen x position.
-wxInt64 ZoomInfo::TimeToPosition(double projectTime, wxInt64 origin) const
+long long ZoomInfo::TimeToPosition(double projectTime, long long origin) const
 {
    double t = 0.5 + zoom * (projectTime - h) + origin ;
-   if( t < wxINT64_MIN )
-      return wxINT64_MIN;
-   if( t > wxINT64_MAX )
-      return wxINT64_MAX;
+   if( (long) t < std::numeric_limits<long long>::min() )
+      return std::numeric_limits<long long>::min();
+   if( (long) t > std::numeric_limits<long long>::max() )
+      return std::numeric_limits<long long>::max();
    t = floor( t );
    return t;
 }
@@ -87,12 +88,12 @@ void ZoomInfo::ZoomBy(double multiplier)
 }
 
 void ZoomInfo::FindIntervals
-   (double /*rate*/, Intervals &results, wxInt64 width, wxInt64 origin) const
+   (double /*rate*/, Intervals &results, long long width, long long origin) const
 {
    results.clear();
    results.reserve(2);
 
-   const wxInt64 rightmost(origin + (0.5 + width));
+   const long long rightmost(origin + (0.5 + width));
    assert(origin <= rightmost);
    {
       results.push_back(Interval(origin, zoom, false));
