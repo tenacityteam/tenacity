@@ -142,8 +142,8 @@ the version string format used for this field.
 ### 4.2.1 The `subthemes` Field
 
 This field lists paths to directories in the archive that contain valid
-subthemes. The provided value MUST be an array of strings. For more information
-on this field, see Section 4.
+subthemes. The provided value MUST be an array of strings and MUST have at
+least one element. For more information on this field, see Section 5.
 
 ## 4.3 Application-Specific Fields
 
@@ -166,18 +166,17 @@ Subthemes MUST NOT specify further subthemes. Applications MUST ignore any
 
 ## 5.3 Required Informational Fields
 
-A special field named `subthemes` MUST be specified in order to specify
-one or more subthemes. The provided value MUST be an array of strings. Each
-string represents a path specifying where the subtheme resides. Subthemes
-MUST NOT contain this field in their `info.json`.
+A special field named `subthemes` MUST be present in order to specify one or
+more subthemes. Each string represents a path specifying where the subtheme
+resides. Subthemes MUST NOT contain this field in their `info.json`.
 
 The required fields as specified in Section 3 MUST be present in each
 subtheme's `info.json`. If any of these required fields are missing,
 applications MAY use information specified in the base theme's `info.json`.
-If multiple subthemes are missing, applications MUST modify the values provided
-to the required fields to prevent any subtheme from sharing the same
-information. If required fields are not specified here, applications MUST
-reject the theme package.
+If fields are missing across multiple subthemes, applications SHOULD modify the
+values provided to the required fields to prevent subthemes from sharing the
+same information. If any required field is not specified anywhere, applications
+MUST reject the theme package.
 
 ### 5.3.1 Special Exception with `minAppVersion`
 
@@ -197,8 +196,7 @@ resource specified by the subtheme.
 ## 5.5 Error Handling
 
 If any error occurs in a subtheme or a subtheme is invalid, applications MUST
-stop loading the current subtheme. Applications MUST continue loading other
-subthemes.
+stop loading the current subtheme but MUST continue loading other subthemes.
 
 If any error occurs in a base theme, applications MUST stop loading the entire
 theme package and raise an error.
@@ -230,7 +228,15 @@ underscores ('_'). Resource names MUST NOT contain quotes, forward slashes
 For multi-file resource types, resources MAY contain a single dot for the file
 extension in the archive.
 
-## 7.3 Anything Not Specified by This Specification
+## 7.3 Valid JSON Fields
+
+A field is considered valid if during parsing it matches its described type and
+other requirements as found in this specification. For exapmle, `subthemes` is
+considered valid if it contains at least 1 string during parsing. If
+`subthemes` is a different type, or it does not contain at least 1 string, it
+is considered invalid.
+
+## 7.4 Anything Not Specified by This Specification
 
 This specification intentionally leaves some aspects of theme packages
 undefined. Anything not defined in this specification is left up to
