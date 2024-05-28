@@ -414,15 +414,14 @@ std::any ThemePackage::LoadResource(const std::string& name)
             }
         }
 
-        currentResourcePath = mSelectedSubtheme + currentResourceName;
-
         // Add the current selected subtheme to the resource's name.
+        currentResourcePath = mSelectedSubtheme + currentResourceName;
 
         // Read the entire file into memory
         if (currentResourceName == name)
         {
             // Use the original file name
-            auto data = ReadFileFromArchive(currentResourcePath);
+            auto data = ReadFileFromArchive(currentFile.name);
             std::vector<char> buffer(data.get(), data.get() + currentFile.size);
             if (buffer.size() == 0)
             {
@@ -431,6 +430,8 @@ std::any ThemePackage::LoadResource(const std::string& name)
             }
 
             resourceData = buffer;
+
+            break;
         }
     }
 

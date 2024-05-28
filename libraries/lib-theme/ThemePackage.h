@@ -176,7 +176,7 @@ class THEME_API ThemePackage final
          * or when a resource wasn't found.
          * 
          * @param name The name of the resource to load. This should NOT be a
-         * path relative to the archive.
+         * path relative to the archive, nor should it be a file name.
          * 
          * @return Returns either an int (for color values) or a
          * std::vector<char> containing all of the resource's data.
