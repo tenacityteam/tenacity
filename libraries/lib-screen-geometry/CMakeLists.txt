@@ -18,6 +18,8 @@ set( LIBRARIES
    lib-preferences-interface
    lib-project-interface
    lib-xml-interface
+   PRIVATE
+      wxWidgets::wxWidgets
 )
 tenacity_library( lib-screen-geometry "${SOURCES}" "${LIBRARIES}"
    "" ""
