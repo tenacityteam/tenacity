@@ -457,9 +457,19 @@ endif()
 # Define Tenacity's name
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
    set( APP_NAME "Tenacity" )
+   set( DESKTOP_NAME ${APP_NAME})
 else()
    set( APP_NAME "tenacity" )
    set( PROPER_NAME "Tenacity" )
+   set( DESKTOP_NAME ${APP_NAME})
+endif()
+
+# Modify our name if we're in alpha or in beta.
+# This helps with reducing confusion between stable and unstable builds.
+if (TENACITY_BUILD_LEVEL EQUAL 0)
+   set(DESKTOP_NAME "${PROPER_NAME} (Nightly)")
+elseif (TENACITY_BUILD_LEVEL EQUAL 1)
+   set(DESKTOP_NAME "${PROPER_NAME} (Beta)")
 endif()
 
 # Define Application ID
