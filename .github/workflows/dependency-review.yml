@@ -22,4 +22,7 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
       - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v4]
+        with:
+          base-ref: ${{github.base_ref}}
+          head-ref: ${{github.head_ref}}
