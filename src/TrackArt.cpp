@@ -314,8 +314,8 @@ void TrackArt::DrawSyncLockTiles(
    wxBitmap syncLockBitmap(theTheme.Image(bmpSyncLockSelTile));
 
    // Grid spacing is a bit smaller than actual image size
-   int gridW = syncLockBitmap.GetWidth() - 6;
-   int gridH = syncLockBitmap.GetHeight() - 8;
+   int gridW = syncLockBitmap.GetWidth();
+   int gridH = syncLockBitmap.GetHeight() - 2;
 
    // Horizontal position within the grid, modulo its period
    int blockX = (rect.x / gridW) % 5;
@@ -370,21 +370,14 @@ void TrackArt::DrawSyncLockTiles(
          if (yy + height > rect.height)
             height = rect.height - yy;
 
-         // AWD: draw blocks according to our pattern
-         if ((blockX == 0 && blockY == 0) || (blockX == 2 && blockY == 1) ||
-             (blockX == 4 && blockY == 2) || (blockX == 1 && blockY == 3) ||
-             (blockX == 3 && blockY == 4))
-         {
-
-            // Do we need to get a sub-bitmap?
-            if (width != syncLockBitmap.GetWidth() || height != syncLockBitmap.GetHeight()) {
-               wxBitmap subSyncLockBitmap =
-                  syncLockBitmap.GetSubBitmap(wxRect(xOffset, yOffset, width, height));
-               dc->DrawBitmap(subSyncLockBitmap, rect.x + xx, rect.y + yy, true);
-            }
-            else {
-               dc->DrawBitmap(syncLockBitmap, rect.x + xx, rect.y + yy, true);
-            }
+         // Do we need to get a sub-bitmap?
+         if (width != syncLockBitmap.GetWidth() || height != syncLockBitmap.GetHeight()) {
+            wxBitmap subSyncLockBitmap =
+               syncLockBitmap.GetSubBitmap(wxRect(xOffset, yOffset, width, height));
+            dc->DrawBitmap(subSyncLockBitmap, rect.x + xx, rect.y + yy, true);
+         }
+         else {
+            dc->DrawBitmap(syncLockBitmap, rect.x + xx, rect.y + yy, true);
          }
 
          // Updates for next row
