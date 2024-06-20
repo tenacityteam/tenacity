@@ -279,29 +279,6 @@ void PopulatePreferences()
       gPrefs->Write(wxT("/GUI/ToolBars/Meter/Dock"), -1);
    }
 
-   // Upgrading pre 2.2.0 configs we assume extended set of defaults.
-   if ((0<vMajor && vMajor < 2) ||
-       (vMajor == 2 && vMinor < 2))
-   {
-      gPrefs->Write(wxT("/GUI/Shortcuts/FullDefaults"),1);
-   }
-
-   // Upgrading pre 2.4.0 configs, the selection toolbar is now split.
-   if ((0<vMajor && vMajor < 2) ||
-       (vMajor == 2 && vMinor < 4))
-   {
-      gPrefs->Write(wxT("/GUI/Toolbars/Selection/W"),"");
-      gPrefs->Write(wxT("/GUI/Toolbars/SpectralSelection/W"),"");
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/X"),-1);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Y"),-1);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/H"),55);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/W"),251);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/DockV2"),2);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Dock"),2);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Path"),"0,1");
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Show"),1);
-   }
-
    // write out the version numbers to the prefs file for future checking
    gPrefs->Write(wxT("/Version/Major"), TENACITY_VERSION);
    gPrefs->Write(wxT("/Version/Minor"), TENACITY_RELEASE);
