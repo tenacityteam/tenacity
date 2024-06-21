@@ -228,6 +228,14 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
             EbmlElement *found = nullptr;
             Header->Read(*aStream, EBML_CONTEXT(Header), UpperElementLevel, found, true);
 
+            // Bug 311: importing OGG files containing opus audio with low
+            // bitrates crashes Tenacity.
+            if (!found)
+            {
+                wxLogError("Matroska : cannot find header for file %s", filename);
+                return nullptr;
+            }
+
             std::string DocType = GetChild<EDocType>(*Header);
             if (DocType != "matroska")
             {
