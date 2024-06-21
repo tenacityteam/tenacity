@@ -429,6 +429,16 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
    PaStreamParameters playbackParameters{};
    PaStreamParameters captureParameters{};
 
+   unsigned long latency = AudioIOLatencyDuration.Read();
+   if (AudioIOLatencyUnit.Read() != L"milliseconds")
+   {
+      // Convert from samples
+      latency = latency / mRate * 1000;
+   }
+
+   // Convert to seconds
+   latency /= 1000;
+
    if( numPlaybackChannels > 0)
    {
       usePlayback = true;
@@ -449,8 +459,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       playbackParameters.channelCount = mNumPlaybackChannels;
 
       playbackParameters.suggestedLatency = mSoftwarePlaythrough ?
-         playbackDeviceInfo->defaultLowOutputLatency :
-         0.0;
+         playbackDeviceInfo->defaultLowOutputLatency : latency;
 
       mOutputMeter = options.playbackMeter;
    }
@@ -476,8 +485,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       captureParameters.hostApiSpecificStreamInfo = NULL;
       captureParameters.channelCount = mNumCaptureChannels;
       captureParameters.suggestedLatency = mSoftwarePlaythrough ?
-         captureDeviceInfo->defaultHighInputLatency :
-         0.0;
+         captureDeviceInfo->defaultHighInputLatency : latency;
 
       SetCaptureMeter( mOwningProject.lock(), options.captureMeter );
    }
@@ -500,7 +508,8 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 
    UpdateBuffers();
 
-   unsigned long latency = GetConvertedLatencyPreference();
+   // Get the original preference converted to samples.
+   latency = GetConvertedLatencyPreference();
 
    for (unsigned int tries = 0; tries < maxTries; tries++) {
       mLastPaError = Pa_OpenStream( &mPortStreamV19,
