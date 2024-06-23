@@ -326,6 +326,9 @@ size_t RealtimeEffectManager::RealtimeProcess(int group, unsigned chans, float *
       mOutputBuffers.reserve(chans);
    }
 
+   mInputBuffers.resize(chans);
+   mOutputBuffers.resize(chans);
+
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
    steady_clock::time_point start = steady_clock::now();
