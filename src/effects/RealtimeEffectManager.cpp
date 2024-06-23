@@ -202,6 +202,8 @@ size_t RealtimeEffectManager::Process(Track *track,
       mOutputBuffers.reserve(chans);
    }
 
+   mInputBuffers.resize(chans);
+   mOutputBuffers.resize(chans);
 
    // Remember when we started so we can calculate the amount of latency we
    // are introducing
