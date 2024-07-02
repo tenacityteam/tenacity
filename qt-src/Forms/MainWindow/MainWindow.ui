@@ -155,14 +155,14 @@
     </property>
     <widget class="QMenu" name="menuTracks_2">
      <property name="title">
-      <string>Tracks</string>
+      <string>&amp;Tracks</string>
      </property>
      <addaction name="actionIn_All_Tracks"/>
      <addaction name="actionIn_All_Sync_Locked_Tracks"/>
     </widget>
     <widget class="QMenu" name="menuRegion">
      <property name="title">
-      <string>Region</string>
+      <string>&amp;Region</string>
      </property>
      <addaction name="actionLeft_at_Playback_Position"/>
      <addaction name="actionRight_at_Playback_Position"/>
@@ -175,7 +175,7 @@
     </widget>
     <widget class="QMenu" name="menuSpectral">
      <property name="title">
-      <string>Spectral</string>
+      <string>&amp;Spectral</string>
      </property>
      <addaction name="actionToggle_Spectral_Selection"/>
      <addaction name="actionNext_Higher_Peak_Frequency"/>
@@ -183,7 +183,7 @@
     </widget>
     <widget class="QMenu" name="menuClip_Boundaries_2">
      <property name="title">
-      <string>Clip Boundaries</string>
+      <string>&amp;Clip Boundaries</string>
      </property>
      <addaction name="actionPrevious_Clip_Boundary_to_Cursor"/>
      <addaction name="actionCursor_to_Next_Clip_Boundary"/>
@@ -206,6 +206,66 @@
     <property name="title">
      <string>View</string>
     </property>
+    <widget class="QMenu" name="menuZoom">
+     <property name="title">
+      <string>&amp;Zoom</string>
+     </property>
+     <addaction name="actionZoom_In"/>
+     <addaction name="actionZoom_Normal"/>
+     <addaction name="actionZoom_Out"/>
+     <addaction name="actionZoom_to_Selection"/>
+     <addaction name="actionZoom_Toggle"/>
+     <addaction name="separator"/>
+     <addaction name="actionAdvanced_Vertical_Zooming"/>
+    </widget>
+    <widget class="QMenu" name="menuTrack_Size">
+     <property name="title">
+      <string>&amp;Track Size</string>
+     </property>
+     <addaction name="actionFit_to_Width"/>
+     <addaction name="actionFit_to_Height"/>
+     <addaction name="actionCollapse_All_Tracks"/>
+     <addaction name="actionExpand_Collapsed_Tracks"/>
+    </widget>
+    <widget class="QMenu" name="menu_Skip_to">
+     <property name="title">
+      <string>&amp;Skip to</string>
+     </property>
+     <addaction name="actionSelection_Start"/>
+     <addaction name="actionSelection_End"/>
+    </widget>
+    <widget class="QMenu" name="menuT_oolbars">
+     <property name="title">
+      <string>T&amp;oolbars</string>
+     </property>
+     <addaction name="actionEdit_Mode"/>
+     <addaction name="actionReset_All"/>
+     <addaction name="separator"/>
+     <addaction name="actionTransport"/>
+     <addaction name="actionTools"/>
+     <addaction name="actionRecording_Meter"/>
+     <addaction name="actionPlayback_Meter"/>
+     <addaction name="actionEdit"/>
+     <addaction name="actionPlay_at_Speed"/>
+     <addaction name="actionScrub"/>
+     <addaction name="actionDevice"/>
+     <addaction name="actionSelection"/>
+     <addaction name="actionTime"/>
+     <addaction name="actionSpectral_Selection"/>
+    </widget>
+    <addaction name="menuZoom"/>
+    <addaction name="menuTrack_Size"/>
+    <addaction name="menu_Skip_to"/>
+    <addaction name="separator"/>
+    <addaction name="actionHistory"/>
+    <addaction name="actionKaraoke"/>
+    <addaction name="actionMixer_Board"/>
+    <addaction name="separator"/>
+    <addaction name="menuT_oolbars"/>
+    <addaction name="separator"/>
+    <addaction name="actionExtra_Menus"/>
+    <addaction name="actionTrack_Name"/>
+    <addaction name="actionShow_Clipping"/>
    </widget>
    <widget class="QMenu" name="menuTransport">
     <property name="title">
@@ -769,7 +829,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>All</string>
+    <string>&amp;All</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
@@ -780,7 +840,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>None</string>
+    <string>&amp;None</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+A</string>
@@ -791,7 +851,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Cursor to Stored Cursor Position</string>
+    <string>C&amp;ursor to Stored Cursor Position</string>
    </property>
   </action>
   <action name="actionStore_Cursor_Position">
@@ -799,7 +859,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Store Cursor Position</string>
+    <string>Store Cursor &amp;Position</string>
    </property>
   </action>
   <action name="actionAt_Zero_Crossings">
@@ -807,7 +867,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>At Zero Crossings</string>
+    <string>At &amp;Zero Crossings</string>
    </property>
    <property name="shortcut">
     <string>Z</string>
@@ -818,7 +878,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>In All Tracks</string>
+    <string>&amp;In All Tracks</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+K</string>
@@ -829,7 +889,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>In All Sync-Locked Tracks</string>
+    <string>In All &amp;Sync-Locked Tracks</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Y</string>
@@ -840,7 +900,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Left at Playback Position</string>
+    <string>&amp;Left at Playback Position</string>
    </property>
    <property name="shortcut">
     <string>[</string>
@@ -851,7 +911,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Right at Playback Position</string>
+    <string>&amp;Right at Playback Position</string>
    </property>
    <property name="shortcut">
     <string>]</string>
@@ -859,7 +919,7 @@
   </action>
   <action name="actionTrack_Start_to_Cursor">
    <property name="text">
-    <string>Track Start to Cursor</string>
+    <string>&amp;Track Start to Cursor</string>
    </property>
    <property name="shortcut">
     <string>Shift+J</string>
@@ -867,7 +927,7 @@
   </action>
   <action name="actionCursor_to_Track_End">
    <property name="text">
-    <string>Cursor to Track End</string>
+    <string>&amp;Cursor to Track End</string>
    </property>
    <property name="shortcut">
     <string>Shift+K</string>
@@ -875,7 +935,7 @@
   </action>
   <action name="actionTrack_Start_to_End">
    <property name="text">
-    <string>Track Start to End</string>
+    <string>Track Start to &amp;End</string>
    </property>
   </action>
   <action name="actionStore_Selection">
@@ -883,7 +943,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Store Selection</string>
+    <string>&amp;Store Selection</string>
    </property>
   </action>
   <action name="actionRetrieve_Selection">
@@ -891,7 +951,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Retrieve Selection</string>
+    <string>Retr&amp;ieve Selection</string>
    </property>
   </action>
   <action name="actionToggle_Spectral_Selection">
@@ -899,7 +959,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Toggle Spectral Selection</string>
+    <string>&amp;Toggle Spectral Selection</string>
    </property>
    <property name="shortcut">
     <string>Q</string>
@@ -910,7 +970,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Next Higher Peak Frequency</string>
+    <string>&amp;Next Higher Peak Frequency</string>
    </property>
   </action>
   <action name="actionNext_Lower_Peak_Frequency">
@@ -918,7 +978,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Next Lower Peak Frequency</string>
+    <string>Next &amp;Lower Peak Frequency</string>
    </property>
   </action>
   <action name="actionPrevious_Clip_Boundary_to_Cursor">
@@ -926,7 +986,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Previous Clip Boundary to Cursor</string>
+    <string>&amp;Previous Clip Boundary to Cursor</string>
    </property>
   </action>
   <action name="actionCursor_to_Next_Clip_Boundary">
@@ -934,7 +994,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Cursor to Next Clip Boundary</string>
+    <string>&amp;Cursor to Next Clip Boundary</string>
    </property>
   </action>
   <action name="actionPrevious_Clip">
@@ -942,7 +1002,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Previous Clip</string>
+    <string>P&amp;revious Clip</string>
    </property>
    <property name="shortcut">
     <string>Alt+,</string>
@@ -953,10 +1013,290 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Next Clip</string>
+    <string>&amp;Next Clip</string>
    </property>
    <property name="shortcut">
     <string>Alt+.</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="text">
+    <string>&amp;History...</string>
+   </property>
+  </action>
+  <action name="actionKaraoke">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Karaoke...</string>
+   </property>
+  </action>
+  <action name="actionMixer_Board">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Mixer Board...</string>
+   </property>
+  </action>
+  <action name="actionExtra_Menus">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Extra Menus</string>
+   </property>
+  </action>
+  <action name="actionTrack_Name">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Track &amp;Name</string>
+   </property>
+  </action>
+  <action name="actionShow_Clipping">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show &amp;Clipping</string>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Zoom In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionZoom_Normal">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Zoom &amp;Normal</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Zoom &amp;Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionZoom_to_Selection">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Zoo&amp;m to Selection</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionZoom_Toggle">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Zoom To&amp;ggle</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionAdvanced_Vertical_Zooming">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Advanced Vertical Zooming</string>
+   </property>
+  </action>
+  <action name="actionFit_to_Width">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Fit to Width</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionFit_to_Height">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Fit to &amp;Height</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F</string>
+   </property>
+  </action>
+  <action name="actionCollapse_All_Tracks">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Collapse All Tracks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+C</string>
+   </property>
+  </action>
+  <action name="actionExpand_Collapsed_Tracks">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Expand Collapsed Tracks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+X</string>
+   </property>
+  </action>
+  <action name="actionSelection_Start">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Selection Start</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+[</string>
+   </property>
+  </action>
+  <action name="actionSelection_End">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Selection &amp;End</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+]</string>
+   </property>
+  </action>
+  <action name="actionEdit_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Edit Mode</string>
+   </property>
+  </action>
+  <action name="actionReset_All">
+   <property name="text">
+    <string>Reset All</string>
+   </property>
+  </action>
+  <action name="actionTransport">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Transport</string>
+   </property>
+  </action>
+  <action name="actionTools">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tools</string>
+   </property>
+  </action>
+  <action name="actionRecording_Meter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Recording Meter</string>
+   </property>
+  </action>
+  <action name="actionPlayback_Meter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Playback Meter</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionPlay_at_Speed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Play-at-Speed</string>
+   </property>
+  </action>
+  <action name="actionScrub">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Scrub</string>
+   </property>
+  </action>
+  <action name="actionDevice">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Device</string>
+   </property>
+  </action>
+  <action name="actionSelection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Selection</string>
+   </property>
+  </action>
+  <action name="actionTim">
+   <property name="text">
+    <string>Tim</string>
+   </property>
+  </action>
+  <action name="actionTime">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Time</string>
+   </property>
+  </action>
+  <action name="actionSpectral_Selection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Spectral Selection</string>
    </property>
   </action>
  </widget>

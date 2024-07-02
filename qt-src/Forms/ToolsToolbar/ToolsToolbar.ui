@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ToolsToolbar</class>
+ <widget class="QWidget" name="ToolsToolbar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>377</width>
+    <height>46</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ToolsToolbar</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QToolButton" name="select">
+     <property name="text">
+      <string>Select</string>
+     </property>
+     <property name="icon">
+      <iconset theme="edit-select-all"/>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
+     </property>
+     <property name="autoRaise">
+      <bool>false</bool>
+     </property>
+     <property name="arrowType">
+      <enum>Qt::ArrowType::NoArrow</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="envelope">
+     <property name="text">
+      <string>Envelope</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="draw">
+     <property name="text">
+      <string>Draw</string>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="zoom">
+     <property name="text">
+      <string>Zoom</string>
+     </property>
+     <property name="icon">
+      <iconset theme="zoom-in"/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="multiUsage">
+     <property name="text">
+      <string>Multi-usage</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -74,8 +74,13 @@ list( APPEND SOURCES
     main.cpp
     Forms/MainWindow/MainWindow.cpp
     Forms/MainWindow/MainWindow.h
-    Forms/ControlToolbar/ControlToolbar.cpp
-    Forms/ControlToolbar/ControlToolbar.h
+    Forms/MainWindow/MainWindow.ui
+    Forms/TransportToolbar/TransportToolbar.cpp
+    Forms/TransportToolbar/TransportToolbar.h
+    Forms/TransportToolbar/TransportToolbar.ui
+    Forms/ToolsToolbar/ToolsToolbar.cpp
+    Forms/ToolsToolbar/ToolsToolbar.h
+    Forms/ToolsToolbar/ToolsToolbar.ui
 )
 
 #
