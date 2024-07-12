@@ -279,6 +279,25 @@ void PopulatePreferences()
       gPrefs->Write(wxT("/GUI/ToolBars/Meter/Dock"), -1);
    }
 
+   /////////////////////////////////////////////////////////////////////////////
+   // Tenacity Preference Migration
+   // 
+   // Tenacity automatically migrates preferences from one minor version in
+   // of the same major branch to another. If available options for
+   // preferences has changed, be sure to put and document them here.
+
+   //// Spectrogram Color Scheme (1.4)
+   // Starting in 1.4, Tenacity no longer supports using the "classic" color
+   // scheme (i.e., the theme's spectrogram color scheme). This preference is
+   // instead reset to use the default color scheme.
+   wxString specColorPref = gPrefs->Read("/Spectrum/ColorScheme", "");
+   if (specColorPref == "SpecColorTheme")
+   {
+      gPrefs->Write("/Spectrum/ColorScheme", "SpecColorNew");
+   }
+
+   ////////////////////////////////////////////////////////////////////////////
+
    // write out the version numbers to the prefs file for future checking
    gPrefs->Write(wxT("/Version/Major"), TENACITY_VERSION);
    gPrefs->Write(wxT("/Version/Minor"), TENACITY_RELEASE);

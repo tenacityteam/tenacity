@@ -133,7 +133,6 @@ public:
    enum ColorScheme : int {
       // Keep in correspondence with AColor::colorSchemes, AColor::gradient_pre
       csColorNew = 0,
-      csColorTheme,
       csGrayscale,
       csInvGrayscale,
 

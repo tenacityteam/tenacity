@@ -654,70 +654,7 @@ void AColor::PreComputeGradient() {
 
 
    for (int selected = 0; selected < ColorGradientTotal; selected++) {
-      // Get color scheme from Theme
-      const int gsteps = 4;
-      float gradient[gsteps + 1][3];
-      theTheme.Colour( clrSpectro1 ) = theTheme.Colour( clrUnselected );
-      theTheme.Colour( clrSpectro1Sel ) = theTheme.Colour( clrSelected );
-      int clrFirst = (selected == ColorGradientUnselected ) ? clrSpectro1 : clrSpectro1Sel;
-      for(int j=0;j<(gsteps+1);j++){
-         wxColour c = theTheme.Colour( clrFirst+j );
-         gradient[ j] [0] = c.Red()/255.0;
-         gradient[ j] [1] = c.Green()/255.0;
-         gradient[ j] [2] = c.Blue()/255.0;
-      }
-
-      // colorScheme 1: Color (from theme)
-      for (int i = 0; i<gradientSteps; i++) {
-         float r, g, b;
-         float value = float(i)/gradientSteps;
-
-         int left = (int)(value * gsteps);
-         int right = (left == gsteps ? gsteps : left + 1);
-
-         float rweight = (value * gsteps) - left;
-         float lweight = 1.0 - rweight;
-
-         r = (gradient[left][0] * lweight) + (gradient[right][0] * rweight);
-         g = (gradient[left][1] * lweight) + (gradient[right][1] * rweight);
-         b = (gradient[left][2] * lweight) + (gradient[right][2] * rweight);
-
-         switch (selected) {
-         case ColorGradientUnselected:
-            // not dimmed
-            break;
-
-         case ColorGradientTimeAndFrequencySelected:
-            float temp;
-            temp = r;
-            r = g;
-            g = b;
-            b = temp;
-            break;
-
-         case ColorGradientTimeSelected:
-            // partly dimmed
-            r *= 0.75f;
-            g *= 0.75f;
-            b *= 0.75f;
-            break;
-
-
-         // For now edge colour is just black (or white if grey-scale)
-         // Later we might invert or something else funky.
-         case ColorGradientEdge:
-            // fully dimmed
-            r = 0;
-            g = 0;
-            b = 0;
-            break;
-         }
-         gradient_pre[selected][1][i][0] = (unsigned char) (255 * r);
-         gradient_pre[selected][1][i][1] = (unsigned char) (255 * g);
-         gradient_pre[selected][1][i][2] = (unsigned char) (255 * b);
-      }
-
-      // colorScheme 3: Inverse Grayscale
+      // colorScheme 2: Inverse Grayscale
       for (int i = 0; i < gradientSteps; i++) {
          float r, g, b;
          float value = float(i) / gradientSteps;
@@ -746,12 +683,12 @@ void AColor::PreComputeGradient() {
             b = 1.0f;
             break;
          }
-         gradient_pre[selected][3][i][0] = (unsigned char)(255 * r);
-         gradient_pre[selected][3][i][1] = (unsigned char)(255 * g);
-         gradient_pre[selected][3][i][2] = (unsigned char)(255 * b);
+         gradient_pre[selected][2][i][0] = (unsigned char)(255 * r);
+         gradient_pre[selected][2][i][1] = (unsigned char)(255 * g);
+         gradient_pre[selected][2][i][2] = (unsigned char)(255 * b);
       }
 
-      // colorScheme 2: Grayscale (=Old grayscale)
+      // colorScheme 1: Grayscale (=Old grayscale)
       for (int i = 0; i<gradientSteps; i++) {
          float r, g, b;
          float value = float(i)/gradientSteps;
@@ -784,9 +721,9 @@ void AColor::PreComputeGradient() {
             b = 1.0f;
             break;
          }
-         gradient_pre[selected][2][i][0] = (unsigned char) (255 * r);
-         gradient_pre[selected][2][i][1] = (unsigned char) (255 * g);
-         gradient_pre[selected][2][i][2] = (unsigned char) (255 * b);
+         gradient_pre[selected][1][i][0] = (unsigned char) (255 * r);
+         gradient_pre[selected][1][i][1] = (unsigned char) (255 * g);
+         gradient_pre[selected][1][i][2] = (unsigned char) (255 * b);
       }
    }
 }

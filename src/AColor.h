@@ -123,7 +123,7 @@ class TENACITY_DLL_API AColor {
    static wxBrush tooltipBrush;
 
    static bool gradient_inited;
-   static const int colorSchemes = 4;
+   static const int colorSchemes = 3;
    static const int gradientSteps = 256;
    static unsigned char gradient_pre[ColorGradientTotal][colorSchemes][gradientSteps][3];
 

@@ -163,8 +163,6 @@ const EnumValueSymbols &SpectrogramSettings::GetColorSchemeNames()
       // Keep in correspondence with enum SpectrogramSettings::ColorScheme:
       /* i18n-hint: New color scheme for spectrograms */
       { wxT("SpecColorNew"),     XC("Color (default)",   "spectrum prefs") },
-      /* i18n-hint: Classic color scheme(from theme) for spectrograms */
-      { wxT("SpecColorTheme"),   XC("Color (classic)",   "spectrum prefs") },
       /* i18n-hint: Grayscale color scheme for spectrograms */
       { wxT("SpecGrayscale"),    XC("Grayscale",         "spectrum prefs") },
       /* i18n-hint: Inverse grayscale color scheme for spectrograms */
@@ -193,7 +191,7 @@ SpectrogramSettings::ColorSchemeEnumSetting SpectrogramSettings::colorSchemeSett
    wxT("/Spectrum/ColorScheme"),
    GetColorSchemeNames(),
    csColorNew, // default to Color(New)
-   { csColorNew, csColorTheme, csGrayscale, csInvGrayscale },
+   { csColorNew, csGrayscale, csInvGrayscale },
 };
 
 
