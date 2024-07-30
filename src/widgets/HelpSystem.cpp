@@ -43,6 +43,7 @@
 #include <lib-files/wxFileNameWrapper.h>
 #include <lib-preferences/Prefs.h>
 
+#include "../images/TenacityLogo.xpm"
 #include "../theme/AllThemeResources.h"
 #include "../shuttle/ShuttleGui.h"
 #include "../theme/Theme.h"
@@ -111,12 +112,7 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
    // -- START of ICON stuff -----
    // If this section (providing an icon) causes compilation errors on linux, comment it out for now.
    // it will just mean that the icon is missing.  Works OK on Windows.
-   #ifdef __WXMSW__
-   wxIcon ic{ wxICON(AudacityLogo) };
-   #else
-   wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
-   #endif
+   wxIcon ic{ wxICON(TenacityLogo) };
    pWnd.SetIcon( ic );
    // -- END of ICON stuff -----
 

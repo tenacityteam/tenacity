@@ -95,11 +95,8 @@ void LogWindow::Show(bool show)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
 #if defined(__WXMSW__)
       wxIcon ic{wxICON(TenacityLogo)};
-#elif defined(__WXGTK__)
-      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
-      wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
+      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #endif
       frame->SetIcon(ic);
 #endif

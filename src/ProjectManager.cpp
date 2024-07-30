@@ -403,11 +403,8 @@ void InitProjectWindow( ProjectWindow &window )
    {
 #if defined(__WXMSW__)
       wxIcon ic{ wxICON(TenacityLogo) };
-#elif defined(__WXGTK__)
-      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
-      wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
+      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #endif
       window.SetIcon(ic);
    }
