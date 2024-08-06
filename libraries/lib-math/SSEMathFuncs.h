@@ -29,14 +29,14 @@
 
 
 
-/* SIMD (SSE1+MMX or SSE2) implementation of sin, cos, exp and log
+/* SIMD (SSE2) implementation of sin, cos, exp and log
 
 Inspired by Intel Approximate Math library, and based on the
 corresponding algorithms of the cephes math library
 
-The default is to use the SSE1 version. If you define USE_SSE2 the
-the SSE2 intrinsics will be used in place of the MMX intrinsics. Do
-not expect any significant performance improvement with SSE2.
+SSE2 is mandatory in order to use these functions. There might not be any
+significant performance gains with SSE2, but since most systems nowadays will
+support SSE2, this should be fine.
 */
 
 /* Copyright (C) 2007  Julien Pommier
@@ -66,9 +66,9 @@ misrepresented as being the original software.
    Inspired by Intel Approximate Math library, and based on the
    corresponding algorithms of the cephes math library
 
-   The default is to use the SSE1 version. If you define USE_SSE2 the
-   the SSE2 intrinsics will be used in place of the MMX intrinsics. Do
-   not expect any significant performance improvement with SSE2.
+   SSE2 is mandatory in order to use these functions. There might not be any
+   significant performance gains with SSE2, but since most systems nowadays will
+   support SSE2, this should be fine.
 */
 
 /* Copyright (C) 2007  Julien Pommier
@@ -107,12 +107,9 @@ misrepresented as being the original software.
 /* __m128 is ugly to write */
 typedef __m128 v4sf;  // vector of 4 float (sse1)
 
-#ifdef USE_SSE2
 # include <emmintrin.h>
 typedef __m128i v4si; // vector of 4 int (sse2)
-#else
 typedef __m64 v2si;   // vector of 2 int (mmx)
-#endif
 
 /* declare some SSE constants -- why can't I figure a better way to do that? */
 #define _PS_CONST(Name, Val)                                            \
@@ -151,61 +148,25 @@ _PS_CONST(cephes_log_p8, + 3.3333331174E-1);
 _PS_CONST(cephes_log_q1, -2.12194440e-4);
 _PS_CONST(cephes_log_q2, 0.693359375);
 
-#ifndef USE_SSE2
-typedef union xmm_mm_union {
-  __m128 xmm;
-  __m64 mm[2];
-} xmm_mm_union;
-
-#define COPY_XMM_TO_MM(xmm_, mm0_, mm1_) {          \
-    xmm_mm_union u; u.xmm = xmm_;                   \
-    mm0_ = u.mm[0];                                 \
-    mm1_ = u.mm[1];                                 \
-}
-
-#define COPY_MM_TO_XMM(mm0_, mm1_, xmm_) {                         \
-    xmm_mm_union u; u.mm[0]=mm0_; u.mm[1]=mm1_; xmm_ = u.xmm;      \
-  }
-
-#endif // USE_SSE2
-
 /* natural logarithm computed for 4 simultaneous float 
    return NaN for x <= 0
 */
 v4sf log_ps(v4sf x) {
-#ifdef USE_SSE2
   v4si emm0;
-#else
-  v2si mm0, mm1;
-#endif
   v4sf one = *(v4sf*)_ps_1;
 
   v4sf invalid_mask = _mm_cmple_ps(x, _mm_setzero_ps());
 
   x = _mm_max_ps(x, *(v4sf*)_ps_min_norm_pos);  /* cut off denormalized stuff */
 
-#ifndef USE_SSE2
-  /* part 1: x = frexpf(x, &e); */
-  COPY_XMM_TO_MM(x, mm0, mm1);
-  mm0 = _mm_srli_pi32(mm0, 23);
-  mm1 = _mm_srli_pi32(mm1, 23);
-#else
   emm0 = _mm_srli_epi32(_mm_castps_si128(x), 23);
-#endif
+
   /* keep only the fractional part */
   x = _mm_and_ps(x, *(v4sf*)_ps_inv_mant_mask);
   x = _mm_or_ps(x, *(v4sf*)_ps_0p5);
 
-#ifndef USE_SSE2
-  /* now e=mm0:mm1 contain the really base-2 exponent */
-  mm0 = _mm_sub_pi32(mm0, *(v2si*)_pi32_0x7f);
-  mm1 = _mm_sub_pi32(mm1, *(v2si*)_pi32_0x7f);
-  v4sf e = _mm_cvtpi32x2_ps(mm0, mm1);
-  _mm_empty(); /* bye bye mmx */
-#else
   emm0 = _mm_sub_epi32(emm0, *(v4si*)_pi32_0x7f);
   v4sf e = _mm_cvtepi32_ps(emm0);
-#endif
 
   e = _mm_add_ps(e, one);
 
@@ -276,11 +237,7 @@ _PS_CONST(cephes_exp_p5, 5.0000001201E-1);
 
 v4sf exp_ps(v4sf x) {
   v4sf tmp = _mm_setzero_ps(), fx;
-#ifdef USE_SSE2
   v4si emm0;
-#else
-  v2si mm0, mm1;
-#endif
   v4sf one = *(v4sf*)_ps_1;
 
   x = _mm_min_ps(x, *(v4sf*)_ps_exp_hi);
@@ -290,18 +247,10 @@ v4sf exp_ps(v4sf x) {
   fx = _mm_mul_ps(x, *(v4sf*)_ps_cephes_LOG2EF);
   fx = _mm_add_ps(fx, *(v4sf*)_ps_0p5);
 
-  /* how to perform a floorf with SSE: just below */
-#ifndef USE_SSE2
-  /* step 1 : cast to int */
-  tmp = _mm_movehl_ps(tmp, fx);
-  mm0 = _mm_cvttps_pi32(fx);
-  mm1 = _mm_cvttps_pi32(tmp);
-  /* step 2 : cast back to float */
-  tmp = _mm_cvtpi32x2_ps(mm0, mm1);
-#else
+  /* how to perform a floorf with SSE2: just below */
   emm0 = _mm_cvttps_epi32(fx);
   tmp  = _mm_cvtepi32_ps(emm0);
-#endif
+
   /* if greater, subtract 1 */
   v4sf mask = _mm_cmpgt_ps(tmp, fx);    
   mask = _mm_and_ps(mask, one);
@@ -330,24 +279,11 @@ v4sf exp_ps(v4sf x) {
   y = _mm_add_ps(y, one);
 
   /* build 2^n */
-#ifndef USE_SSE2
-  z = _mm_movehl_ps(z, fx);
-  mm0 = _mm_cvttps_pi32(fx);
-  mm1 = _mm_cvttps_pi32(z);
-  mm0 = _mm_add_pi32(mm0, *(v2si*)_pi32_0x7f);
-  mm1 = _mm_add_pi32(mm1, *(v2si*)_pi32_0x7f);
-  mm0 = _mm_slli_pi32(mm0, 23); 
-  mm1 = _mm_slli_pi32(mm1, 23);
-  
-  v4sf pow2n; 
-  COPY_MM_TO_XMM(mm0, mm1, pow2n);
-  _mm_empty();
-#else
   emm0 = _mm_cvttps_epi32(fx);
   emm0 = _mm_add_epi32(emm0, *(v4si*)_pi32_0x7f);
   emm0 = _mm_slli_epi32(emm0, 23);
   v4sf pow2n = _mm_castsi128_ps(emm0);
-#endif
+
   y = _mm_mul_ps(y, pow2n);
   return y;
 }
@@ -394,12 +330,8 @@ _PS_CONST(cephes_FOPI, 1.27323954473516); // 4 / M_PI
 */
 v4sf sin_ps(v4sf x) { // any x
   v4sf xmm1, xmm2 = _mm_setzero_ps(), xmm3, sign_bit, y;
-
-#ifdef USE_SSE2
   v4si emm0, emm2;
-#else
-  v2si mm0, mm1, mm2, mm3;
-#endif
+
   sign_bit = x;
   /* take the absolute value */
   x = _mm_and_ps(x, *(v4sf*)_ps_inv_sign_mask);
@@ -409,7 +341,6 @@ v4sf sin_ps(v4sf x) { // any x
   /* scale by 4/Pi */
   y = _mm_mul_ps(x, *(v4sf*)_ps_cephes_FOPI);
 
-#ifdef USE_SSE2
   /* store the integer part of y in mm0 */
   emm2 = _mm_cvttps_epi32(y);
   /* j=(j+1) & (~1) (see the cephes sources) */
@@ -432,34 +363,6 @@ v4sf sin_ps(v4sf x) { // any x
   v4sf swap_sign_bit = _mm_castsi128_ps(emm0);
   v4sf poly_mask = _mm_castsi128_ps(emm2);
   sign_bit = _mm_xor_ps(sign_bit, swap_sign_bit);
-  
-#else
-  /* store the integer part of y in mm0:mm1 */
-  xmm2 = _mm_movehl_ps(xmm2, y);
-  mm2 = _mm_cvttps_pi32(y);
-  mm3 = _mm_cvttps_pi32(xmm2);
-  /* j=(j+1) & (~1) (see the cephes sources) */
-  mm2 = _mm_add_pi32(mm2, *(v2si*)_pi32_1);
-  mm3 = _mm_add_pi32(mm3, *(v2si*)_pi32_1);
-  mm2 = _mm_and_si64(mm2, *(v2si*)_pi32_inv1);
-  mm3 = _mm_and_si64(mm3, *(v2si*)_pi32_inv1);
-  y = _mm_cvtpi32x2_ps(mm2, mm3);
-  /* get the swap sign flag */
-  mm0 = _mm_and_si64(mm2, *(v2si*)_pi32_4);
-  mm1 = _mm_and_si64(mm3, *(v2si*)_pi32_4);
-  mm0 = _mm_slli_pi32(mm0, 29);
-  mm1 = _mm_slli_pi32(mm1, 29);
-  /* get the polynom selection mask */
-  mm2 = _mm_and_si64(mm2, *(v2si*)_pi32_2);
-  mm3 = _mm_and_si64(mm3, *(v2si*)_pi32_2);
-  mm2 = _mm_cmpeq_pi32(mm2, _mm_setzero_si64());
-  mm3 = _mm_cmpeq_pi32(mm3, _mm_setzero_si64());
-  v4sf swap_sign_bit, poly_mask;
-  COPY_MM_TO_XMM(mm0, mm1, swap_sign_bit);
-  COPY_MM_TO_XMM(mm2, mm3, poly_mask);
-  sign_bit = _mm_xor_ps(sign_bit, swap_sign_bit);
-  _mm_empty(); /* good-bye mmx */
-#endif
   
   /* The magic pass: "Extended precision modular arithmetic" 
      x = ((x - y * DP1) - y * DP2) - y * DP3; */
@@ -511,18 +414,14 @@ v4sf sin_ps(v4sf x) { // any x
 /* almost the same as sin_ps */
 v4sf cos_ps(v4sf x) { // any x
   v4sf xmm1, xmm2 = _mm_setzero_ps(), xmm3, y;
-#ifdef USE_SSE2
   v4si emm0, emm2;
-#else
-  v2si mm0, mm1, mm2, mm3;
-#endif
+
   /* take the absolute value */
   x = _mm_and_ps(x, *(v4sf*)_ps_inv_sign_mask);
   
   /* scale by 4/Pi */
   y = _mm_mul_ps(x, *(v4sf*)_ps_cephes_FOPI);
   
-#ifdef USE_SSE2
   /* store the integer part of y in mm0 */
   emm2 = _mm_cvttps_epi32(y);
   /* j=(j+1) & (~1) (see the cephes sources) */
@@ -541,43 +440,7 @@ v4sf cos_ps(v4sf x) { // any x
   
   v4sf sign_bit = _mm_castsi128_ps(emm0);
   v4sf poly_mask = _mm_castsi128_ps(emm2);
-#else
-  /* store the integer part of y in mm0:mm1 */
-  xmm2 = _mm_movehl_ps(xmm2, y);
-  mm2 = _mm_cvttps_pi32(y);
-  mm3 = _mm_cvttps_pi32(xmm2);
 
-  /* j=(j+1) & (~1) (see the cephes sources) */
-  mm2 = _mm_add_pi32(mm2, *(v2si*)_pi32_1);
-  mm3 = _mm_add_pi32(mm3, *(v2si*)_pi32_1);
-  mm2 = _mm_and_si64(mm2, *(v2si*)_pi32_inv1);
-  mm3 = _mm_and_si64(mm3, *(v2si*)_pi32_inv1);
-
-  y = _mm_cvtpi32x2_ps(mm2, mm3);
-
-
-  mm2 = _mm_sub_pi32(mm2, *(v2si*)_pi32_2);
-  mm3 = _mm_sub_pi32(mm3, *(v2si*)_pi32_2);
-
-  /* get the swap sign flag in mm0:mm1 and the 
-     polynom selection mask in mm2:mm3 */
-
-  mm0 = _mm_andnot_si64(mm2, *(v2si*)_pi32_4);
-  mm1 = _mm_andnot_si64(mm3, *(v2si*)_pi32_4);
-  mm0 = _mm_slli_pi32(mm0, 29);
-  mm1 = _mm_slli_pi32(mm1, 29);
-
-  mm2 = _mm_and_si64(mm2, *(v2si*)_pi32_2);
-  mm3 = _mm_and_si64(mm3, *(v2si*)_pi32_2);
-
-  mm2 = _mm_cmpeq_pi32(mm2, _mm_setzero_si64());
-  mm3 = _mm_cmpeq_pi32(mm3, _mm_setzero_si64());
-
-  v4sf sign_bit, poly_mask;
-  COPY_MM_TO_XMM(mm0, mm1, sign_bit);
-  COPY_MM_TO_XMM(mm2, mm3, poly_mask);
-  _mm_empty(); /* good-bye mmx */
-#endif
   /* The magic pass: "Extended precision modular arithmetic" 
      x = ((x - y * DP1) - y * DP2) - y * DP3; */
   xmm1 = *(v4sf*)_ps_minus_cephes_DP1;
@@ -630,11 +493,7 @@ v4sf cos_ps(v4sf x) { // any x
    it is almost as fast, and gives you a free cosine with your sine */
 void sincos_ps(v4sf x, v4sf *s, v4sf *c) {
   v4sf xmm1, xmm2, xmm3 = _mm_setzero_ps(), sign_bit_sin, y;
-#ifdef USE_SSE2
   v4si emm0, emm2, emm4;
-#else
-  v2si mm0, mm1, mm2, mm3, mm4, mm5;
-#endif
   sign_bit_sin = x;
   /* take the absolute value */
   x = _mm_and_ps(x, *(v4sf*)_ps_inv_sign_mask);
@@ -644,7 +503,6 @@ void sincos_ps(v4sf x, v4sf *s, v4sf *c) {
   /* scale by 4/Pi */
   y = _mm_mul_ps(x, *(v4sf*)_ps_cephes_FOPI);
     
-#ifdef USE_SSE2
   /* store the integer part of y in emm2 */
   emm2 = _mm_cvttps_epi32(y);
 
@@ -664,40 +522,6 @@ void sincos_ps(v4sf x, v4sf *s, v4sf *c) {
   emm2 = _mm_and_si128(emm2, *(v4si*)_pi32_2);
   emm2 = _mm_cmpeq_epi32(emm2, _mm_setzero_si128());
   v4sf poly_mask = _mm_castsi128_ps(emm2);
-#else
-  /* store the integer part of y in mm2:mm3 */
-  xmm3 = _mm_movehl_ps(xmm3, y);
-  mm2 = _mm_cvttps_pi32(y);
-  mm3 = _mm_cvttps_pi32(xmm3);
-
-  /* j=(j+1) & (~1) (see the cephes sources) */
-  mm2 = _mm_add_pi32(mm2, *(v2si*)_pi32_1);
-  mm3 = _mm_add_pi32(mm3, *(v2si*)_pi32_1);
-  mm2 = _mm_and_si64(mm2, *(v2si*)_pi32_inv1);
-  mm3 = _mm_and_si64(mm3, *(v2si*)_pi32_inv1);
-
-  y = _mm_cvtpi32x2_ps(mm2, mm3);
-
-  mm4 = mm2;
-  mm5 = mm3;
-
-  /* get the swap sign flag for the sine */
-  mm0 = _mm_and_si64(mm2, *(v2si*)_pi32_4);
-  mm1 = _mm_and_si64(mm3, *(v2si*)_pi32_4);
-  mm0 = _mm_slli_pi32(mm0, 29);
-  mm1 = _mm_slli_pi32(mm1, 29);
-  v4sf swap_sign_bit_sin;
-  COPY_MM_TO_XMM(mm0, mm1, swap_sign_bit_sin);
-
-  /* get the polynom selection mask for the sine */
-
-  mm2 = _mm_and_si64(mm2, *(v2si*)_pi32_2);
-  mm3 = _mm_and_si64(mm3, *(v2si*)_pi32_2);
-  mm2 = _mm_cmpeq_pi32(mm2, _mm_setzero_si64());
-  mm3 = _mm_cmpeq_pi32(mm3, _mm_setzero_si64());
-  v4sf poly_mask;
-  COPY_MM_TO_XMM(mm2, mm3, poly_mask);
-#endif
 
   /* The magic pass: "Extended precision modular arithmetic" 
      x = ((x - y * DP1) - y * DP2) - y * DP3; */
@@ -711,23 +535,10 @@ void sincos_ps(v4sf x, v4sf *s, v4sf *c) {
   x = _mm_add_ps(x, xmm2);
   x = _mm_add_ps(x, xmm3);
 
-#ifdef USE_SSE2
   emm4 = _mm_sub_epi32(emm4, *(v4si*)_pi32_2);
   emm4 = _mm_andnot_si128(emm4, *(v4si*)_pi32_4);
   emm4 = _mm_slli_epi32(emm4, 29);
   v4sf sign_bit_cos = _mm_castsi128_ps(emm4);
-#else
-  /* get the sign flag for the cosine */
-  mm4 = _mm_sub_pi32(mm4, *(v2si*)_pi32_2);
-  mm5 = _mm_sub_pi32(mm5, *(v2si*)_pi32_2);
-  mm4 = _mm_andnot_si64(mm4, *(v2si*)_pi32_4);
-  mm5 = _mm_andnot_si64(mm5, *(v2si*)_pi32_4);
-  mm4 = _mm_slli_pi32(mm4, 29);
-  mm5 = _mm_slli_pi32(mm5, 29);
-  v4sf sign_bit_cos;
-  COPY_MM_TO_XMM(mm4, mm5, sign_bit_cos);
-  _mm_empty(); /* good-bye mmx */
-#endif
 
   sign_bit_sin = _mm_xor_ps(sign_bit_sin, swap_sign_bit_sin);
 
