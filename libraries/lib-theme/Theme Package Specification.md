@@ -187,8 +187,9 @@ the base theme.
 ## 5.4 Theme Resource Loading Order
 
 When loading a subtheme, applications MUST load base theme resources first
-before the subtheme's resources. Otherwise, resource loading follows the same
-order as defined in Section 5.
+before the subtheme's resources. Loading of base theme resources and subtheme
+resources follows the same order as single-theme packages as described in
+Section 6.
 
 If a subtheme specifies a theme resource twice, applications MUST used the last
 resource specified by the subtheme.
