@@ -4,20 +4,23 @@
 # Audacity Team <audacity-translation@lists.sourceforge.net>, 2012—2021.
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2021.
 # Avery King <avery98@pm.me>, 2022, 2023.
+# Whiteowle <swillowhoe.precise538@passinbox.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2021-02-14 13:25+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: српски <gnome-sr@googlegroups.org>\n"
+"PO-Revision-Date: 2024-08-12 23:09+0000\n"
+"Last-Translator: Whiteowle <swillowhoe.precise538@passinbox.com>\n"
+"Language-Team: Serbian <https://hosted.weblate.org/projects/tenacity/"
+"tenacity/sr/>\n"
 "Language: sr_RS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -144,7 +147,7 @@ msgstr "узорци"
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/RecordingPrefs.cpp src/widgets/NumericTextCtrl.cpp
 msgid "milliseconds"
-msgstr "милисек."
+msgstr "милисекунди"
 
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h src/commands/MessageCommand.cpp
@@ -225,9 +228,9 @@ msgid "(%s)"
 msgstr "(%s)"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Directory %s does not have write permissions"
-msgstr "Директоријум %s не постоји. Да га направим?"
+msgstr "Директоријум %s нема дозволе за писање"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -467,14 +470,12 @@ msgid "Could not parse XML"
 msgstr "Не могу да обрадим ХМЛ"
 
 #: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
 msgid "1st Experimental Command..."
-msgstr "Изаберите наредбу"
+msgstr "Прва експериментална команда..."
 
 #: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
 msgid "2nd Experimental Command"
-msgstr "Изаберите наредбу"
+msgstr "2. експериментална команда"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -496,9 +497,9 @@ msgstr "%s, програмер"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, developer and support"
-msgstr "%s, документација и подршка"
+msgstr "%s, програмер и подршка"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -508,9 +509,9 @@ msgstr "%s, документација и подршка"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, QA tester, documentation and support"
-msgstr "%s, документација и подршка"
+msgstr "%s, КА тестер, документација и подршка"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -575,9 +576,9 @@ msgstr "%s, суоснивач и програмер"
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, Tenacity developer"
-msgstr "%s, веб програмер"
+msgstr "%s, Tenacity програмер"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -587,9 +588,9 @@ msgstr "%s, веб програмер"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, lead Tenacity developer"
-msgstr "%s, веб програмер"
+msgstr "%s, главни програмер Тенацити"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -621,9 +622,7 @@ msgstr "У реду"
 #. *  For example:  "English translation by Dominic Mazzoni."
 #: src/AboutDialog.cpp
 msgid "translator_credits"
-msgstr ""
-"Превод на српски језик:\n"
-"Мирослав Николић <miroslavnikolic@rocketmail.com>"
+msgstr "преводилац кредити"
 
 #: src/AboutDialog.cpp
 msgid "Credits"
@@ -1598,19 +1597,19 @@ msgstr ""
 "(Бирање других врста нумера неће радити.)"
 
 #: src/DBConnection.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "(%d): %s"
-msgstr "%s: %s"
+msgstr "(%d): %s"
 
 #: src/DBConnection.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set safe mode on primary connection to %s"
-msgstr "Нисам успео да одбацим везу"
+msgstr "Подешавање безбедног режима на примарној вези са %s није успело"
 
 #: src/DBConnection.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set safe mode on checkpoint connection to %s"
-msgstr "Нисам успео да повратим везу"
+msgstr "Подешавање безбедног режима на контролној тачки везе са %s није успело"
 
 #: src/DBConnection.cpp
 msgid "Checkpointing project"
@@ -1774,14 +1773,12 @@ msgid "Hz"
 msgstr "Hz"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Scroll Horizontal"
-msgstr "Водоравно"
+msgstr "Хоризонтално померање"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Zoom Horizontal"
-msgstr "Водоравно"
+msgstr "Зумирај Хоризонтално"
 
 #: src/FreqWindow.cpp
 msgid "Cursor:"
@@ -2724,12 +2721,15 @@ msgid "Failed to open the project's database"
 msgstr "Нисам успео да отворим базу пројекта"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to open database file:\n"
 "\n"
 "%s"
-msgstr "Нисам успео да отворим „%s“"
+msgstr ""
+"Отварање датотеке базе података није успело:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to discard connection"
@@ -2752,11 +2752,12 @@ msgstr ""
 
 #. i18n-hint: An error message.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is in a read only directory\n"
 "(Unable to create the required temporary files)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Пројекат је у директоријуму само за читање\n"
+"(Није могуће креирати потребне привремене датотеке)"
 
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
@@ -2768,65 +2769,71 @@ msgstr "Не могу да покренем датотеку пројекта"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is read only\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Пројекат је само за читање\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is locked\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Пројекат је закључан\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is busy\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Пројекат је заузет\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is corrupt\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Пројекат је корумпиран\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Some permissions issue\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Неки проблеми са дозволама\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "A disk I/O error\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Грешка И/О диска\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Not authorized\n"
 "(Unable to work with the blockfiles)"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr ""
+"Није овлашћено\n"
+"(Не могу да радим са блок фајловима)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Unable to work with the blockfiles"
-msgstr "Не могу да покренем датотеку пројекта"
+msgstr "Није могуће радити са блок датотекама"
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2930,9 +2937,8 @@ msgid "Failed to remove the autosave information from the project file."
 msgstr "Нисам успео да уконим информације самочувања из датотеке пројекта."
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Unable to bind to blob"
-msgstr "Нисам успео да пронађем кодек"
+msgstr "Није могуће повезати се са блоб-ом"
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to parse project information."
@@ -3379,9 +3385,8 @@ msgid "Don't show this again at start up"
 msgstr "Не приказуј више при покретању"
 
 #: src/SqliteSampleBlock.cpp
-#, fuzzy
 msgid "Connection to project file is null"
-msgstr "Надгледам податке датотеке пројекта"
+msgstr "Веза са пројектном датотеком је нула"
 
 #: src/Tags.cpp
 msgid "Artist Name"
@@ -3549,9 +3554,8 @@ msgid "Open &Recent..."
 msgstr "Отвори &скорашњу..."
 
 #: src/TenacityApp.cpp src/menus/HelpMenus.cpp
-#, fuzzy
 msgid "&About Tenacity..."
-msgstr "О Аудаситију"
+msgstr "О Аудаситију..."
 
 #: src/TenacityApp.cpp
 msgid "&Preferences..."
@@ -4077,7 +4081,7 @@ msgstr " Утишано"
 
 #: src/TrackPanelAx.cpp
 msgid " Solo On"
-msgstr " Соло укљ."
+msgstr " Соло је укључен"
 
 #: src/TrackPanelAx.cpp
 msgid " Select On"
@@ -4106,7 +4110,7 @@ msgstr "Уклони нумеру"
 #: src/TrackUtilities.cpp
 #, c-format
 msgid "Removed track '%s.'"
-msgstr "Уклоњена је нумера „%s“."
+msgstr "Уклоњена нумера „%s“"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4730,9 +4734,8 @@ msgid "Delete"
 msgstr "Обриши"
 
 #: src/commands/SetEnvelopeCommand.cpp
-#, fuzzy
 msgid "Edited Envelope"
-msgstr "Поставите омотницу"
+msgstr "уређен коверт"
 
 #. i18n-hint: The envelope is a curve that controls the audio loudness.
 #: src/commands/SetEnvelopeCommand.cpp src/prefs/MousePrefs.cpp
@@ -4761,9 +4764,8 @@ msgid "Selected"
 msgstr "Изабрано"
 
 #: src/commands/SetLabelCommand.cpp
-#, fuzzy
 msgid "Edited Label"
-msgstr "Уређени натписи"
+msgstr "Уређену ознаку"
 
 #: src/commands/SetLabelCommand.h
 msgid "Sets various values for a label."
@@ -5348,12 +5350,12 @@ msgstr "%3d dB"
 #: src/effects/Compressor.cpp src/effects/ScoreAlignDialog.cpp
 #, c-format
 msgid "%.2f secs"
-msgstr "%.2f сек."
+msgstr "%.2f секунди"
 
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "%.1f secs"
-msgstr "%.1f сек."
+msgstr "%.1f секунде"
 
 #. i18n-hint: Unless your language has a different convention for ratios,
 #. * like 8:1, leave as is.
@@ -5447,12 +5449,12 @@ msgstr "Под буке %d dB"
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "Attack Time %.2f secs"
-msgstr "Време напада %.2f сек."
+msgstr "Време напада %.2f секунде"
 
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "Release Time %.1f secs"
-msgstr "Време отпуштања %.1f сек."
+msgstr "Време отпуштања %.1f секунде"
 
 #: src/effects/Compressor2.cpp
 #, fuzzy
@@ -6684,7 +6686,7 @@ msgstr "%d Hz"
 #: src/effects/Equalization.cpp
 #, c-format
 msgid "%g kHz"
-msgstr "%g kHz"
+msgstr "%g кХз"
 
 #. i18n-hint k is SI abbreviation for x1,000.  Usually unchanged in translation.
 #: src/effects/Equalization.cpp
@@ -8696,11 +8698,11 @@ msgid ""
 "\t(mult *track* 0.1)\n"
 " ."
 msgstr ""
-"Ваш код изгледа као САЛ синтакса, али нема повратне изјаве.\n"
-"За САЛ, користите повратну изјаву као што је:\n"
-"        повратна *нумера* 0.1\n"
-"или за ЛИСП, почните са отвореном заградом као што је\n"
-"\t(мулт *нумера* 0.1)\n"
+"Ваш код изгледа као САЛ синтакса, али нема наредбе 'ретурн'.\n"
+"За САЛ користите повратну изјаву као што је:\n"
+"  ретурн *трацк* * 0.1\n"
+"или за ЛИСП, почните са отвореном заградом као што је:\n"
+"  (више *трака* 0.1)\n"
 " ."
 
 #: src/effects/nyquist/Nyquist.cpp
@@ -10631,7 +10633,7 @@ msgstr "Не могу да поставим стање тока на паузи�
 #: src/import/ImportGStreamer.cpp
 #, c-format
 msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Индекс[%02x] Врста[%s], Број канала[%d], Проток[%d]"
+msgstr "Индекс[%02d], Тип[%s], Канали[%d], Стопа[%d]"
 
 #: src/import/ImportGStreamer.cpp
 msgid "File doesn't contain any audio streams."
@@ -10797,7 +10799,7 @@ msgstr "OGG (ОГГ садржник формата)"
 
 #: src/import/ImportPCM.cpp
 msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
+msgstr "ПАФ (Енсоник ПАРИЗ)"
 
 #: src/import/ImportPCM.cpp
 msgid "PVF (Portable Voice Format)"
@@ -10825,15 +10827,15 @@ msgstr "SF (Беркли/IRCAM/CARL)"
 
 #: src/import/ImportPCM.cpp
 msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
+msgstr "ВОЦ (креативне лабораторије)"
 
 #: src/import/ImportPCM.cpp
 msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
+msgstr "В64 (СоундФоундри ВАВЕ 64)"
 
 #: src/import/ImportPCM.cpp
 msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
+msgstr "ВАВ (НИСТ сфера)"
 
 #: src/import/ImportPCM.cpp
 msgid "WAVEX (Microsoft)"
@@ -10845,7 +10847,7 @@ msgstr "WVE (Psion серија 3)"
 
 #: src/import/ImportPCM.cpp
 msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
+msgstr "КСИ (ФастТрацкер 2)"
 
 #: src/import/ImportPCM.cpp
 msgid "Signed 8 bit PCM"
@@ -10877,11 +10879,11 @@ msgstr "64 бита покретног зареза"
 
 #: src/import/ImportPCM.cpp
 msgid "U-Law"
-msgstr "U-Law"
+msgstr "У-закон"
 
 #: src/import/ImportPCM.cpp
 msgid "A-Law"
-msgstr "A-Law"
+msgstr "А-Лав"
 
 #: src/import/ImportPCM.cpp
 msgid "IMA ADPCM"
@@ -10897,11 +10899,11 @@ msgstr "GSM 6.10"
 
 #: src/import/ImportPCM.cpp
 msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
+msgstr "32 кбс Г721 АДПЦМ"
 
 #: src/import/ImportPCM.cpp
 msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
+msgstr "24 кбс Г723 АДПЦМ"
 
 #: src/import/ImportPCM.cpp
 msgid "12 bit DWVW"
@@ -12387,9 +12389,8 @@ msgstr "&Траке алата"
 
 #. i18n-hint: (verb)
 #: src/menus/ToolbarMenus.cpp
-#, fuzzy
 msgid "Edit &Mode (on/off)"
-msgstr "&Додатни изборници (укљ./иск.)"
+msgstr "Измени &режим (укључено/искључено)"
 
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
@@ -13166,9 +13167,8 @@ msgid "&Extra Menus (on/off)"
 msgstr "&Додатни изборници (укљ./иск.)"
 
 #: src/menus/ViewMenus.cpp
-#, fuzzy
 msgid "Track &Name (on/off)"
-msgstr "&Додатни изборници (укљ./иск.)"
+msgstr "Назив нумере (укључено/искључено)"
 
 #: src/menus/ViewMenus.cpp
 msgid "&Show Clipping (on/off)"
@@ -13349,9 +13349,8 @@ msgid "Bro&wse..."
 msgstr "&Разгледај..."
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Macro output:"
-msgstr "Прикажи излаз"
+msgstr "&Макро излаз:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Temporary files directory"
@@ -14468,31 +14467,27 @@ msgstr "Период"
 
 #. i18n-hint: New color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Color (default)"
-msgstr "4 (основно)"
+msgstr "Боја (подразумевано)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Color (classic)"
-msgstr "Класична"
+msgstr "Боја (класична)"
 
 #. i18n-hint: Grayscale color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Grayscale"
-msgstr "&Сразмера сиве"
+msgstr "Нијансе сиве"
 
 #. i18n-hint: Inverse grayscale color scheme for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
 msgctxt "spectrum prefs"
 msgid "Inverse grayscale"
-msgstr "&Линеарна скала"
+msgstr "Инверзне нијансе сиве"
 
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Frequencies"
@@ -15007,9 +15002,8 @@ msgid "Classic"
 msgstr "Класична"
 
 #: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
 msgid "Audacity"
-msgstr "Дневник Аудаситија"
+msgstr "Аудацити"
 
 #: src/theme/DarkThemeAsCeeCode.cpp
 msgid "Dark"
@@ -16231,9 +16225,10 @@ msgstr "Логаритамско &уметање"
 
 #. i18n-hint Appears on hovering mouse over clip affordance
 #: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
 msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Притисните и превуците да преместите нумеру у времену"
+msgstr ""
+"Кликните и превуците да бисте померили снимак у времену или кликните да "
+"бисте изабрали"
 
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
@@ -16663,7 +16658,7 @@ msgstr "Изаберите радњу"
 #. * on the end to the word for seconds. Don't change the numbers.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "01000,01000 seconds"
-msgstr "01000.01000 сек."
+msgstr "01000.01000 секунде"
 
 #. i18n-hint: Name of time display format that shows time in hours, minutes
 #. * and seconds
@@ -16910,7 +16905,7 @@ msgstr "центихерц"
 #. i18n-hint: Name of display format that shows frequency in kilohertz
 #: src/widgets/NumericTextCtrl.cpp
 msgid "kHz"
-msgstr "kHz"
+msgstr "кХз"
 
 #. i18n-hint: Format string for displaying frequency in kilohertz. Change
 #. * the decimal point for your locale. Don't change the numbers.
@@ -16918,7 +16913,7 @@ msgstr "kHz"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "01000>01000 kHz|0.001"
-msgstr "01000>01000 kHz|0.001"
+msgstr "01000>01000 кХз|0,001"
 
 #: src/widgets/NumericTextCtrl.cpp
 msgid "hertz"
@@ -17027,23 +17022,20 @@ msgstr "Потврди затварање"
 
 #. i18n-hint: %s is replaced with a directory path.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write files to directory: %s."
-msgstr "Не могу да читам претподешеност из „%s“"
+msgstr "Није могуће уписати датотеке у директоријум: %s."
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "You can change the directory in %s."
-msgstr ""
-"Не могу да направим директоријум:\n"
-"  %s"
+msgstr "Можете променити директоријум у %s."
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy
 msgid "Preferences > Directories"
-msgstr "Поставке за директоријуме"
+msgstr "Преференцес > Дирецториес"
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
@@ -17832,9 +17824,9 @@ msgid "~ah ~am ~as"
 msgstr "~a:~a:~a"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Too many silences detected.~%Only the first 10000 labels added."
-msgstr "Откривено је превише тишин.nСамо првих 10000 натписа је додато."
+msgstr "Откривено је превише тишине.~%Додато је само првих 10000 ознака."
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
@@ -18098,16 +18090,16 @@ msgid "Success.~%Files written to:~%~s~%"
 msgstr "Успело је.~%Датотеке су уписане у:~%~s~%"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
-msgstr "Упозорење.nНисам успео да умножим неке датотеке:n"
+msgstr "Упозорење.~%Копирање неких датотека није успело:~%"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Plug-ins installed.~%(Use the Plug-in Manager to enable effects):"
 msgstr ""
-"Прикључци су инсталирани.n(Користите управника прикључака да укључите "
-"дејства):"
+"Инсталирани су додаци.~%(Користите Менаџер додатака да бисте омогућили "
+"ефекте):"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 msgid "Plug-ins updated:"
@@ -18148,7 +18140,7 @@ msgstr "Стварам плоп звук..."
 
 #: plug-ins/pluck.ny
 msgid "MIDI values for C notes: 36, 48, 60 [middle C], 72, 84, 96."
-msgstr "МИДИ вредности  за ноту C: 36, 48, 60 [средње C], 72, 84, 96."
+msgstr "МИДИ вредности за Ц ноте: 36, 48, 60 [средњи Ц], 72, 84, 96."
 
 #: plug-ins/pluck.ny
 msgid "David R.Sky"
@@ -21743,3 +21735,39 @@ msgstr "Грешка.~%Потребна је стерео нумера."
 
 #~ msgid "(Not all combinations of headers and encodings are possible.)"
 #~ msgstr "(Нису све комбинације заглавља и кодирања могуће.)"
+
+#. i18n-hint: An error message.  Don't translate inset or blockids.
+#: src/ProjectFileIO.cpp
+msgid "Unable to add 'inset' function (can't verify blockids)"
+msgstr "Није могуће додати функцију 'инсет' (не могу да проверим блокиде)"
+
+#: src/effects/nyquist/Nyquist.cpp
+msgid ""
+"Enable track spectrogram view before\n"
+"applying 'Spectral' effects."
+msgstr ""
+"Омогућите преглед спектрограма трага раније\n"
+"применом 'Спектралних' ефеката."
+
+#. i18n-hint: This message describes the error in the Error dialog.
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+msgid ""
+"Please check that the directory exists, has the necessary permissions, and "
+"the drive isn't full."
+msgstr ""
+"Проверите да ли директоријум постоји, да има потребне дозволе и да диск није "
+"пун."
+
+#. i18n-hint Scheme refers to a color scheme for spectrogram colors
+#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
+msgctxt "spectrum prefs"
+msgid "Sche&me"
+msgstr "Ше&ме"
+
+#: src/prefs/GUIPrefs.cpp
+msgid "Never use comma as decimal point"
+msgstr "Никада не користите зарез као децимални зарез"
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr "Tenacity почиње..."
