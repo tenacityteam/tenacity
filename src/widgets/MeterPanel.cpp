@@ -325,6 +325,8 @@ MeterPanel::MeterPanel(TenacityProject *project,
    wxUnusedVar(MicMenu_xpm);
    wxUnusedVar(PrefStyles);
 
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
+
    mStyle = mDesiredStyle;
 
    mIsFocused = false;

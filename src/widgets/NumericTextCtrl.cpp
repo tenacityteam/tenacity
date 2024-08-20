@@ -1369,6 +1369,8 @@ NumericTextCtrl::NumericTextCtrl(wxWindow *parent, wxWindowID id,
    mAutoPos(options.autoPos)
    , mType(type)
 {
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
+
    mAllowInvalidValue = false;
 
    mDigitBoxW = 11;
