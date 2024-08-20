@@ -316,7 +316,7 @@ MeterPanel::MeterPanel(TenacityProject *project,
    // i18n-hint: Noun (the meter is used for playback or record level monitoring)
    SetName( XO("Meter") );
 
-   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
 
    mStyle = mDesiredStyle;
 

@@ -246,7 +246,6 @@ private:
    void OnKeyDown(wxKeyEvent &event);
    void OnKeyUp(wxKeyEvent &event);
    void OnMouse(wxMouseEvent &event);
-   void OnErase(wxEraseEvent &event);
    void OnPaint(wxPaintEvent &event);
    void OnFocus(wxFocusEvent &event);
    void OnContext(wxContextMenuEvent &event);

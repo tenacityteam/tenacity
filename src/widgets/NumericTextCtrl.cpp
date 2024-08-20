@@ -1366,7 +1366,7 @@ NumericTextCtrl::NumericTextCtrl(wxWindow *parent, wxWindowID id,
    mAutoPos(options.autoPos)
    , mType(type)
 {
-   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
 
    mAllowInvalidValue = false;
 
