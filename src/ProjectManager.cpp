@@ -41,6 +41,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "import/Import.h"
 #include "import/ImportMIDI.h"
 #include "toolbars/SelectionBar.h"
+#include "toolbars/SettingsBar.h"
 #include "toolbars/SpectralSelectionBar.h"
 #include "toolbars/TimeToolBar.h"
 #include "toolbars/ToolManager.h"
@@ -466,6 +467,7 @@ TenacityProject *ProjectManager::New()
       ProjectAudioManager::Get( project ).shared_from_this() );
    auto &projectSelectionManager = ProjectSelectionManager::Get( project );
    SelectionBar::Get( project ).SetListener( &projectSelectionManager );
+   SettingsBar::Get( project ).SetListener( &projectSelectionManager );
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
    SpectralSelectionBar::Get( project ).SetListener( &projectSelectionManager );
 #endif

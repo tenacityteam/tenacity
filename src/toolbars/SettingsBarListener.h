@@ -1,46 +1,38 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Tenacity
 
-  SelectionBarListener.h
+  SettingsBarListener.h
 
+  Avery King split form SelectionBarListener.h
   Dominic Mazzoni
 
 **********************************************************************/
 
-#ifndef __AUDACITY_SELECTION_BAR_LISTENER__
-#define __AUDACITY_SELECTION_BAR_LISTENER__
+#pragma once
 
 // Tenacity libraries
 #include <lib-components/ComponentInterfaceSymbol.h>
 
-class SelectedRegion;
+/// A parent class of SettingsBar, used to forward events to do with changes in
+/// the SettingsBar.
+class TENACITY_DLL_API SettingsBarListener // not final
+{
+    public:
+        virtual ~SettingsBarListener() = default;
 
-class TENACITY_DLL_API SelectionBarListener /* not final */ {
-
- public:
-
-   SelectionBarListener(){};
-   virtual ~SelectionBarListener(){};
-
-   virtual double AS_GetRate() = 0;
-   virtual void AS_SetRate(double rate) = 0;
-   virtual int AS_GetSnapTo() = 0;
-   virtual void AS_SetSnapTo(int snap) = 0;
-   virtual const NumericFormatSymbol & AS_GetSelectionFormat() = 0;
-   virtual void AS_SetSelectionFormat(const NumericFormatSymbol & format) = 0;
-   virtual void AS_ModifySelection(double &start, double &end, bool done) = 0;
+        virtual double AS_GetRate() = 0;
+        virtual void AS_SetRate(double rate) = 0;
+        virtual int AS_GetSnapTo() = 0;
+        virtual void AS_SetSnapTo(int snap) = 0;
 };
 
-class TENACITY_DLL_API TimeToolBarListener /* not final */ {
+// class TENACITY_DLL_API TimeToolBarListener // not final
+// {
+//     public:
+//         TimeToolBarListener() = default;
+//         virtual ~TimeToolBarListener();
 
- public:
-
-   TimeToolBarListener(){};
-   virtual ~TimeToolBarListener(){};
-
-   virtual const NumericFormatSymbol & TT_GetAudioTimeFormat() = 0;
-   virtual void TT_SetAudioTimeFormat(const NumericFormatSymbol & format) = 0;
-};
-
-#endif
+//         virtual const NumericFormatSymbol & TT_GetAudioTimeFormat() = 0;
+//         virtual void TT_SetAudioTimeFormat(const NumericFormatSymbol & format) = 0;
+// };

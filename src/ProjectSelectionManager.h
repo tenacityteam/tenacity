@@ -13,6 +13,7 @@ Paul Licameli split from ProjectManager.cpp
 
 #include "ClientData.h" // to inherit
 #include "toolbars/SelectionBarListener.h" // to inherit
+#include "toolbars/SettingsBarListener.h" // to inherit
 #include "toolbars/SpectralSelectionBarListener.h" // to inherit
 
 // Tenacity libraries
@@ -23,6 +24,7 @@ class TenacityProject;
 class TENACITY_DLL_API ProjectSelectionManager final
    : public ClientData::Base
    , public SelectionBarListener
+   , public SettingsBarListener
    , public SpectralSelectionBarListener
    , public TimeToolBarListener
 {

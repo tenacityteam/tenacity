@@ -530,7 +530,7 @@ static struct DefaultConfigEntry {
    { MeterBarID,             NoBarID,                NoBarID                },
 
    // Bottom dock
-   { SelectionBarID,         NoBarID,                NoBarID                },
+   { SelectionBarID,         SettingsBarID,          NoBarID                },
 
    // Hidden by default in bottom dock
    { SpectralSelectionBarID, NoBarID,                NoBarID                },
@@ -581,6 +581,7 @@ void ToolManager::Reset()
 #ifdef EXPERIMENTAL_SPECTRAL_EDITING
          || ndx == SpectralSelectionBarID
 #endif
+         || ndx == SettingsBarID
          )
          dock = mBotDock;
       else

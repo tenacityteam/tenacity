@@ -777,6 +777,9 @@ list( APPEND SOURCES
       toolbars/SelectionBar.cpp
       toolbars/SelectionBar.h
       toolbars/SelectionBarListener.h
+      toolbars/SettingsBar.cpp
+      toolbars/SettingsBar.h
+      toolbars/SettingsBarListener.h
       toolbars/SpectralSelectionBar.cpp
       toolbars/SpectralSelectionBar.h
       toolbars/SpectralSelectionBarListener.h
