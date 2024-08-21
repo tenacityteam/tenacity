@@ -15,24 +15,14 @@
 
 #include "ToolBar.h"
 
+// Tenacity libraries
+#include <lib-utility/Observer.h>
+
 // Column for 
-//   Project rate
-//   Snap To
-//   Option Button
-//   Vertical Line
 //   Selection fields
 //   Vertical Line
-//   Cursor position
-
-#ifdef TIME_IN_SELECT_TOOLBAR
-#define SIZER_COLS 7
-#else
-#define SIZER_COLS 5
-#endif
-
 
 class wxChoice;
-class wxComboBox;
 class wxCommandEvent;
 class wxDC;
 class wxSizeEvent;
@@ -59,18 +49,15 @@ class TENACITY_DLL_API SelectionBar final : public ToolBar {
    void EnableDisableButtons() override {};
    void UpdatePrefs() override;
 
-   void SetTimes(double start, double end, double audio);
-   void SetSnapTo(int);
+   void SetTimes(double start, double end);
    void SetSelectionFormat(const NumericFormatSymbol & format);
-   void SetRate(double rate);
    void SetListener(SelectionBarListener *l);
-   void RegenerateTooltips() override;
+   void RegenerateTooltips() override {}
 
  private:
    AuStaticText * AddTitle( const TranslatableString & Title,
       wxSizer * pSizer );
    NumericTextCtrl * AddTime( const TranslatableString &Name, int id, wxSizer * pSizer );
-   void AddVLine(  wxSizer * pSizer );
 
    void SetSelectionMode(int mode);
    void ShowHideControls(int mode);
@@ -79,8 +66,7 @@ class TENACITY_DLL_API SelectionBar final : public ToolBar {
    void OnUpdate(wxCommandEvent &evt);
    void OnChangedTime(wxCommandEvent &evt);
 
-   void OnRate(wxCommandEvent & event);
-   void OnSnapTo(wxCommandEvent & event);
+   void OnRate(double newRate);
    void OnChoice(wxCommandEvent & event);
    void OnFocus(wxFocusEvent &event);
    void OnCaptureKey(wxCommandEvent &event);
@@ -88,12 +74,12 @@ class TENACITY_DLL_API SelectionBar final : public ToolBar {
    void OnIdle( wxIdleEvent &evt );
 
    void ModifySelection(int newDriver, bool done = false);
-   void UpdateRates();
    void SelectionModeUpdated();
 
    SelectionBarListener * mListener;
+   Observer::Subscription mProjectRateSubscription;
    double mRate;
-   double mStart, mEnd, mLength, mCenter,  mAudio;
+   double mStart, mEnd, mLength, mCenter;
 
    // These two numbers say which two controls 
    // drive the other two.
@@ -107,12 +93,7 @@ class TENACITY_DLL_API SelectionBar final : public ToolBar {
    NumericTextCtrl   *mCenterTime;
    NumericTextCtrl   *mLengthTime;
    NumericTextCtrl   *mEndTime;
-   NumericTextCtrl   *mAudioTime;
    wxChoice          *mChoice;
-   wxStaticText      *mProxy;
-   wxComboBox        *mRateBox;
-   wxChoice          *mSnapTo;
-   wxWindow          *mRateText;
 
    wxString mLastValidText;
 

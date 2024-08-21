@@ -22,6 +22,7 @@ Paul Licameli split from ProjectManager.cpp
 #include "ViewInfo.h"
 #include "WaveTrack.h"
 #include "toolbars/SelectionBar.h"
+#include "toolbars/SettingsBar.h"
 #include "toolbars/SpectralSelectionBar.h"
 #include "toolbars/TimeToolBar.h"
 
@@ -94,7 +95,7 @@ void ProjectSelectionManager::AS_SetRate(double rate)
 {
    auto &project = mProject;
    ProjectRate::Get( project ).SetRate( rate );
-   SelectionBar::Get( project ).SetRate(rate);
+   SettingsBar::Get( project ).SetRate(rate);
 }
 
 int ProjectSelectionManager::AS_GetSnapTo()
@@ -121,7 +122,7 @@ void ProjectSelectionManager::AS_SetSnapTo(int snap)
 
    window.RedrawProject();
 
-   SelectionBar::Get( project ).SetSnapTo(snap);
+   SettingsBar::Get( project ).SetSnapTo(snap);
 }
 
 const NumericFormatSymbol & ProjectSelectionManager::AS_GetSelectionFormat()

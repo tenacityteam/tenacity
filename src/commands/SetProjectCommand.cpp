@@ -27,7 +27,7 @@
 #include "../shuttle/Shuttle.h"
 #include "../shuttle/ShuttleGui.h"
 #include "CommandContext.h"
-#include "../toolbars/SelectionBar.h"
+#include "../toolbars/SettingsBar.h"
 
 #include <wx/frame.h>
 
@@ -81,7 +81,7 @@ bool SetProjectCommand::Apply(const CommandContext & context)
 
    if( bHasRate && mRate >= 1 && mRate <= 1000000 )
    {
-      auto &bar = SelectionBar::Get( project );
+      auto &bar = SettingsBar::Get( project );
       bar.SetRate( mRate );
    }
 

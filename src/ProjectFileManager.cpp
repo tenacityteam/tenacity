@@ -52,7 +52,7 @@ Paul Licameli split from TenacityProject.cpp
 #include "export/Export.h"
 #include "import/Import.h"
 #include "import/ImportMIDI.h"
-#include "toolbars/SelectionBar.h"
+#include "toolbars/SettingsBar.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/FileHistory.h"
 #include "widgets/UnwritableLocationErrorDialog.h"
@@ -1022,7 +1022,7 @@ TenacityProject *ProjectFileManager::OpenProjectFile(
       selectionManager.SSBL_SetBandwidthSelectionFormatName(
       settings.GetBandwidthSelectionFormatName());
 
-      SelectionBar::Get( project )
+      SettingsBar::Get( project )
          .SetRate( ProjectRate::Get(project).GetRate() );
 
       ProjectHistory::Get( project ).InitialState();
@@ -1168,7 +1168,7 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
    // if this is the first file that is imported
    if (initiallyEmpty && newRate > 0) {
       ProjectRate::Get(project).SetRate( newRate );
-      SelectionBar::Get( project ).SetRate( newRate );
+      SettingsBar::Get( project ).SetRate( newRate );
    }
 
    history.PushState(XO("Imported '%s'").Format( fileName ),

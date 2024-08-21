@@ -49,7 +49,7 @@
 #include "ViewInfo.h"
 #include "WaveClip.h"
 #include "WaveTrack.h"
-#include "toolbars/SelectionBar.h"
+#include "toolbars/SettingsBar.h"
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/NumericTextCtrl.h"
 #include "widgets/ProgressDialog.h"
@@ -409,7 +409,7 @@ ProgressResult AUPImportFileHandle::Import(WaveTrackFactory* /* trackFactory */,
 
    if (mProjectAttrs.haverate)
    {
-      auto &bar = SelectionBar::Get(mProject);
+      auto &bar = SettingsBar::Get(mProject);
       bar.SetRate(mProjectAttrs.rate);
    }
 
