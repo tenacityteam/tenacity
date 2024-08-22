@@ -41,6 +41,7 @@ selection range.
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/valtext.h>
+#include <wx/valnum.h>
 #include <wx/stattext.h>
 #endif
 #include <wx/statline.h>
@@ -66,7 +67,7 @@ selection range.
 
 IMPLEMENT_CLASS(SettingsBar, ToolBar);
 
-constexpr int SIZER_COLS = 3;
+constexpr int SIZER_COLS = 7;
 
 const static wxChar *numbers[] =
 {
@@ -78,6 +79,8 @@ enum
 {
     SettingsBarFirstID = 2700,
     RateID,
+    LatencyID,
+    LatencyUnitID,
     SnapToID,
     OnMenuID,
 };
@@ -87,6 +90,8 @@ BEGIN_EVENT_TABLE(SettingsBar, ToolBar)
     EVT_CHOICE(SnapToID, SettingsBar::OnSnapTo)
     EVT_COMBOBOX(RateID, SettingsBar::OnRate)
     EVT_TEXT(RateID, SettingsBar::OnRate)
+    EVT_TEXT_ENTER(LatencyID, SettingsBar::OnLatency)
+    EVT_CHOICE(LatencyUnitID, SettingsBar::OnLatencyUnit)
 
     EVT_COMMAND(wxID_ANY, EVT_TIMETEXTCTRL_UPDATED, SettingsBar::OnUpdate)
     EVT_COMMAND(wxID_ANY, EVT_CAPTURE_KEY, SettingsBar::OnCaptureKey)
@@ -104,6 +109,8 @@ SettingsBar::SettingsBar(TenacityProject &project)
     // Audacity to fail.
     // We expect mRate to be set from the project later.
     mRate = (double)QualitySettings::DefaultSampleRate.Read();
+
+    mLatency = AudioIOLatencyDuration.Read();
 }
 
 SettingsBar::~SettingsBar()
@@ -163,6 +170,10 @@ void SettingsBar::Populate()
     wxColour clrText2 = *wxBLUE;
     AuStaticText *rateLabel = AddTitle(XO("Project Rate (Hz)"), mainSizer);
     AddVLine(mainSizer);
+    AuStaticText* latencyLabel = AddTitle(XO("Latency"), mainSizer);
+    AddVLine(mainSizer);
+    AuStaticText* latencyUnitLabe = AddTitle(XO("Latency Unit"), mainSizer);
+    AddVLine(mainSizer);
     AuStaticText *snapLabel = AddTitle(XO("Snap-To"), mainSizer);
 
     // Bottom row, (mostly time controls)
@@ -211,8 +222,58 @@ void SettingsBar::Populate()
 
     mainSizer->Add(mRateBox, 0, wxEXPAND | wxALIGN_TOP | wxRIGHT, 5);
 
+    // Add audio latency settings
     AddVLine(mainSizer);
 
+    wxFloatingPointValidator<double> latencyValidator(&mLatency, wxNUM_VAL_NO_TRAILING_ZEROES);
+    mLatencyTextCtrl = new wxTextCtrl(
+        this,
+        LatencyID,
+        std::to_string(mLatency),
+        wxDefaultPosition,
+        wxDefaultSize,
+        wxTE_PROCESS_ENTER,
+        latencyValidator
+    );
+
+    #if wxUSE_ACCESSIBILITY
+    // so that name can be set on a standard control
+    mLatencyTextCtrl->SetAccessible(new WindowAccessible(mLatency));
+    #endif
+    mLatencyTextCtrl->SetName(XO("Latency").Translation());
+    mLatencyTextCtrl->Bind(wxEVT_SET_FOCUS, &SettingsBar::OnFocus, this);
+    mLatencyTextCtrl->Bind(wxEVT_KILL_FOCUS, &SettingsBar::OnFocus, this);
+
+    mainSizer->Add(mLatencyTextCtrl, 0, wxEXPAND | wxALIGN_TOP | wxRIGHT, 5);
+
+    // Audio audio latency unit
+    AddVLine(mainSizer);
+
+    const wxString choices[] = {
+        XO("samples").Translation(),
+
+        // i18n-hint: Abbreviation for "milliseconds"
+        XO("ms").Translation()
+    };
+
+    mLatencyUnit = new wxChoice(this, LatencyUnitID, wxDefaultPosition, wxDefaultSize, 2, choices);
+
+    #if wxUSE_ACCESSIBILITY
+    // so that name can be set on a standard control
+    mLatency->SetAccessible(new WindowAccssible(mLatencyUnit));
+    #endif
+    mLatencyUnit->SetName(XO("Latency Unit").Translation());
+    if (AudioIOLatencyUnit.Read() == "milliseconds")
+    {
+        mLatencyUnit->SetSelection(1);
+    } else
+    {
+        mLatencyUnit->SetSelection(0);
+    }
+    mainSizer->Add(mLatencyUnit, 0, wxEXPAND | wxALIGN_TOP | wxRIGHT, 5);
+
+    // Add snapping settings
+    AddVLine(mainSizer);
     mSnapTo = new wxChoice(this, SnapToID,
                                wxDefaultPosition, wxDefaultSize,
                                transform_container<wxArrayStringEx>(
@@ -325,6 +386,72 @@ void SettingsBar::OnRate(wxCommandEvent & /* event */)
         // Bug 2497 - Undo paste into text box if it's not numeric
         mRateBox->SetValue(mLastValidText);
     }
+}
+
+void SettingsBar::OnLatency(wxCommandEvent&)
+{
+    wxString strValue = mLatencyTextCtrl->GetValue();
+    bool isMilliseconds = mLatencyUnit->GetSelection() == 1;
+    double latency = 0.0;
+
+    // If conversion fails, set it to the default latency
+    if (!strValue.ToDouble(&latency))
+    {
+        latency = AudioIOLatencyDuration.GetDefault();
+        if (isMilliseconds)
+        {
+            latency *= mRate / 1000;
+        }
+
+        mLatency = latency;
+        mLatencyTextCtrl->SetValue(std::to_string(mLatency));
+        return;
+    }
+
+    // If the latency unit selection is milliseconds, convert it to samples
+    if (isMilliseconds)
+    {
+        latency *= mRate / 1000;
+    }
+
+    // Cap the minimum latency to 32 samples (or the equivalent milliseconds)
+    latency = std::max(latency, 32.0);
+
+    // Save the preference
+    AudioIOLatencyDuration.Write(latency);
+
+    // And convert it back if necessary
+    if (isMilliseconds)
+    {
+        latency /= mRate / 1000;
+    }
+
+    mLatency = latency;
+    mLatencyTextCtrl->SetValue(std::to_string(mLatency));
+}
+
+void SettingsBar::OnLatencyUnit(wxCommandEvent&)
+{
+    int selection = mLatencyUnit->GetSelection();
+
+    // If the current selection is milliseconds and the set preference is
+    // samples, or vice versa, convert the latency value.
+    if (selection == 1 && AudioIOLatencyUnit.Read() == "samples")
+    {
+        // Convert from samples to milliseconds
+        // (also round it because samples are a whole value)
+        mLatency /= mRate / 1000.0;
+
+        AudioIOLatencyUnit.Write("milliseconds");
+    } else if (selection == 0 && AudioIOLatencyUnit.Read() == "milliseconds")
+    {
+        // Convert from milliseconds to samples
+        mLatency *= mRate / 1000.0;
+        mLatency = std::round(mLatency);
+        AudioIOLatencyUnit.Write("samples");
+    }
+
+    mLatencyTextCtrl->SetValue(std::to_string(mLatency));
 }
 
 void SettingsBar::UpdateRates()

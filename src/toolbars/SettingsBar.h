@@ -14,6 +14,8 @@
 
 #include "ToolBar.h"
 
+#include <wx/textctrl.h>
+
 // Column for 
 //   Project rate
 //   Snap To
@@ -58,6 +60,8 @@ class TENACITY_DLL_API SettingsBar final : public ToolBar {
    void OnUpdate(wxCommandEvent &evt);
 
    void OnRate(wxCommandEvent & event);
+   void OnLatency(wxCommandEvent& event);
+   void OnLatencyUnit(wxCommandEvent& event);
    void OnSnapTo(wxCommandEvent & event);
    void OnFocus(wxFocusEvent &event);
    void OnCaptureKey(wxCommandEvent &event);
@@ -66,10 +70,12 @@ class TENACITY_DLL_API SettingsBar final : public ToolBar {
    void UpdateRates();
 
    SettingsBarListener * mListener;
-   double mRate;
+   double mRate, mLatency;
 
    wxStaticText      *mProxy;
    wxComboBox        *mRateBox;
+   wxTextCtrl        *mLatencyTextCtrl;
+   wxChoice          *mLatencyUnit;
    wxChoice          *mSnapTo;
    wxWindow          *mRateText;
 
