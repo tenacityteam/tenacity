@@ -731,7 +731,7 @@ void ToolManager::ReadConfig()
       bool bShownByDefault = true;
       int defaultDock = TopDockID;
 
-      if( ndx == SelectionBarID )
+      if( ndx == SelectionBarID | ndx == SettingsBarID )
          defaultDock = BotDockID;
       if( ndx == MeterBarID )
          bShownByDefault = false;
