@@ -238,7 +238,7 @@ void SettingsBar::Populate()
 
     #if wxUSE_ACCESSIBILITY
     // so that name can be set on a standard control
-    mLatencyTextCtrl->SetAccessible(new WindowAccessible(mLatency));
+    mLatencyTextCtrl->SetAccessible(new WindowAccessible(mLatencyTextCtrl));
     #endif
     mLatencyTextCtrl->SetName(XO("Latency").Translation());
     mLatencyTextCtrl->Bind(wxEVT_SET_FOCUS, &SettingsBar::OnFocus, this);
@@ -260,7 +260,7 @@ void SettingsBar::Populate()
 
     #if wxUSE_ACCESSIBILITY
     // so that name can be set on a standard control
-    mLatency->SetAccessible(new WindowAccssible(mLatencyUnit));
+    mLatencyUnit->SetAccessible(new WindowAccessible(mLatencyUnit));
     #endif
     mLatencyUnit->SetName(XO("Latency Unit").Translation());
     if (AudioIOLatencyUnit.Read() == "milliseconds")
