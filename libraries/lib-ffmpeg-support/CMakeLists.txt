@@ -42,33 +42,33 @@ if (USE_FFMPEG)
 
       impl/FFmpegLog.h
 
-      impl/ffmpeg-3.4.8-single-header.h
-      impl/avutil/55/avconfig.h
-      impl/avcodec/57/AVCodecIDLookup.cpp
-      impl/avcodec/57/AVCodecImpl.cpp
-      impl/avformat/57/AVFormatImpl.cpp
-      impl/avutil/55/AVUtilImpl.cpp
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/ffmpeg-3.4.8-single-header.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/55/avconfig.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/57/AVCodecIDLookup.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/57/AVCodecImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avformat/57/AVFormatImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/55/AVUtilImpl.cpp>
 
-      impl/ffmpeg-4.2.4-single-header.h
-      impl/avutil/56/avconfig.h
-      impl/avcodec/58/AVCodecIDLookup.cpp
-      impl/avcodec/58/AVCodecImpl.cpp
-      impl/avformat/58/AVFormatImpl.cpp
-      impl/avutil/56/AVUtilImpl.cpp
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/ffmpeg-4.2.4-single-header.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/56/avconfig.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/58/AVCodecIDLookup.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/58/AVCodecImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avformat/58/AVFormatImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/56/AVUtilImpl.cpp>
 
-      impl/ffmpeg-5.0.1-single-header.h
-      impl/avutil/57/avconfig.h
-      impl/avcodec/59/AVCodecIDLookup.cpp
-      impl/avcodec/59/AVCodecImpl.cpp
-      impl/avformat/59/AVFormatImpl.cpp
-      impl/avutil/57/AVUtilImpl.cpp
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/ffmpeg-5.0.1-single-header.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/57/avconfig.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/59/AVCodecIDLookup.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/59/AVCodecImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avformat/59/AVFormatImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/57/AVUtilImpl.cpp>
 
-      impl/ffmpeg-6.0.0-single-header.h
-      impl/avutil/58/avconfig.h
-      impl/avcodec/60/AVCodecIDLookup.cpp
-      impl/avcodec/60/AVCodecImpl.cpp
-      impl/avformat/60/AVFormatImpl.cpp
-      impl/avutil/58/AVUtilImpl.cpp
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/ffmpeg-6.0.0-single-header.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/58/avconfig.h>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/60/AVCodecIDLookup.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avcodec/60/AVCodecImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avformat/60/AVFormatImpl.cpp>
+      $<$<BOOL:${USE_FFMPEG_LOADED}>:impl/avutil/58/AVUtilImpl.cpp>
 
       # Loaders
       impl/avcodec/AVCodecFunctionsLoader.cpp
@@ -98,6 +98,7 @@ if (USE_FFMPEG)
       lib-preferences
       lib-files
       lib-math
+      $<$<BOOL:${USE_FFMPEG_LINKED}>:FFMPEG::FFMPEG>
    )
 
    set( DEFINITIONS PUBLIC USE_FFMPEG )
