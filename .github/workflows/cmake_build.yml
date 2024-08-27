@@ -216,5 +216,5 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: vcpkg-logs-${{ runner.os }}
+        name: vcpkg-logs-${{ runner.os }}-${{ matrix.config.arch }}
         path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log
