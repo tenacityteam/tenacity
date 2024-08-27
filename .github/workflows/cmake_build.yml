@@ -47,10 +47,16 @@ jobs:
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-osx-dynamic
 
-        #- name: macOS_ARM
-        #  os: macos-latest
-        #  arch: aarch64
-        #  generator: Xcode
+        - name: macOS_Apple_Silicon
+          os: macos-latest
+          arch: Apple Silicon # as reported by Apple menu > About This Mac
+          generator: Ninja
+          cc: cc
+          cxx: c++
+          compiler_cache: ccache
+          compiler_cache_path: ~/Library/Caches/ccache
+          vcpkg_binary_cache: ~/.cache/vcpkg
+          vcpkg_triplet: arm64-osx-dynamic
 
           # Windows (x86) config
         - name: Windows_32bit
