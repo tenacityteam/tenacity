@@ -52,7 +52,7 @@ hold information about one contributor to Audacity.
 #include "theme/AllThemeResources.h"
 #include "theme/Theme.h"
 
-#include "../images/TenacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.h"
 
 // To substitute into many other translatable strings
 static const auto ProgramName =

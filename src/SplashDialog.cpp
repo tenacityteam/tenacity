@@ -45,7 +45,7 @@ most commonly asked questions about Audacity.
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 
-#include "../images/TenacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.h"
 
 SplashDialog * SplashDialog::pSelf=NULL;
 

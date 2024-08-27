@@ -123,7 +123,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "import/Import.h"
 
 // Logo for Splash Screen
-#include "../images/TenacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.h"
 
 #include <thread>
 

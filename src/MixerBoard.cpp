@@ -55,9 +55,9 @@
 
 #include "../images/MusicalInstruments.h"
 #ifdef __WXMSW__
-   #include "../images/TenacityLogo.xpm"
+   #include "../images/TenacityLogo.h"
 #else
-   #include "../images/TenacityLogo48x48.xpm"
+   #include "../images/TenacityLogo48x48.h"
 #endif
 
 #include "commands/CommandManager.h"

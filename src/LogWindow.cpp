@@ -28,7 +28,7 @@ Paul Licameli split from TenacityLogger.cpp
 #include "SelectFile.h"
 #include "shuttle/ShuttleGui.h"
 
-#include "../images/TenacityLogoAlpha.xpm"
+#include "../images/TenacityLogoAlpha.h"
 
 // If wxLogWindow is used and initialized before the Mac's "root" window, then
 //     Audacity may crash when terminating.  It's not fully understood why this occurs

@@ -56,7 +56,7 @@ Paul Licameli split from TenacityProject.cpp
 #include <wx/sizer.h>
 
 #ifdef __WXGTK__
-#include "../images/TenacityLogoAlpha.xpm"
+#include "../images/TenacityLogoAlpha.h"
 #endif
 
 const int TenacityProjectTimerID = 5200;
