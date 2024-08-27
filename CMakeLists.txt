@@ -139,8 +139,12 @@ endif()
 
 # Definitions that must happen before the project() command
 if( APPLE )
-   set( MIN_MACOS_VERSION 10.15 )
-   set( TARGET_MACOS_VERSION 10.15 )
+   if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64")
+      set(MIN_MACOS_VERSION 11)
+   else()
+      set( MIN_MACOS_VERSION 10.15 )
+   endif()
+   set( TARGET_MACOS_VERSION 11 )
    # Generate schema files
    set( CMAKE_XCODE_GENERATE_SCHEME ON )
 
