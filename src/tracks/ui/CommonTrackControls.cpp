@@ -20,6 +20,7 @@ Paul Licameli split from TrackControls.cpp
 #include "Project.h"
 #include "../../ProjectHistory.h"
 #include "../../ProjectWindows.h"
+#include "../../TimeTrack.h"
 #include "../../TrackArtist.h"
 #include "../../TrackInfo.h"
 #include "../../TrackPanelDrawingContext.h"
@@ -29,6 +30,7 @@ Paul Licameli split from TrackControls.cpp
 #include "../../commands/AudacityCommand.h"
 #include "../../commands/CommandManager.h"
 #include "../../shuttle/ShuttleGui.h"
+#include "../../widgets/AudacityMessageBox.h"
 #include "../../widgets/PopupMenuTable.h"
 
 #include <wx/dc.h>
@@ -263,6 +265,16 @@ void TrackMenuTable::OnDuplicateTrack(wxCommandEvent&)
    {
       TenacityProject& project = mpData->project;
       TrackList& tracks = TrackList::Get(project);
+
+      if (*tracks.Any<TimeTrack>().begin())
+      {
+         AudacityMessageBox(
+            XO("This version of Tenacity only allows one time track for each project window.")
+         );
+
+         return;
+      }
+
       auto dupTrack = track->Duplicate();
       tracks.Add(dupTrack);
 
