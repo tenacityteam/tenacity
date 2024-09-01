@@ -46,6 +46,7 @@ jobs:
           compiler_cache_path: ~/Library/Caches/ccache
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-osx-dynamic
+          additional_cmake_flags: -DCMAKE_APPLE_SILICON_PROCESSOR="x86_64"
 
         - name: macOS_Apple_Silicon
           os: macos-latest
@@ -169,6 +170,7 @@ jobs:
         -D SBSMS=ON
         -S .
         -B build
+        "${{ matrix.config.additional_cmake_flags }}"
       env:
         # Apple code signing
         APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
