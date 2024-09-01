@@ -89,6 +89,21 @@ jobs:
           vcpkg_triplet: x64-windows
           exe_suffix: .exe
 
+        - name: Windows_ARM
+          os: windows-latest
+          arch: arm
+          # FIXME: Ninja is broken on Windows, so use Visual Studio for now
+          generator: Visual Studio 17 2022
+          # required so CMake uses MSVC rather than MinGW
+          cc: cl
+          cxx: cl
+          additional_cmake_flags: -A ARM64
+          compiler_cache: sccache
+          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
+          vcpkg_triplet: arm64-windows
+          exe_suffix: .exe
+
     env:
       CMAKE_BUILD_TYPE: RelWithDebInfo
       CMAKE_C_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
