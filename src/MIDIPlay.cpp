@@ -397,57 +397,36 @@ static PaTime util_GetTime( void )
 
 #elif defined( __WXMSW__ )
 
-#include "profileapi.h"
-#include "sysinfoapi.h"
-#include "timeapi.h"
+#include <profileapi.h>
 
-static int usePerformanceCounter_;
 static double secondsPerTick_;
 
 static struct InitializeTime { InitializeTime() {
     LARGE_INTEGER ticksPerSecond;
 
-    if( QueryPerformanceFrequency( &ticksPerSecond ) != 0 )
-    {
-        usePerformanceCounter_ = 1;
-        secondsPerTick_ = 1.0 / (double)ticksPerSecond.QuadPart;
-    }
-    else
-    {
-        usePerformanceCounter_ = 0;
-    }
+    QueryPerformanceFrequency( &ticksPerSecond );
+    secondsPerTick_ = 1.0 / (double)ticksPerSecond.QuadPart;
 } } initializeTime;
 
 static double util_GetTime( void )
 {
     LARGE_INTEGER time;
 
-    if( usePerformanceCounter_ )
-    {
-        /*
-            Note: QueryPerformanceCounter has a known issue where it can skip forward
-            by a few seconds (!) due to a hardware bug on some PCI-ISA bridge hardware.
-            This is documented here:
-            http://support.microsoft.com/default.aspx?scid=KB;EN-US;Q274323&
+    /*
+        Note: QueryPerformanceCounter has a known issue where it can skip forward
+        by a few seconds (!) due to a hardware bug on some PCI-ISA bridge hardware.
+        This is documented here:
+        http://support.microsoft.com/default.aspx?scid=KB;EN-US;Q274323&
 
-            The work-arounds are not very paletable and involve querying GetTickCount
-            at every time step.
+        The work-arounds are not very paletable and involve querying GetTickCount
+        at every time step.
 
-            Using rdtsc is not a good option on multi-core systems.
+        Using rdtsc is not a good option on multi-core systems.
 
-            For now we just use QueryPerformanceCounter(). It's good, most of the time.
-        */
-        QueryPerformanceCounter( &time );
-        return time.QuadPart * secondsPerTick_;
-    }
-    else
-    {
-	#if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
-        return GetTickCount64() * .001;
-	#else
-        return timeGetTime() * .001;
-	#endif
-    }
+        For now we just use QueryPerformanceCounter(). It's good, most of the time.
+    */
+    QueryPerformanceCounter( &time );
+    return time.QuadPart * secondsPerTick_;
 }
 
 #elif defined(HAVE_CLOCK_GETTIME)
