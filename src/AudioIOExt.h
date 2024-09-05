@@ -33,7 +33,7 @@ public:
    static Factories &GetFactories();
 
    //! Typically statically constructed
-   struct TENCITY_DLL_API RegisteredFactory{
+   struct TENACITY_DLL_API RegisteredFactory{
       explicit RegisteredFactory(Factory factory);
       ~RegisteredFactory();
    };
