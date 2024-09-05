@@ -72,6 +72,13 @@ else # Linux & others
             libtiff-dev
             liblzma-dev
             libsqlite3-dev
+            libwxgtk3.2-dev
+            libzip-dev
+            wx-common
+            wx3.2-headers
+            zipcmp
+            zipmerge
+            ziptool
         )
 
         sudo apt-get update -y

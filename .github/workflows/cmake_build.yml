@@ -26,14 +26,14 @@ jobs:
       matrix:
         config:
         - name: Ubuntu
-          os: ubuntu-latest
+          os: ubuntu-24.04
           arch: x86_64 # as reported by `arch` or `uname -m`
           generator: Ninja
           cc: cc
           cxx: c++
           compiler_cache: ccache
           compiler_cache_path: ~/.ccache
-          use_vcpkg: ON
+          use_vcpkg: OFF
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-linux-dynamic
 
@@ -161,6 +161,7 @@ jobs:
 
     - name: Setup vcpkg cache
       uses: actions/cache@v4
+      if: runner.os != 'Linux'
       with:
         # cache the vcpkg executable to avoid having to bootstrap vcpkg every time
         path: |
@@ -224,7 +225,7 @@ jobs:
         && rm -r package/_CPack_Packages
       env:
         # VCPKG_LIB_PATH is the location that vcpkg stores its libs once built
-        VCPKG_LIB_PATH: ${{ github.workspace }}/build/vcpkg_installed/x64-linux-dynamic/debug/lib
+        VCPKG_LIB_PATH: ""
 
     - name: Upload package artifact
       uses: actions/upload-artifact@v4
@@ -236,6 +237,7 @@ jobs:
         if-no-files-found: error
 
     - name: Upload artifact of vcpkg build logs
+      if: runner.os != 'Linux'
       uses: actions/upload-artifact@v4
       with:
         name: vcpkg-logs-${{ runner.os }}-${{ matrix.config.arch }}
