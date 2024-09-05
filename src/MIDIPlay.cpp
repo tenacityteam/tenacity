@@ -369,6 +369,11 @@ Time (in seconds, = total_sample_count / sample_rate)
 class NoteTrack;
 using NoteTrackConstArray = std::vector < std::shared_ptr< const NoteTrack > >;
 
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 namespace {
 
 /*
@@ -396,8 +401,6 @@ static PaTime util_GetTime( void )
 }
 
 #elif defined( __WXMSW__ )
-
-#include <profileapi.h>
 
 static double secondsPerTick_;
 
