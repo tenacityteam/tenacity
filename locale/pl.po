@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2024-09-05 02:09+0000\n"
+"PO-Revision-Date: 2024-09-06 07:09+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <gootector@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "pl/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && ("
 "n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Weblate 5.7.2-rc\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -155,7 +155,7 @@ msgstr "Wybierz urządzenie odtwarzające"
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/widgets/NumericTextCtrl.cpp
 #: plug-ins/sample-data-export.ny
 msgid "samples"
-msgstr "sample"
+msgstr "próbki"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/RecordingPrefs.cpp src/widgets/NumericTextCtrl.cpp
@@ -820,7 +820,7 @@ msgstr "Obsługa zmiany wysokości i tempa"
 
 #: src/AboutDialog.cpp
 msgid "Extreme Pitch and Tempo Change support"
-msgstr "Obsługa zmiany wysokości i tempa"
+msgstr "Ekstremalna obsługa zmiany wysokości i tempa"
 
 #: src/AboutDialog.cpp
 msgid "GPL License"
@@ -1417,7 +1417,7 @@ msgstr "Rozmiar danych testowych powinien mieścić się w zakresie 1 - 2000 MB.
 #: src/Benchmark.cpp
 #, c-format
 msgid "Using %lld chunks of %lld samples each, for a total of %.1f MB.\n"
-msgstr "Używając %lld fragmentów %lld sampli każdy, łącznie %.1f MB.\n"
+msgstr "Używając %lld fragmentów %lld próbek każdy, łącznie %.1f MB.\n"
 
 #: src/Benchmark.cpp
 msgid "Preparing...\n"
@@ -1492,7 +1492,7 @@ msgstr "Sprawdzanie poprawności...\n"
 #: src/Benchmark.cpp
 #, c-format
 msgid "Bad: chunk %lld sample %lld\n"
-msgstr "Nieprawidłowy: fragment %lld sampel %lld\n"
+msgstr "Nieprawidłowy: fragment %lld próbka %lld\n"
 
 #: src/Benchmark.cpp
 msgid "Passed correctness check!\n"
@@ -3399,8 +3399,8 @@ msgid ""
 "Sequence has block file exceeding maximum %s samples per block.\n"
 "Truncating to this maximum length."
 msgstr ""
-"Sekwencja zawiera plik blokowy przekraczający maksymalnie %s sampli na "
-"blok.\n"
+"Sekwencja zawiera plik blokowy przekraczający maksymalnie %s próbek na blok."
+"\n"
 "Obcinanie do tej maksymalnej długości."
 
 #: src/Sequence.cpp
@@ -4296,7 +4296,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"%s: Nie udało się załadować poniższych ustawień. Zostaną użyte ustawienia "
+"%s: Nie można załadować poniższych ustawień. Zostaną użyte ustawienia "
 "domyślne.\n"
 "\n"
 "%s"
@@ -5396,7 +5396,7 @@ msgstr "Algorytm nie działa na tym dźwięku. Nic nie zostało zmienione."
 #: src/effects/ClickRemoval.cpp src/effects/FindClicks.cpp
 #, c-format
 msgid "Selection must be larger than %d samples."
-msgstr "Zaznaczenie musi być większe niż %d sampli."
+msgstr "Zaznaczenie musi być większe niż %d próbek."
 
 #: src/effects/ClickRemoval.cpp src/effects/FindClicks.cpp
 msgid "&Threshold (lower is more sensitive):"
@@ -7108,11 +7108,11 @@ msgstr "Obcinanie"
 
 #: src/effects/FindClipping.cpp
 msgid "&Start threshold (samples):"
-msgstr "Próg początkowy (&sample):"
+msgstr "P&róg początkowy (próbki):"
 
 #: src/effects/FindClipping.cpp
 msgid "St&op threshold (samples):"
-msgstr "Próg k&ońcowy (sample):"
+msgstr "Próg k&ońcowy (próbki):"
 
 #: src/effects/Generator.cpp
 msgid "There is not enough room available to generate the audio"
@@ -7124,7 +7124,7 @@ msgstr "Odwróć"
 
 #: src/effects/Invert.cpp
 msgid "Flips the audio samples upside-down, reversing their polarity"
-msgstr "Odwraca sample do góry nogami, odwracając ich biegunowość"
+msgstr "Odwraca próbki do góry nogami, odwracając ich biegunowość"
 
 #: src/effects/LoadEffects.cpp
 msgid "Builtin Effects"
@@ -7719,7 +7719,7 @@ msgid ""
 "Zoom in and select a tiny fraction of a second to repair."
 msgstr ""
 "Efekt naprawy jest przeznaczony do użytku na bardzo krótkich odcinkach "
-"uszkodzonego dźwięku (do 128 sampli).\n"
+"uszkodzonego dźwięku (do 128 próbek).\n"
 "\n"
 "Powiększ i zaznacz ułamek sekundy do naprawy."
 
@@ -8251,15 +8251,15 @@ msgid ""
 "require 8192 samples or less to work properly. However most effects can "
 "accept large buffers and using them will greatly reduce processing time."
 msgstr ""
-"Rozmiar bufora kontroluje liczbę sampli wysyłanych do efektu przy każdej "
+"Rozmiar bufora kontroluje liczbę próbek wysyłanych do efektu przy każdej "
 "iteracji. Mniejsze wartości spowodują wolniejsze przetwarzanie, a niektóre "
-"efekty wymagają 8192 sampli lub mniej, aby działać poprawnie. Jednak "
+"efekty wymagają 8192 próbek lub mniej, aby działać poprawnie. Jednak "
 "większość efektów akceptuje duże bufory, a ich użycie znacznie skraca czas "
 "przetwarzania."
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "&Buffer Size (8 to 1048576 samples):"
-msgstr "Rozmiar &bufora (od 8 do 1048576 sampli):"
+msgstr "Rozmiar &bufora (od 8 do 1048576 próbek):"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/audiounits/AudioUnitEffect.cpp
 #: src/effects/ladspa/LadspaEffect.cpp src/effects/lv2/LV2Effect.cpp
@@ -8604,7 +8604,7 @@ msgstr "Ustawienia efektu LV2"
 #: src/effects/lv2/LV2Effect.cpp
 #, c-format
 msgid "&Buffer Size (8 to %d) samples:"
-msgstr "Rozmiar &bufora (8 do %d) sampli:"
+msgstr "Rozmiar &bufora (8 do %d) próbek:"
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid ""
@@ -8709,7 +8709,7 @@ msgid ""
 "(about %.1f hours at 44100 Hz sample rate)."
 msgstr ""
 "Zaznaczenie jest za długie dla kodu Nyquista.\n"
-"Maksymalne dopuszczalne zaznaczenie wynosi %ld sampli\n"
+"Maksymalne dopuszczalne zaznaczenie wynosi %ld próbek\n"
 "(około %.1f godziny na 44100 Hz częstotliwości próbkowania)."
 
 #: src/effects/nyquist/Nyquist.cpp
@@ -8853,7 +8853,7 @@ msgstr "Załaduj skrypt Nyquista"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "File could not be loaded"
-msgstr "Plik nie może być załadowany"
+msgstr "Plik nie może zostać załadowany"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Save Nyquist script"
@@ -9082,12 +9082,11 @@ msgstr "Eksportuj"
 
 #: src/export/ExportCL.cpp
 msgid "Exporting the selected audio using command-line encoder"
-msgstr ""
-"Eksportowanie zaznaczonego dźwięku przy użyciu komendy z wiersza poleceń"
+msgstr "Eksportowanie zaznaczonego dźwięku za pomocą kodera wiersza poleceń"
 
 #: src/export/ExportCL.cpp
 msgid "Exporting the audio using command-line encoder"
-msgstr "Eksportowanie dźwięku przy użyciu komendy z wiersza poleceń"
+msgstr "Eksportowanie dźwięku za pomocą kodera wiersza poleceń"
 
 #: src/export/ExportCL.cpp
 msgid "Command Output"
@@ -9214,7 +9213,7 @@ msgstr ""
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg : BŁĄD - Nie udało się uzyskać próbki rozmiaru bufora."
+msgstr "FFmpeg : BŁĄD - Nie można uzyskać próbki rozmiaru bufora."
 
 #: src/export/ExportFFmpeg.cpp
 msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
@@ -10696,7 +10695,7 @@ msgstr "Nie udało się znaleźć pozycji %lld w %s"
 #: src/import/ImportAUP.cpp
 #, c-format
 msgid "Unable to read %lld samples from %s"
-msgstr "Nie można wczytać %lld sampli z %s"
+msgstr "Nie można wczytać %lld próbek z %s"
 
 #: src/import/ImportFFmpeg.cpp
 msgid "FFmpeg-compatible files"
@@ -11058,7 +11057,7 @@ msgstr "Nie można ustawić poprawnych kanałów dyskretnych QuickTime"
 
 #: src/import/ImportQT.cpp
 msgid "Unable to get QuickTime sample size property"
-msgstr "Nie można pobrać poprawnego rozmiaru sampla QuickTime"
+msgstr "Nie można pobrać poprawnego rozmiaru próbki QuickTime"
 
 #: src/import/ImportQT.cpp
 msgid "Unable to retrieve stream description"
@@ -13704,23 +13703,23 @@ msgstr "-36 dB (\"płytki\" zakres do edytowania przy dużych amplitudach)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-48 dB (PCM range of 8 bit samples)"
-msgstr "-48 dB (PCM zakres 8-bitowych sampli)"
+msgstr "-48 dB (PCM zakres 8-bitowych próbek)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-60 dB (PCM range of 10 bit samples)"
-msgstr "-60 dB (PCM zakres 10-bitowych sampli)"
+msgstr "-60 dB (PCM zakres 10-bitowych próbek)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-72 dB (PCM range of 12 bit samples)"
-msgstr "-72 dB (PCM zakres 12-bitowych sampli)"
+msgstr "-72 dB (PCM zakres 12-bitowych próbek)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-84 dB (PCM range of 14 bit samples)"
-msgstr "-84 dB (PCM zakres 14-bitowych sampli)"
+msgstr "-84 dB (PCM zakres 14-bitowych próbek)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-96 dB (PCM range of 16 bit samples)"
-msgstr "-96 dB (PCM zakres 16-bitowych sampli)"
+msgstr "-96 dB (PCM zakres 16-bitowych próbek)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-120 dB (approximate limit of human hearing)"
@@ -13728,7 +13727,7 @@ msgstr "-120 dB (przybliżony zakres słyszenia człowieka)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-145 dB (PCM range of 24 bit samples)"
-msgstr "-145 dB (PCM zakres 24-bitowych sampli)"
+msgstr "-145 dB (PCM zakres 24-bitowych próbek)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Local"
@@ -14301,7 +14300,7 @@ msgstr "Pióro"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Change Sample"
-msgstr "Zmień sampel"
+msgstr "Zmień próbkę"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Alt-Left-Click"
@@ -14309,15 +14308,15 @@ msgstr "Alt i kliknięcie lewym przyciskiem myszki"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Smooth at Sample"
-msgstr "Wygładź sampel"
+msgstr "Wygładź próbkę"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Change Several Samples"
-msgstr "Zmień kilka sampli"
+msgstr "Zmień kilka próbek"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Change ONE Sample only"
-msgstr "Zmień tylko JEDEN sampel"
+msgstr "Zmień tylko JEDNĄ próbkę"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Multi"
@@ -14449,7 +14448,7 @@ msgstr "Domyślna częstotliwość p&róbkowania:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
-msgstr "Domyślny &format sampla:"
+msgstr "Domyślny &format próbek:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Real-time Conversion"
@@ -14978,11 +14977,11 @@ msgstr "Milisekundy"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Samples"
-msgstr "Sampli"
+msgstr "Próbek"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "4 Pixels per Sample"
-msgstr "4 piksele na sampel"
+msgstr "4 piksele na próbkę"
 
 #: src/prefs/TracksPrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -15027,7 +15026,7 @@ msgstr "Domyślna skala kształtu fali:"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Display &samples:"
-msgstr "Wyświetl &sample:"
+msgstr "Wyświetl p&róbki:"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
@@ -15208,7 +15207,7 @@ msgid ""
 "Could not create directory:\n"
 "  %s"
 msgstr ""
-"Nie udało się utworzyć katalogu:\n"
+"Nie można utworzyć katalogu:\n"
 "  %s"
 
 #: src/theme/Theme.cpp
@@ -15248,7 +15247,7 @@ msgstr "Transport"
 
 #: src/toolbars/ControlToolBar.cpp
 msgid "Pause"
-msgstr "Pauza"
+msgstr "Wstrzymaj"
 
 #: src/toolbars/ControlToolBar.cpp
 msgid "Skip to Start"
@@ -15279,7 +15278,7 @@ msgstr "Zaznacz do początku"
 #: src/toolbars/ControlToolBar.cpp src/tracks/ui/Scrubbing.cpp
 #, c-format
 msgid "%s Paused."
-msgstr "%s zapauzowane."
+msgstr "%s wstrzymane."
 
 #: src/toolbars/ControlToolBar.cpp
 #, c-format
@@ -15896,20 +15895,20 @@ msgstr "Usunięto linię cięcia"
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Click and drag to edit the samples"
-msgstr "Kliknij i przeciągnij, aby edytować sampel"
+msgstr "Kliknij i przeciągnij, aby edytować próbkę"
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "To use Draw, zoom in further until you can see the individual samples."
 msgstr ""
-"Aby użyć rysowania, powiększaj do momentu zobaczenia pojedynczych sampli."
+"Aby użyć rysowania, powiększaj do momentu zobaczenia pojedynczych próbek."
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Moved Samples"
-msgstr "Przesunięto sample"
+msgstr "Przesunięto próbki"
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Sample Edit"
-msgstr "Edycja sampla"
+msgstr "Edycja próbki"
 
 #. i18n-hint k abbreviating kilo meaning thousands
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumVRulerControls.cpp
@@ -15982,7 +15981,7 @@ msgstr "&Format"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Changing sample format"
-msgstr "Zmienianie formatu sampla"
+msgstr "Zmienianie formatu próbki"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -16843,7 +16842,7 @@ msgstr "0100 g 060 m 060>01000 s"
 #. * minutes, seconds and samples (at the current project sample rate)
 #: src/widgets/NumericTextCtrl.cpp
 msgid "hh:mm:ss + samples"
-msgstr "gg:mm:ss + sample"
+msgstr "gg:mm:ss + próbki"
 
 #. i18n-hint: Format string for displaying time in hours, minutes, seconds
 #. * and samples. Change the 'h' to the abbreviation for hours, 'm' to the
@@ -16854,7 +16853,7 @@ msgstr "gg:mm:ss + sample"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+># samples"
-msgstr "0100 g 060 m 060 s+># sampli"
+msgstr "0100 g 060 m 060 s+># próbek"
 
 #. i18n-hint: Format string for displaying time in samples (lots of samples).
 #. * Change the ',' to the 1000s separator for your locale, and translate
@@ -16862,7 +16861,7 @@ msgstr "0100 g 060 m 060 s+># sampli"
 #. * can change the numbers to an appropriate one, and put a 0 on the front
 #: src/widgets/NumericTextCtrl.cpp
 msgid "01000,01000,01000 samples|#"
-msgstr "01000,01000,01000 sample|#"
+msgstr "01000,01000,01000 próbek|#"
 
 #. i18n-hint: Name of time display format that shows time in hours, minutes,
 #. * seconds and frames at 24 frames per second (commonly used for films)
@@ -17361,7 +17360,7 @@ msgstr "Steve Daulton"
 #: plug-ins/StudioFadeOut.ny
 #, lisp-format
 msgid "Selection too short.~%It must be more than 2 samples."
-msgstr "Zaznaczenie jest za krótkie.~%Musi być większe niż 2 sample."
+msgstr "Zaznaczenie jest za krótkie.~%Musi być większe niż 2 próbki."
 
 #: plug-ins/adjustable-fade.ny
 msgid "Adjustable Fade"
@@ -18475,7 +18474,7 @@ msgstr "Indeksuj (tylko pliki tekstowe)"
 
 #: plug-ins/sample-data-export.ny
 msgid "Sample Count"
-msgstr "Liczba sampli"
+msgstr "Liczba próbek"
 
 #: plug-ins/sample-data-export.ny
 msgid "Time Indexed"
@@ -18555,7 +18554,7 @@ msgid ""
 "~a   ~a~%~aSample Rate: ~a Hz.~%Length processed: ~a samples ~a seconds.~a"
 msgstr ""
 "~a   ~a~%~aCzęstotliwość próbkowania: ~a Hz.~%LePrzetworzona długość: ~a "
-"sampli ~a sekund.~a"
+"próbek ~a sekund.~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -18565,7 +18564,7 @@ msgid ""
 msgstr ""
 "~a   ~a~%~aCzęstotliwość próbkowania: ~a Hz. Przykładowe wartości na ~a "
 "skali.~%~\n"
-"                     Przetworzona długość: ~a sampli ~a sekund.~a"
+"                     Przetworzona długość: ~a próbek ~a sekund.~a"
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -18576,9 +18575,9 @@ msgid ""
 "Unweighted RMS: ~a dB.~%~\n"
 "                  DC offset: ~a~a"
 msgstr ""
-"~a~%Częstotliwość próbkowania: ~a Hz. Przykładowe wartości na ~a skali. ~a."
-"~%~aPrzetworzona długość: ~a ~\n"
-"                  sampli, ~a sekund.~% Amplituda szczytowa: ~a (liniowa) ~a "
+"~a~%Częstotliwość próbkowania: ~a Hz. Przykładowe wartości na ~a skali. "
+"~a.~%~aPrzetworzona długość: ~a ~\n"
+"                  próbek, ~a sekund.~% Amplituda szczytowa: ~a (liniowa) ~a "
 "dB.  Nieważona RMS: ~a dB.~%~\n"
 "                  Offset DC: ~a~a"
 
@@ -18595,7 +18594,7 @@ msgstr "Lewy: ~a lin, ~a dB | Prawy: ~a lin, ~a dB."
 #: plug-ins/sample-data-export.ny
 #, lisp-format
 msgid "~a samples."
-msgstr "~a sampli."
+msgstr "~a próbek."
 
 #: plug-ins/sample-data-export.ny
 #, lisp-format
@@ -18646,7 +18645,7 @@ msgstr "przykładowe dane"
 
 #: plug-ins/sample-data-export.ny
 msgid "Sample #"
-msgstr "Sampel #"
+msgstr "Próbka #"
 
 #: plug-ins/sample-data-export.ny
 msgid "Value (linear)"
@@ -18728,7 +18727,7 @@ msgstr "Importuj przykładowe dane"
 
 #: plug-ins/sample-data-import.ny
 msgid "Reading and rendering samples..."
-msgstr "Wczytywanie i renderowanie sampli..."
+msgstr "Wczytywanie i renderowanie próbek..."
 
 #: plug-ins/sample-data-import.ny
 msgid "Select file"
