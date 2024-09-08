@@ -94,10 +94,7 @@ public:
       // so we won't get wxEVT_CHAR_HOOK events for combinations assigned to menus.
       // Since we only support OS X 10.6 or greater, we can use an event monitor
       // to capture the key event before it gets to the normal wx3 processing.
-
-      // The documentation for addLocalMonitorForEventsMatchingMask implies that
-      // NSKeyUpMask can't be used in 10.6, but testing shows that it can.
-      NSEventMask mask = NSKeyDownMask | NSKeyUpMask;
+      NSEventMask mask = NSEventMaskKeyDown | NSEventMaskKeyUp;
 
       mHandler =
       [
@@ -112,11 +109,11 @@ public:
                {
                   mEvent = event;
 
-                  wxKeyEvent wxevent([event type] == NSKeyDown ? wxEVT_KEY_DOWN : wxEVT_KEY_UP);
+                  wxKeyEvent wxevent([event type] == NSEventTypeKeyDown ? wxEVT_KEY_DOWN : wxEVT_KEY_UP);
                   impl->SetupKeyEvent(wxevent, event);
 
                   NSEvent *result;
-                  if ([event type] == NSKeyDown)
+                  if ([event type] == NSEventTypeKeyDown)
                   {
                      wxKeyEvent eventHook(wxEVT_CHAR_HOOK, wxevent);
                      result = FilterEvent(eventHook) == Event_Processed ? nil : event;
@@ -367,11 +364,11 @@ private:
       UniCharCount actualStringLength = 0;
       UniChar unicodeString[maxStringLength];
       UInt32 nsflags = [mEvent modifierFlags];
-      UInt16 modifiers = (nsflags & NSAlphaShiftKeyMask ? alphaLock : 0) |
-                         (nsflags & NSShiftKeyMask ? shiftKey : 0) |
-                         (nsflags & NSControlKeyMask ? controlKey : 0) |
-                         (nsflags & NSAlternateKeyMask ? optionKey : 0) |
-                         (nsflags & NSCommandKeyMask ? cmdKey : 0);
+      UInt16 modifiers = (nsflags & NSEventModifierFlagCapsLockk ? alphaLock : 0) |
+                         (nsflags & NSEventModifierFlagShift ? shiftKey : 0) |
+                         (nsflags & NSEventModifierFlagControl ? controlKey : 0) |
+                         (nsflags & NSEventModifierFlagOption ? optionKey : 0) |
+                         (nsflags & NSEventModifierFlagCommand ? cmdKey : 0);
 
       OSStatus status = UCKeyTranslate(keyboardLayout,
                                        [mEvent keyCode],
