@@ -98,7 +98,7 @@ Source: "Package\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Package\languages\*"; DestDir: "{app}\Languages\"; Flags: ignoreversion recursesubdirs
 ; We don't ship all modules, so the next line is commented out
 ; Source: "Package\modules\*"; DestDir: "{app}\Modules\"; Flags: ignoreversion recursesubdirs skipifsourcedoesntexist
-Source: "Package\nyquist\*"; DestDir: "{app}\Nyquist\"; Flags: ignoreversion recursesubdirs
+Source: "Package\nyquist-support\*"; DestDir: "{app}\Nyquist\"; Flags: ignoreversion recursesubdirs
 Source: "Package\plug-ins\*"; DestDir: "{app}\Plug-Ins\"; Flags: ignoreversion
 Source: "Package\modules\*"; DestDir: "{app}\modules\"; Flags: ignoreversion recursesubdirs
 
