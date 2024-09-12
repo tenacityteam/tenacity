@@ -298,42 +298,6 @@ private:
 
    ModuleHandle mModule;
 
-#if defined(__WXMAC__)
-   // These members must be ordered after mModule
-
-   struct BundleDeleter {
-      void operator() (void*) const;
-   };
-   using BundleHandle = std::unique_ptr<
-      __CFBundle, BundleDeleter
-   >;
-
-   BundleHandle mBundleRef;
-
-   struct ResourceHandle {
-      ResourceHandle(
-         CFBundleRef pHandle = nullptr, CFBundleRefNum num = 0)
-      : mpHandle{ pHandle }, mNum{ num }
-      {}
-      ResourceHandle& operator=( ResourceHandle &&other )
-      {
-         if (this != &other) {
-            mpHandle = other.mpHandle;
-            mNum = other.mNum;
-            other.mpHandle = nullptr;
-            other.mNum = 0;
-         }
-         return *this;
-      }
-      ~ResourceHandle() { reset(); }
-      void reset();
-
-      CFBundleRef mpHandle{};
-      CFBundleRefNum mNum{};
-   };
-   ResourceHandle mResource;
-#endif
-
    AEffect *mAEffect;
 
    VstTimeInfo mTimeInfo;

@@ -1985,11 +1985,6 @@ bool VSTEffect::Load()
    mAEffect = NULL;
 
 #if defined(__WXMAC__)
-   // Start clean
-   mBundleRef.reset();
-
-   mResource = ResourceHandle{};
-
    // Convert the path to a CFSTring
    wxCFStringRef path(realPath);
 
@@ -2052,15 +2047,6 @@ bool VSTEffect::Load()
       mModule.reset();
       return false;
    }
-
-   // Need to keep the bundle reference around so we can map the
-   // resources.
-   mBundleRef = std::move(bundleRef);
-
-   // Open the resource map ... some plugins (like GRM Tools) need this.
-   mResource = ResourceHandle{
-      mBundleRef.get(), CFBundleOpenBundleResourceMap(mBundleRef.get())
-   };
 
 #elif defined(__WXMSW__)
 
@@ -2261,11 +2247,6 @@ void VSTEffect::Unload()
 
    if (mModule)
    {
-#if defined(__WXMAC__)
-      mResource.reset();
-      mBundleRef.reset();
-#endif
-
       mModule.reset();
       mAEffect = NULL;
    }
