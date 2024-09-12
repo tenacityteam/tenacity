@@ -39,7 +39,7 @@ VersionInfoVersion={#GetVersionNumbersString(AppExe)}
 VersionInfoCopyright={#GetFileCopyright(AppExe)}
 
 ; Default install location
-DefaultDirName={commonpf}\Tenacity
+DefaultDirName={autopf}\Tenacity
 
 ; Tells explorer to refresh file assocations to pickup any changes
 ChangesAssociations=yes
@@ -146,8 +146,8 @@ begin
 end;
 
 [Icons]
-Name: "{commonprograms}\Tenacity"; Filename: "{app}\tenacity.exe"
-Name: "{commondesktop}\Tenacity"; Filename: "{app}\tenacity.exe"; Tasks: desktopicon
+Name: "{autoprograms}\Tenacity"; Filename: "{app}\tenacity.exe"
+Name: "{autodesktop}\Tenacity"; Filename: "{app}\tenacity.exe"; Tasks: desktopicon
 
 [InstallDelete]
 
@@ -206,17 +206,17 @@ Type: files; Name: "{app}\Plug-Ins\clicktrack.ny"
 [Registry]
 ; No longer allow user to choose whether to associate AUP file type with Tenacity.
 ; Leaving this one commented out example of the old way.
-; Root: HKCR; Subkey: ".AUP"; ValueType: string; ValueData: "Tenacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey; Tasks: associate_aup
-Root: HKCR; Subkey: ".AUP"; ValueType: string; ValueData: "Tenacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: ".AUP3"; ValueType: string; ValueData: "Tenacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Tenacity.Project\OpenWithList\tenacity.exe"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Tenacity.Project"; ValueType: string; ValueData: "Tenacity Project File"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Tenacity.Project\shell"; ValueType: string; ValueData: ""; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Tenacity.Project\shell\open"; Flags: createvalueifdoesntexist uninsdeletekey;
-Root: HKCR; Subkey: "Tenacity.Project\shell\open\command"; ValueType: string; ValueData: """{app}\tenacity.exe"" ""%1"""; Flags: uninsdeletekey;
+; Root: HKA; Subkey: "Software\Classes\.AUP"; ValueType: string; ValueData: "Tenacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey; Tasks: associate_aup
+Root: HKA; Subkey: "Software\Classes\.AUP"; ValueType: string; ValueData: "Tenacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKA; Subkey: "Software\Classes\.AUP3"; ValueType: string; ValueData: "Tenacity.Project"; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKA; Subkey: "Software\Classes\Tenacity.Project\OpenWithList\tenacity.exe"; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKA; Subkey: "Software\Classes\Tenacity.Project"; ValueType: string; ValueData: "Tenacity Project File"; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKA; Subkey: "Software\Classes\Tenacity.Project\shell"; ValueType: string; ValueData: ""; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKA; Subkey: "Software\Classes\Tenacity.Project\shell\open"; Flags: createvalueifdoesntexist uninsdeletekey;
+Root: HKA; Subkey: "Software\Classes\Tenacity.Project\shell\open\command"; ValueType: string; ValueData: """{app}\tenacity.exe"" ""%1"""; Flags: uninsdeletekey;
 
 ;The following would allow a following 'help' installer to know where to put the 'help' files.
-;Root: HKCR; Subkey: "Tenacity.Project\Path";  ValueType: string; ValueData: {app}; Flags: createvalueifdoesntexist uninsdeletekey;
+;Root: HKA; Subkey: "Software\Classes\Tenacity.Project\Path";  ValueType: string; ValueData: {app}; Flags: createvalueifdoesntexist uninsdeletekey;
 
 [Run]
 Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Tenacity}"; Flags: nowait postinstall skipifsilent
