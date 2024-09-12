@@ -1202,7 +1202,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       PRIVATE
          "-framework Foundation"
          "-framework Cocoa"
-         "-framework Carbon"
    )
    if(USE_AUDIO_UNITS)
       list(APPEND LIBRARIES
