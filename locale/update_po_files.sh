@@ -15,7 +15,7 @@ xargs xgettext \
 --add-location=file  \
 --copyright-holder='Tenacity Team' \
 --package-name="tenacity" \
---package-version='1.3' \
+--package-version='1.4' \
 --msgid-bugs-address="~tenacity/tenacity-discuss@lists.sr.ht" \
 --add-location=file -L C -o tenacity.pot 
 echo ";; Adding nyquist files to tenacity.pot"
@@ -30,7 +30,7 @@ xargs xgettext \
 --add-location=file  \
 --copyright-holder='Tenacity Team' \
 --package-name="tenacity" \
---package-version='1.3' \
+--package-version='1.4' \
 --msgid-bugs-address="~tenacity/tenacity-discuss@lists.sr.ht" \
 --add-location=file -L Lisp -j -o tenacity.pot 
 if test "${TENACITY_ONLY_POT:-}" = 'y'; then
@@ -39,7 +39,7 @@ fi
 echo ";; Updating the .po files - Updating Project-Id-Version"
 for i in *.po; do
     sed -e '/^"Project-Id-Version:/c\
-    "Project-Id-Version: tenacity 1.3\\n"' $i > TEMP; mv TEMP $i
+    "Project-Id-Version: tenacity 1.4\\n"' $i > TEMP; mv TEMP $i
 done
 echo ";; Updating the .po files"
 sed 's/.*/echo "msgmerge --lang=& &.po tenacity.pot -o &.po";\
