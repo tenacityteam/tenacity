@@ -1,18 +1,17 @@
 /**********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Tenacity
 
+  ZoomToolBar.h
 
-  EditToolbar.h
-
+  Avery King split from EditToolBar.h
   Dominic Mazzoni
   Shane T. Mueller
   Leland Lucius
 
 **********************************************************************/
 
-#ifndef __AUDACITY_EDIT_TOOLBAR__
-#define __AUDACITY_EDIT_TOOLBAR__
+#pragma once
 
 #include <wx/defs.h>
 
@@ -25,67 +24,62 @@ class wxWindow;
 
 class AButton;
 
-enum {
-   ETBCutID,
-   ETBCopyID,
-   ETBPasteID,
-   ETBTrimID,
-   ETBSilenceID,
-
-   ETBUndoID,
-   ETBRedoID,
-
-#ifdef EXPERIMENTAL_SYNC_LOCK
-   //Undefined, so no sync-lock on/off button.
-   //#define OPTION_SYNC_LOCK_BUTTON
-#endif
-
-#ifdef OPTION_SYNC_LOCK_BUTTON
-   ETBSyncLockID,
-#endif
-
-   ETBZoomInID,
-   ETBZoomOutID,
+enum
+{
+   ZTBZoomInID,
+   ZTBZoomOutID,
 #ifdef EXPERIMENTAL_ZOOM_TOGGLE_BUTTON
-   ETBZoomToggleID,
+   ZTBZoomToggleID,
 #endif
 
-   ETBZoomSelID,
-   ETBZoomFitID,
+   ZTBZoomSelID,
+   ZTBZoomFitID,
 
-   ETBNumButtons
+   ZTBNumButtons
 };
 
-const int first_ETB_ID = 11300;
+const int first_ZTB_ID = 11300;
 
 // flags so 1,2,4,8 etc.
-enum {
-   ETBActTooltips = 1,
-   ETBActEnableDisable = 2,
+enum
+{
+   ZTBActTooltips = 1,
+   ZTBActEnableDisable = 2,
 };
 
-class EditToolBar final : public ToolBar {
+/** @brief A ToolBar that has the zoom buttons on it.
+ * 
+ * This class, which is a child of Toolbar, creates the window containing
+ * interfaces to commonly-used zoom functions that are otherwise only available
+ * through menus. The window can be embedded within a normal project window, or
+ * within a ToolBarFrame.
+ * 
+ * All of the controls in this window were custom-written for Tenacity - they
+ * are not native controls on any platform - however, it is intended that the
+ * images could be easily replaced to allow "skinning" or just customization to
+ * match the look and feel of each platform.
+ */
+class ZoomToolBar final : public ToolBar
+{
 
- public:
-
-   EditToolBar( TenacityProject &project );
-   virtual ~EditToolBar();
+public:
+   ZoomToolBar(TenacityProject &project);
+   virtual ~ZoomToolBar();
 
    void Create(wxWindow *parent) override;
 
-   void OnButton(wxCommandEvent & event);
+   void OnButton(wxCommandEvent &event);
 
    void Populate() override;
    void Repaint(wxDC * /* dc */) override {};
    void EnableDisableButtons() override;
    void UpdatePrefs() override;
 
- private:
-
+private:
    static AButton *AddButton(
-      EditToolBar *pBar,
-      teBmps eEnabledUp, teBmps eEnabledDown, teBmps eDisabled,
-      int id, const TranslatableString &label, bool toggle = false);
+       ZoomToolBar *pBar,
+       teBmps eEnabledUp, teBmps eEnabledDown, teBmps eDisabled,
+       int id, const TranslatableString &label, bool toggle = false);
 
    void AddSeparator();
 
@@ -94,7 +88,7 @@ class EditToolBar final : public ToolBar {
    void RegenerateTooltips() override;
    void ForAllButtons(int Action);
 
-   AButton *mButtons[ETBNumButtons];
+   AButton *mButtons[ZTBNumButtons];
 
    wxImage *upImage;
    wxImage *downImage;
@@ -102,6 +96,3 @@ class EditToolBar final : public ToolBar {
 
    DECLARE_EVENT_TABLE()
 };
-
-#endif
-

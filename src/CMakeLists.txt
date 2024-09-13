@@ -785,6 +785,8 @@ list( APPEND SOURCES
       toolbars/ToolsToolBar.h
       toolbars/TranscriptionToolBar.cpp
       toolbars/TranscriptionToolBar.h
+      toolbars/ZoomToolBar.cpp
+      toolbars/ZoomToolBar.h
 
       # Tracks
 

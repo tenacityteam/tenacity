@@ -73,6 +73,7 @@ enum ToolBarID
    RecordMeterBarID,
    PlayMeterBarID,
    EditBarID,
+   ZoomBarID,
    TranscriptionBarID,
    ScrubbingBarID,
    DeviceBarID,
@@ -82,7 +83,7 @@ enum ToolBarID
    SpectralSelectionBarID,
 #endif
    TimeBarID,
-   ToolBarCount
+   ToolBarCount,
 };
 
 // How may pixels padding each side of a floating toolbar
