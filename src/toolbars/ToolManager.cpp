@@ -518,9 +518,9 @@ static struct DefaultConfigEntry {
    { TimeBarID,              ToolsBarID,             NoBarID                },
    { RecordMeterBarID,       TimeBarID,              NoBarID                },
    { PlayMeterBarID,         TimeBarID,              RecordMeterBarID       },
-   { EditBarID,              NoBarID,                TransportBarID         },
+   { ZoomBarID,              EditBarID,              TransportBarID         },
 
-   { TranscriptionBarID,     EditBarID,              NoBarID                },
+   { TranscriptionBarID,     ZoomBarID,              NoBarID                },
 
    // start another top dock row
    { ScrubbingBarID,         NoBarID,                TransportBarID         },
