@@ -160,31 +160,6 @@ void EditToolBar::Populate()
 #endif
 
    // Tooltips match menu entries.
-   // We previously had longer tooltips which were not more clear.
-   AddButton(this, bmpZoomIn, bmpZoomIn, bmpZoomInDisabled, ETBZoomInID,
-      XO("Zoom In"));
-   AddButton(this, bmpZoomOut, bmpZoomOut, bmpZoomOutDisabled, ETBZoomOutID,
-      XO("Zoom Out"));
-   AddButton(this, bmpZoomSel, bmpZoomSel, bmpZoomSelDisabled, ETBZoomSelID,
-      XO("Zoom to Selection"));
-   AddButton(this, bmpZoomFit, bmpZoomFit, bmpZoomFitDisabled, ETBZoomFitID,
-      XO("Fit to Width"));
-
-#ifdef EXPERIMENTAL_ZOOM_TOGGLE_BUTTON
-   AddButton(this, bmpZoomToggle, bmpZoomToggle, bmpZoomToggleDisabled, ETBZoomToggleID,
-      XO("Zoom Toggle"));
-#endif
-
-
-
-   mButtons[ETBZoomInID]->SetEnabled(false);
-   mButtons[ETBZoomOutID]->SetEnabled(false);
-#ifdef EXPERIMENTAL_ZOOM_TOGGLE_BUTTON
-   mButtons[ETBZoomToggleID]->SetEnabled(false);
-#endif
-
-   mButtons[ETBZoomSelID]->SetEnabled(false);
-   mButtons[ETBZoomFitID]->SetEnabled(false);
    mButtons[ETBPasteID]->SetEnabled(false);
 
 #ifdef OPTION_SYNC_LOCK_BUTTON
@@ -232,14 +207,6 @@ static const struct Entry {
 #ifdef OPTION_SYNC_LOCK_BUTTON
    { ETBSyncLockID, wxT("SyncLock"),    XO("Sync-Lock Tracks")  },
 #endif
-
-   { ETBZoomInID,   wxT("ZoomIn"),      XO("Zoom In")  },
-   { ETBZoomOutID,  wxT("ZoomOut"),     XO("Zoom Out")  },
-#ifdef EXPERIMENTAL_ZOOM_TOGGLE_BUTTON
-   { ETBZoomToggleID,   wxT("ZoomToggle"),      XO("Zoom Toggle")  },
-#endif 
-   { ETBZoomSelID,  wxT("ZoomSel"),     XO("Fit selection to width")  },
-   { ETBZoomFitID,  wxT("FitInWindow"), XO("Fit project to width")  },
 };
 
 
