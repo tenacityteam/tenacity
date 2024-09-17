@@ -505,7 +505,6 @@ list( APPEND SOURCES
          effects/lv2/LV2Effect.h
          effects/lv2/LoadLV2.cpp
          effects/lv2/LoadLV2.h
-         effects/lv2/NativeWindow.h
          effects/lv2/lv2_external_ui.h
          effects/lv2/zix/common.h
          effects/lv2/zix/ring.cpp
