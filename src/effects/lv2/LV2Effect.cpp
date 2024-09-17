@@ -2216,9 +2216,10 @@ bool LV2Effect::BuildFancy()
       g_signal_connect(widget, "size-request", G_CALLBACK(LV2Effect::size_request), this);
 #endif
 
-      Destroy_ptr< NativeWindow > uNativeWin{ safenew NativeWindow() };
-      if ( !uNativeWin->Create(mParent, widget) )
+      wxWindpwPtr<wxNativeWindow> uNativeWin{ new wxNativeWindow() };
+      if ( !uNativeWin->Create(mParent, wxID_ANY, widget) )
          return false;
+      uNativeWin->Disown();
       mNativeWin = uNativeWin.release();
 
       mNativeWin->Bind(wxEVT_SIZE, &LV2Effect::OnSize, this);

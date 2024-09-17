@@ -19,6 +19,7 @@ class wxArrayString;
 
 #include <wx/event.h> // to inherit
 #include <wx/msgqueue.h>
+#include <wx/nativewin.h>
 #include <wx/thread.h>
 #include <wx/timer.h>
 #include <wx/weakref.h>
@@ -42,7 +43,6 @@ class wxArrayString;
 #include "SampleFormat.h"
 
 #include "LoadLV2.h"
-#include "NativeWindow.h"
 
 #include "lv2_external_ui.h"
 #include "zix/ring.h"
@@ -542,7 +542,7 @@ private:
    SuilHost *mSuilHost;
    SuilInstance *mSuilInstance;
 
-   NativeWindow *mNativeWin;
+   wxNativeWindow *mNativeWin;
    wxSize mNativeWinInitialSize;
    wxSize mNativeWinLastSize;
    bool mResizing;
