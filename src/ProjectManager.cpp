@@ -55,6 +55,11 @@ Paul Licameli split from TenacityProject.cpp
 #include <wx/scrolbar.h>
 #include <wx/sizer.h>
 
+#ifdef __WXMSW__
+#include <dwmapi.h>
+#pragma comment(lib, "Dwmapi")
+#endif
+
 #ifdef __WXGTK__
 #include "../images/TenacityLogoAlpha.xpm"
 #endif
@@ -270,6 +275,20 @@ void InitProjectWindow( ProjectWindow &window )
 #ifdef EXPERIMENTAL_DA2
    SetBackgroundColour(theTheme.Colour( clrMedium ));
 #endif
+
+#ifdef __WXMSW__
+
+   // Enable dark mode on the project window
+   BOOL value = TRUE;
+   HWND handle = window.GetHandle();
+   HRESULT result = DwmSetWindowAttribute(handle, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+   if (result != S_OK)
+   {
+      wxLogWarning("[MSW] Failed to set dark mode support on project window");
+   }
+
+#endif
+
    // Note that the first field of the status bar is a dummy, and its width is set
    // to zero latter in the code. This field is needed for wxWidgets 2.8.12 because
    // if you move to the menu bar, the first field of the menu bar is cleared, which
