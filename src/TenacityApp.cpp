@@ -78,7 +78,6 @@ It handles initialization and termination by subclassing wxApp.
 #include "commands/AppCommandEvent.h"
 #include "widgets/ASlider.h"
 #include "ffmpeg/FFmpeg.h"
-#include "GenericUIAssert.h"
 //#include "LangChoice.h"
 #include "Languages.h"
 #include "Menus.h"
@@ -765,10 +764,6 @@ bool TenacityApp::OnInit()
    {
       static wxWidgetsBasicUI uiServices;
       (void)GenericUI::Install(&uiServices);
-
-      GenericUI::SetAssertFn([](bool condition){
-         wxASSERT(condition);
-      });
    }
 
    // Fire up SQLite
