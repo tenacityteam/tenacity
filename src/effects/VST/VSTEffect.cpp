@@ -1108,22 +1108,6 @@ void VSTEffect::ModuleDeleter::operator() (void* p) const
 }
 #endif
 
-#if defined(__WXMAC__)
-void VSTEffect::BundleDeleter::operator() (void* p) const
-{
-   if (p)
-      CFRelease(static_cast<CFBundleRef>(p));
-}
-
-void VSTEffect::ResourceHandle::reset()
-{
-   if (mpHandle)
-      CFBundleCloseBundleResourceMap(mpHandle, mNum);
-   mpHandle = nullptr;
-   mNum = 0;
-}
-#endif
-
 VSTEffect::VSTEffect(const PluginPath & path, VSTEffect *master)
 :  mPath(path),
    mMaster(master)
@@ -2000,7 +1984,7 @@ bool VSTEffect::Load()
    }
 
    // Create the bundle using the URL
-   BundleHandle bundleRef{ CFBundleCreate(kCFAllocatorDefault, urlRef) };
+   CFBundleRef bundleRef = CFBundleCreate(kCFAllocatorDefault, urlRef);
 
    // Done with the URL
    CFRelease(urlRef);
@@ -2012,7 +1996,7 @@ bool VSTEffect::Load()
    }
 
    // Retrieve a reference to the executable
-   CFURLRef exeRef = CFBundleCopyExecutableURL(bundleRef.get());
+   CFURLRef exeRef = CFBundleCopyExecutableURL(bundleRef);
    if (!exeRef)
       return false;
 
