@@ -364,7 +364,7 @@ private:
       UniCharCount actualStringLength = 0;
       UniChar unicodeString[maxStringLength];
       UInt32 nsflags = [mEvent modifierFlags];
-      UInt16 modifiers = (nsflags & NSEventModifierFlagCapsLockk ? alphaLock : 0) |
+      UInt16 modifiers = (nsflags & NSEventModifierFlagCapsLock ? alphaLock : 0) |
                          (nsflags & NSEventModifierFlagShift ? shiftKey : 0) |
                          (nsflags & NSEventModifierFlagControl ? controlKey : 0) |
                          (nsflags & NSEventModifierFlagOption ? optionKey : 0) |
