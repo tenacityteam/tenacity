@@ -50,6 +50,7 @@
 #include <wx/tokenzr.h>
 #include <wx/intl.h>
 #include <wx/scrolwin.h>
+#include <wx/windowptr.h>
 
 #include "../../shuttle/ShuttleGui.h"
 #include "../../EffectHostInterface.h"
