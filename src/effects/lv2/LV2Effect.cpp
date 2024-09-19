@@ -50,7 +50,6 @@
 #include <wx/tokenzr.h>
 #include <wx/intl.h>
 #include <wx/scrolwin.h>
-#include <wx/windowptr.h>
 
 #include "../../shuttle/ShuttleGui.h"
 #include "../../EffectHostInterface.h"
@@ -2217,11 +2216,10 @@ bool LV2Effect::BuildFancy()
       g_signal_connect(widget, "size-request", G_CALLBACK(LV2Effect::size_request), this);
 #endif
 
-      wxWindpwPtr<wxNativeWindow> uNativeWin{ new wxNativeWindow() };
-      if ( !uNativeWin->Create(mParent, wxID_ANY, widget) )
+      mNativeWin = new wxNativeWindow();
+      if ( !mNativeWin->Create(mParent, wxID_ANY, widget) )
          return false;
-      uNativeWin->Disown();
-      mNativeWin = uNativeWin.release();
+      mNativeWin->Disown();
 
       mNativeWin->Bind(wxEVT_SIZE, &LV2Effect::OnSize, this);
 
