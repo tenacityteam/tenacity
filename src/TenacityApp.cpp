@@ -763,7 +763,7 @@ bool TenacityApp::OnInit()
    // Inject basic GUI services behind the facade
    {
       static wxWidgetsBasicUI uiServices;
-      (void)GenericUI::Install(&uiServices);
+      (void)BasicUI::Install(&uiServices);
    }
 
    // Fire up SQLite

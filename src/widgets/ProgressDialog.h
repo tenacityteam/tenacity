@@ -27,7 +27,7 @@
 
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h> // For ProgressResult
-using ProgressResult = GenericUI::ProgressResult;
+using ProgressResult = BasicUI::ProgressResult;
 
 class wxGauge;
 class wxStaticText;

@@ -128,7 +128,7 @@ void MixAndRender(TrackList *tracks, WaveTrackFactory *trackFactory,
       startTime, endTime, mono ? 1 : 2, maxBlockLen, false,
       rate, format);
 
-   using namespace GenericUI;
+   using namespace BasicUI;
    auto updateResult = ProgressResult::Success;
    {
       auto pProgress = MakeProgress(XO("Mix and Render"),

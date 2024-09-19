@@ -174,7 +174,7 @@ using Path = std::vector< Identifier >;
         wxLogDebug( msg.Translation() );
 #ifdef IS_ALPHA
         // user-visible message
-        GenericUI::ShowMessageBox( msg );
+        BasicUI::ShowMessageBox( msg );
 #endif
      }
    }

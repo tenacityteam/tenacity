@@ -55,9 +55,9 @@ Module::~Module()
 {
 }
 
-static GenericUI::MessageBoxResult DoMessageBox(const TranslatableString &msg)
+static BasicUI::MessageBoxResult DoMessageBox(const TranslatableString &msg)
 {
-   using namespace GenericUI;
+   using namespace BasicUI;;
    return ShowMessageBox(msg,
       MessageBoxOptions{}.Caption(XO("Module Unsuitable")));
 }
@@ -291,7 +291,7 @@ void ModuleManager::TryLoadModules(
          const TranslatableStrings buttons{
             XO("Yes"), XO("No"),
          };  // could add a button here for 'yes and remember that', and put it into the cfg file.  Needs more thought.
-         int action = GenericUI::ShowMultiDialog(msg,
+         int action = BasicUI::ShowMultiDialog(msg,
             XO("Audacity Module Loader"),
             buttons,
             "",

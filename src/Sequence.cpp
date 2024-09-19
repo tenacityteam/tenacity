@@ -963,7 +963,7 @@ void Sequence::WriteXML(XMLWriter &xmlFile) const
          // editing operation that caused this, not fixing
          // the problem but moving the point of detection earlier if we
          // find a reproducible case.
-         using namespace GenericUI;
+         using namespace BasicUI;;
          auto sMsg =
             XO("Sequence has block file exceeding maximum %s samples per block.\nTruncating to this maximum length.")
                .Format( Internat::ToString(((wxLongLong)mMaxSamples).ToDouble(), 0) );

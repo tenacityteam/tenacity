@@ -655,7 +655,7 @@ void OnResample(const CommandContext &context)
    {
       auto msg = XO("Resampling track %d").Format( ++ndx );
 
-      using namespace GenericUI;
+      using namespace BasicUI;;;
       auto progress = MakeProgress(XO("Resample"), msg);
 
       // The resampling of a track may be stopped by the user.  This might

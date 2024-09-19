@@ -138,7 +138,7 @@ bool NotifyingSelectedRegion::setF1(double f, bool maySwap)
 void NotifyingSelectedRegion::Notify( bool delayed )
 {
    if (delayed)
-      GenericUI::CallAfter([This = weak_from_this()]{
+      BasicUI::CallAfter([This = weak_from_this()]{
          auto pThis = This.lock();
          if (pThis)
             pThis->Publish({});

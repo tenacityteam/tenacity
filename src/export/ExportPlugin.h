@@ -48,7 +48,7 @@ struct TENACITY_DLL_API FormatInfo
 class TENACITY_DLL_API ExportPlugin /* not final */
 {
     public:
-        using ProgressResult = GenericUI::ProgressResult;
+        using ProgressResult = BasicUI::ProgressResult;
 
         ExportPlugin();
         virtual ~ExportPlugin();

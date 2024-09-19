@@ -770,7 +770,7 @@ void WaveClip::SetRate(int rate)
 }
 
 /*! @excsafety{Strong} */
-void WaveClip::Resample(int rate, GenericUI::ProgressDialog *progress)
+void WaveClip::Resample(int rate, BasicUI::ProgressDialog *progress)
 {
    // Note:  it is not necessary to do this recursively to cutlines.
    // They get resampled as needed when they are expanded.
@@ -830,7 +830,7 @@ void WaveClip::Resample(int rate, GenericUI::ProgressDialog *progress)
             pos.as_long_long(),
             numSamples.as_long_long()
          );
-         error = (updateResult != GenericUI::ProgressResult::Success);
+         error = (updateResult != BasicUI::ProgressResult::Success);
          if (error)
             throw UserException{};
       }

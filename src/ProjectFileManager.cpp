@@ -313,7 +313,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
       {
          if (freeSpace.GetValue() <= fileSize.GetValue())
          {
-            GenericUI::ShowErrorDialog( *ProjectFramePlacement( &proj ),
+            BasicUI::ShowErrorDialog( *ProjectFramePlacement( &proj ),
                XO("Insufficient Disk Space"),
                XO("The project size exceeds the available free space on the target disk.\n\n"
                   "Please select a different disk with more free space."),
@@ -339,7 +339,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
    {
       if (wxFileName::GetSize(projectFileIO.GetFileName()) > UINT32_MAX)
       {
-         GenericUI::ShowErrorDialog( *ProjectFramePlacement( &proj ),
+         BasicUI::ShowErrorDialog( *ProjectFramePlacement( &proj ),
             XO("Error Saving Project"),
             XO("The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."),
             "Error:_Unsuitable_drive"
@@ -354,7 +354,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
       // Show this error only if we didn't fail reconnection in SaveProject
       // REVIEW: Could HasConnection() be true but SaveProject() still have failed?
       if (!projectFileIO.HasConnection()) {
-         using namespace GenericUI;
+         using namespace BasicUI;
          ShowErrorDialog( *ProjectFramePlacement( &proj ),
             XO("Error Saving Project"),
             FileException::WriteFailureMessage(fileName),
@@ -654,7 +654,7 @@ bool ProjectFileManager::SaveCopy(const FilePath &fileName /* = wxT("") */)
       {
          if (freeSpace.GetValue() <= fileSize.GetValue())
          {
-            GenericUI::ShowErrorDialog( *ProjectFramePlacement( &project ),
+            BasicUI::ShowErrorDialog( *ProjectFramePlacement( &project ),
                XO("Insufficient Disk Space"),
                XO("The project size exceeds the available free space on the target disk.\n\n"
                   "Please select a different disk with more free space."),
@@ -669,7 +669,7 @@ bool ProjectFileManager::SaveCopy(const FilePath &fileName /* = wxT("") */)
       {
          if (fileSize > UINT32_MAX)
          {
-            GenericUI::ShowErrorDialog( *ProjectFramePlacement( &project ),
+            BasicUI::ShowErrorDialog( *ProjectFramePlacement( &project ),
                XO("Error Saving Project"),
                XO("The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."),
                "Error:_Unsuitable_drive"
@@ -1281,7 +1281,7 @@ bool ProjectFileManager::Import(
 #ifndef EXPERIMENTAL_IMPORT_AUP3
       // Handle AUP3 ("project") files specially
       if (fileName.AfterLast('.').IsSameAs(wxT("aup3"), false)) {
-         GenericUI::ShowErrorDialog( *ProjectFramePlacement(&project),
+         BasicUI::ShowErrorDialog( *ProjectFramePlacement(&project),
             XO("Error Importing"),
             XO( "Cannot import AUP3 format.  Use File > Open instead"),
             wxT("File_Menu"));
@@ -1297,7 +1297,7 @@ bool ProjectFileManager::Import(
       if (!errorMessage.empty()) {
          // Error message derived from Importer::Import
          // Additional help via a Help button links to the manual.
-         GenericUI::ShowErrorDialog( *ProjectFramePlacement(&project),
+         BasicUI::ShowErrorDialog( *ProjectFramePlacement(&project),
             XO("Error Importing"), errorMessage, wxT("Importing_Audio"));
       }
       if (!success)

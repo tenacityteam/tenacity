@@ -97,11 +97,11 @@ const wxFrame *FindProjectFrame( const TenacityProject *project ) {
    return ProjectWindows::Get(*project).mFrame;
 }
 
-std::unique_ptr<const GenericUI::WindowPlacement>
+std::unique_ptr<const BasicUI::WindowPlacement>
 ProjectFramePlacement( TenacityProject *project )
 {
    if (!project)
-      return std::make_unique<GenericUI::WindowPlacement>();
+      return std::make_unique<BasicUI::WindowPlacement>();
    return std::make_unique<wxWidgetsWindowPlacement>(
       &GetProjectFrame(*project));
 }

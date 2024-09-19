@@ -264,7 +264,7 @@ int ProjectAudioManager::PlayPlayRegion(const SelectedRegion &selectedRegion,
          // handler!  Easy fix, just delay the user alert instead.
          auto &window = GetProjectFrame( mProject );
          window.CallAfter( [&]{
-            using namespace GenericUI;
+            using namespace BasicUI;
             // Show error message if stream could not be opened
             ShowErrorDialog( *ProjectFramePlacement(&mProject),
                XO("Error"),
@@ -748,7 +748,7 @@ bool ProjectAudioManager::DoRecord(TenacityProject &project,
          // Show error message if stream could not be opened
          auto msg = XO("Error opening recording device.\nError code: %s")
             .Format( gAudioIO->LastPaErrorString() );
-         using namespace GenericUI;
+         using namespace BasicUI;
          ShowErrorDialog( *ProjectFramePlacement(&mProject),
             XO("Error"), msg, wxT("Error_opening_sound_device"),
             ErrorDialogOptions{ ErrorDialogType::ModalErrorReport } );

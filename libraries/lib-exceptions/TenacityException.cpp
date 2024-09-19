@@ -37,7 +37,7 @@ void TenacityException::EnqueueAction(
    std::exception_ptr pException,
    std::function<void(TenacityException*)> delayedHandler)
 {
-  GenericUI::CallAfter( [
+  BasicUI::CallAfter( [
      pException = std::move(pException), delayedHandler = std::move(delayedHandler)
   ] {
      try {
@@ -108,7 +108,7 @@ void MessageBoxException::DelayedHandlerAction()
      // common cause such as exhaustion of disk space so that the others
      // give the user no useful added information.
       
-     using namespace GenericUI;
+     using namespace BasicUI;;
      if ( --sOutstandingMessages == 0 )
      {
         if (exceptionType != ExceptionType::Internal
@@ -123,7 +123,7 @@ void MessageBoxException::DelayedHandlerAction()
         }
         else
         {
-           using namespace GenericUI;
+           using namespace BasicUI;;
            auto type = exceptionType == ExceptionType::Internal
               ? ErrorDialogType::ModalErrorReport : ErrorDialogType::ModalError;
            ShowErrorDialog( {},

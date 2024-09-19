@@ -553,7 +553,7 @@ void OnPunchAndRoll(const CommandContext &context)
          : (recordingChannels == 2)
          ? XO("Please select in a stereo track or two mono tracks.")
          : XO("Please select at least %d channels.").Format( recordingChannels );
-      GenericUI::ShowErrorDialog( *ProjectFramePlacement(&project),
+      BasicUI::ShowErrorDialog( *ProjectFramePlacement(&project),
          XO("Error"), message, url);
       return;
    }
@@ -596,7 +596,7 @@ void OnPunchAndRoll(const CommandContext &context)
 
    if (error) {
       auto message = XO("Please select a time within a clip.");
-      GenericUI::ShowErrorDialog(
+      BasicUI::ShowErrorDialog(
          *ProjectFramePlacement(&project), XO("Error"), message, url);
       return;
    }

@@ -641,7 +641,7 @@ void PluginManager::Terminate()
 
 bool PluginManager::DropFile(const wxString &fileName)
 {
-   using namespace GenericUI;
+   using namespace BasicUI;;
    auto &mm = ModuleManager::Get();
    const wxFileName src{ fileName };
 

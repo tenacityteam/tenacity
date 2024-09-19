@@ -55,7 +55,7 @@ class TenacityProject;
 class TimerRecordDialog final : public wxDialogWrapper
 {
 public:
-   using ProgressResult = GenericUI::ProgressResult;
+   using ProgressResult = BasicUI::ProgressResult;
 
    TimerRecordDialog(
       wxWindow* parent, TenacityProject &project, bool bAlreadySaved);

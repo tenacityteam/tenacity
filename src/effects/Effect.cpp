@@ -1096,7 +1096,7 @@ bool Effect::DoEffect(double projectRate,
    bool skipFlag = CheckWhetherSkipEffect();
    if (skipFlag == false)
    {
-      using namespace GenericUI;
+      using namespace BasicUI;;;;;
       auto name = GetName();
       auto progress = MakeProgress(
          name,
@@ -2184,7 +2184,7 @@ void Effect::Preview(bool dryOnly)
 
    // Apply effect
    if (!dryOnly) {
-      using namespace GenericUI;
+      using namespace BasicUI;
       auto progress = MakeProgress(
          GetName(),
          XO("Preparing preview"),
@@ -2232,7 +2232,7 @@ void Effect::Preview(bool dryOnly)
          }
       }
       else {
-         using namespace GenericUI;
+         using namespace BasicUI;
          ShowErrorDialog(
             wxWidgetsWindowPlacement{ FocusDialog }, XO("Error"),
             XO("Error opening sound device.\nTry changing the audio host, playback device and the project sample rate."),

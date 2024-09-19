@@ -35,7 +35,7 @@ class Track;
 class TENACITY_DLL_API ExportMultipleDialog final : public wxDialogWrapper
 {
 public:
-   using ProgressResult = GenericUI::ProgressResult;
+   using ProgressResult = BasicUI::ProgressResult;
 
    ExportMultipleDialog(TenacityProject *parent);
    virtual ~ExportMultipleDialog();

@@ -12,7 +12,7 @@ Paul Licameli
 #include <mutex>
 #include <vector>
 
-namespace  GenericUI {
+namespace  BasicUI {
 WindowPlacement::~WindowPlacement() = default;
 
 Services::~Services() = default;

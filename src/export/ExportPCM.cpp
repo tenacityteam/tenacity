@@ -445,14 +445,14 @@ void ExportPCM::ReportTooBigError(wxWindow * pParent)
       XO("You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
       "Tenacity cannot do this, the Export was abandoned.");
 
-   GenericUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
+   BasicUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
       XO("Error Exporting"), message,
       wxT("Size_limits_for_WAV_and_AIFF_files"));
 
 // This alternative error dialog was to cover the possibility we could not 
 // compute the size in advance.
 #if 0
-   GenericUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
+   BasicUI::ShowErrorDialog( wxWidgetsWindowPlacement{ pParent },
                   XO("Error Exporting"),
                   XO("Your exported WAV file has been truncated as Tenacity cannot export WAV\n"
                     "files bigger than 4GB."),

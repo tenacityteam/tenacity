@@ -1095,7 +1095,7 @@ enum mad_flow MP3ImportFileHandle::ErrorCB(struct mad_stream *stream,
    }
 
    // Let the user know about the error
-   using namespace GenericUI;
+   using namespace BasicUI;;
    ShowErrorDialog( {},
       DefaultCaption(),
       XO("Import failed\n\nThis is likely caused by a malformed MP3.\n\n"),

@@ -17,7 +17,7 @@
 class TenacityProject;
 class wxFrame;
 class wxWindow;
-namespace GenericUI { class WindowPlacement; }
+namespace BasicUI { class WindowPlacement; }
 
 ///\brief Get the top-level window associated with the project (as a wxFrame
 /// only, when you do not need to use the subclass ProjectWindow)
@@ -34,7 +34,7 @@ TENACITY_DLL_API const wxFrame *FindProjectFrame( const TenacityProject *project
 
 //! Make a WindowPlacement object suitable for `project` (which may be null)
 /*! @post return value is not null */
-TENACITY_DLL_API std::unique_ptr<const GenericUI::WindowPlacement>
+TENACITY_DLL_API std::unique_ptr<const BasicUI::WindowPlacement>
 ProjectFramePlacement( TenacityProject *project );
 
 ///\brief Get the main sub-window of the project frame that displays track data

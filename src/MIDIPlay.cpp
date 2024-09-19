@@ -509,7 +509,7 @@ MIDIPlay::MIDIPlay(const PlaybackSchedule &schedule)
          errStr += XO("Error: %s").Format( pmErrStr );
       // XXX: we are in libaudacity, popping up dialogs not allowed!  A
       // long-term solution will probably involve exceptions
-      using namespace GenericUI;
+      using namespace BasicUI;
       ShowMessageBox(
          errStr,
          MessageBoxOptions{}

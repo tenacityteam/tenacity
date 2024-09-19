@@ -801,7 +801,7 @@ void MenuManager::TellUserWhyDisallowed(
       return;
 
    // Does not have the warning icon...
-   GenericUI::ShowErrorDialog( {},
+   BasicUI::ShowErrorDialog( {},
       untranslatedTitle,
       reason,
       helpPage);

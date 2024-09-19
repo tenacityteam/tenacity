@@ -54,7 +54,7 @@
 
 // Tenacity libraries
 #include <lib-basic-ui/BasicUI.h>
-using namespace GenericUI;
+using namespace BasicUI;;
 #include <lib-files/FileNames.h>
 #include <lib-preferences/Prefs.h>
 #include <lib-strings/Internat.h>

@@ -457,7 +457,7 @@ void TrackList::RecalcPositions(TrackNodePointer node)
 
 void TrackList::QueueEvent(TrackListEvent event)
 {
-   GenericUI::CallAfter( [wThis = weak_from_this(), event = std::move(event)]{
+   BasicUI::CallAfter( [wThis = weak_from_this(), event = std::move(event)]{
       if (auto pThis = wThis.lock())
          pThis->Publish(event);
    } );

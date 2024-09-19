@@ -55,7 +55,7 @@ but little else.
 
 class TenacityProject;
 class ProgressDialog;
-namespace GenericUI{ enum class ProgressResult : unsigned; }
+namespace BasicUI { enum class ProgressResult : unsigned; }
 class WaveTrackFactory;
 class Track;
 class Tags;
@@ -109,7 +109,7 @@ using TrackHolders = std::vector< std::vector< std::shared_ptr<WaveTrack> > >;
 class TENACITY_DLL_API ImportFileHandle /* not final */
 {
 public:
-   using ProgressResult = GenericUI::ProgressResult;
+   using ProgressResult = BasicUI::ProgressResult;
 
    ImportFileHandle(const FilePath & filename);
 

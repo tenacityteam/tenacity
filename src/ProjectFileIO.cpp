@@ -510,7 +510,7 @@ ProjectFileIO::ProjectFileIO(TenacityProject &project)
       if (freeSpace < wxLongLong(wxLL(100 * 1048576))) {
          auto volume = FileNames::AbbreviatePath( path );
          /* i18n-hint: %s will be replaced by the drive letter (on Windows) */
-         GenericUI::ShowErrorDialog( {},
+         BasicUI::ShowErrorDialog( {},
             XO("Warning"),
             XO("There is very little free disk space left on %s\n"
                "Please select a bigger temporary directory location in\n"
@@ -1324,7 +1324,7 @@ bool ProjectFileIO::RenameOrWarn(const FilePath &src, const FilePath &dst)
    });
 
    // Provides a progress dialog with indeterminate mode
-   using namespace GenericUI;
+   using namespace BasicUI;
    auto pd = MakeGenericProgress(*ProjectFramePlacement(&mProject),
       XO("Copying Project"), XO("This may take several seconds"));
    wxASSERT(pd);
@@ -2236,7 +2236,7 @@ bool ProjectFileIO::SaveProject(
          });
 
          // Provides a progress dialog with indeterminate mode
-         using namespace GenericUI;
+         using namespace BasicUI;
          auto pd = MakeGenericProgress({},
             XO("Syncing"), XO("This may take several seconds"));
          wxASSERT(pd);
@@ -2440,13 +2440,13 @@ wxLongLong ProjectFileIO::GetFreeDiskSpace() const
 }
 
 /// Displays an error dialog with a button that offers help
-void ProjectFileIO::ShowError(const GenericUI::WindowPlacement &placement,
+void ProjectFileIO::ShowError(const BasicUI::WindowPlacement &placement,
                               const TranslatableString &dlogTitle,
                               const TranslatableString &message,
                               const wxString &helpPage)
 {
    using namespace Tenacity;
-   using namespace GenericUI;
+   using namespace BasicUI;
    ShowErrorDialog( placement, dlogTitle, message, helpPage,
       ErrorDialogOptions{ ErrorDialogType::ModalErrorReport }
          .Log(ToWString(GetLastLog())));

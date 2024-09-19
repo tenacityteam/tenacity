@@ -16,7 +16,7 @@ Paul Licameli
 #include "Identifier.h"
 #include "Internat.h"
 
-namespace GenericUI {
+namespace BasicUI {
 
 //! @name Types used in the Services interface
 //! @{

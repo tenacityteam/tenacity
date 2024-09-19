@@ -94,7 +94,7 @@ static Hub &hub()
 
 void PrefsListener::Broadcast(int id)
 {
-   GenericUI::CallAfter([id]{
+   BasicUI::CallAfter([id]{
       hub().Publish(id);
    });
 }
