@@ -32,7 +32,7 @@ Our project initially started as a fork of [Audacity](https://audacityteam.org) 
 - [**Contributor's License Agreement (CLA) which may violate the same GPL license**](https://github.com/audacity/audacity/discussions/932)
 - [**Attempts at adding telemetry using Google services for data collection**](https://github.com/audacity/audacity/pull/835)
 
-Nevertheless, the goal of this project is to pick up what the original developers of Audacity the decades-long work by the original creators of Audacity and create an audio editor that is fresh, more modern, convenient and practical to use, with the help and the guidance of our users and our community.
+Nevertheless, the goal of this project is to pick up the decades-long work by the original developers of Audacity and create an audio editor that is fresh, more modern, convenient and practical to use, with the help and the guidance of our users and our community.
 
 ## Differences from Audacity
 
