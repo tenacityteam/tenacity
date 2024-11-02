@@ -967,7 +967,19 @@ TenacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
             return nullptr;
          }
 #endif
+
          auto &project = chooser(false);
+
+         if (fileName.AfterLast('.').IsSameAs(wxT("txt"), false)) {
+            // Import as labels
+            if (Get(project).ImportLabelsFromFile(fileName)) {
+               return &project;
+            } else {
+               return nullptr;
+            }
+         } 
+
+
          // Undo history is incremented inside this:
          if (Get(project).Import(fileName)) {
             // Undo history is incremented inside this:
@@ -991,6 +1003,42 @@ TenacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
 
    auto &project = chooser(true);
    return Get(project).OpenProjectFile(fileName, addtohistory);
+}
+
+// In ProjectFileManager.cpp:
+bool ProjectFileManager::ImportLabelsFromFile(const wxString &fileName) 
+{
+   auto &project = mProject;
+   auto &trackFactory = WaveTrackFactory::Get( project );
+   auto &tracks = TrackList::Get( project );
+   auto &window = ProjectWindow::Get( project );
+
+   wxTextFile f;
+
+   f.Open(fileName);
+   if (!f.IsOpened()) {
+      AudacityMessageBox(
+         XO("Could not open file: %s").Format( fileName ) );
+      return false;
+   }
+
+   auto newTrack = std::make_shared<LabelTrack>();
+   wxString sTrackName;
+   wxFileName::SplitPath(fileName, NULL, NULL, &sTrackName, NULL);
+   newTrack->SetName(sTrackName);
+
+   newTrack->Import(f);
+
+   SelectUtilities::SelectNone( project );
+   newTrack->SetSelected(true);
+   tracks.Add( newTrack );
+
+   ProjectHistory::Get( project ).PushState(
+      XO("Imported labels from '%s'").Format( fileName ),
+         XO("Import Labels"));
+
+   window.ZoomAfterImport(nullptr);
+   return true;
 }
 
 TenacityProject *ProjectFileManager::OpenProjectFile(

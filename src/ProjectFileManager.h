@@ -102,6 +102,8 @@ public:
    bool Import(const FilePath &fileName,
                bool addToHistory = true);
 
+   bool ImportLabelsFromFile(const wxString &fileName);
+
    void Compact();
 
    void AddImportedTracks(const FilePath &fileName,
