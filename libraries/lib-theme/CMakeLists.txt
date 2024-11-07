@@ -5,8 +5,6 @@ set(SOURCES
     ThemePackage.h
     ThemeResources.cpp
     ThemeResources.h
-    ThemeResourceList.cpp
-    ThemeResourceList.h
 
     # Exceptions
     exceptions/ArchiveError.cpp

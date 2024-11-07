@@ -12,8 +12,8 @@
 
 #pragma once
 
-#include <list>
-#include <string>
+// Tenacity libraries
+#include <lib-theme/ThemeResources.h>
 
 /** @brief A list of theme resource names known to Tenacity.
  * 
@@ -22,4 +22,4 @@
  * this list serves as a list of known theme resources.
  * 
 */
-extern const std::list<std::string> KnownThemeResourceNames;
+extern const ThemeResources::ThemeResourceList KnownThemeResourceNames;

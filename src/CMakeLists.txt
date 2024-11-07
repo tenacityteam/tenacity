@@ -748,6 +748,8 @@ list( APPEND SOURCES
       theme/Theme.cpp
       theme/Theme.h
       theme/ThemeFlags.h
+      theme/ThemeResourceList.cpp
+      theme/ThemeResourceList.h
       theme/SourceOutputStream.cpp
       theme/SourceOutputStream.h
 
