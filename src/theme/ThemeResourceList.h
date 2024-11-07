@@ -22,4 +22,4 @@
  * this list serves as a list of known theme resources.
  * 
 */
-extern const ThemeResources::ThemeResourceList KnownThemeResourceNames;
+extern const ThemeResources::List KnownThemeResourceNames;

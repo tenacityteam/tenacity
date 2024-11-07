@@ -21,10 +21,15 @@ ThemeResources& ThemeResources::Get()
 
 void ThemeResources::AddResource(const std::string& name, std::any& data)
 {
-    mResources.insert({name, data});
+    mResources.emplace(name, data);
 }
 
-std::any& ThemeResources::GetResourceData(const std::string& name)
+void ThemeResources::SetResource(const std::string& name, std::any& data)
+{
+    mResources[name] = data;
+}
+
+const std::any& ThemeResources::GetResourceData(const std::string& name) const
 {
     return mResources.at(name);
 }
@@ -34,9 +39,9 @@ bool ThemeResources::CheckIfExists(const std::string& name) const
     return mResources.find(name) != mResources.end();
 }
 
-ThemeResources::ThemeResourceList ThemeResources::GetRegisteredResourceNames() const
+ThemeResources::List ThemeResources::GetKnownResourceNames() const
 {
-    ThemeResources::ThemeResourceList resourceNames;
+    ThemeResources::List resourceNames;
 
     for (auto& resource : mResources)
     {
@@ -44,4 +49,14 @@ ThemeResources::ThemeResourceList ThemeResources::GetRegisteredResourceNames() c
     }
 
     return resourceNames;
+}
+
+void ThemeResources::ClearAll()
+{
+    mResources.clear();
+}
+
+bool ThemeResources::ContainsResources() const noexcept
+{
+    return !mResources.empty();
 }
