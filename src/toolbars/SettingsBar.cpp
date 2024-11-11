@@ -41,9 +41,9 @@ selection range.
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/valtext.h>
-#include <wx/valnum.h>
 #include <wx/stattext.h>
 #endif
+#include <wx/valnum.h>
 #include <wx/statline.h>
 
 // Tenacity libraries
