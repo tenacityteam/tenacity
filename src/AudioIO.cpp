@@ -426,7 +426,7 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "pa_jack.h"
 #endif
 
-#ifdef PA_USE_WMME
+#ifdef _WIN32
 #include <pa_win_wmme.h>
 #endif
 
@@ -1267,7 +1267,9 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
    // To fix this, set paWinMmeUseLowLevelLatencyParameters in low level stream
    // flags so that MME can work with smaller buffer sizes.
    // See https://codeberg.org/tenacityteam/tenacity/issues/220.
-   #ifdef PA_USE_WMME
+   // FIXME: For some reason, PA_USE_WMME isn't defined on Windows despite it
+   // being an available backend. Just use _WIN32 for now...
+   #ifdef _WIN32
    PaWinMmeStreamInfo mmeParameters;
    mmeParameters.size = sizeof(PaWinMmeStreamInfo);
    mmeParameters.hostApiType = paMME;
@@ -1296,12 +1298,12 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       // regardless of source formats, we always mix to float
       playbackParameters.sampleFormat = paFloat32;
       playbackParameters.hostApiSpecificStreamInfo = nullptr;
-      #ifdef PA_USE_WMME
+      #ifdef _WIN32
       if (Pa_HostApiTypeIdToHostApiIndex(paMME) == playbackDeviceInfo->hostApi)
       {
           playbackParameters.hostApiSpecificStreamInfo = &mmeParameters;
       }
-      #endif // end PA_USE_WMME
+      #endif // end _WIN32
       playbackParameters.channelCount = mNumPlaybackChannels;
 
       playbackParameters.suggestedLatency = mSoftwarePlaythrough ?
@@ -1330,12 +1332,12 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
          AudacityToPortAudioSampleFormat(mCaptureFormat);
 
       captureParameters.hostApiSpecificStreamInfo = nullptr;
-      #ifdef PA_USE_WMME
+      #ifdef _WIN32
       if (Pa_HostApiTypeIdToHostApiIndex(paMME) == captureDeviceInfo->hostApi)
       {
           captureParameters.hostApiSpecificStreamInfo = &mmeParameters;
       }
-      #endif // end PA_USE_WMME
+      #endif // end _WIN32
       captureParameters.channelCount = mNumCaptureChannels;
       captureParameters.suggestedLatency = mSoftwarePlaythrough ?
          captureDeviceInfo->defaultHighInputLatency :
