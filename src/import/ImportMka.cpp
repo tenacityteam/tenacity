@@ -218,7 +218,7 @@ std::unique_ptr<ImportFileHandle> MkaImportPlugin::Open(
         {
             // Check the EBML header
             std::unique_ptr<EbmlHead> Header(static_cast<EbmlHead*>(aStream->FindNextID(EBML_INFO(EbmlHead), UINT_MAX)));
-            if (Header == nullptr)
+            if (Header == nullptr || Header->IsDummy())
             {
                 wxLogError(wxT("Matroska : %s is not an EBML file"), filename);
                 return nullptr;
