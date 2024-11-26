@@ -200,10 +200,12 @@ else()
    message( STATUS "Could NOT find ccache nor sccache, no compiler caching enabled" )
 endif()
 
-find_program( SCCACHE_PROGRAM sccache )
-mark_as_advanced( FORCE SCCACHE_PROGRAM )
 if(NOT "${SCCACHE_PROGRAM}" STREQUAL "SCCACHE_PROGRAM-NOTFOUND")
   option(SCCACHE "Use sccache for compiler caching to speed up rebuilds." ON)
+endif()
+
+if(NOT "${CCACHE_PROGRAM}" STREQUAL "CCACHE_PROGRAM-NOTFOUND")
+  option(CCACHE "Use ccache for compiler caching to speed up rebuilds." ON)
 endif()
 
 # Prefer sccache if both ccache and sccache are found because Windows users may have
