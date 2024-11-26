@@ -1401,9 +1401,6 @@ else()
                DESTINATION "${_DATADIR}/mime/packages" )
       install( FILES "${CMAKE_SOURCE_DIR}/presets/EQDefaultCurves.xml"
                DESTINATION "${_PKGDATA}" )
-      install( PROGRAMS "${PROJECT_SOURCE_DIR}/linux/tenacity.sh"
-               DESTINATION "."
-               RENAME "tenacity" )
    endif()
 endif()
 
