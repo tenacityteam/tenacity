@@ -692,30 +692,43 @@ void MP3ImportFileHandle::LoadID3(Tags *tags)
    // The ucs4 type is unsigned long which can be 8 bytes instead
    // of the expected 4 bytes for a UTF-32 character, so we have
    // to convert to unsigned int and then to wxString.
+   //
+   // Note that in our fork of libid3tag, and in some select packages
+   // where libid3tag-0.15.1b-64bit-long.patch is applied, id3_ucs4_t
+   // can be 4 bytes even on a 64-bit machine. Therefore, we don't need
+   // to perform the unsigned long to uint32 conversion because id3_ucs4_t
+   // is only 4 bytes and already uint32.
    wxMBConvUTF32 converter;
    auto toString = [=](const id3_ucs4_t *in)
    {
-      // Count the number of characters
-      size_t len = 0;
-      for (const id3_ucs4_t *p = in; *p; p++)
+      if constexpr (sizeof(id3_ucs4_t) > 4)
       {
-         len++;
-      }
+         // Count the number of characters
+         size_t len = 0;
+         for (const id3_ucs4_t *p = in; *p; p++)
+         {
+            len++;
+         }
 
-      // Would like to use std::dynarray or runtime-sized array,
-      // but VS doesn't support either.
-      std::unique_ptr<wxUint32> buf(new unsigned[len + 1]);
+         // Would like to use std::dynarray or runtime-sized array,
+         // but VS doesn't support either.
+         std::unique_ptr<wxUint32> buf(new unsigned[len + 1]);
 
-      // Copy and convert to unsigned int
-      wxUint32 *out;
-      for (out = buf.get(); *in; in++, out++)
+         // Copy and convert to unsigned int
+         wxUint32 *out;
+         for (out = buf.get(); *in; in++, out++)
+         {
+            *out = (wxUint32) (*in);
+         }
+         *out = 0;
+
+         // Finally convert to and return wxString
+         return wxString((char *) buf.get(), converter);
+      } else
       {
-         *out = (wxUint32) (*in);
+         // Just convert to wxString
+         return wxString((char*) in, converter);
       }
-      *out = 0;
-
-      // Finally convert to and return wxString
-      return wxString((char *) buf.get(), converter);
    };
 
    tags->Clear();
