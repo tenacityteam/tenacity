@@ -295,131 +295,131 @@ although their prefixes have been dropped.
 
 #### Transport Icons
 
-* `pause`
-* `pauseDisabled`
-* `play`
-* `playDisabled`
-* `loop`
-* `loopDisabled`
-* `cutPreview`
-* `cutPreviewDisabled`
-* `stop`
-* `stopDisabled`
-* `rewind`
-* `rewindDisabled`
-* `ffwd`
-* `ffwdDisabled`
-* `record`
-* `recordDisabled`
-* `recordBelow`
-* `recordBelowDisabled`
-* `recordBeside`
-* `recordBesideDisabled`
-* `scrub`
-* `scrubDisabled`
-* `seek`
-* `seekDisabled`
+* `pause` (16x16)
+* `pauseDisabled` (16x16)
+* `play` (16x16)
+* `playDisabled` (16x16)
+* `loop` (16x16)
+* `loopDisabled` (16x16)
+* `cutPreview` (16x16)
+* `cutPreviewDisabled` (16x16)
+* `stop` (16x16)
+* `stopDisabled` (16x16)
+* `rewind` (16x16)
+* `rewindDisabled` (16x16)
+* `ffwd` (16x16)
+* `ffwdDisabled` (16x16)
+* `record` (16x16)
+* `recordDisabled` (16x16)
+* `recordBelow` (16x16)
+* `recordBelowDisabled` (16x16)
+* `recordBeside` (16x16)
+* `recordBesideDisabled` (16x16)
+* `scrub` (18x16)
+* `scrubDisabled` (18x16)
+* `seek` (26x16)
+* `seekDisabled` (26x16)
 
 #### Tool Icons
 
-* `IBeam`
-* `zoom`
-* `envelope`
-* `timeShift`
-* `draw`
-* `multi`
-* `mic`
-* `speaker`
+* `IBeam` (27x27)
+* `zoom` (27x27)
+* `envelope` (27x27)
+* `timeShift` (27x27)
+* `draw` (27x27)
+* `multi` (27x27)
+* `mic` (25x25)
+* `speaker` (25x25)
 
 #### Edit Icons
 
-* `zoomFit`
-* `zoomFitDisabled`
-* `zoomIn`
-* `zoomInDisabled`
-* `zoomOut`
-* `zoomOutDisabled`
-* `zoomSel`
-* `zoomSelDisabled`
-* `zoomToggle`
-* `zoomToggleDisabled`
-* `cut`
-* `cutDisabled`
-* `copy`
-* `copyDisabled`
-* `paste`
-* `pasteDisabled`
-* `trim`
-* `trimDisabled`
-* `silence`
-* `silenceDisabled`
-* `undo`
-* `undoDisabled`
-* `redo`
-* `redoDisabled`
+* `zoomFit` (27x27)
+* `zoomFitDisabled` (27x27)
+* `zoomIn` (27x27)
+* `zoomInDisabled` (27x27)
+* `zoomOut` (27x27)
+* `zoomOutDisabled` (27x27)
+* `zoomSel` (27x27)
+* `zoomSelDisabled` (27x27)
+* `zoomToggle` (27x27)
+* `zoomToggleDisabled` (27x27)
+* `cut` (26x24)
+* `cutDisabled` (26x24)
+* `copy` (26x24)
+* `copyDisabled` (26x24)
+* `paste` (26x24)
+* `pasteDisabled` (26x24)
+* `trim` (26x24)
+* `trimDisabled` (26x24)
+* `silence` (26x24)
+* `silenceDisabled` (26x24)
+* `undo` (26x24)
+* `undoDisabled` (26x24)
+* `redo` (26x24)
+* `redoDisabled` (26x24)
 
 #### Sync Lock
 
-* `syncLockSelected`
-* `syncLockTracksDown`
-* `syncLockTracksUp`
-* `syncLockTracksDisabled`
-* `syncLockIcon`
+* `syncLockSelected` (20x22)
+* `syncLockTracksDown` (20x20)
+* `syncLockTracksUp` (20x20)
+* `syncLockTracksDisabled` (20x20)
+* `syncLockIcon` (12x12)
 
 #### Label Glyphs
 
-* `labelGlyphLeft`
-* `labelGlyphLeftSelected1`
-* `labelGlyphLeftSelected2`
-* `labelGlyphRight`
-* `labelGlyphRightSelected1`
-* `labelGlyphRightSelected2`
-* `labelGlyphSingle`
-* `labelGlyphSingleSelected`
-* `labelGlyphSingleLeftSelected`
-* `labelGlyphSingleRightSelected`
+* `labelGlyphLeft` (15x23)
+* `labelGlyphLeftSelected1` (15x23)
+* `labelGlyphLeftSelected2` (15x23)
+* `labelGlyphRight` (15x23)
+* `labelGlyphRightSelected1` (15x23)
+* `labelGlyphRightSelected2` (15x23)
+* `labelGlyphSingle` (15x23)
+* `labelGlyphSingleSelected` (15x23)
+* `labelGlyphSingleLeftSelected` (15x23)
+* `labelGlyphSingleRightSelected` (15x23)
 
 #### Play and Thumb Heads
 
-* `playPointer`
-* `playPointerPinned`
-* `recordPointer`
-* `recordPointerPinned`
-* `grabberDropLoc`
-* `sliderThumb`
-* `sliderThumbHilited`
-* `sliderThumbRotated`
-* `sliderThumbRotatedHilited`
+* `playPointer` (20x20)
+* `playPointerPinned` (20x20)
+* `recordPointer` (20x20)
+* `recordPointerPinned` (20x20)
+* `grabberDropLoc` (20x20)
+* `sliderThumb` (20x20)
+* `sliderThumbHilited` (20x20)
+* `sliderThumbRotated` (20x20)
+* `sliderThumbRotatedHilited` (20x20)
 
 #### Track Panel Buttons
 
-* `upButtonExpand`
-* `upButtonExpandSel`
-* `downButtonExpand`
-* `downButtonExpandSel`
-* `hiliteUpButtonExpand`
-* `hiliteUpButtonExpandSel`
-* `hiliteButtonExpand`
-* `hiliteButtonExpandSel`
+* `upButtonExpand` (96x18)
+* `upButtonExpandSel` (96x18)
+* `downButtonExpand` (96x18)
+* `downButtonExpandSel` (96x18)
+* `hiliteUpButtonExpand` (96x18)
+* `hiliteUpButtonExpandSel` (96x18)
+* `hiliteButtonExpand` (96x18)
+* `hiliteButtonExpandSel` (96x18)
 
 #### Toolbar Buttons
 
-* `upButtonLarge`
-* `upButtonSmall`
-* `downButtonLarge`
-* `downButtonSmall`
-* `hiliteUpButtonLarge`
-* `hiliteUpButtonSmall`
-* `hiliteButtonLarge`
-* `hiliteButtonSmall`
-* `recoloredUpLarge`
-* `recoloredDownLarge`
-* `recoloredUpHiliteLarge`
-* `recoloredHiliteLarge`
-* `recoloredUpSmall`
-* `recoloredDownSmall`
-* `recoloredUpHiliteSmall`
-* `recoloredHiliteSmall`
+* `upButtonLarge` (48x48)
+* `upButtonSmall` (27x27)
+* `downButtonLarge` (48x48)
+* `downButtonSmall` (27x27)
+* `hiliteUpButtonLarge` (48x48)
+* `hiliteUpButtonSmall` (27x27)
+* `hiliteButtonLarge` (48x48)
+* `hiliteButtonSmall` (27x27)
+* `recoloredUpLarge` (48x48)
+* `recoloredDownLarge` (48x48)
+* `recoloredUpHiliteLarge` (48x48)
+* `recoloredHiliteLarge` (48x48)
+* `recoloredUpSmall` (27x27)
+* `recoloredDownSmall` (27x27)
+* `recoloredUpHiliteSmall` (27x27)
+* `recoloredHiliteSmall` (27x27)
 
 ## Changes from 1.3.x
 
