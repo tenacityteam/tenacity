@@ -188,9 +188,14 @@ Acceptable path values:
 
 The following sections detail the various theme resources throughout Tenacity.
 
-You may be familiar with some of the names if you've worked on an Audacity
-theme before. These resource names were recycled from the old theme system,
-although their prefixes have been dropped.
+You may be familiar with some of the names if you've worked on an Audacity or
+Tenacity 1.3.x theme before. These resource names were recycled from the old
+theme system, although their prefixes have been dropped.
+
+**NOTE**: for image resources, pixel sizes are specified next to the resource
+name. Your image resources should be proportional to these sizes if not exactly
+the same as them. Otherwise, Tenacity will rescale them, which might cause them
+to look distorted.
 
 ### Colors
 
