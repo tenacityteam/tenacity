@@ -311,9 +311,12 @@ although their prefixes have been dropped.
 * `ffwdDisabled`
 * `record`
 * `recordDisabled`
+* `recordBelow`
+* `recordBelowDisabled`
 * `recordBeside`
 * `recordBesideDisabled`
 * `scrub`
+* `scrubDisabled`
 * `seek`
 * `seekDisabled`
 
@@ -409,6 +412,14 @@ although their prefixes have been dropped.
 * `hiliteUpButtonSmall`
 * `hiliteButtonLarge`
 * `hiliteButtonSmall`
+* `recoloredUpLarge`
+* `recoloredDownLarge`
+* `recoloredUpHiliteLarge`
+* `recoloredHiliteLarge`
+* `recoloredUpSmall`
+* `recoloredDownSmall`
+* `recoloredUpHiliteSmall`
+* `recoloredHiliteSmall`
 
 ## Changes from 1.3.x
 
