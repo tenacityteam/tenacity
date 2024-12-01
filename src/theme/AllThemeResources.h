@@ -109,6 +109,8 @@ from there.  Audacity will look for a file called "Pause.png".
    DEFINE_IMAGE( bmpRedo, wxImage( 26, 24 ), wxT("Redo"));
    DEFINE_IMAGE( bmpRedoDisabled, wxImage( 26, 24 ), wxT("RedoDisabled"));
 
+   // GP: The following (except the last two) appear to be related to a feature
+   // not enabled by default.
    SET_THEME_FLAGS(  resFlagPaired | resFlagNewLine  );
    DEFINE_IMAGE( bmpTnStartOn, wxImage( 27, 27 ), wxT("TnStartOn"));
    DEFINE_IMAGE( bmpTnStartOnDisabled, wxImage( 27, 27 ), wxT("TnStartOnDisabled"));
@@ -128,6 +130,7 @@ from there.  Audacity will look for a file called "Pause.png".
    DEFINE_IMAGE( bmpTnSelectSoundDisabled, wxImage( 24, 24 ), wxT("TnSelectSoundDisabled"));
    DEFINE_IMAGE( bmpTnSelectSilence, wxImage( 24, 24 ), wxT("TnSelectSilence"));
    DEFINE_IMAGE( bmpTnSelectSilenceDisabled, wxImage( 24, 24 ), wxT("TnSelectSilenceDisabled"));
+   // GP: The following don't appear to be used anywhere.
    DEFINE_IMAGE( bmpOptions, wxImage( 24, 24 ), wxT("Options"));
    DEFINE_IMAGE( bmpOptionsDisabled, wxImage( 24, 24 ), wxT("OptionsDisabled"));
 
@@ -184,6 +187,7 @@ from there.  Audacity will look for a file called "Pause.png".
    DEFINE_IMAGE( bmpHiliteUpButtonLarge, wxImage( 48, 48 ), wxT("HiliteUpButtonLarge"));
    DEFINE_IMAGE( bmpHiliteButtonLarge, wxImage( 48, 48 ), wxT("HiliteButtonLarge"));
 
+   // GP: Mac-specific resources, not used anymore
    SET_THEME_FLAGS(  resFlagNewLine  );
    DEFINE_IMAGE( bmpMacUpButton, wxImage( 36, 36 ), wxT("MacUpButton"));
    DEFINE_IMAGE( bmpMacDownButton, wxImage( 36, 36 ), wxT("MacDownButton"));
@@ -196,6 +200,7 @@ from there.  Audacity will look for a file called "Pause.png".
    DEFINE_IMAGE( bmpHiliteUpButtonSmall, wxImage( 27, 27 ), wxT("HiliteUpButtonSmall"));
    DEFINE_IMAGE( bmpHiliteButtonSmall, wxImage( 27, 27 ), wxT("HiliteButtonSmall"));
 
+   // GP: Mac-specific resources, not used anymore
    SET_THEME_FLAGS(  resFlagNewLine  );
    DEFINE_IMAGE( bmpMacUpButtonSmall, wxImage( 27, 27 ), wxT("MacUpButtonSmall"));
    DEFINE_IMAGE( bmpMacDownButtonSmall, wxImage( 27, 27 ), wxT("MacDownButtonSmall"));
@@ -212,6 +217,8 @@ from there.  Audacity will look for a file called "Pause.png".
    DEFINE_IMAGE( bmpRecoloredUpHiliteSmall, wxImage( 27, 27 ), wxT("RecoloredUpHiliteSmall"));
    DEFINE_IMAGE( bmpRecoloredHiliteSmall, wxImage( 27, 27 ), wxT("RecoloredHiliteSmall"));
 
+   // GP: At this time, cursors are not planned to be themeable after the theme
+   // system rewrite. As of now, they are themable anyways.
    SET_THEME_FLAGS(  resFlagCursor  );
    DEFINE_IMAGE( bmpIBeamCursor, wxImage( 32, 32 ), wxT("IBeamCursor"));
    DEFINE_IMAGE( bmpDrawCursor, wxImage( 32, 32 ), wxT("DrawCursor"));
@@ -232,6 +239,7 @@ from there.  Audacity will look for a file called "Pause.png".
 #define LOGOWITHNAME_WIDTH 506
 #define LOGOWITHNAME_HEIGHT 200
 
+   // GP: Tenacity logo, not planned to be themable in the new theme system.
    SET_THEME_FLAGS( resFlagNewLine );
    DEFINE_IMAGE( bmpAudacityLogo48x48, wxImage( 48, 48 ), wxT("TenacityLogo48x48")); // UNUSED
 
