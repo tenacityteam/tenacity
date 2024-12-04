@@ -1226,17 +1226,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
                           -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
       POST_BUILD
    )
-
-   # Define the Wrapper target
-   set( WRAPPER_ROOT "${TARGET_ROOT}/../mac" )
-   set( WRAPPER_SOURCES "${WRAPPER_ROOT}/Wrapper.c" )
-
-   add_executable( Wrapper "${WRAPPER_SOURCES}" )
-   add_dependencies( "${TARGET}" Wrapper )
-
-   set_target_property_all( "Wrapper" RUNTIME_OUTPUT_DIRECTORY "${_EXEDIR}" )
-   organize_source( "${WRAPPER_ROOT}" "mac" "${WRAPPER_SOURCES}" )
-
 elseif( CMAKE_SYSTEM_NAME MATCHES "Haiku" )
    set_target_property_all( ${TARGET} RUNTIME_OUTPUT_DIRECTORY "${_DEST}" )
 else()
