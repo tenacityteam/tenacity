@@ -67,7 +67,7 @@ if( CMAKE_GENERATOR MATCHES "Makefiles|Ninja" )
    set( CPACK_SOURCE_GENERATOR "TGZ" )
 
    set( CPACK_SOURCE_PACKAGE_FILE_NAME "audacity-sources-${CPACK_PACKAGE_VERSION}" )
-   list( APPEND CPACK_PRE_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/CopySourceVariables.cmake" )
+   list( APPEND CPACK_PRE_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity/CopySourceVariables.cmake" )
 
    set(CPACK_SOURCE_IGNORE_FILES
       "/.git"
@@ -84,7 +84,7 @@ if( CMAKE_GENERATOR MATCHES "Makefiles|Ninja" )
    set( CPACK_SOURCE_GENERATOR "TGZ" )
    set( CPACK_TENACITY_BUILD_DIR "${CMAKE_BINARY_DIR}")
 
-   list( APPEND CPACK_PRE_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/CopySourceVariables.cmake" )
+   list( APPEND CPACK_PRE_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity/CopySourceVariables.cmake" )
 
    set(CPACK_SOURCE_IGNORE_FILES
       "/.git"
