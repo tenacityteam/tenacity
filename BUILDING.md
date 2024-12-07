@@ -264,8 +264,9 @@ cmake --install build
   * **PERFORM_NOTARIZATION** (ON|OFF): [macOS Only] Performs notarizaiton during
     the install step. This only works on macOS and if PERFORM_NOTARIZATION has
     been enabled.
-  * **PACKAGE_MANUAL** (ON|OFF): Packages the (Audacity) manual alongside DMG and
-    InnoSetup targets.
+  * **MANUAL_PATH** (file path): Path to the manual to package alongside DMG
+    and InnoSEtup targets. If no path is specified (default), no manual is
+    packaged.
 
 The following feature options are enabled by default if the required libraries
 are found. You may explicitly disable them if you prefer or your distribution
