@@ -689,6 +689,15 @@ else()
    message(STATUS "Nyquist support disabled")
 endif()
 
+# Manual Packaging
+
+set(MANUAL_PATH "" CACHE STRING "Path to the manual to package DMG and InnoSetup targets with")
+if (NOT "${MANUAL_PATH}" STREQUAL "")
+   set(PACKAGE_MANUAL ON)
+else()
+   set(PACKAGE_MANUAL OFF)
+endif()
+
 add_subdirectory( "help" )
 add_subdirectory( "images" )
 add_subdirectory( "libraries" )
@@ -743,14 +752,6 @@ if( PERFORM_CODESIGN )
    include( TenacityCodeSigning )
 endif()
 
-#
-# Packaging
-#
-
-option( PACKAGE_MANUAL
-        "Package the manual along with the DMG and InnoSetup targets"
-        Off
-)
 
 # Variables, that are common for all package targets
 

@@ -22,7 +22,7 @@ if( INNO_SETUP_COMPILER )
                 -DSOURCE_DIR=${CMAKE_SOURCE_DIR}
                 -DOUTPUT_DIR=${TEMP_PACKAGE_PATH}
                 -DINNO_SETUP_COMPILER=${INNO_SETUP_COMPILER}
-                -DEMBED_MANUAL=${package_manual}
+                -DEMBED_MANUAL=${PACKAGE_MANUAL}
                 -DBUILDING_64_BIT=${IS_64BIT}
                 -DSIGN=${perform_codesign}
                 -DWINDOWS_CERTIFICATE=${WINDOWS_CERTIFICATE}
@@ -31,7 +31,7 @@ if( INNO_SETUP_COMPILER )
         VERBATIM
     )
 
-    if( package_manual )
+    if (PACKAGE_MANUAL)
         add_dependencies( innosetup manual )
     endif()
 
