@@ -6,18 +6,21 @@ message( STATUS "========== Configuring ${TARGET} ==========" )
 
 def_vars()
 
-set( src "${CMAKE_CURRENT_BINARY_DIR}/manual" )
-set( dst "${_DEST}/help/manual" )
-set( out_dir "${_INTDIR}" )
-set( out "${out_dir}/${host}/index.html" )
-
 if (NOT WIN32 AND NOT APPLE)
    configure_file( ${APP_NAME}.metainfo.xml.in ${_INTDIR}/${APP_NAME}.metainfo.xml )
 endif()
 
-add_custom_target( ${TARGET} DEPENDS "${out}" )
+add_custom_target( ${TARGET} DEPENDS "${MANUAL_PATH}" )
 
-if( package_manual )
+if (PACKAGE_MANUAL)
+   # Error if the manual path is not empty and doesn't exist.
+   if (NOT EXISTS "${MANUAL_PATH}")
+      message(
+         FATAL_ERROR
+            "You have specified a manual path that doesn't exist. Check the path (${MANUAL_PATH}) and try again."
+      )
+   endif()
+
    install(CODE "                                     \
       execute_process(                                \
          COMMAND                                      \
@@ -29,15 +32,15 @@ if( package_manual )
    ")
 
    if( "${CMAKE_GENERATOR}" MATCHES "Xcode" )
-      install( DIRECTORY "${src}/" DESTINATION "${_APPDIR}/help/manual" )
+      install( DIRECTORY "${MANUAL_PATH}/" DESTINATION "${_APPDIR}/help/manual" )
    elseif( "${CMAKE_GENERATOR}" MATCHES "Visual Studio*" )
-      install( DIRECTORY "${src}/" DESTINATION "help/manual" )
+      install( DIRECTORY "${MANUAL_PATH}/" DESTINATION "help/manual" )
    endif()
 endif()
 
 if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    if( NOT "${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
-      install( DIRECTORY "${dst}" OPTIONAL
+      install( DIRECTORY "${MANUAL_PATH}" OPTIONAL
                DESTINATION "${_DATADIR}/tenacity/help" )
       install( FILES "${_SRCDIR}/tenacity.1"
                DESTINATION "${_MANDIR}/man1" )
