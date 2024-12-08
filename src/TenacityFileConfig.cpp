@@ -120,7 +120,7 @@ void TenacityFileConfig::Warn()
          OpenInDefaultBrowser("https://" +
                               HelpSystem::HelpHostname +
                               HelpSystem::HelpServerHomeDir +
-                              "Error:_Audacity_settings_file_unwritable");
+                              "Preferences#inaccessible-or-unwritable-preferences");
       break;
 
       case wxID_CANCEL:

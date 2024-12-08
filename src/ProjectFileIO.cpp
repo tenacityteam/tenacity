@@ -515,7 +515,7 @@ ProjectFileIO::ProjectFileIO(TenacityProject &project)
             XO("There is very little free disk space left on %s\n"
                "Please select a bigger temporary directory location in\n"
                "Directories Preferences.").Format( volume ),
-            "Error:_Disk_full_or_not_writable"
+            "Editing_Part_2#your-disk-is-full-or-not-writable"
             );
       }
    }
@@ -543,7 +543,7 @@ DBConnection &ProjectFileIO::GetConnection()
             ExceptionType::Internal,
             XO("Failed to open the project's database"),
             XO("Warning"),
-            "Error:_Disk_full_or_not_writable"
+            "Editing_Part_2#your-disk-is-full-or-not-writable"
          };
       }
    }
@@ -1345,7 +1345,7 @@ bool ProjectFileIO::RenameOrWarn(const FilePath &src, const FilePath &dst)
             "The disk might be full or isn't writable.\n"
             "For tips on freeing up space, click the help button.")
             .Format(dst),
-         "Error:_Disk_full_or_not_writable"
+         "Editing_Part_2#your-disk-is-full-or-not-writable"
          );
       return false;
    }
@@ -2178,7 +2178,7 @@ bool ProjectFileIO::SaveProject(
                   XO(
 "The project's database failed to reopen, "
 "possibly because of limited space on the storage device."),
-                  "Error:_Disk_full_or_not_writable"
+                  "Editing_Part_2#your-disk-is-full-or-not-writable"
                );
                wxCommandEvent evt{ EVT_RECONNECTION_FAILURE };
                mProject.ProcessEvent(evt);
@@ -2200,7 +2200,7 @@ bool ProjectFileIO::SaveProject(
          ShowError( {},
             XO("Error Saving Project"),
             FileException::WriteFailureMessage(fileName),
-            "Error:_Disk_full_or_not_writable"
+            "Editing_Part_2#your-disk-is-full-or-not-writable"
             );
          return false;
       }
@@ -2256,7 +2256,7 @@ bool ProjectFileIO::SaveProject(
                       XO("Error Saving Project"),
                       XO("The project failed to open, possibly due to limited space\n"
                          "on the storage device.\n\n%s").Format(GetLastError()),
-                      "Error:_Disk_full_or_not_writable");
+                      "Editing_Part_2#your-disk-is-full-or-not-writable");
 
             newConn = nullptr;
 
@@ -2278,7 +2278,7 @@ bool ProjectFileIO::SaveProject(
                    XO("Error Saving Project"),
                    XO("Unable to remove autosave information, possibly due to limited space\n"
                       "on the storage device.\n\n%s").Format(GetLastError()),
-                  "Error:_Disk_full_or_not_writable");
+                  "Editing_Part_2#your-disk-is-full-or-not-writable");
 
          newConn = nullptr;
 
@@ -2320,7 +2320,7 @@ bool ProjectFileIO::SaveProject(
          ShowError( {},
             XO("Error Saving Project"),
             FileException::WriteFailureMessage(fileName),
-            "Error:_Disk_full_or_not_writable"
+            "Editing_Part_2#your-disk-is-full-or-not-writable"
             );
          return false;
       }

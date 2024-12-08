@@ -213,7 +213,7 @@ static void Extract(bool bits16,
          ExceptionType::BadUserAction,
          XO("Bad data size. Could not import audio"),
          XO("Warning"), 
-         "Error:_Importing_raw_audio"
+         "Importing_and_Exporting#errors-while-importing-raw-data"
       };
 
    size_t dataSize = (size_t)dataSizeIn;

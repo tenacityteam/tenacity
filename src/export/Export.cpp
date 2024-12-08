@@ -1331,7 +1331,7 @@ void ShowExportErrorDialog(wxString ErrorCode,
    ShowErrorDialog( {},
       caption,
       message.Format( ErrorCode ),
-      "Error:_Unable_to_export", // URL.
+      "Editing_Part_2#your-disk-is-full-or-not-writable", // URL.
       ErrorDialogOptions{ ErrorDialogType::ModalErrorReport } );
 }
 
@@ -1340,7 +1340,7 @@ void ShowDiskFullExportErrorDialog(const wxFileNameWrapper &fileName)
    BasicUI::ShowErrorDialog( {},
       XO("Warning"),
       FileException::WriteFailureMessage(fileName),
-      "Error:_Disk_full_or_not_writable"
+      "Editing_Part_2#your-disk-is-full-or-not-writable"
    );
 }
 

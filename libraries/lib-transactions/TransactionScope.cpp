@@ -28,7 +28,7 @@ TransactionScope::TransactionScope(
       throw SimpleMessageBoxException( ExceptionType::Internal,
          XO("Database error.  Sorry, but we don't have more details."), 
          XO("Warning"), 
-         "Error:_Disk_full_or_not_writable"
+         "Editing_Part_2#your-disk-is-full-or-not-writable"
       );
 }
 

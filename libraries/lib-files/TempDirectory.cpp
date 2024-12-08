@@ -37,7 +37,7 @@ wxString TempDirectory::TempDir()
          XO("Unsuitable"),
          XO("The temporary files directory is on a FAT formatted drive.\n"
             "Resetting to default location."),
-         "Error:_Unsuitable_drive"
+         "Editing_Part_2#fat32-drives"
          );
 
       path = DefaultTempDir();
@@ -120,7 +120,7 @@ bool TempDirectory::FATFilesystemDenied( const FilePath &path,
       BasicUI::ShowErrorDialog( placement,
          XO("Unsuitable"),
          XO("%s\n\nFor tips on suitable drives, click the help button.").Format(msg),
-         "Error:_Unsuitable_drive"
+         "Editing_Part_2.html#fat32-drives"
          );
 
       return true;

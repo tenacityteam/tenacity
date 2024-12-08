@@ -44,11 +44,11 @@ wxString FileException::ErrorHelpUrl() const
    switch (cause) {
    case Cause::Open:
    case Cause::Read:
-      return "Error:_Opening_or_reading_file";
+      return "Editing_Part_2#a-file-failed-to-open-or-be-read-from";
       break;
    case Cause::Write:
    case Cause::Rename:
-      return "Error:_Disk_full_or_not_writable";
+      return "Editing_part_2#your-disk-is-full-or-not-writable";
    default:
       break;
    }
