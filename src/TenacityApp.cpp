@@ -55,6 +55,7 @@ It handles initialization and termination by subclassing wxApp.
 #include <sys/types.h>
 #include <sys/file.h>
 #include <sys/stat.h>
+#include <sys/mman.h>
 #include <cstdio>
 #endif
 
@@ -306,6 +307,8 @@ void PopulatePreferences()
 }
 
 }
+
+constexpr auto TENACITY_SHARED_MEM_NAME = "/TenacityMem";
 
 static bool gInited = false;
 static bool gIsQuitting = false;
@@ -742,6 +745,13 @@ TenacityApp::TenacityApp()
 {
 #if defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
    wxHandleFatalExceptions();
+#endif
+
+#ifdef __UNIX__
+   // No need to worry about any errors since we're already exiting anyways.
+   // Also, it's OK if the shared memory region exists on the system (e.g., due
+   // due to a crash), as long as we've already unmaped our memory region.
+   shm_unlink(TENACITY_SHARED_MEM_NAME);
 #endif
 }
 
@@ -1561,7 +1571,6 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
 #include <sys/ipc.h>
 #include <sys/sem.h>
-#include <sys/shm.h>
 
 // Return true if there are no other instances of Audacity running,
 // false otherwise.
@@ -1578,14 +1587,51 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
    // Generate the IPC key we'll use for both shared memory and semaphores.
    wxString datadir = FileNames::DataDir();
-   key_t memkey = ftok(datadir.c_str(), 0);
    key_t servkey = ftok(datadir.c_str(), 1);
    key_t lockkey = ftok(datadir.c_str(), 2);
 
    // Create and map the shared memory segment where the port number
    // will be stored.
-   int memid = shmget(memkey, sizeof(int), IPC_CREAT | S_IRUSR | S_IWUSR);
-   int *portnum = (int *) shmat(memid, nullptr, 0);
+   int memFd = shm_open(TENACITY_SHARED_MEM_NAME, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
+   if (memFd == -1)
+   {
+      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
+      // is intended for the developers to look at.
+      AudacityMessageBox(XO("IPC: Failed to create shared memory region.\n\n"
+                            "Error: %s").Format(strerror(errno)),
+                         XO("Tenacity startup failure"),
+                         wxOK
+      );
+
+      return false;
+   }
+
+   if (ftruncate(memFd, sizeof(int)) != 0)
+   {
+      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
+      // is intended for the developers to look at.
+      AudacityMessageBox(XO("IPC: Cannot truncate shared memory.\n\n"
+                            "Error: %s").Format(strerror(errno)),
+                         XO("Tenacity startup failure"),
+                         wxOK
+      );
+
+      return false;
+   }
+
+   int* portnum = static_cast<int*>(
+                     mmap(nullptr, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, memFd, 0)
+                  );
+   if (portnum == MAP_FAILED)
+   {
+      // i18n-hint: '%s' represents an error message indicated by 'errno'. This
+      // is intended for the developers to look at.
+      AudacityMessageBox(XO("Unable to map shared memory region for IPC.\n\n"
+                            "Error: %s").Format(strerror(errno)),
+                         XO("Tenacity Startup Failure"),
+                         wxOK
+      );
+   }
 
    // Create (or return) the SERVER semaphore ID
    int servid = semget(servkey, 1, IPC_CREAT | S_IRUSR | S_IWUSR);
@@ -1728,6 +1774,9 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
          return false;
       }
 
+      // We don't need our shared memory map anymore.
+      munmap(portnum, sizeof(int)); 
+
       // We've successfully created the socket server and the app
       // should continue to initialize.
       return true;
@@ -1818,6 +1867,9 @@ bool TenacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
    // Send an empty string to force existing Audacity to front
    sock->WriteMsg(wxEmptyString, sizeof(wxChar));
+
+   // We don't need our shared memory space 
+   munmap(portnum, sizeof(int));
 
    // We've forwarded all of the filenames, so let the caller know
    // to terminate.
