@@ -1513,7 +1513,7 @@ void WaveTrack::PasteWaveTrack(double t0, const WaveTrack* other)
                            ExceptionType::BadUserAction,
                               XO("There is not enough room available to paste the selection"),
                               XO("Warning"),
-                              "Error:_Insufficient_space_in_track"
+                              "Editing_Part_2#insufficient-track-space"
                     };
                 }
             }
@@ -1533,7 +1533,7 @@ void WaveTrack::PasteWaveTrack(double t0, const WaveTrack* other)
            ExceptionType::BadUserAction,
            XO("There is not enough room available to paste the selection"),
            XO("Warning"),
-           "Error:_Insufficient_space_in_track"
+           "Editing_Part_2#insufficient-track-space"
     };
 
     for (const auto& clip : other->mClips)
@@ -2642,7 +2642,7 @@ void WaveTrack::ExpandCutLine(double cutLinePosition, double* cutlineStart,
                   ExceptionType::BadUserAction,
                   XO("There is not enough room available to expand the cut line"),
                   XO("Warning"),
-                  "Error:_Insufficient_space_in_track"
+                  "Editing_Part_2#insufficient-track-space"
                };
           }
       }

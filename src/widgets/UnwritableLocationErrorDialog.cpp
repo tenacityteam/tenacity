@@ -98,5 +98,5 @@ void UnwritableLocationErrorDialog::OnOk(wxCommandEvent&)
 
 void UnwritableLocationErrorDialog::OnError(wxCommandEvent&)
 {
-   HelpSystem::ShowHelp(this, "Error:_Disk_full_or_not_writable", false);
+   HelpSystem::ShowHelp(this, "Editing_Part_2#your-disk-is-full-or-not-writable", false);
 }

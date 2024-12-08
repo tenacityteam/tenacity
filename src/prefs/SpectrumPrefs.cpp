@@ -89,7 +89,7 @@ ManualPageID SpectrumPrefs::HelpPageName()
    // return mWt
    //    ? "Spectrogram_Settings"
    //    : "Spectrograms_Preferences";
-   return "Preferences#tracks";
+   return "Preferences#spectrograms";
 }
 
 enum {

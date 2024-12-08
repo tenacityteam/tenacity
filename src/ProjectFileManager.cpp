@@ -317,7 +317,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
                XO("Insufficient Disk Space"),
                XO("The project size exceeds the available free space on the target disk.\n\n"
                   "Please select a different disk with more free space."),
-               "Error:_Disk_full_or_not_writable"
+               "Editing_Part_2#your-disk-is-full-or-not-writable"
                );
 
             return false;
@@ -342,7 +342,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
          GenericUI::ShowErrorDialog( *ProjectFramePlacement( &proj ),
             XO("Error Saving Project"),
             XO("The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."),
-            "Error:_Unsuitable_drive"
+            "Editing_Part_2#fat32-drives"
             );
          return false;
       }
@@ -358,7 +358,7 @@ bool ProjectFileManager::DoSave(const FilePath & fileName, const bool fromSaveAs
          ShowErrorDialog( *ProjectFramePlacement( &proj ),
             XO("Error Saving Project"),
             FileException::WriteFailureMessage(fileName),
-            "Error:_Disk_full_or_not_writable",
+            "Editing_Part_2#your-disk-is-full-or-not-writable",
             ErrorDialogOptions{ ErrorDialogType::ModalErrorReport } );
       }
       return false;
@@ -658,7 +658,7 @@ bool ProjectFileManager::SaveCopy(const FilePath &fileName /* = wxT("") */)
                XO("Insufficient Disk Space"),
                XO("The project size exceeds the available free space on the target disk.\n\n"
                   "Please select a different disk with more free space."),
-               "Error:_Unsuitable_drive"
+               "Editing_Part_2#your-disk-is-full-or-not-writable"
                );
 
             continue;
@@ -672,7 +672,7 @@ bool ProjectFileManager::SaveCopy(const FilePath &fileName /* = wxT("") */)
             GenericUI::ShowErrorDialog( *ProjectFramePlacement( &project ),
                XO("Error Saving Project"),
                XO("The project exceeds the maximum size of 4GB when writing to a FAT32 formatted filesystem."),
-               "Error:_Unsuitable_drive"
+               "Editing_Part_2#fat32-drives"
                );
 
             if (project.mBatchMode)

@@ -340,7 +340,7 @@ DBConnection *SqliteSampleBlock::Conn() const
          ExceptionType::Internal,
          XO("Connection to project file is null"),
          XO("Warning"),
-         "Error:_Disk_full_or_not_writable"
+         "Editing_Part_2#your-disk-is-full-or-not-writable"
       };
    }
    return pConnection.get();
