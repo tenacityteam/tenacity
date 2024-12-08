@@ -500,7 +500,7 @@ void DBConnection::CheckpointThread(sqlite3 *db, const FilePath &fileName)
          GuardedCall(
             [&message, rc] {
             throw SimpleMessageBoxException{ rc != SQLITE_FULL ? ExceptionType::Internal : ExceptionType::BadEnvironment,
-               message, XO("Warning"), "Error:_Disk_full_or_not_writable" }; },
+               message, XO("Warning"), "Editing_Part_2#your-disk-is-full-or-not-writable" }; },
             SimpleGuard<void>{},
             [this](TenacityException * e) {
                // This executes in the main thread.

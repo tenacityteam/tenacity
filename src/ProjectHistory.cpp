@@ -82,7 +82,7 @@ namespace {
             ExceptionType::Internal,
             XO("Automatic database backup failed."),
             XO("Warning"),
-            "Error:_Disk_full_or_not_writable"
+            "Editing_Part_2#your-disk-is-full-or-not-writable"
          };
    }
 }

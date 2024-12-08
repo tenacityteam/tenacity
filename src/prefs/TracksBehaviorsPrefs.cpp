@@ -46,7 +46,7 @@ TranslatableString TracksBehaviorsPrefs::GetDescription()
 
 ManualPageID TracksBehaviorsPrefs::HelpPageName()
 {
-   return "Preferences#tracks";
+   return "Preferences#tracks-behaviors";
 }
 
 void TracksBehaviorsPrefs::Populate()

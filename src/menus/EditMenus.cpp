@@ -512,7 +512,7 @@ void OnPaste(const CommandContext &context)
                ExceptionType::BadUserAction,
                XO("Pasting one type of track into another is not allowed."),
                XO("Warning"), 
-               "Error:_Copying_or_Pasting"
+               "Editing_Part_2#cutting-copying-and-pasting"
             };
 
          // We should need this check only each time we visit the leading
@@ -543,7 +543,7 @@ void OnPaste(const CommandContext &context)
                   ExceptionType::BadUserAction,
                   XO("Copying stereo audio into a mono track is not allowed."),
                   XO("Warning"), 
-                  "Error:_Copying_or_Pasting"
+                  "Editing_Part_2#pasting-stereo-clips-into-mono-tracks"
                };
             }
          }
