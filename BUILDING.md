@@ -132,7 +132,8 @@ faster.
 
 Install
 [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/community/)
-with the **Desktop development with C++** installation option.
+with the **Desktop development with C++** installation option. **Be sure to
+check the C++ MFC options to ensure the build succeeds too**.
 
 **Note**: Tenacity requires at least Visual Studio 2017 or later. We actively
 test against the latest version of Visual Studio, so we may not catch bugs
