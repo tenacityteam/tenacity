@@ -148,7 +148,8 @@ If you switch between system packages and vcpkg, you may need to delete
 
 Install
 [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/community/)
-with the **Desktop development with C++** installation option.
+with the **Desktop development with C++** installation option. **Be sure to
+check the C++ MFC options to ensure the build succeeds too**.
 
 Installing [sccache](https://github.com/mozilla/sccache) is highly recommended
 for faster builds but not required. CMake will automatically use sccache if you
