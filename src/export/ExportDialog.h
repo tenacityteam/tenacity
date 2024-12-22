@@ -30,6 +30,7 @@ class ExportOptionsDialog final : public wxDialogWrapper
 
         void OnOK(wxCommandEvent&);
         void OnCancel(wxCommandEvent&);
+        void OnHelp(wxCommandEvent&);
 
     public:
         ExportOptionsDialog(ExportPluginArray& plugins);
