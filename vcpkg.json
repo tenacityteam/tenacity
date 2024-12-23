@@ -7,7 +7,10 @@
   "supports": "!uwp",
   "dependencies": [
     "libsndfile",
-    "lilv",
+    {
+      "name": "lilv",
+      "platform": "!windows"
+    },
     "libid3tag",
     "libmad",
     "twolame",
