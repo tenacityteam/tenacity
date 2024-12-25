@@ -846,7 +846,9 @@ bool TenacityApp::OnInit()
    wxTheApp->SetAppDisplayName(AppName);
    wxTheApp->SetVendorName(AppName);
 
-   ::wxInitAllImageHandlers();
+   // FIXME: This might not be needed once the theme system rewrite is
+   // complete.
+   wxImage::AddHandler(new wxPNGHandler);
 
    //
    // Paths: set search path and temp dir path
