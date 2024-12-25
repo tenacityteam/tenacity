@@ -662,7 +662,7 @@ endif()
 # define EXPERIMENTAL flags
 include("src/Experimental.cmake")
 
-find_package(wxWidgets 3.1.5 REQUIRED COMPONENTS base core html qa xml net)
+find_package(wxWidgets 3.1.5 REQUIRED COMPONENTS base core html net)
 include(${wxWidgets_USE_FILE})
 # The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
 # This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
