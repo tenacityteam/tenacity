@@ -831,9 +831,6 @@ bool TenacityApp::OnInit()
 
    ::wxInitAllImageHandlers();
 
-   // AddHandler takes ownership
-   wxFileSystem::AddHandler(safenew wxZipFSHandler);
-
    //
    // Paths: set search path and temp dir path
    //
