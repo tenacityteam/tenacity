@@ -1,4 +1,4 @@
-   /**********************************************************************
+/**********************************************************************
 
   Audacity: A Digital Audio Editor
 
@@ -44,11 +44,8 @@
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/wxcrtvararg.h>
 #include <wx/defs.h>
-#include <wx/dialog.h>
 #include <wx/dcbuffer.h>
 #include <wx/frame.h>
-#include <wx/image.h>
-#include <wx/intl.h>
 #include <wx/menu.h>
 #include <wx/settings.h>
 #include <wx/textdlg.h>
@@ -56,23 +53,27 @@
 #include <wx/radiobut.h>
 #include <wx/tooltip.h>
 
-#include <cmath>
+#include <math.h>
 
-#include "../AudioIO.h"
-#include "../AColor.h"
-#include "../ImageManipulation.h"
-#include "../ProjectAudioManager.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../theme/Theme.h"
+#include "AudioIO.h"
+#include "AColor.h"
+#include "../widgets/BasicMenu.h"
+#include "ImageManipulation.h"
+#include "Decibels.h"
+#include "LinearUpdater.h"
+#include "Project.h"
+#include "ProjectAudioIO.h"
+#include "ProjectStatus.h"
 #include "../ProjectWindows.h"
+#include "Prefs.h"
+#include "ShuttleGui.h"
+#include "Theme.h"
+#include "wxWidgetsWindowPlacement.h"
+#include "../widgets/LinearUpdater.h"
+#include "../widgets/LinearDBFormat.h"
+#include "../widgets/RealFormat.h"
 
-// Tenacity libraires
-#include <lib-preferences/Prefs.h>
-#include <lib-project/Project.h>
-#include <lib-project/ProjectStatus.h>
-#include <lib-screen-geometry/Decibels.h>
-
-#include "../theme/AllThemeResources.h"
+#include "AllThemeResources.h"
 #include "../widgets/valnum.h"
 
 #if wxUSE_ACCESSIBILITY
@@ -125,9 +126,6 @@ public:
    // Returns the rectangle for this object (id = 0) or a child element (id > 0).
    // rect is in screen coordinates.
    wxAccStatus GetLocation(wxRect& rect, int elementId) override;
-
-   // Gets the name of the specified object.
-   wxAccStatus GetName(int childId, wxString *name) override;
 
    // Returns a role constant.
    wxAccStatus GetRole(int childId, wxAccRole *role) override;
@@ -186,102 +184,46 @@ wxString MeterUpdateMsg::toStringIfClipped()
 }
 
 //
-// The MeterPanel passes itself messages via this queue so that it can
-// communicate between the audio thread and the GUI thread.
-// This class is as simple as possible in order to be thread-safe
-// without needing mutexes.
-//
-
-MeterUpdateQueue::MeterUpdateQueue(size_t maxLen):
-   mBufferSize(maxLen)
-{
-   Clear();
-}
-
-// destructor
-MeterUpdateQueue::~MeterUpdateQueue()
-{
-}
-
-void MeterUpdateQueue::Clear()
-{
-   mStart = 0;
-   mEnd = 0;
-}
-
-// Add a message to the end of the queue.  Return false if the
-// queue was full.
-bool MeterUpdateQueue::Put(MeterUpdateMsg &msg)
-{
-   // mStart can be greater than mEnd because it is all mod mBufferSize
-   wxASSERT( (mEnd + mBufferSize - mStart) >= 0 );
-   int len = (mEnd + mBufferSize - mStart) % mBufferSize;
-
-   // Never completely fill the queue, because then the
-   // state is ambiguous (mStart==mEnd)
-   if (len + 1 >= (int)(mBufferSize))
-      return false;
-
-   //wxLogDebug(wxT("Put: %s"), msg.toString());
-
-   mBuffer[mEnd] = msg;
-   mEnd = (mEnd+1)%mBufferSize;
-
-   return true;
-}
-
-// Get the next message from the start of the queue.
-// Return false if the queue was empty.
-bool MeterUpdateQueue::Get(MeterUpdateMsg &msg)
-{
-   int len = (mEnd + mBufferSize - mStart) % mBufferSize;
-
-   if (len == 0)
-      return false;
-
-   msg = mBuffer[mStart];
-   mStart = (mStart+1)%mBufferSize;
-
-   return true;
-}
-
-//
 // MeterPanel class
 //
 
 // How many pixels between items?
-const static int gap = 2;
+const static int gap = 0;
 
-/* Unused
 const static wxChar *PrefStyles[] =
 {
    wxT("AutomaticStereo"),
    wxT("HorizontalStereo"),
    wxT("VerticalStereo")
 };
-*/
 
 enum {
    OnMeterUpdateID = 6000,
    OnMonitorID,
-   OnPreferencesID
+   OnPreferencesID,
+   OnTipTimeoutID
 };
 
 BEGIN_EVENT_TABLE(MeterPanel, MeterPanelBase)
    EVT_TIMER(OnMeterUpdateID, MeterPanel::OnMeterUpdate)
+   EVT_TIMER(OnTipTimeoutID, MeterPanel::OnTipTimeout)
+   EVT_SLIDER(wxID_ANY, MeterPanel::SetMixer)
    EVT_MOUSE_EVENTS(MeterPanel::OnMouse)
    EVT_CONTEXT_MENU(MeterPanel::OnContext)
    EVT_KEY_DOWN(MeterPanel::OnKeyDown)
-   EVT_KEY_UP(MeterPanel::OnKeyUp)
+   EVT_CHAR_HOOK(MeterPanel::OnCharHook)
    EVT_SET_FOCUS(MeterPanel::OnSetFocus)
    EVT_KILL_FOCUS(MeterPanel::OnKillFocus)
+   EVT_ERASE_BACKGROUND(MeterPanel::OnErase)
    EVT_PAINT(MeterPanel::OnPaint)
    EVT_SIZE(MeterPanel::OnSize)
    EVT_MENU(OnMonitorID, MeterPanel::OnMonitor)
    EVT_MENU(OnPreferencesID, MeterPanel::OnPreferences)
 END_EVENT_TABLE()
 
-MeterPanel::MeterPanel(TenacityProject *project,
+IMPLEMENT_CLASS(MeterPanel, wxPanelWrapper)
+
+MeterPanel::MeterPanel(AudacityProject *project,
              wxWindow* parent, wxWindowID id,
              bool isInput,
              const wxPoint& pos /*= wxDefaultPosition*/,
@@ -290,14 +232,14 @@ MeterPanel::MeterPanel(TenacityProject *project,
              float fDecayRate /*= 60.0f*/)
 : MeterPanelBase(parent, id, pos, size, wxTAB_TRAVERSAL | wxNO_BORDER | wxWANTS_CHARS),
    mProject(project),
-   mQueue(1024),
+   mQueue{ 1024 },
    mWidth(size.x),
    mHeight(size.y),
    mIsInput(isInput),
    mDesiredStyle(style),
-   mSolidColors(true),
+   mGradient(true),
    mDB(true),
-   mDBRange(DecibelScaleCutoff.GetDefault()),
+   mDBRange(DecibelScaleCutoff.Read()),
    mDecay(true),
    mDecayRate(fDecayRate),
    mClip(true),
@@ -310,13 +252,10 @@ MeterPanel::MeterPanel(TenacityProject *project,
    mNumBars(0),
    mLayoutValid(false),
    mBitmap{},
-   mIcon{},
-   mAccSilent(false)
+   mRuler{ LinearUpdater::Instance(), LinearDBFormat::Instance() }
 {
    // i18n-hint: Noun (the meter is used for playback or record level monitoring)
    SetName( XO("Meter") );
-
-   SetBackgroundStyle(wxBG_STYLE_PAINT);
 
    mStyle = mDesiredStyle;
 
@@ -332,17 +271,34 @@ MeterPanel::MeterPanel(TenacityProject *project,
    mRuler.SetLabelEdges(true);
    //mRuler.SetTickColour( wxColour( 0,0,255 ) );
 
+   if (mStyle != MixerTrackCluster)
+   {
+      mSlider = std::make_unique<LWSlider>(this, XO(""),
+         pos,
+         size,
+         PERCENT_SLIDER,
+         false,   /* showlabels */
+         false,   /* drawticks */
+         false,   /* drawtrack */
+         false     /* alwayshidetip */
+      );
+      mSlider->SetScroll(0.1f, 2.0f);
+   }
+
+   UpdateSliderControl();
    UpdatePrefs();
 
-   wxColour backgroundColour = theTheme.Colour( clrMedium);
+   wxColour backgroundColour = theTheme.Colour(clrMedium);
    mBkgndBrush = wxBrush(backgroundColour, wxBRUSHSTYLE_SOLID);
    SetBackgroundColour( backgroundColour );
-   
-   mPeakPeakPen = wxPen(theTheme.Colour( clrMeterPeak),        1, wxPENSTYLE_SOLID);
-   mDisabledPen = wxPen(theTheme.Colour( clrMeterDisabledPen), 1, wxPENSTYLE_SOLID);
 
-   mSubscription = AudioIO::Get()
+   mPeakPeakPen = wxPen(theTheme.Colour( clrMeterPeak),        1, wxPENSTYLE_SOLID);
+
+   mAudioIOStatusSubscription = AudioIO::Get()
       ->Subscribe(*this, &MeterPanel::OnAudioIOStatus);
+
+   mAudioCaptureSubscription = AudioIO::Get()
+      ->Subscribe(*this, &MeterPanel::OnAudioCapture);
 
    if (mIsInput) {
       mPen       = wxPen(   theTheme.Colour( clrMeterInputPen         ), 1, wxPENSTYLE_SOLID);
@@ -361,30 +317,14 @@ MeterPanel::MeterPanel(TenacityProject *project,
 //      mDarkPen   = wxPen(   theTheme.Colour( clrMeterOutputDarkPen    ), 1, wxSOLID);
    }
 
-//   mDisabledBkgndBrush = wxBrush(theTheme.Colour( clrMeterDisabledBrush), wxSOLID);
-   // No longer show a difference in the background colour when not monitoring.
-   // We have the tip instead.
-   mDisabledBkgndBrush = mBkgndBrush;
-   
-   // MixerTrackCluster style has no menu, so disallows SetStyle, so never needs icon.
-   if (mStyle != MixerTrackCluster)
-   {
-      if(mIsInput)
-      {
-         mIcon = std::make_unique<wxBitmap>(wxBitmap(theTheme.Bitmap(bmpMic)));
-      }
-      else
-      {
-         mIcon = std::make_unique<wxBitmap>(wxBitmap(theTheme.Bitmap(bmpSpeaker)));
-      }
-   }
 
+   mTipTimer.SetOwner(this, OnTipTimeoutID);
    mTimer.SetOwner(this, OnMeterUpdateID);
    // TODO: Yikes.  Hard coded sample rate.
    // JKC: I've looked at this, and it's benignish.  It just means that the meter
    // balistics are right for 44KHz and a bit more frisky than they should be
    // for higher sample rates.
-   Reset(48000.0, true);
+   Reset(44100.0, true);
 }
 
 void MeterPanel::Clear()
@@ -398,10 +338,10 @@ void MeterPanel::UpdatePrefs()
 
    mMeterRefreshRate =
       std::max(MIN_REFRESH_RATE, std::min(MAX_REFRESH_RATE,
-         gPrefs->Read(Key(wxT("RefreshRate")), 30)));
-   mSolidColors = gPrefs->Read(Key(wxT("Bars")), wxT("Gradient")) == wxT("Gradient");
+         gPrefs->Read(Key(wxT("RefreshRate")), 30L)));
+   mGradient = gPrefs->Read(Key(wxT("Bars")), wxT("Gradient")) == wxT("Gradient");
    mDB = gPrefs->Read(Key(wxT("Type")), wxT("dB")) == wxT("dB");
-   mMeterDisabled = gPrefs->Read(Key(wxT("Disabled")), (long)0);
+   mMeterDisabled = gPrefs->Read(Key(wxT("Disabled")), 0L);
 
    if (mDesiredStyle != MixerTrackCluster)
    {
@@ -447,10 +387,47 @@ static int MeterPrefsID()
 void MeterPanel::UpdateSelectedPrefs(int id)
 {
    if (id == MeterPrefsID())
+   {
+#if USE_PORTMIXER
+      if (mIsInput && mSlider)
+      {
+         // Show or hide the input slider based on whether it works
+         auto gAudioIO = AudioIO::Get();
+         mSlider->SetEnabled(mEnabled && gAudioIO->InputMixerWorks());
+      }
+#endif
       UpdatePrefs();
+   }
 }
 
-void MeterPanel::OnPaint(wxPaintEvent & /* event */)
+void MeterPanel::UpdateSliderControl()
+{
+#if USE_PORTMIXER
+   float inputVolume;
+   float playbackVolume;
+   int inputSource;
+
+   // Show or hide the input slider based on whether it works
+   auto gAudioIO = AudioIO::Get();
+   if (mIsInput && mSlider)
+      mSlider->SetEnabled(mEnabled && gAudioIO->InputMixerWorks());
+
+   gAudioIO->GetMixer(&inputSource, &inputVolume, &playbackVolume);
+
+   const auto volume = mIsInput ? inputVolume : playbackVolume;
+
+   if (mSlider && (mSlider->Get() != volume))
+      mSlider->Set(volume);
+
+#endif // USE_PORTMIXER
+}
+
+void MeterPanel::OnErase(wxEraseEvent & WXUNUSED(event))
+{
+   // Ignore it to prevent flashing
+}
+
+void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
 {
 #if defined(__WXMAC__)
    auto paintDC = std::make_unique<wxPaintDC>(this);
@@ -471,15 +448,7 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
 
       // Go calculate all of the layout metrics
       HandleLayout(dc);
-   
-      // Start with a clean background
-#ifdef EXPERIMENTAL_THEMING
-      //if( !mMeterDisabled )
-      //{
-      //   mBkgndBrush.SetColour( GetParent()->GetBackgroundColour() );
-      //}
-#endif
-     
+
       mBkgndBrush.SetColour( GetBackgroundColour() );
       dc.SetPen(*wxTRANSPARENT_PEN);
       dc.SetBrush(mBkgndBrush);
@@ -488,24 +457,18 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
       // MixerTrackCluster style has no icon or L/R labels
       if (mStyle != MixerTrackCluster)
       {
-         bool highlight = InIcon();
-         dc.DrawBitmap( theTheme.Bitmap( highlight ? 
-            bmpHiliteUpButtonSmall : bmpUpButtonSmall ), 
-            mIconRect.GetPosition(), false );
-
-         dc.DrawBitmap(*mIcon, mIconRect.GetPosition(), true);
          dc.SetFont(GetFont());
          dc.SetTextForeground( clrText );
          dc.SetTextBackground( clrBoxFill );
          dc.DrawText(mLeftText, mLeftTextPos.x, mLeftTextPos.y);
          dc.DrawText(mRightText, mRightTextPos.x, mRightTextPos.y);
       }
-   
+
       // Setup the colors for the 3 sections of the meter bars
       wxColor green(117, 215, 112);
       wxColor yellow(255, 255, 0);
       wxColor red(255, 0, 0);
-   
+
       // Bug #2473 - (Sort of) Hack to make text on meters more
       // visible with darker backgrounds. It would be better to have
       // different colors entirely and as part of the theme.
@@ -525,34 +488,10 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
       // Draw the meter bars at maximum levels
       for (unsigned int i = 0; i < mNumBars; i++)
       {
-         dc.SetBrush(*wxTRANSPARENT_BRUSH);
-         AColor::Dark(&dc, false);
-
-         // Give it a recessed look
-         auto rect = mBar[i].b;
-         dc.DrawRectangle(
-            rect.x,
-            rect.y,
-            rect.x + rect.width + 1, // +1 to include the last point
-            rect.y + rect.height + 1 // +1 to include the last point
-         );
-
-         // Draw the clip indicator bevel
-         if (mClip)
-         {
-            rect = mBar[i].rClip;
-            dc.DrawRectangle(
-               rect.x,
-               rect.y,
-               rect.x + rect.width + 1, // +1 to include the last point
-               rect.y + rect.height + 1 // +1 to include the last point
-            );
-         }
-   
          // Cache bar rect
          wxRect r = mBar[i].r;
-   
-         if (mSolidColors)
+
+         if (mGradient)
          {
             // Calculate the size of the two gradiant segments of the meter
             double gradw;
@@ -567,48 +506,41 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
                gradw = (double) r.GetWidth() / 100 * 25;
                gradh = (double) r.GetHeight() / 100 * 25;
             }
-   
-            if (mBar[i].vert)
-            { 
-               dc.SetPen(*wxTRANSPARENT_PEN);
 
+            if (mBar[i].vert)
+            {
                // Draw the "critical" segment (starts at top of meter and works down)
                r.SetHeight(gradh);
-               dc.SetPen(*wxTRANSPARENT_PEN);
-               dc.SetBrush(red);
-               dc.DrawRectangle(r);
-   
+               dc.GradientFillLinear(r, red, yellow, wxSOUTH);
+
                // Draw the "warning" segment
                r.SetTop(r.GetBottom());
-               dc.SetBrush(yellow);
-               dc.DrawRectangle(r);
-   
+               dc.GradientFillLinear(r, yellow, green, wxSOUTH);
+
                // Draw the "safe" segment
                r.SetTop(r.GetBottom());
                r.SetBottom(mBar[i].r.GetBottom());
+               dc.SetPen(*wxTRANSPARENT_PEN);
                dc.SetBrush(green);
                dc.DrawRectangle(r);
             }
             else
             {
-               dc.SetPen(*wxTRANSPARENT_PEN);
-
                // Draw the "safe" segment
                r.SetWidth(r.GetWidth() - (int) (gradw + gradw + 0.5));
+               dc.SetPen(*wxTRANSPARENT_PEN);
                dc.SetBrush(green);
                dc.DrawRectangle(r);
-   
+
                // Draw the "warning"  segment
                r.SetLeft(r.GetRight() + 1);
                r.SetWidth(floor(gradw));
-               dc.SetBrush(yellow);
-               dc.DrawRectangle(r);
-   
+               dc.GradientFillLinear(r, green, yellow);
+
                // Draw the "critical" segment
                r.SetLeft(r.GetRight() + 1);
                r.SetRight(mBar[i].r.GetRight());
-               dc.SetBrush(red);
-               dc.DrawRectangle(r);
+               dc.GradientFillLinear(r, yellow, red);
             }
 #ifdef EXPERIMENTAL_METER_LED_STYLE
             if (!mBar[i].vert)
@@ -624,7 +556,7 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
                   if( (i%7)<2 ){
                      AColor::Line( dc, i+r.x, r.y, i+r.x, r.y+r.height );
                   } else {
-                     // The LEDs have triangular ends.  
+                     // The LEDs have triangular ends.
                      // This code shapes the ends.
                      int j = abs( (i%7)-4);
                      AColor::Line( dc, i+r.x, r.y, i+r.x, r.y+j +1);
@@ -635,11 +567,35 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
 #endif
          }
       }
+
+      {//Strokes
+         dc.SetPen(AColor::darkPen[0]);
+         dc.SetBrush(*wxTRANSPARENT_BRUSH);
+
+         //Stroke around group
+         dc.DrawRectangle(wxRect(
+            mBar[0].r.GetTopLeft(),
+            mBar[mNumBars - 1].r.GetBottomRight()
+         ).Inflate(1));
+
+         //strokes between meters
+         for(unsigned n = 0; n < mNumBars - 1; ++n)
+            dc.DrawLine(mBar[n].b.GetBottomLeft(), mBar[n].b.GetBottomRight());
+         if constexpr (gap > 0)
+         {
+            for(unsigned n = 1; n < mNumBars; ++n)
+               dc.DrawLine(mBar[n].b.GetTopLeft(), mBar[n].b.GetTopRight());
+         }
+
+         //stroke around clip indicators
+         for(unsigned n = 0; n < mNumBars; ++n)
+            dc.DrawRectangle(wxRect(mBar[n].rClip).Inflate(1));
+      }
+
       mRuler.SetTickColour( clrText );
       dc.SetTextForeground( clrText );
 
-      // Draw the ruler
-      mRuler.Draw(dc);
+      mRuler.Draw(dc); // Draw the ruler
 
       // Bitmap created...unselect
       dc.SelectObject(wxNullBitmap);
@@ -655,91 +611,42 @@ void MeterPanel::OnPaint(wxPaintEvent & /* event */)
    }
 
    destDC.SetTextForeground( clrText );
-
-    // We can have numbers over the bars, in which case we have to draw them each time.
-    if (mStyle == HorizontalStereoCompact || mStyle == VerticalStereoCompact)
-    {
-        mRuler.SetTickColour( clrText );
-        // If the text colour is too similar to the meter colour, then we need a background
-        // for the text.  We require a total of at least one full-scale RGB difference.
-        int d = theTheme.ColourDistance( clrText, theTheme.Colour( clrMeterOutputRMSBrush ) );
-        if( d < 256 )
-        {
-            destDC.SetBackgroundMode( wxSOLID );
-            destDC.SetTextBackground( clrBoxFill );
-        }
-        mRuler.Draw(destDC);
-    }
-
-   // Let the user know they can click to start monitoring
-   if( mIsInput && !mActive )
+   
+   // We can have numbers over the bars, in which case we have to draw them each time.
+   if(mStyle == HorizontalStereoCompact || mStyle == VerticalStereoCompact)
    {
-      destDC.SetFont( GetFont() );
-
-      wxArrayStringEx texts{
-         _("Click to Start Monitoring") ,
-         _("Click for Monitoring") ,
-         _("Click to Start") ,
-         _("Click") ,
-      };
-
-      for( size_t i = 0, cnt = texts.size(); i < cnt; i++ )
+      mRuler.SetTickColour( clrText );
+      // If the text colour is too similar to the meter colour, then we need a background
+      // for the text.  We require a total of at least one full-scale RGB difference.
+      int d = theTheme.ColourDistance( clrText, theTheme.Colour( clrMeterOutputRMSBrush ) );
+      if( d < 256 )
       {
-         wxString Text = wxT(" ") + texts[i] + wxT(" ");
-         wxSize Siz = destDC.GetTextExtent( Text );
-         Siz.SetWidth( Siz.GetWidth() + gap );
-         Siz.SetHeight( Siz.GetHeight() + gap );
-
-         if( mBar[0].vert)
-         {
-            if( Siz.GetWidth() < mBar[0].r.GetHeight() )
-            {
-               wxRect r( mBar[1].b.GetLeft() - (int) (Siz.GetHeight() / 2.0) + 0.5,
-                           mBar[0].r.GetTop() + (int) ((mBar[0].r.GetHeight() - Siz.GetWidth()) / 2.0) + 0.5,
-                           Siz.GetHeight(),
-                           Siz.GetWidth() );
-
-               destDC.SetBrush( wxBrush( clrBoxFill ) );
-               destDC.SetPen( *wxWHITE_PEN );
-               destDC.DrawRectangle( r );
-               destDC.SetBackgroundMode( wxTRANSPARENT );
-               r.SetTop( r.GetBottom() + (gap / 2) );
-               destDC.SetTextForeground( clrText );
-               destDC.DrawRotatedText( Text, r.GetPosition(), 90 );
-               break;
-            }
-         }
-         else
-         {
-            if( Siz.GetWidth() < mBar[0].r.GetWidth() )
-            {
-               wxRect r( mBar[0].r.GetLeft() + (int) ((mBar[0].r.GetWidth() - Siz.GetWidth()) / 2.0) + 0.5,
-                         mBar[1].b.GetTop() - (int) (Siz.GetHeight() / 2.0) + 0.5,
-                         Siz.GetWidth(),
-                         Siz.GetHeight() );
-
-               destDC.SetBrush( wxBrush( clrBoxFill ) );
-               destDC.SetPen( *wxWHITE_PEN );
-               destDC.DrawRectangle( r );
-               destDC.SetBackgroundMode( wxTRANSPARENT );
-               r.SetLeft( r.GetLeft() + (gap / 2) );
-               r.SetTop( r.GetTop() + (gap / 2));
-               destDC.SetTextForeground( clrText );
-               destDC.DrawText( Text, r.GetPosition() );
-               break;
-            }
-         }
+         destDC.SetBackgroundMode( wxSOLID );
+         destDC.SetTextBackground( clrBoxFill );
       }
+      mRuler.Draw(destDC);
+   }
+
+   if (mStyle != MixerTrackCluster)
+   {
+      bool highlighted =
+      wxRect{ mSliderPos, mSliderSize }.Contains(
+         ScreenToClient(
+            ::wxGetMousePosition()));
+
+      mSlider->Move(mSliderPos);
+      mSlider->AdjustSize(mSliderSize);
+      mSlider->OnPaint(destDC, highlighted);
    }
 
    if (mIsFocused)
    {
-      wxRect r = mIconRect;
-      AColor::DrawFocus(destDC, r.Inflate(1, 1));
+      auto r = GetClientRect();
+      AColor::DrawFocus(destDC, r);
    }
 }
 
-void MeterPanel::OnSize(wxSizeEvent & /* event */)
+void MeterPanel::OnSize(wxSizeEvent & WXUNUSED(event))
 {
    GetClientSize(&mWidth, &mHeight);
 
@@ -747,18 +654,9 @@ void MeterPanel::OnSize(wxSizeEvent & /* event */)
    Refresh();
 }
 
-bool MeterPanel::InIcon(wxMouseEvent *pEvent) const
-{
-   auto point = pEvent ? pEvent->GetPosition() : ScreenToClient(::wxGetMousePosition());
-   return mIconRect.Contains(point);
-}
-
 void MeterPanel::OnMouse(wxMouseEvent &evt)
 {
-   bool shouldHighlight = InIcon(&evt);
-   if ((evt.GetEventType() == wxEVT_MOTION || evt.Entering() || evt.Leaving()) &&
-       (mHighlighted != shouldHighlight)) {
-      mHighlighted = shouldHighlight;
+   if ((evt.GetEventType() == wxEVT_MOTION || evt.Entering() || evt.Leaving())) {
       mLayoutValid = false;
       Refresh();
    }
@@ -766,104 +664,60 @@ void MeterPanel::OnMouse(wxMouseEvent &evt)
    if (mStyle == MixerTrackCluster) // MixerTrackCluster style has no menu.
       return;
 
-  #if wxUSE_TOOLTIPS // Not available in wxX11
-   if (evt.Leaving()){
-      ProjectStatus::Get( *mProject ).Set({});
+   if (evt.Entering()) {
+      mTipTimer.StartOnce(500);
    }
-   else if (evt.Entering()) {
-      // Display the tooltip in the status bar
-      wxToolTip * pTip = this->GetToolTip();
-      if( pTip ) {
-         auto tipText = Verbatim( pTip->GetTip() );
-         ProjectStatus::Get( *mProject ).Set(tipText);
-      }
-   }
-  #endif
+   else if(evt.Leaving())
+      mTipTimer.Stop();
 
-   if (evt.RightDown() ||
-       (evt.ButtonDown() && InIcon(&evt)))
+   if (evt.RightDown())
+      ShowMenu(evt.GetPosition());
+   else
    {
-      wxMenu menu;
-      // Note: these should be kept in the same order as the enum
-      if (mIsInput) {
-         wxMenuItem *mi;
-         if (mMonitoring)
-            mi = menu.Append(OnMonitorID, _("Stop Monitoring"));
-         else
-            mi = menu.Append(OnMonitorID, _("Start Monitoring"));
-         mi->Enable(!mActive || mMonitoring);
-      }
 
-      menu.Append(OnPreferencesID, _("Options..."));
-
-      if (evt.RightDown()) {
-         ShowMenu(evt.GetPosition());
-      }
-      else {
-         ShowMenu(wxPoint(mIconRect.x + 1, mIconRect.y + mIconRect.height + 1));
-      }
+      if (mSlider)
+         mSlider->OnMouseEvent(evt);
    }
-   else if (evt.LeftDown()) {
-      if (mIsInput) {
-         if (mActive && !mMonitoring) {
-            Reset(mRate, true);
-         }
-         else {
-            StartMonitoring();
-         }
-      }
-      else {
-         Reset(mRate, true);
-      }
+}
+
+void MeterPanel::OnCharHook(wxKeyEvent& evt)
+{
+   switch(evt.GetKeyCode())
+   {
+   // These are handled in the OnCharHook handler because, on Windows at least, the
+   // key up event will be passed on to the menu if we show it here.  This causes
+   // the default sound to be heard if assigned.
+   case WXK_RETURN:
+   case WXK_NUMPAD_ENTER:
+   case WXK_WINDOWS_MENU:
+   case WXK_MENU:
+      if (mStyle != MixerTrackCluster)
+         ShowMenu(GetClientRect().GetBottomLeft());
+      else
+         evt.Skip();
+      break;
+   default:
+      evt.Skip();
+      break;
    }
 }
 
 void MeterPanel::OnContext(wxContextMenuEvent &evt)
 {
-#if defined(__WXMSW__)
-   if (mHadKeyDown)
-   {
-#endif
    if (mStyle != MixerTrackCluster) // MixerTrackCluster style has no menu.
    {
-      ShowMenu(wxPoint(mIconRect.x + 1, mIconRect.y + mIconRect.height + 1));
+      ShowMenu(GetClientRect().GetBottomLeft());
    }
    else
    {
       evt.Skip();
    }
-
-#if defined(__WXMSW__)
-   }
-   mHadKeyDown = false;
-#endif
 }
 
 void MeterPanel::OnKeyDown(wxKeyEvent &evt)
 {
    switch (evt.GetKeyCode())
    {
-   // These are handled in the OnKeyUp handler because, on Windows at least, the
-   // key up event will be passed on to the menu if we show it here.  This causes
-   // the default sound to be heard if assigned.
-   //
-   // But, again on Windows, when the user selects a menu item, it is handled by
-   // the menu and the key up event is passed along to our OnKeyUp() handler, so
-   // we have to ignore it, otherwise we'd just show the menu again.
-   case WXK_RETURN:
-   case WXK_NUMPAD_ENTER:
-   case WXK_WINDOWS_MENU:
-   case WXK_MENU:
-#if defined(__WXMSW__)
-      mHadKeyDown = true;
-#endif
-      break;
-   case WXK_RIGHT:
-      Navigate(wxNavigationKeyEvent::IsForward);
-      break;
-   case WXK_LEFT:
-      Navigate(wxNavigationKeyEvent::IsBackward);
-      break;
    case WXK_TAB:
       if (evt.ShiftDown())
          Navigate(wxNavigationKeyEvent::IsBackward);
@@ -871,42 +725,23 @@ void MeterPanel::OnKeyDown(wxKeyEvent &evt)
          Navigate(wxNavigationKeyEvent::IsForward);
       break;
    default:
-      evt.Skip();
+      mSlider->OnKeyDown(evt);
       break;
    }
 }
 
-void MeterPanel::OnKeyUp(wxKeyEvent &evt)
-{
-   switch (evt.GetKeyCode())
-   {
-   case WXK_RETURN:
-   case WXK_NUMPAD_ENTER:
-#if defined(__WXMSW__)
-      if (mHadKeyDown)
-#endif
-      if (mStyle != MixerTrackCluster) // MixerTrackCluster style has no menu.
-      {
-         ShowMenu(wxPoint(mIconRect.x + 1, mIconRect.y + mIconRect.height + 1));
-      }
-#if defined(__WXMSW__)
-      mHadKeyDown = false;
-#endif
-      break;
-   default:
-      evt.Skip();
-      break;
-   }
-}
-
-void MeterPanel::OnSetFocus(wxFocusEvent & /* evt */)
+void MeterPanel::OnSetFocus(wxFocusEvent & WXUNUSED(evt))
 {
    mIsFocused = true;
    Refresh(false);
 }
 
-void MeterPanel::OnKillFocus(wxFocusEvent & /* evt */)
+void MeterPanel::OnKillFocus(wxFocusEvent & WXUNUSED(evt))
 {
+   if(mSlider)
+      mSlider->OnKillFocus();
+   mTipTimer.Stop();
+
    mIsFocused = false;
    Refresh(false);
 }
@@ -920,6 +755,75 @@ void MeterPanel::SetStyle(Style newStyle)
       mLayoutValid = false;
 
       Refresh(false);
+   }
+}
+
+void MeterPanel::SetMixer(wxCommandEvent & WXUNUSED(event))
+{
+#if USE_PORTMIXER
+   if (mSlider)
+   {
+      float inputVolume;
+      float outputVolume;
+      int inputSource;
+
+      Refresh();
+
+      auto gAudioIO = AudioIO::Get();
+      gAudioIO->GetMixer(&inputSource, &inputVolume, &outputVolume);
+
+      if (mIsInput)
+         inputVolume = mSlider->Get();
+      else
+         outputVolume = mSlider->Get();
+
+      gAudioIO->SetMixer(inputSource, inputVolume, outputVolume);
+
+#if wxUSE_ACCESSIBILITY
+      GetAccessible()->NotifyEvent( wxACC_EVENT_OBJECT_VALUECHANGE,
+                                    this,
+                                    wxOBJID_CLIENT,
+                                    wxACC_SELF );
+#endif
+
+   }
+#endif // USE_PORTMIXER
+}
+
+bool MeterPanel::ShowDialog()
+{
+   if (!mSlider)
+      return false;
+
+   auto changed = mSlider->ShowDialog();
+   if (changed)
+   {
+      wxCommandEvent e;
+      SetMixer(e);
+   }
+
+   return changed;
+}
+
+void MeterPanel::Increase(float steps)
+{
+   if (mSlider)
+   {
+      wxCommandEvent e;
+
+      mSlider->Increase(steps);
+      SetMixer(e);
+   }
+}
+
+void MeterPanel::Decrease(float steps)
+{
+   if (mSlider)
+   {
+      wxCommandEvent e;
+
+      mSlider->Decrease(steps);
+      SetMixer(e);
    }
 }
 
@@ -1065,10 +969,14 @@ void MeterPanel::UpdateDisplay(
 //   mQueue.Put(msg);
 //}
 
-void MeterPanel::OnMeterUpdate(wxTimerEvent & /* event */)
+void MeterPanel::OnMeterUpdate(wxTimerEvent & WXUNUSED(event))
 {
    MeterUpdateMsg msg;
    int numChanges = 0;
+#ifdef EXPERIMENTAL_AUTOMATED_INPUT_LEVEL_ADJUSTMENT
+   double maxPeak = 0.0;
+   bool discarded = false;
+#endif
 
    // We shouldn't receive any events if the meter is disabled, but clear it to be safe
    if (mMeterDisabled) {
@@ -1076,7 +984,6 @@ void MeterPanel::OnMeterUpdate(wxTimerEvent & /* event */)
       return;
    }
 
-   auto gAudioIO = AudioIO::Get();
 
    // There may have been several update messages since the last
    // time we got to this function.  Catch up to real-time by
@@ -1134,13 +1041,37 @@ void MeterPanel::OnMeterUpdate(wxTimerEvent & /* event */)
          }
 
          mBar[j].tailPeakCount = msg.tailPeakCount[j];
+#ifdef EXPERIMENTAL_AUTOMATED_INPUT_LEVEL_ADJUSTMENT
+         if (mT > gAudioIO->AILAGetLastDecisionTime()) {
+            discarded = false;
+            maxPeak = msg.peak[j] > maxPeak ? msg.peak[j] : maxPeak;
+            wxPrintf("%f@%f ", msg.peak[j], mT);
+         }
+         else {
+            discarded = true;
+            wxPrintf("%f@%f discarded\n", msg.peak[j], mT);
+         }
+#endif
       }
    } // while
 
    if (numChanges > 0) {
+      #ifdef EXPERIMENTAL_AUTOMATED_INPUT_LEVEL_ADJUSTMENT
+         if (gAudioIO->AILAIsActive() && mIsInput && !discarded) {
+            gAudioIO->AILAProcess(maxPeak);
+            putchar('\n');
+         }
+      #endif
       RepaintBarsNow();
    }
 }
+
+void MeterPanel::OnTipTimeout(wxTimerEvent& evt)
+{
+   if(mSlider)
+      mSlider->ShowTip(true);
+}
+
 
 float MeterPanel::GetMaxPeak() const
 {
@@ -1150,6 +1081,14 @@ float MeterPanel::GetMaxPeak() const
       maxPeak = mBar[j].peak > maxPeak ? mBar[j].peak : maxPeak;
 
    return(maxPeak);
+}
+
+float MeterPanel::GetPeakHold() const
+{
+   auto peakHold = .0f;
+   for (unsigned int i = 0; i < mNumBars; i++)
+      peakHold = std::max(peakHold, mBar[i].peakPeakHold);
+   return peakHold;
 }
 
 wxFont MeterPanel::GetFont() const
@@ -1177,10 +1116,20 @@ void MeterPanel::ResetBar(MeterBar *b, bool resetClipping)
    b->tailPeakCount = 0;
 }
 
+bool MeterPanel::IsActive() const
+{
+   return mActive;
+}
+
+bool MeterPanel::IsMonitoring() const
+{
+   return mMonitoring;
+}
+
 bool MeterPanel::IsClipping() const
 {
-   for (int c = 0; c < kMaxMeterBars; c++)
-      if (mBar[c].isclipping)
+   for (int c = 0; c < mNumBars; c++)
+      if (mBar[c].clipping)
          return true;
    return false;
 }
@@ -1196,7 +1145,7 @@ void MeterPanel::SetActiveStyle(Style newStyle)
 
    if (mDB)
    {
-      mRuler.SetFormat(Ruler::LinearDBFormat);
+      mRuler.SetFormat(&LinearDBFormat::Instance());
       if (mStyle == HorizontalStereo || mStyle == HorizontalStereoCompact)
       {
          mRuler.SetOrientation(wxHORIZONTAL);
@@ -1210,7 +1159,7 @@ void MeterPanel::SetActiveStyle(Style newStyle)
    }
    else
    {
-      mRuler.SetFormat(Ruler::RealFormat);
+      mRuler.SetFormat(&RealFormat::LinearInstance());
       if (mStyle == HorizontalStereo || mStyle == HorizontalStereoCompact)
       {
          mRuler.SetOrientation(wxHORIZONTAL);
@@ -1228,45 +1177,48 @@ void MeterPanel::SetActiveStyle(Style newStyle)
 
 void MeterPanel::SetBarAndClip(int iBar, bool vert)
 {
+   constexpr static auto StrokeWidth = 1;
+   //either width or height, depending on meter orientation
+   constexpr static auto ClipIndicatorSize = 3;
+   constexpr static auto ClipIndicatorPadding = 1;
    // Save the orientation
    mBar[iBar].vert = vert;
 
+   if (mClip)
+   {
+      // Create the clip rectangle and adjust
+      // meter's boundaries
+      if (vert)
+      {
+         mBar[iBar].rClip = wxRect(
+            mBar[iBar].b.x + StrokeWidth,
+            mBar[iBar].b.y + StrokeWidth,
+            mBar[iBar].b.width - StrokeWidth * 2,
+            ClipIndicatorSize
+         );
+
+         // Make room for the clipping indicator
+         constexpr auto yOffset =
+            gap + ClipIndicatorPadding + StrokeWidth * 2 + ClipIndicatorSize;
+         mBar[iBar].b.y += yOffset;
+         mBar[iBar].b.height -= yOffset;
+      }
+      else
+      {
+         mBar[iBar].rClip = wxRect(
+            mBar[iBar].b.GetRight() - StrokeWidth - ClipIndicatorSize + 1,
+            mBar[iBar].b.GetTop() + StrokeWidth,
+            ClipIndicatorSize,
+            mBar[iBar].b.height - StrokeWidth * 2
+         );
+         // Make room for the clipping indicator
+         mBar[iBar].b.width -=
+            gap + ClipIndicatorPadding + StrokeWidth * 2 + ClipIndicatorSize;
+      }
+   }
    // Create the bar rectangle and educe to fit inside the bevel
    mBar[iBar].r = mBar[iBar].b;
-   mBar[iBar].r.x += 1;
-   mBar[iBar].r.width -= 1;
-   mBar[iBar].r.y += 1;
-   mBar[iBar].r.height -= 1;
-
-   if (vert)
-   {
-      if (mClip)
-      {
-         // Create the clip rectangle
-         mBar[iBar].rClip = mBar[iBar].b;
-         mBar[iBar].rClip.height = 3;
-
-         // Make room for the clipping indicator
-         mBar[iBar].b.y += 3 + gap;
-         mBar[iBar].b.height -= 3 + gap;
-         mBar[iBar].r.y += 3 + gap;
-         mBar[iBar].r.height -= 3 + gap;
-      }
-   }
-   else
-   {
-      if (mClip)
-      {
-         // Make room for the clipping indicator
-         mBar[iBar].b.width -= 4;
-         mBar[iBar].r.width -= 4;
-
-         // Create the indicator rectangle
-         mBar[iBar].rClip = mBar[iBar].b;
-         mBar[iBar].rClip.x = mBar[iBar].b.GetRight() + 1 + gap; // +1 for bevel
-         mBar[iBar].rClip.width = 3;
-      }
-   }
+   mBar[iBar].r.Deflate(StrokeWidth);
 }
 
 void MeterPanel::HandleLayout(wxDC &dc)
@@ -1278,8 +1230,6 @@ void MeterPanel::HandleLayout(wxDC &dc)
    mRightText = _("R");
 
    dc.SetFont(GetFont());
-   int iconWidth = 0;
-   int iconHeight = 0;
    int width = mWidth;
    int height = mHeight;
    int left = 0;
@@ -1296,7 +1246,7 @@ void MeterPanel::HandleLayout(wxDC &dc)
       {
          SetActiveStyle(width > height ? HorizontalStereo : VerticalStereo);
       }
-   
+
       if (mStyle == HorizontalStereoCompact || mStyle == HorizontalStereo)
       {
          SetActiveStyle(height < 50 ? HorizontalStereoCompact : HorizontalStereo);
@@ -1305,9 +1255,7 @@ void MeterPanel::HandleLayout(wxDC &dc)
       {
          SetActiveStyle(width < 100 ? VerticalStereoCompact : VerticalStereo);
       }
-   
-      iconWidth = mIcon->GetWidth();
-      iconHeight = mIcon->GetHeight();
+
       if (mLeftSize.GetWidth() == 0)  // Not yet initialized to dc.
       {
          dc.GetTextExtent(mLeftText, &mLeftSize.x, &mLeftSize.y);
@@ -1331,7 +1279,7 @@ void MeterPanel::HandleLayout(wxDC &dc)
 
       // height is now the entire height of the meter canvas
       height -= top + gap;
- 
+
       // barw is half of the canvas while allowing for a gap between meters
       barw = (width - gap) / 2;
 
@@ -1360,7 +1308,7 @@ void MeterPanel::HandleLayout(wxDC &dc)
       break;
    case VerticalStereo:
       // Determine required width of each side;
-      lside = intmax(iconWidth, ltxtWidth);
+      lside = ltxtWidth + gap;
       rside = intmax(mRulerWidth, rtxtWidth);
 
       // left is now the right edge of the icon or L label
@@ -1368,12 +1316,6 @@ void MeterPanel::HandleLayout(wxDC &dc)
 
       // Ensure there's a margin between top edge of window and the meters
       top = gap;
-
-      // Position the icon
-      mIconRect.SetX(left - iconWidth);
-      mIconRect.SetY(top);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
 
       // Position the L/R labels
       mLeftTextPos = wxPoint(left - ltxtWidth - gap, height - gap - ltxtHeight);
@@ -1387,7 +1329,10 @@ void MeterPanel::HandleLayout(wxDC &dc)
 
       // height is now the entire height of the meter canvas
       height -= top + gap;
- 
+
+      mSliderPos = wxPoint{ 0, top - gap };
+      mSliderSize = wxSize{ width, height + 2 * gap };
+
       // barw is half of the canvas while allowing for a gap between meters
       barw = (width - gap) / 2;
 
@@ -1418,17 +1363,11 @@ void MeterPanel::HandleLayout(wxDC &dc)
       // Ensure there's a margin between top edge of window and the meters
       top = gap;
 
-      // Position the icon
-      mIconRect.SetX((width - iconWidth) / 2);
-      mIconRect.SetY(top);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
-
-      // top is now the top of the bar
-      top += iconHeight + gap;
-
       // height is now the entire height of the meter canvas
       height -= top + gap + ltxtHeight + gap;
+
+      mSliderPos = wxPoint{ 0, top - gap };
+      mSliderSize = wxSize{ width, height + 2 * gap };
 
       // barw is half of the canvas while allowing for a gap between meters
       barw = (width / 2) - gap;
@@ -1467,15 +1406,10 @@ void MeterPanel::HandleLayout(wxDC &dc)
       // Add a gap between bottom of icon and bottom of window
       height -= gap;
 
-      // Create icon rectangle
-      mIconRect.SetX(left);
-      mIconRect.SetY(height - iconHeight);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
       left = gap;
 
       // Make sure there's room for icon and gap between the bottom of the meter and icon
-      height -= iconHeight + gap;
+      height -= rtxtHeight + gap;
 
       // L/R is centered vertically and to the left of a each bar
       mLeftTextPos = wxPoint(left, (height / 4) - ltxtHeight / 2);
@@ -1484,11 +1418,15 @@ void MeterPanel::HandleLayout(wxDC &dc)
       // Add width of widest of the L/R characters
       left += intmax(ltxtWidth, rtxtWidth); //, iconWidth);
 
+      mSliderPos = wxPoint{ left - gap, 0 };
+
       // Add gap between L/R and meter bevel
       left += gap;
 
       // width is now the entire width of the meter canvas
       width -= left;
+
+      mSliderSize = wxSize{ width + 2 * gap, height };
 
       // barw is now the width of the canvas minus gap between canvas and right window edge
       barw = width - gap;
@@ -1514,31 +1452,26 @@ void MeterPanel::HandleLayout(wxDC &dc)
                        mBar[1].r.GetBottom() + 1, // +1 to fit below bevel
                        mBar[1].r.GetRight(),
                        mHeight - mBar[1].r.GetBottom() + 1);
-      mRuler.OfflimitsPixels(0, mIconRect.GetRight() - 4);
       break;
    case HorizontalStereoCompact:
-      // Button right next to dragger.
-      left = 0;
-
-      // Create icon rectangle
-      mIconRect.SetX(left);
-      mIconRect.SetY((height - iconHeight) / 2 -1);
-      mIconRect.SetWidth(iconWidth);
-      mIconRect.SetHeight(iconHeight);
-
       left = gap;
-      // Add width of icon and gap between icon and L/R
-      left += iconWidth + gap;
 
       // L/R is centered vertically and to the left of a each bar
       mLeftTextPos = wxPoint(left, (height / 4) - (ltxtHeight / 2));
       mRightTextPos = wxPoint(left, (height * 3 / 4) - (ltxtHeight / 2));
 
-      // Add width of widest of the L/R characters and a gap between labels and meter bevel
-      left += intmax(ltxtWidth, rtxtWidth) + gap;
+      // Add width of widest of the L/R characters
+      left += intmax(ltxtWidth, rtxtWidth);
+
+      mSliderPos = wxPoint{ left - gap, 0 };
+
+      // Add gap between L/R and meter bevel
+      left += gap;
 
       // width is now the entire width of the meter canvas
       width -= left;
+
+      mSliderSize = wxSize{ width + 2 * gap, height };
 
       // barw is now the width of the canvas minus gap between canvas and window edge
       barw = width - gap;
@@ -1604,9 +1537,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
 
    // Setup for erasing the background
    dc.SetPen(*wxTRANSPARENT_PEN);
-   dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mBkgndBrush);
+   mMeterBkgndBrush.SetColour( theTheme.Colour(clrMeterBackground) ); 
+   dc.SetBrush(mMeterBkgndBrush);
 
-   if (mSolidColors)
+   if (mGradient)
    {
       // Map the predrawn bitmap into the source DC
       wxMemoryDC srcDC;
@@ -1722,7 +1656,7 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          // Draw the peak level
          // +/-1 to include the peak position
          dc.SetPen(*wxTRANSPARENT_PEN);
-         dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mBrush);
+         dc.SetBrush(mBrush);
          if (ht)
          {
             dc.DrawRectangle(x, y + h - ht - 1, w, ht + 1);
@@ -1748,7 +1682,7 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
 
          // Draw the RMS level
          dc.SetPen(*wxTRANSPARENT_PEN);
-         dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mRMSBrush);
+         dc.SetBrush(mRMSBrush);
          if (ht)
          {
             dc.DrawRectangle(x, y + h - ht - 1, w, ht + 1);
@@ -1783,7 +1717,7 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          // Draw the peak level
          // +1 to include peak position
          dc.SetPen(*wxTRANSPARENT_PEN);
-         dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mBrush);
+         dc.SetBrush(mBrush);
          if (wd)
          {
             dc.DrawRectangle(x, y, wd + 1, h);
@@ -1806,10 +1740,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
          // (w - 1) corresponds to the mRuler.SetBounds() in HandleLayout()
          wd = (int)(bar->rms * (w - 1) + 0.5);
 
-         // Draw the rms level 
+         // Draw the rms level
          // +1 to include the rms position
          dc.SetPen(*wxTRANSPARENT_PEN);
-         dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mRMSBrush);
+         dc.SetBrush(mRMSBrush);
          if (wd)
          {
             dc.DrawRectangle(x, y, wd + 1, h);
@@ -1841,14 +1775,10 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
       }
       else
       {
-         dc.SetBrush(mMeterDisabled ? mDisabledBkgndBrush : mBkgndBrush);
+         dc.SetBrush(mBkgndBrush);
       }
       dc.SetPen(*wxTRANSPARENT_PEN);
-      wxRect r(bar->rClip.GetX() + 1,
-               bar->rClip.GetY() + 1,
-               bar->rClip.GetWidth() - 1,
-               bar->rClip.GetHeight() - 1);
-      dc.DrawRectangle(r);
+      dc.DrawRectangle(bar->rClip);
    }
 }
 
@@ -1864,13 +1794,12 @@ void MeterPanel::StartMonitoring()
    auto gAudioIO = AudioIO::Get();
    if (gAudioIO->IsMonitoring()){
       gAudioIO->StopStream();
-   } 
+   }
 
    if (start && !gAudioIO->IsBusy()){
-      TenacityProject *p = mProject;
-      if (p){
-         gAudioIO->StartMonitoring( DefaultPlayOptions( *p ) );
-      }
+      AudacityProject *p = mProject;
+      if (p)
+         gAudioIO->StartMonitoring(ProjectAudioIO::GetDefaultOptions(*p));
 
       mLayoutValid = false;
 
@@ -1883,15 +1812,18 @@ void MeterPanel::StopMonitoring(){
    auto gAudioIO = AudioIO::Get();
    if (gAudioIO->IsMonitoring()){
       gAudioIO->StopStream();
-   } 
+   }
 }
 
 void MeterPanel::OnAudioIOStatus(AudioIOEvent evt)
 {
+   if (evt.type == AudioIOEvent::PAUSE)
+      return;
+
    if (!mIsInput != (evt.type == AudioIOEvent::PLAYBACK))
       return;
 
-   TenacityProject *p = evt.pProject;
+   AudacityProject *p = evt.pProject;
    mActive = evt.on && (p == mProject);
    if( mActive ){
       mTimer.Start(1000 / mMeterRefreshRate);
@@ -1905,6 +1837,19 @@ void MeterPanel::OnAudioIOStatus(AudioIOEvent evt)
    // Only refresh is we're the active meter
    if (IsShownOnScreen())
       Refresh(false);
+}
+
+void MeterPanel::OnAudioCapture(AudioIOEvent event)
+{
+   if (
+      event.type == AudioIOEvent::CAPTURE &&
+      (event.pProject != mProject || !event.on))
+   {
+      mEnabled = !event.on;
+
+      if (mSlider)
+         mSlider->SetEnabled(mEnabled);
+   }
 }
 
 // SaveState() and RestoreState() exist solely for purpose of recreating toolbars
@@ -1939,37 +1884,34 @@ void MeterPanel::ShowMenu(const wxPoint & pos)
    if (mIsInput) {
       wxMenuItem *mi;
       if (mMonitoring)
-         mi = menu.Append(OnMonitorID, _("Stop Monitoring"));
+         mi = menu.Append(OnMonitorID, _("Disable Silent Monitoring"));
       else
-         mi = menu.Append(OnMonitorID, _("Start Monitoring"));
+         mi = menu.Append(OnMonitorID, _("Enable Silent Monitoring"));
       mi->Enable(!mActive || mMonitoring);
    }
 
    menu.Append(OnPreferencesID, _("Options..."));
 
-   mAccSilent = true;      // temporarily make screen readers say (close to) nothing on focus events
-
-   PopupMenu(&menu, pos);
-
-   /* if stop/start monitoring was chosen in the menu, then by this point
-   OnMonitoring has been called and variables which affect the accessibility
-   name have been updated so it's now ok for screen readers to read the name of
-   the button */
-   mAccSilent = false;
-#if wxUSE_ACCESSIBILITY
-   GetAccessible()->NotifyEvent(wxACC_EVENT_OBJECT_FOCUS,
-                                this,
-                                wxOBJID_CLIENT,
-                                wxACC_SELF);
-#endif
+   BasicMenu::Handle{ &menu }.Popup(
+      wxWidgetsWindowPlacement{ this },
+      { pos.x, pos.y }
+   );
 }
 
-void MeterPanel::OnMonitor(wxCommandEvent & /* event */)
+void MeterPanel::SetName(const TranslatableString& tip)
+{
+   wxPanelWrapper::SetName(tip);
+   if(mSlider)
+      mSlider->SetName(tip);
+}
+
+
+void MeterPanel::OnMonitor(wxCommandEvent & WXUNUSED(event))
 {
    StartMonitoring();
 }
 
-void MeterPanel::OnPreferences(wxCommandEvent & /* event */)
+void MeterPanel::OnPreferences(wxCommandEvent & WXUNUSED(event))
 {
    wxTextCtrl *rate;
    wxRadioButton *gradient;
@@ -2015,8 +1957,8 @@ void MeterPanel::OnPreferences(wxCommandEvent & /* event */)
         {
            S.StartVerticalLay();
            {
-              gradient = S.AddRadioButton(XXO("Solid"), true, mSolidColors);
-              rms = S.AddRadioButtonToGroup(XXO("RMS"), false, mSolidColors);
+              gradient = S.AddRadioButton(XXO("Gradient"), true, mGradient);
+              rms = S.AddRadioButtonToGroup(XXO("RMS"), false, mGradient);
            }
            S.EndVerticalLay();
         }
@@ -2077,7 +2019,7 @@ void MeterPanel::OnPreferences(wxCommandEvent & /* event */)
 
       gPrefs->Flush();
 
-      // Currently, there are 2 playback meters and 2 record meters and any number of 
+      // Currently, there are 2 playback meters and 2 record meters and any number of
       // mixerboard meters, so we have to send out an preferences updated message to
       // ensure they all update themselves.
       PrefsListener::Broadcast(MeterPrefsID());
@@ -2124,7 +2066,7 @@ MeterAx::~MeterAx()
 // or > 0 (the action for a child).
 // Return wxACC_NOT_SUPPORTED if there is no default action for this
 // window (e.g. an edit control).
-wxAccStatus MeterAx::DoDefaultAction(int /* childId */)
+wxAccStatus MeterAx::DoDefaultAction(int WXUNUSED(childId))
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
@@ -2159,14 +2101,14 @@ wxAccStatus MeterAx::GetChildCount(int* childCount)
 // object, not what the object does as a result. For example, a
 // toolbar button that prints a document has a default action of
 // "Press" rather than "Prints the current document."
-wxAccStatus MeterAx::GetDefaultAction(int /* childId */, wxString* actionName)
+wxAccStatus MeterAx::GetDefaultAction(int WXUNUSED(childId), wxString* actionName)
 {
    *actionName = _("Press");
    return wxACC_OK;
 }
 
 // Returns the description for this object or a child.
-wxAccStatus MeterAx::GetDescription(int /* childId */, wxString *description)
+wxAccStatus MeterAx::GetDescription(int WXUNUSED(childId), wxString *description)
 {
    description->clear();
    return wxACC_NOT_SUPPORTED;
@@ -2184,7 +2126,7 @@ wxAccStatus MeterAx::GetFocus(int* childId, wxAccessible** child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus MeterAx::GetHelpText(int /* childId */, wxString *helpText)
+wxAccStatus MeterAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
 {
    helpText->clear();
    return wxACC_NOT_SUPPORTED;
@@ -2192,7 +2134,7 @@ wxAccStatus MeterAx::GetHelpText(int /* childId */, wxString *helpText)
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus MeterAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
+wxAccStatus MeterAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
 {
    shortcut->clear();
    return wxACC_OK;
@@ -2200,73 +2142,20 @@ wxAccStatus MeterAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
 
 // Returns the rectangle for this object (id = 0) or a child element (id > 0).
 // rect is in screen coordinates.
-wxAccStatus MeterAx::GetLocation(wxRect & rect, int /* elementId */)
+wxAccStatus MeterAx::GetLocation(wxRect & rect, int WXUNUSED(elementId))
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
 
-   rect = m->mIconRect;
+   rect = m->GetClientRect();
    rect.SetPosition(m->ClientToScreen(rect.GetPosition()));
 
    return wxACC_OK;
 }
 
-// Gets the name of the specified object.
-wxAccStatus MeterAx::GetName(int /* childId */, wxString* name)
-{
-   MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
-
-   if (m->mAccSilent)
-   {
-      *name = wxT("");     // Jaws reads nothing, and nvda reads "unknown"
-   }
-   else
-   {
-      *name = m->GetName();
-      if (name->empty())
-         *name = m->GetLabel();
-
-      if (name->empty())
-         *name = _("Meter");
-
-      if (m->mMonitoring)
-         // translations of strings such as " Monitoring " did not
-         // always retain the leading space. Therefore a space has
-         // been added to ensure at least one space, and stop
-         // words from being merged
-         *name += wxT(" ") + _(" Monitoring ");
-      else if (m->mActive)
-         *name += wxT(" ") + _(" Active ");
-
-      float peak = 0.;
-      bool clipped = false;
-      for (unsigned int i = 0; i < m->mNumBars; i++)
-      {
-         peak = std::max(peak, m->mBar[i].peakPeakHold);
-         if (m->mBar[i].clipping)
-            clipped = true;
-      }
-
-      if (m->mDB)
-         *name += wxT(" ") + wxString::Format(_(" Peak %2.f dB"), (peak * m->mDBRange) - m->mDBRange);
-      else
-         *name += wxT(" ") + wxString::Format(_(" Peak %.2f "), peak);
-
-      if (clipped)
-         *name += wxT(" ") + _(" Clipped ");
-   }
-
-   return wxACC_OK;
-}
-
 // Returns a role constant.
-wxAccStatus MeterAx::GetRole(int /* childId */, wxAccRole* role)
+wxAccStatus MeterAx::GetRole(int WXUNUSED(childId), wxAccRole* role)
 {
-   MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
-
-   if (m->mAccSilent)
-      *role = wxROLE_NONE;    // Jaws and nvda both read nothing
-   else
-      *role = wxROLE_SYSTEM_BUTTONDROPDOWN;
+      *role = wxROLE_SYSTEM_SLIDER;
 
    return wxACC_OK;
 }
@@ -2279,13 +2168,13 @@ wxAccStatus MeterAx::GetRole(int /* childId */, wxAccRole* role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus MeterAx::GetSelections(wxVariant * /* selections */)
+wxAccStatus MeterAx::GetSelections(wxVariant * WXUNUSED(selections))
 {
    return wxACC_NOT_IMPLEMENTED;
 }
 
 // Returns a state constant.
-wxAccStatus MeterAx::GetState(int /* childId */, long* state)
+wxAccStatus MeterAx::GetState(int WXUNUSED(childId), long* state)
 {
    MeterPanel *m = wxDynamicCast( GetWindow(), MeterPanel );
 
@@ -2297,9 +2186,12 @@ wxAccStatus MeterAx::GetState(int /* childId */, long* state)
 
 // Returns a localized string representing the value for the object
 // or child.
-wxAccStatus MeterAx::GetValue(int /* childId */, wxString* /* strValue */)
+wxAccStatus MeterAx::GetValue(int WXUNUSED(childId), wxString* strValue)
 {
-   return wxACC_NOT_SUPPORTED;
+   MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
+
+   *strValue = m->mSlider->GetStringValue();
+   return wxACC_OK;
 }
 
 #endif

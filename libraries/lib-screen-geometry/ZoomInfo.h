@@ -11,17 +11,10 @@
 #ifndef __AUDACITY_ZOOM_INFO__
 #define __AUDACITY_ZOOM_INFO__
 
-// Tenacity libraries
-#include "Prefs.h" // to inherit
-#include "ClientData.h" // to inherit
+#include <cstdint>
+#include <vector>
 
-#ifdef __GNUC__
-#define CONST
-#else
-#define CONST const
-#endif
-
-class TenacityProject;
+class AudacityProject;
 
 // See big pictorial comment in TrackPanel.cpp for explanation of these numbers
 enum : int {
@@ -34,7 +27,7 @@ enum : int {
    kLeftMargin = kLeftInset + kBorderThickness,
    kRightMargin = kRightInset + kShadowThickness + kBorderThickness,
 
-   kTrackInfoWidth = 100 - kLeftMargin,
+   kTrackInfoWidth = 155 - kLeftMargin,
 };
 
 // The subset of ViewInfo information (other than selection)
@@ -43,10 +36,13 @@ enum : int {
 class SCREEN_GEOMETRY_API ZoomInfo /* not final */
    // Note that ViewInfo inherits from ZoomInfo but there are no virtual functions.
    // That's okay if we pass always by reference and never copy, suffering "slicing."
-   : public ClientData::Base
-   , protected PrefsListener
 {
 public:
+   using int64 = std::int64_t;
+
+   /*!
+    @param start leftmost visible timeline position, in seconds
+    */
    ZoomInfo(double start, double pixelsPerSecond);
    ~ZoomInfo();
 
@@ -54,36 +50,39 @@ public:
    ZoomInfo(const ZoomInfo&) = delete;
    ZoomInfo& operator= (const ZoomInfo&) = delete;
 
-   void UpdatePrefs() override;
-
-   int vpos;                    // vertical scroll pos
-
-   double h;                    // h pos in secs
+   //! Leftmost visible timeline position in seconds
+   double hpos;
 
 protected:
-   double zoom;                 // pixels per second
+   //! pixels per second
+   double zoom;
 
 public:
-   float dBr;                   // decibel scale range
-
    // do NOT use this once to convert a pixel width to a duration!
    // Instead, call twice to convert start and end times,
    // and take the difference.
    // origin specifies the pixel corresponding to time h
-   double PositionToTime(long long position, long long origin = 0 ) const;
+   double PositionToTime(int64 position,
+      int64 origin = 0
+      , bool ignoreFisheye = false
+   ) const;
 
    // do NOT use this once to convert a duration to a pixel width!
    // Instead, call twice to convert start and end positions,
    // and take the difference.
    // origin specifies the pixel corresponding to time h
-   long long TimeToPosition(double time, long long origin = 0) const;
+   int64 TimeToPosition(double time,
+      int64 origin = 0
+      , bool ignoreFisheye = false
+   ) const;
 
+   // This always ignores the fisheye.  Use with caution!
    // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
    double TimeRangeToPixelWidth(double timeRange) const;
 
-   double OffsetTimeByPixels(double time, long long offset) const
+   double OffsetTimeByPixels(double time, int64 offset, bool ignoreFisheye = false) const
    {
-      return PositionToTime(offset + TimeToPosition(time));
+      return PositionToTime(offset + TimeToPosition(time, ignoreFisheye), ignoreFisheye);
    }
 
    int GetWidth() const { return mWidth; }
@@ -92,9 +91,11 @@ public:
    int GetVRulerWidth() const { return mVRulerWidth; }
    void SetVRulerWidth( int width ) { mVRulerWidth = width; }
    int GetVRulerOffset() const { return kTrackInfoWidth + kLeftMargin; }
-   int GetLabelWidth() const { return GetVRulerOffset() + GetVRulerWidth(); }
-   int GetLeftOffset() const { return GetLabelWidth() + 1;}
 
+   // The x-coordinate of the start of the displayed track data
+   int GetLeftOffset() const
+      { return GetVRulerOffset() + GetVRulerWidth() + 1; }
+   // The number of pixel columns for display of track data
    int GetTracksUsableWidth() const
    {
       return
@@ -102,10 +103,11 @@ public:
    }
 
    // Returns the time corresponding to the pixel column one past the track area
+   // (ignoring any fisheye)
    double GetScreenEndTime() const
    {
       auto width = GetTracksUsableWidth();
-      return PositionToTime(width, 0);
+      return PositionToTime(width, 0, true);
    }
 
    bool ZoomInAvailable() const;
@@ -122,6 +124,11 @@ public:
    // Use TimeToPosition and PositionToTime and OffsetTimeByPixels instead
    double GetZoom() const;
 
+   /*! Get the absolute pixel offset, that corresponds to an offset on time line.
+    *  This function effectively return std::floor(0.5 + h * zoom + offset)
+    */
+   double GetAbsoluteOffset(double offset) const;
+
    static double GetMaxZoom( );
    static double GetMinZoom( );
 
@@ -130,9 +137,9 @@ public:
    void ZoomBy(double multiplier);
 
    struct Interval {
-      CONST long long position; CONST double averageZoom;
-      Interval(long long p, double z, bool i)
-         : position(p), averageZoom(z) {}
+      int64 position; double averageZoom; bool inFisheye;
+      Interval(int64 p, double z, bool i)
+         : position(p), averageZoom(z), inFisheye(i) {}
    };
    typedef std::vector<Interval> Intervals;
 
@@ -143,8 +150,29 @@ public:
    // It is guaranteed that there is at least one entry and the position of the
    // first entry equals origin.
    // @param origin specifies the pixel position corresponding to time ViewInfo::h.
-   void FindIntervals
-      (double rate, Intervals &results, long long width, long long origin = 0) const;
+   Intervals FindIntervals(int64 width, int64 origin = 0) const;
+
+   enum FisheyeState {
+      HIDDEN,
+      PINNED,
+
+      NUM_STATES,
+   };
+   FisheyeState GetFisheyeState() const
+   { return HIDDEN; } // stub
+
+   // Return true if the mouse position is anywhere in the fisheye
+   // origin specifies the pixel corresponding to time h
+   bool InFisheye(int64 /*position*/, int64 = 0) const
+   {return false;} // stub
+
+   // These accessors ignore the fisheye hiding state.
+   // Inclusive:
+   int64 GetFisheyeLeftBoundary(int64 = 0) const
+   {return 0;} // stub
+   // Exclusive:
+   int64 GetFisheyeRightBoundary(int64 = 0) const
+   {return 0;} // stub
 
    int mWidth{ 0 };
    int mVRulerWidth{ 36 };

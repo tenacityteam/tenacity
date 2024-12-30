@@ -28,7 +28,7 @@ class TENACITY_DLL_API ButtonHandle /* not final */ : public UIHandle
 
 public:
    std::shared_ptr<Track> GetTrack() const { return mpTrack.lock(); }
-   bool IsClicked() const { return mIsClicked; }
+   bool IsDragging() const override;
 
 protected:
    explicit ButtonHandle
@@ -38,41 +38,43 @@ protected:
 
    virtual ~ButtonHandle();
 
+   std::shared_ptr<const Track> FindTrack() const override;
+
    // This NEW abstract virtual simplifies the duties of further subclasses.
    // This class will decide whether to refresh the clicked cell for button state
    // change.
    // Subclass can decide to refresh other things and the results will be ORed.
    virtual Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent) = 0;
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent) = 0;
 
    // Define a message for the status bar and tooltip.
    virtual TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &project) const = 0;
+      const wxMouseState &state, AudacityProject &project) const = 0;
 
-   void Enter(bool forward, TenacityProject *) final override;
+   void Enter(bool forward, AudacityProject *) final override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject)
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject)
       final override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject)
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject)
       final override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       final override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) final override;
 
-   Result Cancel(TenacityProject *pProject) final override;
+   Result Cancel(AudacityProject *pProject) final override;
 
    std::weak_ptr<Track> mpTrack;
    wxRect mRect;
    bool mWasIn{ true };
-   bool mIsClicked{};
+   bool mIsDragging{};
 };
 
 #endif

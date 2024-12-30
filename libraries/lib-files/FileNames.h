@@ -12,7 +12,6 @@
 #define __AUDACITY_FILE_NAMES__
 
 #include <wx/dir.h> // for wxDIR_FILES
-#include <wx/string.h> // function return value
 #include "Identifier.h"
 #include "Prefs.h"
 
@@ -68,7 +67,7 @@ namespace FileNames
    // Frequently used types
    extern FILES_API const FileType
         AllFiles // *
-      , TenacityProjects // *.aup3
+      , AudacityProjects // *.aup3
       , DynamicLibraries // depends on the operating system
       , TextFiles // *.txt
       , XMLFiles; // *.xml, *.XML
@@ -91,14 +90,12 @@ namespace FileNames
 
    FILES_API wxString MkDir(const wxString &Str);
 
-   FILES_API bool IsMidi(const FilePath &fName);
-
    /** \brief A list of directories that should be searched for Audacity files
     * (plug-ins, help files, etc.).
     *
     * On Unix this will include the directory Audacity was installed into,
     * plus the current user's .audacity-data/Plug-Ins directory.  Additional
-    * directories can be specified using the TENACITY_PATH environment
+    * directories can be specified using the AUDACITY_PATH environment
     * variable.  On Windows or Mac OS, this will include the directory
     * which contains the Audacity program. */
    FILES_API const FilePaths &AudacityPathList();
@@ -109,12 +106,28 @@ namespace FileNames
       FilePaths &otherNames, wxFileName &newName);
 
    FILES_API wxString LowerCaseAppNameInPath( const wxString & dirIn);
+
+   /** \brief Audacity user cache directory
+    *
+    * Where audacity keeps its cache squirreled away, by default ~/.cache/audacity/
+    * on Unix, Application Data/Audacity on windows system */
+   FILES_API FilePath CacheDir();
+   /** \brief Audacity user config directory
+    *
+    * Where audacity keeps its settigns squirreled away, by default ~/.config/audacity/
+    * on Unix, Application Data/Audacity on windows system */
+   FILES_API FilePath ConfigDir();
    /** \brief Audacity user data directory
     *
-    * Where audacity keeps its settings and other user data squirreled away,
-    * by default ~/.audacity-data/ on Unix, Application Data/Audacity on
-    * windows system */
+    * Where audacity keeps its user data squirreled away, by default ~/.local/share/audacity/
+    * on Unix, Application Data/Audacity on windows system */
    FILES_API FilePath DataDir();
+   /** \brief Audacity user state directory
+    *
+    * Where audacity keeps its user state squirreled away, by default ~/.local/state/audacity/
+    * on Unix, Application Data/Audacity on windows system */
+   FILES_API FilePath StateDir();
+
    FILES_API FilePath ResourcesDir();
    FILES_API FilePath HtmlHelpDir();
    FILES_API FilePath HtmlHelpIndexFile(bool quick);
@@ -122,6 +135,7 @@ namespace FileNames
    FILES_API FilePath MacroDir();
    FILES_API FilePath NRPDir();
    FILES_API FilePath NRPFile();
+   FILES_API FilePath Configuration();
    FILES_API FilePath PluginRegistry();
    FILES_API FilePath PluginSettings();
 
@@ -134,13 +148,6 @@ namespace FileNames
     * if they don't have system admin rights. Under default settings, it's
     * <DataDir>/Plug-Ins/ */
    FILES_API FilePath PlugInDir();
-   FILES_API FilePath ThemeDir();
-   FILES_API FilePath ThemeComponentsDir();
-   FILES_API FilePath ThemeCachePng();
-   FILES_API FilePath ThemeCacheAsCee();
-   FILES_API FilePath ThemeComponent(const wxString &Str);
-   FILES_API FilePath ThemeCacheHtm();
-   FILES_API FilePath ThemeImageDefsAsCee();
 
    // Obtain name of loaded module that contains address
    FILES_API FilePath PathFromAddr(void *addr);
@@ -204,7 +211,9 @@ namespace FileNames
 
 
    //! Check location on writable access and return true if checked successfully.
-   FILES_API bool WritableLocationCheck(const FilePath& path);
+   // message is the explanation that is to be displayed to the user if the location is unwritable.
+   FILES_API bool WritableLocationCheck(const FilePath& path,
+                                       const TranslatableString & message);
 
    // wxString compare function for sorting case, which is needed to load correctly.
    FILES_API int CompareNoCase(const wxString& first, const wxString& second);

@@ -19,8 +19,6 @@
 #include "CommandSignature.h"
 #include "../commands/AudacityCommand.h"
 
-#include <optional>
-
 class OldStyleCommand;
 
 /**************************************************************//**
@@ -41,16 +39,17 @@ class CommandOutputTargets;
 class CommandSignature;
 class wxString;
 
+#include <optional>
+
 class TENACITY_DLL_API OldStyleCommandType : public AudacityCommand
 {
 private:
-   ComponentInterfaceSymbol mSymbol;
    std::optional<CommandSignature> mSignature;
 
 public:
    OldStyleCommandType();
    virtual ~OldStyleCommandType();
-   ComponentInterfaceSymbol GetSymbol() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
    CommandSignature &GetSignature();
    wxString Describe(); // for debugging only ?
 
@@ -58,7 +57,7 @@ public:
    // =========================================
 
    // Return the name of the command type
-   virtual ComponentInterfaceSymbol BuildName() = 0;
+   virtual ComponentInterfaceSymbol BuildName() const = 0;
 
    /// Postcondition: signature is a 'signature' map containing parameter
    // names, validators and default values.
@@ -66,7 +65,7 @@ public:
 
    // Create a command instance with the specified output target
    virtual OldStyleCommandPointer Create(
-      TenacityProject &project, std::unique_ptr<CommandOutputTargets> &&target) = 0;
+      AudacityProject &project, std::unique_ptr<CommandOutputTargets> &&target) = 0;
 };
 
 #endif /* End of include guard: __COMMANDTYPE__ */

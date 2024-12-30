@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 ProjectManager.h
 
-Paul Licameli split from TenacityProject.h
+Paul Licameli split from AudacityProject.h
 
 **********************************************************************/
 
@@ -15,20 +15,17 @@ Paul Licameli split from TenacityProject.h
 
 #include <wx/event.h> // to inherit
 #include "ClientData.h" // to inherit
-
-// Tenacity libraries
-#include <lib-strings/Identifier.h>
-#include <lib-utility/Observer.h>
+#include "Identifier.h"
+#include "Observer.h"
 
 class wxTimer;
 class wxTimerEvent;
 
-class TenacityProject;
+class AudacityProject;
 struct AudioIOStartStreamOptions;
 
-struct ProjectStatusEvent;
-
-enum StatusBarField : int;
+using StatusBarField = Identifier;
+enum class ProjectFileIOMessage : int;
 
 ///\brief Object associated with a project for high-level management of the
 /// project's lifetime, including creation, destruction, opening from file,
@@ -38,23 +35,23 @@ class TENACITY_DLL_API ProjectManager final
    , public ClientData::Base
 {
 public:
-   static ProjectManager &Get( TenacityProject &project );
-   static const ProjectManager &Get( const TenacityProject &project );
+   static ProjectManager &Get( AudacityProject &project );
+   static const ProjectManager &Get( const AudacityProject &project );
 
-   explicit ProjectManager( TenacityProject &project );
+   explicit ProjectManager( AudacityProject &project );
    ProjectManager( const ProjectManager & ) = delete;
    ProjectManager &operator=( const ProjectManager & ) = delete;
    ~ProjectManager() override;
 
    // This is the factory for projects:
-   static TenacityProject *New();
+   static AudacityProject *New();
 
    // The function that imports files can act as a factory too, and for that
    // reason remains in this class, not in ProjectFileManager
-   static void OpenFiles(TenacityProject *proj);
+   static void OpenFiles(AudacityProject *proj);
 
    //! False when it is unsafe to overwrite proj with contents of an .aup3 file
-   static bool SafeToOpenProjectInto(TenacityProject &proj);
+   static bool SafeToOpenProjectInto(AudacityProject &proj);
 
    //! Callable object that supplies the `chooser` argument of ProjectFileManager::OpenFile
    /*!
@@ -72,7 +69,7 @@ public:
        @param reuseNonemptyProject if true, may reuse the given project when nonempty,
        but only if importing (not for a project file)
        */
-      ProjectChooser( TenacityProject *pProject, bool reuseNonemptyProject )
+      ProjectChooser( AudacityProject *pProject, bool reuseNonemptyProject )
          : mpGivenProject{ pProject }
          , mReuseNonemptyProject{ reuseNonemptyProject }
       {}
@@ -81,17 +78,17 @@ public:
       //! Destroy any fresh project, or rollback the existing project, unless committed
       ~ProjectChooser();
       //! May create a fresh project
-      TenacityProject &operator() ( bool openingProjectFile );
+      AudacityProject &operator() ( bool openingProjectFile );
       //! Commit the creation of any fresh project or changes to the existing project
       void Commit();
 
    private:
-      TenacityProject *mpGivenProject;
-      TenacityProject *mpUsedProject = nullptr;
+      AudacityProject *mpGivenProject;
+      AudacityProject *mpUsedProject = nullptr;
       bool mReuseNonemptyProject;
    };
 
-   //! Open a file into an TenacityProject, returning the project, or nullptr for failure
+   //! Open a file into an AudacityProject, returning the project, or nullptr for failure
    /*!
     If an exception escapes this function, no projects are created.
     @param pGivenProject if not null, a project that may be reused
@@ -100,8 +97,8 @@ public:
     @param reuseNonemptyProject if true, may reuse the given project when nonempty,
        but only if importing (not for a project file)
     */
-   static TenacityProject *OpenProject(
-      TenacityProject *pGivenProject,
+   static AudacityProject *OpenProject(
+      AudacityProject *pGivenProject,
       const FilePath &fileNameArg, bool addtohistory, bool reuseNonemptyProject);
 
    void ResetProjectToEmpty();
@@ -113,26 +110,27 @@ public:
    // Converts number of minutes to human readable format
    TranslatableString GetHoursMinsString(int iMinutes);
 
-   void SetStatusText( const TranslatableString &text, int number );
+   void SetStatusText(const TranslatableString& text, const StatusBarField& field);
+   void SetStatusText(const TranslatableString& text, int number);
    void SetSkipSavePrompt(bool bSkip) { sbSkipPromptingForSave = bSkip; };
 
    static void SetClosingAll(bool closing);
 
 private:
-   void OnReconnectionFailure(wxCommandEvent & event);
+   void OnReconnectionFailure(ProjectFileIOMessage);
    void OnCloseWindow(wxCloseEvent & event);
    void OnTimer(wxTimerEvent & event);
-   void OnOpenAudioFile(wxCommandEvent & event);
    void OnStatusChange(StatusBarField field);
 
    void RestartTimer();
 
    // non-static data members
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
    std::unique_ptr<wxTimer> mTimer;
 
-   Observer::Subscription mSubscription;
+   Observer::Subscription mProjectStatusSubscription,
+      mProjectFileIOSubscription;
 
    DECLARE_EVENT_TABLE()
 

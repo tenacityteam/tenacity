@@ -33,8 +33,8 @@ class wxTextCtrl;
 struct FFTParam;
 class ShuttleGui;
 class SpectrogramSettings;
-class WaveTrack;
-struct WaveTrackSubViewPlacement;
+class WaveChannel;
+struct WaveChannelSubViewPlacement;
 
 #define SPECTRUM_PREFS_PLUGIN_SYMBOL ComponentInterfaceSymbol{ XO("Spectrum") }
 
@@ -42,10 +42,10 @@ class SpectrumPrefs final : public PrefsPanel
 {
  public:
    SpectrumPrefs(wxWindow * parent, wxWindowID winid,
-      TenacityProject *pProject, WaveTrack *wt);
+      AudacityProject *pProject, WaveChannel *wc);
    virtual ~SpectrumPrefs();
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
 
    void Preview() override;
    bool Commit() override;
@@ -67,9 +67,9 @@ class SpectrumPrefs final : public PrefsPanel
 
    void EnableDisableSTFTOnlyControls();
 
-   TenacityProject *mProject{};
+   AudacityProject *mProject{};
 
-   WaveTrack *const mWt;
+   WaveChannel *const mWc;
    bool mDefaulted, mOrigDefaulted;
 
    wxTextCtrl *mMinFreq;
@@ -78,11 +78,12 @@ class SpectrumPrefs final : public PrefsPanel
    wxTextCtrl *mRange;
    wxTextCtrl *mFrequencyGain;
 
-#ifdef EXPERIMENTAL_ZERO_PADDED_SPECTROGRAMS
+   /*
+    Zero-padding factor for spectrograms can smooth the display of
+    spectrograms by interpolating in frequency domain. */
    int mZeroPaddingChoice;
    wxChoice *mZeroPaddingChoiceCtrl;
    TranslatableStrings mZeroPaddingChoices;
-#endif
 
    TranslatableStrings mTypeChoices;
 
@@ -98,7 +99,7 @@ class SpectrumPrefs final : public PrefsPanel
 
    SpectrogramSettings mTempSettings, mOrigSettings;
 
-   std::vector<WaveTrackSubViewPlacement> mOrigPlacements;
+   std::vector<WaveChannelSubViewPlacement> mOrigPlacements;
    float mOrigMin, mOrigMax;
 
    bool mPopulating;
@@ -106,7 +107,7 @@ class SpectrumPrefs final : public PrefsPanel
 };
 
 /// A PrefsPanel::Factory that creates one SpectrumPrefs panel.
-/// This factory can be parametrized by a single track, to change settings
+/// This factory can be parametrized by a single channel, to change settings
 /// non-globally
-extern PrefsPanel::Factory SpectrumPrefsFactory( WaveTrack *wt = 0 );
+extern PrefsPanel::Factory SpectrumPrefsFactory(WaveChannel *wc = 0);
 #endif

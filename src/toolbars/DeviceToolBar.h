@@ -20,19 +20,23 @@ enum class DeviceChangeMessage : char;
 class wxSize;
 class wxPoint;
 class wxChoice;
-class Device;
+struct DeviceSourceMap;
 
-class TenacityProject;
+class AudacityProject;
 
 class DeviceToolBar final : public ToolBar {
 
  public:
 
-   DeviceToolBar( TenacityProject &project );
+   static Identifier ID();
+
+   DeviceToolBar( AudacityProject &project );
    virtual ~DeviceToolBar();
 
-   static DeviceToolBar &Get( TenacityProject &project );
-   static const DeviceToolBar &Get( const TenacityProject &project );
+   bool ShownByDefault() const override;
+
+   static DeviceToolBar &Get( AudacityProject &project );
+   static const DeviceToolBar &Get( const AudacityProject &project );
 
    void Create(wxWindow * parent) override;
 
@@ -41,7 +45,7 @@ class DeviceToolBar final : public ToolBar {
 
    void DeinitChildren();
    void Populate() override;
-   void Repaint(wxDC * /* dc */) override {};
+   void Repaint(wxDC * WXUNUSED(dc)) override {};
    void EnableDisableButtons() override;
    void OnFocus(wxFocusEvent &event);
    void OnCaptureKey(wxCommandEvent &event);
@@ -67,7 +71,7 @@ class DeviceToolBar final : public ToolBar {
    void FillHosts();
    void FillHostDevices();
    void FillInputChannels();
-   void SetDevices(const Device* in, const Device* out);
+   void SetDevices(const DeviceSourceMap *in, const DeviceSourceMap *out);
    void SetNames();
    void RegenerateTooltips() override;
    void ShowComboDialog(wxChoice *combo, const TranslatableString &title);
@@ -79,8 +83,13 @@ class DeviceToolBar final : public ToolBar {
 
    Observer::Subscription mSubscription;
 
+ public:
+
+   DECLARE_CLASS(DeviceToolBar)
    DECLARE_EVENT_TABLE()
 };
+
+int DeviceToolbarPrefsID();
 
 #endif
 

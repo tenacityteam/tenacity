@@ -17,9 +17,7 @@ Paul Licameli
 #include <mutex>
 #include <type_traits>
 #include <utility>
-
-// Tenacity libraries
-#include <lib-exceptions/InconsistencyException.h>
+#include "InconsistencyException.h"
 
 //! Class template generates single-dispatch, open method registry tables
 /*!
@@ -75,7 +73,7 @@ AttachedVirtualFunction<
    int, double // other arguments
 >;
 // Allow correct linkage for overrides defined in dynamically loaded modules:
-DECLARE_EXPORTED_ATTACHED_VIRTUAL(AUDACITY_DLL_API, DoSomething);
+DECLARE_EXPORTED_ATTACHED_VIRTUAL(TENACITY_DLL_API, DoSomething);
 ```
 
 Definitions needed:
@@ -191,7 +189,7 @@ public:
 
       // Check that inheritance is correct
       static_assert(
-         std::is_base_of< typename Overridden::Object, Object >::value,
+         std::is_base_of_v< typename Overridden::Object, Object >,
          "overridden class must be a base of the overriding class"
       );
 
@@ -212,7 +210,7 @@ public:
          std::call_once( flag, []{
             // Register in the table an adaptor thunk that downcasts the object
             auto implementation = Implementation();
-            Register< Subclass >( [=]( This &obj, Arguments &&...arguments ){
+            Register< Subclass >( [=]( This &obj, Arguments ...arguments ){
                return implementation(
                   static_cast< Subclass& >( obj ),
                   std::forward< Arguments >( arguments )... );
@@ -224,7 +222,7 @@ public:
    //! Invoke the method -- but only after static initialization time
    static Return Call(
       This &obj, //!< Object on which to type-switch at run-time
-      Arguments &&...arguments //!< other arguments
+      Arguments ...arguments //!< other arguments
    )
    {
       try {

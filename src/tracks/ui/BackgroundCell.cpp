@@ -11,11 +11,11 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "BackgroundCell.h"
 
-#include "../../AColor.h"
+#include "AColor.h"
 #include "../../HitTestResult.h"
 #include "Project.h"
 #include "../../RefreshCode.h"
-#include "../../SelectionState.h"
+#include "SelectionState.h"
 #include "Track.h"
 #include "../../TrackArtist.h"
 #include "../../TrackPanel.h"
@@ -26,7 +26,6 @@ Paul Licameli split from TrackPanel.cpp
 #include "ViewInfo.h"
 
 #include <wx/cursor.h>
-#include <wx/event.h>
 
 // Define this, just so the click to deselect can dispatch here
 // This handle class, unlike most, doesn't associate with any particular cell.
@@ -38,6 +37,9 @@ class BackgroundHandle : public UIHandle
 public:
    BackgroundHandle() {}
 
+   BackgroundHandle(BackgroundHandle&&) = default;
+   BackgroundHandle& operator=(BackgroundHandle&&) = default;
+
    static HitTestPreview HitPreview()
    {
       static wxCursor arrowCursor{ wxCURSOR_ARROW };
@@ -47,8 +49,11 @@ public:
    virtual ~BackgroundHandle()
    {}
 
+   std::shared_ptr<const Track> FindTrack() const override
+   { return nullptr; }
+
    Result Click
-      (const TrackPanelMouseEvent &evt, TenacityProject *pProject) override
+      (const TrackPanelMouseEvent &evt, AudacityProject *pProject) override
    {
       using namespace RefreshCode;
       const wxMouseEvent &event = evt.event;
@@ -67,38 +72,38 @@ public:
    }
 
    Result Drag
-      (const TrackPanelMouseEvent &, TenacityProject *) override
+      (const TrackPanelMouseEvent &, AudacityProject *) override
    { return RefreshCode::RefreshNone; }
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &, TenacityProject *) override
+      (const TrackPanelMouseState &, AudacityProject *) override
    { return HitPreview(); }
 
    Result Release
-      (const TrackPanelMouseEvent &, TenacityProject *,
+      (const TrackPanelMouseEvent &, AudacityProject *,
        wxWindow *) override
    { return RefreshCode::RefreshNone; }
 
-   Result Cancel(TenacityProject *) override
+   Result Cancel(AudacityProject *) override
    { return RefreshCode::RefreshNone; }
 };
 
-static const TenacityProject::AttachedObjects::RegisteredFactory key{
-  []( TenacityProject &parent ){
+static const AudacityProject::AttachedObjects::RegisteredFactory key{
+  []( AudacityProject &parent ){
      auto result = std::make_shared< BackgroundCell >( &parent );
      TrackPanel::Get( parent ).SetBackgroundCell( result );
      return result;
    }
 };
 
-BackgroundCell &BackgroundCell::Get( TenacityProject &project )
+BackgroundCell &BackgroundCell::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< BackgroundCell >( key );
 }
 
-const BackgroundCell &BackgroundCell::Get( const TenacityProject &project )
+const BackgroundCell &BackgroundCell::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
 BackgroundCell::~BackgroundCell()
@@ -107,14 +112,10 @@ BackgroundCell::~BackgroundCell()
 
 std::vector<UIHandlePtr> BackgroundCell::HitTest
 (const TrackPanelMouseState &,
- const TenacityProject *)
+ const AudacityProject *)
 {
-   std::vector<UIHandlePtr> results;
-   auto result = mHandle.lock();
-   if (!result)
-      result = std::make_shared<BackgroundHandle>();
-   results.push_back(result);
-   return results;
+   auto result = AssignUIHandlePtr(mHandle, std::make_shared<BackgroundHandle>());
+   return { result };
 }
 
 std::shared_ptr<Track> BackgroundCell::DoFindTrack()
@@ -152,7 +153,7 @@ wxRect BackgroundCell::DrawingArea(
 }
 
 auto BackgroundCell::GetMenuItems(
-   const wxRect &, const wxPoint *, TenacityProject * )
+   const wxRect &, const wxPoint *, AudacityProject * )
       -> std::vector<MenuItem>
 {
    // These commands exist in toolbar menus too, but maybe with other labels

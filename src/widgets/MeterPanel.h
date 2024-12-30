@@ -16,20 +16,21 @@
 #ifndef __AUDACITY_METER_PANEL__
 #define __AUDACITY_METER_PANEL__
 
+#include <atomic>
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/brush.h> // member variable
 #include <wx/defs.h>
 #include <wx/timer.h> // member variable
 
-// Tenacity libraries
-#include <lib-math/SampleFormat.h>
-#include <lib-preferences/Prefs.h>
-
+#include "ASlider.h"
+#include "LockFreeQueue.h"
 #include "MeterPanelBase.h" // to inherit
 #include "Observer.h"
+#include "Prefs.h"
 #include "Ruler.h" // member variable
+#include "SampleFormat.h"
 
-class TenacityProject;
+class AudacityProject;
 struct AudioIOEvent;
 
 // Increase this when we add support for multichannel meters
@@ -71,24 +72,12 @@ class MeterUpdateMsg
    wxString toStringIfClipped();
 };
 
-// Thread-safe queue of update messages
-class MeterUpdateQueue
-{
- public:
-   explicit MeterUpdateQueue(size_t maxLen);
-   ~MeterUpdateQueue();
-
-   bool Put(MeterUpdateMsg &msg);
-   bool Get(MeterUpdateMsg &msg);
-
-   void Clear();
-
- private:
-   int              mStart;
-   int              mEnd;
-   size_t           mBufferSize;
-   ArrayOf<MeterUpdateMsg> mBuffer{mBufferSize};
-};
+//
+// The MeterPanel passes itself messages via this queue so that it can
+// communicate between the audio thread and the GUI thread.
+// This class uses lock-free synchronization with atomics.
+//
+using MeterUpdateQueue = LockFreeQueue<MeterUpdateMsg>;
 
 class MeterAx;
 
@@ -98,7 +87,10 @@ or playback.
 ************************************************************************/
 class TENACITY_DLL_API MeterPanel final
    : public MeterPanelBase, private PrefsListener
+   , public NonInterferingBase
 {
+   DECLARE_DYNAMIC_CLASS(MeterPanel)
+
  public:
    // These should be kept in the same order as they appear
    // in the menu
@@ -112,7 +104,7 @@ class TENACITY_DLL_API MeterPanel final
    };
 
 
-   MeterPanel(TenacityProject *,
+   MeterPanel(AudacityProject *,
          wxWindow* parent, wxWindowID id,
          bool isInput,
          const wxPoint& pos = wxDefaultPosition,
@@ -175,6 +167,10 @@ class TENACITY_DLL_API MeterPanel final
    bool IsMeterDisabled() const override;
 
    float GetMaxPeak() const override;
+   float GetPeakHold() const;
+
+   bool IsMonitoring() const;
+   bool IsActive() const;
 
    bool IsClipping() const override;
 
@@ -185,8 +181,18 @@ class TENACITY_DLL_API MeterPanel final
    struct State{ bool mSaved, mMonitoring, mActive; };
    State SaveState();
    void RestoreState(const State &state);
+   void SetMixer(wxCommandEvent& event);
 
    int GetDBRange() const override { return mDB ? mDBRange : -1; }
+
+   bool ShowDialog();
+   void Increase(float steps);
+   void Decrease(float steps);
+   void UpdateSliderControl();
+
+   void ShowMenu(const wxPoint & pos);
+
+   void SetName(const TranslatableString& name);
 
  private:
    void UpdatePrefs() override;
@@ -199,17 +205,18 @@ class TENACITY_DLL_API MeterPanel final
    void OnErase(wxEraseEvent &evt);
    void OnPaint(wxPaintEvent &evt);
    void OnSize(wxSizeEvent &evt);
-   bool InIcon(wxMouseEvent *pEvent = nullptr) const;
    void OnMouse(wxMouseEvent &evt);
    void OnKeyDown(wxKeyEvent &evt);
-   void OnKeyUp(wxKeyEvent &evt);
+   void OnCharHook(wxKeyEvent &evt);
    void OnContext(wxContextMenuEvent &evt);
    void OnSetFocus(wxFocusEvent &evt);
    void OnKillFocus(wxFocusEvent &evt);
 
    void OnAudioIOStatus(AudioIOEvent);
+   void OnAudioCapture(AudioIOEvent);
 
    void OnMeterUpdate(wxTimerEvent &evt);
+   void OnTipTimeout(wxTimerEvent& evt);
 
    void HandleLayout(wxDC &dc);
    void SetActiveStyle(Style style);
@@ -222,80 +229,78 @@ class TENACITY_DLL_API MeterPanel final
    //
    // Pop-up menu
    //
-   void ShowMenu(const wxPoint & pos);
    void OnMonitor(wxCommandEvent &evt);
    void OnPreferences(wxCommandEvent &evt);
 
    wxString Key(const wxString & key) const;
 
-   Observer::Subscription mSubscription;
+   Observer::Subscription mAudioIOStatusSubscription;
+   Observer::Subscription mAudioCaptureSubscription;
 
-   TenacityProject *mProject;
+   AudacityProject *mProject;
    MeterUpdateQueue mQueue;
    wxTimer          mTimer;
+   wxTimer          mTipTimer;
 
    int       mWidth;
    int       mHeight;
 
-   int       mRulerWidth;
-   int       mRulerHeight;
+   int       mRulerWidth{};
+   int       mRulerHeight{};
 
    bool      mIsInput;
 
-   Style     mStyle;
+   Style     mStyle{};
    Style     mDesiredStyle;
-   bool      mSolidColors;
+   bool      mGradient;
    bool      mDB;
    int       mDBRange;
    bool      mDecay;
-   float     mDecayRate; // dB/sec
+   float     mDecayRate{}; // dB/sec
    bool      mClip;
    int       mNumPeakSamplesToClip;
    double    mPeakHoldDuration;
    double    mT;
    double    mRate;
-   long      mMeterRefreshRate;
-   long      mMeterDisabled; //is used as a bool, needs long for easy gPrefs...
+   long      mMeterRefreshRate{};
+   long      mMeterDisabled{}; //is used as a bool, needs long for easy gPrefs...
 
    bool      mMonitoring;
 
    bool      mActive;
 
    unsigned  mNumBars;
-   MeterBar  mBar[kMaxMeterBars];
+   MeterBar  mBar[kMaxMeterBars]{};
 
    bool      mLayoutValid;
 
    std::unique_ptr<wxBitmap> mBitmap;
-   wxRect    mIconRect;
    wxPoint   mLeftTextPos;
    wxPoint   mRightTextPos;
    wxSize    mLeftSize;
    wxSize    mRightSize;
-   std::unique_ptr<wxBitmap> mIcon;
    wxPen     mPen;
-   wxPen     mDisabledPen;
    wxPen     mPeakPeakPen;
    wxBrush   mBrush;
    wxBrush   mRMSBrush;
    wxBrush   mClipBrush;
    wxBrush   mBkgndBrush;
    wxBrush   mDisabledBkgndBrush;
+   wxBrush   mMeterBkgndBrush;
    Ruler     mRuler;
    wxString  mLeftText;
    wxString  mRightText;
 
-   bool mIsFocused;
-   wxRect mFocusRect;
-#if defined(__WXMSW__)
-   bool mHadKeyDown;
-#endif
+   std::unique_ptr<LWSlider> mSlider;
+   wxPoint mSliderPos;
+   wxSize mSliderSize;
 
-   bool mAccSilent;
+   bool mEnabled{ true };
+
+   bool mIsFocused{};
+   wxRect mFocusRect;
 
    friend class MeterAx;
-
-   bool mHighlighted {};
 
    DECLARE_EVENT_TABLE()
 };

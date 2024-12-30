@@ -12,56 +12,26 @@
 #ifndef __AUDACITY_EFFECT_ECHO__
 #define __AUDACITY_EFFECT_ECHO__
 
-#include "Effect.h"
+#include "EchoBase.h"
+#include "ShuttleAutomation.h"
+#include "StatelessPerTrackEffect.h"
+#include <float.h> // for FLT_MAX
 
 class ShuttleGui;
 
-using Floats = ArrayOf<float>;
-
-class EffectEcho final : public Effect
+class EffectEcho final : public EchoBase, public StatelessEffectUIServices
 {
-public:
-   static const ComponentInterfaceSymbol Symbol;
+   public:
 
-   EffectEcho();
-   virtual ~EffectEcho();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   unsigned GetAudioInCount() override;
-   unsigned GetAudioOutCount() override;
-   bool ProcessInitialize(sampleCount totalLen, ChannelNames chanMap = NULL) override;
-   bool ProcessFinalize() override;
-   size_t ProcessBlock( const float *const *inBlock, float *const *outBlock,
-      size_t blockLen) override;
-   bool DefineParams( ShuttleParams & S ) override;
+   struct Editor;
 
    // Effect implementation
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
+   std::unique_ptr<EffectEditor> MakeEditor(
+      ShuttleGui & S, EffectInstance &instance,
+      EffectSettingsAccess &access, const EffectOutputs *pOutputs)
+   const override;
 
-private:
-   // EffectEcho implementation
-
-private:
-   double delay;
-   double decay;
-   Floats history;
-   size_t histPos;
-   size_t histLen;
+   std::shared_ptr<EffectInstance> MakeInstance() const override;
 };
 
 #endif // __AUDACITY_EFFECT_ECHO__

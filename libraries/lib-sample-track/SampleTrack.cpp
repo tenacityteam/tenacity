@@ -12,6 +12,13 @@ Paul Licameli split from WaveTrack.cpp
 
 #include <cmath>
 
+SampleTrack::SampleTrack() = default;
+
+SampleTrack::SampleTrack(const SampleTrack &other, ProtectedCreationArg &&a)
+   : PlayableTrack(other, std::move(a))
+{
+}
+
 SampleTrack::~SampleTrack() = default;
 
 static const Track::TypeInfo &typeInfo()
@@ -32,14 +39,12 @@ auto SampleTrack::GetTypeInfo() const -> const TypeInfo &
    return typeInfo();
 }
 
-sampleCount SampleTrack::TimeToLongSamples(double t0) const
-{
-   return sampleCount( floor(t0 * GetRate() + 0.5) );
-}
+WritableSampleTrack::WritableSampleTrack() = default;
 
-double SampleTrack::LongSamplesToTime(sampleCount pos) const
+WritableSampleTrack::WritableSampleTrack(
+   const WritableSampleTrack &other, ProtectedCreationArg &&a
+)  : SampleTrack(other, std::move(a))
 {
-   return pos.as_double() / GetRate();
 }
 
 WritableSampleTrack::~WritableSampleTrack() = default;

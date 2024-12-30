@@ -25,7 +25,7 @@ SliderHandle::SliderHandle
 {
 }
 
-void SliderHandle::Enter(bool, TenacityProject *)
+void SliderHandle::Enter(bool, AudacityProject *)
 {
    mChangeHighlight = RefreshCode::RefreshCell;
 }
@@ -34,8 +34,18 @@ SliderHandle::~SliderHandle()
 {
 }
 
+std::shared_ptr<const Track> SliderHandle::FindTrack() const
+{
+   return mpTrack.lock();
+}
+
+bool SliderHandle::IsDragging() const
+{
+   return mIsDragging;
+}
+
 UIHandle::Result SliderHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    wxMouseEvent &event = evt.event;
    using namespace RefreshCode;
@@ -56,13 +66,13 @@ UIHandle::Result SliderHandle::Click
       // Do not start a drag
       return result | RefreshCell | Cancelled;
    else {
-      mIsClicked = true;
+      mIsDragging = true;
       return result | RefreshCell;
    }
 }
 
 UIHandle::Result SliderHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    wxMouseEvent &event = evt.event;
    using namespace RefreshCode;
@@ -74,7 +84,7 @@ UIHandle::Result SliderHandle::Drag
 }
 
 HitTestPreview SliderHandle::Preview
-(const TrackPanelMouseState &st, TenacityProject *project)
+(const TrackPanelMouseState &st, AudacityProject *project)
 {
    // No special cursor
    TranslatableString message;
@@ -84,7 +94,7 @@ HitTestPreview SliderHandle::Preview
 }
 
 UIHandle::Result SliderHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
  wxWindow *)
 {
    using namespace RefreshCode;
@@ -102,7 +112,7 @@ UIHandle::Result SliderHandle::Release
    return result;
 }
 
-UIHandle::Result SliderHandle::Cancel(TenacityProject *pProject)
+UIHandle::Result SliderHandle::Cancel(AudacityProject *pProject)
 {
    wxMouseEvent event(wxEVT_LEFT_UP);
    GetSlider( pProject )->OnMouseEvent(event);
@@ -113,7 +123,7 @@ UIHandle::Result SliderHandle::Cancel(TenacityProject *pProject)
    return RefreshCode::RefreshCell | result;
 }
 
-LWSlider *SliderHandle::GetSlider( TenacityProject *pProject )
+LWSlider *SliderHandle::GetSlider( AudacityProject *pProject )
 {
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
    return mSliderFn( pProject, mRect, pTrack.get() );

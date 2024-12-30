@@ -12,10 +12,13 @@
 
 #include <wx/font.h>
 
+#include "Channel.h"
 #include "Observer.h"
-#include "../../../ui/CommonTrackPanelCell.h"
-#include "../../../ui/TextEditHelper.h"
-#include "../../../ui/SelectHandle.h"
+#include "ViewInfo.h"
+#include "WaveTrack.h"
+#include "tracks/ui/CommonTrackPanelCell.h"
+#include "tracks/ui/TextEditHelper.h"
+
 
 struct TrackListEvent;
 
@@ -24,84 +27,99 @@ class SelectHandle;
 class WaveClip;
 class TrackPanelResizeHandle;
 class WaveClipTitleEditHandle;
+class ClipOverflowButtonHandle;
+class ClipPitchAndSpeedButtonHandle;
 class WaveTrackAffordanceHandle;
-class WaveClipTrimHandle;
+class WaveClipAdjustBorderHandle;
 class TrackList;
 
 //Handles clip movement, selection, navigation and
 //allow name change
-class TENACITY_DLL_API WaveTrackAffordanceControls : 
+class TENACITY_DLL_API WaveTrackAffordanceControls :
     public CommonTrackCell,
     public TextEditDelegate,
     public std::enable_shared_from_this<WaveTrackAffordanceControls>
 {
-    std::weak_ptr<WaveClip> mFocusClip;
+    using IntervalIterator = ChannelGroup::IntervalIterator<WaveTrack::Interval>;
+
+    IntervalIterator mFocusInterval;
+    std::weak_ptr<ClipOverflowButtonHandle> mOverflowButtonHandle;
+    std::weak_ptr<ClipPitchAndSpeedButtonHandle> mPitchButtonHandle;
+    std::weak_ptr<ClipPitchAndSpeedButtonHandle> mSpeedButtonHandle;
     std::weak_ptr<WaveTrackAffordanceHandle> mAffordanceHandle;
     std::weak_ptr<TrackPanelResizeHandle> mResizeHandle;
     std::weak_ptr<WaveClipTitleEditHandle> mTitleEditHandle;
     std::weak_ptr<SelectHandle> mSelectHandle;
-    std::weak_ptr<WaveClipTrimHandle> mClipTrimHandle;
+    std::weak_ptr<WaveClipAdjustBorderHandle> mClipBorderAdjustHandle;
 
-    std::weak_ptr<WaveClip> mEditedClip;
+    IntervalIterator mEditedInterval;
     std::shared_ptr<TextEditHelper> mTextEditHelper;
 
     wxFont mClipNameFont;
 
-    //Helper flag, checked when text editing is triggered (and dialog-edit option is disabled)
-    bool mClipNameVisible { false };
+    //Helper container used to track clips names visibility
+    std::vector<IntervalIterator> mVisibleIntervals;
 
 public:
     WaveTrackAffordanceControls(const std::shared_ptr<Track>& pTrack);
 
-    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject) override;
+    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const AudacityProject* pProject) override;
 
     void Draw(TrackPanelDrawingContext& context, const wxRect& rect, unsigned iPass) override;
 
-    //Invokes name editing for a clip that currently is
-    //in focus(as a result of hit testing), returns true on success
-    //false if there is no focus
-    bool StartEditClipName(TenacityProject* project);
-
-    std::weak_ptr<WaveClip> GetSelectedClip() const;
+    IntervalIterator GetSelectedInterval() const;
 
     unsigned CaptureKey
     (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-        TenacityProject* project) override;
-    
+        AudacityProject* project) override;
+
     unsigned KeyDown (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-        TenacityProject* project) override;
+        AudacityProject* project) override;
 
     unsigned Char
     (wxKeyEvent& event, ViewInfo& viewInfo, wxWindow* pParent,
-        TenacityProject* project) override;
+        AudacityProject* project) override;
 
-    unsigned LoseFocus(TenacityProject *project) override;
+    unsigned LoseFocus(AudacityProject *project) override;
 
-    void OnTextEditFinished(TenacityProject* project, const wxString& text) override;
-    void OnTextEditCancelled(TenacityProject* project) override;
-    void OnTextModified(TenacityProject* project, const wxString& text) override;
-    void OnTextContextMenu(TenacityProject* project, const wxPoint& position) override;
+    void OnTextEditFinished(AudacityProject* project, const wxString& text) override;
+    void OnTextEditCancelled(AudacityProject* project) override;
+    void OnTextModified(AudacityProject* project, const wxString& text) override;
+    void OnTextContextMenu(AudacityProject* project, const wxPoint& position) override;
 
-    bool StartEditNameOfMatchingClip( TenacityProject &project,
-        std::function<bool(WaveClip&)> test /*!<
-            Edit the first clip in the track's list satisfying the test */
-    );
+    unsigned OnAffordanceClick(const TrackPanelMouseEvent& event, AudacityProject* project);
 
-    unsigned OnAffordanceClick(const TrackPanelMouseEvent& event, TenacityProject* project);
+    bool OnTextCopy(AudacityProject& project);
+    bool OnTextCut(AudacityProject& project);
+    bool OnTextPaste(AudacityProject& project);
+    bool OnTextSelect(AudacityProject& project);
 
-    bool OnTextCopy(TenacityProject& project);
-    bool OnTextCut(TenacityProject& project);
-    bool OnTextPaste(TenacityProject& project);
-    bool OnTextSelect(TenacityProject& project);
+    void StartEditSelectedClipName(AudacityProject& project);
 
+    void StartEditSelectedClipSpeed(AudacityProject& project);
+
+    void OnRenderClipStretching(AudacityProject& project) const;
+
+    std::vector<MenuItem> GetMenuItems(
+       const wxRect &rect, const wxPoint *pPosition, AudacityProject *pProject )
+    override;
 private:
+
+    bool IsIntervalVisible(const IntervalIterator& it) const noexcept;
+    ///@brief Starts in-place clip name editing or shows a Clip Name Edit dialog, depending on prefs
+    ///@param clip to be edited. Should belong to the same `WaveTrack` as returned by `FindTrack()`
+    bool StartEditClipName(AudacityProject& project, IntervalIterator it);
+
     void ResetClipNameEdit();
 
-    void OnTrackChanged(const TrackListEvent& evt);
+    void OnTrackListEvent(const TrackListEvent& evt);
+
+    void OnSelectionChange(NotifyingSelectedRegionMessage);
 
     unsigned ExitTextEditing();
 
     std::shared_ptr<TextEditHelper> MakeTextEditHelper(const wxString& text);
 
-    Observer::Subscription mSubscription;
+    Observer::Subscription mTrackListEventSubscription;
+    Observer::Subscription mSelectionChangeSubscription;
 };

@@ -21,12 +21,10 @@
 #include <wx/listctrl.h>
 #include <wx/dnd.h>
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-
-#include "../shuttle/ShuttleGui.h"
-#include "../import/Import.h"
-#include "../widgets/AudacityMessageBox.h"
+#include "Prefs.h"
+#include "ShuttleGui.h"
+#include "Import.h"
+#include "AudacityMessageBox.h"
 #include "../widgets/Grid.h"
 
 #define EXTIMPORT_MIME_SUPPORT 0
@@ -76,19 +74,19 @@ ExtImportPrefs::~ExtImportPrefs()
 {
 }
 
-ComponentInterfaceSymbol ExtImportPrefs::GetSymbol()
+ComponentInterfaceSymbol ExtImportPrefs::GetSymbol() const
 {
    return EXT_IMPORT_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString ExtImportPrefs::GetDescription()
+TranslatableString ExtImportPrefs::GetDescription() const
 {
    return XO("Preferences for ExtImport");
 }
 
 ManualPageID ExtImportPrefs::HelpPageName()
 {
-   return "Preferences#extended-import";
+   return "Extended_Import_Preferences";
 }
 
 /// Creates the dialog and its contents.
@@ -122,7 +120,7 @@ void ExtImportPrefs::PopulateOrExchange(ShuttleGui & S)
          bool fillRuleTable = false;
          if (RuleTable == NULL)
          {
-            RuleTable = safenew Grid(S.GetParent(),EIPRuleTable);
+            RuleTable = safenew Grid(FormatterContext::EmptyContext(), S.GetParent(),EIPRuleTable);
 
             RuleTable->SetColLabelSize(RuleTable->GetDefaultRowSize());
 #if EXTIMPORT_MIME_SUPPORT
@@ -374,7 +372,7 @@ void ExtImportPrefs::SwapRows (int row1, int row2)
    }
 }
 
-void ExtImportPrefs::OnPluginBeginDrag(wxListEvent& /* event */)
+void ExtImportPrefs::OnPluginBeginDrag(wxListEvent& WXUNUSED(event))
 {
    wxDropSource dragSource(this);
    dragtext2->SetText(wxT(""));
@@ -621,7 +619,7 @@ void ExtImportPrefs::AddItemToTable (int index, const ExtImportItem *item)
    RuleTable->AutoSizeColumns ();
 }
 
-void ExtImportPrefs::OnAddRule(wxCommandEvent& /* event */)
+void ExtImportPrefs::OnAddRule(wxCommandEvent& WXUNUSED(event))
 {
    auto &items = Importer::Get().GetImportItems();
    auto uitem = Importer::Get().CreateDefaultImportItem();
@@ -634,7 +632,7 @@ void ExtImportPrefs::OnAddRule(wxCommandEvent& /* event */)
    RuleTable->SetFocus();
 }
 
-void ExtImportPrefs::OnDelRule(wxCommandEvent& /* event */)
+void ExtImportPrefs::OnDelRule(wxCommandEvent& WXUNUSED(event))
 {
    if (last_selected < 0)
       return;
@@ -664,12 +662,12 @@ void ExtImportPrefs::OnDelRule(wxCommandEvent& /* event */)
    }
 }
 
-void ExtImportPrefs::OnRuleMoveUp(wxCommandEvent& /* event */)
+void ExtImportPrefs::OnRuleMoveUp(wxCommandEvent& WXUNUSED(event))
 {
    DoOnRuleTableKeyDown (WXK_UP);
 }
 
-void ExtImportPrefs::OnRuleMoveDown(wxCommandEvent& /* event */)
+void ExtImportPrefs::OnRuleMoveDown(wxCommandEvent& WXUNUSED(event))
 {
    DoOnRuleTableKeyDown (WXK_DOWN);
 }
@@ -684,12 +682,12 @@ void ExtImportPrefs::FakeOnPluginKeyDown (int keycode)
    mFakeKeyEvent = false;
 }
 
-void ExtImportPrefs::OnFilterMoveUp(wxCommandEvent& /* event */)
+void ExtImportPrefs::OnFilterMoveUp(wxCommandEvent& WXUNUSED(event))
 {
    FakeOnPluginKeyDown (WXK_UP);
 }
 
-void ExtImportPrefs::OnFilterMoveDown(wxCommandEvent& /* event */)
+void ExtImportPrefs::OnFilterMoveDown(wxCommandEvent& WXUNUSED(event))
 {
    FakeOnPluginKeyDown (WXK_DOWN);
 }
@@ -735,7 +733,7 @@ void ExtImportPrefsDropTarget::SetPrefs (ExtImportPrefs *prefs)
    mPrefs = prefs;
 }
 
-wxDragResult ExtImportPrefsDropTarget::OnData(wxCoord  /* x */, wxCoord  /* y */,
+wxDragResult ExtImportPrefsDropTarget::OnData(wxCoord  WXUNUSED(x), wxCoord  WXUNUSED(y),
       wxDragResult def)
 {
    return def;
@@ -798,7 +796,7 @@ wxDragResult ExtImportPrefsDropTarget::OnEnter(wxCoord x, wxCoord y,
 }
 
 wxDragResult ExtImportPrefsDropTarget::OnDragOver(wxCoord x, wxCoord y,
-      wxDragResult /* def */)
+      wxDragResult WXUNUSED(def))
 {
    if (mPrefs == NULL)
       return wxDragNone;
@@ -854,7 +852,7 @@ void ExtImportPrefsDropTarget::OnLeave()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "ExtImport",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew ExtImportPrefs(parent, winid);

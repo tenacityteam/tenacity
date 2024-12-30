@@ -5,6 +5,7 @@
   SelectionBar.h
 
   Dominic Mazzoni
+  Dmitry Vedenko
 
 **********************************************************************/
 
@@ -13,89 +14,99 @@
 
 #include <wx/defs.h>
 
+#include <array>
+
 #include "ToolBar.h"
+#include "widgets/auStaticText.h"
 
-// Tenacity libraries
-#include <lib-utility/Observer.h>
+#include "Observer.h"
 
-// Column for 
-//   Selection fields
-//   Vertical Line
 
 class wxChoice;
+class wxComboBox;
 class wxCommandEvent;
 class wxDC;
 class wxSizeEvent;
 class wxStaticText;
 
-class AuStaticText;
-class TenacityProject;
-class SelectionBarListener;
+class AudacityProject;
 class NumericTextCtrl;
+
+extern IntSetting SelectionToolbarMode;
 
 class TENACITY_DLL_API SelectionBar final : public ToolBar {
 
  public:
-   SelectionBar( TenacityProject &project );
+   enum class SelectionMode
+   {
+      StartEnd,
+      StartLength,
+      LengthEnd,
+      LengthCenter 
+   };
+   
+   static Identifier ID();
+
+   SelectionBar( AudacityProject &project );
    virtual ~SelectionBar();
 
-   static SelectionBar &Get( TenacityProject &project );
-   static const SelectionBar &Get( const TenacityProject &project );
+   bool ShownByDefault() const override;
+   DockID DefaultDockID() const override;
+
+   static SelectionBar &Get( AudacityProject &project );
+   static const SelectionBar &Get( const AudacityProject &project );
 
    void Create(wxWindow *parent) override;
 
    void Populate() override;
-   void Repaint(wxDC * /* dc */) override {};
+   void Repaint(wxDC * WXUNUSED(dc)) override {};
    void EnableDisableButtons() override {};
    void UpdatePrefs() override;
 
    void SetTimes(double start, double end);
-   void SetSelectionFormat(const NumericFormatSymbol & format);
-   void SetListener(SelectionBarListener *l);
-   void RegenerateTooltips() override {}
+
+   void SetSelectionFormat(const NumericFormatID & format);
+   void RegenerateTooltips() override;
 
  private:
-   AuStaticText * AddTitle( const TranslatableString & Title,
+   AButton* MakeSetupButton();
+   
+   void AddTitle( const TranslatableString & Title,
       wxSizer * pSizer );
-   NumericTextCtrl * AddTime( const TranslatableString &Name, int id, wxSizer * pSizer );
+   void AddTime( int id, wxSizer * pSizer );
+   void AddSelectionSetupButton(wxSizer* pSizer);
 
-   void SetSelectionMode(int mode);
-   void ShowHideControls(int mode);
-   void SetDrivers( int driver1, int driver2 );
+   void SetSelectionMode(SelectionMode mode);
    void ValuesToControls();
    void OnUpdate(wxCommandEvent &evt);
-   void OnChangedTime(wxCommandEvent &evt);
 
-   void OnRate(double newRate);
-   void OnChoice(wxCommandEvent & event);
    void OnFocus(wxFocusEvent &event);
    void OnCaptureKey(wxCommandEvent &event);
    void OnSize(wxSizeEvent &evt);
    void OnIdle( wxIdleEvent &evt );
 
-   void ModifySelection(int newDriver, bool done = false);
+   void ModifySelection(int driver, bool done = false);
    void SelectionModeUpdated();
 
-   SelectionBarListener * mListener;
-   Observer::Subscription mProjectRateSubscription;
+   void UpdateTimeControlsFormat(const NumericFormatID& format);
+
+   void FitToTimeControls();
+
+   void OnFormatsChanged(struct ProjectNumericFormatsEvent);
+
    double mRate;
    double mStart, mEnd, mLength, mCenter;
 
-   // These two numbers say which two controls 
-   // drive the other two.
-   int mDrive1;
-   int mDrive2;
+   SelectionMode mSelectionMode {};
+   SelectionMode mLastSelectionMode {};
 
-   int mSelectionMode{ 0 };
-   int mLastSelectionMode{ 0 };
+   std::array<NumericTextCtrl*, 2> mTimeControls {};
+   AButton* mSetupButton{};
 
-   NumericTextCtrl   *mStartTime;
-   NumericTextCtrl   *mCenterTime;
-   NumericTextCtrl   *mLengthTime;
-   NumericTextCtrl   *mEndTime;
-   wxChoice          *mChoice;
+   Observer::Subscription mFormatChangedToFitValueSubscription[2];
 
    wxString mLastValidText;
+   const Observer::Subscription mFormatsSubscription;
 
  public:
 

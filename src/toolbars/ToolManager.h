@@ -16,18 +16,16 @@
 #include <functional>
 
 #include <wx/defs.h>
-#include <wx/event.h>
-#include <wx/eventfilter.h>
-
+#include <wx/eventfilter.h> // to inherit
 #include <wx/frame.h> // to inherit
 #include <wx/timer.h> // member variable
 
 #include "ClientData.h"
 #include "GlobalVariable.h"
+#include "Observer.h"
 #include "ToolDock.h"
 
-#include "../commands/CommandFunctors.h"
-#include "../commands/CommandManager.h"
+#include "CommandFunctors.h"
 
 
 class wxCommandEvent;
@@ -42,7 +40,7 @@ class wxTimer;
 class wxTimerEvent;
 class wxWindow;
 
-class TenacityProject;
+class AudacityProject;
 class ProjectWindow;
 class ToolFrame;
 
@@ -62,10 +60,10 @@ class TENACITY_DLL_API ToolManager final
       wxWindow*( wxWindow& )
    >{};
 
-   static ToolManager &Get( TenacityProject &project );
-   static const ToolManager &Get( const TenacityProject &project );
+   static ToolManager &Get( AudacityProject &project );
+   static const ToolManager &Get( const AudacityProject &project );
 
-   ToolManager( TenacityProject *parent );
+   ToolManager( AudacityProject *parent );
    ToolManager( const ToolManager & ) = delete;
    ToolManager &operator=( const ToolManager & ) = delete;
    ~ToolManager();
@@ -74,15 +72,15 @@ class TENACITY_DLL_API ToolManager final
 
    void LayoutToolBars();
 
-   bool IsDocked( int type );
+   bool IsDocked( Identifier type ) const;
 
-   bool IsVisible( int type );
+   bool IsVisible( Identifier type ) const;
 
-   void ShowHide( int type );
+   void ShowHide( Identifier type );
 
-   void Expose( int type, bool show );
+   void Expose( Identifier type, bool show );
 
-   ToolBar *GetToolBar( int type ) const;
+   ToolBar *GetToolBar(const Identifier &type) const;
 
    ToolDock *GetTopDock();
    const ToolDock *GetTopDock() const;
@@ -99,10 +97,29 @@ class TENACITY_DLL_API ToolManager final
 
    bool RestoreFocus();
 
+   //! Visit bars, lexicographically by their textual ids
+   template< typename F >
+   void ForEach(F &&fun)
+   {
+      std::for_each(std::begin(mBars), std::end(mBars), [&fun](auto &pair){
+         fun(pair.second.get());
+      });
+   }
+
+   size_t CountBars() const
+   {
+      return mBars.size();
+   }
+
+   static void ModifyToolbarMenus(AudacityProject &project);
+   // Calls ModifyToolbarMenus() on all projects
+   static void ModifyAllProjectToolbarMenus();
+
  private:
 
    ToolBar *Float( ToolBar *t, wxPoint & pos );
 
+   void OnMenuUpdate(struct MenuUpdateMessage);
    void OnTimer( wxTimerEvent & event );
    void OnMouse( wxMouseEvent & event );
    void OnCaptureLost( wxMouseCaptureLostEvent & event );
@@ -118,7 +135,8 @@ class TENACITY_DLL_API ToolManager final
    void WriteConfig();
    void Updated();
 
-   TenacityProject *mParent;
+   Observer::Subscription mMenuManagerSubscription;
+   AudacityProject *mParent;
    wxWindowRef mLastFocus{};
 
    ToolFrame *mDragWindow;
@@ -145,7 +163,8 @@ class TENACITY_DLL_API ToolManager final
    ToolDock *mTopDock{};
    ToolDock *mBotDock{};
 
-   ToolBar::Holder mBars[ ToolBarCount ];
+   //! map not unordered_map, for the promise made by ForEach
+   std::map<Identifier, ToolBar::Holder> mBars;
 
    wxPoint mPrevPosition {};
    ToolDock *mPrevDock {};
@@ -155,6 +174,9 @@ class TENACITY_DLL_API ToolManager final
    bool mDidDrag{};
    bool mClicked{};
 
+ public:
+
+   DECLARE_CLASS( ToolManager )
    DECLARE_EVENT_TABLE()
 };
 
@@ -167,7 +189,7 @@ class ToolFrame final : public wxFrame
 {
 public:
 
-   ToolFrame( TenacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos );
+   ToolFrame( AudacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos );
 
    ~ToolFrame();
 
@@ -188,11 +210,11 @@ public:
    //
    // Handle frame paint events
    //
-   void OnPaint( wxPaintEvent & /* event */ );
+   void OnPaint( wxPaintEvent & WXUNUSED(event) );
 
    void OnMotion( wxMouseEvent & event );
 
-   void OnCaptureLost( wxMouseCaptureLostEvent & /* event */ );
+   void OnCaptureLost( wxMouseCaptureLostEvent & WXUNUSED(event) );
 
    //
    // Do not allow the window to close through keyboard accelerators
@@ -206,31 +228,34 @@ public:
 
 private:
 
-   TenacityProject *const mParent;
+   AudacityProject *const mParent;
    ToolManager *mManager;
    ToolBar *mBar;
    wxSize mMinSize;
    wxSize mOrigSize;
 
+public:
+
+   DECLARE_CLASS( ToolFrame )
    DECLARE_EVENT_TABLE()
 };
 
-
+#include "MenuRegistry.h"
 
 // Construct a static instance of this class to add a menu item that shows and
 // hides a toolbar
 struct TENACITY_DLL_API AttachedToolBarMenuItem : CommandHandlerObject {
    AttachedToolBarMenuItem(
-      ToolBarID id, const CommandID &name, const TranslatableString &label_in,
+      Identifier id, const CommandID &name, const TranslatableString &label_in,
       const Registry::OrderingHint &hint = {},
       // IDs of other toolbars not to be shown simultaneously with this one:
-      std::vector< ToolBarID > excludeIds = {} );
+      std::vector< Identifier > excludeIds = {} );
 
    void OnShowToolBar(const CommandContext &context);
 
-   const ToolBarID mId;
-   const MenuTable::AttachedItem mAttachedItem;
-   const std::vector< ToolBarID > mExcludeIds;
+   const Identifier mId;
+   const MenuRegistry::AttachedItem mAttachedItem;
+   const std::vector< Identifier > mExcludeIds;
 };
 
 #endif

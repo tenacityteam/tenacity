@@ -24,10 +24,8 @@
 #include <wx/defs.h>
 #include <wx/textctrl.h>
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-
-#include "../shuttle/ShuttleGui.h"
+#include "ShuttleGui.h"
+#include "Prefs.h"
 
 PlaybackPrefs::PlaybackPrefs(wxWindow * parent, wxWindowID winid)
 :  PrefsPanel(parent, winid, XO("Playback"))
@@ -39,19 +37,19 @@ PlaybackPrefs::~PlaybackPrefs()
 {
 }
 
-ComponentInterfaceSymbol PlaybackPrefs::GetSymbol()
+ComponentInterfaceSymbol PlaybackPrefs::GetSymbol() const
 {
    return PLAYBACK_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString PlaybackPrefs::GetDescription()
+TranslatableString PlaybackPrefs::GetDescription() const
 {
    return XO("Preferences for Playback");
 }
 
 ManualPageID PlaybackPrefs::HelpPageName()
 {
-   return "Preferences#playback";
+   return "Playback_Preferences";
 }
 
 void PlaybackPrefs::Populate()
@@ -148,7 +146,8 @@ void PlaybackPrefs::PopulateOrExchange(ShuttleGui & S)
    {
       S.StartVerticalLay();
       {
-         S.TieCheckBox(XXO("&Vari-Speed Play"), {"/AudioIO/VariSpeedPlay", true});
+         //Removing Vari-Speed Play from PlaybackPrefs
+         //S.TieCheckBox(XXO("&Vari-Speed Play"), {"/AudioIO/VariSpeedPlay", true});
          S.TieCheckBox(XXO("&Micro-fades"), {"/AudioIO/Microfades", false});
          S.TieCheckBox(XXO("Always scrub un&pinned"),
             {UnpinnedScrubbingPreferenceKey(),
@@ -186,7 +185,7 @@ bool PlaybackPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Playback",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew PlaybackPrefs(parent, winid);

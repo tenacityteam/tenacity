@@ -163,6 +163,7 @@ set( CMAKE_MODULE_PATH
    ${TENACITY_MODULE_PATH}
    ${CMAKE_MODULE_PATH}
    "${CMAKE_SOURCE_DIR}/cmake-modules"
+   "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity"
 )
 
 set( CMAKE_PREFIX_PATH
@@ -492,7 +493,7 @@ if( Python3_FOUND )
    set( PYTHON "${Python3_EXECUTABLE}" )
 endif()
 
-find_package(JsonCpp REQUIRED)
+find_package(RapidJSON REQUIRED)
 find_package(libzip REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(EXPAT REQUIRED)
@@ -501,6 +502,13 @@ find_package(SndFile REQUIRED)
 find_package(Soxr REQUIRED)
 find_package(SQLite3 REQUIRED)
 find_package(PortAudio REQUIRED)
+
+# Add pffft
+# Let's also add a banner like with the modules and scripts
+# FIXME: Find a better way to add this. Maybe we'll make this a submodule
+# sometime soon...
+message(STATUS "========== Configuring pffft ==========")
+add_subdirectory("lib-src/pffft" EXCLUDE_FROM_ALL)
 
 find_package(PortMidi)
 find_package(PortSMF)
@@ -662,7 +670,7 @@ endif()
 # define EXPERIMENTAL flags
 include("src/Experimental.cmake")
 
-find_package(wxWidgets 3.1.5 REQUIRED COMPONENTS base core html net)
+find_package(wxWidgets 3.1.5 REQUIRED COMPONENTS base core html qa net)
 include(${wxWidgets_USE_FILE})
 # The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
 # This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
@@ -676,6 +684,8 @@ option(NYQUIST "Enable Nyquist support" ON)
 if (NYQUIST)
    set(USE_NYQUIST ON)
    add_subdirectory(lib-src/libnyquist)
+   set_target_properties(nyquist PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
    add_subdirectory("nyquist")
    add_subdirectory("plug-ins")
 

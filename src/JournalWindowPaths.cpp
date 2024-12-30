@@ -13,8 +13,10 @@
 #include <wx/stattext.h>
 #include <wx/toplevel.h>
 #include "Identifier.h"
-#include "widgets/AuStaticText.h"
+#include "Theme.h"
 #include "wxArrayStringEx.h"
+#include "widgets/auStaticText.h"
+
 
 namespace Journal {
 
@@ -36,8 +38,8 @@ inline auto HasName( const wxString &name )
       // name as the related control.  Those windows are non-interactive so
       // don't interest us for journalling.
       !dynamic_cast<const wxStaticText *>( pWindow2 ) &&
-      // Also excluse this special window type defined in Audacity.
-      !dynamic_cast<const AuStaticText *>( pWindow2 ) &&
+      // Also exclude this special window type defined in Audacity.
+      !dynamic_cast<const auStaticText *>( pWindow2 ) &&
       pWindow2->GetName() == name; };
 }
 

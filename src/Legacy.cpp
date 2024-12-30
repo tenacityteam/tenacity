@@ -29,21 +29,16 @@ On failure the old version is put back in place.
 
 #include "Legacy.h"
 
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
+#include <stdlib.h>
+#include <string.h>
 
 #include <wx/defs.h>
 #include <wx/ffile.h>
 #include <wx/filefn.h>
-#include <wx/intl.h>
-#include <wx/string.h>
 #include <wx/textfile.h>
 
-#include "widgets/AudacityMessageBox.h"
-
-// Tenacity libraries
-#include <lib-xml/XMLFileWriter.h>
+#include "AudacityMessageBox.h"
+#include "XMLWriter.h"
 
 static bool ConvertLegacyTrack(wxTextFile *f, XMLFileWriter &xmlFile)
 // may throw
@@ -268,7 +263,7 @@ bool ConvertLegacyProjectFile(const wxFileName &filename)
       wxString label;
       wxString value;
 
-      if (f.GetFirstLine() != wxT("TenacityProject"))
+      if (f.GetFirstLine() != wxT("AudacityProject"))
          return false;
       if (f.GetNextLine() != wxT("Version"))
          return false;

@@ -10,6 +10,5 @@
 
 #include "ModuleConstants.h"
 
-// We want Tenacity with a capital 'T'
-const std::wstring AppName = L"Tenacity"
-;
+// We want Audacity with a capital 'A'
+const std::wstring AppName = L"Audacity";

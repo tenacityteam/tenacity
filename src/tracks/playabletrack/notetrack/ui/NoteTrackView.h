@@ -11,29 +11,25 @@ Paul Licameli split from class NoteTrack
 #ifndef __AUDACITY_NOTE_TRACK_VIEW__
 #define __AUDACITY_NOTE_TRACK_VIEW__
 
-#include "../../../ui/CommonTrackView.h"
+#include "../../../ui/CommonChannelView.h"
 
-#ifdef EXPERIMENTAL_MIDI_STRETCHING
-#include "StretchHandle.h"
-#endif
-
-class NoteTrackView final : public CommonTrackView
+class NoteTrackView final : public CommonChannelView
 {
    NoteTrackView( const NoteTrackView& ) = delete;
    NoteTrackView &operator=( const NoteTrackView& ) = delete;
 
 public:
    explicit
-   NoteTrackView( const std::shared_ptr<Track> &pTrack );
+   NoteTrackView(const std::shared_ptr<Channel> &pChannel);
    ~NoteTrackView() override;
 
 private:
-   std::shared_ptr<TrackVRulerControls> DoGetVRulerControls() override;
+   std::shared_ptr<ChannelVRulerControls> DoGetVRulerControls() override;
    std::shared_ptr<CommonTrackCell> GetAffordanceControls() override;
 
    std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &state,
-       const TenacityProject *pProject, int currentTool, bool bMultiTool)
+       const AudacityProject *pProject, int currentTool, bool bMultiTool)
       override;
 
    // TrackPanelDrawable implementation
@@ -43,8 +39,8 @@ private:
 
    std::shared_ptr<CommonTrackCell> mpAffordanceCellControl;
 
-   #ifdef EXPERIMENTAL_MIDI_STRETCHING
-   std::weak_ptr<StretchHandle> mStretchHandle;
-   #endif
+#ifdef EXPERIMENTAL_MIDI_STRETCHING
+   std::weak_ptr<class StretchHandle> mStretchHandle;
+#endif
 };
 #endif

@@ -21,11 +21,11 @@ class MinimizeButtonHandle final : public ButtonHandle
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
+      const wxMouseState &state, AudacityProject &) const override;
 
 public:
    explicit MinimizeButtonHandle
@@ -41,43 +41,18 @@ public:
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-class SelectButtonHandle final : public ButtonHandle
-{
-   SelectButtonHandle(const SelectButtonHandle&) = delete;
 
-protected:
-   Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
-      override;
-
-   TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
-
-public:
-   explicit SelectButtonHandle
-      ( const std::shared_ptr<Track> &pTrack, const wxRect &rect );
-
-   SelectButtonHandle &operator=(const SelectButtonHandle&) = default;
-
-   virtual ~SelectButtonHandle();
-
-   static UIHandlePtr HitTest
-      (std::weak_ptr<SelectButtonHandle> &holder,
-       const wxMouseState &state, const wxRect &rect, TrackPanelCell *pCell);
-};
-
-////////////////////////////////////////////////////////////////////////////////
 class CloseButtonHandle final : public ButtonHandle
 {
    CloseButtonHandle(const CloseButtonHandle&) = delete;
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &project) const override;
+      const wxMouseState &state, AudacityProject &project) const override;
 
    bool StopsOnKeystroke () override { return true; }
    
@@ -102,11 +77,11 @@ class MenuButtonHandle final : public ButtonHandle
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
+      const wxMouseState &state, AudacityProject &) const override;
 
 public:
    explicit MenuButtonHandle

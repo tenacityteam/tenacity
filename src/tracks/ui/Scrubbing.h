@@ -11,21 +11,19 @@ Paul Licameli split from TrackPanel.cpp
 #ifndef __AUDACITY_SCRUBBING__
 #define __AUDACITY_SCRUBBING__
 
+#include <thread>
 #include <vector>
+#include <wx/event.h>
 #include <wx/longlong.h>
 
-// Tenacity libraries
-#include <lib-audio-devices/AudioIOBase.h>
-#include <lib-strings/Identifier.h>
-#include <lib-preferences/Prefs.h> // to inherit
-#include <lib-registries/ClientData.h>
-
 #include "../../ScrubState.h" // for ScrubbingOptions
+#include "ClientData.h" // to inherit
+#include "Prefs.h" // to inherit
 #include "../../widgets/Overlay.h" // to inherit
-#include "../../commands/CommandContext.h"
-#include "../../commands/CommandManager.h" // for MenuTable
+#include "CommandContext.h"
+#include "Identifier.h"
 
-class TenacityProject;
+class AudacityProject;
 class TranslatableString;
 
 // Conditionally compile either a separate thead, or else use a timer in the main
@@ -44,25 +42,24 @@ class TENACITY_DLL_API Scrubber final
    , private PrefsListener
    , public std::enable_shared_from_this< Scrubber >
 {
-public:   
-   static Scrubber &Get( TenacityProject &project );
-   static const Scrubber &Get( const TenacityProject &project );
+public:
+   static Scrubber &Get( AudacityProject &project );
+   static const Scrubber &Get( const AudacityProject &project );
 
    explicit
-   Scrubber(TenacityProject *project);
+   Scrubber(AudacityProject *project);
    Scrubber( const Scrubber & ) = delete;
    Scrubber &operator=( const Scrubber & ) = delete;
    ~Scrubber();
 
    static bool ShouldScrubPinned();
-   
+
    // Assume xx is relative to the left edge of TrackPanel!
    void MarkScrubStart(wxCoord xx, bool smoothScrolling, bool seek);
 
    // Returns true iff the event should be considered consumed by this:
    // Assume xx is relative to the left edge of TrackPanel!
    bool MaybeStartScrubbing(wxCoord xx);
-   bool StartSpeedPlay(double speed, double time0, double time1);
    bool StartKeyboardScrubbing(double time0, bool backwards);
    double GetKeyboardScrubbingSpeed();
 
@@ -151,10 +148,14 @@ public:
 private:
    void UpdatePrefs() override;
 
+   //! @pre `!mThread.joinable()` (when defined(USE_SCRUB_THREAD))
    void StartPolling();
    void StopPolling();
    void DoScrub(bool seek);
    void OnActivateOrDeactivateApp(wxActivateEvent & event);
+
+   void ScrubPollerThread();
+   void JoinThread();
 
 private:
    int mScrubToken;
@@ -173,19 +174,17 @@ private:
 
    bool mCancelled {};
 
-#ifdef EXPERIMENTAL_SCRUBBING_SCROLL_WHEEL
    int mLogMaxScrubSpeed;
-#endif
 
-   TenacityProject *mProject;
+   AudacityProject *mProject;
 
    DECLARE_EVENT_TABLE()
 
 #ifdef USE_SCRUB_THREAD
    // Course corrections in playback are done in a helper thread, unhindered by
    // the complications of the main event dispatch loop
-   class ScrubPollerThread;
-   ScrubPollerThread *mpThread {};
+   std::thread mThread;
+   std::atomic<bool> mFinishThread{ false };
 #endif
 
    // Other periodic update of the UI must be done in the main thread,

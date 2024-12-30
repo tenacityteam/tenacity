@@ -6,7 +6,7 @@
 
   Created by Michael Chinen (mchinen) on 8/12/08
   Audacity(R) is copyright (c) 1999-2008 Audacity Team.
-  License: GPL v2.  See License.txt.
+  License: GPL v2 or later.  See License.txt.
 
 ******************************************************************//**
 
@@ -21,14 +21,15 @@ but it will probably work fine if you use it on a high level.
 *//*******************************************************************/
 
 
+
+
+
 #ifndef __AUDACITY_PROFILER__
 #define __AUDACITY_PROFILER__
 #include <mutex>
 #include <vector>
 #include <time.h>
-
-// Tenacity libraries
-#include <lib-utility/MemoryX.h>
+#include "MemoryX.h"
 
 
 #define BEGIN_TASK_PROFILING(TASK_DESCRIPTION) Profiler::Instance()->Begin(__FILE__,__LINE__,TASK_DESCRIPTION)

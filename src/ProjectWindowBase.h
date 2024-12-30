@@ -12,8 +12,9 @@ Paul Licameli split from ProjectWindow.h
 #define __AUDACITY_PROJECT_WINDOW_BASE__
 
 #include <wx/frame.h> // to inherit
+#include <memory>
 
-class TenacityProject;
+class AudacityProject;
 
 ///\brief A top-level window associated with a project
 class ProjectWindowBase /* not final */ : public wxFrame
@@ -22,19 +23,21 @@ public:
    explicit ProjectWindowBase(
       wxWindow * parent, wxWindowID id,
       const wxPoint & pos, const wxSize &size,
-      TenacityProject &project );
+      AudacityProject &project );
 
    ~ProjectWindowBase() override;
 
-   TenacityProject &GetProject() { return mProject; }
-   const TenacityProject &GetProject() const { return mProject; }
+   std::shared_ptr<AudacityProject> FindProject()
+      { return mwProject.lock(); }
+   std::shared_ptr<const AudacityProject> FindProject() const
+      { return mwProject.lock(); }
 
 protected:
-   TenacityProject &mProject;
+   std::weak_ptr<AudacityProject> mwProject;
 };
 
-TENACITY_DLL_API TenacityProject *FindProjectFromWindow( wxWindow *pWindow );
-const TenacityProject *FindProjectFromWindow( const wxWindow *pWindow );
+TENACITY_DLL_API AudacityProject *FindProjectFromWindow( wxWindow *pWindow );
+const AudacityProject *FindProjectFromWindow( const wxWindow *pWindow );
 
 #endif
 

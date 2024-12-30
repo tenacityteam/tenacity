@@ -1,27 +1,26 @@
+#[[
+A directory of directories of module targets.  Sub-directories group modules in
+some common area of functionality, such as import/export, and each group becomes
+a cluster in the modules.dot file generated at configuration time.
+]]
+
 # Include the modules that we'll build
 
-# The list of modules is ordered so that each module occurs after any others
-# that it depends on
-set( MODULES
-   mod-karaoke
-   mod-script-pipe
+# The list of module sub-folders is ordered so that each folder occurs after any
+# others that it depends on
+set( FOLDERS
+   etc
+   import-export
+   track-ui
+   scripting
+   nyquist
+   sharing
 )
-if( NOT CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   list( APPEND MODULES
-      mod-null
-   )
-endif()
 
-foreach( MODULE ${MODULES} )
-   add_subdirectory("${MODULE}")
+foreach( FOLDER ${FOLDERS} )
+   add_subdirectory("${FOLDER}")
 endforeach()
 
-if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   if( NOT "${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
-      install( DIRECTORY "${_DEST}/modules"
-               DESTINATION "${_PKGLIB}" )
-   endif()
-endif()
-
-#propagate collected edges up to root CMakeLists.txt
+#propagate collected edges and subgraphs up to root CMakeLists.txt
 set( GRAPH_EDGES "${GRAPH_EDGES}" PARENT_SCOPE )
+set( GRAPH_SUBGRAPHS "${GRAPH_SUBGRAPHS}" PARENT_SCOPE )

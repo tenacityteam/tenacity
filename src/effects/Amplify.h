@@ -15,75 +15,48 @@
 #ifndef __AUDACITY_EFFECT_AMPLIFY__
 #define __AUDACITY_EFFECT_AMPLIFY__
 
-#include "Effect.h"
-
+#include "AmplifyBase.h"
+#include "StatefulEffectUIServices.h"
+#include <wx/weakref.h>
 
 class wxSlider;
 class wxCheckBox;
 class wxTextCtrl;
 class ShuttleGui;
 
-class EffectAmplify final : public Effect
+class EffectAmplify : public AmplifyBase, public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
-
-   EffectAmplify();
-   virtual ~EffectAmplify();
+   std::shared_ptr<EffectInstance> MakeInstance() const override;
 
    // ComponentInterface implementation
 
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
+   ManualPageID ManualPage() const override;
 
-   // EffectDefinitionInterface implementation
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings& settings) override;
+   bool TransferDataFromWindow(EffectSettings& settings) override;
 
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-   bool LoadFactoryDefaults() override;
+DECLARE_EVENT_TABLE()
 
-   // EffectProcessor implementation
-
-   unsigned GetAudioInCount() override;
-   unsigned GetAudioOutCount() override;
-   size_t ProcessBlock( const float *const *inBlock, float *const *outBlock,
-      size_t blockLen) override;
-   bool DefineParams( ShuttleParams & S ) override;
-
-   // Effect implementation
-
-   bool Init() override;
-   void Preview(bool dryOnly) override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
-
-private:
-   // EffectAmplify implementation
-
-   void OnAmpText(wxCommandEvent & evt);
+   void OnAmpText(wxCommandEvent& evt);
    void OnPeakText(wxCommandEvent & evt);
    void OnAmpSlider(wxCommandEvent & evt);
    void OnClipCheckBox(wxCommandEvent & evt);
+
    void CheckClip();
 
 private:
-   double mPeak;
-
-   double mRatio;
-   double mRatioClip;   // maximum value of mRatio which does not cause clipping
-   double mAmp;
-   double mNewPeak;
-   bool mCanClip;
+   wxWeakRef<wxWindow> mUIParent {};
 
    wxSlider *mAmpS;
    wxTextCtrl *mAmpT;
    wxTextCtrl *mNewPeakT;
    wxCheckBox *mClip;
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif // __AUDACITY_EFFECT_AMPLIFY__

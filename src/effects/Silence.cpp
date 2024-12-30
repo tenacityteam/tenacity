@@ -12,72 +12,33 @@
 \brief An effect to add silence.
 
 *//*******************************************************************/
-
-
 #include "Silence.h"
+#include "EffectEditor.h"
 #include "LoadEffects.h"
 
-#include <wx/intl.h>
-
-#include "../shuttle/ShuttleGui.h"
-#include "../WaveTrack.h"
+#include "ShuttleGui.h"
 #include "../widgets/NumericTextCtrl.h"
-
-const ComponentInterfaceSymbol EffectSilence::Symbol
-/* i18n-hint: noun */
-{ XC("Silence", "generator") };
 
 namespace{ BuiltinEffectsModule::Registration< EffectSilence > reg; }
 
-EffectSilence::EffectSilence()
-{
-   SetLinearEffectFlag(true);
-}
-
-EffectSilence::~EffectSilence()
-{
-}
-
-// ComponentInterface implementation
-
-ComponentInterfaceSymbol EffectSilence::GetSymbol()
-{
-   return Symbol;
-}
-
-TranslatableString EffectSilence::GetDescription()
-{
-   return XO("Creates audio of zero amplitude");
-}
-
-ManualPageID EffectSilence::ManualPage()
-{
-   return L"Silence";
-}
-
-
-// EffectDefinitionInterface implementation
-
-EffectType EffectSilence::GetType()
-{
-   return EffectTypeGenerate;
-}
-
 // Effect implementation
 
-void EffectSilence::PopulateOrExchange(ShuttleGui & S)
+std::unique_ptr<EffectEditor> EffectSilence::PopulateOrExchange(
+   ShuttleGui & S, EffectInstance &, EffectSettingsAccess &access,
+   const EffectOutputs *)
 {
    S.StartVerticalLay();
    {
       S.StartHorizontalLay();
       {
          S.AddPrompt(XXO("&Duration:"));
+         auto &extra = access.Get().extra;
          mDurationT = safenew
-            NumericTextCtrl(S.GetParent(), wxID_ANY,
-                              NumericConverter::TIME,
-                              GetDurationFormat(),
-                              GetDuration(),
-                               mProjectRate,
+            NumericTextCtrl(FormatterContext::SampleRateContext(mProjectRate),
+                              S.GetParent(), wxID_ANY,
+                              NumericConverterType_TIME(),
+                              extra.GetDurationFormat(),
+                              extra.GetDuration(),
                                NumericTextCtrl::Options{}
                                   .AutoPos(true));
          S.Name(XO("Duration"))
@@ -88,27 +49,19 @@ void EffectSilence::PopulateOrExchange(ShuttleGui & S)
    }
    S.EndVerticalLay();
 
-   return;
+   return nullptr;
 }
 
-bool EffectSilence::TransferDataToWindow()
+bool EffectSilence::TransferDataToWindow(const EffectSettings &settings)
 {
-   mDurationT->SetValue(GetDuration());
+   mDurationT->SetValue(settings.extra.GetDuration());
 
    return true;
 }
 
-bool EffectSilence::TransferDataFromWindow()
+bool EffectSilence::TransferDataFromWindow(EffectSettings &settings)
 {
-   SetDuration(mDurationT->GetValue());
+   settings.extra.SetDuration(mDurationT->GetValue());
 
-   return true;
-}
-
-bool EffectSilence::GenerateTrack(WaveTrack *tmp,
-                                  const WaveTrack & /* track */,
-                                  int /* ntrack */)
-{
-   tmp->InsertSilence(0.0, GetDuration());
    return true;
 }

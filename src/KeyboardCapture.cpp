@@ -11,6 +11,7 @@
 #include "KeyboardCapture.h"
 
 #if defined(__WXMAC__)
+#include "CFResources.h"
 #include <wx/textctrl.h>
 #include <AppKit/AppKit.h>
 #include <wx/osx/core/private.h>
@@ -26,8 +27,7 @@
 #include <wx/weakref.h>
 #include <wx/window.h>
 
-// Tenacity libraries
-#include <lib-exceptions/TenacityException.h>
+#include "AudacityException.h"
 
 ////////////////////////////////////////////////////////////
 /// Custom events
@@ -94,7 +94,10 @@ public:
       // so we won't get wxEVT_CHAR_HOOK events for combinations assigned to menus.
       // Since we only support OS X 10.6 or greater, we can use an event monitor
       // to capture the key event before it gets to the normal wx3 processing.
-      NSEventMask mask = NSEventMaskKeyDown | NSEventMaskKeyUp;
+
+      // The documentation for addLocalMonitorForEventsMatchingMask implies that
+      // NSKeyUpMask can't be used in 10.6, but testing shows that it can.
+      NSEventMask mask = NSKeyDownMask | NSKeyUpMask;
 
       mHandler =
       [
@@ -109,11 +112,11 @@ public:
                {
                   mEvent = event;
 
-                  wxKeyEvent wxevent([event type] == NSEventTypeKeyDown ? wxEVT_KEY_DOWN : wxEVT_KEY_UP);
+                  wxKeyEvent wxevent([event type] == NSKeyDown ? wxEVT_KEY_DOWN : wxEVT_KEY_UP);
                   impl->SetupKeyEvent(wxevent, event);
 
                   NSEvent *result;
-                  if ([event type] == NSEventTypeKeyDown)
+                  if ([event type] == NSKeyDown)
                   {
                      wxKeyEvent eventHook(wxEVT_CHAR_HOOK, wxevent);
                      result = FilterEvent(eventHook) == Event_Processed ? nil : event;
@@ -187,6 +190,7 @@ public:
                   if ( auto button =
                      dynamic_cast<wxButton*>( top->GetDefaultItem() ) ) {
                      wxCommandEvent newEvent{ wxEVT_BUTTON, button->GetId() };
+                     newEvent.SetEventObject( button );
                      button->GetEventHandler()->AddPendingEvent( newEvent );
                      return Event_Processed;
                   }
@@ -217,7 +221,7 @@ public:
       },
       // Immediate handler invokes the same high level catch-all as for
       // unhandled exceptions, which will also do its own delayed handling
-      [](TenacityException *pEx){
+      [](AudacityException *pEx){
          if (pEx)
             wxTheApp->OnExceptionInMainLoop();
          else
@@ -346,13 +350,12 @@ private:
       c = [mEvent characters];
       chars = [c UTF8String];
 
-      TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
-      CFDataRef uchr = (CFDataRef)TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
-      CFRelease(currentKeyboard);
-      if (uchr == NULL)
-      {
+      auto uchr = static_cast<CFDataRef>(TISGetInputSourceProperty(
+         CF_ptr<TISInputSourceRef>{ TISCopyCurrentKeyboardInputSource() }
+            .get(),
+         kTISPropertyUnicodeKeyLayoutData));
+      if (!uchr)
          return chars;
-      }
 
       const UCKeyboardLayout *keyboardLayout = (const UCKeyboardLayout*)CFDataGetBytePtr(uchr);
       if (keyboardLayout == NULL)
@@ -364,11 +367,11 @@ private:
       UniCharCount actualStringLength = 0;
       UniChar unicodeString[maxStringLength];
       UInt32 nsflags = [mEvent modifierFlags];
-      UInt16 modifiers = (nsflags & NSEventModifierFlagCapsLock ? alphaLock : 0) |
-                         (nsflags & NSEventModifierFlagShift ? shiftKey : 0) |
-                         (nsflags & NSEventModifierFlagControl ? controlKey : 0) |
-                         (nsflags & NSEventModifierFlagOption ? optionKey : 0) |
-                         (nsflags & NSEventModifierFlagCommand ? cmdKey : 0);
+      UInt16 modifiers = (nsflags & NSAlphaShiftKeyMask ? alphaLock : 0) |
+                         (nsflags & NSShiftKeyMask ? shiftKey : 0) |
+                         (nsflags & NSControlKeyMask ? controlKey : 0) |
+                         (nsflags & NSAlternateKeyMask ? optionKey : 0) |
+                         (nsflags & NSCommandKeyMask ? cmdKey : 0);
 
       OSStatus status = UCKeyTranslate(keyboardLayout,
                                        [mEvent keyCode],

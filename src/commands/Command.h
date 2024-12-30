@@ -18,19 +18,20 @@
 #define __COMMAND__
 
 #include "CommandSignature.h"
-#include "AudacityCommand.h"
+#include "ComponentInterfaceSymbol.h"
 
-class TenacityApp;
+class AudacityProject;
+class AudacityApp;
 class CommandContext;
 class CommandOutputTargets;
 
-// Abstract base class for command interface.  
+// Abstract base class for command interface.
 class OldStyleCommand /* not final */
 {
 public:
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
-   OldStyleCommand(TenacityProject &project) : mProject{ project } {};
+   OldStyleCommand(AudacityProject &project) : mProject{ project } {};
    virtual ~OldStyleCommand() { }
    virtual ComponentInterfaceSymbol GetSymbol() = 0;
    virtual CommandSignature &GetSignature() = 0;
@@ -99,7 +100,7 @@ protected:
 public:
    /// Constructor should not be called directly; only by a factory which
    /// ensures name and params are set appropriately for the command.
-   CommandImplementation(TenacityProject &project, OldStyleCommandType &type);
+   CommandImplementation(AudacityProject &project, OldStyleCommandType &type);
 
    virtual ~CommandImplementation();
 

@@ -20,7 +20,7 @@ class ZoomHandle final : public UIHandle
 {
    ZoomHandle(const ZoomHandle&) = delete;
    static HitTestPreview HitPreview
-      (const wxMouseState &state, const TenacityProject *pProject);
+      (const wxMouseState &state, const AudacityProject *pProject);
 
 public:
    ZoomHandle();
@@ -34,23 +34,25 @@ public:
 
    virtual ~ZoomHandle();
 
+   std::shared_ptr<const Track> FindTrack() const override;
+
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
 private:
 

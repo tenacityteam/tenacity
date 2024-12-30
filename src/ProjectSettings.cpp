@@ -4,75 +4,42 @@ Audacity: A Digital Audio Editor
 
 ProjectSettings.cpp
 
-Paul Licameli split from TenacityProject.cpp
+Paul Licameli split from AudacityProject.cpp
 
 **********************************************************************/
 
 #include "ProjectSettings.h"
 
-// Tenacity libraries
-#include <lib-project-rate/QualitySettings.h>
-#include <lib-xml/XMLWriter.h>
+
 
 #include "AudioIOBase.h"
 #include "Project.h"
-#include "prefs/TracksBehaviorsPrefs.h"
-#include "XMLWriter.h"
-#include "XMLTagHandler.h"
+#include "QualitySettings.h"
 #include "widgets/NumericTextCtrl.h"
 
-wxDEFINE_EVENT(EVT_PROJECT_SETTINGS_CHANGE, wxCommandEvent);
-
-namespace {
-   void Notify( TenacityProject &project, ProjectSettings::EventCode code )
-   {
-      wxCommandEvent e{ EVT_PROJECT_SETTINGS_CHANGE };
-      e.SetInt( static_cast<int>( code ) );
-      project.ProcessEvent( e );
-   }
-}
-
-static const TenacityProject::AttachedObjects::RegisteredFactory
+static const AudacityProject::AttachedObjects::RegisteredFactory
 sProjectSettingsKey{
-  []( TenacityProject &project ){
+  []( AudacityProject &project ){
      auto result = std::make_shared< ProjectSettings >( project );
      return result;
    }
 };
 
-ProjectSettings &ProjectSettings::Get( TenacityProject &project )
+ProjectSettings &ProjectSettings::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectSettings >(
       sProjectSettingsKey );
 }
 
-const ProjectSettings &ProjectSettings::Get( const TenacityProject &project )
+const ProjectSettings &ProjectSettings::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
-ProjectSettings::ProjectSettings(TenacityProject &project)
+ProjectSettings::ProjectSettings(AudacityProject &project)
    : mProject{ project }
-   , mSelectionFormat{ NumericTextCtrl::LookupFormat(
-      NumericConverter::TIME,
-      gPrefs->Read(wxT("/SelectionFormat"), wxT("")))
-}
-, mAudioTimeFormat{ NumericTextCtrl::LookupFormat(
-   NumericConverter::TIME,
-   gPrefs->Read(wxT("/AudioTimeFormat"), wxT("hh:mm:ss")))
-}
-, mFrequencySelectionFormatName{ NumericTextCtrl::LookupFormat(
-   NumericConverter::FREQUENCY,
-   gPrefs->Read(wxT("/FrequencySelectionFormatName"), wxT("")) )
-}
-, mBandwidthSelectionFormatName{ NumericTextCtrl::LookupFormat(
-   NumericConverter::BANDWIDTH,
-   gPrefs->Read(wxT("/BandwidthSelectionFormatName"), wxT("")) )
-}
-, mSnapTo( gPrefs->Read(wxT("/SnapTo"), SNAP_OFF) )
+   , mCurrentBrushRadius ( 5 )
 {
-   gPrefs->Read(wxT("/GUI/SyncLockTracks"), &mIsSyncLocked, false);
-
    bool multiToolActive = false;
    gPrefs->Read(wxT("/GUI/ToolBars/Tools/MultiToolActive"), &multiToolActive);
 
@@ -86,15 +53,7 @@ ProjectSettings::ProjectSettings(TenacityProject &project)
 
 void ProjectSettings::UpdatePrefs()
 {
-   gPrefs->Read(wxT("/AudioFiles/ShowId3Dialog"), &mShowId3Dialog, true);
-   gPrefs->Read(wxT("/GUI/EmptyCanBeDirty"), &mEmptyCanBeDirty, true);
    gPrefs->Read(wxT("/GUI/ShowSplashScreen"), &mShowSplashScreen, true);
-   mSoloPref = TracksBehaviorsSolo.Read();
-   // Update the old default to the NEW default.
-   if (mSoloPref == wxT("Standard"))
-      mSoloPref = wxT("Simple");
-   gPrefs->Read(wxT("/GUI/TracksFitVerticallyZoomed"),
-      &mTracksFitVerticallyZoomed, false);
    //   gPrefs->Read(wxT("/GUI/UpdateSpectrogram"),
    //     &mViewInfo.bUpdateSpectrogram, true);
 
@@ -113,112 +72,10 @@ void ProjectSettings::UpdatePrefs()
 #endif
 }
 
-const NumericFormatSymbol &
-ProjectSettings::GetFrequencySelectionFormatName() const
-{
-   return mFrequencySelectionFormatName;
-}
-
-void ProjectSettings::SetFrequencySelectionFormatName(
-   const NumericFormatSymbol & formatName)
-{
-   mFrequencySelectionFormatName = formatName;
-}
-
-const NumericFormatSymbol &
-ProjectSettings::GetBandwidthSelectionFormatName() const
-{
-   return mBandwidthSelectionFormatName;
-}
-
-void ProjectSettings::SetBandwidthSelectionFormatName(
-   const NumericFormatSymbol & formatName)
-{
-   mBandwidthSelectionFormatName = formatName;
-}
-
-void ProjectSettings::SetSelectionFormat(const NumericFormatSymbol & format)
-{
-   mSelectionFormat = format;
-}
-
-const NumericFormatSymbol & ProjectSettings::GetSelectionFormat() const
-{
-   return mSelectionFormat;
-}
-
-void ProjectSettings::SetAudioTimeFormat(const NumericFormatSymbol & format)
-{
-   mAudioTimeFormat = format;
-}
-
-const NumericFormatSymbol & ProjectSettings::GetAudioTimeFormat() const
-{
-   return mAudioTimeFormat;
-}
-
-void ProjectSettings::SetSnapTo(int snap)
-{
-   mSnapTo = snap;
-}
-   
-int ProjectSettings::GetSnapTo() const
-{
-   return mSnapTo;
-}
-
-bool ProjectSettings::IsSyncLocked() const
-{
-#ifdef EXPERIMENTAL_SYNC_LOCK
-   return mIsSyncLocked;
-#else
-   return false;
-#endif
-}
-
-void ProjectSettings::SetSyncLock(bool flag)
-{
-   auto &project = mProject;
-   if (flag != mIsSyncLocked) {
-      mIsSyncLocked = flag;
-      Notify( project, ChangedSyncLock );
+void ProjectSettings::SetTool(int tool) {
+   if (auto oldValue = mCurrentTool; tool != oldValue) {
+      mCurrentTool = tool;
+      Publish({ ProjectSettingsEvent::ChangedTool, oldValue, tool });
    }
 }
 
-static ProjectFileIORegistry::AttributeWriterEntry entry {
-[](const TenacityProject &project, XMLWriter &xmlFile){
-   auto &settings = ProjectSettings::Get(project);
-   xmlFile.WriteAttr(wxT("snapto"), settings.GetSnapTo() ? wxT("on") : wxT("off"));
-   xmlFile.WriteAttr(wxT("selectionformat"),
-                     settings.GetSelectionFormat().Internal());
-   xmlFile.WriteAttr(wxT("frequencyformat"),
-                     settings.GetFrequencySelectionFormatName().Internal());
-   xmlFile.WriteAttr(wxT("bandwidthformat"),
-                     settings.GetBandwidthSelectionFormatName().Internal());
-}
-};
-
-static ProjectFileIORegistry::AttributeReaderEntries entries {
-// Just a pointer to function, but needing overload resolution as non-const:
-(ProjectSettings& (*)(TenacityProject &)) &ProjectSettings::Get, {
-   // PRL:  The following have persisted as per-project settings for long.
-   // Maybe that should be abandoned.  Enough to save changes in the user
-   // preference file.
-   { "snapto", [](auto &settings, auto value){
-      settings.SetSnapTo(value.ToWString() == wxT("on") ? true : false);
-   } },
-   { "selectionformat", [](auto &settings, auto value){
-      settings.SetSelectionFormat(NumericConverter::LookupFormat(
-              NumericConverter::TIME, value.ToWString()));
-   } },
-   { "frequencyformat", [](auto &settings, auto value){
-      settings.SetFrequencySelectionFormatName(
-              NumericConverter::LookupFormat(
-                 NumericConverter::FREQUENCY, value.ToWString()));
-   } },
-   { "bandwidthformat", [](auto &settings, auto value){
-      settings.SetBandwidthSelectionFormatName(
-              NumericConverter::LookupFormat(
-                 NumericConverter::BANDWIDTH, value.ToWString()));
-   } },
-} };

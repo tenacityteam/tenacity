@@ -56,12 +56,12 @@ class XML_API XMLTagHandler /* not final */ {
 
    // This method will be called when a closing tag is encountered.
    // It is optional to override this method.
-   virtual void HandleXMLEndTag(const std::string_view& /* tag */) {}
+   virtual void HandleXMLEndTag(const std::string_view& WXUNUSED(tag)) {}
 
    // This method will be called when element content has been
    // encountered.
    // It is optional to override this method.
-   virtual void HandleXMLContent(const std::string_view& /* content */) {}
+   virtual void HandleXMLContent(const std::string_view& WXUNUSED(content)) {}
 
    // If the XML document has children of your tag, this method
    // should be called.  Typically you should construct a NEW
@@ -72,13 +72,9 @@ class XML_API XMLTagHandler /* not final */ {
 
    // These functions receive data from expat.  They do charset
    // conversion and then pass the data to the handlers above.
-   bool ReadXMLTag(const char *tag, const char **attrs);
    void ReadXMLEndTag(const char *tag);
    void ReadXMLContent(const char *s, int len);
    XMLTagHandler *ReadXMLChild(const char *tag);
-
-private:
-   AttributesList mCurrentTagAttributes;
 };
 
 #endif // define __AUDACITY_XML_TAG_HANDLER__

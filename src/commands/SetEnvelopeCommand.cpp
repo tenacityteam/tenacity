@@ -20,16 +20,17 @@
 #include "SetEnvelopeCommand.h"
 
 #include "CommandContext.h"
+#include "CommandDispatch.h"
+#include "MenuRegistry.h"
+#include "../CommonCommandFlags.h"
 #include "LoadCommands.h"
-#include "../ProjectHistory.h"
-#include "../UndoManager.h"
-#include "../WaveClip.h"
-#include "../WaveTrack.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
-
-// Tenacity libraries
-#include <lib-track/Envelope.h>
+#include "ProjectHistory.h"
+#include "UndoManager.h"
+#include "WaveClip.h"
+#include "WaveTrack.h"
+#include "Envelope.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
 
 const ComponentInterfaceSymbol SetEnvelopeCommand::Symbol
 { XO("Set Envelope") };
@@ -41,13 +42,19 @@ SetEnvelopeCommand::SetEnvelopeCommand()
 {
 }
 
-
-bool SetEnvelopeCommand::DefineParams( ShuttleParams & S ){ 
+template<bool Const>
+bool SetEnvelopeCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
    S.OptionalY( bHasT              ).Define(  mT,              wxT("Time"),     0.0, 0.0, 100000.0);
    S.OptionalY( bHasV              ).Define(  mV,              wxT("Value"),    1.0, 0.0, 2.0);
    S.OptionalN( bHasDelete         ).Define(  mbDelete,        wxT("Delete"),   false );
    return true;
 };
+
+bool SetEnvelopeCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool SetEnvelopeCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void SetEnvelopeCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -62,29 +69,26 @@ void SetEnvelopeCommand::PopulateOrExchange(ShuttleGui & S)
    S.EndMultiColumn();
 }
 
-bool SetEnvelopeCommand::ApplyInner( const CommandContext &context, Track * t )
+bool SetEnvelopeCommand::ApplyInner(const CommandContext &context, Track &t)
 {
    // if no time is specified, then
    //   - delete deletes any envelope in selected tracks.
    //   - value is not set for any clip
-   t->TypeSwitch([&](WaveTrack *waveTrack) {
-      WaveClipPointers ptrs( waveTrack->SortedClipArray());
-      for(auto it = ptrs.begin(); (it != ptrs.end()); it++ ){
-         WaveClip * pClip = *it;
+   t.TypeSwitch([&](WaveTrack &waveTrack) {
+      for (const auto pClip : waveTrack.SortedIntervalArray()) {
          bool bFound =
             !bHasT || (
-               ( pClip->GetPlayStartTime() <= mT) &&
-               ( pClip->GetPlayEndTime() >= mT )
+               (pClip->GetPlayStartTime() <= mT) &&
+               (pClip->GetPlayEndTime() >= mT)
             );
-         if( bFound )
-         {
+         if (bFound) {
             // Inside this IF is where we actually apply the command
-            Envelope* pEnv = pClip->GetEnvelope();
+            auto &env = pClip->GetEnvelope();
             bool didSomething = false;
-            if( bHasDelete && mbDelete )
-               pEnv->Clear(), didSomething = true;
-            if( bHasT && bHasV )
-               pEnv->InsertOrReplace( mT, pEnv->ClampValue( mV ) ),
+            if (bHasDelete && mbDelete)
+               env.Clear(), didSomething = true;
+            if (bHasT && bHasV)
+               env.InsertOrReplace(mT, env.ClampValue(mV)),
                didSomething = true;
 
             if (didSomething)
@@ -97,5 +101,22 @@ bool SetEnvelopeCommand::ApplyInner( const CommandContext &context, Track * t )
       }
    } );
 
+
    return true;
+}
+
+namespace {
+using namespace MenuRegistry;
+
+// Register menu items
+
+AttachedItem sAttachment1{
+   // Note that the PLUGIN_SYMBOL must have a space between words,
+   // whereas the short-form used here must not.
+   // (So if you did write "Compare Audio" for the PLUGIN_SYMBOL name, then
+   // you would have to use "CompareAudio" here.)
+   Command( wxT("SetEnvelope"), XXO("Set Envelope..."),
+      CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() ),
+   wxT("Optional/Extra/Part2/Scriptables1")
+};
 }

@@ -10,56 +10,27 @@
 #ifndef __AUDACITY_EFFECT_PAULSTRETCH__
 #define __AUDACITY_EFFECT_PAULSTRETCH__
 
-#include "Effect.h"
+#include "PaulstretchBase.h"
+#include "StatefulEffectUIServices.h"
+#include <wx/weakref.h>
 
 class ShuttleGui;
 
-class EffectPaulstretch final : public Effect
+class EffectPaulstretch final :
+    public PaulstretchBase,
+    public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
-
-   EffectPaulstretch();
-   virtual ~EffectPaulstretch();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   bool DefineParams( ShuttleParams & S ) override;
-
-   // Effect implementation
-
-   double CalcPreviewInputLength(double previewLength) override;
-   bool Process() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
-
-private:
-   // EffectPaulstretch implementation
-   
-   void OnText(wxCommandEvent & evt);
-   size_t GetBufferSize(double rate);
-
-   bool ProcessOne(WaveTrack *track, double t0, double t1, int count);
-
-private:
-   float mAmount;
-   float mTime_resolution;  //seconds
-   double m_t1;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings& settings) override;
+   bool TransferDataFromWindow(EffectSettings& settings) override;
 
    DECLARE_EVENT_TABLE()
+private:
+   wxWeakRef<wxWindow> mUIParent;
+   void OnText(wxCommandEvent & evt);
 };
 
 #endif

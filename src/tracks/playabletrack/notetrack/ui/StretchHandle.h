@@ -14,6 +14,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../UIHandle.h"
 
 class Alg_seq;
+class Channel;
 class NoteTrack;
 class Track;
 class ViewInfo;
@@ -63,26 +64,28 @@ public:
 
    static UIHandlePtr HitTest
       (std::weak_ptr<StretchHandle> &holder,
-       const TrackPanelMouseState &state, const TenacityProject *pProject,
+       const TrackPanelMouseState &state, const AudacityProject *pProject,
        const std::shared_ptr<NoteTrack> &pTrack );
 
    virtual ~StretchHandle();
 
+   std::shared_ptr<const Track> FindTrack() const override;
+
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
       wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 
@@ -90,8 +93,8 @@ private:
    static double GetT0(const Track &track, const ViewInfo &viewInfo);
    static double GetT1(const Track &track, const ViewInfo &viewInfo);
 
-   void Stretch
-      (TenacityProject *pProject, int mouseXCoordinate, int trackLeftEdge, Track *pTrack);
+   void Stretch(AudacityProject *pProject, int mouseXCoordinate,
+      int trackLeftEdge, Channel *pChannel);
 
    std::shared_ptr<NoteTrack> mpTrack{};
    int mLeftEdge{ -1 };

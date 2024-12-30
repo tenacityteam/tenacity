@@ -10,27 +10,23 @@ Paul Licameli split from TrackControls.cpp
 
 #include "CommonTrackControls.h"
 
-// Tenacity libraries
-#include <lib-track/Track.h>
-
 #include "TrackButtonHandles.h"
 #include "TrackSelectHandle.h"
-#include "../../AColor.h"
+#include "AColor.h"
 #include "../../RefreshCode.h"
 #include "Project.h"
-#include "../../ProjectHistory.h"
+#include "ProjectHistory.h"
 #include "../../ProjectWindows.h"
-#include "../../TimeTrack.h"
 #include "../../TrackArtist.h"
-#include "../../TrackInfo.h"
+#include "CommonTrackInfo.h"
 #include "../../TrackPanelDrawingContext.h"
 #include "../../TrackPanelMouseEvent.h"
 #include "../../TrackUtilities.h"
 #include <wx/textdlg.h>
 #include "../../commands/AudacityCommand.h"
-#include "../../commands/CommandManager.h"
-#include "../../shuttle/ShuttleGui.h"
-#include "../../widgets/AudacityMessageBox.h"
+#include "CommandManager.h"
+#include "ShuttleGui.h"
+#include "Track.h"
 #include "../../widgets/PopupMenuTable.h"
 
 #include <wx/dc.h>
@@ -38,7 +34,7 @@ Paul Licameli split from TrackControls.cpp
 
 std::vector<UIHandlePtr> CommonTrackControls::HitTest
 (const TrackPanelMouseState &st,
- const TenacityProject* /* project */)
+ const AudacityProject *WXUNUSED(project))
 {
    // Hits are mutually exclusive, results single
 
@@ -61,10 +57,6 @@ std::vector<UIHandlePtr> CommonTrackControls::HitTest
       mMinimizeHandle, state, rect, this)))
       results.push_back(result);
 
-   if (NULL != (result = SelectButtonHandle::HitTest(
-      mSelectButtonHandle, state, rect, this)))
-      results.push_back(result);
-
    if (results.empty()) {
       if (NULL != (result = TrackSelectHandle::HitAnywhere(
          mSelectHandle, FindTrack())))
@@ -77,7 +69,6 @@ std::vector<UIHandlePtr> CommonTrackControls::HitTest
 enum
 {
    OnSetNameID = 2000,
-   OnDuplicateTrackID,
    OnMoveUpID,
    OnMoveDownID,
    OnMoveTopID,
@@ -98,15 +89,9 @@ public:
 
 private:
    void OnSetName(wxCommandEvent &);
-   void OnDuplicateTrack(wxCommandEvent&);
    void OnMoveTrack(wxCommandEvent &event);
 
    void InitUserData(void *pUserData) override;
-
-   void DestroyMenu() override
-   {
-      mpData = nullptr;
-   }
 
    CommonTrackControls::InitMenuData *mpData{};
 
@@ -133,16 +118,14 @@ BEGIN_POPUP_MENU(TrackMenuTable)
       [up]( PopupMenuHandler &handler, wxMenu &menu, int id ){
          auto pData = static_cast<TrackMenuTable&>( handler ).mpData;
          const auto &tracks = TrackList::Get( pData->project );
-         Track *const pTrack = pData->pTrack;
-         menu.Enable( id,
-            up ? tracks.CanMoveUp(pTrack) : tracks.CanMoveDown(pTrack) );
+         auto &track = pData->track;
+         menu.Enable(id,
+            up ? tracks.CanMoveUp(track) : tracks.CanMoveDown(track));
       };
    };
+      //First section in the menu doesn't need BeginSection/EndSection
+      AppendItem( "Name", OnSetNameID, XXO("Re&name Track..."), POPUP_MENU_FN( OnSetName ) );
 
-   BeginSection( "Basic" );
-      AppendItem( "Name", OnSetNameID, XXO("&Name..."), POPUP_MENU_FN( OnSetName ) );
-      AppendItem( "Duplicate", OnDuplicateTrackID, XXO("D&uplicate Entire Track"), POPUP_MENU_FN( OnDuplicateTrack ));
-   EndSection();
    BeginSection( "Move" );
       AppendItem( "Up",
          // It is not correct to use NormalizedKeyString::Display here --
@@ -203,10 +186,10 @@ public:
    static const ComponentInterfaceSymbol Symbol;
 
    // ComponentInterface overrides
-   ComponentInterfaceSymbol GetSymbol() override
+   ComponentInterfaceSymbol GetSymbol() const override
    { return Symbol; }
    //TranslatableString GetDescription() override {return XO("Sets the track name.");};
-   //bool DefineParams( ShuttleParams & S ) override;
+   //bool VisitSettings( SettingsVisitor & S ) override;
    void PopulateOrExchange(ShuttleGui & S) override;
    //bool Apply(const CommandContext & context) override;
 
@@ -232,60 +215,31 @@ void SetTrackNameCommand::PopulateOrExchange(ShuttleGui & S)
 
 void TrackMenuTable::OnSetName(wxCommandEvent &)
 {
-   Track *const pTrack = mpData->pTrack;
-   if (pTrack)
+   auto &track = mpData->track;
+   AudacityProject *const proj = &mpData->project;
+   const wxString oldName = track.GetName();
+
+   SetTrackNameCommand Command;
+   Command.mName = oldName;
+   // Bug 1837 : We need an OK/Cancel result if we are to enter a blank string.
+   bool bResult = Command.PromptUser(*proj);
+   if (bResult)
    {
-      TenacityProject *const proj = &mpData->project;
-      const wxString oldName = pTrack->GetName();
+      wxString newName = Command.mName;
+      track.SetName(newName);
 
-      SetTrackNameCommand Command;
-      Command.mName = oldName;
-      // Bug 1837 : We need an OK/Cancel result if we are to enter a blank string.
-      bool bResult = Command.PromptUser( &GetProjectFrame( *proj ) );
-      if (bResult) 
-      {
-         wxString newName = Command.mName;
-         for (auto channel : TrackList::Channels(pTrack))
-            channel->SetName(newName);
+      ProjectHistory::Get( *proj )
+         .PushState(
+            XO("Renamed '%s' to '%s'").Format( oldName, newName ),
+            XO("Name Change"));
 
-         ProjectHistory::Get( *proj )
-            .PushState(
-               XO("Renamed '%s' to '%s'").Format( oldName, newName ),
-               XO("Name Change"));
-
-         mpData->result = RefreshCode::RefreshAll;
-      }
-   }
-}
-
-void TrackMenuTable::OnDuplicateTrack(wxCommandEvent&)
-{
-   Track* track = mpData->pTrack;
-   if (track)
-   {
-      TenacityProject& project = mpData->project;
-      TrackList& tracks = TrackList::Get(project);
-
-      if (*tracks.Any<TimeTrack>().begin())
-      {
-         AudacityMessageBox(
-            XO("This version of Tenacity only allows one time track for each project window.")
-         );
-
-         return;
-      }
-
-      auto dupTrack = track->Duplicate();
-      tracks.Add(dupTrack);
-
-      ProjectHistory::Get(project).PushState(XO("Duplicated"), XO("Duplicate"));
       mpData->result = RefreshCode::RefreshAll;
    }
 }
 
 void TrackMenuTable::OnMoveTrack(wxCommandEvent &event)
 {
-   TenacityProject *const project = &mpData->project;
+   AudacityProject *const project = &mpData->project;
    TrackUtilities::MoveChoice choice;
    switch (event.GetId()) {
    default:
@@ -300,7 +254,7 @@ void TrackMenuTable::OnMoveTrack(wxCommandEvent &event)
       choice = TrackUtilities::OnMoveBottomID; break;
    }
 
-   TrackUtilities::DoMoveTrack(*project, mpData->pTrack, choice);
+   TrackUtilities::DoMoveTrack(*project, mpData->track, choice);
 
    // MoveTrack already refreshed TrackPanel, which means repaint will happen.
    // This is a harmless redundancy:
@@ -309,27 +263,27 @@ void TrackMenuTable::OnMoveTrack(wxCommandEvent &event)
 
 unsigned CommonTrackControls::DoContextMenu(
    const wxRect &rect, wxWindow *pParent, const wxPoint *,
-   TenacityProject *pProject)
+   AudacityProject *pProject)
 {
    using namespace RefreshCode;
    wxRect buttonRect;
-   TrackInfo::GetTitleBarRect(rect, buttonRect);
+   CommonTrackInfo::GetTrackMenuButtonRect(rect, buttonRect);
 
    auto track = FindTrack();
    if (!track)
       return RefreshNone;
 
-   InitMenuData data{ *pProject, track.get(), pParent, RefreshNone };
+   InitMenuData data{ *pProject, *track, pParent, RefreshNone };
 
    const auto pTable = &TrackMenuTable::Instance();
-   auto pMenu = PopupMenuTable::BuildMenu(pParent, pTable, &data);
+   auto pMenu = PopupMenuTable::BuildMenu(pTable, &data);
 
    PopupMenuTable *const pExtension = GetMenuExtension(track.get());
    if (pExtension)
       PopupMenuTable::ExtendMenu( *pMenu, *pExtension );
 
-   pParent->PopupMenu
-      (pMenu.get(), buttonRect.x + 1, buttonRect.y + buttonRect.height + 1);
+   pMenu->Popup( *pParent,
+      { buttonRect.x + 1, buttonRect.y + buttonRect.height + 1 } );
 
    return data.result;
 }
@@ -404,9 +358,7 @@ void CommonTrackControls::Draw(
       // Given rectangle excludes left and right margins, and encompasses a
       // channel group of tracks, plus the resizer area below
       auto pTrack = FindTrack();
-      // First counteract DrawingArea() correction
-      wxRect rect{ rect_.x, rect_.y, rect_.width - 1, rect_.height };
-   
+
       // Vaughan, 2010-08-24: No longer doing this.
       // Draw sync-lock tiles in ruler area.
       //if (SyncLock::IsSyncLockSelected(t)) {
@@ -418,48 +370,17 @@ void CommonTrackControls::Draw(
 
       if (pTrack)
          // Draw things within the track control panel
-         TrackInfo::DrawItems( context, rect, *pTrack );
-
-      //mTrackInfo.DrawBordersWithin( dc, rect, *t );
+         CommonTrackInfo::DrawItems( context, rect_, *pTrack );
    }
-
-   // Some old cut-and-paste legacy from TrackPanel.cpp here:
-#undef USE_BEVELS
-#ifdef USE_BEVELS
-   // This branch is not now used
-   // PRL:  todo:  banish magic numbers.
-   // PRL: vrul was the x coordinate of left edge of the vertical ruler.
-   // PRL: bHasMuteSolo was true iff the track was WaveTrack.
-   if( bHasMuteSolo )
-   {
-      int ylast = rect.height-20;
-      int ybutton = std::min(32,ylast-17);
-      int ybuttonEnd = 67;
-
-      fill=wxRect( rect.x+1, rect.y+17, vrul-6, ybutton);
-      AColor::BevelTrackInfo( *dc, true, fill );
-   
-      if( ybuttonEnd < ylast ){
-         fill=wxRect( rect.x+1, rect.y+ybuttonEnd, fill.width, ylast - ybuttonEnd);
-         AColor::BevelTrackInfo( *dc, true, fill );
-      }
-   }
-   else
-   {
-      fill=wxRect( rect.x+1, rect.y+17, vrul-6, rect.height-37);
-      AColor::BevelTrackInfo( *dc, true, fill );
-   }
-#endif
-
 }
 
-wxRect CommonTrackControls::DrawingArea(
-   TrackPanelDrawingContext &,
-   const wxRect &rect, const wxRect &, unsigned iPass )
+wxRect CommonTrackControls::DrawingArea(TrackPanelDrawingContext&, const wxRect& rect,
+   const wxRect&, unsigned iPass)
 {
-   if ( iPass == TrackArtist::PassControls )
-      // Some bevels spill out right
-      return { rect.x, rect.y, rect.width + 1, rect.height };
-   else
-      return rect;
+   return rect;
+}
+
+const TCPLines &CommonTrackControls::GetTCPLines() const
+{
+   return CommonTrackInfo::StaticTCPLines();
 }

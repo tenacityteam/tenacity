@@ -60,20 +60,42 @@ struct CellularPanel::Filter : wxEventFilter
 
    int FilterEvent( wxEvent &event ) override
    {
-      if ( spActivePanel &&
-         event.GetEventType() == wxEVT_KEY_DOWN &&
-         static_cast< wxKeyEvent& >( event ).GetKeyCode() == WXK_ESCAPE ) {
-         spActivePanel->HandleEscapeKey( true );
-         return Event_Processed;
+      const auto type = event.GetEventType();
+      if (type == wxEVT_KEY_DOWN &&
+          static_cast< wxKeyEvent& >( event ).GetKeyCode() == WXK_ESCAPE ) {
+         bool eatEvent = false;
+         for (const auto &pPanel: {spClickedPanel, spEnteredPanel}) {
+            if (pPanel) {
+               eatEvent = true;
+               // Handle escape either in the clicked panel to abort a drag, or
+               // to switch among hit test candidates before button down in the
+               // entered (but not yet clicked) panel
+               pPanel->HandleEscapeKey( true );
+            }
+         }
+         if (eatEvent)
+            return Event_Processed;
       }
-      else
-         return Event_Skip;
+      else if ((type == wxEVT_LEFT_DOWN ||
+                type == wxEVT_RIGHT_DOWN ||
+                type == wxEVT_MIDDLE_DOWN)) {
+         if ( spClickedPanel &&
+             spClickedPanel != event.GetEventObject() ) {
+            // Clicking away from the panel doesn't necessarily change wxWidgets
+            // focus, so we use this global filter instead
+            spClickedPanel->DoKillFocus();
+            // Don't eat the event
+         }
+      }
+      return Event_Skip;
    }
 
-   static wxWeakRef< CellularPanel > spActivePanel;
+   static wxWeakRef< CellularPanel > spClickedPanel;
+   static wxWeakRef< CellularPanel > spEnteredPanel;
 };
 
-wxWeakRef< CellularPanel > CellularPanel::Filter::spActivePanel = nullptr;
+wxWeakRef< CellularPanel > CellularPanel::Filter::spClickedPanel = nullptr;
+wxWeakRef< CellularPanel > CellularPanel::Filter::spEnteredPanel = nullptr;
 
 struct CellularPanel::State
 {
@@ -152,7 +174,7 @@ void CellularPanel::Uncapture(bool escaping, wxMouseState *pState)
    HandleMotion( *pState );
  
    if ( escaping || !AcceptsFocus() )
-      Filter::spActivePanel = nullptr;
+      Filter::spClickedPanel = nullptr;
 }
 
 bool CellularPanel::CancelDragging( bool escaping )
@@ -183,7 +205,8 @@ bool CellularPanel::HandleEscapeKey(bool down)
 
    {
       auto target = Target();
-      if (target && target->HasEscape() && target->Escape(GetProject())) {
+      const auto pProject = GetProject();
+      if (target && target->HasEscape(pProject) && target->Escape(pProject)) {
          HandleCursorForPresentMouseState(false);
          return true;
       }
@@ -325,15 +348,17 @@ void CellularPanel::HandleMotion
 
       state.mLastCell = newCell;
 
-/* 
       // These lines caused P2 Bug 2617, repeated refreshing using all CPU.
       // Disabling them might be causing something to not refresh,
       // but so far I have not found a downside to disabling them.  JKC
 
+      // VS: https://github.com/audacity/audacity/issues/1363
+      // Extensive refresh request fixed by using std::move on 
+      // new envelope handle instance
       if (!oldCell && oldHandle != handle)
-         // Did not move cell to cell, but did change the target
-         refreshCode = updateFlags;
-*/
+          // Did not move cell to cell, but did change the target
+          refreshCode = updateFlags;
+
 
       if (handle && handle != oldHandle)
          handle->Enter(true, GetProject());
@@ -425,7 +450,7 @@ bool CellularPanel::HasEscape()
    auto &state = *mState;
   if (state.mTarget + 1 == state.mTargets.size() &&
        Target() &&
-       !Target()->HasEscape())
+       !Target()->HasEscape(GetProject()))
        return false;
 
    return state.mTargets.size() > 0;
@@ -473,9 +498,9 @@ bool CellularPanel::IsMouseCaptured()
    return state.mUIHandle != NULL;
 }
 
-void CellularPanel::OnContextMenu(wxContextMenuEvent & /* event */)
+void CellularPanel::OnContextMenu(wxContextMenuEvent & WXUNUSED(event))
 {
-   DoContextMenu();
+   DoContextMenu({});
 }
 
 /// Handle mouse wheel rotation (for zoom in/out, vertical and horizontal scrolling)
@@ -539,7 +564,7 @@ void CellularPanel::OnCaptureKey(wxCommandEvent & event)
    if (t) {
       const unsigned refreshResult =
          t->CaptureKey(*kevent, *mViewInfo, this, GetProject());
-      ProcessUIHandleResult(t, t, refreshResult);
+      ProcessUIHandleResult(t.get(), t.get(), refreshResult);
       event.Skip(kevent->GetSkipped());
    }
 
@@ -566,7 +591,7 @@ void CellularPanel::OnKeyDown(wxKeyEvent & event)
       // This switch case is now redundant with the global filter
       if(HandleEscapeKey(true))
          // Don't skip the event, eat it so that
-         // TenacityApp does not also stop any playback.
+         // AudacityApp does not also stop any playback.
          return;
       else
          break;
@@ -593,11 +618,10 @@ void CellularPanel::OnKeyDown(wxKeyEvent & event)
    }
 
    const auto t = GetFocusedCell();
-
    if (t) {
       const unsigned refreshResult =
          t->KeyDown(event, *mViewInfo, this, GetProject());
-      ProcessUIHandleResult(t, t, refreshResult);
+      ProcessUIHandleResult(t.get(), t.get(), refreshResult);
    }
    else
       event.Skip();
@@ -620,7 +644,7 @@ void CellularPanel::OnChar(wxKeyEvent & event)
    if (t) {
       const unsigned refreshResult =
          t->Char(event, *mViewInfo, this, GetProject());
-      ProcessUIHandleResult(t, t, refreshResult);
+      ProcessUIHandleResult(t.get(), t.get(), refreshResult);
    }
    else
       event.Skip();
@@ -652,7 +676,7 @@ void CellularPanel::OnKeyUp(wxKeyEvent & event)
    if (t) {
       const unsigned refreshResult =
          t->KeyUp(event, *mViewInfo, this, GetProject());
-      ProcessUIHandleResult(t, t, refreshResult);
+      ProcessUIHandleResult(t.get(), t.get(), refreshResult);
       return;
    }
 
@@ -660,7 +684,7 @@ void CellularPanel::OnKeyUp(wxKeyEvent & event)
 }
 
 /// Should handle the case when the mouse capture is lost. (MSW only)
-void CellularPanel::OnCaptureLost(wxMouseCaptureLostEvent & /* event */)
+void CellularPanel::OnCaptureLost(wxMouseCaptureLostEvent & WXUNUSED(event))
 {
    auto &state = *mState;
    state.mUIHandle.reset();
@@ -729,8 +753,14 @@ try
       GetParent()->GetEventHandler()->ProcessEvent(e);
    }
 
-   if (event.Leaving())
+   if (event.Entering())
    {
+      Filter::spEnteredPanel = this;
+   }
+   else if (event.Leaving())
+   {
+      if (Filter::spEnteredPanel == this)
+         Filter::spEnteredPanel = nullptr;
       Leave();
 
       auto buttons =
@@ -739,7 +769,7 @@ try
          // event.ButtonIsDown(wxMOUSE_BTN_ANY);
          ::wxGetMouseState().ButtonIsDown(wxMOUSE_BTN_ANY);
 
-      if(!buttons) {
+      if (!buttons) {
          CancelDragging( false );
 
 #if defined(__WXMAC__)
@@ -830,26 +860,29 @@ public:
 
    ~DefaultRightButtonHandler() override;
 
+   std::shared_ptr<const Track> FindTrack() const override
+   { return nullptr; }
+
    virtual Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override
    {
       return RefreshCode::RefreshNone;
    }
 
    virtual Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override
    {
       return RefreshCode::RefreshNone;
    }
 
    virtual HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject) override
+      (const TrackPanelMouseState &state, AudacityProject *pProject) override
    {
       return {};
    }
 
    virtual Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override
    {
       if (auto pCell = mwCell.lock()) {
@@ -859,7 +892,7 @@ public:
       return RefreshCode::RefreshNone;
    }
 
-   virtual Result Cancel(TenacityProject *pProject) override
+   virtual Result Cancel(AudacityProject *pProject) override
    {
       return RefreshCode::RefreshNone;
    }
@@ -906,7 +939,7 @@ void CellularPanel::HandleClick( const TrackPanelMouseEvent &tpmEvent )
       if (refreshResult & RefreshCode::Cancelled)
          state.mUIHandle.reset(), handle.reset(), ClearTargets();
       else {
-         Filter::spActivePanel = this;
+         Filter::spClickedPanel = this;
 
 #if wxUSE_TOOLTIPS
          // Remove any outstanding tooltip
@@ -933,13 +966,15 @@ void CellularPanel::HandleClick( const TrackPanelMouseEvent &tpmEvent )
    }
 }
 
-void CellularPanel::DoContextMenu( TrackPanelCell *pCell )
+void CellularPanel::DoContextMenu( std::shared_ptr<TrackPanelCell> pCell )
 {
    if( !pCell ) {
       pCell = GetFocusedCell();
       if( !pCell )
          return;
    }
+
+   std::weak_ptr<TrackPanelCell> wCell = pCell;
 
    const auto delegate = pCell->ContextMenuDelegate();
    if (!delegate)
@@ -948,9 +983,9 @@ void CellularPanel::DoContextMenu( TrackPanelCell *pCell )
    auto rect = FindRect( *delegate );
    const UIHandle::Result refreshResult =
       delegate->DoContextMenu(rect, this, nullptr, GetProject());
+   pCell.reset();
 
-   // To do: use safer shared_ptr to pCell
-   ProcessUIHandleResult(pCell, pCell, refreshResult);
+   ProcessUIHandleResult(wCell.lock().get(), wCell.lock().get(), refreshResult);
 }
 
 void CellularPanel::OnSetFocus(wxFocusEvent &event)
@@ -959,7 +994,7 @@ void CellularPanel::OnSetFocus(wxFocusEvent &event)
    Refresh( false);
 }
 
-void CellularPanel::OnKillFocus(wxFocusEvent & /* event */)
+void CellularPanel::DoKillFocus()
 {
    if (auto pCell = GetFocusedCell()) {
       auto refreshResult = pCell->LoseFocus(GetProject());
@@ -968,11 +1003,16 @@ void CellularPanel::OnKillFocus(wxFocusEvent & /* event */)
       if (pClickedCell)
          ProcessUIHandleResult( pClickedCell.get(), {}, refreshResult );
    }
+   Refresh( false);
+}
+
+void CellularPanel::OnKillFocus(wxFocusEvent & WXUNUSED(event))
+{
+   DoKillFocus();
    if (KeyboardCapture::IsHandler(this))
    {
       KeyboardCapture::Release(this);
    }
-   Refresh( false);
 }
 
 // Empty out-of-line default functions to fill Visitor's vtable

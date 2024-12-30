@@ -8,6 +8,9 @@
 
 **********************************************************************/
 
+
+
+
 #ifndef __AUDACITY_MIXER_BOARD__
 #define __AUDACITY_MIXER_BOARD__
 
@@ -17,9 +20,8 @@
 #include "widgets/ASlider.h" // to inherit
 #include "commands/CommandManagerWindowClasses.h"
 
-// Tenacity library
-#include <lib-preferences/Prefs.h>
-#include <lib-utility/Observer.h>
+#include "Observer.h"
+#include "Prefs.h"
 
 class wxArrayString;
 class wxBitmapButton;
@@ -28,6 +30,9 @@ class wxMemoryDC;
 class AButton;
 struct AudioIOEvent;
 struct TrackListEvent;
+class AudioSegmentSampleView;
+
+using ChannelGroupSampleView = std::vector<std::vector<AudioSegmentSampleView>>;
 
 // containment hierarchy:
 //    MixerBoardFrame -> MixerBoard -> MixerBoardScrolledWindow -> MixerTrackCluster(s)
@@ -59,7 +64,7 @@ public:
 };
 
 
-class TenacityProject;
+class AudacityProject;
 class MeterPanel;
 class MixerBoard;
 
@@ -69,33 +74,30 @@ class NoteTrack;
 #endif
 class PlayableTrack;
 
+class WaveChannel;
 class WaveTrack;
-class AuStaticText;
+class auStaticText;
 
 class MixerTrackCluster final : public wxPanelWrapper
 {
 public:
    MixerTrackCluster(wxWindow* parent,
-                     MixerBoard* grandParent, TenacityProject* project,
-                     const std::shared_ptr<PlayableTrack> &pTrack,
-                     const wxPoint& pos = wxDefaultPosition,
-                     const wxSize& size = wxDefaultSize);
+      MixerBoard* grandParent, AudacityProject* project,
+      PlayableTrack &track,
+      const wxPoint& pos = wxDefaultPosition,
+      const wxSize& size = wxDefaultSize);
    virtual ~MixerTrackCluster() {}
 
    WaveTrack *GetWave() const;
-   WaveTrack *GetRight() const;
-#ifdef EXPERIMENTAL_MIDI_OUT
+   WaveChannel *GetRight() const;
    NoteTrack *GetNote() const;
-#endif
 
    //void UpdatePrefs();
 
-   void HandleResize(); // For wxSizeEvents, update gain slider and meter.
+   void HandleResize(); // For wxSizeEvents, update volume slider and meter.
 
    void HandleSliderGain(const bool bWantPushState = false);
-#ifdef EXPERIMENTAL_MIDI_OUT
    void HandleSliderVelocity(const bool bWantPushState = false);
-#endif
    void HandleSliderPan(const bool bWantPushState = false);
 
    void ResetMeter(const bool bResetClipping);
@@ -115,33 +117,29 @@ private:
 
    void OnButton_MusicalInstrument(wxCommandEvent& event);
    void OnSlider_Gain(wxCommandEvent& event);
-#ifdef EXPERIMENTAL_MIDI_OUT
    void OnSlider_Velocity(wxCommandEvent& event);
-#endif
    void OnSlider_Pan(wxCommandEvent& event);
    void OnButton_Mute(wxCommandEvent& event);
    void OnButton_Solo(wxCommandEvent& event);
-   //v void OnSliderScroll_Gain(wxScrollEvent& event);
-
 
 public:
-   std::shared_ptr<PlayableTrack>   mTrack;
+   //! Invariant not null
+   std::shared_ptr<PlayableTrack> mTrack;
 
 private:
    MixerBoard* mMixerBoard;
-   TenacityProject* mProject;
+   AudacityProject* mProject;
 
    // controls
-   AuStaticText* mStaticText_TrackName;
+   auStaticText* mStaticText_TrackName;
    wxBitmapButton* mBitmapButton_MusicalInstrument;
    AButton* mToggleButton_Mute;
    AButton* mToggleButton_Solo;
    MixerTrackSlider* mSlider_Pan;
-   MixerTrackSlider* mSlider_Gain;
-#ifdef EXPERIMENTAL_MIDI_OUT
+   MixerTrackSlider* mSlider_Volume;
    MixerTrackSlider* mSlider_Velocity;
-#endif
    wxWeakRef<MeterPanel> mMeter;
+   ChannelGroupSampleView mSampleView;
 
 public:
    DECLARE_EVENT_TABLE()
@@ -168,7 +166,7 @@ using MusicalInstrumentArray = std::vector<std::unique_ptr<MusicalInstrument>>;
 class MixerBoardScrolledWindow final : public wxScrolledWindow
 {
 public:
-   MixerBoardScrolledWindow(TenacityProject* project,
+   MixerBoardScrolledWindow(AudacityProject* project,
                               MixerBoard* parent, wxWindowID id = -1,
                               const wxPoint& pos = wxDefaultPosition,
                               const wxSize& size = wxDefaultSize,
@@ -180,7 +178,7 @@ private:
 
 private:
    MixerBoard* mMixerBoard;
-   TenacityProject* mProject;
+   AudacityProject* mProject;
 
 public:
    DECLARE_EVENT_TABLE()
@@ -195,7 +193,7 @@ class MixerBoard final : public wxWindow, private PrefsListener
    friend class MixerBoardFrame;
 
 public:
-   MixerBoard(TenacityProject* pProject,
+   MixerBoard(AudacityProject* pProject,
                wxFrame* parent,
                const wxPoint& pos = wxDefaultPosition,
                const wxSize& size = wxDefaultSize);
@@ -221,7 +219,7 @@ public:
    void UpdateWidth();
 
 private:
-   void ResetMeters(const bool bResetClipping);   
+   void ResetMeters(const bool bResetClipping);
    void RemoveTrackCluster(size_t nIndex);
    void MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & bitmap,
       wxRect & bev, const TranslatableString & str, bool up );
@@ -255,11 +253,14 @@ private:
    std::vector<MixerTrackCluster*> mMixerTrackClusters;
 
    MusicalInstrumentArray     mMusicalInstruments;
-   TenacityProject*           mProject;
+   AudacityProject*           mProject;
    MixerBoardScrolledWindow*  mScrolledWindow; // Holds the MixerTrackClusters and handles scrolling.
    double                     mPrevT1;
    TrackList*                 mTracks;
    bool                       mUpToDate{ false };
+
+public:
+   DECLARE_EVENT_TABLE()
 };
 
 
@@ -268,23 +269,27 @@ class MixerBoardFrame final
    , public TopLevelKeystrokeHandlingWindow
 {
 public:
-   MixerBoardFrame(TenacityProject* parent);
+   MixerBoardFrame(AudacityProject* parent);
    virtual ~MixerBoardFrame();
 
-   void Recreate(TenacityProject *pProject);
+   void Recreate(AudacityProject *pProject);
 
 private:
    // event handlers
-   void OnCloseWindow(wxCloseEvent &/* event */);
+   void OnCloseWindow(wxCloseEvent &WXUNUSED(event));
    void OnMaximize(wxMaximizeEvent &event);
    void OnSize(wxSizeEvent &evt);
    void OnKeyEvent(wxKeyEvent &evt);
 
    void SetWindowTitle();
 
-   TenacityProject *mProject;
+   Observer::Subscription mTitleChangeSubscription;
+   AudacityProject *mProject;
 public:
    MixerBoard* mMixerBoard;
+
+public:
+   DECLARE_EVENT_TABLE()
 };
 
 #endif // __AUDACITY_MIXER_BOARD__

@@ -12,8 +12,6 @@
 \brief Supplies an accessible grid based on wxGrid.
 
 *//*******************************************************************/
-
-
 #include "Grid.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
@@ -23,14 +21,13 @@
 #include <wx/clipbrd.h>
 #include <wx/dc.h>
 #include <wx/grid.h>
-#include <wx/intl.h>
 #include <wx/settings.h>
 #include <wx/toplevel.h>
 
-// Tenacity
-#include <lib-utility/MemoryX.h>
+#include "IteratorX.h"
+#include "NumericConverterFormats.h"
 
-#include <lib-screen-geometry/SelectedRegion.h>
+#include "SelectedRegion.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "WindowAccessible.h"
@@ -44,7 +41,7 @@ class GridAx final : public WindowAccessible
 
  public:
 
-   GridAx(Grid *grid);
+   GridAx(const FormatterContext& project, Grid *grid);
 
    void SetCurrentCell(int row, int col);
    void TableUpdated();
@@ -115,6 +112,7 @@ class GridAx final : public WindowAccessible
    // Selects the object or child.
    wxAccStatus Select(int childId, wxAccSelectionFlags selectFlags) override;
 #endif
+   FormatterContext mContext;
 
    Grid *mGrid;
    int mLastId;
@@ -122,12 +120,13 @@ class GridAx final : public WindowAccessible
 };
 #endif
 
-NumericEditor::NumericEditor
-   (NumericConverter::Type type, const NumericFormatSymbol &format, double rate)
+NumericEditor::NumericEditor(
+   const FormatterContext& context, NumericConverterType type,
+   const NumericFormatID& format)
+    : mContext { context }
 {
-   mType = type;
+   mType = std::move(type);
    mFormat = format;
-   mRate = rate;
    mOld = 0.0;
 }
 
@@ -138,15 +137,14 @@ NumericEditor::~NumericEditor()
 void NumericEditor::Create(wxWindow *parent, wxWindowID id, wxEvtHandler *handler)
 {
    wxASSERT(parent); // to justify safenew
-   auto control = safenew NumericTextCtrl(
+   auto control = safenew NumericTextCtrl(mContext,
       parent, wxID_ANY,
       mType,
       mFormat,
       mOld,
-      mRate,
       NumericTextCtrl::Options{}
          .AutoPos(true)
-         .InvalidValue(mType == NumericTextCtrl::FREQUENCY,
+         .InvalidValue(mType == NumericConverterType_FREQUENCY(),
                        SelectedRegion::UndefinedFrequency)
    );
    m_control = control;
@@ -180,7 +178,7 @@ void NumericEditor::BeginEdit(int row, int col, wxGrid *grid)
 }
 
 
-bool NumericEditor::EndEdit(int /* row */, int /* col */, const wxGrid* /* grid */, const wxString& /* oldval */, wxString *newval)
+bool NumericEditor::EndEdit(int WXUNUSED(row), int WXUNUSED(col), const wxGrid *WXUNUSED(grid), const wxString &WXUNUSED(oldval), wxString *newval)
 {
    double newtime = GetNumericTextControl()->GetValue();
    bool changed = newtime != mOld;
@@ -217,7 +215,7 @@ bool NumericEditor::IsAcceptedKey(wxKeyEvent &event)
 // Clone is required by wxwidgets; implemented via copy constructor
 wxGridCellEditor *NumericEditor::Clone() const
 {
-   return safenew NumericEditor{ mType, mFormat, mRate };
+   return safenew NumericEditor{ mContext, mType, mFormat };
 }
 
 wxString NumericEditor::GetValue() const
@@ -225,24 +223,14 @@ wxString NumericEditor::GetValue() const
    return wxString::Format(wxT("%g"), GetNumericTextControl()->GetValue());
 }
 
-NumericFormatSymbol NumericEditor::GetFormat() const
+NumericFormatID NumericEditor::GetFormat() const
 {
    return mFormat;
 }
 
-double NumericEditor::GetRate() const
-{
-   return mRate;
-}
-
-void NumericEditor::SetFormat(const NumericFormatSymbol &format)
+void NumericEditor::SetFormat(const NumericFormatID &format)
 {
    mFormat = format;
-}
-
-void NumericEditor::SetRate(double rate)
-{
-   mRate = rate;
 }
 
 NumericRenderer::~NumericRenderer()
@@ -269,11 +257,10 @@ void NumericRenderer::Draw(wxGrid &grid,
 
       table->GetValue(row, col).ToDouble(&value);
 
-      NumericTextCtrl tt(&grid, wxID_ANY,
+      NumericTextCtrl tt(mContext, &grid, wxID_ANY,
                       mType,
                       ne->GetFormat(),
                       value,
-                      ne->GetRate(),
                       NumericTextCtrl::Options{}.AutoPos(true),
                       wxPoint(10000, 10000));  // create offscreen
       tstr = tt.GetString();
@@ -312,8 +299,8 @@ void NumericRenderer::Draw(wxGrid &grid,
 }
 
 wxSize NumericRenderer::GetBestSize(wxGrid &grid,
-                                 wxGridCellAttr & /* attr */,
-                                 wxDC & /* dc */,
+                                 wxGridCellAttr & WXUNUSED(attr),
+                                 wxDC & WXUNUSED(dc),
                                  int row,
                                  int col)
 {
@@ -325,11 +312,10 @@ wxSize NumericRenderer::GetBestSize(wxGrid &grid,
    if (ne) {
       double value;
       table->GetValue(row, col).ToDouble(&value);
-      NumericTextCtrl tt(&grid, wxID_ANY,
+      NumericTextCtrl tt(mContext, &grid, wxID_ANY,
                       mType,
                       ne->GetFormat(),
                       value,
-                      ne->GetRate(),
                       NumericTextCtrl::Options{}.AutoPos(true),
                       wxPoint(10000, 10000));  // create offscreen
       sz = tt.GetSize();
@@ -343,7 +329,7 @@ wxSize NumericRenderer::GetBestSize(wxGrid &grid,
 // Clone is required by wxwidgets; implemented via copy constructor
 wxGridCellRenderer *NumericRenderer::Clone() const
 {
-   return safenew NumericRenderer{ mType };
+   return safenew NumericRenderer{ mContext, mType };
 }
 
 ChoiceEditor::ChoiceEditor(size_t count, const wxString choices[])
@@ -419,9 +405,9 @@ bool ChoiceEditor::EndEdit(int row, int col, wxGrid *grid)
     return changed;
 }
 
-bool ChoiceEditor::EndEdit(int /* row */, int /* col */,
-                           const wxGrid* /* grid */,
-                           const wxString& /* oldval */, wxString *newval)
+bool ChoiceEditor::EndEdit(int WXUNUSED(row), int WXUNUSED(col),
+                           const wxGrid* WXUNUSED(grid),
+                           const wxString &WXUNUSED(oldval), wxString *newval)
 {
    int sel = Choice()->GetSelection();
 
@@ -474,31 +460,33 @@ BEGIN_EVENT_TABLE(Grid, wxGrid)
    EVT_GRID_EDITOR_SHOWN(Grid::OnEditorShown)
 END_EVENT_TABLE()
 
-Grid::Grid(wxWindow *parent,
+Grid::Grid(
+           const FormatterContext& context,
+           wxWindow* parent,
            wxWindowID id,
            const wxPoint& pos,
            const wxSize& size,
            long style,
            const wxString& name)
-: wxGrid(parent, id, pos, size, style | wxWANTS_CHARS, name)
+: wxGrid(parent, id, pos, size, style | wxWANTS_CHARS, name), mContext(context)
 {
 #if wxUSE_ACCESSIBILITY
-   GetGridWindow()->SetAccessible(mAx = safenew GridAx(this));
+   GetGridWindow()->SetAccessible(mAx = safenew GridAx(mContext, this));
 #endif
 
    // RegisterDataType takes ownership of renderer and editor
 
    RegisterDataType(GRID_VALUE_TIME,
-                    safenew NumericRenderer{ NumericConverter::TIME },
+                    safenew NumericRenderer{ mContext, NumericConverterType_TIME() },
                     safenew NumericEditor
-                      { NumericTextCtrl::TIME,
-                        NumericConverter::SecondsFormat(), 44100.0 });
+                      { mContext, NumericConverterType_TIME(),
+                        NumericConverterFormats::SecondsFormat().Internal() });
 
    RegisterDataType(GRID_VALUE_FREQUENCY,
-                    safenew NumericRenderer{ NumericConverter::FREQUENCY },
+                    safenew NumericRenderer{ mContext, NumericConverterType_FREQUENCY() },
                     safenew NumericEditor
-                    { NumericTextCtrl::FREQUENCY,
-                      NumericConverter::HertzFormat(), 44100.0 });
+                    { mContext, NumericConverterType_FREQUENCY(),
+                      NumericConverterFormats::HertzFormat().Internal() });
 
    RegisterDataType(GRID_VALUE_CHOICE,
                     safenew wxGridCellStringRenderer,
@@ -726,6 +714,7 @@ void Grid::OnKeyDown(wxKeyEvent &event)
             if (def && def->IsEnabled()) {
                wxCommandEvent cevent(wxEVT_COMMAND_BUTTON_CLICKED,
                                      def->GetId());
+               cevent.SetEventObject( def );
                GetParent()->GetEventHandler()->ProcessEvent(cevent);
             }
          }
@@ -810,8 +799,9 @@ bool Grid::DeleteCols(int pos, int numCols, bool updateLabels)
    return res;
 }
 
-GridAx::GridAx(Grid *grid)
-: WindowAccessible(grid->GetGridWindow())
+GridAx::GridAx(const FormatterContext& context, Grid* grid)
+    : WindowAccessible(grid->GetGridWindow())
+    , mContext(context)
 {
    mGrid = grid;
    mLastId = -1;
@@ -894,7 +884,7 @@ wxAccStatus GridAx::GetChildCount(int *childCount)
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus GridAx::GetDefaultAction(int /* childId */, wxString *actionName)
+wxAccStatus GridAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName)
 {
    actionName->clear();
 
@@ -902,7 +892,7 @@ wxAccStatus GridAx::GetDefaultAction(int /* childId */, wxString *actionName)
 }
 
 // Returns the description for this object or a child.
-wxAccStatus GridAx::GetDescription(int /* childId */, wxString *description)
+wxAccStatus GridAx::GetDescription(int WXUNUSED(childId), wxString *description)
 {
    description->clear();
 
@@ -910,7 +900,7 @@ wxAccStatus GridAx::GetDescription(int /* childId */, wxString *description)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus GridAx::GetHelpText(int /* childId */, wxString *helpText)
+wxAccStatus GridAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
 {
    helpText->clear();
 
@@ -919,7 +909,7 @@ wxAccStatus GridAx::GetHelpText(int /* childId */, wxString *helpText)
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus GridAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
+wxAccStatus GridAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
 {
    shortcut->clear();
 
@@ -968,13 +958,12 @@ wxAccStatus GridAx::GetName(int childId, wxString *name)
       NumericEditor *c =
          static_cast<NumericEditor *>(mGrid->GetCellEditor(row, col));
 
-      if (c && dt && df && ( c == dt || c == df)) {        
+      if (c && dt && df && ( c == dt || c == df)) {
          double value;
          v.ToDouble(&value);
-         NumericConverter converter(c == dt ? NumericConverter::TIME : NumericConverter::FREQUENCY,
+         NumericConverter converter(mContext, c == dt ? NumericConverterType_TIME() : NumericConverterType_FREQUENCY(),
                         c->GetFormat(),
-                        value,
-                        c->GetRate() );
+                        value);
 
          v = converter.GetString();
       }
@@ -992,7 +981,7 @@ wxAccStatus GridAx::GetName(int childId, wxString *name)
    return wxACC_OK;
 }
 
-wxAccStatus GridAx::GetParent(wxAccessible ** /* parent */)
+wxAccStatus GridAx::GetParent(wxAccessible ** WXUNUSED(parent))
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -1024,7 +1013,7 @@ wxAccStatus GridAx::GetRole(int childId, wxAccRole *role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus GridAx::GetSelections(wxVariant * /* selections */)
+wxAccStatus GridAx::GetSelections(wxVariant * WXUNUSED(selections))
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -1048,7 +1037,7 @@ wxAccStatus GridAx::GetState(int childId, long *state)
 
       if (mGrid->IsReadOnly(row, col)) {
          // It would be more logical to also include the state
-         // wxACC_STATE_SYSTEM_FOCUSABLE, but this causes Window-Eyes to 
+         // wxACC_STATE_SYSTEM_FOCUSABLE, but this causes Window-Eyes to
          // no longer read the cell as disabled
          flag = wxACC_STATE_SYSTEM_UNAVAILABLE | wxACC_STATE_SYSTEM_FOCUSED;
       }
@@ -1078,7 +1067,7 @@ wxAccStatus GridAx::GetState(int childId, long *state)
 #if defined(__WXMAC__)
 wxAccStatus GridAx::GetValue(int childId, wxString *strValue)
 #else
-wxAccStatus GridAx::GetValue(int /* childId */, wxString *strValue)
+wxAccStatus GridAx::GetValue(int WXUNUSED(childId), wxString *strValue)
 #endif
 {
    strValue->clear();

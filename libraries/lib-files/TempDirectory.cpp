@@ -13,6 +13,30 @@
 #include "FileNames.h"
 #include "BasicUI.h"
 
+
+namespace
+{
+struct TempDirChangedPublisher final : Observer::Publisher<FilePath>
+{
+   void UpdateTempPath(const FilePath& path)
+   {
+      if (prevPath != path)
+      {
+         Publish(path);
+         prevPath = path;
+      }
+   }
+
+   FilePath prevPath;
+};
+
+TempDirChangedPublisher& GetTempDirChangedPublisher()
+{
+   static TempDirChangedPublisher publisher;
+   return publisher;
+}
+}
+
 static wxString &TempDirPath()
 {
    static wxString path;
@@ -37,7 +61,7 @@ wxString TempDirectory::TempDir()
          XO("Unsuitable"),
          XO("The temporary files directory is on a FAT formatted drive.\n"
             "Resetting to default location."),
-         "Editing_Part_2#fat32-drives"
+         "Error:_Unsuitable_drive"
          );
 
       path = DefaultTempDir();
@@ -63,6 +87,7 @@ const FilePath &TempDirectory::DefaultTempDir()
 void TempDirectory::SetDefaultTempDir( const FilePath &tempDir )
 {
    sDefaultTempDir = tempDir;
+   GetTempDirChangedPublisher().UpdateTempPath(tempDir);
 }
 
 // We now disallow temp directory name that puts it where cleaner apps will
@@ -120,11 +145,16 @@ bool TempDirectory::FATFilesystemDenied( const FilePath &path,
       BasicUI::ShowErrorDialog( placement,
          XO("Unsuitable"),
          XO("%s\n\nFor tips on suitable drives, click the help button.").Format(msg),
-         "Editing_Part_2.html#fat32-drives"
+         "Error:_Unsuitable_drive"
          );
 
       return true;
    }
 
    return false;
+}
+
+Observer::Publisher<FilePath>& TempDirectory::GetTempPathObserver()
+{
+   return GetTempDirChangedPublisher();
 }

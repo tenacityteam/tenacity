@@ -36,6 +36,8 @@ private:
    std::unique_ptr<wxBitmap> mBacking;
    wxMemoryDC mBackingDC;
    bool mResizeBacking {};
+   
+   DECLARE_EVENT_TABLE()
 };
 
 

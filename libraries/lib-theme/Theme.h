@@ -1,128 +1,226 @@
 /**********************************************************************
 
-  Tenacity
+  Audacity: A Digital Audio Editor
 
   Theme.h
 
-  Avery King
+  James Crook
 
-  SPDX-License-Identifier: GPL-2.0-or-later
+  Audacity is free software.
+  This file is licensed under the wxWidgets license, see License.txt
 
 **********************************************************************/
-#pragma once
 
-#include <any>
-#include <list>
+#ifndef __AUDACITY_THEME__
+#define __AUDACITY_THEME__
+
+#include <map>
+#include <unordered_set>
+#include <vector>
 #include <optional>
-#include <unordered_map>
-#include <string>
+#include <wx/arrstr.h>
+#include <wx/defs.h>
+#include <wx/gdicmn.h>
+#include "ComponentInterfaceSymbol.h"
 
-#include "ThemePackage.h"
-#include "Types.h"
+#include "Observer.h"
+#include "Prefs.h"
 
-/** @brief Represents a theme in Tenacity.
- * 
- * This class is completely different from Audacity's Theme class (which
- * Tenacity inherited). It is rewritten to contain its own set of theme
- * resources rather than act as a singleton for managing themes. See @ref
- * ThemeResources to see that functionality.
- * 
- * Themes can be constructed either from a ThemePackage or in-memory. If a
- * theme is backed by a ThemePackage, it can commit any changes to the package.
- * (Note that it's currently not possible to create an in-memory ThemePackage.
- * See TODO for more details).
- * 
- * @todo Implementing the following:
- * 
- * 1. Support for multi-theme packages.
- * 2. Support for committing in-memory changes.
- * 
-*/
-class THEME_API Theme final
+//! A choice of theme such as "Light", "Dark", ...
+using teThemeType = Identifier;
+
+//! A system theme, that matches selected theme best (only works on macOS with builtin themes).
+enum class PreferredSystemAppearance
 {
-    private:
-        std::optional<ThemePackage> mPackage;
-        std::string mName;
-        ThemeResourceMap mResources;
-
-    public:
-        Theme() = default;
-
-        /// Copy constructor. Any backing theme package is **not** copied.
-        Theme(const Theme& other) : mResources{other.mResources} {}
-        Theme(Theme&& other) : mResources{std::move(other.mResources)} {}
-
-        /// Constructs a theme from a ThemePackage
-        Theme(ThemePackage&& package);
-
-        /// Copy assignment operator. Any backing theme package is **not**
-        /// copied.
-        Theme& operator=(const Theme& other);
-        Theme& operator=(Theme&& other);
-
-        /// Returns the theme package's resurce map if available.
-        const ThemeResourceMap& GetResourceMap();
-
-        void SetName(const std::string& name);
-        std::string GetName();
-
-        /** @brief Sets the backing theme package.
-         * 
-         * Any current backing package is closed after a call to this function.
-         * To unset the backing theme package, call @ref ReleasePackage()
-         * ignoring the return value.
-         * 
-         * Because ThemePackage cannot be copied, it must be moved, and thus
-         * Theme takes ownership over the package. You can still access the
-         * package via @ref GetPackage().
-         * 
-         * @param package The package to set.
-         * 
-        */
-        void SetPackage(ThemePackage&& package);
-
-        /// Returns the backing theme package.
-        const ThemePackage& GetPackage();
-
-        /** @brief Loads all attributes from a backing theme package.
-         * 
-         * @exception InvalidState Thrown if there is no backing package set.
-         * 
-        */
-        void LoadAttributesFromPackage();
-
-        /** @brief Releases the current theme package if any.
-         * 
-         * This member functions releases ownership of the current theme
-         * package to the current owner. Simply ignore the return value if you
-         * only want to reset the backing package.
-         * 
-        */
-        ThemePackage&& ReleasePackage();
-
-        /** @brief Returns data associated with an individual resource.
-         * 
-         * If the resource doesn't exist in the map, it is automatically loaded
-         * from the backing theme package if available. After it is loaded, it
-         * is added to its resource map.
-         * 
-         * @param name The name of the resource to get.
-         * 
-         * @exception InvalidState Thrown if there is a valid backing theme
-         * package but the package is invalid.
-         * 
-         * @exception ArchiveError Thrown if the resource wasn't found.
-         * 
-         * @return Returns data with the associated resource.
-         * 
-        */
-        const std::any& GetResource(const std::string& name);
-
-        /** @brief Adds a resource.
-         * 
-         * @param name The resource name to add.
-         * @param data The data to associate with the new resource. Optional.
-         * 
-        */
-       void AddResource(const std::string& name, const std::any& data = {});
+    Light,
+    Dark,
+    HighContrastDark
 };
+
+class wxArrayString;
+class wxBitmap;
+class wxColour;
+class wxImage;
+class wxPen;
+
+class ChoiceSetting;
+
+// JKC: will probably change name from 'teBmps' to 'tIndexBmp';
+using teBmps = int; /// The index of a bitmap resource in Theme Resources.
+
+enum teResourceType
+{
+   resTypeColour,
+   resTypeBitmap,
+   resTypeImage = resTypeBitmap,
+};
+
+enum teResourceFlags
+{
+   resFlagNone   =0x00,
+   resFlagPaired =0x01,
+   resFlagCursor =0x02,
+   resFlagNewLine = 0x04,
+   resFlagInternal = 0x08,  // For image manipulation.  Don't save or load.
+   resFlagSkip = 0x10
+};
+
+//! A cursor for iterating the theme bitmap
+class THEME_API FlowPacker
+{
+public:
+   explicit FlowPacker(int width);
+   ~FlowPacker() {}
+   void GetNextPosition( int xSize, int ySize );
+   void SetNewGroup( int iGroupSize );
+   void SetColourGroup( );
+   wxRect Rect();
+   wxRect RectInner();
+   void RectMid( int &x, int &y );
+
+   // These 4 should become private again...
+   int mFlags = resFlagPaired;
+   int mxPos = 0;
+   int myPos = 0;
+   int myHeight = 0;
+   int mBorderWidth = 1;
+
+private:
+   int iImageGroupSize = 1;
+   int iImageGroupIndex = -1;
+   int mOldFlags = resFlagPaired;
+   int myPosBase = 0;
+   int mxCacheWidth = 0;
+
+   int mComponentWidth = 0;
+   int mComponentHeight = 0;
+
+};
+
+struct ThemeSet
+{
+   // wxImage, wxBitmap copy cheaply using reference counting
+   std::vector<wxImage> mImages;
+   std::vector<wxBitmap> mBitmaps;
+   std::vector<wxColour> mColours;
+
+   bool bInitialised = false;
+};
+
+struct ThemeChangeMessage {
+   std::optional<PreferredSystemAppearance> appearance; /*!<
+      An enum value when preferred system appearance changes, or nullopt
+      for change of the image set */
+};
+
+class THEME_API ThemeBase /* not final */
+   : public Observer::Publisher<ThemeChangeMessage>
+{
+public:
+   ThemeBase(void);
+   ThemeBase ( const ThemeBase & ) = delete;
+   ThemeBase &operator =( const ThemeBase & ) = delete;
+public:
+   virtual ~ThemeBase(void);
+
+public:
+   virtual void EnsureInitialised() = 0;
+
+   // Get and set the root directory for saving and loading of files
+   FilePath GetFilePath();
+   void SetFilePath(const FilePath &path);
+
+   // Typically statically constructed:
+   struct THEME_API RegisteredTheme {
+      RegisteredTheme(EnumValueSymbol symbol,
+         PreferredSystemAppearance preferredSystemAppearance,
+         const std::vector<unsigned char> &data /*!<
+            A reference to this vector is stored, not a copy of it! */
+      );
+      ~RegisteredTheme();
+
+      const EnumValueSymbol symbol;
+      const PreferredSystemAppearance preferredSystemAppearance;
+      const std::vector<unsigned char>& data;
+   };
+
+   void SwitchTheme( teThemeType Theme );
+   void LoadTheme( teThemeType Theme );
+
+   // For checking uniqueness of names during registration
+   using NameSet = std::unordered_set<wxString>;
+
+   void RegisterImage( NameSet &allNames,
+      int &flags, int &iIndex,char const** pXpm, const wxString & Name);
+   void RegisterImage( NameSet &allNames,
+      int &flags, int &iIndex, const wxImage &Image, const wxString & Name );
+   void RegisterColour( NameSet &allNames,
+      int &iIndex, const wxColour &Clr, const wxString & Name );
+
+   teThemeType GetFallbackThemeType();
+   void CreateImageCache();
+   bool CreateOneImageCache(teThemeType id, bool bBinarySave);
+   bool ReadImageCache( teThemeType type = {}, bool bOkIfNotFound=false);
+   void LoadThemeComponents( bool bOkIfNotFound =false);
+   void LoadOneThemeComponents( teThemeType id, bool bOkIfNotFound = false);
+   void SaveThemeComponents();
+   bool SaveOneThemeComponents( teThemeType id );
+   void SaveThemeAsCode();
+   void WriteImageDefs( );
+   void WriteImageMap( );
+   void WriteOneImageMap( teThemeType id );
+   static bool LoadPreferredTheme();
+   void RecolourBitmap( int iIndex, wxColour From, wxColour To );
+
+   int ColourDistance( wxColour & From, wxColour & To );
+   wxColour & Colour( int iIndex );
+   wxBitmap & Bitmap( int iIndex );
+   wxImage  & Image( int iIndex );
+   wxSize ImageSize( int iIndex );
+
+   void ReplaceImage( int iIndex, wxImage * pImage );
+   void RotateImageInto( int iTo, int iFrom, bool bClockwise );
+
+   void SetBrushColour( wxBrush & Brush, int iIndex );
+   void SetPenColour(   wxPen & Pen, int iIndex );
+
+   // Utility function that combines a bitmap and a mask, both in XPM format.
+   wxImage MaskedImage( char const ** pXpm, char const ** pMask );
+   // Utility function that takes a 32 bit bitmap and makes it into an image.
+   wxImage MakeImageWithAlpha( wxBitmap & Bmp );
+
+   // Reclaim resources after finished with theme editing
+   void DeleteUnusedThemes();
+
+protected:
+   FilePath mThemeDir;
+
+   wxArrayString mBitmapNames;
+   std::vector<int> mBitmapFlags;
+   wxArrayString mColourNames;
+
+   PreferredSystemAppearance mPreferredSystemAppearance { PreferredSystemAppearance::Light };
+
+   std::map<Identifier, ThemeSet> mSets;
+   ThemeSet *mpSet = nullptr;
+};
+
+class THEME_API Theme final : public ThemeBase
+{
+   friend class AColor; // So it can publish
+public:
+   Theme(void);
+public:
+   ~Theme(void);
+public:
+   void EnsureInitialised() override;
+   void RegisterImagesAndColours();
+};
+
+extern THEME_API Theme theTheme;
+
+extern THEME_API ChoiceSetting
+     &GUITheme()
+;
+
+#endif // __AUDACITY_THEME__

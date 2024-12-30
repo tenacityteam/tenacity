@@ -29,13 +29,23 @@ ButtonHandle::~ButtonHandle()
 {
 }
 
-void ButtonHandle::Enter(bool, TenacityProject *)
+std::shared_ptr<const Track> ButtonHandle::FindTrack() const
+{
+   return mpTrack.lock();
+}
+
+bool ButtonHandle::IsDragging() const
+{
+   return mIsDragging;
+}
+
+void ButtonHandle::Enter(bool, AudacityProject *)
 {
    mChangeHighlight = RefreshCode::RefreshCell;
 }
 
 UIHandle::Result ButtonHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -49,7 +59,7 @@ UIHandle::Result ButtonHandle::Click
    // Come here for left click or double click
    if (mRect.Contains(event.m_x, event.m_y)) {
       mWasIn = true;
-      mIsClicked = true;
+      mIsDragging = true;
       // Toggle visible button state
       return RefreshCell;
    }
@@ -58,7 +68,7 @@ UIHandle::Result ButtonHandle::Click
 }
 
 UIHandle::Result ButtonHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    const wxMouseEvent &event = evt.event;
    using namespace RefreshCode;
@@ -73,7 +83,7 @@ UIHandle::Result ButtonHandle::Drag
 }
 
 HitTestPreview ButtonHandle::Preview
-(const TrackPanelMouseState &st, TenacityProject *project)
+(const TrackPanelMouseState &st, AudacityProject *project)
 {
    // No special cursor
    TranslatableString message;
@@ -83,7 +93,7 @@ HitTestPreview ButtonHandle::Preview
 }
 
 UIHandle::Result ButtonHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
  wxWindow *pParent)
 {
    using namespace RefreshCode;
@@ -98,7 +108,7 @@ UIHandle::Result ButtonHandle::Release
    return result;
 }
 
-UIHandle::Result ButtonHandle::Cancel(TenacityProject* /* pProject */)
+UIHandle::Result ButtonHandle::Cancel(AudacityProject *WXUNUSED(pProject))
 {
    using namespace RefreshCode;
    return RefreshCell; // perhaps unnecessarily if pointer is out of the box

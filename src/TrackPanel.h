@@ -11,16 +11,14 @@
 #ifndef __AUDACITY_TRACK_PANEL__
 #define __AUDACITY_TRACK_PANEL__
 
-
+#include <chrono>
 #include <vector>
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/timer.h> // to inherit
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-
 #include "HitTestResult.h"
+#include "Prefs.h"
 
 #include "SelectedRegion.h"
 
@@ -34,6 +32,10 @@ class wxRect;
 
 struct AudioIOEvent;
 
+// All cells of the TrackPanel are subclasses of this
+class CommonTrackPanelCell;
+
+class Channel;
 class SpectrumAnalyst;
 class Track;
 class TrackList;
@@ -41,22 +43,16 @@ struct TrackListEvent;
 class TrackPanel;
 class TrackArtist;
 class Ruler;
-class SnapManager;
 class AdornedRulerPanel;
 class LWSlider;
 
 class TrackPanelAx;
 
-// Declared elsewhere, to reduce compilation dependencies
-class TrackPanelListener;
-
 struct TrackPanelDrawingContext;
 
 enum class UndoPush : unsigned char;
 
-enum {
-   kTimerInterval = 50, // milliseconds
-};
+static constexpr auto  kTimerInterval = std::chrono::milliseconds{50};
 
 const int DragThreshold = 3;// Anything over 3 pixels is a drag, else a click.
 
@@ -66,9 +62,9 @@ class TENACITY_DLL_API TrackPanel final
    , private PrefsListener
 {
  public:
-   static TrackPanel &Get( TenacityProject &project );
-   static const TrackPanel &Get( const TenacityProject &project );
-   static void Destroy( TenacityProject &project );
+   static TrackPanel &Get( AudacityProject &project );
+   static const TrackPanel &Get( const AudacityProject &project );
+   static void Destroy( AudacityProject &project );
  
    TrackPanel(wxWindow * parent,
               wxWindowID id,
@@ -76,7 +72,7 @@ class TENACITY_DLL_API TrackPanel final
               const wxSize & size,
               const std::shared_ptr<TrackList> &tracks,
               ViewInfo * viewInfo,
-              TenacityProject * project,
+              AudacityProject * project,
               AdornedRulerPanel * ruler );
 
    virtual ~ TrackPanel();
@@ -91,7 +87,6 @@ class TENACITY_DLL_API TrackPanel final
 
    void OnTrackListResizing(const TrackListEvent &event);
    void OnTrackListDeletion();
-   void OnEnsureVisible(const TrackListEvent & event);
    void UpdateViewIfNoTracks(); // Call this to update mViewInfo, etc, after track(s) removal, before Refresh().
 
    double GetMostRecentXPos();
@@ -99,10 +94,10 @@ class TENACITY_DLL_API TrackPanel final
    void OnSize( wxSizeEvent & );
    void OnIdle(wxIdleEvent & event);
    void OnTimer(wxTimerEvent& event);
-   void OnProjectSettingsChange(wxCommandEvent &event);
-   void OnTrackFocusChange( wxCommandEvent &event );
+   void OnSyncLockChange(struct SyncLockChangeMessage);
+   void OnTrackFocusChange(struct TrackFocusChangeMessage);
 
-   void OnUndoReset( wxCommandEvent &event );
+   void OnUndoReset(struct UndoRedoMessage);
 
    void Refresh
       (bool eraseBackground = true, const wxRect *rect = (const wxRect *) NULL)
@@ -112,18 +107,16 @@ class TENACITY_DLL_API TrackPanel final
 
    void HandlePageUpKey();
    void HandlePageDownKey();
-   TenacityProject * GetProject() const override;
+   AudacityProject * GetProject() const override;
 
    void OnTrackMenu(Track *t = NULL);
 
-   void VerticalScroll( float fracPosition);
-
-   TrackPanelCell *GetFocusedCell() override;
+   std::shared_ptr<TrackPanelCell> GetFocusedCell() override;
    void SetFocusedCell() override;
 
    void UpdateVRulers();
    void UpdateVRuler(Track *t);
-   void UpdateTrackVRuler(Track *t);
+   void UpdateTrackVRuler(Track &t);
    void UpdateVRulerSize();
 
  protected:
@@ -157,7 +150,7 @@ public:
     (There may be multiple sub-views, each with a ruler.)
     If target is nullptr, returns an empty vector.
     */
-   std::vector<wxRect> FindRulerRects( const Track * target );
+   std::vector<wxRect> FindRulerRects(const Channel &target);
 
 protected:
    // Get the root object defining a recursive subdivision of the panel's
@@ -170,7 +163,6 @@ public:
    const TrackList * GetTracks() const { return mTracks.get(); }
    TrackList * GetTracks() { return mTracks.get(); }
    ViewInfo * GetViewInfo(){ return mViewInfo;}
-   TrackPanelListener * GetListener(){ return mListener;}
    AdornedRulerPanel * GetRuler(){ return mRuler;}
 
 protected:
@@ -180,16 +172,21 @@ public:
    // Set the object that performs catch-all event handling when the pointer
    // is not in any track or ruler or control panel.
    void SetBackgroundCell
-      (const std::shared_ptr< TrackPanelCell > &pCell);
-   std::shared_ptr< TrackPanelCell > GetBackgroundCell();
+      (const std::shared_ptr< CommonTrackPanelCell > &pCell);
+   std::shared_ptr< CommonTrackPanelCell > GetBackgroundCell();
 
 public:
 
 protected:
-   Observer::Subscription mTrackListScubscription,
-      mAudioIOScubscription;
-
-   TrackPanelListener *mListener;
+   Observer::Subscription mTrackListSubscription
+      , mAudioIOSubscription
+      , mUndoSubscription
+      , mFocusChangeSubscription
+      , mRealtimeEffectManagerSubscription
+      , mSyncLockSubscription
+      , mProjectRulerInvalidatedSubscription
+      , mSelectionSubscription
+   ;
 
    std::shared_ptr<TrackList> mTracks;
 
@@ -217,13 +214,14 @@ protected:
 
    bool mRefreshBacking;
 
+
 protected:
 
    SelectedRegion mLastDrawnSelectedRegion {};
 
  protected:
 
-   std::shared_ptr<TrackPanelCell> mpBackground;
+   std::shared_ptr<CommonTrackPanelCell> mpBackground;
 
    DECLARE_EVENT_TABLE()
 

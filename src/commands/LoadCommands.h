@@ -12,7 +12,7 @@
 #ifndef __AUDACITY_LOAD_COMMANDS__
 #define __AUDACITY_LOAD_COMMANDS__
 
-#include "ModuleInterface.h"
+#include "PluginProvider.h"
 
 #include <functional>
 #include <memory>
@@ -27,7 +27,7 @@ class AudacityCommand;
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class TENACITY_DLL_API BuiltinCommandsModule final : public ModuleInterface
+class TENACITY_DLL_API BuiltinCommandsModule final : public PluginProvider
 {
 public:
    BuiltinCommandsModule();
@@ -45,13 +45,13 @@ public:
 
    // ComponentInterface implementation
 
-   PluginPath GetPath() override;
-   ComponentInterfaceSymbol GetSymbol() override;
-   VendorSymbol GetVendor() override;
-   wxString GetVersion() override;
-   TranslatableString GetDescription() override;
+   PluginPath GetPath() const override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   VendorSymbol GetVendor() const override;
+   wxString GetVersion() const override;
+   TranslatableString GetDescription() const override;
 
-   // ModuleInterface implementation
+   // PluginProvider implementation
 
    bool Initialize() override;
    void Terminate() override;
@@ -60,17 +60,17 @@ public:
    const FileExtensions &GetFileExtensions() override;
    FilePath InstallPath() override { return {}; }
 
-   bool AutoRegisterPlugins(PluginManagerInterface & pm) override;
-   PluginPaths FindPluginPaths(PluginManagerInterface & pm) override;
+   void AutoRegisterPlugins(PluginManagerInterface & pm) override;
+   PluginPaths FindModulePaths(PluginManagerInterface & pm) override;
    unsigned DiscoverPluginsAtPath(
       const PluginPath & path, TranslatableString &errMsg,
       const RegistrationCallback &callback)
          override;
 
-   bool IsPluginValid(const PluginPath & path, bool bFast) override;
+   bool CheckPluginExist(const PluginPath& path) const override;
 
    std::unique_ptr<ComponentInterface>
-      CreateInstance(const PluginPath & path) override;
+      LoadPlugin(const PluginPath & path) override;
 
 private:
    // BuiltinEffectModule implementation

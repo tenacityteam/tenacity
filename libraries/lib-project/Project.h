@@ -12,6 +12,7 @@
 #define __AUDACITY_PROJECT__
 
 #include "ClientData.h" // to inherit
+#include "GlobalVariable.h"
 
 #include <memory>
 #include <mutex>
@@ -19,7 +20,7 @@
 #include <wx/event.h>
 using FilePath = wxString;
 
-class TenacityProject;
+class AudacityProject;
 
 //! Like a standard library container of all open projects.
 //! @invariant pointers accessible through the iterators are not null
@@ -35,9 +36,9 @@ class PROJECT_API AllProjects
 {
 
    // Use shared_ptr to projects, because elsewhere we need weak_ptr
-   using AProjectHolder = std::shared_ptr< TenacityProject >;
+   using AProjectHolder = std::shared_ptr< AudacityProject >;
    using Container = std::vector< AProjectHolder >;
-   static Container gTenacityProjects;
+   static Container gAudacityProjects;
 
 public:
    AllProjects() = default;
@@ -57,7 +58,7 @@ public:
 
    // If the project is present, remove it from the global array and return
    // a shared pointer, else return null.  This invalidates any iterators.
-   value_type Remove( TenacityProject &project );
+   value_type Remove( AudacityProject &project );
 
    //! This invalidates iterators
    /*!
@@ -73,7 +74,7 @@ public:
 // Container of various objects associated with the project, which is
 // responsible for destroying them
 using AttachedProjectObjects = ClientData::Site<
-   TenacityProject, ClientData::Base, ClientData::SkipCopying, std::shared_ptr
+   AudacityProject, ClientData::Base, ClientData::SkipCopying, std::shared_ptr
 >;
 
 ///\brief The top-level handle to an Audacity project.  It serves as a source
@@ -82,16 +83,20 @@ using AttachedProjectObjects = ClientData::Site<
 /// message and a few other things.
 /// There is very little in this class, most of the intelligence residing in
 /// the cooperating attached objects.
-class PROJECT_API TenacityProject final
+class PROJECT_API AudacityProject final
    : public wxEvtHandler
    , public AttachedProjectObjects
-   , public std::enable_shared_from_this<TenacityProject>
+   , public std::enable_shared_from_this<AudacityProject>
 {
+   struct CreateToken{};
  public:
    using AttachedObjects = ::AttachedProjectObjects;
 
-   TenacityProject();
-   virtual ~TenacityProject();
+   //! Use this factory function
+   static std::shared_ptr<AudacityProject> Create();
+   //! Don't use this constructor directly
+   AudacityProject(CreateToken);
+   virtual ~AudacityProject();
 
    int GetProjectNumber(){ return mProjectNo;}
 
@@ -128,8 +133,21 @@ private:
 
 // Generate a registry for serialized data attached to the project
 #include "XMLMethodRegistry.h"
-class TenacityProject;
-using ProjectFileIORegistry = XMLMethodRegistry<TenacityProject>;
+class AudacityProject;
+using ProjectFileIORegistry = XMLMethodRegistry<AudacityProject>;
 DECLARE_XML_METHOD_REGISTRY( PROJECT_API, ProjectFileIORegistry );
+
+namespace BasicUI { class WindowPlacement; }
+
+//! Type of function that makes a WindowPlacement for dialogs, with project frame as parent
+using WindowPlacementFactory = GlobalHook< AudacityProject,
+   std::unique_ptr<const BasicUI::WindowPlacement>(
+      AudacityProject &project)
+>;
+
+//! Make a WindowPlacement object suitable for `project` (which may be null)
+/*! @post return value is not null */
+PROJECT_API std::unique_ptr<const BasicUI::WindowPlacement>
+ProjectFramePlacement( AudacityProject *project );
 
 #endif

@@ -13,38 +13,37 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "LabelTrackView.h"
 #include "../../../HitTestResult.h"
-#include "../../../LabelTrack.h"
-#include "../../../ProjectHistory.h"
+#include "LabelTrack.h"
+#include "ProjectHistory.h"
 #include "../../../RefreshCode.h"
 #include "../../../TrackPanelMouseEvent.h"
-#include "../../../UndoManager.h"
+#include "UndoManager.h"
 #include "ViewInfo.h"
-#include "../../../SelectionState.h"
-#include "../../../ProjectAudioIO.h"
+#include "SelectionState.h"
+#include "ProjectAudioIO.h"
 #include "../../../../images/Cursors.h"
-#include "../../../tracks/ui/TimeShiftHandle.h"
 
 #include <wx/cursor.h>
+#include <wx/event.h>
 #include <wx/translation.h>
+
+#include <cassert>
 
 LabelTrackHit::LabelTrackHit( const std::shared_ptr<LabelTrack> &pLT )
    : mpLT{ pLT }
 {
-   pLT->Bind(
-      EVT_LABELTRACK_PERMUTED, &LabelTrackHit::OnLabelPermuted, this );
+   mSubscription = pLT->Subscribe( *this, &LabelTrackHit::OnLabelPermuted );
 }
 
 LabelTrackHit::~LabelTrackHit()
 {
-   // Must do this because this sink isn't wxEvtHandler
-   mpLT->Unbind(
-      EVT_LABELTRACK_PERMUTED, &LabelTrackHit::OnLabelPermuted, this );
 }
 
-void LabelTrackHit::OnLabelPermuted( LabelTrackEvent &e )
+void LabelTrackHit::OnLabelPermuted( const LabelTrackEvent &e )
 {
-   e.Skip();
    if ( e.mpTrack.lock() != mpLT )
+      return;
+   if ( e.type != LabelTrackEvent::Permutation )
       return;
 
    auto former = e.mFormerPosition;
@@ -58,7 +57,7 @@ void LabelTrackHit::OnLabelPermuted( LabelTrackEvent &e )
       else if ( former > index && index >= present )
          ++ index;
    };
-   
+
    update( mMouseOverLabelLeft );
    update( mMouseOverLabelRight );
    update( mMouseOverLabel );
@@ -73,7 +72,7 @@ LabelGlyphHandle::LabelGlyphHandle
 {
 }
 
-void LabelGlyphHandle::Enter(bool, TenacityProject *)
+void LabelGlyphHandle::Enter(bool, AudacityProject *)
 {
    mChangeHighlight = RefreshCode::RefreshCell;
 }
@@ -115,6 +114,11 @@ LabelGlyphHandle::~LabelGlyphHandle()
 {
 }
 
+std::shared_ptr<const Track> LabelGlyphHandle::FindTrack() const
+{
+   return mpLT;
+}
+
 void LabelGlyphHandle::HandleGlyphClick
 (LabelTrackHit &hit, const wxMouseEvent & evt,
  const wxRect & r, const ZoomInfo &zoomInfo,
@@ -135,7 +139,7 @@ void LabelGlyphHandle::HandleGlyphClick
          view.ResetTextSelection();
 
          double t = 0.0;
-         
+
          // When we start dragging the label(s) we don't want them to jump.
          // so we calculate the displacement of the mouse from the drag center
          // and use that in subsequent dragging calculations.  The mouse stays
@@ -157,14 +161,14 @@ void LabelGlyphHandle::HandleGlyphClick
             t = (mLabels[ hit.mMouseOverLabelRight ].getT1() +
                  mLabels[ hit.mMouseOverLabelLeft ].getT0()) / 2.0f;
 
-            // If we're moving two edges of same label then it's a move 
+            // If we're moving two edges of same label then it's a move
             // (label is shrunk to zero and size of zero is preserved)
-            // If we're on a boundary between two different labels, 
+            // If we're on a boundary between two different labels,
             // then it's an adjust.
             // In both cases the two points coalesce.
-            // 
-            // NOTE: seems that it's not neccessary that hitting the both
-            // left and right handles mean that we're dealing with a point, 
+            //
+            // NOTE: seems that it's not necessary that hitting the both
+            // left and right handles mean that we're dealing with a point,
             // but the range will be turned into a point on click
             bool isPointLabel = hit.mMouseOverLabelLeft == hit.mMouseOverLabelRight;
             // Except!  We don't coalesce if both ends are from the same label and
@@ -195,7 +199,7 @@ void LabelGlyphHandle::HandleGlyphClick
 }
 
 UIHandle::Result LabelGlyphHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    auto result = LabelDefaultClickHandle::Click( evt, pProject );
 
@@ -285,7 +289,7 @@ static int Constrain( int value, int min, int max )
 }
 
 bool LabelGlyphHandle::HandleGlyphDragRelease
-(TenacityProject &project,
+(AudacityProject &project,
  LabelTrackHit &hit, const wxMouseEvent & evt,
  wxRect & r, const ZoomInfo &zoomInfo,
  NotifyingSelectedRegion &newSel)
@@ -327,17 +331,17 @@ bool LabelGlyphHandle::HandleGlyphDragRelease
 
               if (!done) {
                   //otherwise, select all tracks
-                  for (auto t : tracks.Any())
+                  for (auto t : tracks)
                       selectionState.SelectTrack(*t, true, true);
               }
 
               // Do this after, for its effect on TrackPanel's memory of last selected
               // track (which affects shift-click actions)
-              selectionState.SelectTrack(*pTrack.get(), true, true);
+              selectionState.SelectTrack(*pTrack, true, true);
 
               // PRL: bug1659 -- make selection change undo correctly
               updated = !ProjectAudioIO::Get(project).IsAudioActive();
-              
+
               auto& view = LabelTrackView::Get(*pTrack);
               view.SetNavigationIndex(hit.mMouseOverLabel);
           }
@@ -413,7 +417,7 @@ bool LabelGlyphHandle::HandleGlyphDragRelease
 }
 
 UIHandle::Result LabelGlyphHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    auto result = LabelDefaultClickHandle::Drag( evt, pProject );
 
@@ -427,7 +431,7 @@ UIHandle::Result LabelGlyphHandle::Drag
 }
 
 HitTestPreview LabelGlyphHandle::Preview
-(const TrackPanelMouseState &, TenacityProject *)
+(const TrackPanelMouseState &, AudacityProject *)
 {
    static wxCursor arrowCursor{ wxCURSOR_ARROW };
    static auto handOpenCursor =
@@ -449,7 +453,7 @@ HitTestPreview LabelGlyphHandle::Preview
 }
 
 UIHandle::Result LabelGlyphHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
  wxWindow *pParent)
 {
    auto result = LabelDefaultClickHandle::Release( evt, pProject, pParent );
@@ -467,7 +471,7 @@ UIHandle::Result LabelGlyphHandle::Release
    return result | RefreshCode::RefreshAll | RefreshCode::DrawOverlays;
 }
 
-UIHandle::Result LabelGlyphHandle::Cancel(TenacityProject *pProject)
+UIHandle::Result LabelGlyphHandle::Cancel(AudacityProject *pProject)
 {
    ProjectHistory::Get( *pProject ).RollbackState();
    auto result = LabelDefaultClickHandle::Cancel( pProject );

@@ -1,6 +1,6 @@
 /*!********************************************************************
 
-  Tenacity
+  Audacity: A Digital Audio Editor
 
   @file TransactionScope.h
 
@@ -11,8 +11,7 @@
 #define __AUDACITY_TRANSACTION_SCOPE__
 
 #include "GlobalVariable.h"
-class TenacityProject;
-
+class AudacityProject;
 #include <functional>
 #include <memory>
 #include <wx/string.h>
@@ -30,14 +29,14 @@ class TRANSACTIONS_API TransactionScope
 public:
    //! Type of function supplying implementation of steps
    struct TRANSACTIONS_API Factory : GlobalHook<Factory,
-      std::unique_ptr<TransactionScopeImpl>(TenacityProject &)
+      std::unique_ptr<TransactionScopeImpl>(AudacityProject &)
    > {};
 
    //! Construct from a project
    /*!
     If no implementation factory is installed, or the factory returns null,
     then this object does nothing */
-   TransactionScope(TenacityProject &project, const char *name);
+   TransactionScope(AudacityProject &project, const char *name);
 
    //! Rollback transaction if it was not yet committed
    ~TransactionScope();

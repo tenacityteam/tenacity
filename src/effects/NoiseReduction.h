@@ -13,47 +13,22 @@
 #ifndef __AUDACITY_EFFECT_NOISE_REDUCTION__
 #define __AUDACITY_EFFECT_NOISE_REDUCTION__
 
-#include "Effect.h"
+#include "NoiseReductionBase.h"
+#include "StatefulEffectUIServices.h"
 
-class EffectNoiseReduction final : public Effect {
+class EffectNoiseReduction final :
+    public NoiseReductionBase,
+    public StatefulEffectUIServices
+{
 public:
-   static const ComponentInterfaceSymbol Symbol;
+   int ShowHostInterface(EffectBase &plugin, wxWindow &parent,
+      const EffectDialogFactory &factory,
+      std::shared_ptr<EffectInstance> &pInstance, EffectSettingsAccess &access,
+      bool forceModal = false) override;
 
-   EffectNoiseReduction();
-   virtual ~EffectNoiseReduction();
-
-   using Effect::TrackProgress;
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-
-   // Effect implementation
-
-//   using Effect::TrackProgress;
-
-   int ShowHostInterface( wxWindow &parent,
-      const EffectDialogFactory &factory, bool forceModal = false) override;
-
-   bool Init() override;
-   bool CheckWhetherSkipEffect() override;
-   bool Process() override;
-
-   class Settings;
-   class Statistics;
    class Dialog;
-
 private:
-   class Worker;
    friend class Dialog;
-
-   std::unique_ptr<Settings> mSettings;
-   std::unique_ptr<Statistics> mStatistics;
 };
 
 #endif

@@ -16,8 +16,6 @@ BackedPanel::BackedPanel(wxWindow * parent, wxWindowID id,
 : wxPanelWrapper(parent, id, pos, size, style)
 , mBacking{ std::make_unique<wxBitmap>(1, 1, 24) }
 {
-   Bind(wxEVT_SIZE, &BackedPanel::OnSize, this);
-
    // Preinit the backing DC and bitmap so routines that require it will
    // not cause a crash if they run before the panel is fully initialized.
    mBackingDC.SelectObject(*mBacking);
@@ -79,3 +77,8 @@ void BackedPanel::OnSize(wxSizeEvent & event)
    // expanding...is it worth the trouble?
    Refresh();
 }
+
+BEGIN_EVENT_TABLE(BackedPanel, wxPanelWrapper)
+   EVT_SIZE(BackedPanel::OnSize)
+END_EVENT_TABLE()
+

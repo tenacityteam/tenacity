@@ -18,7 +18,9 @@
 #include "PrefsPanel.h"
 
 class ChoiceSetting;
+class PluginProvider;
 class ShuttleGui;
+class EffectsLocationPanel;
 
 #define EFFECTS_PREFS_PLUGIN_SYMBOL ComponentInterfaceSymbol{ XO("Effects") }
 
@@ -27,8 +29,8 @@ class EffectsPrefs final : public PrefsPanel
  public:
    EffectsPrefs(wxWindow * parent, wxWindowID winid);
    ~EffectsPrefs();
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
 
    bool Commit() override;
    ManualPageID HelpPageName() override;
@@ -36,7 +38,11 @@ class EffectsPrefs final : public PrefsPanel
 
  private:
    void Populate();
+
+   std::vector<std::pair<PluginProvider*, EffectsLocationPanel*>> mLocations;
 };
 
+TENACITY_DLL_API extern BoolSetting   SkipEffectsScanAtStartup;
 TENACITY_DLL_API extern ChoiceSetting EffectsGroupBy;
+TENACITY_DLL_API extern ChoiceSetting RealtimeEffectsGroupBy;
 #endif

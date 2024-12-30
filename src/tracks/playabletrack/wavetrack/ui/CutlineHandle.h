@@ -21,56 +21,58 @@ class WaveTrack;
 class CutlineHandle final : public UIHandle
 {
    CutlineHandle(const CutlineHandle&) = delete;
-   static HitTestPreview HitPreview(bool cutline, bool unsafe);
+   static HitTestPreview HitPreview(bool unsafe);
 
 public:
-   explicit CutlineHandle
-      ( const std::shared_ptr<WaveTrack> &pTrack,
-        WaveTrackLocation location );
+   explicit CutlineHandle(const std::shared_ptr<WaveTrack> &pTrack,
+      WaveTrackLocations locations, WaveTrackLocation location);
 
    CutlineHandle &operator=(const CutlineHandle&) = default;
 
-   static UIHandlePtr HitAnywhere
-      (const TenacityProject *pProject, bool cutline, UIHandlePtr ptr);
-   static UIHandlePtr HitTest
-      (std::weak_ptr<CutlineHandle> &holder,
-       const wxMouseState &state, const wxRect &rect,
-       const TenacityProject *pProject,
-       const std::shared_ptr<WaveTrack> &pTrack);
+   static UIHandlePtr HitAnywhere(
+      const AudacityProject *pProject, bool cutline, UIHandlePtr ptr);
+   static UIHandlePtr HitTest(
+      std::weak_ptr<CutlineHandle> &holder,
+      const wxMouseState &state, const wxRect &rect,
+      const AudacityProject *pProject,
+      std::shared_ptr<WaveTrack> pTrack);
 
    virtual ~CutlineHandle();
+
+   std::shared_ptr<const Track> FindTrack() const override;
 
    const WaveTrackLocation &GetLocation() { return mLocation; }
    std::shared_ptr<WaveTrack> GetTrack() { return mpTrack; }
 
-   void Enter(bool forward, TenacityProject *) override;
+   void Enter(bool forward, AudacityProject *) override;
 
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 
 private:
    std::shared_ptr<WaveTrack> mpTrack{};
-   enum Operation { Merge, Expand, Remove };
-   Operation mOperation{ Merge };
+   enum Operation { Expand, Remove };
+   Operation mOperation{ Expand };
    double mStartTime{}, mEndTime{};
-   WaveTrackLocation mLocation {};
+   WaveTrackLocations mLocations;
+   WaveTrackLocation mLocation{};
 };
 
 #endif

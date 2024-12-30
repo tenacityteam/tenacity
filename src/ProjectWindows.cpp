@@ -10,16 +10,15 @@
 
 #include "ProjectWindows.h"
 #include "Project.h"
-#include "widgets/wxWidgetsBasicUI.h"
 
 #include <wx/frame.h>
 
 namespace {
 struct ProjectWindows final : ClientData::Base
 {
-   static ProjectWindows &Get( TenacityProject &project );
-   static const ProjectWindows &Get( const TenacityProject &project );
-   explicit ProjectWindows(TenacityProject &project)
+   static ProjectWindows &Get( AudacityProject &project );
+   static const ProjectWindows &Get( const AudacityProject &project );
+   explicit ProjectWindows(AudacityProject &project)
       : mAttachedWindows{project}
    {}
 
@@ -29,24 +28,24 @@ struct ProjectWindows final : ClientData::Base
    AttachedWindows mAttachedWindows;
 };
 
-const TenacityProject::AttachedObjects::RegisteredFactory key{
-   [](TenacityProject &project) {
+const AudacityProject::AttachedObjects::RegisteredFactory key{
+   [](AudacityProject &project) {
       return std::make_unique<ProjectWindows>(project);
    }
 };
 
-ProjectWindows &ProjectWindows::Get( TenacityProject &project )
+ProjectWindows &ProjectWindows::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectWindows >( key );
 }
 
-const ProjectWindows &ProjectWindows::Get( const TenacityProject &project )
+const ProjectWindows &ProjectWindows::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 }
 
-TENACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
+TENACITY_DLL_API wxWindow &GetProjectPanel( AudacityProject &project )
 {
    auto ptr = ProjectWindows::Get(project).mPanel;
    if ( !ptr )
@@ -55,7 +54,7 @@ TENACITY_DLL_API wxWindow &GetProjectPanel( TenacityProject &project )
 }
 
 TENACITY_DLL_API const wxWindow &GetProjectPanel(
-   const TenacityProject &project )
+   const AudacityProject &project )
 {
    auto ptr = ProjectWindows::Get(project).mPanel;
    if ( !ptr )
@@ -64,12 +63,12 @@ TENACITY_DLL_API const wxWindow &GetProjectPanel(
 }
 
 TENACITY_DLL_API void SetProjectPanel(
-   TenacityProject &project, wxWindow &panel )
+   AudacityProject &project, wxWindow &panel )
 {
    ProjectWindows::Get(project).mPanel = &panel;
 }
 
-TENACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
+TENACITY_DLL_API wxFrame &GetProjectFrame( AudacityProject &project )
 {
    auto ptr = ProjectWindows::Get(project).mFrame;
    if ( !ptr )
@@ -77,7 +76,7 @@ TENACITY_DLL_API wxFrame &GetProjectFrame( TenacityProject &project )
    return *ptr;
 }
 
-TENACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project )
+TENACITY_DLL_API const wxFrame &GetProjectFrame( const AudacityProject &project )
 {
    auto ptr = ProjectWindows::Get(project).mFrame;
    if ( !ptr )
@@ -85,33 +84,24 @@ TENACITY_DLL_API const wxFrame &GetProjectFrame( const TenacityProject &project 
    return *ptr;
 }
 
-wxFrame *FindProjectFrame( TenacityProject *project ) {
+wxFrame *FindProjectFrame( AudacityProject *project ) {
    if (!project)
       return nullptr;
    return ProjectWindows::Get(*project).mFrame;
 }
 
-const wxFrame *FindProjectFrame( const TenacityProject *project ) {
+const wxFrame *FindProjectFrame( const AudacityProject *project ) {
    if (!project)
       return nullptr;
    return ProjectWindows::Get(*project).mFrame;
 }
 
-std::unique_ptr<const BasicUI::WindowPlacement>
-ProjectFramePlacement( TenacityProject *project )
-{
-   if (!project)
-      return std::make_unique<BasicUI::WindowPlacement>();
-   return std::make_unique<wxWidgetsWindowPlacement>(
-      &GetProjectFrame(*project));
-}
-
-void SetProjectFrame(TenacityProject &project, wxFrame &frame )
+void SetProjectFrame(AudacityProject &project, wxFrame &frame )
 {
    ProjectWindows::Get(project).mFrame = &frame;
 }
 
-TENACITY_DLL_API AttachedWindows &GetAttachedWindows(TenacityProject &project)
+TENACITY_DLL_API AttachedWindows &GetAttachedWindows(AudacityProject &project)
 {
    return ProjectWindows::Get(project).mAttachedWindows;
 }

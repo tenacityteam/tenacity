@@ -3,10 +3,8 @@
  @brief headerless file injects method definitions for time shifting of NoteTrack
  */
 
-#ifdef USE_MIDI
-
 #include "../../../ui/TimeShiftHandle.h"
-#include "../../../../NoteTrack.h"
+#include "NoteTrack.h"
 #include "ViewInfo.h"
 
 class NoteTrackShifter final : public TrackShifter {
@@ -31,9 +29,9 @@ public:
          return HitTestResult::Intervals;
    }
 
-   void SelectInterval( const TrackInterval &interval ) override
+   void SelectInterval(TimeInterval interval) override
    {
-      CommonSelectInterval( interval );
+      CommonSelectInterval(interval);
    }
 
    bool SyncLocks() override { return true; }
@@ -52,14 +50,12 @@ public:
    }
 
 private:
-   std::shared_ptr<NoteTrack> mpTrack;
+   const std::shared_ptr<NoteTrack> mpTrack;
 };
 
 using MakeNoteTrackShifter = MakeTrackShifter::Override<NoteTrack>;
 DEFINE_ATTACHED_VIRTUAL_OVERRIDE(MakeNoteTrackShifter) {
-   return [](NoteTrack &track, TenacityProject&) {
+   return [](NoteTrack &track, AudacityProject&) {
       return std::make_unique<NoteTrackShifter>(track);
    };
 }
-
-#endif // end USE_MIDI

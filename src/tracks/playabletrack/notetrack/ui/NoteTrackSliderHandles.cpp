@@ -7,20 +7,15 @@
  Paul Licameli split from TrackPanel.cpp
 
  **********************************************************************/
-
-
 #include "NoteTrackSliderHandles.h"
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-
 #include "NoteTrackControls.h"
-#include "../../../../ProjectHistory.h"
+#include "ProjectHistory.h"
 #include "../../../../RefreshCode.h"
-#include "../../../../TrackInfo.h"
+#include "../../../ui/CommonTrackInfo.h"
 #include "../../../../TrackPanel.h"
-#include "../../../../TrackPanelAx.h"
-#include "../../../../UndoManager.h"
-#include "../../../../NoteTrack.h"
+#include "UndoManager.h"
+#include "NoteTrack.h"
 #include "ViewInfo.h"
 
 VelocitySliderHandle::VelocitySliderHandle
@@ -47,7 +42,7 @@ float VelocitySliderHandle::GetValue()
 }
 
 UIHandle::Result VelocitySliderHandle::SetValue
-(TenacityProject *pProject, float newValue)
+(AudacityProject *pProject, float newValue)
 {
    (void)pProject;//Compiler food
    auto pTrack = GetNoteTrack();
@@ -60,7 +55,7 @@ UIHandle::Result VelocitySliderHandle::SetValue
 }
 
 UIHandle::Result VelocitySliderHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject)
+(const wxMouseEvent &, AudacityProject *pProject)
 {
    ProjectHistory::Get( *pProject )
       .PushState(XO("Moved velocity slider"), XO("Velocity"),
@@ -69,7 +64,7 @@ UIHandle::Result VelocitySliderHandle::CommitChanges
 }
 
 TranslatableString VelocitySliderHandle::Tip(
-   const wxMouseState &, TenacityProject &project) const
+   const wxMouseState &, AudacityProject &project) const
 {
    TranslatableString val;
    float value = 0;
@@ -101,12 +96,12 @@ UIHandlePtr VelocitySliderHandle::HitTest
       return {};
 
    wxRect sliderRect;
-   NoteTrackControls::GetVelocityRect(rect.GetTopLeft(), sliderRect);
-   if ( TrackInfo::HideTopItem( rect, sliderRect, kTrackInfoSliderAllowance ) )
+   NoteTrackControls::GetVelocityRect(rect, sliderRect);
+   if (CommonTrackInfo::HideTopItem( rect, sliderRect, kTrackInfoSliderAllowance))
       return {};
    if (sliderRect.Contains(state.m_x, state.m_y)) {
       auto sliderFn =
-      []( TenacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
+      []( AudacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
          return NoteTrackControls::VelocitySlider
             (sliderRect, static_cast<NoteTrack*>( pTrack ), true,
              &TrackPanel::Get( *pProject ));
@@ -120,5 +115,3 @@ UIHandlePtr VelocitySliderHandle::HitTest
    else
       return {};
 }
-
-#endif

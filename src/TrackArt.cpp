@@ -11,22 +11,35 @@
 #include "TrackArt.h"
 
 #include "AColor.h"
-#include "theme/AllThemeResources.h"
+#include "AllThemeResources.h"
 #include "SelectedRegion.h"
 #include "SyncLock.h"
-#include "theme/Theme.h"
+#include "Theme.h"
+#include "TimeAndPitchInterface.h"
 #include "Track.h"
 #include "TrackArtist.h"
 #include "TrackPanelDrawingContext.h"
 #include "ZoomInfo.h"
+#include "TimeDisplayMode.h"
+#include "ProjectTimeRuler.h"
+
+#include "ProjectTimeSignature.h"
+
+#include "widgets/BeatsFormat.h"
+
 #include <wx/app.h>
 #include <wx/dc.h>
+
+#include <cassert>
+#include <cstdint>
+#include <cmath>
+#include <utility>
 
 static constexpr int ClipSelectionStrokeSize{ 1 };//px
 
 namespace
 {
-   //Helper funciton that takes affordance rectangle as
+   //Helper function that takes affordance rectangle as
    //argument and returns rectangle to be used for title
    //drawings
    wxRect GetAffordanceTitleRect(const wxRect& rect)
@@ -39,13 +52,17 @@ namespace
          rect.GetHeight() - ClipSelectionStrokeSize - FrameThickness);
    }
 
+wxString
+GetTruncatedTitle(wxDC& dc, const wxString& title, const wxRect& affordanceRect)
+{
+   if (affordanceRect.IsEmpty() || title.empty())
+      return wxEmptyString;
+   return TrackArt::TruncateText(dc, title, affordanceRect.GetWidth());
+}
 }
 
 /// Takes a value between min and max and returns a value between
 /// height and 0
-/// \todo  Should this function move int GuiWaveTrack where it can
-/// then use the zoomMin, zoomMax and height values without having
-/// to have them passed in to it??
 int GetWaveYPos(float value, float min, float max,
                 int height, bool dB, bool outer,
                 float dBr, bool clip)
@@ -171,7 +188,7 @@ wxString TrackArt::TruncateText(wxDC& dc, const wxString& text, const int maxWid
       auto strWidth = dc.GetTextExtent(str).GetWidth();
       if (strWidth < maxWidth)
          //if left == right (== middle), then exit loop
-         //with right equals to the last knwon index for which
+         //with right equals to the last known index for which
          //strWidth < maxWidth
          left = middle + 1;
       else if (strWidth > maxWidth)
@@ -188,25 +205,46 @@ wxString TrackArt::TruncateText(wxDC& dc, const wxString& text, const int maxWid
    return wxEmptyString;
 }
 
-wxRect TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString& title, bool highlight, bool selected)
+namespace {
+wxRect GetClipAffordanceRect(
+   wxDC& dc, const wxRect& clipRect, std::optional<wxRect>& clippedClipRect)
+{
+   wxRect tmp;
+   const auto hasClipRect = dc.GetClippingBox(tmp);
+   if (hasClipRect)
+      clippedClipRect = tmp;
+   return hasClipRect ?
+             // avoid drawing text outside the clipping rectangle if possible
+             GetAffordanceTitleRect(clipRect.Intersect(*clippedClipRect)) :
+             GetAffordanceTitleRect(clipRect);
+}
+}
+
+wxRect TrackArt::DrawClipAffordance(
+   wxDC& dc, const wxRect& clipRect, bool highlight, bool selected)
 {
    //To make sure that roundings do not overlap each other
-   auto clipFrameRadius = std::min(ClipFrameRadius, rect.width / 2);
+   auto clipFrameRadius = std::min(ClipFrameRadius, clipRect.width / 2);
 
-   wxRect clipRect;
-   bool hasClipRect = dc.GetClippingBox(clipRect);
+   std::optional<wxRect> clippedClipRect;
+   const auto affordanceRect =
+      ::GetClipAffordanceRect(dc, clipRect, clippedClipRect);
    //Fix #1689: visual glitches appear on attempt to draw a rectangle
    //larger than 0x7FFFFFF pixels wide (value was discovered
    //by manual testing, and maybe depends on OS being used), but
    //it's very unlikely that such huge rectangle will be ever fully visible
    //on the screen, so we can safely reduce its size to be slightly larger than
    //clipping rectangle, and avoid that problem
-   auto drawingRect = rect;
-   if (hasClipRect)
+   auto drawingRect = clipRect;
+   if (clippedClipRect)
    {
        //to make sure that rounding happends outside the clipping rectangle
-       drawingRect.SetLeft(std::max(rect.GetLeft(), clipRect.GetLeft() - clipFrameRadius - 1));
-       drawingRect.SetRight(std::min(rect.GetRight(), clipRect.GetRight() + clipFrameRadius + 1));
+       drawingRect.SetLeft(std::max(
+          clipRect.GetLeft(),
+          clippedClipRect->GetLeft() - clipFrameRadius - 1));
+       drawingRect.SetRight(std::min(
+          clipRect.GetRight(),
+          clippedClipRect->GetRight() + clipFrameRadius + 1));
    }
 
    if (selected)
@@ -231,23 +269,41 @@ wxRect TrackArt::DrawClipAffordance(wxDC& dc, const wxRect& rect, const wxString
       ), clipFrameRadius
    );
 
-   auto titleRect = hasClipRect ?
-      //avoid drawing text outside the clipping rectangle if possible
-      GetAffordanceTitleRect(rect.Intersect(clipRect)) :
-      GetAffordanceTitleRect(rect);
+   return affordanceRect;
+}
 
-   if (!title.empty())
-   {
-      auto truncatedTitle = TrackArt::TruncateText(dc, title, titleRect.GetWidth());
-      if (!truncatedTitle.empty())
-      {
-         auto hAlign = wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft ? wxALIGN_RIGHT : wxALIGN_LEFT;
-         dc.DrawLabel(truncatedTitle, titleRect, hAlign | wxALIGN_CENTER_VERTICAL);
-      }
-      else
-         return { };
-   }
-   return titleRect;
+namespace
+{
+wxRect GetClipTruncatedTitleRect(
+   wxDC& dc, const wxRect& affordanceRect, const wxString& title)
+{
+   const auto alignLeft =
+      wxTheApp->GetLayoutDirection() == wxLayout_LeftToRight;
+   const auto width = dc.GetTextExtent(title).GetWidth();
+   const auto left =
+      alignLeft ? affordanceRect.GetLeft() : affordanceRect.GetRight() - width;
+   return { left, affordanceRect.GetTop(), width, affordanceRect.GetHeight() };
+}
+} // namespace
+
+bool TrackArt::DrawClipTitle(
+   wxDC& dc, const wxRect& affordanceRect, const wxString& title)
+{
+   if (affordanceRect.IsEmpty())
+      return false;
+   else if (title.empty())
+      return true;
+   const auto truncatedTitle = ::GetTruncatedTitle(dc, title, affordanceRect);
+   if (truncatedTitle.empty())
+      return false;
+   const auto titleRect =
+      GetClipTruncatedTitleRect(dc, affordanceRect, truncatedTitle);
+   const auto alignLeft =
+      wxTheApp->GetLayoutDirection() == wxLayout_LeftToRight;
+   dc.DrawLabel(
+      truncatedTitle, titleRect,
+      (alignLeft ? wxALIGN_LEFT : wxALIGN_RIGHT) | wxALIGN_CENTER_VERTICAL);
+   return true;
 }
 
 void TrackArt::DrawClipEdges(wxDC& dc, const wxRect& clipRect, bool selected)
@@ -314,8 +370,8 @@ void TrackArt::DrawSyncLockTiles(
    wxBitmap syncLockBitmap(theTheme.Image(bmpSyncLockSelTile));
 
    // Grid spacing is a bit smaller than actual image size
-   int gridW = syncLockBitmap.GetWidth();
-   int gridH = syncLockBitmap.GetHeight() - 2;
+   int gridW = syncLockBitmap.GetWidth() - 6;
+   int gridH = syncLockBitmap.GetHeight() - 8;
 
    // Horizontal position within the grid, modulo its period
    int blockX = (rect.x / gridW) % 5;
@@ -370,14 +426,21 @@ void TrackArt::DrawSyncLockTiles(
          if (yy + height > rect.height)
             height = rect.height - yy;
 
-         // Do we need to get a sub-bitmap?
-         if (width != syncLockBitmap.GetWidth() || height != syncLockBitmap.GetHeight()) {
-            wxBitmap subSyncLockBitmap =
-               syncLockBitmap.GetSubBitmap(wxRect(xOffset, yOffset, width, height));
-            dc->DrawBitmap(subSyncLockBitmap, rect.x + xx, rect.y + yy, true);
-         }
-         else {
-            dc->DrawBitmap(syncLockBitmap, rect.x + xx, rect.y + yy, true);
+         // AWD: draw blocks according to our pattern
+         if ((blockX == 0 && blockY == 0) || (blockX == 2 && blockY == 1) ||
+             (blockX == 4 && blockY == 2) || (blockX == 1 && blockY == 3) ||
+             (blockX == 3 && blockY == 4))
+         {
+
+            // Do we need to get a sub-bitmap?
+            if (width != syncLockBitmap.GetWidth() || height != syncLockBitmap.GetHeight()) {
+               wxBitmap subSyncLockBitmap =
+                  syncLockBitmap.GetSubBitmap(wxRect(xOffset, yOffset, width, height));
+               dc->DrawBitmap(subSyncLockBitmap, rect.x + xx, rect.y + yy, true);
+            }
+            else {
+               dc->DrawBitmap(syncLockBitmap, rect.x + xx, rect.y + yy, true);
+            }
          }
 
          // Updates for next row
@@ -409,23 +472,228 @@ void TrackArt::DrawSyncLockTiles(
    }
 }
 
+namespace
+{
+constexpr double minSubdivisionWidth = 12.0;
+
+const AudacityProject& GetProject(const Track& track)
+{
+   // Track is expected to have owner
+   assert(track.GetOwner());
+   // TrackList is expected to have owner
+   assert(track.GetOwner()->GetOwner());
+
+   return *track.GetOwner()->GetOwner();
+}
+
+struct BeatsGridlinePainter final
+{
+   const ZoomInfo& zoomInfo;
+   const bool enabled;
+
+   const BeatsFormat& beatsRulerFormat;
+
+   const BeatsFormat::Tick majorTick;
+   const BeatsFormat::Tick minorTick;
+
+   // Note duration in seconds
+   const double noteDuration;
+   // Note width in pixels
+   const double noteWidth;
+   // How many "notes" should be colored with a single color?
+   const int64_t notesInBeat;
+
+
+BeatsGridlinePainter(const ZoomInfo& zoomInfo, const AudacityProject& project)
+noexcept
+       : zoomInfo { zoomInfo }
+       , enabled { TimeDisplayModePreference.ReadEnum() ==
+                   TimeDisplayMode::BeatsAndMeasures }
+       , beatsRulerFormat { ProjectTimeRuler::Get(project).GetBeatsFormat() }
+       , majorTick { beatsRulerFormat.GetSubdivision().major }
+       , minorTick { GetMinorTick() }
+       , noteDuration { minorTick.duration }
+       , noteWidth { zoomInfo.TimeRangeToPixelWidth(noteDuration) }
+       , notesInBeat { CalculateNotesInBeat() }
+   {
+   }
+
+void DrawSeparators (
+   wxDC& dc, const wxRect& rect, const wxPen& beatSepearatorPen, const wxPen& barSeparatorPen) const
+{
+   dc.SetPen (beatSepearatorPen);
+
+   const auto [firstNote, lastNote] = GetBoundaries(
+      rect, rect, noteWidth);
+
+   for (auto noteIndex = firstNote; noteIndex < lastNote; ++noteIndex)
+   {
+      const auto position = GetPositionInRect (noteIndex, rect, noteDuration);
+
+      if (position < rect.GetLeft () || position >= rect.GetRight ())
+         continue;
+
+      dc.SetPen(IsFirstInMajorTick(noteIndex) ? barSeparatorPen : beatSepearatorPen);
+      dc.DrawLine (position, rect.GetTop (), position, rect.GetBottom ());
+   }
+}
+
+void DrawBackground (
+   wxDC& dc, const wxRect& subRect, const wxRect& fullRect, const wxBrush& strongBeatBrush,
+   const wxBrush& weakBeatBrush) const
+{
+   if (!UseAlternatingColors ())
+   {
+      dc.SetBrush(strongBeatBrush);
+      dc.DrawRectangle(subRect);
+      return;
+   }
+
+   auto [firstIndex, lastIndex] =
+      GetBoundaries (subRect, fullRect, noteWidth);
+
+   // Make first index to be on notesInBeatBoundary
+   firstIndex = (firstIndex / notesInBeat) * notesInBeat;
+
+   const auto beatDuration = noteDuration;
+
+   const auto top = fullRect.GetTop ();
+   const auto height = fullRect.GetHeight ();
+
+   bool strongBeat = (firstIndex / notesInBeat) % 2 == 0;
+   for (auto index = firstIndex; index < lastIndex; index += notesInBeat, strongBeat = !strongBeat)
+   {
+      const auto left = std::max<int> (
+         GetPositionInRect(index, fullRect, beatDuration),
+         subRect.GetLeft());
+      const auto right = std::min<int> (
+         GetPositionInRect(index + notesInBeat, fullRect, beatDuration),
+         subRect.GetRight());
+
+      const auto& brush = strongBeat ? strongBeatBrush : weakBeatBrush;
+
+      dc.SetBrush (brush);
+      dc.DrawRectangle (left, top, right - left + 1, height);
+   }
+}
+
+private:
+   int64_t CalculateNotesInBeat() const
+   {
+      if (UseAlternatingColors())
+         return minorTick.lower / 4;
+
+      return 1;
+   }
+
+   bool IsFirstInMajorTick(int64_t noteIndex) const
+   {
+      const auto notesInMajorTick =
+         minorTick.lower * majorTick.upper / majorTick.lower / minorTick.upper;
+
+      if (notesInMajorTick == 0)
+         return false;
+
+      return noteIndex % notesInMajorTick == 0;
+   }
+
+   bool UseAlternatingColors() const
+   {
+      return minorTick.lower >= 4 && minorTick.upper == 1;
+   }
+
+   double GetPositionInRect(int64_t index, const wxRect& rect, double duration) const
+   {
+      return zoomInfo.TimeToPosition(index * duration) + rect.x;
+   }
+
+   std::pair<int64_t, int64_t> GetBoundaries(const wxRect& subRect, const wxRect& fullRect, double width) const
+   {
+      const auto offset = subRect.x - fullRect.x;
+
+      return { std::floor(zoomInfo.GetAbsoluteOffset(offset) / width),
+               std::ceil(
+                  zoomInfo.GetAbsoluteOffset(offset + subRect.GetWidth()) /
+                  width) };
+   }
+
+   BeatsFormat::Tick GetMinorTick() const
+   {
+      const auto& subdivision = beatsRulerFormat.GetSubdivision();
+
+      auto tick = subdivision.minorMinor;
+
+      auto minorMinorLength =
+         zoomInfo.TimeRangeToPixelWidth(subdivision.minorMinor.duration);
+
+      const auto nextSubdivision = subdivision.minor.duration == 0.0 ?
+                                subdivision.major :
+                                subdivision.minor;
+
+      while (minorMinorLength <= minSubdivisionWidth)
+      {
+         tick.lower /= 2;
+         tick.duration *= 2.0;
+         minorMinorLength *= 2.0;
+
+         if (nextSubdivision.lower >= tick.lower)
+            return nextSubdivision;
+      }
+
+      return tick;
+   }
+};
+}
+
 void TrackArt::DrawBackgroundWithSelection(
    TrackPanelDrawingContext &context, const wxRect &rect,
-   const Track *track, const wxBrush &selBrush, const wxBrush &unselBrush,
-   bool useSelection)
+   const Channel &channel, const wxBrush &selBrush, const wxBrush &unselBrush,
+   bool useSelection, bool useBeatsAlternateColor)
 {
    const auto dc = &context.dc;
    const auto artist = TrackArtist::Get( context );
    const auto &selectedRegion = *artist->pSelectedRegion;
-   const auto &zoomInfo = *artist->pZoomInfo;
+   const auto& zoomInfo = *artist->pZoomInfo;
+
 
    //MM: Draw background. We should optimize that a bit more.
    const double sel0 = useSelection ? selectedRegion.t0() : 0.0;
    const double sel1 = useSelection ? selectedRegion.t1() : 0.0;
 
+   auto pTrack = dynamic_cast<const Track*>(&channel.GetChannelGroup());
+   if (!pTrack)
+      return;
+   auto &track = *pTrack;
+   BeatsGridlinePainter gridlinePainter(zoomInfo, GetProject(track));
+
    dc->SetPen(*wxTRANSPARENT_PEN);
-   if (SyncLock::IsSelectedOrSyncLockSelected(track))
+
+   const auto& beatStrongBrush = artist->beatStrongBrush[useBeatsAlternateColor];
+   const auto& beatStrongSelBrush = artist->beatStrongSelBrush[useBeatsAlternateColor];
+   const auto& beatWeakBrush = artist->beatWeakBrush[useBeatsAlternateColor];
+   const auto& beatWeakSelBrush = artist->beatWeakSelBrush[useBeatsAlternateColor];
+   const auto& beatSepearatorPen = artist->beatSepearatorPen[useBeatsAlternateColor];
+   const auto& barSepearatorPen = artist->barSepearatorPen[useBeatsAlternateColor];
+
+   auto drawBgRect = [dc, &gridlinePainter, &rect](
+                        const wxBrush& regularBrush,
+                        const wxBrush& beatStrongBrush,
+                        const wxBrush& beatWeakBrush, const wxRect& subRect)
    {
+      if (!gridlinePainter.enabled)
+      {
+         // Track not selected; just draw background
+         dc->SetBrush(regularBrush);
+         dc->DrawRectangle(subRect);
+      }
+      else
+      {
+         gridlinePainter.DrawBackground(
+            *dc, subRect, rect, beatStrongBrush, beatWeakBrush);
+      }
+   };
+
+   if (SyncLock::IsSelectedOrSyncLockSelected(track)) {
       // Rectangles before, within, after the selection
       wxRect before = rect;
       wxRect within = rect;
@@ -437,8 +705,7 @@ void TrackArt::DrawBackgroundWithSelection(
       }
 
       if (before.width > 0) {
-         dc->SetBrush(unselBrush);
-         dc->DrawRectangle(before);
+         drawBgRect(unselBrush, beatStrongBrush, beatWeakBrush, before);
 
          within.x = 1 + before.GetRight();
       }
@@ -451,19 +718,16 @@ void TrackArt::DrawBackgroundWithSelection(
       // Bug 2389 - Selection can disappear
       // This handles case where no waveform is visible.
       if (within.width < 1)
-      {
          within.width = 1;
-      }
 
       if (within.width > 0) {
-         if (track->GetSelected()) {
-            dc->SetBrush(selBrush);
-            dc->DrawRectangle(within);
+         if (track.GetSelected()) {
+            drawBgRect(selBrush, beatStrongSelBrush, beatWeakSelBrush, within);
          }
          else {
             // Per condition above, track must be sync-lock selected
-            dc->SetBrush(unselBrush);
-            dc->DrawRectangle(within);
+            drawBgRect(
+               unselBrush, beatStrongBrush, beatWeakBrush, within);
             DrawSyncLockTiles( context, within );
          }
 
@@ -475,17 +739,18 @@ void TrackArt::DrawBackgroundWithSelection(
       }
 
       after.width = 1 + rect.GetRight() - after.x;
-      if (after.width > 0) {
-         dc->SetBrush(unselBrush);
-         dc->DrawRectangle(after);
-      }
+      if (after.width > 0)
+         drawBgRect(
+            unselBrush, beatStrongBrush, beatWeakBrush, after);
    }
    else
    {
-      // Track not selected; just draw background
-      dc->SetBrush(unselBrush);
-      dc->DrawRectangle(rect);
+      drawBgRect(
+         unselBrush, beatStrongBrush, beatWeakBrush, rect);
    }
+
+   if (gridlinePainter.enabled)
+      gridlinePainter.DrawSeparators(*dc, rect, beatSepearatorPen, barSepearatorPen);
 }
 
 void TrackArt::DrawCursor(TrackPanelDrawingContext& context,
@@ -494,7 +759,7 @@ void TrackArt::DrawCursor(TrackPanelDrawingContext& context,
    const auto dc = &context.dc;
    const auto artist = TrackArtist::Get(context);
    const auto& selectedRegion = *artist->pSelectedRegion;
-   
+
    if (selectedRegion.isPoint())
    {
        const auto& zoomInfo = *artist->pZoomInfo;
@@ -505,4 +770,13 @@ void TrackArt::DrawCursor(TrackPanelDrawingContext& context,
           AColor::Line(*dc, x, rect.GetTop(), x, rect.GetBottom());
        }
    }
+}
+
+void TrackArt::DrawSnapLines(wxDC *dc, wxInt64 snap0, wxInt64 snap1)
+{
+   AColor::SnapGuidePen(dc);
+   if (snap0 >= 0)
+      AColor::Line(*dc, (int)snap0, 0, (int)snap0, 30000);
+   if (snap1 >= 0)
+      AColor::Line(*dc, (int)snap1, 0, (int)snap1, 30000);
 }

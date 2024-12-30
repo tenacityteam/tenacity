@@ -12,6 +12,7 @@ Paul Licameli split from TrackPanel.cpp
 #define __AUDACITY_LABEL_GLYPH_HANDLE__
 
 #include "LabelDefaultClickHandle.h"
+#include "Observer.h"
 
 class wxMouseState;
 class LabelTrack;
@@ -43,7 +44,8 @@ struct LabelTrackHit
 
    std::shared_ptr<LabelTrack> mpLT {};
 
-   void OnLabelPermuted( LabelTrackEvent &e );
+   Observer::Subscription mSubscription;
+   void OnLabelPermuted( const LabelTrackEvent &e );
 };
 
 class LabelGlyphHandle final : public LabelDefaultClickHandle
@@ -62,23 +64,25 @@ public:
 
    virtual ~LabelGlyphHandle();
 
-   void Enter(bool forward, TenacityProject *) override;
+   std::shared_ptr<const Track> FindTrack() const override;
+
+   void Enter(bool forward, AudacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
    bool StopsOnKeystroke() override { return true; }
 
@@ -93,7 +97,7 @@ private:
        const wxMouseEvent & evt, const wxRect & r, const ZoomInfo &zoomInfo,
        NotifyingSelectedRegion &newSel);
    bool HandleGlyphDragRelease
-      (TenacityProject &project,
+      (AudacityProject &project,
        LabelTrackHit &hit,
        const wxMouseEvent & evt, wxRect & r, const ZoomInfo &zoomInfo,
        NotifyingSelectedRegion &newSel);

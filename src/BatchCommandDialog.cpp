@@ -29,23 +29,18 @@ selected command.
 #include <wx/defs.h>
 #include <wx/checkbox.h>
 #include <wx/choice.h>
-#include <wx/intl.h>
-#include <wx/sizer.h>
 #include <wx/statbox.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
 #include <wx/listctrl.h>
-#include <wx/radiobut.h>
 #include <wx/button.h>
-#include <wx/string.h>
-#include <wx/dialog.h>
 
-
+#include "DoEffect.h"
+#include "EffectManager.h"
+#include "HelpSystem.h"
+#include "PluginManager.h"
 #include "Project.h"
-#include "effects/EffectManager.h"
-#include "shuttle/ShuttleGui.h"
-#include "widgets/HelpSystem.h"
-
+#include "ShuttleGui.h"
 
 #define CommandsListID        7001
 #define EditParamsButtonID    7002
@@ -62,11 +57,12 @@ BEGIN_EVENT_TABLE(MacroCommandDialog, wxDialogWrapper)
 END_EVENT_TABLE();
 
 MacroCommandDialog::MacroCommandDialog(
-   wxWindow * parent, wxWindowID id, TenacityProject &project):
-   wxDialogWrapper(parent, id, XO("Select Command"),
-            wxDefaultPosition, wxDefaultSize,
-            wxCAPTION | wxRESIZE_BORDER)
-   , mCatalog{ &project }
+   wxWindow* parent, wxWindowID id, AudacityProject& project)
+    : wxDialogWrapper(
+         parent, id, XO("Select Command"), wxDefaultPosition, wxDefaultSize,
+         wxCAPTION | wxRESIZE_BORDER)
+    , mProject { project }
+    , mCatalog { &project }
 {
    SetLabel(XO("Select Command"));         // Provide visual label
    SetName(XO("Select Command"));          // Provide audible label
@@ -116,7 +112,7 @@ void MacroCommandDialog::PopulateOrExchange(ShuttleGui &S)
       S.Prop(10).StartStatic(XO("Choose command"), true);
       {
          mChoices = S.Id(CommandsListID)
-            .Style(wxLC_LIST | wxLC_SINGLE_SEL)
+            .Style( wxLC_LIST | wxLC_SINGLE_SEL)
             .AddListControl();
       }
       S.EndStatic();
@@ -151,11 +147,11 @@ void MacroCommandDialog::ValidateChoices()
 {
 }
 
-void MacroCommandDialog::OnChoice(wxCommandEvent & /* event */)
+void MacroCommandDialog::OnChoice(wxCommandEvent & WXUNUSED(event))
 {
 }
 
-void MacroCommandDialog::OnOk(wxCommandEvent & /* event */)
+void MacroCommandDialog::OnOk(wxCommandEvent & WXUNUSED(event))
 {
    mSelectedCommand = mInternalCommandName
       // .Strip(wxString::both) // PRL: used to do this, here only,
@@ -166,12 +162,12 @@ void MacroCommandDialog::OnOk(wxCommandEvent & /* event */)
    EndModal(true);
 }
 
-void MacroCommandDialog::OnCancel(wxCommandEvent & /* event */)
+void MacroCommandDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
 {
    EndModal(false);
 }
 
-void MacroCommandDialog::OnHelp(wxCommandEvent & /* event */)
+void MacroCommandDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
 {
    const auto &page = GetHelpPageName();
    HelpSystem::ShowHelp(this, page, true);
@@ -182,7 +178,8 @@ void MacroCommandDialog::OnItemSelected(wxListEvent &event)
    const auto &command = mCatalog[ event.GetIndex() ];
 
    EffectManager & em = EffectManager::Get();
-   PluginID ID = em.GetEffectByIdentifier( command.name.Internal() );
+   PluginID ID =
+      PluginManager::Get().GetByCommandIdentifier(command.name.Internal());
 
    // If ID is empty, then the effect wasn't found, in which case, the user must have
    // selected one of the "special" commands.
@@ -213,18 +210,18 @@ void MacroCommandDialog::OnItemSelected(wxListEvent &event)
    mParameters->SetValue(params);
 }
 
-void MacroCommandDialog::OnEditParams(wxCommandEvent & /* event */)
+void MacroCommandDialog::OnEditParams(wxCommandEvent & WXUNUSED(event))
 {
    auto command = mInternalCommandName;
    wxString params  = mParameters->GetValue();
 
-   params = MacroCommands::PromptForParamsFor(command, params, *this).Trim();
+   params = MacroCommands::PromptForParamsFor(command, params, mProject).Trim();
 
    mParameters->SetValue(params);
    mParameters->Refresh();
 }
 
-void MacroCommandDialog::OnUsePreset(wxCommandEvent & /* event */)
+void MacroCommandDialog::OnUsePreset(wxCommandEvent & WXUNUSED(event))
 {
    auto command = mInternalCommandName;
    wxString params  = mParameters->GetValue();
@@ -256,12 +253,11 @@ void MacroCommandDialog::SetCommandAndParams(const CommandID &Command, const wxS
       mChoices->SetItemState(iter - mCatalog.begin(),
                              wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
 
-      EffectManager & em = EffectManager::Get();
-      PluginID ID = em.GetEffectByIdentifier(Command);
+      PluginID ID = PluginManager::Get().GetByCommandIdentifier(Command);
 
       // If ID is empty, then the effect wasn't found, in which case, the user must have
       // selected one of the "special" commands.
       mEditParams->Enable(!ID.empty());
-      mUsePreset->Enable(em.HasPresets(ID));
+      mUsePreset->Enable(EffectManager::Get().HasPresets(ID));
    }
 }

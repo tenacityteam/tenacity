@@ -19,14 +19,13 @@
 
 #include "CommandHandler.h"
 
-#include "AppCommandEvent.h"
-#include "ScriptCommandRelay.h"
-
 #include "../ActiveProject.h"
 #include "Project.h"
-#include "../ProjectWindow.h"
-#include "../commands/CommandContext.h"
+#include "AppCommandEvent.h"
+#include "ScriptCommandRelay.h"
+#include "CommandContext.h"
 #include "../commands/Command.h"
+#include "Viewport.h"
 
 CommandHandler::CommandHandler()
 {
@@ -46,11 +45,12 @@ void CommandHandler::OnReceiveCommand(AppCommandEvent &event)
       // command may change the context - for example, switching to a
       // different project.
       CommandContext context{ *pProject };
-      /* auto result = */ GuardedCall<bool>( [&] {
+      auto result = GuardedCall<bool>( [&] {
          return cmd->Apply( context );
       });
+      wxUnusedVar(result);
 
       // Redraw the project
-      ProjectWindow::Get( context.project ).RedrawProject();
+      Viewport::Get(context.project).Redraw();
    }
 }

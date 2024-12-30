@@ -54,13 +54,6 @@ public:
       mMsgid.swap( str );
    }
 
-   TranslatableString( const char* str, Formatter formatter = {} )
-      : mFormatter{ std::move(formatter) }
-   {
-      wxString dummy(str);
-      mMsgid.swap( dummy );
-   }
-
    // copy and move
    TranslatableString( const TranslatableString & ) = default;
    TranslatableString &operator=( const TranslatableString & ) = default;
@@ -327,5 +320,12 @@ inline Sink &operator <<( Sink &sink, const TranslatableString &str )
    review the uses of this function, separately from the uses of the type. */
 inline TranslatableString Verbatim( wxString str )
 { return TranslatableString( std::move( str ) ); }
+
+//! A commonly needed sort comparator, which depends on the language setting
+inline bool TranslationLess(
+   const TranslatableString &a, const TranslatableString &b)
+{
+   return a.Translation() < b.Translation();
+}
 
 #endif

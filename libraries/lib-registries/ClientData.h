@@ -16,10 +16,9 @@ Paul Licameli
 
 #include <functional>
 #include <iterator>
+#include <optional>
 #include <utility>
 #include <vector>
-
-// Tenacity libraries
 #include "InconsistencyException.h"
 
 //! @copydoc ClientData.h
@@ -45,15 +44,23 @@ template< typename Object > using BarePtr = Object*;
  @sa ClientData::DeepCopying
  */
 template<
+   typename Covariant = void, // CRTP derived class when not void
    template<typename> class Owner = UniquePtr
 > struct REGISTRIES_API Cloneable
 {
-   using Base = Cloneable;
+   using Base = std::conditional_t<
+      std::is_void_v<Covariant>, Cloneable, Covariant
+   >;
    using PointerType = Owner< Base >;
 
-   virtual ~Cloneable();
+   Cloneable() = default;
+   Cloneable(const Cloneable&) = default;
+   Cloneable &operator=(const Cloneable &) = default;
+   virtual ~Cloneable() = default;
    virtual PointerType Clone() const = 0;
 };
+
+extern template struct REGISTRIES_API Cloneable<>;
 
 //! Utility to register hooks into a host class that attach client data
 /*!
@@ -257,7 +264,7 @@ public:
     Usually agrees with the size() of each site unless some registrations happened later
     than some Site's construction.
     */
-   static size_t slots() { return GetFactories().mObject.size(); }
+   static size_t numFactories() { return GetFactories().mObject.size(); }
 
    //! Client code makes static instance from a factory of attachments; passes it to @ref Get or @ref Find as a retrieval key
    /*!
@@ -317,8 +324,8 @@ public:
    //! @copydoc Get
    /*! const overload returns const references only. */
    template< typename Subclass = const ClientData >
-   auto Get( const RegisteredFactory &key ) const -> typename
-      std::enable_if< std::is_const< Subclass >::value, Subclass & >::type
+   auto Get( const RegisteredFactory &key ) const ->
+      std::enable_if_t< std::is_const< Subclass >::value, Subclass & >
    {
       auto data = GetData();
       return DoGet< Subclass >( data, key );
@@ -341,8 +348,8 @@ public:
    //! @copydoc Find
    /*! const overload returns pointers to const only. */
    template< typename Subclass = const ClientData >
-   auto Find( const RegisteredFactory &key ) const -> typename
-      std::enable_if< std::is_const< Subclass >::value, Subclass * >::type
+   auto Find( const RegisteredFactory &key ) const ->
+      std::enable_if_t< std::is_const< Subclass >::value, Subclass * >
    {
       auto data = GetData();
       return DoFind< Subclass >( data, key );
@@ -404,6 +411,82 @@ protected:
       }
    }
 
+   //! Invoke function on corresponding pairs of ClientData objects that have
+   //! been created in @c this and in another Site with the same factories
+   /*!
+    Beware that the sequence of visitation is not specified.
+    @tparam Function takes two pointers to ClientData, return value is ignored
+    @param other supplies the objects to the second argument of function
+    @param function of type @b Function may assume the precondition, that the
+    arguments are not both null, and if create is true, then neither argument is
+    null.  When neither is null, also the objects have come from the same
+    factory.
+    @param create whether to create objects at vacant slots that correspond to
+    non-vacant slots.  (Never create where there are corresponding nulls.)
+    */
+   template<typename Function>
+   void ForCorresponding(Site &other, const Function &function,
+      bool create = true)
+   {
+      size_t size;
+      {
+         auto factories = GetFactories();
+         size = factories.mObject.size();
+         // Release lock on factories before getting one on data -- otherwise
+         // there would be a deadlock possibility inside EnsureIndex
+      }
+
+      // Lock two containers, carefully avoiding deadlock possibility by
+      // ordering them by address in memory
+      std::optional<decltype(GetData())> oOtherData;
+      if (std::addressof(other) < std::addressof(*this))
+         oOtherData.emplace(other.GetData());
+      auto data = GetData();
+      if (!oOtherData)
+         oOtherData.emplace(other.GetData());
+      auto &otherData = *oOtherData;
+
+      // Like BuildAll but needing correspondence
+      EnsureIndex(data, size - 1);
+      EnsureIndex(otherData, size - 1);
+
+      auto iter = GetIterator(data, 0);
+      auto otherIter = GetIterator(otherData, 0);
+
+      for (size_t ii = 0; ii < size; ++ii, ++iter, ++otherIter) {
+         auto &pObject = *iter;
+         auto &pOtherObject = *otherIter;
+         // These lines might lock weak pointers, depending on template
+         // arguments of the class
+         auto deref = &Dereferenceable(pObject);
+         auto otherDeref = &Dereferenceable(pOtherObject);
+         if (!*deref && !*otherDeref)
+            continue;
+         else if (!*deref && create) {
+            // creation on demand
+            auto factories = GetFactories();
+            auto &factory = factories.mObject[ii];
+            pObject = factory
+               ? factory(static_cast<Host&>(*this))
+               : DataPointer{};
+            deref = &Dereferenceable(pObject);
+         }
+         else if (!*otherDeref && create) {
+            // creation on demand
+            auto factories = GetFactories();
+            auto &factory = factories.mObject[ii];
+            pOtherObject = factory
+               ? factory(static_cast<Host&>(other))
+               : DataPointer{};
+            otherDeref = &Dereferenceable(pOtherObject);
+         }
+
+         function(
+            (*deref ? &**deref : nullptr),
+            (*otherDeref ? &**otherDeref : nullptr));
+      }
+   }
+
    //! Return pointer to first attachment in @c this that is not null and satisfies a predicate, or nullptr
    /*!
    Beware that the sequence of visitation is not specified.
@@ -439,6 +522,26 @@ protected:
       return nullptr;
    }
 
+   //! Erase attached objects satisfying a predicate
+   /*!
+   Beware that the sequence of visitation is not specified.
+   @tparam Function takes reference to ClientData, returns value convertible to bool
+   @param function of type @b Function
+    */
+   template<typename Function>
+   void EraseIf(const Function &function)
+   {
+      auto data = GetData();
+      for (auto &pObject : data.mObject) {
+         const auto &ptr = Dereferenceable(pObject);
+         if (ptr) {
+            auto &ref = *ptr;
+            if (function(ref))
+               pObject = nullptr;
+         }
+      }
+   }
+
    //! For each RegisteredFactory, if the corresponding attachment is absent in @c this, build and store it
    void BuildAll()
    {
@@ -451,7 +554,7 @@ protected:
          auto factories = GetFactories();
          size = factories.mObject.size();
          // Release lock on factories before getting one on data -- otherwise
-         // there would be a deadlock possibility inside Ensure
+         // there would be a deadlock possibility inside EnsureIndex
       }
       auto data = GetData();
       EnsureIndex( data, size - 1 );

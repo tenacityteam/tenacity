@@ -26,19 +26,20 @@ class wxWindow;
 class wxStatusBar;
 
 class AButton;
-class TenacityProject;
+class AudacityProject;
 
 // In the GUI, ControlToolBar appears as the "Transport Toolbar". "Control Toolbar" is historic.
 class TENACITY_DLL_API ControlToolBar final : public ToolBar {
 
  public:
+   static Identifier ID();
 
-   ControlToolBar( TenacityProject &project );
+   ControlToolBar( AudacityProject &project );
    virtual ~ControlToolBar();
 
-   static ControlToolBar *Find( TenacityProject &project );
-   static ControlToolBar &Get( TenacityProject &project );
-   static const ControlToolBar &Get( const TenacityProject &project );
+   static ControlToolBar *Find( AudacityProject &project );
+   static ControlToolBar &Get( AudacityProject &project );
+   static const ControlToolBar &Get( const AudacityProject &project );
 
    void Create(wxWindow *parent) override;
 
@@ -49,11 +50,11 @@ class TENACITY_DLL_API ControlToolBar final : public ToolBar {
    // call the "real" interface functions below.
    void OnRewind(wxCommandEvent & evt);
    void OnPlay(wxCommandEvent & evt);
-   void OnLoop(wxCommandEvent & evt);
    void OnStop(wxCommandEvent & evt);
    void OnRecord(wxCommandEvent & evt);
    void OnFF(wxCommandEvent & evt);
    void OnPause(wxCommandEvent & evt);
+   void OnLoop(wxCommandEvent & evt);
    void OnIdle(wxIdleEvent & event);
 
    // Choice among the appearances of the play button:
@@ -63,15 +64,11 @@ class TENACITY_DLL_API ControlToolBar final : public ToolBar {
 
    //These allow buttons to be controlled externally:
    void SetPlay(bool down, PlayAppearance appearance = PlayAppearance::Straight);
-   void SetLoop(bool down);
    void SetStop();
 
-   /// Play the region [t0,t1]
-   /// Return the Audio IO token or -1 for failure
+   // Play the region [t0,t1]
+   // Return the Audio IO token or -1 for failure
    void PlayDefault();
-
-   /// Same as PlayDefault(), but for when the audio needs to be looped
-   void PlayLooped();
 
    void Populate() override;
    void Repaint(wxDC *dc) override;
@@ -88,19 +85,6 @@ class TENACITY_DLL_API ControlToolBar final : public ToolBar {
  private:
    void UpdateStatusBar();
 
-   static AButton *MakeButton(
-      ControlToolBar *pBar,
-      teBmps eEnabledUp, teBmps eEnabledDown, teBmps eDisabled,
-      int id,
-      bool processdownevents,
-      const TranslatableString &label);
-
-   static
-   void MakeAlternateImages(AButton &button, int idx,
-                            teBmps eEnabledUp,
-                            teBmps eEnabledDown,
-                            teBmps eDisabled);
-
    void ArrangeButtons();
    TranslatableString StateForStatusBar();
 
@@ -108,29 +92,29 @@ class TENACITY_DLL_API ControlToolBar final : public ToolBar {
    {
       ID_PAUSE_BUTTON = 11000,
       ID_PLAY_BUTTON,
-      ID_LOOP_BUTTON,
       ID_STOP_BUTTON,
       ID_FF_BUTTON,
       ID_REW_BUTTON,
       ID_RECORD_BUTTON,
+      ID_LOOP_BUTTON,
       BUTTON_COUNT,
    };
 
    AButton *mRewind;
    AButton *mPlay;
-   AButton *mLoop;
    AButton *mRecord;
    AButton *mPause;
    AButton *mStop;
    AButton *mFF;
-
-   // Activate ergonomic order for transport buttons
-   bool mErgonomicTransportButtons;
+   AButton *mLoop;
 
    wxString mStrLocale; // standard locale abbreviation
 
    wxBoxSizer *mSizer;
 
+ public:
+
+   DECLARE_CLASS(ControlToolBar)
    DECLARE_EVENT_TABLE()
 };
 

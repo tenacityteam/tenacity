@@ -13,24 +13,21 @@ Paul Licameli split from TrackPanel.cpp
 
 #include <functional>
 
-// Tenacity libraries
-#include <lib-track/Track.h>
-
-#include "../../AudioIO.h"
+#include "AudioIO.h"
+#include "CommandManager.h"
 #include "../../CommonCommandFlags.h"
 #include "Project.h"
-#include "../../ProjectAudioIO.h"
+#include "ProjectAudioIO.h"
 #include "../../ProjectAudioManager.h"
-#include "../../ProjectHistory.h"
+#include "ProjectHistory.h"
 #include "../../ProjectWindows.h"
-#include "../../ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "../../ScrubState.h"
+#include "Track.h"
 #include "ViewInfo.h"
-#include "../../WaveTrack.h"
+#include "WaveTrack.h"
 #include "../../prefs/PlaybackPrefs.h"
 #include "../../prefs/TracksPrefs.h"
-#include "../../toolbars/ToolManager.h"
 
 #undef USE_TRANSCRIPTION_TOOLBAR
 
@@ -39,6 +36,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include <wx/app.h>
 #include <wx/menu.h>
+#include <wx/timer.h>
 
 // Yet another experimental scrub would drag the track under a
 // stationary play head
@@ -50,14 +48,13 @@ enum {
    // from ctrl+click for playback.
    SCRUBBING_PIXEL_TOLERANCE = 10,
 
-#ifdef EXPERIMENTAL_SCRUBBING_SCROLL_WHEEL
    ScrubSpeedStepsPerOctave = 4,
-#endif
 
-   kOneSecondCountdown = 1000 / ScrubPollInterval_ms,
+   kOneSecondCountdown =
+      1000 / std::chrono::milliseconds{ScrubPollInterval}.count(),
 };
 
-static const double MinStutter = 0.2;
+static constexpr PlaybackPolicy::Duration MinStutter{0.2};
 // static const double MaxDragSpeed = 1.0;
 
 namespace {
@@ -70,7 +67,7 @@ namespace {
       // and the extremes to the maximum scrub speed.
 
       auto partScreen = screen * TracksPrefs::GetPinnedHeadPositionPreference();
-      const double origin = viewInfo.h + partScreen;
+      const double origin = viewInfo.hpos + partScreen;
       if (timeAtMouse >= origin)
          partScreen = screen - partScreen;
 
@@ -120,7 +117,7 @@ namespace {
 
       // Width of visible track area, in time terms:
       auto partScreen = screen * TracksPrefs::GetPinnedHeadPositionPreference();
-      const double origin = viewInfo.h + partScreen;
+      const double origin = viewInfo.hpos + partScreen;
       if (timeAtMouse >= origin)
          partScreen = screen - partScreen;
 
@@ -139,26 +136,12 @@ namespace {
 
 #ifdef USE_SCRUB_THREAD
 
-class Scrubber::ScrubPollerThread final : public wxThread {
-public:
-   ScrubPollerThread(Scrubber &scrubber)
-      : wxThread { }
-      , mScrubber(scrubber)
-   {}
-   ExitCode Entry() override;
-
-private:
-   Scrubber &mScrubber;
-};
-
-auto Scrubber::ScrubPollerThread::Entry() -> ExitCode
+void Scrubber::ScrubPollerThread()
 {
-   while( !TestDestroy() )
-   {
-      wxThread::Sleep(ScrubPollInterval_ms);
-      mScrubber.ContinueScrubbingPoll();
+   while (!mFinishThread.load(std::memory_order_acquire)) {
+      std::this_thread::sleep_for(ScrubPollInterval);
+      ContinueScrubbingPoll();
    }
-   return 0;
 }
 
 #endif
@@ -195,30 +178,28 @@ void Scrubber::ScrubPoller::Notify()
    mScrubber.ContinueScrubbingUI();
 }
 
-static const TenacityProject::AttachedObjects::RegisteredFactory key{
-  []( TenacityProject &parent ){
+static const AudacityProject::AttachedObjects::RegisteredFactory key{
+  []( AudacityProject &parent ){
      return std::make_shared< Scrubber >( &parent ); }
 };
 
-Scrubber &Scrubber::Get( TenacityProject &project )
+Scrubber &Scrubber::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< Scrubber >( key );
 }
 
-const Scrubber &Scrubber::Get( const TenacityProject &project )
+const Scrubber &Scrubber::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
-Scrubber::Scrubber(TenacityProject *project)
+Scrubber::Scrubber(AudacityProject *project)
    : mScrubToken(-1)
-   , mPaused(true)
    , mScrubSpeedDisplayCountdown(0)
    , mScrubStartPosition(-1)
-#ifdef EXPERIMENTAL_SCRUBBING_SCROLL_WHEEL
    , mSmoothScrollingScrub(false)
+   , mPaused(true)
    , mLogMaxScrubSpeed(0)
-#endif
 
    , mProject(project)
    , mPoller { std::make_unique<ScrubPoller>(*this) }
@@ -233,17 +214,24 @@ Scrubber::Scrubber(TenacityProject *project)
    UpdatePrefs();
 }
 
-Scrubber::~Scrubber()
+void Scrubber::JoinThread()
 {
 #ifdef USE_SCRUB_THREAD
-   if (mpThread)
-      mpThread->Delete();
+   if (mThread.joinable()) {
+      mFinishThread.store(true, std::memory_order_release);
+      mThread.join();
+   }
 #endif
 }
 
+Scrubber::~Scrubber()
+{
+   JoinThread();
+}
+
 static const auto HasWaveDataPred =
-   [](const TenacityProject &project){
-      auto range = TrackList::Get( project ).Any<const WaveTrack>()
+   [](const AudacityProject &project){
+      auto range = TrackList::Get(project).Any<const WaveTrack>()
          + [](const WaveTrack *pTrack){
             return pTrack->GetEndTime() > pTrack->GetStartTime();
          };
@@ -350,14 +338,13 @@ void Scrubber::MarkScrubStart(
 static AudioIOStartStreamOptions::PolicyFactory
 ScrubbingPlaybackPolicyFactory(const ScrubbingOptions &options)
 {
-   return [options]() -> std::unique_ptr<PlaybackPolicy>
+   return [options](auto&) -> std::unique_ptr<PlaybackPolicy>
    {
       return std::make_unique<ScrubbingPlaybackPolicy>(options);
    };
 }
 
 
-#ifdef EXPERIMENTAL_SCRUBBING_SUPPORT
 // Assume xx is relative to the left edge of TrackPanel!
 bool Scrubber::MaybeStartScrubbing(wxCoord xx)
 {
@@ -365,6 +352,10 @@ bool Scrubber::MaybeStartScrubbing(wxCoord xx)
       return false;
    if (IsScrubbing())
       return false;
+#ifdef USE_SCRUB_THREAD
+   if (mThread.joinable())
+      return false;
+#endif
    else {
       const auto state = ::wxGetMouseState();
       mDragging = state.LeftIsDown();
@@ -380,9 +371,9 @@ bool Scrubber::MaybeStartScrubbing(wxCoord xx)
 
       wxCoord position = xx;
       if (abs(mScrubStartPosition - position) >= SCRUBBING_PIXEL_TOLERANCE) {
-         auto &viewInfo = ViewInfo::Get( *mProject );
-         auto &projectAudioManager = ProjectAudioManager::Get( *mProject );
-         double maxTime = TrackList::Get( *mProject ).GetEndTime();
+         auto &viewInfo = ViewInfo::Get(*mProject);
+         auto &projectAudioManager = ProjectAudioManager::Get(*mProject);
+         double maxTime = TrackList::Get(*mProject).GetEndTime();
          const int leftOffset = viewInfo.GetLeftOffset();
          double time0 = std::min(maxTime,
             viewInfo.PositionToTime(mScrubStartPosition, leftOffset)
@@ -411,7 +402,7 @@ bool Scrubber::MaybeStartScrubbing(wxCoord xx)
             mSpeedPlaying = false;
             mKeyboardScrubbing = false;
             auto options =
-               DefaultPlayOptions( *mProject );
+               ProjectAudioIO::GetDefaultOptions(*mProject);
 
 #ifndef USE_SCRUB_THREAD
             // Yuck, we either have to poll "by hand" when scrub polling doesn't
@@ -419,13 +410,12 @@ bool Scrubber::MaybeStartScrubbing(wxCoord xx)
             // execute too much else
             options.playbackStreamPrimer = [this](){
                ContinueScrubbingPoll();
-               return ScrubPollInterval_ms;
+               return ScrubPollInterval;
             };
 #endif
             options.playNonWaveTracks = false;
             options.envelope = nullptr;
-            mOptions.delay = (ScrubPollInterval_ms / 1000.0);
-            mOptions.isPlayingAtSpeed = false;
+            mOptions.delay = ScrubPollInterval;
             mOptions.isKeyboardScrubbing = false;
             mOptions.initSpeed = 0;
             mOptions.minSpeed = 0.0;
@@ -448,21 +438,19 @@ bool Scrubber::MaybeStartScrubbing(wxCoord xx)
 #endif
             mOptions.minTime = 0;
             mOptions.maxTime =
-               std::max(0.0, TrackList::Get( *mProject ).GetEndTime());
+               std::max(0.0, TrackList::Get(*mProject).GetEndTime());
             mOptions.minStutterTime =
 #ifdef DRAG_SCRUB
-               mDragging ? 0.0 :
+               mDragging ? PlaybackPolicy::Duration{} :
 #endif
-               std::max(0.0, MinStutter);
+               std::max(PlaybackPolicy::Duration{}, MinStutter);
 
             const bool backwards = time1 < time0;
-#ifdef EXPERIMENTAL_SCRUBBING_SCROLL_WHEEL
             static const double maxScrubSpeedBase =
                pow(2.0, 1.0 / ScrubSpeedStepsPerOctave);
             mLogMaxScrubSpeed = floor(0.5 +
                log(mMaxSpeed) / log(maxScrubSpeedBase)
             );
-#endif
             mScrubSpeedDisplayCountdown = 0;
 
             // Must start the thread and poller first or else PlayPlayRegion
@@ -501,100 +489,14 @@ bool Scrubber::MaybeStartScrubbing(wxCoord xx)
    }
 }
 
-
-
-bool Scrubber::StartSpeedPlay(double speed, double time0, double time1)
-{
-   if (IsScrubbing())
-      return false;
-
-   auto gAudioIO = AudioIO::Get();
-   const bool busy = gAudioIO->IsBusy();
-   if (busy && gAudioIO->GetNumCaptureChannels() > 0) {
-      // Do not stop recording, and don't try to start scrubbing after
-      // recording stops
-      mScrubStartPosition = -1;
-      return false;
-   }
-
-   auto &projectAudioManager = ProjectAudioManager::Get( *mProject );
-   if (busy) {
-      projectAudioManager.Stop();
-   }
-   mScrubStartPosition = 0;
-   mSpeedPlaying = true;
-   mKeyboardScrubbing = false;
-   mMaxSpeed = speed;
-   mDragging = false;
-
-   auto options = DefaultSpeedPlayOptions( *mProject );
-
-#ifndef USE_SCRUB_THREAD
-            // Yuck, we either have to poll "by hand" when scrub polling doesn't
-            // work with a thread, or else yield to timer messages, but that would
-            // execute too much else
-            options.playbackStreamPrimer = [this](){
-               ContinueScrubbingPoll();
-               return ScrubPollInterval_ms;
-            };
-#endif
-
-   options.playNonWaveTracks = false;
-   options.envelope = nullptr;
-   mOptions.delay = (ScrubPollInterval_ms / 1000.0);
-   mOptions.initSpeed = speed;
-   mOptions.minSpeed = speed -0.01;
-   mOptions.maxSpeed = speed +0.01;
-
-   if (time1 == time0)
-      time1 = std::max(0.0, TrackList::Get( *mProject ).GetEndTime());
-   mOptions.minTime = 0;
-   mOptions.maxTime = time1;
-   mOptions.minStutterTime = std::max(0.0, MinStutter);
-   mOptions.bySpeed = true;
-   mOptions.adjustStart = false;
-   mOptions.isPlayingAtSpeed = true;
-   mOptions.isKeyboardScrubbing = false;
-      
-   const bool backwards = time1 < time0;
-#ifdef EXPERIMENTAL_SCRUBBING_SCROLL_WHEEL
-   static const double maxScrubSpeedBase =
-      pow(2.0, 1.0 / ScrubSpeedStepsPerOctave);
-   mLogMaxScrubSpeed = floor(0.5 +
-      log(mMaxSpeed) / log(maxScrubSpeedBase)
-   );
-#endif
-
-   // Must start the thread and poller first or else PlayPlayRegion
-   // will insert some silence
-   StartPolling();
-   auto cleanup = finally([this]{
-      if (mScrubToken < 0)
-         StopPolling();
-   });
-   
-   mScrubSpeedDisplayCountdown = 0;
-   // Aim to stop within 20 samples of correct position.
-   double stopTolerance = 20.0 / options.rate;
-   options.policyFactory = ScrubbingPlaybackPolicyFactory(mOptions);
-   mScrubToken =
-      // Reduce time by 'stopTolerance' fudge factor, so that the Play will stop.
-      projectAudioManager.PlayPlayRegion(
-         SelectedRegion(time0, time1-stopTolerance), options,
-         PlayMode::normalPlay, backwards);
-
-   if (mScrubToken >= 0) {
-      mLastScrubPosition = 0;
-   }
-
-   return true;
-}
-
-
 bool Scrubber::StartKeyboardScrubbing(double time0, bool backwards)
 {
    if (HasMark() || AudioIO::Get()->IsBusy())
       return false;
+#ifdef USE_SCRUB_THREAD
+   if (mThread.joinable())
+      return false;
+#endif
    
    mScrubStartPosition = 0;   // so that HasMark() is true
    mSpeedPlaying = false;
@@ -611,7 +513,7 @@ bool Scrubber::StartKeyboardScrubbing(double time0, bool backwards)
    // execute too much else
    options.playbackStreamPrimer = [this]() {
       ContinueScrubbingPoll();
-      return ScrubPollInterval_ms;
+      return ScrubPollInterval;
    };
 #endif
 
@@ -620,7 +522,7 @@ bool Scrubber::StartKeyboardScrubbing(double time0, bool backwards)
 
    // delay and minStutterTime are used in AudioIO::AllocateBuffers() for setting the
    // values of mPlaybackQueueMinimum and mPlaybackSamplesToCopy respectively.
-   mOptions.delay = (ScrubPollInterval_ms / 1000.0);
+   mOptions.delay = ScrubPollInterval;
    mOptions.minStutterTime = mOptions.delay;
 
    mOptions.initSpeed = GetKeyboardScrubbingSpeed();
@@ -632,7 +534,6 @@ bool Scrubber::StartKeyboardScrubbing(double time0, bool backwards)
    mOptions.maxTime = std::max(0.0, TrackList::Get(*mProject).GetEndTime());
    mOptions.bySpeed = true;
    mOptions.adjustStart = false;
-   mOptions.isPlayingAtSpeed = false;
    mOptions.isKeyboardScrubbing = true;
 
    // Must start the thread and poller first or else PlayPlayRegion
@@ -693,8 +594,8 @@ void Scrubber::ContinueScrubbingPoll()
       // default speed of 1.3 set, so that we can hear there is a problem
       // when playAtSpeedTB not found.
       double speed = 1.3;
-      const auto &settings = ProjectSettings::Get( *mProject );
-      speed = settings.GetPlaySpeed();
+      const auto &projectAudioIO = ProjectAudioIO::Get( *mProject );
+      speed = projectAudioIO.GetPlaySpeed();
       mOptions.minSpeed = speed -0.01;
       mOptions.maxSpeed = speed +0.01;
       mOptions.adjustStart = false;
@@ -817,13 +718,14 @@ void Scrubber::StartPolling()
    mPaused = false;
    
 #ifdef USE_SCRUB_THREAD
-   // Detached thread is self-deleting, after it receives the Delete() message
-   mpThread = safenew ScrubPollerThread{ *this };
-   mpThread->Create(4096);
-   mpThread->Run();
+   assert(!mThread.joinable());
+   mFinishThread.store(false, std::memory_order_relaxed);
+   mThread = std::thread{
+      std::mem_fn( &Scrubber::ScrubPollerThread ), std::ref(*this) };
 #endif
-   
-   mPoller->Start(ScrubPollInterval_ms * 0.9);
+
+   mPoller->Start( 0.9 *
+      std::chrono::duration<double, std::milli>{ScrubPollInterval}.count());
 }
 
 void Scrubber::StopPolling()
@@ -831,10 +733,7 @@ void Scrubber::StopPolling()
    mPaused = true;
 
 #ifdef USE_SCRUB_THREAD
-   if (mpThread) {
-      mpThread->Delete();
-      mpThread = nullptr;
-   }
+   JoinThread();
 #endif
    
    mPoller->Stop();
@@ -925,7 +824,7 @@ double Scrubber::FindScrubSpeed(bool seeking, double time) const
 {
    auto &viewInfo = ViewInfo::Get( *mProject );
    const double screen =
-      viewInfo.GetScreenEndTime() - viewInfo.h;
+      viewInfo.GetScreenEndTime() - viewInfo.hpos;
    return (seeking ? FindSeekSpeed : FindScrubbingSpeed)
       (viewInfo, mMaxSpeed, screen, time);
 }
@@ -1065,9 +964,6 @@ void Scrubber::OnToggleScrubRuler(const CommandContext&)
    mShowScrubbing = !mShowScrubbing;
    WriteScrubEnabledPref(mShowScrubbing);
    gPrefs->Flush();
-   const auto toolbar =
-      ToolManager::Get( *mProject ).GetToolBar( ScrubbingBarID );
-   toolbar->EnableDisableButtons();
    CheckMenuItems();
 }
 
@@ -1121,10 +1017,10 @@ wxString Scrubber::StatusMessageForWave() const
 
 static ProjectStatus::RegisteredStatusWidthFunction
 registeredStatusWidthFunction{
-   []( const TenacityProject &, StatusBarField field )
+   []( const AudacityProject &, StatusBarField field )
       -> ProjectStatus::StatusWidthResult
    {
-      if ( field == stateStatusBarField ) {
+      if ( field == StateStatusBarField() ) {
          TranslatableStrings strings;
          // Note that Scrubbing + Paused is not allowed.
          for (const auto &item : menuItems())
@@ -1224,50 +1120,37 @@ void Scrubber::OnKeyboardScrubForwards(const CommandContext &context)
 namespace {
 
 static const auto finder =
-   [](TenacityProject &project) -> CommandHandlerObject&
+   [](AudacityProject &project) -> CommandHandlerObject&
      { return Scrubber::Get( project ); };
 
-using namespace MenuTable;
-BaseItemSharedPtr ToolbarMenu()
+using namespace MenuRegistry;
+auto ToolbarMenu()
 {
-   using Options = CommandManager::Options;
-
-   static BaseItemSharedPtr menu { (
-   FinderScope{ finder },
-   Menu( wxT("Scrubbing"),
-      XXO("Scru&bbing"),
-      []{
-         BaseItemPtrs ptrs;
-         for (const auto &item : menuItems()) {
-            ptrs.push_back( Command( item.name, item.label,
-               item.memFn,
-               item.flags,
-               item.StatusTest
-                  ? // a checkmark item
-                     Options{}.CheckTest( [&item](TenacityProject &project){
-                     return ( Scrubber::Get(project).*(item.StatusTest) )(); } )
-                  : // not a checkmark item
-                     Options{}
-            ) );
-         }
-         return ptrs;
-      }()
-   )
-   ) };
-   
+   static auto menu = []{
+      FinderScope scope{ finder };
+      auto menu = std::shared_ptr{ Menu("Scrubbing", XXO("Scru&bbing")) };
+      for (const auto &item : menuItems()) {
+         menu->push_back(Command(item.name, item.label,
+            item.memFn,
+            item.flags,
+            item.StatusTest
+               ? // a checkmark item
+                  Options{}.CheckTest([&item](AudacityProject &project){
+                  return (Scrubber::Get(project).*(item.StatusTest))(); } )
+               : // not a checkmark item
+                  Options{}
+         ));
+      }
+      return menu;
+   }();
    return menu;
 }
 
-AttachedItem sAttachment{
-   wxT("Transport/Basic"),
-   Shared( ToolbarMenu() )
-};
+AttachedItem sAttachment{ Indirect(ToolbarMenu()), wxT("Transport/Basic") };
 
-BaseItemSharedPtr KeyboardScrubbingItems()
+auto KeyboardScrubbingItems()
 {
-   using Options = CommandManager::Options;
-
-   static BaseItemSharedPtr items{
+   static auto items = std::shared_ptr{
    ( FinderScope{ finder },
    Items( wxT("KeyboardScrubbing"),
       Command(wxT("KeyboardScrubBackwards"), XXO("Scrub Bac&kwards"),
@@ -1282,9 +1165,8 @@ BaseItemSharedPtr KeyboardScrubbingItems()
    return items;
 }
 
-AttachedItem sAttachment2{
-   wxT("Optional/Extra/Part1/Transport"),
-   Shared( KeyboardScrubbingItems() )
+AttachedItem sAttachment2{ Indirect(KeyboardScrubbingItems()),
+   wxT("Optional/Extra/Part1/Transport")
 };
 
 }
@@ -1314,5 +1196,3 @@ void Scrubber::CheckMenuItems()
          cm.Check(item.name, (this->*test)());
    }
 }
-
-#endif

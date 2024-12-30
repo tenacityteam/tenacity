@@ -13,9 +13,13 @@
 #define __AUDACITY_IMAGE_ROLL__
 
 #include <vector>
-#include <wx/dc.h> // for enum wxRasterOperationMode
+// #include <wx/dc.h> // for enum wxRasterOperationMode
 #include <wx/defs.h>
 #include "wxPanelWrapper.h" // to inherit
+
+#if !wxCHECK_VERSION(3,0,0)
+#define wxRasterOperationMode int
+#endif
 
 // wxImage copies cheaply with reference counting
 using ImageArray = std::vector<wxImage>;
@@ -43,7 +47,9 @@ class TENACITY_DLL_API ImageRoll
    wxSize GetMinSize() const { return mMinSize; }
    wxSize GetMaxSize() const { return mMaxSize; }
 
-   void Draw(wxDC &dc, wxRect rect);
+   void Draw(wxDC &dc, wxRect rect,
+             int /* wxRasterOperationMode */ logicalFunc);
+   void Draw(wxDC &dc, wxRect rect); // default logicalFunc to wxCOPY
 
    static ImageArray SplitH(const wxImage &src, wxColour magicColor);
    static ImageArray SplitV(const wxImage &src, wxColour magicColor);
@@ -61,29 +67,6 @@ class TENACITY_DLL_API ImageRoll
    std::vector<wxBitmap>  mPieces;
    wxSize       mMinSize;
    wxSize       mMaxSize;
-};
-
-// A very simple class that just display an ImageRoll that doesn't
-// do anything
-class ImageRollPanel final : public wxPanelWrapper
-{
- public:
-   ImageRollPanel(wxWindow *parent,
-                  wxWindowID id,
-                  //ImageRoll &imgRoll,
-                  const wxPoint& pos = wxDefaultPosition,
-                  const wxSize& size = wxDefaultSize,
-                  long style = wxTAB_TRAVERSAL);
-
-   void SetLogicalFunction(int /*wxRasterOperationMode*/ func);
-
-   void OnPaint(wxPaintEvent &evt);
-   void OnSize(wxSizeEvent &evt);
-
- protected:
-   //ImageRoll mImageRoll;
-
-   int /*wxRasterOperationMode*/ mLogicalFunction;
 };
 
 #endif // __AUDACITY_IMAGE_ROLL__

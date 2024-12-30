@@ -75,10 +75,9 @@ ExpandingToolBar.
 #include <wx/wx.h>
 #include <wx/dcmemory.h>
 #include <wx/log.h>
-#include <wx/dialog.h>
 
 #include "AButton.h"
-#include "../theme/AllThemeResources.h"
+#include "AllThemeResources.h"
 
 const int kToggleButtonHeight = 8;
 const int kMyTimerInterval = 50; // every 50 ms -> ~20 updates per second
@@ -106,6 +105,8 @@ BEGIN_EVENT_TABLE(ExpandingToolBar, wxPanelWrapper)
    EVT_TIMER(kTimerID, ExpandingToolBar::OnTimer)
    EVT_BUTTON(kToggleButtonID, ExpandingToolBar::OnToggle)
 END_EVENT_TABLE()
+
+IMPLEMENT_CLASS(ExpandingToolBar, wxPanelWrapper)
 
 //static
 int ExpandingToolBar::msNoAutoExpandStack = 0;
@@ -164,7 +165,7 @@ ExpandingToolBar::~ExpandingToolBar()
 {
 }
 
-void ExpandingToolBar::OnSize(wxSizeEvent & /* event */)
+void ExpandingToolBar::OnSize(wxSizeEvent & WXUNUSED(event))
 {
    if (mFrameParent || mDialogParent || mAreaParent)
       return;
@@ -204,7 +205,7 @@ void ExpandingToolBar::OnSize(wxSizeEvent & /* event */)
    }
 }
 
-void ExpandingToolBar::OnToggle(wxCommandEvent & /* event */)
+void ExpandingToolBar::OnToggle(wxCommandEvent & WXUNUSED(event))
 {
    if (mIsExpanded)
       Collapse();
@@ -321,7 +322,7 @@ bool ExpandingToolBar::Layout()
 {
    mMainSize = mMainPanel->GetBestSize();
    mExtraSize = mExtraPanel->GetBestSize();
-   mButtonSize = wxSize(std::max(mMainSize.x, mExtraSize.x),
+   mButtonSize = wxSize(wxMax(mMainSize.x, mExtraSize.x),
                         kToggleButtonHeight);
 
    int left = 0;
@@ -465,7 +466,7 @@ void ExpandingToolBar::MoveDrawer(wxSize prevSize)
    }
 }
 
-void ExpandingToolBar::OnTimer(wxTimerEvent & /* event */)
+void ExpandingToolBar::OnTimer(wxTimerEvent & WXUNUSED(event))
 {
    if (mAutoExpand && msNoAutoExpandStack==0 &&
        IsCursorInWindow())
@@ -542,11 +543,10 @@ void ExpandingToolBar::StartMoving()
 //   ImageRoll tgtImageRoll = ImageRoll(ImageRoll::VerticalRoll,
 //                                      tgtImage,
 //                                      magicColor);
-   mTargetPanel = safenew ImageRollPanel(mAreaParent, -1, //tgtImageRoll,
+   mTargetPanel = safenew wxPanelWrapper(mAreaParent, -1, //tgtImageRoll,
                                      wxDefaultPosition,
                                      wxDefaultSize,
                                      wxTRANSPARENT_WINDOW);
-   mTargetPanel->SetLogicalFunction(wxXOR);
    mTargetPanel->SetSize(mDropTarget);
 
    // This gives time for wx to finish redrawing the window that way.
@@ -658,6 +658,8 @@ BEGIN_EVENT_TABLE(ToolBarGrabber, wxPanelWrapper)
    EVT_MOUSE_EVENTS(ToolBarGrabber::OnMouse)
 END_EVENT_TABLE()
 
+IMPLEMENT_CLASS(ToolBarGrabber, wxPanelWrapper)
+
 ToolBarGrabber::ToolBarGrabber(wxWindow *parent,
                                wxWindowID id,
                                ExpandingToolBar *ownerToolbar,
@@ -711,14 +713,14 @@ void ToolBarGrabber::OnMouse(wxMouseEvent &event)
       Refresh(false);
 }
 
-void ToolBarGrabber::OnPaint(wxPaintEvent & /* event */)
+void ToolBarGrabber::OnPaint(wxPaintEvent & WXUNUSED(event))
 {
    wxPaintDC dc(this);
 
   // mImageRoll[mState].Draw(dc, GetClientRect());
 }
 
-void ToolBarGrabber::OnSize(wxSizeEvent & /* event */)
+void ToolBarGrabber::OnSize(wxSizeEvent & WXUNUSED(event))
 {
    Refresh(false);
 }
@@ -726,6 +728,11 @@ void ToolBarGrabber::OnSize(wxSizeEvent & /* event */)
 //
 // ToolBarDialog
 //
+
+BEGIN_EVENT_TABLE(ToolBarDialog, wxDialogWrapper)
+END_EVENT_TABLE()
+
+IMPLEMENT_CLASS(ToolBarDialog, wxDialogWrapper)
 
 ToolBarDialog::ToolBarDialog(wxWindow* parent,
                            wxWindowID id,
@@ -776,6 +783,8 @@ void ToolBarDialog::Fit()
 
 BEGIN_EVENT_TABLE(ToolBarFrame, wxMiniFrame)
 END_EVENT_TABLE()
+
+IMPLEMENT_CLASS(ToolBarFrame, wxMiniFrame)
 
 ToolBarFrame::ToolBarFrame(wxWindow* parent,
                            wxWindowID id,
@@ -828,6 +837,8 @@ BEGIN_EVENT_TABLE(ToolBarArea, wxPanelWrapper)
    EVT_SIZE(ToolBarArea::OnSize)
    EVT_MOUSE_EVENTS(ToolBarArea::OnMouse)
 END_EVENT_TABLE()
+
+IMPLEMENT_CLASS(ToolBarArea, wxPanelWrapper)
 
 ToolBarArea::ToolBarArea(wxWindow* parent,
                          wxWindowID id,
@@ -1092,7 +1103,7 @@ void ToolBarArea::Fit(bool horizontal, bool vertical)
    }
 }
 
-void ToolBarArea::OnSize(wxSizeEvent & /* event */)
+void ToolBarArea::OnSize(wxSizeEvent & WXUNUSED(event))
 {
    if (mInOnSize)
       return;

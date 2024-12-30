@@ -11,26 +11,26 @@ Paul Licameli split from class TimeTrack
 #ifndef __AUDACITY_TIME_TRACK_VIEW__
 #define __AUDACITY_TIME_TRACK_VIEW__
 
-#include "../../ui/CommonTrackView.h"
+#include "../../ui/CommonChannelView.h"
 
 class EnvelopeHandle;
 
-class TimeTrackView final : public CommonTrackView
+class TimeTrackView final : public CommonChannelView
 {
    TimeTrackView( const TimeTrackView& ) = delete;
    TimeTrackView &operator=( const TimeTrackView& ) = delete;
 
 public:
-   explicit
-   TimeTrackView( const std::shared_ptr<Track> &pTrack );
+   explicit TimeTrackView(const std::shared_ptr<Channel> &pChannel);
    ~TimeTrackView() override;
 
-   std::shared_ptr<TrackVRulerControls> DoGetVRulerControls() override;
+   std::shared_ptr<ChannelVRulerControls> DoGetVRulerControls() override;
 
 private:
+
    std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &state,
-       const TenacityProject *pProject, int currentTool, bool bMultiTool)
+       const AudacityProject *pProject, int currentTool, bool bMultiTool)
       override;
 
    std::weak_ptr<EnvelopeHandle> mEnvelopeHandle;

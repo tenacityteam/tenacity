@@ -14,9 +14,6 @@
 #include <optional>
 #include <wx/dcclient.h>
 
-// Tenacity libraries
-#include <lib-utility/MemoryX.h>
-
 OverlayPanel::OverlayPanel(wxWindow * parent, wxWindowID id,
              const wxPoint & pos,
              const wxSize & size,
@@ -43,7 +40,7 @@ void OverlayPanel::ClearOverlays()
    mOverlays.clear();
 }
 
-void OverlayPanel::DrawOverlays(bool repaint_all, wxDC& dc)
+void OverlayPanel::DrawOverlays(bool repaint_all, wxDC *pDC)
 {
    if ( !IsShownOnScreen() )
       return;
@@ -60,7 +57,7 @@ void OverlayPanel::DrawOverlays(bool repaint_all, wxDC& dc)
 
    // Find out the rectangles and outdatedness for each overlay
    wxSize size(GetBackingDC().GetSize());
-   for (const auto pOverlay : mOverlays)
+   for (const auto& pOverlay : mOverlays)
       pairs.push_back( pOverlay.lock()->GetRectangle(size) );
 
    // See what requires redrawing.  If repainting, all.
@@ -102,6 +99,9 @@ void OverlayPanel::DrawOverlays(bool repaint_all, wxDC& dc)
       } while (!done);
    }
 
+   std::optional<wxClientDC> myDC;
+   auto &dc = pDC ? *pDC : (myDC.emplace(this), *myDC);
+
    // Erase
    auto it2 = pairs.begin();
    for (auto pOverlay : mOverlays) {
@@ -134,6 +134,9 @@ void OverlayPanel::Compress()
    if ( end != newEnd )
       mOverlays.resize( newEnd - begin );
 }
+
+BEGIN_EVENT_TABLE(OverlayPanel, BackedPanel)
+END_EVENT_TABLE()
 
 // Maybe this class needs a better home
 void DCUnchanger::operator () (wxDC *pDC) const

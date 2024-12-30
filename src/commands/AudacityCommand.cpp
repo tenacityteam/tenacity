@@ -14,55 +14,35 @@
 *//****************************************************************//**
 
 \class AudacityCommandDialog
-\brief Default dialog used for commands.  Is populated using 
+\brief Default dialog used for commands.  Is populated using
 ShuttleGui.
 
 *//*******************************************************************/
 
 
 #include "AudacityCommand.h"
+#include "MemoryX.h"
 
 #include "CommandContext.h"
-
-#include "ConfigInterface.h"
 
 #include <algorithm>
 
 #include <wx/defs.h>
-#include <wx/sizer.h>
-#include <wx/stockitem.h>
-#include <wx/string.h>
-#include <wx/tglbtn.h>
-#include <wx/timer.h>
-#include <wx/utils.h>
+#include <wx/frame.h>
 #include <wx/log.h>
+#include <wx/stockitem.h>
+#include <wx/tglbtn.h>
 
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../widgets/ProgressDialog.h"
-#include "../widgets/HelpSystem.h"
-#include "../widgets/AudacityMessageBox.h"
+#include "ConfigInterface.h"
+
+#include "AudacityMessageBox.h"
+#include "HelpSystem.h"
+#include "ProgressDialog.h"
+#include "ProjectWindows.h"
+#include "ShuttleAutomation.h"
+#include "ShuttleGui.h"
 
 #include <unordered_map>
-
-namespace {
-
-AudacityCommand::VetoDialogHook &GetVetoDialogHook()
-{
-   static AudacityCommand::VetoDialogHook sHook = nullptr;
-   return sHook;
-}
-
-}
-
-auto AudacityCommand::SetVetoDialogHook( VetoDialogHook hook )
-   -> VetoDialogHook
-{
-   auto &theHook = GetVetoDialogHook();
-   auto result = theHook;
-   theHook = hook;
-   return result;
-}
 
 AudacityCommand::AudacityCommand()
 {
@@ -80,9 +60,9 @@ AudacityCommand::~AudacityCommand()
 }
 
 
-PluginPath AudacityCommand::GetPath(){        return BUILTIN_GENERIC_COMMAND_PREFIX + GetSymbol().Internal(); }
-VendorSymbol AudacityCommand::GetVendor(){      return XO("Tenacity");}
-wxString AudacityCommand::GetVersion(){     return TENACITY_VERSION_STRING;}
+PluginPath AudacityCommand::GetPath() const {        return BUILTIN_GENERIC_COMMAND_PREFIX + GetSymbol().Internal(); }
+VendorSymbol AudacityCommand::GetVendor() const {      return XO("Audacity");}
+wxString AudacityCommand::GetVersion()  const {     return TENACITY_VERSION_STRING;}
 
 
 bool AudacityCommand::Init(){
@@ -90,10 +70,10 @@ bool AudacityCommand::Init(){
       return true;
    mNeedsInit = false;
    ShuttleDefaults DefaultSettingShuttle;
-   return DefineParams( DefaultSettingShuttle );
+   return VisitSettings( DefaultSettingShuttle );
 }
 
-bool AudacityCommand::ShowInterface(wxWindow *parent, bool /* forceModal */)
+bool AudacityCommand::ShowInterface(wxWindow *parent, bool WXUNUSED(forceModal))
 {
    if (mUIDialog)
    {
@@ -104,7 +84,7 @@ bool AudacityCommand::ShowInterface(wxWindow *parent, bool /* forceModal */)
 
    // mUIDialog is null
    auto cleanup = valueRestorer( mUIDialog );
-   
+
    mUIDialog = CreateUI(parent, this);
    if (!mUIDialog)
       return false;
@@ -113,16 +93,11 @@ bool AudacityCommand::ShowInterface(wxWindow *parent, bool /* forceModal */)
    mUIDialog->Fit();
    mUIDialog->SetMinSize(mUIDialog->GetSize());
 
-   // The Screenshot command might be popping this dialog up, just to capture it.
-   auto hook = GetVetoDialogHook();
-   if( hook && hook( mUIDialog ) )
-      return false;
-
    bool res = mUIDialog->ShowModal() != 0;
    return res;
 }
 
-wxDialog *AudacityCommand::CreateUI(wxWindow *parent, AudacityCommand * /* client */)
+wxDialog *AudacityCommand::CreateUI(wxWindow *parent, AudacityCommand * WXUNUSED(client))
 {
    Destroy_ptr<AudacityCommandDialog> dlg { safenew AudacityCommandDialog{
       parent, GetName(), this}};
@@ -135,7 +110,7 @@ wxDialog *AudacityCommand::CreateUI(wxWindow *parent, AudacityCommand * /* clien
    return NULL;
 }
 
-bool AudacityCommand::GetAutomationParametersAsString(wxString & parms)
+bool AudacityCommand::SaveSettingsAsString(wxString & parms)
 {
    CommandParameters eap;
 
@@ -146,14 +121,14 @@ bool AudacityCommand::GetAutomationParametersAsString(wxString & parms)
 
    ShuttleGetAutomation S;
    S.mpEap = &eap;
-   bool bResult = DefineParams( S );
+   bool bResult = VisitSettings( S );
    wxASSERT_MSG( bResult, "You did not define DefineParameters() for this command" );
    static_cast<void>(bResult); // fix unused variable warning in release mode
 
    return eap.GetParameters(parms);
 }
 
-bool AudacityCommand::SetAutomationParametersFromString(const wxString & parms)
+bool AudacityCommand::LoadSettingsFromString(const wxString & parms)
 {
    wxString preset = parms;
 
@@ -161,7 +136,7 @@ bool AudacityCommand::SetAutomationParametersFromString(const wxString & parms)
    ShuttleSetAutomation S;
 
    S.SetForWriting( &eap );
-   bool bResult = DefineParams( S );
+   bool bResult = VisitSettings( S );
    wxASSERT_MSG( bResult, "You did not define DefineParameters() for this command" );
    static_cast<void>(bResult); // fix unused variable warning in release mode
    if (!S.bOK)
@@ -178,9 +153,8 @@ bool AudacityCommand::SetAutomationParametersFromString(const wxString & parms)
    return TransferDataToWindow();
 }
 
-bool AudacityCommand::DoAudacityCommand(wxWindow *parent,
-                      const CommandContext & context,
-                      bool shouldPrompt /* = true */)
+bool AudacityCommand::DoAudacityCommand(
+   const CommandContext& context, bool shouldPrompt /* = true */)
 {
    // Note: Init may read parameters from preferences
    if (!Init())
@@ -188,10 +162,10 @@ bool AudacityCommand::DoAudacityCommand(wxWindow *parent,
       return false;
    }
 
-   // Prompting will be bypassed when applying a command that has already 
+   // Prompting will be bypassed when applying a command that has already
    // been configured, e.g. repeating the last effect on a different selection.
    // Prompting may call AudacityCommand::Preview
-   if (shouldPrompt && /*IsInteractive() && */!PromptUser(parent))
+   if (shouldPrompt && /*IsInteractive() && */!PromptUser(context.project))
    {
       return false;
    }
@@ -218,9 +192,9 @@ bool AudacityCommand::DoAudacityCommand(wxWindow *parent,
 }
 
 // This is used from Macros.
-bool AudacityCommand::PromptUser(wxWindow *parent)
+bool AudacityCommand::PromptUser(AudacityProject& project)
 {
-   return ShowInterface(parent, IsBatchProcessing());
+   return ShowInterface(&GetProjectFrame(project), IsBatchProcessing());
 }
 
 bool AudacityCommand::TransferDataToWindow()
@@ -237,6 +211,16 @@ bool AudacityCommand::TransferDataFromWindow()
    return true;
 }
 
+bool AudacityCommand::VisitSettings( SettingsVisitor & )
+{
+   return false;
+}
+
+bool AudacityCommand::VisitSettings( ConstSettingsVisitor & )
+{
+   return false;
+}
+
 int AudacityCommand::MessageBox(
    const TranslatableString& message, long style,
    const TranslatableString &titleStr)
@@ -247,6 +231,12 @@ int AudacityCommand::MessageBox(
    return AudacityMessageBox(message, title, style, mUIParent);
 }
 
+BEGIN_EVENT_TABLE(AudacityCommandDialog, wxDialogWrapper)
+   EVT_BUTTON(wxID_OK, AudacityCommandDialog::OnOk)
+   EVT_BUTTON(wxID_HELP, AudacityCommandDialog::OnHelp)
+   EVT_BUTTON(wxID_CANCEL, AudacityCommandDialog::OnCancel)
+END_EVENT_TABLE()
+
 AudacityCommandDialog::AudacityCommandDialog(wxWindow * parent,
                            const TranslatableString & title,
                            AudacityCommand * pCommand,
@@ -255,10 +245,6 @@ AudacityCommandDialog::AudacityCommandDialog(wxWindow * parent,
                            int additionalButtons)
 : wxDialogWrapper(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, flags)
 {
-   Bind(wxEVT_BUTTON, &AudacityCommandDialog::OnOk,     this, wxID_OK);
-   Bind(wxEVT_BUTTON, &AudacityCommandDialog::OnHelp,   this, wxID_OK);
-   Bind(wxEVT_BUTTON, &AudacityCommandDialog::OnCancel, this, wxID_OK);
-
    mType = type;
    wxASSERT( pCommand );
    mpCommand = pCommand;
@@ -316,7 +302,7 @@ bool AudacityCommandDialog::Validate()
    return true;
 }
 
-void AudacityCommandDialog::OnOk(wxCommandEvent & /* evt */)
+void AudacityCommandDialog::OnOk(wxCommandEvent & WXUNUSED(evt))
 {
    // On wxGTK (wx2.8.12), the default action is still executed even if
    // the button is disabled.  This appears to affect all wxDialogs, not
@@ -330,12 +316,12 @@ void AudacityCommandDialog::OnOk(wxCommandEvent & /* evt */)
 }
 
 
-void AudacityCommandDialog::OnCancel(wxCommandEvent & /* evt */)
+void AudacityCommandDialog::OnCancel(wxCommandEvent & WXUNUSED(evt))
 {
    EndModal(false);
 }
 
-void AudacityCommandDialog::OnHelp(wxCommandEvent & /* event */)
+void AudacityCommandDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
 {
    if( mpCommand )
    {

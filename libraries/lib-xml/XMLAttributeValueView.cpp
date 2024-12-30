@@ -12,7 +12,6 @@
 #include "FromChars.h"
 
 #include <numeric>
-#include <limits>
 
 XMLAttributeValueView::XMLAttributeValueView(bool value) noexcept
     : mInteger(value)

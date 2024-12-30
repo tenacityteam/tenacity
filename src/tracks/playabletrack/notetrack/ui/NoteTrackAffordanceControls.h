@@ -23,7 +23,7 @@ class TENACITY_DLL_API NoteTrackAffordanceControls : public CommonTrackCell
 public:
     NoteTrackAffordanceControls(const std::shared_ptr<Track>& pTrack);
 
-    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const TenacityProject* pProject) override;
+    std::vector<UIHandlePtr> HitTest(const TrackPanelMouseState& state, const AudacityProject* pProject) override;
 
     void Draw(TrackPanelDrawingContext& context, const wxRect& rect, unsigned iPass) override;
 

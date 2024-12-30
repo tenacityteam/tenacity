@@ -12,9 +12,7 @@
 #define __AUDACITY_SPECPOWERMETER_H_
 
 #include <cstddef>
-
-// Tenacity libraries
-#include <lib-math/SampleFormat.h>
+#include "SampleFormat.h"
 
 class SpecPowerCalculation
 {

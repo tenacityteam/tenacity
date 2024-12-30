@@ -21,44 +21,55 @@ other settings.
   Also lets user decide how many channels to record.
 
 *//********************************************************************/
-
-
 #include "DevicePrefs.h"
+#include "AudioIOBase.h"
 
+#include "IteratorX.h"
 #include "RecordingPrefs.h"
 
 #include <wx/defs.h>
 
 #include <wx/choice.h>
-#include <wx/intl.h>
+#include <wx/combobox.h>
 #include <wx/log.h>
 #include <wx/textctrl.h>
+#include <wx/bmpbuttn.h>
 
 #include "portaudio.h"
 
-// Tenacity libraries
-#include <lib-audio-devices/AudioIOBase.h>
-#include <lib-audio-devices/DeviceManager.h>
-#include <lib-preferences/Prefs.h>
-#include <lib-project-rate/QualitySettings.h>
+#include "Prefs.h"
+#include "ShuttleGui.h"
+#include "DeviceManager.h"
+#include "ProjectRate.h"
 
-#include "AudioIO.h"
-#include "ProjectAudioManager.h"
-#include "../shuttle/ShuttleGui.h"
+#include "QualityPrefs.h"
+#include "QualitySettings.h"
+
+#include "AllThemeResources.h"
+#include "Theme.h"
+
+#define ID_DEFAULT_SAMPLE_RATE_CHOICE 7001
 
 enum {
    HostID = 10000,
    PlayID,
    RecordID,
-   ChannelsID
+   ChannelsID,
+   DefaultSampleRateChoice,
+   ProjectSampleRateChoice
 };
 
-DevicePrefs::DevicePrefs(wxWindow * parent, wxWindowID winid, TenacityProject* project)
-:  PrefsPanel(parent, winid, XO("Devices")), mProject{project}
-{
-   Bind(wxEVT_CHOICE, &DevicePrefs::OnHost, this, HostID);
-   Bind(wxEVT_CHOICE, &DevicePrefs::OnDevice, this, RecordID);
+BEGIN_EVENT_TABLE(DevicePrefs, PrefsPanel)
+   EVT_CHOICE(HostID, DevicePrefs::OnHost)
+   EVT_CHOICE(RecordID, DevicePrefs::OnDevice)
+   EVT_CHOICE(DefaultSampleRateChoice, DevicePrefs::OnDefaultSampleRateChoice)
+   EVT_CHOICE(ProjectSampleRateChoice, DevicePrefs::OnProjectSampleRateChoice)
+END_EVENT_TABLE()
 
+DevicePrefs::DevicePrefs(wxWindow * parent, wxWindowID winid, AudacityProject* project)
+:  PrefsPanel(parent, winid, XO("Audio Settings"))
+, mProject(project)
+{
    Populate();
 }
 
@@ -67,19 +78,19 @@ DevicePrefs::~DevicePrefs()
 }
 
 
-ComponentInterfaceSymbol DevicePrefs::GetSymbol()
+ComponentInterfaceSymbol DevicePrefs::GetSymbol() const
 {
    return DEVICE_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString DevicePrefs::GetDescription()
+TranslatableString DevicePrefs::GetDescription() const
 {
-   return XO("Preferences for Device");
+   return XO("Audio Settings");
 }
 
 ManualPageID DevicePrefs::HelpPageName()
 {
-   return "Preferences#devices";
+   return "Devices_Preferences";
 }
 
 void DevicePrefs::Populate()
@@ -87,9 +98,23 @@ void DevicePrefs::Populate()
    // First any pre-processing for constructing the GUI.
    GetNamesAndLabels();
 
+   mOtherDefaultSampleRateValue = QualitySettings::DefaultSampleRate.Read();
+   mOtherProjectSampleRateValue = mProject ?
+                                     ProjectRate::Get(*mProject).GetRate() :
+                                     mOtherDefaultSampleRateValue;
+
+   auto it = std::find(
+      mSampleRateValues.begin(), mSampleRateValues.end(),
+      mOtherProjectSampleRateValue);
+
+   mProjectSampleRateIndex = it == mSampleRateValues.end() ?
+                                mSampleRateNames.size() - 1 :
+                                std::distance(mSampleRateValues.begin(), it);
+
    // Get current setting for devices
    mPlayDevice = AudioIOPlaybackDevice.Read();
    mRecordDevice = AudioIORecordingDevice.Read();
+   mRecordSource = AudioIORecordingSource.Read();
    mRecordChannels = AudioIORecordChannels.Read();
 
    //------------------------- Main section --------------------
@@ -102,6 +127,8 @@ void DevicePrefs::Populate()
 
    wxCommandEvent e;
    OnHost(e);
+   OnDefaultSampleRateChoice(e);
+   OnProjectSampleRateChoice(e);
 }
 
 
@@ -125,10 +152,41 @@ void DevicePrefs::GetNamesAndLabels()
          }
       }
    }
+
+   //------------ Sample Rate Names
+   // JKC: I don't understand the following comment.
+   //      Can someone please explain or correct it?
+   // XXX: This should use a previously changed, but not yet saved
+   //      sound card setting from the "I/O" preferences tab.
+   // LLL: It means that until the user clicks "Ok" in preferences, the
+   //      GetSupportedSampleRates() call should use the devices they
+   //      may have changed on the Audio I/O page.  As coded, the sample
+   //      rates it will return could be completely invalid as they will
+   //      be what's supported by the devices that were selected BEFORE
+   //      coming into preferences.
+   //
+   //      GetSupportedSampleRates() allows passing in device names, but
+   //      how do you get at them as they are on the Audio I/O page????
+   for (int i = 0; i < AudioIOBase::NumStandardRates; i++)
+   {
+      int iRate = AudioIOBase::StandardRates[i];
+      mSampleRateValues.push_back(iRate);
+      mSampleRateNames.push_back(XO("%i Hz").Format(iRate));
+   }
+
+   mSampleRateNames.push_back(XO("Other..."));
+
+   // The label for the 'Other...' case can be any value at all.
+   mSampleRateValues.push_back(
+      44100); // If chosen, this value will be overwritten
 }
 
 void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
 {
+   ChoiceSetting HostSetting{
+      AudioIOHost,
+      { ByColumns, mHostNames, mHostLabels }
+   };
    S.SetBorder(2);
    S.StartScroller();
 
@@ -138,12 +196,7 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
       S.StartMultiColumn(2);
       {
          S.Id(HostID);
-         mHost = S.TieChoice( XXO("&Host:"),
-            {
-               AudioIOHost,
-               { ByColumns, mHostNames, mHostLabels }
-            }
-         );
+         mHost = S.TieChoice( XXO("&Host:"), HostSetting);
 
          S.AddPrompt(XXO("Using:"));
          S.AddFixedText( Verbatim(wxSafeConvertMB2WX(Pa_GetVersionText() ) ) );
@@ -181,6 +234,61 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
    }
    S.EndStatic();
 
+
+   S.StartStatic(XO("Quality"));
+   {
+      S.StartMultiColumn(2);
+      {
+         if (mProject)
+         {
+            S.AddPrompt(XXO("&Project Sample Rate:"));
+
+            S.StartMultiColumn(3);
+            {
+               mProjectSampleRates =
+                  S.Id(ProjectSampleRateChoice)
+                     .TieChoice({}, mProjectSampleRateIndex, mSampleRateNames);
+
+               // Now do the edit box...
+               mOtherProjectSampleRate =
+                  S.TieNumericTextBox({}, mOtherProjectSampleRateValue, 15);
+
+               auto helpBtn = S.AddBitmapButton(theTheme.Bitmap(bmpHelpIcon));
+
+               const auto helpText =
+                  XO("Sample Rate used when recording new tracks, mixing down tracks and for playback in this project.")
+                     .Translation();
+               
+               helpBtn->SetToolTip(helpText);
+               helpBtn->SetLabel(helpText); // for screen readers
+               helpBtn->SetName(helpText);
+            }
+            S.EndMultiColumn();
+         }
+      }
+
+      S.AddPrompt(XXO("D&efault Sample Rate:"));
+
+      S.StartMultiColumn(2);
+      {
+         mDefaultSampleRates =
+            S.Id(DefaultSampleRateChoice)
+               .TieNumberAsChoice(
+                  {}, QualitySettings::DefaultSampleRate, mSampleRateNames,
+                  &mSampleRateValues, mSampleRateNames.size() - 1);
+
+         mOtherDefaultSampleRate =
+            S.TieNumericTextBox({}, mOtherDefaultSampleRateValue, 15);
+      }
+      S.EndMultiColumn();
+
+      S.TieChoice(
+         XXO("Default Sample &Format:"), QualitySettings::SampleFormatSetting);
+
+      S.EndMultiColumn();
+   }
+   S.EndStatic();
+
    // These previously lived in recording preferences.
    // However they are liable to become device specific.
    // Buffering also affects playback, not just recording, so is a device characteristic.
@@ -188,20 +296,26 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
    {
       S.StartThreeColumn();
       {
-         S.NameSuffix(XO("milliseconds"))
-          .TieNumericTextBox(XXO("&Buffer length:"),
+         wxTextCtrl *w;
+         // only show the following controls if we use Portaudio v19, because
+         // for Portaudio v18 we always use default buffer sizes
+         w = S
+            .NameSuffix(XO("milliseconds"))
+            .TieNumericTextBox(XXO("&Buffer length:"),
                                  AudioIOLatencyDuration,
-                                 9);
-         S.TieChoice(XO(""), AudioIOLatencyUnit);
+                                 25);
+         S.AddUnits(XO("milliseconds"));
 
-         S.NameSuffix(XO("milliseconds"))
-          .TieNumericTextBox(XXO("&Latency compensation:"),
-               AudioIOLatencyCorrection, 9);
+         w = S
+            .NameSuffix(XO("milliseconds"))
+            .TieNumericTextBox(XXO("&Latency compensation:"),
+               AudioIOLatencyCorrection, 25);
          S.AddUnits(XO("milliseconds"));
       }
       S.EndThreeColumn();
    }
    S.EndStatic();
+
    S.EndScroller();
 
 }
@@ -238,26 +352,28 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
       mHost->SetSelection(0);
    }
 
-   const std::vector<Device> &inDevices  = DeviceManager::Instance()->GetInputDevices();
-   const std::vector<Device> &outDevices = DeviceManager::Instance()->GetOutputDevices();
+   const std::vector<DeviceSourceMap> &inMaps  = DeviceManager::Instance()->GetInputDeviceMaps();
+   const std::vector<DeviceSourceMap> &outMaps = DeviceManager::Instance()->GetOutputDeviceMaps();
 
    wxArrayString playnames;
    wxArrayString recordnames;
    size_t i;
    int devindex;  /* temp variable to hold the numeric ID of each device in turn */
-   std::string device;
-   std::string recDevice;
+   wxString device;
+   wxString recDevice;
 
    recDevice = mRecordDevice;
+   if (!this->mRecordSource.empty())
+      recDevice += wxT(": ") + mRecordSource;
 
    mRecord->Clear();
-   for (i = 0; i < inDevices.size(); i++) {
-      if (index == inDevices[i].GetHostIndex()) {
-         device   = inDevices[i].GetName();
+   for (i = 0; i < inMaps.size(); i++) {
+      if (index == inMaps[i].hostIndex) {
+         device   = MakeDeviceSourceString(&inMaps[i]);
          devindex = mRecord->Append(device);
          // We need to const cast here because SetClientData is a wx function
          // It is okay because the original variable is non-const.
-         mRecord->SetClientData(devindex, const_cast<Device*>(&inDevices[i]));
+         mRecord->SetClientData(devindex, const_cast<DeviceSourceMap *>(&inMaps[i]));
          if (device == recDevice) {  /* if this is the default device, select it */
             mRecord->SetSelection(devindex);
          }
@@ -265,11 +381,11 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    }
 
    mPlay->Clear();
-   for (i = 0; i < outDevices.size(); i++) {
-      if (index == outDevices[i].GetHostIndex()) {
-         device   = outDevices[i].GetName();
+   for (i = 0; i < outMaps.size(); i++) {
+      if (index == outMaps[i].hostIndex) {
+         device   = MakeDeviceSourceString(&outMaps[i]);
          devindex = mPlay->Append(device);
-         mPlay->SetClientData(devindex, const_cast<Device*>(&outDevices[i]));
+         mPlay->SetClientData(devindex, const_cast<DeviceSourceMap *>(&outMaps[i]));
          if (device == mPlayDevice) {  /* if this is the default device, select it */
             mPlay->SetSelection(devindex);
          }
@@ -292,11 +408,9 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
     * this API, as defined by PortAudio. We then fall back to using 0 only if
     * that fails */
    if (mPlay->GetCount() && mPlay->GetSelection() == wxNOT_FOUND) {
-      Device* defaultDevice = DeviceManager::Instance()->GetDefaultOutputDevice(index);
-      if (defaultDevice)
-      {
-         mPlay->SetStringSelection(defaultDevice->GetName());
-      }
+      DeviceSourceMap *defaultMap = DeviceManager::Instance()->GetDefaultOutputDevice(index);
+      if (defaultMap)
+         mPlay->SetStringSelection(MakeDeviceSourceString(defaultMap));
 
       if (mPlay->GetSelection() == wxNOT_FOUND) {
          mPlay->SetSelection(0);
@@ -304,11 +418,9 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    }
 
    if (mRecord->GetCount() && mRecord->GetSelection() == wxNOT_FOUND) {
-      Device* defaultDevice = DeviceManager::Instance()->GetDefaultInputDevice(index);
-      if (defaultDevice)
-      {
-         mRecord->SetStringSelection(defaultDevice->GetName());
-      }
+      DeviceSourceMap *defaultMap = DeviceManager::Instance()->GetDefaultInputDevice(index);
+      if (defaultMap)
+         mRecord->SetStringSelection(MakeDeviceSourceString(defaultMap));
 
       if (mPlay->GetSelection() == wxNOT_FOUND) {
          mPlay->SetSelection(0);
@@ -320,7 +432,7 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
    OnDevice(e);
 }
 
-void DevicePrefs::OnDevice(wxCommandEvent & /* event */)
+void DevicePrefs::OnDevice(wxCommandEvent & WXUNUSED(event))
 {
    int ndx = mRecord->GetCurrentSelection();
    if (ndx == wxNOT_FOUND) {
@@ -330,9 +442,9 @@ void DevicePrefs::OnDevice(wxCommandEvent & /* event */)
    int sel = mChannels->GetSelection();
    int cnt = 0;
 
-   Device* inMap = (Device*) mRecord->GetClientData(ndx);
+   DeviceSourceMap *inMap = (DeviceSourceMap *) mRecord->GetClientData(ndx);
    if (inMap != NULL) {
-      cnt = inMap->GetNumChannels();
+      cnt = inMap->numChannels;
    }
 
    if (sel != wxNOT_FOUND) {
@@ -384,79 +496,82 @@ void DevicePrefs::OnDevice(wxCommandEvent & /* event */)
    Layout();
 }
 
+void DevicePrefs::OnDefaultSampleRateChoice(wxCommandEvent& e)
+{
+   const int sel = mDefaultSampleRates->GetSelection();
+   mOtherDefaultSampleRate->Enable(sel == (int)mDefaultSampleRates->GetCount() - 1);
+}
+
+void DevicePrefs::OnProjectSampleRateChoice(wxCommandEvent& e)
+{
+   if (mProjectSampleRates == nullptr)
+      return;
+
+   const int sel = mProjectSampleRates->GetSelection();
+   mOtherProjectSampleRate->Enable(
+      sel == (int)mProjectSampleRates->GetCount() - 1);
+}
+
 bool DevicePrefs::Commit()
 {
    ShuttleGui S(this, eIsSavingToPrefs);
    PopulateOrExchange(S);
-   Device* device = nullptr;
+   DeviceSourceMap *map = NULL;
 
    if (mPlay->GetCount() > 0) {
-      device = (Device*) mPlay->GetClientData(
+      map = (DeviceSourceMap *) mPlay->GetClientData(
             mPlay->GetSelection());
    }
-   if (device)
-      AudioIOPlaybackDevice.Write(device->GetName());
+   if (map)
+      AudioIOPlaybackDevice.Write(map->deviceString);
 
-   device = nullptr;
+   map = NULL;
    if (mRecord->GetCount() > 0) {
-      device = (Device*) mRecord->GetClientData(mRecord->GetSelection());
+      map = (DeviceSourceMap *) mRecord->GetClientData(mRecord->GetSelection());
    }
-   if (device) {
-      AudioIORecordingDevice.Write(device->GetName());
+   if (map) {
+      AudioIORecordingDevice.Write(map->deviceString);
+      AudioIORecordingSourceIndex.Write(map->sourceIndex);
+      if (map->totalSources >= 1)
+         AudioIORecordingSource.Write(map->sourceString);
+      else
+         AudioIORecordingSource.Reset();
       AudioIORecordChannels.Write(mChannels->GetSelection() + 1);
    }
 
-   auto* audioIO = AudioIO::Get();
-   bool monitoring = audioIO->IsMonitoring();
-   if (monitoring)
+   AudioIOLatencyDuration.Invalidate();
+   AudioIOLatencyCorrection.Invalidate();
+
+   QualitySettings::DefaultSampleRate.Invalidate();
+
+   // The complex compound control may have value 'other' in which case the
+   // value in prefs comes from the second field.
+   if (mOtherDefaultSampleRate->IsEnabled())
    {
-      audioIO->StopStream();
+      QualitySettings::DefaultSampleRate.Write(mOtherDefaultSampleRateValue);
+      gPrefs->Flush();
    }
 
-   double latency = AudioIOLatencyDuration.Read();
-   bool isMilliseconds = AudioIOLatencyUnit.Read() == "milliseconds";
-
-   // If in milliseconds, convert the latency to samples
-   if (isMilliseconds)
+   if (mProject)
    {
-      latency *= QualitySettings::DefaultSampleRate.Read() / 1000;
+      auto& projectRate = ProjectRate::Get(*mProject);
+      if (mOtherProjectSampleRate->IsEnabled())
+         projectRate.SetRate(mOtherProjectSampleRateValue);
+      else
+         projectRate.SetRate(mSampleRateValues[mProjectSampleRates->GetSelection()]);
    }
-
-   // The minimum latency setting is limited to either 32 samples or an
-   // equivalent time in milliseconds at the current sample rate. If the
-   // preference is below this setting, automatically set it to either 32
-   // samples or the equivalent time in milliseconds.
-   //
-   // Why limit the preference to 32 samples? No reason, except it's a pretty
-   // small value already :)
-   if (static_cast<int>(latency) < 32)
-   {
-      latency = 32.0;
-
-      if (isMilliseconds)
-      {
-         latency /= QualitySettings::DefaultSampleRate.Read() / 1000;
-      }
-
-      AudioIOLatencyDuration.Write(latency);
-   }
-
-   AudioIO::Get()->UpdateBuffers();
-
-   if (monitoring)
-   {
-      audioIO->StartMonitoring(DefaultPlayOptions(*mProject));
-   }
-
+   
    return true;
 }
 
+PrefsPanel *DevicePrefsFactory(wxWindow *parent, wxWindowID winid, AudacityProject *project)
+{
+   wxASSERT(parent); // to justify safenew
+   return safenew DevicePrefs(parent, winid, project);
+}
+
 namespace{
-PrefsPanel::Registration sAttachment{ "Device",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject* project)
-   {
-      wxASSERT(parent); // to justify safenew
-      return safenew DevicePrefs(parent, winid, project);
-   }
-};
+   PrefsPanel::Registration sAttachment{ "Device",
+      DevicePrefsFactory
+   };
 }

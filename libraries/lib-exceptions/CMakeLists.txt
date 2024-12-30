@@ -13,11 +13,11 @@ enqueues the delayed action.
 But this library does NOT define a top-level handler for the whole application,
 to catch all otherwise uncaught exceptions. That is a responsibility of high
 level code.
-]]#
+]]
 
-list( APPEND SOURCES
-   TenacityException.cpp
-   TenacityException.h
+set( SOURCES
+   AudacityException.cpp
+   AudacityException.h
    InconsistencyException.cpp
    InconsistencyException.h
    UserException.cpp
@@ -26,9 +26,15 @@ list( APPEND SOURCES
 set( LIBRARIES
    lib-utility-interface
    lib-basic-ui-interface
-   PRIVATE
-   wxWidgets::wxWidgets
 )
+
+if( APPLE AND MIN_MACOS_VERSION VERSION_LESS "10.12")
+   set( DEFINITIONS
+      PUBLIC
+         -DUNCAUGHT_EXCEPTIONS_UNAVAILABLE
+   )
+endif()
+
 tenacity_library( lib-exceptions "${SOURCES}" "${LIBRARIES}"
-   "" ""
+   "${DEFINITIONS}" ""
 )

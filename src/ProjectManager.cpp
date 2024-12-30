@@ -4,104 +4,104 @@ Audacity: A Digital Audio Editor
 
 ProjectManager.cpp
 
-Paul Licameli split from TenacityProject.cpp
+Paul Licameli split from AudacityProject.cpp
 
 **********************************************************************/
-
 #include "ProjectManager.h"
-
-// Tenacity libraries
-#include <lib-files/FileNames.h>
-#include <lib-files/wxFileNameWrapper.h>
-#include <lib-project-rate/QualitySettings.h>
 
 #include "ActiveProject.h"
 #include "AdornedRulerPanel.h"
 #include "AudioIO.h"
 #include "Clipboard.h"
-#include "Menus.h"
+#include "FileNames.h"
+#include "MenuCreator.h"
 #include "ModuleManager.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "ProjectAudioManager.h"
 #include "ProjectFileIO.h"
+#include "ProjectFileIOExtension.h"
 #include "ProjectFileManager.h"
 #include "ProjectHistory.h"
-#include "ProjectSelectionManager.h"
-#include "ProjectWindows.h"
 #include "ProjectRate.h"
 #include "ProjectSettings.h"
 #include "ProjectStatus.h"
 #include "ProjectWindow.h"
+#include "ProjectWindows.h"
 #include "SelectUtilities.h"
 #include "TrackPanel.h"
 #include "TrackUtilities.h"
 #include "UndoManager.h"
+#include "Viewport.h"
 #include "WaveTrack.h"
-#include "import/Import.h"
-#include "import/ImportMIDI.h"
-#include "toolbars/SelectionBar.h"
-#include "toolbars/SettingsBar.h"
-#include "toolbars/SpectralSelectionBar.h"
-#include "toolbars/TimeToolBar.h"
+#include "wxFileNameWrapper.h"
+#include "Import.h"
+#include "QualitySettings.h"
+#include "toolbars/MeterToolBar.h"
 #include "toolbars/ToolManager.h"
-#include "widgets/AudacityMessageBox.h"
+#include "AudacityMessageBox.h"
 #include "widgets/FileHistory.h"
-#include "widgets/WindowAccessible.h"
+#include "WindowAccessible.h"
 
 #include <wx/app.h>
-#include <wx/dataobj.h>
-#include <wx/dnd.h>
 #include <wx/scrolbar.h>
 #include <wx/sizer.h>
+#include <wx/splitter.h>
 
 #ifdef __WXGTK__
 #include "../images/TenacityLogoAlpha.xpm"
 #endif
 
-const int TenacityProjectTimerID = 5200;
+namespace {
+   void SaveWindowPreferences(const wxRect& windowRect, const wxRect& normalRect,
+                              bool isMaximized, bool isIconized) {
+      ProjectWindowX.Write(windowRect.GetX());
+      ProjectWindowY.Write(windowRect.GetY());
+      ProjectWindowWidth.Write(windowRect.GetWidth());
+      ProjectWindowHeight.Write(windowRect.GetHeight());
+      ProjectWindowMaximized.Write(isMaximized);
+      ProjectWindowNormalX.Write(normalRect.GetX());
+      ProjectWindowNormalY.Write(normalRect.GetY());
+      ProjectWindowNormalWidth.Write(normalRect.GetWidth());
+      ProjectWindowNormalHeight.Write(normalRect.GetHeight());
+      ProjectWindowIconized.Write(isIconized);
+   }
+}
 
-static TenacityProject::AttachedObjects::RegisteredFactory sProjectManagerKey {
-   []( TenacityProject &project ) {
+const int AudacityProjectTimerID = 5200;
+
+static AudacityProject::AttachedObjects::RegisteredFactory sProjectManagerKey {
+   []( AudacityProject &project ) {
       return std::make_shared< ProjectManager >( project );
    }
 };
 
-ProjectManager &ProjectManager::Get( TenacityProject &project )
+ProjectManager &ProjectManager::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectManager >( sProjectManagerKey );
 }
 
-const ProjectManager &ProjectManager::Get( const TenacityProject &project )
+const ProjectManager &ProjectManager::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
-ProjectManager::ProjectManager( TenacityProject &project )
+ProjectManager::ProjectManager( AudacityProject &project )
    : mProject{ project }
-   , mTimer{ std::make_unique<wxTimer>(this, TenacityProjectTimerID) }
+   , mTimer{ std::make_unique<wxTimer>(this, AudacityProjectTimerID) }
 {
    auto &window = ProjectWindow::Get( mProject );
    window.Bind( wxEVT_CLOSE_WINDOW, &ProjectManager::OnCloseWindow, this );
-   mSubscription = ProjectStatus::Get(mProject)
+   mProjectStatusSubscription = ProjectStatus::Get(mProject)
       .Subscribe(*this, &ProjectManager::OnStatusChange);
-   project.Bind( EVT_RECONNECTION_FAILURE,
-      &ProjectManager::OnReconnectionFailure, this );
+   mProjectFileIOSubscription = ProjectFileIO::Get(mProject)
+      .Subscribe(*this, &ProjectManager::OnReconnectionFailure);
 }
 
 ProjectManager::~ProjectManager() = default;
 
-// PRL:  This event type definition used to be in TenacityApp.h, which created
-// a bad compilation dependency.  The event was never emitted anywhere.  I
-// preserve it and its handler here but I move it to remove the dependency.
-// Asynchronous open
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_OPEN_AUDIO_FILE, wxCommandEvent);
-wxDEFINE_EVENT(EVT_OPEN_AUDIO_FILE, wxCommandEvent);
-
 BEGIN_EVENT_TABLE( ProjectManager, wxEvtHandler )
-   EVT_COMMAND(wxID_ANY, EVT_OPEN_AUDIO_FILE, ProjectManager::OnOpenAudioFile)
-   EVT_TIMER(TenacityProjectTimerID, ProjectManager::OnTimer)
+   EVT_TIMER(AudacityProjectTimerID, ProjectManager::OnTimer)
 END_EVENT_TABLE()
 
 bool ProjectManager::sbWindowRectAlreadySaved = false;
@@ -126,23 +126,15 @@ void ProjectManager::SaveWindowSize()
       }
       else
          foundIconizedProject =  TRUE;
-
    }
+
    if (validWindowForSaveWindowSize)
    {
       wxRect windowRect = validProject->GetRect();
       wxRect normalRect = validProject->GetNormalizedWindowState();
       bool wndMaximized = validProject->IsMaximized();
-      gPrefs->Write(wxT("/Window/X"), windowRect.GetX());
-      gPrefs->Write(wxT("/Window/Y"), windowRect.GetY());
-      gPrefs->Write(wxT("/Window/Width"), windowRect.GetWidth());
-      gPrefs->Write(wxT("/Window/Height"), windowRect.GetHeight());
-      gPrefs->Write(wxT("/Window/Maximized"), wndMaximized);
-      gPrefs->Write(wxT("/Window/Normal_X"), normalRect.GetX());
-      gPrefs->Write(wxT("/Window/Normal_Y"), normalRect.GetY());
-      gPrefs->Write(wxT("/Window/Normal_Width"), normalRect.GetWidth());
-      gPrefs->Write(wxT("/Window/Normal_Height"), normalRect.GetHeight());
-      gPrefs->Write(wxT("/Window/Iconized"), FALSE);
+
+      SaveWindowPreferences(windowRect, normalRect, wndMaximized, false);
    }
    else
    {
@@ -150,18 +142,10 @@ void ProjectManager::SaveWindowSize()
          validProject = &ProjectWindow::Get( **AllProjects{}.begin() );
          bool wndMaximized = validProject->IsMaximized();
          wxRect normalRect = validProject->GetNormalizedWindowState();
+
          // store only the normal rectangle because the itemized rectangle
          // makes no sense for an opening project window
-         gPrefs->Write(wxT("/Window/X"), normalRect.GetX());
-         gPrefs->Write(wxT("/Window/Y"), normalRect.GetY());
-         gPrefs->Write(wxT("/Window/Width"), normalRect.GetWidth());
-         gPrefs->Write(wxT("/Window/Height"), normalRect.GetHeight());
-         gPrefs->Write(wxT("/Window/Maximized"), wndMaximized);
-         gPrefs->Write(wxT("/Window/Normal_X"), normalRect.GetX());
-         gPrefs->Write(wxT("/Window/Normal_Y"), normalRect.GetY());
-         gPrefs->Write(wxT("/Window/Normal_Width"), normalRect.GetWidth());
-         gPrefs->Write(wxT("/Window/Normal_Height"), normalRect.GetHeight());
-         gPrefs->Write(wxT("/Window/Iconized"), TRUE);
+         SaveWindowPreferences(normalRect, normalRect, wndMaximized, true);
       }
       else {
          // this would be a very strange case that might possibly occur on the Mac
@@ -169,120 +153,21 @@ void ProjectManager::SaveWindowSize()
          // in this case we are going to write only the default values
          wxRect defWndRect;
          GetDefaultWindowRect(&defWndRect);
-         gPrefs->Write(wxT("/Window/X"), defWndRect.GetX());
-         gPrefs->Write(wxT("/Window/Y"), defWndRect.GetY());
-         gPrefs->Write(wxT("/Window/Width"), defWndRect.GetWidth());
-         gPrefs->Write(wxT("/Window/Height"), defWndRect.GetHeight());
-         gPrefs->Write(wxT("/Window/Maximized"), FALSE);
-         gPrefs->Write(wxT("/Window/Normal_X"), defWndRect.GetX());
-         gPrefs->Write(wxT("/Window/Normal_Y"), defWndRect.GetY());
-         gPrefs->Write(wxT("/Window/Normal_Width"), defWndRect.GetWidth());
-         gPrefs->Write(wxT("/Window/Normal_Height"), defWndRect.GetHeight());
-         gPrefs->Write(wxT("/Window/Iconized"), FALSE);
+         SaveWindowPreferences(defWndRect, defWndRect, false, false);
       }
    }
-   gPrefs->Flush();
    sbWindowRectAlreadySaved = true;
 }
 
-#if wxUSE_DRAG_AND_DROP
-class FileObject final : public wxFileDataObject
-{
-public:
-   FileObject()
-   {
-   }
-
-   bool IsSupportedFormat(const wxDataFormat & format, Direction /* dir = Get */) const
-      // PRL:  This function does NOT override any inherited virtual!  What does it do?
-   {
-      if (format.GetType() == wxDF_FILENAME) {
-         return true;
-      }
-
-      return false;
-   }
-};
-
-class DropTarget final : public wxFileDropTarget
-{
-public:
-   DropTarget(TenacityProject *proj)
-   {
-      mProject = proj;
-
-      // SetDataObject takes ownership
-      SetDataObject(safenew FileObject());
-   }
-
-   ~DropTarget()
-   {
-   }
-
-#if defined(__WXMAC__)
-
-   bool OnDrop(wxCoord x, wxCoord y) override
-   {
-      // bool foundSupported = false;
-      return CurrentDragHasSupportedFormat();
-   }
-
-#endif
-
-   bool OnDropFiles(wxCoord /* x */, wxCoord /* y */, const wxArrayString& filenames) override
-   {
-      // Experiment shows that this function can be reached while there is no
-      // catch block above in wxWidgets.  So stop all exceptions here.
-      return GuardedCall< bool > ( [&] {
-         wxArrayString sortednames(filenames);
-         sortednames.Sort(FileNames::CompareNoCase);
-
-         auto cleanup = finally( [&] {
-            ProjectWindow::Get( *mProject ).HandleResize(); // Adjust scrollers for NEW track sizes.
-         } );
-
-         for (const auto &name : sortednames) {
-#ifdef USE_MIDI
-            if (FileNames::IsMidi(name))
-               DoImportMIDI( *mProject, name );
-            else
-#endif
-               ProjectFileManager::Get( *mProject ).Import(name);
-         }
-
-         auto &window = ProjectWindow::Get( *mProject );
-         window.ZoomAfterImport(nullptr);
-
-         return true;
-      } );
-   }
-
-private:
-   TenacityProject *mProject;
-};
-
-#endif
-
 void InitProjectWindow( ProjectWindow &window )
 {
-   auto &project = window.GetProject();
+   auto pProject = window.FindProject();
+   if (!pProject)
+      return;
+   auto &project = *pProject;
+   auto &viewport = Viewport::Get(project);
 
-#ifdef EXPERIMENTAL_DA2
-   SetBackgroundColour(theTheme.Colour( clrMedium ));
-#endif
-   // Note that the first field of the status bar is a dummy, and its width is set
-   // to zero latter in the code. This field is needed for wxWidgets 2.8.12 because
-   // if you move to the menu bar, the first field of the menu bar is cleared, which
-   // is undesirable behaviour.
-   // In addition, the help strings of menu items are by default sent to the first
-   // field. Currently there are no such help strings, but it they were introduced, then
-   // there would need to be an event handler to send them to the appropriate field.
-   auto statusBar = window.CreateStatusBar(4);
-#if wxUSE_ACCESSIBILITY
-   // so that name can be set on a standard control
-   statusBar->SetAccessible(safenew WindowAccessible(statusBar));
-#endif
-   statusBar->SetName(wxT("status_line"));     // not localized
+   auto statusBar = window.CreateProjectStatusBar();
 
    auto &viewInfo = ViewInfo::Get( project );
 
@@ -296,17 +181,11 @@ void InitProjectWindow( ProjectWindow &window )
    // Near as I can tell, this is only a problem under Windows.
    //
 
-
    //
    // Create the ToolDock
    //
    ToolManager::Get( project ).CreateWindows();
    ToolManager::Get( project ).LayoutToolBars();
-
-   //
-   // Create the horizontal ruler
-   //
-   auto &ruler = AdornedRulerPanel::Get( project );
 
    //
    // Create the TrackPanel and the scrollbars
@@ -317,22 +196,15 @@ void InitProjectWindow( ProjectWindow &window )
    {
       auto ubs = std::make_unique<wxBoxSizer>(wxVERTICAL);
       ubs->Add( ToolManager::Get( project ).GetTopDock(), 0, wxEXPAND | wxALIGN_TOP );
-      ubs->Add(&ruler, 0, wxEXPAND);
       topPanel->SetSizer(ubs.release());
    }
-
-   // Ensure that the topdock comes before the ruler in the tab order,
-   // irrespective of the order in which they were created.
-   ToolManager::Get(project).GetTopDock()->MoveBeforeInTabOrder(&ruler);
-
-   auto mainPanel = window.GetMainPanel();
 
    wxBoxSizer *bs;
    {
       auto ubs = std::make_unique<wxBoxSizer>(wxVERTICAL);
       bs = ubs.get();
       bs->Add(topPanel, 0, wxEXPAND | wxALIGN_TOP);
-      bs->Add(mainPanel, 1, wxEXPAND);
+      bs->Add(window.GetContainerWindow(), 1, wxEXPAND);
       bs->Add( ToolManager::Get( project ).GetBotDock(), 0, wxEXPAND );
       window.SetAutoLayout(true);
       window.SetSizer(ubs.release());
@@ -346,9 +218,16 @@ void InitProjectWindow( ProjectWindow &window )
    //      will be given the focus even if we try to SetFocus().  By
    //      making the TrackPanel that first window, we resolve several
    //      keyboard focus problems.
-   mainPanel->MoveBeforeInTabOrder(topPanel);
+   window.GetContainerWindow()->MoveAfterInTabOrder(topPanel);
 
-   bs = (wxBoxSizer *)mainPanel->GetSizer();
+   const auto trackListWindow = window.GetTrackListWindow();
+
+   //
+   // Create the horizontal ruler
+   //
+   auto &ruler = AdornedRulerPanel::Get( project );
+
+   bs = static_cast<wxBoxSizer*>(trackListWindow->GetSizer());
 
    auto vsBar = &window.GetVerticalScrollBar();
    auto hsBar = &window.GetHorizontalScrollBar();
@@ -369,6 +248,7 @@ void InitProjectWindow( ProjectWindow &window )
          hs->Add(vs.release(), 0, wxEXPAND | wxALIGN_TOP);
       }
 
+      bs->Add(&ruler, 0, wxEXPAND | wxALIGN_TOP);
       bs->Add(hs.release(), 1, wxEXPAND | wxALIGN_LEFT | wxALIGN_TOP);
    }
 
@@ -384,15 +264,15 @@ void InitProjectWindow( ProjectWindow &window )
    }
 
    // Lay it out
-   mainPanel->SetAutoLayout(true);
-   mainPanel->Layout();
+   trackListWindow->SetAutoLayout(true);
+   trackListWindow->Layout();
 
    wxASSERT( trackPanel.GetProject() == &project );
 
    // MM: Give track panel the focus to ensure keyboard commands work
    trackPanel.SetFocus();
 
-   window.FixScrollbars();
+   viewport.UpdateScrollbarsForTracks();
    ruler.SetLeftOffset(viewInfo.GetLeftOffset());  // bevel on AdornedRuler
 
    //
@@ -403,40 +283,46 @@ void InitProjectWindow( ProjectWindow &window )
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #if defined(__WXMSW__)
-      wxIcon ic{ wxICON(TenacityLogo) };
-#else
+      wxIcon ic{ wxICON(AudacityLogo) };
+#elif defined(__WXGTK__)
       wxIcon ic{wxICON(TenacityLogoAlpha)};
+#else
+      wxIcon ic{};
+      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
 #endif
       window.SetIcon(ic);
    }
 #endif
 
    window.UpdateStatusWidths();
-   auto msg = XO("Welcome to Tenacity version %s")
+   auto msg = XO("Welcome to Audacity version %s")
       .Format( TENACITY_VERSION_STRING );
-   ProjectManager::Get( project ).SetStatusText( msg, mainStatusBarField );
-
-#ifdef EXPERIMENTAL_DA2
-   ClearBackground();// For wxGTK.
-#endif
+   ProjectManager::Get( project ).SetStatusText( msg, MainStatusBarField() );
 }
 
-TenacityProject *ProjectManager::New()
+AudacityProject *ProjectManager::New()
 {
    wxRect wndRect;
    bool bMaximized = false;
    bool bIconized = false;
    GetNextWindowPlacement(&wndRect, &bMaximized, &bIconized);
-   
+
    // Create and show a NEW project
    // Use a non-default deleter in the smart pointer!
-   auto sp = std::make_shared< TenacityProject >();
+   auto sp = AudacityProject::Create();
    AllProjects{}.Add( sp );
    auto p = sp.get();
    auto &project = *p;
    auto &projectHistory = ProjectHistory::Get( project );
    auto &projectManager = Get( project );
    auto &window = ProjectWindow::Get( *p );
+
+   // Issue #2569
+   // There is a dependency on the order of initialisation.
+   // The menus must be created, and registered, before
+   // InitProjectWindows can UpdateMenus.
+   MenuCreator::Get(project).CreateMenusAndCommands();
+
    InitProjectWindow( window );
 
    // wxGTK3 seems to need to require creating the window using default position
@@ -448,11 +334,9 @@ TenacityProject *ProjectManager::New()
    // This may report an error.
    projectFileManager.OpenNewProject();
 
-   MenuManager::Get( project ).CreateMenusAndCommands( project );
-   
    projectHistory.InitialState();
    projectManager.RestartTimer();
-   
+
    if(bMaximized) {
       window.Maximize(true);
    }
@@ -460,48 +344,30 @@ TenacityProject *ProjectManager::New()
       // if the user close down and iconized state we could start back up and iconized state
       // window.Iconize(TRUE);
    }
-   
+
    //Initialise the Listeners
    auto gAudioIO = AudioIO::Get();
    gAudioIO->SetListener(
       ProjectAudioManager::Get( project ).shared_from_this() );
-   auto &projectSelectionManager = ProjectSelectionManager::Get( project );
-   SelectionBar::Get( project ).SetListener( &projectSelectionManager );
-   SettingsBar::Get( project ).SetListener( &projectSelectionManager );
-#ifdef EXPERIMENTAL_SPECTRAL_EDITING
-   SpectralSelectionBar::Get( project ).SetListener( &projectSelectionManager );
-#endif
-   TimeToolBar::Get( project ).SetListener( &projectSelectionManager );
-   
-#if wxUSE_DRAG_AND_DROP
-   // We can import now, so become a drag target
-   //   SetDropTarget(safenew AudacityDropTarget(this));
-   //   mTrackPanel->SetDropTarget(safenew AudacityDropTarget(this));
-   
-   // SetDropTarget takes ownership
-   TrackPanel::Get( project ).SetDropTarget( safenew DropTarget( &project ) );
-#endif
-   
+
    //Set the NEW project as active:
    SetActiveProject(p);
-   
+
    // Okay, GetActiveProject() is ready. Now we can get its CommandManager,
    // and add the shortcut keys to the tooltips.
    ToolManager::Get( *p ).RegenerateTooltips();
-   
+
    ModuleManager::Get().Dispatch(ProjectInitialized);
-   
+
    window.Show(true);
-   
+
    return p;
 }
 
-void ProjectManager::OnReconnectionFailure(wxCommandEvent & event)
+void ProjectManager::OnReconnectionFailure(ProjectFileIOMessage message)
 {
-   event.Skip();
-   wxTheApp->CallAfter([this]{
+   if (message == ProjectFileIOMessage::ReconnectionFailure)
       ProjectWindow::Get(mProject).Close(true);
-   });
 }
 
 static bool sbClosingAll = false;
@@ -519,6 +385,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    const auto &settings = ProjectSettings::Get( project );
    auto &projectAudioIO = ProjectAudioIO::Get( project );
    auto &tracks = TrackList::Get( project );
+   auto &viewport = Viewport::Get(project);
    auto &window = ProjectWindow::Get( project );
    auto gAudioIO = AudioIO::Get();
 
@@ -545,7 +412,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    // and flush the tracks once we've completely finished
    // recording NEW state.
    // This code is derived from similar code in
-   // TenacityProject::~TenacityProject() and TrackPanel::OnTimer().
+   // AudacityProject::~AudacityProject() and TrackPanel::OnTimer().
    if (projectAudioIO.GetAudioIOToken()>0 &&
        gAudioIO->IsStreamActive(projectAudioIO.GetAudioIOToken())) {
 
@@ -553,7 +420,7 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
       ProjectAudioManager::Get( project ).Stop();
 
       projectAudioIO.SetAudioIOToken(0);
-      window.RedrawProject();
+      viewport.Redraw();
    }
    else if (gAudioIO->IsMonitoring()) {
       gAudioIO->StopStream();
@@ -564,19 +431,16 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
 
    // We may not bother to prompt the user to save, if the
    // project is now empty.
-   if (!sbSkipPromptingForSave 
-      && event.CanVeto() 
-      && (settings.EmptyCanBeDirty() || bHasTracks)) {
+   if (!sbSkipPromptingForSave
+      && event.CanVeto()
+      && bHasTracks) {
       if ( UndoManager::Get( project ).UnsavedChanges() ) {
          TitleRestorer Restorer( window, project );// RAII
          /* i18n-hint: The first %s numbers the project, the second %s is the project name.*/
          auto Title = XO("%sSave changes to %s?")
             .Format( Restorer.sProjNumber, Restorer.sProjName );
          auto Message = XO("Save project before closing?");
-         if( !bHasTracks )
-         {
-          Message += XO("\nIf saved, the project will have no tracks.\n\nTo save any previously open tracks:\nCancel, Edit > Undo until all tracks\nare open, then File > Save Project.");
-         }
+
          int result = AudacityMessageBox(
             Message,
             Title,
@@ -591,6 +455,15 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
          }
       }
    }
+
+   // Ask extensions if they allow the project to be closed
+   if (ProjectFileIOExtensionRegistry::OnClose(mProject) == OnCloseAction::Veto
+      && event.CanVeto())
+   {
+      event.Veto();
+      return;
+   }
+
 #ifdef __WXMAC__
    // Fix bug apparently introduced into 2.1.2 because of wxWidgets 3:
    // closing a project that was made full-screen (as by clicking the green dot
@@ -603,6 +476,9 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    window.ShowFullScreen(false);
 #endif
 
+   // This achieves auto save on close of project before other important
+   // project state is destroyed
+   window.Publish(ProjectWindowDestroyedMessage {});
    ModuleManager::Get().Dispatch(ProjectClosing);
 
    // Stop the timer since there's no need to update anything anymore
@@ -654,21 +530,28 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    // TODO: Is there a Mac issue here??
    // SetMenuBar(NULL);
 
+   auto& undoManager = UndoManager::Get(project);
+   if (undoManager.GetSavedState() >= 0)
+   {
+      constexpr auto doAutoSave = false;
+      ProjectHistory::Get(project).SetStateTo(
+         undoManager.GetSavedState(), doAutoSave);
+   }
+
    // Compact the project.
    projectFileManager.CompactProjectOnClose();
 
-   // Set (or not) the bypass flag to indicate that deletes that would happen during
-   // the UndoManager::ClearStates() below are not necessary.
+   // Set (or not) the bypass flag to indicate that deletes that would happen
+   // during undoManager.ClearStates() below are not necessary. Must be called
+   // between `CompactProjectOnClose()` and `undoManager.ClearStates()`.
    projectFileIO.SetBypass();
 
-   {
-      // This can reduce reference counts of sample blocks in the project's
-      // tracks.
-      UndoManager::Get( project ).ClearStates();
+   // This can reduce reference counts of sample blocks in the project's
+   // tracks.
+   undoManager.ClearStates();
 
-      // Delete all the tracks to free up memory
-      tracks.Clear();
-   }
+   // Delete all the tracks to free up memory
+   tracks.Clear();
 
    // Some of the AdornedRulerPanel functions refer to the TrackPanel, so destroy this
    // before the TrackPanel is destroyed. This change was needed to stop Audacity
@@ -742,24 +625,8 @@ void ProjectManager::OnCloseWindow(wxCloseEvent & event)
    pSelf.reset();
 }
 
-// PRL: I preserve this handler function for an event that was never sent, but
-// I don't know the intention.
-void ProjectManager::OnOpenAudioFile(wxCommandEvent & event)
-{
-   const wxString &cmd = event.GetString();
-   if (!cmd.empty()) {
-      ProjectChooser chooser{ &mProject, true };
-      if (auto project = ProjectFileManager::OpenFile(
-            std::ref(chooser), cmd)) {
-         auto &window = GetProjectFrame( *project );
-         window.RequestUserAttention();
-         chooser.Commit();
-      }
-   }
-}
-
 // static method, can be called outside of a project
-void ProjectManager::OpenFiles(TenacityProject *proj)
+void ProjectManager::OpenFiles(AudacityProject *proj)
 {
    auto selectedFiles =
       ProjectFileManager::ShowOpenDialog(FileNames::Operation::Open);
@@ -785,7 +652,7 @@ void ProjectManager::OpenFiles(TenacityProject *proj)
    }
 }
 
-bool ProjectManager::SafeToOpenProjectInto(TenacityProject &proj)
+bool ProjectManager::SafeToOpenProjectInto(AudacityProject &proj)
 {
    // DMM: If the project is dirty, that means it's been touched at
    // all, and it's not safe to open a fresh project directly in its
@@ -822,7 +689,7 @@ ProjectManager::ProjectChooser::~ProjectChooser()
    }
 }
 
-TenacityProject &
+AudacityProject &
 ProjectManager::ProjectChooser::operator() ( bool openingProjectFile )
 {
    if (mpGivenProject) {
@@ -842,8 +709,8 @@ void ProjectManager::ProjectChooser::Commit()
    mpUsedProject = nullptr;
 }
 
-TenacityProject *ProjectManager::OpenProject(
-   TenacityProject *pGivenProject, const FilePath &fileNameArg,
+AudacityProject *ProjectManager::OpenProject(
+   AudacityProject *pGivenProject, const FilePath &fileNameArg,
    bool addtohistory, bool reuseNonemptyProject)
 {
    ProjectManager::ProjectChooser chooser{ pGivenProject, reuseNonemptyProject };
@@ -853,8 +720,8 @@ TenacityProject *ProjectManager::OpenProject(
 
       auto &projectFileIO = ProjectFileIO::Get( *pProject );
       if( projectFileIO.IsRecovered() ) {
-         auto &window = ProjectWindow::Get( *pProject );
-         window.Zoom( window.GetZoomOfToFit() );
+         auto &viewport = Viewport::Get(*pProject);
+         viewport.Zoom(viewport.GetZoomOfToFit());
          // "Project was recovered" replaces "Create new project" in Undo History.
          auto &undoManager = UndoManager::Get( *pProject );
          undoManager.RemoveStates(0, 1);
@@ -893,10 +760,14 @@ void ProjectManager::RestartTimer()
    }
 }
 
-void ProjectManager::OnTimer(wxTimerEvent& /* event */)
+void ProjectManager::OnTimer(wxTimerEvent& WXUNUSED(event))
 {
    auto &project = mProject;
    auto &projectAudioIO = ProjectAudioIO::Get( project );
+   auto meterToolBars = MeterToolBar::GetToolBars( project );
+
+   for (auto& meterToolBar : meterToolBars)
+      meterToolBar.get().UpdateControls();
 
    auto gAudioIO = AudioIO::Get();
    // gAudioIO->GetNumCaptureChannels() should only be positive
@@ -910,7 +781,7 @@ void ProjectManager::OnTimer(wxTimerEvent& /* event */)
             .Format( GetHoursMinsString(iRecordingMins) );
 
          // Do not change mLastMainStatusMessage
-         SetStatusText(sMessage, mainStatusBarField);
+         SetStatusText(sMessage, MainStatusBarField());
       }
    }
 
@@ -935,15 +806,24 @@ void ProjectManager::OnStatusChange(StatusBarField field)
 
    const auto &msg = ProjectStatus::Get( project ).Get( field );
    SetStatusText( msg, field );
-   
-   if ( field == mainStatusBarField )
+
+   if ( field == MainStatusBarField() )
       // When recording, let the NEW status message stay at least as long as
       // the timer interval (if it is not replaced again by this function),
       // before replacing it with the message about remaining disk capacity.
       RestartTimer();
 }
 
-void ProjectManager::SetStatusText( const TranslatableString &text, int number )
+void ProjectManager::SetStatusText(
+   const TranslatableString& text, const StatusBarField& field)
+{
+   const auto index = ProjectStatusFieldsRegistry::GetFieldIndex(mProject, field);
+
+   if (index >= 0)
+      SetStatusText(text, index);
+}
+
+void ProjectManager::SetStatusText(const TranslatableString& text, int number)
 {
    auto &project = mProject;
    auto pWindow = ProjectWindow::Find( &project );
@@ -993,7 +873,7 @@ int ProjectManager::GetEstimatedRecordingMinsLeftOnDisk(long lCaptureChannels) {
    double dRecTime = 0.0;
    double bytesOnDiskPerSample = SAMPLE_SIZE_DISK(oCaptureFormat);
    dRecTime = lFreeSpace.GetHi() * 4294967296.0 + lFreeSpace.GetLo();
-   dRecTime /= bytesOnDiskPerSample;   
+   dRecTime /= bytesOnDiskPerSample;
    dRecTime /= lCaptureChannels;
    dRecTime /= ProjectRate::Get( project ).GetRate();
 

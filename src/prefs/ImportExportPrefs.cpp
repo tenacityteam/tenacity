@@ -19,11 +19,42 @@
 #include "ImportExportPrefs.h"
 
 #include <wx/defs.h>
+#include <wx/statbox.h>
+#include <wx/stattext.h>
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
+#include "NoteTrack.h"
+#include "Prefs.h"
+#include "ShuttleGui.h"
+#include "WindowAccessible.h"
 
-#include "../shuttle/ShuttleGui.h"
+static const auto PathStart = wxT("ImportExportPreferences");
+
+auto ImportExportPrefs::PopulatorItem::Registry()
+   -> Registry::GroupItem<Traits> &
+{
+   static Registry::GroupItem<Traits> registry{ PathStart };
+   return registry;
+}
+
+ImportExportPrefs::PopulatorItem::PopulatorItem(
+   const Identifier &id, Populator populator)
+   : SingleItem{ id }
+   , mPopulator{ move(populator) }
+{}
+
+ImportExportPrefs::RegisteredControls::RegisteredControls(
+   const Identifier &id, Populator populator,
+   const Registry::Placement &placement )
+   : RegisteredItem{
+      std::make_unique<PopulatorItem>(id, move(populator)),
+      placement
+   }
+{}
+
+bool ImportExportPrefs::RegisteredControls::Any()
+{
+   return !PopulatorItem::Registry().empty();
+}
 
 ImportExportPrefs::ImportExportPrefs(wxWindow * parent, wxWindowID winid)
 :   PrefsPanel(parent, winid, XO("Import / Export"))
@@ -35,19 +66,19 @@ ImportExportPrefs::~ImportExportPrefs()
 {
 }
 
-ComponentInterfaceSymbol ImportExportPrefs::GetSymbol()
+ComponentInterfaceSymbol ImportExportPrefs::GetSymbol() const
 {
    return IMPORT_EXPORT_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString ImportExportPrefs::GetDescription()
+TranslatableString ImportExportPrefs::GetDescription() const
 {
    return XO("Preferences for ImportExport");
 }
 
 ManualPageID ImportExportPrefs::HelpPageName()
 {
-   return "Preferences#import-export";
+   return "Import_-_Export_Preferences";
 }
 
 /// Creates the dialog and its contents.
@@ -62,47 +93,20 @@ void ImportExportPrefs::Populate()
    // ----------------------- End of main section --------------
 }
 
-EnumSetting< bool > ImportExportPrefs::ExportDownMixSetting{
-   wxT("/FileFormats/ExportDownMixChoice"),
+EnumSetting<bool> ImportExportPrefs::MusicFileImportSetting {
+   wxT("/FileFormats/MusicFileImportSettingChoice"),
    {
-      EnumValueSymbol{ wxT("MixDown"), XXO("&Mix down to Stereo or Mono") },
-      EnumValueSymbol{ wxT("Custom"), XXO("&Use Advanced Mixing Options") },
+      /* i18n-hint: The music theory "beat" */
+      EnumValueSymbol {
+         wxT("Yes"),
+         XXO(
+            "S&witch view to Beats and Measures and align with musical grid") },
+      EnumValueSymbol { wxT("Ask"), XXO("&Ask me each time") },
+      EnumValueSymbol { wxT("No"), XXO("Do &nothing") },
    },
-   0, // true
-
-   // for migrating old preferences:
-   {
-      true, false,
-   },
-   wxT("/FileFormats/ExportDownMix"),
-};
-
-EnumSetting< bool > ImportExportPrefs::LabelStyleSetting{
-   wxT("/FileFormats/LabelStyleChoice"),
-   {
-      EnumValueSymbol{ wxT("Standard"), XXO("S&tandard") },
-      EnumValueSymbol{ wxT("Extended"), XXO("E&xtended (with frequency ranges)") },
-   },
-   0, // true
-
-   {
-      true, false,
-   },
-};
-
-EnumSetting< bool > ImportExportPrefs::AllegroStyleSetting{
-   wxT("/FileFormats/AllegroStyleChoice"),
-   {
-      EnumValueSymbol{ wxT("Seconds"), XXO("&Seconds") },
-      EnumValueSymbol{ wxT("Beats"), XXO("&Beats") },
-   },
-   0, // true
-
-   // for migrating old preferences:
-   {
-      true, false,
-   },
-   wxT("/FileFormats/AllegroStyle"),
+   1,
+   { false, true, false },
+   wxT("/FileFormats/MusicFileImportSetting"),
 };
 
 void ImportExportPrefs::PopulateOrExchange(ShuttleGui & S)
@@ -110,66 +114,51 @@ void ImportExportPrefs::PopulateOrExchange(ShuttleGui & S)
    S.SetBorder(2);
    S.StartScroller();
 
-   S.StartStatic(XO("When exporting tracks to an audio file"));
-   {
-      // Bug 2692: Place button group in panel so tabbing will work and,
-      // on the Mac, VoiceOver will announce as radio buttons.
-      S.StartPanel();
-      {
-         S.StartRadioButtonGroup(ImportExportPrefs::ExportDownMixSetting);
-         {
-            S.TieRadioButton();
-            S.TieRadioButton();
-         }
-         S.EndRadioButtonGroup();
-      }
-      S.EndPanel();
+   // Add registered controls
+   using namespace Registry;
+   static OrderingPreferenceInitializer init{
+      PathStart,
+      { {wxT(""), wxT("LabelStyle,AllegroTimeOption") } },
+   };
 
-      S.TieCheckBox(XXO("S&how Metadata Tags editor before export"),
-                    {wxT("/AudioFiles/ShowId3Dialog"),
-                     true});
-      /* i18n-hint 'blank space' is space on the tracks with no audio in it*/
-      S.TieCheckBox(XXO("&Ignore blank space at the beginning"),
-                    {wxT("/AudioFiles/SkipSilenceAtBeginning"),
-                     false});
-   }
-   S.EndStatic();
+   // visit the registry to collect the plug-ins properly
+   // sorted
+   GroupItem<Traits> top{ PathStart };
+   Registry::Visit(
+      [&](const PopulatorItem &item, auto &) { item.mPopulator(S); },
+      &top, &PopulatorItem::Registry());
 
-   S.StartStatic(XO("Exported Label Style:"));
-   {
-      // Bug 2692: Place button group in panel so tabbing will work and,
-      // on the Mac, VoiceOver will announce as radio buttons.
-      S.StartPanel();
-      {
-         S.StartRadioButtonGroup(ImportExportPrefs::LabelStyleSetting);
-         {
-            S.TieRadioButton();
-            S.TieRadioButton();
-         }
-         S.EndRadioButtonGroup();
-      }
-      S.EndPanel();
-   }
-   S.EndStatic();
 
-#ifdef USE_MIDI
-   S.StartStatic(XO("Exported Allegro (.gro) files save time as:"));
+   auto musicImportsBox = S.StartStatic(XO("Music Imports"));
    {
-      // Bug 2692: Place button group in panel so tabbing will work and,
-      // on the Mac, VoiceOver will announce as radio buttons.
-      S.StartPanel();
+      const auto header = S.AddVariableText(
+         XO("When Audacity detects music in file imported on empty project"));
+#if wxUSE_ACCESSIBILITY
+      if (musicImportsBox != nullptr)
       {
-         S.StartRadioButtonGroup(ImportExportPrefs::AllegroStyleSetting);
-         {
-            S.TieRadioButton();
-            S.TieRadioButton();
-         }
-         S.EndRadioButtonGroup();
+         musicImportsBox->SetName(header->GetLabel());
+         safenew WindowAccessible(musicImportsBox);
       }
-      S.EndPanel();
-   }
-   S.EndStatic();
 #endif
+#if defined(__WXMAC__)
+      // see https://bugzilla.audacityteam.org/show_bug.cgi?id=2692
+      S.StartPanel();
+#endif
+      {
+         S.StartRadioButtonGroup(ImportExportPrefs::MusicFileImportSetting);
+         {
+            S.TieRadioButton();
+            S.TieRadioButton();
+            S.TieRadioButton();
+         }
+         S.EndRadioButtonGroup();
+      }
+#if defined(__WXMAC__)
+      S.EndPanel();
+#endif
+   }
+   S.EndStatic();
+
    S.EndScroller();
 }
 
@@ -181,12 +170,24 @@ bool ImportExportPrefs::Commit()
    return true;
 }
 
-namespace{
+namespace {
 PrefsPanel::Registration sAttachment{ "ImportExport",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *) -> PrefsPanel *
    {
       wxASSERT(parent); // to justify safenew
-      return safenew ImportExportPrefs(parent, winid);
-   }
+      if (ImportExportPrefs::RegisteredControls::Any())
+         return safenew ImportExportPrefs(parent, winid);
+      else
+         return nullptr;
+   },
+   false,
+   // Register with an explicit ordering hint because this one might be
+   // absent
+   { "", { Registry::OrderingHint::After, "Tracks" } }
 };
+}
+
+ImportExportPrefs::RegisteredControls::Init::Init()
+{
+   (void) PopulatorItem::Registry();
 }

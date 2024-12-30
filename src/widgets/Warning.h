@@ -12,6 +12,7 @@
 #define __AUDACITY_WARNING__
 
 
+
 #include <wx/defs.h>
 class wxString;
 class wxWindow;

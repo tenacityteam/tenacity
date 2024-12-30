@@ -17,25 +17,25 @@ Paul Licameli split from ProjectSettings.cpp
 #include "XMLWriter.h"
 #include "XMLAttributeValueView.h"
 
-static const TenacityProject::AttachedObjects::RegisteredFactory
+static const AudacityProject::AttachedObjects::RegisteredFactory
 sKey{
-  []( TenacityProject &project ){
+  []( AudacityProject &project ){
      auto result = std::make_shared< ProjectRate >(project);
      return result;
    }
 };
 
-ProjectRate &ProjectRate::Get( TenacityProject &project )
+ProjectRate &ProjectRate::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< ProjectRate >( sKey );
 }
 
-const ProjectRate &ProjectRate::Get( const TenacityProject &project )
+const ProjectRate &ProjectRate::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
-ProjectRate::ProjectRate(TenacityProject &project)
+ProjectRate::ProjectRate(AudacityProject &project)
 {
    int intRate = 0;
    bool wasDefined = QualitySettings::DefaultSampleRate.Read( &intRate );
@@ -64,14 +64,14 @@ void ProjectRate::SetRate(double rate)
 }
 
 static ProjectFileIORegistry::AttributeWriterEntry entry {
-[](const TenacityProject &project, XMLWriter &xmlFile){
+[](const AudacityProject &project, XMLWriter &xmlFile){
    xmlFile.WriteAttr(wxT("rate"), ProjectRate::Get(project).GetRate());
 }
 };
 
 static ProjectFileIORegistry::AttributeReaderEntries entries {
 // Just a pointer to function, but needing overload resolution as non-const:
-(ProjectRate& (*)(TenacityProject &)) &ProjectRate::Get, {
+(ProjectRate& (*)(AudacityProject &)) &ProjectRate::Get, {
    { "rate", [](auto &settings, auto value){
       double rate = value.Get(settings.GetRate());
       settings.SetRate( rate );

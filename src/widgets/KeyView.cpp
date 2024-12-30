@@ -19,9 +19,9 @@
 #include <wx/settings.h>
 #include <wx/vlbox.h>
 
-#include "../AColor.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../commands/CommandManager.h"
+#include "AColor.h"
+#include "ShuttleGui.h"
+#include "CommandManager.h"
 
 #include <wx/dc.h>
 #include <wx/menu.h>
@@ -572,8 +572,8 @@ KeyView::RecalcExtents()
       {
          // Measure the key
          GetTextExtent(node.key.Display(), &x, &y);
-         mLineHeight = std::max(mLineHeight, y);
-         mKeyWidth = std::max(mKeyWidth, x);
+         mLineHeight = wxMax(mLineHeight, y);
+         mKeyWidth = wxMax(mKeyWidth, x);
 
          // Prepend prefix for view types other than tree
          wxString label = node.label;
@@ -587,8 +587,8 @@ KeyView::RecalcExtents()
       }
 
       // Finish calc for command column
-      mLineHeight = std::max(mLineHeight, y);
-      mCommandWidth = std::max(mCommandWidth, x);
+      mLineHeight = wxMax(mLineHeight, y);
+      mCommandWidth = wxMax(mCommandWidth, x);
    }
 
    // Update horizontal scrollbar
@@ -721,8 +721,8 @@ KeyView::RefreshBindings(const CommandIDs & names,
 
             // Measure category
             GetTextExtent(cat, &x, &y);
-            mLineHeight = std::max(mLineHeight, y);
-            mCommandWidth = std::max(mCommandWidth, x);
+            mLineHeight = wxMax(mLineHeight, y);
+            mCommandWidth = wxMax(mCommandWidth, x);
          }
       }
 
@@ -794,8 +794,8 @@ KeyView::RefreshBindings(const CommandIDs & names,
 
       // Measure key
       GetTextExtent(node.key.Display(), &x, &y);
-      mLineHeight = std::max(mLineHeight, y);
-      mKeyWidth = std::max(mKeyWidth, x);
+      mLineHeight = wxMax(mLineHeight, y);
+      mKeyWidth = wxMax(mKeyWidth, x);
 
       // Prepend prefix for all view types to determine maximum
       // column widths
@@ -807,8 +807,8 @@ KeyView::RefreshBindings(const CommandIDs & names,
 
       // Measure label
       GetTextExtent(label, &x, &y);
-      mLineHeight = std::max(mLineHeight, y);
-      mCommandWidth = std::max(mCommandWidth, x);
+      mLineHeight = wxMax(mLineHeight, y);
+      mCommandWidth = wxMax(mCommandWidth, x);
    }
 
 #if 0
@@ -1181,7 +1181,7 @@ KeyView::OnDrawBackground(wxDC & dc, const wxRect & rect, size_t line) const
    // extend the background to the right edge of the client view.  Otherwise,
    // go all the way to the end of the line width...this will draw past the
    // right edge, but that's what we want.
-   r.width = std::max(mWidth, r.width);
+   r.width = wxMax(mWidth, r.width);
    r2.width = mKeyWidth;
 
    // Selected lines get a solid background
@@ -1316,7 +1316,7 @@ KeyView::OnDrawItem(wxDC & dc, const wxRect & rect, size_t line) const
 // This is called by the listbox when it needs to redraw the view.
 //
 wxCoord
-KeyView::OnMeasureItem(size_t /* line */) const
+KeyView::OnMeasureItem(size_t WXUNUSED(line)) const
 {
    // All lines are of equal height
    //
@@ -1382,7 +1382,7 @@ KeyView::OnKillFocus(wxFocusEvent & event)
 // Handle the wxEVT_SIZE event
 //
 void
-KeyView::OnSize(wxSizeEvent & /* event */)
+KeyView::OnSize(wxSizeEvent & WXUNUSED(event))
 {
    // Update horizontal scrollbar
    UpdateHScroll();
@@ -2059,7 +2059,7 @@ KeyViewAx::GetChildCount(int *childCount)
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
 wxAccStatus
-KeyViewAx::GetDefaultAction(int /* childId */, wxString *actionName)
+KeyViewAx::GetDefaultAction(int WXUNUSED(childId), wxString *actionName)
 {
    actionName->clear();
 
@@ -2068,7 +2068,7 @@ KeyViewAx::GetDefaultAction(int /* childId */, wxString *actionName)
 
 // Returns the description for this object or a child.
 wxAccStatus
-KeyViewAx::GetDescription(int /* childId */, wxString *description)
+KeyViewAx::GetDescription(int WXUNUSED(childId), wxString *description)
 {
    description->clear();
 
@@ -2077,7 +2077,7 @@ KeyViewAx::GetDescription(int /* childId */, wxString *description)
 
 // Returns help text for this object or a child, similar to tooltip text.
 wxAccStatus
-KeyViewAx::GetHelpText(int /* childId */, wxString *helpText)
+KeyViewAx::GetHelpText(int WXUNUSED(childId), wxString *helpText)
 {
    helpText->clear();
 
@@ -2087,7 +2087,7 @@ KeyViewAx::GetHelpText(int /* childId */, wxString *helpText)
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
 wxAccStatus
-KeyViewAx::GetKeyboardShortcut(int /* childId */, wxString *shortcut)
+KeyViewAx::GetKeyboardShortcut(int WXUNUSED(childId), wxString *shortcut)
 {
    shortcut->clear();
 
@@ -2137,10 +2137,10 @@ KeyViewAx::GetLocation(wxRect & rect, int elementId)
 }
 
 wxAccStatus
-KeyViewAx::Navigate(wxNavDir /* navDir */,
-                    int /* fromId */,
-                    int* /* toId */,
-                    wxAccessible** /* toObject */)
+KeyViewAx::Navigate(wxNavDir WXUNUSED(navDir),
+                    int WXUNUSED(fromId),
+                    int *WXUNUSED(toId),
+                    wxAccessible **WXUNUSED(toObject))
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -2167,7 +2167,7 @@ KeyViewAx::GetName(int childId, wxString *name)
 }
 
 wxAccStatus
-KeyViewAx::GetParent(wxAccessible ** /* parent */)
+KeyViewAx::GetParent(wxAccessible ** WXUNUSED(parent))
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -2332,7 +2332,7 @@ KeyViewAx::Select(int childId, wxAccSelectionFlags selectFlags)
 // this subhierarchy has the focus.
 // If this object has the focus, child should be 'this'.
 wxAccStatus
-KeyViewAx::GetFocus(int * /* childId */, wxAccessible **child)
+KeyViewAx::GetFocus(int * WXUNUSED(childId), wxAccessible **child)
 {
    *child = this;
 

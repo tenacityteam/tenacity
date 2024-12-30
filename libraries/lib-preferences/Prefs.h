@@ -29,6 +29,10 @@
 #ifndef __AUDACITY_PREFS__
 #define __AUDACITY_PREFS__
 
+#include <functional>
+#include <set>
+#include <vector>
+
 // Increment this every time the prefs need to be reset
 // the first part (before the r) indicates the version the reset took place
 // the second part (after the r) indicates the number of times the prefs have been reset within the same version
@@ -38,13 +42,18 @@
 
 #include "ComponentInterfaceSymbol.h"
 #include "wxArrayStringEx.h"
-#include "FileConfig.h"
 
-#include <memory>
+#include <wx/filename.h>
+#include <wx/textfile.h>
 
-class wxFileName;
+#include "GlobalVariable.h"
 
-PREFERENCES_API void InitPreferences( std::unique_ptr<FileConfig> uPrefs );
+#include "BasicSettings.h"
+#include "MemoryX.h"
+
+PREFERENCES_API void InitPreferences( std::unique_ptr<audacity::BasicSettings> uPrefs );
+PREFERENCES_API void GetPreferencesVersion(int& vMajor, int& vMinor, int& vMicro);
+PREFERENCES_API void SetPreferencesVersion(int vMajor, int vMinor, int vMicor);
 //! Call this to reset preferences to an (almost)-"new" default state
 /*!
  There is at least one exception to that: user preferences we want to make
@@ -53,12 +62,17 @@ PREFERENCES_API void InitPreferences( std::unique_ptr<FileConfig> uPrefs );
 PREFERENCES_API void ResetPreferences();
 PREFERENCES_API void FinishPreferences();
 
-extern PREFERENCES_API FileConfig *gPrefs;
+extern PREFERENCES_API audacity::BasicSettings *gPrefs;
 extern int gMenusDirty;
 
 
 struct ByColumns_t{};
 extern PREFERENCES_API ByColumns_t ByColumns;
+
+struct SettingPath {
+   RegistryPath mPath;
+   operator const RegistryPath &() const { return mPath; }
+};
 
 //! Base class for settings objects.  It holds a configuration key path.
 /* The constructors are non-explicit for convenience */
@@ -69,36 +83,102 @@ public:
    SettingBase( const wxChar *path ) : mPath{ path } {}
    SettingBase( const wxString &path ) : mPath{ path } {}
 
-   wxConfigBase *GetConfig() const;
+   audacity::BasicSettings *GetConfig() const;
 
-   const wxString &GetPath() const { return mPath; }
+   const SettingPath &GetPath() const { return mPath; }
 
    //! Delete the key if present, and return true iff it was.
    bool Delete();
 
 protected:
    SettingBase( const SettingBase& ) = default;
-   const RegistryPath mPath;
+   const SettingPath mPath;
 };
 
-//! Class template adds an in-memory cache of a value to SettingBase.
-template< typename T >
-class CachingSettingBase : public SettingBase
+class TransactionalSettingBase : public SettingBase
 {
 public:
+   using SettingBase::SettingBase;
+
+   virtual void Invalidate() = 0;
+
+protected:
+   // Methods below should only be callable
+   // from within a transaction.
+   friend class SettingTransaction;
+   friend class SettingScope;
+   
+   virtual void EnterTransaction(size_t depth) = 0;
+   //! @return true if successful
+   virtual bool Commit() = 0;
+   virtual void Rollback() noexcept = 0;
+};
+
+//! Makes temporary changes to preferences, then rolls them back at destruction
+/*! No copy or move. */
+class PREFERENCES_API SettingScope /* not final */
+{
+public:
+   SettingScope();
+   ~SettingScope() noexcept;
+   SettingScope(const SettingScope&) = delete;
+   SettingScope &operator=(const SettingScope&) = delete;
+
+   /*!
+    @return `NotAdded` if there is no pending (and uncommitted) scope;
+    `PreviouslyAdded` if there is one, but the given setting object was
+    already added since it began;
+    else `Added`
+    */
+   enum AddResult{ NotAdded, Added, PreviouslyAdded };
+   static AddResult Add( TransactionalSettingBase& setting );
+
+protected:
+   std::set< TransactionalSettingBase * > mPending;
+   bool mCommitted = false;
+};
+
+//! Extend SettingScope with Commit() which flushes updates in a batch
+/*! Construct one; then write to some Setting objects; then Commit() before
+ destruction to keep the changes, or else the destructor rolls them back.
+
+ Flushes preferences on successful commit.
+
+ Nesting of SettingTransaction is not supported. No copy or move. */
+class PREFERENCES_API SettingTransaction final : public SettingScope
+{
+public:
+   //! @return true if successful
+   /*! It is unlikely to return false, but in that case an unflushed, partial
+    write of changes to the config file may have happened */
+   bool Commit();
+};
+
+/*! @brief Class template adds an in-memory cache of a value to
+ TransactionalSettingBase and support for SettingTransaction
+ */
+template< typename T >
+class CachingSettingBase : public TransactionalSettingBase
+{
+public:
+   using TransactionalSettingBase::TransactionalSettingBase;
    explicit CachingSettingBase( const SettingBase &path )
-      : SettingBase{ path } {}
+      : TransactionalSettingBase{ path.GetPath() } {}
+
 protected:
    CachingSettingBase( const CachingSettingBase & ) = default;
    mutable T mCurrentValue{};
    mutable bool mValid{false};
 };
 
-//! Class template adds default value, read, and write methods to CachingSetingBase
+//! Class template adds default value, read, and write methods to
+//! CachingSetingBase and generates TransactionalSettingBase virtual functions
 template< typename T >
 class Setting : public CachingSettingBase< T >
 {
 public:
+   using ValueType = T;
+
    using CachingSettingBase< T >::CachingSettingBase;
 
    using DefaultValueFunction = std::function< T() >;
@@ -160,28 +240,90 @@ public:
     default-default stored in this object. */
    T ReadWithDefault( const T &defaultValue ) const
    {
+      if (this->mValid)
+         return this->mCurrentValue;
       const auto config = this->GetConfig();
-      return config
-         ? ( this->mValid = true, this->mCurrentValue =
-               config->ReadObject( this->mPath, defaultValue ) )
-         : T{};
+      if (config) {
+         this->mCurrentValue =
+            config->ReadObject(this->mPath, defaultValue);
+         // If config file contains a value that agrees with the default, we
+         // can't detect that, so assume invalidity still
+         this->mValid = (this->mCurrentValue != defaultValue);
+         return this->mCurrentValue;
+      }
+      else
+         return T{};
    }
 
    //! Write value to config and return true if successful
    bool Write( const T &value )
    {
       const auto config = this->GetConfig();
-      if ( config ) {
-         this->mCurrentValue = value;
-         return DoWrite();
+      
+      if (config == nullptr)
+         return false;
+      
+      switch ( SettingScope::Add( *this ) ) {
+         // Eager writes, but not flushed, when there is no transaction
+         default:
+         case SettingTransaction::NotAdded: {
+            this->mCurrentValue = value;
+            return DoWrite();
+         }
+
+         // Deferred writes, with flush, if there is a commit later
+         case SettingTransaction::Added:
+         case SettingTransaction::PreviouslyAdded:
+            this->mCurrentValue = value;
+            this->mValid = true;
+            return true;
       }
-      return false;
    }
 
    //! Reset to the default value
    bool Reset()
    {
       return Write( GetDefault() );
+   }
+
+   void Invalidate() override
+   {
+      this->mValid = false;
+   }
+
+private:
+   void EnterTransaction(size_t depth) override
+   {
+      const T value = Read();
+
+      for (size_t i = mPreviousValues.size(); i < depth; ++i)
+         this->mPreviousValues.emplace_back( value );
+   }
+
+   bool Commit() override
+   {
+      // This can be only called from within the transaction
+      assert(!this->mPreviousValues.empty());
+
+      if (this->mPreviousValues.empty())
+         return false;
+      
+      const auto result = this->mPreviousValues.size() > 1 || DoWrite();
+      mPreviousValues.pop_back();
+
+      return result;
+   }
+
+   void Rollback() noexcept override
+   {
+      // This can be only called from within the transaction
+      assert(!this->mPreviousValues.empty());
+      
+      if (!this->mPreviousValues.empty())
+      {
+         this->mCurrentValue = std::move(this->mPreviousValues.back());
+         this->mPreviousValues.pop_back();
+      }
    }
 
 protected:
@@ -194,17 +336,18 @@ protected:
          config ? config->Write( this->mPath, this->mCurrentValue ) : false;
    }
 
-   mutable T mDefaultValue{};
    const DefaultValueFunction mFunction;
+   mutable T mDefaultValue{};
+   std::vector<T> mPreviousValues;
 };
 
 //! This specialization of Setting for bool adds a Toggle method to negate the saved value
-class BoolSetting final : public Setting< bool >
+class PREFERENCES_API BoolSetting final : public Setting< bool >
 {
 public:
    using Setting::Setting;
 
-   //! Write the negation of the previous value, and then return the current value.
+   //! Write the negation of the previous value, and return true if successful
    bool Toggle();
 };
 
@@ -268,18 +411,29 @@ private:
 class PREFERENCES_API ChoiceSetting
 {
 public:
-   ChoiceSetting(
-      const SettingBase &key,
-      EnumValueSymbols symbols,
-      long defaultSymbol = -1
-   )
+   //! Disallow construction from the GetPath() of another SettingBase object;
+   //! instead require that object to be passed as reference to the next ctor
+   ChoiceSetting(const SettingPath &, EnumValueSymbols, long = -1) = delete;
+
+   //! @pre `defaultSymbol < static_cast<long>(mSymbols.size())`
+   ChoiceSetting(TransactionalSettingBase &key, EnumValueSymbols symbols,
+      long defaultSymbol = -1)
       : mKey{ key.GetPath() }
-
-      , mSymbols{ std::move( symbols ) }
-
+      , mSymbols{ move(symbols) }
+      , mpOtherSettings{ &key }
       , mDefaultSymbol{ defaultSymbol }
    {
-      assert( defaultSymbol < (long)mSymbols.size() );
+      assert(defaultSymbol < static_cast<long>(mSymbols.size()));
+   }
+
+   //! @pre `defaultSymbol < static_cast<long>(symbols.size())`
+   ChoiceSetting(const SettingBase &key, EnumValueSymbols symbols,
+      long defaultSymbol = -1)
+      : mKey{ key.GetPath() }
+      , mSymbols{ move(symbols) }
+      , mDefaultSymbol{ defaultSymbol }
+   {
+      assert(defaultSymbol < static_cast<long>(mSymbols.size()));
    }
 
    const wxString &Key() const { return mKey; }
@@ -295,6 +449,7 @@ public:
 
    bool Write( const wxString &value ); // you flush gPrefs afterward
 
+   //! @pre `defaultSymbol < static_cast<long>(GetSymbols().size())`
    void SetDefault( long value );
 
 protected:
@@ -302,8 +457,8 @@ protected:
    virtual void Migrate( wxString& );
 
    const wxString mKey;
-
    const EnumValueSymbols mSymbols;
+   TransactionalSettingBase *const mpOtherSettings{};
 
    // stores an internal value
    mutable bool mMigrated { false };
@@ -315,17 +470,23 @@ protected:
 /// (generally not equal to their table positions),
 /// and optionally an old preference key path that stored integer codes, to be
 /// migrated into one that stores internal string values instead
-class PREFERENCES_API EnumSettingBase : public ChoiceSetting
-{
+class PREFERENCES_API EnumSettingBase : public ChoiceSetting {
 public:
+   //! @pre `intValues.size() == symbols.size()`
+   template<typename Key>
    EnumSettingBase(
-      const SettingBase &key,
+      Key &&key, // moved string, or lvalue reference to another Setting
       EnumValueSymbols symbols,
       long defaultSymbol,
 
       std::vector<int> intValues, // must have same size as symbols
       const wxString &oldKey = {}
-   );
+   )  : ChoiceSetting{ std::forward<Key>(key), move(symbols), defaultSymbol }
+      , mIntValues{ move(intValues) }
+      , mOldKey{ oldKey }
+   {
+      assert (mIntValues.size() == mSymbols.size());
+   }
 
 protected:
 
@@ -353,8 +514,10 @@ class EnumSetting : public EnumSettingBase
 {
 public:
 
+   //! @pre `intValues.size() == symbols.size()`
+   template<typename Key>
    EnumSetting(
-      const SettingBase &key,
+      Key &&key, // moved string, or lvalue reference to another Setting
       EnumValueSymbols symbols,
       long defaultSymbol,
 
@@ -362,9 +525,8 @@ public:
       const wxString &oldKey = {}
    )
       : EnumSettingBase{
-         key, symbols, defaultSymbol,
-         { values.begin(), values.end() },
-         oldKey
+         std::forward<Key>(key), move(symbols), defaultSymbol,
+         ConvertValues(values), oldKey
       }
    {}
 
@@ -384,6 +546,105 @@ public:
    bool WriteEnum( Enum value )
    { return WriteInt( static_cast<int>( value ) ); }
 
+private:
+   std::vector<int> ConvertValues( const std::vector< Enum > &values)
+   {
+      // To convert scoped enums.  This would be easier with std::ranges
+      std::vector<int> result;
+      result.reserve(values.size());
+      for (auto value : values)
+         result.push_back(static_cast<int>(value));
+      return result;
+   }
+};
+
+/// Allows custom logic for preferences reset event
+class PREFERENCES_API PreferencesResetHandler
+{
+   static void Register(std::unique_ptr<PreferencesResetHandler> handler);
+public:
+
+   /// Performs single-time global handler registration
+   template<typename HandlerType>
+   struct Registration final
+   {
+      template<typename... Args>
+      Registration(Args&&... args) {
+         Register(std::make_unique<HandlerType>(std::forward<Args>(args)...));
+      }
+   };
+
+   virtual ~PreferencesResetHandler();
+
+   /// Happens before preferences reset
+   virtual void OnSettingResetBegin() = 0;
+   /// Happens after preferences reset
+   virtual void OnSettingResetEnd() = 0;
+};
+
+/// Setting that survives preferences reset
+/// Currently it's only possible to define sticky setting in a global scope
+/// @tparam SettingType - underlying setting type
+template<typename SettingType>
+class StickySetting final
+{
+   class ResetHandler final : public PreferencesResetHandler
+   {
+      using ValueType = typename SettingType::ValueType;
+
+      SettingType& mSetting;
+
+      std::optional<ValueType> mCapturedValue;
+
+   public:
+      ResetHandler(const ResetHandler&) = delete;
+      ResetHandler& operator=(const ResetHandler&) = delete;
+      ResetHandler(ResetHandler&&) = delete;
+      ResetHandler& operator=(ResetHandler&&) = delete;
+
+      ResetHandler(SettingType& setting) : mSetting(setting) { }
+      ~ResetHandler() override { assert(!mCapturedValue.has_value()); }
+
+      void OnSettingResetBegin() override
+      {
+         assert(!mCapturedValue.has_value());
+         ValueType value;
+         if(mSetting.Read(&value))
+            mCapturedValue = value;
+      }
+
+      void OnSettingResetEnd() override
+      {
+         if(mCapturedValue.has_value())
+         {
+            auto Do = finally([=]{ mCapturedValue = std::nullopt; });
+            mSetting.Write(*mCapturedValue);
+         }
+      }
+   };
+   SettingType mSetting;
+   PreferencesResetHandler::Registration<ResetHandler> mResetHandlerRegistration;
+public:
+   template<typename... Args>
+   StickySetting(Args&& ...args)
+      : mSetting(std::forward<Args>(args)...)
+      , mResetHandlerRegistration(mSetting)
+   { }
+   ~StickySetting() = default;
+
+   StickySetting(const StickySetting&) = delete;
+   StickySetting& operator=(const StickySetting&) = delete;
+   StickySetting(StickySetting&&) = delete;
+   StringSetting& operator=(StickySetting&&) = delete;
+
+   SettingType& Get() noexcept { return mSetting; }
+   const SettingType& Get() const noexcept { return mSetting; }
+
+   SettingType* operator->() noexcept { return &mSetting; }
+   const SettingType* operator->() const noexcept { return &mSetting; }
+
+   SettingType& operator*() noexcept { return mSetting; }
+   const SettingType& operator*() const noexcept { return mSetting; }
 };
 
 //! A listener notified of changes in preferences
@@ -404,6 +665,7 @@ public:
    virtual ~PrefsListener();
 
    // Called when all preferences should be updated.
+   // PrefsListener::UpdatePrefs() is defined, and does nothing
    virtual void UpdatePrefs() = 0;
 
 protected:
@@ -437,6 +699,6 @@ struct PREFERENCES_API PreferenceInitializer {
 };
 
 // Special extra-sticky settings
-extern PREFERENCES_API BoolSetting DefaultUpdatesCheckingFlag;
+extern PREFERENCES_API StickySetting<BoolSetting> DefaultUpdatesCheckingFlag;
 
 #endif

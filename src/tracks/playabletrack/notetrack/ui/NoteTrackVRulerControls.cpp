@@ -13,20 +13,25 @@ Paul Licameli split from TrackPanel.cpp
 #ifdef USE_MIDI
 #include "NoteTrackVRulerControls.h"
 
+#include "NoteTrackDisplayData.h"
 #include "NoteTrackVZoomHandle.h"
 
+#include "../../../ui/ChannelView.h"
 #include "../../../../HitTestResult.h"
-#include "../../../../NoteTrack.h"
-#include "../../../../ProjectHistory.h"
+#include "NoteTrack.h"
+#include "ProjectHistory.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelMouseEvent.h"
 
-#include "../../../../AColor.h"
+#include "AColor.h"
 #include "../../../../TrackPanelDrawingContext.h"
+#include "../../../../widgets/LinearUpdater.h"
+#include "../../../../widgets/RealFormat.h"
 #include "../../../../widgets/Ruler.h"
 
 #include <wx/dc.h>
+#include <wx/event.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 NoteTrackVRulerControls::~NoteTrackVRulerControls()
@@ -35,27 +40,32 @@ NoteTrackVRulerControls::~NoteTrackVRulerControls()
 
 std::vector<UIHandlePtr> NoteTrackVRulerControls::HitTest
 (const TrackPanelMouseState &st,
- const TenacityProject *pProject)
+ const AudacityProject *pProject)
 {
    std::vector<UIHandlePtr> results;
    UIHandlePtr result;
 
    if ( st.state.GetX() <= st.rect.GetRight() - kGuard ) {
-      auto track = std::static_pointer_cast<NoteTrack>(FindTrack());
+      const auto track = FindNoteTrack();
       result = NoteTrackVZoomHandle::HitTest(
          mVZoomHandle, st.state, track, st.rect);
       if (result)
          results.push_back(result);
    }
 
-   auto more = TrackVRulerControls::HitTest(st, pProject);
+   auto more = ChannelVRulerControls::HitTest(st, pProject);
    std::copy(more.begin(), more.end(), std::back_inserter(results));
 
    return results;
 }
 
+std::shared_ptr<NoteTrack> NoteTrackVRulerControls::FindNoteTrack()
+{
+   return FindChannel<NoteTrack>();
+}
+
 unsigned NoteTrackVRulerControls::HandleWheelRotation
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
    const wxMouseEvent &event = evt.event;
@@ -67,22 +77,22 @@ unsigned NoteTrackVRulerControls::HandleWheelRotation
    // is a narrow enough target.
    evt.event.Skip(false);
 
-   const auto pTrack = FindTrack();
-   if (!pTrack)
+   const auto nt = FindNoteTrack();
+   if (!nt)
       return RefreshNone;
 
    auto steps = evt.steps;
-   const auto nt = static_cast<NoteTrack*>(pTrack.get());
 
    if (event.CmdDown() && !event.ShiftDown()) {
+      NoteTrackDisplayData data{ *nt, evt.rect };
       if (steps > 0)
-         nt->ZoomIn(evt.rect, evt.event.m_y);
+         data.ZoomIn(evt.event.m_y);
       else
-         nt->ZoomOut(evt.rect, evt.event.m_y);
+         data.ZoomOut(evt.event.m_y);
    } else if (!event.CmdDown() && event.ShiftDown()) {
       // Scroll some fixed number of notes, independent of zoom level or track height:
       static const int movement = 6; // 6 semitones is half an octave
-      nt->ShiftNoteRange((int) (steps * movement));
+      NoteTrackRange::Get(*nt).ShiftNoteRange((int) (steps * movement));
    } else {
       return RefreshNone;
    }
@@ -96,15 +106,15 @@ void NoteTrackVRulerControls::Draw(
    TrackPanelDrawingContext &context,
    const wxRect &rect_, unsigned iPass )
 {
-   TrackVRulerControls::Draw( context, rect_, iPass );
+   ChannelVRulerControls::Draw(context, rect_, iPass);
 
    // Draw on a later pass like other vertical rulers,
    // although the bevel is done a little differently
 
    if ( iPass == TrackArtist::PassControls ) {
       // The note track draws a vertical keyboard to label pitches
-      auto track = std::static_pointer_cast<NoteTrack>( FindTrack() );
-      if ( !track )
+      auto track = FindNoteTrack();
+      if (!track)
          return;
 
       auto rect = rect_;
@@ -131,7 +141,7 @@ void NoteTrackVRulerControls::Draw(
       rect.y += 1;
       rect.height -= 1;
 
-      NoteTrackDisplayData data{ track.get(), rect };
+      NoteTrackDisplayData data{ *track, rect };
 
       wxPen hilitePen;
       hilitePen.SetColour(120, 120, 120);
@@ -211,21 +221,23 @@ void NoteTrackVRulerControls::Draw(
 }
 
 
-void NoteTrackVRulerControls::UpdateRuler( const wxRect &rect )
+void NoteTrackVRulerControls::UpdateRuler(const wxRect &rect)
 {
    // The note track isn't drawing a ruler at all!
    // But it needs to!
 
-   const auto nt = std::static_pointer_cast< NoteTrack >( FindTrack() );
+   const auto nt = FindNoteTrack();
    if (!nt)
       return;
 
-   static Ruler ruler;
+   static Ruler ruler{
+      LinearUpdater::Instance(), RealFormat::LinearInstance() };
    const auto vruler = &ruler;
 
-   vruler->SetBounds(rect.x, rect.y, rect.x + 1, rect.y + rect.height-1);
+   vruler->SetBounds(rect.x, rect.y, rect.x + 1, rect.y + rect.height - 1);
    vruler->SetOrientation(wxVERTICAL);
 
-   vruler->GetMaxSize( &nt->vrulerSize.first, &nt->vrulerSize.second );
+   auto &size = ChannelView::Get(*nt).vrulerSize;
+   vruler->GetMaxSize(&size.first, &size.second);
 }
 #endif

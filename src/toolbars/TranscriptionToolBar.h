@@ -24,7 +24,7 @@ class wxKeyEvent;
 
 class AButton;
 class ASlider;
-class TenacityProject;
+class AudacityProject;
 class BoundedEnvelope;
 class sampleCount;
 class WaveTrack;
@@ -62,11 +62,17 @@ class TranscriptionToolBar final : public ToolBar {
 
  public:
 
-   TranscriptionToolBar( TenacityProject &project );
+   static Identifier ID();
+
+   TranscriptionToolBar( AudacityProject &project );
    virtual ~TranscriptionToolBar();
 
-   static TranscriptionToolBar &Get( TenacityProject &project );
-   static const TranscriptionToolBar &Get( const TenacityProject &project );
+   bool ShownByDefault() const override;
+
+   DockID DefaultDockID() const override;
+
+   static TranscriptionToolBar &Get( AudacityProject &project );
+   static const TranscriptionToolBar &Get( const AudacityProject &project );
 
    void Create(wxWindow *parent) override;
 
@@ -75,7 +81,7 @@ class TranscriptionToolBar final : public ToolBar {
    void OnSpeedSlider(wxCommandEvent & event);
 
    void Populate() override;
-   void Repaint(wxDC * /* dc */) override {};
+   void Repaint(wxDC * WXUNUSED(dc)) override {};
    void EnableDisableButtons() override;
    void UpdatePrefs() override;
    int GetInitialWidth()  override { return 191; }
@@ -97,7 +103,7 @@ class TranscriptionToolBar final : public ToolBar {
    void OnSensitivitySlider(wxCommandEvent & event);
 
    //void Populate() override;
-   //void Repaint(wxDC * /* dc */) override {}
+   //void Repaint(wxDC * WXUNUSED(dc)) override {}
    //void EnableDisableButtons() override;
 
    //void OnFocus(wxFocusEvent &event);
@@ -114,7 +120,7 @@ class TranscriptionToolBar final : public ToolBar {
    void SetEnabled(bool enabled);
    void SetPlaying(bool down, bool looped, bool cutPreview);
 
-   double GetPlaySpeed() const { return mPlaySpeed / 100.0; }
+   double GetPlaySpeed() const { return mPlaySpeed / 1000.0; }
 
  private:
 
@@ -151,6 +157,9 @@ class TranscriptionToolBar final : public ToolBar {
 
    std::shared_ptr<BoundedEnvelope> mEnvelope;
 
+ public:
+
+   DECLARE_CLASS(TranscriptionToolBar)
    DECLARE_EVENT_TABLE()
 };
 

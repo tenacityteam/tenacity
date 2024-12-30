@@ -14,14 +14,12 @@
 #include <vector>
 #include <wx/defs.h>
 
-#include "widgets/wxPanelWrapper.h" // to inherit
-
-// Tenacity libraries
-#include <lib-components/ComponentInterface.h> // member variable
+#include "wxPanelWrapper.h" // to inherit
+#include "ComponentInterface.h" // member variable
 
 class wxArrayString;
 class wxGridEvent;
-class TenacityProject;
+class AudacityProject;
 class ChoiceEditor;
 class Grid;
 class NumericEditor;
@@ -39,7 +37,7 @@ class LabelDialog final : public wxDialogWrapper
  public:
 
    LabelDialog(wxWindow *parent,
-               TenacityProject &project,
+               AudacityProject &project,
                TrackList *tracks,
 
                // if NULL edit all tracks, else this one only:
@@ -50,9 +48,8 @@ class LabelDialog final : public wxDialogWrapper
                int index,
 
                ViewInfo &viewinfo,
-               double rate,
-               const NumericFormatSymbol & format,
-               const NumericFormatSymbol &freqFormat);
+               const NumericFormatID & format,
+               const NumericFormatID &freqFormat);
    ~LabelDialog();
 
     bool Show(bool show = true) override;
@@ -95,7 +92,7 @@ class LabelDialog final : public wxDialogWrapper
 
  private:
 
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
    Grid *mGrid;
    ChoiceEditor *mChoiceEditor;
@@ -109,8 +106,7 @@ class LabelDialog final : public wxDialogWrapper
    int mIndex { -1 };
    ViewInfo *mViewInfo;
    wxArrayString mTrackNames;
-   double mRate;
-   NumericFormatSymbol mFormat, mFreqFormat;
+   NumericFormatID mFormat, mFreqFormat;
 
    int mInitialRow;
 

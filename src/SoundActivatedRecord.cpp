@@ -21,31 +21,19 @@
 
 #include "SoundActivatedRecord.h"
 
-#include "shuttle/ShuttleGui.h"
+#include "ShuttleGui.h"
+#include "Prefs.h"
 #include "Decibels.h"
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
+BEGIN_EVENT_TABLE(SoundActivatedRecordDialog, wxDialogWrapper)
+   EVT_BUTTON(wxID_OK, SoundActivatedRecordDialog::OnOK)
+END_EVENT_TABLE()
 
 SoundActivatedRecordDialog::SoundActivatedRecordDialog(wxWindow* parent)
 : wxDialogWrapper(parent, -1, XO("Sound Activated Record"), wxDefaultPosition,
            wxDefaultSize, wxCAPTION )
 //           wxDefaultSize, wxCAPTION | wxTHICK_FRAME)
 {
-   Bind(
-      wxEVT_BUTTON,
-      [this](wxCommandEvent&)
-      {
-         ShuttleGui S( this, eIsSavingToPrefs );
-         PopulateOrExchange( S );
-
-         gPrefs->Flush();
-
-         EndModal(0);
-      },
-      wxID_OK
-   );
-
    SetName();
    ShuttleGui S(this, eIsCreatingFromPrefs);
    PopulateOrExchange(S);
@@ -75,3 +63,14 @@ void SoundActivatedRecordDialog::PopulateOrExchange(ShuttleGui & S)
    S.EndVerticalLay();
    S.AddStandardButtons();
 }
+
+void SoundActivatedRecordDialog::OnOK(wxCommandEvent & WXUNUSED(event))
+{
+   ShuttleGui S( this, eIsSavingToPrefs );
+   PopulateOrExchange( S );
+
+   gPrefs->Flush();
+
+   EndModal(0);
+}
+

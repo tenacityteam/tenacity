@@ -26,8 +26,8 @@ class TENACITY_DLL_API TracksBehaviorsPrefs final : public PrefsPanel
  public:
    TracksBehaviorsPrefs(wxWindow * parent, wxWindowID winid);
    ~TracksBehaviorsPrefs();
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
 
    bool Commit() override;
    ManualPageID HelpPageName() override;
@@ -37,6 +37,6 @@ class TENACITY_DLL_API TracksBehaviorsPrefs final : public PrefsPanel
    void PopulateOrExchange(ShuttleGui & S) override;
 };
 
-extern TENACITY_DLL_API ChoiceSetting TracksBehaviorsSolo;
+extern TENACITY_DLL_API ChoiceSetting TracksBehaviorsAudioTrackPastePolicy;
 
 #endif

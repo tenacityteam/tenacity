@@ -14,7 +14,7 @@
 #include "widgets/OverlayPanel.h" // to inherit
 
 class ViewInfo;
-class TenacityProject;
+class AudacityProject;
 
 class TrackPanelCell;
 struct TrackPanelDrawingContext;
@@ -43,13 +43,13 @@ public:
    
    // Overridables:
    
-   virtual TenacityProject *GetProject() const = 0;
+   virtual AudacityProject *GetProject() const = 0;
    
    // Get the root object defining a recursive subdivision of the panel's
    // area into cells
    virtual std::shared_ptr<TrackPanelNode> Root() = 0;
 
-   virtual TrackPanelCell *GetFocusedCell() = 0;
+   virtual std::shared_ptr<TrackPanelCell> GetFocusedCell() = 0;
    virtual void SetFocusedCell() = 0;
    
    virtual void ProcessUIHandleResult
@@ -119,7 +119,7 @@ public:
 protected:
    bool HasEscape();
    bool CancelDragging( bool escaping );
-   void DoContextMenu( TrackPanelCell *pCell = nullptr );
+   void DoContextMenu( std::shared_ptr<TrackPanelCell> pCell );
    void ClearTargets();
    
 private:
@@ -139,6 +139,7 @@ private:
    
    void OnSetFocus(wxFocusEvent & event);
    void OnKillFocus(wxFocusEvent & event);
+   void DoKillFocus();
    
    void OnContextMenu(wxContextMenuEvent & event);
    

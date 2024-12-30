@@ -16,35 +16,30 @@
 
 #include "LabelDialog.h"
 
-// Tenacity libraries
-#include <lib-files/FileNames.h>
-#include <lib-preferences/Prefs.h>
-
-#include <wx/button.h>
 #include <wx/defs.h>
 #include <wx/choice.h>
 #include <wx/dc.h>
-#include <wx/dialog.h>
 #include <wx/grid.h>
-#include <wx/intl.h>
 #include <wx/scrolbar.h>
 #include <wx/settings.h>
-#include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textdlg.h>
 
-#include "shuttle/ShuttleGui.h"
+#include "ShuttleGui.h"
 #include "LabelTrack.h"
+#include "Prefs.h"
 #include "Project.h"
-#include "ProjectWindow.h"
 #include "SelectFile.h"
 #include "ViewInfo.h"
+#include "Viewport.h"
 #include "tracks/labeltrack/ui/LabelTrackView.h"
-#include "widgets/AudacityMessageBox.h"
-#include "widgets/AudacityTextEntryDialog.h"
+#include "AudacityMessageBox.h"
+#include "AudacityTextEntryDialog.h"
 #include "widgets/Grid.h"
-#include "widgets/HelpSystem.h"
+#include "HelpSystem.h"
+#include "NumericConverterFormats.h"
 
+#include "FileNames.h"
 #include <limits>
 
 enum Column
@@ -97,14 +92,13 @@ BEGIN_EVENT_TABLE(LabelDialog, wxDialogWrapper)
 END_EVENT_TABLE()
 
 LabelDialog::LabelDialog(wxWindow *parent,
-                         TenacityProject &project,
+                         AudacityProject &project,
                          TrackList *tracks,
                          LabelTrack *selectedTrack,
                          int index,
                          ViewInfo &viewinfo,
-                         double rate,
-                         const NumericFormatSymbol & format,
-                         const NumericFormatSymbol &freqFormat)
+                         const NumericFormatID & format,
+                         const NumericFormatID &freqFormat)
 : wxDialogWrapper(parent,
            wxID_ANY,
            XO("Edit Labels"),
@@ -115,9 +109,8 @@ LabelDialog::LabelDialog(wxWindow *parent,
   , mTracks(tracks)
   , mSelectedTrack(selectedTrack)
   , mIndex(index)
-  , mViewInfo(&viewinfo),
-  mRate(rate),
-  mFormat(format)
+  , mViewInfo(&viewinfo)
+  , mFormat(format)
   , mFreqFormat(freqFormat)
 {
    SetName();
@@ -184,7 +177,7 @@ void LabelDialog::PopulateLabels()
    attr->SetAlignment(wxALIGN_CENTER, wxALIGN_CENTER);
 
    mGrid->SetColAttr(Col_Hfreq, attr->Clone());
-   
+
    // Seems there's a bug in wxGrid.  Adding only 1 row does not
    // allow SetCellSize() to work properly and you will not get
    // the expected 1 row by 4 column cell.
@@ -208,7 +201,7 @@ void LabelDialog::PopulateLabels()
    // This should not be in TransferDataToWindow() since a user might
    // resize the column and we'd resize it back to the minimum.
    mGrid->AutoSizeColumn(Col_Label, false );
-   mGrid->SetColSize(Col_Label, std::max(150, mGrid->GetColSize(Col_Label)));
+   mGrid->SetColSize(Col_Label, wxMax(150, mGrid->GetColSize(Col_Label)));
    mGrid->SetColMinimalWidth(Col_Label, mGrid->GetColSize(Col_Label));
 
 }
@@ -262,8 +255,10 @@ void LabelDialog::PopulateOrExchange( ShuttleGui & S )
    {
       S.StartVerticalLay(wxEXPAND,1);
       {
-         mGrid = safenew Grid(S.GetParent(), wxID_ANY);
-         S.Prop(1).AddWindow( mGrid );
+         mGrid = safenew Grid(
+            FormatterContext::ProjectContext(mProject), S.GetParent(),
+            wxID_ANY);
+         S.Prop(1).AddWindow(mGrid);
       }
       S.EndVerticalLay();
       S.StartVerticalLay(0);
@@ -286,7 +281,7 @@ void LabelDialog::PopulateOrExchange( ShuttleGui & S )
    S.EndHorizontalLay();
 }
 
-void LabelDialog::OnHelp(wxCommandEvent & /* event */)
+void LabelDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
 {
    const auto &page = GetHelpPageName();
    HelpSystem::ShowHelp(this, page, true);
@@ -299,13 +294,10 @@ bool LabelDialog::TransferDataToWindow()
    int i;
 
    // Set the editor parameters.  Do this each time since they may change
-   // due to NEW tracks and change in NumericTextCtrl format.  Rate won't
-   // change but might as well leave it here.
+   // due to NEW tracks and change in NumericTextCtrl format.
    mChoiceEditor->SetChoices(mTrackNames);
    mTimeEditor->SetFormat(mFormat);
-   mTimeEditor->SetRate(mRate);
    mFrequencyEditor->SetFormat(mFreqFormat);
-   mFrequencyEditor->SetRate(mRate);
 
    // Disable redrawing until we're done
    mGrid->BeginBatch();
@@ -535,8 +527,9 @@ void LabelDialog::FindInitialRow()
 void LabelDialog::OnUpdate(wxCommandEvent &event)
 {
    // Remember the NEW format and repopulate grid
-   mFormat = NumericConverter::LookupFormat(
-      NumericConverter::TIME, event.GetString() );
+   mFormat = NumericConverterFormats::Lookup(
+      FormatterContext::ProjectContext(mProject),
+      NumericConverterType_TIME(), event.GetString()).Internal();
    TransferDataToWindow();
 
    event.Skip(false);
@@ -545,8 +538,9 @@ void LabelDialog::OnUpdate(wxCommandEvent &event)
 void LabelDialog::OnFreqUpdate(wxCommandEvent &event)
 {
    // Remember the NEW format and repopulate grid
-   mFreqFormat = NumericConverter::LookupFormat(
-      NumericConverter::FREQUENCY, event.GetString() );
+   mFreqFormat = NumericConverterFormats::Lookup(
+      FormatterContext::ProjectContext(mProject),
+      NumericConverterType_FREQUENCY(), event.GetString()).Internal();
    TransferDataToWindow();
 
    event.Skip(false);
@@ -592,7 +586,7 @@ void LabelDialog::OnInsert(wxCommandEvent &event)
    mGrid->ShowCellEditControl();
 }
 
-void LabelDialog::OnRemove(wxCommandEvent & /* event */)
+void LabelDialog::OnRemove(wxCommandEvent & WXUNUSED(event))
 {
    int row = mGrid->GetGridCursorRow();
    int col = mGrid->GetGridCursorCol();
@@ -630,7 +624,7 @@ void LabelDialog::OnRemove(wxCommandEvent & /* event */)
    }
 }
 
-void LabelDialog::OnImport(wxCommandEvent & /* event */)
+void LabelDialog::OnImport(wxCommandEvent & WXUNUSED(event))
 {
    // Ask user for a filename
    wxString fileName =
@@ -639,12 +633,14 @@ void LabelDialog::OnImport(wxCommandEvent & /* event */)
          wxEmptyString,     // Path
          wxT(""),       // Name
          wxT("txt"),   // Extension
-         { FileNames::TextFiles, FileNames::AllFiles },
+         { FileNames::TextFiles, LabelTrack::SubripFiles, FileNames::AllFiles },
          wxRESIZE_BORDER, // Flags
          this);    // Parent
 
    // They gave us one...
    if (!fileName.empty()) {
+      LabelFormat format = LabelTrack::FormatForFileName(fileName);
+
       wxTextFile f;
 
       // Get at the data
@@ -657,7 +653,7 @@ void LabelDialog::OnImport(wxCommandEvent & /* event */)
          // Create a temporary label track and load the labels
          // into it
          auto lt = std::make_shared<LabelTrack>();
-         lt->Import(f);
+         lt->Import(f, format);
 
          // Add the labels to our collection
          AddLabels(lt.get());
@@ -670,7 +666,7 @@ void LabelDialog::OnImport(wxCommandEvent & /* event */)
    }
 }
 
-void LabelDialog::OnExport(wxCommandEvent & /* event */)
+void LabelDialog::OnExport(wxCommandEvent & WXUNUSED(event))
 {
    int cnt = mData.size();
 
@@ -688,12 +684,14 @@ void LabelDialog::OnExport(wxCommandEvent & /* event */)
       wxEmptyString,
       fName,
       wxT("txt"),
-      { FileNames::TextFiles },
+      { FileNames::TextFiles, LabelTrack::SubripFiles, LabelTrack::WebVTTFiles },
       wxFD_SAVE | wxFD_OVERWRITE_PROMPT | wxRESIZE_BORDER,
       this);
 
    if (fName.empty())
       return;
+
+   LabelFormat format = LabelTrack::FormatForFileName(fName);
 
    // Move existing files out of the way.  Otherwise wxTextFile will
    // append to (rather than replace) the current file.
@@ -735,7 +733,7 @@ void LabelDialog::OnExport(wxCommandEvent & /* event */)
    }
 
    // Export them and clean
-   lt->Export(f);
+   lt->Export(f, format);
 
 #ifdef __WXMAC__
    f.Write(wxTextFileType_Mac);
@@ -747,7 +745,7 @@ void LabelDialog::OnExport(wxCommandEvent & /* event */)
 
 void LabelDialog::OnSelectCell(wxGridEvent &event)
 {
-   for (auto t: mTracks->Any())
+   for (auto t: *mTracks)
       t->SetSelected( true );
 
    if (!mData.empty())
@@ -755,7 +753,7 @@ void LabelDialog::OnSelectCell(wxGridEvent &event)
       RowData &rd = mData[event.GetRow()];
       mViewInfo->selectedRegion = rd.selectedRegion;
 
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
    }
 
    event.Skip();
@@ -812,7 +810,7 @@ void LabelDialog::OnCellChange(wxGridEvent &event)
    return;
 }
 
-void LabelDialog::OnChangeTrack(wxGridEvent & /* event */, int row, RowData *rd)
+void LabelDialog::OnChangeTrack(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
 {
    wxString val = mGrid->GetCellValue(row, Col_Track);
 
@@ -846,7 +844,7 @@ void LabelDialog::OnChangeTrack(wxGridEvent & /* event */, int row, RowData *rd)
    return;
 }
 
-void LabelDialog::OnChangeLabel(wxGridEvent & /* event */, int row, RowData *rd)
+void LabelDialog::OnChangeLabel(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    rd->title = mGrid->GetCellValue(row, Col_Label);
@@ -854,7 +852,7 @@ void LabelDialog::OnChangeLabel(wxGridEvent & /* event */, int row, RowData *rd)
    return;
 }
 
-void LabelDialog::OnChangeStime(wxGridEvent & /* event */, int row, RowData *rd)
+void LabelDialog::OnChangeStime(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double t {};
@@ -866,7 +864,7 @@ void LabelDialog::OnChangeStime(wxGridEvent & /* event */, int row, RowData *rd)
    return;
 }
 
-void LabelDialog::OnChangeEtime(wxGridEvent & /* event */, int row, RowData *rd)
+void LabelDialog::OnChangeEtime(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double t {};
@@ -878,7 +876,7 @@ void LabelDialog::OnChangeEtime(wxGridEvent & /* event */, int row, RowData *rd)
    return;
 }
 
-void LabelDialog::OnChangeLfreq(wxGridEvent & /* event */, int row, RowData *rd)
+void LabelDialog::OnChangeLfreq(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double f;
@@ -890,7 +888,7 @@ void LabelDialog::OnChangeLfreq(wxGridEvent & /* event */, int row, RowData *rd)
    return;
 }
 
-void LabelDialog::OnChangeHfreq(wxGridEvent & /* event */, int row, RowData *rd)
+void LabelDialog::OnChangeHfreq(wxGridEvent & WXUNUSED(event), int row, RowData *rd)
 {
    // Remember the value...no need to repopulate
    double f;
@@ -898,7 +896,7 @@ void LabelDialog::OnChangeHfreq(wxGridEvent & /* event */, int row, RowData *rd)
    rd->selectedRegion.setF1(f, false);
    mGrid->SetCellValue(row, Col_Lfreq, wxString::Format(wxT("%g"),
                                                         rd->selectedRegion.f0()));
-   
+
    return;
 }
 
@@ -907,7 +905,7 @@ void LabelDialog::ReadSize(){
    int prefWidth, prefHeight;
    gPrefs->Read(wxT("/LabelEditor/Width"), &prefWidth, sz.x);
    gPrefs->Read(wxT("/LabelEditor/Height"), &prefHeight, sz.y);
-   
+
    wxRect screenRect(wxGetClientDisplayRect());
    wxSize prefSize = wxSize(prefWidth, prefHeight);
    prefSize.DecTo(screenRect.GetSize());
@@ -921,7 +919,7 @@ void LabelDialog::WriteSize(){
    gPrefs->Flush();
 }
 
-void LabelDialog::OnOK(wxCommandEvent & /* event */)
+void LabelDialog::OnOK(wxCommandEvent & WXUNUSED(event))
 {
    if (mGrid->IsCellEditControlShown()) {
       mGrid->SaveEditControlValue();
@@ -938,7 +936,7 @@ void LabelDialog::OnOK(wxCommandEvent & /* event */)
    return;
 }
 
-void LabelDialog::OnCancel(wxCommandEvent & /* event */)
+void LabelDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
 {
    if (mGrid->IsCellEditControlShown()) {
       auto editor = mGrid->GetCellEditor(mGrid->GetGridCursorRow(),

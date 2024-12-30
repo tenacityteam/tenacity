@@ -23,15 +23,13 @@ parameters.  It is for development purposes.
 #include "Demo.h"
 #include "LoadCommands.h"
 
-#include <cfloat>
+#include <float.h>
 
-#include <wx/intl.h>
-
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../widgets/AudacityMessageBox.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
+#include "AudacityMessageBox.h"
 #include "../widgets/valnum.h"
-#include "../commands/CommandContext.h"
+#include "CommandContext.h"
 
 const ComponentInterfaceSymbol DemoCommand::Symbol
 { XO("Demo") };
@@ -39,11 +37,18 @@ const ComponentInterfaceSymbol DemoCommand::Symbol
 //Don't register the demo command.  
 //namespace{ BuiltinCommandsModule::Registration< DemoCommand > reg; }
 
-bool DemoCommand::DefineParams( ShuttleParams & S ){
+template<bool Const>
+bool DemoCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
    S.Define( delay, wxT("Delay"), 1.0f, 0.001f,  FLT_MAX, 1.0f );
    S.Define( decay, wxT("Decay"), 0.5f, 0.0f,    FLT_MAX, 1.0f  );
    return true;
 }
+
+bool DemoCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool DemoCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 bool DemoCommand::Apply(const CommandContext & context){
    context.Status( "A Message");

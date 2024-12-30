@@ -16,7 +16,7 @@ Identifier::Identifier(
 {
    if( components.size() < 2 )
    {
-      assert( false );
+      wxASSERT( false );
       return;
    }
    auto iter = components.begin(), end = components.end();

@@ -39,6 +39,7 @@ public:
        const std::shared_ptr<NoteTrack> &pTrack);
 
    std::shared_ptr<NoteTrack> GetTrack() const { return mpTrack.lock(); }
+   std::shared_ptr<const Track> FindTrack() const override;
    int GetChannel() const { return mChannel; }
 
    static UIHandle::Result NeedChangeHighlight
@@ -46,23 +47,23 @@ public:
        const NoteTrackButtonHandle &newState);
 
 protected:
-   void Enter(bool forward, TenacityProject *) override;
+   void Enter(bool forward, AudacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
    std::weak_ptr<NoteTrack> mpTrack;
    int mChannel{ -1 };

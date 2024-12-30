@@ -2,7 +2,7 @@
 
    Audacity: A Digital Audio Editor
    Audacity(R) is copyright (c) 1999-2013 Audacity Team.
-   License: GPL v2.  See License.txt.
+   License: GPL v2 or later.  See License.txt.
 
   ChangePitch.cpp
   Vaughan Johnson, Dominic Mazzoni, Steve Daulton
@@ -19,45 +19,22 @@ the pitch without changing the tempo.
 
 #if USE_SOUNDTOUCH
 #include "ChangePitch.h"
+#include "EffectEditor.h"
 #include "LoadEffects.h"
+#include "PitchName.h"
 
 #if USE_SBSMS
 #include <wx/valgen.h>
 #endif
 
-#include <cfloat>
-#include <cmath>
-
 #include <wx/checkbox.h>
 #include <wx/choice.h>
-#include <wx/intl.h>
 #include <wx/slider.h>
 #include <wx/spinctrl.h>
 #include <wx/valtext.h>
 
-// Tenacity libraries
-#include <lib-math/Spectrum.h>
-
-#include "../PitchName.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../WaveTrack.h"
+#include "ShuttleGui.h"
 #include "../widgets/valnum.h"
-#include "TimeWarper.h"
-
-// Soundtouch defines these as well, which are also in generated configmac.h
-// and configunix.h, so get rid of them before including,
-// to avoid compiler warnings, and be sure to do this
-// after all other #includes, to avoid any mischief that might result
-// from doing the un-definitions before seeing any wx headers.
-#undef PACKAGE_NAME
-#undef PACKAGE_STRING
-#undef PACKAGE_TARNAME
-#undef PACKAGE_VERSION
-#undef PACKAGE_BUGREPORT
-#undef PACKAGE
-#undef VERSION
-#include "soundtouch/SoundTouch.h"
 
 enum {
    ID_PercentChange = 10000,
@@ -70,22 +47,11 @@ enum {
    ID_ToFrequency
 };
 
-// Soundtouch is not reasonable below -99% or above 3000%.
-
-// Define keys, defaults, minimums, and maximums for the effect parameters
-//
-//     Name          Type     Key               Def   Min      Max      Scale
-Param( Percentage,   double,  wxT("Percentage"), 0.0,  -99.0,   3000.0,  1  );
-Param( UseSBSMS,     bool,    wxT("SBSMS"),     false, false,   true,    1  );
-
 // We warp the slider to go up to 400%, but user can enter up to 3000%
-static const double kSliderMax = 100.0;          // warped above zero to actually go up to 400%
-static const double kSliderWarp = 1.30105;       // warp power takes max from 100 to 400.
-
-// EffectChangePitch
-
-const ComponentInterfaceSymbol EffectChangePitch::Symbol
-{ XO("Change Pitch") };
+static const double kSliderMax =
+   100.0; // warped above zero to actually go up to 400%
+static const double kSliderWarp =
+   1.30105; // warp power takes max from 100 to 400.
 
 namespace{ BuiltinEffectsModule::Registration< EffectChangePitch > reg; }
 
@@ -104,162 +70,11 @@ BEGIN_EVENT_TABLE(EffectChangePitch, wxEvtHandler)
    EVT_SLIDER(ID_PercentChange, EffectChangePitch::OnSlider_PercentChange)
 END_EVENT_TABLE()
 
-EffectChangePitch::EffectChangePitch()
+std::unique_ptr<EffectEditor> EffectChangePitch::PopulateOrExchange(
+   ShuttleGui & S, EffectInstance &, EffectSettingsAccess &,
+   const EffectOutputs *)
 {
-   m_dPercentChange = DEF_Percentage;
-   m_dSemitonesChange = 0.0;
-   m_dStartFrequency = 0.0; // 0.0 => uninitialized
-   m_bLoopDetect = false;
-
-#if USE_SBSMS
-   mUseSBSMS = DEF_UseSBSMS;
-#else
-   mUseSBSMS = false;
-#endif
-
-   // NULL out these control members because there are some cases where the
-   // event table handlers get called during this method, and those handlers that
-   // can cause trouble check for NULL.
-   m_pChoice_FromPitch = NULL;
-   m_pSpin_FromOctave = NULL;
-   m_pChoice_ToPitch = NULL;
-   m_pSpin_ToOctave = NULL;
-
-   m_pTextCtrl_SemitonesChange = NULL;
-
-   m_pTextCtrl_FromFrequency = NULL;
-   m_pTextCtrl_ToFrequency = NULL;
-
-   m_pTextCtrl_PercentChange = NULL;
-   m_pSlider_PercentChange = NULL;
-
-   SetLinearEffectFlag(true);
-}
-
-EffectChangePitch::~EffectChangePitch()
-{
-}
-
-// ComponentInterface implementation
-
-ComponentInterfaceSymbol EffectChangePitch::GetSymbol()
-{
-   return Symbol;
-}
-
-TranslatableString EffectChangePitch::GetDescription()
-{
-   return XO("Changes the pitch of a track without changing its tempo");
-}
-
-ManualPageID EffectChangePitch::ManualPage()
-{
-   return L"Change_Pitch";
-}
-
-// EffectDefinitionInterface implementation
-
-EffectType EffectChangePitch::GetType()
-{
-   return EffectTypeProcess;
-}
-
-// EffectProcessor implementation
-bool EffectChangePitch::DefineParams( ShuttleParams & S ){
-   S.SHUTTLE_PARAM( m_dPercentChange, Percentage );
-   S.SHUTTLE_PARAM( mUseSBSMS, UseSBSMS );
-   return true;
-}
-
-bool EffectChangePitch::GetAutomationParameters(CommandParameters & parms)
-{
-   parms.Write(KEY_Percentage, m_dPercentChange);
-   parms.Write(KEY_UseSBSMS, mUseSBSMS);
-
-   return true;
-}
-
-bool EffectChangePitch::SetAutomationParameters(CommandParameters & parms)
-{
-   // Vaughan, 2013-06: Long lost to history, I don't see why m_dPercentChange was chosen to be shuttled.
-   // Only m_dSemitonesChange is used in Process().
-   ReadAndVerifyDouble(Percentage);
-
-   m_dPercentChange = Percentage;
-   Calc_SemitonesChange_fromPercentChange();
-
-#if USE_SBSMS
-   ReadAndVerifyBool(UseSBSMS);
-   mUseSBSMS = UseSBSMS;
-#else
-   mUseSBSMS = false;
-#endif
-
-   return true;
-}
-
-bool EffectChangePitch::LoadFactoryDefaults()
-{
-   DeduceFrequencies();
-
-   return Effect::LoadFactoryDefaults();
-}
-
-// Effect implementation
-
-bool EffectChangePitch::Init()
-{
-   return true;
-}
-
-bool EffectChangePitch::Process()
-{
-#if USE_SBSMS
-   if (mUseSBSMS)
-   {
-      double pitchRatio = 1.0 + m_dPercentChange / 100.0;
-      EffectSBSMS proxy;
-      proxy.mProxyEffectName = XO("High Quality Pitch Change");
-      proxy.setParameters(1.0, pitchRatio);
-
-      return Delegate(proxy, *mUIParent, nullptr);
-   }
-   else
-#endif
-   {
-      // Macros save m_dPercentChange and not m_dSemitonesChange, so we must
-      // ensure that m_dSemitonesChange is set.
-      Calc_SemitonesChange_fromPercentChange();
-
-      auto initer = [&](soundtouch::SoundTouch *soundtouch)
-      {
-         soundtouch->setPitchSemiTones((float)(m_dSemitonesChange));
-      };
-      IdentityTimeWarper warper;
-#ifdef USE_MIDI
-      // Pitch shifting note tracks is currently only supported by SoundTouchEffect
-      // and non-real-time-preview effects require an audio track selection.
-      //
-      // Note: m_dSemitonesChange is private to ChangePitch because it only
-      // needs to pass it along to mSoundTouch (above). I added mSemitones
-      // to SoundTouchEffect (the super class) to convey this value
-      // to process Note tracks. This approach minimizes changes to existing
-      // code, but it would be cleaner to change all m_dSemitonesChange to
-      // mSemitones, make mSemitones exist with or without USE_MIDI, and
-      // eliminate the next line:
-      mSemitones = m_dSemitonesChange;
-#endif
-      return EffectSoundTouch::ProcessWithTimeWarper(initer, warper, true);
-   }
-}
-
-bool EffectChangePitch::CheckWhetherSkipEffect()
-{
-   return (m_dPercentChange == 0.0);
-}
-
-void EffectChangePitch::PopulateOrExchange(ShuttleGui & S)
-{
+   mUIParent = S.GetParent();
    DeduceFrequencies(); // Set frequency-related control values based on sample.
 
    TranslatableStrings pitch;
@@ -272,7 +87,6 @@ void EffectChangePitch::PopulateOrExchange(ShuttleGui & S)
    {
       S.StartVerticalLay();
       {
-         S.AddTitle(XO("Change Pitch without Changing Tempo"));
          S.AddTitle(
             XO("Estimated Start Pitch: %s%d (%.3f Hz)")
                .Format( pitch[m_nFromPitch], m_nFromOctave, m_FromFrequency) );
@@ -356,9 +170,8 @@ void EffectChangePitch::PopulateOrExchange(ShuttleGui & S)
                .Validator<FloatingPointValidator<double>>(
                   3, &m_dPercentChange,
                   NumValidatorStyle::THREE_TRAILING_ZEROES,
-                  MIN_Percentage, MAX_Percentage
-               )
-               .AddTextBox(XXO("Percent C&hange:"), wxT(""), 12);
+                  Percentage.min, Percentage.max )
+               .AddTextBox(XXO("Percent C&hange:"), L"", 12);
          }
          S.EndHorizontalLay();
 
@@ -367,7 +180,7 @@ void EffectChangePitch::PopulateOrExchange(ShuttleGui & S)
             m_pSlider_PercentChange = S.Id(ID_PercentChange)
                .Name(XO("Percent Change"))
                .Style(wxSL_HORIZONTAL)
-               .AddSlider( {}, 0, (int)kSliderMax, (int)MIN_Percentage);
+               .AddSlider( {}, 0, (int)kSliderMax, (int)Percentage.min);
          }
          S.EndHorizontalLay();
       }
@@ -385,10 +198,10 @@ void EffectChangePitch::PopulateOrExchange(ShuttleGui & S)
 
    }
    S.EndVerticalLay();
-   return;
+   return nullptr;
 }
 
-bool EffectChangePitch::TransferDataToWindow()
+bool EffectChangePitch::TransferDataToWindow(const EffectSettings &)
 {
    m_bLoopDetect = true;
 
@@ -417,7 +230,7 @@ bool EffectChangePitch::TransferDataToWindow()
    return true;
 }
 
-bool EffectChangePitch::TransferDataFromWindow()
+bool EffectChangePitch::TransferDataFromWindow(EffectSettings &)
 {
    if (!mUIParent->Validate() || !mUIParent->TransferDataFromWindow())
    {
@@ -436,119 +249,8 @@ bool EffectChangePitch::TransferDataFromWindow()
    return true;
 }
 
-// EffectChangePitch implementation
-
-// Deduce m_FromFrequency from the samples at the beginning of
-// the selection. Then set some other params accordingly.
-void EffectChangePitch::DeduceFrequencies()
-{
-    auto FirstTrack = [&]()->const WaveTrack *{
-      if( IsBatchProcessing() || !inputTracks() )
-         return nullptr;
-      return *( inputTracks()->Selected< const WaveTrack >() ).first;
-   };
-
-   m_dStartFrequency = 261.265;// Middle C.
-
-   // As a neat trick, attempt to get the frequency of the note at the
-   // beginning of the selection.
-   auto track = FirstTrack();
-   if (track ) {
-      double rate = track->GetRate();
-
-      // Auto-size window -- high sample rates require larger windowSize.
-      // Aim for around 2048 samples at 44.1 kHz (good down to about 100 Hz).
-      // To detect single notes, analysis period should be about 0.2 seconds.
-      // windowSize must be a power of 2.
-      const size_t windowSize =
-         // windowSize < 256 too inaccurate
-         std::max(256l, std::lround(pow(2.0, floor((log(rate / 20.0)/log(2.0)) + 0.5))));
-
-      // we want about 0.2 seconds to catch the first note.
-      // number of windows rounded to nearest integer >= 1.
-      const unsigned numWindows =
-         std::max(1l, std::lround((double)(rate / (5.0f * windowSize))));
-
-      double trackStart = track->GetStartTime();
-      double t0 = mT0 < trackStart? trackStart: mT0;
-      auto start = track->TimeToLongSamples(t0);
-
-      auto analyzeSize = windowSize * numWindows;
-      Floats buffer{ analyzeSize };
-
-      Floats freq{ windowSize / 2 };
-      Floats freqa{ windowSize / 2, true };
-
-      track->GetFloats(buffer.get(), start, analyzeSize);
-      for(unsigned i = 0; i < numWindows; i++) {
-         ComputeSpectrum(buffer.get() + i * windowSize, windowSize,
-                         windowSize, rate, freq.get(), true);
-         for(size_t j = 0; j < windowSize / 2; j++)
-            freqa[j] += freq[j];
-      }
-      size_t argmax = 0;
-      for(size_t j = 1; j < windowSize / 2; j++)
-         if (freqa[j] > freqa[argmax])
-            argmax = j;
-
-      auto lag = (windowSize / 2 - 1) - argmax;
-      m_dStartFrequency = rate / lag;
-   }
-
-   double dFromMIDInote = FreqToMIDInote(m_dStartFrequency);
-   double dToMIDInote = dFromMIDInote + m_dSemitonesChange;
-   m_nFromPitch = PitchIndex(dFromMIDInote);
-   m_nFromOctave = PitchOctave(dFromMIDInote);
-   m_nToPitch = PitchIndex(dToMIDInote);
-   m_nToOctave = PitchOctave(dToMIDInote);
-
-   m_FromFrequency = m_dStartFrequency;
-   // Calc_PercentChange();  // This will reset m_dPercentChange
-   Calc_ToFrequency();
-}
-
-// calculations
-
-void EffectChangePitch::Calc_ToPitch()
-{
-   int nSemitonesChange =
-      (int)(m_dSemitonesChange + ((m_dSemitonesChange < 0.0) ? -0.5 : 0.5));
-   m_nToPitch = (m_nFromPitch + nSemitonesChange) % 12;
-   if (m_nToPitch < 0)
-      m_nToPitch += 12;
-}
-
-void EffectChangePitch::Calc_ToOctave()
-{
-   m_nToOctave = PitchOctave(FreqToMIDInote(m_ToFrequency));
-}
-
-void EffectChangePitch::Calc_SemitonesChange_fromPitches()
-{
-   m_dSemitonesChange =
-      PitchToMIDInote(m_nToPitch, m_nToOctave) - PitchToMIDInote(m_nFromPitch, m_nFromOctave);
-}
-
-void EffectChangePitch::Calc_SemitonesChange_fromPercentChange()
-{
-   // Use m_dPercentChange rather than m_FromFrequency & m_ToFrequency, because
-   // they start out uninitialized, but m_dPercentChange is always valid.
-   m_dSemitonesChange = (12.0 * log((100.0 + m_dPercentChange) / 100.0)) / log(2.0);
-}
-
-void EffectChangePitch::Calc_ToFrequency()
-{
-   m_ToFrequency = (m_FromFrequency * (100.0 + m_dPercentChange)) / 100.0;
-}
-
-void EffectChangePitch::Calc_PercentChange()
-{
-   m_dPercentChange = 100.0 * (pow(2.0, (m_dSemitonesChange / 12.0)) - 1.0);
-}
-
-
 // handlers
-void EffectChangePitch::OnChoice_FromPitch(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnChoice_FromPitch(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
@@ -570,7 +272,7 @@ void EffectChangePitch::OnChoice_FromPitch(wxCommandEvent & /* evt */)
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnSpin_FromOctave(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnSpin_FromOctave(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
@@ -592,7 +294,7 @@ void EffectChangePitch::OnSpin_FromOctave(wxCommandEvent & /* evt */)
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnChoice_ToPitch(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnChoice_ToPitch(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
@@ -613,7 +315,7 @@ void EffectChangePitch::OnChoice_ToPitch(wxCommandEvent & /* evt */)
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnSpin_ToOctave(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnSpin_ToOctave(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
@@ -644,14 +346,14 @@ void EffectChangePitch::OnSpin_ToOctave(wxCommandEvent & /* evt */)
    m_bLoopDetect = false;
 }
 
-void EffectChangePitch::OnText_SemitonesChange(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnText_SemitonesChange(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
 
    if (!m_pTextCtrl_SemitonesChange->GetValidator()->TransferFromWindow())
    {
-      EnableApply(false);
+      EffectEditor::EnableApply(mUIParent, false);
       return;
    }
 
@@ -674,10 +376,10 @@ void EffectChangePitch::OnText_SemitonesChange(wxCommandEvent & /* evt */)
    // If m_dSemitonesChange is a big enough positive, we can go to 1.#INF (Windows) or inf (Linux).
    // But practically, these are best limits for Soundtouch.
    bool bIsGoodValue = (m_dSemitonesChange > -80.0) && (m_dSemitonesChange <= 60.0);
-   EnableApply(bIsGoodValue);
+   EffectEditor::EnableApply(mUIParent, bIsGoodValue);
 }
 
-void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
@@ -687,7 +389,7 @@ void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & /* evt */)
    // so it's not an error, but we do not want to update the values/controls.
    if (!m_pTextCtrl_FromFrequency->GetValidator()->TransferFromWindow())
    {
-      EnableApply(false);
+      EffectEditor::EnableApply(mUIParent, false);
       return;
    }
 
@@ -709,10 +411,10 @@ void EffectChangePitch::OnText_FromFrequency(wxCommandEvent & /* evt */)
    m_bLoopDetect = false;
 
    // Success. Make sure OK and Preview are enabled, in case we disabled above during editing.
-   EnableApply(true);
+   EffectEditor::EnableApply(mUIParent, true);
 }
 
-void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
@@ -722,7 +424,7 @@ void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & /* evt */)
    // so it's not an error, but we do not want to update the values/controls.
    if (!m_pTextCtrl_ToFrequency->GetValidator()->TransferFromWindow())
    {
-      EnableApply(false);
+      EffectEditor::EnableApply(mUIParent, false);
       return;
    }
 
@@ -745,18 +447,18 @@ void EffectChangePitch::OnText_ToFrequency(wxCommandEvent & /* evt */)
    // Success. Make sure OK and Preview are disabled if percent change is out of bounds.
    // Can happen while editing.
    // If the value is good, might also need to re-enable because of above clause.
-   bool bIsGoodValue = (m_dPercentChange > MIN_Percentage) && (m_dPercentChange <= MAX_Percentage);
-   EnableApply(bIsGoodValue);
+   bool bIsGoodValue = (m_dPercentChange > Percentage.min) && (m_dPercentChange <= Percentage.max);
+   EffectEditor::EnableApply(mUIParent, bIsGoodValue);
 }
 
-void EffectChangePitch::OnText_PercentChange(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnText_PercentChange(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;
 
    if (!m_pTextCtrl_PercentChange->GetValidator()->TransferFromWindow())
    {
-      EnableApply(false);
+      EffectEditor::EnableApply(mUIParent, false);
       return;
    }
 
@@ -776,10 +478,10 @@ void EffectChangePitch::OnText_PercentChange(wxCommandEvent & /* evt */)
    m_bLoopDetect = false;
 
    // Success. Make sure OK and Preview are enabled, in case we disabled above during editing.
-   EnableApply(true);
+   EffectEditor::EnableApply(mUIParent, true);
 }
 
-void EffectChangePitch::OnSlider_PercentChange(wxCommandEvent & /* evt */)
+void EffectChangePitch::OnSlider_PercentChange(wxCommandEvent & WXUNUSED(evt))
 {
    if (m_bLoopDetect)
       return;

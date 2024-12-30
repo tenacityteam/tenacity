@@ -16,18 +16,21 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "Envelope.h"
 #include "../../../../HitTestResult.h"
-#include "../../../../prefs/WaveformSettings.h"
-#include "../../../../ProjectAudioIO.h"
-#include "../../../../ProjectHistory.h"
+#include "WaveformSettings.h"
+#include "ProjectAudioIO.h"
+#include "ProjectHistory.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../TrackArt.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelMouseEvent.h"
-#include "../../../../UndoManager.h"
+#include "UndoManager.h"
 #include "ViewInfo.h"
-#include "../../../../WaveTrack.h"
+#include "WaveChannelUtilities.h"
+#include "WaveClip.h"
+#include "WaveTrack.h"
 #include "../../../../../images/Cursors.h"
-#include "../../../../widgets/AudacityMessageBox.h"
+#include "AudacityMessageBox.h"
+#include "prefs/WaveformScale.h"
 
 
 static const int SMOOTHING_KERNEL_RADIUS = 3;
@@ -35,12 +38,12 @@ static const int SMOOTHING_BRUSH_RADIUS = 5;
 static const double SMOOTHING_PROPORTION_MAX = 0.7;
 static const double SMOOTHING_PROPORTION_MIN = 0.0;
 
-SampleHandle::SampleHandle( const std::shared_ptr<WaveTrack> &pTrack )
+SampleHandle::SampleHandle(const std::shared_ptr<WaveChannel> &pTrack)
    : mClickedTrack{ pTrack }
 {
 }
 
-void SampleHandle::Enter(bool, TenacityProject *)
+void SampleHandle::Enter(bool, AudacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -48,12 +51,11 @@ void SampleHandle::Enter(bool, TenacityProject *)
 }
 
 HitTestPreview SampleHandle::HitPreview
-(const wxMouseState &state, const TenacityProject* /* pProject */, bool unsafe)
+(const wxMouseState &state, const AudacityProject *WXUNUSED(pProject), bool unsafe)
 {
    static auto disabledCursor =
       ::MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
-   static auto smoothCursor =
-      ::MakeCursor(wxCURSOR_SPRAYCAN, DrawToolSmoothingXpm, 16, 16);
+   static wxCursor smoothCursor{ wxCURSOR_SPRAYCAN };
    static auto pencilCursor =
       ::MakeCursor(wxCURSOR_PENCIL, DrawCursorXpm, 12, 22);
 
@@ -66,37 +68,41 @@ HitTestPreview SampleHandle::HitPreview
       (unsafe
        ? &*disabledCursor
        : (state.AltDown()
-          ? &*smoothCursor
+          ? &smoothCursor
           : &*pencilCursor))
    };
 }
 
-UIHandlePtr SampleHandle::HitAnywhere
-(std::weak_ptr<SampleHandle> &holder,
- const wxMouseState& /* state */, const std::shared_ptr<WaveTrack> &pTrack)
+UIHandlePtr SampleHandle::HitAnywhere(std::weak_ptr<SampleHandle> &holder,
+ const wxMouseState &, const std::shared_ptr<WaveChannel> &pChannel)
 {
-   auto result = std::make_shared<SampleHandle>( pTrack );
+   auto result = std::make_shared<SampleHandle>(pChannel);
    result = AssignUIHandlePtr(holder, result);
    return result;
 }
 
 namespace {
-   inline double adjustTime(const WaveTrack *wt, double time)
+   inline double adjustTime(const WaveChannel& wt, double time)
    {
       // Round to an exact sample time
-      return wt->LongSamplesToTime(wt->TimeToLongSamples(time));
+      const auto clip = WaveChannelUtilities::GetClipAtTime(wt, time);
+      if (!clip)
+         return wt.SnapToSample(time);
+      const auto sampleOffset =
+         clip->TimeToSamples(time - clip->GetPlayStartTime());
+      return clip->SamplesToTime(sampleOffset) + clip->GetPlayStartTime();
    }
 
    // Is the sample horizontally nearest to the cursor sufficiently separated
    // from its neighbors that the pencil tool should be allowed to drag it?
-   bool SampleResolutionTest
-      ( const ViewInfo &viewInfo, const WaveTrack *wt, double time, int width )
+   bool SampleResolutionTest(
+      const ViewInfo& viewInfo, const WaveChannelInterval& clip,
+      const ZoomInfo::Intervals& intervals)
    {
       // Require more than 3 pixels per sample
-      const wxInt64 xx = std::max(wxInt64(0), viewInfo.TimeToPosition(time));
-      ZoomInfo::Intervals intervals;
-      const double rate = wt->GetRate();
-      viewInfo.FindIntervals(rate, intervals, width);
+      const auto xx = std::max<ZoomInfo::int64>(
+         0, viewInfo.TimeToPosition(clip.GetPlayStartTime()));
+      const double rate = clip.GetRate() / clip.GetStretchRatio();
       ZoomInfo::Intervals::const_iterator it = intervals.begin(),
          end = intervals.end(), prev;
       wxASSERT(it != end && it->position == 0);
@@ -109,47 +115,53 @@ namespace {
    }
 }
 
-UIHandlePtr SampleHandle::HitTest
-(std::weak_ptr<SampleHandle> &holder,
+UIHandlePtr SampleHandle::HitTest(std::weak_ptr<SampleHandle> &holder,
  const wxMouseState &state, const wxRect &rect,
- const TenacityProject *pProject, const std::shared_ptr<WaveTrack> &pTrack)
+ const AudacityProject *pProject, const std::shared_ptr<WaveChannel> &pChannel)
 {
+   using namespace WaveChannelUtilities;
    const auto &viewInfo = ViewInfo::Get( *pProject );
 
    /// method that tells us if the mouse event landed on an
    /// editable sample
-   const auto wavetrack = pTrack.get();
+   if (!pChannel)
+      return {};
+   auto &waveChannel = *pChannel;
    const auto time = viewInfo.PositionToTime(state.m_x, rect.x);
+   const auto clickedClip =
+      WaveChannelUtilities::GetClipAtTime(waveChannel, time);
+   if (!clickedClip)
+      return {};
 
-   const double tt = adjustTime(wavetrack, time);
-   if (!SampleResolutionTest(viewInfo, wavetrack, tt, rect.width))
+   const double tt = adjustTime(waveChannel, time);
+   const auto intervals = viewInfo.FindIntervals(rect.width);
+   if (!SampleResolutionTest(viewInfo, *clickedClip, intervals))
       return {};
 
    // Just get one sample.
    float oneSample;
-   const double rate = wavetrack->GetRate();
-   const auto s0 = (sampleCount)(tt * rate + 0.5);
-   if (! wavetrack->GetFloats(&oneSample, s0, 1, fillZero,
-         // Do not propagate exception but return a failure value
-         false) )
+   constexpr auto mayThrow = false;
+   if (!WaveChannelUtilities::GetFloatAtTime(waveChannel,
+      tt, oneSample, mayThrow))
       return {};
 
    // Get y distance of envelope point from center line (in pixels).
+   auto &cache = WaveformScale::Get(waveChannel);
    float zoomMin, zoomMax;
-
-   wavetrack->GetDisplayBounds(&zoomMin, &zoomMax);
+   cache.GetDisplayBounds(zoomMin, zoomMax);
 
    double envValue = 1.0;
-   Envelope* env = wavetrack->GetEnvelopeAtTime(time);
-   if (env)
-      // Calculate sample as it would be rendered, so quantize time
-      envValue = env->GetValue( tt, 1.0 / wavetrack->GetRate() );
+   if (const auto env =
+      WaveChannelUtilities::GetEnvelopeAtTime(waveChannel, time))
+      // Calculate sample as it would be rendered
+      envValue = env->GetValue(tt);
 
-   const bool dB = !wavetrack->GetWaveformSettings().isLinear();
+   auto &settings = WaveformSettings::Get(waveChannel);
+   const bool dB = !settings.isLinear();
    int yValue = GetWaveYPos(oneSample * envValue,
       zoomMin, zoomMax,
-      rect.height, dB, true, 
-      wavetrack->GetWaveformSettings().dBRange, false) + rect.y;
+      rect.height, dB, true,
+      settings.dBRange, false) + rect.y;
 
    // Get y position of mouse (in pixels)
    int yMouse = state.m_y;
@@ -159,39 +171,23 @@ UIHandlePtr SampleHandle::HitTest
    if (abs(yValue - yMouse) >= yTolerance)
       return {};
 
-   return HitAnywhere(holder, state, pTrack);
+   return HitAnywhere(holder, state, pChannel);
 }
 
 SampleHandle::~SampleHandle()
 {
 }
 
-namespace {
-   /// Determines if we can edit samples in a wave track.
-   /// Also pops up warning messages in certain cases where we can't.
-   ///  @return true if we can edit the samples, false otherwise.
-   bool IsSampleEditingPossible
-      (const wxMouseEvent &event,
-       const wxRect &rect, const ViewInfo &viewInfo, WaveTrack *wt, int width)
-   {
-      //If we aren't zoomed in far enough, show a message dialog.
-      const double time = adjustTime(wt, viewInfo.PositionToTime(event.m_x, rect.x));
-      if (!SampleResolutionTest(viewInfo, wt, time, width))
-      {
-         AudacityMessageBox(
-            XO(
-"To use Draw, zoom in further until you can see the individual samples."),
-            XO("Draw Tool"));
-         return false;
-      }
-      return true;
-   }
+std::shared_ptr<const Track> SampleHandle::FindTrack() const
+{
+   return TrackFromChannel(mClickedTrack);
 }
 
 UIHandle::Result SampleHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
+   using namespace WaveChannelUtilities;
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
    if ( unsafe )
       return Cancelled;
@@ -199,23 +195,28 @@ UIHandle::Result SampleHandle::Click
    const wxMouseEvent &event = evt.event;
    const wxRect &rect = evt.rect;
    const auto &viewInfo = ViewInfo::Get( *pProject );
-   const auto pTrack = mClickedTrack.get();
 
-   /// Someone has just clicked the mouse.  What do we do?
-   if (!IsSampleEditingPossible(
-         event, rect, viewInfo, pTrack, rect.width))
+   const double t0 = viewInfo.PositionToTime(event.m_x, rect.x);
+   const auto pTrack = mClickedTrack.get();
+   mClickedClip = WaveChannelUtilities::GetClipAtTime(*pTrack, t0);
+   if (!mClickedClip)
       return Cancelled;
+
+   const auto intervals = viewInfo.FindIntervals(rect.width);
+   /// Someone has just clicked the mouse.  What do we do?
+   if (!SampleResolutionTest(viewInfo, *mClickedClip, intervals))
+   {
+      AudacityMessageBox(
+         XO("To use Draw, zoom in further until you can see the individual samples."),
+         XO("Draw Tool"));
+      return Cancelled;
+   }
 
    /// We're in a track view and zoomed enough to see the samples.
    mRect = rect;
 
-   //If we are still around, we are drawing in earnest.  Set some member data structures up:
-   //First, calculate the starting sample.  To get this, we need the time
-   const double t0 =
-      adjustTime(mClickedTrack.get(), viewInfo.PositionToTime(event.m_x, rect.x));
-
    //convert t0 to samples
-   mClickedStartSample = mClickedTrack->TimeToLongSamples(t0);
+   mClickedStartPixel = viewInfo.TimeToPosition(t0);
 
    //Determine how drawing should occur.  If alt is down,
    //do a smoothing, instead of redrawing.
@@ -239,17 +240,23 @@ UIHandle::Result SampleHandle::Click
       Floats sampleRegion{ sampleRegionSize };
       Floats newSampleRegion{ 1 + 2 * (size_t)SMOOTHING_BRUSH_RADIUS };
 
-      //Get a sample  from the track to do some tricks on.
-      mClickedTrack->GetFloats(sampleRegion.get(),
-         mClickedStartSample - SMOOTHING_KERNEL_RADIUS - SMOOTHING_BRUSH_RADIUS,
-         sampleRegionSize);
+      //Get a sample from the clip to do some tricks on.
+      constexpr auto mayThrow = false;
+      const auto sampleRegionRange = GetFloatsCenteredAroundTime(*mClickedTrack,
+            t0, sampleRegion.get(),
+            SMOOTHING_KERNEL_RADIUS + SMOOTHING_BRUSH_RADIUS, mayThrow);
 
       //Go through each point of the smoothing brush and apply a smoothing operation.
       for (auto jj = -SMOOTHING_BRUSH_RADIUS; jj <= SMOOTHING_BRUSH_RADIUS; ++jj) {
          float sumOfSamples = 0;
          for (auto ii = -SMOOTHING_KERNEL_RADIUS; ii <= SMOOTHING_KERNEL_RADIUS; ++ii) {
             //Go through each point of the smoothing kernel and find the average
-
+            const auto sampleRegionIndex =
+               ii + jj + SMOOTHING_KERNEL_RADIUS + SMOOTHING_BRUSH_RADIUS;
+            const auto inRange = sampleRegionRange.first <= sampleRegionIndex &&
+                                 sampleRegionIndex < sampleRegionRange.second;
+            if (!inRange)
+               continue;
             //The average is a weighted average, scaled by a weighting kernel that is simply triangular
             // A triangular kernel across N items, with a radius of R ( 2 R + 1 points), if the farthest:
             // points have a probability of a, the entire triangle has total probability of (R + 1)^2.
@@ -258,10 +265,8 @@ UIHandle::Result SampleHandle::Click
             //
             //
             //                weighting factor                       value
-            sumOfSamples +=
-               (SMOOTHING_KERNEL_RADIUS + 1 - abs(ii)) *
-               sampleRegion[ii + jj + SMOOTHING_KERNEL_RADIUS + SMOOTHING_BRUSH_RADIUS];
-
+            sumOfSamples += (SMOOTHING_KERNEL_RADIUS + 1 - abs(ii)) *
+                            sampleRegion[sampleRegionIndex];
          }
          newSampleRegion[jj + SMOOTHING_BRUSH_RADIUS] =
             sumOfSamples /
@@ -288,9 +293,11 @@ UIHandle::Result SampleHandle::Click
             sampleRegion[SMOOTHING_BRUSH_RADIUS + SMOOTHING_KERNEL_RADIUS + jj] *
                (1 - prob);
       }
-      //Set the sample to the point of the mouse event
-      mClickedTrack->Set((samplePtr)newSampleRegion.get(), floatSample,
-         mClickedStartSample - SMOOTHING_BRUSH_RADIUS, 1 + 2 * SMOOTHING_BRUSH_RADIUS);
+      // Set a range of samples around the mouse event
+      // Don't require dithering later
+      SetFloatsCenteredAroundTime(*mClickedTrack,
+         t0, newSampleRegion.get(), SMOOTHING_BRUSH_RADIUS,
+         narrowestSampleFormat);
 
       // mLastDragSampleValue will not be used
    }
@@ -305,30 +312,61 @@ UIHandle::Result SampleHandle::Click
       const float newLevel = FindSampleEditingLevel(event, viewInfo, t0);
 
       //Set the sample to the point of the mouse event
-      mClickedTrack->Set((samplePtr)&newLevel, floatSample, mClickedStartSample, 1);
+      // Don't require dithering later
+
+      SetFloatAtTime(*mClickedTrack, t0, newLevel, narrowestSampleFormat);
 
       mLastDragSampleValue = newLevel;
    }
 
    //Set the member data structures for drawing
-   mLastDragSample = mClickedStartSample;
+   mLastDragPixel = mClickedStartPixel;
 
    // Sample data changed on either branch, so refresh the track display.
    return RefreshCell;
 }
 
+namespace
+{
+size_t GetLastEditableClipStartingFromNthClip(size_t n, bool forward,
+   const WaveChannelUtilities::ClipPointers& sortedClips,
+   const ViewInfo& viewInfo, const ZoomInfo::Intervals& intervals)
+{
+   assert(n < sortedClips.size());
+   const auto increment = forward ? 1 : -1;
+   int last = n + increment;
+   const auto limit = forward ? sortedClips.size() : -1;
+   while (last != limit)
+   {
+      if (!SampleResolutionTest(viewInfo, *sortedClips[last], intervals))
+         break;
+      last += increment;
+   }
+   last -= increment;
+   assert(last >= 0 && last < sortedClips.size());
+   return last;
+}
+} // namespace
+
 UIHandle::Result SampleHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
+   using namespace WaveChannelUtilities;
    const wxMouseEvent &event = evt.event;
    const auto &viewInfo = ViewInfo::Get( *pProject );
 
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
-   if (unsafe) {
+   if (unsafe)
+   {
       this->Cancel(pProject);
       return RefreshCell | Cancelled;
    }
+
+   // There must have been some clicking before dragging ...
+   assert(mClickedTrack && mClickedClip);
+   if (!(mClickedTrack && mClickedClip))
+      return Cancelled;
 
    //*************************************************
    //***    DRAG-DRAWING                           ***
@@ -339,76 +377,66 @@ UIHandle::Result SampleHandle::Drag
    if (mAltKey)
       return RefreshNone;
 
-   sampleCount s0;     //declare this for use below.  It designates which sample number to draw.
+   const double t0 = viewInfo.PositionToTime(mLastDragPixel);
+   const double t1 = viewInfo.PositionToTime(event.m_x, mRect.x);
 
-   // Figure out what time the click was at
-   //Find the point that we want to redraw at. If the control button is down,
-   //adjust only the originally clicked-on sample
-
-   if (event.m_controlDown) {
-      //*************************************************
-      //***   CTRL-DOWN (Hold Initial Sample Constant ***
-      //*************************************************
-
-      s0 = mClickedStartSample;
-   }
-   else {
-      //*************************************************
-      //***    Normal CLICK-drag  (Normal drawing)    ***
-      //*************************************************
-
-      //Otherwise, adjust the sample you are dragging over right now.
-      //convert this to samples
-      const double tt = viewInfo.PositionToTime(event.m_x, mRect.x);
-      s0 = mClickedTrack->TimeToLongSamples(tt);
-   }
-
-   const double t0 = mClickedTrack->LongSamplesToTime(s0);
-
-   // Do redrawing, based on the mouse position.
-   // Calculate where the mouse is located vertically (between +/- 1)
-
+   const int x1 =
+      event.m_controlDown ? mClickedStartPixel : viewInfo.TimeToPosition(t1);
    const float newLevel = FindSampleEditingLevel(event, viewInfo, t0);
+   const auto start = std::min(t0, t1);
+   const auto end = std::max(t0, t1);
 
-   //Now, redraw all samples between current and last redrawn sample, inclusive
-   //Go from the smaller to larger sample.
-   const auto start = std::min(s0, mLastDragSample);
-   const auto end = std::max(s0, mLastDragSample);
-   // Few enough samples to be drawn individually on screen will not
-   // overflow size_t:
-   const auto size = ( end - start + 1 ).as_size_t();
-   if (size == 1) {
-      mClickedTrack->Set((samplePtr)&newLevel, floatSample, start, size);
-   }
-   else {
-      std::vector<float> values(size);
-      for (auto ii = start; ii <= end; ++ii) {
-         //This interpolates each sample linearly:
-         // i - start will not overflow size_t either:
-         values[( ii - start ).as_size_t()] =
-            mLastDragSampleValue + (newLevel - mLastDragSampleValue)  *
-            (ii - mLastDragSample).as_float() /
-             (s0 - mLastDragSample).as_float();
-      }
-      mClickedTrack->Set((samplePtr)&values[0], floatSample, start, size);
-   }
+   // Starting from the originally clicked clip, restrict the editing boundaries
+   // to the succession of clips with visible samples. If, of clips A, B and C,
+   // only B had invisible samples, it'd mean one could not drag-draw from A
+   // into C, but that probably isn't a behavior worthwhile much implementation
+   // complications.
+   const auto clips = WaveChannelUtilities::SortedClipArray(*mClickedTrack);
+   const auto iter = std::find_if(clips.begin(), clips.end(),
+      // Compare the intervals, not the pointers to them
+      [this](const auto &pClip){ return *pClip == *mClickedClip; });
+   const auto clickedClipIndex = std::distance(clips.begin(), iter);
+   constexpr auto forward = true;
+   const auto intervals = viewInfo.FindIntervals(mRect.width);
+   const size_t leftmostEditable = GetLastEditableClipStartingFromNthClip(
+      clickedClipIndex, !forward, clips, viewInfo, intervals);
+   const size_t rightmostEditable = GetLastEditableClipStartingFromNthClip(
+      clickedClipIndex, forward, clips, viewInfo, intervals);
 
-   //Update the member data structures.
-   mLastDragSample = s0;
+   const auto editStart =
+      std::max(start, clips[leftmostEditable]->GetPlayStartTime());
+   const auto editEnd =
+      std::min(end, clips[rightmostEditable]->GetPlayEndTime());
+
+   // For fast pencil movements covering more than one sample between two
+   // updates, we draw a line going from v0 at t0 to v1 at t1.
+   const auto interpolator = [t0, t1, v0 = mLastDragSampleValue,
+                              v1 = newLevel](double t) {
+      if (t0 == t1)
+         return v1;
+      const auto gradient = (v1 - v0) / (t1 - t0);
+      const auto value = static_cast<float>(gradient * (t - t0) + v0);
+      // t may be outside t0 and t1, and we don't want to extrapolate.
+      return std::clamp(value, std::min(v0, v1), std::max(v0, v1));
+   };
+   SetFloatsWithinTimeRange(*mClickedTrack,
+      editStart, editEnd, interpolator, narrowestSampleFormat);
+
+   mLastDragPixel = x1;
    mLastDragSampleValue = newLevel;
 
    return RefreshCell;
 }
 
 HitTestPreview SampleHandle::Preview
-(const TrackPanelMouseState &st, TenacityProject *pProject)
+(const TrackPanelMouseState &st, AudacityProject *pProject)
 {
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
    return HitPreview(st.state, pProject, unsafe);
 }
 
 UIHandle::Result SampleHandle::Release
-(const TrackPanelMouseEvent &, TenacityProject *pProject,
+(const TrackPanelMouseEvent &, AudacityProject *pProject,
  wxWindow *)
 {
    const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
@@ -420,6 +448,7 @@ UIHandle::Result SampleHandle::Release
    //*************************************************
    //On up-click, send the state to the undo stack
    mClickedTrack.reset();       //Set this to NULL so it will catch improper drag events.
+   mClickedClip = nullptr;
    ProjectHistory::Get( *pProject ).PushState(XO("Moved Samples"),
       XO("Sample Edit"),
       UndoPush::CONSOLIDATE);
@@ -428,7 +457,7 @@ UIHandle::Result SampleHandle::Release
    return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result SampleHandle::Cancel(TenacityProject *pProject)
+UIHandle::Result SampleHandle::Cancel(AudacityProject *pProject)
 {
    mClickedTrack.reset();
    ProjectHistory::Get( *pProject ).RollbackState();
@@ -438,24 +467,25 @@ UIHandle::Result SampleHandle::Cancel(TenacityProject *pProject)
 float SampleHandle::FindSampleEditingLevel
    (const wxMouseEvent &event, const ViewInfo &viewInfo, double t0)
 {
+   using namespace WaveChannelUtilities;
    // Calculate where the mouse is located vertically (between +/- 1)
    float zoomMin, zoomMax;
-   mClickedTrack->GetDisplayBounds(&zoomMin, &zoomMax);
+   auto &cache = WaveformScale::Get(*mClickedTrack);
+   cache.GetDisplayBounds(zoomMin, zoomMax);
 
    const int yy = event.m_y - mRect.y;
    const int height = mRect.GetHeight();
-   const bool dB = !mClickedTrack->GetWaveformSettings().isLinear();
+   auto &settings = WaveformSettings::Get(*mClickedTrack);
+   const bool dB = !settings.isLinear();
    float newLevel =
-      ::ValueOfPixel(yy, height, false, dB, 
-         mClickedTrack->GetWaveformSettings().dBRange, zoomMin, zoomMax);
+      ::ValueOfPixel(yy, height, false, dB,
+         settings.dBRange, zoomMin, zoomMax);
 
    //Take the envelope into account
    const auto time = viewInfo.PositionToTime(event.m_x, mRect.x);
-   Envelope *const env = mClickedTrack->GetEnvelopeAtTime(time);
-   if (env)
-   {
-      // Calculate sample as it would be rendered, so quantize time
-      double envValue = env->GetValue( t0, 1.0 / mClickedTrack->GetRate());
+   if (const auto env = GetEnvelopeAtTime(*mClickedTrack, time)){
+      // Calculate sample as it would be rendered
+      double envValue = env->GetValue(t0);
       if (envValue > 0)
          newLevel /= envValue;
       else

@@ -28,16 +28,16 @@ system by constructing BatchCommandEval objects.
 #include "Command.h"
 #include "CommandContext.h"
 #include "CommandTargets.h"
-#include "../shuttle/Shuttle.h"
+#include "SettingsVisitor.h"
 
 CommandBuilder::CommandBuilder(
-   TenacityProject &project, const wxString &cmdString)
+   AudacityProject &project, const wxString &cmdString)
    : mValid(false)
 {
    BuildCommand(project, cmdString);
 }
 
-CommandBuilder::CommandBuilder(TenacityProject &project,
+CommandBuilder::CommandBuilder(AudacityProject &project,
    const wxString &cmdName, const wxString &params)
    : mValid(false)
 {
@@ -82,7 +82,61 @@ void CommandBuilder::Success(const OldStyleCommandPointer &cmd)
    mValid = true;
 }
 
-void CommandBuilder::BuildCommand(TenacityProject &project,
+namespace {
+// This class was formerly in Shuttle.cpp and inherited Shuttle but the
+// polymorphism wasn't really needed in the sole use of the class in this file
+struct ShuttleCli final // : public Shuttle
+{
+   wxString mValueString;
+   bool TransferString(const wxString & Name, wxString & strValue);
+   wxString mParams;
+
+//   virtual ~ShuttleCli() {}
+
+   bool ExchangeWithMaster(const wxString & Name);
+};
+
+// uses values of the form
+// param1=value1 param2=value2
+bool ShuttleCli::ExchangeWithMaster(const wxString & Name)
+{
+   int i;
+   mParams = L" " + mParams;
+   i = mParams.Find( L" " + Name + L"=" );
+   if( i >= 0 ){
+      int j = i + 2 + Name.Length();
+      wxString terminator = L' ';
+      if (mParams.GetChar(j) == L'"') //Strings are surrounded by quotes
+      {
+         terminator = L'"';
+         j++;
+      }
+      else if(mParams.GetChar(j) == L'\'') // or by single quotes.
+      {
+         terminator = L'\'';
+         j++;
+      }
+      i = j;
+      while( j<(int)mParams.Length() && mParams.GetChar(j) != terminator )
+         j++;
+      mValueString = mParams.Mid(i, j - i);
+      return true;
+   }
+   return false;
+}
+
+bool ShuttleCli::TransferString(const wxString & Name, wxString & strValue)
+{
+   if( ExchangeWithMaster(Name)) {
+      strValue = mValueString;
+      return true;
+   }
+   else
+      return false;
+}
+}
+
+void CommandBuilder::BuildCommand(AudacityProject &project,
                                   const wxString &cmdName,
                                   const wxString &cmdParamsArg)
 {
@@ -119,7 +173,6 @@ void CommandBuilder::BuildCommand(TenacityProject &project,
 
    ShuttleCli shuttle;
    shuttle.mParams = cmdParamsArg;
-   shuttle.mbStoreInClient = true;
 
    ParamValueMap::const_iterator iter;
    ParamValueMap params = signature.GetDefaults();
@@ -188,7 +241,7 @@ void CommandBuilder::BuildCommand(TenacityProject &project,
 }
 
 void CommandBuilder::BuildCommand(
-   TenacityProject &project, const wxString &cmdStringArg)
+   AudacityProject &project, const wxString &cmdStringArg)
 {
    wxString cmdString(cmdStringArg);
 

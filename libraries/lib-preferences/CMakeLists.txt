@@ -10,22 +10,19 @@ preferences.
 
 PreferenceInitializer is a callback for the reinitialization of preferences.
 
-FileConfig decorates wxFileConfig, with a (pure virtual) member function to
+FileConfig decorates wxFileConfig, with a member function to
 alert the user of failure to initialize it (as when the file is read-only).
-]]#
+]]
 
 set( SOURCES
-   FileConfig.cpp
-   FileConfig.h
+   BasicSettings.cpp
+   BasicSettings.h
    Prefs.cpp
    Prefs.h
 )
 set( LIBRARIES 
-   lib-utility-interface
    lib-basic-ui-interface
    lib-components-interface
-   PRIVATE
-   wxWidgets::wxWidgets
 )
 tenacity_library( lib-preferences "${SOURCES}" "${LIBRARIES}"
    "" ""

@@ -14,17 +14,16 @@
 
 #include <wx/defs.h>
 
-#include "export/Export.h"
-#include "commands/CommandFlag.h"
-
-// Ssaucedaity libraries
-#include <lib-components/ComponentInterface.h> // for ComponentInterfaceSymbol
+#include "Export.h"
+#include "ComponentInterface.h" // for ComponentInterfaceSymbol
+#include "PluginProvider.h" // for PluginID
 
 class wxArrayString;
+class wxWindow;
 class Effect;
 class CommandContext;
 class CommandManager;
-class TenacityProject;
+class AudacityProject;
 class wxArrayStringEx;
 
 class MacroCommandsCatalog {
@@ -36,12 +35,15 @@ public:
    };
    using Entries = std::vector<Entry>;
 
-   MacroCommandsCatalog( const TenacityProject *project );
+   MacroCommandsCatalog( const AudacityProject *project );
 
    // binary search
    Entries::const_iterator ByFriendlyName( const TranslatableString &friendlyName ) const;
    // linear search
    Entries::const_iterator ByCommandId( const CommandID &commandId ) const;
+   // linear search
+   Entries::const_iterator ByTranslation(const wxString &translation) const;
+
 
    // Lookup by position as sorted by friendly name
    const Entry &operator[] ( size_t index ) const { return mCommands[index]; }
@@ -57,23 +59,24 @@ private:
 // Stores information for one macro
 class MacroCommands final {
  public:
-   static bool DoAudacityCommand(
-      const PluginID & ID, const CommandContext & context, unsigned flags );
-
    // constructors and destructors
-   MacroCommands( TenacityProject &project );
+   MacroCommands( AudacityProject &project );
+   AudacityProject &GetProject() { return mProject; }
  public:
    bool ApplyMacro( const MacroCommandsCatalog &catalog,
       const wxString & filename = {});
-   static bool HandleTextualCommand( CommandManager &commandManager,
-      const CommandID & Str,
-      const CommandContext & context, CommandFlag flags, bool alwaysEnabled);
+   /*!
+    @pre `!pContext || &pContext->project == &GetProject()`
+    */
    bool ApplyCommand( const TranslatableString &friendlyCommand,
       const CommandID & command, const wxString & params,
-      CommandContext const * pContext=NULL );
+      CommandContext const * pContext = nullptr);
+   /*!
+    @pre `!pContext || &pContext->project == &GetProject()`
+    */
    bool ApplyCommandInBatchMode( const TranslatableString &friendlyCommand,
       const CommandID & command, const wxString &params,
-      CommandContext const * pContext = NULL);
+      CommandContext const * pContext = nullptr);
    bool ApplyEffectCommand(
       const PluginID & ID, const TranslatableString &friendlyCommand,
       const CommandID & command,
@@ -88,7 +91,8 @@ class MacroCommands final {
 
    static wxString GetCurrentParamsFor(const CommandID & command);
    static wxString PromptForParamsFor(
-      const CommandID & command, const wxString & params, wxWindow &parent);
+      const CommandID& command, const wxString& params,
+      AudacityProject& project);
    static wxString PromptForPresetFor(const CommandID & command, const wxString & params, wxWindow *parent);
 
    // These commands do depend on the command list.
@@ -117,14 +121,13 @@ class MacroCommands final {
    wxString Join(const wxString & command, const wxString & param);
 
 private:
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
    CommandIDs mCommandMacro;
    wxArrayString mParamsMacro;
    bool mAbort;
    wxString mMessage;
 
-   Exporter mExporter;
    wxString mFileName;
 };
 

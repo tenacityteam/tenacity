@@ -80,7 +80,6 @@ classes derived from it.
 
 #include <map>
 #include <wx/log.h>
-#include <wx/string.h>
 #include <wx/variant.h>
 #include <wx/arrstr.h>
 
@@ -89,12 +88,12 @@ classes derived from it.
 
 #include "CommandContext.h"
 
-#include "TenacityException.h"
+#include "AudacityException.h"
 
 
 
-bool OldStyleCommand::SetParameter(const wxString & /* paramName */,
-                           const wxVariant & /* paramValue */)
+bool OldStyleCommand::SetParameter(const wxString & WXUNUSED(paramName),
+                           const wxVariant & WXUNUSED(paramValue))
 {
    wxASSERT_MSG(false, wxT("Tried to set parameter for command which doesn't support parameters!"));
    return false;
@@ -128,7 +127,7 @@ ApplyAndSendResponse::ApplyAndSendResponse(
 }
 
 
-bool ApplyAndSendResponse::Apply(const CommandContext &/* context */)
+bool ApplyAndSendResponse::Apply(const CommandContext &WXUNUSED(context))
 {
    wxLogMessage( "Context was passed in, but was ignored.  ApplyAndSendResponse has its own one");
    return Apply();
@@ -170,7 +169,7 @@ bool ApplyAndSendResponse::Apply()
 }
 
 CommandImplementation::CommandImplementation(
-  TenacityProject &project, OldStyleCommandType &type)
+  AudacityProject &project, OldStyleCommandType &type)
 :  OldStyleCommand{ project },
    mType(type),
    mParams(type.GetSignature().GetDefaults()),
@@ -291,7 +290,7 @@ bool CommandImplementation::SetParameter(const wxString &paramName, const wxVari
    return true;
 }
 
-bool CommandImplementation::Apply(const CommandContext & /* context */)
+bool CommandImplementation::Apply(const CommandContext & WXUNUSED(context))
 {
    return true;
 }

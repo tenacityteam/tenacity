@@ -21,17 +21,14 @@ or "OFF" point
 
 #include "VoiceKey.h"
 
-#include <wx/string.h>
-#include <cmath>
-#include <cstdio>
+#include <math.h>
 
 #include <wx/textfile.h>
-#include <wx/intl.h>
 #include <iostream>
 
 #include "WaveTrack.h"
-#include "widgets/AudacityMessageBox.h"
-#include "widgets/wxPanelWrapper.h"
+#include "AudacityMessageBox.h"
+#include "wxPanelWrapper.h"
 
 using std::cout;
 using std::endl;
@@ -85,7 +82,7 @@ VoiceKey::~VoiceKey()
 
 //Move forward to find an ON region.
 sampleCount VoiceKey::OnForward (
-   const WaveTrack & t, sampleCount start, sampleCount len)
+   const WaveChannel & t, sampleCount start, sampleCount len)
 {
 
    if((mWindowSize) >= (len + 10).as_double() ){
@@ -237,7 +234,7 @@ sampleCount VoiceKey::OnForward (
 
 //Move backward from end to find an ON region.
 sampleCount VoiceKey::OnBackward (
-   const WaveTrack & t, sampleCount end, sampleCount len)
+   const WaveChannel & t, sampleCount end, sampleCount len)
 {
 
 
@@ -383,7 +380,7 @@ sampleCount VoiceKey::OnBackward (
 
 //Move forward from the start to find an OFF region.
 sampleCount VoiceKey::OffForward (
-   const WaveTrack & t, sampleCount start, sampleCount len)
+   const WaveChannel & t, sampleCount start, sampleCount len)
 {
 
    if((mWindowSize) >= (len + 10).as_double() ){
@@ -519,7 +516,7 @@ sampleCount VoiceKey::OffForward (
 
 //Move backward from the end to find an OFF region
 sampleCount VoiceKey::OffBackward (
-   const WaveTrack & t, sampleCount end, sampleCount len)
+   const WaveChannel & t, sampleCount end, sampleCount len)
 {
 
 
@@ -658,7 +655,7 @@ sampleCount VoiceKey::OffBackward (
 
 //This tests whether a specified block region is above or below threshold.
 bool VoiceKey::AboveThreshold(
-   const WaveTrack & t, sampleCount start, sampleCount len)
+   const WaveChannel & t, sampleCount start, sampleCount len)
 {
 
    double erg=0;
@@ -739,7 +736,7 @@ void VoiceKey::AdjustThreshold(double t)
 
 
 //This 'calibrates' the voicekey to noise
-void VoiceKey::CalibrateNoise(const WaveTrack & t, sampleCount start, sampleCount len)
+void VoiceKey::CalibrateNoise(const WaveChannel & t, sampleCount start, sampleCount len)
 {
    //To calibrate the noise, we need to scan the sample block just like in the voicekey and
    //calculate the mean and standard deviation of the test statistics.
@@ -855,7 +852,7 @@ void VoiceKey::SetKeyType(bool erg, bool scLow , bool scHigh,
 
 //This might continue over a number of blocks.
 double VoiceKey::TestEnergy (
-   const WaveTrack & t, sampleCount start, sampleCount len)
+   const WaveChannel & t, sampleCount start, sampleCount len)
 {
 
    double sum = 1;
@@ -866,21 +863,21 @@ double VoiceKey::TestEnergy (
    Floats buffer{ blockSize };       //Get a sampling buffer
 
    while(len > 0)
-   {
-      //Figure out how much to grab
-      auto block = limitSampleBufferSize ( t.GetBestBlockSize(s), len );
-
-      t.GetFloats(buffer.get(), s,block);                      //grab the block;
-
-      //Now, go through the block and calculate energy
-      for(decltype(block) i = 0; i< block; i++)
       {
-         sum += static_cast<double>(buffer[i]) * buffer[i];
-      }
+         //Figure out how much to grab
+         auto block = limitSampleBufferSize ( t.GetBestBlockSize(s), len );
 
-      len -= block;
-      s += block;
-   }
+         t.GetFloats(buffer.get(), s,block);                      //grab the block;
+
+         //Now, go through the block and calculate energy
+         for(decltype(block) i = 0; i< block; i++)
+            {
+               sum += buffer[i]*buffer[i];
+            }
+
+         len -= block;
+         s += block;
+      }
 
    return sum / originalLen.as_double();
 }
@@ -896,7 +893,7 @@ void VoiceKey::TestEnergyUpdate (double & prevErg, int len, const float & drop, 
 
 
 double VoiceKey::TestSignChanges(
-   const WaveTrack & t, sampleCount start, sampleCount len)
+   const WaveChannel & t, sampleCount start, sampleCount len)
 {
 
 
@@ -952,7 +949,7 @@ void VoiceKey::TestSignChangesUpdate(double & currentsignchanges, int len,
 
 
 double VoiceKey::TestDirectionChanges(
-   const WaveTrack & t, sampleCount start, sampleCount len)
+   const WaveChannel & t, sampleCount start, sampleCount len)
 {
 
 

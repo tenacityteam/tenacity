@@ -17,7 +17,10 @@
 
 #include <vamp-hostsdk/PluginLoader.h>
 
-#include "../Effect.h"
+#include <wx/weakref.h>
+#include "StatefulEffect.h"
+#include "../StatefulEffectUIServices.h"
+#include "MemoryX.h"
 
 class wxStaticText;
 class wxSlider;
@@ -33,7 +36,7 @@ using Floats = ArrayOf<float>;
    It is not an abbreviation for anything.  See http://vamp-plugins.org */
 #define VAMPEFFECTS_FAMILY XO("Vamp")
 
-class VampEffect final : public Effect
+class VampEffect final : public StatefulEffect, public StatefulEffectUIServices
 {
 public:
    VampEffect(std::unique_ptr<Vamp::Plugin> &&plugin,
@@ -44,34 +47,35 @@ public:
 
    // ComponentInterface implementation
 
-   PluginPath GetPath() override;
-   ComponentInterfaceSymbol GetSymbol() override;
-   VendorSymbol GetVendor() override;
-   wxString GetVersion() override;
-   TranslatableString GetDescription() override;
+   PluginPath GetPath() const override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   VendorSymbol GetVendor() const override;
+   wxString GetVersion() const override;
+   TranslatableString GetDescription() const override;
 
    // EffectDefinitionInterface implementation
 
-   EffectType GetType() override;
-   EffectFamilySymbol GetFamily() override;
-   bool IsInteractive() override;
-   bool IsDefault() override;
+   EffectType GetType() const override;
+   EffectFamilySymbol GetFamily() const override;
+   bool IsInteractive() const override;
+   bool IsDefault() const override;
 
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
+   bool SaveSettings(
+      const EffectSettings &settings, CommandParameters & parms) const override;
+   bool LoadSettings(
+      const CommandParameters & parms, EffectSettings &settings) const override;
 
-   // EffectProcessor implementation
-
-   unsigned GetAudioInCount() override;
+   unsigned GetAudioInCount() const override;
 
    // Effect implementation
 
    bool Init() override;
-   bool Process() override;
-   void End() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
+   bool Process(EffectInstance &instance, EffectSettings &settings) override;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui & S, EffectInstance &instance,
+      EffectSettingsAccess &access, const EffectOutputs *pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings &settings) override;
+   bool TransferDataFromWindow(EffectSettings &settings) override;
 
 private:
    // VampEffect implementation
@@ -86,6 +90,8 @@ private:
    void OnTextCtrl(wxCommandEvent & evt);
 
 private:
+   wxWeakRef<wxWindow> mUIParent{};
+
    std::unique_ptr<Vamp::Plugin> mPlugin;
    PluginPath mPath;
    int mOutput;

@@ -2,8 +2,6 @@
 //
 // Backport from wxWidgets-3.0-rc1
 //
-// FIXME (GP): We might want to drop this...
-//
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/numformatter.cpp
 // Purpose:     NumberFormatter
@@ -25,13 +23,17 @@
 
 #include <wx/setup.h> // for wxUSE_* macros
 
-#ifdef __WIN32__
-    #include <wx/msw/private.h>
+#ifdef __BORLANDC__
+    #pragma hdrstop
 #endif
 
-// Tenacity libraries
-#include <lib-strings/Internat.h>
+#ifdef _WIN32
+    #include <wx/msw/private.h>
 
+#endif
+
+
+#include "Internat.h"
 #include <wx/intl.h>
 
 #include <locale.h> // for setlocale and LC_ALL
@@ -69,7 +71,7 @@ wxChar NumberFormatter::GetDecimalSeparator()
 #endif // wxUSE_INTL/!wxUSE_INTL
 }
 
-bool NumberFormatter::GetThousandsSeparatorIfUsed([[maybe_unused]] wxChar *sep)
+bool NumberFormatter::GetThousandsSeparatorIfUsed(wxChar *sep)
 {
 #if wxUSE_INTL
    struct lconv *info = localeconv();
@@ -83,6 +85,7 @@ bool NumberFormatter::GetThousandsSeparatorIfUsed([[maybe_unused]] wxChar *sep)
    *sep = s[0];
    return true;
 #else // !wxUSE_INTL
+    wxUnusedVar(sep);
     return false;
 #endif // wxUSE_INTL/!wxUSE_INTL
 }

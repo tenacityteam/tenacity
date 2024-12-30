@@ -14,10 +14,8 @@
 
 #include <memory>
 
-// Tenacity libraries
-#include <lib-components/ModuleInterface.h>
-#include <lib-components/EffectInterface.h>
-
+#include "PluginProvider.h"
+#include "EffectInterface.h"
 #include "PluginInterface.h"
 
 #include <vamp-hostsdk/PluginLoader.h>
@@ -28,7 +26,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class VampEffectsModule final : public ModuleInterface
+class VampEffectsModule final : public PluginProvider
 {
 public:
    VampEffectsModule();
@@ -36,13 +34,13 @@ public:
 
    // ComponentInterface implementation
 
-   PluginPath GetPath() override;
-   ComponentInterfaceSymbol GetSymbol() override;
-   VendorSymbol GetVendor() override;
-   wxString GetVersion() override;
-   TranslatableString GetDescription() override;
+   PluginPath GetPath() const override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   VendorSymbol GetVendor() const override;
+   wxString GetVersion() const override;
+   TranslatableString GetDescription() const override;
 
-   // ModuleInterface implementation
+   // PluginProvider implementation
 
    bool Initialize() override;
    void Terminate() override;
@@ -51,17 +49,17 @@ public:
    const FileExtensions &GetFileExtensions() override;
    FilePath InstallPath() override { return {}; }
 
-   bool AutoRegisterPlugins(PluginManagerInterface & pm) override;
-   PluginPaths FindPluginPaths(PluginManagerInterface & pm) override;
+   void AutoRegisterPlugins(PluginManagerInterface & pm) override;
+   PluginPaths FindModulePaths(PluginManagerInterface & pm) override;
    unsigned DiscoverPluginsAtPath(
       const PluginPath & path, TranslatableString &errMsg,
       const RegistrationCallback &callback)
          override;
-
-   bool IsPluginValid(const PluginPath & path, bool bFast) override;
+   
+   bool CheckPluginExist(const PluginPath& path) const override;
 
    std::unique_ptr<ComponentInterface>
-      CreateInstance(const PluginPath & path) override;
+      LoadPlugin(const PluginPath & path) override;
 
 private:
    // VampEffectModule implementation

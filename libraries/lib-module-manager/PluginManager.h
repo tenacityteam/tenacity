@@ -13,151 +13,23 @@
 
 #include <wx/defs.h>
 
+#include "wxArrayStringEx.h"
 #include <functional>
 #include <map>
 #include <memory>
+#include <vector>
 
 #include "EffectInterface.h"
 #include "PluginInterface.h"
-#include "wxArrayStringEx.h"
+#include "PluginDescriptor.h"
+#include "Observer.h"
 
 class wxArrayString;
-class FileConfig;
 
-///////////////////////////////////////////////////////////////////////////////
-//
-// PluginDescriptor
-//
-///////////////////////////////////////////////////////////////////////////////
-
-typedef enum : unsigned {
-   PluginTypeNone = 0,          // 2.1.0 placeholder entries...not used by 2.1.1 or greater
-   PluginTypeStub =1,               // Used for plugins that have not yet been registered
-   PluginTypeEffect =1<<1,
-   PluginTypeAudacityCommand=1<<2,
-   PluginTypeExporter=1<<3,
-   PluginTypeImporter=1<<4,
-   PluginTypeModule=1<<5,
-} PluginType;
-
-// TODO:  Convert this to multiple derived classes
-class MODULE_MANAGER_API PluginDescriptor
+namespace audacity
 {
-public:
-   PluginDescriptor();
-   PluginDescriptor &operator =(PluginDescriptor &&);
-   virtual ~PluginDescriptor();
-
-   bool IsInstantiated() const;
-
-   PluginType GetPluginType() const;
-
-   // All plugins
-
-   // These return untranslated strings
-   const wxString & GetID() const;
-   const wxString & GetProviderID() const;
-   const PluginPath & GetPath() const;
-   const ComponentInterfaceSymbol & GetSymbol() const;
-
-   wxString GetUntranslatedVersion() const;
-   // There is no translated version
-
-   wxString GetVendor() const;
-
-   bool IsEnabled() const;
-   bool IsValid() const;
-
-   void SetEnabled(bool enable);
-   void SetValid(bool valid);
-
-   // Effect plugins only
-
-   // Internal string only, no translated counterpart!
-   // (Use Effect::GetFamilyName instead)
-   // This string persists in configuration files
-   // So config compatibility will break if it is changed across Audacity versions
-   wxString GetEffectFamily() const;
-
-   EffectType GetEffectType() const;
-   bool IsEffectDefault() const;
-   bool IsEffectInteractive() const;
-   bool IsEffectLegacy() const;
-   bool IsEffectRealtime() const;
-   bool IsEffectAutomatable() const;
-
-   // Importer plugins only
-
-   const wxString & GetImporterIdentifier() const;
-   const TranslatableString & GetImporterFilterDescription() const;
-   const FileExtensions & GetImporterExtensions() const;
-
-private:
-   friend class PluginManager;
-
-   ComponentInterface *GetInstance();
-   void SetInstance(std::unique_ptr<ComponentInterface> instance);
-
-   void SetPluginType(PluginType type);
-
-   // These should be passed an untranslated value
-   void SetID(const PluginID & ID);
-   void SetProviderID(const PluginID & providerID);
-   void SetPath(const PluginPath & path);
-   void SetSymbol(const ComponentInterfaceSymbol & symbol);
-
-   // These should be passed an untranslated value wrapped in XO() so
-   // the value will still be extracted for translation
-   void SetVersion(const wxString & version);
-   void SetVendor(const wxString & vendor);
-
-   // "family" should be an untranslated string wrapped in wxT()
-   void SetEffectFamily(const wxString & family);
-   void SetEffectType(EffectType type);
-   void SetEffectDefault(bool dflt);
-   void SetEffectInteractive(bool interactive);
-   void SetEffectLegacy(bool legacy);
-   void SetEffectRealtime(bool realtime);
-   void SetEffectAutomatable(bool automatable);
-
-   void SetImporterIdentifier(const wxString & identifier);
-   void SetImporterFilterDescription(const TranslatableString & filterDesc);
-   void SetImporterExtensions(FileExtensions extensions);
-
-   // Common
-
-   // Among other purposes, PluginDescriptor acts as the resource handle,
-   // or smart pointer, to a resource created in a plugin library, and is responsible
-   // for a cleanup of this pointer.
-   std::unique_ptr<ComponentInterface> muInstance; // may be null for a module
-   ComponentInterface *mInstance;
-
-   PluginType mPluginType;
-
-   wxString mID;
-   PluginPath mPath;
-   ComponentInterfaceSymbol mSymbol;
-   wxString mVersion;
-   wxString mVendor;
-   wxString mProviderID;
-   bool mEnabled;
-   bool mValid;
-
-   // Effects
-
-   wxString mEffectFamily;
-   EffectType mEffectType;
-   bool mEffectInteractive;
-   bool mEffectDefault;
-   bool mEffectLegacy;
-   bool mEffectRealtime;
-   bool mEffectAutomatable;
-
-   // Importers
-
-   wxString mImporterIdentifier;
-   FileExtensions mImporterExtensions;
-};
+   class BasicSettings;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -171,7 +43,11 @@ typedef wxArrayString PluginIDs;
 
 class PluginRegistrationDialog;
 
-class MODULE_MANAGER_API PluginManager final : public PluginManagerInterface
+struct PluginsChangedMessage { };
+
+class MODULE_MANAGER_API PluginManager final
+   : public PluginManagerInterface
+   , public Observer::Publisher<PluginsChangedMessage>
 {
 public:
 
@@ -183,9 +59,12 @@ public:
    bool IsPluginRegistered(
       const PluginPath &path, const TranslatableString *pSymbol) override;
 
-   const PluginID & RegisterPlugin(ModuleInterface *module) override;
-   const PluginID & RegisterPlugin(ModuleInterface *provider, ComponentInterface *command);
-   const PluginID & RegisterPlugin(ModuleInterface *provider, EffectDefinitionInterface *effect, int type) override;
+   bool IsPluginLoaded(const wxString& ID) const;
+
+   void RegisterPlugin(PluginDescriptor&& desc);
+   const PluginID & RegisterPlugin(PluginProvider *provider) override;
+   const PluginID & RegisterPlugin(PluginProvider *provider, ComponentInterface *command);
+   const PluginID & RegisterPlugin(PluginProvider *provider, EffectDefinitionInterface *effect, int type) override;
 
    void FindFilesInPathList(const wxString & pattern,
                                     const FilePaths & pathList,
@@ -197,6 +76,9 @@ public:
    bool GetConfigSubgroups(ConfigurationType type, const PluginID & ID,
       const RegistryPath & group,
       RegistryPaths & subgroups) override;
+
+   bool HasConfigValue(ConfigurationType type, const PluginID & ID,
+      const RegistryPath & group, const RegistryPath & key) override;
 
    bool GetConfigValue(ConfigurationType type, const PluginID & ID,
       const RegistryPath & group, const RegistryPath & key,
@@ -214,24 +96,31 @@ public:
    // PluginManager implementation
 
    // Initialization must inject a factory to make a concrete subtype of
-   // FileConfig
-   using FileConfigFactory = std::function<
-      std::unique_ptr<FileConfig>(const FilePath &localFilename ) >;
+   // BasicSettings
+   using ConfigFactory = std::function<
+      std::unique_ptr<audacity::BasicSettings>(const FilePath &localFilename ) >;
    /*! @pre `factory != nullptr` */
-   void Initialize(FileConfigFactory factory);
+   void Initialize(ConfigFactory factory);
    void Terminate();
 
    bool DropFile(const wxString &fileName);
 
    static PluginManager & Get();
 
-   static PluginID GetID(ModuleInterface *module);
-   static PluginID GetID(ComponentInterface *command);
-   static PluginID GetID(EffectDefinitionInterface *effect);
+
+   static PluginID GetID(const PluginProvider *provider);
+   static PluginID GetID(const ComponentInterface *command);
+   static PluginID OldGetID(const EffectDefinitionInterface* effect);
+   static PluginID GetID(const EffectDefinitionInterface* effect);
+   //! Parse English effect name from the result of
+   //! GetID(const EffectDefinitionInterface*)
+   static Identifier GetEffectNameFromID(const PluginID &ID);
 
    // This string persists in configuration files
    // So config compatibility will break if it is changed across Audacity versions
    static wxString GetPluginTypeString(PluginType type);
+
+   static bool IsPluginAvailable(const PluginDescriptor& plug);
 
    int GetPluginCount(PluginType type);
    const PluginDescriptor *GetPlugin(const PluginID & ID) const;
@@ -249,7 +138,7 @@ public:
       //! Iterates only enabled and matching effects, with family enabled too
       Iterator(PluginManager &manager, EffectType type);
       bool operator != (int) const {
-         return mIterator != mPm.mPlugins.end();
+         return mIterator != mPm.mRegisteredPlugins.end();
       }
       Iterator &operator ++ ();
       auto &operator *() const { return mIterator->second; }
@@ -274,10 +163,20 @@ public:
    bool IsPluginEnabled(const PluginID & ID);
    void EnablePlugin(const PluginID & ID, bool enable);
 
-   const ComponentInterfaceSymbol & GetSymbol(const PluginID & ID);
-   ComponentInterface *GetInstance(const PluginID & ID);
+   const ComponentInterfaceSymbol & GetSymbol(const PluginID & ID) const;
+   TranslatableString GetName(const PluginID& ID) const;
+   CommandID GetCommandIdentifier(const PluginID& ID) const;
+   const PluginID& GetByCommandIdentifier(const CommandID& strTarget);
+   ComponentInterface *Load(const PluginID & ID);
 
-   void CheckForUpdates(bool bFast = false);
+   void ClearEffectPlugins();
+
+   /**
+    * \brief Ensures that all currently registered plugins still exist
+    * and scans for new ones.
+    * \return Map, where each module path(key) is associated with at least one provider id
+    */
+   std::map<wxString, std::vector<wxString>> CheckPluginUpdates();
 
    //! Used only by Nyquist Workbench module
    const PluginID & RegisterPlugin(
@@ -289,21 +188,33 @@ public:
    //! Save to preferences
    void Save();
 
+   void NotifyPluginsChanged();
+
+   //! What is the plugin registry version number now in the file?
+   //! (Save() updates it)
+   const PluginRegistryVersion &GetRegistryVersion() const override;
+
+   PluginPaths ReadCustomPaths(const PluginProvider& provider) override;
+   void StoreCustomPaths(const PluginProvider& provider, const PluginPaths& paths) override;
+
 private:
    // private! Use Get()
    PluginManager();
    ~PluginManager();
 
-   void LoadGroup(FileConfig *pRegistry, PluginType type);
-   void SaveGroup(FileConfig *pRegistry, PluginType type);
+   void InitializePlugins();
+
+   void LoadGroup(audacity::BasicSettings* pRegistry, PluginType type);
+   void SaveGroup(audacity::BasicSettings* pRegistry, PluginType type);
 
    PluginDescriptor & CreatePlugin(const PluginID & id, ComponentInterface *ident, PluginType type);
 
-   FileConfig *GetSettings();
+   audacity::BasicSettings *GetSettings();
 
    bool HasGroup(const RegistryPath & group);
    bool GetSubgroups(const RegistryPath & group, RegistryPaths & subgroups);
 
+   bool HasConfigValue(const RegistryPath & key);
    bool GetConfigValue(const RegistryPath & key, ConfigReference var,
          ConfigConstReference defval);
    bool SetConfigValue(const RegistryPath & key, ConfigConstReference value);
@@ -318,21 +229,21 @@ private:
    // The PluginID must be kept unique.  Since the wxFileConfig class does not preserve
    // case, we use base64 encoding.
    wxString ConvertID(const PluginID & ID);
-   wxString b64encode(const void *in, int len);
-   int b64decode(const wxString &in, void *out);
 
 private:
-   friend std::default_delete<PluginManager>;
-   static std::unique_ptr<PluginManager> mInstance;
 
    bool IsDirty();
    void SetDirty(bool dirty = true);
-   std::unique_ptr<FileConfig> mSettings;
+   std::unique_ptr<audacity::BasicSettings> mSettings;
 
    bool mDirty;
    int mCurrentIndex;
 
-   PluginMap mPlugins;
+   PluginMap mRegisteredPlugins;
+   std::map<PluginID, std::unique_ptr<ComponentInterface>> mLoadedInterfaces;
+   std::vector<PluginDescriptor> mEffectPluginsCleared;
+
+   PluginRegistryVersion mRegver;
 };
 
 // Defining these special names in the low-level PluginManager.h
@@ -341,5 +252,8 @@ private:
 #define NYQUIST_PROMPT_ID wxT("Nyquist Prompt")
 // User-visible name might change in later versions
 #define NYQUIST_PROMPT_NAME XO("Nyquist Prompt")
+
+// Latest version of the plugin registry config
+constexpr auto REGVERCUR = "1.5";
 
 #endif /* __AUDACITY_PLUGINMANAGER_H__ */

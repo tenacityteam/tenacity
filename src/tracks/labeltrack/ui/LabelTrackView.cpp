@@ -15,28 +15,31 @@ Paul Licameli split from TrackPanel.cpp
 #include "LabelGlyphHandle.h"
 #include "LabelTextHandle.h"
 
-#include "../../../LabelTrack.h"
+#include "LabelTrack.h"
 
-#include "../../../AColor.h"
-#include "../../../theme/AllThemeResources.h"
+#include "AColor.h"
+#include "../../../widgets/BasicMenu.h"
+#include "AllThemeResources.h"
 #include "../../../HitTestResult.h"
+#include "PendingTracks.h"
 #include "Project.h"
-#include "../../../ProjectHistory.h"
+#include "ProjectHistory.h"
+#include "ProjectNumericFormats.h"
 #include "ProjectRate.h"
-#include "../../../ProjectSettings.h"
-#include "../../../ProjectWindow.h"
 #include "../../../ProjectWindows.h"
 #include "../../../RefreshCode.h"
-#include "../../../theme/Theme.h"
-#include "../../../SyncLock.h"
+#include "SyncLock.h"
+#include "Theme.h"
 #include "../../../TrackArt.h"
 #include "../../../TrackArtist.h"
-#include "../../../TrackPanelAx.h"
+#include "TrackFocus.h"
 #include "../../../TrackPanel.h"
 #include "../../../TrackPanelMouseEvent.h"
-#include "../../../UndoManager.h"
+#include "UndoManager.h"
 #include "ViewInfo.h"
-#include "../../../widgets/AudacityTextEntryDialog.h"
+#include "Viewport.h"
+#include "AudacityTextEntryDialog.h"
+#include "wxWidgetsWindowPlacement.h"
 
 #include <wx/clipbrd.h>
 #include <wx/dcclient.h>
@@ -94,8 +97,8 @@ void LabelTrackView::Index::SetModified(bool modified)
    mModified = modified;
 }
 
-LabelTrackView::LabelTrackView( const std::shared_ptr<Track> &pTrack )
-   : CommonTrackView{ pTrack }
+LabelTrackView::LabelTrackView(const std::shared_ptr<Channel> &pChannel)
+   : CommonChannelView{ pChannel }
 {
    ResetFont();
    CreateCustomGlyphs();
@@ -110,47 +113,42 @@ LabelTrackView::~LabelTrackView()
 {
 }
 
-void LabelTrackView::Reparent( const std::shared_ptr<Track> &parent )
+void LabelTrackView::Reparent(
+   const std::shared_ptr<Track> &parent, size_t iChannel)
 {
+   assert(iChannel == 0);
    auto oldParent = FindLabelTrack();
    auto newParent = track_cast<LabelTrack*>(parent.get());
-   if (oldParent.get() != newParent) {
-      UnbindFrom( oldParent.get() );
+   if (oldParent.get() != newParent)
       BindTo( newParent );
-   }
-   CommonTrackView::Reparent( parent );
+   CommonChannelView::Reparent(parent, iChannel);
 }
 
 void LabelTrackView::BindTo( LabelTrack *pParent )
 {
-   pParent->Bind(
-      EVT_LABELTRACK_ADDITION, &LabelTrackView::OnLabelAdded, this );
-   pParent->Bind(
-      EVT_LABELTRACK_DELETION, &LabelTrackView::OnLabelDeleted, this );
-   pParent->Bind(
-      EVT_LABELTRACK_PERMUTED, &LabelTrackView::OnLabelPermuted, this );
-   pParent->Bind(
-      EVT_LABELTRACK_SELECTION, &LabelTrackView::OnSelectionChange, this );
+   // Destroys any previous subscription to another track
+   mSubscription = pParent->Subscribe([this](const LabelTrackEvent &e){
+      switch (e.type) {
+      case LabelTrackEvent::Addition:
+         return OnLabelAdded(e);
+      case LabelTrackEvent::Deletion:
+         return OnLabelDeleted(e);
+      case LabelTrackEvent::Permutation:
+         return OnLabelPermuted(e);
+      case LabelTrackEvent::Selection:
+         return OnSelectionChange(e);
+      default:
+         return;
+      }
+   });
 }
 
-void LabelTrackView::UnbindFrom( LabelTrack *pParent )
+void LabelTrackView::CopyTo(Track &track, size_t iChannel) const
 {
-   pParent->Unbind(
-      EVT_LABELTRACK_ADDITION, &LabelTrackView::OnLabelAdded, this );
-   pParent->Unbind(
-      EVT_LABELTRACK_DELETION, &LabelTrackView::OnLabelDeleted, this );
-   pParent->Unbind(
-      EVT_LABELTRACK_PERMUTED, &LabelTrackView::OnLabelPermuted, this );
-   pParent->Unbind(
-      EVT_LABELTRACK_SELECTION, &LabelTrackView::OnSelectionChange, this );
-}
-
-void LabelTrackView::CopyTo( Track &track ) const
-{
-   TrackView::CopyTo( track );
-   auto &other = TrackView::Get( track );
-
-   if ( const auto pOther = dynamic_cast< const LabelTrackView* >( &other ) ) {
+   assert(iChannel == 0);
+   ChannelView::CopyTo(track, iChannel);
+   auto &other = ChannelView::Get(*track.GetChannel(0));
+   if (const auto pOther = dynamic_cast<const LabelTrackView*>(&other)) {
       pOther->mNavigationIndex = mNavigationIndex;
       pOther->mInitialCursorPos = mInitialCursorPos;
       pOther->mCurrentCursorPos = mCurrentCursorPos;
@@ -159,19 +157,19 @@ void LabelTrackView::CopyTo( Track &track ) const
    }
 }
 
-LabelTrackView &LabelTrackView::Get( LabelTrack &track )
+LabelTrackView &LabelTrackView::Get(LabelTrack &track)
 {
-   return static_cast< LabelTrackView& >( TrackView::Get( track ) );
+   return static_cast<LabelTrackView&>(ChannelView::Get(track));
 }
 
-const LabelTrackView &LabelTrackView::Get( const LabelTrack &track )
+const LabelTrackView &LabelTrackView::Get(const LabelTrack &track)
 {
-   return static_cast< const LabelTrackView& >( TrackView::Get( track ) );
+   return static_cast<const LabelTrackView&>(ChannelView::Get(track));
 }
 
 std::shared_ptr<LabelTrack> LabelTrackView::FindLabelTrack()
 {
-   return std::static_pointer_cast<LabelTrack>( FindTrack() );
+   return FindChannel<LabelTrack>();
 }
 
 std::shared_ptr<const LabelTrack> LabelTrackView::FindLabelTrack() const
@@ -181,7 +179,7 @@ std::shared_ptr<const LabelTrack> LabelTrackView::FindLabelTrack() const
 
 std::vector<UIHandlePtr> LabelTrackView::DetailedHitTest
 (const TrackPanelMouseState &st,
- const TenacityProject* /* pProject */, int, bool)
+ const AudacityProject *WXUNUSED(pProject), int, bool)
 {
    UIHandlePtr result;
    std::vector<UIHandlePtr> results;
@@ -249,7 +247,7 @@ wxFont LabelTrackView::GetFont(const wxString &faceName, int size)
       encoding = wxFONTENCODING_DEFAULT;
    else
       encoding = wxFONTENCODING_SYSTEM;
-   
+
    auto fontInfo = size == 0 ? wxFontInfo() : wxFontInfo(size);
    fontInfo
       .Encoding(encoding)
@@ -262,7 +260,7 @@ void LabelTrackView::ResetFont()
 {
    mFontHeight = -1;
    wxString facename = gPrefs->Read(wxT("/GUI/LabelFontFacename"), wxT(""));
-   int size = gPrefs->Read(wxT("/GUI/LabelFontSize"), DefaultFontSize);
+   int size = gPrefs->Read(wxT("/GUI/LabelFontSize"), static_cast<int>(DefaultFontSize));
    msFont = GetFont(facename, size);
 }
 
@@ -433,7 +431,7 @@ void LabelTrackView::ComputeLayout(const wxRect & r, const ZoomInfo &zoomInfo) c
    int iRow;
    // Rows are the 'same' height as icons or as the text,
    // whichever is taller.
-   const int yRowHeight = std::max(mTextHeight,mIconHeight)+3;// pixels.
+   const int yRowHeight = wxMax(mTextHeight,mIconHeight)+3;// pixels.
    // Extra space at end of rows.
    // We allow space for one half icon at the start and two
    // half icon widths for extra x for the text frame.
@@ -441,14 +439,11 @@ void LabelTrackView::ComputeLayout(const wxRect & r, const ZoomInfo &zoomInfo) c
    // allowed to be obscured by the text].
    const int xExtra= (3 * mIconWidth)/2;
 
-   bool bAvoidName = false;
-   const int nRows = std::min((r.height / yRowHeight) + 1, MAX_NUM_ROWS);
-   if( nRows > 2 )
-      bAvoidName = gPrefs->ReadBool(wxT("/GUI/ShowTrackNameInWaveform"), false);
+   const int nRows = wxMin((r.height / yRowHeight) + 1, MAX_NUM_ROWS);
    // Initially none of the rows have been used.
    // So set a value that is less than any valid value.
    {
-      // Bug 502: With dragging left of zeros, labels can be in 
+      // Bug 502: With dragging left of zeros, labels can be in
       // negative space.  So set least possible value as starting point.
       const int xStart = INT_MIN;
       for (auto &x : xUsed)
@@ -484,21 +479,6 @@ void LabelTrackView::ComputeLayout(const wxRect & r, const ZoomInfo &zoomInfo) c
       // IF we found such a row THEN record a valid position.
       if( iRow<nRows )
       {
-         // Logic to ameliorate case where first label is under the 
-         // (on track) track name.  For later labels it does not matter
-         // as we can scroll left or right and/or zoom.
-         // A possible alternative idea would be to (instead) increase the 
-         // translucency of the track name, when the mouse is inside it.
-         if( (i==0 ) && (iRow==0) && bAvoidName ){
-            // reserve some space in first row.
-            // reserve max of 200px or t1, or text box right edge.
-            const int x2 = zoomInfo.TimeToPosition(0.0, r.x) + 200;
-            xUsed[iRow]=x+labelStruct.width+xExtra;
-            if( xUsed[iRow] < x1 ) xUsed[iRow]=x1;
-            if( xUsed[iRow] < x2 ) xUsed[iRow]=x2;
-            iRow=1;
-         }
-
          // Possibly update the number of rows actually used.
          if( iRow >= nRowsUsed )
             nRowsUsed=iRow+1;
@@ -527,8 +507,8 @@ void LabelTrackView::DrawLines(
    auto &y = ls.y;
 
    // Bug 2388 - Point label and range label can appear identical
-   // If the start and end times are not actually the same, but they 
-   // would appear so when drawn as lines at current zoom, be sure to draw 
+   // If the start and end times are not actually the same, but they
+   // would appear so when drawn as lines at current zoom, be sure to draw
    // two lines - i.e. displace the second line slightly.
    if (ls.getT0() != ls.getT1()) {
       if (x == x1)
@@ -620,8 +600,8 @@ void LabelTrackView::DrawText(wxDC & dc, const LabelStruct &ls, const wxRect & r
    // We draw it half an icon width left of the text itself.
    {
       auto &xText = ls.xText;
-      const int xStart=std::max(r.x,xText-mIconWidth/2);
-      const int xEnd=std::min(r.x+r.width,xText+ls.width+mIconWidth/2);
+      const int xStart=wxMax(r.x,xText-mIconWidth/2);
+      const int xEnd=wxMin(r.x+r.width,xText+ls.width+mIconWidth/2);
       const int xWidth = xEnd-xStart;
 
       if( (xStart < (r.x+r.width)) && (xEnd > r.x) && (xWidth>0))
@@ -649,8 +629,8 @@ void LabelTrackView::DrawTextBox(
    // half an icon width at each end.
     const auto textFrameHeight = GetTextFrameHeight();
     auto& xText = ls.xText;
-    const int xStart = std::max(r.x, xText - mIconWidth / 2);
-    const int xEnd = std::min(r.x + r.width, xText + ls.width + mIconWidth / 2);
+    const int xStart = wxMax(r.x, xText - mIconWidth / 2);
+    const int xEnd = wxMin(r.x + r.width, xText + ls.width + mIconWidth / 2);
     const int xWidth = xEnd - xStart;
 
     if ((xStart < (r.x + r.width)) && (xEnd > r.x) && (xWidth > 0))
@@ -673,8 +653,8 @@ void LabelTrackView::DrawBar(wxDC& dc, const LabelStruct& ls, const wxRect& r)
 
    auto& x = ls.x;
    auto& x1 = ls.x1;
-   const int xStart = std::max(r.x, x + xBarShorten / 2);
-   const int xEnd = std::min(r.x + r.width, x1 - xBarShorten / 2);
+   const int xStart = wxMax(r.x, x + xBarShorten / 2);
+   const int xEnd = wxMin(r.x + r.width, x1 - xBarShorten / 2);
    const int xWidth = xEnd - xStart;
 
    if ((xStart < (r.x + r.width)) && (xEnd > r.x) && (xWidth > 0))
@@ -691,7 +671,7 @@ void LabelTrackView::DrawHighlight( wxDC & dc, const LabelStruct &ls,
    int xPos1, int xPos2, int charHeight)
 {
    const int yFrameHeight = mTextHeight + TextFramePadding * 2;
-   
+
    dc.SetPen(*wxTRANSPARENT_PEN);
    wxBrush curBrush = dc.GetBrush();
    curBrush.SetColour(wxString(wxT("BLUE")));
@@ -716,7 +696,7 @@ void getXPos( const LabelStruct &ls, wxDC & dc, int * xPos1, int cursorPos)
 }
 }
 
-bool LabelTrackView::CalcCursorX( TenacityProject &project, int * x) const
+bool LabelTrackView::CalcCursorX( AudacityProject &project, int * x) const
 {
    if (IsValidIndex(mTextEditIndex, project)) {
       wxMemoryDC dc;
@@ -782,12 +762,13 @@ namespace {
 /// Draw calls other functions to draw the LabelTrack.
 ///   @param  dc the device context
 ///   @param  r  the LabelTrack rectangle.
-void LabelTrackView::Draw
-( TrackPanelDrawingContext &context, const wxRect & r ) const
+void LabelTrackView::Draw(TrackPanelDrawingContext &context, const wxRect & r)
+const
 {
    auto &dc = context.dc;
    const auto artist = TrackArtist::Get( context );
    const auto &zoomInfo = *artist->pZoomInfo;
+   const auto &pendingTracks = *artist->pPendingTracks;
 
    auto pHit = findHit( artist->parent );
 
@@ -797,13 +778,15 @@ void LabelTrackView::Draw
    if (mFontHeight == -1)
       calculateFontHeight(dc);
 
-   const auto pTrack = std::static_pointer_cast< const LabelTrack >(
-      FindTrack()->SubstitutePendingChangedTrack());
-   const auto &mLabels = pTrack->GetLabels();
+   if (!FindChannel())
+      return;
+   const auto &track = static_cast<const LabelTrack&>(
+      pendingTracks.SubstitutePendingChangedChannel(*FindChannel()));
+   const auto &mLabels = track.GetLabels();
 
-   TrackArt::DrawBackgroundWithSelection( context, r, pTrack.get(),
+   TrackArt::DrawBackgroundWithSelection(context, r, track,
       AColor::labelSelectedBrush, AColor::labelUnselectedBrush,
-      SyncLock::IsSelectedOrSyncLockSelected(pTrack.get()) );
+      SyncLock::IsSelectedOrSyncLockSelected(track));
 
    wxCoord textWidth, textHeight;
 
@@ -856,15 +839,16 @@ void LabelTrackView::Draw
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
       bool highlightTrack = false;
       auto target = dynamic_cast<LabelTextHandle*>(context.target.get());
-      highlightTrack = target && target->GetTrack().get() == this;
+      highlightTrack = target &&
+         target->FindTrack().get() == FindTrack().get();
 #endif
       int i = -1; for (const auto &labelStruct : mLabels) { ++i;
          bool highlight = false;
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
          highlight = highlightTrack && target->GetLabelNum() == i;
 #endif
-         
-         dc.SetBrush(mNavigationIndex == i || (pHit && pHit->mMouseOverLabel == i) 
+
+         dc.SetBrush(mNavigationIndex == i || (pHit && pHit->mMouseOverLabel == i)
             ? AColor::labelTextEditBrush : AColor::labelTextNormalBrush);
          DrawBar(dc, labelStruct, r);
 
@@ -931,7 +915,7 @@ void LabelTrackView::Draw(
 {
    if ( iPass == TrackArtist::PassTracks )
       Draw( context, rect );
-   CommonTrackView::Draw( context, rect, iPass );
+   CommonChannelView::Draw(context, rect, iPass);
 }
 
 /// uses GetTextExtent to find the character position
@@ -1000,7 +984,7 @@ void LabelTrackView::SetTextSelection(int labelIndex, int start, int end)
     mInitialCursorPos = start;
     mCurrentCursorPos = end;
 }
-int LabelTrackView::GetTextEditIndex(TenacityProject& project) const
+int LabelTrackView::GetTextEditIndex(AudacityProject& project) const
 {
     if (IsValidIndex(mTextEditIndex, project))
         return mTextEditIndex;
@@ -1016,7 +1000,7 @@ void LabelTrackView::SetNavigationIndex(int index)
 {
     mNavigationIndex = index;
 }
-int LabelTrackView::GetNavigationIndex(TenacityProject& project) const
+int LabelTrackView::GetNavigationIndex(AudacityProject& project) const
 {
     if (IsValidIndex(mNavigationIndex, project))
         return mNavigationIndex;
@@ -1041,7 +1025,7 @@ void LabelTrackView::calculateFontHeight(wxDC & dc)
    mFontHeight += CursorExtraHeight - (charLeading+charDescent);
 }
 
-bool LabelTrackView::IsValidIndex(const Index& index, TenacityProject& project) const
+bool LabelTrackView::IsValidIndex(const Index& index, AudacityProject& project) const
 {
     if (index == -1)
        return false;
@@ -1052,14 +1036,14 @@ bool LabelTrackView::IsValidIndex(const Index& index, TenacityProject& project) 
     return false;
 }
 
-bool LabelTrackView::IsTextSelected( TenacityProject &project ) const
+bool LabelTrackView::IsTextSelected( AudacityProject &project ) const
 {
    return mCurrentCursorPos != mInitialCursorPos && IsValidIndex(mTextEditIndex, project);
 }
 
 /// Cut the selected text in the text box
 ///  @return true if text is selected in text box, false otherwise
-bool LabelTrackView::CutSelectedText( TenacityProject &project )
+bool LabelTrackView::CutSelectedText( AudacityProject &project )
 {
    if (!IsTextSelected( project ))
       return false;
@@ -1112,7 +1096,7 @@ bool LabelTrackView::CutSelectedText( TenacityProject &project )
 
 /// Copy the selected text in the text box
 ///  @return true if text is selected in text box, false otherwise
-bool LabelTrackView::CopySelectedText( TenacityProject &project )
+bool LabelTrackView::CopySelectedText( AudacityProject &project )
 {
    if (!IsTextSelected(project))
       return false;
@@ -1147,7 +1131,7 @@ bool LabelTrackView::CopySelectedText( TenacityProject &project )
 /// Paste the text on the clipboard to text box
 ///  @return true if mouse is clicked in text box, false otherwise
 bool LabelTrackView::PasteSelectedText(
-   TenacityProject &project, double sel0, double sel1 )
+   AudacityProject &project, double sel0, double sel1 )
 {
    const auto pTrack = FindLabelTrack();
 
@@ -1197,7 +1181,7 @@ bool LabelTrackView::PasteSelectedText(
    return true;
 }
 
-bool LabelTrackView::SelectAllText(TenacityProject& project)
+bool LabelTrackView::SelectAllText(AudacityProject& project)
 {
     if (!IsValidIndex(mTextEditIndex, project))
         return false;
@@ -1250,7 +1234,7 @@ void LabelTrackView::OverGlyph(
          hit.mMouseOverLabelRight = -1;
          break;
       }
-   
+
       //over left or right selection bound
       //Check right bound first, since it is drawn after left bound,
       //so give it precedence for matching/highlighting.
@@ -1353,7 +1337,7 @@ static bool IsGoodLabelEditKey(const wxKeyEvent & evt)
 
 // Check for keys that we will process
 bool LabelTrackView::DoCaptureKey(
-   TenacityProject &project, wxKeyEvent & event )
+   AudacityProject &project, wxKeyEvent & event )
 {
    int mods = event.GetModifiers();
    auto code = event.GetKeyCode();
@@ -1422,15 +1406,15 @@ bool LabelTrackView::DoCaptureKey(
 }
 
 unsigned LabelTrackView::CaptureKey(
-   wxKeyEvent & event, ViewInfo &, wxWindow *, TenacityProject *project )
+   wxKeyEvent & event, ViewInfo &, wxWindow *, AudacityProject *project )
 {
    event.Skip(!DoCaptureKey( *project, event ));
    return RefreshCode::RefreshNone;
 }
 
 unsigned LabelTrackView::KeyDown(
-   wxKeyEvent & event, ViewInfo &viewInfo, wxWindow* /* pParent */,
-   TenacityProject *project)
+   wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *WXUNUSED(pParent),
+   AudacityProject *project)
 {
    double bkpSel0 = viewInfo.selectedRegion.t0(),
       bkpSel1 = viewInfo.selectedRegion.t1();
@@ -1460,7 +1444,7 @@ unsigned LabelTrackView::KeyDown(
    // Make sure caret is in view
    int x;
    if (CalcCursorX( *project, &x ))
-      ProjectWindow::Get( *project ).ScrollIntoView(x);
+      Viewport::Get(*project).ScrollIntoView(x);
 
    // If selection modified, refresh
    // Otherwise, refresh track display if the keystroke was handled
@@ -1474,7 +1458,7 @@ unsigned LabelTrackView::KeyDown(
 }
 
 unsigned LabelTrackView::Char(
-   wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *, TenacityProject *project)
+   wxKeyEvent & event, ViewInfo &viewInfo, wxWindow *, AudacityProject *project)
 {
    double bkpSel0 = viewInfo.selectedRegion.t0(),
       bkpSel1 = viewInfo.selectedRegion.t1();
@@ -1514,7 +1498,7 @@ unsigned LabelTrackView::Char(
 
 /// KeyEvent is called for every keypress when over the label track.
 bool LabelTrackView::DoKeyDown(
-   TenacityProject &project, NotifyingSelectedRegion &newSel, wxKeyEvent & event)
+   AudacityProject &project, NotifyingSelectedRegion &newSel, wxKeyEvent & event)
 {
    // Only track true changes to the label
    bool updated = false;
@@ -1536,6 +1520,7 @@ bool LabelTrackView::DoKeyDown(
    const auto pTrack = FindLabelTrack();
    const auto &mLabels = pTrack->GetLabels();
    if (IsValidIndex(mTextEditIndex, project)) {
+      // Do label text changes
       auto labelStruct = mLabels[mTextEditIndex];
       auto &title = labelStruct.title;
       wxUniChar wchar;
@@ -1651,7 +1636,7 @@ bool LabelTrackView::DoKeyDown(
             if (mods != wxMOD_SHIFT)
                mInitialCursorPos = mCurrentCursorPos;
          }
-         
+
          break;
 
       case WXK_RIGHT:
@@ -1688,7 +1673,7 @@ bool LabelTrackView::DoKeyDown(
       case WXK_NUMPAD_ENTER:
       case WXK_TAB:
          if (mRestoreFocus >= 0) {
-            auto track = *TrackList::Get( project ).Any()
+            auto track = *TrackList::Get(project).Any()
                .begin().advance(mRestoreFocus);
             if (track)
                TrackFocus::Get( project ).Set(track);
@@ -1712,13 +1697,21 @@ bool LabelTrackView::DoKeyDown(
    }
    else
    {
+      // Do navigation
       switch (keyCode) {
 
+      case WXK_ESCAPE:
+          mNavigationIndex = -1;
+          break;
       case WXK_TAB:
       case WXK_NUMPAD_TAB:
          if (!mLabels.empty()) {
             int len = (int) mLabels.size();
-            if (IsValidIndex(mNavigationIndex, project))
+            // The case where the start of selection is the same as the
+            // start of a label is handled separately so that if some labels
+            // have the same start time, all labels are navigated.
+            if (IsValidIndex(mNavigationIndex, project)
+               && mLabels[mNavigationIndex].getT0() == newSel.t0())
             {
                 if (event.ShiftDown()) {
                     --mNavigationIndex;
@@ -1730,7 +1723,6 @@ bool LabelTrackView::DoKeyDown(
             }
             else
             {
-                // no valid navigation index, then
                 if (event.ShiftDown()) {
                     //search for the first label starting from the end (and before selection)
                     mNavigationIndex = len - 1;
@@ -1759,6 +1751,7 @@ bool LabelTrackView::DoKeyDown(
                mInitialCursorPos = mCurrentCursorPos;
                //Set the selection region to be equal to the selection bounds of the tabbed-to label.
                newSel = labelStruct.selectedRegion;
+               Viewport::Get(project).ScrollIntoView(labelStruct.selectedRegion.t0());
                // message for screen reader
                /* i18n-hint:
                   String is replaced by the name of a label,
@@ -1796,7 +1789,7 @@ bool LabelTrackView::DoKeyDown(
 /// OnChar is called for incoming characters -- that's any keypress not handled
 /// by OnKeyDown.
 bool LabelTrackView::DoChar(
-   TenacityProject &project, NotifyingSelectedRegion& /* newSel */,
+   AudacityProject &project, NotifyingSelectedRegion &WXUNUSED(newSel),
    wxKeyEvent & event)
 {
    // Check for modifiers and only allow shift.
@@ -1820,7 +1813,7 @@ bool LabelTrackView::DoChar(
       event.Skip();
       return false;
    }
-   
+
    // If we've reached this point and aren't currently editing, add NEW label
    const auto pTrack = FindLabelTrack();
    if (!IsValidIndex(mTextEditIndex, project)) {
@@ -1886,7 +1879,7 @@ bool LabelTrackView::DoChar(
 
    //moving cursor position forward
    mInitialCursorPos = ++mCurrentCursorPos;
-   
+
    return true;
 }
 
@@ -1899,13 +1892,13 @@ enum
    OnEditSelectedLabelID,
 };
 
-void LabelTrackView::ShowContextMenu( TenacityProject &project )
+void LabelTrackView::ShowContextMenu( AudacityProject &project )
 {
    wxWindow *parent = wxWindow::FindFocus();
 
    // Bug 2044.  parent can be nullptr after a context switch.
    if( !parent )
-      parent = &GetProjectFrame( project );
+      parent = &GetProjectFrame(project);
 
    if( parent )
    {
@@ -1951,7 +1944,10 @@ void LabelTrackView::ShowContextMenu( TenacityProject &project )
       // So, workaround it by editing the label AFTER the popup menu is
       // closed. It's really ugly, but it works.  :-(
       mEditIndex = -1;
-      parent->PopupMenu(&menu, x, ls->y + (mIconHeight / 2) - 1);
+      BasicMenu::Handle{ &menu }.Popup(
+         wxWidgetsWindowPlacement{ parent },
+         { x, ls->y + (mIconHeight / 2) - 1 }
+      );
       if (mEditIndex >= 0)
       {
          DoEditLabels( project, FindLabelTrack().get(), mEditIndex );
@@ -1960,7 +1956,7 @@ void LabelTrackView::ShowContextMenu( TenacityProject &project )
 }
 
 void LabelTrackView::OnContextMenu(
-   TenacityProject &project, wxCommandEvent & evt )
+   AudacityProject &project, wxCommandEvent & evt )
 {
    auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
 
@@ -2039,7 +2035,7 @@ void LabelTrackView::RemoveSelectedText()
    mInitialCursorPos = mCurrentCursorPos = left.length();
 }
 /*
-bool LabelTrackView::HasSelectedLabel( TenacityProject &project ) const
+bool LabelTrackView::HasSelectedLabel( AudacityProject &project ) const
 {
    const auto selIndex = GetSelectionIndex( project );
    return (selIndex >= 0 &&
@@ -2070,7 +2066,8 @@ int LabelTrackView::GetLabelIndex(double t, double t1)
 
 // restoreFocus of -1 is the default, and sets the focus to this label.
 // restoreFocus of -2 or other value leaves the focus unchanged.
-// restoreFocus >= 0 will later cause focus to move to that track.
+// restoreFocus >= 0 will later cause focus to move to that track (counting
+// tracks, not channels)
 int LabelTrackView::AddLabel(const SelectedRegion &selectedRegion,
                          const wxString &title, int restoreFocus)
 {
@@ -2080,20 +2077,9 @@ int LabelTrackView::AddLabel(const SelectedRegion &selectedRegion,
    return pos;
 }
 
-auto LabelTrackView::GetMenuItems(const wxRect&, const wxPoint*, TenacityProject*)
-   -> std::vector<MenuItem>
+void LabelTrackView::OnLabelAdded(const LabelTrackEvent &e)
 {
-   return {
-      { L"EditLabels", XO("Edit Labels")},
-      { L"AddLabel", XO("Add Label at &Selection")},
-      { L"AddLabelPlaying", XO("Add Label at &Playback Position")}
-   };
-}
-
-void LabelTrackView::OnLabelAdded( LabelTrackEvent &e )
-{
-   e.Skip();
-   if ( e.mpTrack.lock() != FindTrack() )
+   if (e.mpTrack.lock() != FindLabelTrack())
       return;
 
    const auto &title = e.mTitle;
@@ -2112,10 +2098,9 @@ void LabelTrackView::OnLabelAdded( LabelTrackEvent &e )
       mRestoreFocus = -2;
 }
 
-void LabelTrackView::OnLabelDeleted( LabelTrackEvent &e )
+void LabelTrackView::OnLabelDeleted(const LabelTrackEvent &e)
 {
-   e.Skip();
-   if ( e.mpTrack.lock() != FindTrack() )
+   if (e.mpTrack.lock() != FindLabelTrack())
       return;
 
    auto index = e.mFormerPosition;
@@ -2124,17 +2109,16 @@ void LabelTrackView::OnLabelDeleted( LabelTrackEvent &e )
    // THEN set no label selected.
    if (mTextEditIndex == index)
       ResetTextSelection();
-   
+
    // IF we removed a label before the selected label
    // THEN the NEW selected label number is one less.
    else if( index < mTextEditIndex)
       --mTextEditIndex;//NB: Keep cursor selection region
 }
 
-void LabelTrackView::OnLabelPermuted( LabelTrackEvent &e )
+void LabelTrackView::OnLabelPermuted(const LabelTrackEvent &e)
 {
-   e.Skip();
-   if ( e.mpTrack.lock() != FindTrack() )
+   if (e.mpTrack.lock() != FindLabelTrack())
       return;
 
    auto former = e.mFormerPosition;
@@ -2152,13 +2136,12 @@ void LabelTrackView::OnLabelPermuted( LabelTrackEvent &e )
    fix(mTextEditIndex);
 }
 
-void LabelTrackView::OnSelectionChange( LabelTrackEvent &e )
+void LabelTrackView::OnSelectionChange(const LabelTrackEvent &e)
 {
-   e.Skip();
-   if ( e.mpTrack.lock() != FindTrack() )
+   if (e.mpTrack.lock() != FindLabelTrack())
       return;
 
-   if (!FindTrack()->GetSelected())
+   if (!FindLabelTrack()->GetSelected())
    {
        SetNavigationIndex(-1);
        ResetTextSelection();
@@ -2276,19 +2259,18 @@ void LabelTrackView::CreateCustomGlyphs()
 #include "../../../LabelDialog.h"
 
 void LabelTrackView::DoEditLabels
-(TenacityProject &project, LabelTrack *lt, int index)
+(AudacityProject &project, LabelTrack *lt, int index)
 {
-   const auto &settings = ProjectSettings::Get( project );
-   auto format = settings.GetSelectionFormat(),
-      freqFormat = settings.GetFrequencySelectionFormatName();
+   const auto &formats = ProjectNumericFormats::Get( project );
+   auto format = formats.GetSelectionFormat(),
+      freqFormat = formats.GetFrequencySelectionFormatName();
    auto &tracks = TrackList::Get( project );
-   auto rate = ProjectRate::Get( project ).GetRate();
    auto &viewInfo = ViewInfo::Get( project );
-   auto &window = ProjectWindow::Get( project );
+   auto &window = GetProjectFrame(project);
 
    LabelDialog dlg(&window, project, &tracks,
                    lt, index,
-                   viewInfo, rate,
+                   viewInfo,
                    format, freqFormat);
 #ifdef __WXGTK__
    dlg.Raise();
@@ -2301,7 +2283,7 @@ void LabelTrackView::DoEditLabels
 }
 
 int LabelTrackView::DialogForLabelName(
-   TenacityProject &project,
+   AudacityProject &project,
    const SelectedRegion& region, const wxString& initialValue, wxString& value)
 {
    auto &trackFocus = TrackFocus::Get( project );
@@ -2312,12 +2294,12 @@ int LabelTrackView::DialogForLabelName(
       trackPanel.FindTrackRect( trackFocus.Get() ).GetBottomLeft();
    // The start of the text in the text box will be roughly in line with the label's position
    // if it's a point label, or the start of its region if it's a region label.
-   position.x += viewInfo.GetLabelWidth()
+   position.x += viewInfo.GetLeftOffset()
       + std::max(0, static_cast<int>(viewInfo.TimeToPosition(region.t0())))
-      -40;
+      - 39;
    position.y += 2;  // just below the bottom of the track
    position = trackPanel.ClientToScreen(position);
-   auto &window = GetProjectFrame( project );
+   auto &window = GetProjectFrame(project);
    AudacityTextEntryDialog dialog{ &window,
       XO("Name:"),
       XO("New label"),
@@ -2348,14 +2330,15 @@ int LabelTrackView::DialogForLabelName(
    return status;
 }
 
-using DoGetLabelTrackView = DoGetView::Override< LabelTrack >;
+using DoGetLabelTrackView = DoGetView::Override<LabelTrack>;
 DEFINE_ATTACHED_VIRTUAL_OVERRIDE(DoGetLabelTrackView) {
-   return [](LabelTrack &track) {
-      return std::make_shared<LabelTrackView>( track.SharedPointer() );
+   return [](LabelTrack &track, size_t) {
+      return std::make_shared<LabelTrackView>(
+         track.SharedPointer<LabelTrack>());
    };
 }
 
-std::shared_ptr<TrackVRulerControls> LabelTrackView::DoGetVRulerControls()
+std::shared_ptr<ChannelVRulerControls> LabelTrackView::DoGetVRulerControls()
 {
    return
       std::make_shared<LabelTrackVRulerControls>( shared_from_this() );

@@ -17,12 +17,16 @@
 
 #include "HelpCommand.h"
 
-#include "../shuttle/Shuttle.h"
-#include "LoadCommands.h"
-#include "../shuttle/ShuttleGui.h"
-#include "CommandTargets.h"
+#include "../CommonCommandFlags.h"
 #include "CommandContext.h"
-#include "../effects/EffectManager.h"
+#include "CommandDispatch.h"
+#include "CommandTargets.h"
+#include "EffectAndCommandPluginManager.h"
+#include "LoadCommands.h"
+#include "MenuRegistry.h"
+#include "PluginManager.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
 
 const ComponentInterfaceSymbol HelpCommand::Symbol
 { XO("Help") };
@@ -43,7 +47,7 @@ enum {
 static const EnumValueSymbol kFormats[nFormats] =
 {
    // These are acceptable dual purpose internal/visible names
-   
+
    /* i18n-hint JavaScript Object Notation */
    { XO("JSON") },
    /* i18n-hint name of a computer programming language */
@@ -51,12 +55,17 @@ static const EnumValueSymbol kFormats[nFormats] =
    { XO("Brief") }
 };
 
-
-bool HelpCommand::DefineParams( ShuttleParams & S ){
-   S.Define( mCommandName, wxT("Command"),  "Help" );
+template<bool Const>
+bool HelpCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define( mCommandName, wxT("Command"), wxString{"Help"} );
    S.DefineEnum( mFormat, wxT("Format"), 0, kFormats, nFormats );
    return true;
 }
+bool HelpCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool HelpCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void HelpCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -78,7 +87,7 @@ bool HelpCommand::Apply(const CommandContext &context)
 
    if( mFormat == kLisp )
    {
-      CommandContext LispyContext( 
+      CommandContext LispyContext(
          context.project,
          std::make_unique<LispifiedCommandOutputTargets>( *context.pOutput.get() )
          );
@@ -87,7 +96,7 @@ bool HelpCommand::Apply(const CommandContext &context)
 
    if( mFormat == kBrief )
    {
-      CommandContext BriefContext( 
+      CommandContext BriefContext(
          context.project,
          std::make_unique<BriefCommandOutputTargets>( *context.pOutput.get() )
          );
@@ -98,19 +107,25 @@ bool HelpCommand::Apply(const CommandContext &context)
 }
 
 bool HelpCommand::ApplyInner(const CommandContext & context){
-   EffectManager & em = EffectManager::Get();
-   PluginID ID = em.GetEffectByIdentifier( mCommandName );
+   PluginID ID = PluginManager::Get().GetByCommandIdentifier(mCommandName);
    if( ID.empty() )
       context.Status( "Command not found" );
    else
-      em.GetCommandDefinition( ID, context, 1);
+      EffectAndCommandPluginManager::Get().GetCommandDefinition(ID, context, 1);
    return true;
 }
 
-bool CommentCommand::DefineParams( ShuttleParams & S ){
-   S.Define( mComment, wxT("_"),  "" );
+template<bool Const>
+bool CommentCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define( mComment, wxT("_"),  wxString{} );
    return true;
 }
+
+bool CommentCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool CommentCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void CommentCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -123,3 +138,19 @@ void CommentCommand::PopulateOrExchange(ShuttleGui & S)
    S.EndMultiColumn();
 }
 
+namespace {
+using namespace MenuRegistry;
+
+// Register menu items
+
+AttachedItem sAttachment{
+   // Note that the PLUGIN_SYMBOL must have a space between words,
+   // whereas the short-form used here must not.
+   // (So if you did write "Compare Audio" for the PLUGIN_SYMBOL name, then
+   // you would have to use "CompareAudio" here.)
+   Command( wxT("Help"), XXO("Help..."),
+      CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() ),
+   wxT("Optional/Extra/Part2/Scriptables2")
+};
+
+}

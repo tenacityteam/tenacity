@@ -5,6 +5,7 @@
   SelectionBar.cpp
 
   Copyright 2005 Dominic Mazzoni
+            2023 Dmitry Vedenko
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,19 +18,14 @@
 \brief (not quite a Toolbar) at foot of screen for setting and viewing the
 selection range.
 
-*//****************************************************************//**
-
-\class SelectionBarListener
-\brief A parent class of SelectionBar, used to forward events to do
-with changes in the SelectionBar.
-
 *//*******************************************************************/
 
 
 
 #include "SelectionBar.h"
 
-#include "SelectionBarListener.h"
+#include <algorithm>
+
 #include "ToolManager.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
@@ -38,103 +34,141 @@ with changes in the SelectionBar.
 #include <wx/setup.h> // for wxUSE_* macros
 
 #ifndef WX_PRECOMP
-#include <wx/button.h>
-#include <wx/checkbox.h>
-#include <wx/combobox.h>
-#include <wx/intl.h>
-#include <wx/radiobut.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/valtext.h>
 #include <wx/stattext.h>
 #endif
 #include <wx/statline.h>
+#include <wx/menu.h>
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-project/Project.h>
-#include <lib-project-rate/ProjectRate.h>
-#include <lib-project-rate/QualitySettings.h>
 
-#include "../AColor.h"
+#include "AudioIO.h"
+#include "AColor.h"
 #include "../KeyboardCapture.h"
-#include "../ProjectSettings.h"
+#include "Prefs.h"
+#include "Project.h"
+#include "ProjectAudioIO.h"
+#include "ProjectNumericFormats.h"
+#include "ProjectRate.h"
+#include "ProjectSelectionManager.h"
+#include "ProjectTimeSignature.h"
 #include "ViewInfo.h"
-#include "../theme/AllThemeResources.h"
-#include "../widgets/AuStaticText.h"
+#include "AllThemeResources.h"
+#include "ImageManipulation.h"
+#include "../widgets/AButton.h"
+#include "../widgets/auStaticText.h"
+#include "../widgets/BasicMenu.h"
 #include "../widgets/NumericTextCtrl.h"
+#include "wxWidgetsWindowPlacement.h"
+#include "NumericConverterFormats.h"
 
-#if wxUSE_ACCESSIBILITY
-#include "../widgets/WindowAccessible.h"
-#endif
+IntSetting SelectionToolbarMode { "/SelectionToolbarMode", 0 };
+
+namespace
+{
+SelectionBar::SelectionMode ReadSelectionMode()
+{
+   return static_cast<SelectionBar::SelectionMode>(
+      std::clamp(SelectionToolbarMode.Read(), 0, 3));
+}
+
+void UpdateSelectionMode(SelectionBar::SelectionMode selectionMode)
+{
+   SelectionToolbarMode.Write(static_cast<int>(selectionMode));
+   gPrefs->Flush();
+}
+
+/* i18n-hint noun */
+const TranslatableString StartTimeText = XO("Start");
+/* i18n-hint noun */
+const TranslatableString EndTimeText = XO("End");
+/* i18n-hint noun */
+const TranslatableString LengthTimeText = XO("Length");
+/* i18n-hint noun */
+const TranslatableString CenterTimeText = XO("Center");
+
+std::pair<const TranslatableString&, const TranslatableString&> ModeNames[] = {
+   { StartTimeText,  EndTimeText    },
+   { StartTimeText,  LengthTimeText },
+   { LengthTimeText, EndTimeText    },
+   { LengthTimeText, CenterTimeText },
+};
+
+std::unordered_map<TranslatableString, wxWindowID> WindowIDs {
+   { StartTimeText, 2705 },
+   { LengthTimeText, 2706 },
+   { CenterTimeText, 2707 },
+   { EndTimeText, 2708 }
+};
+
+const NumericConverterType TimeConverterType[][2] {
+   { NumericConverterType_TIME(), NumericConverterType_TIME() },
+   { NumericConverterType_TIME(), NumericConverterType_DURATION() },
+   { NumericConverterType_DURATION(), NumericConverterType_TIME() },
+   { NumericConverterType_DURATION(), NumericConverterType_TIME() },
+};
+}
 
 IMPLEMENT_CLASS(SelectionBar, ToolBar);
 
-constexpr int SIZER_COLS = 1;
-
-const static wxChar *numbers[] =
-{
-   wxT("0"), wxT("1"), wxT("2"), wxT("3"), wxT("4"),
-   wxT("5"), wxT("6"), wxT("7"), wxT("8"), wxT("9")
-};
-
-enum {
-   SelectionBarFirstID = 2700,
-   OnMenuID,
-
-   ChoiceID,
-
-   StartTimeID,
-   LengthTimeID,
-   CenterTimeID,
-   EndTimeID,
-};
-
 BEGIN_EVENT_TABLE(SelectionBar, ToolBar)
    EVT_SIZE(SelectionBar::OnSize)
-   EVT_TEXT(StartTimeID, SelectionBar::OnChangedTime)
-   EVT_TEXT(LengthTimeID, SelectionBar::OnChangedTime)
-   EVT_TEXT(CenterTimeID, SelectionBar::OnChangedTime)
-   EVT_TEXT(EndTimeID, SelectionBar::OnChangedTime)
-   EVT_CHOICE(ChoiceID, SelectionBar::OnChoice )
+
    EVT_IDLE( SelectionBar::OnIdle )
 
    EVT_COMMAND(wxID_ANY, EVT_TIMETEXTCTRL_UPDATED, SelectionBar::OnUpdate)
    EVT_COMMAND(wxID_ANY, EVT_CAPTURE_KEY, SelectionBar::OnCaptureKey)
 END_EVENT_TABLE()
 
-SelectionBar::SelectionBar( TenacityProject &project )
-: ToolBar(project, SelectionBarID, XO("Selection"), wxT("Selection")),
-  mListener(NULL), mRate(0.0),
-  mStart(0.0), mEnd(0.0), mLength(0.0), mCenter(0.0),
-  mDrive1( StartTimeID), mDrive2( EndTimeID ),
-  mSelectionMode(0),
-  mStartTime(NULL), mCenterTime(NULL), mLengthTime(NULL), mEndTime(NULL),
-  mChoice(NULL)
+Identifier SelectionBar::ID()
 {
-   // Get the current project's sample rate
+   return wxT("Selection");
+}
+
+SelectionBar::SelectionBar( AudacityProject &project )
+: ToolBar(project, XO("Selection"), ID()),
+  mRate(0.0),
+  mStart(0.0), mEnd(0.0), mLength(0.0), mCenter(0.0),
+  mFormatsSubscription{ ProjectNumericFormats::Get(project).Subscribe(
+     *this, &SelectionBar::OnFormatsChanged) }
+{
+   // Make sure we have a valid rate as the NumericTextCtrl()s
+   // created in Populate()
+   // depend on it.  Otherwise, division-by-zero floating point exceptions
+   // will occur.
+   // Refer to bug #462 for a scenario where the division-by-zero causes
+   // Audacity to fail.
+   // We expect mRate to be set from the project later.
    mRate = ProjectRate::Get(project).GetRate();
 
-   // Subscribe to ProjectRate for future changes
-   mProjectRateSubscription = ProjectRate::Get(project).Subscribe(*this, &SelectionBar::OnRate);
-
    // Selection mode of 0 means showing 'start' and 'end' only.
-   mSelectionMode = gPrefs->ReadLong(wxT("/SelectionToolbarMode"),  0);
+   mSelectionMode = ReadSelectionMode();
 }
 
 SelectionBar::~SelectionBar()
 {
 }
 
-SelectionBar &SelectionBar::Get( TenacityProject &project )
+bool SelectionBar::ShownByDefault() const
 {
-   auto &toolManager = ToolManager::Get( project );
-   return *static_cast<SelectionBar*>( toolManager.GetToolBar(SelectionBarID) );
+   return true;
 }
 
-const SelectionBar &SelectionBar::Get( const TenacityProject &project )
+ToolBar::DockID SelectionBar::DefaultDockID() const
 {
-   return Get( const_cast<TenacityProject&>( project )) ;
+   return BotDockID;
+}
+
+SelectionBar &SelectionBar::Get( AudacityProject &project )
+{
+   auto &toolManager = ToolManager::Get( project );
+   return *static_cast<SelectionBar*>(toolManager.GetToolBar(ID()));
+}
+
+const SelectionBar &SelectionBar::Get( const AudacityProject &project )
+{
+   return Get( const_cast<AudacityProject&>( project )) ;
 }
 
 void SelectionBar::Create(wxWindow * parent)
@@ -143,85 +177,141 @@ void SelectionBar::Create(wxWindow * parent)
    UpdatePrefs();
 }
 
+AButton* SelectionBar::MakeSetupButton()
+{
+   wxImage up = theTheme.Image(bmpRecoloredUpSmall);
+   up.Rescale(23, 23, wxIMAGE_QUALITY_HIGH);
+   wxImage down = theTheme.Image(bmpRecoloredDownSmall);
+   down.Rescale(23, 23, wxIMAGE_QUALITY_HIGH);
+   wxImage hiliteUp = theTheme.Image(bmpRecoloredUpHiliteSmall);
+   hiliteUp.Rescale(23, 23, wxIMAGE_QUALITY_HIGH);
+   wxImage hiliteDown = theTheme.Image(bmpRecoloredHiliteSmall);
+   hiliteDown.Rescale(23, 23, wxIMAGE_QUALITY_HIGH);
 
-AuStaticText * SelectionBar::AddTitle(
+   auto btn = safenew AButton(
+      this, wxID_ANY, wxDefaultPosition, wxSize { 23, 23 }, up, hiliteUp, down,
+      hiliteDown, up, false);
+
+   btn->SetButtonType(AButton::FrameButton);
+   btn->SetIcon(theTheme.Image(bmpCogwheel));
+   btn->SetLabel({});
+   btn->SetName(XO("Selection Toolbar Setup").Translation());
+
+   return btn;
+}
+
+void SelectionBar::AddTitle(
    const TranslatableString & Title, wxSizer * pSizer ){
    const auto translated = Title.Translation();
-   AuStaticText * pTitle = safenew AuStaticText(this, translated );
+   auStaticText * pTitle = safenew auStaticText(this, translated );
    pTitle->SetBackgroundColour( theTheme.Colour( clrMedium ));
    pTitle->SetForegroundColour( theTheme.Colour( clrTrackPanelText ) );
-   pSizer->Add( pTitle, 0, wxEXPAND | wxALIGN_CENTER_VERTICAL | wxRIGHT, 5 );
-
-   return pTitle;
+   pSizer->Add( pTitle, 0, wxEXPAND | wxRIGHT, 5 );
 }
 
 
-NumericTextCtrl * SelectionBar::AddTime(
-   const TranslatableString &Name, int id, wxSizer * pSizer ){
-   auto formatName = mListener ? mListener->AS_GetSelectionFormat()
-      : NumericFormatSymbol{};
-   auto pCtrl = safenew NumericTextCtrl(
-      this, id, NumericConverter::TIME, formatName, 0.0, mRate);
-   pCtrl->SetName( Name );
+void SelectionBar::AddTime(int id, wxSizer * pSizer)
+{
+   auto &formats = ProjectNumericFormats::Get(mProject);
+   auto formatName = formats.GetSelectionFormat();
+   auto pCtrl = safenew NumericTextCtrl(FormatterContext::ProjectContext(mProject),
+      this, id, NumericConverterType_TIME(), formatName, 0.0);
+
+   pCtrl->Bind(
+      wxEVT_TEXT,
+      [this, id](auto& evt) { ModifySelection(id, evt.GetInt() != 0); });
+
    pSizer->Add(pCtrl, 0, wxALIGN_TOP | wxRIGHT, 5);
-   return pCtrl;
+
+   mTimeControls[id] = pCtrl;
+
+   mFormatChangedToFitValueSubscription[id] = pCtrl->Subscribe(
+      [this, id](const auto& msg)
+      {
+         auto altCtrl = mTimeControls[id == 0 ? 1 : 0];
+         if (altCtrl != nullptr)
+            altCtrl->UpdateFormatToFit(msg.value);
+
+         FitToTimeControls();
+      });
+}
+
+void SelectionBar::AddSelectionSetupButton(wxSizer* pSizer)
+{
+   auto setupBtn = MakeSetupButton();
+
+   auto showMenu = [this, setupBtn]()
+   {
+      static const wxString choices[4] = {
+         _("Start and End of Selection"),
+         _("Start and Length of Selection"),
+         _("Length and End of Selection"),
+         _("Length and Center of Selection"),
+      };
+
+      wxMenu menu;
+      int selectionMode {};
+      for (auto& choice : choices)
+      {
+         auto subMenu = menu.AppendRadioItem(wxID_ANY, choice);
+
+         if (static_cast<SelectionMode>(selectionMode) == mSelectionMode)
+            subMenu->Check();
+
+         menu.Bind(
+            wxEVT_MENU,
+            [this, selectionMode](auto& evt)
+            {
+               SetSelectionMode(static_cast<SelectionMode>(selectionMode));
+               SelectionModeUpdated();
+            },
+            subMenu->GetId());
+
+         ++selectionMode;
+      }
+
+      menu.Bind(wxEVT_MENU_CLOSE, [setupBtn](auto&) { setupBtn->PopUp(); });
+
+      BasicMenu::Handle { &menu }.Popup(wxWidgetsWindowPlacement { setupBtn });
+   };
+
+   setupBtn->Bind(wxEVT_BUTTON, [this, showMenu](auto&) { showMenu(); });
+   pSizer->Add(setupBtn, 0, wxALIGN_RIGHT | wxBOTTOM | wxRIGHT, 5);
+
+   mSetupButton = setupBtn;
 }
 
 void SelectionBar::Populate()
 {
    SetBackgroundColour( theTheme.Colour( clrMedium  ) );
 
-   mStartTime = mEndTime = mLengthTime = mCenterTime = nullptr;
+   mTimeControls[0] = mTimeControls[1] = {};
 
    // Outer sizer has space top and left.
    // Inner sizers have space on right only.
    // This choice makes for a nice border and internal spacing and places clear responsibility
    // on each sizer as to what spacings it creates.
-   wxFlexGridSizer *mainSizer = safenew wxFlexGridSizer(SIZER_COLS, 1, 1);
+   wxFlexGridSizer *mainSizer = safenew wxFlexGridSizer(2, 1, 1);
    Add(mainSizer, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
 
-   // Top row (mostly labels)
-   wxColour clrText =  theTheme.Colour( clrTrackPanelText );
-   wxColour clrText2 = *wxBLUE;
+   AddTitle(XO("Selection"), mainSizer);
+   AddTime(0, mainSizer);
+   AddSelectionSetupButton(mainSizer);
+   AddTime(1, mainSizer);
 
-   {
-      const wxString choices[4] = {
-         _("Start and End of Selection"),
-         _("Start and Length of Selection"),
-         _("Length and End of Selection"),
-         _("Length and Center of Selection"),
-      };
-      mChoice = safenew wxChoice
-         (this, ChoiceID, wxDefaultPosition, wxDefaultSize, 4, choices,
-          0, wxDefaultValidator, _("Show"));
-      mChoice->SetSelection(0);
-#if wxUSE_ACCESSIBILITY
-      // so that name can be set on a standard control
-      mChoice->SetAccessible(safenew WindowAccessible(mChoice));
-#endif
-      mainSizer->Add(mChoice, 0, wxEXPAND | wxALIGN_TOP | wxRIGHT, 6);
-   }
+   mSetupButton->MoveBeforeInTabOrder(mTimeControls[0]);
 
-   {
-      auto hSizer = std::make_unique<wxBoxSizer>(wxHORIZONTAL);
-
-      mStartTime  = AddTime( XO("Start"), StartTimeID, hSizer.get() );
-      mLengthTime = AddTime( XO("Length"), LengthTimeID, hSizer.get() );
-      mCenterTime = AddTime( XO("Center"), CenterTimeID, hSizer.get() );
-      mEndTime    = AddTime( XO("End"), EndTimeID, hSizer.get() );
-      mainSizer->Add(hSizer.release(), 0, wxALIGN_TOP | wxRIGHT, 0);
-   }
-
-   // Make sure they are fully expanded to the longest item
-   mChoice->SetMinSize(wxSize(mChoice->GetBestSize().x, toolbarSingle));
-
-   mChoice->MoveBeforeInTabOrder( mStartTime );
-   // This shows/hides controls.
-   // Do this before layout so that we are sized right.
+   // Update the selection mode before the layout
    SetSelectionMode(mSelectionMode);
    mainSizer->Layout();
    RegenerateTooltips();
    Layout();
+
+   CallAfter([this]{
+      auto &formats = ProjectNumericFormats::Get(mProject);
+      SetSelectionFormat(formats.GetSelectionFormat());
+   });
+
 }
 
 void SelectionBar::UpdatePrefs()
@@ -230,20 +320,21 @@ void SelectionBar::UpdatePrefs()
    // When preferences change, the Project learns about it too.
    // If necessary we can drive the SelectionBar mRate via the Project
    // calling our SetRate().
-   // As of 13-Sep-2018, changes to the sample rate pref will only affect 
+   // As of 13-Sep-2018, changes to the sample rate pref will only affect
    // creation of new projects, not the sample rate in existing ones.
 
    // This will only change the selection mode during a "Reset Configuration"
    // action since the read value will be the same during a normal preferences
    // update.
-   mSelectionMode = gPrefs->ReadLong(wxT("/SelectionToolbarMode"),  0);
+   mSelectionMode = ReadSelectionMode();
 
    // This will only change the time format during a "Reset Configuration"
    // action since the read value will be the same during a normal preferences
    // update.
    wxCommandEvent e;
-   e.SetString(NumericTextCtrl::LookupFormat(
-               NumericConverter::TIME,
+   e.SetString(NumericConverterFormats::Lookup(
+               FormatterContext::ProjectContext(mProject),
+               NumericConverterType_TIME(),
                gPrefs->Read(wxT("/SelectionFormat"), wxT(""))).Internal());
    OnUpdate(e);
 
@@ -255,11 +346,9 @@ void SelectionBar::UpdatePrefs()
    ToolBar::UpdatePrefs();
 }
 
-void SelectionBar::SetListener(SelectionBarListener *l)
+void SelectionBar::RegenerateTooltips()
 {
-   mListener = l;
-   SetSelectionFormat(mListener->AS_GetSelectionFormat());
-};
+}
 
 void SelectionBar::OnSize(wxSizeEvent &evt)
 {
@@ -270,188 +359,144 @@ void SelectionBar::OnSize(wxSizeEvent &evt)
 
 // When a control value is changed, this function is called.
 // It determines the values for the other controls.
-void SelectionBar::ModifySelection(int newDriver, bool done)
+void SelectionBar::ModifySelection(int driver, bool done)
 {
-   // If the user moved to a different control, then update which
-   // two controls drive the others.
-   if( newDriver != mDrive2 )
-      SetDrivers( mDrive2, newDriver);
-
    // Only update a value if user typed something in.
-   // The reason is the controls may be less accurate than 
+   // The reason is the controls may be less accurate than
    // the values.
-   if( newDriver == StartTimeID )
-      mStart = mStartTime->GetValue();
-   if( newDriver == EndTimeID )
-      mEnd = mEndTime->GetValue();
-   if( newDriver == LengthTimeID )
-      mLength = mLengthTime->GetValue();
-   if( newDriver == CenterTimeID )
-      mCenter = mCenterTime->GetValue();
-
-   // There are four controls, and two constraints, which are:
-   //    mid = (start+end)/2
-   //    length = (end-start)
-   // Therefore we can select any two controls as 'drivers' of
-   // the other two.
-   // Here we compute 'i' which combines the identity of the two 
-   // driving controls, to use it as an index.
-   // The order of the two drivers generally does not matter much,
-   // except that we want:
-   //    start < end
-   // and preserve that by adjusting the least dominant driving
-   // control.
-   int i = mDrive1 + 4 * mDrive2;
-   switch(i) {
-   case StartTimeID + 4 * EndTimeID:
-      if( mEnd < mStart )
-         mStart = mEnd;
-   case StartTimeID * 4 + EndTimeID:
-      if( mStart > mEnd )
-         mEnd = mStart;
-      mLength = mEnd - mStart;
-      mCenter = (mStart+mEnd)/2.0;
-      break;
-
-   case StartTimeID + 4 * LengthTimeID:
-   case StartTimeID * 4 + LengthTimeID:
-      mEnd = mStart+mLength;
-      mCenter = (mStart+mEnd)/2.0;
-      break;
-
-   case EndTimeID + 4 * LengthTimeID:
-      if( mEnd - mLength < 0 )
-         mEnd += (mLength - mEnd);
-   case EndTimeID * 4 + LengthTimeID:
-      if( mEnd - mLength < 0)
-         mLength -= (mLength - mEnd);
-      mStart = mEnd - mLength;
-      mCenter = (mStart+mEnd)/2.0;
-      break;
-
-   case LengthTimeID + 4 * CenterTimeID:
-      if( mCenter - (mLength / 2) < 0 )
-         mLength = (mCenter * 2);
-   case LengthTimeID * 4 + CenterTimeID:
-      if( mCenter - (mLength / 2) < 0 )
-         mCenter = (mLength / 2);
-      mStart = mCenter - mLength/2.0;
-      mEnd = mCenter + mLength/2.0;
-      break;
-
-   default:
-      // The above should cover all legal combinations of two distinct controls.
-      wxFAIL_MSG( "Illegal sequence of selection changes");
+   double start = mStart;
+   double end = mEnd;
+   double center = mCenter;
+   double length = mLength;
+   
+   if (driver == 0)
+   {
+      if (
+         mSelectionMode == SelectionMode::StartEnd ||
+         mSelectionMode == SelectionMode::StartLength)
+         start = mTimeControls[0]->GetValue();
+      else if (
+         mSelectionMode == SelectionMode::LengthCenter ||
+         mSelectionMode == SelectionMode::LengthEnd)
+         length = mTimeControls[0]->GetValue();
+      else
+         wxFAIL_MSG("Unexpected selection mode");
+   }
+   else if (driver == 1)
+   {
+      if (
+         mSelectionMode == SelectionMode::StartEnd ||
+         mSelectionMode == SelectionMode::LengthEnd)
+         end = mTimeControls[1]->GetValue();
+      else if (mSelectionMode == SelectionMode::StartLength)
+         length = mTimeControls[1]->GetValue();
+      else if (mSelectionMode == SelectionMode::LengthCenter)
+         center = mTimeControls[1]->GetValue();
+      else
+         wxFAIL_MSG("Unexpected selection mode");
+   }
+   else
+   {
+      wxFAIL_MSG("Illegal selection driver");
    }
 
-   // Refresh the controls now
-   ValuesToControls();
+   switch (mSelectionMode)
+   {
+   case SelectionBar::SelectionMode::StartEnd:
+      if (driver == 0 && end < start)
+         end = start;
+      else if (driver == 1 && start > end)
+         start = end;
+      break;
+   case SelectionBar::SelectionMode::StartLength:
+      // Nothing can go wrong here
+      end = start + length;
+      break;
+   case SelectionBar::SelectionMode::LengthEnd:
+      start = end - length;
+
+      if (start < 0)
+      {
+         // Length is set by user
+         if (driver == 0)
+            end -= start;
+         
+         start = 0;
+      }
+      break;
+   case SelectionBar::SelectionMode::LengthCenter:
+      start = center - length / 2.0;
+
+      if (start < 0)
+      {
+         // Length is set by user
+         if (driver == 0)
+            center = length / 2.0;
+         else
+         // Center is set by user
+            length = center * 2.0;
+
+         start = 0;
+      }
+      
+      end = center + length / 2.0;
+      break;
+   default:
+      break;
+   }
 
    // Places the start-end markers on the track panel.
-   mListener->AS_ModifySelection(mStart, mEnd, done);
-}
-
-void SelectionBar::OnChangedTime(wxCommandEvent & event)
-{
-   ModifySelection(event.GetId(), event.GetInt() != 0);
+   auto &manager = ProjectSelectionManager::Get(mProject);
+   manager.ModifySelection(start, end, done);
 }
 
 // Called when one of the format drop downs is changed.
 void SelectionBar::OnUpdate(wxCommandEvent &evt)
 {
-   wxWindow *w = FindFocus();
-   NumericTextCtrl ** Ctrls[4] = { &mStartTime, &mEndTime, &mLengthTime, &mCenterTime };
-   int i;
-   int iFocus = -1;
-   for(i=0;i<4;i++)
-      if( w == *Ctrls[i] )
-         iFocus = i;
-
    evt.Skip(false);
 
-   auto format = NumericTextCtrl::LookupFormat(NumericConverter::TIME, evt.GetString());
+   wxWindow *w = FindFocus();
+
+   auto focusedCtrlIt =
+      std::find(mTimeControls.begin(), mTimeControls.end(), w);
+
+   const auto focusedCtrlIdx =
+      focusedCtrlIt != mTimeControls.end() ?
+         std::distance(mTimeControls.begin(), focusedCtrlIt) :
+         -1;
+
+   auto format = evt.GetString();
 
    // Save format name before recreating the controls so they resize properly
-   if (mStartTime)
+   if (mTimeControls.front())
    {
-      if (mListener)
-         mListener->AS_SetSelectionFormat(format);
+      auto &formats = ProjectNumericFormats::Get(mProject);
+      formats.SetSelectionFormat(format);
+      // Then my Subscription is called
    }
 
    // ReCreateButtons() will get rid of our sizers and controls
    // so reset pointers first.
-   for( i=0;i<4;i++)
-      *Ctrls[i]=NULL;
-
-   mChoice = NULL;
+   std::fill(mTimeControls.begin(), mTimeControls.end(), nullptr);
 
    ToolBar::ReCreateButtons();
 
    ValuesToControls();
 
-   for( i=0;i<4;i++)
-      if( *Ctrls[i] )
-         (*Ctrls[i])->SetFormatName( format );
+   UpdateTimeControlsFormat(format);
 
-   if( iFocus >=0 )
-      if( *Ctrls[iFocus] )
-         (*Ctrls[iFocus])->SetFocus();
+   if (focusedCtrlIdx >= 0 && mTimeControls[focusedCtrlIdx])
+      mTimeControls[focusedCtrlIdx]->SetFocus();
 
    RegenerateTooltips();
 
    Updated();
 }
 
-// The two drivers are the numbers of the two controls which drive the other ones.
-// The user gets to see which controls are drivers and which driven.
-void SelectionBar::SetDrivers( int driver1, int driver2 )
-{
-   mDrive1 = driver1;
-   mDrive2 = driver2;
-
-   NumericTextCtrl ** Ctrls[4] = { &mStartTime, &mCenterTime, &mLengthTime, &mEndTime };
-   static TranslatableString Text[4] = {
-      /* i18n-hint noun */
-      XO("Start"),
-      XO("Center"),
-      XO("Length"),
-      /* i18n-hint noun */
-      XO("End")
-   };
-
-   for(int i=0;i<4;i++){
-      int id = i + StartTimeID;
-      int fixed = (( id == mDrive2 )?mDrive1:mDrive2)-StartTimeID;
-
-      const auto &Temp = Text[i];
-      auto Title = ( (id!=mDrive1) && (id!=mDrive2 ) )
-         /* i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-            'Start', or 'End' (translated), to indicate that it will be
-            calculated from other parameters. */
-         ? XO("%s - driven").Format( Temp )
-         : Temp ;
-      auto VoiceOverText =
-         /* i18n-hint: each string is replaced by one of 'Length', 'Center',
-            'Start', or 'End' (translated) */
-         XO("Selection %s. %s won't change.").Format( Temp, Text[fixed] );
-      if( *Ctrls[i] ){
-         (*Ctrls[i])->SetName( Temp );
-      }
-   }
-}
-
-void SelectionBar::OnChoice(wxCommandEvent & /* event */)
-{
-   int mode = mChoice->GetSelection();
-   SetSelectionMode( mode );
-   SelectionModeUpdated();
-}
-
 void SelectionBar::OnIdle( wxIdleEvent &evt )
 {
    evt.Skip();
-   auto &project = mProject;
-   const auto &selectedRegion = ViewInfo::Get( project ).selectedRegion;
+   const auto& selectedRegion = ViewInfo::Get(mProject).selectedRegion;
 
    SetTimes(selectedRegion.t0(), selectedRegion.t1());
 }
@@ -459,80 +504,62 @@ void SelectionBar::OnIdle( wxIdleEvent &evt )
 void SelectionBar::SelectionModeUpdated()
 {
    // We just changed the mode.  Remember it.
-   gPrefs->Write(wxT("/SelectionToolbarMode"), mSelectionMode);
-   gPrefs->Flush();
+   UpdateSelectionMode(mSelectionMode);
 
-   wxSize sz = GetMinSize();
-   sz.SetWidth( 10 );
-   SetMinSize( sz );
-   Fit();
-   Layout();
-   Updated();
+   FitToTimeControls();
 }
 
 // We used to have 8 modes which showed different combinations of the
 // length, start, end, center controls.
 // Mode 7 for example showed all four at the same time.
-void SelectionBar::SetSelectionMode(int mode)
+void SelectionBar::SetSelectionMode(SelectionMode mode)
 {
-   // Only modes 0 to 3 are now supported,
-   // so fix up a mode that could have come from the config.
-   const int maxMode = 3;
-
-   if( mode > maxMode )
-      mode = 0;
-   if( mode < 0 )
-      mode = 0;
    mSelectionMode = mode;
-   mChoice->SetSelection( mode ); 
 
-   // First decide which two controls drive the others...
-   // For example the last option is with all controls shown, and in that mode we 
-   // initially have start and end driving.
-   int Drive2[] = { StartTimeID, StartTimeID,  LengthTimeID, LengthTimeID, 
-                    StartTimeID, StartTimeID,  StartTimeID,  StartTimeID};
-   int Drive1[] = { EndTimeID,   LengthTimeID, EndTimeID,    CenterTimeID, 
-                    EndTimeID,   LengthTimeID, EndTimeID,    EndTimeID};
+   // Update names and WindowIds for the screen readers
+   auto& modeName = ModeNames[static_cast<size_t>(mode)];
 
-   SetDrivers( Drive1[mode], Drive2[mode] );
-   // Then show/hide the relevant controls.
-   ShowHideControls( mode );
-}
-
-// Our mode determines which controls are visible.
-void SelectionBar::ShowHideControls(int mode)
-{
-   // The bits in these say which controls are visible.
-   int masks[8]= { 
-      9, 5, 12, 6, // 2 items shown
-      13, 7, 11,// 3 items shown
-      15};
-   int mask = masks[mode];
-
-   NumericTextCtrl ** Ctrls[4]  = { &mStartTime,  &mCenterTime,  &mLengthTime,  &mEndTime};
-   for(int i=0;i<4;i++){
-      if( *Ctrls[i]){ 
-         (*Ctrls[i])->Show( (mask & (1<<i))!=0 );
-         (*Ctrls[i])->Refresh();
-      }
+   if (mTimeControls[0]) {
+      mTimeControls[0]->SetName(modeName.first);
+      mTimeControls[0]->SetId(WindowIDs.at(modeName.first));
    }
+
+   if (mTimeControls[1]) {
+      mTimeControls[1]->SetName(modeName.second);
+      mTimeControls[1]->SetId(WindowIDs.at(modeName.second));
+   }
+
+   UpdateTimeControlsFormat(mTimeControls[0]->GetFormatName());
+
+   ValuesToControls();
 }
 
 void SelectionBar::ValuesToControls()
 {
-   NumericTextCtrl ** Ctrls[5] = { &mStartTime, &mEndTime, &mLengthTime, &mCenterTime };
-   double Values[4] = {mStart, mEnd, mLength, mCenter };
-   int i;
-   for(i=0;i<4;i++)
-      if( *Ctrls[i] )
-         (*Ctrls[i])->SetValue( Values[i] );
+   const double valuePairs[4][2] = {
+      { mStart, mEnd },
+      { mStart, mLength },
+      { mLength, mEnd },
+      { mLength, mCenter } };
+
+   const auto value = valuePairs[static_cast<size_t>(mSelectionMode)];
+
+   size_t i = 0;
+   for (auto ctrl : mTimeControls)
+   {
+      if (ctrl != nullptr)
+         ctrl->SetValue(value[i]);
+
+      i++;
+   }
 }
 
 // A time has been set.  Update the control values.
 void SelectionBar::SetTimes(double start, double end)
 {
-   if ( start != mStart || end != mEnd || mLastSelectionMode != mSelectionMode)
-   {
+   if ( start != mStart || end != mEnd
+      || mLastSelectionMode != mSelectionMode
+   ) {
       mStart = start;
       mEnd = end;
       mLength = end-start;
@@ -543,28 +570,29 @@ void SelectionBar::SetTimes(double start, double end)
    }
 }
 
-void SelectionBar::SetSelectionFormat(const NumericFormatSymbol & format)
+void SelectionBar::SetSelectionFormat(const NumericFormatID & format)
 {
-   bool changed =
-      mStartTime->SetFormatString(mStartTime->GetBuiltinFormat(format));
+   if (mTimeControls.front() == nullptr)
+      return;
+
+   const bool changed = mTimeControls.front()->SetFormatName(format);
 
    // Test first whether changed, to avoid infinite recursion from OnUpdate
    if ( changed ) {
       wxCommandEvent e;
-      e.SetString(format.Internal());
+      e.SetString(format.GET());
       OnUpdate(e);
    }
 }
 
-void SelectionBar::OnRate(double newRate)
+void SelectionBar::OnFormatsChanged(ProjectNumericFormatsEvent evt)
 {
-   if (newRate != 0.0)
-   {
-      NumericTextCtrl ** Ctrls[5] = { &mStartTime, &mEndTime, &mLengthTime, &mCenterTime };
-      int i;
-      for(i=0;i<4;i++)
-         if( *Ctrls[i] )
-            (*Ctrls[i])->SetSampleRate( mRate );
+   auto &formats = ProjectNumericFormats::Get(mProject);
+   switch (evt.type) {
+   case ProjectNumericFormatsEvent::ChangedSelectionFormat:
+      return SetSelectionFormat(formats.GetSelectionFormat());
+   default:
+      break;
    }
 }
 
@@ -591,8 +619,38 @@ void SelectionBar::OnCaptureKey(wxCommandEvent &event)
    event.Skip();
 }
 
-static RegisteredToolbarFactory factory{ SelectionBarID,
-   []( TenacityProject &project ){
+void SelectionBar::UpdateTimeControlsFormat(const NumericFormatID& format)
+{
+   for (size_t controlIndex = 0; controlIndex < mTimeControls.size();
+        ++controlIndex)
+   {
+      auto ctrl = mTimeControls[controlIndex];
+
+      if (ctrl == nullptr)
+         continue;
+
+      const auto type =
+         TimeConverterType[static_cast<size_t>(mSelectionMode)][controlIndex];
+
+      ctrl->SetTypeAndFormatName(
+         type, type != NumericConverterType_DURATION() ?
+            format :
+            NumericConverterFormats::GetBestDurationFormat(format));
+   }
+}
+
+void SelectionBar::FitToTimeControls()
+{
+   wxSize sz = GetMinSize();
+   sz.SetWidth(10);
+   SetMinSize(sz);
+   Fit();
+   Layout();
+   Updated();
+}
+
+static RegisteredToolbarFactory factory{
+   []( AudacityProject &project ){
       return ToolBar::Holder{ safenew SelectionBar{ project } }; }
 };
 
@@ -600,7 +658,7 @@ namespace {
 AttachedToolBarMenuItem sAttachment{
    /* i18n-hint: Clicking this menu item shows the toolbar
       for selecting a time range of audio */
-   SelectionBarID, wxT("ShowSelectionTB"), XXO("&Selection Toolbar")
+   SelectionBar::ID(), wxT("ShowSelectionTB"), XXO("&Selection Toolbar")
 };
 }
 

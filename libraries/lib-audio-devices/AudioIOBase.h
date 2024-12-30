@@ -11,30 +11,33 @@ Paul Licameli split from AudioIO.h
 #ifndef __AUDACITY_AUDIO_IO_BASE__
 #define __AUDACITY_AUDIO_IO_BASE__
 
-
+#include <atomic>
 #include <cfloat>
+#include <chrono>
 #include <functional>
+#include <map>
+#include <optional>
 #include <vector>
-#include <limits>
-#include <string>
-
-// Tenacity libraries
+#include <utility>
+#include <wx/string.h>
 #include "MemoryX.h"
-
-#include <portaudio.h>
 
 struct PaDeviceInfo;
 typedef void PaStream;
 
+#if USE_PORTMIXER
+typedef void PxMixer;
+#endif
+
 class AudioIOBase;
 
-class TenacityProject;
+class AudacityProject;
 class AudioIOListener;
 class BoundedEnvelope;
 class Meter;
 using PRCrossfadeData = std::vector< std::vector < float > >;
 
-constexpr double BAD_STREAM_TIME = -(std::numeric_limits<double>::max());
+#define BAD_STREAM_TIME (-DBL_MAX)
 
 class PlaybackPolicy;
 
@@ -43,25 +46,19 @@ struct AudioIOStartStreamOptions
 {
    explicit
    AudioIOStartStreamOptions(
-      const std::shared_ptr<TenacityProject> &pProject, double rate_)
-      : pProject{ pProject }
-      , envelope(nullptr)
+      const std::shared_ptr<AudacityProject> &pProject = {},
+      double rate_ = 44100.0
+   )  : pProject{ pProject }
       , rate(rate_)
-      , cutPreviewGapStart(0.0)
-      , cutPreviewGapLen(0.0)
-      , pStartTime(NULL)
-      , preRoll(0.0)
    {}
 
-   std::shared_ptr<TenacityProject> pProject;
+   std::shared_ptr<AudacityProject> pProject;
    std::weak_ptr<Meter> captureMeter, playbackMeter;
-   const BoundedEnvelope *envelope; // for time warping
+   const BoundedEnvelope *envelope{}; // for time warping
    std::shared_ptr< AudioIOListener > listener;
    double rate;
-   double cutPreviewGapStart;
-   double cutPreviewGapLen;
-   double * pStartTime;
-   double preRoll;
+   mutable std::optional<double> pStartTime;
+   double preRoll{ 0.0 };
 
    bool playNonWaveTracks{ true };
 
@@ -70,17 +67,21 @@ struct AudioIOStartStreamOptions
 
    // An unfortunate thing needed just to make scrubbing work on Linux when
    // we can't use a separate polling thread.
-   // The return value is a number of milliseconds to sleep before calling again
-   std::function< unsigned long() > playbackStreamPrimer;
+   // The return value is duration to sleep before calling again
+   std::function< std::chrono::milliseconds() > playbackStreamPrimer;
 
-   using PolicyFactory = std::function< std::unique_ptr<PlaybackPolicy>() >;
+   using PolicyFactory = std::function<
+      std::unique_ptr<PlaybackPolicy>(const AudioIOStartStreamOptions&) >;
    PolicyFactory policyFactory;
+
+   bool loopEnabled{ false };
+   bool variableSpeed{ false };
 };
 
 struct AudioIODiagnostics{
-   std::string filename;    /// For crash report bundle
-   std::string text;        /// One big string, may be localized
-   std::string description; /// Non-localized short description
+   wxString filename;    // For crash report bundle
+   wxString text;        // One big string, may be localized
+   wxString description; // Non-localized short description
 };
 
 //! Abstract interface to alternative, concurrent playback with the main audio (such as MIDI events)
@@ -111,9 +112,9 @@ public:
    AudioIOBase &operator=(const AudioIOBase &) = delete;
 
    void SetCaptureMeter(
-      const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &meter);
+      const std::shared_ptr<AudacityProject> &project, const std::weak_ptr<Meter> &meter);
    void SetPlaybackMeter(
-      const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &meter);
+      const std::shared_ptr<AudacityProject> &project, const std::weak_ptr<Meter> &meter);
 
    /** \brief update state after changing what audio devices are selected
     *
@@ -134,11 +135,25 @@ public:
     * You can explicitly give the index of the device.  If you don't
     * give it, the currently selected device from the preferences will be used.
     *
-    * You may also specify a rate for which to check in addition to the
-    * standard rates.
     */
-   static std::vector<long> GetSupportedPlaybackRates(int DevIndex = -1,
-                                                double rate = 0.0);
+   static std::vector<long> GetSupportedPlaybackRates(int DevIndex = -1);
+
+   /** \brief Find the closest supported sample rate for given
+    *         playback device.
+    *
+    * Attempts to find the sample rate that is closest to the requested rate,
+    * and is supported by the playback device.
+    *
+    * If device is not specified the currently selected device will be used.
+    *
+    * Sample rate check order:
+    * - the exact requested rate
+    * - higher available rates
+    * - lower available rates
+    *
+    * returns 0 if none is found or the input rate is invalid.
+    */
+   static long GetClosestSupportedPlaybackRate(int devIndex, long rate);
 
    /** \brief Get a list of sample rates the input (recording) device
     * supports.
@@ -149,11 +164,25 @@ public:
     * You can explicitly give the index of the device.  If you don't
     * give it, the currently selected device from the preferences will be used.
     *
-    * You may also specify a rate for which to check in addition to the
-    * standard rates.
     */
-   static std::vector<long> GetSupportedCaptureRates(int devIndex = -1,
-                                               double rate = 0.0);
+   static std::vector<long> GetSupportedCaptureRates(int devIndex = -1);
+
+   /** \brief Find the closest supported sample rate for given
+    *         recording device.
+    *
+    * Attempts to find the sample rate that is closest to the requested rate,
+    * and is supported by the recording device.
+    *
+    * If device is not specified the currently selected device will be used.
+    *
+    * Sample rate check order:
+    * - the exact requested rate
+    * - higher available rates
+    * - lower available rates
+    *
+    * returns 0 if none is found or the input rate is invalid.
+    */
+   static long GetClosestSupportedCaptureRate(int devIndex, long rate);
 
    /** \brief Get a list of sample rates the current input/output device
     * combination supports.
@@ -166,22 +195,51 @@ public:
     * You can explicitly give the indexes of the playDevice/recDevice.
     * If you don't give them, the selected devices from the preferences
     * will be used.
-    * You may also specify a rate for which to check in addition to the
-    * standard rates.
     */
    static std::vector<long> GetSupportedSampleRates(int playDevice = -1,
-                                              int recDevice = -1,
-                                       double rate = 0.0);
+                                                    int recDevice = -1);
+
+   /** \brief Find the closest supported sample rate for given
+    *         playback and recording devices.
+    *
+    * Attempts to find the sample rate that is closest to the requested rate,
+    * and is supported by both playback and recording devices.
+    *
+    * If devices are not specified the currently selected devices will be used.
+    *
+    * Sample rate check order:
+    * - the exact requested rate
+    * - higher available rates
+    * - lower available rates
+    *
+    * returns 0 if none is found or the input rate is invalid.
+    */
+   static long GetClosestSupportedSampleRate(int playDevice,
+                                             int recDevice, long rate);
 
    /** \brief Get a supported sample rate which can be used a an optimal
     * default.
     *
     * Currently, this uses the first supported rate in the list
-    * [48000, 44100, highest sample rate]. Used in Project as a default value
+    * [44100, 48000, highest sample rate]. Used in Project as a default value
     * for project rates if one cannot be retrieved from the preferences.
     * So all in all not that useful or important really
     */
    static int GetOptimalSupportedSampleRate();
+
+   /** \brief Check if the specified playback rate is supported by a device.
+    *
+    * Verifies if a playback device supports a given rate.
+    * If no device index is specified (devIndex == -1), the preferred device is used.
+    */
+   static bool IsPlaybackRateSupported(int devIndex, long rate);
+
+   /** \brief Check if the specified sample rate is supported by a device.
+    *
+    * Verifies if a recording device supports a given rate.
+    * If no device index is specified (devIndex == -1), the preferred device is used.
+    */
+   static bool IsCaptureRateSupported(int devIndex, long rate);
 
    /** \brief Array of common audio sample rates
     *
@@ -194,7 +252,7 @@ public:
    /** \brief Get diagnostic information on all the available audio I/O devices
     *
     */
-   std::string GetDeviceInfo() const;
+   wxString GetDeviceInfo() const;
 
    //! Get diagnostic information for audio devices and also for extensions
    std::vector<AudioIODiagnostics> GetAllDeviceInfo();
@@ -230,19 +288,29 @@ public:
     * playing actual audio) */
    bool IsMonitoring() const;
 
+   /* Mixer services are always available.  If no stream is running, these
+    * methods use whatever device is specified by the preferences.  If a
+    * stream *is* running, naturally they manipulate the mixer associated
+    * with that stream.  If no mixer is available, output is emulated and
+    * input is stuck at 1.0f (a volume gain is applied to output samples).
+    */
+   void SetMixer(int inputSource);
+
 protected:
    static std::unique_ptr<AudioIOBase> ugAudioIO;
-   static std::string DeviceName(const PaDeviceInfo* info);
-   static std::string HostName(const PaDeviceInfo* info);
+   static wxString DeviceName(const PaDeviceInfo* info);
+   static wxString HostName(const PaDeviceInfo* info);
 
-   std::weak_ptr<TenacityProject> mOwningProject;
+   std::weak_ptr<AudacityProject> mOwningProject;
 
    /// True if audio playback is paused
-   bool                mPaused;
+   std::atomic<bool>   mPaused{ false };
 
-   volatile int        mStreamToken;
+   /*! Read by worker threads but unchanging during playback */
+   int                 mStreamToken{ 0 };
 
    /// Audio playback rate in samples per second
+   /*! Read by worker threads but unchanging during playback */
    double              mRate;
 
    PaStream           *mPortStreamV19;
@@ -250,12 +318,26 @@ protected:
    std::weak_ptr<Meter> mInputMeter{};
    std::weak_ptr<Meter> mOutputMeter{};
 
+   #if USE_PORTMIXER
+   PxMixer            *mPortMixer;
+   float               mPreviousHWPlaythrough;
+   #endif /* USE_PORTMIXER */
+
+   /** @brief Can we control the hardware input level?
+    *
+    * This flag is set to true if using portmixer to control the
+    * input volume seems to be working (and so we offer the user the control),
+    * and to false (locking the control out) otherwise. This avoids stupid
+    * scaled clipping problems when trying to do software emulated input volume
+    * control */
+   bool                mInputMixerWorks;
+
    // For cacheing supported sample rates
-   static int mCachedPlaybackIndex;
-   static std::vector<long> mCachedPlaybackRates;
-   static int mCachedCaptureIndex;
-   static std::vector<long> mCachedCaptureRates;
-   static std::vector<long> mCachedSampleRates;
+   static std::map<int, std::vector<long>> mCachedPlaybackRates;
+   static std::map<int, std::vector<long>> mCachedCaptureRates;
+   static std::map<std::pair<int, int>, std::vector<long>> mCachedSampleRates;
+   static int mCurrentPlaybackIndex;
+   static int mCurrentCaptureIndex;
    static double mCachedBestRateIn;
 
 protected:
@@ -266,7 +348,15 @@ protected:
     * and would be neater done once. If the device isn't found, return the
     * default device index.
     */
-   static int getRecordDevIndex(const std::string &devName = {});
+   static int getRecordDevIndex(const wxString &devName = {});
+
+   /** \brief get the index of the device selected in the preferences.
+    *
+    * If the device isn't found, returns -1
+    */
+#if USE_PORTMIXER
+   static int getRecordSourceIndex(PxMixer *portMixer);
+#endif
 
    /** \brief get the index of the supplied (named) playback device, or the
     * device selected in the preferences if none given.
@@ -275,7 +365,7 @@ protected:
     * and would be neater done once. If the device isn't found, return the
     * default device index.
     */
-   static int getPlayDevIndex(const std::string &devName = {});
+   static int getPlayDevIndex(const wxString &devName = {});
 
    /** \brief Array of audio sample rates to try to use
     *
@@ -296,9 +386,12 @@ protected:
 extern AUDIO_DEVICES_API StringSetting AudioIOHost;
 extern AUDIO_DEVICES_API DoubleSetting AudioIOLatencyCorrection;
 extern AUDIO_DEVICES_API DoubleSetting AudioIOLatencyDuration;
-extern AUDIO_DEVICES_API ChoiceSetting AudioIOLatencyUnit;
 extern AUDIO_DEVICES_API StringSetting AudioIOPlaybackDevice;
+extern AUDIO_DEVICES_API StringSetting AudioIOPlaybackSource;
+extern AUDIO_DEVICES_API DoubleSetting AudioIOPlaybackVolume;
 extern AUDIO_DEVICES_API IntSetting    AudioIORecordChannels;
 extern AUDIO_DEVICES_API StringSetting AudioIORecordingDevice;
+extern AUDIO_DEVICES_API StringSetting AudioIORecordingSource;
+extern AUDIO_DEVICES_API IntSetting    AudioIORecordingSourceIndex;
 
 #endif

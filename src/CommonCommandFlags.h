@@ -12,16 +12,17 @@ Paul Licameli split from Menus.cpp
 #define __AUDACITY_COMMON_COMMAND_FLAGS__
 
 
-#include "commands/CommandFlag.h"
+
+#include "CommandFlag.h"
 
 TENACITY_DLL_API
-bool EditableTracksSelectedPred( const TenacityProject &project );
+bool EditableTracksSelectedPred( const AudacityProject &project );
 
 TENACITY_DLL_API
-bool AudioIOBusyPred( const TenacityProject &project );
+bool AudioIOBusyPred( const AudacityProject &project );
 
 TENACITY_DLL_API
-bool TimeSelectedPred( const TenacityProject &project );
+bool TimeSelectedPred( const AudacityProject &project );
 
 TENACITY_DLL_API
 const CommandFlagOptions &cutCopyOptions();
@@ -43,13 +44,10 @@ extern TENACITY_DLL_API const ReservedCommandFlag
 
 extern TENACITY_DLL_API const ReservedCommandFlag
    &LabelTracksExistFlag(),
-   &UnsavedChangesFlag(),
    &UndoAvailableFlag(),
    &RedoAvailableFlag(),
    &ZoomInAvailableFlag(),
    &ZoomOutAvailableFlag(),
-   &PlayRegionLockedFlag(),  //msmeyer
-   &PlayRegionNotLockedFlag(),  //msmeyer
    &WaveTracksExistFlag(),
    &IsNotSyncLockedFlag(),  //awd
    &IsSyncLockedFlag(),  //awd

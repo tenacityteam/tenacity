@@ -14,11 +14,11 @@ Paul Licameli split from TrackPanel.cpp
 #include "LabelTrackView.h"
 
 #include "../../../HitTestResult.h"
-#include "../../../LabelTrack.h"
-#include "../../../ProjectAudioIO.h"
-#include "../../../ProjectHistory.h"
+#include "LabelTrack.h"
+#include "ProjectAudioIO.h"
+#include "ProjectHistory.h"
 #include "../../../RefreshCode.h"
-#include "../../../SelectionState.h"
+#include "SelectionState.h"
 #include "../../../TrackPanelMouseEvent.h"
 #include "ViewInfo.h"
 #include "../../../../images/Cursors.h"
@@ -32,7 +32,7 @@ LabelTextHandle::LabelTextHandle
 {
 }
 
-void LabelTextHandle::Enter(bool, TenacityProject *)
+void LabelTextHandle::Enter(bool, AudacityProject *)
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -70,7 +70,12 @@ LabelTextHandle::~LabelTextHandle()
 {
 }
 
-void LabelTextHandle::HandleTextClick(TenacityProject &project, const wxMouseEvent & evt)
+std::shared_ptr<const Track> LabelTextHandle::FindTrack() const
+{
+   return mpLT.lock();
+}
+
+void LabelTextHandle::HandleTextClick(AudacityProject &project, const wxMouseEvent & evt)
 {
    auto pTrack = mpLT.lock();
    if (!pTrack)
@@ -147,7 +152,7 @@ bool LabelTextHandle::HandlesRightClick()
 }
 
 UIHandle::Result LabelTextHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    auto pLT = mpLT.lock();
    if (!pLT)
@@ -164,7 +169,7 @@ UIHandle::Result LabelTextHandle::Click
 }
 
 void LabelTextHandle::HandleTextDragRelease(
-   TenacityProject &project, const wxMouseEvent & evt)
+   AudacityProject &project, const wxMouseEvent & evt)
 {
    auto pTrack = mpLT.lock();
    if (!pTrack)
@@ -205,7 +210,7 @@ void LabelTextHandle::HandleTextDragRelease(
    {
       auto index = view.GetTextEditIndex(project);
       if(index != -1 &&
-         LabelTrackView::OverTextBox(pTrack->GetLabel(index), evt.m_x, evt.m_y)) 
+         LabelTrackView::OverTextBox(pTrack->GetLabel(index), evt.m_x, evt.m_y))
       {
          // popup menu for editing
          // TODO: handle context menus via CellularPanel?
@@ -217,7 +222,7 @@ void LabelTextHandle::HandleTextDragRelease(
 }
 
 UIHandle::Result LabelTextHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    auto &project = *pProject;
    using namespace RefreshCode;
@@ -252,13 +257,13 @@ UIHandle::Result LabelTextHandle::Drag
 }
 
 HitTestPreview LabelTextHandle::Preview
-(const TrackPanelMouseState &, TenacityProject *)
+(const TrackPanelMouseState &, AudacityProject *)
 {
    return HitPreview();
 }
 
 UIHandle::Result LabelTextHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
  wxWindow *pParent)
 {
    auto result = LabelDefaultClickHandle::Release( evt, pProject, pParent );
@@ -278,7 +283,7 @@ UIHandle::Result LabelTextHandle::Release
    return result | RefreshCode::RefreshNone;
 }
 
-UIHandle::Result LabelTextHandle::Cancel( TenacityProject *pProject )
+UIHandle::Result LabelTextHandle::Cancel( AudacityProject *pProject )
 {
    auto result = LabelDefaultClickHandle::Cancel( pProject );
    return result | RefreshCode::RefreshAll;
