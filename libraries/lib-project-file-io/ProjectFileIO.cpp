@@ -1270,7 +1270,7 @@ bool ProjectFileIO::RenameOrWarn(const FilePath &src, const FilePath &dst)
    {
       ShowError( *ProjectFramePlacement(&mProject),
          XO("Error Writing to File"),
-         XO("Audacity failed to write file %s.\n"
+         XO("Tenacity failed to write file %s.\n"
             "Perhaps disk is full or not writable.\n"
             "For tips on freeing up space, click the help button.")
             .Format(dst),
@@ -1531,7 +1531,7 @@ void ProjectFileIO::SetProjectTitle(int number)
    {
       name =
       /* i18n-hint: The %02i is the project number, the %s is the project name.*/
-      XO("[Project %02i] Audacity \"%s\"")
+      XO("[Project %02i] Tenacity \"%s\"")
          .Format( number + 1,
                  name.empty() ? XO("<untitled>") : Verbatim((const char *)name))
          .Translation();
@@ -1539,7 +1539,7 @@ void ProjectFileIO::SetProjectTitle(int number)
    // If we are not showing numbers, then <untitled> shows as 'Audacity'.
    else if (name.empty())
    {
-      name = _TS("Audacity");
+      name = _TS("Tenacity");
    }
 
    if (mRecovered)
@@ -1659,7 +1659,7 @@ bool ProjectFileIO::HandleXMLTag(const std::string_view& tag, const AttributesLi
    if (codeVer<fileVer)
    {
       /* i18n-hint: %s will be replaced by the version number.*/
-      auto msg = XO("This file was saved using Audacity %s.\nYou are using Audacity %s. You may need to upgrade to a newer version to open this file.")
+      auto msg = XO("This file was saved using Tenacity %s.\nYou are using Tenacity %s. You may need to upgrade to a newer version to open this file.")
          .Format(audacityVersion, TENACITY_VERSION_STRING);
 
       ShowError( *ProjectFramePlacement(&project),

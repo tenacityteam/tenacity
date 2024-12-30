@@ -139,7 +139,7 @@ ComponentInterfaceSymbol AudioUnitEffectsModule::GetSymbol() const
 
 VendorSymbol AudioUnitEffectsModule::GetVendor() const
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team and contributors");
 }
 
 wxString AudioUnitEffectsModule::GetVersion() const
@@ -150,7 +150,7 @@ wxString AudioUnitEffectsModule::GetVersion() const
 
 TranslatableString AudioUnitEffectsModule::GetDescription() const
 {
-   return XO("Provides Audio Unit Effects support to Audacity");
+   return XO("Provides Audio Unit Effects support to Tenacity");
 }
 
 // ============================================================================

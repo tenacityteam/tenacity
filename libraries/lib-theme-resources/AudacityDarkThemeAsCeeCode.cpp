@@ -13,9 +13,9 @@
 
 static const std::vector<unsigned char> ImageCacheAsData {
 // Include the generated file full of numbers
-#include "DarkThemeAsCeeCode.h"
+#include "AudacityDarkThemeAsCeeCode.h"
 };
 
 static ThemeBase::RegisteredTheme theme{
-   { "dark", XO("Dark") }, PreferredSystemAppearance::Dark, ImageCacheAsData
+   { "audacity-dark", XO("Audacity Dark") }, PreferredSystemAppearance::Dark, ImageCacheAsData
 };

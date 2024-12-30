@@ -665,7 +665,7 @@ bool PCMExportProcessor::Initialize(AudacityProject& project,
             //Temporary translation hack, to say 'WAV or AIFF' rather than 'WAV'
             const auto message =
                XO("You have attempted to Export a WAV or AIFF file which would be greater than 4GB.\n"
-               "Audacity cannot do this, the Export was abandoned.");
+               "Tenacity cannot do this, the Export was abandoned.");
             throw ExportErrorException(message,
                wxT("Size_limits_for_WAV_and_AIFF_files"));
          }

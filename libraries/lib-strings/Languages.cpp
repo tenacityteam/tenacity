@@ -364,7 +364,7 @@ wxString SetLang( const FilePaths &pathList, const wxString & lang )
    sLocale->AddCatalog(wxT("wxstd"));
 
    // Must match TranslationExists() in Languages.cpp
-   sLocale->AddCatalog("audacity");
+   sLocale->AddCatalog("tenacity");
 
    // Initialize internationalisation (number formats etc.)
    //

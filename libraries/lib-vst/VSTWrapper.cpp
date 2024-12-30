@@ -76,11 +76,11 @@ intptr_t VSTWrapper::AudioMaster(AEffect * effect,
          return vst->mCurrentEffectID;
 
       case audioMasterGetVendorString:
-         strcpy((char *) ptr, "Audacity Team");    // Do not translate, max 64 + 1 for null terminator
+         strcpy((char *) ptr, "Tenacity Team");    // Do not translate, max 64 + 1 for null terminator
          return 1;
 
       case audioMasterGetProductString:
-         strcpy((char *) ptr, "Audacity");         // Do not translate, max 64 + 1 for null terminator
+         strcpy((char *) ptr, "Tenacity");         // Do not translate, max 64 + 1 for null terminator
          return 1;
 
       case audioMasterGetVendorVersion:

@@ -53,7 +53,7 @@ ComponentInterfaceSymbol Effect::GetSymbol() const
 
 VendorSymbol Effect::GetVendor() const
 {
-   return XO("Audacity");
+   return XO("Tenacity");
 }
 
 wxString Effect::GetVersion() const
@@ -70,7 +70,7 @@ EffectFamilySymbol Effect::GetFamily() const
 {
    // Unusually, the internal and visible strings differ for the built-in
    // effect family.
-   return { wxT("Audacity"), XO("Built-in") };
+   return { wxT("Tenacity"), XO("Built-in") };
 }
 
 bool Effect::IsInteractive() const

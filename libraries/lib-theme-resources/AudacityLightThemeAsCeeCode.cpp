@@ -2,7 +2,7 @@
  
  Audacity: A Digital Audio Editor
  
- @file LightThemeAsCeeCode.cpp
+ @file AudacityLightThemeAsCeeCode.cpp
  
  Paul Licameli split from Theme.cpp
  
@@ -13,10 +13,10 @@
 
 static const std::vector<unsigned char> ImageCacheAsData {
 // Include the generated file full of numbers
-#include "LightThemeAsCeeCode.h"
+#include "AudacityLightThemeAsCeeCode.h"
 };
 
 static ThemeBase::RegisteredTheme theme{
    /* i18n-hint: Light meaning opposite of dark */
-   { "light", XO("Light") }, PreferredSystemAppearance::Light, ImageCacheAsData
+   { "audacity-light", XO("Audacity Light") }, PreferredSystemAppearance::Light, ImageCacheAsData
 };

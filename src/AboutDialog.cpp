@@ -62,68 +62,68 @@ hold information about one contributor to Audacity.
 #endif
 
 #ifdef REV_LONG
-#define REV_IDENT wxString( "[[https://github.com/audacity/audacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
+#define REV_IDENT wxString( "[[https://codeberg.org/tenacityteam/tenacity/commit/" )+ REV_LONG + "|" + wxString( REV_LONG ).Left(6) + "]] of " +  REV_TIME 
 #else
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
 
 // To substitute into many other translatable strings
 static const auto ProgramName =
-   //XO("Audacity");
-   Verbatim("Audacity");
+   //XO("Tenacity");
+   Verbatim("Tenacity");
 
 void AboutDialog::CreateCreditsList()
 {
    const auto sysAdminFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, system administration");
    const auto coFounderFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, co-founder and developer");
   const auto designerFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, designer");
    const auto developerFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, developer");
    const auto developerAndSupprtFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, developer and support");
    const auto documentationAndSupportFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, documentation and support");
    const auto qaDocumentationAndSupportFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, QA tester, documentation and support");
    const auto documentationAndSupportFrenchFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, documentation and support, French");
    const auto qualityAssuranceFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, quality assurance");
    const auto accessibilityAdvisorFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, accessibility advisor");
    const auto graphicArtistFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, graphic artist");
    const auto composerFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, composer");
    const auto testerFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, tester");
    const auto NyquistPluginsFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, Nyquist plug-ins");
    const auto webDeveloperFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, web developer");
    const auto graphicsFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, graphics");
    const auto presetsFormat =
-   /* i18n-hint: For "About Audacity..." credits, substituting a person's proper name */
+   /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, effects presets");
 
    // The Audacity Team: developers and support
@@ -433,12 +433,12 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("<p><br>")
       /* i18n-hint: The program's name substitutes for %s */
       << XO("%s website: ").Format( ProgramName )
-      << wxT("[[https://www.audacityteam.org/|https://www.audacityteam.org/]]")
+      << wxT("[[https://www.tenacityaudio.org/|https://www.tenacityaudio.org/]]")
 
       << wxT("<p><br>&nbsp; &nbsp; ")
       /* i18n-hint Audacity's name substitutes for first and third %s,
        and a "copyright" symbol for the second */
-      << XO("%s software is copyright %s 2021-2025 %s Team.")
+      << XO("Copyright %s 2021-2025 %s Team.")
          .Format(
             Verbatim("<b>%s<sup>&reg;</sup></b>").Format( ProgramName ),
             wxT("&copy;"),
@@ -447,8 +447,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
 
       << wxT("&nbsp; &nbsp; ")
       /* i18n-hint Audacity's name substitutes for %s */
-      << XO("The name %s is a registered trademark.")
-         .Format( Verbatim("<b>%s</b>").Format( ProgramName ) )
+      << XO("'Audacity' is a registered trademark of MuseCY SM Ltd")
       << wxT("<br><br>")
       << wxT("</center>")
    ;

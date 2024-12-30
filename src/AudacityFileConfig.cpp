@@ -168,7 +168,7 @@ void AudacityFileConfig::Warn() const
                "the disk is full or you do not have write permissions to the file. "
                "\n\n"
                "You can attempt to correct the issue and then click \"Retry\" to continue.\n\n"
-               "If you choose to \"Quit Audacity\", your project may be left in an unsaved "
+               "If you choose to \"Quit Tenacity\", your project may be left in an unsaved "
                "state which will be recovered the next time you open it.")
             .Format(mLocalFilename),
             false,
@@ -185,7 +185,7 @@ void AudacityFileConfig::Warn() const
          b->SetToolTip( XO("Help").Translation() );
          b->SetLabel(XO("Help").Translation());       // for screen readers
 
-         b = S.Id(wxID_CANCEL).AddButton(XXO("&Quit Audacity"));
+         b = S.Id(wxID_CANCEL).AddButton(XXO("&Quit Tenacity"));
          b = S.Id(wxID_OK).AddButton(XXO("&Retry"));
          dlg.SetAffirmativeId(wxID_OK);
 

@@ -295,7 +295,7 @@ void InitProjectWindow( ProjectWindow &window )
 #endif
 
    window.UpdateStatusWidths();
-   auto msg = XO("Welcome to Audacity version %s")
+   auto msg = XO("Welcome to Tenacity version %s")
       .Format( TENACITY_VERSION_STRING );
    ProjectManager::Get( project ).SetStatusText( msg, MainStatusBarField() );
 }

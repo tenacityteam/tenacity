@@ -132,7 +132,7 @@ void ImportExportPrefs::PopulateOrExchange(ShuttleGui & S)
    auto musicImportsBox = S.StartStatic(XO("Music Imports"));
    {
       const auto header = S.AddVariableText(
-         XO("When Audacity detects music in file imported on empty project"));
+         XO("When Tenacity detects music in file imported on empty project"));
 #if wxUSE_ACCESSIBILITY
       if (musicImportsBox != nullptr)
       {

@@ -442,7 +442,7 @@ PrefsDialog::PrefsDialog(
    wxWindow * parent, AudacityProject *pProject,
    const TranslatableString &titlePrefix,
    PrefsPanel::Factories &factories)
-:  wxDialogWrapper(parent, wxID_ANY, XO("Audacity Preferences"),
+:  wxDialogWrapper(parent, wxID_ANY, XO("Tenacity Preferences"),
             wxDefaultPosition,
             wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)

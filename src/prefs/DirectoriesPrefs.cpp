@@ -308,7 +308,7 @@ void DirectoriesPrefs::OnTempBrowse(wxCommandEvent &evt)
       // Clearing Bug 1271 residual issue.  Let's NOT have temp in the name.
       newDirName = wxT("SessionData");
 #else
-      newDirName = wxT(".audacity_temp");
+      newDirName = wxT(".tenacity_temp");
 #endif
       auto dirsInPath = tmpDirPath.GetDirs();
 
@@ -459,7 +459,7 @@ bool DirectoriesPrefs::Validate()
    if (Temp != oldDir) {
       AudacityMessageBox(
          XO(
-"Changes to temporary directory will not take effect until Audacity is restarted"),
+"Changes to temporary directory will not take effect until Tenacity is restarted"),
          XO("Temp Directory Update"),
          wxOK | wxCENTRE | wxICON_INFORMATION);
    }
