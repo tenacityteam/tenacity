@@ -9,10 +9,6 @@ set( SOURCES
    AudacityLogoAlpha.xpm
    AudacityMessageBox.cpp
    AudacityMessageBox.h
-   $<$<BOOL:${${_OPT}has_sentry_reporting}>:
-      ErrorReportDialog.cpp
-      ErrorReportDialog.h
-   >
    ErrorDialog.cpp
    ErrorDialog.h
    HelpSystem.cpp
@@ -48,11 +44,6 @@ set( LIBRARIES
    lib-theme-interface
    lib-wx-wrappers-interface
    lib-preferences-interface
-   # If Sentry reporting is enabled, this library depends on
-   # lib-network-manager-interface
-   # If Sentry reporting is disabled, an INTERFACE library
-   # will be defined
-   lib-sentry-reporting-interface
 )
 
 tenacity_library( lib-wx-init "${SOURCES}" "${LIBRARIES}"

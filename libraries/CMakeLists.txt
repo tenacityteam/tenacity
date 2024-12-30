@@ -83,36 +83,13 @@ if ( USE_LV2 )
    list( APPEND LIBRARIES lib-lv2)
 endif()
 
-if ( ${_OPT}has_networking )
-   list( APPEND LIBRARIES lib-network-manager)
-endif()
-
 if ( ${_OPT}has_url_schemes_support )
    list( APPEND LIBRARIES lib-url-schemes)
-endif()
-
-if ( ${_OPT}has_audiocom_upload)
-   list( APPEND LIBRARIES
-      lib-cloud-audiocom
-   )
-endif()
-
-if( ${_OPT}has_crashreports )
-   if( ${_OPT}crashreport_backend STREQUAL "breakpad" )
-      list( APPEND LIBRARIES lib-breakpad-configurer )
-   elseif( ${_OPT}crashreport_backend STREQUAL "crashpad" )
-      list( APPEND LIBRARIES lib-crashpad-configurer )
-   endif()
 endif()
 
 if ( USE_NYQUIST )
    list( APPEND LIBRARIES lib-nyquist-effects )
 endif()
-
-# This library depends on lib-network-manager
-# If Sentry reporting is disabled, an INTERFACE library
-# will be defined
-list( APPEND LIBRARIES lib-sentry-reporting)
 
 foreach( LIBRARY ${LIBRARIES} )
    add_subdirectory( "${LIBRARY}" )

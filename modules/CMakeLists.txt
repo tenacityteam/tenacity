@@ -14,7 +14,6 @@ set( FOLDERS
    track-ui
    scripting
    nyquist
-   sharing
 )
 
 foreach( FOLDER ${FOLDERS} )

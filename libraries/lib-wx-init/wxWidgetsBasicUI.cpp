@@ -11,9 +11,6 @@ Paul Licameli
 #include "wxWidgetsWindowPlacement.h"
 #include "MemoryX.h" // for Destroy_ptr
 #include "ErrorDialog.h"
-#ifdef HAS_SENTRY_REPORTING
-#include "ErrorReportDialog.h"
-#endif
 #include "AudacityMessageBox.h"
 #include "ProgressDialog.h"
 #include "MultiDialog.h"
@@ -48,16 +45,7 @@ void wxWidgetsBasicUI::DoShowErrorDialog(
    auto parent = wxWidgetsWindowPlacement::GetParent(placement);
    switch (options.type) {
       case ErrorDialogType::ModalErrorReport: {
-#ifdef HAS_SENTRY_REPORTING
-         ErrorReportDialog dlog(parent, dlogTitle, message, helpPage,
-            options.log, modal);
-
-         dlog.CentreOnParent();
-         dlog.ShowModal();
-         return;
-#else
          break;
-#endif
       }
       case ErrorDialogType::ModelessError: {
          if (!parent)
