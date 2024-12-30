@@ -60,9 +60,6 @@
 #include "IteratorX.h"
 #include "Observer.h"
 
-StickySetting<BoolSetting> DefaultUpdatesCheckingFlag{
-    L"/Update/DefaultUpdatesChecking", true };
-
 std::unique_ptr<audacity::BasicSettings> ugPrefs {};
 
 audacity::BasicSettings *gPrefs = nullptr;

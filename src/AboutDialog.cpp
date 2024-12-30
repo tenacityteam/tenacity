@@ -67,10 +67,6 @@ hold information about one contributor to Audacity.
 #define REV_IDENT (XO("No revision identifier was provided").Translation())
 #endif
 
-#if defined(HAS_SENTRY_REPORTING) || defined(HAVE_UPDATES_CHECK) || defined(USE_BREAKPAD)
-#define HAS_PRIVACY_POLICY
-#endif
-
 // To substitute into many other translatable strings
 static const auto ProgramName =
    //XO("Audacity");
@@ -787,37 +783,7 @@ const wxString GPL_TEXT();
 
 void AboutDialog::PopulateLicensePage( ShuttleGui & S )
 {
-#if defined(HAS_PRIVACY_POLICY)
-   S.StartNotebookPage(XC("Legal", "about dialog"));
-#else
    S.StartNotebookPage(XO("GPL License"));
-#endif
-   
-#if defined(HAS_PRIVACY_POLICY)
-   S.Prop(0).StartPanel();
-   {
-      S.AddSpace(0, 8);
-      /* i18n-hint: For "About Audacity...": Title for Privacy Policy section */
-      S.AddVariableText(XC("PRIVACY POLICY", "about dialog"), true);
-
-      S.AddFixedText(
-         XO("App update checking and error reporting require network access. "
-            "These features are optional."));
-
-      /* i18n-hint: %s will be replaced with "our Privacy Policy" */
-      AccessibleLinksFormatter privacyPolicy(XO("See %s for more info."));
-
-      privacyPolicy.FormatLink(
-         /* i18n-hint: Title of hyperlink to the privacy policy. This is an object of "See". */
-         wxT("%s"), XO("our Privacy Policy"),
-         "https://www.audacityteam.org/about/desktop-privacy-notice/");
-
-      privacyPolicy.Populate(S);
-   }
-   S.EndPanel();
-
-   S.AddSpace(0, 8);
-#endif
 
    S.Prop(1).StartPanel();
    {

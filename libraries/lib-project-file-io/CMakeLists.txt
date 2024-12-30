@@ -23,14 +23,6 @@ set( LIBRARIES
    lib-wave-track-interface
 )
 
-list( APPEND LIBRARIES
-   # If Sentry reporting is enabled, this library depends on
-   # lib-network-manager-interface
-   # If Sentry reporting is disabled, an INTERFACE library
-   # will be defined
-   lib-sentry-reporting-interface
-)
-
 # Only this library needs sqlite, so make the dependency private
 list( APPEND LIBRARIES
    PRIVATE

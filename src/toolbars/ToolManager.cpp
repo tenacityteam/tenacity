@@ -532,16 +532,9 @@ static struct DefaultConfigEntry {
    { wxT("Edit"),              wxT("Tools"),           {}                },
    { wxT("CutCopyPaste"),      wxT("Edit"),            {}                },
    { wxT("Audio Setup"),       wxT("CutCopyPaste"),    {}                },
-#ifdef HAS_AUDIOCOM_UPLOAD
-   { wxT("Share Audio"),       wxT("Audio Setup"),     {}                },
-   { wxT("RecordMeter"),       wxT("Share Audio"),     {}                },
-   { wxT("PlayMeter"),         wxT("Share Audio"),     wxT("RecordMeter"),
-   },
-#else
    { wxT("RecordMeter"),       wxT("Audio Setup"),     {}                },
    { wxT("PlayMeter"),         wxT("Audio Setup"),     wxT("RecordMeter"),
    },
-#endif
 
    // start another top dock row
    { wxT("Device"),             {},                     wxT("Control")         },

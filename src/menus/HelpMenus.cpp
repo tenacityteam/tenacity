@@ -29,10 +29,6 @@
 
 #include "FrameStatisticsDialog.h"
 
-#if defined(HAVE_UPDATES_CHECK)
-#include "update/UpdateManager.h"
-#endif
-
 // private helper classes and functions
 namespace
 {
@@ -368,13 +364,6 @@ void OnFrameStatistics(const CommandContext&)
    FrameStatisticsDialog::Show(true);
 }
 
-#if defined(HAVE_UPDATES_CHECK)
-void OnCheckForUpdates(const CommandContext &WXUNUSED(context))
-{
-    UpdateManager::GetInstance().GetUpdates(false, false);
-}
-#endif
-
 void OnAbout(const CommandContext &context)
 {
 #ifdef __WXMAC__
@@ -465,11 +454,6 @@ auto HelpMenu()
       ),
 
       Section( "Extra",
-   #if defined(HAVE_UPDATES_CHECK)
-         Command( wxT("Updates"), XXO("&Check for Updates..."),
-            OnCheckForUpdates,
-            AlwaysEnabledFlag ),
-   #endif
          Command( wxT("About"), XXO("&About Audacity"), OnAbout,
             AlwaysEnabledFlag )
       )

@@ -698,7 +698,4 @@ struct PREFERENCES_API PreferenceInitializer {
    static void ReinitializeAll();
 };
 
-// Special extra-sticky settings
-extern PREFERENCES_API StickySetting<BoolSetting> DefaultUpdatesCheckingFlag;
-
 #endif

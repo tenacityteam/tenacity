@@ -115,16 +115,8 @@ It handles initialization and termination by subclassing wxApp.
 #include "wxWidgetsWindowPlacement.h"
 #include "effects/RegisterBuiltinEffects.h"
 
-#if defined(HAVE_UPDATES_CHECK)
-#  include "update/UpdateManager.h"
-#endif
-
 #ifdef HAS_WHATS_NEW
 #  include "WhatsNewDialog.h"
-#endif
-
-#ifdef HAS_NETWORKING
-#include "NetworkManager.h"
 #endif
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
@@ -139,11 +131,6 @@ It handles initialization and termination by subclassing wxApp.
 
 #include "Import.h"
 
-#if defined(USE_BREAKPAD)
-#include "BreakpadConfigurer.h"
-#elif defined(USE_CRASHPAD)
-#include "CrashpadConfigurer.h"
-#endif
 
 #ifdef EXPERIMENTAL_SCOREALIGN
 #include "effects/ScoreAlignDialog.h"
@@ -447,65 +434,9 @@ void PopulatePreferences()
 
 void InitCrashreports()
 {
-#if defined(USE_BREAKPAD) || defined(USE_CRASHPAD)
-   wxFileName databasePath;
-   databasePath.SetPath(FileNames::StateDir());
-   databasePath.AppendDir("crashreports");
-   databasePath.Mkdir(wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
-
-   if(databasePath.DirExists())
-   {
-      const auto sentryRelease = wxString::Format(
-         "audacity@%d.%d.%d", TENACITY_VERSION, TENACITY_RELEASE, TENACITY_REVISION);
-#if defined(USE_BREAKPAD)
-      BreakpadConfigurer configurer;
-      configurer.SetDatabasePathUTF8(databasePath.GetPath().ToUTF8().data())
-         .SetSenderPathUTF8(wxFileName(PlatformCompatibility::GetExecutablePath()).GetPath().ToUTF8().data())
-    #if defined(CRASH_REPORT_URL)
-         .SetReportURL(CRASH_REPORT_URL)
-    #endif
-         .SetParameters({
-            { "version", wxString(TENACITY_VERSION_STRING).ToUTF8().data() },
-            { "sentry[release]",  sentryRelease.ToUTF8().data() }
-         })
-         .Start();
-#elif defined(USE_CRASHPAD)
-      try
-      {
-         const auto executableDir = wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetPath();
-         const wxFileName crashpadHandlerPath(executableDir, CRASHPAD_HANDLER_NAME);
-         const wxFileName crashreporterPath(executableDir, CRASHREPORTER_NAME);
-         const wxFileName metricsDir = databasePath;
-         std::vector<std::string> arguments = {
-            wxString::Format("--crashreporter-path=%s", crashreporterPath.GetFullPath()).ToUTF8().data(),
-#if defined(CRASH_REPORT_URL)
-            wxString::Format(
-               "--crashreporter-argument=-u=%s",
-               CRASH_REPORT_URL).ToUTF8().data(),
-            wxString::Format(
-               "--crashreporter-argument=-a=version=\"%s\",sentry[release]=\"%s\"",
-               TENACITY_VERSION_STRING,
-               sentryRelease).ToUTF8().data()
-#endif
-         };
-         CrashpadConfigurer configurer;
-         configurer.SetHandlerPathUTF8(crashpadHandlerPath.GetFullPath().ToUTF8().data())
-            .SetDatabasePathUTF8(databasePath.GetFullPath().ToUTF8().data())
-            .SetMetricsDirUTF8(metricsDir.GetFullPath().ToUTF8().data())
-            .SetArguments(arguments)
-            .Start();
-      }
-      catch (std::exception& e)
-      {
-         wxLogError("Crashpad init error: %s", e.what());
-      }
-   }
-#endif
-#elif !defined(_DEBUG)// Do not capture crashes in debug builds
-#if defined(HAS_CRASH_REPORT)
+#if !defined(_DEBUG)// Do not capture crashes in debug builds
 #if defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
    wxHandleFatalExceptions();
-#endif
 #endif
 #endif
 }
@@ -1693,10 +1624,6 @@ bool AudacityApp::InitPart2()
    bool splashFadeOut = !playingJournal;
    HideSplashScreen(splashFadeOut);
 
-#if defined(HAVE_UPDATES_CHECK)
-   UpdateManager::Start(playingJournal);
-#endif
-
    Importer::Get().Initialize();
    ExportPluginRegistry::Get().Initialize();
 
@@ -2540,10 +2467,6 @@ int AudacityApp::OnExit()
    FinishPreferences();
 
    DeinitFFT();
-
-#ifdef HAS_NETWORKING
-   audacity::network_manager::NetworkManager::GetInstance().Terminate();
-#endif
 
    AudioIO::Deinit();
 

@@ -879,25 +879,6 @@ set( SOURCES
       widgets/valnum.cpp
       widgets/valnum.h
 
-      # Update version
-      $<$<BOOL:${${_OPT}has_updates_check}>:
-          update/VersionId.h
-          update/VersionId.cpp
-          update/VersionPatch.h
-          update/UpdateDataParser.h
-          update/UpdateDataParser.cpp
-          update/UpdateManager.h
-          update/UpdateManager.cpp
-          update/UpdateNoticeDialog.h
-          update/UpdateNoticeDialog.cpp
-          update/UpdatePopupDialog.h
-          update/UpdatePopupDialog.cpp
-          prefs/ApplicationPrefs.h
-          prefs/ApplicationPrefs.cpp
-          update/NoUpdatesAvailableDialog.h
-          update/NoUpdatesAvailableDialog.cpp
-      >
-
       Experimental.cmake
 )
 
@@ -950,9 +931,6 @@ set( DEFINES
          __STDC_CONSTANT_MACROS
          STRICT
       >
-      $<$<BOOL:${${_OPT}has_updates_check}>:
-          HAVE_UPDATES_CHECK
-      >
 )
 
 # We now use precompiled headers regardless, but only if ccache is not
@@ -986,28 +964,6 @@ set( LIBRARIES
       $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:GTK::GTK>
       $<$<TARGET_EXISTS:Threads::Threads>:Threads::Threads>
 )
-
-if( ${_OPT}has_crashreports )
-   add_dependencies(${TARGET} crashreporter)
-   add_custom_command(
-      TARGET
-         ${TARGET}
-      COMMAND
-         ${CMAKE_COMMAND} -E copy $<TARGET_FILE:crashreporter> ${_DESTDIR}/${_EXEDIR}/$<TARGET_FILE_NAME:crashreporter>
-      POST_BUILD
-   )
-   if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-      add_custom_command(
-         TARGET
-            ${TARGET}
-         COMMAND
-            ${PYTHON}
-            ${CMAKE_SOURCE_DIR}/scripts/build/macOS/fix_bundle.py
-            ${_DESTDIR}/${_EXEDIR}/$<TARGET_FILE_NAME:crashreporter>
-         POST_BUILD
-      )
-   endif()
-endif()
 
 set( BUILDING_AUDACITY YES )
 set( PKGLIBDIR "${_PKGLIB}" )
@@ -1287,39 +1243,10 @@ if (USE_AUDIO_UNITS AND wxIS_MAC)
    list(APPEND TENACITY_LIBRARIES lib-audio-unit-interface)
 endif()
 
-if ( ${_OPT}has_networking )
-   list( APPEND TENACITY_LIBRARIES
-      lib-network-manager-interface
-   )
-endif()
-
 if( ${_OPT}has_url_schemes_support )
    list( APPEND TENACITY_LIBRARIES
       lib-url-schemes-interface
    )
-endif()
-
-if( ${_OPT}has_audiocom_upload )
-   list( APPEND TENACITY_LIBRARIES
-      lib-cloud-audiocom-interface
-   )
-endif()
-
-if( ${_OPT}has_crashreports )
-   if( ${_OPT}crashreport_backend STREQUAL "crashpad" )
-      list(APPEND DEFINES
-         PRIVATE
-            CRASHREPORTER_NAME="$<TARGET_FILE_NAME:crashreporter>"
-            CRASHPAD_HANDLER_NAME="crashpad_handler${CMAKE_EXECUTABLE_SUFFIX}"
-      )
-      list( APPEND TENACITY_LIBRARIES
-         lib-crashpad-configurer-interface
-      )
-   elseif( ${_OPT}crashreport_backend STREQUAL "breakpad" )
-      list( APPEND TENACITY_LIBRARIES
-         lib-breakpad-configurer-interface
-      )
-   endif()
 endif()
 
 if( USE_NYQUIST )
@@ -1393,13 +1320,6 @@ else()
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
       install( FILES "${_SRCDIR}/audacity.xml"
                DESTINATION "${_DATADIR}/mime/packages" )
-
-      if( ${_OPT}has_crashreports )
-         if( ${_OPT}crashreport_backend STREQUAL "crashpad" )
-            install( PROGRAMS  "${_DESTDIR}/${_EXEDIR}/crashpad_handler"
-                     DESTINATION "${CMAKE_INSTALL_BINDIR}" )
-         endif()
-      endif()
    endif()
 endif()
 
