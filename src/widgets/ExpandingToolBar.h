@@ -45,6 +45,8 @@ class ExpandingToolBarEvtHandler;
 class ExpandingToolBar final : public wxPanelWrapper
 {
  public:
+   DECLARE_DYNAMIC_CLASS(ExpandingToolBar)
+
    ExpandingToolBar(wxWindow* parent, wxWindowID id,
                     const wxPoint& pos = wxDefaultPosition,
                     const wxSize& size = wxDefaultSize);
@@ -105,7 +107,7 @@ class ExpandingToolBar final : public wxPanelWrapper
    ToolBarDialog *mDialogParent;
    ToolBarArea *mAreaParent;
    std::unique_ptr<ToolBarArrangement> mSavedArrangement;
-   ImageRollPanel *mTargetPanel;
+   wxPanel *mTargetPanel;
    std::unique_ptr<wxDragImage> mDragImage;
    wxWindow *mTopLevelParent;
    std::vector<wxRect> mDropTargets;
@@ -122,6 +124,8 @@ class ExpandingToolBar final : public wxPanelWrapper
 class ToolBarGrabber final : public wxPanelWrapper
 {
  public:
+   DECLARE_DYNAMIC_CLASS(ToolBarGrabber)
+
    ToolBarGrabber(wxWindow *parent,
                   wxWindowID id,
                   ExpandingToolBar *ownerToolbar,
@@ -143,6 +147,8 @@ class ToolBarGrabber final : public wxPanelWrapper
 class ToolBarDialog final : public wxDialogWrapper
 {
  public:
+   DECLARE_DYNAMIC_CLASS(ToolBarDialog)
+
    ToolBarDialog(wxWindow* parent,
                  wxWindowID id,
                  const TranslatableString& name = {},
@@ -156,11 +162,15 @@ class ToolBarDialog final : public wxDialogWrapper
 
  protected:
    ExpandingToolBar *mChild;
+
+   DECLARE_EVENT_TABLE()
 };
 
 class ToolBarFrame final : public wxMiniFrame
 {
  public:
+   DECLARE_DYNAMIC_CLASS(ToolBarFrame)
+
    ToolBarFrame(wxWindow* parent,
                 wxWindowID id,
                 const wxString& name = {},
@@ -186,6 +196,8 @@ class ToolBarFrame final : public wxMiniFrame
 class ToolBarArea final : public wxPanelWrapper
 {
  public:
+   DECLARE_DYNAMIC_CLASS(ToolBarArea)
+
    ToolBarArea(wxWindow* parent,
                wxWindowID id,
                const wxPoint& pos = wxDefaultPosition,

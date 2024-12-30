@@ -10,98 +10,87 @@
 
 #include "TrackUtilities.h"
 
+#include "PlayableTrack.h"
 #include "ProjectHistory.h"
-#include "ProjectSettings.h"
-#include "ProjectWindow.h"
-#include "Track.h"
-#include "TrackPanelAx.h"
+#include "TrackFocus.h"
 #include "TrackPanel.h"
+#include "Viewport.h"
 
-namespace TrackUtilities {
+void TrackUtilities::DoRemoveTracks(AudacityProject &project) {
+   auto &tracks = TrackList::Get(project);
+   auto &trackPanel = TrackPanel::Get(project);
 
-void DoRemoveTracks( TenacityProject &project )
-{
-   auto &tracks = TrackList::Get( project );
-   auto &trackPanel = TrackPanel::Get( project );
+   auto range = tracks.Selected();
+   using Iter = decltype(range.begin());
 
-   std::vector<Track*> toRemove;
-   for (auto track : tracks.Selected())
-      toRemove.push_back(track);
-
-   // Capture the track preceding the first removed track
-   Track *f{};
-   if (!toRemove.empty()) {
-      auto found = tracks.Find(toRemove[0]);
-      f = *--found;
+   // Find the track preceding the first removed track
+   std::optional<Iter> focus;
+   if (!range.empty()) {
+      auto iter = tracks.Find(*range.begin());
+      // TrackIter allows decrement even of begin iterators
+      focus.emplace(--iter);
    }
 
-   for (auto track : toRemove)
-      tracks.Remove(track);
+   while (!range.empty())
+      tracks.Remove(**range.first++);
 
-   if (!f)
+   if (!(focus.has_value() && **focus))
       // try to use the last track
-      f = *tracks.Any().rbegin();
-   if (f) {
-      // Try to use the first track after the removal
-      auto found = tracks.FindLeader(f);
-      auto t = *++found;
-      if (t)
-         f = t;
-   }
+      focus.emplace(tracks.end().advance(-1));
+   assert(focus);
+   Track *f = **focus;
+   // Try to use the first track after the removal
+   // TrackIter allows increment even of end iterators
+   if (const auto nextF = * ++ *focus)
+      f = nextF;
 
    // If we actually have something left, then set focus and make sure it's seen
    if (f) {
       TrackFocus::Get(project).Set(f);
-      f->EnsureVisible();
+      Viewport::Get(project).ShowTrack(*f);
    }
 
-   ProjectHistory::Get( project )
+   ProjectHistory::Get(project)
       .PushState(XO("Removed audio track(s)"), XO("Remove Track"));
 
    trackPanel.UpdateViewIfNoTracks();
 }
 
-void DoTrackMute(TenacityProject &project, Track *t, bool exclusive)
+void TrackUtilities::DoTrackMute(
+   AudacityProject &project, Track &track, bool exclusive)
 {
-   const auto &settings = ProjectSettings::Get( project );
-   auto &tracks = TrackList::Get( project );
-
-   // Whatever t is, replace with lead channel
-   t = *tracks.FindLeader(t);
+   auto &tracks = TrackList::Get(project);
 
    // "exclusive" mute means mute the chosen track and unmute all others.
    if (exclusive) {
-      for (auto leader : tracks.Leaders<PlayableTrack>()) {
-         const auto group = TrackList::Channels(leader);
-         bool chosen = (t == leader);
-         for (auto channel : group)
-            channel->SetMute( chosen ),
-            channel->SetSolo( false );
+      for (auto playable : tracks.Any<PlayableTrack>()) {
+         bool chosen = (&track == playable);
+         playable->SetMute(chosen);
+         playable->SetSolo(false);
       }
    }
    else {
       // Normal click toggles this track.
-      auto pt = dynamic_cast<PlayableTrack *>( t );
+      auto pt = dynamic_cast<PlayableTrack *>(&track);
       if (!pt)
          return;
 
       bool wasMute = pt->GetMute();
-      for (auto channel : TrackList::Channels(pt))
-         channel->SetMute( !wasMute );
+      pt->SetMute(!wasMute);
 
-      if (settings.IsSoloSimple() || settings.IsSoloNone())
+      if (auto value = TracksBehaviorsSolo.ReadEnum();
+         value == SoloBehaviorSimple)
       {
          // We also set a solo indicator if we have just one track / stereo pair playing.
          // in a group of more than one playable tracks.
          // otherwise clear solo on everything.
 
-         auto range = tracks.Leaders<PlayableTrack>();
+         auto range = tracks.Any<PlayableTrack>();
          auto nPlayableTracks = range.size();
          auto nPlaying = (range - &PlayableTrack::GetMute).size();
-
-         for (auto track : tracks.Any<PlayableTrack>())
-            // will set both of a stereo pair
-            track->SetSolo( (nPlaying==1) && (nPlayableTracks > 1 ) && !track->GetMute() );
+         for (auto track : range)
+            track->SetSolo((nPlaying == 1) &&
+               (nPlayableTracks > 1) && !track->GetMute());
       }
    }
    ProjectHistory::Get( project ).ModifyState(true);
@@ -109,49 +98,40 @@ void DoTrackMute(TenacityProject &project, Track *t, bool exclusive)
    TrackFocus::Get( project ).UpdateAccessibility();
 }
 
-void DoTrackSolo(TenacityProject &project, Track *t, bool exclusive)
+void  TrackUtilities::DoTrackSolo(
+   AudacityProject &project, Track &track, bool exclusive)
 {
-   const auto &settings = ProjectSettings::Get( project );
    auto &tracks = TrackList::Get( project );
    
-   // Whatever t is, replace with lead channel
-   t = *tracks.FindLeader(t);
-
-   const auto pt = dynamic_cast<PlayableTrack *>( t );
+   const auto pt = dynamic_cast<PlayableTrack *>(&track);
    if (!pt)
       return;
    bool bWasSolo = pt->GetSolo();
 
-   bool bSoloMultiple = !settings.IsSoloSimple() ^ exclusive;
+   bool simple = (TracksBehaviorsSolo.ReadEnum() == SoloBehaviorSimple);
+   bool bSoloMultiple = !simple ^ exclusive;
 
    // Standard and Simple solo have opposite defaults:
    //   Standard - Behaves as individual buttons, shift=radio buttons
    //   Simple   - Behaves as radio buttons, shift=individual
    // In addition, Simple solo will mute/unmute tracks
    // when in standard radio button mode.
-   if ( bSoloMultiple )
-   {
-      for (auto channel : TrackList::Channels(pt))
-         channel->SetSolo( !bWasSolo );
-   }
-   else
-   {
+   if (bSoloMultiple)
+      pt->SetSolo(!bWasSolo);
+   else {
       // Normal click solo this track only, mute everything else.
       // OR unmute and unsolo everything.
-      for (auto leader : tracks.Leaders<PlayableTrack>()) {
-         const auto group = TrackList::Channels(leader);
-         bool chosen = (t == leader);
-         for (auto channel : group) {
-            if (chosen) {
-               channel->SetSolo( !bWasSolo );
-               if( settings.IsSoloSimple() )
-                  channel->SetMute( false );
-            }
-            else {
-               channel->SetSolo( false );
-               if( settings.IsSoloSimple() )
-                  channel->SetMute( !bWasSolo );
-            }
+      for (auto playable : tracks.Any<PlayableTrack>()) {
+         bool chosen = (&track == playable);
+         if (chosen) {
+            playable->SetSolo(!bWasSolo);
+            if (simple)
+               playable->SetMute(false);
+         }
+         else {
+            playable->SetSolo(false);
+            if (simple)
+               playable->SetMute(!bWasSolo);
          }
       }
    }
@@ -160,43 +140,40 @@ void DoTrackSolo(TenacityProject &project, Track *t, bool exclusive)
    TrackFocus::Get( project ).UpdateAccessibility();
 }
 
-void DoRemoveTrack(TenacityProject &project, Track * toRemove)
+void TrackUtilities::DoRemoveTrack(AudacityProject &project, Track &toRemove)
 {
-   auto &tracks = TrackList::Get( project );
-   auto &trackFocus = TrackFocus::Get( project );
-   auto &window = ProjectWindow::Get( project );
+   auto &tracks = TrackList::Get(project);
+   auto &trackFocus = TrackFocus::Get(project);
+
+   const auto iter = tracks.Find(&toRemove);
 
    // If it was focused, then NEW focus is the next or, if
    // unavailable, the previous track. (The NEW focus is set
    // after the track has been removed.)
-   bool toRemoveWasFocused = trackFocus.Get() == toRemove;
-   Track* newFocus{};
+   bool toRemoveWasFocused = trackFocus.Get() == *iter;
+   std::optional<decltype(iter)> newFocus{};
    if (toRemoveWasFocused) {
-      auto iterNext = tracks.FindLeader(toRemove), iterPrev = iterNext;
-      newFocus = *++iterNext;
-      if (!newFocus) {
-         newFocus = *--iterPrev;
-      }
+      auto iterNext = iter,
+         iterPrev = iter;
+      newFocus.emplace(++iterNext);
+      if (!**newFocus)
+         newFocus.emplace(--iterPrev);
    }
 
-   wxString name = toRemove->GetName();
+   wxString name = toRemove.GetName();
 
-   auto channels = TrackList::Channels(toRemove);
-   // Be careful to post-increment over positions that get erased!
-   auto &iter = channels.first;
-   while (iter != channels.end())
-      tracks.Remove( * iter++ );
+   tracks.Remove(**iter);
 
    if (toRemoveWasFocused)
-      trackFocus.Set( newFocus );
+      trackFocus.Set(**newFocus);
 
-   ProjectHistory::Get( project ).PushState(
-      XO("Removed track '%s.'").Format( name ),
+   ProjectHistory::Get(project).PushState(
+      XO("Removed track '%s'.").Format(name),
       XO("Track Remove"));
 }
 
-void DoMoveTrack
-(TenacityProject &project, Track* target, MoveChoice choice)
+void TrackUtilities::DoMoveTrack(
+   AudacityProject &project, Track& target, MoveChoice choice)
 {
    auto &tracks = TrackList::Get( project );
 
@@ -241,9 +218,7 @@ void DoMoveTrack
 
    }
 
-   longDesc.Format(target->GetName());
+   longDesc.Format(target.GetName());
 
    ProjectHistory::Get( project ).PushState(longDesc, shortDesc);
-}
-
 }

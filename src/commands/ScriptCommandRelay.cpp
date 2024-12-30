@@ -27,7 +27,6 @@ code out of ModuleManager.
 #include "AppCommandEvent.h"
 #include "Project.h"
 #include <wx/app.h>
-#include <wx/string.h>
 #include <thread>
 
 /// This is the function which actually obeys one command.
@@ -71,7 +70,7 @@ static int ExecFromWorker(wxString *pIn, wxString *pOut)
 }
 
 /// Executes a command on the main (GUI) thread.
-static int ExecFromMain(wxString *pIn, wxString *pOut)
+int ExecFromMain(wxString *pIn, wxString *pOut)
 {
    return ExecCommand(pIn, pOut, true);
 }
@@ -91,31 +90,3 @@ void ScriptCommandRelay::StartScriptServer(tpRegScriptServerFunc scriptFn)
 
    std::thread(server, scriptFn).detach();
 }
-
-#ifdef USE_NYQUIST
-
-// FIXME: Why is this mixing private libnyquist symbols with wxString???????
-#include "../../lib-src/libnyquist/nyquist/xlisp/xlisp.h"
-void * nyq_reformat_aud_do_response(const wxString & Str) {
-   LVAL dst;
-   LVAL message;
-   LVAL success;
-   wxString Left = Str.BeforeLast('\n').BeforeLast('\n').ToAscii();
-   wxString Right = Str.BeforeLast('\n').AfterLast('\n').ToAscii();
-   message = cvstring(Left);
-   success = Right.EndsWith("OK") ? s_true : nullptr;
-   dst = cons(message, success);
-   return (void *)dst;
-}
-
-void * ExecForLisp( char * pIn )
-{
-   wxString Str1(pIn);
-   wxString Str2;
-
-   ExecFromMain(&Str1, &Str2);
-
-   return nyq_reformat_aud_do_response(Str2);
-}
-
-#endif

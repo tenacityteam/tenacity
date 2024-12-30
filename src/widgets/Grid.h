@@ -17,6 +17,8 @@
 #include <wx/grid.h> // to inherit wxGridCellEditor
 #include "NumericTextCtrl.h" // for NumericConverter::Type
 
+class AudacityProject;
+
 #if wxUSE_ACCESSIBILITY
 class GridAx;
 #endif
@@ -39,7 +41,7 @@ class TENACITY_DLL_API NumericEditor /* not final */ : public wxGridCellEditor
 public:
 
    NumericEditor
-      (NumericConverter::Type type, const NumericFormatSymbol &format, double rate);
+      (const FormatterContext& context, NumericConverterType type, const NumericFormatID &format);
 
    ~NumericEditor();
 
@@ -58,10 +60,8 @@ public:
 
    void Reset() override;
 
-   NumericFormatSymbol GetFormat() const;
-   double GetRate() const;
-   void SetFormat(const NumericFormatSymbol &format);
-   void SetRate(double rate);
+   NumericFormatID GetFormat() const;
+   void SetFormat(const NumericFormatID &format);
 
    wxGridCellEditor *Clone() const override;
    wxString GetValue() const override;
@@ -71,12 +71,13 @@ public:
 
  private:
 
-   NumericFormatSymbol mFormat;
-   double mRate;
-   NumericConverter::Type mType;
+   NumericFormatID mFormat;
+   NumericConverterType mType;
    double mOld;
    wxString mOldString;
    wxString mValueAsString;
+
+   FormatterContext mContext;
 };
 
 /**********************************************************************//**
@@ -86,7 +87,11 @@ public:
 class NumericRenderer final : public wxGridCellRenderer
 {
  public:
-   NumericRenderer(NumericConverter::Type type) : mType{ type } {}
+   NumericRenderer(const FormatterContext& context, NumericConverterType type)
+        : mType { std::move(type) }
+        , mContext { context }
+   {
+   }
    ~NumericRenderer() override;
 
    void Draw(wxGrid &grid,
@@ -106,7 +111,8 @@ class NumericRenderer final : public wxGridCellRenderer
    wxGridCellRenderer *Clone() const override;
 
 private:
-   NumericConverter::Type mType;
+   NumericConverterType mType;
+   FormatterContext mContext;
 };
 
 /**********************************************************************//**
@@ -123,7 +129,6 @@ public:
 
    ChoiceEditor(size_t count = 0,
                 const wxString choices[] = NULL);
-
    ChoiceEditor(const wxArrayString &choices);
 
    ~ChoiceEditor();
@@ -165,7 +170,7 @@ public:
       {
          w->GetEventHandler()->Unbind(wxEVT_KILL_FOCUS, OnKillFocus);
       };
-      static void OnKillFocus(wxFocusEvent & /* event */)
+      static void OnKillFocus(wxFocusEvent & WXUNUSED(event))
       {
          return;
       };
@@ -186,7 +191,8 @@ class TENACITY_DLL_API Grid final : public wxGrid
 
  public:
 
-   Grid(wxWindow *parent,
+   Grid(
+       const FormatterContext& context, wxWindow* parent,
         wxWindowID id,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
@@ -215,6 +221,8 @@ class TENACITY_DLL_API Grid final : public wxGrid
    void OnKeyDown(wxKeyEvent &event);
 
  private:
+
+    FormatterContext mContext;
 
 #if wxUSE_ACCESSIBILITY
    GridAx *mAx;

@@ -5,44 +5,42 @@
 
 #include "LabelTrackView.h"
 #include "../../ui/TimeShiftHandle.h"
-#include "../../../LabelTrack.h"
+#include "LabelTrack.h"
 #include "ViewInfo.h"
 
 class LabelTrackShifter final : public TrackShifter {
 public:
-   LabelTrackShifter( LabelTrack &track, TenacityProject &project )
+   LabelTrackShifter( LabelTrack &track, AudacityProject &project )
       : mpTrack{ track.SharedPointer<LabelTrack>() }
       , mProject{ project }
    {
       InitIntervals();
-      mpTrack->Bind(
-         EVT_LABELTRACK_PERMUTED, &LabelTrackShifter::OnLabelPermuted, this );
-      mpTrack->Bind(
-         EVT_LABELTRACK_ADDITION, &LabelTrackShifter::OnLabelAdded, this );
-      mpTrack->Bind(
-         EVT_LABELTRACK_DELETION, &LabelTrackShifter::OnLabelDeleted, this );
+      mSubscription = mpTrack->Subscribe([this](const LabelTrackEvent &e){
+         switch (e.type) {
+         case LabelTrackEvent::Permutation:
+            return OnLabelPermuted(e);
+         case LabelTrackEvent::Addition:
+            return OnLabelAdded(e);
+         case LabelTrackEvent::Deletion:
+            return OnLabelDeleted(e);
+         default:
+            return;
+         }
+      });
    }
    ~LabelTrackShifter() override
    {
-      mpTrack->Unbind(
-         EVT_LABELTRACK_PERMUTED, &LabelTrackShifter::OnLabelPermuted, this );
-      mpTrack->Unbind(
-         EVT_LABELTRACK_ADDITION, &LabelTrackShifter::OnLabelAdded, this );
-      mpTrack->Unbind(
-         EVT_LABELTRACK_DELETION, &LabelTrackShifter::OnLabelDeleted, this );
    }
    Track &GetTrack() const override { return *mpTrack; }
-   
-   static inline size_t& GetIndex(TrackInterval &interval)
+
+   static inline size_t& GetIndex(ChannelGroupInterval &interval)
    {
-      auto pExtra =
-         static_cast<LabelTrack::IntervalData*>( interval.Extra() );
-      return pExtra->index;
+      return static_cast<LabelTrack::Interval&>(interval).index;
    }
 
-   static inline size_t GetIndex(const TrackInterval &interval)
+   static inline size_t GetIndex(const ChannelGroupInterval &interval)
    {
-      return GetIndex( const_cast<TrackInterval&>(interval) );
+      return GetIndex(const_cast<ChannelGroupInterval&>(interval));
    }
 
    HitTestResult HitTest(
@@ -80,14 +78,14 @@ public:
       }
    }
 
-   void SelectInterval( const TrackInterval &interval ) override
+   void SelectInterval(TimeInterval interval) override
    {
       CommonSelectInterval(interval);
    }
 
    bool SyncLocks() override { return false; }
 
-   bool MayMigrateTo( Track &otherTrack ) override
+   bool MayMigrateTo(Track &otherTrack) override
    {
       return CommonMayMigrateTo(otherTrack);
    }
@@ -96,33 +94,35 @@ public:
       is stored in a vector in LabelTrack without an extra indirection.
       So the detached intervals handed back to the caller are unlike those
       reported by LabelTrack, but carry the extra information. */
-   struct IntervalData final: Track::IntervalData {
+   struct MovingInterval final : ChannelGroupInterval {
       SelectedRegion region;
       wxString title;
-      IntervalData(const LabelStruct &label)
-         : region{label.selectedRegion}
-         , title{label.title}
+      MovingInterval(double start, double end, const LabelStruct &label)
+         : start{ start }, end{ end }
+         , region{ label.selectedRegion }
+         , title{ label.title }
       {}
+      double Start() const override { return start; }
+      double End() const override { return end; }
+      const double start, end;
    };
 
    Intervals Detach() override
    {
       auto pTrack = mpTrack.get();
-      auto moveLabel = [pTrack](TrackInterval &interval) -> TrackInterval {
-         auto &rindex = GetIndex(interval);
-         auto index = rindex;
-         rindex = -1;
-         auto result = TrackInterval{
-            interval.Start(), interval.End(),
-            std::make_unique<IntervalData>( *pTrack->GetLabel(index) ) };
+      auto moveLabel = [pTrack](const auto &pInterval) {
+         auto index = GetIndex(*pInterval);
+         auto result = std::make_shared<MovingInterval>(
+            pInterval->Start(), pInterval->End(), *pTrack->GetLabel(index));
          pTrack->DeleteLabel(index);
          return result;
       };
       Intervals result;
       std::transform(
          // Reverse traversal may lessen the shifting-left in the label array
+         // responding to label deletion messages published by DeleteLabel
          mMoving.rbegin(), mMoving.rend(), std::back_inserter(result),
-         moveLabel );
+         moveLabel);
       mMoving = Intervals{};
       return result;
    }
@@ -134,37 +134,38 @@ public:
       return true;
    }
 
-   bool Attach( Intervals intervals ) override
+   bool Attach(Intervals intervals, double offset) override
    {
       auto pTrack = mpTrack.get();
-      std::for_each( intervals.rbegin(), intervals.rend(),
-         [this, pTrack](auto &interval){
-            auto pData = static_cast<IntervalData*>( interval.Extra() );
-            auto index = pTrack->AddLabel(pData->region, pData->title);
-            // Recreate the simpler TrackInterval as would be reported by LabelTrack
-            mMoving.emplace_back( pTrack->MakeInterval(index) );
-         } );
+      std::for_each(intervals.rbegin(), intervals.rend(),
+      [this, pTrack, offset](const auto &pInterval){
+         auto data = static_cast<const MovingInterval&>(*pInterval);
+         if (offset != .0)
+            data.region.move(offset);
+         auto index = pTrack->AddLabel(data.region, data.title);
+         // Recreate the simpler TrackInterval as would be reported by LabelTrack
+         mMoving.emplace_back(pTrack->MakeInterval(index));
+      } );
       return true;
    }
 
-   void DoHorizontalOffset( double offset ) override
+   void DoHorizontalOffset(double offset) override
    {
       auto &labels = mpTrack->GetLabels();
-      for ( auto &interval : MovingIntervals() ) {
-         auto index = GetIndex( interval );
+      for (auto &pInterval : MovingIntervals()) {
+         auto index = GetIndex(*pInterval);
          auto labelStruct = labels[index];
          labelStruct.selectedRegion.move(offset);
-         mpTrack->SetLabel( index, labelStruct );
+         mpTrack->SetLabel(index, labelStruct);
       }
 
       mpTrack->SortLabels(); // causes callback to OnLabelPermuted
    }
 
 private:
-   void OnLabelPermuted( LabelTrackEvent &e )
+   void OnLabelPermuted(const LabelTrackEvent &e)
    {
-      e.Skip();
-      if ( e.mpTrack.lock() != mpTrack )
+      if (e.mpTrack.lock() != mpTrack)
          return;
 
       auto former = e.mFormerPosition;
@@ -172,17 +173,17 @@ private:
 
       // Avoid signed-unsigned comparison below!
       if (former < 0 || present < 0) {
-         wxASSERT(false);
+         assert(false);
          return;
       }
 
-      auto update = [=]( TrackInterval &interval ){
-         auto &index = GetIndex( interval );
-         if ( index == former )
+      auto update = [=](const auto &pInterval){
+         auto &index = GetIndex(*pInterval);
+         if (index == former)
             index = present;
-         else if ( former < index && index <= present )
+         else if (former < index && index <= present)
             -- index;
-         else if ( former > index && index >= present )
+         else if (former > index && index >= present)
             ++ index;
       };
 
@@ -190,66 +191,63 @@ private:
       std::for_each(mMoving.begin(), mMoving.end(), update);
    }
 
-   void OnLabelAdded( LabelTrackEvent &e )
+   void OnLabelAdded(const LabelTrackEvent &e)
    {
-      e.Skip();
-      if ( e.mpTrack.lock() != mpTrack )
+      if (e.mpTrack.lock() != mpTrack)
          return;
 
       auto present = e.mPresentPosition;
 
       // Avoid signed-unsigned comparison below!
       if (present < 0) {
-         wxASSERT(false);
+         assert(false);
          return;
       }
 
-      auto update = [=]( TrackInterval &interval ){
-         auto pExtra = static_cast<LabelTrack::IntervalData*>(interval.Extra());
-         auto &index = pExtra->index;
-         if ( index >= present )
-            ++ index;
+      auto update = [=](const auto &pInterval){
+         auto &index = GetIndex(*pInterval);
+         if (index >= present)
+            ++index;
       };
 
       std::for_each(mFixed.begin(), mFixed.end(), update);
       std::for_each(mMoving.begin(), mMoving.end(), update);
    }
 
-   void OnLabelDeleted( LabelTrackEvent &e )
+   void OnLabelDeleted(const LabelTrackEvent e)
    {
-      e.Skip();
-      if ( e.mpTrack.lock() != mpTrack )
+      if (e.mpTrack.lock() != mpTrack)
          return;
 
       auto former = e.mFormerPosition;
 
       // Avoid signed-unsigned comparison below!
       if (former < 0) {
-         wxASSERT(false);
+         assert(false);
          return;
       }
 
-      auto update = [=]( TrackInterval &interval ){
-         auto pExtra = static_cast<LabelTrack::IntervalData*>(interval.Extra());
-         auto &index = pExtra->index;
-         if ( index > former )
-            -- index;
-         else if ( index == former )
+      auto update = [=](const auto &pInterval){
+         auto &index = GetIndex(*pInterval);
+         if (index > former)
+            --index;
+         else if (index == former)
             // It should have been deleted first!
-            wxASSERT( false );
+            assert(false);
       };
 
       std::for_each(mFixed.begin(), mFixed.end(), update);
       std::for_each(mMoving.begin(), mMoving.end(), update);
    }
 
-   std::shared_ptr<LabelTrack> mpTrack;
-   TenacityProject &mProject;
+   Observer::Subscription mSubscription;
+   const std::shared_ptr<LabelTrack> mpTrack;
+   AudacityProject &mProject;
 };
 
 using MakeLabelTrackShifter = MakeTrackShifter::Override<LabelTrack>;
 DEFINE_ATTACHED_VIRTUAL_OVERRIDE(MakeLabelTrackShifter) {
-   return [](LabelTrack &track, TenacityProject &project) {
+   return [](LabelTrack &track, AudacityProject &project) {
       return std::make_unique<LabelTrackShifter>(track, project);
    };
 }

@@ -2,16 +2,18 @@
 #define __AUDACITY_MEMORY_X_H__
 
 // C++ standard header <memory> with a few extensions
-#include <iterator>
 #include <memory>
 #include <new> // align_val_t and hardware_destructive_interference_size
 #include <cstdlib> // Needed for free.
+#include <cmath>
 #ifndef safenew
 #define safenew new
 #endif
 
 #include <functional>
 #include <limits>
+
+#include <cstdint>
 
 /*
  * ArrayOf<X>
@@ -133,110 +135,6 @@ public:
  */
 struct freer { void operator() (void *p) const { free(p); } };
 
-/** @brief A kind of allocator that gives non-owning access to allocated memory.
- * 
- * This is intended as a shim for anything that doesn't use a smart pointer,
- * namely in EffectsInterface, RealtimeEffectManager, AudioIO, etc. It allows
- * for allocating memory for use with regular pointers. The memory is actually
- * owned by a AutoAllocator object.
- * 
- **/
-template<class T>
-class AutoAllocator
-{
-   private:
-      /// @brief Holds memory allocated with `new` (single objects).
-      std::vector<T*> mSingleObjects;
-
-      /// @brief Holds memory allocated with `new[]` (arrays).
-      std::vector<T*> mArrayObjects;
-
-   public:
-      /// Default constructor.
-      AutoAllocator() = default;
-
-      /** @brief Allocates `ptr`.
-       * 
-       * @param ptr The pointer to allocate memory for.
-       * 
-       * @param isArray If true, uses new[] and delete[] instead of regular new
-       * and delete.
-       * 
-       * @param count How many elements there should be in the new array.
-       * Default is 1, ignored if `isArray` is false.
-       * 
-       * @warning AutoAllocator does **not** take ownership of `ptr` and
-       * deallocate it for you. You must do this yourself before passing `ptr`
-       * to ensure no memory leaks occur.
-       * 
-       **/
-      AutoAllocator(T* ptr, bool isArray = false, size_t count = 1)
-      {
-         ptr = Allocate(isArray, count);
-      }
-
-      /// Deallocates any memory allocated by the AutoAllocator object.
-      ~AutoAllocator()
-      {
-         DeallocateAll();
-      }
-
-      /** @brief Allocates memory.
-       * 
-       * Any exceptions thrown by `new` or `new[]` are rethrown.
-       * 
-       * @param isArray If true, uses new[] instead of new along with the
-       * corresponding delete[] operator.
-       * 
-       * @param count How many elements there should be in the allocated array.
-       * Default is 1, ignored if `isArray` is false.
-       **/
-      T* Allocate(bool isArray = false, size_t count = 1)
-      {
-         T* mem;
-
-         try
-         {
-            if (isArray)
-            {
-               mem = new T[count];
-               mArrayObjects.push_back(mem);
-            } else
-            {
-               mem = new T;
-               mSingleObjects.push_back(mem);
-            }
-
-            return mem;
-         } catch(const std::bad_alloc&)
-         {
-            throw;
-         }
-      }
-
-      /** @brief Deallocates all*/
-      void DeallocateAll()
-      {
-         for (auto& buffer : mSingleObjects)
-         {
-            if (buffer)
-            {
-               delete buffer;
-               buffer = nullptr;
-            }
-         }
-
-         for (auto& buffer : mArrayObjects)
-         {
-            if (buffer)
-            {
-               delete[] buffer;
-               buffer = nullptr;
-            }
-         }
-      }
-};
-
 /**
   A useful alias for holding the result of malloc
  */
@@ -274,24 +172,32 @@ using Destroy_ptr = std::unique_ptr<T, Destroyer<T>>;
 
 // Construct this from any copyable function object, such as a lambda
 template <typename F>
-struct Final_action {
-   Final_action(F f) : clean( f ) {}
-   ~Final_action() { clean(); }
+struct Finally {
+   Finally(F f) : clean( f ) {}
+   ~Finally() { clean(); }
    F clean;
 };
 
-/// \brief Function template with type deduction lets you construct Final_action
+/// \brief Function template with type deduction lets you construct Finally
 /// without typing any angle brackets
 template <typename F>
-Final_action<F> finally (F f)
+[[nodiscard]] Finally<F> finally (F f)
 {
-   return Final_action<F>(f);
+   return Finally<F>(f);
 }
+
+//! C++17 deduction guide allows even simpler syntax:
+//! `Finally Do{[&]{ Stuff(); }};`
+/*!
+ Don't omit `Do` or some other variable name!  Otherwise, the execution of the
+ body is immediate, not delayed to the end of the enclosing scope.
+ */
+template<typename F> Finally(F) -> Finally<F>;
 
 #include <algorithm>
 
 /**
-  \brief Structure used by ValueRestorer 
+  \brief Structure used by ValueRestorer
  */
 template< typename T >
 struct RestoreValue {
@@ -325,6 +231,23 @@ public:
    }
 };
 
+/*!
+ Like ValueRestorer but copy-constructible
+ */
+template< typename T >
+struct CopyableValueRestorer {
+   explicit CopyableValueRestorer(T& var)
+      : pointer{ &var, RestoreValue<T>{ var } }
+   {}
+   CopyableValueRestorer(T& var, const T& newValue)
+      : pointer{ &var, RestoreValue<T>{ var } }
+   {
+      var = newValue;
+   }
+
+   std::shared_ptr<T> pointer;
+};
+
 /// inline functions provide convenient parameter type deduction
 template< typename T >
 ValueRestorer< T > valueRestorer( T& var )
@@ -334,243 +257,14 @@ template< typename T >
 ValueRestorer< T > valueRestorer( T& var, const T& newValue )
 { return ValueRestorer< T >{ var, newValue }; }
 
-/** @brief A convenience for defining iterators that return rvalue types, so
- * that they cooperate correctly with STL algorithms and std::reverse_iterator.
- * 
- * This is mostly a shim around deprecated std::iterator.
- **/
-template< typename Value, typename Category = std::forward_iterator_tag >
-class ValueIterator
-{
-   public:
-      using iterator_category = Category;
-      using value_type = Value;
-      using difference_type = std::ptrdiff_t;
-
-      // to disable operator ->
-      using pointer = void;
-
-      // make "reference type" really the same 
-      using reference = const Value;
-};
-
-/**
-  \brief A convenience for use with range-for
- */
-template <typename Iterator>
-struct IteratorRange : public std::pair<Iterator, Iterator> {
-   using iterator = Iterator;
-   using reverse_iterator = std::reverse_iterator<Iterator>;
-
-   IteratorRange (const Iterator &a, const Iterator &b)
-   : std::pair<Iterator, Iterator> ( a, b ) {}
-
-   IteratorRange (Iterator &&a, Iterator &&b)
-   : std::pair<Iterator, Iterator> ( std::move(a), std::move(b) ) {}
-
-   IteratorRange< reverse_iterator > reversal () const
-   { return { this->rbegin(), this->rend() }; }
-
-   Iterator begin() const { return this->first; }
-   Iterator end() const { return this->second; }
-
-   reverse_iterator rbegin() const { return reverse_iterator{ this->second }; }
-   reverse_iterator rend() const { return reverse_iterator{ this->first }; }
-
-   bool empty() const { return this->begin() == this->end(); }
-   explicit operator bool () const { return !this->empty(); }
-   size_t size() const { return std::distance(this->begin(), this->end()); }
-
-   template <typename T> iterator find(const T &t) const
-   { return std::find(this->begin(), this->end(), t); }
-
-   template <typename T> long index(const T &t) const
-   {
-      auto iter = this->find(t);
-      if (iter == this->end())
-         return -1;
-      return std::distance(this->begin(), iter);
-   }
-
-   template <typename T> bool contains(const T &t) const
-   { return this->end() != this->find(t); }
-
-   template <typename F> iterator find_if(const F &f) const
-   { return std::find_if(this->begin(), this->end(), f); }
-
-   template <typename F> long index_if(const F &f) const
-   {
-      auto iter = this->find_if(f);
-      if (iter == this->end())
-         return -1;
-      return std::distance(this->begin(), iter);
-   }
-
-   // to do: use std::all_of, any_of, none_of when available on all platforms
-   template <typename F> bool all_of(const F &f) const
-   {
-      auto notF =
-         [&](typename std::iterator_traits<Iterator>::reference v)
-            { return !f(v); };
-      return !this->any_of( notF );
-   }
-
-   template <typename F> bool any_of(const F &f) const
-   { return this->end() != this->find_if(f); }
-
-   template <typename F> bool none_of(const F &f) const
-   { return !this->any_of(f); }
-
-   template<typename T> struct identity
-      { const T&& operator () (T &&v) const { return std::forward(v); } };
-
-   // Like std::accumulate, but the iterators implied, and with another
-   // unary operation on the iterator value, pre-composed
-   template<
-      typename R,
-      typename Binary = std::plus< R >,
-      typename Unary = identity< decltype( *std::declval<Iterator>() ) >
-   >
-   R accumulate(
-      R init,
-      Binary binary_op = {},
-      Unary unary_op = {}
-   ) const
-   {
-      R result = init;
-      for (auto&& v : *this)
-         result = binary_op(result, unary_op(v));
-      return result;
-   }
-
-   // An overload making it more convenient to use with pointers to member
-   // functions
-   template<
-      typename R,
-      typename Binary = std::plus< R >,
-      typename R2, typename C
-   >
-   R accumulate(
-      R init,
-      Binary binary_op,
-      R2 (C :: * pmf) () const
-   ) const
-   {
-      return this->accumulate( init, binary_op, std::mem_fn( pmf ) );
-   }
-
-   // Some accumulations frequent enough to be worth abbreviation:
-   template<
-      typename Unary = identity< decltype( *std::declval<Iterator>() ) >,
-      typename R = decltype( std::declval<Unary>()( *std::declval<Iterator>() ) )
-   >
-   R min( Unary unary_op = {} ) const
-   {
-      return this->accumulate(
-         std::numeric_limits< R >::max(),
-         (const R&(*)(const R&, const R&)) std::min,
-         unary_op
-      );
-   }
-
-   template<
-      typename R2, typename C,
-      typename R = R2
-   >
-   R min( R2 (C :: * pmf) () const ) const
-   {
-      return this->min( std::mem_fn( pmf ) );
-   }
-
-   template<
-      typename Unary = identity< decltype( *std::declval<Iterator>() ) >,
-      typename R = decltype( std::declval<Unary>()( *std::declval<Iterator>() ) )
-   >
-   R max( Unary unary_op = {} ) const
-   {
-      return this->accumulate(
-         std::numeric_limits< R >::lowest(),
-         (const R&(*)(const R&, const R&)) std::max,
-         unary_op
-      );
-   }
-
-   template<
-      typename R2, typename C,
-      typename R = R2
-   >
-   R max( R2 (C :: * pmf) () const ) const
-   {
-      return this->max( std::mem_fn( pmf ) );
-   }
-
-   template<
-      typename Unary = identity< decltype( *std::declval<Iterator>() ) >,
-      typename R = decltype( std::declval<Unary>()( *std::declval<Iterator>() ) )
-   >
-   R sum( Unary unary_op = {} ) const
-   {
-      return this->accumulate(
-         R{ 0 },
-         std::plus< R >{},
-         unary_op
-      );
-   }
-
-   template<
-      typename R2, typename C,
-      typename R = R2
-   >
-   R sum( R2 (C :: * pmf) () const ) const
-   {
-      return this->sum( std::mem_fn( pmf ) );
-   }
-};
-
-template< typename Iterator>
-IteratorRange< Iterator >
-make_iterator_range( const Iterator &i1, const Iterator &i2 )
-{
-   return { i1, i2 };
-}
-
-template< typename Container >
-IteratorRange< typename Container::iterator >
-make_iterator_range( Container &container )
-{
-   return { container.begin(), container.end() };
-}
-
-template< typename Container >
-IteratorRange< typename Container::const_iterator >
-make_iterator_range( const Container &container )
-{
-   return { container.begin(), container.end() };
-}
-
-// A utility function building a container of results
-template< typename Container, typename Iterator, typename Function >
-Container transform_range( Iterator first, Iterator last, Function &&fn )
-{
-   Container result;
-   std::transform( first, last, std::back_inserter( result ), fn );
-   return result;
-}
-// A utility function, often constructing a vector from another vector
-template< typename OutContainer, typename InContainer, typename Function >
-OutContainer transform_container( InContainer &inContainer, Function &&fn )
-{
-   return transform_range<OutContainer>(
-      inContainer.begin(), inContainer.end(), fn );
-}
-
 //! Non-template helper for class template NonInterfering
 /*!
  If a structure contains any members with large alignment, this base class may also allow it to work in
  macOS builds under current limitations of the C++17 standard implementation.
  */
 struct UTILITY_API alignas(
-#ifdef __WIN32__
+#if defined(_WIN32) && defined(_MSC_VER)
+   // MSVC supports this symbol in std, but MinGW uses libstdc++, which it does not.
    std::hardware_destructive_interference_size
 #else
    // That constant isn't defined for the other builds yet
@@ -595,6 +289,27 @@ NonInterferingBase {
 #endif
 };
 
+//! Workaround for std::make_shared not working on macOs with over-alignment
+/*!
+ Defines a static member function to use as an alternative to that in std::
+ */
+template<typename T> // CRTP
+struct SharedNonInterfering : NonInterferingBase
+{
+   template<typename... Args>
+   static std::shared_ptr<T> make_shared(Args &&...args)
+   {
+      return std::
+#ifdef __APPLE__
+         // shared_ptr must be constructed from unique_ptr on Mac
+         make_unique
+#else
+         make_shared
+#endif
+                    <T>(std::forward<Args>(args)...);
+   }
+};
+
 /*! Given a structure type T, derive a structure with sufficient padding so that there is not false sharing of
  cache lines between successive elements of an array of those structures.
  */
@@ -603,6 +318,18 @@ template< typename T > struct NonInterfering
    , T
 {
    using T::T;
+
+   //! Allow assignment from default-aligned base type
+   void Set(const T &other)
+   {
+      T::operator =(other);
+   }
+
+   //! Allow assignment from default-aligned base type
+   void Set(T &&other)
+   {
+      T::operator =(std::move(other));
+   }
 };
 
 // These macros are used widely, so declared here.
@@ -612,5 +339,66 @@ template< typename T > struct NonInterfering
 #define LINEAR_TO_DB(x) (20.0 * log10(x))
 
 #define MAX_AUDIO (1. - 1./(1<<15))
+
+//! Atomic unique pointer (for nonarray type only) with a destructor;
+//! It doesn't copy or move
+template<typename T>
+struct AtomicUniquePointer : public std::atomic<T*> {
+   static_assert(AtomicUniquePointer::is_always_lock_free);
+   using std::atomic<T*>::atomic;
+   //! Reassign the pointer with release ordering,
+   //! then destroy any previously held object
+   /*!
+    Like `std::unique_ptr`, does not check for reassignment of the same pointer */
+   void reset(T *p = nullptr) {
+      delete this->exchange(p, std::memory_order_release);
+   }
+   //! reset to a pointer to a new object with given ctor arguments
+   template<typename... Args> void emplace(Args &&... args) {
+      reset(safenew T(std::forward<Args>(args)...));
+   }
+   ~AtomicUniquePointer() { reset(); }
+private:
+   //! Disallow pointer arithmetic
+   using std::atomic<T*>::fetch_add;
+   using std::atomic<T*>::fetch_sub;
+};
+
+//! Check that machine is little-endian
+inline bool IsLittleEndian() noexcept
+{
+   const std::uint32_t x = 1u;
+   return static_cast<const unsigned char*>(static_cast<const void*>(&x))[0];
+   // We will assume the same for other widths!
+}
+
+//! Swap bytes in an integer
+template <typename IntType>
+constexpr IntType SwapIntBytes(IntType value) noexcept
+{
+   static_assert(std::is_integral<IntType>::value, "Integral type required");
+
+   constexpr auto size = sizeof(IntType);
+
+   static_assert(
+      size == 1 || size == 2 || size == 4 || size == 8, "Unsupported size");
+
+   if constexpr (size == 1)
+      return value;
+   else if constexpr (size == 2)
+      return (value >> 8) | (value << 8);
+   else if constexpr (size == 4) // On x86, this (and 64 bit version) is a single instruction! (At least, clang is smart enough to do that)
+      return ((value >> 24) & 0xFF) | ((value >> 8) & 0xFF00) |
+             ((value << 8) & 0xFF0000) | ((value << 24) & 0xFF000000);
+   else if constexpr (size == 8)
+      return ((value >> 56) & 0xFF) | ((value >> 40) & 0xFF00) |
+             ((value >> 24) & 0xFF0000) | ((value >> 8) & 0xFF000000) |
+             ((value << 8) & 0xFF00000000) | ((value << 24) & 0xFF0000000000) |
+             ((value << 40) & 0xFF000000000000) |
+             ((value << 56) & 0xFF00000000000000);
+
+   // Unreachable
+   return value;
+}
 
 #endif // __AUDACITY_MEMORY_X_H__

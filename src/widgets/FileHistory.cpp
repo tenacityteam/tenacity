@@ -19,9 +19,10 @@
 #include <wx/defs.h>
 #include <wx/menu.h>
 
-// Tenacity libraries
-#include <lib-strings/Internat.h>
-#include <lib-preferences/Prefs.h>
+#include "Internat.h"
+#include "Prefs.h"
+
+#include "BasicSettings.h"
 
 #include <mutex>
 
@@ -112,43 +113,31 @@ void FileHistory::UseMenu(wxMenu *menu)
    NotifyMenu( menu );
 }
 
-void FileHistory::Load(wxConfigBase & config, const wxString & group)
+void FileHistory::Load(audacity::BasicSettings& settings, const wxString & group)
 {
    mHistory.clear();
    mGroup = group.empty()
       ? wxString{ "RecentFiles" }
       : group;
 
-   config.SetPath(mGroup);
-
-   wxString file;
-   long ndx;
-   bool got = config.GetFirstEntry(file, ndx);
-   while (got) {
-      AddFileToHistory(config.Read(file), false);
-      got = config.GetNextEntry(file, ndx);
-   }
-
-   config.SetPath(wxT(".."));
-
+   const auto localGroup = settings.BeginGroup(mGroup);
+   for(const auto& key : settings.GetChildKeys())
+      AddFileToHistory(settings.Read(key), false);
+   
    NotifyMenus();
 }
 
-void FileHistory::Save(wxConfigBase & config)
+void FileHistory::Save(audacity::BasicSettings& settings)
 {
-   config.SetPath(wxT(""));
-   config.DeleteGroup(mGroup);
-   config.SetPath(mGroup);
-
+   auto group = settings.BeginGroup(mGroup);
+   settings.Remove({});
+   
    // Stored in reverse order
    int n = mHistory.size() - 1;
    for (size_t i = 1; i <= mHistory.size(); i++) {
-      config.Write(wxString::Format(wxT("file%02d"), (int)i), mHistory[n--]);
+      settings.Write(wxString::Format(wxT("file%02d"), (int)i), mHistory[n--]);
    }
-
-   config.SetPath(wxT(""));
-
-   config.Flush();
+   settings.Flush();
 }
 
 void FileHistory::NotifyMenus()

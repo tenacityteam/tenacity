@@ -16,7 +16,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../widgets/Overlay.h" // to inherit
 #include "Observer.h"
 
-class TenacityProject;
+class AudacityProject;
 
 
 // Common class for overlaying track panel or ruler
@@ -25,7 +25,7 @@ class PlayIndicatorOverlayBase
    , public ClientData::Base
 {
 public:
-   PlayIndicatorOverlayBase(TenacityProject *project, bool isMaster);
+   PlayIndicatorOverlayBase(AudacityProject *project, bool isMaster);
    virtual ~PlayIndicatorOverlayBase();
 
    void Update(int newIndicatorX) { mNewIndicatorX = newIndicatorX; }
@@ -37,7 +37,7 @@ private:
 
 protected:
 
-   TenacityProject *const mProject;
+   AudacityProject *const mProject;
    const bool mIsMaster;
    int mLastIndicatorX { -1 };
    int mNewIndicatorX { -1 };
@@ -50,7 +50,7 @@ class PlayIndicatorOverlay final : public PlayIndicatorOverlayBase
 {
 public:
    explicit
-   PlayIndicatorOverlay(TenacityProject *project);
+   PlayIndicatorOverlay(AudacityProject *project);
 
 private:
    void OnTimer(Observer::Message);

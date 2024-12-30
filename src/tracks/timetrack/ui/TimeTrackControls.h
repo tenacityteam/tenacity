@@ -22,11 +22,11 @@ public:
    explicit
    TimeTrackControls( std::shared_ptr<Track> pTrack )
       : CommonTrackControls( pTrack ) {}
-   ~TimeTrackControls();
+   ~TimeTrackControls() override;
 
    std::vector<UIHandlePtr> HitTest
       (const TrackPanelMouseState &state,
-       const TenacityProject *pProject) override;
+       const AudacityProject *pProject) override;
 
    PopupMenuTable *GetMenuExtension(Track *pTrack) override;
 
@@ -51,8 +51,6 @@ protected:
    void InitUserData(void *pUserData) override;
 
 private:
-   void DestroyMenu() override;
-
    CommonTrackControls::InitMenuData *mpData{};
 
    void OnSetTimeTrackRange(wxCommandEvent & /*event*/);

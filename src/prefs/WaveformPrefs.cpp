@@ -25,32 +25,21 @@ Paul Licameli
 #include "Project.h"
 
 #include "../TrackPanel.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../WaveTrack.h"
-#include "../tracks/playabletrack/wavetrack/ui/WaveTrackView.h"
-#include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
-
-enum {
-   ID_DEFAULTS = 10001,
-
-   ID_SCALE,
-   ID_RANGE,
-};
+#include "ShuttleGui.h"
+#include "WaveTrack.h"
+#include "../tracks/playabletrack/wavetrack/ui/WaveChannelView.h"
+#include "WaveChannelViewConstants.h"
 
 WaveformPrefs::WaveformPrefs(wxWindow * parent, wxWindowID winid,
-   TenacityProject *pProject, WaveTrack *wt)
+   AudacityProject *pProject, WaveChannel *wc)
 /* i18n-hint: A waveform is a visual representation of vibration */
 : PrefsPanel(parent, winid, XO("Waveforms"))
 , mProject{ pProject }
-, mWt(wt)
+, mWc(wc)
 , mPopulating(false)
 {
-   Bind(wxEVT_CHOICE,   &WaveformPrefs::OnScale,    this, ID_SCALE);
-   Bind(wxEVT_CHOICE,   &WaveformPrefs::OnControl,  this, ID_RANGE);
-   Bind(wxEVT_CHECKBOX, &WaveformPrefs::OnDefaults, this);
-
-   if (mWt) {
-      WaveformSettings &settings = wt->GetWaveformSettings();
+   if (mWc) {
+      auto &settings = WaveformSettings::Get(*wc);
       mDefaulted = (&WaveformSettings::defaults() == &settings);
       mTempSettings = settings;
    }
@@ -67,25 +56,32 @@ WaveformPrefs::~WaveformPrefs()
 {
 }
 
-ComponentInterfaceSymbol WaveformPrefs::GetSymbol()
+ComponentInterfaceSymbol WaveformPrefs::GetSymbol() const
 {
    return WAVEFORM_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString WaveformPrefs::GetDescription()
+TranslatableString WaveformPrefs::GetDescription() const
 {
    return XO("Preferences for Waveforms");
 }
 
 ManualPageID WaveformPrefs::HelpPageName()
 {
-   return "Preferences#tracks";
+   return "Waveform_Preferences";
 }
+
+enum {
+   ID_DEFAULTS = 10001,
+
+   ID_SCALE,
+   ID_RANGE,
+};
 
 void WaveformPrefs::Populate()
 {
    // Reuse the same choices and codes as for Interface prefs
-   GUIPrefs::GetRangeChoices(&mRangeChoices, &mRangeCodes);
+   WaveformSettings::GetRangeChoices(&mRangeChoices, &mRangeCodes);
 
    //------------------------- Main section --------------------
    // Now construct the GUI itself.
@@ -104,7 +100,7 @@ void WaveformPrefs::PopulateOrExchange(ShuttleGui & S)
    // S.StartStatic(XO("Track Settings"));
    {
       mDefaultsCheckbox = 0;
-      if (mWt) {
+      if (mWc) {
          /* i18n-hint: use is a verb */
          mDefaultsCheckbox = S.Id(ID_DEFAULTS).TieCheckBox(XXO("&Use Preferences"), mDefaulted);
       }
@@ -169,20 +165,17 @@ bool WaveformPrefs::Commit()
    mTempSettings.ConvertToActualDBRange();
    WaveformSettings::Globals::Get().SavePrefs();
 
-   if (mWt) {
-      for (auto channel : TrackList::Channels(mWt)) {
-         if (mDefaulted)
-            channel->SetWaveformSettings({});
-         else {
-            WaveformSettings &settings =
-               channel->GetWaveformSettings();
-            settings = mTempSettings;
-         }
+   if (mWc) {
+      if (mDefaulted)
+         WaveformSettings::Set(*mWc, {});
+      else {
+         auto &settings = WaveformSettings::Get(*mWc);
+         settings = mTempSettings;
       }
    }
 
    WaveformSettings *const pSettings = &WaveformSettings::defaults();
-   if (!mWt || mDefaulted) {
+   if (!mWc || mDefaulted) {
       *pSettings = mTempSettings;
       pSettings->SavePrefs();
    }
@@ -190,10 +183,8 @@ bool WaveformPrefs::Commit()
 
    mTempSettings.ConvertToEnumeratedDBRange();
 
-   if (mWt && isOpenPage) {
-      for (auto channel : TrackList::Channels(mWt))
-         WaveTrackView::Get( *channel )
-            .SetDisplay( WaveTrackViewConstants::Waveform );
+   if (mWc && isOpenPage) {
+      WaveChannelView::Get(*mWc).SetDisplay(WaveChannelViewConstants::Waveform);
    }
 
    if (isOpenPage) {
@@ -246,17 +237,25 @@ void WaveformPrefs::OnDefaults(wxCommandEvent &)
 
 void WaveformPrefs::EnableDisableRange()
 {
-   mRangeChoice->Enable
-      (mScaleChoice->GetSelection() == WaveformSettings::stLogarithmic);
+   mRangeChoice->Enable(
+      mScaleChoice->GetSelection() == WaveformSettings::stLogarithmicDb);
 }
 
+BEGIN_EVENT_TABLE(WaveformPrefs, PrefsPanel)
+
+EVT_CHOICE(ID_SCALE, WaveformPrefs::OnScale)
+EVT_CHOICE(ID_RANGE, WaveformPrefs::OnControl)
+
+EVT_CHECKBOX(ID_DEFAULTS, WaveformPrefs::OnDefaults)
+END_EVENT_TABLE()
+
 PrefsPanel::Factory
-WaveformPrefsFactory(WaveTrack *wt)
+WaveformPrefsFactory(WaveChannel *wc)
 {
-   return [=](wxWindow *parent, wxWindowID winid, TenacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, AudacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
-      return safenew WaveformPrefs(parent, winid, pProject, wt);
+      return safenew WaveformPrefs(parent, winid, pProject, wc);
    };
 }
 #if 0

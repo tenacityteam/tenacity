@@ -19,25 +19,18 @@
 #ifdef EXPERIMENTAL_EQ_SSE_THREADED
 #include "../Project.h"
 #include "Equalization.h"
-#include "../WaveClip.h"
-#include "../WaveTrack.h"
+#include "WaveClip.h"
+#include "WaveTrack.h"
 #include "../float_cast.h"
 #include <vector>
 
-// Tenacity libraries
-#include <lib-utility/MemoryX.h> // for safenew
-
 #include <wx/setup.h> // for wxUSE_* macros
-
-#include <wx/event.h>
-#include <wx/string.h>
 
 #if wxUSE_TOOLTIPS
 #include <wx/tooltip.h>
 #endif
-#include <wx/utils.h>
 
-#include <cmath>
+#include <math.h>
 
 #include "../RealFFTf48x.h"
 
@@ -47,8 +40,11 @@
 
 #include <stdlib.h>
 
-#include <stdio.h>
-#include <cmath>
+#ifdef __WXMSW__
+#include <malloc.h>
+#endif
+
+#include <math.h>
 #include <emmintrin.h>
 
 #ifdef _WIN32
@@ -143,6 +139,19 @@ MathCaps *EffectEqualization48x::GetMathCaps()
    return &sMathCaps; 
 };
 
+void * malloc_simd(const size_t size)
+{
+#if defined WIN32           // WIN32
+    return _aligned_malloc(size, 16);
+#elif defined __linux__     // Linux
+    return memalign (16, size);
+#elif defined __MACH__      // Mac OS X
+    return malloc(size);
+#else                       // other (use valloc for page-aligned memory)
+    return valloc(size);
+#endif
+}
+
 void free_simd::operator() (void* mem) const
 {
 #if defined WIN32           // WIN32
@@ -196,7 +205,7 @@ bool EffectEqualization48x::AllocateBuffersWorkers(int nThreads)
 
    mScratchBufferSize=mWindowSize*3*sizeof(float)*mBufferCount; // 3 window size blocks of instruction size
    mSubBufferSize=mBlockSize*(mBufferCount*(mBlocksPerBuffer-1)); // we are going to do a full block overlap
-   mBigBuffer.reset( safenew (std::align_val_t(16)) float[(mSubBufferSize + mFilterSize + mScratchBufferSize) * mWorkerDataCount]);
+   mBigBuffer.reset( (float *)malloc_simd(sizeof(float) * (mSubBufferSize + mFilterSize + mScratchBufferSize) * mWorkerDataCount) ); // we run over by filtersize
    // fill the bufferInfo
    mBufferInfo.reinit(mWorkerDataCount);
    for(int i=0;i<mWorkerDataCount;i++) {
@@ -712,7 +721,7 @@ bool EffectEqualization48x::ProcessBuffer4x(BufferInfo *bufferInfo)
 
    auto blockCount=bufferInfo->mBufferLength/mBlockSize;
 
-   __m128 *readBlocks[4]; // some temps so we dont destroy the vars in the struct
+   __m128 *readBlocks[4]; // some temps so we don't destroy the vars in the struct
    __m128 *writeBlocks[4];
    for(int i=0;i<4;i++) {
       readBlocks[i]=(__m128 *)bufferInfo->mBufferSouce[i];
@@ -885,7 +894,7 @@ bool EffectEqualization48x::ProcessOne1x4xThreaded(int count, WaveTrack * t,
 
    if(blockCount<16) // it's not worth 4x processing do a regular process
       return ProcessOne4x(count, t, start, len);
-   if(mThreadCount<=0 || blockCount<256) // dont do it without cores or big data
+   if(mThreadCount<=0 || blockCount<256) // don't do it without cores or big data
       return ProcessOne4x(count, t, start, len);
 
    for(int i=0;i<mThreadCount;i++)
@@ -1017,7 +1026,7 @@ bool EffectEqualization48x::ProcessBuffer8x(BufferInfo *bufferInfo)
 
    auto blockCount=bufferInfo->mBufferLength/mBlockSize;
 
-   __m128 *readBlocks[8]; // some temps so we dont destroy the vars in the struct
+   __m128 *readBlocks[8]; // some temps so we don't destroy the vars in the struct
    __m128 *writeBlocks[8];
    for(int i=0;i<8;i++) {
       readBlocks[i]=(__m128 *)bufferInfo->mBufferSouce[i];
@@ -1186,7 +1195,7 @@ bool EffectEqualization48x::ProcessOne8xThreaded(int count, WaveTrack * t,
 
    if(blockCount<16) // it's not worth 4x processing do a regular process
       return ProcessOne4x(count, t, start, len);
-   if(mThreadCount<=0 || blockCount<256) // dont do it without cores or big data
+   if(mThreadCount<=0 || blockCount<256) // don't do it without cores or big data
       return ProcessOne4x(count, t, start, len);
 
    auto output = t->EmptyCopy();

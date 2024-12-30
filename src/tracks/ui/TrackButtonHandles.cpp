@@ -11,19 +11,20 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "TrackButtonHandles.h"
 
+#include "PendingTracks.h"
 #include "Project.h"
-#include "../../ProjectAudioIO.h"
+#include "ProjectAudioIO.h"
 #include "../../ProjectAudioManager.h"
-#include "../../ProjectHistory.h"
+#include "ProjectHistory.h"
 #include "../../SelectUtilities.h"
 #include "../../RefreshCode.h"
 #include "Track.h"
-#include "../../TrackPanelAx.h"
-#include "../../TrackInfo.h"
+#include "TrackFocus.h"
+#include "CommonTrackInfo.h"
 #include "../../TrackPanel.h"
 #include "../../TrackUtilities.h"
-#include "../../commands/CommandManager.h"
-#include "../../tracks/ui/TrackView.h"
+#include "CommandManager.h"
+#include "../../tracks/ui/ChannelView.h"
 
 MinimizeButtonHandle::MinimizeButtonHandle
 ( const std::shared_ptr<Track> &pTrack, const wxRect &rect )
@@ -35,18 +36,16 @@ MinimizeButtonHandle::~MinimizeButtonHandle()
 }
 
 UIHandle::Result MinimizeButtonHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject, wxWindow*)
+(const wxMouseEvent &, AudacityProject *pProject, wxWindow*)
 {
    using namespace RefreshCode;
 
-   auto pTrack = mpTrack.lock();
-   if (pTrack)
-   {
-      auto channels = TrackList::Channels(pTrack.get());
-      bool wasMinimized = TrackView::Get( **channels.begin() ).GetMinimized();
-      for (auto channel : channels)
-         TrackView::Get( *channel ).SetMinimized( !wasMinimized );
-      ProjectHistory::Get( *pProject ).ModifyState(true);
+   if (auto pTrack = mpTrack.lock()) {
+      auto channels = pTrack->Channels();
+      bool wasMinimized = ChannelView::Get(**channels.begin()).GetMinimized();
+      for (auto pChannel : channels)
+         ChannelView::Get(*pChannel).SetMinimized( !wasMinimized );
+      ProjectHistory::Get(*pProject).ModifyState(true);
 
       // Redraw all tracks when any one of them expands or contracts
       // (Could we invent a return code that draws only those at or below
@@ -58,10 +57,10 @@ UIHandle::Result MinimizeButtonHandle::CommitChanges
 }
 
 TranslatableString MinimizeButtonHandle::Tip(
-   const wxMouseState &, TenacityProject &) const
+   const wxMouseState &, AudacityProject &) const
 {
    auto pTrack = GetTrack();
-   return TrackView::Get( *pTrack ).GetMinimized()
+   return ChannelView::Get(*pTrack->GetChannel(0)).GetMinimized()
       ? XO("Expand") : XO("Collapse");
 }
 
@@ -70,66 +69,11 @@ UIHandlePtr MinimizeButtonHandle::HitTest
  const wxMouseState &state, const wxRect &rect, TrackPanelCell *pCell)
 {
    wxRect buttonRect;
-   TrackInfo::GetMinimizeRect(rect, buttonRect);
+   CommonTrackInfo::GetMinimizeRect(rect, buttonRect);
 
    if (buttonRect.Contains(state.m_x, state.m_y)) {
       auto pTrack = static_cast<CommonTrackPanelCell*>(pCell)->FindTrack();
       auto result = std::make_shared<MinimizeButtonHandle>( pTrack, buttonRect );
-      result = AssignUIHandlePtr(holder, result);
-      return result;
-   }
-   else
-      return {};
-}
-
-////////////////////////////////////////////////////////////////////////////////
-SelectButtonHandle::SelectButtonHandle
-( const std::shared_ptr<Track> &pTrack, const wxRect &rect )
-   : ButtonHandle{ pTrack, rect }
-{}
-
-SelectButtonHandle::~SelectButtonHandle()
-{
-}
-
-UIHandle::Result SelectButtonHandle::CommitChanges
-(const wxMouseEvent &event, TenacityProject *pProject, wxWindow*)
-{
-   using namespace RefreshCode;
-
-   auto pTrack = mpTrack.lock();
-   if (pTrack)
-   {
-      const bool unsafe = ProjectAudioIO::Get( *pProject ).IsAudioActive();
-      SelectUtilities::DoListSelection(*pProject,
-         pTrack.get(), event.ShiftDown(), event.ControlDown(), !unsafe);
-//    return RefreshAll ;
-   }
-
-   return RefreshNone;
-}
-
-TranslatableString SelectButtonHandle::Tip(
-   const wxMouseState &, TenacityProject &) const
-{
-   auto pTrack = GetTrack();
-#if defined(__WXMAC__)
-   return pTrack->GetSelected() ? XO("Command+Click to deselect") : XO("Select track");
-#else
-   return pTrack->GetSelected() ? XO("Ctrl+Click to deselect") : XO("Select track");
-#endif
-}
-
-UIHandlePtr SelectButtonHandle::HitTest
-(std::weak_ptr<SelectButtonHandle> &holder,
- const wxMouseState &state, const wxRect &rect, TrackPanelCell *pCell)
-{
-   wxRect buttonRect;
-   TrackInfo::GetSelectButtonRect(rect, buttonRect);
-
-   if (buttonRect.Contains(state.m_x, state.m_y)) {
-      auto pTrack = static_cast<CommonTrackPanelCell*>(pCell)->FindTrack();
-      auto result = std::make_shared<SelectButtonHandle>( pTrack, buttonRect );
       result = AssignUIHandlePtr(holder, result);
       return result;
    }
@@ -148,20 +92,20 @@ CloseButtonHandle::~CloseButtonHandle()
 {
 }
 
-UIHandle::Result CloseButtonHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject, wxWindow*)
+UIHandle::Result CloseButtonHandle::CommitChanges(const wxMouseEvent &,
+   AudacityProject *pProject, wxWindow*)
 {
    using namespace RefreshCode;
    Result result = RefreshNone;
 
    auto pTrack = mpTrack.lock();
-   if (pTrack)
-   {
-      auto toRemove = pTrack->SubstitutePendingChangedTrack();
+   if (pTrack) {
+      auto &toRemove = PendingTracks::Get(*pProject)
+         .SubstitutePendingChangedTrack(*pTrack);
       ProjectAudioManager::Get( *pProject ).StopIfPaused();
       if (!ProjectAudioIO::Get( *pProject ).IsAudioActive()) {
          // This pushes an undo item:
-         TrackUtilities::DoRemoveTrack(*pProject, toRemove.get());
+         TrackUtilities::DoRemoveTrack(*pProject, toRemove);
          // Redraw all tracks when any one of them closes
          // (Could we invent a return code that draws only those at or below
          // the affected track?)
@@ -173,9 +117,9 @@ UIHandle::Result CloseButtonHandle::CommitChanges
 }
 
 TranslatableString CloseButtonHandle::Tip(
-   const wxMouseState &, TenacityProject &project) const
+   const wxMouseState &, AudacityProject &project) const
 {
-   auto name = XO("Close");
+   auto name = XO("Delete Track");
    auto focused =
       TrackFocus::Get( project ).Get() == GetTrack().get();
    if (!focused)
@@ -191,7 +135,7 @@ UIHandlePtr CloseButtonHandle::HitTest
  const wxMouseState &state, const wxRect &rect, TrackPanelCell *pCell)
 {
    wxRect buttonRect;
-   TrackInfo::GetCloseBoxRect(rect, buttonRect);
+   CommonTrackInfo::GetCloseBoxRect(rect, buttonRect);
 
    if (buttonRect.Contains(state.m_x, state.m_y)) {
       auto pTrack = static_cast<CommonTrackPanelCell*>(pCell)->FindTrack();
@@ -217,7 +161,7 @@ MenuButtonHandle::~MenuButtonHandle()
 }
 
 UIHandle::Result MenuButtonHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject, wxWindow* /* pParent */)
+(const wxMouseEvent &, AudacityProject *pProject, wxWindow *WXUNUSED(pParent))
 {
    auto &trackPanel = TrackPanel::Get( *pProject );
    auto pCell = mpCell.lock();
@@ -233,7 +177,7 @@ UIHandle::Result MenuButtonHandle::CommitChanges
 }
 
 TranslatableString MenuButtonHandle::Tip(
-   const wxMouseState &, TenacityProject &project) const
+   const wxMouseState &, AudacityProject &project) const
 {
    auto name = XO("Open menu...");
    auto focused =
@@ -252,7 +196,7 @@ UIHandlePtr MenuButtonHandle::HitTest
  const std::shared_ptr<TrackPanelCell> &pCell)
 {
    wxRect buttonRect;
-   TrackInfo::GetTitleBarRect(rect, buttonRect);
+   CommonTrackInfo::GetTrackMenuButtonRect(rect, buttonRect);
 
    if (buttonRect.Contains(state.m_x, state.m_y)) {
       auto pTrack = static_cast<CommonTrackPanelCell*>(pCell.get())->FindTrack();

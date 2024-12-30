@@ -32,7 +32,7 @@ class ScrubbingOverlay final
 {
 public:
    explicit
-   ScrubbingOverlay(TenacityProject *project);
+   ScrubbingOverlay(AudacityProject *project);
 
 private:
    unsigned SequenceNumber() const override;
@@ -44,14 +44,14 @@ private:
    const Scrubber &GetScrubber() const;
    Scrubber &GetScrubber();
 
-   TenacityProject *mProject;
+   AudacityProject *mProject;
    Observer::Subscription mSubscription;
 
    wxRect mLastScrubRect, mNextScrubRect;
    wxString mLastScrubSpeedText, mNextScrubSpeedText;
 };
 
-ScrubbingOverlay::ScrubbingOverlay(TenacityProject *project)
+ScrubbingOverlay::ScrubbingOverlay(AudacityProject *project)
    : mProject(project)
    , mLastScrubRect()
    , mNextScrubRect()
@@ -119,7 +119,7 @@ void ScrubbingOverlay::OnTimer(Observer::Message)
    {
       if(scrubber.HasMark()) {
          auto xx = ruler.ScreenToClient(position).x;
-         ruler.UpdateQuickPlayPos( xx, false );
+         ruler.UpdateQuickPlayPos( xx );
 
          if (!isScrubbing)
             // Really start scrub if motion is far enough
@@ -198,8 +198,8 @@ Scrubber &ScrubbingOverlay::GetScrubber()
    return Scrubber::Get( *mProject );
 }
 
-static const TenacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
-  []( TenacityProject &parent ){
+static const AudacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
+  []( AudacityProject &parent ){
      auto result = std::make_shared< ScrubbingOverlay >( &parent );
      TrackPanel::Get( parent ).AddOverlay( result );
      return result;
@@ -215,7 +215,7 @@ struct ScrubForwarder
     : public wxEvtHandler
     , public ClientData::Base
 {
-   ScrubForwarder( TenacityProject &project )
+   ScrubForwarder( AudacityProject &project )
       : mProject{ project }
    {
       mWindow = &ProjectWindow::Get( project );
@@ -231,7 +231,7 @@ struct ScrubForwarder
          mWindow->PopEventHandler();
    }
 
-   TenacityProject &mProject;
+   AudacityProject &mProject;
    wxWindowPtr<wxWindow> mWindow;
    wxWeakRef<AdornedRulerPanel> mRuler;
    std::weak_ptr<Scrubber> mScrubber;
@@ -287,8 +287,8 @@ BEGIN_EVENT_TABLE(ScrubForwarder, wxEvtHandler)
    EVT_MOUSE_EVENTS(ScrubForwarder::OnMouse)
 END_EVENT_TABLE()
 
-static const TenacityProject::AttachedObjects::RegisteredFactory sForwarderKey{
-   []( TenacityProject &parent ){
+static const AudacityProject::AttachedObjects::RegisteredFactory sForwarderKey{
+   []( AudacityProject &parent ){
       return std::make_shared< ScrubForwarder >( parent );
    }
 };

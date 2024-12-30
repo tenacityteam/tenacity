@@ -15,11 +15,76 @@
 #include <unordered_set>
 #include <wx/filename.h>
 
+#include "MemoryX.h"
+
+class ModuleSettingsResetHandler final : public PreferencesResetHandler
+{
+   using KeyValueStorage = std::vector<std::pair<wxString, wxString>>;
+   std::optional<KeyValueStorage> mStorage;
+public:
+
+   ~ModuleSettingsResetHandler() override
+   {
+      assert(!mStorage.has_value());
+   }
+
+   void OnSettingResetBegin() override
+   {
+      assert(!mStorage.has_value());
+
+      static const wxString modulePrefsGroups[] = {
+         "/ModulePath/",
+         "/Module/",
+         "/ModuleDateTime/"
+      };
+      KeyValueStorage storage;
+      for(const auto& group : modulePrefsGroups)
+      {
+         if(!gPrefs->HasGroup(group))
+            continue;
+
+         const auto groupScope = gPrefs->BeginGroup(group);
+         for(const auto& key : gPrefs->GetChildKeys())
+         {
+            wxString value;
+            if(gPrefs->Read(key, &value))
+               storage.emplace_back(group + key, value);
+         }
+      }
+      mStorage = std::move(storage);
+   }
+
+   void OnSettingResetEnd() override
+   {
+      if(!mStorage.has_value())
+         return;
+      const auto Do = finally([=]{ mStorage = std::nullopt; });
+      for(const auto& [key, value] : *mStorage)
+         gPrefs->Write(key, value);
+   }
+};
+
+static PreferencesResetHandler::Registration<ModuleSettingsResetHandler> preserveModuleSettings;
+
 static const std::unordered_set<wxString> &autoEnabledModules()
 {
    // Add names to this list, of modules that are expected to ship
    // with Audacity and enable automatically.
    static std::unordered_set<wxString> modules{
+      "mod-ogg",
+      "mod-flac",
+      "mod-mp2",
+      "mod-wavpack",
+      "mod-mp3",
+      "mod-mpg123",
+      "mod-pcm",
+      "mod-ffmpeg",
+      "mod-cl",
+      "mod-lof",
+      "mod-aup",
+      "mod-opus",
+      "mod-midi-import-export",
+      "mod-cloud-audiocom"
    };
    return modules;
 }
@@ -37,10 +102,12 @@ int ModuleSettings::GetModuleStatus(const FilePath &fname)
    wxString StatusPref = wxString( wxT("/Module/") ) + ShortName;
    wxString DateTimePref = wxString( wxT("/ModuleDateTime/") ) + ShortName;
 
-   wxString ModulePath = gPrefs->Read( PathPref, wxEmptyString );
-   if( ModulePath.IsSameAs( fname ) )
+   if( gPrefs->Exists(StatusPref) )
    {
-      gPrefs->Read( StatusPref, &iStatus, kModuleNew );
+      // Update module path in case it was changed
+      gPrefs->Write( PathPref, fname );
+
+      gPrefs->Read( StatusPref, &iStatus, static_cast<int>(kModuleNew) );
 
       wxDateTime DateTime = FileName.GetModificationTime();
       wxDateTime OldDateTime;

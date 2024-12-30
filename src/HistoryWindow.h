@@ -11,19 +11,17 @@
 #ifndef __AUDACITY_HISTORY_WINDOW__
 #define __AUDACITY_HISTORY_WINDOW__
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-utility/Observer.h>
-
-#include "widgets/wxPanelWrapper.h" // to inherit
+#include "Observer.h"
+#include "Prefs.h"
+#include "wxPanelWrapper.h" // to inherit
 
 class wxButton;
 class wxListCtrl;
 class wxListEvent;
 class wxSpinCtrl;
 class wxTextCtrl;
-class TenacityProject;
 struct AudioIOEvent;
+class AudacityProject;
 class ShuttleGui;
 class UndoManager;
 
@@ -32,9 +30,11 @@ class HistoryDialog final : public wxDialogWrapper,
 {
 
  public:
-   HistoryDialog(TenacityProject * parent, UndoManager *manager);
+   HistoryDialog(AudacityProject * parent, UndoManager *manager);
 
-   void UpdateDisplay(wxEvent &e);
+   void UpdateDisplayForClipboard(struct ClipboardChangeMessage);
+   void UpdateDisplay(struct UndoRedoMessage);
+   void DoUpdateDisplay();
    
    bool Show( bool show = true ) override;
 
@@ -58,9 +58,12 @@ class HistoryDialog final : public wxDialogWrapper,
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   Observer::Subscription mSubscription;
+   Observer::Subscription mAudioIOSubscription
+      , mUndoSubscription
+      , mClipboardSubscription
+   ;
 
-   TenacityProject   *mProject;
+   AudacityProject   *mProject;
    UndoManager       *mManager;
    wxListCtrl        *mList;
    wxTextCtrl        *mTotal;

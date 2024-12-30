@@ -18,14 +18,10 @@ setting used in debugging batch (aka macros) processing.
 #include "BatchPrefs.h"
 
 #include <wx/defs.h>
-#include <wx/intl.h>
 #include <wx/textdlg.h>
 
-// Tenacity libraries
-#include  <lib-preferences/Prefs.h>
-#include <lib-strings/Languages.h>
-
-#include "../shuttle/ShuttleGui.h"
+#include "Prefs.h"
+#include "ShuttleGui.h"
 
 BEGIN_EVENT_TABLE(BatchPrefs, PrefsPanel)
 END_EVENT_TABLE()
@@ -37,19 +33,19 @@ BatchPrefs::BatchPrefs(wxWindow * parent, wxWindowID winid):
    Populate();
 }
 
-ComponentInterfaceSymbol BatchPrefs::GetSymbol()
+ComponentInterfaceSymbol BatchPrefs::GetSymbol() const
 {
    return BATCH_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString BatchPrefs::GetDescription()
+TranslatableString BatchPrefs::GetDescription() const
 {
    return XO("Preferences for Batch");
 }
 
 ManualPageID BatchPrefs::HelpPageName()
 {
-   return "Preferences";
+   return  "Batch_Preferences";
 }
 
 /// Creates the dialog and its contents.
@@ -100,7 +96,7 @@ BatchPrefs::~BatchPrefs()
 #if 0
 namespace{
 PrefsPanel::Registration sAttachment{ "Batch",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew BatchPrefs(parent, winid);

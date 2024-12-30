@@ -11,16 +11,17 @@
 #ifndef __AUDACITY_COMMAND__
 #define __AUDACITY_COMMAND__
 
+
+
 #include <set>
 
 #include <wx/defs.h>
-#include <wx/event.h> // to inherit
 
-#include "../widgets/wxPanelWrapper.h" // to inherit
+#include "wxPanelWrapper.h" // to inherit
 
-// Tenacity libraries
-#include <lib-components/ComponentInterface.h>
-#include <lib-components/EffectAutomationParameters.h> // for command automation
+#include "ComponentInterface.h"
+#include "EffectAutomationParameters.h"
+#include "EffectInterface.h" // for SettingsVisitor type alias
 
 #include "Registrar.h"
 
@@ -29,13 +30,13 @@ class ShuttleGui;
 #define BUILTIN_GENERIC_COMMAND_PREFIX wxT("Built-in AudacityCommand: ")
 
 class AudacityCommand;
-class TenacityProject;
+class AudacityProject;
 class CommandContext;
 class ProgressDialog;
 
-
-class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
-                                public ComponentInterface
+class TENACITY_DLL_API AudacityCommand /* not final */ :
+    public wxEvtHandler,
+    public ComponentInterface
 {
  public:
    //std::unique_ptr<CommandOutputTargets> mOutput;
@@ -43,40 +44,36 @@ class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
  public:
    AudacityCommand();
    virtual ~AudacityCommand();
-   
-   // Type of a registered function that, if it returns true,
-   // causes ShowInterface to return early without making any dialog
-   using VetoDialogHook = bool (*) ( wxDialog* );
-   static VetoDialogHook SetVetoDialogHook( VetoDialogHook hook );
 
    // ComponentInterface implementation
 
    //These four can be defaulted....
-   PluginPath GetPath() override;
-   VendorSymbol GetVendor() override;
-   wxString GetVersion() override;
+   PluginPath GetPath() const override;
+   VendorSymbol GetVendor() const override;
+   wxString GetVersion() const override;
    //  virtual wxString GetFamily();
 
    //These two must be implemented by instances.
-   ComponentInterfaceSymbol GetSymbol() override = 0;
-   virtual TranslatableString GetDescription() override
+   ComponentInterfaceSymbol GetSymbol() const override = 0;
+   virtual TranslatableString GetDescription() const override
    {wxFAIL_MSG( "Implement a Description for this command");return XO("FAIL");};
 
    // Name of page in the Audacity alpha manual
-   virtual ManualPageID ManualPage(){ return {}; }
-   virtual bool IsBatchProcessing(){ return mIsBatch;}
-   virtual void SetBatchProcessing(bool start){ mIsBatch = start;};
-   
-   virtual bool Apply(const CommandContext & /* context */ ) {return false;};
+   virtual ManualPageID ManualPage() { return {}; }
+   virtual bool IsBatchProcessing() const { return mIsBatch; }
+   virtual void SetBatchProcessing(bool start) { mIsBatch = start; }
+
+   virtual bool Apply(const CommandContext & WXUNUSED(context) ) { return false; }
 
    bool ShowInterface(wxWindow *parent, bool forceModal = false);
 
    wxDialog *CreateUI(wxWindow *parent, AudacityCommand *client);
 
-   bool GetAutomationParametersAsString(wxString & parms);
-   bool SetAutomationParametersFromString(const wxString & parms);
+   bool SaveSettingsAsString(wxString& parms);
+   bool LoadSettingsFromString(const wxString& parms);
 
-   bool DoAudacityCommand(wxWindow *parent, const CommandContext & context,bool shouldPrompt = true);
+   bool DoAudacityCommand(
+      const CommandContext& context, bool shouldPrompt = true);
 
    // Nonvirtual
    // Display a message box, using effect's (translated) name as the prefix
@@ -101,12 +98,12 @@ class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
 
    // If necessary, open a dialog to get parameters from the user.
    // This method will not always be called (for example if a user
-   // repeats a command using 'repeat last command') but if it is called, 
+   // repeats a command using 'repeat last command') but if it is called,
    // it will be called after Init.
-   virtual bool PromptUser(wxWindow *parent);
+   virtual bool PromptUser(AudacityProject&);
 
    // Check whether command should be skipped
-   // Typically this is only useful in automation, for example
+   // Typically this is only useful in macros, for example
    // detecting that zero noise reduction is to be done,
    // or that normalisation is being done without Dc bias shift
    // or amplitude modification
@@ -116,9 +113,16 @@ class TENACITY_DLL_API AudacityCommand /* not final */ : public wxEvtHandler,
    // effect, after either successful or failed or exception-aborted processing.
    // Invoked inside a "finally" block so it must be no-throw.
    virtual void End(){;};
-   virtual void PopulateOrExchange(ShuttleGui & /* S */){return;};
+   virtual void PopulateOrExchange(ShuttleGui & WXUNUSED(S)){return;};
    virtual bool TransferDataToWindow();
    virtual bool TransferDataFromWindow();
+
+   //! Visit settings, if defined.  false means no defined settings.
+   //! Default implementation returns false
+   virtual bool VisitSettings( SettingsVisitor & );
+   //! Visit settings, if defined.  false means no defined settings.
+   //! Default implementation returns false
+   virtual bool VisitSettings( ConstSettingsVisitor & );
 
 protected:
 
@@ -161,6 +165,7 @@ private:
    int mAdditionalButtons;
    AudacityCommand * mpCommand;
 
+   DECLARE_EVENT_TABLE()
    wxDECLARE_NO_COPY_CLASS(AudacityCommandDialog);
 };
 

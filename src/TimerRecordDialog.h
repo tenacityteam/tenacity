@@ -18,7 +18,9 @@
 
 #include <wx/textctrl.h> // to inherit
 #include <wx/timer.h> // member variable
-#include "export/Export.h"
+#include "Export.h"
+#include "wxPanelWrapper.h"
+#include "BasicUI.h"
 
 class wxCheckBox;
 class wxChoice;
@@ -50,7 +52,7 @@ enum {
 #endif
 };
 
-class TenacityProject;
+class AudacityProject;
 
 class TimerRecordDialog final : public wxDialogWrapper
 {
@@ -58,15 +60,14 @@ public:
    using ProgressResult = BasicUI::ProgressResult;
 
    TimerRecordDialog(
-      wxWindow* parent, TenacityProject &project, bool bAlreadySaved);
+      wxWindow* parent, AudacityProject &project, bool bAlreadySaved);
    ~TimerRecordDialog();
 
+   void OnTimer(wxTimerEvent& event);
    ///Runs the wait for start dialog.  Returns false if the user clicks stop.
    int RunWaitDialog();
 
 private:
-   void OnTimer();
-
    void OnDatePicker_Start(wxDateEvent& event);
    void OnTimeText_Start(wxCommandEvent& event);
 
@@ -106,7 +107,7 @@ private:
    ProgressResult PreActionDelay(int iActionIndex, TimerRecordCompletedActions eCompletedActions);
 
 private:
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
    wxDateTime m_DateTime_Start;
    wxDateTime m_DateTime_End;
@@ -142,9 +143,10 @@ private:
    wxFileName m_fnAutoSaveFile;
    bool m_bAutoExportEnabled;
    wxFileName m_fnAutoExportFile;
-   int m_iAutoExportFormat;
-   int m_iAutoExportSubFormat;
-   int m_iAutoExportFilterIndex;
+   wxString m_sAutoExportFormat;
+   int m_iAutoExportSampleRate{0};
+   int m_iAutoExportChannels{0};
+   ExportProcessor::Parameters m_AutoExportParameters;
    bool m_bProjectAlreadySaved;
 
    DECLARE_EVENT_TABLE()

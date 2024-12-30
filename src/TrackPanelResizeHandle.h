@@ -13,14 +13,19 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "UIHandle.h"
 
+class Channel;
 class Track;
 
+//! Constructed from one channel, but changes height of all channels in a track
 class TrackPanelResizeHandle final : public UIHandle
 {
    TrackPanelResizeHandle(const TrackPanelResizeHandle&) = delete;
 
 public:
-   explicit TrackPanelResizeHandle( const std::shared_ptr<Track> &pTrack, int y );
+   /*!
+    @pre `pChannel != nullptr`
+    */
+   TrackPanelResizeHandle(const std::shared_ptr<Channel> &pChannel, int y);
 
    TrackPanelResizeHandle &operator=(const TrackPanelResizeHandle&) = default;
 
@@ -28,25 +33,30 @@ public:
 
    virtual ~TrackPanelResizeHandle();
 
-   std::shared_ptr<Track> GetTrack() const { return mpTrack.lock(); }
+   std::shared_ptr<const Track> FindTrack() const override;
+   std::shared_ptr<Channel> FindChannel();
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
 private:
+   static Track &GetTrack(Channel &channel);
+   Channel *PrevChannel(Channel &channel);
+   Channel *NextChannel(Channel &channel);
+
    enum Mode {
       IsResizing,
       IsResizingBetweenLinkedTracks,
@@ -54,7 +64,7 @@ private:
    };
    Mode mMode{ IsResizing };
 
-   std::weak_ptr<Track> mpTrack;
+   std::weak_ptr<Channel> mwChannel;
 
    bool mInitialMinimized{};
    int mInitialTrackHeight{};

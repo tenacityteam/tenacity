@@ -10,9 +10,10 @@
 
 #include "InterpolateAudio.h"
 
-#include <cmath>
+#include <math.h>
 #include <stdlib.h>
-#include <cassert>
+
+#include <wx/defs.h>
 
 #include "Matrix.h"
 
@@ -83,10 +84,10 @@ void InterpolateAudio(float *buffer, const size_t len,
 {
    const auto N = len;
 
-   assert(len > 0 &&
-          firstBad >= 0 &&
-          numBad < len &&
-          firstBad+numBad <= len);
+   wxASSERT(len > 0 &&
+            firstBad >= 0 &&
+            numBad < len &&
+            firstBad+numBad <= len);
 
    if(numBad >= len)
       return;  //should never have been called!

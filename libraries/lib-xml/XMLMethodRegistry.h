@@ -141,7 +141,7 @@ struct AttributeReaderEntries {
       );
       for (auto &pair : pairs)
          registry.Register( pair.first,
-            [ fn = std::move(pair.second) ]( auto p, auto value ){
+            [ fn = move(pair.second) ]( auto p, auto value ){
                fn( *static_cast<Substructure*>(p), value ); }
          );
    }

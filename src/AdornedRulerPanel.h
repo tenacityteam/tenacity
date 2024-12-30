@@ -13,17 +13,16 @@
 
 #include "CellularPanel.h"
 #include "widgets/Ruler.h" // member variable
-#include "widgets/Grabber.h" // mGrabber
+#include "widgets/LinearUpdater.h"
+#include "widgets/TimeFormat.h"
+#include "Observer.h"
+#include "Prefs.h"
 #include "ViewInfo.h" // for PlayRegion
+#include "TimeDisplayMode.h"
 
-// Tenacity preferences
-#include <lib-preferences/Prefs.h>
-#include <lib-utility/Observer.h>
-
-class TenacityProject;
+class AudacityProject;
 struct AudioIOEvent;
-struct SelectedRegionEvent;
-class SnapManager;
+class LinearUpdater;
 class TrackList;
 
 // This is an Audacity Specific ruler panel.
@@ -32,11 +31,11 @@ class TENACITY_DLL_API AdornedRulerPanel final
 , private PrefsListener
 {
 public:
-   static AdornedRulerPanel &Get( TenacityProject &project );
-   static const AdornedRulerPanel &Get( const TenacityProject &project );
-   static void Destroy( TenacityProject &project );
+   static AdornedRulerPanel &Get( AudacityProject &project );
+   static const AdornedRulerPanel &Get( const AudacityProject &project );
+   static void Destroy( AudacityProject &project );
 
-   AdornedRulerPanel(TenacityProject *project,
+   AdornedRulerPanel(AudacityProject *project,
                      wxWindow* parent,
                      wxWindowID id,
                      const wxPoint& pos = wxDefaultPosition,
@@ -64,8 +63,6 @@ public:
 
    void SetPlayRegion(double playRegionStart, double playRegionEnd);
    void ClearPlayRegion();
-   void LockPlayRegion();
-   void UnlockPlayRegion();
    void TogglePinnedHead();
 
    void GetMaxSize(wxCoord *width, wxCoord *height);
@@ -75,7 +72,7 @@ public:
    void UpdatePrefs() override;
    void ReCreateButtons();
 
-   void UpdateQuickPlayPos(wxCoord &mousePosX, bool shiftDown);
+   void UpdateQuickPlayPos(wxCoord &mousePosX);
 
    bool ShowingScrubRuler() const;
    //void OnToggleScrubRulerFromMenu(wxCommandEvent& );
@@ -90,24 +87,32 @@ private:
    void OnAudioStartStop(AudioIOEvent);
    void OnPaint(wxPaintEvent &evt);
    void OnSize(wxSizeEvent &evt);
-   void OnThemeChange(wxCommandEvent& evt);
+   void OnLeave(wxMouseEvent &evt);
+   void OnThemeChange(struct ThemeChangeMessage);
    void OnSelectionChange(Observer::Message);
    void DoSelectionChange( const SelectedRegion &selectedRegion );
    bool UpdateRects();
    void HandleQPClick(wxMouseEvent &event, wxCoord mousePosX);
    void HandleQPDrag(wxMouseEvent &event, wxCoord mousePosX);
    void HandleQPRelease(wxMouseEvent &event);
-   void StartQPPlay(bool looped, bool cutPreview);
+   void StartQPPlay(
+      bool newDefault, bool cutPreview, const double *pStartTime = nullptr);
 
    void DoDrawBackground(wxDC * dc);
    void DoDrawEdge(wxDC *dc);
    void DoDrawMarks(wxDC * dc, bool /*text */ );
-   void DoDrawSelection(wxDC * dc);
+   wxRect RegionRectangle(double t0, double t1) const;
+   wxRect PlayRegionRectangle() const;
+   wxRect SelectedRegionRectangle() const;
+   void DoDrawPlayRegion(wxDC * dc,
+      const wxRect &rectP, const wxRect &rectL, const wxRect &rectR);
+   void DoDrawPlayRegionLimits(wxDC * dc, const wxRect &rect);
+   void DoDrawOverlap(wxDC * dc, const wxRect &rect);
+   void DoDrawSelection(wxDC * dc,
+      const wxRect &rectS, const wxRect &rectL, const wxRect &rectR);
 
 public:
-   std::pair< wxPoint, wxBitmap >
-      GetIndicatorBitmap(wxCoord xx, bool playing) const;
-   void DoDrawIndicator(wxDC * dc, wxCoord xx, bool playing, int width, bool scrub, bool seek);
+   void DoDrawScrubIndicator(wxDC * dc, wxCoord xx, int width, bool scrub, bool seek);
    void UpdateButtonStates();
 
 private:
@@ -118,21 +123,23 @@ private:
 public:
    static TempAllowFocus TemporarilyAllowFocus();
 
-private:
-   void DoDrawPlayRegion(wxDC * dc);
+   void SetNumGuides(size_t nn);
 
+private:
    enum class MenuChoice { QuickPlay, Scrub };
    void ShowContextMenu( MenuChoice choice, const wxPoint *pPosition);
 
-   double Pos2Time(int p);
-   int Time2Pos(double t);
+   double Pos2Time(int p, bool ignoreFisheye = false) const;
+   int Time2Pos(double t, bool ignoreFisheye = false) const;
 
    bool IsWithinMarker(int mousePosX, double markerTime);
 
 private:
+   AudacityProject* const mProject;
+   
+   LinearUpdater& mUpdater;
+   Ruler& mRuler;
 
-   Ruler mRuler;
-   TenacityProject *const mProject;
    TrackList *mTracks;
 
    wxRect mOuter;
@@ -143,13 +150,13 @@ private:
 
 
    double mIndTime;
-   double mQuickPlayPosUnsnapped;
-   double mQuickPlayPos;
 
-   bool mIsSnapped;
-   bool mEditMode;
-
-   Grabber *mGrabber;
+   static constexpr size_t MAX_GUIDES = 2;
+   double mQuickPlayOffset[MAX_GUIDES]{};
+   double mQuickPlayPosUnsnapped[MAX_GUIDES]{};
+   double mQuickPlayPos[MAX_GUIDES]{};
+   bool mIsSnapped[MAX_GUIDES]{};
+   size_t mNumGuides{ 1 };
 
    PlayRegion mOldPlayRegion;
 
@@ -160,20 +167,19 @@ private:
    //
    void ShowMenu(const wxPoint & pos);
    void ShowScrubMenu(const wxPoint & pos);
-   void DragSelection();
-   void HandleSnapping();
-   void OnToggleQuickPlay(wxCommandEvent &evt);
+   static void DragSelection(AudacityProject &project);
+   void HandleSnapping(size_t index);
+   void OnTimelineFormatChange(wxCommandEvent& evt);
    void OnSyncSelToQuickPlay(wxCommandEvent &evt);
-   //void OnTimelineToolTips(wxCommandEvent &evt);
    void OnAutoScroll(wxCommandEvent &evt);
-   void OnLockPlayRegion(wxCommandEvent &evt);
+   void OnTogglePlayRegion(wxCommandEvent &evt);
+   void OnClearPlayRegion(wxCommandEvent &evt);
+   void OnSetPlayRegionToSelection(wxCommandEvent &evt);
 
    void OnPinnedButton(wxCommandEvent & event);
    void OnTogglePinnedState(wxCommandEvent & event);
 
    bool mPlayRegionDragsSelection;
-   bool mTimelineToolTip;
-   bool mQuickPlayEnabled;
 
    enum MouseEventState {
       mesNone,
@@ -201,9 +207,9 @@ private:
    // area into cells
    std::shared_ptr<TrackPanelNode> Root() override;
 public:
-   TenacityProject * GetProject() const override;
+   AudacityProject * GetProject() const override;
 private:
-   TrackPanelCell *GetFocusedCell() override;
+   std::shared_ptr<TrackPanelCell> GetFocusedCell() override;
    void SetFocusedCell() override;
    void ProcessUIHandleResult
       (TrackPanelCell *pClickedTrack, TrackPanelCell *pLatestCell,
@@ -214,14 +220,18 @@ private:
    void CreateOverlays();
 
    // Cooperating objects
-   class QuickPlayIndicatorOverlay;
-   std::shared_ptr<QuickPlayIndicatorOverlay> mOverlay;
+   class TrackPanelGuidelineOverlay;
+   std::shared_ptr<TrackPanelGuidelineOverlay> mOverlay;
 
-   class QuickPlayRulerOverlay;
+   class ScrubbingRulerOverlay;
    
 private:
    class CommonRulerHandle;
    class QPHandle;
+   class PlayRegionAdjustingHandle;
+   class MovePlayRegionHandle;
+   class ResizePlayRegionHandle;
+   class NewPlayRegionHandle;
    class ScrubbingHandle;
 
    class CommonCell;
@@ -233,16 +243,27 @@ private:
    std::shared_ptr<ScrubbingCell> mScrubbingCell;
 
    Observer::Subscription mAudioIOSubscription,
-      mPlayRegionSubscription;
+      mPlayRegionSubscription,
+      mThemeChangeSubscription,
+      mRulerInvalidatedSubscription;
 
    // classes implementing subdivision for CellularPanel
    struct Subgroup;
    struct MainGroup;
 
    SelectedRegion mLastDrawnSelectedRegion;
+   std::pair<double, double> mLastDrawnPlayRegion{};
+   bool mLastPlayRegionActive = false;
    double mLastDrawnH{};
    double mLastDrawnZoom{};
-   bool mDirtySelectedRegion{};
+
+public:
+   TimeDisplayMode GetTimeDisplayMode() const;
+   void SetTimeDisplayMode(TimeDisplayMode rulerType);
+
+private:
+
+   TimeDisplayMode mTimeDisplayMode;
 };
 
 #endif //define __AUDACITY_ADORNED_RULER_PANEL__

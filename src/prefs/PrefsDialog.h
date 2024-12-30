@@ -14,27 +14,22 @@
 
 #include <functional>
 #include <vector>
-#include "../widgets/wxPanelWrapper.h" // to inherit
+#include "wxPanelWrapper.h" // to inherit
 #include "PrefsPanel.h"
 
-class TenacityProject;
+class AudacityProject;
 class wxTreebook;
 class wxTreeEvent;
+class SettingTransaction;
 class ShuttleGui;
 
-#ifdef __GNUC__
-#define CONST
-#else
-#define CONST const
-#endif
-
-class TenacityProject;
+class AudacityProject;
 
 class TENACITY_DLL_API PrefsDialog /* not final */ : public wxDialogWrapper
 {
  public:
    PrefsDialog(wxWindow * parent,
-      TenacityProject *pProject, // may be null
+      AudacityProject *pProject, // may be null
       const TranslatableString &titlePrefix = XO("Preferences:"),
       PrefsPanel::Factories &factories =
          PrefsPanel::DefaultFactories());
@@ -72,6 +67,8 @@ private:
    PrefsPanel::Factories &mFactories;
    const TranslatableString mTitlePrefix;
 
+   std::unique_ptr< SettingTransaction > mTransaction;
+
    DECLARE_EVENT_TABLE()
 };
 
@@ -84,7 +81,7 @@ public:
     @param pProject may be null
     */
    GlobalPrefsDialog(
-      wxWindow * parent, TenacityProject *pProject,
+      wxWindow * parent, AudacityProject *pProject,
       PrefsPanel::Factories &factories =
          PrefsPanel::DefaultFactories());
    virtual ~GlobalPrefsDialog();
@@ -92,7 +89,7 @@ public:
    void SavePreferredPage() override;
 };
 
-class TenacityProject;
-void TENACITY_DLL_API DoReloadPreferences( TenacityProject &project );
+class AudacityProject;
+void TENACITY_DLL_API DoReloadPreferences( AudacityProject &project );
 
 #endif

@@ -13,67 +13,48 @@
 #ifndef __AUDACITY_EFFECT_TONEGEN__
 #define __AUDACITY_EFFECT_TONEGEN__
 
-#include "Effect.h"
+#include "ShuttleAutomation.h"
+#include "StatefulEffectUIServices.h"
+#include "StatefulPerTrackEffect.h"
+#include "ToneGenBase.h"
+#include <float.h> // for DBL_MAX
+#include <wx/weakref.h>
 
 class NumericTextCtrl;
 class ShuttleGui;
 
-class EffectToneGen : public Effect
+class EffectToneGen : public ToneGenBase, public StatefulEffectUIServices
 {
 public:
-   EffectToneGen(bool isChirp);
-   virtual ~EffectToneGen();
+   EffectToneGen(bool isChirp)
+       : ToneGenBase { isChirp }
+   {
+   }
 
    // ComponentInterface implementation
 
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   unsigned GetAudioOutCount() override;
-   bool ProcessInitialize(sampleCount totalLen, ChannelNames chanMap = NULL) override;
-   size_t ProcessBlock( const float *const *inBlock, float *const *outBlock,
-      size_t blockLen) override;
-   bool DefineParams( ShuttleParams & S ) override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
+   ManualPageID ManualPage() const override;
 
    // Effect implementation
 
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataFromWindow() override;
-   bool TransferDataToWindow() override;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui & S, EffectInstance &instance,
+      EffectSettingsAccess &access, const EffectOutputs *pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings &settings) override;
+   bool TransferDataFromWindow(EffectSettings &settings) override;
+
+protected:
+   DECLARE_EVENT_TABLE()
 
 private:
-   // EffectToneGen implementation
+   // ToneGenBase implementation
 
    void OnControlUpdate(wxCommandEvent & evt);
 
-private:
-   bool mChirp;
-
-   // mSample is an external placeholder to remember the last "buffer"
-   // position so we use it to reinitialize from where we left
-   sampleCount mSample;
-   double mPositionInCycles;
-
-   // If we made these static variables,
-   // Tone and Chirp would share the same parameters.
-   int mWaveform;
-   int mInterpolation;
-   double mFrequency[2];
-   double mAmplitude[2];
-   double mLogFrequency[2];
-
+   wxWeakRef<wxWindow> mUIParent{};
    NumericTextCtrl *mToneDurationT;
-
-   DECLARE_EVENT_TABLE()
 };
 
 class EffectChirp final : public EffectToneGen
@@ -82,6 +63,7 @@ public:
    static const ComponentInterfaceSymbol Symbol;
 
    EffectChirp() : EffectToneGen{ true } {}
+   ~EffectChirp() override = default;
 };
 
 
@@ -91,6 +73,7 @@ public:
    static const ComponentInterfaceSymbol Symbol;
 
    EffectTone() : EffectToneGen{ false } {}
+   ~EffectTone() override = default;
 };
 
 #endif

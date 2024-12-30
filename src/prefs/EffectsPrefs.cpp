@@ -22,13 +22,176 @@
 
 #include <wx/choice.h>
 #include <wx/defs.h>
+#include <wx/button.h>
+#include <wx/sizer.h>
+#include <wx/statbox.h>
+#include <wx/scrolwin.h>
 
-// Tenacity libraries
-#include <lib-module-manager/PluginManager.h>
-#include <lib-preferences/Prefs.h>
-#include <lib-strings/Languages.h>
+#include "PluginManager.h"
+#include "PluginRegistrationDialog.h"
+#include "MenuCreator.h"
+#include "ModuleManager.h"
+#include "Prefs.h"
+#include "ShuttleGui.h"
 
-#include "../shuttle/ShuttleGui.h"
+#if wxUSE_ACCESSIBILITY
+#include "WindowAccessible.h"
+#endif
+
+wxDEFINE_EVENT(EVT_PLUGIN_LOCATIONS_CHANGED, wxCommandEvent);
+
+class EffectsLocationPanel final : public wxPanelWrapper
+{
+   //Helper container that stores paths during editing.
+   //Workaround: wxTextCtrl::GetValue may return previous value if dialog
+   //gets closed while text control is still has focus.
+   std::vector<wxString> mPaths;
+   //Container never shrinks, when row gets removed from the list
+   //corresponding pointer is nulled. 
+   std::vector<wxTextCtrl*> mPathCtrls;
+   //Sizer that holds rows (which are sizers too). Each row
+   //consists of three controls: path text, browse button, remove button.
+   //When created this controls are assigned with unique ids which could be
+   //mapped to the indexes in mPathCtrls.
+   wxSizer* mRows{};
+   wxButton* mAddNewLocation{};
+
+   //Returns the ID for the first element in the row that should be assigned to the
+   //element stored at index in mPathCtrls.
+   static int BaseRowIdForIndex(int index)
+   {
+      return wxID_HIGHEST + index * 3;
+   }
+   //Maps ID of any control in the row to the index in mPathCtrls.
+   static int IndexForId(int id)
+   {
+      return (id - wxID_HIGHEST) / 3;
+   }
+
+public:
+
+   template<typename... Args>
+   EffectsLocationPanel(Args&&... args)
+      : wxPanelWrapper(std::forward<Args>(args)...)
+   {
+      InitUI();
+   }
+
+   void InitUI()
+   {
+      auto mainSizer = std::make_unique<wxBoxSizer>(wxVERTICAL);
+      mainSizer->Add(mRows = safenew wxBoxSizer(wxVERTICAL), 0, wxEXPAND);
+      mainSizer->Add(
+         mAddNewLocation = safenew wxButton(this, wxID_ANY, _("Add new location")),
+         0, wxALL, 3
+      );
+      SetSizer(mainSizer.release());
+
+      mAddNewLocation->Bind(wxEVT_BUTTON, &EffectsLocationPanel::OnAddNewLocationClicked, this);
+   }
+
+   void AddLocation(const PluginPath& path, bool setFocus = false)
+   {
+      const auto baseId = BaseRowIdForIndex(mPathCtrls.size());
+
+      auto rowSizer = std::make_unique<wxBoxSizer>(wxHORIZONTAL);
+      wxTextCtrl* text;
+      wxButton* remove;
+      wxButton* browse;
+      rowSizer->Add(
+         text = safenew wxTextCtrl(this, baseId, path),
+         1, wxEXPAND | wxALL, 3
+      );
+      rowSizer->Add(
+         browse = safenew wxButton(this, baseId + 1, _("Browse...")),
+         0, wxALL, 3
+      );
+      rowSizer->Add(
+         remove = safenew wxButton(this, baseId + 2, _("Remove")),
+         0, wxALL, 3
+      );
+      text->Bind(wxEVT_TEXT, [this](wxCommandEvent& evt)
+      {
+         const auto index = IndexForId(evt.GetId());
+         mPaths[index] = evt.GetString();
+         evt.Skip();
+      });
+
+      browse->Bind(wxEVT_BUTTON, &EffectsLocationPanel::OnBrowseClicked, this);
+      remove->Bind(wxEVT_BUTTON, &EffectsLocationPanel::OnRemoveClicked, this);
+      mPathCtrls.push_back(text);
+      mPaths.push_back(path);
+
+      mRows->Add(rowSizer.release(), 0, wxEXPAND);
+
+      mAddNewLocation->MoveAfterInTabOrder(remove);
+
+      if(setFocus)
+         text->SetFocus();
+
+      wxPostEvent(this, wxCommandEvent(EVT_PLUGIN_LOCATIONS_CHANGED));
+   }
+
+   void AddLocations(const PluginPaths& paths)
+   {
+      for(const auto& location : paths)
+         AddLocation(location);
+   }
+   
+   PluginPaths GetLocations() const
+   {
+      PluginPaths paths;
+      for(const auto& text : mPaths)
+      {
+         if(!text.IsEmpty())
+            paths.push_back(text);
+      }
+      return paths;
+   }
+
+   void OnAddNewLocationClicked(wxCommandEvent&)
+   {
+      AddLocation("", true);
+   }
+
+   void OnRemoveClicked(wxCommandEvent& evt)
+   {
+      const auto index = IndexForId(evt.GetId());
+      const auto baseId = BaseRowIdForIndex(index);
+      //When item is removed from the sizer the tail gets shifted,
+      //but items in mPathCtrls are not. We need to map index from
+      //mPathCtrls to index in mRows
+      mRows->Remove(
+         std::count_if(
+            mPathCtrls.begin(),
+            mPathCtrls.begin() + index,
+            [](const auto ptr) { return ptr != nullptr; }
+         )
+      );
+
+      FindWindowById(baseId, this)->Destroy();
+      FindWindowById(baseId + 1, this)->Destroy();
+      FindWindowById(baseId + 2, this)->Destroy();
+      mPathCtrls[index] = nullptr;
+      mPaths[index] = wxString{};//Don't save path on commit
+
+      wxPostEvent(this, wxCommandEvent(EVT_PLUGIN_LOCATIONS_CHANGED));
+   }
+
+   void OnBrowseClicked(wxCommandEvent& evt)
+   {
+      const auto index =  IndexForId(evt.GetId());
+
+      wxDirDialogWrapper dirDialog(
+         wxGetTopLevelParent(this),
+         wxDirDialogWrapper::DefaultDialogPrompt,
+         mPathCtrls[index]->GetValue()
+      );
+      if(dirDialog.ShowModal() == wxID_OK)
+         mPathCtrls[index]->SetValue(dirDialog.GetPath());//also invoke wxEVT_TEXT
+   }
+};
+
 
 EffectsPrefs::EffectsPrefs(wxWindow * parent, wxWindowID winid)
 :  PrefsPanel(parent, winid, XO("Effects"))
@@ -40,19 +203,19 @@ EffectsPrefs::~EffectsPrefs()
 {
 }
 
-ComponentInterfaceSymbol EffectsPrefs::GetSymbol()
+ComponentInterfaceSymbol EffectsPrefs::GetSymbol() const
 {
    return EFFECTS_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString EffectsPrefs::GetDescription()
+TranslatableString EffectsPrefs::GetDescription() const
 {
    return XO("Preferences for Effects");
 }
 
 ManualPageID EffectsPrefs::HelpPageName()
 {
-   return "Preferences#effects";
+   return "Effects_Preferences";
 }
 
 void EffectsPrefs::Populate()
@@ -66,16 +229,16 @@ void EffectsPrefs::Populate()
    // ----------------------- End of main section --------------
 }
 
-ChoiceSetting EffectsGroupBy{
-   wxT("/Effects/GroupBy"),
-   {
+EnumValueSymbols EffectsGroupSymbols {
       ByColumns,
       {
-         XO("Sorted by Effect Name") ,
-         XO("Sorted by Publisher and Effect Name") ,
-         XO("Sorted by Type and Effect Name") ,
-         XO("Grouped by Publisher") ,
-         XO("Grouped by Type") ,
+         XO("Sort by effect name") ,
+         XO("Sort by publisher and effect name") ,
+         XO("Sort by type and effect name") ,
+         XO("Group by publisher") ,
+         XO("Group by type") ,
+         XO("Group by category"),
+         XO("Group by type and publisher")
       },
       {
          wxT("sortby:name") ,
@@ -83,150 +246,45 @@ ChoiceSetting EffectsGroupBy{
          wxT("sortby:type:name") ,
          wxT("groupby:publisher") ,
          wxT("groupby:type") ,
+         wxT("default"),
+         wxT("groupby:type:publisher")
       }
-   },
-   0 // "sortby:name"
 };
 
-namespace {
-
-// Rather than hard-code an exhaustive list of effect families in this file,
-// pretend we don't know, but discover them instead by querying the module and
-// effect managers.
-
-// But then we would like to have prompts with accelerator characters that are
-// distinct.  We collect some prompts in the following map.
-
-// It is not required that each module be found here, nor that each module
-// mentioned here be found.
-const std::map< wxString, TranslatableString > SuggestedPrompts{
-
-/* i18n-hint: Audio Unit is the name of an Apple audio software protocol */
-   { wxT("AudioUnit"), XXO("Audio Unit") },
-
-/* i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-   (Application programming interface)
- */
-   { wxT("LADSPA"),    XXO("&LADSPA") },
-
-/* i18n-hint: abbreviates
-   "Linux Audio Developer's Simple Plugin API (LADSPA) version 2" */
-   { wxT("LV2"),       XXO("LV&2") },
-
-/* i18n-hint: "Nyquist" is an embedded interpreted programming language in
- Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
- In the translations of this and other strings, you may transliterate the
- name into another alphabet.  */
-   { wxT("Nyquist"),   XXO("N&yquist") },
-
-/* i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-   It is not an abbreviation for anything.  See http://vamp-plugins.org */
-   { wxT("Vamp"),      XXO("&Vamp") },
-
-/* i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-   developed by Steinberg GmbH */
-   { wxT("VST"),       XXO("V&ST") },
-
+BoolSetting SkipEffectsScanAtStartup {
+   wxT("/Effects/SkipEffectsScanAtStartup"),
+   false
 };
 
-// Collect needed prompts and settings paths, at most once, on demand
-struct Entry {
-   TranslatableString prompt;
-   wxString setting;
+ChoiceSetting EffectsGroupBy{
+   wxT("/Effects/GroupBy"),
+   EffectsGroupSymbols,
+   5 // "default"
 };
-static const std::vector< Entry > &GetModuleData()
-{
-   struct ModuleData : public std::vector< Entry > {
-      ModuleData() {
-         auto &pm = PluginManager::Get();
-         for (auto &plug : pm.PluginsOfType(PluginTypeModule)) {
-            auto internal = plug.GetEffectFamily();
-            if ( internal.empty() )
-               continue;
 
-            TranslatableString prompt;
-            auto iter = SuggestedPrompts.find( internal );
-            if ( iter == SuggestedPrompts.end() )
-               // For the built-in modules this Msgid includes " Effects",
-               // but those strings were never shown to the user,
-               // and the prompts in the table above do not include it.
-               // If there should be new modules, it is not important for them
-               // to follow the " Effects" convention, but instead they can
-               // have shorter msgids.
-               prompt = plug.GetSymbol().Msgid();
-            else
-               prompt = iter->second;
-
-            auto setting = pm.GetPluginEnabledSetting( plug );
-
-            push_back( { prompt, setting } );
-         }
-         // Guarantee some determinate ordering
-         std::sort( begin(), end(),
-            []( const Entry &a, const Entry &b ){
-               return a.setting < b.setting;
-            }
-         );
-      }
-   };
-   static ModuleData theData;
-   return theData;
-}
-
-}
+ChoiceSetting RealtimeEffectsGroupBy{
+   wxT("/Effects/RealtimeGroupBy"),
+   EffectsGroupSymbols,
+   6 // "groupby:type:publisher"
+};
 
 void EffectsPrefs::PopulateOrExchange(ShuttleGui & S)
 {
-   S.SetBorder(2);
-   S.StartScroller();
-
-   S.StartStatic(XO("Enable Effects"));
-   {
-      for ( const auto &entry : GetModuleData() )
-      {
-         S.TieCheckBox(
-            entry.prompt,
-            {entry.setting,
-             true}
-         );
-      }
-   }
-   S.EndStatic();
+   const auto scroller = S.StartScroller();
 
    S.StartStatic(XO("Effect Options"));
    {
       S.StartMultiColumn(2);
       {
-         wxChoice *c = S
-            .MinSize()
-            .TieChoice( XXO("S&ort or Group:"), EffectsGroupBy);
-
-         S.TieIntegerTextBox(XXO("&Maximum effects per group (0 to disable):"),
-                             {wxT("/Effects/MaxPerGroup"),
-#if defined(__WXGTK__)
-                              15
-#else
-                              0
-#endif
-                             },
-                             5);
+         S.SetBorder(3);
+         S.MinSize()
+          .TieChoice( XXO("Effect menu &organization:"), EffectsGroupBy);
+         S.MinSize()
+          .TieChoice( XXO("Realtime effect o&rganization:"), RealtimeEffectsGroupBy);
       }
       S.EndMultiColumn();
    }
    S.EndStatic();
-
-#ifndef EXPERIMENTAL_EFFECT_MANAGEMENT
-   S.StartStatic(XO("Plugin Options"));
-   {
-      S.TieCheckBox(XXO("Check for updated plugins when Tenacity starts"),
-                     {wxT("/Plugins/CheckForUpdates"),
-                     true});
-      S.TieCheckBox(XXO("Rescan plugins next time Tenacity is started"),
-                     {wxT("/Plugins/Rescan"),
-                     false});
-   }
-   S.EndStatic();
-#endif
 
 #ifdef EXPERIMENTAL_EQ_SSE_THREADED
    S.StartStatic(XO("Instruction Set"));
@@ -237,11 +295,65 @@ void EffectsPrefs::PopulateOrExchange(ShuttleGui & S)
    }
    S.EndStatic();
 #endif
+
+   auto& pluginManager = PluginManager::Get();
+   for(auto& [id, provider] : ModuleManager::Get().Providers())
+   {
+      if(!provider->SupportsCustomModulePaths())
+         continue;
+
+      /*i18n-hint: Title of the panel containing user-defined paths where plugins could be found
+       * First argument is replaced with plugin type (e.g. "LV2 plugin locations")
+       */
+      const auto panelTitle = XO("%s plugin locations")
+            .Format(provider->GetOptionalFamilySymbol().Translation());
+      S.StartStatic(panelTitle);
+      {
+         if(S.GetMode() == eIsCreating)
+         {
+            const auto panel = safenew EffectsLocationPanel(S.GetParent());
+#if wxUSE_ACCESSIBILITY
+            panel->SetName(panelTitle);
+            safenew WindowAccessible(panel);
+#endif
+
+            panel->AddLocations(pluginManager.ReadCustomPaths(*provider.get()));
+            S.Prop(1).AddWindow(panel, wxEXPAND);
+            mLocations.emplace_back(provider.get(), panel);
+
+            panel->Bind(EVT_PLUGIN_LOCATIONS_CHANGED, [wnd = wxWeakRef(scroller)](const auto&)
+            {
+               if(!wnd)
+                  return;
+               wnd->Layout();
+               wnd->FitInside();
+            });
+         }
+      }
+      S.EndStatic();
+   }
+
+   S.TieCheckBox(XXO("&Skip effects scanning at startup"), SkipEffectsScanAtStartup);
+
+   if (auto pButton = S.AddButton(XXO("Open Plugin &Manager"), wxALIGN_LEFT))
+      pButton->Bind(wxEVT_BUTTON, [this](auto) {
+         //Adding dependency on PluginRegistrationDialog, not good. Alternatively
+         //that could be done with events, though event should be visible here too...
+         PluginRegistrationDialog dialog(wxGetTopLevelParent(this));
+         if(dialog.ShowModal() == wxID_OK)
+            MenuCreator::RebuildAllMenuBars();
+      });
+
    S.EndScroller();
 }
 
 bool EffectsPrefs::Commit()
 {
+   auto& pluginManager = PluginManager::Get();
+
+   for(auto [provider, panel] : mLocations)
+      pluginManager.StoreCustomPaths(*provider, panel->GetLocations());
+
    ShuttleGui S(this, eIsSavingToPrefs);
    PopulateOrExchange(S);
 
@@ -250,7 +362,7 @@ bool EffectsPrefs::Commit()
 
 namespace{
 PrefsPanel::Registration sAttachment{ "Effects",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew EffectsPrefs(parent, winid);

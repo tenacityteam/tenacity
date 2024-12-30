@@ -13,9 +13,10 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "LabelTrackView.h"
 #include "../../../HitTestResult.h"
-#include "../../../LabelTrack.h"
+#include "LabelTrack.h"
 #include "../../../RefreshCode.h"
 #include "../../../TrackPanelMouseEvent.h"
+#include <wx/event.h>
 
 LabelDefaultClickHandle::LabelDefaultClickHandle()
 {
@@ -31,7 +32,7 @@ struct LabelDefaultClickHandle::LabelState {
    > mPairs;
 };
 
-void LabelDefaultClickHandle::SaveState( TenacityProject *pProject )
+void LabelDefaultClickHandle::SaveState( AudacityProject *pProject )
 {
    mLabelState = std::make_shared<LabelState>();
    auto &pairs = mLabelState->mPairs;
@@ -44,7 +45,7 @@ void LabelDefaultClickHandle::SaveState( TenacityProject *pProject )
    }
 }
 
-void LabelDefaultClickHandle::RestoreState( TenacityProject *pProject )
+void LabelDefaultClickHandle::RestoreState( AudacityProject *pProject )
 {
    if ( mLabelState ) {
       for ( const auto &pair : mLabelState->mPairs )
@@ -57,7 +58,7 @@ void LabelDefaultClickHandle::RestoreState( TenacityProject *pProject )
 }
 
 UIHandle::Result LabelDefaultClickHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
    // Redraw to show the change of text box selection status
@@ -68,8 +69,8 @@ UIHandle::Result LabelDefaultClickHandle::Click
       SaveState( pProject );
 
       const auto pLT = evt.pCell.get();
-      for (auto lt : TrackList::Get( *pProject ).Any<LabelTrack>()) {
-         if (pLT != &TrackView::Get( *lt )) {
+      for (auto lt : TrackList::Get(*pProject).Any<LabelTrack>()) {
+         if (pLT != &ChannelView::Get(*lt)) {
             auto &view = LabelTrackView::Get( *lt );
             view.ResetFlags();
          }
@@ -80,20 +81,20 @@ UIHandle::Result LabelDefaultClickHandle::Click
 }
 
 UIHandle::Result LabelDefaultClickHandle::Drag
-(const TrackPanelMouseEvent &/* evt */, TenacityProject* /* pProject */)
+(const TrackPanelMouseEvent &WXUNUSED(evt), AudacityProject *WXUNUSED(pProject))
 {
    return RefreshCode::RefreshNone;
 }
 
 UIHandle::Result LabelDefaultClickHandle::Release
-(const TrackPanelMouseEvent &/* evt */, TenacityProject* /* pProject */,
- wxWindow* /* pParent */)
+(const TrackPanelMouseEvent &WXUNUSED(evt), AudacityProject *WXUNUSED(pProject),
+ wxWindow *WXUNUSED(pParent))
 {
    mLabelState.reset();
    return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result LabelDefaultClickHandle::Cancel(TenacityProject *pProject)
+UIHandle::Result LabelDefaultClickHandle::Cancel(AudacityProject *pProject)
 {
    UIHandle::Result result = RefreshCode::RefreshNone;
    RestoreState( pProject );

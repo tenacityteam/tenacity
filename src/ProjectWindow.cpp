@@ -4,39 +4,60 @@ Audacity: A Digital Audio Editor
 
 ProjectWindow.cpp
 
-Paul Licameli split from TenacityProject.cpp
+Paul Licameli split from AudacityProject.cpp
 
 **********************************************************************/
-
 #include "ProjectWindow.h"
 
 #include "ActiveProject.h"
-#include "theme/AllThemeResources.h"
+#include "AllThemeResources.h"
 #include "AudioIO.h"
-#include "Menus.h"
-#include "Project.h"
+#include "tracks/ui/CommonTrackInfo.h"
 #include "ProjectAudioIO.h"
+#include "ProjectFileIO.h"
 #include "ProjectWindows.h"
 #include "ProjectStatus.h"
-#include "RefreshCode.h"
-#include "TrackPanelMouseEvent.h"
-#include "TrackPanelAx.h"
-#include "UndoManager.h"
 #include "ViewInfo.h"
 #include "WaveClip.h"
 #include "WaveTrack.h"
+#include "CommandManager.h"
 #include "prefs/ThemePrefs.h"
 #include "prefs/TracksPrefs.h"
 #include "toolbars/ToolManager.h"
-#include "tracks/ui/Scrubbing.h"
-#include "tracks/ui/TrackView.h"
-#include "widgets/wxPanelWrapper.h"
-#include "widgets/WindowAccessible.h"
+#include "tracks/ui/ChannelView.h"
+#include "wxPanelWrapper.h"
+#include "WindowAccessible.h"
 
-#include <wx/app.h>
+#include "ThemedWrappers.h"
+
 #include <wx/display.h>
 #include <wx/scrolbar.h>
 #include <wx/sizer.h>
+#include <wx/splitter.h>
+#include <wx/wupdlock.h>
+
+#include "TrackPanel.h"
+
+namespace
+{
+#ifdef HAS_AUDIOCOM_UPLOAD
+   constexpr int DEFAULT_WINDOW_WIDTH = 1180;
+#else
+   constexpr int DEFAULT_WINDOW_WIDTH = 1120;
+#endif
+   constexpr int DEFAULT_WINDOW_HEIGHT = 674;
+}
+
+BoolSetting ProjectWindowMaximized{ L"/Window/Maximized", false };
+BoolSetting ProjectWindowIconized{ L"/Window/Iconized", false };
+IntSetting ProjectWindowX{ L"/Window/X", 0 };
+IntSetting ProjectWindowY{ L"/Window/Y", 0 };
+IntSetting ProjectWindowWidth{ L"/Window/Width", DEFAULT_WINDOW_WIDTH };
+IntSetting ProjectWindowHeight{ L"/Window/Height", DEFAULT_WINDOW_HEIGHT };
+IntSetting ProjectWindowNormalX{ L"/Window/Normal_X", 0 };
+IntSetting ProjectWindowNormalY{ L"/Window/Normal_Y", 0 };
+IntSetting ProjectWindowNormalWidth{ L"/Window/Normal_Width", DEFAULT_WINDOW_WIDTH };
+IntSetting ProjectWindowNormalHeight{ L"/Window/Normal_Height", DEFAULT_WINDOW_HEIGHT };
 
 // Returns the screen containing a rectangle, or -1 if none does.
 int ScreenContaining( wxRect & r ){
@@ -91,8 +112,8 @@ void GetDefaultWindowRect(wxRect *defRect)
 {
    *defRect = wxGetClientDisplayRect();
 
-   int width = 1240;
-   int height = 674;
+   int width = DEFAULT_WINDOW_WIDTH;
+   int height = DEFAULT_WINDOW_HEIGHT;
 
    //These conditional values assist in improving placement and size
    //of NEW windows on different platforms.
@@ -141,20 +162,20 @@ void GetNextWindowPlacement(wxRect *nextRect, bool *pMaximized, bool *pIconized)
    wxRect defaultRect;
    GetDefaultWindowRect(&defaultRect);
 
-   gPrefs->Read(wxT("/Window/Maximized"), pMaximized, false);
-   gPrefs->Read(wxT("/Window/Iconized"), pIconized, false);
+   *pMaximized = ProjectWindowMaximized.Read();
+   *pIconized = ProjectWindowIconized.Read();
 
    wxRect windowRect;
-   gPrefs->Read(wxT("/Window/X"), &windowRect.x, defaultRect.x);
-   gPrefs->Read(wxT("/Window/Y"), &windowRect.y, defaultRect.y);
-   gPrefs->Read(wxT("/Window/Width"), &windowRect.width, defaultRect.width);
-   gPrefs->Read(wxT("/Window/Height"), &windowRect.height, defaultRect.height);
+   windowRect.x = ProjectWindowX.ReadWithDefault(defaultRect.x);
+   windowRect.y = ProjectWindowY.ReadWithDefault(defaultRect.y);
+   windowRect.width = ProjectWindowWidth.ReadWithDefault(defaultRect.width);
+   windowRect.height = ProjectWindowHeight.ReadWithDefault(defaultRect.height);
 
    wxRect normalRect;
-   gPrefs->Read(wxT("/Window/Normal_X"), &normalRect.x, defaultRect.x);
-   gPrefs->Read(wxT("/Window/Normal_Y"), &normalRect.y, defaultRect.y);
-   gPrefs->Read(wxT("/Window/Normal_Width"), &normalRect.width, defaultRect.width);
-   gPrefs->Read(wxT("/Window/Normal_Height"), &normalRect.height, defaultRect.height);
+   normalRect.x = ProjectWindowNormalX.ReadWithDefault(defaultRect.x);
+   normalRect.y = ProjectWindowNormalY.ReadWithDefault(defaultRect.y);
+   normalRect.width = ProjectWindowNormalWidth.ReadWithDefault(defaultRect.width);
+   normalRect.height = ProjectWindowNormalHeight.ReadWithDefault(defaultRect.height);
 
    // Workaround 2.1.1 and earlier bug on OSX...affects only normalRect, but let's just
    // validate for all rects and plats
@@ -322,14 +343,15 @@ public:
    void SetScrollbar(int position, int thumbSize,
                      int range, int pageSize,
                      bool refresh = true) override;
+
+private:
+   DECLARE_EVENT_TABLE()
 };
 
 void ScrollBar::SetScrollbar(int position, int thumbSize,
                              int range, int pageSize,
                              bool refresh)
 {
-   Bind(wxEVT_SET_FOCUS, &ScrollBar::OnSetFocus, this);
-
    // Mitigate flashing of scrollbars by refreshing only when something really changes.
 
    // PRL:  This may have been made unnecessary by other fixes for flashing, see
@@ -346,144 +368,12 @@ void ScrollBar::SetScrollbar(int position, int thumbSize,
    wxScrollBar::SetScrollbar(position, thumbSize, range, pageSize, refresh);
 }
 
-// Common mouse wheel handling in track panel cells, moved here to avoid
-// compilation dependencies on Track, TrackPanel, and Scrubbing at low levels
-// which made cycles
-static CommonTrackPanelCell::MouseWheelHook::Scope scope{
-// Need a bit of memory from one call to the next
-[mVertScrollRemainder = 0.0](
-   const TrackPanelMouseEvent &evt, TenacityProject *pProject )
-mutable -> unsigned {
-   using namespace RefreshCode;
-
-   if ( TrackList::Get( *pProject ).empty() )
-      // Scrolling and Zoom in and out commands are disabled when there are no tracks.
-      // This should be disabled too for consistency.  Otherwise
-      // you do see changes in the time ruler.
-      return Cancelled;
-
-   unsigned result = RefreshAll;
-   const wxMouseEvent &event = evt.event;
-   auto &viewInfo = ViewInfo::Get( *pProject );
-   Scrubber &scrubber = Scrubber::Get( *pProject );
-   auto &window = ProjectWindow::Get( *pProject );
-   const auto steps = evt.steps;
-
-   if (event.ShiftDown()
-       // Don't pan during smooth scrolling.  That would conflict with keeping
-       // the play indicator centered.
-       && !scrubber.IsScrollScrubbing()
-      )
-   {
-      // MM: Scroll left/right when used with Shift key down
-      window.TP_ScrollWindow(
-         viewInfo.OffsetTimeByPixels(
-            viewInfo.PositionToTime(0), 50.0 * -steps));
-   }
-   else if (event.CmdDown())
-   {
-#if 0
-         // JKC: Alternative scroll wheel zooming code
-         // using TenacityProject zooming, which is smarter,
-         // it keeps selections on screen and centred if it can,
-         // also this ensures mousewheel and zoom buttons give same result.
-         double ZoomFactor = pow(2.0, steps);
-         TenacityProject *p = GetProject();
-         if( steps > 0 )
-            // PRL:  Track panel refresh may be needed if you reenable this
-            // code, but we don't want this file dependent on TrackPanel.cpp
-            p->ZoomInByFactor( ZoomFactor );
-         else
-            p->ZoomOutByFactor( ZoomFactor );
-#endif
-      // MM: Zoom in/out when used with Control key down
-      // We're converting pixel positions to times,
-      // counting pixels from the left edge of the track.
-      int trackLeftEdge = viewInfo.GetLeftOffset();
-
-      // Time corresponding to mouse position
-      wxCoord xx;
-      double center_h;
-      double mouse_h = viewInfo.PositionToTime(event.m_x, trackLeftEdge);
-
-      // Scrubbing? Expand or contract about the center, ignoring mouse position
-      if (scrubber.IsScrollScrubbing())
-         center_h = viewInfo.h +
-            (viewInfo.GetScreenEndTime() - viewInfo.h) / 2.0;
-      // Zooming out? Focus on mouse.
-      else if( steps <= 0 )
-         center_h = mouse_h;
-      // No Selection? Focus on mouse.
-      else if((viewInfo.selectedRegion.t1() - viewInfo.selectedRegion.t0() ) < 0.00001  )
-         center_h = mouse_h;
-      // Before Selection? Focus on left
-      else if( mouse_h < viewInfo.selectedRegion.t0() )
-         center_h = viewInfo.selectedRegion.t0();
-      // After Selection? Focus on right
-      else if( mouse_h > viewInfo.selectedRegion.t1() )
-         center_h = viewInfo.selectedRegion.t1();
-      // Inside Selection? Focus on mouse
-      else
-         center_h = mouse_h;
-
-      xx = viewInfo.TimeToPosition(center_h, trackLeftEdge);
-
-      // Time corresponding to last (most far right) audio.
-      double audioEndTime = TrackList::Get( *pProject ).GetEndTime();
-
-// Disabled this code to fix Bug 1923 (tricky to wheel-zoom right of waveform).
-#if 0
-      // When zooming in empty space, it's easy to 'lose' the waveform.
-      // This prevents it.
-      // IF zooming in
-      if (steps > 0)
-      {
-         // IF mouse is to right of audio
-         if (center_h > audioEndTime)
-            // Zooming brings far right of audio to mouse.
-            center_h = audioEndTime;
-      }
-#endif
-
-      wxCoord xTrackEnd = viewInfo.TimeToPosition( audioEndTime );
-      viewInfo.ZoomBy(pow(2.0, steps));
-
-      double new_center_h = viewInfo.PositionToTime(xx, trackLeftEdge);
-      viewInfo.h += (center_h - new_center_h);
-
-      // If wave has gone off screen, bring it back.
-      // This means that the end of the track stays where it was.
-      if( viewInfo.h > audioEndTime )
-         viewInfo.h += audioEndTime - viewInfo.PositionToTime( xTrackEnd );
-
-
-      result |= FixScrollbars;
-   }
-   else
-   {
-#ifdef EXPERIMENTAL_SCRUBBING_SCROLL_WHEEL
-      if (scrubber.IsScrubbing()) {
-         scrubber.HandleScrollWheel(steps);
-         evt.event.Skip(false);
-      }
-      else
-#endif
-      {
-         // MM: Scroll up/down when used without modifier keys
-         double lines = steps * 4 + mVertScrollRemainder;
-         mVertScrollRemainder = lines - floor(lines);
-         lines = floor(lines);
-         auto didSomething = window.TP_ScrollUpDown((int)-lines);
-         if (!didSomething)
-            result |= Cancelled;
-      }
-   }
-
-   return result;
-} };
+BEGIN_EVENT_TABLE(ScrollBar, wxScrollBar)
+   EVT_SET_FOCUS(ScrollBar::OnSetFocus)
+END_EVENT_TABLE()
 
 AttachedWindows::RegisteredFactory sProjectWindowKey{
-   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
+   []( AudacityProject &parent ) -> wxWeakRef< wxWindow > {
       wxRect wndRect;
       bool bMaximized = false;
       bool bIconized = false;
@@ -515,26 +405,26 @@ AttachedWindows::RegisteredFactory sProjectWindowKey{
 
 }
 
-ProjectWindow &ProjectWindow::Get( TenacityProject &project )
+ProjectWindow &ProjectWindow::Get( AudacityProject &project )
 {
    return GetAttachedWindows(project).Get< ProjectWindow >(sProjectWindowKey);
 }
 
-const ProjectWindow &ProjectWindow::Get( const TenacityProject &project )
+const ProjectWindow &ProjectWindow::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
-ProjectWindow *ProjectWindow::Find( TenacityProject *pProject )
+ProjectWindow *ProjectWindow::Find( AudacityProject *pProject )
 {
    return pProject
       ? GetAttachedWindows(*pProject).Find< ProjectWindow >(sProjectWindowKey)
       : nullptr;
 }
 
-const ProjectWindow *ProjectWindow::Find( const TenacityProject *pProject )
+const ProjectWindow *ProjectWindow::Find( const AudacityProject *pProject )
 {
-   return Find( const_cast< TenacityProject * >( pProject ) );
+   return Find( const_cast< AudacityProject * >( pProject ) );
 }
 
 int ProjectWindow::NextWindowID()
@@ -553,12 +443,100 @@ enum {
    NextID,
 };
 
+namespace {
+   bool IsWindowValid(const ProjectWindow *window) { return window && !window->IsBeingDeleted(); }
+
+//! This allows either the ProjectWindow or the AudacityProject to be
+//! destroyed first.  This object is given to an attached object of the project.
+struct Adapter final : ViewportCallbacks {
+   explicit Adapter(ProjectWindow &window) : mwWindow{ &window } {}
+   ~Adapter() override = default;
+
+   std::pair<int, int> ViewportSize() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->ViewportSize() : std::pair{ 1, 1 }; }
+
+   unsigned MinimumTrackHeight() override
+   { return IsWindowValid(mwWindow) ? mwWindow->MinimumTrackHeight() : 0; }
+   bool IsTrackMinimized(const Track &track) override
+   { return IsWindowValid(mwWindow) ? mwWindow->IsTrackMinimized(track) : false; }
+   void SetMinimized(Track &track, bool minimized) override
+   { if (IsWindowValid(mwWindow)) mwWindow->SetMinimized(track, minimized); }
+   int GetTrackHeight(const Track &track) override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetTrackHeight(track) : 0; }
+   void SetChannelHeights(Track &track, unsigned height) override
+   { if (IsWindowValid(mwWindow)) mwWindow->SetChannelHeights(track, height); }
+   int GetTotalHeight(const TrackList &trackList) override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetTotalHeight(trackList) : 0; }
+
+   int GetHorizontalThumbPosition() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetHorizontalThumbPosition() : 0; }
+   int GetHorizontalThumbSize() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetHorizontalThumbSize() : 0; }
+   int GetHorizontalRange() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetHorizontalRange() : 0; }
+   void SetHorizontalThumbPosition(int viewStart) override
+   {
+      if (IsWindowValid(mwWindow)) mwWindow->SetHorizontalThumbPosition(viewStart);
+   }
+   void SetHorizontalScrollbar(int position, int thumbSize,
+      int range, int pageSize, bool refresh) override
+   {
+      if (IsWindowValid(mwWindow))
+         mwWindow->SetHorizontalScrollbar(
+           position, thumbSize, range, pageSize, refresh);
+   }
+   void ShowHorizontalScrollbar(bool shown) override
+   {
+      if (IsWindowValid(mwWindow))
+         mwWindow->ShowHorizontalScrollbar(shown);
+   }
+
+   int GetVerticalThumbPosition() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetVerticalThumbPosition() : 0; }
+   int GetVerticalThumbSize() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetVerticalThumbSize() : 0; }
+   int GetVerticalRange() const override
+   { return IsWindowValid(mwWindow) ? mwWindow->GetVerticalRange() : 0; }
+   void SetVerticalThumbPosition(int viewStart) override
+   {
+      if (IsWindowValid(mwWindow)) mwWindow->SetVerticalThumbPosition(viewStart);
+   }
+   void SetVerticalScrollbar(int position, int thumbSize,
+      int range, int pageSize, bool refresh) override
+   {
+      if (IsWindowValid(mwWindow))
+         mwWindow->SetVerticalScrollbar(
+           position, thumbSize, range, pageSize, refresh);
+   }
+   void ShowVerticalScrollbar(bool shown) override
+   {
+      if (IsWindowValid(mwWindow))
+         mwWindow->ShowVerticalScrollbar(shown);
+   }
+   void SetToDefaultSize() override
+   {
+      if (IsWindowValid(mwWindow))
+         mwWindow->SetToDefaultSize();
+   }
+
+   wxWeakRef<ProjectWindow> mwWindow;
+};
+}
+
 ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
-                                 const wxPoint & pos,
-                                 const wxSize & size, TenacityProject &project)
-   : ProjectWindowBase{ parent, id, pos, size, project }
+   const wxPoint & pos,
+   const wxSize & size, AudacityProject &project
+)  : ProjectWindowBase{ parent, id, pos, size, project }
+   , mViewportSubscription{
+      Viewport::Get(project)
+         .Subscribe(*this, &ProjectWindow::OnViewportMessage) }
 {
+   Viewport::Get(project).SetCallbacks(std::make_unique<Adapter>(*this));
+
    mNextWindowID = NextID;
+   
+   constexpr auto EffectsPanelMaxWidth { 500 };
+   constexpr auto TrackPanelMinWidth { 250 };
 
    // Two sub-windows need to be made before Init(),
    // so that this constructor can complete, and then TrackPanel and
@@ -577,26 +555,32 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
    mTopPanel->SetLabel( "Top Panel" );// Not localised
    mTopPanel->SetLayoutDirection(wxLayout_LeftToRight);
    mTopPanel->SetAutoLayout(true);
-#ifdef EXPERIMENTAL_DA2
-   mTopPanel->SetBackgroundColour(theTheme.Colour( clrMedium ));
-#endif
 
-   // We place the track panel inside another panel keeping the notebook code
-   // and normal code consistent and also paves the way for adding additional
-   // windows inside the track panel.
-   mMainPanel = safenew wxPanelWrapper(this, -1,
+   auto container = safenew wxSplitterWindow(this, wxID_ANY,
+      wxDefaultPosition,
+      wxDefaultSize,
+      wxNO_BORDER | wxSP_LIVE_UPDATE | wxSP_THIN_SASH);
+   container->Bind(wxEVT_SPLITTER_DOUBLECLICKED, [](wxSplitterEvent& event){
+      //"The default behaviour is to unsplit the window"
+      event.Veto();//do noting instead
+   });
+   container->Bind(wxEVT_SPLITTER_SASH_POS_CHANGING, [=](wxSplitterEvent& event){
+      if(event.GetSashPosition() > EffectsPanelMaxWidth)
+         //Prevents left panel from expanding further
+         event.SetSashPosition(-1);
+   });
+   mContainerWindow = container;
+
+   mTrackListWindow = safenew wxPanelWrapper(mContainerWindow, wxID_ANY,
       wxDefaultPosition,
       wxDefaultSize,
       wxNO_BORDER);
-   mMainPanel->SetSizer( safenew wxBoxSizer(wxVERTICAL) );
-   mMainPanel->SetLabel("Main Panel");// Not localised.
-   // Set the colour here to the track panel background to avoid
-   // flicker when Audacity starts up.
-   // However, that leads to areas next to the horizontal scroller
-   // being painted in background colour and not scroller background
-   // colour, so suppress this for now.
-   //pPage->SetBackgroundColour( theTheme.Colour( clrDark ));
-   mMainPanel->SetLayoutDirection(wxLayout_LeftToRight);
+   mTrackListWindow->SetMinSize({TrackPanelMinWidth, -1});
+   mTrackListWindow->SetSizer( safenew wxBoxSizer(wxVERTICAL) );
+   mTrackListWindow->SetLabel("Main Panel");// Not localized.
+   mTrackListWindow->SetLayoutDirection(wxLayout_LeftToRight);
+
+   mContainerWindow->Initialize(mTrackListWindow);
 
    mPlaybackScroller = std::make_unique<PlaybackScroller>( &project );
 
@@ -609,8 +593,8 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
    //      creating the scrollbars after the TrackPanel, we resolve
    //      several focus problems.
 
-   mHsbar = safenew ScrollBar(mMainPanel, HSBarID, wxSB_HORIZONTAL);
-   mVsbar = safenew ScrollBar(mMainPanel, VSBarID, wxSB_VERTICAL);
+   mHsbar = safenew ScrollBar(mTrackListWindow, HSBarID, wxSB_HORIZONTAL);
+   mVsbar = safenew ScrollBar(mTrackListWindow, VSBarID, wxSB_VERTICAL);
 #if wxUSE_ACCESSIBILITY
    // so that name can be set on a standard control
    mHsbar->SetAccessible(safenew WindowAccessible(mHsbar));
@@ -620,12 +604,15 @@ ProjectWindow::ProjectWindow(wxWindow * parent, wxWindowID id,
    mHsbar->SetName(_("Horizontal Scrollbar"));
    mVsbar->SetName(_("Vertical Scrollbar"));
 
-   project.Bind( EVT_UNDO_MODIFIED, &ProjectWindow::OnUndoPushedModified, this );
-   project.Bind( EVT_UNDO_PUSHED, &ProjectWindow::OnUndoPushedModified, this );
-   project.Bind( EVT_UNDO_OR_REDO, &ProjectWindow::OnUndoRedo, this );
-   project.Bind( EVT_UNDO_RESET, &ProjectWindow::OnUndoReset, this );
+   mThemeChangeSubscription =
+      theTheme.Subscribe(*this, &ProjectWindow::OnThemeChange);
 
-   wxTheApp->Bind(EVT_THEME_CHANGE, &ProjectWindow::OnThemeChange, this);
+   // Subscribe to title changes published by ProjectFileIO
+   mTitleChangeSubscription = ProjectFileIO::Get(project)
+      .Subscribe(*this, &ProjectWindow::OnProjectTitleChange);
+
+   // And also establish my initial consistency with it
+   this->OnProjectTitleChange(ProjectFileIOMessage::ProjectTitleChange);
 }
 
 ProjectWindow::~ProjectWindow()
@@ -656,48 +643,25 @@ END_EVENT_TABLE()
 
 void ProjectWindow::ApplyUpdatedTheme()
 {
-   auto &project = mProject;
    SetBackgroundColour(theTheme.Colour( clrMedium ));
    ClearBackground();// For wxGTK.
 }
 
-void ProjectWindow::RedrawProject(const bool bForceWaveTracks /*= false*/)
+void ProjectWindow::OnThemeChange(ThemeChangeMessage message)
 {
-   auto pThis = wxWeakRef<ProjectWindow>(this);
-   CallAfter( [pThis, bForceWaveTracks]{
-
-   if (!pThis)
+   auto pProject = FindProject();
+   if (!pProject)
       return;
-   if (pThis->IsBeingDeleted())
+   auto &project = *pProject;
+
+   if (message.appearance)
       return;
-
-   auto &project = pThis->mProject ;
-   auto &tracks = TrackList::Get( project );
-   auto &trackPanel = GetProjectPanel( project );
-   pThis->FixScrollbars();
-   if (bForceWaveTracks)
-   {
-      for ( auto pWaveTrack : tracks.Any< WaveTrack >() )
-         for (const auto &clip: pWaveTrack->GetClips())
-            clip->MarkChanged();
-   }
-   trackPanel.Refresh(false);
-
-   });
-}
-
-void ProjectWindow::OnThemeChange(wxCommandEvent& evt)
-{
-   evt.Skip();
-   auto &project = mProject;
    this->ApplyUpdatedTheme();
    auto &toolManager = ToolManager::Get( project );
-   for( int ii = 0; ii < ToolBarCount; ++ii )
-   {
-      ToolBar *pToolBar = toolManager.GetToolBar(ii);
+   toolManager.ForEach([](auto pToolBar){
       if( pToolBar )
          pToolBar->ReCreateButtons();
-   }
+   });
 }
 
 void ProjectWindow::UpdatePrefs()
@@ -706,411 +670,144 @@ void ProjectWindow::UpdatePrefs()
    UpdateStatusWidths();
 }
 
-void ProjectWindow::FinishAutoScroll()
+#include "AllThemeResources.h"
+
+void ProjectWindow::OnScrollLeftButton(wxScrollEvent &)
 {
-   // Set a flag so we don't have to generate two update events
-   mAutoScrolling = true;
-
-   // Call our Scroll method which updates our ViewInfo variables
-   // to reflect the positions of the scrollbars
-   DoScroll();
-
-   mAutoScrolling = false;
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   Viewport::Get(*pProject).OnScrollLeftButton();
 }
 
-#if defined(__WXMAC__)
-// const int sbarSpaceWidth = 15;
-// const int sbarControlWidth = 16;
-// const int sbarExtraLen = 1;
-const int sbarHjump = 30;       //STM: This is how far the thumb jumps when the l/r buttons are pressed, or auto-scrolling occurs -- in pixels
-#elif defined(__WXMSW__)
-const int sbarSpaceWidth = 16;
-const int sbarControlWidth = 16;
-const int sbarExtraLen = 0;
-const int sbarHjump = 30;       //STM: This is how far the thumb jumps when the l/r buttons are pressed, or auto-scrolling occurs -- in pixels
-#else // wxGTK, wxMOTIF, wxX11
-const int sbarSpaceWidth = 15;
-const int sbarControlWidth = 15;
-const int sbarExtraLen = 0;
-const int sbarHjump = 30;       //STM: This is how far the thumb jumps when the l/r buttons are pressed, or auto-scrolling occurs -- in pixels
-#include "theme/AllThemeResources.h"
+void ProjectWindow::OnScrollRightButton(wxScrollEvent &)
+{
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   Viewport::Get(*pProject).OnScrollRightButton();
+}
+
+std::pair<int, int> ProjectWindow::ViewportSize() const
+{
+   auto pProject = FindProject();
+   if (!pProject)
+      return { 0, 0 };
+   auto &project = *pProject;
+   auto &trackPanel = TrackPanel::Get(project);
+   int width, height;
+   trackPanel.GetSize(&width, &height);
+   return { width, height };
+}
+
+unsigned ProjectWindow::MinimumTrackHeight()
+{
+   return CommonTrackInfo::MinimumTrackHeight();
+}
+
+bool ProjectWindow::IsTrackMinimized(const Track &track)
+{
+   return ChannelView::Get(*track.GetChannel(0)).GetMinimized();
+}
+
+void ProjectWindow::SetMinimized(Track &track, bool minimized)
+{
+   for (auto pChannel : track.Channels())
+      ChannelView::Get(*pChannel).SetMinimized(minimized);
+}
+
+int ProjectWindow::GetTrackHeight(const Track &track)
+{
+   return ChannelView::GetChannelGroupHeight(&track);
+}
+
+int ProjectWindow::GetTotalHeight(const TrackList &trackList)
+{
+   return ChannelView::GetTotalHeight(trackList);
+}
+
+void ProjectWindow::SetChannelHeights(Track &track, unsigned height)
+{
+   for (auto pChannel : track.Channels())
+      ChannelView::Get(*pChannel).SetExpandedHeight(height);
+}
+
+int ProjectWindow::GetHorizontalThumbPosition() const
+{
+   return mHsbar->GetThumbPosition();
+}
+
+int ProjectWindow::GetHorizontalThumbSize() const
+{
+   return mHsbar->GetThumbSize();
+}
+
+int ProjectWindow::GetHorizontalRange() const
+{
+   return mHsbar->GetRange();
+}
+
+void ProjectWindow::SetHorizontalThumbPosition(int viewStart)
+{
+   mHsbar->SetThumbPosition(viewStart);
+}
+
+void ProjectWindow::SetHorizontalScrollbar(int position, int thumbSize,
+   int range, int pageSize, bool refresh)
+{
+   mHsbar->SetScrollbar(position, thumbSize, range, pageSize, refresh);
+}
+
+void ProjectWindow::ShowHorizontalScrollbar(bool shown)
+{
+#ifdef __WXGTK__
+   mHsbar->Show(shown);
+#else
+   mHsbar->Enable(shown);
 #endif
-
-// Make sure selection edge is in view
-void ProjectWindow::ScrollIntoView(double pos)
-{
-   auto &trackPanel = GetProjectPanel( mProject );
-   auto &viewInfo = ViewInfo::Get( mProject );
-   auto w = viewInfo.GetTracksUsableWidth();
-
-   int pixel = viewInfo.TimeToPosition(pos);
-   if (pixel < 0 || pixel >= w)
-   {
-      TP_ScrollWindow
-         (viewInfo.OffsetTimeByPixels(pos, -(w / 2)));
-      trackPanel.Refresh(false);
-   }
 }
 
-void ProjectWindow::ScrollIntoView(int x)
+int ProjectWindow::GetVerticalThumbPosition() const
 {
-   auto &viewInfo = ViewInfo::Get( mProject );
-   ScrollIntoView(viewInfo.PositionToTime(x, viewInfo.GetLeftOffset()));
+   return mVsbar->GetThumbPosition();
 }
 
-///
-/// This method handles general left-scrolling, either for drag-scrolling
-/// or when the scrollbar is clicked to the left of the thumb
-///
-void ProjectWindow::OnScrollLeft()
+int ProjectWindow::GetVerticalThumbSize() const
 {
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   wxInt64 pos = mHsbar->GetThumbPosition();
-   // move at least one scroll increment
-   pos -= std::max<wxInt64>(sbarHjump * viewInfo.sbarScale, 1);
-   pos = std::max<wxInt64>(pos, 0);
-   viewInfo.sbarH -= sbarHjump;
-   viewInfo.sbarH = std::max(viewInfo.sbarH,
-      -(wxInt64) PixelWidthBeforeTime(0.0));
-
-
-   if (pos != mHsbar->GetThumbPosition()) {
-      mHsbar->SetThumbPosition((int)pos);
-      FinishAutoScroll();
-   }
-}
-///
-/// This method handles general right-scrolling, either for drag-scrolling
-/// or when the scrollbar is clicked to the right of the thumb
-///
-
-void ProjectWindow::OnScrollRight()
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   wxInt64 pos = mHsbar->GetThumbPosition();
-   // move at least one scroll increment
-   // use wxInt64 for calculation to prevent temporary overflow
-   pos += std::max<wxInt64>(sbarHjump * viewInfo.sbarScale, 1);
-   wxInt64 max = mHsbar->GetRange() - mHsbar->GetThumbSize();
-   pos = std::min(pos, max);
-   viewInfo.sbarH += sbarHjump;
-   viewInfo.sbarH = std::min(viewInfo.sbarH,
-      viewInfo.sbarTotal
-         - (wxInt64) PixelWidthBeforeTime(0.0) - viewInfo.sbarScreen);
-
-   if (pos != mHsbar->GetThumbPosition()) {
-      mHsbar->SetThumbPosition((int)pos);
-      FinishAutoScroll();
-   }
+   return mVsbar->GetThumbSize();
 }
 
-
-///
-///  This handles the event when the left direction button on the scrollbar is depressed
-///
-void ProjectWindow::OnScrollLeftButton(wxScrollEvent & /*event*/)
+int ProjectWindow::GetVerticalRange() const
 {
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   wxInt64 pos = mHsbar->GetThumbPosition();
-   // move at least one scroll increment
-   pos -= std::max<wxInt64>(sbarHjump * viewInfo.sbarScale, 1);
-   pos = std::max<wxInt64>(pos, 0);
-   viewInfo.sbarH -= sbarHjump;
-   viewInfo.sbarH = std::max(viewInfo.sbarH,
-      - (wxInt64) PixelWidthBeforeTime(0.0));
-
-   if (pos != mHsbar->GetThumbPosition()) {
-      mHsbar->SetThumbPosition((int)pos);
-      DoScroll();
-   }
+   return mVsbar->GetRange();
 }
 
-///
-///  This handles  the event when the right direction button on the scrollbar is depressed
-///
-void ProjectWindow::OnScrollRightButton(wxScrollEvent & /*event*/)
+void ProjectWindow::SetVerticalThumbPosition(int viewStart)
 {
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   wxInt64 pos = mHsbar->GetThumbPosition();
-   // move at least one scroll increment
-   // use wxInt64 for calculation to prevent temporary overflow
-   pos += std::max<wxInt64>(sbarHjump * viewInfo.sbarScale, 1);
-   wxInt64 max = mHsbar->GetRange() - mHsbar->GetThumbSize();
-   pos = std::min(pos, max);
-   viewInfo.sbarH += sbarHjump;
-   viewInfo.sbarH = std::min(viewInfo.sbarH,
-      viewInfo.sbarTotal
-         - (wxInt64) PixelWidthBeforeTime(0.0) - viewInfo.sbarScreen);
-
-   if (pos != mHsbar->GetThumbPosition()) {
-      mHsbar->SetThumbPosition((int)pos);
-      DoScroll();
-   }
+   mVsbar->SetThumbPosition(viewStart);
 }
 
-
-bool ProjectWindow::MayScrollBeyondZero() const
+void ProjectWindow::SetVerticalScrollbar(int position, int thumbSize,
+   int range, int pageSize, bool refresh)
 {
-   auto &project = mProject;
-   auto &scrubber = Scrubber::Get( project );
-   auto &viewInfo = ViewInfo::Get( project );
-   if (viewInfo.bScrollBeyondZero)
-      return true;
-
-   if (scrubber.HasMark() ||
-       ProjectAudioIO::Get( project ).IsAudioActive()) {
-      if (mPlaybackScroller) {
-         auto mode = mPlaybackScroller->GetMode();
-         if (mode == PlaybackScroller::Mode::Pinned ||
-             mode == PlaybackScroller::Mode::Right)
-            return true;
-      }
-   }
-
-   return false;
+   mVsbar->SetScrollbar(position, thumbSize, range, pageSize, refresh);
 }
 
-double ProjectWindow::ScrollingLowerBoundTime() const
+void ProjectWindow::ShowVerticalScrollbar(bool shown)
 {
-   auto &project = mProject;
-   auto &tracks = TrackList::Get( project );
-   auto &viewInfo = ViewInfo::Get( project );
-   if (!MayScrollBeyondZero())
-      return 0;
-   const double screen = viewInfo.GetScreenEndTime() - viewInfo.h;
-   return std::min(tracks.GetStartTime(), -screen);
-}
-
-// PRL: Bug1197: we seem to need to compute all in double, to avoid differing results on Mac
-// That's why ViewInfo::TimeRangeToPixelWidth was defined, with some regret.
-double ProjectWindow::PixelWidthBeforeTime(double scrollto) const
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   const double lowerBound = ScrollingLowerBoundTime();
-   return viewInfo.TimeRangeToPixelWidth(scrollto - lowerBound);
-}
-
-void ProjectWindow::SetHorizontalThumb(double scrollto)
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   const auto unscaled = PixelWidthBeforeTime(scrollto);
-   const int max = mHsbar->GetRange() - mHsbar->GetThumbSize();
-   const int pos =
-      std::min(max,
-         std::max(0,
-            (int)(floor(0.5 + unscaled * viewInfo.sbarScale))));
-   mHsbar->SetThumbPosition(pos);
-   viewInfo.sbarH = floor(0.5 + unscaled - PixelWidthBeforeTime(0.0));
-   viewInfo.sbarH = std::max(viewInfo.sbarH,
-      - (wxInt64) PixelWidthBeforeTime(0.0));
-   viewInfo.sbarH = std::min(viewInfo.sbarH,
-      viewInfo.sbarTotal
-         - (wxInt64) PixelWidthBeforeTime(0.0) - viewInfo.sbarScreen);
-}
-
-//
-// This method, like the other methods prefaced with TP, handles TrackPanel
-// 'callback'.
-//
-void ProjectWindow::TP_ScrollWindow(double scrollto)
-{
-   SetHorizontalThumb(scrollto);
-
-   // Call our Scroll method which updates our ViewInfo variables
-   // to reflect the positions of the scrollbars
-   DoScroll();
-}
-
-//
-// Scroll vertically. This is called for example by the mouse wheel
-// handler in Track Panel. A positive argument makes the window
-// scroll down, while a negative argument scrolls up.
-//
-bool ProjectWindow::TP_ScrollUpDown(int delta)
-{
-   int oldPos = mVsbar->GetThumbPosition();
-   int pos = oldPos + delta;
-   int max = mVsbar->GetRange() - mVsbar->GetThumbSize();
-
-   // Can be negative in case of only one track
-   if (max < 0)
-      max = 0;
-
-   if (pos > max)
-      pos = max;
-   else if (pos < 0)
-      pos = 0;
-
-   if (pos != oldPos)
-   {
-      mVsbar->SetThumbPosition(pos);
-
-      DoScroll();
-      return true;
-   }
-   else
-      return false;
-}
-
-void ProjectWindow::FixScrollbars()
-{
-   auto &project = mProject;
-   auto &tracks = TrackList::Get( project );
-   auto &trackPanel = GetProjectPanel( project );
-   auto &viewInfo = ViewInfo::Get( project );
-
-   bool refresh = false;
-   bool rescroll = false;
-
-   int totalHeight = TrackView::GetTotalHeight( tracks ) + 32;
-
-   auto panelWidth = viewInfo.GetTracksUsableWidth();
-   auto panelHeight = viewInfo.GetHeight();
-
-   // (From Debian...at least I think this is the change corresponding
-   // to this comment)
-   //
-   // (2.) GTK critical warning "IA__gtk_range_set_range: assertion
-   // 'min < max' failed" because of negative numbers as result of window
-   // size checking. Added a sanity check that straightens up the numbers
-   // in edge cases.
-   if (panelWidth < 0) {
-      panelWidth = 0;
-   }
-   if (panelHeight < 0) {
-      panelHeight = 0;
-   }
-
-   auto LastTime = std::numeric_limits<double>::lowest();
-   for (const Track *track : tracks) {
-      // Iterate over pending changed tracks if present.
-      track = track->SubstitutePendingChangedTrack().get();
-      LastTime = std::max( LastTime, track->GetEndTime() );
-   }
-   LastTime =
-      std::max(LastTime, viewInfo.selectedRegion.t1());
-
-   const double screen =
-      viewInfo.GetScreenEndTime() - viewInfo.h;
-   const double halfScreen = screen / 2.0;
-
-   // If we can scroll beyond zero,
-   // Add 1/2 of a screen of blank space to the end
-   // and another 1/2 screen before the beginning
-   // so that any point within the union of the selection and the track duration
-   // may be scrolled to the midline.
-   // May add even more to the end, so that you can always scroll the starting time to zero.
-   const double lowerBound = ScrollingLowerBoundTime();
-   const double additional = MayScrollBeyondZero()
-      ? -lowerBound + std::max(halfScreen, screen - LastTime)
-      : screen / 4.0;
-
-   viewInfo.total = LastTime + additional;
-
-   // Don't remove time from total that's still on the screen
-   viewInfo.total = std::max(viewInfo.total, viewInfo.h + screen);
-
-   if (viewInfo.h < lowerBound) {
-      viewInfo.h = lowerBound;
-      rescroll = true;
-   }
-
-   viewInfo.sbarTotal = (wxInt64) (viewInfo.GetTotalWidth());
-   viewInfo.sbarScreen = (wxInt64)(panelWidth);
-   viewInfo.sbarH = (wxInt64) (viewInfo.GetBeforeScreenWidth());
-
-   // PRL:  Can someone else find a more elegant solution to bug 812, than
-   // introducing this boolean member variable?
-   // Setting mVSbar earlier, int HandlXMLTag, didn't succeed in restoring
-   // the vertical scrollbar to its saved position.  So defer that till now.
-   // mbInitializingScrollbar should be true only at the start of the life
-   // of an TenacityProject reopened from disk.
-   if (!mbInitializingScrollbar) {
-      viewInfo.vpos = mVsbar->GetThumbPosition() * viewInfo.scrollStep;
-   }
-   mbInitializingScrollbar = false;
-
-   if (viewInfo.vpos >= totalHeight)
-      viewInfo.vpos = totalHeight - 1;
-   if (viewInfo.vpos < 0)
-      viewInfo.vpos = 0;
-
-   bool oldhstate;
-   bool oldvstate;
-   bool newhstate =
-      (viewInfo.GetScreenEndTime() - viewInfo.h) < viewInfo.total;
-   bool newvstate = panelHeight < totalHeight;
-
-   oldhstate = mHsbar->IsShown();
-   oldvstate = mVsbar->IsShown();
-   mHsbar->Show(newhstate);
-   mVsbar->Show(panelHeight < totalHeight);
-
-
-   if (panelHeight >= totalHeight && viewInfo.vpos != 0) {
-      viewInfo.vpos = 0;
-
-      refresh = true;
-      rescroll = false;
-   }
-   if (!newhstate && viewInfo.sbarH != 0) {
-      viewInfo.sbarH = 0;
-
-      refresh = true;
-      rescroll = false;
-   }
-
-   // wxScrollbar only supports int values but we need a greater range, so
-   // we scale the scrollbar coordinates on demand. We only do this if we
-   // would exceed the int range, so we can always use the maximum resolution
-   // available.
-
-   // Don't use the full 2^31 max int range but a bit less, so rounding
-   // errors in calculations do not overflow max int
-   wxInt64 maxScrollbarRange = (wxInt64)(2147483647 * 0.999);
-   if (viewInfo.sbarTotal > maxScrollbarRange)
-      viewInfo.sbarScale = ((double)maxScrollbarRange) / viewInfo.sbarTotal;
-   else
-      viewInfo.sbarScale = 1.0; // use maximum resolution
-
-   {
-      int scaledSbarH = (int)(viewInfo.sbarH * viewInfo.sbarScale);
-      int scaledSbarScreen = (int)(viewInfo.sbarScreen * viewInfo.sbarScale);
-      int scaledSbarTotal = (int)(viewInfo.sbarTotal * viewInfo.sbarScale);
-      const int offset =
-         (int)(floor(0.5 + viewInfo.sbarScale * PixelWidthBeforeTime(0.0)));
-
-      mHsbar->SetScrollbar(scaledSbarH + offset, scaledSbarScreen, scaledSbarTotal,
-         scaledSbarScreen, TRUE);
-   }
-
-   // Vertical scrollbar
-   mVsbar->SetScrollbar(viewInfo.vpos / viewInfo.scrollStep,
-                        panelHeight / viewInfo.scrollStep,
-                        totalHeight / viewInfo.scrollStep,
-                        panelHeight / viewInfo.scrollStep, TRUE);
-
-   if (refresh || (rescroll &&
-       (viewInfo.GetScreenEndTime() - viewInfo.h) < viewInfo.total)) {
-      trackPanel.Refresh(false);
-   }
-
-   MenuManager::Get( project ).UpdateMenus();
-
-   if (oldhstate != newhstate || oldvstate != newvstate) {
-      UpdateLayout();
-   }
+#ifdef __WXGTK__
+   mVsbar->Show(shown);
+#else
+   mVsbar->Enable(shown);
+#endif
 }
 
 void ProjectWindow::UpdateLayout()
 {
-   auto &project = mProject;
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   auto &project = *pProject;
    auto &trackPanel = GetProjectPanel( project );
    auto &toolManager = ToolManager::Get( project );
 
@@ -1149,56 +846,134 @@ void ProjectWindow::UpdateLayout()
    SetMaxSize( wxSize(20000, 20000));
 }
 
-void ProjectWindow::HandleResize()
-{
-   // Activate events can fire during window teardown, so just
-   // ignore them.
-   if (mIsDeleting) {
-      return;
-   }
-
-   CallAfter( [this]{
-
-   if (mIsDeleting)
-      return;
-
-   FixScrollbars();
-   UpdateLayout();
-
-   });
-}
-
-
 bool ProjectWindow::IsIconized() const
 {
    return mIconized;
 }
 
+wxWindow* ProjectWindow::GetTrackListWindow() noexcept
+{
+   return mTrackListWindow;
+}
+
+wxSplitterWindow* ProjectWindow::GetContainerWindow() noexcept
+{
+   return mContainerWindow;
+}
+
+wxPanel* ProjectWindow::GetTopPanel() noexcept
+{
+   return mTopPanel;
+}
+
+void ProjectWindow::SetToDefaultSize()
+{
+   wxRect defaultRect;
+   GetDefaultWindowRect(&defaultRect);
+
+   SetSize(defaultRect.width, defaultRect.height);
+}
+
+wxStatusBar* ProjectWindow::CreateProjectStatusBar()
+{
+   auto statusBar = GetStatusBar();
+
+   if (statusBar != nullptr)
+      statusBar->Destroy();
+
+   auto pProject = FindProject();
+
+   // Note that the first field of the status bar is a dummy, and its width is
+   // set to zero latter in the code. This field is needed for wxWidgets 2.8.12
+   // because if you move to the menu bar, the first field of the menu bar is
+   // cleared, which is undesirable behaviour. In addition, the help strings of
+   // menu items are by default sent to the first field. Currently there are no
+   // such help strings, but it they were introduced, then there would need to
+   // be an event handler to send them to the appropriate field.
+   statusBar = CreateStatusBar(
+         1 + ProjectStatusFieldsRegistry::Count(pProject.get()));
+
+   statusBar->Bind(
+      wxEVT_SIZE,
+      [this](auto& evt)
+      {
+         evt.Skip();
+         auto pProject = FindProject();
+         if (pProject != nullptr)
+            ProjectStatusFieldsRegistry::OnSize(*pProject);
+      });
+
+   // We have a new status bar now, we need a full content update
+   if (pProject)
+   {
+      int index = 1;
+      ProjectStatusFieldsRegistry::Visit(
+         [&](const StatusBarFieldItem& field, const auto&)
+         {
+            if (field.IsVisible(*pProject))
+               statusBar->SetStatusText(
+                  field.GetText(*pProject).Translation(), index++);
+         });
+   }
+
+   return statusBar;
+}
+
 void ProjectWindow::UpdateStatusWidths()
 {
-   enum { nWidths = nStatusBarFields + 1 };
-   int widths[ nWidths ]{ 0 };
-   widths[ rateStatusBarField ] = 150;
-   const auto statusBar = GetStatusBar();
-   const auto &functions = ProjectStatus::GetStatusWidthFunctions();
-   // Start from 1 not 0
-   // Specifying a first column always of width 0 was needed for reasons
-   // I forget now
-   for ( int ii = 1; ii <= nStatusBarFields; ++ii ) {
-      int &width = widths[ ii ];
-      for ( const auto &function : functions ) {
-         auto results =
-            function( mProject, static_cast< StatusBarField >( ii ) );
-         for ( const auto &string : results.first ) {
-            int w;
-            statusBar->GetTextExtent(string.Translation(), &w, nullptr);
-            width = std::max<int>( width, w + results.second );
-         }
-      }
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+
+   const auto fieldsCount =
+      ProjectStatusFieldsRegistry::Count(pProject.get()) + 1;
+   auto statusBar = GetStatusBar();
+
+   bool statusBarRecreated = false;
+
+   if (!statusBar || fieldsCount != statusBar->GetFieldsCount())
+   {
+      statusBar = CreateProjectStatusBar();
+      statusBarRecreated = true;
    }
-   // The main status field is not fixed width
-   widths[ mainStatusBarField ] = -1;
-   statusBar->SetStatusWidths( nWidths, widths );
+
+   const auto& functions = ProjectStatus::GetStatusWidthFunctions();
+
+   auto& project = *pProject;
+
+   std::vector<int> widths(fieldsCount, 0);
+
+   // The old behavior with zero-width first field is kept
+   int index = 1;
+
+   ProjectStatusFieldsRegistry::Visit(
+      [&](const StatusBarFieldItem& field, const auto&)
+      {
+         if (!field.IsVisible(project))
+            return;
+
+         auto width = field.GetDefaultWidth(project);
+
+         // Negative width indicates that the field is expandable
+         if (width >= 0)
+         {
+            for (const auto& function : functions)
+            {
+               auto results = function(project, field.name);
+               for (const auto& string : results.first)
+               {
+                  int w;
+                  statusBar->GetTextExtent(string.Translation(), &w, nullptr);
+                  width = std::max<int>(width, w + results.second);
+               }
+            }
+         }
+
+         widths[index++] = width;
+      });
+
+   statusBar->SetStatusWidths(fieldsCount, widths.data());
+   ProjectStatusFieldsRegistry::OnSize(project);
 }
 
 void ProjectWindow::MacShowUndockedToolbars(bool show)
@@ -1290,7 +1065,9 @@ void ProjectWindow::OnSize(wxSizeEvent & event)
    // keep track of wxShowEvent events and inhibit those actions until the
    // window is first shown.
    if (mShownOnce) {
-      HandleResize();
+      auto pProject = FindProject();
+      if (pProject)
+         Viewport::Get(*pProject).HandleResize();
       if (!this->IsMaximized() && !this->IsIconized())
          SetNormalizedWindowState(this->GetRect());
    }
@@ -1339,80 +1116,33 @@ void ProjectWindow::OnShow(wxShowEvent & event)
 ///
 void ProjectWindow::OnToolBarUpdate(wxCommandEvent & event)
 {
-   HandleResize();
-
+   auto pProject = FindProject();
+   if (pProject)
+      Viewport::Get(*pProject).HandleResize();
    event.Skip(false);             /* No need to propagate any further */
 }
 
-void ProjectWindow::OnUndoPushedModified( wxCommandEvent &evt )
+void ProjectWindow::OnProjectTitleChange(ProjectFileIOMessage message)
 {
-   evt.Skip();
-   RedrawProject();
-}
-
-void ProjectWindow::OnUndoRedo( wxCommandEvent &evt )
-{
-   evt.Skip();
-   HandleResize();
-   RedrawProject();
-}
-
-void ProjectWindow::OnUndoReset( wxCommandEvent &evt )
-{
-   evt.Skip();
-   HandleResize();
-   // RedrawProject();  // Should we do this here too?
-}
-
-void ProjectWindow::OnScroll(wxScrollEvent & /* event */)
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   const wxInt64 offset = PixelWidthBeforeTime(0.0);
-   viewInfo.sbarH =
-      (wxInt64)(mHsbar->GetThumbPosition() / viewInfo.sbarScale) - offset;
-   DoScroll();
-
-#ifndef __WXMAC__
-   // Bug2179
-   // This keeps the time ruler in sync with horizontal scrolling, without
-   // making an undesirable compilation dependency of this source file on
-   // the ruler
-   wxTheApp->ProcessIdle();
-#endif
-}
-
-void ProjectWindow::DoScroll()
-{
-   auto &project = mProject;
-   auto &trackPanel = GetProjectPanel( project );
-   auto &viewInfo = ViewInfo::Get( project );
-   const double lowerBound = ScrollingLowerBoundTime();
-
-   auto width = viewInfo.GetTracksUsableWidth();
-   viewInfo.SetBeforeScreenWidth(viewInfo.sbarH, width, lowerBound);
-
-
-   if (MayScrollBeyondZero()) {
-      enum { SCROLL_PIXEL_TOLERANCE = 10 };
-      if (std::abs(viewInfo.TimeToPosition(0.0, 0
-                                   )) < SCROLL_PIXEL_TOLERANCE) {
-         // Snap the scrollbar to 0
-         viewInfo.h = 0;
-         SetHorizontalThumb(0.0);
+   if (message == ProjectFileIOMessage::ProjectTitleChange) {
+      auto pProject = FindProject();
+      if (!pProject)
+         return;
+      auto &project = *pProject;
+      const auto &name = ProjectFileIO::Get(project).GetProjectTitle();
+      if (name != GetTitle()) {
+         SetTitle(name);
+         SetName(name); // to make the nvda screen reader read the correct title
       }
    }
+}
 
-   viewInfo.vpos = mVsbar->GetThumbPosition() * viewInfo.scrollStep;
-
-   //mchinen: do not always set this project to be the active one.
-   //a project may autoscroll while playing in the background
-   //I think this is okay since OnMouseEvent has one of these.
-   //SetActiveProject(this);
-
-   if (!mAutoScrolling) {
-      trackPanel.Refresh(false);
-   }
+void ProjectWindow::OnScroll(wxScrollEvent &)
+{
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   Viewport::Get(*pProject).OnScroll();
 }
 
 void ProjectWindow::OnMenu(wxCommandEvent & event)
@@ -1430,10 +1160,13 @@ void ProjectWindow::OnMenu(wxCommandEvent & event)
       return;
    }
 #endif
-   auto &project = mProject;
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   auto &project = *pProject;
    auto &commandManager = CommandManager::Get( project );
-   bool handled = commandManager.HandleMenuID( GetProject(),
-      event.GetId(), MenuManager::Get( project ).GetUpdateFlags(),
+   bool handled = commandManager.HandleMenuID(
+      event.GetId(), CommandManager::Get( project ).GetUpdateFlags(),
       false);
 
    if (handled)
@@ -1444,10 +1177,13 @@ void ProjectWindow::OnMenu(wxCommandEvent & event)
    }
 }
 
-void ProjectWindow::OnUpdateUI(wxUpdateUIEvent & /* event */)
+void ProjectWindow::OnUpdateUI(wxUpdateUIEvent & WXUNUSED(event))
 {
-   auto &project = mProject;
-   MenuManager::Get( project ).UpdateMenus();
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   auto &project = *pProject;
+   CommandManager::Get(project).UpdateMenus();
 }
 
 void ProjectWindow::OnActivate(wxActivateEvent & event)
@@ -1458,7 +1194,10 @@ void ProjectWindow::OnActivate(wxActivateEvent & event)
       return;
    }
 
-   auto &project = mProject;
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   auto &project = *pProject;
 
    mActive = event.GetActive();
 
@@ -1489,125 +1228,15 @@ bool ProjectWindow::IsActive()
 
 void ProjectWindow::OnMouseEvent(wxMouseEvent & event)
 {
-   auto &project = mProject;
+   auto pProject = FindProject();
+   if (!pProject)
+      return;
+   auto &project = *pProject;
    if (event.ButtonDown())
       SetActiveProject( &project );
 }
 
-void ProjectWindow::ZoomAfterImport(Track *pTrack)
-{
-   auto &project = mProject;
-   auto &tracks = TrackList::Get( project );
-   auto &trackPanel = GetProjectPanel( project );
-
-   DoZoomFit();
-
-   trackPanel.SetFocus();
-   if (!pTrack)
-      pTrack = *tracks.Selected().begin();
-   if (!pTrack)
-      pTrack = *tracks.Any().begin();
-   if (pTrack) {
-      TrackFocus::Get(project).Set(pTrack);
-      pTrack->EnsureVisible();
-   }
-}
-
-// Utility function called by other zoom methods
-void ProjectWindow::Zoom(double level)
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   viewInfo.SetZoom(level);
-   FixScrollbars();
-   // See if we can center the selection on screen, and have it actually fit.
-   // tOnLeft is the amount of time we would need before the selection left edge to center it.
-   float t0 = viewInfo.selectedRegion.t0();
-   float t1 = viewInfo.selectedRegion.t1();
-   float tAvailable = viewInfo.GetScreenEndTime() - viewInfo.h;
-   float tOnLeft = (tAvailable - t0 + t1)/2.0;
-   // Bug 1292 (Enh) is effectively a request to do this scrolling of  the selection into view.
-   // If tOnLeft is positive, then we have room for the selection, so scroll to it.
-   if( tOnLeft >=0 )
-      TP_ScrollWindow( t0-tOnLeft);
-}
-
-// Utility function called by other zoom methods
-void ProjectWindow::ZoomBy(double multiplier)
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   viewInfo.ZoomBy(multiplier);
-   FixScrollbars();
-}
-
-///////////////////////////////////////////////////////////////////
-// This method 'rewinds' the track, by setting the cursor to 0 and
-// scrolling the window to fit 0 on the left side of it
-// (maintaining  current zoom).
-// If shift is held down, it will extend the left edge of the
-// selection to 0 (holding right edge constant), otherwise it will
-// move both left and right edge of selection to 0
-///////////////////////////////////////////////////////////////////
-void ProjectWindow::Rewind(bool shift)
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   viewInfo.selectedRegion.setT0(0, false);
-   if (!shift)
-      viewInfo.selectedRegion.setT1(0);
-
-   TP_ScrollWindow(0);
-}
-
-
-///////////////////////////////////////////////////////////////////
-// This method 'fast-forwards' the track, by setting the cursor to
-// the end of the samples on the selected track and  scrolling the
-//  window to fit the end on its right side (maintaining  current zoom).
-// If shift is held down, it will extend the right edge of the
-// selection to the end (holding left edge constant), otherwise it will
-// move both left and right edge of selection to the end
-///////////////////////////////////////////////////////////////////
-void ProjectWindow::SkipEnd(bool shift)
-{
-   auto &project = mProject;
-   auto &tracks = TrackList::Get( project );
-   auto &viewInfo = ViewInfo::Get( project );
-   double len = tracks.GetEndTime();
-
-   viewInfo.selectedRegion.setT1(len, false);
-   if (!shift)
-      viewInfo.selectedRegion.setT0(len);
-
-   // Make sure the end of the track is visible
-   ScrollIntoView(len);
-}
-
-// TrackPanel callback method
-void ProjectWindow::TP_ScrollLeft()
-{
-   OnScrollLeft();
-}
-
-// TrackPanel callback method
-void ProjectWindow::TP_ScrollRight()
-{
-   OnScrollRight();
-}
-
-// TrackPanel callback method
-void ProjectWindow::TP_RedrawScrollbars()
-{
-   FixScrollbars();
-}
-
-void ProjectWindow::TP_HandleResize()
-{
-   HandleResize();
-}
-
-ProjectWindow::PlaybackScroller::PlaybackScroller(TenacityProject *project)
+ProjectWindow::PlaybackScroller::PlaybackScroller(AudacityProject *project)
 : mProject(project)
 {
 }
@@ -1654,145 +1283,38 @@ void ProjectWindow::PlaybackScroller::OnTimer()
          case Mode::Right:
             deltaX = posX - width;        break;
       }
-      viewInfo.h =
-         viewInfo.OffsetTimeByPixels(viewInfo.h, deltaX);
-      if (!ProjectWindow::Get( *mProject ).MayScrollBeyondZero())
+      viewInfo.hpos =
+         viewInfo.OffsetTimeByPixels(viewInfo.hpos, deltaX, true);
          // Can't scroll too far left
-         viewInfo.h = std::max(0.0, viewInfo.h);
+         viewInfo.hpos = std::max(0.0, viewInfo.hpos);
       trackPanel.Refresh(false);
    }
 }
 
-void ProjectWindow::ZoomInByFactor( double ZoomFactor )
+void ProjectWindow::OnViewportMessage(const ViewportMessage &message)
 {
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-
-   auto gAudioIO = AudioIO::Get();
-   // LLL: Handling positioning differently when audio is
-   // actively playing.  Don't do this if paused.
-   if (gAudioIO->IsStreamActive(
-         ProjectAudioIO::Get( project ).GetAudioIOToken()) &&
-       !gAudioIO->IsPaused()){
-      ZoomBy(ZoomFactor);
-      ScrollIntoView(gAudioIO->GetStreamTime());
+   // Activate events can fire during window teardown, so just
+   // ignore them.
+   if (mIsDeleting)
       return;
-   }
-
-   // DMM: Here's my attempt to get logical zooming behavior
-   // when there's a selection that's currently at least
-   // partially on-screen
-
-   const double endTime = viewInfo.GetScreenEndTime();
-   const double duration = endTime - viewInfo.h;
-
-   bool selectionIsOnscreen =
-      (viewInfo.selectedRegion.t0() < endTime) &&
-      (viewInfo.selectedRegion.t1() >= viewInfo.h);
-
-   bool selectionFillsScreen =
-      (viewInfo.selectedRegion.t0() < viewInfo.h) &&
-      (viewInfo.selectedRegion.t1() > endTime);
-
-   if (selectionIsOnscreen && !selectionFillsScreen) {
-      // Start with the center of the selection
-      double selCenter = (viewInfo.selectedRegion.t0() +
-                          viewInfo.selectedRegion.t1()) / 2;
-
-      // If the selection center is off-screen, pick the
-      // center of the part that is on-screen.
-      if (selCenter < viewInfo.h)
-         selCenter = viewInfo.h +
-                     (viewInfo.selectedRegion.t1() - viewInfo.h) / 2;
-      if (selCenter > endTime)
-         selCenter = endTime -
-            (endTime - viewInfo.selectedRegion.t0()) / 2;
-
-      // Zoom in
-      ZoomBy(ZoomFactor);
-      const double newDuration =
-         viewInfo.GetScreenEndTime() - viewInfo.h;
-
-      // Recenter on selCenter
-      TP_ScrollWindow(selCenter - newDuration / 2);
+   auto pProject = FindProject();
+   if (!pProject)
       return;
-   }
+   auto &project = *pProject;
+   auto &viewInfo = ViewInfo::Get(project);
+   auto &trackPanel = GetProjectPanel(project);
 
+   auto [rescroll, scrollbarVisibilityChanged, resize] = message;
 
-   double origLeft = viewInfo.h;
-   double origWidth = duration;
-   ZoomBy(ZoomFactor);
+   if (rescroll)
+      trackPanel.Refresh(false);
 
-   const double newDuration =
-      viewInfo.GetScreenEndTime() - viewInfo.h;
-   double newh = origLeft + (origWidth - newDuration) / 2;
+   // why?  Is there a menu item whose availability depends on scroll position
+   // or zoom level?
+   CommandManager::Get(project).UpdateMenus();
 
-   // MM: Commented this out because it was confusing users
-   /*
-   // make sure that the *right-hand* end of the selection is
-   // no further *left* than 1/3 of the way across the screen
-   if (viewInfo.selectedRegion.t1() < newh + viewInfo.screen / 3)
-      newh = viewInfo.selectedRegion.t1() - viewInfo.screen / 3;
-
-   // make sure that the *left-hand* end of the selection is
-   // no further *right* than 2/3 of the way across the screen
-   if (viewInfo.selectedRegion.t0() > newh + viewInfo.screen * 2 / 3)
-      newh = viewInfo.selectedRegion.t0() - viewInfo.screen * 2 / 3;
-   */
-
-   TP_ScrollWindow(newh);
-}
-
-void ProjectWindow::ZoomOutByFactor( double ZoomFactor )
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-
-   //Zoom() may change these, so record original values:
-   const double origLeft = viewInfo.h;
-   const double origWidth = viewInfo.GetScreenEndTime() - origLeft;
-
-   ZoomBy(ZoomFactor);
-   const double newWidth = viewInfo.GetScreenEndTime() - viewInfo.h;
-
-   const double newh = origLeft + (origWidth - newWidth) / 2;
-   // newh = (newh > 0) ? newh : 0;
-   TP_ScrollWindow(newh);
-}
-
-double ProjectWindow::GetZoomOfToFit() const
-{
-   auto &project = mProject;
-   auto &tracks = TrackList::Get( project );
-   auto &viewInfo = ViewInfo::Get( project );
-
-   const double end = tracks.GetEndTime();
-   const double start = viewInfo.bScrollBeyondZero
-      ? std::min( tracks.GetStartTime(), 0.0)
-      : 0;
-   const double len = end - start;
-
-   if (len <= 0.0)
-      return viewInfo.GetZoom();
-
-   auto w = viewInfo.GetTracksUsableWidth();
-   w -= 10;
-   return w/len;
-}
-
-void ProjectWindow::DoZoomFit()
-{
-   auto &project = mProject;
-   auto &viewInfo = ViewInfo::Get( project );
-   auto &tracks = TrackList::Get( project );
-   auto &window = *this;
-
-   const double start = viewInfo.bScrollBeyondZero
-      ? std::min(tracks.GetStartTime(), 0.0)
-      : 0;
-
-   window.Zoom( window.GetZoomOfToFit() );
-   window.TP_ScrollWindow(start);
+   if (scrollbarVisibilityChanged || resize)
+      UpdateLayout();
 }
 
 static ToolManager::TopPanelHook::Scope scope {

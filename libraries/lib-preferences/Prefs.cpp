@@ -23,8 +23,6 @@
       Version					- Audacity Version that created these prefs
       DefaultOpenPath			- Default directory for NEW file selector
    /FileFormats
-      CopyOrEditUncompressedData - Copy data from uncompressed files or
-         [ "copy", "edit"]   - edit in place?
       ExportFormat_SF1		   - Format to export PCM data in
                              (this number is a libsndfile1.0 format)
    /SamplingRate
@@ -54,19 +52,25 @@
 
 #include <wx/defs.h>
 #include <wx/app.h>
-#include <wx/intl.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 
-#include "Internat.h"
-#include "MemoryX.h"
 #include "BasicUI.h"
+#include "Internat.h"
+#include "IteratorX.h"
 #include "Observer.h"
 
-std::unique_ptr<FileConfig> ugPrefs {};
+StickySetting<BoolSetting> DefaultUpdatesCheckingFlag{
+    L"/Update/DefaultUpdatesChecking", true };
 
-FileConfig *gPrefs = nullptr;
+std::unique_ptr<audacity::BasicSettings> ugPrefs {};
+
+audacity::BasicSettings *gPrefs = nullptr;
 int gMenusDirty = 0;
+
+int gVersionMajorKeyInit{};
+int gVersionMinorKeyInit{};
+int gVersionMicroKeyInit{};
 
 struct PrefsListener::Impl
 {
@@ -78,6 +82,35 @@ struct PrefsListener::Impl
 };
 
 namespace {
+
+class PreferencesResetHandlerRegistry
+{
+   std::vector<std::unique_ptr<PreferencesResetHandler>> mHandlers;
+public:
+   static PreferencesResetHandlerRegistry& Get()
+   {
+      static PreferencesResetHandlerRegistry registry;
+      return registry;
+   }
+
+   void Register(std::unique_ptr<PreferencesResetHandler> handler)
+   {
+      mHandlers.push_back(std::move(handler));
+   }
+
+   void BeginReset()
+   {
+      for(auto& handler : mHandlers)
+         handler->OnSettingResetBegin();
+   }
+
+   void EndReset()
+   {
+      for(auto& handler : mHandlers)
+         handler->OnSettingResetEnd();
+   }
+
+};
 
 struct Hub : Observer::Publisher<int>
 {
@@ -115,6 +148,10 @@ PrefsListener::PrefsListener()
 }
 
 PrefsListener::~PrefsListener()
+{
+}
+
+void PrefsListener::UpdatePrefs()
 {
 }
 
@@ -191,29 +228,116 @@ static void CopyEntriesRecursive(wxString path, wxConfigBase *src, wxConfigBase 
 }
 #endif
 
-void InitPreferences( std::unique_ptr<FileConfig> uPrefs )
+void InitPreferences( std::unique_ptr<audacity::BasicSettings> uPrefs )
 {
    gPrefs = uPrefs.get();
    ugPrefs = std::move(uPrefs);
-   wxConfigBase::Set(gPrefs);
+   //wxConfigBase::Set(gPrefs);
+   PrefsListener::Broadcast();
+}
+
+void GetPreferencesVersion(int& vMajor, int& vMinor, int& vMicro)
+{
+   vMajor = gVersionMajorKeyInit;
+   vMinor = gVersionMinorKeyInit;
+   vMicro = gVersionMicroKeyInit;
+}
+
+void SetPreferencesVersion(int vMajor, int vMinor, int vMicro)
+{
+   gVersionMajorKeyInit = vMajor;
+   gVersionMinorKeyInit = vMinor;
+   gVersionMicroKeyInit = vMicro;
 }
 
 void ResetPreferences()
 {
-   gPrefs->DeleteAll();
+   PreferencesResetHandlerRegistry::Get().BeginReset();
 
-   // Ensure the reset preferences have been marked as 'Tenacity'
-   // preferences
-   gPrefs->Write("IsTenacity", true);
+   gPrefs->Clear();
+
+   PreferencesResetHandlerRegistry::Get().EndReset();
 }
 
 void FinishPreferences()
 {
    if (gPrefs) {
-      wxConfigBase::Set(NULL);
       ugPrefs.reset();
-      gPrefs = NULL;
+      gPrefs = nullptr;
    }
+}
+
+namespace
+{
+std::vector<SettingScope*> sScopes;
+}
+
+SettingScope::SettingScope()
+{
+   sScopes.push_back(this);
+}
+
+SettingScope::~SettingScope() noexcept
+{
+   // Settings can be scoped only on stack
+   // so it should be safe to assume that sScopes.top() == this;
+   assert(!sScopes.empty() && sScopes.back() == this);
+
+   if (sScopes.empty() || sScopes.back() != this)
+      return;
+
+   if (!mCommitted)
+      for (auto pSetting : mPending)
+         pSetting->Rollback();
+
+   sScopes.pop_back();
+}
+
+// static
+auto SettingScope::Add( TransactionalSettingBase &setting ) -> AddResult
+{
+   if ( sScopes.empty() || sScopes.back()->mCommitted )
+      return NotAdded;
+
+   const bool inserted = sScopes.back()->mPending.insert(&setting).second;
+
+   if (inserted)
+   {
+      setting.EnterTransaction(sScopes.size());
+
+      // We need to introduce this setting into all
+      // previous scopes that do not yet contain it.
+      for (auto it = sScopes.rbegin() + 1; it != sScopes.rend(); ++it)
+      {
+         if ((*it)->mPending.find(&setting) != (*it)->mPending.end())
+            break;
+         
+         (*it)->mPending.insert(&setting);
+      }
+   }
+   
+   return inserted ? Added : PreviouslyAdded;
+}
+
+bool SettingTransaction::Commit()
+{
+   if (sScopes.empty() || sScopes.back() != this)
+      return false;
+   
+   if ( !mCommitted ) {
+      for ( auto pSetting : mPending )
+         if ( !pSetting->Commit() )
+            return false;
+      
+      if (sScopes.size() > 1 || gPrefs->Flush())
+      {
+         mPending.clear();
+         mCommitted = true;
+         return true;
+      }
+   }
+   
+   return false;
 }
 
 //////////
@@ -226,7 +350,7 @@ EnumValueSymbols::EnumValueSymbols(
 {
    auto size = mInternals.size(), size2 = msgids.size();
    if ( size != size2 ) {
-      assert( false );
+      wxASSERT( false );
       size = std::min( size, size2 );
    }
    reserve( size );
@@ -305,41 +429,23 @@ bool ChoiceSetting::Write( const wxString &value )
 
    auto result = gPrefs->Write( mKey, value );
    mMigrated = true;
+
+   if (mpOtherSettings)
+      mpOtherSettings->Invalidate();
+
    return result;
-}
-
-EnumSettingBase::EnumSettingBase(
-   const SettingBase &key,
-   EnumValueSymbols symbols,
-   long defaultSymbol,
-
-   std::vector<int> intValues, // must have same size as symbols
-   const wxString &oldKey
-)
-   : ChoiceSetting{ key, std::move( symbols ), defaultSymbol }
-   , mIntValues{ std::move( intValues ) }
-   , mOldKey{ oldKey }
-{
-   auto size = mSymbols.size();
-   if( mIntValues.size() != size ) {
-      assert( false );
-      mIntValues.resize( size );
-   }
 }
 
 void ChoiceSetting::SetDefault( long value )
 {
-   if ( value < (long)mSymbols.size() )
-      mDefaultSymbol = value;
-   else
-      assert( false );
+   mDefaultSymbol = value;
 }
 
 int EnumSettingBase::ReadInt() const
 {
    auto index = Find( Read() );
 
-   assert( index < mIntValues.size() );
+   wxASSERT( index < mIntValues.size() );
    return mIntValues[ index ];
 }
 
@@ -350,11 +456,11 @@ int EnumSettingBase::ReadIntWithDefault( int defaultValue ) const
    if ( index0 < mSymbols.size() )
       defaultString = mSymbols[ index0 ].Internal();
    else
-      assert( false );
+      wxASSERT( false );
 
    auto index = Find( ReadWithDefault( defaultString ) );
 
-   assert( index < mSymbols.size() );
+   wxASSERT( index < mSymbols.size() );
    return mIntValues[ index ];
 }
 
@@ -385,6 +491,13 @@ void EnumSettingBase::Migrate( wxString &value )
       }
    }
 }
+
+void PreferencesResetHandler::Register(std::unique_ptr<PreferencesResetHandler> handler)
+{
+   PreferencesResetHandlerRegistry::Get().Register(std::move(handler));
+}
+
+PreferencesResetHandler::~PreferencesResetHandler() = default;
 
 bool EnumSettingBase::WriteInt( int code ) // you flush gPrefs afterward
 {
@@ -428,7 +541,7 @@ void PreferenceInitializer::ReinitializeAll()
       (*pInitializer)();
 }
 
-wxConfigBase *SettingBase::GetConfig() const
+audacity::BasicSettings *SettingBase::GetConfig() const
 {
    return gPrefs;
 }
@@ -442,8 +555,5 @@ bool SettingBase::Delete()
 bool BoolSetting::Toggle()
 {
    bool value = Read();
-   if ( Write( !value ) )
-      return !value;
-   else
-      return value;
+   return Write( !value );
 }

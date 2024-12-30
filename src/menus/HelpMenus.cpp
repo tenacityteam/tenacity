@@ -1,16 +1,3 @@
-/**********************************************************************
-
-  Tenacity: A Digital Audio Editor
-
-  HelpMenus.cpp
-
-**********************************************************************/
-
-// Tenacity libraries
-#include <lib-audio-devices/AudioIOBase.h>
-#include <lib-files/FileNames.h>
-#include <lib-preferences/Prefs.h>
-#include <lib-project/Project.h>
 
 #include <wx/app.h>
 #include <wx/bmpbuttn.h>
@@ -18,82 +5,37 @@
 #include <wx/frame.h>
 
 #include "../AboutDialog.h"
+#include "AllThemeResources.h"
+#include "AudioIO.h"
 #include "../CommonCommandFlags.h"
-
-#include "../HelpText.h"
-#include "../LogWindow.h"
-#include "../Menus.h"
-#include "../NoteTrack.h"
-#include "../ProjectSelectionManager.h"
+#include "../CrashReport.h" // for HAS_CRASH_REPORT
+#include "FileNames.h"
+#include "HelpText.h"
+#include "../HelpUtilities.h"
+#include "LogWindow.h"
+#include "Prefs.h"
+#include "Project.h"
+#include "ProjectSnap.h"
 #include "../ProjectWindows.h"
-#include "../SelectFile.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../SplashDialog.h"
-#include "../theme/Theme.h"
-#include "../commands/CommandContext.h"
-#include "../commands/CommandManager.h"
+#include "SelectFile.h"
+#include "ShuttleGui.h"
+#include "SyncLock.h"
+#include "Theme.h"
+#include "CommandContext.h"
+#include "MenuRegistry.h"
 #include "../prefs/PrefsDialog.h"
-#include "../theme/AllThemeResources.h"
-#include "../widgets/AudacityMessageBox.h"
-#include "../widgets/HelpSystem.h"
+#include "AudacityMessageBox.h"
+#include "HelpSystem.h"
+
+#include "FrameStatisticsDialog.h"
+
+#if defined(HAVE_UPDATES_CHECK)
+#include "update/UpdateManager.h"
+#endif
 
 // private helper classes and functions
-namespace {
-
-void ShowDiagnostics(
-   TenacityProject &project, const wxString &info,
-   const TranslatableString &description, const wxString &defaultPath,
-   bool fixedWidth = false)
+namespace
 {
-   auto &window = GetProjectFrame( project );
-   wxDialogWrapper dlg( &window, wxID_ANY, description);
-   dlg.SetName();
-   ShuttleGui S(&dlg, eIsCreating);
-
-   wxTextCtrl *text;
-   S.StartVerticalLay();
-   {
-      text = S.Id(wxID_STATIC)
-         .Style(wxTE_MULTILINE | wxTE_READONLY | wxTE_RICH)
-         .AddTextWindow("");
-
-      wxButton *save = safenew wxButton(S.GetParent(), wxID_OK, _("&Save"));
-      S.AddStandardButtons(eCancelButton, save);
-   }
-   S.EndVerticalLay();
-
-   if (fixedWidth) {
-      auto style = text->GetDefaultStyle();
-      style.SetFontFamily( wxFONTFAMILY_TELETYPE );
-      text->SetDefaultStyle(style);
-   }
-
-   *text << info;
-
-   dlg.SetSize(350, 450);
-
-   if (dlg.ShowModal() == wxID_OK)
-   {
-      const auto fileDialogTitle = XO("Save %s").Format( description );
-      wxString fName = SelectFile(FileNames::Operation::Export,
-         fileDialogTitle,
-         wxEmptyString,
-         defaultPath,
-         wxT("txt"),
-         { FileNames::TextFiles },
-         wxFD_SAVE | wxFD_OVERWRITE_PROMPT | wxRESIZE_BORDER,
-         &window);
-      if (!fName.empty())
-      {
-         if (!text->SaveFile(fName))
-         {
-            AudacityMessageBox(
-               XO("Unable to save %s").Format( description ),
-               fileDialogTitle);
-         }
-      }
-   }
-}
 
 /** @brief Class which makes a dialog for displaying quick fixes to common issues.
  *
@@ -107,7 +49,7 @@ class QuickFixDialog : public wxDialogWrapper
 public:
    using PrefSetter = std::function< void() > ;
 
-   QuickFixDialog(wxWindow * pParent, TenacityProject &project);
+   QuickFixDialog(wxWindow * pParent, AudacityProject &project);
    void Populate();
    void PopulateOrExchange(ShuttleGui & S);
    void AddStuck( ShuttleGui & S, bool & bBool,
@@ -119,32 +61,33 @@ public:
    void OnHelp(const ManualPageID &Str);
    void OnFix(const PrefSetter &setter, wxWindowID id);
 
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
    int mItem;
    bool mbSyncLocked;
    bool mbInSnapTo;
    bool mbSoundActivated;
+   DECLARE_EVENT_TABLE()
 };
 
 
 #define FixButtonID           7001
 #define HelpButtonID          7011
 
-QuickFixDialog::QuickFixDialog(wxWindow * pParent, TenacityProject &project) :
+BEGIN_EVENT_TABLE(QuickFixDialog, wxDialogWrapper)
+   EVT_BUTTON(wxID_OK,                                            QuickFixDialog::OnOk)
+   EVT_BUTTON(wxID_CANCEL,                                        QuickFixDialog::OnCancel)
+END_EVENT_TABLE();
+
+QuickFixDialog::QuickFixDialog(wxWindow * pParent, AudacityProject &project) :
       wxDialogWrapper(pParent, wxID_ANY, XO("Do you have these problems?"),
             wxDefaultPosition, wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE )
       , mProject{ project }
 {
-   Bind(wxEVT_BUTTON, &QuickFixDialog::OnOk, this, wxID_OK);
-   Bind(wxEVT_BUTTON, &QuickFixDialog::OnCancel, this, wxID_CANCEL);
-
-   const long SNAP_OFF = 0;
-
-   gPrefs->Read(wxT("/GUI/SyncLockTracks"), &mbSyncLocked, false);
-   mbInSnapTo = gPrefs->Read(wxT("/SnapTo"), SNAP_OFF) !=0;
-   gPrefs->Read(wxT("/AudioIO/SoundActivatedRecord"), &mbSoundActivated, false);
+   mbSyncLocked = SyncLockTracks.Read();
+   mbInSnapTo = ProjectSnap(project).GetSnapMode() != SnapMode::SNAP_OFF; gPrefs->Read(wxT("/SnapTo"));
+   mbSoundActivated = SoundActivatedRecord.Read();
 
    ShuttleGui S(this, eIsCreating);
    PopulateOrExchange(S);
@@ -212,9 +155,9 @@ void QuickFixDialog::PopulateOrExchange(ShuttleGui & S)
          mItem = -1;
 
          auto defaultAction =
-         [](TenacityProject *pProject, const wxString &path){ return
-            [pProject, path]{
-               gPrefs->Write(path, 0);
+         [](AudacityProject *pProject, BoolSetting &setting){ return
+            [pProject, &setting]{
+               setting.Reset();
                gPrefs->Flush();
                // This is overkill (aka slow), as all preferences are
                // reloaded and all
@@ -229,20 +172,18 @@ void QuickFixDialog::PopulateOrExchange(ShuttleGui & S)
          // Local help may well not be installed.
          auto pProject = &mProject;
          AddStuck( S, mbSyncLocked,
-            defaultAction( pProject, "/GUI/SyncLockTracks" ),
+            defaultAction( pProject, SyncLockTracks ),
             XO("Clocks on the Tracks"), "Quick_Fix#sync_lock" );
          AddStuck( S, mbInSnapTo,
             [pProject] {
-               gPrefs->Write( "/SnapTo", 0 );
-               gPrefs->Flush();
                // Sadly SnapTo has to be handled specially,
                // as it is not part of the standard
                // preference dialogs.
-               ProjectSelectionManager::Get( *pProject ).AS_SetSnapTo( 0 );
+               ProjectSnap::Get( *pProject ).SetSnapMode( SnapMode::SNAP_OFF );
             },
             XO("Can't select precisely"), "Quick_Fix#snap_to" );
          AddStuck( S, mbSoundActivated,
-            defaultAction( pProject, "/AudioIO/SoundActivatedRecord" ),
+            defaultAction( pProject, SoundActivatedRecord ),
             XO("Recording stops and starts"),
             "Quick_Fix#sound_activated_recording" );
       }
@@ -298,13 +239,9 @@ void QuickFixDialog::OnFix(const PrefSetter &setter, wxWindowID id)
 
 }
 
-namespace HelpActions {
-
-// exported helper functions
+namespace {
 
 // Menu handler functions
-
-struct Handler : CommandHandlerObject {
 
 void OnQuickFix(const CommandContext &context)
 {
@@ -315,7 +252,10 @@ void OnQuickFix(const CommandContext &context)
 
 void OnQuickHelp(const CommandContext &context)
 {
-   OpenInDefaultBrowser("https://tenacityaudio.org/#community-buttons");
+   auto &project = context.project;
+   HelpSystem::ShowHelp(
+      &GetProjectFrame( project ),
+      L"Quick_Help");
 }
 
 void OnManual(const CommandContext &context)
@@ -335,21 +275,22 @@ void OnAudioDeviceInfo(const CommandContext &context)
       XO("Audio Device Info"), wxT("deviceinfo.txt") );
 }
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-void OnMidiDeviceInfo(const CommandContext &context)
-{
-   auto &project = context.project;
-   auto gAudioIO = AudioIOBase::Get();
-   auto info = GetMIDIDeviceInfo();
-   ShowDiagnostics( project, info,
-      XO("MIDI Device Info"), wxT("midideviceinfo.txt") );
-}
-#endif
-
 void OnShowLog( const CommandContext &context )
 {
    LogWindow::Show();
 }
+
+#if defined(HAS_CRASH_REPORT)
+void OnCrashReport(const CommandContext &WXUNUSED(context) )
+{
+// Change to "1" to test a real crash
+#if 0
+   char *p = 0;
+   *p = 1234;
+#endif
+   CrashReport::Generate(wxDebugReport::Context_Current);
+}
+#endif
 
 #ifdef IS_ALPHA
 void OnSegfault(const CommandContext &)
@@ -379,59 +320,60 @@ void OnAssertion(const CommandContext &)
 void OnMenuTree(const CommandContext &context)
 {
    auto &project = context.project;
-   
-   using namespace MenuTable;
-   struct MyVisitor : ToolbarMenuVisitor
-   {
-      using ToolbarMenuVisitor::ToolbarMenuVisitor;
+   enum : unsigned { TAB = 3 };
 
-      enum : unsigned { TAB = 3 };
-      void DoBeginGroup( GroupItem &item, const Path& ) override
-      {
-         if ( dynamic_cast<MenuItem*>( &item ) ) {
+   unsigned level{};
+   wxString indentation;
+   wxString info;
+   auto Indent = [&](){ info += indentation; };
+   auto Return = [&](){ info += '\n'; };
+
+   using namespace MenuRegistry;
+   auto visitor = Visitor<Traits>{
+      std::tuple{
+         [&](const MenuItem &item, const auto&) {
             Indent();
             // using GET for alpha only diagnostic tool
             info += item.name.GET();
             Return();
             indentation = wxString{ ' ', TAB * ++level };
-         }
-      }
+         },
 
-      void DoEndGroup( GroupItem &item, const Path& ) override
-      {
-         if ( dynamic_cast<MenuItem*>( &item ) )
+         [&](const SingleItem &item, const auto&) {
+            // using GET for alpha only diagnostic tool
+            Indent();
+            info += item.name.GET();
+            Return();
+         },
+
+         [&](const MenuItem &item, const auto&) {
             indentation = wxString{ ' ', TAB * --level };
-      }
-
-      void DoVisit( SingleItem &item, const Path& ) override
-      {
-         // using GET for alpha only diagnostic tool
-         Indent();
-         info += item.name.GET();
-         Return();
-      }
-
-      void DoSeparator() override
-      {
+         }
+      },
+      [&]() {
          static const wxString separatorName{ '=', 20 };
          Indent();
          info += separatorName;
          Return();
       }
+   };
+   MenuRegistry::Visit(visitor, project);
 
-      void Indent() { info += indentation; }
-      void Return() { info += '\n'; }
-
-      unsigned level{};
-      wxString indentation;
-      wxString info;
-   } visitor{ project };
-
-   MenuManager::Visit( visitor );
-
-   ShowDiagnostics( project, visitor.info,
+   ShowDiagnostics( project, info,
       Verbatim("Menu Tree"), wxT("menutree.txt"), true );
 }
+
+void OnFrameStatistics(const CommandContext&)
+{
+   FrameStatisticsDialog::Show(true);
+}
+
+#if defined(HAVE_UPDATES_CHECK)
+void OnCheckForUpdates(const CommandContext &WXUNUSED(context))
+{
+    UpdateManager::GetInstance().GetUpdates(false, false);
+}
+#endif
 
 void OnAbout(const CommandContext &context)
 {
@@ -450,87 +392,91 @@ void OnAbout(const CommandContext &context)
 #endif
 }
 
-}; // struct Handler
+#if 0
+// Legacy handlers, not used as of version 2.3.0
 
-} // namespace
+// Only does the update checks if it's an ALPHA build and not disabled by
+// preferences.
+void MayCheckForUpdates(AudacityProject &project)
+{
+#ifdef IS_ALPHA
+   OnCheckForUpdates(project);
+#endif
+}
 
-static CommandHandlerObject &findCommandHandler(TenacityProject &) {
-   // Handler is not stateful.  Doesn't need a factory registered with
-   // TenacityProject.
-   static HelpActions::Handler instance;
-   return instance;
-};
+#endif
 
 // Menu definitions
 
-#define FN(X) (& HelpActions::Handler :: X)
-
-namespace {
-using namespace MenuTable;
-
-// Now here we are to the horrid part: a VERY long, complex function...
-// Note: you might not see any 'Check for updates...' function in the
-// menu because I removed it
-BaseItemSharedPtr HelpMenu()
+using namespace MenuRegistry;
+auto HelpMenu()
 {
-   static BaseItemSharedPtr menu{
-   ( FinderScope{ findCommandHandler },
-    Menu(
-        wxT("Help"),
-        XXO("&Help"),
-        Section( "Basic",
-                // QuickFix menu item not in Audacity 2.3.1 whilst we discuss further.
-                Command( wxT("QuickHelp"), XXO("&Quick Help..."), FN(OnQuickHelp), AlwaysEnabledFlag ),
-                Command( wxT("Manual"), XXO("&Manual..."), FN(OnManual), AlwaysEnabledFlag )
-               ),
+   static auto menu = std::shared_ptr{
+   Menu( wxT("Help"), XXO("&Help"),
+      Section( "Basic",
+         Command( wxT("QuickHelp"), XXO("&Quick Help..."), OnQuickHelp,
+            AlwaysEnabledFlag ),
+         Command( wxT("Manual"), XXO("&Manual..."), OnManual,
+            AlwaysEnabledFlag )
+      ),
 
-              #ifdef __WXMAC__
-                Items
-              #else
-                Section
-              #endif
-                    ("Other", Menu( wxT("Diagnostics"), XXO("&Diagnostics"),
-                     Command( wxT("DeviceInfo"), XXO("Au&dio Device Info..."), FN(OnAudioDeviceInfo), AudioIONotBusyFlag() ),
-
-              #ifdef EXPERIMENTAL_MIDI_OUT
-                     Command( wxT("MidiDeviceInfo"), XXO("&MIDI Device Info..."), FN(OnMidiDeviceInfo), AudioIONotBusyFlag() ),
-              #endif
-                     Command( wxT("Log"), XXO("Show &Log..."), FN(OnShowLog), AlwaysEnabledFlag )
+   #ifdef __WXMAC__
+      Items
+   #else
+      Section
+   #endif
+      ( "Other",
+         Menu( wxT("Diagnostics"), XXO("&Diagnostics"),
+            Command( wxT("DeviceInfo"), XXO("Au&dio Device Info..."),
+               OnAudioDeviceInfo,
+               AudioIONotBusyFlag() ),
+            Command( wxT("Log"), XXO("Show &Log..."), OnShowLog,
+               AlwaysEnabledFlag ),
+      #if defined(HAS_CRASH_REPORT)
+            Command( wxT("CrashReport"), XXO("&Generate Support Data..."),
+               OnCrashReport, AlwaysEnabledFlag )
+      #endif
 
       #ifdef IS_ALPHA
-                     , // we continue from up above to add more Command()s
-                     // alpha-only items don't need to internationalize, so use
-                     // Verbatim for labels
+            ,
+            // alpha-only items don't need to internationalize, so use
+            // Verbatim for labels
 
-                     Command( wxT("RaiseSegfault"), Verbatim("Test segfault report"), FN(OnSegfault), AlwaysEnabledFlag ),
+            Command( wxT("RaiseSegfault"), Verbatim("Test segfault report"),
+               OnSegfault, AlwaysEnabledFlag ),
 
-                     Command( wxT("ThrowException"), Verbatim("Test exception report"), FN(OnException), AlwaysEnabledFlag ),
+            Command( wxT("ThrowException"), Verbatim("Test exception report"),
+               OnException, AlwaysEnabledFlag ),
 
-                     Command( wxT("ViolateAssertion"), Verbatim("Test assertion report"), FN(OnAssertion), AlwaysEnabledFlag ),
+            Command( wxT("ViolateAssertion"), Verbatim("Test assertion report"),
+               OnAssertion, AlwaysEnabledFlag ),
 
-                     // Menu explorer.  Perhaps this should become a macro command
-                     Command( wxT("MenuTree"), Verbatim("Menu Tree..."), FN(OnMenuTree), AlwaysEnabledFlag )
+            // Menu explorer.  Perhaps this should become a macro command
+            Command( wxT("MenuTree"), Verbatim("Menu Tree..."),
+               OnMenuTree,
+               AlwaysEnabledFlag ),
+              
+            Command(
+                 wxT("FrameStatistics"), Verbatim("Frame Statistics..."),
+                 OnFrameStatistics,
+                 AlwaysEnabledFlag)
       #endif
-         ) // end of this Section()
-      #ifndef __WXMAC__
-         ),
+         )
+      ),
 
-         Section( "",
-      #else
-      ,
-      #endif
-              Command( wxT("About"), XXO("&About Tenacity..."), FN(OnAbout), AlwaysEnabledFlag )
-             )
-        )
-     ) };
+      Section( "Extra",
+   #if defined(HAVE_UPDATES_CHECK)
+         Command( wxT("Updates"), XXO("&Check for Updates..."),
+            OnCheckForUpdates,
+            AlwaysEnabledFlag ),
+   #endif
+         Command( wxT("About"), XXO("&About Audacity"), OnAbout,
+            AlwaysEnabledFlag )
+      )
+   ) };
    return menu;
 }
 
-AttachedItem sAttachment1{
-   wxT(""),
-   Shared( HelpMenu() )
-};
+AttachedItem sAttachment1{ Indirect(HelpMenu()) };
 
 }
-
-#undef FN

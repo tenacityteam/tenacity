@@ -45,10 +45,11 @@
 #include "EffectInterface.h"
 #include "ComponentInterface.h"
 #include "Identifier.h"
-#include "ModuleInterface.h"
+#include "PluginProvider.h"
+#include "TypeListVisitor.h"
 #include <variant>
 
-class ModuleInterface;
+class PluginProvider;
 
 namespace PluginSettings {
 
@@ -57,7 +58,7 @@ enum ConfigurationType : unsigned {
 };
 
 //! Supported types for settings
-using ConfigValueTypes = std::tuple<
+using ConfigValueTypes = TypeList::List<
      wxString
    , int
    , bool
@@ -66,18 +67,30 @@ using ConfigValueTypes = std::tuple<
 >;
 
 //! Define a reference to a variable of one of the types in ConfigValueTypes
-/*! Avoid repetition of the list of types */
-template<bool is_const, typename> struct ConfigReferenceGenerator;
-template<bool is_const, typename... Types>
-struct ConfigReferenceGenerator<is_const, std::tuple<Types...>> {
-   using type = std::variant< std::reference_wrapper<
-      std::conditional_t<is_const, const Types, Types> >... >;
-};
 using ConfigReference =
-   ConfigReferenceGenerator<false, ConfigValueTypes>::type;
+   TypeListVisitor::VariantOfReferences_t<false, ConfigValueTypes>;
 using ConfigConstReference =
-   ConfigReferenceGenerator<true, ConfigValueTypes>::type;
+   TypeListVisitor::VariantOfReferences_t<true, ConfigValueTypes>;
 
+}
+
+//! Type of plugin registry version information
+using PluginRegistryVersion = wxString;
+
+MODULE_MANAGER_API
+bool Regver_eq(
+   const PluginRegistryVersion &regver1, const PluginRegistryVersion &regver2);
+
+// Compare registry versions
+MODULE_MANAGER_API
+bool Regver_lt(
+   const PluginRegistryVersion &regver1, const PluginRegistryVersion &regver2);
+
+// Compare registry versions
+inline bool Regver_le(
+   const PluginRegistryVersion &regver1, const PluginRegistryVersion &regver2)
+{
+   return !Regver_lt(regver2, regver1);
 }
 
 class MODULE_MANAGER_API PluginManagerInterface /* not final */
@@ -90,9 +103,9 @@ public:
    virtual ~PluginManagerInterface();
 
    static const PluginID &DefaultRegistrationCallback(
-      ModuleInterface *provider, ComponentInterface *ident );
+      PluginProvider *provider, ComponentInterface *ident );
    static const PluginID &AudacityCommandRegistrationCallback(
-      ModuleInterface *provider, ComponentInterface *ident );
+      PluginProvider *provider, ComponentInterface *ident );
 
    //! Was the plugin registry already populated for a path (maybe from loading the config file)?
    /*!
@@ -104,18 +117,24 @@ public:
       const PluginPath & path,
       const TranslatableString *pName = nullptr) = 0;
 
-   virtual const PluginID & RegisterPlugin(ModuleInterface *module) = 0;
-   virtual const PluginID & RegisterPlugin(ModuleInterface *provider, EffectDefinitionInterface *effect, int type) = 0;
+   virtual const PluginID & RegisterPlugin(PluginProvider *provider) = 0;
+   virtual const PluginID & RegisterPlugin(PluginProvider *provider, EffectDefinitionInterface *effect, int type) = 0;
 
    virtual void FindFilesInPathList(const wxString & pattern,
                                     const FilePaths & pathList,
                                     FilePaths & files,
                                     bool directories = false) = 0;
 
+   virtual PluginPaths ReadCustomPaths(const PluginProvider& provider) = 0;
+   virtual void StoreCustomPaths(const PluginProvider& provider, const PluginPaths& paths) = 0;
+
    // Many functions corresponding to those in ConfigClientInterface, but
    // with an extra ID argument
    virtual bool GetConfigSubgroups(ConfigurationType type, const PluginID & ID,
       const RegistryPath & group, RegistryPaths & subgroups) = 0;
+
+   virtual bool HasConfigValue(ConfigurationType type, const PluginID & ID,
+      const RegistryPath & group, const RegistryPath & key) = 0;
 
    //! @pre var and defval wrap references to the same type (ignoring const)
    virtual bool GetConfigValue(ConfigurationType type, const PluginID & ID,
@@ -130,6 +149,9 @@ public:
       const PluginID & ID, const RegistryPath & group) = 0;
    virtual bool RemoveConfig(ConfigurationType type, const PluginID & ID,
       const RegistryPath & group, const RegistryPath & key) = 0;
+
+   //! What is the plugin registry version number now in the file?
+   virtual const PluginRegistryVersion &GetRegistryVersion() const = 0;
 };
 
 #endif // __AUDACITY_PLUGININTERFACE_H__

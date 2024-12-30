@@ -16,12 +16,11 @@
 
 #include "RawAudioGuess.h"
 
-#include "TenacityException.h"
+#include "AudacityException.h"
 
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <cmath>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 #include <wx/defs.h>
 #include <wx/ffile.h>
@@ -213,7 +212,7 @@ static void Extract(bool bits16,
          ExceptionType::BadUserAction,
          XO("Bad data size. Could not import audio"),
          XO("Warning"), 
-         "Importing_and_Exporting#errors-while-importing-raw-data"
+         "Error:_Importing_raw_audio"
       };
 
    size_t dataSize = (size_t)dataSizeIn;

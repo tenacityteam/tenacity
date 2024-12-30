@@ -15,14 +15,14 @@ the ability to not see similar warnings again for this session.
 *//********************************************************************/
 
 
+
+
 #include "Warning.h"
 
-#include "../shuttle/ShuttleGui.h"
+#include "ShuttleGui.h"
 
 #include <wx/artprov.h>
-#include <wx/button.h>
 #include <wx/checkbox.h>
-#include <wx/intl.h>
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include "wxPanelWrapper.h"
@@ -40,7 +40,13 @@ class WarningDialog final : public wxDialogWrapper
    void OnOK(wxCommandEvent& event);
 
    wxCheckBox *mCheckBox;
+
+   DECLARE_EVENT_TABLE()
 };
+
+BEGIN_EVENT_TABLE(WarningDialog, wxDialogWrapper)
+   EVT_BUTTON(wxID_OK, WarningDialog::OnOK)
+END_EVENT_TABLE()
 
 const TranslatableString &DefaultWarningFooter()
 {
@@ -55,8 +61,6 @@ WarningDialog::WarningDialog(wxWindow *parent, const TranslatableString &message
             wxDefaultPosition, wxDefaultSize,
             (showCancelButton ? wxDEFAULT_DIALOG_STYLE : wxCAPTION | wxSYSTEM_MENU)) // Unlike wxDEFAULT_DIALOG_STYLE, no wxCLOSE_BOX.
 {
-   Bind(wxEVT_BUTTON, &WarningDialog::OnOK, this, wxID_OK);
-
    SetName();
 
    SetIcon(wxArtProvider::GetIcon(wxART_WARNING, wxART_MESSAGE_BOX));
@@ -78,7 +82,7 @@ WarningDialog::WarningDialog(wxWindow *parent, const TranslatableString &message
    CentreOnParent();
 }
 
-void WarningDialog::OnOK(wxCommandEvent& /* event */)
+void WarningDialog::OnOK(wxCommandEvent& WXUNUSED(event))
 {
    EndModal(mCheckBox->GetValue() ? wxID_NO : wxID_YES); // return YES, if message should be shown again
 }

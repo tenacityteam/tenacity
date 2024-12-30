@@ -16,7 +16,7 @@
 #ifndef __AUDACITY_SOUND_ACTIVATED_RECORD__
 #define __AUDACITY_SOUND_ACTIVATED_RECORD__
 
-#include "widgets/wxPanelWrapper.h" // to inherit
+#include "wxPanelWrapper.h" // to inherit
 
 class ShuttleGui;
 
@@ -27,7 +27,11 @@ public:
    ~SoundActivatedRecordDialog();
 
 private:
+   void OnOK(wxCommandEvent& event);
+
    void PopulateOrExchange(ShuttleGui& S);
+
+   DECLARE_EVENT_TABLE()
 };
 
 #endif

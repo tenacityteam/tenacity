@@ -6,7 +6,7 @@
 
   Created by Michael Chinen (mchinen) on 8/12/08
   Audacity(R) is copyright (c) 1999-2008 Audacity Team.
-  License: GPL v2.  See License.txt.
+  License: GPL v2 or later.  See License.txt.
 
 ******************************************************************//**
 
@@ -23,8 +23,7 @@ but it will probably work fine if you use it on a high level.
 
 #include "Profiler.h"
 
-#include <cstdio>
-#include <cstring>
+#include <string.h>
 #include <wx/crt.h>
 
 ///write to a profile at the end of the test.
@@ -33,11 +32,11 @@ Profiler::~Profiler()
    if(mTasks.size())
    {
       //print everything out.  append to a log.
-      FILE* log = fopen("TenacityProfilerLog.txt", "a");
+      FILE* log = fopen("AudacityProfilerLog.txt", "a");
       time_t now;
 
       time(&now);
-      wxFprintf(log,"Tenacity Profiler Run, Ended at ");
+      wxFprintf(log,"Audacity Profiler Run, Ended at ");
       wxFprintf(log,"%s",ctime(&now));
       wxFprintf(log,"****************************************\n");
       //print out the tasks
@@ -141,7 +140,7 @@ void TaskProfile::Begin(const char* fileName, int lineNum, const char* taskDescr
 }
 
 ///end the task timer.
-void TaskProfile::End(const char* /* fileName */, int /* lineNum */, const char* /* taskDescription */)
+void TaskProfile::End(const char* WXUNUSED(fileName), int WXUNUSED(lineNum), const char* WXUNUSED(taskDescription))
 {
    mCumTime += clock() - mLastTime;
    mNumHits++;

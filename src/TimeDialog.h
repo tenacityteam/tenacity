@@ -13,13 +13,13 @@
 
 #include <wx/defs.h>
 
-// Tenacity libraries
-#include <lib-components/ComponentInterface.h> // member variable
+#include "ComponentInterface.h" // member variable
 
-#include "widgets/wxPanelWrapper.h" // to inherit
+#include "wxPanelWrapper.h" // to inherit
 
 class NumericTextCtrl;
 class ShuttleGui;
+class AudacityProject;
 
 class TENACITY_DLL_API TimeDialog final : public wxDialogWrapper
 {
@@ -27,13 +27,12 @@ class TENACITY_DLL_API TimeDialog final : public wxDialogWrapper
 
    TimeDialog(wxWindow *parent,
               const TranslatableString &title,
-              const NumericFormatSymbol &format,
-              double rate,
+              const NumericFormatID &format,
+              const AudacityProject &project,
               double time,
               const TranslatableString &prompt = XO("Duration"));
 
-   void SetFormatString(const NumericFormatSymbol &formatString);
-   void SetSampleRate(double sampleRate);
+   void SetFormatString(const NumericFormatID &formatString);
    void SetTimeValue(double newTime);
    const double GetTimeValue();
 
@@ -48,8 +47,8 @@ class TENACITY_DLL_API TimeDialog final : public wxDialogWrapper
  private:
 
    TranslatableString mPrompt;
-   NumericFormatSymbol mFormat;
-   double mRate;
+   NumericFormatID mFormat;
+   const AudacityProject &mProject;
    double mTime;
 
    NumericTextCtrl *mTimeCtrl;

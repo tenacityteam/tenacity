@@ -25,34 +25,32 @@
 #include <wx/choice.h>
 #include <wx/defs.h>
 #include <wx/brush.h>
-#include <wx/image.h>
-#include <wx/intl.h>
 #endif // WX_PRECOMP
 
 #include "Envelope.h"
 
-#include "../theme/AllThemeResources.h"
-#include "../AudioIO.h"
-#include "../ImageManipulation.h"
+#include "AllThemeResources.h"
+#include "AudioIO.h"
+#include "ImageManipulation.h"
 #include "../KeyboardCapture.h"
 #include "NoteTrack.h"
 #include "Project.h"
+#include "ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
-#include "../ProjectSettings.h"
 #include "Envelope.h"
 #include "ViewInfo.h"
-#include "../WaveTrack.h"
+#include "WaveTrack.h"
 #include "../widgets/AButton.h"
 #include "../widgets/ASlider.h"
 #include "../tracks/ui/Scrubbing.h"
-
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
+#include "Prefs.h"
 
 #ifdef EXPERIMENTAL_VOICE_DETECTION
 #include "../VoiceKey.h"
-#include "../ProjectWindow.h"
+
 #endif
+
+IMPLEMENT_CLASS(TranscriptionToolBar, ToolBar);
 
 ///////////////////////////////////////////
 ///  Methods for TranscriptionToolBar
@@ -93,12 +91,16 @@ BEGIN_EVENT_TABLE(TranscriptionToolBar, ToolBar)
 END_EVENT_TABLE()
    ;   //semicolon enforces  proper automatic indenting in emacs.
 
-////Standard Constructor
-TranscriptionToolBar::TranscriptionToolBar( TenacityProject &project )
-: ToolBar( project,
-   TranscriptionBarID, XO("Play-at-Speed"), wxT("Transcription"), true )
+Identifier TranscriptionToolBar::ID()
 {
-   SetPlaySpeed( 1.0 * 100.0 );
+   return wxT("Transcription");
+}
+
+////Standard Constructor
+TranscriptionToolBar::TranscriptionToolBar( AudacityProject &project )
+: ToolBar( project, XO("Play-at-Speed"), ID(), true )
+{
+   SetPlaySpeed( 1.0 * 1000.0 );
 #ifdef EXPERIMENTAL_VOICE_DETECTION
    mVk = std::make_unique<VoiceKey>();
 #endif
@@ -108,15 +110,25 @@ TranscriptionToolBar::~TranscriptionToolBar()
 {
 }
 
-TranscriptionToolBar &TranscriptionToolBar::Get( TenacityProject &project )
+bool TranscriptionToolBar::ShownByDefault() const
 {
-   auto &toolManager = ToolManager::Get( project );
-   return *static_cast<TranscriptionToolBar*>( toolManager.GetToolBar(TranscriptionBarID) );
+   return true;
 }
 
-const TranscriptionToolBar &TranscriptionToolBar::Get( const TenacityProject &project )
+ToolBar::DockID TranscriptionToolBar::DefaultDockID() const
 {
-   return Get( const_cast<TenacityProject&>( project )) ;
+   return BotDockID;
+}
+
+TranscriptionToolBar &TranscriptionToolBar::Get( AudacityProject &project )
+{
+   auto &toolManager = ToolManager::Get( project );
+   return *static_cast<TranscriptionToolBar*>(toolManager.GetToolBar(ID()));
+}
+
+const TranscriptionToolBar &TranscriptionToolBar::Get( const AudacityProject &project )
+{
+   return Get( const_cast<AudacityProject&>( project )) ;
 }
 
 void TranscriptionToolBar::Create(wxWindow * parent)
@@ -146,7 +158,7 @@ void TranscriptionToolBar::Create(wxWindow * parent)
    //JKC: Set speed this way is better, as we don't
    //then stop Audio if it is playing, so we can be playing
    //audio and open a second project.
-   SetPlaySpeed( (mPlaySpeedSlider->Get()) * 100 );
+   SetPlaySpeed( (mPlaySpeedSlider->Get()) * 1000 );
 
    // Simulate a size event to set initial placement/size
    wxSizeEvent event(GetSize(), GetId());
@@ -157,7 +169,7 @@ void TranscriptionToolBar::Create(wxWindow * parent)
 void TranscriptionToolBar::SetPlaySpeed( double value )
 {
    mPlaySpeed = value;
-   ProjectSettings::Get( mProject ).SetPlaySpeed( GetPlaySpeed() );
+   ProjectAudioIO::Get( mProject ).SetPlaySpeed( GetPlaySpeed() );
 }
 
 /// This is a convenience function that allows for button creation in
@@ -207,7 +219,8 @@ void TranscriptionToolBar::Populate()
 
    AddButton(this, bmpPlay,     bmpPlayDisabled,   TTB_PlaySpeed,
       XO("Play at selected speed"));
-   MakeAlternateImages(bmpLoop, bmpLoopDisabled, TTB_PlaySpeed, 1);
+   // 3.1.0 abandoned distinct images for Shift
+   MakeAlternateImages(bmpPlay, bmpPlayDisabled, TTB_PlaySpeed, 1);
    MakeAlternateImages(bmpCutPreview, bmpCutPreviewDisabled, TTB_PlaySpeed, 2);
    mButtons[TTB_PlaySpeed]->FollowModifierKeys();
 
@@ -221,11 +234,11 @@ void TranscriptionToolBar::Populate()
       ASlider::Options{}
          .Style( SPEED_SLIDER )
          //  6 steps using page up/down, and 60 using arrow keys
-         .Line( 0.16667f )
-         .Page( 1.6667f )
+         .Line( 0.16722f )
+         .Page( 1.6722f )
    );
    mPlaySpeedSlider->SetSizeHints(wxSize(100, 25), wxSize(2000, 25));
-   mPlaySpeedSlider->Set(mPlaySpeed / 100.0);
+   mPlaySpeedSlider->Set(mPlaySpeed / 1000.0);
    mPlaySpeedSlider->SetLabel(_("Playback Speed"));
    Add( mPlaySpeedSlider, 1, wxALIGN_CENTER );
    mPlaySpeedSlider->Bind(wxEVT_SET_FOCUS,
@@ -295,7 +308,7 @@ void TranscriptionToolBar::Populate()
 
 void TranscriptionToolBar::EnableDisableButtons()
 {
-   TenacityProject *p = &mProject;
+   AudacityProject *p = &mProject;
 
    auto gAudioIO = AudioIO::Get();
    bool canStopAudioStream = (!gAudioIO->IsStreamActive() ||
@@ -304,8 +317,8 @@ void TranscriptionToolBar::EnableDisableButtons()
    bool recording = gAudioIO->GetNumCaptureChannels() > 0;
 
    // Only interested in audio type tracks
-   bool tracks = p && TrackList::Get( *p ).Any<AudioTrack>(); // PRL:  PlayableTrack ?
-   SetEnabled( canStopAudioStream && tracks && !recording );
+   bool tracks = p && TrackList::Get(*p).Any<AudioTrack>(); // PRL:  PlayableTrack ?
+   SetEnabled(canStopAudioStream && tracks && !recording);
 
 #ifdef EXPERIMENTAL_VOICE_DETECTION
    if (!p)
@@ -342,8 +355,9 @@ void TranscriptionToolBar::RegenerateTooltips()
       CommandID commandName2;
       TranslatableString untranslatedLabel2;
    } table[] = {
-      { TTB_PlaySpeed,   wxT("PlayAtSpeed"),    XO("Play-at-Speed"),
-      wxT("PlayAtSpeedLooped"),    XO("Looped-Play-at-Speed")
+      { TTB_PlaySpeed,
+         wxT("PlayAtSpeedLooped"),    XO("Play-at-Speed"),
+         wxT("PlayAtSpeed"),    XO("Play-at-Speed Once"),
       },
    };
 
@@ -432,7 +446,7 @@ void TranscriptionToolBar::GetSamples(
    // GetSamples attempts to translate the start and end selection markers into sample indices
    // These selection numbers are doubles.
 
-   TenacityProject *p = &mProject;
+   AudacityProject *p = &mProject;
    if (!p) {
       return;
    }
@@ -444,10 +458,10 @@ void TranscriptionToolBar::GetSamples(
    double start = selectedRegion.t0();
    double end = selectedRegion.t1();
 
-   auto ss0 = sampleCount( (start - t->GetOffset()) * t->GetRate() );
-   auto ss1 = sampleCount( (end - t->GetOffset()) * t->GetRate() );
+   auto ss0 = sampleCount( (start - t->GetStartTime()) * t->GetRate() );
+   auto ss1 = sampleCount( (end - t->GetStartTime()) * t->GetRate() );
 
-   if (start < t->GetOffset()) {
+   if (start < t->GetStartTime()) {
       ss0 = 0;
    }
 
@@ -472,10 +486,10 @@ void TranscriptionToolBar::GetSamples(
 #define TIMETRACK_MAX 10.0
 
 // Come here from button clicks, or commands
-void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
+void TranscriptionToolBar::PlayAtSpeed(bool newDefault, bool cutPreview)
 {
    // Can't do anything without an active project
-   TenacityProject *p = &mProject;
+   AudacityProject *p = &mProject;
    if (!p) {
       return;
    }
@@ -486,14 +500,13 @@ void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
    // VariSpeed play reuses Scrubbing.
    bool bFixedSpeedPlay = !gPrefs->ReadBool(wxT("/AudioIO/VariSpeedPlay"), true);
    // Scrubbing doesn't support note tracks, but the fixed-speed method using time tracks does.
-   #ifdef USE_MIDI
-   if ( TrackList::Get( *p ).Any< NoteTrack >() )
+   if (TrackList::Get(*p).Any<NoteTrack>())
       bFixedSpeedPlay = true;
-   #endif
 
-   // Scrubbing only supports straight through play.
-   // So if looped or cutPreview, we have to fall back to fixed speed.
-   bFixedSpeedPlay = bFixedSpeedPlay || looped || cutPreview;
+   // If cutPreview, we have to fall back to fixed speed.
+   if (newDefault)
+      cutPreview = false;
+   bFixedSpeedPlay = bFixedSpeedPlay || cutPreview;
    if (bFixedSpeedPlay)
    {
       // Create a BoundedEnvelope if we haven't done so already
@@ -508,7 +521,7 @@ void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
       // Set the speed range
       //mTimeTrack->SetRangeUpper((double)mPlaySpeed / 100.0);
       //mTimeTrack->SetRangeLower((double)mPlaySpeed / 100.0);
-      mEnvelope->Flatten((double)mPlaySpeed / 100.0);
+      mEnvelope->Flatten((double)mPlaySpeed / 1000.0);
    }
 
    // Pop up the button
@@ -526,43 +539,39 @@ void TranscriptionToolBar::PlayAtSpeed(bool looped, bool cutPreview)
    // Start playing
    if (playRegion.GetStart() < 0)
       return;
-   if (bFixedSpeedPlay)
+
    {
-      auto options = DefaultPlayOptions( *p, looped );
+      auto options = ProjectAudioIO::GetDefaultOptions(*p, newDefault);
       // No need to set cutPreview options.
-      options.envelope = mEnvelope.get();
+      options.envelope = bFixedSpeedPlay ? mEnvelope.get() : nullptr;
+      options.variableSpeed = !bFixedSpeedPlay;
       auto mode =
          cutPreview ? PlayMode::cutPreviewPlay
-         : looped ? PlayMode::loopedPlay
+         : newDefault ? PlayMode::loopedPlay
          : PlayMode::normalPlay;
       projectAudioManager.PlayPlayRegion(
          SelectedRegion(playRegion.GetStart(), playRegion.GetEnd()),
             options,
             mode);
    }
-   else
-   {
-      auto &scrubber = Scrubber::Get( *p );
-      scrubber.StartSpeedPlay(GetPlaySpeed(),
-         playRegion.GetStart(), playRegion.GetEnd());
-   }
 }
 
 // Come here from button clicks only
-void TranscriptionToolBar::OnPlaySpeed(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnPlaySpeed(wxCommandEvent & event)
 {
    auto button = mButtons[TTB_PlaySpeed];
 
    // Let control have precedence over shift
    const bool cutPreview = mButtons[TTB_PlaySpeed]->WasControlDown();
    const bool looped = !cutPreview &&
-      button->WasShiftDown();
+      !button->WasShiftDown();
+   OnSpeedSlider(event);
    PlayAtSpeed(looped, cutPreview);
 }
 
-void TranscriptionToolBar::OnSpeedSlider(wxCommandEvent& /* event */)
+void TranscriptionToolBar::OnSpeedSlider(wxCommandEvent& WXUNUSED(event))
 {
-   SetPlaySpeed( (mPlaySpeedSlider->Get()) * 100 );
+   SetPlaySpeed( (mPlaySpeedSlider->Get()) * 1000 );
    RegenerateTooltips();
 
    // If IO is busy, abort immediately
@@ -575,7 +584,7 @@ void TranscriptionToolBar::OnSpeedSlider(wxCommandEvent& /* event */)
 }
 
 #ifdef EXPERIMENTAL_VOICE_DETECTION
-void TranscriptionToolBar::OnStartOn(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnStartOn(wxCommandEvent & WXUNUSED(event))
 {
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
@@ -601,13 +610,13 @@ void TranscriptionToolBar::OnStartOn(wxCommandEvent & /* event */)
 
       auto &selectedRegion = ViewInfo::Get( mProject ).selectedRegion;
       selectedRegion.setT0( newpos );
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
 
       SetButton(false, mButtons[TTB_StartOn]);
    }
 }
 
-void TranscriptionToolBar::OnStartOff(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnStartOff(wxCommandEvent & WXUNUSED(event))
 {
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
@@ -616,7 +625,7 @@ void TranscriptionToolBar::OnStartOff(wxCommandEvent & /* event */)
       return;
    }
    mVk->AdjustThreshold(GetSensitivity());
-   TenacityProject *p = &mProject;
+   AudacityProject *p = &mProject;
 
    SetButton(false, mButtons[TTB_StartOff]);
    auto t = *TrackList::Get( mProject ).Any< const WaveTrack >().begin();
@@ -634,13 +643,13 @@ void TranscriptionToolBar::OnStartOff(wxCommandEvent & /* event */)
 
       auto &selectedRegion = ViewInfo::Get( mProject ).selectedRegion;
       selectedRegion.setT0( newpos );
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
 
       SetButton(false, mButtons[TTB_StartOn]);
    }
 }
 
-void TranscriptionToolBar::OnEndOn(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnEndOn(wxCommandEvent & WXUNUSED(event))
 {
 
    //If IO is busy, abort immediately
@@ -651,7 +660,7 @@ void TranscriptionToolBar::OnEndOn(wxCommandEvent & /* event */)
    }
 
    mVk->AdjustThreshold(GetSensitivity());
-   TenacityProject *p = &mProject;
+   AudacityProject *p = &mProject;
    auto t = *TrackList::Get( mProject ).Any< const WaveTrack >().begin();
    if(t) {
       auto wt = static_cast<const WaveTrack*>(t);
@@ -669,7 +678,7 @@ void TranscriptionToolBar::OnEndOn(wxCommandEvent & /* event */)
 
       auto &selectedRegion = ViewInfo::Get( mProject ).selectedRegion;
       selectedRegion.setT1( newpos );
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
 
       SetButton(false, mButtons[TTB_EndOn]);
    }
@@ -677,7 +686,7 @@ void TranscriptionToolBar::OnEndOn(wxCommandEvent & /* event */)
 
 
 
-void TranscriptionToolBar::OnEndOff(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnEndOff(wxCommandEvent & WXUNUSED(event))
 {
 
    //If IO is busy, abort immediately
@@ -687,7 +696,7 @@ void TranscriptionToolBar::OnEndOff(wxCommandEvent & /* event */)
       return;
    }
    mVk->AdjustThreshold(GetSensitivity());
-   TenacityProject *p = &mProject;
+   AudacityProject *p = &mProject;
 
    auto t = *TrackList::Get( mProject ).Any< const WaveTrack >().begin();
    if(t) {
@@ -705,7 +714,7 @@ void TranscriptionToolBar::OnEndOff(wxCommandEvent & /* event */)
 
       auto &selectedRegion = ViewInfo::Get( mProject ).selectedRegion;
       selectedRegion.setT1( newpos );
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
 
       SetButton(false, mButtons[TTB_EndOff]);
    }
@@ -713,7 +722,7 @@ void TranscriptionToolBar::OnEndOff(wxCommandEvent & /* event */)
 
 
 
-void TranscriptionToolBar::OnSelectSound(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnSelectSound(wxCommandEvent & WXUNUSED(event))
 {
 
    //If IO is busy, abort immediately
@@ -727,7 +736,7 @@ void TranscriptionToolBar::OnSelectSound(wxCommandEvent & /* event */)
    mVk->AdjustThreshold(GetSensitivity());
 
 
-   TrackList *tl = &TrackList::Get( mProject );
+   TrackList *tl = &TrackList::Get(mProject);
    if(auto wt = *tl->Any<const WaveTrack>().begin()) {
       sampleCount start, len;
       GetSamples(wt, &start, &len);
@@ -745,19 +754,19 @@ void TranscriptionToolBar::OnSelectSound(wxCommandEvent & /* event */)
       auto &selectedRegion = ViewInfo::Get( mProject ).selectedRegion;
       selectedRegion.setTimes(
          newstart.as_double() / rate, newend.as_double() /  rate );
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
 
    }
 
    SetButton(false,mButtons[TTB_SelectSound]);
 }
 
-void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & WXUNUSED(event))
 {
 
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
-   if (gAudioIO->IsBusy()){
+   if (gAudioIO->IsBusy()) {
       SetButton(false,mButtons[TTB_SelectSilence]);
       return;
    }
@@ -765,8 +774,8 @@ void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & /* event */)
    mVk->AdjustThreshold(GetSensitivity());
 
 
-   TrackList *tl = &TrackList::Get( mProject );
-   if(auto wt = *tl->Any<const WaveTrack>().begin()) {
+   TrackList *tl = &TrackList::Get(mProject);
+   if (auto wt = *tl->Any<const WaveTrack>().begin()) {
       sampleCount start, len;
       GetSamples(wt, &start, &len);
 
@@ -782,7 +791,7 @@ void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & /* event */)
       auto &selectedRegion = ViewInfo::Get( mProject ).selectedRegion;
       selectedRegion.setTimes(
          newstart.as_double() / rate, newend.as_double() / rate);
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
 
    }
 
@@ -792,7 +801,7 @@ void TranscriptionToolBar::OnSelectSilence(wxCommandEvent & /* event */)
 
 
 
-void TranscriptionToolBar::OnCalibrate(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnCalibrate(wxCommandEvent & WXUNUSED(event))
 {
    //If IO is busy, abort immediately
    auto gAudioIO = AudioIOBase::Get();
@@ -833,14 +842,14 @@ void TranscriptionToolBar::OnCalibrate(wxCommandEvent & /* event */)
 
 }
 
-#include "../LabelTrack.h"
-#include "../ProjectHistory.h"
+#include "LabelTrack.h"
+#include "ProjectHistory.h"
 #include "../TrackPanel.h"
-#include "../TrackPanelAx.h"
+#include "TrackFocus.h"
 #include "../tracks/labeltrack/ui/LabelTrackView.h"
 namespace {
 int DoAddLabel(
-   TenacityProject &project, const SelectedRegion &region )
+   AudacityProject &project, const SelectedRegion &region )
 {
    auto &tracks = TrackList::Get( project );
    auto &trackFocus = TrackFocus::Get( project );
@@ -870,10 +879,7 @@ int DoAddLabel(
 //   SelectNone();
    lt->SetSelected(true);
 
-   int index;
-   int focusTrackNumber = -1;
-   index =
-      LabelTrackView::Get( *lt ).AddLabel(region, title, focusTrackNumber);
+   auto index = LabelTrackView::Get(*lt).AddLabel(region, title);
 
    ProjectHistory::Get( project )
       .PushState(XO("Added label"), XO("Label"));
@@ -890,7 +896,7 @@ int DoAddLabel(
 //This automates selection through a selected region,
 //selecting its best guess for words and creating labels at those points.
 
-void TranscriptionToolBar::OnAutomateSelection(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnAutomateSelection(wxCommandEvent & WXUNUSED(event))
 {
 
 
@@ -967,13 +973,13 @@ void TranscriptionToolBar::OnAutomateSelection(wxCommandEvent & /* event */)
          start = newEnd;
 
          DoAddLabel(mProject, SelectedRegion(newStartPos, newEndPos));
-      ProjectWindow::Get( mProject ).RedrawProject();
+      Viewport::Get(mProject).Redraw();
       }
       SetButton(false, mButtons[TTB_AutomateSelection]);
    }
 }
 
-void TranscriptionToolBar::OnMakeLabel(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnMakeLabel(wxCommandEvent & WXUNUSED(event))
 {
    SetButton(false, mButtons[TTB_MakeLabel]);
    DoAddLabel( mProject, ViewInfo::Get( mProject ).selectedRegion );
@@ -985,12 +991,12 @@ double TranscriptionToolBar::GetSensitivity()
    return (double)mSensitivity;
 }
 
-void TranscriptionToolBar::OnSensitivitySlider(wxCommandEvent & /* event */)
+void TranscriptionToolBar::OnSensitivitySlider(wxCommandEvent & WXUNUSED(event))
 {
    mSensitivity = (mSensitivitySlider->Get());
 }
 
-void TranscriptionToolBar::SetKeyType(wxCommandEvent & /* event */)
+void TranscriptionToolBar::SetKeyType(wxCommandEvent & WXUNUSED(event))
 {
    int value = mKeyTypeChoice->GetSelection();
 
@@ -1055,8 +1061,8 @@ void TranscriptionToolBar::AdjustPlaySpeed(float adj)
    OnSpeedSlider(e);
 }
 
-static RegisteredToolbarFactory factory{ TranscriptionBarID,
-   []( TenacityProject &project ){
+static RegisteredToolbarFactory factory{
+   []( AudacityProject &project ){
       return ToolBar::Holder{ safenew TranscriptionToolBar{ project } }; }
 };
 
@@ -1064,7 +1070,113 @@ namespace {
 AttachedToolBarMenuItem sAttachment{
    /* i18n-hint: Clicking this menu item shows the toolbar
       for transcription (currently just vary play speed) */
-   TranscriptionBarID, wxT("ShowTranscriptionTB"), XXO("Pla&y-at-Speed Toolbar")
+   TranscriptionToolBar::ID(),
+   wxT("ShowTranscriptionTB"), XXO("Pla&y-at-Speed Toolbar")
 };
 }
 
+// Menu handler functions
+
+#include "../CommonCommandFlags.h"
+
+namespace {
+void OnPlayAtSpeed(const CommandContext &context)
+{
+   auto &project = context.project;
+   auto tb = &TranscriptionToolBar::Get( project );
+
+   if (tb) {
+      tb->PlayAtSpeed(false, false);
+   }
+}
+
+void OnPlayAtSpeedLooped(const CommandContext &context)
+{
+   auto &project = context.project;
+   auto tb = &TranscriptionToolBar::Get( project );
+
+   if (tb) {
+      tb->PlayAtSpeed(true, false);
+   }
+}
+
+void OnPlayAtSpeedCutPreview(const CommandContext &context)
+{
+   auto &project = context.project;
+   auto tb = &TranscriptionToolBar::Get( project );
+
+   if (tb) {
+      tb->PlayAtSpeed(false, true);
+   }
+}
+
+void OnSetPlaySpeed(const CommandContext &context)
+{
+   auto &project = context.project;
+   auto tb = &TranscriptionToolBar::Get( project );
+
+   if (tb) {
+      tb->ShowPlaySpeedDialog();
+   }
+}
+
+void OnPlaySpeedInc(const CommandContext &context)
+{
+   auto &project = context.project;
+   auto tb = &TranscriptionToolBar::Get( project );
+
+   if (tb) {
+      tb->AdjustPlaySpeed(0.1f);
+   }
+}
+
+void OnPlaySpeedDec(const CommandContext &context)
+{
+   auto &project = context.project;
+   auto tb = &TranscriptionToolBar::Get( project );
+
+   if (tb) {
+      tb->AdjustPlaySpeed(-0.1f);
+   }
+}
+
+using namespace MenuRegistry;
+
+auto ExtraPlayAtSpeedMenu()
+{
+   static auto menu = std::shared_ptr{
+      Menu( wxT("PlayAtSpeed"), XXO("&Play-at-Speed") ) };
+   return menu;
+}
+
+AttachedItem sAttachment2{ Indirect(ExtraPlayAtSpeedMenu()),
+   wxT("Optional/Extra/Part1")
+};
+
+auto ExtraPlayAtSpeedItems()
+{
+   static auto items = std::shared_ptr{
+   Items( "",
+      /* i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview. */
+      Command( wxT("PlayAtSpeedLooped"), XXO("&Play-at-Speed"),
+         OnPlayAtSpeedLooped, CaptureNotBusyFlag() ),
+      Command( wxT("PlayAtSpeed"), XXO("Play-at-Speed &Once"),
+         OnPlayAtSpeed, CaptureNotBusyFlag() ),
+      Command( wxT("PlayAtSpeedCutPreview"), XXO("Play C&ut Preview-at-Speed"),
+         OnPlayAtSpeedCutPreview, CaptureNotBusyFlag() ),
+      Command( wxT("SetPlaySpeed"), XXO("Ad&just Playback Speed..."),
+         OnSetPlaySpeed, CaptureNotBusyFlag() ),
+      Command( wxT("PlaySpeedInc"), XXO("&Increase Playback Speed"),
+         OnPlaySpeedInc, CaptureNotBusyFlag() ),
+      Command( wxT("PlaySpeedDec"), XXO("&Decrease Playback Speed"),
+         OnPlaySpeedDec, CaptureNotBusyFlag() )
+   ) };
+   return items;
+}
+
+AttachedItem sAttachment3{ Indirect(ExtraPlayAtSpeedItems()),
+   Placement{ wxT("Optional/Extra/Part1/PlayAtSpeed"),
+     OrderingHint::Begin }
+};
+
+}

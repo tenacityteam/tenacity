@@ -12,18 +12,19 @@
 #define __AUDACITY_CLIPBOARD__
 
 
-#include <memory>
-#include <wx/event.h> // to inherit wxEvtHandler
 
-class TenacityProject;
+#include <memory>
+
+#include "Observer.h"
+
+class AudacityProject;
 class TrackList;
 
-// An event emitted by the clipboard whenever its contents change.
-wxDECLARE_EXPORTED_EVENT( TENACITY_DLL_API,
-                          EVT_CLIPBOARD_CHANGE, wxCommandEvent );
+//! Message is sent during idle time by the global clipboard
+struct ClipboardChangeMessage {};
 
 class TENACITY_DLL_API Clipboard final
-   : public wxEvtHandler
+   : public Observer::Publisher<ClipboardChangeMessage>
 {
 public:
    static Clipboard &Get();
@@ -34,25 +35,43 @@ public:
    double T1() const { return mT1; }
    double Duration() const { return mT1 - mT0; }
 
-   const std::weak_ptr<TenacityProject> &Project() const { return mProject; }
+   const std::weak_ptr<AudacityProject> &Project() const { return mProject; }
 
    void Clear();
    
+   /*!
+    @pre `!newContents.GetOwner()`
+    */
    void Assign(
      TrackList && newContents, double t0, double t1,
-     const std::weak_ptr<TenacityProject> &pProject );
+     const std::weak_ptr<AudacityProject> &pProject );
 
-   Clipboard();
    ~Clipboard();
 
    void Swap( Clipboard &other );
 
-private:
+   struct TENACITY_DLL_API Scope;
 
+private:
+   Clipboard();
+   Clipboard(const Clipboard &) = delete;
+   Clipboard &operator=(const Clipboard &) = delete;
+
+   /*!
+    @invariant `!mTracks->GetOwner()`
+    */
    std::shared_ptr<TrackList> mTracks;
-   std::weak_ptr<TenacityProject> mProject{};
+   std::weak_ptr<AudacityProject> mProject{};
    double mT0{ 0 };
    double mT1{ 0 };
+};
+
+//! Empty the clipboard at start of scope; restore its contents after
+struct Clipboard::Scope {
+   Scope();
+   ~Scope();
+private:
+   Clipboard mTempClipboard;
 };
 
 #endif

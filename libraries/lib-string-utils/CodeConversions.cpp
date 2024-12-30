@@ -3,7 +3,7 @@
  Audacity: A Digital Audio Editor
 
  @file CodeConversions.cpp
- @brief Define functions to preform UTF-8 to std::wstring conversions.
+ @brief Define functions to perform UTF-8 to std::wstring conversions.
 
  Dmitry Vedenko
  **********************************************************************/
@@ -13,7 +13,7 @@
 #include <locale>
 #include <codecvt>
 
-namespace Tenacity
+namespace audacity
 {
 
 std::string ToUTF8 (const std::wstring& wstr)
@@ -36,6 +36,12 @@ std::wstring ToWString (const std::string& str)
     return std::wstring_convert<std::codecvt_utf8<wchar_t>> ().from_bytes (str);
 }
 
+STRING_UTILS_API std::wstring ToWString(std::string_view str)
+{
+   return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(
+      str.data(), str.data() + str.length());
+}
+
 std::wstring ToWString (const char* str)
 {
     return std::wstring_convert<std::codecvt_utf8<wchar_t>> ().from_bytes (str);
@@ -51,9 +57,29 @@ wxString ToWXString (const std::string& str)
     return wxString::FromUTF8 (str);
 }
 
+STRING_UTILS_API wxString ToWXString(std::string_view str)
+{
+   return wxString::FromUTF8(str.data(), str.length());
+}
+
+STRING_UTILS_API wxString ToWXString(const char* str)
+{
+   return wxString::FromUTF8(str);
+}
+
 wxString ToWXString (const std::wstring& str)
 {
     return wxString (str);
+}
+
+wxString ToWXString(std::wstring_view str)
+{
+    return wxString(str.data(), str.size());
+}
+
+wxString ToWXString(const wchar_t* str)
+{
+    return wxString(str);
 }
 
 }

@@ -19,11 +19,15 @@
 
 #include "SetClipCommand.h"
 
+#include "CommandContext.h"
+#include "CommandDispatch.h"
+#include "MenuRegistry.h"
+#include "../CommonCommandFlags.h"
 #include "LoadCommands.h"
-#include "../WaveClip.h"
-#include "../WaveTrack.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
+#include "../tracks/playabletrack/wavetrack/ui/WaveformAppearance.h"
+#include "WaveTrack.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
 
 const ComponentInterfaceSymbol SetClipCommand::Symbol
 { XO("Set Clip") };
@@ -52,7 +56,8 @@ static const EnumValueSymbol kColourStrings[nColours] =
 };
 
 
-bool SetClipCommand::DefineParams( ShuttleParams & S ){ 
+template<bool Const>
+bool SetClipCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
    S.OptionalY( bHasContainsTime   ).Define(     mContainsTime,   wxT("At"),         0.0, 0.0, 100000.0 );
    S.OptionalN( bHasColour         ).DefineEnum( mColour,         wxT("Color"),      kColour0, kColourStrings, nColours );
    // Allowing a negative start time is not a mistake.
@@ -60,6 +65,11 @@ bool SetClipCommand::DefineParams( ShuttleParams & S ){
    S.OptionalN( bHasT0             ).Define(     mT0,             wxT("Start"),      0.0, -5.0, 1000000.0);
    return true;
 };
+bool SetClipCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool SetClipCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void SetClipCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -76,33 +86,50 @@ void SetClipCommand::PopulateOrExchange(ShuttleGui & S)
    S.EndMultiColumn();
 }
 
-bool SetClipCommand::ApplyInner( const CommandContext &, Track * t )
+bool SetClipCommand::Apply(const CommandContext& context)
 {
-   // if no 'At' is specified, then any clip in any selected track will be set.
-   t->TypeSwitch([&](WaveTrack *waveTrack) {
-      WaveClipPointers ptrs( waveTrack->SortedClipArray());
-      for(auto it = ptrs.begin(); (it != ptrs.end()); it++ ){
-         WaveClip * pClip = *it;
-         bool bFound =
-            !bHasContainsTime || (
-               ( pClip->GetPlayStartTime() <= mContainsTime ) &&
-               ( pClip->GetPlayEndTime() >= mContainsTime )
-            );
-         if( bFound )
-         {
-            // Inside this IF is where we actually apply the command
+   for(const auto track : TrackList::Get(context.project))
+   {
+      if(!track->GetSelected())
+         continue;
 
-            if( bHasColour )
-               pClip->SetColourIndex(mColour);
-            // No validation of overlap yet.  We assume the user is sensible!
-            if( bHasT0 )
-               pClip->SetPlayStartTime(mT0);
-            // \todo Use SetClip to move a clip between tracks too.
-            if( bHasName )
-               pClip->SetName(mName);
-
+      // if no 'At' is specified, then any clip in any selected track will be set.
+      track->TypeSwitch([&](WaveTrack &waveTrack) {
+         for (const auto &interval : waveTrack.Intervals()) {
+            if(!bHasContainsTime || 
+               (interval->Start() <= mContainsTime &&
+               interval->End() >= mContainsTime ))
+            {
+               // Inside this IF is where we actually apply the command
+               if (bHasColour) {
+                  for (const auto channel : interval->Channels())
+                     WaveColorAttachment::Get(*channel).SetColorIndex(mColour);
+               }
+               // No validation of overlap yet.  We assume the user is sensible!
+               if( bHasT0 )
+                  interval->SetPlayStartTime(mT0);
+               // \todo Use SetClip to move a clip between tracks too.
+               if( bHasName )
+                  interval->SetName(mName);
+            }
          }
-      }
-   } );
+      } );
+   }
    return true;
+}
+
+namespace {
+using namespace MenuRegistry;
+
+// Register menu items
+
+AttachedItem sAttachment1{
+   // Note that the PLUGIN_SYMBOL must have a space between words,
+   // whereas the short-form used here must not.
+   // (So if you did write "Compare Audio" for the PLUGIN_SYMBOL name, then
+   // you would have to use "CompareAudio" here.)
+   Command( wxT("SetClip"), XXO("Set Clip..."),
+      CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() ),
+   wxT("Optional/Extra/Part2/Scriptables1")
+};
 }

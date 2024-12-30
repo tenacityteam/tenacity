@@ -1,6 +1,6 @@
 /*!********************************************************************
  
- Tenacity
+ Audacity: A Digital Audio Editor
  
  @file ScrubState.cpp
  
@@ -11,8 +11,6 @@
 #include "ScrubState.h"
 #include "AudioIO.h"
 #include "Mix.h"
-
-#include <cmath>
 
 namespace {
 struct ScrubQueue : NonInterferingBase
@@ -44,7 +42,7 @@ struct ScrubQueue : NonInterferingBase
    void Get(sampleCount &startSample, sampleCount &endSample,
          sampleCount inDuration, sampleCount &duration)
    {
-      // Called by the thread that calls AudioIO::TrackBufferExchange
+      // Called by the thread that calls AudioIO::SequenceBufferExchange
       startSample = endSample = duration = -1LL;
       sampleCount s0Init;
 
@@ -57,8 +55,7 @@ struct ScrubQueue : NonInterferingBase
          // Make some initial silence. This is not needed in the case of
          // keyboard scrubbing or play-at-speed, because the initial speed
          // is known when this function is called the first time.
-         if ( !(message.options.isKeyboardScrubbing ||
-            message.options.isPlayingAtSpeed) ) {
+         if ( !(message.options.isKeyboardScrubbing) ) {
             mData.mS0 = mData.mS1 = s0Init;
             mData.mGoal = -1;
             mData.mDuration = duration = inDuration;
@@ -66,8 +63,7 @@ struct ScrubQueue : NonInterferingBase
          }
       }
 
-      if (mStarted || message.options.isKeyboardScrubbing ||
-         message.options.isPlayingAtSpeed) {
+      if (mStarted || message.options.isKeyboardScrubbing) {
          Data newData;
          inDuration += mAccumulatedSeekDuration;
 
@@ -223,7 +219,7 @@ private:
             // When playback follows a fast mouse movement by "stuttering"
             // at maximum playback, don't make stutters too short to be useful.
             if (options.adjustStart &&
-                duration < llrint( options.minStutterTime * rate ) )
+                duration < llrint( options.minStutterTime.count() * rate ) )
                return false;
 
             sampleCount minSample { llrint(options.minTime * rate) };
@@ -306,8 +302,10 @@ void ScrubbingPlaybackPolicy::Initialize( PlaybackSchedule &schedule,
 {
    PlaybackPolicy::Initialize(schedule, rate);
    mScrubDuration = mStartSample = mEndSample = 0;
+   mOldEndTime = mNewStartTime = 0;
    mScrubSpeed = 0;
    mSilentScrub = mReplenish = false;
+   mUntilDiscontinuity = 0;
    ScrubQueue::Instance.Init( schedule.mT0, rate, mOptions );
 }
 
@@ -326,6 +324,7 @@ Mixer::WarpOptions ScrubbingPlaybackPolicy::MixerWarpOptions(PlaybackSchedule &)
 PlaybackPolicy::BufferTimes
 ScrubbingPlaybackPolicy::SuggestedBufferTimes(PlaybackSchedule &)
 {
+   using namespace std::chrono;
    return {
       // For useful scrubbing, we can't run too far ahead without checking
       // mouse input, so make fillings more and shorter.
@@ -340,13 +339,8 @@ ScrubbingPlaybackPolicy::SuggestedBufferTimes(PlaybackSchedule &)
       2 * mOptions.minStutterTime,
 
       // Same as for default policy
-      10.0
+      10.0s
    };
-}
-
-double ScrubbingPlaybackPolicy::NormalizeTrackTime( PlaybackSchedule &schedule )
-{
-   return schedule.GetTrackTime();
 }
 
 bool ScrubbingPlaybackPolicy::AllowSeek( PlaybackSchedule & )
@@ -358,17 +352,13 @@ bool ScrubbingPlaybackPolicy::AllowSeek( PlaybackSchedule & )
 bool ScrubbingPlaybackPolicy::Done(
    PlaybackSchedule &schedule, unsigned long )
 {
-   if (mOptions.isPlayingAtSpeed)
-      // some leftover length allowed in this case; ignore outputFrames
-      return PlaybackPolicy::Done(schedule, 0);
-   else
-      return false;
+   return false;
 }
 
 std::chrono::milliseconds
 ScrubbingPlaybackPolicy::SleepInterval( PlaybackSchedule & )
 {
-   return std::chrono::milliseconds{ ScrubPollInterval_ms };
+   return ScrubPollInterval;
 }
 
 PlaybackSlice ScrubbingPlaybackPolicy::GetPlaybackSlice(
@@ -394,20 +384,33 @@ PlaybackSlice ScrubbingPlaybackPolicy::GetPlaybackSlice(
    mScrubDuration -= frames;
    wxASSERT(mScrubDuration >= 0);
 
+   mUntilDiscontinuity = 0;
    if (mScrubDuration <= 0) {
       mReplenish = true;
+      auto oldEndSample = mEndSample;
+      mOldEndTime = oldEndSample.as_long_long() / mRate;
       ScrubQueue::Instance.Get(
          mStartSample, mEndSample, available, mScrubDuration);
+      mNewStartTime = mStartSample.as_long_long() / mRate;
+      if(mScrubDuration >= 0 && oldEndSample != mStartSample)
+         mUntilDiscontinuity = frames;
    }
 
    return { available, frames, toProduce };
 }
 
-double ScrubbingPlaybackPolicy::AdvancedTrackTime(
-   PlaybackSchedule &schedule,
-   double trackTime, double realDuration )
+std::pair<double, double> ScrubbingPlaybackPolicy::AdvancedTrackTime(
+   PlaybackSchedule &schedule, double trackTime, size_t nSamples )
 {
-   return trackTime + realDuration * mScrubSpeed;
+   auto realDuration = nSamples / mRate;
+   auto result = trackTime + realDuration * mScrubSpeed;
+   bool discontinuity = nSamples > 0 &&
+      mUntilDiscontinuity > 0 &&
+      0 == (mUntilDiscontinuity -= std::min(mUntilDiscontinuity, nSamples));
+   if (discontinuity)
+      return { mOldEndTime, mNewStartTime };
+   else
+      return { result, result };
 }
 
 bool ScrubbingPlaybackPolicy::RepositionPlayback(
@@ -443,16 +446,13 @@ bool ScrubbingPlaybackPolicy::RepositionPlayback(
          if (!mSilentScrub)
          {
             for (auto &pMixer : playbackMixers) {
-               if (mOptions.isPlayingAtSpeed)
-                  pMixer->SetSpeedForPlayAtSpeed(mScrubSpeed);
-               else if (mOptions.isKeyboardScrubbing)
+               if (mOptions.isKeyboardScrubbing)
                   pMixer->SetSpeedForKeyboardScrubbing(mScrubSpeed, startTime);
                else
                   pMixer->SetTimesAndSpeed(
                      startTime, endTime, fabs( mScrubSpeed ));
             }
          }
-         schedule.mTimeQueue.mLastTime = startTime;
       }
    }
 

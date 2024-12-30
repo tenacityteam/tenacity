@@ -13,7 +13,9 @@
 
 class sampleCount;
 class SpectrogramSettings;
-class SampleTrackCache;
+class WaveClipChannel;
+using WaveChannelInterval = WaveClipChannel;
+class WideSampleSequence;
 
 #include <vector>
 #include "MemoryX.h"
@@ -27,7 +29,7 @@ public:
    // Make invalid cache
    SpecCache()
       : algorithm(-1)
-      , pps(-1.0)
+      , spp(-1.0)
       , start(-1.0)
       , windowType(-1)
       , frequencyGain(-1)
@@ -39,37 +41,26 @@ public:
    {
    }
 
-   bool Matches(int dirty_, double pixelsPerSecond,
-      const SpectrogramSettings &settings, double rate) const;
-
-   // Calculate one column of the spectrum
-   bool CalculateOneSpectrum
-      (const SpectrogramSettings &settings,
-       SampleTrackCache &waveTrackCache,
-       const int xx, sampleCount numSamples,
-       double offset, double rate, double pixelsPerSecond,
-       int lowerBoundX, int upperBoundX,
-       const std::vector<float> &gainFactors,
-       float* __restrict scratch,
-       float* __restrict out) const;
+   bool Matches(
+      int dirty_, double samplesPerPixel,
+      const SpectrogramSettings& settings) const;
 
    // Grow the cache while preserving the (possibly now invalid!) contents
-   void Grow(size_t len_, const SpectrogramSettings& settings,
-               double pixelsPerSecond, double start_);
+   void Grow(
+      size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
+      double start /*relative to clip play start time*/);
 
    // Calculate the dirty columns at the begin and end of the cache
-   void Populate
-      (const SpectrogramSettings &settings, SampleTrackCache &waveTrackCache,
-       int copyBegin, int copyEnd, size_t numPixels,
-       sampleCount numSamples,
-       double offset, double rate, double pixelsPerSecond);
+   void Populate(
+      const SpectrogramSettings& settings, const WaveChannelInterval& clip,
+      int copyBegin, int copyEnd, size_t numPixels, double pixelsPerSecond);
 
    size_t       len { 0 }; // counts pixels, not samples
    int          algorithm;
-   double       pps;
+   double       spp; // samples per pixel
    double       leftTrim{ .0 };
    double       rightTrim{ .0 };
-   double       start;
+   double       start; // relative to clip start
    int          windowType;
    size_t       windowSize { 0 };
    unsigned     zeroPaddingFactor { 0 };
@@ -78,6 +69,16 @@ public:
    std::vector<sampleCount> where;
 
    int          dirty;
+
+private:
+   // Calculate one column of the spectrum
+   bool CalculateOneSpectrum(
+      const SpectrogramSettings& settings, const WaveChannelInterval &clip,
+      const int xx, double pixelsPerSecond, int lowerBoundX, int upperBoundX,
+      const std::vector<float>& gainFactors, float* __restrict scratch,
+      float* __restrict out) const;
+
+   mutable std::optional<AudioSegmentSampleView> mSampleCacheHolder;
 };
 
 class SpecPxCache {
@@ -86,7 +87,6 @@ public:
       : len{ cacheLen }
       , values{ len }
    {
-      valid = false;
       scaleType = 0;
       range = gain = -1;
       minFreq = maxFreq = -1;
@@ -94,7 +94,6 @@ public:
 
    size_t  len;
    Floats values;
-   bool         valid;
 
    int scaleType;
    int range;
@@ -105,25 +104,35 @@ public:
 
 struct WaveClipSpectrumCache final : WaveClipListener
 {
-   WaveClipSpectrumCache();
+   explicit WaveClipSpectrumCache(size_t nChannels);
    ~WaveClipSpectrumCache() override;
 
+   std::unique_ptr<WaveClipListener> Clone() const override;
+
    // Cache of values to colour pixels of Spectrogram - used by TrackArtist
-   std::unique_ptr<SpecPxCache> mSpecPxCache;
-   std::unique_ptr<SpecCache> mSpecCache;
+   std::vector<std::unique_ptr<SpecPxCache>> mSpecPxCaches;
+   std::vector<std::unique_ptr<SpecCache>> mSpecCaches;
    int mDirty { 0 };
 
-   static WaveClipSpectrumCache &Get( const WaveClip &clip );
+   static WaveClipSpectrumCache &Get(const WaveChannelInterval &clip);
 
-   void MarkChanged() override; // NOFAIL-GUARANTEE
+   void MarkChanged() noexcept override; // NOFAIL-GUARANTEE
    void Invalidate() override; // NOFAIL-GUARANTEE
 
    /** Getting high-level data for screen display */
-   bool GetSpectrogram(const WaveClip &clip, SampleTrackCache &cache,
-                       const float *& spectrogram,
-                       const sampleCount *& where,
-                       size_t numPixels,
-                       double t0, double pixelsPerSecond);
+   // PRL:
+   // > only the 0th channel of sequence is really used
+   // > In the interim, this still works correctly for WideSampleSequence backed
+   // > by a right channel track, which always ignores its partner.
+   bool GetSpectrogram(const WaveChannelInterval &clip,
+      const float *&spectrogram,
+      SpectrogramSettings &spectrogramSettings,
+      const sampleCount *&where, size_t numPixels,
+      double t0 /*absolute time*/, double pixelsPerSecond);
+
+   void MakeStereo(WaveClipListener &&other, bool aligned) override;
+   void SwapChannels() override;
+   void Erase(size_t index) override;
 };
 
 #endif

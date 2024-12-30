@@ -4,35 +4,43 @@ Audacity: A Digital Audio Editor
 
 SpectrumVZoomHandle.cpp
 
-Paul Licameli split from WaveTrackVZoomHandle.cpp
+Paul Licameli split from WaveChannelVZoomHandle.cpp
 
 **********************************************************************/
 
 
 #include "SpectrumVZoomHandle.h"
 
-#include "WaveTrackVZoomHandle.h"
+#include "WaveChannelVZoomHandle.h"
 
 #include "../../../../HitTestResult.h"
-#include "../../../../ProjectHistory.h"
+#include "NumberScale.h"
+#include "Prefs.h"
+#include "ProjectHistory.h"
 #include "../../../../RefreshCode.h"
 #include "../../../../TrackPanelMouseEvent.h"
-#include "../../../../WaveTrack.h"
-#include "../../../../prefs/SpectrogramSettings.h"
+#include "WaveTrack.h"
+#include "SpectrogramSettings.h"
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-screen-geometry/NumberScale.h>
-
-SpectrumVZoomHandle::SpectrumVZoomHandle
-(const std::shared_ptr<WaveTrack> &pTrack, const wxRect &rect, int y)
-   : mpTrack{ pTrack } , mZoomStart(y), mZoomEnd(y), mRect(rect)
+SpectrumVZoomHandle::SpectrumVZoomHandle(
+   const std::shared_ptr<WaveChannel> &pChannel, const wxRect &rect, int y
+)  : mpChannel{ pChannel }, mZoomStart(y), mZoomEnd(y), mRect(rect)
 {
 }
 
 SpectrumVZoomHandle::~SpectrumVZoomHandle() = default;
 
-void SpectrumVZoomHandle::Enter( bool, TenacityProject* )
+std::shared_ptr<const Track> SpectrumVZoomHandle::FindTrack() const
+{
+   return TrackFromChannel(mpChannel.lock());
+}
+
+std::shared_ptr<WaveChannel> SpectrumVZoomHandle::FindWaveChannel()
+{
+   return mpChannel.lock();
+}
+
+void SpectrumVZoomHandle::Enter( bool, AudacityProject* )
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -45,39 +53,40 @@ bool SpectrumVZoomHandle::HandlesRightClick()
 }
 
 UIHandle::Result SpectrumVZoomHandle::Click
-(const TrackPanelMouseEvent &, TenacityProject *)
+(const TrackPanelMouseEvent &, AudacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result SpectrumVZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+UIHandle::Result SpectrumVZoomHandle::Drag(
+   const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
-   auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
-   if (!pTrack)
+   if (!FindTrack())
       return Cancelled;
-   return WaveTrackVZoomHandle::DoDrag( evt, pProject, mZoomStart, mZoomEnd );
+   return WaveChannelVZoomHandle::DoDrag(evt, pProject, mZoomStart, mZoomEnd, true);
 }
 
 HitTestPreview SpectrumVZoomHandle::Preview
-(const TrackPanelMouseState &st, TenacityProject *)
+(const TrackPanelMouseState &st, AudacityProject *)
 {
-   return WaveTrackVZoomHandle::HitPreview(st.state);
+   return WaveChannelVZoomHandle::HitPreview(true);
 }
 
-UIHandle::Result SpectrumVZoomHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
- wxWindow *pParent)
+UIHandle::Result SpectrumVZoomHandle::Release(
+   const TrackPanelMouseEvent &evt, AudacityProject *pProject,
+   wxWindow *pParent)
 {
-   auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
-   return WaveTrackVZoomHandle::DoRelease(
-      evt, pProject, pParent, pTrack.get(), mRect,
+   const auto pChannel = FindWaveChannel();
+   if (!pChannel)
+      return RefreshCode::Cancelled;
+   return WaveChannelVZoomHandle::DoRelease(
+      evt, pProject, pParent, *pChannel, mRect,
       DoZoom, SpectrumVRulerMenuTable::Instance(),
-      mZoomStart, mZoomEnd );
+      mZoomStart, mZoomEnd);
 }
 
-UIHandle::Result SpectrumVZoomHandle::Cancel(TenacityProject*)
+UIHandle::Result SpectrumVZoomHandle::Cancel(AudacityProject*)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.
@@ -88,30 +97,31 @@ void SpectrumVZoomHandle::Draw(
    TrackPanelDrawingContext &context,
    const wxRect &rect, unsigned iPass )
 {
-   if (!mpTrack.lock()) //? TrackList::Lock()
+   const auto pChannel = FindTrack();
+   if (!pChannel)
       return;
-   return WaveTrackVZoomHandle::DoDraw(
-      context, rect, iPass, mZoomStart, mZoomEnd );
+   return WaveChannelVZoomHandle::DoDraw(
+      context, rect, iPass, mZoomStart, mZoomEnd, true );
 }
 
 wxRect SpectrumVZoomHandle::DrawingArea(
    TrackPanelDrawingContext &,
    const wxRect &rect, const wxRect &panelRect, unsigned iPass )
 {
-   return WaveTrackVZoomHandle::DoDrawingArea( rect, panelRect, iPass );
+   return WaveChannelVZoomHandle::DoDrawingArea(rect, panelRect, iPass);
 }
 
 // ZoomKind says how to zoom.
 // If ZoomStart and ZoomEnd are not equal, this may override
 // the zoomKind and cause a drag-zoom-in.
 void SpectrumVZoomHandle::DoZoom(
-   TenacityProject *pProject,
-   WaveTrack *pTrack,
-   WaveTrackViewConstants::ZoomActions ZoomKind,
+   AudacityProject *pProject,
+   WaveChannel &wc,
+   WaveChannelViewConstants::ZoomActions ZoomKind,
    const wxRect &rect, int zoomStart, int zoomEnd,
    bool fixedMousePoint)
 {
-   using namespace WaveTrackViewConstants;
+   using namespace WaveChannelViewConstants;
    static const float ZOOMLIMIT = 0.001f;
 
    int height = rect.height;
@@ -122,16 +132,16 @@ void SpectrumVZoomHandle::DoZoom(
       std::swap( zoomStart, zoomEnd );
 
    float min, max, minBand = 0;
-   const double rate = pTrack->GetRate();
+   const double rate = wc.GetRate();
    const float halfrate = rate / 2;
-   float maxFreq = 20000.0;
-   const SpectrogramSettings &specSettings = pTrack->GetSpectrogramSettings();
+   float maxFreq = 8000.0;
+   const auto &specSettings = SpectrogramSettings::Get(wc);
    NumberScale scale;
    const bool spectrumLinear =
-      (pTrack->GetSpectrogramSettings().scaleType == SpectrogramSettings::stLinear);
+      (specSettings.scaleType == SpectrogramSettings::stLinear);
+   auto &bounds = SpectrogramBounds::Get(wc);
 
-
-   bool bDragZoom = WaveTrackVZoomHandle::IsDragZooming(zoomStart, zoomEnd);
+   bool bDragZoom = WaveChannelVZoomHandle::IsDragZooming(zoomStart, zoomEnd, true);
    // Add 100 if spectral to separate the kinds of zoom.
    const int kSpectral = 100;
 
@@ -143,11 +153,11 @@ void SpectrumVZoomHandle::DoZoom(
    float half=0.5;
 
    {
-      pTrack->GetSpectrumBounds(&min, &max);
+      bounds.GetBounds(wc, min, max);
       scale = (specSettings.GetScale(min, max));
       const auto fftLength = specSettings.GetFFTLength();
       const float binSize = rate / fftLength;
-      maxFreq = gPrefs->Read(wxT("/Spectrum/MaxFreq"), 20000L);
+      maxFreq = SpectrumMaxFreq.Read();
       // JKC:  Following discussions of Bug 1208 I'm allowing zooming in
       // down to one bin.
       //      const int minBins =
@@ -162,7 +172,7 @@ void SpectrumVZoomHandle::DoZoom(
    default:
       // If we have covered all the cases, this won't happen.
       // In release builds Audacity will ignore the zoom.
-      wxFAIL_MSG("Zooming Case not implemented by Tenacity");
+      wxFAIL_MSG("Zooming Case not implemented by Audacity");
       break;
 
    // VZooming on spectral we don't implement the other zoom presets.
@@ -175,8 +185,6 @@ void SpectrumVZoomHandle::DoZoom(
       }
       break;
    case kZoom1to1:
-   case kZoomDiv2:
-   case kZoomTimes2:
    case kZoomHalfWave:
       {
          // Zoom out full
@@ -253,8 +261,7 @@ void SpectrumVZoomHandle::DoZoom(
    }
 
    // Now actually apply the zoom.
-   for (auto channel : TrackList::Channels(pTrack))
-      channel->SetSpectrumBounds(min, max);
+   bounds.SetBounds(min, max);
 
    zoomEnd = zoomStart = 0;
    if( pProject )
@@ -271,62 +278,45 @@ PopupMenuTable &SpectrumVRulerMenuTable::Instance()
 }
 
 BEGIN_POPUP_MENU(SpectrumVRulerMenuTable)
-
-BeginSection( "Scales" );
-   {
-      const auto & names = SpectrogramSettings::GetScaleNames();
-      for (int ii = 0, nn = names.size(); ii < nn; ++ii) {
-         AppendRadioItem( names[ii].Internal(),
-            OnFirstSpectrumScaleID + ii, names[ii].Msgid(),
-            POPUP_MENU_FN( OnSpectrumScaleType ),
-            []( PopupMenuHandler &handler, wxMenu &menu, int id ){
-               WaveTrack *const wt =
-                  static_cast<SpectrumVRulerMenuTable&>( handler )
-                     .mpData->pTrack;
-               if ( id ==
-                  OnFirstSpectrumScaleID +
-                      (int)(wt->GetSpectrogramSettings().scaleType ) )
-                  menu.Check(id, true);
-            }
-         );
-      }
+   //Generate scales (Mel, Logarithmic, etc)
+   const auto & names = SpectrogramSettings::GetScaleNames();
+   for (int ii = 0, nn = names.size(); ii < nn; ++ii) {
+      AppendRadioItem( names[ii].Internal(),
+         OnFirstSpectrumScaleID + ii, names[ii].Msgid(),
+         POPUP_MENU_FN( OnSpectrumScaleType ),
+         []( PopupMenuHandler &handler, wxMenu &menu, int id ){
+            auto &wc =
+               static_cast<SpectrumVRulerMenuTable&>(handler)
+                  .mpData->wc;
+            if ( id ==
+               OnFirstSpectrumScaleID +
+                     static_cast<int>(SpectrogramSettings::Get(wc).scaleType))
+               menu.Check(id, true);
+         }
+      );
    }
-EndSection();
 
 
 BeginSection( "Zoom" );
-   // Accelerators only if zooming enabled.
-   bool bVZoom;
-   gPrefs->Read(wxT("/GUI/VerticalZooming"), &bVZoom, false);
-
-   AppendItem( "Reset", OnZoomResetID,         XXO("Zoom Reset"),
-              POPUP_MENU_FN( OnZoomReset ) );
-   AppendItem( "Fit", OnZoomFitVerticalID,
-      MakeLabel( XXO("Zoom to Fit"), bVZoom, XXO("Shift-Right-Click") ),
-      POPUP_MENU_FN( OnZoomFitVertical ) );
-   AppendItem( "In", OnZoomInVerticalID,
-      MakeLabel( XXO("Zoom In"), bVZoom, XXO("Left-Click/Left-Drag") ),
-      POPUP_MENU_FN( OnZoomInVertical ) );
-   AppendItem( "Out", OnZoomOutVerticalID,
-      MakeLabel( XXO("Zoom Out"), bVZoom, XXO("Shift-Left-Click") ),
-      POPUP_MENU_FN( OnZoomOutVertical ) );
+   AppendItem( "In", OnZoomInVerticalID, XXO("Zoom In"),POPUP_MENU_FN( OnZoomInVertical ) );
+   AppendItem( "Out", OnZoomOutVerticalID, XXO("Zoom Out"), POPUP_MENU_FN( OnZoomOutVertical ) );
+   AppendItem( "Fit", OnZoomFitVerticalID, XXO("Zoom to Fit"), POPUP_MENU_FN( OnZoomFitVertical ) );
+   AppendItem( "Reset", OnZoomResetID, XXO("Reset Zoom"),POPUP_MENU_FN( OnZoomReset ) );
 EndSection();
 
 END_POPUP_MENU()
 
 void SpectrumVRulerMenuTable::OnSpectrumScaleType(wxCommandEvent &evt)
 {
-   WaveTrack *const wt = mpData->pTrack;
-
+   auto &wc = mpData->wc;
    const SpectrogramSettings::ScaleType newScaleType =
       SpectrogramSettings::ScaleType(
          std::max(0,
             std::min((int)(SpectrogramSettings::stNumScaleTypes) - 1,
                evt.GetId() - OnFirstSpectrumScaleID
       )));
-   if (wt->GetSpectrogramSettings().scaleType != newScaleType) {
-      for (auto channel : TrackList::Channels(wt))
-         channel->GetIndependentSpectrogramSettings().scaleType = newScaleType;
+   if (SpectrogramSettings::Get(wc).scaleType != newScaleType) {
+      SpectrogramSettings::Own(wc).scaleType = newScaleType;
 
       ProjectHistory::Get( mpData->project ).ModifyState(true);
 

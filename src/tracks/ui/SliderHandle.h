@@ -24,7 +24,7 @@ class TENACITY_DLL_API SliderHandle /* not final */ : public UIHandle
    SliderHandle(const SliderHandle&) = delete;
 
 public:
-   using SliderFn = LWSlider *(*)( TenacityProject*, const wxRect&, Track* );
+   using SliderFn = LWSlider *(*)( AudacityProject*, const wxRect&, Track* );
 
    explicit SliderHandle
       ( SliderFn sliderFn, const wxRect &rect,
@@ -32,8 +32,9 @@ public:
 
    SliderHandle &operator=(const SliderHandle&) = default;
 
+   std::shared_ptr<const Track> FindTrack() const override;
    std::shared_ptr<Track> GetTrack() const { return mpTrack.lock(); }
-   bool IsClicked() const { return mIsClicked; }
+   bool IsDragging() const override;
 
 protected:
    virtual ~SliderHandle();
@@ -43,43 +44,43 @@ protected:
    // change.
    // Subclass can decide to refresh other things and the results will be ORed.
    virtual float GetValue() = 0;
-   virtual Result SetValue(TenacityProject *pProject, float newValue) = 0;
+   virtual Result SetValue(AudacityProject *pProject, float newValue) = 0;
    virtual Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject) = 0;
+      (const wxMouseEvent &event, AudacityProject *pProject) = 0;
 
    // Define a message for the status bar and tooltip.
    virtual TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &project) const = 0;
+      const wxMouseState &state, AudacityProject &project) const = 0;
  
-   void Enter(bool forward, TenacityProject *) override;
+   void Enter(bool forward, AudacityProject *) override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject)
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject)
       final override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject)
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject)
       final override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       final override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) final override;
 
-   Result Cancel(TenacityProject *pProject) final override;
+   Result Cancel(AudacityProject *pProject) final override;
 
    // Derived class is expected to set these two before Click():
    std::weak_ptr<Track> mpTrack;
    wxRect mRect{};
    SliderFn mSliderFn;
-   LWSlider *GetSlider( TenacityProject *pProject );
+   LWSlider *GetSlider( AudacityProject *pProject );
 
    float mStartingValue {};
 
-   bool mIsClicked{};
+   bool mIsDragging{};
 };
 
 #endif

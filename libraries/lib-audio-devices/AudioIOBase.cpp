@@ -11,19 +11,28 @@ Paul Licameli split from AudioIO.cpp
 
 #include "AudioIOBase.h"
 
+#include <cassert>
+
+#include <wx/log.h>
+#include <wx/sstream.h>
+#include <wx/txtstrm.h>
+
+#include "IteratorX.h"
 #include "Meter.h"
 #include "Prefs.h"
 
-#include <portaudio.h>
-#include <iostream>
-#include <sstream>
+#include "portaudio.h"
 
-int AudioIOBase::mCachedPlaybackIndex = -1;
-std::vector<long> AudioIOBase::mCachedPlaybackRates;
-int AudioIOBase::mCachedCaptureIndex = -1;
-std::vector<long> AudioIOBase::mCachedCaptureRates;
-std::vector<long> AudioIOBase::mCachedSampleRates;
-double AudioIOBase::mCachedBestRateIn = 0.0;
+#if USE_PORTMIXER
+#include "portmixer.h"
+#endif
+
+std::map<int, std::vector<long>> AudioIOBase::mCachedPlaybackRates;
+std::map<int, std::vector<long>> AudioIOBase::mCachedCaptureRates;
+std::map<std::pair<int, int>, std::vector<long>> AudioIOBase::mCachedSampleRates;
+int AudioIOBase::mCurrentPlaybackIndex { -1 };
+int AudioIOBase::mCurrentCaptureIndex { -1 };
+double AudioIOBase::mCachedBestRateIn { 0.0 };
 
 const int AudioIOBase::StandardRates[] = {
    8000,
@@ -41,7 +50,7 @@ const int AudioIOBase::StandardRates[] = {
    384000
 };
 
-const int AudioIOBase::NumStandardRates = sizeof(AudioIOBase::StandardRates) / sizeof(int);
+const int AudioIOBase::NumStandardRates = WXSIZEOF(AudioIOBase::StandardRates);
 
 const int AudioIOBase::RatesToTry[] = {
    8000,
@@ -62,18 +71,18 @@ const int AudioIOBase::RatesToTry[] = {
    352800,
    384000
 };
-const int AudioIOBase::NumRatesToTry = sizeof(AudioIOBase::RatesToTry) / sizeof(int);
+const int AudioIOBase::NumRatesToTry = WXSIZEOF(AudioIOBase::RatesToTry);
 
-std::string AudioIOBase::DeviceName(const PaDeviceInfo* info)
+wxString AudioIOBase::DeviceName(const PaDeviceInfo* info)
 {
-   std::string infoName = std::string(info->name);
+   wxString infoName = wxSafeConvertMB2WX(info->name);
 
    return infoName;
 }
 
-std::string AudioIOBase::HostName(const PaDeviceInfo* info)
+wxString AudioIOBase::HostName(const PaDeviceInfo* info)
 {
-   std::string hostapiName = std::string(Pa_GetHostApiInfo(info->hostApi)->name);
+   wxString hostapiName = wxSafeConvertMB2WX(Pa_GetHostApiInfo(info->hostApi)->name);
 
    return hostapiName;
 }
@@ -91,12 +100,21 @@ AudioIOBase::AudioIOBase() = default;
 
 AudioIOBase::~AudioIOBase() = default;
 
+void AudioIOBase::SetMixer(int inputSource)
+{
+#if defined(USE_PORTMIXER)
+   int oldRecordSource = Px_GetCurrentInputSource(mPortMixer);
+   if ( inputSource != oldRecordSource )
+         Px_SetCurrentInputSource(mPortMixer, inputSource);
+#endif
+}
+
 void AudioIOBase::HandleDeviceChange()
 {
    // This should not happen, but it would screw things up if it did.
    // Vaughan, 2010-10-08: But it *did* happen, due to a bug, and nobody
-   // caught it because this method just returned. Added assert().
-   assert(!IsStreamActive());
+   // caught it because this method just returned. Added wxASSERT().
+   wxASSERT(!IsStreamActive());
    if (IsStreamActive())
       return;
 
@@ -105,22 +123,171 @@ void AudioIOBase::HandleDeviceChange()
    const int recDeviceNum = getRecordDevIndex();
 
    // If no change needed, return
-   if (mCachedPlaybackIndex == playDeviceNum &&
-       mCachedCaptureIndex == recDeviceNum)
+   if (mCurrentPlaybackIndex == playDeviceNum &&
+       mCurrentCaptureIndex == recDeviceNum)
        return;
 
-   // cache playback/capture rates
-   mCachedPlaybackRates = GetSupportedPlaybackRates(playDeviceNum);
-   mCachedCaptureRates = GetSupportedCaptureRates(recDeviceNum);
-   mCachedSampleRates = GetSupportedSampleRates(playDeviceNum, recDeviceNum);
-   mCachedPlaybackIndex = playDeviceNum;
-   mCachedCaptureIndex = recDeviceNum;
+   // Update playback/capture device indices
+   mCurrentPlaybackIndex = playDeviceNum;
+   mCurrentCaptureIndex = recDeviceNum;
    mCachedBestRateIn = 0.0;
 
+#if defined(USE_PORTMIXER)
+
+   // if we have a PortMixer object, close it down
+   if (mPortMixer) {
+      #if __WXMAC__
+      // on the Mac we must make sure that we restore the hardware playthrough
+      // state of the sound device to what it was before, because there isn't
+      // a UI for this (!)
+      if (Px_SupportsPlaythrough(mPortMixer) && mPreviousHWPlaythrough >= 0.0)
+         Px_SetPlaythrough(mPortMixer, mPreviousHWPlaythrough);
+         mPreviousHWPlaythrough = -1.0;
+      #endif
+      Px_CloseMixer(mPortMixer);
+      mPortMixer = NULL;
+   }
+
+   // Looking for highest supported sample rate for a given
+   // play/rec device pair
+   long highestSampleRate = GetClosestSupportedSampleRate(playDeviceNum, recDeviceNum, INT_MAX);
+   if (highestSampleRate == 0)
+   {
+      // we don't actually have any rates that work for Rec and Play. Guess one
+      // to use for messing with the mixer, which doesn't actually do either
+      highestSampleRate = 44100;
+   }
+
+   mInputMixerWorks = false;
+
+   int error;
+   // This tries to open the device with the samplerate worked out above, which
+   // will be the highest available for play and record on the device, or
+   // 44.1kHz if the info cannot be fetched.
+
+   PaStream *stream;
+
+   PaStreamParameters playbackParameters;
+
+   playbackParameters.device = playDeviceNum;
+   playbackParameters.sampleFormat = paFloat32;
+   playbackParameters.hostApiSpecificStreamInfo = NULL;
+   playbackParameters.channelCount = 1;
+   if (Pa_GetDeviceInfo(playDeviceNum))
+      playbackParameters.suggestedLatency =
+         Pa_GetDeviceInfo(playDeviceNum)->defaultLowOutputLatency;
+   else
+      playbackParameters.suggestedLatency =
+         AudioIOLatencyCorrection.GetDefault()/1000.0;
+
+   PaStreamParameters captureParameters;
+
+   captureParameters.device = recDeviceNum;
+   captureParameters.sampleFormat = paFloat32;;
+   captureParameters.hostApiSpecificStreamInfo = NULL;
+   captureParameters.channelCount = 1;
+   if (Pa_GetDeviceInfo(recDeviceNum))
+      captureParameters.suggestedLatency =
+         Pa_GetDeviceInfo(recDeviceNum)->defaultLowInputLatency;
+   else
+      captureParameters.suggestedLatency =
+         AudioIOLatencyCorrection.GetDefault()/1000.0;
+
+   // try opening for record and playback
+   // Not really doing I/O so pass nullptr for the callback function
+   error = Pa_OpenStream(&stream,
+                         &captureParameters, &playbackParameters,
+                         highestSampleRate, paFramesPerBufferUnspecified,
+                         paClipOff | paDitherOff,
+                         nullptr, NULL);
+
+   if (!error) {
+      // Try portmixer for this stream
+      mPortMixer = Px_OpenMixer(stream, recDeviceNum, playDeviceNum, 0);
+      if (!mPortMixer) {
+         Pa_CloseStream(stream);
+         error = true;
+      }
+   }
+
+   // if that failed, try just for record
+   if( error ) {
+      error = Pa_OpenStream(&stream,
+                            &captureParameters, NULL,
+                            highestSampleRate, paFramesPerBufferUnspecified,
+                            paClipOff | paDitherOff,
+                            nullptr, NULL);
+
+      if (!error) {
+         mPortMixer = Px_OpenMixer(stream, recDeviceNum, playDeviceNum, 0);
+         if (!mPortMixer) {
+            Pa_CloseStream(stream);
+            error = true;
+         }
+      }
+   }
+
+   // finally, try just for playback
+   if ( error ) {
+      error = Pa_OpenStream(&stream,
+                            NULL, &playbackParameters,
+                            highestSampleRate, paFramesPerBufferUnspecified,
+                            paClipOff | paDitherOff,
+                            nullptr, NULL);
+
+      if (!error) {
+         mPortMixer = Px_OpenMixer(stream, recDeviceNum, playDeviceNum, 0);
+         if (!mPortMixer) {
+            Pa_CloseStream(stream);
+            error = true;
+         }
+      }
+   }
+
+   // FIXME: TRAP_ERR errors in HandleDeviceChange not reported.
+   // if it's still not working, give up
+   if( error )
+      return;
+
+   // Set input source
+#if USE_PORTMIXER
+   auto sourceIndex = AudioIORecordingSourceIndex.Read(); // defaults to -1
+   if (sourceIndex >= 0) {
+      //the current index of our source may be different because the stream
+      //is a combination of two devices, so update it.
+      sourceIndex = getRecordSourceIndex(mPortMixer);
+      if (sourceIndex >= 0)
+         SetMixer(sourceIndex);
+   }
+#endif
+
+   // Determine mixer capabilities - if it doesn't support control of output
+   // signal level, we emulate it (by multiplying this value by all outgoing
+   // samples)
+
+   float inputVol = Px_GetInputVolume(mPortMixer);
+   mInputMixerWorks = true;   // assume it works unless proved wrong
+   Px_SetInputVolume(mPortMixer, 0.0);
+   if (Px_GetInputVolume(mPortMixer) > 0.1)
+      mInputMixerWorks = false;  // can't set to zero
+   Px_SetInputVolume(mPortMixer, 0.2f);
+   if (Px_GetInputVolume(mPortMixer) < 0.1 ||
+       Px_GetInputVolume(mPortMixer) > 0.3)
+      mInputMixerWorks = false;  // can't set level accurately
+   Px_SetInputVolume(mPortMixer, inputVol);
+
+   Pa_CloseStream(stream);
+
+
+   #if 0
+   wxPrintf("PortMixer: Recording: %s\n"
+          mInputMixerWorks? "hardware": "no control");
+   #endif
+#endif   // USE_PORTMIXER
 }
 
 void AudioIOBase::SetCaptureMeter(
-   const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &wMeter)
+   const std::shared_ptr<AudacityProject> &project, const std::weak_ptr<Meter> &wMeter)
 {
    if (auto pOwningProject = mOwningProject.lock();
        ( pOwningProject ) && ( pOwningProject != project))
@@ -137,7 +304,7 @@ void AudioIOBase::SetCaptureMeter(
 }
 
 void AudioIOBase::SetPlaybackMeter(
-   const std::shared_ptr<TenacityProject> &project, const std::weak_ptr<Meter> &wMeter)
+   const std::shared_ptr<AudacityProject> &project, const std::weak_ptr<Meter> &wMeter)
 {
    if (auto pOwningProject = mOwningProject.lock();
        ( pOwningProject ) && ( pOwningProject != project))
@@ -155,7 +322,7 @@ void AudioIOBase::SetPlaybackMeter(
 
 bool AudioIOBase::IsPaused() const
 {
-   return mPaused;
+   return mPaused.load(std::memory_order_relaxed);
 }
 
 bool AudioIOBase::IsBusy() const
@@ -194,31 +361,26 @@ bool AudioIOBase::IsMonitoring() const
    return ( mPortStreamV19 && mStreamToken==0 );
 }
 
-std::vector<long> AudioIOBase::GetSupportedPlaybackRates(int devIndex, double rate)
+bool AudioIOBase::IsPlaybackRateSupported(int devIndex, long rate)
 {
    if (devIndex == -1)
    {  // weren't given a device index, get the prefs / default one
       devIndex = getPlayDevIndex();
    }
 
-   // Check if we can use the cached rates
-   if (mCachedPlaybackIndex != -1 && devIndex == mCachedPlaybackIndex
-         && (rate == 0.0 || make_iterator_range(mCachedPlaybackRates).contains(rate)))
+   // Check if we can use the cached rate
+   if (mCachedPlaybackRates.count(devIndex) &&
+       (make_iterator_range(mCachedPlaybackRates.at(devIndex)).contains(rate)))
    {
-      return mCachedPlaybackRates;
+      return true;
    }
 
-   std::vector<long> supported;
-   int irate = (int)rate;
-   const PaDeviceInfo* devInfo = NULL;
-   int i;
-
-   devInfo = Pa_GetDeviceInfo(devIndex);
+   auto devInfo = Pa_GetDeviceInfo(devIndex);
 
    if (!devInfo)
    {
-      std::cout << "GetSupportedPlaybackRates() Could not get device info!" << std::endl;
-      return supported;
+      wxLogDebug(wxT("IsPlaybackRateSupported() Could not get device info!"));
+      return false;
    }
 
    // LLL: Remove when a proper method of determining actual supported
@@ -235,55 +397,39 @@ std::vector<long> AudioIOBase::GetSupportedPlaybackRates(int devIndex, double ra
    pars.hostApiSpecificStreamInfo = NULL;
 
    // JKC: PortAudio Errors handled OK here.  No need to report them
-   for (i = 0; i < NumRatesToTry; i++)
-   {
-      // LLL: Remove when a proper method of determining actual supported
-      //      DirectSound rate is devised.
-      if (!(isDirectSound && RatesToTry[i] > 200000)){
-         if (Pa_IsFormatSupported(NULL, &pars, RatesToTry[i]) == 0)
-            supported.push_back(RatesToTry[i]);
-         Pa_Sleep( 10 );// There are ALSA drivers that don't like being probed
-         // too quickly.
+
+   // LLL: Remove when a proper method of determining actual supported
+   //      DirectSound rate is devised.
+   if (!(isDirectSound && rate > 200000)){
+      if (Pa_IsFormatSupported(NULL, &pars, rate) == 0)
+      {
+         mCachedPlaybackRates[devIndex].push_back(rate);
+         return true;
       }
    }
-
-   if (irate != 0 && !make_iterator_range(supported).contains(irate))
-   {
-      // LLL: Remove when a proper method of determining actual supported
-      //      DirectSound rate is devised.
-      if (!(isDirectSound && RatesToTry[i] > 200000))
-         if (Pa_IsFormatSupported(NULL, &pars, irate) == 0)
-            supported.push_back(irate);
-   }
-
-   return supported;
+   return false;
 }
 
-std::vector<long> AudioIOBase::GetSupportedCaptureRates(int devIndex, double rate)
+bool AudioIOBase::IsCaptureRateSupported(int devIndex, long rate)
 {
    if (devIndex == -1)
    {  // not given a device, look up in prefs / default
       devIndex = getRecordDevIndex();
    }
 
-   // Check if we can use the cached rates
-   if (mCachedCaptureIndex != -1 && devIndex == mCachedCaptureIndex
-         && (rate == 0.0 || make_iterator_range(mCachedCaptureRates).contains(rate)))
+   // Check if we can use the cached rate
+   if (mCachedCaptureRates.count(devIndex) &&
+       (make_iterator_range(mCachedCaptureRates.at(devIndex)).contains(rate)))
    {
-      return mCachedCaptureRates;
+      return true;
    }
 
-   std::vector<long> supported;
-   int irate = (int)rate;
-   const PaDeviceInfo* devInfo = NULL;
-   int i;
-
-   devInfo = Pa_GetDeviceInfo(devIndex);
+   auto devInfo = Pa_GetDeviceInfo(devIndex);
 
    if (!devInfo)
    {
-      std::cout << "GetSupportedCaptureRates() Could not get device info!" << std::endl;
-      return supported;
+      wxLogDebug(wxT("IsCaptureRateSupported() Could not get device info!"));
+      return false;
    }
 
    auto latencyDuration = AudioIOLatencyDuration.Read();
@@ -303,34 +449,149 @@ std::vector<long> AudioIOBase::GetSupportedCaptureRates(int devIndex, double rat
    pars.suggestedLatency = latencyDuration / 1000.0;
    pars.hostApiSpecificStreamInfo = NULL;
 
-   for (i = 0; i < NumRatesToTry; i++)
+   // LLL: Remove when a proper method of determining actual supported
+   //      DirectSound rate is devised.
+   if (!(isDirectSound && rate > 200000))
    {
-      // LLL: Remove when a proper method of determining actual supported
-      //      DirectSound rate is devised.
-      if (!(isDirectSound && RatesToTry[i] > 200000))
+      if (Pa_IsFormatSupported(&pars, NULL, rate) == 0)
       {
-         if (Pa_IsFormatSupported(&pars, NULL, RatesToTry[i]) == 0)
-            supported.push_back(RatesToTry[i]);
-         Pa_Sleep( 10 );// There are ALSA drivers that don't like being probed
-         // too quickly.
+         mCachedCaptureRates[devIndex].push_back(rate);
+         return true;
       }
    }
-
-   if (irate != 0 && !make_iterator_range(supported).contains(irate))
-   {
-      // LLL: Remove when a proper method of determining actual supported
-      //      DirectSound rate is devised.
-      if (!(isDirectSound && RatesToTry[i] > 200000))
-         if (Pa_IsFormatSupported(&pars, NULL, irate) == 0)
-            supported.push_back(irate);
-   }
-
-   return supported;
+   return false;
 }
 
-std::vector<long> AudioIOBase::GetSupportedSampleRates(
-   int playDevice, int recDevice, double rate)
+std::vector<long> AudioIOBase::GetSupportedPlaybackRates(int devIndex)
 {
+   if (devIndex == -1)
+   {  // weren't given a device index, get the prefs / default one
+      devIndex = getPlayDevIndex();
+   }
+
+   std::vector<long> supportedRates;
+
+   for(const long rate : RatesToTry) {
+      if (IsPlaybackRateSupported(devIndex, rate)) {
+         supportedRates.push_back(rate);
+      }
+      Pa_Sleep( 10 );   // There are ALSA drivers that don't like being probed
+                        // too quickly.
+   }
+
+   return supportedRates;
+}
+
+std::vector<long> AudioIOBase::GetSupportedCaptureRates(int devIndex)
+{
+   if (devIndex == -1)
+   {  // weren't given a device index, get the prefs / default one
+      devIndex = getRecordDevIndex();
+   }
+
+   std::vector<long> supportedRates;
+
+   for(const long rate : RatesToTry) {
+      if (IsCaptureRateSupported(devIndex, rate)) {
+         supportedRates.push_back(rate);
+      }
+      Pa_Sleep( 10 );   // There are ALSA drivers that don't like being probed
+                        // too quickly.
+   }
+
+   return supportedRates;
+}
+
+long AudioIOBase::GetClosestSupportedPlaybackRate(int devIndex, long rate)
+{
+   long supportedRate = 0;
+   if (devIndex == -1)
+   {  // weren't given a device index, get the prefs / default one
+      devIndex = getPlayDevIndex();
+   }
+
+   if (rate == 0.0)
+   {  // not given a correct rate
+      return 0;
+   }
+
+   // First we will probe the requested state
+   std::vector<long> rates = { rate };
+   // Next default rates higher than requested
+   auto higherRatesIt = std::upper_bound(RatesToTry, RatesToTry + NumRatesToTry, rate);
+   std::copy(higherRatesIt, RatesToTry + NumRatesToTry, std::back_inserter(rates));
+   // Last default rates lower than requested in reverse order
+   auto lowerRatesIt = std::lower_bound(RatesToTry, RatesToTry + NumRatesToTry, rate);
+   std::copy(std::make_reverse_iterator(lowerRatesIt), std::make_reverse_iterator(RatesToTry),
+             std::back_inserter(rates));
+
+   for (const long rateToTry : rates)
+   {
+      if (IsPlaybackRateSupported(devIndex, rateToTry))
+      {
+         supportedRate = rateToTry;
+         break;
+      }
+      Pa_Sleep( 10 );   // There are ALSA drivers that don't like being probed
+                        // too quickly.
+   }
+
+   return supportedRate;
+}
+
+long AudioIOBase::GetClosestSupportedCaptureRate(int devIndex, long rate)
+{
+   long supportedRate = 0;
+   if (devIndex == -1)
+   {  // not given a device, look up in prefs / default
+      devIndex = getRecordDevIndex();
+   }
+
+   if (rate == 0)
+   {  // not given a correct rate
+      return supportedRate;
+   }
+
+   // Check if we can use the cached rate
+   if (mCachedCaptureRates.count(devIndex)
+       && (make_iterator_range(mCachedCaptureRates[devIndex]).contains(rate)))
+   {
+      supportedRate = rate;
+      return supportedRate;
+   }
+
+
+   // First we will probe the requested state
+   std::vector<long> rates = { rate };
+
+   // Next default rates higher than requested
+   auto higherRatesIt = std::upper_bound(RatesToTry, RatesToTry + NumRatesToTry, rate);
+   std::copy(higherRatesIt, RatesToTry + NumRatesToTry, std::back_inserter(rates));
+
+   // Last default rates lower than requested in reverse order
+   auto lowerRatesIt = std::lower_bound(RatesToTry, RatesToTry + NumRatesToTry, rate);
+   std::copy(std::make_reverse_iterator(lowerRatesIt), std::make_reverse_iterator(RatesToTry),
+             std::back_inserter(rates));
+
+   for (const long rateToTry : rates)
+   {
+      if (IsCaptureRateSupported(devIndex, rateToTry))
+      {
+         supportedRate = rateToTry;
+         break;
+      }
+      Pa_Sleep( 10 );   // There are ALSA drivers that don't like being probed
+                        // too quickly.
+   }
+
+   return supportedRate;
+}
+
+long AudioIOBase::GetClosestSupportedSampleRate(
+    int playDevice, int recDevice, long rate)
+{
+   long supportedRate = 0;
+
    // Not given device indices, look up prefs
    if (playDevice == -1) {
       playDevice = getPlayDevIndex();
@@ -340,31 +601,63 @@ std::vector<long> AudioIOBase::GetSupportedSampleRates(
    }
 
    // Check if we can use the cached rates
-   if (mCachedPlaybackIndex != -1 && mCachedCaptureIndex != -1 &&
-         playDevice == mCachedPlaybackIndex &&
-         recDevice == mCachedCaptureIndex &&
-         (rate == 0.0 || make_iterator_range(mCachedSampleRates).contains(rate)))
+   std::pair<int, int> devicePair { playDevice, recDevice };
+   if (mCachedSampleRates.count(devicePair) &&
+       make_iterator_range(mCachedSampleRates.at(devicePair)).contains(rate))
    {
-      return mCachedSampleRates;
+      return rate;
    }
 
-   auto playback = GetSupportedPlaybackRates(playDevice, rate);
-   auto capture = GetSupportedCaptureRates(recDevice, rate);
-   int i;
+   // First we will probe the requested state
+   std::vector<long> rates { rate };
+
+   // Next default rates higher than requested
+   auto higherRatesIt = std::upper_bound(RatesToTry, RatesToTry + NumRatesToTry, rate);
+   std::copy(higherRatesIt, RatesToTry + NumRatesToTry, std::back_inserter(rates));
+
+   // Last default rates lower than requested in reverse order
+   auto lowerRatesIt = std::lower_bound(RatesToTry, RatesToTry + NumRatesToTry, rate);
+   std::copy(std::make_reverse_iterator(lowerRatesIt), std::make_reverse_iterator(RatesToTry),
+             std::back_inserter(rates));
+
+   for (const long rateToTry : rates)
+   {
+      if (IsPlaybackRateSupported(playDevice, rateToTry) &&
+          IsCaptureRateSupported(recDevice, rateToTry))
+      {
+         supportedRate = rateToTry;
+         break;
+      }
+      Pa_Sleep( 10 );   // There are ALSA drivers that don't like being probed
+                        // too quickly.
+   }
+
+   mCachedSampleRates[devicePair].push_back(supportedRate);
+
+   return supportedRate;
+}
+
+std::vector<long> AudioIOBase::GetSupportedSampleRates(int playDevice, int recDevice)
+{
+   // Not given device indices, look up prefs
+   if (playDevice == -1)
+   {
+      playDevice = getPlayDevIndex();
+   }
+   if (recDevice == -1)
+   {
+      recDevice = getRecordDevIndex();
+   }
+
+   auto playback = GetSupportedPlaybackRates(playDevice);
+   auto capture = GetSupportedCaptureRates(recDevice);
 
    // Return only sample rates which are in both arrays
    std::vector<long> result;
 
-   for (i = 0; i < (int)playback.size(); i++)
-      if (make_iterator_range(capture).contains(playback[i]))
-         result.push_back(playback[i]);
-
-   // If this yields no results, use the default sample rates nevertheless
-/*   if (result.empty())
-   {
-      for (i = 0; i < NumStandardRates; i++)
-         result.push_back(StandardRates[i]);
-   }*/
+   std::set_intersection(playback.begin(), playback.end(),
+                         capture.begin(), capture.end(),
+                         std::back_inserter(result));
 
    return result;
 }
@@ -375,27 +668,38 @@ std::vector<long> AudioIOBase::GetSupportedSampleRates(
  * the real rates. */
 int AudioIOBase::GetOptimalSupportedSampleRate()
 {
-   auto rates = GetSupportedSampleRates();
-
-   if (make_iterator_range(rates).contains(48000))
-      return 48000;
-
-   if (make_iterator_range(rates).contains(44100))
-      return 44100;
+   auto rate = GetClosestSupportedSampleRate(-1, -1, 44100);
 
    // if there are no supported rates, the next bit crashes. So check first,
    // and give them a "sensible" value if there are no valid values. They
    // will still get an error later, but with any luck may have changed
    // something by then. It's no worse than having an invalid default rate
    // stored in the preferences, which we don't check for
-   if (rates.empty()) return 48000;
+   if (rate == 0)
+   {
+      return 44100;
+   }
 
-   return rates.back();
+   return rate;
 }
 
-int AudioIOBase::getPlayDevIndex(const std::string &devNameArg)
+#if USE_PORTMIXER
+int AudioIOBase::getRecordSourceIndex(PxMixer *portMixer)
 {
-   std::string devName(devNameArg);
+   int i;
+   auto sourceName = AudioIORecordingSource.Read();
+   int numSources = Px_GetNumInputSources(portMixer);
+   for (i = 0; i < numSources; i++) {
+      if (sourceName == wxString(wxSafeConvertMB2WX(Px_GetInputSourceName(portMixer, i))))
+         return i;
+   }
+   return -1;
+}
+#endif
+
+int AudioIOBase::getPlayDevIndex(const wxString &devNameArg)
+{
+   wxString devName(devNameArg);
    // if we don't get given a device, look up the preferences
    if (devName.empty())
       devName = AudioIOPlaybackDevice.Read();
@@ -406,7 +710,7 @@ int AudioIOBase::getPlayDevIndex(const std::string &devNameArg)
    for (hostNum = 0; hostNum < hostCnt; hostNum++)
    {
       const PaHostApiInfo *hinfo = Pa_GetHostApiInfo(hostNum);
-      if (hinfo && std::string(std::string(hinfo->name)) == hostName)
+      if (hinfo && wxString(wxSafeConvertMB2WX(hinfo->name)) == hostName)
       {
          for (PaDeviceIndex hostDevice = 0; hostDevice < hinfo->deviceCount; hostDevice++)
          {
@@ -448,9 +752,9 @@ int AudioIOBase::getPlayDevIndex(const std::string &devNameArg)
    return deviceNum;
 }
 
-int AudioIOBase::getRecordDevIndex(const std::string &devNameArg)
+int AudioIOBase::getRecordDevIndex(const wxString &devNameArg)
 {
-   std::string devName(devNameArg);
+   wxString devName(devNameArg);
    // if we don't get given a device, look up the preferences
    if (devName.empty())
       devName = AudioIORecordingDevice.Read();
@@ -461,7 +765,7 @@ int AudioIOBase::getRecordDevIndex(const std::string &devNameArg)
    for (hostNum = 0; hostNum < hostCnt; hostNum++)
    {
       const PaHostApiInfo *hinfo = Pa_GetHostApiInfo(hostNum);
-      if (hinfo && std::string(std::string(hinfo->name)) == hostName)
+      if (hinfo && wxString(wxSafeConvertMB2WX(hinfo->name)) == hostName)
       {
          for (PaDeviceIndex hostDevice = 0; hostDevice < hinfo->deviceCount; hostDevice++)
          {
@@ -495,25 +799,26 @@ int AudioIOBase::getRecordDevIndex(const std::string &devNameArg)
    //      And I can't imagine how far we'll get specifying an "invalid" index later
    //      on...are we certain "0" even exists?
    if (deviceNum < 0) {
-      // JKC: This ASSERT will happen if you run with no config file
+      // JKC: This will happen if you run with no config file
       // This happens once.  Config file will exist on the next run.
       // TODO: Look into this a bit more.  Could be relevant to blank Device Toolbar.
-      assert(false);
+      wxLogDebug("PortAudio returns -1, cannot find a suitable default device, so we just use the first one available");
       deviceNum = 0;
    }
 
    return deviceNum;
 }
 
-std::string AudioIOBase::GetDeviceInfo() const
+wxString AudioIOBase::GetDeviceInfo() const
 {
-   std::ostringstream s;
+   wxStringOutputStream o;
+   wxTextOutputStream s(o, wxEOL_UNIX);
 
    if (IsStreamActive()) {
       return XO("Stream is active ... unable to gather information.\n")
-         .Translation()
-         .ToStdString(); // ANERRUPTION: Remove std::string conversion
+         .Translation();
    }
+
 
    // FIXME: TRAP_ERR PaErrorCode not handled.  3 instances in GetDeviceInfo().
    int recDeviceNum = Pa_GetDefaultInputDevice();
@@ -521,11 +826,11 @@ std::string AudioIOBase::GetDeviceInfo() const
    int cnt = Pa_GetDeviceCount();
 
    // PRL:  why only into the log?
-   std::cout << "PortAudio reports " << cnt << " audio devices" << std::endl;
-
-   s << std::string("==============================") << std::endl;
-   s << XO("Default recording device number: %d").Format( recDeviceNum ).Translation() << std::endl;
-   s << XO("Default playback device number: %d").Format( playDeviceNum).Translation() << std::endl;
+   wxLogDebug(wxT("Portaudio reports %d audio devices"),cnt);
+   
+   s << wxT("==============================\n");
+   s << XO("Default recording device number: %d\n").Format( recDeviceNum );
+   s << XO("Default playback device number: %d\n").Format( playDeviceNum);
 
    auto recDevice = AudioIORecordingDevice.Read();
    auto playDevice = AudioIOPlaybackDevice.Read();
@@ -533,38 +838,52 @@ std::string AudioIOBase::GetDeviceInfo() const
 
    // This gets info on all available audio devices (input and output)
    if (cnt <= 0) {
-      s << XO("No devices found").Translation() << std::endl;
-      return s.str();
+      s << XO("No devices found\n");
+      return o.GetString();
    }
 
    const PaDeviceInfo* info;
 
    for (j = 0; j < cnt; j++) {
-      s << std::string("==============================") << std::endl;
+      s << wxT("==============================\n");
 
       info = Pa_GetDeviceInfo(j);
       if (!info) {
-         s << XO("Device info unavailable for: %d").Format( j ).Translation() << std::endl;
+         s << XO("Device info unavailable for: %d\n").Format( j );
          continue;
       }
 
-      std::string name = DeviceName(info);
-      s << XO("Device ID: %d").Format( j ).Translation() << std::endl;
-      s << XO("Device name: %s").Format( name ).Translation() << std::endl;
-      s << XO("Host name: %s").Format( HostName(info) ).Translation() << std::endl;
-      s << XO("Recording channels: %d").Format( info->maxInputChannels ).Translation() << std::endl;
-      s << XO("Playback channels: %d").Format( info->maxOutputChannels ).Translation() << std::endl;
-      s << XO("Low Recording Latency: %g").Format( info->defaultLowInputLatency ).Translation() << std::endl;
-      s << XO("Low Playback Latency: %g").Format( info->defaultLowOutputLatency ).Translation() << std::endl;
-      s << XO("High Recording Latency: %g").Format( info->defaultHighInputLatency ).Translation() << std::endl;
-      s << XO("High Playback Latency: %g").Format( info->defaultHighOutputLatency ).Translation() << std::endl;
+      wxString name = DeviceName(info);
+      s << XO("Device ID: %d\n").Format( j );
+      s << XO("Device name: %s\n").Format( name );
+      s << XO("Host name: %s\n").Format( HostName(info) );
+      s << XO("Recording channels: %d\n").Format( info->maxInputChannels );
+      s << XO("Playback channels: %d\n").Format( info->maxOutputChannels );
+      s << XO("Low Recording Latency: %g\n").Format( info->defaultLowInputLatency );
+      s << XO("Low Playback Latency: %g\n").Format( info->defaultLowOutputLatency );
+      s << XO("High Recording Latency: %g\n").Format( info->defaultHighInputLatency );
+      s << XO("High Playback Latency: %g\n").Format( info->defaultHighOutputLatency );
 
-      auto rates = GetSupportedPlaybackRates(j, 0.0);
+      if (info->maxOutputChannels)
+      {
+         auto rates = GetSupportedPlaybackRates(j);
 
-      /* i18n-hint: Supported, meaning made available by the system */
-      s << XO("Supported Rates:").Translation() << std::endl;
-      for (int k = 0; k < (int) rates.size(); k++) {
-         s << std::string("    ") << (int)rates[k] << std::endl;
+         /* i18n-hint: Supported, meaning made available by the system */
+         s << XO("Supported Playback Rates:\n");
+         for (int k = 0; k < (int) rates.size(); k++) {
+            s << wxT("    ") << (int) rates[k] << wxT("\n");
+         }
+      }
+
+      if (info->maxInputChannels)
+      {
+         auto rates = GetSupportedCaptureRates(j);
+
+         /* i18n-hint: Supported, meaning made available by the system */
+         s << XO("Supported Capture Rates:\n");
+         for (int k = 0; k < (int) rates.size(); k++) {
+            s << wxT("    ") << (int) rates[k] << wxT("\n");
+         }
       }
 
       if (name == playDevice && info->maxOutputChannels > 0)
@@ -586,52 +905,161 @@ std::string AudioIOBase::GetDeviceInfo() const
    bool haveRecDevice = (recDeviceNum >= 0);
    bool havePlayDevice = (playDeviceNum >= 0);
 
-   s << std::string("==============================") << std::endl;
+   s << wxT("==============================\n");
    if (haveRecDevice)
-      s << XO("Selected recording device: %d - %s").Format( recDeviceNum, recDevice ).Translation() << std::endl;
+      s << XO("Selected recording device: %d - %s\n").Format( recDeviceNum, recDevice );
    else
-      s << XO("No recording device found for '%s'.").Format( recDevice ).Translation() << std::endl;
+      s << XO("No recording device found for '%s'.\n").Format( recDevice );
 
    if (havePlayDevice)
-      s << XO("Selected playback device: %d - %s").Format( playDeviceNum, playDevice ).Translation() << std::endl;
+      s << XO("Selected playback device: %d - %s\n").Format( playDeviceNum, playDevice );
    else
-      s << XO("No playback device found for '%s'.").Format( playDevice ).Translation() << std::endl;
+      s << XO("No playback device found for '%s'.\n").Format( playDevice );
 
    std::vector<long> supportedSampleRates;
 
    if (havePlayDevice && haveRecDevice) {
       supportedSampleRates = GetSupportedSampleRates(playDeviceNum, recDeviceNum);
 
-      s << XO("Supported Rates:").Translation() << std::endl;
+      s << XO("Supported Rates:\n");
       for (int k = 0; k < (int) supportedSampleRates.size(); k++) {
-         s << std::string("    ") << (int)supportedSampleRates[k] << std::endl;
+         s << wxT("    ") << (int)supportedSampleRates[k] << wxT("\n");
       }
    }
    else {
-      s << XO("Cannot check mutual sample rates without both devices.").Translation() << std::endl;
-      return s.str();
+      s << XO("Cannot check mutual sample rates without both devices.\n");
+      return o.GetString();
    }
 
-   return s.str();
+#if defined(USE_PORTMIXER)
+   if (supportedSampleRates.size() > 0)
+      {
+      int highestSampleRate = supportedSampleRates.back();
+      bool EmulateMixerInputVol = true;
+      float MixerInputVol = 1.0;
+      float MixerOutputVol = 1.0;
+
+      int error;
+
+      PaStream *stream;
+
+      PaStreamParameters playbackParameters;
+
+      playbackParameters.device = playDeviceNum;
+      playbackParameters.sampleFormat = paFloat32;
+      playbackParameters.hostApiSpecificStreamInfo = NULL;
+      playbackParameters.channelCount = 1;
+      if (Pa_GetDeviceInfo(playDeviceNum)){
+         playbackParameters.suggestedLatency =
+            Pa_GetDeviceInfo(playDeviceNum)->defaultLowOutputLatency;
+      }
+      else
+         playbackParameters.suggestedLatency =
+            AudioIOLatencyCorrection.GetDefault()/1000.0;
+
+      PaStreamParameters captureParameters;
+
+      captureParameters.device = recDeviceNum;
+      captureParameters.sampleFormat = paFloat32;;
+      captureParameters.hostApiSpecificStreamInfo = NULL;
+      captureParameters.channelCount = 1;
+      if (Pa_GetDeviceInfo(recDeviceNum)){
+         captureParameters.suggestedLatency =
+            Pa_GetDeviceInfo(recDeviceNum)->defaultLowInputLatency;
+      }
+      else
+         captureParameters.suggestedLatency =
+            AudioIOLatencyCorrection.GetDefault()/1000.0;
+
+      // Not really doing I/O so pass nullptr for the callback function
+      error = Pa_OpenStream(&stream,
+                         &captureParameters, &playbackParameters,
+                         highestSampleRate, paFramesPerBufferUnspecified,
+                         paClipOff | paDitherOff,
+                         nullptr, NULL);
+
+      if (error) {
+         error = Pa_OpenStream(&stream,
+                            &captureParameters, NULL,
+                            highestSampleRate, paFramesPerBufferUnspecified,
+                            paClipOff | paDitherOff,
+                            nullptr, NULL);
+      }
+
+      if (error) {
+         s << XO("Received %d while opening devices\n").Format( error );
+         return o.GetString();
+      }
+
+      PxMixer *PortMixer = Px_OpenMixer(stream, recDeviceNum, playDeviceNum, 0);
+
+      if (!PortMixer) {
+         s << XO("Unable to open Portmixer\n");
+         Pa_CloseStream(stream);
+         return o.GetString();
+      }
+
+      s << wxT("==============================\n");
+      s << XO("Available mixers:\n");
+
+      // FIXME: ? PortMixer errors on query not reported in GetDeviceInfo
+      cnt = Px_GetNumMixers(stream);
+      for (int i = 0; i < cnt; i++) {
+         wxString name = wxSafeConvertMB2WX(Px_GetMixerName(stream, i));
+         s << XO("%d - %s\n").Format( i, name );
+      }
+
+      s << wxT("==============================\n");
+      s << XO("Available recording sources:\n");
+      cnt = Px_GetNumInputSources(PortMixer);
+      for (int i = 0; i < cnt; i++) {
+         wxString name = wxSafeConvertMB2WX(Px_GetInputSourceName(PortMixer, i));
+         s << XO("%d - %s\n").Format( i, name );
+      }
+
+      s << wxT("==============================\n");
+      s << XO("Available playback volumes:\n");
+      cnt = Px_GetNumOutputVolumes(PortMixer);
+      for (int i = 0; i < cnt; i++) {
+         wxString name = wxSafeConvertMB2WX(Px_GetOutputVolumeName(PortMixer, i));
+         s << XO("%d - %s\n").Format( i, name );
+      }
+
+     // Check, if PortMixer supports adjusting input levels on the interface
+
+      MixerInputVol = Px_GetInputVolume(PortMixer);
+      EmulateMixerInputVol = false;
+      Px_SetInputVolume(PortMixer, 0.0);
+      if (Px_GetInputVolume(PortMixer) > 0.1)
+         EmulateMixerInputVol = true;
+      Px_SetInputVolume(PortMixer, 0.2f);
+      if (Px_GetInputVolume(PortMixer) < 0.1 ||
+          Px_GetInputVolume(PortMixer) > 0.3)
+         EmulateMixerInputVol = true;
+      Px_SetInputVolume(PortMixer, MixerInputVol);
+
+      Pa_CloseStream(stream);
+
+      s << wxT("==============================\n");
+      s << ( EmulateMixerInputVol
+         ? XO("Recording volume is emulated\n")
+         : XO("Recording volume is native\n") );
+
+      Px_CloseMixer(PortMixer);
+
+      }  //end of massive if statement if a valid sample rate has been found
+#endif
+   return o.GetString();
 }
 
 auto AudioIOBase::GetAllDeviceInfo() -> std::vector<AudioIODiagnostics>
 {
    std::vector<AudioIODiagnostics> result;
    result.push_back({
-      "audiodev.txt",
-      GetDeviceInfo(),
-      "Audio Device Info"
-   });
-
-   for (auto &pExt : mAudioIOExt)
-   {
-      if (pExt)
-      {
+      wxT("audiodev.txt"), GetDeviceInfo(), wxT("Audio Device Info") });
+   for( auto &pExt : mAudioIOExt )
+      if ( pExt )
          result.emplace_back(pExt->Dump());
-      }
-   }
-
    return result;
 }
 
@@ -640,18 +1068,18 @@ StringSetting AudioIOHost{
 DoubleSetting AudioIOLatencyCorrection{
    L"/AudioIO/LatencyCorrection", -130.0 };
 DoubleSetting AudioIOLatencyDuration{
-   L"/AudioIO/LatencyDuration", 2048.0 };
-ChoiceSetting AudioIOLatencyUnit{
-   L"/AudioIO/LatencyUnit",
-   {
-      ByColumns,
-      { XO("samples"), XO("milliseconds") },
-      { L"samples",    L"milliseconds"    }
-   },
-};
+   L"/AudioIO/LatencyDuration", 100.0 };
 StringSetting AudioIOPlaybackDevice{
    L"/AudioIO/PlaybackDevice", L"" };
+StringSetting AudioIOPlaybackSource{
+   L"/AudioIO/PlaybackSource", L"" };
+DoubleSetting AudioIOPlaybackVolume {
+   L"/AudioIO/PlaybackVolume", 1.0 };
 IntSetting AudioIORecordChannels{
    L"/AudioIO/RecordChannels", 2 };
 StringSetting AudioIORecordingDevice{
    L"/AudioIO/RecordingDevice", L"" };
+StringSetting AudioIORecordingSource{
+   L"/AudioIO/RecordingSource", L"" };
+IntSetting AudioIORecordingSourceIndex{
+   L"/AudioIO/RecordingSourceIndex", -1 };

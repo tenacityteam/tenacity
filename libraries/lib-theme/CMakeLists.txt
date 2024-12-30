@@ -1,28 +1,24 @@
-set(SOURCES
-    Theme.cpp
-    Theme.h
-    ThemePackage.cpp
-    ThemePackage.h
-    ThemeResources.cpp
-    ThemeResources.h
-    ThemeResourceList.cpp
-    ThemeResourceList.h
+#[[
+A library to hold a registry of image and color identifiers, and multiple themes
+associating data with those identifiers.
+]]
 
-    # Exceptions
-    exceptions/ArchiveError.cpp
-    exceptions/ArchiveError.h
-    exceptions/IncompatibleTheme.cpp
-    exceptions/IncompatibleTheme.h
-    exceptions/InvalidState.cpp
-    exceptions/InvalidState.h
+set( SOURCES
+   AColor.cpp
+   AColor.h
+   AColorResources.h
+   AllThemeResources.cpp
+   AllThemeResources.h
+   ImageManipulation.cpp
+   ImageManipulation.h
+   MacroMagic.h
+   Theme.cpp
+   Theme.h
 )
-
-set(LIBRARIES
-    PUBLIC
-        # JsonCpp must be public or else 'json/value.h' isn't found for some reason.
-        JsonCpp::JsonCpp
-    PRIVATE
-        libzip::zip
+set( LIBRARIES
+   lib-files-interface
+   wxWidgets::wxWidgets
+ )
+tenacity_library( lib-theme "${SOURCES}" "${LIBRARIES}"
+   "" ""
 )
-
-tenacity_library(lib-theme "${SOURCES}" "${LIBRARIES}" "" "")

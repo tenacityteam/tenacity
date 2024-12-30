@@ -16,36 +16,36 @@ Paul Licameli split from TrackPanel.cpp
 class wxMouseState;
 class WaveTrack;
 
-class GainSliderHandle final : public SliderHandle
+class VolumeSliderHandle final : public SliderHandle
 {
-   GainSliderHandle(const GainSliderHandle&) = delete;
+   VolumeSliderHandle(const VolumeSliderHandle&) = delete;
 
    std::shared_ptr<WaveTrack> GetWaveTrack() const;
 
 public:
-   explicit GainSliderHandle
+   explicit VolumeSliderHandle
       ( SliderFn sliderFn, const wxRect &rect,
         const std::shared_ptr<Track> &pTrack );
 
-   GainSliderHandle &operator=(const GainSliderHandle&) = default;
+   VolumeSliderHandle &operator=(const VolumeSliderHandle&) = default;
 
-   virtual ~GainSliderHandle();
+   virtual ~VolumeSliderHandle();
 
 protected:
    float GetValue() override;
    Result SetValue
-      (TenacityProject *pProject, float newValue) override;
+      (AudacityProject *pProject, float newValue) override;
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject) override;
+      (const wxMouseEvent &event, AudacityProject *pProject) override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
+      const wxMouseState &state, AudacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 
 public:
    static UIHandlePtr HitTest
-      (std::weak_ptr<GainSliderHandle> &holder,
+      (std::weak_ptr<VolumeSliderHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
        const std::shared_ptr<Track> &pTrack);
 };
@@ -69,12 +69,12 @@ public:
 
 protected:
    float GetValue() override;
-   Result SetValue(TenacityProject *pProject, float newValue) override;
+   Result SetValue(AudacityProject *pProject, float newValue) override;
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject) override;
+      (const wxMouseEvent &event, AudacityProject *pProject) override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
+      const wxMouseState &state, AudacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 

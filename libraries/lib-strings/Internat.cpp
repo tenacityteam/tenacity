@@ -22,10 +22,11 @@ and on Mac OS X for the filesystem.
 
 #include "Internat.h"
 
-#include <wx/intl.h>
+#include <wx/log.h>
 #include <wx/filename.h>
 
-#include <clocale>
+#include <locale.h>
+#include <math.h> // for pow()
 
 // in order for the static member variables to exist, they must appear here
 // (_outside_) the class definition, in order to be allocated some storage.
@@ -35,10 +36,19 @@ wxChar Internat::mDecimalSeparator = wxT('.'); // default
 // exclude is used by SanitiseFilename.
 wxArrayString Internat::exclude;
 
-STRINGS_API const wxString& GetRawTranslation(const wxString& str1)
+STRINGS_API const wxString& GetCustomSubstitution(const wxString& str1)
 {
-   return wxGetTranslation( str1 );
+   return str1 ;
 }
+
+// In any translated string, we can replace the name 'Audacity' with fork names
+// without requiring translators to see extra strings for the two versions.
+STRINGS_API const wxString& GetCustomTranslation(const wxString& str1)
+{
+   const wxString& str2 = wxGetTranslation( str1 );
+   return GetCustomSubstitution( str2 );
+}
+
 
 void Internat::Init()
 {
@@ -47,7 +57,7 @@ void Internat::Init()
    if (localeInfo)
       mDecimalSeparator = wxString(wxSafeConvertMB2WX(localeInfo->decimal_point)).GetChar(0);
 
-//   std::cout << "Decimal separator set to '" << mDecimalSeparator << "'" << std::endl;
+//   wxLogDebug(wxT("Decimal separator set to '%c'"), mDecimalSeparator);
 
    // Setup list of characters that aren't allowed in file names
    // Hey!  The default wxPATH_NATIVE does not do as it should.
@@ -164,6 +174,15 @@ wxString Internat::ToDisplayString(double numberToConvert,
    }
 
    return result;
+}
+
+TranslatableString Internat::FormatSize(wxLongLong size)
+{
+   /* wxLongLong contains no built-in conversion to double */
+   double dSize = size.GetHi() * pow(2.0, 32);  // 2 ^ 32
+   dSize += size.GetLo();
+
+   return FormatSize(dSize);
 }
 
 TranslatableString Internat::FormatSize(double size)

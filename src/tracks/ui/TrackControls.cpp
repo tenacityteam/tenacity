@@ -13,7 +13,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "Track.h"
 
-TrackControls::TrackControls( std::shared_ptr<Track> pTrack )
+TrackControls::TrackControls(std::shared_ptr<Track> pTrack)
    : CommonTrackCell{ pTrack }
 {
 }

@@ -11,7 +11,8 @@ Paul Licameli split from class LabelTrack
 #ifndef __AUDACITY_LABEL_TRACK_VIEW__
 #define __AUDACITY_LABEL_TRACK_VIEW__
 
-#include "../../ui/CommonTrackView.h"
+#include "../../ui/CommonChannelView.h"
+#include "Observer.h"
 
 class LabelGlyphHandle;
 class LabelTextHandle;
@@ -36,12 +37,13 @@ constexpr int MAX_NUM_ROWS =80;
 
 class wxKeyEvent;
 
-class TENACITY_DLL_API LabelTrackView final : public CommonTrackView
+class TENACITY_DLL_API LabelTrackView final : public CommonChannelView
 {
    LabelTrackView( const LabelTrackView& ) = delete;
    LabelTrackView &operator=( const LabelTrackView& ) = delete;
 
-   void Reparent( const std::shared_ptr<Track> &parent ) override;
+   void Reparent(const std::shared_ptr<Track> &parent, size_t iChannel)
+      override;
 
 public:
    enum : int { DefaultFontSize = 0 }; //system preferred
@@ -50,60 +52,57 @@ public:
    static constexpr int LabelBarHeight { 6 }; 
 
    explicit
-   LabelTrackView( const std::shared_ptr<Track> &pTrack );
+   LabelTrackView(const std::shared_ptr<Channel> &pChannel);
    ~LabelTrackView() override;
 
    static LabelTrackView &Get( LabelTrack& );
    static const LabelTrackView &Get( const LabelTrack& );
 
-   bool DoCaptureKey( TenacityProject &project, wxKeyEvent &event );
+   bool DoCaptureKey( AudacityProject &project, wxKeyEvent &event );
    bool DoKeyDown(
-      TenacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
+      AudacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
    bool DoChar(
-      TenacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
+      AudacityProject &project, NotifyingSelectedRegion &sel, wxKeyEvent & event);
 
    //This returns the index of the label we just added.
    int AddLabel(const SelectedRegion &region,
       const wxString &title = {},
       int restoreFocus = -1);
 
-   std::vector<MenuItem> GetMenuItems(const wxRect&, const wxPoint*, TenacityProject*) override;
-
 private:
    void BindTo( LabelTrack *pParent );
-   void UnbindFrom( LabelTrack *pParent );
 
    std::vector<UIHandlePtr> DetailedHitTest
       (const TrackPanelMouseState &state,
-       const TenacityProject *pProject, int currentTool, bool bMultiTool)
+       const AudacityProject *pProject, int currentTool, bool bMultiTool)
       override;
 
    unsigned CaptureKey
      (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-      TenacityProject *project) override;
+      AudacityProject *project) override;
 
    unsigned KeyDown
       (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-      TenacityProject *project) override;
+      AudacityProject *project) override;
 
    unsigned Char
       (wxKeyEvent &event, ViewInfo &viewInfo, wxWindow *pParent,
-      TenacityProject *project) override;
+      AudacityProject *project) override;
 
-   std::shared_ptr<TrackVRulerControls> DoGetVRulerControls() override;
+   std::shared_ptr<ChannelVRulerControls> DoGetVRulerControls() override;
 
    // Preserve some view state too for undo/redo purposes
-   void CopyTo( Track &track ) const override;
+   void CopyTo(Track &track, size_t iChannel) const override;
 
 public:
    static void DoEditLabels(
-      TenacityProject &project, LabelTrack *lt = nullptr, int index = -1);
+      AudacityProject &project, LabelTrack *lt = nullptr, int index = -1);
 
    static int DialogForLabelName(
-      TenacityProject &project, const SelectedRegion& region,
+      AudacityProject &project, const SelectedRegion& region,
       const wxString& initialValue, wxString& value);
 
-   bool IsTextSelected( TenacityProject &project ) const;
+   bool IsTextSelected( AudacityProject &project ) const;
 
 private:
    void CreateCustomGlyphs();
@@ -114,12 +113,12 @@ public:
 
    void Draw( TrackPanelDrawingContext &context, const wxRect & r ) const;
 
-   bool CutSelectedText( TenacityProject &project );
-   bool CopySelectedText( TenacityProject &project );
-   bool SelectAllText(TenacityProject& project);
+   bool CutSelectedText( AudacityProject &project );
+   bool CopySelectedText( AudacityProject &project );
+   bool SelectAllText(AudacityProject& project);
    
    bool PasteSelectedText(
-      TenacityProject &project, double sel0, double sel1 );
+      AudacityProject &project, double sel0, double sel1 );
 
    static void OverGlyph(
       const LabelTrack &track, LabelTrackHit &hit, int x, int y );
@@ -174,21 +173,21 @@ private:
 public:
    //get current cursor position,
    // relative to the left edge of the track panel
-   bool CalcCursorX( TenacityProject &project, int * x ) const;
+   bool CalcCursorX( AudacityProject &project, int * x ) const;
 
 private:
    void CalcHighlightXs(int *x1, int *x2) const;
 
 public:
-   void ShowContextMenu( TenacityProject &project );
+   void ShowContextMenu( AudacityProject &project );
 
 private:
-   void OnContextMenu( TenacityProject &project, wxCommandEvent & evt);
+   void OnContextMenu( AudacityProject &project, wxCommandEvent & evt);
 
    /// Keeps track of the currently selected label (not same as selection region)
    /// used for navigation between labels
    mutable Index mNavigationIndex{ -1 };
-   /// Index of the current label text beeing edited
+   /// Index of the current label text being edited
    mutable Index mTextEditIndex{ -1 };
 
    mutable wxString mUndoLabel;
@@ -228,13 +227,13 @@ public:
    int GetInitialCursorPosition() const { return mInitialCursorPos; }
 
    /// Sets the label with specified index for editing,
-   /// optionaly selection may be specified with [start, end]
+   /// optionally selection may be specified with [start, end]
    void SetTextSelection(int labelIndex, int start = 1, int end = 1);
-   int GetTextEditIndex(TenacityProject& project) const;
+   int GetTextEditIndex(AudacityProject& project) const;
    void ResetTextSelection();
 
    void SetNavigationIndex(int index);
-   int GetNavigationIndex(TenacityProject& project) const;
+   int GetNavigationIndex(AudacityProject& project) const;
 
 private:
 
@@ -245,15 +244,17 @@ private:
 
    static void calculateFontHeight(wxDC & dc);
 
-   bool IsValidIndex(const Index& index, TenacityProject& project) const;
+   bool IsValidIndex(const Index& index, AudacityProject& project) const;
 
 private:
    void RemoveSelectedText();
 
-   void OnLabelAdded( LabelTrackEvent& );
-   void OnLabelDeleted( LabelTrackEvent& );
-   void OnLabelPermuted( LabelTrackEvent& );
-   void OnSelectionChange( LabelTrackEvent& );
+   void OnLabelAdded( const LabelTrackEvent& );
+   void OnLabelDeleted( const LabelTrackEvent& );
+   void OnLabelPermuted( const LabelTrackEvent& );
+   void OnSelectionChange( const LabelTrackEvent& );
+
+   Observer::Subscription mSubscription;
 
    std::shared_ptr<LabelTrack> FindLabelTrack();
    std::shared_ptr<const LabelTrack> FindLabelTrack() const;

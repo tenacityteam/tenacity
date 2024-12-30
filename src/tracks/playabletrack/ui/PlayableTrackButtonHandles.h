@@ -28,11 +28,11 @@ public:
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
+      const wxMouseState &state, AudacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 
@@ -40,7 +40,7 @@ public:
    static UIHandlePtr HitTest
       (std::weak_ptr<MuteButtonHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const TenacityProject *pProject, const std::shared_ptr<Track> &pTrack);
+       const AudacityProject *pProject, const std::shared_ptr<Track> &pTrack);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,11 +59,11 @@ public:
 
 protected:
    Result CommitChanges
-      (const wxMouseEvent &event, TenacityProject *pProject, wxWindow *pParent)
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
       override;
 
    TranslatableString Tip(
-      const wxMouseState &state, TenacityProject &) const override;
+      const wxMouseState &state, AudacityProject &) const override;
 
    bool StopsOnKeystroke () override { return true; }
 
@@ -71,7 +71,38 @@ public:
    static UIHandlePtr HitTest
       (std::weak_ptr<SoloButtonHandle> &holder,
        const wxMouseState &state, const wxRect &rect,
-       const TenacityProject *pProject, const std::shared_ptr<Track> &pTrack);
+       const AudacityProject *pProject, const std::shared_ptr<Track> &pTrack);
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+class EffectsButtonHandle final : public ButtonHandle
+{
+   EffectsButtonHandle(const EffectsButtonHandle&) = delete;
+
+public:
+   explicit EffectsButtonHandle
+      ( const std::shared_ptr<Track> &pTrack, const wxRect &rect );
+
+   EffectsButtonHandle &operator=(const EffectsButtonHandle&) = default;
+
+   virtual ~EffectsButtonHandle();
+
+protected:
+   Result CommitChanges
+      (const wxMouseEvent &event, AudacityProject *pProject, wxWindow *pParent)
+      override;
+
+   TranslatableString Tip(
+      const wxMouseState &state, AudacityProject &) const override;
+
+   bool StopsOnKeystroke () override { return true; }
+
+public:
+   static UIHandlePtr HitTest
+      (std::weak_ptr<EffectsButtonHandle> &holder,
+       const wxMouseState &state, const wxRect &rect,
+       const AudacityProject *pProject, const std::shared_ptr<Track> &pTrack);
 };
 
 #endif

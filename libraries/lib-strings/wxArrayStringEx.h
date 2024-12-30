@@ -28,10 +28,6 @@ public:
          this->push_back( *start++ );
    }
 
-   // As of 3.2.4, wxArrayString already provides its own initializer_list, so
-   // don't provide one here.
-   // TODO: Contribute most of wxArrayString
-   #if !wxCHECK_VERSION(3, 2, 4)
    template< typename T >
    wxArrayStringEx( std::initializer_list< T > items )
    {
@@ -39,7 +35,6 @@ public:
       for ( const auto &item : items )
          this->push_back( item );
    }
-   #endif
 
    //! The move operations can take arguments of the base class wxArrayString
    wxArrayStringEx( wxArrayString &&other )

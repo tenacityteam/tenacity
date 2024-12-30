@@ -18,173 +18,37 @@
 \brief Dialog used with EffectRepeat
 
 *//*******************************************************************/
-
-
-
 #include "Repeat.h"
+#include "EffectEditor.h"
 
-
-#include <cmath>
-
-#include <wx/intl.h>
 #include <wx/stattext.h>
 
-#include "../LabelTrack.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../SyncLock.h"
-#include "../WaveTrack.h"
+#include "ShuttleGui.h"
 #include "../widgets/NumericTextCtrl.h"
 #include "../widgets/valnum.h"
 
 #include "LoadEffects.h"
 
-// Define keys, defaults, minimums, and maximums for the effect parameters
-//
-//     Name    Type  Key             Def  Min   Max      Scale
-Param( Count,  int,  wxT("Count"),    1,  1,    INT_MAX, 1  );
-
-const ComponentInterfaceSymbol EffectRepeat::Symbol
-{ XO("Repeat") };
-
-namespace{ BuiltinEffectsModule::Registration< EffectRepeat > reg; }
+namespace
+{
+BuiltinEffectsModule::Registration<EffectRepeat> reg;
+}
 
 BEGIN_EVENT_TABLE(EffectRepeat, wxEvtHandler)
-   EVT_TEXT(wxID_ANY, EffectRepeat::OnRepeatTextChange)
+EVT_TEXT(wxID_ANY, EffectRepeat::OnRepeatTextChange)
 END_EVENT_TABLE()
 
-EffectRepeat::EffectRepeat()
+std::unique_ptr<EffectEditor> EffectRepeat::PopulateOrExchange(
+   ShuttleGui & S, EffectInstance &, EffectSettingsAccess &,
+   const EffectOutputs *)
 {
-   repeatCount = DEF_Count;
-
-   SetLinearEffectFlag(true);
-}
-
-EffectRepeat::~EffectRepeat()
-{
-}
-
-// ComponentInterface implementation
-
-ComponentInterfaceSymbol EffectRepeat::GetSymbol()
-{
-   return Symbol;
-}
-
-TranslatableString EffectRepeat::GetDescription()
-{
-   return XO("Repeats the selection the specified number of times");
-}
-
-ManualPageID EffectRepeat::ManualPage()
-{
-   return L"Repeat";
-}
-
-// EffectDefinitionInterface implementation
-
-EffectType EffectRepeat::GetType()
-{
-   return EffectTypeProcess;
-}
-
-// EffectProcessor implementation
-bool EffectRepeat::DefineParams( ShuttleParams & S ){
-   S.SHUTTLE_PARAM( repeatCount, Count );
-   return true;
-}
-
-bool EffectRepeat::GetAutomationParameters(CommandParameters & parms)
-{
-   parms.Write(KEY_Count, repeatCount);
-
-   return true;
-}
-
-bool EffectRepeat::SetAutomationParameters(CommandParameters & parms)
-{
-   ReadAndVerifyInt(Count);
-
-   repeatCount = Count;
-
-   return true;
-}
-
-// Effect implementation
-
-bool EffectRepeat::Process()
-{
-   // Set up mOutputTracks.
-   // This effect needs all for sync-lock grouping.
-   CopyInputTracks(true);
-
-   int nTrack = 0;
-   bool bGoodResult = true;
-   double maxDestLen = 0.0; // used to change selection to generated bit
-
-   mOutputTracks->Any().VisitWhile( bGoodResult,
-      [&](LabelTrack *track)
-      {
-         if (SyncLock::IsSelectedOrSyncLockSelected(track))
-         {
-            if (!track->Repeat(mT0, mT1, repeatCount))
-               bGoodResult = false;
-         }
-      },
-      [&](WaveTrack *track, const Track::Fallthrough &fallthrough)
-      {
-         if (!track->GetSelected())
-            return fallthrough(); // Fall through to next lambda
-         auto start = track->TimeToLongSamples(mT0);
-         auto end = track->TimeToLongSamples(mT1);
-         auto len = end - start;
-         double tLen = track->LongSamplesToTime(len);
-         double tc = mT0 + tLen;
-
-         if (len <= 0)
-            return;
-
-         auto dest = track->Copy(mT0, mT1);
-         for(int j=0; j<repeatCount; j++)
-         {
-            if (TrackProgress(nTrack, j / repeatCount)) // TrackProgress returns true on Cancel.
-            {
-               bGoodResult = false;
-               return;
-            }
-            track->Paste(tc, dest.get());
-            tc += tLen;
-         }
-         if (tc > maxDestLen)
-            maxDestLen = tc;
-         nTrack++;
-      },
-      [&](Track *t)
-      {
-         if( SyncLock::IsSyncLockSelected(t) )
-            t->SyncLockAdjust(mT1, mT1 + (mT1 - mT0) * repeatCount);
-      }
-   );
-
-   if (bGoodResult)
-   {
-      // Select the NEW bits + original bit
-      mT1 = maxDestLen;
-   }
-
-   ReplaceProcessedTracks(bGoodResult);
-   return bGoodResult;
-}
-
-void EffectRepeat::PopulateOrExchange(ShuttleGui & S)
-{
+   mUIParent = S.GetParent();
    S.StartHorizontalLay(wxCENTER, false);
    {
       mRepeatCount = S.Validator<IntegerValidator<int>>(
             &repeatCount, NumValidatorStyle::DEFAULT,
-            MIN_Count, 2147483647 / mProjectRate
-         )
-         .AddTextBox(XXO("&Number of repeats to add:"), wxT(""), 12);
+            Count.min, 2147483647 / mProjectRate )
+         .AddTextBox(XXO("&Number of repeats to add:"), L"", 12);
    }
    S.EndHorizontalLay();
 
@@ -195,9 +59,10 @@ void EffectRepeat::PopulateOrExchange(ShuttleGui & S)
       mTotalTime = S.AddVariableText(XO("New selection length: dd:hh:mm:ss"));
    }
    S.EndMultiColumn();
+   return nullptr;
 }
 
-bool EffectRepeat::TransferDataToWindow()
+bool EffectRepeat::TransferDataToWindow(const EffectSettings &)
 {
    mRepeatCount->ChangeValue(wxString::Format(wxT("%d"), repeatCount));
 
@@ -206,7 +71,7 @@ bool EffectRepeat::TransferDataToWindow()
    return true;
 }
 
-bool EffectRepeat::TransferDataFromWindow()
+bool EffectRepeat::TransferDataFromWindow(EffectSettings &)
 {
    if (!mUIParent->Validate())
    {
@@ -228,10 +93,10 @@ void EffectRepeat::DisplayNewTime()
    wxString str;
    mRepeatCount->GetValue().ToLong(&l);
 
-   NumericConverter nc(NumericConverter::TIME,
+   NumericConverter nc(FormatterContext::SampleRateContext(mProjectRate),
+                       NumericConverterType_TIME(),
                        GetSelectionFormat(),
-                       mT1 - mT0,
-                       mProjectRate);
+                       mT1 - mT0);
 
    str = wxString::Format( _("Current selection length: %s"), nc.GetString() );
 
@@ -239,7 +104,7 @@ void EffectRepeat::DisplayNewTime()
    mCurrentTime->SetName(str); // fix for bug 577 (NVDA/Narrator screen readers do not read static text in dialogs)
 
    if (l > 0) {
-      EnableApply(true);
+      EffectEditor::EnableApply(mUIParent, true);
       repeatCount = l;
 
       nc.SetValue((mT1 - mT0) * (repeatCount + 1));
@@ -247,13 +112,13 @@ void EffectRepeat::DisplayNewTime()
    }
    else {
       str = _("Warning: No repeats.");
-      EnableApply(false);
+      EffectEditor::EnableApply(mUIParent, false);
    }
    mTotalTime->SetLabel(str);
    mTotalTime->SetName(str); // fix for bug 577 (NVDA/Narrator screen readers do not read static text in dialogs)
 }
 
-void EffectRepeat::OnRepeatTextChange(wxCommandEvent & /* evt */)
+void EffectRepeat::OnRepeatTextChange(wxCommandEvent & WXUNUSED(evt))
 {
    DisplayNewTime();
 }

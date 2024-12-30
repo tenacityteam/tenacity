@@ -25,16 +25,12 @@ around to NEW positions.
 
 #include <wx/defs.h>
 #include <wx/dcclient.h>
-#include <wx/event.h>
-#include <wx/intl.h>
 #include <wx/window.h>
 
-#include "../AColor.h"
-#include "../theme/AllThemeResources.h"
-#include "../theme/Theme.h"
-
-// Tenacity libraries
-#include <lib-strings/Internat.h>
+#include "AColor.h"
+#include "AllThemeResources.h"
+#include "Internat.h"
+#include "Theme.h"
 
 ////////////////////////////////////////////////////////////
 /// Methods for Grabber
@@ -47,6 +43,7 @@ BEGIN_EVENT_TABLE(Grabber, wxWindow)
    EVT_LEAVE_WINDOW(Grabber::OnLeave)
    EVT_LEFT_DOWN(Grabber::OnLeftDown)
    EVT_LEFT_UP(Grabber::OnLeftUp)
+   EVT_ERASE_BACKGROUND( Grabber::OnErase )
    EVT_PAINT(Grabber::OnPaint)
    EVT_KEY_DOWN(Grabber::OnKeyDown)
 END_EVENT_TABLE()
@@ -54,17 +51,17 @@ END_EVENT_TABLE()
 //
 // Constructor
 //
-Grabber::Grabber(wxWindow * parent, wxWindowID id)
+Grabber::Grabber(wxWindow * parent, Identifier id)
 : wxWindow(parent,
-           id,
+           wxID_ANY,
            wxDefaultPosition,
            wxSize(grabberWidth, 27),
            wxFULL_REPAINT_ON_RESIZE)
+, mIdentifier{ id }
 {
    mOver = false;
    mPressed = false;
    mAsSpacer = false;
-   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    SetBackgroundColour( theTheme.Colour( clrMedium ) );
 
    /* i18n-hint: A 'Grabber' is a region you can click and drag on
@@ -90,7 +87,7 @@ void Grabber::SendEvent(wxEventType type, const wxPoint & pos, bool escaping)
    wxWindow *parent = GetParent();
 
    // Initialize event and convert mouse coordinates to screen space
-   GrabberEvent e(type, GetId(), parent->ClientToScreen(pos), escaping);
+   GrabberEvent e(type, mIdentifier, parent->ClientToScreen(pos), escaping);
 
    // Set the object of our desire
    e.SetEventObject(parent);
@@ -124,7 +121,7 @@ void Grabber::DrawGrabber( wxDC & dc )
    // So use 0,0 as origin for draw, so that the grabber draws right if 
    // positioned in its parent at some non zero position.
    r.SetPosition( wxPoint(0,0) );
-   int x, y, left, right, top, bottom;
+   int y, left, right, top, bottom;
 
    AColor::Medium(&dc, mOver );
    dc.DrawRectangle(r);
@@ -133,21 +130,17 @@ void Grabber::DrawGrabber( wxDC & dc )
    if( mAsSpacer )
       r.width -= 1;
 
-
-   //if vertical toolbar...
-   //could make this check more uniform with others.
-   if (r.GetSize().GetHeight() <= r.GetSize().GetWidth()) {
-      SetSize(GetSize().GetWidth(),10);
-      r.SetHeight(10);
-
-   }
-
-
    // No bumps in a spacer grabber.
    if( mAsSpacer )
       return;
    // Calculate the bump rectangle
-   r.Deflate(3, 3);
+   r.Deflate(2, 2);
+   if ((r.GetHeight() % 4) < 2) {
+      r.Offset(0, 1);
+   }
+
+   // 2-bar toolbars and larger get padding
+   int padding = r.GetHeight() > 32 ? 22 : 6;
 
    // Cache
    left = r.GetLeft();
@@ -155,18 +148,18 @@ void Grabber::DrawGrabber( wxDC & dc )
    top = r.GetTop();
    bottom = r.GetBottom();
 
-
-   // Draw the line
-   if (!mPressed) {
-      dc.SetPen(wxPen( theTheme.Colour( clrDark )));
-      dc.SetBrush(wxBrush( theTheme.Colour( clrDark )));
+   // Draw the bumps
+   if (mPressed) {
+      AColor::Light(&dc, false);
    }
    else {
-      dc.SetPen(wxPen( theTheme.Colour( clrLight )));
-      dc.SetBrush(wxBrush( theTheme.Colour( clrLight )));
+      dc.SetPen(wxPen(theTheme.Colour(clrGrabber), 1, wxPENSTYLE_SOLID));
    }
 
-   dc.DrawRectangle(left+1,top+1,right-4,bottom-4);
+   for (y = top + padding; y < bottom - padding; y += 5) {
+      dc.DrawRectangle(left, y, 2, 2);
+      dc.DrawRectangle(right, y, 2, 2);
+   }
 }
 
 //
@@ -216,7 +209,7 @@ void Grabber::OnLeftUp(wxMouseEvent & event)
 //
 // Handle mouse enter events
 //
-void Grabber::OnEnter(wxMouseEvent & /* event */)
+void Grabber::OnEnter(wxMouseEvent & WXUNUSED(event))
 {
 #if defined(__WXMAC__)
    // Bug 2416:  On Mac, we can get Enter events from grabbers other
@@ -245,7 +238,7 @@ void Grabber::OnEnter(wxMouseEvent & /* event */)
 //
 // Handle mouse leave events
 //
-void Grabber::OnLeave(wxMouseEvent & /* event */)
+void Grabber::OnLeave(wxMouseEvent & WXUNUSED(event))
 {
 #if defined(__WXMAC__)
    // Bug 2416:  On Mac, we can get Leave events from grabbers other
@@ -264,10 +257,15 @@ void Grabber::OnLeave(wxMouseEvent & /* event */)
    }
 }
 
+void Grabber::OnErase( wxEraseEvent & WXUNUSED(event) )
+{
+   // Ignore it to prevent flashing
+}
+
 //
 // Handle the paint events
 //
-void Grabber::OnPaint(wxPaintEvent & /* event */)
+void Grabber::OnPaint(wxPaintEvent & WXUNUSED(event))
 {
    wxPaintDC dc(this);
 
@@ -286,3 +284,11 @@ void Grabber::OnKeyDown(wxKeyEvent &event)
       SendEvent(EVT_GRABBER_CLICKED, wxPoint{ -1, -1 }, true);
    }
 }
+
+// Piggy back in same source file as Grabber.
+// Audacity Flicker-free StaticBitmap.
+BEGIN_EVENT_TABLE(AStaticBitmap,wxStaticBitmap)
+    EVT_ERASE_BACKGROUND(AStaticBitmap::OnErase)
+END_EVENT_TABLE()
+
+

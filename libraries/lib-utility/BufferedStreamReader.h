@@ -11,8 +11,8 @@
 #pragma once
 
 #include <vector>
-#include <cstdint>
 #include <cstddef>
+#include <cstdint>
 #include <type_traits>
 
 /*!

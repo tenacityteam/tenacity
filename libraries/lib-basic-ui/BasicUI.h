@@ -22,6 +22,7 @@ namespace BasicUI {
 //! @{
 
 using Action = std::function<void()>;
+using ProgressReporter = std::function<void(double)>;
 
 //! Subclasses may hold information such as a parent window pointer for a dialog.
 /*! The default-constructed empty value of this base class must be accepted by overrides of methods of
@@ -34,6 +35,8 @@ public:
    WindowPlacement( const WindowPlacement& ) = delete;
    //! Don't slice
    WindowPlacement &operator=( const WindowPlacement& ) = delete;
+   //! Whether null; default in the base class returns false
+   virtual explicit operator bool() const;
    virtual ~WindowPlacement();
 };
 
@@ -141,6 +144,13 @@ enum ProgressDialogOptions : unsigned {
    ProgressConfirmStopOrCancel = (1 << 3),
 };
 
+enum GenericProgressDialogStyle : int {
+   ProgressCanAbort            = (1 << 0),
+   ProgressAppModal            = (1 << 1),
+   ProgressShowElapsedTime     = (1 << 2),
+   ProgressSmooth              = (1 << 3),
+};
+
 enum class ProgressResult : unsigned
 {
    Cancelled = 0, //<! User says that whatever is happening is undesirable and shouldn't have happened at all
@@ -163,6 +173,12 @@ public:
 
    //! Change an existing dialog's message
    virtual void SetMessage(const TranslatableString & message) = 0;
+
+   //! Change the dialog's title
+   virtual void SetDialogTitle(const TranslatableString & title) = 0;
+
+   //! Reset the dialog state
+   virtual void Reinit() = 0;
 };
 
 //! Abstraction of a progress dialog with undefined time-to-completion estimate
@@ -171,7 +187,7 @@ class BASIC_UI_API GenericProgressDialog
 public:
    virtual ~GenericProgressDialog();
    //! Give some visual indication of progress.  Call only on the main thread.
-   virtual void Pulse() = 0;
+   virtual ProgressResult Pulse() = 0;
 };
 
 //! @}
@@ -201,12 +217,22 @@ public:
    virtual std::unique_ptr<GenericProgressDialog>
    DoMakeGenericProgress(const WindowPlacement &placement,
       const TranslatableString &title,
-      const TranslatableString &message) = 0;
+      const TranslatableString &message,
+      int style) = 0;
    virtual int DoMultiDialog(const TranslatableString &message,
       const TranslatableString &title,
       const TranslatableStrings &buttons,
       const ManualPageID &helpPage,
       const TranslatableString &boxMsg, bool log) = 0;
+
+   virtual bool DoOpenInDefaultBrowser(const wxString &url) = 0;
+
+   virtual std::unique_ptr<WindowPlacement> DoFindFocus() = 0;
+   virtual void DoSetFocus(const WindowPlacement &focus) = 0;
+
+   virtual bool IsUsingRtlLayout() const = 0;
+
+   virtual bool IsUiThread() const = 0;
 };
 
 //! Fetch the global instance, or nullptr if none is yet installed
@@ -236,6 +262,11 @@ BASIC_UI_API void CallAfter(Action action);
  dispatching.
  */
 BASIC_UI_API void Yield();
+
+//! Open an URL in default browser
+/*! This function may be called in other threads than the main.
+ */
+BASIC_UI_API bool OpenInDefaultBrowser(const wxString &url);
 
 //! Show an error dialog with a link to the manual for further help
 inline void ShowErrorDialog(
@@ -288,12 +319,39 @@ inline std::unique_ptr<ProgressDialog> MakeProgress(
  */
 inline std::unique_ptr<GenericProgressDialog> MakeGenericProgress(
    const WindowPlacement &placement,
-   const TranslatableString &title, const TranslatableString &message)
+   const TranslatableString &title, const TranslatableString &message, int style = (ProgressAppModal | ProgressShowElapsedTime | ProgressSmooth))
 {
    if (auto p = Get())
-      return p->DoMakeGenericProgress(placement, title, message);
+      return p->DoMakeGenericProgress(placement, title, message, style);
    else
       return nullptr;
+}
+
+/*!
+ * @brief Helper for the update of a task's progress bar when this task is made
+ * of a range's subtasks.
+ * @details For each item from `first` till `last`, forwards the item as
+ * argument to `action`, as well as a progress reporter that will contribute by
+ * a fraction to the parent progress reporter. This fraction is the inverse of
+ * the number of elements in the range.
+ */
+template <typename ItType, typename FnType>
+void SplitProgress(
+   ItType first, ItType last, FnType action, ProgressReporter parent)
+{
+   auto count = 0;
+   const auto numIters = std::distance(first, last);
+   if (numIters == 0)
+      return;
+   const ProgressReporter child =
+      parent ? [&](double progress) { parent((count + progress) / numIters); } :
+               ProgressReporter {};
+
+   for (; first != last; ++first)
+   {
+      action(*first, child);
+      ++count;
+   }
 }
 
 //! Display a dialog with radio buttons.
@@ -317,6 +375,46 @@ inline int ShowMultiDialog(const TranslatableString &message,
    else
       return -1;
 }
+
+//! Find the window that is accepting keyboard input, if any
+/*!
+ @post `result: result != nullptr` (but may point to an empty WindowPlacement)
+ */
+inline std::unique_ptr<WindowPlacement> FindFocus()
+{
+   if (auto p = Get())
+      if (auto result = p->DoFindFocus())
+         return result;
+   return std::make_unique<WindowPlacement>();
+}
+
+//! Set the window that accepts keyboard input
+inline void SetFocus(const WindowPlacement &focus)
+{
+   if (auto p = Get())
+      p->DoSetFocus(focus);
+}
+
+//! Whether using a right-to-left language layout
+inline bool IsUsingRtlLayout()
+{
+   if (auto p = Get())
+      return p->IsUsingRtlLayout();
+   return false;
+}
+
+//! Whether the current thread is the UI thread
+inline bool IsUiThread ()
+{
+   if (auto p = Get())
+      return p->IsUiThread();
+   return true;
+}
+
+#define ASSERT_MAIN_THREAD() \
+   assert(                     \
+      BasicUI::IsUiThread() && \
+      "This function should only be called on the main thread")
 
 //! @}
 }

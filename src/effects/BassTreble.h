@@ -2,7 +2,7 @@
 
    Audacity: A Digital Audio Editor
    Audacity(R) is copyright (c) 1999-2016 Audacity Team.
-   License: GPL v2.  See License.txt.
+   License: GPL v2 or later.  See License.txt.
 
    BassTreble.h (two shelf filters)
    Steve Daulton
@@ -12,113 +12,26 @@
 #ifndef __AUDACITY_EFFECT_BASS_TREBLE__
 #define __AUDACITY_EFFECT_BASS_TREBLE__
 
-#include "Effect.h"
+#include "BassTrebleBase.h"
+#include "StatelessPerTrackEffect.h"
 
-class wxSlider;
-class wxCheckBox;
-class wxTextCtrl;
 class ShuttleGui;
 
-class EffectBassTrebleState
+class EffectBassTreble final :
+    public BassTrebleBase,
+    public StatelessEffectUIServices
 {
 public:
-   float samplerate;
-   double treble;
-   double bass;
-   double gain;
-   double slope, hzBass, hzTreble;
-   double a0Bass, a1Bass, a2Bass, b0Bass, b1Bass, b2Bass;
-   double a0Treble, a1Treble, a2Treble, b0Treble, b1Treble, b2Treble;
-   double xn1Bass, xn2Bass, yn1Bass, yn2Bass;
-   double xn1Treble, xn2Treble, yn1Treble, yn2Treble;
-};
+   EffectBassTreble() = default;
+   ~EffectBassTreble() override = default;
 
-class EffectBassTreble final : public Effect
-{
-public:
-   static const ComponentInterfaceSymbol Symbol;
+   std::shared_ptr<EffectInstance> MakeInstance() const override;
 
-   EffectBassTreble();
-   virtual ~EffectBassTreble();
+   struct Editor;
 
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool SupportsRealtime() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   unsigned GetAudioInCount() override;
-   unsigned GetAudioOutCount() override;
-   bool ProcessInitialize(sampleCount totalLen, ChannelNames chanMap = NULL) override;
-   size_t ProcessBlock( const float *const *inBlock, float *const *outBlock,
-      size_t blockLen) override;
-   bool RealtimeInitialize() override;
-   bool RealtimeAddProcessor(unsigned numChannels, float sampleRate) override;
-   bool RealtimeFinalize() noexcept override;
-   size_t RealtimeProcess(int group, const float *const *inbuf,
-      float *const *outbuf, size_t numSamples) override;
-   bool DefineParams( ShuttleParams & S ) override;
-
-
-   // Effect Implementation
-
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
-
-   bool CheckWhetherSkipEffect() override;
-
-private:
-   // EffectBassTreble implementation
-
-   void InstanceInit(EffectBassTrebleState & data, float sampleRate);
-   size_t InstanceProcess(EffectBassTrebleState & data,
-      const float *const *inBlock, float *const *outBlock, size_t blockLen);
-
-   void Coefficients(double hz, double slope, double gain, double samplerate, int type,
-                    double& a0, double& a1, double& a2, double& b0, double& b1, double& b2);
-   float DoFilter(EffectBassTrebleState & data, float in);
-
-   void OnBassText(wxCommandEvent & evt);
-   void OnTrebleText(wxCommandEvent & evt);
-   void OnGainText(wxCommandEvent & evt);
-   void OnBassSlider(wxCommandEvent & evt);
-   void OnTrebleSlider(wxCommandEvent & evt);
-   void OnGainSlider(wxCommandEvent & evt);
-   void OnLinkCheckbox(wxCommandEvent & evt);
-
-   // Auto-adjust gain to reduce variation in peak level
-   void UpdateGain(double oldVal, int control );
-
-private:
-   EffectBassTrebleState mMaster;
-   std::vector<EffectBassTrebleState> mSlaves;
-
-   double      mBass;
-   double      mTreble;
-   double      mGain;
-   bool        mLink;
-
-   wxSlider    *mBassS;
-   wxSlider    *mTrebleS;
-   wxSlider    *mGainS;
-
-   wxTextCtrl  *mBassT;
-   wxTextCtrl  *mTrebleT;
-   wxTextCtrl  *mGainT;
-
-   wxCheckBox  *mLinkCheckBox;
-
-   DECLARE_EVENT_TABLE()
+   std::unique_ptr<EffectEditor> MakeEditor(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) const override;
 };
 
 #endif

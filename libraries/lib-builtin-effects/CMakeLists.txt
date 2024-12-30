@@ -1,0 +1,103 @@
+#[[
+Library of built-in effects. Implement the UI-agnostic APIs of lib-effects.
+]]
+
+set( SOURCES
+   AmplifyBase.cpp
+   AmplifyBase.h
+   AutoDuckBase.cpp
+   AutoDuckBase.h
+   BassTrebleBase.cpp
+   BassTrebleBase.h
+   ChangePitchBase.cpp
+   ChangePitchBase.h
+   ChangeSpeedBase.cpp
+   ChangeSpeedBase.h
+   ChangeTempoBase.cpp
+   ChangeTempoBase.h
+   ClickRemovalBase.cpp
+   ClickRemovalBase.h
+   CompressorInstance.cpp
+   CompressorInstance.h
+   ContrastBase.cpp
+   ContrastBase.h
+   DtmfBase.cpp
+   DtmfBase.h
+   DistortionBase.cpp
+   DistortionBase.h
+   EchoBase.cpp
+   EchoBase.h
+   EqualizationBase.cpp
+   EqualizationBase.h
+   EqualizationCurves.cpp
+   EqualizationCurves.h
+   EqualizationCurvesList.cpp
+   EqualizationCurvesList.h
+   EqualizationFilter.cpp
+   EqualizationFilter.h
+   EqualizationParameters.cpp
+   EqualizationParameters.h
+   Fade.cpp
+   Fade.h
+   FindClippingBase.cpp
+   FindClippingBase.h
+   Generator.cpp
+   Generator.h
+   Invert.cpp
+   Invert.h
+   LegacyCompressorBase.cpp
+   LegacyCompressorBase.h
+   LoudnessBase.cpp
+   LoudnessBase.h
+   NoiseBase.cpp
+   NoiseBase.h
+   NoiseReductionBase.cpp
+   NoiseReductionBase.h
+   NormalizeBase.cpp
+   NormalizeBase.h
+   PaulstretchBase.cpp
+   PaulstretchBase.h
+   PhaserBase.cpp
+   PhaserBase.h
+   PlotSpectrumBase.cpp
+   PlotSpectrumBase.h
+   Repair.cpp
+   Repair.h
+   RepeatBase.cpp
+   RepeatBase.h
+   ReverbBase.cpp
+   ReverbBase.h
+   Reverse.cpp
+   Reverse.h
+   SBSMSBase.cpp
+   SBSMSBase.h
+   ScienFilterBase.cpp
+   ScienFilterBase.h
+   SilenceBase.cpp
+   SilenceBase.h
+   SoundTouchBase.cpp
+   SoundTouchBase.h
+   StereoToMono.cpp
+   StereoToMono.h
+   TimeScaleBase.cpp
+   TimeScaleBase.h
+   ToneGenBase.cpp
+   ToneGenBase.h
+   TruncSilenceBase.cpp
+   TruncSilenceBase.h
+   TwoPassSimpleMono.cpp
+   TwoPassSimpleMono.h
+   WahWahBase.cpp
+   WahWahBase.h
+)
+set( LIBRARIES
+   lib-dynamic-range-processor-interface
+   lib-wave-track-fft-interface
+   lib-label-track-interface
+   lib-note-track-interface
+   $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
+   $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
+)
+tenacity_library( lib-builtin-effects "${SOURCES}" "${LIBRARIES}"
+   "" ""
+)

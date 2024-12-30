@@ -27,43 +27,39 @@
 
 #include "ToolManager.h"
 
-#include "../commands/CommandContext.h"
+#include "CommandContext.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
-#include <wx/app.h>
 #include <wx/dcclient.h>
 #include <wx/defs.h>
-#include <wx/event.h>
-#include <wx/eventfilter.h>
 #include <wx/frame.h>
 #include <wx/gdicmn.h>
-#include <wx/intl.h>
-#include <wx/minifram.h>
-#include <wx/popupwin.h>
 #include <wx/region.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/sysopt.h>
-#include <wx/timer.h>
 #include <wx/utils.h>
 #include <wx/window.h>
-#endif  // end WX_PRECOMP
+#endif  /*  */
 
-// Tenacity libraries
-#include <lib-project/Project.h>
-#include <lib-preferences/Prefs.h>
+#include <wx/minifram.h>
+#include <wx/popupwin.h>
 
-#include "../AColor.h"
-#include "../ProjectWindows.h"
-#include "../theme/AllThemeResources.h"
-#include "../ImageManipulation.h"
-#include "../widgets/AButton.h"
-#include "../widgets/ASlider.h"
-#include "../widgets/MeterPanelBase.h"
-#include "../widgets/Grabber.h"
+#include "AColor.h"
+#include "AllThemeResources.h"
+#include "CommandManager.h"
+#include "ImageManipulation.h"
+#include "Prefs.h"
+#include "Project.h"
+#include "ProjectWindows.h"
+#include "SyncLock.h"
+#include "widgets/AButton.h"
+#include "widgets/ASlider.h"
+#include "widgets/MeterPanelBase.h"
+#include "widgets/Grabber.h"
 
 ////////////////////////////////////////////////////////////
 /// Methods for ToolFrame
@@ -74,7 +70,7 @@
 // Constructor
 //
 ToolFrame::ToolFrame
-   ( TenacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos )
+   ( AudacityProject *parent, ToolManager *manager, ToolBar *bar, wxPoint pos )
    : wxFrame( FindProjectFrame( parent ),
           bar->GetId(),
           wxEmptyString,
@@ -181,7 +177,7 @@ void ToolFrame::OnToolBarUpdate( wxCommandEvent & event )
    event.Skip();
 }
 
-void ToolFrame::OnPaint( wxPaintEvent & /* event */ )
+void ToolFrame::OnPaint( wxPaintEvent & WXUNUSED(event) )
 {
    wxPaintDC dc( this );
    wxSize sz = GetSize();
@@ -282,7 +278,7 @@ void ToolFrame::OnMotion( wxMouseEvent & event )
    }
 }
 
-void ToolFrame::OnCaptureLost( wxMouseCaptureLostEvent & /* event */ )
+void ToolFrame::OnCaptureLost( wxMouseCaptureLostEvent & WXUNUSED(event) )
 {
    if( HasCapture() )
    {
@@ -312,6 +308,8 @@ void ToolFrame::Resize( const wxSize &size )
    Refresh( false );
 }
 
+IMPLEMENT_CLASS( ToolFrame, wxFrame );
+
 BEGIN_EVENT_TABLE( ToolFrame, wxFrame )
    EVT_GRABBER( wxID_ANY, ToolFrame::OnGrabber )
    EVT_PAINT( ToolFrame::OnPaint )
@@ -322,6 +320,8 @@ BEGIN_EVENT_TABLE( ToolFrame, wxFrame )
    EVT_KEY_DOWN( ToolFrame::OnKeyDown )
 END_EVENT_TABLE()
 
+IMPLEMENT_CLASS( ToolManager, wxEvtHandler );
+
 ////////////////////////////////////////////////////////////
 /// Methods for ToolManager
 ////////////////////////////////////////////////////////////
@@ -331,25 +331,25 @@ BEGIN_EVENT_TABLE( ToolManager, wxEvtHandler )
    EVT_TIMER( wxID_ANY, ToolManager::OnTimer )
 END_EVENT_TABLE()
 
-static const TenacityProject::AttachedObjects::RegisteredFactory key{
-  []( TenacityProject &parent ){
+static const AudacityProject::AttachedObjects::RegisteredFactory key{
+  []( AudacityProject &parent ){
      return std::make_shared< ToolManager >( &parent ); }
 };
 
-ToolManager &ToolManager::Get( TenacityProject &project )
+ToolManager &ToolManager::Get( AudacityProject &project )
 {
    return project.AttachedObjects::Get< ToolManager >( key );
 }
 
-const ToolManager &ToolManager::Get( const TenacityProject &project )
+const ToolManager &ToolManager::Get( const AudacityProject &project )
 {
-   return Get( const_cast< TenacityProject & >( project ) );
+   return Get( const_cast< AudacityProject & >( project ) );
 }
 
 //
 // Constructor
 //
-ToolManager::ToolManager( TenacityProject *parent )
+ToolManager::ToolManager( AudacityProject *parent )
 : wxEvtHandler()
 {
    wxPoint pt[ 3 ];
@@ -445,15 +445,26 @@ void ToolManager::CreateWindows()
    // All have the project as parent window
    wxASSERT(parent);
 
-   size_t ii = 0;
    for (const auto &factory : RegisteredToolbarFactory::GetFactories()) {
       if (factory) {
-         mBars[ii] = factory( *parent );
+         auto bar = factory( *parent );
+         if (bar) {
+            auto &slot = mBars[bar->GetSection()];
+            if (slot) {
+               // Oh no, name collision of registered toolbars
+               assert(false);
+               bar->Destroy();
+               continue;
+            }
+            slot = std::move(bar);
+         }
       }
       else
          wxASSERT( false );
-      ++ii;
    }
+
+   //! Assign (non-persistent!) sequential ids to the toolbars
+   ForEach([ii = 0](ToolBar *bar) mutable { bar->SetIndex(ii++); });
 
    // We own the timer
    mTimer.SetOwner( this );
@@ -462,6 +473,9 @@ void ToolManager::CreateWindows()
    ReadConfig();
 
    wxEvtHandler::AddFilter(this);
+
+   mMenuManagerSubscription = CommandManager::Get(*mParent)
+      .Subscribe(*this, &ToolManager::OnMenuUpdate);
 }
 
 //
@@ -485,8 +499,8 @@ void ToolManager::Destroy()
 
       mTopDock = mBotDock = nullptr; // indicate that it has been destroyed
 
-      for ( size_t ii = 0; ii < ToolBarCount; ++ii )
-         mBars[ii].reset();
+      for (auto &pair : mBars)
+         pair.second.reset();
 
       mIndicator.reset();
    }
@@ -508,32 +522,44 @@ ToolManager::~ToolManager()
 // configuration if the window size is narrow.
 
 static struct DefaultConfigEntry {
-   int barID;
-   int rightOf; // parent
-   int below;   // preceding sibling
+   Identifier barID;
+   Identifier rightOf; // parent
+   Identifier below;   // preceding sibling
 } DefaultConfigTable [] = {
    // Top dock row, may wrap
-   { TransportBarID,         NoBarID,                NoBarID                },
-   { ToolsBarID,             TransportBarID,         NoBarID                }, 
-   { TimeBarID,              ToolsBarID,             NoBarID                },
-   { RecordMeterBarID,       TimeBarID,              NoBarID                },
-   { PlayMeterBarID,         TimeBarID,              RecordMeterBarID       },
-   { ZoomBarID,              EditBarID,              TransportBarID         },
-
-   { TranscriptionBarID,     ZoomBarID,              NoBarID                },
+   { wxT("Control"),           {},                     {}                },
+   { wxT("Tools"),             wxT("Control"),         {}                },
+   { wxT("Edit"),              wxT("Tools"),           {}                },
+   { wxT("CutCopyPaste"),      wxT("Edit"),            {}                },
+   { wxT("Audio Setup"),       wxT("CutCopyPaste"),    {}                },
+#ifdef HAS_AUDIOCOM_UPLOAD
+   { wxT("Share Audio"),       wxT("Audio Setup"),     {}                },
+   { wxT("RecordMeter"),       wxT("Share Audio"),     {}                },
+   { wxT("PlayMeter"),         wxT("Share Audio"),     wxT("RecordMeter"),
+   },
+#else
+   { wxT("RecordMeter"),       wxT("Audio Setup"),     {}                },
+   { wxT("PlayMeter"),         wxT("Audio Setup"),     wxT("RecordMeter"),
+   },
+#endif
 
    // start another top dock row
-   { ScrubbingBarID,         NoBarID,                TransportBarID         },
-   { DeviceBarID,            NoBarID,                EditBarID              },
+   { wxT("Device"),             {},                     wxT("Control")         },
 
    // Hidden by default in top dock
-   { MeterBarID,             NoBarID,                NoBarID                },
+   { wxT("CombinedMeter"),     {},                     {}                },
 
    // Bottom dock
-   { SelectionBarID,         SettingsBarID,          NoBarID                },
+   { wxT("TimeSignature"),     {},                     {},               }, 
+   { wxT("Snapping"),          wxT("TimeSignature"),   {},               },
+   { wxT("Time"),              wxT("Snapping"),        {}                },
+   { wxT("Selection"),         wxT("Time"),            {}                },
+
+   { wxT("Transcription"),     wxT("Selection"),       {}                },
+
 
    // Hidden by default in bottom dock
-   { SpectralSelectionBarID, NoBarID,                NoBarID                },
+   { wxT("SpectralSelection"), {},                     {}                },
 };
 
 // Static member function.
@@ -543,7 +569,7 @@ void ToolManager::OnResetToolBars(const CommandContext &context)
    auto &toolManager = ToolManager::Get( project );
 
    toolManager.Reset();
-   MenuManager::Get(project).ModifyToolbarMenus(project);
+   Get(project).ModifyToolbarMenus(project);
 }
 
 
@@ -552,13 +578,16 @@ void ToolManager::Reset()
    // Disconnect all docked bars
    for ( const auto &entry : DefaultConfigTable )
    {
-      int ndx = entry.barID;
-      ToolBar *bar = mBars[ ndx ].get();
+      const auto &ndx = entry.barID;
+      ToolBar *bar = GetToolBar(ndx);
+      if (!bar)
+         continue;
 
       ToolBarConfiguration::Position position {
-         (entry.rightOf == NoBarID) ? nullptr : mBars[ entry.rightOf ].get(),
-         (entry.below == NoBarID) ? nullptr : mBars[ entry.below ].get()
+         (entry.rightOf == Identifier{}) ? nullptr : GetToolBar(entry.rightOf),
+         (entry.below == Identifier{}) ? nullptr : GetToolBar(entry.below)
       };
+      
       bar->SetSize( 20,20 );
 
       wxWindow *floater;
@@ -577,15 +606,8 @@ void ToolManager::Reset()
       }
 
       // Decide which dock.
-      if (ndx == SelectionBarID
-#ifdef EXPERIMENTAL_SPECTRAL_EDITING
-         || ndx == SpectralSelectionBarID
-#endif
-         || ndx == SettingsBarID
-         )
-         dock = mBotDock;
-      else
-         dock = mTopDock;
+      dock = (bar->DefaultDockID() == ToolBar::TopDockID)
+         ? mTopDock : mBotDock;
 
       // PRL: Destroy the tool frame before recreating buttons.
       // This fixes some subtle sizing problems on macOs.
@@ -607,13 +629,7 @@ void ToolManager::Reset()
 #endif
 
       // Hide some bars.
-      if( ndx == MeterBarID
-#ifdef EXPERIMENTAL_SPECTRAL_EDITING
-         || ndx == SpectralSelectionBarID
-#endif
-         || ndx == ScrubbingBarID
-         )
-         expose = false;
+      expose = bar->ShownByDefault() || bar->HideAfterReset();
 
       // Next condition will always (?) be true, as the reset configuration is
       // with no floating toolbars.
@@ -621,7 +637,7 @@ void ToolManager::Reset()
       {
          // when we dock, we reparent, so bar is no longer a child of floater.
          dock->Dock( bar, false, position );
-         Expose( ndx, expose );
+         Expose( bar->GetSection(), expose );
       }
       else
       {
@@ -640,29 +656,35 @@ void ToolManager::Reset()
          // This bar is undocked and invisible.
          // We are doing a reset toolbars, so even the invisible undocked bars should
          // be moved somewhere sensible. Put bar near center of window.
-         // If there were multiple hidden toobars the ndx * 10 adjustment means
+         // If there were multiple hidden toobars the * 10 adjustment means
          // they won't overlap too much.
          floater->CentreOnParent( );
-         floater->Move( floater->GetPosition() + wxSize( ndx * 10 - 200, ndx * 10 ));
+         const auto index = bar->GetIndex();
+         floater->Move(
+            floater->GetPosition() + wxSize{ index * 10 - 200, index * 10 });
          bar->SetDocked( NULL, false );
-         Expose( ndx, false );
+         Expose( bar->GetSection(), false );
       }
-
    }
+
+   ForEach([this](auto bar){
+      if (bar && bar->HideAfterReset())
+         Expose(bar->GetSection(), false);
+   });
    // TODO:??
    // If audio was playing, we stopped the VU meters,
    // It would be nice to show them again, but hardly essential as
    // they will show up again on the next play.
-   // SetVUMeters(TenacityProject *p);
+   // SetVUMeters(AudacityProject *p);
    Updated();
 }
 
 void ToolManager::RegenerateTooltips()
 {
-   for (const auto &bar : mBars) {
+   ForEach([](auto bar){
       if (bar)
          bar->RegenerateTooltips();
-   }
+   });
 }
 
 int ToolManager::FilterEvent(wxEvent &event)
@@ -693,14 +715,13 @@ int ToolManager::FilterEvent(wxEvent &event)
 //
 void ToolManager::ReadConfig()
 {
-   wxString oldpath = gPrefs->GetPath();
-   std::vector<int> unordered[ DockCount ];
+   std::vector<Identifier> unordered[ DockCount ];
    std::vector<ToolBar*> dockedAndHidden;
-   bool show[ ToolBarCount ];
-   int width[ ToolBarCount ];
-   int height[ ToolBarCount ];
+   std::map<Identifier, bool> show;
+   std::map<Identifier, int> width;
+   std::map<Identifier, int> height;
    int x, y;
-   int dock, ndx;
+   int dock;
    bool someFound { false };
 
 #if defined(__WXMAC__)
@@ -709,44 +730,42 @@ void ToolManager::ReadConfig()
 #endif
 
    // Change to the bar root
-   gPrefs->SetPath( wxT("/GUI/ToolBars") );
+   auto toolbarsGroup = gPrefs->BeginGroup("/GUI/ToolBars");
 
    ToolBarConfiguration::Legacy topLegacy, botLegacy;
 
    int vMajor, vMinor, vMicro;
-   gPrefs->GetVersionKeysInit(vMajor, vMinor, vMicro);
+   GetPreferencesVersion(vMajor, vMinor, vMicro);
+   bool useLegacyDock = false;
+   // note that vMajor, vMinor, and vMicro will all be zero if either it's a new audacity.cfg file
+   // or the version is less than 1.3.13 (when there were no version keys according to the comments in
+   // InitPreferences()). So for new audacity.cfg
+   // file useLegacyDock will be true, but this doesn't matter as there are no Dock or DockV2 keys in the file yet.
+   if (vMajor <= 1 ||
+      (vMajor == 2 && (vMinor <= 1 || (vMinor == 2 && vMicro <= 1))))   // version <= 2.2.1
+      useLegacyDock = true;
+
 
    // Load and apply settings for each bar
-   for( ndx = 0; ndx < ToolBarCount; ndx++ )
-   {
-      ToolBar *bar = mBars[ ndx ].get();
+   ForEach([&](ToolBar *bar){
       //wxPoint Center = mParent->GetPosition() + (mParent->GetSize() * 0.33);
       //wxPoint Center(
       //   wxSystemSettings::GetMetric( wxSYS_SCREEN_X ) /2 ,
       //   wxSystemSettings::GetMetric( wxSYS_SCREEN_Y ) /2 );
 
       // Change to the bar subkey
-      gPrefs->SetPath( bar->GetSection() );
+      auto ndx = bar->GetSection();
+      auto barGroup = gPrefs->BeginGroup(ndx.GET());
 
-      bool bShownByDefault = true;
-      int defaultDock = TopDockID;
-
-      if( ndx == SelectionBarID | ndx == SettingsBarID )
-         defaultDock = BotDockID;
-      if( ndx == MeterBarID )
-         bShownByDefault = false;
-      if( ndx == ScrubbingBarID )
-         bShownByDefault = false;
-
-#ifdef EXPERIMENTAL_SPECTRAL_EDITING
-      if( ndx == SpectralSelectionBarID ){
-         defaultDock = BotDockID;
-         bShownByDefault = false; // Only show if asked for.
-      }
-#endif
+      const bool bShownByDefault = bar->ShownByDefault();
+      const int defaultDock = bar->DefaultDockID();
 
       // Read in all the settings
-      gPrefs->Read( wxT("DockV2"), &dock, -1);
+
+      if (useLegacyDock)
+         gPrefs->Read( wxT("Dock"), &dock, -1);       // legacy version of DockV2
+      else
+         gPrefs->Read( wxT("DockV2"), &dock, -1);
 
       const bool found = (dock != -1);
       if (found)
@@ -802,7 +821,6 @@ void ToolManager::ReadConfig()
             bar->ResizingDone();
          }
 
-#ifdef EXPERIMENTAL_SYNC_LOCK
          // Set the width
          if( width[ ndx ] >= bar->GetSize().x )
          {
@@ -810,24 +828,7 @@ void ToolManager::ReadConfig()
             bar->SetSize( sz );
             bar->Layout();
          }
-#else
-         // note that this section is here because if you had been using sync-lock and now you aren't,
-         // the space for the extra button is stored in audacity.cfg, and so you get an extra space
-         // in the EditToolbar.
-         // It is needed so that the meterToolbar size gets preserved.
-         // Longer-term we should find a better fix for this.
-         wxString thisBar = bar->GetSection();
-         if( thisBar != wxT("Edit"))
-         {
-            // Set the width
-            if( width[ ndx ] >= bar->GetSize().x )
-            {
-               wxSize sz( width[ ndx ], bar->GetSize().y );
-               bar->SetSize( sz );
-               bar->Layout();
-            }
-         }
-#endif
+
          // make a note of docked and hidden toolbars
          if (!show[ndx])
             dockedAndHidden.push_back(bar);
@@ -866,15 +867,9 @@ void ToolManager::ReadConfig()
          bar->SetDocked( NULL, false );
 
          // Show or hide it
-         Expose( ndx, show[ ndx ] );
+         Expose( bar->GetSection(), show[ ndx ] );
       }
-
-      // Change back to the bar root
-      //gPrefs->SetPath( wxT("..") );  <-- Causes a warning...
-      // May or may not have gone into a subdirectory,
-      // so use an absolute path.
-      gPrefs->SetPath( wxT("/GUI/ToolBars") );
-   }
+   });
 
    mTopDock->GetConfiguration().PostRead(topLegacy);
    mBotDock->GetConfiguration().PostRead(botLegacy);
@@ -889,13 +884,13 @@ void ToolManager::ReadConfig()
       // Add all unordered toolbars
       for( int ord = 0; ord < (int) unordered[ dock ].size(); ord++ )
       {
-         ToolBar *t = mBars[ unordered[ dock ][ ord ] ].get();
+         ToolBar *t = mBars[unordered[dock][ord]].get();
 
          // Dock it
          d->Dock( t, false );
 
          // Show or hide the bar
-         Expose( t->GetId(), show[ t->GetId() ] );
+         Expose( t->GetSection(), show[ t->GetSection() ] );
       }
    }
 
@@ -906,13 +901,23 @@ void ToolManager::ReadConfig()
       bar->Expose(false);
    }
 
-   // Restore original config path
-   gPrefs->SetPath( oldpath );
+   toolbarsGroup.Reset();
 
 #if defined(__WXMAC__)
    // Reinstate original transition
    wxSystemOptions::SetOption( wxMAC_WINDOW_PLAIN_TRANSITION, mTransition );
 #endif
+
+   // Setup the neighbors according to the
+   // default config
+
+   for (const auto& entry : DefaultConfigTable)
+   {
+      const auto &ndx = entry.barID;
+      const auto bar = GetToolBar(ndx);
+      if (bar != nullptr)
+         bar->SetPreferredNeighbors(entry.rightOf, entry.below);
+   }
 
    if (!someFound)
       Reset();
@@ -928,19 +933,12 @@ void ToolManager::WriteConfig()
       return;
    }
 
-   wxString oldpath = gPrefs->GetPath();
-   int ndx;
-
-   // Change to the bar root
-   gPrefs->SetPath( wxT("/GUI/ToolBars") );
+   auto toolbarsGroup = gPrefs->BeginGroup("/GUI/ToolBars");
 
    // Save state of each bar
-   for( ndx = 0; ndx < ToolBarCount; ndx++ )
-   {
-      ToolBar *bar = mBars[ ndx ].get();
-
+   ForEach([this](ToolBar *bar){
       // Change to the bar subkey
-      gPrefs->SetPath( bar->GetSection() );
+      auto sectionGroup = gPrefs->BeginGroup(bar->GetSection().GET());
 
       // Search both docks for toolbar order
       bool to = mTopDock->GetConfiguration().Contains( bar );
@@ -952,6 +950,8 @@ void ToolManager::WriteConfig()
       // its value is compatible with versions 2.1.3 to 2.2.1 which have this bug.
       ToolDock* dock = bar->GetDock();       // dock for both shown and hidden toolbars
       gPrefs->Write( wxT("DockV2"), static_cast<int>(dock == mTopDock ? TopDockID : dock == mBotDock ? BotDockID : NoDockID ));
+
+      gPrefs->Write( wxT("Dock"), static_cast<int>( to ? TopDockID : bo ? BotDockID : NoDockID));
 
       dock = to ? mTopDock : bo ? mBotDock : nullptr;    // dock for shown toolbars
       ToolBarConfiguration::Write
@@ -968,22 +968,17 @@ void ToolManager::WriteConfig()
       gPrefs->Write( wxT("Y"), pos.y );
       gPrefs->Write( wxT("W"), sz.x );
       gPrefs->Write( wxT("H"), sz.y );
-
-      // Change back to the bar root
-      gPrefs->SetPath( wxT("..") );
-   }
-
-   // Restore original config path
-   gPrefs->SetPath( oldpath );
+   });
    gPrefs->Flush();
 }
 
 //
-// Return a pointer to the specified toolbar
+// Return a pointer to the specified toolbar or nullptr
 //
-ToolBar *ToolManager::GetToolBar( int type ) const
+ToolBar *ToolManager::GetToolBar(const Identifier &type) const
 {
-   return mBars[ type ].get();
+   auto end = mBars.end(), iter = mBars.find(type);
+   return (iter == end) ? nullptr : iter->second.get();
 }
 
 //
@@ -1026,19 +1021,21 @@ void ToolManager::Updated()
 //
 // Return docked state of specified toolbar
 //
-bool ToolManager::IsDocked( int type )
+bool ToolManager::IsDocked(Identifier type) const
 {
-   return mBars[ type ]->IsDocked();
+   if (auto pBar = GetToolBar(type))
+      return pBar->IsDocked();
+   return false;
 }
 
 //
 // Returns the visibility of the specified toolbar
 //
-bool ToolManager::IsVisible( int type )
+bool ToolManager::IsVisible(Identifier type) const
 {
-   ToolBar *t = mBars[ type ].get();
-
-   return t && t->IsVisible();
+   if (auto pBar = GetToolBar(type))
+      return pBar->IsVisible();
+   return false;
 
 #if 0
    // If toolbar is floating
@@ -1056,23 +1053,23 @@ bool ToolManager::IsVisible( int type )
 //
 // Toggles the visible/hidden state of a toolbar
 //
-void ToolManager::ShowHide( int type )
+void ToolManager::ShowHide( Identifier type )
 {
-   Expose( type, !mBars[ type ]->IsVisible() );
+   Expose( type, !mBars[type]->IsVisible() );
    Updated();
 }
 
 //
 // Set the visible/hidden state of a toolbar
 //
-void ToolManager::Expose( int type, bool show )
+void ToolManager::Expose( Identifier type, bool show )
 {
-   ToolBar *t = mBars[ type ].get();
+   ToolBar *t = mBars[type].get();
 
    // Handle docked and floaters differently
    if( t->IsDocked() )
    {
-      t->GetDock()->Expose( type, show );
+      t->GetDock()->Expose( t->GetSection(), show );
    }
    else
    {
@@ -1133,7 +1130,7 @@ void ToolManager::OnMouse( wxMouseEvent & event )
          DoneDragging();
          return;
       }
-      else if( mDragDock && !event.ShiftDown() && mDragBar->GetEditMode() )
+      else if( mDragDock && !event.ShiftDown() )
       {
          // Trip over...everyone ashore that's going ashore...
          mDragDock->Dock( mDragBar, true, mDragBefore );
@@ -1205,7 +1202,7 @@ void ToolManager::OnMouse( wxMouseEvent & event )
          dock = mBotDock;
 
       // Looks like we have a winner...
-      if( dock && mDragBar->GetEditMode() )
+      if( dock )
       {
          wxPoint p;
          wxRect r;
@@ -1238,7 +1235,7 @@ void ToolManager::OnMouse( wxMouseEvent & event )
                // needs to use that height, h, not the bar height
                // for calculating where to be drawn.
                const int tbs = toolbarSingle + toolbarGap;
-               int h = std::min(r.GetHeight(), 2*tbs-1);
+               int h = wxMin(r.GetHeight(), 2*tbs-1);
                p.x = dr.GetLeft() + r.GetLeft();
                p.y = dr.GetTop() + r.GetTop() +
                   ( ( h - mLeft->GetBox().GetHeight() ) / 2 );
@@ -1302,6 +1299,11 @@ void ToolManager::OnCaptureLost( wxMouseCaptureLostEvent & event )
    wxMouseEvent e(wxEVT_LEFT_UP);
    e.SetEventObject(mParent);
    OnMouse(e);
+}
+
+void ToolManager::OnMenuUpdate(MenuUpdateMessage)
+{
+   ModifyToolbarMenus( *mParent );
 }
 
 //
@@ -1414,7 +1416,7 @@ void ToolManager::OnGrabber( GrabberEvent & event )
       return HandleEscapeKey();
 
    // Remember which bar we're dragging
-   mDragBar = mBars[ event.GetId() ].get();
+   mDragBar = GetToolBar(event.BarId());
 
    // Remember state, in case of ESCape key later
    if (mDragBar->IsDocked()) {
@@ -1527,25 +1529,54 @@ bool ToolManager::RestoreFocus()
    return false;
 }
 
-#include "../commands/CommandContext.h"
-#include "../Menus.h"
+void ToolManager::ModifyAllProjectToolbarMenus()
+{
+   for (auto pProject : AllProjects{}) {
+      auto &project = *pProject;
+      ModifyToolbarMenus(project);
+   }
+}
+
+#include "CommandManager.h"
+void ToolManager::ModifyToolbarMenus(AudacityProject &project)
+{
+   // Refreshes can occur during shutdown and the toolmanager may already
+   // be deleted, so protect against it.
+   auto &toolManager = ToolManager::Get( project );
+
+   // Now, go through each toolbar, and call EnableDisableButtons()
+   toolManager.ForEach([](auto bar){
+      if (bar)
+         bar->EnableDisableButtons();
+   });
+
+   // These don't really belong here, but it's easier and especially so for
+   // the Edit toolbar and the sync-lock menu item.
+   bool active = SyncLockTracks.Read();
+   SyncLockState::Get(project).SetSyncLock(active);
+
+   CommandManager::Get(project).UpdateCheckmarks();
+}
+
+using namespace MenuRegistry;
 
 AttachedToolBarMenuItem::AttachedToolBarMenuItem(
-   ToolBarID id, const CommandID &name, const TranslatableString &label_in,
+   Identifier id, const CommandID &name, const TranslatableString &label_in,
    const Registry::OrderingHint &hint,
-   std::vector< ToolBarID > excludeIDs )
-   : mId{ id }
+   std::vector< Identifier > excludeIDs
+)  : mId{ id }
    , mAttachedItem{
-      Registry::Placement{ wxT("View/Other/Toolbars/Toolbars/Other"), hint },
-      (  MenuTable::FinderScope(
-            [this](TenacityProject &) -> CommandHandlerObject&
+      (  MenuRegistry::FinderScope(
+            [this](AudacityProject &) -> CommandHandlerObject&
                { return *this; } ),
-         MenuTable::Command( name, label_in,
+         MenuRegistry::Command( name, label_in,
             &AttachedToolBarMenuItem::OnShowToolBar,
             AlwaysEnabledFlag,
-            CommandManager::Options{}.CheckTest( [id](TenacityProject &project){
+            Options{}.CheckTest( [id](AudacityProject &project){
                auto &toolManager = ToolManager::Get( project );
-               return toolManager.IsVisible( id ); } ) ) ) }
+               return toolManager.IsVisible( id ); } ) ) ),
+      Registry::Placement{ wxT("View/Other/Toolbars/Toolbars/Other"), hint }
+   }
    , mExcludeIds{ std::move( excludeIDs ) }
 {}
 
@@ -1561,5 +1592,5 @@ void AttachedToolBarMenuItem::OnShowToolBar( const CommandContext &context )
    }
 
    toolManager.ShowHide(mId);
-   MenuManager::Get(project).ModifyToolbarMenus(project);
+   ToolManager::Get(project).ModifyToolbarMenus(project);
 }

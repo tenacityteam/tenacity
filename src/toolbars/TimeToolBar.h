@@ -18,19 +18,23 @@
 #include "Observer.h"
 
 class NumericTextCtrl;
-class TimeToolBarListener;
+struct ProjectNumericFormatsEvent;
 
 class TimeToolBar final : public ToolBar
 {
 public:
-   TimeToolBar(TenacityProject &project);
+   static Identifier ID();
+
+   TimeToolBar(AudacityProject &project);
    virtual ~TimeToolBar();
    
-   static TimeToolBar &Get(TenacityProject &project);
-   static const TimeToolBar &Get(const TenacityProject &project);
+   DockID DefaultDockID() const override;
+
+   static TimeToolBar &Get(AudacityProject &project);
+   static const TimeToolBar &Get(const AudacityProject &project);
    
    void Populate() override;
-   void Repaint(wxDC * /* dc */) override {};
+   void Repaint(wxDC * WXUNUSED(dc)) override {};
    void EnableDisableButtons() override {};
    void UpdatePrefs() override;
    void RegenerateTooltips() override {};
@@ -39,34 +43,31 @@ public:
    void SetToDefaultSize() override;
    wxSize GetDockedSize() override;
    void SetDocked(ToolDock *dock, bool pushed) override;
-   void SetListener(TimeToolBarListener *l);
-   void SetAudioTimeFormat(const NumericFormatSymbol & format);
+   void SetAudioTimeFormat(const NumericFormatID & format);
    void ResizingDone() override;
 
 private:
    void SetResizingLimits();
    wxSize ComputeSizing(int digitH);
-
-   void OnRateChanged(double);
+   void OnFormatsChanged(ProjectNumericFormatsEvent);
    void OnUpdate(wxCommandEvent &evt);
    void OnSize(wxSizeEvent &evt);
    void OnIdle(wxIdleEvent &evt);
 
-   TimeToolBarListener *mListener;
    NumericTextCtrl *mAudioTime;
    float mDigitRatio;
-   bool mSettingInitialSize;
+   bool mSettingInitialSize = true;
 
    static const int minDigitH = 17;
    static const int maxDigitH = 100;
 
-   Observer::Subscription mSubscription;
+   Observer::Subscription mFormatChangedToFitValueSubscription;
+   Observer::Subscription mFormatsSubscription;
+
+public:
+   
+   DECLARE_CLASS(TimeToolBar)
    DECLARE_EVENT_TABLE()
 };
-
-inline wxSize TimeToolBar::ComputeSizing(int digitH)
-{
-   return mAudioTime->ComputeSizing(false, digitH * mDigitRatio, digitH);
-}
 
 #endif

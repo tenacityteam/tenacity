@@ -1,35 +1,36 @@
 #[[
 A library of mathematical utilities and manipulation of samples
-]]#
+]]
 
 set( SOURCES
+   Biquad.cpp
+   Biquad.h
    Dither.cpp
    Dither.h
-   FFT.cpp
-   FFT.h
+   EBUR128.cpp
+   EBUR128.h
    InterpolateAudio.cpp
    InterpolateAudio.h
+   LinearFit.h
    Matrix.cpp
    Matrix.h
-   RealFFTf.cpp
-   RealFFTf.h
+   PitchName.cpp
+   PitchName.h
    Resample.cpp
    Resample.h
+   Reverb_libSoX.h
+   RoundUpUnsafe.h
    SampleCount.cpp
    SampleCount.h
    SampleFormat.cpp
    SampleFormat.h
-   SSEMathFuncs.cpp
-   SSEMathFuncs.h
-   Spectrum.cpp
-   Spectrum.h
    float_cast.h
+   Gain.h
 )
 set( LIBRARIES
-   Soxr::soxr
    lib-preferences-interface
    PRIVATE
-      wxWidgets::wxWidgets
+   Soxr::soxr
 )
 tenacity_library( lib-math "${SOURCES}" "${LIBRARIES}"
    "" ""

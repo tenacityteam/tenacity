@@ -6,81 +6,45 @@
 
   Craig DeForest
 
-  (Structure largely stolen from NoiseRemoval.h by Dominic Mazzoni)
-
-  This file is intended to become part of Audacity.  You may modify and/or
-  distribute it under the same terms as Audacity itself.
-
 **********************************************************************/
 
 #ifndef __AUDACITY_EFFECT_CLICK_REMOVAL__
 #define __AUDACITY_EFFECT_CLICK_REMOVAL__
 
-#include "Effect.h"
+#include "ClickRemovalBase.h"
+#include "StatefulEffectUIServices.h"
+#include <wx/weakref.h>
 
 class wxSlider;
 class wxTextCtrl;
-class Envelope;
 class ShuttleGui;
 
-class EffectClickRemoval final : public Effect
+class EffectClickRemoval final :
+    public ClickRemovalBase,
+    public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings& settings) override;
+   bool TransferDataFromWindow(EffectSettings& settings) override;
 
-   EffectClickRemoval();
-   virtual ~EffectClickRemoval();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   bool DefineParams( ShuttleParams & S ) override;
-
-   // Effect implementation
-
-   bool CheckWhetherSkipEffect() override;
-   bool Startup() override;
-   bool Process() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
+   DECLARE_EVENT_TABLE()
 
 private:
-   bool ProcessOne(int count, WaveTrack * track,
-                   sampleCount start, sampleCount len);
-
-   bool RemoveClicks(Floats &buffer) const;
-
    void OnWidthText(wxCommandEvent & evt);
    void OnThreshText(wxCommandEvent & evt);
    void OnWidthSlider(wxCommandEvent & evt);
    void OnThreshSlider(wxCommandEvent & evt);
 
 private:
-   Envelope *mEnvelope;
+   wxWeakRef<wxWindow> mUIParent{};
 
-   bool mbDidSomething; // This effect usually does nothing on real-world data.
-   const size_t windowSize = 8192;
-   int mThresholdLevel;
-   int mClickWidth;
-
-   wxSlider *mWidthS;
-   wxSlider *mThreshS;
-   wxTextCtrl *mWidthT;
-   wxTextCtrl *mThreshT;
-
-   DECLARE_EVENT_TABLE()
+   wxSlider* mWidthS;
+   wxSlider* mThreshS;
+   wxTextCtrl* mWidthT;
+   wxTextCtrl* mThreshT;
 };
 
 #endif

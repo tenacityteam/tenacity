@@ -17,7 +17,7 @@
 
 #include <vector>
 #include "PrefsPanel.h"
-#include "../tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.h"
+#include "WaveChannelViewConstants.h"
 #include "WaveformSettings.h" // for ScaleTypeValues
 
 class ShuttleGui;
@@ -27,25 +27,26 @@ class ShuttleGui;
 class TENACITY_DLL_API TracksPrefs final : public PrefsPanel
 {
  public:
+   static BoolSetting TracksFitVerticallyZoomed;
+
    TracksPrefs(wxWindow * parent, wxWindowID winid);
    ~TracksPrefs();
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
 
    bool Commit() override;
    ManualPageID HelpPageName() override;
 
    static bool GetPinnedHeadPreference();
    static void SetPinnedHeadPreference(bool value, bool flush = false);
-   
+
    static double GetPinnedHeadPositionPreference();
    static void SetPinnedHeadPositionPreference(double value, bool flush = false);
-   
-   static WaveTrackViewConstants::Display ViewModeChoice();
-   static WaveformSettings::ScaleTypeValues WaveformScaleChoice();
-   static WaveTrackViewConstants::SampleDisplay SampleViewChoice();
-   static WaveTrackViewConstants::ZoomPresets Zoom1Choice();
-   static WaveTrackViewConstants::ZoomPresets Zoom2Choice();
+
+   static WaveChannelViewConstants::Display ViewModeChoice();
+   static WaveChannelViewConstants::SampleDisplay SampleViewChoice();
+   static WaveChannelViewConstants::ZoomPresets Zoom1Choice();
+   static WaveChannelViewConstants::ZoomPresets Zoom2Choice();
 
  private:
    void Populate();

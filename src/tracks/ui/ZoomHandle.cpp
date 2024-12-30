@@ -40,7 +40,7 @@ ZoomHandle::ZoomHandle()
 {}
 
 HitTestPreview ZoomHandle::HitPreview
-   (const wxMouseState &state, const TenacityProject* /* pProject */)
+   (const wxMouseState &state, const AudacityProject *WXUNUSED(pProject))
 {
    static auto zoomInCursor =
       ::MakeCursor(wxCURSOR_MAGNIFIER, ZoomInCursorXpm, 19, 15);
@@ -83,13 +83,18 @@ ZoomHandle::~ZoomHandle()
 {
 }
 
+std::shared_ptr<const Track> ZoomHandle::FindTrack() const
+{
+   return nullptr;
+}
+
 bool ZoomHandle::HandlesRightClick()
 {
    return true;
 }
 
 UIHandle::Result ZoomHandle::Click
-(const TrackPanelMouseEvent &evt, TenacityProject *)
+(const TrackPanelMouseEvent &evt, AudacityProject *)
 {
    const wxMouseEvent &event = evt.event;
    if (event.ButtonDown() || event.LeftDClick()) {
@@ -102,7 +107,7 @@ UIHandle::Result ZoomHandle::Click
 }
 
 UIHandle::Result ZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *)
+(const TrackPanelMouseEvent &evt, AudacityProject *)
 {
    const wxMouseEvent &event = evt.event;
    const int left = mRect.GetLeft();
@@ -123,13 +128,13 @@ UIHandle::Result ZoomHandle::Drag
 }
 
 HitTestPreview ZoomHandle::Preview
-(const TrackPanelMouseState &st, TenacityProject *pProject)
+(const TrackPanelMouseState &st, AudacityProject *pProject)
 {
    return HitPreview(st.state, pProject);
 }
 
 UIHandle::Result ZoomHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
  wxWindow *)
 {
    const wxMouseEvent &event = evt.event;
@@ -153,7 +158,7 @@ UIHandle::Result ZoomHandle::Release
 
       viewInfo.ZoomBy(multiplier);
 
-      viewInfo.h = left;
+      viewInfo.hpos = left;
    }
    else
    {
@@ -174,7 +179,7 @@ UIHandle::Result ZoomHandle::Release
       const double new_center_h =
          viewInfo.PositionToTime(event.m_x, trackLeftEdge);
 
-      viewInfo.h += (center_h - new_center_h);
+      viewInfo.hpos += (center_h - new_center_h);
    }
 
    mZoomEnd = mZoomStart = 0;
@@ -183,7 +188,7 @@ UIHandle::Result ZoomHandle::Release
    return RefreshAll | FixScrollbars;
 }
 
-UIHandle::Result ZoomHandle::Cancel(TenacityProject*)
+UIHandle::Result ZoomHandle::Cancel(AudacityProject*)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.

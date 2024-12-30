@@ -21,8 +21,10 @@ class wxRect;
 class wxRegion;
 class wxWindow;
 
-class TenacityProject;
+class AudacityProject;
+class Channel;
 struct HitTestPreview;
+class Track;
 class TrackPanelCell;
 struct TrackPanelMouseEvent;
 struct TrackPanelMouseState;
@@ -46,7 +48,7 @@ public:
    // This might put the handle into its first rotated state
    // (or last, if forward is false) or mark itself as needing a highlight.
    // Default does nothing.
-   virtual void Enter(bool forward, TenacityProject *pProject);
+   virtual void Enter(bool forward, AudacityProject *pProject);
 
    // Tell whether the handle has more than one TAB key rotation state.
    // Default is always false.
@@ -60,11 +62,11 @@ public:
    // Tell whether the handle has its own escape action.  In case it is already
    // clicked, it will not cancel on Escape key if true.
    // Default is always false.
-   virtual bool HasEscape() const;
+   virtual bool HasEscape(AudacityProject *pProject) const;
 
    // The handle may change state and mark itself for highlight change.
    // Default does nothing and returns false
-   virtual bool Escape(TenacityProject *pProject);
+   virtual bool Escape(AudacityProject *pProject);
 
    //! Whether the handle has any special right-button handling
    /*! If not, then Click() will not be called for right click.
@@ -76,20 +78,20 @@ public:
    // Otherwise the framework will later call Release or Cancel after
    // some number of Drag calls.
    virtual Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) = 0;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) = 0;
 
    // Assume previously Clicked and not yet Released or Cancelled.
    // pCell may be other than for Click; may be NULL, and rect empty.
    // Return value may include the Cancelled return flag,
    // in which case the handle will not be invoked again.
    virtual Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) = 0;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) = 0;
 
    // Can be called when the handle has been hit but not yet clicked,
    // or called after Drag().
    // Specifies cursor and status bar message.
    virtual HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject) = 0;
+      (const TrackPanelMouseState &state, AudacityProject *pProject) = 0;
 
    // Assume previously Clicked and not yet Released or Cancelled.
    // event.pCell may be other than for Click; may be NULL, and rect empty.
@@ -97,12 +99,12 @@ public:
    // connecting and disconnecting event handlers for the menu items.
    // Cancelled in return flags has no effect.
    virtual Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) = 0;
 
    // Assume previously Clicked and not yet Released or Cancelled.
    // Cancelled in return flags has no effect.
-   virtual Result Cancel(TenacityProject *pProject) = 0;
+   virtual Result Cancel(AudacityProject *pProject) = 0;
 
    // Whether to force Release (not Cancel!) of the drag when a
    // keystroke command is about to be dispatched.  Default is always false.
@@ -116,7 +118,14 @@ public:
    // PRL: all former uses of this are now accomplished with weak_ptr instead
    // to avoid dangling pointers to tracks.  But maybe there will be a future
    // use?
-   virtual void OnProjectChange(TenacityProject *pProject);
+   virtual void OnProjectChange(AudacityProject *pProject);
+
+   //! @return pointer to associated track, if any
+   virtual std::shared_ptr<const Track> FindTrack() const = 0;
+
+   //! Whether the handle is dragging, affecting other panel painting;
+   //! default returns false
+   virtual bool IsDragging() const;
 
 public:
    Result GetChangeHighlight() const { return mChangeHighlight; }
@@ -131,6 +140,10 @@ public:
    {
       return 0;
    }
+
+   //! A frequent convenience in the definition of UIHandles
+   static std::shared_ptr<const Track>
+   TrackFromChannel(const std::shared_ptr<const Channel> &pChannel);
 
 protected:
    // Derived classes can set this nonzero in a constructor, which is enough

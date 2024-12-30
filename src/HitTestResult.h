@@ -12,9 +12,7 @@ Paul Licameli
 #define __AUDACITY_HIT_TEST_RESULT__
 
 #include <memory>
-
-// Tenacity libraries
-#include <lib-strings/Internat.h> // for TranslatableString
+#include "Internat.h" // for TranslatableString
 
 class wxCursor;
 

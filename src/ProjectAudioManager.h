@@ -16,51 +16,65 @@ Paul Licameli split from ProjectManager.h
 
 #include "AudioIOListener.h" // to inherit
 #include "ClientData.h" // to inherit
-#include <wx/event.h> // to declare custom event type
+#include "Observer.h"
+#include "Observer.h"
+
+#include <atomic>
 
 constexpr int RATE_NOT_SELECTED{ -1 };
 
-class TenacityProject;
+class AudacityProject;
 struct AudioIOStartStreamOptions;
 class TrackList;
 class SelectedRegion;
-
-class WaveTrack;
-using WaveTrackArray = std::vector < std::shared_ptr < WaveTrack > >;
+class WritableSampleTrack;
+using WritableSampleTrackArray =
+   std::vector< std::shared_ptr< WritableSampleTrack > >;
 
 enum class PlayMode : int {
    normalPlay,
    oneSecondPlay, // Disables auto-scrolling
-   loopedPlay, // Disables auto-scrolling
+   loopedPlay, // Possibly looped play (not always); disables auto-scrolling
    cutPreviewPlay
 };
 
-struct TransportTracks;
+struct TransportSequences;
 
-enum StatusBarField : int;
+using StatusBarField = Identifier;
+enum class ProjectFileIOMessage : int;
+
+//! Notification, after recording has stopped, when dropouts have been detected
+struct RecordingDropoutEvent {
+   //! Start time and duration
+   using Interval = std::pair<double, double>;
+   using Intervals = std::vector<Interval>;
+
+   explicit RecordingDropoutEvent(const Intervals &intervals)
+      : intervals{ intervals }
+   {}
+
+   //! Disjoint and sorted increasingly
+   const Intervals &intervals;
+};
 
 class TENACITY_DLL_API ProjectAudioManager final
    : public ClientData::Base
    , public AudioIOListener
    , public std::enable_shared_from_this< ProjectAudioManager >
+   , public Observer::Publisher<RecordingDropoutEvent>
 {
 public:
-   static ProjectAudioManager &Get( TenacityProject &project );
-   static const ProjectAudioManager &Get( const TenacityProject &project );
+   static ProjectAudioManager &Get( AudacityProject &project );
+   static const ProjectAudioManager &Get( const AudacityProject &project );
 
-   // Find suitable tracks to record into, or return an empty array.
-   static WaveTrackArray ChooseExistingRecordingTracks(
-      TenacityProject &proj, bool selectedOnly,
+   //! Find suitable tracks to record into, or return an empty array.
+   static WritableSampleTrackArray ChooseExistingRecordingTracks(
+      AudacityProject &proj, bool selectedOnly,
       double targetRate = RATE_NOT_SELECTED);
 
    static bool UseDuplex();
 
-   static TransportTracks GetAllPlaybackTracks(
-      TrackList &trackList, bool selectedOnly,
-      bool nonWaveToo = false //!< if true, collect all PlayableTracks
-   );
-
-   explicit ProjectAudioManager( TenacityProject &project );
+   explicit ProjectAudioManager( AudacityProject &project );
    ProjectAudioManager( const ProjectAudioManager & ) = delete;
    ProjectAudioManager &operator=( const ProjectAudioManager & ) = delete;
    ~ProjectAudioManager() override;
@@ -69,7 +83,7 @@ public:
    void SetTimerRecordCancelled() { mTimerRecordCanceled = true; }
    void ResetTimerRecordCancelled() { mTimerRecordCanceled = false; }
 
-   bool Paused() const { return mPaused; }
+   bool Paused() const;
 
    bool Playing() const;
 
@@ -81,6 +95,7 @@ public:
 
    // Whether the last attempt to start recording requested appending to tracks
    bool Appending() const { return mAppending; }
+   // Whether potentially looping play (using new default PlaybackPolicy)
    bool Looping() const { return mLooping; }
    bool Cutting() const { return mCutting; }
 
@@ -89,8 +104,9 @@ public:
 
    void OnRecord(bool altAppearance);
 
-   bool DoRecord(TenacityProject &project,
-      const TransportTracks &transportTracks, // If captureTracks is empty, then tracks are created
+   bool DoRecord(AudacityProject &project,
+      //! If captureSequences is empty, then tracks are created
+      const TransportSequences &transportSequences,
       double t0, double t1,
       bool altAppearance,
       const AudioIOStartStreamOptions &options);
@@ -98,18 +114,16 @@ public:
    int PlayPlayRegion(const SelectedRegion &selectedRegion,
                       const AudioIOStartStreamOptions &options,
                       PlayMode playMode,
-                      bool backwards = false,
-                      // Allow t0 and t1 to be beyond end of tracks
-                      bool playWhiteSpace = false);
+                      bool backwards = false);
 
    // Play currently selected region, or if nothing selected,
    // play from current cursor.
-   void PlayCurrentRegion(bool looped = false, bool cutpreview = false);
+   void PlayCurrentRegion(
+      bool newDefault = false, //!< See ProjectAudioIO::GetDefaultOptions
+      bool cutpreview = false);
 
    void OnPause();
    
-   // Pause - used by AudioIO to pause sound activate recording
-   void Pause();
 
    // Stop playing or recording
    void Stop(bool stopStream = true);
@@ -122,15 +136,14 @@ public:
    PlayMode GetLastPlayMode() const { return mLastPlayMode; }
 
 private:
-   void SetPaused( bool value ) { mPaused = value; }
+
+   void TogglePaused();
+   void SetPausedOff();
+
    void SetAppending( bool value ) { mAppending = value; }
    void SetLooping( bool value ) { mLooping = value; }
    void SetCutting( bool value ) { mCutting = value; }
    void SetStopping( bool value ) { mStopping = value; }
-
-   void SetupCutPreviewTracks(double playStart, double cutStart,
-                             double cutEnd, double playEnd);
-   void ClearCutPreviewTracks();
 
    // Cancel the addition of temporary recording tracks into the project
    void CancelRecording();
@@ -139,22 +152,24 @@ private:
    void OnAudioIORate(int rate) override;
    void OnAudioIOStartRecording() override;
    void OnAudioIOStopRecording() override;
-   void OnAudioIONewBlocks(const WaveTrackArray *tracks) override;
+   void OnAudioIONewBlocks() override;
    void OnCommitRecording() override;
    void OnSoundActivationThreshold() override;
 
-   void OnCheckpointFailure(wxCommandEvent &evt);
+   void OnCheckpointFailure(ProjectFileIOMessage);
 
-   TenacityProject &mProject;
-
-   std::shared_ptr<TrackList> mCutPreviewTracks;
+   Observer::Subscription mCheckpointFailureSubscription;
+   AudacityProject &mProject;
 
    PlayMode mLastPlayMode{ PlayMode::normalPlay };
 
    //flag for cancellation of timer record.
    bool mTimerRecordCanceled{ false };
 
-   bool mPaused{ false };
+   // Using int as the type for this atomic flag, allows us to toggle its value
+   // with an atomic operation.
+   std::atomic<int> mPaused{ 0 };
+
    bool mAppending{ false };
    bool mLooping{ false };
    bool mCutting{ false };
@@ -163,25 +178,22 @@ private:
    int mDisplayedRate{ 0 };
    static std::pair< TranslatableStrings, unsigned >
       StatusWidthFunction(
-         const TenacityProject &project, StatusBarField field);
+         const AudacityProject &project, StatusBarField field);
 };
 
-TENACITY_DLL_API
-AudioIOStartStreamOptions DefaultPlayOptions(
-   TenacityProject &project, bool looped = false );
-AudioIOStartStreamOptions DefaultSpeedPlayOptions( TenacityProject &project );
+AudioIOStartStreamOptions DefaultSpeedPlayOptions( AudacityProject &project );
 
 struct PropertiesOfSelected
 {
    bool allSameRate{ false };
    int rateOfSelected{ RATE_NOT_SELECTED };
-   int numberOfSelected{ 0 };
+   bool anySelected{ false };
 };
 
 TENACITY_DLL_API
-PropertiesOfSelected GetPropertiesOfSelected(const TenacityProject &proj);
+PropertiesOfSelected GetPropertiesOfSelected(const AudacityProject &proj);
 
-#include "commands/CommandFlag.h"
+#include "CommandFlag.h"
 
 extern TENACITY_DLL_API const ReservedCommandFlag
    &CanStopAudioStreamFlag();

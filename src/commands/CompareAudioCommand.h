@@ -29,9 +29,11 @@ public:
    static const ComponentInterfaceSymbol Symbol;
 
    // ComponentInterface overrides
-   ComponentInterfaceSymbol GetSymbol() override {return Symbol;}
-   TranslatableString  GetDescription() override {return XO("Compares a range on two tracks.");};
-   bool DefineParams( ShuttleParams & S ) override;
+   ComponentInterfaceSymbol GetSymbol() const override {return Symbol;}
+   TranslatableString  GetDescription() const override {return XO("Compares a range on two tracks.");};
+   template<bool Const> bool VisitSettings( SettingsVisitorBase<Const> &S );
+   bool VisitSettings( SettingsVisitor & S ) override;
+   bool VisitSettings( ConstSettingsVisitor & S ) override;
    void PopulateOrExchange(ShuttleGui & S) override;
 
    // AudacityCommand overrides
@@ -46,7 +48,7 @@ private:
    const WaveTrack *mTrack1;
 
    // Update member variables with project selection data (and validate)
-   bool GetSelection(const CommandContext &context, TenacityProject &proj);
+   bool GetSelection(const CommandContext &context, AudacityProject &proj);
 
 protected:
    double CompareSample(double value1, double value2) /* not override */;

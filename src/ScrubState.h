@@ -1,6 +1,6 @@
 /*!********************************************************************
  
- Tenacity
+ Audacity: A Digital Audio Editor
  
  @file ScrubState.h
  
@@ -25,10 +25,9 @@ struct ScrubbingOptions {
    double minTime {};
 
    bool bySpeed {};
-   bool isPlayingAtSpeed{};
    bool isKeyboardScrubbing{};
 
-   double delay {};
+   PlaybackPolicy::Duration delay {};
 
    // Initial and limiting values for the speed of a scrub interval:
    double initSpeed { 1.0 };
@@ -38,7 +37,7 @@ struct ScrubbingOptions {
 
    // When maximum speed scrubbing skips to follow the mouse,
    // this is the minimum amount of playback allowed at the maximum speed:
-   double minStutterTime {};
+   PlaybackPolicy::Duration minStutterTime {};
 
    static double MaxAllowedScrubSpeed()
    { return 32.0; } // Is five octaves enough for your amusement?
@@ -58,8 +57,6 @@ public:
 
    BufferTimes SuggestedBufferTimes(PlaybackSchedule &schedule) override;
 
-   double NormalizeTrackTime( PlaybackSchedule &schedule ) override;
-
    bool AllowSeek( PlaybackSchedule & ) override;
 
    std::chrono::milliseconds
@@ -70,8 +67,9 @@ public:
    PlaybackSlice GetPlaybackSlice(
       PlaybackSchedule &schedule, size_t available) override;
 
-   double AdvancedTrackTime( PlaybackSchedule &schedule,
-      double trackTime, double realDuration ) override;
+   std::pair<double, double>
+      AdvancedTrackTime( PlaybackSchedule &schedule,
+         double trackTime, size_t nSamples ) override;
 
    bool RepositionPlayback(
       PlaybackSchedule &schedule, const Mixers &playbackMixers,
@@ -81,9 +79,11 @@ public:
 
 private:
    sampleCount mScrubDuration{ 0 }, mStartSample{ 0 }, mEndSample{ 0 };
+   double mOldEndTime{ 0 }, mNewStartTime{ 0 };
    double mScrubSpeed{ 0 };
    bool mSilentScrub{ false };
    bool mReplenish{ false };
+   size_t mUntilDiscontinuity{ 0 };
 
    const ScrubbingOptions mOptions;
 };
@@ -106,6 +106,6 @@ struct ScrubState
    static double GetLastScrubTime();
 };
 
-static constexpr unsigned ScrubPollInterval_ms = 50;
+static constexpr auto ScrubPollInterval = std::chrono::milliseconds{50};
 
 #endif

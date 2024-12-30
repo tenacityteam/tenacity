@@ -12,17 +12,17 @@ Paul Licameli split from Menus.cpp
 #include "CommonCommandFlags.h"
 
 
+
 #include <wx/frame.h>
 
 #include "AudioIO.h"
+#include "Clipboard.h"
 #include "LabelTrack.h"
-#include "Menus.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
-#include "ProjectFileIO.h"
 #include "ProjectHistory.h"
-#include "ProjectSettings.h"
 #include "ProjectWindows.h"
+#include "SyncLock.h"
 #include "UndoManager.h"
 #include "ViewInfo.h"
 #include "WaveTrack.h"
@@ -42,28 +42,28 @@ cycles.
 */
 
 // Strong predicate excludes tracks that do not support basic editing.
-bool EditableTracksSelectedPred( const TenacityProject &project )
+bool EditableTracksSelectedPred(const AudacityProject &project)
 {
-   auto range = TrackList::Get( project ).Selected()
-     - []( const Track *pTrack ){
+   auto range = TrackList::Get(project).Selected()
+     - [](const Track *pTrack){
         return !pTrack->SupportsBasicEditing(); };
    return !range.empty();
 };
 
 // Weaker predicate.
-bool AnyTracksSelectedPred( const TenacityProject &project )
+bool AnyTracksSelectedPred(const AudacityProject &project)
 {
-   auto range = TrackList::Get( project ).Selected();
+   auto range = TrackList::Get(project).Selected();
    return !range.empty();
 };
 
-bool AudioIOBusyPred( const TenacityProject &project )
+bool AudioIOBusyPred( const AudacityProject &project )
 {
    return AudioIOBase::Get()->IsAudioTokenActive(
       ProjectAudioIO::Get( project ).GetAudioIOToken());
 };
 
-bool TimeSelectedPred( const TenacityProject &project )
+bool TimeSelectedPred( const AudacityProject &project )
 {
    // This is equivalent to check if there is a valid selection,
    // so it's used for Zoom to Selection too
@@ -78,18 +78,14 @@ static CommandFlagOptions result{
       // thus assuming the default shortcuts.  That is questionable.
       TranslatableString format;
 #ifdef __WXMAC__
-       // i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
+      // i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
       format = XO("Select the audio for %s to use (for example, Cmd + A to Select All) then try again."
-      // No need to explain what a help button is for.
-      // "\n\nClick the Help button to learn more about selection methods."
       );
 
 #else
-       // i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
-       format = XO("Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
-       // No need to explain what a help button is for.
-       // "\n\nClick the Help button to learn more about selection methods."
-       );
+      // i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
+      format = XO("Select the audio for %s to use (for example, Ctrl + A to Select All) then try again."
+      );
 #endif
       return format.Format( Name );
    },
@@ -120,7 +116,7 @@ const CommandFlagOptions noiseReductionOptions{
    // significant.
 const ReservedCommandFlag&
    AudioIONotBusyFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project ){
+      [](const AudacityProject &project ){
          return !AudioIOBusyPred( project );
       },
       CommandFlagOptions{ []( const TranslatableString& ) { return
@@ -132,13 +128,12 @@ const ReservedCommandFlag&
    }; return flag; }//lll
 const ReservedCommandFlag&
    StereoRequiredFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         // True iff at least one stereo track is selected, i.e., at least
-         // one right channel is selected.
+      [](const AudacityProject &project){
          // TODO: more-than-two-channels
-         auto range = TrackList::Get( project ).Selected<const WaveTrack>()
-            - &Track::IsLeader;
-         return !range.empty();
+         auto range =
+            TrackList::Get(project).Selected<const WaveTrack>();
+         return std::any_of(range.begin(), range.end(),
+            [](auto pTrack){ return pTrack->NChannels() > 1; });
       },
       { []( const TranslatableString& ) { return
          // This reason will not be shown, because the stereo-to-mono is greyed out if not allowed.
@@ -157,17 +152,18 @@ const ReservedCommandFlag&
    }; return flag; }
 const ReservedCommandFlag&
    WaveTracksSelectedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !TrackList::Get( project ).Selected<const WaveTrack>().empty();
+      [](const AudacityProject &project){
+         return
+            !TrackList::Get(project).Selected<const WaveTrack>().empty();
       },
-      { []( const TranslatableString& ) { return
+      { [](const TranslatableString&) { return
          XO("You must first select some audio to perform this action.\n(Selecting other kinds of track won't work.)");
       } ,"Audacity_Selection"}
    }; return flag; }
 const ReservedCommandFlag&
    TracksExistFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !TrackList::Get( project ).Any().empty();
+      [](const AudacityProject &project){
+         return !TrackList::Get(project).Any().empty();
       },
       CommandFlagOptions{}.DisableDefaultMessage()
    }; return flag; }
@@ -189,7 +185,7 @@ const ReservedCommandFlag&
    }; return flag; }
 const ReservedCommandFlag&
    TrackPanelHasFocus() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
+      [](const AudacityProject &project){
          for (auto w = wxWindow::FindFocus(); w; w = w->GetParent()) {
             if (dynamic_cast<const NonKeystrokeInterceptingWindow*>(w))
                return true;
@@ -206,7 +202,7 @@ const ReservedCommandFlag&
    }; return flag; } //lll
 const ReservedCommandFlag&
    CaptureNotBusyFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &){
+      [](const AudacityProject &){
          auto gAudioIO = AudioIO::Get();
          return !(
             gAudioIO->IsBusy() &&
@@ -217,87 +213,64 @@ const ReservedCommandFlag&
 
 const ReservedCommandFlag&
    LabelTracksExistFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !TrackList::Get( project ).Any<const LabelTrack>().empty();
-      }
-   }; return flag; }
-const ReservedCommandFlag&
-   UnsavedChangesFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         auto &undoManager = UndoManager::Get( project );
-         return
-            undoManager.UnsavedChanges()
-         ||
-            ProjectFileIO::Get( project ).IsModified()
-         ;
+      [](const AudacityProject &project){
+         return !TrackList::Get(project)
+            .Selected<const LabelTrack>().empty();
       }
    }; return flag; }
 const ReservedCommandFlag&
    UndoAvailableFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
+      [](const AudacityProject &project){
          return ProjectHistory::Get( project ).UndoAvailable();
       }
    }; return flag; }
 const ReservedCommandFlag&
    RedoAvailableFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
+      [](const AudacityProject &project){
          return ProjectHistory::Get( project ).RedoAvailable();
       }
    }; return flag; }
 const ReservedCommandFlag&
    ZoomInAvailableFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
+      [](const AudacityProject &project){
          return
-            ViewInfo::Get( project ).ZoomInAvailable()
+            ViewInfo::Get(project).ZoomInAvailable()
          &&
-            !TrackList::Get( project ).Any().empty()
+            !TrackList::Get(project).Any().empty()
          ;
       }
    }; return flag; }
 const ReservedCommandFlag&
    ZoomOutAvailableFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
+      [](const AudacityProject &project){
          return
-            ViewInfo::Get( project ).ZoomOutAvailable()
+            ViewInfo::Get(project).ZoomOutAvailable()
          &&
-            !TrackList::Get( project ).Any().empty()
+            !TrackList::Get(project).Any().empty()
          ;
       }
    }; return flag; }
 const ReservedCommandFlag&
-   PlayRegionLockedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return ViewInfo::Get(project).playRegion.Locked();
-      }
-   }; return flag; }  //msmeyer
-const ReservedCommandFlag&
-   PlayRegionNotLockedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         const auto &playRegion = ViewInfo::Get(project).playRegion;
-         return !playRegion.Locked() && !playRegion.Empty();
-      }
-   }; return flag; }  //msmeyer
-const ReservedCommandFlag&
    WaveTracksExistFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !TrackList::Get( project ).Any<const WaveTrack>().empty();
+      [](const AudacityProject &project){
+         return !TrackList::Get(project).Any<const WaveTrack>().empty();
       }
    }; return flag; }
 const ReservedCommandFlag&
    IsNotSyncLockedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return !ProjectSettings::Get( project ).IsSyncLocked();
+      [](const AudacityProject &project){
+         return !SyncLockState::Get( project ).IsSyncLocked();
       }
    }; return flag; }  //awd
 const ReservedCommandFlag&
    IsSyncLockedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
-         return ProjectSettings::Get( project ).IsSyncLocked();
+      [](const AudacityProject &project){
+         return SyncLockState::Get( project ).IsSyncLocked();
       }
    }; return flag; }  //awd
 const ReservedCommandFlag&
    NotMinimizedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject &project){
+      [](const AudacityProject &project){
          const wxWindow *focus = FindProjectFrame( &project );
          if (focus) {
             while (focus && focus->GetParent())
@@ -311,14 +284,13 @@ const ReservedCommandFlag&
    }; return flag; } // prl
 const ReservedCommandFlag&
    PausedFlag() { static ReservedCommandFlag flag{
-      [](const TenacityProject&){
+      [](const AudacityProject&){
          return AudioIOBase::Get()->IsPaused();
       },
       CommandFlagOptions{}.QuickTest()
    }; return flag; }
 const ReservedCommandFlag&
    NoAutoSelect() { static ReservedCommandFlag flag{
-     [](const TenacityProject &){ return true; }
+     [](const AudacityProject &){ return true; }
    }; return flag; } // jkc
-;
 

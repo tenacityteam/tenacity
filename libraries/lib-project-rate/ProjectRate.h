@@ -12,7 +12,7 @@ Paul Licameli split from ProjectSettings.h
 #ifndef __AUDACITY_PROJECT_RATE__
 #define __AUDACITY_PROJECT_RATE__
 
-class TenacityProject;
+class AudacityProject;
 
 #include "ClientData.h"
 #include "Observer.h"
@@ -23,10 +23,10 @@ class PROJECT_RATE_API ProjectRate final
    , public Observer::Publisher<double>
 {
 public:
-   static ProjectRate &Get( TenacityProject &project );
-   static const ProjectRate &Get( const TenacityProject &project );
+   static ProjectRate &Get( AudacityProject &project );
+   static const ProjectRate &Get( const AudacityProject &project );
    
-   explicit ProjectRate(TenacityProject &project);
+   explicit ProjectRate(AudacityProject &project);
    ProjectRate( const ProjectRate & ) = delete;
    ProjectRate &operator=( const ProjectRate & ) = delete;
 

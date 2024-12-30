@@ -18,7 +18,7 @@
 #include <wx/dcmemory.h>
 #include <wx/clipbrd.h>
 
-#include "../../ProjectWindow.h"
+
 #include "../../RefreshCode.h"
 
 TextEditDelegate::~TextEditDelegate() = default;
@@ -42,10 +42,10 @@ bool TextEditHelper::IsGoodEditKeyCode(int keyCode)
 }
 
 TextEditHelper::TextEditHelper(const std::weak_ptr<TextEditDelegate>& delegate, const wxString& text, const wxFont& font)
-    : mFont(font), 
-    mDelegate(delegate), 
-    mText(text),
-    mInitialCursorPos(0)
+    : mText(text),
+    mFont(font),
+    mInitialCursorPos(0),
+    mDelegate(delegate)
 {
     mCurrentCursorPos = text.Length();
 }
@@ -60,13 +60,13 @@ void TextEditHelper::SetTextSelectionColor(const wxColor& textSelectionColor)
     mTextSelectionColor = textSelectionColor;
 }
 
-void TextEditHelper::Cancel(TenacityProject* project)
+void TextEditHelper::Cancel(AudacityProject* project)
 {
     if (auto lock = mDelegate.lock())
         lock->OnTextEditCancelled(project);
 }
 
-void TextEditHelper::Finish(TenacityProject* project)
+void TextEditHelper::Finish(AudacityProject* project)
 {
     if (auto lock = mDelegate.lock())
         lock->OnTextEditFinished(project, mText);
@@ -99,7 +99,7 @@ bool TextEditHelper::CaptureKey(int, int mods)
    return mods == wxMOD_NONE || mods == wxMOD_SHIFT;
 }
 
-bool TextEditHelper::OnKeyDown(int keyCode, int mods, TenacityProject* project)
+bool TextEditHelper::OnKeyDown(int keyCode, int mods, AudacityProject* project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -244,7 +244,7 @@ bool TextEditHelper::OnKeyDown(int keyCode, int mods, TenacityProject* project)
     return false;
 }
 
-bool TextEditHelper::OnChar(int charCode, TenacityProject* project)
+bool TextEditHelper::OnChar(int charCode, AudacityProject* project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -280,7 +280,7 @@ bool TextEditHelper::OnChar(int charCode, TenacityProject* project)
     return true;
 }
 
-bool TextEditHelper::OnClick(const wxMouseEvent& event, TenacityProject*)
+bool TextEditHelper::OnClick(const wxMouseEvent& event, AudacityProject*)
 {
     if (event.ButtonDown())
     {
@@ -335,72 +335,87 @@ bool TextEditHelper::OnClick(const wxMouseEvent& event, TenacityProject*)
     return false;
 }
 
-bool TextEditHelper::OnDrag(const wxMouseEvent& event, TenacityProject* project)
+bool TextEditHelper::OnDrag(const wxMouseEvent& event, AudacityProject* project)
 {
     return HandleDragRelease(event, project);
 }
 
-bool TextEditHelper::OnRelease(const wxMouseEvent& event, TenacityProject* project)
+bool TextEditHelper::OnRelease(const wxMouseEvent& event, AudacityProject* project)
 {
     return HandleDragRelease(event, project);
 }
 
-void TextEditHelper::Draw(wxDC& dc, const wxRect& rect)
+bool TextEditHelper::Draw(wxDC& dc, const wxRect& rect)
 {
     mBBox = rect;
-    dc.SetFont(mFont);
+
+    if(rect.IsEmpty())
+       return false;
 
     const auto cursorHeight = dc.GetFontMetrics().height;
 
+    dc.SetFont(mFont);
+
     wxDCClipper clipper(dc, rect);
-    
-    auto rtl = wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft;
 
     auto curPosX = 0;
     auto maxOffset = static_cast<int>(mText.Length());
-    mOffset = std::clamp(mOffset, 0, maxOffset);
+    mOffset = 0;
+    if(maxOffset > 0)
     {
-        auto leftBound = rect.GetLeft();
-        auto rightBound = rect.GetRight() + 1;
-        GetCharPositionX(mCurrentCursorPos, &curPosX);
-
-        if ((!rtl && curPosX >= rightBound) || (rtl && curPosX < leftBound))
+        const auto rtl = wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft;
         {
-            while (mOffset < maxOffset)
+            auto leftBound = rect.GetLeft();
+            auto rightBound = rect.GetRight() + 1;
+            GetCharPositionX(mCurrentCursorPos, &curPosX);
+
+            if ((!rtl && curPosX >= rightBound) || (rtl && curPosX < leftBound))
             {
-                GetCharPositionX(mCurrentCursorPos, &curPosX);
-                if (curPosX < rightBound && curPosX >= leftBound)
-                    break;
-                ++mOffset;
+                while (mOffset < maxOffset)
+                {
+                    GetCharPositionX(mCurrentCursorPos, &curPosX);
+                    if (curPosX < rightBound && curPosX >= leftBound)
+                        break;
+                    ++mOffset;
+                }
+            }
+            if ((!rtl && curPosX < leftBound) || (rtl && curPosX >= rightBound))
+            {
+                while (mOffset > 0)
+                {
+                    GetCharPositionX(mCurrentCursorPos, &curPosX);
+                    if (curPosX >= leftBound && curPosX < rightBound)
+                        break;
+                    --mOffset;
+                }
             }
         }
-        if ((!rtl && curPosX < leftBound) || (rtl && curPosX >= rightBound))
+        // Text doesn't fit into rectangle
+        if(mOffset >= maxOffset)
+            return false;
+
+        if (mCurrentCursorPos != mInitialCursorPos)
         {
-            while (mOffset > 0)
-            {
-                GetCharPositionX(mCurrentCursorPos, &curPosX);
-                if (curPosX >= leftBound && curPosX < rightBound)
-                    break;
-                --mOffset;
-            }
+            auto left = 0;
+            auto right = 0;
+            GetCharPositionX(std::min(mCurrentCursorPos, mInitialCursorPos), &left);
+            GetCharPositionX(std::max(mCurrentCursorPos, mInitialCursorPos), &right);
+            dc.SetPen(*wxTRANSPARENT_PEN);
+            dc.SetBrush(mTextSelectionColor);
+            dc.DrawRectangle(wxRect(left, rect.GetTop() + (rect.GetHeight() - cursorHeight) / 2, right - left, cursorHeight));
         }
-    }
 
-    if (mCurrentCursorPos != mInitialCursorPos)
+        
+        dc.SetTextBackground(wxTransparentColour);
+        dc.SetTextForeground(mTextColor);
+        dc.SetFont(wxFont(wxFontInfo()));
+        dc.DrawLabel(mText.Mid(mOffset), rect, (rtl ? wxALIGN_RIGHT : wxALIGN_LEFT) | wxALIGN_CENTER_VERTICAL);
+    }
+    else
     {
-        auto left = 0;
-        auto right = 0;
-        GetCharPositionX(std::min(mCurrentCursorPos, mInitialCursorPos), &left);
-        GetCharPositionX(std::max(mCurrentCursorPos, mInitialCursorPos), &right);
-        dc.SetPen(*wxTRANSPARENT_PEN);
-        dc.SetBrush(mTextSelectionColor);
-        dc.DrawRectangle(wxRect(left, rect.GetTop() + (rect.GetHeight() - cursorHeight) / 2, right - left, cursorHeight));
+       mCurrentCursorPos = mInitialCursorPos = 0;
+       GetCharPositionX(mCurrentCursorPos, &curPosX);
     }
-
-    dc.SetTextBackground(wxTransparentColour);
-    dc.SetTextForeground(mTextColor);
-    dc.SetFont(wxFont(wxFontInfo()));
-    dc.DrawLabel(mText.Mid(mOffset), rect, (rtl ? wxALIGN_RIGHT : wxALIGN_LEFT) | wxALIGN_CENTER_VERTICAL);
 
     if (mCurrentCursorPos == mInitialCursorPos)
     {
@@ -408,9 +423,10 @@ void TextEditHelper::Draw(wxDC& dc, const wxRect& rect)
         auto top = rect.GetTop() + (rect.GetHeight() - cursorHeight) / 2;
         dc.DrawLine(curPosX, top, curPosX, top + cursorHeight);
     }
+    return true;
 }
 
-bool TextEditHelper::HandleDragRelease(const wxMouseEvent& event, TenacityProject* project)
+bool TextEditHelper::HandleDragRelease(const wxMouseEvent& event, AudacityProject* project)
 {
     if (event.Dragging())
     {
@@ -434,7 +450,7 @@ bool TextEditHelper::HandleDragRelease(const wxMouseEvent& event, TenacityProjec
     return false;
 }
 
-void TextEditHelper::RemoveSelectedText(TenacityProject* project)
+void TextEditHelper::RemoveSelectedText(AudacityProject* project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -565,7 +581,7 @@ const wxRect& TextEditHelper::GetBBox() const
 
 /// Cut the selected text in the text box
 ///  @return true if text is selected in text box, false otherwise
-bool TextEditHelper::CutSelectedText(TenacityProject& project)
+bool TextEditHelper::CutSelectedText(AudacityProject& project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)
@@ -610,7 +626,7 @@ bool TextEditHelper::CutSelectedText(TenacityProject& project)
 
 /// Copy the selected text in the text box
 ///  @return true if text is selected in text box, false otherwise
-bool TextEditHelper::CopySelectedText(TenacityProject& project)
+bool TextEditHelper::CopySelectedText(AudacityProject& project)
 {
     if (mCurrentCursorPos == mInitialCursorPos)
         return false;
@@ -639,7 +655,7 @@ bool TextEditHelper::CopySelectedText(TenacityProject& project)
 // PRL:  should this set other fields of the label selection?
 /// Paste the text on the clipboard to text box
 ///  @return true if mouse is clicked in text box, false otherwise
-bool TextEditHelper::PasteSelectedText(TenacityProject& project)
+bool TextEditHelper::PasteSelectedText(AudacityProject& project)
 {
     auto delegate = mDelegate.lock();
     if (!delegate)

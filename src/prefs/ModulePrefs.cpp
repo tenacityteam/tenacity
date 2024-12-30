@@ -18,14 +18,15 @@ with names like mod-script-pipe that add NEW features.
 
 #include "ModulePrefs.h"
 
+
+
 #include <wx/defs.h>
 #include <wx/filename.h>
 
-// Tenacity libraries
-#include <lib-module-manager/ModuleSettings.h>
-#include <lib-preferences/Prefs.h>
+#include "ShuttleGui.h"
 
-#include "../shuttle/ShuttleGui.h"
+#include "Prefs.h"
+#include "ModuleSettings.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -40,27 +41,25 @@ ModulePrefs::~ModulePrefs()
 {
 }
 
-ComponentInterfaceSymbol ModulePrefs::GetSymbol()
+ComponentInterfaceSymbol ModulePrefs::GetSymbol() const
 {
    return MODULE_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString ModulePrefs::GetDescription()
+TranslatableString ModulePrefs::GetDescription() const
 {
    return XO("Preferences for Module");
 }
 
 ManualPageID ModulePrefs::HelpPageName()
 {
-   return "Preferences#modules";
+   return "Modules_Preferences";
 }
 
 void ModulePrefs::GetAllModuleStatuses(){
-   wxString str;
-   long dummy;
-
    // Modules could for example be:
    //    mod-script-pipe
+   //    mod-nyq-bench
    //    mod-menu-munger
    //    mod-theming
 
@@ -73,26 +72,24 @@ void ModulePrefs::GetAllModuleStatuses(){
 
    // Iterate through all Modules listed in prefs.
    // Get their names and values.
-   gPrefs->SetPath( wxT("Module/") );
-   bool bCont = gPrefs->GetFirstEntry(str, dummy);
-   while ( bCont ) {
+   auto moduleGroup = gPrefs->BeginGroup("Module");
+   for(const auto& key : gPrefs->GetChildKeys())
+   {
       int iStatus;
-      gPrefs->Read( str, &iStatus, kModuleDisabled );
+      gPrefs->Read( key, &iStatus, static_cast<decltype(iStatus)>(kModuleDisabled) );
       wxString fname;
-      gPrefs->Read( wxString( wxT("/ModulePath/") ) + str, &fname, wxEmptyString );
+      gPrefs->Read(wxT("/ModulePath/") + key, &fname, {} );
       if( !fname.empty() && wxFileExists( fname ) ){
          if( iStatus > kModuleNew ){
             iStatus = kModuleNew;
-            gPrefs->Write( str, iStatus );
+            gPrefs->Write( key, iStatus );
          }
          //wxLogDebug( wxT("Entry: %s Value: %i"), str, iStatus );
-         mModules.push_back( str );
+         mModules.push_back( key );
          mStatuses.push_back( iStatus );
          mPaths.push_back( fname );
       }
-      bCont = gPrefs->GetNextEntry(str, dummy);
    }
-   gPrefs->SetPath( wxT("") );
 }
 
 void ModulePrefs::Populate()
@@ -115,18 +112,9 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
    S.StartStatic( {} );
    {
       S.AddFixedText(XO(
-"These are experimental modules. Enable them only if you've read the Tenacity Manual\nand know what you are doing.") );
+"Modules are optional components of Audacity that enable some functionality, such as importing and exporting. \nIt is generally not necessary to change these settings.") );
       S.AddFixedText(XO(
-/* i18n-hint preserve the leading spaces */
-"  'Ask' means Tenacity will ask if you want to load the module each time it starts.") );
-      S.AddFixedText(XO(
-/* i18n-hint preserve the leading spaces */
-"  'Failed' means Tenacity thinks the module is broken and won't run it.") );
-      S.AddFixedText(XO(
-/* i18n-hint preserve the leading spaces */
-"  'New' means no choice has been made yet.") );
-      S.AddFixedText(XO(
-"Changes to these settings only take effect when Tenacity starts up."));
+"Changes to these settings only take effect when restarting Audacity.\n") );
       {
         S.StartMultiColumn( 2 );
         int i;
@@ -136,16 +124,16 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
               {
                  XO("Disabled" ) ,
                  XO("Enabled" ) ,
-                 XO("Ask" ) ,
+                 XO("Always ask" ) ,
                  XO("Failed" ) ,
-                 XO("New" ) ,
+                 XO("No choice made" ) ,
               }
            );
         S.EndMultiColumn();
       }
       if( mModules.size() < 1 )
       {
-        S.AddFixedText( XO("No modules were found") );
+        S.AddFixedText( XO("Error: No modules were found. This may indicate a faulty installation.") );
       }
    }
    S.EndStatic();
@@ -162,10 +150,9 @@ bool ModulePrefs::Commit()
    return true;
 }
 
-#ifdef EXPERIMENTAL_MODULE_PREFS
 namespace{
 PrefsPanel::Registration sAttachment{ "Module",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew ModulePrefs(parent, winid);
@@ -176,4 +163,3 @@ PrefsPanel::Registration sAttachment{ "Module",
    { "", { Registry::OrderingHint::After, "Mouse" } }
 };
 }
-#endif

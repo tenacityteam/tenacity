@@ -8,7 +8,11 @@
 // color of saturated red was used.  (middle grey 
 
 
-
+#include "Cursors32/ClipStretchLeft.xpm"
+#include "Cursors32/ClipStretchRight.xpm"
+#include "Cursors32/ClipTrimLeft.xpm"
+#include "Cursors32/ClipTrimRight.xpm"
+#include "Cursors32/CrosshairCursor.xpm"
 #include "Cursors32/DisabledCursor.xpm"
 #include "Cursors32/RearrangeCursor.xpm"
 #include "Cursors32/RearrangingCursor.xpm"
@@ -23,6 +27,8 @@
 #include "Cursors32/BottomFrequencyCursor.xpm"
 #include "Cursors32/TopFrequencyCursor.xpm"
 #include "Cursors32/BandWidthCursor.xpm"
+#include "Cursors32/SelectionRight.xpm"
+#include "Cursors32/SelectionLeft.xpm"
 #ifdef USE_MIDI
 #include "Cursors32/StretchCursor.xpm"
 #include "Cursors32/StretchLeftCursor.xpm"

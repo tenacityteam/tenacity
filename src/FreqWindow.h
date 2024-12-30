@@ -11,16 +11,11 @@
 #ifndef __AUDACITY_FREQ_WINDOW__
 #define __AUDACITY_FREQ_WINDOW__
 
+#include "PlotSpectrumBase.h"
 #include <vector>
 #include <wx/font.h> // member variable
 #include <wx/statusbr.h> // to inherit
-#include "SpectrumAnalyst.h"
-#include "widgets/wxPanelWrapper.h" // to inherit
-#include "NumberScale.h" // member variable
-
-// Tenacity libraries
-#include <lib-math/SampleFormat.h>
-#include <lib-preferences/Prefs.h>
+#include "wxPanelWrapper.h" // to inherit
 
 class wxMemoryDC;
 class wxScrollBar;
@@ -30,7 +25,7 @@ class wxButton;
 class wxCheckBox;
 class wxChoice;
 
-class TenacityProject;
+class AudacityProject;
 class FrequencyPlotDialog;
 class FreqGauge;
 class RulerPanel;
@@ -47,6 +42,7 @@ public:
 
 private:
    void OnPaint(wxPaintEvent & event);
+   void OnErase(wxEraseEvent & event);
    void OnMouseEvent(wxMouseEvent & event);
 
 private:
@@ -55,12 +51,14 @@ private:
     DECLARE_EVENT_TABLE()
 };
 
-class FrequencyPlotDialog final : public wxDialogWrapper,
-                                  public PrefsListener
+class FrequencyPlotDialog final :
+    public PlotSpectrumBase,
+    public wxDialogWrapper,
+    public PrefsListener
 {
 public:
    FrequencyPlotDialog(wxWindow *parent, wxWindowID id,
-              TenacityProject &project,
+              AudacityProject &project,
               const TranslatableString & title, const wxPoint & pos);
    virtual ~ FrequencyPlotDialog();
 
@@ -68,8 +66,6 @@ public:
 
 private:
    void Populate();
-
-   void GetAudio();
 
    void PlotMouseEvent(wxMouseEvent & event);
    void PlotPaint(wxPaintEvent & event);
@@ -98,14 +94,6 @@ private:
    void UpdatePrefs() override;
 
  private:
-   bool mDrawGrid;
-   int mSize;
-   SpectrumAnalyst::Algorithm mAlg;
-   int mFunc;
-   int mAxis;
-   int dBRange;
-   TenacityProject *mProject;
-
 #ifdef __WXMSW__
    static const int fontSize = 8;
 #else
@@ -132,40 +120,20 @@ private:
    wxChoice *mSizeChoice;
    wxChoice *mFuncChoice;
    wxChoice *mAxisChoice;
-   wxScrollBar *vPanScroller;
-   wxSlider *vZoomSlider;
-   wxScrollBar *hPanScroller;
-   wxSlider *hZoomSlider;
+   wxScrollBar *mPanScroller;
+   wxSlider *mZoomSlider;
    wxTextCtrl *mCursorText;
    wxTextCtrl *mPeakText;
 
-
-   double mRate;
-   size_t mDataLen;
-   Floats mData;
-   size_t mWindowSize;
-
-   /// Whether x axis is in log-frequency.
    bool mLogAxis;
-   /// The minimum y value to plot.
    float mYMin;
-   /// The maximum y value to plot.
    float mYMax;
-
-   NumberScale hNumberScale;
+   float mYStep;
 
    std::unique_ptr<wxBitmap> mBitmap;
 
    int mMouseX;
    int mMouseY;
-
-   static constexpr float NO_CURSOR = -1.f;
-   /// Frequency/period under the mouse cursor, if present.
-   float mCursorXLeft = NO_CURSOR;
-   /// Frequency/period 1 pixel to the right of the mouse cursor, if present.
-   float mCursorXRight = NO_CURSOR;
-
-   std::unique_ptr<SpectrumAnalyst> mAnalyst;
 
    DECLARE_EVENT_TABLE()
 

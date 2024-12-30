@@ -15,19 +15,20 @@
 #include <wx/defs.h>
 
 #include "BatchCommands.h"
+#include "wxPanelWrapper.h"
 
 class wxWindow;
 class wxTextCtrl;
 class wxListCtrl;
 class wxListEvent;
 class wxButton;
-class TenacityProject;
+class AudacityProject;
 class ShuttleGui;
 
 class MacroCommandDialog final : public wxDialogWrapper {
  public:
    // constructors and destructors
-   MacroCommandDialog(wxWindow *parent, wxWindowID id, TenacityProject &project);
+   MacroCommandDialog(wxWindow *parent, wxWindowID id, AudacityProject &project);
    void SetCommandAndParams(const CommandID &Command, const wxString &Params);
  public:
    CommandID   mSelectedCommand;
@@ -57,6 +58,7 @@ class MacroCommandDialog final : public wxDialogWrapper {
 
    CommandID mInternalCommandName;
 
+   AudacityProject& mProject;
    const MacroCommandsCatalog mCatalog;
 
    DECLARE_EVENT_TABLE()

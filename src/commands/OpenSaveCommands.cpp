@@ -17,17 +17,18 @@
 
 #include "OpenSaveCommands.h"
 
-// Tenacity libraries
-#include <lib-project/Project.h>
-
+#include "CommandDispatch.h"
+#include "MenuRegistry.h"
+#include "../CommonCommandFlags.h"
 #include "LoadCommands.h"
-#include "TenacityLogger.h"
-#include "../ProjectFileIO.h"
+#include "AudacityLogger.h"
+#include "Project.h"
+#include "ProjectFileIO.h"
 #include "../ProjectFileManager.h"
 #include "../ProjectManager.h"
-#include "../export/Export.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
+#include "Export.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
 #include "CommandContext.h"
 
 
@@ -36,11 +37,18 @@ const ComponentInterfaceSymbol OpenProjectCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< OpenProjectCommand > reg; }
 
-bool OpenProjectCommand::DefineParams( ShuttleParams & S ){
-   S.Define( mFileName, wxT("Filename"),  "test.aup3" );
+template<bool Const>
+bool OpenProjectCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define( mFileName, wxT("Filename"), wxString{"test.aup3"} );
    S.OptionalN(bHasAddToHistory).Define( mbAddToHistory, wxT("AddToHistory"),  false );
    return true;
 }
+
+bool OpenProjectCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool OpenProjectCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void OpenProjectCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -63,6 +71,7 @@ bool OpenProjectCommand::Apply(const CommandContext & context){
    {
       // This path queries the user for files to open
       auto project = &context.project;
+      // Error check?
       ProjectManager::OpenFiles(project);
    }
    else
@@ -85,11 +94,18 @@ const ComponentInterfaceSymbol SaveProjectCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< SaveProjectCommand > reg2; }
 
-bool SaveProjectCommand::DefineParams( ShuttleParams & S ){
-   S.Define( mFileName, wxT("Filename"),  "name.aup3" );
+template<bool Const>
+bool SaveProjectCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define( mFileName, wxT("Filename"), wxString{"name.aup3"} );
    S.Define( mbAddToHistory, wxT("AddToHistory"),  false );
    return true;
 }
+
+bool SaveProjectCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool SaveProjectCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void SaveProjectCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -117,10 +133,17 @@ const ComponentInterfaceSymbol SaveCopyCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< SaveCopyCommand > reg3; }
 
-bool SaveCopyCommand::DefineParams( ShuttleParams & S ){
-   S.Define( mFileName, wxT("Filename"),  "name.aup3" );
+template<bool Const>
+bool SaveCopyCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define( mFileName, wxT("Filename"), wxString{"name.aup3"} );
    return true;
 }
+
+bool SaveCopyCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool SaveCopyCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void SaveCopyCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -144,11 +167,18 @@ const ComponentInterfaceSymbol SaveLogCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< SaveLogCommand > reg4; }
 
-bool SaveLogCommand::DefineParams(ShuttleParams & S)
+template<bool Const>
+bool SaveLogCommand::VisitSettings(SettingsVisitorBase<Const> & S)
 {
-   S.Define( mFileName, wxT("Filename"),  "log.txt" );
+   S.Define( mFileName, wxT("Filename"), wxString{"log.txt"} );
    return true;
 }
+
+bool SaveLogCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool SaveLogCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void SaveLogCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -163,7 +193,7 @@ void SaveLogCommand::PopulateOrExchange(ShuttleGui & S)
 
 bool SaveLogCommand::Apply(const CommandContext &context)
 {
-   auto logger = TenacityLogger::Get();
+   auto logger = AudacityLogger::Get();
    return logger->SaveLog(mFileName);
 }
 
@@ -172,18 +202,45 @@ const ComponentInterfaceSymbol ClearLogCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< ClearLogCommand > reg5; }
 
-bool ClearLogCommand::DefineParams(ShuttleParams & S)
+template<bool Const>
+bool ClearLogCommand::VisitSettings(SettingsVisitorBase<Const> & S)
 {
    return true;
 }
 
-bool ClearLogCommand::PromptUser(wxWindow *parent)
+bool ClearLogCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool ClearLogCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
+
+bool ClearLogCommand::PromptUser(AudacityProject& project)
 {
    return true;
 }
 
 bool ClearLogCommand::Apply(const CommandContext &context)
 {
-   auto logger = TenacityLogger::Get();
+   auto logger = AudacityLogger::Get();
    return logger->ClearLog();
+}
+
+namespace {
+using namespace MenuRegistry;
+
+// Register menu items
+
+AttachedItem sAttachment{
+   Items( wxT(""),
+      // Note that the PLUGIN_SYMBOL must have a space between words,
+      // whereas the short-form used here must not.
+      // (So if you did write "Compare Audio" for the PLUGIN_SYMBOL name, then
+      // you would have to use "CompareAudio" here.)
+      Command( wxT("OpenProject2"), XXO("Open Project..."),
+         CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() ),
+      Command( wxT("SaveProject2"), XXO("Save Project..."),
+         CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() )
+   ),
+   wxT("Optional/Extra/Part2/Scriptables2")
+};
 }

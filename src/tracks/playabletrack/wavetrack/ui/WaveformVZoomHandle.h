@@ -4,7 +4,7 @@ Audacity: A Digital Audio Editor
 
 WaveformVZoomHandle.h
 
-Paul Licameli split from WaveTrackVZoomHandle.h
+Paul Licameli split from WaveChannelVZoomHandle.h
 
 **********************************************************************/
 
@@ -12,8 +12,9 @@ Paul Licameli split from WaveTrackVZoomHandle.h
 #define __AUDACITY_WAVEFORM_VZOOM_HANDLE__
 
 #include "../../../../UIHandle.h" // to inherit
-#include "WaveTrackViewConstants.h"
+#include "WaveChannelViewConstants.h"
 
+class WaveChannel;
 class WaveTrack;
 
 class WaveformVZoomHandle final : public UIHandle
@@ -21,40 +22,40 @@ class WaveformVZoomHandle final : public UIHandle
    WaveformVZoomHandle(const WaveformVZoomHandle&);
 
 public:
-   explicit WaveformVZoomHandle
-      (const std::shared_ptr<WaveTrack> &pTrack, const wxRect &rect, int y);
+   explicit WaveformVZoomHandle(
+      const std::shared_ptr<WaveChannel> &pChannel, const wxRect &rect, int y);
 
    WaveformVZoomHandle &operator=(const WaveformVZoomHandle&) = default;
 
    static void DoZoom(
-      TenacityProject *pProject, WaveTrack *pTrack,
-      WaveTrackViewConstants::ZoomActions ZoomKind,
+      AudacityProject *pProject, WaveChannel &wc,
+      WaveChannelViewConstants::ZoomActions ZoomKind,
       const wxRect &rect, int zoomStart, int zoomEnd,
       bool fixedMousePoint);
 
    ~WaveformVZoomHandle() override;
 
-   std::shared_ptr<WaveTrack> GetTrack() const { return mpTrack.lock(); }
+   std::shared_ptr<const Track> FindTrack() const override;
 
-   void Enter( bool forward, TenacityProject * ) override;
+   void Enter( bool forward, AudacityProject * ) override;
 
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
 private:
 
@@ -67,18 +68,18 @@ private:
       TrackPanelDrawingContext &,
       const wxRect &rect, const wxRect &panelRect, unsigned iPass ) override;
 
-   std::weak_ptr<WaveTrack> mpTrack;
+   std::weak_ptr<WaveChannel> mpChannel;
 
    int mZoomStart{}, mZoomEnd{};
    wxRect mRect{};
 };
 
-#include "WaveTrackVZoomHandle.h" // to inherit
+#include "WaveChannelVZoomHandle.h" // to inherit
 
-class WaveformVRulerMenuTable : public WaveTrackVRulerMenuTable
+class WaveformVRulerMenuTable : public WaveChannelVRulerMenuTable
 {
    WaveformVRulerMenuTable()
-      : WaveTrackVRulerMenuTable{ "WaveFormVRuler" }
+      : WaveChannelVRulerMenuTable{ "WaveFormVRuler" }
    {}
    virtual ~WaveformVRulerMenuTable() {}
    DECLARE_POPUP_MENU(WaveformVRulerMenuTable);

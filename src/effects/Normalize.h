@@ -12,72 +12,34 @@
 #ifndef __AUDACITY_EFFECT_NORMALIZE__
 #define __AUDACITY_EFFECT_NORMALIZE__
 
-#include "Effect.h"
-#include "Biquad.h"
+#include "NormalizeBase.h"
+#include "StatefulEffectUIServices.h"
+#include <wx/weakref.h>
+#include <functional>
 
 class wxCheckBox;
 class wxStaticText;
 class wxTextCtrl;
 class ShuttleGui;
 
-class EffectNormalize final : public Effect
+class EffectNormalize final :
+    public NormalizeBase,
+    public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings& settings) override;
+   bool TransferDataFromWindow(EffectSettings& settings) override;
 
-   EffectNormalize();
-   virtual ~EffectNormalize();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   bool DefineParams( ShuttleParams & S ) override;
-
-   // Effect implementation
-
-   bool CheckWhetherSkipEffect() override;
-   bool Startup() override;
-   bool Process() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
+   DECLARE_EVENT_TABLE()
 
 private:
-   // EffectNormalize implementation
-
-   bool ProcessOne(
-      WaveTrack * t, const TranslatableString &msg, double& progress, float offset);
-   bool AnalyseTrack(const WaveTrack * track, const TranslatableString &msg,
-                     double &progress, float &offset, float &extent);
-   bool AnalyseTrackData(const WaveTrack * track, const TranslatableString &msg, double &progress,
-                     float &offset);
-   void AnalyseDataDC(float *buffer, size_t len);
-   void ProcessData(float *buffer, size_t len, float offset);
-
    void OnUpdateUI(wxCommandEvent & evt);
    void UpdateUI();
 
-private:
-   double mPeakLevel;
-   bool   mGain;
-   bool   mDC;
-   bool   mStereoInd;
-
-   double mCurT0;
-   double mCurT1;
-   float  mMult;
-   double mSum;
+   wxWeakRef<wxWindow> mUIParent{};
 
    wxCheckBox *mGainCheckBox;
    wxCheckBox *mDCCheckBox;
@@ -86,9 +48,6 @@ private:
    wxStaticText *mWarning;
    wxCheckBox *mStereoIndCheckBox;
    bool mCreating;
-
-
-   DECLARE_EVENT_TABLE()
 };
 
 #endif

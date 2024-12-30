@@ -16,6 +16,7 @@
 
 #include "BatchCommands.h"
 #include "Prefs.h"
+#include "wxPanelWrapper.h"
 
 class wxWindow;
 class wxTextCtrl;
@@ -23,14 +24,14 @@ class wxListCtrl;
 class wxListEvent;
 class wxButton;
 class wxTextCtrl;
-class TenacityProject;
+class AudacityProject;
 class ShuttleGui;
 
 class ApplyMacroDialog : public wxDialogWrapper {
  public:
    // constructors and destructors
    ApplyMacroDialog(
-      wxWindow * parent, TenacityProject &project, bool bInherited=false);
+      wxWindow * parent, AudacityProject &project, bool bInherited=false);
    virtual ~ApplyMacroDialog();
  public:
    // Populate methods NOT virtual.
@@ -63,8 +64,10 @@ class ApplyMacroDialog : public wxDialogWrapper {
    wxString mMacroBeingRenamed;
 
 protected:
-   TenacityProject &mProject;
+   AudacityProject &mProject;
    const MacroCommandsCatalog mCatalog;
+
+   DECLARE_EVENT_TABLE()
 };
 
 class MacrosWindow final : public ApplyMacroDialog,
@@ -72,7 +75,7 @@ class MacrosWindow final : public ApplyMacroDialog,
 {
 public:
    MacrosWindow(
-      wxWindow * parent, TenacityProject &project, bool bExpanded=true);
+      wxWindow * parent, AudacityProject &project, bool bExpanded=true);
    ~MacrosWindow();
    void UpdateDisplay( bool bExpanded );
 
@@ -129,13 +132,14 @@ private:
    // PrefsListener implementation
    void UpdatePrefs() override;
 
-   TenacityProject &mProject;
+   AudacityProject &mProject;
 
    wxButton *mRemove;
    wxButton *mRename;
    wxButton *mRestore;
    wxButton *mImport;
    wxButton *mExport;
+   wxButton *mEdit;
    wxButton *mSave;
 
    int mSelectedCommand;

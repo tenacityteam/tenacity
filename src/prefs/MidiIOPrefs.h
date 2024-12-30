@@ -13,8 +13,6 @@ class wxChoice;
 class wxTextCtrl;
 class ShuttleGui;
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-
 #ifndef __AUDACITY_MIDI_IO_PREFS__
 #define __AUDACITY_MIDI_IO_PREFS__
 
@@ -29,8 +27,8 @@ class MidiIOPrefs final : public PrefsPanel
  public:
    MidiIOPrefs(wxWindow * parent, wxWindowID winid);
    virtual ~MidiIOPrefs();
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
+   ComponentInterfaceSymbol GetSymbol() const override;
+   TranslatableString GetDescription() const override;
 
    bool Commit() override;
    bool Validate() override;
@@ -60,8 +58,8 @@ class MidiIOPrefs final : public PrefsPanel
    wxChoice *mRecord;
 #endif
 //   wxChoice *mChannels;
-};
 
-#endif
+   DECLARE_EVENT_TABLE()
+};
 
 #endif

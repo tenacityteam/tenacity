@@ -34,34 +34,34 @@ public:
       ( const std::shared_ptr<LabelTrack> &pLT, int labelNum );
    virtual ~LabelTextHandle();
 
-   std::shared_ptr<LabelTrack> GetTrack() const { return mpLT.lock(); }
+   std::shared_ptr<const Track> FindTrack() const override;
    int GetLabelNum() const { return mLabelNum; }
 
-   void Enter(bool forward, TenacityProject *) override;
+   void Enter(bool forward, AudacityProject *) override;
 
    bool HandlesRightClick() override;
 
    Result Click
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    Result Drag
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject) override;
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject) override;
 
    HitTestPreview Preview
-      (const TrackPanelMouseState &state, TenacityProject *pProject)
+      (const TrackPanelMouseState &state, AudacityProject *pProject)
       override;
 
    Result Release
-      (const TrackPanelMouseEvent &event, TenacityProject *pProject,
+      (const TrackPanelMouseEvent &event, AudacityProject *pProject,
        wxWindow *pParent) override;
 
-   Result Cancel(TenacityProject *pProject) override;
+   Result Cancel(AudacityProject *pProject) override;
 
 private:
    void HandleTextClick
-      (TenacityProject &project, const wxMouseEvent & evt);
+      (AudacityProject &project, const wxMouseEvent & evt);
    void HandleTextDragRelease(
-      TenacityProject &project, const wxMouseEvent & evt);
+      AudacityProject &project, const wxMouseEvent & evt);
 
    std::weak_ptr<LabelTrack> mpLT {};
    int mLabelNum{ -1 };

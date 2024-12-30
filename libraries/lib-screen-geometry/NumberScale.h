@@ -13,6 +13,7 @@ Paul Licameli
 
 #include <algorithm>
 #include <cmath>
+#include <wx/debug.h>
 
 enum NumberScaleType {
    nstLinear,
@@ -76,7 +77,7 @@ public:
       }
       break;
       default:
-         assert(false);
+         wxASSERT(false);
       }
    }
 
@@ -155,7 +156,7 @@ public:
    {
       switch (mType) {
       default:
-         assert(false);
+         wxASSERT(false);
       case nstLinear:
       case nstNone:
          return mValue0 + pp * (mValue1 - mValue0);
@@ -186,7 +187,7 @@ public:
       {
          switch (mType) {
          default:
-            assert(false);
+            wxASSERT(false);
          case nstLinear:
          case nstNone:
          case nstLogarithmic:
@@ -217,7 +218,7 @@ public:
             mValue *= mStep;
             break;
          default:
-            assert(false);
+            wxASSERT(false);
          }
          return *this;
       }
@@ -232,7 +233,7 @@ public:
    {
       switch (mType) {
       default:
-         assert(false);
+         wxASSERT(false);
       case nstLinear:
       case nstNone:
       case nstMel:
@@ -256,7 +257,7 @@ public:
    {
       switch (mType) {
       default:
-         assert(false);
+         wxASSERT(false);
       case nstLinear:
       case nstNone:
          return ((val - mValue0) / (mValue1 - mValue0));

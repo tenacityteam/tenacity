@@ -10,53 +10,52 @@
 ********************************************************************//*!
 
 \class MacroCommands
-\brief Maintains the list of commands for batch/macro 
+\brief Maintains the list of commands for batch/macro
 processing.  See also MacrosWindow and ApplyMacroDialog.
 
 *//*******************************************************************/
-
 #define wxLOG_COMPONENT "MacroCommands"
 
-
 #include "BatchCommands.h"
+#include "DoEffect.h"
+#include "EffectAndCommandPluginManager.h"
 
-#include <wx/defs.h>
 #include <wx/datetime.h>
+#include <wx/defs.h>
 #include <wx/dir.h>
+#include <wx/frame.h>
 #include <wx/log.h>
 #include <wx/textfile.h>
-#include <chrono>
-using namespace std::chrono;
+#include <wx/time.h>
 
-// Tenacity librarries
-#include <lib-files/FileNames.h>
-#include <lib-preferences/Prefs.h>
-
+#include "Effect.h"
+#include "EffectManager.h"
+#include "FileNames.h"
+#include "PluginManager.h"
+#include "Prefs.h"
 #include "Project.h"
-#include "ProjectAudioManager.h"
 #include "ProjectHistory.h"
 #include "ProjectSettings.h"
-#include "ProjectWindow.h"
-#include "commands/CommandManager.h"
-#include "effects/EffectManager.h"
-#include "effects/EffectUI.h"
-#include "Menus.h"
-#include "PluginManager.h"
+#include "ProjectWindows.h"
 #include "SelectFile.h"
 #include "SelectUtilities.h"
-#include "shuttle/Shuttle.h"
+#include "SettingsVisitor.h"
 #include "Track.h"
 #include "UndoManager.h"
+#include "effects/EffectPresetDialog.h"
+#include "effects/EffectUI.h"
+#include "effects/EffectUIServices.h"
 
-#include "theme/AllThemeResources.h"
+#include "AllThemeResources.h"
 
-#include "widgets/AudacityMessageBox.h"
+#include "AudacityMessageBox.h"
 
-#include "commands/CommandContext.h"
+#include "CommandContext.h"
+#include "commands/CommandDispatch.h"
+#include "CommandManager.h"
 
-MacroCommands::MacroCommands( TenacityProject &project )
+MacroCommands::MacroCommands( AudacityProject &project )
 : mProject{ project }
-, mExporter{ project }
 {
    ResetMacro();
 
@@ -303,7 +302,7 @@ bool MacroCommands::RenameMacro(const wxString & oldmacro, const wxString & newm
 }
 
 // Gets all commands that are valid for this mode.
-MacroCommandsCatalog::MacroCommandsCatalog( const TenacityProject *project )
+MacroCommandsCatalog::MacroCommandsCatalog( const AudacityProject *project )
 {
    if (!project)
       return;
@@ -311,11 +310,11 @@ MacroCommandsCatalog::MacroCommandsCatalog( const TenacityProject *project )
    Entries commands;
 
    PluginManager & pm = PluginManager::Get();
-   EffectManager & em = EffectManager::Get();
+   EffectManager& em = EffectManager::Get();
    {
       for (auto &plug
            : pm.PluginsOfType(PluginTypeEffect|PluginTypeAudacityCommand)) {
-         auto command = em.GetCommandIdentifier(plug.GetID());
+         auto command = pm.GetCommandIdentifier(plug.GetID());
          if (!command.empty())
             commands.push_back( {
                { command, plug.GetSymbol().Msgid() },
@@ -346,7 +345,7 @@ MacroCommandsCatalog::MacroCommandsCatalog( const TenacityProject *project )
          else {
             // We'll disambiguate if the squashed name is short and shorter than the internal name.
             // Otherwise not.
-            // This means we won't have repetitive items like "Cut (Cut)" 
+            // This means we won't have repetitive items like "Cut (Cut)"
             // But we will show important disambiguation like "All (SelectAll)" and "By Date (SortByDate)"
             // Disambiguation is no longer essential as the details box will show it.
             // PRL:  I think this reasoning applies only when locale is English.
@@ -357,7 +356,7 @@ MacroCommandsCatalog::MacroCommandsCatalog( const TenacityProject *project )
             // uh oh, using GET for dubious comparison of (lengths of)
             // user-visible name and internal CommandID!
             // and doing this only for English locale!
-            suffix = squashed.length() < std::min<size_t>(18, mNames[i].GET().length());
+            suffix = squashed.length() < wxMin( 18, mNames[i].GET().length());
          }
 
          if( suffix )
@@ -435,53 +434,81 @@ auto MacroCommandsCatalog::ByCommandId( const CommandID &commandId ) const
          { return entry.name.Internal() == commandId; });
 }
 
+// linear search
+auto MacroCommandsCatalog::ByTranslation(const wxString &translation) const
+   -> Entries::const_iterator
+{
+   return std::find_if(begin(), end(),
+      [&](const Entry& entry)
+      { return entry.name.Translation() == translation; });
+}
+
 wxString MacroCommands::GetCurrentParamsFor(const CommandID & command)
 {
-   const PluginID & ID =
-      EffectManager::Get().GetEffectByIdentifier(command);
+   const PluginID& ID = PluginManager::Get().GetByCommandIdentifier(command);
    if (ID.empty())
    {
       return wxEmptyString;   // effect not found.
    }
 
-   return EffectManager::Get().GetEffectParameters(ID);
+   return EffectAndCommandPluginManager::Get().GetEffectParameters(ID);
 }
 
 wxString MacroCommands::PromptForParamsFor(
-   const CommandID & command, const wxString & params, wxWindow &parent)
+   const CommandID& command, const wxString& params, AudacityProject& project)
 {
-   const PluginID & ID =
-      EffectManager::Get().GetEffectByIdentifier(command);
+   const PluginID& ID = PluginManager::Get().GetByCommandIdentifier(command);
    if (ID.empty())
-   {
       return wxEmptyString;   // effect not found
-   }
 
    wxString res = params;
-
-   auto cleanup = EffectManager::Get().SetBatchProcessing(ID);
-
-   if (EffectManager::Get().SetEffectParameters(ID, params))
+   auto cleanup = EffectAndCommandPluginManager::Get().SetBatchProcessing(ID);
+   if (EffectAndCommandPluginManager::Get().SetEffectParameters(ID, params))
    {
-      if (EffectManager::Get().PromptUser(ID, EffectUI::DialogFactory, parent))
-      {
-         res = EffectManager::Get().GetEffectParameters(ID);
-      }
+      auto dialogInvoker =
+         [&](
+            Effect& effect, EffectSettings& settings,
+            std::shared_ptr<EffectInstance>& pInstance) -> bool {
+         const auto pServices = dynamic_cast<EffectUIServices*>(&effect);
+         return pServices && pServices->ShowHostInterface(effect,
+            GetProjectFrame(project), EffectUI::DialogFactory,
+            pInstance,
+            *std::make_shared<SimpleEffectSettingsAccess>(settings),
+            effect.IsBatchProcessing() ) != 0;
+      };
+      if (EffectAndCommandPluginManager::Get().PromptUser(
+             ID, project, std::move(dialogInvoker)))
+         res = EffectAndCommandPluginManager::Get().GetEffectParameters(ID);
    }
-
    return res;
 }
 
 wxString MacroCommands::PromptForPresetFor(const CommandID & command, const wxString & params, wxWindow *parent)
 {
-   const PluginID & ID =
-      EffectManager::Get().GetEffectByIdentifier(command);
+   const PluginID& ID = PluginManager::Get().GetByCommandIdentifier(command);
    if (ID.empty())
    {
       return wxEmptyString;   // effect not found.
    }
 
-   wxString preset = EffectManager::Get().GetPreset(ID, params, parent);
+   EffectManager::EffectPresetDialog dialog =
+      [parent](
+         EffectPlugin& effect,
+         const wxString& preset) -> std::optional<wxString> {
+      EffectPresetsDialog dlg(parent, &effect);
+      dlg.Layout();
+      dlg.Fit();
+      dlg.SetSize(dlg.GetMinSize());
+      dlg.CenterOnParent();
+      dlg.SetSelected(preset);
+
+      if (dlg.ShowModal())
+         return std::make_optional(dlg.GetSelected());
+      else
+         return {};
+   };
+   wxString preset =
+      EffectManager::Get().GetPreset(ID, params, std::move(dialog));
 
    // Preset will be empty if the user cancelled the dialog, so return the original
    // parameter value.
@@ -491,49 +518,6 @@ wxString MacroCommands::PromptForPresetFor(const CommandID & command, const wxSt
    }
 
    return preset;
-}
-
-/// DoAudacityCommand() takes a PluginID and executes the associated command.
-///
-/// At the moment flags are used only to indicate whether to prompt for
-/// parameters
-bool MacroCommands::DoAudacityCommand(
-   const PluginID & ID, const CommandContext & context, unsigned flags )
-{
-   auto &project = context.project;
-   auto &window = ProjectWindow::Get( project );
-   const PluginDescriptor *plug = PluginManager::Get().GetPlugin(ID);
-   if (!plug)
-      return false;
-
-   if (flags & EffectManager::kConfigured)
-   {
-      ProjectAudioManager::Get( project ).Stop();
-//    SelectAllIfNone();
-   }
-
-   EffectManager & em = EffectManager::Get();
-   bool success = em.DoAudacityCommand(ID, 
-      context,
-      &window,
-      (flags & EffectManager::kConfigured) == 0);
-
-   if (!success)
-      return false;
-
-/*
-   if (em.GetSkipStateFlag())
-      flags = flags | OnEffectFlags::kSkipState;
-
-   if (!(flags & OnEffectFlags::kSkipState))
-   {
-      wxString shortDesc = em.GetCommandName(ID);
-      wxString longDesc = em.GetCommandDescription(ID);
-      PushState(longDesc, shortDesc);
-   }
-*/
-   window.RedrawProject();
-   return true;
 }
 
 bool MacroCommands::ApplyEffectCommand(
@@ -551,7 +535,7 @@ bool MacroCommands::ApplyEffectCommand(
    if (!plug)
       return false;
 
-   TenacityProject *project = &mProject;
+   AudacityProject *project = &mProject;
 
    // IF nothing selected, THEN select everything depending
    // on preferences setting.
@@ -569,65 +553,35 @@ bool MacroCommands::ApplyEffectCommand(
 
    bool res = false;
 
-   auto cleanup = EffectManager::Get().SetBatchProcessing(ID);
+   auto cleanup = EffectAndCommandPluginManager::Get().SetBatchProcessing(ID);
 
    // transfer the parameters to the effect...
-   if (EffectManager::Get().SetEffectParameters(ID, params))
+   if (EffectAndCommandPluginManager::Get().SetEffectParameters(ID, params))
    {
       if( plug->GetPluginType() == PluginTypeAudacityCommand )
          // and apply the effect...
-         res = DoAudacityCommand(ID,
+         res = CommandDispatch::DoAudacityCommand(ID,
             Context,
             EffectManager::kConfigured |
             EffectManager::kSkipState |
             EffectManager::kDontRepeatLast);
       else
          // and apply the effect...
-         res = EffectUI::DoEffect(ID,
-            Context,
-            EffectManager::kConfigured |
-            EffectManager::kSkipState |
-            EffectManager::kDontRepeatLast);
+         res = EffectUI::DoEffect(
+            ID, Context.project,
+            EffectManager::kConfigured | EffectManager::kSkipState |
+               EffectManager::kDontRepeatLast);
    }
 
    return res;
 }
 
-bool MacroCommands::HandleTextualCommand( CommandManager &commandManager,
-   const CommandID & Str,
-   const CommandContext & context, CommandFlag flags, bool alwaysEnabled)
-{
-   switch ( commandManager.HandleTextualCommand(
-      Str, context, flags, alwaysEnabled) ) {
-   case CommandManager::CommandSuccess:
-      return true;
-   case CommandManager::CommandFailure:
-      return false;
-   case CommandManager::CommandNotFound:
-   default:
-      break;
-   }
-
-   // Not one of the singleton commands.
-   // We could/should try all the list-style commands.
-   // instead we only try the effects.
-   EffectManager & em = EffectManager::Get();
-   for (auto &plug : PluginManager::Get().PluginsOfType(PluginTypeEffect))
-      if (em.GetCommandIdentifier(plug.GetID()) == Str)
-         return EffectUI::DoEffect(
-            plug.GetID(), context,
-            EffectManager::kConfigured);
-
-   return false;
-}
-
 bool MacroCommands::ApplyCommand( const TranslatableString &friendlyCommand,
    const CommandID & command, const wxString & params,
-   CommandContext const * pContext)
+   CommandContext const *const pContext)
 {
    // Test for an effect.
-   const PluginID & ID =
-      EffectManager::Get().GetEffectByIdentifier( command );
+   const PluginID& ID = PluginManager::Get().GetByCommandIdentifier(command);
    if (!ID.empty())
    {
       if( pContext )
@@ -638,11 +592,10 @@ bool MacroCommands::ApplyCommand( const TranslatableString &friendlyCommand,
          ID, friendlyCommand, command, params, context);
    }
 
-   TenacityProject *project = &mProject;
-   auto &manager = CommandManager::Get( *project );
-   if( pContext ){
-      if( HandleTextualCommand(
-         manager, command, *pContext, AlwaysEnabledFlag, true ) )
+   if (pContext) {
+      assert(&pContext->project == &GetProject());
+      if( CommandDispatch::HandleTextualCommand(
+         command, *pContext, AlwaysEnabledFlag, true ) )
          return true;
       pContext->Status( wxString::Format(
          _("Your batch command of %s was not recognized."), friendlyCommand.Translation() ));
@@ -651,8 +604,8 @@ bool MacroCommands::ApplyCommand( const TranslatableString &friendlyCommand,
    else
    {
       const CommandContext context(  mProject );
-      if( HandleTextualCommand(
-         manager, command, context, AlwaysEnabledFlag, true ) )
+      if( CommandDispatch::HandleTextualCommand(
+         command, context, AlwaysEnabledFlag, true ) )
          return true;
    }
 
@@ -668,16 +621,15 @@ bool MacroCommands::ApplyCommandInBatchMode(
    const CommandID & command, const wxString &params,
    CommandContext const * pContext)
 {
-   TenacityProject *project = &mProject;
+   assert(!pContext || &pContext->project == &GetProject());
+   AudacityProject *project = &mProject;
    auto &settings = ProjectSettings::Get( *project );
    // Recalc flags and enable items that may have become enabled.
-   MenuManager::Get(*project).UpdateMenus(false);
+   CommandManager::Get(*project).UpdateMenus(false);
    // enter batch mode...
-   bool prevShowMode = settings.GetShowId3Dialog();
    project->mBatchMode++;
    auto cleanup = finally( [&] {
       // exit batch mode...
-      settings.SetShowId3Dialog(prevShowMode);
       project->mBatchMode--;
    } );
 
@@ -702,7 +654,7 @@ bool MacroCommands::ApplyMacro(
    auto cleanup1 = valueRestorer(MacroReentryCount);
    MacroReentryCount++;
 
-   TenacityProject *proj = &mProject;
+   AudacityProject *proj = &mProject;
    bool res = false;
 
    // Only perform this group on initial entry.  They should not be done
@@ -746,7 +698,6 @@ bool MacroCommands::ApplyMacro(
             undoManager.Undo(
                [&]( const UndoStackElem &elem ){
                   history.PopState( elem.state ); } );
-            undoManager.AbandonRedo();
          });
       }
    });
@@ -775,18 +726,18 @@ bool MacroCommands::ApplyMacro(
            Verbatim( command.GET() )
          : iter->name.Msgid().Stripped();
 
-      milliseconds before;
+      wxTimeSpan before;
       if (trace) {
-         before = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
+         before = wxTimeSpan(0, 0, 0, wxGetUTCTimeMillis());
       }
 
       bool success = ApplyCommandInBatchMode(friendly, command, mParamsMacro[i]);
 
       if (trace) {
-         milliseconds after = duration_cast<milliseconds>(steady_clock::now().time_since_epoch());
-         wxLogMessage(wxT("Macro line #%ld took %ld ms : %s:%s"),
+         auto after = wxTimeSpan(0, 0, 0, wxGetUTCTimeMillis());
+         wxLogMessage(wxT("Macro line #%ld took %s : %s:%s"),
             i + 1,
-            (after - before).count(),
+            (after - before).Format(wxT("%H:%M:%S.%l")),
             command.GET(),
             mParamsMacro[i]);
       }
@@ -857,7 +808,7 @@ bool MacroCommands::ReportAndSkip(
    const TranslatableString & friendlyCommand, const wxString & params)
 {
    int bDebug;
-   gPrefs->Read(wxT("/Batch/Debug"), &bDebug, false);
+   gPrefs->Read(wxT("/Batch/Debug"), &bDebug, 0);
    if( bDebug == 0 )
       return false;
 

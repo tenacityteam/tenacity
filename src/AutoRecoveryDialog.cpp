@@ -14,16 +14,16 @@ Paul Licameli split from AutoRecovery.cpp
 #include "ProjectManager.h"
 #include "ProjectFileIO.h"
 #include "ProjectFileManager.h"
-#include "shuttle/ShuttleGui.h"
+#include "ShuttleGui.h"
 #include "TempDirectory.h"
-#include "widgets/AudacityMessageBox.h"
-#include "widgets/wxPanelWrapper.h"
+#include "AudacityMessageBox.h"
+#include "wxPanelWrapper.h"
 
 #include <wx/dir.h>
 #include <wx/evtloop.h>
 #include <wx/filefn.h>
 #include <wx/filename.h>
-#include <wx/dataview.h>
+#include <wx/listctrl.h>
 
 enum {
    ID_QUIT_AUDACITY = 10000,
@@ -36,13 +36,13 @@ enum {
 class AutoRecoveryDialog final : public wxDialogWrapper
 {
 public:
-   explicit AutoRecoveryDialog(TenacityProject *proj);
+   explicit AutoRecoveryDialog(AudacityProject *proj);
 
    bool HasRecoverables() const;
    FilePaths GetRecoverables();
 
 private:
-   void Populate(ShuttleGui &S);
+   void PopulateOrExchange(ShuttleGui &S);
    void PopulateList();
    bool HaveChecked();
 
@@ -50,26 +50,36 @@ private:
    void OnDiscardSelected(wxCommandEvent &evt);
    void OnRecoverSelected(wxCommandEvent &evt);
    void OnSkip(wxCommandEvent &evt);
+   void OnColumnClicked(wxListEvent &evt);
+   void OnItemActivated(wxListEvent &evt);
+   void OnListKeyDown(wxKeyEvent &evt);
 
    FilePaths mFiles;
-   wxDataViewListCtrl *mFileList;
-   TenacityProject *mProject;
+   wxListCtrl *mFileList;
+   AudacityProject *mProject;
+
+public:
+   DECLARE_EVENT_TABLE()
 };
 
-AutoRecoveryDialog::AutoRecoveryDialog(TenacityProject *project)
+BEGIN_EVENT_TABLE(AutoRecoveryDialog, wxDialogWrapper)
+   EVT_BUTTON(ID_QUIT_AUDACITY, AutoRecoveryDialog::OnQuitAudacity)
+   EVT_BUTTON(ID_DISCARD_SELECTED, AutoRecoveryDialog::OnDiscardSelected)
+   EVT_BUTTON(ID_RECOVER_SELECTED, AutoRecoveryDialog::OnRecoverSelected)
+   EVT_BUTTON(ID_SKIP, AutoRecoveryDialog::OnSkip)
+   EVT_LIST_COL_CLICK(ID_FILE_LIST, AutoRecoveryDialog::OnColumnClicked)
+   EVT_LIST_ITEM_ACTIVATED(ID_FILE_LIST, AutoRecoveryDialog::OnItemActivated)
+END_EVENT_TABLE()
+
+AutoRecoveryDialog::AutoRecoveryDialog(AudacityProject *project)
 :  wxDialogWrapper(nullptr, wxID_ANY, XO("Automatic Crash Recovery"),
                    wxDefaultPosition, wxDefaultSize,
                    (wxDEFAULT_DIALOG_STYLE & (~wxCLOSE_BOX)) | wxRESIZE_BORDER), // no close box
    mProject(project)
 {
-   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnQuitAudacity,    this, ID_QUIT_AUDACITY);
-   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnDiscardSelected, this, ID_DISCARD_SELECTED);
-   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnRecoverSelected, this, ID_RECOVER_SELECTED);
-   Bind(wxEVT_BUTTON, &AutoRecoveryDialog::OnSkip,            this, ID_SKIP);
-
    SetName();
    ShuttleGui S(this, eIsCreating);
-   Populate(S);
+   PopulateOrExchange(S);
 }
 
 bool AutoRecoveryDialog::HasRecoverables() const
@@ -82,13 +92,13 @@ FilePaths AutoRecoveryDialog::GetRecoverables()
    return mFiles;
 }
 
-void AutoRecoveryDialog::Populate(ShuttleGui &S)
+void AutoRecoveryDialog::PopulateOrExchange(ShuttleGui &S)
 {
    S.SetBorder(5);
    S.StartVerticalLay(wxEXPAND, 1);
    {
       S.AddFixedText(
-         XO("The following projects were not saved properly the last time Tenacity was run and "
+         XO("The following projects were not saved properly the last time Audacity was run and "
             "can be automatically recovered.\n\n"
             "After recovery, save the projects to ensure changes are written to disk."),
          false,
@@ -96,28 +106,23 @@ void AutoRecoveryDialog::Populate(ShuttleGui &S)
 
       S.StartStatic(XO("Recoverable &projects"), 1);
       {
-         mFileList = safenew wxDataViewListCtrl(this, ID_FILE_LIST);
-         mFileList->SetMinSize(wxSize(-1, 120));
-         mFileList->AppendToggleColumn(
-            /*i18n-hint: (verb).  It instruct the user to select items.*/
-            _("Select")
-         );
-         mFileList->AppendTextColumn(
-            /*i18n-hint: (noun).  It's the name of the project to recover.*/
-            _("Name")
-         );
-         S.Id(ID_FILE_LIST)
-            .Prop(1)
-            .Position(wxEXPAND | wxALL)
-            .AddWindow(mFileList);
-
+         mFileList = S.Id(ID_FILE_LIST)
+            .ConnectRoot(wxEVT_KEY_DOWN, &AutoRecoveryDialog::OnListKeyDown)
+            .AddListControlReportMode(
+            {
+               /*i18n-hint: (verb).  It instruct the user to select items.*/
+               XO("Select"),
+               /*i18n-hint: (noun).  It's the name of the project to recover.*/
+               XO("Name")
+            });
+         mFileList->EnableCheckBoxes();
          PopulateList();
       }
       S.EndStatic();
 
       S.StartHorizontalLay(wxALIGN_CENTRE, 0);
       {
-         S.Id(ID_QUIT_AUDACITY).AddButton(XXO("&Quit Tenacity"));
+         S.Id(ID_QUIT_AUDACITY).AddButton(XXO("&Quit Audacity"));
          S.Id(ID_DISCARD_SELECTED).AddButton(XXO("&Discard Selected"));
          S.Id(ID_RECOVER_SELECTED).AddButton(XXO("&Recover Selected"), wxALIGN_CENTRE, true);
          S.Id(ID_SKIP).AddButton(XXO("&Skip"));
@@ -175,36 +180,44 @@ void AutoRecoveryDialog::PopulateList()
 
    mFiles.clear();
    mFileList->DeleteAllItems();
-   wxVector<wxVariant> data;
+   long item = 0;
 
    for (auto file : files)
    {
       wxFileName fn = file;
       if (fn != activeFile)
       {
-         // TODO: Consider storing the file paths as row data instead via
-         // second param of AppendItem or SetItemData
          mFiles.push_back(fn.GetFullPath());
-         data.clear();
-         data.push_back(true); // Toggle enabled
-         data.push_back(fn.GetName());
-         mFileList->AppendItem(data);
+         mFileList->InsertItem(item, wxT(""));
+         mFileList->SetItem(item, 1, fn.GetName());
+         mFileList->CheckItem(item, true);
+         item++;
       }
    }
+   mFileList->SetMinSize(mFileList->GetBestSize());
+   mFileList->SetColumnWidth(0, wxLIST_AUTOSIZE_USEHEADER);
+   mFileList->SetColumnWidth(1, 500);
 
-   if (mFiles.GetCount() > 0)
+   if (item)
    {
-      mFileList->SelectRow(0);
+      mFileList->SetItemState(0,
+                              wxLIST_STATE_FOCUSED | wxLIST_STATE_SELECTED,
+                              wxLIST_STATE_FOCUSED | wxLIST_STATE_SELECTED);
       mFileList->SetFocus();
    }
 }
 
 bool AutoRecoveryDialog::HaveChecked()
 {
-   unsigned int cnt = mFileList->GetItemCount();
-   for (unsigned int row = 0; row < cnt; ++row)
+   long item = -1;
+   while (true)
    {
-      if (mFileList->GetToggleValue(row, 0))
+      item = mFileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE);
+      if (item == wxNOT_FOUND)
+      {
+         break;
+      }
+      if (mFileList->IsItemChecked(item))
       {
          return true;
       }
@@ -215,33 +228,31 @@ bool AutoRecoveryDialog::HaveChecked()
    return false;
 }
 
-void AutoRecoveryDialog::OnQuitAudacity(wxCommandEvent &/* evt */)
+void AutoRecoveryDialog::OnQuitAudacity(wxCommandEvent &WXUNUSED(evt))
 {
    EndModal(ID_QUIT_AUDACITY);
 }
 
-void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &/* evt */)
+void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &WXUNUSED(evt))
 {
    if (!HaveChecked())
    {
       return;
    }
 
-   unsigned int cnt = mFileList->GetItemCount();
+   long item = -1;
    bool selectedTemporary = false;
-
-   for (unsigned int row = 0; row < cnt; ++row)
+   while (!selectedTemporary)
    {
-      if (!mFileList->GetToggleValue(row, 0))
+      item = mFileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE);
+      if (item == wxNOT_FOUND)
+         break;
+      if (!mFileList->IsItemChecked(item))
          continue;
-
-      FilePath fileName = mFiles[row];
+      FilePath fileName = mFiles[item];
       wxFileName file(fileName);
       if (file.GetExt().IsSameAs(FileNames::UnsavedProjectExtension()))
-      {
          selectedTemporary = true;
-         break;
-      }
    }
 
    // Don't give this warning message if all of the checked items are
@@ -257,18 +268,22 @@ void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &/* evt */)
          return;
    }
 
+   item = -1;
    FilePaths files;
-
-   for (unsigned int row = 0; row < cnt; ++row)
+   while (true)
    {
-      if (!mFileList->GetToggleValue(row, 0))
+      item = mFileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE);
+      if (item == wxNOT_FOUND)
+      {
+         break;
+      }
+      if (!mFileList->IsItemChecked(item))
       {
          // Keep in list
-         files.push_back(mFiles[row]);
+         files.push_back(mFiles[item]);
          continue;
       }
-
-      FilePath fileName = mFiles[row];
+      FilePath fileName = mFiles[item];
 
       // Only remove it from disk if it appears to be a temporary file.
       wxFileName file(fileName);
@@ -299,7 +314,7 @@ void AutoRecoveryDialog::OnDiscardSelected(wxCommandEvent &/* evt */)
    }
 }
 
-void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &/* evt */)
+void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &WXUNUSED(evt))
 {
    if (!HaveChecked())
    {
@@ -308,19 +323,27 @@ void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &/* evt */)
 
    FilePaths files;
 
-   unsigned int cnt = mFileList->GetItemCount();
-
-   for (unsigned int row = 0; row < cnt; ++row)
+   bool selected = false;
+   long item = -1;
+   while (true)
    {
-      if (mFileList->GetToggleValue(row, 0))
+      item = mFileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE);
+      if (item == wxNOT_FOUND)
       {
-         files.push_back(mFiles[row]);
+         if (!selected)
+         {
+            AudacityMessageBox(XO("No projects selected"), XO("Automatic Crash Recovery"));
+         }
+         break;
       }
-   }
+      selected = true;
 
-   if (files.IsEmpty())
-   {
-      AudacityMessageBox(XO("No projects selected"), XO("Automatic Crash Recovery"));
+      if (!mFileList->IsItemChecked(item))
+      {
+         continue;
+      }
+
+      files.push_back(mFiles[item]);
    }
 
    mFiles = files;
@@ -328,15 +351,73 @@ void AutoRecoveryDialog::OnRecoverSelected(wxCommandEvent &/* evt */)
    EndModal(ID_RECOVER_SELECTED);
 }
 
-void AutoRecoveryDialog::OnSkip(wxCommandEvent &/* evt */)
+void AutoRecoveryDialog::OnSkip(wxCommandEvent &WXUNUSED(evt))
 {
    EndModal(ID_SKIP);
+}
+
+void AutoRecoveryDialog::OnColumnClicked(wxListEvent &evt)
+{
+   if (evt.GetColumn() != 0)
+   {
+      return;
+   }
+
+   long item = -1;
+   while (true)
+   {
+      item = mFileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE);
+      if (item == wxNOT_FOUND)
+      {
+         break;
+      }
+      mFileList->CheckItem(item, !mFileList->IsItemChecked(item));
+   }
+}
+
+void AutoRecoveryDialog::OnItemActivated(wxListEvent &evt)
+{
+   long item = evt.GetIndex();
+   mFileList->CheckItem(item, !mFileList->IsItemChecked(item));
+}
+
+void AutoRecoveryDialog::OnListKeyDown(wxKeyEvent &evt)
+{
+   switch (evt.GetKeyCode())
+   {
+      case WXK_SPACE:
+      {
+         bool selected = false;
+         long item = -1;
+         while (true)
+         {
+            item = mFileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            if (item == wxNOT_FOUND)
+            {
+               break;
+            }
+
+            mFileList->CheckItem(item, !mFileList->IsItemChecked(item));
+         }
+      }
+      break;
+
+      case WXK_RETURN:
+         // Don't know why wxListCtrls prevent default dialog action,
+         // but they do, so handle it.
+         EmulateButtonClickIfPresent(GetAffirmativeId());
+      break;
+
+      default:
+         evt.Skip();
+      break;
+   }
 }
 
 ////////////////////////////////////////////////////////////////////////////
 
 static bool RecoverAllProjects(const FilePaths &files,
-                               TenacityProject *&pproj)
+                               AudacityProject *&pproj)
 {
    // Open a project window for each auto save file
    wxString filename;
@@ -344,7 +425,7 @@ static bool RecoverAllProjects(const FilePaths &files,
 
    for (auto &file: files)
    {
-      TenacityProject *proj = nullptr;
+      AudacityProject *proj = nullptr;
       // Reuse any existing project window, which will be the empty project
       // created at application startup
       std::swap(proj, pproj);
@@ -366,7 +447,7 @@ static void DiscardAllProjects(const FilePaths &files)
       ProjectFileManager::DiscardAutosave(file);
 }
 
-bool ShowAutoRecoveryDialogIfNeeded(TenacityProject *&pproj, bool *didRecoverAnything)
+bool ShowAutoRecoveryDialogIfNeeded(AudacityProject *&pproj, bool *didRecoverAnything)
 {
    if (didRecoverAnything)
    {
@@ -387,7 +468,7 @@ bool ShowAutoRecoveryDialogIfNeeded(TenacityProject *&pproj, bool *didRecoverAny
    //    http://trac.wxwidgets.org/ticket/16440
    //
    // This must be done before "dlg" is declared.
-   wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_UI);
+   wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_UI | wxEVT_CATEGORY_USER_INPUT);
 
    AutoRecoveryDialog dialog(pproj);
 

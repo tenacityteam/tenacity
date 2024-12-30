@@ -1,6 +1,6 @@
 /*!********************************************************************
 
-  Tenacity
+  Audacity: A Digital Audio Editor
 
   @file TransactionScope.cpp
 
@@ -15,7 +15,7 @@
 TransactionScopeImpl::~TransactionScopeImpl() = default;
 
 TransactionScope::TransactionScope(
-   TenacityProject &project, const char *name)
+   AudacityProject &project, const char *name)
 :  mName(name)
 {
    mpImpl = Factory::Call(project);
@@ -28,7 +28,7 @@ TransactionScope::TransactionScope(
       throw SimpleMessageBoxException( ExceptionType::Internal,
          XO("Database error.  Sorry, but we don't have more details."), 
          XO("Warning"), 
-         "Editing_Part_2#your-disk-is-full-or-not-writable"
+         "Error:_Disk_full_or_not_writable"
       );
 }
 

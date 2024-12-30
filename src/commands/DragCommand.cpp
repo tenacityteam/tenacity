@@ -19,12 +19,15 @@
 
 #include "DragCommand.h"
 
+#include "CommandDispatch.h"
+#include "MenuRegistry.h"
+#include "../CommonCommandFlags.h"
 #include "LoadCommands.h"
 #include "Project.h"
 #include "../ProjectWindows.h"
-#include "../WaveTrack.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
+#include "WaveTrack.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
 #include "CommandContext.h"
 
 #include <wx/frame.h>
@@ -56,9 +59,10 @@ static const EnumValueSymbol kCoordTypeStrings[nCoordTypes] =
 };
 
 
-bool DragCommand::DefineParams( ShuttleParams & S ){ 
-   S.OptionalN( bHasId         ).Define(     mId,          wxT("Id"),         11000.0, -100000.0, 1000000.0);
-   S.OptionalY( bHasWinName    ).Define(     mWinName,     wxT("Window"),     "Timeline");
+template<bool Const>
+bool DragCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.OptionalN( bHasId         ).Define(     mId,          wxT("Id"),         11000, -100000, 1000000);
+   S.OptionalY( bHasWinName    ).Define(     mWinName,     wxT("Window"),     wxString{"Timeline"});
    S.OptionalY( bHasFromX      ).Define(     mFromX,       wxT("FromX"),      200.0, 0.0, 1000000.0);
    S.OptionalY( bHasFromY      ).Define(     mFromY,       wxT("FromY"),      10.0,  0.0, 1000000.0);
    S.OptionalN( bHasToX        ).Define(     mToX,         wxT("ToX"),        400.0, 0.0, 1000000.0);
@@ -66,6 +70,12 @@ bool DragCommand::DefineParams( ShuttleParams & S ){
    S.OptionalN( bHasRelativeTo ).DefineEnum( mRelativeTo,  wxT("RelativeTo"), kPanel, kCoordTypeStrings, nCoordTypes );
    return true;
 };
+
+bool DragCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool DragCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void DragCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -136,4 +146,21 @@ bool DragCommand::Apply(const CommandContext & context)
       pWin->GetEventHandler()->ProcessEvent( Evt4 );
    }
    return true;
+}
+
+namespace {
+using namespace MenuRegistry;
+
+// Register menu items
+
+AttachedItem sAttachment{
+   // Note that the PLUGIN_SYMBOL must have a space between words,
+   // whereas the short-form used here must not.
+   // (So if you did write "Compare Audio" for the PLUGIN_SYMBOL name, then
+   // you would have to use "CompareAudio" here.)
+   Command( wxT("Drag"), XXO("Move Mouse..."),
+      CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() ),
+   wxT("Optional/Extra/Part2/Scriptables2")
+};
+
 }

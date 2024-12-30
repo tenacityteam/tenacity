@@ -28,8 +28,8 @@ used throughout Audacity into this one place.
 
 #include <wx/defs.h>
 #include <wx/filename.h>
-#include <wx/intl.h>
 #include <wx/stdpaths.h>
+#include <wx/utils.h>
 #include "BasicUI.h"
 #include "Prefs.h"
 #include "Internat.h"
@@ -45,13 +45,11 @@ used throughout Audacity into this one place.
 #include <windows.h>
 #endif
 
-static wxString gDataDir;
-
 const FileNames::FileType
      FileNames::AllFiles{ XO("All files"), { wxT("") } }
      /* i18n-hint an Audacity project is the state of the program, stored as
      files that can be reopened to resume the session later */
-   , FileNames::TenacityProjects{ XO("AUP3 project files"), { wxT("aup3") }, true }
+   , FileNames::AudacityProjects{ XO("AUP3 project files"), { wxT("aup3") }, true }
    , FileNames::DynamicLibraries{
 #if defined(__WXMSW__)
       XO("Dynamically Linked Libraries"), { wxT("dll") }, true
@@ -174,7 +172,7 @@ bool FileNames::HardLinkFile( const FilePath& file1, const FilePath& file2 )
 #ifdef __WXMSW__
 
    // Fix forced ASCII conversions and wrong argument order - MJB - 29/01/2019
-   //return ::CreateHardLinkA( file1.c_str(), file2.c_str(), NULL );  
+   //return ::CreateHardLinkA( file1.c_str(), file2.c_str(), NULL );
    return ( 0 != ::CreateHardLink( file2, file1, NULL ) );
 
 #else
@@ -216,21 +214,75 @@ void FileNames::MakeNameUnique(FilePaths &otherNames,
 wxString FileNames::LowerCaseAppNameInPath( const wxString & dirIn){
    wxString dir = dirIn;
    // BUG 1577 Capitalisation of Audacity in path...
-   if( dir.EndsWith( "Tenacity" ) )
+   if( dir.EndsWith( "Audacity" ) )
    {
-      int nChars = dir.length() - wxString( "Tenacity" ).length();
-      dir = dir.Left( nChars ) + "tenacity";
+      int nChars = dir.length() - wxString( "Audacity" ).length();
+      dir = dir.Left( nChars ) + "audacity";
    }
    return dir;
 }
 
-FilePath FileNames::DataDir()
+namespace // Implementation for user directories
 {
-   // LLL:  Wouldn't you know that as of WX 2.6.2, there is a conflict
-   //       between wxStandardPaths and wxConfig under Linux.  The latter
-   //       creates a normal file as "$HOME/.audacity", while the former
-   //       expects the ".audacity" portion to be a directory.
-   if (gDataDir.empty())
+enum class DirTarget
+{
+   Cache,
+   Config,
+   Data,
+   State,
+   _targetCount,
+};
+
+static FilePath gTargetDirs[size_t(DirTarget::_targetCount)] = {};
+
+#if defined(__WXGTK__)
+struct XDGDirConfig final
+{
+   wxString dirEnvVar;
+   FilePath dirDefault;
+};
+
+const XDGDirConfig gXDGUnixDirs[] = {
+   {wxT("XDG_CACHE_HOME"),  wxT("/.cache")      },
+   {wxT("XDG_CONFIG_HOME"), wxT("/.config")     },
+   {wxT("XDG_DATA_HOME"),   wxT("/.local/share")},
+   {wxT("XDG_STATE_HOME"),  wxT("/.local/state")}
+};
+
+static_assert(
+   sizeof(gXDGUnixDirs) / sizeof(*gXDGUnixDirs) == size_t(DirTarget::_targetCount),
+   "Not all DirTarget cases were implemented!"
+);
+
+FilePath GetXDGTargetDir(DirTarget target)
+{
+   static const auto oldUnixDataDir = wxFileName::GetHomeDir() + wxT("/.audacity-data");
+   static const auto oldUnixDataDirExists = wxDirExists(oldUnixDataDir);
+   // Compatibility: Use old user data dir folder, if it already exists
+   if (oldUnixDataDirExists)
+      return oldUnixDataDir;
+
+   // see if the XDG_*_HOME env var is defined. if it is, use its value.
+   // if it isn't, use the default XDG-specified value.
+   wxString newDir;
+   const auto [dirEnvVar, dirDefault] = gXDGUnixDirs[size_t(target)];
+   if (!wxGetEnv(dirEnvVar, &newDir) || newDir.empty())
+      newDir = wxFileName::GetHomeDir() + dirDefault;
+
+#ifdef APP_NAME
+   newDir = newDir + wxT("/" APP_NAME);
+#else
+   newDir = newDir + wxT("/audacity");
+#endif
+
+   return newDir;
+}
+#endif
+
+FilePath GetUserTargetDir(DirTarget target, bool allowRoaming)
+{
+   auto& dir = gTargetDirs[size_t(target)];
+   if (dir.empty())
    {
       // If there is a directory "Portable Settings" relative to the
       // executable's EXE file, the prefs are stored in there, otherwise
@@ -248,33 +300,36 @@ FilePath FileNames::DataDir()
       if (::wxDirExists(portablePrefsPath.GetFullPath()))
       {
          // Use "Portable Settings" folder
-         gDataDir = portablePrefsPath.GetFullPath();
+         dir = portablePrefsPath.GetFullPath();
       } else
       {
-         // Use OS-provided user data dir folder...
-         wxString dataDir( LowerCaseAppNameInPath( wxStandardPaths::Get().GetUserDataDir() ));
-#if defined( __WXGTK__ )
-         // ...except on Linux. We use XDG_CONFIG_HOME/tenacity (or
-         // $HOME/.config/tenacity) instead.
-         wxString configHome = wxGetenv("XDG_CONFIG_HOME");
-         if (configHome.empty())
-         {
-            configHome = wxGetenv("HOME") + wxString("/.config/") + wxString(APP_NAME);
-         } else
-         {
-            configHome += wxString("/") + wxString(APP_NAME);
-         }
-         dataDir = configHome;
+#if defined(__WXGTK__)
+         // Use XDG Base Directory compliant folders
+         wxString newDir(GetXDGTargetDir(target));
+#else
+         // Use OS-provided user data dir folder
+         wxString newDir(FileNames::LowerCaseAppNameInPath(
+            allowRoaming ? PlatformCompatibility::GetUserDataDir() :
+                           PlatformCompatibility::GetUserLocalDataDir()));
 #endif
-         gDataDir = FileNames::MkDir(dataDir);
+         dir = FileNames::MkDir(newDir);
       }
    }
-
-   return gDataDir;
+   return dir;
 }
+} // End of implementation for user directories
+
+FilePath FileNames::CacheDir() { return GetUserTargetDir(DirTarget::Cache, false); }
+FilePath FileNames::ConfigDir() { return GetUserTargetDir(DirTarget::Config, true); }
+FilePath FileNames::DataDir() { return GetUserTargetDir(DirTarget::Data, true); }
+FilePath FileNames::StateDir() { return GetUserTargetDir(DirTarget::State, false); }
 
 FilePath FileNames::ResourcesDir(){
-   wxString resourcesDir( LowerCaseAppNameInPath( wxStandardPaths::Get().GetResourcesDir() ));
+#ifdef __WXMSW__
+   static auto resourcesDir = wxFileName(PlatformCompatibility::GetExecutablePath()).GetPath();
+#else
+   static auto resourcesDir = LowerCaseAppNameInPath(PlatformCompatibility::GetResourcesDir());
+#endif
    return resourcesDir;
 }
 
@@ -293,7 +348,8 @@ FilePath FileNames::HtmlHelpDir()
 #else
    //linux goes into /*prefix*/share/audacity/
    //windows (probably) goes into the dir containing the .exe
-   wxString dataDir = FileNames::LowerCaseAppNameInPath( wxStandardPaths::Get().GetDataDir());
+   wxString dataDir =
+      FileNames::LowerCaseAppNameInPath(PlatformCompatibility::GetDataDir());
    return wxFileName( dataDir+wxT("/help/manual"), wxEmptyString ).GetFullPath();
 #endif
 }
@@ -324,14 +380,19 @@ FilePath FileNames::PlugInDir()
    return FileNames::MkDir( wxFileName( DataDir(), wxT("Plug-Ins") ).GetFullPath() );
 }
 
+FilePath FileNames::Configuration()
+{
+   return wxFileName( ConfigDir(), wxT("audacity.cfg") ).GetFullPath();
+}
+
 FilePath FileNames::PluginRegistry()
 {
-   return wxFileName( DataDir(), wxT("pluginregistry.cfg") ).GetFullPath();
+   return wxFileName( ConfigDir(), wxT("pluginregistry.cfg") ).GetFullPath();
 }
 
 FilePath FileNames::PluginSettings()
 {
-   return wxFileName( DataDir(), wxT("pluginsettings.cfg") ).GetFullPath();
+   return wxFileName( ConfigDir(), wxT("pluginsettings.cfg") ).GetFullPath();
 }
 
 FilePath FileNames::BaseDir()
@@ -347,12 +408,12 @@ FilePath FileNames::BaseDir()
    // just remove the MacOSX part.
    baseDir.RemoveLastDir();
 #elif defined(__WXMSW__)
-   // Don't use wxStandardPaths::Get().GetDataDir() since it removes
+   // Don't use PlatformCompatibility::GetDataDir() since it removes
    // the "Debug" directory in debug builds.
    baseDir = PlatformCompatibility::GetExecutablePath();
 #else
    // Linux goes into /*prefix*/share/audacity/
-   baseDir = FileNames::LowerCaseAppNameInPath(wxStandardPaths::Get().GetPluginsDir());
+   baseDir = FileNames::LowerCaseAppNameInPath(PlatformCompatibility::GetPluginsDir());
 #endif
 
    return baseDir.GetPath();
@@ -365,41 +426,6 @@ FilePath FileNames::ModulesDir()
    modulesDir.AppendDir(wxT("modules"));
 
    return modulesDir.GetFullPath();
-}
-
-FilePath FileNames::ThemeDir()
-{
-   return FileNames::MkDir( wxFileName( DataDir(), wxT("Theme") ).GetFullPath() );
-}
-
-FilePath FileNames::ThemeComponentsDir()
-{
-   return FileNames::MkDir( wxFileName( ThemeDir(), wxT("Components") ).GetFullPath() );
-}
-
-FilePath FileNames::ThemeCachePng()
-{
-   return wxFileName( ThemeDir(), wxT("ImageCache.png") ).GetFullPath();
-}
-
-FilePath FileNames::ThemeCacheHtm()
-{
-   return wxFileName( ThemeDir(), wxT("ImageCache.htm") ).GetFullPath();
-}
-
-FilePath FileNames::ThemeImageDefsAsCee()
-{
-   return wxFileName( ThemeDir(), wxT("ThemeImageDefsAsCee.h") ).GetFullPath();
-}
-
-FilePath FileNames::ThemeCacheAsCee( )
-{
-   return wxFileName( ThemeDir(), wxT("ThemeAsCeeCode.h") ).GetFullPath();
-}
-
-FilePath FileNames::ThemeComponent(const wxString &Str)
-{
-   return wxFileName( ThemeComponentsDir(), Str, wxT("png") ).GetFullPath();
 }
 
 //
@@ -424,34 +450,42 @@ FilePath FileNames::PathFromAddr(void *addr)
       }
    }
 #elif defined(__WXMSW__) && defined(_UNICODE)
-   HMODULE module;
-   BOOL status = GetModuleHandleEx(
-      GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-      (LPTSTR) addr,
-      &module
-   );
+   // The GetModuleHandlEx() function did not appear until Windows XP and
+   // GetModuleFileName() did appear until Windows 2000, so we have to
+   // check for them at runtime.
+   typedef BOOL (WINAPI *getmodulehandleex)(DWORD dwFlags, LPCWSTR lpModuleName, HMODULE* phModule);
+   typedef DWORD (WINAPI *getmodulefilename)(HMODULE hModule, LPWCH lpFilename, DWORD nSize);
+   getmodulehandleex gmhe =
+      (getmodulehandleex) GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")),
+                                         "GetModuleHandleExW");
+   getmodulefilename gmfn =
+      (getmodulefilename) GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")),
+                                         "GetModuleFileNameW");
 
-   if (status)
-   {
-      TCHAR path[MAX_PATH];
-      DWORD nSize;
+   if (gmhe != NULL && gmfn != NULL) {
+      HMODULE module;
+      if (gmhe(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+               (LPTSTR) addr,
+               &module)) {
+         TCHAR path[MAX_PATH];
+         DWORD nSize;
 
-      nSize = GetModuleFileName(module, path, MAX_PATH);
-      if (nSize && nSize < MAX_PATH)
-      {
-         name = LAT1CTOWX(path);
+         nSize = gmfn(module, path, MAX_PATH);
+         if (nSize && nSize < MAX_PATH) {
+            name = LAT1CTOWX(path);
+         }
       }
    }
 #endif
 
-   return name.GetFullPath();
+    return name.GetFullPath();
 }
 
 
 bool FileNames::IsPathAvailable( const FilePath & Path){
    if( Path.IsEmpty() )
       return false;
-#ifndef __WIN32__
+#ifndef _WIN32
    return true;
 #else
    wxFileNameWrapper filePath( Path );
@@ -463,15 +497,15 @@ wxFileNameWrapper FileNames::DefaultToDocumentsFolder(const wxString &preference
 {
    wxFileNameWrapper result;
 
-#ifdef __WIN32__
-   wxFileName defaultPath( wxStandardPaths::Get().GetDocumentsDir(), "" );
+#ifdef _WIN32
+   wxFileName defaultPath( PlatformCompatibility::GetDocumentsDir(), "" );
 
    defaultPath.AppendDir( AppName );
    result.SetPath( gPrefs->Read( preference, defaultPath.GetPath( wxPATH_GET_VOLUME ) ) );
 
    // MJB: Bug 1899 & Bug 2007.  Only create directory if the result is the default path
    bool bIsDefaultPath = result == defaultPath;
-   if( !bIsDefaultPath ) 
+   if( !bIsDefaultPath )
    {
       // IF the prefs directory doesn't exist - (Deleted by our user perhaps?)
       //    or exists as a file
@@ -576,15 +610,6 @@ void FileNames::UpdateDefaultPath(Operation op, const FilePath &path)
    }
 }
 
-bool FileNames::IsMidi(const FilePath &fName)
-{
-   const auto extension = fName.AfterLast(wxT('.'));
-   return
-      extension.IsSameAs(wxT("gro"), false) ||
-      extension.IsSameAs(wxT("midi"), false) ||
-      extension.IsSameAs(wxT("mid"), false);
-}
-
 static FilePaths sAudacityPathList;
 
 const FilePaths &FileNames::AudacityPathList()
@@ -602,10 +627,12 @@ void FileNames::AddUniquePathToPathList(const FilePath &pathArg,
                                           FilePaths &pathList)
 {
    wxFileNameWrapper pathNorm { pathArg };
-   pathNorm.Normalize(
-      wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
-      wxPATH_NORM_SHORTCUT | wxPATH_NORM_ABSOLUTE
-   );
+   // https://github.com/audacity/audacity/issues/6448 :
+   // Do not seek to expand environment variables here: it is not needed, and
+   // wxWidgets has an issue doing so - See
+   // https://github.com/wxWidgets/wxWidgets/issues/19214
+   const auto flags = wxPATH_NORM_ALL & ~wxPATH_NORM_ENV_VARS;
+   pathNorm.Normalize(flags);
    const wxString newpath{ pathNorm.GetFullPath() };
 
    for(const auto &path : pathList) {
@@ -650,15 +677,17 @@ void FileNames::FindFilesInPathList(const wxString & pattern,
    }
 }
 
-bool FileNames::WritableLocationCheck(const FilePath& path)
+bool FileNames::WritableLocationCheck(const FilePath& path,
+                                    const TranslatableString & message)
 {
     bool status = wxFileName::IsDirWritable(path);
 
     if (!status)
     {
-        using namespace BasicUI;;
+        using namespace BasicUI;
         ShowMessageBox(
-            XO("Directory %s does not have write permissions").Format(path),
+            message +
+            XO("\n%s does not have write permissions.").Format(path),
             MessageBoxOptions{}
                 .Caption(XO("Error"))
                 .IconStyle(Icon::Error)
@@ -697,7 +726,7 @@ wxString FileNames::UnsavedProjectExtension()
 
 // How to detect whether the file system of a path is FAT
 // No apparent way to do it with wxWidgets
-#if defined(__DARWIN__) || defined(__FreeBSD__)
+#if defined(__DARWIN__)
 #include <sys/mount.h>
 bool FileNames::IsOnFATFileSystem(const FilePath &path)
 {
@@ -705,12 +734,7 @@ bool FileNames::IsOnFATFileSystem(const FilePath &path)
    if (statfs(wxPathOnly(path).c_str(), &fs))
       // Error from statfs
       return false;
-
-   #ifdef __FreeBSD__
-   return 0 == strcmp(fs.f_fstypename, "msdosfs");
-   #else
    return 0 == strcmp(fs.f_fstypename, "msdos");
-   #endif
 }
 #elif defined(__linux__)
 #include <sys/statfs.h>

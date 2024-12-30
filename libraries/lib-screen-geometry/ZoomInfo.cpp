@@ -9,10 +9,9 @@
 **********************************************************************/
 
 #include "ZoomInfo.h"
-#include "Decibels.h"
 
+#include <cassert>
 #include <cmath>
-#include <limits>
 
 namespace {
 static const double gMaxZoom = 6000000;
@@ -20,43 +19,43 @@ static const double gMinZoom = 0.001;
 }
 
 ZoomInfo::ZoomInfo(double start, double pixelsPerSecond)
-   : vpos(0)
-   , h(start)
-   , zoom(pixelsPerSecond)
+   : hpos{ start }
+   , zoom{ pixelsPerSecond }
 {
-   UpdatePrefs();
 }
 
 ZoomInfo::~ZoomInfo()
 {
 }
 
-void ZoomInfo::UpdatePrefs()
-{
-   dBr = DecibelScaleCutoff.Read();
-}
-
 /// Converts a position (mouse X coordinate) to
 /// project time, in seconds.  Needs the left edge of
 /// the track as an additional parameter.
-double ZoomInfo::PositionToTime(long long position, long long origin) const
+double ZoomInfo::PositionToTime(int64 position,
+   int64 origin
+   , bool // ignoreFisheye
+) const
 {
-   return h + (position - origin) / zoom;
+   return hpos + (position - origin) / zoom;
 }
 
 
 /// STM: Converts a project time to screen x position.
-long long ZoomInfo::TimeToPosition(double projectTime, long long origin) const
+auto ZoomInfo::TimeToPosition(double projectTime,
+   int64 origin
+   , bool // ignoreFisheye
+) const -> int64
 {
-   double t = 0.5 + zoom * (projectTime - h) + origin ;
-   if( (long) t < std::numeric_limits<long long>::min() )
-      return std::numeric_limits<long long>::min();
-   if( (long) t > std::numeric_limits<long long>::max() )
-      return std::numeric_limits<long long>::max();
+   double t = 0.5 + zoom * (projectTime - hpos) + origin ;
+   if( t < INT64_MIN )
+      return INT64_MIN;
+   if( t > INT64_MAX )
+      return INT64_MAX;
    t = floor( t );
    return t;
 }
 
+// This always ignores the fisheye.  Use with caution!
 // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
 double ZoomInfo::TimeRangeToPixelWidth(double timeRange) const
 {
@@ -74,7 +73,16 @@ bool ZoomInfo::ZoomOutAvailable() const
 }
 
 double ZoomInfo::GetZoom( ) const { return zoom;};
-double ZoomInfo::GetMaxZoom( ) { return gMaxZoom;};
+
+double ZoomInfo::GetAbsoluteOffset(double offset) const
+{
+   return std::floor(0.5 + hpos * zoom + offset);
+}
+
+double ZoomInfo::GetMaxZoom()
+{
+   return gMaxZoom;
+};
 double ZoomInfo::GetMinZoom( ) { return gMinZoom;};
 
 void ZoomInfo::SetZoom(double pixelsPerSecond)
@@ -87,13 +95,13 @@ void ZoomInfo::ZoomBy(double multiplier)
    SetZoom(zoom * multiplier);
 }
 
-void ZoomInfo::FindIntervals
-   (double /*rate*/, Intervals &results, long long width, long long origin) const
+ZoomInfo::Intervals
+ZoomInfo::FindIntervals(int64 width, int64 origin) const
 {
-   results.clear();
+   ZoomInfo::Intervals results;
    results.reserve(2);
 
-   const long long rightmost(origin + (0.5 + width));
+   const int64 rightmost(origin + (0.5 + width));
    assert(origin <= rightmost);
    {
       results.push_back(Interval(origin, zoom, false));
@@ -102,4 +110,5 @@ void ZoomInfo::FindIntervals
    if (origin < rightmost)
       results.push_back(Interval(rightmost, 0, false));
    assert(!results.empty() && results[0].position == origin);
+   return results;
 }

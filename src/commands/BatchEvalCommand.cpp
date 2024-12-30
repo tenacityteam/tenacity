@@ -24,7 +24,7 @@ static CommandDirectory::RegisterType sRegisterType{
    std::make_unique<BatchEvalCommandType>()
 };
 
-ComponentInterfaceSymbol BatchEvalCommandType::BuildName()
+ComponentInterfaceSymbol BatchEvalCommandType::BuildName() const
 {
    return { wxT("BatchCommand"), XO("Batch Command") };
 }
@@ -39,8 +39,8 @@ void BatchEvalCommandType::BuildSignature(CommandSignature &signature)
    signature.AddParameter(wxT("MacroName"), wxT(""), std::move(macroValidator));
 }
 
-OldStyleCommandPointer BatchEvalCommandType::Create( TenacityProject &project,
-   std::unique_ptr<CommandOutputTargets> && /* target */)
+OldStyleCommandPointer BatchEvalCommandType::Create( AudacityProject &project,
+   std::unique_ptr<CommandOutputTargets> && WXUNUSED(target))
 {
    return std::make_shared<BatchEvalCommand>(project, *this);
 }

@@ -14,50 +14,26 @@
 
 class wxString;
 
-class LabelTrack;
+#include "FindClippingBase.h"
+#include "StatefulEffectUIServices.h"
+#include <wx/weakref.h>
 
-#include "Effect.h"
-
-class EffectFindClipping final : public Effect
+class EffectFindClipping :
+    public FindClippingBase,
+    public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
-
-   EffectFindClipping();
-   virtual ~EffectFindClipping();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-
-   // EffectProcessor implementation
-
-   bool DefineParams( ShuttleParams & S ) override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // Effect implementation
-
-   bool Process() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) override;
+   void DoPopulateOrExchange(
+      ShuttleGui & S, EffectSettingsAccess &access);
+   bool TransferDataToWindow(const EffectSettings& settings) override;
+   bool TransferDataFromWindow(EffectSettings& settings) override;
 
 private:
-   // EffectFindCliping implementation
-
-   bool ProcessOne(LabelTrack *lt, int count, const WaveTrack * wt,
-                   sampleCount start, sampleCount len);
-
-private:
-   int mStart;   ///< Using int rather than sampleCount because values are only ever small numbers
-   int mStop;    ///< Using int rather than sampleCount because values are only ever small numbers
+   wxWeakRef<wxWindow> mUIParent;
+   EffectSettingsAccessPtr mpAccess;
 };
 
 #endif // __AUDACITY_EFFECT_FINDCLIPPING__

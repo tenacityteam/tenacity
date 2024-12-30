@@ -13,41 +13,34 @@
 \brief Dialog that shows the current PrefsPanel in a tabbed divider.
 
 *//*******************************************************************/
-
-
 #include "PrefsDialog.h"
+
+#include <thread>
 
 #include <wx/app.h>
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>
-#include <wx/button.h>
-#include <wx/dialog.h>
-#include <wx/event.h>
 #include <wx/font.h>
 #include <wx/gdicmn.h>
-#include <wx/intl.h>
 #include <wx/listbox.h>
-#include <wx/sizer.h>
 
 #include <wx/listbook.h>
 
 #include <wx/treebook.h>
 #include <wx/treectrl.h>
 
-// Tenacity libraries
-#include <lib-audio-devices/AudioIOBase.h>
-#include <lib-preferences/Prefs.h>
-
-#include "../shuttle/ShuttleGui.h"
-#include "../commands/CommandManager.h"
-#include "../ProjectWindows.h"
+#include "AudioIOBase.h"
+#include "Prefs.h"
+#include "ProjectWindows.h"
+#include "ShuttleGui.h"
+#include "CommandManager.h"
 
 #include "PrefsPanel.h"
 
-#include "../widgets/HelpSystem.h"
+#include "HelpSystem.h"
 
 #if wxUSE_ACCESSIBILITY
-#include "../widgets/WindowAccessible.h"
+#include "WindowAccessible.h"
 #endif
 
 
@@ -208,7 +201,7 @@ wxAccStatus TreeCtrlAx::GetChildCount(int* childCount)
    return wxACC_OK;
 }
 
-wxAccStatus TreeCtrlAx::GetDefaultAction(int /* childId */, wxString* actionName)
+wxAccStatus TreeCtrlAx::GetDefaultAction(int WXUNUSED(childId), wxString* actionName)
 {
    actionName->clear();
 
@@ -216,7 +209,7 @@ wxAccStatus TreeCtrlAx::GetDefaultAction(int /* childId */, wxString* actionName
 }
 
 // Returns the description for this object or a child.
-wxAccStatus TreeCtrlAx::GetDescription( int /* childId */, wxString *description )
+wxAccStatus TreeCtrlAx::GetDescription( int WXUNUSED(childId), wxString *description )
 {
    description->clear();
 
@@ -240,7 +233,7 @@ wxAccStatus TreeCtrlAx::GetFocus( int *childId, wxAccessible **child )
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus TreeCtrlAx::GetHelpText( int /* childId */, wxString *helpText )
+wxAccStatus TreeCtrlAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
 {
    helpText->clear();
 
@@ -249,7 +242,7 @@ wxAccStatus TreeCtrlAx::GetHelpText( int /* childId */, wxString *helpText )
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus TreeCtrlAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
+wxAccStatus TreeCtrlAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
 {
    shortcut->clear();
 
@@ -446,10 +439,10 @@ int wxTreebookExt::SetSelection(size_t n)
 }
 
 PrefsDialog::PrefsDialog(
-   wxWindow * parent, TenacityProject *pProject,
+   wxWindow * parent, AudacityProject *pProject,
    const TranslatableString &titlePrefix,
    PrefsPanel::Factories &factories)
-:  wxDialogWrapper(parent, wxID_ANY, XO("Tenacity Preferences"),
+:  wxDialogWrapper(parent, wxID_ANY, XO("Audacity Preferences"),
             wxDefaultPosition,
             wxDefaultSize,
             wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
@@ -490,12 +483,17 @@ PrefsDialog::PrefsDialog(
                   const auto &node = *it;
                   const auto &factory = node.factory;
                   wxWindow *const w = factory(mCategories, wxID_ANY, pProject);
-                  if (stack.empty())
+                  node.enabled = (w != nullptr);
+                  if (stack.empty()) {
                      // Parameters are: AddPage(page, name, IsSelected, imageId).
-                     mCategories->AddPage(w, w->GetName(), false, 0);
+                     if (w)
+                        mCategories->AddPage(w, w->GetName(), false, 0);
+                  }
                   else {
                      IntPair &top = *stack.rbegin();
-                     mCategories->InsertSubPage(top.first, w, w->GetName(), false, 0);
+                     if (w)
+                        mCategories->InsertSubPage(top.first,
+                           w, w->GetName(), false, 0);
                      if (--top.second == 0) {
                         // Expand all nodes before the layout calculation
                         mCategories->ExpandNode(top.first, true);
@@ -518,18 +516,21 @@ PrefsDialog::PrefsDialog(
          const auto &node = factories[0];
          const auto &factory = node.factory;
          mUniquePage = factory(S.GetParent(), wxID_ANY, pProject);
-         wxWindow * uniquePageWindow = S.Prop(1)
-            .Position(wxEXPAND)
-            .AddWindow(mUniquePage);
-         // We're not in the wxTreebook, so add the accelerator here
-         wxAcceleratorEntry entries[1];
+         node.enabled = (mUniquePage != nullptr);
+         if (mUniquePage) {
+            wxWindow * uniquePageWindow = S.Prop(1)
+               .Position(wxEXPAND)
+               .AddWindow(mUniquePage);
+            // We're not in the wxTreebook, so add the accelerator here
+            wxAcceleratorEntry entries[1];
 #if defined(__WXMAC__)
-         // Is there a standard shortcut on Mac?
+            // Is there a standard shortcut on Mac?
 #else
-         entries[0].Set(wxACCEL_NORMAL, (int) WXK_F1, wxID_HELP);
+            entries[0].Set(wxACCEL_NORMAL, (int) WXK_F1, wxID_HELP);
 #endif
-         wxAcceleratorTable accel(1, entries);
-         uniquePageWindow->SetAcceleratorTable(accel);
+            wxAcceleratorTable accel(1, entries);
+            uniquePageWindow->SetAcceleratorTable(accel);
+         }
       }
    }
    S.EndVerticalLay();
@@ -557,8 +558,10 @@ PrefsDialog::PrefsDialog(
    {
       int iPage = 0;
       for (auto it = factories.begin(), end = factories.end();
-         it != end; ++it, ++iPage)
-         mCategories->ExpandNode(iPage, it->expanded);
+         it != end; ++it) {
+         if (it->enabled)
+            mCategories->ExpandNode(iPage++, it->expanded);
+      }
    }
 
    // This ASSERT was originally used to limit us to 800 x 600.
@@ -576,7 +579,7 @@ PrefsDialog::PrefsDialog(
    if( !mUniquePage ){
       int prefWidth, prefHeight;
       gPrefs->Read(wxT("/Prefs/Width"), &prefWidth, sz.x);
-      gPrefs->Read(wxT("/Prefs/Height"), &prefHeight, std::max(480,sz.y));
+      gPrefs->Read(wxT("/Prefs/Height"), &prefHeight, wxMax(480,sz.y));
 
       wxSize prefSize = wxSize(prefWidth, prefHeight);
       prefSize.DecTo(screenRect.GetSize());
@@ -589,6 +592,8 @@ PrefsDialog::PrefsDialog(
    // Center after all that resizing, but make sure it doesn't end up
    // off-screen
    CentreOnParent();
+
+   mTransaction = std::make_unique< SettingTransaction >();
 }
 
 PrefsDialog::~PrefsDialog()
@@ -608,7 +613,7 @@ int PrefsDialog::ShowModal()
          selected = 0;  // clamp to available range of tabs
       mCategories->SetSelection(selected);
    }
-   else {
+   else if (mUniquePage) {
       auto Temp = mTitlePrefix;
       Temp.Join( Verbatim( mUniquePage->GetLabel() ), wxT(" ") );
       SetTitle(Temp);
@@ -618,7 +623,7 @@ int PrefsDialog::ShowModal()
    return wxDialogWrapper::ShowModal();
 }
 
-void PrefsDialog::OnCancel(wxCommandEvent & /* event */)
+void PrefsDialog::OnCancel(wxCommandEvent & WXUNUSED(event))
 {
    RecordExpansionState();
 
@@ -627,7 +632,7 @@ void PrefsDialog::OnCancel(wxCommandEvent & /* event */)
          ((PrefsPanel *)mCategories->GetPage(i))->Cancel();
       }
    }
-   else
+   else if (mUniquePage)
       mUniquePage->Cancel();
 
    // Remember modified dialog size, even if cancelling.
@@ -646,21 +651,21 @@ PrefsPanel * PrefsDialog::GetCurrentPanel()
    if( mCategories) 
       return static_cast<PrefsPanel*>(mCategories->GetCurrentPage());
    else
-   {
-      wxASSERT( mUniquePage );
       return mUniquePage;
+}
+
+void PrefsDialog::OnPreview(wxCommandEvent & WXUNUSED(event))
+{
+   if (const auto pPanel = GetCurrentPanel())
+      pPanel->Preview();
+}
+
+void PrefsDialog::OnHelp(wxCommandEvent & WXUNUSED(event))
+{
+   if (const auto pPanel = GetCurrentPanel()) {
+      const auto &page = pPanel->HelpPageName();
+      HelpSystem::ShowHelp(this, page, true);
    }
-}
-
-void PrefsDialog::OnPreview(wxCommandEvent & /* event */)
-{
-   GetCurrentPanel()->Preview();
-}
-
-void PrefsDialog::OnHelp(wxCommandEvent & /* event */)
-{
-   const auto &page = GetCurrentPanel()->HelpPageName();
-   HelpSystem::ShowHelp(this, page, true);
 }
 
 void PrefsDialog::ShuttleAll( ShuttleGui & S)
@@ -676,7 +681,8 @@ void PrefsDialog::ShuttleAll( ShuttleGui & S)
    else
    {
       S.ResetId();
-      mUniquePage->PopulateOrExchange( S );
+      if (mUniquePage)
+         mUniquePage->PopulateOrExchange( S );
    }
 }
 
@@ -688,7 +694,7 @@ void PrefsDialog::OnTreeKeyDown(wxTreeEvent & event)
       event.Skip(); // Ensure standard behavior when enter is not pressed
 }
 
-void PrefsDialog::OnOK(wxCommandEvent & /* event */)
+void PrefsDialog::OnOK(wxCommandEvent & WXUNUSED(event))
 {
    RecordExpansionState();
 
@@ -704,7 +710,7 @@ void PrefsDialog::OnOK(wxCommandEvent & /* event */)
          }
       }
    }
-   else {
+   else if (mUniquePage) {
       if (!mUniquePage->Validate())
          return;
    }
@@ -722,7 +728,7 @@ void PrefsDialog::OnOK(wxCommandEvent & /* event */)
          panel->Commit();
       }
    }
-   else {
+   else if (mUniquePage) {
       mUniquePage->Preview();
       mUniquePage->Commit();
    }
@@ -736,14 +742,44 @@ void PrefsDialog::OnOK(wxCommandEvent & /* event */)
 
    SavePreferredPage();
 
+#if USE_PORTMIXER
+   auto gAudioIO = AudioIOBase::Get();
+   if (gAudioIO) {
+      // We cannot have opened this dialog if gAudioIO->IsAudioTokenActive(),
+      // per the setting of AudioIONotBusyFlag and AudioIOBusyFlag in
+      // AudacityProject::GetUpdateFlags().
+      // However, we can have an invalid audio token (so IsAudioTokenActive()
+      // is false), but be monitoring.
+      // If monitoring, have to stop the stream, so HandleDeviceChange() can work.
+      // We could disable the Preferences command while monitoring, i.e.,
+      // set AudioIONotBusyFlag/AudioIOBusyFlag according to monitoring, as well.
+      // Instead allow it because unlike recording, for example, monitoring
+      // is not clearly something that should prohibit opening prefs.
+      // TODO: We *could* be smarter in this method and call HandleDeviceChange()
+      // only when the device choices actually changed. True of lots of prefs!
+      // As is, we always stop monitoring before handling the device change.
+      if (gAudioIO->IsMonitoring())
+      {
+         gAudioIO->StopStream();
+         while (gAudioIO->IsBusy()) {
+            using namespace std::chrono;
+            std::this_thread::sleep_for(100ms);
+         }
+      }
+      gAudioIO->HandleDeviceChange();
+   }
+#endif
+
    // PRL:  Is the following concern still valid, now that prefs update is
    //      handled instead by delayed event processing?
 
    // LL:  wxMac can't handle recreating the menus when this dialog is still active,
-   //      so TenacityProject::UpdatePrefs() or any of the routines it calls must
+   //      so AudacityProject::UpdatePrefs() or any of the routines it calls must
    //      not cause MenuCreator::RebuildMenuBar() to be executed.
 
    PrefsListener::Broadcast();
+
+   mTransaction->Commit();
 
    if( IsModal() )
       EndModal(true);
@@ -779,7 +815,7 @@ int PrefsDialog::GetSelectedPage() const
 }
 
 GlobalPrefsDialog::GlobalPrefsDialog(
-   wxWindow * parent, TenacityProject *pProject,
+   wxWindow * parent, AudacityProject *pProject,
    PrefsPanel::Factories &factories)
    : PrefsDialog(parent, pProject, XO("Preferences:"), factories)
 {
@@ -808,18 +844,20 @@ void PrefsDialog::RecordExpansionState()
    {
       int iPage = 0;
       for (auto it = mFactories.begin(), end = mFactories.end();
-         it != end; ++it, ++iPage)
-         it->expanded = mCategories->IsNodeExpanded(iPage);
+         it != end; ++it) {
+         if (it->enabled)
+            it->expanded = mCategories->IsNodeExpanded(iPage++);
+      }
    }
    else
       mFactories[0].expanded = true;
 }
 
 #include <wx/frame.h>
-#include "../Menus.h"
+#include "../MenuCreator.h"
 #include "Project.h"
 
-void DoReloadPreferences( TenacityProject &project )
+void DoReloadPreferences( AudacityProject &project )
 {
    PreferenceInitializer::ReinitializeAll();
 
@@ -835,6 +873,19 @@ void DoReloadPreferences( TenacityProject &project )
    //      rebuilding the menus while the PrefsDialog is still in the modal
    //      state.
    for (auto p : AllProjects{}) {
-      MenuManager::Get(*p).RebuildMenuBar(*p);
+      MenuCreator::Get(*p).RebuildMenuBar();
+// TODO: The comment below suggests this workaround is obsolete.
+#if defined(__WXGTK__)
+      // Workaround for:
+      //
+      //   http://bugzilla.audacityteam.org/show_bug.cgi?id=458
+      //
+      // This workaround should be removed when Audacity updates to wxWidgets
+      // 3.x which has a fix.
+      auto &window = GetProjectFrame( *p );
+      wxRect r = window.GetRect();
+      window.SetSize(wxSize(1,1));
+      window.SetSize(r.GetSize());
+#endif
    }
 }

@@ -9,7 +9,7 @@
 *******************************************************************//**
 
 \class FrequencyPlotDialog
-\brief Displays a spectrum plot of the waveform.  Has options for
+\brief Displays a spectrum plot of the waveform. Has options for
 selecting parameters of the plot.
 
 Has a feature that finds peaks and reports their value as you move
@@ -18,7 +18,7 @@ the mouse around.
 *//****************************************************************//**
 
 \class FreqPlot
-\brief Works with FrequencyPlotDialog to dsplay a spectrum plot of the waveform.
+\brief Works with FrequencyPlotDialog to display a spectrum plot of the waveform.
 This class actually does the graph display.
 
 Has a feature that finds peaks and reports their value as you move
@@ -30,8 +30,6 @@ the mouse around.
   Salvo Ventura - November 2006
   Extended range check for additional FFT windows
 */
-
-
 
 #include "FreqWindow.h"
 
@@ -46,11 +44,9 @@ the mouse around.
 #include <wx/dcclient.h>
 #include <wx/dcmemory.h>
 #include <wx/font.h>
-#include <wx/image.h>
 #include <wx/file.h>
-#include <wx/intl.h>
+#include <wx/frame.h>
 #include <wx/scrolbar.h>
-#include <wx/sizer.h>
 #include <wx/slider.h>
 #include <wx/statbmp.h>
 #include <wx/stattext.h>
@@ -62,33 +58,38 @@ the mouse around.
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
 
-#include <cmath>
+#include <math.h>
 
-// Tenacity
-#include <lib-files/FileNames.h>
-#include <lib-math/FFT.h>
-#include <lib-preferences/Prefs.h>
-
-#include "SelectFile.h"
-#include "shuttle/ShuttleGui.h"
 #include "AColor.h"
+#include "AllThemeResources.h"
+#include "BasicUI.h"
 #include "CommonCommandFlags.h"
-#include "PitchName.h"
 #include "Decibels.h"
+#include "FFT.h"
+#include "PitchName.h"
+#include "Prefs.h"
 #include "Project.h"
-#include "ProjectWindow.h"
-#include "theme/Theme.h"
+#include "ProjectWindows.h"
+#include "SelectFile.h"
+#include "ShuttleGui.h"
+#include "Theme.h"
 #include "ViewInfo.h"
-#include "theme/AllThemeResources.h"
+
+#include "FileNames.h"
 
 #include "WaveTrack.h"
 
-#include "./widgets/HelpSystem.h"
-#include "widgets/AudacityMessageBox.h"
-#include "widgets/Ruler.h"
+#include "AudacityMessageBox.h"
+#include "HelpSystem.h"
+#include "widgets/FreqGauge.h"
+#include "widgets/LinearDBFormat.h"
+#include "widgets/LinearUpdater.h"
+#include "widgets/LogarithmicUpdater.h"
+#include "widgets/RealFormat.h"
+#include "widgets/RulerPanel.h"
 
 #if wxUSE_ACCESSIBILITY
-#include "widgets/WindowAccessible.h"
+#include "WindowAccessible.h"
 #endif
 
 #define FrequencyAnalysisTitle XO("Frequency Analysis")
@@ -98,10 +99,8 @@ DEFINE_EVENT_TYPE(EVT_FREQWINDOW_RECALC);
 enum {
    FirstID = 7000,
 
-   FreqVZoomSliderID,
-   FreqVPanScrollerID,
-   FreqHZoomSliderID,
-   FreqHPanScrollerID,
+   FreqZoomSliderID,
+   FreqPanScrollerID,
    FreqExportButtonID,
    FreqAlgChoiceID,
    FreqSizeChoiceID,
@@ -116,60 +115,63 @@ enum {
 #define FREQ_WINDOW_WIDTH 480
 #define FREQ_WINDOW_HEIGHT 330
 
-
 static const char * ZoomIn[] = {
-"16 16 3 1",
+"16 16 6 1",
 " 	c None",
-"+	c #000000",
-"#	c #CCCCCC",
-"                ",
-"                ",
-"                ",
-"                ",
-"      ++++      ",
-"      +##+      ",
-"      +##+      ",
-"   ++++##++++   ",
-"   +########+   ",
-"   +########+   ",
-"   ++++##++++   ",
-"      +##+      ",
-"      +##+      ",
-"      ++++      ",
-"                ",
-"                "};
+"+	c #1C1C1C",
+"@	c #AEAEAE",
+"#	c #F7F7F7",
+"$	c #CFCECC",
+"* c #1C1CA0",
+"        ++++    ",
+"      @+# @$+@  ",
+"      + @**  +@ ",
+"     +#@ **  #+ ",
+"     +@****** +@",
+"     + ****** +@",
+"     +#  **  #+@",
+"      +  **  +@@",
+"     +++#  #+@@ ",
+"    +++@++++@@  ",
+"   +++@@ @@@@   ",
+"  +++@@         ",
+" +++@@          ",
+"+++@@           ",
+"@+@@            ",
+" @@             "};
 
 static const char * ZoomOut[] = {
-"16 16 3 1",
+"16 16 6 1",
 " 	c None",
-"+	c #000000",
-"#	c #CCCCCC",
-"                ",
-"                ",
-"                ",
-"                ",
-"                ",
-"                ",
-"                ",
-"   ++++++++++   ",
-"   +########+   ",
-"   +########+   ",
-"   ++++++++++   ",
-"                ",
-"                ",
-"                ",
-"                ",
-"                "};
+"+	c #1C1C1C",
+"@	c #AEAEAE",
+"#	c #F7F7F7",
+"$	c #CFCECC",
+"* c #1C1CA0",
+"        ++++    ",
+"      @+#  $+@  ",
+"      +  @@  +@ ",
+"     +# @    #+ ",
+"     +@****** +@",
+"     + ****** +@",
+"     +#      #+@",
+"      +      +@@",
+"     +++#  #+@@ ",
+"    +++@++++@@  ",
+"   +++@@ @@@@   ",
+"  +++@@         ",
+" +++@@          ",
+"+++@@           ",
+"@+@@            ",
+" @@             "};
 
 // FrequencyPlotDialog
 
 BEGIN_EVENT_TABLE(FrequencyPlotDialog, wxDialogWrapper)
    EVT_CLOSE(FrequencyPlotDialog::OnCloseWindow)
    EVT_SIZE(FrequencyPlotDialog::OnSize)
-   EVT_SLIDER(FreqVZoomSliderID, FrequencyPlotDialog::OnZoomSlider)
-   EVT_COMMAND_SCROLL(FreqVPanScrollerID, FrequencyPlotDialog::OnPanScroller)
-   EVT_SLIDER(FreqHZoomSliderID, FrequencyPlotDialog::OnZoomSlider)
-   EVT_COMMAND_SCROLL(FreqHPanScrollerID, FrequencyPlotDialog::OnPanScroller)
+   EVT_SLIDER(FreqZoomSliderID, FrequencyPlotDialog::OnZoomSlider)
+   EVT_COMMAND_SCROLL(FreqPanScrollerID, FrequencyPlotDialog::OnPanScroller)
    EVT_CHOICE(FreqAlgChoiceID, FrequencyPlotDialog::OnAlgChoice)
    EVT_CHOICE(FreqSizeChoiceID, FrequencyPlotDialog::OnSizeChoice)
    EVT_CHOICE(FreqFuncChoiceID, FrequencyPlotDialog::OnFuncChoice)
@@ -182,31 +184,18 @@ BEGIN_EVENT_TABLE(FrequencyPlotDialog, wxDialogWrapper)
    EVT_COMMAND(wxID_ANY, EVT_FREQWINDOW_RECALC, FrequencyPlotDialog::OnRecalc)
 END_EVENT_TABLE()
 
-FrequencyPlotDialog::FrequencyPlotDialog(wxWindow * parent, wxWindowID id,
-                           TenacityProject &project,
-                           const TranslatableString & title,
-                           const wxPoint & pos)
-:  wxDialogWrapper(parent, id, title, pos, wxDefaultSize,
-            wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxMAXIMIZE_BOX),
-   mAnalyst(std::make_unique<SpectrumAnalyst>())
-,  mProject{ &project }
+FrequencyPlotDialog::FrequencyPlotDialog(
+   wxWindow* parent, wxWindowID id, AudacityProject& project,
+   const TranslatableString& title, const wxPoint& pos)
+    : PlotSpectrumBase { project }
+    , wxDialogWrapper(
+         parent, id, title, pos, wxDefaultSize,
+         wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxMAXIMIZE_BOX)
 {
    SetName();
 
    mMouseX = 0;
    mMouseY = 0;
-   mRate = 0;
-   mDataLen = 0;
-
-   gPrefs->Read(wxT("/FrequencyPlotDialog/DrawGrid"), &mDrawGrid, true);
-   gPrefs->Read(wxT("/FrequencyPlotDialog/SizeChoice"), &mSize, 3);
-
-   int alg;
-   gPrefs->Read(wxT("/FrequencyPlotDialog/AlgChoice"), &alg, 0);
-   mAlg = static_cast<SpectrumAnalyst::Algorithm>(alg);
-
-   gPrefs->Read(wxT("/FrequencyPlotDialog/FuncChoice"), &mFunc, 3);
-   gPrefs->Read(wxT("/FrequencyPlotDialog/AxisChoice"), &mAxis, 1);
 
    Populate();
 }
@@ -214,29 +203,6 @@ FrequencyPlotDialog::FrequencyPlotDialog(wxWindow * parent, wxWindowID id,
 FrequencyPlotDialog::~FrequencyPlotDialog()
 {
 }
-
-/// The vertical zoom slider stores a value between 1 and MAX_ZOOMED_OUT_V inclusive.
-/// The value is converted to a zoom level by computing
-/// value / MAX_ZOOMED_OUT_V and showing that amount of the total area.
-///
-/// This is confusing because "min zoom is max slider value".
-/// On Linux, the blue fill is *above* the slider, which is ugly.
-/// The blue fill can be moved to the bottom (and the math made consistent with
-/// horizontal zoom sliders) using wxSL_INVERSE.
-/// However, it causes Home to move the slider down
-/// and End to move the slider up. This is inconsistent with prior behavior,
-/// my intuition, scrollable documents, default GTK3 vertical sliders,
-/// and Windows volume control, but consistent with HTML range inputs.
-///
-/// Because I dislike the new behavior and don't want to change behavior,
-/// I chose to not use wxSL_INVERSE and retain "min zoom is max slider value".
-constexpr int MAX_ZOOMED_OUT_V = 100;
-
-/// The horizontal zoom slider ranges from [0..HZOOM_COUNT] inclusive.
-constexpr int HZOOM_COUNT = 128;
-/// Horizontal zoom is exponential. When you increase the slider position by
-/// HZOOM_STEPS_PER_DOUBLE steps, the zoom doubles and the viewport size halves.
-constexpr int HZOOM_STEPS_PER_DOUBLE = 16;
 
 void FrequencyPlotDialog::Populate()
 {
@@ -264,6 +230,7 @@ void FrequencyPlotDialog::Populate()
       Verbatim( "16384" ) ,
       Verbatim( "32768" ) ,
       Verbatim( "65536" ) ,
+      Verbatim( "131072" ) ,
    };
 
    TranslatableStrings funcChoices;
@@ -316,7 +283,7 @@ void FrequencyPlotDialog::Populate()
             S.GetParent(), wxID_ANY, wxVERTICAL,
             wxSize{ 100, 100 }, // Ruler can't handle small sizes
             RulerPanel::Range{ 0.0, -dBRange },
-            Ruler::LinearDBFormat,
+            LinearDBFormat::Instance(),
             XO("dB"),
             RulerPanel::Options{}
                .LabelEdges(true)
@@ -341,17 +308,17 @@ void FrequencyPlotDialog::Populate()
       {
          S.StartVerticalLay();
          {
-            vPanScroller = safenew wxScrollBar(S.GetParent(), FreqVPanScrollerID,
+            mPanScroller = safenew wxScrollBar(S.GetParent(), FreqPanScrollerID,
                wxDefaultPosition, wxDefaultSize, wxSB_VERTICAL);
 #if wxUSE_ACCESSIBILITY
             // so that name can be set on a standard control
-            vPanScroller->SetAccessible(safenew WindowAccessible(vPanScroller));
+            mPanScroller->SetAccessible(safenew WindowAccessible(mPanScroller));
 #endif
             S.Prop(1);
             S
                .Name(XO("Scroll"))
                .Position( wxALIGN_LEFT | wxTOP)
-               .AddWindow(vPanScroller);
+               .AddWindow(mPanScroller);
          }
          S.EndVerticalLay();
 
@@ -363,17 +330,16 @@ void FrequencyPlotDialog::Populate()
 
             S.AddSpace(5);
 
-            vZoomSlider = safenew wxSliderWrapper(S.GetParent(), FreqVZoomSliderID,
-               MAX_ZOOMED_OUT_V, 1, MAX_ZOOMED_OUT_V,
+            mZoomSlider = safenew wxSliderWrapper(S.GetParent(), FreqZoomSliderID, 100, 1, 100,
                wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL);
             S.Prop(1);
             S
                .Name(XO("Zoom"))
                .Position(wxALIGN_CENTER_HORIZONTAL)
-               .AddWindow(vZoomSlider);
+               .AddWindow(mZoomSlider);
 #if wxUSE_ACCESSIBILITY
             // so that name can be set on a standard control
-            vZoomSlider->SetAccessible(safenew WindowAccessible(vZoomSlider));
+            mZoomSlider->SetAccessible(safenew WindowAccessible(mZoomSlider));
 #endif
 
             S.AddSpace(5);
@@ -389,92 +355,40 @@ void FrequencyPlotDialog::Populate()
       S.EndHorizontalLay();
 
       // -------------------------------------------------------------------
-      // ROW 2: Frequency ruler, pan, and zoom
+      // ROW 2: Frequency ruler
       // -------------------------------------------------------------------
 
-      // col0
       S.AddSpace(1);
 
-      // col1
-      S.StartVerticalLay(0);  // do not expand vertically
+      S.StartHorizontalLay(wxEXPAND, 0);
       {
-         S.StartHorizontalLay(wxEXPAND, 0);  // expand horizontally, not vertically
-         {
-            hRuler  = safenew RulerPanel(
-               S.GetParent(), wxID_ANY, wxHORIZONTAL,
-               wxSize{ 100, 100 }, // Ruler can't handle small sizes
-               RulerPanel::Range{ 10, 20000 },
-               Ruler::RealFormat,
-               XO("Hz"),
-               RulerPanel::Options{}
-                  .Log(true)
-                  .Flip(true)
-                  .LabelEdges(true)
-                  .TickColour( theTheme.Colour( clrGraphLabels ) )
-            );
+         hRuler  = safenew RulerPanel(
+            S.GetParent(), wxID_ANY, wxHORIZONTAL,
+            wxSize{ 100, 100 }, // Ruler can't handle small sizes
+            RulerPanel::Range{ 10, 20000 },
+            RealFormat::LinearInstance(),
+            XO("Hz"),
+            RulerPanel::Options{}
+               .Log(true)
+               .Flip(true)
+               .LabelEdges(true)
+               .TickColour( theTheme.Colour( clrGraphLabels ) )
+         );
 
-            S.AddSpace(1, wxDefaultCoord);
-            S.Prop(1)
-               .Position(wxALIGN_LEFT | wxALIGN_TOP)
-               .AddWindow(hRuler);
-            S.AddSpace(1, wxDefaultCoord);
-         }
-         S.EndHorizontalLay();
-
-         S.StartHorizontalLay(wxEXPAND, 0);
-         {
-            hPanScroller = safenew wxScrollBar(S.GetParent(), FreqHPanScrollerID,
-               wxDefaultPosition, wxDefaultSize, wxSB_HORIZONTAL);
-#if wxUSE_ACCESSIBILITY
-            // so that name can be set on a standard control
-            hPanScroller->SetAccessible(safenew WindowAccessible(hPanScroller));
-#endif
-            S.Prop(1);
-            S
-               .Name(XO("Scroll Horizontal"))
-               .Position( wxALIGN_LEFT | wxTOP)
-               .AddWindow(hPanScroller);
-         }
-         S.EndHorizontalLay();
-
-         S.StartHorizontalLay(wxEXPAND, 0);
-         {
-            wxStaticBitmap *zi = safenew wxStaticBitmap(S.GetParent(), wxID_ANY, wxBitmap(ZoomOut));
-            S.Position(wxALIGN_CENTER)
-               .AddWindow(zi);
-
-            S.AddSpace(5);
-
-            hZoomSlider = safenew wxSliderWrapper(S.GetParent(), FreqHZoomSliderID,
-               0, 0, HZOOM_COUNT,
-               wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL);
-            S.Prop(1);
-            S
-               .Name(XO("Zoom Horizontal"))
-               .Position(wxALIGN_CENTER_VERTICAL)
-               .AddWindow(hZoomSlider);
-#if wxUSE_ACCESSIBILITY
-            // so that name can be set on a standard control
-            hZoomSlider->SetAccessible(safenew WindowAccessible(hZoomSlider));
-#endif
-
-            S.AddSpace(5);
-
-            wxStaticBitmap *zo = safenew wxStaticBitmap(S.GetParent(), wxID_ANY, wxBitmap(ZoomIn));
-            S.Position(wxALIGN_CENTER)
-               .AddWindow(zo);
-         }
-         S.EndHorizontalLay();
+         S.AddSpace(1, wxDefaultCoord);
+         S.Prop(1)
+            .Position(wxALIGN_LEFT | wxALIGN_TOP)
+            .AddWindow(hRuler);
+         S.AddSpace(1, wxDefaultCoord);
       }
-      S.EndVerticalLay();
+      S.EndHorizontalLay();
 
-      // col2
       S.AddSpace(1);
-      // next row
 
       // -------------------------------------------------------------------
       // ROW 3: Spacer
       // -------------------------------------------------------------------
+
       S.AddSpace(5);
       S.AddSpace(5);
       S.AddSpace(5);
@@ -516,7 +430,7 @@ void FrequencyPlotDialog::Populate()
    // -------------------------------------------------------------------
    // ROW 5: Spacer
    // -------------------------------------------------------------------
-   
+
    S.AddSpace(5);
 
    S.SetBorder(2);
@@ -545,9 +459,8 @@ void FrequencyPlotDialog::Populate()
 
       S.AddSpace(5);
 
-
       // ----------------------------------------------------------------
-      // ROW 7: Function, Axix, Grids, Close
+      // ROW 7: Function, Axis, Grids, Close
       // ----------------------------------------------------------------
 
       S.AddSpace(5);
@@ -618,15 +531,15 @@ void FrequencyPlotDialog::Populate()
    //
    // I guess the only way round it would be to handle key actions
    // ourselves, but we'll leave that for a future date.
-//   gtk_widget_set_can_focus(vPanScroller->m_widget, true);
+//   gtk_widget_set_can_focus(mPanScroller->m_widget, true);
 #endif
 }
 
-void FrequencyPlotDialog::OnGetURL(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnGetURL(wxCommandEvent & WXUNUSED(event))
 {
    // Original help page is back on-line (March 2016), but the manual should be more reliable.
    // http://www.eramp.com/WCAG_2_audio_contrast_tool_help.htm
-   HelpSystem::ShowHelp(this, L"Plot Spectrum");
+   HelpSystem::ShowHelp(this, L"Plot_Spectrum");
 }
 
 bool FrequencyPlotDialog::Show(bool show)
@@ -643,7 +556,8 @@ bool FrequencyPlotDialog::Show(bool show)
       dBRange = DecibelScaleCutoff.Read();
       if(dBRange < 90.)
          dBRange = 90.;
-      GetAudio();
+      if (!GetAudio())
+         return false;
       // Don't send an event.  We need the recalc right away.
       // so that mAnalyst is valid when we paint.
       //SendRecalcEvent();
@@ -655,64 +569,7 @@ bool FrequencyPlotDialog::Show(bool show)
    return res;
 }
 
-void FrequencyPlotDialog::GetAudio()
-{
-   mData.reset();
-   mDataLen = 0;
-
-   int selcount = 0;
-   bool warning = false;
-   for (auto track : TrackList::Get( *mProject ).Selected< const WaveTrack >()) {
-      auto &selectedRegion = ViewInfo::Get( *mProject ).selectedRegion;
-      if (selcount==0) {
-         mRate = track->GetRate();
-         auto start = track->TimeToLongSamples(selectedRegion.t0());
-         auto end = track->TimeToLongSamples(selectedRegion.t1());
-         auto dataLen = end - start;
-         if (dataLen > 10485760) {
-            warning = true;
-            mDataLen = 10485760;
-         }
-         else
-            // dataLen is not more than 10 * 2 ^ 20
-            mDataLen = dataLen.as_size_t();
-         mData = Floats{ mDataLen };
-         // Don't allow throw for bad reads
-         track->GetFloats(mData.get(), start, mDataLen,
-                    fillZero, false);
-      }
-      else {
-         if (track->GetRate() != mRate) {
-            AudacityMessageBox(
-               XO(
-"To plot the spectrum, all selected tracks must be the same sample rate.") );
-            mData.reset();
-            mDataLen = 0;
-            return;
-         }
-         auto start = track->TimeToLongSamples(selectedRegion.t0());
-         Floats buffer2{ mDataLen };
-         // Again, stop exceptions
-         track->GetFloats(buffer2.get(), start, mDataLen,
-                    fillZero, false);
-         for (size_t i = 0; i < mDataLen; i++)
-            mData[i] += buffer2[i];
-      }
-      selcount++;
-   }
-
-   if (selcount == 0)
-      return;
-
-   if (warning) {
-      auto msg = XO(
-"Too much audio was selected. Only the first %.1f seconds of audio will be analyzed.")
-         .Format(mDataLen / mRate);
-      AudacityMessageBox( msg );
-   }
-}
-
-void FrequencyPlotDialog::OnSize(wxSizeEvent & /* event */)
+void FrequencyPlotDialog::OnSize(wxSizeEvent & WXUNUSED(event))
 {
    Layout();
 
@@ -748,13 +605,11 @@ void FrequencyPlotDialog::DrawPlot()
    if (!mData || mDataLen < mWindowSize || mAnalyst->GetProcessedSize() == 0) {
       wxMemoryDC memDC;
 
-      vRuler->ruler.SetLog(false);
+      vRuler->ruler.SetUpdater(&LinearUpdater::Instance());
       vRuler->ruler.SetRange(0.0, -dBRange);
 
-      hRuler->ruler.SetLog(false);
+      hRuler->ruler.SetUpdater(&LinearUpdater::Instance());
       hRuler->ruler.SetRange(0, 1);
-      hNumberScale = NumberScale();
-      hRuler->ruler.SetNumberScale(hNumberScale);
 
       DrawBackground(memDC);
 
@@ -767,7 +622,7 @@ void FrequencyPlotDialog::DrawPlot()
       }
 
       memDC.SelectObject(wxNullBitmap);
-      
+
       mFreqPlot->Refresh();
 
       Refresh();
@@ -775,36 +630,25 @@ void FrequencyPlotDialog::DrawPlot()
       return;
    }
 
-   // Compute y axis ruler range, given current zoom level
-   float yTotal, yMax, yMin;
-   {
-      float yRange = mYMax - mYMin;
+   float yRange = mYMax - mYMin;
+   float yTotal = yRange * ((float) mZoomSlider->GetValue() / 100.0f);
 
-      // How much of the entire graph to show vertically.
-      float showAmount = float(vZoomSlider->GetValue()) / float(MAX_ZOOMED_OUT_V);
-      yTotal = yRange * showAmount;
+   int sTotal = yTotal * 100;
+   int sRange = yRange * 100;
+   int sPos = mPanScroller->GetThumbPosition() + ((mPanScroller->GetThumbSize() - sTotal) / 2);
+    mPanScroller->SetScrollbar(sPos, sTotal, sRange, sTotal);
 
-      int sTotal = yTotal * 100;
-      int sRange = yRange * 100;
-      int sPos = vPanScroller->GetThumbPosition() + ((vPanScroller->GetThumbSize() - sTotal) / 2);
-
-      // Set scrollbar size and position
-      vPanScroller->SetScrollbar(sPos, sTotal, sRange, sTotal);
-
-      // Recompute sPos, taking into account SetScrollbar() clamping the position.
-      sPos = vPanScroller->GetThumbPosition();
-      yMax = mYMax - ((float)sPos / 100);
-      yMin = yMax - yTotal;
-   }
+   float yMax = mYMax - ((float)sPos / 100);
+   float yMin = yMax - yTotal;
 
    // Set up y axis ruler
 
    if (mAlg == SpectrumAnalyst::Spectrum) {
       vRuler->ruler.SetUnits(XO("dB"));
-      vRuler->ruler.SetFormat(Ruler::LinearDBFormat);
+      vRuler->ruler.SetFormat(&LinearDBFormat::Instance());
    } else {
       vRuler->ruler.SetUnits({});
-      vRuler->ruler.SetFormat(Ruler::RealFormat);
+      vRuler->ruler.SetFormat(&RealFormat::LinearInstance());
    }
    int w1, w2, h;
    vRuler->ruler.GetMaxSize(&w1, &h);
@@ -825,76 +669,37 @@ void FrequencyPlotDialog::DrawPlot()
    // Must be done after setting the vertical ruler above since the
    // the width could change.
    wxRect r = mPlotRect;
-   int width = r.width - 2;
-
-   // Compute x axis ruler range, given current zoom level
-   // (range is between 0 and 1 inclusive.)
-   float xViewportRelMin, xViewportRelMax;
-   {
-      constexpr int H_SCROLLBAR_RANGE = 10000;
-      // How much of the entire graph to show horizontally.
-
-      float showAmount = pow(0.5f, float(hZoomSlider->GetValue()) / float(HZOOM_STEPS_PER_DOUBLE));
-
-      int oldThumbSize = hPanScroller->GetThumbSize();
-      int newThumbSize = showAmount * H_SCROLLBAR_RANGE;
-
-      int oldThumbPosition = hPanScroller->GetThumbPosition();
-      int newThumbPosition = oldThumbPosition - (newThumbSize - oldThumbSize) / 2;
-
-      // Set scrollbar size and position
-      hPanScroller->SetScrollbar(newThumbPosition, newThumbSize, H_SCROLLBAR_RANGE, newThumbSize);
-      newThumbPosition = hPanScroller->GetThumbPosition();
-
-      xViewportRelMin = float(newThumbPosition) / float(H_SCROLLBAR_RANGE);
-      xViewportRelMax = float(newThumbPosition + newThumbSize) / float(H_SCROLLBAR_RANGE);
-   }
 
    // Set up x axis ruler
 
-   // TODO store NumberScaleType as a member variable
-   NumberScaleType nst;
+   int width = r.width - 2;
 
-   // Frequencies/periods passed into SpectrumAnalyst::GetProcessedValue().
-   // The entire range of computed values.
-   float fullXMin, fullXMax;
+   float xMin, xMax, xRatio, xStep;
 
    if (mAlg == SpectrumAnalyst::Spectrum) {
-      nst = mLogAxis ? nstLogarithmic : nstLinear;
-      fullXMin = mRate / mWindowSize;
-      fullXMax = mRate / 2;
-      // TODO how does track spectrogram create mel/bark/erb/period rulers?
-      hRuler->ruler.SetLog(mLogAxis);
+      xMin = mRate / mWindowSize;
+      xMax = mRate / 2;
+      xRatio = xMax / xMin;
+      if (mLogAxis)
+      {
+         xStep = pow(2.0f, (log(xRatio) / log(2.0f)) / width);
+         hRuler->ruler.SetUpdater(&LogarithmicUpdater::Instance());
+      }
+      else
+      {
+         xStep = (xMax - xMin) / width;
+         hRuler->ruler.SetUpdater(&LinearUpdater::Instance());
+      }
       hRuler->ruler.SetUnits(XO("Hz"));
    } else {
-      nst = nstLinear;
-      fullXMin = 0;
-      fullXMax = mAnalyst->GetProcessedSize() / mRate;
-      hRuler->ruler.SetLog(false);
+      xMin = 0;
+      xMax = mAnalyst->GetProcessedSize() / mRate;
+      xStep = (xMax - xMin) / width;
+      hRuler->ruler.SetUpdater(&LinearUpdater::Instance());
       /* i18n-hint: short form of 'seconds'.*/
       hRuler->ruler.SetUnits(XO("s"));
    }
-
-   // Frequencies/periods passed into SpectrumAnalyst::GetProcessedValue().
-   // The currently visible region given our current zoom and scroll settings.
-   float viewportXMin, viewportXMax;
-   {
-      // The entire region, ignoring the zoom viewport.
-      auto fullScale = NumberScale(nst, fullXMin, fullXMax);
-
-      // Compute the viewport size, in frequencies passed into GetProcessedValue().
-      viewportXMin = fullScale.PositionToValue(xViewportRelMin);
-      viewportXMax = fullScale.PositionToValue(xViewportRelMax);
-   }
-
-   hRuler->ruler.SetRange(viewportXMin, viewportXMax);
-
-   // hNumberScale.PositionToValue() is used to map normalized x-coordinates [0, 1)
-   // to frequencies/periods (within the viewport's limits)
-   // passed into SpectrumAnalyst::GetProcessedValue().
-   hNumberScale = NumberScale(nst, viewportXMin, viewportXMax);
-   hRuler->ruler.SetNumberScale(hNumberScale);  // this allows it to eventually draw nonlinear scales.
-
+   hRuler->ruler.SetRange(xMin, xMax-xStep);
    hRuler->Refresh(false);
 
    // Draw the plot
@@ -903,14 +708,16 @@ void FrequencyPlotDialog::DrawPlot()
    else
       memDC.SetPen(wxPen(theTheme.Colour( clrWavelengthPlot), 1, wxPENSTYLE_SOLID));
 
-   float xPos;
-   float xPosNext = hNumberScale.PositionToValue(0.f);
+   float xPos = xMin;
 
    for (int i = 0; i < width; i++) {
-      xPos = xPosNext;
-      xPosNext = hNumberScale.PositionToValue(float(i + 1) / float(width));
+      float y;
 
-      float y = mAnalyst->GetProcessedValue(xPos, xPosNext);
+      if (mLogAxis)
+         y = mAnalyst->GetProcessedValue(xPos, xPos * xStep);
+      else
+         y = mAnalyst->GetProcessedValue(xPos, xPos + xStep);
+
       float ynorm = (y - yMin) / yTotal;
 
       int lineheight = (int)(ynorm * (r.height - 1));
@@ -921,6 +728,11 @@ void FrequencyPlotDialog::DrawPlot()
       if (ynorm > 0.0)
          AColor::Line(memDC, r.x + 1 + i, r.y + r.height - 1 - lineheight,
                         r.x + 1 + i, r.y + r.height - 1);
+
+      if (mLogAxis)
+         xPos *= xStep;
+      else
+         xPos += xStep;
    }
 
    // Outline the graph
@@ -951,45 +763,21 @@ void FrequencyPlotDialog::PlotMouseEvent(wxMouseEvent & event)
       else
          mFreqPlot->SetCursor(*mArrowCursor);
 
-      wxRect r = mPlotRect;
-      int width = r.width - 2;
-      if (
-         hNumberScale != NumberScale() &&
-         r.Contains(mMouseX, mMouseY) &&
-         (mMouseX!=0) &&
-         (mMouseX!=r.width-1)
-      ) {
-         auto calcXPosFromMouseX = [&r, &width, &hNumberScale = this->hNumberScale](
-            int mouseX
-         ) -> float {
-            float relativeMouseX = float(mouseX - (r.x + 1)) / float(width);
-            return hNumberScale.PositionToValue(relativeMouseX);
-         };
-
-         /// Frequency of the mouse pixel
-         mCursorXLeft = calcXPosFromMouseX(mMouseX);
-         /// Frequency at 1 pixel to the right
-         mCursorXRight = calcXPosFromMouseX(mMouseX + 1);
-      } else {
-         mCursorXLeft = NO_CURSOR;
-         mCursorXRight = NO_CURSOR;
-      }
-
       mFreqPlot->Refresh(false);
    }
 }
 
-void FrequencyPlotDialog::OnPanScroller(wxScrollEvent & /* event */)
+void FrequencyPlotDialog::OnPanScroller(wxScrollEvent & WXUNUSED(event))
 {
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnZoomSlider(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnZoomSlider(wxCommandEvent & WXUNUSED(event))
 {
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnAlgChoice(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnAlgChoice(wxCommandEvent & WXUNUSED(event))
 {
    mAlg = SpectrumAnalyst::Algorithm(mAlgChoice->GetSelection());
 
@@ -1006,7 +794,7 @@ void FrequencyPlotDialog::OnAlgChoice(wxCommandEvent & /* event */)
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnSizeChoice(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnSizeChoice(wxCommandEvent & WXUNUSED(event))
 {
    long windowSize = 0;
    mSizeChoice->GetStringSelection().ToLong(&windowSize);
@@ -1015,12 +803,12 @@ void FrequencyPlotDialog::OnSizeChoice(wxCommandEvent & /* event */)
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnFuncChoice(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnFuncChoice(wxCommandEvent & WXUNUSED(event))
 {
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnAxisChoice(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnAxisChoice(wxCommandEvent & WXUNUSED(event))
 {
    mLogAxis = mAxisChoice->GetSelection() ? true : false;
    DrawPlot();
@@ -1041,41 +829,70 @@ void FrequencyPlotDialog::PlotPaint(wxPaintEvent & event)
 
    int width = r.width - 2;
 
+   float xMin, xMax, xRatio, xStep;
+
+   if (mAlg == SpectrumAnalyst::Spectrum) {
+      xMin = mRate / mWindowSize;
+      xMax = mRate / 2;
+      xRatio = xMax / xMin;
+      if (mLogAxis)
+         xStep = pow(2.0f, (log(xRatio) / log(2.0f)) / width);
+      else
+         xStep = (xMax - xMin) / width;
+   } else {
+      xMin = 0;
+      xMax = mAnalyst->GetProcessedSize() / mRate;
+      xStep = (xMax - xMin) / width;
+   }
+
+   float xPos = xMin;
+
    // Find the peak nearest the cursor and plot it
-   if ( mCursorXLeft != NO_CURSOR ) {
-      /// Frequency of the mouse pixel
-      float xPos = mCursorXLeft;
-      /// Frequency at 1 pixel to the right
-      float xPosNext = mCursorXRight;
+   if ( r.Contains(mMouseX, mMouseY) && (mMouseX!=0) && (mMouseX!=r.width-1) ) {
+      if (mLogAxis)
+         xPos = xMin * pow(xStep, mMouseX - (r.x + 1));
+      else
+         xPos = xMin + xStep * (mMouseX - (r.x + 1));
 
-      float peakAmplitude = 0;
-      float peakPos = mAnalyst->FindPeak(xPos, &peakAmplitude);
+      float bestValue = 0;
+      float bestpeak = mAnalyst->FindPeak(xPos, &bestValue);
 
-      float relativePeakX = hNumberScale.ValueToPosition(peakPos);
-      int peakX = int(float(width) * relativePeakX);
+      int px;
+      if (mLogAxis)
+         px = (int)(log(bestpeak / xMin) / log(xStep));
+      else
+         px = (int)((bestpeak - xMin) * width / (xMax - xMin));
 
-      dc.SetPen(wxPen(wxColour(160,160,160), 1, wxPENSTYLE_SOLID));
-      AColor::Line(dc, r.x + 1 + peakX, r.y, r.x + 1 + peakX, r.y + r.height);
+      dc.SetPen(wxPen(wxColour(255, 32, 32), 1, wxPENSTYLE_SOLID));
+      AColor::Line(dc, r.x + 1 + px, r.y, r.x + 1 + px, r.y + r.height);
 
        // print out info about the cursor location
 
-      float value = mAnalyst->GetProcessedValue(xPos, xPosNext);
+      float value;
+
+      if (mLogAxis) {
+         xPos = xMin * pow(xStep, mMouseX - (r.x + 1));
+         value = mAnalyst->GetProcessedValue(xPos, xPos * xStep);
+      } else {
+         xPos = xMin + xStep * (mMouseX - (r.x + 1));
+         value = mAnalyst->GetProcessedValue(xPos, xPos + xStep);
+      }
 
       TranslatableString cursor;
       TranslatableString peak;
 
       if (mAlg == SpectrumAnalyst::Spectrum) {
          auto xp = PitchName_Absolute(FreqToMIDInote(xPos));
-         auto pp = PitchName_Absolute(FreqToMIDInote(peakPos));
+         auto pp = PitchName_Absolute(FreqToMIDInote(bestpeak));
          /* i18n-hint: The %d's are replaced by numbers, the %s by musical notes, e.g. A#*/
          cursor = XO("%d Hz (%s) = %d dB")
             .Format( (int)(xPos + 0.5), xp, (int)(value + 0.5));
          /* i18n-hint: The %d's are replaced by numbers, the %s by musical notes, e.g. A#*/
          peak = XO("%d Hz (%s) = %.1f dB")
-            .Format( (int)(peakPos + 0.5), pp, peakAmplitude );
-      } else if (xPos > 0.0 && peakPos > 0.0) {
+            .Format( (int)(bestpeak + 0.5), pp, bestValue );
+      } else if (xPos > 0.0 && bestpeak > 0.0) {
          auto xp = PitchName_Absolute(FreqToMIDInote(1.0 / xPos));
-         auto pp = PitchName_Absolute(FreqToMIDInote(1.0 / peakPos));
+         auto pp = PitchName_Absolute(FreqToMIDInote(1.0 / bestpeak));
          /* i18n-hint: The %d's are replaced by numbers, the %s by musical notes, e.g. A#
           * the %.4f are numbers, and 'sec' should be an abbreviation for seconds */
          cursor = XO("%.4f sec (%d Hz) (%s) = %f")
@@ -1083,7 +900,7 @@ void FrequencyPlotDialog::PlotPaint(wxPaintEvent & event)
          /* i18n-hint: The %d's are replaced by numbers, the %s by musical notes, e.g. A#
           * the %.4f are numbers, and 'sec' should be an abbreviation for seconds */
          peak = XO("%.4f sec (%d Hz) (%s) = %.3f")
-            .Format( peakPos, (int)(1.0 / peakPos + 0.5), pp, peakAmplitude );
+            .Format( bestpeak, (int)(1.0 / bestpeak + 0.5), pp, bestValue );
       }
       mCursorText->SetValue( cursor.Translation() );
       mPeakText->SetValue( peak.Translation() );
@@ -1100,12 +917,12 @@ void FrequencyPlotDialog::PlotPaint(wxPaintEvent & event)
    dc.DrawRectangle(r);
 }
 
-void FrequencyPlotDialog::OnCloseWindow(wxCloseEvent & /* event */)
+void FrequencyPlotDialog::OnCloseWindow(wxCloseEvent & WXUNUSED(event))
 {
    Show(false);
 }
 
-void FrequencyPlotDialog::OnCloseButton(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnCloseButton(wxCommandEvent & WXUNUSED(event))
 {
    gPrefs->Write(wxT("/FrequencyPlotDialog/DrawGrid"), mDrawGrid);
    gPrefs->Write(wxT("/FrequencyPlotDialog/SizeChoice"), mSizeChoice->GetSelection());
@@ -1113,6 +930,7 @@ void FrequencyPlotDialog::OnCloseButton(wxCommandEvent & /* event */)
    gPrefs->Write(wxT("/FrequencyPlotDialog/FuncChoice"), mFuncChoice->GetSelection());
    gPrefs->Write(wxT("/FrequencyPlotDialog/AxisChoice"), mAxisChoice->GetSelection());
    gPrefs->Flush();
+   mData.reset();
    Show(false);
 }
 
@@ -1144,9 +962,20 @@ void FrequencyPlotDialog::Recalc()
          blocker.emplace(this);
       wxYieldIfNeeded();
 
+      auto first = true;
+      auto progress = [&](long long num, long long den) {
+         if (first) {
+            mProgress->SetRange(den);
+            first = false;
+         }
+         mProgress->SetValue(num);
+      };
+
       mAnalyst->Calculate(alg, windowFunc, mWindowSize, mRate,
          mData.get(), mDataLen,
-         &mYMin, &mYMax, mProgress);
+         &mYMin, &mYMax, std::move(progress));
+
+      mProgress->Reset();
    }
    if (hadFocus) {
       hadFocus->SetFocus();
@@ -1162,12 +991,12 @@ void FrequencyPlotDialog::Recalc()
    }
 
    // Prime the scrollbar
-   vPanScroller->SetScrollbar(0, (mYMax - mYMin) * 100, (mYMax - mYMin) * 100, 1);
+   mPanScroller->SetScrollbar(0, (mYMax - mYMin) * 100, (mYMax - mYMin) * 100, 1);
 
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnExport(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnExport(wxCommandEvent & WXUNUSED(event))
 {
    wxString fName = _("spectrum.txt");
 
@@ -1211,7 +1040,7 @@ void FrequencyPlotDialog::OnExport(wxCommandEvent & /* event */)
    }
 }
 
-void FrequencyPlotDialog::OnReplot(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnReplot(wxCommandEvent & WXUNUSED(event))
 {
    dBRange = DecibelScaleCutoff.Read();
    if(dBRange < 90.)
@@ -1220,14 +1049,14 @@ void FrequencyPlotDialog::OnReplot(wxCommandEvent & /* event */)
    SendRecalcEvent();
 }
 
-void FrequencyPlotDialog::OnGridOnOff(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnGridOnOff(wxCommandEvent & WXUNUSED(event))
 {
    mDrawGrid = mGridOnOff->IsChecked();
 
    DrawPlot();
 }
 
-void FrequencyPlotDialog::OnRecalc(wxCommandEvent & /* event */)
+void FrequencyPlotDialog::OnRecalc(wxCommandEvent & WXUNUSED(event))
 {
    Recalc();
 }
@@ -1239,7 +1068,7 @@ void FrequencyPlotDialog::UpdatePrefs()
       Show(false);
    }
 
-   auto zoomSlider = vZoomSlider->GetValue();
+   auto zoomSlider = mZoomSlider->GetValue();
    auto drawGrid = mGridOnOff->GetValue();
    auto sizeChoice = mSizeChoice->GetStringSelection();
    auto algChoice = mAlgChoice->GetSelection();
@@ -1251,7 +1080,7 @@ void FrequencyPlotDialog::UpdatePrefs()
 
    Populate();
 
-   vZoomSlider->SetValue(zoomSlider);
+   mZoomSlider->SetValue(zoomSlider);
 
    mDrawGrid = drawGrid;
    mGridOnOff->SetValue(drawGrid);
@@ -1276,6 +1105,7 @@ void FrequencyPlotDialog::UpdatePrefs()
 }
 
 BEGIN_EVENT_TABLE(FreqPlot, wxWindow)
+   EVT_ERASE_BACKGROUND(FreqPlot::OnErase)
    EVT_PAINT(FreqPlot::OnPaint)
    EVT_MOUSE_EVENTS(FreqPlot::OnMouseEvent)
 END_EVENT_TABLE()
@@ -1283,13 +1113,17 @@ END_EVENT_TABLE()
 FreqPlot::FreqPlot(wxWindow *parent, wxWindowID winid)
 :  wxWindow(parent, winid)
 {
-   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    freqWindow = (FrequencyPlotDialog *) parent;
 }
 
 bool FreqPlot::AcceptsFocus() const
 {
    return false;
+}
+
+void FreqPlot::OnErase(wxEraseEvent & WXUNUSED(event))
+{
+   // Ignore it to prevent flashing
 }
 
 void FreqPlot::OnPaint(wxPaintEvent & evt)
@@ -1303,15 +1137,15 @@ void FreqPlot::OnMouseEvent(wxMouseEvent & event)
 }
 
 // Remaining code hooks this add-on into the application
-#include "commands/CommandContext.h"
-#include "commands/CommandManager.h"
+#include "CommandContext.h"
+#include "CommandManager.h"
 #include "ProjectWindows.h"
 
 namespace {
 
 AttachedWindows::RegisteredFactory sFrequencyWindowKey{
-   []( TenacityProject &parent ) -> wxWeakRef< wxWindow > {
-      auto &window = ProjectWindow::Get( parent );
+   []( AudacityProject &parent ) -> wxWeakRef< wxWindow > {
+      auto &window = GetProjectFrame(parent);
       return safenew FrequencyPlotDialog(
          &window, -1, parent, FrequencyAnalysisTitle,
          wxPoint{ 150, 150 }
@@ -1320,36 +1154,26 @@ AttachedWindows::RegisteredFactory sFrequencyWindowKey{
 };
 
 // Define our extra menu item that invokes that factory
-struct Handler : CommandHandlerObject {
-   void OnPlotSpectrum(const CommandContext &context)
-   {
-      auto &project = context.project;
-      CommandManager::Get(project).RegisterLastAnalyzer(context);  //Register Plot Spectrum as Last Analyzer
-      auto freqWindow = &GetAttachedWindows(project)
-         .Get< FrequencyPlotDialog >( sFrequencyWindowKey );
+void OnPlotSpectrum(const CommandContext &context)
+{
+   auto &project = context.project;
+   CommandManager::Get(project).RegisterLastAnalyzer(context);
+   auto freqWindow = &GetAttachedWindows(project)
+      .Get< FrequencyPlotDialog >( sFrequencyWindowKey );
 
-      freqWindow->Show(true);
-      freqWindow->Raise();
-      freqWindow->SetFocus();
-   }
-};
-
-CommandHandlerObject &findCommandHandler(TenacityProject &) {
-   // Handler is not stateful.  Doesn't need a factory registered with
-   // TenacityProject.
-   static Handler instance;
-   return instance;
+   freqWindow->Show(true);
+   freqWindow->Raise();
+   freqWindow->SetFocus();
 }
 
 // Register that menu item
 
-using namespace MenuTable;
-AttachedItem sAttachment{ wxT("Analyze/Analyzers/Windows"),
-   ( FinderScope{ findCommandHandler },
-      Command( wxT("PlotSpectrum"), XXO("Plot Spectrum..."),
-         &Handler::OnPlotSpectrum,
-         AudioIONotBusyFlag() | WaveTracksSelectedFlag() | TimeSelectedFlag() ) )
+using namespace MenuRegistry;
+AttachedItem sAttachment{
+   Command( wxT("PlotSpectrum"), XXO("Plot Spectrum..."),
+      OnPlotSpectrum,
+      AudioIONotBusyFlag() | WaveTracksSelectedFlag() | TimeSelectedFlag() ),
+   wxT("Analyze/Analyzers/Windows")
 };
 
 }
-

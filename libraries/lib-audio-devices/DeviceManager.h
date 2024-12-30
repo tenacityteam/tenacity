@@ -6,7 +6,7 @@
 
   Created by Michael Chinen (mchinen) on 2/12/11
   Audacity(R) is copyright (c) 1999-2011 Audacity Team.
-  License: GPL v2.  See License.txt.
+  License: GPL v2 or later.  See License.txt.
 
 ******************************************************************//**
 
@@ -23,8 +23,21 @@
 
 #include <wx/string.h> // member variables
 
-#include "Device.h"
 #include "DeviceChange.h"
+
+typedef struct DeviceSourceMap {
+   int deviceIndex;
+   int sourceIndex;
+   int hostIndex;
+   int totalSources;
+   int numChannels;
+   wxString sourceString;
+   wxString deviceString;
+   wxString hostString;
+} DeviceSourceMap;
+
+AUDIO_DEVICES_API
+wxString MakeDeviceSourceString(const DeviceSourceMap *map);
 
 class AUDIO_DEVICES_API DeviceManager final
 #if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER) && defined(HAVE_DEVICE_CHANGE)
@@ -42,13 +55,13 @@ class AUDIO_DEVICES_API DeviceManager final
    void Rescan();
 
    // Time since devices scanned in seconds.
-   float GetTimeSinceRescan();
+   std::chrono::duration<float> GetTimeSinceRescan();
 
-   Device* GetDefaultOutputDevice(int hostIndex);
-   Device* GetDefaultInputDevice(int hostIndex);
+   DeviceSourceMap* GetDefaultOutputDevice(int hostIndex);
+   DeviceSourceMap* GetDefaultInputDevice(int hostIndex);
 
-   const std::vector<Device> &GetInputDevices();
-   const std::vector<Device> &GetOutputDevices();
+   const std::vector<DeviceSourceMap> &GetInputDeviceMaps();
+   const std::vector<DeviceSourceMap> &GetOutputDeviceMaps();
 
 #if defined(EXPERIMENTAL_DEVICE_CHANGE_HANDLER)
 #if defined(HAVE_DEVICE_CHANGE)
@@ -68,12 +81,12 @@ private:
    /// Called by GetInputDeviceMaps and GetOutputDeviceMaps when needed.
    void Init();
 
-   Device* GetDefaultDevice(int hostIndex, bool isInput);
+   DeviceSourceMap* GetDefaultDevice(int hostIndex, int isInput);
 
    bool m_inited;
 
-   std::vector<Device> mInputDeviceSources;
-   std::vector<Device> mOutputDeviceSources;
+   std::vector<DeviceSourceMap> mInputDeviceSourceMaps;
+   std::vector<DeviceSourceMap> mOutputDeviceSourceMaps;
 
    static DeviceManager dm;
 };

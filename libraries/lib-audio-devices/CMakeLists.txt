@@ -8,15 +8,11 @@ Also abstract class Meter for communicating buffers of samples for display
 purposes.
 
 Does not contain an audio engine.
-]]#
+]]
 
 set( SOURCES
    AudioIOBase.cpp
    AudioIOBase.h
-   AudioMemoryManager.cpp
-   AudioMemoryManager.h
-   Device.cpp
-   Device.h
    DeviceChange.cpp
    DeviceChange.h
    DeviceManager.cpp
@@ -26,9 +22,8 @@ set( SOURCES
 )
 set( LIBRARIES
    PortAudio::PortAudio
+   $<$<BOOL:${USE_PORTMIXER}>:portmixer>
    lib-preferences-interface
-   PRIVATE
-   wxWidgets::wxWidgets
 )
 tenacity_library( lib-audio-devices "${SOURCES}" "${LIBRARIES}"
    "" ""

@@ -11,59 +11,35 @@
 #ifndef __AUDACITY_EFFECT_REPEAT__
 #define __AUDACITY_EFFECT_REPEAT__
 
-#include "Effect.h"
+#include "RepeatBase.h"
+#include "StatefulEffect.h"
+#include "StatefulEffectUIServices.h"
+#include <wx/weakref.h>
 
 class wxTextCtrl;
 class ShuttleGui;
 
 class wxStaticText;
 
-class EffectRepeat final : public Effect
+class EffectRepeat final : public RepeatBase, public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
-
-   EffectRepeat();
-   virtual ~EffectRepeat();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   bool DefineParams( ShuttleParams & S ) override;
-
-   // Effect implementation
-
-   bool Process() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui & S, EffectInstance &instance,
+      EffectSettingsAccess &access, const EffectOutputs *pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings &settings) override;
+   bool TransferDataFromWindow(EffectSettings &settings) override;
 
 private:
-   // EffectRepeat implementation
-
    void OnRepeatTextChange(wxCommandEvent & evt);
    void DisplayNewTime();
 
-private:
-   int repeatCount;
+   wxWeakRef<wxWindow> mUIParent{};
 
    wxTextCtrl   *mRepeatCount;
    wxStaticText *mCurrentTime;
    wxStaticText *mTotalTime;
-
    DECLARE_EVENT_TABLE()
 };
 
 #endif
-

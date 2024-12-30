@@ -18,13 +18,14 @@ SetPreferenceCommand classes
 
 #include "PreferenceCommands.h"
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-
+#include "CommandDispatch.h"
+#include "MenuRegistry.h"
+#include "../CommonCommandFlags.h"
 #include "LoadCommands.h"
-#include "../shuttle/Shuttle.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../commands/CommandContext.h"
+#include "Prefs.h"
+#include "SettingsVisitor.h"
+#include "ShuttleGui.h"
+#include "CommandContext.h"
 #include "../prefs/PrefsDialog.h"
 
 const ComponentInterfaceSymbol GetPreferenceCommand::Symbol
@@ -32,10 +33,17 @@ const ComponentInterfaceSymbol GetPreferenceCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< GetPreferenceCommand > reg; }
 
-bool GetPreferenceCommand::DefineParams( ShuttleParams & S ){
-   S.Define( mName, wxT("Name"),   wxT("") );
+template<bool Const>
+bool GetPreferenceCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define( mName, wxT("Name"),   wxString{} );
    return true;
 }
+
+bool GetPreferenceCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool GetPreferenceCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void GetPreferenceCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -64,12 +72,19 @@ const ComponentInterfaceSymbol SetPreferenceCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< SetPreferenceCommand > reg2; }
 
-bool SetPreferenceCommand::DefineParams( ShuttleParams & S ){
-   S.Define(    mName,   wxT("Name"),    wxT("") );
-   S.Define(   mValue,   wxT("Value"),   wxT("") );
+template<bool Const>
+bool SetPreferenceCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
+   S.Define(    mName,   wxT("Name"),    wxString{} );
+   S.Define(   mValue,   wxT("Value"),   wxString{} );
    S.Define( mbReload,   wxT("Reload"),  false );
    return true;
 }
+
+bool SetPreferenceCommand::VisitSettings( SettingsVisitor & S )
+   { return VisitSettings<false>(S); }
+
+bool SetPreferenceCommand::VisitSettings( ConstSettingsVisitor & S )
+   { return VisitSettings<true>(S); }
 
 void SetPreferenceCommand::PopulateOrExchange(ShuttleGui & S)
 {
@@ -94,3 +109,22 @@ bool SetPreferenceCommand::Apply(const CommandContext & context)
    return bOK;
 }
 
+namespace {
+using namespace MenuRegistry;
+
+// Register menu items
+
+AttachedItem sAttachment1{
+   Items( wxT(""),
+      // Note that the PLUGIN_SYMBOL must have a space between words,
+      // whereas the short-form used here must not.
+      // (So if you did write "Compare Audio" for the PLUGIN_SYMBOL name, then
+      // you would have to use "CompareAudio" here.)
+      Command( wxT("GetPreference"), XXO("Get Preference..."),
+         CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() ),
+      Command( wxT("SetPreference"), XXO("Set Preference..."),
+         CommandDispatch::OnAudacityCommand, AudioIONotBusyFlag() )
+   ),
+   wxT("Optional/Extra/Part2/Scriptables1")
+};
+}

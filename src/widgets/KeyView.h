@@ -10,15 +10,14 @@
 #define __AUDACITY_WIDGETS_KEYVIEW__
 
 
+#include "audacity/Types.h"
+
 #include <vector>
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/vlbox.h> // to inherit wxVListBox
 
-// Tenacity libraries
-#include <lib-strings/TranslatableString.h>
-
-#include "../commands/Keyboard.h"
+#include "Keyboard.h"
 
 // Class holding all information about a node.  Rather than a real tree
 // we store these in an array and simulate a tree.

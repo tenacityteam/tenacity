@@ -8,8 +8,6 @@
 
 **********************************************************************/
 
-#pragma once
-
 #include <vector>
 struct XML_ParserStruct;
 typedef struct XML_ParserStruct *XML_Parser;
@@ -52,4 +50,7 @@ class XML_API XMLFileReader final {
    Handlers mHandler;
    TranslatableString mErrorStr;
    TranslatableString mLibraryErrorStr;
+
+   //Used for memory allocation optimization purpose
+   AttributesList mCurrentTagAttributes;
 };

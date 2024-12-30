@@ -11,13 +11,13 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "EditCursorOverlay.h"
 
-#include "TrackView.h"
-#include "../../AColor.h"
+#include "ChannelView.h"
+#include "AColor.h"
 #include "../../AdornedRulerPanel.h"
 #include "Project.h"
 #include "../../ProjectWindows.h"
 #include "Track.h" //
-#include "../../TrackPanelAx.h"
+#include "TrackFocus.h"
 #include "../../TrackPanel.h"
 #include "ViewInfo.h"
 
@@ -31,15 +31,15 @@ namespace {
    }
 }
 
-static const TenacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
-  []( TenacityProject &parent ){
+static const AudacityProject::AttachedObjects::RegisteredFactory sOverlayKey{
+  []( AudacityProject &parent ){
      auto result = std::make_shared< EditCursorOverlay >( &parent );
      TrackPanel::Get( parent ).AddOverlay( result );
      return result;
    }
 };
 
-EditCursorOverlay::EditCursorOverlay(TenacityProject *project, bool isMaster)
+EditCursorOverlay::EditCursorOverlay(AudacityProject *project, bool isMaster)
    : mProject(project)
    , mIsMaster(isMaster)
    , mLastCursorX(-1)
@@ -92,7 +92,7 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
    const auto &viewInfo = ViewInfo::Get( *mProject );
 
    const bool
-   onScreen = between_incexc(viewInfo.h,
+   onScreen = between_incexc(viewInfo.hpos,
                              mCursorTime,
                              viewInfo.GetScreenEndTime());
 
@@ -100,34 +100,41 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
       return;
 
    auto &trackPanel = TrackPanel::Get( *mProject );
-   if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
+   //NOTE: point selection cursor drawing over tracks moved to TrackPanel.cpp(see also TrackArt::DrawCursor)
+   /*if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
       wxASSERT(mIsMaster);
       AColor::CursorColor(&dc);
 
       // Draw cursor in all selected tracks
       tp->VisitCells( [&]( const wxRect &rect, TrackPanelCell &cell ) {
-         const auto pTrackView = dynamic_cast<TrackView*>(&cell);
-         if (!pTrackView)
+         const auto pChannelView = dynamic_cast<ChannelView*>(&cell);
+         if (!pChannelView)
             return;
-         auto r = tp->GetRect();
+         const auto pChannel = pChannelView->FindChannel();
+         const auto pTrack =
+            dynamic_cast<Track *>(&pChannel->GetChannelGroup());
+         if (pChannel && (pTrack->GetSelected() ||
+             TrackFocus::Get( *mProject ).IsFocused(pTrack)))
+         {
             // AColor::Line includes both endpoints so use GetBottom()
-         AColor::Line(dc, mLastCursorX, r.GetTop(), mLastCursorX, r.GetBottom());
+            AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
             // ^^^ The whole point of this routine.
 
+         }
       } );
    }
    else if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
       wxASSERT(!mIsMaster);
-      AColor::CursorColor(&dc);
+      dc.SetPen(*wxBLACK_PEN);
       // AColor::Line includes both endpoints so use GetBottom()
       auto rect = ruler->GetInnerRect();
       AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
    }
    else
-      wxASSERT(false);
+      wxASSERT(false);*/
    if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
        wxASSERT(!mIsMaster);
-       AColor::CursorColor(&dc);
+       dc.SetPen(*wxBLACK_PEN);
        // AColor::Line includes both endpoints so use GetBottom()
        auto rect = ruler->GetInnerRect();
        AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());

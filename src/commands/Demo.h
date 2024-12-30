@@ -12,9 +12,7 @@
 #define __AUDACITY_DEMO_COMMAND__
 
 #include "AudacityCommand.h"
-
-// Tenacity libraries
-#include <lib-math/SampleFormat.h>
+#include "SampleFormat.h"
 
 class ShuttleGui;
 
@@ -24,9 +22,11 @@ public:
    static const ComponentInterfaceSymbol Symbol;
 
    // ComponentInterface overrides
-   ComponentInterfaceSymbol GetSymbol() override {return Symbol;};
-   TranslatableString GetDescription() override {return XO("Does the demo action.");};
-   bool DefineParams( ShuttleParams & S ) override;
+   ComponentInterfaceSymbol GetSymbol() const override {return Symbol;};
+   TranslatableString GetDescription() const override {return XO("Does the demo action.");};
+   template<bool Const> bool VisitSettings( SettingsVisitorBase<Const> &S );
+   bool VisitSettings( SettingsVisitor & S ) override;
+   bool VisitSettings( ConstSettingsVisitor & S ) override;
    void PopulateOrExchange(ShuttleGui & S) override;
    bool Apply(const CommandContext & context) override;
 

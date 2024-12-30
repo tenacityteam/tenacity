@@ -12,68 +12,65 @@ Paul Licameli split from TrackPanel.cpp
 #include "WaveTrackSliderHandles.h"
 
 #include "WaveTrackControls.h"
-#include "../../../../ProjectHistory.h"
+#include "ProjectHistory.h"
 #include "../../../../RefreshCode.h"
-#include "../../../../TrackInfo.h"
+#include "../../../ui/CommonTrackInfo.h"
 #include "../../../../TrackPanel.h"
-#include "../../../../TrackPanelAx.h"
-#include "../../../../UndoManager.h"
-#include "../../../../WaveTrack.h"
+#include "TrackFocus.h"
+#include "UndoManager.h"
+#include "WaveTrack.h"
 
-GainSliderHandle::GainSliderHandle
+VolumeSliderHandle::VolumeSliderHandle
 ( SliderFn sliderFn, const wxRect &rect, const std::shared_ptr<Track> &pTrack )
    : SliderHandle{ sliderFn, rect, pTrack }
 {}
 
-GainSliderHandle::~GainSliderHandle()
+VolumeSliderHandle::~VolumeSliderHandle()
 {
 }
 
-std::shared_ptr<WaveTrack> GainSliderHandle::GetWaveTrack() const
+std::shared_ptr<WaveTrack> VolumeSliderHandle::GetWaveTrack() const
 {
    return std::static_pointer_cast<WaveTrack>(mpTrack.lock());
 }
 
-float GainSliderHandle::GetValue()
+float VolumeSliderHandle::GetValue()
 {
    if (GetWaveTrack())
-      return GetWaveTrack()->GetGain();
+      return GetWaveTrack()->GetVolume();
    else
       return 0;
 }
 
-UIHandle::Result GainSliderHandle::SetValue
-(TenacityProject *pProject, float newValue)
+UIHandle::Result VolumeSliderHandle::SetValue
+(AudacityProject *pProject, float newValue)
 {
    (void)pProject;//Compiler food
    auto pTrack = GetWaveTrack();
 
-   if (pTrack) {
-      for (auto channel :
-           TrackList::Channels(pTrack.get()))
-         channel->SetGain(newValue);
-   }
+   if (pTrack)
+      pTrack->SetVolume(newValue);
 
    return RefreshCode::RefreshNone;
 }
 
-UIHandle::Result GainSliderHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject)
+UIHandle::Result VolumeSliderHandle::CommitChanges
+(const wxMouseEvent &, AudacityProject *pProject)
 {
    ProjectHistory::Get( *pProject )
-      .PushState(XO("Moved gain slider"), XO("Gain"), UndoPush::CONSOLIDATE);
+      .PushState(XO("Moved volume slider"), XO("Volume"), UndoPush::CONSOLIDATE);
    return RefreshCode::RefreshCell;
 }
 
-TranslatableString GainSliderHandle::Tip(
-   const wxMouseState &, TenacityProject &project) const
+TranslatableString VolumeSliderHandle::Tip(
+   const wxMouseState &, AudacityProject &project) const
 {
    TranslatableString val;
    float value = 0;
 
    auto pTrack = GetWaveTrack();
    if (pTrack)
-      value = pTrack->GetGain();
+      value = pTrack->GetVolume();
 
    // LLL: Can't access the slider since Tip() is a const method and getting the slider
    //      is not, so duplicate what LWSlider does.
@@ -82,11 +79,11 @@ TranslatableString GainSliderHandle::Tip(
    val = XO("%+.1f dB").Format(LINEAR_TO_DB(value));
 
    /* i18n-hint: An item name followed by a value, with appropriate separating punctuation */
-   return XO("%s: %s").Format(XO("Gain"), val);
+   return XO("%s: %s").Format(XO("Volume"), val);
 }
 
-UIHandlePtr GainSliderHandle::HitTest
-(std::weak_ptr<GainSliderHandle> &holder,
+UIHandlePtr VolumeSliderHandle::HitTest
+(std::weak_ptr<VolumeSliderHandle> &holder,
  const wxMouseState &state, const wxRect &rect,
  const std::shared_ptr<Track> &pTrack)
 {
@@ -94,20 +91,20 @@ UIHandlePtr GainSliderHandle::HitTest
       return {};
 
    wxRect sliderRect;
-   WaveTrackControls::GetGainRect(rect.GetTopLeft(), sliderRect);
-   if ( TrackInfo::HideTopItem( rect, sliderRect))
+   WaveTrackControls::GetVolumeRect(rect, sliderRect);
+   if ( CommonTrackInfo::HideTopItem( rect, sliderRect))
       return {};
    if (sliderRect.Contains(state.m_x, state.m_y)) {
       wxRect sliderRect2;
-      WaveTrackControls::GetGainRect(rect.GetTopLeft(), sliderRect2);
+      WaveTrackControls::GetVolumeRect(rect, sliderRect2);
       auto sliderFn =
-      []( TenacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
-         return WaveTrackControls::GainSlider
+      []( AudacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
+         return WaveTrackControls::VolumeSlider
             (sliderRect, static_cast<WaveTrack*>( pTrack ), true,
              &TrackPanel::Get( *pProject ));
       };
       auto result =
-         std::make_shared<GainSliderHandle>( sliderFn, sliderRect2, pTrack );
+         std::make_shared<VolumeSliderHandle>( sliderFn, sliderRect2, pTrack );
       result = AssignUIHandlePtr(holder, result);
 
       return result;
@@ -140,24 +137,21 @@ float PanSliderHandle::GetValue()
       return 0;
 }
 
-UIHandle::Result PanSliderHandle::SetValue(TenacityProject *pProject, float newValue)
+UIHandle::Result PanSliderHandle::SetValue(AudacityProject *pProject, float newValue)
 {
    (void)pProject;//Compiler food
    using namespace RefreshCode;
    Result result = RefreshNone;
    auto pTrack = GetWaveTrack();
 
-   if (pTrack) {
-      for (auto channel :
-           TrackList::Channels(pTrack.get()))
-         channel->SetPan(newValue);
-   }
+   if (pTrack)
+      pTrack->SetPan(newValue);
 
    return result;
 }
 
 UIHandle::Result PanSliderHandle::CommitChanges
-(const wxMouseEvent &, TenacityProject *pProject)
+(const wxMouseEvent &, AudacityProject *pProject)
 {
    ProjectHistory::Get( *pProject )
       .PushState(XO("Moved pan slider"), XO("Pan"), UndoPush::CONSOLIDATE);
@@ -165,7 +159,7 @@ UIHandle::Result PanSliderHandle::CommitChanges
 }
 
 TranslatableString PanSliderHandle::Tip(
-   const wxMouseState &, TenacityProject &project) const
+   const wxMouseState &, AudacityProject &project) const
 {
    TranslatableString val;
    float value = 0.0;
@@ -205,12 +199,12 @@ UIHandlePtr PanSliderHandle::HitTest
       return {};
 
    wxRect sliderRect;
-   WaveTrackControls::GetPanRect(rect.GetTopLeft(), sliderRect);
-   if ( TrackInfo::HideTopItem( rect, sliderRect))
+   WaveTrackControls::GetPanRect(rect, sliderRect);
+   if ( CommonTrackInfo::HideTopItem( rect, sliderRect))
       return {};
    if (sliderRect.Contains(state.m_x, state.m_y)) {
       auto sliderFn =
-      []( TenacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
+      []( AudacityProject *pProject, const wxRect &sliderRect, Track *pTrack ) {
          return WaveTrackControls::PanSlider
             (sliderRect, static_cast<WaveTrack*>( pTrack ), true,
              &TrackPanel::Get( *pProject ));

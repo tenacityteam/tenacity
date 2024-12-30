@@ -18,14 +18,11 @@ It would be nice to create a NEW 'Bindings' class which both
 KeyConfigPrefs and MousePrefs use.
 
 *//*********************************************************************/
-
-
 #include "KeyConfigPrefs.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/ffile.h>
-#include <wx/intl.h>
 #include <wx/menu.h>
 #include <wx/button.h>
 #include <wx/radiobut.h>
@@ -33,25 +30,25 @@ KeyConfigPrefs and MousePrefs use.
 #include <wx/statbox.h>
 #include <wx/textctrl.h>
 
-// Tenacity libraries
-#include <lib-files/FileNames.h>
-#include <lib-preferences/Prefs.h>
-#include <lib-project/Project.h>
-#include <lib-xml/XMLFileReader.h>
-#include <lib-xml/XMLFileWriter.h>
-
 #include "ActiveProject.h"
+#include "MenuCreator.h" // for KeyEventToKeyString
+#include "Prefs.h"
+#include "Project.h"
 #include "../ProjectWindows.h"
-#include "../commands/CommandManager.h"
+#include "XMLFileReader.h"
 
-#include "../SelectFile.h"
-#include "../shuttle/ShuttleGui.h"
+#include "SelectFile.h"
+#include "ShuttleGui.h"
 
+#include "FileNames.h"
+
+#include "../widgets/BasicMenu.h"
 #include "../widgets/KeyView.h"
-#include "../widgets/AudacityMessageBox.h"
+#include "AudacityMessageBox.h"
+#include "wxWidgetsWindowPlacement.h"
 
 #if wxUSE_ACCESSIBILITY
-#include "../widgets/WindowAccessible.h"
+#include "WindowAccessible.h"
 #endif
 
 //
@@ -89,10 +86,9 @@ BEGIN_EVENT_TABLE(KeyConfigPrefs, PrefsPanel)
 END_EVENT_TABLE()
 
 KeyConfigPrefs::KeyConfigPrefs(
-   wxWindow * parent, wxWindowID winid, TenacityProject *pProject,
+   wxWindow * parent, wxWindowID winid, AudacityProject *pProject,
    const CommandID &name)
-/* i18n-hint: as in computer keyboard (not musical!) */
-:  PrefsPanel(parent, winid, XO("Keyboard")),
+:  PrefsPanel(parent, winid, XO("Shortcuts")),
    mView(NULL),
    mKey(NULL),
    mFilter(NULL),
@@ -111,19 +107,19 @@ KeyConfigPrefs::KeyConfigPrefs(
    Bind(wxEVT_SHOW, &KeyConfigPrefs::OnShow, this);
 }
 
-ComponentInterfaceSymbol KeyConfigPrefs::GetSymbol()
+ComponentInterfaceSymbol KeyConfigPrefs::GetSymbol() const
 {
    return KEY_CONFIG_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString KeyConfigPrefs::GetDescription()
+TranslatableString KeyConfigPrefs::GetDescription() const
 {
    return XO("Preferences for KeyConfig");
 }
 
 ManualPageID KeyConfigPrefs::HelpPageName()
 {
-   return "Preferences#keyboard";
+   return "Keyboard_Preferences";
 }
 
 void KeyConfigPrefs::Populate()
@@ -176,6 +172,15 @@ void KeyConfigPrefs::Populate()
 /// so this is only used in populating the panel.
 void KeyConfigPrefs::PopulateOrExchange(ShuttleGui & S)
 {
+   ChoiceSetting Setting{ L"/Prefs/KeyConfig/ViewBy",
+      {
+         { wxT("tree"), XXO("&Tree") },
+         { wxT("name"), XXO("&Name") },
+         { wxT("key"), XXO("&Key") },
+      },
+      0 // tree
+   };
+
    S.SetBorder(2);
 
    S.StartStatic(XO("Key Bindings"), 1);
@@ -190,15 +195,7 @@ void KeyConfigPrefs::PopulateOrExchange(ShuttleGui & S)
          {
             S.StartHorizontalLay();
             {
-               S.StartRadioButtonGroup({
-                  wxT("/Prefs/KeyConfig/ViewBy"),
-                  {
-                     { wxT("tree"), XXO("&Tree") },
-                     { wxT("name"), XXO("&Name") },
-                     { wxT("key"), XXO("&Key") },
-                  },
-                  0 // tree
-               });
+               S.StartRadioButtonGroup(Setting);
                {
                   mViewByTree = S.Id(ViewByTreeID)
                      .Name(XO("View by tree"))
@@ -487,12 +484,12 @@ void KeyConfigPrefs::OnShow(wxShowEvent & event)
    }
 }
 
-void KeyConfigPrefs::OnImport(wxCommandEvent & /* event */)
+void KeyConfigPrefs::OnImport(wxCommandEvent & WXUNUSED(event))
 {
-   wxString file = wxT("Tenacity-keys.xml");
+   wxString file = wxT("Audacity-keys.xml");
 
    file = SelectFile(FileNames::Operation::Open,
-      XO("Select an XML file containing Tenacity keyboard shortcuts..."),
+      XO("Select an XML file containing Audacity keyboard shortcuts..."),
       wxEmptyString,
       file,
       wxT(""),
@@ -566,9 +563,9 @@ void KeyConfigPrefs::OnImport(wxCommandEvent & /* event */)
    AudacityMessageBox(message, XO("Loading Keyboard Shortcuts"), wxOK | wxCENTRE);
 }
 
-void KeyConfigPrefs::OnExport(wxCommandEvent & /* event */)
+void KeyConfigPrefs::OnExport(wxCommandEvent & WXUNUSED(event))
 {
-   wxString file = wxT("Tenacity-keys.xml");
+   wxString file = wxT("Audacity-keys.xml");
 
    file = SelectFile(FileNames::Operation::Export,
       XO("Export Keyboard Shortcuts As:"),
@@ -594,14 +591,13 @@ void KeyConfigPrefs::OnExport(wxCommandEvent & /* event */)
 
 // There currently is only one clickable AButton
 // so we just do what it needs.
-void KeyConfigPrefs::OnDefaults(wxCommandEvent & /* event */)
+void KeyConfigPrefs::OnDefaults(wxCommandEvent & WXUNUSED(event))
 {
    wxMenu Menu;
    Menu.Append( 1, _("Standard") );
    Menu.Append( 2, _("Full") );
    Menu.Bind( wxEVT_COMMAND_MENU_SELECTED, &KeyConfigPrefs::OnImportDefaults, this );
-   // Pop it up where the mouse is.
-   PopupMenu(&Menu);//, wxPoint(0, 0));
+   BasicMenu::Handle( &Menu ).Popup( wxWidgetsWindowPlacement{ this } );
 }
 
 void KeyConfigPrefs::FilterKeys( std::vector<NormalizedKeyString> & arr )
@@ -653,7 +649,7 @@ void KeyConfigPrefs::OnHotkeyKeyDown(wxKeyEvent & e)
    t->SetValue(KeyEventToKeyString(e).Display());
 }
 
-void KeyConfigPrefs::OnHotkeyChar(wxEvent & /* e */)
+void KeyConfigPrefs::OnHotkeyChar(wxEvent & WXUNUSED(e))
 {
    // event.Skip() not performed, so event will not be processed further.
 }
@@ -667,12 +663,12 @@ void KeyConfigPrefs::OnHotkeyKillFocus(wxEvent & e)
    e.Skip();
 }
 
-void KeyConfigPrefs::OnHotkeyContext(wxEvent & /* e */)
+void KeyConfigPrefs::OnHotkeyContext(wxEvent & WXUNUSED(e))
 {
    // event.Skip() not performed, so event will not be processed further.
 }
 
-void KeyConfigPrefs::OnFilterTimer(wxTimerEvent & /* e */)
+void KeyConfigPrefs::OnFilterTimer(wxTimerEvent & WXUNUSED(e))
 {
    // The filter timer has expired, so set the filter
    if (mFilterPending)
@@ -761,7 +757,7 @@ void KeyConfigPrefs::SetKeyForSelected(const NormalizedKeyString & key)
 }
 
 
-void KeyConfigPrefs::OnSet(wxCommandEvent & /* event */)
+void KeyConfigPrefs::OnSet(wxCommandEvent & WXUNUSED(event))
 {
    if (mCommandSelected == wxNOT_FOUND) {
       AudacityMessageBox(
@@ -838,7 +834,7 @@ void KeyConfigPrefs::OnSet(wxCommandEvent & /* event */)
    SetKeyForSelected(enteredKey);
 }
 
-void KeyConfigPrefs::OnClear(wxCommandEvent& /* event */)
+void KeyConfigPrefs::OnClear(wxCommandEvent& WXUNUSED(event))
 {
    mKey->Clear();
 
@@ -847,7 +843,7 @@ void KeyConfigPrefs::OnClear(wxCommandEvent& /* event */)
    }
 }
 
-void KeyConfigPrefs::OnSelected(wxCommandEvent & /* e */)
+void KeyConfigPrefs::OnSelected(wxCommandEvent & WXUNUSED(e))
 {
    mCommandSelected = mView->GetSelected();
    mKey->Clear();
@@ -940,7 +936,7 @@ void KeyConfigPrefs::Cancel()
 PrefsPanel::Factory
 KeyConfigPrefsFactory( const CommandID &name )
 {
-   return [=](wxWindow *parent, wxWindowID winid, TenacityProject *pProject)
+   return [=](wxWindow *parent, wxWindowID winid, AudacityProject *pProject)
    {
       wxASSERT(parent); // to justify safenew
       auto result = safenew KeyConfigPrefs{ parent, winid, pProject, name };

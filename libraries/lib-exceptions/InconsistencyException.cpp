@@ -25,11 +25,11 @@ TranslatableString InconsistencyException::ErrorMessage() const
 
 #ifdef __func__
    return
-XO("Internal error in %s at %s line %d.\nPlease inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues.")
+XO("Internal error in %s at %s line %d.\nPlease inform the Audacity team at https://forum.audacityteam.org/.")
       .Format( func, path, line );
 #else
    return
-XO("Internal error at %s line %d.\nPlease inform the Tenacity team at https://codeberg.org/tenacityteam/tenacity/issues.")
+XO("Internal error at %s line %d.\nPlease inform the Audacity team at https://forum.audacityteam.org/.")
       .Format( path, line );
 #endif
 }

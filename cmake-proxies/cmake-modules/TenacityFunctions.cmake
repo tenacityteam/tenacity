@@ -172,13 +172,12 @@ function( tenacity_append_common_compiler_options var use_pch )
          -DTENACITY_VERSION=${TENACITY_VERSION}
          -DTENACITY_RELEASE=${TENACITY_RELEASE}
          -DTENACITY_REVISION=${TENACITY_REVISION}
-         -DTENACITY_MODLEVEL=${TENACITY_MODLEVEL}
 
          # Version string for visual display
          -DTENACITY_VERSION_STRING=L"${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_REVISION}${GIT_VERSION_TAG}"
 
          # This value is used in the resource compiler for Windows
-         -DTENACITY_FILE_VERSION=L"${TENACITY_VERSION},${TENACITY_RELEASE},${TENACITY_REVISION},${TENACITY_MODLEVEL}"
+         -DTENACITY_FILE_VERSION=L"${TENACITY_VERSION},${TENACITY_RELEASE},${TENACITY_REVISION}"
 
          # Reviewed, certified, non-leaky uses of NEW that immediately entrust
 	      # their results to RAII objects.
@@ -430,6 +429,48 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
    set( GRAPH_EDGES "${GRAPH_EDGES}" PARENT_SCOPE )
 endfunction()
 
+function( append_node_attributes var target )
+   get_target_property( dependencies ${target} AUDACITY_GRAPH_DEPENDENCIES )
+   set( color "lightpink" )
+   if( NOT "wxWidgets::wxWdgets" IN_LIST dependencies )
+      # Toolkit neutral targets
+      set( color "lightgreen" )
+      get_target_property(type ${target} TYPE)
+      if (NOT ${type} STREQUAL "INTERFACE_LIBRARY")
+         # Enforce usage of only a subset of wxBase that excludes the event loop
+         # apply_wxbase_restrictions( ${target} )
+      endif()
+   endif()
+   string( APPEND "${var}" " style=filled fillcolor=${color}" )
+   set( "${var}" "${${var}}" PARENT_SCOPE)
+endfunction()
+
+function (propagate_interesting_dependencies target direct_dependencies )
+   # use a custom target attribute to propagate information up the graph about
+   # some interesting transitive dependencies
+   set( interesting_dependencies )
+   foreach( direct_dependency ${direct_dependencies} )
+      if ( NOT TARGET "${direct_dependency}" )
+         continue()
+      endif ()
+      get_target_property( more_dependencies
+         ${direct_dependency} AUDACITY_GRAPH_DEPENDENCIES )
+      if ( more_dependencies )
+         list( APPEND interesting_dependencies ${more_dependencies} )
+      endif ()
+      foreach( special_dependency
+         "wxWidgets::wxWidgets"
+      )
+         if( special_dependency STREQUAL direct_dependency )
+            list( APPEND interesting_dependencies "${special_dependency}" )
+         endif()
+      endforeach()
+   endforeach()
+   list( REMOVE_DUPLICATES interesting_dependencies )
+   set_target_properties( ${target} PROPERTIES
+      AUDACITY_GRAPH_DEPENDENCIES "${interesting_dependencies}" )
+endfunction()
+
 # Set up for defining a module target.
 # All modules depend on the application.
 # Pass a name and sources, and a list of other targets.
@@ -490,6 +531,71 @@ macro( tenacity_library NAME SOURCES IMPORT_TARGETS
    set( TENACITY_LIBRARIES "${TENACITY_LIBRARIES}" PARENT_SCOPE )
 endmacro()
 
+function ( make_interface_alias TARGET REAL_LIBTYTPE )
+   set(INTERFACE_TARGET "${TARGET}-interface")
+   if (NOT REAL_LIBTYPE STREQUAL "MODULE")
+      add_library("${INTERFACE_TARGET}" ALIAS "${TARGET}")
+   else()
+      add_library("${INTERFACE_TARGET}" INTERFACE)
+      foreach(PROP
+         INTERFACE_INCLUDE_DIRECTORIES
+         INTERFACE_COMPILE_DEFINITIONS
+         INTERFACE_LINK_LIBRARIES
+	 AUDACITY_GRAPH_DEPENDENCIES
+      )
+         get_target_property( PROPS "${TARGET}" "${PROP}" )
+         if (PROPS)
+            set_target_properties(
+               "${INTERFACE_TARGET}"
+               PROPERTIES "${PROP}" "${PROPS}" )
+         endif()
+      endforeach()
+   endif()
+endfunction()
+
+function(make_interface_library
+   new  # name for new target
+   old   # existing library target
+)
+   add_library(${new} INTERFACE)
+   copy_target_properties(${old} ${new}
+      INTERFACE_COMPILE_DEFINITIONS
+      INTERFACE_COMPILE_OPTIONS
+      INTERFACE_INCLUDE_DIRECTORIES
+      INTERFACE_LINK_DIRECTORIES
+      INTERFACE_LINK_LIBRARIES)
+endfunction()
+
+function(fix_bundle target_name)
+   if (NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
+      return()
+   endif()
+
+   add_custom_command(
+      TARGET ${target_name}
+      POST_BUILD
+      COMMAND
+         ${PYTHON}
+         ${CMAKE_SOURCE_DIR}/scripts/build/macOS/fix_bundle.py
+         $<TARGET_FILE:${target_name}>
+	 -config=$<CONFIG>
+   )
+endfunction()
+
+# Copy named properties from one target to another
+function(copy_target_properties
+  src  # target
+  dest # target
+  # prop1 prop2...
+)
+   foreach(property ${ARGN})
+      get_target_property(value ${src} ${property})
+      if(value)
+         set_target_properties(${dest} PROPERTIES ${property} "${value}")
+      endif()
+   endforeach()
+endfunction()
+
 # A special macro for header only libraries
 
 macro( tenacity_header_only_library NAME SOURCES IMPORT_TARGETS
@@ -502,6 +608,19 @@ macro( tenacity_header_only_library NAME SOURCES IMPORT_TARGETS
    target_link_libraries( ${NAME} INTERFACE ${IMPORT_TARGETS} )
    target_compile_definitions( ${NAME} INTERFACE ${ADDITIONAL_DEFINES} )
 
+   # define an additional interface library target
+   make_interface_alias(${NAME} "SHARED") 
+  
    list( APPEND TENACITY_LIBRARIES "${NAME}" )
    set( TENACITY_LIBRARIES "${TENACITY_LIBRARIES}" PARENT_SCOPE )
+endmacro()
+
+# The list of modules is ordered so that each module occurs after any others
+# that it depends on
+macro( tenacity_module_subdirectory modules )
+   foreach( MODULE ${MODULES} )
+      add_subdirectory("${MODULE}")
+   endforeach()
+   #propagate collected edges up to root CMakeLists.txt
+   set( GRAPH_EDGES "${GRAPH_EDGES}" PARENT_SCOPE )
 endmacro()

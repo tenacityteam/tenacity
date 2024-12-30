@@ -11,16 +11,15 @@ There is a global pointer to an instance of Services, and the main program is
 expected, at startup, to create a static instance of a subclass of Services and
 set the pointer.  If it does not, then calls to the non-member functions in
 namespace BasicUI are no-ops.
-]]#
+]]
 
 set( SOURCES
    BasicUI.cpp
    BasicUI.h
+   BasicUIPoint.h
 )
 set( LIBRARIES
    lib-strings-interface
-   PRIVATE
-   wxWidgets::wxWidgets
 )
 tenacity_library( lib-basic-ui "${SOURCES}" "${LIBRARIES}"
    "" ""

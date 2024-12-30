@@ -10,18 +10,15 @@ Paul Licameli split from TimeTrackVZoomHandle.cpp
 
 
 #include "TimeTrackVZoomHandle.h"
-#include "TimeTrackVRulerControls.h"
 #include "TimeTrackControls.h"
 
 #include "../../../HitTestResult.h"
-#include "../../../ProjectHistory.h"
+#include "NumberScale.h"
+#include "Prefs.h"
+#include "ProjectHistory.h"
 #include "../../../RefreshCode.h"
 #include "../../../TrackPanelMouseEvent.h"
-#include "../../../TimeTrack.h"
-
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-#include <lib-screen-geometry/NumberScale.h>
+#include "TimeTrack.h"
 
 TimeTrackVZoomHandle::TimeTrackVZoomHandle(
    const std::shared_ptr<TimeTrack> &pTrack, const wxRect &rect, int y)
@@ -31,7 +28,12 @@ TimeTrackVZoomHandle::TimeTrackVZoomHandle(
 
 TimeTrackVZoomHandle::~TimeTrackVZoomHandle() = default;
 
-void TimeTrackVZoomHandle::Enter( bool, TenacityProject* )
+std::shared_ptr<const Track> TimeTrackVZoomHandle::FindTrack() const
+{
+   return mpTrack.lock();
+}
+
+void TimeTrackVZoomHandle::Enter( bool, AudacityProject* )
 {
 #ifdef EXPERIMENTAL_TRACK_PANEL_HIGHLIGHTING
    mChangeHighlight = RefreshCode::RefreshCell;
@@ -44,13 +46,13 @@ bool TimeTrackVZoomHandle::HandlesRightClick()
 }
 
 UIHandle::Result TimeTrackVZoomHandle::Click
-(const TrackPanelMouseEvent &, TenacityProject *)
+(const TrackPanelMouseEvent &, AudacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
 
 UIHandle::Result TimeTrackVZoomHandle::Drag
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject)
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject)
 {
    using namespace RefreshCode;
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -60,7 +62,7 @@ UIHandle::Result TimeTrackVZoomHandle::Drag
 }
 
 HitTestPreview TimeTrackVZoomHandle::Preview
-(const TrackPanelMouseState &st, TenacityProject *)
+(const TrackPanelMouseState &st, AudacityProject *)
 {
    static  wxCursor arrowCursor{ wxCURSOR_ARROW };
 
@@ -72,7 +74,7 @@ HitTestPreview TimeTrackVZoomHandle::Preview
 }
 
 UIHandle::Result TimeTrackVZoomHandle::Release
-(const TrackPanelMouseEvent &evt, TenacityProject *pProject,
+(const TrackPanelMouseEvent &evt, AudacityProject *pProject,
  wxWindow *pParent)
 {
    auto pTrack = TrackList::Get( *pProject ).Lock(mpTrack);
@@ -90,17 +92,18 @@ UIHandle::Result TimeTrackVZoomHandle::Release
        !(event.ShiftDown() || event.CmdDown()))
    {
       CommonTrackControls::InitMenuData data {
-         *pProject, pTrack.get(), pParent, RefreshNone
+         *pProject, *pTrack, pParent, RefreshNone
       };
 
-      auto pMenu = PopupMenuTable::BuildMenu(pParent, &TimeTrackMenuTable::Instance(), &data);
-      pParent->PopupMenu(pMenu.get(), event.m_x, event.m_y);
+      auto pMenu = PopupMenuTable::BuildMenu(
+         &TimeTrackMenuTable::Instance(), &data);
+      pMenu->Popup( *pParent, { event.m_x, event.m_y } );
    }
 
    return UpdateVRuler | RefreshAll;
 }
 
-UIHandle::Result TimeTrackVZoomHandle::Cancel(TenacityProject*)
+UIHandle::Result TimeTrackVZoomHandle::Cancel(AudacityProject*)
 {
    // Cancel is implemented!  And there is no initial state to restore,
    // so just return a code.

@@ -7,9 +7,8 @@
 *//*******************************************************************/
 
 #include "Clipboard.h"
+#include "BasicUI.h"
 #include "Track.h"
-
-wxDEFINE_EVENT( EVT_CLIPBOARD_CHANGE, wxCommandEvent);
 
 Clipboard::Clipboard()
 : mTracks { TrackList::Create( nullptr ) }
@@ -45,13 +44,16 @@ void Clipboard::Clear()
    mProject.reset();
    mTracks->Clear();
 
-   // Emit an event for listeners
-   AddPendingEvent( wxCommandEvent{ EVT_CLIPBOARD_CHANGE } );
+   if (this == &Get())
+      // Delayed message at idle time
+      // Don't need to capture a weak pointer to the global object
+      BasicUI::CallAfter([this]{ Publish({}); });
 }
 
 void Clipboard::Assign( TrackList && newContents,
-   double t0, double t1, const std::weak_ptr<TenacityProject> &pProject )
+   double t0, double t1, const std::weak_ptr<AudacityProject> &pProject )
 {
+   assert(!newContents.GetOwner());
    newContents.Swap( *mTracks );
    newContents.Clear();
    
@@ -59,6 +61,18 @@ void Clipboard::Assign( TrackList && newContents,
    mT1 = t1;
    mProject = pProject;
 
-   // Emit an event for listeners
-   AddPendingEvent( wxCommandEvent{ EVT_CLIPBOARD_CHANGE } );
+   if (this == &Get())
+      // Delayed message at idle time
+      // Don't need to capture a weak pointer to the global object
+      BasicUI::CallAfter([this]{ Publish({}); });
+}
+
+Clipboard::Scope::Scope()
+{
+   Get().Swap(mTempClipboard);
+}
+
+Clipboard::Scope::~Scope()
+{
+   Get().Swap(mTempClipboard);
 }

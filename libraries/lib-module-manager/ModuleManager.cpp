@@ -19,24 +19,21 @@ i.e. an alternative to the usual interface, for Audacity.
 *//*******************************************************************/
 
 #include "ModuleManager.h"
+#include "PluginProvider.h"
 
 #include "BasicUI.h"
-#include "FileNames.h"
-#include "MemoryX.h"
-#include "ModuleInterface.h"
-#include "PluginInterface.h"
 
 #include <wx/dynlib.h>
 #include <wx/log.h>
-#include <wx/string.h>
 #include <wx/filename.h>
 
-#ifdef EXPERIMENTAL_MODULE_PREFS
-// Tenacity libraries
-#include "Prefs.h"
+#include "FileNames.h"
+#include "MemoryX.h"
 
+#include "PluginInterface.h"
+
+#include "Prefs.h"
 #include "ModuleSettings.h"
-#endif
 
 #define initFnName      "ExtensionModuleInit"
 #define versionFnName   "GetVersionString"
@@ -53,11 +50,19 @@ Module::Module(const FilePath & name)
 
 Module::~Module()
 {
+   // DV: The current Registry code makes unloading of the modules
+   // impossible. The order in which static objects are destroyed
+   // may result in the Registry instance being destroyed after the ModuleManager.
+   // The way Audacity is currently implemented, it is not possible to
+   // guarantee that the ModuleManager instance is initialized before
+   // any of the Registry instances.
+   if (mLib != nullptr && mLib->IsLoaded())
+      mLib->Detach();
 }
 
 static BasicUI::MessageBoxResult DoMessageBox(const TranslatableString &msg)
 {
-   using namespace BasicUI;;
+   using namespace BasicUI;
    return ShowMessageBox(msg,
       MessageBoxOptions{}.Caption(XO("Module Unsuitable")));
 }
@@ -87,7 +92,7 @@ bool Module::Load(wxString &deferredErrorMessage)
    auto ShortName = wxFileName(mName).GetName();
 
    if (!mLib->Load(mName, wxDL_NOW | wxDL_QUIET | wxDL_GLOBAL)) {
-      // For this failure path, only, there is a possiblity of retrial
+      // For this failure path, only, there is a possibility of retrial
       // after some other dependency of this module is loaded.  So the
       // error is not immediately reported.
       deferredErrorMessage = wxString(wxSysErrorMsg());
@@ -173,29 +178,27 @@ void * Module::GetSymbol(const wxString &name)
 // The one and only ModuleManager
 std::unique_ptr<ModuleManager> ModuleManager::mInstance{};
 
-// Provide builtin modules a means to identify themselves
-using BuiltinModuleList = std::vector<ModuleMain>;
+// Give builtin providers a means to identify themselves
+using BuiltinProviderList = std::vector<PluginProviderFactory>;
 namespace {
-   BuiltinModuleList &builtinModuleList()
+   BuiltinProviderList &builtinProviderList()
    {
-      static BuiltinModuleList theList;
+      static BuiltinProviderList theList;
       return theList;
    }
 }
 
-void RegisterProvider(ModuleMain moduleMain)
+void RegisterProviderFactory(PluginProviderFactory pluginProviderFactory)
 {
-   auto &list = builtinModuleList();
-   if ( moduleMain )
-      list.push_back(moduleMain);
-
-   return;
+   auto &list = builtinProviderList();
+   if(pluginProviderFactory)
+      list.push_back(std::move(pluginProviderFactory));
 }
 
-void UnregisterProvider(ModuleMain moduleMain)
+void UnregisterProviderFactory(PluginProviderFactory pluginProviderFactory)
 {
-   auto &list = builtinModuleList();
-   auto end = list.end(), iter = std::find(list.begin(), end, moduleMain);
+   auto &list = builtinProviderList();
+   auto end = list.end(), iter = std::find(list.begin(), end, pluginProviderFactory);
    if (iter != end)
       list.erase(iter);
 }
@@ -210,14 +213,14 @@ ModuleManager::ModuleManager()
 
 ModuleManager::~ModuleManager()
 {
-   mDynModules.clear();
-   builtinModuleList().clear();
+   mProviders.clear();
+   builtinProviderList().clear();
 }
 
 // static
 void ModuleManager::FindModules(FilePaths &files)
 {
-   const auto &tenacityPathList = FileNames::AudacityPathList();
+   const auto &audacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
    wxString pathVar;
 
@@ -226,7 +229,7 @@ void ModuleManager::FindModules(FilePaths &files)
    if (!pathVar.empty())
       FileNames::AddMultiPathsToPathList(pathVar, pathList);
 
-   for (const auto &path : tenacityPathList) {
+   for (const auto &path : audacityPathList) {
       wxString prefix = path + wxFILE_SEP_PATH;
       FileNames::AddUniquePathToPathList(prefix + wxT("modules"),
                                          pathList);
@@ -266,7 +269,6 @@ void ModuleManager::TryLoadModules(
       if( decided.Index( ShortName, false ) != wxNOT_FOUND )
          continue;
 
-#ifdef EXPERIMENTAL_MODULE_PREFS
       int iModuleStatus = ModuleSettings::GetModuleStatus( file );
       if( iModuleStatus == kModuleDisabled )
          continue;
@@ -281,7 +283,6 @@ void ModuleManager::TryLoadModules(
       }
 
       if( iModuleStatus == kModuleAsk )
-#endif
       // JKC: I don't like prompting for the plug-ins individually
       // I think it would be better to show the module prefs page,
       // and let the user decide for each one.
@@ -297,23 +298,19 @@ void ModuleManager::TryLoadModules(
             "",
             XO("Try and load this module?"),
             false);
-#ifdef EXPERIMENTAL_MODULE_PREFS
          // If we're not prompting always, accept the answer permanently
          if( iModuleStatus == kModuleNew ){
             iModuleStatus = (action==1)?kModuleDisabled : kModuleEnabled;
             ModuleSettings::SetModuleStatus( file, iModuleStatus );
          }
-#endif
          if(action == 1){   // "No"
             decided.Add( ShortName );
             continue;
          }
       }
-#ifdef EXPERIMENTAL_MODULE_PREFS
       // Before attempting to load, we set the state to bad.
       // That way, if we crash, we won't try again.
       ModuleSettings::SetModuleStatus( file, kModuleFailed );
-#endif
 
       wxString Error;
       auto umodule = std::make_unique<Module>(file);
@@ -335,10 +332,8 @@ void ModuleManager::TryLoadModules(
          {
             Get().mModules.push_back(std::move(umodule));
 
-#ifdef EXPERIMENTAL_MODULE_PREFS
             // Loaded successfully, restore the status.
             ModuleSettings::SetModuleStatus(file, iModuleStatus);
-#endif
          }
       }
       else if (!Error.empty()) {
@@ -387,6 +382,29 @@ int ModuleManager::Dispatch(ModuleDispatchTypes type)
    return 0;
 }
 
+PluginProviderUniqueHandle::~PluginProviderUniqueHandle()
+{
+   if(mPtr)
+   {
+      mPtr->Terminate();
+      //No profit in comparison to calling/performing PluginProvider::Terminate
+      //from a destructor of the PluginProvider, since we don't offer any
+      //options to deal with errors...
+      //
+      //Example:
+      //try {
+      //   provider->Terminate();
+      //}
+      //catch(e) {
+      //   if(Dialog::ShowError("... Are you sure?") != Dialog::ResultOk)
+      //      //other providers might have been terminated by that time,
+      //      //so it might be a better option to repeatedly ask "Try again"/"Continue"
+      //      return;
+      //}
+      //provider.reset();//no errors, or user confirmed deletion
+   }
+}
+
 // ============================================================================
 //
 // Return reference to singleton
@@ -396,9 +414,7 @@ int ModuleManager::Dispatch(ModuleDispatchTypes type)
 ModuleManager & ModuleManager::Get()
 {
    if (!mInstance)
-   {
-      mInstance.reset(safenew ModuleManager);
-   }
+      mInstance = std::make_unique<ModuleManager>();
 
    return *mInstance;
 }
@@ -408,14 +424,14 @@ wxString ModuleManager::GetPluginTypeString()
    return L"Module";
 }
 
-PluginID ModuleManager::GetID(ModuleInterface *module)
+PluginID ModuleManager::GetID(const PluginProvider *provider)
 {
    return wxString::Format(wxT("%s_%s_%s_%s_%s"),
                            GetPluginTypeString(),
                            wxEmptyString,
-                           module->GetVendor().Internal(),
-                           module->GetSymbol().Internal(),
-                           module->GetPath());
+                           provider->GetVendor().Internal(),
+                           provider->GetSymbol().Internal(),
+                           provider->GetPath());
 }
 
 bool ModuleManager::DiscoverProviders()
@@ -429,7 +445,7 @@ bool ModuleManager::DiscoverProviders()
    FilePaths pathList;
 
    // Code from LoadLadspa that might be useful in load modules.
-   wxString pathVar = wxString::FromUTF8(getenv("TENACITY_MODULES_PATH"));
+   wxString pathVar = wxString::FromUTF8(getenv("AUDACITY_MODULES_PATH"));
 
    if (!pathVar.empty())
    {
@@ -457,72 +473,64 @@ bool ModuleManager::DiscoverProviders()
 
 void ModuleManager::InitializeBuiltins()
 {
-   for (auto moduleMain : builtinModuleList())
+   for (const auto& pluginProviderFactory : builtinProviderList())
    {
-      ModuleInterfaceHandle module {
-         moduleMain(), ModuleInterfaceDeleter{}
-      };
-
-      if (module && module->Initialize())
-      {
-         // Register the provider
-         ModuleInterface *pInterface = module.get();
-         auto id = GetID(pInterface);
+      auto pluginProvider = pluginProviderFactory();
+      
+      if (pluginProvider && pluginProvider->Initialize()) {
+         PluginProviderUniqueHandle handle { std::move(pluginProvider) };
+         
+         auto id = GetID(handle.get());
 
          // Need to remember it 
-         mDynModules[id] = std::move(module);
+         mProviders[id] = std::move(handle);
       }
-      else
-      {
-         // Don't leak!  Destructor of module does that.
-      }
-   }
-}
-
-void ModuleInterfaceDeleter::operator() (ModuleInterface *pInterface) const
-{
-   if (pInterface)
-   {
-      pInterface->Terminate();
-      std::unique_ptr < ModuleInterface > { pInterface }; // DELETE it
    }
 }
 
 bool ModuleManager::RegisterEffectPlugin(const PluginID & providerID, const PluginPath & path, TranslatableString &errMsg)
 {
    errMsg = {};
-   if (mDynModules.find(providerID) == mDynModules.end())
+   if (mProviders.find(providerID) == mProviders.end())
    {
       return false;
    }
 
-   auto nFound = mDynModules[providerID]->DiscoverPluginsAtPath(path, errMsg, PluginManagerInterface::DefaultRegistrationCallback);
+   auto nFound = mProviders[providerID]->DiscoverPluginsAtPath(path, errMsg, PluginManagerInterface::DefaultRegistrationCallback);
 
    return nFound > 0;
 }
 
-ModuleInterface *ModuleManager::CreateProviderInstance(const PluginID & providerID,
+PluginProvider *ModuleManager::CreateProviderInstance(const PluginID & providerID,
                                                       const PluginPath & path)
 {
-   if (path.empty() && mDynModules.find(providerID) != mDynModules.end())
+   if (path.empty() && mProviders.find(providerID) != mProviders.end())
    {
-      return mDynModules[providerID].get();
+      return mProviders[providerID].get();
    }
 
    return nullptr;
 }
 
-std::unique_ptr<ComponentInterface> ModuleManager::CreateInstance(
+std::unique_ptr<ComponentInterface> ModuleManager::LoadPlugin(
    const PluginID & providerID, const PluginPath & path)
 {
-   if (auto iter = mDynModules.find(providerID);
-       iter == mDynModules.end())
+   if (auto iter = mProviders.find(providerID);
+       iter == mProviders.end())
       return nullptr;
    else
-      return iter->second->CreateInstance(path);
+      return iter->second->LoadPlugin(path);
 }
 
-bool ModuleManager::IsProviderValid(const PluginID & /* providerID */,
+bool ModuleManager::CheckPluginExist(const PluginID& providerId, const PluginPath& path)
+{
+   if(mProviders.find(providerId) == mProviders.end())
+      return false;
+
+   return mProviders[providerId]->CheckPluginExist(path);
+}
+
+bool ModuleManager::IsProviderValid(const PluginID & WXUNUSED(providerID),
                                     const PluginPath & path)
 {
    // Builtin modules do not have a path
@@ -538,16 +546,4 @@ bool ModuleManager::IsProviderValid(const PluginID & /* providerID */,
    }
 
    return false;
-}
-
-bool ModuleManager::IsPluginValid(const PluginID & providerID,
-                                  const PluginPath & path,
-                                  bool bFast)
-{
-   if (mDynModules.find(providerID) == mDynModules.end())
-   {
-      return false;
-   }
-
-   return mDynModules[providerID]->IsPluginValid(path, bFast);
 }

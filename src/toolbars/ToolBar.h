@@ -17,11 +17,9 @@
 #include <vector>
 #include <wx/defs.h>
 
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
-
-#include "../theme/Theme.h"
-#include "../widgets/wxPanelWrapper.h" // to inherit
+#include "Prefs.h"
+#include "Theme.h"
+#include "wxPanelWrapper.h" // to inherit
 #include <wx/windowptr.h>
 
 class wxBoxSizer;
@@ -51,45 +49,23 @@ class ToolBarResizer;
 //
 DECLARE_EXPORTED_EVENT_TYPE(TENACITY_DLL_API, EVT_TOOLBAR_UPDATED, -1);
 
-//
-// Height of a single line toolbar
-//
-#define toolbarSingle 27
+/// Height of a single line toolbar
+constexpr static auto toolbarSingle { 31 };
+/// Preferred inner toolbar margin 
+constexpr static auto toolbarMargin { 5 };
+/// Preferred spacing between inner toolbar elements
+constexpr static auto toolbarSpacing { 2 };
+//constexpr static auto toolbarGap {  }
 
 //
 // Size of border around toolbars
 //
 #define toolbarGap 1
 
-//
-// ToolBar IDs
-//
-enum ToolBarID
-{
-   NoBarID = -1,
-   TransportBarID,
-   ToolsBarID,
-   MeterBarID,
-   RecordMeterBarID,
-   PlayMeterBarID,
-   EditBarID,
-   ZoomBarID,
-   TranscriptionBarID,
-   ScrubbingBarID,
-   DeviceBarID,
-   SelectionBarID,
-   SettingsBarID,
-#ifdef EXPERIMENTAL_SPECTRAL_EDITING
-   SpectralSelectionBarID,
-#endif
-   TimeBarID,
-   ToolBarCount,
-};
-
 // How may pixels padding each side of a floating toolbar
 enum { ToolBarFloatMargin = 1 };
 
-class TenacityProject;
+class AudacityProject;
 
 class TENACITY_DLL_API ToolBar /* not final */
 : public wxPanelWrapper
@@ -100,12 +76,28 @@ class TENACITY_DLL_API ToolBar /* not final */
 
    using Holder = wxWindowPtr<ToolBar>;
 
-   ToolBar( TenacityProject &project,
-      int type, const TranslatableString & label, const wxString & section,
+   ToolBar( AudacityProject &project,
+      const TranslatableString & label, const Identifier &section,
       bool resizable = false);
    virtual ~ToolBar();
 
+   //! Whether the toolbar should be shown by default.  Default implementation returns true
+   virtual bool ShownByDefault() const;
+
+   //! Default implementation returns false
+   virtual bool HideAfterReset() const;
+
+   //! Identifies one of the docking areas for toolbars
+   enum DockID {
+      TopDockID = 1,
+      BotDockID = 2
+   };
+
+   //! Which dock the toolbar defaults into.  Default implementation chooses the top dock
+   virtual DockID DefaultDockID() const;
+
    bool AcceptsFocus() const override { return false; };
+   bool AcceptsFocusFromKeyboard() const override;
 
    virtual void SetToDefaultSize();
    //NEW virtuals:
@@ -115,18 +107,26 @@ class TENACITY_DLL_API ToolBar /* not final */
    void UpdatePrefs() override;
    virtual void RegenerateTooltips() = 0;
 
-   int GetType();
+   //! Get a value used for computing cascading positions of undocked bars
+   int GetIndex() const { return mIndex; }
+   //! Set a value used for computing cascading positions of undocked bars
+   void SetIndex(int index) { mIndex = index; }
+
    TranslatableString GetTitle();
    TranslatableString GetLabel();
-   wxString GetSection();
+   Identifier GetSection();
    ToolDock *GetDock();
-   bool GetEditMode();
+
+   void SetPreferredNeighbors(Identifier left, Identifier top = {});
 
 private:
    void SetLabel(const wxString & label) override;
 public:
    void SetLabel(const TranslatableString & label);
    virtual void SetDocked(ToolDock *dock, bool pushed);
+
+   //! Defaults to (NoBarID, NoBarId)
+   std::pair<Identifier, Identifier> PreferredNeighbors() const noexcept;
 
    // NEW virtual:
    virtual bool Expose(bool show = true);
@@ -163,6 +163,16 @@ public:
                        bool processdownevents,
                        wxSize size);
 
+
+   static
+   AButton *MakeButton(ToolBar *parent,
+                       teBmps eEnabledUp,
+                       teBmps eEnabledDown,
+                       teBmps eDisabled,
+                       int id,
+                       bool processdownevents,
+                       const TranslatableString &label);
+
    static
    void MakeAlternateImages(AButton &button, int idx,
                             teBmps eUp,
@@ -176,7 +186,7 @@ public:
 
    static
    void SetButtonToolTip
-      (TenacityProject &project, AButton &button,
+      (AudacityProject &project, AButton &button,
        // If a shortcut key is defined for the command, then it is appended,
        // parenthesized, after the translated name.
        const ComponentInterfaceSymbol commands[], size_t nCommands);
@@ -189,7 +199,9 @@ public:
    void SetButton(bool down, AButton *button);
 
    static void MakeMacRecoloredImage(teBmps eBmpOut, teBmps eBmpIn);
+   static void MakeMacRecoloredImageSize(teBmps eBmpOut, teBmps eBmpIn, const wxSize& size);
    static void MakeRecoloredImage(teBmps eBmpOut, teBmps eBmpIn);
+   static void MakeRecoloredImageSize(teBmps eBmpOut, teBmps eBmpIn, const wxSize& size);
 
    wxBoxSizer *GetSizer();
 
@@ -227,14 +239,15 @@ public:
    virtual void Populate() = 0;
    virtual void Repaint(wxDC *dc) = 0;
 
+   void OnErase(wxEraseEvent & event);
    void OnPaint(wxPaintEvent & event);
    void OnMouseEvents(wxMouseEvent &event);
 
  protected:
-   TenacityProject &mProject;
+   AudacityProject &mProject;
    TranslatableString mLabel;
-   wxString mSection;
-   int mType;
+   Identifier mSection;
+   int mIndex{0};
  private:
    void Init(wxWindow *parent, int type, const wxString & title, const wxString & label);
 
@@ -245,21 +258,26 @@ public:
 
    wxBoxSizer *mHSizer;
 
+   Identifier mPreferredLeftNeighbor;
+   Identifier mPreferredTopNeighbor;
+
    bool mVisible;
    bool mResizable;
    bool mPositioned; // true if position floating determined.
-   bool mEditMode;
 
+ public:
+
+   DECLARE_CLASS(ToolBar)
    DECLARE_EVENT_TABLE()
 
    friend class ToolBarResizer;
 };
 
 struct TENACITY_DLL_API RegisteredToolbarFactory {
-   using Function = std::function< ToolBar::Holder( TenacityProject & ) >;
+   using Function = std::function< ToolBar::Holder( AudacityProject & ) >;
    using Functions = std::vector< Function >;
 
-   RegisteredToolbarFactory( int id, const Function &function );
+   RegisteredToolbarFactory( const Function &function );
 
    static const Functions &GetFactories();
 };

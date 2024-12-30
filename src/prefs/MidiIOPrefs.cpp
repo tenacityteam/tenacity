@@ -26,22 +26,17 @@ other settings.
 
 #include "MidiIOPrefs.h"
 
-#ifdef EXPERIMENTAL_MIDI_OUT
-
 #include <wx/defs.h>
 
 #include <wx/choice.h>
-#include <wx/intl.h>
 #include <wx/textctrl.h>
-
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
 
 #include <portmidi.h>
 
 #include "NoteTrack.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../widgets/AudacityMessageBox.h"
+#include "Prefs.h"
+#include "ShuttleGui.h"
+#include "AudacityMessageBox.h"
 
 enum {
    HostID = 10000,
@@ -50,11 +45,15 @@ enum {
    ChannelsID
 };
 
+BEGIN_EVENT_TABLE(MidiIOPrefs, PrefsPanel)
+   EVT_CHOICE(HostID, MidiIOPrefs::OnHost)
+//   EVT_CHOICE(RecordID, MidiIOPrefs::OnDevice)
+END_EVENT_TABLE()
+
 MidiIOPrefs::MidiIOPrefs(wxWindow * parent, wxWindowID winid)
 /* i18n-hint: untranslatable acronym for "Musical Instrument Device Interface" */
 :  PrefsPanel(parent, winid, XO("MIDI Devices"))
 {
-   Bind(wxEVT_CHOICE, &MidiIOPrefs::OnHost, this, HostID);
    Populate();
 }
 
@@ -62,19 +61,19 @@ MidiIOPrefs::~MidiIOPrefs()
 {
 }
 
-ComponentInterfaceSymbol MidiIOPrefs::GetSymbol()
+ComponentInterfaceSymbol MidiIOPrefs::GetSymbol() const
 {
    return MIDI_IO_PREFS_PLUGIN_SYMBOL;
 }
 
-TranslatableString MidiIOPrefs::GetDescription()
+TranslatableString MidiIOPrefs::GetDescription() const
 {
    return XO("Preferences for MidiIO");
 }
 
 ManualPageID MidiIOPrefs::HelpPageName()
 {
-   return "Preferences#midi-devices";
+   return "MIDI_Devices_Preferences";
 }
 
 void MidiIOPrefs::Populate()
@@ -128,7 +127,11 @@ void MidiIOPrefs::GetNamesAndLabels() {
    }
 }
 
-void MidiIOPrefs::PopulateOrExchange( ShuttleGui & S ) {
+void MidiIOPrefs::PopulateOrExchange( ShuttleGui & S )
+{
+   ChoiceSetting Setting{ L"/MidiIO/Host",
+      { ByColumns, mHostNames, mHostLabels }
+   };
 
    S.SetBorder(2);
    S.StartScroller();
@@ -140,12 +143,7 @@ void MidiIOPrefs::PopulateOrExchange( ShuttleGui & S ) {
       {
          S.Id(HostID);
          /* i18n-hint: (noun) */
-         mHost = S.TieChoice( XXO("&Host:"),
-            {
-               wxT("/MidiIO/Host"),
-               { ByColumns, mHostNames, mHostLabels }
-            }
-         );
+         mHost = S.TieChoice(XXO("&Host:"), Setting);
 
          S.AddPrompt(XXO("Using: PortMidi"));
       }
@@ -190,7 +188,7 @@ void MidiIOPrefs::PopulateOrExchange( ShuttleGui & S ) {
 
 }
 
-void MidiIOPrefs::OnHost(wxCommandEvent & /* e */)
+void MidiIOPrefs::OnHost(wxCommandEvent & WXUNUSED(e))
 {
    wxString itemAtIndex;
    int index = mHost->GetCurrentSelection();
@@ -281,6 +279,7 @@ bool MidiIOPrefs::Commit()
             wxString(wxSafeConvertMB2WX(info->name))));
    }
 #endif
+   MIDISynthLatency_ms.Invalidate();
    return gPrefs->Flush();
 }
 
@@ -295,10 +294,9 @@ bool MidiIOPrefs::Validate()
    return true;
 }
 
-#ifdef EXPERIMENTAL_MIDI_OUT
 namespace{
 PrefsPanel::Registration sAttachment{ "MidiIO",
-   [](wxWindow *parent, wxWindowID winid, TenacityProject *)
+   [](wxWindow *parent, wxWindowID winid, AudacityProject *)
    {
       wxASSERT(parent); // to justify safenew
       return safenew MidiIOPrefs(parent, winid);
@@ -309,6 +307,3 @@ PrefsPanel::Registration sAttachment{ "MidiIO",
    { "", { Registry::OrderingHint::After, "Recording" } }
 };
 }
-#endif
-
-#endif

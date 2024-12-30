@@ -13,6 +13,7 @@ Paul Licameli
 
 #include <wx/defs.h>
 
+#include "Observer.h"
 #include "ToolBar.h"
 
 class wxChoice;
@@ -21,31 +22,35 @@ class wxCommandEvent;
 class wxDC;
 class wxSizeEvent;
 
-class TenacityProject;
-class SpectralSelectionBarListener;
+class AudacityProject;
 class NumericTextCtrl;
+struct ProjectNumericFormatsEvent;
 
 class SpectralSelectionBar final : public ToolBar {
 
 public:
 
-   SpectralSelectionBar( TenacityProject &project );
+   static Identifier ID();
+
+   SpectralSelectionBar( AudacityProject &project );
    virtual ~SpectralSelectionBar();
 
-   static SpectralSelectionBar &Get( TenacityProject &project );
-   static const SpectralSelectionBar &Get( const TenacityProject &project );
+   bool ShownByDefault() const override;
+   DockID DefaultDockID() const override;
+
+   static SpectralSelectionBar &Get( AudacityProject &project );
+   static const SpectralSelectionBar &Get( const AudacityProject &project );
 
    void Create(wxWindow *parent) override;
 
    void Populate() override;
-   void Repaint(wxDC * /* dc */) override {};
+   void Repaint(wxDC * WXUNUSED(dc)) override {};
    void EnableDisableButtons() override {};
    void UpdatePrefs() override;
 
    void SetFrequencies(double bottom, double top);
-   void SetFrequencySelectionFormatName(const NumericFormatSymbol & formatName);
-   void SetBandwidthSelectionFormatName(const NumericFormatSymbol & formatName);
-   void SetListener(SpectralSelectionBarListener *l);
+   void SetFrequencySelectionFormatName(const NumericFormatID & formatName);
+   void SetBandwidthSelectionFormatName(const NumericFormatID & formatName);
 
    void RegenerateTooltips() override {};
 
@@ -53,6 +58,7 @@ private:
 
    void ValuesToControls();
    void SetBounds();
+   void OnFormatsChanged(ProjectNumericFormatsEvent);
    void OnUpdate(wxCommandEvent &evt);
    void OnCtrl(wxCommandEvent &evt);
    void OnChoice(wxCommandEvent &evt);
@@ -62,7 +68,7 @@ private:
 
    void ModifySpectralSelection(bool done = false);
 
-   SpectralSelectionBarListener * mListener;
+   Observer::Subscription mFormatsSubscription;
 
    bool mbCenterAndWidth;
 
@@ -76,6 +82,9 @@ private:
 
    int mHeight;   // height of main sizer after creation - used by OnChoice()
 
+public:
+
+   DECLARE_CLASS(SpectralSelectionBar)
    DECLARE_EVENT_TABLE()
 };
 

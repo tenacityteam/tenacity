@@ -2,8 +2,6 @@
 //
 // Backport from wxWidgets-3.0-rc1
 //
-// FIXME (GP): We might want to drop this...
-//
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/valnum.cpp
 // Purpose:     Numeric validator classes implementation
@@ -30,9 +28,11 @@
 #include <wx/setup.h> // for wxUSE_* macros
 
 #include "AudacityMessageBox.h"
+#include "Internat.h"
 
-// Tenacity libraries
-#include <lib-strings/Internat.h>
+#ifdef __BORLANDC__
+    #pragma hdrstop
+#endif
 
 #if wxUSE_VALIDATORS && wxUSE_TEXTCTRL
 
@@ -386,8 +386,15 @@ bool IntegerValidatorBase::DoValidateNumber(TranslatableString * errMsg) const
    {
       res = IsInRange(value);
       if ( !res )
+      {
          *errMsg = XO("Not in range %d to %d")
             .Format( (int) m_min, (int) m_max );
+
+         if ( value > (int) m_max )
+            control->ChangeValue( wxString::Format( wxT("%d"), (int) m_max ) );
+         else if ( value < (int) m_min )
+            control->ChangeValue( wxString::Format( wxT("%d"), (int) m_min ) );
+      }
    }
 
    return res;
@@ -522,6 +529,11 @@ bool FloatingPointValidatorBase::DoValidateNumber(TranslatableString * errMsg) c
             {
                *errMsg = XO("Value not in range: %s to %s")
                   .Format( strMin, strMax );
+               
+               if ( value > m_max )
+                  control->ChangeValue( strMax );
+               else if ( value < m_min )
+                  control->ChangeValue( strMin );
             }
             else if (m_minSet)
             {

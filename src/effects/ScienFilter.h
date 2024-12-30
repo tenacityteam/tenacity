@@ -15,9 +15,9 @@ Vaughan Johnson (Preview)
 
 #include <wx/setup.h> // for wxUSE_* macros
 
-#include "Biquad.h"
-
-#include "Effect.h"
+#include "ScienFilterBase.h"
+#include "StatefulEffectUIServices.h"
+#include "wxPanelWrapper.h"
 
 class wxBitmap;
 class wxChoice;
@@ -29,103 +29,57 @@ class ShuttleGui;
 
 class EffectScienFilterPanel;
 
-class EffectScienFilter final : public Effect
+class EffectScienFilter final :
+    public ScienFilterBase,
+    public StatefulEffectUIServices
 {
 public:
-   static const ComponentInterfaceSymbol Symbol;
-
-   EffectScienFilter();
-   virtual ~EffectScienFilter();
-
-   // ComponentInterface implementation
-
-   ComponentInterfaceSymbol GetSymbol() override;
-   TranslatableString GetDescription() override;
-   ManualPageID ManualPage() override;
-
-   // EffectDefinitionInterface implementation
-
-   EffectType GetType() override;
-   bool GetAutomationParameters(CommandParameters & parms) override;
-   bool SetAutomationParameters(CommandParameters & parms) override;
-
-   // EffectProcessor implementation
-
-   unsigned GetAudioInCount() override;
-   unsigned GetAudioOutCount() override;
-   bool ProcessInitialize(sampleCount totalLen, ChannelNames chanMap = NULL) override;
-   size_t ProcessBlock( const float *const *inBlock, float *const *outBlock,
-      size_t blockLen) override;
-   bool DefineParams( ShuttleParams & S ) override;
-
-   // Effect implementation
-
-   bool Startup() override;
-   bool Init() override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   bool TransferDataToWindow() override;
-   bool TransferDataFromWindow() override;
-
-private:
-   // EffectScienFilter implementation
-
-   bool TransferGraphLimitsFromWindow();
-   void CalcFilter();
-   float FilterMagnAtFreq(float Freq);
-   void EnableDisableRippleCtl (int FilterType);
-
-   void OnSize( wxSizeEvent & evt );
-   void OnSlider( wxCommandEvent & evt );
-
-   void OnOrder( wxCommandEvent & evt );
-   void OnCutoff( wxCommandEvent & evt );
-   void OnRipple( wxCommandEvent & evt );
-   void OnStopbandRipple( wxCommandEvent & evt );
-   void OnFilterType( wxCommandEvent & evt );
-   void OnFilterSubtype( wxCommandEvent & evt );
-
-   void OnSliderDBMAX( wxCommandEvent & evt );
-   void OnSliderDBMIN( wxCommandEvent & evt );
-
-private:
-   float mCutoff;
-   float mRipple;
-   float mStopbandRipple;
-   int mFilterType;		// Butterworth etc.
-   int mFilterSubtype;	// lowpass, highpass
-   int mOrder;
-   int mOrderIndex;
-   ArrayOf<Biquad> mpBiquad;
-
-   double mdBMax;
-   double mdBMin;
-   bool mEditingBatchParams;
-
-   double mLoFreq;
-   double mNyquist;
-
-   EffectScienFilterPanel *mPanel;
-   wxSlider *mdBMinSlider;
-   wxSlider *mdBMaxSlider;
-
-   wxStaticText *mRippleCtlP;
-   wxTextCtrl *mRippleCtl;
-   wxStaticText *mRippleCtlU;
-
-   wxTextCtrl *mCutoffCtl;
-
-   wxStaticText *mStopbandRippleCtlP;
-   wxTextCtrl *mStopbandRippleCtl;
-   wxStaticText *mStopbandRippleCtlU;
-
-   wxChoice *mFilterTypeCtl;
-   wxChoice *mFilterSubTypeCtl;
-   wxChoice *mFilterOrderCtl;
-
-   RulerPanel *mdBRuler;
-   RulerPanel *mfreqRuler;
+   std::unique_ptr<EffectEditor> PopulateOrExchange(
+      ShuttleGui& S, EffectInstance& instance, EffectSettingsAccess& access,
+      const EffectOutputs* pOutputs) override;
+   bool TransferDataToWindow(const EffectSettings& settings) override;
+   bool TransferDataFromWindow(EffectSettings& settings) override;
 
    DECLARE_EVENT_TABLE()
+private:
+   bool TransferGraphLimitsFromWindow();
+   void EnableDisableRippleCtl(int FilterType);
+
+   void OnSize(wxSizeEvent& evt);
+   void OnSlider(wxCommandEvent& evt);
+
+   void OnOrder(wxCommandEvent& evt);
+   void OnCutoff(wxCommandEvent& evt);
+   void OnRipple(wxCommandEvent& evt);
+   void OnStopbandRipple(wxCommandEvent& evt);
+   void OnFilterType(wxCommandEvent& evt);
+   void OnFilterSubtype(wxCommandEvent& evt);
+
+   void OnSliderDBMAX(wxCommandEvent& evt);
+   void OnSliderDBMIN(wxCommandEvent& evt);
+
+   wxWeakRef<wxWindow> mUIParent {};
+
+   EffectScienFilterPanel* mPanel;
+   wxSlider* mdBMinSlider;
+   wxSlider* mdBMaxSlider;
+
+   wxStaticText* mRippleCtlP;
+   wxTextCtrl* mRippleCtl;
+   wxStaticText* mRippleCtlU;
+
+   wxTextCtrl* mCutoffCtl;
+
+   wxStaticText* mStopbandRippleCtlP;
+   wxTextCtrl* mStopbandRippleCtl;
+   wxStaticText* mStopbandRippleCtlU;
+
+   wxChoice* mFilterTypeCtl;
+   wxChoice* mFilterSubTypeCtl;
+   wxChoice* mFilterOrderCtl;
+
+   RulerPanel* mdBRuler;
+   RulerPanel* mfreqRuler;
 
    friend class EffectScienFilterPanel;
 };
@@ -166,6 +120,8 @@ private:
    int mHeight;
 
    friend class EffectScienFilter;
+
+   DECLARE_EVENT_TABLE()
 };
 
 #endif

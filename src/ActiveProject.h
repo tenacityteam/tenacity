@@ -15,15 +15,10 @@
 #include <wx/event.h> // to declare custom event type
 #include <memory>
 
-class TenacityProject;
+class AudacityProject;
 
-TENACITY_DLL_API std::weak_ptr<TenacityProject> GetActiveProject();
+TENACITY_DLL_API std::weak_ptr<AudacityProject> GetActiveProject();
 // For use by ProjectManager only:
-TENACITY_DLL_API void SetActiveProject(TenacityProject * project);
-
-// This event is emitted by the application object when there is a change
-// in the activated project
-wxDECLARE_EXPORTED_EVENT(TENACITY_DLL_API,
-                         EVT_PROJECT_ACTIVATION, wxCommandEvent);
+TENACITY_DLL_API void SetActiveProject(AudacityProject * project);
 
 #endif

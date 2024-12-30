@@ -2,7 +2,7 @@
 
    Audacity: A Digital Audio Editor
    Audacity(R) is copyright (c) 1999-2012 Audacity Team.
-   License: GPL v2.  See License.txt.
+   License: GPL v2 or later.  See License.txt.
 
    Resample.cpp
    Dominic Mazzoni, Rob Sykes, Vaughan Johnson
@@ -52,10 +52,10 @@ Resample::~Resample()
 
 //////////
 static const std::initializer_list<EnumValueSymbol> methodNames{
-   { "LowQuality", XO("Low Quality (Fastest)") },
-   { "MediumQuality", XO("Medium Quality") },
-   { "HighQuality", XO("High Quality") },
-   { "BestQuality", XO("Best Quality (Slowest)") }
+   { wxT("LowQuality"), XO("Low Quality (Fastest)") },
+   { wxT("MediumQuality"), XO("Medium Quality") },
+   { wxT("HighQuality"), XO("High Quality") },
+   { wxT("BestQuality"), XO("Best Quality (Slowest)") }
 };
 
 static auto intChoicesMethod = {
@@ -63,34 +63,34 @@ static auto intChoicesMethod = {
 };
 
 EnumSetting< int > Resample::FastMethodSetting{
-   "/Quality/LibsoxrSampleRateConverterChoice",
+   wxT("/Quality/LibsoxrSampleRateConverterChoice"),
    methodNames,
    1,  // Medium Quality
 
    // for migrating old preferences:
    intChoicesMethod,
-   "/Quality/LibsoxrSampleRateConverter"
+   wxT("/Quality/LibsoxrSampleRateConverter")
 };
 
 EnumSetting< int > Resample::BestMethodSetting
 {
-   "/Quality/LibsoxrHQSampleRateConverterChoice",
+   wxT("/Quality/LibsoxrHQSampleRateConverterChoice"),
    methodNames,
    3, // Best Quality,
 
    // for migrating old preferences:
    intChoicesMethod,
-   "/Quality/LibsoxrHQSampleRateConverter"
+   wxT("/Quality/LibsoxrHQSampleRateConverter")
 };
 
 //////////
 std::pair<size_t, size_t>
-      Resample::Process(double  factor,
-                        float  *inBuffer,
-                        size_t  inBufferLen,
-                        bool    lastFlag,
-                        float  *outBuffer,
-                        size_t  outBufferLen)
+      Resample::Process(double       factor,
+                        const float *inBuffer,
+                        size_t       inBufferLen,
+                        bool         lastFlag,
+                        float       *outBuffer,
+                        size_t       outBufferLen)
 {
    size_t idone, odone;
    if (mbWantConstRateResampling)

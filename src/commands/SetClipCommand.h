@@ -18,21 +18,23 @@
 
 #include "SetTrackInfoCommand.h"
 
-class SetClipCommand : public SetTrackBase
+class SetClipCommand : public AudacityCommand
 {
 public:
    static const ComponentInterfaceSymbol Symbol;
 
    SetClipCommand();
    // ComponentInterface overrides
-   ComponentInterfaceSymbol GetSymbol() override {return Symbol;};
-   TranslatableString GetDescription() override {return XO("Sets various values for a clip.");};
-   bool DefineParams( ShuttleParams & S ) override;
+   ComponentInterfaceSymbol GetSymbol() const override {return Symbol;};
+   TranslatableString GetDescription() const override {return XO("Sets various values for a clip.");};
+   template<bool Const> bool VisitSettings( SettingsVisitorBase<Const> &S );
+   bool VisitSettings( SettingsVisitor & S ) override;
+   bool VisitSettings( ConstSettingsVisitor & S ) override;
    void PopulateOrExchange(ShuttleGui & S) override;
 
    // AudacityCommand overrides
    ManualPageID ManualPage() override {return L"Extra_Menu:_Scriptables_I#set_clip";}
-   bool ApplyInner( const CommandContext & context, Track * t ) override;
+   bool Apply( const CommandContext & context ) override;
 
 public:
    double mContainsTime;

@@ -15,15 +15,15 @@ Paul Licameli split from ProjectWindow.cpp
 
 ProjectWindowBase::ProjectWindowBase(wxWindow * parent, wxWindowID id,
                                  const wxPoint & pos,
-                                 const wxSize & size, TenacityProject &project)
-   : wxFrame(parent, id, "Tenacity", pos, size)
-   , mProject{ project }
+                                 const wxSize & size, AudacityProject &project)
+   : wxFrame(parent, id, _TS("Audacity"), pos, size)
+   , mwProject{ project.weak_from_this() }
 {
    SetProjectFrame( project, *this );
 
    // Ensure a unique name of this window for journalling purposes
    SetName(
-      wxString::Format( L"TenacityProject %d", project.GetProjectNumber() ) );
+      wxString::Format( L"AudacityProject %d", project.GetProjectNumber() ) );
 };
 
 ProjectWindowBase::~ProjectWindowBase()
@@ -41,13 +41,13 @@ ProjectWindowBase *FindProjectWindow( wxWindow *pWindow )
 
 }
 
-TenacityProject *FindProjectFromWindow( wxWindow *pWindow )
+AudacityProject *FindProjectFromWindow( wxWindow *pWindow )
 {
    auto pProjectWindow = FindProjectWindow( pWindow );
-   return pProjectWindow ? &pProjectWindow->GetProject() : nullptr;
+   return pProjectWindow ? pProjectWindow->FindProject().get() : nullptr;
 }
 
-const TenacityProject *FindProjectFromWindow( const wxWindow *pWindow )
+const AudacityProject *FindProjectFromWindow( const wxWindow *pWindow )
 {
    return FindProjectFromWindow( const_cast< wxWindow* >( pWindow ) );
 }

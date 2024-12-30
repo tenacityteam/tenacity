@@ -37,14 +37,16 @@ public:
    // will be erased and re-drawn.
    // pDC can be null, in which case, DrawOverlays() will create a
    // wxClientDC internally when necessary.
-   void DrawOverlays(bool repaint_all, wxDC& dc);
-
+   void DrawOverlays(bool repaint_all, wxDC *pDC = nullptr);
+   
 private:
    using OverlayPtr = std::weak_ptr<Overlay>;
 
    void Compress();
    std::vector< OverlayPtr > mOverlays;
    
+   
+   DECLARE_EVENT_TABLE()
    friend class GetInfoCommand;
 };
 

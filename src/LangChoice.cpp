@@ -13,21 +13,17 @@
 of languages for Audacity.
 
 *//*******************************************************************/
-
-
 #include "LangChoice.h"
+#include "IteratorX.h"
 
 #include <wx/defs.h>
-#include <wx/button.h>
 #include <wx/choice.h>
-#include <wx/intl.h>
-#include <wx/sizer.h>
 #include <wx/stattext.h>
 
 #include "Languages.h"
-#include "shuttle/ShuttleGui.h"
-#include "widgets/AudacityMessageBox.h"
-#include "widgets/wxPanelWrapper.h"
+#include "ShuttleGui.h"
+#include "AudacityMessageBox.h"
+#include "wxPanelWrapper.h"
 
 class LangChoiceDialog final : public wxDialogWrapper {
 public:
@@ -46,6 +42,8 @@ private:
    int mNumLangs;
    wxArrayString mLangCodes;
    TranslatableStrings mLangNames;
+
+   DECLARE_EVENT_TABLE()
 };
 
 wxString ChooseLanguage(wxWindow *parent)
@@ -54,7 +52,7 @@ wxString ChooseLanguage(wxWindow *parent)
 
    /* i18n-hint: Title on a dialog indicating that this is the first
     * time Audacity has been run. */
-   LangChoiceDialog dlog(parent, -1, XO("Tenacity First Run"));
+   LangChoiceDialog dlog(parent, -1, XO("Audacity First Run"));
    dlog.CentreOnParent();
    dlog.ShowModal();
    returnVal = dlog.GetLang();
@@ -62,13 +60,15 @@ wxString ChooseLanguage(wxWindow *parent)
    return returnVal;
 }
 
+BEGIN_EVENT_TABLE(LangChoiceDialog, wxDialogWrapper)
+    EVT_BUTTON(wxID_OK, LangChoiceDialog::OnOk)
+END_EVENT_TABLE()
+
 LangChoiceDialog::LangChoiceDialog(wxWindow * parent,
                                    wxWindowID id,
                                    const TranslatableString & title):
    wxDialogWrapper(parent, id, title)
 {
-   Bind(wxEVT_BUTTON, &LangChoiceDialog::OnOk, this, wxID_OK);
-
    SetName();
    const auto &paths = FileNames::AudacityPathList();
    Languages::GetLanguages(paths, mLangCodes, mLangNames);
@@ -82,7 +82,7 @@ LangChoiceDialog::LangChoiceDialog(wxWindow * parent,
       S.StartHorizontalLay();
       {
          S.SetBorder(15);
-         mChoice = S.AddChoice(XXO("Choose Language for Tenacity to use:"),
+         mChoice = S.AddChoice(XXO("Choose Language for Audacity to use:"),
             mLangNames,
             lang);
       }
@@ -96,7 +96,7 @@ LangChoiceDialog::LangChoiceDialog(wxWindow * parent,
    Fit();
 }
 
-void LangChoiceDialog::OnOk(wxCommandEvent & /* event */)
+void LangChoiceDialog::OnOk(wxCommandEvent & WXUNUSED(event))
 {
    int ndx = mChoice->GetSelection();
    mLang = mLangCodes[ndx];

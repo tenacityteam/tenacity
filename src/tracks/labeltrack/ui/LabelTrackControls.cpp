@@ -13,18 +13,15 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "LabelTrackView.h"
 #include "../../../HitTestResult.h"
-#include "../../../LabelTrack.h"
+#include "LabelTrack.h"
 #include "../../../widgets/PopupMenuTable.h"
+#include "Prefs.h"
 #include "../../../RefreshCode.h"
-#include "../../../shuttle/ShuttleGui.h"
-#include "../../../widgets/wxPanelWrapper.h"
-#include <wx/dialog.h>
+#include "ShuttleGui.h"
+#include "wxPanelWrapper.h"
 #include <wx/fontenum.h>
 #include <wx/listbox.h>
 #include <wx/spinctrl.h>
-
-// Tenacity libraries
-#include <lib-preferences/Prefs.h>
 
 LabelTrackControls::~LabelTrackControls()
 {
@@ -32,7 +29,7 @@ LabelTrackControls::~LabelTrackControls()
 
 std::vector<UIHandlePtr> LabelTrackControls::HitTest
 (const TrackPanelMouseState & state,
- const TenacityProject *pProject)
+ const AudacityProject *pProject)
 {
    return CommonTrackControls::HitTest(state, pProject);
 }
@@ -50,11 +47,6 @@ public:
    void InitUserData(void *pUserData) override
    {
       mpData = static_cast<CommonTrackControls::InitMenuData*>(pUserData);
-   }
-
-   void DestroyMenu() override
-   {
-      mpData = nullptr;
    }
 
    CommonTrackControls::InitMenuData *mpData{};
@@ -112,7 +104,7 @@ void LabelTrackMenuTable::OnSetFont(wxCommandEvent &)
    facename = LabelTrackView::GetFont(facename).GetFaceName();
 
    long fontsize = gPrefs->Read(wxT("/GUI/LabelFontSize"),
-                                LabelTrackView::DefaultFontSize);
+                                static_cast<int>(LabelTrackView::DefaultFontSize));
 
    /* i18n-hint: (noun) This is the font for the label track.*/
    wxDialogWrapper dlg(mpData->pParent, wxID_ANY, XO("Label Track Font"));

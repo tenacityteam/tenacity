@@ -10,10 +10,12 @@ and can also bind formatting arguments.  It can generate a translation later,
 even if the global choice of locale changes during its lifetime.  It does not
 implicitly interconvert with wxString.
 
-This library depends only on the wxWidgets::wxWidgets subset of wxWidgets.
-]]#
+This library depends only on the  subset of wxWidgets.
+]]
 
 set( SOURCES
+   Base64.h
+   Base64.cpp
    FutureStrings.h
    Identifier.cpp
    Identifier.h
@@ -27,7 +29,6 @@ set( SOURCES
    wxArrayStringEx.cpp
 )
 set( LIBRARIES
-   PRIVATE
    wxWidgets::wxWidgets
 )
 tenacity_library( lib-strings "${SOURCES}" "${LIBRARIES}"

@@ -23,8 +23,8 @@ have a window permanently associated with it.
 \brief Pop up dialog used with an LWSlider.
 
 \class TipWindow
-\brief A wxPopupWindow (or wxFrame on mcaOS) used to give the numerical
-value of an LWSlider or ASlider.
+\brief A wxPopupWindow used to give the numerical value of an LWSlider
+or ASlider.
 
 *//*******************************************************************/
 
@@ -32,38 +32,34 @@ value of an LWSlider or ASlider.
 
 #include "ASlider.h"
 
-#include <cmath>
+#include <math.h>
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/dcbuffer.h>
 #include <wx/frame.h>
 #include <wx/graphics.h>
-#include <wx/image.h>
 #include <wx/panel.h>
 #include <wx/tooltip.h>
 #include <wx/debug.h>
 #include <wx/textctrl.h>
 #include <wx/valtext.h>
-#include <wx/dialog.h>
-#include <wx/sizer.h>
-#include <wx/button.h>
 #include <wx/statline.h>
-#include <wx/sizer.h>
 #include <wx/settings.h>
 #include <wx/popupwin.h>
 #include <wx/window.h>
+#include <wx/display.h>
 
-#include "../AColor.h"
-#include "../ImageManipulation.h"
+#include "AColor.h"
+#include "ImageManipulation.h"
 #include "Project.h"
 #include "ProjectStatus.h"
 #include "../ProjectWindowBase.h"
-#include "../shuttle/ShuttleGui.h"
-#include "../theme/Theme.h"
+#include "ShuttleGui.h"
+#include "Theme.h"
 #include "valnum.h"
 
-#include "../theme/AllThemeResources.h"
+#include "AllThemeResources.h"
 
 #if wxUSE_ACCESSIBILITY
 #include "WindowAccessible.h"
@@ -148,12 +144,7 @@ const int sliderFontSize = 12;
 // TipWindow
 //
 
-class TipWindow final
-#ifdef __WXMAC__
-: public wxFrame
-#else
-: public wxPopupWindow
-#endif
+class TipWindow final : public wxFrame
 {
  public:
    TipWindow(wxWindow *parent, const TranslatableStrings & labels);
@@ -162,7 +153,6 @@ class TipWindow final
    wxSize GetSize() const;
    void SetPos(const wxPoint & pos);
    void SetLabel(const TranslatableString & label);
-   bool Show(bool show = true) override;
 
 private:
    void OnPaint(wxPaintEvent & event);
@@ -172,21 +162,20 @@ private:
    int mWidth;
    int mHeight;
    wxFont mFont;
+
+   DECLARE_EVENT_TABLE()
 };
 
-TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
-#ifdef __WXMAC__
-: wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-          wxFRAME_SHAPED | wxNO_BORDER | wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT)
-#else
-: wxPopupWindow(parent, wxFRAME_SHAPED | wxBORDER_NONE | wxFRAME_FLOAT_ON_PARENT | wxPU_CONTAINS_CONTROLS)
-#endif
-{
-   Bind(wxEVT_PAINT, &TipWindow::OnPaint, this);
+BEGIN_EVENT_TABLE(TipWindow, wxFrame)
+   EVT_PAINT(TipWindow::OnPaint)
+END_EVENT_TABLE()
 
+TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
+:  wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+           wxFRAME_SHAPED | wxNO_BORDER | wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT )
+{
    SetBackgroundStyle(wxBG_STYLE_PAINT);
    SetBackgroundColour(wxTransparentColour);
-   Bind(wxEVT_PAINT, &TipWindow::OnPaint, this);
 
    mFont.SetPointSize(sliderFontSize);
    mFont.SetFamily(wxFONTFAMILY_SWISS);
@@ -205,6 +194,7 @@ TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
    mWidth += 8;
    mHeight += 8;
 
+#if defined(__WXMAC__)
    // Use a bitmap region to set the shape since just adding an unfilled path
    // will make the window transparent
    wxBitmap shape(mWidth, mHeight);
@@ -215,7 +205,12 @@ TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
    dc.DrawRoundedRectangle(0, 0, mWidth, mHeight, 5);
    dc.SelectObject(wxNullBitmap);
 
-   SetShape(wxRegion(shape));
+   SetShape(wxRegion(shape, *wxWHITE));
+#else
+   wxGraphicsPath path = wxGraphicsRenderer::GetDefaultRenderer()->CreatePath();
+   path.AddRoundedRectangle(0, 0, mWidth, mHeight, 5);
+   SetShape(path);
+#endif
 }
 
 wxSize TipWindow::GetSize() const
@@ -233,17 +228,7 @@ void TipWindow::SetLabel(const TranslatableString & label)
    mLabel = label;
 }
 
-bool TipWindow::Show(bool show)
-{
-   #ifdef __WXMAC__
-   ShowWithoutActivating();
-   return true;
-   #else
-   return wxWindow::Show(show);
-   #endif
-}
-
-void TipWindow::OnPaint(wxPaintEvent & /* event */)
+void TipWindow::OnPaint(wxPaintEvent & WXUNUSED(event))
 {
    wxAutoBufferedPaintDC dc(this);
 
@@ -292,6 +277,11 @@ SliderDialog::SliderDialog(wxWindow * parent, wxWindowID id,
       prec = 1;
       trailing = NumValidatorStyle::ONE_TRAILING_ZERO;
    }
+   if (style == SPEED_SLIDER)
+   {
+      prec = 3;
+      trailing = NumValidatorStyle::THREE_TRAILING_ZEROES;
+   }
 
    ShuttleGui S(this, eIsCreating);
 
@@ -309,6 +299,13 @@ SliderDialog::SliderDialog(wxWindow * parent, wxWindowID id,
          mTextCtrl = S
             .Validator<IntegerValidator<float>>(
                &mValue, NumValidatorStyle::DEFAULT, -50.0, 50.0)
+            .AddTextBox({}, wxEmptyString, 15);
+      }
+      else if(style == PERCENT_SLIDER)
+      {
+         mTextCtrl = S
+            .Validator<IntegerValidator<float>>(
+               &mValue, NumValidatorStyle::DEFAULT, 0.0, 100.0)
             .AddTextBox({}, wxEmptyString, 15);
       }
       else
@@ -344,7 +341,7 @@ SliderDialog::~SliderDialog()
 bool SliderDialog::TransferDataToWindow()
 {
    float value = mSlider->Get(false);
-   mValue = mStyle == PAN_SLIDER
+   mValue = mStyle == PAN_SLIDER || mStyle == PERCENT_SLIDER
       ? value * 100.0
       : value;
    mTextCtrl->GetValidator()->TransferToWindow();
@@ -364,7 +361,7 @@ bool SliderDialog::TransferDataFromWindow()
       float value = mValue;
       if (mStyle == DB_SLIDER)
          value = DB_TO_LINEAR(value);
-      else if (mStyle == PAN_SLIDER)
+      else if (mStyle == PAN_SLIDER || mStyle == PERCENT_SLIDER)
          value /= 100.0;
       mSlider->Set(value);
       if (mpOrigin) {
@@ -489,12 +486,17 @@ LWSlider::LWSlider(wxWindow * parent,
                      float stepValue,
                      bool canUseShift,
                      int style,
+                     bool showlabels /* = true */,
+                     bool drawticks /* = true */,
+                     bool drawtrack /* = true */,
+                     bool alwayshidetip /* = false */,
                      bool heavyweight /* = false */,
                      bool popup /* = true */,
                      int orientation /* = wxHORIZONTAL */) // wxHORIZONTAL or wxVERTICAL. wxVERTICAL is currently only for DB_SLIDER.
 {
-   Init(parent, name, pos, size, minValue, maxValue,
-        stepValue, canUseShift, style, heavyweight, popup, 1.0, orientation);
+   Init(parent, name, pos, size, minValue, maxValue, stepValue,
+        canUseShift, style, showlabels, drawticks, drawtrack,
+        alwayshidetip, heavyweight, popup, 1.0, orientation);
 }
 
 // Construct predefined slider
@@ -503,6 +505,10 @@ LWSlider::LWSlider(wxWindow *parent,
                    const wxPoint &pos,
                    const wxSize &size,
                    int style,
+                   bool showlabels /* = true */,
+                   bool drawticks /* = true */,
+                   bool drawtrack /* = true */,
+                   bool alwayshidetip /* = false */,
                    bool heavyweight /* = false */,
                    bool popup /* = true */,
                    int orientation /* = wxHORIZONTAL */) // wxHORIZONTAL or wxVERTICAL. wxVERTICAL is currently only for DB_SLIDER.
@@ -530,23 +536,22 @@ LWSlider::LWSlider(wxWindow *parent,
       speed = 0.5;
       break;
    case FRAC_SLIDER:
+   case PERCENT_SLIDER:
       minValue = 0.0f;
       maxValue = 1.0f;
       stepValue = STEP_CONTINUOUS;
       break;
    case SPEED_SLIDER:
       minValue = 0.01f;
-      maxValue = 3.0f;
+      maxValue = 3.000f;
       stepValue = STEP_CONTINUOUS;
       break;
-#ifdef EXPERIMENTAL_MIDI_OUT
    case VEL_SLIDER:
       minValue = VEL_MIN;
       maxValue = VEL_MAX;
       stepValue = 1.0f;
       speed = 0.5;
       break;
-#endif
    default:
       minValue = 0.0f;
       maxValue = 1.0f;
@@ -555,7 +560,8 @@ LWSlider::LWSlider(wxWindow *parent,
    }
 
    Init(parent, name, pos, size, minValue, maxValue, stepValue,
-        true, style, heavyweight, popup, speed, orientation);
+        true, style, showlabels, drawticks, drawtrack, alwayshidetip,
+        heavyweight, popup, speed, orientation);
 }
 
 void LWSlider::Init(wxWindow * parent,
@@ -567,6 +573,10 @@ void LWSlider::Init(wxWindow * parent,
                     float stepValue,
                     bool canUseShift,
                     int style,
+                    bool showlabels,
+                    bool drawticks,
+                    bool drawtrack,
+                    bool alwayshidetip,
                     bool heavyweight,
                     bool popup,
                     float speed,
@@ -578,6 +588,10 @@ void LWSlider::Init(wxWindow * parent,
    mOrientation = orientation;
    mIsDragging = false;
    mParent = parent;
+   mShowLabels = showlabels;
+   mDrawTicks = drawticks;
+   mDrawTrack = drawtrack;
+   mAlwaysHideTip = alwayshidetip;
    mHW = heavyweight;
    mPopup = popup;
    mSpeed = speed;
@@ -594,11 +608,12 @@ void LWSlider::Init(wxWindow * parent,
    mThumbBitmapHilited = nullptr;
    mScrollLine = 1.0f;
    mScrollPage = 5.0f;
-   mTipPanel = NULL;
 
    AdjustSize(size);
 
    Move(pos);
+
+   CreatePopWin();
 }
 
 LWSlider::~LWSlider()
@@ -613,6 +628,17 @@ wxWindowID LWSlider::GetId()
 void LWSlider::SetId(wxWindowID id)
 {
    mID = id;
+}
+
+void LWSlider::SetName(const TranslatableString& name)
+{
+   mName = name;
+   if(mTipPanel)
+   {
+      mTipPanel->Destroy();
+      mTipPanel = nullptr;
+   }
+   CreatePopWin();
 }
 
 void LWSlider::SetDefaultValue(float value)
@@ -655,13 +681,27 @@ void LWSlider::AdjustSize(const wxSize & sz)
    mThumbWidth = 11;
    mThumbHeight = 20;
 
-   if (mOrientation == wxHORIZONTAL)
+   if (mShowLabels || mDrawTicks)
    {
-      mCenterY = mHeight - 9;
+      if (mOrientation == wxHORIZONTAL)
+      {
+         mCenterY = mHeight - 9;
+      }
+      else
+      {
+         mCenterX = mWidth - 9;
+      }
    }
    else
    {
-      mCenterX = mWidth - 9;
+      if (mOrientation == wxHORIZONTAL)
+      {
+         mCenterY = mHeight / 2;
+      }
+      else
+      {
+         mCenterX = mWidth / 2;
+      }
    }
 
    if (mOrientation == wxHORIZONTAL)
@@ -716,7 +756,7 @@ void LWSlider::OnPaint(wxDC &dc, bool highlight)
    }
    else
    {
-      // TODO: Don't use pixel-count hack in positioning.  
+      // TODO: Don't use pixel-count hack in positioning.
       dc.DrawBitmap(thumbBitmap, mLeft+thumbOrtho-5, mTop+thumbPos, true);
    }
 
@@ -766,58 +806,64 @@ void LWSlider::DrawToBitmap(wxDC & paintDC)
    // Draw the line along which the thumb moves.
    AColor::UseThemeColour(&dc, clrSliderMain );
 
-   if (mOrientation == wxHORIZONTAL)
+   if (mDrawTrack)
    {
-      AColor::Line(dc, mLeftX, mCenterY, mRightX+2, mCenterY);
-      AColor::Line(dc, mLeftX, mCenterY+1, mRightX+2, mCenterY+1);
-   }
-   else 
-   {
-      AColor::Line(dc, mCenterX, mTopY, mCenterX, mBottomY+2);
-      AColor::Line(dc, mCenterX+1, mTopY, mCenterX+1, mBottomY+2);
-   }
-
-   // Draw +/- or L/R first.  We need to draw these before the tick marks.
-   if (mStyle == PAN_SLIDER)
-   {
-      //VJ Vertical PAN_SLIDER currently not handled, forced to horizontal.
-
-      // sliderFontSize is for the tooltip.
-      // we need something smaller here...
-      wxFont labelFont(7, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-      dc.SetFont(labelFont);
-
-      // Color
-      dc.SetTextForeground( theTheme.Colour( clrTrackPanelText ));
-
-      /* i18n-hint: One-letter abbreviation for Left, in the Pan slider */
-      dc.DrawText(_("L"), mLeftX, 0);
-
-      /* i18n-hint: One-letter abbreviation for Right, in the Pan slider */
-      dc.DrawText(_("R"), mRightX - dc.GetTextExtent(_("R")).GetWidth(), 0);
-   }
-   else
-   {
-      // draw the '-' and the '+'
-      // These are drawn with lines, rather tha nwith a font.
-      AColor::UseThemeColour(&dc, clrTrackPanelText );
-
       if (mOrientation == wxHORIZONTAL)
       {
-         AColor::Line(dc, mLeftX, mCenterY-10, mLeftX+4, mCenterY-10);
-         AColor::Line(dc, mRightX-5, mCenterY-10, mRightX-1, mCenterY-10);
-         AColor::Line(dc, mRightX-3, mCenterY-12, mRightX-3, mCenterY-8);
+         AColor::Line(dc, mLeftX, mCenterY, mRightX+2, mCenterY);
+         AColor::Line(dc, mLeftX, mCenterY+1, mRightX+2, mCenterY+1);
       }
       else
       {
-         // Vertical DB_SLIDER is for gain slider in MixerBoard.
-         // We use a Ruler instead of marks & ticks.
-         // Draw '+' and '-' only for other vertical sliders.
-         if (mStyle != DB_SLIDER)
+         AColor::Line(dc, mCenterX, mTopY, mCenterX, mBottomY+2);
+         AColor::Line(dc, mCenterX+1, mTopY, mCenterX+1, mBottomY+2);
+      }
+   }
+
+   if (mShowLabels)
+   {
+      // Draw +/- or L/R first.  We need to draw these before the tick marks.
+      if (mStyle == PAN_SLIDER)
+      {
+         //VJ Vertical PAN_SLIDER currently not handled, forced to horizontal.
+
+         // sliderFontSize is for the tooltip.
+         // we need something smaller here...
+         wxFont labelFont(7, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+         dc.SetFont(labelFont);
+
+         // Color
+         dc.SetTextForeground(theTheme.Colour(clrTrackPanelText));
+
+         /* i18n-hint: One-letter abbreviation for Left, in the Pan slider */
+         dc.DrawText(_("L"), mLeftX, 0);
+
+         /* i18n-hint: One-letter abbreviation for Right, in the Pan slider */
+         dc.DrawText(_("R"), mRightX - dc.GetTextExtent(_("R")).GetWidth(), 0);
+      }
+      else
+      {
+         // draw the '-' and the '+'
+         // These are drawn with lines, rather tha nwith a font.
+         AColor::UseThemeColour(&dc, clrTrackPanelText);
+
+         if (mOrientation == wxHORIZONTAL)
          {
-            AColor::Line(dc, mCenterX-12, mBottomY-3,  mCenterX-8, mBottomY-3);
-            AColor::Line(dc, mCenterX-12, mTopY+3,     mCenterX-8, mTopY+3);
-            AColor::Line(dc, mCenterX-10, mTopY,       mCenterX-10, mTopY+5);
+            AColor::Line(dc, mLeftX, mCenterY-10, mLeftX+4, mCenterY-10);
+            AColor::Line(dc, mRightX-5, mCenterY-10, mRightX-1, mCenterY-10);
+            AColor::Line(dc, mRightX-3, mCenterY-12, mRightX-3, mCenterY-8);
+         }
+         else
+         {
+            // Vertical DB_SLIDER is for gain slider in MixerBoard.
+            // We use a Ruler instead of marks & ticks.
+            // Draw '+' and '-' only for other vertical sliders.
+            if (mStyle != DB_SLIDER)
+            {
+               AColor::Line(dc, mCenterX-12, mBottomY-3, mCenterX-8, mBottomY-3);
+               AColor::Line(dc, mCenterX-12, mTopY+3, mCenterX-8, mTopY+3);
+               AColor::Line(dc, mCenterX-10, mTopY, mCenterX-10, mTopY+5);
+            }
          }
       }
    }
@@ -826,7 +872,7 @@ void LWSlider::DrawToBitmap(wxDC & paintDC)
    wxColour TickColour = theTheme.Colour( clrSliderLight );
    bool bTicks = TickColour != wxColour(60,60,60);
 
-   if( bTicks ) {
+   if( mDrawTicks && bTicks ) {
       // tick marks
       int divs = 10;
       double upp;
@@ -897,36 +943,26 @@ void LWSlider::SetToolTipTemplate(const TranslatableString & tip)
 
 void LWSlider::ShowTip(bool show)
 {
-   if (show)
+   if(!mTipPanel)
+      return;
+
+   if(show)
    {
-      if (mTipPanel)
-      {
-         if (mTipPanel->IsShownOnScreen())
-         {
-            return;
-         }
-
-         mTipPanel.reset();
-      }
-
-      CreatePopWin();
-      FormatPopWin();
+      mTipPanel->SetLabel(GetTip(mCurrentValue));
       SetPopWinPosition();
-      mTipPanel->Show();
+      mTipPanel->ShowWithoutActivating();
    }
    else
-   {
-      if (mTipPanel)
-      {
-         mTipPanel->Hide();
-         mTipPanel.reset();
-      }
-   }
+      mTipPanel->Hide();
 }
 
 void LWSlider::CreatePopWin()
 {
-   mTipPanel = std::make_unique<TipWindow>(mParent, GetWidestTips());
+   if(mTipPanel || mAlwaysHideTip || mParent == nullptr)
+      return;
+
+   mTipPanel = safenew TipWindow(mParent, GetWidestTips());
+   mTipPanel->Hide();
 }
 
 void LWSlider::SetPopWinPosition()
@@ -975,6 +1011,9 @@ TranslatableString LWSlider::GetTip(float value) const
       case FRAC_SLIDER:
          val = Verbatim("%.2f").Format( value );
          break;
+      case PERCENT_SLIDER:
+         val = Verbatim("%.0f%%").Format(value * 100.0f);
+         break;
 
       case DB_SLIDER:
          /* i18n-hint dB abbreviates decibels */
@@ -1000,10 +1039,9 @@ TranslatableString LWSlider::GetTip(float value) const
 
       case SPEED_SLIDER:
          /* i18n-hint: "x" suggests a multiplicative factor */
-         val = XO("%.2fx").Format( value );
+         val = XO("%.3fx").Format( value );
          break;
 
-#ifdef EXPERIMENTAL_MIDI_OUT
       case VEL_SLIDER:
          if (value > 0.0f)
             // Signed
@@ -1012,11 +1050,15 @@ TranslatableString LWSlider::GetTip(float value) const
             // Zero, or signed negative
             val = Verbatim("%d").Format( (int) value );
          break;
-#endif
       }
 
-      /* i18n-hint: An item name followed by a value, with appropriate separating punctuation */
-      label = XO("%s: %s").Format( mName, val );
+      if(!mName.empty())
+      {
+         /* i18n-hint: An item name followed by a value, with appropriate separating punctuation */
+         label = XO("%s: %s").Format( mName, val );
+      }
+      else
+         label = val;
    }
    else
    {
@@ -1042,6 +1084,9 @@ TranslatableStrings LWSlider::GetWidestTips() const
          results.push_back( GetTip( +1.99f ) );
          break;
 
+      case PERCENT_SLIDER:
+         results.push_back(GetTip(1.0f));
+
       case DB_SLIDER:
          results.push_back( GetTip( -99.9f ) );
          results.push_back( GetTip( +99.9f ) );
@@ -1059,11 +1104,9 @@ TranslatableStrings LWSlider::GetWidestTips() const
          results.push_back( GetTip( 9.99f ) );
          break;
 
-#ifdef EXPERIMENTAL_MIDI_OUT
       case VEL_SLIDER:
           results.push_back( GetTip( 999.f ) );
           break;
-#endif
       }
    }
    else
@@ -1093,23 +1136,42 @@ bool LWSlider::DoShowDialog(wxPoint pos)
                      wxID_ANY,
                      mName,
                      pos,
-                     // Bug 2087.  std::min takes care of case where
+                     // Bug 2087.  wxMin takes care of case where
                      // slider is vertical (tall and narrow)
-                     wxSize( mWidth, std::min( mWidth, mHeight) ),
+                     wxSize( mWidth, wxMin( mWidth, mHeight) ),
                      mStyle,
                      Get(),
                      mScrollLine,
                      mScrollPage,
                      this);
    if (pos == wxPoint(-1, -1)) {
-      dlg.Center();
+      dlg.CenterOnParent();
+      pos = dlg.GetPosition();
    }
-   
+   wxRect screenRect = wxDisplay(wxDisplay::GetFromPoint(pos)).GetClientArea();
+   int screenOffset = 8;
+   int dlgWidth = dlg.GetSize().GetWidth();
+   int dlgHeight = dlg.GetSize().GetHeight();
+
+   if (pos.x + dlgWidth > screenRect.GetRight()) {
+      pos.x = screenRect.GetRight() - dlgWidth - screenOffset;
+   }
+   if (pos.x < screenRect.GetLeft()) {
+      pos.x = screenRect.GetLeft() + screenOffset;
+   }
+   if (pos.y + dlgHeight > screenRect.GetBottom()) {
+      pos.y = screenRect.GetBottom() - dlgHeight - screenOffset;
+   }
+   if (pos.y < screenRect.GetTop()) {
+      pos.y = screenRect.GetTop() + screenOffset;
+   }
+   dlg.SetPosition(pos);
+
    changed = (dlg.ShowModal() == wxID_OK);
    if( changed )
       value = dlg.Get();
 
-   // We now expect the pop up dialog to be 
+   // We now expect the pop up dialog to be
    // sending updates as we go.
    // So this code is needed to possibly restore the old
    // value, on a cancel.
@@ -1117,7 +1179,7 @@ bool LWSlider::DoShowDialog(wxPoint pos)
       mCurrentValue = value;
       SendUpdate(value);
    }
-   
+
    return changed;
 }
 
@@ -1298,30 +1360,36 @@ void LWSlider::OnKeyDown(wxKeyEvent & event)
          case WXK_UP:
             Increase( mScrollLine );
             SendUpdate( mCurrentValue );
+            ShowTip(true);
             break;
 
          case WXK_LEFT:
          case WXK_DOWN:
             Decrease( mScrollLine );
             SendUpdate( mCurrentValue );
+            ShowTip(true);
             break;
 
          case WXK_PAGEUP:
             Increase( mScrollPage );
             SendUpdate( mCurrentValue );
+            ShowTip(true);
             break;
 
          case WXK_PAGEDOWN:
             Decrease( mScrollPage );
             SendUpdate( mCurrentValue );
+            ShowTip(true);
             break;
 
          case WXK_HOME:
             SendUpdate( mMinValue );
+            ShowTip(true);
             break;
 
          case WXK_END:
             SendUpdate( mMaxValue );
+            ShowTip(true);
             break;
 
          case WXK_RETURN:
@@ -1332,6 +1400,7 @@ void LWSlider::OnKeyDown(wxKeyEvent & event)
                if (def && def->IsEnabled()) {
                   wxCommandEvent cevent(wxEVT_COMMAND_BUTTON_CLICKED,
                         def->GetId());
+                  cevent.SetEventObject( def );
                   mParent->GetEventHandler()->ProcessEvent(cevent);
                }
             }
@@ -1346,6 +1415,15 @@ void LWSlider::OnKeyDown(wxKeyEvent & event)
    {
       event.Skip();
    }
+}
+
+void LWSlider::SetParent(wxWindow* parent)
+{
+   mParent = parent;
+   //VS: create pop win if there is no one, don't re-parent
+   //as it seem to be a workaround for DC drawing purposes
+   //(see `WaveTrackControls::GainSlider`)
+   CreatePopWin();
 }
 
 void LWSlider::SendUpdate( float newValue )
@@ -1370,6 +1448,33 @@ void LWSlider::SendUpdate( float newValue )
    e.SetInt( intValue );
    mParent->GetEventHandler()->ProcessEvent(e);
 }
+
+wxString LWSlider::GetStringValue() const
+{
+   switch(mStyle)
+   {
+   case FRAC_SLIDER:
+      return wxString::Format(wxT("%.0f"), mCurrentValue * 100);
+   case PERCENT_SLIDER:
+      return wxString::Format(wxT("%.0f%%"), mCurrentValue * 100.0f);
+   case DB_SLIDER:
+      return wxString::Format(wxT("%.0f"), mCurrentValue);
+   case PAN_SLIDER:
+      return wxString::Format(wxT("%.0f"), mCurrentValue * 100);
+   case SPEED_SLIDER:
+      return wxString::Format(wxT("%.0f"), mCurrentValue * 100 );
+   case VEL_SLIDER:
+      return wxString::Format(wxT("%.0f"), mCurrentValue);
+   default:
+      return {};
+   }
+}
+
+void LWSlider::OnKillFocus()
+{
+   ShowTip(false);
+}
+
 
 int LWSlider::ValueToPosition(float val)
 {
@@ -1583,6 +1688,7 @@ BEGIN_EVENT_TABLE(ASlider, wxPanel)
    EVT_MOUSE_CAPTURE_LOST(ASlider::OnCaptureLost)
    EVT_PAINT(ASlider::OnPaint)
    EVT_SIZE(ASlider::OnSize)
+   EVT_ERASE_BACKGROUND(ASlider::OnErase)
    EVT_SLIDER(wxID_ANY, ASlider::OnSlider)
    EVT_SET_FOCUS(ASlider::OnSetFocus)
    EVT_KILL_FOCUS(ASlider::OnKillFocus)
@@ -1599,13 +1705,16 @@ ASlider::ASlider( wxWindow * parent,
 {
    //wxColour Col(parent->GetBackgroundColour());
    //SetBackgroundColour( Col );
-   SetBackgroundStyle(wxBG_STYLE_SYSTEM);
    SetBackgroundColour( theTheme.Colour( clrMedium ) );
    mLWSlider = std::make_unique<LWSlider>( this,
                              name,
                              wxPoint(0,0),
                              size,
                              options.style,
+                             options.showLabels,
+                             options.drawTicks,
+                             options.drawTrack,
+                             options.alwaysHideTip,
                              true, // ASlider is always a heavyweight LWSlider
                              options.popup,
                              options.orientation);
@@ -1665,7 +1774,12 @@ void ASlider::OnSize(wxSizeEvent &event)
    mLWSlider->OnSize( event );
 }
 
-void ASlider::OnPaint(wxPaintEvent & /* event */)
+void ASlider::OnErase(wxEraseEvent & WXUNUSED(event))
+{
+   // Ignore it to prevent flashing
+}
+
+void ASlider::OnPaint(wxPaintEvent & WXUNUSED(event))
 {
    wxBufferedPaintDC dc(this);
 
@@ -1699,7 +1813,7 @@ void ASlider::OnMouseEvent(wxMouseEvent &event)
    mLWSlider->OnMouseEvent(event);
 }
 
-void ASlider::OnCaptureLost(wxMouseCaptureLostEvent & /* event */)
+void ASlider::OnCaptureLost(wxMouseCaptureLostEvent & WXUNUSED(event))
 {
    wxMouseEvent e(wxEVT_LEFT_UP);
    mLWSlider->OnMouseEvent(e);
@@ -1710,19 +1824,20 @@ void ASlider::OnKeyDown(wxKeyEvent &event)
    mLWSlider->OnKeyDown(event);
 }
 
-void ASlider::OnSetFocus(wxFocusEvent & /* event */)
+void ASlider::OnSetFocus(wxFocusEvent & WXUNUSED(event))
 {
    mSliderIsFocused = true;
    Refresh();
 }
 
-void ASlider::OnKillFocus(wxFocusEvent & /* event */)
+void ASlider::OnKillFocus(wxFocusEvent & WXUNUSED(event))
 {
+   mLWSlider->OnKillFocus();
    mSliderIsFocused = false;
    Refresh();
 }
 
-void ASlider::OnTimer(wxTimerEvent & /* event */)
+void ASlider::OnTimer(wxTimerEvent & WXUNUSED(event))
 {
    mLWSlider->ShowTip(true);
 }
@@ -1846,7 +1961,7 @@ wxAccStatus ASliderAx::GetChildCount(int* childCount)
 // The retrieved string describes the action that is performed on an object,
 // not what the object does as a result. For example, a toolbar button that prints
 // a document has a default action of "Press" rather than "Prints the current document."
-wxAccStatus ASliderAx::GetDefaultAction( int /* childId */, wxString *actionName )
+wxAccStatus ASliderAx::GetDefaultAction( int WXUNUSED(childId), wxString *actionName )
 {
    actionName->clear();
 
@@ -1854,7 +1969,7 @@ wxAccStatus ASliderAx::GetDefaultAction( int /* childId */, wxString *actionName
 }
 
 // Returns the description for this object or a child.
-wxAccStatus ASliderAx::GetDescription( int /* childId */, wxString *description )
+wxAccStatus ASliderAx::GetDescription( int WXUNUSED(childId), wxString *description )
 {
    description->clear();
 
@@ -1874,7 +1989,7 @@ wxAccStatus ASliderAx::GetFocus(int* childId, wxAccessible** child)
 }
 
 // Returns help text for this object or a child, similar to tooltip text.
-wxAccStatus ASliderAx::GetHelpText( int /* childId */, wxString *helpText )
+wxAccStatus ASliderAx::GetHelpText( int WXUNUSED(childId), wxString *helpText )
 {
    helpText->clear();
 
@@ -1883,7 +1998,7 @@ wxAccStatus ASliderAx::GetHelpText( int /* childId */, wxString *helpText )
 
 // Returns the keyboard shortcut for this object or child.
 // Return e.g. ALT+K
-wxAccStatus ASliderAx::GetKeyboardShortcut( int /* childId */, wxString *shortcut )
+wxAccStatus ASliderAx::GetKeyboardShortcut( int WXUNUSED(childId), wxString *shortcut )
 {
    shortcut->clear();
 
@@ -1892,7 +2007,7 @@ wxAccStatus ASliderAx::GetKeyboardShortcut( int /* childId */, wxString *shortcu
 
 // Returns the rectangle for this object (id = 0) or a child element (id > 0).
 // rect is in screen coordinates.
-wxAccStatus ASliderAx::GetLocation( wxRect& rect, int /* elementId */ )
+wxAccStatus ASliderAx::GetLocation( wxRect& rect, int WXUNUSED(elementId) )
 {
    ASlider *as = wxDynamicCast( GetWindow(), ASlider );
 
@@ -1903,7 +2018,7 @@ wxAccStatus ASliderAx::GetLocation( wxRect& rect, int /* elementId */ )
 }
 
 // Gets the name of the specified object.
-wxAccStatus ASliderAx::GetName(int /* childId */, wxString* name)
+wxAccStatus ASliderAx::GetName(int WXUNUSED(childId), wxString* name)
 {
    ASlider *as = wxDynamicCast( GetWindow(), ASlider );
 
@@ -1942,7 +2057,7 @@ wxAccStatus ASliderAx::GetRole(int childId, wxAccRole* role)
 // - an integer representing the selected child element,
 //   or 0 if this object is selected (GetType() == wxT("long"))
 // - a "void*" pointer to a wxAccessible child object
-wxAccStatus ASliderAx::GetSelections( wxVariant * /* selections */ )
+wxAccStatus ASliderAx::GetSelections( wxVariant * WXUNUSED(selections) )
 {
    return wxACC_NOT_IMPLEMENTED;
 }
@@ -1988,32 +2103,9 @@ wxAccStatus ASliderAx::GetValue(int childId, wxString* strValue)
 
    if ( childId == 0 )
    {
-      switch( as->mLWSlider->mStyle )
-      {
-         case FRAC_SLIDER:
-            strValue->Printf( wxT("%.0f"), as->mLWSlider->mCurrentValue * 100 );
-            break;
-
-         case DB_SLIDER:
-            strValue->Printf( wxT("%.0f"), as->mLWSlider->mCurrentValue );
-            break;
-
-         case PAN_SLIDER:
-            strValue->Printf( wxT("%.0f"), as->mLWSlider->mCurrentValue * 100 );
-            break;
-
-         case SPEED_SLIDER:
-            strValue->Printf( wxT("%.0f"), as->mLWSlider->mCurrentValue * 100 );
-            break;
-#ifdef EXPERIMENTAL_MIDI_OUT
-         case VEL_SLIDER:
-            strValue->Printf( wxT("%.0f"), as->mLWSlider->mCurrentValue);
-            break;
-#endif
-      }
+      *strValue = as->mLWSlider->GetStringValue();
       return wxACC_OK;
    }
-
    return wxACC_NOT_SUPPORTED;
 }
 

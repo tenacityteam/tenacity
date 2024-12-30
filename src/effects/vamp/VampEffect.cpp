@@ -10,38 +10,33 @@
   http://www.vamp-plugins.org/
 
 **********************************************************************/
-
-
-
 #if defined(USE_VAMP)
 #include "VampEffect.h"
+#include "AnalysisTracks.h"
+#include "../EffectEditor.h"
 
 #include <vamp-hostsdk/Plugin.h>
 #include <vamp-hostsdk/PluginChannelAdapter.h>
 #include <vamp-hostsdk/PluginInputDomainAdapter.h>
 
 #include <wx/wxprec.h>
-#include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/choice.h>
 #include <wx/combobox.h>
-#include <wx/sizer.h>
 #include <wx/slider.h>
 #include <wx/statbox.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/tokenzr.h>
-#include <wx/intl.h>
 #include <wx/scrolwin.h>
 #include <wx/version.h>
 
 
-#include "../../shuttle/ShuttleGui.h"
+#include "ShuttleGui.h"
 #include "../../widgets/valnum.h"
-#include "../../widgets/AudacityMessageBox.h"
+#include "AudacityMessageBox.h"
 
-#include "../../LabelTrack.h"
-#include "../../WaveTrack.h"
+#include "LabelTrack.h"
+#include "WaveTrack.h"
 
 enum
 {
@@ -75,8 +70,8 @@ VampEffect::VampEffect(std::unique_ptr<Vamp::Plugin> &&plugin,
    mHasParameters(hasParameters),
    mRate(0)
 {
-   mKey = mPath.BeforeLast(wxT('/')).ToUTF8();
-   mName = mPath.AfterLast(wxT('/'));
+   mKey = mPath.BeforeFirst(wxT('/')).ToUTF8();
+   mName = mPath.AfterFirst(wxT('/'));
 }
 
 VampEffect::~VampEffect()
@@ -87,27 +82,27 @@ VampEffect::~VampEffect()
 // ComponentInterface implementation
 // ============================================================================
 
-PluginPath VampEffect::GetPath()
+PluginPath VampEffect::GetPath() const
 {
    return mPath;
 }
 
-ComponentInterfaceSymbol VampEffect::GetSymbol()
+ComponentInterfaceSymbol VampEffect::GetSymbol() const
 {
    return mName;
 }
 
-VendorSymbol VampEffect::GetVendor()
+VendorSymbol VampEffect::GetVendor() const
 {
    return { wxString::FromUTF8(mPlugin->getMaker().c_str()) };
 }
 
-wxString VampEffect::GetVersion()
+wxString VampEffect::GetVersion() const
 {
    return wxString::Format(wxT("%d"), mPlugin->getPluginVersion());
 }
 
-TranslatableString VampEffect::GetDescription()
+TranslatableString VampEffect::GetDescription() const
 {
    return Verbatim(
       wxString::FromUTF8(mPlugin->getCopyright().c_str()) );
@@ -117,35 +112,33 @@ TranslatableString VampEffect::GetDescription()
 // EffectDefinitionInterface implementation
 // ============================================================================
 
-EffectType VampEffect::GetType()
+EffectType VampEffect::GetType() const
 {
    return EffectTypeAnalyze;
 }
 
-EffectFamilySymbol VampEffect::GetFamily()
+EffectFamilySymbol VampEffect::GetFamily() const
 {
    return VAMPEFFECTS_FAMILY;
 }
 
-bool VampEffect::IsInteractive()
+bool VampEffect::IsInteractive() const
 {
    return mHasParameters;
 }
 
-bool VampEffect::IsDefault()
+bool VampEffect::IsDefault() const
 {
    return false;
 }
 
-
-// EffectProcessor implementation
-
-unsigned VampEffect::GetAudioInCount()
+unsigned VampEffect::GetAudioInCount() const
 {
    return mPlugin->getMaxChannelCount();
 }
 
-bool VampEffect::GetAutomationParameters(CommandParameters & parms)
+bool VampEffect::SaveSettings(
+   const EffectSettings &, CommandParameters & parms) const
 {
    for (size_t p = 0, paramCount = mParameters.size(); p < paramCount; p++)
    {
@@ -191,7 +184,8 @@ bool VampEffect::GetAutomationParameters(CommandParameters & parms)
    return true;
 }
 
-bool VampEffect::SetAutomationParameters(CommandParameters & parms)
+bool VampEffect::LoadSettings(
+   const CommandParameters & parms, EffectSettings &settings) const
 {
    // First pass verifies values
    for (size_t p = 0, paramCount = mParameters.size(); p < paramCount; p++)
@@ -300,33 +294,13 @@ bool VampEffect::Init()
 {
    mRate = 0.0;
 
-   // PRL: this loop checked that channels of a track have the same rate,
-   // but there was no check that all tracks have one rate, and only the first
+   // PRL: There is no check that all tracks have one rate, and only the first
    // is remembered in mRate.  Is that correct?
 
-   for (auto leader : inputTracks()->Leaders<const WaveTrack>()) {
-      auto channelGroup = TrackList::Channels( leader );
-      auto rate = (*channelGroup.first++) -> GetRate();
-      for(auto channel : channelGroup) {
-         if (rate != channel->GetRate())
-         // PRL:  Track rate might not match individual clip rates.
-         // So is this check not adequate?
-          {
-             // TODO: more-than-two-channels-message
-             Effect::MessageBox(
-                XO(
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual channels of the track do not match.") );
-             return false;
-         }
-      }
-      if (mRate == 0.0)
-         mRate = rate;
-   }
-
-   if (mRate <= 0.0)
-   {
+   if (inputTracks()->empty())
       mRate = mProjectRate;
-   }
+   else
+      mRate = (*inputTracks()->Any<const WaveTrack>().begin())->GetRate();
 
    // The plugin must be reloaded to allow changing parameters
 
@@ -334,14 +308,15 @@ bool VampEffect::Init()
    mPlugin.reset(loader->loadPlugin(mKey, mRate, Vamp::HostExt::PluginLoader::ADAPT_ALL));
    if (!mPlugin)
    {
-      Effect::MessageBox( XO("Sorry, failed to load Vamp Plug-in.") );
+      EffectUIServices::DoMessageBox(*this,
+         XO("Sorry, failed to load Vamp Plug-in."));
       return false;
    }
 
    return true;
 }
 
-bool VampEffect::Process()
+bool VampEffect::Process(EffectInstance &, EffectSettings &)
 {
    if (!mPlugin)
    {
@@ -362,24 +337,24 @@ bool VampEffect::Process()
       multiple = true;
    }
 
-   std::vector<std::shared_ptr<Effect::AddedAnalysisTrack>> addedTracks;
+   std::vector<std::shared_ptr<AddedAnalysisTrack>> addedTracks;
 
-   for (auto leader : inputTracks()->Leaders<const WaveTrack>())
+   for (auto pTrack : inputTracks()->Any<const WaveTrack>())
    {
-      auto channelGroup = TrackList::Channels(leader);
+      auto channelGroup = pTrack->Channels();
       auto left = *channelGroup.first++;
 
       unsigned channels = 1;
 
       // channelGroup now contains all but the first channel
-      const WaveTrack *right =
+      const auto right =
          channelGroup.size() ? *channelGroup.first++ : nullptr;
       if (right)
          channels = 2;
 
       sampleCount start = 0;
       sampleCount len = 0;
-      GetBounds(*left, right, &start, &len);
+      GetBounds(*pTrack, &start, &len);
 
       // TODO: more-than-two-channels
 
@@ -427,16 +402,16 @@ bool VampEffect::Process()
       {
          if (!mPlugin->initialise(channels, step, block))
          {
-            Effect::MessageBox(
-               XO("Sorry, Vamp Plug-in failed to initialize.") );
+            EffectUIServices::DoMessageBox(*this,
+               XO("Sorry, Vamp Plug-in failed to initialize."));
             return false;
          }
       }
 
       const auto effectName = GetSymbol().Translation();
-      addedTracks.push_back(AddAnalysisTrack(
+      addedTracks.push_back(AddAnalysisTrack(*this,
          multiple
-         ? wxString::Format( _("%s: %s"), left->GetName(), effectName )
+         ? wxString::Format( _("%s: %s"), pTrack->GetName(), effectName )
          : effectName
       ));
       LabelTrack *ltrack = addedTracks.back()->get();
@@ -452,14 +427,10 @@ bool VampEffect::Process()
          const auto request = limitSampleBufferSize( block, len );
 
          if (left)
-         {
             left->GetFloats(data[0].get(), pos, request);
-         }
 
          if (right)
-         {
             right->GetFloats(data[1].get(), pos, request);
-         }
 
          if (request < block)
          {
@@ -527,13 +498,11 @@ bool VampEffect::Process()
    return true;
 }
 
-void VampEffect::End()
+std::unique_ptr<EffectEditor> VampEffect::PopulateOrExchange(
+   ShuttleGui & S, EffectInstance &, EffectSettingsAccess &,
+   const EffectOutputs *)
 {
-   mPlugin.reset();
-}
-
-void VampEffect::PopulateOrExchange(ShuttleGui & S)
-{
+   mUIParent = S.GetParent();
    Vamp::Plugin::ProgramList programs = mPlugin->getPrograms();
 
    mParameters = mPlugin->getParameterDescriptors();
@@ -690,10 +659,10 @@ void VampEffect::PopulateOrExchange(ShuttleGui & S)
 
    scroller->SetScrollRate(0, 20);
 
-   return;
+   return nullptr;
 }
 
-bool VampEffect::TransferDataToWindow()
+bool VampEffect::TransferDataToWindow(const EffectSettings &)
 {
    if (!mUIParent->TransferDataToWindow())
    {
@@ -705,7 +674,7 @@ bool VampEffect::TransferDataToWindow()
    return true;
 }
 
-bool VampEffect::TransferDataFromWindow()
+bool VampEffect::TransferDataFromWindow(EffectSettings &)
 {
    if (!mUIParent->Validate() || !mUIParent->TransferDataFromWindow())
    {
