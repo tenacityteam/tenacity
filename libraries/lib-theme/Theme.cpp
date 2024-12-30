@@ -692,7 +692,7 @@ bool ThemeBase::CreateOneImageCache( teThemeType id, bool bBinarySave )
       if( !ImageCache.SaveFile( FileName, wxBITMAP_TYPE_PNG ))
       {
          ShowMessageBox(
-            XO("Audacity could not write file:\n  %s.")
+            XO("Tenacity could not write file:\n  %s.")
                .Format( FileName ));
          return false;
       }
@@ -710,14 +710,14 @@ bool ThemeBase::CreateOneImageCache( teThemeType id, bool bBinarySave )
       if( !OutStream.OpenFile( FileName ))
       {
          ShowMessageBox(
-            XO("Audacity could not open file:\n  %s\nfor writing.")
+            XO("Tenacity could not open file:\n  %s\nfor writing.")
                .Format( FileName ));
          return false;
       }
       if( !ImageCache.SaveFile(OutStream, wxBITMAP_TYPE_PNG ) )
       {
          ShowMessageBox(
-            XO("Audacity could not write images to file:\n  %s.")
+            XO("Tenacity could not write images to file:\n  %s.")
                .Format( FileName ));
          return false;
       }
@@ -866,7 +866,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          if( bOkIfNotFound )
             return false; // did not load the images, so return false.
          ShowMessageBox(
-            XO("Audacity could not find file:\n  %s.\nTheme not loaded.")
+            XO("Tenacity could not find file:\n  %s.\nTheme not loaded.")
                .Format( FileName ));
          return false;
       }
@@ -874,7 +874,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
       {
          ShowMessageBox(
             /* i18n-hint: Do not translate png.  It is the name of a file format.*/
-            XO("Audacity could not load file:\n  %s.\nBad png format perhaps?")
+            XO("Tenacity could not load file:\n  %s.\nBad png format perhaps?")
                .Format( FileName ));
          return false;
       }
@@ -910,7 +910,7 @@ bool ThemeBase::ReadImageCache( teThemeType type, bool bOkIfNotFound)
          // Or some experiment is being tried with NEW formats for it.
          ShowMessageBox(
             XO(
-"Audacity could not read its default theme.\nPlease report the problem."));
+"Tenacity could not read its default theme.\nPlease report the problem."));
          return false;
       }
       //wxLogDebug("Read %i by %i", ImageCache.GetWidth(), ImageCache.GetHeight() );
@@ -1001,7 +1001,7 @@ void ThemeBase::LoadOneThemeComponents( teThemeType id, bool bOkIfNotFound )
                ShowMessageBox(
                   XO(
                /* i18n-hint: Do not translate png.  It is the name of a file format.*/
-"Audacity could not load file:\n  %s.\nBad png format perhaps?")
+"Tenacity could not load file:\n  %s.\nBad png format perhaps?")
                      .Format( FileName ));
                return;
             }
@@ -1152,7 +1152,7 @@ bool ThemeBase::SaveOneThemeComponents( teThemeType id )
          if( !resources.mImages[i].SaveFile( FileName, wxBITMAP_TYPE_PNG ))
          {
             ShowMessageBox(
-               XO("Audacity could not save file:\n  %s")
+               XO("Tenacity could not save file:\n  %s")
                   .Format( FileName ));
             return false;
          }

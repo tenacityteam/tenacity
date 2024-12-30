@@ -454,7 +454,7 @@ auto HelpMenu()
       ),
 
       Section( "Extra",
-         Command( wxT("About"), XXO("&About Audacity"), OnAbout,
+         Command( wxT("About"), XXO("&About Tenacity"), OnAbout,
             AlwaysEnabledFlag )
       )
    ) };

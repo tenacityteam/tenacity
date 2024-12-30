@@ -207,17 +207,17 @@ void FileNames::MakeNameUnique(FilePaths &otherNames,
    otherNames.push_back(newName.GetFullName());
 }
 
-// The APP name has upercase first letter (so that Quit Audacity is correctly
+// The APP name has upercase first letter (so that Quit Tenacity is correctly
 // capitalised on Mac, but we want lower case APP name in paths.
 // This function does that substitution, IF the last component of
 // the path is 'Audacity'.
 wxString FileNames::LowerCaseAppNameInPath( const wxString & dirIn){
    wxString dir = dirIn;
    // BUG 1577 Capitalisation of Audacity in path...
-   if( dir.EndsWith( "Audacity" ) )
+   if( dir.EndsWith( "Tenacity" ) )
    {
-      int nChars = dir.length() - wxString( "Audacity" ).length();
-      dir = dir.Left( nChars ) + "audacity";
+      int nChars = dir.length() - wxString( "Tenacity" ).length();
+      dir = dir.Left( nChars ) + "tenacity";
    }
    return dir;
 }
@@ -382,7 +382,7 @@ FilePath FileNames::PlugInDir()
 
 FilePath FileNames::Configuration()
 {
-   return wxFileName( ConfigDir(), wxT("audacity.cfg") ).GetFullPath();
+   return wxFileName( ConfigDir(), wxT("tenacity.cfg") ).GetFullPath();
 }
 
 FilePath FileNames::PluginRegistry()

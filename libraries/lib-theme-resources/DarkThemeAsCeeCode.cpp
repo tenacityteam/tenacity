@@ -1,21 +1,26 @@
-/*!********************************************************************
+/**********************************************************************
  
- Audacity: A Digital Audio Editor
+  Tenacity
  
- @file DarkThemeAsCeeCode.cpp
+  @file DarkThemeAsCeeCode.cpp
  
- Paul Licameli split from Theme.cpp
+  Avery King
+
+  SPDX-License-Identifier: GPL-2.0-or-later
  
- **********************************************************************/
+***********************************************************************/
 
 #include <vector>
 #include "Theme.h"
 
 static const std::vector<unsigned char> ImageCacheAsData {
-// Include the generated file full of numbers
-#include "DarkThemeAsCeeCode.h"
+    // Include the generated file full of numbers
+    #include "DarkThemeAsCeeCode.h"
 };
 
 static ThemeBase::RegisteredTheme theme{
-   { "dark", XO("Dark") }, PreferredSystemAppearance::Dark, ImageCacheAsData
+    // i18n-hint: greater difference between foreground and background colors
+    { "dark", XO("Dark") },
+    PreferredSystemAppearance::Dark,
+    ImageCacheAsData
 };

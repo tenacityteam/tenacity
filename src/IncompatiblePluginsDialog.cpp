@@ -81,7 +81,7 @@ void IncompatiblePluginsDialog::SetPlugins(const std::vector<wxString>& plugins)
    if (m_scanType == ScanType::Startup)
    {
       mText->SetLabelText(XO(
-         "Audacity has found %d incompatible plugins which could "\
+         "Tenacity has found %d incompatible plugins which could "\
          "not be loaded. We have disabled these plugins to avoid any "\
          "stalling or crashes. If you would still like to attempt "\
          "to use these plugins, you can enable them using "\
@@ -91,7 +91,7 @@ void IncompatiblePluginsDialog::SetPlugins(const std::vector<wxString>& plugins)
    else
    {
       mText->SetLabelText(XO(
-         "Audacity has found %d incompatible plugins which could "\
+         "Tenacity has found %d incompatible plugins which could "\
          "not be loaded. We have disabled these plugins to avoid any "\
          "stalling or crashes.")
          .Format(static_cast<int>(plugins.size())).Translation());

@@ -112,9 +112,9 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
    S.StartStatic( {} );
    {
       S.AddFixedText(XO(
-"Modules are optional components of Audacity that enable some functionality, such as importing and exporting. \nIt is generally not necessary to change these settings.") );
+"Modules are optional components of Tenacity that enable some functionality, such as importing and exporting. \nIt is generally not necessary to change these settings.") );
       S.AddFixedText(XO(
-"Changes to these settings only take effect when restarting Audacity.\n") );
+"Changes to these settings only take effect when restarting Tenacity.\n") );
       {
         S.StartMultiColumn( 2 );
         int i;

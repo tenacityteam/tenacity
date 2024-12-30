@@ -6,7 +6,7 @@
 
 struct BUILTIN_EFFECTS_API DtmfSettings
 {
-   static constexpr wchar_t DefaultSequence[] = L"audacity";
+   static constexpr wchar_t DefaultSequence[] = L"tenacity";
    static constexpr double DefaultDutyCycle = 55.0;
    static constexpr double DefaultAmplitude = 0.8;
 

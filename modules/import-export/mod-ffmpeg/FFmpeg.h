@@ -33,7 +33,7 @@ bool LoadFFmpeg(bool showerror);
 
 bool FindFFmpegLibs(wxWindow* parent = nullptr);
 
-/// If Audacity failed to load libav*, this dialog
+/// If Tenacity failed to load libav*, this dialog
 /// shows up and tells user about that. It will pop-up
 /// again and again until it is disabled.
 class FFmpegNotFoundDialog final : public wxDialogWrapper

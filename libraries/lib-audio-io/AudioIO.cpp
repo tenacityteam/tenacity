@@ -744,7 +744,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 #if (defined(__WXMAC__) || defined(__WXMSW__)) && wxCHECK_VERSION(3,1,0)
    // Don't want the system to sleep while audio I/O is active
    if (mPortStreamV19 != NULL && mLastPaError == paNoError) {
-      wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Audacity Audio"));
+      wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Tenacity Audio"));
    }
 #endif
 

@@ -670,7 +670,7 @@ class GnomeShutdown
       const char *libgnome = "libgnome-2.so.0";
 #endif
 
-      mArgv[0].reset(strdup("Audacity"));
+      mArgv[0].reset(strdup("Tenacity"));
 
       mGnomeui = dlopen(libgnomeui, RTLD_NOW);
       if (!mGnomeui) {
@@ -742,7 +742,7 @@ static wxArrayString ofqueue;
 // of Audacity.
 //
 
-#define IPC_APPL wxT("audacity")
+#define IPC_APPL wxT("tenacity")
 #define IPC_TOPIC wxT("System")
 
 class IPCConn final : public wxConnection
@@ -1314,7 +1314,7 @@ void AudacityApp::OnInit0()
    if ( !ProjectFileIO::InitializeSQL() )
       this->CallAfter([]{
          ::AudacityMessageBox(
-            XO("SQLite library failed to initialize.  Audacity cannot continue.") );
+            XO("SQLite library failed to initialize.  Tenacity cannot continue.") );
          QuitAudacity( true );
       });
 
@@ -1513,7 +1513,7 @@ bool AudacityApp::InitPart2()
 
    if (parser->Found(wxT("v")))
    {
-      wxPrintf("Audacity v%s\n", TENACITY_VERSION_STRING);
+      wxPrintf("Tenacity v%s\n", TENACITY_VERSION_STRING);
       exit(0);
    }
 
@@ -1560,7 +1560,7 @@ bool AudacityApp::InitPart2()
       fileMenu->Append(wxID_NEW, wxString(_("&New")) + wxT("\tCtrl+N"));
       fileMenu->Append(wxID_OPEN, wxString(_("&Open...")) + wxT("\tCtrl+O"));
       fileMenu->AppendSubMenu(urecentMenu.release(), _("Open &Recent..."));
-      fileMenu->Append(wxID_ABOUT, _("&About Audacity..."));
+      fileMenu->Append(wxID_ABOUT, _("&About Tenacity..."));
       fileMenu->Append(wxID_PREFERENCES, wxString(_("&Preferences...")) + wxT("\tCtrl+,"));
 
       {
@@ -1714,7 +1714,7 @@ bool AudacityApp::InitPart2()
    bool permsReset = false;
    gPrefs->Read(wxT("/MicrophonePermissionsReset"), &permsReset, false);
    if (!permsReset) {
-      system("tccutil reset Microphone org.audacityteam.audacity");
+      system("tccutil reset Microphone org.tenacityaudio.tenacity");
       gPrefs->Write(wxT("/MicrophonePermissionsReset"), true);
    }
 #endif
@@ -1876,10 +1876,10 @@ bool AudacityApp::InitTempDir()
       // Failed
       if( !TempDirectory::IsTempDirectoryNameOK( tempFromPrefs ) ) {
          AudacityMessageBox(XO(
-"Audacity could not find a safe place to store temporary files.\nAudacity needs a place where automatic cleanup programs won't delete the temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
+"Tenacity could not find a safe place to store temporary files.\nAudacity needs a place where automatic cleanup programs won't delete the temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
       } else {
          AudacityMessageBox(XO(
-"Audacity could not find a place to store temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
+"Tenacity could not find a place to store temporary files.\nPlease enter an appropriate directory in the preferences dialog."));
       }
 
       // Only want one page of the preferences
@@ -1889,7 +1889,7 @@ bool AudacityApp::InitTempDir()
       dialog.ShowModal();
 
       AudacityMessageBox(XO(
-"Audacity is now going to exit. Please launch Audacity again to use the new temporary directory."));
+"Tenacity is now going to exit. Please launch Tenacity again to use the new temporary directory."));
       return false;
    }
 
@@ -1912,11 +1912,11 @@ bool AudacityApp::InitTempDir()
 
 bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
-   wxString name = wxString::Format(wxT("audacity-lock-%s"), wxGetUserId());
+   wxString name = wxString::Format(wxT("tenacity-lock-%s"), wxGetUserId());
    mChecker.reset();
    auto checker = std::make_unique<wxSingleInstanceChecker>();
 
-   auto runningTwoCopiesStr = XO("Running two copies of Audacity simultaneously may cause\ndata loss or cause your system to crash.\n\n");
+   auto runningTwoCopiesStr = XO("Running two copies of Tenacity simultaneously may cause\ndata loss or cause your system to crash.\n\n");
 
    if (!checker->Create(name, dir))
    {
@@ -1924,9 +1924,9 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // whether there is another instance running or not.
 
       auto prompt = XO(
-"Audacity was not able to lock the temporary files directory.\nThis folder may be in use by another copy of Audacity.\n")
+"Tenacity was not able to lock the temporary files directory.\nThis folder may be in use by another copy of Tenacity.\n")
          + runningTwoCopiesStr
-         + XO("Do you still want to start Audacity?");
+         + XO("Do you still want to start Tenacity?");
       int action = AudacityMessageBox(
          prompt,
          XO("Error Locking Temporary Folder"),
@@ -1946,7 +1946,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
 
       if (parser->Found(wxT("v")))
       {
-         wxPrintf("Audacity v%s\n", TENACITY_VERSION_STRING);
+         wxPrintf("Tenacity v%s\n", TENACITY_VERSION_STRING);
          return false;
       }
 
@@ -2013,12 +2013,12 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // There is another copy of Audacity running.  Force quit.
 
       auto prompt =  XO(
-"The system has detected that another copy of Audacity is running.\n")
+"The system has detected that another copy of Tenacity is running.\n")
          + runningTwoCopiesStr
          + XO(
-"Use the New or Open commands in the currently running Audacity\nprocess to open multiple projects simultaneously.\n");
+"Use the New or Open commands in the currently running Tenacity\nprocess to open multiple projects simultaneously.\n");
       AudacityMessageBox(
-         prompt, XO("Audacity is already running"),
+         prompt, XO("Tenacity is already running"),
          wxOK | wxICON_ERROR);
 
       return false;
@@ -2064,7 +2064,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
       AudacityMessageBox(
          XO("Unable to create shared memory segment.\n\n"
             "error code=%d : \"%s\".").Format(errno, strerror(errno)),
-         XO("Audacity Startup Failure"),
+         XO("Tenacity Startup Failure"),
          wxOK | wxICON_ERROR);
 
       return false;
@@ -2103,7 +2103,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
             XO("Unable to acquire semaphores.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Audacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR);
 
          return false;
@@ -2119,7 +2119,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
          XO("Unable to create semaphores.\n\n"
             "This is likely due to a resource shortage\n"
             "and a reboot may be required."),
-         XO("Audacity Startup Failure"),
+         XO("Tenacity Startup Failure"),
          wxOK | wxICON_ERROR);
 
       return false;
@@ -2164,7 +2164,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
             XO("Unable to acquire server semaphore.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Audacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR);
 
          return false;
@@ -2204,10 +2204,10 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
       if (mIPCServ == nullptr)
       {
          AudacityMessageBox(
-            XO("The Audacity IPC server failed to initialize.\n\n"
+            XO("The Tenacity IPC server failed to initialize.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Audacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR);
 
          return false;
@@ -2246,7 +2246,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
       // Audacity is already running.
       AudacityMessageBox(
          XO("An unrecoverable error has occurred during startup"),
-         XO("Audacity Startup Failure"),
+         XO("Tenacity Startup Failure"),
          wxOK | wxICON_ERROR);
 
       return false;
@@ -2264,7 +2264,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
    // Display Audacity's version if requested
    if (parser->Found(wxT("v")))
    {
-      wxPrintf("Audacity v%s\n", TENACITY_VERSION_STRING);
+      wxPrintf("Tenacity v%s\n", TENACITY_VERSION_STRING);
 
       return false;
    }
@@ -2385,7 +2385,7 @@ std::unique_ptr<wxCmdLineParser> AudacityApp::ParseCommandLine()
    parser->AddSwitch(wxT("t"), wxT("test"), _("run self diagnostics"));
 
    /*i18n-hint: This displays the Audacity version */
-   parser->AddSwitch(wxT("v"), wxT("version"), _("display Audacity version"));
+   parser->AddSwitch(wxT("v"), wxT("version"), _("display Tenacity version"));
 
    /*i18n-hint: This is a list of one or more files that Audacity
     *           should open upon startup */
@@ -2395,7 +2395,7 @@ std::unique_ptr<wxCmdLineParser> AudacityApp::ParseCommandLine()
 
 #ifdef HAS_CUSTOM_URL_HANDLING
    /* i18n-hint: This option is used to handle custom URLs in Audacity */
-   parser->AddOption(wxT("u"), wxT("url"), _("Handle 'audacity://' url"));
+   parser->AddOption(wxT("u"), wxT("url"), _("Handle 'tenacity://' url"));
 #endif
 
    // Run the parser
@@ -2650,7 +2650,7 @@ void AudacityApp::AssociateFileTypes()
    int wantAssoc =
       AudacityMessageBox(
          XO(
-"Audacity project (.aup3) files are not currently \nassociated with Audacity. \n\nAssociate them, so they open on double-click?"),
+"Audacity project (.aup3) files are not currently \nassociated with Tenacity. \n\nAssociate them, so they open on double-click?"),
          XO("Audacity Project Files"),
          wxYES_NO | wxICON_QUESTION);
 
@@ -2706,7 +2706,7 @@ void AudacityApp::AssociateFileTypes()
       }
 
       if (!associateFileTypes.Exists() ||
-            (tmpRegAudPath.Find(wxT("audacity.exe")) >= 0))
+            (tmpRegAudPath.Find(wxT("tenacity.exe")) >= 0))
       {
          associateFileTypes.Create(true);
          associateFileTypes = (wxString)argv[0] + (wxString)wxT(" \"%1\"");

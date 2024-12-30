@@ -1117,13 +1117,13 @@ bool MP3Exporter::InitLibraryExternal(wxString libpath)
          beVersion(&v);
 
          mBladeVersion = XO(
-"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Audacity %d.%d.%d.\nPlease download the latest version of 'LAME for Audacity'.")
+"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Tenacity %d.%d.%d.\nPlease download the latest version of 'LAME for Tenacity'.")
             .Format(
                v.byMajorVersion,
                v.byMinorVersion,
-               AUDACITY_VERSION,
-               AUDACITY_RELEASE,
-               AUDACITY_REVISION);
+               TENACITY_VERSION,
+               TENACITY_RELEASE,
+               TENACITY_REVISION);
       }
 #endif
 
@@ -1411,19 +1411,19 @@ wxString MP3Exporter::GetLibraryPath()
 {
    wxString path;
 
-   path = wxT("/Library/Application Support/audacity/libs");
+   path = wxT("/Library/Application Support/tenacity/libs");
    if (wxFileExists(path + wxT("/") + GetLibraryName()))
    {
         return path;
    }
 
-   path = wxT("/usr/local/lib/audacity");
+   path = wxT("/usr/local/lib/tenacity");
    if (wxFileExists(path + wxT("/") + GetLibraryName()))
    {
         return path;
    }
 
-   return wxT("/Library/Application Support/audacity/libs");
+   return wxT("/Library/Application Support/tenacity/libs");
 }
 
 wxString MP3Exporter::GetLibraryName()

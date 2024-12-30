@@ -81,7 +81,7 @@ void AudacityLogger::DoLogText(const wxString & str)
 
       TimeStamp(&stamp);
 
-      mBuffer << stamp << _TS("Audacity ") << TENACITY_VERSION_STRING << wxT("\n");
+      mBuffer << stamp << _TS("Tenacity ") << TENACITY_VERSION_STRING << wxT("\n");
    }
 
    mBuffer << str << wxT("\n");

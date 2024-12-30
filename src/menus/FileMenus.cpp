@@ -558,7 +558,7 @@ auto FileMenu()
          // pull it out
          // and put it in the Audacity menu for us based on its ID.
          /* i18n-hint: (verb) It's item on a menu. */
-         Command( wxT("Exit"), XXO("&Quit Audacity"), OnExit,
+         Command( wxT("Exit"), XXO("&Quit Tenacity"), OnExit,
             AlwaysEnabledFlag, wxT("Ctrl+Q") )
       )
    ) };

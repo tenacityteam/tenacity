@@ -4,12 +4,8 @@ A library holding image and color data for the four built-in themes
 
 # Names of the image files (and Colors.txt) expected in each theme
 set( IMAGE_LIST
-   AnonymousUser.png
-   AudacityLogo48x48.png
    BandWidthCursor.png
    BottomFrequencyCursor.png
-   Cloud.png
-   CloudProgress.png
    Cogwheel.png
    Colors.txt
    Copy.png
@@ -34,7 +30,6 @@ set( IMAGE_LIST
    FacebookLogo.png
    FFwd.png
    FFwdDisabled.png
-   GoogleLogo.png
    GrabberDropLoc.png
    HelpIcon.png
    HiliteButtonExpand.png
@@ -110,6 +105,7 @@ set( IMAGE_LIST
    SyncLockTracksDisabled.png
    SyncLockTracksDown.png
    SyncLockTracksUp.png
+   TenacityLogo48x48.png
    TCPChevron.png
    TCPChevronDown.png
    TCPClose.png
@@ -161,9 +157,9 @@ set( IMAGE_LIST
 # generated header file is out of date with its image and color definitions
 foreach( pair
    "classic;ClassicThemeAsCeeCode"
-   "dark;DarkThemeAsCeeCode"
+   "audacity-dark;AudacityDarkThemeAsCeeCode"
    "high-contrast;HighContrastThemeAsCeeCode"
-   "light;LightThemeAsCeeCode"
+   "audacity-light;AudacityLightThemeAsCeeCode"
 )
    list( POP_FRONT pair theme filename )
    set( THEME_FILES )
@@ -189,12 +185,12 @@ endforeach()
 
 # Now define a more conventional library, using the output of the image compiler
 set( SOURCES
-   DarkThemeAsCeeCode.cpp
-   DarkThemeAsCeeCode.h
+   AudacityDarkThemeAsCeeCode.cpp
+   AudacityDarkThemeAsCeeCode.h
    HighContrastThemeAsCeeCode.cpp
    HighContrastThemeAsCeeCode.h
-   LightThemeAsCeeCode.cpp
-   LightThemeAsCeeCode.h
+   AudacityLightThemeAsCeeCode.cpp
+   AudacityLightThemeAsCeeCode.h
    ClassicThemeAsCeeCode.cpp
    ClassicThemeAsCeeCode.h
    LoadThemeResources.h

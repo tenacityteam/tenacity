@@ -124,7 +124,7 @@ void TracksBehaviorsPrefs::PopulateOrExchange(ShuttleGui & S)
    S.EndStatic();
    auto pastedAudioBox = S.StartStatic(XO("Pasted audio"));
    {
-      const auto header = S.AddVariableText(XO("Paste audio from other Audacity project as"));
+      const auto header = S.AddVariableText(XO("Paste audio from another Tenacity project as"));
 #if wxUSE_ACCESSIBILITY
       if(pastedAudioBox != nullptr)
       {
