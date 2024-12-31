@@ -426,10 +426,6 @@ time warp info and AudioIOListener and whether the playback is looped.
 #include "pa_jack.h"
 #endif
 
-#ifdef PA_USE_WMME
-#include <pa_win_wmme.h>
-#endif
-
 #include <wx/app.h>
 #include <wx/wxcrtvararg.h>
 #include <wx/log.h>
@@ -1261,24 +1257,6 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
    PaStreamParameters playbackParameters{};
    PaStreamParameters captureParameters{};
 
-   unsigned long latency = AudioIOLatencyDuration.Read();
-
-   // MME under Windows doesn't work too well with latency sizes < 1024 samples.
-   // To fix this, set paWinMmeUseLowLevelLatencyParameters in low level stream
-   // flags so that MME can work with smaller buffer sizes.
-   // See https://codeberg.org/tenacityteam/tenacity/issues/220.
-   #ifdef PA_USE_WMME
-   PaWinMmeStreamInfo mmeParameters;
-   mmeParameters.size = sizeof(PaWinMmeStreamInfo);
-   mmeParameters.hostApiType = paMME;
-   mmeParameters.version = 1;
-   mmeParameters.flags = paWinMmeUseLowLevelLatencyParameters | paWinMmeDontThrottleOverloadedProcessingThread;
-   mmeParameters.framesPerBuffer = latency;
-   // AK: FIXME: What does this field do? What is it for? a value of '4' seems
-   // to work...
-   mmeParameters.bufferCount = 4;
-   #endif
-
    if( numPlaybackChannels > 0)
    {
       usePlayback = true;
@@ -1295,13 +1273,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 
       // regardless of source formats, we always mix to float
       playbackParameters.sampleFormat = paFloat32;
-      playbackParameters.hostApiSpecificStreamInfo = nullptr;
-      #ifdef PA_USE_WMME
-      if (Pa_HostApiTypeIdToHostApiIndex(paMME) == playbackDeviceInfo->hostApi)
-      {
-          playbackParameters.hostApiSpecificStreamInfo = &mmeParameters;
-      }
-      #endif // end PA_USE_WMME
+      playbackParameters.hostApiSpecificStreamInfo = NULL;
       playbackParameters.channelCount = mNumPlaybackChannels;
 
       playbackParameters.suggestedLatency = mSoftwarePlaythrough ?
@@ -1329,13 +1301,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       captureParameters.sampleFormat =
          AudacityToPortAudioSampleFormat(mCaptureFormat);
 
-      captureParameters.hostApiSpecificStreamInfo = nullptr;
-      #ifdef PA_USE_WMME
-      if (Pa_HostApiTypeIdToHostApiIndex(paMME) == captureDeviceInfo->hostApi)
-      {
-          captureParameters.hostApiSpecificStreamInfo = &mmeParameters;
-      }
-      #endif // end PA_USE_WMME
+      captureParameters.hostApiSpecificStreamInfo = NULL;
       captureParameters.channelCount = mNumCaptureChannels;
       captureParameters.suggestedLatency = mSoftwarePlaythrough ?
          captureDeviceInfo->defaultHighInputLatency :
@@ -1361,6 +1327,8 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
 #endif
 
    UpdateBuffers();
+
+   unsigned long latency = GetConvertedLatencyPreference();
 
    for (unsigned int tries = 0; tries < maxTries; tries++) {
       mLastPaError = Pa_OpenStream( &mPortStreamV19,
