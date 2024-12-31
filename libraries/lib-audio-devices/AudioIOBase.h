@@ -25,10 +25,6 @@ Paul Licameli split from AudioIO.h
 struct PaDeviceInfo;
 typedef void PaStream;
 
-#if USE_PORTMIXER
-typedef void PxMixer;
-#endif
-
 class AudioIOBase;
 
 class AudacityProject;
@@ -318,11 +314,6 @@ protected:
    std::weak_ptr<Meter> mInputMeter{};
    std::weak_ptr<Meter> mOutputMeter{};
 
-   #if USE_PORTMIXER
-   PxMixer            *mPortMixer;
-   float               mPreviousHWPlaythrough;
-   #endif /* USE_PORTMIXER */
-
    /** @brief Can we control the hardware input level?
     *
     * This flag is set to true if using portmixer to control the
@@ -349,14 +340,6 @@ protected:
     * default device index.
     */
    static int getRecordDevIndex(const wxString &devName = {});
-
-   /** \brief get the index of the device selected in the preferences.
-    *
-    * If the device isn't found, returns -1
-    */
-#if USE_PORTMIXER
-   static int getRecordSourceIndex(PxMixer *portMixer);
-#endif
 
    /** \brief get the index of the supplied (named) playback device, or the
     * device selected in the preferences if none given.

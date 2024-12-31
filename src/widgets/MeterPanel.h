@@ -181,7 +181,6 @@ class TENACITY_DLL_API MeterPanel final
    struct State{ bool mSaved, mMonitoring, mActive; };
    State SaveState();
    void RestoreState(const State &state);
-   void SetMixer(wxCommandEvent& event);
 
    int GetDBRange() const override { return mDB ? mDBRange : -1; }
 

@@ -207,7 +207,6 @@ enum {
 BEGIN_EVENT_TABLE(MeterPanel, MeterPanelBase)
    EVT_TIMER(OnMeterUpdateID, MeterPanel::OnMeterUpdate)
    EVT_TIMER(OnTipTimeoutID, MeterPanel::OnTipTimeout)
-   EVT_SLIDER(wxID_ANY, MeterPanel::SetMixer)
    EVT_MOUSE_EVENTS(MeterPanel::OnMouse)
    EVT_CONTEXT_MENU(MeterPanel::OnContext)
    EVT_KEY_DOWN(MeterPanel::OnKeyDown)
@@ -388,38 +387,12 @@ void MeterPanel::UpdateSelectedPrefs(int id)
 {
    if (id == MeterPrefsID())
    {
-#if USE_PORTMIXER
-      if (mIsInput && mSlider)
-      {
-         // Show or hide the input slider based on whether it works
-         auto gAudioIO = AudioIO::Get();
-         mSlider->SetEnabled(mEnabled && gAudioIO->InputMixerWorks());
-      }
-#endif
       UpdatePrefs();
    }
 }
 
 void MeterPanel::UpdateSliderControl()
 {
-#if USE_PORTMIXER
-   float inputVolume;
-   float playbackVolume;
-   int inputSource;
-
-   // Show or hide the input slider based on whether it works
-   auto gAudioIO = AudioIO::Get();
-   if (mIsInput && mSlider)
-      mSlider->SetEnabled(mEnabled && gAudioIO->InputMixerWorks());
-
-   gAudioIO->GetMixer(&inputSource, &inputVolume, &playbackVolume);
-
-   const auto volume = mIsInput ? inputVolume : playbackVolume;
-
-   if (mSlider && (mSlider->Get() != volume))
-      mSlider->Set(volume);
-
-#endif // USE_PORTMIXER
 }
 
 void MeterPanel::OnErase(wxEraseEvent & WXUNUSED(event))
@@ -758,38 +731,6 @@ void MeterPanel::SetStyle(Style newStyle)
    }
 }
 
-void MeterPanel::SetMixer(wxCommandEvent & WXUNUSED(event))
-{
-#if USE_PORTMIXER
-   if (mSlider)
-   {
-      float inputVolume;
-      float outputVolume;
-      int inputSource;
-
-      Refresh();
-
-      auto gAudioIO = AudioIO::Get();
-      gAudioIO->GetMixer(&inputSource, &inputVolume, &outputVolume);
-
-      if (mIsInput)
-         inputVolume = mSlider->Get();
-      else
-         outputVolume = mSlider->Get();
-
-      gAudioIO->SetMixer(inputSource, inputVolume, outputVolume);
-
-#if wxUSE_ACCESSIBILITY
-      GetAccessible()->NotifyEvent( wxACC_EVENT_OBJECT_VALUECHANGE,
-                                    this,
-                                    wxOBJID_CLIENT,
-                                    wxACC_SELF );
-#endif
-
-   }
-#endif // USE_PORTMIXER
-}
-
 bool MeterPanel::ShowDialog()
 {
    if (!mSlider)
@@ -799,7 +740,6 @@ bool MeterPanel::ShowDialog()
    if (changed)
    {
       wxCommandEvent e;
-      SetMixer(e);
    }
 
    return changed;
@@ -812,7 +752,6 @@ void MeterPanel::Increase(float steps)
       wxCommandEvent e;
 
       mSlider->Increase(steps);
-      SetMixer(e);
    }
 }
 
@@ -823,7 +762,6 @@ void MeterPanel::Decrease(float steps)
       wxCommandEvent e;
 
       mSlider->Decrease(steps);
-      SetMixer(e);
    }
 }
 

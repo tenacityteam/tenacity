@@ -22,7 +22,6 @@ set( SOURCES
 )
 set( LIBRARIES
    PortAudio::PortAudio
-   $<$<BOOL:${USE_PORTMIXER}>:portmixer>
    lib-preferences-interface
 )
 tenacity_library( lib-audio-devices "${SOURCES}" "${LIBRARIES}"
