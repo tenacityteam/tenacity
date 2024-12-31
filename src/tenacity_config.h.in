@@ -7,9 +7,6 @@
 /* Use system FFmpeg library and disable dynamic loading of it. */
 #cmakedefine DISABLE_DYNAMIC_LOADING_FFMPEG 1
 
-/* Define if LAME should be linked at compile time */
-#cmakedefine DISABLE_DYNAMIC_LOADING_LAME 1
-
 /* Define to 1 if you have the <alloca.h> header file. */
 #cmakedefine HAVE_ALLOCA_H 1
 
@@ -100,7 +97,7 @@
 #cmakedefine USE_VAMP 1
 
 /* Define if VST plug-in support is enabled */
-#cmakedefine USE_VST 1
+#cmakedefine USE_VST2 1
 
 /* Version number of package */
 #cmakedefine VERSION "@VERSION@"
@@ -117,4 +114,4 @@
 /* Define if opusfile support should be enabled */
 #cmakedefine USE_OPUSFILE 1
 
-#cmakedefine AUDACITY_BUILD_LEVEL @AUDACITY_BUILD_LEVEL@
+#cmakedefine TENACITY_BUILD_LEVEL @TENACITY_BUILD_LEVEL@

@@ -11,7 +11,7 @@ set( SOURCES
 
 set( LIBRARIES
    PRIVATE
-      twolame
+      libtwolame::libtwolame
 )
 
 if ( USE_LIBID3TAG )

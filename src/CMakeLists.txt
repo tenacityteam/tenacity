@@ -49,6 +49,19 @@ else()
    file( WRITE "${_PRVDIR}/RevisionIdent.h" "" )
 endif()
 
+# Detect, what platform we're on. Used for TenacityApp, VST effects, and Audio
+# Unit effects.
+#
+# We always assume that GTK is used on platforms other than Windows and macOS,
+# as there is no other implementation avalaible now
+if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
+   set( wxIS_MAC on )
+elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
+   set ( wxIS_WIN on )
+else()
+   set ( wxIS_GTK on)
+endif()
+
 #
 #
 #
@@ -414,7 +427,7 @@ set( SOURCES
 
       # VST Effects
 
-      $<$<BOOL:${USE_VST}>:
+      $<$<BOOL:${USE_VST2}>:
          effects/VST/VSTControl.h
          effects/VST/VSTEditor.cpp
          effects/VST/VSTEditor.h
@@ -424,22 +437,22 @@ set( SOURCES
          effects/VST/VSTEffectOptionsDialog.h
       >
 
-      $<$<AND:$<BOOL:${USE_VST}>,$<BOOL:${wxIS_GTK}>>:
+      $<$<AND:$<BOOL:${USE_VST2}>,$<BOOL:${wxIS_GTK}>>:
          effects/VST/VSTControlGTK.cpp
          effects/VST/VSTControlGTK.h
       >
 
-      $<$<AND:$<BOOL:${USE_VST}>,$<BOOL:${wxIS_WIN}>>:
+      $<$<AND:$<BOOL:${USE_VST2}>,$<BOOL:${wxIS_WIN}>>:
          effects/VST/VSTControlMSW.cpp
          effects/VST/VSTControlMSW.h
       >
 
-      $<$<AND:$<BOOL:${USE_VST}>,$<BOOL:${wxIS_MAC}>>:
+      $<$<AND:$<BOOL:${USE_VST2}>,$<BOOL:${wxIS_MAC}>>:
          effects/VST/VSTControlOSX.h
          effects/VST/VSTControlOSX.mm
       >
 
-      $<$<BOOL:${${_OPT}has_vst3}>:
+      $<$<BOOL:${${USE_VST3}}>:
          effects/VST3/VST3Editor.cpp
          effects/VST3/VST3Editor.h
          effects/VST3/VST3Effect.h
@@ -1063,7 +1076,7 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
          COMPILE_FLAGS "-x objective-c++"
          SKIP_PRECOMPILE_HEADERS YES
    )
-   if(${_OPT}has_vst3 AND ${wxIS_MAC})
+   if (USE_VST3 AND ${wxIS_MAC})
       set_source_files_properties(
          effects/VST/VSTControlOSX.mm
          PROPERTIES
@@ -1215,7 +1228,7 @@ set( TENACITY_LIBRARIES
    lib-builtin-effects-interface
 )
 
-if (USE_VST)
+if (USE_VST2)
    list( APPEND TENACITY_LIBRARIES
       lib-vst-interface
    )
@@ -1233,7 +1246,7 @@ if (USE_LADSPA)
    )
 endif()
 
-if (${_OPT}has_vst3)
+if (USE_VST3)
    list( APPEND TENACITY_LIBRARIES
       lib-vst3-interface
    )

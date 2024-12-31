@@ -2,7 +2,7 @@
 VST3 effect plugin discovery and processing logic, without user interface
 ]]
 
-if( "${${_OPT}has_vst3}" )
+if (USE_VST3)
 
 set( SOURCES
    AudacityVst3HostApplication.cpp

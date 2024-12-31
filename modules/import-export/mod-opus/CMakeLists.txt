@@ -12,8 +12,8 @@ set( SOURCES
 
 set( LIBRARIES
    PRIVATE
-      Opus::opus
-      opusfile::opusfile
+      Opus::Opus
+      OpusFile::OpusFile
       Ogg::ogg
 )
 

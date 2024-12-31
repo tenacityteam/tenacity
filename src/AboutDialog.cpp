@@ -626,10 +626,10 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
       XO("MP3 Export"), enabled);
    #else
    AddBuildinfoRow(
-      &informationStr, wxT("libopus"),
-      /* i18n-hint: Opus is the codec name. This name should not be translated
+      &informationStr, wxT("libmp3lame"),
+      /* i18n-hint: LAME is the codec name. This name should not be translated
        */
-      XO("Opus Import and Export"), disabled);
+      XO("MP3 Export"), disabled);
    #endif
 
    #ifdef USE_LIBVORBIS
@@ -726,7 +726,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
          disabled);
    # endif
 
-   # if USE_VST
+   # if USE_VST2
    AddBuildinfoRow(&informationStr, wxT("VST"), XO("Plug-in support"),
          enabled);
    # else

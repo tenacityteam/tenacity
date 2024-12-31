@@ -11,7 +11,7 @@ set( SOURCES
 
 set( LIBRARIES
    PRIVATE
-      mpg123::libmpg123
+      MPG123::libmpg123
 )
 
 if ( USE_LIBID3TAG )

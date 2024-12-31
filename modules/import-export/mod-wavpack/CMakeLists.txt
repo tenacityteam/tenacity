@@ -12,7 +12,7 @@ set( SOURCES
 
 set( LIBRARIES
    PRIVATE
-      wavpack::wavpack
+      WavPack::wavpack
 )
 
 set (EXTRA_CLUSTER_NODES "${LIBRARIES}" PARENT_SCOPE)

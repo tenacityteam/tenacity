@@ -475,217 +475,16 @@ class FindDialog final : public wxDialogWrapper
 {
 public:
 
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-
-   FindDialog(wxWindow *parent, wxString path, wxString name,
-      FileNames::FileTypes types)
-   :  wxDialogWrapper(parent, wxID_ANY,
-   /* i18n-hint: LAME is the name of an MP3 converter and should not be translated*/
-   XO("Locate LAME"))
-   {
-      SetName();
-      ShuttleGui S(this, eIsCreating);
-
-      mPath = path;
-      mName = name;
-      mTypes = std::move( types );
-
-      mLibPath.Assign(mPath, mName);
-
-      PopulateOrExchange(S);
-   }
-
-   void PopulateOrExchange(ShuttleGui & S)
-   {
-      S.SetBorder(10);
-      S.StartVerticalLay(true);
-      {
-         S.AddTitle(
-            XO("Audacity needs the file %s to create MP3s.")
-               .Format( mName ) );
-
-         S.SetBorder(3);
-         S.StartHorizontalLay(wxALIGN_LEFT, true);
-         {
-            S.AddTitle( XO("Location of %s:").Format( mName ) );
-         }
-         S.EndHorizontalLay();
-
-         S.StartMultiColumn(2, wxEXPAND);
-         S.SetStretchyCol(0);
-         {
-            if (mLibPath.GetFullPath().empty()) {
-               mPathText = S.AddTextBox( {},
-                  /* i18n-hint: There is a  button to the right of the arrow.*/
-                  wxString::Format(_("To find %s, click here -->"), mName), 0);
-            }
-            else {
-               mPathText = S.AddTextBox( {}, mLibPath.GetFullPath(), 0);
-            }
-            S.Id(ID_BROWSE).AddButton(XXO("Browse..."), wxALIGN_RIGHT);
-            S.AddVariableText(
-               /* i18n-hint: There is a  button to the right of the arrow.*/
-               XO("To get a free copy of LAME, click here -->"), true);
-            /* i18n-hint: (verb)*/
-            S.Id(ID_DLOAD).AddButton(XXO("Download"), wxALIGN_RIGHT);
-         }
-         S.EndMultiColumn();
-
-         S.AddStandardButtons();
-      }
-      S.EndVerticalLay();
-
-      Layout();
-      Fit();
-      SetMinSize(GetSize());
-      Center();
-
-      return;
-   }
-
-   void OnBrowse(wxCommandEvent & WXUNUSED(event))
-   {
-      /* i18n-hint: It's asking for the location of a file, for
-       * example, "Where is lame_enc.dll?" - you could translate
-       * "Where would I find the file %s" instead if you want. */
-      auto question = XO("Where is %s?").Format( mName );
-
-      wxString path = SelectFile(FileNames::Operation::_None,
-         question,
-            mLibPath.GetPath(),
-            mLibPath.GetName(),
-            wxT(""),
-            mTypes,
-            wxFD_OPEN | wxRESIZE_BORDER,
-            this);
-      if (!path.empty()) {
-         mLibPath = path;
-         mPathText->SetValue(path);
-      }
-   }
-
-   void OnDownload(wxCommandEvent & WXUNUSED(event))
-   {
-      HelpSystem::ShowHelp(this, L"FAQ:Installing_the_LAME_MP3_Encoder");
-   }
-
-   wxString GetLibPath()
-   {
-      return mLibPath.GetFullPath();
-   }
-
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
 private:
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   wxFileName mLibPath;
-
-   wxString mPath;
-   wxString mName;
-   FileNames::FileTypes mTypes;
-#endif // DISABLE_DYNAMIC_LOADING_LAME
 
    wxTextCtrl *mPathText;
 
    DECLARE_EVENT_TABLE()
 };
 
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-BEGIN_EVENT_TABLE(FindDialog, wxDialogWrapper)
-   EVT_BUTTON(ID_BROWSE, FindDialog::OnBrowse)
-   EVT_BUTTON(ID_DLOAD,  FindDialog::OnDownload)
-END_EVENT_TABLE()
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
 //----------------------------------------------------------------------------
 // MP3Exporter
 //----------------------------------------------------------------------------
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-
-typedef lame_global_flags *lame_init_t(void);
-typedef int lame_init_params_t(lame_global_flags*);
-typedef const char* get_lame_version_t(void);
-
-typedef int CDECL lame_encode_buffer_ieee_float_t(
-      lame_t          gfp,
-      const float     pcm_l[],
-      const float     pcm_r[],
-      const int       nsamples,
-      unsigned char * mp3buf,
-      const int       mp3buf_size);
-
-typedef int CDECL lame_encode_buffer_interleaved_ieee_float_t(
-      lame_t          gfp,
-      const float     pcm[],
-      const int       nsamples,
-      unsigned char * mp3buf,
-      const int       mp3buf_size);
-
-typedef int lame_encode_flush_t(
-      lame_global_flags *gf,
-      unsigned char*     mp3buf,
-      int                size );
-
-typedef int lame_close_t(lame_global_flags*);
-
-typedef int lame_set_in_samplerate_t(lame_global_flags*, int);
-typedef int lame_set_out_samplerate_t(lame_global_flags*, int);
-typedef int lame_set_num_channels_t(lame_global_flags*, int );
-typedef int lame_set_quality_t(lame_global_flags*, int);
-typedef int lame_set_brate_t(lame_global_flags*, int);
-typedef int lame_set_VBR_t(lame_global_flags *, vbr_mode);
-typedef int lame_set_VBR_q_t(lame_global_flags *, int);
-typedef int lame_set_VBR_min_bitrate_kbps_t(lame_global_flags *, int);
-typedef int lame_set_mode_t(lame_global_flags *, MPEG_mode);
-typedef int lame_set_preset_t(lame_global_flags *, int);
-typedef int lame_set_error_protection_t(lame_global_flags *, int);
-typedef int lame_set_disable_reservoir_t(lame_global_flags *, int);
-typedef int lame_set_bWriteVbrTag_t(lame_global_flags *, int);
-typedef size_t lame_get_lametag_frame_t(const lame_global_flags *, unsigned char* buffer, size_t size);
-typedef void lame_mp3_tags_fid_t(lame_global_flags *, FILE *);
-
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
-#if defined(__WXMSW__)
-// An alternative solution to give Windows an additional chance of writing the tag before
-// falling bato to lame_mp3_tag_fid().  The latter can have DLL sharing issues when mixing
-// Debug/Release builds of Audacity and the lame DLL.
-typedef unsigned long beWriteInfoTag_t(lame_global_flags *, char *);
-
-// We use this to determine if the user has selected an older, Blade API only, lame_enc.dll
-// so we can be more specific about why their library isn't acceptable.
-typedef struct	{
-
-   // BladeEnc DLL Version number
-
-   BYTE	byDLLMajorVersion;
-   BYTE	byDLLMinorVersion;
-
-   // BladeEnc Engine Version Number
-
-   BYTE	byMajorVersion;
-   BYTE	byMinorVersion;
-
-   // DLL Release date
-
-   BYTE	byDay;
-   BYTE	byMonth;
-   WORD	wYear;
-
-   // BladeEnc	Homepage URL
-
-   CHAR	zHomepage[129];
-
-   BYTE	byAlphaLevel;
-   BYTE	byBetaLevel;
-   BYTE	byMMXEnabled;
-
-   BYTE	btReserved[125];
-} be_version;
-typedef void beVersion_t(be_version *);
-#endif
 
 class MP3Exporter
 {
@@ -700,30 +499,16 @@ public:
    MP3Exporter();
    ~MP3Exporter();
 
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   bool FindLibrary(wxWindow *parent);
-   bool LoadLibrary(wxWindow *parent, AskUser askuser);
-   bool ValidLibraryLoaded();
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
    /* These global settings keep state over the life of the object */
    void SetMode(int mode);
    void SetBitrate(int rate);
    void SetQuality(int q/*, int r*/);
 
-   /* Virtual methods that must be supplied by library interfaces */
-
    /* initialize the library interface */
-   bool InitLibrary(wxString libpath);
-   bool InitLibraryInternal();
-   bool InitLibraryExternal(wxString libpath);
-   void FreeLibrary();
+   bool Init();
 
    /* get library info */
    wxString GetLibraryVersion();
-   wxString GetLibraryName();
-   wxString GetLibraryPath();
-   FileNames::FileTypes GetLibraryTypes();
 
    /* returns the number of samples PER CHANNEL to send for each call to EncodeBuffer */
    int InitializeStream(unsigned channels, int sampleRate);
@@ -746,54 +531,11 @@ public:
    bool PutInfoTag(wxFFile & f, wxFileOffset off);
 
 private:
-   bool mLibIsExternal;
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   wxString mLibPath;
-   wxDynamicLibrary lame_lib;
-   bool mLibraryLoaded;
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
-#if defined(__WXMSW__)
-   TranslatableString mBladeVersion;
-#endif
-
    bool mEncoding;
    int mMode;
    int mBitrate;
    int mQuality;
    //int mRoutine;
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   /* function pointers to the symbols we get from the library */
-   lame_init_t* lame_init;
-   lame_init_params_t* lame_init_params;
-   lame_encode_buffer_ieee_float_t* lame_encode_buffer_ieee_float;
-   lame_encode_buffer_interleaved_ieee_float_t* lame_encode_buffer_interleaved_ieee_float;
-   lame_encode_flush_t* lame_encode_flush;
-   lame_close_t* lame_close;
-   get_lame_version_t* get_lame_version;
-
-   lame_set_in_samplerate_t* lame_set_in_samplerate;
-   lame_set_out_samplerate_t* lame_set_out_samplerate;
-   lame_set_num_channels_t* lame_set_num_channels;
-   lame_set_quality_t* lame_set_quality;
-   lame_set_brate_t* lame_set_brate;
-   lame_set_VBR_t* lame_set_VBR;
-   lame_set_VBR_q_t* lame_set_VBR_q;
-   lame_set_VBR_min_bitrate_kbps_t* lame_set_VBR_min_bitrate_kbps;
-   lame_set_mode_t* lame_set_mode;
-   lame_set_preset_t* lame_set_preset;
-   lame_set_error_protection_t* lame_set_error_protection;
-   lame_set_disable_reservoir_t *lame_set_disable_reservoir;
-   lame_set_bWriteVbrTag_t *lame_set_bWriteVbrTag;
-   lame_get_lametag_frame_t *lame_get_lametag_frame;
-   lame_mp3_tags_fid_t *lame_mp3_tags_fid;
-#if defined(__WXMSW__)
-   beWriteInfoTag_t *beWriteInfoTag;
-   beVersion_t *beVersion;
-#endif
-#endif // DISABLE_DYNAMIC_LOADING_LAME
 
    lame_global_flags *mGF;
 
@@ -810,28 +552,8 @@ private:
 
 MP3Exporter::MP3Exporter()
 {
-// We could use #defines rather than this variable.
-// The idea of the variable is that if we wanted, we could allow
-// a dynamic override of the library, e.g. with a newer faster version,
-// or to fix CVEs in the underlying library.
-// for now though the 'variable' is a constant.
-#ifdef MP3_EXPORT_BUILT_IN
-   mLibIsExternal = false;
-#else
-   mLibIsExternal = true;
-#endif
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   mLibraryLoaded = false;
-#endif // DISABLE_DYNAMIC_LOADING_LAME
    mEncoding = false;
    mGF = NULL;
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   if (gPrefs) {
-      mLibPath = gPrefs->Read(wxT("/MP3/MP3LibPath"), wxT(""));
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
 
    mBitrate = 128;
    mQuality = QUALITY_2;
@@ -841,115 +563,12 @@ MP3Exporter::MP3Exporter()
 
 MP3Exporter::~MP3Exporter()
 {
-   FreeLibrary();
+   if (mGF)
+   {
+      lame_close(mGF);
+      mGF = NULL;
+   }
 }
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-
-bool MP3Exporter::FindLibrary(wxWindow *parent)
-{
-   wxString path;
-   wxString name;
-
-   if (!mLibPath.empty()) {
-      wxFileName fn = mLibPath;
-      path = fn.GetPath();
-      name = fn.GetFullName();
-   }
-   else {
-      path = GetLibraryPath();
-      name = GetLibraryName();
-   }
-
-   FindDialog fd(parent,
-      path,
-      name,
-      GetLibraryTypes());
-
-   if (fd.ShowModal() == wxID_CANCEL) {
-      return false;
-   }
-
-   path = fd.GetLibPath();
-
-   if (!::wxFileExists(path)) {
-      return false;
-   }
-
-   mLibPath = path;
-
-   return (gPrefs->Write(wxT("/MP3/MP3LibPath"), mLibPath) && gPrefs->Flush());
-}
-
-bool MP3Exporter::LoadLibrary(wxWindow *parent, AskUser askuser)
-{
-
-   if (ValidLibraryLoaded()) {
-      FreeLibrary();
-      mLibraryLoaded = false;
-   }
-
-#if defined(__WXMSW__)
-   mBladeVersion = {};
-#endif
-
-   if( !mLibIsExternal ){
-      mLibraryLoaded = InitLibraryInternal();
-      return mLibraryLoaded;
-   }
-
-   // First try loading it from a previously located path
-   if (!mLibPath.empty()) {
-      wxLogMessage(wxT("Attempting to load LAME from previously defined path"));
-      mLibraryLoaded = InitLibrary(mLibPath);
-   }
-
-   // If not successful, try loading using system search paths
-   if (!ValidLibraryLoaded()) {
-      wxLogMessage(wxT("Attempting to load LAME from system search paths"));
-      mLibPath = GetLibraryName();
-      mLibraryLoaded = InitLibrary(mLibPath);
-   }
-
-   // If not successful, try loading using compiled in path
-   if (!ValidLibraryLoaded()) {
-      wxLogMessage(wxT("Attempting to load LAME from builtin path"));
-      wxFileName fn(GetLibraryPath(), GetLibraryName());
-      mLibPath = fn.GetFullPath();
-      mLibraryLoaded = InitLibrary(mLibPath);
-   }
-
-   // If not successful, must ask the user
-   if (!ValidLibraryLoaded()) {
-      wxLogMessage(wxT("(Maybe) ask user for library"));
-      if (askuser == MP3Exporter::Maybe && FindLibrary(parent)) {
-         mLibraryLoaded = InitLibrary(mLibPath);
-      }
-   }
-
-   // Oh well, just give up
-   if (!ValidLibraryLoaded()) {
-#if defined(__WXMSW__)
-      if (askuser && !mBladeVersion.empty()) {
-         BasicUI::ShowMessageBox(mBladeVersion);
-      }
-#endif
-      wxLogMessage(wxT("Failed to locate LAME library"));
-
-      return false;
-   }
-
-   wxLogMessage(wxT("LAME library successfully loaded"));
-
-   return true;
-}
-
-bool MP3Exporter::ValidLibraryLoaded()
-{
-   return mLibraryLoaded;
-}
-
-#endif // DISABLE_DYNAMIC_LOADING_LAME
 
 void MP3Exporter::SetMode(int mode)
 {
@@ -966,213 +585,23 @@ void MP3Exporter::SetQuality(int q/*, int r*/)
    mQuality = q;
 }
 
-bool MP3Exporter::InitLibrary(wxString libpath)
+bool MP3Exporter::Init()
 {
-   return mLibIsExternal ? InitLibraryExternal(libpath) : InitLibraryInternal();
-}
-
-bool MP3Exporter::InitLibraryInternal()
-{
-   wxLogMessage(wxT("Using internal LAME"));
-
-// The global ::lame_something symbols only exist if LAME is built in.
-// So we don't reference them unless they are.
-#ifdef MP3_EXPORT_BUILT_IN
-
-   lame_init = ::lame_init;
-   get_lame_version = ::get_lame_version;
-   lame_init_params = ::lame_init_params;
-   lame_encode_buffer_ieee_float = ::lame_encode_buffer_ieee_float;
-   lame_encode_buffer_interleaved_ieee_float = ::lame_encode_buffer_interleaved_ieee_float;
-   lame_encode_flush = ::lame_encode_flush;
-   lame_close = ::lame_close;
-
-   lame_set_in_samplerate = ::lame_set_in_samplerate;
-   lame_set_out_samplerate = ::lame_set_out_samplerate;
-   lame_set_num_channels = ::lame_set_num_channels;
-   lame_set_quality = ::lame_set_quality;
-   lame_set_brate = ::lame_set_brate;
-   lame_set_VBR = ::lame_set_VBR;
-   lame_set_VBR_q = ::lame_set_VBR_q;
-   lame_set_VBR_min_bitrate_kbps = ::lame_set_VBR_min_bitrate_kbps;
-   lame_set_mode = ::lame_set_mode;
-   lame_set_preset = ::lame_set_preset;
-   lame_set_error_protection = ::lame_set_error_protection;
-   lame_set_disable_reservoir = ::lame_set_disable_reservoir;
-   lame_set_bWriteVbrTag = ::lame_set_bWriteVbrTag;
-
-   // These are optional
-   //lame_get_lametag_frame = ::lame_get_lametag_frame;
-   lame_get_lametag_frame = NULL;
-   lame_mp3_tags_fid = ::lame_mp3_tags_fid;
-
-#if defined(__WXMSW__)
-   //beWriteInfoTag = ::beWriteInfoTag;
-   //beVersion = ::beVersion;
-   beWriteInfoTag = NULL;
-   beVersion = NULL;
-#endif
-
-   mGF = lame_init();
-   if (mGF == NULL) {
-      return false;
-   }
-#endif
-
-   return true;
-}
-
-
-bool MP3Exporter::InitLibraryExternal(wxString libpath)
-{
-   wxLogMessage(wxT("Loading LAME from %s"), libpath);
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   if (!lame_lib.Load(libpath, wxDL_LAZY)) {
-      wxLogMessage(wxT("load failed"));
-      return false;
-   }
-
-   wxLogMessage(wxT("Actual LAME path %s"),
-              FileNames::PathFromAddr(lame_lib.GetSymbol(wxT("lame_init"))));
-
-   lame_init = (lame_init_t *)
-      lame_lib.GetSymbol(wxT("lame_init"));
-   get_lame_version = (get_lame_version_t *)
-      lame_lib.GetSymbol(wxT("get_lame_version"));
-   lame_init_params = (lame_init_params_t *)
-      lame_lib.GetSymbol(wxT("lame_init_params"));
-   lame_encode_buffer_ieee_float = (lame_encode_buffer_ieee_float_t *)
-      lame_lib.GetSymbol(wxT("lame_encode_buffer_ieee_float"));
-   lame_encode_buffer_interleaved_ieee_float = (lame_encode_buffer_interleaved_ieee_float_t *)
-      lame_lib.GetSymbol(wxT("lame_encode_buffer_interleaved_ieee_float"));
-   lame_encode_flush = (lame_encode_flush_t *)
-      lame_lib.GetSymbol(wxT("lame_encode_flush"));
-   lame_close = (lame_close_t *)
-      lame_lib.GetSymbol(wxT("lame_close"));
-
-   lame_set_in_samplerate = (lame_set_in_samplerate_t *)
-       lame_lib.GetSymbol(wxT("lame_set_in_samplerate"));
-   lame_set_out_samplerate = (lame_set_out_samplerate_t *)
-       lame_lib.GetSymbol(wxT("lame_set_out_samplerate"));
-   lame_set_num_channels = (lame_set_num_channels_t *)
-       lame_lib.GetSymbol(wxT("lame_set_num_channels"));
-   lame_set_quality = (lame_set_quality_t *)
-       lame_lib.GetSymbol(wxT("lame_set_quality"));
-   lame_set_brate = (lame_set_brate_t *)
-       lame_lib.GetSymbol(wxT("lame_set_brate"));
-   lame_set_VBR = (lame_set_VBR_t *)
-       lame_lib.GetSymbol(wxT("lame_set_VBR"));
-   lame_set_VBR_q = (lame_set_VBR_q_t *)
-       lame_lib.GetSymbol(wxT("lame_set_VBR_q"));
-   lame_set_VBR_min_bitrate_kbps = (lame_set_VBR_min_bitrate_kbps_t *)
-       lame_lib.GetSymbol(wxT("lame_set_VBR_min_bitrate_kbps"));
-   lame_set_mode = (lame_set_mode_t *)
-       lame_lib.GetSymbol(wxT("lame_set_mode"));
-   lame_set_preset = (lame_set_preset_t *)
-       lame_lib.GetSymbol(wxT("lame_set_preset"));
-   lame_set_error_protection = (lame_set_error_protection_t *)
-       lame_lib.GetSymbol(wxT("lame_set_error_protection"));
-   lame_set_disable_reservoir = (lame_set_disable_reservoir_t *)
-       lame_lib.GetSymbol(wxT("lame_set_disable_reservoir"));
-   lame_set_bWriteVbrTag = (lame_set_bWriteVbrTag_t *)
-       lame_lib.GetSymbol(wxT("lame_set_bWriteVbrTag"));
-
-   // These are optional
-   lame_get_lametag_frame = (lame_get_lametag_frame_t *)
-       lame_lib.GetSymbol(wxT("lame_get_lametag_frame"));
-   lame_mp3_tags_fid = (lame_mp3_tags_fid_t *)
-       lame_lib.GetSymbol(wxT("lame_mp3_tags_fid"));
-#if defined(__WXMSW__)
-   beWriteInfoTag = (beWriteInfoTag_t *)
-       lame_lib.GetSymbol(wxT("beWriteInfoTag"));
-   beVersion = (beVersion_t *)
-       lame_lib.GetSymbol(wxT("beVersion"));
-#endif
-
-   if (!lame_init ||
-      !get_lame_version ||
-      !lame_init_params ||
-      !lame_encode_buffer_ieee_float ||
-      !lame_encode_buffer_interleaved_ieee_float ||
-      !lame_encode_flush ||
-      !lame_close ||
-      !lame_set_in_samplerate ||
-      !lame_set_out_samplerate ||
-      !lame_set_num_channels ||
-      !lame_set_quality ||
-      !lame_set_brate ||
-      !lame_set_VBR ||
-      !lame_set_VBR_q ||
-      !lame_set_mode ||
-      !lame_set_preset ||
-      !lame_set_error_protection ||
-      !lame_set_disable_reservoir ||
-      !lame_set_bWriteVbrTag)
-   {
-      wxLogMessage(wxT("Failed to find a required symbol in the LAME library."));
-#if defined(__WXMSW__)
-      if (beVersion) {
-         be_version v;
-         beVersion(&v);
-
-         mBladeVersion = XO(
-"You are linking to lame_enc.dll v%d.%d. This version is not compatible with Tenacity %d.%d.%d.\nPlease download the latest version of 'LAME for Tenacity'.")
-            .Format(
-               v.byMajorVersion,
-               v.byMinorVersion,
-               TENACITY_VERSION,
-               TENACITY_RELEASE,
-               TENACITY_REVISION);
-      }
-#endif
-
-      lame_lib.Unload();
-      return false;
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
    mGF = lame_init();
    if (mGF == NULL) {
       return false;
    }
 
    return true;
-}
-
-void MP3Exporter::FreeLibrary()
-{
-   if (mGF) {
-      lame_close(mGF);
-      mGF = NULL;
-   }
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   lame_lib.Unload();
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
-   return;
 }
 
 wxString MP3Exporter::GetLibraryVersion()
 {
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   if (!mLibraryLoaded) {
-      return wxT("");
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
    return wxString::Format(wxT("LAME %hs"), get_lame_version());
 }
 
 int MP3Exporter::InitializeStream(unsigned channels, int sampleRate)
 {
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   if (!mLibraryLoaded) {
-      return -1;
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
    if (channels > 2) {
       return -1;
    }
@@ -1322,14 +751,7 @@ int MP3Exporter::FinishStream(unsigned char outbuffer[])
    mEncoding = false;
 
    int result = lame_encode_flush(mGF, outbuffer, mOutBufferSize);
-
-#if defined(DISABLE_DYNAMIC_LOADING_LAME)
    mInfoTagLen = lame_get_lametag_frame(mGF, mInfoTagBuf, sizeof(mInfoTagBuf));
-#else
-   if (lame_get_lametag_frame) {
-      mInfoTagLen = lame_get_lametag_frame(mGF, mInfoTagBuf, sizeof(mInfoTagBuf));
-   }
-#endif
 
    return result;
 }
@@ -1348,17 +770,7 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
             return false;
          if (mInfoTagLen > f.Write(mInfoTagBuf, mInfoTagLen))
             return false;
-      }
-#if defined(__WXMSW__)
-      else if (beWriteInfoTag) {
-         if ( !f.Flush() )
-            return false;
-         // PRL:  What is the correct error check on the return value?
-         beWriteInfoTag(mGF, OSOUTPUT(f.GetName()));
-         mGF = NULL;
-      }
-#endif
-      else if (lame_mp3_tags_fid != NULL) {
+      } else {
          lame_mp3_tags_fid(mGF, f.fp());
       }
    }
@@ -1368,133 +780,6 @@ bool MP3Exporter::PutInfoTag(wxFFile & f, wxFileOffset off)
 
    return true;
 }
-
-#if defined(__WXMSW__)
-/* values for Windows */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   wxRegKey reg(wxT("HKEY_LOCAL_MACHINE\\Software\\Lame for Audacity"));
-   wxString path;
-
-   if (reg.Exists()) {
-      wxLogMessage(wxT("LAME registry key exists."));
-      reg.QueryValue(wxT("InstallPath"), path);
-   }
-   else {
-      wxLogMessage(wxT("LAME registry key does not exist."));
-   }
-
-   wxLogMessage(wxT("Library path is: ") + path);
-
-   return path;
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   return wxT("lame_enc.dll");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      { XO("Only lame_enc.dll"), { wxT("lame_enc.dll") } },
-      FileNames::DynamicLibraries,
-      FileNames::AllFiles
-   };
-}
-
-#elif defined(__WXMAC__)
-/* values for Mac OS X */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   wxString path;
-
-   path = wxT("/Library/Application Support/tenacity/libs");
-   if (wxFileExists(path + wxT("/") + GetLibraryName()))
-   {
-        return path;
-   }
-
-   path = wxT("/usr/local/lib/tenacity");
-   if (wxFileExists(path + wxT("/") + GetLibraryName()))
-   {
-        return path;
-   }
-
-   return wxT("/Library/Application Support/tenacity/libs");
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   if (sizeof(void*) == 8)
-      return wxT("libmp3lame64bit.dylib");
-   return wxT("libmp3lame.dylib");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      (sizeof(void*) == 8)
-         ? FileNames::FileType{
-              XO("Only libmp3lame64bit.dylib"), { wxT("libmp3lame64bit.dylib") }
-           }
-         : FileNames::FileType{
-              XO("Only libmp3lame.dylib"), { wxT("libmp3lame.dylib") }
-           }
-      ,
-      FileNames::DynamicLibraries,
-      FileNames::AllFiles
-   };
-}
-
-#elif defined(__OpenBSD__)
-/* Values for OpenBSD systems */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   return wxT(LIBDIR);
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   return wxT("libmp3lame.so");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      { XO("Only libmp3lame.so"), { wxT("libmp3lame.so") } },
-      { XO("Primary shared object files"), { wxT("so") }, true },
-      { XO("Extended libraries"), { wxT("so*") }, true },
-      FileNames::AllFiles
-   };
-}
-
-#else //!__OpenBSD__
-/* Values for Linux / Unix systems */
-
-wxString MP3Exporter::GetLibraryPath()
-{
-   return wxT(LIBDIR);
-}
-
-wxString MP3Exporter::GetLibraryName()
-{
-   return wxT("libmp3lame.so.0");
-}
-
-FileNames::FileTypes MP3Exporter::GetLibraryTypes()
-{
-   return {
-      { XO("Only libmp3lame.so.0"), { wxT("libmp3lame.so.0") } },
-      { XO("Primary shared object files"), { wxT("so") }, true },
-      { XO("Extended libraries"), { wxT("so*") }, true },
-      FileNames::AllFiles
-   };
-}
-#endif
 
 #if 0
 // Debug routine from BladeMP3EncDLL.c in the libmp3lame distro
@@ -1752,21 +1037,6 @@ bool ExportMP3::ParseConfig(
 
 bool ExportMP3::CheckFileName(wxFileName & WXUNUSED(filename), int WXUNUSED(format)) const
 {
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   MP3Exporter exporter;
-
-   if (!exporter.LoadLibrary(wxTheApp->GetTopWindow(), MP3Exporter::Maybe)) {
-      BasicUI::ShowMessageBox(XO("Could not open MP3 encoding library!"),
-                              BasicUI::MessageBoxOptions()
-                                 .IconStyle(BasicUI::Icon::Error)
-                                 .Caption(XO("Error")));
-      gPrefs->Write(wxT("/MP3/MP3LibPath"), wxString(wxT("")));
-      gPrefs->Flush();
-
-      return false;
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-
    return true;
 }
 
@@ -1785,25 +1055,9 @@ bool MP3ExportProcessor::Initialize(AudacityProject& project,
    int rate = lrint(sampleRate);
    auto& exporter = context.exporter;
 
-#ifdef DISABLE_DYNAMIC_LOADING_LAME
-   if (!exporter.InitLibrary(wxT(""))) {
-      gPrefs->Write(wxT("/MP3/MP3LibPath"), wxString(wxT("")));
-      gPrefs->Flush();
+   if (!exporter.Init()) {
       throw ExportException(_("Could not initialize MP3 encoding library!"));
    }
-#else
-   if (!exporter.LoadLibrary(nullptr, MP3Exporter::Maybe)) {
-      gPrefs->Write(wxT("/MP3/MP3LibPath"), wxString(wxT("")));
-      gPrefs->Flush();
-      throw ExportException(_("Could not open MP3 encoding library!"));
-   }
-
-   if (!exporter.ValidLibraryLoaded()) {
-      gPrefs->Write(wxT("/MP3/MP3LibPath"), wxString(wxT("")));
-      gPrefs->Flush();
-      throw ExportException(_("Not a valid or supported MP3 encoding library!"));
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
 
    // Retrieve preferences
    int highrate = 48000;
@@ -2235,22 +1489,7 @@ TranslatableString GetMP3Version(wxWindow *parent, bool prompt)
 {
    MP3Exporter exporter;
    auto versionString = XO("MP3 export library not found");
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   if (prompt) {
-      exporter.FindLibrary(parent);
-   }
-
-   if (exporter.LoadLibrary(parent, prompt ? MP3Exporter::Yes : MP3Exporter::No)) {
-#endif // DISABLE_DYNAMIC_LOADING_LAME
-      versionString = Verbatim( exporter.GetLibraryVersion() );
-#ifdef MP3_EXPORT_BUILT_IN
-      versionString.Join( XO("(Built-in)"), " " );
-#endif
-
-#ifndef DISABLE_DYNAMIC_LOADING_LAME
-   }
-#endif // DISABLE_DYNAMIC_LOADING_LAME
+   versionString = Verbatim( exporter.GetLibraryVersion() );
 
    return versionString;
 }
