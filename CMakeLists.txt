@@ -439,7 +439,6 @@ elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
 endif()
 
 check_include_file( "pa_jack.h" PA_USE_JACK)
-check_include_file( "pa_win_wmme.h" PA_USE_WMME )
 
 check_symbol_exists( lrint "math.h" HAVE_LRINT )
 check_symbol_exists( lrintf "math.h" HAVE_LRINTF )

@@ -1031,9 +1031,6 @@ list( APPEND DEFINES
       $<$<BOOL:${PA_USE_JACK}>:
          PA_USE_JACK
       >
-      $<$<BOOL:${PA_USE_WMME}>:
-         PA_USE_WMME
-      >
       $<$<PLATFORM_ID:Windows>:
          _CRT_SECURE_NO_WARNINGS
          __STDC_CONSTANT_MACROS
