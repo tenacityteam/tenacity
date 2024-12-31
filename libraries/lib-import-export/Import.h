@@ -33,6 +33,7 @@ typedef bool (*progress_callback_t)( void *userData, float percent );
 
 class ExtImportItem;
 class WaveTrack;
+class LabelTrack;
 
 namespace LibFileFormats
 {
@@ -41,6 +42,7 @@ struct AcidizerTags;
 
 using ExtImportItems = std::vector<std::unique_ptr<ExtImportItem>>;
 using TrackHolders = std::vector<std::shared_ptr<Track>>;
+using LabelHolders = std::vector<std::shared_ptr<LabelTrack>>;
 
 class ExtImportItem
 {
@@ -179,6 +181,7 @@ public:
        AudacityProject& project, const FilePath& fName,
        ImportProgressListener* importProgressListener,
        WaveTrackFactory* trackFactory, TrackHolders& tracks, Tags* tags,
+       LabelHolders& labels,
        std::optional<LibFileFormats::AcidizerTags>& outAcidTags,
        TranslatableString& errorMessage);
 

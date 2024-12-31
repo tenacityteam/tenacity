@@ -488,6 +488,7 @@ bool Importer::Import(
    AudacityProject& project, const FilePath& fName,
    ImportProgressListener* importProgressListener,
    WaveTrackFactory* trackFactory, TrackHolders& tracks, Tags* tags,
+   LabelHolders& labels,
    std::optional<LibFileFormats::AcidizerTags>& outAcidTags,
    TranslatableString& errorMessage)
 {
@@ -660,7 +661,7 @@ bool Importer::Import(
             return false;
 
          inFile->Import(
-            importResultProxy, trackFactory, tracks, tags, outAcidTags);
+            importResultProxy, trackFactory, tracks, tags, labels, outAcidTags);
          const auto importResult = importResultProxy.GetResult();
          if (importResult == ImportProgressListener::ImportResult::Success ||
              importResult == ImportProgressListener::ImportResult::Stopped)

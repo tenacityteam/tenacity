@@ -24,10 +24,12 @@ class AudacityProject;
 class Track;
 class TrackList;
 class WaveTrack;
+class LabelTrack;
 class XMLTagHandler;
 class ClipMirAudioReader;
 
 using TrackHolders = std::vector<std::shared_ptr<Track>>;
+using LabelHolders = std::vector<std::shared_ptr<LabelTrack>>;
 
 class TENACITY_DLL_API ProjectFileManager final
    : public ClientData::Base
@@ -101,7 +103,8 @@ public:
    void Compact();
 
    void AddImportedTracks(const FilePath &fileName,
-                     TrackHolders &&newTracks);
+                     TrackHolders &&newTracks,
+                     LabelHolders &&labelTracks);
 
    bool GetMenuClose() const { return mMenuClose; }
    void SetMenuClose(bool value) { mMenuClose = value; }

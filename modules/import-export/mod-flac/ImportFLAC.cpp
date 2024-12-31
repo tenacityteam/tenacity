@@ -125,7 +125,7 @@ public:
    ByteCount GetFileUncompressedBytes() override;
    void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders& labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    wxInt32 GetStreamCount() override { return 1; }
@@ -394,7 +394,7 @@ auto FLACImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 
 void FLACImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-   TrackHolders& outTracks, Tags* tags,
+   TrackHolders& outTracks, Tags* tags, LabelHolders&,
    std::optional<LibFileFormats::AcidizerTags>&)
 {
    BeginImport();

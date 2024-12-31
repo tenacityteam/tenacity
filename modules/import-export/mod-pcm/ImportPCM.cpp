@@ -83,7 +83,7 @@ public:
    ByteCount GetFileUncompressedBytes() override;
    void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders& labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    wxInt32 GetStreamCount() override { return 1; }
@@ -280,7 +280,7 @@ using id3_tag_holder = std::unique_ptr<id3_tag, id3_tag_deleter>;
 
 void PCMImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-   TrackHolders& outTracks, Tags* tags,
+   TrackHolders& outTracks, Tags* tags, LabelHolders&,
    std::optional<LibFileFormats::AcidizerTags>& outAcidTags)
 {
    BeginImport();

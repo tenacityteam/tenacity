@@ -94,7 +94,7 @@ public:
 
    void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders& labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    wxInt32 GetStreamCount() override;
@@ -304,7 +304,7 @@ auto AUPImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 
 void AUPImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory*, TrackHolders&,
-   Tags* tags, std::optional<LibFileFormats::AcidizerTags>&)
+   Tags* tags, LabelHolders&, std::optional<LibFileFormats::AcidizerTags>&)
 {
    BeginImport();
 

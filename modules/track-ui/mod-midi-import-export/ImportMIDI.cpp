@@ -207,7 +207,7 @@ public:
 
    void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders&,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    void Cancel() override {}
@@ -220,7 +220,7 @@ public:
 
 void MIDIImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory*,
-   TrackHolders& outTracks, Tags*, std::optional<LibFileFormats::AcidizerTags>&)
+   TrackHolders& outTracks, Tags*, LabelHolders&, std::optional<LibFileFormats::AcidizerTags>&)
 {
    auto newTrack = std::make_shared<NoteTrack>();
    if (::ImportMIDI(mFileName, newTrack.get())) {

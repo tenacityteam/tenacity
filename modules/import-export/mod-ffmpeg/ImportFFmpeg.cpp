@@ -208,7 +208,7 @@ public:
 
    void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders& labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    FilePath GetFilename() const override;
@@ -450,7 +450,7 @@ auto FFmpegImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 
 void FFmpegImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-   TrackHolders& outTracks, Tags* tags,
+   TrackHolders& outTracks, Tags* tags, LabelHolders&,
    std::optional<LibFileFormats::AcidizerTags>&)
 {
    outTracks.clear();

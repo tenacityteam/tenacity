@@ -27,6 +27,7 @@ Paul Licameli split from AudacityProject.cpp
 #include "Import.h"
 #include "ImportPlugin.h"
 #include "ImportProgressListener.h"
+#include "LabelTrack.h"
 #include "Legacy.h"
 #include "MusicInformationRetrieval.h"
 #include "PlatformCompatibility.h"
@@ -1174,7 +1175,7 @@ AudacityProject *ProjectFileManager::OpenProjectFile(
 
 void
 ProjectFileManager::AddImportedTracks(const FilePath &fileName,
-   TrackHolders &&newTracks)
+   TrackHolders &&newTracks, LabelHolders &&newLabelTracks)
 {
    auto &project = mProject;
    auto &history = ProjectHistory::Get( project );
@@ -1209,6 +1210,13 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
       tracks.Add(group);
    }
    newTracks.clear();
+
+   for (auto &uNewTrack : newLabelTracks) {
+      auto newTrack = tracks.Add( uNewTrack );
+      results.push_back(newTrack);
+   }
+
+   newLabelTracks.clear();
 
    // Now name them
 
@@ -1457,6 +1465,7 @@ bool ProjectFileManager::DoImport(
    auto oldTags = Tags::Get( project ).shared_from_this();
    bool initiallyEmpty = TrackList::Get(project).empty();
    TrackHolders newTracks;
+   LabelHolders labelTracks;
    TranslatableString errorMessage;
 
 #ifdef EXPERIMENTAL_IMPORT_AUP3
@@ -1521,7 +1530,7 @@ bool ProjectFileManager::DoImport(
       std::optional<LibFileFormats::AcidizerTags> acidTags;
       bool success = Importer::Get().Import(
          project, fileName, &importProgress, &WaveTrackFactory::Get(project),
-         newTracks, newTags.get(), acidTags, errorMessage);
+         newTracks, newTags.get(), labelTracks, acidTags, errorMessage);
       if (!errorMessage.empty()) {
          // Error message derived from Importer::Import
          // Additional help via a Help button links to the manual.
@@ -1584,7 +1593,7 @@ bool ProjectFileManager::DoImport(
    }
 
    // PRL: Undo history is incremented inside this:
-   AddImportedTracks(fileName, std::move(newTracks));
+   AddImportedTracks(fileName, std::move(newTracks), std::move(labelTracks));
 
    return true;
 }

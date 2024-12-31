@@ -64,6 +64,7 @@ public:
                WaveTrackFactory *trackFactory,
                TrackHolders &outTracks,
                Tags* tags,
+               LabelHolders &labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    wxInt32 GetStreamCount() override;
@@ -159,7 +160,7 @@ auto WavPackImportFileHandle::GetFileUncompressedBytes() -> ByteCount
 
 void WavPackImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-   TrackHolders& outTracks, Tags* tags,
+   TrackHolders& outTracks, Tags* tags, LabelHolders&,
    std::optional<LibFileFormats::AcidizerTags>&)
 {
    BeginImport();

@@ -130,7 +130,7 @@ public:
    ByteCount GetFileUncompressedBytes() override;
    void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders& labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& outAcidTags) override;
 
    bool SetupOutputFormat();
@@ -262,7 +262,7 @@ void MP3ImportFileHandle::SetStreamUsage(wxInt32 WXUNUSED(StreamID), bool WXUNUS
 
 void MP3ImportFileHandle::Import(
    ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-   TrackHolders& outTracks, Tags* tags,
+   TrackHolders& outTracks, Tags* tags, LabelHolders&,
    std::optional<LibFileFormats::AcidizerTags>&)
 {
    BeginImport();

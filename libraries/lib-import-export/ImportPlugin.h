@@ -105,7 +105,9 @@ protected:
 
 
 class WaveTrack;
+class LabelTrack;
 using TrackHolders = std::vector<std::shared_ptr<Track>>;
+using LabelHolders = std::vector<std::shared_ptr<LabelTrack>>;
 
 class IMPORT_EXPORT_API ImportFileHandle /* not final */
 {
@@ -147,7 +149,7 @@ public:
    // each member of it must be a nonempty vector.
    virtual void Import(
       ImportProgressListener& progressListener, WaveTrackFactory* trackFactory,
-      TrackHolders& outTracks, Tags* tags,
+      TrackHolders& outTracks, Tags* tags, LabelHolders& labelTracks,
       std::optional<LibFileFormats::AcidizerTags>& acidTags) = 0;
 
    virtual void Cancel() = 0;
