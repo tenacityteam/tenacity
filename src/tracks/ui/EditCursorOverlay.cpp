@@ -100,27 +100,23 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
       return;
 
    auto &trackPanel = TrackPanel::Get( *mProject );
-   //NOTE: point selection cursor drawing over tracks moved to TrackPanel.cpp(see also TrackArt::DrawCursor)
-   /*if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
+
+   // GP: Disregard the comment below.
+   // NOTE: point selection cursor drawing over tracks moved to TrackPanel.cpp(see also TrackArt::DrawCursor)
+   if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
       wxASSERT(mIsMaster);
       AColor::CursorColor(&dc);
 
       // Draw cursor in all selected tracks
-      tp->VisitCells( [&]( const wxRect &rect, TrackPanelCell &cell ) {
+      tp->VisitCells( [&]( const wxRect& /* unused */, TrackPanelCell &cell ) {
          const auto pChannelView = dynamic_cast<ChannelView*>(&cell);
          if (!pChannelView)
             return;
          const auto pChannel = pChannelView->FindChannel();
-         const auto pTrack =
-            dynamic_cast<Track *>(&pChannel->GetChannelGroup());
-         if (pChannel && (pTrack->GetSelected() ||
-             TrackFocus::Get( *mProject ).IsFocused(pTrack)))
-         {
-            // AColor::Line includes both endpoints so use GetBottom()
-            AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
-            // ^^^ The whole point of this routine.
+         const auto rect = tp->GetRect();
 
-         }
+         // AColor::Line includes both endpoints so use GetBottom()
+         AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
       } );
    }
    else if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
@@ -131,7 +127,7 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
       AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
    }
    else
-      wxASSERT(false);*/
+      wxASSERT(false);
    if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
        wxASSERT(!mIsMaster);
        dc.SetPen(*wxBLACK_PEN);
