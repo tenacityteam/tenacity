@@ -4,6 +4,21 @@ Thanks for showing your interest to contribute, your contribution is very
 valuable to us as people like **you** help us build Tenacity. Some guidelines
 have been put in place in an effort to keep the codebase clean.
 
+**At this time, we are halting acceptance of new pull requests against the
+`main` branch due to a large effort to rebase off Audacity 3.7.1. At the time
+of writing, things are going smoothly so far. View PR
+https://codeberg.org/tenacityteam/tenacity/pulls/527 to see the progress on the
+rebase**.
+
+**During the rebase, the rebase branch, `audacity-3.7-rebase`, will temporarily
+become the default branch. Please base your PR off the `audacity-3.7-rebase`
+branch and open a PR against the same branch. All other rules and procedures
+regarding contributions will still apply as they did before. Thus, replace any
+references to `main` below with `audacity-3.7-rebase`.**
+
+**This notice (in bold) is temporary. Once removed, we will accept
+contributions as we did before the rebase again.**
+
 ## Reporting bugs and feature requests
 
 Our IRC channel, [`#tenacity` on Libera](https://web.libera.chat/#tenacity)
