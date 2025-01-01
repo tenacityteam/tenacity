@@ -56,7 +56,7 @@ list( APPEND RUNTIME
 
 foreach( source ${RUNTIME} )
    set( src "${_SRCDIR}/${source}" )
-   set( dst "${_DEST}/${TARGET}/${source}" )
+   set( dst "${_DEST}/nyquist/${source}" )
 
    # Fix this when reorganizing the Nyquist sources
    if( source STREQUAL "system.lsp" )
@@ -69,7 +69,7 @@ foreach( source ${RUNTIME} )
       DEPENDS
          "${src}"
       COMMAND
-         ${CMAKE_COMMAND} -E make_directory "${_DEST}/${TARGET}"
+         ${CMAKE_COMMAND} -E make_directory "${_DEST}/nyquist"
       COMMAND
          ${CMAKE_COMMAND} -E copy "${src}" "${dst}"
       OUTPUT
@@ -84,7 +84,7 @@ add_custom_target( ${TARGET} ALL DEPENDS ${OUTPUTS} SOURCES ${SOURCES} )
 
 if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    if( NOT "${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
-      install( DIRECTORY "${_DEST}/${TARGET}"
+      install( DIRECTORY "${_DEST}/nyquist"
                DESTINATION "${_PKGDATA}" )
    endif()
 endif()
