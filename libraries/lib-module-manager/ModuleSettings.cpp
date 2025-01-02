@@ -77,6 +77,7 @@ static const std::unordered_set<wxString> &autoEnabledModules()
       "mod-wavpack",
       "mod-mp3",
       "mod-mpg123",
+      "mod-mka",
       "mod-pcm",
       "mod-ffmpeg",
       "mod-cl",
