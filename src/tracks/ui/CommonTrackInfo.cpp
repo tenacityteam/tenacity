@@ -214,6 +214,18 @@ namespace
       else if(hovered)
          AColor::DrawFrame(context.dc, rect, theTheme.Bitmap(bmpHiliteUpButtonSmall), 11);
    }
+
+   void DrawTitleButtonBackground(TrackPanelDrawingContext& context, const wxRect& rect, bool captured)
+   {
+      const auto hovered = rect.Contains( context.lastState.GetPosition());
+      if (captured && hovered)
+      {
+         AColor::DrawFrame(context.dc, rect, theTheme.Bitmap(bmpHiliteButtonExpand), 80);
+      } else if (hovered)
+      {
+         AColor::DrawFrame(context.dc, rect, theTheme.Bitmap(bmpHiliteUpButtonExpand), 80);
+      }
+   }
 }
 
 void CommonTrackInfo::CloseTitleDrawFunction
@@ -241,6 +253,8 @@ void CommonTrackInfo::CloseTitleDrawFunction
       const auto titleStr = TrackArt::TruncateText(*dc,
          pTrack ? pTrack->GetName() : _("Name"), bev.width);
 
+      DrawTitleButtonBackground(context, bev, captured);
+
       TrackInfo::SetTrackInfoFont(dc);
       const auto metrics = dc->GetFontMetrics();
 
@@ -248,6 +262,14 @@ void CommonTrackInfo::CloseTitleDrawFunction
       dc->SetTextBackground( wxTRANSPARENT );
       dc->DrawText(titleStr, bev.x + 2, bev.y + (bev.height - (metrics.ascent + metrics.descent)) / 2);
 
+      // Uncomment the following to draw an arrow in the track title button
+      // Note: The arrow isn't filled. Maybe we can modify this if we want to
+      // bring this back.
+      // int s = 10; // Width of dropdown arrow...height is half of width
+      // AColor::Arrow(*dc,
+      //               bev.GetRight() - s - 3, // 3 to offset from right border
+      //               bev.y + ((bev.height - (s / 2)) / 2),
+      //               s);
    }
 
    {  //minimize button
@@ -264,18 +286,7 @@ void CommonTrackInfo::CloseTitleDrawFunction
             ? theTheme.Bitmap(tcpChevronDown)
             : theTheme.Bitmap(tcpChevron),
          bev.GetLeftTop());
-
    }
-
-   {  //track menu button
-      wxRect bev = rect;
-      GetTrackMenuButtonBounds(rect, bev);
-
-      DrawToolButtonBackground(context, bev, captured);
-
-      dc->DrawBitmap(theTheme.Bitmap(tcpEllipses), bev.GetLeftTop());
-   }
-
 }
 
 void CommonTrackInfo::SyncLockDrawFunction
@@ -342,25 +353,10 @@ void CommonTrackInfo::GetSliderHorizontalBounds( const wxRect &rect, wxRect &des
    dest.width = kTrackInfoSliderWidth;
 }
 
-void CommonTrackInfo::GetTrackMenuButtonBounds(const wxRect& rect, wxRect& dest)
+void CommonTrackInfo::GetMinimizeHorizontalBounds(const wxRect &rect, wxRect &dest)
 {
    dest.x = rect.x + rect.width - ToolButtonSize;
    dest.width = ToolButtonSize;
-}
-
-void CommonTrackInfo::GetTrackMenuButtonRect(const wxRect& rect_, wxRect& dest)
-{
-   const auto rect = wxRect(rect_).Deflate(Margin);
-   GetTrackMenuButtonBounds(rect, dest);
-   auto results = TrackInfo::CalcItemY(commonTrackTCPLines(), TCPLine::kItemBarButtons);
-   dest.y = rect.y + results.first;
-   dest.height = ToolButtonSize;
-}
-
-void CommonTrackInfo::GetMinimizeHorizontalBounds(const wxRect &rect, wxRect &dest )
-{
-   GetTrackMenuButtonBounds(rect, dest);
-   dest.x -= ToolButtonSize + Padding;
 }
 
 void CommonTrackInfo::GetMinimizeRect(const wxRect & rect_, wxRect &dest)

@@ -70,11 +70,6 @@ namespace CommonTrackInfo
    void GetSliderHorizontalBounds( const wxRect &rect, wxRect &dest );
 
    TENACITY_DLL_API
-   void GetTrackMenuButtonBounds(const wxRect &rect, wxRect &dest);
-   TENACITY_DLL_API
-   void GetTrackMenuButtonRect(const wxRect &rect, wxRect &dest);
-
-   TENACITY_DLL_API
    void GetMinimizeHorizontalBounds( const wxRect &rect, wxRect &dest );
    TENACITY_DLL_API
    void GetMinimizeRect(const wxRect & rect, wxRect &dest);

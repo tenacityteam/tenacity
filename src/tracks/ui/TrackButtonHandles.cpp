@@ -196,7 +196,7 @@ UIHandlePtr MenuButtonHandle::HitTest
  const std::shared_ptr<TrackPanelCell> &pCell)
 {
    wxRect buttonRect;
-   CommonTrackInfo::GetTrackMenuButtonRect(rect, buttonRect);
+   CommonTrackInfo::GetTrackTitleRect(rect, buttonRect);
 
    if (buttonRect.Contains(state.m_x, state.m_y)) {
       auto pTrack = static_cast<CommonTrackPanelCell*>(pCell.get())->FindTrack();
