@@ -105,6 +105,7 @@ struct ThemeSet
    std::vector<wxColour> mColours;
 
    bool bInitialised = false;
+   bool bRecolourOnLoad = false; // Request to recolour
 };
 
 struct ThemeChangeMessage {
@@ -171,6 +172,7 @@ public:
    void WriteOneImageMap( teThemeType id );
    static bool LoadPreferredTheme();
    void RecolourBitmap( int iIndex, wxColour From, wxColour To );
+   void RecolourTheme();
 
    int ColourDistance( wxColour & From, wxColour & To );
    wxColour & Colour( int iIndex );
@@ -218,6 +220,10 @@ public:
 };
 
 extern THEME_API Theme theTheme;
+
+extern THEME_API BoolSetting
+     GUIBlendThemes
+;
 
 extern THEME_API ChoiceSetting
      &GUITheme()
