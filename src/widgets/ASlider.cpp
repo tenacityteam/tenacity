@@ -144,7 +144,12 @@ const int sliderFontSize = 12;
 // TipWindow
 //
 
-class TipWindow final : public wxFrame
+class TipWindow final :
+#ifdef __WXMAC__
+public wxFrame
+#else
+public wxPopupWindow
+#endif
 {
  public:
    TipWindow(wxWindow *parent, const TranslatableStrings & labels);
@@ -153,6 +158,7 @@ class TipWindow final : public wxFrame
    wxSize GetSize() const;
    void SetPos(const wxPoint & pos);
    void SetLabel(const TranslatableString & label);
+   bool Show(bool show = true) override;
 
 private:
    void OnPaint(wxPaintEvent & event);
@@ -162,18 +168,18 @@ private:
    int mWidth;
    int mHeight;
    wxFont mFont;
-
-   DECLARE_EVENT_TABLE()
 };
 
-BEGIN_EVENT_TABLE(TipWindow, wxFrame)
-   EVT_PAINT(TipWindow::OnPaint)
-END_EVENT_TABLE()
-
 TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
+#ifdef __WXMAC__
 :  wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
            wxFRAME_SHAPED | wxNO_BORDER | wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT )
+#else
+: wxPopupWindow(parent, wxFRAME_SHAPED | wxBORDER_NONE | wxFRAME_FLOAT_ON_PARENT | wxPU_CONTAINS_CONTROLS)
+#endif
 {
+   Bind(wxEVT_PAINT, &TipWindow::OnPaint, this);
+
    SetBackgroundStyle(wxBG_STYLE_PAINT);
    SetBackgroundColour(wxTransparentColour);
 
@@ -194,7 +200,6 @@ TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
    mWidth += 8;
    mHeight += 8;
 
-#if defined(__WXMAC__)
    // Use a bitmap region to set the shape since just adding an unfilled path
    // will make the window transparent
    wxBitmap shape(mWidth, mHeight);
@@ -205,12 +210,7 @@ TipWindow::TipWindow(wxWindow *parent, const TranslatableStrings & labels)
    dc.DrawRoundedRectangle(0, 0, mWidth, mHeight, 5);
    dc.SelectObject(wxNullBitmap);
 
-   SetShape(wxRegion(shape, *wxWHITE));
-#else
-   wxGraphicsPath path = wxGraphicsRenderer::GetDefaultRenderer()->CreatePath();
-   path.AddRoundedRectangle(0, 0, mWidth, mHeight, 5);
-   SetShape(path);
-#endif
+   SetShape(wxRegion(shape));
 }
 
 wxSize TipWindow::GetSize() const
@@ -226,6 +226,16 @@ void TipWindow::SetPos(const wxPoint & pos)
 void TipWindow::SetLabel(const TranslatableString & label)
 {
    mLabel = label;
+}
+
+bool TipWindow::Show(bool show)
+{
+   #ifdef __WXMAC__
+   ShowWithoutActivating();
+   return true;
+   #else
+   return wxWindow::Show(show);
+   #endif
 }
 
 void TipWindow::OnPaint(wxPaintEvent & WXUNUSED(event))
@@ -950,7 +960,7 @@ void LWSlider::ShowTip(bool show)
    {
       mTipPanel->SetLabel(GetTip(mCurrentValue));
       SetPopWinPosition();
-      mTipPanel->ShowWithoutActivating();
+      mTipPanel->Show();
    }
    else
       mTipPanel->Hide();
