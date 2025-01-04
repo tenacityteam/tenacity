@@ -11,11 +11,12 @@ set( SOURCES
 set( LIBRARIES
    lib-effects-interface
    lib-label-track-interface
-   lib-note-track-interface
+   $<$<BOOL:${USE_MIDI}>:lib-note-track-interface>
    lib-time-track-interface
    lib-wave-track-settings
    nyquist
 )
+
 tenacity_library( lib-nyquist-effects "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

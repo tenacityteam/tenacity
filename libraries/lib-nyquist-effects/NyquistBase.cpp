@@ -14,7 +14,6 @@
 #include "FileNames.h"
 #include "LabelTrack.h"
 #include "Languages.h"
-#include "NoteTrack.h"
 #include "PlatformCompatibility.h"
 #include "PluginManager.h"
 #include "Prefs.h"
@@ -31,6 +30,10 @@
 #include "WaveClip.h"
 #include "WaveTrack.h"
 #include "wxFileNameWrapper.h"
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
+#endif
 
 #include "nyquist/xlisp/xlisp.h"
 #include "nyx.h"

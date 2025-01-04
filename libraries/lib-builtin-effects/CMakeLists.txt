@@ -94,7 +94,7 @@ set( LIBRARIES
    lib-dynamic-range-processor-interface
    lib-wave-track-fft-interface
    lib-label-track-interface
-   lib-note-track-interface
+   $<$<BOOL:${USE_MIDI}>:lib-note-track-interface>
    $<$<BOOL:${USE_SBSMS}>:sbsms::sbsms>
    $<$<BOOL:${USE_SOUNDTOUCH}>:SoundTouch::SoundTouch>
 )

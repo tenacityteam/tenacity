@@ -24,8 +24,11 @@ effect that uses SoundTouch to do its processing (ChangeTempo
 #include "SyncLock.h"
 #include "WaveClip.h"
 #include "WaveTrack.h"
-#include "NoteTrack.h"
 #include "TimeWarper.h"
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
+#endif
 
 // Soundtouch defines these as well, which are also in generated configmac.h
 // and configunix.h, so get rid of them before including,
