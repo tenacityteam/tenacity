@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Audacity
+Name=@PROPER_NAME@
 GenericName=Sound Editor
 GenericName[ar]=محرر أصوات
 GenericName[ca]=Editor d'àudio
@@ -54,14 +54,14 @@ Comment[zh_CN]=录音和编辑音频文件
 Comment[zh_TW]=錄音和編輯音訊檔案
 
 Icon=@APP_NAME@
-StartupWMClass=Audacity
+StartupWMClass=@APP_NAME@
 
 Type=Application
-Categories=AudioVideo;Audio;AudioVideoEditing;
+Categories=AudioVideo;Audio;AudioVideoEditing;Recorder;
 
 Keywords=sound;music editing;voice channel;frequency;modulation;audio trim;clipping;noise reduction;multi track audio editor;edit;mixing;WAV;AIFF;FLAC;MP2;MP3;
 
-Exec=env GDK_BACKEND=x11 UBUNTU_MENUPROXY=0 @APP_NAME@ %F
+Exec=env UBUNTU_MENUPROXY=0 @APP_NAME@ %F
 StartupNotify=false
 Terminal=false
 MimeType=@MIMETYPES@;

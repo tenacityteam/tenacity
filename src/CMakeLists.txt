@@ -1156,7 +1156,7 @@ else()
    endif()
 
    # Create the desktop file
-   configure_file( audacity.desktop.in ${_INTDIR}/audacity.desktop )
+   configure_file( ${APP_NAME}.desktop.in ${_INTDIR}/${APP_NAME}.desktop )
    
    if(${_OPT}has_url_schemes_support)
       configure_file( audacity-url-handler.desktop.in ${_INTDIR}/audacity-url-handler.desktop )
@@ -1321,7 +1321,7 @@ else()
                USE_SOURCE_PERMISSIONS
                FILES_MATCHING PATTERN "*.so*" )
 
-      install( FILES "${_INTDIR}/audacity.desktop"
+      install( FILES "${_INTDIR}/${APP_NAME}.desktop"
                DESTINATION "${_DATADIR}/applications" )
 
       if(${_OPT}has_url_schemes_support)
