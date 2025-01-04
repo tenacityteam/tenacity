@@ -64,7 +64,6 @@ set( LIBRARIES
    lib-channel
    lib-stretching-sequence
    lib-menus
-   lib-note-track
    lib-viewport
    lib-music-information-retrieval
    lib-crypto
@@ -81,6 +80,10 @@ set( LIBRARIES
 
 if ( USE_LV2 )
    list( APPEND LIBRARIES lib-lv2)
+endif()
+
+if (USE_MIDI)
+   list(APPEND LIBRARIES lib-note-track)
 endif()
 
 if ( ${_OPT}has_url_schemes_support )
