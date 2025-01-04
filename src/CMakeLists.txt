@@ -1329,7 +1329,7 @@ else()
                   DESTINATION "${_DATADIR}/applications" )
       endif()
                
-      install( FILES "${topdir}/LICENSE.txt" "${topdir}/README.md"
+      install( FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_SOURCE_DIR}/README.md"
                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
       install( FILES "${_SRCDIR}/audacity.xml"
                DESTINATION "${_DATADIR}/mime/packages" )
