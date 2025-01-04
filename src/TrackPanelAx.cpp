@@ -27,9 +27,12 @@
 
 #include "SyncLock.h"
 #include "LabelTrack.h"
-#include "NoteTrack.h"
 #include "TimeTrack.h"
 #include "Viewport.h"
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
+#endif
 
 TrackPanelAx::Adapter::~Adapter() = default;
 

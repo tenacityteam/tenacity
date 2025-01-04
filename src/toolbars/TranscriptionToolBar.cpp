@@ -33,7 +33,6 @@
 #include "AudioIO.h"
 #include "ImageManipulation.h"
 #include "../KeyboardCapture.h"
-#include "NoteTrack.h"
 #include "Project.h"
 #include "ProjectAudioIO.h"
 #include "../ProjectAudioManager.h"
@@ -48,6 +47,10 @@
 #ifdef EXPERIMENTAL_VOICE_DETECTION
 #include "../VoiceKey.h"
 
+#endif
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
 #endif
 
 IMPLEMENT_CLASS(TranscriptionToolBar, ToolBar);
@@ -499,9 +502,12 @@ void TranscriptionToolBar::PlayAtSpeed(bool newDefault, bool cutPreview)
    // Fixed speed play is the old method, that uses a time track.
    // VariSpeed play reuses Scrubbing.
    bool bFixedSpeedPlay = !gPrefs->ReadBool(wxT("/AudioIO/VariSpeedPlay"), true);
+
+   #ifdef USE_MIDI
    // Scrubbing doesn't support note tracks, but the fixed-speed method using time tracks does.
    if (TrackList::Get(*p).Any<NoteTrack>())
       bFixedSpeedPlay = true;
+   #endif
 
    // If cutPreview, we have to fall back to fixed speed.
    if (newDefault)

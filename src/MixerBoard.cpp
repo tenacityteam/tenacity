@@ -164,7 +164,9 @@ BEGIN_EVENT_TABLE(MixerTrackCluster, wxPanelWrapper)
    EVT_BUTTON(ID_BITMAPBUTTON_MUSICAL_INSTRUMENT, MixerTrackCluster::OnButton_MusicalInstrument)
    EVT_SLIDER(ID_SLIDER_PAN, MixerTrackCluster::OnSlider_Pan)
    EVT_SLIDER(ID_SLIDER_GAIN, MixerTrackCluster::OnSlider_Gain)
+   #ifdef USE_MIDI
    EVT_SLIDER(ID_SLIDER_VELOCITY, MixerTrackCluster::OnSlider_Velocity)
+   #endif
    //v EVT_COMMAND_SCROLL(ID_SLIDER_GAIN, MixerTrackCluster::OnSliderScroll_Gain)
    EVT_COMMAND(ID_TOGGLEBUTTON_MUTE, wxEVT_COMMAND_BUTTON_CLICKED, MixerTrackCluster::OnButton_Mute)
    EVT_COMMAND(ID_TOGGLEBUTTON_SOLO, wxEVT_COMMAND_BUTTON_CLICKED, MixerTrackCluster::OnButton_Solo)
@@ -222,6 +224,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
                .Orientation( wxVERTICAL ));
    mSlider_Volume->SetName(_("Volume"));
 
+   #ifdef USE_MIDI
    mSlider_Velocity =
       safenew MixerTrackSlider(
             this, ID_SLIDER_VELOCITY,
@@ -232,6 +235,7 @@ MixerTrackCluster::MixerTrackCluster(wxWindow* parent,
                .Style( VEL_SLIDER )
                .Orientation( wxVERTICAL ));
    mSlider_Velocity->SetName(_("Velocity"));
+   #endif
 
    // other controls and meter at right
 
@@ -348,10 +352,12 @@ WaveChannel *MixerTrackCluster::GetRight() const
    return nullptr;
 }
 
+#ifdef USE_MIDI
 NoteTrack *MixerTrackCluster::GetNote() const
 {
    return dynamic_cast< NoteTrack * >( mTrack.get() );
 }
+#endif
 
 // Old approach modified things in situ.
 // However with a theme change there is so much to modify, it is easier
@@ -383,7 +389,9 @@ void MixerTrackCluster::HandleResize() // For wxSizeEvents, update volume slider
          TRACK_NAME_HEIGHT + kDoubleInset) - // mStaticText_TrackName + margin
       kQuadrupleInset; // margin below volume slider
    mSlider_Volume->SetSize(-1, nGainSliderHeight);
+   #ifdef USE_MIDI
    mSlider_Velocity->SetSize(-1, nGainSliderHeight);
+   #endif
 
    const int nRequiredHeightAboveMeter =
       MUSICAL_INSTRUMENT_HEIGHT_AND_WIDTH + kDoubleInset +
@@ -411,6 +419,7 @@ void MixerTrackCluster::HandleSliderGain(const bool bWantPushState /*= false*/)
          .PushState(XO("Moved volume slider"), XO("Volume"), UndoPush::CONSOLIDATE );
 }
 
+#ifdef USE_MIDI
 void MixerTrackCluster::HandleSliderVelocity(const bool bWantPushState /*= false*/)
 {
    float fValue = mSlider_Velocity->Get();
@@ -424,6 +433,7 @@ void MixerTrackCluster::HandleSliderVelocity(const bool bWantPushState /*= false
          .PushState(XO("Moved velocity slider"), XO("Velocity"),
             UndoPush::CONSOLIDATE);
 }
+#endif
 
 void MixerTrackCluster::HandleSliderPan(const bool bWantPushState /*= false*/)
 {
@@ -487,10 +497,12 @@ void MixerTrackCluster::UpdateForStateChange()
    else
       mSlider_Volume->Set(GetWave()->GetVolume());
 
+   #ifdef USE_MIDI
    if (!GetNote())
       mSlider_Velocity->Hide();
    else
       mSlider_Velocity->Set(GetNote()->GetVelocity());
+   #endif
 }
 
 namespace {
@@ -736,10 +748,12 @@ void MixerTrackCluster::OnSlider_Gain(wxCommandEvent& WXUNUSED(event))
    this->HandleSliderGain();
 }
 
+#ifdef USE_MIDI
 void MixerTrackCluster::OnSlider_Velocity(wxCommandEvent& WXUNUSED(event))
 {
    this->HandleSliderVelocity();
 }
+#endif
 
 void MixerTrackCluster::OnSlider_Pan(wxCommandEvent& WXUNUSED(event))
 {
@@ -1499,8 +1513,10 @@ const ReservedCommandFlag&
       [](const AudacityProject &project){
          auto &tracks = TrackList::Get( project );
          return
+         #ifdef USE_MIDI
             !tracks.Any<const NoteTrack>().empty()
          ||
+         #endif
             !tracks.Any<const WaveTrack>().empty()
          ;
       }

@@ -90,14 +90,18 @@ public:
 
    WaveTrack *GetWave() const;
    WaveChannel *GetRight() const;
+   #ifdef USE_MIDI
    NoteTrack *GetNote() const;
+   #endif
 
    //void UpdatePrefs();
 
    void HandleResize(); // For wxSizeEvents, update volume slider and meter.
 
    void HandleSliderGain(const bool bWantPushState = false);
+   #ifdef USE_MIDI
    void HandleSliderVelocity(const bool bWantPushState = false);
+   #endif
    void HandleSliderPan(const bool bWantPushState = false);
 
    void ResetMeter(const bool bResetClipping);
@@ -117,7 +121,9 @@ private:
 
    void OnButton_MusicalInstrument(wxCommandEvent& event);
    void OnSlider_Gain(wxCommandEvent& event);
+   #ifdef USE_MIDI
    void OnSlider_Velocity(wxCommandEvent& event);
+   #endif
    void OnSlider_Pan(wxCommandEvent& event);
    void OnButton_Mute(wxCommandEvent& event);
    void OnButton_Solo(wxCommandEvent& event);
@@ -137,7 +143,9 @@ private:
    AButton* mToggleButton_Solo;
    MixerTrackSlider* mSlider_Pan;
    MixerTrackSlider* mSlider_Volume;
+   #ifdef USE_MIDI
    MixerTrackSlider* mSlider_Velocity;
+   #endif
    wxWeakRef<MeterPanel> mMeter;
    ChannelGroupSampleView mSampleView;
 

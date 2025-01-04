@@ -11,10 +11,18 @@ a cluster in the modules.dot file generated at configuration time.
 set( FOLDERS
    etc
    import-export
-   track-ui
    scripting
    nyquist
 )
+
+# Technically, based off the name, the track-ui directory shouldn't be bound by
+# MIDI availability, but since it only contains mod-midi-import-export, we'll
+# just exclude this entire folder to not build mod-midi-import-export.
+#
+# This can be changed if this becomes an issue.
+if (USE_MIDI)
+   list(APPEND FOLDERS track-ui)
+endif()
 
 foreach( FOLDER ${FOLDERS} )
    add_subdirectory("${FOLDER}")

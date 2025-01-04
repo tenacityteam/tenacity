@@ -22,10 +22,13 @@
 #include <wx/statbox.h>
 #include <wx/stattext.h>
 
-#include "NoteTrack.h"
 #include "Prefs.h"
 #include "ShuttleGui.h"
 #include "WindowAccessible.h"
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
+#endif
 
 static const auto PathStart = wxT("ImportExportPreferences");
 

@@ -3,7 +3,6 @@
 #include "../CommonCommandFlags.h"
 #include "LabelTrack.h"
 #include "../MenuCreator.h"
-#include "NoteTrack.h"
 #include "Project.h"
 #include "ProjectFileManager.h"
 #include "ProjectHistory.h"
@@ -38,6 +37,10 @@
 
 #include <wx/clipbrd.h>
 #include <wx/frame.h>
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
+#endif
 
 // private helper classes and functions
 namespace {

@@ -42,11 +42,14 @@ This class now lists
 #include "WaveformSettings.h"
 #include "prefs/WaveformScale.h"
 #include "LabelTrack.h"
-#include "NoteTrack.h"
 #include "TimeTrack.h"
 #include "Envelope.h"
 #include "ProjectAudioIO.h"
 #include "AudioIO.h"
+
+#ifdef USE_MIDI
+#include "NoteTrack.h"
+#endif
 
 #include "SelectCommand.h"
 #include "ShuttleGui.h"
