@@ -458,16 +458,17 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       //v For now, change to AudacityLogoWithName via old-fashioned way, not Theme.
       wxBitmap logo(TenacityLogoWithName_xpm); //v
 
-      //Setup to scale the logo larger and smaller as necessary
-      const float fScale = 1.0f;
+      // Setup to scale the logo larger and smaller as necessary
+      // TODO: Replace our logo with text with a transparent image so it blends
+      // much better with the system's colors. I think that'd be nice.
+      constexpr float fScale = 0.75;
       wxImage RescaledImage(logo.ConvertToImage());
       wxColour MainColour(
          RescaledImage.GetRed(1,1),
          RescaledImage.GetGreen(1,1),
          RescaledImage.GetBlue(1,1));
       pPage->SetBackgroundColour(MainColour);
-      // wxIMAGE_QUALITY_HIGH not supported by wxWidgets 2.6.1, or we would use it here.
-      RescaledImage.Rescale((int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale));
+      RescaledImage.Rescale((int)(LOGOWITHNAME_WIDTH * fScale), (int)(LOGOWITHNAME_HEIGHT *fScale), wxIMAGE_QUALITY_HIGH);
       wxBitmap RescaledBitmap(RescaledImage);
 
       icon =

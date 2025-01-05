@@ -1215,7 +1215,7 @@ void AudacityApp::ShowSplashScreen() {
 
    // BG: Create a temporary window to set as the top window
    wxImage logoimage((const char**)TenacityLogoWithName_xpm);
-   logoimage.Scale(logoimage.GetWidth() * (2.0 / 3.0), logoimage.GetHeight() * (2.0 / 3.0), wxIMAGE_QUALITY_HIGH);
+   logoimage.Rescale(logoimage.GetWidth() * 0.75, logoimage.GetHeight() * 0.75);
    if (GetLayoutDirection() == wxLayout_RightToLeft)
       logoimage = logoimage.Mirror();
    wxBitmap logo(logoimage);
