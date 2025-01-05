@@ -242,6 +242,8 @@ set( SOURCES
       VoiceKey.h
       WaveTrackLocation.cpp
       WaveTrackLocation.h
+      WelcomeDialog.cpp
+      WelcomeDialog.h
 
       # Commands
 
@@ -1178,10 +1180,6 @@ endif()
 
 if(CRASH_REPORT_URL)
     list(APPEND DEFINES PRIVATE -DCRASH_REPORT_URL="${CRASH_REPORT_URL}")
-endif()
-
-if(${_OPT}has_whats_new)
-   list(APPEND DEFINES PRIVATE HAS_WHATS_NEW )
 endif()
 
 set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${APP_NAME} )

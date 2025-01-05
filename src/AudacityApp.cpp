@@ -115,9 +115,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "wxWidgetsWindowPlacement.h"
 #include "effects/RegisterBuiltinEffects.h"
 
-#ifdef HAS_WHATS_NEW
-#  include "WhatsNewDialog.h"
-#endif
+#include "WelcomeDialog.h"
 
 #ifdef EXPERIMENTAL_EASY_CHANGE_KEY_BINDINGS
 #include "prefs/KeyConfigPrefs.h"
@@ -1611,13 +1609,7 @@ bool AudacityApp::InitPart2()
 
    if (!playingJournal && ProjectSettings::Get(*project).GetShowSplashScreen())
    {
-      // This may do a check-for-updates at every start up.
-      // Mainly this is to tell users of ALPHAS who don't know that they have an ALPHA.
-      // Disabled for now, after discussion.
-      // project->MayCheckForUpdates();
-#ifdef HAS_WHATS_NEW
-      WhatsNewDialog::Show(*project);
-#endif
+      WelcomeDialog::Show(*project);
    }
 
    // Update Manager may spawn a modal dialog, we need to hide the splash screen before that

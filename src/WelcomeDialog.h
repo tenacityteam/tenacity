@@ -1,11 +1,12 @@
 /*  SPDX-License-Identifier: GPL-2.0-or-later */
 /*!********************************************************************
 
-  Audacity: A Digital Audio Editor
+  Tenacity
 
-  WhatsNewDialog.h
+  WelcomeDialog.h
 
   Vitaly Sverchinsky
+  Avery King
 
 **********************************************************************/
 
@@ -17,20 +18,18 @@ class wxCheckBox;
 class ShuttleGui;
 class AudacityProject;
 
-class WhatsNewDialog final : public wxDialogWrapper
+class WelcomeDialog final : public wxDialogWrapper
 {
    wxCheckBox* mDontShowAgain{};
 public:
-   WhatsNewDialog(wxWindow* parent, wxWindowID id);
-   ~WhatsNewDialog() override;
+   WelcomeDialog(wxWindow* parent, wxWindowID id);
+   ~WelcomeDialog() override;
 
    static void Show(AudacityProject& project);
 
 private:
    void Populate(ShuttleGui& S);
    void OnOK(wxCommandEvent&);
-   void OnWatchReleaseVideo(wxCommandEvent&);
-   void OnGoToMuseHub(wxCommandEvent&);
 
    DECLARE_EVENT_TABLE()
 };
