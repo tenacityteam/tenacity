@@ -497,11 +497,22 @@ if( NOT CMAKE_INSTALL_LIBDIR STREQUAL "lib" AND NOT EXISTS "${CMAKE_BINARY_DIR}/
 endif()
 
 # Define Tenacity's name
+# Note: DESKTOP_NAME is used in situations where our name will be used in a
+# launcher. For example, its used in both our .desktop launcher and our
+# AppStream metadata.
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
-    set( APP_NAME "Tenacity" )
+   set( APP_NAME "Tenacity" )
+   set( DESKTOP_NAME "${APP_NAME}")
 else()
-    set( APP_NAME "tenacity" )
-    set( PROPER_NAME "Tenacity" )
+   set( APP_NAME "tenacity" )
+   set( PROPER_NAME "Tenacity" )
+   set( DESKTOP_NAME "${PROPER_NAME}")
+endif()
+
+if (TENACITY_BUILD_LEVEL EQUAL 0)
+   set(DESKTOP_NAME "${DESKTOP_NAME} (Nightly)")
+elseif (TENACITY_BUILD_LEVEL EQUAL 1)
+   set(DESKTOP_NAME "${DESKTOP_NAME} (Beta)")
 endif()
 
 # Define Application ID
