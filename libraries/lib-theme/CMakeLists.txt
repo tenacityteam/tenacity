@@ -14,10 +14,30 @@ set( SOURCES
    MacroMagic.h
    ThemeLegacy.cpp
    ThemeLegacy.h
+
+   # Rewritten theme system
+   Theme.cpp
+   Theme.h
+   ThemePackage.cpp
+   ThemePackage.h
+   ThemeResources.cpp
+   ThemeResources.h
+   Types.h
+
+   exceptions/ArchiveError.cpp
+   exceptions/ArchiveError.h
+   exceptions/IncompatibleTheme.cpp
+   exceptions/IncompatibleTheme.h
+   exceptions/InvalidState.cpp
+   exceptions/InvalidState.h
 )
+
 set( LIBRARIES
    lib-files-interface
-)
+   libzip::zip
+   wxWidgets::wxWidgets
+ )
+
 tenacity_library( lib-theme "${SOURCES}" "${LIBRARIES}"
    "" ""
 )
