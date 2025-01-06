@@ -21,13 +21,7 @@
 #include <fstream>
 #include <sstream>
 
-// Undefine new because jsoncpp uses in-place initialization for
-// SecureAllocator
-#ifdef _CRTDBG_MAP_ALLOC
-#undef new
-#endif
-
-#include <json/value.h>
+#include <rapidjson/document.h>
 #include <zip.h>
 
 #include "Types.h"
@@ -57,17 +51,17 @@ class THEME_API ThemePackage final
 {
     private:
         zip_t* mPackageArchive;
-        Json::Value mInfo;
-        Json::Value mColors;
-        Json::Value mCurrentSubthemeInfo;
+        rapidjson::Value mInfo;
+        rapidjson::Value mColors;
+        rapidjson::Value mCurrentSubthemeInfo;
         std::string mSelectedSubtheme;
         bool mIsMultiThemePackage;
 
         /// @brief Reads a file from the package archive and returns a buffer
         /// containing all the file's contents.
         /// @param name The name of the file to read from the archive.
-        /// @return Returns an allocated buffer of all the file's contents.
-        std::unique_ptr<char> ReadFileFromArchive(const std::string& name);
+        /// @return Returns a std::vector<char> of all the file's contents.
+        std::vector<char> ReadFileFromArchive(const std::string& name);
 
         /** @brief Returns a parsed JSON file.
          * 
@@ -79,7 +73,7 @@ class THEME_API ThemePackage final
          * @return Returns a parsed JSON data.
          * 
          **/
-        Json::Value GetParsedJsonData(const std::string& jsonFile);
+        rapidjson::Document GetParsedJsonData(const std::string& jsonFile);
 
     public:
         ThemePackage();
@@ -95,8 +89,11 @@ class THEME_API ThemePackage final
         /** @brief Opens a theme package.
          * 
          * OpenPackage() first extracts a package with libzip and then attempts
-         * to parse it. If reading the archive fails, an exception will be
-         * thrown.
+         * to read all the JSON data. If reading the archive fails, or if
+         * parsing the JSON data fails, this member function throws an
+         * exception.
+         * 
+         * @note OpenPackage() does _not_ do any actual parsing.
          * 
         */
         void OpenPackage(const std::string& path);
@@ -122,9 +119,12 @@ class THEME_API ThemePackage final
          * 
          * A package is in a valid state if:
          * 
-         * 1. The package was successfully loaded (see
-         *    @ref SuccessfullyLoaded()).
+         * 1. The package was successfully loaded (see @ref
+         * SuccessfullyLoaded()).
          * 2. For multi-theme packages, the "subthemes" property is an array.
+         * 
+         * If you just want to check if the package was successfully loaded and
+         * don't care if the contents are valid, see @ref SuccessfullyLoaded()
          * 
         */
         bool IsValid() const;
@@ -140,7 +140,10 @@ class THEME_API ThemePackage final
          * 
          * 1. It was opened.
          * 2. The archive contains no errors.
-         * 3. info.json and colors.json have been parsed.
+         * 3. info.json and colors.json have been loaded without errors.
+         * 
+         * @note A successfully loaded theme package does not mean its
+         * necessarily valid. For that, see @ref IsValid()
          * 
         */
         bool SuccessfullyLoaded() const;
@@ -157,6 +160,8 @@ class THEME_API ThemePackage final
          * @param theme The theme to load. This should be a path relative to
          * the root of the archive. By default, it loads the theme from the
          * root.
+         * 
+         * @note You probably want to see the 
          * 
         */
         void LoadTheme(const std::string& theme = {});
@@ -186,12 +191,15 @@ class THEME_API ThemePackage final
 
         /** @brief Returns an attribute from the package's info.json.
          * 
+         * If the attribute isn't found, ArchiveError with error type
+         * ArchiveError::Type::Invalid is thrown.
+         * 
          * @param name The name of the attribute to get.
          * @return Returns the value of the attribute. Or Json::Value::null if
          * it doesn't exist.
          * 
         */
-        Json::Value GetAttribute(const std::string& name);
+        const rapidjson::Value& GetAttribute(const std::string& name);
 
         /// @brief Returns if the theme package contains multiple themes.
         bool IsMultiThemePackage() const;

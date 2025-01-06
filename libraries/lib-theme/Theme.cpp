@@ -73,8 +73,8 @@ void Theme::LoadAttributesFromPackage()
     }
 
     // Load theme name
-    auto value = mPackage->GetAttribute("name");
-    mName = value.asString();
+    const auto& value = mPackage->GetAttribute("name");
+    mName = value.GetString();
 }
 
 ThemePackage&& Theme::ReleasePackage()
