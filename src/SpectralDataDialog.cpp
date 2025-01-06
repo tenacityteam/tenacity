@@ -52,7 +52,7 @@
 #include "ShuttleGui.h"
 #include "SpectralDataManager.h"
 #include "tracks/playabletrack/wavetrack/ui/SpectrumView.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackPanel.h"
 #include "WaveTrack.h"
 

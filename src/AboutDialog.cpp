@@ -44,7 +44,7 @@ hold information about one contributor to Audacity.
 #include "AccessibleLinksFormatter.h"
 
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 #include "../images/TenacityLogoWithName.xpm"
 

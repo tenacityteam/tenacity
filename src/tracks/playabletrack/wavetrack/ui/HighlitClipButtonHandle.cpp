@@ -16,7 +16,7 @@
 #include "ProjectHistory.h"
 #include "RefreshCode.h"
 #include "SelectionState.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackArt.h"
 #include "TrackArtist.h"
 #include "TrackPanelDrawingContext.h"

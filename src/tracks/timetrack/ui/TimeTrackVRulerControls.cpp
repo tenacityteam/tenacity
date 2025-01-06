@@ -19,7 +19,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../ui/ChannelView.h"
 #include "ProjectHistory.h"
 #include "../../../RefreshCode.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TimeTrack.h"
 #include "../../../TrackArtist.h"
 #include "../../../TrackPanelDrawingContext.h"

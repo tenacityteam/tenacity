@@ -28,7 +28,7 @@ array of RulerUpdater::Label.
 #include "RulerUpdater.h"
 
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 #include <wx/dc.h>
 

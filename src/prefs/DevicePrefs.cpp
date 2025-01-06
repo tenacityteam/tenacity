@@ -46,7 +46,7 @@ other settings.
 #include "QualitySettings.h"
 
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 #define ID_DEFAULT_SAMPLE_RATE_CHOICE 7001
 

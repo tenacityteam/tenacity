@@ -63,7 +63,7 @@ is time to refresh some aspect of the screen.
 #include "ProjectTimeRuler.h"
 #include "ProjectWindow.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackArt.h"
 #include "TrackPanelMouseEvent.h"
 

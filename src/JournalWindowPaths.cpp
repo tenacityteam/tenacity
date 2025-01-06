@@ -13,7 +13,7 @@
 #include <wx/stattext.h>
 #include <wx/toplevel.h>
 #include "Identifier.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "wxArrayStringEx.h"
 #include "widgets/auStaticText.h"
 

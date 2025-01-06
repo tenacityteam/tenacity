@@ -19,7 +19,7 @@
 #include "LinearUpdater.h"
 #include "Ruler.h"
 #include "AColor.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "AllThemeResources.h"
 
 #include <wx/brush.h>

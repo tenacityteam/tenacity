@@ -17,7 +17,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "AColor.h"
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanelDrawingContext.h"
 #include "../../../../widgets/LinearUpdater.h"

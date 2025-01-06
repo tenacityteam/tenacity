@@ -23,7 +23,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "Prefs.h"
 #include "Project.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackPanelDrawingContext.h"
 #include "UIHandle.h"
 #include "ViewInfo.h"

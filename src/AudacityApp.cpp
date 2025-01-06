@@ -96,7 +96,7 @@ It handles initialization and termination by subclassing wxApp.
 #include "LoadThemeResources.h"
 #include "Track.h"
 #include "prefs/PrefsDialog.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "Viewport.h"
 #include "PlatformCompatibility.h"
 #include "AutoRecoveryDialog.h"

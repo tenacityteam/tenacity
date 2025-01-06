@@ -22,7 +22,7 @@
 #include "FileNames.h"
 #include "Internat.h"
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 
 wxString HtmlColourOfIndex( int i ){

@@ -17,7 +17,7 @@
 
 #include "Identifier.h"
 #include "Observer.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "AppEvents.h"
 
 #include <wx/app.h> // to inherit

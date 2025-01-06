@@ -14,7 +14,7 @@
 #include "LowlitClipButton.h"
 #include "ProjectHistory.h"
 #include "RefreshCode.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackArt.h"
 #include "TrackPanelCell.h"
 #include "TrackPanelMouseEvent.h"

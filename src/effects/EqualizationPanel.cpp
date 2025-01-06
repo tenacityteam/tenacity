@@ -29,7 +29,7 @@
 #include "Envelope.h"
 #include "../EnvelopeEditor.h"
 #include "FFT.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../TrackArtist.h"
 #include "ViewInfo.h"
 #include "../widgets/RulerPanel.h"

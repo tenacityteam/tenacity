@@ -207,19 +207,19 @@ protected:
    ThemeSet *mpSet = nullptr;
 };
 
-class THEME_API Theme final : public ThemeBase
+class THEME_API ThemeLegacy final : public ThemeBase
 {
    friend class AColor; // So it can publish
 public:
-   Theme(void);
+   ThemeLegacy(void);
 public:
-   ~Theme(void);
+   ~ThemeLegacy(void);
 public:
    void EnsureInitialised() override;
    void RegisterImagesAndColours();
 };
 
-extern THEME_API Theme theTheme;
+extern THEME_API ThemeLegacy theTheme;
 
 extern THEME_API BoolSetting
      GUIBlendThemes
