@@ -32,7 +32,7 @@
 #include "RealtimeEffectList.h"
 #include "RealtimeEffectManager.h"
 #include "RealtimeEffectState.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "UndoManager.h"
 #include "Viewport.h"
 #include "wxWidgetsWindowPlacement.h"

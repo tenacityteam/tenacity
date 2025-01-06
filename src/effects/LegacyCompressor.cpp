@@ -26,7 +26,7 @@
 
 #include "AColor.h"
 #include "ShuttleGui.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "float_cast.h"
 #include "../widgets/LinearUpdater.h"
 #include "../widgets/Ruler.h"

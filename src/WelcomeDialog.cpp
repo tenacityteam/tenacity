@@ -27,7 +27,7 @@
 #include "HelpText.h"
 #include "ProjectWindows.h"
 #include "ShuttleGui.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "AllThemeResources.h"
 
 #include "../images/TenacityLogoWithName.xpm"

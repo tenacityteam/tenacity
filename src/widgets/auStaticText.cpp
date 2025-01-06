@@ -16,7 +16,7 @@ can't be.
 #include "auStaticText.h"
 
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 #include "AColor.h"
 

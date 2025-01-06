@@ -30,7 +30,7 @@ around to NEW positions.
 #include "AColor.h"
 #include "AllThemeResources.h"
 #include "Internat.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 ////////////////////////////////////////////////////////////
 /// Methods for Grabber

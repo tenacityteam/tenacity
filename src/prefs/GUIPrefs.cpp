@@ -25,7 +25,7 @@
 
 #include "FileNames.h"
 #include "Languages.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "Prefs.h"
 #include "ShuttleGui.h"
 

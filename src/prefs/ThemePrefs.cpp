@@ -34,7 +34,7 @@ Provides:
 #include <wx/app.h>
 #include <wx/wxprec.h>
 #include "Prefs.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "ShuttleGui.h"
 #include "AColor.h"
 #include "BasicUI.h"

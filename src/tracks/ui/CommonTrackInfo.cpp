@@ -32,7 +32,7 @@ Paul Licameli split from TrackInfo.cpp
 #include "AColor.h"
 #include "AllThemeResources.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "Track.h"
 #include "TrackArt.h"
 #include "TrackControls.h"

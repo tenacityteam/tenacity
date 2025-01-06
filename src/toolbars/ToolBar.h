@@ -18,7 +18,7 @@
 #include <wx/defs.h>
 
 #include "Prefs.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "wxPanelWrapper.h" // to inherit
 #include <wx/windowptr.h>
 

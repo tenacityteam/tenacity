@@ -19,7 +19,7 @@
 #include "SelectFile.h"
 #include "ShuttleGui.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "CommandContext.h"
 #include "MenuRegistry.h"
 #include "../prefs/PrefsDialog.h"

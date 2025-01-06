@@ -44,7 +44,7 @@ audio tracks.
 #include "AllThemeResources.h"
 #include "prefs/GUIPrefs.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackPanelDrawingContext.h"
 
 #include "Decibels.h"

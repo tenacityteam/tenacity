@@ -29,7 +29,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../ProjectWindows.h"
 #include "../../../RefreshCode.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../../../TrackArt.h"
 #include "../../../TrackArtist.h"
 #include "TrackFocus.h"

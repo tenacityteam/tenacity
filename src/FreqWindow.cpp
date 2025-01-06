@@ -72,7 +72,7 @@ the mouse around.
 #include "ProjectWindows.h"
 #include "SelectFile.h"
 #include "ShuttleGui.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "ViewInfo.h"
 
 #include "FileNames.h"
