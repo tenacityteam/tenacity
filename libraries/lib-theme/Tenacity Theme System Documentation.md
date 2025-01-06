@@ -271,7 +271,7 @@ to look distorted.
 * `muteClipped`
 * `progressDone`
 * `progressNotYet`
-* `syncLockSe`
+* `syncLockSel`
 * `selTranslucent`
 * `blankSelected`
 * `sliderLight`
@@ -324,6 +324,9 @@ to look distorted.
 * `scrubDisabled` (18x16)
 * `seek` (26x16)
 * `seekDisabled` (26x16)
+
+#### Audio Setup Icon
+* `audioSetup` (37x18)
 
 #### Tool Icons
 
@@ -406,6 +409,30 @@ to look distorted.
 * `hiliteUpButtonExpandSel` (96x18)
 * `hiliteButtonExpand` (96x18)
 * `hiliteButtonExpandSel` (96x18)
+* `pitchUpIndicator` (12x12)
+* `pitchDownIndicator` (12x12)
+* `speedIndicator` (12x12)
+* `tcpClose` (16x16)
+* `tcpChevron` (16x16)
+* `tcpChevronDown` (16x16)
+* `tcpEllipses` (16x16)
+
+#### Effect Icons
+
+* `effectOn` (22x22)
+* `effectOff` (22x22)
+* `effectMoreDown` (22x22)
+* `effectMoreNormal` (22x22)
+* `effectMoreHover` (22x22)
+* `effectMoreDisabled` (22x22)
+* `effectCloseDown` (22x22)
+* `effectCloseNormal` (22x22)
+* `effectCloseHover` (22x22)
+* `effectCloseDisabled` (22x22)
+* `effectHButtonNormal` (22x22)
+* `effectHButtonHover` (22x22)
+* `effectHButtonDown` (22x22)
+* `effectHButtonDisabled` (22x22)
 
 #### Toolbar Buttons
 
@@ -425,6 +452,10 @@ to look distorted.
 * `recoloredDownSmall` (27x27)
 * `recoloredUpHiliteSmall` (27x27)
 * `recoloredHiliteSmall` (27x27)
+
+#### Miscellaneous
+
+* `cogwheel` (20x20)
 
 ## Changes from 1.3.x
 
