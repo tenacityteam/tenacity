@@ -49,7 +49,7 @@ Paul Licameli split from AudacityProject.cpp
 #include <wx/splitter.h>
 
 #ifdef __WXGTK__
-#include "../images/TenacityLogoAlpha.xpm"
+#include "../images/TenacityLogoAlpha.h"
 #endif
 
 namespace {

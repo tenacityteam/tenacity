@@ -145,7 +145,7 @@ It handles initialization and termination by subclassing wxApp.
 #endif
 
 
-#include "../images/TenacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.h"
 
 #include <thread>
 

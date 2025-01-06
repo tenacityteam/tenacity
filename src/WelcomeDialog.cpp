@@ -30,7 +30,7 @@
 #include "Theme.h"
 #include "AllThemeResources.h"
 
-#include "../images/TenacityLogoWithName.xpm"
+#include "../images/TenacityLogoWithName.h"
 
 namespace
 {
