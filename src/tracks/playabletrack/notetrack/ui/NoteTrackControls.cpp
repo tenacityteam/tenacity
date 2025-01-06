@@ -24,7 +24,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "ProjectHistory.h"
 #include "../../../../ProjectWindows.h"
 #include "../../../../RefreshCode.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////////

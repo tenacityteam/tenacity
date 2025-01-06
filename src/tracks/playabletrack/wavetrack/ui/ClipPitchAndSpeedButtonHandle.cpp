@@ -17,7 +17,7 @@
 #include "Project.h"
 #include "ProjectHistory.h"
 #include "RefreshCode.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TimeStretching.h"
 #include "TimeAndPitchInterface.h"
 #include "TrackPanelMouseEvent.h"

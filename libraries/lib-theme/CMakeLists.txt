@@ -12,8 +12,8 @@ set( SOURCES
    ImageManipulation.cpp
    ImageManipulation.h
    MacroMagic.h
-   Theme.cpp
-   Theme.h
+   ThemeLegacy.cpp
+   ThemeLegacy.h
 )
 set( LIBRARIES
    lib-files-interface

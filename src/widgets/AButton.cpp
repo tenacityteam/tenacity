@@ -26,7 +26,7 @@
 
 #include "AColor.h"
 #include "AllThemeResources.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TrackArt.h"
 
 #include <wx/setup.h> // for wxUSE_* macros

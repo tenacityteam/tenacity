@@ -32,7 +32,7 @@
 #include "../../../../ProjectSettings.h"
 #include "../../../../RefreshCode.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 class NoteTrackAffordanceHandle final : public AffordanceHandle
 {

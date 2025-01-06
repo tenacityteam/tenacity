@@ -37,7 +37,7 @@
 #include "ShuttleGui.h"
 #include "AudacityMessageBox.h"
 #include "ProjectWindows.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "HelpSystem.h"
 #include "TagsEditor.h"
 #include "ExportFilePanel.h"

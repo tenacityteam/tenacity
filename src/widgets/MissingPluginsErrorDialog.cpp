@@ -12,7 +12,7 @@
 #include "AccessibleLinksFormatter.h"
 #include "MissingPluginsErrorDialog.h"
 #include "ShuttleGui.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 BEGIN_EVENT_TABLE(MissingPluginsErrorDialog, wxDialogWrapper)
     EVT_BUTTON(wxID_OK, MissingPluginsErrorDialog::OnOk)

@@ -22,7 +22,7 @@
 #include <wx/dcbuffer.h>
 
 #include "HelpSystem.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "AllThemeResources.h"
 #include "AudioIO.h"
 #include "BasicUI.h"

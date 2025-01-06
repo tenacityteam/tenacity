@@ -14,7 +14,7 @@
 #include "AllThemeResources.h"
 #include "SelectedRegion.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "TimeAndPitchInterface.h"
 #include "Track.h"
 #include "TrackArtist.h"

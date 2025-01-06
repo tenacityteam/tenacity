@@ -24,7 +24,7 @@
 #include <wx/bmpbuttn.h>
 #include <wx/stattext.h>
 
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "AllThemeResources.h"
 
 bool TagsEditorDialog::ShowEditDialog(Tags &tags, wxWindow *parent, const TranslatableString &title)

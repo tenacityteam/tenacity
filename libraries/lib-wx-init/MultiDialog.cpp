@@ -32,7 +32,7 @@
 
 #include "wxPanelWrapper.h"
 #include "LogWindow.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "AllThemeResources.h"
 #include "HelpSystem.h"
 

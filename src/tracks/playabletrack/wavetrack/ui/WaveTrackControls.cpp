@@ -26,7 +26,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../../RefreshCode.h"
 #include "ShuttleGui.h"
 #include "SyncLock.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../../../../TrackArtist.h"
 #include "../../../../TrackPanel.h"
 #include "TrackFocus.h"

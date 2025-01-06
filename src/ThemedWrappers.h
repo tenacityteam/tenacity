@@ -22,7 +22,7 @@
 #include "widgets/AButton.h"
 #include "Internat.h"
 #include "Observer.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "Prefs.h"
 
 struct PrefsListenerDummy { };

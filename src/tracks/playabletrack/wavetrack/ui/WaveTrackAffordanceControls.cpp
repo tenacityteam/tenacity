@@ -42,7 +42,7 @@
 #include "../../../../ProjectSettings.h"
 #include "SelectionState.h"
 #include "../../../../RefreshCode.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../../../../../images/Cursors.h"
 #include "../../../../HitTestResult.h"
 #include "../../../../TrackPanel.h"

@@ -53,7 +53,7 @@ and use it for toolbar and window layouts too.
 
 *//*****************************************************************/
 
-#include "Theme.h"
+#include "ThemeLegacy.h"
 
 
 
@@ -79,13 +79,13 @@ and use it for toolbar and window layouts too.
 #include "MemoryX.h"
 
 // theTheme is a global variable.
-THEME_API Theme theTheme;
+THEME_API ThemeLegacy theTheme;
 
-Theme::Theme(void)
+ThemeLegacy::ThemeLegacy(void)
 {
 }
 
-Theme::~Theme(void)
+ThemeLegacy::~ThemeLegacy(void)
 {
 }
 
@@ -134,7 +134,7 @@ FilePath ThemeComponent(const wxString &dir, const wxString &Str)
 }
 }
 
-void Theme::EnsureInitialised()
+void ThemeLegacy::EnsureInitialised()
 {
    if ( !mpSet || mpSet->bInitialised )
       return;
@@ -166,7 +166,7 @@ bool ThemeBase::LoadPreferredTheme()
    return true;
 }
 
-void Theme::RegisterImagesAndColours()
+void ThemeLegacy::RegisterImagesAndColours()
 {
    if ( !mpSet || mpSet->bInitialised )
       return;

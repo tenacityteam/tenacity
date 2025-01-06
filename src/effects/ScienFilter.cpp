@@ -40,7 +40,7 @@ a graph for EffectScienFilter.
 #include "AllThemeResources.h"
 #include "PlatformCompatibility.h"
 #include "ShuttleGui.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../widgets/valnum.h"
 #include "../widgets/RulerPanel.h"
 #include "../widgets/IntFormat.h"

@@ -20,7 +20,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "ProjectAudioIO.h"
 #include "../../ProjectAudioManager.h"
 #include "../../ProjectWindow.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "Track.h"
 #include "../../TrackPanel.h"
 #include "ViewInfo.h"

@@ -15,7 +15,7 @@
 #include "CompressorInstance.h"
 #include "DynamicRangeProcessorHistory.h"
 #include "DynamicRangeProcessorPanelCommon.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "widgets/LinearDBFormat.h"
 #include "widgets/LinearUpdater.h"
 #include "widgets/Ruler.h"

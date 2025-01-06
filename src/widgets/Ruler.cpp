@@ -49,7 +49,7 @@
 #include "AllThemeResources.h"
 #include "Envelope.h"
 #include "NumberScale.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "ZoomInfo.h"
 
 #include "RulerUpdater.h"

@@ -9,7 +9,7 @@
 #include "DynamicRangeProcessorTransferFunctionPanel.h"
 #include "EffectInterface.h"
 #include "ShuttleGui.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "widgets/LinearDBFormat.h"
 #include "widgets/RulerPanel.h"
 #include "widgets/valnum.h"

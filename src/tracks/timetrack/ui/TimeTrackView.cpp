@@ -20,7 +20,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "../../../EnvelopeEditor.h"
 #include "../../../HitTestResult.h"
 #include "PendingTracks.h"
-#include "Theme.h"
+#include "ThemeLegacy.h"
 #include "../../../TrackArtist.h"
 #include "../../../TrackPanelDrawingContext.h"
 #include "../../../TrackPanelMouseEvent.h"
