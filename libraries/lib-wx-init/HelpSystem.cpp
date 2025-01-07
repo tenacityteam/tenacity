@@ -43,6 +43,10 @@
 
 #include "BasicUI.h"
 
+#ifndef __WXMSW__
+#include "../../images/TenacityLogo48x48.xpm"
+#endif
+
 const wxString HelpSystem::HelpHostname = wxT("manual.audacityteam.org");
 const wxString HelpSystem::HelpServerHomeDir = wxT("/");
 const wxString HelpSystem::HelpServerManDir = wxT("/man/");
@@ -199,8 +203,7 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
    #ifdef __WXMSW__
    wxIcon ic{ wxICON(AudacityLogo) };
    #else
-   wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
+   wxIcon ic{ wxICON(TenacityLogo48x48) };
    #endif
    pFrame->SetIcon( ic );
    // -- END of ICON stuff -----

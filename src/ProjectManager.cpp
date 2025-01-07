@@ -287,8 +287,7 @@ void InitProjectWindow( ProjectWindow &window )
 #elif defined(__WXGTK__)
       wxIcon ic{wxICON(TenacityLogoAlpha)};
 #else
-      wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
+      wxIcon ic{wxICON(TenacityLogo48x48)};
 #endif
       window.SetIcon(ic);
    }
