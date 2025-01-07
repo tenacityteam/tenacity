@@ -121,7 +121,7 @@ void Grabber::DrawGrabber( wxDC & dc )
    // So use 0,0 as origin for draw, so that the grabber draws right if 
    // positioned in its parent at some non zero position.
    r.SetPosition( wxPoint(0,0) );
-   int y, left, right, top, bottom;
+   int x, y, left, right, top, bottom;
 
    AColor::Medium(&dc, mOver );
    dc.DrawRectangle(r);
@@ -130,14 +130,19 @@ void Grabber::DrawGrabber( wxDC & dc )
    if( mAsSpacer )
       r.width -= 1;
 
+   //if vertical toolbar...
+   //could make this check more uniform with others.
+   if (r.GetSize().GetHeight() <= r.GetSize().GetWidth())
+   {
+      SetSize(GetSize().GetWidth(),10);
+      r.SetHeight(10);
+   }
+
    // No bumps in a spacer grabber.
    if( mAsSpacer )
       return;
    // Calculate the bump rectangle
    r.Deflate(2, 2);
-   if ((r.GetHeight() % 4) < 2) {
-      r.Offset(0, 1);
-   }
 
    // 2-bar toolbars and larger get padding
    int padding = r.GetHeight() > 32 ? 22 : 6;
@@ -148,18 +153,17 @@ void Grabber::DrawGrabber( wxDC & dc )
    top = r.GetTop();
    bottom = r.GetBottom();
 
-   // Draw the bumps
-   if (mPressed) {
-      AColor::Light(&dc, false);
+   // Draw the line
+   if (!mPressed) {
+      dc.SetPen(wxPen( theTheme.Colour( clrDark )));
+      dc.SetBrush(wxBrush( theTheme.Colour( clrDark )));
    }
    else {
-      dc.SetPen(wxPen(theTheme.Colour(clrGrabber), 1, wxPENSTYLE_SOLID));
+      dc.SetPen(wxPen( theTheme.Colour( clrLight )));
+      dc.SetBrush(wxBrush( theTheme.Colour( clrLight )));
    }
 
-   for (y = top + padding; y < bottom - padding; y += 5) {
-      dc.DrawRectangle(left, y, 2, 2);
-      dc.DrawRectangle(right, y, 2, 2);
-   }
+   dc.DrawRectangle(left+1,top+1,right-4,bottom-4);
 }
 
 //
