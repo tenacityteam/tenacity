@@ -1121,7 +1121,7 @@ const
 
 bool CommandManager::HandleXMLTag(const std::string_view& tag, const AttributesList &attrs)
 {
-   if (tag == "audacitykeyboard") {
+   if (tag == "tenacitykeyboard") {
       mXMLKeysRead = 0;
    }
 
@@ -1160,7 +1160,7 @@ bool CommandManager::HandleXMLTag(const std::string_view& tag, const AttributesL
 void CommandManager::HandleXMLEndTag(const std::string_view& tag)
 {
    /*
-   if (tag == "audacitykeyboard") {
+   if (tag == "tenacitykeyboard") {
       AudacityMessageBox(
          XO("Loaded %d keyboard shortcuts\n")
             .Format( mXMLKeysRead ),
@@ -1178,8 +1178,8 @@ XMLTagHandler *CommandManager::HandleXMLChild(const std::string_view&  WXUNUSED(
 void CommandManager::WriteXML(XMLWriter &xmlFile) const
 // may throw
 {
-   xmlFile.StartTag(wxT("audacitykeyboard"));
-   xmlFile.WriteAttr(wxT("audacityversion"), TENACITY_VERSION_STRING);
+   xmlFile.StartTag(wxT("tenacitykeyboard"));
+   xmlFile.WriteAttr(wxT("tenacityversion"), TENACITY_VERSION_STRING);
 
    for(const auto &entry : mCommandList) {
 
@@ -1189,7 +1189,7 @@ void CommandManager::WriteXML(XMLWriter &xmlFile) const
       xmlFile.EndTag(wxT("command"));
    }
 
-   xmlFile.EndTag(wxT("audacitykeyboard"));
+   xmlFile.EndTag(wxT("tenacitykeyboard"));
 }
 
 void CommandManager::Populator::BeginOccultCommands()

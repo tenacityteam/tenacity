@@ -148,7 +148,7 @@ bool AudacityFileConfig::Flush(bool bCurrentOnly)
 
 void AudacityFileConfig::Warn() const
 {
-   wxDialogWrapper dlg(nullptr, wxID_ANY, XO("Audacity Configuration Error"));
+   wxDialogWrapper dlg(nullptr, wxID_ANY, XO("Tenacity Configuration Error"));
 
    ShuttleGui S(&dlg, eIsCreating);
 

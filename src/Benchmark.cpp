@@ -519,7 +519,7 @@ void BenchmarkDialog::OnRun( wxCommandEvent & WXUNUSED(event))
    Printf( XO("Checking file pointer leaks:\n") );
    Printf( XO("Track # blocks: %ld\n").Format( t->GetBlockArray()->size() ) );
    Printf( XO("Disk # blocks: \n") );
-   system("ls .audacity_temp/* | wc --lines");
+   system("ls .tenacity_temp/* | wc --lines");
 #endif
 
    Printf( XO("Doing correctness check...\n") );

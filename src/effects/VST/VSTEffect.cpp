@@ -163,7 +163,7 @@ void VSTEffect::ExportPresets(
       {
         { XO("Standard VST bank file"), { wxT("fxb") }, true },
         { XO("Standard VST program file"), { wxT("fxp") }, true },
-        { XO("Audacity VST preset file"), { wxT("xml") }, true },
+        { XO("Tenacity VST preset file"), { wxT("xml") }, true },
       },
       wxFD_SAVE | wxFD_OVERWRITE_PROMPT | wxRESIZE_BORDER,
       NULL);

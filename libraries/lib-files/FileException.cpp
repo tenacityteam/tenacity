@@ -30,7 +30,7 @@ TranslatableString FileException::ErrorMessage() const
          return WriteFailureMessage(fileName);
       case Cause::Rename:
          format =
-XO("Audacity successfully wrote a file in %s but failed to rename it as %s.");
+XO("Tenacity successfully wrote a file in %s but failed to rename it as %s.");
       default:
          break;
    }

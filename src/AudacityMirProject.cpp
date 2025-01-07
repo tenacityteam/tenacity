@@ -90,9 +90,9 @@ bool AudacityMirProject::ShouldBeReconfigured(
       const auto displayedTempo = FormatTempo(newTempo);
       const auto message =
          isSingleFileImport ?
-            XO("Audacity detected this file to be %s bpm.\nWould you like to enable music view and set the project tempo to %s?")
+            XO("Tenacity detected this file to be %s bpm.\nWould you like to enable music view and set the project tempo to %s?")
                .Format(displayedTempo, displayedTempo) :
-            XO("Audacity detected one or more files to be %s bpm.\nWould you like to enable music view and set the project tempo to %s?")
+            XO("Tenacity detected one or more files to be %s bpm.\nWould you like to enable music view and set the project tempo to %s?")
                .Format(displayedTempo, displayedTempo);
       AudacityDontAskAgainMessageDialog m(
          &GetProjectPanel(mProject), XO("Music Import"), message);

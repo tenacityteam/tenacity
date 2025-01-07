@@ -832,7 +832,7 @@ bool Importer::Import(
 
       errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"Audacity did not recognize the type of the file '%s'.\n\n%sFor uncompressed files, also try File > Import > Raw Data.")
+"Tenacity did not recognize the type of the file '%s'.\n\n%sFor uncompressed files, also try File > Import > Raw Data.")
          .Format( fName, extraMessages );
    }
    else
@@ -851,7 +851,7 @@ bool Importer::Import(
 
       errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"Audacity recognized the type of the file '%s'.\nImporters supposedly supporting such files are:\n%s,\nbut none of them understood this file format.")
+"Tenacity recognized the type of the file '%s'.\nImporters supposedly supporting such files are:\n%s,\nbut none of them understood this file format.")
          .Format( fName, pluglist );
    }
 

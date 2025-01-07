@@ -216,7 +216,7 @@ unsigned LadspaEffectsModule::DiscoverPluginsAtPath(
    // causes duplicate menu entries to appear.
    wxFileName ff(path);
    if (ff.GetName().CmpNoCase(wxT("vst-bridge")) == 0) {
-      errMsg = XO("Audacity no longer uses vst-bridge");
+      errMsg = XO("Tenacity no longer uses vst-bridge");
       return 0;
    }
 

@@ -1236,7 +1236,7 @@ void AudacityApp::ShowSplashScreen() {
    mSplashScreen->SetPosition(wndRect.GetTopLeft());
    // Centered on whichever screen it is on.
    mSplashScreen->Center();
-   mSplashScreen->SetTitle(_("Audacity is starting up..."));
+   mSplashScreen->SetTitle(_("Tenacity is starting up..."));
    SetTopWindow(mSplashScreen.get());
    mSplashScreen->Raise();
 }
@@ -2123,7 +2123,7 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
             XO("Unable to acquire lock semaphore.\n\n"
                "This is likely due to a resource shortage\n"
                "and a reboot may be required."),
-            XO("Audacity Startup Failure"),
+            XO("Tenacity Startup Failure"),
             wxOK | wxICON_ERROR);
 
          return false;

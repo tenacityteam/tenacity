@@ -304,7 +304,7 @@ Steinberg::uint32 PLUGIN_API AudacityVst3HostApplication::release()
 Steinberg::tresult PLUGIN_API
 AudacityVst3HostApplication::getName(Steinberg::Vst::String128 name)
 {
-   return VST3::StringConvert::convert("Audacity VST3 host application", name) ?
+   return VST3::StringConvert::convert("Tenacity VST3 host application", name) ?
              Steinberg::kResultTrue :
              Steinberg::kInternalError;
 }

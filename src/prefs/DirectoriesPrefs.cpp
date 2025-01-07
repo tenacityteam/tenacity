@@ -297,7 +297,7 @@ void DirectoriesPrefs::OnTempBrowse(wxCommandEvent &evt)
          return;
       }
 
-      // Append an "audacity_temp" directory to this path if necessary (the
+      // Append a "tenacity_temp" directory to this path if necessary (the
       // default, the existing pref (as stored in the control), and any path
       // ending in a directory with the same name as what we'd add should be OK
       // already)

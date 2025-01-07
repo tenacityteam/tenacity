@@ -78,7 +78,7 @@ void FileNames::InitializePathList()
          wxT("/var/tmp/audacity-%s"), wxGetUserId() ) );
    }
 
-   wxString pathVar = wxGetenv(wxT("AUDACITY_PATH"));
+   wxString pathVar = wxGetenv(wxT("TENACITY_PATH"));
 
    if (!pathVar.empty())
       FileNames::AddMultiPathsToPathList(pathVar, audacityPathList);
@@ -88,7 +88,7 @@ void FileNames::InitializePathList()
 
    FileNames::AddUniquePathToPathList(progPath, audacityPathList);
    // Add the path to modules:
-   FileNames::AddUniquePathToPathList(progPath + L"/lib/audacity", audacityPathList);
+   FileNames::AddUniquePathToPathList(progPath + L"/lib/tenacity", audacityPathList);
 
 #if !defined(__WXMSW__)
    // On Unix systems, the common directory structure is
@@ -98,7 +98,7 @@ void FileNames::InitializePathList()
 
    if (!progParentPath.IsEmpty())
    {
-      FileNames::AddUniquePathToPathList(progParentPath + L"/lib/audacity", audacityPathList);
+      FileNames::AddUniquePathToPathList(progParentPath + L"/lib/tenacity", audacityPathList);
       FileNames::AddUniquePathToPathList(progParentPath + L"/lib", audacityPathList);
    }
 

@@ -293,7 +293,7 @@ void ModuleManager::TryLoadModules(
             XO("Yes"), XO("No"),
          };  // could add a button here for 'yes and remember that', and put it into the cfg file.  Needs more thought.
          int action = BasicUI::ShowMultiDialog(msg,
-            XO("Audacity Module Loader"),
+            XO("Tenacity Module Loader"),
             buttons,
             "",
             XO("Try and load this module?"),
@@ -445,7 +445,7 @@ bool ModuleManager::DiscoverProviders()
    FilePaths pathList;
 
    // Code from LoadLadspa that might be useful in load modules.
-   wxString pathVar = wxString::FromUTF8(getenv("AUDACITY_MODULES_PATH"));
+   wxString pathVar = wxString::FromUTF8(getenv("TENACITY_MODULES_PATH"));
 
    if (!pathVar.empty())
    {

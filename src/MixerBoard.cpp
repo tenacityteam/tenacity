@@ -69,7 +69,7 @@
 
 #include <numeric> // accumulate
 
-#define AudacityMixerBoardTitle XO("Audacity Mixer%s")
+#define AudacityMixerBoardTitle XO("Tenacity Mixer%s")
 
 // class MixerTrackSlider
 
