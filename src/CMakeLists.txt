@@ -106,8 +106,6 @@ set( SOURCES
       ClipMirAudioReader.h
       CommonCommandFlags.cpp
       CommonCommandFlags.h
-      CrashReport.cpp
-      CrashReport.h
       DefaultPlaybackPolicy.cpp
       DefaultPlaybackPolicy.h
       Diags.cpp
@@ -1176,10 +1174,6 @@ else()
       set_target_property_all( findlib SKIP_BUILD_RPATH On )
       set_target_property_all( findlib RUNTIME_OUTPUT_DIRECTORY "${_DESTDIR}/${_EXEDIR}" )
    endif()
-endif()
-
-if(CRASH_REPORT_URL)
-    list(APPEND DEFINES PRIVATE -DCRASH_REPORT_URL="${CRASH_REPORT_URL}")
 endif()
 
 set_target_property_all( ${TARGET} RUNTIME_OUTPUT_NAME ${APP_NAME} )

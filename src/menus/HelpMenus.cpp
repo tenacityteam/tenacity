@@ -8,7 +8,6 @@
 #include "AllThemeResources.h"
 #include "AudioIO.h"
 #include "../CommonCommandFlags.h"
-#include "../CrashReport.h" // for HAS_CRASH_REPORT
 #include "FileNames.h"
 #include "HelpText.h"
 #include "../HelpUtilities.h"
@@ -276,18 +275,6 @@ void OnShowLog( const CommandContext &context )
    LogWindow::Show();
 }
 
-#if defined(HAS_CRASH_REPORT)
-void OnCrashReport(const CommandContext &WXUNUSED(context) )
-{
-// Change to "1" to test a real crash
-#if 0
-   char *p = 0;
-   *p = 1234;
-#endif
-   CrashReport::Generate(wxDebugReport::Context_Current);
-}
-#endif
-
 #ifdef IS_ALPHA
 void OnSegfault(const CommandContext &)
 {
@@ -420,11 +407,7 @@ auto HelpMenu()
                OnAudioDeviceInfo,
                AudioIONotBusyFlag() ),
             Command( wxT("Log"), XXO("Show &Log..."), OnShowLog,
-               AlwaysEnabledFlag ),
-      #if defined(HAS_CRASH_REPORT)
-            Command( wxT("CrashReport"), XXO("&Generate Support Data..."),
-               OnCrashReport, AlwaysEnabledFlag )
-      #endif
+               AlwaysEnabledFlag )
 
       #ifdef IS_ALPHA
             ,

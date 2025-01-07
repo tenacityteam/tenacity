@@ -71,7 +71,6 @@ It handles initialization and termination by subclassing wxApp.
 #include "Benchmark.h"
 #include "Clipboard.h"
 #include "CommandLineArgs.h"
-#include "CrashReport.h" // for HAS_CRASH_REPORT
 #include "commands/CommandHandler.h"
 #include "commands/AppCommandEvent.h"
 #include "widgets/ASlider.h"
@@ -428,15 +427,6 @@ void PopulatePreferences()
    gPrefs->Write(wxT("/Version/Micro"), TENACITY_REVISION);
 
    gPrefs->Flush();
-}
-
-void InitCrashreports()
-{
-#if !defined(_DEBUG)// Do not capture crashes in debug builds
-#if defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
-   wxHandleFatalExceptions();
-#endif
-#endif
 }
 
 }
@@ -1106,10 +1096,6 @@ wxLanguageInfo userLangs[] =
 
 void AudacityApp::OnFatalException()
 {
-#if defined(HAS_CRASH_REPORT)
-   CrashReport::Generate(wxDebugReport::Context_Exception);
-#endif
-
    exit(-1);
 }
 
@@ -1177,7 +1163,10 @@ bool AudacityApp::Initialize(int& argc, wxChar** argv)
 {
    if(!PluginHost::IsHostProcess())
    {
-      InitCrashreports();
+      // Do not capture crashes in debug builds
+      #if !defined(_DEBUG) && defined(wxUSE_ON_FATAL_EXCEPTION) && wxUSE_ON_FATAL_EXCEPTION
+         wxHandleFatalExceptions();
+      #endif
    }
    return wxApp::Initialize(argc, argv);
 }
