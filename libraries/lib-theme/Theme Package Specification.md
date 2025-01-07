@@ -202,17 +202,11 @@ stop loading the current subtheme but MUST continue loading other subthemes.
 If any error occurs in a base theme, applications MUST stop loading the entire
 theme package and raise an error.
 
-# 6. Resource Loading Order
+# 6. Resource Loading Order for Pre-Defined Resource Types
 
-Applications MUST load resource types in the following order:
-
-1. Color Resources
-2. Image Resources
-3. Any custom resources
-
-## 6.1 Custom Resource Types
-
-Applications with multiple custom resource types MAY specify any loading order.
+If an application uses any of the pre-defined resource types (see Section 3.2),
+Applications MUST load color resources before image resources. For all other
+resource types, applications MAY load those resources in any way they want.
 
 # 7. Miscellaneous Clarifications
 
@@ -224,10 +218,8 @@ forward slash ('/') as the path separator.
 ## 7.2 Valid Resource Names
 
 Valid resource names MAY contains alphanumerical characters, dashes ('-'), and
-underscores ('_'). Resource names MUST NOT contain quotes, forward slashes
-('/') or, if the resource is a part of a multi-file resource type, dots ('.').
-For multi-file resource types, resources MAY contain a single dot for the file
-extension in the archive.
+underscores ('_'). Resource names MUST NOT contain quotes, or forward slashes
+('/').
 
 ## 7.3 Valid JSON Fields
 

@@ -366,6 +366,35 @@ to look distorted.
 * `redo` (26x24)
 * `redoDisabled` (26x24)
 
+#### Transcription Toolbar Icons
+
+**NOTE**: These images aren't used by default but are used in buidls where
+EXPERIMENTAL_VOICE_DETECTION is enabled. (To enable that feature, uncomment
+`VOICE_DETECTION` in `src/Experimental.cmake`).
+
+You are safe to exclude these images should you like. However, users of a theme
+will notice missing assets, and if we ever decide to enable this experimental
+feature in release builds, your theme will fail to load.
+
+* `transcriptionStartOn` (27x27)
+* `transcriptionStartOnDisabled` (27x27)
+* `transcriptionStartOff` (27x27)
+* `transcriptionStartOffDisabled` (27x27)
+* `transcriptionEndOn` (27x27)
+* `transcriptionEndOnDisabled"` (27x27)
+* `transcriptionEndOff` (27x27)
+* `transcriptionEndOffDisabled` (27x27)
+* `transcriptionCalibrate` (27x27)
+* `transcriptionCalibrateDisabled` (27x27)
+* `transcriptionAutomateSelection` (27x27)
+* `transcriptionAutomateSelectionDisabled` (27x27)
+* `transcriptionMakeTag` (27x27)
+* `transcriptionMakeTagDisabled` (27x27)
+* `transcriptionSelectSound` (24x24)
+* `transcriptionSelectSoundDisabled` (24x24)
+* `transcriptionSelectSilence` (24x24)
+* `transcriptionSelectSilenceDisabled` (24x24)
+
 #### Sync Lock
 
 * `syncLockSelected` (20x22)
@@ -456,6 +485,7 @@ to look distorted.
 #### Miscellaneous
 
 * `cogwheel` (20x20)
+* `helpIcon` (21x21)
 
 ## Changes from 1.3.x
 
