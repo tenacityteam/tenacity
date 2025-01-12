@@ -49,7 +49,7 @@ void FileNames::InitializePathList()
    const auto portablePrefix = wxPathOnly(wxPathOnly(programPath));
 
    // Make sure install prefix is set so wxStandardPath resolves paths properly
-   if (wxDirExists(portablePrefix + L"/share/audacity")) {
+   if (wxDirExists(portablePrefix + L"/share/tenacity")) {
       // use prefix relative to executable location to make Audacity portable
       standardPaths.SetInstallPrefix(portablePrefix);
    } else {
@@ -71,11 +71,11 @@ void FileNames::InitializePathList()
       /* On Unix systems, the environment variable TMPDIR may point to
          an unusual path when /tmp and /var/tmp are not desirable. */
       TempDirectory::SetDefaultTempDir( wxString::Format(
-         wxT("%s/audacity-%s"), envTempDir, wxGetUserId() ) );
+         wxT("%s/tenacity-%s"), envTempDir, wxGetUserId() ) );
    } else {
       /* On Unix systems, the default temp dir is in /var/tmp. */
       TempDirectory::SetDefaultTempDir( wxString::Format(
-         wxT("/var/tmp/audacity-%s"), wxGetUserId() ) );
+         wxT("/var/tmp/tenacity-%s"), wxGetUserId() ) );
    }
 
    wxString pathVar = wxGetenv(wxT("TENACITY_PATH"));
@@ -122,14 +122,14 @@ void FileNames::InitializePathList()
    FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/doc/%s", wxT(APP_NAME)),
       audacityPathList);
 #else //APP_NAME
-   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.audacity-files"),
+   FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.tenacity-files"),
       home),
       audacityPathList);
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
       audacityPathList);
-   FileNames::AddUniquePathToPathList(installPrefix + L"/share/audacity",
+   FileNames::AddUniquePathToPathList(installPrefix + L"/share/tenacity",
       audacityPathList);
-   FileNames::AddUniquePathToPathList(installPrefix + L"/share/doc/audacity",
+   FileNames::AddUniquePathToPathList(installPrefix + L"/share/doc/tenacity",
       audacityPathList);
 #endif //APP_NAME
 
@@ -186,7 +186,7 @@ void FileNames::InitializePathList()
    // JKC Bug 1220: Using an actual temp directory for session data on Mac was
    // wrong because it would get cleared out on a reboot.
    TempDirectory::SetDefaultTempDir( wxString::Format(
-      wxT("%s/Library/Application Support/audacity/SessionData"), tmpDirLoc) );
+      wxT("%s/Library/Application Support/tenacity/SessionData"), tmpDirLoc) );
 
    //TempDirectory::SetDefaultTempDir( wxString::Format(
    //   wxT("%s/audacity-%s"),
