@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-01-17 06:28+0000\n"
+"PO-Revision-Date: 2025-01-18 00:18+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/fi/>\n"
@@ -456,7 +456,7 @@ msgstr "Toisto"
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
 msgid "Could not open file: \"%s\""
-msgstr "Ei voitu avata tiedostoa:  \"%s\""
+msgstr "Tiedostoa ei voitu avata: \"%s\""
 
 #: libraries/lib-xml/XMLFileReader.cpp
 #, c-format
@@ -6186,7 +6186,7 @@ msgid ""
 "DTMF sequence empty.\n"
 "Check ALL settings for this effect."
 msgstr ""
-"DTMF-sarja  on tyhjä.\n"
+"DTMF-sekvenssi tyhjä.\n"
 "Tarkista KAIKKI tämän tehosteen asetukset."
 
 #: src/effects/DtmfGen.cpp
@@ -8917,10 +8917,10 @@ msgid ""
 msgstr ""
 "Olet viemässä tiedostoa %s nimellä \"%s\".\n"
 "\n"
-"Normaalisti nämä tiedostot käyttävät päätettä \".%s\"  Jotkin ohjelmat eivät "
+"Normaalisti nämä tiedostot käyttävät päätettä \".%s\" Jotkin ohjelmat eivät "
 "avaa tiedostoja, jos niillä on väärä tiedostopääte.\n"
 "\n"
-"Haluatko varmasti viedä tiedoston tällä nimellä?"
+"Oletko varma, että haluat viedä tiedoston tällä nimellä?"
 
 #: src/export/Export.cpp
 msgid "Sorry, pathnames longer than 256 characters not supported."
@@ -10390,7 +10390,7 @@ msgstr "WAVEX- ja GSM 6.10 -muodot eivät ole yhteensopivia"
 
 #: src/export/ExportPCM.cpp
 msgid "Cannot export audio in this format."
-msgstr "Äänen  vienti tässä muodossa ei onnistu."
+msgstr "Ääntä ei voi viedä tässä muodossa."
 
 #: src/export/ExportPCM.cpp
 #, c-format
@@ -12195,7 +12195,7 @@ msgstr "&Vasen pää toistokohtaan"
 
 #: src/menus/SelectMenus.cpp
 msgid "Set Selection Left at Play Position"
-msgstr "Aseta valinnan vasen pää  toistokohtaan"
+msgstr "Aseta valinnan vasen pää toistokohtaan"
 
 #: src/menus/SelectMenus.cpp
 msgid "&Right at Playback Position"
@@ -17072,11 +17072,9 @@ msgstr "Esiasetusta ei voi lukea kohteesta \"%s\""
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "You can change the directory in %s."
-msgstr ""
-"Ei voitu luoda hakemistoa:\n"
-"  %s"
+msgstr "Voit vaihtaa hakemistoa %s:ssa."
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
