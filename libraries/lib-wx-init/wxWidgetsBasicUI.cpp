@@ -33,6 +33,11 @@ void wxWidgetsBasicUI::DoYield()
    wxTheApp->Yield();
 }
 
+void wxWidgetsBasicUI::DoProcessIdle()
+{
+   wxTheApp->ProcessIdle();
+}
+
 void wxWidgetsBasicUI::DoShowErrorDialog(
    const BasicUI::WindowPlacement &placement,
    const TranslatableString &dlogTitle,
