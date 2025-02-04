@@ -584,7 +584,7 @@ void MeterPanel::OnPaint(wxPaintEvent & WXUNUSED(event))
    }
 
    destDC.SetTextForeground( clrText );
-   
+
    // We can have numbers over the bars, in which case we have to draw them each time.
    if(mStyle == HorizontalStereoCompact || mStyle == VerticalStereoCompact)
    {
@@ -1475,7 +1475,7 @@ void MeterPanel::DrawMeterBar(wxDC &dc, MeterBar *bar)
 
    // Setup for erasing the background
    dc.SetPen(*wxTRANSPARENT_PEN);
-   mMeterBkgndBrush.SetColour( theTheme.Colour(clrMeterBackground) ); 
+   mMeterBkgndBrush.SetColour( theTheme.Colour(clrMeterBackground) );
    dc.SetBrush(mMeterBkgndBrush);
 
    if (mGradient)
@@ -2127,6 +2127,11 @@ wxAccStatus MeterAx::GetState(int WXUNUSED(childId), long* state)
 wxAccStatus MeterAx::GetValue(int WXUNUSED(childId), wxString* strValue)
 {
    MeterPanel *m = wxDynamicCast(GetWindow(), MeterPanel);
+
+   if (!m || !m->mSlider)
+   {
+      return wxACC_NOT_IMPLEMENTED;
+   }
 
    *strValue = m->mSlider->GetStringValue();
    return wxACC_OK;
