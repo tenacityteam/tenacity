@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2024-09-07 20:09+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2025-02-16 00:19+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/es/>\n"
 "Language: es\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -4566,8 +4566,9 @@ msgid "Exports to a file."
 msgstr "Exporta a un archivo."
 
 #: src/commands/LoadCommands.cpp
+#, fuzzy
 msgid "Builtin Commands"
-msgstr "Comandos preconstruidos "
+msgstr "Comandos preconstruidos"
 
 #: src/commands/LoadCommands.cpp
 #, fuzzy
@@ -5336,8 +5337,9 @@ msgstr "Pulsos por minuto"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
+#, fuzzy
 msgid "Beats per minute, from"
-msgstr "Pulsos por minuto, desde "
+msgstr "Pulsos por minuto, desde"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
@@ -5373,9 +5375,9 @@ msgid "t&o"
 msgstr "&a"
 
 #: src/effects/ChangeTempo.cpp
-#, c-format
+#, c-format, fuzzy
 msgid "Length in seconds from %s, to"
-msgstr "Duración en segundos desde %s a "
+msgstr "Duración en segundos desde %s a"
 
 #: src/effects/ClickRemoval.cpp
 msgid "Click Removal"
@@ -7128,8 +7130,9 @@ msgid "Flips the audio samples upside-down, reversing their polarity"
 msgstr "Intercambia muestras de audio al revés, invirtiendo su polaridad"
 
 #: src/effects/LoadEffects.cpp
+#, fuzzy
 msgid "Builtin Effects"
-msgstr "Efectos preconstruidos "
+msgstr "Efectos preconstruidos"
 
 #: src/effects/LoadEffects.cpp
 msgid "Unknown built-in effect name"
@@ -7571,8 +7574,9 @@ msgid "&Remove DC offset (center on 0.0 vertically)"
 msgstr "Elimina&r desplazamiento DC (centrar en 0.0 verticalmente)"
 
 #: src/effects/Normalize.cpp
+#, fuzzy
 msgid "&Normalize peak amplitude to   "
-msgstr "&Normalizar pico de amplitud a"
+msgstr "&Normalizar pico de amplitud a   "
 
 #: src/effects/Normalize.cpp
 msgid "Peak amplitude dB"
@@ -9289,23 +9293,23 @@ msgid "Resample"
 msgstr "Remuestrear"
 
 #: src/export/ExportFFmpeg.cpp
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "The project sample rate (%d) is not supported by the current output\n"
 "file format. "
 msgstr ""
 "La frecuencia de muestreo del proyecto (%d) no es compatible con el\n"
-"formato de archivo de salida actual."
+"formato de archivo de salida actual. "
 
 #: src/export/ExportFFmpeg.cpp
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the current output file format. "
 msgstr ""
-"La combinación de frecuencia de muestreo (%d) y velocidad de transferencia "
-"(%d kbps) del proyecto no es\n"
-"compatible con el formato de archivo de salida actual."
+"La combinación de frecuencia de muestreo (%d) y velocidad de transferencia ("
+"%d kbps) del proyecto no es\n"
+"compatible con el formato de archivo de salida actual. "
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 msgid "You may resample to one of the rates below."
@@ -10180,14 +10184,14 @@ msgstr ""
 "compatible con el formato de archivo MP3. "
 
 #: src/export/ExportMP3.cpp
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
 "supported by the MP3 file format. "
 msgstr ""
-"La combinación de frecuencia de muestreo (%d) y velocidad de transferencia "
-"(%d kbps) del proyecto no es compatible con el\n"
-"formato de archivo MP3."
+"La combinación de frecuencia de muestreo (%d) y velocidad de transferencia ("
+"%d kbps) del proyecto no es compatible con el\n"
+"formato de archivo MP3. "
 
 #: src/export/ExportMka.cpp
 #, fuzzy
@@ -12990,8 +12994,9 @@ msgid "%s %d of %d"
 msgstr "%s %d de %d"
 
 #: src/menus/TransportMenus.cpp
+#, fuzzy
 msgid "no labels in label track"
-msgstr "sin etiquetas en la pista de etiquetas "
+msgstr "sin etiquetas en la pista de etiquetas"
 
 #: src/menus/TransportMenus.cpp
 msgid ""
@@ -13035,8 +13040,9 @@ msgstr "Seleccione un instante dentro del bloque"
 #. i18n-hint: 'Transport' is the name given to the set of controls that
 #. play, record, pause etc.
 #: src/menus/TransportMenus.cpp
+#, fuzzy
 msgid "Tra&nsport"
-msgstr "Reproducció&n "
+msgstr "Reproducció&n"
 
 #: src/menus/TransportMenus.cpp
 msgid "Pl&aying"
@@ -14252,8 +14258,9 @@ msgid "Zoom in on a Range"
 msgstr "Acercar en un rango"
 
 #: src/prefs/MousePrefs.cpp
+#, fuzzy
 msgid "same as right-drag"
-msgstr "Igual que arrastre derecho "
+msgstr "Igual que arrastre derecho"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Right-Click"
@@ -16765,12 +16772,14 @@ msgid "Vertical"
 msgstr "Vertical"
 
 #: src/widgets/MeterPanel.cpp
+#, fuzzy
 msgid " Monitoring "
-msgstr "Monitorización"
+msgstr " Monitorización "
 
 #: src/widgets/MeterPanel.cpp
+#, fuzzy
 msgid " Active "
-msgstr "Activa"
+msgstr " Activa "
 
 #: src/widgets/MeterPanel.cpp
 #, c-format
@@ -16783,8 +16792,9 @@ msgid " Peak %.2f "
 msgstr " Pico %.2f "
 
 #: src/widgets/MeterPanel.cpp
+#, fuzzy
 msgid " Clipped "
-msgstr "Recortado"
+msgstr " Recortado "
 
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
@@ -17930,8 +17940,9 @@ msgid "RMS level"
 msgstr "Nivel RMS"
 
 #: plug-ins/label-sounds.ny
+#, fuzzy
 msgid "Minimum silence duration"
-msgstr "Duración mínima del silencio "
+msgstr "Duración mínima del silencio"
 
 #: plug-ins/label-sounds.ny
 msgid "Minimum label interval"
@@ -18472,8 +18483,9 @@ msgid "Amplitude (0 - 1)"
 msgstr "Amplitud (0 - 1)"
 
 #: plug-ins/sample-data-export.ny
+#, fuzzy
 msgid "Sample Data Export"
-msgstr "Exportar datos de muestra "
+msgstr "Exportar datos de muestra"
 
 #: plug-ins/sample-data-export.ny
 msgid "Analyzing..."
@@ -18488,8 +18500,9 @@ msgid "Measurement scale"
 msgstr "Escala de medida"
 
 #: plug-ins/sample-data-export.ny
+#, fuzzy
 msgid "Export data to"
-msgstr "Exportar datos a "
+msgstr "Exportar datos a"
 
 #: plug-ins/sample-data-export.ny
 msgid "CSV files"
