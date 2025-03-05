@@ -11,64 +11,64 @@ else()
 endif()
 
 if(VCPKG)
-  set(ENV{VCPKG_DISABLE_METRICS} true)
+    set(ENV{VCPKG_DISABLE_METRICS} true)
 
-  if(VCPKG_ROOT)
-    message(STATUS "Using dependencies from vcpkg repository at ${VCPKG_ROOT}")
-    if(NOT EXISTS "${VCPKG_ROOT}/bootstrap-vcpkg.sh")
-      message(FATAL_ERROR "${VCPKG_ROOT} is not a vcpkg Git repository.")
+    if(VCPKG_ROOT)
+        message(STATUS "Using dependencies from vcpkg repository at ${VCPKG_ROOT}")
+        if(NOT EXISTS "${VCPKG_ROOT}/bootstrap-vcpkg.sh")
+            message(FATAL_ERROR "${VCPKG_ROOT} is not a vcpkg Git repository.")
+        endif()
+    else()
+        message(STATUS "Using dependencies from vcpkg Git submodule")
+        set(VCPKG_ROOT "${CMAKE_SOURCE_DIR}/vcpkg")
+
+        if(NOT EXISTS "${VCPKG_ROOT}/bootstrap-vcpkg.sh")
+        message(STATUS "Initializing vcpkg Git submodule")
+        execute_process(COMMAND ${GIT_EXECUTABLE} submodule init WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
+        execute_process(COMMAND ${GIT_EXECUTABLE} submodule update WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
+        endif()
     endif()
-  else()
-    message(STATUS "Using dependencies from vcpkg Git submodule")
-    set(VCPKG_ROOT "${CMAKE_SOURCE_DIR}/vcpkg")
 
-    if(NOT EXISTS "${VCPKG_ROOT}/bootstrap-vcpkg.sh")
-      message(STATUS "Initializing vcpkg Git submodule")
-      execute_process(COMMAND ${GIT_EXECUTABLE} submodule init WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
-      execute_process(COMMAND ${GIT_EXECUTABLE} submodule update WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
+    if(NOT DEFINED VCPKG_OVERLAY_PORTS)
+        set(VCPKG_OVERLAY_PORTS "${VCPKG_ROOT}/overlay/ports")
     endif()
-  endif()
 
-  if(NOT DEFINED VCPKG_OVERLAY_PORTS)
-    set(VCPKG_OVERLAY_PORTS "${VCPKG_ROOT}/overlay/ports")
-  endif()
-
-  if(NOT DEFINED VCPKG_OVERLAY_TRIPLETS)
-    set(VCPKG_OVERLAY_TRIPLETS "${VCPKG_ROOT}/overlay/triplets")
-  endif()
-
-  if (DEFINED ENV{TENACITY_TRIPLET_OVERRIDE})
-    set(VCPKG_TARGET_TRIPLET "$ENV{TENACITY_TRIPLET_OVERRIDE}")
-    message(STATUS "vcpkg triplet overriden. Using triplet '$ENV{TENACITY_TRIPLET_OVERRIDE}'")
-  else()
-    if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
-      if(APPLE)
-         if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64") # Apple Silicon
-            set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
-         else() # Intel
-            set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
-         endif()
-      elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
-        set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
-      endif()
-    elseif(DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
-        set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
+    if(NOT DEFINED VCPKG_OVERLAY_TRIPLETS)
+        set(VCPKG_OVERLAY_TRIPLETS "${VCPKG_ROOT}/overlay/triplets")
     endif()
-  endif()
 
-  set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+    if (DEFINED ENV{TENACITY_TRIPLET_OVERRIDE})
+        set(VCPKG_TARGET_TRIPLET "$ENV{TENACITY_TRIPLET_OVERRIDE}")
+        message(STATUS "vcpkg triplet overriden. Using triplet '$ENV{TENACITY_TRIPLET_OVERRIDE}'")
+    else()
+        if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
+            if(APPLE)
+                if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64") # Apple Silicon
+                    set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
+                else() # Intel
+                    set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
+                endif()
+            elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
+                set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
+            endif()
+        elseif(DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
+            set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
+        endif()
+    endif()
+
+    set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 else()
-  message(STATUS "Searching for dependencies from system, not using vcpkg.")
+    message(STATUS "Searching for dependencies from system, not using vcpkg.")
 endif()
 
 # If building with GNU compiler, then must be 6 or later.
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
     CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6")
-   message(FATAL_ERROR "Tenacity requires at least GCC 6")
+    message(FATAL_ERROR "Tenacity requires at least GCC 6")
 endif ()
 
 if( EXISTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
-   include( "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
+    include( "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
 endif()
 
 # We only do alpha builds, beta builds, and release versions.
@@ -80,41 +80,40 @@ endif()
 
 # Set this value to 0 for alpha, 1 for beta, 2 for release builds
 if( NOT DEFINED TENACITY_BUILD_LEVEL )
-   set( TENACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
+    set( TENACITY_BUILD_LEVEL 0 CACHE STRING "0 for alpha, 1 for beta, 2 for release builds" )
 endif()
 
 if( TENACITY_BUILD_LEVEL EQUAL 0 )
-   set( TENACITY_SUFFIX "-alpha" )
+    set( TENACITY_SUFFIX "-alpha" )
 elseif(  TENACITY_BUILD_LEVEL EQUAL 1 )
-   set( TENACITY_SUFFIX "-beta" )
+    set( TENACITY_SUFFIX "-beta" )
 else()
-   set( TENACITY_SUFFIX "" )
+    set( TENACITY_SUFFIX "" )
 endif()
 
 # Don't allow in-source builds...no real reason, just
 # keeping those source trees nice and tidy.  :-)
 # (This can be removed if it becomes an issue.)
 if( "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}" )
-   message( FATAL_ERROR
-      "In-source builds not allowed.\n"
-      "Create a new directory and run cmake from there, i.e.:\n"
-      "  mkdir build\n"
-      "  cd build\n"
-      "  cmake ..\n"
-      "You will need to delete CMakeCache.txt and CMakeFiles from this directory to clean up."
-
-   )
+    message( FATAL_ERROR
+        "In-source builds not allowed.\n"
+        "Create a new directory and run cmake from there, i.e.:\n"
+        "  mkdir build\n"
+        "  cd build\n"
+        "  cmake ..\n"
+        "You will need to delete CMakeCache.txt and CMakeFiles from this directory to clean up."
+    )
 endif()
 
 # Default build type is 'Debug' if CMAKE_BUILD_TYPE and
 # CMAKE_CONFIGURATION_TYPES are not set AND TENACITY_BUILD_LEVEL is less
 # than 2 (meaing alpha or beta).
 if( NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES )
-   if ( TENACITY_BUILD_LEVEL LESS 2)
-     set( CMAKE_BUILD_TYPE "Debug" )
-   else()
-     set( CMAKE_BUILD_TYPE "Release" )
-   endif()
+    if ( TENACITY_BUILD_LEVEL LESS 2)
+        set( CMAKE_BUILD_TYPE "Debug" )
+    else()
+        set( CMAKE_BUILD_TYPE "Release" )
+    endif()
 endif()
 
 # Ignore COMPILE_DEFINITIONS_<Config> properties
@@ -133,42 +132,42 @@ cmake_policy( SET CMP0072 NEW )
 cmake_policy( SET CMP0075 NEW )
 
 if(CMAKE_VERSION VERSION_GREATER "3.21")
-  # ``cmake_dependent_option()`` supports full :ref:`Condition Syntax`.
-  cmake_policy( SET CMP0127 NEW )
+    # ``cmake_dependent_option()`` supports full :ref:`Condition Syntax`.
+    cmake_policy( SET CMP0127 NEW )
 endif()
 
 # Definitions that must happen before the project() command
 if( APPLE )
-   if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64")
-      set(MIN_MACOS_VERSION 11)
-   else()
-      set( MIN_MACOS_VERSION 10.15 )
-   endif()
-   set( TARGET_MACOS_VERSION 11 )
-   # Generate schema files
-   set( CMAKE_XCODE_GENERATE_SCHEME ON )
+    if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64")
+        set(MIN_MACOS_VERSION 11)
+    else()
+        set( MIN_MACOS_VERSION 10.15 )
+    endif()
+    set( TARGET_MACOS_VERSION 11 )
+    # Generate schema files
+    set( CMAKE_XCODE_GENERATE_SCHEME ON )
 
-   # Define the OSX compatibility parameters
-   set( CMAKE_OSX_DEPLOYMENT_TARGET ${MIN_MACOS_VERSION} CACHE INTERNAL "" )
-   set( CMAKE_OSX_SYSROOT macosx CACHE INTERNAL "" )
-   set( CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "" CACHE INTERNAL "" )
+    # Define the OSX compatibility parameters
+    set( CMAKE_OSX_DEPLOYMENT_TARGET ${MIN_MACOS_VERSION} CACHE INTERNAL "" )
+    set( CMAKE_OSX_SYSROOT macosx CACHE INTERNAL "" )
+    set( CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "" CACHE INTERNAL "" )
 
-   # Shouldn't cmake do this???
-   string( APPEND CMAKE_CXX_FLAGS " -stdlib=libc++" )
+    # Shouldn't cmake do this???
+    string( APPEND CMAKE_CXX_FLAGS " -stdlib=libc++" )
 endif()
 
 # Add our module path
 set( TENACITY_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules")
 set( CMAKE_MODULE_PATH
-   ${TENACITY_MODULE_PATH}
-   ${CMAKE_MODULE_PATH}
-   "${CMAKE_SOURCE_DIR}/cmake-modules"
-   "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity"
+    ${TENACITY_MODULE_PATH}
+    ${CMAKE_MODULE_PATH}
+    "${CMAKE_SOURCE_DIR}/cmake-modules"
+    "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity"
 )
 
 set( CMAKE_PREFIX_PATH
-   ${CMAKE_BINARY_DIR}
-   ${CMAKE_PREFIX_PATH}
+    ${CMAKE_BINARY_DIR}
+    ${CMAKE_PREFIX_PATH}
 )
 
 # This "is a good thing" but greatly increases link time on Linux
@@ -192,37 +191,37 @@ find_program( SCCACHE_PROGRAM sccache )
 mark_as_advanced( FORCE SCCACHE_PROGRAM )
 
 if( CCACHE_PROGRAM )
-   message( STATUS "Found ccache: ${CCACHE_PROGRAM}" )
-   set_property( GLOBAL PROPERTY CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
-   set_property( GLOBAL PROPERTY CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
+    message( STATUS "Found ccache: ${CCACHE_PROGRAM}" )
+    set_property( GLOBAL PROPERTY CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
+    set_property( GLOBAL PROPERTY CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
 elseif( SCCACHE_PROGRAM )
-   message( STATUS "Found sccache: ${SCCACHE_PROGRAM}" )
-   set_property( GLOBAL PROPERTY CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}")
-   set_property( GLOBAL PROPERTY CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
+    message( STATUS "Found sccache: ${SCCACHE_PROGRAM}" )
+    set_property( GLOBAL PROPERTY CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}")
+    set_property( GLOBAL PROPERTY CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
 else()
-   message( STATUS "Could NOT find ccache nor sccache, no compiler caching enabled" )
+    message( STATUS "Could NOT find ccache nor sccache, no compiler caching enabled" )
 endif()
 
 if(NOT "${SCCACHE_PROGRAM}" STREQUAL "SCCACHE_PROGRAM-NOTFOUND")
-  option(SCCACHE "Use sccache for compiler caching to speed up rebuilds." ON)
+    option(SCCACHE "Use sccache for compiler caching to speed up rebuilds." ON)
 endif()
 
 if(NOT "${CCACHE_PROGRAM}" STREQUAL "CCACHE_PROGRAM-NOTFOUND")
-  option(CCACHE "Use ccache for compiler caching to speed up rebuilds." ON)
+    option(CCACHE "Use ccache for compiler caching to speed up rebuilds." ON)
 endif()
 
 # Prefer sccache if both ccache and sccache are found because Windows users may have
 # ccache installed with MinGW which would not work with MSVC.
 if(SCCACHE)
-   message( STATUS "Using sccache for compiler caching to speed up rebuilds" )
-   set( CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
-   set( CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
+    message( STATUS "Using sccache for compiler caching to speed up rebuilds" )
+    set( CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
+    set( CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
 elseif(CCACHE)
-   message( STATUS "Using ccache for compiler caching to speed up rebuilds" )
-   set( CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
-   set( CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
+    message( STATUS "Using ccache for compiler caching to speed up rebuilds" )
+    set( CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
+    set( CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
 else()
-   message( STATUS "No compiler caching enabled. Install sccache or ccache to enable compiler caching." )
+    message( STATUS "No compiler caching enabled. Install sccache or ccache to enable compiler caching." )
 endif()
 
 # Load our functions/macros
@@ -245,9 +244,9 @@ include( TestBigEndian )
 
 # Determine 32-bit or 64-bit target
 if( CMAKE_C_COMPILER_ID MATCHES "MSVC" AND CMAKE_VS_PLATFORM_NAME MATCHES "Win64|x64" )
-   set( IS_64BIT ON )
+    set( IS_64BIT ON )
 elseif( NOT CMAKE_SIZEOF_VOID_P STREQUAL "4" )
-   set( IS_64BIT ON )
+    set( IS_64BIT ON )
 endif()
 
 message( STATUS "Build Info:" )
@@ -257,9 +256,9 @@ message( STATUS "  Host System Processor: ${CMAKE_HOST_SYSTEM_PROCESSOR}" )
 message( STATUS "  Host System Version: ${CMAKE_HOST_SYSTEM_VERSION}" )
 
 if( IS_64BIT )
-   message( STATUS "  Host System Architecture: 64-bit" )
+    message( STATUS "  Host System Architecture: 64-bit" )
 else()
-   message( STATUS "  Host System Architecture: 32-bit" )
+    message( STATUS "  Host System Architecture: 32-bit" )
 endif()
 
 message( STATUS )
@@ -271,16 +270,15 @@ message( STATUS "  Compiler Extensions: ${CMAKE_CXX_EXTENSIONS}" )
 message( STATUS )
 
 if( CMAKE_GENERATOR MATCHES "Visual Studio" )
-   message( STATUS "  MSVC Version: ${MSVC_VERSION}" )
-   message( STATUS "  MSVC Toolset: ${MSVC_TOOLSET_VERSION}" )
-   message( STATUS )
+    message( STATUS "  MSVC Version: ${MSVC_VERSION}" )
+    message( STATUS "  MSVC Toolset: ${MSVC_TOOLSET_VERSION}" )
+    message( STATUS )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   if( CMAKE_GENERATOR MATCHES "Xcode" )
-      message( STATUS "  Xcode Version: ${XCODE_VERSION}" )
-   endif()
-   message( STATUS "  MacOS SDK: ${CMAKE_OSX_SYSROOT}" )
-   message( STATUS )
-
+    if( CMAKE_GENERATOR MATCHES "Xcode" )
+        message( STATUS "  Xcode Version: ${XCODE_VERSION}" )
+    endif()
+    message( STATUS "  MacOS SDK: ${CMAKE_OSX_SYSROOT}" )
+    message( STATUS )
 endif()
 
 # Current version and commit info
@@ -314,27 +312,27 @@ message( STATUS )
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 if( CMAKE_GENERATOR MATCHES "Visual Studio" )
-   # Make sure Tenacity is the startup project
-   set_directory_properties(
-      PROPERTIES
-         VS_STARTUP_PROJECT "${CMAKE_PROJECT_NAME}"
-   )
+    # Make sure Tenacity is the startup project
+    set_directory_properties(
+        PROPERTIES
+            VS_STARTUP_PROJECT "${CMAKE_PROJECT_NAME}"
+    )
 
-   # Build using multiple processors
-   foreach( config ${CMAKE_CONFIGURATION_TYPES} )
-      string( TOUPPER "${config}" config )
-      string( APPEND CMAKE_C_FLAGS_${config} " /MP" )
-      string( APPEND CMAKE_CXX_FLAGS_${config} " /MP" )
-   endforeach()
+    # Build using multiple processors
+    foreach( config ${CMAKE_CONFIGURATION_TYPES} )
+        string( TOUPPER "${config}" config )
+        string( APPEND CMAKE_C_FLAGS_${config} " /MP" )
+        string( APPEND CMAKE_CXX_FLAGS_${config} " /MP" )
+    endforeach()
 
-   # Define system library information, but we'll do the install
-   set( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP YES )
-   set( CMAKE_INSTALL_UCRT_LIBRARIES NO )
-   set( CMAKE_INSTALL_MFC_LIBRARIES NO )
-   set( CMAKE_INSTALL_OPENMP_LIBRARIES NO )
+    # Define system library information, but we'll do the install
+    set( CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP YES )
+    set( CMAKE_INSTALL_UCRT_LIBRARIES NO )
+    set( CMAKE_INSTALL_MFC_LIBRARIES NO )
+    set( CMAKE_INSTALL_OPENMP_LIBRARIES NO )
 endif()
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   include( InstallRequiredSystemLibraries )
+    include( InstallRequiredSystemLibraries )
 endif()
 
 # Where the final product is stored
@@ -345,11 +343,11 @@ set ( _SHARED_PROXY_BASE_PATH "${CMAKE_BINARY_DIR}/${_SHARED_PROXY_BASE}")
 
 # Define the non-install and executable paths
 if( CMAKE_CONFIGURATION_TYPES )
-   set( _DESTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_CFG_INTDIR}" )
-   set( _SHARED_PROXY_PATH "${_SHARED_PROXY_BASE_PATH}/${CMAKE_CFG_INTDIR}")
+    set( _DESTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_CFG_INTDIR}" )
+    set( _SHARED_PROXY_PATH "${_SHARED_PROXY_BASE_PATH}/${CMAKE_CFG_INTDIR}")
 else()
-   set( _DESTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}" )
-   set( _SHARED_PROXY_PATH "${_SHARED_PROXY_BASE_PATH}/${CMAKE_BUILD_TYPE}")
+    set( _DESTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${CMAKE_BUILD_TYPE}" )
+    set( _SHARED_PROXY_PATH "${_SHARED_PROXY_BASE_PATH}/${CMAKE_BUILD_TYPE}")
 endif()
 
 set( _DEST "${_DESTDIR}" )
@@ -370,24 +368,24 @@ set( CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE )
 
 # Adjust them for the Mac
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   set( _APPDIR "Tenacity.app/Contents" )
-   set( _DEST "${_DESTDIR}/${_APPDIR}" )
-   set( _EXEDIR "${_DEST}/MacOS" )
-   set( _MODDIR "${_DEST}/modules" )
-   set( _PKGLIB "${_DEST}/Frameworks" )
+    set( _APPDIR "Tenacity.app/Contents" )
+    set( _DEST "${_DESTDIR}/${_APPDIR}" )
+    set( _EXEDIR "${_DEST}/MacOS" )
+    set( _MODDIR "${_DEST}/modules" )
+    set( _PKGLIB "${_DEST}/Frameworks" )
 
-   set( CMAKE_MACOSX_RPATH OFF )
+    set( CMAKE_MACOSX_RPATH OFF )
 endif()
 
 # Add the math library (if found) to the list of required libraries
 check_library_exists( m pow "" HAVE_LIBM )
 if( HAVE_LIBM )
-   list( APPEND CMAKE_REQUIRED_LIBRARIES -lm )
+    list( APPEND CMAKE_REQUIRED_LIBRARIES -lm )
 endif()
 
 check_library_exists( atomic __atomic_fetch_add_4 "" HAVE_LIBATOMIC )
 if( HAVE_LIBATOMIC )
-  list( APPEND CMAKE_REQUIRED_LIBRARIES -latomic )
+    list( APPEND CMAKE_REQUIRED_LIBRARIES -latomic )
 endif()
 
 # Add the dynamic linker library (if needed) to the list of required libraries
@@ -403,38 +401,38 @@ test_big_endian( WORDS_BIGENDIAN )
 set( MMX_FLAG "" CACHE INTERNAL "" )
 set( SSE_FLAG "" CACHE INTERNAL "" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang|GNU" )
-   check_cxx_compiler_flag( "-mmmx" HAVE_MMX )
-   if( HAVE_MMX AND NOT IS_64BIT )
-      set( MMX_FLAG "-mmmx" CACHE INTERNAL "" )
-   endif()
+    check_cxx_compiler_flag( "-mmmx" HAVE_MMX )
+    if( HAVE_MMX AND NOT IS_64BIT )
+        set( MMX_FLAG "-mmmx" CACHE INTERNAL "" )
+    endif()
 
-   check_cxx_compiler_flag( "-msse" HAVE_SSE )
-   if( HAVE_SSE AND NOT IS_64BIT )
-      set( SSE_FLAG "-msse" CACHE INTERNAL "" )
-   endif()
+    check_cxx_compiler_flag( "-msse" HAVE_SSE )
+    if( HAVE_SSE AND NOT IS_64BIT )
+        set( SSE_FLAG "-msse" CACHE INTERNAL "" )
+    endif()
 
-   check_cxx_compiler_flag( "-msse2" HAVE_SSE2 )
-   if( HAVE_SSE2 AND NOT IS_64BIT )
-      set( SSE_FLAG "-msse2" CACHE INTERNAL "" )
-   endif()
+    check_cxx_compiler_flag( "-msse2" HAVE_SSE2 )
+    if( HAVE_SSE2 AND NOT IS_64BIT )
+        set( SSE_FLAG "-msse2" CACHE INTERNAL "" )
+    endif()
 elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
-   set( HAVE_MMX ON )
-   set( HAVE_SSE ON )
-   set( HAVE_SSE2 ON )
-   if( NOT IS_64BIT )
-      set( SSE_FLAG "/arch:SSE2" )
-   endif()
+    set( HAVE_MMX ON )
+    set( HAVE_SSE ON )
+    set( HAVE_SSE2 ON )
+    if( NOT IS_64BIT )
+        set( SSE_FLAG "/arch:SSE2" )
+    endif()
 
-   # required for sccache
-   if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-      string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
-      string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
+    # required for sccache
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+        string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
     elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-      string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
-      string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
+        string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+        string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
     elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-      string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-      string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
+        string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
+        string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
     endif()
 endif()
 
@@ -453,21 +451,21 @@ find_package( OpenGL QUIET )
 
 # Precreate the lib and lib64 directories so we can make then the same
 if( NOT EXISTS "${CMAKE_BINARY_DIR}/lib" )
-   file( MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/lib" )
+    file( MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/lib" )
 endif()
 
 # Only create on systems that need it, effectively excluding Windows where links
 # may not work due to insufficient privileges
 if( NOT CMAKE_INSTALL_LIBDIR STREQUAL "lib" AND NOT EXISTS "${CMAKE_BINARY_DIR}/lib64" )
-   file( CREATE_LINK "${CMAKE_BINARY_DIR}/lib" "${CMAKE_BINARY_DIR}/lib64" SYMBOLIC )
+    file( CREATE_LINK "${CMAKE_BINARY_DIR}/lib" "${CMAKE_BINARY_DIR}/lib64" SYMBOLIC )
 endif()
 
 # Define Tenacity's name
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows" )
-   set( APP_NAME "Tenacity" )
+    set( APP_NAME "Tenacity" )
 else()
-   set( APP_NAME "tenacity" )
-   set( PROPER_NAME "Tenacity" )
+    set( APP_NAME "tenacity" )
+    set( PROPER_NAME "Tenacity" )
 endif()
 
 # Define Application ID
@@ -482,15 +480,15 @@ set( TENACITY_INFO_VERSION ${TENACITY_VERSION}.${TENACITY_RELEASE}.${TENACITY_RE
 option(BUILD_STATIC_LIBS "Build Tenacity's libraries as static libraries" OFF)
 
 if (${BUILD_STATIC_LIBS})
-   message(STATUS "Building static Tenacity libraries")
+    message(STATUS "Building static Tenacity libraries")
 else()
-   message(STATUS "Building shared Tenacity libraries")
+    message(STATUS "Building shared Tenacity libraries")
 endif()
 
 # Python is possibly used for message catalogs
 find_package( Python3 )
 if( Python3_FOUND )
-   set( PYTHON "${Python3_EXECUTABLE}" )
+    set( PYTHON "${Python3_EXECUTABLE}" )
 endif()
 
 find_package(RapidJSON REQUIRED)
@@ -580,11 +578,11 @@ find_package(Opus)
 find_package(OpusFile)
 cmake_dependent_option(OPUS "Opus codec support" ON "Opus_FOUND;OpusFile_FOUND" OFF)
 if (OPUS)
-   set(USE_LIBOPUS ON)
-   set(USE_OPUSFILE ON)
-   message(STATUS "Opus codec support enabled.")
+    set(USE_LIBOPUS ON)
+    set(USE_OPUSFILE ON)
+    message(STATUS "Opus codec support enabled.")
 else()
-   message(STATUS "Opus codec support disabled. Requires libopus.")
+    message(STATUS "Opus codec support disabled. Requires libopus.")
 endif()
 
 find_package(FLAC++)
@@ -599,10 +597,10 @@ endif()
 find_package(wavpack)
 cmake_dependent_option(WAVPACK "WavPack codec support" ON "wavpack_FOUND" OFF)
 if (WAVPACK)
-   set(USE_WAVPACK ON)
-   message(STATUS "WavPack codec support enabled.")
+    set(USE_WAVPACK ON)
+    message(STATUS "WavPack codec support enabled.")
 else()
-   message(STATUS "WavPack codec support disabled. Requires WavPack.")
+    message(STATUS "WavPack codec support disabled. Requires WavPack.")
 endif()
 
 find_package(sbsms)
@@ -657,10 +655,10 @@ endif()
 
 option(LADSPA "Enable LADSPA plugin support" ON)
 if (LADSPA)
-   set(USE_LADSPA ON)
-   message(STATUS "LADSPA plugin hosting enabled.")
+    set(USE_LADSPA ON)
+    message(STATUS "LADSPA plugin hosting enabled.")
 else()
-   message(STATUS "LADSPA plugin hosting disabled.")
+    message(STATUS "LADSPA plugin hosting disabled.")
 endif()
 
 option(VST2 "VST2 plugin host support" ON)
@@ -686,18 +684,17 @@ set(VST3 OFF)
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
     find_package(GLIB REQUIRED)
     find_package(GTK 3.0 REQUIRED)
-
 endif()
 
 # Handle Audio Units option
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   option(AUDIO_UNITS "Enable Audio Units plugin support." ON)
-   set(USE_AUDIO_UNITS ${use_audio_units})
-   if (AUDIO_UNITS)
-      message(STATUS "Audio Units support enabled.")
-   else()
-      message(STATUS "Audio Units support disabled.")
-   endif()
+    option(AUDIO_UNITS "Enable Audio Units plugin support." ON)
+    set(USE_AUDIO_UNITS ${use_audio_units})
+    if (AUDIO_UNITS)
+        message(STATUS "Audio Units support enabled.")
+    else()
+        message(STATUS "Audio Units support disabled.")
+    endif()
 endif()
 
 # define EXPERIMENTAL flags
@@ -708,37 +705,37 @@ include(${wxWidgets_USE_FILE})
 # The FindwxWidgets.cmake module does not create an IMPORT target, so hack one together.
 # This makes it easy to add the compile definitions to the lib-strings and lib-strings-utils targets.
 if(NOT TARGET wxWidgets::wxWidgets)
-  add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
-  target_link_libraries(wxWidgets::wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
-  target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
+    add_library(wxWidgets::wxWidgets INTERFACE IMPORTED)
+    target_link_libraries(wxWidgets::wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
+    target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
 endif()
 
 option(NYQUIST "Enable Nyquist support" ON)
 if (NYQUIST)
-   set(USE_NYQUIST ON)
-   add_subdirectory(lib-src/libnyquist)
-   set_target_properties(nyquist PROPERTIES POSITION_INDEPENDENT_CODE ON)
+    set(USE_NYQUIST ON)
+    add_subdirectory(lib-src/libnyquist)
+    set_target_properties(nyquist PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-   add_subdirectory("nyquist")
-   add_subdirectory("plug-ins")
+    add_subdirectory("nyquist")
+    add_subdirectory("plug-ins")
 
-   if (NOT EXISTS "${CMAKE_SOURCE_DIR}/lib-src/libnyquist/CMakeLists.txt")
-      message(FATAL_ERROR "libnyquist submodule not initialized. Please initialize it.")
-   else()
-      message(STATUS "Nyquist support enabled")
-   endif()
+    if (NOT EXISTS "${CMAKE_SOURCE_DIR}/lib-src/libnyquist/CMakeLists.txt")
+        message(FATAL_ERROR "libnyquist submodule not initialized. Please initialize it.")
+    else()
+        message(STATUS "Nyquist support enabled")
+    endif()
 else()
-   set(USE_NYQUIST OFF)
-   message(STATUS "Nyquist support disabled")
+    set(USE_NYQUIST OFF)
+    message(STATUS "Nyquist support disabled")
 endif()
 
 # Manual Packaging
 
 set(MANUAL_PATH "" CACHE STRING "Path to the manual to package DMG and InnoSetup targets with")
 if (NOT "${MANUAL_PATH}" STREQUAL "")
-   set(PACKAGE_MANUAL ON)
+    set(PACKAGE_MANUAL ON)
 else()
-   set(PACKAGE_MANUAL OFF)
+    set(PACKAGE_MANUAL OFF)
 endif()
 
 add_subdirectory( "help" )
@@ -753,13 +750,13 @@ add_subdirectory( "scripts" )
 
 # Generate config file
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   configure_file( src/tenacity_config.h.in src/private/configwin.h )
+    configure_file( src/tenacity_config.h.in src/private/configwin.h )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   set( HAVE_VISIBILITY 1 )
-   configure_file( src/tenacity_config.h.in src/private/configmac.h )
+    set( HAVE_VISIBILITY 1 )
+    configure_file( src/tenacity_config.h.in src/private/configmac.h )
 else()
-   set( HAVE_VISIBILITY 1 )
-   configure_file( src/tenacity_config.h.in src/private/configunix.h )
+    set( HAVE_VISIBILITY 1 )
+    configure_file( src/tenacity_config.h.in src/private/configunix.h )
 endif()
 
 # Generate a picture of module dependencies
@@ -767,12 +764,12 @@ string( JOIN "\n" GRAPH_EDGES ${GRAPH_EDGES} )
 # Choose edge attributes making it easy to hover at either end of edge
 # and see a tooltip describing the edge, in svg image
 file( WRITE "${CMAKE_CURRENT_BINARY_DIR}/modules.dot" "digraph {
-   graph [rankdir=LR] edge [dir=both,arrowtail=inv] \n"
-   "${GRAPH_EDGES}"
-   "\n}\n"
+    graph [rankdir=LR] edge [dir=both,arrowtail=inv] \n"
+    "${GRAPH_EDGES}"
+    "\n}\n"
 )
 execute_process( COMMAND
-   dot -O -Tsvg "${CMAKE_CURRENT_BINARY_DIR}/modules.dot" )
+    dot -O -Tsvg "${CMAKE_CURRENT_BINARY_DIR}/modules.dot" )
 
 #
 # Code signing
@@ -784,34 +781,34 @@ option( PERFORM_CODESIGN
 )
 
 cmake_dependent_option(
-   PERFORM_NOTARIZATION
-   "Perform notarization during the install step. This only works on macOS. Might be broken."
-   Off
-   "PERFORM_CODESIGN;APPLE"
-   Off
+    PERFORM_NOTARIZATION
+    "Perform notarization during the install step. This only works on macOS. Might be broken."
+    Off
+    "PERFORM_CODESIGN;APPLE"
+    Off
 )
 
 if( PERFORM_CODESIGN )
-   include( TenacityCodeSigning )
+    include( TenacityCodeSigning )
 endif()
 
 
 # Variables, that are common for all package targets
 
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-   include( TenacityInnoSetup )
+    include( TenacityInnoSetup )
 endif()
 
 # Uncomment what follows for symbol values.
 #[[
-   get_cmake_property( _variableNames VARIABLES )
-   foreach( _variableName ${_variableNames} )
-      message( STATUS "${_variableName}=${${_variableName}}" )
-   endforeach()
+    get_cmake_property( _variableNames VARIABLES )
+    foreach( _variableName ${_variableNames} )
+        message( STATUS "${_variableName}=${${_variableName}}" )
+    endforeach()
 #]]
 #[[
-   include( PrintProperties )
-   print_properties( TARGET "wxWidgets" )
+    include( PrintProperties )
+    print_properties( TARGET "wxWidgets" )
 #]]
 
 include( Package ) # do this last
