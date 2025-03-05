@@ -421,6 +421,13 @@ void PopulatePreferences()
          gPrefs->DeleteEntry("/GUI/ShowSplashScreen");
    }
 
+   if (std::tuple { vMajor, vMinor, vMicro } < std::tuple{ 3, 7, 2 })
+   {
+      // To set the new default to Best Quality
+      if (gPrefs->Exists("/Quality/LibsoxrSampleRateConverterChoice"))
+         gPrefs->DeleteEntry("/Quality/LibsoxrSampleRateConverterChoice");
+   }
+
    // write out the version numbers to the prefs file for future checking
    gPrefs->Write(wxT("/Version/Major"), TENACITY_VERSION);
    gPrefs->Write(wxT("/Version/Minor"), TENACITY_RELEASE);
