@@ -163,9 +163,8 @@ function( tenacity_append_common_compiler_options var use_pch )
          PRIVATE
             # include the correct config file; give absolute path to it, so
             # that this works whether in src, modules, libraries
-            $<$<PLATFORM_ID:Windows>:/FI${CMAKE_BINARY_DIR}/src/private/configwin.h>
-            $<$<PLATFORM_ID:Darwin>:-include ${CMAKE_BINARY_DIR}/src/private/configmac.h>
-            $<$<NOT:$<PLATFORM_ID:Windows,Darwin>>:-include ${CMAKE_BINARY_DIR}/src/private/configunix.h>
+            $<$<CXX_COMPILER_ID:MSVC>:/FI${CMAKE_BINARY_DIR}/src/private/config.h>
+            $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-include ${CMAKE_BINARY_DIR}/src/private/config.h>
       )
    endif()
    list( APPEND ${var}

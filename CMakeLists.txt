@@ -749,15 +749,11 @@ add_subdirectory( "modules" )
 add_subdirectory( "scripts" )
 
 # Generate config file
-if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-    configure_file( src/tenacity_config.h.in src/private/configwin.h )
-elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-    set( HAVE_VISIBILITY 1 )
-    configure_file( src/tenacity_config.h.in src/private/configmac.h )
-else()
-    set( HAVE_VISIBILITY 1 )
-    configure_file( src/tenacity_config.h.in src/private/configunix.h )
+if (NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+    set(HAVE_VISIBILITY 1)
 endif()
+
+configure_file(src/tenacity_config.h.in src/private/config.h)
 
 # Generate a picture of module dependencies
 string( JOIN "\n" GRAPH_EDGES ${GRAPH_EDGES} )

@@ -1280,9 +1280,7 @@ if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
     if( PCH )
         message( STATUS "Using precompiled headers" )
         target_precompile_headers( ${TARGET} PRIVATE
-            $<$<PLATFORM_ID:Windows>:${CMAKE_BINARY_DIR}/src/private/configwin.h>
-            $<$<PLATFORM_ID:Darwin>:${CMAKE_BINARY_DIR}/src/private/configmac.h>
-            $<$<NOT:$<PLATFORM_ID:Windows,Darwin>>:${CMAKE_BINARY_DIR}/src/private/configunix.h>
+            ${CMAKE_BINARY_DIR}/src/private/config.h
             AudacityHeaders.h
         )
     else()
