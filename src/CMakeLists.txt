@@ -1290,7 +1290,7 @@ endif()
 
 if( "${CMAKE_GENERATOR}" MATCHES "Xcode|Visual Studio*" )
     install(
-        DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/"
+        DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
         DESTINATION "."
         USE_SOURCE_PERMISSIONS
         PATTERN "*.pdb" EXCLUDE
