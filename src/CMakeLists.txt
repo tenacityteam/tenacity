@@ -35,7 +35,7 @@ elseif( GIT_FOUND )
         COMMAND
             ${CMAKE_COMMAND} -D GIT="${GIT_EXECUTABLE}"
                             -D "_PRVDIR=${_PRVDIR}"
-                            -P "cmake-proxies/cmake-modules/Version.cmake"
+                            -P "cmake-modules/tenacity/Version.cmake"
         WORKING_DIRECTORY
             ${CMAKE_SOURCE_DIR}
     )

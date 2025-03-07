@@ -67,8 +67,8 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
     message(FATAL_ERROR "Tenacity requires at least GCC 6")
 endif ()
 
-if( EXISTS "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
-    include( "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules/Variables.cmake" )
+if( EXISTS "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity/Variables.cmake" )
+    include( "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity/Variables.cmake" )
 endif()
 
 # We only do alpha builds, beta builds, and release versions.
@@ -157,7 +157,7 @@ if( APPLE )
 endif()
 
 # Add our module path
-set( TENACITY_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-proxies/cmake-modules")
+set( TENACITY_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-modules/tenacity")
 set( CMAKE_MODULE_PATH
     ${TENACITY_MODULE_PATH}
     ${CMAKE_MODULE_PATH}

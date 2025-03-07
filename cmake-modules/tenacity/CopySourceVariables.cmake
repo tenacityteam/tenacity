@@ -3,6 +3,6 @@ if( CPACK_SOURCE_INSTALLED_DIRECTORIES )
   
   file(
     COPY "${CPACK_TENACITY_BUILD_DIR}/Variables.cmake"
-    DESTINATION "${package_directory}/cmake-proxies/cmake-modules"
+    DESTINATION "${package_directory}/cmake-modules/tenacity"
   )
 endif()
