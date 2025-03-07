@@ -335,16 +335,14 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
     include( InstallRequiredSystemLibraries )
 endif()
 
-set ( _SHARED_PROXY_BASE "shared" )
-set ( _SHARED_PROXY_BASE_PATH "${CMAKE_BINARY_DIR}/${_SHARED_PROXY_BASE}")
+# Only kept for compatibity (FIXME)
+set ( _SHARED_PROXY_BASE_PATH "${CMAKE_BINARY_DIR}/shared")
 
 # Define the non-install and executable paths
 if( CMAKE_CONFIGURATION_TYPES )
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIG>") 
-    set( _SHARED_PROXY_PATH "${_SHARED_PROXY_BASE_PATH}/${CMAKE_CFG_INTDIR}")
 else()
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE}") 
-    set( _SHARED_PROXY_PATH "${_SHARED_PROXY_BASE_PATH}/${CMAKE_BUILD_TYPE}")
 endif()
 
 set( _DESTDIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}" )

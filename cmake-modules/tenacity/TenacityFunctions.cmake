@@ -230,7 +230,6 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
       endif()
    else()
       set( ATTRIBUTES "shape=octagon" )
-      set_target_property_all( ${TARGET} ${DIRECTORY_PROPERTY} "${_SHARED_PROXY_PATH}" )
       set_target_properties( ${TARGET}
          PROPERTIES
             PREFIX ""
