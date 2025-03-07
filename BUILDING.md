@@ -344,7 +344,6 @@ has outdated libraries that do not build with Tenacity.
   * **NYQUIST** (ON|OFF): Nyquist plugin support. Required the libnyquist
     submodule to be initialized. **Nyquist plugins will not be installed**.
   * **VAMP** (ON|OFF): VAMP plugin hosting support. Requires VAMP host SDK.
-    suil libraries.
   * **VST2** (ON|OFF): VST2 plugin hosting support. No libraries are required.
     ON by default.
 
