@@ -33,47 +33,6 @@ macro( organize_source root prefix sources )
    endif()
 endmacro()
 
-# Given a directory, recurse to all defined subdirectories and assign
-# the given folder name to all of the targets found.
-function( set_dir_folder dir folder)
-   get_property( subdirs DIRECTORY "${dir}" PROPERTY SUBDIRECTORIES )
-   foreach( sub ${subdirs} )
-      set_dir_folder( "${sub}" "${folder}" )
-   endforeach()
-
-   get_property( targets DIRECTORY "${dir}" PROPERTY BUILDSYSTEM_TARGETS )
-   foreach( target ${targets} )
-      get_target_property( type "${target}" TYPE )
-      if( NOT "${type}" STREQUAL "INTERFACE_LIBRARY" )
-         set_target_properties( ${target} PROPERTIES FOLDER ${folder} )
-      endif()
-   endforeach()
-endfunction()
-
-# Helper to retrieve the settings returned from pkg_check_modules()
-macro( get_package_interface package )
-   set( INCLUDES
-      ${${package}_INCLUDE_DIRS}
-   )
-
-   set( LINKDIRS
-      ${${package}_LIBDIR}
-   )
-
-   # We resolve the full path of each library to ensure the
-   # correct one is referenced while linking
-   foreach( lib ${${package}_LIBRARIES} )
-      find_library( LIB_${lib} ${lib} HINTS ${LINKDIRS} )
-      list( APPEND LIBRARIES ${LIB_${lib}} )
-   endforeach()
-endmacro()
-
-# Set the cache and context value
-macro( set_cache_value var value )
-   set( ${var} "${value}" )
-   set_property( CACHE ${var} PROPERTY VALUE "${value}" )
-endmacro()
-
 # Set a CMake variable to the value of the corresponding environment variable
 # if the CMake variable is not already defined. Any addition arguments after
 # the variable name are passed through to set().
@@ -90,51 +49,6 @@ function( set_target_property_all target property value )
       string( TOUPPER "${property}_${type}" prop )
       set_target_properties( "${target}" PROPERTIES "${prop}" "${value}" )
    endforeach()
-endfunction()
-
-# Taken from wxWidgets and modified for Audacity
-#
-# cmd_option(<name> <desc> [default] [STRINGS strings])
-# The default is ON if third parameter isn't specified
-function( cmd_option name desc )
-   cmake_parse_arguments( OPTION "" "" "STRINGS" ${ARGN} )
-
-   if( ARGC EQUAL 2 )
-      if( OPTION_STRINGS )
-         list( GET OPTION_STRINGS 1 default )
-      else()
-         set( default ON )
-      endif()
-   else()
-      set( default ${OPTION_UNPARSED_ARGUMENTS} )
-   endif()
-
-   if( OPTION_STRINGS )
-      set( cache_type STRING )
-   else()
-      set( cache_type BOOL )
-   endif()
-
-   set( ${name} "${default}" CACHE ${cache_type} "${desc}" )
-   if( OPTION_STRINGS )
-      set_property( CACHE ${name} PROPERTY STRINGS ${OPTION_STRINGS} )
-
-      # Check valid value
-      set( value_is_valid FALSE )
-      set( avail_values )
-      foreach( opt ${OPTION_STRINGS} )
-         if( ${name} STREQUAL opt )
-            set( value_is_valid TRUE )
-            break()
-         endif()
-         string( APPEND avail_values " ${opt}" )
-      endforeach()
-      if( NOT value_is_valid )
-         message( FATAL_ERROR "Invalid value \"${${name}}\" for option ${name}. Valid values are: ${avail_values}" )
-      endif()
-   endif()
-
-   set( ${name} "${${name}}" PARENT_SCOPE )
 endfunction()
 
 # Determines if the linker supports the "-platform_version" argument
@@ -594,25 +508,6 @@ function(copy_target_properties
       endif()
    endforeach()
 endfunction()
-
-# A special macro for header only libraries
-
-macro( tenacity_header_only_library NAME SOURCES IMPORT_TARGETS
-   ADDITIONAL_DEFINES )
-   # ditto comment in the previous macro
-   add_library( ${NAME} INTERFACE )
-
-   target_include_directories ( ${NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} )
-   target_sources( ${NAME} INTERFACE ${SOURCES})
-   target_link_libraries( ${NAME} INTERFACE ${IMPORT_TARGETS} )
-   target_compile_definitions( ${NAME} INTERFACE ${ADDITIONAL_DEFINES} )
-
-   # define an additional interface library target
-   make_interface_alias(${NAME} "SHARED") 
-  
-   list( APPEND TENACITY_LIBRARIES "${NAME}" )
-   set( TENACITY_LIBRARIES "${TENACITY_LIBRARIES}" PARENT_SCOPE )
-endmacro()
 
 # The list of modules is ordered so that each module occurs after any others
 # that it depends on
