@@ -749,7 +749,7 @@ add_subdirectory( "modules" )
 add_subdirectory( "scripts" )
 
 # Generate config file
-if (NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+if (NOT CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     set(HAVE_VISIBILITY 1)
 endif()
 
