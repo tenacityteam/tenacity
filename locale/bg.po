@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-03-06 13:28+0000\n"
+"PO-Revision-Date: 2025-03-11 16:54+0000\n"
 "Last-Translator: Apostol Penkov <apostol.penkov@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/bg/>\n"
@@ -746,24 +746,20 @@ msgid "Timeline Options"
 msgstr "Настройки на приставка"
 
 #: src/AdornedRulerPanel.cpp
-#, fuzzy
 msgid "Enable dragging selection"
-msgstr "&Разрешено плъзгане на границите на селекцията"
+msgstr "Разреши плъзгане на селекцията"
 
 #: src/AdornedRulerPanel.cpp
-#, fuzzy
 msgid "Update display while playing"
-msgstr "&Обновяване на визуализацията при възпроизвеждане"
+msgstr "Актуализирайте дисплея по време на игра"
 
 #: src/AdornedRulerPanel.cpp
-#, fuzzy
 msgid "Lock Play Region"
-msgstr "Възпроизве&жданa област"
+msgstr "Заключване на региона за игра"
 
 #: src/AdornedRulerPanel.cpp
-#, fuzzy
 msgid "Pinned Play Head"
-msgstr "Край на запис"
+msgstr "Закачена глава за игра"
 
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
@@ -2762,17 +2758,16 @@ msgid "Failed!"
 msgstr "Неуспех!"
 
 #: src/TenacityApp.cpp
-#, fuzzy
 msgid ""
 "Reset Preferences?\n"
 "\n"
 "This is a one-time question, after an 'install' where you asked to have the "
 "Preferences reset."
 msgstr ""
-"Да се нулират ли настройките?\n"
+"Нулирай настройките?\n"
 "\n"
 "Това е еднократен въпрос след инсталиране, по време на което сте указали "
-"нулиране на настройките"
+"нулиране на настройките."
 
 #: src/TenacityApp.cpp
 #, fuzzy
@@ -20569,3 +20564,19 @@ msgstr "Гаус (a=3,5)"
 #, c-format
 msgid "%.4f sec (%d Hz) (%s) = %.3f"
 msgstr "%.4f сек(%d Hz) (%s) = %.3f"
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr "Упоритостта започва..."
+
+#: src/AdornedRulerPanel.cpp
+msgid ""
+"Cannot lock region beyond\n"
+"end of project."
+msgstr ""
+"Не може да се заключи регион отвъд\n"
+"край на проекта."
+
+#: src/TenacityApp.cpp
+msgid "Block size must be within 256 to 100000000\n"
+msgstr "Размерът на блока трябва да бъде от 256 до 1 000 0000\n"
