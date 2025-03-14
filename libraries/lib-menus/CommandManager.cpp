@@ -88,10 +88,10 @@ CommandManager::Populator::Populator(AudacityProject &project,
 )  : Visitor{
       std::tuple {
          [this](auto &item, auto &){ DoBeginGroup(item); },
-         move(leafVisitor),
+         std::move(leafVisitor),
          [this](auto &item, auto &){ DoEndGroup(item); },
       },
-      move(doSeparator)
+      std::move(doSeparator)
    }
    , mProject{ project }
 {

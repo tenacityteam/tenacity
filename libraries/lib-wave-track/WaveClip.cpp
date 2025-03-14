@@ -411,7 +411,7 @@ void WaveClip::SetSamples(size_t ii,
 void WaveClip::SetEnvelope(std::unique_ptr<Envelope> p)
 {
    assert(p);
-   mEnvelope = move(p);
+   mEnvelope = std::move(p);
 }
 
 const BlockArray* WaveClip::GetSequenceBlockArray(size_t ii) const
@@ -454,7 +454,7 @@ void WaveClip::TransferSequence(WaveClip &origClip, WaveClip &newClip)
 {
    // Move right channel into result
    newClip.mSequences.resize(1);
-   newClip.mSequences[0] = move(origClip.mSequences[1]);
+   newClip.mSequences[0] = std::move(origClip.mSequences[1]);
    // Delayed satisfaction of the class invariants after the empty construction
    newClip.CheckInvariants();
 }
@@ -519,7 +519,7 @@ void WaveClip::MakeStereo(WaveClip &&other, bool mustAlign)
 
    mCutLines.clear();
    mSequences.resize(2);
-   mSequences[1] = move(other.mSequences[0]);
+   mSequences[1] = std::move(other.mSequences[0]);
 
    this->Attachments::ForCorresponding(other,
    [mustAlign](WaveClipListener *pLeft, WaveClipListener *pRight){
@@ -1464,13 +1464,13 @@ void WaveClip::ClearAndAddCutLine(double t0, double t1)
 
    transaction.Commit();
    MarkChanged();
-   AddCutLine(move(newClip));
+   AddCutLine(std::move(newClip));
 }
 
 void WaveClip::AddCutLine(WaveClipHolder pClip)
 {
    assert(NChannels() == pClip->NChannels());
-   mCutLines.push_back(move(pClip));
+   mCutLines.push_back(std::move(pClip));
    // New clip is assumed to have correct width
    assert(CheckInvariants());
 }
@@ -1710,7 +1710,7 @@ void WaveClip::Resample(int rate, BasicUI::ProgressDialog *progress)
    else
    {
       // Use No-fail-guarantee in these steps
-      mSequences = move(newSequences);
+      mSequences = std::move(newSequences);
       mRate = rate;
       Flush();
       Attachments::ForEach( std::mem_fn( &WaveClipListener::Invalidate ) );

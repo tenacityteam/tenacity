@@ -184,7 +184,7 @@ namespace detail {
 
       explicit ComputedItemBase(const TypeErasedFactory &factory)
          : BaseItem(wxEmptyString)
-         , factory{ move(factory) }
+         , factory{ std::move(factory) }
       {}
       ~ComputedItemBase() override;
 
@@ -340,7 +340,7 @@ namespace detail {
       template<typename ItemType>
       auto operator () (std::unique_ptr<ItemType> ptr) const {
          static_assert(AcceptableType_v<RegistryTraits, ItemType>);
-         return move(ptr);
+         return std::move(ptr);
       }
       //! This overload allows a lambda or function pointer in the variadic
       //! argument lists without any other syntactic wrapping.
@@ -375,7 +375,7 @@ namespace detail {
       static_assert(AcceptableType_v<RegistryTraits, Item>,
          "Registered item must be of one of the types listed in the registry's "
          "traits");
-      detail::RegisterItem(registry, placement, move(pItem));
+      detail::RegisterItem(registry, placement, std::move(pItem));
    }
    
    //! Generates classes whose instances register items at construction
@@ -391,7 +391,7 @@ namespace detail {
       RegisteredItem(Ptr pItem, const Placement &placement = {})
       {
          if (pItem)
-            RegisterItem(RegistryClass::Registry(), placement, move(pItem));
+            RegisterItem(RegistryClass::Registry(), placement, std::move(pItem));
       }
    };
 
@@ -489,7 +489,7 @@ namespace detail {
       template<typename Visitors> VisitorFunctions(Visitors &&visitors) {
          using namespace detail;
          using namespace std;
-         decltype(auto) forwarded = forward<Visitors>(visitors);
+         decltype(auto) forwarded = std::forward<Visitors>(visitors);
          static constexpr auto size = TupleSize<std::decay_t<Visitors>>;
          static_assert(size == 1 || size == 3);
          if constexpr (size == 1)

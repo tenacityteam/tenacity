@@ -57,8 +57,8 @@ void WaveTrackUtilities::AllClipsIterator::Push(IntervalHolders clips)
    // Go depth first while there are cutlines
    while (!clips.empty()) {
       auto nextClips = clips[0]->GetCutLines();
-      mStack.push_back({ move(clips), 0 });
-      clips = move(nextClips);
+      mStack.push_back({ std::move(clips), 0 });
+      clips = std::move(nextClips);
    }
 }
 
@@ -397,7 +397,7 @@ void WaveTrackUtilities::VisitBlocks(TrackList &tracks, BlockVisitor visitor,
 void WaveTrackUtilities::InspectBlocks(const TrackList &tracks,
    BlockInspector inspector, SampleBlockIDSet *pIDs)
 {
-   VisitBlocks(const_cast<TrackList &>(tracks), move(inspector), pIDs);
+   VisitBlocks(const_cast<TrackList &>(tracks), std::move(inspector), pIDs);
 }
 
 void WaveTrackUtilities::ExpandClipTillNextOne(

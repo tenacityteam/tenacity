@@ -603,7 +603,7 @@ struct NyquistBase::NyxContext
    using ProgressReport = std::function<bool(double)>;
 
    NyxContext(ProgressReport progressReport, double scale, double progressTot)
-       : mProgressReport { move(progressReport) }
+       : mProgressReport { std::move(progressReport) }
        , mScale { scale }
        , mProgressTot { progressTot }
    {
@@ -656,7 +656,7 @@ bool NyquistBase::Process(EffectInstance&, EffectSettings& settings)
       NyquistBase proxy { NYQUIST_WORKER_ID };
       proxy.SetCommand(mInputCmd);
       proxy.mDebug = nyquistSettings.proxyDebug;
-      proxy.mControls = move(nyquistSettings.controls);
+      proxy.mControls = std::move(nyquistSettings.controls);
       auto result = Delegate(proxy, nyquistSettings.proxySettings);
       if (result)
       {
@@ -1695,7 +1695,7 @@ bool NyquistBase::ProcessOne(
    }
    else
    {
-      tempTrack = move(nyxContext.mOutputTrack);
+      tempTrack = std::move(nyxContext.mOutputTrack);
       out->Flush();
    }
 

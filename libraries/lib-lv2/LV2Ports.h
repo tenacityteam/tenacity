@@ -79,7 +79,7 @@ using LV2AtomPortArray = std::vector<LV2AtomPortPtr>;
 struct LV2_API LV2AtomPortState final {
    //! @pre `pPort != nullptr`
    explicit LV2AtomPortState(LV2AtomPortPtr pPort)
-      : mpPort{ move(pPort) }
+      : mpPort{ std::move(pPort) }
       , mRing{ zix_ring_new(mpPort->mMinimumSize) }
       , mBuffer{ safenew uint8_t[mpPort->mMinimumSize] }
    {
@@ -147,7 +147,7 @@ using LV2CVPortArray = std::vector<LV2CVPortPtr>;
 //! State of an instance of an LV2 CV port
 struct LV2CVPortState final {
    //! @pre `pPort != nullptr`
-   explicit LV2CVPortState(LV2CVPortPtr pPort) : mpPort{ move(pPort) } {
+   explicit LV2CVPortState(LV2CVPortPtr pPort) : mpPort{ std::move(pPort) } {
       assert(mpPort);
    }
    const LV2CVPortPtr mpPort;
@@ -169,7 +169,7 @@ public:
       bool toggle, bool enumeration, bool integer, bool sampleRate,
       bool trigger, bool logarithmic
    )  : LV2Port{ port, index, isInput, symbol, name, group }
-      , mScaleValues{ move(scaleValues) }
+      , mScaleValues{ std::move(scaleValues) }
       , mScaleLabels( std::move(scaleLabels) )
       , mUnits{ units }
       , mMin{ min }, mMax{ max }, mDef{ def }
@@ -237,7 +237,7 @@ struct LV2_API LV2EffectOutputs : EffectOutputs {
 struct LV2ControlPortState final {
    //! @pre `pPort != nullptr`
    explicit LV2ControlPortState(LV2ControlPortPtr pPort)
-      : mpPort{ move(pPort) }
+      : mpPort{ std::move(pPort) }
    {
       assert(mpPort);
    }

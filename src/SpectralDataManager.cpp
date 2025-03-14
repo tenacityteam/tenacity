@@ -210,7 +210,7 @@ std::vector<int> SpectralDataManager::Worker::ProcessOvertones(
    // The calculated multiple frequency peaks will be stored in mOvertonesTargetFreqBin
    TrackSpectrumTransformer::Process(
       OvertonesProcessor, channel, 1, startSC, winSize);
-   return move( mOvertonesTargetFreqBin );
+   return std::move( mOvertonesTargetFreqBin );
  }
 
 bool SpectralDataManager::Worker::SnappingProcessor(SpectrumTransformer &transformer) {

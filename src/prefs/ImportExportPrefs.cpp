@@ -42,14 +42,14 @@ auto ImportExportPrefs::PopulatorItem::Registry()
 ImportExportPrefs::PopulatorItem::PopulatorItem(
    const Identifier &id, Populator populator)
    : SingleItem{ id }
-   , mPopulator{ move(populator) }
+   , mPopulator{ std::move(populator) }
 {}
 
 ImportExportPrefs::RegisteredControls::RegisteredControls(
    const Identifier &id, Populator populator,
    const Registry::Placement &placement )
    : RegisteredItem{
-      std::make_unique<PopulatorItem>(id, move(populator)),
+      std::make_unique<PopulatorItem>(id, std::move(populator)),
       placement
    }
 {}

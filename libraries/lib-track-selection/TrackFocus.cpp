@@ -150,7 +150,7 @@ TrackFocus::~TrackFocus()
 
 void TrackFocus::SetCallbacks(std::unique_ptr<TrackFocusCallbacks> pCallbacks)
 {
-   mpCallbacks = move(pCallbacks);
+   mpCallbacks = std::move(pCallbacks);
 }
 
 Track *TrackFocus::Get()

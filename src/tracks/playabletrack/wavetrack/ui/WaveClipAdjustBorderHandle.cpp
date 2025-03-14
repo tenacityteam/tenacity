@@ -349,7 +349,7 @@ WaveClipAdjustBorderHandle::WaveClipAdjustBorderHandle(
    bool stretchMode,
    bool leftBorder)
    : mAdjustPolicy{ std::move(adjustPolicy) }
-   , mpTrack{ move(pTrack) }
+   , mpTrack{ std::move(pTrack) }
    , mIsStretchMode{stretchMode}
    , mIsLeftBorder{leftBorder}
 {

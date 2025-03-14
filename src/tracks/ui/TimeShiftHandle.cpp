@@ -502,7 +502,7 @@ UIHandle::Result TimeShiftHandle::Click(
 
    auto &trackList = TrackList::Get(*pProject);
    mClipMoveState.Init(*pProject, *pTrack,
-      hitTestResult, move(pShifter), clickTime,
+      hitTestResult, std::move(pShifter), clickTime,
       viewInfo, trackList,
       SyncLockState::Get( *pProject ).IsSyncLocked() );
 

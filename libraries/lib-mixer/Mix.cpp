@@ -58,7 +58,7 @@ void ConsiderStages(const Mixer::Stages& stages, size_t& blockSize)
       if (pInstance)
          blockSize = std::min(blockSize, pInstance->SetBlockSize(blockSize));
       // Cache the first factory call
-      stage.mpFirstInstance = move(pInstance);
+      stage.mpFirstInstance = std::move(pInstance);
    }
 }
 
@@ -97,8 +97,8 @@ Mixer::Mixer(
    sampleFormat outFormat, const bool highQuality, MixerSpec* const mixerSpec,
    ApplyVolume applyVolume)
     : mNumChannels { numOutChannels }
-    , mInputs { move(inputs) }
-    , mMasterEffects { move(masterEffects) }
+    , mInputs { std::move(inputs) }
+    , mMasterEffects { std::move(masterEffects) }
     , mBufferSize { FindBufferSize(mInputs, mMasterEffects, outBufferSize) }
     , mApplyVolume { applyVolume }
     , mHighQuality { highQuality }
@@ -425,7 +425,7 @@ std::unique_ptr<EffectStage>& Mixer::RegisterEffectStage(
    auto& stageInput = mStageBuffers.emplace_back(3, mBufferSize, 1);
    const auto& factory = [&stage] {
       // Avoid unnecessary repeated calls to the factory
-      return stage.mpFirstInstance ? move(stage.mpFirstInstance) :
+      return stage.mpFirstInstance ? std::move(stage.mpFirstInstance) :
                                      stage.factory();
    };
    auto& pNewDownstream = mStages.emplace_back(EffectStage::Create(

@@ -63,7 +63,7 @@ Viewport::Viewport(AudacityProject &project)
 
 void Viewport::SetCallbacks(std::unique_ptr<ViewportCallbacks> pCallbacks)
 {
-   mpCallbacks = move(pCallbacks);
+   mpCallbacks = std::move(pCallbacks);
 }
 
 void Viewport::FinishAutoScroll()

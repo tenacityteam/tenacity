@@ -176,7 +176,7 @@ bool VSTInstance::RealtimeAddProcessor(EffectSettings &settings,
    if (!slave->ProcessInitialize(settings, sampleRate, ChannelNames()))
       return false;
 
-   mSlaves.emplace_back(move(slave));
+   mSlaves.emplace_back(std::move(slave));
    return true;
 }
 

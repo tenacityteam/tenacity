@@ -205,7 +205,7 @@ bool LV2Editor::BuildFancy(
 {
    assert(pWrapper);
    auto &wrapper = *pWrapper;
-   mpWrapper = move(pWrapper);
+   mpWrapper = std::move(pWrapper);
    using namespace LV2Symbols;
    // Set the native UI type
    const char *nativeType =

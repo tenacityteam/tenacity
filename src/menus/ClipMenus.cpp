@@ -600,7 +600,7 @@ double DoClipMove(AudacityProject &project, TrackList &trackList,
       auto desiredT0 = viewInfo.OffsetTimeByPixels(t0, (right ? 1 : -1));
       auto desiredSlideAmount = pShifter->HintOffsetLarger(desiredT0 - t0);
 
-      state.Init(project, pShifter->GetTrack(), hitTestResult, move(uShifter),
+      state.Init(project, pShifter->GetTrack(), hitTestResult, std::move(uShifter),
          t0, viewInfo, trackList, syncLocked);
 
       auto hSlideAmount = state.DoSlideHorizontal(desiredSlideAmount);

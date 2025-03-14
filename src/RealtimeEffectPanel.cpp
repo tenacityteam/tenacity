@@ -213,7 +213,7 @@ namespace
 
          if(!submenu->empty())
          {
-            root->push_back(move(analyzeSection));
+            root->push_back(std::move(analyzeSection));
          }
 
          MenuHelper::PopulateEffectsMenu(

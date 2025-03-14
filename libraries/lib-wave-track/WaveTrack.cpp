@@ -160,7 +160,7 @@ WaveTrack::IntervalHolder GetRenderedCopy(
       originalPlayEndTime, interval.GetSequenceEndTime() + samplePeriod, samplePeriod);
    dstEnvelope->CollapseRegion(0, originalPlayStartTime, samplePeriod);
    dstEnvelope->SetOffset(originalPlayStartTime);
-   dst->SetEnvelope(move(dstEnvelope));
+   dst->SetEnvelope(std::move(dstEnvelope));
 
    success = true;
 
@@ -1153,7 +1153,7 @@ void WaveTrack::FinishCopy(
       placeholder->SetIsPlaceholder(true);
       placeholder->InsertSilence(0, (t1 - t0) - GetEndTime());
       placeholder->ShiftBy(GetEndTime());
-      InsertInterval(move(placeholder), true, false);
+      InsertInterval(std::move(placeholder), true, false);
    }
 }
 
@@ -1334,7 +1334,7 @@ void WaveTrack::ClearAndPasteAtSameTempo(
             cut->SetSequenceStartTime(cs);
             bool removed = clip->RemoveCutLine(unrounded);
             assert(removed);
-            cuts.push_back(move(cut));
+            cuts.push_back(std::move(cut));
          }
       }
    }
@@ -1459,7 +1459,7 @@ void WaveTrack::ClearAndPasteAtSameTempo(
                if (split.right)
                   // new clip was cleared left
                   attachLeft(*newClip, *split.right);
-               track.InsertInterval(move(newClip), false);
+               track.InsertInterval(std::move(newClip), false);
                break;
             }
             else if (clip->GetPlayStartSample() ==
@@ -1583,7 +1583,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
             clipsToDelete.push_back(clip);
             auto newClip = CopyClip(*clip, true);
             newClip->ClearAndAddCutLine(t0, t1);
-            clipsToAdd.push_back(move(newClip));
+            clipsToAdd.push_back(std::move(newClip));
          }
          else {
             if (split || clearByTrimming) {
@@ -1601,7 +1601,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
                      // If this is not a split-cut, where things are left in
                      // place, we need to reposition the clip.
                      newClip->ShiftBy(t0 - t1);
-                  clipsToAdd.push_back(move(newClip));
+                  clipsToAdd.push_back(std::move(newClip));
                }
                else if (clip->AfterPlayRegion(t1)) {
                   // Delete to right edge
@@ -1612,7 +1612,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
                   auto newClip = CopyClip(*clip, true);
                   newClip->TrimRight(clip->GetPlayEndTime() - t0);
 
-                  clipsToAdd.push_back(move(newClip));
+                  clipsToAdd.push_back(std::move(newClip));
                }
                else {
                   // Delete in the middle of the clip...we actually create two
@@ -1620,7 +1620,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
 
                   auto leftClip = CopyClip(*clip, true);
                   leftClip->TrimRight(clip->GetPlayEndTime() - t0);
-                  clipsToAdd.push_back(move(leftClip));
+                  clipsToAdd.push_back(std::move(leftClip));
 
                   auto rightClip = CopyClip(*clip, true);
                   rightClip->TrimLeft(t1 - clip->GetPlayStartTime());
@@ -1628,7 +1628,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
                      // If this is not a split-cut, where things are left in
                      // place, we need to reposition the clip.
                      rightClip->ShiftBy(t0 - t1);
-                  clipsToAdd.push_back(move(rightClip));
+                  clipsToAdd.push_back(std::move(rightClip));
 
                   clipsToDelete.push_back(clip);
                }
@@ -1644,7 +1644,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
                // clip->Clear keeps points < t0 and >= t1 via Envelope::CollapseRegion
                newClip->Clear(t0,t1);
 
-               clipsToAdd.push_back(move(newClip));
+               clipsToAdd.push_back(std::move(newClip));
             }
          }
       }
@@ -1665,7 +1665,7 @@ void WaveTrack::HandleClear(double t0, double t1, bool addCutLines,
             clip->ShiftBy(-(t1 - t0));
 
    for (auto &clip: clipsToAdd)
-      InsertInterval(move(clip), false);
+      InsertInterval(std::move(clip), false);
 }
 
 void WaveTrack::SyncLockAdjust(double oldT1, double newT1)
@@ -1893,7 +1893,7 @@ void WaveTrack::PasteWaveTrackAtSameTempo(
                (oldPlayStart + t0) - clip->GetTrimLeft();
             const auto newClip = CreateClip(newSequenceStart, name, clip.get());
             newClip->Resample(rate);
-            track.InsertInterval(move(newClip), false);
+            track.InsertInterval(std::move(newClip), false);
         }
     }
 }
@@ -2051,7 +2051,7 @@ void WaveTrack::InsertSilence(double t, double len)
       auto clip = CreateClip(0);
       clip->InsertSilence(0, len);
       // use No-fail-guarantee
-      InsertInterval(move(clip), true);
+      InsertInterval(std::move(clip), true);
    }
    else
    {
@@ -2233,7 +2233,7 @@ void WaveTrack::Join(
       RemoveClip(FindClip(*clip));
    }
 
-   InsertInterval(move(newClip), false);
+   InsertInterval(std::move(newClip), false);
 }
 
 /*! @excsafety{Partial}
@@ -3202,7 +3202,7 @@ auto WaveTrack::SplitAt(double t) -> std::pair<IntervalHolder, IntervalHolder>
 
          // This could invalidate the iterators for the loop!  But we return
          // at once so it's okay
-         InsertInterval(move(newClip), false); // transfer ownership
+         InsertInterval(std::move(newClip), false); // transfer ownership
          return result;
       }
    }
@@ -3382,7 +3382,7 @@ void WaveTrack::ZipClips(bool mustAlign)
 
    while (iterRight != endRight) {
       // Leftover misaligned mono clips
-      mClips.emplace_back(move(*iterRight));
+      mClips.emplace_back(std::move(*iterRight));
       ++iterRight;
    }
 

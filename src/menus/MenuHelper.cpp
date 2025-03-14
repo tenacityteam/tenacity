@@ -177,7 +177,7 @@ void AddEffectMenuItemGroup(
 
             i++;
          }
-         table.push_back(move(subMenu));
+         table.push_back(std::move(subMenu));
          i--;
       }
       else
@@ -297,14 +297,14 @@ auto MakeAddGroupItems(
                AddEffectMenuItemGroup(*temp,
                   groupNames, groupPlugs, groupFlags,
                   onMenuCommand);
-               items.push_back(move(temp));
+               items.push_back(std::move(temp));
             }
             else {
                auto temp = Menu("", p.first);
                AddEffectMenuItemGroup(*temp,
                   groupNames, groupPlugs, groupFlags,
                   onMenuCommand);
-               items.push_back(move(temp));
+               items.push_back(std::move(temp));
             }
          }
       }
@@ -341,12 +341,12 @@ void AddGroupedEffectMenuItems(
       if (label.empty()) {
          auto items = Items("");
          AddEffectMenuItemGroup(*items, names, group, flags, onMenuCommand);
-         parentTable->push_back(move(items));
+         parentTable->push_back(std::move(items));
       }
       else {
          auto items = Menu("", label);
          AddEffectMenuItemGroup(*items, names, group, flags, onMenuCommand);
-         parentTable->push_back(move(items));
+         parentTable->push_back(std::move(items));
       }
 
       names.clear();
@@ -384,7 +384,7 @@ void AddGroupedEffectMenuItems(
             path = { effectFamilyName, vendorName };
             auto menu = Menu("", effectFamilyName);
             parentTable = menu.get();
-            table.push_back(move(menu));
+            table.push_back(std::move(menu));
          }
          else if(path[1] != vendorName)
          {
@@ -759,14 +759,14 @@ void MenuHelper::PopulateEffectsMenu(
          section.add(*group, section.plugins);
          if (group->empty())
             continue;
-         menuItems.push_back(move(group));
+         menuItems.push_back(std::move(group));
       }
       else {
          auto group = MenuRegistry::Section("");
          section.add(*group, section.plugins);
          if (group->empty())
             continue;
-         menuItems.push_back(move(group));
+         menuItems.push_back(std::move(group));
       }
    }
 }

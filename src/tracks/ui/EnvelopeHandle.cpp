@@ -35,7 +35,7 @@ Paul Licameli split from TrackPanel.cpp
 EnvelopeHandle::EnvelopeHandle(Envelope *pEnvelope,
    std::weak_ptr<const Channel> wChannel
 )  : mEnvelope{ pEnvelope }
-   , mwChannel{ move(wChannel) }
+   , mwChannel{ std::move(wChannel) }
 {
 }
 
@@ -58,7 +58,7 @@ UIHandlePtr EnvelopeHandle::HitAnywhere(std::weak_ptr<EnvelopeHandle> &holder,
    Envelope *envelope, std::weak_ptr<const Channel> wChannel, bool timeTrack)
 {
    auto result = AssignUIHandlePtr(holder,
-      std::make_shared<EnvelopeHandle>(envelope, move(wChannel)));
+      std::make_shared<EnvelopeHandle>(envelope, std::move(wChannel)));
    result->mTimeTrack = timeTrack;
    return result;
 }
@@ -176,7 +176,7 @@ UIHandlePtr EnvelopeHandle::HitEnvelope(std::weak_ptr<EnvelopeHandle> &holder,
    if (distance >= yTolerance)
       return {};
 
-   return HitAnywhere(holder, envelope, move(wChannel), timeTrack);
+   return HitAnywhere(holder, envelope, std::move(wChannel), timeTrack);
 }
 
 UIHandle::Result EnvelopeHandle::Click

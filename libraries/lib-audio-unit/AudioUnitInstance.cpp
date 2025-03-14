@@ -243,7 +243,7 @@ bool AudioUnitInstance::RealtimeAddProcessor(
    uProcessor->SetBlockSize(mBlockSize);
    if (!uProcessor->ProcessInitialize(settings, sampleRate, nullptr))
       return false;
-   mSlaves.push_back(move(uProcessor));
+   mSlaves.push_back(std::move(uProcessor));
    return true;
 }
 

@@ -419,7 +419,7 @@ public:
    ChoiceSetting(TransactionalSettingBase &key, EnumValueSymbols symbols,
       long defaultSymbol = -1)
       : mKey{ key.GetPath() }
-      , mSymbols{ move(symbols) }
+      , mSymbols{ std::move(symbols) }
       , mpOtherSettings{ &key }
       , mDefaultSymbol{ defaultSymbol }
    {
@@ -430,7 +430,7 @@ public:
    ChoiceSetting(const SettingBase &key, EnumValueSymbols symbols,
       long defaultSymbol = -1)
       : mKey{ key.GetPath() }
-      , mSymbols{ move(symbols) }
+      , mSymbols{ std::move(symbols) }
       , mDefaultSymbol{ defaultSymbol }
    {
       assert(defaultSymbol < static_cast<long>(mSymbols.size()));
@@ -481,8 +481,8 @@ public:
 
       std::vector<int> intValues, // must have same size as symbols
       const wxString &oldKey = {}
-   )  : ChoiceSetting{ std::forward<Key>(key), move(symbols), defaultSymbol }
-      , mIntValues{ move(intValues) }
+   )  : ChoiceSetting{ std::forward<Key>(key), std::move(symbols), defaultSymbol }
+      , mIntValues{ std::move(intValues) }
       , mOldKey{ oldKey }
    {
       assert (mIntValues.size() == mSymbols.size());
@@ -525,7 +525,7 @@ public:
       const wxString &oldKey = {}
    )
       : EnumSettingBase{
-         std::forward<Key>(key), move(symbols), defaultSymbol,
+         std::forward<Key>(key), std::move(symbols), defaultSymbol,
          ConvertValues(values), oldKey
       }
    {}

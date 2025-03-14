@@ -31,7 +31,7 @@ CutlineHandle::CutlineHandle(
    WaveTrackLocations locations, WaveTrackLocation location
 )
    : mpTrack{ pTrack }
-   , mLocations{ move(locations) }
+   , mLocations{ std::move(locations) }
    , mLocation{ location }
 {
 }
@@ -96,7 +96,7 @@ UIHandlePtr CutlineHandle::HitTest(
       return {};
 
    auto result =
-      std::make_shared<CutlineHandle>(pTrack, move(locations), location);
+      std::make_shared<CutlineHandle>(pTrack, std::move(locations), location);
    result = AssignUIHandlePtr(holder, result);
    return result;
 }

@@ -30,9 +30,9 @@ public:
       RulerUpdater::Labels minorMinorLabels
    )
    {
-      mMajorLabels = move(majorLabels);
-      mMinorLabels = move(minorLabels);
-      mMinorMinorLabels = move(minorMinorLabels);
+      mMajorLabels = std::move(majorLabels);
+      mMinorLabels = std::move(minorLabels);
+      mMinorMinorLabels = std::move(minorMinorLabels);
    }
 
 protected:

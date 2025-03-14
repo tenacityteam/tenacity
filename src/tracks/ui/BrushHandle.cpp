@@ -142,7 +142,7 @@ BrushHandle::BrushHandle(
    const TrackPanelMouseState &st, const ViewInfo &viewInfo,
    const std::shared_ptr<SpectralData> &pSpectralData,
    const ProjectSettings &pSettings
-)  : mpStateSaver{ move(pStateSaver) }
+)  : mpStateSaver{ std::move(pStateSaver) }
    , mpSpectralData(pSpectralData)
    , mpView{ pChannelView }
 {

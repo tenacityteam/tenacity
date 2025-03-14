@@ -2301,7 +2301,7 @@ void AdornedRulerPanel::HandleSnapping(size_t index)
          SnapPoint{ selectedRegion.t0() },
          SnapPoint{ selectedRegion.t1() },
       };
-   SnapManager snapManager{ *mProject, *mTracks, *mViewInfo, move(candidates) };
+   SnapManager snapManager{ *mProject, *mTracks, *mViewInfo, std::move(candidates) };
    auto results = snapManager.Snap(nullptr, mQuickPlayPos[index], false);
    mQuickPlayPos[index] = results.outTime;
    mIsSnapped[index] = results.Snapped();

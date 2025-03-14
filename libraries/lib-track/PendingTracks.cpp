@@ -170,7 +170,7 @@ Track* PendingTracks::RegisterPendingChangedTrack(Updater updater, Track *src)
    auto track =
       src->Duplicate(Track::DuplicateOptions{}.ShallowCopyAttachments());
 
-   mUpdaters.push_back(move(updater));
+   mUpdaters.push_back(std::move(updater));
    mPendingUpdates->Add(track);
    return track.get();
 }
@@ -267,7 +267,7 @@ bool PendingTracks::ApplyPendingTracks()
    // If there are tracks to reinstate, append them to the list.
    for (auto &pendingTrack : reinstated)
       if (pendingTrack)
-         mTracks.Add(move(pendingTrack)), result = true;
+         mTracks.Add(std::move(pendingTrack)), result = true;
 
    // Put the pending added tracks back into the list, preserving their
    // positions and assigning ids.

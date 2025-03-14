@@ -216,7 +216,7 @@ public:
       std::weak_ptr<AudacityProject> wProject, double sampleRate,
       unsigned numPlaybackChannels
    )  : mSampleRate{ sampleRate }
-      , mwProject{ move(wProject) }
+      , mwProject{ std::move(wProject) }
       , mNumPlaybackChannels{ numPlaybackChannels }
    {
       if (const auto pProject = mwProject.lock())
@@ -258,7 +258,7 @@ public:
    //! Require a prior InializationScope to ensure correct nesting
    explicit ProcessingScope(InitializationScope &,
       std::weak_ptr<AudacityProject> wProject)
-      : mwProject{ move(wProject) }
+      : mwProject{ std::move(wProject) }
    {
       if (auto pProject = mwProject.lock())
          RealtimeEffectManager::Get(*pProject).ProcessStart(mSuspended);

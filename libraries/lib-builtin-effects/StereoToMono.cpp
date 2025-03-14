@@ -117,7 +117,7 @@ bool StereoToMono::ProcessOne(
       track.SharedPointer<const SampleTrack>(), GetEffectStages(track));
 
    Mixer mixer(
-      move(tracks), std::nullopt,
+      std::move(tracks), std::nullopt,
       true, // Throw to abort mix-and-render if read fails:
       Mixer::WarpOptions { inputTracks()->GetOwner() }, start, end, 1,
       idealBlockLen,

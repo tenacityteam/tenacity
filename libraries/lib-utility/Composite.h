@@ -59,7 +59,7 @@ public:
    auto crbegin() const { return items.crbegin(); }
    auto crend() const { return items.crend(); }
 
-   void push_back(value_type ptr){ items.push_back(move(ptr)); }
+   void push_back(value_type ptr){ items.push_back(std::move(ptr)); }
    auto size() const noexcept { return items.size(); }
 
    [[nodiscard]] bool empty() const { return items.empty(); }

@@ -149,7 +149,7 @@ int NyquistEffect::ShowHostInterface(EffectBase &plugin,
          auto &nyquistSettings = GetSettings(settings);
          nyquistSettings.proxySettings = std::move(newSettings);
          nyquistSettings.proxyDebug = this->mDebug;
-         nyquistSettings.controls = move(effect.mControls);
+         nyquistSettings.controls = std::move(effect.mControls);
          return nullptr;
       });
    }

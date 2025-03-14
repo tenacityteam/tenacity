@@ -178,7 +178,7 @@ private:
    template<typename Ptr> void RegisterItem(
       const Registry::Placement &placement, Ptr pItem)
    {
-      Registry::RegisterItem(*mRegistry, placement, move(pItem));
+      Registry::RegisterItem(*mRegistry, placement, std::move(pItem));
    }
 
 protected:

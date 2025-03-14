@@ -33,7 +33,7 @@ void TimeStretching::WithClipRenderingProgress(
    std::function<void(const ProgressReporter&)> action,
    const TranslatableString title)
 {
-   return UserException::WithCancellableProgress(move(action),
+   return UserException::WithCancellableProgress(std::move(action),
       std::move(title), XO("Rendering Clip"));
 }
 

@@ -17,7 +17,7 @@ ChannelAttachmentsBase &
 ChannelAttachmentsBase::operator=(ChannelAttachmentsBase &&other)
 {
    assert(typeid(*this) == typeid(other));
-   mAttachments = move(other.mAttachments);
+   mAttachments = std::move(other.mAttachments);
    return *this;
 }
 
@@ -74,7 +74,7 @@ ChannelAttachment *ChannelAttachmentsBase::Find(
 }
 
 ChannelAttachmentsBase::ChannelAttachmentsBase(Track &track, Factory factory)
-   : mFactory{ move(factory) }
+   : mFactory{ std::move(factory) }
 {
    const auto nChannels = track.NChannels();
    for (size_t iChannel = 0; iChannel < nChannels; ++iChannel)
@@ -135,7 +135,7 @@ void ChannelAttachmentsBase::MakeStereo(const std::shared_ptr<Track> &parent,
       mAttachments.resize(1);
    auto index = mAttachments.size();
    for (auto &ptr : other.mAttachments) {
-      if (auto &pAttachment = mAttachments.emplace_back(move(ptr)))
+      if (auto &pAttachment = mAttachments.emplace_back(std::move(ptr)))
          pAttachment->Reparent(parent, index++);
    }
    other.mAttachments.clear();

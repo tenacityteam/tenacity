@@ -295,7 +295,7 @@ MixerSource::MixerSource(
    , mRate{ rate }
    , mEnvelope{ options.envelope }
    , mMayThrow{ mayThrow }
-   , mTimesAndSpeed{ move(pTimesAndSpeed) }
+   , mTimesAndSpeed{ std::move(pTimesAndSpeed) }
    , mSampleQueue{ initVector<float>(mnChannels, sQueueMaxLen) }
    , mQueueStart{ 0 }
    , mQueueLen{ 0 }

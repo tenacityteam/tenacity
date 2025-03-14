@@ -277,7 +277,7 @@ LV2Ports::LV2Ports(const LilvPlugin &plug)
          const auto &controlPort = mControlPorts.emplace_back(
             std::make_shared<LV2ControlPort>(
                port, index, isInput, symbol, name, groupName,
-               move(scaleValues), std::move(scaleLabels), units,
+               std::move(scaleValues), std::move(scaleLabels), units,
                min, max, def, hasLo, hasHi,
                toggle, enumeration, integer, sampleRate,
                trigger, logarithmic));

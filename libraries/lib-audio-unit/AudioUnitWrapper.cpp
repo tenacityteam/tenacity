@@ -420,7 +420,7 @@ AudioUnitWrapper::MakeBlob(const EffectDefinitionInterface &effect,
       // Caller might not treat this as error, becauase data is non-null
       message = XO("XML data is empty after conversion");
 
-   return { move(data), message };
+   return { std::move(data), message };
 }
 
 bool AudioUnitWrapper::SetRateAndChannels(

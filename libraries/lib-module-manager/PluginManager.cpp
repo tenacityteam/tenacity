@@ -382,7 +382,7 @@ PluginManager & PluginManager::Get()
 
 void PluginManager::Initialize(ConfigFactory factory)
 {
-   sFactory = move(factory);
+   sFactory = std::move(factory);
 
    // Always load the registry first
    Load();

@@ -95,7 +95,7 @@ public:
     WaveClipTitleEditHandle(const std::shared_ptr<TextEditHelper>& helper,
         const std::shared_ptr<WaveTrack> pTrack)
         : mHelper(helper)
-        , mpTrack{ move(pTrack) }
+        , mpTrack{ std::move(pTrack) }
     { }
 
    ~WaveClipTitleEditHandle()

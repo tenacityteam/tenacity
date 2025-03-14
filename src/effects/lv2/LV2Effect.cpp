@@ -105,7 +105,7 @@ std::unique_ptr<EffectEditor> LV2Effect::PopulateUI(const EffectPlugin &,
 #endif
 
    if (result->mUseGUI)
-      result->mUseGUI = result->BuildFancy(move(pWrapper), settings);
+      result->mUseGUI = result->BuildFancy(std::move(pWrapper), settings);
    if (!result->mUseGUI && !result->BuildPlain(access))
       return nullptr;
    result->UpdateUI();

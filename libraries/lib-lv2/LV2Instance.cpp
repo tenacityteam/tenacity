@@ -169,7 +169,7 @@ bool LV2Instance::RealtimeAddProcessor(EffectSettings &settings,
    if (!pInstance)
       return false;
    pInstance->Activate();
-   mSlaves.push_back(move(pInstance));
+   mSlaves.push_back(std::move(pInstance));
    return true;
 }
 

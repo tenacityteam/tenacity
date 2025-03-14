@@ -70,9 +70,9 @@ TrackPanelAx::TrackPanelAx(std::weak_ptr<Viewport> wViewport,
    // window pointer must be set after construction
      WindowAccessible(nullptr),
 #endif
-     mwViewport{ move(wViewport) },
-     mwFocus{ move(wFocus) }
-   , mFinder{ move(finder) }
+     mwViewport{ std::move(wViewport) },
+     mwFocus{ std::move(wFocus) }
+   , mFinder{ std::move(finder) }
 {
 }
 

@@ -83,7 +83,7 @@ WaveformSettings &WaveformSettings::Get(const WaveChannel &channel)
 void WaveformSettings::Set(
    WaveChannel &channel, std::unique_ptr<WaveformSettings> pSettings)
 {
-   channel.GetTrack().Attachments::Assign(key1, move(pSettings));
+   channel.GetTrack().Attachments::Assign(key1, std::move(pSettings));
 }
 
 WaveformSettings::WaveformSettings()

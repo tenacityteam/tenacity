@@ -24,7 +24,7 @@
 
 WideSampleSource::WideSampleSource(const WideSampleSequence &sequence,
    size_t nChannels, sampleCount start, sampleCount len, Poller pollUser
-)  : mSequence{ sequence }, mnChannels{ nChannels }, mPollUser{ move(pollUser) }
+)  : mSequence{ sequence }, mnChannels{ nChannels }, mPollUser{ std::move(pollUser) }
    , mPos{ start }, mOutputRemaining{ len  }
 {
    assert(nChannels <= sequence.NChannels());

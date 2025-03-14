@@ -61,7 +61,7 @@ struct AudioUnitEffectSettings {
    Map values;
 
    AudioUnitEffectSettings() = default;
-   AudioUnitEffectSettings(Map map) : values{ move(map) } {}
+   AudioUnitEffectSettings(Map map) : values{ std::move(map) } {}
    
    //! Get a pointer to a durable copy of `name`
    //! May allocate memory

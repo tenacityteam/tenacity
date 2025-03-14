@@ -325,7 +325,7 @@ LV2EffectBase::LoadFactoryPreset(int id, EffectSettings &settings) const
    auto &mySettings = GetSettings(settings);
    mPorts.EmitPortValues(*state, mySettings);
    // Save the state, for whatever might not be contained in port values
-   mySettings.mpState = move(state);
+   mySettings.mpState = std::move(state);
    return { nullptr };
 }
 

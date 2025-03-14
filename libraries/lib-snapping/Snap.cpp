@@ -35,7 +35,7 @@ SnapManager::SnapManager(const AudacityProject &project,
 , mZoomInfo{ &zoomInfo }
 , mPixelTolerance{ pixelTolerance }
 , mNoTimeSnap{ noTimeSnap }
-, mCandidates{ move( candidates ) }
+, mCandidates{ std::move( candidates ) }
 , mSnapPoints{}
 {
    Reinit();
@@ -51,7 +51,7 @@ SnapPointArray FindCandidates(
          if (interval->Start() != interval->End())
             candidates.emplace_back(interval->End(), track);
       }
-   return move(candidates);
+   return std::move(candidates);
 }
 }
 
@@ -64,7 +64,7 @@ SnapManager::SnapManager(const AudacityProject &project,
    : SnapManager{ project,
       // Add candidates to given ones by default rules,
       // then delegate to other ctor
-      FindCandidates( move(candidates), tracks ),
+      FindCandidates( std::move(candidates), tracks ),
       zoomInfo, noTimeSnap, pixelTolerance }
 {
 }

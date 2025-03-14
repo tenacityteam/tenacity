@@ -44,7 +44,7 @@ std::vector<std::shared_ptr<EffectInstance>> MakeInstances(
       if (genLength)
          count = nChannels;
 
-      instances.push_back(move(pInstance));
+      instances.push_back(std::move(pInstance));
 
       // Advance ii
       if (count == 0)

@@ -134,7 +134,7 @@ struct AudioIoCallback::TransportState {
          // Setup for realtime playback at the rate of the realtime
          // stream, not the rate of the sample sequence.
          mpRealtimeInitialization.emplace(
-            move(wOwningProject), sampleRate, numPlaybackChannels);
+            std::move(wOwningProject), sampleRate, numPlaybackChannels);
          // The following adds a new effect processor for each logical sequence.
          for (size_t i = 0, cnt = playbackSequences.size(); i < cnt; ++i) {
             // An array only of non-null pointers should be given to us
@@ -1049,7 +1049,7 @@ void AudioIO::CallAfterRecording(PostRecordingAction action)
    // Don't delay it except until idle time.
    // (Recording might start between now and then, but won't go far before
    // the action is done.  So the system isn't bulletproof yet.)
-   BasicUI::CallAfter(move(action));
+   BasicUI::CallAfter(std::move(action));
 }
 
 bool AudioIO::AllocateBuffers(
@@ -2986,7 +2986,7 @@ AudioIoCallback::AudioIoCallback()
    auto &factories = AudioIOExt::GetFactories();
    for (auto &factory: factories)
       if (auto pExt = factory(mPlaybackSchedule))
-         mAudioIOExt.push_back( move(pExt) );
+         mAudioIOExt.push_back( std::move(pExt) );
 }
 
 
