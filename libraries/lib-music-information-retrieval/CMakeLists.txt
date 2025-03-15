@@ -21,6 +21,7 @@ set( SOURCES
 
 set( LIBRARIES
 PUBLIC
+   pffft
    lib-fft
    lib-utility
    lib-file-formats-interface
