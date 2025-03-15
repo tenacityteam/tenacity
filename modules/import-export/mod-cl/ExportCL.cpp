@@ -13,6 +13,10 @@
 
 #include "ProjectRate.h"
 
+#ifdef _MSC_VER
+#include <chrono>
+#endif
+
 #include <thread>
 
 #include <wx/app.h>
