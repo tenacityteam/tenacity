@@ -12,8 +12,8 @@ set(SOURCES
 set(LIBRARIES
     PRIVATE
         Matroska::matroska
-        $<$<BOOL:${USE_FLAC}>:FLAC::FLAC>
-        $<$<BOOL:${USE_FLAC}>:FLAC++::FLAC++>
+        $<$<BOOL:${USE_LIBFLAC}>:FLAC::FLAC>
+        $<$<BOOL:${USE_LIBFLAC}>:FLAC++::FLAC++>
 )
 
 set(EXTRA_CLUSTER_NODES "${LIBRARIES}" PARENT_SCOPE)
