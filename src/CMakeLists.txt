@@ -1305,6 +1305,16 @@ else()
         install( TARGETS ${TARGET}
                  DESTINATION "."
                  RESOURCE DESTINATION "${_APPDIR}/Resources" )
+    elseif( CMAKE_SYSTEM_NAME MATCHES "Haiku" )
+        install( TARGETS ${TARGET} RUNTIME )
+        install( DIRECTORY "${_DEST}/${_LIBDIR}/"
+                DESTINATION "${_LIBDIR}"
+                USE_SOURCE_PERMISSIONS
+                FILES_MATCHING PATTERN "*.so*" )
+        install( FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_SOURCE_DIR}/README.md"
+                DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
+        install( FILES "${CMAKE_SOURCE_DIR}/resources/EQDefaultCurves.xml"
+                DESTINATION "${_PKGDATA}" )
     else()
         install( TARGETS ${TARGET}
                  RUNTIME
