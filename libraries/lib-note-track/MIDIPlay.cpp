@@ -485,7 +485,7 @@ static double streamStartTime = 0; // bias system time to small number
 
 static double SystemTime(bool usingAlsa)
 {
-#ifdef __WXGTK__
+#if defined(__WXGTK__) && !defined(__HAIKU__) 
    if (usingAlsa) {
       struct timespec now;
       // CLOCK_MONOTONIC_RAW is unaffected by NTP or adj-time
