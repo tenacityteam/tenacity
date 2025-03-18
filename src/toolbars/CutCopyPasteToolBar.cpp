@@ -106,12 +106,12 @@ CutCopyPasteToolBar::~CutCopyPasteToolBar()
 
 bool CutCopyPasteToolBar::ShownByDefault() const
 {
-   return false;
+   return true;
 }
 
 bool CutCopyPasteToolBar::HideAfterReset() const
 {
-   return true;
+   return false;
 }
 
 void CutCopyPasteToolBar::Create(wxWindow * parent)
