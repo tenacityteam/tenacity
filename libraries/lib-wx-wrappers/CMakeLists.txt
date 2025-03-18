@@ -15,20 +15,6 @@ set( SOURCES
    AudacityDontAskAgainMessageDialog.h
    SpinControl.cpp
    SpinControl.h
-   FileDialog/FileDialog.cpp
-   FileDialog/FileDialog.h
-   $<$<PLATFORM_ID:Windows>:
-      FileDialog/win/FileDialogPrivate.cpp
-      FileDialog/win/FileDialogPrivate.h
-   >
-   $<$<PLATFORM_ID:Darwin>:
-      FileDialog/mac/FileDialogPrivate.mm
-      FileDialog/mac/FileDialogPrivate.h
-   >
-   $<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,CYGWIN>:
-      FileDialog/gtk/FileDialogPrivate.cpp
-      FileDialog/gtk/FileDialogPrivate.h
-   >
    WindowAccessible.cpp
    WindowAccessible.h
    wxPanelWrapper.cpp
