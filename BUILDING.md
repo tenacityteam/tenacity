@@ -180,6 +180,92 @@ dependencies.
 
 Note that building the dependencies requires 10 GB of storage space.
 
+#### Building with MSYS2 (Experimental)
+**NOTE**: These instructions are experimental. Tenacity may not build at all
+yet.
+
+If you don't want to use Tenacity with Visual Studio and MSVC, you can
+alternatively build Tenacity under MSYS2 using your environment of choice. This
+may be preferrable to vcpkg as you don't need to build all of Tenacity's
+dependencies first before building Tenacity.
+
+Keep in mind that we only support the following environments:
+
+- UCRT64
+- CLANG64
+- CLANGARM64
+
+The rule of thumb is this: any environment that links to the UCRT C standard
+library, it is a supported environment. This also applies to 32-bit x86
+environments as well, at least for a little while.
+
+To install the required packages, including any development tools if you
+_don't_ have them already, first note your environment's prefix. For example,
+under CLANG64, its prefix will be `mingw-w64-clang-x86_64`. Therefore, you
+would run the following command to install the packages for the CLANG64
+environment:
+
+```bash
+$ pacman -S mingw-w64-clang-x86_64-cmake mingw-w64-clang-x86_64-ninja mingw-w64-clang-x86_64-clang \
+  mingw-w64-clang-x86_64-libid3tag mingw-w64-clang-x86_64-mpg123 mingw-w64-clang-x86_64-libsndfile \
+  mingw-w64-clang-x86_64-portaudio mingw-w64-clang-x86_64-wxwidgets3.2-common mingw-w64-clang-x86_64-wxwidgets3.2-msw \
+  mingw-w64-clang-x86_64-twolame mingw-w64-clang-x86_64-lame mingw-w64-clang-x86_64-flac \
+  mingw-w64-clang-x86_64-opusfile mingw-w64-clang-x86_64-libvorbis mingw-w64-clang-x86_64-libebml \
+  mingw-w64-clang-x86_64-libmatroska mingw-w64-clang-x86_64-portmidi mingw-w64-clang-x86_64-rapidjson \
+  mingw-w64-clang-x86_64-libzip mingw-w64-clang-x86_64-libsoxr mingw-w64-clang-x86_64-sqlite3 \
+  mingw-w64-clang-x86_64-libsbsms mingw-w64-clang-x86_64-lv2 mingw-w64-clang-x86_64-lilv \
+  mingw-w64-clang-x86_64-suil mingw-w64-clang-x86_64-soundtouch mingw-w64-clang-x86_64-wavpack \
+  mingw-w64-clang-x86_64-vamp-plugin-sdk mingw-w64-clang-x86_64-portsmf
+```
+
+For CLANGARM64:
+
+```bash
+$ pacman -S mingw-w64-clang-aarch64-cmake mingw-w64-clang-aarch64-ninja mingw-w64-clang-aarch64-clang \
+  mingw-w64-clang-aarch64-libid3tag mingw-w64-clang-aarch64-mpg123 mingw-w64-clang-aarch64-libsndfile \
+  mingw-w64-clang-aarch64-portaudio mingw-w64-clang-aarch64-wxwidgets3.2-common mingw-w64-clang-aarch64-wxwidgets3.2-msw \
+  mingw-w64-clang-aarch64-twolame mingw-w64-clang-aarch64-lame mingw-w64-clang-aarch64-flac \
+  mingw-w64-clang-aarch64-opusfile mingw-w64-clang-aarch64-libvorbis mingw-w64-clang-aarch64-libebml \
+  mingw-w64-clang-aarch64-libmatroska mingw-w64-clang-aarch64-portmidi mingw-w64-clang-aarch64-rapidjson \
+  mingw-w64-clang-aarch64-libzip mingw-w64-clang-aarch64-libsoxr mingw-w64-clang-aarch64-sqlite3 \
+  mingw-w64-clang-aarch64-libsbsms mingw-w64-clang-aarch64-lv2 mingw-w64-clang-aarch64-lilv \
+  mingw-w64-clang-aarch64-suil mingw-w64-clang-aarch64-soundtouch mingw-w64-clang-aarch64-wavpack \
+  mingw-w64-clang-aarch64-vamp-plugin-sdk mingw-w64-clang-aarch64-portsmf
+```
+
+For UCRT64:
+
+```bash
+$ pacman -S mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-gcc \
+  mingw-w64-ucrt-x86_64-libid3tag mingw-w64-ucrt-x86_64-mpg123 mingw-w64-ucrt-x86_64-libsndfile \
+  mingw-w64-ucrt-x86_64-portaudio mingw-w64-ucrt-x86_64-wxwidgets3.2-common mingw-w64-ucrt-x86_64-wxwidgets3.2-msw \
+  mingw-w64-ucrt-x86_64-twolame mingw-w64-ucrt-x86_64-lame mingw-w64-ucrt-x86_64-flac \
+  mingw-w64-ucrt-x86_64-opusfile mingw-w64-ucrt-x86_64-libvorbis mingw-w64-ucrt-x86_64-libebml \
+  mingw-w64-ucrt-x86_64-libmatroska mingw-w64-ucrt-x86_64-portmidi mingw-w64-ucrt-x86_64-rapidjson \
+  mingw-w64-ucrt-x86_64-libzip mingw-w64-ucrt-x86_64-libsoxr mingw-w64-ucrt-x86_64-sqlite3 \
+  mingw-w64-ucrt-x86_64-libsbsms mingw-w64-ucrt-x86_64-lv2 mingw-w64-ucrt-x86_64-lilv \
+  mingw-w64-ucrt-x86_64-suil mingw-w64-ucrt-x86_64-soundtouch mingw-w64-ucrt-x86_64-wavpack \
+  mingw-w64-ucrt-x86_64-vamp-plugin-sdk mingw-w64-ucrt-x86_64-portsmf
+```
+
+**WARNING**:
+- Do NOT install the regular `cmake` package from the `msys` repository! That
+  version of CMake uses POSIX emulation, which is **NOT** supported
+- Be very careful about which compiler packages you have installed as they
+  could conflict with each other and cause the build to fail. For example,
+  using a different `clang` package other than `mingw-w64-clang-x86_64` in the
+  CLANG64 environment will cause the build to fail.
+- Tenacity may not build successfully under any MSYS2 environment. This is
+  currently being worked on.
+
+If you _do_ already have some development tools installed, such as CMake and
+Ninja, you can add them to your MSYS2 path. Edit your `~/.bashrc` and add the
+following line:
+
+```bash
+export PATH="$PATH:/c/path/to/existing/dev/tools/bin
+```
+
 ### macOS
 
 Install the Clang C++ compiler and macOS SDK from the Xcode command line tools.
@@ -243,8 +329,9 @@ cd wxWidgets
 
 ## Building Tenacity
 
-On Windows, run the commands below from the x64 Native Tools Command Prompt. For
-other operating systems, run them from a normal shell.
+On Windows, if not using MSYS2, run the commands below from the x64 Native Tools
+Command Prompt. For other operating systems, run them from a normal shell. For
+MSYS2, run them from your environment's appropriate shell.
 
 First, download the Tenacity source code:
 
@@ -266,6 +353,11 @@ change the installation path from the default /usr/local:
 ```
 cmake -G Ninja -S . -B build
 ```
+
+**Note**: Under MSYS2, be sure to add `-DVCPKG=OFF` to ensure vcpkg does not
+automatically build dependencies. (You should install dependencies from the
+repos instead). You may also wisth to add `-DSBSMS=ON` to enable high-quality
+stretching as it will be disabled by default.
 
 Build Tenacity:
 
