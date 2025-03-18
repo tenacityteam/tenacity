@@ -117,10 +117,22 @@ void FileNames::InitializePathList()
       audacityPathList);
    FileNames::AddUniquePathToPathList(FileNames::ModulesDir(),
       audacityPathList);
+
+#ifdef HAIKU
+      FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/data/%s", wxT(APP_NAME)),
+         audacityPathList);
+      FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/data/doc/%s", wxT(APP_NAME)),
+         audacityPathList);
+   
+      FileNames::AddUniquePathToPathList(installPrefix + L"/data/locale",
+         audacityPathList);
+#else
+   
    FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/%s", wxT(APP_NAME)),
       audacityPathList);
    FileNames::AddUniquePathToPathList(wxString::Format(installPrefix + L"/share/doc/%s", wxT(APP_NAME)),
       audacityPathList);
+#endif // ifdef HAIKU
 #else //APP_NAME
    FileNames::AddUniquePathToPathList(wxString::Format(wxT("%s/.tenacity-files"),
       home),
