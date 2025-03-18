@@ -10,8 +10,9 @@
 
 #include "SelectFile.h"
 #include "FileNames.h"
-#include "FileDialog/FileDialog.h"
 #include "AudacityMessageBox.h"
+
+#include <wx/filedlg.h>
 
 FilePath
 SelectFile(FileNames::Operation op,
@@ -27,7 +28,7 @@ SelectFile(FileNames::Operation op,
       wxString filter;
       if ( !default_extension.empty() )
          filter = wxT("*.") + default_extension;
-      return FileSelector(
+      return wxFileSelector(
             message.Translation(), path, default_filename, filter,
             FormatWildcard( fileTypes ),
             flags, parent, wxDefaultCoord, wxDefaultCoord);
