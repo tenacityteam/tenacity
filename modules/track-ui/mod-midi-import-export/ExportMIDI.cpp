@@ -22,7 +22,6 @@
 #include "ProjectWindows.h"
 #include "SelectFile.h"
 #include "AudacityMessageBox.h"
-#include "FileDialog/FileDialog.h"
 
 #include "ShuttleGui.h"
 #include "prefs/ImportExportPrefs.h"

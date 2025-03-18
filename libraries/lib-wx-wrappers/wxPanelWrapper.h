@@ -158,11 +158,11 @@ public:
    }
 };
 
-#include "FileDialog/FileDialog.h"
+#include <wx/filedlg.h>
 #include "FileNames.h" // for FileTypes
 
 class WX_WRAPPERS_API FileDialogWrapper
-   : public wxTabTraversalWrapper<FileDialog>
+   : public wxTabTraversalWrapper<wxFileDialog>
 {
 public:
    FileDialogWrapper() {}
@@ -179,7 +179,7 @@ public:
       const wxSize& sz = wxDefaultSize,
       // Important:  default window name localizes!
       const TranslatableString& name = XO("File Dialog"))
-   : wxTabTraversalWrapper<FileDialog>(
+   : wxTabTraversalWrapper<wxFileDialog>(
       parent, message.Translation(), defaultDir, defaultFile,
       FileNames::FormatWildcard( fileTypes ),
       style, pos, sz, name.Translation() )
@@ -198,7 +198,7 @@ public:
       // Important:  default window name localizes!
       const TranslatableString& name = XO("File Dialog"))
    {
-      wxTabTraversalWrapper<FileDialog>::Create(
+      wxTabTraversalWrapper<wxFileDialog>::Create(
          parent, message.Translation(), defaultDir, defaultFile,
          FileNames::FormatWildcard( fileTypes ),
          style, pos, sz, name.Translation()
