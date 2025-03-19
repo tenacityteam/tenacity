@@ -17,8 +17,7 @@ set( SOURCES
 )
 set( LIBRARIES
    lib-files-interface
-   wxWidgets::wxWidgets
- )
+)
 tenacity_library( lib-theme "${SOURCES}" "${LIBRARIES}"
    "" ""
 )

@@ -37,7 +37,6 @@ set( SOURCES
 
 set( LIBRARIES
    lib-files-interface
-   wxWidgets::wxWidgets
 )
 
 tenacity_library( lib-wx-wrappers "${SOURCES}" "${LIBRARIES}"
