@@ -27,5 +27,5 @@ set( LIBRARIES
 
 tenacity_library( lib-wx-wrappers "${SOURCES}" "${LIBRARIES}"
    ""
-   "$<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN>:PkgConfig::GTK>"
+   "$<$<PLATFORM_ID:Linux,FreeBSD,OpenBSD,NetBSD,CYGWIN,Haiku>:PkgConfig::GTK>"
 )
