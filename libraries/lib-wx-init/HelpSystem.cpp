@@ -41,6 +41,8 @@
 #include "Prefs.h"
 #include "wxFileNameWrapper.h"
 
+#include "../../images/TenacityLogo.xpm"
+
 #include "BasicUI.h"
 
 const wxString HelpSystem::HelpHostname = wxT("manual.audacityteam.org");
@@ -196,12 +198,7 @@ void HelpSystem::ShowHtmlText(wxWindow *pParent,
    // -- START of ICON stuff -----
    // If this section (providing an icon) causes compilation errors on linux, comment it out for now.
    // it will just mean that the icon is missing.  Works OK on Windows.
-   #ifdef __WXMSW__
-   wxIcon ic{ wxICON(AudacityLogo) };
-   #else
-   wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
-   #endif
+   wxIcon ic{ wxICON(TenacityLogo) };
    pFrame->SetIcon( ic );
    // -- END of ICON stuff -----
 

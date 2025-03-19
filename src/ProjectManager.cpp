@@ -283,12 +283,9 @@ void InitProjectWindow( ProjectWindow &window )
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #if defined(__WXMSW__)
-      wxIcon ic{ wxICON(AudacityLogo) };
-#elif defined(__WXGTK__)
-      wxIcon ic{wxICON(TenacityLogoAlpha)};
+      wxIcon ic{ wxICON(TenacityLogo) };
 #else
-      wxIcon ic{};
-      ic.CopyFromBitmap(theTheme.Bitmap(bmpAudacityLogo48x48));
+      wxIcon ic{wxICON(TenacityLogoAlpha)};
 #endif
       window.SetIcon(ic);
    }
