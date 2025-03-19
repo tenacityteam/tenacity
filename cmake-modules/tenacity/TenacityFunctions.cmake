@@ -327,9 +327,6 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
 
    # collect dependency information
    list( APPEND GRAPH_EDGES "\"${TARGET}\" [${ATTRIBUTES}]" )
-   if (NOT LIBTYPE STREQUAL "MODULE")
-      list( APPEND GRAPH_EDGES "\"Audacity\" -> \"${TARGET}\"" )
-   endif ()
    set(ACCESS PUBLIC PRIVATE INTERFACE)
    foreach( IMPORT ${IMPORT_TARGETS} )
       if(IMPORT IN_LIST ACCESS)
@@ -366,7 +363,7 @@ function (propagate_interesting_dependencies target direct_dependencies )
          continue()
       endif ()
       get_target_property( more_dependencies
-         ${direct_dependency} AUDACITY_GRAPH_DEPENDENCIES )
+         ${direct_dependency} GRAPH_DEPENDENCIES )
       if ( more_dependencies )
          list( APPEND interesting_dependencies ${more_dependencies} )
       endif ()
@@ -380,7 +377,7 @@ function (propagate_interesting_dependencies target direct_dependencies )
    endforeach()
    list( REMOVE_DUPLICATES interesting_dependencies )
    set_target_properties( ${target} PROPERTIES
-      AUDACITY_GRAPH_DEPENDENCIES "${interesting_dependencies}" )
+      GRAPH_DEPENDENCIES "${interesting_dependencies}" )
 endfunction()
 
 # Set up for defining a module target.
@@ -453,7 +450,7 @@ function ( make_interface_alias TARGET REAL_LIBTYTPE )
          INTERFACE_INCLUDE_DIRECTORIES
          INTERFACE_COMPILE_DEFINITIONS
          INTERFACE_LINK_LIBRARIES
-	 AUDACITY_GRAPH_DEPENDENCIES
+	      GRAPH_DEPENDENCIES
       )
          get_target_property( PROPS "${TARGET}" "${PROP}" )
          if (PROPS)

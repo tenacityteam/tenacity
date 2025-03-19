@@ -1332,9 +1332,9 @@ else()
 endif()
 
 # collect dependency information for third party libraries
-set( AUDACITY_NODE_ATTRIBUTES "shape=house" )
-append_node_attributes( AUDACITY_NODE_ATTRIBUTES ${TARGET} )
-list( APPEND GRAPH_EDGES "Audacity [${AUDACITY_NODE_ATTRIBUTES}]" )
+set( NODE_ATTRIBUTES "shape=house" )
+append_node_attributes( NODE_ATTRIBUTES ${TARGET} )
+list( APPEND GRAPH_EDGES "${TARGET} [${NODE_ATTRIBUTES}]" )
 foreach( LIBRARY ${LIBRARIES} ${TENACITY_LIBRARIES} )
     if (NOT LIBRARY MATCHES "PUBLIC|PRIVATE|INTERFACE")
         canonicalize_node_name(LIBRARY "${LIBRARY}")
