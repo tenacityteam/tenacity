@@ -280,6 +280,30 @@ configuration command, but then it is up to you to install all of Tenacity's
 dependencies.
 
 
+### Haiku
+
+To install Tenacity's dependencies on Haiku, run the following command:
+
+```bash
+~> pkgman install cmake ninja portaudio_devel wxgtk_source libsndfile_devel soxr_devel \
+   rapidjson libzip_devel zlib expat_devel lame_devel sqlite_devel portmidi_devel portsmf_devel \
+   libid3tag_devel mpg123_devel twolame_devel libebml_devel libmatroska_devel libogg_devel \
+   libvorbis_devel opusfile_devel flac_devel wavpack_devel libsbsms_devel libsoundtouch_devel \
+   vamp_plugin_sdk_devel
+```
+
+This command should also install Tenacity's runtime dependencies also.
+
+**Note for packagers**: Tenacity is missing the following packages for certain features:
+- LV2 Support: suil
+
+Optionally install `ccache` to speed up builds if you plan on recompiling
+Tenacity multiple times:
+
+```bash
+~> pkgman install ccache
+```
+
 ### Building wxWidgets
 
 If you are using a Linux distribution that doesn't ship wxWidgets 3.1.3 or
