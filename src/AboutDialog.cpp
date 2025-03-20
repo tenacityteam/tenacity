@@ -325,8 +325,6 @@ AboutDialog::AboutDialog(wxWindow * parent)
    sActiveInstance = this;
 
    SetName();
-   this->SetBackgroundColour(theTheme.Colour( clrAboutBoxBackground ));
-   //this->SetBackgroundColour(theTheme.Colour( clrMedium ));
    icon = NULL;
    ShuttleGui S( this, eIsCreating );
    S.StartNotebook();
