@@ -184,7 +184,7 @@ bool GUIPrefs::Commit()
 
 BoolSetting& ShowRMSPref()
 {
-   static BoolSetting pref { "/GUI/ShowRMS", false };
+   static BoolSetting pref { "/GUI/ShowRMS", true };
    return pref;
 }
 
