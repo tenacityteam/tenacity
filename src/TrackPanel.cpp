@@ -1263,54 +1263,53 @@ struct ChannelStack final : TrackPanelGroup {
    void Draw(TrackPanelDrawingContext& context,
       const wxRect& rect, unsigned iPass) override
    {
-      // NOTE: Cursor drawing moved back to EditCursorOverlay
-      // TrackPanelGroup::Draw(context, rect, iPass);
-      // if (iPass == TrackArtist::PassTracks)
-      // {
-      //    auto vRulerRect = rect;
-      //    vRulerRect.width = mLeftOffset - rect.x;
+      TrackPanelGroup::Draw(context, rect, iPass);
+      if (iPass == TrackArtist::PassTracks)
+      {
+         auto vRulerRect = rect;
+         vRulerRect.width = mLeftOffset - rect.x;
 
-      //    auto dc = &context.dc;
+         auto dc = &context.dc;
 
-      //    // Paint the background;
-      //    AColor::MediumTrackInfo(dc, mpTrack->GetSelected() );
-      //    dc->DrawRectangle( vRulerRect );
+         // Paint the background;
+         AColor::MediumTrackInfo(dc, mpTrack->GetSelected() );
+         dc->DrawRectangle( vRulerRect );
 
-      //    const auto channels = mpTrack->Channels();
-      //    auto& view = ChannelView::Get(**channels.begin());
-      //    if(auto affordance = view.GetAffordanceControls())
-      //    {
-      //       const auto yy = vRulerRect.y + kAffordancesAreaHeight - 1;
-      //       AColor::Dark( dc, false );
-      //       AColor::Line( *dc, vRulerRect.GetLeft(), yy, vRulerRect.GetRight(), yy );
-      //    }
+         const auto channels = mpTrack->Channels();
+         auto& view = ChannelView::Get(**channels.begin());
+         if(auto affordance = view.GetAffordanceControls())
+         {
+            const auto yy = vRulerRect.y + kAffordancesAreaHeight - 1;
+            AColor::Dark( dc, false );
+            AColor::Line( *dc, vRulerRect.GetLeft(), yy, vRulerRect.GetRight(), yy );
+         }
 
-      //    // Stroke left and right borders
-      //    dc->SetPen(*wxBLACK_PEN);
+         // Stroke left and right borders
+         dc->SetPen(*wxBLACK_PEN);
          
-      //    AColor::Line( *dc, vRulerRect.GetLeftTop(), vRulerRect.GetLeftBottom() );
-      //    AColor::Line( *dc, vRulerRect.GetRightTop(), vRulerRect.GetRightBottom() );
-      // }
-      // if (iPass == TrackArtist::PassFocus && mpTrack->IsSelected()) {
-      //    const auto channels = mpTrack->Channels();
-      //    const auto pLast = *channels.rbegin();
-      //    wxCoord yy = rect.GetTop();
-      //    auto heights = FindAdjustedChannelHeights(*mpTrack);
-      //    auto pHeight = heights.begin();
-      //    for (auto pChannel : channels) {
-      //       auto& view = ChannelView::Get(*pChannel);
-      //       auto height = *pHeight++;
-      //       if (auto affordance = view.GetAffordanceControls())
-      //          height += kAffordancesAreaHeight;
-      //       auto trackRect = wxRect(
-      //          mLeftOffset,
-      //          yy,
-      //          rect.GetRight() - mLeftOffset,
-      //          height - kChannelSeparatorThickness);
-      //       TrackArt::DrawCursor(context, trackRect, mpTrack.get());
-      //       yy += height;
-      //    }
-      // }
+         AColor::Line( *dc, vRulerRect.GetLeftTop(), vRulerRect.GetLeftBottom() );
+         AColor::Line( *dc, vRulerRect.GetRightTop(), vRulerRect.GetRightBottom() );
+      }
+      if (iPass == TrackArtist::PassFocus && mpTrack->IsSelected()) {
+         const auto channels = mpTrack->Channels();
+         const auto pLast = *channels.rbegin();
+         wxCoord yy = rect.GetTop();
+         auto heights = FindAdjustedChannelHeights(*mpTrack);
+         auto pHeight = heights.begin();
+         for (auto pChannel : channels) {
+            auto& view = ChannelView::Get(*pChannel);
+            auto height = *pHeight++;
+            if (auto affordance = view.GetAffordanceControls())
+               height += kAffordancesAreaHeight;
+            auto trackRect = wxRect(
+               mLeftOffset,
+               yy,
+               rect.GetRight() - mLeftOffset,
+               height - kChannelSeparatorThickness);
+            TrackArt::DrawCursor(context, trackRect, mpTrack.get());
+            yy += height;
+         }
+      }
    }
 
    const std::shared_ptr<Track> mpTrack;
