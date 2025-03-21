@@ -25,7 +25,10 @@ function extract_appimage()
     local -r dir="${image%.AppImage}.AppDir"
     "./${image}" --appimage-extract >/dev/null # dest folder "squashfs-root"
     mv squashfs-root "${dir}" # rename folder to avoid collisions
-    ln -s "${dir}/AppRun" "${binary_name}" # symlink for convenience
+
+    # appimagetool will not run from the symlinked directory
+    # ln -s "${dir}/AppRun" "${binary_name}" # symlink for convenience
+
     rm -f "${image}"
 }
 
@@ -59,10 +62,11 @@ function create_path()
 if create_path "appimagetool"; then
 (
     cd "appimagetool"
-    download_appimage_release AppImage/AppImageKit appimagetool continuous
+    download_appimage_release AppImage/appimagetool appimagetool continuous
 )
 fi
-export PATH="${PWD%/}/appimagetool:${PATH}"
+
+export PATH="${PWD%/}/appimagetool/appimagetool-x86_64.AppDir/usr/bin:${PATH}"
 appimagetool --version
 
 if create_path "linuxdeploy"; then
@@ -74,7 +78,7 @@ if create_path "linuxdeploy"; then
 )
 fi
 
-export PATH="${PWD%/}/linuxdeploy:${PATH}"
+export PATH="${PWD%/}/linuxdeploy/linuxdeploy-x86_64.AppDir/usr/bin/:${PATH}"
 linuxdeploy --list-plugins
 
 #============================================================================
@@ -95,7 +99,7 @@ ln -sf share/icons/hicolor/scalable/apps/tenacity.svg "${appdir}/.DirIcon"
 # them to LD_LIBRARY_PATH so that linuxdeploy can find them.
 export LD_LIBRARY_PATH="${appdir}/usr/lib/tenacity:${LD_LIBRARY_PATH-}"
 
-if [ -e "${VCPKG_LIB_PATH} "]; then
+if [ -e "${VCPKG_LIB_PATH+} "]; then
    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${VCPKG_LIB_PATH}"
 fi
 
