@@ -526,7 +526,7 @@ bool AUPImportFileHandle::Open()
       {
          ImportUtils::ShowMessageBox(
             XO("This project was saved by Audacity version 1.0 or earlier. The format has\n"
-               "changed and this version of Audacity is unable to import the project.\n\n"
+               "changed and Tenacity is unable to import the project.\n\n"
                "Use a version of Audacity prior to v3.0.0 to upgrade the project and then\n"
                "you may import it with this version of Tenacity."));
          return false;

@@ -155,7 +155,7 @@ void WaveformVZoomHandle::DoZoom(
    default:
       // If we have covered all the cases, this won't happen.
       // In release builds Audacity will ignore the zoom.
-      wxFAIL_MSG("Zooming Case not implemented by Audacity");
+      wxFAIL_MSG("Zooming Case not implemented by Tenacity");
       break;
    case kZoomReset:
    case kZoom1to1:
