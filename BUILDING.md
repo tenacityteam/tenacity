@@ -379,6 +379,9 @@ cmake --install build
 
 ### Linux: Building an AppImage
 
+**NOTE**: This is only supported on 64-bit x86. ARM and other architectures are
+currently unsupported.
+
 You can build an AppImage yourself. This requires that you have previously
 built Tenacity. There is no need to install Tenacity first.
 
