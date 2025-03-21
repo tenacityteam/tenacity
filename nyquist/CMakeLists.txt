@@ -82,10 +82,8 @@ endforeach()
 
 add_custom_target( ${TARGET} ALL DEPENDS ${OUTPUTS} SOURCES ${SOURCES} )
 
-if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   if( NOT "${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
-      install( DIRECTORY "${_DEST}/nyquist"
-               DESTINATION "${_PKGDATA}" )
-   endif()
+if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" AND NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+   install( DIRECTORY "${_DEST}/nyquist"
+            DESTINATION "${_PKGDATA}" )
 endif()
 

@@ -31,20 +31,18 @@ if (PACKAGE_MANUAL)
       )                                               \
    ")
 
-   if( "${CMAKE_GENERATOR}" MATCHES "Xcode" )
+   if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       install( DIRECTORY "${MANUAL_PATH}/" DESTINATION "${_APPDIR}/help/manual" )
-   elseif( "${CMAKE_GENERATOR}" MATCHES "Visual Studio*" )
+   elseif( CMAKE_SYSTEM_NAME MATCHES "Windows" )
       install( DIRECTORY "${MANUAL_PATH}/" DESTINATION "help/manual" )
    endif()
 endif()
 
-if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-   if( NOT "${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
-      install( DIRECTORY "${MANUAL_PATH}" OPTIONAL
-               DESTINATION "${_DATADIR}/tenacity/help" )
-      install( FILES "${_SRCDIR}/tenacity.1"
-               DESTINATION "${_MANDIR}/man1" )
-      install( FILES "${_INTDIR}/${APP_NAME}.metainfo.xml"
-               DESTINATION "${_DATADIR}/metainfo" )
-   endif()
+if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" AND NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
+   install( DIRECTORY "${MANUAL_PATH}" OPTIONAL
+            DESTINATION "${_DATADIR}/tenacity/help" )
+   install( FILES "${_SRCDIR}/tenacity.1"
+            DESTINATION "${_MANDIR}/man1" )
+   install( FILES "${_INTDIR}/${APP_NAME}.metainfo.xml"
+            DESTINATION "${_DATADIR}/metainfo" )
 endif()

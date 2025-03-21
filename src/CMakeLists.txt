@@ -1360,7 +1360,7 @@ if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
    endif()
 endif()
 
-if( "${CMAKE_GENERATOR}" MATCHES "Xcode|Visual Studio*" )
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
    install(
       DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/"
       DESTINATION "."
