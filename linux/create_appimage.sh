@@ -93,7 +93,11 @@ ln -sf share/icons/hicolor/scalable/apps/tenacity.svg "${appdir}/.DirIcon"
 
 # HACK: Some wxWidget libraries depend on themselves. Add
 # them to LD_LIBRARY_PATH so that linuxdeploy can find them.
-export LD_LIBRARY_PATH="${appdir}/usr/lib/tenacity:${VCPKG_LIB_PATH}:${LD_LIBRARY_PATH-}"
+export LD_LIBRARY_PATH="${appdir}/usr/lib/tenacity:${LD_LIBRARY_PATH-}"
+
+if [ -e "${VCPKG_LIB_PATH} "]; then
+   export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${VCPKG_LIB_PATH}"
+fi
 
 # When running on GitHub actions - libararies are sometimes installed into the DEB_HOST_MULTIARCH
 # based location
