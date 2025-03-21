@@ -317,7 +317,9 @@ if( CMAKE_GENERATOR MATCHES "Visual Studio" )
         PROPERTIES
             VS_STARTUP_PROJECT "${CMAKE_PROJECT_NAME}"
     )
+endif()
 
+if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
     # Build using multiple processors
     foreach( config ${CMAKE_CONFIGURATION_TYPES} )
         string( TOUPPER "${config}" config )
@@ -330,8 +332,7 @@ if( CMAKE_GENERATOR MATCHES "Visual Studio" )
     set( CMAKE_INSTALL_UCRT_LIBRARIES NO )
     set( CMAKE_INSTALL_MFC_LIBRARIES NO )
     set( CMAKE_INSTALL_OPENMP_LIBRARIES NO )
-endif()
-if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
+
     include( InstallRequiredSystemLibraries )
 endif()
 
