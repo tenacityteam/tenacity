@@ -60,7 +60,29 @@ elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
       SET( CPACK_POST_BUILD_SCRIPTS "${CMAKE_SOURCE_DIR}/scripts/build/macOS/DMGSign.cmake" )
    endif()
 elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
-   set( CPACK_GENERATOR ZIP )
+   find_program(
+      CPACK_TENACITY_INNO_SETUP_COMPILER
+      NAMES iscc ISCC
+      HINTS
+         "C:/Program Files (x86)/Inno Setup 6"
+         "C:/Program Files/Inno Setup 6"
+   )
+
+   if (CPACK_TENACITY_INNO_SETUP_COMPILER)
+      set(CPACK_GENERATOR "External")
+      set(CPACK_EXTERNAL_ENABLE_STAGING TRUE) # Required for the Inno Setup CPack script
+      set(CPACK_PACKAGE_CHECKSUM "SHA256") # Generate a hash to allow users to verify binaries
+      set(CPACK_TENACITY_EXE_LOCATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Tenacity.exe")
+
+      set(CPACK_TENACITY_INNO_SETUP_SIGN ${PERFORM_CODESIGN})
+      set(CPACK_TENACITY_INNO_SETUP_CERTIFICATE ${WINDOWS_CERTIFICATE})
+      set(CPACK_TENACITY_INNO_SETUP_CERTIFICATE_PASSWORD ${WINDOWS_CERTIFICATE_PASSWORD})
+
+      set(CPACK_EXTERNAL_PACKAGE_SCRIPT "${PROJECT_SOURCE_DIR}/win/Inno_Setup_Wizard/BuildInnoSetupInstaller.cmake")
+   else()
+      message(WARNING "Inno Setup 6 not found. Running CPack will package Tenacity as a zip archive instead.")
+      set( CPACK_GENERATOR ZIP )
+   endif()
 endif()
 
 if( CMAKE_GENERATOR MATCHES "Makefiles|Ninja" )
