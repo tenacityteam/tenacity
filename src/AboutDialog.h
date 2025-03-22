@@ -47,9 +47,15 @@ class TENACITY_DLL_API AboutDialog final : public wxDialogWrapper {
  private:
    enum Role {
       roleTeamMember,
-      roleEmeritusTeam,
-      roleDeceased,
       roleContributor,
+      roleEmeritusTeam,
+
+      // Audacity-specific roles
+      roleAudacityTeamMember,
+      roleAudacityContributor,
+      roleAudacityEmeritusTeam,
+
+      roleDeceased,
       roleGraphics,
       roleLibrary,
       roleThanks
