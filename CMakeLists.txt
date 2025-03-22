@@ -785,13 +785,6 @@ if( PERFORM_CODESIGN )
     include( TenacityCodeSigning )
 endif()
 
-
-# Variables, that are common for all package targets
-
-if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
-    include( TenacityInnoSetup )
-endif()
-
 # Uncomment what follows for symbol values.
 #[[
     get_cmake_property( _variableNames VARIABLES )
