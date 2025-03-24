@@ -9,6 +9,8 @@
 #
 # Require variables:
 #   * CPACK_TENACITY_INNO_SETUP_COMPILER - The INNO_SETUP compiler executable
+#   * CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG - The current build config (FIXME:
+#     find a better way to get the build config if possible).
 #
 # Optional parameters:
 #   * CPACK_TENACITY_INNO_SETUP_SIGN - Whether or not to sign the installer.
@@ -38,7 +40,7 @@ else()
 endif()
 
 # Set the packages we're going to build
-set(CPACK_EXTERNAL_BUILT_PACKAGES "${CPACK_PACKAGE_FILE_NAME}.exe")
+set(CPACK_EXTERNAL_BUILT_PACKAGES "Output/${CPACK_PACKAGE_FILE_NAME}.exe")
 
 if( CPACK_TENACITY_INNO_SETUP_SIGN )
     set( SIGN_TOOL "SignTool=byparam powershell -ExecutionPolicy Bypass -File \$q${CPACK_TENACITY_SOURCE_DIR}/scripts/build/windows/PfxSign.ps1\$q -File $f")
@@ -63,6 +65,7 @@ endif()
 
 # Prepare the output directory
 set(TENACITY_EXE_LOCATION "${CPACK_TENACITY_EXE_LOCATION}")
+set(TENACITY_BUILD_DIR "${OUTPUT_DIR}/${CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG}")
 
 file(COPY "${CPACK_TENACITY_SOURCE_DIR}/win/Inno_Setup_Wizard/" DESTINATION "${OUTPUT_DIR}")
 configure_file("${OUTPUT_DIR}/tenacity.iss.in" "${OUTPUT_DIR}/tenacity.iss")

@@ -92,14 +92,14 @@ Source: "Additional\resources\*"; DestDir: "{app}"; Flags: ignoreversion recurse
 
 ; We include all dll files from the Adacity root directory. This script is now executed as a part of CI build process,
 ; so we controll which dll files are present in the directory.
-Source: "Package\*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "@TENACITY_SOURCE_DIR@\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "Package\languages\*"; DestDir: "{app}\Languages\"; Flags: ignoreversion recursesubdirs
+Source: "@TENACITY_BUILD_DIR@\languages\*"; DestDir: "{app}\Languages\"; Flags: ignoreversion recursesubdirs
 ; We don't ship all modules, so the next line is commented out
-; Source: "Package\modules\*"; DestDir: "{app}\Modules\"; Flags: ignoreversion recursesubdirs skipifsourcedoesntexist
-Source: "Package\nyquist\*"; DestDir: "{app}\Nyquist\"; Flags: ignoreversion recursesubdirs
-Source: "Package\plug-ins\*"; DestDir: "{app}\Plug-Ins\"; Flags: ignoreversion
-Source: "Package\modules\*"; DestDir: "{app}\modules\"; Flags: ignoreversion recursesubdirs
+; Source: "@TENACITY_BUILD_DIR@\modules\*"; DestDir: "{app}\Modules\"; Flags: ignoreversion recursesubdirs skipifsourcedoesntexist
+Source: "@TENACITY_BUILD_DIR@\nyquist\*"; DestDir: "{app}\Nyquist\"; Flags: ignoreversion recursesubdirs
+Source: "@TENACITY_BUILD_DIR@\plug-ins\*"; DestDir: "{app}\Plug-Ins\"; Flags: ignoreversion
+Source: "@TENACITY_BUILD_DIR@\modules\*"; DestDir: "{app}\modules\"; Flags: ignoreversion recursesubdirs
 
 ; Include scaled WizardImages
 Source: "tenacity_InnoWizardImage_*.bmp"; Excludes: "*100.bmp"; Flags: dontcopy
