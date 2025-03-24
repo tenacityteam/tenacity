@@ -30,6 +30,7 @@ endif()
 set(CPACK_PACKAGE_DIRECTORY "${CMAKE_BINARY_DIR}/package")
 
 set(CPACK_GENERATOR "ZIP")
+set(CPACK_PACKAGE_CHECKSUM "SHA256") # Generate a hash to allow users to verify binaries
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
    set(CPACK_GENERATOR "External")
@@ -71,7 +72,6 @@ elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
    if (CPACK_TENACITY_INNO_SETUP_COMPILER)
       set(CPACK_GENERATOR "External")
       set(CPACK_EXTERNAL_ENABLE_STAGING TRUE) # Required for the Inno Setup CPack script
-      set(CPACK_PACKAGE_CHECKSUM "SHA256") # Generate a hash to allow users to verify binaries
       set(CPACK_TENACITY_EXE_LOCATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Tenacity.exe")
       if (CMAKE_CONFIGURATION_TYPES)
          set(CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG "$<CONFIG>")
