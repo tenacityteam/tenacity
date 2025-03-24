@@ -40,7 +40,7 @@ else()
 endif()
 
 # Set the packages we're going to build
-set(CPACK_EXTERNAL_BUILT_PACKAGES "Output/${CPACK_PACKAGE_FILE_NAME}.exe")
+set(CPACK_EXTERNAL_BUILT_PACKAGES "${OUTPUT_DIR}/Output/${CPACK_PACKAGE_FILE_NAME}-${INSTALLER_SUFFIX}.exe")
 
 if( CPACK_TENACITY_INNO_SETUP_SIGN )
     set( SIGN_TOOL "SignTool=byparam powershell -ExecutionPolicy Bypass -File \$q${CPACK_TENACITY_SOURCE_DIR}/scripts/build/windows/PfxSign.ps1\$q -File $f")

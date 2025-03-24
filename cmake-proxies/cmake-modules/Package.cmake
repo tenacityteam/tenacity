@@ -2,7 +2,7 @@ set(CPACK_PACKAGE_VENDOR "Tenacity")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://tenacityaudio.org")
 
 # X.Y.Z-alpha-1337-gdeadbee
-set(CPACK_PACKAGE_VERSION "${GIT_DESCRIBE}")
+set(CPACK_PACKAGE_VERSION "${TENACITY_DIST_VERSION}")
 
 # Custom variables use CPACK_TENACITY_ prefix. CPACK_ to expose to CPack,
 # TENACITY_ to show it is custom and avoid conflicts with other projects.
