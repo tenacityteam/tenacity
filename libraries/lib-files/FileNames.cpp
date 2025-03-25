@@ -173,7 +173,11 @@ bool FileNames::HardLinkFile( const FilePath& file1, const FilePath& file2 )
 
    // Fix forced ASCII conversions and wrong argument order - MJB - 29/01/2019
    //return ::CreateHardLinkA( file1.c_str(), file2.c_str(), NULL );
-   return ( 0 != ::CreateHardLink( file2, file1, NULL ) );
+   // GP: wc_str() is fine here because its return type is wchar_t* under
+   // Windows.
+   // Eventually, we'll stop using wxWidgets for file I/O, but for now, this
+   // fixes Clang under MSYS2 (and maybe native Clang too).
+   return ( 0 != ::CreateHardLink( file2.wc_str(), file1.wc_str(), NULL ) );
 
 #else
 

@@ -666,8 +666,7 @@ void CommandManager::Enable(const wxString &name, bool enabled)
       iter != mCommandNameHash.end())
       Enable(*iter->second, enabled);
    else
-      wxLogDebug(wxT("Warning: Unknown command enabled: '%s'"),
-                 (const wxChar*)name);
+      wxLogDebug(wxT("Warning: Unknown command enabled: '%s'"), name);
 }
 
 void CommandManager::EnableUsingFlags(
