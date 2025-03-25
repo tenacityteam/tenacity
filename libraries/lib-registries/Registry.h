@@ -660,12 +660,13 @@ namespace detail {
       Literal mRoot;
    };
 
-#ifndef _WIN32
+#ifndef _MSC_VER
 // extern explicit instantiation to avoid link time de-duplication
 extern
 #endif
        template struct
-#ifdef _WIN32
+#ifdef _MSC_VER
+#error test2
 // Can't do that on Windows, but need this to link:
                        __declspec(dllexport)
 #endif
