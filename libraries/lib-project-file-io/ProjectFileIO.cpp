@@ -804,7 +804,7 @@ bool ProjectFileIO::InstallSchema(sqlite3 *db, const char *schema /* = "main" */
    sql.Printf(ProjectFileSchema, ProjectFileID, BaseProjectFormatVersion.GetPacked());
    sql.Replace("<schema>", schema);
 
-   rc = sqlite3_exec(db, sql, nullptr, nullptr, nullptr);
+   rc = sqlite3_exec(db, sql.utf8_string().c_str(), nullptr, nullptr, nullptr);
    if (rc != SQLITE_OK)
    {
       SetDBError(
@@ -871,7 +871,7 @@ bool ProjectFileIO::DeleteBlocks(const BlockIDs &blockids, bool complement)
    auto sql = wxString::Format(
       "DELETE FROM sampleblocks WHERE %sinset(blockid);",
       complement ? "NOT " : "" );
-   rc = sqlite3_exec(db, sql, nullptr, nullptr, nullptr);
+   rc = sqlite3_exec(db, sql.utf8_string().c_str(), nullptr, nullptr, nullptr);
    if (rc != SQLITE_OK)
    {
       if( rc==SQLITE_READONLY)
@@ -1007,7 +1007,7 @@ bool ProjectFileIO::CopyTo(const FilePath &destpath,
    dbName.Replace( "'", "''");
    sql.Printf("ATTACH DATABASE '%s' AS outbound;", dbName.ToUTF8());
 
-   rc = sqlite3_exec(db, sql, nullptr, nullptr, nullptr);
+   rc = sqlite3_exec(db, sql.utf8_string().c_str(), nullptr, nullptr, nullptr);
    if (rc != SQLITE_OK)
    {
       SetDBError(
@@ -1544,7 +1544,7 @@ void ProjectFileIO::SetProjectTitle(int number)
       /* i18n-hint: The %02i is the project number, the %s is the project name.*/
       XO("[Project %02i] Tenacity \"%s\"")
          .Format( number + 1,
-                 name.empty() ? XO("<untitled>") : Verbatim((const char *)name))
+                 name.empty() ? XO("<untitled>") : Verbatim((const char *)name.utf8_string().c_str()))
          .Translation();
    }
    // If we are not showing numbers, then <untitled> shows as 'Audacity'.
@@ -1876,7 +1876,7 @@ bool ProjectFileIO::WriteDoc(const char *table,
    const wxString rowIDSql =
       wxString::Format("SELECT ROWID FROM %s.%s WHERE id = 1;", schema, table);
 
-   if (!GetValue(rowIDSql, rowID, true))
+   if (!GetValue(rowIDSql.utf8_string().c_str(), rowID, true))
    {
       reportError(rowIDSql);
       return false;

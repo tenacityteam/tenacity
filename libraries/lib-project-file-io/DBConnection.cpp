@@ -14,6 +14,8 @@ Paul Licameli -- split from ProjectFileIO.cpp
 #include "sqlite3.h"
 
 #include <wx/string.h>
+#include <string>
+using namespace std::literals::string_literals;
 
 #include "AudacityLogger.h"
 #include "BasicUI.h"
@@ -387,7 +389,7 @@ int DBConnection::ModeConfig(sqlite3 *db, const char *schema, const char *config
    sql.Replace(wxT("<schema>"), schema);
 
    // Set the configuration
-   rc = sqlite3_exec(db, sql, nullptr, nullptr, nullptr);
+   rc = sqlite3_exec(db, sql.utf8_string().c_str(), nullptr, nullptr, nullptr);
    if (rc != SQLITE_OK)
    {
       // Don't store in connection, just report it
@@ -602,9 +604,10 @@ DBConnectionTransactionScopeImpl::~DBConnectionTransactionScopeImpl() = default;
 bool DBConnectionTransactionScopeImpl::TransactionStart(const wxString &name)
 {
    char *errmsg = nullptr;
+   std::string sql = "SAVEPOINT "s + name.utf8_string().c_str() + ";"s;
 
    int rc = sqlite3_exec(mConnection.DB(),
-                         wxT("SAVEPOINT ") + name + wxT(";"),
+                         sql.c_str(),
                          nullptr,
                          nullptr,
                          &errmsg);
@@ -623,9 +626,10 @@ bool DBConnectionTransactionScopeImpl::TransactionStart(const wxString &name)
 bool DBConnectionTransactionScopeImpl::TransactionCommit(const wxString &name)
 {
    char *errmsg = nullptr;
+   std::string sql = "RELEASE "s + name.utf8_string().c_str() + ";"s;
 
    int rc = sqlite3_exec(mConnection.DB(),
-                         wxT("RELEASE ") + name + wxT(";"),
+                         sql.c_str(),
                          nullptr,
                          nullptr,
                          &errmsg);
@@ -644,9 +648,10 @@ bool DBConnectionTransactionScopeImpl::TransactionCommit(const wxString &name)
 bool DBConnectionTransactionScopeImpl::TransactionRollback(const wxString &name)
 {
    char *errmsg = nullptr;
+   std::string sql = "ROLLBACK TO "s + name.utf8_string().c_str() + ";"s;
 
    int rc = sqlite3_exec(mConnection.DB(),
-                         wxT("ROLLBACK TO ") + name + wxT(";"),
+                         sql.c_str(),
                          nullptr,
                          nullptr,
                          &errmsg);
