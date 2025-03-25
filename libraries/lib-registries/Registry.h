@@ -660,13 +660,13 @@ namespace detail {
       Literal mRoot;
    };
 
-#ifndef _WIN32
+#ifndef _MSC_VER
 // extern explicit instantiation to avoid link time de-duplication
 extern
 #endif
        template struct
-#ifdef _WIN32
-// Can't do that on Windows, but need this to link:
+#ifdef _MSC_VER
+// Can't do that under MSVC, but need this to link:
                        __declspec(dllexport)
 #endif
                                              GroupItem<DefaultTraits>;
