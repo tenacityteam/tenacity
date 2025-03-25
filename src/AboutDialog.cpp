@@ -490,17 +490,18 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << XO("%s website: ").Format( ProgramName )
       << wxT("[[https://www.tenacityaudio.org/|https://www.tenacityaudio.org/]]")
 
-      << wxT("<p><br>&nbsp; &nbsp; ")
-      /* i18n-hint Audacity's name substitutes for first and third %s,
-       and a "copyright" symbol for the second */
+      << wxT("<p><br>")
+      /* i18n-hint A "copyright" symbol substitutes for the '%s'. */
+      << XO("Copyright %s 1999-2025 Audacity Team").Format(wxT("&copy;"))
+      << wxT("<br>")
+      // i18n-hint A "copyright" symbol substitutes for the first '%s' while
+      // the program name substitutes for the second '%s'.
       << XO("Copyright %s 2021-2025 %s Team.")
          .Format(
-            ProgramName,
             wxT("&copy;"),
             ProgramName )
       << wxT("<br>")
 
-      << wxT("&nbsp; &nbsp; ")
       /* i18n-hint Audacity's name substitutes for %s */
       << XO("'Audacity' is a registered trademark of MuseCY SM Ltd")
       << wxT("<br><br>")
