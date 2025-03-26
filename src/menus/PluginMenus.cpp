@@ -360,22 +360,6 @@ auto EffectMenu()
          Command(
             wxT("AddRealtimeEffects"), XXO("Add Realtime Effects"),
             OnAddRealtimeEffects, HasTrackFocusFlag(), wxT("E"))
-#if defined(__WXMSW__) || defined(__WXMAC__)
-         , Command(
-            wxT("GetMoreEffects"), XXO("Get more effects..."),
-            [](const CommandContext&) {
-               OpenInDefaultBrowser("https://www.audacityteam.org/mh-effectmenu");
-            },
-            AlwaysEnabledFlag)
-#endif
-#if defined(__WXMSW__)
-         , Command(
-            wxT("GetAIEffects"), XXO("Get AI effects..."),
-            [](const CommandContext&) {
-               OpenInDefaultBrowser("https://audacityteam.org/download/openvino");
-            },
-            AlwaysEnabledFlag)
-#endif
             ),
       Section(
          "RepeatLast",
