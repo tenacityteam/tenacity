@@ -219,6 +219,10 @@ else()
     message( STATUS "No compiler caching enabled. Install sccache or ccache to enable compiler caching." )
 endif()
 
+if (NOT CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    set(HAVE_VISIBILITY 1)
+endif()
+
 # Load our functions/macros
 include( TenacityFunctions )
 
@@ -772,10 +776,6 @@ add_subdirectory( "modules" )
 add_subdirectory( "scripts" )
 
 # Generate config file
-if (NOT CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    set(HAVE_VISIBILITY 1)
-endif()
-
 configure_file(src/tenacity_config.h.in src/private/config.h)
 
 # Generate a picture of module dependencies
