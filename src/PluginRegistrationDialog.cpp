@@ -44,15 +44,13 @@ enum
    ID_FilterType,
    ID_FilterCategory,
    ID_List,
-   ID_Rescan,
-   ID_GetMoreEffects,
+   ID_Rescan
 };
 
 BEGIN_EVENT_TABLE(PluginRegistrationDialog, wxDialogWrapper)
    EVT_BUTTON(wxID_OK, PluginRegistrationDialog::OnOK)
    EVT_BUTTON(wxID_CANCEL, PluginRegistrationDialog::OnCancel)
    EVT_BUTTON(ID_Rescan, PluginRegistrationDialog::OnRescan)
-   EVT_BUTTON(ID_GetMoreEffects, PluginRegistrationDialog::OnGetMoreEffects)
    EVT_CHOICE(ID_FilterState, PluginRegistrationDialog::OnStateFilterValueChanged)
    EVT_CHOICE(ID_FilterType, PluginRegistrationDialog::OnTypeFilterValueChanged)
    EVT_CHOICE(ID_FilterCategory, PluginRegistrationDialog::OnCategoryFilterValueChanged)
@@ -203,9 +201,6 @@ void PluginRegistrationDialog::PopulateOrExchange(ShuttleGui &S)
          {
             S.AddSpace(Margin, 1);
             S.Id(ID_Rescan).AddButton(XXO("&Rescan"));
-#if defined(__WXMSW__) || defined(__WXMAC__)
-            S.Id(ID_GetMoreEffects).AddButton(XXO("&Get more effects..."));
-#endif
             S.AddSpace(1, 1, 1);
 
             S.Id(wxID_OK).AddButton(XXO("&OK"));
@@ -340,11 +335,6 @@ void PluginRegistrationDialog::OnRescan(wxCommandEvent& WXUNUSED(evt))
          }
       }
    });
-}
-
-void PluginRegistrationDialog::OnGetMoreEffects(wxCommandEvent& WXUNUSED(evt))
-{
-   OpenInDefaultBrowser("https://www.audacityteam.org/mh-pluginmanager");
 }
 
 void PluginRegistrationDialog::OnOK(wxCommandEvent & WXUNUSED(evt))
