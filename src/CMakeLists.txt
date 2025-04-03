@@ -1153,6 +1153,14 @@ else()
             audio/mpeg
         )
     endif()
+    if( USE_LIBMATROSKA )
+        list( APPEND MIMETYPES
+            audio/matroska
+            video/matroska
+            audio/x-matroska
+            video/x-matroska
+        )
+    endif()
     if( USE_LIBOGG AND USE_LIBVORBIS )
         list( APPEND MIMETYPES
             application/ogg
