@@ -31,7 +31,6 @@ jobs:
           generator: Ninja
           cc: cc
           cxx: c++
-          compiler_cache: ccache
           compiler_cache_path: ~/.ccache
           vcpkg_enabled: false
 
@@ -42,7 +41,6 @@ jobs:
         #   generator: Ninja
         #   cc: cc
         #   cxx: c++
-        #   compiler_cache: ccache
         #   compiler_cache_path: ~/Library/Caches/ccache
         #   vcpkg_enabled: true
         #   vcpkg_binary_cache: ~/.cache/vcpkg
@@ -54,7 +52,6 @@ jobs:
           generator: Ninja
           cc: cc
           cxx: c++
-          compiler_cache: ccache
           compiler_cache_path: ~/Library/Caches/ccache
           vcpkg_enabled: true
           vcpkg_binary_cache: ~/.cache/vcpkg
@@ -69,8 +66,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          compiler_cache_path: C:\Users\runneradmin\AppData\Local\ccache
           vcpkg_enabled: true
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
@@ -85,8 +81,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          compiler_cache_path: C:\Users\runneradmin\AppData\Local\ccache
           vcpkg_enabled: true
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x64-windows
@@ -94,8 +89,6 @@ jobs:
 
     env:
       CMAKE_BUILD_TYPE: RelWithDebInfo
-      CMAKE_C_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
-      CMAKE_CXX_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
       MACOSX_DEPLOYMENT_TARGET: 10.15
 
       VCPKG_DISABLE_METRICS: true
@@ -129,7 +122,7 @@ jobs:
       run: |
         echo "C:\Scoop\shims" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         iex "& {$(iwr -useb get.scoop.sh)} -RunAsAdmin"
-        scoop install sccache
+        scoop install ccache
 
     - name: Install Apple codesigning certificates
       uses: apple-actions/import-codesign-certs@v1
@@ -186,7 +179,7 @@ jobs:
       run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }}
 
     - name: "Print compiler cache stats"
-      run: ${{ matrix.config.compiler_cache }} -s
+      run: ccache -s
 
     - name: Install
       run: cmake --install build --config ${{ env.CMAKE_BUILD_TYPE }} --verbose
