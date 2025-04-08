@@ -48,10 +48,11 @@ else # Linux & others
             libgtk-3-dev
             libid3tag0-dev
             libjack-dev
-            libjsoncpp-dev
             liblilv-dev
-            libmad0-dev
+            libmpg123-dev
             libmp3lame-dev
+            libebml-dev
+            libmatroska-dev
             libogg-dev
             libpng-dev
             portaudio19-dev
@@ -68,10 +69,16 @@ else # Linux & others
             libvorbis-dev
             lv2-dev
             zlib1g-dev
+            libzip-dev
+            zipcmp
+            zipmerge
+            ziptool
             libjpeg-dev
             libtiff-dev
             liblzma-dev
             libsqlite3-dev
+            libwxgtk3.2-dev
+            rapidjson-dev
         )
 
         sudo apt-get update -y
