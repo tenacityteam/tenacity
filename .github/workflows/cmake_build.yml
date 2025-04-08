@@ -33,8 +33,7 @@ jobs:
           cxx: c++
           compiler_cache: ccache
           compiler_cache_path: ~/.ccache
-          vcpkg_binary_cache: ~/.cache/vcpkg
-          vcpkg_triplet: x64-linux-dynamic
+          vcpkg_enabled: false
 
         - name: macOS_Intel
           os: macos-latest
@@ -44,6 +43,7 @@ jobs:
           cxx: c++
           compiler_cache: ccache
           compiler_cache_path: ~/Library/Caches/ccache
+          vcpkg_enabled: true
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-osx-dynamic
 
@@ -63,6 +63,7 @@ jobs:
           cxx: cl
           compiler_cache: sccache
           compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          vcpkg_enabled: true
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
           exe_suffix: .exe
@@ -78,6 +79,7 @@ jobs:
           cxx: cl
           compiler_cache: sccache
           compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          vcpkg_enabled: true
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x64-windows
           exe_suffix: .exe
@@ -132,6 +134,7 @@ jobs:
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
 
     - name: Setup vcpkg cache
+      if: runner.os != 'Ubuntu'
       uses: actions/cache@v4
       with:
         # cache the vcpkg executable to avoid having to bootstrap vcpkg every time
@@ -159,7 +162,7 @@ jobs:
         -G "${{ matrix.config.generator }}"
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
-        -D VCPKG=ON
+        -D VCPKG=${{matrix.config.vcpkg_enabled}}
         -D SBSMS=ON
         -S .
         -B build
@@ -207,7 +210,7 @@ jobs:
         if-no-files-found: error
 
     - name: Upload artifact of vcpkg build logs
-      if: always()
+      if: runner.os != 'Windows'
       uses: actions/upload-artifact@v4
       with:
         name: vcpkg-logs-${{ runner.os }}
