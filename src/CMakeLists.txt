@@ -1100,7 +1100,17 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
             "-framework CoreAudioKit"
     )
 
-    fix_bundle( ${TARGET} )
+    # Copy the required wxWidgets libs into the bundle
+    add_custom_command(
+        TARGET
+            ${TARGET}
+        COMMAND
+            ${CMAKE_COMMAND} -D SRC="${_EXEDIR}/Tenacity"
+                             -D DST="${_PKGLIB}"
+                             -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
+                             -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
+        POST_BUILD
+    )
 
     # Because the wrapper is copied into the bundle, we need to
     # re-sing the bundle as the last post build step.
