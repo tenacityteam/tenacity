@@ -19,6 +19,44 @@ references to `main` below with `audacity-3.7-rebase`.**
 **This notice (in bold) is temporary. Once removed, we will accept
 contributions as we did before the rebase again.**
 
+## The Use of LLMs and AI in Contributions
+**Please read this section IN FULL before continuing with your contribution.
+We reserve the right to close or ignore any issue, feature request, or
+contribution if you fail to read this section otherwise.**
+
+As of 2025, within the last few years, advancements in AI have shown us the
+true capabilities we can achieve with AI. It is quite amazing, and also quite
+scary, how AI has advanced to this state compared to previous states. However,
+with these advancements also come their problems.
+
+A problem fellow open-source projects have experienced, and, at the time of
+writing this section, are still experiencing, is the use of AI to generate
+_entire reports_. [This article](https://thelibre.news/foss-infrastructure-is-under-attack-by-ai-companies)
+gives a good overview of the situation they are facing. It also includes
+the larger infrastructure situation many open-source projects are facing too.
+
+You may feel _very compelled_ to use AI to generate a bug report for you. **DO
+NOT DO THIS** please! This especially applies if you are intending to report a
+security vulnerability. As has been the case before, and still continues to be
+the case, AI is susceptible to hallucinations, meaning they can give false
+information in a report. At the very least, if you are going to use AI
+inevitably, please double-check the report to ensure everything is completely
+accurate.
+
+A good use of AI, subjectively, is as a companion or an assistant. Using it to
+do your job for you is **NOT** a good idea. Therefore, while we prefer you to
+**NOT** use AI in any report, if you, for any reason, are going to inevitably
+use AI in a report, please _check_ what the generated report contains.
+
+If we suspect, with justification, that a report is AI-generated, we reserve
+the right to, at worst, ignore your report. We do not have the time to spend
+weeding through inaccurate AI-generated reports.
+
+Similarly, **DO NOT USE AI FOR PULL REQUESTS, ESPECIALLY FOR CODE!** Who
+actually owns the code is uncertain, to say the least, and that is the reason
+why we don't accept AI-generated code. We will close pull-requests that
+otherwise violate this rule.
+
 ## Reporting bugs and feature requests
 
 Our IRC channel, [`#tenacity` on Libera](https://web.libera.chat/#tenacity)
