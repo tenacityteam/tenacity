@@ -400,6 +400,9 @@ cmake --install build
   * **MANUAL_PATH** (file path): Path to the manual to package alongside DMG
     and InnoSEtup targets. If no path is specified (default), no manual is
     packaged.
+  * **AVX2** (ON|OFF): Enable the usage of AVX2 in builds instead of SSE4.
+    Most computers made within the last decade will support AVX2, although this
+    option is currently disabled by default for now.
 
 The following feature options are enabled by default if the required libraries
 are found. You may explicitly disable them if you prefer or your distribution

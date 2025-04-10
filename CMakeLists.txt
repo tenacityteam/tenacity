@@ -421,7 +421,25 @@ elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
     endif()
 endif()
 
-add_compile_options(${SSE_FLAG})
+# Allow AVX2 to be enabled if desired
+option(AVX2 "Enable the usage of AVX2 in builds instead of SSE4." OFF)
+
+# Note: Below, HAVE_AVX2 is currently unused, but it may be used later on.
+if (AVX2)
+    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+        check_cxx_compiler_flag("-mavx2" HAVE_AVX2)
+        if (HAVE_AVX2)
+            set(AVX2_FLAG "-mavx2")
+        endif()
+    elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
+        set(HAVE_AVX2 ON)
+        set(AVX2_FLAG "/arch:AVX2")
+    endif()
+
+    add_compile_options(${AVX2_FLAG})
+else()
+    add_compile_options(${SSE_FLAG})
+endif()
 
 check_include_file( "pa_jack.h" PA_USE_JACK)
 check_include_file( "pa_win_wmme.h" PA_USE_WMME )
