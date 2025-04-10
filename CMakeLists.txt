@@ -395,15 +395,18 @@ set( CMAKE_LINK_INTERFACE_LIBRARIES ${CMAKE_REQUIRED_LIBRARIES} )
 test_big_endian( WORDS_BIGENDIAN )
 
 # Check for compiler flags
+# Note: currently, HAVE_SSE4 is unused, but it may be used in the future.
 set( SSE_FLAG "" CACHE INTERNAL "" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang|GNU" )
-    check_cxx_compiler_flag( "-msse2" HAVE_SSE2 )
-    if( HAVE_SSE2 AND NOT IS_64BIT )
-        set( SSE_FLAG "-msse2" CACHE INTERNAL "" )
+    check_cxx_compiler_flag("-msse4" HAVE_SSE4)
+    if (HAVE_SSE4)
+        set(SSE_FLAG "-msse4" CACHE INTERNAL "")
     endif()
 elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
-    # MSVC Automatically enables SSE2 by default, so set it on.
-    set( HAVE_SSE2 ON )
+    if (IS_64BIT)
+        set(SSE_FLAG "/arch:SSE4.2")
+        set(HAVE_SSE4 ON )
+    endif()
 
     # required for sccache
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
