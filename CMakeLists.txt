@@ -422,13 +422,15 @@ elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
 endif()
 
 # Allow AVX2 or AVX512 to be enabled if desired
-option(AVX2   "Enable the usage of AVX2 in builds instead of SSE4 or AVX512." OFF)
+option(AVX    "Enable the usage of AVX in builds instead of SSE4.")
+option(AVX2   "Enable the usage of AVX2 in builds instead of SSE4 or AVX." OFF)
 option(AVX512 "Enable the usage of AVX512 in builds instead of SSE4 or AVX2." OFF)
 
 # The order of precedence for SIMD operations is as follows:
 #     1. AVX512
 #     2. AVX2
-#     3. SSE4
+#     3. AVX
+#     4. SSE4
 
 if (AVX512)
     if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
@@ -454,6 +456,18 @@ elseif (AVX2)
     endif()
 
     add_compile_options(${AVX2_FLAG})
+elseif (AVX)
+    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+        check_cxx_compiler_flag("-mavx" HAVE_AVX)
+        if (HAVE_AVX)
+            set(AVX_FLAG "-mavx")
+        endif()
+    elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
+        set(HAVE_AVX ON) # Currently unused, might get used later
+        set(AVX_FLAG "/arch:AVX")
+    endif()
+
+    add_compile_options(${AVX_FLAG})
 else()
     add_compile_options(${SSE_FLAG})
 endif()
