@@ -395,30 +395,15 @@ set( CMAKE_LINK_INTERFACE_LIBRARIES ${CMAKE_REQUIRED_LIBRARIES} )
 test_big_endian( WORDS_BIGENDIAN )
 
 # Check for compiler flags
-set( MMX_FLAG "" CACHE INTERNAL "" )
 set( SSE_FLAG "" CACHE INTERNAL "" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang|GNU" )
-    check_cxx_compiler_flag( "-mmmx" HAVE_MMX )
-    if( HAVE_MMX AND NOT IS_64BIT )
-        set( MMX_FLAG "-mmmx" CACHE INTERNAL "" )
-    endif()
-
-    check_cxx_compiler_flag( "-msse" HAVE_SSE )
-    if( HAVE_SSE AND NOT IS_64BIT )
-        set( SSE_FLAG "-msse" CACHE INTERNAL "" )
-    endif()
-
     check_cxx_compiler_flag( "-msse2" HAVE_SSE2 )
     if( HAVE_SSE2 AND NOT IS_64BIT )
         set( SSE_FLAG "-msse2" CACHE INTERNAL "" )
     endif()
 elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
-    set( HAVE_MMX ON )
-    set( HAVE_SSE ON )
+    # MSVC Automatically enables SSE2 by default, so set it on.
     set( HAVE_SSE2 ON )
-    if( NOT IS_64BIT )
-        set( SSE_FLAG "/arch:SSE2" )
-    endif()
 
     # required for sccache
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -432,6 +417,8 @@ elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
         string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
     endif()
 endif()
+
+add_compile_options(${SSE_FLAG})
 
 check_include_file( "pa_jack.h" PA_USE_JACK)
 check_include_file( "pa_win_wmme.h" PA_USE_WMME )
