@@ -421,55 +421,57 @@ elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
     endif()
 endif()
 
-# Allow AVX2 or AVX512 to be enabled if desired
-option(AVX    "Enable the usage of AVX in builds instead of SSE4.")
-option(AVX2   "Enable the usage of AVX2 in builds instead of SSE4 or AVX." OFF)
-option(AVX512 "Enable the usage of AVX512 in builds instead of SSE4 or AVX2." OFF)
+if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
+    # Allow AVX2 or AVX512 to be enabled if desired
+    option(AVX    "Enable the usage of AVX in builds instead of SSE4.")
+    option(AVX2   "Enable the usage of AVX2 in builds instead of SSE4 or AVX." OFF)
+    option(AVX512 "Enable the usage of AVX512 in builds instead of SSE4 or AVX2." OFF)
 
-# The order of precedence for SIMD operations is as follows:
-#     1. AVX512
-#     2. AVX2
-#     3. AVX
-#     4. SSE4
+    # The order of precedence for SIMD operations is as follows:
+    #     1. AVX512
+    #     2. AVX2
+    #     3. AVX
+    #     4. SSE4
 
-if (AVX512)
-    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
-        check_cxx_compiler_flag("-mavx512f" HAVE_AVX512)
-        if (HAVE_AVX512)
-            set(AVX512_FLAG "-mavx512f")
+    if (AVX512)
+        if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+            check_cxx_compiler_flag("-mavx512f" HAVE_AVX512)
+            if (HAVE_AVX512)
+                set(AVX512_FLAG "-mavx512f")
+            endif()
+        elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
+            set(HAVE_AVX512 ON) # Currently unused, might get used later
+            set(AVX512_FLAG "/arch:AVX512")
         endif()
-    elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
-        set(HAVE_AVX512 ON) # Currently unused, might get used later
-        set(AVX512_FLAG "/arch:AVX512")
-    endif()
 
-    add_compile_options(${AVX512_FLAG})
-elseif (AVX2)
-    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
-        check_cxx_compiler_flag("-mavx2" HAVE_AVX2)
-        if (HAVE_AVX2)
-            set(AVX2_FLAG "-mavx2")
+        add_compile_options(${AVX512_FLAG})
+    elseif (AVX2)
+        if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+            check_cxx_compiler_flag("-mavx2" HAVE_AVX2)
+            if (HAVE_AVX2)
+                set(AVX2_FLAG "-mavx2")
+            endif()
+        elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
+            set(HAVE_AVX2 ON) # Currently unused, might get used later
+            set(AVX2_FLAG "/arch:AVX2")
         endif()
-    elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
-        set(HAVE_AVX2 ON) # Currently unused, might get used later
-        set(AVX2_FLAG "/arch:AVX2")
-    endif()
 
-    add_compile_options(${AVX2_FLAG})
-elseif (AVX)
-    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
-        check_cxx_compiler_flag("-mavx" HAVE_AVX)
-        if (HAVE_AVX)
-            set(AVX_FLAG "-mavx")
+        add_compile_options(${AVX2_FLAG})
+    elseif (AVX)
+        if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+            check_cxx_compiler_flag("-mavx" HAVE_AVX)
+            if (HAVE_AVX)
+                set(AVX_FLAG "-mavx")
+            endif()
+        elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
+            set(HAVE_AVX ON) # Currently unused, might get used later
+            set(AVX_FLAG "/arch:AVX")
         endif()
-    elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
-        set(HAVE_AVX ON) # Currently unused, might get used later
-        set(AVX_FLAG "/arch:AVX")
-    endif()
 
-    add_compile_options(${AVX_FLAG})
-else()
-    add_compile_options(${SSE_FLAG})
+        add_compile_options(${AVX_FLAG})
+    else()
+        add_compile_options(${SSE_FLAG})
+    endif()
 endif()
 
 check_include_file( "pa_jack.h" PA_USE_JACK)
