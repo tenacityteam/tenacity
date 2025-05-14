@@ -1028,8 +1028,11 @@ void AudacityApp::ShowSplashScreen() {
    // BG: Create a temporary window to set as the top window
    wxImage logoimage((const char**)TenacityLogoWithName_xpm);
    logoimage.Rescale(logoimage.GetWidth() * 0.75, logoimage.GetHeight() * 0.75);
+#ifdef __WXMSW__
+   // We need to mirror the image for right-to-left languages on Windows only
    if (GetLayoutDirection() == wxLayout_RightToLeft)
       logoimage = logoimage.Mirror();
+#endif
    wxBitmap logo(logoimage);
 
    mSplashScreen = std::make_unique<wxSplashScreen>(
