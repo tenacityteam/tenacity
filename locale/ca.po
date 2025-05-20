@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-05-16 11:02+0000\n"
+"PO-Revision-Date: 2025-05-20 18:59+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ca/>\n"
@@ -1473,7 +1473,7 @@ msgstr ""
 #: src/export/ExportMultiple.cpp src/import/RawAudioGuess.cpp
 #: src/menus/EditMenus.cpp src/prefs/KeyConfigPrefs.cpp src/widgets/Warning.cpp
 msgid "Warning"
-msgstr "Advertència"
+msgstr "Avís"
 
 #: src/DBConnection.cpp
 #, fuzzy, c-format
@@ -2317,9 +2317,8 @@ msgid "Plug-in already exists"
 msgstr "Ja existeix el connector"
 
 #: src/PluginManager.cpp
-#, fuzzy
 msgid "Plug-in file is in use. Failed to overwrite"
-msgstr "El fitxer del connector està en ús. Ha falla la sobreescriptura"
+msgstr "El fitxer del connector està en ús. Ha fallat la sobreescriptura"
 
 #: src/PluginManager.cpp
 #, c-format
@@ -2528,12 +2527,15 @@ msgid "Failed to open the project's database"
 msgstr "No s'ha pogut obrir la base de dades del projecte"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to open database file:\n"
 "\n"
 "%s"
-msgstr "No s'ha pogut suprimir %s"
+msgstr ""
+"No s'ha pogut obrir el fitxer de la base de dades:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
 msgid "Failed to discard connection"
@@ -2660,14 +2662,16 @@ msgid "Failed to bind SQL parameter"
 msgstr "No s’ha pogut vincular el paràmetre SQL"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to update the project file.\n"
 "The following command failed:\n"
 "\n"
 "%s"
 msgstr ""
-"No s'ha pogut registrar:\n"
+"No s'ha pogut actualitzar el fitxer del projecte.\n"
+"L'ordre següent ha fallat:\n"
+"\n"
 "%s"
 
 #: src/ProjectFileIO.cpp
@@ -2721,19 +2725,16 @@ msgid "Error Saving Project"
 msgstr "S'ha produït un error en desar el projecte"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Backing up project"
-msgstr "Quan es desa un projecte &buit"
+msgstr "S'està fent una còpia de seguretat del projecte"
 
 #: src/ProjectFileManager.cpp
-#, fuzzy
 msgid "Project Recovered"
 msgstr "S'ha recuperat el projecte"
 
 #: src/ProjectFileManager.cpp src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Projects cannot be saved to FAT drives."
-msgstr "Directori dels fitxers temporals"
+msgstr "Els projectes no es poden desar a unitats FAT."
 
 #: src/ProjectFileManager.cpp
 msgid ""
@@ -2760,9 +2761,8 @@ msgid "Warning - Empty Project"
 msgstr "Advertiment: el projecte està buit"
 
 #: src/ProjectFileManager.cpp
-#, fuzzy
 msgid "Insufficient Disk Space"
-msgstr "Espai de disc"
+msgstr "Espai insuficient al disc"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2900,9 +2900,8 @@ msgid "Import"
 msgstr "Importa"
 
 #: src/ProjectFileManager.cpp
-#, fuzzy
 msgid "Failed to import project"
-msgstr "No s'ha trobat el còdec"
+msgstr "No s'ha pogut importar el projecte"
 
 #: src/ProjectFileManager.cpp
 msgid "Error Importing"
@@ -3441,20 +3440,26 @@ msgid ""
 msgstr "Error en desar el projecte d'enregistrament temporitzat"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s\n"
 "\n"
 "Recording exported: %s"
-msgstr "S'ha exportat l'enregistrament:"
+msgstr ""
+"%s\n"
+"\n"
+"S'ha exportat l'enregistrament: %s"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s\n"
 "\n"
 "Error exporting recording."
-msgstr "Exporta l'enregistrament"
+msgstr ""
+"%s\n"
+"\n"
+"S'ha produït un error en exportar l'enregistrament."
 
 #: src/TimerRecordDialog.cpp src/menus/TransportMenus.cpp
 #, fuzzy
@@ -3672,9 +3677,9 @@ msgstr "Elimina la pista"
 
 #. i18n-hint: Past tense of 'to move', as in 'moved audio track up'.
 #: src/TrackUtilities.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Moved '%s' to Top"
-msgstr "Mou la pista al capdamunt"
+msgstr "S'ha mogut «%s» al capdamunt"
 
 #: src/TrackUtilities.cpp
 msgid "Move Track to Top"
@@ -3682,9 +3687,9 @@ msgstr "Mou la pista al capdamunt"
 
 #. i18n-hint: Past tense of 'to move', as in 'moved audio track up'.
 #: src/TrackUtilities.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Moved '%s' to Bottom"
-msgstr "Mou la pista al capdavall"
+msgstr "S'ha mogut «%s» al capdavall"
 
 #: src/TrackUtilities.cpp
 msgid "Move Track to Bottom"
@@ -3692,14 +3697,14 @@ msgstr "Mou la pista al capdavall"
 
 #. i18n-hint: Past tense of 'to move', as in 'moved audio track up'.
 #: src/TrackUtilities.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Moved '%s' Up"
-msgstr "Mou amunt"
+msgstr "S'ha mogut «%s» amunt"
 
 #: src/TrackUtilities.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Moved '%s' Down"
-msgstr "Mou a&vall"
+msgstr "S'ha mogut «%s» avall"
 
 #. i18n-hint: Past tense of 'to move', as in 'moved audio track up'.
 #: src/TrackUtilities.cpp
@@ -3937,9 +3942,8 @@ msgid "Gets information in JSON format."
 msgstr "Obté la informació en format JSON."
 
 #: src/commands/HelpCommand.cpp
-#, fuzzy
 msgid "Comment"
-msgstr "Comentaris"
+msgstr "Comentari"
 
 #: src/commands/HelpCommand.cpp src/export/ExportCL.cpp
 msgid "Command:"
@@ -4013,19 +4017,16 @@ msgid "Save Project2"
 msgstr "De&sa el projecte"
 
 #: src/commands/OpenSaveCommands.cpp
-#, fuzzy
 msgid "Save Copy"
-msgstr "Còpia de l'etiqueta"
+msgstr "Desa'n una còpia"
 
 #: src/commands/OpenSaveCommands.cpp
-#, fuzzy
 msgid "Save Log"
-msgstr "Desa el fitxer de registre a:"
+msgstr "Desa el registre"
 
 #: src/commands/OpenSaveCommands.cpp
-#, fuzzy
 msgid "Clear Log"
-msgstr "Neteja"
+msgstr "Neteja el registre"
 
 #: src/commands/OpenSaveCommands.h
 msgid "Opens a project."
@@ -4036,9 +4037,8 @@ msgid "Saves a project."
 msgstr "Desa un projecte."
 
 #: src/commands/OpenSaveCommands.h
-#, fuzzy
 msgid "Saves a copy of current project."
-msgstr "Desa un projecte."
+msgstr "Desa una còpia del projecte actual."
 
 #: src/commands/PreferenceCommands.cpp
 msgid "Get Preference"
@@ -4061,9 +4061,8 @@ msgid "Value:"
 msgstr "Valor:"
 
 #: src/commands/PreferenceCommands.cpp
-#, fuzzy
 msgid "Reload"
-msgstr "Recarrega:"
+msgstr "Recarrega"
 
 #: src/commands/PreferenceCommands.h
 msgid "Gets the value of a single preference."
@@ -4397,9 +4396,8 @@ msgid "Increases or decreases the volume of the audio you have selected"
 msgstr "Incrementa o redueix el volum de l'àudio que heu seleccionat"
 
 #: src/effects/Amplify.cpp
-#, fuzzy
 msgid "&Amplification (dB):"
-msgstr "Amplificació (dB):"
+msgstr "&Amplificació (dB):"
 
 #: src/effects/Amplify.cpp
 msgid "Amplification dB"
@@ -4788,7 +4786,7 @@ msgstr "fins a"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Length (seconds)"
-msgstr "Durada (segons):"
+msgstr "Durada (segons)"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
@@ -6641,8 +6639,8 @@ msgstr "Heu d'especificar la mateixa mida de finestra per als passos 1 i 2."
 #: src/effects/NoiseReduction.cpp
 msgid "Warning: window types are not the same as for profiling."
 msgstr ""
-"Advertència: els tipus de finestra no són els mateixos que per a l'anàlisi "
-"de perfils."
+"Avís: els tipus de finestra no són els mateixos que per a l'anàlisi de "
+"perfils."
 
 #: src/effects/NoiseReduction.cpp
 msgid "All noise profile data must have the same sample rate."
@@ -7886,9 +7884,9 @@ msgstr "Opcions dels efectes LADSPA"
 #: src/effects/ladspa/LadspaEffect.cpp src/effects/nyquist/Nyquist.cpp
 #: src/effects/vamp/VampEffect.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s:"
-msgstr "%s: %s"
+msgstr "%s:"
 
 #: src/effects/ladspa/LadspaEffect.cpp
 msgid "Effect Output"
@@ -8609,9 +8607,8 @@ msgid "Fullband"
 msgstr "Tota la finestra"
 
 #: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
 msgid "Compression"
-msgstr "Compressió:"
+msgstr "Compressió"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
@@ -8636,14 +8633,12 @@ msgid "Open custom FFmpeg format options"
 msgstr "Obre les opcions del format FFmpeg personalitzat"
 
 #: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
 msgid "Current Format:"
-msgstr "Projecte actual"
+msgstr "Format actual:"
 
 #: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
 msgid "Current Codec:"
-msgstr "Projecte actual"
+msgstr "Còdec actual:"
 
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Error Saving FFmpeg Presets"
@@ -9695,7 +9690,7 @@ msgstr "No s'ha trobat FFmpeg"
 
 #: src/ffmpeg/FFmpegNotFoundDialog.cpp
 msgid "Do not show this warning again"
-msgstr "No tornis a mostrar aquesta advertència"
+msgstr "No tornis a mostrar aquest avís"
 
 #: src/import/Import.cpp
 #, fuzzy
@@ -12447,9 +12442,8 @@ msgid "Directories"
 msgstr "Directoris"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Preferences for Directories"
-msgstr "Preferències: "
+msgstr "Preferències dels directoris"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, fuzzy
@@ -12467,9 +12461,8 @@ msgid "B&rowse..."
 msgstr "Navega..."
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Import:"
-msgstr "&Importa"
+msgstr "&Importació:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, fuzzy
@@ -12477,9 +12470,8 @@ msgid "Br&owse..."
 msgstr "Navega..."
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Export:"
-msgstr "&Exporta"
+msgstr "&Exportació:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, fuzzy
@@ -12550,9 +12542,8 @@ msgid "Effects"
 msgstr "Efectes"
 
 #: src/prefs/EffectsPrefs.cpp
-#, fuzzy
 msgid "Preferences for Effects"
-msgstr "Preferències: "
+msgstr "Preferències dels efectes"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Sorted by Effect Name"
@@ -12724,9 +12715,8 @@ msgid "Interface"
 msgstr "Interfície"
 
 #: src/prefs/GUIPrefs.cpp
-#, fuzzy
 msgid "Preferences for GUI"
-msgstr "Preferències: "
+msgstr "Preferències de la interfície"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-36 dB (shallow range for high-amplitude editing)"
@@ -13006,9 +12996,8 @@ msgid "Key Config"
 msgstr "Vinculacions de les tecles"
 
 #: src/prefs/LibraryPrefs.cpp
-#, fuzzy
 msgid "Preferences for Library"
-msgstr "Preferències: "
+msgstr "Preferències de la biblioteca"
 
 #: src/prefs/LibraryPrefs.cpp
 msgid "FFmpeg Import/Export Library"
@@ -13372,9 +13361,8 @@ msgid "Category"
 msgstr "Categoria"
 
 #: src/prefs/PrefsDialog.cpp src/prefs/PrefsDialog.h
-#, fuzzy
 msgid "Preferences:"
-msgstr "Preferències: "
+msgstr "Preferències:"
 
 #: src/prefs/QualityPrefs.cpp
 #, fuzzy
@@ -14023,9 +14011,8 @@ msgid "Waveforms"
 msgstr "Formes d'ona"
 
 #: src/prefs/WaveformPrefs.cpp
-#, fuzzy
 msgid "Preferences for Waveforms"
-msgstr "Preferències: "
+msgstr "Preferències d'ones"
 
 #: src/prefs/WaveformPrefs.cpp
 #, fuzzy
@@ -14912,14 +14899,14 @@ msgid "Changing sample format"
 msgstr "Freqüència incorrecta"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Processing...   0%%"
-msgstr "S'està &processant: "
+msgstr "S'està processant...   0 %%"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Processing...   %i%%"
-msgstr "S'està &processant: "
+msgstr "S'està processant...   %i %%"
 
 #. i18n-hint: The strings name a track and a format
 #. i18n-hint: The strings name a track and a channel choice (mono, left, or right)
@@ -16074,7 +16061,7 @@ msgstr "Preferències: "
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
-msgstr "No tornis a mostrar aquesta advertència"
+msgstr "No tornis a mostrar aquest avís"
 
 #: src/widgets/numformatter.cpp
 msgid "NaN"
@@ -16623,9 +16610,8 @@ msgid "Details"
 msgstr "&Detalls"
 
 #: plug-ins/equalabel.ny
-#, fuzzy
 msgid "Warnings only"
-msgstr "Advertències"
+msgstr "Només els avisos"
 
 #. i18n-hint:  Type of label
 #: plug-ins/equalabel.ny
@@ -19385,3 +19371,21 @@ msgstr "40 ms"
 #: src/commands/OpenSaveCommands.h
 msgid "Saves the log contents."
 msgstr "Desa el contingut del registre."
+
+#: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
+msgid "db"
+msgstr "db"
+
+#: src/effects/Equalization.cpp
+msgid "Telephone"
+msgstr "Telèfon"
+
+#: src/effects/Equalization.cpp
+msgid "RIAA"
+msgstr "RIAA"
+
+#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
+#: src/export/ExportFFmpegDialogs.cpp
+#, c-format
+msgid "Format %s is not compatible with codec %s."
+msgstr "El format %s no és compatible amb el còdec %s."
