@@ -11,6 +11,8 @@ Paul Licameli split from class WaveTrack
 #include "Internat.h"
 #include "WaveChannelViewConstants.h"
 
+#include <algorithm>
+
 // static
 WaveChannelViewConstants::Display
 WaveChannelViewConstants::ConvertLegacyDisplayValue(int oldValue)
