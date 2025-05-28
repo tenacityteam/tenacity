@@ -6,6 +6,7 @@ set(TARGET mod-mka)
 
 set(SOURCES
     ImportMka.cpp
+    ExportMka.cpp
     Mka.cpp
 )
 
