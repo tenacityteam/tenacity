@@ -33,10 +33,6 @@ if(VCPKG)
         set(VCPKG_OVERLAY_PORTS "${VCPKG_ROOT}/overlay/ports")
     endif()
 
-    if(NOT DEFINED VCPKG_OVERLAY_TRIPLETS)
-        set(VCPKG_OVERLAY_TRIPLETS "${VCPKG_ROOT}/overlay/triplets")
-    endif()
-
     if (DEFINED ENV{TENACITY_TRIPLET_OVERRIDE})
         set(VCPKG_TARGET_TRIPLET "$ENV{TENACITY_TRIPLET_OVERRIDE}")
         message(STATUS "vcpkg triplet overriden. Using triplet '$ENV{TENACITY_TRIPLET_OVERRIDE}'")
