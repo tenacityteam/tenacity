@@ -33,23 +33,26 @@ if(VCPKG)
         set(VCPKG_OVERLAY_PORTS "${VCPKG_ROOT}/overlay/ports")
     endif()
 
-    if (DEFINED ENV{TENACITY_TRIPLET_OVERRIDE})
-        set(VCPKG_TARGET_TRIPLET "$ENV{TENACITY_TRIPLET_OVERRIDE}")
-        message(STATUS "vcpkg triplet overriden. Using triplet '$ENV{TENACITY_TRIPLET_OVERRIDE}'")
-    else()
-        if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
-            if(APPLE)
-                if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64") # Apple Silicon
-                    set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
-                else() # Intel
-                    set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
-                endif()
-            elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
-                set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
+    # Set default triplets
+    #
+    # Note: on macOS and Linux, Tenacity cannot use the default triplet as
+    # static linking against wxWidgets isn't supported. Therefore, we need to
+    # set a different triplet.
+    #
+    # If you need to override this selection, set `VCPKG_DEFAULT_TRIPLET`.
+    # Tenacity will use that instead.
+    if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
+        if(APPLE)
+            if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64") # Apple Silicon
+                set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
+            else() # Intel
+                set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
             endif()
-        elseif(DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
-            set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
+        elseif(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
+            set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
         endif()
+    elseif(DEFINED ENV{VCPKG_DEFAULT_TRIPLET})
+        set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
     endif()
 
     set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")

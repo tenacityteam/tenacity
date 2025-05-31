@@ -441,22 +441,34 @@ These options apply to all platforms where vcpkg is available. They are
 available if you need further control over how Tenacity uses vcpkg if its usage
 is required.
 
-#### Settings a Custom Triplet
+#### Setting a Triplet
 
-You may override the default triplet used for building Tenacity. This may be
-useful for testing different triplets for different platforms.
+By default, Tenacity automatically selects the appropriate triplet to use for
+vcpkg. Luckily, on Windows, the default one can be used. On macOS, either
+`arm64-osx-dynamic` or `x64-osx-dynamic` is used depending on your CPU. On
+Linux, `x64-linux-dynamic` is used. Tenacity requires that it be built against
+all dynamic libraries, and this is why this is done.
 
-To override the default triplet, set the `TENACITY_TRIPLET_OVERRIDE` variable
-to the triplet you want to use. For example, if you're on Linux and want to
-use the `x64-linux-dynamic` triplet, export the following:
+Unfortunately, this selection isn't perfect. In that case, or if you want to
+use a different triplet in general, set the `VCPKG_DEFAULT_TRIPLET` environment
+variable to your preferred triplet. On macOS and Linux, run this command to set
+it:
 
+```bash
+export VCPKG_DEFAULT_TRIPLET="your-triplet-here"
 ```
-export TENACITY_TRIPLET_OVERRIDE=x64-linux-dynamic
+
+For Windows Command Prompt:
+
+```batch
+set VCPKG_DEFAULT_TRIPLET="your-triplet-here"
 ```
 
-Overriding triplets might be required in some cases. For example, using static
-builds of wxWidgets on Linux is not supported, but vcpkg builds static
-libraries by default. The `x64-linux-dynamic` triplet must be used instead.
+For PowerShell
+
+```powershell
+$env:VCPKG_DEFAULT_TRIPLET="your-triplet-here"
+```
 
 ## Building Packages
 Building a package is extremely simple. Before starting, you must ensure all of
