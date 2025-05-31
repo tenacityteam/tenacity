@@ -26,41 +26,29 @@ not required. CMake will automatically use ccache if it is installed.
 
 #### Debian, Ubuntu, and derived distributions
 
-To install Tenacity's dependencies, run:
+On Debian 12 or later, Ubuntu 22.10 or later, or any applicable derivative,
+run:
 
 ```
-sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-jackd2-dev liblilv-dev libmad0-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev libzip-dev zipcmp zipmerge ziptool libjsoncpp-dev 
+sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-jackd2-dev liblilv-dev libmad0-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev libzip-dev zipcmp zipmerge ziptool rapidjson-dev wx-common wx3.2-headers libwxgtk3.2-dev
 ```
 
-On earlier versions of Ubuntu (< 22.10), Debian (< 12), and their derivatives,
-you will need to either use vcpkg or build your own version of wxWidgets.
-Please see [Building wxWidgets Yourself](#building-wxwidgets-yourself) for more
+On earlier versions of Debian, Ubuntu, and applicable derivatives, exclude
+`wx-common`, `wx3.2-headers`, and `libwxgtk3.2-dev`. Those distros do not
+include the right version of wxWidgets needed for Tenacity. To get the right
+version of wxWidgets, you will need to either use vcpkg or build wxWidgets
+yourself. The latter is preferred as using vcpkg will build _all_ of Tenacity's
+dependencies from scratch (i.e., virtuall no system dependencies are used at
+all, **which takes a really long time to build**). Only use vcpkg if you
+absolutely must. Please see [Building wxWidgets](#building-wxwidgets) for more
 information.
-
-On Ubuntu 22.10 or later, Debian 12 or later, or their derivatives, you can
-install the correct wxWidgets packages like so:
-
-```
-sudo apt install wx-common wx3.2-headers libwxgtk3.2-dev
-```
-
-The above package list
-includes wxWidgets' build dependencies. If you install wxWidgets
-somewhere other than the default /usr/local, you need to set the
-`WX_CONFIG` environment variable to the location of the `wx-config`
-script installed by wxWidgets to get CMake to find wxWidgets 3.1. For
-example, if you installed wxWidgets to /home/user/local:
-
-```
-export WX_CONFIG=/home/user/local/bin/wx-config
-```
 
 #### Fedora
 
 To install Tenacity's dependencies, run:
 
 ```
-sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel jsoncpp-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
+sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel rapidjson-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
 ```
 
 #### Arch
@@ -68,7 +56,7 @@ sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-dev
 Install Tenacity's build dependencies with this command:
 
 ```
-sudo pacman -S cmake ninja ccache expat gcc-libs gdk-pixbuf2 glibc flac gtk3 glib2 libid3tag lilv libmad libogg portaudio portmidi libsndfile libsoxr suil twolame vamp-plugin-sdk libvorbis soundtouch ffmpeg libsbsms wxwidgets-common wxwidgets-gtk3
+sudo pacman -S cmake ninja ccache expat gcc-libs gdk-pixbuf2 glibc flac gtk3 glib2 libid3tag lilv libmad libogg portaudio portmidi libsndfile libsoxr suil twolame vamp-plugin-sdk libvorbis soundtouch ffmpeg libsbsms wxwidgets-common wxwidgets-gtk3 rapidjson
 ```
 
 TODO: add portsmf to this package list when the package is updated.
@@ -80,7 +68,7 @@ found on Alpine's `community` repository. On Alpine Linux 3.17 or later, install
 the dependencies with this command:
 
 ```
-sudo apk add cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets
+sudo apk add cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets rapidjson
 ```
 
 For older versions of Alpine (i.e., 3.16 and below), please refer to the
@@ -104,7 +92,7 @@ wxWidgets is packaged in FreeBSD's repositories. Install it and the rest
 of Tenacity's dependencies:
 
 ```
-sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg libzip jsoncpp
+sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg libzip rapidjson
 ```
 
 #### vcpkg on Linux
@@ -196,8 +184,7 @@ Keep in mind that we only support the following environments:
 - CLANGARM64
 
 The rule of thumb is this: any environment that links to the UCRT C standard
-library, it is a supported environment. This also applies to 32-bit x86
-environments as well, at least for a little while.
+library is a supported environment. This is regardless of any architecture.
 
 To install the required packages, including any development tools if you
 _don't_ have them already, first note your environment's prefix. For example,
@@ -250,13 +237,13 @@ $ pacman -S mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja mingw-w64-uc
 
 **WARNING**:
 - Do NOT install the regular `cmake` package from the `msys` repository! That
-  version of CMake uses POSIX emulation, which is **NOT** supported
+  version of CMake uses POSIX emulation, which is **NOT** supported.
 - Be very careful about which compiler packages you have installed as they
   could conflict with each other and cause the build to fail. For example,
   using a different `clang` package other than `mingw-w64-clang-x86_64` in the
   CLANG64 environment will cause the build to fail.
 - Tenacity may not build successfully under any MSYS2 environment. This is
-  currently being worked on.
+  currently being worked on and pull requests are accepted.
 
 If you _do_ already have some development tools installed, such as CMake and
 Ninja, you can add them to your MSYS2 path. Edit your `~/.bashrc` and add the
@@ -306,7 +293,8 @@ There are two ways to build wxWidgets:
 
 Adding `-DVCPKG=On` to your CMake options will automatically build wxWidgets in
 addition to all of Tenacity's other dependencies. This is helpful if several
-dependencies are missing from your distro.
+dependencies are missing from your distro, but it will cause very long build
+times if you have not used vcpkg before or updated your vcpkg repo.
 
 #### Building wxWidgets Yourself
 
@@ -344,11 +332,17 @@ This will clone Tenacity and all of its submodules, libnyquist and vcpkg. If
 you don't want vcpkg, you can remove `--recurse-submodules` and do
 `git submodule update --init lib-src/libnyquist` afterwards.
 
-Then, configure CMake. This will take a long time the first time on macOS and
-Windows (or if you use `-DVCPKG=ON` on Linux) because vcpkg will compile
-itself, then compile Tenacity's dependencies. `-G Ninja` is recommended for
-faster builds but not required. Add `-DCMAKE_INSTALL_PREFIX=/some/path` to
-change the installation path from the default /usr/local:
+**NOTE**: What will be cloned is the latest development branch by default. If
+you want a stable version, run `git checkout [version]` where `[version]` is
+the version of Tenacity you want to check out starting with a `v`. For example,
+if you want to checkout verison 1.3.4, you would run `git checkout v1.3.4`.
+
+Then, configure CMake. On macOS, Windows, and other platforms using vcpkg
+(including on Linux if manually enabled), this will take a long time because
+vcpkg will bootstrap itself and then compile Tenacity's dependencies. `-G Ninja`
+is recommended for faster builds but not required. Add
+`-DCMAKE_INSTALL_PREFIX=/some/path` to change the installation path from the
+default /usr/local:
 
 ```
 cmake -G Ninja -S . -B build
@@ -357,7 +351,7 @@ cmake -G Ninja -S . -B build
 **Note**: Under MSYS2, be sure to add `-DVCPKG=OFF` to ensure vcpkg does not
 automatically build dependencies. (You should install dependencies from the
 repos instead). You may also wisth to add `-DSBSMS=ON` to enable high-quality
-stretching as it will be disabled by default.
+stretching with libsbsms, if available, as it will be disabled by default.
 
 Build Tenacity:
 
@@ -368,7 +362,7 @@ cmake --build build
 Run Tenacity:
 
 ```
-build/bin/Debug/tenacity
+build/Debug/tenacity
 ```
 
 Optionally, install Tenacity:
@@ -379,6 +373,7 @@ cmake --install build
 
 ## Build options
 
+### Options Controlling The Build Process
   * **VCPKG** (ON|OFF): whether to use dependencies from vcpkg. ON by default
     for Windows and macOS; OFF by default for Linux.
   * **VCPKG_ROOT** (file path): path to vcpkg Git repository, defaults to
@@ -410,9 +405,12 @@ cmake --install build
     or AVX2. This option takes precedence over -DAVX and -DAVX2. Disabled by
     default.
 
+### Options Controlling Features
+
 The following feature options are enabled by default if the required libraries
-are found. You may explicitly disable them if you prefer or your distribution
-has outdated libraries that do not build with Tenacity.
+are found. Otherwise, they are disabled automatically. You may explicitly
+disable them if you prefer or if your distribution has outdated libraries that
+do not build with Tenacity.
 
   * **MIDI** (ON|OFF): MIDI support. Requires PortMidi and PortSMF.
   * **ID3TAG** (ON|OFF): ID3 tag support for MP3 files. Requires libid3tag.
