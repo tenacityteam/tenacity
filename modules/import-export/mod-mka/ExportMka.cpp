@@ -9,7 +9,14 @@
 
 **********************************************************************/
 
+#include "ExportOptionsEditor.h"
+#include "ExportPlugin.h"
+#include "ExportPluginRegistry.h"
+#include "PlainExportOptionsEditor.h"
 #include "Tags.h"
+
+#include <memory>
+
 #if defined(_CRTDBG_MAP_ALLOC) && LIBMATROSKA_VERSION < 0x010702
 // older libmatroska headers use std::nothrow which is incompatible with <crtdbg.h>
 #undef new
@@ -52,6 +59,47 @@ typedef enum {
 #endif
 
 using namespace libmatroska;
+
+//// Options ///////////////////////////////////////////////////////////////////
+
+enum MkaOptionIDs
+{
+    MkaOptionFormatID,
+    MkaOptionKeepLabelsID
+};
+
+const std::initializer_list<PlainExportOptionsEditor::OptionDesc> MkaOptions {
+    {
+        {
+            MkaOptionFormatID, XO("Format"),
+            "16", ExportOption::TypeEnum,
+            {
+                "16",
+                "24",
+                "f32",
+                #ifdef USE_LIBFLAC
+                "flac16",
+                "flac24"
+                #endif
+            },
+            {
+                XO("PCM 16-bit (Little Endian)") ,
+                XO("PCM 24-bit (Little Endian)") ,
+                XO("PCM Float 32-bit") ,
+                #ifdef USE_LIBFLAC
+                XO("FLAC 16-bit"),
+                XO("FLAC 24-bit")
+                #endif
+            }
+        }, wxT("/FileFormats/MKA/Format")
+    },
+    {
+        {
+            MkaOptionKeepLabelsID, XO("Keep Labels"),
+            true
+        }, wxT("/FileFormats/MKA/ExportLabels")
+    }
+};
 
 //// Utilities for the exporter ///////////////////////////////////////////////
 static uint64_t GetRandomUID64()
@@ -287,3 +335,42 @@ protected:
 };
 #endif
 ///////////////////////////////////////////////////////////////////////////////
+
+//// Export Plugin ////////////////////////////////////////////////////////////
+class ExportMka final : public ExportPlugin
+{
+    public:
+        ExportMka() = default;
+        ~ExportMka() = default;
+
+        int GetFormatCount() const override { return 1; };
+
+        FormatInfo GetFormatInfo(int) const override {
+            return { "Mka", XO("Matroska Files"), { "mka", "mkv" }, 255, true };
+        };
+
+        std::unique_ptr<ExportOptionsEditor> CreateOptionsEditor(
+            int formatIndex, ExportOptionsEditor::Listener* listener
+        ) const override {
+            return std::make_unique<PlainExportOptionsEditor>(
+                MkaOptions, listener
+            );
+        }
+
+        std::vector<std::string> GetMimeTypes(int formatIndex) const override {
+            return {"video/matroska", "audio/matroska"};
+        }
+
+        // TODO: Implement config parser
+        // bool ParseConfig(
+        //     int formatIndex, const rapidjson::Value& config,
+        //     ExportProcessor::Parameters& parameters
+        // ) const override;
+
+        // TODO: Implement export processor
+        std::unique_ptr<ExportProcessor> CreateProcessor(int format) const override { return nullptr; }
+};
+
+static ExportPluginRegistry::RegisteredPlugin sRegisteredPlugin{
+    "Matroska", [] { return std::make_unique<ExportMka>(); }
+};
