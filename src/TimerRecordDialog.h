@@ -62,6 +62,8 @@ public:
    ~TimerRecordDialog();
 
    void OnTimer(wxTimerEvent& event);
+   void UpdateStartTime() noexcept;
+
    ///Runs the wait for start dialog.  Returns false if the user clicks stop.
    int RunWaitDialog();
 
