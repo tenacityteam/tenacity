@@ -125,10 +125,12 @@ private:
    wxTextCtrl *mCursorText;
    wxTextCtrl *mPeakText;
 
+   /// Whether x axis is in log-frequency.
    bool mLogAxis;
+   /// The minimum y value to plot.
    float mYMin;
+   /// The maximum y value to plot.
    float mYMax;
-   float mYStep;
 
    std::unique_ptr<wxBitmap> mBitmap;
 
