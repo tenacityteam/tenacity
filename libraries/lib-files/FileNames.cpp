@@ -736,6 +736,15 @@ bool FileNames::IsOnFATFileSystem(const FilePath &path)
       return false;
    return 0 == strcmp(fs.f_fstypename, "msdos");
 }
+#elif defined(__FreeBSD__)
+bool FileNames::IsOnFATFileSystem(const FilePath &path)
+{
+   struct statfs fs;
+   if (statfs(wxPathOnly(path).c_str(), &fs))
+      // Error from statfs
+      return false;
+   return 0 == strcmp(fs.f_fstypename, "msdosfs");
+}
 #elif defined(__linux__)
 #include <sys/statfs.h>
 #include "/usr/include/linux/magic.h"
