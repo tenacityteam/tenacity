@@ -9,12 +9,21 @@
 
 **********************************************************************/
 
+#include "CodeConversions.h"
 #include "ExportOptionsEditor.h"
 #include "ExportPlugin.h"
+#include "ExportPluginHelpers.h"
 #include "ExportPluginRegistry.h"
+#include "LabelTrack.h"
+#include "Mix.h"
 #include "PlainExportOptionsEditor.h"
+#include "Project.h"
+#include "SampleFormat.h"
 #include "Tags.h"
+#include "Track.h"
+#include "WaveTrack.h"
 
+#include <cstddef>
 #include <memory>
 
 #if defined(_CRTDBG_MAP_ALLOC) && LIBMATROSKA_VERSION < 0x010702
@@ -115,6 +124,9 @@ static uint64_t GetRandomUID64()
 
 static void FillRandomUUID(binary UID[16])
 {
+    // This was originally in ExportMka::ExportMka, but I've migrated it here.
+    std::srand(std::time(nullptr));
+
     uint64_t rand;
     rand = GetRandomUID64();
     memcpy(&UID[0], &rand, 8);
@@ -336,6 +348,472 @@ protected:
 #endif
 ///////////////////////////////////////////////////////////////////////////////
 
+//// Export Processor /////////////////////////////////////////////////////////
+
+/// Responsible for handling exports of Matroska (MKA/MKV) files.
+class MkaExportProcessor final : public ExportProcessor
+{
+    private:
+        struct
+        {
+            std::string                      bitDepthPref;
+            bool                             keepLabels;
+            double                           sampleRate;
+            double                           t0, t1;
+            unsigned                         numChannels;
+            sampleFormat                     format;
+            uint64_t                         bytesPerSample;
+            std::string                      codecID;
+            bool                             outInterleaved;
+            std::unique_ptr<StdIOCallback>   mkaFile;
+            std::unique_ptr<Mixer>           mixer;
+            const Tags*                      metadata;
+            TranslatableString               statusString;
+            std::shared_ptr<AudacityProject> project; // FIXME: Find a way to get rid of this field
+
+            // These should be constants
+            size_t samplesPerRun;
+            uint64 timestampUnit;
+
+            EbmlVoid      dummyStart;
+            KaxSegment    fileSegment;
+            KaxCues       allCues;
+            KaxSeekHead   metaSeek;
+            KaxTrackEntry track1;
+
+            #ifdef USE_LIBFLAC
+            std::unique_ptr<MkaFLACEncoder> flacEncoder;
+            #endif
+        } context;
+
+    public:
+        bool Initialize(AudacityProject& project,
+        const Parameters& parameters,
+        const wxFileNameWrapper& filename,
+        double t0, double t1, bool selectedOnly,
+        double rate, unsigned channels,
+        MixerOptions::Downmix* mixerSpec = nullptr,
+        const Tags* metadata = nullptr) override;
+   
+        ExportResult Process(ExportProcessorDelegate& delegate) override;
+};
+
+bool MkaExportProcessor::Initialize(
+    AudacityProject& project, const Parameters& parameters,
+    const wxFileNameWrapper& filename,
+    double t0, double t1, bool selectedOnly, double rate,
+    unsigned channels, MixerOptions::Downmix* mixerSpec,
+    const Tags* metadata
+)
+{
+    //// First, gather our preferences and important info.
+    //// To see where these defaults were taken, please consult MkaOptions.
+    context.bitDepthPref = ExportPluginHelpers::GetParameterValue<std::string>(
+        parameters, MkaOptionFormatID, "16"
+    );
+
+    context.keepLabels = ExportPluginHelpers::GetParameterValue<bool>(
+        parameters, MkaOptionKeepLabelsID, true
+    );
+
+    context.sampleRate = rate;
+    context.t0 = t0;
+    context.t1 = t1;
+    context.numChannels = channels;
+
+    if (context.bitDepthPref == wxT("24"))
+    {
+        context.codecID = "A_PCM/INT/LIT";
+        context.format = int24Sample;
+        context.bytesPerSample = 3 * channels;
+        context.outInterleaved = true;
+    }
+    else if (context.bitDepthPref == wxT("16"))
+    {
+        context.codecID = "A_PCM/INT/LIT";
+        context.format = int16Sample;
+        context.bytesPerSample = 2 * channels;
+        context.outInterleaved = true;
+    }
+    else if (context.bitDepthPref == wxT("f32"))
+    {
+        context.codecID = "A_PCM/FLOAT/IEEE";
+        context.format = floatSample;
+        context.bytesPerSample = 4 * channels;
+        context.outInterleaved = true;
+    }
+    #ifdef USE_LIBFLAC
+    else if (context.bitDepthPref == wxT("flac16"))
+    {
+        context.codecID = "A_FLAC";
+        context.format = int16Sample;
+        context.bytesPerSample = 2 * channels;
+        context.outInterleaved = false;
+    }
+    else if (context.bitDepthPref == wxT("flac24"))
+    {
+        context.codecID = "A_FLAC";
+        context.format = int24Sample;
+        context.bytesPerSample = 3 * channels;
+        context.outInterleaved = false;
+    }
+    #endif
+
+    //// Next, setup the file for export.
+    auto fName = filename;
+    fName.MakeAbsolute();
+    auto path = fName.GetFullPath();
+    context.mkaFile.reset(new StdIOCallback(path, MODE_CREATE));
+
+    //// Then, setup and write the file structure, including any metadata.
+    EbmlHead FileHead;
+    (EbmlString &) GetChild<EDocType>(FileHead) = "matroska";
+
+    if constexpr (LIBMATROSKA_VERSION >= 0x010406)
+    {
+        (EbmlUInteger &) GetChild<EDocTypeVersion>(FileHead) = 4; // needed for LanguageBCP47
+    } else
+    {
+        (EbmlUInteger &) GetChild<EDocTypeVersion>(FileHead) = 2;
+    }
+
+    (EbmlUInteger &) GetChild<EDocTypeReadVersion>(FileHead) = 2; // needed for SimpleBlock
+    (EbmlUInteger &) GetChild<EMaxIdLength>(FileHead) = 4;
+    (EbmlUInteger &) GetChild<EMaxSizeLength>(FileHead) = 8;
+    FileHead.Render(*context.mkaFile, true);
+
+    auto SegmentSize = context.fileSegment.WriteHead(*context.mkaFile, 5);
+
+    // reserve some space for the Meta Seek writen at the end
+    context.dummyStart.SetSize(128);
+    context.dummyStart.Render(*context.mkaFile);
+
+    context.metaSeek.EnableChecksum();
+
+    // Write program information (and related) to the file
+    context.timestampUnit = std::llround(UINT64_C(1000000000) / rate);
+
+    EbmlMaster & MyInfos = GetChild<KaxInfo>(context.fileSegment);
+    MyInfos.EnableChecksum();
+    (EbmlFloat &) GetChild<KaxDuration>(MyInfos) = (t1 - t0) * UINT64_C(1000000000) / context.timestampUnit; // in TIMESTAMP_UNIT
+    GetChild<KaxDuration>(MyInfos).SetPrecision(EbmlFloat::FLOAT_64);
+    (EbmlUnicodeString &) GetChild<KaxMuxingApp>(MyInfos)  = audacity::ToWString(std::string("libebml ") + EbmlCodeVersion + std::string(" + libmatroska ") + KaxCodeVersion);
+    (EbmlUnicodeString &) GetChild<KaxWritingApp>(MyInfos) = audacity::ToWString(APP_NAME) + L" " + TENACITY_VERSION_STRING;
+    (EbmlUInteger &) GetChild<KaxTimecodeScale>(MyInfos) = context.timestampUnit;
+    GetChild<KaxDateUTC>(MyInfos).SetEpochDate(time(nullptr));
+    binary SegUID[16];
+    FillRandomUUID(SegUID);
+    GetChild<KaxSegmentUID>(MyInfos).CopyBuffer(SegUID, 16);
+    filepos_t InfoSize = MyInfos.Render(*context.mkaFile);
+    if (InfoSize != 0)
+    {
+        context.metaSeek.IndexThis(MyInfos, context.fileSegment);
+    }
+
+    // Write track name
+    // TODO: Multiple tracks
+    auto& tracks = TrackList::Get(project);
+
+    KaxTracks & MyTracks = GetChild<KaxTracks>(context.fileSegment);
+    MyTracks.EnableChecksum();
+
+    KaxTrackEntry & MyTrack1 = GetChild<KaxTrackEntry>(MyTracks);
+    MyTrack1.SetGlobalTimecodeScale(context.timestampUnit);
+
+    (EbmlUInteger &) GetChild<KaxTrackType>(MyTrack1) = MATROSKA_TRACK_TYPE_AUDIO;
+    (EbmlUInteger &) GetChild<KaxTrackNumber>(MyTrack1) = 1;
+    (EbmlUInteger &) GetChild<KaxTrackUID>(MyTrack1) = GetRandomUID64();
+    (EbmlUInteger &) GetChild<KaxTrackDefaultDuration>(MyTrack1) = MS_PER_FRAME * 1000000;
+    (EbmlString &) GetChild<KaxTrackLanguage>(MyTrack1) = "und";
+    if constexpr (LIBMATROSKA_VERSION >= 0x010406)
+    {
+        (EbmlString &) GetChild<KaxLanguageIETF>(MyTrack1) = "und";
+    }
+    auto waveTracks = tracks.Selected< const WaveTrack >();
+    auto pT = waveTracks.begin();
+    if (*pT)
+    {
+        const auto sTrackName = (*pT)->GetName();
+        if (!sTrackName.empty() && sTrackName != (*pT)->GetDefaultAudioTrackNamePreference())
+        {
+            (EbmlUnicodeString &) GetChild<KaxTrackName>(MyTrack1) = (UTFstring)sTrackName;
+        }
+    }
+
+    // Write track info
+    EbmlMaster & MyTrack1Audio = GetChild<KaxTrackAudio>(MyTrack1);
+    (EbmlFloat &) GetChild<KaxAudioSamplingFreq>(MyTrack1Audio) = rate;
+    (EbmlUInteger &) GetChild<KaxAudioChannels>(MyTrack1Audio) = channels;
+    (EbmlString &) GetChild<KaxCodecID>(MyTrack1) = context.codecID;
+    switch(context.format)
+    {
+        case int16Sample:
+            (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 16;
+            break;
+        case int24Sample:
+            (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 24;
+            break;
+        case floatSample:
+            (EbmlUInteger &) GetChild<KaxAudioBitDepth>(MyTrack1Audio) = 32;
+            break;
+        default:
+            return false;
+    }
+
+    // If FLAC support is enabled, and the user wants a FLAC export, setup the FLAC encoder
+    #ifdef USE_LIBFLAC
+    if (context.bitDepthPref == wxT("flac16") || context.bitDepthPref == wxT("flac24"))
+    {
+        context.flacEncoder.reset(new MkaFLACEncoder);
+
+        context.flacEncoder->set_bits_per_sample(context.format == int24Sample ? 24 : 16);
+
+        context.flacEncoder->set_channels(channels) &&
+        context.flacEncoder->set_sample_rate(lrint(rate));
+        auto status = context.flacEncoder->init();
+        if (status != FLAC__STREAM_ENCODER_INIT_STATUS_OK)
+        {
+            throw new std::runtime_error("toto");
+        }
+        const auto & buf = context.flacEncoder->GetInitBuffer();
+        GetChild<KaxCodecPrivate>(MyTrack1).CopyBuffer(buf.data(), buf.size());
+    }
+    #endif
+
+    filepos_t TrackSize = MyTracks.Render(*context.mkaFile);
+    if (TrackSize != 0)
+    {
+        context.metaSeek.IndexThis(MyTracks, context.fileSegment);
+    }
+
+    // reserve some space after the track (to match mkvmerge for now)
+    // EbmlVoid DummyTrack;
+    // DummyTrack.SetSize(1068);
+    // DummyTrack.Render(mka_file);
+
+    // Add tags
+    KaxTags & Tags = GetChild<KaxTags>(context.fileSegment);
+    Tags.EnableChecksum();
+    if (metadata == nullptr)
+    {
+        metadata = &Tags::Get(project);
+    }
+    KaxTag *prevTag = nullptr;
+    SetMetadata(metadata, prevTag, Tags, TAG_TITLE,     MATROSKA_TARGET_TYPE_TRACK, L"TITLE");
+    SetMetadata(metadata, prevTag, Tags, TAG_GENRE,     MATROSKA_TARGET_TYPE_TRACK, L"GENRE");
+    SetMetadata(metadata, prevTag, Tags, TAG_ARTIST,    MATROSKA_TARGET_TYPE_ALBUM, L"ARTIST");
+    SetMetadata(metadata, prevTag, Tags, TAG_ALBUM,     MATROSKA_TARGET_TYPE_ALBUM, L"TITLE");
+    SetMetadata(metadata, prevTag, Tags, TAG_TRACK,     MATROSKA_TARGET_TYPE_ALBUM, L"PART_NUMBER");
+    SetMetadata(metadata, prevTag, Tags, TAG_YEAR,      MATROSKA_TARGET_TYPE_ALBUM, L"DATE_RELEASED");
+    SetMetadata(metadata, prevTag, Tags, TAG_COMMENTS,  MATROSKA_TARGET_TYPE_ALBUM, L"COMMENT");
+    SetMetadata(metadata, prevTag, Tags, TAG_COPYRIGHT, MATROSKA_TARGET_TYPE_ALBUM, L"COPYRIGHT");
+    filepos_t TagsSize = Tags.Render(*context.mkaFile);
+    if (TagsSize != 0)
+    {
+        context.metaSeek.IndexThis(Tags, context.fileSegment);
+    }
+
+    context.allCues.SetGlobalTimecodeScale(context.timestampUnit);
+    context.allCues.EnableChecksum();
+
+    // If the user wants labels exported as chapters, collect the names
+    context.project = std::move(project.shared_from_this());
+
+    //// Finally, setup the mixer
+    const size_t maxFrameSamples = MS_PER_FRAME * rate / 1000; // match mkvmerge
+    context.samplesPerRun = maxFrameSamples * context.bytesPerSample;
+    context.mixer = ExportPluginHelpers::CreateMixer(
+        project, selectedOnly, t0, t1, channels, context.samplesPerRun,
+        context.outInterleaved, rate, context.format, mixerSpec
+    );
+
+    //// Miscellaneous: take care of the status string
+    context.statusString = selectedOnly ?
+        XO("Exporting the selected audio as MKA") :
+        XO("Exporting the audio as MKA");
+
+    return true;
+}
+
+ExportResult MkaExportProcessor::Process(ExportProcessorDelegate& delegate)
+{
+    delegate.SetStatusString(context.statusString);
+    ExportResult exportResult = ExportResult::Success;
+
+    // References needed that we can't keep in our 'context' object.
+    KaxTracks & MyTracks = GetChild<KaxTracks>(context.fileSegment);
+    KaxTrackEntry & MyTrack1 = GetChild<KaxTrackEntry>(MyTracks);
+
+    try
+    {
+        // add clusters
+        std::unique_ptr<ClusterMuxer> Muxer;
+        #ifdef USE_LIBFLAC
+        ArraysOf<FLAC__int32> splitBuff{ context.numChannels, context.samplesPerRun, true };
+        #endif
+
+        ClusterMuxer::MuxerTime prevTime{0, 0, context.timestampUnit, context.sampleRate};
+        while (exportResult == ExportResult::Success)
+        {
+            auto samplesThisRun = context.mixer->Process(context.samplesPerRun);
+            if (samplesThisRun == 0)
+            {
+                #ifdef USE_LIBFLAC
+                if (context.flacEncoder)
+                {
+                    if (!Muxer)
+                    {
+                        Muxer = std::make_unique<ClusterMuxer>(context.fileSegment, MyTrack1, context.allCues, prevTime);
+                    }
+                    context.flacEncoder->finish();
+                }
+                #endif
+
+                if (Muxer)
+                {
+                    prevTime = Muxer->Finish(*context.mkaFile, context.metaSeek);
+                    Muxer = nullptr;
+                }
+                break; //finished
+            }
+
+            if (!Muxer)
+            {
+                Muxer = std::make_unique<ClusterMuxer>(context.fileSegment, MyTrack1, context.allCues, prevTime);
+            }
+
+            #ifdef USE_LIBFLAC
+            if (context.flacEncoder)
+            {
+                for (size_t i = 0; i < context.numChannels; i++)
+                {
+                    auto mixed = context.mixer->GetBuffer(i);
+                    if (context.format == int24Sample) {
+                        for (decltype(samplesThisRun) j = 0; j < samplesThisRun; j++)
+                            splitBuff[i][j] = ((const int *)mixed)[j];
+                    }
+                    else {
+                        for (decltype(samplesThisRun) j = 0; j < samplesThisRun; j++)
+                            splitBuff[i][j] = ((const short *)mixed)[j];
+                    }
+                }
+                auto b = reinterpret_cast<FLAC__int32**>( splitBuff.get() );
+                if (context.flacEncoder->Process(Muxer, b, samplesThisRun))
+                {
+                    prevTime = Muxer->Finish(*context.mkaFile, context.metaSeek);
+                    Muxer = nullptr;
+                }
+            }
+            else
+            #endif
+            {
+                auto mixed = context.mixer->GetBuffer();
+                DataBuffer *dataBuff = new DataBuffer((binary*)mixed, samplesThisRun * context.bytesPerSample, nullptr, true);
+                if (Muxer->AddBuffer(*dataBuff, samplesThisRun))
+                {
+                    prevTime = Muxer->Finish(*context.mkaFile, context.metaSeek);
+                    Muxer = nullptr;
+                }
+            }
+
+            exportResult = ExportPluginHelpers::UpdateProgress(delegate, *context.mixer, context.t0, context.t1);
+        }
+
+        // add cues
+        filepos_t CueSize = context.allCues.Render(*context.mkaFile);
+        if (CueSize != 0)
+        {
+            context.metaSeek.IndexThis(context.allCues, context.fileSegment);
+        }
+
+        uint64 lastElementEnd = context.allCues.GetEndPosition();
+
+        // Add label tracks as chapters
+        if (context.keepLabels)
+        {
+            const auto trackRange = TrackList::Get(*context.project).Any<const LabelTrack>();
+            if (!trackRange.empty())
+            {
+                KaxChapters & EditionList = GetChild<KaxChapters>(context.fileSegment);
+                for (const auto *lt : trackRange)
+                {
+                    if (lt->GetNumLabels())
+                    {
+                        // Create an edition with the track name
+                        KaxEditionEntry &Edition = AddNewChild<KaxEditionEntry>(EditionList);
+                        (EbmlUInteger &) GetChild<KaxEditionUID>(Edition) = GetRandomUID64();
+                        if (!lt->GetName().empty() && lt->GetName() != lt->GetDefaultName())
+                        {
+#if LIBMATROSKA_VERSION >= 0x010700
+                            KaxEditionDisplay & EditionDisplay = GetChild<KaxEditionDisplay>(Edition);
+                            (EbmlUnicodeString &) GetChild<KaxEditionString>(EditionDisplay) = (UTFstring)lt->GetName();
+#endif
+                            // TODO also write the Edition name in tags for older Matroska parsers
+                        }
+
+                        // Add markers and selections
+                        for (const auto & label : lt->GetLabels())
+                        {
+                            KaxChapterAtom & Chapter = AddNewChild<KaxChapterAtom>(Edition);
+                            (EbmlUInteger &) GetChild<KaxChapterUID>(Chapter) = GetRandomUID64();
+                            (EbmlUInteger &) GetChild<KaxChapterTimeStart>(Chapter) = label.getT0() * UINT64_C(1000000000);
+                            if (label.getDuration() != 0.0)
+                                (EbmlUInteger &) GetChild<KaxChapterTimeEnd>(Chapter) = label.getT1() * UINT64_C(1000000000);
+                            if (!label.title.empty())
+                            {
+                                KaxChapterDisplay & ChapterDisplay = GetChild<KaxChapterDisplay>(Chapter);
+                                (EbmlUnicodeString &) GetChild<KaxChapterString>(ChapterDisplay) = (UTFstring)label.title;
+                                (EbmlString &) GetChild<KaxChapterLanguage>(ChapterDisplay) = "und";
+#if LIBMATROSKA_VERSION >= 0x010600
+                                (EbmlString &) GetChild<KaxChapLanguageIETF>(ChapterDisplay) = "und";
+#endif
+                            }
+                        }
+                    }
+                }
+                filepos_t ChaptersSize = EditionList.Render(*context.mkaFile);
+                if (ChaptersSize != 0)
+                {
+                    context.metaSeek.IndexThis(EditionList, context.fileSegment);
+                    lastElementEnd = EditionList.GetEndPosition();
+                }
+            }
+        }
+
+        auto MetaSeekSize = context.dummyStart.ReplaceWith(context.metaSeek, *context.mkaFile);
+        if (MetaSeekSize == INVALID_FILEPOS_T)
+        {
+            // writing at the beginning failed, write at the end and provide a
+            // short metaseek at the front
+            context.metaSeek.Render(*context.mkaFile);
+            lastElementEnd = context.metaSeek.GetEndPosition();
+
+            KaxSeekHead ShortMetaSeek;
+            ShortMetaSeek.EnableChecksum();
+            ShortMetaSeek.IndexThis(context.metaSeek, context.fileSegment);
+            MetaSeekSize = context.dummyStart.ReplaceWith(ShortMetaSeek, *context.mkaFile);
+        }
+
+        if (context.fileSegment.ForceSize(lastElementEnd - context.fileSegment.GetDataStart()))
+        {
+            context.fileSegment.OverwriteHead(*context.mkaFile);
+        }
+
+        // Finally, clean up
+        context.project.reset();
+    } catch (const libebml::CRTError&)
+    {
+        throw ExportException("libebml error");
+    } catch (const std::bad_alloc&)
+    {
+        throw ExportException("Memory allocation error");
+    }
+
+    return ExportResult::Success;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 //// Export Plugin ////////////////////////////////////////////////////////////
 class ExportMka final : public ExportPlugin
 {
@@ -368,8 +846,13 @@ class ExportMka final : public ExportPlugin
         // ) const override;
 
         // TODO: Implement export processor
-        std::unique_ptr<ExportProcessor> CreateProcessor(int format) const override { return nullptr; }
+        std::unique_ptr<ExportProcessor> CreateProcessor(int format) const override
+        {
+            return std::make_unique<MkaExportProcessor>();
+        }
 };
+
+//// Miscellaneous ////////////////////////////////////////////////////////////
 
 static ExportPluginRegistry::RegisteredPlugin sRegisteredPlugin{
     "Matroska", [] { return std::make_unique<ExportMka>(); }
