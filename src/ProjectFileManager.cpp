@@ -11,6 +11,7 @@ Paul Licameli split from AudacityProject.cpp
 #include "ProjectFileManager.h"
 
 #include <wx/crt.h> // for wxPrintf
+#include <wx/filefn.h>
 
 #if defined(__WXGTK__)
 #include <wx/evtloop.h>
@@ -892,7 +893,11 @@ wxArrayString ProjectFileManager::ShowOpenDialog(FileNames::Operation op,
       dlog.GetPaths(selected);
 
       // Remember the directory
-      FileNames::UpdateDefaultPath(op, ::wxPathOnly(dlog.GetPath()));
+      if (!selected.IsEmpty()) {
+         auto& firstSelectedFile = selected[0];
+         auto selectedDir = ::wxPathOnly(firstSelectedFile);
+         FileNames::UpdateDefaultPath(op, selectedDir);
+      }
    }
 
    return selected;
