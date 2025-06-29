@@ -343,7 +343,7 @@ public:
    void SetRate(int rate);
    void SetRawAudioTempo(double tempo);
 
-   PitchAndSpeedPreset GetPitchAndSpeedPreset() const;
+   PitchAndSpeedPreset GetPitchAndSpeedPreset() const override;
 
    //! Stretches from left to the absolute time (if in expected range)
    void StretchLeftTo(double to);

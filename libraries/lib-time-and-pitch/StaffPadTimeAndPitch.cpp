@@ -37,8 +37,8 @@ int GetFftSize(int sampleRate, bool formantPreservationOn)
    // If needed some time in the future, we can decouple analysis window and
    // FFT sizes by zero-padding, allowing for very fine-grained window duration
    // without compromising performance.
-   return 1 << (formantPreservationOn ? 11 : 12) +
-                  (int)std::round(std::log2(sampleRate / 44100.));
+   return 1 << ((formantPreservationOn ? 11 : 12) +
+                  (int)std::round(std::log2(sampleRate / 44100.)));
 }
 
 std::unique_ptr<staffpad::TimeAndPitch> CreateTimeAndPitch(
