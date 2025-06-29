@@ -49,7 +49,6 @@ auto ZoomInfo::TimeToPosition(double projectTime, int64 origin) const -> int64
    return t;
 }
 
-// This always ignores the fisheye.  Use with caution!
 // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
 double ZoomInfo::TimeRangeToPixelWidth(double timeRange) const
 {
@@ -98,11 +97,11 @@ ZoomInfo::FindIntervals(int64 width, int64 origin) const
    const int64 rightmost(origin + (0.5 + width));
    assert(origin <= rightmost);
    {
-      results.push_back(Interval(origin, zoom, false));
+      results.push_back(Interval(origin, zoom));
    }
 
    if (origin < rightmost)
-      results.push_back(Interval(rightmost, 0, false));
+      results.push_back(Interval(rightmost, 0));
    assert(!results.empty() && results[0].position == origin);
    return results;
 }

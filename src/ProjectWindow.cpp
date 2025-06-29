@@ -1280,7 +1280,7 @@ void ProjectWindow::PlaybackScroller::OnTimer()
             deltaX = posX - width;        break;
       }
       viewInfo.hpos =
-         viewInfo.OffsetTimeByPixels(viewInfo.hpos, deltaX, true);
+         viewInfo.OffsetTimeByPixels(viewInfo.hpos, deltaX);
          // Can't scroll too far left
          viewInfo.hpos = std::max(0.0, viewInfo.hpos);
       trackPanel.Refresh(false);

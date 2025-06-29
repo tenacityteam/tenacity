@@ -535,9 +535,8 @@ void DrawWaveformBackground(TrackPanelDrawingContext &context,
 struct WavePortion {
    wxRect rect;
    double averageZoom;
-   bool inFisheye;
-   WavePortion(int x, int y, int w, int h, double zoom, bool i)
-      : rect(x, y, w, h), averageZoom(zoom), inFisheye(i)
+   WavePortion(int x, int y, int w, int h, double zoom)
+      : rect(x, y, w, h), averageZoom(zoom)
    {}
 };
 
@@ -564,7 +563,7 @@ void FindWavePortions
       if (width > 0)
          portions.push_back(
             WavePortion(left, rect.y, width, rect.height,
-                        prev->averageZoom, prev->inFisheye)
+                        prev->averageZoom)
          );
       left = right;
    }
@@ -883,8 +882,8 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
       auto offset = leftOffset;
       for(const auto& portion : portions)
       {
-         assert(!portion.inFisheye && portion.averageZoom > threshold1);
-         if(portion.inFisheye || portion.averageZoom <= threshold1)
+         assert(portion.averageZoom > threshold1);
+         if(portion.averageZoom <= threshold1)
             continue;
 
          wxRect rectPortion = portion.rect;

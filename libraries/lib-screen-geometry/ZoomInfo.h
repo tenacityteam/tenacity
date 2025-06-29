@@ -70,13 +70,12 @@ public:
    // origin specifies the pixel corresponding to time h
    int64 TimeToPosition(double time, int64 origin = 0) const;
 
-   // This always ignores the fisheye.  Use with caution!
    // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
    double TimeRangeToPixelWidth(double timeRange) const;
 
-   double OffsetTimeByPixels(double time, int64 offset, bool ignoreFisheye = false) const
+   double OffsetTimeByPixels(double time, int64 offset) const
    {
-      return PositionToTime(offset + TimeToPosition(time, ignoreFisheye), ignoreFisheye);
+      return PositionToTime(offset + TimeToPosition(time));
    }
 
    int GetWidth() const { return mWidth; }
@@ -131,9 +130,9 @@ public:
    void ZoomBy(double multiplier);
 
    struct Interval {
-      int64 position; double averageZoom; bool inFisheye;
-      Interval(int64 p, double z, bool i)
-         : position(p), averageZoom(z), inFisheye(i) {}
+      int64 position; double averageZoom;
+      Interval(int64 p, double z)
+         : position(p), averageZoom(z) {}
    };
    typedef std::vector<Interval> Intervals;
 
