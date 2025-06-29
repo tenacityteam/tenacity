@@ -408,10 +408,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    wxImage image((int)mid.width, (int)mid.height);
    if (!image.IsOk())
       return;
-#ifdef EXPERIMENTAL_SPECTROGRAM_OVERLAY
-   image.SetAlpha();
-   unsigned char *alpha = image.GetAlpha();
-#endif
    unsigned char *data = image.GetData();
 
    const auto half = settings.GetFFTLength() / 2;
@@ -609,10 +605,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          GetColorGradient(value, selected, colorScheme, &rv, &gv, &bv);
 
          int px = ((mid.height - 1 - yy) * mid.width + xx);
-#ifdef EXPERIMENTAL_SPECTROGRAM_OVERLAY
-         // More transparent the closer to zero intensity.
-         alpha[px]= wxMin( 200, (value+0.3) * 500) ;
-#endif
          px *=3;
          data[px++] = rv;
          data[px++] = gv;
