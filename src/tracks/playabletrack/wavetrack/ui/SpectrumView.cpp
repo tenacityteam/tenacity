@@ -537,9 +537,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
       ArrayOf<int> indexes{ maxTableSize };
 #endif //EXPERIMENTAL_FIND_NOTES
 
-#ifdef _OPENMP
-#pragma omp parallel for
-#endif
       for (int xx = 0; xx < hiddenMid.width; ++xx) {
 #ifdef EXPERIMENTAL_FIND_NOTES
          int maximas = 0;
@@ -671,10 +668,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    // Bug 2389 - always draw at least one pixel of selection.
    int selectedX = zoomInfo.TimeToPosition(selectedRegion.t0(), -leftOffset);
-
-#ifdef _OPENMP
-#pragma omp parallel for
-#endif
 
    const NumberScale numberScale(settings.GetScale(minFreq, maxFreq));
    int windowSize = mpSpectralData->GetWindowSize();

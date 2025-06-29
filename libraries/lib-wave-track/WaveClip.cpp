@@ -29,10 +29,6 @@
 #include "TimeAndPitchInterface.h"
 #include "UserException.h"
 
-#ifdef _OPENMP
-#include <omp.h>
-#endif
-
 const char *WaveClip::WaveClip_tag = "waveclip";
 
 WaveClipListener::~WaveClipListener() = default;
