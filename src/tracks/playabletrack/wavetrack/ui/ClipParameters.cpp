@@ -29,8 +29,8 @@ double CalculateAdjustmentForZoomLevel(double avgPixPerSecond, bool showSamples)
 
 double GetPixelsPerSecond(const wxRect& viewRect, const ZoomInfo& zoomInfo)
 {
-   const auto h = zoomInfo.PositionToTime(0, 0, true);
-   const auto trackRectT1 = zoomInfo.PositionToTime(viewRect.width, 0, true);
+   const auto h = zoomInfo.PositionToTime(0, 0);
+   const auto trackRectT1 = zoomInfo.PositionToTime(viewRect.width, 0);
    return viewRect.width / (trackRectT1 - h);
 }
 
@@ -50,12 +50,12 @@ double GetBlankSpaceBeforePlayEndTime(const ClipTimes& clip)
 
 ClipParameters::ClipParameters(
    const ClipTimes& clip, const wxRect& rect, const ZoomInfo& zoomInfo)
-    : trackRectT0 { zoomInfo.PositionToTime(0, 0, true) }
+    : trackRectT0 { zoomInfo.PositionToTime(0, 0) }
     , averagePixelsPerSecond { GetPixelsPerSecond(rect, zoomInfo) }
     , showIndividualSamples { ShowIndividualSamples(
          clip.GetRate(), clip.GetStretchRatio(), averagePixelsPerSecond) }
 {
-   const auto trackRectT1 = zoomInfo.PositionToTime(rect.width, 0, true);
+   const auto trackRectT1 = zoomInfo.PositionToTime(rect.width, 0);
    const auto stretchRatio = clip.GetStretchRatio();
    const auto playStartTime = clip.GetPlayStartTime();
 
@@ -98,7 +98,7 @@ ClipParameters::ClipParameters(
    if (tpre < 0)
    {
       // Fix Bug #1296 caused by premature conversion to (int).
-      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime, 0, true);
+      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime, 0);
       if (time64 < 0)
          time64 = 0;
       hiddenLeftOffset = (time64 < rect.width) ? (int)time64 : rect.width;
@@ -113,7 +113,7 @@ ClipParameters::ClipParameters(
    // size of the blank area.
    if (tpost > t1)
    {
-      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime + t1, 0, true);
+      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime + t1, 0);
       if (time64 < 0)
          time64 = 0;
       const int hiddenRightOffset =
@@ -132,7 +132,7 @@ ClipParameters::ClipParameters(
    leftOffset = 0;
    if (tpre < 0)
    {
-      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime, 0, false);
+      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime, 0);
       if (time64 < 0)
          time64 = 0;
       leftOffset = (time64 < rect.width) ? (int)time64 : rect.width;
@@ -147,7 +147,7 @@ ClipParameters::ClipParameters(
    // size of the blank area.
    if (tpost > t1)
    {
-      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime + t1, 0, false);
+      wxInt64 time64 = zoomInfo.TimeToPosition(playStartTime + t1, 0);
       if (time64 < 0)
          time64 = 0;
       const int distortedRightOffset =
@@ -173,13 +173,13 @@ wxRect ClipParameters::GetClipRect(
    constexpr auto edgeRight =
       static_cast<ZoomInfo::int64>(std::numeric_limits<int>::max());
    const auto left = std::clamp(
-      zoomInfo.TimeToPosition(clip.GetPlayStartTime(), viewRect.x, true),
+      zoomInfo.TimeToPosition(clip.GetPlayStartTime(), viewRect.x),
       edgeLeft, edgeRight);
    const auto right = std::clamp(
       zoomInfo.TimeToPosition(
          clip.GetPlayEndTime() - GetBlankSpaceBeforePlayEndTime(clip) +
             clipEndingAdjustment,
-         viewRect.x, true),
+         viewRect.x),
       edgeLeft, edgeRight);
    if (right >= left)
    {

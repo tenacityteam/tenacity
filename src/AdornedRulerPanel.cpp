@@ -1698,16 +1698,12 @@ bool AdornedRulerPanel::UpdateRects()
 
 double AdornedRulerPanel::Pos2Time(int p, bool ignoreFisheye) const
 {
-   return mViewInfo->PositionToTime(p, mLeftOffset
-      , ignoreFisheye
-   );
+   return mViewInfo->PositionToTime(p, mLeftOffset);
 }
 
 int AdornedRulerPanel::Time2Pos(double t, bool ignoreFisheye) const
 {
-   return mViewInfo->TimeToPosition(t, mLeftOffset
-      , ignoreFisheye
-   );
+   return mViewInfo->TimeToPosition(t, mLeftOffset);
 }
 
 bool AdornedRulerPanel::IsWithinMarker(int mousePosX, double markerTime)

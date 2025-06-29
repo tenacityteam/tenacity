@@ -31,20 +31,14 @@ ZoomInfo::~ZoomInfo()
 /// Converts a position (mouse X coordinate) to
 /// project time, in seconds.  Needs the left edge of
 /// the track as an additional parameter.
-double ZoomInfo::PositionToTime(int64 position,
-   int64 origin
-   , bool // ignoreFisheye
-) const
+double ZoomInfo::PositionToTime(int64 position, int64 origin) const
 {
    return hpos + (position - origin) / zoom;
 }
 
 
 /// STM: Converts a project time to screen x position.
-auto ZoomInfo::TimeToPosition(double projectTime,
-   int64 origin
-   , bool // ignoreFisheye
-) const -> int64
+auto ZoomInfo::TimeToPosition(double projectTime, int64 origin) const -> int64
 {
    double t = 0.5 + zoom * (projectTime - hpos) + origin ;
    if( t < INT64_MIN )

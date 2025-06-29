@@ -62,19 +62,13 @@ public:
    // Instead, call twice to convert start and end times,
    // and take the difference.
    // origin specifies the pixel corresponding to time h
-   double PositionToTime(int64 position,
-      int64 origin = 0
-      , bool ignoreFisheye = false
-   ) const;
+   double PositionToTime(int64 position, int64 origin = 0) const;
 
    // do NOT use this once to convert a duration to a pixel width!
    // Instead, call twice to convert start and end positions,
    // and take the difference.
    // origin specifies the pixel corresponding to time h
-   int64 TimeToPosition(double time,
-      int64 origin = 0
-      , bool ignoreFisheye = false
-   ) const;
+   int64 TimeToPosition(double time, int64 origin = 0) const;
 
    // This always ignores the fisheye.  Use with caution!
    // You should prefer to call TimeToPosition twice, for endpoints, and take the difference!
@@ -107,7 +101,7 @@ public:
    double GetScreenEndTime() const
    {
       auto width = GetTracksUsableWidth();
-      return PositionToTime(width, 0, true);
+      return PositionToTime(width, 0);
    }
 
    bool ZoomInAvailable() const;
