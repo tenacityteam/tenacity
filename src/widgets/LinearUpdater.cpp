@@ -36,17 +36,11 @@ void LinearUpdater::Update(
 
    const double mMin = context.mMin;
    const double mMax = context.mMax;
-   const double mHiddenMin = context.mHiddenMin;
-   const double mHiddenMax = context.mHiddenMax;
 
    const RulerStruct::Fonts& mFonts = *context.mpFonts;
    const bool mLabelEdges = context.mLabelEdges;
 
-   // Use the "hidden" min and max to determine the tick size.
-   // That may make a difference with fisheye.
-   // Otherwise you may see the tick size for the whole ruler change
-   // when the fisheye approaches start or end.
-   double UPP = (mHiddenMax - mHiddenMin) / mLength;  // Units per pixel
+   double UPP = (mMax - mMin) / mLength;  // Units per pixel
    TickSizes tickSizes{ UPP, mOrientation, context.mpRulerFormat, false };
 
    auto TickAtValue =

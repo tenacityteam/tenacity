@@ -31,8 +31,6 @@ void LogarithmicUpdater::Update(
 
    const double mMin = context.mMin;
    const double mMax = context.mMax;
-   const double mHiddenMin = context.mHiddenMin;
-   const double mHiddenMax = context.mHiddenMax;
 
    const RulerStruct::Fonts& mFonts = *context.mpFonts;
    const NumberScale mNumberScale = context.mNumberScale;
@@ -41,7 +39,7 @@ void LogarithmicUpdater::Update(
       ? NumberScale(nstLogarithmic, mMin, mMax)
       : mNumberScale;
 
-   double UPP = (mHiddenMax - mHiddenMin) / mLength;  // Units per pixel
+   double UPP = (mMax - mMin) / mLength;  // Units per pixel
    TickSizes tickSizes{ UPP, mOrientation, context.mpRulerFormat, true };
 
    tickSizes.mDigits = 2; //TODO: implement dynamic digit computation

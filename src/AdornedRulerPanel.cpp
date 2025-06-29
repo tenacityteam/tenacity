@@ -1696,12 +1696,12 @@ bool AdornedRulerPanel::UpdateRects()
    return true;
 }
 
-double AdornedRulerPanel::Pos2Time(int p, bool ignoreFisheye) const
+double AdornedRulerPanel::Pos2Time(int p) const
 {
    return mViewInfo->PositionToTime(p, mLeftOffset);
 }
 
-int AdornedRulerPanel::Time2Pos(double t, bool ignoreFisheye) const
+int AdornedRulerPanel::Time2Pos(double t) const
 {
    return mViewInfo->TimeToPosition(t, mLeftOffset);
 }
@@ -2451,12 +2451,10 @@ void AdornedRulerPanel::DoDrawEdge(wxDC *dc)
 void AdornedRulerPanel::DoDrawMarks(wxDC * dc, bool /*text */ )
 {
    const double min = Pos2Time(mInner.x);
-   const double hiddenMin = Pos2Time(mInner.x, true);
    const double max = Pos2Time(mInner.x + mInner.width);
-   const double hiddenMax = Pos2Time(mInner.x + mInner.width, true);
 
    mRuler.SetTickColour( theTheme.Colour( TimelineTextColor() ) );
-   mRuler.SetRange( min, max, hiddenMin, hiddenMax );
+   mRuler.SetRange( min, max );
    if (mTimeDisplayMode == TimeDisplayMode::BeatsAndMeasures)
    {
       mRuler.SetTickLengths({ 5, 3, 1 });

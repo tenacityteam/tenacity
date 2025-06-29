@@ -59,13 +59,6 @@ class TENACITY_DLL_API Ruler :
    // (at the center of the pixel, in both cases)
    void SetRange(double min, double max);
 
-   // An overload needed for the special case of fisheye
-   // min is the value at (x, y)
-   // max is the value at (x+width, y+height)
-   // hiddenMin, hiddenMax are the values that would be shown without the fisheye.
-   // (at the center of the pixel, in both cases)
-   void SetRange(double min, double max, double hiddenMin, double hiddenMax);
-
    // Set the kind of updater the ruler will use (Linear, Logarithmic, Custom, etc.)
    // Invalidates the ruler.  However ruler doesn't invalidate automatically
    // if the updater's state is mutated elsewhere.

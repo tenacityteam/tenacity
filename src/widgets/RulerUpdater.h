@@ -30,9 +30,7 @@ struct RulerStruct {
    };
 
    double mMin{ 0.0 };
-   double mHiddenMin{ 0.0 };
    double mMax{ 100.0 };
-   double mHiddenMax{ 100.0 };
 
    int mOrientation{ wxHORIZONTAL };
    bool mFlip{ false };

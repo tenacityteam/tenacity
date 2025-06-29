@@ -151,26 +151,13 @@ void Ruler::SetOrientation(int orient)
 
 void Ruler::SetRange(double min, double max)
 {
-   SetRange(min, max, min, max);
-}
-
-void Ruler::SetRange
-   (double min, double max, double hiddenMin, double hiddenMax)
-{
    // For a horizontal ruler,
    // min is the value in the center of pixel "left",
    // max is the value in the center of pixel "right".
 
-   // In the special case of a time ruler,
-   // hiddenMin and hiddenMax are values that would be shown with the fisheye
-   // turned off.  In other cases they equal min and max respectively.
-
-   if (mRulerStruct.mMin != min || mRulerStruct.mMax != max ||
-      mRulerStruct.mHiddenMin != hiddenMin || mRulerStruct.mHiddenMax != hiddenMax) {
+   if (mRulerStruct.mMin != min || mRulerStruct.mMax != max) {
       mRulerStruct.mMin = min;
       mRulerStruct.mMax = max;
-      mRulerStruct.mHiddenMin = hiddenMin;
-      mRulerStruct.mHiddenMax = hiddenMax;
 
       Invalidate();
    }
