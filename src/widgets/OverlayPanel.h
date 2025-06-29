@@ -13,6 +13,8 @@
 #include <vector>
 #include "BackedPanel.h" // to inherit
 
+#include <wx/dc.h>
+
 class Overlay;
 
 class TENACITY_DLL_API OverlayPanel /* not final */ : public BackedPanel {
@@ -38,14 +40,18 @@ public:
    // pDC can be null, in which case, DrawOverlays() will create a
    // wxClientDC internally when necessary.
    void DrawOverlays(bool repaint_all, wxDC *pDC = nullptr);
-   
+
 private:
    using OverlayPtr = std::weak_ptr<Overlay>;
 
    void Compress();
    std::vector< OverlayPtr > mOverlays;
-   
-   
+
+   // Performs actual drawing of overlays
+   using OverlayPair = std::pair<wxRect, bool /* out of date? */>;
+   std::vector<OverlayPair> mOverlayPairs;
+   void DoDrawOverlays(bool repaintAll, wxDC& dc);
+
    DECLARE_EVENT_TABLE()
    friend class GetInfoCommand;
 };
