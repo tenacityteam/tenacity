@@ -63,8 +63,8 @@ class MeterUpdateMsg
    int tailPeakCount[kMaxMeterBars];
 
    /* neither constructor nor destructor do anything */
-   MeterUpdateMsg() { }
-   ~MeterUpdateMsg() { }
+   MeterUpdateMsg() = default;
+   ~MeterUpdateMsg() = default;
    /* for debugging purposes, printing the values out is really handy */
    /** \brief Print out all the values in the meter update message */
    wxString toString();
