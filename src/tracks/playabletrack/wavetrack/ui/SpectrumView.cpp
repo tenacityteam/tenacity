@@ -664,38 +664,10 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
       : settings.findBin( sqrt(freqLo * freqHi), binUnit );
 
    const bool isSpectral = settings.SpectralSelectionEnabled();
-   const bool hidden = (ZoomInfo::HIDDEN == zoomInfo.GetFisheyeState());
-   const int begin = hidden
-      ? 0
-      : std::max(0, (int)(zoomInfo.GetFisheyeLeftBoundary(-leftOffset)));
-   const int end = hidden
-      ? 0
-      : std::min(mid.width, (int)(zoomInfo.GetFisheyeRightBoundary(-leftOffset)));
-   const size_t numPixels = std::max(0, end - begin);
-
-   SpecCache specCache;
-
-   // need explicit resize since specCache.where[] accessed before Populate()
-   specCache.Resize(numPixels, settings, -1, t0);
-
-   if (numPixels > 0) {
-      for (int ii = begin; ii < end; ++ii) {
-         const double time = zoomInfo.PositionToTime(ii, -leftOffset) - playStartTime;
-         specCache.where[ii - begin] =
-            sampleCount(0.5 + sampleRate / stretchRatio * time);
-      }
-      specCache.Populate(
-         settings, clip, 0, 0, numPixels,
-         0 // FIXME: PRL -- make reassignment work with fisheye
-      );
-   }
 
    // build color gradient tables (not thread safe)
    if (!AColor::gradient_inited)
       AColor::PreComputeGradient();
-
-   // left pixel column of the fisheye
-   int fisheyeLeft = zoomInfo.GetFisheyeLeftBoundary(-leftOffset);
 
    // Bug 2389 - always draw at least one pixel of selection.
    int selectedX = zoomInfo.TimeToPosition(selectedRegion.t0(), -leftOffset);
@@ -737,18 +709,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    for (int xx = 0; xx < mid.width; ++xx) {
       int correctedX = xx + leftOffset - hiddenLeftOffset;
-
-      // in fisheye mode the time scale has changed, so the row values aren't cached
-      // in the loop above, and must be fetched from fft cache
-      float* uncached;
-      if (!zoomInfo.InFisheye(xx, -leftOffset)) {
-          uncached = 0;
-      }
-      else {
-          int specIndex = (xx - fisheyeLeft) * nBins;
-          wxASSERT(specIndex >= 0 && specIndex < (int)specCache.freq.size());
-          uncached = &specCache.freq[specIndex];
-      }
 
       // zoomInfo must be queried for each column since with fisheye enabled
       // time between columns is variable
@@ -815,9 +775,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
                selected = AColor::ColorGradientTimeAndFrequencySelected;
          }
 
-         const float value = uncached
-            ? findValue(uncached, bin, nextBin, nBins, autocorrelation, gain, range)
-            : specPxCache->values[correctedX * hiddenMid.height + yy];
+         const float value = specPxCache->values[correctedX * hiddenMid.height + yy];
 
          unsigned char rv, gv, bv;
          GetColorGradient(value, selected, colorScheme, &rv, &gv, &bv);

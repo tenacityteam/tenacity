@@ -152,28 +152,6 @@ public:
    // @param origin specifies the pixel position corresponding to time ViewInfo::h.
    Intervals FindIntervals(int64 width, int64 origin = 0) const;
 
-   enum FisheyeState {
-      HIDDEN,
-      PINNED,
-
-      NUM_STATES,
-   };
-   FisheyeState GetFisheyeState() const
-   { return HIDDEN; } // stub
-
-   // Return true if the mouse position is anywhere in the fisheye
-   // origin specifies the pixel corresponding to time h
-   bool InFisheye(int64 /*position*/, int64 = 0) const
-   {return false;} // stub
-
-   // These accessors ignore the fisheye hiding state.
-   // Inclusive:
-   int64 GetFisheyeLeftBoundary(int64 = 0) const
-   {return 0;} // stub
-   // Exclusive:
-   int64 GetFisheyeRightBoundary(int64 = 0) const
-   {return 0;} // stub
-
    int mWidth{ 0 };
    int mVRulerWidth{ 36 };
 };
