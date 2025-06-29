@@ -1303,7 +1303,6 @@ AdornedRulerPanel::AdornedRulerPanel(AudacityProject* project,
 
    SetLabel( XO("Timeline") );
    SetName();
-   SetBackgroundStyle(wxBG_STYLE_PAINT);
 
    mLeftOffset = 0;
    mIndTime = -1;

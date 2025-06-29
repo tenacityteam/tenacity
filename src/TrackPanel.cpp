@@ -274,7 +274,6 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
    SetLayoutDirection(wxLayout_LeftToRight);
    SetLabel(XO("Track Panel"));
    SetName(XO("Track Panel"));
-   SetBackgroundStyle(wxBG_STYLE_PAINT);
 
 #if wxUSE_ACCESSIBILITY
    // Inject finder of track rectangles into the accessibility helper

@@ -19,7 +19,9 @@ OverlayPanel::OverlayPanel(wxWindow * parent, wxWindowID id,
              const wxSize & size,
              long style)
 : BackedPanel(parent, id, pos, size, style)
-{}
+{
+   SetBackgroundStyle(wxBG_STYLE_PAINT);
+}
 
 void OverlayPanel::AddOverlay( const std::weak_ptr<Overlay> &pOverlay)
 {
