@@ -10,7 +10,7 @@
 
    Paul Licameli split from Equalization.cpp
 
- /*********************************************************************/
+***********************************************************************/
 #include "EqualizationCurvesList.h"
 #include "BasicUI.h"
 #include "EqualizationFilter.h"
