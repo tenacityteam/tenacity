@@ -10,10 +10,11 @@
 #define __AUDACITY_OVERLAY_PANEL__
 
 #include <memory>
+#include <optional>
 #include <vector>
 #include "BackedPanel.h" // to inherit
 
-#include <wx/dc.h>
+#include <wx/dcclient.h>
 
 class Overlay;
 
@@ -39,7 +40,7 @@ public:
    // will be erased and re-drawn.
    // pDC can be null, in which case, DrawOverlays() will create a
    // wxClientDC internally when necessary.
-   void DrawOverlays(bool repaint_all, wxDC *pDC = nullptr);
+   void DrawOverlays(bool repaint_all, wxPaintDC* dc = nullptr);
 
 private:
    using OverlayPtr = std::weak_ptr<Overlay>;
@@ -50,7 +51,7 @@ private:
    // Performs actual drawing of overlays
    using OverlayPair = std::pair<wxRect, bool /* out of date? */>;
    std::vector<OverlayPair> mOverlayPairs;
-   void DoDrawOverlays(bool repaintAll, wxDC& dc);
+   void DoDrawOverlays(bool repaintAll, wxPaintDC& dc);
 
    DECLARE_EVENT_TABLE()
    friend class GetInfoCommand;

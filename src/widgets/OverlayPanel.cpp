@@ -42,7 +42,7 @@ void OverlayPanel::ClearOverlays()
    mOverlays.clear();
 }
 
-void OverlayPanel::DrawOverlays(bool repaint_all, wxDC *pDC)
+void OverlayPanel::DrawOverlays(bool repaint_all, wxPaintDC* dc)
 {
    if ( !IsShownOnScreen() )
       return;
@@ -98,12 +98,27 @@ void OverlayPanel::DrawOverlays(bool repaint_all, wxDC *pDC)
       } while (!done);
    }
 
-   std::optional<wxClientDC> myDC;
-   auto &dc = pDC ? *pDC : (myDC.emplace(this), *myDC);
-   DoDrawOverlays(repaint_all, dc);
+   if (dc)
+   {
+      // We're in a paint handler. Draw the overlays now.
+      DoDrawOverlays(repaint_all, *dc);
+   } else
+   {
+      // Temporarily add a custom paint handler to redraw the overlays
+      auto paintHandler = [this, repaint_all](wxPaintEvent& event)
+      {
+         wxPaintDC dc(this);
+         DoDrawOverlays(repaint_all, dc);
+      };
+
+      // Bind a temporary event handler
+      Bind(wxEVT_PAINT, paintHandler);
+      Refresh();
+      Unbind(wxEVT_PAINT, paintHandler);
+   }
 }
 
-void OverlayPanel::DoDrawOverlays(bool repaintAll, wxDC& dc)
+void OverlayPanel::DoDrawOverlays(bool repaintAll, wxPaintDC& dc)
 {
    // Erase
    auto pair = mOverlayPairs.begin();
