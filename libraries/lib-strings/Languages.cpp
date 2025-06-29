@@ -225,7 +225,8 @@ void GetLanguages( FilePaths pathList,
       #else
       wxFileName pathNorm{ wxStandardPaths::Get().GetInstallPrefix() + L"/share/locale" };
       #endif 
-      pathNorm.Normalize();
+      auto flags = wxPATH_NORM_DOTS | wxPATH_NORM_TILDE | wxPATH_NORM_ABSOLUTE | wxPATH_NORM_SHORTCUT;
+      pathNorm.Normalize(flags);
       const wxString newPath{ pathNorm.GetFullPath() };
       if (pathList.end() ==
           std::find(pathList.begin(), pathList.end(), newPath))
