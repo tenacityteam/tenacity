@@ -14,6 +14,7 @@
 #include "ExportPlugin.h"
 #include "ExportPluginHelpers.h"
 #include "ExportPluginRegistry.h"
+#include "ExportTypes.h"
 #include "LabelTrack.h"
 #include "Mix.h"
 #include "PlainExportOptionsEditor.h"
@@ -25,6 +26,8 @@
 
 #include <cstddef>
 #include <memory>
+
+#include <rapidjson/document.h>
 
 #if defined(_CRTDBG_MAP_ALLOC) && LIBMATROSKA_VERSION < 0x010702
 // older libmatroska headers use std::nothrow which is incompatible with <crtdbg.h>
@@ -840,10 +843,10 @@ class ExportMka final : public ExportPlugin
         }
 
         // TODO: Implement config parser
-        // bool ParseConfig(
-        //     int formatIndex, const rapidjson::Value& config,
-        //     ExportProcessor::Parameters& parameters
-        // ) const override;
+        bool ParseConfig(
+            int, const rapidjson::Value& config,
+            ExportProcessor::Parameters& parameters
+        ) const override;
 
         // TODO: Implement export processor
         std::unique_ptr<ExportProcessor> CreateProcessor(int format) const override
@@ -851,6 +854,36 @@ class ExportMka final : public ExportPlugin
             return std::make_unique<MkaExportProcessor>();
         }
 };
+
+bool ExportMka::ParseConfig(
+    int, const rapidjson::Value& config,
+    ExportProcessor::Parameters& parameters
+) const
+{
+    if (!config.IsObject() || !config.HasMember("bit_depth") || !config.HasMember("keep_labels") ||
+        !config["bit_depth"].IsString() || !config["keep_labels"].IsBool())
+    {
+        return false;
+    }
+
+    const auto bitDepth = ExportValue(config["bit_depth"].GetString());
+    const auto keepLabels = ExportValue(config["keep_labels"].GetBool());
+
+    // Check to ensure the value of bit_depth is valid
+    const auto& validFormats = MkaOptions.begin()[0].option.values;
+
+    if (std::find(validFormats.begin(), validFormats.end(), bitDepth) == validFormats.end())
+    {
+        return false;
+    }
+
+    parameters = {
+        { MkaOptionFormatID, bitDepth },
+        { MkaOptionKeepLabelsID, keepLabels }
+    };
+
+    return true;
+}
 
 //// Miscellaneous ////////////////////////////////////////////////////////////
 
