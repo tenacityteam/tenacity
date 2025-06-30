@@ -1289,26 +1289,6 @@ struct ChannelStack final : TrackPanelGroup {
          AColor::Line( *dc, vRulerRect.GetLeftTop(), vRulerRect.GetLeftBottom() );
          AColor::Line( *dc, vRulerRect.GetRightTop(), vRulerRect.GetRightBottom() );
       }
-      if (iPass == TrackArtist::PassFocus && mpTrack->IsSelected()) {
-         const auto channels = mpTrack->Channels();
-         const auto pLast = *channels.rbegin();
-         wxCoord yy = rect.GetTop();
-         auto heights = FindAdjustedChannelHeights(*mpTrack);
-         auto pHeight = heights.begin();
-         for (auto pChannel : channels) {
-            auto& view = ChannelView::Get(*pChannel);
-            auto height = *pHeight++;
-            if (auto affordance = view.GetAffordanceControls())
-               height += kAffordancesAreaHeight;
-            auto trackRect = wxRect(
-               mLeftOffset,
-               yy,
-               rect.GetRight() - mLeftOffset,
-               height - kChannelSeparatorThickness);
-            TrackArt::DrawCursor(context, trackRect, mpTrack.get());
-            yy += height;
-         }
-      }
    }
 
    const std::shared_ptr<Track> mpTrack;
