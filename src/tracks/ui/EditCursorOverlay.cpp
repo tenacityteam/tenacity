@@ -112,12 +112,10 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
          const auto pChannel = pChannelView->FindChannel();
          const auto pTrack =
             dynamic_cast<Track *>(&pChannel->GetChannelGroup());
-         if (pChannel && pTrack->GetSelected())
-         {
-            // AColor::Line includes both endpoints so use GetBottom()
-            AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
-            // ^^^ The whole point of this routine.
-         }
+         auto r = tp->GetRect();
+         // AColor::Line includes both endpoints so use GetBottom()
+         AColor::Line(dc, mLastCursorX, r.GetTop(), mLastCursorX, r.GetBottom());
+         // ^^^ The whole point of this routine.
       } );
    }
    else if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
