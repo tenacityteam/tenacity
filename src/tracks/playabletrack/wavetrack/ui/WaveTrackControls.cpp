@@ -12,6 +12,7 @@ Paul Licameli split from TrackPanel.cpp
 #include "WaveTrackControls.h"
 
 #include "../../ui/PlayableTrackButtonHandles.h"
+#include "SampleFormat.h"
 #include "WaveTrackSliderHandles.h"
 
 #include "WaveChannelView.h"
@@ -988,6 +989,52 @@ void PanSliderDrawFunction
       pParent, captured, hit);
 }
 
+constexpr int statusTextOffset = 3; // Used for the next two functions below
+
+void SampleRateStatusDrawFunction(
+   TrackPanelDrawingContext& context,
+   const wxRect& rect, const Track* track
+)
+{
+   auto waveTrack = static_cast<const WaveTrack*>(track);
+   int rate = waveTrack->GetRate();
+
+   // Draw the text
+   context.dc.DrawText(
+      std::to_string(rate) + " Hz", rect.x + statusTextOffset, rect.y
+   );
+}
+
+void SampleFormatStatusDrawFunction(
+   TrackPanelDrawingContext& context,
+   const wxRect& rect, const Track* track
+)
+{
+   auto waveTrack = static_cast<const WaveTrack*>(track);
+   sampleFormat format = waveTrack->GetSampleFormat();
+   TranslatableString formatText;
+
+   switch (waveTrack->GetSampleFormat())
+   {
+      case int16Sample:
+         formatText = XO("16-bit PCM");
+         break;
+      case int24Sample:
+         formatText = XO("24-bit PCM");
+         break;
+      case floatSample:
+         formatText = XO("32-bit Float");
+         break;
+      default:
+         formatText = XO("Unknown!");
+         break;
+   }
+
+   context.dc.DrawText(
+      formatText.Translation(), rect.x + statusTextOffset, rect.y
+   );
+}
+
 void VolumeSliderDrawFunction
 ( TrackPanelDrawingContext &context,
   const wxRect &rect, const Track *pTrack )
@@ -1022,7 +1069,8 @@ static const struct WaveTrackTCPLines
         VolumeSliderDrawFunction },
       { TCPLine::kItemPan, kTrackInfoSliderHeight, kTrackInfoSliderExtra,
         PanSliderDrawFunction },
-
+      { TCPLine::kItemStatusInfo1, 12, 0, SampleRateStatusDrawFunction },
+      { TCPLine::kItemStatusInfo2, 12, 0, SampleFormatStatusDrawFunction }
    } );
 } } waveTrackTCPLines;
 
