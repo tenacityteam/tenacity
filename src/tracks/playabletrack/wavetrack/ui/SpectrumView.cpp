@@ -372,11 +372,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    const ClipParameters params { clip, rect, zoomInfo };
    const wxRect &hiddenMid = params.hiddenMid;
-   // The "hiddenMid" rect contains the part of the display actually
-   // containing the waveform, as it appears without the fisheye.  If it's empty, we're done.
-   if (hiddenMid.width <= 0) {
-      return;
-   }
 
    const double &t0 = params.t0;
    const double playStartTime = clip.GetPlayStartTime();
