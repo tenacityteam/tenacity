@@ -122,7 +122,7 @@ void OnResetConfig(const CommandContext &context)
    ProjectSnap::Get(project).SetSnapMode(SnapModeSetting.ReadEnum());
 
    ProjectRate::Get( project )
-      .SetRate(gPrefs->ReadDouble("/DefaultProjectSampleRate", 44100.0));
+      .SetRate(gPrefs->ReadDouble("/DefaultProjectSampleRate", 48000.0));
 }
 
 void OnManageGenerators(const CommandContext &context)

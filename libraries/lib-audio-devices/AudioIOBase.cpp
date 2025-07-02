@@ -506,7 +506,7 @@ std::vector<long> AudioIOBase::GetSupportedSampleRates(int playDevice, int recDe
  * the real rates. */
 int AudioIOBase::GetOptimalSupportedSampleRate()
 {
-   auto rate = GetClosestSupportedSampleRate(-1, -1, 44100);
+   auto rate = GetClosestSupportedSampleRate(-1, -1, 48000);
 
    // if there are no supported rates, the next bit crashes. So check first,
    // and give them a "sensible" value if there are no valid values. They
@@ -515,7 +515,7 @@ int AudioIOBase::GetOptimalSupportedSampleRate()
    // stored in the preferences, which we don't check for
    if (rate == 0)
    {
-      return 44100;
+      return 48000;
    }
 
    return rate;
