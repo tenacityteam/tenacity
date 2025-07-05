@@ -90,6 +90,14 @@ The latest official version of Audacity that does not implement telemetry is `3.
 
 Downloads for these versions can be found on the [Audacity website](https://www.audacityteam.org/download/). If you're looking for support regarding these versions, it may be worth consulting [Audacity's forum](https://forum.audacityteam.org/) or [Audacity's wiki](https://wiki.audacityteam.org/).
 
+## Communities and Discussion
+
+**NOTE**: All official discussions and community channels are subject to our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+We have an official Lemmy community over at https://programing.dev/c/tenacity. Come join us over there! Alternatively, for general discussion about Tenacity, you can send an email to ~tenacity/tenacity-discuss@lists.sr.ht. For archives, visit https://lists.sr.ht/~tenacity/tenacity-discuss.
+
+For realtime communication, we have [a Matrix room](https://matrix.to/#/!tenacity2:matrix.org) and an [IRC channel](https://web.libera.chat/gamja/?channels=#tenacity). We are more active on Matrix, but there might be some users willing to answer you on IRC.
+
 ## Building
 
 Build instructions for Tenacity are available in the [BUILDING.md file](BUILDING.md).
