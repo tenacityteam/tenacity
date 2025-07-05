@@ -11,7 +11,7 @@ For more information on the situation, please see https://fosstodon.org/@tenacit
 [![Translation status](https://hosted.weblate.org/widgets/tenacity/-/tenacity/svg-badge.svg)](https://hosted.weblate.org/engage/tenacity/)
 <!--[![builds.sr.ht](https://builds.sr.ht/~tenacity/tenacity/commits/.svg)](https://builds.sr.ht/~tenacity/tenacity/commits/?)-->
 
-Please note that **we do NOT accept any pull requests or issues on GitHub anymore**. See https://codeberg.org/tenacityteam/tenacity to file your bug report or submit your pull request.
+Please note that **we do NOT accept any pull requests or issues on GitHub anymore**. Please either open a pull request on Codeberg instead or submit a patch via email on SourceHut.
 
 ---
 
@@ -86,11 +86,11 @@ Build instructions for Tenacity are available in the [BUILDING.md file](BUILDING
 
 ## Contributing
 
-To start contributing, please consult the [CONTRIBUTING.md file](CONTRIBUTING.md).
+To start contributing, please consult the [CONTRIBUTING.md file](CONTRIBUTING.md). We accept contributions on both Codeberg (via pull requests) and SourceHut (via emails). We do a lot of work on Codeberg, but don't let that override your preferences.
 
 If you are planning to make a big change or if you are otherwise hesitant as to whether we want to incorporate something you want to work on in Tenacity itself, simply open an issue about it in our [Codeberg issue tracker](https://codeberg.org/tenacityteam/tenacity/issues). We can discuss it and work together, so that neither our time or your time and hard effort goes to waste.
 
-Note that we don't require a corresponding issue for each pull request. 
+Note that we don't require a corresponding issue for each contribution.
 
 ### Translating
 
