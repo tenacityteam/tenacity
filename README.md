@@ -6,9 +6,14 @@ For more information on the situation, please see https://fosstodon.org/@tenacit
 
 [![Tenacity](https://codeberg.org/tenacityteam/assets/raw/branch/master/PNG/tenacity-logo-dark-readme.png)](https://tenacityaudio.org)
 
+[![Latest Release](https://img.shields.io/gitea/v/release/tenacityteam/tenacity?gitea_url=https://codeberg.org)](https://codeberg.org/tenacityteam/tenacity/releases)
+[![Flathub Downloads](https://img.shields.io/flathub/downloads/org.tenacityaudio.Tenacity)](https://flathub.org/apps/org.tenacityaudio.Tenacity)
 [![Chat on IRC](https://badgen.net/badge/irc/%23tenacity/green)](https://web.libera.chat/gamja/?channels=#tenacity)
-[![License](https://badgen.net/badge/license/GPLv2/blue)](LICENSE.txt)
+[![Join our Lemmy community](https://img.shields.io/lemmy/tenacity@programming.dev?style=flat)](https://programming.dev/c/tenacity)
+[![Follow our official Mastodon account](https://img.shields.io/mastodon/follow/114162723251170134?domain=floss.social&style=flat)](https://floss.social/@tenacity)
 [![Translation status](https://hosted.weblate.org/widgets/tenacity/-/tenacity/svg-badge.svg)](https://hosted.weblate.org/engage/tenacity/)
+[![License](https://badgen.net/badge/license/GPLv2/blue)](LICENSE.txt)
+
 <!--[![builds.sr.ht](https://builds.sr.ht/~tenacity/tenacity/commits/.svg)](https://builds.sr.ht/~tenacity/tenacity/commits/?)-->
 
 Please note that **we do NOT accept any pull requests or issues on GitHub anymore**. Please either open a pull request on Codeberg instead or submit a patch via email on SourceHut.
