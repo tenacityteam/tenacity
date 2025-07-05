@@ -42,9 +42,10 @@ Nevertheless, the goal of this project is to pick up the decades-long work by th
 
 ## Differences from Audacity
 
-Tenacity is not merely an Audacity fork that removes error reporting and update checking, although it might seem like it. We have been hard at work implementing our own features and fixes and want to take Tenacity in a direction our users and community like. So far, we have fulfilled part of this endless goal by implementing the following:
+One of the primary features of Tenacity is its removal of Audacity's networking portions, including telemetry, cloud storage support, and sharing to audio.com. However, while following upstream updates, we have been taking Tenacity into its own direction too. So far, we have done the following that isn't found in Audacity:
 
 - New, modern themes.
+- A powerful dynamic compressor.
 - Improved support for more platforms such as [Haiku](https://haiku-os.org).
 - Matroska importing and exporting without needing FFmpeg.
 - Support for importing, editing, exporting Matroska chapters as label tracks.
@@ -58,12 +59,19 @@ More changes are yet to come, big or small. We are always welcoming contribution
 
 ### Tenacity
 
-You can find the latest release here: https://codeberg.org/tenacityteam/tenacity/releases
+The latest release of Tenacity is always found [here on our Releases page](https://codeberg.org/tenacityteam/tenacity/releases). Additionally, for Windows, we provide FFmpeg libraries for you to use if you need to work with formats beyond what Tenacity natively supports.
 
-Additionally, the following unofficial packages are available for you to try Tenacity:
+Additionally, below is a matrix of where Tenacity is packaged. While these are unofficial packages, we work with packagers to upstream fixes and keep everything as upstream as possible.
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/tenacity.svg?columns=3)](https://repology.org/project/tenacity/versions)
+
+From this table, we'd like to highlight a few packages:
 
 **Windows**:
 - [Unofficial Tenacity Chocolatey Package](https://community.chocolatey.org/packages/tenacity)
+
+**macOS**:
+- [Tenacity MacPorts Package](https://ports.macports.org/port/tenacity)
 
 **Linux**:
 - [Arch Linux Package](https://archlinux.org/packages/extra/x86_64/tenacity/)
@@ -71,16 +79,13 @@ Additionally, the following unofficial packages are available for you to try Ten
 
 If there are any issues with any of the above packages, you should report them to their respective maintainers. If you believe an issue is not specific to the package, please report the issue here.
 
-### Package Matrix
-[![Packaging status](https://repology.org/badge/vertical-allrepos/tenacity.svg?columns=3)](https://repology.org/project/tenacity/versions)
-
 ### Audacity
 
 The latest official version of Audacity that does not implement telemetry is `3.0.2`. Some Linux-based operating systems also ship Audacity with telemetry and networking features disabled by default.
 
 Downloads for these versions can be found on the [Audacity website](https://www.audacityteam.org/download/). If you're looking for support regarding these versions, it may be worth consulting [Audacity's forum](https://forum.audacityteam.org/) or [Audacity's wiki](https://wiki.audacityteam.org/).
 
-## Getting Started
+## Building
 
 Build instructions for Tenacity are available in the [BUILDING.md file](BUILDING.md).
 
