@@ -75,7 +75,8 @@ void ComputeSpectrogramGainFactors
 
 bool SpecCache::Matches(
    int dirty_, double samplesPerPixel,
-   const SpectrogramSettings& settings) const
+   const SpectrogramSettings& settings,
+   const WaveChannelInterval& clip) const
 {
    // Make a tolerant comparison of the spp values in this wise:
    // accumulated difference of times over the number of pixels is less than
@@ -89,7 +90,9 @@ bool SpecCache::Matches(
       windowSize == settings.WindowSize() &&
       zeroPaddingFactor == settings.ZeroPaddingFactor() &&
       frequencyGain == settings.frequencyGain &&
-      algorithm == settings.algorithm;
+      algorithm == settings.algorithm &&
+      leftTrim == clip.GetTrimLeft() &&
+      rightTrim == clip.GetTrimRight();
 }
 
 bool SpecCache::CalculateOneSpectrum(
@@ -312,7 +315,7 @@ bool SpecCache::CalculateOneSpectrum(
 
 void SpecCache::Resize(
    size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
-   sampleCount start_)
+   sampleCount start_, const WaveChannelInterval& clip)
 {
    settings.CacheWindows();
 
@@ -332,6 +335,8 @@ void SpecCache::Resize(
    windowSize = settings.WindowSize();
    zeroPaddingFactor = settings.ZeroPaddingFactor();
    frequencyGain = settings.frequencyGain;
+   leftTrim = clip.GetTrimLeft();
+   rightTrim = clip.GetTrimRight();
 }
 
 void SpecCache::Populate(
@@ -440,10 +445,9 @@ bool WaveClipSpectrumCache::GetSpectrogram(
 
    //Trim offset comparison failure forces spectrogram cache rebuild
    //and skip copying "unchanged" data after clip border was trimmed.
-   bool match = mSpecCache && mSpecCache->leftTrim == clip.GetTrimLeft() &&
-                mSpecCache->rightTrim == clip.GetTrimRight() &&
+   bool match = mSpecCache &&
                 mSpecCache->len > 0 &&
-                mSpecCache->Matches(mDirty, samplesPerPixel, settings);
+                mSpecCache->Matches(mDirty, samplesPerPixel, settings, clip);
 
    if (match && mSpecCache->start == tStart && mSpecCache->len >= numPixels)
    {
@@ -500,9 +504,7 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    }
 
    // Resize the cache, keep the contents unchanged.
-   mSpecCache->Resize(numPixels, settings, samplesPerPixel, tStart);
-   mSpecCache->leftTrim = clip.GetTrimLeft();
-   mSpecCache->rightTrim = clip.GetTrimRight();
+   mSpecCache->Resize(numPixels, settings, samplesPerPixel, tStart, clip);
 
    // Reassignment accumulates, so it needs a zeroed buffer
    if (settings.algorithm == SpectrogramSettings::algReassignment)

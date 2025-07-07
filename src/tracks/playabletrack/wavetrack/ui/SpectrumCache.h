@@ -42,12 +42,14 @@ public:
 
    bool Matches(
       int dirty_, double samplesPerPixel,
-      const SpectrogramSettings& settings) const;
+      const SpectrogramSettings& settings,
+      const WaveChannelInterval& clip) const;
 
    // Resize the cache, while preserving the (possibly now invalid!) contents if growing
    void Resize(
       size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
-      sampleCount start /*relative to clip play start time*/);
+      sampleCount start /*relative to clip play start time*/,
+      const WaveChannelInterval& clip);
 
    // Calculate the dirty columns at the begin and end of the cache
    void Populate(
