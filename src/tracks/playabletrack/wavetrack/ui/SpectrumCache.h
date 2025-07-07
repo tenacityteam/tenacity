@@ -25,20 +25,6 @@ using Floats = ArrayOf<float>;
 
 class TENACITY_DLL_API SpecCache {
 public:
-
-   // Make invalid cache
-   SpecCache()
-      : algorithm(-1)
-      , spp(-1.0)
-      , windowType(-1)
-      , frequencyGain(-1)
-   {
-   }
-
-   ~SpecCache()
-   {
-   }
-
    bool Matches(
       int dirty_, double samplesPerPixel,
       const SpectrogramSettings& settings,
@@ -57,20 +43,27 @@ public:
 
    void SetDirty(int dirty);
 
-   size_t       len { 0 }; // counts pixels, not samples
-   int          algorithm;
-   double       spp; // samples per pixel
-   double       leftTrim{ .0 };
-   double       rightTrim{ .0 };
-   sampleCount  start { -1 }; // relative to clip start
-   int          windowType;
-   size_t       windowSize { 0 };
-   unsigned     zeroPaddingFactor { 0 };
-   int          frequencyGain;
+   auto Start(void) const -> sampleCount;
+   auto SamplesPerPixel(void) const -> double;
+   auto PixelWidth(void) const -> size_t;
+   auto WindowSize(void) const -> size_t;
+   auto ZeroPaddingFactor(void) const -> unsigned;
+
    std::vector<float> freq;
    std::vector<sampleCount> where;
 
 private:
+   size_t       len { 0 }; // counts pixels, not samples
+   int          algorithm { -1 };
+   double       spp { -1.0 }; // samples per pixel
+   double       leftTrim { .0 };
+   double       rightTrim { .0 };
+   sampleCount  start { -1 }; // relative to clip start
+   int          windowType { -1 };
+   size_t       windowSize { 0 };
+   unsigned     zeroPaddingFactor { 0 };
+   int          frequencyGain { -1 };
+
    int          mDirty { -1 };
 
    // Calculate one column of the spectrum

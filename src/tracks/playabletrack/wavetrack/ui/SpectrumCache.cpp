@@ -429,6 +429,26 @@ void SpecCache::Populate(
    }
 }
 
+auto SpecCache::Start(void) const -> sampleCount {
+   return start;
+}
+
+auto SpecCache::SamplesPerPixel(void) const -> double {
+   return spp;
+}
+
+auto SpecCache::PixelWidth(void) const -> size_t {
+   return len;
+}
+
+auto SpecCache::WindowSize(void) const -> size_t {
+   return windowSize;
+}
+
+auto SpecCache::ZeroPaddingFactor(void) const -> unsigned {
+   return zeroPaddingFactor;
+}
+
 void SpecCache::SetDirty(int dirty) {
    mDirty = dirty;
 }
@@ -450,10 +470,10 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    //Trim offset comparison failure forces spectrogram cache rebuild
    //and skip copying "unchanged" data after clip border was trimmed.
    bool match = mSpecCache &&
-                mSpecCache->len > 0 &&
+                mSpecCache->PixelWidth() > 0 &&
                 mSpecCache->Matches(mDirty, samplesPerPixel, settings, clip);
 
-   if (match && mSpecCache->start == tStart && mSpecCache->len >= numPixels)
+   if (match && mSpecCache->Start() == tStart && mSpecCache->PixelWidth() >= numPixels)
    {
       spectrogram = &mSpecCache->freq[0];
       where = &mSpecCache->where[0];
@@ -471,7 +491,7 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    // If we zoomed out, or resized, we can give up memory. But not too much -
    // up to 2x extra is needed at the end of the clip to prevent stutter.
    if (mSpecCache->freq.capacity() > 2.1 * mSpecCache->freq.size() ||
-       mSpecCache->windowSize*mSpecCache->zeroPaddingFactor <
+       mSpecCache->WindowSize()*mSpecCache->ZeroPaddingFactor() <
        settings.WindowSize()*settings.ZeroPaddingFactor())
    {
       match = false;
@@ -484,12 +504,12 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    int copyBegin = 0, copyEnd = 0;
    if (match) {
       WaveClipUIUtilities::findCorrection(
-         mSpecCache->where, mSpecCache->len, numPixels, t0, sampleRate,
+         mSpecCache->where, mSpecCache->PixelWidth(), numPixels, t0, sampleRate,
          stretchRatio, samplesPerPixel, oldX0, correction);
       // Remember our first pixel maps to oldX0 in the old cache,
       // possibly out of bounds.
       // For what range of pixels can data be copied?
-      int copyLen = std::max(0, int(mSpecCache->len) - std::abs(oldX0));
+      int copyLen = std::max(0, int(mSpecCache->PixelWidth()) - std::abs(oldX0));
       copyBegin = oldX0 >= 0 ? 0 : std::abs(oldX0);
       copyEnd = copyBegin + copyLen;
    }
