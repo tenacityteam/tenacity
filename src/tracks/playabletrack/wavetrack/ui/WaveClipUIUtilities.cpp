@@ -22,7 +22,7 @@
 
 void WaveClipUIUtilities::findCorrection(
    const std::vector<sampleCount>& oldWhere, size_t oldLen, size_t newLen,
-   double t0, double sampleRate, double stretchRatio, double samplesPerPixel,
+   sampleCount tStart, double samplesPerPixel,
    int& oldX0, double& correction)
 {
    // Mitigate the accumulation of location errors
@@ -36,7 +36,7 @@ void WaveClipUIUtilities::findCorrection(
    const double denom = oldWhereLast - oldWhere0;
 
    // What sample would go in where[0] with no correction?
-   const double guessWhere0 = t0 * sampleRate / stretchRatio;
+   const double guessWhere0 = tStart.as_double();
 
    if ( // Skip if old and NEW are disjoint:
       oldWhereLast <= guessWhere0 ||
@@ -65,10 +65,10 @@ void WaveClipUIUtilities::findCorrection(
 
 void WaveClipUIUtilities::fillWhere(
    std::vector<sampleCount>& where, size_t len, double correction,
-   double t0, double sampleRate, double stretchRatio, double samplesPerPixel)
+   sampleCount tStart, double samplesPerPixel)
 {
    // Be careful to make the first value non-negative
-   const double w0 = 1.0 + correction + t0 * sampleRate / stretchRatio;
+   const double w0 = 1.0 + correction + tStart.as_double();
    where[0] = sampleCount(std::max(0.0, floor(w0)));
    for (decltype(len) x = 1; x < len + 1; x++)
       where[x] = sampleCount(floor(w0 + double(x) * samplesPerPixel));

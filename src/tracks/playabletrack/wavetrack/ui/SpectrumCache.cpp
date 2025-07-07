@@ -504,8 +504,8 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    int copyBegin = 0, copyEnd = 0;
    if (match) {
       WaveClipUIUtilities::findCorrection(
-         mSpecCache->where, mSpecCache->PixelWidth(), numPixels, t0, sampleRate,
-         stretchRatio, samplesPerPixel, oldX0, correction);
+         mSpecCache->where, mSpecCache->PixelWidth(), numPixels, tStart,
+         samplesPerPixel, oldX0, correction);
       // Remember our first pixel maps to oldX0 in the old cache,
       // possibly out of bounds.
       // For what range of pixels can data be copied?
@@ -549,8 +549,8 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    }
 
    WaveClipUIUtilities::fillWhere(
-      mSpecCache->where, numPixels, correction, t0, sampleRate,
-      stretchRatio, samplesPerPixel);
+      mSpecCache->where, numPixels, correction, tStart,
+      samplesPerPixel);
 
    mSpecCache->Populate(
       settings, clip, copyBegin, copyEnd, numPixels, pixelsPerSecond);
