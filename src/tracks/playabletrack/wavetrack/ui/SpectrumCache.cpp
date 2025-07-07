@@ -10,6 +10,7 @@
 
 #include "SpectrumCache.h"
 
+#include "SampleCount.h"
 #include "SpectrogramSettings.h"
 #include "RealFFTf.h"
 #include "Sequence.h"
@@ -311,7 +312,7 @@ bool SpecCache::CalculateOneSpectrum(
 
 void SpecCache::Resize(
    size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
-   double start_)
+   sampleCount start_)
 {
    settings.CacheWindows();
 
@@ -435,6 +436,7 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    const auto sampleRate = clip.GetRate();
    const auto stretchRatio = clip.GetStretchRatio();
    const auto samplesPerPixel = sampleRate / pixelsPerSecond / stretchRatio;
+   const sampleCount tStart = clip.TimeToSamples(t0);
 
    //Trim offset comparison failure forces spectrogram cache rebuild
    //and skip copying "unchanged" data after clip border was trimmed.
@@ -443,7 +445,7 @@ bool WaveClipSpectrumCache::GetSpectrogram(
                 mSpecCache->len > 0 &&
                 mSpecCache->Matches(mDirty, samplesPerPixel, settings);
 
-   if (match && mSpecCache->start == t0 && mSpecCache->len >= numPixels)
+   if (match && mSpecCache->start == tStart && mSpecCache->len >= numPixels)
    {
       spectrogram = &mSpecCache->freq[0];
       where = &mSpecCache->where[0];
@@ -498,7 +500,7 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    }
 
    // Resize the cache, keep the contents unchanged.
-   mSpecCache->Resize(numPixels, settings, samplesPerPixel, t0);
+   mSpecCache->Resize(numPixels, settings, samplesPerPixel, tStart);
    mSpecCache->leftTrim = clip.GetTrimLeft();
    mSpecCache->rightTrim = clip.GetTrimRight();
 

@@ -30,7 +30,6 @@ public:
    SpecCache()
       : algorithm(-1)
       , spp(-1.0)
-      , start(-1.0)
       , windowType(-1)
       , frequencyGain(-1)
       , dirty(-1)
@@ -48,7 +47,7 @@ public:
    // Resize the cache, while preserving the (possibly now invalid!) contents if growing
    void Resize(
       size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
-      double start /*relative to clip play start time*/);
+      sampleCount start /*relative to clip play start time*/);
 
    // Calculate the dirty columns at the begin and end of the cache
    void Populate(
@@ -60,7 +59,7 @@ public:
    double       spp; // samples per pixel
    double       leftTrim{ .0 };
    double       rightTrim{ .0 };
-   double       start; // relative to clip start
+   sampleCount  start { -1 }; // relative to clip start
    int          windowType;
    size_t       windowSize { 0 };
    unsigned     zeroPaddingFactor { 0 };
