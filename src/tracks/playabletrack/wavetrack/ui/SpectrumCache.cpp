@@ -548,11 +548,8 @@ bool WaveClipSpectrumCache::GetSpectrogram(
       memset(&mSpecCache->freq[nBins*zeroBegin], 0, nBins*(zeroEnd-zeroBegin)*sizeof(float));
    }
 
-   // purposely offset the display 1/2 sample to the left (as compared
-   // to waveform display) to properly center response of the FFT
-   constexpr auto addBias = true;
    WaveClipUIUtilities::fillWhere(
-      mSpecCache->where, numPixels, addBias, correction, t0, sampleRate,
+      mSpecCache->where, numPixels, correction, t0, sampleRate,
       stretchRatio, samplesPerPixel);
 
    mSpecCache->Populate(

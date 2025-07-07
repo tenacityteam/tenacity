@@ -32,7 +32,7 @@ void findCorrection(
 
 TENACITY_DLL_API
 void fillWhere(
-   std::vector<sampleCount>& where, size_t len, bool addBias, double correction,
+   std::vector<sampleCount>& where, size_t len, double correction,
    double t0, double sampleRate, double stretchRatio, double samplesPerPixel);
 
 std::vector<CommonTrackPanelCell::MenuItem> GetWaveClipMenuItems();

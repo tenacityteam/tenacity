@@ -64,12 +64,11 @@ void WaveClipUIUtilities::findCorrection(
 }
 
 void WaveClipUIUtilities::fillWhere(
-   std::vector<sampleCount>& where, size_t len, bool addBias, double correction,
+   std::vector<sampleCount>& where, size_t len, double correction,
    double t0, double sampleRate, double stretchRatio, double samplesPerPixel)
 {
    // Be careful to make the first value non-negative
-   const auto bias = addBias ? .5 : 0.;
-   const double w0 = 0.5 + correction + bias + t0 * sampleRate / stretchRatio;
+   const double w0 = 1.0 + correction + t0 * sampleRate / stretchRatio;
    where[0] = sampleCount(std::max(0.0, floor(w0)));
    for (decltype(len) x = 1; x < len + 1; x++)
       where[x] = sampleCount(floor(w0 + double(x) * samplesPerPixel));
