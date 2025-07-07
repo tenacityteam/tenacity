@@ -32,7 +32,6 @@ public:
       , spp(-1.0)
       , windowType(-1)
       , frequencyGain(-1)
-      , dirty(-1)
    {
    }
 
@@ -56,6 +55,8 @@ public:
       const SpectrogramSettings& settings, const WaveChannelInterval& clip,
       int copyBegin, int copyEnd, size_t numPixels, double pixelsPerSecond);
 
+   void SetDirty(int dirty);
+
    size_t       len { 0 }; // counts pixels, not samples
    int          algorithm;
    double       spp; // samples per pixel
@@ -69,9 +70,9 @@ public:
    std::vector<float> freq;
    std::vector<sampleCount> where;
 
-   int          dirty;
-
 private:
+   int          mDirty { -1 };
+
    // Calculate one column of the spectrum
    bool CalculateOneSpectrum(
       const SpectrogramSettings& settings, const WaveChannelInterval &clip,

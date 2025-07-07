@@ -85,7 +85,7 @@ bool SpecCache::Matches(
 
    return
       sppMatch &&
-      dirty == dirty_ &&
+      mDirty == dirty_ &&
       windowType == settings.windowType &&
       windowSize == settings.WindowSize() &&
       zeroPaddingFactor == settings.ZeroPaddingFactor() &&
@@ -429,6 +429,10 @@ void SpecCache::Populate(
    }
 }
 
+void SpecCache::SetDirty(int dirty) {
+   mDirty = dirty;
+}
+
 bool WaveClipSpectrumCache::GetSpectrogram(
    const WaveChannelInterval &clip,
    const float*& spectrogram, SpectrogramSettings& settings,
@@ -534,7 +538,8 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    mSpecCache->Populate(
       settings, clip, copyBegin, copyEnd, numPixels, pixelsPerSecond);
 
-   mSpecCache->dirty = mDirty;
+   mSpecCache->SetDirty(mDirty);
+
    spectrogram = &mSpecCache->freq[0];
    where = &mSpecCache->where[0];
 
