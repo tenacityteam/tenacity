@@ -474,7 +474,7 @@ auto SpecCache::SampleOffsetAtPixel(int x) const -> sampleCount {
 bool WaveClipSpectrumCache::GetSpectrogram(
    const WaveChannelInterval &clip,
    const float*& spectrogram, SpectrogramSettings& settings,
-   const sampleCount*& where, size_t numPixels, double t0,
+   size_t numPixels, double t0,
    double pixelsPerSecond)
 
 {
@@ -494,7 +494,6 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    if (match && mSpecCache->Start() == tStart && mSpecCache->PixelWidth() >= numPixels)
    {
       spectrogram = &mSpecCache->freq[0];
-      where = &mSpecCache->where[0];
 
       return false;  //hit cache completely
    }
@@ -576,7 +575,6 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    mSpecCache->SetDirty(mDirty);
 
    spectrogram = &mSpecCache->freq[0];
-   where = &mSpecCache->where[0];
 
    return true;
 }

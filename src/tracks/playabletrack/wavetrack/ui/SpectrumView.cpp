@@ -406,9 +406,8 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    const auto half = settings.GetFFTLength() / 2;
    const double binUnit = sampleRate / (2 * half);
    const float *freq = 0;
-   const sampleCount *where = 0;
    bool updated = WaveClipSpectrumCache::Get(clip).GetSpectrogram(
-      clip, freq, settings, where, (size_t)mid.width, t0,
+      clip, freq, settings, (size_t)mid.width, t0,
       averagePixelsPerSecond);
    auto nBins = settings.NBins();
 
