@@ -380,7 +380,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    const double &averagePixelsPerSecond = params.averagePixelsPerSecond;
    const double sampleRate = clip.GetRate();
    const double stretchRatio = clip.GetStretchRatio();
-   const double &hiddenLeftOffset = params.hiddenLeftOffset;
    const double &leftOffset = params.leftOffset;
    const wxRect &mid = params.mid;
 
@@ -526,7 +525,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    };
 
    for (int xx = 0; xx < mid.width; ++xx) {
-      int correctedX = xx + leftOffset - hiddenLeftOffset;
+      int correctedX = xx + leftOffset;
 
       // zoomInfo must be queried for each column since with fisheye enabled
       // time between columns is variable
@@ -587,7 +586,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          if (maybeSelected) {
             selected =
                ChooseColorSet(bin, nextBin, selBinLo, selBinCenter, selBinHi,
-                  (xx + leftOffset - hiddenLeftOffset) / DASH_LENGTH, isSpectral);
+                  (xx + leftOffset) / DASH_LENGTH, isSpectral);
             if ( onBrushTool && selected != AColor::ColorGradientUnselected )
                // use only two sets of colors
                selected = AColor::ColorGradientTimeAndFrequencySelected;
