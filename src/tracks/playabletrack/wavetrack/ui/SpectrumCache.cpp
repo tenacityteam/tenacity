@@ -19,6 +19,7 @@
 #include "WaveTrack.h"
 #include "WideSampleSequence.h"
 #include <cmath>
+#include <cstdio>
 
 namespace {
 
@@ -117,11 +118,11 @@ bool SpecCache::CalculateOneSpectrum(
    // the visible area.
 
    if (xx < 0)
-      from = sampleCount(where[0].as_double() + xx * samplesPerPixel);
+      from = sampleCount(SampleOffsetAtPixel(0).as_double() + xx * samplesPerPixel);
    else if (xx > (int)len)
-      from = sampleCount(where[len].as_double() + (xx - len) * samplesPerPixel);
+      from = sampleCount(SampleOffsetAtPixel(len).as_double() + (xx - len) * samplesPerPixel);
    else
-      from = where[xx];
+      from = SampleOffsetAtPixel(xx);
 
    const bool autocorrelation =
       settings.algorithm == SpectrogramSettings::algPitchEAC;
@@ -315,7 +316,7 @@ bool SpecCache::CalculateOneSpectrum(
 
 void SpecCache::Resize(
    size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
-   sampleCount start_, const WaveChannelInterval& clip)
+   sampleCount start_, double correction, const WaveChannelInterval& clip)
 {
    settings.CacheWindows();
 
@@ -337,6 +338,7 @@ void SpecCache::Resize(
    frequencyGain = settings.frequencyGain;
    leftTrim = clip.GetTrimLeft();
    rightTrim = clip.GetTrimRight();
+   mCorrection = correction;
 }
 
 void SpecCache::Populate(
@@ -453,6 +455,22 @@ void SpecCache::SetDirty(int dirty) {
    mDirty = dirty;
 }
 
+auto SpecCache::SampleOffsetAtPixel(int x) const -> sampleCount {
+   auto offsetFromWhere = where[x];
+   auto derivedOffset = sampleCount(Start().as_double() + mCorrection + 1.0 + x * spp);
+   if (offsetFromWhere != derivedOffset) {
+      fprintf(stderr,
+         "BUG: offsetFromWhere != derivedOffset\n"
+         "  offsetFromWhere = %zu; derivedOffset = %zu; x = %d; correction = %lf\n",
+         offsetFromWhere.as_size_t(),
+         derivedOffset.as_size_t(),
+         x,
+         mCorrection);
+      abort();
+   }
+   return offsetFromWhere;
+}
+
 bool WaveClipSpectrumCache::GetSpectrogram(
    const WaveChannelInterval &clip,
    const float*& spectrogram, SpectrogramSettings& settings,
@@ -528,7 +546,7 @@ bool WaveClipSpectrumCache::GetSpectrogram(
    }
 
    // Resize the cache, keep the contents unchanged.
-   mSpecCache->Resize(numPixels, settings, samplesPerPixel, tStart, clip);
+   mSpecCache->Resize(numPixels, settings, samplesPerPixel, tStart, correction, clip);
 
    // Reassignment accumulates, so it needs a zeroed buffer
    if (settings.algorithm == SpectrogramSettings::algReassignment)

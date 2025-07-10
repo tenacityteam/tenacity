@@ -34,6 +34,7 @@ public:
    void Resize(
       size_t len_, SpectrogramSettings& settings, double samplesPerPixel,
       sampleCount start /*relative to clip play start time*/,
+      double correction,
       const WaveChannelInterval& clip);
 
    // Calculate the dirty columns at the begin and end of the cache
@@ -49,6 +50,8 @@ public:
    auto WindowSize(void) const -> size_t;
    auto ZeroPaddingFactor(void) const -> unsigned;
 
+   auto SampleOffsetAtPixel(int x) const -> sampleCount;
+
    std::vector<float> freq;
    std::vector<sampleCount> where;
 
@@ -63,6 +66,7 @@ private:
    size_t       windowSize { 0 };
    unsigned     zeroPaddingFactor { 0 };
    int          frequencyGain { -1 };
+   double       mCorrection { 0 };
 
    int          mDirty { -1 };
 
