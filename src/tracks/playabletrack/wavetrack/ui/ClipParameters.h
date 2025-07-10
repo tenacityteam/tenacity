@@ -31,7 +31,6 @@ struct TENACITY_DLL_API ClipParameters
    const double averagePixelsPerSecond;
    const bool showIndividualSamples;
 
-   wxRect hiddenMid;
    int hiddenLeftOffset;
 
    wxRect mid;

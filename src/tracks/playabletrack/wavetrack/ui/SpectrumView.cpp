@@ -371,7 +371,6 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    enum { DASH_LENGTH = 10 /* pixels */ };
 
    const ClipParameters params { clip, rect, zoomInfo };
-   const wxRect &hiddenMid = params.hiddenMid;
 
    const double &t0 = params.t0;
    const double playStartTime = clip.GetPlayStartTime();
@@ -410,7 +409,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    const float *freq = 0;
    const sampleCount *where = 0;
    bool updated = WaveClipSpectrumCache::Get(clip).GetSpectrogram(
-      clip, freq, settings, where, (size_t)hiddenMid.width, t0,
+      clip, freq, settings, where, (size_t)mid.width, t0,
       averagePixelsPerSecond);
    auto nBins = settings.NBins();
 
@@ -421,7 +420,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    // nearest frequency to each pixel row from number scale, for selecting
    // the desired fft bin(s) for display on that row
-   float *bins = (float*)alloca(sizeof(*bins)*(hiddenMid.height + 1));
+   float *bins = (float*)alloca(sizeof(*bins)*(mid.height + 1));
    {
       const NumberScale numberScale( settings.GetScale( minFreq, maxFreq ) );
 
@@ -430,7 +429,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          settings.findBin( *it, binUnit ) ) );
 
       int yy;
-      for (yy = 0; yy < hiddenMid.height; ++yy) {
+      for (yy = 0; yy < mid.height; ++yy) {
          bins[yy] = nextBin;
          nextBin = std::max( 0.0f, std::min( float(nBins - 1),
             settings.findBin( *++it, binUnit ) ) );
@@ -441,7 +440,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    auto &clipCache = WaveClipSpectrumCache::Get(clip);
    auto &specPxCache = clipCache.mSpecPxCaches[clip.GetChannelIndex()];
    if (!updated && specPxCache &&
-      ((int)specPxCache->len == hiddenMid.height * hiddenMid.width)
+      ((int)specPxCache->len == mid.height * mid.width)
       && scaleType == specPxCache->scaleType
       && gain == specPxCache->gain
       && range == specPxCache->range
@@ -453,28 +452,28 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    }
    else {
       // Update the spectrum pixel cache
-      specPxCache = std::make_unique<SpecPxCache>(hiddenMid.width * hiddenMid.height);
+      specPxCache = std::make_unique<SpecPxCache>(mid.width * mid.height);
       specPxCache->scaleType = scaleType;
       specPxCache->gain = gain;
       specPxCache->range = range;
       specPxCache->minFreq = minFreq;
       specPxCache->maxFreq = maxFreq;
 
-      for (int xx = 0; xx < hiddenMid.width; ++xx) {
-         for (int yy = 0; yy < hiddenMid.height; ++yy) {
+      for (int xx = 0; xx < mid.width; ++xx) {
+         for (int yy = 0; yy < mid.height; ++yy) {
             const float bin     = bins[yy];
             const float nextBin = bins[yy+1];
 
             if (settings.scaleType != SpectrogramSettings::stLogarithmic) {
                const float value = findValue
                   (freq + nBins * xx, bin, nextBin, nBins, autocorrelation, gain, range);
-               specPxCache->values[xx * hiddenMid.height + yy] = value;
+               specPxCache->values[xx * mid.height + yy] = value;
             }
             else {
                float value = findValue
                   (freq + nBins * xx, bin, nextBin, nBins, autocorrelation, gain, range);
 
-               specPxCache->values[xx * hiddenMid.height + yy] = value;
+               specPxCache->values[xx * mid.height + yy] = value;
             } // logF
          } // each yy
       } // each xx
@@ -515,7 +514,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
 
    // Lambda for converting yy (not mouse coord!) to respective freq. bins
    auto yyToFreqBin = [&](int yy){
-      const double p = double(yy) / hiddenMid.height;
+      const double p = double(yy) / mid.height;
       float convertedFreq = numberScale.PositionToValue(p);
       float convertedFreqBinNum = convertedFreq / (sr / windowSize);
 
@@ -562,7 +561,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
          }
       }
 
-      for (int yy = 0; yy < hiddenMid.height; ++yy) {
+      for (int yy = 0; yy < mid.height; ++yy) {
          if(onBrushTool)
             maybeSelected = false;
          const float bin     = bins[yy];
@@ -594,7 +593,7 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
                selected = AColor::ColorGradientTimeAndFrequencySelected;
          }
 
-         const float value = specPxCache->values[correctedX * hiddenMid.height + yy];
+         const float value = specPxCache->values[correctedX * mid.height + yy];
 
          unsigned char rv, gv, bv;
          GetColorGradient(value, selected, colorScheme, &rv, &gv, &bv);
