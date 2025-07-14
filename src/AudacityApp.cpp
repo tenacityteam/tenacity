@@ -247,16 +247,6 @@ void PopulatePreferences()
       gPrefs->Write(wxT("/Locale/Language"), langCode);
    }
 
-   // In AUdacity 2.1.0 support for the legacy 1.2.x preferences (depreciated since Audacity
-   // 1.3.1) is dropped. As a result we can drop the import flag
-   // first time this version of Audacity is run we try to migrate
-   // old preferences.
-   bool newPrefsInitialized = false;
-   gPrefs->Read(wxT("/NewPrefsInitialized"), &newPrefsInitialized, false);
-   if (newPrefsInitialized) {
-      gPrefs->DeleteEntry(wxT("/NewPrefsInitialized"));
-   }
-
    // record the Prefs version for future checking (this has not been used for a very
    // long time).
    gPrefs->Write(wxT("/PrefsVersion"), wxString(wxT(AUDACITY_PREFS_VERSION_STRING)));
@@ -272,101 +262,6 @@ void PopulatePreferences()
 
    SetPreferencesVersion(vMajor, vMinor, vMicro);   // make a note of these initial values
                                                           // for use by ToolManager::ReadConfig()
-
-   // These integer version keys were introduced april 4 2011 for 1.3.13
-   // The device toolbar needs to be enabled due to removal of source selection features in
-   // the mixer toolbar.
-   if ((vMajor < 1) ||
-       (vMajor == 1 && vMinor < 3) ||
-       (vMajor == 1 && vMinor == 3 && vMicro < 13)) {
-
-
-      // Do a full reset of the Device Toolbar to get it on the screen.
-      if (gPrefs->Exists(wxT("/GUI/ToolBars/Device")))
-         gPrefs->DeleteGroup(wxT("/GUI/ToolBars/Device"));
-
-      // We keep the mixer toolbar prefs (shown/not shown)
-      // the width of the mixer toolbar may have shrunk, the prefs will keep the larger value
-      // if the user had a device that had more than one source.
-      if (gPrefs->Exists(wxT("/GUI/ToolBars/Mixer"))) {
-         // Use the default width
-         gPrefs->Write(wxT("/GUI/ToolBars/Mixer/W"), -1);
-      }
-   }
-
-   // In 2.1.0, the Meter toolbar was split and lengthened, but strange arrangements happen
-   // if upgrading due to the extra length.  So, if a user is upgrading, use the pre-2.1.0
-   // lengths, but still use the NEW split versions.
-   if (gPrefs->Exists(wxT("/GUI/ToolBars/Meter")) &&
-      !gPrefs->Exists(wxT("/GUI/ToolBars/CombinedMeter"))) {
-
-      // Read in all of the existing values
-      long dock, order, show, x, y, w, h;
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/Dock"), &dock, -1L);
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/Order"), &order, -1L);
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/Show"), &show, -1L);
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/X"), &x, -1L);
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/Y"), &y, -1L);
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/W"), &w, -1L);
-      gPrefs->Read(wxT("/GUI/ToolBars/Meter/H"), &h, -1L);
-
-      // "Order" must be adjusted since we're inserting two NEW toolbars
-      if (dock > 0) {
-
-         const auto toolbarsGroup = gPrefs->BeginGroup("/GUI/ToolBars");
-         for(const auto& group : gPrefs->GetChildGroups())
-         {
-            long orderValue;
-            const auto orderKey = group + wxT("/Order");
-            if(gPrefs->Read(orderKey, &orderValue) && orderValue >= order)
-               gPrefs->Write(orderKey, orderValue + 2);
-         }
-         // And override the height
-         h = 27;
-      }
-
-      // Write the split meter bar values
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/Dock"), dock);
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/Order"), order);
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/Show"), show);
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/X"), -1);
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/Y"), -1);
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/W"), w);
-      gPrefs->Write(wxT("/GUI/ToolBars/RecordMeter/H"), h);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/Dock"), dock);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/Order"), order + 1);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/Show"), show);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/X"), -1);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/Y"), -1);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/W"), w);
-      gPrefs->Write(wxT("/GUI/ToolBars/PlayMeter/H"), h);
-
-      // And hide the old combined meter bar
-      gPrefs->Write(wxT("/GUI/ToolBars/Meter/Dock"), -1);
-   }
-
-   // Upgrading pre 2.2.0 configs we assume extended set of defaults.
-   if ((0<vMajor && vMajor < 2) ||
-       (vMajor == 2 && vMinor < 2))
-   {
-      gPrefs->Write(wxT("/GUI/Shortcuts/FullDefaults"),1);
-   }
-
-   // Upgrading pre 2.4.0 configs, the selection toolbar is now split.
-   if ((0<vMajor && vMajor < 2) ||
-       (vMajor == 2 && vMinor < 4))
-   {
-      gPrefs->Write(wxT("/GUI/Toolbars/Selection/W"),"");
-      gPrefs->Write(wxT("/GUI/Toolbars/SpectralSelection/W"),"");
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/X"),-1);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Y"),-1);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/H"),55);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/W"),251);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/DockV2"),2);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Dock"),2);
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Path"),"0,1");
-      gPrefs->Write(wxT("/GUI/Toolbars/Time/Show"),1);
-   }
 
    if (std::pair{ vMajor, vMinor } < std::pair{ 3, 1 } ) {
       // Reset the control toolbar
