@@ -260,8 +260,8 @@ void PopulatePreferences()
    int vMinor = gPrefs->Read(wxT("/Version/Minor"), (long) 0);
    int vMicro = gPrefs->Read(wxT("/Version/Micro"), (long) 0);
 
-   SetPreferencesVersion(vMajor, vMinor, vMicro);   // make a note of these initial values
-                                                          // for use by ToolManager::ReadConfig()
+   // Make a note of these initial values for use by ToolManager::ReadConfig()
+   SetPreferencesVersion(vMajor, vMinor, vMicro);
 
    if (std::pair{ vMajor, vMinor } < std::pair{ 3, 1 } ) {
       // Reset the control toolbar
