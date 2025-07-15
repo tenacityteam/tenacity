@@ -263,62 +263,23 @@ void PopulatePreferences()
    // Make a note of these initial values for use by ToolManager::ReadConfig()
    SetPreferencesVersion(vMajor, vMinor, vMicro);
 
-   if (std::pair{ vMajor, vMinor } < std::pair{ 3, 1 } ) {
-      // Reset the control toolbar
-      gPrefs->Write(wxT("/GUI/Toolbars/Control/W"), -1);
-   }
-
-   if(std::pair{vMajor, vMinor} < std::pair{3, 2})
+   // Migration from Tenacity 1.3.x
+   //
+   // FIXME: Some toolbars aren't resizable, but we save their size information
+   // anyways. Make it so we don't restore their size information as this could
+   // change across versions at any time.
+   if(std::pair{vMajor, vMinor} < std::pair{1, 3})
    {
-      if(gPrefs->Exists(wxT("/GUI/ToolBars")))
+      if (gPrefs->Exists(wxT("/GUI/ToolBars")))
          gPrefs->DeleteGroup(wxT("/GUI/ToolBars"));
-      if(gPrefs->Exists(wxT("Window")))
+      if (gPrefs->Exists(wxT("Window")))
          gPrefs->DeleteGroup(wxT("Window"));
-      if(gPrefs->Exists("/GUI/ShowSplashScreen"))
+      if (gPrefs->Exists("/GUI/ShowSplashScreen"))
          gPrefs->DeleteEntry("/GUI/ShowSplashScreen");
-      if(gPrefs->Exists("/GUI/Help"))
+      if (gPrefs->Exists("/GUI/Help"))
          gPrefs->DeleteEntry("/GUI/Help");
-   }
 
-   if(std::tuple{ vMajor, vMinor, vMicro } < std::tuple{ 3, 2, 3 })
-   {
-      // Reset Share Audio width if it was populated before 3.2.3
-      if(gPrefs->Exists("/GUI/ToolBars/Share Audio/W"))
-         gPrefs->DeleteEntry("/GUI/ToolBars/Share Audio/W");
-   }
-
-   // We need to reset the toolbar layout and force the splash screen for 3.4
-   if (std::pair { vMajor, vMinor } < std::pair { 3, 4 })
-   {
-      if (gPrefs->Exists(wxT("/GUI/ToolBars")))
-         gPrefs->DeleteGroup(wxT("/GUI/ToolBars"));
-      if (gPrefs->Exists("/GUI/ShowSplashScreen"))
-         gPrefs->DeleteEntry("/GUI/ShowSplashScreen");
-   }
-
-   if (std::pair { vMajor, vMinor } < std::pair { 3, 5 })
-   {
-      if (gPrefs->Exists("/GUI/ShowSplashScreen"))
-         gPrefs->DeleteEntry("/GUI/ShowSplashScreen");
-   }
-
-   if (std::pair { vMajor, vMinor } < std::pair { 3, 6 })
-   {
-      if (gPrefs->Exists("/GUI/ShowSplashScreen"))
-         gPrefs->DeleteEntry("/GUI/ShowSplashScreen");
-      if (gPrefs->Exists(wxT("/GUI/ToolBars")))
-         gPrefs->DeleteGroup(wxT("/GUI/ToolBars"));
-   }
-
-   if (std::pair { vMajor, vMinor } < std::pair { 3, 7 })
-   {
-      if (gPrefs->Exists("/GUI/ShowSplashScreen"))
-         gPrefs->DeleteEntry("/GUI/ShowSplashScreen");
-   }
-
-   if (std::tuple { vMajor, vMinor, vMicro } < std::tuple{ 3, 7, 2 })
-   {
-      // To set the new default to Best Quality
+      // Set the new default to Best Quality
       if (gPrefs->Exists("/Quality/LibsoxrSampleRateConverterChoice"))
          gPrefs->DeleteEntry("/Quality/LibsoxrSampleRateConverterChoice");
    }
