@@ -1,0 +1,25 @@
+name: Task
+about: A task that needs to be done.
+title: '[TASK] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This template is meant for contributors and developers to keep track of
+        a task that needs to be done or is meant to be done eventually.
+        If you are an end user, please look at another template instead.
+  - type: textarea
+    id: taskDescription
+    attributes:
+      label: Task Description
+      description: |
+        A brief explanation on what needs to happen.
+      validations:
+        required: true
+  - type: textarea
+    id: taskDependencies
+    attributes:
+      label: Dependencies
+      description: |
+        List any issues that need to be done here first, in order of what needs
+        to happen first to last.
