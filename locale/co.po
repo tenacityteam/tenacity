@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-07-19 11:04+0000\n"
+"PO-Revision-Date: 2025-07-20 14:02+0000\n"
 "Last-Translator: Patrick Santa Maria <Patrick.Santa-Maria@laposte.net>\n"
 "Language-Team: Corsican <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/co/>\n"
@@ -273,6 +273,7 @@ msgid ""
 "For tips on suitable drives, click the help button."
 msgstr ""
 "%s\n"
+"\n"
 "Cliccu nant’à u buttone d’aiutu per cunnosce minichichje nant’à i lettori "
 "adattati."
 
@@ -1408,7 +1409,7 @@ msgstr "Preparazione…\n"
 #: src/Benchmark.cpp
 #, c-format
 msgid "Expected len %lld, track len %lld.\n"
-msgstr "Dimensione prevista %lld, dimensione di traccia  %lld.\n"
+msgstr "Dimensione prevista %lld, dimensione di traccia %lld.\n"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
@@ -2247,7 +2248,7 @@ msgstr "Strumentu di musica"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Pan"
-msgstr "Pan"
+msgstr "Panoramicu"
 
 #. i18n-hint: This is on a button that will silence this track.
 #: src/MixerBoard.cpp src/commands/SetTrackInfoCommand.cpp
@@ -2379,7 +2380,7 @@ msgid ""
 "\n"
 "It will not be loaded."
 msgstr ""
-"U modulu « %s »  ùn pruvede alcuna di e funzioni richieste.\n"
+"U modulu « %s » ùn pruvede alcuna di e funzioni richieste.\n"
 "\n"
 "Ùn serà micca caricatu."
 
@@ -5136,7 +5137,7 @@ msgstr "Semitoni (mezu-passi)"
 
 #: src/effects/ChangePitch.cpp
 msgid "&Semitones (half-steps):"
-msgstr "&Semitoni (mezu-passi)"
+msgstr "&Semitoni (mezu-passi) :"
 
 #: src/effects/ChangePitch.cpp
 msgid "Frequency"
@@ -5408,7 +5409,7 @@ msgstr "%.1f:1"
 #: src/effects/Compressor.cpp
 #, c-format
 msgid "Ratio %.0f to 1"
-msgstr "Prupurzione  %.0f à 1"
+msgstr "Prupurzione %.0f à 1"
 
 #: src/effects/Compressor.cpp
 #, c-format
@@ -14021,13 +14022,14 @@ msgid ""
 "\n"
 "instead. Otherwise, click Cancel."
 msgstr ""
-"L’accurtatoghji di tastera « %s » hè dighjà assuciatu à :\n"
+"L’accurtatoghji di tastera « %s » hè dighjà assuciatu à :\n"
 "\n"
-"\t« %s »\n"
+"\t%s\n"
+"\n"
 "\n"
 "Sceglie Vai per assuciallu à\n"
 "\n"
-"\t« %s »\n"
+"\t%s\n"
 "\n"
 "piuttostu. Osinnò, sceglie Abbandunà."
 
@@ -15526,7 +15528,7 @@ msgstr "Barra d’attrezzi di stru&finera"
 
 #: src/toolbars/SelectionBar.cpp
 msgid "Project Rate (Hz)"
-msgstr "Frequenza di prughjettu (Hz) :"
+msgstr "Frequenza di prughjettu (Hz)"
 
 #: src/toolbars/SelectionBar.cpp
 msgid "Snap-To"
@@ -17132,17 +17134,14 @@ msgstr "Ùn si pò scrive di schedariu in u cartulare : %s."
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "You can change the directory in %s."
-msgstr ""
-"Impussibule di creà u cartulare :\n"
-"  %s"
+msgstr "Pudete cambià u cartulare in %s."
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy
 msgid "Preferences > Directories"
-msgstr "Preferenze per i cartulari"
+msgstr "Preferenze > Cartulari"
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
@@ -20118,3 +20117,16 @@ msgstr "Sbagliu.~%Traccia stereo richiesta."
 #: src/TenacityApp.cpp src/menus/HelpMenus.cpp
 msgid "&About Tenacity..."
 msgstr "&Apprupositu di Tenacity…"
+
+#: src/TenacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr "Tenacity si lancia…"
+
+#. i18n-hint: This message describes the error in the Error dialog.
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+msgid ""
+"Please check that the directory exists, has the necessary permissions, and "
+"the drive isn't full."
+msgstr ""
+"Ci vole à verificà chì u cartulare esisti, abbia i permessi richiesti, è chì "
+"u discu ùn sia micca pienu."
