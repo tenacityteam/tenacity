@@ -48,7 +48,7 @@ information.
 To install Tenacity's dependencies, run:
 
 ```
-sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel rapidjson-devel lame-devel libid3tag-devel libmad-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
+sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel rapidjson-devel lame-devel libid3tag-devel libmad-devel libmatroska-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel wavpack-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
 ```
 
 #### Arch
@@ -56,7 +56,7 @@ sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-dev
 Install Tenacity's build dependencies with this command:
 
 ```
-sudo pacman -S cmake ninja ccache expat gcc-libs gdk-pixbuf2 glibc flac gtk3 glib2 libid3tag lilv libmad libogg portaudio portmidi libsndfile libsoxr suil twolame vamp-plugin-sdk libvorbis soundtouch ffmpeg libsbsms wxwidgets-common wxwidgets-gtk3 rapidjson
+sudo pacman -S cmake ninja ccache expat gcc-libs gdk-pixbuf2 glibc flac gtk3 glib2 libid3tag lilv mpg123 libmatroska libogg portaudio portmidi libsndfile libsoxr suil twolame vamp-plugin-sdk libvorbis opusfile wavpack soundtouch ffmpeg libsbsms wxwidgets-common wxwidgets-gtk3 rapidjson
 ```
 
 TODO: add portsmf to this package list when the package is updated.
