@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-07-26 00:27+0000\n"
+"PO-Revision-Date: 2025-07-27 01:12+0000\n"
 "Last-Translator: Grzegorz Pruchniakowski <grzegorz.pruchniakowski@gmail.com>"
 "\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tenacity/tenacity/"
@@ -44,7 +44,7 @@ msgstr "Strumień jest aktywny... nie można zebrać informacji.\n"
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, c-format
 msgid "Default recording device number: %d"
-msgstr "Domyślny numer urządzenia nagrywającego:%d"
+msgstr "Domyślny numer urządzenia nagrywającego: %d"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, c-format
@@ -99,7 +99,7 @@ msgstr "Wysokie opóźnienie nagrywania: %g"
 #. i18n-hint: Supported, meaning made available by the system
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Supported Rates:"
-msgstr "Obsługiwane częstotliwości odtwarzania:"
+msgstr "Obsługiwane częstotliwości:"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 #, c-format
@@ -629,7 +629,7 @@ msgstr "Współtwórcy"
 
 #: src/AboutDialog.cpp
 msgid "Emeritus"
-msgstr "Emeritus"
+msgstr "Emeritus:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -1909,7 +1909,7 @@ msgstr "Eksportowanie pliku dźwiękowego"
 #. i18n-hint: Title for a topic.
 #: src/HelpText.cpp
 msgid "Saving an Audacity Project"
-msgstr "Zapisywanie projektu Tenacity"
+msgstr "Zapisywanie projektu Audacity"
 
 #. i18n-hint: Title for a topic.
 #: src/HelpText.cpp
@@ -2081,7 +2081,7 @@ msgstr "Nie można było wczytać jednej lub więcej zapisanych etykiet."
 #. * time Audacity has been run.
 #: src/LangChoice.cpp
 msgid "Tenacity First Run"
-msgstr "Pierwsze uruchomienie programu Tenacity"
+msgstr "Pierwsze uruchomienie Tenacity"
 
 #. i18n-hint: The %s's are replaced by translated and untranslated
 #. * versions of language names.
@@ -2113,7 +2113,7 @@ msgstr ""
 
 #: src/Legacy.cpp
 msgid "Opening Audacity Project"
-msgstr "Otwieranie projektu Tenacity"
+msgstr "Otwieranie projektu Audacity"
 
 #: src/LogWindow.cpp src/Tags.cpp
 msgid "&Save..."
@@ -2739,7 +2739,7 @@ msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
-msgstr "To nie jest plik projektu Tenacity"
+msgstr "To nie jest plik projektu Audacity"
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
@@ -2900,7 +2900,7 @@ msgstr "Kompaktowanie projektu"
 #: src/ProjectFileIO.cpp
 #, c-format
 msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Projekt %02i] Tenacity \"%s\""
+msgstr "[Projekt %02i] Audacity \"%s\""
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -3052,7 +3052,7 @@ msgid ""
 "'Save Project' is for an Audacity project, not an audio file.\n"
 "For an audio file that will open in other apps, use 'Export'.\n"
 msgstr ""
-"'Zapisz projekt' jest dla projektu Tenacity, nie dla pliku dźwiękowego.\n"
+"'Zapisz projekt' jest dla projektu Audacity, nie dla pliku dźwiękowego.\n"
 "Do pliku dźwiękowego, który zostanie otwarty w innych aplikacjach, użyj "
 "'Eksportuj'.\n"
 
@@ -3130,7 +3130,7 @@ msgstr ""
 "Próbujesz otworzyć utworzony automatycznie plik kopii zapasowej.\n"
 "Zrobienie tego może skutkować poważną utratą danych.\n"
 "\n"
-"Zamiast tego musisz otworzyć aktualny projekt Tenacity."
+"Zamiast tego musisz otworzyć aktualny projekt Audacity."
 
 #: src/ProjectFileManager.cpp
 msgid "Warning - Backup File Detected"
@@ -3657,7 +3657,7 @@ msgstr "nazwa pliku dźwiękowego lub projektu"
 
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
-msgstr "Pliki projektów Tenacity"
+msgstr "Pliki projektów Audacity"
 
 #: src/TenacityFileConfig.cpp
 msgid "Tenacity Configuration Error"
@@ -10980,14 +10980,13 @@ msgstr "%s prawo"
 #. clips.
 #.
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s %s, %d of %d clip %s"
 msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%s %d z %d"
-msgstr[1] "%s %d z %d"
-msgstr[2] "%s %d z %d"
-msgstr[3] "%s %d z %d"
+msgstr[0] "%s %s, %d z %d klip %s"
+msgstr[1] "%s %s, %d z %d klipy %s"
+msgstr[2] "%s %s, %d z %d klipów %s"
+msgstr[3] "%s %s, %d z %d klipy %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "start"
@@ -11004,14 +11003,13 @@ msgstr "koniec"
 #. last number counts all clips,
 #. last string names a track
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s, %d of %d clip %s"
 msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%s %d z %d"
-msgstr[1] "%s %d z %d"
-msgstr[2] "%s %d z %d"
-msgstr[3] "%s %d z %d"
+msgstr[0] "%s, %d z %d klip %s"
+msgstr[1] "%s, %d z %d klipy %s"
+msgstr[2] "%s, %d z %d klipów %s"
+msgstr[3] "%s, %d z %d klipy %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "Time shifted clips to the right"
@@ -13468,7 +13466,7 @@ msgstr ""
 "W jednym z elementów występują znaki niedrukowalne (spacje, znaki nowej "
 "linii, tabulatory lub znaki końca linii). Na pewno popsują one dopasowywanie "
 "do wzorca. Zalecane jest obcięcie spacji, chyba że wiesz, co robisz. Chcesz, "
-"aby Tenacity obciął spacje za Ciebie?"
+"aby Audacity obciął spacje za Ciebie?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13746,7 +13744,7 @@ msgstr ""
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Select an XML file containing Tenacity keyboard shortcuts..."
-msgstr "Wybierz plik XML zawierający skróty klawiaturowe programu Tenacity..."
+msgstr "Wybierz plik XML zawierający skróty klawiaturowe Tenacity..."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -15019,7 +15017,7 @@ msgid ""
 "Tenacity could not save file:\n"
 "  %s"
 msgstr ""
-"Audacity nie mógł zapisać pliku:\n"
+"Tenacity nie mógł zapisać pliku:\n"
 "  %s"
 
 #. i18n-hint: user defined
@@ -16005,14 +16003,13 @@ msgstr "Zmień nazwę klipu..."
 #. first number is the position of that clip in a sequence of clips,
 #. second number counts the clips
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
-msgstr[0] "%s %d z %d"
-msgstr[1] "%s %d z %d"
-msgstr[2] "%s %d z %d"
-msgstr[3] "%s %d z %d"
+msgstr[0] "%s, %d z %d klip"
+msgstr[1] "%s, %d z %d klipy"
+msgstr[2] "%s, %d z %d klipów"
+msgstr[3] "%s, %d z %d klipy"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Zoom x1/2"
@@ -18900,7 +18897,7 @@ msgstr ""
 #: libraries/lib-files/FileException.cpp
 #, c-format
 msgid "Tenacity failed to read from a file in %s."
-msgstr "Audacity nie wczytał z pliku %s."
+msgstr "Tenacity nie wczytał z pliku %s."
 
 #: libraries/lib-files/FileException.cpp
 #, c-format
@@ -19235,7 +19232,7 @@ msgstr "24-bitowy PCM (Little Endian)"
 
 #: src/export/ExportMka.cpp
 msgid "PCM Float 32-bit"
-msgstr "24-bitowy PCM Float"
+msgstr "24-bitowy PCM float"
 
 #: src/ffmpeg/FFmpeg.cpp
 msgid "Only ffmpeg.*.dylib"
@@ -19248,8 +19245,8 @@ msgid ""
 "might contain (unknown) bugs along with possible data loss."
 msgstr ""
 "Wersja Tenacity, której używasz, jest wersją pre-release. Używanie tych "
-"wydań w środowiskach produkcyjnych jest zniechęcane. Ta wersja Tenacity może "
-"zawierać (nieznane) błędy, które wiążą się z możliwą utratą danych."
+"wydań w środowiskach produkcyjnych jest niezalecane. Ta wersja Tenacity może "
+"zawierać (nieznane) błędy, które wiążą się z możliwością utraty danych."
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -19309,7 +19306,7 @@ msgstr ""
 "System wykrył, że uruchomiona jest jeszcze jedna kopia Tenacity. "
 "Uruchamianie wielu kopii Tenacity nie jest obsługiwane.\n"
 "\n"
-"Zostaniesz teraz przekierowany do uruchomionej kopii."
+"Zostaniesz teraz przekierowany/a do uruchomionej kopii."
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -19372,7 +19369,7 @@ msgstr "Model analogowy"
 
 #: src/effects/Compressor2.cpp
 msgid "Envelope dependent gain"
-msgstr "Wzmocnienie zależnie od obwiedni"
+msgstr "Wzmocnienie zależne od obwiedni"
 
 #: src/effects/Compressor2.cpp
 #, c-format
@@ -19706,7 +19703,7 @@ msgid ""
 "you may import it with Tenacity."
 msgstr ""
 "Ten projekt został zapisany przez wersję 1.0 Audacity lub wcześniejszą.\n"
-"Format został zmieniony i ta wersja Audacity nie może importować projektu.\n"
+"Format został zmieniony i ta wersja Tenacity nie może importować projektu.\n"
 "\n"
 "Użyj wersji Audacity wcześniejszej niż 3.0.0, aby zaktualizować projekt,\n"
 "a następnie możesz importować go za pomocą tej wersji Tenacity."
@@ -19857,7 +19854,7 @@ msgid ""
 msgstr ""
 "Stworzone przez Steve'a Daultona\n"
 "z <span>Eksportu danych przykładowych</span> dla\n"
-"<a href=\\\"~a\\\">Tenacity</a>"
+"<a href=\"~a\">Tenacity</a>"
 
 #: src/prefs/ThemePrefs.cpp
 msgid ""
@@ -19891,4 +19888,107 @@ msgstr ""
 
 #: src/widgets/MeterPanel.cpp
 msgid "Solid"
-msgstr "Solidny"
+msgstr "Stały"
+
+#: src/effects/Compressor2.cpp
+msgid "Compressor step response"
+msgstr "Odpowiedź kroku kompresora"
+
+#: src/export/ExportPCM.cpp
+msgid ""
+"Your exported WAV file has been truncated as Tenacity cannot export WAV\n"
+"files bigger than 4GB."
+msgstr ""
+"Twój wyeksportowany plik WAV został obcięty, ponieważ Tenacity nie może "
+"eksportować plików WAV\n"
+"większych niż 4 GB."
+
+#: src/import/Import.cpp
+#, c-format
+msgid "This version of Tenacity was not compiled with %s support."
+msgstr "Ta wersja Tenacity nie była kompilowana z obsługą %s."
+
+#. i18n-hint:
+#. First and third %s are each replaced with the noun "start"
+#. or with "end", identifying and end of a clip,
+#. second and fourth strings are the names of those clips,
+#. first and second numbers give the position of those clips in
+#. a sequence of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%s %s and %s %s, %d and %d of %d clip %s"
+msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
+msgstr[0] "%s %s i %s %s, %d i %d z %d klip %s"
+msgstr[1] "%s %s i %s %s, %d i %d z %d klipy %s"
+msgstr[2] "%s %s i %s %s, %d i %d z %d klipów %s"
+msgstr[3] "%s %s i %s %s, %d i %d z %d klipy %s"
+
+#: src/menus/TrackMenus.cpp
+msgid ""
+"This version of Tenacity only allows one time track for each project window."
+msgstr ""
+"Ta wersja Tenacity pozwala tylko na jedną ścieżkę czasową dla każdego okna "
+"projektu."
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Rescan plugins next time Tenacity is started"
+msgstr "Skanuj ponownie wtyczki przy następnym uruchomieniu Tenacity"
+
+#: src/prefs/ModulePrefs.cpp
+msgid ""
+"These are experimental modules. Enable them only if you've read the Tenacity "
+"Manual\n"
+"and know what you are doing."
+msgstr ""
+"To są moduły eksperymentalne. Włącz je, jeśli już\n"
+"przeczytałeś/aś Podręcznik Tenacity i wiesz, co robisz."
+
+#. i18n-hint preserve the leading spaces
+#: src/prefs/ModulePrefs.cpp
+msgid ""
+"  'Ask' means Tenacity will ask if you want to load the module each time it "
+"starts."
+msgstr ""
+"  'Zapytaj' oznacza, że Tenacity zapyta, czy chcesz załadować moduł przy "
+"każdym uruchomieniu."
+
+#. i18n-hint preserve the leading spaces
+#: src/prefs/ModulePrefs.cpp
+msgid "  'Failed' means Tenacity thinks the module is broken and won't run it."
+msgstr ""
+"  'Niepowodzenie' oznacza, że Tenacity sądzi, że moduł jest uszkodzony i nie "
+"chce go uruchomić."
+
+#: src/prefs/ModulePrefs.cpp
+msgid "Changes to these settings only take effect when Tenacity starts up."
+msgstr ""
+"Zmiany tych ustawień wejdą w życie tylko po ponownym uruchomieniu Tenacity."
+
+#: src/prefs/MousePrefs.cpp
+msgid "Move clips ignoring Sync-lock"
+msgstr "Przesuń klipy ignorujące blokadę synchronizacji"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+#, c-format
+msgid "Moved by %.02f"
+msgstr "Przesunięty o %.02f"
+
+#: src/effects/Compressor2.cpp
+msgid "Compressor step response plot"
+msgstr "Wykres odpowiedzi kroku kompresora"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+msgid "Clip-Trim-Left"
+msgstr "Przytnij klip z lewej"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+msgid "Clip-Trim-Right"
+msgstr "Przytnij klip z prawej"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
+msgid "Clip-Trim-Between"
+msgstr "Przytnij klip między"
