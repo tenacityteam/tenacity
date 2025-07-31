@@ -36,18 +36,13 @@ xargs xgettext \
 if test "${TENACITY_ONLY_POT:-}" = 'y'; then
     return 0
 fi
-echo ";; Updating the .po files - Updating Project-Id-Version"
-for i in *.po; do
-    sed -e '/^"Project-Id-Version:/c\
-    "Project-Id-Version: tenacity 1.4\\n"' $i > TEMP; mv TEMP $i
-done
-echo ";; Updating the .po files"
-sed 's/.*/echo "msgmerge --lang=& &.po tenacity.pot -o &.po";\
-msgmerge --no-wrap --lang=& &.po tenacity.pot -o &.po;/g' LINGUAS | bash
+
+echo ";; Updating en.po"
+msgmerge --lang=en en.po tenacity.pot -o en.po
+
 echo ";; Removing '#~|' (which confuse Windows version of msgcat)"
-for i in *.po; do
-    sed '/^#~|/d' $i > TEMP; mv TEMP $i
-done
+sed '/^#~|/d' en.po > TEMP; mv TEMP en.po
+
 echo ""
 echo ";;Translation updated"
 echo ""
