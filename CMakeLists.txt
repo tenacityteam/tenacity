@@ -182,6 +182,15 @@ include( CMakeDependentOption )
 
 project( Tenacity )
 
+# Add /usr/local/lib as a link directory on FreeBSD.
+#
+# As of FreeBSD 14.3, libraries in /usr/local/lib are not included in the
+# toolchain's default search path. Therefore, we need to add it manually
+if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+    message(STATUS "FreeBSD: Adding /usr/local/lib to link directories")
+    link_directories(AFTER "/usr/local/lib")
+endif()
+
 # Use ccache if available
 find_program( CCACHE_PROGRAM ccache )
 mark_as_advanced( FORCE CCACHE_PROGRAM )
