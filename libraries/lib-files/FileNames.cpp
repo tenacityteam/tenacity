@@ -737,6 +737,7 @@ bool FileNames::IsOnFATFileSystem(const FilePath &path)
    return 0 == strcmp(fs.f_fstypename, "msdos");
 }
 #elif defined(__FreeBSD__)
+#include <sys/mount.h>
 bool FileNames::IsOnFATFileSystem(const FilePath &path)
 {
    struct statfs fs;
