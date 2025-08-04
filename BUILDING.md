@@ -85,14 +85,22 @@ sudo apk add gtk+3.0-dev zlib-dev libpng-dev tiff-dev libjpeg-turbo-dev expat-de
 
 TODO: add portsmf and libsbsms to this package list when aports are accepted.
 
+### FreeBSD
 
-#### FreeBSD
+Building is exactly the same on Linux, but since FreeBSD is its own system, it
+is technically right to put it under its own section.
 
-wxWidgets is packaged in FreeBSD's repositories. Install it and the rest
-of Tenacity's dependencies:
+Only two packages are missing on FreeBSD: PortSMF and libsbsms. Until PortSMF
+gets packaged, Tenacity will not support MIDI import on FreeBSD. High-quality
+stretching and pitch-shifting is still supported via non-destructive stretching
+and pitch-shifting as that uses a different algorithm that is provided
+internally and does not require external dependencies.
+
+To install Tenacity's dependencies, run the following command below:
 
 ```
-sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg libzip rapidjson
+# You may replace 'sudo' with 'doas' if you are using the latter
+sudo pkg install wx32-gtk3 cmake ninja ccache pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame mpg123 libmatroska soundtouch ffmpeg opusfile wavpack libzip rapidjson
 ```
 
 #### vcpkg on Linux
