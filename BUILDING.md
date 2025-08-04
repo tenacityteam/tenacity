@@ -384,6 +384,11 @@ default /usr/local:
 cmake -G Ninja -S . -B build
 ```
 
+**IMPORTANT**: If building under FreeBSD, you need to add
+`-DFREEBSD_ADJUST_DIRS=ON` to this command. Required packages installed via
+`pkg` get installed to `/usr/local`, unlike most Linux distributions, and these
+directories are not a part of the default compiler configuation.
+
 **Note**: Under MSYS2, be sure to add `-DVCPKG=OFF` to ensure vcpkg does not
 automatically build dependencies. (You should install dependencies from the
 repos instead). You may also wisth to add `-DSBSMS=ON` to enable high-quality

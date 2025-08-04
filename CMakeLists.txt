@@ -182,6 +182,22 @@ include( CMakeDependentOption )
 
 project( Tenacity )
 
+# Adjust library and include directories on FreeBSD.
+#
+# As of FreeBSD 14.3, libraries in /usr/local/lib are not included in the
+# toolchain's default search path. Therefore, we need to add it manually.
+# GP: I'm not completely sure if this could interfere with any packaging. For
+# now, I'm going to make this an option that can easily be disabled by
+# packagers if needed.
+if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+    option(FREEBSD_ADJUST_DIRS "Adjust library and header directories for FreeBSD" ON)
+    if (FREEBSD_ADJUST_DIRS)
+        message(status "Adjusting library and include directories for FreeBSD")
+        link_directories(AFTER "/usr/local/lib")
+        include_directories(AFTER "/usr/local/include")
+    endif()
+endif()
+
 # Use ccache or sccache if available
 # Note: compiler caching only works when using the Ninja or one of the Makefile
 # generators. Other generators, such as Visual Studio, do NOT support it.
