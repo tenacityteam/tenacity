@@ -29,114 +29,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Stream đang hoạt động ... không thể tiếp nhận được thông tin.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "Chọn thiết bị ghi âm"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "Chọn thiết bị phát âm thanh"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Không tìm thấy thiết bị"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "Không tìm thấy thông tin thiết bị"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "Thiết bị:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "Thiết bị"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "Tên: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "Các kênh ghi âm"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "Độ cao phát lại"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "Kết thúc ghi âm:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "Kết thúc ghi âm:"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "Tốc độ lấy mẫu"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "Chọn thiết bị ghi âm"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "Chọn thiết bị phát âm thanh"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "Không tìm thấy thiết bị"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Hiển thị đầu ra"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Chọn thiết bị ghi âm"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Chọn thiết bị phát âm thanh"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -166,21 +62,6 @@ msgstr "Lỗi bên trong"
 #, fuzzy, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr "Lỗi khi mở cơ sở dữ liệu của dự án"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Ổ đĩa đã đầy.\n"
-"%s \n"
-"để có nhiều mẹo giải phóng ổ đĩa hơn, hãy click vào nút \"trợ giúp\"."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -229,11 +110,6 @@ msgstr "Tập tin %s"
 #, c-format
 msgid "(%s)"
 msgstr "(%s)"
-
-#: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "Chưa có thư mục %s. Có tạo nó không?"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -472,14 +348,6 @@ msgstr "Không thể nạp tập tin: \"%s\""
 msgid "Could not parse XML"
 msgstr "không thể ghi vào %s\n"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "lệnh thực nghiệm đầu tiên..."
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "lệnh thực nghiệm thứ 2"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -570,31 +438,6 @@ msgstr "%s, phát triển trang mạng"
 msgid "%s, graphics"
 msgstr "%s, đồ họa"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, co-founder and developer"
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, đồng sáng lập và phát triển"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity developer"
-msgstr "%s, phát triển trang mạng"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "%s, phát triển trang mạng"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "%s, phát triển trang mạng"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -642,12 +485,6 @@ msgstr "%sThành viên nhóm"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Những người đóng góp"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Emeritus:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -744,11 +581,6 @@ msgstr "Bộ &chuyển đổi tốc độ lấy mẫu:"
 msgid "File Format Support"
 msgstr "Hỗ trợ định dạng tệp"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "Nhập MP3"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -776,16 +608,8 @@ msgid "MP2 export"
 msgstr "Xuất MP2"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "Nhập qua QuickTime"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "Nhập/ Xuất FFmpeg"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "Nhập bằng GStreamer"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -815,12 +639,6 @@ msgstr "Tắt thao tác thời giân biểu khi thu âm"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Nhấp chuột và kéo thả để điều chỉnh, nhấp đúp chuột để cài lại"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "Thu âm/tua chạy từ đàu đánh dấu"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -892,34 +710,6 @@ msgstr "Tua-Nhanh đã bật"
 msgid "Timeline Options"
 msgstr "Lựa chọn Thời gian biểu"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "Bật Tua-Nhanh 'Quick-Play'"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "Bật lựa chọn kéo thả"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "Cập nhật màn hình khi chạy tua"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "Khóa vùng tua nhạc"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Pinned Play Head"
-msgstr "Ghim đầu đánh dấu"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr ""
-"Không thể khóa được vùng tua nhạc nằm ngoài \n"
-"kết thúc của dự án."
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "Không tìm thấy thiết bị âm thanh nào.\n"
@@ -934,11 +724,6 @@ msgstr "Bạn không thể phát hoặc ghi âm.\n"
 #, c-format
 msgid "Error: %s"
 msgstr "Lỗi: %s"
-
-#: src/AudioIO.cpp
-#, fuzzy
-msgid "PortAudio Error"
-msgstr "Lỗi"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1406,12 +1191,6 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr "Len dự kiến %lld, len đoạn âm %lld.\n"
 
 #: src/Benchmark.cpp
-#, fuzzy, c-format
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "Đang thực hiện %d chỉnh sửa...\n"
-
-#: src/Benchmark.cpp
 #, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Cắt  %lld - %lld \n"
@@ -1628,17 +1407,6 @@ msgstr "Xin chờ vài giây"
 msgid "Could not write to %s.\n"
 msgstr "Không thể viết vào tập tin:  %s"
 
-#: src/DBConnection.cpp
-#, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Ổ đĩa đã đầy.\n"
-"%s \n"
-"để có nhiều mẹo giải phóng ổ đĩa hơn, hãy click vào nút \"trợ giúp\"."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1678,26 +1446,6 @@ msgstr "Lỗi cơ sở dữ liệu. Xin lỗi, chúng tôi không có thông tin
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Lỗi (có thể chưa ghi tập tin): %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "Sao &Chép âm thanh không nén vào dự án khi xử lý (an toàn hơn)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "&Đọc các tập tin được giải nén từ địa điểm gốc (nhanh hơn)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "&Sao chép các audio vào trong dự án (an toàn nhất)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "Đừ&ng sao chép bất kỳ âm thanh"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "&Hỏi"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1817,10 +1565,6 @@ msgstr "&Trục tọa độ:"
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "&Tái tạo tọa độ..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "Để vẽ phổ, tất cả các đoạn âm được chọn phải có cùng tốc độ lấy mẫu"
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -2011,12 +1755,6 @@ msgstr "&Nén lại"
 #, c-format
 msgid "Compacting actually freed %s of disk space."
 msgstr "Nén vùng trổng trên đĩa%s."
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "Đã &làm..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2258,11 +1996,6 @@ msgid "Signal Level Meter"
 msgstr "Thước đo Mức Tín hiệu"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "Đã di chuyển thanh trượt khuếch đại"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 #, fuzzy
 msgid "Moved velocity slider"
@@ -2272,10 +2005,6 @@ msgstr "Đã di chuyển thanh trượt vận tốc"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "Đã di chuyển thanh trượt cân bằng trái/phải"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "Bảng &Mixer..."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2529,106 +2258,13 @@ msgid "Nyquist Prompt"
 msgstr "Dấu nhắc Nyquist"
 
 #: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "Quản lý Plug-ins \"điện toán\""
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "&Mới"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr ""
-"Chọn các hiệu ứng, nhấp chuột lên nút Bật lên hoặc Tắt bỏ, rồi ấn vào OK."
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "Hiển thị:"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "Hiển thị tất cả"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show disabled"
-msgstr "Chỉ hiển thị những hiệu ứng đã bị tắt"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "Tắt đ&i"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show enabled"
-msgstr "Chỉ hiển thị những hiệu ứng đã được bật"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "Bật lê&n"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "Chỉ hiển thị hiệu ứng mới"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "&Mới"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "Trạng thái"
-
-#: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "Đường dẫn"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "Chọn tất cả"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "&Xoá  hết"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
 msgid "&Enable"
 msgstr "&Bật lên"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "&Tắt bỏ"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr ""
-"Bật tất cả hiệu ứng và lệnh:\n"
-"\n"
-"%s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr ""
-"Bật hiệu ứng hoặc lệnh:\n"
-"\n"
-"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2638,14 +2274,6 @@ msgid ""
 msgstr ""
 "Hiệu ứng hoặc lệnh tại %s  đã đăng ký không thành công:\n"
 "%s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Có lỗi xảy ra khi in."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "In"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2899,29 +2527,8 @@ msgid "Error Writing to File"
 msgstr "Lỗi khi cố gắng lưu tập tin"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Ổ đĩa đã đầy.\n"
-"%s \n"
-"để có nhiều mẹo giải phóng ổ đĩa hơn, hãy click vào nút \"trợ giúp\"."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Đang nén dự án"
-
-#. i18n-hint: The %02i is the project number, the %s is the project name.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Dự án %02i] Audacity \"%s\""
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -3007,30 +2614,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "Không thể lưu dự án trên phân vùng đĩa FAT."
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"Dự án bạn hiện đang trống.\n"
-"Nếu lưu lại, dự án sẽ không có đoạn âm nào.\n"
-"\n"
-"Để lưu lại các đoạn âm đã mở:\n"
-"Nhấn vào 'Không', Chỉnh sửa > Hoàn tác cho đến khi các đoạn âm đều mở, rồi "
-"vào Tập tin > Lưu lại Dự án.\n"
-"\n"
-"Kệ, cứ lưu?"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "Cảnh báo - Dự án trống"
-
-#: src/ProjectFileManager.cpp
 msgid "Insufficient Disk Space"
 msgstr "Thiếu dung lượng đĩa cứng"
 
@@ -3071,15 +2654,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%s Lưu lại Dự án \"%s\" thành..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"Lưu lại Dự án' dành cho dự án Audacity, không phải là tập tin audio.\n"
-"Nếu dùng cho tập tin audio với các chương trình ứng dụng khác, hãy dùng "
-"'Xuất tập'.\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3279,22 +2853,6 @@ msgid "Save project before closing?"
 msgstr "Có lưu các thay đổi trước khi đóng không?"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"Dự án được lưu sẽ được xoá sạch!!\n"
-"\n"
-"Để lưu lại các dải âm đã được mở trước kia\n"
-"nhấn nút Huỷ bỏ, Chỉnh sửa > Huỷ tới khi tất cả các \n"
-"dải âm của bạn được mở, rồi chọn Tập tin > Lưu Dự án."
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "Dung lượng trống trên đĩa còn đủ để thu %s"
@@ -3352,18 +2910,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "Cảnh báo - Đang cắt ngắn khối tập tin dài quá mức tối đa"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "tắt"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "Gần nhất"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "Trước"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "Thu âm đã bật"
@@ -3371,11 +2917,6 @@ msgstr "Thu âm đã bật"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Mức độ kích hoạt (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "%s, phát triển trang mạng"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3461,10 +3002,6 @@ msgid "Set De&fault"
 msgstr "Mă&c định"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "Không hiện cảnh báo này nữa khi xuất âm thanh"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Chỉnh sửa thể loại"
 
@@ -3508,24 +3045,6 @@ msgstr "Không gỡ bỏ được %s"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "Không thành công!"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"Cài lại Cài đặt Ưu tiên? \n"
-"\n"
-"Câu hỏi này chỉ được thực hiện một lần sau khi \"cài đặt\" xong, khi bạn "
-"được hỏi để cài đặt lại Cài đặt Uu tiên"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "Dụng Tuỳ thích"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -4015,10 +3534,6 @@ msgstr "Thu âm đã xuất:"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Bộ ghi Thời gian"
 
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "Stereo, 999999Hz"
-
 #: src/TrackPanel.cpp
 msgid "Track Panel"
 msgstr "Bảng đoạn âm thanh"
@@ -4096,11 +3611,6 @@ msgstr "Đã xoá bỏ (các) đoạn âm audio"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "Xoá bỏ đoạn âm"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "Đã xoá đoạn '%s'"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4492,12 +4002,6 @@ msgid "Builtin Commands"
 msgstr "Lệnh nội trang"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "lệnh nội trang không xác định"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "lệnh nội trang không xác định"
 
@@ -4803,14 +4307,6 @@ msgid "Sets various values for a project."
 msgstr "Đặt các giá trị cho dự án"
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "Chỉ mục đoạn âm"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "Chỉ Mục Kênh"
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "Đặt tình trạng đoạn âm"
 
@@ -4825,10 +4321,6 @@ msgstr "được chú trọng"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "Đặt Audio đoạn âm"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "Gain - Độ khuếch đại:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4887,12 +4379,6 @@ msgstr "dùng các Pref đặc biệt"
 #, fuzzy
 msgid "Spectral Select"
 msgstr "Chọn quang phổ"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr "kế &hoạch"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -5061,10 +4547,6 @@ msgid "High Quality Pitch Change"
 msgstr " Thay đổi độ cao của âm HQ Chất Lượng Cao"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Thay đổi độ cao mà không ảnh hưởng đến nhịp"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "Pitch - Độ cao của âm Ước lượng %s%d(%.3fHz)"
@@ -5171,16 +4653,8 @@ msgid "n/a"
 msgstr "n/a"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Thay đổi tốc độ"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "thay đổi tốc độ độ cao của đoạn âm"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Thay đổi tốc độ là thay đổi cả nhịp điệu và độ cao của âm"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&Speed Multiplier:"
@@ -5257,10 +4731,6 @@ msgstr "thay đổi nhịp độ của vùng chọn mà không ảnh hưởng đ
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "Thay đổi nhịp điệu  HQ Chất Lượng Cao"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Thay đổi nhịp điệu mà không đổi độ cao"
 
 #: src/effects/ChangeTempo.cpp
 #, fuzzy
@@ -5472,156 +4942,14 @@ msgstr "thời gian khởi chạy%.2fgiây"
 msgid "Release Time %.1f secs"
 msgstr "thời gian phát hành%.1fgiây"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "biên độ đỉnh dB"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "Giảm Nhiễu"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "Giảm Nhiễu"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Analog Limiter"
-msgstr "Giới hạn dB"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "bộ nén"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Sets the loudness of one or more tracks"
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Thiết lập cường độ âm thanh cho đoạn âm"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compressor step response"
-msgstr "nén từ đỉnh"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Thuật toán"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "&Thuật toán:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compress based on:"
-msgstr "nén từ đỉnh"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "N&ormalize stereo channels independently"
-msgid "Compress stereo channels independently"
-msgstr "Chuẩn& hoá kênh stereo riêng biệt"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Ratio:"
-msgid "Ratio:"
-msgstr "&Tỉ lệ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "bề rộng:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "bề rộng:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "&Đầu ra Gain (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "Đầu ra Gain (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Attack Time:"
-msgid "Attack:"
-msgstr "thời gian khởi chạy:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack"
-msgstr "thời gian khởi chạy:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "R&elease Time:"
-msgid "Release:"
-msgstr "thời& gian phát hành:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "thời gian phát hành"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "thời gian làm mượt:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "thời gian làm mượt"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "Thời gian kết thúc:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Thời gian kết thúc"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6273,11 +5601,6 @@ msgid "Applied effect: %s"
 msgstr "Đã áp dụng hiệu ứng: %s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "Đã áp dụng lệnh: %s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "Chọn thiết lập sẵn"
 
@@ -6304,25 +5627,6 @@ msgstr "Thiết lập sẵn mặc định"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"chạy thử hiệu ứng không thành công:\n"
-"\n"
-"%s\n"
-"\n"
-"vào \"trờ giúp>chẩn đoán>hiển thị bản ghi\" để có thêm thông tin chi tiết"
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "không thể chạy hiệu ứng"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6340,97 +5644,12 @@ msgid "Command failed to initialize"
 msgstr "không thể chạy lệnh"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "thanh hiệu ứng"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "&Áp dụng"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "Độ trễ: 0"
-
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "&đường tắt"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "kích hoạt trạng thái"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "đặt hiệu ứng kích hoạt trạng thái"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Show/Hide Editor"
-msgstr "Hiển thị/ Ẩn trình soạn thảo"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "Đóng/mở điều chỉnh hiệu ứng"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "Chuyển Lên"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "di chuyển hiệu ứng lên trên thanh hiệu ứng"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Down"
-msgstr "Chuyển &xuống dưới"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "di chuyển hiệu ứng xuống trên thanh hiệu ứng"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "Yêu thích"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "đưa hiệu ứng vào mục ưa thích"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "xóa hiệu ứng trên thanh hiệu ứng"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "Tên hiệu ứng"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "Độ trễ: %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "một số lệnh"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "Quản lý thiết lập sẵn và tùy chọn"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "&Quản lý"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "bật và tắt phát lại"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "Bắt &Phát Lại"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -6440,26 +5659,6 @@ msgstr "&Xem hiệu ứng trước"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "&Xem trước"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "&Xem hiệu ứng trước"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "Chuyển lùi lại"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "Chuyển &Lùi Lại"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "Chuyến về phía trước"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "Chuyến về phía &Trước"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6546,12 +5745,6 @@ msgstr ""
 "\n"
 "Bạn có muốn thay thế không?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "Tắt phát lại"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6630,20 +5823,6 @@ msgstr "Treble Cut"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"Để sử dụng biểu đồ bộ lọc này trong macro, vui lòng đặt tên mới cho nó.\n"
-"Chọn vào \"lưu/quản lý biểu đồ...\" chọn và đặt lại tên cho \"biểu đồ chưa "
-"có tên\""
-
-#: src/effects/Equalization.cpp
-msgid "Filter Curve EQ needs a different name"
-msgstr "biểu đồ bộ lọc EQ cần một tên khác"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr ""
 "để áp dụng cân bằng. tất cả các dải được chọn phải có cùng tốc độ lấy mẫu"
@@ -6651,10 +5830,6 @@ msgstr ""
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
 msgstr "tốc độ lấy mẫu đoạn âm là quá thấp cho hiệu ứng này"
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "Hiệu ứng không có sẵn"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6759,36 +5934,6 @@ msgstr "Hiển thị đường kẻ lưới"
 msgid "Show g&rid lines"
 msgstr "Hiển thị đường kẻ &lưới"
 
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "&Processing: "
-msgstr " Đang Xử lý: %s"
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "Mặc đị&nh"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "SSE &Threaded"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "A&VX"
-
-#: src/effects/Equalization.cpp
-msgid "AV&X Threaded"
-msgstr "AV&X Threaded"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "&Bench"
-msgstr "Đối chuẩn"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6809,20 +5954,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "Lỗi khi nhập EQ Curves"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "Lỗi khi lưu EQ Curves"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "không tìm thấy biểu đồ, thử dùng \"không tên\""
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "Không tìm cong được"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -6990,33 +6127,6 @@ msgstr "Áp dụng độ mờ dần vào trong tuyến tính cho âm thanh đã 
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Áp dụng độ mờ dần ra ngoài tuyến tính cho âm thanh đã chọn"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "Tìm điểm ghim"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "tạo bảng không chứa ghim"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Clicks"
-msgstr "Click chuột trái"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Right"
-msgstr "Click chuột trái"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Left"
-msgstr "Click chuột trái"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Tìm điểm ghim"
@@ -7158,30 +6268,6 @@ msgstr "số giây lớn nhất"
 #: src/effects/NoiseReduction.cpp
 msgid "Old"
 msgstr "cũ"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, none"
-msgstr "Hann, none"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, Hann (default)"
-msgstr "Hann, Hann (mặc định)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Blackman, Hann"
-msgstr "Blackman, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, none"
-msgstr "Hamming, none"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Hann"
-msgstr "Hamming, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Reciprocal Hamming"
-msgstr "Hamming, Reciprocal Hamming"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7371,48 +6457,6 @@ msgstr "4 (mặc định)"
 #: src/effects/NoiseReduction.cpp
 msgid "Discrimination &method:"
 msgstr "phương pháp& phân tách:"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Xoá nhiễu"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr ""
-"xóa tạp âm nền khó chịu như tiếng quạt, tiếng chạy băng, hoặc tiếng vo ve"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Chọn tất cả các vùng bạn cần xoá nhiễu, chọn hệ số lọc nhiễu, sau đó\n"
-"nhấn 'OK' để bắt đầu xoá nhiễu.\n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "Giảm biên &độ nhiễu (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "&Độ nhạy (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Fr&equency smoothing (Hz):"
-msgstr "làm mượt tần số"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "thời gian khởi& chạy/phân hủy (giây):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "thời gian khởi chạy/phân hủy (giây):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "x&óa"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7759,11 +6803,6 @@ msgstr "&Gain (dB):"
 msgid "Dr&y Gain (dB):"
 msgstr "&Gain (dB):"
 
-#: src/effects/Reverb.cpp
-#, c-format
-msgid "Reverb: %s"
-msgstr "tiếng vọng: %s"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Đảo ngược"
@@ -7939,14 +6978,6 @@ msgid "Converts stereo tracks to mono"
 msgstr "chuyển đổi đoạn âm stereo thành mono"
 
 #: src/effects/StereoToMono.cpp
-msgid "Resampling left channel"
-msgstr "tái lấy mẫu kênh bên trái"
-
-#: src/effects/StereoToMono.cpp
-msgid "Resampling right channel"
-msgstr "tái lấy mẫu kênh bên phải"
-
-#: src/effects/StereoToMono.cpp
 msgid "Mixing down to mono"
 msgstr "trộn mono"
 
@@ -8085,15 +7116,6 @@ msgstr "cắ&t đoạn âm độc lập"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "Hiệu ứng VST"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "đang quét bề mặt VST"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "đăng ký %dvới %d :  %-64.64s"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8321,18 +7343,6 @@ msgid "Import Audio Unit Presets"
 msgstr "Nhập thiết lập sẵn Audio"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "Thiết lập sẵn (có thể chọn nhiều)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "Preset - Thiết lập sẵn"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "vị trí"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
 msgstr "Không thể mở \"%s\""
@@ -8411,16 +7421,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "Không thể lưu thiết lập sẵn XML vào \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to convert preset to internal format"
-msgstr "Lỗi khi đặt tên thiết lập sẫn"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to create property list for preset"
-msgstr "Không thể đặt thông tin class  cho thiết lập sẵn \"%s\""
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "Không thể đặt thông tin class  cho thiết lập sẵn \"%s\""
@@ -8493,16 +7493,6 @@ msgstr ""
 "điều này có hiệu lực. "
 
 #: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%dbiểu đồ xuất đến%s"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%dbiểu đồ xuất đến%s"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "Máy Tạo"
 
@@ -8541,15 +7531,6 @@ msgstr "%s, Plug-ins - Điện toán Nyquist"
 #, fuzzy
 msgid "Audio selection required."
 msgstr "Chưa chọn Audio"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Lỗi Nyquist"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "Không thể áp dụng hiệu ứng lên dải âm stereo có các kênh khác nhau."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -8610,10 +7591,6 @@ msgstr "Nyquist trả về quá nhiều kênh âm thanh.\n"
 #, fuzzy
 msgid "Could not open file"
 msgstr "Không mở được tập tin: %s"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Lỗi trong mã Nyquist"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8698,13 +7675,6 @@ msgid "Vamp Effects"
 msgstr "Hiệu ứng VST"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Phần bổ sung Vamp không áp dụng cho dải âm stereo có các kênh khác nhau."
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "Không thể nạp phần bổ sung Vamp"
 
@@ -8752,15 +7722,6 @@ msgstr "Đang xuất âm thanh đã chọn ra %s"
 
 #: src/export/Export.cpp
 #, fuzzy, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Bạn chắc mình muốn xoá \"%s\" chứ?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "Không cấp nhận đường dẫn dài hơn 256 chữ."
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr ""
 "Có Thiết lập sẵn rồi\n"
@@ -8770,11 +7731,6 @@ msgstr ""
 #: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Tuỳ chọn nâng cao cho bộ Trộn"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Format Options"
-msgstr "Tùy chọn"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8810,1001 +7766,38 @@ msgstr "Duyệt..."
 msgid "Show output"
 msgstr "Hiển thị đầu ra"
 
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Executables"
-msgstr "Tập lệnh Scriptables"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Find path to command"
-msgstr "lệnh chuyển"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(chương trình bên ngoài)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "Không thể xuất âm thanh ra %s"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Xuất"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "Xuất âm thanh đã chọn dùng bộ mã hoá bằng dòng lệnh"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Exporting the audio using command-line encoder"
-msgstr "Xuất âm thanh đã chọn dùng bộ mã hoá bằng dòng lệnh"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Đầu ra của lệnh"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "&OK"
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "Không thể  tim được tập tin \"%s\"."
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr ""
-"Không thể tải  môđun \"%s\" .\n"
-"\n"
-"Lỗi: %s"
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Export Options"
-msgstr "Tùy chọn"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Cancel"
 msgstr "&Hủy bỏ"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "Lỗi FFmpeg: Không thể xác định mô tả định dạng cho tập tin \"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "Lỗi FFmpeg"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg: LỖI - không thể xác định phạm vi định dạng đầu ra."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr ""
-"FFmpeg : LỖI  - Không thể thêm chuỗi âm thanh vào tệp tin đầu ra\"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "Lỗi FFmpeg - Không thể mở tập tin đầu ra \"%s\"  Mã lỗi là %d."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr ""
-"FFmpeg : LỖI - Không thể viết tiêu đề lên tệp đầu ra \"%s\". Lỗi code là %d."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported a generic error (EPERM)"
-msgstr "Codec  có lỗi  (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "The codec reported an invalid parameter (EINVAL)"
-msgstr "Codec  có lỗi  (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg: LỖI - không thể xác định phạm vi định dạng đầu ra."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr ""
-"FFmpeg : LỖI  - Không thể thêm chuỗi âm thanh vào tệp tin đầu ra\"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg : LỖI - Không thể ghi đoạn âm cuối cùng vào tệp đầu ra."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "FFmpeg: LỖI - không thể xác định phạm vi định dạng đầu ra."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg : LỖI - Không thể ghi đoạn âm cuối cùng vào tệp đầu ra."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr ""
-"FFmpeg : LỖI  - Không thể thêm chuỗi âm thanh vào tệp tin đầu ra\"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr ""
-"FFmpeg : LỖI  - Không thể thêm chuỗi âm thanh vào tệp tin đầu ra\"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr ""
-"FFmpeg : LỖI  - Không thể thêm chuỗi âm thanh vào tệp tin đầu ra\"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr ""
-"FFmpeg : LỖI  - Không thể thêm chuỗi âm thanh vào tệp tin đầu ra\"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr ""
-"Đã thử xuất %dkênh, nhưng số lượng kênh lớn nhất để chọn định dạng đầu ra "
-"chỉ là %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio as %s"
-msgstr "Đang xuất âm thanh đã chọn ra %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio as %s"
-msgstr "Đang xuất âm thanh với tốc độ %d Kbps"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "Tốc độ lấy mẫu không hợp lệ"
-
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "Đổi tốc độ lấy mẫu"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"định dạng file đầu ra không hổ trợ \n"
-"tốc độ lấy mẫu dự án (%d) "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"Định dạng file đầu ra không hỗ trợ\n"
-"Tốc độ lấy mẫu (%d) và tốc độ bit (%d kbps) của dự án. "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "Bạn có thể đổi tốc độ lấy mẫu sang các giá trị dưới đây."
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "Tốc độ lấy mẫu"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Tốc độ bit:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "Chất lượng (kbps):"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "0"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "10"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "On"
-msgstr "&Mở"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Constrained"
-msgstr "Không đổi"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "Audio"
 msgstr "Âm t&hanh..."
 
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Low Delay"
-msgstr "Loại Nhãn"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mediumband"
-msgstr "Trung bình"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Fullband"
-msgstr "toàn bộ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression"
-msgstr "bộ nén"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame Duration:"
-msgstr "Độ dài:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Vbr Mode:"
-msgstr "Chế độ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Application:"
-msgstr "Áp dụng quy trình"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Cutoff:"
-msgstr "c&ắt"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Open custom FFmpeg format options"
-msgstr "Nhập/ Xuất FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Format:"
-msgstr "Dự án hiện hành"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Codec:"
-msgstr "Dự án hiện hành"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr "Lỗi khi lưu thiết lập sẵn FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "Bạn có muốn xóa thiết lập sẵn '%s' không?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Confirm Overwrite"
-msgstr "tăng tốc nhẹ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Please select format before saving a profile"
-msgstr "Hãy chọn một đoạn âm ghi chú - Note Track"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Please select codec before saving a profile"
-msgstr "Hãy chọn một đoạn âm ghi chú - Note Track"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Preset '%s' does not exist."
-msgstr "Chưa có thư mục %s. Có tạo nó không?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Replace preset '%s'?"
-msgstr "Bạn có muốn xóa thiết lập sẵn '%s' không?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Main"
-msgstr "Bộ trộn chính"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LTP"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Custom FFmpeg Export"
-msgstr "Nhập/ Xuất FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "2-level"
-msgstr "Mức"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "4-level"
-msgstr "Mức"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "8-level"
-msgstr "Mức"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Configure custom FFmpeg options"
-msgstr "Nhập/ Xuất FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "Preset  - Thiết lập sẵn:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "Tải Thiết lập sẵn"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "Nhập Thiết lập sẵn"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "Xuất thiết lập sẵn"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Codec:"
-msgstr "Dự án hiện hành"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "Hiển thị tất cả định dạng"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "Hiển thị tất cả Codecs"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "General Options"
-msgstr "Lựa chọn Thời gian biểu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Ngôn ngữ:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "Tag-Thẻ:"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Chất lượng:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Sample Rate:"
-msgstr "Tốc độ lấy mẫu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Profile:"
-msgstr "Tất cả tập tin"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "FLAC options"
-msgstr "Tập tìn FLAC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"Mức nén dữ liệu\n"
-"Cần có FLAC\n"
-"-1 - tự động\n"
-"Thấp nhất - 0 (mã hoá nhanh, tệp đầu ra lớn)\n"
-"Cao nhất - 10 (mã hoá chậm, tệp đầu ra nhỏ)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression:"
-msgstr "bộ nén"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"Kích thước khung\n"
-"không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu - 16\n"
-"tối đa - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "Khung hình:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"độ chính xác LPC \n"
-"Không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu- 1\n"
-"tối đa - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"độ chính xác LPC \n"
-"Không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu- 1\n"
-"tối đa - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "Tối thiểu PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Kích thước khung\n"
-"không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu - 16\n"
-"tối đa - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "Tối đa PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"độ chính xác LPC \n"
-"Không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu- 1\n"
-"tối đa - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "Tối thiểu PtO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Kích thước khung\n"
-"không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu - 16\n"
-"tối đa - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "Tối đa PtO"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "Dụng LPC"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mux Rate:"
-msgstr "Tốc độ:"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Kích thước khung\n"
-"không bắt buộc\n"
-"0 - mặc định\n"
-"tối thiểu - 16\n"
-"tối đa - 65535"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Packet Size:"
-msgstr "Tên bài hát"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "You can't delete a preset without name"
-msgstr "Bạn không thể lưu một thiết lập sẵn mà không có tên"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "Bạn có muốn xóa thiết lập sẵn '%s' không?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "Bạn không thể lưu một thiết lập sẵn mà không có tên"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "Chọn tập tin XML vời thiết lập sẵn để  nhập"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "Không có thiết lập sẵn để xuất"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Select xml file to export presets into"
-msgstr "Xuất thiết lập sẵn vào tập tin XML nào?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Failed to guess format"
-msgstr "Lỗi phục hồi kết nối"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "Không tìm thấy codec"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16 bit"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24 bit"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (nhanh nhất)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (tốt nhất)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Mức:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Độ sâu bit:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "Tập tìn FLAC"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "Xuất FLAC không thể mở %s"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr "không thể chạy lệnh"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "Xuất âm thanh đã chọn thành FLAC"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy
-msgid "Exporting the audio as FLAC"
-msgstr "Xuất âm thanh đã chọn thành FLAC"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "Tập tin MP2"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "Không xuất được MP2 với tốc độ lấy mẫu và tốc độ bit này"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "Không thể ghi tập tin đích"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "Xuất âm thanh đã chọn với tốc độ %ld kbps"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "Đang xuất âm thanh với tốc độ %ld Kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "220-260 kbps (Best Quality)"
-msgstr "220-260 kbps (Chất Lượng Cao Nhất)"
-
-#: src/export/ExportMP3.cpp
-msgid "200-250 kbps"
-msgstr "200-250 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "170-210 kbps"
-msgstr "170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "155-195 kbps"
-msgstr "155-195 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "145-185 kbps"
-msgstr "145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "110-150 kbps"
-msgstr "110-150 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "95-135 kbps"
-msgstr "95-135 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "80-120 kbps"
-msgstr "80-120 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "65-105 kbps"
-msgstr "65-105 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "45-85 kbps (Smaller files)"
-msgstr "45-85 kbps (Tệp nhỏ hơn)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "Tối Đa, 320 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "Hết sức, 220-260 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "Mặc định, 170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "Trung bình, 145-185 kbps"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "Trên cả tuyệt"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "Cực kỳ"
-
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Chuẩn"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "Trung bình"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "Biến thiên"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Average"
-msgstr "Trung bình"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Constant"
-msgstr "Không đổi"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Joint Stereo"
-msgstr "Stereo chung"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Stereo"
-msgstr "2 (Stereo)"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "Chế độ bit:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Chất lượng"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "Chế độ kênh:"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Force export to mono"
-msgstr "Xoá đường cắt"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "Tập tin MP3"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "Không thể khởi tạo dòng MP3"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "Đang xuất âm thanh đã chọn với thiết lập sẵn %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format, fuzzy
-msgid "Exporting the audio with %s preset"
-msgstr "Đang xuất âm thanh vời thiết lập sẵn %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "Đang xuất âm thanh đã chọn với VBR chất lượng %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "Đang xuất âm thanh với VBR chất lượng %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "Đang xuất âm thanh đã chọn với tốc độ %d Kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "Đang xuất âm thanh với tốc độ %d Kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "Gặp %ld lỗi khi mã hoá MP3"
-
-#: src/export/ExportMP3.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"Định dạng MP3 không hỗ trợ\n"
-"Tốc độ lấy mẫu của dự án (%d). "
-
-#: src/export/ExportMP3.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"Định dạng MP3 không hỗ trợ\n"
-"Tốc độ lấy mẫu (%d) và tốc độ bit (%d kbps) của dự án. "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16-bit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24-bit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Các nhãn"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "Xuất dự án thành tập tin âm thanh"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "Xuất âm thanh đã chọn thành FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the audio as MKA"
-msgstr "Xuất âm thanh đã chọn thành FLAC"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Xuất ra nhiều tập tin"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Cannot Export Multiple"
-msgstr "Xuất ra nhiều tập tin"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Export files to:"
-msgstr "Xuất lệnh Macro"
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "Thủ mục:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Chọn..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Tạo"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Options:"
-msgstr "Tùy chọn"
 
 #: src/export/ExportMultiple.cpp
 #, fuzzy
@@ -9815,15 +7808,6 @@ msgstr "Chia tập tin dựa trên:"
 #, fuzzy
 msgid "Include audio before first label"
 msgstr "Tính cả âm thanh trước nhãn đầu tiên"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "Tên tập tin đầu tiên:"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "First file name"
-msgstr "Tên  tập tin  đầu tiến"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -9848,18 +7832,8 @@ msgid "File name prefix:"
 msgstr "Tiền tố của tên tập tin:"
 
 #: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "File name prefix"
-msgstr "Tiền tố của tên tập tin:"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Ghi đè lên tập tin có sẵn"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "Đã tạo xong \"%s\"."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -9891,172 +7865,18 @@ msgid "Something went really wrong after exporting the following %lld file(s)."
 msgstr "Không  thể xuất (các) tập tin:  %lld"
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"Không tồn tại \"%s\".\n"
-"\n"
-"Bạn có muốn tạo nó không?"
-
-#: src/export/ExportMultiple.cpp
 #, fuzzy
 msgid "Continue to export remaining files?"
 msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng "
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "Lưu mới..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Tập tin Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - rate or quality problem"
-msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with metadata"
-msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng "
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem initialising"
-msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng "
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem creating stream"
-msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng "
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with packets"
-msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng "
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with file"
-msgstr "Không thể xuất  vì vấn đề tốc độ hoặc chất lượng "
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "Đang xuất âm thanh đã chọn ra tập tin dạng Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "Đang xuất âm thanh đã chọn ra tập tin dạng Ogg Vorbis"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "AIFF (Apple/SGI)"
-msgstr "AIFF (Apple/SGI)"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft)"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Phần đầu:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Mã hoá:"
 
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid "Other uncompressed files"
-msgstr "WAV, AIFF, và các định dạng không nén khác"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "Lỗi khi xuất"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "Không xuất được dữ liệu ra định dạng này."
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Đang xuất âm thanh đã chọn ra %s"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"Lỗi khi lưu tập tin %s  (disk full?).\n"
-"Libsndfile nói \"%s\""
-
 #: src/export/ExportPlugin.cpp
 #, fuzzy
 msgid "No format specific options"
 msgstr "Tùy chọn"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "Hỗ trợ FFmpeg đã không được tích hợp"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "FFmpeg khởi động không thành công"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "Không thể tìm thấy thư viện FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "Tìm thấy FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "Địa điểm '%s':"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "To find '%s', click here -->"
-msgstr "Để tìm '%s'  click vào đây -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Để nhận một bản sao chép FFmpeg miễn phí, hãy nhấp chuột vào ->>"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "Tải về"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Only avformat.dll"
-msgstr "Chỉ avformat.dll"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "%s ở đâu thế?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpeg không tìm được"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "Không hiện cảnh báo này nữa"
 
 #: src/import/Import.cpp
 #, fuzzy
@@ -10078,453 +7898,13 @@ msgid "%s, %s"
 msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
-msgid "AUP project files (*.aup)"
-msgstr "Tập tin dự án AUP (*.aup)"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"Lỗi khi nhập dự án\n"
-"\n"
-"%s"
-
-#: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "Nhập Dự Án"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'vpos' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'h' attribute."
-msgstr "Thuộc tính 'h' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'zoom' attribute."
-msgstr "Thuộc tính 'zoom' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel0' attribute."
-msgstr "Thuộc tính 'sel0' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel1' attribute."
-msgstr "Thuộc tính 'sel1' của  dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selLow' attribute."
-msgstr "Thuộc tính 'selLow' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Thuộc tính 'selHigh' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "Không tìm thấy thư mục dữ liệu của dự án: \"%s\""
-
-#: src/import/ImportAUP.cpp
-msgid "Project Import"
-msgstr "Nhập dự án"
-
-#: src/import/ImportAUP.cpp
-msgid ""
-"The active project already has a time track and one was encountered in the "
-"project being imported, bypassing imported time track."
-msgstr ""
-"Dự án đang hoạt động hiện có một chuỗi âm và một trong số chúng đã gây ra "
-"sung đột với dự án đang được chèn vào, bỏ qua chuỗi âm thanh được chèn."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Thuộc tính 'selLow' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Thuộc tính 'vpos' của dự án không hợp lệ."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to open %s"
-msgstr "Không gỡ bỏ được %s"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "Lỗi khi đặt tên thiết lập sẫn"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "Không thể đọc thiết lập sẵn từ \"%s\""
-
-#: src/import/ImportFLAC.cpp
-#, fuzzy
-msgid "FLAC files"
-msgstr "Tập tìn FLAC"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to add decoder to pipeline"
-msgstr "Không thể tải tập tin thiết lập sẵn."
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "Trình nhập GStreamer"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "Không thể dừng 'stream state'."
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "Không thể chèn tệp, lỗi thay đổi trạng thái."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "Lỗi GStreamer: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Danh sách các tập tin ở dạng văn bản gốc"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "Tập tin LOF chứa offset cửa sổ không hợp lệ."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "Lỗi LOF"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-#, fuzzy
-msgid "Invalid duration in LOF file."
-msgstr "Tập tin LOF có độ dài không hợp lệ."
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "Chỉ có thể offset riêng các tập tin âm thanh, không thể làm với MIDI."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "Tập tin LOF chứa offset dải không hợp lệ."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "Đã nhập MIDI từ '%s'"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "Nhập MIDI"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "Không mở được tập tin: %s"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "Không mở được tập tin: %s"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s."
-msgstr "Không mở được tập tin: %s"
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "Tập tin MP3"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-#| msgid "%s files"
-msgid "Matroska files"
-msgstr "Tập tin %s "
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Tập tin Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Lỗi đọc phương tiện"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "Không phải là tập tin Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Sai Phiên bản Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "Dòng bit Vorbis có Phần đầu không hợp lệ"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "Lỗi Logic bên trong"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF, và các định dạng không nén khác"
-
-#: src/import/ImportPCM.cpp
-msgid "AU (Sun/NeXT)"
-msgstr "AU (Sun/NeXT)"
-
-#: src/import/ImportPCM.cpp
-msgid "AVR (Audio Visual Research)"
-msgstr "AVR (Audio Visual Research)"
-
-#: src/import/ImportPCM.cpp
-msgid "CAF (Apple Core Audio File)"
-msgstr "CAF (Apple Core Audio File)"
-
-#: src/import/ImportPCM.cpp
-msgid "HTK (HMM Tool Kit)"
-msgstr "HTK (HMM Tool Kit)"
-
-#: src/import/ImportPCM.cpp
-msgid "IFF (Amiga IFF/SVX8/SV16)"
-msgstr "IFF (Amiga IFF/SVX8/SV16)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-msgstr "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-msgstr "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-
-#: src/import/ImportPCM.cpp
-msgid "MPC (Akai MPC 2k)"
-msgstr "MPC (Akai MPC 2k)"
-
-#: src/import/ImportPCM.cpp
-msgid "OGG (OGG Container format)"
-msgstr "OGG (OGG Container format)"
-
-#: src/import/ImportPCM.cpp
-msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
-
-#: src/import/ImportPCM.cpp
-msgid "PVF (Portable Voice Format)"
-msgstr "PVF (Portable Voice Format)"
-
-#: src/import/ImportPCM.cpp
-msgid "RAW (header-less)"
-msgstr "RAW (header-less)"
-
-#: src/import/ImportPCM.cpp
-msgid "RF64 (RIFF 64)"
-msgstr "RF64 (RIFF 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "SD2 (Sound Designer II)"
-msgstr "SD2 (Sound Designer II)"
-
-#: src/import/ImportPCM.cpp
-msgid "SDS (Midi Sample Dump Standard)"
-msgstr "SDS (Midi Sample Dump Standard)"
-
-#: src/import/ImportPCM.cpp
-msgid "SF (Berkeley/IRCAM/CARL)"
-msgstr "SF (Berkeley/IRCAM/CARL)"
-
-#: src/import/ImportPCM.cpp
-msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
-
-#: src/import/ImportPCM.cpp
-msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAVEX (Microsoft)"
-msgstr "WAVEX (Microsoft)"
-
-#: src/import/ImportPCM.cpp
-msgid "WVE (Psion Series 3)"
-msgstr "WVE (Psion Series 3)"
-
-#: src/import/ImportPCM.cpp
-msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 8 bit PCM"
-msgstr "Signed 8 bit PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 16 bit PCM"
-msgstr "Signed 8 bit PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 24 bit PCM"
-msgstr "Signed 32 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 32 bit PCM"
-msgstr "Signed 32 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Unsigned 8 bit PCM"
-msgstr "Unsigned 8 bit PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "32 bit float"
-msgstr "32-bit float"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "64 bit float"
-msgstr "32-bit float"
-
-#: src/import/ImportPCM.cpp
-msgid "U-Law"
-msgstr "U-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "A-Law"
-msgstr "A-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "IMA ADPCM"
-msgstr "IMA ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "GSM 6.10"
-msgstr "GSM 6.10"
-
-#: src/import/ImportPCM.cpp
-msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "12 bit DWVW"
-msgstr "12 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DWVW"
-msgstr "12 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "24 bit DWVW"
-msgstr "12 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "VOX ADPCM"
-msgstr "VOX ADPCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DPCM"
-msgstr "16-bit PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "8 bit DPCM"
-msgstr "16-bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Vorbis"
-msgstr "Vorbis"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "Đang nhập %s"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "Tập tin QuickTime"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to start QuickTime extraction"
-msgstr "Không thể thiết lập chất lượng kết xuất cho QuickTime "
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime render quality"
-msgstr "Không thể thiết lập chất lượng kết xuất cho QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "Không thể thiết lập thuộc tính riêng biệt của kênh cho QuickTIme"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "Không thể đọc thuộc tính  kích cỡ mẫu cho QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "Không nhận được miêu tả của kênh truyền (stream)"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get fill buffer"
-msgstr "Không thể lưu tập tin thể loại."
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -10614,12 +7994,6 @@ msgstr "Phát hiện khoảng im lặng"
 msgid "&Import"
 msgstr "&Nhập"
 
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s right"
-msgstr "Nhẹ"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -10661,28 +8035,8 @@ msgstr[0] "%s %d of %d"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
-msgid "Time shifted clips to the right"
-msgstr "Đã dịch dải/đoạn sang qua bên phải %.02f giây"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the left"
-msgstr "Đã dịch dải/đoạn sang qua bên trái %.02f giây"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Di chuyển mốc thời gian"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
 msgid "clip not moved"
 msgstr "Tập lệnh chưa lưu."
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Clip B&oundaries"
-msgstr "Di chuyên con trò đến bắt đầu vùng chọn:"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
@@ -10780,28 +8134,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "Đã xoá %.2f giây tại t=%.2f"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "Không thể sao chép một loại đoạn âm vào loại khác."
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "Không thể sao chép âm thanh stereo sang đoạn mono."
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "Đã nhân đôi"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "Nhân đôi"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "Chia rồi cắt vào bộ nhớ sao chép Clipboard"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "Chia và Cắt"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -10902,16 +8240,6 @@ msgstr "N&hân đôi"
 msgid "R&emove Special"
 msgstr "&Xoá Dải âm"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "Ch&ia và Cắt"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "Chia &và Xoá"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -10941,15 +8269,6 @@ msgstr "&Ghép nối"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "Tách ra k&hi Im lặng"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "&Metadata..."
-msgstr "&Dữ liệu thô..."
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr " &Tuỳ thích..."
 
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -10993,11 +8312,6 @@ msgstr ""
 "Không thể tạo thư mục  '%s'. \n"
 "Tập tin đã tồn tại. Hãy chọn một tên khác"
 
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export Selected Audio"
-msgstr "Đang xuất âm thanh đã chọn ra %s"
-
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
 msgid "labels.txt"
@@ -11008,34 +8322,6 @@ msgid "There are no label tracks to export."
 msgstr "Không có nhãn đoạn âm nào để xuất"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select only one Note Track at a time."
-msgstr "Hãy chọn một đoạn âm ghi chú - Note Track"
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "Hãy chọn một đoạn âm ghi chú - Note Track"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MIDI As:"
-msgstr "Xuất  MIDI  tên tập tin:"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI file"
-msgstr "Tập tin XML"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro file"
-msgstr "Tất cả tập tin"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "Xuất  MIDI"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "Nhập nhãn từ '%s'"
@@ -11043,25 +8329,6 @@ msgstr "Nhập nhãn từ '%s'"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Nhập nhãn"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Select a MIDI file"
-msgstr "Chọn tập tin"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI and Allegro files"
-msgstr "Tập tin MIDI  và Allegro"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI files"
-msgstr "Tập tin XML"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro files"
-msgstr "Tất cả tập tin"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -11109,11 +8376,6 @@ msgstr "Xuất tập tin định dạng FLAC"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
-msgid "Export as &MKA"
-msgstr "Xuất tập tin định dạng FLAC"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
 msgid "Export as &OGG"
 msgstr "Xuất tập tin định dạng FLAC"
 
@@ -11132,15 +8394,6 @@ msgid "Export &Labels..."
 msgstr "Xuất &nhãn..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "Xuất ra &nhiều tập tin"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MI&DI..."
-msgstr "Xuất  MIDI"
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "Âm t&hanh..."
 
@@ -11149,26 +8402,8 @@ msgid "&Labels..."
 msgstr "&Nhãn..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "&Dữ liệu thô..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "Thiết lập tran&g"
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "&In ấn..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "Th&oát"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11283,18 +8518,6 @@ msgstr "Vùng Audio được dán nhãn đã bị xoá"
 msgid "Delete Labeled Audio"
 msgstr "Xoá audio được dán nhãn"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Đã chia và cắt các phần Audio có nhãn vào bộ nhớ sao chép Clipboard"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut Labeled Audio"
-msgstr "Chia và cắt audio được dán nhãn"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11373,10 +8596,6 @@ msgstr "Xoá audio được dán nhãn"
 msgid "&Labels"
 msgstr "Các &Nhãn"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "&Chỉnh Sửa các Nhãn"
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Add Label at &Selection"
@@ -11400,31 +8619,6 @@ msgstr "Cắt audio được dán nhãn "
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "&Cắt"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "Dán nhãn tại điểm cắt"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "Nhãn Xoa"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "Chi&a và cắt"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "Dán nhãn tại điểm Chi&a và cắt"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "Chia &và Xoá"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "Dán nhãn tại điểm Chia và Xoa"
 
 #: src/menus/LabelMenus.cpp
 #, fuzzy
@@ -11520,11 +8714,6 @@ msgid "&Repeat %s"
 msgstr "Lặp lại %s"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "Plug-in %d - %d"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "Tạo â&m"
 
@@ -11558,18 +8747,8 @@ msgstr "Công cụ"
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
-msgid "Manage Plug-ins..."
-msgstr "Thêm/Xoá Plug-ins (điện toán)"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Tool"
 msgstr "Lặp lại %s"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
-msgid "&Macros..."
-msgstr "Lệnh Macro"
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
@@ -12006,12 +9185,6 @@ msgstr "&Tìm thấy"
 msgid "&Toolbars"
 msgstr "&Thanh công cụ"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "Trong tất cả các &Đoạn âm Sync-Locked Tracks "
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "Đặt lại th&anh công cụ mặc định"
@@ -12414,11 +9587,6 @@ msgstr "Xếp Điểm Đầu"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "di chuyển hiệu ứng xuống trên thanh hiệu ứng"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
 msgid "Move Sele&ction and Tracks"
 msgstr "Chọn đoạn âm"
 
@@ -12436,11 +9604,6 @@ msgstr "Thời gian bắt đầu"
 #, fuzzy
 msgid "By &Name"
 msgstr "&Tên"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "Trong tất cả các &Đoạn âm Sync-Locked Tracks "
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12489,11 +9652,6 @@ msgstr "Đặt ghi chú cho dải âm"
 #: src/menus/TrackMenus.cpp
 #, fuzzy
 msgid "&Solo/Unsolo Focused Track"
-msgstr "Đặt ghi chú cho dải âm"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "&Close Focused Track"
 msgstr "Đặt ghi chú cho dải âm"
 
 #: src/menus/TrackMenus.cpp
@@ -12593,11 +9751,6 @@ msgid "Pl&ay/Stop"
 msgstr "&Chơi /Dừng"
 
 #: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "&Loop Play"
-msgstr "Phát  lặp lại"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "&Dừng"
 
@@ -12631,18 +9784,6 @@ msgid "Punch and Rol&l Record"
 msgstr "Tuỳ chọn ghi âm"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "Chơi phần"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "&Khoá"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "&Mở khoá"
-
-#: src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "R&escan Audio Devices"
 msgstr "&Quét lại thiêt bị audio"
@@ -12654,33 +9795,8 @@ msgstr "Chuyển đổi"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
-msgid "Sound Activation Le&vel..."
-msgstr "Thu âm đã bật"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Thu âm đã bật"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Ghim đầu đánh dấu"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "So&ftware Playthrough (on/off)"
-msgstr "&chương trình đang chạy thông qua đầu vào."
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "T&ransport"
 msgstr "Chuyển đổi"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "&Chơi"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -12733,16 +9849,6 @@ msgstr "Nghe thử cắt"
 #: src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "&Play-at-Speed"
-msgstr "Tốc độ phát"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "Tốc độ phát &Bình thường"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "&Loop Play-at-Speed"
 msgstr "Tốc độ phát"
 
 #: src/menus/TransportMenus.cpp
@@ -12805,11 +9911,6 @@ msgstr "Bật &Tắt Zoom"
 
 #: src/menus/ViewMenus.cpp
 #, fuzzy
-msgid "Advanced &Vertical Zooming"
-msgstr "Zoom theo chiều dọc và nâng cao"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
 msgid "T&rack Size"
 msgstr "Tên bài hát"
 
@@ -12851,30 +9952,6 @@ msgstr "Di chuyên đến kết thúc vùng chọn:"
 msgid "Skip to Selection End"
 msgstr "Di chuyên đến kết thúc vùng chọn:"
 
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Extra Menus (on/off)"
-msgstr "Trong tất cả các &Đoạn âm Sync-Locked Tracks "
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "Track &Name (on/off)"
-msgstr "Trong tất cả các &Đoạn âm Sync-Locked Tracks "
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Show Clipping (on/off)"
-msgstr "Hiển thị Clipping (những âm thanh quá giới hạn) (bật/tắt)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "Hiển thị Effects Rack (thanh công cụ hiệu ứng)"
-
-#: src/menus/WindowMenus.cpp
-#, fuzzy
-msgid "&Window"
-msgstr "Cửa sổ"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Lệnh Gộp"
@@ -12891,14 +9968,6 @@ msgstr "Hành vi"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "Không áp &dụng hiệu ứng trong chế độ lệnh gộp"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "Thiết bị"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "Tuỳ chọn cho thiết bị"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -13058,15 +10127,6 @@ msgid "Directory %s is not suitable (at risk of being cleaned out)"
 msgstr "Thư mục %s không phù hợp (có nguy cơ bị xóa)"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "Chưa có thư mục %s. Có tạo nó không?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Thư mục tạm thời mới"
-
-#: src/prefs/DirectoriesPrefs.cpp
 #, c-format
 msgid "Directory %s is not writable"
 msgstr "Không thể ghi vào thư mục %s"
@@ -13087,71 +10147,8 @@ msgstr "Tuỳ thích ảnh phổ"
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
-msgid "Sorted by Effect Name"
-msgstr "xuất thông số hiệu ứng"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Publisher and Effect Name"
-msgstr "xuất thông số hiệu ứng"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Type and Effect Name"
-msgstr "xuất thông số hiệu ứng"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "&LADSPA"
-msgstr "Tất cả hiệu ứng"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "N&yquist"
-msgstr "Nyquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "Bật các hiệu ứng"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
 msgid "Effect Options"
 msgstr "tùy chọn hiệu ứng VST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "Các hiệu ứng tối đa trong mỗi nhóm (0 để tắt bỏ):"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Plugin Options"
-msgstr "Thiết lập phần bổ sung"
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
@@ -13297,11 +10294,6 @@ msgstr "&Ngôn Ngữ:"
 
 #: src/prefs/GUIPrefs.cpp
 #, fuzzy
-msgid "Location of &Manual:"
-msgstr "Vị trí của %s:"
-
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
 msgid "Meter dB &range:"
 msgstr "Dạng sóng"
 
@@ -13318,16 +10310,6 @@ msgstr "Hiển thị menu bổ sung"
 msgid "&Beep on completion of longer activities"
 msgstr "&Bíp khi hoàn thành các tác vụ kéo dài"
 
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
-msgid "Show Timeline Tooltips"
-msgstr "Hiển thị hộp thoại trợ giúp cho dòng thời gian"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Show Scrub Ruler"
-msgstr "Hủy bỏ "
-
 #: src/prefs/GUIPrefs.h
 msgid "GUI"
 msgstr "GUI (Giao diện đồ họa người dùng)"
@@ -13339,16 +10321,6 @@ msgstr "Nhập / Xuất"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "Tất cả tuỳ thích Nhập / Xuất"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Mix down to Stereo or Mono"
-msgstr "Chia 1 dải âm Stereo thành 2 dải âm MO&NO "
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Use Advanced Mixing Options"
-msgstr "Tuỳ chọn nâng cao cho bộ Trộn"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -13371,20 +10343,6 @@ msgid "&Beats"
 msgstr "Tìm điểm ghim"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "Khi xuất các dải âm thành tập tin âm thanh"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "c&hạy trình biên soạn các thẻ meta trước khi xuất bản"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Ignore blank space at the beginning"
-msgstr "bỏ qua âm trắng ở đoạn đầu và cuối"
-
-#: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
 msgid "Exported Label Style:"
 msgstr "Xuất nhãn thành:"
@@ -13392,11 +10350,6 @@ msgstr "Xuất nhãn thành:"
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "NHẬP  XUẤT"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Bàn phím"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
@@ -13520,35 +10473,6 @@ msgstr "Gán phím tắt"
 msgid "Preferences for Library"
 msgstr "Tuỳ chọn thư viện"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "Thư viện  Nhập/ Xuất FFmpeg"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "Không tìm thấy thư viện FFmpeg tương thích"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg support is not compiled in"
-msgstr "Hỗ trợ FFmpeg đã không được tích hợp"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "Phiên bản thư viện FFmpeg"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "Thư viện FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "&Tìm Vị Trí"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "Tải xuố&ng"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "Thư viện"
@@ -13595,63 +10519,12 @@ msgstr "Tuỳ chọn Chất Lượng"
 
 #: src/prefs/ModulePrefs.cpp
 #, fuzzy
-msgid "Ask"
-msgstr "&Hỏi"
-
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
 msgid "Failed"
 msgstr "Không thành công!"
-
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "No modules were found"
-msgstr "Không tìm thấy"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Chuột"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Preferences for Mouse"
-msgstr "Tuỳ chọn cho GUI (Giao diện đồ họa người dùng)"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Gán chuột (gía trị mặc định, chưa cấu hình)"
 
 #: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Công cụ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Thực thi lệnh"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Nút"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "Click chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Đặt điểm chọn"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "Kéo thả chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Đặt giới hạn vùng chọn"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -13659,167 +10532,6 @@ msgstr "Đặt giới hạn vùng chọn"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Shift+Click chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Mở rộng giới hạn vùng chọn"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "Click đúp chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "Chọn đoạn hoặc toàn bộ dải"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "Lăn chuột"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Change scrub speed"
-msgstr "Thay đổi tốc độ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Phóng to trên một điểm"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Phóng to trên một phạm vi"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "giống kéo thả chuột phải"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "Nhắp chuột phải"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Phóng to hơn 1 mức"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "Kéo thả chuột phải"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "giống kéo thả chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Giữ Shift rồi kéo thả chuột"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "Thu nhỏ trên một phạm vi"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "Nhấn chuột giữa"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "Zoom mặc định"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move clip left/right or between tracks"
-msgstr "Di chuyển đoạn lên/xuống giữa các dải"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Giữ Shift rồi kéo thả chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "-Kéo thả chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "Di chuyển đoạn lên/xuống giữa các dải"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "-Kéo thả chuột trái"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Thay đổi đường bao biên độ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Bút chì"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Thay đổi mẫu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt+Chuột trái"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Làm mượt mẫu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Thay đổi một vài mẫu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Thay đổi chỉ Một mẫu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Nhiều"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "giống như công cụ chọn"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "giống như công cụ thu phóng"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Bất kỳ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Shift+Lăn chuột"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll waveform"
-msgstr "&Dạng sóng:"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Wheel-Rotate"
-msgstr "Lăn chuột"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "Phóng to hoặc thu nhỏ dạng sóng"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Shift-Wheel-Rotate"
-msgstr "Shift+Lăn chuột"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Dạng sóng"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -13874,14 +10586,6 @@ msgid "Other..."
 msgstr "Khác..."
 
 #: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "Đang lấy mẫu"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "Tốc độ lấy mẫu mặc định:"
-
-#: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
 msgstr "Định dạng mẫu mặc định:"
 
@@ -13905,10 +10609,6 @@ msgstr "Bộ &chuyển đổi tốc độ lấy mẫu:"
 #: src/prefs/RecordingPrefs.cpp
 msgid "Preferences for Recording"
 msgstr "Tuỳ chọn ghi âm"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "&chương trình đang chạy thông qua đầu vào."
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -13995,12 +10695,6 @@ msgstr "ERB"
 #, fuzzy
 msgid "Period"
 msgstr "thời gian khung hình"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "màu (mặc định)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14119,10 +10813,6 @@ msgid "8 - most wideband"
 msgstr "8 - hầu hết băng rộng"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - mặc định"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14143,32 +10833,6 @@ msgstr "Hệ& số suy hao:"
 #, fuzzy
 msgid "Ena&ble Spectral Selection"
 msgstr "Bật lựa chọn kéo thả"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "Hiển thị đường kẻ lưới bằng trục &Y"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "FFT Find Notes"
-msgstr "&Tìm nốt nhạc"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "Biên độ nhỏ nhất (dB):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "Số tối đa các nốt (1...128):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "&Tìm nốt nhạc"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "&Lượng tử hoá nốt"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
@@ -14203,20 +10867,6 @@ msgstr "Tần số lớn nhất phải là số nguyên"
 msgid "The frequency gain must be an integer"
 msgstr "Tần số lớn nhất phải là số nguyên"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "Biên độ nhỏ nhất (dB) phải là số nguyên"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The maximum number of notes must be an integer"
-msgstr "Tần số lớn nhất phải là số nguyên"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "Tần số lớn nhất phải là số nguyên"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14229,12 +10879,6 @@ msgstr "Sắc thái giao diện"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "Tuỳ chọn cho thiết bị"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "&Settings"
-msgid "Theme Settings"
-msgstr "&Tuỳ chọn"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Info"
@@ -14296,19 +10940,6 @@ msgstr "Chưa chọn Audio"
 #, fuzzy
 msgid "Enable cut &lines"
 msgstr "Bật plug-ins (điện toán) mới "
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "Bật chọn kéo thả bằng cạnh"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "Bật cuộn sang bên trái số không"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Advanced &vertical zooming"
-msgstr "Zoom theo chiều dọc và nâng cao"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 #, fuzzy
@@ -14434,43 +11065,6 @@ msgstr "Thiết lập sẵn 1:"
 msgid "Preset 2:"
 msgstr "Thiết lập sẵn 2:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-#, fuzzy
-msgid "Warnings"
-msgstr "Cảnh báo"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Preferences for Warnings"
-msgstr "Tuỳ chọn ghi âm"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "Hiển thị Cảnh báo/ Hộp thoại cho"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "Đang lưu các dự án"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "Đang lưu dự ấn &trống"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &mono during export"
-msgstr "trộn mono"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &stereo during export"
-msgstr "trộn mono"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Missing file &name extension during export"
-msgstr "trộn mono"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 #, fuzzy
@@ -14505,36 +11099,11 @@ msgstr "sử&a lỗi"
 msgid "Classic"
 msgstr "Cổ điển"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "Tập nhật ký của Audacity"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "Tối"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "Tương phản cao"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "Nhẹ"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "Công cụ"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Tập nhật ký của Audacity"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14543,19 +11112,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "Không thể viết vào tập tin:  %s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr ""
-"Chủ đề được viết cho:\n"
-"%s."
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14573,16 +11129,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "Không thể viết vào tập tin:  %s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"Chủ đề dưới dạng mã Cee được viết cho:\n"
-"%s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -14747,14 +11293,6 @@ msgid "Edit"
 msgstr "Chỉnh sửa"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "Cắt vùng chọn"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "Sao Chép vùng chọn"
-
-#: src/toolbars/EditToolBar.cpp
 #, fuzzy
 msgid "Trim audio outside selection"
 msgstr "Xoá phần đã chọn"
@@ -14805,11 +11343,6 @@ msgstr "Vừa dự án vào trong cửa sổ"
 msgid "Fit project to width"
 msgstr "Vừa dự án vào trong cửa sổ"
 
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Open Effects Rack"
-msgstr "thanh hiệu ứng"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -14840,11 +11373,6 @@ msgstr "Bộ đo thu"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "Bộ đo thu"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "Bộ đo phát"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -14880,82 +11408,10 @@ msgstr "Thanh công cụ đo độ cao &Ghi âm"
 msgid "&Playback Meter Toolbar"
 msgstr "Thanh công cụ đo độ cao &Phát âm thanh"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub"
-msgstr "Hủy bỏ"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Seek"
-msgstr "Stereo"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub Ruler"
-msgstr "Hủy bỏ "
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 #, fuzzy
 msgid "Scrubbing"
 msgstr "Hủy bỏ "
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Scrubbing"
-msgstr "Dừng Tập lệnh"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Scrubbing"
-msgstr "Bắt đầu Tập lệnh"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Seeking"
-msgstr "Stereo"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Seeking"
-msgstr "Bắt đầu đo"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Hide Scrub Ruler"
-msgstr "Hủy bỏ "
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scru&b Toolbar"
-msgstr "&Thanh công cụ"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "Tần số của dự án (Hz):"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Snap-To"
-msgstr "Dính tới"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -14985,10 +11441,6 @@ msgid "Show"
 msgstr "Hiển thị"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "Dính tới"
-
-#: src/toolbars/SelectionBar.cpp
 #, fuzzy
 msgid "Length"
 msgstr "Độ &dài:"
@@ -14998,15 +11450,6 @@ msgstr "Độ &dài:"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Giữa"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr ""
-" Vùng chọn %s. \n"
-"%s không thay đổi."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15079,10 +11522,6 @@ msgid "Envelope Tool"
 msgstr "Công cụ biên độ"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Công cụ thu phóng"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Công cụ vẽ"
@@ -15112,10 +11551,6 @@ msgid "&Draw Tool"
 msgstr "Công cụ &vẽ"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "Công cụ &Thu phóng"
-
-#: src/toolbars/ToolsToolBar.cpp
 #, fuzzy
 msgid "&Multi Tool"
 msgstr "Công cụ &Vùng chọn"
@@ -15140,11 +11575,6 @@ msgstr "Phát ở tốc độ đã chọn"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "Tốc độ phát lại"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-#, fuzzy
-msgid "Looped-Play-at-Speed"
-msgstr "Tốc độ phát"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15283,14 +11713,6 @@ msgstr "Đoạn âm thứ hai"
 #, fuzzy
 msgid "Stretch"
 msgstr "Độ dài"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "Kết hợp các đoạn"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "Kết hợp lại"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -15503,24 +11925,6 @@ msgstr "Chia dải âm stereo '%s'"
 msgid "Split Stereo to Mo&no"
 msgstr "Chia 1 dải âm Stereo thành 2 dải âm MO&NO"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy
-msgid "Left Channel"
-msgstr "Kênh trái"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy
-msgid "Right Channel"
-msgstr "Kênh phải"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Kênh"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -15557,26 +11961,6 @@ msgstr "Chia Stereo thành Mono %s"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "Chuyển thành Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "Stereo, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "Mono, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "Trái, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "Phải, %dHz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -15629,12 +12013,6 @@ msgstr "Đặt clip"
 msgid "Mute/Unmute Track"
 msgstr "Đặt ghi chú cho dải âm"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "Đặt lại tên..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -15645,14 +12023,6 @@ msgstr "Đặt lại tên..."
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
 msgstr[0] "%s %d of %d"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "Zoom x1/2"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "Zoom x2"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 #, fuzzy
@@ -15678,22 +12048,6 @@ msgstr "Nhạc cụ"
 #, fuzzy
 msgid "WaveColor Change"
 msgstr "Thay đổi tốc độ lấy mẫu"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Chuyển tốc độ giới hạn dưới (%) thành:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Tốc độ giới hạn dưới"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Chuyển tốc độ giới hạn trên (%) thành:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Tốc độ giới hạn trên"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -15735,12 +12089,6 @@ msgstr "&Đặt lại tên..."
 msgid "Logarithmic &Interpolation"
 msgstr "Logarith"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Nhấn và rê để di chuyển dải âm theo thời gian"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -15762,11 +12110,6 @@ msgstr "Nhãn đoạn âm"
 #, fuzzy
 msgid "Export Audio..."
 msgstr "&Xuất tập tin..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-#, fuzzy
-msgid "&Name..."
-msgstr "&Đặt lại tên..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -15941,18 +12284,6 @@ msgid "Time shifted tracks/clips left %.02f seconds"
 msgstr "Đã dịch dải/đoạn sang qua bên trái %.02f giây"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Command+Click to deselect"
-msgstr "Command + Click để bỏ chọn"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "Chọn dải âm"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Ctrl+Click to deselect"
-msgstr "Ctrl+Click để bỏ chọn"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "&Mở  menu..."
 
@@ -16029,12 +12360,6 @@ msgstr "L"
 msgid "R"
 msgstr "R"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, fuzzy, c-format
-msgid "%.2fx"
-msgstr "%.2f dB"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "&Xoá"
@@ -16059,31 +12384,6 @@ msgstr "Trợ giúp từ Internet"
 #, fuzzy
 msgid "Menu"
 msgstr "Menus"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "Click để Bắt đầu đo"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "Click để đo"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "Click để Bắt đầu"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click"
-msgstr "Click chuột trái"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "Dừng đo"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "Bắt đầu đo"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16157,11 +12457,6 @@ msgstr "%.2f dB"
 #, fuzzy
 msgid "Show Log for Details"
 msgstr "Hiển thị chi tiết nhật ký máy"
-
-#: src/widgets/MultiDialog.cpp
-#, fuzzy
-msgid "Please select an action"
-msgstr "Hãy chọn một đoạn âm audio."
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

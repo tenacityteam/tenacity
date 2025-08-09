@@ -20,100 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.10\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default recording device number: %d"
-msgstr "ឧបករណ៍​បញ្ចូល"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default playback device number: %d"
-msgstr "ល្បឿន​ចាក់​ឡើងវិញ"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "No devices found"
 msgstr "ភ្ជាប់​ស្តេរ៉េអូ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device info unavailable for: %d"
-msgstr "មិន​មាន​ការ​មើល​ជាមុន"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device ID: %d"
-msgstr "ឧបករណ៍"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device name: %s"
-msgstr "ឧបករណ៍"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Host name: %s"
-msgstr "ឈ្មោះ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Recording channels: %d"
-msgstr "ឆានែល​ស្ដាំ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Playback channels: %d"
-msgstr "ល្បឿន​ចាក់​ឡើងវិញ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Low Recording Latency: %g"
-msgstr "ថត"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "High Recording Latency: %g"
-msgstr "ថត"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "អត្រា​គំរូ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected recording device: %d - %s"
-msgstr "ឧបករណ៍​បញ្ចូល"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected playback device: %d - %s"
-msgstr "ល្បឿន​ចាក់​ឡើងវិញ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No playback device found for '%s'."
-msgstr "ភ្ជាប់​ស្តេរ៉េអូ"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "បង្ហាញ​លទ្ធផល"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "ឧបករណ៍​បញ្ចូល"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "ល្បឿន​ចាក់​ឡើងវិញ"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -145,16 +56,6 @@ msgstr "(កម្មវិធី​ខាងក្រៅ)"
 #, fuzzy, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity មិន​អាច​សរសេរ​ឯកសារ ៖\n"
-"  %s ។"
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -201,11 +102,6 @@ msgstr "ឯកសារ MP3"
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "ឯកសារ MP3"
-
-#: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "មិន​ទាន់​មាន​ថត %s ទេ ។ បង្កើត​វា​ឬទេ ?"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -388,14 +284,6 @@ msgstr "មិនអាច​ផ្ទុក​ឯកសារ ៖ \"%s\""
 msgid "Could not parse XML"
 msgstr "មិន​​អាច​​បើក​​ឯកសារ ៖ "
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "ពាក្យបញ្ជាពិសោធន៍ដំបូង…"
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "ពាក្យបញ្ជាពិសោធន៍ទីពីរ"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -467,30 +355,6 @@ msgstr "ស្រោម​សំបុត្រ"
 #, fuzzy, c-format
 msgid "%s, graphics"
 msgstr "ក្រាហ្វិក EQ"
-
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity founder and developer"
-msgstr "ស្រោម​សំបុត្រ"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity developer"
-msgstr "ស្រោម​សំបុត្រ"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "ស្រោម​សំបុត្រ"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "ស្រោម​សំបុត្រ"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -611,12 +475,6 @@ msgstr "ថត"
 msgid "Sample rate conversion"
 msgstr "កម្មវិធី​បម្លែង​អត្រា​គំរូ"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "MP3 Importing"
-msgstr "កំហុស​ក្នុង​ការ​នាំ​ចូល"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -648,18 +506,8 @@ msgstr "រៀបចំ​នាំចេញ MP2"
 
 #: src/AboutDialog.cpp
 #, fuzzy
-msgid "Import via QuickTime"
-msgstr "នាំចូល​ទិន្នន័យ​មិនទាន់​ដើម"
-
-#: src/AboutDialog.cpp
-#, fuzzy
 msgid "FFmpeg Import/Export"
 msgstr "កំហុស LOF"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Import via GStreamer"
-msgstr "នាំចូល​ទិន្នន័យ​មិនទាន់​ដើម"
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -684,13 +532,6 @@ msgstr "អាជ្ញាបណ្ណ GPL"
 #, fuzzy
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "ចុច និង​អូស​ដើម្បី​លៃ​តម្រូវ​ទំហំ​បទ​ស្តេរ៉េអូ​នីមួយៗ ។"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Record/Play head"
-msgstr "ថត"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 #, fuzzy
@@ -762,21 +603,6 @@ msgstr " (បិទ)"
 msgid "Timeline Options"
 msgstr "ការ​កំណត់​កម្មវិធី​ជំនួយ"
 
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Enable dragging selection"
-msgstr "បន្ថែម​ស្លាក​នៅ​ជម្រើស"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Update display while playing"
-msgstr "ធ្វើ​ឲ្យ​ការ​បង្ហាញ​ទាន់សម័យ​ ខណៈពេល​ចាក់"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Pinned Play Head"
-msgstr "ថត"
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "មិន​អាច​​រក​ឧបករណ៍​អូឌីយ៉ូ​ណាមួយ​បាន​ទេ ។\n"
@@ -792,11 +618,6 @@ msgstr ""
 #: src/AudioIO.cpp
 #, fuzzy, c-format
 msgid "Error: %s"
-msgstr "កំហុស"
-
-#: src/AudioIO.cpp
-#, fuzzy
-msgid "PortAudio Error"
 msgstr "កំហុស"
 
 #: src/AudioIO.cpp
@@ -1235,12 +1056,6 @@ msgstr "កំពុងត្រៀមទុក…\n"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "អនុវត្ត​អេហ្គុយ"
-
-#: src/Benchmark.cpp
-#, fuzzy, c-format
 msgid "Paste: %lld\n"
 msgstr "បិទ​ភ្ជាប់"
 
@@ -1310,16 +1125,6 @@ msgstr "អនុវត្ត​ទៅ​គម្រោង​បច្ចុប
 msgid "Could not write to %s.\n"
 msgstr "មិន​អាច​សរសេរ​ទៅ​កាន់​ឯកសារ ៖ "
 
-#: src/DBConnection.cpp
-#, fuzzy, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity មិន​អាច​សរសេរ​ឯកសារ ៖\n"
-"  %s ។"
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1349,21 +1154,6 @@ msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
 #, fuzzy, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "កំហុស (ឯកសារ​អាច​មិន​ទាន់​ត្រូវ​បាន​សរសេរ) ៖ %hs"
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "កំពុង​​ចម្លង​​ទិន្នន័យ​​អូឌីយ៉ូ​​ទៅ​​គម្រោង..."
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "កំពុង​​ចម្លង​​ទិន្នន័យ​​អូឌីយ៉ូ​​ទៅ​​គម្រោង..."
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Copy all audio into project (safest)"
-msgstr "កំពុង​​ចម្លង​​ទិន្នន័យ​​អូឌីយ៉ូ​​ទៅ​​គម្រោង..."
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1471,10 +1261,6 @@ msgstr "សកម្មភាព"
 #, fuzzy
 msgid "&Replot..."
 msgstr "ធ្វើ​​ម្ដង​ទៀត..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "ដើម្បី​​គ្រោង​​វិសាលគម បទ​​ដែល​​ជ្រើស​​ទាំងអស់​ត្រូវ​តែ​មាន​អត្រា​​គំរូ​​ដូច​គ្នា ។"
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
@@ -1605,12 +1391,6 @@ msgstr "បោះបង់"
 #, fuzzy
 msgid "&Compact"
 msgstr "ពាក្យ​បញ្ជា"
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "ប្រវត្តិ..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -1813,11 +1593,6 @@ msgid "Solo"
 msgstr "សូឡូ"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "​គ្រាប់​រំកិល​កំណើន​ដែល​បាន​ផ្លាស់ទី"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 #, fuzzy
 msgid "Moved velocity slider"
@@ -1827,11 +1602,6 @@ msgstr "​គ្រាប់​រំកិល​កំណើន​ដែល​
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "​គ្រាប់រុញ​រំកិល​ដែល​បាន​ផ្លាស់ទី​"
-
-#: src/MixerBoard.cpp
-#, fuzzy
-msgid "&Mixer Board..."
-msgstr "របារ​​ឧបករណ៍​​ឧបករណ៍​​លាយ​​សំឡេង​"
 
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
@@ -1917,72 +1687,10 @@ msgstr "សូម​អភ័យ​ទោស បាន​បរាជ័យ​�
 msgid "Nyquist Prompt"
 msgstr "អនុវត្ត​បែបផែន Nyquist..."
 
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Manage Plug-ins"
-msgstr "សូម​អភ័យ​ទោស បាន​បរាជ័យ​ក្នុងការ​ផ្ទុក​កម្មវិធី​ជំនួយ Vamp ។"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "New"
-msgstr "ថ្មី"
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show:"
-msgstr "បាន​អនុញ្ញាត"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show all"
-msgstr "បាន​អនុញ្ញាត"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "ទាំងអស់"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show disabled"
-msgstr " (បិទ)"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "D&isabled"
-msgstr "មិន​បាន​អនុញ្ញាត"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show enabled"
-msgstr "បាន​អនុញ្ញាត"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "E&nabled"
-msgstr "បាន​អនុញ្ញាត"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show new"
-msgstr "បាន​អនុញ្ញាត"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "&Select All"
-msgstr "ជ្រើស"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "C&lear All"
-msgstr "ជម្រះ"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
@@ -1991,40 +1699,11 @@ msgid "&Enable"
 msgstr "បាន​អនុញ្ញាត"
 
 #: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "&Disable"
-msgstr "មិន​បាន​អនុញ្ញាត"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr "បែបផែន​ដែលបានអនុវត្ត ៖ %s"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr "បែបផែន​ដែលបានអនុវត្ត ៖ %s"
-
-#: src/PluginRegistrationDialog.cpp
 #, fuzzy, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
 msgstr "សូម​អភ័យ​ទោស កម្មវិធី​ជំនួយ Vamp បាន​បរាជ័យ​ក្នុងកា​រចាប់ផ្ដើម ។"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "មាន​បញ្ហា​ក្នុង​ការ​បោះពុម្ព ។"
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "បោះពុម្ព"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2211,16 +1890,6 @@ msgid "Error Writing to File"
 msgstr "កំហុស​ក្នុង​ការ​ព្យាយាម​រក្សា​ទុក​ឯកសារ ៖ "
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity មិន​អាច​សរសេរ​ឯកសារ ៖\n"
-"  %s ។"
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "គម្រោង​ថ្មី​ដែល​បាន​បង្កើត"
@@ -2268,11 +1937,6 @@ msgstr "គម្រោង​​ត្រូវ​បាន​សង្គ្រ
 #, fuzzy
 msgid "Projects cannot be saved to FAT drives."
 msgstr "ថត​ឯកសារ​បណ្ដោះ​អាសន្ន"
-
-#: src/ProjectFileManager.cpp
-#, fuzzy
-msgid "Warning - Empty Project"
-msgstr "រក្សាទុក​គម្រោង"
 
 #: src/ProjectFileManager.cpp
 #, fuzzy
@@ -2420,11 +2084,6 @@ msgstr "ស្តេរ៉េអូ​ផ្ដេក"
 msgid "Vertical Scrollbar"
 msgstr "ស្តេរ៉េអូ​បញ្ឈរ"
 
-#: src/Snap.cpp
-#, fuzzy
-msgid "Nearest"
-msgstr "បើក​ការ​ខ្ទាស់"
-
 #: src/SoundActivatedRecord.cpp
 #, fuzzy
 msgid "Sound Activated Record"
@@ -2434,11 +2093,6 @@ msgstr "ឧបករណ៍​កំណត់​ពេល​ថត​របស់
 #, fuzzy
 msgid "Activation level (dB):"
 msgstr "ការ​ពង្រីក (dB) ៖"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "ស្រោម​សំបុត្រ"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2518,11 +2172,6 @@ msgid "Set De&fault"
 msgstr "លំនាំដើម"
 
 #: src/Tags.cpp
-#, fuzzy
-msgid "Don't show this when exporting audio"
-msgstr "កុំ​បង្ហាញ​ការ​ព្រមាន​នេះ​ម្តងទៀត"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "កែសម្រួល​ចង្វាក់"
 
@@ -2565,11 +2214,6 @@ msgstr "កំហុស​ក្នុង​ការ​បើក​ឯកសា
 #, fuzzy, c-format
 msgid "Failed to remove %s"
 msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Reset Tenacity Preferences"
-msgstr "​ចំណូលចិត្ត..."
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -2892,11 +2536,6 @@ msgstr "ឧបករណ៍​ចាក់​ពេលថត"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
-msgid "Exit Tenacity"
-msgstr "អំពី Audacity..."
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
 msgid "Recording duration:"
 msgstr "កំពុង​​ថត​​អូឌីយ៉ូ"
 
@@ -2926,11 +2565,6 @@ msgstr "ឧបករណ៍​ចាក់​ពេលថត"
 #, fuzzy
 msgid "Tenacity Timer Record - Waiting"
 msgstr "ថត"
-
-#: src/TrackInfo.cpp
-#, fuzzy
-msgid "Stereo, 999999Hz"
-msgstr "ស្តេរ៉េអូ "
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -3007,11 +2641,6 @@ msgstr "បាន​យក​បទ​អូឌីយ៉ូ​ចេញ"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "យក​បទ​ចេញ"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "បទ '%s.' ដែលបាន​យក​ចេញ"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -3569,16 +3198,6 @@ msgstr "រក្សាទុក​គម្រោង"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
-msgid "Track Index:"
-msgstr "បទ %d"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
-msgid "Channel Index:"
-msgstr "របៀប​ឆានែល ៖"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
 msgid "Set Track Status"
 msgstr "ឈ្មោះ​បទ"
 
@@ -3591,11 +3210,6 @@ msgstr "ផ្អាក P"
 #, fuzzy
 msgid "Set Track Audio"
 msgstr "ថិរវេលាស្ងាត់ ៖"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
-msgid "Gain:"
-msgstr "កំណើន"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
@@ -3811,10 +3425,6 @@ msgstr "ផ្លាស់ប្តូរ​កម្ពស់​សំឡេង
 msgid "High Quality Pitch Change"
 msgstr "គុណភាព"
 
-#: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "ផ្លាស់ប្តូរ​កម្ពស់​សំឡេង​ដោយ​មិន​ផ្លាស់ប្តូរ​ចង្វាក់​ភ្លេង"
-
 #. i18n-hint: (noun) Musical pitch.
 #: src/effects/ChangePitch.cpp
 #, fuzzy
@@ -3896,17 +3506,9 @@ msgid "n/a"
 msgstr "មិនមាន"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "ផ្លាស់ប្តូរ​ល្បឿន"
-
-#: src/effects/ChangeSpeed.cpp
 #, fuzzy
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "ផ្លាស់ប្តូរ​កម្ពស់​សំឡេង​ដោយ​មិន​ផ្លាស់ប្តូរ​ចង្វាក់​ភ្លេង"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "ផ្លាស់ប្តូរ​ល្បឿន​ប៉ះពាល់​ទាំង​ចង្វាក់​ភ្លេង និង​កម្ពស់​សំឡេង"
 
 #: src/effects/ChangeSpeed.cpp
 #, fuzzy
@@ -3961,10 +3563,6 @@ msgstr "ផ្លាស់ប្តូរ​ចង្វាក់​ភ្លេ
 #, fuzzy
 msgid "High Quality Tempo Change"
 msgstr "គុណភាព"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "ផ្លាស់ប្តូរ​ចង្វាក់​ភ្លេង​ដោយ​មិន​ផ្លាស់ប្តូរ​កម្ពស់​សំឡេង"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
@@ -4109,117 +3707,10 @@ msgstr "ពេល​វេលា​វាយ ៖ %.1f វិនាទី"
 msgid "Release Time %.1f secs"
 msgstr "ពេល​វេលា​វាយ ៖ %.1f វិនាទី"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "peak amplitude"
-msgstr "អាំភ្លី​កំពូល​ថ្មី (dB) ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Reduction"
-msgstr "បន្ថយ​ការ​រំខាន (dB) ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Peak Reduction"
-msgstr "បន្ថយ​ការ​រំខាន (dB) ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Analog Limiter"
-msgstr "រក​កា​ខ្ទាស់"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Compressor"
-msgstr "ឧបករណ៍​បង្ហាប់..."
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compressor step response"
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "ក្បួន​ដោះស្រាយ ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Envelope Algorithm:"
-msgstr "ក្បួន​ដោះស្រាយ ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress based on:"
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Ratio:"
-msgstr "ថិរវេលា"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "១"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width:"
-msgstr "ស្តេរ៉េអូ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain:"
-msgstr "ឆានែល​លទ្ធផល ៖ %2d"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain"
-msgstr "ឆានែល​លទ្ធផល ៖ %2d"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack:"
-msgstr "​ពេល​វេលា​វាយ ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack"
-msgstr "​ពេល​វេលា​វាយ ៖"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release:"
-msgstr "ពេល​វេលា​វាយ ៖ %.1f វិនាទី"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release"
-msgstr "ពេល​វេលា​វាយ ៖ %.1f វិនាទី"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time:"
-msgstr "តម្រៀប​​តាម​​ពេល​វេលា"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time"
-msgstr "តម្រៀប​​តាម​​ពេល​វេលា"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time:"
-msgstr "ពេលវេលា​​បញ្ចប់"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "ពេលវេលា​​បញ្ចប់"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -4686,11 +4177,6 @@ msgid "Applied effect: %s"
 msgstr "បែបផែន​ដែលបានអនុវត្ត ៖ %s"
 
 #: src/effects/EffectManager.cpp
-#, fuzzy, c-format
-msgid "Applied command: %s"
-msgstr "បែបផែន​ដែលបានអនុវត្ត ៖ %s"
-
-#: src/effects/EffectManager.cpp
 #, fuzzy
 msgid "Select Preset"
 msgstr "ការ​​កំណត់ជា​​ស្រេច"
@@ -4722,90 +4208,13 @@ msgstr "លំនាំដើម"
 
 #: src/effects/EffectManager.cpp
 #, fuzzy
-msgid "Effect failed to initialize"
-msgstr "សូម​អភ័យ​ទោស កម្មវិធី​ជំនួយ Vamp បាន​បរាជ័យ​ក្នុងកា​រចាប់ផ្ដើម ។"
-
-#: src/effects/EffectManager.cpp
-#, fuzzy
 msgid "Command failed to initialize"
 msgstr "សូម​អភ័យ​ទោស កម្មវិធី​ជំនួយ Vamp បាន​បរាជ័យ​ក្នុងកា​រចាប់ផ្ដើម ។"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
-msgid "Effects Rack"
-msgstr "បែបផែន"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
 msgid "&Apply"
 msgstr "អនុវត្ត %s"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Latency: 0"
-msgstr "គម្លាត​ពេល"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Active State"
-msgstr "បាន​តម្រឹម"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Up"
-msgstr "ផ្លាស់ទី​ឡើងលើ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move effect up in the rack"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Down"
-msgstr "ផ្លាស់ទី​ចុះក្រោម"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move effect down in the rack"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Remove effect from the rack"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Name of the effect"
-msgstr "បញ្ចូល​ឈ្មោះ​របស់​ច្រវាក់​ថ្មី"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy, c-format
-msgid "Latency: %4d"
-msgstr "គម្លាត​ពេល"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Some Command"
-msgstr "ជ្រើស​​ពាក្យ​បញ្ជា"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Manage"
-msgstr "គ្រប់គ្រង​​ប្រវត្តិ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Start and stop playback"
-msgstr "ចាក់ឡើងវិញ"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Start &Playback"
-msgstr "ចាក់ឡើងវិញ"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -4816,31 +4225,6 @@ msgstr "មើល​ជាមុន"
 #, fuzzy
 msgid "&Preview"
 msgstr "មើល​ជាមុន"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Preview effect"
-msgstr "មើល​ជា​មុន​ មុននឹង​​កាត់​តំបន់ ៖"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip backward"
-msgstr "រំលង​ដើម្បី​ចាប់ផ្ដើម ដើម"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip &Backward"
-msgstr "រំលង​ដើម្បី​ចាប់ផ្ដើម ដើម"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip forward"
-msgstr "រំលង​ដើម្បី​ចាប់ផ្ដើម ដើម"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip &Forward"
-msgstr "រំលង​ដើម្បី​ចាប់ផ្ដើម ដើម"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -4929,13 +4313,6 @@ msgid ""
 "Replace?"
 msgstr "មាន​ឯកសារ​ដែល​មាន​ឈ្មោះ \"%s\" រួច​ហើយ ។ ជំនួសវា​ឬ ?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Stop &Playback"
-msgstr "ចាក់ឡើងវិញ"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -5000,11 +4377,6 @@ msgstr "ដើម្បី​​គ្រោង​​វិសាលគម ប�
 #, fuzzy
 msgid "Track sample rate is too low for this effect."
 msgstr "ដាន​វែងពេក​ដើម្បី​ធ្វើ​កា​រជ្រើស​ឡើង​វិញ ។"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Effect Unavailable"
-msgstr "មិន​មាន​ការ​មើល​ជាមុន"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "Max dB"
@@ -5091,33 +4463,8 @@ msgstr "\t-help (សារ​នេះ)"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
-msgid "&Processing: "
-msgstr "កំពុង​ដំណើរ​ការ Auto Duck..."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "D&efault"
-msgstr "លំនាំដើម"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "&Bench"
-msgstr "រត់ Benchmark..."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Error Loading EQ Curves"
-msgstr "អនុវត្ត​បែបផែន ៖ %s"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
 msgid "Error Saving Equalization Curves"
 msgstr "អនុវត្ត​អេហ្គុយ"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Curve not found"
-msgstr "គ្មាន​​ស្លាក​​ត្រូវ​នាំចេញ ។"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5265,27 +4612,6 @@ msgstr "ចុច និង​អូស​ដើម្បី​ជ្រើស�
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "ចុច និង​អូស​ដើម្បី​ជ្រើស​អូឌីយ៉ូ"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "រក​កា​ខ្ទាស់"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Clicks"
-msgstr "ចុចឆ្វេង"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Right"
-msgstr "ចុចឆ្វេង"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Left"
-msgstr "ចុចឆ្វេង"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "រក​កា​ខ្ទាស់"
@@ -5384,36 +4710,6 @@ msgstr "endian ធំ"
 #, fuzzy
 msgid "Second greatest"
 msgstr "វិនាទី"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, none"
-msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, Hann (default)"
-msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Blackman, Hann"
-msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, none"
-msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Hann"
-msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Reciprocal Hamming"
-msgstr "ពង្រីក​លំនាំដើម"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 #, fuzzy
@@ -5576,48 +4872,6 @@ msgstr "២"
 #, fuzzy
 msgid "4 (default)"
 msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "ការ​​យក​ការ​​រំខាន​​ចេញ"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"ជ្រើស​អូឌីយ៉ូ​ទាំងអស់​ដែល​អ្នក​ចង់​ត្រង​​ ជ្រើស​​ចំនួន​​ការ​រំខាន​ដែល​អ្នក​ចង់​ត្រង​ចេញ បន្ទាប់​មក​ចុច​ 'យល់ព្រម' ដើម្បី​យក​​"
-"ការ​​រំខាន​ចេញ ។\n"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Noise re&duction (dB):"
-msgstr "បន្ថយ​ការ​រំខាន (dB) ៖"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "&Sensitivity (dB):"
-msgstr "ភាព​យល់ដឹង"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Fr&equency smoothing (Hz):"
-msgstr "ធ្វើ​ឲ្យ​ប្រេកង់​រលូន (Hz) ៖"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Attac&k/decay time (secs):"
-msgstr "ពេល​វេលា​វាយ/បន្ថយ (វិនាទី) ៖"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Attack/decay time"
-msgstr "ពេល​វេលា​វាយ/បន្ថយ (វិនាទី) ៖"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Re&move"
-msgstr "យកចេញ"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -5835,11 +5089,6 @@ msgstr "ឆានែល​លទ្ធផល ៖ %2d"
 msgid "Stereo Wid&th (%):"
 msgstr "ស្តេរ៉េអូ"
 
-#: src/effects/Reverb.cpp
-#, fuzzy, c-format
-msgid "Reverb: %s"
-msgstr "ដាក់​បញ្ច្រាស"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "ដាក់​បញ្ច្រាស"
@@ -5975,16 +5224,6 @@ msgstr "ស្ងាត់"
 #, fuzzy
 msgid "Stereo To Mono"
 msgstr "ស្តេរីអូ​ទៅ​ជា​ម៉ូណូ"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling left channel"
-msgstr "បិទ​ការ​ធ្វើ​គំរូ​ឡើង​វិញ ។"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling right channel"
-msgstr "បិទ​ការ​ធ្វើ​គំរូ​ឡើង​វិញ ។"
 
 #: src/effects/StereoToMono.cpp
 #, fuzzy
@@ -6274,15 +5513,6 @@ msgstr "បង្កើត"
 msgid "Import Audio Unit Presets"
 msgstr "នាំ​ឯកសារ​ចេញ"
 
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "ការ​​កំណត់ជា​​ស្រេច"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Location"
-msgstr "សកម្មភាព"
-
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Couldn't open \"%s\""
@@ -6364,16 +5594,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to convert preset to internal format"
-msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to create property list for preset"
-msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
@@ -6422,16 +5642,6 @@ msgid "LV2 Effect Settings"
 msgstr "ការ​កំណត់​បែបផែន"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "ឧបករណ៍​ចាក់​ពេលថត"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "ឧបករណ៍​ចាក់​ពេលថត"
-
-#: src/effects/lv2/LV2Effect.cpp
 #, fuzzy
 msgid "Generator"
 msgstr "បង្កើត"
@@ -6465,16 +5675,6 @@ msgstr "លទ្ធផល Nyquist ៖ "
 #, fuzzy
 msgid "Audio selection required."
 msgstr "តម្រឹម​​ដោយ​​ចុង​​ជម្រើស"
-
-#: src/effects/nyquist/Nyquist.cpp
-#, fuzzy
-msgid "Nyquist Error"
-msgstr "Nyquist"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "សូម​អភ័យទោស មិនអាច​អនុវត្ត​បែបផែន​លើ​បទ​ស្តេរ៉េអូ​បានទេ ដែល​បទ​មិនផ្គូផ្គង​គ្នា ។"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -6535,11 +5735,6 @@ msgstr "Nyquist មិន​បាន​ត្រឡប់​អូឌីយ៉�
 #, fuzzy
 msgid "Could not open file"
 msgstr "មិន​​អាច​​បើក​​ឯកសារ ៖ "
-
-#: src/effects/nyquist/Nyquist.cpp
-#, fuzzy
-msgid "Error in Nyquist code"
-msgstr "កំពុង​​ថត​​អូឌីយ៉ូ"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -6622,14 +5817,6 @@ msgid "Vamp Effects"
 msgstr "បែបផែន"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"សូម​អភ័យ​ទោស កម្មវិធី​ជំនួយ Vamp មិនអាចត្រូវ​បាន​រត់​នៅ​លើបទ​ស្តេរ៉េអូ​បានទេ ដែល​ឆានែល​នីមួយ​របស់​បទ​មិនផ្គូផ្គង​"
-"គ្នា ។"
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "សូម​អភ័យ​ទោស បាន​បរាជ័យ​ក្នុងការ​ផ្ទុក​កម្មវិធី​ជំនួយ Vamp ។"
 
@@ -6672,60 +5859,12 @@ msgstr "​នាំចេញ​អូឌីយ៉ូ​ទៅជា %s"
 
 #: src/export/Export.cpp
 #, fuzzy, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "តើ​អ្នក​ពិត​ជា​ចង់​រក្សា​ទុក​ឯកសារ​នេះ​ជា \""
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"អ្នក​រៀបនឹង​រក្សាទុក​ឯកសារ %s ដោយ​ដាក់​ឈ្មោះ \"%s\" ។\n"
-"\n"
-"តាម​ធម្មតា ឯកសារ​ទាំងនេះ​បញ្ចប់ដោយ \".%s\", និង​កម្មវិធី​មួយ​ចំនួន​នឹង​មិន​បើក​ឯកសារជា​មួយ​ផ្នែកបន្ថែម​ដែល​"
-"គ្មាន​ស្តង់ដារ​ទេ ។\n"
-"\n"
-"តើ​អ្នក​ប្រាកដ​ជា​ចង់​រក្សាទុក​ឯកសារ​ដោយ​ដាក់​ឈ្មោះ​នេះ​ឬ ?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "សូម​អភ័យ​ទោស ឈ្មោះ​ផ្លូវ​វែង​ជាង  ២៦៥ តួ​អក្សរ​​មិន​ត្រូវ​​បាន​​គាំទ្រ​​ទេ ។"
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "មាន​ឯកសារ​ដែល​មាន​ឈ្មោះ \"%s\" រួច​ហើយ ។ ជំនួសវា​ឬ ?"
 
 #: src/export/Export.cpp
-#, fuzzy
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "បទ​របស់​អ្នក​នឹង​ត្រូវ​បាន​លាយ​ជា​ឆានែល​ស្តេរ៉េអូ​ពីរ​នៅ​ក្នុង​ឯកសារ​ដែល​បាន​នាំចេញ ។"
-
-#: src/export/Export.cpp
-#, fuzzy
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "បទ​របស់​អ្នក​នឹង​ត្រូវ​បាន​លាយ​ជា​ឆានែល​ស្តេរ៉េអូ​ពីរ​នៅ​ក្នុង​ឯកសារ​ដែល​បាន​នាំចេញ ។"
-
-#: src/export/Export.cpp
-#, fuzzy
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr "បទ​របស់​អ្នក​នឹង​ត្រូវ​បាន​លាយ​ជា​ឆានែល​ស្តេរ៉េអូ​ពីរ​នៅ​ក្នុង​ឯកសារ​ដែល​បាន​នាំចេញ ។"
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "ជម្រើស​លាយ​កម្រិត​ខ្ពស់"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Format Options"
-msgstr "ការ​កំណត់​បែបផែន"
 
 #: src/export/Export.cpp
 #, c-format
@@ -6770,717 +5909,38 @@ msgstr "រក​មើល..."
 msgid "Show output"
 msgstr "បង្ហាញ​លទ្ធផល"
 
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Executables"
-msgstr "អថេរ"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Find path to command"
-msgstr "ជ្រើស​​ពាក្យ​បញ្ជា"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(កម្មវិធី​ខាងក្រៅ)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "មិនអាច​នាំចេញ​អូឌីយ៉ូ​ទៅ %s​ បាន​ទេ"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "នាំចេញ"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែល​បានជ្រើស​ ដោយ​ប្រើ​អ៊ិនកូឌ័រ​​បន្ទាត់​ពាក្យ​បញ្ជា"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Exporting the audio using command-line encoder"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែល​បានជ្រើស​ ដោយ​ប្រើ​អ៊ិនកូឌ័រ​​បន្ទាត់​ពាក្យ​បញ្ជា"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "លទ្ធផល​ពាក្យបញ្ជា"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "យល់ព្រម"
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Export Options"
-msgstr "ការ​កំណត់​បែបផែន"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Cancel"
 msgstr "បោះបង់"
 
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg Error"
-msgstr "កំហុស LOF"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio as %s"
-msgstr "​នាំចេញ​អូឌីយ៉ូ​ទៅជា %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio as %s"
-msgstr "​នាំចេញ​អូឌីយ៉ូ​ទៅជា %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "ធ្វើ​គំរូ​ឡើង​វិញ"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr "អត្រា​គំរូ​គម្រោង (%d) មិន​គាំទ្រ​ដោយ​ទ្រង់ទ្រាយ​ឯកសារ MP3។"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"បន្សំ​រវាង​អត្រាគំរូ​គម្រោង (%d) និង​អត្រាប៊ីត (%d kbps)មិន​គាំទ្រ​ដោយ​ទ្រង់ទ្រាយ​ឯកសារ MP3 ទេ ។  "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "អ្នក​ប្រហែល​ជា​ប្ដូរ​គុណភាព​ទៅ​អត្រា​ណា​មួយ​ដូច​ខាង​ក្រោម ។"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "អត្រា​គំរូ"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "%d kbps"
-msgstr "kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "អត្រា​ប៊ីត ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Quality (kbps):"
-msgstr "គុណភាព ៖"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "%.2f kbps"
-msgstr "kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "0"
-msgstr "១"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "១"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "៣"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "៤"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "៥"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "៦"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "៧"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "10"
-msgstr "១"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "On"
-msgstr "បើក..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Constrained"
-msgstr "ថេរ"
 
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "Audio"
 msgstr "អូឌីយ៉ូ..."
 
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Low Delay"
-msgstr "ប្រភេទ​គ្រាប់ចុច"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mediumband"
-msgstr "endian ធំ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Fullband"
-msgstr " បង្អួច"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression"
-msgstr "ឧបករណ៍​បង្ហាប់..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame Duration:"
-msgstr "ថិរវេលា"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Vbr Mode:"
-msgstr "ល្មម"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Application:"
-msgstr "អនុវត្ត​ច្រវាក់"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Open custom FFmpeg format options"
-msgstr "កំហុស LOF"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Format:"
-msgstr "អនុវត្ត​ទៅ​គម្រោង​បច្ចុប្បន្ន"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Codec:"
-msgstr "អនុវត្ត​ទៅ​គម្រោង​បច្ចុប្បន្ន"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Error Saving FFmpeg Presets"
-msgstr "អនុវត្ត​បែបផែន ៖ %s"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "សរសេរ​ជាន់​លើ​ឯកសារ​ដែល​មាន​ស្រាប់"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Confirm Overwrite"
-msgstr "អះអាង"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Please select format before saving a profile"
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Please select codec before saving a profile"
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Preset '%s' does not exist."
-msgstr "មិន​ទាន់​មាន​ថត %s ទេ ។ បង្កើត​វា​ឬទេ ?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Replace preset '%s'?"
-msgstr "បាន​ប្ដូរ​ឈ្មោះ '%s' ទៅ '%s'"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LC"
-msgstr "ឆ្វេង"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Main"
-msgstr "លាយ​មេ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LTP"
-msgstr "ឆ្វេង"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Custom FFmpeg Export"
-msgstr "កំហុស LOF"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "2-level"
-msgstr "កម្រិត ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "4-level"
-msgstr "កម្រិត ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "8-level"
-msgstr "កម្រិត ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Configure custom FFmpeg options"
-msgstr "កំហុស LOF"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Preset:"
-msgstr "ការ​​កំណត់ជា​​ស្រេច"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Load Preset"
-msgstr "ផ្ទុក​ឯកសារ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Import Presets"
-msgstr "នាំចេញ​​ស្លាក​ជា ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Export Presets"
-msgstr "នាំចេញ​​ស្លាក​ជា ៖"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Codec:"
-msgstr "អនុវត្ត​ទៅ​គម្រោង​បច្ចុប្បន្ន"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Show All Formats"
-msgstr "បាន​អនុញ្ញាត"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Show All Codecs"
-msgstr "បាន​អនុញ្ញាត"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "General Options"
-msgstr "ការ​កំណត់​កម្មវិធី​ជំនួយ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "ភាសា ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "គុណភាព ៖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Sample Rate:"
-msgstr "អត្រា​គំរូ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Profile:"
-msgstr "ឯកសារ​​ទាំងអស់ (*)|*"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "FLAC options"
-msgstr "បញ្ជាក់​ជម្រើស FLAC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression:"
-msgstr "ឧបករណ៍​បង្ហាប់..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame:"
-msgstr "ឈ្មោះ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LPC"
-msgstr "ឆ្វេង"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "MPEG container options"
-msgstr "ជម្រើស​ទៅ​ចុង ប្ដូរ(Shift)+ចុង(End)"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mux Rate:"
-msgstr "កំណត់​អត្រា"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Packet Size:"
-msgstr "ចំណង​ជើង​បទ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "You can't delete a preset without name"
-msgstr "មិនអាច​នាំចេញ​អូឌីយ៉ូ​ទៅ %s​ បាន​ទេ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Delete preset '%s'?"
-msgstr "បាន​ប្ដូរ​ឈ្មោះ '%s' ទៅ '%s'"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Select xml file with presets to import"
-msgstr "ជ្រើស​ឯកសារ​សម្រាប់​ដំណើរការ​បាច់..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "No presets to export"
-msgstr "គ្មាន​​ស្លាក​​ត្រូវ​នាំចេញ ។"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Select xml file to export presets into"
-msgstr "ជ្រើស​ឯកសារ​សម្រាប់​ដំណើរការ​បាច់..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Failed to guess format"
-msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Failed to find the codec"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "១៦​​ ប៊ីត"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "២៤ ប៊ីត"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (លឿនបំផុត)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "៨ (ប្រសើរបំផុត)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "កម្រិត ៖"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "ជម្រៅ​ប៊ីត ៖"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "ឯកសារ FLAC"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "មិន​អាច​បើក​ឯកសារ ៖ \"%s\""
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr "សូម​អភ័យ​ទោស កម្មវិធី​ជំនួយ Vamp បាន​បរាជ័យ​ក្នុងកា​រចាប់ផ្ដើម ។"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "កំពុង​នាំ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ចេញ​ជា FLAC"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy
-msgid "Exporting the audio as FLAC"
-msgstr "កំពុង​នាំ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ចេញ​ជា FLAC"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "ឯកសារ MP2"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "មិនអាច​នាំចេញ MP2 ជាមួយ​អត្រា​គំរូ និង​អត្រា​ប៊ីត​នេះ​បាន​ទេ"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "មិន​អាច​បើក​ឯកសារ​គោលដៅ​សម្រាប់​សរសេរ​បាន​ទេ"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែលបាន​ជ្រើស​នៅល្បឿន %ld kbps"
-
-#: src/export/ExportMP2.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែលបាន​ជ្រើស​នៅល្បឿន %ld kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "200-250 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "170-210 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "155-195 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "145-185 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "110-150 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "95-135 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "80-120 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "65-105 kbps"
-msgstr "kbps"
-
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "ស្តង់ដារ"
 
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Medium"
-msgstr "endian ធំ"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "អថេរ"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "មធ្យម"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "ថេរ"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "ភ្ជាប់​ស្តេរ៉េអូ"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "ស្តេរ៉េអូ"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "របៀប​អត្រា​ប៊ីត ៖"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "គុណភាព"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "របៀប​ឆានែល ៖"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Force export to mono"
-msgstr "​បន្ទាត់​កាត់​ដែល​បាន​យកចេញ"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "ឯកសារ MP3"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "មិនអាចចាប់ផ្តើមស្ទ្រីម MP3​ បាន​ទេ"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ជាមួយ %s ការ​​កំណត់ជា​​ស្រេច"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ជាមួយ %s ការ​​កំណត់ជា​​ស្រេច"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ជាមួយ​គុណភាព VBR %s"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "នាំចេញ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ជាមួយ​គុណភាព VBR %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "​នាំចេញ​អូឌីយ៉ូ​នៅ​ល្បឿន %d Kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "​នាំចេញ​អូឌីយ៉ូ​នៅ​ល្បឿន %d Kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "កំហុស %ld ត្រឡប់​ពី​អ៊ិនកូឌ័រ MP3"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr "អត្រា​គំរូ​គម្រោង (%d) មិន​គាំទ្រ​ដោយ​ទ្រង់ទ្រាយ​ឯកសារ MP3។"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"បន្សំ​រវាង​អត្រាគំរូ​គម្រោង (%d) និង​អត្រាប៊ីត (%d kbps)មិន​គាំទ្រ​ដោយ​ទ្រង់ទ្រាយ​ឯកសារ MP3 ទេ ។  "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 16-bit"
-msgstr "១៦ ប៊ីត PCM"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 24-bit"
-msgstr "២៤ ប៊ីត PCM"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "ស្លាក"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Matroska Audio Files"
-msgstr "នាំ​ឯកសារ​ចេញ"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "កំពុង​នាំ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ចេញ​ជា FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the audio as MKA"
-msgstr "កំពុង​នាំ​អូឌីយ៉ូ​ដែល​បាន​ជ្រើស​ចេញ​ជា FLAC"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "នាំចេញ​ច្រើន"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Cannot Export Multiple"
-msgstr "នាំចេញ​ច្រើន"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Export files to:"
-msgstr "ទីតាំង​នាំចេញ ៖"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "ជ្រើស..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "បង្កើត"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Options:"
-msgstr "ជម្រើស..."
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -7489,15 +5949,6 @@ msgstr "ពុះ​ឯកសារ​ផ្អែក​លើ ៖"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "រួម​បញ្ចូល​អូឌីយ៉ូ​មុន​ស្លាក​ដំបូង"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "ឈ្មោះ​ឯកសារ​ដំបូង ៖"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "First file name"
-msgstr "ឈ្មោះ​ឯកសារ​ដំបូង ៖"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -7522,155 +5973,26 @@ msgid "File name prefix:"
 msgstr "បុព្វបទ​ឈ្មោះ​ឯកសារ ៖"
 
 #: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "File name prefix"
-msgstr "បុព្វបទ​ឈ្មោះ​ឯកសារ ៖"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "សរសេរ​ជាន់​លើ​ឯកសារ​ដែល​មាន​ស្រាប់"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "\"%s\" បាន​បង្កើត​​ដោយ​ជោគជ័យ ។"
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
 msgstr "ជ្រើស​ទីតាំង​ដើម្បី​រក្សា​ទុក​ឯកសារ​ដែល​​ដែលបាននាំចេញ"
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"\"%s\" មិន​ទាន់​មាន\n"
-"\n"
-"តើ​អ្នក​ចង់​បង្កើត​វា​ទេ?"
-
-#: src/export/ExportMultiple.cpp
 #, fuzzy
 msgid "Continue to export remaining files?"
 msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "រក្សាទុក​ជា..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "ឯកសារ Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - rate or quality problem"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with metadata"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem initialising"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem creating stream"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with packets"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with file"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "នាំ​ចេញ​អូឌីយ៉ូ​ទៅ​ជា Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "នាំ​ចេញ​អូឌីយ៉ូ​ទៅ​ជា Ogg Vorbis"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "បឋមកថា ៖"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "អ៊ិនកូឌីង ៖"
 
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid "Other uncompressed files"
-msgstr "ជ្រើស​​ឯកសារ​​អូឌីយ៉ូ​​ដែល​​មិន​​បាន​​បង្ហាប់..."
-
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid "Error Exporting"
-msgstr "កំហុស​ក្នុង​ការ​នាំ​ចូល"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "មិន​អាច​នាំចេញ​អូឌីយ៉ូ​ក្នុង​ទ្រង់ទ្រាយ​នេះ ។"
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "​នាំចេញ​អូឌីយ៉ូ​ទៅជា %s"
-
 #: src/export/ExportPlugin.cpp
 #, fuzzy
 msgid "No format specific options"
 msgstr "ការ​កំណត់​បែបផែន"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg library not found"
-msgstr "កំណែ​បណ្ណាល័យ MP3 ៖"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Location of '%s':"
-msgstr "ទី​តាំង​របស់ %s ៖"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "To find '%s', click here -->"
-msgstr "ដើម្បី​​ស្វែង​រក %s​ ចុច​ទី​នេះ -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "ដើម្បី​យក​ច្បាប់​ថត​ចម្លង Lame ដោយ​ឥត​គិត​ថ្លៃ​ ចុចត្រង់នេះ -->"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Where is '%s'?"
-msgstr "តើឯកសារ %s នៅទីណា ?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-#, fuzzy
-msgid "FFmpeg not found"
-msgstr "កំណែ​បណ្ណាល័យ MP3 ៖"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-#, fuzzy
-msgid "Do not show this warning again"
-msgstr "កុំ​បង្ហាញ​ការ​ព្រមាន​នេះ​ម្តងទៀត"
 
 #: src/import/Import.cpp
 #, fuzzy
@@ -7694,337 +6016,13 @@ msgstr "ស្រោម​សំបុត្រ"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
-msgid "AUP project files (*.aup)"
-msgstr "រក្សាទុក​​ឯកសារ​​ទិន្នន័យ​​គម្រោង"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"មិនអាច​កំណត់​ប៉ារ៉ាម៉ែត្រ​របស់បែបផែន %s\n"
-" ទៅ %s បាន​ទេ ។"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
 msgid "Import Project"
 msgstr "នាំចេញ​​ស្លាក​ជា ៖"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'vpos' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'h' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'zoom' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel0' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel1' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selLow' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selHigh' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "មិន​អាច​រក​ឃើញ​ថត​ទិន្នន័យ​គម្រោង ៖ \"%s\""
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Project Import"
-msgstr "អត្រា​គម្រោង (Hz) ៖"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "អត្រា​គំរូ​មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to open %s"
-msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "ឯកសារ FLAC"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to add decoder to pipeline"
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "GStreamer Importer"
-msgstr "កម្មវិធី​បម្លែង​អត្រា​គំរូ"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to set stream state to paused."
-msgstr "មិន​អាច​​ប្ដូរ​ឈ្មោះ '%s' ទៅ​​ជា '%s'"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to import file, state change failed."
-msgstr "មិន​​អាច​​បើក/បង្កើត​​ឯកសារ​​សាកល្បង"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy, c-format
-msgid "GStreamer Error: %s"
-msgstr "កម្មវិធី​បម្លែង​អត្រា​គំរូ"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "បញ្ជី​ឯកសារ​នៅ​ក្នុង​ទ្រង់ទ្រាយ​អត្ថបទ​មូលដ្ឋាន"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "អុហ្វសិត​បង្អួច​មិន​ត្រឹមត្រូវ​នៅក្នុង​ឯកសារ LOF​ ។"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "កំហុស LOF"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "ថិរវេលា​មិន​ត្រឹមត្រូវ​នៅ​ក្នុង​ឯកសារ LOF​ ។"
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "បទ​មីឌី​មិន​អាច​អុហ្វសិត​​ដោយ​ផ្ទាល់ខ្លួន​បានទេ មានតែ​ឯកសារ​អូឌីយ៉ូ​​ប៉ុណ្ណោះ​ទើប​​អាច​​ធ្វើ​បាន ​​។"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "អុហ្វសិត​បទ​មិន​ត្រឹមត្រូវ​នៅ​ក្នុង​ឯកសារ LOF ។"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "មីឌី​ដែល​បាន​នាំចូល​ពី '%s'"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "នាំ​ចូល​​មីឌី"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr ""
-"មិន​អាច​បើក ៖\n"
-"  %s"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "មិន​​អាច​​បើក​​ឯកសារ ៖ "
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s."
-msgstr "មិន​អាច​បើក​ឯកសារ ៖ \"%s\""
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "ឯកសារ MP3"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-msgid "Matroska files"
-msgstr "ឯកសារ MP3"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "ឯកសារ Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "កំហុស​អាន​មេឌៀ"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "មិនមែន​ជា​ឯកសារ Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "កំណែ Vorbis មិន​ត្រូវគ្នា"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "បឋមកថា​​ប៊ីត​ស្ទ្រីម Vorbis មិន​ត្រឹមត្រូវ"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "កំហុស​តក្ក​ខាងក្នុង"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF និង​ប្រភេទ​ឯកសារ​មិន​បង្ហាប់​ផ្សេង​ទៀត"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 8 bit PCM"
-msgstr "១៦ ប៊ីត PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 16 bit PCM"
-msgstr "១៦ ប៊ីត PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 24 bit PCM"
-msgstr "២៤ ប៊ីត PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 32 bit PCM"
-msgstr "២៤ ប៊ីត PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Unsigned 8 bit PCM"
-msgstr "១៦ ប៊ីត PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "32 bit float"
-msgstr "៣២ ប៊ីត float"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "64 bit float"
-msgstr "៣២ ប៊ីត float"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "12 bit DWVW"
-msgstr "១៦​​ ប៊ីត"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DWVW"
-msgstr "១៦​​ ប៊ីត"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "24 bit DWVW"
-msgstr "២៤ ប៊ីត"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DPCM"
-msgstr "១៦ ប៊ីត PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "8 bit DPCM"
-msgstr "១៦ ប៊ីត PCM"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, fuzzy, c-format
 msgid "Importing %s"
 msgstr "បាន​នាំ​ចូល '%s'"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "ឯកសារ QuickTime"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to start QuickTime extraction"
-msgstr "មិនអាច​រក្សាទុក​ឯកសារ​ចង្វាក់"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime render quality"
-msgstr "មិនអាច​រក្សាទុក​ឯកសារ​ចង្វាក់"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "មិនអាច​រក្សាទុក​ឯកសារ​ចង្វាក់"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get QuickTime sample size property"
-msgstr "មិនអាច​រក្សាទុក​ឯកសារ​ចង្វាក់"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to retrieve stream description"
-msgstr "មិន​អាច​យក '%s' ចេញ​បាន​ទេ"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get fill buffer"
-msgstr "មិនអាច​រក្សាទុក​ឯកសារ​ចង្វាក់"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -8111,18 +6109,6 @@ msgstr "ជ្រើស​ស្ងាត់"
 msgid "&Import"
 msgstr "នាំចូល"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s left"
-msgstr "ឆ្វេង"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s right"
-msgstr "ស្ដាំ"
-
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "start"
@@ -8132,26 +6118,6 @@ msgstr "ចាប់ផ្ដើម"
 #, fuzzy
 msgid "end"
 msgstr "ចុង"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the right"
-msgstr "ពេលវេលា​ប្តូរ​បទ/ឈុត %s %.02f វិនាទី"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the left"
-msgstr "ពេលវេលា​ប្តូរ​បទ/ឈុត %s %.02f វិនាទី"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "អង្កិល​ពេល​វេលា"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Clip B&oundaries"
-msgstr "ឧបករណ៍​​​បន្ទាប់ D"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
@@ -8249,29 +6215,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "%.2f seconds at t=%.2f ដែល​បាន​លុប"
 
 #: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Pasting one type of track into another is not allowed."
-msgstr "ចម្លង​​អូឌីយ៉ូ​​ស្តេរ៉េអូ​​ទៅ​​ក្នុង​​បទ​​ម៉ូណូ​​មិន​​ត្រូវ​​បាន​​អនុញ្ញាត​​ទេ ។"
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "ចម្លង​​អូឌីយ៉ូ​​ស្តេរ៉េអូ​​ទៅ​​ក្នុង​​បទ​​ម៉ូណូ​​មិន​​ត្រូវ​​បាន​​អនុញ្ញាត​​ទេ ។"
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "បាន​ស្ទួន"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "ស្ទួន"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "ពុះ​កា​រកាត់​ទៅ​ក្ដារតម្បៀតខ្ទាស់"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "ពុះ​កា​រកាត់"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -8369,16 +6318,6 @@ msgstr "ស្ទួន"
 msgid "R&emove Special"
 msgstr "យក​បទ​​ចេញ"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "បំបែក​ការកាត់"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "បំបែក​ការ​លុប"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -8409,16 +6348,6 @@ msgstr "ភ្ជាប់"
 #, fuzzy
 msgid "Detac&h at Silences"
 msgstr "ជ្រើស​ស្ងាត់"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "&Metadata..."
-msgstr "កែ​សម្រួល​​ទិន្នន័យ​​មេតា"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Pre&ferences..."
-msgstr "ចំណូល​ចិត្ត..."
 
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -8455,11 +6384,6 @@ msgstr "​​ដាក់​​អូឌីយ៉ូ​​ក្នុង​​
 msgid "Change Recording Cha&nnels..."
 msgstr "ផ្លាស់ប្តូរ​កម្ពស់​សំឡេង"
 
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export Selected Audio"
-msgstr "នាំចេញ​ជម្រើស..."
-
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
 msgid "labels.txt"
@@ -8470,36 +6394,6 @@ msgid "There are no label tracks to export."
 msgstr "គ្មាន​​បទ​​ស្លាក​​ត្រូវ​​នាំ​ចេញ"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select only one Note Track at a time."
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select a Note Track."
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MIDI As:"
-msgstr "នាំចេញ..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI file"
-msgstr "ជ្រើស​​ឯកសារ​​មីឌី..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro file"
-msgstr "ឯកសារ​​ទាំងអស់ (*)|*"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MIDI"
-msgstr "នាំចេញ..."
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "ស្លាក​ដែល​បាន​នាំ​ចូល​ពី '%s'"
@@ -8507,26 +6401,6 @@ msgstr "ស្លាក​ដែល​បាន​នាំ​ចូល​ពី
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "នាំ​ចូល​​ស្លាក"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Select a MIDI file"
-msgstr "ជ្រើស​​ឯកសារ​​មីឌី..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI and Allegro files"
-msgstr "ឯកសារ​​ទាំងអស់ (*)|*"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI files"
-msgstr "ឯកសារ MP3"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro files"
-msgstr "ឯកសារ​​ទាំងអស់ (*)|*"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -8574,11 +6448,6 @@ msgstr "នាំចេញ​​ស្លាក​ជា ៖"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
-msgid "Export as &MKA"
-msgstr "នាំចេញ​​ស្លាក​ជា ៖"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
 msgid "Export as &OGG"
 msgstr "នាំចេញ"
 
@@ -8597,15 +6466,6 @@ msgid "Export &Labels..."
 msgstr "នាំចេញ​ស្លាក..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "នាំចេញ​ច្រើន..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MI&DI..."
-msgstr "នាំចេញ..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "អូឌីយ៉ូ..."
 
@@ -8614,26 +6474,8 @@ msgid "&Labels..."
 msgstr "ស្លាក..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "មីឌី..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "ទិន្នន័យ​ដើម..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "រៀបចំ​​ទំព័រ..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "បោះពុម្ព..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "ចេញ"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -8750,19 +6592,6 @@ msgstr "លុប​តំបន់​​ដែល​មាន​ស្លាក
 msgid "Delete Labeled Audio"
 msgstr "លុប​តំបន់​​ដែល​មាន​ស្លាក"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "កាត់​ពុះ​​​តំបន់​​​ដែល​មាន​ស្លាក​​​ទៅ​​​ក្ដារ​​ត​ម្បៀត​​​ខ្ទាស់"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut Labeled Audio"
-msgstr "កាត់​ពុះ​​ស្លាក"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -8845,11 +6674,6 @@ msgstr "លុប​តំបន់​​ដែល​មាន​ស្លាក
 msgid "&Labels"
 msgstr "ស្លាក"
 
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "&Edit Labels..."
-msgstr "កែសម្រួល​​ស្លាក"
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Add Label at &Selection"
@@ -8874,35 +6698,6 @@ msgstr "ថត​អូឌីយ៉ូ"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "កាត់"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Cut"
-msgstr "កែសម្រួល​ស្លាក"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Delete"
-msgstr "លុប​​ការ​ពុះ"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "បំបែក​ការ​កាត់"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Split Cut"
-msgstr "ពុះ​កា​រកាត់"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "បំបែក​កា​រលុប"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Split Delete"
-msgstr "លុប​​ការ​ពុះ"
 
 #: src/menus/LabelMenus.cpp
 #, fuzzy
@@ -9000,11 +6795,6 @@ msgid "&Repeat %s"
 msgstr "ធ្វើ %s ម្ដង​ទៀត បញ្ជា(Ctrl)+R"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy, c-format
-msgid "Plug-in %d to %d"
-msgstr "កម្មវិធី​ជំនួយពី %i ដល់ %i"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "បង្កើត"
 
@@ -9038,18 +6828,8 @@ msgstr "ឧបករណ៍"
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
-msgid "Manage Plug-ins..."
-msgstr "សូម​អភ័យ​ទោស បាន​បរាជ័យ​ក្នុងការ​ផ្ទុក​កម្មវិធី​ជំនួយ Vamp ។"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Tool"
 msgstr "ធ្វើ %s ម្ដង​ទៀត បញ្ជា(Ctrl)+R"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
-msgid "&Macros..."
-msgstr "ស្លាក..."
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
@@ -9516,12 +7296,6 @@ msgstr "ទស្សន៍​ទ្រនិច​​វែង​​លោត​
 msgid "&Toolbars"
 msgstr "ឧបករណ៍"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
 #: src/menus/ToolbarMenus.cpp
 #, fuzzy
 msgid "Reset Toolb&ars"
@@ -9917,11 +7691,6 @@ msgstr "តម្រឹម​បទ​​ជាមួយ​គ្នា"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
 msgid "Move Sele&ction and Tracks"
 msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
 
@@ -9939,11 +7708,6 @@ msgstr "ពេលវេលា​​ចាប់ផ្ដើម"
 #, fuzzy
 msgid "By &Name"
 msgstr "ឈ្មោះ"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
@@ -9994,11 +7758,6 @@ msgstr "ស្ងាត់/លឺ​បទ​ដែល​​ផ្ដោត ប�
 #, fuzzy
 msgid "&Solo/Unsolo Focused Track"
 msgstr "សូឡូ/ដោះ​សូឡូ បទ​ដែល​ផ្ដោត ប្ដូរ(Shift)+S"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "&Close Focused Track"
-msgstr "បិទ​បទ​​ដែលបាន​​ផ្ដោត ប្ដូរ(Shift)+C"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
@@ -10091,11 +7850,6 @@ msgstr "ចាក់"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
-msgid "&Loop Play"
-msgstr "ចាក់​នៅ​ល្បឿន"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "&Pause"
 msgstr "ផ្អាក P"
 
@@ -10142,29 +7896,8 @@ msgstr "ការ​ចម្លង"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
-msgid "Sound Activation Le&vel..."
-msgstr "ឧបករណ៍​កំណត់​ពេល​ថត​របស់ Audacity"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "ថត"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "ថត"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "T&ransport"
 msgstr "ការ​ចម្លង"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pl&ay"
-msgstr "ចាក់"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
@@ -10214,17 +7947,6 @@ msgstr "លេង កាត់ មើល​ជាមុន C"
 #: src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "&Play-at-Speed"
-msgstr "ចាក់​នៅ​ល្បឿន"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Normal Pl&ay-at-Speed"
-msgstr "ចាក់​នៅ​ល្បឿន"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "&Loop Play-at-Speed"
 msgstr "ចាក់​នៅ​ល្បឿន"
 
 #: src/menus/TransportMenus.cpp
@@ -10291,11 +8013,6 @@ msgstr "ឧបករណ៍​ពង្រីក F4"
 
 #: src/menus/ViewMenus.cpp
 #, fuzzy
-msgid "Advanced &Vertical Zooming"
-msgstr "ជម្រើស​លាយ​កម្រិត​ខ្ពស់"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
 msgid "T&rack Size"
 msgstr "ចំណង​ជើង​បទ"
 
@@ -10338,31 +8055,6 @@ msgstr "ទៅ​ដើម​​​ជម្រើស"
 msgid "Skip to Selection End"
 msgstr "ទៅ​ចុង​​ជម្រើស"
 
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Extra Menus (on/off)"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "Track &Name (on/off)"
-msgstr "ផ្លាស់ទី​ឈុត​ទៅ​បទ​មួយផ្សេង​ទៀត"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Show Clipping (on/off)"
-msgstr "បង្ហាញ​​កា​រច្រឹប"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Show Effects Rack"
-msgstr "បែបផែន"
-
-#: src/menus/WindowMenus.cpp
-#, fuzzy
-msgid "&Window"
-msgstr " បង្អួច"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "បាច់"
@@ -10379,16 +8071,6 @@ msgstr "ឥរិយាបថ"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "កុំ​អនុវត្ត​បែបផែន​ក្នុង​របៀប​បាច់"
-
-#: src/prefs/DevicePrefs.cpp
-#, fuzzy
-msgid "Devices"
-msgstr "ឧបករណ៍"
-
-#: src/prefs/DevicePrefs.cpp
-#, fuzzy
-msgid "Preferences for Device"
-msgstr "​ចំណូលចិត្ត..."
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -10547,15 +8229,6 @@ msgstr "ជ្រើស​ពាក្យ​បញ្ជា"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "មិន​ទាន់​មាន​ថត %s ទេ ។ បង្កើត​វា​ឬទេ ?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "ថត​បណ្ដោះ​អាសន្ន​ថ្មី"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "ថត %s មិនអាច​សរសេរ​បាន"
 
@@ -10576,50 +8249,8 @@ msgstr "​ចំណូលចិត្ត..."
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
-msgid "Sorted by Effect Name"
-msgstr "តម្រៀប​​តាម​​ឈ្មោះ"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Publisher and Effect Name"
-msgstr "តម្រៀប​​តាម​​ឈ្មោះ"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Type and Effect Name"
-msgstr "តម្រៀប​​តាម​​ឈ្មោះ"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "&LADSPA"
-msgstr "បែបផែន"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "N&yquist"
-msgstr "Nyquist"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Enable Effects"
-msgstr "បែបផែន"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
 msgid "Effect Options"
 msgstr "ការ​កំណត់​បែបផែន"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Plugin Options"
-msgstr "ការ​កំណត់​កម្មវិធី​ជំនួយ"
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
@@ -10766,11 +8397,6 @@ msgstr "ភាសា ៖"
 
 #: src/prefs/GUIPrefs.cpp
 #, fuzzy
-msgid "Location of &Manual:"
-msgstr "ទី​តាំង​របស់ %s ៖"
-
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
 msgid "Meter dB &range:"
 msgstr "ទ្រង់ទ្រាយ​រលក (dB)"
 
@@ -10783,16 +8409,6 @@ msgstr "\t-help (សារ​នេះ)"
 msgid "&Beep on completion of longer activities"
 msgstr "បន្លឺ​សំឡេង​ប៊ីត​នៅ​ពេល​​បញ្ចប់​សកម្មភាព​វែងៗ"
 
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
-msgid "Show Timeline Tooltips"
-msgstr "ការ​កំណត់​កម្មវិធី​ជំនួយ"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Show Scrub Ruler"
-msgstr "អនុញ្ញាត​ម៉ែត្រ"
-
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
 msgid "Import / Export"
@@ -10802,16 +8418,6 @@ msgstr "នាំចេញ​​ស្លាក​ជា ៖"
 #, fuzzy
 msgid "Preferences for ImportExport"
 msgstr "​ចំណូលចិត្ត..."
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Mix down to Stereo or Mono"
-msgstr "អនុវត្ត​ស្តេរ៉េអូ​ទៅជា​​ម៉ូណូ"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Use Advanced Mixing Options"
-msgstr "ជម្រើស​លាយ​កម្រិត​ខ្ពស់"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -10835,23 +8441,8 @@ msgstr "ធ្វើ​​ម្ដង​​ទៀត"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
-msgid "When exporting tracks to an audio file"
-msgstr "នាំ​ឯកសារ​ចេញ"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "S&how Metadata Tags editor before export"
-msgstr "កែ​សម្រួល​​ស្លាក​​ទិន្នន័យ​មេតា"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
 msgid "Exported Label Style:"
 msgstr "នាំចេញ​​ស្លាក​ជា ៖"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "ក្ដារចុច"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
@@ -10954,31 +8545,6 @@ msgstr "បន្សំ​គ្រាប់ចុច"
 msgid "Preferences for Library"
 msgstr "​ចំណូលចិត្ត..."
 
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg Import/Export Library"
-msgstr "កំហុស LOF"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "No compatible FFmpeg library was found"
-msgstr "កំណែ​បណ្ណាល័យ MP3 ៖"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg Library Version:"
-msgstr "កំណែ​បណ្ណាល័យ MP3 ៖"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg Library:"
-msgstr "កំហុស LOF"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "Loca&te..."
-msgstr "រក្សា​ទុក..."
-
 #: src/prefs/LibraryPrefs.h
 #, fuzzy
 msgid "Library"
@@ -11017,56 +8583,9 @@ msgstr "ប្រេកង់​អប្បបរមា​ត្រូវតែ
 msgid "Preferences for Module"
 msgstr "​ចំណូលចិត្ត..."
 
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "Ask"
-msgstr "សួរ​ខ្ញុំ"
-
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "No modules were found"
-msgstr "ភ្ជាប់​ស្តេរ៉េអូ"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "កណ្តុរ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Preferences for Mouse"
-msgstr "​ចំណូលចិត្ត..."
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "ការ​ចង​កណ្តុរ (តម្លៃ​លំនាំដើម​មិន​អាច​កំណត់​រចនា​សម្ព័ន្ធ​បានទេ)"
-
 #: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "ឧបករណ៍"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "ពាក្យ​បញ្ជា​អំពើ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "ប៊ូតុង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "ចុចឆ្វេង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "កំណត់​ចំណុច​ជម្រើស"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "អូស​ឆ្វេង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "កំណត់ជួរ​ជម្រើស"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -11074,178 +8593,6 @@ msgstr "កំណត់ជួរ​ជម្រើស"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "ប្តូរ(Shift)​ខាង​ឆ្វេង-ចុចស្តាំ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "ពង្រើក​ជួរ​ជម្រើស"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "ចុច​ខាង​ឆ្វេង​ទ្វេដង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "ជ្រើស​ច្រឹប ឬ​បទ​ទាំងមូល"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "កង់​បង្វិល"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Change scrub speed"
-msgstr "ផ្លាស់ប្តូរ​ល្បឿន"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "ពង្រីក​លើ​ចំណុច"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "ពង្រីក​លើ​ជួរ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "ដូច​ទៅនឹង​អូស​ស្តាំ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "ចុចស្តាំ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "បង្រួម​លើ​ជំហាន"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "អូសស្តាំ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "ដូច​ទៅ​នឹង​អូស​ឆ្វេង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "ប្តូរ(Shift) អូស"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "បង្រួម​លើ​ជួរ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "ចុច​កណ្តាល"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "ពង្រីក​លំនាំដើម"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move clip left/right or between tracks"
-msgstr "ផ្លាស់ទី​ឈុត​ឡើងលើ/ចុះក្រោម​រវាង​បទ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "ប្តូរ(Shift) អូស​ឆ្វេង"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move all clips in track left/right"
-msgstr "អង្កិល​ពេលវេលា​គ្រប់​ឈុត​ក្នុង​បទ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Left-Drag"
-msgstr "អូស​ឆ្វេង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "ផ្លាស់ទី​ឈុត​ឡើងលើ/ចុះក្រោម​រវាង​បទ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Alt-Left-Drag"
-msgstr "អូស​ឆ្វេង"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "ផ្លាស់ប្ដូរ​ការ​ពង្រីក​ស្រោម​សំបុត្រ​"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "ខ្មៅដៃ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "ផ្លាស់ប្តូរ​គំរូ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "ជំនួស(Alt) ចុចឆ្វេង"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "រលោង​នៅ​លើ​គំរូ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "ផ្លាស់ប្ដូរ​គំរូ​ជា​ច្រើន"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "ផ្លាស់ប្តូ​រគំរូ​តែមួយ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "ច្រើន"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "ដូច​ទៅនឹង​ឧបករណ៍​ជ្រើស"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "ដូច​ទៅនឹង​ឧបករណ៍​ពង្រីក"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "ខ្លះ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll tracks up or down"
-msgstr "រមូរ​ឡើង ឬ​ចុះ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "ប្តូរ(Shift) ​កង់​បង្វិល"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll waveform"
-msgstr "រមូរ​ឆ្វេង ឬ​ស្តាំ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Wheel-Rotate"
-msgstr "កង់​បង្វិល"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Zoom waveform in or out"
-msgstr "ពង្រីក ឬ​បង្រួម"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Shift-Wheel-Rotate"
-msgstr "ប្តូរ(Shift) ​កង់​បង្វិល"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "ទ្រង់ទ្រាយ​រលក (dB)"
 
 #: src/prefs/PlaybackPrefs.cpp
 #, fuzzy
@@ -11298,15 +8645,6 @@ msgstr "​ចំណូលចិត្ត..."
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "ផ្សេងៗទៀត..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "ធ្វើគំរូ"
-
-#: src/prefs/QualityPrefs.cpp
-#, fuzzy
-msgid "Default Sample &Rate:"
-msgstr "អត្រា​គំរូ​លំនាំដើម ៖"
 
 #: src/prefs/QualityPrefs.cpp
 #, fuzzy
@@ -11410,13 +8748,6 @@ msgstr "កំណត់​ចំណាំ​បទ"
 #, fuzzy
 msgid "Period"
 msgstr "ថិរវេលា"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "ពង្រីក​លំនាំដើម"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -11534,11 +8865,6 @@ msgstr "៨ - ក្រុម​ទូលាយ​បំផុត"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
-msgid "1024 - default"
-msgstr "២៥៦ - លំនាំដើម"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
 msgid "32768 - most narrowband"
 msgstr "៨ - ក្រុម​ទូលាយ​បំផុត"
 
@@ -11556,16 +8882,6 @@ msgstr "កត្តា​បន្ថយ ៖"
 #, fuzzy
 msgid "Ena&ble Spectral Selection"
 msgstr "ជម្រើស"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "Show a grid along the &Y-axis"
-msgstr "បាន​អនុញ្ញាត"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "Minimum Amplitude (dB):"
-msgstr "អាំភ្លី​កំពូល​ថ្មី (dB) ៖"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
@@ -11600,21 +8916,6 @@ msgstr "ប្រេកង់​អតិបរមា​ត្រូវតែ​
 msgid "The frequency gain must be an integer"
 msgstr "ប្រេកង់​អតិបរមា​ត្រូវតែ​ជា​លេខ​គត់"
 
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "ប្រេកង់​អប្បបរមា​ត្រូវតែ​ជា​លេខគត់"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The maximum number of notes must be an integer"
-msgstr "ប្រេកង់​អតិបរមា​ត្រូវតែ​ជា​លេខ​គត់"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "ប្រេកង់​អតិបរមា​ត្រូវតែ​ជា​លេខ​គត់"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -11627,11 +8928,6 @@ msgstr "ស្បែក"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "​ចំណូលចិត្ត..."
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-msgid "Theme Settings"
-msgstr "ជម្រើស..."
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Info"
@@ -11694,16 +8990,6 @@ msgstr "តម្រឹម​​ដោយ​​ចុង​​ជម្រើស
 #, fuzzy
 msgid "Enable cut &lines"
 msgstr "អនុញ្ញាត​ម៉ែត្រ"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Enable &dragging selection edges"
-msgstr "បន្ថែម​ស្លាក​នៅ​ជម្រើស"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Advanced &vertical zooming"
-msgstr "ជម្រើស​លាយ​កម្រិត​ខ្ពស់"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 #, fuzzy
@@ -11835,41 +9121,6 @@ msgstr "ការ​​កំណត់ជា​​ស្រេច"
 msgid "Preset 2:"
 msgstr "ការ​​កំណត់ជា​​ស្រេច"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-#, fuzzy
-msgid "Warnings"
-msgstr "ការ​ព្រមាន"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Preferences for Warnings"
-msgstr "​ចំណូលចិត្ត..."
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Saving &projects"
-msgstr "រក្សាទុក​គម្រោង"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Saving &empty project"
-msgstr "រក្សាទុក​គម្រោង"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &mono during export"
-msgstr "អនុវត្ត​ស្តេរ៉េអូ​ទៅជា​​ម៉ូណូ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &stereo during export"
-msgstr "អនុវត្ត​ស្តេរ៉េអូ​ទៅជា​​ម៉ូណូ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Missing file &name extension during export"
-msgstr "អនុវត្ត​ស្តេរ៉េអូ​ទៅជា​​ម៉ូណូ"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 #, fuzzy
@@ -11908,33 +9159,12 @@ msgstr "បំបាត់​កំហុស"
 msgid "Classic"
 msgstr "ផ្ទុក​ឯកសារ​ឡើង..."
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "របារ​ឧបករណ៍​របស់ Audacity %s"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 #, fuzzy
 msgid "High Contrast"
 msgstr "ពុម្ពអក្សរ..."
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "ស្រាល"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "ឧបករណ៍"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "របារ​ឧបករណ៍​របស់ Audacity %s"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -12133,16 +9363,6 @@ msgstr "កែសម្រួល"
 
 #: src/toolbars/EditToolBar.cpp
 #, fuzzy
-msgid "Cut selection"
-msgstr "ធ្វើ​ឲ្យ​សម​នឹង​ជម្រើស"
-
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Copy selection"
-msgstr "ជម្រើស"
-
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
 msgid "Trim audio outside selection"
 msgstr "កាត់​តម្រឹម​ខាង​ក្រៅ​ជម្រើស"
 
@@ -12194,11 +9414,6 @@ msgstr "ធ្វើ​ឲ្យ​ជម្រើស​សម​នឹង​ប
 msgid "Fit project to width"
 msgstr "ធ្វើ​ឲ្យ​គម្រោង​សម​​នៅ​ក្នុង​បង្អួច"
 
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Open Effects Rack"
-msgstr "បែបផែន"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -12231,11 +9446,6 @@ msgstr "ឧបករណ៍​ចាក់​ពេលថត"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "ម៉ែត្រ-ថត"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "ឧបករណ៍​វាស់​ពេលចាក់"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -12273,83 +9483,10 @@ msgstr "របារ​ឧបករណ៍​​ម៉ែត្រ"
 msgid "&Playback Meter Toolbar"
 msgstr "ឧបករណ៍​វាស់​ពេលចាក់"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub"
-msgstr "របារ​ឧបករណ៍​​កែសម្រួល"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Seek"
-msgstr "ចាប់ផ្តើម​ត្រួតពិនិត្យ"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub Ruler"
-msgstr "អនុញ្ញាត​ម៉ែត្រ"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 #, fuzzy
 msgid "Scrubbing"
 msgstr "ប្រអប់​​បញ្ចូល Nyquist..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Scrubbing"
-msgstr "ប្រអប់​​បញ្ចូល Nyquist..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Scrubbing"
-msgstr "ប្រអប់​​បញ្ចូល Nyquist..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Seeking"
-msgstr "ចាប់ផ្តើម​ត្រួតពិនិត្យ"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Seeking"
-msgstr "ចាប់ផ្តើម​ត្រួតពិនិត្យ"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Hide Scrub Ruler"
-msgstr "មិន​អនុញ្ញាត​ម៉ែត្រ"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scru&b Toolbar"
-msgstr "របារ​ឧបករណ៍​​កែសម្រួល"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Project Rate (Hz)"
-msgstr "អត្រា​គម្រោង (Hz) ៖"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Snap-To"
-msgstr "ខ្ទាស់ទៅ"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 #, fuzzy
@@ -12382,10 +9519,6 @@ msgid "Show"
 msgstr "បាន​អនុញ្ញាត"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "ខ្ទាស់ទៅ"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "ប្រវែង"
 
@@ -12394,13 +9527,6 @@ msgstr "ប្រវែង"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "កណ្តាល"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy, c-format
-msgid "Selection %s. %s won't change."
-msgstr "ជ្រើស​​ឯកសារ​​មីឌី..."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -12476,10 +9602,6 @@ msgid "Envelope Tool"
 msgstr "ឧបករណ៍​​ស្រោម​​សំបុត្រ F2"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "ឧបករណ៍​ពង្រីក F4"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "ឧបករណ៍​គូរ F3"
@@ -12513,11 +9635,6 @@ msgstr "ឧបករណ៍​គូរ F3"
 
 #: src/toolbars/ToolsToolBar.cpp
 #, fuzzy
-msgid "&Zoom Tool"
-msgstr "ឧបករណ៍​ពង្រីក F4"
-
-#: src/toolbars/ToolsToolBar.cpp
-#, fuzzy
 msgid "&Multi Tool"
 msgstr "ឧបករណ៍​​ច្រើន"
 
@@ -12543,11 +9660,6 @@ msgstr "ចាក់​នៅ​ល្បឿន​ដែល​បាន​ជ្
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "ល្បឿន​ចាក់​ឡើងវិញ"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-#, fuzzy
-msgid "Looped-Play-at-Speed"
-msgstr "ចាក់​នៅ​ល្បឿន"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -12703,14 +9815,6 @@ msgstr "កំណត់​ចំណាំ​បទ"
 #, fuzzy
 msgid "Stretch"
 msgstr "កត្តា​បន្ថយ ៖"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "បញ្ចូល​ឈុត​ចូល​គ្នា"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "បញ្ចូល​ចូល​គ្នា"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -12924,22 +10028,6 @@ msgstr "ពុះ​បទ​ស្តេរ៉េអូ"
 msgid "Split Stereo to Mo&no"
 msgstr "អនុវត្ត​ស្តេរ៉េអូ​ទៅជា​​ម៉ូណូ"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "ម៉ូណូ"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "ឆានែល​ឆ្វេង"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "ឆានែល​ស្ដាំ"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "ឆានែល"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -12977,26 +10065,6 @@ msgstr "អនុវត្ត​ស្តេរ៉េអូ​ទៅជា​​
 #, fuzzy
 msgid "Split to Mono"
 msgstr "ស្តេរីអូ​ទៅ​ជា​ម៉ូណូ"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Stereo, %dHz"
-msgstr "ស្តេរ៉េអូ "
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Mono, %dHz"
-msgstr "ម៉ូណូ "
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Left, %dHz"
-msgstr "ឆ្វេង "
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Right, %dHz"
-msgstr "ស្ដាំ "
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -13050,21 +10118,6 @@ msgstr "ឧបករណ៍​​​បន្ទាប់ D"
 msgid "Mute/Unmute Track"
 msgstr "ស្ងាត់/លឺ​បទ​ដែល​​ផ្ដោត ប្ដូរ(Shift)+U"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Rename clip..."
-msgstr "សាកល្បង​​ឡើងវិញ"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
-msgid "Zoom x1/2"
-msgstr "ពង្រីក"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
-msgid "Zoom x2"
-msgstr "ពង្រីក"
-
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 #, fuzzy
 msgid "Wa&veform"
@@ -13079,22 +10132,6 @@ msgstr "ទ្រង់ទ្រាយ​រលក"
 #, fuzzy
 msgid "WaveColor Change"
 msgstr "ផ្លាស់ប្ដូរ​អត្រា"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "ផ្លាស់ប្ដូរ​ដែន​កំណត់​ល្បឿន​ទាប​ជាង (%) ទៅ ៖"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "ដែន​កំណត់​ល្បឿន​ទាប​ជាង"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "ផ្លាស់ប្ដូរ​ដែន​កំណត់​ល្បឿន​ខ្ពស់​ជាង (%) ទៅ ៖"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "ដែន​កំណត់​ល្បឿន​ខ្ពស់​ជាង"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -13136,12 +10173,6 @@ msgstr "កំណត់​ជួរ..."
 msgid "Logarithmic &Interpolation"
 msgstr "ការ​កែខៃ​ធ្វើ​សមកាលកម្ម​រហ័ស"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "ចុច និង​អូស​ដើម្បី​ផ្លាស់ទី​បទ​នៅ​ក្នុង​ពេលវេលា"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 msgid "Add Mono Track"
@@ -13162,11 +10193,6 @@ msgstr "បទ​​ស្លាក"
 #, fuzzy
 msgid "Export Audio..."
 msgstr "នាំចេញ..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-#, fuzzy
-msgid "&Name..."
-msgstr "ឈ្មោះ..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -13349,21 +10375,6 @@ msgstr "ធ្វើ​​ឲ្យ​​ស្ងាត់​​បទ​​ដ
 
 #: src/tracks/ui/TrackButtonHandles.cpp
 #, fuzzy
-msgid "Command+Click to deselect"
-msgstr "ពាក្យ​បញ្ជា"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Select track"
-msgstr "បទ"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Ctrl+Click to deselect"
-msgstr "ពាក្យ​បញ្ជា"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
 msgid "Open menu..."
 msgstr "បើក..."
 
@@ -13443,12 +10454,6 @@ msgstr "ឆ្វេង"
 msgid "R"
 msgstr "ស្តាំ"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, fuzzy, c-format
-msgid "%.2fx"
-msgstr "ពេល​វេលា​វាយ ៖ %.1f វិនាទី"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "ជម្រះ"
@@ -13473,34 +10478,6 @@ msgstr "ជំនួយ​នៅ​លើ​អ៊ីនធឺណិត"
 #, fuzzy
 msgid "Menu"
 msgstr "ឯកសារ​​ទាំងអស់ (*)|*"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click to Start Monitoring"
-msgstr "ចាប់ផ្តើម​ត្រួតពិនិត្យ"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click for Monitoring"
-msgstr "ឈប់​ត្រួតពិនិត្យ"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click to Start"
-msgstr "រំលង​ដើម្បី​ចាប់ផ្ដើម ដើម"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click"
-msgstr "ចុចឆ្វេង"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "ឈប់​ត្រួតពិនិត្យ"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "ចាប់ផ្តើម​ត្រួតពិនិត្យ"
 
 #: src/widgets/MeterPanel.cpp
 #, fuzzy
@@ -13570,11 +10547,6 @@ msgstr "បាន​តម្រឹម"
 #, fuzzy, c-format
 msgid " Peak %2.f dB"
 msgstr "ពេល​វេលា​វាយ ៖ %.1f វិនាទី"
-
-#: src/widgets/MultiDialog.cpp
-#, fuzzy
-msgid "Please select an action"
-msgstr "បង្កើត​​បទ​​អូឌីយ៉ូ​​ថ្មី"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

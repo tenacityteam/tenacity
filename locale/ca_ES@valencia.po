@@ -24,114 +24,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "El flux està actiu ... no es pot recopilar informació.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "Seleccioneu el dispositiu de gravació"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "Seleccioneu el dispositiu de reproducció"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "No s'ha trobat cap dispositiu"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "La informació del dispositiu no està disponible."
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "&Dispositiu:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "Dispositius"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "Nom: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "Canals de gravació"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "Nivell de reproducció"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "Fi de la gravació:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "Fi de la gravació:"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "Freqüències de mostreig"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "Seleccioneu el dispositiu de gravació"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "Seleccioneu el dispositiu de reproducció"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "No s'ha trobat cap dispositiu"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Mostra l'eixida"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Seleccioneu el dispositiu de gravació"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Seleccioneu el dispositiu de reproducció"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -161,16 +57,6 @@ msgstr "Error intern"
 #, fuzzy, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr "No s'ha pogut eliminar %s"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity no ha pogut escriure el fitxer %s.\n"
-"Potser el disc està ple o no s'hi pot escriure."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -216,11 +102,6 @@ msgstr "Fitxers MP3"
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "Fitxers MP3"
-
-#: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "El directori %s no existix. Desitgeu crear-lo?"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -393,16 +274,6 @@ msgstr "No s'ha pogut carregar el fitxer: «%s»"
 msgid "Could not parse XML"
 msgstr "No s'ha pogut obrir el fitxer"
 
-#: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
-msgid "1st Experimental Command..."
-msgstr "Ordre especial"
-
-#: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
-msgid "2nd Experimental Command"
-msgstr "Ordre especial"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -493,30 +364,6 @@ msgstr "desenvolupador web"
 msgid "%s, graphics"
 msgstr "gràfics"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity founder and developer"
-msgstr "cofundador i desenvolupador"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity developer"
-msgstr "desenvolupador web"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "desenvolupador web"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "desenvolupador web"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -557,12 +404,6 @@ msgstr "Membres de l'equip d'Audacity"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Col·laboradors"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Emèrits:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -661,11 +502,6 @@ msgstr "Conver&tidor de la freqüència de mostreig:"
 msgid "File Format Support"
 msgstr "Compatibilitat amb formats de fitxers"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "Importació d'MP3"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -693,16 +529,8 @@ msgid "MP2 export"
 msgstr "Exportació a MP2"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "Importa mitjançant QuickTime"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "Importació i exportació FFmpeg"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "Importa mitjançant GStreamer"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -731,12 +559,6 @@ msgstr "Les accions de la línia de temps s'han inhabilitat durant la gravació"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Feu clic i arrossegueu per a ajustar , doble clic per a reiniciar"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "Capçal de reproducció/gravació"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -807,35 +629,6 @@ msgstr "S'ha habilitat Quick-Play"
 msgid "Timeline Options"
 msgstr "Opcions del connector"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "Habilita  Quick-Play"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "Habilita l'arrossegament de la selecció"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "Actualitza la visualització durant la reproducció"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "Bloqueja la zona de la reproducció"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Pinned Play Head"
-msgstr "Ca&pçal de reproducció/gravació fixat (activat/desactivat)"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr ""
-"No es pot bloquejar la zona\n"
-"més enllà del final del projecte."
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "No s'ha pogut trobar cap dispositiu de so.\n"
@@ -852,12 +645,6 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Error: %s"
 msgstr "Error: "
-
-#: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Throw Error"
-msgid "PortAudio Error"
-msgstr "Llança error"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1340,14 +1127,6 @@ msgstr ""
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
-#| msgid "Performing Low-Pass Filter..."
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "S'està aplicant el filtre passabaix..."
-msgstr[1] "S'està aplicant el filtre passabaix..."
-
-#: src/Benchmark.cpp
-#, fuzzy, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Retalla: %d - %d \n"
 
@@ -1561,16 +1340,6 @@ msgstr "S'està important %s"
 msgid "Could not write to %s.\n"
 msgstr "No s'ha pogut escriure al fitxer: %s"
 
-#: src/DBConnection.cpp
-#, fuzzy, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity no ha pogut escriure el fitxer %s.\n"
-"Potser el disc està ple o no s'hi pot escriure."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1604,27 +1373,6 @@ msgstr ""
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Error (podria ser que el fitxer no s'haguera escrit): %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "&Copia els fitxers sense comprimir en el projecte (més segur)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr ""
-"&Llig els fitxers sense comprimir des de la ubicació original (més ràpid)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "&Copia tot l'àudio dins del projecte (la forma més segura)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "&No copies cap àudio"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "Pre&gunta-m'ho"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1743,12 +1491,6 @@ msgstr "&Eix:"
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "&Redibuixa..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr ""
-"Per a dibuixar l'espectre cal que totes les pistes seleccionades tinguen la "
-"mateixa freqüència de mostreig."
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -1938,12 +1680,6 @@ msgstr "Descarta"
 #, fuzzy
 msgid "&Compact"
 msgstr "&Ordre"
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "&Historial..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2184,11 +1920,6 @@ msgid "Signal Level Meter"
 msgstr "Mesurador del nivell de senyal"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "S'ha mogut el regulador de guany"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 msgid "Moved velocity slider"
 msgstr "S'ha mogut el regulador de guany"
@@ -2197,10 +1928,6 @@ msgstr "S'ha mogut el regulador de guany"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "S'ha mogut el botó lliscant de la panoramització"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "Taula de &mescles..."
 
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
@@ -2445,111 +2172,19 @@ msgstr "Habilita nous connectors"
 msgid "Nyquist Prompt"
 msgstr "Indicador Nyquist"
 
-#: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "Gestiona els connectors"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "Nou"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr ""
-"Seleccioneu efectes, feu clic en el botó Habilita o Inhabilita i després "
-"cliqueu en D'acord."
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "Mostra:"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "Mostra-ho tot"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "&Tot"
 
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show disabled"
-msgstr "Mostra els inhabilitats"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "Inhab&ilitat"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show enabled"
-msgstr "Mostra els habilitats"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "Ha&bilitat"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "Mostra el nou"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "No&u"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "Estat"
-
 #: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "Camí"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "&Selecciona-ho tot"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "&Neteja-ho tot"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
 msgid "&Enable"
 msgstr "&Habilita"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "&Inhabilita"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr ""
-"S'estan habilitant els efectes o ordres:\n"
-"\n"
-" %s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr ""
-"S'està habilitant l'efecte o l'ordre:\n"
-"\n"
-" %s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2559,14 +2194,6 @@ msgid ""
 msgstr ""
 "L'efecte o l'ordre en %s no s'han pogut registrar:\n"
 "%s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Hi ha hagut un problema en imprimir."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "Imprimix"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2793,16 +2420,6 @@ msgid "Error Writing to File"
 msgstr "S'ha produït un error en escriure en el fitxer"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Audacity no ha pogut escriure el fitxer %s.\n"
-"Potser el disc està ple o no s'hi pot escriure."
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "S'estan guardant els &projectes"
@@ -2851,29 +2468,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "Directori per a fitxers temporals"
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"Actualment el vostre projecte està buit. \n"
-"Si el guardeu, el projecte no tindrà cap pista. \n"
-"Per a guardar les pistes que teníeu anteriorment obertes:\n"
-"Feu clic a«No», Edita > Desfés fins que totes les pistes\n"
-"estiguen obertes, i després Fitxer > Guarda el projecte. \n"
-"\n"
-"Voleu guardar ara el fitxer buit?"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "Advertència - Projecte buit"
-
-#: src/ProjectFileManager.cpp
 #, fuzzy
 msgid "Insufficient Disk Space"
 msgstr "Espai de disc"
@@ -2897,16 +2491,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sAnomena i guarda el projecte «%s»..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"«Guarda el projecte» és per a un projecte d'Audacity, no per a un fitxer "
-"d'àudio.\n"
-"Per a un fitxer d'àudio que s'obrirà en altres aplicacions, utilitzeu "
-"«Exporta».\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3080,22 +2664,6 @@ msgid "Save project before closing?"
 msgstr "Voleu guardar els canvis abans de tancar?"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"Si l'heu guardat, el projecte no tindrà cap pista.\n"
-"\n"
-"Per guardar les pistes que teníeu anteriorment obertes\n"
-"feu Cancel·la, Edita > Desfés fins que totes les pistes\n"
-"estiguen obertes, i després Fitxer > Guarda el projecte."
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "Espai de disc lliure per a gravar: %s"
@@ -3157,18 +2725,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "Advertència - S'està truncant el fitxer de blocs massa llag"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "Desactivat"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "El més proper"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "L'anterior"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "Gravació activada per so"
@@ -3176,11 +2732,6 @@ msgstr "Gravació activada per so"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Nivell d'activació (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "desenvolupador web"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3266,10 +2817,6 @@ msgid "Set De&fault"
 msgstr "&Estableix com a predeterminat"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "No mostres açò quan exportes l'àudio"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Edita els gèneres"
 
@@ -3313,24 +2860,6 @@ msgstr "No s'ha pogut eliminar %s"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "Ha fallat."
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"Voleu restablir les preferències?\n"
-"\n"
-"Aquesta pregunta només es fa una vegada, després d'un «Instal·la» on heu "
-"demanat restablir les preferències."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "&Utilitza les prefrències"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -3701,11 +3230,6 @@ msgid "Do nothing"
 msgstr "No faces res"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-msgid "Exit Tenacity"
-msgstr "Quant a  Audacity"
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Restableix el sistema"
 
@@ -3752,10 +3276,6 @@ msgstr "S'ha exportat la gravació:"
 #| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Gravació temporitzada"
-
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "Estèreo, 999999Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -3835,11 +3355,6 @@ msgstr "S'han eliminat pistes d'àudio"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "Elimina la pista"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "S'ha eliminat la pista «%s»"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4191,12 +3706,6 @@ msgid "Builtin Commands"
 msgstr "Ordres predefinides"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "Nom d'ordre integrada desconegut"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "Nom d'ordre integrada desconegut"
 
@@ -4497,14 +4006,6 @@ msgid "Sets various values for a project."
 msgstr "Defineix diversos valors per al projecte."
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "Índex de pistes:"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "Índex de canals:"
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "Estableix l'estat de la pista"
 
@@ -4519,10 +4020,6 @@ msgstr "Enfocat"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "Estableix l'àudio de la pista"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "Guany:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4752,10 +4249,6 @@ msgid "High Quality Pitch Change"
 msgstr "Canvi de to d'alta qualitat"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Canvia el to sense canviar el tempo"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "To inicial aproximat: %s%d (%.3f Hz)"
@@ -4862,16 +4355,8 @@ msgid "n/a"
 msgstr "no aplicable"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Canvia la velocitat"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "Canvia la velocitat d'una pista i el seu to"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Canvia la velocitat i afecta tant el tempo com el to"
 
 #: src/effects/ChangeSpeed.cpp
 #, fuzzy
@@ -4955,10 +4440,6 @@ msgstr "Canvia el tempo d'una selecció sense canviar el to"
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "Canvi de tempo d'alta qualitat"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Canvia el tempo sense canviar el to"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Beats per minute"
@@ -5178,157 +4659,14 @@ msgstr "Temps d'atac %.2f segons"
 msgid "Release Time %.1f secs"
 msgstr "Temps de relaxació %.1f segons"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Exponential Out"
-msgid "Exponential-Fit"
-msgstr "Eixida exponencial"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "Amplitud de pic dB"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "Reducció de soroll"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "Reducció de soroll"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Limiter"
-msgid "Analog Limiter"
-msgstr "Limitador"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "Compressor"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Establiu el pic d'amplitud d'una o més pistes"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compressor step response"
-msgstr "Compressió basada en pics"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritme"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "&Algoritme:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress based on:"
-msgstr "Compressió basada en pics"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress stereo channels independently"
-msgstr "Normalitza els canals estèreos de forma independent"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Ratio:"
-msgstr "Interval:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "Amplària:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "Amplària:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "Guany de l'e&ixida (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "Guany de l'eixida (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack:"
-msgstr "Temps d'atac:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "Temps d'atac"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release:"
-msgstr "Temps de relaxació:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "Temps de relaxació"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "Duració del suavitzat:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "Duració del suavitzat"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "Temps final:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Temps final"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -5986,11 +5324,6 @@ msgid "Applied effect: %s"
 msgstr "S'ha aplicat l'efecte: %s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "S'ha aplicat l'ordre: %s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "Selecciona un valor predefinit"
 
@@ -6017,25 +5350,6 @@ msgstr "Valors per defecte originals"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"Ha fallat l'intent d'inicialitzar el següent efecte: \n"
-"\n"
-"%s \n"
-"\n"
-"Trobareu més informació en « Ajuda>Diagnòstics> Mostra el registre»"
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "Ha fallat l'efecte en inicialitzar-se"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6053,95 +5367,12 @@ msgid "Command failed to initialize"
 msgstr "Ha fallat l'ordre en inicialitzar-se"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "Tauler d'efectes"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "&Aplica"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "Latència: 0"
-
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "&Derivació"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "Estat actiu"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "Estableix l'estat actiu de l'efecte"
-
-#: src/effects/EffectUI.cpp
-msgid "Show/Hide Editor"
-msgstr "Mostra o amaga l'editor"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "Obri o tanca l'editor d'efectes"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "Moveu cap amunt"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "Mou l'efecte cap amunt dins del tauler"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Down"
-msgstr "Mou cap avall"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "Mou l'efecte cap avall dins del tauler"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "Preferit"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "Marca l'efecte com a preferit"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "Elimina l'efecte del tauler"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "Nom de l'efecte"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "Latència: %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "Algunes ordres"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "Gestiona les opcions i els valors predefinits"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "&Gestiona"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "Inicia i para la reproducció"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "Inicia la re&producció"
 
 #: src/effects/EffectUI.cpp
 msgid "Preview effect"
@@ -6150,26 +5381,6 @@ msgstr "Previsualitza l'efecte"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "&Previsualització"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "&Previsualitza l'efecte"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "Salta enrere"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "Salta &enrere"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "Salta endavant"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "Salta &endavant"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6255,12 +5466,6 @@ msgstr ""
 "\n"
 "Voleu substituir-lo?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "Para la re&producció"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6338,21 +5543,6 @@ msgstr "Reducció d'aguts"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"Per a utilitzar aquesta corba del filtre en una macro, trieu-ne un nom nom.\n"
-"Seleccioneu el botó «Guarda o gestiona corbes...» i canvieu el nom de la "
-"corba «sense nom» i seguidament, utilitzeu-la."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Filter Curve EQ needs a different name"
-msgstr "La corba del filtre necessita un altre nom"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr ""
 "Per a aplicar l'equalització cal que totes les pistes seleccionades tinguen "
@@ -6362,10 +5552,6 @@ msgstr ""
 msgid "Track sample rate is too low for this effect."
 msgstr ""
 "La freqüència de mostreig de la pista és massa baixa per a aquest efecte."
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "L'efecte no està disponible"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6468,35 +5654,6 @@ msgstr "Mostra les línies de la graella"
 msgid "Show g&rid lines"
 msgstr "Mostra les línies de la g&raella"
 
-#: src/effects/Equalization.cpp
-msgid "&Processing: "
-msgstr "S'està &processant: "
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "Valors per d&efecte"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "SSE &multiprocés"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "A&VX"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "AV&X Threaded"
-msgstr "AV&X multiprocés"
-
-#: src/effects/Equalization.cpp
-msgid "&Bench"
-msgstr "&Banc"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6517,20 +5674,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "S'ha produït un error en carregar les corbes d'equalització"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "S'ha produït un error en guardar les corbes d'equalització"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "La corba que heu demanat no s'ha trobat, es farà servir «sense nom»"
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "No s'ha trobat la corba"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -6695,36 +5844,6 @@ msgstr "Aplica una fosa d'obertura lineal a l'àudio seleccionat"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Aplica una fosa d'eixida lineal a l'àudio seleccionat"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "Troba l'escapçament"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "Crea etiquetes on es detecten escapçaments"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Clicks"
-msgstr "Feu clic"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Right"
-msgstr "Feu clic"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Left"
-msgstr "Feu clic"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Troba l'escapçament"
@@ -6861,36 +5980,6 @@ msgstr "De més gran a final (big-endian)"
 #, fuzzy
 msgid "Second greatest"
 msgstr "Segona pista"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, none"
-msgstr "4 (per defecte)"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, Hann (default)"
-msgstr "4 (per defecte)"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Blackman, Hann"
-msgstr "4 (per defecte)"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, none"
-msgstr "4 (per defecte)"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Hann"
-msgstr "4 (per defecte)"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Reciprocal Hamming"
-msgstr "4 (per defecte)"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7111,49 +6200,6 @@ msgstr "4 (per defecte)"
 #, fuzzy
 msgid "Discrimination &method:"
 msgstr "&Mètode de discriminació"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Supressió del soroll"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr ""
-"Suprimeix sorolls de fons constants com ara els produïts per ventiladors, "
-"cintes o brunzits"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Seleccioneu tot l'àudio que voleu filtrar, trieu la quantitat de soroll a "
-"filtrar\n"
-"i feu clic a «D'acord» per a suprimir el soroll.\n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "Re&ducció de soroll (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "&Sensibilitat (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Fr&equency smoothing (Hz):"
-msgstr "Suavització de freqüència (Hz):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "Temps d'ata&c/esmortiment (segons)"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "Temps d'atac/esmortiment"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "Supri&meix"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7507,11 +6553,6 @@ msgstr "Am&plària estèreo (%):"
 msgid "Wet O&nly"
 msgstr "S&ols procesat"
 
-#: src/effects/Reverb.cpp
-#, fuzzy, c-format
-msgid "Reverb: %s"
-msgstr "Reverberació"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Inverteix"
@@ -7713,16 +6754,6 @@ msgstr "Converteix les pistes d'estèreo en mono"
 
 #: src/effects/StereoToMono.cpp
 #, fuzzy
-msgid "Resampling left channel"
-msgstr "Ha fallat el remostreig."
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling right channel"
-msgstr "Canal dret"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
 msgid "Mixing down to mono"
 msgstr "S'està mesclant a mono durant l'exportació"
 
@@ -7885,15 +6916,6 @@ msgstr "Trunca les pistes de forma independent"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "Efectes VST"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "S'està comprovant Shell VST"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "S'estan registrant %d de %d: %-64.64s"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8094,18 +7116,6 @@ msgid "Import Audio Unit Presets"
 msgstr "Importa els valors predefinits d'Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "Valors predefinits (en podeu seleccionar més d'un)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "Valors predefinits"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "Ubicació"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Couldn't open \"%s\""
 msgstr "No s'ha pogut obrir el fitxer: «%s»"
@@ -8190,16 +7200,6 @@ msgstr ""
 "%s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to convert preset to internal format"
-msgstr "No es pot obtenir la descripció del flux de dades"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to create property list for preset"
-msgstr "No es pot obtenir la descripció del flux de dades"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "No s'ha pogut llegir el fitxer dels valors predefinits."
@@ -8270,16 +7270,6 @@ msgid "Couldn't instantiate effect"
 msgstr "No s'ha pogut instanciar l'efecte"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%d corbes s'han exportat a %s"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%d corbes s'han exportat a %s"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "Generador"
 
@@ -8330,28 +7320,6 @@ msgstr ""
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
 msgstr "S'ha de seleccionar un àudio."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Error Nyquist"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"No es pot aplicar l'efecte a les pistes estèreo quan les dues pistes no "
-"coincideixen."
-
-#: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid ""
-"Selection too long for Nyquist code.\n"
-"Maximum allowed selection is %ld samples\n"
-"(about %.1f hours at 44100 Hz sample rate)."
-msgstr ""
-"La selecció és massa llarga per al codi Nyquist.\n"
-"La selecció màxima permesa és de %ld mostres\n"
-"(sobre %.1f hores en una freqüència de mostreig de 44100 Hz)."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
@@ -8439,10 +7407,6 @@ msgstr ""
 "\treturn *track* * 0.1\n"
 "o per a LISP,comenceu amb una obertura de parèntesi com:\n"
 "\t(mult *track* 0.1)"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Error en el codi Nyquist"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8539,14 +7503,6 @@ msgid "Vamp Effects"
 msgstr "Efectes Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Els efectes Vamp no es poden aplicar a pistes estereofòniques on els dos "
-"canals no coincidisquen."
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "No s'ha pogut carregar el connector Vamp."
 
@@ -8590,58 +7546,12 @@ msgstr "Tot l'àudio està silenciat."
 
 #: src/export/Export.cpp
 #, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Segur que voleu exportar el fitxer com a «%s»?\n"
-
-#: src/export/Export.cpp
-#, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"Esteu a punt d'exportar un fitxer %s amb el nom \"%s\".\n"
-"\n"
-"Normalment aquests fitxers acaben en «%s», i alguns programes no obriran "
-"fitxers amb extensions no estàndard.\n"
-"\n"
-"Segur que voleu exportar el fitxer amb aquest nom?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "No es permet l'ús de noms de camí de més de 256 caràcters."
-
-#: src/export/Export.cpp
-#, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "Ja existeix un fitxer amb el nom «%s».  Voleu substituir-lo?"
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "Les pistes es mesclaran i s'exportaran com a un fitxer mono."
-
-#: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "Les pistes es mesclaran i s'exportaran com a un fitxer estèreo."
-
-#: src/export/Export.cpp
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr ""
-"Les pistes es mesclaran en un fitxer exportat d'acord amb els paràmetres del "
-"codificador."
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Opcions de mescla avançades"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-msgid "Format Options"
-msgstr "Opcions de format"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8685,1184 +7595,37 @@ msgstr "Navega..."
 msgid "Show output"
 msgstr "Mostra l'eixida"
 
-#. i18n-hint: Some programmer-oriented terminology here:
-#. "Data" refers to the sound to be exported, "piped" means sent,
-#. and "standard in" means the default input stream that the external program,
-#. named by %f, will read.  And yes, it's %f, not %s -- this isn't actually used
-#. in the program as a format string.  Keep %f unchanged.
-#: src/export/ExportCL.cpp
-#, c-format
-msgid ""
-"Data will be piped to standard in. \"%f\" uses the file name in the export "
-"window."
-msgstr ""
-"Les dades seran canalitzades cap al canal d'entrada estàndard. «%f» utilitza "
-"el nom del fitxer en la finestra d'exportació."
-
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Executables"
-msgstr "Elements programables"
-
-#: src/export/ExportCL.cpp
-msgid "Find path to command"
-msgstr "Troba el camí a l'ordre"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(programa extern)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "No es port exportar l'àudio a %s"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Exporta"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr ""
-"S'està exportant l'àudio seleccionat utilitzant el codificador de línia "
-"d'ordres"
-
-#: src/export/ExportCL.cpp
-msgid "Exporting the audio using command-line encoder"
-msgstr ""
-"S'està exportant l'àudio seleccionat utilitzant el codificador de línia "
-"d'orders"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Eixida de l'orde"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "&D'acord"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr ""
-"Heu seleccionat un nom de fitxer amb una extensió de fitxer desconeguda.\n"
-"Voleu continuar?"
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "No s'ha trobat el fitxer «%s»."
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "No s'han pogut carrega els fitxers predefinits."
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-#| msgid "Format Options"
-msgid "Export Options"
-msgstr "Opcions de format"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Cancel·la"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"Es necessita FFmpeg configurat correctament per a funcionar.\n"
-"Podeu configurar-ho a Preferències > Biblioteques."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr ""
-"FFmpeg : ERROR - No es pot determinar la descripció de format del fitxer "
-"«%s»."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "Error de FFmpeg"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg : ERROR - No es pot allotjar el context del format d'eixida."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr ""
-"FFmpeg : ERROR - No s'ha pogut afegir el flux de dades d'àudio al fitxer "
-"d'eixida «%s»."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr ""
-"FFmpeg : ERROR - No s'ha pogut obrir el fitxer d'eixida «%s» per a escriure. "
-"El codi d'error és %d."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr ""
-"FFmpeg : ERROR - No es poden escriure les capçaleres en el fitxer d'eixida "
-"«%s» Codi d'error %d."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg no ha pogut trobar el còdec d'àudio 0x%x.\n"
-"És probable que aquest còdec no estiga suportat en la compilació de FFmpeg "
-"que utilitzeu."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid ""
-"Can't open audio codec \"%s\" (0x%x)\n"
-"\n"
-"%s"
-msgstr "FFmpeg : ERROR - No es pot obrir el còdec d'àudio 0x%x."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr ""
-"FFmpeg : ERROR - No s'ha pogut allotjar memòria intermèdia per a llegir des "
-"del FIFO d'àudio."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr ""
-"FFmpeg : ERROR - No s'ha pogut afegir el flux de dades d'àudio al fitxer "
-"d'eixida «%s»."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr ""
-"FFmpeg : ERROR - No s'ha pogut obtenir la mida de la memòria intermèdia de "
-"mostres"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr ""
-"Fmpeg : ERROR - No s'han pogut allotjar prou bytes a la memòria intermèdia "
-"de mostres"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr ""
-"FFmpeg : ERROR - No s'ha pogut obtenir la mida de la memòria intermèdia de "
-"mostres"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg : ERROR - No es pot codificar la trama d'àudio."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "Fmpeg : ERROR - Queden massa dades."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg : ERROR - nAudioFrameSizeOut és massa gran."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg : ERROR - No es pot codificar la trama d'àudio."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr ""
-"S'ha intentat exportar %d canals, però el format d'eixida seleccionat "
-"n'admet un màxim de %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "S'està exportant l'àudio seleccionat com a %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the audio as %s"
-msgstr "S'està exportant l'àudio com a %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "Freqüència de mostreig no vàlida"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "Torna a mostrejar"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"La freqüència de mostreig del projecte (%d) no està suportada per l'actual \n"
-"format de fitxer d'eixida. "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"La combinació de freqüència de mostreig (%d) i cabal de bits (%d kbps) del "
-"projecte no està\n"
-"suportada per l'actual format de fitxer d'eixida. "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr ""
-"Hauríeu de tornar a mostrejar-ho a algun dels valors que es mostren a "
-"continuació."
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "Freqüències de mostreig"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Taxa de bits:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "Qualitat (kbps):"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "0"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "10"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "On"
-msgstr "Obri"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Constrained"
-msgstr "Constant"
-
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "Audio"
 msgstr "&Àudio..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Low Delay"
-msgstr "Retard"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mediumband"
-msgstr "Pistes mitjanes"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Fullband"
-msgstr "Completa"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression"
-msgstr "Compressió"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame Duration:"
-msgstr "Duració:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Vbr Mode:"
-msgstr "Mode:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Application:"
-msgstr "Aplicació"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Cutoff:"
-msgstr "Tall:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Open custom FFmpeg format options"
-msgstr "Obri les opcions del format FFmpeg personalitzat"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Format:"
-msgstr "Projecte actual"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Codec:"
-msgstr "Projecte actual"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr ""
-"S'ha produït un error quan es guardaven els valors predefinits de FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "Voleu sobreescriure els valors predeterminats «%s»?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "Confirma la sobreescriptura"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "Seleccioneu el format abans de guardar un perfil"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "Seleccioneu el còdec abans de guardar un perfil"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "El valor predefinit «%s» no existeix."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Replace preset '%s'?"
-msgstr "Voleu reemplaçar el valor predefinit «%s»?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LC"
-msgstr "LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Main"
-msgstr "Principal"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "Fitxers M4A (AAC) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "Fitxers AC3 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "Fitxers AMR (banda estreta) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "Fitxers M4A (AAC) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "WMA (versió 2) Fitxers (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "Exportació FFmpeg personalitzada"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "Estimació"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "Nivell 2"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "Nivell 4"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "Nivell 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "Cerca completa"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "Cerca logarítmica"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Configure custom FFmpeg options"
-msgstr "Configura les opcions personalitzades de FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "Valors predefinits:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "Carrega els valors predefinits"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "Importa els valors predefinits"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "Exporta els valors predefinits"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "Còdec"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Not all formats and codecs are compatible. Nor are all option combinations "
-"compatible with all codecs."
-msgstr ""
-"No tots els formats i còdecs són compatibles. Ni totes les combinacions "
-"d'opcions són compatibles amb tots els còdecs."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "Mostra tots els formats"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "Mostra tots els còdecs"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "General Options"
-msgstr "Opcions generals"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"Codi d'idioma ISO 639 de 3 lletres\n"
-"Opcional \n"
-"buit - automàtic"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Idioma:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Bit Reservoir"
-msgstr "Acumulador de bits"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"Etiqueta de còdec (FOURCC)\n"
-"Opcional\n"
-"buit - automàtic"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "Etiqueta:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"Taxa de bits (bits per segon) - té influència en la mida i qualitat del "
-"fitxer resultant\n"
-"Alguns còdecs només accepten valors específics (128k, 192k, 256k etc.)\n"
-"0 - automàtic\n"
-"Valor recomanat - 192000"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"Qualitat global, utilitzada de manera diferent per cada còdec\n"
-"Requerit per a Vorbis\n"
-"0 - automàtic\n"
-"-1 - inhabilitat (utilitzeu en el seu lloc la taxa de bits)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Qualitat:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"Freqüència de mostreig (Hz)\n"
-"0 - no canvia la freqüència de mostreig"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "Freqüència de mostreig:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"Amplària de banda de tall de l'àudio (Hz)\n"
-"Opcional\n"
-"0 - automàtic"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"Perfil AAC\n"
-"Complexitat baixa - per defecte\n"
-"La majoria de reproductors només reprodueixen LC Complexitat baixa)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "Perfil:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "Opcions FLAC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"Nivell de compressió\n"
-"requerit per FLAC\n"
-"-1-automàtic\n"
-"mín - 0 (codificació ràpida, fitxer d'eixida gran) \n"
-"màx - 10 (codificació lenta, fitxer d'eixida xicotet)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression:"
-msgstr "Compressió"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"Mida de la trama\n"
-"opcional\n"
-"0 -per defecte\n"
-"mín. - 16\n"
-"màx - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "Trama:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"Precisió de coeficients LPC\n"
-"opcional\n"
-"0 -per defecte\n"
-"mín. - 1\n"
-"màx. - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"Mètode d'ordre de predicció\n"
-"Estimació - més ràpid, menys compressió\n"
-"Cerca logarítmica - més lent, la millor compressió\n"
-"Cerca completa - per defecte"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "PdO Method:"
-msgstr "Mètode PdO:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Ordre de predicció mínima\n"
-"opcional\n"
-"-1 -per defecte\n"
-"mín. - 0\n"
-"màx. -32 (amb LPC) 0 4 (sense LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "Pdo mín."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Ordre de predicció màxima\n"
-"opcional\n"
-"-1 - per defecte\n"
-"mín. -0\n"
-"màx. - 32 (amb LPC9 o 4 (sense LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "PdO màx."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Ordre de partició mínima\n"
-"opcional \n"
-"-1 - per defecte\n"
-"mín. - 0\n"
-"màx. - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "PtO mín."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Ordre de partició màxima\n"
-"opcional \n"
-"-1 - per defecte\n"
-"mín. - 0\n"
-"màx. - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "Màx. PtO"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "Utilitza LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "Opcions del contenidor MPEG"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Taxa de bits màxima del flux de dades multiplexat\n"
-"Opcional\n"
-"0 -per defecte"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "Taxa de Mux:"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Mida del paquet\n"
-"opcional\n"
-"0 - per defecte"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "Mida del paquet:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "No podeu suprimir un valor predefinit sense nom"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "Voleu suprimir el valor predefinit «%s»?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "No podeu guardar un valor predefinit sense nom"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "Seleccioneu un fitxer xml amb valors predefinits per a importar"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "No hi ha valors predefinits a exportar"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "Seleccioneu un fitxer xml per a exportar-hi els valors predefinits"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Format %s is not compatible with codec %s."
-msgstr "El format %s no és compatible amb el còdec %s."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Incompatible format and codec"
-msgstr "Format i còdec incompatibles"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "No s'ha pogut determinar el format"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "No s'ha pogut trobar el còdec"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16 bits"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24 bits"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (el més ràpid)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (el millor)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Nivell:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Profunditat de bits:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "Fitxers FLAC"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "L'exportació FLAC no ha pogut obrir %s"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr "No s'ha pogut inicialitzar el codificador FLAC Estat: %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "S'està exportant l'àudio seleccionat com a FLAC"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the audio as FLAC"
-msgstr "S'està exportant l'àudio com a FLAC"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "Fitxers MP2"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr ""
-"No es pot exportar MP2 amb aquesta de freqüència de mostreig i cabal de bits"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "No s'ha pogut obrir el fitxer de destinació per a escriure-hi"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "S'està exportant l'àudio seleccionat a %ld kbps"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "S'està exportant l'àudio seleccionat a %ld kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "220-260 kbps (Best Quality)"
-msgstr "%s kbps (La millor qualitat)"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "200-250 kbps"
-msgstr "Extrema, 220-260 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "170-210 kbps"
-msgstr "Estàndard, 170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "155-195 kbps"
-msgstr "Mitjana, 145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "145-185 kbps"
-msgstr "Mitjana, 145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "110-150 kbps"
-msgstr "Estàndard, 170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "95-135 kbps"
-msgstr "Mitjana, 145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "80-120 kbps"
-msgstr "%.2f kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "65-105 kbps"
-msgstr "Mitjana, 145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "45-85 kbps (Smaller files)"
-msgstr "%s kbps (Fitxers més xicotets)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "Desgavellada, 320 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "Extrema, 220-260 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "Estàndard, 170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "Mitjana, 145-185 kbps"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Estàndard"
 
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Medium"
-msgstr "Habitació mitjana"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "Variable"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "Mitjana"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "Constant"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "Estèreo unificat"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "Estèreo"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "Mode de taxa de bits:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Qualitat"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "Mode de canal:"
-
-#: src/export/ExportMP3.cpp
-msgid "Force export to mono"
-msgstr "Força l'exportació a mono"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "Fitxers MP3"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "No s'ha pogut inicialitzar el flux de dades MP3"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "S'està exportant l'àudio seleccionat amb el valor predefinit %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "S'està exportant l'àudio amb el valor predefinit %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "S'està exportant l'àudio seleccionat amb qualitat VBR de %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "S'està exportant l'àudio amb qualitat VBR de %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "S'està exportant l'àudio seleccionat a %d Kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "S'està exportant l'àudio seleccionat a %d Kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "El codificador d'MP3 ha retornat l'error %ld"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"La freqüència de mostreig del projecte (%d) no és compatible amb el\n"
-"format de fitxer MP3. "
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"La combinació de freqüència de mostreig (%d) i cabal de bits (%d kbps) del "
-"projecte no\n"
-"són compatibles amb el format de fitxer MP3. "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16 bits"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24 bits"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Etiquetes"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "S'està exportant un fitxer d'àudio"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "S'està exportant l'àudio seleccionat com a FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the audio as FLAC"
-msgid "Exporting the audio as MKA"
-msgstr "S'està exportant l'àudio com a FLAC"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Exporta múltiples fitxers"
-
-#: src/export/ExportMultiple.cpp
-msgid "Cannot Export Multiple"
-msgstr "No es pot exportar múltiples fitxers"
-
-#: src/export/ExportMultiple.cpp
-msgid ""
-"You have no unmuted Audio Tracks and no applicable \n"
-"labels, so you cannot export to separate audio files."
-msgstr ""
-"No teniu pistes d'àudio sense so ni sense etiquetes aplicables, així que no "
-"podeu exportar-les a fitxers d'àudio separats."
-
-#: src/export/ExportMultiple.cpp
-msgid "Export files to:"
-msgstr "Exporta fitxers a:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "Carpeta:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Trieu..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Crea"
-
-#: src/export/ExportMultiple.cpp
-msgid "Options:"
-msgstr "Opcions:"
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -9871,14 +7634,6 @@ msgstr "Divideix els fitxers a partir de:"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "Inclou l'àudio d'abans de la primera etiqueta"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "Nom del primer fitxer:"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "Nom del primer fitxer"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -9901,17 +7656,8 @@ msgid "File name prefix:"
 msgstr "Prefix dels noms de fitxer:"
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "Prefix dels noms de fitxer"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Sobreescriu els fitxers existents"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "S'ha creat «%s» amb èxit."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -9945,191 +7691,17 @@ msgstr ""
 "Alguna cosa ha anat molt malament després d'exportar aquests %lld fitxers."
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"«%s» no existeix.\n"
-"\n"
-"Voleu crear-lo?"
-
-#: src/export/ExportMultiple.cpp
 #, fuzzy
 msgid "Continue to export remaining files?"
 msgstr "No es pot exportar - hi ha un problema amb els fitxers"
-
-#. i18n-hint: The second %s gives some letters that can't be used.
-#: src/export/ExportMultiple.cpp
-#, fuzzy, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name.\n"
-"You cannot use any of these characters:\n"
-"\n"
-"%s\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"L'etiqueta o la pista «%s» no té un nom de fitxer vàlid. No podeu utilitzar "
-"cap dels caràcters: %s\n"
-"Utilitzeu..."
-
-#. i18n-hint: The second %s gives a letter that can't be used.
-#: src/export/ExportMultiple.cpp
-#, fuzzy, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name. You cannot use \"%s\".\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"L'etiqueta o la pista «%s» no té un nom de fitxer vàlid. No podeu utilitzar "
-"«%s».\n"
-"Utilitzeu..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "Anomena i guarda..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Fitxers Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - rate or quality problem"
-msgstr "No es pot exportar - hi ha un problema de qualitat o de freqüència"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with metadata"
-msgstr "No es pot exportar - hi ha un problema amb les metadades"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem initialising"
-msgstr "No es pot exportar - hi ha un problema en inicialitzar"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem creating stream"
-msgstr "No es pot exportar - hi ha un problema en la creació de flux"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with packets"
-msgstr "No es pot exportar - hi ha un problema amb els paquets"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with file"
-msgstr "No es pot exportar - hi ha un problema amb els fitxers"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "S'està exportant l'àudio seleccionat com a Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "S'està exportant l'àudio com a Ogg Vorbis"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-#, fuzzy
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft) PCM de 32 bits amb signe"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Capçalera:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Codificació:"
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "Altres fitxers no comprimits"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "S'ha produït un error en exportar"
-
-#: src/export/ExportPCM.cpp
-msgid "GSM 6.10 requires mono"
-msgstr "GSM 6.10 requereix mono"
-
-#: src/export/ExportPCM.cpp
-msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr "Els formats WAVEX and GSM 6.10 no són compatibles"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "No es pot exportar l'àudio en aquest format."
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Exporta l'àudio seleccionat com a %s"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"S'ha produït un error en escriure l'arxiu %s (Està el disc ple?).\n"
-"Libsndfile diu «%s»"
-
 #: src/export/ExportPlugin.cpp
 msgid "No format specific options"
 msgstr "No hi ha opcions específiques de format"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "La compatibilitat amb FFmpeg no ha estat compilada"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "Ha fallat l'inici de FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "No s'ha trobat la biblioteca de FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "Troba FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "Ubicació de «%s»:"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format, fuzzy
-msgid "To find '%s', click here -->"
-msgstr "Per trobar «%s», feu clic ací -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Per a obtenir una còpia gratuïta de FFmpeg, feu clic ací —>"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "Baixa"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "On està «%s»?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "No s'ha trobat FFmpeg"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "No tornes a mostrar aquesta advertència"
 
 #: src/import/Import.cpp
 #, fuzzy
@@ -10152,378 +7724,13 @@ msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
-msgid "AUP project files (*.aup)"
-msgstr "S'estan guardant els fitxers de dades del projecte"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr "No s'ha pogut trobar la carpeta de dades del projecte:«%s»"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
 msgid "Import Project"
 msgstr "Importa els valors predefinits"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Internal error in importer...tag not recognized"
-msgstr "Error intern reportat pel procés d'alineament."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'vpos' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'h' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'zoom' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel0' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel1' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selLow' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "No s'ha pogut trobar la carpeta de dades del projecte:«%s»"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Project Import"
-msgstr "Començament del projecte"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Freqüència de mostreig no vàlida"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to open %s"
-msgstr "No s'ha pogut eliminar %s"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "No s'ha pogut llegir el fitxer dels valors predefinits."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "No s'ha pogut llegir el fitxer dels valors predefinits."
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "Fitxers compatibles FFmpeg"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr ""
-"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "Fitxers FLAC"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "Fitxers compatibles GStreamer"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to add decoder to pipeline"
-msgstr "No s'ha pogut afegir el descodificador al canal"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "Importador de GStreamer"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "No s'ha pogut establir l'estat del flux per a pausar-lo."
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr ""
-"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
-
-#: src/import/ImportGStreamer.cpp
-msgid "File doesn't contain any audio streams."
-msgstr "El fitxer no conté cap flux d'àudio."
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "No s'ha pogut importar el fitxer, ha fallat el canvi d'estat."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "Error GStreamer: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Llistat de fitxers en un format bàsic de text"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "Indicació incorrecta de desplaçament en el fitxer LOF."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "Error de LOF"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "Indicació incorrecta de duració en el fitxer LOF."
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr ""
-"Les pistes MIDI no es poden desplaçar individualment, sols es pot fer amb "
-"fitxers d'àudio."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "Desplaçament de pista incorrecta en el fitxer LOF."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "S'ha importat MIDI des de «%s»"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "Importa MIDI"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "No s'ha pogut obrir el fitxer %s: el nom del fitxer és massa curt."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "No s'ha pogut obrir el fitxer %s: el tipus de fitxer no és correcte."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s."
-msgstr "No s'ha pogut obrir el fitxer %s."
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "Fitxers MP3"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-msgid "Matroska files"
-msgstr "Fitxers MP3"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr ""
-"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Fitxers Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-#, fuzzy, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr ""
-"Índex[%02x] Còdec[%s], Idioma[%s], Taxa de bits[%s], Canals[%d], Duració[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Error de lectura"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "No és un fitxer Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "No coincideixen les versions de Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "La capçalera de flux de bits de Vorbis no és vàlida"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "Fallada lògica interna"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF i altres tipus de fitxers no comprimits"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "WAVEX (Microsoft)"
-msgstr "WAV (Microsoft) PCM de 32 bits amb signe"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 8 bit PCM"
-msgstr "16 bits PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 16 bit PCM"
-msgstr "16 bits PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 24 bit PCM"
-msgstr "24 bits PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 32 bit PCM"
-msgstr "24 bits PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Unsigned 8 bit PCM"
-msgstr "16 bits PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "32 bit float"
-msgstr "Flotant de 32 bits"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "64 bit float"
-msgstr "Flotant de 32 bits"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Microsoft ADPCM"
-msgstr "WAV (Microsoft) PCM de 32 bits amb signe"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "12 bit DWVW"
-msgstr "16 bits"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DWVW"
-msgstr "16 bits"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "24 bit DWVW"
-msgstr "24 bits"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DPCM"
-msgstr "16 bits PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "8 bit DPCM"
-msgstr "16 bits PCM"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "S'està important %s"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "Fitxers QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to start QuickTime extraction"
-msgstr "No es pot començar l'extracció de QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime render quality"
-msgstr "No es pot establir la qualitat de renderització de QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "No es pot establir la propietat de canals discrets de QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "No es pot obtenir la propietat de mida de les mostres de QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "No es pot obtenir la descripció del flux de dades"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get fill buffer"
-msgstr "No es pot obtenir la memòria intermèdia d'emplenament"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -10610,18 +7817,6 @@ msgstr "Detecta el silenci"
 msgid "&Import"
 msgstr "&Importa"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s left"
-msgstr "%s esquerra"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s right"
-msgstr "%s dreta"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -10661,25 +7856,8 @@ msgstr[0] "%s %d de %d clip %s"
 msgstr[1] "%s %d de %d clip %s"
 
 #: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the right"
-msgstr "Clips amb el temps canviat a la dreta"
-
-#: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the left"
-msgstr "Clips amb el temps canviat a l'esquerra"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Canvi del temps"
-
-#: src/menus/ClipMenus.cpp
 msgid "clip not moved"
 msgstr "el clip no ha estat mogut"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-msgid "Clip B&oundaries"
-msgstr "Lí&mits del clip"
 
 #: src/menus/ClipMenus.cpp
 msgid "Pre&vious Clip Boundary to Cursor"
@@ -10767,28 +7945,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "S'han eliminat %.2f segons a t=%.2f"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "No es pot copiar una pista d'un tipus en una de tipus diferent."
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "No es permet copiar l'àudio estèreo dins d'una pista mono."
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "S'ha duplicat"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "Duplica"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "Divideix i retalla al porta-retalls"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "Divideix i retalla"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -10889,16 +8051,6 @@ msgstr "Duplic&a"
 msgid "R&emove Special"
 msgstr "Eliminació &especial"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "Divideix i re&talla"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "Divideix i &elimina"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -10926,14 +8078,6 @@ msgstr "&Uneix"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "Se&para en els silencis"
-
-#: src/menus/EditMenus.cpp
-msgid "&Metadata..."
-msgstr "&Metadades..."
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "Pre&ferències..."
 
 #: src/menus/EditMenus.cpp
 msgid "&Delete Key"
@@ -10967,10 +8111,6 @@ msgstr "Canvia l'&amfitrió d'àudio..."
 msgid "Change Recording Cha&nnels..."
 msgstr "Canvia els ca&nals de gravació..."
 
-#: src/menus/ExtraMenus.cpp
-msgid "&Full Screen (on/off)"
-msgstr "Activa o desactiva la pantalla completa"
-
 #: src/menus/FileMenus.cpp
 #, c-format
 msgid ""
@@ -10979,10 +8119,6 @@ msgid ""
 msgstr ""
 "No es pot crear el directori «%s». \n"
 "Ja existeix un fitxer que no és un directori"
-
-#: src/menus/FileMenus.cpp
-msgid "Export Selected Audio"
-msgstr "Exporta l'àudio seleccionat"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -10994,40 +8130,6 @@ msgid "There are no label tracks to export."
 msgstr "No hi ha cap pista d'etiquetes per a exportar."
 
 #: src/menus/FileMenus.cpp
-msgid "Please select only one Note Track at a time."
-msgstr "Seleccioneu sols una pista de nota cada vegada."
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "Seleccioneu una pista de nota."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "Exporta MIDI com a:"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI file"
-msgstr "Seleccioneu un fitxer MIDI"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro file"
-msgstr "Tots els fitxers|*"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"Heu seleccionat un nom de fitxer amb una extensió de fitxer desconeguda.\n"
-"Voleu continuar?"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "Exporta MIDI"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "S'han importat les etiquetes des de «%s»"
@@ -11035,25 +8137,6 @@ msgstr "S'han importat les etiquetes des de «%s»"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Importa etiquetes"
-
-#: src/menus/FileMenus.cpp
-msgid "Select a MIDI file"
-msgstr "Seleccioneu un fitxer MIDI"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI and Allegro files"
-msgstr "Tots els fitxers|*"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI files"
-msgstr "Fitxers MP3"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro files"
-msgstr "Tots els fitxers|*"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -11095,12 +8178,6 @@ msgid "Export as &WAV"
 msgstr "Exporta com a &WAV"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-#| msgid "Export as &WAV"
-msgid "Export as &MKA"
-msgstr "Exporta com a &WAV"
-
-#: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
 msgstr "Exporta com a &Ogg"
 
@@ -11117,14 +8194,6 @@ msgid "Export &Labels..."
 msgstr "Exporta les &etiquetes..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "Exporta &múltiples fitxers..."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MI&DI..."
-msgstr "Exporta MI&DI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "&Àudio..."
 
@@ -11133,26 +8202,8 @@ msgid "&Labels..."
 msgstr "&Etiquetes..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "Dades sense p&rocessar..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "Configuració de la pà&gina..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "Im&primeix..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "&Ix"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11266,17 +8317,6 @@ msgstr "Elimina les regions d'aùdio etiquetades"
 msgid "Delete Labeled Audio"
 msgstr "Elimina l'àudio etiquetat"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Divideix i retalla les zones d'àudio etiquetades al porta-retalls"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut Labeled Audio"
-msgstr "Divideix i retalla l'àudio etiquetat"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11346,10 +8386,6 @@ msgstr "Separa l'àudio etiquetat"
 msgid "&Labels"
 msgstr "&Etiquetes"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "&Edita les etiquetes..."
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Add Label at &Selection"
 msgstr "Afig una etiqueta a la &selecció"
@@ -11363,10 +8399,6 @@ msgid "Paste Te&xt to New Label"
 msgstr "Apega el te&xt a una etiqueta nova"
 
 #: src/menus/LabelMenus.cpp
-msgid "&Type to Create a Label (on/off)"
-msgstr "&Teclegeu per a crear una etiqueta (activat/desactivat)"
-
-#: src/menus/LabelMenus.cpp
 msgid "La&beled Audio"
 msgstr "Àudio eti&quetat"
 
@@ -11374,31 +8406,6 @@ msgstr "Àudio eti&quetat"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "&Retalla"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "Retalla l'etiqueta"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "Elimina l'etiqueta"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "Divideix i re&talla"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "Divideix i retalla l'etiqueta"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "Di&videix i elimina"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "Divideix i elimina l'etiqueta"
 
 #: src/menus/LabelMenus.cpp
 msgid "Silence &Audio"
@@ -11497,11 +8504,6 @@ msgid "&Repeat %s"
 msgstr "Repeteix %s"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "Connectors %d a %d"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "&Genera"
 
@@ -11532,17 +8534,9 @@ msgid "T&ools"
 msgstr "&Eines"
 
 #: src/menus/PluginMenus.cpp
-msgid "Manage Plug-ins..."
-msgstr "Afig o elimina els connectors..."
-
-#: src/menus/PluginMenus.cpp
 #, fuzzy
 msgid "Repeat Last Tool"
 msgstr "Repeteix l'últim efecte"
-
-#: src/menus/PluginMenus.cpp
-msgid "&Macros..."
-msgstr "&Macros..."
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -11949,12 +8943,6 @@ msgstr "Desplaçament llarg a &la dreta durant la reproducció"
 msgid "&Toolbars"
 msgstr "&Barres d'eines"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "Menú &extres (activat/desactivat)"
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "Reinicia les b&arres d'eines"
@@ -12320,10 +9308,6 @@ msgid "Align &Together"
 msgstr "Alinea &conjuntament"
 
 #: src/menus/TrackMenus.cpp
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "&Mou la selecció amb pistes (activat/desactivat)"
-
-#: src/menus/TrackMenus.cpp
 msgid "Move Sele&ction and Tracks"
 msgstr "Mou la sele&cció i les pistes"
 
@@ -12338,10 +9322,6 @@ msgstr "Per hora d'ini&ci"
 #: src/menus/TrackMenus.cpp
 msgid "By &Name"
 msgstr "Per &nom"
-
-#: src/menus/TrackMenus.cpp
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "Pistes de bloqueig de sincronització (activat/desactivat)"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12382,10 +9362,6 @@ msgstr "Emm&udix o deixa d'emmudir la pista enfocada"
 #: src/menus/TrackMenus.cpp
 msgid "&Solo/Unsolo Focused Track"
 msgstr "Activa o desactiva el Solo en la pista enfocada"
-
-#: src/menus/TrackMenus.cpp
-msgid "&Close Focused Track"
-msgstr "Tan&ca la pista enfocada"
 
 #: src/menus/TrackMenus.cpp
 msgid "Move Focused Track U&p"
@@ -12501,10 +9477,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "Reprodueix/para i &defineix la posició del cursor"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "Reprodueix en buc&le"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "&Pausa"
 
@@ -12534,18 +9506,6 @@ msgid "Punch and Rol&l Record"
 msgstr "Gravació Punch and Rol&l"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "Zona de reproducc&ió"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "&Bloqueja"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "&Desbloqueja"
-
-#: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
 msgstr "Torna a &escanejar els dispositius d'àudio"
 
@@ -12554,33 +9514,8 @@ msgid "Transport &Options"
 msgstr "&Opcions de transport"
 
 #: src/menus/TransportMenus.cpp
-msgid "Sound Activation Le&vel..."
-msgstr "i&vell d'activació per so..."
-
-#: src/menus/TransportMenus.cpp
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Gravació &activada per so (activada/desactivada)"
-
-#: src/menus/TransportMenus.cpp
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Ca&pçal de reproducció/gravació fixat (activat/desactivat)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Overdub (on/off)"
-msgstr "D&oblatge (activat/desactivat)"
-
-#: src/menus/TransportMenus.cpp
-msgid "So&ftware Playthrough (on/off)"
-msgstr "Reprodueix &mentre es grava (activat/desactivat)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "T&ransport"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "Repr&odueix"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -12626,15 +9561,6 @@ msgstr "Reprodueix la vista prèvia al ret&all"
 #: src/menus/TransportMenus.cpp
 msgid "&Play-at-Speed"
 msgstr "Re&produeix a velocitat"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "&Reprodueix a velocitat normal"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Loop Play-at-Speed"
-msgstr "Reprodueix a velocitat en buc%le"
 
 #: src/menus/TransportMenus.cpp
 msgid "Play C&ut Preview-at-Speed"
@@ -12693,10 +9619,6 @@ msgid "Zoom &Toggle"
 msgstr "&Activa/desactiva el zoom"
 
 #: src/menus/ViewMenus.cpp
-msgid "Advanced &Vertical Zooming"
-msgstr "Zoom &vertical avançat"
-
-#: src/menus/ViewMenus.cpp
 msgid "T&rack Size"
 msgstr "Mida de la &pista"
 
@@ -12732,45 +9654,6 @@ msgstr "Ves al començament de la selecció"
 msgid "Skip to Selection End"
 msgstr "Ves a l'acabament de la selecció"
 
-#: src/menus/ViewMenus.cpp
-msgid "&Extra Menus (on/off)"
-msgstr "Menú &extres (activat/desactivat)"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "Track &Name (on/off)"
-msgstr "Menú &extres (activat/desactivat)"
-
-#: src/menus/ViewMenus.cpp
-msgid "&Show Clipping (on/off)"
-msgstr "Mo&stra l'escapçament (activat/desactivat)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "Mostra el tauler d'efectes"
-
-#: src/menus/WindowMenus.cpp
-msgid "&Window"
-msgstr "&Finestra"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make (the current
-#. * window) shrink to an icon on the dock
-#: src/menus/WindowMenus.cpp
-msgid "&Minimize"
-msgstr "&Minimitza"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make all project
-#. * windows un-hidden
-#: src/menus/WindowMenus.cpp
-msgid "&Bring All to Front"
-msgstr "&Porta tot al davant"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-msgid "Minimize All Projects"
-msgstr "Minimitza tots els projectes"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Lots"
@@ -12786,14 +9669,6 @@ msgstr "Comportaments"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "&No apliques els efectes quan estigues en mode de lots"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "Dispositius"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "Preferències del dispositiu"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -12958,15 +9833,6 @@ msgstr "El directori %s no és adequat (existeix el risc que siga netejat)"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "El directori %s no existix. Desitgeu crear-lo?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Directori temporal nou"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "No es pot escriure al directori %s"
 
@@ -12983,77 +9849,8 @@ msgid "Preferences for Effects"
 msgstr "Preferències dels efectes"
 
 #: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Effect Name"
-msgstr "S'ha ordenat pel nom de l'efecte"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Publisher and Effect Name"
-msgstr "S'ha ordenat pel nom de l'efecte i l'editor"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Type and Effect Name"
-msgstr "S'ha ordenat pel tipus i nom de l'efecte"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Publisher"
-msgstr "S'ha agrupat per editor"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Type"
-msgstr "S'ha agrupat per tipus"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-msgid "&LADSPA"
-msgstr "&LADSPA"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-msgid "N&yquist"
-msgstr "N&yquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "Habilita els efectes"
-
-#: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
 msgstr "Opcions de l'efecte"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "S&ort or Group:"
-msgstr "&Ordena per grup:"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "Nombre &màxim d'efectes per grup (0 per inhabilitar-ho):"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Plugin Options"
-msgstr "Opcions del connector"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13120,19 +9917,6 @@ msgstr "E&limina el regle seleccionat"
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
 msgstr "Filtres no utilitzats:"
-
-#: src/prefs/ExtImportPrefs.cpp
-msgid ""
-"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
-"the items. They are likely to break the pattern matching. Unless you know "
-"what you are doing, it is recommended to trim spaces. Do you want Audacity "
-"to trim spaces for you?"
-msgstr ""
-"Hi ha caràcters d'espai (espais, salts de línia, tabuladors o retorns de "
-"carro) en un dels elements. Aquests caràcters podrien trencar la cerca per "
-"patrons. A no ser que sabeu exactament què esteu fent, és recomanable que "
-"elimineu aquests espais en blanc. Voleu que Audacity netege els espais en "
-"blanc?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13210,10 +9994,6 @@ msgid "&Language:"
 msgstr "&Idioma:"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Location of &Manual:"
-msgstr "Ubicació del &manual:"
-
-#: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
 msgstr "Mesura el rang de dB:"
 
@@ -13239,15 +10019,6 @@ msgid "Use mostly Left-to-Right layouts in RTL languages"
 msgstr "Utilitza sobretot distribucions d'esquerra a dreta amb llenguatges RTL"
 
 #: src/prefs/GUIPrefs.cpp
-#, fuzzy
-msgid "Show Timeline Tooltips"
-msgstr "Habilita els consells d'eina de la línia de temps"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-msgid "Show Scrub Ruler"
-msgstr "Mostra el regle de rastreig"
-
-#: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
 msgstr "No es coneix la llengua «%s»"
@@ -13263,14 +10034,6 @@ msgstr "Importa / Exporta"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "Preferències d'ImportacióExportació"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Mix down to Stereo or Mono"
-msgstr "&Mescla a estèreo o a mono"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Use Advanced Mixing Options"
-msgstr "&Utilitza les opcions de mescla avançades"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -13291,35 +10054,13 @@ msgid "&Beats"
 msgstr "&Pulsacions"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "En exportar les pistes a un fitxer d'àudio"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "Mo&stra l'editor d'etiquetes de metadades abans de l'exportació"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Ignore blank space at the beginning"
-msgstr "&Ignora els silencis al començament"
-
-#: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
 msgid "Exported Label Style:"
 msgstr "Anomena i exporta les etiquetes:"
 
-#: src/prefs/ImportExportPrefs.cpp
-msgid "Exported Allegro (.gro) files save time as:"
-msgstr "Els fitxers Allegro (.gro) exportats guarden el temps com a:"
-
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "IMPORTA EXPORTA"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Teclat"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Preferences for KeyConfig"
@@ -13466,35 +10207,6 @@ msgstr "Conf. Teclat"
 msgid "Preferences for Library"
 msgstr "Preferències de la biblioteca"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "Biblioteca d'importació/exportació de FFmpeg"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "No s'ha trobat cap biblioteca FFmpeg compatible"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg support is not compiled in"
-msgstr "La compatibilitat amb FFmpeg no ha estat compilada"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "Versió de la biblioteca FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "Biblioteca FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "Locali&tza..."
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "Desca&rrega"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "Biblioteques"
@@ -13544,71 +10256,17 @@ msgstr "Mòduls"
 msgid "Preferences for Module"
 msgstr "Preferències del mòdul"
 
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "  'New' means no choice has been made yet."
-msgstr "«Nou» significa que encara no s'ha triat."
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Ask"
-msgstr "Pregunta-m'ho"
-
 #: src/prefs/ModulePrefs.cpp
 msgid "Failed"
 msgstr "Ha fallat"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "No modules were found"
-msgstr "No s'ha trobat cap mòdul"
 
 #: src/prefs/ModulePrefs.h
 msgid "Module"
 msgstr "Mòdul"
 
 #: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Ratolí"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Preferences for Mouse"
-msgstr "Preferències del ratolí"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Vinculacions del ratolí (valors predeterminats, no configurable)"
-
-#: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Eina"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Acció d'ordre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Botons"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "Clic amb el botó esquerre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Estableix el punt de selecció"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "Arrossegament amb el botó esquerre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Estableix el rang de selecció"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -13616,169 +10274,6 @@ msgstr "Estableix el rang de selecció"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Maj+clic esquerre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Amplia l'abast de la selecció"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "Doble clic esquerre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "Selecciona un clip o una pista sencera"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "Roda del ratolí"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change scrub speed"
-msgstr "Canvia la velocitat de rastreig"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Apropa en un punt"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Apropa en un rang"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "el mateix que arrossegament a la dreta"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "Clic amb el botó dret"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Allunya un pas"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "Arrossegament amb el botó dret"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "el mateix que arrossegament a l'esquerra"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Majúscules+Arrossega"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "Allunya en un rang"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "Clic del mig"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "Zoom per defecte"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip left/right or between tracks"
-msgstr "Mou el clip a la dreta, a l'esquerra o entre les pistes"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Maj+Arrossegament a l'esquerra"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move all clips in track left/right"
-msgstr "Desplaça tots els clips en una pista a la dreta o a l'esquerra"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "-Arrossegament amb el botó esquerre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "Mou el clip amunt o avall entre pistes"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "-Arrossegament amb el botó esquerre"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Canvia l'envolupant d'amplificació"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Llapis"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Canvia la mostra"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt+clic esquerre"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Suavitza a la mostra"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Canvia diverses mostres"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Canvia només UNA mostra"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Diverses"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "el mateix que l'eina de seleccionar"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "el mateix que l'eina de zoom"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Qualsevol"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll tracks up or down"
-msgstr "Desplaça les pistes amunt o avall"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Majúscules+Roda del ratolí"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll waveform"
-msgstr "Desplaça l'ona"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Wheel-Rotate"
-msgstr "-Roda del ratolí"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "Apropa o allunya l'ona"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Shift-Wheel-Rotate"
-msgstr "Majúscules+Roda del ratolí"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Rang (dB) en forma d'ona vertical"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -13818,10 +10313,6 @@ msgid "Lo&ng period:"
 msgstr "Període &llarg:"
 
 #: src/prefs/PlaybackPrefs.cpp
-msgid "&Vari-Speed Play"
-msgstr "Reproducció &Vari-Speed"
-
-#: src/prefs/PlaybackPrefs.cpp
 msgid "&Micro-fades"
 msgstr "&Microfoses"
 
@@ -13851,14 +10342,6 @@ msgstr "Preferències de qualitat"
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "Altres..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "Mostreig"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "&Freqüència de mostreig per defecte:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
@@ -13895,16 +10378,8 @@ msgid "Preferences for Recording"
 msgstr "Preferències de gravació"
 
 #: src/prefs/RecordingPrefs.cpp
-msgid "Play &other tracks while recording (overdub)"
-msgstr "Reprodueix &altres pistes mentre s'enregistra (overdub)"
-
-#: src/prefs/RecordingPrefs.cpp
 msgid "Use &hardware to play other tracks"
 msgstr "Utilitza el &maquinari per a reproduir altres pistes"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "Reproducció de l'entrada a través del programari"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -13988,13 +10463,6 @@ msgstr "ERB"
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Period"
 msgstr "Període"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "4 (per defecte)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14119,10 +10587,6 @@ msgid "8 - most wideband"
 msgstr "8 - banda més ampla"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - per defecte"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14142,31 +10606,6 @@ msgstr "Factor de farciment &zero"
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble Spectral Selection"
 msgstr "Ha&bilita la selecció espectral"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "Mostra una graella al llarg de l'eix &Y"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "Localitza notes FFT"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "Amplitud mínima (dB):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "Nombre màx. de notes (1..128):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "&Localitza notes"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "&Quantitza les notes"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
@@ -14196,18 +10635,6 @@ msgstr "L'interval ha de ser un nombre enter positiu"
 msgid "The frequency gain must be an integer"
 msgstr "El guany de freqüència ha de ser un nombre enter"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "L'amplitud mínima (dB) ha de ser un nombre enter"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "El nombre màxim de notes ha de ser un nombre enter"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "El nombre màxim de notes ha d'estar dins l'interval 1..128"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14219,12 +10646,6 @@ msgstr "Tema"
 #: src/prefs/ThemePrefs.cpp
 msgid "Preferences for Theme"
 msgstr "Preferències del tema"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "&Settings"
-msgid "Theme Settings"
-msgstr "&Paràmetres"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Th&eme:"
@@ -14297,10 +10718,6 @@ msgid "Enable cut &lines"
 msgstr "Habilita el tall de &línies"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "Habilita l'&arrossegament de les vores de la selecció"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Editing a clip can &move other clips"
 msgstr "En editar un clip no es pot &moure un altre"
 
@@ -14315,14 +10732,6 @@ msgstr "&Teclegeu per a crear una etiqueta"
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Use dialog for the &name of a new label"
 msgstr "Utilitza el quadre de diàleg per al nom de l'etiqueta nova"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "Habilita el desplaçament a l'esquerra del zero"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Advanced &vertical zooming"
-msgstr "Apropament &vertical avançat"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Solo &Button:"
@@ -14419,11 +10828,6 @@ msgid "Auto-&fit track height"
 msgstr "&Ajusta de manera automàtica l'alçària de la pista"
 
 #: src/prefs/TracksPrefs.cpp
-#, fuzzy
-msgid "Sho&w track name as overlay"
-msgstr "Mos&tra el nom de la pista d'àudio com a superposició"
-
-#: src/prefs/TracksPrefs.cpp
 msgid "Use &half-wave display when collapsed"
 msgstr "Utilitza la visualització de &mitja ona quan es redueix"
 
@@ -14468,44 +10872,6 @@ msgstr "Valor predefinit 1:"
 msgid "Preset 2:"
 msgstr "Valor predefinit 2:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "Advertències"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Preferences for Warnings"
-msgstr "Preferències de les advertències"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "Mostra les advertències"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "S'estan guardant els &projectes"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "S'estan guardant els projectes &buits"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &mono during export"
-msgstr "S'està mesclant a mono durant l'exportació"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &stereo during export"
-msgstr "S'està mesclant a estèreo durant l'exportació"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr ""
-"S'està mesclant en l'exportació (FFmeg &personalitzat o programa extern)"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Missing file &name extension during export"
-msgstr "S'està mesclant a mono durant l'exportació"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 msgid "Waveforms"
@@ -14538,36 +10904,11 @@ msgstr "&Depura"
 msgid "Classic"
 msgstr "Clàssic"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "Registre d'Audacity"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "Fosc"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "Alt contrast"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "Clar"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "Eines"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Registre d'Audacity"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14576,17 +10917,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "No s'ha pogut escriure al fitxer: %s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr "S'ha escrit el tema en: %s."
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14604,16 +10934,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "No s'ha pogut escriure al fitxer: %s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"S'ha escrit el tema com a codi Cee en:\n"
-" %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -14773,14 +11093,6 @@ msgid "Edit"
 msgstr "Edita"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "Retalla la selecció"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "Copia la selecció"
-
-#: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
 msgstr "Retalla l'àudio que estiga fora de la selecció"
 
@@ -14827,10 +11139,6 @@ msgstr "Ajusta la selecció a l'amplària"
 msgid "Fit project to width"
 msgstr "Ajusta el projecte a l'amplària"
 
-#: src/toolbars/EditToolBar.cpp
-msgid "Open Effects Rack"
-msgstr "Obri el tauler d'efectes"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -14859,11 +11167,6 @@ msgstr "Mesurador de gravació"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "Mesurador-Gravació"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "Mesurador de reproducció"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -14897,71 +11200,9 @@ msgstr "Barra d'eines del mesurador de g&ravació"
 msgid "&Playback Meter Toolbar"
 msgstr "Barra d'eines del mesurador de re&producció"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "Rastreja"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Seek"
-msgstr "Busca"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub Ruler"
-msgstr "Regle de rastreig"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 msgid "Scrubbing"
 msgstr "Rastreig"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Scrubbing"
-msgstr "Para el rastreig"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Scrubbing"
-msgstr "Comença el rastreig"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Seeking"
-msgstr "Para el rastreig"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Seeking"
-msgstr "Comença el rastreig"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Hide Scrub Ruler"
-msgstr "Amaga el regle de rastreig"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scru&b Toolbar"
-msgstr "&Barra d'eines de rastreig"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "Freqüència del projecte (Hz)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Snap-To"
-msgstr "Ajusta a"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -14988,10 +11229,6 @@ msgid "Show"
 msgstr "Mostra"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "Ajusta a"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "Duració"
 
@@ -15000,26 +11237,6 @@ msgstr "Duració"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Centre"
-
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Snap Clicks/Selections to %s"
-msgstr "Ajusta els clics/seleccions a %s"
-
-#. i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated), to indicate that it will be
-#. calculated from other parameters.
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "%s - driven"
-msgstr "%s - calculat"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr "La selecció %s. %s no canviarà."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15093,10 +11310,6 @@ msgid "Envelope Tool"
 msgstr "Eina d'envolupant"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Eina de zoom"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Eina de dibuix"
@@ -15125,10 +11338,6 @@ msgid "&Draw Tool"
 msgstr "Eina de &dibuix"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "Eina de &zoom"
-
-#: src/toolbars/ToolsToolBar.cpp
 msgid "&Multi Tool"
 msgstr "&Multi-eina"
 
@@ -15151,10 +11360,6 @@ msgstr "Reprodueix a la velocitat seleccionada"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "Velocitat de reproducció"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Looped-Play-at-Speed"
-msgstr "Reprodueix en bucle a velocitat"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15300,18 +11505,6 @@ msgstr "Estira"
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to expand, Right-Click to remove"
 msgstr "Clic dret per a expandir, clic esquerre per a eliminar"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Left-Click to merge clips"
-msgstr "Clic esquerre per a fusionar els clips"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "S'han fusionat els clips"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "Fusiona"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -15529,22 +11722,6 @@ msgstr "Div&ideix la pista estèreo"
 msgid "Split Stereo to Mo&no"
 msgstr "Divideix la pista estèreo a mo&no"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "Canal esquerre"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "Canal dret"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Canal"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -15580,26 +11757,6 @@ msgstr "Divideix d'estèreo a mono «%s»"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "Divideix a mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "Estèreo, %d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "Mono, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "Esquerre, %d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "Dret, %dHz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -15655,12 +11812,6 @@ msgstr "Defineix clip"
 msgid "Mute/Unmute Track"
 msgstr "Emm&udix o deixa d'emmudir la pista enfocada"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "Canvia el nom..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -15671,14 +11822,6 @@ msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
 msgstr[0] "%s %d de %d clip %s"
 msgstr[1] "%s %d de %d clip %s"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "Zoom x1/2"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "Zoom x2"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -15700,22 +11843,6 @@ msgstr "Instrument %i"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 msgid "WaveColor Change"
 msgstr "Canvi del color d'ona"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Canvia el límit inferior de velocitat (%) a:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Límit inferior de velocitat"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Canvia el límit superior de velocitat (%) a:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Límit superior de velocitat"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -15767,12 +11894,6 @@ msgstr "&Rang..."
 msgid "Logarithmic &Interpolation"
 msgstr "&Interpolació logarítmica"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Feu clic i arrossegueu per a moure una pista en el temps"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -15796,10 +11917,6 @@ msgstr "Pista de l'etiqueta"
 #| msgid "&Export Audio..."
 msgid "Export Audio..."
 msgstr "&Exporta l'àudio..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-msgid "&Name..."
-msgstr "&Nom..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -15976,20 +12093,6 @@ msgid "Collapse"
 msgstr "Redueix"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Command+Click to deselect"
-msgstr "Tecla d'ordre + clic  per a desseleccionar"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "Selecciona la pista"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Ctrl+Click to deselect"
-msgstr "Ctrl+Clic per a desseleccionar"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "Obri el menú..."
 
@@ -16073,12 +12176,6 @@ msgstr "E"
 msgid "R"
 msgstr "D"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, fuzzy, c-format
-msgid "%.2fx"
-msgstr "%.2f"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "&Neteja"
@@ -16102,30 +12199,6 @@ msgstr "Ajuda a Internet"
 #: src/widgets/KeyView.cpp
 msgid "Menu"
 msgstr "Menú"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "Feu clic per a iniciar el monitoratge"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "Feu clic per al monitoratge"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "Feu clic per a iniciar"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click"
-msgstr "Feu clic"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "Para el monitoratge"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "Inicia el monitoratge"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16208,10 +12281,6 @@ msgstr "Retallat "
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
 msgstr "Mostra el registre dels detalls"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "Seleccioneu una acció"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

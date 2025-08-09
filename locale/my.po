@@ -23,99 +23,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.13-dev\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Default recording device number: %d"
-msgstr "ပုံသေ အသံဖမ်း ကိရိယာ နံပါတ်: %d"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Default playback device number: %d"
-msgstr "ပုံသေ အသံဖွင့်စက် နံပါတ်: %d"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "မည်သည့် စက်ပစ္စည်း မှရှာမတွေ့ပါ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Device info unavailable for: %d"
-msgstr "စက်ပစ္စည်း အချက်လက်အကြောင်းရာ မရရှိနိုင်ပါ: %d"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Device ID: %d"
-msgstr "စက်ပစ္စည်း အိုင်ဒီ: %d"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Device name: %s"
-msgstr "စက်ပစ္စည်း အမည် : %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Host name: %s"
-msgstr "လက်ခံသည့်စက် အမည်: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Recording channels: %d"
-msgstr "အသံဖမ်းယူ‌နေသည့် ချန်နယ်လှိုင်းများ: %d"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Playback channels: %d"
-msgstr "အသံပြန်ထုတ်လွှင့်သည့် ချန်နယ်လှိုင်းများ: %d"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Low Recording Latency: %g"
-msgstr "အသံဖမ်းယူချိန် ကြားခံကာလနှောင့်နှေးမှု လျှော့ကျနှုန်း: %g"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "High Recording Latency: %g"
-msgstr "အသံဖမ်းယူနေစဉ် ကြားခံကာလနှောင့်နှေး ကြာမြင့်နှုန်း: %g"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "နမူနာ နှုန်းထားများ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected recording device: %d - %s"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected playback device: %d - %s"
-msgstr "အမြန်နှုန်းကို ပြန်ဖွင့်ပါ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No playback device found for '%s'."
-msgstr "ပူးတွဲထားတဲ့ စတီရီယို"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "ရလဒ်ကို ပြသပါ"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "အမြန်နှုန်းကို ပြန်ဖွင့်ပါ"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -147,16 +58,6 @@ msgstr "(ပြင်ပ ပရိုဂရမ်)"
 #, fuzzy, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"စီမံချက်ကို မသိမ်းဆည်းနိုင်ဘူး။ %s ကို မသိမ်းဆည်းနိုင်တာ\n"
-"(သို့) ဓါတ်ပြား ပြည့်သွားတာ ဖြစ်နိုင်တယ်။"
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -203,11 +104,6 @@ msgstr "MP3 ဖိုင်များ"
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3 ဖိုင်များ"
-
-#: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "%s ဖိုင်တွဲ မတည်ရှိဘူး။ ၄င်းကို ဖန်တီးမလား?"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -379,14 +275,6 @@ msgstr "မဖွင့်နိုင်တဲ့ ဖိုင် - \"%s\""
 msgid "Could not parse XML"
 msgstr "ဖိုင်ကို မဖွင့်နိုင်ဘူး"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "၁။ စမ်းသပ်ဆဲဖြစ်သည့်ညွှန်ကြားချက်."
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "၂။ စမ်းသပ်ဆဲဖြစ်သည့်ညွှန်ကြားချက်"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -459,30 +347,6 @@ msgstr "%s, ဝဘ်ဆိုက်ဒ် ဖန်တီးသူ"
 #, c-format
 msgid "%s, graphics"
 msgstr "%s, ပုံပန်းချီများ"
-
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity founder and developer"
-msgstr "စာအိတ်"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity developer"
-msgstr "စာအိတ်"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "စာအိတ်"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "စာအိတ်"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -608,11 +472,6 @@ msgstr "နမူနာ နှုန်းထား အသွင်ပြော�
 msgid "File Format Support"
 msgstr "ဖိုင်အမျိုးအစား ပံ့ပိုးမှု"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "MP3 တင်သွင်းနေမှု"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -640,18 +499,9 @@ msgid "MP2 export"
 msgstr "MP2 တင်ပို့ချက်"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "QuickTime မှတဆင့် တင်သွင်းပါ"
-
-#: src/AboutDialog.cpp
 #, fuzzy
 msgid "FFmpeg Import/Export"
 msgstr "FFmpeg တင်သွင်း/တင်ပို့တဲ့ စုစည်းခန်း"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Import via GStreamer"
-msgstr "QuickTime မှတဆင့် တင်သွင်းပါ"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -677,13 +527,6 @@ msgstr "GPL ခွင့်ပြုချက်"
 #, fuzzy
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "စတီရီယို အသံလမ်းကြောများရဲ့ သက်ဆိုင်ရာ အရွယ်ကို ချိန်ညှိဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ။"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Record/Play head"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 #, fuzzy
@@ -755,26 +598,6 @@ msgstr "(ပိတ်ထားချက်)"
 msgid "Timeline Options"
 msgstr "ယန္တရားငယ် တပ်ဆင်ချက်များ"
 
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Enable dragging selection"
-msgstr "ဘယ်နဲ့ ညာ ရွေးချယ်​မှု အစွန်းများ အတွက် ဒရွတ်ဆွဲမှုကို ဖွင့်ပါ"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Update display while playing"
-msgstr "ဖွင့်ပြနေတဲ့အချိန်မှာ မွမ်းမံချက် ပြသမှု"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Lock Play Region"
-msgstr "နယ်ပယ်ကို ဖွင့်ပါ"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Pinned Play Head"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "အသံ ကိရိယာများကို မတွေ့နိုင်ဘူး။\n"
@@ -791,11 +614,6 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Error: %s"
 msgstr "အမှားအယွင်း -"
-
-#: src/AudioIO.cpp
-#, fuzzy
-msgid "PortAudio Error"
-msgstr "အမှားအယွင်း"
 
 #: src/AudioIO.cpp
 #, fuzzy
@@ -1247,13 +1065,6 @@ msgstr "အစမ်းမြင်ကွင်းကို ပြင်ဆင�
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "ညီမျှစေခြင်းကို လုပ်ဆောင်နေတယ်"
-msgstr[1] "ညီမျှစေခြင်းကို လုပ်ဆောင်နေတယ်"
-
-#: src/Benchmark.cpp
-#, fuzzy, c-format
 msgid "Paste: %lld\n"
 msgstr "ပွားယူပါ"
 
@@ -1333,16 +1144,6 @@ msgstr "%s ကို တင်သွင်းနေခြင်း"
 msgid "Could not write to %s.\n"
 msgstr "ရေးလို့ မရတဲ့ ဖိုင် -"
 
-#: src/DBConnection.cpp
-#, fuzzy, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"စီမံချက်ကို မသိမ်းဆည်းနိုင်ဘူး။ %s ကို မသိမ်းဆည်းနိုင်တာ\n"
-"(သို့) ဓါတ်ပြား ပြည့်သွားတာ ဖြစ်နိုင်တယ်။"
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1372,21 +1173,6 @@ msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "အမှားအယွင်း (ဖိုင်ကို ရေးထားတာ မဖြစ်နိုင်ဘူး) - %s"
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "တည်းဖြတ်မှု (အန္တရယ်ပိုကင်း) မတိုင်ခင် ဖိသိပ်မထားတဲ့ အသံ ဖိုင်များရဲ့ မိတ္တူတခုကို ပြုလုပ်ပါ"
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "ဖိသိပ်မထားတဲ့ အသံဖိုင်များကို မူရင်း (ပိုမြန်ဆန်) မှ တိုက်ရိုက် ဖတ်ရှုပါ"
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Copy all audio into project (safest)"
-msgstr "အသံ အချက်အလက်ကြမ်းကို စီမံချက်ထဲမှာ မိတ္တူကူးနေခြင်း..."
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1504,10 +1290,6 @@ msgstr "၀င်ရိုး"
 #, fuzzy
 msgid "&Replot..."
 msgstr "ပြန်ရေးမှတ်ပါ"
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "ရောင်စဉ်ကို ရေးမှတ်ဖို့၊ ရွေးထားတဲ့ အသံလမ်းကြောများ အားလုံးဟာ တူညီတဲ့ နမူနာ အဆင့်ဖြစ်ရမယ်။"
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
@@ -1650,12 +1432,6 @@ msgstr "စွန့်ပစ်ပါ"
 #, fuzzy
 msgid "&Compact"
 msgstr "ညွှန်ကြားမှု"
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "မှတ်တမ်း..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -1878,11 +1654,6 @@ msgid "Solo"
 msgstr "တပင်တိုင်"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "ရွှေ့ထားတဲ့ တိုးတက်မှု စလိုင်ဒါ"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 #, fuzzy
 msgid "Moved velocity slider"
@@ -1892,11 +1663,6 @@ msgstr "ရွှေ့ထားတဲ့ တိုးတက်မှု စလ�
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "ရွှေ့ထားတဲ့ တပြင်လုံး စလိုင်ဒါ"
-
-#: src/MixerBoard.cpp
-#, fuzzy
-msgid "&Mixer Board..."
-msgstr "အချိန်တိုင်းကိရိယာ မှတ်တမ်း..."
 
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
@@ -1983,99 +1749,16 @@ msgstr "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံ�
 msgid "Nyquist Prompt"
 msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
 
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Manage Plug-ins"
-msgstr "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်ကို ဖွင့်ဖို့ မအောင်မြင်ဘူး။"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "New"
-msgstr "အသစ်"
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show:"
-msgstr "ကိုဓများ အားလုံးကို ပြသပါ"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show all"
-msgstr "ကိုဓများ အားလုံးကို ပြသပါ"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "အားလုံး"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show disabled"
-msgstr "(ပိတ်ထားချက်)"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "D&isabled"
-msgstr "ပိတ်ထားတယ်"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show enabled"
-msgstr "ဖွင့်ထားတယ်"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "E&nabled"
-msgstr "ဖွင့်ထားတယ်"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show new"
-msgstr "ဖွင့်ထားတယ်"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "&Select All"
-msgstr "ရွေးချယ်ပါ"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "C&lear All"
-msgstr "ရှင်းလင်းပါ"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
 msgid "&Enable"
 msgstr "ဖွင့်ထားတယ်"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "&Disable"
-msgstr "ပိတ်ထားတယ်"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s"
 
 #: src/PluginRegistrationDialog.cpp
 #, fuzzy, c-format
@@ -2085,14 +1768,6 @@ msgid ""
 msgstr ""
 "FLAC စာဝှက်ရေးကိရိယာက အနေအထားကို အစပြုဖို့\n"
 " မအောင်မြင်ဘူး - %d"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "ပုံနှိုပ်တဲ့ ပြဿနာတရပ် ရှိ​တယ်။"
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "ပုံနှိုပ်ပါ"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2290,16 +1965,6 @@ msgid "Error Writing to File"
 msgstr "ဖိုင်ထဲ ရိုက်ထည့်မှု အမှားအယွင်း -"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"စီမံချက်ကို မသိမ်းဆည်းနိုင်ဘူး။ %s ကို မသိမ်းဆည်းနိုင်တာ\n"
-"(သို့) ဓါတ်ပြား ပြည့်သွားတာ ဖြစ်နိုင်တယ်။"
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "ဖန်တီးခဲ့တဲ့ စီမံချက် အသစ်"
@@ -2347,31 +2012,6 @@ msgstr "စီမံချက်ကို ပြန်ဆယ်တင်ထာ�
 #, fuzzy
 msgid "Projects cannot be saved to FAT drives."
 msgstr "ယာယီ ဖိုင်များ ဖိုင်တွဲ"
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"သင့်ရဲ့ စီမံချက်ဟာ အခု ဗလာ ဖြစ်နေတယ်။\n"
-"သိမ်းဆည်းခဲ့ရင်၊ စီမံချက်မှာ အသံလမ်းကြောများ ရှိလာမှာ မဟုတ်ဘူး။\n"
-"\n"
-"အလျင်ကျတဲ့ အသံလမ်းကြောများ တခုခုကို သိမ်းဆည်းဖို့ -\n"
-"'မလုပ်ဘူး' ကို နှိုပ်ပါ၊ တည်းဖြတ်ပါ > အသံလမ်းကြောများ \n"
-"အားလုံး မဖွင့်မချင်း ပြန်ဖြည်ပါ၊ အဲဒီနောက် ဖိုင် > စီမံချက်ကို သိမ်းဆည်းပါ\n"
-"\n"
-"ဘာပဲဖြစ်ဖြစ် သိမ်းဆည်းမလား။"
-
-#: src/ProjectFileManager.cpp
-#, fuzzy
-msgid "Warning - Empty Project"
-msgstr "အိုဒေးစီးတီး စီမံချက် တခုကို သိမ်းဆည်းနေတယ်"
 
 #: src/ProjectFileManager.cpp
 #, fuzzy
@@ -2517,22 +2157,6 @@ msgid "Save project before closing?"
 msgstr "မပိတ်ခင် ပြင်ဆင်ချက်များ သိမ်းဆည်းမလား။"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"သိမ်းဆည်းခဲ့ရင်၊ စီမံချက်မှာ အသံလမ်းကြော ရှိမှာ မဟုတ်ဘူး။\n"
-"\n"
-"အလျင် ဖွင့်တဲ့ အသံလမ်းကြောများ တခုခုကို သိမ်းဆည်းဖို့ -\n"
-"ရပ်ဆိုင်း၊ တည်းဖြတ် > အသံလမ်းကြောများ အားလုံး \n"
-"မဖွင့်မချင်း ပြန်ဖြည်ပါ၊ နောက်ပြီး ဖိုင် > စီမံချက်ကို သိမ်းဆည်းပါ။"
-
-#: src/ProjectManager.cpp
 #, fuzzy, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "အသံသွင်းမှု %d မိနစ်အတွက် ကျန်တဲ့ ဓါတ်ပြား နေရာလပ်"
@@ -2556,11 +2180,6 @@ msgstr "သတ်မှတ်ထားတဲ့ ဖိုင်အမည်က�
 msgid "Specify New Filename:"
 msgstr "ဖိုင်အမည်သစ်ကို သတ်မှတ်ပါ -"
 
-#: src/Snap.cpp
-#, fuzzy
-msgid "Nearest"
-msgstr "အဖွင့်ဆီ ကူးသွားပါ"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "အသံက အသံသွင်းမှုကို သက်၀င်စေတယ်"
@@ -2568,11 +2187,6 @@ msgstr "အသံက အသံသွင်းမှုကို သက်၀င�
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "သက်၀င်မှု အဆင့် (dB) -"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "စာအိတ်"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2661,11 +2275,6 @@ msgid "Set De&fault"
 msgstr "စံထားချက်များ"
 
 #: src/Tags.cpp
-#, fuzzy
-msgid "Don't show this when exporting audio"
-msgstr "ဒီသတိပေးချက်ကို နောက်တခါ မပြနဲ့"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "အမျိုးအစားများကို တည်းဖြတ်ပါ"
 
@@ -2707,11 +2316,6 @@ msgstr "ဖိုင် ဖွင့်လှစ်မှု အမှားအ�
 #, fuzzy, c-format
 msgid "Failed to remove %s"
 msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Reset Tenacity Preferences"
-msgstr "ဦးစားပေးချက်များ..."
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -3033,11 +2637,6 @@ msgstr "အသံသွင်းမှု မီတာ"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
-msgid "Exit Tenacity"
-msgstr "အိုဒေးစီးတီး အကြောင်း..."
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
 msgid "Waiting to start recording at:"
 msgstr "အသံသွင်းမှု %s မှာ စတင်ဖို့ စောင့်ဆိုင်းနေတယ်။\n"
 
@@ -3072,10 +2671,6 @@ msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှ�
 #, fuzzy
 msgid "Tenacity Timer Record - Waiting"
 msgstr "အသံသွင်းနေခြင်း"
-
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "စတီရီယို၊ ၉၉၉၉၉၉Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -3152,11 +2747,6 @@ msgstr "ဖယ်ရှားထားတဲ့ အသံ အသံလမ်း�
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "အသံလမ်းကြောကို ဖယ်ရှားပါ"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "ရွှေ့ထားတဲ့ အသံလမ်းကြော '%s။'"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -3728,16 +3318,6 @@ msgstr "စီမံချက်ကို သိမ်းဆည်းပါ"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
-msgid "Track Index:"
-msgstr "အသံလမ်းကြောအတွက် ပြီးဆုံးမှု"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
-msgid "Channel Index:"
-msgstr "ချာနယ် စနစ် -"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
 msgid "Set Track Status"
 msgstr "အသံလမ်းကြောအတွက် အစပြုမှု"
 
@@ -3750,11 +3330,6 @@ msgstr "ခေတ္တရပ်နားပါ"
 #, fuzzy
 msgid "Set Track Audio"
 msgstr "အသံတိတ်စေပါ"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
-msgid "Gain:"
-msgstr "တိုးတက်မှု"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
@@ -3975,10 +3550,6 @@ msgstr "အသံပေါက်ကို နရီအနှေးအမြန�
 msgid "High Quality Pitch Change"
 msgstr "နောက်ဆုံး နရီအနှေးအမြန် ပြောင်း​လဲမှု (%)"
 
-#: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "အသံပေါက်ကို နရီအနှေးအမြန် မပြောင်းလဲပဲ ပြောင်းလဲပါ"
-
 #. i18n-hint: (noun) Musical pitch.
 #: src/effects/ChangePitch.cpp
 #, fuzzy
@@ -4083,17 +3654,9 @@ msgid "n/a"
 msgstr "ဘာမှမရှိ"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "အမြန်နှုန်းကို ပြောင်းလဲပါ"
-
-#: src/effects/ChangeSpeed.cpp
 #, fuzzy
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "အသံပေါက်ကို နရီအနှေးအမြန် မပြောင်းလဲပဲ ပြောင်းလဲပါ"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "နရီအနှေးအမြန်နဲ့ အသံပေါက် နှစ်ခုစလုံး ထိခိုက်တဲ့ အမြန်နှုန်းကို ပြောင်းလဲပါ"
 
 #: src/effects/ChangeSpeed.cpp
 #, fuzzy
@@ -4183,10 +3746,6 @@ msgstr "နရီအနှေးအမြန်ကို အသံပေါက�
 #, fuzzy
 msgid "High Quality Tempo Change"
 msgstr "နောက်ဆုံး နရီအနှေးအမြန် ပြောင်း​လဲမှု (%)"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "နရီအနှေးအမြန်ကို အသံပေါက် မပြောင်းလဲပဲ ပြောင်းလဲပါ"
 
 #: src/effects/ChangeTempo.cpp
 #, fuzzy
@@ -4398,119 +3957,10 @@ msgstr "တိုက်ခိုက်ချိန် %.1f စက္ကန့်
 msgid "Release Time %.1f secs"
 msgstr "ယိုယွင်း ချိန် %.1f စက္ကန့်"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "peak amplitude"
-msgstr "အထွတ်အထိပ် ကျယ်ပြန့်မှု အသစ် (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Reduction"
-msgstr "ဆူညံသံ လျှော့ချခြင်း"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Peak Reduction"
-msgstr "ဆူညံသံ လျှော့ချခြင်း"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Analog Limiter"
-msgstr "ကန့်သတ်ကိရိယာ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "ဖိသိပ်ကိရိယာ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compressor step response"
-msgstr "လှုပ်ရှားမှုတခုကို ရွေးချယ်ပါ"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "အယ်လဂိုရီသမ်"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Envelope Algorithm:"
-msgstr "အယ်လဂိုရီသမ်"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress based on:"
-msgstr "လှုပ်ရှားမှုတခုကို ရွေးချယ်ပါ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Ratio:"
-msgstr "အချိုး -"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "၁"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width:"
-msgstr "စတီရီယို"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain:"
-msgstr "ရလဒ် ချာနယ်များ - %2d"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain"
-msgstr "ရလဒ် ချာနယ်များ - %2d"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack:"
-msgstr "တိုက်ခိုက် ချိန် -"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "တိုက်ခိုက် ချိန်"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release:"
-msgstr "ကုန်လွန်သွားတဲ့ အချိန် -"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release"
-msgstr "တည်ဆောက်မှုကို ထုတ်ပြန်ပါ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time:"
-msgstr "အချိန်အလက် မျိုးတူစုပါ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time"
-msgstr "အချိန်အလက် မျိုးတူစုပါ"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time:"
-msgstr "ပြီးဆုံးချိန်"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "ပြီးဆုံးချိန်"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -5035,11 +4485,6 @@ msgid "Applied effect: %s"
 msgstr "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s"
 
 #: src/effects/EffectManager.cpp
-#, fuzzy, c-format
-msgid "Applied command: %s"
-msgstr "သုံးစွဲထားတဲ့ သက်ရောက်မှု - %s"
-
-#: src/effects/EffectManager.cpp
 #, fuzzy
 msgid "Select Preset"
 msgstr "ကြိုတင်သတ်မှတ်ချက်ကို ပယ်ဖျက်ပါ"
@@ -5071,13 +4516,6 @@ msgstr "စံထားချက်များ"
 
 #: src/effects/EffectManager.cpp
 #, fuzzy
-msgid "Effect failed to initialize"
-msgstr ""
-"FLAC စာဝှက်ရေးကိရိယာက အနေအထားကို အစပြုဖို့\n"
-" မအောင်မြင်ဘူး - %d"
-
-#: src/effects/EffectManager.cpp
-#, fuzzy
 msgid "Command failed to initialize"
 msgstr ""
 "FLAC စာဝှက်ရေးကိရိယာက အနေအထားကို အစပြုဖို့\n"
@@ -5085,85 +4523,8 @@ msgstr ""
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
-msgid "Effects Rack"
-msgstr "သက်ရောက်မှု"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
 msgid "&Apply"
 msgstr "%s ကို အသုံးချပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Latency: 0"
-msgstr "ငုပ်အောင်းနေမှု"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Bypass"
-msgstr "အုပ်စုဖြတ်သန်းမှု"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Active State"
-msgstr "တန်းညှိချက်"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Up"
-msgstr "အထက်ကို ရွှေ့ပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move effect up in the rack"
-msgstr "အခြား အသံလမ်းကြောကို ရွှေ့တဲ့ တွဲညှပ်"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Down"
-msgstr "အောက်ကို ရွှေ့ပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move effect down in the rack"
-msgstr "အခြား အသံလမ်းကြောကို ရွှေ့တဲ့ တွဲညှပ်"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Remove effect from the rack"
-msgstr "အခြား အသံလမ်းကြောကို ရွှေ့တဲ့ တွဲညှပ်"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Name of the effect"
-msgstr "ချိန်ကြိုး အသစ်ရဲ့ အမည်ကို ရေးသွင်းပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy, c-format
-msgid "Latency: %4d"
-msgstr "ငုပ်အောင်းနေမှု"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Some Command"
-msgstr "ညွှန်ကြားမှုကို ရွေးပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Manage"
-msgstr "မှတ်တမ်းကို စီမံပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Start and stop playback"
-msgstr "ပြန်ဖွင့်ချက်"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Start &Playback"
-msgstr "ပြန်ဖွင့်ချက်"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -5174,31 +4535,6 @@ msgstr "အစမ်းမြင်ကွင်း"
 #, fuzzy
 msgid "&Preview"
 msgstr "အစမ်းမြင်ကွင်း"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Preview effect"
-msgstr "နယ်ပယ် မဖြတ်ယူခင် အစမ်းမြင်ကွင်း -"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip backward"
-msgstr "နောက်ပြန်ချက်များ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip &Backward"
-msgstr "နောက်ပြန်ချက်များ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip forward"
-msgstr "အစကို ကျော်သွားပါ"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip &Forward"
-msgstr "ရှေ့ဆက်မှုများ"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -5285,13 +4621,6 @@ msgid ""
 "Replace?"
 msgstr "\"%s\" အမည်နဲ့ ဖိုင်တခု ရှိနေပြီ။ အစားထိုးမလား?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Stop &Playback"
-msgstr "ပြန်ဖွင့်ချက်"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -5356,11 +4685,6 @@ msgstr "ရောင်စဉ်ကို ရေးမှတ်ဖို့၊ �
 #, fuzzy
 msgid "Track sample rate is too low for this effect."
 msgstr "ရွေးချယ်မှုကို ထပ်လုပ်ဖို့ အသံလမ်းကြောများက အလွန်ရှည်လျားတယ်။"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Effect Unavailable"
-msgstr "အစမ်းမြင်ကွင်း မရနိုင်ဘူး"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "Max dB"
@@ -5452,33 +4776,8 @@ msgstr "&Y-axis တလျှောက် ဂရစ်ကွက် တခုက�
 
 #: src/effects/Equalization.cpp
 #, fuzzy
-msgid "&Processing: "
-msgstr "အော်တို ဒတ်ကို ဆောင်ရွတ်နေတယ်..."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "D&efault"
-msgstr "စံထားချက်များ"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "&Bench"
-msgstr "စံအမှတ်ကို လည်ပတ်ပါ..."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Error Loading EQ Curves"
-msgstr "ကြိုတင်သတ်မှတ်ချက်ကို ဖွင့်ပါ"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
 msgid "Error Saving Equalization Curves"
 msgstr "ညီမျှစေခြင်းကို လုပ်ဆောင်နေတယ်"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Curve not found"
-msgstr "FFmpeg ကို မတွေ့ရှိဘူး"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5626,27 +4925,6 @@ msgstr "အသံကို ရွေးချယ်ဖို့ နှိုပ�
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "အသံကို ရွေးချယ်ဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "တွဲညှပ်မှုကို ​ရှာ​ပါ"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Clicks"
-msgstr "ဘယ်-နှိုပ်ပါ"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Right"
-msgstr "ဘယ်-နှိုပ်ပါ"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Left"
-msgstr "ဘယ်-နှိုပ်ပါ"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "တွဲညှပ်မှုကို ​ရှာ​ပါ"
@@ -5750,36 +5028,6 @@ msgstr "အလယ်အလတ်"
 #, fuzzy
 msgid "Second greatest"
 msgstr "ဒုတိယ အသံလမ်းကြော"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, none"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, Hann (default)"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Blackman, Hann"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, none"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Hann"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Reciprocal Hamming"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 #, fuzzy
@@ -5961,48 +5209,6 @@ msgstr "၂"
 #, fuzzy
 msgid "4 (default)"
 msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "ဆူညံသံ ဖယ်ရှားမှု"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"သင် စစ်ထုတ်လိုတဲ့ အသံ အားလုံးကို ရွေးပြီး၊ သင် စစ်ထုတ်လိုတဲ့ ဆူညံသံ အတိုင်းအတာကို \n"
-"ရွေးပြီးနောက်၊ ဆူညံသံကို ဖယ်ရှားဖို့ 'ကောင်းပြီး'ကို နှိုပ်ပါ။\n"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Noise re&duction (dB):"
-msgstr "ဆူညံသံ လျှော့ချခြင်း (dB) -"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "&Sensitivity (dB):"
-msgstr "အာရုံခံနိုင်မှု"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Fr&equency smoothing (Hz):"
-msgstr "ကြိမ်နှုန်း ချောမွေ့စေခြင်း (Hz) -"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Attac&k/decay time (secs):"
-msgstr "တိုက်ခိုက်/ယိုယွင်းတဲ့ အချိန် (စက္ကန့်များ) -"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Attack/decay time"
-msgstr "တိုက်ခိုက်/ယိုယွင်းတဲ့ အချိန်"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Re&move"
-msgstr "ဖယ်ရှားပါ"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -6248,11 +5454,6 @@ msgstr "ရလဒ် ချာနယ်များ - %2d"
 msgid "Stereo Wid&th (%):"
 msgstr "စတီရီယို"
 
-#: src/effects/Reverb.cpp
-#, fuzzy, c-format
-msgid "Reverb: %s"
-msgstr "ပဲ့တင်ထပ်စေပါ"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "ပြောင်းပြန်လှန်ပါ"
@@ -6411,16 +5612,6 @@ msgstr "စတီရီယိုမှ မိုနိုသို့"
 #, fuzzy
 msgid "Converts stereo tracks to mono"
 msgstr "စတီရီယိုမှ မိုနို လမ်ကြောင်းသို့"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling left channel"
-msgstr "နမူနာပြန်တင်မှု ပိတ်ထားချက်။"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling right channel"
-msgstr "နမူနာပြန်တင်မှု ပိတ်ထားချက်။"
 
 #: src/effects/StereoToMono.cpp
 #, fuzzy
@@ -6716,15 +5907,6 @@ msgstr "ထုတ်လုပ်ပါ"
 msgid "Import Audio Unit Presets"
 msgstr "ကြိုတင်သတ်မှတ်ချက်များကို တင်သွင်းပါ"
 
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "ကြိုတင်သတ်မှတ်ချက်"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Location"
-msgstr "လုပ်ဆောင်ချက်"
-
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Couldn't open \"%s\""
@@ -6811,16 +5993,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to convert preset to internal format"
-msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to create property list for preset"
-msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
@@ -6869,16 +6041,6 @@ msgid "LV2 Effect Settings"
 msgstr "သက်ရောက်မှု တပ်ဆင်ချက်များ"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "ထုတ်လုပ်ကိရိယာ"
 
@@ -6911,18 +6073,6 @@ msgstr "နိုင်ခွီးစ်ထ် ရလဒ် -"
 #, fuzzy
 msgid "Audio selection required."
 msgstr "ရွေးချယ်ချက်နဲ့ တန်းညှိထားတဲ့ ပြီးဆုံးမှု"
-
-#: src/effects/nyquist/Nyquist.cpp
-#, fuzzy
-msgid "Nyquist Error"
-msgstr "နိုင်ခွီးစ်ထ်"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"၀မ်းနည်းပါတယ်၊ အသံလမ်းကြောများ မကိုက်ညီတဲ့ နေရာမှ စတီရိယို အသံလမ်းကြောများပေါ်မှာ သက်ရောက်မှုကို "
-"အသုံးမချနိုင်ဘူး။"
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -6983,11 +6133,6 @@ msgstr "နိုင်ခွီးစ်ထ်က အသံကို မထု�
 #, fuzzy
 msgid "Could not open file"
 msgstr "ဖိုင်ကို မဖွင့်နိုင်ဘူး"
-
-#: src/effects/nyquist/Nyquist.cpp
-#, fuzzy
-msgid "Error in Nyquist code"
-msgstr "ကြာမြင့်ချိန်ထဲက အမှားအယွင်း"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -7068,14 +6213,6 @@ msgid "Vamp Effects"
 msgstr "သက်ရောက်မှု"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်များကို အသံလမ်းကြောရဲ့ ချာနယ်များ တခုချင်း မကိုက်ညီတဲ့ နေရာမှ စတီရီယို "
-"အသံ​လမ်းကြောများပေါ်မှာ မဖွင့်နိုင်ဘူး။"
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်ကို ဖွင့်ဖို့ မအောင်မြင်ဘူး။"
 
@@ -7118,60 +6255,12 @@ msgstr "အသံ အားလုံးကို အသံပိတ်ထား�
 
 #: src/export/Export.cpp
 #, fuzzy, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "အောက်ပါအတိုင်း ဖိုင်ကို သင်တကယ် သိမ်းဆည်းလိုသလား \""
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"သင်ဟာ ဖိုင် %s တခုကို \"%s\" အမည်နဲ့ သိမ်းဆည်းတော့မယ်။\n"
-"\n"
-"သာမန်အားဖြင့် ဒီဖိုင်များဟာ \".%s\" နဲ့ ဆုံးပြီး၊ တချို့ ပရိုဂရမ်များဟာ ဖိုင်များကို စံညွှန်းမဟုတ်တဲ့ "
-"တိုးချဲ့ချက်များနဲ့ ဖွင့်ပေးမှာ မဟုတ်ဘူး။\n"
-"\n"
-"ဒီ​အမည်နဲ့ ဖိုင်ကို သင်တကယ် သိမ်းဆည်းလိုသလား?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "၀မ်းနည်းပါတယ်၊ လမ်းကြောင်းအမည် ၂၅၆ ထက် ​ရှည်တဲ့  အက္ခရာများကို ပံ့ပိုးမပေးဘူး။"
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "\"%s\" အမည်နဲ့ ဖိုင်တခု ရှိနေပြီ။ အစားထိုးမလား?"
 
 #: src/export/Export.cpp
-#, fuzzy
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "သင့်ရဲ့ အသံလမ်းကြောများဟာ တင်ပို့ထားတဲ့ ဖိုင်ထဲမှာ စတီရီယို ချာနယ် နှစ်ခုမှာ ပေါင်းစပ်သွားလိမ့်မယ်။"
-
-#: src/export/Export.cpp
-#, fuzzy
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "သင့်ရဲ့ အသံလမ်းကြောများဟာ တင်ပို့ထားတဲ့ ဖိုင်ထဲမှာ စတီရီယို ချာနယ် နှစ်ခုမှာ ပေါင်းစပ်သွားလိမ့်မယ်။"
-
-#: src/export/Export.cpp
-#, fuzzy
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr "သင့်ရဲ့ အသံလမ်းကြောများဟာ တင်ပို့ထားတဲ့ ဖိုင်ထဲမှာ စတီရီယို ချာနယ် နှစ်ခုမှာ ပေါင်းစပ်သွားလိမ့်မယ်။"
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "အဆင့်မြင့် ပေါင်းစပ်မှု ရွေးစရာများ"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Format Options"
-msgstr "သက်ရောက်မှု တပ်ဆင်ချက်များ"
 
 #: src/export/Export.cpp
 #, c-format
@@ -7215,1008 +6304,37 @@ msgstr "လှော်လှန်ပါ..."
 msgid "Show output"
 msgstr "ရလဒ်ကို ပြသပါ"
 
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Executables"
-msgstr "ကိန်းရှင်"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Find path to command"
-msgstr "ညွှန်ကြားချက်"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(ပြင်ပ ပရိုဂရမ်)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "အသံဖိုင်ကို %s ထံ မတင်ပို့နိုင်ဘူး"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "တင်ပို့ပါ"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "ညွှန်ကြားချက်-လိုင်း စာဝှက်ရေးကိရိယာကို သုံးပြီး ရွေးထားတဲ့ အသံကို တင်ပို့ခြင်း"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Exporting the audio using command-line encoder"
-msgstr "ညွှန်ကြားချက်-လိုင်း စာဝှက်ရေးကိရိယာကို သုံးပြီး ရွေးထားတဲ့ အသံကို တင်ပို့ခြင်း"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "ညွှန်ကြားချက် ရလဒ်"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "ကောင်းပြီ"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr ""
-"လက်မခံထားတဲ့ ဖိုင် တိုးချဲ့ချက်တခု ပါတဲ့ ဖိုင်အမည်တခုကို သင်ရွေးထားတယ်။\n"
-"သင် ဆက်လက် လုပ်ဆောင်လိုသလား။"
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "FFmpeg ကို မတွေ့ရှိဘူး"
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Export Options"
-msgstr "သက်ရောက်မှု တပ်ဆင်ချက်များ"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "ရပ်ဆိုင်းပါ"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"ကောင်းမွန်စွာ စီစဉ်ဖန်တီးထားတဲ့ FFmpeg ကို လုပ်ဆောင်ဖို့ လိုတယ်။\n"
-"၄င်းကို ဦးစားပေးချက်များ > စုစည်းခန်းများ မှာ သင် စီစဉ်ဖန်တီးနိုင်တယ်။"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg Error"
-msgstr "FFmpeg စုစည်းခန်း -"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg က အသံ ကုဓ 0x%x ကို မတွေ့နိုင်ဘူး။\n"
-"ဒီကုဓ အတွက် ပံ့ပိုးမှုကို ပြုစုမထားတဲ့ ဖြစ်နိုင်တယ်။"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "ရွေးထားတဲ့ အသံကို တင်ပို့နေတဲ့ ပုံစံ %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio as %s"
-msgstr "ရွေးထားတဲ့ အသံကို တင်ပို့နေတဲ့ ပုံစံ %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "နမူနာပြန်တင်ပါ"
 
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr "စီမံချက် နမူနာ နှုန်း (%d) ကို လက်ရှိ ရလဒ် ဖိုင်အမျိုးအစားက ပံ့ပိုးမထားဘူး။"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"စီမံချက် နမူနာ နှုန်း (%d) နဲ့ ဘစ်နှုန်းထား (%d kbps) ပေါင်းစပ်မှုကို လက်ရှိ ရလဒ်\n"
-" ဖိုင်အမျိုးအစားက ပံ့ပိုးမထားဘူး။"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "အောက်ပါ နှုန်းထားများထဲမှ တခုကို သင် နမူနာပြန်တင်နိုင်တယ်။"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "နမူနာ နှုန်းထားများ"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "%d kbps"
-msgstr "kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "ဘစ် နှုန်းထား -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Quality (kbps):"
-msgstr "အရည်​​အသွေး -"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "%.2f kbps"
-msgstr "kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "0"
-msgstr "၆၀"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "၁"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "၃"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "၄"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "၅"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "၆"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "၇"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "9"
-msgstr "၉၆"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "10"
-msgstr "၁၂၀"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "On"
-msgstr "ဖွင့်ပါ..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Constrained"
-msgstr "အမြဲတမ်း"
-
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "Audio"
 msgstr "အသံ..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Low Delay"
-msgstr "နှောင့်နှေးစေပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mediumband"
-msgstr "အလယ်အလတ်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Fullband"
-msgstr "အုပ်စုမျိုးစု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression"
-msgstr "ဖိသိပ်ကိရိယာ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame Duration:"
-msgstr "ကြာမြင့်ချိန် -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Vbr Mode:"
-msgstr "စနစ်များ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Application:"
-msgstr "dB ကို ချဲ့ထွင်ခြင်း"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Cutoff:"
-msgstr "မှ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Open custom FFmpeg format options"
-msgstr "စိတ်ကြိုက်ဖန်တီးတဲ့ FFmpeg တင်ပို့မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Format:"
-msgstr "လက်ရှိ စီမံချက်မှာ အသုံးချပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Codec:"
-msgstr "လက်ရှိ စီမံချက်မှာ အသုံးချပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Error Saving FFmpeg Presets"
-msgstr "ကြိုတင်သတ်မှတ်ချက်ကို ဖွင့်ပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "ကြိုတင်သတ်မှတ်ချက် '%s' ကို ထပ်ရေးမလား?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "ထပ်ရေးချက်ကို အတည်ပြုပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "ခြုံငုံချက် တခုကို မသိမ်းဆည်းမီ အမျိုးအစားကို ရွေးပါ"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "ခြုံငုံချက် တခုကို မသိမ်းဆည်းမီ ကုဓကို ရွေးပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "ကြိုတင်သတ်မှတ်ချက် '%s' မတည်ရှိဘူး။"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Replace preset '%s'?"
-msgstr "ကြိုတင်သတ်မှတ်ချက် '%s' ကို ပယ်ဖျက်မလား?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LC"
-msgstr "L"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Main"
-msgstr "ပင်မ ပေါင်းစပ်မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "M4A (AAC) ဖိုင်များ (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "AC3 ဖိုင်များ (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "WMA (မူအဆင့် ၂) ဖိုင်များ (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "M4A (AAC) ဖိုင်များ (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "WMA (မူအဆင့် ၂) ဖိုင်များ (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "စိတ်ကြိုက်ဖန်တီးတဲ့ FFmpeg တင်ပို့မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "ခန့်မှန်းချက်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "၂-အဆင့်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "၄-အဆင့်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "၈-အဆင့်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "အပြည့်အစုံ ရှာဖွေပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "လော့ဂ် ​ရှာဖွေမှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Configure custom FFmpeg options"
-msgstr "စိတ်ကြိုက်ဖန်တီးတဲ့ FFmpeg တင်ပို့မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "ကြိုတင်သတ်မှတ်ချက် -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "ကြိုတင်သတ်မှတ်ချက်ကို ဖွင့်ပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "ကြိုတင်သတ်မှတ်ချက်များကို တင်သွင်းပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "ကြိုတင်သတ်မှတ်ချက်များကို တင်ပို့ပါ"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "ကိုဓ -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "အမျိုးအစားများ အားလုံးကို ပြသပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "ကိုဓများ အားလုံးကို ပြသပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "General Options"
-msgstr "ယန္တရားငယ် တပ်ဆင်ချက်များ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"ISO ၆၃၉ ၃-အက္ခရာ ဘာသာစကား ကုဒ်\n"
-"ရွေးလို့ရတယ်\n"
-"ဗလာ - အလိုအလျှောက်ဖြစ်မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "ဘာသာစကား -"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"ကိုဓ စာအမှတ် (FOURCC)\n"
-"ရွေးလို့ရတယ်\n"
-"ဗလာ - အလိုအလျှောက်ဖြစ်မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "စာအမှတ် -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"ဘစ် နှုန်းထား (ဘစ်များစက္ကန့်) - ဖိုင်အရွယ်နဲ့ အရည်အသွေး ရလဒ်အပေါ် လွှမ်းမိုးတယ်\n"
-"တချို့ ကိုဓများက သတ်မှတ်ထားတဲ့ တန်ဖိုးများ (၁၂၈k, ၁၉၂k, ၂၅၆k etc) ကိုသာ လက်ခံတယ်\n"
-"၀ - အလိုအလျှောက် ဖြစ်မှု\n"
-"အကြံပြုချက် - ၁၉၂၀၀၀"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"အရည်အသွေး စုစုပေါင်း၊ အမျိုးမျိုး​သော ကိုဓများက ပုံစံအမျိုးမျိုးနဲ့ သုံးစွဲခဲ့တယ်\n"
-"ဗောဘီးစ် အတွက် လိုအပ်တယ်\n"
-"၀ - အလိုအလျှောက် ဖြစ်မှု\n"
-"-၁ - ပိတ်ထားချက် (ဘစ်နှုန်းကို အစားထိုး သုံးစွဲပါ)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "အရည်​​အသွေး -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"နမူနာ နှုန်းထား (Hz)\n"
-"0 - နမူနာ နှုန်းထားကို မပြောင်းနိုင်ဘူး"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "နမူနာ နှုန်းထား -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"အသံ ဖြတ်တောက်ထားတဲ့ စီးဆင့်နှုန်း (Hz)\n"
-"ရွေးလို့ရတယ်\n"
-"၀ - အလိုအလျှောက် ဖြစ်မှု"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"AAC ခြုံငုံချက်\n"
-"ရှုပ်ထွေးမှု နည်းပါးတယ် - စံထားချက်\n"
-"ဖွင့်စက်များ အများစုက LC ကလွဲပြီး အခြား ဖွင့်ပေးမှာ မဟုတ်ဘူး"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "ခြုံငုံချက် -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "FLAC ရွေးစရာများ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"ဖိသိပ်မှု အဆင့်\n"
-"FLAC အတွက် လိုအပ်ချက်\n"
-"-၁ - အလို​အလျှောက် ဖြစ်မှု\n"
-"အနည်းဆုံး - ၀ (လျင်မြန်တဲ့ စာဝှက်ရေးသားခြင်း၊ ရလဒ် ဖိုင် အကြီး)\n"
-"အများဆုံး - ၁၀ (နှေးကွေးတဲ့ စာဝှက်ရေးသားခြင်း၊ ရလဒ် ဖိုင် အငယ်)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression:"
-msgstr "ဖိသိပ်ကိရိယာ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"ဘောင် အရွယ်\n"
-"ရွေးနိုင်တယ်\n"
-"၀ - စံထားချက်\n"
-"အနည်းဆုံး - ၁၆\n"
-"အများဆုံး - ၆၅၅၃၅"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame:"
-msgstr "အမည်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"LPC မြေှာက်ဖော်ကိန်းများ တိကျမှု\n"
-"ရွေးချယ်နိုင်တယ်\n"
-"၀ - စံထားချက်\n"
-"အနည်းဆုံး - ၁\n"
-"အများဆုံး - ၁၅"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LPC"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"ခန့်မှန်းချက် အစီအစဉ် နည်းလမ်း\n"
-"ခန့်မှန်းချက် - အမြန်ဆုံး၊ ပိုနိမ့်တဲ့ ဖိသိပ်မှု\n"
-"လော့ဂ် ရှာဖွေမှု - အနှေးဆုံး၊ အကောင်းဆုံး ဖိသိပ်မှု\n"
-"အပြည့်အစုံ ရှာဖွေမှု - စံထားချက်"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"အနည်းဆုံး ခန့်မှန်းချက် အစီအစဉ်\n"
-"ရွေးချယ်နိုင်တယ်\n"
-"-၁ - စံထားချက်\n"
-"အနည်းဆုံး - ၀အများဆုံး - ၃၂ (LPC နဲ့အတူ) (သို့) ၄ (LPC မပါပဲ)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"အများဆုံး ခန့်မှန်းချက် အစီအစဉ်\n"
-"ရွေးချယ်နိုင်တယ်\n"
-"-၁ - စံထားချက်\n"
-"အနည်းဆုံး - ၀\n"
-"အများဆုံး - ၃၂ (LPC နဲ့အတူ) (သို့) ၄ (LPC မပါပဲ)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"အနည်းဆုံး ပိုင်းခြားမှု အစီအစဉ်\n"
-"ရွေးချယ်နိုင်တယ်\n"
-"-၁ - စံထားချက်\n"
-"အနည်းဆုံး - ၀\n"
-"အများဆုံး - ၈"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"အများဆုံး ပိုင်းခြားမှု အစီအစဉ်\n"
-"ရွေးချယ်နိုင်တယ်\n"
-"-၁ - စံထားချက်\n"
-"အနည်းဆုံး - ၀\n"
-"အများဆုံး - ၈"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "LPC ကို သုံးစွဲပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "MPEG ထည့်စရာ ရွေးစရာများ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"စုပေါင်းစုရုံးထားတဲ့ စီးကြောင်းရဲ့ အများဆုံး ဘစ် နှုန်းထား\n"
-"ရွေးချယ်စရာ\n"
-"၀ - စံထားချက်"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "အများဆုံး နှုန်းထား -"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"အထုပ်အရွယ်\n"
-"ရွေးချယ်စရာ\n"
-"၀ - စံထားချက်"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "အထုပ် အရွယ် -"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "ကြိုတင်သတ်မှတ်ချက် တခုကို အမည်မပါပဲ သင် မပယ်ဖျက်နိုင်ဘူး"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "ကြိုတင်သတ်မှတ်ချက် '%s' ကို ပယ်ဖျက်မလား?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "You can't save a preset without a name"
-msgstr "ကြိုတင်သတ်မှတ်ချက် တခုကို အမည်မပါပဲ သင် မသိမ်းဆည်းနိုင်ဘူး"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "xml ဖိုင်ကို တင်သွင်းဖို့ ကြိုတင်သတ်မှတ်ချက်များနဲ့ အတူ ရွေးချယ်ပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "No presets to export"
-msgstr "တင်ပို့မဲ့ အမှတ်အသားများ မရှိဘူး။"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "XML ဖိုင်ကို ကြိုတင်သတ်မှတ်ချက်များထဲ တင်ပို့ဖို့ ရွေးချယ်ပါ"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "အမျိုးအစားကို ခန့်မှန်းဖို့ မအောင်မြင်ဘူး"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "ကိုဓကို ​ရှာဖွေဖို့ မအောင်မြင်ဘူး"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "၁၆ ဘစ်"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "၂၄ ဘစ်"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "၀ (အမြန်ဆုံး)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "၈ (အကောင်းဆုံး)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "အဆင့် -"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "ဘစ် အနက် -"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "FLAC ဖိုင်များ"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "FLAC တင်ပို့ချက်က %s ကို မဖွင့်နိုင်ဘူး"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr ""
-"FLAC စာဝှက်ရေးကိရိယာက အနေအထားကို အစပြုဖို့\n"
-" မအောင်မြင်ဘူး - %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "ရွေးချယ်ထားတဲ့ အသံကို FLAC လို တင်ပို့နေခြင်း"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy
-msgid "Exporting the audio as FLAC"
-msgstr "ရွေးချယ်ထားတဲ့ အသံကို FLAC လို တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "MP2 ဖိုင်များ"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "MP2 ကို ဒီနမူနာ နှုန်းထားနဲ့ ဘစ်နှုန်းထား နဲ့အတူ မတင်ပို့နိုင်ဘူး"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "ပစ်မှတ်ထားတဲ့ ဖိုင်ကို ရေးသားဖို့ မဖွင့်နိုင်ဘူး"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "ရွေးထားတဲ့ အသံ %ld kbps ကို တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP2.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "ရွေးထားတဲ့ အသံ %ld kbps ကို တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "220-260 kbps (Best Quality)"
-msgstr "(အကောင်းဆုံး အရည်အသွေး)"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "200-250 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "170-210 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "155-195 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "145-185 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "110-150 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "95-135 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "80-120 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "65-105 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "45-85 kbps (Smaller files)"
-msgstr "(ပိုသေးငယ်တဲ့ ဖိုင်များ)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "မိုက်မဲတယ်"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "လွန်ကဲတယ်"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "စံညွှန်း"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "အလယ်အလတ်"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "ကိန်းရှင်"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "ပျမ်းမျှ"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "အမြဲတမ်း"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "ပူးတွဲထားတဲ့ စတီရီယို"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "စတီရီယို"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "ဘစ် နှုန်းထား စနစ် -"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "အရည်အသွေး"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "ချာနယ် စနစ် -"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Force export to mono"
-msgstr "ဖယ်ရှားထားတဲ့ ဖြတ်ယူမှု လိုင်း"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "MP3 ဖိုင်များ"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "MP3 စီးကြောင်းကို အစပြုလို့ မရဘူး"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "ရွေးထားတဲ့ အသံကို %s ကြိုတင်သတ်မှတ်ချက်ဖြင့် တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "ရွေးထားတဲ့ အသံကို %s ကြိုတင်သတ်မှတ်ချက်ဖြင့် တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "ရွေးထားတဲ့ အသံကို VBR အရည်အသွေး %s ဖြင့် တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "ရွေးထားတဲ့ အသံကို VBR အရည်အသွေး %s ဖြင့် တင်ပို့နေခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "ရွေးထားတဲ့ အသံကို %d Kbps မှာ ရွေးချယ်ထားခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "ရွေးထားတဲ့ အသံကို %d Kbps မှာ ရွေးချယ်ထားခြင်း"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "MP3 စာဝှက်ရေးကိရယာမှ ပေးပို့တဲ့ အမှားအယွင်း %ld"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"စီမံချက် နမူနာ နှုန်းထား (%d) ကို MP3 ဖိုင်အမျိုးအစားက\n"
-" ပံ့ပိုးမပေးဘူး။"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"စီမံချက် နမူနာ နှုန်းထား (%d) နဲ့ ဘစ်နှုန်းထား (%d kbps) ပေါင်းစပ်ခြင်းကို\n"
-"MP3 ဖိုင် အမျိုးအစားက ​ပံ့ပိုးမပေးဘူး"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 16-bit"
-msgstr "၁၆-ဘစ် PCM"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 24-bit"
-msgstr "၁၄-ဘစ် PCM"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "အမှတ်အသားများ"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "အသံဖိုင်တခု တင်ပို့နေတယ်"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "ရွေးချယ်ထားတဲ့ အသံကို FLAC လို တင်ပို့နေခြင်း"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the audio as MKA"
-msgstr "ရွေးချယ်ထားတဲ့ အသံကို FLAC လို တင်ပို့နေခြင်း"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "အမျိုးစုံကို တင်ပို့ပါ"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Cannot Export Multiple"
-msgstr "အမျိုးစုံကို တင်ပို့ပါ"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Export files to:"
-msgstr "တည်နေရာ တင်ပို့ပါ -"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "ရွေးချယ်ပါ..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "ဖန်တီးပါ"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Options:"
-msgstr "ရွေးစရာများ..."
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -8225,14 +6343,6 @@ msgstr "ခွဲခြမ်းတဲ့ ဖိုင်များ အခြ�
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "ပထမ အမှတ်အသား မတိုင်မီ အသံကို ထည့်သွင်းပါ"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "ပထမ ဖိုင်အမည် -"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "ပထမ ဖိုင်အမည်"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -8257,17 +6367,8 @@ msgid "File name prefix:"
 msgstr "ဖိုင်အမည် ရှေ့ဆက် -"
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "ဖိုင်အမည် ရှေ့ဆက်"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "တည်ရှိနေတဲ့ ဖိုင်များကို ထပ်ရေးပါ"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "\"%s\" ကို အောင်မြင်စွာ ဖန်တီးလိုက်ပြီ။"
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -8299,153 +6400,18 @@ msgid "Something went really wrong after exporting the following %lld file(s)."
 msgstr "အောက်ပါ %lld ဖိုင်(များ)ကကို တင်ပို့ပြီးနောက် တစုံတခု တကယ်ပဲ ချို့ယွင်းသွားတယ်။"
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"\"%s\" မတည်ရှိဘူး။\n"
-"\n"
-"၄င်းကို သင် ဖန်တီးလိုသလား?"
-
-#: src/export/ExportMultiple.cpp
 #, fuzzy
 msgid "Continue to export remaining files?"
 msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "သိမ်းဆည်းမဲ့ ပုံစံ..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "အော့ဂျ် ဝေါဘီးစ် ဖိုင်များ"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - rate or quality problem"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with metadata"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem initialising"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem creating stream"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with packets"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with file"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "အော့ဂျ် ဝေါဘီးစ် အဖြစ် ရွေးထားတဲ့ အသံကို တင်ပို့နေခြင်း"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "အော့ဂျ် ဝေါဘီးစ် အဖြစ် ရွေးထားတဲ့ အသံကို တင်ပို့နေခြင်း"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-#, fuzzy
-msgid "WAV (Microsoft)"
-msgstr "WAV (မိုက်ခရိုဆော့ဗ်) စာချုပ်ထား ၁၆ ဘစ် PCM"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "ခေါင်းစီး -"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "စာဝှက် ရေးသားခြင်း -"
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "တခြား ဖိသိပ်မထားတဲ့ ဖိုင်များ"
-
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid "Error Exporting"
-msgstr "တင်သွင်းနေတဲ့ အမှားအယွင်း"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "အသံကို ဒီအမျိုးအစားနဲ့ မတင်ပို့နိုင်ဘူး။"
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "ရွေးထားတဲ့ အသံကို %s အဖြစ် တင်ပို့နေတယ်"
-
 #: src/export/ExportPlugin.cpp
 #, fuzzy
 msgid "No format specific options"
 msgstr "သက်ရောက်မှု တပ်ဆင်ချက်များ"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "FFmpeg ပံ့ပိုးချက်ကို မပြုစုတဲ့နေရာ"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "FFmpeg အစပြုမှု မအောင်မြင်ဘူး"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "FFmpeg စုစည်းခန်း မတွေ့ရဘူး"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "FFmpeg ကို ရှာပါ"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Location of '%s':"
-msgstr "%s ရဲ့ တည်နေရာ -"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "To find '%s', click here -->"
-msgstr "%s ကို ရှာတွေ့ဖို့၊ ဒီနေရာကို နှိုပ်ပါ -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "FFmpeg အခမဲ့ မိတ္တူတခုကို ရယူဖို့၊ ဒီနေရာကို နှိုပ်ပါ -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "ဆွဲချပါ"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Where is '%s'?"
-msgstr "%s ဘယ်မှာ ရှိလဲ။"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpeg ကို မတွေ့ရှိဘူး"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "ဒီသတိပေးချက်ကို နောက်တကြိမ် မပြပါနဲ့"
 
 #: src/import/Import.cpp
 #, fuzzy
@@ -8468,381 +6434,13 @@ msgstr "စာအိတ်"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
-msgid "AUP project files (*.aup)"
-msgstr "စီမံချက် အချက်အလက်ကြမ်း ဖိုင်များကို သိမ်းဆည်းနေတယ်"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"%s သက်ရောက်မှုရဲ့ ပါရာမီတာများကို\n"
-"%s အဖြစ် မချမှတ်နိုင်သေးဘူး"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
 msgid "Import Project"
 msgstr "ကြိုတင်သတ်မှတ်ချက်များကို တင်သွင်းပါ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'vpos' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'h' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'zoom' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel0' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel1' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selLow' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selHigh' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "စီမံချက် ဒေတာ ဖိုင်တွဲကို မတွေ့နိုင်ဘူး - \"%s\""
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Project Import"
-msgstr "စီမံချက်များ"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "မမှန်တဲ့ နမူနာ နှုန်းထား"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to open %s"
-msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "FFmpeg-လိုက်ဖက်တဲ့ ဖိုင်များ"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr ""
-"အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "FLAC ဖိုင်များ"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "ဂျီစထရီးမား-လိုက်ဖက်တဲ့ ဖိုင်များ"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to add decoder to pipeline"
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "GStreamer Importer"
-msgstr "ဂျီစထရီးမား အစပြုမှု မအောင်မြင်ဘူး"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to set stream state to paused."
-msgstr "'%s' ကို '%s' အဖြစ် အမည် မပြောင်းနိုင်ဘူး"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr ""
-"အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to import file, state change failed."
-msgstr "စမ်းသပ်ဖိုင်ကို မဖွင့်နိုင်/မဖန်တီးနိုင်ဘူး"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy, c-format
-msgid "GStreamer Error: %s"
-msgstr "ဂျီစထရီးမား %s: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "အခြေခံ စာသား အမျိုးအစားနဲ့ ဖိုင်များရဲ့ စာရင်း"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "LOF ဖိုင်ထဲမှ မမှန်တဲ့ ၀င်းဒိုး အော့ဖ်ဆက်"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "LOF အမှားအယွင်း"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "LOF ဖိုင်ထဲမှ မမှန်ကန်တဲ့ ကြာမြင့်ချိန်။"
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI အသံလမ်ကြောများဟာ တခုချင်းနဲ့ အော့ဖ်ဆက် မဖြစ်နိုင်ဘူး၊ အသံဖိုင်များသာ ဖြစ်နိုင်တယ်။"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "LOF ဖိုင်ထဲမှ မမှန်တဲ့ အသံလမ်ကြော အော့ဖ်ဆက်။"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "'%s' မှ တင်သွင်းထားတဲ့ MIDI"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "MIDI ကို တင်သွင်းပါ"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr ""
-"မဖွင့်နိုင်တဲ့ ဖိုင် -\n"
-"  %s"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr ": မမှန်တဲ့ ဖိုင်အမျိုးအစား။"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s."
-msgstr "ဖိုင်ကို မဖွင့်နိုင်ဘူး"
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "MP3 ဖိုင်များ"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-msgid "Matroska files"
-msgstr "MP3 ဖိုင်များ"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr ""
-"အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "အော့ဂျ် ဝေါဘီးစ် ဖိုင်များ"
-
-#: src/import/ImportOGG.cpp
-#, fuzzy, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr ""
-"အညွှန်း[%02x] ကိုဓ[%s], ဘာသာစကား[%s], ဘစ်နှုန်းထား[%s], ချာနယ်များ[%d], ကြာမြင့်ချိန်[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "မီဒီယာ ဖတ်ရှုမှု အမှားအယွင်း"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "အော့ဂျ် ဝေါဘီးစ် ဖိုင်တခု မဟုတ်ဘူး"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "မကိုက်ညီတဲ့ Vorbis မူအဆင့်"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "မမှန်ကန်တဲ့ Vorbis ဘစ်စထရီးမ် ခေါင်းစီး"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "အတွင်းပိုင်း ယုတ္တိဗေဒ အမှားအယွင်း"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF, နဲ့ အခြား ဖိသိပ်မထားတဲ့ အမျိုးအစားများ"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "WAVEX (Microsoft)"
-msgstr "WAV (မိုက်ခရိုဆော့ဗ်) စာချုပ်ထား ၁၆ ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 8 bit PCM"
-msgstr "၁၆-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 16 bit PCM"
-msgstr "၁၆-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 24 bit PCM"
-msgstr "၁၄-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 32 bit PCM"
-msgstr "၁၄-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Unsigned 8 bit PCM"
-msgstr "၁၆-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "32 bit float"
-msgstr "၃၂-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "64 bit float"
-msgstr "၃၂-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Microsoft ADPCM"
-msgstr "WAV (မိုက်ခရိုဆော့ဗ်) စာချုပ်ထား ၁၆ ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "12 bit DWVW"
-msgstr "၁၆ ဘစ်"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DWVW"
-msgstr "၁၆ ဘစ်"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "24 bit DWVW"
-msgstr "၂၄ ဘစ်"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DPCM"
-msgstr "၁၆-ဘစ် PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "8 bit DPCM"
-msgstr "၁၆-ဘစ် PCM"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "%s ကို တင်သွင်းနေခြင်း"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "QuickTime ဖိုင်များ"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to start QuickTime extraction"
-msgstr "အမျိုးအစား ဖိုင်ကို မသိမ်းဆည်းနိုင်ဘူး။"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime render quality"
-msgstr "အမျိုးအစား ဖိုင်ကို မသိမ်းဆည်းနိုင်ဘူး။"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "အမျိုးအစား ဖိုင်ကို မသိမ်းဆည်းနိုင်ဘူး။"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get QuickTime sample size property"
-msgstr "အမျိုးအစား ဖိုင်ကို မသိမ်းဆည်းနိုင်ဘူး။"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to retrieve stream description"
-msgstr "'%s' ကို မဖယ်ရှားနိုင်ဘူး"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get fill buffer"
-msgstr "အမျိုးအစား ဖိုင်ကို မသိမ်းဆည်းနိုင်ဘူး။"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -8926,18 +6524,6 @@ msgstr "တိတ်ဆိတ်မှုများမှာ ဖြတ်ထ�
 msgid "&Import"
 msgstr "တင်သွင်းပါ"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s left"
-msgstr "ဘယ်ဖက်"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s right"
-msgstr "ညာဖက်"
-
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "start"
@@ -8947,26 +6533,6 @@ msgstr "စတင်မှု"
 #, fuzzy
 msgid "end"
 msgstr "ပြီးဆုံးမှု"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the right"
-msgstr "အသံလမ်းကြောများ/တွဲညှပ်များ ရွှေ့ပြောင်းတဲ့ အချိန် %s %.02f စက္ကန့်"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the left"
-msgstr "အသံလမ်းကြောများ/တွဲညှပ်များ ရွှေ့ပြောင်းတဲ့ အချိန် %s %.02f စက္ကန့်"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "အချိန်-ရွှေ့ပြောင်းမှု"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Clip B&oundaries"
-msgstr "နောက် ကိရိယာ"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
@@ -9064,28 +6630,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "ပယ်ဖျက်ထားချက် %.2f စက္ကန့်နေရာ t=%.2f"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "အသံလမ်းကြော တမျိုးကို အခြား တမျိုး ပွားယူမှု ခွင့်မပြုဘူး။"
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "စတီရီယို အသံကို မိုနို အသံလမ်းကြောတခု အဖြစ် မိတ္တူကူးခြင်းကို ခွင့်မပြုဘူး။"
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "ပုံတူပွားချက်"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "ပုံတူပွားပါ"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "အောက်ခံကတ်ပြားကို ဖြတ်ယူခွဲခြမ်းပါ"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "ဖြတ်ယူမှုကို ခွဲခြမ်းပါ"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -9183,16 +6733,6 @@ msgstr "ပုံတူပွားပါ"
 msgid "R&emove Special"
 msgstr "အသံလမ်းကြောများကို ဖယ်ရှားပါ"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "ခွဲခြမ်းပါ"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "ပယ်ဖျက်မှုကို ခွဲခြမ်းပါ"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -9221,15 +6761,6 @@ msgstr "ပါဝင်ပါ"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "တိတ်ဆိတ်မှုများမှာ ဖြတ်ထုတ်လိုက်ပါ"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "&Metadata..."
-msgstr "မက်တာဒေတာကို တည်းဖြတ်ပါ"
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "ဦးစားပေးချက်များ..."
 
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -9266,16 +6797,6 @@ msgstr "အသံကို ယာယီသိမ်းဆည်းနေတယ�
 msgid "Change Recording Cha&nnels..."
 msgstr "အသံပေါက် ပြောင်းလဲပါ"
 
-#: src/menus/ExtraMenus.cpp
-#, fuzzy
-msgid "&Full Screen (on/off)"
-msgstr "မျက်နှာပြင်အပြည့် ဖွင့်/ပိတ်ပါ"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export Selected Audio"
-msgstr "ရွေးထားတဲ့ အသံကို တင်ပို့နေတဲ့ ပုံစံ %s"
-
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
 msgid "labels.txt"
@@ -9286,42 +6807,6 @@ msgid "There are no label tracks to export."
 msgstr "တင်ပို့ဖို့ စာတမ်း ကပ်ထားတဲ့ အသံလမ်းကြောများ မရှိဘူး။"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select only one Note Track at a time."
-msgstr "လှုပ်ရှားမှုတခုကို ရွေးချယ်ပါ"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select a Note Track."
-msgstr "လှုပ်ရှားမှုတခုကို ရွေးချယ်ပါ"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "MIDI ကို တင်ပို့မဲ့ ပုံစံ -"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI file"
-msgstr "MIDI ဖိုင်တခုကို ရွေးပါ..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro file"
-msgstr "ဖိုင်များ အားလုံး (*)|*"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"လက်မခံထားတဲ့ ဖိုင် တိုးချဲ့ချက်တခု ပါတဲ့ ဖိုင်အမည်တခုကို သင်ရွေးထားတယ်။\n"
-"သင် ဆက်လက် လုပ်ဆောင်လိုသလား။"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "MIDI ကို တင်ပို့ပါ"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "'%s' မှ တင်သွင်းထားတဲ့ အမှတ်အသားများ"
@@ -9329,26 +6814,6 @@ msgstr "'%s' မှ တင်သွင်းထားတဲ့ အမှတ်�
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "အမှတ်အသားများကို တင်သွင်းပါ"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Select a MIDI file"
-msgstr "MIDI ဖိုင်တခုကို ရွေးပါ..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI and Allegro files"
-msgstr "ဖိုင်များ အားလုံး (*)|*"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI files"
-msgstr "MP3 ဖိုင်များ"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro files"
-msgstr "ဖိုင်များ အားလုံး (*)|*"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -9395,11 +6860,6 @@ msgstr "အမှတ်အသားများ တင်ပို့မဲ့ �
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
-msgid "Export as &MKA"
-msgstr "အမှတ်အသားများ တင်ပို့မဲ့ ပုံစံ -"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
 msgid "Export as &OGG"
 msgstr "တင်ပို့ပါ"
 
@@ -9418,15 +6878,6 @@ msgid "Export &Labels..."
 msgstr "အမှတ်အသားများကို တင်ပို့ပါ..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "အမျိုးစုံကို တင်ပို့ပါ..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MI&DI..."
-msgstr "MIDI ကို တင်ပို့ပါ..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "အသံ..."
 
@@ -9435,26 +6886,8 @@ msgid "&Labels..."
 msgstr "အမှတ်အသားများ..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "ဒေတာ အကြမ်း..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "စာမျက်နှာ တပ်ဆင်ချက်..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "ပုံနှိုပ်ပါ..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "ထွက်ခွါပါ"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -9575,19 +7008,6 @@ msgstr "ပယ်ဖျက်ထားတဲ့ စာတန်းတပ် န�
 msgid "Delete Labeled Audio"
 msgstr "ပယ်ဖျက်ထားတဲ့ စာတန်းတပ် နယ်ပယ်များ"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "စာတန်းတပ်ထားတဲ့ နယ်ပယ်များကို အောက်ခံကတ်ပြားမှာ ခွဲခြမ်းဖြတ်ယူပါ"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut Labeled Audio"
-msgstr "အမှတ်အသားများကို ဖြတ်ယူချက်ကို ခွဲခြမ်းပါ"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -9670,11 +7090,6 @@ msgstr "ပယ်ဖျက်ထားတဲ့ စာတန်းတပ် န�
 msgid "&Labels"
 msgstr "အမှတ်အသားများ"
 
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "&Edit Labels..."
-msgstr "အမှတ်အသားများကို တည်းဖြတ်ပါ"
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Add Label at &Selection"
@@ -9699,35 +7114,6 @@ msgstr "စာတန်းတပ်ထားတဲ့ နယ်ပယ်မျ�
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "ဖြတ်ယူပါ"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Cut"
-msgstr "အမှတ်အသား တည်းဖြတ်မှု"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Delete"
-msgstr "ပယ်ဖျက်မှုကို ခွဲခြမ်းပါ"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "ဖြတ်ယူချက်ကို ခွဲခြမ်းပါ"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Split Cut"
-msgstr "ဖြတ်ယူမှုကို ခွဲခြမ်းပါ"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "ပယ်ဖျက်ချက်ကို ခွဲခြမ်းပါ"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Split Delete"
-msgstr "ပယ်ဖျက်မှုကို ခွဲခြမ်းပါ"
 
 #: src/menus/LabelMenus.cpp
 #, fuzzy
@@ -9825,11 +7211,6 @@ msgid "&Repeat %s"
 msgstr "%s ကို ထပ်လုပ်ပါ"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy, c-format
-msgid "Plug-in %d to %d"
-msgstr "ယန္တရားငယ်များ %i မှ %i သို့"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "ထုတ်လုပ်ပါ"
 
@@ -9862,18 +7243,8 @@ msgstr "ကိရိယာများ"
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
-msgid "Manage Plug-ins..."
-msgstr "၀မ်းနည်းပါတယ်၊ ပိုင်းလုံး ယန္တရားငယ်ကို ဖွင့်ဖို့ မအောင်မြင်ဘူး။"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Tool"
 msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
-msgid "&Macros..."
-msgstr "အမှတ်အသားများ..."
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
@@ -10358,12 +7729,6 @@ msgstr "ပြန်ဖွင့်ချက် အတွင်းညာဖက�
 msgid "&Toolbars"
 msgstr "ခလုတ်တန်းများ"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "အိုဗာဒုတ် (အဖွင့်/အပိတ်)"
-
 #: src/menus/ToolbarMenus.cpp
 #, fuzzy
 msgid "Reset Toolb&ars"
@@ -10752,11 +8117,6 @@ msgstr "အသံလမ်းကြောများကို အတူတက�
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "အခြား အသံလမ်းကြောကို ရွှေ့တဲ့ တွဲညှပ်"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
 msgid "Move Sele&ction and Tracks"
 msgstr "အခြား အသံလမ်းကြောကို ရွှေ့တဲ့ တွဲညှပ်"
 
@@ -10774,11 +8134,6 @@ msgstr "စတင်ချိန် အလိုက်"
 #, fuzzy
 msgid "By &Name"
 msgstr "အမည် အလိုက်"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "အခြား အသံလမ်းကြောကို ရွှေ့တဲ့ တွဲညှပ်"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
@@ -10829,11 +8184,6 @@ msgstr "ဗဟိုပြုထားတဲ့ အသံလမ်းကြေ�
 #, fuzzy
 msgid "&Solo/Unsolo Focused Track"
 msgstr "ဗဟိုပြုထားတဲ့ အသံလမ်းကြောကို Solo/Unsolo"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "&Close Focused Track"
-msgstr "ဗဟိုပြုထားတဲ့ အသံလမ်းကြောကို ပိတ်ပါ"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
@@ -10930,10 +8280,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "ဖွင့်ပါ/ရပ်တန့်ပါ နောက် ခါဆာကို ချမှတ်ပါ"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "ပြန်ကျော့ ဖွင့်ပြမှု"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "ခေတ္တရပ်နားပါ"
 
@@ -10967,18 +8313,6 @@ msgid "Punch and Rol&l Record"
 msgstr "အသံက အသံသွင်းမှုကို သက်၀င်စေတယ်"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "နယ်ပယ်ကို ဖွင့်ပါ"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "သော့ခတ်ပါ"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "သော့ဖွင့်ပါ"
-
-#: src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "R&escan Audio Devices"
 msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
@@ -10989,39 +8323,8 @@ msgid "Transport &Options"
 msgstr "ရေးမှတ်ခြင်း"
 
 #: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Sound Activation Le&vel..."
-msgstr "အသံ သက်၀င်မှု အဆင့်..."
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "အသံ သက်၀င်စေတဲ့ အသံသွင်းမှု (အဖွင့်/အပိတ်)"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "အသံသွင်းခြင်း ပြီးဆုံးမှု"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "&Overdub (on/off)"
-msgstr "အိုဗာဒုတ် (အဖွင့်/အပိတ်)"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "So&ftware Playthrough (on/off)"
-msgstr "ဆော့ဗ်ဝဲ ဆက်လက်ဖွင့်ပြမှု (အဖွင့်/အပိတ်)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "တင်ပို့ပါ"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pl&ay"
-msgstr "ဖွင့်ပါ/ရပ်တန့်ပါ"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
@@ -11071,17 +8374,6 @@ msgstr "ဖြတ်ယူမှု အစမ်းမြင်ကွင်း�
 #: src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "&Play-at-Speed"
-msgstr "အရှိန်-နဲ့-ဖွင့်ပြပါ"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Normal Pl&ay-at-Speed"
-msgstr "အရှိန်-နဲ့-ဖွင့်ပြပါ"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "&Loop Play-at-Speed"
 msgstr "အရှိန်-နဲ့-ဖွင့်ပြပါ"
 
 #: src/menus/TransportMenus.cpp
@@ -11148,11 +8440,6 @@ msgstr "ချဲ့ထွင် ကိရိယာ"
 
 #: src/menus/ViewMenus.cpp
 #, fuzzy
-msgid "Advanced &Vertical Zooming"
-msgstr "အဆင့်မြင့် ပေါင်းစပ်မှု ရွေးစရာများ"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
 msgid "T&rack Size"
 msgstr "အသံလမ်းကြော ခေါင်းစဉ်"
 
@@ -11195,38 +8482,6 @@ msgstr "ရွေးချယ်မှုအတွက် အစပြုမှ�
 msgid "Skip to Selection End"
 msgstr "ရွေးချယ်မှု အတွက် ပြီးဆုံးမှု"
 
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Extra Menus (on/off)"
-msgstr "အိုဗာဒုတ် (အဖွင့်/အပိတ်)"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "Track &Name (on/off)"
-msgstr "အိုဗာဒုတ် (အဖွင့်/အပိတ်)"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Show Clipping (on/off)"
-msgstr "တွဲညှပ်ချက်ကို ပြပါ"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Show Effects Rack"
-msgstr "သက်ရောက်မှု"
-
-#: src/menus/WindowMenus.cpp
-#, fuzzy
-msgid "&Window"
-msgstr "၀င်းဒိုး"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-#, fuzzy
-msgid "Minimize All Projects"
-msgstr "စီမံချက်ထဲမှာ အသံကြောများ အာလုံးကို ပုံမှန်ဖြစ်စေပါ"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "စုစည်းမှု"
@@ -11243,15 +8498,6 @@ msgstr "လုပ်ဆောင်ပုံများ"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "စုစည်းမှု စနစ်မှာ သက်ရောက်မှုကို အသုံးမချဘူး"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "ကိရိယာများ"
-
-#: src/prefs/DevicePrefs.cpp
-#, fuzzy
-msgid "Preferences for Device"
-msgstr "ဦးစားပေးချက်များ..."
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -11420,15 +8666,6 @@ msgstr "ဖိုင်များကို သိမ်းဆည်းမဲ�
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "%s ဖိုင်တွဲ မတည်ရှိဘူး။ ၄င်းကို ဖန်တီးမလား?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "ယာယီ ဖိုင်တွဲ အသစ်"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "ဖိုင်တွဲ %s ကို ရေးလို့မရဘူး"
 
@@ -11449,50 +8686,8 @@ msgstr "ဦးစားပေးချက်များ..."
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
-msgid "Sorted by Effect Name"
-msgstr "အမည်အလိုက် မျိုးတုစုပါ"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Publisher and Effect Name"
-msgstr "အမည်အလိုက် မျိုးတုစုပါ"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Type and Effect Name"
-msgstr "အမည်အလိုက် မျိုးတုစုပါ"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "&LADSPA"
-msgstr "သက်ရောက်မှု"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "N&yquist"
-msgstr "နိုင်ခွီးစ်ထ်"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Enable Effects"
-msgstr "သက်ရောက်မှု"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
 msgid "Effect Options"
 msgstr "သက်ရောက်မှု တပ်ဆင်ချက်များ"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Plugin Options"
-msgstr "ယန္တရားငယ် တပ်ဆင်ချက်များ"
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
@@ -11637,11 +8832,6 @@ msgstr "ဘာသာစကား -"
 
 #: src/prefs/GUIPrefs.cpp
 #, fuzzy
-msgid "Location of &Manual:"
-msgstr "%s ရဲ့ တည်နေရာ -"
-
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
 msgid "Meter dB &range:"
 msgstr "မီတာ/လှိုင်းသဏ္ဍာန် dB အတိုင်းအတာ -"
 
@@ -11654,16 +8844,6 @@ msgstr "&Y-axis တလျှောက် ဂရစ်ကွက် တခုက�
 msgid "&Beep on completion of longer activities"
 msgstr "ကြာရှည်တဲ့ လှုပ်ရှားမှုများကို ပြီးစီးမှုအတွက် မြည်သံ"
 
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
-msgid "Show Timeline Tooltips"
-msgstr "ယန္တရားငယ် တပ်ဆင်ချက်များ"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Show Scrub Ruler"
-msgstr "ပေတံ"
-
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Import / Export"
 msgstr "တင်သွင်းပါ / တင်ပို့ပါ"
@@ -11672,16 +8852,6 @@ msgstr "တင်သွင်းပါ / တင်ပို့ပါ"
 #, fuzzy
 msgid "Preferences for ImportExport"
 msgstr "ဦးစားပေးချက်များ..."
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Mix down to Stereo or Mono"
-msgstr "စတီရီယိုကို မိုနိုအဖြစ် ခွဲခြမ်းပါ"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Use Advanced Mixing Options"
-msgstr "အဆင့်မြင့် ပေါင်းစပ်မှု ရွေးစရာများ"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -11704,23 +8874,9 @@ msgid "&Beats"
 msgstr "ထပ်လုပ်ပါ"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "အသံ ဖိုင်တခုဆီ အသံကြောများကို တင်ပို့တဲ့အခါ"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "S&how Metadata Tags editor before export"
-msgstr "အဆင့်ကို တင်ပို့ဖို့ မက်တာဒေတာ တည်းဖြတ်ကိရိယာ အလျင်ကို ပြသပါ"
-
-#: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
 msgid "Exported Label Style:"
 msgstr "အမှတ်အသားများ တင်ပို့မဲ့ ပုံစံ -"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "ကီးဘုတ်"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
@@ -11831,37 +8987,6 @@ msgstr "သော့ချက် ပေါင်းစပ်ခြင်း"
 msgid "Preferences for Library"
 msgstr "ဦးစားပေးချက်များ..."
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "FFmpeg တင်သွင်း/တင်ပို့တဲ့ စုစည်းခန်း"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "လိုက်ဖက်တဲ့ FFmpeg စုစည်းခန်းကို မတွေ့ရှိဘူး"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg support is not compiled in"
-msgstr "FFmpeg ပံ့ပိုးချက်ကို မပြုစုတဲ့နေရာ"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "FFmpeg စုစည်းခန်း မူအဆင့် -"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "FFmpeg စုစည်းခန်း -"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "Loca&te..."
-msgstr "ရှာပါ..."
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "Dow&nload"
-msgstr "ဆွဲချပါ"
-
 #: src/prefs/LibraryPrefs.h
 #, fuzzy
 msgid "Library"
@@ -11906,61 +9031,14 @@ msgstr "အသံညှိကိရိယာ"
 msgid "Preferences for Module"
 msgstr "ဦးစားပေးချက်များ..."
 
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "Ask"
-msgstr "ကျွန်ပ်ကို မေးပါ"
-
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "No modules were found"
-msgstr "ပူးတွဲထားတဲ့ စတီရီယို"
-
 #: src/prefs/ModulePrefs.h
 #, fuzzy
 msgid "Module"
 msgstr "အသံညှိကိရိယာ"
 
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "ကြွတ်ခလုတ်"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Preferences for Mouse"
-msgstr "ဦးစားပေးချက်များ..."
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "ကြွတ်ခလုတ် ချုပ်နှောင်ချက်များ (စံထားချက် တန်ဖိုးများ၊ စီစဉ်မဖန်တီးနိုင်ဘူး)"
-
 #: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "ကိရိယာ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "ညွန်ကြားမှု ဆောင်ရွတ်ချက်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "ခလုတ်များ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "ဘယ်-နှိုပ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "ရွေးချယ်မှု အမှတ် ချမှတ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "ဘယ်-ဒရွတ်ဆွဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "ရွေးချယ်မှု အတိုင်းအတာကို ချမှတ်ပါ"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -11968,178 +9046,6 @@ msgstr "ရွေးချယ်မှု အတိုင်းအတာကိ�
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Shift-ဘယ်-နှိုပ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "ရွေးချယ်မှု အတိုင်းအတာကို တိုးချဲ့ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "ဘယ်-နှစ်ချက်-နှိုပ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "တွဲညှပ် (သို့) အသံကြော တခုလုံးကို ရွေးပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "ဘီး-လည်ပတ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Change scrub speed"
-msgstr "အမြန်နှုန်းကို ပြောင်းလဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "အမှတ်ကို ချဲ့ကားပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "အတိုင်းအတာ တခုကို ချဲ့ကားပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "ညာ-ဒရွတ်ဆွဲတာနဲ့ ဆင်တူတယ်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "ညာ-နှိုပ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "တဆင့် ကျုံ့ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "ညာ-ဒရွတ်ဆွဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "ဘယ်-ဒရွတ်ဆွဲတာနဲ့ ဆင်တူတယ်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Shift-ဒရွတ်ဆွဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "အတိုင်းအတာတခုကို ကျုံ့ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "အလယ်-နှိုပ်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move clip left/right or between tracks"
-msgstr "အသံကြောများ အကြား အပိုင်းကို အထက်/အောက် ရွေ့လျားပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Shift-ဘယ်-ဒရွတ်ဆွဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move all clips in track left/right"
-msgstr "အသံကြောထဲမှ အသံ ရွှေပြောင်းတဲ့ အပိုင်းများအားလုံး"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Left-Drag"
-msgstr "ဘယ်-ဒရွတ်ဆွဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "အသံကြောများ အကြား အပိုင်းကို အထက်/အောက် ရွေ့လျားပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Alt-Left-Drag"
-msgstr "ဘယ်-ဒရွတ်ဆွဲပါ"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "ချဲ့ထွင်မှု စာအိတ်ကို ပြောင်းလဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "ခဲတံ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "နမူနာကို ပြောင်းလဲပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt-ဘယ်-နှိုပ်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "နမူနာကို ချောမွေ့စေပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "အချို့ နမူနာများကို ပြောင်းပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "နမူနာ တခုကိုပဲ ပြောင်းပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "မျိုးစုံ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "ရွေးချယ် ကိရိယာနဲ့ ဆင်တူတယ်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "ချဲ့ထွင် ကိရိယာနဲ့ ဆင်တူတယ်"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "တခုခု"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll tracks up or down"
-msgstr "အထက်​ (သို့) အောက် လှိမ့်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Shift-ဘီး-လည်ပတ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll waveform"
-msgstr "ဘယ် (သို့) ညာ လှိမ့်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Wheel-Rotate"
-msgstr "ဘီး-လည်ပတ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Zoom waveform in or out"
-msgstr "ချဲ့ကား (သို့) ကျုံ့ပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Shift-Wheel-Rotate"
-msgstr "Shift-ဘီး-လည်ပတ်ပါ"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "မီတာ/လှိုင်းသဏ္ဍာန် dB အတိုင်းအတာ -"
 
 #: src/prefs/PlaybackPrefs.cpp
 #, fuzzy
@@ -12194,15 +9100,6 @@ msgid "Other..."
 msgstr "အခြား..."
 
 #: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "နမူနာပြခြင်း"
-
-#: src/prefs/QualityPrefs.cpp
-#, fuzzy
-msgid "Default Sample &Rate:"
-msgstr "စံထားချက် နမူနာ နှုန်းထား -"
-
-#: src/prefs/QualityPrefs.cpp
 #, fuzzy
 msgid "Default Sample &Format:"
 msgstr "စံထားချက် နမူနာ အမျိုးအစား -"
@@ -12229,16 +9126,6 @@ msgstr "နမူနာ နှုန်းထား အသွင်ပြော�
 #, fuzzy
 msgid "Preferences for Recording"
 msgstr "အသံက အသံသွင်းမှုကို သက်၀င်စေတယ်"
-
-#: src/prefs/RecordingPrefs.cpp
-#, fuzzy
-msgid "Play &other tracks while recording (overdub)"
-msgstr "အိုဗာဒုတ် -အသစ်တခုကို အသံသွင်းနေတုန်း အခြား အသံကြောများကို ဖွင့်ပြပါ"
-
-#: src/prefs/RecordingPrefs.cpp
-#, fuzzy
-msgid "&Software playthrough of input"
-msgstr "ဆော့ဗ်ဝဲ ဆက်လက်ဖွင့်ပြမှု (အဖွင့်/အပိတ်)"
 
 #: src/prefs/RecordingPrefs.cpp
 #, fuzzy
@@ -12311,13 +9198,6 @@ msgstr "အသံလမ်းကြောကို မှတ်သားပါ"
 #, fuzzy
 msgid "Period"
 msgstr "ကြာမြင့်ချိန် -"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "ချဲ့ထွင်မှု စံထားချက်"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -12442,11 +9322,6 @@ msgid "8 - most wideband"
 msgstr "၈ - အကျယ်ဆုံး အဖွဲ့"
 
 #: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "1024 - default"
-msgstr "၂၅၆ - စံထားချက်"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "၂၀၄၈"
 
@@ -12468,31 +9343,6 @@ msgstr "ယိုယွင်းမှု အကြောင်းရင်း -
 #, fuzzy
 msgid "Ena&ble Spectral Selection"
 msgstr "ရွေးချယ်မှု"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "&Y-axis တလျှောက် ဂရစ်ကွက် တခုကို ပြသပါ"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "FFT တွေ့ရှိတဲ့ မှတ်စုများ"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "ကျယ်ပြန့်မှု အနည်းဆုံး (dB) -"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "အများဆုံး မှတ်စုများ အရေအတွက် (၁..၁၂၈) -"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "မှတ်စုများကို ရှာပါ"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "မှတ်စုများကို တိုင်းတာပါ"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
@@ -12527,18 +9377,6 @@ msgstr "အများဆုံး ကြိမ်နှုန်းဟာ က�
 msgid "The frequency gain must be an integer"
 msgstr "အများဆုံး ကြိမ်နှုန်းဟာ ကိန်းပြည့်ဖြစ်ရမယ်"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "အနည်းဆုံး ကျယ်ပြန့်မှု (dB) ဟာ ကိန်းပြည့် ဖြစ်ရမယ်"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "မှတ်စုများရဲ့ အများဆုံး အရေအတွက်ဟာ ကိန်းပြည့်တခု ဖြစ်ရမယ်"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "မှတ်စုများရဲ့ အများဆုံး အရေအတွက်ဟာ ၁...၁၂၈ အတိုင်းအတာထဲမှာ ရှိရမယ်"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -12551,11 +9389,6 @@ msgstr "အဓိကအချက်"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "ဦးစားပေးချက်များ..."
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-msgid "Theme Settings"
-msgstr "ရွေးစရာများ..."
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Info"
@@ -12628,18 +9461,8 @@ msgid "Enable cut &lines"
 msgstr "မီတာကို ဖွင့်ပါ"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Enable &dragging selection edges"
-msgstr "ဘယ်နဲ့ ညာ ရွေးချယ်​မှု အစွန်းများ အတွက် ဒရွတ်ဆွဲမှုကို ဖွင့်ပါ"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "\"Move track focus\" c&ycles repeatedly through tracks"
 msgstr "\"အသံကြော ဗဟိုပြုချက် ရွှေ့ပါ\" ဟာ အသံကြောများ တလျှောက် ထပ်ခါ ဝိုင်းရံပေးတယ်"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Advanced &vertical zooming"
-msgstr "အဆင့်မြင့် ပေါင်းစပ်မှု ရွေးစရာများ"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 #, fuzzy
@@ -12776,40 +9599,6 @@ msgstr "ကြိုတင်သတ်မှတ်ချက် -"
 msgid "Preset 2:"
 msgstr "ကြိုတင်သတ်မှတ်ချက် -"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "သတိပေးချက်များ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Preferences for Warnings"
-msgstr "ဦးစားပေးချက်များ..."
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Saving &projects"
-msgstr "စီမံချက်ကို သိမ်းဆည်းပါ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Saving &empty project"
-msgstr "စီမံချက်ကို သိမ်းဆည်းပါ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &mono during export"
-msgstr "စတီရီယိုကို မိုနိုအဖြစ် ခွဲခြမ်းပါ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &stereo during export"
-msgstr "စတီရီယိုကို မိုနိုအဖြစ် ခွဲခြမ်းပါ"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Missing file &name extension during export"
-msgstr "စတီရီယိုကို မိုနိုအဖြစ် ခွဲခြမ်းပါ"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 #, fuzzy
@@ -12848,33 +9637,12 @@ msgstr "ပြဿနာဖြေရှင်းပါ"
 msgid "Classic"
 msgstr "ဖိုင်ကို တင်ပို့ပါ..."
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "အိုဒေးစီးတီး %s ခလုတ်တန်း"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 #, fuzzy
 msgid "High Contrast"
 msgstr "ခြားနားပါ..."
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "ပေါ့ပါးတယ်"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "ကိရိယာများ"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "အိုဒေးစီးတီး %s ခလုတ်တန်း"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -13071,16 +9839,6 @@ msgstr "တည်းဖြတ်ပါ"
 
 #: src/toolbars/EditToolBar.cpp
 #, fuzzy
-msgid "Cut selection"
-msgstr "ရွေးချယ်ချက်ကို အံကိုက်ဖြစ်စေပါ"
-
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Copy selection"
-msgstr "ရွေးချယ်မှု"
-
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
 msgid "Trim audio outside selection"
 msgstr "ရွေးချယ်ချက် ပြင်ပကို တိဖြတ်ပါ"
 
@@ -13131,11 +9889,6 @@ msgstr "၀င်းဒိုးမှာ ရွေးချယ်ချက်�
 msgid "Fit project to width"
 msgstr "၀င်းဒိုးမှာ စီမံချက်ကို အံကိုက်ဖြစ်စေပါ"
 
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Open Effects Rack"
-msgstr "နောက်ဆုံး သက်ရောက်မှုကို ထပ်လုပ်ပါ"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -13167,11 +9920,6 @@ msgstr "အသံသွင်းမှု မီတာ"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "မီတာ-အသံသွင်းချက်"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "မီတာကို ဖွင့်ပြပါ"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -13209,83 +9957,10 @@ msgstr "အသံသွင်းမှု မီတာ"
 msgid "&Playback Meter Toolbar"
 msgstr "မီတာကို ဖွင့်ပြပါ"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub"
-msgstr "ခလုတ်တန်းများ"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Seek"
-msgstr "စောင့်ကြည့်မှုကို စတင်ပါ"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub Ruler"
-msgstr "ပေတံ"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 #, fuzzy
 msgid "Scrubbing"
 msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Scrubbing"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Scrubbing"
-msgstr "နိုင်ခွီးစ်ထ် လှုံ့ဆော်ချက်..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Seeking"
-msgstr "စောင့်ကြည့်မှုကို စတင်ပါ"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Seeking"
-msgstr "စောင့်ကြည့်မှုကို စတင်ပါ"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Hide Scrub Ruler"
-msgstr "ပေတံ"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scru&b Toolbar"
-msgstr "ခလုတ်တန်းများ"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Project Rate (Hz)"
-msgstr "စီမံချက် နှုန်းထား (Hz) -"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Snap-To"
-msgstr "ကူးသွားတဲ့ နေရာ"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 #, fuzzy
@@ -13318,10 +9993,6 @@ msgid "Show"
 msgstr "ကိုဓများ အားလုံးကို ပြသပါ"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "ကူးသွားတဲ့ နေရာ"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "အရှည်"
 
@@ -13330,13 +10001,6 @@ msgstr "အရှည်"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "အလယ်ဗဟို"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy, c-format
-msgid "Selection %s. %s won't change."
-msgstr "MIDI ဖိုင်တခုကို ရွေးပါ..."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -13412,10 +10076,6 @@ msgid "Envelope Tool"
 msgstr "စာအိတ် ကိရိယာ"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "ချဲ့ထွင် ကိရိယာ"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "ရေးဆွဲ ကိရိယာ"
@@ -13448,11 +10108,6 @@ msgstr "ရေးဆွဲ ကိရိယာ"
 
 #: src/toolbars/ToolsToolBar.cpp
 #, fuzzy
-msgid "&Zoom Tool"
-msgstr "ချဲ့ထွင် ကိရိယာ"
-
-#: src/toolbars/ToolsToolBar.cpp
-#, fuzzy
 msgid "&Multi Tool"
 msgstr "မျိုးစုံသုံး ကိရိယာ"
 
@@ -13478,11 +10133,6 @@ msgstr "ရွေးထားတဲ့ အမြန်နှုန်းနဲ�
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "အမြန်နှုန်းကို ပြန်ဖွင့်ပါ"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-#, fuzzy
-msgid "Looped-Play-at-Speed"
-msgstr "အရှိန်-နဲ့-ဖွင့်ပြပါ"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -13638,14 +10288,6 @@ msgstr "အသံလမ်းကြောကို မှတ်သားပါ"
 #, fuzzy
 msgid "Stretch"
 msgstr "ယိုယွင်းမှု အကြောင်းရင်း -"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "ပေါင်းစပ်ထားတဲ့ ညှပ်စများ"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "ပေါင်းစပ်ပါ"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -13863,22 +10505,6 @@ msgstr "စတီရီယို အသံလမ်းကြောကို ခ�
 msgid "Split Stereo to Mo&no"
 msgstr "စတီရီယိုကို မိုနို '%s' အဖြစ် ခွဲခြမ်းပါ"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "မိုနို"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "ဘယ်ဖက် ချာနယ်"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "ညာဖက် ချာနယ်"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "ချာနယ်"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -13916,26 +10542,6 @@ msgstr "စတီရီယိုကို မိုနို '%s' အဖြစ�
 #, fuzzy
 msgid "Split to Mono"
 msgstr "စတီရီယိုကို မိုနိုအဖြစ် ခွဲခြမ်းပါ"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Stereo, %dHz"
-msgstr "စတီရီယို၊"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Mono, %dHz"
-msgstr "မိုနို၊"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Left, %dHz"
-msgstr "ဘယ်ဖက်၊"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Right, %dHz"
-msgstr "ညာဖက်၊"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -13989,21 +10595,6 @@ msgstr "နောက် ကိရိယာ"
 msgid "Mute/Unmute Track"
 msgstr "ဗဟိုပြုထားတဲ့ အသံလမ်းကြောကို အသံပိတ်/ဖွင့်ပါ"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Rename clip..."
-msgstr "နမူနာပြန်တင်ပါ..."
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
-msgid "Zoom x1/2"
-msgstr "ချဲ့ကားပါ"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
-msgid "Zoom x2"
-msgstr "ချဲ့ထွင်ပါ"
-
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 #, fuzzy
 msgid "Wa&veform"
@@ -14023,22 +10614,6 @@ msgstr "တန်ဆာပလာ"
 #, fuzzy
 msgid "WaveColor Change"
 msgstr "နှုန်းထား​ ပြောင်းလဲမှု"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "ပြောင်းလဲရမဲ့ အောက်ပိုင်း အရှိန် ကန့်သတ်ချက် (%) -"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "အောက်ပိုင်း အရှိန် ကန့်သတ်ချက်"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "ပြောင်းလဲရမဲ့ အထက်ပိုင်း အရှိန် ကန့်သတ်ချက် (%) -"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "အထက်ပိုင်း အရှိန် ကန့်သတ်ချက်"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -14080,12 +10655,6 @@ msgstr "အတိုင်းအတာကို ချမှတ်ပါ..."
 msgid "Logarithmic &Interpolation"
 msgstr "လျင်မြန်တဲ့ ဆင့် ဆက်စပ်ဖန်တီးခြင်း"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "တချိန်ထဲမှာ အသံကြော တခုကို ရွှေ့ဖို့ နှိုပ်ပြီး ဒရွတ်ဆွဲပါ"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 msgid "Add Mono Track"
@@ -14106,11 +10675,6 @@ msgstr "အသံလမ်းကြောကို စာတန်းတပ်�
 #, fuzzy
 msgid "Export Audio..."
 msgstr "တင်ပို့ပါ..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-#, fuzzy
-msgid "&Name..."
-msgstr "အမည်..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -14293,21 +10857,6 @@ msgstr "%.2f စက္ကန့်နေရာ %.2f အတွက် ငြိမ
 
 #: src/tracks/ui/TrackButtonHandles.cpp
 #, fuzzy
-msgid "Command+Click to deselect"
-msgstr "ညွှန်ကြားချက်"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Select track"
-msgstr "အသံလမ်းကြောတိုများ"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Ctrl+Click to deselect"
-msgstr "ညွှန်ကြားချက်"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
 msgid "Open menu..."
 msgstr "လတ်တလောကို ဖွင့်ပါ..."
 
@@ -14387,12 +10936,6 @@ msgstr "L"
 msgid "R"
 msgstr "R"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, fuzzy, c-format
-msgid "%.2fx"
-msgstr "%.1f dB"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "ရှင်းလင်းပါ"
@@ -14417,34 +10960,6 @@ msgstr "အင်တာနက်ပေါ်မှ အကူအညီ"
 #, fuzzy
 msgid "Menu"
 msgstr "ဖိုင်များ အားလုံး (*)|*"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click to Start Monitoring"
-msgstr "စောင့်ကြည့်မှုကို စတင်ပါ"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click for Monitoring"
-msgstr "စောင့်ကြည့်မှုကို ရပ်နားပါ"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click to Start"
-msgstr "အစကို ကျော်သွားပါ"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click"
-msgstr "ဘယ်-နှိုပ်ပါ"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "စောင့်ကြည့်မှုကို ရပ်နားပါ"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "စောင့်ကြည့်မှုကို စတင်ပါ"
 
 #: src/widgets/MeterPanel.cpp
 #, fuzzy
@@ -14520,10 +11035,6 @@ msgstr "%.1f dB"
 #, fuzzy, c-format
 msgid " Peak %.2f "
 msgstr "%.1f dB"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "လှုပ်ရှားမှုတခုကို ရွေးချယ်ပါ"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'
@@ -19020,13 +15531,3 @@ msgstr "%s ဂစ်ဂါဘိုက်"
 #, c-format
 msgid "%s MB"
 msgstr "%s မီဂါဘိုက်"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "Low Playback Latency: %g"
-msgstr "အသံပြန်ဖွင့်ချိန် ကြားခံနှောင့်နှေးကာလ လျော့ပါး‌စေမှုနှုန်း: %g"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, c-format
-msgid "High Playback Latency: %g"
-msgstr "အသံပြန်ဖွင့်ရာတွင် ကြားခံကာလ နှောင့်နှင်းကြန့်ကြာမှု: %g"

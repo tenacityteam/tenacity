@@ -27,114 +27,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Tok je aktiven … ni mogoče zbrati informacij.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "Izberite snemalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "Izberite predvajalno napravo"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Ni naprav"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "Podatki o napravi niso na voljo."
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "&Naprava:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "Naprave"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "Ime: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "Snemalni kanali"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "Raven predvajanja"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "Konec snemanja:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "Konec snemanja:"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "Mere vzorčenja"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "Izberite snemalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "Izberite predvajalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "Ni naprav"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Pokaži izhod"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Izberite snemalno napravo"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Izberite predvajalno napravo"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -171,21 +67,6 @@ msgstr ""
 "Odpiranje datoteke zbirke podatkov je spodletelo:\n"
 "\n"
 "%s"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je poln.\n"
-"%s\n"
-"Za namige o sproščanju prostora kliknite gumb za pomoč."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -234,11 +115,6 @@ msgstr "%s datotek"
 #, c-format
 msgid "(%s)"
 msgstr "(%s)"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "Mapa %s nima pravic za pisanje"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -477,14 +353,6 @@ msgstr "Napaka pri odpiranju datoteke: »%s«"
 msgid "Could not parse XML"
 msgstr "XML ni mogoče razčleniti"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "Prvi poskusni ukaz ..."
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "Drugi poskusni ukaz ..."
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -575,31 +443,6 @@ msgstr "%s, spletni razvijalec"
 msgid "%s, graphics"
 msgstr "%s, grafično oblikovanje"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, co-founder and developer"
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, razvijalec in soustanovitelj"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity developer"
-msgstr "%s, spletni razvijalec"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "%s, spletni razvijalec"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "%s, spletni razvijalec"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -645,12 +488,6 @@ msgstr "Člani ekipe %s"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Avtorji prispevkov"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Zaslužni člani ekipe:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -747,11 +584,6 @@ msgstr "Pretvornik &frekvence vzorčenja:"
 msgid "File Format Support"
 msgstr "Podpora vrstam datotek"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "Uvažanje MP3"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -779,16 +611,8 @@ msgid "MP2 export"
 msgstr "Izvoz MP2"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "Uvoz QuickTime"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "Uvoz/izvoz FFmpeg"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "Uvozi prek GStreamerja"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -817,12 +641,6 @@ msgstr "Dejanja časovnice so med snemanjem onemogočena"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Kliknite in povlecite za prilagajanje, dvokliknite za ponastavitev."
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "Glava snemanja/predvajanja"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -892,32 +710,6 @@ msgstr "Hitro predvajanje omogočeno"
 msgid "Timeline Options"
 msgstr "Možnosti časovnice"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "Omogoči hitro predvajanje"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "Omogoči vleko izbora"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "Posodobi zaslon med predvajanjem"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "Zakleni območje predvajanja"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Pinned Play Head"
-msgstr "Pripeta glava predvajanja"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr "Regije ni mogoče zakleniti pred koncem projekta."
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "Nobene zvočne naprave ni mogoče najti.\n"
@@ -934,12 +726,6 @@ msgstr ""
 #, c-format
 msgid "Error: %s"
 msgstr "Napaka:  %s"
-
-#: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Throw Error"
-msgid "PortAudio Error"
-msgstr "Vrzi napako"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1403,16 +1189,6 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr "Pričakovan len %lld, len steze je %lld.\n"
 
 #: src/Benchmark.cpp
-#, fuzzy, c-format
-#| msgid "Performing Low-Pass Filter..."
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "Izvajanje filtriranja nizkega prehoda …"
-msgstr[1] "Izvajanje filtriranja nizkega prehoda …"
-msgstr[2] "Izvajanje filtriranja nizkega prehoda …"
-msgstr[3] "Izvajanje filtriranja nizkega prehoda …"
-
-#: src/Benchmark.cpp
 #, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Izreži: %lld - %lld \n"
@@ -1631,17 +1407,6 @@ msgstr "To lahko traja nekaj sekund"
 msgid "Could not write to %s.\n"
 msgstr "Zapisovanje ni možno v %s.\n"
 
-#: src/DBConnection.cpp
-#, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je poln.\n"
-"%s\n"
-"Za namige o sproščanju prostora kliknite gumb za pomoč."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1681,26 +1446,6 @@ msgstr "Napaka zbirke podatkov. Žal več podrobnosti ni na voljo."
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Napaka (datoteka morda ni bila zapisana): %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "&Naredi kopijo nestisnjenih datotek v projektu (varneje)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "&Beri nestisnjene datoteke iz izvirnega mesta (hitreje)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "&Kopiraj vse zvoke v projekt (najvarneje)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "&Ne kopiraj nobenega zvoka"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "Vpra&šaj"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1819,11 +1564,6 @@ msgstr "&Os:"
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "&Ponovno izriši …"
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr ""
-"Za risanje spektra morajo imeti vse izbrane steze enako mero vzorčenja."
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -2013,12 +1753,6 @@ msgstr "&Strni"
 #, c-format
 msgid "Compacting actually freed %s of disk space."
 msgstr "S strnjevanjem se je sprostilo %s prostora na disku."
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "&Zgodovina ..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2258,11 +1992,6 @@ msgid "Signal Level Meter"
 msgstr "Merilnik ravni signala"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "Premaknjeni drsnik ojačitve"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 msgid "Moved velocity slider"
 msgstr "Premaknjeni drsnik hitrosti"
@@ -2271,10 +2000,6 @@ msgstr "Premaknjeni drsnik hitrosti"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "Premaknjeni drsnik zasuka"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "&Mešalna miza ..."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2530,110 +2255,19 @@ msgstr "Omogoči nove vstavke"
 msgid "Nyquist Prompt"
 msgstr "Ukazna vrstica Nyquist"
 
-#: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "Upravljaj vstavke"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "Nov"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr ""
-"Izberite učinke, kliknite gumb Omogoči ali Onemogoči, nato kliknite V redu."
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "Pokaži:"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "Pokaži vse"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "&Vse"
 
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show disabled"
-msgstr "Pokaži onemogočeno"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "O&nemogočeno"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show enabled"
-msgstr "Pokaži omogočeno"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "O&mogočeno"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "Pokaži novo"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "No&v"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "Stanje"
-
 #: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "Pot"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "Iz&beri vse"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "Po&čisti vse"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
 msgid "&Enable"
 msgstr "&Omogoči"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "&Onemogoči"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr ""
-"Omogočanje učinkov ali ukazov:\n"
-"\n"
-"%s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr ""
-"Omogočanje učinka ali ukaza:\n"
-"\n"
-"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2643,14 +2277,6 @@ msgid ""
 msgstr ""
 "Učinek ali ukaz pri %s se ni uspešno registriral:\n"
 "%s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Pri tiskanju je prišlo do težav."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "Natisni"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2903,29 +2529,8 @@ msgid "Error Writing to File"
 msgstr "Napaka pri pisanju v datoteko"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je poln.\n"
-"%s\n"
-"Za namige o sproščanju prostora kliknite gumb za pomoč."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Strnjevanje projekta"
-
-#. i18n-hint: The %02i is the project number, the %s is the project name.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Projekt %02i] Audacity »%s«"
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -3010,30 +2615,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "Projektov ni mogoče shranjevati na pogone FAT."
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"Vaš projekt je zdaj prazen.\n"
-"Shranjen projekt bo brez stez!!\n"
-"\n"
-"Za shranjevanje predhodno odprtih stez:\n"
-"kliknite 'Ne', Uredi > Razveljavi, dokler niso\n"
-"odprte vse steze, nato Datoteka > Shrani projekt.\n"
-"\n"
-"Želite kljub temu shraniti?"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "Opozorilo - prazen projekt"
-
-#: src/ProjectFileManager.cpp
 msgid "Insufficient Disk Space"
 msgstr "Nezadosten prostor na disku"
 
@@ -3074,15 +2655,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sShrani projekt »%s« kot ..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"»Shrani projekt« je za projekt Audacity, ne za zvočno datoteko.\n"
-"Za zvočno datoteko, ki jo želite odpirati v drugih programih, uporabite "
-"»Izvozi«.\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3261,22 +2833,6 @@ msgid "Save project before closing?"
 msgstr "Želite shraniti projekt pred zapiranjem?"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"Shranjen projekt bo brez stez.\n"
-"\n"
-"Za shranjevanje predhodno odprtih stez:\n"
-"kliknite Prekliči, Uredi > Razveljavi, dokler niso\n"
-"odprte vse steze, nato Datoteka > Shrani projekt."
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "Preostali prostor na disku zadostuje za snemanje: %s"
@@ -3342,18 +2898,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "Opozorilo - porezovanje predolge bločne datoteke"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "Izklopljeno"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "Najbližje"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "Predhodnji"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "Z zvokom aktivirano snemanje Audacity"
@@ -3361,11 +2905,6 @@ msgstr "Z zvokom aktivirano snemanje Audacity"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Raven aktivacije (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "%s, spletni razvijalec"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3450,10 +2989,6 @@ msgid "Set De&fault"
 msgstr "&Nastavi privzeto"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "Tega opozorila ne prikaži pri izvažanju zvoka"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Uredi zvrsti"
 
@@ -3497,24 +3032,6 @@ msgstr "Odstranjevanje datoteke %s je spodletelo"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "Spodletelo!"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"Želite ponastaviti možnosti?\n"
-"\n"
-"To je enkratno vprašanje po 'namestitvi', kjer ste zahtevali ponastavitev "
-"možnosti."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "&Uporabi nastavitve"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -4003,10 +3520,6 @@ msgstr "Posnetek izvožen:"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Časovno omejeno snemanje"
 
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "Stereo, 999999Hz"
-
 #: src/TrackPanel.cpp
 msgid "Track Panel"
 msgstr "Podokno stez"
@@ -4084,11 +3597,6 @@ msgstr "Odstrani zvočni(e) posnetek(e)"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "Odstrani stezo"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "Odstranjen posnetek '%s.'"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4474,12 +3982,6 @@ msgid "Builtin Commands"
 msgstr "Vgrajeni ukazi"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "Neznano ime vgrajenega ukaza"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "Neznano ime vgrajenega ukaza"
 
@@ -4780,14 +4282,6 @@ msgid "Sets various values for a project."
 msgstr "Določa različne vrednosti projekta."
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "Indeks stez:"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "Indeks kanalov:"
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "Določite stanje steze"
 
@@ -4802,10 +4296,6 @@ msgstr "S pozornostjo"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "Določite zvok steze"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "Ojačitev:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4862,12 +4352,6 @@ msgstr "Uporabi spektralne nastavitve"
 #, fuzzy
 msgid "Spectral Select"
 msgstr "Spektralno brisanje"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr "She&ma"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -5036,10 +4520,6 @@ msgid "High Quality Pitch Change"
 msgstr "Visokokakovostna sprememba višine tona"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Spremeni višino tona brez spremembe tempa"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "Ocenjena začetna višina tona: %s%d (%.3f Hz)"
@@ -5144,16 +4624,8 @@ msgid "n/a"
 msgstr "ni na voljo"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Spremeni hitrost"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "Spremenite hitrost steze skupaj s spremembo višine tona"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Spremeni hitrost z vplivom na tempo in višino tona"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&Speed Multiplier:"
@@ -5230,10 +4702,6 @@ msgstr "Spremeni tempo izbora brez spremembe višine tona"
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "Visokokakovostna sprememba tempa"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Spremeni tempo brez spremembe višine tona"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Beats per minute"
@@ -5440,164 +4908,14 @@ msgstr "Čas napada %.2f s"
 msgid "Release Time %.1f secs"
 msgstr "Čas upada %.1f s"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Exponential Out"
-msgid "Exponential-Fit"
-msgstr "Eksponentni izhod"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "Vrhnja amplituda (dB)"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "Odstranjevanje šuma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "Odstranjevanje šuma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Limiter"
-msgid "Analog Limiter"
-msgstr "Omejevalnik"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "Stiskalnik"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Sets the loudness of one or more tracks"
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Določi glasnost ene ali več stez"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compressor step response"
-msgstr "&Stisni na osnovi vrhov"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritem"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "&Algoritem:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compress based on:"
-msgstr "&Stisni na osnovi vrhov"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "N&ormalize stereo channels independently"
-msgid "Compress stereo channels independently"
-msgstr "Stereo kanala n&ormaliziraj neodvisno"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Ratio:"
-msgid "Ratio:"
-msgstr "&Razmerje:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "Širina:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "Širina:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "&Izhodna ojačitev (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "Izhodna ojačitev (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Attack Time:"
-msgid "Attack:"
-msgstr "&Napadalni čas:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "Napadalni čas"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "R&elease Time:"
-msgid "Release:"
-msgstr "Čas &upada:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "Čas upada"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "Trajanje glajenja:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "Trajanje glajenja"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "Končni čas:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Končni čas"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6263,11 +5581,6 @@ msgid "Applied effect: %s"
 msgstr "Dodan učinek: %s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "Uporabljen ukaz: %s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "Izberite prednastavitev"
 
@@ -6294,25 +5607,6 @@ msgstr "Tovarniško privzete vrednosti"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"Poskus inicializacije naslednjega učinka je spodletel:\n"
-"\n"
-"%s\n"
-"\n"
-"Več informacij je morda na voljo v Pomoč > Diagnostika > Pokaži zapisnik."
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "Učinek se ni uspešno inicializiral"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6330,95 +5624,12 @@ msgid "Command failed to initialize"
 msgstr "Ukaz se ni uspešno inicializiral"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "Skladovnica učinkov"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "&Uporabi"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "Latenca: 0"
-
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "&Zaobidi"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "Aktivno stanje"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "Določi aktivno stanje učinka"
-
-#: src/effects/EffectUI.cpp
-msgid "Show/Hide Editor"
-msgstr "Pokaži/skrij urejevalnik"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "Odpri/zapri urejevalnik učinka"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "Premakni navzgor"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "Pomakni učinek po skladovnici navzgor"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Down"
-msgstr "Premakni navzdol"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "Pomakni učinek po skladovnici navzdol"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "Priljubljena"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "Označi učinek za priljubljenega"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "Odstrani učinek s skladovnice"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "Ime učinka"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "Latenca: %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "Nek ukaz"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "Upravljaj prednastavitve in možnosti"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "&Upravljaj"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "Začni in ustavi predvajanje"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "Začni &predvajati"
 
 #: src/effects/EffectUI.cpp
 msgid "Preview effect"
@@ -6427,26 +5638,6 @@ msgstr "Predogled učinka"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "Pre&dogled"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "Predo&gled učinka"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "Preskoči nazaj"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "Preskoči na&zaj"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "Preskoči naprej"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "Preskoči nap&rej"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6532,12 +5723,6 @@ msgstr ""
 "\n"
 "Jo želite zamenjati?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "Ustavi &predvajanje"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6610,21 +5795,6 @@ msgstr "Porezava visokih tonov"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"Če želite uporabiti to krivuljo izravnalnika v makru, zanjo izberite novo "
-"ime.\n"
-"Izberite gumb 'Shrani/Upravljaj s krivuljami ...' in preimenujte "
-"'neimenovano' krivuljo, nato jo uporabite."
-
-#: src/effects/Equalization.cpp
-msgid "Filter Curve EQ needs a different name"
-msgstr "Krivulja filtra EQ potrebuje drugačno ime"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr ""
 "Če želite uveljaviti izravnavanje, morajo imeti vse izbrane steze enako "
@@ -6633,10 +5803,6 @@ msgstr ""
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
 msgstr "Mera vzorčenja te steze je prenizka za ta učinek."
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "Učinek ni na voljo"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6739,34 +5905,6 @@ msgstr "Pokaži mrežne črte"
 msgid "Show g&rid lines"
 msgstr "Pokaži mre&žne črte"
 
-#: src/effects/Equalization.cpp
-msgid "&Processing: "
-msgstr "O&bdelovanje: "
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "Privz&eto"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "SSE, &niteno"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "A&VX"
-
-#: src/effects/Equalization.cpp
-msgid "AV&X Threaded"
-msgstr "AV&X, niteno"
-
-#: src/effects/Equalization.cpp
-msgid "&Bench"
-msgstr "&Testiranje"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6787,20 +5925,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "Napaka pri nalaganju krivulj izravnalnika (EQ)"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "Napaka pri shranjevanju krivulj izenačevalnika"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "Zahtevane krivulje ni mogoče najti, uporabljena bo 'neimenovana'"
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "Krivulje ni mogoče najti"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -6966,36 +6096,6 @@ msgstr "Na izbranem zvoku uveljavi linearno pojemanje"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Na izbranem zvoku uveljavi linearno pojemanje"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "Najdi porezano"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "Ustvari oznake, kjer zazna porezavo"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Clicks"
-msgstr "Klikni"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Right"
-msgstr "Klikni"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Left"
-msgstr "Klikni"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Najdi porezano"
@@ -7133,34 +6233,6 @@ msgstr "Druga največja"
 #: src/effects/NoiseReduction.cpp
 msgid "Old"
 msgstr "Stari"
-
-#: src/effects/NoiseReduction.cpp
-msgid "none, Hann (2.0.6 behavior)"
-msgstr "brez, Hann (vedenje v 2.0.6)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, none"
-msgstr "Hann, brez"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, Hann (default)"
-msgstr "Hann, Hann (privzeto)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Blackman, Hann"
-msgstr "Blackman, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, none"
-msgstr "Hamming, brez"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Hann"
-msgstr "Hamming, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Reciprocal Hamming"
-msgstr "Hamming, recipročni Hamming"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7368,48 +6440,6 @@ msgstr "4 (privzeto)"
 #: src/effects/NoiseReduction.cpp
 msgid "Discrimination &method:"
 msgstr "&Metoda diskriminacije:"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Odstranjevanje šuma"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr ""
-"Odstrani nespremenljive šume iz ozadja, kot so ventilatorji, šum traku ali "
-"brnenje."
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Izberite ves zvok, ki ga želite prefiltrirati, izberite koliko šuma želite\n"
-"odstraniti in nato kliknite 'V redu', da odstranite šum.\n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "Odstranjevanje &šuma (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "O&bčutljivost (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Fr&equency smoothing (Hz):"
-msgstr "&Glajenje frekvenc (Hz):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "Čas napa&da/upada (v sekundah):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "Čas napada/upada"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "Ods&trani"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7757,11 +6787,6 @@ msgstr "&Širina sterea (%):"
 msgid "Wet O&nly"
 msgstr "Sa&mo vlažno"
 
-#: src/effects/Reverb.cpp
-#, c-format
-msgid "Reverb: %s"
-msgstr "Odmev: %s"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Vzvratno"
@@ -7961,14 +6986,6 @@ msgid "Converts stereo tracks to mono"
 msgstr "Pretvori stereo stezo v mono"
 
 #: src/effects/StereoToMono.cpp
-msgid "Resampling left channel"
-msgstr "Prevzorčenje levega kanala"
-
-#: src/effects/StereoToMono.cpp
-msgid "Resampling right channel"
-msgstr "Prevzorčenje desnega kanala"
-
-#: src/effects/StereoToMono.cpp
 msgid "Mixing down to mono"
 msgstr "Pri mešanju v mono"
 
@@ -8122,15 +7139,6 @@ msgstr "Porež&i steze neodvisno"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "Učinki VST"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "Pregledovanje vstavkov VST"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "Registriranje %d od %d: %-64.64s"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8329,18 +7337,6 @@ msgid "Import Audio Unit Presets"
 msgstr "Uvozi prednastavitve Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "Prednastavitve (lahko jih izberete več)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "prednastavljeni"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "Mesto"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
 msgstr "Težava pri odpiranju datoteke »%s«"
@@ -8421,14 +7417,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "Zapis prednastavitve XML v %s je spodletela"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to convert preset to internal format"
-msgstr "Pretvorba prednastavitve v interno obliko je spodletela"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to create property list for preset"
-msgstr "Izdelava seznama lastnosti za prednastavitev je spodletela"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "Določanje podatkov o razredu za prednastavitev »%s« je spodletelo."
@@ -8498,16 +7486,6 @@ msgid "Couldn't instantiate effect"
 msgstr "Učinka ni mogoče vzpostaviti"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%s zahteva nepodprto funkcionalnost %s\n"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%s zahteva nepodprto možnost %s\n"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "Generator"
 
@@ -8564,28 +7542,6 @@ msgstr "Napaka: datoteke »%s« iz glave ni v poti vstavkov.\n"
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
 msgstr "Zahtevan je zvokovni izbor."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Napaka Nyquist"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"Oprostite, učinka ni mogoče izvesti na stereo stezah, kjer se posamezne "
-"steze ne skladajo."
-
-#: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid ""
-"Selection too long for Nyquist code.\n"
-"Maximum allowed selection is %ld samples\n"
-"(about %.1f hours at 44100 Hz sample rate)."
-msgstr ""
-"Izbor je predolg za kodo Nyquist.\n"
-"Največji dovoljen izbor je% ld vzorcev\n"
-"(približno% .1f ur pri frekvenci vzorčenja 44100 Hz)."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
@@ -8671,10 +7627,6 @@ msgstr ""
 "za SAL, bodisi začnite z odprtim oklepajem, kot je\n"
 "\t(mult *steza* 0.1)\n"
 " za LISP."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Napaka v kodi Nyquist"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8769,14 +7721,6 @@ msgid "Vamp Effects"
 msgstr "Učinki Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Oprostite, vstavkov Vamp ni mogoče izvesti na stereo posnetkih, kjer se "
-"posamezna kanala ne skladata."
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "Oprostite, vstavka Vamp ni bilo mogoče naložiti."
 
@@ -8820,58 +7764,12 @@ msgstr "Ves zvok je nastavljen na nemo."
 
 #: src/export/Export.cpp
 #, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Ste prepričani, da želite datoteko izvoziti kot »%s«?\n"
-
-#: src/export/Export.cpp
-#, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"Datoteko %s boste shranili pod imenom »%s«.\n"
-"\n"
-"Običajno imajo te datoteke končnico ».%s« in nekateri programi ne odpirajo "
-"datotek z nestandardnimi končnicami.\n"
-"\n"
-"Ste prepričani, da želite shraniti datoteko pod tem imenom?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "Oprostite, poti do datotek ne smejo presegati 256 znakov."
-
-#: src/export/Export.cpp
-#, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "Datoteka »%s« že obstaja. Ali jo želite zamenjati?"
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "Vaše steze bodo zmešane in izvožene v eno mono datoteko."
-
-#: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "Vaše steze bodo zmešane in izvožene v eno stereo datoteko."
-
-#: src/export/Export.cpp
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr ""
-"Vaše steze bodo zmešane v eno izvoženo datoteko, skladno z nastavitvami "
-"kodirnika."
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Napredne možnosti mešanja"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-msgid "Format Options"
-msgstr "Možnosti zapisa"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8917,1201 +7815,36 @@ msgstr "Prebrskaj ..."
 msgid "Show output"
 msgstr "Pokaži izhod"
 
-#. i18n-hint: Some programmer-oriented terminology here:
-#. "Data" refers to the sound to be exported, "piped" means sent,
-#. and "standard in" means the default input stream that the external program,
-#. named by %f, will read.  And yes, it's %f, not %s -- this isn't actually used
-#. in the program as a format string.  Keep %f unchanged.
-#: src/export/ExportCL.cpp
-#, c-format
-msgid ""
-"Data will be piped to standard in. \"%f\" uses the file name in the export "
-"window."
-msgstr ""
-"Podatki bodo podani v cevovod na standardni vhod. »%f« uporablja ime "
-"datoteke v oknu izvoza."
-
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-msgid "Executables"
-msgstr "Izvršne datoteke"
-
-#: src/export/ExportCL.cpp
-msgid "Find path to command"
-msgstr "Najdi pot do ukaza"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(zunanji program)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "Posnetka ni mogoče izvoziti v %s"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Izvozi"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "Izvažanje označenega z uporabo kodirnika ukazne vrstice"
-
-#: src/export/ExportCL.cpp
-msgid "Exporting the audio using command-line encoder"
-msgstr "Izvažanje zvoka z uporabo kodirnika ukazne vrstice"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Izhod ukaza"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "V &redu"
-
-#: src/export/ExportCL.cpp
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr "Izbrali ste ime datoteke brez končnice datoteke. Ali ste prepričani?"
-
-#: src/export/ExportCL.cpp
-msgid "Program name appears to be missing."
-msgstr "Ime programa ni prisotno."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "»%s« ni mogoče najti."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "»%s« ni mogoče locirati v vaši poti."
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-#| msgid "Format Options"
-msgid "Export Options"
-msgstr "Možnosti zapisa"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Prekliči"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"Za nadaljevanje je obvezen ustrezno nastavljen FFmpeg.\n"
-"Prilagodite ga lahko prek Nastavitve > Knjižnice."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg: NAPAKA – ni mogoče določiti opisa zapisa za datoteko »%s«."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "Napaka FFmpeg"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg: NAPAKA – ni mogoče dodeliti konteksta izhodnega zapisa."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr ""
-"FFmpeg: NAPAKA – ni mogoče dodati zvočnega toka v odhodno datoteko »%s«."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr ""
-"FFmpeg: NAPAKA – glav ni mogoče pisati v izhodno datoteko »%s«. Koda napake "
-"je %d."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr ""
-"FFmpeg: NAPAKA – glav ni mogoče pisati v izhodno datoteko »%s«. Koda napake "
-"je %d."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg ne najde zvočnega kodeka 0x%x.\n"
-"Podpora za ta kodek najverjetneje ni prevedena."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported a generic error (EPERM)"
-msgstr "Kodek je sporočil splošno napako (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported an invalid parameter (EINVAL)"
-msgstr "Kodek je sporočil neveljaven parameter (EINVAL)"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Can't open audio codec \"%s\" (0x%x)\n"
-"\n"
-"%s"
-msgstr ""
-"Zvočnega kodeka »%s« (0x%x) ni mogoče odpreti.\n"
-"\n"
-"%s"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr ""
-"FFmpeg : NAPAKA - Ni mogoče dodeliti medpomnilnika za branje vanj iz zvočne "
-"vrste FIFO."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr ""
-"FFmpeg: NAPAKA – ni mogoče dodati zvočnega toka v odhodno datoteko »%s«."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg: NAPAKA – ni mogoče pridobiti velikosti medpomnilnika vzorcev"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "FFmpeg: NAPAKA – ni mogoče dodeliti bajtov za medpomnilnik vzorcev"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg: NAPAKA – ni mogoče pridobiti velikosti medpomnilnika vzorcev"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg: NAPAKA – zvočne sličice ni mogoče kodirati."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "FFmpeg: NAPAKA – preveč preostalih podatkov."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg: NAPAKA – nAudioFrameSizeOut je prevelik."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg: NAPAKA – zvočne sličice ni mogoče kodirati."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr ""
-"Poskušali ste izvoziti %d kanalov, a je največje številko kanalov za izbrani "
-"izhodni zapis %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "Izvažanje izbranega zvoka kot %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the audio as %s"
-msgstr "Izvažanje zvoka kot %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "Neveljavna mera vzorčenja"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "Prevzorči"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"Mere vzorčenja projekta (%d) trenutni izhodni zapis\n"
-"ne podpira. "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"Kombinacije mer vzorčenja projekta (%d) in bitnega vzorčenja (%d kb/s)\n"
-"trenutni izhodni zapis ne podpira. "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "Prevzorčite lahko na eno od spodnjih vrednosti."
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "Mere vzorčenja"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kb/s"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Bitna hitrost:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "Kakovost (kb/s):"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kb/s"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "0"
-msgstr "0"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "9"
-msgstr "9"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10"
-msgstr "10"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "On"
-msgstr "Vključeno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Constrained"
-msgstr "Omejeno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VOIP"
-msgstr "VOIP"
-
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Audio"
 msgstr "Zvok"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Low Delay"
-msgstr "Nizka zakasnitev"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2.5 ms"
-msgstr "2,5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "5 ms"
-msgstr "5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10 ms"
-msgstr "10 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "20 ms"
-msgstr "20 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "40 ms"
-msgstr "40 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "60 ms"
-msgstr "60 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Narrowband"
-msgstr "Ozkopasovno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mediumband"
-msgstr "Srednjepasovno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Wideband"
-msgstr "Širokopasovno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Super Wideband"
-msgstr "Super širokopasovno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Fullband"
-msgstr "Polnopasovno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression"
-msgstr "Stiskanje"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame Duration:"
-msgstr "Trajanje sličice:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Vbr Mode:"
-msgstr "Način Vbr:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Application:"
-msgstr "Program:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Cutoff:"
-msgstr "Porezava:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Open custom FFmpeg format options"
-msgstr "Odpri nastavitve zapisa FFmpeg po meri"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Format:"
-msgstr "Trenutni zapis:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Codec:"
-msgstr "Trenutni kodek:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr "Napaka pri shranjevanju prednastavitev FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "Želite prepisati prednastavitev »%s«?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "Potrditev prepisa"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "Pred shranjevanjem profila izberite zapis"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "Pred shranjevanjem profila izberite kodek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "Prednastavitev »%s« ne obstaja."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Replace preset '%s'?"
-msgstr "Želite zamenjati prednastavitev »%s«?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LC"
-msgstr "LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Main"
-msgstr "Glavno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "Datoteke M4A (AAC) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "Datoteke AC3 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "Datoteke AMR (ozkopasovne) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "Datoteke Opus (OggOpus) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "Datoteke WMA (razl. 2) (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "Izvoz FFmpeg po meri"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "Oceni"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "2-ravenski"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "4-ravenski"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "8-ravenski"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "Polno iskanje"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "Iskanje po dnevniku"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Configure custom FFmpeg options"
-msgstr "Prilagodi nastavitve FFmpeg po meri"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "Prednastavitev:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "Naloži prednastavitev"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "Uvozi prednastavitve"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "Izvozi prednastavitve"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "Kodek:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Not all formats and codecs are compatible. Nor are all option combinations "
-"compatible with all codecs."
-msgstr ""
-"Vsi zapisi in kodeki med seboj niso združljivi. Tudi vse kombinacije "
-"možnosti niso združljive z vsemi kodeki."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "Pokaži vse vrste datotek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "Pokaži vse kodeke"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "General Options"
-msgstr "Splošne možnosti"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"3-črkovna koda jezika ISO 639\n"
-"neobvezno\n"
-"prazno - samodejno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Jezik:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Bit Reservoir"
-msgstr "Bitni rezervoar"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"Značka kodeka (FOURCC)\n"
-"neobvezno\n"
-"prazno - samodejno"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "Značka:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"Bitno vzorčenje (bitov/sekundo) - vpliva na velikost in kakovost končne "
-"datoteke\n"
-"Nekateri kodeki uporabljajo le določene vrednosti (128k, 192k, 256k itn.).\n"
-"0 - samodejno\n"
-"Priporočeno - 192000"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"Splošna kakovost, ki jo različni kodeki uporabljajo različno\n"
-"Obvezno za vorbis\n"
-"0 - samodejno\n"
-"-1 - izključeno (namesto tega uporabi bitno hitrost)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Kakovost:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"Mera vzorčenja (Hz)\n"
-"0 - ne spreminjaj mere vzorčenja"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "Mera vzorčenja:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"Pasovna širina zvočne porezave (Hz)\n"
-"Neobvezno\n"
-"0 - samodejna"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"Profil AAC\n"
-"Nizka kompleksnost (LC) - privzeto\n"
-"Večina predvajalnikov ne bo predvajala ničesar drugega kot LC."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "Profil:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "Možnosti za FLAC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"Raven stiskanja\n"
-"obvezno za FLAC\n"
-"-1 - samodejno\n"
-"najmanjše - 0 (hitro kodiranje, velika izhodna datoteka)\n"
-"največje - 10 (počasno kodiranje, majhna izhodna datoteka)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression:"
-msgstr "Stiskanje:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"Velikost sličice\n"
-"neobvezno\n"
-"0 - privzeta\n"
-"najmanjša - 16\n"
-"največja - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "Sličica:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"Natančnost koeficientov LPC\n"
-"neobvezno\n"
-"0 - privzeto\n"
-"najmanj - 1\n"
-"največ - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"Metoda zaporedja napovedi\n"
-"Ocenjeno - najhitrejše, slabše stiskanje\n"
-"Logaritemsko iskanje - najpočasnejše, najboljše stiskanje\n"
-"Polno iskanje - privzeto"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "PdO Method:"
-msgstr "Metoda zap. napovedi:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Najkrajše zaporedje napovedi\n"
-"neobvezno\n"
-"-1 - privzeto\n"
-"najkrajše - 0\n"
-"najdaljše - 32 (z LPC) ali 4 (brez LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "Najkr. zap. napovedi"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Najdaljše zaporedje napovedi\n"
-"neobvezno\n"
-"-1 - privzeto\n"
-"najkrajše - 0\n"
-"najdaljše - 32 (z LPC) ali 4 (brez LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "Najd. zap. napovedi"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Najkrajše zaporedje razdelitve\n"
-"neobvezno\n"
-"-1 - privzeto\n"
-"najkrajše - 0\n"
-"najdaljše - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "Najkr. zap. razdelitve"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Najdaljše zaporedje razdelitve\n"
-"neobvezno\n"
-"-1 - privzeto\n"
-"najkrajše - 0\n"
-"najdaljše - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "Najd. zap. razdelitve"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "Uporabi LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "Možnosti vsebnika MPEG"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Največje bitno vzorčenje multipleksiranega toka\n"
-"neobvezno\n"
-"0 - privzeto"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "Mera multipleksiranja:"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Velikost paketa\n"
-"neobvezno\n"
-"0 - privzeta"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "Velikost paketa:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "Prednastavitve brez imena ne morete izbrisati"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "Želite izbrisati prednastavitev '%s'?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "Prednastavitve brez imena ne morete shraniti"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "Izberite datoteko XML s prednastavitvami, ki jo želite uvoziti"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "Ni prednastavitev za izvoz."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "Izberite datoteko XML za izvoz prednastavitev."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Format %s is not compatible with codec %s."
-msgstr "Zapis %s ni združljiv s kodekom %s."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Incompatible format and codec"
-msgstr "Nezdružljiv zapis in kodek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "Zapisa ni mogoče uganiti"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "Kodeka ni mogoče najti"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16-bitno"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24-bitno"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (najhitrejše)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (najboljše)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Raven:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Bitna globina:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "Datoteke FLAC"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "Izvoz FLAC ne more odpreti %s"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr ""
-"Kodirniku FLAC ni uspela inicializacija\n"
-"Stanje: %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "Izvažanje izbranega zvoka kot FLAC"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the audio as FLAC"
-msgstr "Izvažanje zvoka kot FLAC"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "Datoteke MP2"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "Izvoz v MP2 ni mogoče pri tej frekvenci vzorčenja in bitni hitrosti"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "Datoteke za zapisovanje ni mogoče odpreti"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "Izvažanje izbranega zvoka pri %ld kb/s"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "Izvažanje zvoka pri %ld kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "220-260 kbps (Best Quality)"
-msgstr "220-260 kb/s (najvišja kakovost)"
-
-#: src/export/ExportMP3.cpp
-msgid "200-250 kbps"
-msgstr "200-250 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "170-210 kbps"
-msgstr "170-210 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "155-195 kbps"
-msgstr "145-185 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "145-185 kbps"
-msgstr "145-185 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "110-150 kbps"
-msgstr "110-150 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "95-135 kbps"
-msgstr "95-135 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "80-120 kbps"
-msgstr "80-120 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "65-105 kbps"
-msgstr "65-105 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "45-85 kbps (Smaller files)"
-msgstr "45-85 kb/s (manjše datoteke)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "Noro, 320 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "Ekstremno, 220-260 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "Standardno, 170-210 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "Srednje, 145-185 kb/s"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "Noro"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "Ekstremno"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Navadno"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "Srednje"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "spremenljivi"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "Povprečno"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "konstantni"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "Združeni stereo"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "Stereo"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "Način bitne hitrosti:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Kakovost"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "Vrsta kanalov:"
-
-#: src/export/ExportMP3.cpp
-msgid "Force export to mono"
-msgstr "Vsili izvoz v mono"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "Datoteke MP3"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "Toka MP3 ni mogoče inicializirati"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "Izvažanje izbranega zvoka s prednastavitvijo %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "Izvažanje zvoka s prednastavitvijo %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "Izvažanje izbranega zvoka pri kakovosti VBR %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "Izvažanje zvoka pri kakovosti VBR %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "Izvažanje izbranega zvoka pri %d Kb/s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "Izvažanje zvoka pri %d Kb/s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "Kodirnik MP3 je vrnil napako %ld"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr "Mere vzorčenja projekta (%d) zapis MP3 ne podpira. "
-
-#: src/export/ExportMP3.cpp
-#, c-format, fuzzy
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"Kombinacije mer vzorčenja projekta (%d) in bitnega vzorčenja (%d kb/s)\n"
-"zapis MP3 ne podpira. "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16-bitno"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24-bitno"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Oznake"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "Izvažanje zvočne datoteke"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "Izvažanje izbranega zvoka kot FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the audio as FLAC"
-msgid "Exporting the audio as MKA"
-msgstr "Izvažanje zvoka kot FLAC"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Izvoz večih"
-
-#: src/export/ExportMultiple.cpp
-msgid "Cannot Export Multiple"
-msgstr "Izvoz večih ni možen"
-
-#: src/export/ExportMultiple.cpp
-msgid ""
-"You have no unmuted Audio Tracks and no applicable \n"
-"labels, so you cannot export to separate audio files."
-msgstr ""
-"Imate samo en vklopljeno zvočno stezo in nobene uporabne \n"
-"oznake, tako da ne more izvažati ločenih zvočnih datotek."
-
-#: src/export/ExportMultiple.cpp
-msgid "Export files to:"
-msgstr "Izvozi datoteke v:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "Mapa:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Izberi ..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Ustvari"
-
-#: src/export/ExportMultiple.cpp
-msgid "Options:"
-msgstr "Možnosti:"
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -10120,14 +7853,6 @@ msgstr "Razdeli datoteke glede na:"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "Vključi zvok pred prvo oznako"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "Ime prve datoteke:"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "Ime prve datoteke"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -10150,17 +7875,8 @@ msgid "File name prefix:"
 msgstr "Predpona imena datoteke:"
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "Predpona imena datoteke"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Prepiši obstoječe datoteke"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "»%s« je bila uspešno ustvarjena."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -10192,201 +7908,16 @@ msgid "Something went really wrong after exporting the following %lld file(s)."
 msgstr "Po izvozu %lld datotek(e) je šlo nekaj res narobe."
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"»%s« ne obstaja.\n"
-"\n"
-"Jo želite ustvariti?"
-
-#: src/export/ExportMultiple.cpp
 msgid "Continue to export remaining files?"
 msgstr "Ali želite nadaljevati z izvažanjem preostalih datotek?"
-
-#. i18n-hint: The second %s gives some letters that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name.\n"
-"You cannot use any of these characters:\n"
-"\n"
-"%s\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"Oznaka ali steza \"%s\" ni primerno ime datoteke.\n"
-"Nobenega od naslednjih znakov ne smete uporabiti:\n"
-"\n"
-"%s\n"
-"\n"
-"Predlog zamenjave:"
-
-#. i18n-hint: The second %s gives a letter that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name. You cannot use \"%s\".\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"Oznaka ali ime steze »%s« ni veljavno ime datoteke. Ne morete uporabiti "
-"»%s«.\n"
-"\n"
-"Predlagana zamenjava:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "Shrani kot ..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Datoteke Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - rate or quality problem"
-msgstr "Ni mogoče izvoziti, težava s hitrostjo ali kakovostjo."
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with metadata"
-msgstr "Ni mogoče izvoziti - težava z metapodatki."
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem initialising"
-msgstr "Ni mogoče izvoziti - težava z inicializacijo."
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem creating stream"
-msgstr "Ni mogoče izvoziti - težava z ustvarjanjem toka."
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with packets"
-msgstr "Ni mogoče izvoziti, težava s paketi."
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with file"
-msgstr "Ni mogoče izvoziti, težava z datoteko."
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "Izvažanje izbora v Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "Izvažanje zvoka kot Ogg Vorbis"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "AIFF (Apple/SGI)"
-msgstr "AIFF (Apple/SGI)"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft)"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Glava:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Kodiranje:"
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "Druge nestisnjene datoteke"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "Napaka pri izvozu"
-
-#: src/export/ExportPCM.cpp
-msgid "GSM 6.10 requires mono"
-msgstr "GSM 6.10 zahteva mono"
-
-#: src/export/ExportPCM.cpp
-msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr "Zapisa WAVEX in GSM 6.10 nista združljiva"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "Posnetka v tem zapisu ni mogoče izvoziti."
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Izvažanje izbranega zvoka kot %s"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"Napaka pri pisanju datoteke %s (poln disk?).\n"
-"Libsndfile pravi: »%s«"
-
 #: src/export/ExportPlugin.cpp
 msgid "No format specific options"
 msgstr "Ni posebnih možnosti za to vrsto zapisa"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "Podpora za FFmpeg ni prevedena v"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "Zagon FFmpeg ni uspel"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "Knjižnice FFmpeg ni mogoče najti"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "Najdi FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "Mesto '%s':"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "To find '%s', click here -->"
-msgstr "Če želite poiskati »%s«, kliknite sem -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Če želite brezplačno kopijo FFmpeg, kliknite sem -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "Prenesi"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Only avformat.dll"
-msgstr "Samo avformat.dll"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "Kje je '%s'?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpeg ni mogoče najti"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "Tega opozorila ne prikaži več"
 
 #: src/import/Import.cpp
 msgid "All supported files"
@@ -10401,533 +7932,19 @@ msgstr "Izberite toke za uvoz"
 msgid "File \"%s\" not found."
 msgstr "Datoteke »%s« ni mogoče najti."
 
-#: src/import/Import.cpp
-msgid ""
-"Try installing FFmpeg.\n"
-"\n"
-msgstr ""
-"Poskusite namestiti FFmpeg.\n"
-"\n"
-
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, c-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
-msgid "AUP project files (*.aup)"
-msgstr "Projektne datoeke AUP (*.aup)"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"Projekta ni mogoče uvoziti:\n"
-"\n"
-"%s"
-
-#: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "Uvozi projekt"
-
-#: src/import/ImportAUP.cpp
-msgid "Internal error in importer...tag not recognized"
-msgstr "Notranja napaka v uvozniku ... značka ni prepoznana."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'vpos' attribute."
-msgstr "Neveljavni atribut projekta »vpos«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'h' attribute."
-msgstr "Neveljavni atribut projekta »h«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'zoom' attribute."
-msgstr "Neveljavni atribut projekta »zoom«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel0' attribute."
-msgstr "Neveljavni atribut projekta »sel0«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel1' attribute."
-msgstr "Neveljavni atribut projekta »sel1«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selLow' attribute."
-msgstr "Neveljavni atribut projekta »selLow«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Neveljavni atribut projekta »selHigh«."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "Mape s projektnimi podatki ni mogoče najti: »%s«"
-
-#: src/import/ImportAUP.cpp
-msgid "Project Import"
-msgstr "Uvoz projekta"
-
-#: src/import/ImportAUP.cpp
-msgid ""
-"The active project already has a time track and one was encountered in the "
-"project being imported, bypassing imported time track."
-msgstr ""
-"Aktivni projekt že ima časovno stezo in na eno smo naleteli ob uvozu "
-"projekta, pri čemer smo preskočili uvoženo časovno stezo."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Neveljavni sekvenčni atribut »maxsamples«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Neveljavni sekvenčni atribut »sampleformat«."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Neveljavni sekvenčni atribut »numsamples«."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing project file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"Manjka projektna datoteka %s\n"
-"\n"
-"Namesto tega bo vstavljena tišina."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Manjka ali neveljaven atribut pcmaliasblockfile »aliaslen«."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Manjka ali neveljaven atribut pcmaliasblockfile »aliaslen«."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid ""
-"Missing alias file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"Manjka projektna datoteka %s\n"
-"\n"
-"Namesto tega bo vstavljena tišina."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Manjka ali neveljaven atribut pcmaliasblockfile »aliasstart«."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Manjka ali neveljaven atribut pcmaliasblockfile »aliaslen«."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Error while processing %s\n"
-"\n"
-"Inserting silence."
-msgstr ""
-"Napaka pri obdelovanju %s\n"
-"\n"
-"Vstavljanje tišine."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to open %s"
-msgstr "Odpiranje datoteke %s je spodletelo"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "Iskanje položaja %lld v %s je spodletelo."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "Spodletelo branje %lld vzorcev iz %s"
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "Z FFmpeg kompatibilne datoteke"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr ""
-"Kazalo[%02x] kodek[%s], jezik[%s], bitnovzorčenje[%s], kanali[%d], "
-"trajanje[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "Datoteke FLAC"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "GStreamer - združljive datoteke"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to add decoder to pipeline"
-msgstr "Dekodirnika ni mogoče dodati v cevovod"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "Uvoznik GStreamer"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "Ni mogoče nastaviti stanja toka na prekinjeno."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Kazalo[%02d] vrsta[%s], kanali[%d], mera[%d]"
-
-#: src/import/ImportGStreamer.cpp
-msgid "File doesn't contain any audio streams."
-msgstr "Datoteka ne vsebuje nobenih zvočnih tokov."
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "Datoteke ni mogoče odpreti, sprememba stanja je spodletela."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "Napaka GStreamer: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Seznam datotek v osnovnem zapisu besedila"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "Neveljaven odmik okna v datoteki LOF."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "Napaka LOF"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "Nepravilna dolžina v datoteki LOF."
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI stez ne morete zamakniti posamično, le zvočne datoteke."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "Neveljaven zamik steze v datoteki LOF."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "Uvožen MIDI iz '%s'"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "Uvozi MIDI"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "Datoteke %s ni mogoče odpreti: ime datoteke je prekratko."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "Datoteke %s ni mogoče odpreti: nepravilna vrsta datoteke."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s."
-msgstr "Napaka pri odpiranju datoteke %s."
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "Datoteke MP3"
-
-#: src/import/ImportMP3.cpp
-msgid ""
-"Import failed\n"
-"\n"
-"This is likely caused by a malformed MP3.\n"
-"\n"
-msgstr ""
-"Uvoz je spodletel.\n"
-"\n"
-"To je najverjetneje povzročil slabo oblikovan MP3.\n"
-"\n"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-#| msgid "%s files"
-msgid "Matroska files"
-msgstr "%s datotek"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-#| msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "Kazalo[%02d] vrsta[%s], kanali[%d], mera[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Datoteke Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-#, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Kazalo[%02x] različica[%d], kanali[%d], mera[%ld]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Napaka pri branju"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "Neveljavna datoteka Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Neskladnost različice Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "Nepravilna glava bitnega toka Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "Notranja logična napaka"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF in druge nestisnjene vrste"
-
-#: src/import/ImportPCM.cpp
-msgid "AU (Sun/NeXT)"
-msgstr "AU (Sun/NeXT)"
-
-#: src/import/ImportPCM.cpp
-msgid "AVR (Audio Visual Research)"
-msgstr "AVR (Audio Visual Research)"
-
-#: src/import/ImportPCM.cpp
-msgid "CAF (Apple Core Audio File)"
-msgstr "CAF (Apple Core Audio File)"
-
-#: src/import/ImportPCM.cpp
-msgid "HTK (HMM Tool Kit)"
-msgstr "HTK (HMM Tool Kit)"
-
-#: src/import/ImportPCM.cpp
-msgid "IFF (Amiga IFF/SVX8/SV16)"
-msgstr "IFF (Amiga IFF/SVX8/SV16)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-msgstr "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-msgstr "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-
-#: src/import/ImportPCM.cpp
-msgid "MPC (Akai MPC 2k)"
-msgstr "MPC (Akai MPC 2k)"
-
-#: src/import/ImportPCM.cpp
-msgid "OGG (OGG Container format)"
-msgstr "OGG (OGG Container format)"
-
-#: src/import/ImportPCM.cpp
-msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
-
-#: src/import/ImportPCM.cpp
-msgid "PVF (Portable Voice Format)"
-msgstr "PVF (Portable Voice Format)"
-
-#: src/import/ImportPCM.cpp
-msgid "RAW (header-less)"
-msgstr "RAW (brez glave)"
-
-#: src/import/ImportPCM.cpp
-msgid "RF64 (RIFF 64)"
-msgstr "RF64 (RIFF 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "SD2 (Sound Designer II)"
-msgstr "SD2 (Sound Designer II)"
-
-#: src/import/ImportPCM.cpp
-msgid "SDS (Midi Sample Dump Standard)"
-msgstr "SDS (Midi Sample Dump Standard)"
-
-#: src/import/ImportPCM.cpp
-msgid "SF (Berkeley/IRCAM/CARL)"
-msgstr "SF (Berkeley/IRCAM/CARL)"
-
-#: src/import/ImportPCM.cpp
-msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
-
-#: src/import/ImportPCM.cpp
-msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAVEX (Microsoft)"
-msgstr "WAVEX (Microsoft)"
-
-#: src/import/ImportPCM.cpp
-msgid "WVE (Psion Series 3)"
-msgstr "WVE (Psion Series 3)"
-
-#: src/import/ImportPCM.cpp
-msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 8 bit PCM"
-msgstr "8-bitni PCM s predznakom"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 16 bit PCM"
-msgstr "16-bitni PCM s predznakom"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 24 bit PCM"
-msgstr "24-bitni PCM s predznakom"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 32 bit PCM"
-msgstr "32-bitni PCM s predznakom"
-
-#: src/import/ImportPCM.cpp
-msgid "Unsigned 8 bit PCM"
-msgstr "8-bitni PCM brez predznaka"
-
-#: src/import/ImportPCM.cpp
-msgid "32 bit float"
-msgstr "32-bitno plavajoče"
-
-#: src/import/ImportPCM.cpp
-msgid "64 bit float"
-msgstr "64-bitno plavajoče"
-
-#: src/import/ImportPCM.cpp
-msgid "U-Law"
-msgstr "U-zakon"
-
-#: src/import/ImportPCM.cpp
-msgid "A-Law"
-msgstr "A-zakon"
-
-#: src/import/ImportPCM.cpp
-msgid "IMA ADPCM"
-msgstr "IMA ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "GSM 6.10"
-msgstr "GSM 6.10"
-
-#: src/import/ImportPCM.cpp
-msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "12 bit DWVW"
-msgstr "12-bitni DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DWVW"
-msgstr "16-bitnI DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "24 bit DWVW"
-msgstr "24-bitni DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "VOX ADPCM"
-msgstr "VOX ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DPCM"
-msgstr "16-bitni DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "8 bit DPCM"
-msgstr "8-bitni DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Vorbis"
-msgstr "Vorbis"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "Uvažanje datoteke %s"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "Datoteke QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to start QuickTime extraction"
-msgstr "Izluščenja QuickTime ni mogoče zagnati"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime render quality"
-msgstr "Kakovosti uzvočevanja QuickTime ni mogoče nastaviti"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "Lastnosti diskretnih kanalov QuickTime ni mogoče določiti"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "Lastnosti velikosti vzorčenja QuickTime ni mogoče pridobiti"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "Opisa toka ni mogoče pridobiti"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get fill buffer"
-msgstr "Predpomnilnika polnjenja ni mogoče pridobiti."
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -11016,18 +8033,6 @@ msgstr "&Uvozi"
 msgid "Bad data size. Could not import audio"
 msgstr "Neustrezna velikost podatkov. Zvoka ni možno uvoziti"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s left"
-msgstr "%s levo"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s right"
-msgstr "%s desno"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -11073,25 +8078,8 @@ msgstr[2] "%s %d od %d"
 msgstr[3] "%s %d od %d"
 
 #: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the right"
-msgstr "Časovno zamaknjeni posnetki na desno"
-
-#: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the left"
-msgstr "Časovno zamaknjeni posnetki na levo"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Časovni zamik"
-
-#: src/menus/ClipMenus.cpp
 msgid "clip not moved"
 msgstr "posnetek ni premaknjen"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-msgid "Clip B&oundaries"
-msgstr "&Meje posnetka"
 
 #: src/menus/ClipMenus.cpp
 msgid "Pre&vious Clip Boundary to Cursor"
@@ -11177,28 +8165,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "Izbrisanih %.2f sekund v t=%.2f"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "Kopiranje ene vrste stez v drugo ni dovoljeno."
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "Kopiranje stereo zvoka v mono stezo ni dovoljeno."
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "Podvojeno"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "Podvoji"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "Razdvoji in izreži v odložišče"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "Razdvoji in izreži"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -11296,16 +8268,6 @@ msgstr "&Podvoji"
 msgid "R&emove Special"
 msgstr "Odstran&i posebno"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "&Razdvoji in izreži"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "Razdvoji z &brisanjem"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -11333,14 +8295,6 @@ msgstr "Zdru&ži"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "Razdr&uži pri tišinah"
-
-#: src/menus/EditMenus.cpp
-msgid "&Metadata..."
-msgstr "Me&tapodatki …"
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "Nas&tavitve ..."
 
 #: src/menus/EditMenus.cpp
 msgid "&Delete Key"
@@ -11374,10 +8328,6 @@ msgstr "Spremeni &zvočnega gostitelja ..."
 msgid "Change Recording Cha&nnels..."
 msgstr "Spremeni snemalne &kanale ..."
 
-#: src/menus/ExtraMenus.cpp
-msgid "&Full Screen (on/off)"
-msgstr "&Celozaslonski način (vključen/izključen)"
-
 #: src/menus/FileMenus.cpp
 #, c-format
 msgid ""
@@ -11386,10 +8336,6 @@ msgid ""
 msgstr ""
 "Mape »%s« ni mogoče ustvariti.\n"
 "Obstaja že istoimenska datoteka, ki ni mapa."
-
-#: src/menus/FileMenus.cpp
-msgid "Export Selected Audio"
-msgstr "Izvozi izbrani zvok"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -11401,38 +8347,6 @@ msgid "There are no label tracks to export."
 msgstr "Steze z oznakami za izvoz ne obstajajo."
 
 #: src/menus/FileMenus.cpp
-msgid "Please select only one Note Track at a time."
-msgstr "Merite lahko le eno notno stezo naenkrat."
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "Izberite notno stezo."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "Izvozi MIDI kot:"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI file"
-msgstr "Datoteka MIDI"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro file"
-msgstr "Datoteka Allegro"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"Izbrali ste ime datoteke z nerazpoznano končnico datoteke.\n"
-"Želite nadaljevati?"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "Izvozi MIDI"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "Uvožene oznake iz '%s'"
@@ -11440,22 +8354,6 @@ msgstr "Uvožene oznake iz '%s'"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Uvozi oznake"
-
-#: src/menus/FileMenus.cpp
-msgid "Select a MIDI file"
-msgstr "Izberite datoteko MIDI"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI and Allegro files"
-msgstr "Datoteke MIDI in Allegro"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI files"
-msgstr "Datoteke MIDI"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro files"
-msgstr "Datoteke Allegro"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -11496,12 +8394,6 @@ msgid "Export as &WAV"
 msgstr "Izvozi kot &WAV"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-#| msgid "Export as &WAV"
-msgid "Export as &MKA"
-msgstr "Izvozi kot &WAV"
-
-#: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
 msgstr "Izvozi kot &OGG"
 
@@ -11518,14 +8410,6 @@ msgid "Export &Labels..."
 msgstr "Izvozi &oznake ..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "Izvozi &več datotek ..."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MI&DI..."
-msgstr "Izvozi MI&DI ..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "&Zvok ..."
 
@@ -11534,30 +8418,8 @@ msgid "&Labels..."
 msgstr "&Oznake ..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI ..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "&Surovi podatki ..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "&Priprava strani ..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "&Natisni ..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "&Izhod"
-
-#: src/menus/FileMenus.cpp
-msgid "Hidden File Menu"
-msgstr "Skriti meni Datoteka"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11671,17 +8533,6 @@ msgstr "Izbrisana označena zvočna območja"
 msgid "Delete Labeled Audio"
 msgstr "Izbriši označen zvok"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Označena zvočna območja razdvojena in izrezana na odložišče"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut Labeled Audio"
-msgstr "Razdvoji in izreži označen zvok"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11751,10 +8602,6 @@ msgstr "Loči označen zvok"
 msgid "&Labels"
 msgstr "Ozna&ke"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "&Uredi oznake ..."
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Add Label at &Selection"
 msgstr "Dodaj oznako pri i&zboru"
@@ -11768,10 +8615,6 @@ msgid "Paste Te&xt to New Label"
 msgstr "Prilepi &besedilo v novo nalepko"
 
 #: src/menus/LabelMenus.cpp
-msgid "&Type to Create a Label (on/off)"
-msgstr "S &tipkanjem ustvari oznako (vključeno/izključeno)"
-
-#: src/menus/LabelMenus.cpp
 msgid "La&beled Audio"
 msgstr "&Označen zvok"
 
@@ -11779,31 +8622,6 @@ msgstr "&Označen zvok"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "I&zreži"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "Oznaka Izreži"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "Oznaka Izbriši"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "Raz&dvoji in izreži"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "Oznaka Razdvoji in izreži"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "Razdvoji z &brisanjem"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "Oznaka Razdvoji z brisanjem"
 
 #: src/menus/LabelMenus.cpp
 msgid "Silence &Audio"
@@ -11905,11 +8723,6 @@ msgid "&Repeat %s"
 msgstr "&Ponovi %s"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "Vstavek %d do %d"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "&Tvori"
 
@@ -11938,16 +8751,8 @@ msgid "T&ools"
 msgstr "&Orodja"
 
 #: src/menus/PluginMenus.cpp
-msgid "Manage Plug-ins..."
-msgstr "Dodaj/odstrani vstavke …"
-
-#: src/menus/PluginMenus.cpp
 msgid "Repeat Last Tool"
 msgstr "Ponovi zadnje orodje"
-
-#: src/menus/PluginMenus.cpp
-msgid "&Macros..."
-msgstr "&Makri ..."
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -12355,12 +9160,6 @@ msgstr "Poišči desno dolg&o periodo med predvajanjem"
 msgid "&Toolbars"
 msgstr "&Orodne vrstice"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "&Dodatni meniji (vključeno/izključeno)"
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "Ponastavi &orodne vrstice"
@@ -12723,10 +9522,6 @@ msgid "Align &Together"
 msgstr "Poravnaj &skupaj"
 
 #: src/menus/TrackMenus.cpp
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "Po&makni izbor s stezami (vključeno/izključeno)"
-
-#: src/menus/TrackMenus.cpp
 msgid "Move Sele&ction and Tracks"
 msgstr "Premakni iz&bor in steze"
 
@@ -12741,10 +9536,6 @@ msgstr "po &začetnem času"
 #: src/menus/TrackMenus.cpp
 msgid "By &Name"
 msgstr "po &imenu"
-
-#: src/menus/TrackMenus.cpp
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "Za&kleni steze kot sinhrone (vključeno/izključeno)"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12785,10 +9576,6 @@ msgstr "&Utišaj/odtišaj stezo s pozornostjo"
 #: src/menus/TrackMenus.cpp
 msgid "&Solo/Unsolo Focused Track"
 msgstr "&Soliraj/odsoliraj stezo s pozornostjo"
-
-#: src/menus/TrackMenus.cpp
-msgid "&Close Focused Track"
-msgstr "&Zapri stezo s pozornostjo"
 
 #: src/menus/TrackMenus.cpp
 msgid "Move Focused Track U&p"
@@ -12903,10 +9690,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "Predvajaj/ustavi in &nastavi kazalko"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "Predvajaj v &zanki"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "&Prekini"
 
@@ -12936,18 +9719,6 @@ msgid "Punch and Rol&l Record"
 msgstr "Z zvokom aktivirano &snemaj"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "Pre&dvajaj območje"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "&Zakleni"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "&Odkleni"
-
-#: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
 msgstr "Po&novno poišči zvočne naprave"
 
@@ -12956,33 +9727,8 @@ msgid "Transport &Options"
 msgstr "M&ožnosti transporta"
 
 #: src/menus/TransportMenus.cpp
-msgid "Sound Activation Le&vel..."
-msgstr "Ra&ven zvoka za aktivacijo ..."
-
-#: src/menus/TransportMenus.cpp
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Z zvokom a&ktivirano snemanje (vključeno/izključeno)"
-
-#: src/menus/TransportMenus.cpp
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Pripeta &glava snemanja/predvajanja (vključeno/izključeno)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Overdub (on/off)"
-msgstr "Pre&krivaj (vključeno/izključeno)"
-
-#: src/menus/TransportMenus.cpp
-msgid "So&ftware Playthrough (on/off)"
-msgstr "Pro&gramsko predvajanje skozi (vključeno/izključeno)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "&Upravljanje"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "Pre&dvajaj"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -13028,15 +9774,6 @@ msgstr "Predvajaj ogled &izreza"
 #: src/menus/TransportMenus.cpp
 msgid "&Play-at-Speed"
 msgstr "&Predvajaj pri hitrosti"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "Navadno predv&ajaj-pri-hitrosti"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Loop Play-at-Speed"
-msgstr "Predvajaj &zankano pri hitrosti"
 
 #: src/menus/TransportMenus.cpp
 msgid "Play C&ut Preview-at-Speed"
@@ -13093,10 +9830,6 @@ msgid "Zoom &Toggle"
 msgstr "Preklopi pove&čavo"
 
 #: src/menus/ViewMenus.cpp
-msgid "Advanced &Vertical Zooming"
-msgstr "Napredno &navpično povečevanje"
-
-#: src/menus/ViewMenus.cpp
 msgid "T&rack Size"
 msgstr "Velik&ost steze"
 
@@ -13132,44 +9865,6 @@ msgstr "Preskoči na začetek izbora"
 msgid "Skip to Selection End"
 msgstr "Preskoči na konec izbora"
 
-#: src/menus/ViewMenus.cpp
-msgid "&Extra Menus (on/off)"
-msgstr "&Dodatni meniji (vključeno/izključeno)"
-
-#: src/menus/ViewMenus.cpp
-msgid "Track &Name (on/off)"
-msgstr "&Ime steze (vključeno/izključeno)"
-
-#: src/menus/ViewMenus.cpp
-msgid "&Show Clipping (on/off)"
-msgstr "&Pokaži rezanje (vključeno/izključeno)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "Pokaži skladovnic učinkov"
-
-#: src/menus/WindowMenus.cpp
-msgid "&Window"
-msgstr "&Okno"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make (the current
-#. * window) shrink to an icon on the dock
-#: src/menus/WindowMenus.cpp
-msgid "&Minimize"
-msgstr "Po&manjšaj"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make all project
-#. * windows un-hidden
-#: src/menus/WindowMenus.cpp
-msgid "&Bring All to Front"
-msgstr "Po&makni vse v ospredje"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-msgid "Minimize All Projects"
-msgstr "Pomanjšaj vse projekte"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Paketni način"
@@ -13185,14 +9880,6 @@ msgstr "Vedenja"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "&Ne uporabi učinkov v paketnem načinu"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "Naprave"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "Nastavitve naprave"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -13361,15 +10048,6 @@ msgstr "Mapa %s ni primerna (zaradi nevarnosti, da bo izpraznjena)"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "Mapa %s ne obstaja. Jo želite ustvariti?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Nova začasna mapa"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "V mapi %s zapisovanje ni dovoljeno"
 
@@ -13386,77 +10064,8 @@ msgid "Preferences for Effects"
 msgstr "Nastavitve učinkov"
 
 #: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Effect Name"
-msgstr "Razvrščeno po imenu učinka"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Publisher and Effect Name"
-msgstr "Razvrščeno po izdajatelju in imenu učinka"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Type and Effect Name"
-msgstr "Razvrščeno po vrsti in imenu učinka"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Publisher"
-msgstr "Združeno po izdajateljih"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Type"
-msgstr "Združeno po vrsti"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-msgid "&LADSPA"
-msgstr "&LADSPA"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-msgid "N&yquist"
-msgstr "N&yquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "Vključi učinke"
-
-#: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
 msgstr "Možnosti učinka"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "S&ort or Group:"
-msgstr "Razvrsti ali zdr&uži:"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "&Največ učinkov na skupini (0 za onemogočene):"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Plugin Options"
-msgstr "Možnosti vstavka"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13524,18 +10133,6 @@ msgstr "I&zbriši izbrano pravilo"
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
 msgstr "Neuporabljeni filtri:"
-
-#: src/prefs/ExtImportPrefs.cpp
-msgid ""
-"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
-"the items. They are likely to break the pattern matching. Unless you know "
-"what you are doing, it is recommended to trim spaces. Do you want Audacity "
-"to trim spaces for you?"
-msgstr ""
-"V enem od elementov so znaki za presledke (presledki, nove vrstice, "
-"tabulatorji ali LF). Najverjetneje bodo preprečili ujemanje z vzorcem. Če ne "
-"veste, kaj počnete, vam priporočamo, da se znebite presledkov. Želite, da se "
-"Audacity v vašem imenu znebi presledkov?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13613,10 +10210,6 @@ msgid "&Language:"
 msgstr "&Jezik:"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Location of &Manual:"
-msgstr "Naslov &priročnika:"
-
-#: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
 msgstr "Obseg dB me&rilnika:"
 
@@ -13646,14 +10239,6 @@ msgid "Never use comma as decimal point"
 msgstr "Nikoli ne uporabi vejice kot ločila decimalk"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Show Timeline Tooltips"
-msgstr "Pokaži namige na časovnici"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-msgid "Show Scrub Ruler"
-msgstr "Pokaži ravnilo drsenja"
-
-#: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
 msgstr "Jezik »%s« ni znan"
@@ -13669,14 +10254,6 @@ msgstr "Uvozi / izvozi"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "Nastavitve za uvoz/izvoz"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Mix down to Stereo or Mono"
-msgstr "&Mešaj v stereo ali mono"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Use Advanced Mixing Options"
-msgstr "&Uporabi napredne možnosti mešanja"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "S&tandard"
@@ -13695,34 +10272,12 @@ msgid "&Beats"
 msgstr "&udarce"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "Pri izvozu steze v zvočno datoteko"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "Poka&ži urejevalnik metapodatkov pred izvozom"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Ignore blank space at the beginning"
-msgstr "Prezr&i prazen prostor/tišino na začetku in koncu"
-
-#: src/prefs/ImportExportPrefs.cpp
 msgid "Exported Label Style:"
 msgstr "Slog izvoženih oznak:"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "Exported Allegro (.gro) files save time as:"
-msgstr "Pri izvozu v datoteke Allegro (.gro) shrani čas kot:"
 
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "UVOZ IZVOZ"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Tipkovnica"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
@@ -13895,38 +10450,6 @@ msgstr "Tipke za bližnjice"
 msgid "Preferences for Library"
 msgstr "Nastavitve knjižnice"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "Knjižnica za uvoz/izvoz FFmpeg"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "Združljive knjižnice FFmpeg ni mogoče najti"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg support is not compiled in"
-msgstr "Podpora za FFmpeg ni prevedena"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "Različica knjižnice FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "Knjižnica FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "Po&išči ..."
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "Pre&nesi"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Success"
-msgstr "Uspešno"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "Knjižnica"
@@ -13975,70 +10498,17 @@ msgstr "Moduli"
 msgid "Preferences for Module"
 msgstr "Nastavitve modula"
 
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'New' means no choice has been made yet."
-msgstr " »Nov« pomeni, da izbor še ni bil opravljen."
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Ask"
-msgstr "Vprašaj"
-
 #: src/prefs/ModulePrefs.cpp
 msgid "Failed"
 msgstr "Neuspešno"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "No modules were found"
-msgstr "Ni najdenih modulov"
 
 #: src/prefs/ModulePrefs.h
 msgid "Module"
 msgstr "Modul"
 
 #: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Krmilka"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Miška"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Preferences for Mouse"
-msgstr "Nastavitve miške"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Dejanja miške (privzete vrednosti, niso nastavljive)"
-
-#: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Orodje"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Akcija ukaza"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Gumbi"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "Levi klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Nastavi točko izbora"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "Levi povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Nastavi obseg izbora"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -14046,169 +10516,6 @@ msgstr "Nastavi obseg izbora"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Dvigalka-levi-klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Razpostri razpon izbora"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "Levi dvoklik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "Izberite posnetek ali celotno stezo"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "Rotacija koleščka"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change scrub speed"
-msgstr "Spremeni hitrost drsenja"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Povečaj na točko"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Povečaj na območje"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "enako kot desni-povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "Desni klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Pomanjšaj za eno stopnjo"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "Desni-povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "enako kot levi-povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Dvigalka-povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "Pomanjšaj z območja"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "Srednji klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "Privzeta povečava"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip left/right or between tracks"
-msgstr "Premakni posnetek levo/desno med stezami"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Dvigalka-levi-povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move all clips in track left/right"
-msgstr "Premakni vse posnetke na stezi levo/desno"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "-levi povlek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "Premakni posnetek gor/dol med stezami"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "-levi povlek"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Spremeni ojačevalno ovojnico"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Pisalo"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Spremeni vzorec"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Izmenjalka-levi-klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Zgladi pri vzorcu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Spremeni več vzorcev"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Spremeni samo EN vzorec"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Večkratno"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "enako kot orodje za izbiranje"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "enako kot orodje za povečavo"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Kar koli"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll tracks up or down"
-msgstr "Pomakni steze navzgor/navzdol"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Dvigalka-zasuk koleščka"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll waveform"
-msgstr "Drsaj po signalni obliki"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Wheel-Rotate"
-msgstr "-zasuk koleščka"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "Povečaj/pomanjšaj signalno obliko"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Shift-Wheel-Rotate"
-msgstr "-dvigalka-zasuk koleščka"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Obseg navpičnega merilnika signalnih oblik (dB)"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -14248,10 +10555,6 @@ msgid "Lo&ng period:"
 msgstr "&Daljše obdobje:"
 
 #: src/prefs/PlaybackPrefs.cpp
-msgid "&Vari-Speed Play"
-msgstr "Predvajanje s spre&menljivo hitrostjo"
-
-#: src/prefs/PlaybackPrefs.cpp
 msgid "&Micro-fades"
 msgstr "&Mikro pojemanja"
 
@@ -14285,14 +10588,6 @@ msgstr "%i Hz"
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "Drugo ..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "Vzorčenje"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "Privzeta &mera vzorčenja:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
@@ -14329,16 +10624,8 @@ msgid "Preferences for Recording"
 msgstr "Nastavitve snemanja"
 
 #: src/prefs/RecordingPrefs.cpp
-msgid "Play &other tracks while recording (overdub)"
-msgstr "Predvajaj &druge posnetke med snemanjem novega (t.i. overdub)"
-
-#: src/prefs/RecordingPrefs.cpp
 msgid "Use &hardware to play other tracks"
 msgstr "Uporabi &strojno opremo za predvajanje drugih stez"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "Pro&gramsko predvajanje vhoda skozi"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -14422,12 +10709,6 @@ msgstr "ERB"
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Period"
 msgstr "Perioda"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "Barvno (privzeto)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14547,10 +10828,6 @@ msgid "8 - most wideband"
 msgstr "8 - najširše"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - privzeto"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14569,31 +10846,6 @@ msgstr "&Ničelni faktor zapolnjevanja:"
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble Spectral Selection"
 msgstr "Omogo&či spektralni izbor"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "Pokaži mrežo vzdolž osi &Y"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "Najdi note FFT"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "Najmanjša amplituda (dB):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "Najv. število not (1..128):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "&Najdi note"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "&Kvantiziraj note"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
@@ -14623,18 +10875,6 @@ msgstr "Obseg mora biti celo število"
 msgid "The frequency gain must be an integer"
 msgstr "Ojačitev frekvence mora biti celo število"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "Najmanjša amplituda (dB) mora biti celo število"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "Največje število not mora biti celo število"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "Največje število not mora biti celo število v obsegu 1..128"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14646,12 +10886,6 @@ msgstr "Tema"
 #: src/prefs/ThemePrefs.cpp
 msgid "Preferences for Theme"
 msgstr "Nastavitve tem"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "&Settings"
-msgid "Theme Settings"
-msgstr "&Nastavitve"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Th&eme:"
@@ -14724,10 +10958,6 @@ msgid "Enable cut &lines"
 msgstr "Omogoči &črte rezov"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "Omogoči v&leko robov izbora"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Editing a clip can &move other clips"
 msgstr "Urejanje &posnetka lahko premakne druge posnetke"
 
@@ -14742,14 +10972,6 @@ msgstr "S &tipkanjem ustvari oznako"
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Use dialog for the &name of a new label"
 msgstr "Uporabi pogovorno okno za &ime nove oznake"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "Omogoči drsenje levo od &nič"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Advanced &vertical zooming"
-msgstr "Napredno &navpično povečevanje"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Solo &Button:"
@@ -14845,10 +11067,6 @@ msgid "Auto-&fit track height"
 msgstr "Samodejno &umeri višino stez"
 
 #: src/prefs/TracksPrefs.cpp
-msgid "Sho&w track name as overlay"
-msgstr "Pokaži ime zvočne steze &čeznjo"
-
-#: src/prefs/TracksPrefs.cpp
 msgid "&Pinned Recording/Playback head"
 msgstr "&Pripeta glava snemanja/predvajanja"
 
@@ -14888,42 +11106,6 @@ msgstr "Prednastavitev 1:"
 msgid "Preset 2:"
 msgstr "Prednastavitev 2:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "Opozorila"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Preferences for Warnings"
-msgstr "Nastavitve opozoril"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "Pokaži opozorila/vprašanja"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "Pri shranjevanju &projektov"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "Pri s&hranjevanju praznega projekta"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &mono during export"
-msgstr "Pri mešanju v &mono ob izvozu"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &stereo during export"
-msgstr "Pri mešanju v &stereo ob izvozu"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "Zmešaj zvok ob izvozu (&FFmpeg po meri ali zunanji program)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Missing file &name extension during export"
-msgstr "Manjkajoča &končnica imena datoteke pri izvozu"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 msgid "Waveforms"
@@ -14955,36 +11137,11 @@ msgstr "&Razhrošči"
 msgid "Classic"
 msgstr "Klasično"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "Zapisnik Audacity"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "Temno"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "Visoki kontrast"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "Svetlo"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "Orodja"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Zapisnik Audacity"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14993,19 +11150,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "Zapisovanje v datoteko ni možno: %s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr ""
-"Tema zapisana v:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15023,16 +11167,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "Zapisovanje v datoteko ni možno: %s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"Tema zapisana kot koda Cee v:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -15192,14 +11326,6 @@ msgid "Edit"
 msgstr "Uredi"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "Izreži izbor"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "Kopiraj izbor"
-
-#: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
 msgstr "Poreži zvok zunaj izbora"
 
@@ -15246,10 +11372,6 @@ msgstr "Prilagodi izbor širini"
 msgid "Fit project to width"
 msgstr "Prilagodi projekt širini"
 
-#: src/toolbars/EditToolBar.cpp
-msgid "Open Effects Rack"
-msgstr "Odpri skladovnico učinkov"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -15278,11 +11400,6 @@ msgstr "Merilnik posnetega"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "Merilnik-snemanje"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "Merilnik predvajanja"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -15316,71 +11433,9 @@ msgstr "Vrstica snemalne&ga merilnika"
 msgid "&Playback Meter Toolbar"
 msgstr "Vrstica &predvajalnega merilnika"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "Drsaj"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Seek"
-msgstr "Išči"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub Ruler"
-msgstr "Merilo drsenja"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 msgid "Scrubbing"
 msgstr "Drsenje"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Scrubbing"
-msgstr "Končaj drseti"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Scrubbing"
-msgstr "Začni drseti"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Seeking"
-msgstr "Ustavi iskanje"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Seeking"
-msgstr "Začni iskati"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Hide Scrub Ruler"
-msgstr "Skrij ravnilo drsenja"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scru&b Toolbar"
-msgstr "Vrstica &drsenja"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "Frekvenca projekta (Hz)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Snap-To"
-msgstr "Skoči na"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -15407,10 +11462,6 @@ msgid "Show"
 msgstr "Pokaži"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "Skoči na"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "Dolžina"
 
@@ -15419,26 +11470,6 @@ msgstr "Dolžina"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Sredinski"
-
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Snap Clicks/Selections to %s"
-msgstr "Pripni udarce/izbore na %s"
-
-#. i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated), to indicate that it will be
-#. calculated from other parameters.
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "%s - driven"
-msgstr "%s – vodeno"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr "Izbor %s. %s se ne bo spremenil."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15511,10 +11542,6 @@ msgid "Envelope Tool"
 msgstr "Orodje za ovojnico"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Orodje za povečavo"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Risanje"
@@ -15542,10 +11569,6 @@ msgid "&Draw Tool"
 msgstr "Orodje za &risanje"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "Orodje za &povečavo"
-
-#: src/toolbars/ToolsToolBar.cpp
 msgid "&Multi Tool"
 msgstr "&Večstransko orodje"
 
@@ -15568,10 +11591,6 @@ msgstr "Predvajaj pri izbrani hitrosti"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "Hitrost predvajanja"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Looped-Play-at-Speed"
-msgstr "Predvajaj zankano pri hitrosti"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15712,18 +11731,6 @@ msgstr "Raztegni"
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to expand, Right-Click to remove"
 msgstr "Levi klik za razširitev, desni klik za odstranitev"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Left-Click to merge clips"
-msgstr "Z levim klikom spojite posnetke"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "Spojeni posnetki"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "Spoji"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -15941,22 +11948,6 @@ msgstr "Razdvo&ji stereo stezo"
 msgid "Split Stereo to Mo&no"
 msgstr "Razdvoji stereo v mo&no"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "Levi kanal"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "Desni kanal"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Kanal"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -15992,26 +11983,6 @@ msgstr "Razdvoji stereo stezo v mono »%s«"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "Razdvoji v mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "Stereo, %d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "Mono, %d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "Levo, %d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "Desno, %d Hz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -16065,12 +12036,6 @@ msgstr "Določite posnetek"
 msgid "Mute/Unmute Track"
 msgstr "&Utišaj/odtišaj stezo s pozornostjo"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "Preimenuj ..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -16084,14 +12049,6 @@ msgstr[0] "%s %d od %d"
 msgstr[1] "%s %d od %d"
 msgstr[2] "%s %d od %d"
 msgstr[3] "%s %d od %d"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "Povečaj x1/2"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "Povečava x2"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -16113,22 +12070,6 @@ msgstr "Glasbilo %i"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 msgid "WaveColor Change"
 msgstr "Sprememba barve signalne oblike"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Spremeni spodnjo mejo hitrosti (%) na:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Spodnja meja hitrosti"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Spremeni zgornjo mejo hitrosti (%) na:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Zgornja meja hitrosti"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -16180,12 +12121,6 @@ msgstr "&Obseg ..."
 msgid "Logarithmic &Interpolation"
 msgstr "Logaritemska &interpolacija"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Kliknite in povlecite, da bi premaknili posnetek vzdolž časovne linije"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -16209,10 +12144,6 @@ msgstr "Steza z oznakami"
 #| msgid "&Export Audio..."
 msgid "Export Audio..."
 msgstr "&Izvozi zvok …"
-
-#: src/tracks/ui/CommonTrackControls.cpp
-msgid "&Name..."
-msgstr "I&me …"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -16381,18 +12312,6 @@ msgid "Collapse"
 msgstr "Strni"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Command+Click to deselect"
-msgstr "Cmd+klik za preklic izvora"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "Izberite stezo"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Ctrl+Click to deselect"
-msgstr "Krmilka+klik za preklic izbora"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "Odpri meni ..."
 
@@ -16471,12 +12390,6 @@ msgstr "L"
 msgid "R"
 msgstr "D"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, c-format
-msgid "%.2fx"
-msgstr "%.2fx"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "Po&čisti"
@@ -16500,30 +12413,6 @@ msgstr "Pomoč na spletu"
 #: src/widgets/KeyView.cpp
 msgid "Menu"
 msgstr "– meni"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "Kliknite za začetek opazovanja"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "Kliknite za opazovanje"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "Kliknite za začetek"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click"
-msgstr "Klikni"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "Ustavi opazovanje"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "Zaženi opazovanje"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16604,10 +12493,6 @@ msgstr " Porezano "
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
 msgstr "Pokaži dnevnik za podrobnosti"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "Prosimo, izberite dejanje"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

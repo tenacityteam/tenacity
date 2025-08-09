@@ -25,114 +25,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Stream je aktívny ... nemožno získať informáciu.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "Vybrať nahrávacie zariadenie"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "Vybrať prehrávacie zariadenie"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Žiadne zariadenia neboli nájdené"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "Informácia o zariadení nie je k dispozícii."
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "&Zariadenie:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "Zariadenia"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "Názov: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "Nahrávacie kanály"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "Úroveň prehrávania"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "Koniec záznamu:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "Koniec záznamu:"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "Vzorkovacie frekvencie"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "Vybrať nahrávacie zariadenie"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "Vybrať prehrávacie zariadenie"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "Žiadne zariadenia neboli nájdené"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Zobraziť výstup"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Vybrať nahrávacie zariadenie"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Vybrať prehrávacie zariadenie"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -162,17 +58,6 @@ msgstr "Vnútorná chyba"
 #, fuzzy, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr "Zlyhalo odstránenie %s"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je plný.\n"
-"%s\n"
-"Ak chcete získať tipy na uvoľnenie miesta, kliknite na tlačidlo Pomocník."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -221,11 +106,6 @@ msgstr "%s súborov"
 #, c-format
 msgid "(%s)"
 msgstr "(%s)"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "Adresár %s nemá oprávnenia na zápis"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -465,14 +345,6 @@ msgstr "Nie je možné nahrať súbor: \"%s\""
 msgid "Could not parse XML"
 msgstr "Nemožno otvoriť súbor"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "Prvý pokusný príkaz..."
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "Druhý pokusný príkaz"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -563,32 +435,6 @@ msgstr "%s, webový vývojár"
 msgid "%s, graphics"
 msgstr "%s, grafik"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, co-founder and developer"
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, spoluzakladateľ a vývojár"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, Tenacity developer"
-msgstr "%s, Tenacity vývojár"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, Tenacity developer"
-msgid "%s, Tenacity web developer"
-msgstr "%s, Tenacity vývojár"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "%s, hlavný vývojár programu Tenacity"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -635,12 +481,6 @@ msgstr "Členovia tímu %s"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Prispievatelia"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Bývalí:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -737,11 +577,6 @@ msgstr "Prevo&dník vzorkovacej frekvencie:"
 msgid "File Format Support"
 msgstr "Podpora formátov súborov"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "Import MP3"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -769,16 +604,8 @@ msgid "MP2 export"
 msgstr "Export MP2"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "Import cez QuickTime"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "Import/export FFmpeg"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "Import cez GStreamer"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -807,12 +634,6 @@ msgstr "Počas nahrávania sú zakázané akcie časovej osi"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Kliknite a ťahajte pre prispôsobenie, dvojklik pre vynulovanie"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "Nahrávacia/prehrávacia hlava"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -883,34 +704,6 @@ msgstr "Rýchle prehranie povolené"
 msgid "Timeline Options"
 msgstr "Možnosti časovej osi"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "Povoliť rýchle prehratie"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "Povoliť výber ťahaním"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "Aktualizovať zobrazenie počas prehrávania"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "Zamknúť oblasť prehrávania"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Pinned Play Head"
-msgstr "Pripnutá snímacia &hlava"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr ""
-"Nemožno zamknúť oblasť\n"
-"za koncom projektu."
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "Nedajú sa nájsť žiadne zvukové zariadenia.\n"
@@ -927,12 +720,6 @@ msgstr ""
 #, c-format
 msgid "Error: %s"
 msgstr "Chyba: %s"
-
-#: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Throw Error"
-msgid "PortAudio Error"
-msgstr "Vyhodiť chybu"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1401,15 +1188,6 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr "Očakávaná dĺžka %lld, dĺžka stopy %lld.\n"
 
 #: src/Benchmark.cpp
-#, fuzzy, c-format
-#| msgid "Performing Low-Pass Filter..."
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "Vykonávanie dolnopriepustného filtra..."
-msgstr[1] "Vykonávanie dolnopriepustného filtra..."
-msgstr[2] "Vykonávanie dolnopriepustného filtra..."
-
-#: src/Benchmark.cpp
 #, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Vystrihnúť: %lld - %lld \n"
@@ -1628,17 +1406,6 @@ msgstr "Môže to trvať niekoľko sekúnd"
 msgid "Could not write to %s.\n"
 msgstr "Nemožno zapisovať do: %s\n"
 
-#: src/DBConnection.cpp
-#, fuzzy, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je plný.\n"
-"%s\n"
-"Ak chcete získať tipy na uvoľnenie miesta, kliknite na tlačidlo Pomocník."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1678,26 +1445,6 @@ msgstr "Chyba databázy.  Je nám ľúto, ale nemáme k dispozícii viac inform�
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Chyba (súbor možno nebol zapísaný): %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "&Kopírovať nekomprimované súbory do projektu (bezpečnejšie)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "&Čítať nekomprimované súbory z originálneho umiestnenia (rýchlejšie)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "&Kopírovať všetko audio do projektu (najbezpečnejšie)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "&Nekopírovať žiadne audio"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "Sp&ýtať sa"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1814,12 +1561,6 @@ msgstr "&Os:"
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "Z&mapovať..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr ""
-"Pre zmapovanie spektra, všetky vybrané stopy musia mať rovnakú vzorkovaciu "
-"frekvenciu."
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -2010,12 +1751,6 @@ msgstr "&Kompaktné"
 #, c-format
 msgid "Compacting actually freed %s of disk space."
 msgstr "Komprimovanie skutočne uvoľnilo %s miesta na disku."
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "&História..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2263,11 +1998,6 @@ msgid "Signal Level Meter"
 msgstr "Merač úrovne signálu"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "Posunutý posuvník zisku"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 msgid "Moved velocity slider"
 msgstr "Posunutý posuvník rýchlosti"
@@ -2276,10 +2006,6 @@ msgstr "Posunutý posuvník rýchlosti"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "Posunutý posuvník vyváženia"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "Panel &zmiešavača..."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2533,80 +2259,14 @@ msgstr "Povoliť nové rozšírenia"
 msgid "Nyquist Prompt"
 msgstr "Výzva Nyquistu"
 
-#: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "Spravovať rozšírenia"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "Nový"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr ""
-"Vyberte efekty, kliknite na tlačidlo Povoliť alebo Zakázať a potom kliknite "
-"na OK."
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "Zobraziť:"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "Zobraziť všetky"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "&Všetky"
 
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show disabled"
-msgstr "Zobraziť zakázané"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "Z&akázané"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show enabled"
-msgstr "Zobraziť povolené"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "P&ovolené"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "Zobraziť nový"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "N&ový"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "Stav"
-
 #: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "Cesta"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "&Vybrať všetko"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "&Zmazať všetko"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
@@ -2614,39 +2274,11 @@ msgid "&Enable"
 msgstr "&Povoliť"
 
 #: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "&Zakázať"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr "Povolenie efektov alebo príkazov: %s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr "Povolenie efektu alebo príkazu: %s"
-
-#: src/PluginRegistrationDialog.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
 msgstr "Efekt alebo príkaz v %s sa nepodarilo zaregistrovať: %s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Vyskytli sa problémy s tlačou."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "Tlačiť"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2882,25 +2514,8 @@ msgid "Error Writing to File"
 msgstr "Chyba pri zápise do súboru"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk je plný.\n"
-"%s\n"
-"Ak chcete získať tipy na uvoľnenie miesta, kliknite na tlačidlo Pomocník."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Zhutňovanie projektu"
-
-#. i18n-hint: The %02i is the project number, the %s is the project name.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Projekt %02i] Audacity „%s“"
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -2980,30 +2595,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "Projekty nie je možné ukladať na disky FAT."
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"Váš projekt je teraz prázdny. \n"
-"Ak ho uložíte, projekt nebude mať žiadne stopy.\n"
-"\n"
-"Ak chcete uložiť všetky predtým otvorené stopy:\n"
-"Kliknite na 'Nie', potom Upraviť/Vrátiť, kým nie sú všetky stopy\n"
-"otvorené, potom Súbor/Uložiť projekt.\n"
-"\n"
-"Uložiť aj napriek tomu?"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "Upozornenie - prázdny projekt"
-
-#: src/ProjectFileManager.cpp
 msgid "Insufficient Disk Space"
 msgstr "Nedostatok miesta na disku"
 
@@ -3025,14 +2616,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sUložiť projekt \"%s\" ako..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"'Uložiť Projekt' je pre projekt Audacity, nie pre audio súbor.\n"
-"Pre audio súbor otváraný inými aplikáciami, použite 'Export'.\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3200,22 +2783,6 @@ msgid "Save project before closing?"
 msgstr "Uložiť projekt pred uzavretím?"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"Ak bude projekt uložený, nebude mať žiadne stopy.\n"
-"\n"
-"Pre uloženie všetkých predtým otvorených stôp:\n"
-"Zrušiť, Upraviť/Späť pokým nie sú všetky stopy \n"
-"otvorené, potom Súbor/Uložiť projekt."
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "Zostávajúce miesto na disku pre nahrávanie: %s"
@@ -3278,18 +2845,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "Upozornenie - skrátenie predĺženého súboru bloku"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "Vypnuté"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "Najbližší"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "Prednostný"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "Zvukovo aktivovaný záznam"
@@ -3297,12 +2852,6 @@ msgstr "Zvukovo aktivovaný záznam"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Aktivačná úroveň (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
-msgid "Tenacity Pre-Release"
-msgstr "%s, Tenacity vývojár"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3387,10 +2936,6 @@ msgid "Set De&fault"
 msgstr "Nastaviť pred&volené"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "Toto už viac nezobrazovať pri exporte audia"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Upraviť žánre"
 
@@ -3434,24 +2979,6 @@ msgstr "Zlyhalo odstránenie %s"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "Zlyhanie!"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"Vynulovať predvoľby?\n"
-"\n"
-"Toto je jednorázová otázka, po 'inštalácii' kde sa žiada súhlas s vynulovaní "
-"predvolieb."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "&Použiť predvoľby"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -3914,12 +3441,6 @@ msgid "Do nothing"
 msgstr "Neurobiť nič"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "&About Tenacity..."
-msgid "Exit Tenacity"
-msgstr "&O Tenacity…"
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Reštartovať systém"
 
@@ -3966,10 +3487,6 @@ msgstr "Záznam exportovaný:"
 #| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Časový záznam"
-
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "Stereo, 999999Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -4048,11 +3565,6 @@ msgstr "Odstránená audio stopa(y)"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "Odstrániť stopu"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "Odstránená stopa '%s.'"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4431,12 +3943,6 @@ msgid "Builtin Commands"
 msgstr "Vstavané príkazy"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "Neznámy zabudovaný názov príkazu"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "Neznámy zabudovaný názov príkazu"
 
@@ -4735,14 +4241,6 @@ msgid "Sets various values for a project."
 msgstr "Nastaví rôzne hodnoty pre projekt."
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "Index stopy:"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "Index kanálu:"
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "Nastaviť stav stopy"
 
@@ -4757,10 +4255,6 @@ msgstr "Zameraný"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "Nastaviť audio stopu"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "Zisk:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4984,10 +4478,6 @@ msgid "High Quality Pitch Change"
 msgstr "Vysoko kvalitná zmena výšok"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Zmena výšky bez zmeny tempa"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "Odhadovaná počiatočná výška tónu: %s% d (% .3f Hz)"
@@ -5092,16 +4582,8 @@ msgid "n/a"
 msgstr "nie je"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Zmeniť rýchlosť"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "Mení rýchlosť stopy a mení jej výšku tónu"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Zmení rýchlosť a ovplyvní tempo a výšku tónu"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&Speed Multiplier:"
@@ -5178,10 +4660,6 @@ msgstr "Zmení tempo výberu bez zmeny výšky tónu"
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "Zmena tempa vysokej kvality"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Zmena tempa bez zmeny výšky tónu"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Beats per minute"
@@ -5388,164 +4866,14 @@ msgstr "Čas nábehu %.2f sekúnd"
 msgid "Release Time %.1f secs"
 msgstr "Čas uvoľnenia %.1f sekúnd"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Exponential Out"
-msgid "Exponential-Fit"
-msgstr "Od exponenciálneho"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "Amplitúda špičky dB"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "Redukcia šumu"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "Redukcia šumu"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Limiter"
-msgid "Analog Limiter"
-msgstr "Obmedzovač"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "Kompresor"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Sets the loudness of one or more tracks"
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Nastavuje hlasitosť jednej alebo viacerých stôp"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compressor step response"
-msgstr "&Kompresia založená na špičkách"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritmus"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "&Algoritmus:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compress based on:"
-msgstr "&Kompresia založená na špičkách"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "N&ormalize stereo channels independently"
-msgid "Compress stereo channels independently"
-msgstr "&Nezávisle normalizovať stereo kanály"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Ratio:"
-msgid "Ratio:"
-msgstr "&Pomer:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "Šírka:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "Šírka:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "Výstupný &zisk (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "Výstupný zisk (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Attack Time:"
-msgid "Attack:"
-msgstr "Čas ná&behu:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "Čas nábehu"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "R&elease Time:"
-msgid "Release:"
-msgstr "Čas &uvoľnenia (sekundy):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "Čas uvoľnenia"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "Čas vyhladenia:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "Čas vyhladenia"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "Čas konca:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Čas konca"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6209,11 +5537,6 @@ msgid "Applied effect: %s"
 msgstr "Použitý efekt: %s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "Použitý príkaz: %s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "Vybrať predvoľbu"
 
@@ -6240,26 +5563,6 @@ msgstr "Pôvodné továrenské"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"Nepodarilo sa inicializovať nasledujúci efekt:\n"
-"\n"
-" %s\n"
-"\n"
-"Ďalšie informácie sú k dispozícii v časti „Nápoveda/Diagnostika/Zobraziť "
-"záznam“"
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "Zlyhala inicializácia efektu"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6278,95 +5581,12 @@ msgid "Command failed to initialize"
 msgstr "Inicializácia príkazu zlyhala"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "Stojan efektov"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "&Použiť"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "Latencia: 0"
-
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "&Preklenutie"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "Aktívny stav"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "Nastaviť aktívny stav efektu"
-
-#: src/effects/EffectUI.cpp
-msgid "Show/Hide Editor"
-msgstr "Zobraziť/skryť editor"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "Otvoriť/zatvoriť editor efektov"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "Posunúť hore"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "Presunie efekt v stojane nahor"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Down"
-msgstr "Posunúť dole"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "Presunie efekt v stojane nadol"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "Obľúbené"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "Označiť efekt ako obľúbený"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "Odstrániť efekt zo stojanu"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "Názov efektu"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "Latencia: %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "Niektoré príkazy"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "Správa predvolieb a možností"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "&Spravovať"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "Spustí a zastaví prehrávanie"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "Spustiť &prehrávanie"
 
 #: src/effects/EffectUI.cpp
 msgid "Preview effect"
@@ -6375,26 +5595,6 @@ msgstr "Ukážka efektu"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "&Náhľad"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "&Ukážka efektu"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "Skočí dozadu"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "Preskočiť &dozadu"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "Skočí dopredu"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "Preskočiť &dopredu"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6480,12 +5680,6 @@ msgstr ""
 "\n"
 "Nahradiť?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "Zastaviť &prehrávanie"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6562,20 +5756,6 @@ msgstr "Orezať výšky"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"Ak chcete použiť túto filtračnú krivku v makre, vyberte pre ňu nový názov.\n"
-"Vyberte tlačidlo „Uložiť/Spravovať krivky ...“ a premenujte krivku "
-"„nepomenované“ a potom ju použite."
-
-#: src/effects/Equalization.cpp
-msgid "Filter Curve EQ needs a different name"
-msgstr "Filtračná krivka ekvalizéra vyžaduje iný názov"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr ""
 "Pre použitie ekvalizácie, musia mať všetky vybrané stopy rovnakú vzorkovaciu "
@@ -6584,10 +5764,6 @@ msgstr ""
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
 msgstr "Vzorkovacia rýchlosť stopy je príliš nízka pre tento efekt."
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "Efekt nedostupný"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6690,34 +5866,6 @@ msgstr "Zobraziť čiary mriežky"
 msgid "Show g&rid lines"
 msgstr "Zobraziť čiary &mriežky"
 
-#: src/effects/Equalization.cpp
-msgid "&Processing: "
-msgstr "&Spracovanie: "
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "P&redvolené"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "Vláknové SS&E"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "A&VX"
-
-#: src/effects/Equalization.cpp
-msgid "AV&X Threaded"
-msgstr "Vláknové AV&X"
-
-#: src/effects/Equalization.cpp
-msgid "&Bench"
-msgstr "&Lavica"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6738,20 +5886,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "Chyba načítania EQ kriviek"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "Chyba uloženia kriviek ekvalizácie"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "Požadovaná krivka nebola nájdená, použije sa \"nepomenovaná\""
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "Krivka nenájdená"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -6916,36 +6056,6 @@ msgstr "Na vybrané audio použije lineárny postupný nábeh"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Na vybrané audio použije lineárne zoslabenie"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "Vyhľadať orezávanie"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "Vytvorí návesti tam, kde je zistené orezávanie"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Clicks"
-msgstr "Kliknúť"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Right"
-msgstr "Kliknúť"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Left"
-msgstr "Kliknúť"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Vyhľadať orezávanie"
@@ -7083,34 +6193,6 @@ msgstr "Druhý najväčší"
 #: src/effects/NoiseReduction.cpp
 msgid "Old"
 msgstr "Stará"
-
-#: src/effects/NoiseReduction.cpp
-msgid "none, Hann (2.0.6 behavior)"
-msgstr "žiadne, Hann (správanie 2.0.6)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, none"
-msgstr "Hann, žiadny"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, Hann (default)"
-msgstr "Hann, Hann (predvolené)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Blackman, Hann"
-msgstr "Blackman, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, none"
-msgstr "Hamming, žiadny"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Hann"
-msgstr "Hamming, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Reciprocal Hamming"
-msgstr "Hamming, recipročný Hamming"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7320,48 +6402,6 @@ msgstr "4 (predvolené)"
 #: src/effects/NoiseReduction.cpp
 msgid "Discrimination &method:"
 msgstr "&Metóda diskriminácie:"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Odstránenie šumu"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr ""
-"Odstráni konštantný šum na pozadí ako ventilátory, šum pásky, alebo hučanie"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Vyberte všetky audiá, ktoré chcete filtrovať, vyberte aké množstvo šumu "
-"chcete\n"
-"odfiltrovať, a potom kliknite 'OK' pre odstránenie šumu.\n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "Re&dukcia šumu (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "&Citlivosť (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Fr&equency smoothing (Hz):"
-msgstr "Fr&ekvenčné vyhladenie (Hz):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "Čas ná&behu/rozkladu (sekundy):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "Čas nábehu/rozkladu"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "Od&strániť"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7707,11 +6747,6 @@ msgstr "Ší&rka sterea (%):"
 msgid "Wet O&nly"
 msgstr "I&ba mokrý"
 
-#: src/effects/Reverb.cpp
-#, c-format
-msgid "Reverb: %s"
-msgstr "Dozvuk: %s"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Obrátiť"
@@ -7912,16 +6947,6 @@ msgstr "Skonvertuje stereo stopy na mono"
 
 #: src/effects/StereoToMono.cpp
 #, fuzzy
-msgid "Resampling left channel"
-msgstr "Prevzorkovanie zlyhalo."
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling right channel"
-msgstr "Pravý kanál"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
 msgid "Mixing down to mono"
 msgstr "Zmiešavaní do &mono pri exporte"
 
@@ -8075,15 +7100,6 @@ msgstr "Stopy skracovať &nezávisle"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "Efekty VST"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "Prostredie skenovania VST"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "Registrovanie %d z %d: %-64.64s"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8305,18 +7321,6 @@ msgid "Import Audio Unit Presets"
 msgstr "Import predvolieb zvukových jednotiek"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "Predvoľby (možno vybrať viaceré)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "Predvoľba"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "Umiestnenie"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
 msgstr "Nepodarilo sa otvoriť \"%s“"
@@ -8397,14 +7401,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "Zlyhal zápis predvoľby XML do \"%s“"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to convert preset to internal format"
-msgstr "Zlyhala konverzia predvoľby na interný formát"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to create property list for preset"
-msgstr "Zlyhalo vytvorenie zoznamu vlastností pre predvoľbu"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "Zlyhala informácia nastavenia triedy pre predvoľbu „%s“"
@@ -8474,16 +7470,6 @@ msgid "Couldn't instantiate effect"
 msgstr "Nepodarilo sa vytvoriť inštanciu efekt"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%s vyžaduje nepodporovanú funkciu %s\n"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%s vyžaduje nepodporovanú voľbu %s\n"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "Generátor"
 
@@ -8534,28 +7520,6 @@ msgstr ""
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
 msgstr "Vyžaduje sa výber zvuku."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Chyba Nyquistu"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"Prepáčte, ale efekt nemôže byť aplikovaný na stereo stopy, kde sa stopy "
-"nezhodujú."
-
-#: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid ""
-"Selection too long for Nyquist code.\n"
-"Maximum allowed selection is %ld samples\n"
-"(about %.1f hours at 44100 Hz sample rate)."
-msgstr ""
-"Výber príliš dlhý pre Nyquist kód.\n"
-"Maximálny povolený výber je %ld vzoriek\n"
-"(okolo %.1f hodín pri vzorkovej rýchlosti 44 100Hz)."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
@@ -8639,10 +7603,6 @@ msgstr ""
 "\treturn *track* * 0.1\n"
 "alebo pre LISP, začnite s otvorenými zátvorkami ako napríklad:\n"
 "\t(mult *track* 0.1)"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Chyba v kóde Nyquistu"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8737,14 +7697,6 @@ msgid "Vamp Effects"
 msgstr "Efekty Vamp"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Prepáčte, rozšírenia Vamp nemôžu bežať na stereo stopách, pri ktorých sa "
-"jednotlivé kanály stopy nezhodujú."
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "Prepáčte, nepodarilo sa načítať rozšírenie Vamp."
 
@@ -8788,58 +7740,12 @@ msgstr "Celé audio je stlmené."
 
 #: src/export/Export.cpp
 #, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Naozaj chcete exportovať súbor ako \"%s\"?\n"
-
-#: src/export/Export.cpp
-#, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"Chystáte sa exportovať %s súbor s názvom \"%s\".\n"
-"\n"
-"Obvykle tieto súbory končia v \".%s\", a niektoré programy neotvoria súbory "
-"s neštandardnými príponami.\n"
-"\n"
-"Ste si istý, že chcete exportovať súbor pod týmto názvom?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "Prepáčte, názvy ciest dlhšie ako 256 znakov nie sú podporované."
-
-#: src/export/Export.cpp
-#, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "Súbor s názvom \"%s\" už existuje. Nahradiť?"
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "Vaše stopy sa zmiešajú a exportujú ako jeden mono súbor."
-
-#: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "Vaše stopy sa zmiešajú a exportujú ako jeden stereo súbor."
-
-#: src/export/Export.cpp
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr ""
-"Vaše stopy sa zmiešajú do jedného exportovaného súboru podľa nastavení "
-"dekódovača."
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Rozšírené možnosti zmiešavania"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-msgid "Format Options"
-msgstr "Možnosti formátovania"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8883,1202 +7789,36 @@ msgstr "Prehľadávať..."
 msgid "Show output"
 msgstr "Zobraziť výstup"
 
-#. i18n-hint: Some programmer-oriented terminology here:
-#. "Data" refers to the sound to be exported, "piped" means sent,
-#. and "standard in" means the default input stream that the external program,
-#. named by %f, will read.  And yes, it's %f, not %s -- this isn't actually used
-#. in the program as a format string.  Keep %f unchanged.
-#: src/export/ExportCL.cpp
-#, c-format
-msgid ""
-"Data will be piped to standard in. \"%f\" uses the file name in the export "
-"window."
-msgstr ""
-"Údaje sa prenesú na štandardné hodnoty. \"%f\" používa názov súboru v okne "
-"exportu."
-
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-msgid "Executables"
-msgstr "Spustiteľné"
-
-#: src/export/ExportCL.cpp
-msgid "Find path to command"
-msgstr "Nájsť cestu pre príkaz"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(externý program)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "Nemožno exportovať audio do %s"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Exportovať"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "Exportovanie zvoleného audia použitím príkazového riadku dekódovača"
-
-#: src/export/ExportCL.cpp
-msgid "Exporting the audio using command-line encoder"
-msgstr "Exportovanie audia použitím príkazového riadku dekódovača"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Výstupný príkaz"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "&OK"
-
-#: src/export/ExportCL.cpp
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr "Zadali ste názov súboru bez prípony. Si si istý?"
-
-#: src/export/ExportCL.cpp
-msgid "Program name appears to be missing."
-msgstr "Zdá sa, že chýba názov programu."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "\"%s“ sa nepodarilo nájsť."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "Na vašej ceste sa nepodarilo nájsť „%s“."
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-#| msgid "Format Options"
-msgid "Export Options"
-msgstr "Možnosti formátovania"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Zrušiť"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"Pre pokračovanie je požadovaný správne nakonfigurovaný FFmpeg.\n"
-"Môžete to nastaviť v Predvoľby/Knižnice."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg : CHYBA - Nemožno zistiť popis formátu pre súbor \"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "Chyba FFmpeg"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg : CHYBA - Nemožno prideliť kontext výstupného formátu."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr "FFmpeg : CHYBA - Nemožno pridať audio tok do výstupného súboru \"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr ""
-"FFmpeg : CHYBA - Nemožno otvoriť výstupný súbor \"%s\" na zápis. Kód chyby "
-"je %d."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr ""
-"FFmpeg : CHYBA - Nemožno zapísať hlavičky do výstupného súboru \"%s\". Kód "
-"chyby je %d."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg nemôže nájsť audio kodek 0x%x.\n"
-"Podpora tohto kodeku pravdepodobne nebola skompilovaná."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported a generic error (EPERM)"
-msgstr "Kodek nahlásil generickú chybu (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported an invalid parameter (EINVAL)"
-msgstr "Kodek nahlásil neplatný parameter (EINVAL)"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Can't open audio codec \"%s\" (0x%x)\n"
-"\n"
-"%s"
-msgstr ""
-"Nemožno otvoriť audio kodek \"%s“ (0x%x)\n"
-"\n"
-" %s"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg : CHYBA - Nemožno prideliť zásobník na čítanie z audia FIFO."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr "FFmpeg : CHYBA - Nemožno pridať audio tok do výstupného súboru \"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg : CHYBA - Nemožno získať veľkosť zásobníka vzorky"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "FFmpeg : CHYBA - Nemožno priradiť bajty pre zásobník vzoriek"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg : CHYBA - Nemožno získať veľkosť zásobníka vzorky"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg : CHYBA - Nemožno kódovať audio snímku."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "FFmpeg : CHYBA - Príliš mnoho zvyšných údajov."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg : CHYBA - Veľkosť výstupu audio snímky je priveľká."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg : CHYBA - Nemožno kódovať audio snímku."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr ""
-"Pokus o export %d kanálov, ale maximálny počet kanálov pre vybraný výstupný "
-"formát je %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "Exportovanie vybraného audio ako %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the audio as %s"
-msgstr "Exportovanie audia ako %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "Neplatná vzorkovacia frekvencia"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "Prevzorkovať"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"Vzorkovacia frekvencia projektu (%d) nie je podporovaná aktuálnym formátom\n"
-"výstupného súboru. "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"Kombinácia vzorkovacej frekvencie projektu (%d) a bitovej rýchlosti (%d kbit/"
-"s) nie je\n"
-"podporovaná aktuálnym formátom výstupného súboru. "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "Môžete je prevzorkovať na jednu z frekvencií uvedených nižšie."
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "Vzorkovacie frekvencie"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kbit/s"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Bitová rýchlosť:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "Kvalita (kb/s):"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kbit/s"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "0"
-msgstr "0"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "9"
-msgstr "9"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10"
-msgstr "10"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "On"
-msgstr "Zapnúť"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Constrained"
-msgstr "Vynútené"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VOIP"
-msgstr "VOIP"
-
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Audio"
 msgstr "Audio"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Low Delay"
-msgstr "Nízke oneskorenie"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2.5 ms"
-msgstr "2,5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "5 ms"
-msgstr "5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10 ms"
-msgstr "10 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "20 ms"
-msgstr "20 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "40 ms"
-msgstr "40 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "60 ms"
-msgstr "60 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Narrowband"
-msgstr "Úzkopásmové"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mediumband"
-msgstr "Stredné pásmo"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Wideband"
-msgstr "Širokopásmové"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Super Wideband"
-msgstr "Extra širokopásmové"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Fullband"
-msgstr "Celé pásmo"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression"
-msgstr "Kompresia"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame Duration:"
-msgstr "Trvanie snímky:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Vbr Mode:"
-msgstr "Režim Vbr:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Application:"
-msgstr "Aplikácia:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Cutoff:"
-msgstr "Orezanie:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Open custom FFmpeg format options"
-msgstr "Otvoriť vlastné možnosti formátovania FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Format:"
-msgstr "Súčasný formát:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Codec:"
-msgstr "Súčasný kodek:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr "Chyba uloženia predvolieb FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "Prepísať predvoľbu '%s'?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "Potvrdiť prepísanie"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "Vyberte formát pred uložením profilu"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "Vyberte kodek pred uložením profilu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "Predvoľba '%s' neexistuje."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Replace preset '%s'?"
-msgstr "Nahradiť predvoľbu '%s'?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LC"
-msgstr "LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Main"
-msgstr "Hlavný"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "M4A (AAC) súbory (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "AC3 súbory (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "AMR (úzke pásmo) súbory (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "Opus (OggOpus) súbory (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "WMA (verzia 2) súbory (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "Vlastný export FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "Odhad"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "2-úrovňový"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "4-úrovňový"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "8-úrovňový"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "Úplné vyhľadávanie"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "Logické vyhľadávanie"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Configure custom FFmpeg options"
-msgstr "Konfigurácia vlastných možností FFmpeg"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "Predvolby:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "Načítať predvoľbu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "Importovať predvoľby"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "Exportovať predvoľby"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "Kodek:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Not all formats and codecs are compatible. Nor are all option combinations "
-"compatible with all codecs."
-msgstr ""
-"Nie všetky formáty a kodeky sú kompatibilné. Nie sú ani všetky kombinácie "
-"možností kompatibilné so všetkými kodekmi."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "Zobraziť všetky formáty"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "Zobraziť všetky kodeky"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "General Options"
-msgstr "Všeobecné možnosti"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"3-písmenový jazykový kód podľa normy ISO 639\n"
-"voliteľný\n"
-"prázdne - automaticky"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Jazyk:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Bit Reservoir"
-msgstr "Bitový zásobník"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"Príznak kodeku (FOURCC)\n"
-"Voliteľné \n"
-"prázdne - automaticky"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "Príznak:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"Bitová rýchlosť (bitov/sekundu) - ovplyvňuje výslednú veľkosť súboru a "
-"kvalitu \n"
-"Niektoré kodeky akceptujú len konkrétne hodnoty (128k, 192k, 256k, atď.) \n"
-"0 - automaticky\n"
-"Odporúčané - 192000"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"Celková kvalita, používaná odlišne rôznymi kodekmi  \n"
-"Vyžadované pre vorbis \n"
-"0 - automaticky \n"
-"-1 - vypnuté (použite radšej bitovú rýchlosť)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Kvalita:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"Vzorkovacia frekvencia (Hz)\n"
-"0 - nemení vzorkovaciu frekvenciu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "Vzorkovacia frekvencia:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"Šírka pásma orezania audia (Hz) \n"
-"Voliteľné \n"
-"0 - automaticky"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"Profil AAC\n"
-"Nízka zložitosť - predvolené\n"
-"Väčšina hráčov nebude hrať nič iné ako LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "Profil:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "Možnosti FLAC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"Úroveň kompresie\n"
-"Vyžadované pre FLAC\n"
-"-1 - automaticky\n"
-"min - 0 (rýchle kódovanie, veľký výstupný súbor)\n"
-"max - 10 (pomalé kódovanie, malý výstupný súbor)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression:"
-msgstr "Kompresia:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"Veľkosť snímky\n"
-"Voliteľné \n"
-"0 - predvolené\n"
-"min - 16 \n"
-"max - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "Snímka:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"Presnosť koeficientovLPC\n"
-"Voliteľné \n"
-"0 - predvolené \n"
-"min - 1 \n"
-"max - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"Metóda predvídania poradia\n"
-"Odhad - najrýchlejšia, nižšia kompresia\n"
-"Logické vyhľadávanie - najpomalšie, najlepšia kompresia\n"
-"Úplné vyhľadávanie - predvolené"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "PdO Method:"
-msgstr "Metóda PdO:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Minimálne predvídanie poradia\n"
-"Voliteľné\n"
-"-1 - predvolené\n"
-"min - 0\n"
-"max - 32 (s LPC) alebo 4 (bez LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "Minimálne PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Maximálne predvídanie poradia\n"
-"Voliteľné\n"
-"-1 - predvolené\n"
-"min - 0\n"
-"max - 32 (s LPC) or 4 (bez LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "Maximálne PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Minimálne oddielové poradie - PtO\n"
-"Voliteľná\n"
-" -1 - predvolený\n"
-"min - 0\n"
-"max - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "Minimálne PtO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Maximálne oddielové poradie - PtO\n"
-"Voliteľné\n"
-"-1 - predvolené\n"
-"min - 0\n"
-"max - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "Maximálne PtO"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "Použiť metódu Lineárne predvídateľného kódovania LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "Možnosti kontajnera MPEG"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Maximálna bitová rýchlosť multiplexového toku\n"
-"Voliteľné\n"
-"0 - predvolené"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "Frekvencia zmiešavania:"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Veľkosť paketu\n"
-"Voliteľné\n"
-"0 - predvolené"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "Veľkosť paketu:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "Nemôžete vymazať predvoľbu bez názvu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "Odstrániť predvoľbu '%s'?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "Nemožno uložiť predvoľbu bez názvu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "Vyberte xml súbor s predvoľbami na import"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "Žiadne predvoľby na export"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "Vyberte súbor xml, do ktorého chcete exportovať predvoľby"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Format %s is not compatible with codec %s."
-msgstr "Formát %s nie je kompatibilný s kodekom %s."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Incompatible format and codec"
-msgstr "Nekompatibilný formát a kodek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "Nepodarilo sa odhadnúť formát"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "Nepodarilo sa nájsť kodek"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16 bit"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24 bit"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (najrýchlejšie)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (najlepšie)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Úroveň:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Bitová hĺbka:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "FLAC súbory"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "Export FLAC nemohol otvoriť %s"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr ""
-"Inicializácia kódovača FLAC zlyhala\n"
-"Stav: %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "Exportovanie vybraného audio ako FLAC"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the audio as FLAC"
-msgstr "Exportovanie audia ako FLAC"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "MP2 súbory"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr ""
-"Nemožno exportovať MP2 s touto vzorkovacou frekvenciou a bitovou rýchlosťou"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "Nemožno otvoriť cieľový súbor pre zápis"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "Exportovanie vybraného audia pri %ld kbit/s"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "Exportovanie audia pri %ld kbit/s"
-
-#: src/export/ExportMP3.cpp
-msgid "220-260 kbps (Best Quality)"
-msgstr "220-260 kb/s (najlepšia kvalita)"
-
-#: src/export/ExportMP3.cpp
-msgid "200-250 kbps"
-msgstr "200 - 250 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "170-210 kbps"
-msgstr "170-210 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "155-195 kbps"
-msgstr "145-185 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "145-185 kbps"
-msgstr "145-185 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "110-150 kbps"
-msgstr "110-150 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "95-135 kbps"
-msgstr "95-135 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "80-120 kbps"
-msgstr "80-120 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "65-105 kbps"
-msgstr "65-105 kb/s"
-
-#: src/export/ExportMP3.cpp
-msgid "45-85 kbps (Smaller files)"
-msgstr "45-85 kb/s (menšie súbory)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "Šialená, 320 kbit/s"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "Extrémna, 220-260 kbit/s"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "Štandardná, 170-210 kbit/s"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "Stredná, 145-185 kbit/s"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "Nezmyselný"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "Extrémny"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Štandardná"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "Stredný"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "Premenlivá"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "Priemerná"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "Konštantná"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "Spojené stereo"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "Stereo"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "Režim bitovej rýchlosti:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Kvalita"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "Režim kanálov:"
-
-#: src/export/ExportMP3.cpp
-msgid "Force export to mono"
-msgstr "Vynútiť export do mono"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "MP3 súbory"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "Nemožno inicializovať MP3 tok"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "Exportovanie vybraného audia s %s predvoľbou"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "Exportovanie audia s %s predvoľbou"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "Exportovanie vybraného audia s kvalitou VBR %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "Exportovanie audia s kvalitou VBR %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "Exportovanie vybraného audia pri %d kbit/s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "Exportovanie audia pri %d kbit/s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "Chyba %ld vrátená z MP3 kódovača"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"Vzorkovacia frekvencia projektu (%d) nie je podporovaná\n"
-"formátom súboru MP3. "
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"Kombinácia projektovej vzorkovacej frekvencie (%d) a bitovej rýchlosti (%d "
-"kbit/s) nie je\n"
-"podporovaná formátom súboru MP3. "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16-bit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24-bit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Nápisy"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "Exportovanie audio súboru"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "Exportovanie vybraného audio ako FLAC"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the audio as FLAC"
-msgid "Exporting the audio as MKA"
-msgstr "Exportovanie audia ako FLAC"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Viacnásobný export"
-
-#: src/export/ExportMultiple.cpp
-msgid "Cannot Export Multiple"
-msgstr "Nie je možný viacnásobný export"
-
-#: src/export/ExportMultiple.cpp
-msgid ""
-"You have no unmuted Audio Tracks and no applicable \n"
-"labels, so you cannot export to separate audio files."
-msgstr ""
-"Nemáte žiadne nestíšené stopy audia a žiadne aplikovateľné \n"
-"návesti, takže ich nemôžete exportovať do oddelených audio súborov."
-
-#: src/export/ExportMultiple.cpp
-msgid "Export files to:"
-msgstr "Exportovať súbory do:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "Priečinok:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Zvoľte..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Vytvoriť"
-
-#: src/export/ExportMultiple.cpp
-msgid "Options:"
-msgstr "Možnosti:"
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -10087,14 +7827,6 @@ msgstr "Rozdeliť súbory na základe:"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "Do prvej návesti začleňte audio"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "Názov prvého súboru:"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "Názov prvého súboru"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -10117,17 +7849,8 @@ msgid "File name prefix:"
 msgstr "Predpona názvu súboru:"
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "Predpona názvu súboru"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Prepísať existujúce súbory"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "\"%s\" úspešne vytvorený."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -10160,197 +7883,16 @@ msgstr ""
 "Po exportovaní nasledujúceho súboru(ov) %lld sa niečo skutočne pokazilo."
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"\"%s\" neexistuje.\n"
-"\n"
-"Chcete ho vytvoriť?"
-
-#: src/export/ExportMultiple.cpp
 msgid "Continue to export remaining files?"
 msgstr "Chcete pokračovať v exporte zostávajúcich súborov?"
-
-#. i18n-hint: The second %s gives some letters that can't be used.
-#: src/export/ExportMultiple.cpp
-#, fuzzy, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name.\n"
-"You cannot use any of these characters:\n"
-"\n"
-"%s\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"Návesť alebo stopa \"%s\" nie je legálny názov súboru. Žiadny z týchto "
-"názvov nemožno použiť: %s \n"
-"Použite..."
-
-#. i18n-hint: The second %s gives a letter that can't be used.
-#: src/export/ExportMultiple.cpp
-#, fuzzy, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name. You cannot use \"%s\".\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"Návesť alebo stopa \"%s\" nie je legálny názov súboru. Nemôžete použiť "
-"\"%s\".\n"
-"Použite..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "Uložiť ako..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Súbory Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - rate or quality problem"
-msgstr "Nemožno exportovať - problém s frekvenciou alebo kvalitou"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with metadata"
-msgstr "Nemožno exportovať - problém s meta údajmi"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem initialising"
-msgstr "Nemožno exportovať - problém inicializácie"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem creating stream"
-msgstr "Nemožno exportovať - problém vytvárania toku"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with packets"
-msgstr "Nemožno exportovať - problém s paketmi"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with file"
-msgstr "Nemožno exportovať - problém so súborom"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "Exportovanie vybraného audia ako Ogg Vorbis"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "Exportovanie audia ako Ogg Vorbis"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "AIFF (Apple/SGI)"
-msgstr "AIFF (Apple/SGI)"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft)"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Hlavička:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Kódovanie:"
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "Ďalšie nekomprimované súbory"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "Chyba exportu"
-
-#: src/export/ExportPCM.cpp
-msgid "GSM 6.10 requires mono"
-msgstr "GSM 6.10 vyžaduje mono"
-
-#: src/export/ExportPCM.cpp
-msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr "Formáty WAVEX a GSM 6.10 nie sú kompatibilné"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "Audio nie je možné exportovať v tomto formáte."
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Exportovanie vybraného audia ako %s"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"Chyba pri zápise súboru %s (plný disk?).\n"
-"Oznam knižnice libsndfile: \"%s\""
-
 #: src/export/ExportPlugin.cpp
 msgid "No format specific options"
 msgstr "Žiadne špecifické možnosti formátu"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "Podpora FFmpeg nebola skompilovaná do"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "Spúšťanie FFmpeg zlyhalo"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "Knižnica FFmpeg nebola nájdená"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "Vyhľadať FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "Umiestnenie '%s':"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "To find '%s', click here -->"
-msgstr "Pre nájdenie '%s', kliknite tu -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Pre získanie voľnej kópie FFmpeg, kliknite tu -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "Stiahnuť"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Only avformat.dll"
-msgstr "Len avformat.dll"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "Kde je '%s'?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpeg nenájdené"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "Toto upozornenie viac nezobrazovať"
 
 #: src/import/Import.cpp
 msgid "All supported files"
@@ -10372,481 +7914,13 @@ msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
-msgid "AUP project files (*.aup)"
-msgstr "Audacity projekty (*.aup)|*.aup"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"Nepodarilo sa importovať predvoľbu \"%s“\n"
-"\n"
-" %s"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
 msgid "Import Project"
 msgstr "Importovať predvoľby"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Internal error in importer...tag not recognized"
-msgstr "Interná chyba oznámená procesom zarovnávania."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'vpos' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'h' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'zoom' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel0' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel1' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selLow' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Chybná rýchlosť."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "Nemožno nájsť priečinok s údajmi projektu: \"%s\""
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Project Import"
-msgstr "Začiatok projektu"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Neplatná vzorkovacia frekvencia"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to open %s"
-msgstr "Zlyhalo odstránenie %s"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "Nepodarilo sa nastaviť názov predvoľby"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "Nemožno čítať súbor predvolieb z \"%s\""
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "Kompatibilné súbory FFmpeg"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr ""
-"Index[%02x] kodek[%s], jazyk[%s], bitová rýchlosť[%s], kanály[%d], "
-"trvanie[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "Súbory FLAC"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "Súbory kompatibilné s GStreamerom"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to add decoder to pipeline"
-msgstr "Nemožno pridať dekódovač do radu"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "Importér GStreamer"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "Nemožno nastaviť tok na pozastavený stav."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Index [%02d], typ [%s], kanály [%d], rýchlosť [%d]"
-
-#: src/import/ImportGStreamer.cpp
-msgid "File doesn't contain any audio streams."
-msgstr "Súbor neobsahuje žiadne audio toky."
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "Nemožno importovať súbor, zmena stavu zlyhala."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "Chyba GStreamer: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Zoznam súborov v základnom textovom formáte"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "Chybný posuv okna v LOF súboru."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "Chyba LOF"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "Neplatné trvanie v LOF súboru."
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI stopy nemôžu mať individuálny posuv, to môžu iba audio súbory."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "Chybný odsek stopy v LOF súbore."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "Importované MIDI z '%s'"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "Importovať MIDI"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "Nemožno otvoriť súbor %s: Názov súboru je príliš krátky."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "Nemožno otvoriť súbor %s: Nesprávny typ súboru."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s."
-msgstr "Nemožno otvoriť súbor %s."
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "Súbory MP3"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-#| msgid "%s files"
-msgid "Matroska files"
-msgstr "%s súborov"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-#| msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "Index [%02d], typ [%s], kanály [%d], rýchlosť [%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Súbory Ogg Vorbis"
-
-#: src/import/ImportOGG.cpp
-#, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Index [%02x] verzia [%d], kanály [%d], frekvencia [%ld]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Chyba čítania média"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "Toto nie je súbor Ogg Vorgis"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Neozodpovedajúca verzia Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "Neplatná hlavička bitového toku Vorbis"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "Interná logická chyba"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF a ďalšie nekomprimované typy"
-
-#: src/import/ImportPCM.cpp
-msgid "AU (Sun/NeXT)"
-msgstr "AU (Sun/NeXT)"
-
-#: src/import/ImportPCM.cpp
-msgid "AVR (Audio Visual Research)"
-msgstr "AVR (Audio Visual Research)"
-
-#: src/import/ImportPCM.cpp
-msgid "CAF (Apple Core Audio File)"
-msgstr "CAF (Apple Core Audio File)"
-
-#: src/import/ImportPCM.cpp
-msgid "HTK (HMM Tool Kit)"
-msgstr "HTK (HMM Tool Kit)"
-
-#: src/import/ImportPCM.cpp
-msgid "IFF (Amiga IFF/SVX8/SV16)"
-msgstr "IFF (Amiga IFF/SVX8/SV16)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-msgstr "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-msgstr "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-
-#: src/import/ImportPCM.cpp
-msgid "MPC (Akai MPC 2k)"
-msgstr "MPC (Akai MPC 2k)"
-
-#: src/import/ImportPCM.cpp
-msgid "OGG (OGG Container format)"
-msgstr "OGG (OGG Container format)"
-
-#: src/import/ImportPCM.cpp
-msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
-
-#: src/import/ImportPCM.cpp
-msgid "PVF (Portable Voice Format)"
-msgstr "PVF (Portable Voice Format)"
-
-#: src/import/ImportPCM.cpp
-msgid "RAW (header-less)"
-msgstr "RAW (header-less)"
-
-#: src/import/ImportPCM.cpp
-msgid "RF64 (RIFF 64)"
-msgstr "RF64 (RIFF 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "SD2 (Sound Designer II)"
-msgstr "SD2 (Sound Designer II)"
-
-#: src/import/ImportPCM.cpp
-msgid "SDS (Midi Sample Dump Standard)"
-msgstr "SDS (Midi Sample Dump Standard)"
-
-#: src/import/ImportPCM.cpp
-msgid "SF (Berkeley/IRCAM/CARL)"
-msgstr "SF (Berkeley/IRCAM/CARL)"
-
-#: src/import/ImportPCM.cpp
-msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
-
-#: src/import/ImportPCM.cpp
-msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAVEX (Microsoft)"
-msgstr "WAVEX (Microsoft)"
-
-#: src/import/ImportPCM.cpp
-msgid "WVE (Psion Series 3)"
-msgstr "WVE (Psion Series 3)"
-
-#: src/import/ImportPCM.cpp
-msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 8 bit PCM"
-msgstr "Podpísaná 8 bitová PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 16 bit PCM"
-msgstr "Podpísané 16-bitové PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 24 bit PCM"
-msgstr "Podpísaná 24 bitová PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 32 bit PCM"
-msgstr "Podpísaná 32 bitová PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Unsigned 8 bit PCM"
-msgstr "Nepodpísaná 8-bitová PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "32 bit float"
-msgstr "32 bitové na pohyblivej čiarke"
-
-#: src/import/ImportPCM.cpp
-msgid "64 bit float"
-msgstr "64 bitové na pohyblivej čiarke"
-
-#: src/import/ImportPCM.cpp
-msgid "U-Law"
-msgstr "U-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "A-Law"
-msgstr "A-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "IMA ADPCM"
-msgstr "IMA ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "GSM 6.10"
-msgstr "GSM 6.10"
-
-#: src/import/ImportPCM.cpp
-msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "12 bit DWVW"
-msgstr "12 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DWVW"
-msgstr "16 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "24 bit DWVW"
-msgstr "24 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "VOX ADPCM"
-msgstr "VOX ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DPCM"
-msgstr "16 bit DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "8 bit DPCM"
-msgstr "8 bit DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Vorbis"
-msgstr "Vorbis"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "Importovanie %s"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "Súbory QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to start QuickTime extraction"
-msgstr "Nemožno spustiť extrakciu QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime render quality"
-msgstr "Nemožno nastaviť kvalitu vykreslenia QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "Nemožno nastaviť vlastnosť diskrétnych kanálov QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "Nemožno získať vlastnosť vzorky QuickTime"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "Nemožno načítať popis toku"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get fill buffer"
-msgstr "Nemožno získať vyrovnávaciu pamäť"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -10931,18 +8005,6 @@ msgstr "Zistiť ticho"
 msgid "&Import"
 msgstr "&Importovať"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s left"
-msgstr "%s ľavý"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s right"
-msgstr "%s pravý"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -10986,25 +8048,8 @@ msgstr[1] "%s %d of %d"
 msgstr[2] "%s %d of %d"
 
 #: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the right"
-msgstr "Časovo obrátené strihy doprava"
-
-#: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the left"
-msgstr "Časovo obrátené strihy doľava"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Časový posun"
-
-#: src/menus/ClipMenus.cpp
 msgid "clip not moved"
 msgstr "strih nebol presunutý"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-msgid "Clip B&oundaries"
-msgstr "&Okraje strihu"
 
 #: src/menus/ClipMenus.cpp
 msgid "Pre&vious Clip Boundary to Cursor"
@@ -11092,28 +8137,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "Odstránených %.2f sekúnd na t=%.2f"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "Vkladanie jedného typu stopy na iný nie je povolené."
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "Kopírovanie stereo audia do mono stopy nie je povolené."
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "Duplikované"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "Duplikovať"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "Oddeliť vystrihnuté do schránky"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "Vystrihnúť a oddeliť"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -11211,16 +8240,6 @@ msgstr "Vytvoriť &kópiu"
 msgid "R&emove Special"
 msgstr "Odstrániť š&peciálne"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "Vystrihnúť &oddelené"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "Odstrániť odd&elené"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -11248,14 +8267,6 @@ msgstr "&Spojiť"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "Oddeli&ť stlmené"
-
-#: src/menus/EditMenus.cpp
-msgid "&Metadata..."
-msgstr "&Metaúdaje..."
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "Pred&voľby..."
 
 #: src/menus/EditMenus.cpp
 msgid "&Delete Key"
@@ -11289,10 +8300,6 @@ msgstr "Zmeniť audio &hostiteľa..."
 msgid "Change Recording Cha&nnels..."
 msgstr "Zmeniť nahrávacie ka&nály..."
 
-#: src/menus/ExtraMenus.cpp
-msgid "&Full Screen (on/off)"
-msgstr "&Celá obrazovka (zap/vyp)"
-
 #: src/menus/FileMenus.cpp
 #, c-format
 msgid ""
@@ -11301,10 +8308,6 @@ msgid ""
 msgstr ""
 "Nemožno vytvoriť priečinok '%s'.\n"
 "Súbor už existuje, ktorý nie je priečinkom"
-
-#: src/menus/FileMenus.cpp
-msgid "Export Selected Audio"
-msgstr "Exportovať vybrané audio"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -11316,38 +8319,6 @@ msgid "There are no label tracks to export."
 msgstr "Žiadne návesti stôp na export."
 
 #: src/menus/FileMenus.cpp
-msgid "Please select only one Note Track at a time."
-msgstr "Vyberte, prosím, súčasne iba jednu notovú stopu."
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "Vyberte, prosím, notovú stopu."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "Exportovať MIDI ako:"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI file"
-msgstr "Súbor MIDI"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro file"
-msgstr "Súbor Allegro"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"Vybrali ste názov súboru s neznámou príponou súboru. \n"
-"Chcete pokračovať?"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "Exportovať MIDI"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "Importované návesti z '%s'"
@@ -11355,22 +8326,6 @@ msgstr "Importované návesti z '%s'"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Importovať návesti"
-
-#: src/menus/FileMenus.cpp
-msgid "Select a MIDI file"
-msgstr "Vyberať súbor MIDI"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI and Allegro files"
-msgstr "MIDI a Allegro súbory"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI files"
-msgstr "Súbory MIDI"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro files"
-msgstr "Súbory Allegro"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -11412,12 +8367,6 @@ msgid "Export as &WAV"
 msgstr "Exportovať ako &WAV"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-#| msgid "Export as &WAV"
-msgid "Export as &MKA"
-msgstr "Exportovať ako &WAV"
-
-#: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
 msgstr "Exportovať ako &OGG"
 
@@ -11434,14 +8383,6 @@ msgid "Export &Labels..."
 msgstr "Exportovať &návesti..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "Exportovať &viacnásobne..."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MI&DI..."
-msgstr "Exportovať MI&DI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "&Audio..."
 
@@ -11450,26 +8391,8 @@ msgid "&Labels..."
 msgstr "&Návesti..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "&Surové údaje..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "Nastavenie str&ánky..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "&Tlačiť..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "&Koniec"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11583,17 +8506,6 @@ msgstr "Odstránené oblasti audia označené návesťou"
 msgid "Delete Labeled Audio"
 msgstr "Odstrániť audio označené návesťou"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Vystrihnúť oddelenú oblasť audia označené návesťou do schránky"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut Labeled Audio"
-msgstr "Vystrihnúť oddelené audio označené návesťou"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11663,10 +8575,6 @@ msgstr "Odpojiť audio označené návesťou"
 msgid "&Labels"
 msgstr "&Návesti"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "&Upraviť návesti..."
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Add Label at &Selection"
 msgstr "Pridať ná&vesť podľa výberu"
@@ -11680,10 +8588,6 @@ msgid "Paste Te&xt to New Label"
 msgstr "Prilepiť te&xt do novej návesti"
 
 #: src/menus/LabelMenus.cpp
-msgid "&Type to Create a Label (on/off)"
-msgstr "&Písať pre vytvorenie návesti (zapnuté/vypnuté)"
-
-#: src/menus/LabelMenus.cpp
 msgid "La&beled Audio"
 msgstr "Audio označené návesťou"
 
@@ -11691,31 +8595,6 @@ msgstr "Audio označené návesťou"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "&Vystrihnúť"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "Vystrihnúť návesť"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "Odstrániť návesť"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "Vystrihnúť &oddelené"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "Návesť vystrihnutia oddeleného"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "Odstrániť od&delené"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "Návesť odstránenia oddeleného"
 
 #: src/menus/LabelMenus.cpp
 msgid "Silence &Audio"
@@ -11817,11 +8696,6 @@ msgid "&Repeat %s"
 msgstr "Opakovať %s"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "Rozšírenie %d pre %d"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "Vy&generovať"
 
@@ -11852,17 +8726,9 @@ msgid "T&ools"
 msgstr "&Nástroje"
 
 #: src/menus/PluginMenus.cpp
-msgid "Manage Plug-ins..."
-msgstr "Pridať/odstrániť rozšírenia..."
-
-#: src/menus/PluginMenus.cpp
 #, fuzzy
 msgid "Repeat Last Tool"
 msgstr "Opakovať posledný efekt"
-
-#: src/menus/PluginMenus.cpp
-msgid "&Macros..."
-msgstr "&Makrá..."
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -12267,12 +9133,6 @@ msgstr "Dlhé vyhľadávanie dop&rava počas prehrávania"
 msgid "&Toolbars"
 msgstr "&Panely nástrojov"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "Špeciálna &ponuka (zap/vyp)"
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "Vynulovať panely nástrojov"
@@ -12636,10 +9496,6 @@ msgid "Align &Together"
 msgstr "Zarovnať &spolu"
 
 #: src/menus/TrackMenus.cpp
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "&Posúvať výber so stopami (zap/vyp)"
-
-#: src/menus/TrackMenus.cpp
 msgid "Move Sele&ction and Tracks"
 msgstr "Posúvať vý&ber a stopy"
 
@@ -12654,10 +9510,6 @@ msgstr "Podľa &počiatočného času"
 #: src/menus/TrackMenus.cpp
 msgid "By &Name"
 msgstr "Podľa &názvu"
-
-#: src/menus/TrackMenus.cpp
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "Synchrónne &zamknúť stopy (zap/vyp)"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12698,10 +9550,6 @@ msgstr "S&tlmiť/zrušiť stlmenie zameranej stopy"
 #: src/menus/TrackMenus.cpp
 msgid "&Solo/Unsolo Focused Track"
 msgstr "&Sólo/spolu zameraná stopa"
-
-#: src/menus/TrackMenus.cpp
-msgid "&Close Focused Track"
-msgstr "&Zavrieť zameranú stopu"
 
 #: src/menus/TrackMenus.cpp
 msgid "Move Focused Track U&p"
@@ -12814,10 +9662,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "Prehrať/zastaviť a &nastaviť kurzor"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "Prehrávať v &slučke"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "&Pozastaviť"
 
@@ -12847,18 +9691,6 @@ msgid "Punch and Rol&l Record"
 msgstr "Nahrávka Punch and Rol&l"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "Pre&hrať oblasť"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "&Zamknúť"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "&Odomknúť"
-
-#: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
 msgstr "P&reskenovať audio zariadenie"
 
@@ -12867,33 +9699,8 @@ msgid "Transport &Options"
 msgstr "&Možnosti transportu"
 
 #: src/menus/TransportMenus.cpp
-msgid "Sound Activation Le&vel..."
-msgstr "Aktivačná úr&oveň zvuku..."
-
-#: src/menus/TransportMenus.cpp
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Zvukom a&ktivované nahrávanie (zap/vyp)"
-
-#: src/menus/TransportMenus.cpp
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Pripnutá snímacia &hlava (zap/vyp)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Overdub (on/off)"
-msgstr "&Overdub (zap/vyp)"
-
-#: src/menus/TransportMenus.cpp
-msgid "So&ftware Playthrough (on/off)"
-msgstr "Softv&érové celoprehrávanie (zap/vyp)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "T&ransport"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "Pr&ehrať"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -12939,15 +9746,6 @@ msgstr "Prehrať vystrihnutý náhľad"
 #: src/menus/TransportMenus.cpp
 msgid "&Play-at-Speed"
 msgstr "Zrýchlené &prehrávanie"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "Normálna rýchlosť pre&hrávania"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Loop Play-at-Speed"
-msgstr "Zrýchlené prehrávanie v &slučke"
 
 #: src/menus/TransportMenus.cpp
 msgid "Play C&ut Preview-at-Speed"
@@ -13006,10 +9804,6 @@ msgid "Zoom &Toggle"
 msgstr "&Prepnúť priblíženie"
 
 #: src/menus/ViewMenus.cpp
-msgid "Advanced &Vertical Zooming"
-msgstr "Pokročilé &vertikálne priblíženie"
-
-#: src/menus/ViewMenus.cpp
 msgid "T&rack Size"
 msgstr "Veľkosť s&topy"
 
@@ -13045,45 +9839,6 @@ msgstr "Preskočiť na začiatok výberu"
 msgid "Skip to Selection End"
 msgstr "Preskočiť na koniec výberu"
 
-#: src/menus/ViewMenus.cpp
-msgid "&Extra Menus (on/off)"
-msgstr "Špeciálna &ponuka (zap/vyp)"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "Track &Name (on/off)"
-msgstr "Špeciálna &ponuka (zap/vyp)"
-
-#: src/menus/ViewMenus.cpp
-msgid "&Show Clipping (on/off)"
-msgstr "&Zobrazovať orezávanie (zap/vyp)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "Zobraziť stojan efektov"
-
-#: src/menus/WindowMenus.cpp
-msgid "&Window"
-msgstr "&Okno"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make (the current
-#. * window) shrink to an icon on the dock
-#: src/menus/WindowMenus.cpp
-msgid "&Minimize"
-msgstr "&Minimalizovať"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make all project
-#. * windows un-hidden
-#: src/menus/WindowMenus.cpp
-msgid "&Bring All to Front"
-msgstr "&Priniesť všetko dopredu"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-msgid "Minimize All Projects"
-msgstr "Minimalizovať všetky projekty"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Dávka"
@@ -13099,14 +9854,6 @@ msgstr "Správanie"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "&Nepoužívať efekty v dávkovom režime"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "Zariadenia"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "Predvoľby zariadenia"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -13270,15 +10017,6 @@ msgstr "Priečinok %s nie je vhodný (riziko, že bude zmazaný)"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "Priečinok %s neexistuje. Vytvoriť?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Nový dočasný priečinok"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "Priečinok %s nie je zapisovateľný"
 
@@ -13295,77 +10033,8 @@ msgid "Preferences for Effects"
 msgstr "Predvoľby efektov"
 
 #: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Effect Name"
-msgstr "Zoradené podľa názvu efektu"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Publisher and Effect Name"
-msgstr "Zoradené podľa vydavateľa a názvu efektu"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Type and Effect Name"
-msgstr "Zoradené podľa typu a názvu efektu"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Publisher"
-msgstr "Zoskupené podľa vydavateľa"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Type"
-msgstr "Zoskupené podľa typu"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-msgid "&LADSPA"
-msgstr "&LADSPA"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-msgid "N&yquist"
-msgstr "N&yquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "Povoliť efekty"
-
-#: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
 msgstr "Možnosti efektu"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "S&ort or Group:"
-msgstr "Z&oradiť alebo zoskupiť:"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "&Maximum efektov za skupinu (0 pre zablokovanie):"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Plugin Options"
-msgstr "Nastavenie rozšírení"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13432,18 +10101,6 @@ msgstr "&Odstrániť vybrané pravidlo"
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
 msgstr "Nepoužité filtre:"
-
-#: src/prefs/ExtImportPrefs.cpp
-msgid ""
-"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
-"the items. They are likely to break the pattern matching. Unless you know "
-"what you are doing, it is recommended to trim spaces. Do you want Audacity "
-"to trim spaces for you?"
-msgstr ""
-"Sú tam znaky medzier (medzery, nové riadky, tabulátory alebo riadkovače) v "
-"jednej z položiek. Pravdepodobne porušia vzorovú zhodu. Pokiaľ viete čo "
-"robíte, je odporúčané osekať medzery. Chcete, aby Audacity osekal medzery za "
-"vás?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13520,10 +10177,6 @@ msgid "&Language:"
 msgstr "&Jazyk:"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Location of &Manual:"
-msgstr "Umiestnenie &manuálu:"
-
-#: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
 msgstr "Merač &rozsahu dB:"
 
@@ -13549,14 +10202,6 @@ msgid "Use mostly Left-to-Right layouts in RTL languages"
 msgstr "Používať väčšinou rozloženia zľava doprava v jazykoch RTL"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Show Timeline Tooltips"
-msgstr "Zobraziť popisy časovej osi"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-msgid "Show Scrub Ruler"
-msgstr "Zobraziť pravítko snímania"
-
-#: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
 msgstr "Jazyk \"%s\" je neznámy"
@@ -13572,14 +10217,6 @@ msgstr "Import/export"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "Predvoľby pre import/export"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Mix down to Stereo or Mono"
-msgstr "&Zmiešavať do stereo alebo mono zvuku"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Use Advanced Mixing Options"
-msgstr "&Použiť rozšírené možnosti zmiešavania"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -13600,35 +10237,13 @@ msgid "&Beats"
 msgstr "&úderoch"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "Pri exporte stôp do audio súboru"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "Z&obraziť editor príznakov metaúdajov pred exportom"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Ignore blank space at the beginning"
-msgstr "&Ignorovať medzeru na začiatku"
-
-#: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
 msgid "Exported Label Style:"
 msgstr "Exportovať návesti ako:"
 
-#: src/prefs/ImportExportPrefs.cpp
-msgid "Exported Allegro (.gro) files save time as:"
-msgstr "Čas uloženia exportovaných Allegro (.gro) súborov v:"
-
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "IMPORT EXPORT"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Klávesnica"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Preferences for KeyConfig"
@@ -13819,38 +10434,6 @@ msgstr "Konfigurácia kláves"
 msgid "Preferences for Library"
 msgstr "Predvoľby knižnice"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "Knižnica import/export FFmpeg"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "Žiadna kompatibilná knižnica FFmpeg nebola nájdená"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg support is not compiled in"
-msgstr "Podpora FFmpeg nie je kompilovaná do"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "Verzia knižnice FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "Knižnica FFmpeg:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "Loka&lizovať..."
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "Stia&hnuť"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Success"
-msgstr "Úspešne"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "Knižnica"
@@ -13899,70 +10482,17 @@ msgstr "Moduly"
 msgid "Preferences for Module"
 msgstr "Predvoľby modulov"
 
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'New' means no choice has been made yet."
-msgstr "  'Nový' znamená, že žiadny výber zatiaľ nebol vykonaný."
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Ask"
-msgstr "Spýtať sa"
-
 #: src/prefs/ModulePrefs.cpp
 msgid "Failed"
 msgstr "Zlyhal"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "No modules were found"
-msgstr "Žiadne moduly neboli nájdené"
 
 #: src/prefs/ModulePrefs.h
 msgid "Module"
 msgstr "Modul"
 
 #: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Ctrl+"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Myš"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Preferences for Mouse"
-msgstr "Predvoľby myši"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Väzby myši (štandardné hodnoty, nie je možné ich upravovať)"
-
-#: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Nástroj"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Akcia príkazu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Tlačidlá"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "kliknúť ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Nastaviť bod výberu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "ťahať ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Nastaviť rozsah výberu"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -13970,169 +10500,6 @@ msgstr "Nastaviť rozsah výberu"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Shift+kliknúť ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Rozšíriť rozsah výberu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "dvojklik ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "Vybrať strih alebo celú stopu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "otáčať kolieskom"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change scrub speed"
-msgstr "Zmeniť rýchlosť snímania"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Priblížiť bod"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Priblížiť rozsah"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "rovnaké ako ťahať pravým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "kliknúť pravým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Oddialiť o jeden krok"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "ťahať pravým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "rovnaké ako ťahať ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Shift+ťahať"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "Oddialiť rozsah"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "kliknúť stredným"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "Predvolené priblíženia"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip left/right or between tracks"
-msgstr "Posúvať strih doľava/doprava alebo medzi stopami"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Shift+ťahať ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move all clips in track left/right"
-msgstr "Presunúť všetky strihy v stope doľava/doprava"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "ťahať ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "Presunúť strih nahor/nadol medzi stopami"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "ťahať ľavým"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Zmeniť zosilnenie obalu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Ceruzka"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Zmeniť vzorku"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt+kliknúť ľavým"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Vyhladiť na vzorke"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Zmeniť viaceré vzorky"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Zmeniť len JEDNU vzorku"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Viac"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "rovnako ako nástroj výberu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "rovnako ako nástroj priblíženia"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Akýkoľvek"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll tracks up or down"
-msgstr "Posunúť stopy hore alebo dole"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Shift+otáčať kolieskom"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll waveform"
-msgstr "Posúvať zvukovú vlnu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Wheel-Rotate"
-msgstr "otáčať kolieskom"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "Priblížiť alebo oddialiť zvukovú vlnu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Shift-Wheel-Rotate"
-msgstr "Shift+otáčať kolieskom"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Vertikálna mierka zvukovej vlny rozsah (dB)"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -14172,10 +10539,6 @@ msgid "Lo&ng period:"
 msgstr "Dl&hý interval:"
 
 #: src/prefs/PlaybackPrefs.cpp
-msgid "&Vari-Speed Play"
-msgstr "&Premenlivá rýchlosť prehrávania"
-
-#: src/prefs/PlaybackPrefs.cpp
 msgid "&Micro-fades"
 msgstr "&Mikro vytrácanie"
 
@@ -14209,14 +10572,6 @@ msgstr "%i Hz"
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "Iné..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "Snímanie"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "Predvolená vzorkovacia &frekvencia:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
@@ -14253,16 +10608,8 @@ msgid "Preferences for Recording"
 msgstr "Predvoľby nahrávania"
 
 #: src/prefs/RecordingPrefs.cpp
-msgid "Play &other tracks while recording (overdub)"
-msgstr "Prehrávať &ostatné stopy počas nahrávania (overdub)"
-
-#: src/prefs/RecordingPrefs.cpp
 msgid "Use &hardware to play other tracks"
 msgstr "Použiť &hardvér na prehratie ostatných stôp"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "&Softvérové odpočúvanie vstupu"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -14346,12 +10693,6 @@ msgstr "ERB"
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Period"
 msgstr "Perióda"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "Farba (predvolené)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14471,10 +10812,6 @@ msgid "8 - most wideband"
 msgstr "8 - najširšie pásmo"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - predvolené"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14493,31 +10830,6 @@ msgstr "&Nulový faktor výplne:"
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble Spectral Selection"
 msgstr "Po&voliť spektrálny výber"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "Zobraziť mriežku pozdĺž &Y-osi"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "Nájsť noty FFT"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "Minimálna amplitúda (dB):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "Maximálny počet poznámok (1..128):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "&Nájsť poznámky"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "&Kvantifikovať poznámky"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
@@ -14547,18 +10859,6 @@ msgstr "Rozsah musí byť kladné celé číslo"
 msgid "The frequency gain must be an integer"
 msgstr "Frekvenčný zisk musí byť celé číslo"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "Minimálna amplitúda (dB) musí byť celé číslo"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "Maximálny počet poznámok musí byť celé číslo"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "Maximálny počet poznámok musí byť v rozmedzí 1-128"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14570,12 +10870,6 @@ msgstr "Téma"
 #: src/prefs/ThemePrefs.cpp
 msgid "Preferences for Theme"
 msgstr "Predvoľby témy"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "&Settings"
-msgid "Theme Settings"
-msgstr "&Nastavenia"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Th&eme:"
@@ -14648,10 +10942,6 @@ msgid "Enable cut &lines"
 msgstr "Povoliť &čiary strihu"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "Povoliť &ťahanie okrajov výberu"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Editing a clip can &move other clips"
 msgstr "Úpravou strihu možno &posunúť iné strihy"
 
@@ -14666,14 +10956,6 @@ msgstr "&Písaním vytvárať návesti"
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Use dialog for the &name of a new label"
 msgstr "Použiť dialóg pre &názov novej návesti"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "Povoliť posúvanie vľavo od &nuly"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Advanced &vertical zooming"
-msgstr "Pokročilé &vertikálne približovanie"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Solo &Button:"
@@ -14769,10 +11051,6 @@ msgid "Auto-&fit track height"
 msgstr "Automaticky &prispôsobiť výšku stopy"
 
 #: src/prefs/TracksPrefs.cpp
-msgid "Sho&w track name as overlay"
-msgstr "Zobra&ziť názov stopy ako prekrytý"
-
-#: src/prefs/TracksPrefs.cpp
 msgid "Use &half-wave display when collapsed"
 msgstr "Použiť zobrazenie zbalenej &polvlny"
 
@@ -14816,42 +11094,6 @@ msgstr "Predvoľba 1:"
 msgid "Preset 2:"
 msgstr "Predvoľba 2:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "Upozornenia"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Preferences for Warnings"
-msgstr "Predvoľby upozornení"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "Zobrazovať upozornenia/výzvy pri"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "Uložení &projektov"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "Uložení &prázdneho projektu"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &mono during export"
-msgstr "Zmiešavaní do &mono pri exporte"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &stereo during export"
-msgstr "Zmiešavaní do &sterea pri exporte"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "Zmiešavaní pri exporte(&vlastný FFmpeg alebo externý program)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Missing file &name extension during export"
-msgstr "Počas exportu chýba &prípona názvu súboru"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 msgid "Waveforms"
@@ -14883,36 +11125,11 @@ msgstr "Ladeni&e"
 msgid "Classic"
 msgstr "Klasická"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "Záznamy Audacity"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "Tmavá"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "Vysoký kontrast"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "Svetlá"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "Nástroje"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Záznamy Audacity"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14921,19 +11138,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "Nemožno zapisovať do súboru: %s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr ""
-"Motív zapísaný do:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -14951,16 +11155,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "Nemožno zapisovať do súboru: %s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"Motív ako Cee kód napísaný do:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -15120,14 +11314,6 @@ msgid "Edit"
 msgstr "Upraviť"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "Vystrihnúť výber"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "Kopírovať výber"
-
-#: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
 msgstr "Orezať audio mimo výber"
 
@@ -15174,10 +11360,6 @@ msgstr "Prispôsobiť výber šírke"
 msgid "Fit project to width"
 msgstr "Prispôsobiť projekt šírke"
 
-#: src/toolbars/EditToolBar.cpp
-msgid "Open Effects Rack"
-msgstr "Otvoriť stojan efektov"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -15206,11 +11388,6 @@ msgstr "Merač nahrávania"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "Merač nahrávania"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "Merač prehrávania"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -15244,71 +11421,9 @@ msgstr "Panel nástrojov merača &nahrávania"
 msgid "&Playback Meter Toolbar"
 msgstr "Panel nástrojov merača &prehrávania"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "Zosnímať"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Seek"
-msgstr "Vyhľadať"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub Ruler"
-msgstr "Snímacie pravítko"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 msgid "Scrubbing"
 msgstr "Snímanie"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Scrubbing"
-msgstr "Zastaviť snímanie"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Scrubbing"
-msgstr "Začať snímanie"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Seeking"
-msgstr "Zastaviť hľadanie"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Seeking"
-msgstr "Spustiť hľadanie"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Hide Scrub Ruler"
-msgstr "Skryť pravítko snímania"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scru&b Toolbar"
-msgstr "Panel nástrojov &snímania"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "Projektová frekvencia (Hz)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Snap-To"
-msgstr "Prichytiť na"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -15335,10 +11450,6 @@ msgid "Show"
 msgstr "Zobraziť"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "Prichytiť na"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "Dĺžka"
 
@@ -15347,26 +11458,6 @@ msgstr "Dĺžka"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Stred"
-
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Snap Clicks/Selections to %s"
-msgstr "Prichytiť kliknutia/výbery na %s"
-
-#. i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated), to indicate that it will be
-#. calculated from other parameters.
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "%s - driven"
-msgstr "%s - pohonov"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr "Výber %s. %s sa nezmení."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15438,10 +11529,6 @@ msgid "Envelope Tool"
 msgstr "Nástroj obalu"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Nástroj priblíženia"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Nástroj kreslenia"
@@ -15469,10 +11556,6 @@ msgid "&Draw Tool"
 msgstr "Nástroj &kreslenia"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "Nástroj &priblíženia"
-
-#: src/toolbars/ToolsToolBar.cpp
 msgid "&Multi Tool"
 msgstr "&Viacúčelový nástroj"
 
@@ -15495,10 +11578,6 @@ msgstr "Prehrať nastavenou rýchlosťou"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "Rýchlosť prehrávania"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Looped-Play-at-Speed"
-msgstr "Prehrať zrýchlene s slučke"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15639,18 +11718,6 @@ msgstr "Roztiahnuť"
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to expand, Right-Click to remove"
 msgstr "Kliknúť ľavým pre rozšírenie, kliknúť pravým pre odstránenie"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Left-Click to merge clips"
-msgstr "Kliknúť ľavým pre zlúčenie strihov"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "Zlúčené strihy"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "Zlúčiť"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -15869,22 +11936,6 @@ msgstr "Roz&deliť stereo stopu"
 msgid "Split Stereo to Mo&no"
 msgstr "Rozdeliť stereo na mo&no"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "Ľavý kanál"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "Pravý kanál"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Kanál"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -15920,26 +11971,6 @@ msgstr "Rozdeliť stereo na mono '%s'"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "Rozdeliť na mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "Stereo, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "Mono, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "Ľavý, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "Pravý, %dHz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -15993,12 +12024,6 @@ msgstr "Nastaviť klip"
 msgid "Mute/Unmute Track"
 msgstr "S&tlmiť/zrušiť stlmenie zameranej stopy"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "Premenovať..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -16011,14 +12036,6 @@ msgid_plural "%s, %d of %d clips"
 msgstr[0] "%s %d of %d"
 msgstr[1] "%s %d of %d"
 msgstr[2] "%s %d of %d"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "Priblížiť 1/2x"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "Priblížiť 2x"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -16040,22 +12057,6 @@ msgstr "Inštrument %i"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 msgid "WaveColor Change"
 msgstr "Zmeniť farbu vlny"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Zmeniť dolný limit rýchlosti (%) na:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Dolný limit rýchlosti"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Zmeniť horný limit rýchlosti (%) na:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Horný limit rýchlosti"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -16107,12 +12108,6 @@ msgstr "&Rozsah..."
 msgid "Logarithmic &Interpolation"
 msgstr "Logaritmická &interpolácia"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Kliknite a ťahajte pre posunutie stopy v čase"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -16136,10 +12131,6 @@ msgstr "Návesť stopy"
 #| msgid "&Export Audio..."
 msgid "Export Audio..."
 msgstr "&Exportovať audio..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-msgid "&Name..."
-msgstr "&Názov..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -16309,18 +12300,6 @@ msgid "Collapse"
 msgstr "Zbaliť"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Command+Click to deselect"
-msgstr "Príkaz+klik zruší výber"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "Vybrať stopu"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Ctrl+Click to deselect"
-msgstr "Ctrl+klik pre zrušenie"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "Otvoriť ponuku..."
 
@@ -16399,12 +12378,6 @@ msgstr "Ľ"
 msgid "R"
 msgstr "P"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, c-format
-msgid "%.2fx"
-msgstr "%.2fx"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "&Vymazať"
@@ -16428,30 +12401,6 @@ msgstr "Nápoveda na internete"
 #: src/widgets/KeyView.cpp
 msgid "Menu"
 msgstr "Ponuka"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "Kliknúť pre spustenie monitorovania"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "Kliknúť pre monitorovanie"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "Kliknúť pre spustenie"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click"
-msgstr "Kliknúť"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "Zastaviť monitorovanie"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "Spustiť monitorovanie"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16532,10 +12481,6 @@ msgstr " Pripnutý "
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
 msgstr "Zobraziť záznam pre detaily"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "Vyberte, prosím, akciu"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

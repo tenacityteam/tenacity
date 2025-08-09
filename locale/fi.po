@@ -22,114 +22,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Suoraäänitys on aktiivinen ... tietoja ei pysty keräämään.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "Valitse äänityslaite"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "Valitse toistolaite"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Ei äänilaitetta"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "Laitteen tietoja ei ole saatavilla."
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "&Laite:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "Laitteet"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "Nimi: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "Äänityskanavat"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "Toistotaso"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "Äänityksen loppu:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "Äänityksen loppu:"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "Näytetaajuudet"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "Valitse äänityslaite"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "Valitse toistolaite"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "Ei äänilaitetta"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Näytä tuloste"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Valitse äänityslaite"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Valitse toistolaite"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -166,21 +62,6 @@ msgstr ""
 "Ei voitu avata tietokantatiedostoa:\n"
 "\n"
 "%s"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Levy on täynnä.\n"
-"%s\n"
-"Ohjenapista löytää vihjeitä levytilan vapauttamiseen."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -229,11 +110,6 @@ msgstr "%s-tiedostot"
 #, c-format
 msgid "(%s)"
 msgstr "(%s)"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "Hakemistolla %s ei ole kirjoitusoikeuksia"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -472,14 +348,6 @@ msgstr "Ei voitu ladata tiedostoa: \"%s\""
 msgid "Could not parse XML"
 msgstr "XML:ää ei voitu jäsentää"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "1. kokeellinen komento"
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "2. kokeellinen komento"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -570,32 +438,6 @@ msgstr "%s, www-kehittäjä"
 msgid "%s, graphics"
 msgstr "%s, grafiikka"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, co-founder and developer"
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, perustaja ja kehittäjä"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, Tenacity developer"
-msgstr "%s, Tenacity-kehittäjä"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, Tenacity developer"
-msgid "%s, Tenacity web developer"
-msgstr "%s, Tenacity-kehittäjä"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "%s, johtava Tenacity-kehittäjä"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -644,12 +486,6 @@ msgstr "%s-tiimijäsenet"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Avustajat"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Emeritus:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -746,11 +582,6 @@ msgstr "Näytetaajuuden muun&nin:"
 msgid "File Format Support"
 msgstr "Tiedostomuototuki"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "MP3-tuonti"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -778,16 +609,8 @@ msgid "MP2 export"
 msgstr "MP2-vienti"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "Tuo QuickTimen avulla"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "FFmpeg-tuonti/vienti"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "Tuo GStreamerin avulla"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -816,12 +639,6 @@ msgstr "Aikajanan ominaisuudet ei käytössä tallennuksen aikana"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Napsauta ja raahaa säätääksesi, kaksoisnapsauta nollataksesi"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "Nauhoitus/toistopää"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -891,34 +708,6 @@ msgstr "Pikatoisto käytössä"
 msgid "Timeline Options"
 msgstr "Aikajanan asetukset"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "Ota käyttöön pikatoisto"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "Raahaa valintaa toistoalueen mukana"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "Pidä toistokohta aina näytöllä"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "Lukitse soittoalue"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Pinned Play Head"
-msgstr "Kiinnitetty toistopää"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr ""
-"Et voi lukita aluetta projektin\n"
-"lopun jälkeen."
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "Yhtään äänilaitteita ei löydetty.\n"
@@ -935,12 +724,6 @@ msgstr ""
 #, c-format
 msgid "Error: %s"
 msgstr "Virhe: %s"
-
-#: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Throw Error"
-msgid "PortAudio Error"
-msgstr "Aiheuta virhe"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1409,14 +1192,6 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr "Odotettu pituus %lld, raidan pituus %lld.\n"
 
 #: src/Benchmark.cpp
-#, fuzzy, c-format
-#| msgid "Performing Low-Pass Filter..."
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "Suoritetaan alipäästösuodatinta..."
-msgstr[1] "Suoritetaan alipäästösuodatinta..."
-
-#: src/Benchmark.cpp
 #, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Leikkaus: %lld - %lld\n"
@@ -1635,17 +1410,6 @@ msgstr "Tässä voi kestää joitain sekunteja"
 msgid "Could not write to %s.\n"
 msgstr "Tiedostoon ei voitu kirjoittaa: %s\n"
 
-#: src/DBConnection.cpp
-#, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Levy on täynnä.\n"
-"%s\n"
-"Ohjenapista löytää vihjeitä levytilan vapauttamiseen."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1685,26 +1449,6 @@ msgstr "Tietokantavirhe.  Valitettavasti emme tiedä siitä enempää."
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Virhe (tiedostoa ei ehkä ole tallennettu): %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "&Kopioi pakkaamattomat tiedostot projektiin (turvallisempaa)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "Lue pakkaamattomat tiedostot alkupe&räisestä sijainnista (nopeampaa)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "&Kopioi kaikki ääni projektiin (turvallisin)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "Älä kopioi mitään ääntä"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "&Kysy"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1821,12 +1565,6 @@ msgstr "Aks&eli:"
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "&Päivitä..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr ""
-"Kaikilla valituilla raidoilla on oltava sama näytetaajuus spektrin "
-"esittämiseen."
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -2015,12 +1753,6 @@ msgstr "Tii&vistä"
 #, c-format
 msgid "Compacting actually freed %s of disk space."
 msgstr "Tiivistys vapautti %s verran levytilaa."
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "&Historia..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2268,11 +2000,6 @@ msgid "Signal Level Meter"
 msgstr "Signaalin tason mittari"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "Siirretty vahvistussäädintä"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 msgid "Moved velocity slider"
 msgstr "Siirretty nopeussäädintä"
@@ -2281,10 +2008,6 @@ msgstr "Siirretty nopeussäädintä"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "Siirretty panorointisäädintä"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "&Miksauspöytä..."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2537,80 +2260,14 @@ msgstr "Ota uudet laajennukset käyttöön"
 msgid "Nyquist Prompt"
 msgstr "Nyquist-kehote"
 
-#: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "Laajennusten hallinta"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "Uusi"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr ""
-"Valitse tehosteet, napsauta Ota käyttöön tai Poista käytöstä -painiketta ja "
-"valitse sitten OK."
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "Näytä:"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "Näytä kaikki"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "&Kaikki"
 
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show disabled"
-msgstr "Näytä käytöstä poistetut"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "E&i käytössä"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show enabled"
-msgstr "Näytä käytössä olevat"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "&Käytössä"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "Näytä uusi"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "Uu&si"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "Tila"
-
 #: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "Polku"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "Valit&se kaikki"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "T&yhjennä kaikki"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
@@ -2618,39 +2275,11 @@ msgid "&Enable"
 msgstr "&Ota käyttöön"
 
 #: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "&Poista käytöstä"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr "Otetaan tehosteita tai komentoja käyttöön: %s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr "Otetaan tehoste tai komento käyttöön: %s"
-
-#: src/PluginRegistrationDialog.cpp
 #, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
 msgstr "Tehoste tai komento kohteessa %s ei rekisteröitynyt: %s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Tulostamisessa oli ongelma."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "Tulosta"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2909,29 +2538,8 @@ msgid "Error Writing to File"
 msgstr "Virhe tiedoston kirjoituksessa"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Levy on täynnä.\n"
-"%s\n"
-"Ohjenapista löytää vihjeitä levytilan vapauttamiseen."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Tiivistetään projektia"
-
-#. i18n-hint: The %02i is the project number, the %s is the project name.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Projekti %02i] Audacity \"%s\""
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -3013,30 +2621,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "Projekteja ei voi tallentaa FAT-asemille."
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"Projekti on tyhjä.\n"
-"Jos tallennat, projektiin ei tule raitoja.\n"
-"\n"
-"Jos haluat tallentaa aiemmin avoimia raitoja:\n"
-"Napsauta 'Ei', Muokkaa > Kumoa kunnes kaikki\n"
-"raidat ovat auki, sitten Tiedosto > Tallenna projekti.\n"
-"\n"
-"Tallennetaanko joka tapauksessa?"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "Varoitus - Tyhjä projekti"
-
-#: src/ProjectFileManager.cpp
 msgid "Insufficient Disk Space"
 msgstr "Levytila ei riitä"
 
@@ -3077,15 +2661,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sTallenna projekti \"%s\" nimellä..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"'Tallenna projekti' tallentaa Audacity-projektin, ei äänitiedostoa.\n"
-"Jos haluat avata äänitiedoston muissa sovelluksissa, käytä \"Vie\" -"
-"toimintoa.\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3287,22 +2862,6 @@ msgid "Save project before closing?"
 msgstr "Tallennetaanko projekti ennen sulkemista?"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"Jos tallennat, projektiin ei tule raitoja.\n"
-"\n"
-"Jos haluat tallentaa kaikki aiemmat avoimet raidat:\n"
-"Peruuta, Muokkaa > Kumoa, kunnes kaikki\n"
-"raidat ovat auki, sitten Tiedosto > Tallenna projekti."
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "Tallennustilaa jäljellä äänitykseen: %s"
@@ -3362,18 +2921,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "Varoitus - Ylipitkä lohkotiedosto katkaistaan"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "Pois"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "Lähin"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "Edellinen"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "Ääniaktivoitu nauhoitus"
@@ -3381,12 +2928,6 @@ msgstr "Ääniaktivoitu nauhoitus"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Aktivointitaso (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
-msgid "Tenacity Pre-Release"
-msgstr "%s, Tenacity-kehittäjä"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3471,10 +3012,6 @@ msgid "Set De&fault"
 msgstr "Aseta &oletukseksi"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "Älä näytä tätä, kun ääntä viedään"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Muokkaa tyylilajeja"
 
@@ -3518,24 +3055,6 @@ msgstr "Kohteen %s poisto epäonnistui"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "Epäonnistui!"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"Palautetaanko oletusasetukset?\n"
-"\n"
-"Tämä on kertaluonteinen kysymys 'asennuksen' jälkeen, jossa pyysit "
-"oletusasetusten palauttamista."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "Käytä aset&uksia"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -4003,12 +3522,6 @@ msgid "Do nothing"
 msgstr "Älä tee mitään"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "&About Tenacity..."
-msgid "Exit Tenacity"
-msgstr "Tietoj&a Tenacitysta…"
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Käynnistä järjestelmä uudelleen"
 
@@ -4055,10 +3568,6 @@ msgstr "Äänite viety:"
 #| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Ajastettu äänitys"
-
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "Stereo, 999999Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -4137,11 +3646,6 @@ msgstr "Poistettu ääniraita/raitoja"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "Poista raita"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "Poistettiin raita '%s.'"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4530,12 +4034,6 @@ msgid "Builtin Commands"
 msgstr "Sisäänrakennetut komennot"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "Tuntematon sisäisen komennon nimi"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "Tuntematon sisäisen komennon nimi"
 
@@ -4836,14 +4334,6 @@ msgid "Sets various values for a project."
 msgstr "Määrittää projektille eri arvoja."
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "Raitaindeksi:"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "Kanavaindeksi:"
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "Aseta raidan tila"
 
@@ -4858,10 +4348,6 @@ msgstr "Kohdistettu"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "Aseta raidan ääni"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "Vahvistus:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4917,12 +4403,6 @@ msgstr "Käytä spektrisiä asetuksia"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Spectral Select"
 msgstr "Spektrivalinta"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr "Tee&ma"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -5091,10 +4571,6 @@ msgid "High Quality Pitch Change"
 msgstr "Korkealaatuinen sävelkorkeuden muutos"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Muuttaa sävelkorkeutta muuttamatta tempoa"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "Arvioitu sävelkorkeus alussa: %s%d (%.3f Hz)"
@@ -5199,16 +4675,8 @@ msgid "n/a"
 msgstr "--"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Muuta nopeutta"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "Muuttaa raidan nopeutta ja myös sen sävelkorkeutta"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Muuttaa nopeutta, vaikuttaen tempoon ja sävelkorkeuteen"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&Speed Multiplier:"
@@ -5285,10 +4753,6 @@ msgstr "Muuttaa valinnan tempoa muuttamatta sen sävelkorkeutta"
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "Korkealaatuinen tempomuutos"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Muuttaa tempoa muuttamatta sävelkorkeutta"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Beats per minute"
@@ -5495,164 +4959,14 @@ msgstr "Nousuaika %.2f sek"
 msgid "Release Time %.1f secs"
 msgstr "Vapautusaika %.1f sek"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Exponential Out"
-msgid "Exponential-Fit"
-msgstr "Eksponentiaalinen ulos"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "Huippuamplitudi (dB)"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "Kohinan vaimennus"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "Kohinan vaimennus"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Limiter"
-msgid "Analog Limiter"
-msgstr "Rajoitin"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "Kompressori"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Sets the loudness of one or more tracks"
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Asettaa yhden tai useamman raidan voimakkuuden"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compressor step response"
-msgstr "Kompressoi h&uippujen perusteella"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritmi"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "&Algoritmi:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compress based on:"
-msgstr "Kompressoi h&uippujen perusteella"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "N&ormalize stereo channels independently"
-msgid "Compress stereo channels independently"
-msgstr "N&ormalisoi stereokanavat itsenäisesti"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Ratio:"
-msgid "Ratio:"
-msgstr "&Suhde:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "Leveys:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "Leveys:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "&Lähtövahvistus (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "Lähtövahvistus (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Attack Time:"
-msgid "Attack:"
-msgstr "Nousu&aika:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "Nousuaika"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "R&elease Time:"
-msgid "Release:"
-msgstr "Vapautu&saika:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "Vapautusaika"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "Pehmennysaika:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "Pehmennysaika"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "Loppuaika:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Loppuaika"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6317,11 +5631,6 @@ msgid "Applied effect: %s"
 msgstr "Käytetty tehoste: %s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "Käytetty tehoste: %s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "Valitse esiasetus"
 
@@ -6348,25 +5657,6 @@ msgstr "Tehdasoletukset"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"Seuraavan tehosteen alustaminen epäonnistui:\n"
-"\n"
-"%s\n"
-"\n"
-"Lisätietoja voi olla kohdassa 'Ohje > Diagnostiikka > Näytä loki'"
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "Tehosteen alustus epäonnistui"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6384,95 +5674,12 @@ msgid "Command failed to initialize"
 msgstr "Komennon alustaminen epäonnistui"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "Tehosteräkki"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "&Käytä"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "Viive: 0"
-
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "&Ohitus"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "Aktiivisuustila"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "Aseta tehosteen aktiivisuustila"
-
-#: src/effects/EffectUI.cpp
-msgid "Show/Hide Editor"
-msgstr "Näytä/piilota muokkain"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "Avaa/sulje tehostemuokkain"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "Siirrä ylös"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "Siirrä tehostetta ylöspäin raidalla"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Down"
-msgstr "Siirrä alas"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "Siirrä tehostetta alaspäin raidalla"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "Suosikki"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "Merkitse tehoste suosikiksi"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "Poista tehoste raidalta"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "Tehosteen nimi"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "Viive: %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "Jokin komento"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "Esiasetuksien ja valintojen hallinta"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "&Hallinta"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "Aloita ja lopeta toisto"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "Aloita &toisto"
 
 #: src/effects/EffectUI.cpp
 msgid "Preview effect"
@@ -6481,26 +5688,6 @@ msgstr "Tehosteen esikatselu"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "&Esikatselu"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "&Esikatsele tehostetta"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "Hyppää taaksepäin"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "Hyppää &taaksepäin"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "Hyppää eteenpäin"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "Hyppää &eteenpäin"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6586,12 +5773,6 @@ msgstr ""
 "\n"
 "Korvataanko?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "&Pysäytä toisto"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6668,20 +5849,6 @@ msgstr "Diskantin leikkaus"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"Jos haluat käyttää tätä korjauskäyrää makrossa, valitse sille uusi nimi.\n"
-"Valitse 'Tallenna/hallitse käyriä...' -painiketta ja nimeä uudelleen "
-"\"nimetön\" käyrä, sitten käytä sitä."
-
-#: src/effects/Equalization.cpp
-msgid "Filter Curve EQ needs a different name"
-msgstr "Käyrätaajuuskorjain tarvitsee eri nimen"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr ""
 "Jotta taajuuskorjaus voidaan suorittaa, kaikilla valituilla raidoilla täytyy "
@@ -6690,10 +5857,6 @@ msgstr ""
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
 msgstr "Raidan näytteenottotaajuus on liian alhainen tätä tehostetta varten."
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "Tehoste ei ole käytettävissä"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6796,34 +5959,6 @@ msgstr "Näytä apuviivat"
 msgid "Show g&rid lines"
 msgstr "Näytä &apuviivat"
 
-#: src/effects/Equalization.cpp
-msgid "&Processing: "
-msgstr "&Käsitellään: "
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "Ol&etus"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "SSE, &säikeistetty"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "A&VX"
-
-#: src/effects/Equalization.cpp
-msgid "AV&X Threaded"
-msgstr "AV&X, &säikeistetty"
-
-#: src/effects/Equalization.cpp
-msgid "&Bench"
-msgstr "&Mittaa"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6844,20 +5979,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "Virhe korjauskäyrien latauksessa"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "Taajuuskorjainkäyrän tallennusvirhe"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "Pyydettyä käyrää ei löydy, käytetään 'nimetöntä'"
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "Käyrää ei löydy"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -7022,36 +6149,6 @@ msgstr "Soveltaa lineaarista nostoa eli sisäänhäivytystä valittuun ääneen"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Soveltaa lineaarista (ulos)häivytystä valittuun ääneen"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "Etsi leikkautumista"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "Luo merkkejä kohtiin, joissa havaitaan leikkautumista"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Clicks"
-msgstr "Napsautus"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Right"
-msgstr "Napsautus"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Left"
-msgstr "Napsautus"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Etsi leikkautumista"
@@ -7189,34 +6286,6 @@ msgstr "Toiseksi suurin"
 #: src/effects/NoiseReduction.cpp
 msgid "Old"
 msgstr "Vanha"
-
-#: src/effects/NoiseReduction.cpp
-msgid "none, Hann (2.0.6 behavior)"
-msgstr "ei mitään, Hann (2.0.6-version mukainen)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, none"
-msgstr "Hann, ei mitään"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, Hann (default)"
-msgstr "Hann, Hann (oletus)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Blackman, Hann"
-msgstr "Blackman, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, none"
-msgstr "Hamming, ei mitään"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Hann"
-msgstr "Hamming, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Reciprocal Hamming"
-msgstr "Hamming, vastavuoroinen Hamming"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7427,47 +6496,6 @@ msgstr "4 (oletus)"
 #: src/effects/NoiseReduction.cpp
 msgid "Discrimination &method:"
 msgstr "Erottelu&menetelmä:"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Kohinan poisto"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr ""
-"Poistaa jatkuvaa taustaääniä, kuten puhaltimen, nauhan ääntä tai huminaa"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Valitse kaikki suodatettava ääni ja että kuinka paljon kohinaa haluat\n"
-"suodattaa pois. Valitsemalla 'OK' poistat kohinan.\n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "Kohinan vaimennus (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "&Herkkyys (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Fr&equency smoothing (Hz):"
-msgstr "Taajuud&en pehmennys (Hz):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "Nousu-/päästöai&ka (sek.):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "Nousu-/päästöaika"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "&Poista"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7813,11 +6841,6 @@ msgstr "S&tereon leveys (%):"
 msgid "Wet O&nly"
 msgstr "Pelkkä märkä (&kaiku)"
 
-#: src/effects/Reverb.cpp
-#, c-format
-msgid "Reverb: %s"
-msgstr "Jälkikaiku: %s"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Takaperin"
@@ -8017,14 +7040,6 @@ msgid "Converts stereo tracks to mono"
 msgstr "Muuntaa stereoraidan monoksi"
 
 #: src/effects/StereoToMono.cpp
-msgid "Resampling left channel"
-msgstr "Muutetaan vasemman kanavan näytetaajuutta"
-
-#: src/effects/StereoToMono.cpp
-msgid "Resampling right channel"
-msgstr "Muutetaan oikean kanavan näytetaajuutta"
-
-#: src/effects/StereoToMono.cpp
 msgid "Mixing down to mono"
 msgstr "Miksataan monoksi"
 
@@ -8179,15 +7194,6 @@ msgstr "Lyhennä r&aidat itsenäisesti"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "VST-tehosteet"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "Haetaan Shell VST:iä"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "Rekisteröidään %d / %d: %-64.64s"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8410,18 +7416,6 @@ msgid "Import Audio Unit Presets"
 msgstr "Tuo Audio Units -esiasetukset"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "Esiasetukset (voi valita useita)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "Esiasetus"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "Sijainti"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
 msgstr "Kohdetta \"%s\" ei voi avata"
@@ -8502,14 +7496,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "Esimäärityksen kirjoittaminen XML-kohteeseen \"%s\" epäonnistui"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to convert preset to internal format"
-msgstr "Esimäärityksen muuntaminen sisäiseen muotoon epäonnistui"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to create property list for preset"
-msgstr "Esimääritysten ominaisuusluettelon luominen epäonnistui"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "Luokkatietoja ei voitu määrittää \"%s\" esimääritykselle"
@@ -8579,16 +7565,6 @@ msgid "Couldn't instantiate effect"
 msgstr "Tehosteita ei voitu toteuttaa"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%s edellyttää ominaisuutta %s, jota ei tueta\n"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%s edellyttää asetusta %s, jota ei tueta\n"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "Generaattori"
 
@@ -8647,27 +7623,6 @@ msgstr ""
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
 msgstr "Äänivalinta vaaditaan."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Nyquist-virhe"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"Sorry, tehostetta ei voi käyttää stereoraidoille, joilla raidat eivät täsmää."
-
-#: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid ""
-"Selection too long for Nyquist code.\n"
-"Maximum allowed selection is %ld samples\n"
-"(about %.1f hours at 44100 Hz sample rate)."
-msgstr ""
-"Valinta on liian pitkä Nyquist-koodille.\n"
-"Suurin sallittu valinta on %ld näytettä\n"
-"(noin %.1f tuntia 44100 Hz:n näytteenottotaajuudella)."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
@@ -8753,10 +7708,6 @@ msgstr ""
 "tai LISPin tapauksessa aloita avoimella sulkeella, kuten:\n"
 "\t(mult *track* 0.1)\n"
 " ."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Virhe Nyquist-koodissa"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8851,14 +7802,6 @@ msgid "Vamp Effects"
 msgstr "Vamp-tehosteet"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Vamp-laajennusta ei voida käyttää stereoraidoille, jossa kanavien "
-"yksittäiset raidat eivät täsmää."
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "Vamp-laajennuksen lataaminen epäonnistui."
 
@@ -8902,58 +7845,12 @@ msgstr "Kaikki äänet mykistetty."
 
 #: src/export/Export.cpp
 #, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Haluatko varmasti viedä tiedoston nimellä \"%s\"?\n"
-
-#: src/export/Export.cpp
-#, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"Olet viemässä tiedostoa %s nimellä \"%s\".\n"
-"\n"
-"Normaalisti nämä tiedostot käyttävät päätettä \".%s\" Jotkin ohjelmat eivät "
-"avaa tiedostoja, jos niillä on väärä tiedostopääte.\n"
-"\n"
-"Oletko varma, että haluat viedä tiedoston tällä nimellä?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "Yli 256 merkin pituisia polkunimiä ei tueta."
-
-#: src/export/Export.cpp
-#, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "Tiedosto \"%s\" on jo olemassa. Korvataanko?"
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "Raidat yhdistetään ja viedään yhtenä monotiedostona."
-
-#: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "Raidat yhdistetään ja viedään yhtenä stereotiedostona."
-
-#: src/export/Export.cpp
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr ""
-"Raidat yhdistetään yhteen vietävään tiedostoon enkooderin asetusten "
-"mukaisesti."
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Edistyneet miksausvalinnat"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-msgid "Format Options"
-msgstr "Muotovalinnat"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8999,1198 +7896,36 @@ msgstr "Selaa..."
 msgid "Show output"
 msgstr "Näytä tuloste"
 
-#. i18n-hint: Some programmer-oriented terminology here:
-#. "Data" refers to the sound to be exported, "piped" means sent,
-#. and "standard in" means the default input stream that the external program,
-#. named by %f, will read.  And yes, it's %f, not %s -- this isn't actually used
-#. in the program as a format string.  Keep %f unchanged.
-#: src/export/ExportCL.cpp
-#, c-format
-msgid ""
-"Data will be piped to standard in. \"%f\" uses the file name in the export "
-"window."
-msgstr ""
-"Tiedot siirretään putkella standardisyötteeseen. \"%f\" vastaa vienti-"
-"ikkunan tiedostonimeä."
-
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-msgid "Executables"
-msgstr "Suoritettavat"
-
-#: src/export/ExportCL.cpp
-msgid "Find path to command"
-msgstr "Etsi polku komennolle"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(ulkoinen ohjelma)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "Ääntä ei voi viedä sijaintiin %s"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Vie"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "Viedään äänivalintaa komentorivienkooderilla"
-
-#: src/export/ExportCL.cpp
-msgid "Exporting the audio using command-line encoder"
-msgstr "Viedään ääntä komentorivienkooderilla"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Komennon tuloste"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "&OK"
-
-#: src/export/ExportCL.cpp
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr "Olet määrittänyt tiedostonimen ilman päätettä. Oletko varma?"
-
-#: src/export/ExportCL.cpp
-msgid "Program name appears to be missing."
-msgstr "Ohjelman nimi näyttää puuttuvan."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "\"%s\" ei löytynyt."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "Kohdetta \"%s\" ei löydy polulta."
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-#| msgid "Format Options"
-msgid "Export Options"
-msgstr "Muotovalinnat"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "Peruuta"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"Oikein määritelty FFmpeg vaaditaan, jotat voit jatkaa.\n"
-"Voit määrittää sen Asetuksista -> Kirjastot."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg : VIRHE - Tiedostolle \"%s\" ei voi määritellä muotokuvausta."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "FFmpeg-virhe"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg : VIRHE - Tulosmuodon kontekstia ei voi varata."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr "FFmpeg : VIRHE - Ei voitu lisätä äänivirtaa tulostiedostoon \"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "FFmpeg : VIRHE - Tulostiedostoa \"%s\" ei voi avata. Virhekoodi on %d."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr ""
-"FFmpeg : VIRHE - Otsikoita ei voi kirjoittaa lähtötiedostoon \"%s\". "
-"Virhekoodi on %d."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg ei löydä äänikoodekkia 0x%x.\n"
-"Tämän koodekin tukea ei todennäköisesti ole käännetty."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported a generic error (EPERM)"
-msgstr "Koodekissa raportoitiin yleinen virhe (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported an invalid parameter (EINVAL)"
-msgstr "Koodekki ilmoitti virheellisestä parametrista (EINVAL)"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Can't open audio codec \"%s\" (0x%x)\n"
-"\n"
-"%s"
-msgstr ""
-"Äänikoodekin \"%s\" (0x%x) avaaminen ei onnistu\n"
-"\n"
-"%s"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg: VIRHE - Ei voitu varata puskuria äänen lukemiseen virrasta."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr "FFmpeg : VIRHE - Ei voitu lisätä äänivirtaa tulostiedostoon \"%s\"."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg: VIRHE - Näytepuskurikokoa ei saatu"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "FFmpeg: VIRHE - Näytepuskuria ei voitu varata"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg: VIRHE - Näytepuskurikokoa ei saatu"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg: VIRHE - Äänikehystä ei voitu koodata."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "FFmpeg: VIRHE - Liikaa jäljellä olevia tietoja."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg: VIRHE - nAudioFrameSizeOut liian iso."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg: VIRHE - Äänikehystä ei voitu koodata."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr ""
-"Yritettiin viedä %d kanavaa, mutta kanavien enimmäismäärä valitulle "
-"lähtömuodolle on %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "Viedään äänivalinta nimellä %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the audio as %s"
-msgstr "Viedään ääni muodossa %s"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "Virheellinen näytetaajuus"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "Muuta näytetaajuutta"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"Projektin näytteenottotaajuutta (%d) ei tueta nykyisessä\n"
-"kohdetiedostomuodossa. "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"Projektin näytetaajuuden (%d) ja bittinopeuden (%d kbps) yhdistelmää\n"
-"ei tueta nykyisessä kohdetiedostomuodossa. "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "Voit ottaa näytteen johonkin alla olevista."
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "Näytetaajuudet"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Bittinopeus:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "Laatu (kbps):"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "0"
-msgstr "0"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "9"
-msgstr "9"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10"
-msgstr "10"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "On"
-msgstr "Päällä"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Constrained"
-msgstr "Rajoitettu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VOIP"
-msgstr "VOIP"
-
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Audio"
 msgstr "Ääni"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Low Delay"
-msgstr "Pieni viive"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2.5 ms"
-msgstr "2.5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "5 ms"
-msgstr "5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10 ms"
-msgstr "10 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "20 ms"
-msgstr "20 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "40 ms"
-msgstr "40 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "60 ms"
-msgstr "60 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Narrowband"
-msgstr "Kapeakaista"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mediumband"
-msgstr "Keskikaista"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Wideband"
-msgstr "Laajakaista"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Super Wideband"
-msgstr "Superlaajakaista"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Fullband"
-msgstr "Koko kaista"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression"
-msgstr "Pakkaus"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame Duration:"
-msgstr "Kehyksen kesto:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Vbr Mode:"
-msgstr "VBR-tila:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Application:"
-msgstr "Sovellus:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Cutoff:"
-msgstr "Leikkaus:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Open custom FFmpeg format options"
-msgstr "Avaa FFmpeg-muokkausvalinnat"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Format:"
-msgstr "Nykyinen muoto:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Codec:"
-msgstr "Nykyinen koodekki:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr "Virhe tallennettaessa FFmpeg-esimäärityksiä"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "Korvataanko esiasetus \"%s\"?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "Vahvista korvaus"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "Valitse muoto ennen profiilin tallennusta"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "Valitse koodekki ennen profiilin tallennusta"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "Esiasetusta %s ei ole olemassa."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Replace preset '%s'?"
-msgstr "Korvaa esiasetus '%s'?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LC"
-msgstr "LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Main"
-msgstr "Pää"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "M4A (AAC) -tiedostot (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "AC3-tiedostot (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "AMR (kapeakaistaiset) tiedostot (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "Opus (OggOpus) tiedostot (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "WMA (versio 2) -tiedostot (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "Muokattu FFmpeg-vienti"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "Arvio"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "2-taso"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "4-taso"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "8-taso"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "Täysi haku"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "Lokihaku"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Configure custom FFmpeg options"
-msgstr "Määritä mukautetut FFmpeg-asetukset"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "Esiasetus:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "Lataa esiasetus"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "Tuo esiasetukset"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "Vie esiasetukset"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "Koodekki:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Not all formats and codecs are compatible. Nor are all option combinations "
-"compatible with all codecs."
-msgstr ""
-"Kaikki muodot ja koodekit eivät ole yhteensopivia, eivätkä kaikki "
-"valintayhdistelmät ole yhteensopivia kaikkien koodekkien kanssa."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "Näytä kaikki muodot"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "Näytä kaikki koodekit"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "General Options"
-msgstr "Yleiset valinnat"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"ISO 639 3-kielikoodi\n"
-"Valinnainen\n"
-"tyhjä - automaattinen"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Kieli:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Bit Reservoir"
-msgstr "Bittisäilö"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"Koodekin tunniste (FOURCC)\n"
-"Valinnainen\n"
-"tyhjä - automaattinen"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "Tunniste:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"Bittinopeus (bittiä sekunnissa) - vaikuttaa tuloksen tiedostokokoon ja "
-"laatuun\n"
-"Jotkin koodekit saattavat hyväksyä vain tiettyjä arvoja (128k, 192k, 256k "
-"jne.)\n"
-"0 - automaattinen\n"
-"Suositus - 192000"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"Yleinen laatu; tarkka merkitys riippuu koodekista\n"
-"Tarvitaan Vorbisille\n"
-"0 - automaattinen\n"
-"-1 - pois päältä (käytä sen sijaan bittinopeutta)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Laatu:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"Näytteenottotaajuus (Hz)\n"
-"0 - älä muuta näytteenottonopeutta"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "Näytteenottotaajuus:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"Äänen katkaisun kaistanleveys (Hz)\n"
-"Valinnainen\n"
-"0 - automaattinen"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"AAC-profiili\n"
-"LC (alhainen moninaisuus) - oletus\n"
-"Useimmat soittimet eivät toista mitään muuta kuin LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "Profiili:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "FLAC-valinnat"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"Pakkaustaso\n"
-"Pakollinen FLAC:lle\n"
-"-1 - automaattinen\n"
-"min - 0 (nopea koodaus, suuri tulostiedosto)\n"
-"max - 10 (hidas koodaus, pieni tulostiedosto)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression:"
-msgstr "Pakkaus:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"Kehyskoko\n"
-"Valinnainen\n"
-"0 - oletus\n"
-"min - 16\n"
-"max - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "Kehys:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"LPC-kertoimien tarkkuus\n"
-"Valinnainen\n"
-"0 - oletus\n"
-"min - 1\n"
-"max - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"Ennustusjärjestysmenetelmä\n"
-"Arvio - nopein, pienempi pakkaus\n"
-"Lokihaku - hitain, paras pakkaus\n"
-"Täysi haku - oletus"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "PdO Method:"
-msgstr "PdO-menetelmä:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Pienin ennustusjärjestys\n"
-"Valinnainen\n"
-"-1 - oletus\n"
-"min - 0\n"
-"max - 32 (LPC) tai 4 (ilman LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "Min. PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"Suurin ennustusjärjestys\n"
-"Valinnainen\n"
-"-1 - oletus\n"
-"min - 0\n"
-"max - 32 (LPC) tai 4 (ilman LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "Max. PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Pienin osiointijärjestys\n"
-"Valinnainen\n"
-"-1 - oletus\n"
-"minimi - 0\n"
-"maksimi - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "Min. PtO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"Suurin osiointijärjestys\n"
-"Valinnainen\n"
-"-1 - oletus\n"
-"min - 0\n"
-"max - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "Max. PtO"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "Käytä lineaarisen ennustuksen koodausta (LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "MPEG-säiliön valinnat"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Multipleksoitun virran enimmäisbittinopeus\n"
-"Valinnainen\n"
-"0 - oletus"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "Mux-arvo:"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Pakettikoko\n"
-"Valinnainen\n"
-"0 - oletus"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "Pakettikoko:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "Et voi poistaa nimetöntä esiasetusta"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "Poistetaanko esiasetus '%s'?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "Nimetöntä esiasetusta ei voi tallentaa"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "Valitse XML-tiedosto, josta esivalinnat tuodaan"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "Esimäärityksiä ei ole vietäväksi"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "Valitse XML-tiedosto, johon esiasetukset viedään"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Format %s is not compatible with codec %s."
-msgstr "Muoto %s ei ole yhteensopiva koodekin %s kanssa."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Incompatible format and codec"
-msgstr "Yhteensopimaton muoto ja koodekki"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "Muodon arvaus epäonnistui"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "Koodekkia ei löytynyt"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16-bittinen"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24-bittinen"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (nopein)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (paras)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Taso:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Bittisyvyys:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "FLAC-tiedostot"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "FLAC-vienti ei voinut avata tiedostoa %s"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr ""
-"FLAC-enkooderin alustaminen epäonnistui\n"
-"Tila: %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "Viedään äänivalintaa FLAC-muodossa"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the audio as FLAC"
-msgstr "Viedään ääntä FLAC-muodossa"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "MP2-tiedostot"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "Et voi viedä MP2-tiedostoa tällä näytetaajuudella ja bittinopeudella"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "Kohdetiedostoa ei kyetty avaamaan kirjoitusta varten"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "Viedään äänivalintaa nopeudella %ld kbps"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "Viedään ääntä nopeudella %ld kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "220-260 kbps (Best Quality)"
-msgstr "220-260 kbps (paras laatu)"
-
-#: src/export/ExportMP3.cpp
-msgid "200-250 kbps"
-msgstr "200-250 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "170-210 kbps"
-msgstr "170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "155-195 kbps"
-msgstr "155-195 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "145-185 kbps"
-msgstr "145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "110-150 kbps"
-msgstr "110-150 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "95-135 kbps"
-msgstr "95-135 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "80-120 kbps"
-msgstr "80-120 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "65-105 kbps"
-msgstr "65-105 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "45-85 kbps (Smaller files)"
-msgstr "45-85 kbps (pienemmät tiedostot)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "Maksimi, 320 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "Äärimmäinen, 220-260 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "Normaali, 170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "Keskitaso, 145–185 kbps"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "Maksimi"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "Äärimmäinen"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Vakio"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "Keskimääräinen"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "Muuttuva"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "Keskiarvo"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "Vakio"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "Yhdistetty stereo"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "Stereo"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "Bittinopeustila:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Laatu"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "Kanavatila:"
-
-#: src/export/ExportMP3.cpp
-msgid "Force export to mono"
-msgstr "Pakota vienti monoon"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "MP3-tiedostot"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "MP3-virtaa ei voitu alustaa"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "Viedään äänivalintaa %sesiasetuksella"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "Viedään ääntä esiasetuksella %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "Viedään äänivalintaa VBR-laadulla %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "Viedään ääntä VBR-laadulla %s"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "Viedään äänivalintaa nopeudella %d kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "Viedään ääntä nopeudella %d kbps"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "MP3-enkooderi palautti virheen %ld"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"Projektin näytteenottotaajuutta (%d) ei tueta\n"
-"MP3-tiedostomuodossa. "
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"Projektin näytteenottotaajuuden (%d) ja bittinopeuden (%d kbps) yhdistelmää\n"
-"ei tueta MP3-tiedostomuodossa. "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16-bittinen"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24-bittinen"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Merkit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "Viedään äänitiedostoa"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "Viedään äänivalintaa FLAC-muodossa"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the audio as FLAC"
-msgid "Exporting the audio as MKA"
-msgstr "Viedään ääntä FLAC-muodossa"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Vie useita"
-
-#: src/export/ExportMultiple.cpp
-msgid "Cannot Export Multiple"
-msgstr "Useita ei voi viedä"
-
-#: src/export/ExportMultiple.cpp
-msgid ""
-"You have no unmuted Audio Tracks and no applicable \n"
-"labels, so you cannot export to separate audio files."
-msgstr ""
-"Sinulla on vain yksi mykistämätön ääniraita eikä sovellettavia\n"
-"merkkejä, joten useaan äänitiedostoon vienti ei onnistu."
-
-#: src/export/ExportMultiple.cpp
-msgid "Export files to:"
-msgstr "Vie sijaintiin:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "Kansio:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Valitse..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Luo"
-
-#: src/export/ExportMultiple.cpp
-msgid "Options:"
-msgstr "Valinnat:"
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -10199,14 +7934,6 @@ msgstr "Jaa tiedostoja perustuen:"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "Sisällytä ääni ennen ensimmäistä merkkiä"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "Ensimmäinen tiedostonimi:"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "Ensimmäinen tiedostonimi"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -10229,17 +7956,8 @@ msgid "File name prefix:"
 msgstr "Tiedostonimen alkuosa:"
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "Tiedostonimen alkuosa"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Korvaa olemassa olevat tiedostot"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "Tiedoston \"%s\" luonti onnistui."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -10271,201 +7989,16 @@ msgid "Something went really wrong after exporting the following %lld file(s)."
 msgstr "Jotain meni pahasti pieleen seuraavan %lld tiedoston viennin jälkeen."
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"Tiedostoa \"%s\" ei ole.\n"
-"\n"
-"Luodaanko se?"
-
-#: src/export/ExportMultiple.cpp
 msgid "Continue to export remaining files?"
 msgstr "Jatketaanko jäljellä olevien tiedostojen vientiä?"
-
-#. i18n-hint: The second %s gives some letters that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name.\n"
-"You cannot use any of these characters:\n"
-"\n"
-"%s\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"Merkki tai raita \"%s\" ei ole kelvollinen tiedostonimi.\n"
-"Et voi käyttää mitään näistä merkeistä:\n"
-"\n"
-"%s\n"
-"\n"
-"Korjausehdotus:"
-
-#. i18n-hint: The second %s gives a letter that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name. You cannot use \"%s\".\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"Merkki tai raita \"%s\" ei ole kelvollinen tiedostonimi. Et voi käyttää osaa "
-"\"%s\".\n"
-"\n"
-"Korjausehdotus:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "Tallenna nimellä..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Ogg Vorbis -tiedostot"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - rate or quality problem"
-msgstr "Vienti ei onnistu - nopeus- tai laatuongelma"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with metadata"
-msgstr "Vienti ei onnistu - ongelma metatietojen kanssa"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem initialising"
-msgstr "Vienti ei onnistu - ongelma alustuksessa"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem creating stream"
-msgstr "Vienti ei onnistu - ongelma virran luomisessa"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with packets"
-msgstr "Vienti ei onnistu - pakettiongelma"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with file"
-msgstr "Ei voi viedä - ongelma tiedostossa"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "Viedään äänivalintaa Ogg Vorbis -muodossa"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "Viedään ääntä Ogg Vorbis -muodossa"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "AIFF (Apple/SGI)"
-msgstr "AIFF (Apple/SGI)"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft)"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Otsikko:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Koodaus:"
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "Muut pakkaamattomat tiedostot"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "Virhe vietäessä"
-
-#: src/export/ExportPCM.cpp
-msgid "GSM 6.10 requires mono"
-msgstr "GSM 6.10 vaatii monon"
-
-#: src/export/ExportPCM.cpp
-msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr "WAVEX- ja GSM 6.10 -muodot eivät ole yhteensopivia"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "Ääntä ei voi viedä tässä muodossa."
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Viedään äänivalintaa muodossa %s"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"Virhe tiedoston %s kirjoituksessa (levy täysi?).\n"
-"Libsndfile ilmoittaa \"%s\""
-
 #: src/export/ExportPlugin.cpp
 msgid "No format specific options"
 msgstr "Ei erityisiä muotovalintoja"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "FFmpeg-tukea ei ole käännetty"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "FFmpeg-käynnistys epäonnistui"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "FFmpeg-kirjastoa ei löytynyt"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "Etsi FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "Tiedoston '%s' sijainti:"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "To find '%s', click here -->"
-msgstr "Etsi '%s' napsauttamalla tästä -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Lataa ilmainen kopio FFmpeg:stä täältä -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "Lataa"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Only avformat.dll"
-msgstr "Vain avformat.dll"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "Missä '%s' on?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpegiä ei löytynyt"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "Älä näytä tätä varoitusta uudelleen"
 
 #: src/import/Import.cpp
 msgid "All supported files"
@@ -10480,535 +8013,19 @@ msgstr "Valitse tuotavat virrat"
 msgid "File \"%s\" not found."
 msgstr "Tiedostoa %s ei löydy."
 
-#: src/import/Import.cpp
-msgid ""
-"Try installing FFmpeg.\n"
-"\n"
-msgstr ""
-"Kokeile asentaa FFmpeg.\n"
-"\n"
-
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, c-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
-msgid "AUP project files (*.aup)"
-msgstr "AUP-projektitiedostot (*.aup)"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"Projektia ei voitu tuoda:\n"
-"\n"
-"%s"
-
-#: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "Tuo projekti"
-
-#: src/import/ImportAUP.cpp
-msgid "Internal error in importer...tag not recognized"
-msgstr "Tuontivirhe...ei tunnistettu tunnistetta"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'vpos' attribute."
-msgstr "Projektin määre 'vpos' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'h' attribute."
-msgstr "Projektin määre 'h' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'zoom' attribute."
-msgstr "Projektin määre 'zoom' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel0' attribute."
-msgstr "Projektin määre 'sel0' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel1' attribute."
-msgstr "Projektin määre 'sel1' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selLow' attribute."
-msgstr "Projektin määre 'selLow' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Projektin määre 'selHigh' virheellinen."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "Projektin datakansiota \"%s\" ei löytynyt."
-
-#: src/import/ImportAUP.cpp
-msgid "Project Import"
-msgstr "Projektin tuonti"
-
-#: src/import/ImportAUP.cpp
-msgid ""
-"The active project already has a time track and one was encountered in the "
-"project being imported, bypassing imported time track."
-msgstr ""
-"Projektissa on jo aikaraita ja tuotavasta projektista löytyi sellainen; "
-"tuotava aikaraita ohitetaan."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Jakson määre 'maxsamples' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Jakson määre 'sampleformat' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Jakson määre 'numsamples' virheellinen."
-
-#: src/import/ImportAUP.cpp
-msgid "Unable to parse the waveblock 'start' attribute"
-msgstr "Aaltolohkon määrettä 'start' ei voitu jäsentää"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing project file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"Projektitiedosto %s puuttuu\n"
-"\n"
-"Tilalle pannaan hiljaisuutta."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Simple-lohkotiedoston määre 'len' virheellinen tai puuttuu."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Silent-lohkotiedoston määre 'len' virheellinen tai puuttuu."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing alias file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"Aliastiedosto %s puuttuu\n"
-"\n"
-"Tilalle pannaan hiljaisuutta."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Pcmalias-lohkotiedoston määre 'aliasstart' virheellinen tai puuttuu."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Pcmalias-lohkotiedoston määre 'aliaslen' virheellinen tai puuttuu."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Error while processing %s\n"
-"\n"
-"Inserting silence."
-msgstr ""
-"Virhe tiedoston %s käsittelyssä\n"
-"\n"
-"Tilalle pannaan hiljaisuutta."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to open %s"
-msgstr "Ei voitu avata %s"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "EI voitu siirtyä sijaintiin %lld tiedostossa %s"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "Ei voitu lukea %lld näytettä tiedostosta %s"
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "FFmpeg-yhteensopivat tiedostot"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr ""
-"Indeksi[%02x] Koodekki[%s], Kieli[%s], Bittinopeus[%s], Kanavat[%d], "
-"Kesto[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "FLAC-tiedostot"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "GStreamer-yhteensopivat tiedostot"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to add decoder to pipeline"
-msgstr "Dekooderia ei voi lisätä putkeen"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "GStreamer-tuonti"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "Virran tilaa ei voi asettaa tauotetuksi."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Indeksi[%02d], Tyyppi[%s], Kanavat[%d], Nopeus[%d]"
-
-#: src/import/ImportGStreamer.cpp
-msgid "File doesn't contain any audio streams."
-msgstr "Tiedosto ei sisällä äänivirtoja."
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "Tiedoston tuonti epäonnistui, tilanmuutos epäonnistui."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "GStreamer-virhe: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Lista tiedostoista perustekstimuodossa"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "Virheellinen ikkunan siirtymä LOF-tiedostossa."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "LOF-virhe"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "Virheellinen kesto LOF-tiedostossa."
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI-raitoja ei voi kompensoida erikseen, vain äänitiedostoja voi."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "Virheellinen raidan siirtymä LOF-tiedostossa."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "Tuotiin MIDI tiedostosta '%s'"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "Tuo MIDI"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "Tiedostoa %s ei voitu avata: Tiedostonimi on liian lyhyt."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "Tiedostoa %s ei voitu avata: Virheellinen tiedostotyyppi."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s."
-msgstr "Tiedostoa %s ei voitu avata."
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "MP3-tiedostot"
-
-#: src/import/ImportMP3.cpp
-msgid ""
-"Import failed\n"
-"\n"
-"This is likely caused by a malformed MP3.\n"
-"\n"
-msgstr ""
-"Tuonti epäonnistui\n"
-"\n"
-"Tämän voi aiheuttaa vioittunut MP3.\n"
-"\n"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-#| msgid "%s files"
-msgid "Matroska files"
-msgstr "%s-tiedostot"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-#| msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "Indeksi[%02d], Tyyppi[%s], Kanavat[%d], Nopeus[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Ogg Vorbis -tiedostot"
-
-#: src/import/ImportOGG.cpp
-#, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Indeksi[%02x] Versio[%d], Kanavat[%d], Nopeus[%ld]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Lukuvirhe mediassa"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "Ei ole Ogg Vorbis -tiedosto"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Vorbis-versio ei täsmää"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "Virheellinen Vorbis-bittivirran tunniste"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "Sisäinen logiikkavirhe"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF, ja muut pakkaamattomat tyypit"
-
-#: src/import/ImportPCM.cpp
-msgid "AU (Sun/NeXT)"
-msgstr "AU (Sun/NeXT)"
-
-#: src/import/ImportPCM.cpp
-msgid "AVR (Audio Visual Research)"
-msgstr "AVR (Audio Visual Research)"
-
-#: src/import/ImportPCM.cpp
-msgid "CAF (Apple Core Audio File)"
-msgstr "CAF (Apple Core Audio File)"
-
-#: src/import/ImportPCM.cpp
-msgid "HTK (HMM Tool Kit)"
-msgstr "HTK (HMM Tool Kit)"
-
-#: src/import/ImportPCM.cpp
-msgid "IFF (Amiga IFF/SVX8/SV16)"
-msgstr "IFF (Amiga IFF/SVX8/SV16)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-msgstr "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-msgstr "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-
-#: src/import/ImportPCM.cpp
-msgid "MPC (Akai MPC 2k)"
-msgstr "MPC (Akai MPC 2k)"
-
-#: src/import/ImportPCM.cpp
-msgid "OGG (OGG Container format)"
-msgstr "OGG (OGG-säiliömuoto)"
-
-#: src/import/ImportPCM.cpp
-msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
-
-#: src/import/ImportPCM.cpp
-msgid "PVF (Portable Voice Format)"
-msgstr "PVF (Portable Voice Format)"
-
-#: src/import/ImportPCM.cpp
-msgid "RAW (header-less)"
-msgstr "RAW (otsikoton)"
-
-#: src/import/ImportPCM.cpp
-msgid "RF64 (RIFF 64)"
-msgstr "RF64 (RIFF 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "SD2 (Sound Designer II)"
-msgstr "SD2 (Sound Designer II)"
-
-#: src/import/ImportPCM.cpp
-msgid "SDS (Midi Sample Dump Standard)"
-msgstr "SDS (Midi Sample Dump Standard)"
-
-#: src/import/ImportPCM.cpp
-msgid "SF (Berkeley/IRCAM/CARL)"
-msgstr "SF (Berkeley/IRCAM/CARL)"
-
-#: src/import/ImportPCM.cpp
-msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
-
-#: src/import/ImportPCM.cpp
-msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAVEX (Microsoft)"
-msgstr "WAVEX (Microsoft)"
-
-#: src/import/ImportPCM.cpp
-msgid "WVE (Psion Series 3)"
-msgstr "WVE (Psion Series 3)"
-
-#: src/import/ImportPCM.cpp
-msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 8 bit PCM"
-msgstr "Etumerkillinen 8-bittinen PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 16 bit PCM"
-msgstr "Etumerkillinen 16-bittinen PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 24 bit PCM"
-msgstr "Etumerkillinen 24-bittinen PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 32 bit PCM"
-msgstr "Etumerkillinen 32-bittinen PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Unsigned 8 bit PCM"
-msgstr "Etumerkitön 8-bittinen PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "32 bit float"
-msgstr "32-bittinen liukuluku"
-
-#: src/import/ImportPCM.cpp
-msgid "64 bit float"
-msgstr "64-bittinen liukuluku"
-
-#: src/import/ImportPCM.cpp
-msgid "U-Law"
-msgstr "U-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "A-Law"
-msgstr "A-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "IMA ADPCM"
-msgstr "IMA ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "GSM 6.10"
-msgstr "GSM 6.10"
-
-#: src/import/ImportPCM.cpp
-msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "12 bit DWVW"
-msgstr "12-bittinen DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DWVW"
-msgstr "16-bittinen DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "24 bit DWVW"
-msgstr "24-bittinen DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "VOX ADPCM"
-msgstr "VOX ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DPCM"
-msgstr "16-bittinen DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "8 bit DPCM"
-msgstr "8-bittinen DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Vorbis"
-msgstr "Vorbis"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "Tuodaan %s"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "QuickTime-tiedostot"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to start QuickTime extraction"
-msgstr "QuickTime-purkua ei voi käynnistää"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime render quality"
-msgstr "QuickTime-hahmonnuslaatua ei voi määrittää"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "QuickTime-erilliskanavien ominaisuutta ei voi määrittää"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "QuickTimen näytteen koko-ominaisuutta ei saatu"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "Kohdetiedostoa ei kyetty avaamaan kirjoitusta varten"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get fill buffer"
-msgstr "Täyttöpuskuria ei saatu"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -11097,18 +8114,6 @@ msgstr "&Tuo"
 msgid "Bad data size. Could not import audio"
 msgstr "Tiedon koko virheellinen. Ääntä ei voi tuoda"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s left"
-msgstr "%s vasen"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s right"
-msgstr "%s oikea"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -11150,25 +8155,8 @@ msgstr[0] "%s %d / %d"
 msgstr[1] "%s %d / %d"
 
 #: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the right"
-msgstr "Leikkeet siirretty ajassa oikealle"
-
-#: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the left"
-msgstr "Leikkeet siirretty ajassa vasemmalle"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Aikasiirros"
-
-#: src/menus/ClipMenus.cpp
 msgid "clip not moved"
 msgstr "leikettä ei siirretty"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-msgid "Clip B&oundaries"
-msgstr "Leikkeen ra&jat"
 
 #: src/menus/ClipMenus.cpp
 msgid "Pre&vious Clip Boundary to Cursor"
@@ -11254,28 +8242,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "Poistettu %.2f sekuntia kohdasta t=%.2f"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "Et voi liittää raitaa erityyppiseen raitaan."
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "Et voi kopioida stereoääntä monoraitaan."
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "Kahdennettu"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "Kahdenna"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "Halkaise ja leikkaa leikepöydälle"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "Halkaise ja leikkaa"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -11373,16 +8345,6 @@ msgstr "K&ahdenna"
 msgid "R&emove Special"
 msgstr "Erityispoisto"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "Halkaise ja le&ikkaa"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "Halkaise ja p&oista"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -11410,14 +8372,6 @@ msgstr "Liitä &yhteen"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "Ir&rota hiljaisissa kohdissa"
-
-#: src/menus/EditMenus.cpp
-msgid "&Metadata..."
-msgstr "&Metatiedot..."
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "Ase&tukset..."
 
 #: src/menus/EditMenus.cpp
 msgid "&Delete Key"
@@ -11451,10 +8405,6 @@ msgstr "Vaihda ääni&rajapintaa..."
 msgid "Change Recording Cha&nnels..."
 msgstr "Vaihda äänityska&navia..."
 
-#: src/menus/ExtraMenus.cpp
-msgid "&Full Screen (on/off)"
-msgstr "&Koko näyttö (päällä/pois)"
-
 #: src/menus/FileMenus.cpp
 #, c-format
 msgid ""
@@ -11463,10 +8413,6 @@ msgid ""
 msgstr ""
 "Kansiota '%s' ei voi luoda. \n"
 "Tiedosto on jo olemassa, joka ei ole kansio"
-
-#: src/menus/FileMenus.cpp
-msgid "Export Selected Audio"
-msgstr "Vie valittu ääni"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -11478,38 +8424,6 @@ msgid "There are no label tracks to export."
 msgstr "Merkkiraitoja ei ole vietäväksi."
 
 #: src/menus/FileMenus.cpp
-msgid "Please select only one Note Track at a time."
-msgstr "Valitse vain yksi nuottiraita kerrallaan."
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "Valitse nuottiraita."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "Vie MIDI nimellä:"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI file"
-msgstr "MIDI-tiedosto"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro file"
-msgstr "Allegro-tiedosto"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"Olet valinnut tiedostonimen jolla on tunnistamaton tiedostopääte.\n"
-"Haluatko jatkaa?"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "Vie MIDI"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "Tuotiin merkit lähteestä '%s'"
@@ -11517,22 +8431,6 @@ msgstr "Tuotiin merkit lähteestä '%s'"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Tuo merkkejä"
-
-#: src/menus/FileMenus.cpp
-msgid "Select a MIDI file"
-msgstr "Valitse MIDI-tiedosto"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI and Allegro files"
-msgstr "MIDI- ja Allegro-tiedostot"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI files"
-msgstr "MIDI-tiedostot"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro files"
-msgstr "Allegro-tiedostot"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -11573,12 +8471,6 @@ msgid "Export as &WAV"
 msgstr "Vie &WAV-tiedostona"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-#| msgid "Export as &WAV"
-msgid "Export as &MKA"
-msgstr "Vie &WAV-tiedostona"
-
-#: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
 msgstr "Vie &OGG-tiedostona"
 
@@ -11595,14 +8487,6 @@ msgid "Export &Labels..."
 msgstr "Vie mer&kit..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "Vie &useita..."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MI&DI..."
-msgstr "Vie MI&DI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "&Ääntä..."
 
@@ -11611,30 +8495,8 @@ msgid "&Labels..."
 msgstr "&Merkkejä..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "&Raakadata..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "&Sivun asetukset..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "&Tulosta..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "&Lopeta"
-
-#: src/menus/FileMenus.cpp
-msgid "Hidden File Menu"
-msgstr "Salainen tiedostovalikko"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11748,17 +8610,6 @@ msgstr "Poistettiin merkityt äänialueet"
 msgid "Delete Labeled Audio"
 msgstr "Poista merkitty ääni"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Halkaistiin ja leikattiin merkityt äänialueet"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut Labeled Audio"
-msgstr "Halkaise ja leikkaa merkitty ääni"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11828,10 +8679,6 @@ msgstr "Irrota merkitty ääni"
 msgid "&Labels"
 msgstr "&Merkit"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "Muokkaa m&erkkejä..."
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Add Label at &Selection"
 msgstr "Lisää merkki &valintaan"
@@ -11845,10 +8692,6 @@ msgid "Paste Te&xt to New Label"
 msgstr "Liitä &tekstiä uuteen merkkiin"
 
 #: src/menus/LabelMenus.cpp
-msgid "&Type to Create a Label (on/off)"
-msgstr "Luo merkki kirjoi&ttamalla (päällä/pois)"
-
-#: src/menus/LabelMenus.cpp
 msgid "La&beled Audio"
 msgstr "M&erkitty ääni"
 
@@ -11856,31 +8699,6 @@ msgstr "M&erkitty ääni"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "&Leikkaa"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "Leikkaa merkillä"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "Poista merkillä"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "&Halkaise ja leikkaa"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "Halkaise ja leikkaa merkillä"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "Ha&lkaise ja poista"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "Halkaise ja poista merkillä"
 
 #: src/menus/LabelMenus.cpp
 msgid "Silence &Audio"
@@ -11982,11 +8800,6 @@ msgid "&Repeat %s"
 msgstr "&Toista - %s"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "Laajennus %d osalle %d"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "&Luo"
 
@@ -12015,16 +8828,8 @@ msgid "T&ools"
 msgstr "Työ&kalut"
 
 #: src/menus/PluginMenus.cpp
-msgid "Manage Plug-ins..."
-msgstr "Lisää / poista laajennuksia..."
-
-#: src/menus/PluginMenus.cpp
 msgid "Repeat Last Tool"
 msgstr "Toista viimeisin työkalu"
-
-#: src/menus/PluginMenus.cpp
-msgid "&Macros..."
-msgstr "&Makrot..."
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -12429,12 +9234,6 @@ msgstr "Pitkä kelaus &oikealle toiston aikana"
 msgid "&Toolbars"
 msgstr "&Työkalupalkit"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-#, fuzzy
-msgid "Edit &Mode (on/off)"
-msgstr "&Lisävalikot (päällä/pois)"
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "Palauta työkalu&palkit"
@@ -12796,10 +9595,6 @@ msgid "Align &Together"
 msgstr "Tasaa &toisiinsa"
 
 #: src/menus/TrackMenus.cpp
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "&Siirrä valintaa raitojen mukana (päällä/pois)"
-
-#: src/menus/TrackMenus.cpp
 msgid "Move Sele&ction and Tracks"
 msgstr "Siirrä &valintaa raitojen kanssa"
 
@@ -12814,10 +9609,6 @@ msgstr "Aloitu&sajan mukaan"
 #: src/menus/TrackMenus.cpp
 msgid "By &Name"
 msgstr "&Nimen mukaan"
-
-#: src/menus/TrackMenus.cpp
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "Tahti&lukitse raidat (päällä/pois)"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12858,10 +9649,6 @@ msgstr "Mykistä/poista mykistys kohdistet&ulta raidalta"
 #: src/menus/TrackMenus.cpp
 msgid "&Solo/Unsolo Focused Track"
 msgstr "Kohdistetun raidan &soolo päälle/pois"
-
-#: src/menus/TrackMenus.cpp
-msgid "&Close Focused Track"
-msgstr "&Sulje kohdistettu raita"
 
 #: src/menus/TrackMenus.cpp
 msgid "Move Focused Track U&p"
@@ -12976,10 +9763,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "Toista/Pysäytä ja aseta &kohdistin"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "Toista jatkuva&sti"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "Tau&ko"
 
@@ -13009,18 +9792,6 @@ msgid "Punch and Rol&l Record"
 msgstr "Korjaa &lennossa"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "Toisto&alue"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "&Lukitse"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "&Avaa lukitus"
-
-#: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
 msgstr "&Skannaa äänilaitteet uudelleen"
 
@@ -13029,33 +9800,8 @@ msgid "Transport &Options"
 msgstr "Siirtymis&asetukset"
 
 #: src/menus/TransportMenus.cpp
-msgid "Sound Activation Le&vel..."
-msgstr "Ääniaktivoinnin taso..."
-
-#: src/menus/TransportMenus.cpp
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Ääniaktivoitu äänitys (päällä/pois)"
-
-#: src/menus/TransportMenus.cpp
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Kiinnitetty toisto-/tallennuspää (päällä/pois)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Overdub (on/off)"
-msgstr "&Jälkiäänitys/dubbaus (päällä/pois)"
-
-#: src/menus/TransportMenus.cpp
-msgid "So&ftware Playthrough (on/off)"
-msgstr "Toisto ohjelman läpi (päällä/pois)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "Sii&rtyminen"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "Toist&a"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -13101,15 +9847,6 @@ msgstr "Leikka&uksen esikatselu"
 #: src/menus/TransportMenus.cpp
 msgid "&Play-at-Speed"
 msgstr "Toista n&opeudella"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "Norm&aali toisto nopeudella"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Loop Play-at-Speed"
-msgstr "&Jatkuva toisto nopeudella"
 
 #: src/menus/TransportMenus.cpp
 msgid "Play C&ut Preview-at-Speed"
@@ -13166,10 +9903,6 @@ msgid "Zoom &Toggle"
 msgstr "S&uurennus (päällä/pois)"
 
 #: src/menus/ViewMenus.cpp
-msgid "Advanced &Vertical Zooming"
-msgstr "Edistynyt &pystysuurennus"
-
-#: src/menus/ViewMenus.cpp
 msgid "T&rack Size"
 msgstr "&Raidan koko"
 
@@ -13205,44 +9938,6 @@ msgstr "Hyppää valinnan alkuun"
 msgid "Skip to Selection End"
 msgstr "Hyppää valinnan loppuun"
 
-#: src/menus/ViewMenus.cpp
-msgid "&Extra Menus (on/off)"
-msgstr "&Lisävalikot (päällä/pois)"
-
-#: src/menus/ViewMenus.cpp
-msgid "Track &Name (on/off)"
-msgstr "Raidan &nimi (päällä/pois)"
-
-#: src/menus/ViewMenus.cpp
-msgid "&Show Clipping (on/off)"
-msgstr "&Näytä leikkautuminen (päällä/pois)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "Näytä tehosteräkki"
-
-#: src/menus/WindowMenus.cpp
-msgid "&Window"
-msgstr "&Ikkuna"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make (the current
-#. * window) shrink to an icon on the dock
-#: src/menus/WindowMenus.cpp
-msgid "&Minimize"
-msgstr "&Pienennä"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make all project
-#. * windows un-hidden
-#: src/menus/WindowMenus.cpp
-msgid "&Bring All to Front"
-msgstr "&Tuo kaikki eteen"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-msgid "Minimize All Projects"
-msgstr "Pienennä kaikki projektit"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Erä"
@@ -13258,14 +9953,6 @@ msgstr "Valinnat"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "&Älä käytä tehosteita eräajotilassa"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "Laitteet"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "Laitteen asetukset"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -13433,15 +10120,6 @@ msgstr "Hakemisto %s ei sovellu (vaarana, että se siivotaan)"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "Hakemistoa %s ei ole olemassa. Luodaanko se?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Uusi väliaikaishakemisto"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "Hakemisto %s ei ole kirjoitettava"
 
@@ -13458,77 +10136,8 @@ msgid "Preferences for Effects"
 msgstr "Tehosteiden asetukset"
 
 #: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Effect Name"
-msgstr "Tehostenimen mukaan"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Publisher and Effect Name"
-msgstr "Julkaisijan ja tehostenimen mukaan"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Type and Effect Name"
-msgstr "Tyypin ja tehostenimen mukaan"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Publisher"
-msgstr "Ryhmittely julkaisijan mukaan"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Type"
-msgstr "Ryhmittely tyypin mukaan"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-msgid "&LADSPA"
-msgstr "&LADSPA"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-msgid "N&yquist"
-msgstr "N&yquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "Salli tehosteet"
-
-#: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
 msgstr "Tehostevalinnat"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "S&ort or Group:"
-msgstr "Lajittele tai &ryhmitä:"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "Tehosteita enintään ryh&mää kohden (0 poistaa käytöstä):"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Plugin Options"
-msgstr "Laajennusvalinnat"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13595,18 +10204,6 @@ msgstr "Poista va&littu viivain"
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
 msgstr "Käyttämättömät suodattimet:"
-
-#: src/prefs/ExtImportPrefs.cpp
-msgid ""
-"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
-"the items. They are likely to break the pattern matching. Unless you know "
-"what you are doing, it is recommended to trim spaces. Do you want Audacity "
-"to trim spaces for you?"
-msgstr ""
-"Jossakin kohteista on välilyöntejä (välilyönti, rivinvaihto, sarkainmerkki "
-"tai rivinsiirto), jotka aiheuttavat ongelmia hahmontunnistuksessa. Jos et "
-"ole varma, niiden poistamista suositellaan. Haluatko Audacityn tekevän niin "
-"puolestasi?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13683,10 +10280,6 @@ msgid "&Language:"
 msgstr "&Kieli:"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Location of &Manual:"
-msgstr "&Käyttöohjeen sijainti:"
-
-#: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
 msgstr "Mittarin dB-&alue:"
 
@@ -13716,14 +10309,6 @@ msgid "Never use comma as decimal point"
 msgstr "Älä käytä pilkkua desimaaliluvuissa"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Show Timeline Tooltips"
-msgstr "Näytä aikajanan työkaluvihjeet"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-msgid "Show Scrub Ruler"
-msgstr "Näytä hankausviivain"
-
-#: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
 msgstr "Kieli %s on tuntematon"
@@ -13739,14 +10324,6 @@ msgstr "Tuonti/vienti"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "Tuonti/vienti-asetukset"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Mix down to Stereo or Mono"
-msgstr "Miksaa stereoksi tai &monoksi"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Use Advanced Mixing Options"
-msgstr "Käytä miksa&uksen lisäasetuksia"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "S&tandard"
@@ -13765,34 +10342,12 @@ msgid "&Beats"
 msgstr "&Tahdit"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "Vietäessä raitoja äänitiedostoiksi"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "&Näytä metatietomuokkain ennen vientiä"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Ignore blank space at the beginning"
-msgstr "Oh&ita tyhjä tila alussa"
-
-#: src/prefs/ImportExportPrefs.cpp
 msgid "Exported Label Style:"
 msgstr "Vietyjen merkkien tyyli:"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "Exported Allegro (.gro) files save time as:"
-msgstr "Vietyjen Allegro (.gro) -tiedostojen aikamuotona on:"
 
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "TUO VIE"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Näppäimistö"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Preferences for KeyConfig"
@@ -13982,38 +10537,6 @@ msgstr "Näppäimistömääritys"
 msgid "Preferences for Library"
 msgstr "Kirjaston asetukset"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "FFmpeg-tuonti-/vientikirjasto"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "Yhteensopivaa FFmpeg-kirjastoa ei löytynyt"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg support is not compiled in"
-msgstr "FFmpeg-tukea ei ole käännetty"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "FFmpeg-kirjaston versio:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "FFmpeg-kirjasto:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "Ets&i..."
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "Lataa"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Success"
-msgstr "Onnistui"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "Kirjasto"
@@ -14062,70 +10585,17 @@ msgstr "Moduulit"
 msgid "Preferences for Module"
 msgstr "Moduulin asetukset"
 
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'New' means no choice has been made yet."
-msgstr "  'Uusi' tarkoittaa: Valintaa ei ole vielä tehty."
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Ask"
-msgstr "Kysy"
-
 #: src/prefs/ModulePrefs.cpp
 msgid "Failed"
 msgstr "Virhe"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "No modules were found"
-msgstr "Moduuleita ei löytynyt"
 
 #: src/prefs/ModulePrefs.h
 msgid "Module"
 msgstr "Moduuli"
 
 #: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Hiiri"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Preferences for Mouse"
-msgstr "Hiiren asetukset"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Hiiriyhdistelmät (oletusasetukset, ei muutettavissa)"
-
-#: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Työkalu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Toimintokomento"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Painikkeet"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "Vasen napsautus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Aseta valintakohta"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "Vasen raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Aseta valinta-alue"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -14133,169 +10603,6 @@ msgstr "Aseta valinta-alue"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Vaihto + vasen napsautus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Laajenna valittua aluetta"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "Vasen kaksoisnapsautus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "Valitse leike tai koko raita"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "Rullanpyöritys"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change scrub speed"
-msgstr "Muuta hankausnopeutta"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Lähennä kohtaan"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Lähennä alueelle"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "sama kuin oikea raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "Oikea napsautus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Loitonna yksi askel"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "Oikea raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "sama kuin vasen raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Vaihto + raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "Loitonna alueelle"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "Keskinapsautus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "Suurennus oletustaslole"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip left/right or between tracks"
-msgstr "Siirrä leikettä ylös/alas tai raitojen välillä"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Vaihto + vasen raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move all clips in track left/right"
-msgstr "Siirrä kaikki leikkeet raidalla vasemmalle/oikealle"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "-vasen raahaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "Siirrä leikettä ylös/alas raitojen välillä"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "-vasen raahaus"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Muuta vahvistuksen verhokäyrää"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Kynä"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Muuta näytettä"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt + vasen napsautus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Tasoita näytteen kohdalla"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Muuta useita näytteitä"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Muuta vain YKSI näyte"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Monitoimi"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "sama kuin valintatyökalu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "sama kuin suurennostyökalu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Mikä tahansa"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll tracks up or down"
-msgstr "Vieritä raitoja ylös tai alas"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Vaihto + rullavieritys"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll waveform"
-msgstr "Vieritä aaltomuotoa"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Wheel-Rotate"
-msgstr "-rullanpyöritys"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "Aaltomuodon zoomaus"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Shift-Wheel-Rotate"
-msgstr "-Vaihto-rullanpyöritys"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Pystysuuntaisen aaltomuodon asteikkoalue (dB)"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -14335,10 +10642,6 @@ msgid "Lo&ng period:"
 msgstr "Pi&tkä aikaväli:"
 
 #: src/prefs/PlaybackPrefs.cpp
-msgid "&Vari-Speed Play"
-msgstr "&Vaihteleva toistonopeus (toista nopeudella)"
-
-#: src/prefs/PlaybackPrefs.cpp
 msgid "&Micro-fades"
 msgstr "&Mikrohäivytykset"
 
@@ -14372,14 +10675,6 @@ msgstr "%i Hz"
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "Muu..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "Näytteenotto"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "Oletusnäytetaaj&uus:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
@@ -14416,16 +10711,8 @@ msgid "Preferences for Recording"
 msgstr "Äänitysasetukset"
 
 #: src/prefs/RecordingPrefs.cpp
-msgid "Play &other tracks while recording (overdub)"
-msgstr "T&oista muut raidat uutta raitaa äänitettäessä"
-
-#: src/prefs/RecordingPrefs.cpp
 msgid "Use &hardware to play other tracks"
 msgstr "Käytä &laitteistoa muiden kappaleiden toistamiseen"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "Syötteen läpitoi&sto ohjelman kautta"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -14509,12 +10796,6 @@ msgstr "ERB"
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Period"
 msgstr "Aikaväli"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "Väri (oletus)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14634,10 +10915,6 @@ msgid "8 - most wideband"
 msgstr "8 - laajin kaista"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - oletus"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14656,31 +10933,6 @@ msgstr "&Nollien lisäyskerroin:"
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble Spectral Selection"
 msgstr "Ota käyttöön &spektrivalinta"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "Näytä ruudukko &Y-akselilla"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "FFT-nuotinhaku"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "Minimiamplitudi (dB):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "Suurin määrä nuotteja (1..128):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "&Hakuhuomautukset"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "&Kvantisoi nuotit"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
@@ -14710,18 +10962,6 @@ msgstr "Alueen tulee olla positiivinen kokonaisluku"
 msgid "The frequency gain must be an integer"
 msgstr "Vahvistustaajuuden täytyy olla kokonaisluku"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "Minimiamplitudin (dB) täytyy olla kokonaisluku"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "Merkintöjen maksimimäärä täytyy olla kokonaisluku"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "Merkintöjen maksimimäärä täytyy olla 1...128 väliltä"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14733,12 +10973,6 @@ msgstr "Teema"
 #: src/prefs/ThemePrefs.cpp
 msgid "Preferences for Theme"
 msgstr "Teema-asetukset"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "Rename settings:"
-msgid "Theme Settings"
-msgstr "Nimeä asetukset uudelleen:"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Th&eme:"
@@ -14811,10 +11045,6 @@ msgid "Enable cut &lines"
 msgstr "Ota käyttöön &leikeviivat"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "Ota käyttöön &valinnan reunojen raahaaminen"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Editing a clip can &move other clips"
 msgstr "&Muut leikkeet voivat siirtyä, jos leikettä muokataan"
 
@@ -14829,14 +11059,6 @@ msgstr "Luo merkki kirjoi&ttamalla"
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Use dialog for the &name of a new label"
 msgstr "Käytä valintaikkunaa uuden merkin &nimeämiseen"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "Salli vieritys nollasta vasemmalle"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Advanced &vertical zooming"
-msgstr "Edistynyt &pystysuurennus"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Solo &Button:"
@@ -14932,10 +11154,6 @@ msgid "Auto-&fit track height"
 msgstr "&Sovita raidan korkeus automaattisesti"
 
 #: src/prefs/TracksPrefs.cpp
-msgid "Sho&w track name as overlay"
-msgstr "&Näytä raidan nimi peittokuvana"
-
-#: src/prefs/TracksPrefs.cpp
 msgid "Use &half-wave display when collapsed"
 msgstr "Näytä vain &puolet kutistetun raidan verhokäyrästä"
 
@@ -14979,42 +11197,6 @@ msgstr "Esiasetus 1:"
 msgid "Preset 2:"
 msgstr "Esiasetus 2:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "Varoitukset"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Preferences for Warnings"
-msgstr "Varoitusasetukset"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "Näytä varoitukset/kehotteet"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "&Projekteja tallennettaessa"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "&Tyhjää projektia tallennettaessa"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &mono during export"
-msgstr "Miksaus &monoksi vietäessä"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &stereo during export"
-msgstr "Miksaus &stereoksi vietäessä"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "Mi&ksaus vietäessä (kun FFmpeg tai ulkoinen ohjelma määritelty)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Missing file &name extension during export"
-msgstr "Jos tiedosto&nimen pääte puuttuu vietäessä"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 msgid "Waveforms"
@@ -15046,36 +11228,11 @@ msgstr "Virheen&korjaus"
 msgid "Classic"
 msgstr "Klassinen"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "Audacityn loki"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "Tumma"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "Suuri kontrasti"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "Vaalea"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "Työkalut"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Audacityn loki"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15084,19 +11241,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "Tiedostoon ei voitu kirjoittaa: %s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr ""
-"Teema kirjoitettu ->:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15114,16 +11258,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "Tiedostoon ei voitu kirjoittaa: %s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"Teema Cee-koodina kirjoitettu ->:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -15283,14 +11417,6 @@ msgid "Edit"
 msgstr "Muokkaus"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "Leikkaa valinta"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "Kopioi valinta"
-
-#: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
 msgstr "Rajaa valinnan ulkopuolinen ääni pois"
 
@@ -15337,10 +11463,6 @@ msgstr "Sovita valinta ruudun levyiseksi"
 msgid "Fit project to width"
 msgstr "Sovita projekti ruudun levyiseksi"
 
-#: src/toolbars/EditToolBar.cpp
-msgid "Open Effects Rack"
-msgstr "Avaa tehosteräkki"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -15369,11 +11491,6 @@ msgstr "Äänitystasomittari"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "Äänitysmittari"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "Tasomittari"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -15407,71 +11524,9 @@ msgstr "Äänityksen &mittaripalkki"
 msgid "&Playback Meter Toolbar"
 msgstr "&Toiston mittaripalkki"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "Hankaus"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Seek"
-msgstr "Kelaus"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub Ruler"
-msgstr "Hankausviivain"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 msgid "Scrubbing"
 msgstr "Hankaus"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Scrubbing"
-msgstr "Lopeta hankaus"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Scrubbing"
-msgstr "Aloita hankaus"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Seeking"
-msgstr "Lopeta kelaus"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Seeking"
-msgstr "Aloita kelaus"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Hide Scrub Ruler"
-msgstr "Piilota hankausviivain"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scru&b Toolbar"
-msgstr "Hankaus&työkalut"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "Projektin näytetaajuus (Hz)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Snap-To"
-msgstr "Valinnan tarraus"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -15498,10 +11553,6 @@ msgid "Show"
 msgstr "Näytä"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "Tarraa"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "Pituus"
 
@@ -15510,26 +11561,6 @@ msgstr "Pituus"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Keskellä"
-
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Snap Clicks/Selections to %s"
-msgstr "Tarraa kohdistukset/valinnat aikayksikön %s tasakohtiin"
-
-#. i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated), to indicate that it will be
-#. calculated from other parameters.
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "%s - driven"
-msgstr "%s - ajettu"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr "Valinta %s. %s ei muutu."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15601,10 +11632,6 @@ msgid "Envelope Tool"
 msgstr "Verhokäyrätyökalu"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Suurennustyökalu"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Piirtotyökalu"
@@ -15632,10 +11659,6 @@ msgid "&Draw Tool"
 msgstr "&Piirtotyökalu"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "&Suurennus"
-
-#: src/toolbars/ToolsToolBar.cpp
 msgid "&Multi Tool"
 msgstr "&Monitoimityökalu"
 
@@ -15658,10 +11681,6 @@ msgstr "Toista valitulla nopeudella"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "Toistonopeus"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Looped-Play-at-Speed"
-msgstr "Jatkuva toisto nopeudella"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15802,18 +11821,6 @@ msgstr "Venytys"
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to expand, Right-Click to remove"
 msgstr "Vasen napsautus laajentaa, oikea napsautus poistaa"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Left-Click to merge clips"
-msgstr "Yhdistä leikkeet napsauttamalla hiiren vasenta painiketta"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "Leikkeet yhdistettiin"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "Yhdistä"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -16034,22 +12041,6 @@ msgstr "Erota stereora&ita"
 msgid "Split Stereo to Mo&no"
 msgstr "Erota stereo mo&noksi"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "Vasen kanava"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "Oikea kanava"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Kanava"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -16085,26 +12076,6 @@ msgstr "Erotettiin stereoraita '%s' monoksi"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "Erota monoksi"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "Stereo, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "Mono, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "Vasen, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "Oikea, %dHz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -16158,12 +12129,6 @@ msgstr "Aseta leike"
 msgid "Mute/Unmute Track"
 msgstr "Mykistä/poista mykistys kohdistet&ulta raidalta"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "Nimeä uudelleen..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -16175,14 +12140,6 @@ msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
 msgstr[0] "%s %d / %d"
 msgstr[1] "%s %d / %d"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "Suurennus x1/2"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "Suurennus x2"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -16204,22 +12161,6 @@ msgstr "Soitin %i"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 msgid "WaveColor Change"
 msgstr "Aaltovärin muutos"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Muuta alempi nopeusrajoitus (%) olemaan:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Alempi nopeusrajoitus"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Muuta ylempi nopeusrajoitus (%) olemaan:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Ylempi nopeusrajoitus"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -16271,12 +12212,6 @@ msgstr "&Alue..."
 msgid "Logarithmic &Interpolation"
 msgstr "Logaritminen &interpolointi"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Napsautus ja raahaus siirtää raitaa aikajanalla"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -16300,10 +12235,6 @@ msgstr "Merkkiraita"
 #| msgid "&Export Audio..."
 msgid "Export Audio..."
 msgstr "Vi&e ääni..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-msgid "&Name..."
-msgstr "&Nimi..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -16471,18 +12402,6 @@ msgid "Collapse"
 msgstr "Kutista"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Command+Click to deselect"
-msgstr "Komento + napsautus poistaa valinnan"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "Valitse raita"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Ctrl+Click to deselect"
-msgstr "Ctrl+napsautus poistaa valinnan"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "Avaa valikko..."
 
@@ -16561,12 +12480,6 @@ msgstr "V"
 msgid "R"
 msgstr "O"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, c-format
-msgid "%.2fx"
-msgstr "%.2fx"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "&Tyhjennä"
@@ -16590,30 +12503,6 @@ msgstr "Ohjeita verkossa"
 #: src/widgets/KeyView.cpp
 msgid "Menu"
 msgstr "Valikko"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "Napsautus käynnistää tarkkailun"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "Napsautus seuraa"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "Käynnistä napsauttamalla"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click"
-msgstr "Napsautus"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "Lopeta tarkkailu"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "Aloita tarkkailu"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16694,10 +12583,6 @@ msgstr " Leikkaantui "
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
 msgstr "Näytä lisätiedot lokissa"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "Valitse toimenpide"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

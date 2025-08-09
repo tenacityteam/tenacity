@@ -29,114 +29,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "Akış etkin ... bilgiler alınamadı.\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "Kayıt aygıtını seçin"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "Oynatma aygıtını seçin"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "Herhangi bir aygıt bulunamadı"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "Aygıt bilgileri bulunamadı."
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "Ay&gıt:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "Aygıtlar"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "Ad: %s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "Kayıt kanalları"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "Oynatma düzeyi"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "Kayıt bitişi:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "Kayıt bitişi:"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "Örnekleme hızları"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "Kayıt aygıtını seçin"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "Oynatma aygıtını seçin"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "Herhangi bir aygıt bulunamadı"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Çıkışı görüntüle"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Kayıt aygıtını seçin"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "Oynatma aygıtını seçin"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -173,21 +69,6 @@ msgstr ""
 "Veritabanı dosyası açılamadı:\n"
 "\n"
 "%s"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk dolu.\n"
-"%s\n"
-"Boş alan açmakla ilgili ipuçları için yardım üzerine tıklayın."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -236,11 +117,6 @@ msgstr "%s dosyaları"
 #, c-format
 msgid "(%s)"
 msgstr "(%s)"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "%s klasörüne yazma izni yok"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -480,14 +356,6 @@ msgstr "Dosya yüklenemedi: \"%s\""
 msgid "Could not parse XML"
 msgstr "XML işlenemedi"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "1. deneysel komut..."
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "2. deneysel komut"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -578,32 +446,6 @@ msgstr "%s, web geliştirici"
 msgid "%s, graphics"
 msgstr "%s, görseller"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, co-founder and developer"
-msgid "%s, Tenacity founder and developer"
-msgstr "%s, kurucu ortak ve yazılım geliştirici"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, Tenacity developer"
-msgstr "%s, Tenacity geliştiricisi"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, Tenacity developer"
-msgid "%s, Tenacity web developer"
-msgstr "%s, Tenacity geliştiricisi"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "%s, Tenacity geliştiricisinin lideri"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -650,12 +492,6 @@ msgstr "%s takımı üyeleri"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "Katkıda bulunanlar"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Emekliler:"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -752,11 +588,6 @@ msgstr "Örnek hızı dönüş&türücü:"
 msgid "File Format Support"
 msgstr "Dosya biçimi desteği"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "MP3 içe aktarma"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -784,16 +615,8 @@ msgid "MP2 export"
 msgstr "MP2 dışa aktarma"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "QuickTime ile içe aktarma"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "FFmpeg içe ve dışa aktarma"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "GStreamer ile içe aktarma"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -822,12 +645,6 @@ msgstr "Kayıt sırasında zaman akışı işlemleri devre dışıdır"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Ayarlamak için tıklayıp sürükleyin, sıfırlamak için çift tıklayın"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "Kayıt/oynatma kafası"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -897,34 +714,6 @@ msgstr "Hızlı oynatma etkin"
 msgid "Timeline Options"
 msgstr "Zaman akışı ayarları"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "Hızlı oynatmayı etkinleştir"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "Sürükleme seçimini etkinleştir"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "Oynatma sırasında görüntüyü güncelle"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "Oynatma bölgesini kilitle"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Pinned Play Head"
-msgstr "Sabitlenmiş oynatma kafası"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr ""
-"Daha ileri bölge kilitlenemiyor\n"
-"projenin sonu."
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "Hiçbir ses aygıtı bulunamadı.\n"
@@ -941,12 +730,6 @@ msgstr ""
 #, c-format
 msgid "Error: %s"
 msgstr "Hata: %s"
-
-#: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Throw Error"
-msgid "PortAudio Error"
-msgstr "Sorun oluştur"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1415,14 +1198,6 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr "Beklenen uzunluk %lld, iz uzunluğu %lld.\n"
 
 #: src/Benchmark.cpp
-#, fuzzy, c-format
-#| msgid "Performing Low-Pass Filter..."
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "Alçak geçiren süzgeç uygulanıyor..."
-msgstr[1] "Alçak geçiren süzgeç uygulanıyor..."
-
-#: src/Benchmark.cpp
 #, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "Kes: %lld- %lld\n"
@@ -1642,17 +1417,6 @@ msgstr "Bu işlem bir kaç saniye sürebilir"
 msgid "Could not write to %s.\n"
 msgstr "%s yazılamadı.\n"
 
-#: src/DBConnection.cpp
-#, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk dolu.\n"
-"%s\n"
-"Boş alan açmakla ilgili ipuçları için yardım üzerine tıklayın."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1692,26 +1456,6 @@ msgstr "Veritabanı hatası. Maalesef daha fazla ayrıntı veremiyoruz."
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Sorun (dosyaya yazılmamış olabilir): %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "Sıkıştırılmamış dosyalar projeye &kopyalansın (daha güvenli)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "Sıkıştı&rılmamış dosyalar özgün konumlarından okunsun (daha hızlı)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "Tüm sesler projeye &kopyalansın (en güvenli)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "&Hiç bir ses kopyalanmasın"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "&Sorulsun"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1828,11 +1572,6 @@ msgstr "&Eksen:"
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "&Yeniden çiz..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr ""
-"Spektrum çizdirmek için, seçilmiş tüm izler aynı örnek hızında olmalıdır."
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -2021,12 +1760,6 @@ msgstr "&Sıkıştır"
 #, c-format
 msgid "Compacting actually freed %s of disk space."
 msgstr "Sıkıştırma ile %s disk alanı kazanıldı."
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "&Geçmiş..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2273,11 +2006,6 @@ msgid "Signal Level Meter"
 msgstr "İşaret düzeyi ölçer"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "Kazanç düğmesi oynatıldı"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 msgid "Moved velocity slider"
 msgstr "Hız düğmesi oynatıldı"
@@ -2286,10 +2014,6 @@ msgstr "Hız düğmesi oynatıldı"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "Pan düğmesi oynatıldı"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "&Karıştırıcı panosu..."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2544,111 +2268,19 @@ msgstr "Yeni uygulama eklerini etkinleştir"
 msgid "Nyquist Prompt"
 msgstr "Nyquist komutu"
 
-#: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "Uygulama ekleri yönetimi"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "Yeni"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr ""
-"Etkileri seçin, etkinleştirme ya da devre dışı bırakma düğmelerine tıklayın, "
-"ardından Tamam üzerine tıklayın."
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "Görüntülenecek:"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "Tümünü görüntüle"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "&Tümü"
 
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show disabled"
-msgstr "Devre dışı olanları görüntüle"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "D&evre dışı"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show enabled"
-msgstr "Etkin olanları görüntüle"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "E&tkin"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "Yenileri görüntüle"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "&Yeni"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "Durum"
-
 #: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "Yol"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "Tümünü &seç"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "Tümünü &bırak"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
 msgid "&Enable"
 msgstr "&Etkinleştir"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "&Devre dışı"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr ""
-"Etkiler ya da komutlar etkinleştiriliyor:\n"
-"\n"
-"%s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr ""
-"Etki ya da komut etkinleştiriliyor:\n"
-"\n"
-"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2658,14 +2290,6 @@ msgid ""
 msgstr ""
 "%s zamanındaki etki ya da komut kaydedilemedi:\n"
 "%s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Yazdırırken bir sorun çıktı."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "Yazdır"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2923,29 +2547,8 @@ msgid "Error Writing to File"
 msgstr "Dosyaya yazılırken sorun çıktı"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"Disk dolu.\n"
-"%s\n"
-"Boş alan açmakla ilgili ipuçları için yardım üzerine tıklayın."
-
-#: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "Proje sıkıştırılıyor"
-
-#. i18n-hint: The %02i is the project number, the %s is the project name.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] Audacity \"%s\""
-msgstr "[Proje %02i] Audacity \"%s\""
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -3027,30 +2630,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "Projeler FAT olarak biçimlendirilmiş sürücülere kaydedilemez."
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"Projeniz şimdi boş.\n"
-"Kaydedilmişse projede hiç iz bulunmayacak.\n"
-"\n"
-"Önceden açılmış izleri kaydetmek için:\n"
-"'Hayır' tıklayın, Düzenle > Geri Al ile tüm\n"
-"izler açılana kadar gidin ve Dosya > Projeyi Kaydet.\n"
-"\n"
-"Gene de kaydedilsin mi?"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "Dikkat - Proje boş"
-
-#: src/ProjectFileManager.cpp
 msgid "Insufficient Disk Space"
 msgstr "Disk alanı yetersiz"
 
@@ -3090,16 +2669,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sProjeyi farklı \"%s\" kaydet..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"'Projeyi kaydet' komutu, ses dosyaları için değil Audacity projeleri için "
-"kullanılır.\n"
-"Diğer uygulamalarda açılabilmesini istediğiniz ses dosyaları için 'Dışa "
-"aktar' komutunu kullanın.\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3301,22 +2870,6 @@ msgid "Save project before closing?"
 msgstr "Proje kapatılmadan önce kaydedilsin mi?"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"Kaydederseniz projede hiç iz bulunmayacak.\n"
-"\n"
-"Daha önce açılmış dosyaları kaydetmek için:\n"
-"İptal, Düzenle > Geri al ile tüm izleri\n"
-"açın ve Dosya > Projeyi kaydet seçin."
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "Kalan disk alanıyla yapılabilecek kayıt: %s"
@@ -3376,18 +2929,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "Uyarı - Budanan uzun blok dosyası"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "Kapalı"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "En yakın"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "Önceki"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "Sese göre kayıt"
@@ -3395,12 +2936,6 @@ msgstr "Sese göre kayıt"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "Etkinleşme düzeyi (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
-msgid "Tenacity Pre-Release"
-msgstr "%s, Tenacity geliştiricisi"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3485,10 +3020,6 @@ msgid "Set De&fault"
 msgstr "&Varsayılan ayarla"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "Ses dışa aktarılırken bu görüntülenmesin"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Türleri düzenle"
 
@@ -3533,23 +3064,6 @@ msgstr "%s silinemedi"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "Başarısız!"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"Ayarlar sıfırlansın mı?\n"
-"\n"
-"Bu seçenek 'kurulumdan' sonra ayarları sıfırlamak için bir kez sorulur."
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "Ayarlar k&ullanılsın"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -4013,12 +3527,6 @@ msgid "Do nothing"
 msgstr "Hiç bir şey yapılmasın"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "&About Tenacity..."
-msgid "Exit Tenacity"
-msgstr "&Tenacity Hakkında..."
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "Sistem yeniden başlatılsın"
 
@@ -4065,10 +3573,6 @@ msgstr "Kayıt dışa aktarıldı:"
 #| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Zamanlanmış kayıt"
-
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "Çift kanallı, 999999Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -4147,11 +3651,6 @@ msgstr "Ses izleri kaldırıldı"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "İzi kaldır"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "'%s' izi kaldırıldı."
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4540,12 +4039,6 @@ msgid "Builtin Commands"
 msgstr "İç komutlar"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "İç komut adı bilinmiyor"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "İç komut adı bilinmiyor"
 
@@ -4846,14 +4339,6 @@ msgid "Sets various values for a project."
 msgstr "Bir proje için çeşitli değerler ayarlar."
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "İz numarası:"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "Kanal numarası:"
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "İz durumunu Ayarla"
 
@@ -4868,10 +4353,6 @@ msgstr "Odaklanmış"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "İz sesini ayarla"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "Kazanç:"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4927,12 +4408,6 @@ msgstr "Spektral ayarlar kullanılsın"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Spectral Select"
 msgstr "Spektral seçim"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr "Şe&ma"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -5101,10 +4576,6 @@ msgid "High Quality Pitch Change"
 msgstr "Yüksek kaliteli perde değişimi"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Tempoyu değiştirmeden perdeyi değiştir"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "Kestirilen başlangıç perdesi: %s%d (%.3f Hz)"
@@ -5209,16 +4680,8 @@ msgid "n/a"
 msgstr "yok"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Hız değişimi"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "Bir izin temposunu ve perdesini değiştirir"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Tempo ve perdeyi etkileyerek hızı değiştir"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&Speed Multiplier:"
@@ -5295,10 +4758,6 @@ msgstr "Bir seçimin temposunu değiştirmeden perdesini değiştirir"
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "Yüksek kaliteli tempo değişimi"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Perdeyi değiştirmeden tempoyu değiştir"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Beats per minute"
@@ -5505,164 +4964,14 @@ msgstr "Kalkma süresi %.2f saniye"
 msgid "Release Time %.1f secs"
 msgstr "Bırakma süresi %.1f saniye"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Exponential Out"
-msgid "Exponential-Fit"
-msgstr "Üstel çıkış"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "Tepe genliği dB"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "RMS"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "Gürültü azaltma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "Gürültü azaltma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Limiter"
-msgid "Analog Limiter"
-msgstr "Sınırlayıcı"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "Sıkıştırıcı"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Sets the loudness of one or more tracks"
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "Bir ya da bir kaç izin güçlendirmesini ayarlar"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compressor step response"
-msgstr "&Tepelere göre sıkıştır"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "Algoritma"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "&Algoritma:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compress based on:"
-msgstr "&Tepelere göre sıkıştır"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "N&ormalize stereo channels independently"
-msgid "Compress stereo channels independently"
-msgstr "Çift &kanalı birbirinden bağımsız olarak normalleştir"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Ratio:"
-msgid "Ratio:"
-msgstr "&Oran:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "Genişlik:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "Genişlik:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "Çıkış &kazancı (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "Çıkış kazancı (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Attack Time:"
-msgid "Attack:"
-msgstr "&Kalkma süresi:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "Kalkma süresi"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "R&elease Time:"
-msgid "Release:"
-msgstr "&Bırakma süresi:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "Bırakma süresi"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "Düzeltme zamanı:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "Düzeltme zamanı"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "Bitiş zamanı:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Bitiş zamanı"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6325,11 +5634,6 @@ msgid "Applied effect: %s"
 msgstr "Uygulanmış etki: %s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "Uygulanmış komut: %s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "Hazır ayarı seçin"
 
@@ -6356,26 +5660,6 @@ msgstr "Varsayılan ayarlar"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"Şu etki hazırlanamadı:\n"
-"\n"
-"%s\n"
-"\n"
-"'Yardım > Tanılama > Günlüğü görüntüle' altında ayrıntılı bilgi "
-"bulabilirsiniz"
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "Etki hazırlanamadı"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6394,95 +5678,12 @@ msgid "Command failed to initialize"
 msgstr "Komut hazırlanamadı"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "Etki kabini"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "&Uygula"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "Gecikme: 0"
-
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "Olduğu gi&bi geçiş"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "Etkin durum"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "Etkinin etkin durumunu ayarlayın"
-
-#: src/effects/EffectUI.cpp
-msgid "Show/Hide Editor"
-msgstr "Düzenleyiciyi görüntüle/gizle"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "Etki düzenleyiciyi açar ya da kapatır"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "Yukarı taşı"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "Etkiyi kabinde yukarı taşır"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Down"
-msgstr "Aşağı taşı"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "Etkiyi kabinde aşağı taşır"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "Sık kullanılan"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "Etkiyi sık kullanılan olarak işaretler"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "Etkiyi kabinden kaldırır"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "Etkinin adı"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "Gecikme: %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "Bir komut"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "Hazır ayarları ve seçeneklerini yönetin"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "&Yönet"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "Oynatmayı başlatır ve durdurur"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "&Oynatmayı başlat"
 
 #: src/effects/EffectUI.cpp
 msgid "Preview effect"
@@ -6491,26 +5692,6 @@ msgstr "Etki ön izlemesi"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "Ön &izleme"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "&Etki ön izlemesi"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "Geriye atlar"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "&Geriye atla"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "İleriye atlar"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "İle&riye atla"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6596,12 +5777,6 @@ msgstr ""
 "\n"
 "Değiştirilsin mi?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "Oynatmayı &durdur"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6678,20 +5853,6 @@ msgstr "Tiz kesme"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"Bu süzgeç eğrisini bir makro içinde kullanmak için yeni bir ad verin.\n"
-"'Eğrileri kaydet/yönet...' üzerine tıklayarak 'adsız' eğriye ad verin ve "
-"bunu kullanın."
-
-#: src/effects/Equalization.cpp
-msgid "Filter Curve EQ needs a different name"
-msgstr "Süzgeç eğrisi dengeleyicinin adı farklı olmalı"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr ""
 "Dengeleme uygulayabilmek için, tüm seçilmiş izler aynı örnek hızında "
@@ -6700,10 +5861,6 @@ msgstr ""
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
 msgstr "İz örnekleme hızı bu etki için çok düşük."
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "Etki kullanılamıyor"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6806,34 +5963,6 @@ msgstr "Izgara çizgileri görüntülensin"
 msgid "Show g&rid lines"
 msgstr "Izga&ra çizgileri görüntülensin"
 
-#: src/effects/Equalization.cpp
-msgid "&Processing: "
-msgstr "İş&leniyor: "
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "&Varsayılan"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "SSE &dişli"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "A&VX"
-
-#: src/effects/Equalization.cpp
-msgid "AV&X Threaded"
-msgstr "AV&X dişli"
-
-#: src/effects/Equalization.cpp
-msgid "&Bench"
-msgstr "&Hız ölçütü"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6854,20 +5983,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "Dengeleyici eğrileri yüklenirken sorun çıktı"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "Dengeleme eğrileri kaydedilirken sorun çıktı"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "İstenen eğri bulunamadı, 'adsız' kullanılıyor"
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "Eğri bulunamadı"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -7033,36 +6154,6 @@ msgstr "Seçilmiş sese doğrusal ses açma -artarak girme- uygular"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Seçilmiş sese doğrusal ses kısma -azalarak çıkma- uygular"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "Kırpılmayı bul"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "Kırpılmanın algılandığı yerlere etiket eklensin"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Clicks"
-msgstr "Tıklayın"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Right"
-msgstr "Tıklayın"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Left"
-msgstr "Tıklayın"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "Kırpılmayı bul"
@@ -7200,34 +6291,6 @@ msgstr "İkinci büyük"
 #: src/effects/NoiseReduction.cpp
 msgid "Old"
 msgstr "Eski"
-
-#: src/effects/NoiseReduction.cpp
-msgid "none, Hann (2.0.6 behavior)"
-msgstr "yok, Hann (2.0.6 davranışı)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, none"
-msgstr "Hann, yok"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, Hann (default)"
-msgstr "Hann, Hann (varsayılan)"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Blackman, Hann"
-msgstr "Blackman, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, none"
-msgstr "Hamming, yok"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Hann"
-msgstr "Hamming, Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Reciprocal Hamming"
-msgstr "Hamming, Karşıt Hamming"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7434,49 +6497,6 @@ msgstr "4 (varsayılan)"
 #: src/effects/NoiseReduction.cpp
 msgid "Discrimination &method:"
 msgstr "Ayırma yönte&mi:"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Gürültü kaldır"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr ""
-"Havalandırma, bant gürültüsü, uğultu gibi sabit arka plan gürültülerini "
-"kaldırır"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Süzmek istediğiniz tüm sesi seçin, ne kadar gürültünün süzülmesini "
-"istiyorsanız\n"
-"seçin ve gürültüyü kaldırmak için 'Tamam' üzerine tıklayın.\n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "Gürültü a&zaltma (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "&Duyarlılık (dB):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Fr&equency smoothing (Hz):"
-msgstr "Fr&ekans düzeltme (Hz):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "&Kalkma/düşme zamanı (saniye):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "Kalkma/düşme zamanı"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "&Kaldır"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7821,11 +6841,6 @@ msgstr "Çif&t kanal genişliği (%):"
 msgid "Wet O&nly"
 msgstr "Yal&nız ıslak"
 
-#: src/effects/Reverb.cpp
-#, c-format
-msgid "Reverb: %s"
-msgstr "Yankı: %s"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Ters çevir"
@@ -8025,14 +7040,6 @@ msgid "Converts stereo tracks to mono"
 msgstr "Çift kanallı izi tek kanallıya dönüştürür"
 
 #: src/effects/StereoToMono.cpp
-msgid "Resampling left channel"
-msgstr "Sol kanal yeniden örnekleniyor"
-
-#: src/effects/StereoToMono.cpp
-msgid "Resampling right channel"
-msgstr "Sağ kanal yeniden örnekleniyor"
-
-#: src/effects/StereoToMono.cpp
 msgid "Mixing down to mono"
 msgstr "Tek kanala indirgeniyor"
 
@@ -8187,15 +7194,6 @@ msgstr "İzleri bağımsız &olarak buda"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "VST etkileri"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "VST kabuğu taranıyor"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "%d / %d kaydediliyor: %-64.64s"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8418,18 +7416,6 @@ msgid "Import Audio Unit Presets"
 msgstr "Hazır Audio Unit ayarlarını içe aktar"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "Hazır ayarlar (birkaç tane seçilebilir)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "Hazır ayar"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "Konum"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
 msgstr "\"%s\" açılamadı"
@@ -8510,14 +7496,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "XML hazır ayarı \"%s\" üzerine yazılamadı"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to convert preset to internal format"
-msgstr "Hazır ayar iç biçime dönüştürülemedi"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to create property list for preset"
-msgstr "Hazır ayar için özellik listesi oluşturulamadı"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "\"%s\" hazır ayarı için sınıf bilgileri ayarlanamadı"
@@ -8587,16 +7565,6 @@ msgid "Couldn't instantiate effect"
 msgstr "Etki hazırlanamadı"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%s için desteklenmeyen %s özelliği gerekli\n"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%s için desteklenmeyen %s seçeneği gerekli\n"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "Üreteç"
 
@@ -8655,27 +7623,6 @@ msgstr ""
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
 msgstr "Ses seçilmelidir."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Nyquist sorunu"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"İzlerin eşleşmediği yerlerde, çift kanallı izler üzerine etki uygulanamadı."
-
-#: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid ""
-"Selection too long for Nyquist code.\n"
-"Maximum allowed selection is %ld samples\n"
-"(about %.1f hours at 44100 Hz sample rate)."
-msgstr ""
-"Seçim Nyquist kodu için çok uzun.\n"
-"En fazla %ld örnek seçilebilir\n"
-"(44100 Hz örnekleme hızında yaklaşık %.1f saat)."
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
@@ -8761,10 +7708,6 @@ msgstr ""
 "ya da LISP için şunun gibi parantez açarak başlayın\n"
 "\t(mult *track* 0.1)\n"
 " ."
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Nyquist kodunda sorun var"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8859,14 +7802,6 @@ msgid "Vamp Effects"
 msgstr "Vamp etkileri"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Vamp uygulama ekleri, çift kanallı izlerde, izin her kanalı birbiriyle "
-"eşleşmediği sürece çalıştırılamaz."
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "Maalesef, Vamp uygulama eki yüklenemedi."
 
@@ -8910,60 +7845,12 @@ msgstr "Tüm sesler kısıldı."
 
 #: src/export/Export.cpp
 #, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Dosyayı \"%s\" olarak dışa aktarmak istediğinize emin misiniz?\n"
-
-#: src/export/Export.cpp
-#, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"Bir %s dosyasını \"%s\" adıyla dışa aktarmak üzeresiniz.\n"
-"\n"
-"Normalde bu dosyaların uzantısı \".%s\" olur. Bazı programlar standart "
-"olmayan uzantıları açamaz.\n"
-"\n"
-"Dosyayı bu adla dışa aktarmak istediğinize emin misiniz?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "Maalesef 256 karakterden uzun yol isimleri desteklenmiyor."
-
-#: src/export/Export.cpp
-#, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "\"%s\" adlı dosya zaten var. Üzerine yazılmasını ister misiniz?"
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr ""
-"İzleriniz, indirgenecek ve tek kanallı bir dosya olarak dışa aktarılacak."
-
-#: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr ""
-"İzleriniz, indirgenecek ve çift kanallı bir dosya olarak dışa aktarılacak."
-
-#: src/export/Export.cpp
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr ""
-"İzleriniz, kodlayıcı ayarlarınıza göre dışa aktarılacak dosya içinde bire "
-"indirgenecek."
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Gelişmiş karıştırıcı ayarları"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-msgid "Format Options"
-msgstr "Biçim ayarları"
 
 #: src/export/Export.cpp
 #, c-format
@@ -9009,1200 +7896,36 @@ msgstr "Göz at..."
 msgid "Show output"
 msgstr "Çıkışı görüntüle"
 
-#. i18n-hint: Some programmer-oriented terminology here:
-#. "Data" refers to the sound to be exported, "piped" means sent,
-#. and "standard in" means the default input stream that the external program,
-#. named by %f, will read.  And yes, it's %f, not %s -- this isn't actually used
-#. in the program as a format string.  Keep %f unchanged.
-#: src/export/ExportCL.cpp
-#, c-format
-msgid ""
-"Data will be piped to standard in. \"%f\" uses the file name in the export "
-"window."
-msgstr ""
-"Veri standart girişe yönlendirilecek. \"%f\" dışa aktarma penceresindeki "
-"dosya adını kullanır."
-
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-msgid "Executables"
-msgstr "Yürütülebilir dosyalar"
-
-#: src/export/ExportCL.cpp
-msgid "Find path to command"
-msgstr "Yolu bul komutu"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(dış program)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "Ses %s üzerine dışa aktarılamadı"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Dışa aktar"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "Seçilmiş ses komut satırı kodlayıcısı kullanılarak dışa aktarılıyor"
-
-#: src/export/ExportCL.cpp
-msgid "Exporting the audio using command-line encoder"
-msgstr "Ses komut satırı kodlayıcısı kullanılarak dışa aktarılıyor"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Komut çıktısı"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "&Tamam"
-
-#: src/export/ExportCL.cpp
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr "Uzantısı olmayan bir dosya adı belirttiniz. Emin misiniz?"
-
-#: src/export/ExportCL.cpp
-msgid "Program name appears to be missing."
-msgstr "Program adı eksik görünüyor."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "\"%s\" bulunamadı."
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "Yolunuzda \"%s\" bulunamadı."
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-#| msgid "Format Options"
-msgid "Export Options"
-msgstr "Biçim ayarları"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "İptal"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"İşlemi yapabilmek FFmpeg ayarlarının düzgün yapılmış olması gerekiyor.\n"
-"Bu işlemi Ayarlar > Kitaplıklar bölümünden yapabilirsiniz."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg : SORUN - \"%s\" dosyasının biçim açıklaması belirlenemedi."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "FFmpeg sorunu"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg : SORUN - Çıkış biçimi bağlamı konumlandırılamadı."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr "FFmpeg : SORUN - Ses akışı \"%s\" çıkış dosyasına eklenemedi."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr ""
-"FFmpeg : SORUN - \"%s\" çıkış dosyası yazılmak üzere açılamadı. Sorun kodu: "
-"%d."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr ""
-"FFmpeg : SORUN - Üst bilgiler \"%s\" çıkış dosyasına yazılamadı. Sorun kodu: "
-"%d."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg 0x%x ses kodlayıcı-çözücüsünü bulamadı.\n"
-"Bu kodlayıcı çözücü desteği derlenmemiş olabilir."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported a generic error (EPERM)"
-msgstr "Kodlayıcı-çözücü, genel bir sorun bildirdi (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported an invalid parameter (EINVAL)"
-msgstr "Kodlayıcı-çözücü, geçersiz bir parametre bildirdi (EINVAL)"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Can't open audio codec \"%s\" (0x%x)\n"
-"\n"
-"%s"
-msgstr ""
-"\"%s\" (0x%x) ses kodlayıcı-çözücüsü açılamadı\n"
-"\n"
-"%s"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr ""
-"FFmpeg : SORUN - Ses FIFO üzerinden veri okumak için ara bellek ayrılamadı."
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr "FFmpeg : SORUN - Ses akışı \"%s\" çıkış dosyasına eklenemedi."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg : SORUN - Örnekleme ara bellek boyutu alınamadı"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr "FFmpeg : SORUN - Örnekleme ara belleği için yeterli bayt ayrılamadı"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg : SORUN - Örnekleme ara bellek boyutu alınamadı"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg : SORUN - Ses karesi kodlanamadı."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "FFmpeg : SORUN - Kalan veri çok fazla."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg : SORUN - nAudioFrameSizeOut çok büyük."
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg : SORUN - Ses karesi kodlanamadı."
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr ""
-"%d kanal dışa aktarılmak isteniyor, ancak seçilmiş çıkış biçimi için "
-"olabilecek en fazla kanal sayısı %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "Seçilmiş ses %s olarak dışa aktarılıyor"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the audio as %s"
-msgstr "Ses %s olarak dışa aktarılıyor"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "Örnekleme hızı geçersiz"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "Yeniden Örnekle"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"Proje örnekleme hızı (%d) geçerli dosya çıkış biçimi tarafından\n"
-"desteklenmiyor. "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"Proje örnekleme hızı (%d) ve bit hızı (%d kbps) kombinasyonu \n"
-"geçerli dosya çıkış biçimi tarafından desteklenmiyor. "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "Aşağıdaki hızlardan biriyle yeniden örnekleyebilirsiniz."
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "Örnekleme hızları"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Bit hızı:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "Kalite (kbps):"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "0"
-msgstr "0"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "9"
-msgstr "9"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10"
-msgstr "10"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "On"
-msgstr "Açık"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Constrained"
-msgstr "Kısıtlı"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VOIP"
-msgstr "VOIP"
-
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Audio"
 msgstr "Ses"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Low Delay"
-msgstr "Düşük gecikme"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2.5 ms"
-msgstr "2.5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "5 ms"
-msgstr "5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10 ms"
-msgstr "10 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "20 ms"
-msgstr "20 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "40 ms"
-msgstr "40 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "60 ms"
-msgstr "60 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Narrowband"
-msgstr "Dar bant"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mediumband"
-msgstr "Orta bant"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Wideband"
-msgstr "Geniş bant"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Super Wideband"
-msgstr "Süper geniş bant"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Fullband"
-msgstr "Tam bant"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression"
-msgstr "Sıkıştırma"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame Duration:"
-msgstr "Kare süresi:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Vbr Mode:"
-msgstr "Vbr kipi:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Application:"
-msgstr "Uygulama:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Cutoff:"
-msgstr "Kesim:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Open custom FFmpeg format options"
-msgstr "Özel FFmpeg biçimlendirme ayarlarını aç"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Format:"
-msgstr "Geçerli biçim:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Codec:"
-msgstr "Geçerli kodlayıcı-çözücü:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr "FFmpeg hazır ayarları kaydedilirken sorun çıktı"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "'%s' hazır ayarı üzerine yazılsın mı?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "Üzerine yazmayı onaylayın"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "Bir profili kaydetmeden önce biçimini seçin"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "Bir profili kaydetmeden önce lütfen bir kodlayıcı-çözücü belirleyin"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "'%s' hazır ayarı bulunamadı."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Replace preset '%s'?"
-msgstr "'%s' hazır ayarının üzerine yazılsın mı?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LC"
-msgstr "LC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Main"
-msgstr "Ana"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "M4A (AAC) dosyaları (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "AC3 dosyaları (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "AMR (dar bant) dosyaları (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "Opus (OggOpus) dosyaları (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "WMA (2. sürüm) dosyaları (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "Özel FFmpeg dışa aktarma"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "Kestir"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "2 düzey"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "4 düzey"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "8 düzey"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "Tam arama"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "Günlük arama"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Configure custom FFmpeg options"
-msgstr "Özel FFmpeg ayarlarını yap"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "Hazır ayar:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "Hazır ayar yükle"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "Hazır ayarları içe aktar"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "Hazır ayarları dışa aktar"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "Kodlayıcı-çözücü:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Not all formats and codecs are compatible. Nor are all option combinations "
-"compatible with all codecs."
-msgstr ""
-"Tüm biçim ve kodlayıcı-çözücüler uyumlu olmadığı gibi, tüm ayar "
-"kombinasyonları da tüm kodlayıcı-çözücüler ile uyumlu olmayabilir."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "Tüm biçimleri görüntüle"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "Tüm kodlayıcı-çözücüleri görüntüle"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "General Options"
-msgstr "Genel ayarlar"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"ISO 639 3-mektup dili kodu\n"
-"İsteğe göre\n"
-"boş - otomatik"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Dil:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Bit Reservoir"
-msgstr "Bit deposu"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"Kodlayıcı-çözücü sekmesi (FOURCC)\n"
-"İsteğe göre\n"
-"boş - otomatik"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "İşaret:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"Bit hızı (bit/saniye) - sonuç dosyasının boyutu ve kalitesini etkiler\n"
-"Bazı kodlayıcı-çözücüler yalnız belirli değerleri kabul eder (128k, 192k, "
-"256k gibi)\n"
-"0 - otomatik\n"
-"Önerilen - 192000"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"Genel kalite, farklı kodlayıcı-çözücüler farklı şekilde kullanır\n"
-"Vorbis için gereklidir\n"
-"0 - otomatik\n"
-"-1 - kapalı (yerine bit hızı kullanılır)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Kalite:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"Örnekleme hızı (Hz)\n"
-"0 - örnekleme hızını değiştirme"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "Örnekleme hızı:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"Ses kesim bant genişliği (Hz)\n"
-"İsteğe göre\n"
-"0 - otomatik"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"AAC Profili\n"
-"Düşük karmaşıklık -varsayılan\n"
-"Çoğu oynatıcılar LC dışında başka bir şey oynatmazlar"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "Profil:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "FLAC ayarları"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"Sıkıştırma düzeyi\n"
-"FLAC için gereklidir\n"
-"-1 - otomatik\n"
-"En düşük - 0 (hızlı kodlama, büyük çıkış dosyası)\n"
-"En yüksek - 10 (yavaş kodlama, küçük çıkış dosyası)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression:"
-msgstr "Sıkıştırma:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"Kare boyutu\n"
-"İsteğe göre\n"
-"0 - varsayılan\n"
-"En küçük - 16\n"
-"En büyük - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "Kare:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"LPC katsayıları duyarlılığı\n"
-"İsteğe göre\n"
-"0 - varsayılan\n"
-"En az - 1\n"
-"En çok - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"Öngörü sıralama yöntemi\n"
-"Kestirim - en hızlı, daha düşük sıkıştırma\n"
-"Günlük arama - en yavaş, en iyi sıkıştırma\n"
-"Tam arama - varsayılan"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "PdO Method:"
-msgstr "ÖS yöntemi:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"En düşük öngürü sıralama\n"
-"İsteğe göre\n"
-"- 1 - varsayılan\n"
-"En küçük - 0\n"
-"En büyük -32 (LPC ile) ya da 4 (LPC olmadan)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "En düşük ÖS (PdO)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"En yüksek öngörü sıralama\n"
-"İsteğe göre\n"
-"- 1 - varsayılan\n"
-"En küçük - 0\n"
-"En büyük -32 (LPC ile) ya da 4 (LPC olmadan)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "En yüksek ÖS (PdO)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"En düşük bölümleme sırası\n"
-"İsteğe göre\n"
-"-1 - varsayılan\n"
-"En düşük - 0\n"
-"En yüksek - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "En düşük BS"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"En yüksek bölümleme sırası\n"
-"İsteğe göre\n"
-"-1 - varsayılan\n"
-"En düşük - 0\n"
-"En yüksek - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "En yüksek BS"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "LPC kullan"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "MPEG paketi ayarları"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Çoklanmış akışın en yüksek bit hızı\n"
-"İsteğe göre\n"
-"0 - varsayılan"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "Çoklayıcı hızı:"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"Paket boyutu\n"
-"İsteğe göre\n"
-"0 - varsayılan"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "Paket boyutu:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "Adsız bir hazır ayar silinemez"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "'%s' hazır ayarı silinsin mi?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "Adsız bir hazır ayar kaydedilemez"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "İçe aktarılacak hazır ayarların bulunduğu xml dosyasını seçin"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "Dışa aktarılacak bir hazır ayar yok"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "Hazır ayarların dışa aktarılacağı XML dosyasını seçin"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Format %s is not compatible with codec %s."
-msgstr "%s biçimi %s kodlayıcı-çözücü ile uyumlu değil."
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Incompatible format and codec"
-msgstr "Biçim ve kodlayıcı-çözücü uyumsuz"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "Biçim tahmin edilemedi"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "Kodlayıcı-çözücü bulunamadı"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16 bit"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24 bit"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (en hızlı)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (en kaliteli)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Düzey:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Bit derinliği:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "FLAC dosyaları"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "FLAC dışa aktarma %s dosyasını açamadı"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr ""
-"FLAC kodlayıcı hazırlanamadı\n"
-"Durum: %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "Seçilmiş ses FLAC olarak dışa aktarılıyor"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the audio as FLAC"
-msgstr "Ses FLAC olarak dışa aktarılıyor"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "MP2 dosyaları"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "Bu örnekleme hızı ve bit hızında MP2 dışa aktarılamaz"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "Hedef dosya yazılmak üzere açılamadı"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "Seçilmiş ses %ld kbps hızında dışa aktarılıyor"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "Ses %ld kbps olarak dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-msgid "220-260 kbps (Best Quality)"
-msgstr "220-260 kbps (en iyi kalite)"
-
-#: src/export/ExportMP3.cpp
-msgid "200-250 kbps"
-msgstr "200-250 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "170-210 kbps"
-msgstr "170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "155-195 kbps"
-msgstr "155-195 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "145-185 kbps"
-msgstr "145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "110-150 kbps"
-msgstr "110-150 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "95-135 kbps"
-msgstr "95-135 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "80-120 kbps"
-msgstr "80-120 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "65-105 kbps"
-msgstr "65-105 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "45-85 kbps (Smaller files)"
-msgstr "45-85 kbps (daha küçük dosyalar)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "Çılgınca, 320 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "Aşırı, 220-260 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "Standart, 170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "Orta, 145-185 kbps"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "Çılgınca"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "Aşırı"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Standart"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "Orta"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "Değişken"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "Ortalama"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "Sabit"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "Ekli çift kanallı"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "Çift kanallı"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "Bit hızı kipi:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Kalite"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "Kanal kipi:"
-
-#: src/export/ExportMP3.cpp
-msgid "Force export to mono"
-msgstr "Dışa aktarma tek kanala zorlansın"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "MP3 dosyaları"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "MP3 akışı hazırlanamadı"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "Seçilmiş ses %s hazır ayarı ile dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "Ses %s ayarı ile dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "Seçilmiş ses %s VBR kalitesi ile dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "Ses %s VBR kalitesinde dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "Seçilmiş ses %d Kbps hızında dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "Ses %d Kbps olarak dışa aktarılıyor"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "MP3 kodlayıcıda %ld sorunu çıktı"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"Proje örnekleme hızı (%d) MP3 dosya biçimi tarafından\n"
-"desteklenmiyor. "
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"Proje örnekleme hızı(%d) ve bit hızı (%d kbps) kombinasyonu MP3\n"
-"dosya biçimi tarafından desteklenmiyor. "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16-bit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24-bit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Etiketler"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "Bir ses dosyasını dışa aktarmak"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "Seçilmiş ses FLAC olarak dışa aktarılıyor"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the audio as FLAC"
-msgid "Exporting the audio as MKA"
-msgstr "Ses FLAC olarak dışa aktarılıyor"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Çoklu dışa aktar"
-
-#: src/export/ExportMultiple.cpp
-msgid "Cannot Export Multiple"
-msgstr "Çoklu dışa aktarılamaz"
-
-#: src/export/ExportMultiple.cpp
-msgid ""
-"You have no unmuted Audio Tracks and no applicable \n"
-"labels, so you cannot export to separate audio files."
-msgstr ""
-"Sesi kısılmış bir ses izi ve uygulanabilecek bir etiket yok.\n"
-"Bu nedenle ayrı ses dosyaları olarak dışa aktaramazsınız."
-
-#: src/export/ExportMultiple.cpp
-msgid "Export files to:"
-msgstr "Dışa aktarılacak dosyaların konumu:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "Klasör:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Seçin..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Oluştur"
-
-#: src/export/ExportMultiple.cpp
-msgid "Options:"
-msgstr "Seçenekler:"
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -10211,14 +7934,6 @@ msgstr "Dosyaları şuna göre ayır:"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "İlk etiketten önce sesi kat"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "İlk dosya adı:"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "İlk dosya adı"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -10241,17 +7956,8 @@ msgid "File name prefix:"
 msgstr "Dosya adı ön eki:"
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "Dosya adı ön eki"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Var olan dosyaların üzerine yaz"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "\"%s\" sorunsuz oluşturuldu."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -10283,200 +7989,16 @@ msgid "Something went really wrong after exporting the following %lld file(s)."
 msgstr "Şu %lld dosya dışa aktarıldıktan sonra bir şeyler çok ters gitti."
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"\"%s\" bulunamadı.\n"
-"\n"
-"Oluşturmak istiyor musunuz?"
-
-#: src/export/ExportMultiple.cpp
 msgid "Continue to export remaining files?"
 msgstr "Kalan dosyaların dışa aktarılması sürdürülsün mü?"
-
-#. i18n-hint: The second %s gives some letters that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name.\n"
-"You cannot use any of these characters:\n"
-"\n"
-"%s\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"%s etiketi ya da izi uygun bir dosya adı değil. \n"
-"Şu karakterlerden herhangi birini kullanamazsınız:\n"
-"\n"
-"%s\n"
-"\n"
-"Önerilen değişiklik:"
-
-#. i18n-hint: The second %s gives a letter that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name. You cannot use \"%s\".\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"\"%s\" etiketi ya da izi uygun bir dosya adı değil. \"%s\" kullanamazsınız:\n"
-"\n"
-"Önerilen değişiklik:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "Farklı kaydet..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Ogg Vorbis dosyaları"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - rate or quality problem"
-msgstr "Dışa aktarılamadı - Hız ya da kalite sorunu"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with metadata"
-msgstr "Dışa aktarılamadı - Üst veri sorunu"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem initialising"
-msgstr "Dışa aktarılamadı - Hazırlanırken sorun çıktı"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem creating stream"
-msgstr "Dışa aktarılamadı - Akış oluşturulurken sorun çıktı"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with packets"
-msgstr "Dışa aktarılamadı - Paketlerde sorun çıktı"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with file"
-msgstr "Dışa aktarılamadı - Dosya sorunu"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "Seçilmiş ses Ogg Vorbis olarak dışa aktarılıyor"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "Ses Ogg Vorbis olarak dışa aktarılıyor"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "AIFF (Apple/SGI)"
-msgstr "AIFF (Apple/SGI)"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft)"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Üst bilgi:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Kodlama:"
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "Diğer sıkıştırılmamış dosyalar"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "Dışa aktarılırken sorun çıktı"
-
-#: src/export/ExportPCM.cpp
-msgid "GSM 6.10 requires mono"
-msgstr "GSM 6.10 tek kanallı olmalıdır"
-
-#: src/export/ExportPCM.cpp
-msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr "WAVEX ve GSM 6.10 biçimleri uyumlu değildir"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "Ses, bu biçimde dışa aktarılamaz."
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Seçilmiş ses %s olarak dışa aktarılıyor"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"%s dosyası yazılırken sorun çıktı (disk mi doldu?).\n"
-"Libsndfile iletisi \"%s\""
-
 #: src/export/ExportPlugin.cpp
 msgid "No format specific options"
 msgstr "Biçime özgü bir ayar yok"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "FFmpeg desteği derlenmemiş"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "FFmpeg başlatılamadı"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "FFmpeg kitaplığı bulunamadı"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "FFmpeg konumu"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "'%s' konumu:"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "To find '%s', click here -->"
-msgstr "'%s' bulmak için, buraya tıklayın -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Ücretsiz FFmpeg kopyasını indirmek için şuraya tıklayın -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "İndir"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Only avformat.dll"
-msgstr "Yalnız avformat.dll"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "'%s' nerede?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpeg bulunamadı"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "Bu uyarı bir daha görüntülenmesin"
 
 #: src/import/Import.cpp
 msgid "All supported files"
@@ -10491,535 +8013,19 @@ msgstr "İçe aktarılacak akışları seçin"
 msgid "File \"%s\" not found."
 msgstr "\"%s\" dosyası bulunamadı."
 
-#: src/import/Import.cpp
-msgid ""
-"Try installing FFmpeg.\n"
-"\n"
-msgstr ""
-"FFmpeg kurulmaya çalışılıyor.\n"
-"\n"
-
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, c-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
-msgid "AUP project files (*.aup)"
-msgstr "AUP proje dosyaları (*.aup)"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"Proje içe aktarılamadı:\n"
-"\n"
-"%s"
-
-#: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "Projeyi içe aktar"
-
-#: src/import/ImportAUP.cpp
-msgid "Internal error in importer...tag not recognized"
-msgstr "İçe aktarıcıda sorun çıktı...kod imi anlaşılamadı"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'vpos' attribute."
-msgstr "Projenin 'vpos' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'h' attribute."
-msgstr "Projenin 'h' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'zoom' attribute."
-msgstr "Projenin 'zoom' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel0' attribute."
-msgstr "Projenin 'sel0' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel1' attribute."
-msgstr "Projenin 'sel1' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selLow' attribute."
-msgstr "Projenin 'selLow' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Projenin 'selHigh' özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "\"%s\" proje veri klasörü bulunamadı"
-
-#: src/import/ImportAUP.cpp
-msgid "Project Import"
-msgstr "Proje içe aktarma"
-
-#: src/import/ImportAUP.cpp
-msgid ""
-"The active project already has a time track and one was encountered in the "
-"project being imported, bypassing imported time track."
-msgstr ""
-"Etkin projenin zaten bir zaman izi var olduğundan içe aktarılmakta olan "
-"projede karşılaşılan zaman izi atlandı."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "'maxsamples' sıralama özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "'sampleformat' sıralama özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "'numsamples' sıralama özniteliği geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Unable to parse the waveblock 'start' attribute"
-msgstr "Waveblock 'start' özniteliği işlenemedi"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing project file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"%s proje dosyası eksik\n"
-"\n"
-"Yerine sessizlik ekleniyor."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "Simpleblockfile 'len' özniteliği eksik ya da geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Silentblockfile 'len' özniteliği eksik ya da geçersiz."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing alias file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"%s kısaltma dosyası eksik\n"
-"\n"
-"Yerine sessizlik ekleniyor."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "Pcmaliasblockfile 'aliasstart' özniteliği eksik ya da geçersiz."
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "Pcmaliasblockfile 'aliaslen' özniteliği eksik ya da geçersiz."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Error while processing %s\n"
-"\n"
-"Inserting silence."
-msgstr ""
-"%s işlenirken sorun çıktı\n"
-"\n"
-"Sessizlik ekleniyor."
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to open %s"
-msgstr "%s açılamadı"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "%lld konumuna %s içinde gidilemedi"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "%lld örnek %s üzerinden okunamadı"
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "FFmpeg uyumlu dosyalar"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr ""
-"Belirteç[%02x] Kodlayıcı-çözücü[%s], Dil[%s], Bithızı[%s], Kanallar[%d], "
-"Süre[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "FLAC dosyaları"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "GStreamer uyumlu dosyalar"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to add decoder to pipeline"
-msgstr "Kod çözücü işlem akışına eklenemedi"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "GStreamer içe aktarıcı"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "Akış durumu duraklatılmış olarak ayarlanamadı."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "Dizin[%02d], Tür[%s], Kanallar[%d], Hız[%d]"
-
-#: src/import/ImportGStreamer.cpp
-msgid "File doesn't contain any audio streams."
-msgstr "Dosyada herhangi bir ses akışı bulunamadı."
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "Dosya içe aktarılamadı, durum değiştirilemedi."
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "GStreamer sorunu: %s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Temel metin biçimindeki dosyaların listesi"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "LOF dosyasındaki pencere ötelemesi geçersiz."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "LOF sorunu"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "LOF dosyasındaki süre geçersiz."
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI izleri tek tek kaydırılamaz, yalnız ses dosyaları kaydırılabilir."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "LOF dosyasındaki iz kayması geçersiz."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "MIDI '%s' kaynağından içe aktarıldı"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "MIDI içe aktar"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "%s dosyası açılamadı: Dosya adı çok kısa."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "%s dosyası açılamadı: Dosya türü geçersiz."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s."
-msgstr "%s dosyası açılamadı."
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "MP3 dosyaları"
-
-#: src/import/ImportMP3.cpp
-msgid ""
-"Import failed\n"
-"\n"
-"This is likely caused by a malformed MP3.\n"
-"\n"
-msgstr ""
-"İçe aktarılamadı\n"
-"\n"
-"Bunun nedeni bozuk bir MP3 dosyası olabilir.\n"
-"\n"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-#| msgid "%s files"
-msgid "Matroska files"
-msgstr "%s dosyaları"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-#| msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "Dizin[%02d], Tür[%s], Kanallar[%d], Hız[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Ogg Vorbis dosyaları"
-
-#: src/import/ImportOGG.cpp
-#, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "Dizin[%02x] Sürüm[%d], Kanallar[%d], Hız[%ld]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Ortam okuma sorunu"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "Ogg Vorbis dosyası değil"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Vorbis sürümü uyumsuz"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "Vorbis bit akışı üst bilgisi geçersiz"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "İçsel mantık kusuru"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF ve diğer sıkıştırılmamış türler"
-
-#: src/import/ImportPCM.cpp
-msgid "AU (Sun/NeXT)"
-msgstr "AU (Sun/NeXT)"
-
-#: src/import/ImportPCM.cpp
-msgid "AVR (Audio Visual Research)"
-msgstr "AVR (Audio Visual Research)"
-
-#: src/import/ImportPCM.cpp
-msgid "CAF (Apple Core Audio File)"
-msgstr "CAF (Apple Core Audio File)"
-
-#: src/import/ImportPCM.cpp
-msgid "HTK (HMM Tool Kit)"
-msgstr "HTK (HMM Tool Kit)"
-
-#: src/import/ImportPCM.cpp
-msgid "IFF (Amiga IFF/SVX8/SV16)"
-msgstr "IFF (Amiga IFF/SVX8/SV16)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-msgstr "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-msgstr "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-
-#: src/import/ImportPCM.cpp
-msgid "MPC (Akai MPC 2k)"
-msgstr "MPC (Akai MPC 2k)"
-
-#: src/import/ImportPCM.cpp
-msgid "OGG (OGG Container format)"
-msgstr "OGG (OGG kapsayıcı biçimi)"
-
-#: src/import/ImportPCM.cpp
-msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
-
-#: src/import/ImportPCM.cpp
-msgid "PVF (Portable Voice Format)"
-msgstr "PVF (Portable Voice Format)"
-
-#: src/import/ImportPCM.cpp
-msgid "RAW (header-less)"
-msgstr "RAW (üst bilgisiz)"
-
-#: src/import/ImportPCM.cpp
-msgid "RF64 (RIFF 64)"
-msgstr "RF64 (RIFF 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "SD2 (Sound Designer II)"
-msgstr "SD2 (Sound Designer II)"
-
-#: src/import/ImportPCM.cpp
-msgid "SDS (Midi Sample Dump Standard)"
-msgstr "SDS (Midi Sample Dump Standard)"
-
-#: src/import/ImportPCM.cpp
-msgid "SF (Berkeley/IRCAM/CARL)"
-msgstr "SF (Berkeley/IRCAM/CARL)"
-
-#: src/import/ImportPCM.cpp
-msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
-
-#: src/import/ImportPCM.cpp
-msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAVEX (Microsoft)"
-msgstr "WAVEX (Microsoft)"
-
-#: src/import/ImportPCM.cpp
-msgid "WVE (Psion Series 3)"
-msgstr "WVE (Psion Series 3)"
-
-#: src/import/ImportPCM.cpp
-msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 8 bit PCM"
-msgstr "İmzalanmış 8 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 16 bit PCM"
-msgstr "İmzalanmış 16 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 24 bit PCM"
-msgstr "İmzalanmış 24 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 32 bit PCM"
-msgstr "İmzalanmış 32 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Unsigned 8 bit PCM"
-msgstr "İmzalanmamış 8 bit PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "32 bit float"
-msgstr "32 bit kayan"
-
-#: src/import/ImportPCM.cpp
-msgid "64 bit float"
-msgstr "64 bit kayan"
-
-#: src/import/ImportPCM.cpp
-msgid "U-Law"
-msgstr "U-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "A-Law"
-msgstr "A-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "IMA ADPCM"
-msgstr "IMA ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "GSM 6.10"
-msgstr "GSM 6.10"
-
-#: src/import/ImportPCM.cpp
-msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "12 bit DWVW"
-msgstr "12 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DWVW"
-msgstr "16 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "24 bit DWVW"
-msgstr "24 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "VOX ADPCM"
-msgstr "VOX ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DPCM"
-msgstr "16 bit DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "8 bit DPCM"
-msgstr "8 bit DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Vorbis"
-msgstr "Vorbis"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "%s içe aktarılıyor"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "QuickTime dosyaları"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to start QuickTime extraction"
-msgstr "QuickTime ayıklaması başlatılamadı"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime render quality"
-msgstr "QuickTime görüntü kalitesi ayarlanamıyor"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "QuickTime ayrık kanallar özelliği ayarlanamıyor"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "QuickTime örnek boyutu özelliği alınamıyor"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "Akış açıklaması alınamadı"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get fill buffer"
-msgstr "Ara bellek doldurulamıyor"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -11108,18 +8114,6 @@ msgstr "İç&e aktar"
 msgid "Bad data size. Could not import audio"
 msgstr "Veri boyutu hatalı. Ses içe aktarılamadı"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s left"
-msgstr "%s sol"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s right"
-msgstr "%s sağ"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -11161,25 +8155,8 @@ msgstr[0] "%s %d / %d"
 msgstr[1] "%s %d / %d"
 
 #: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the right"
-msgstr "Zamanı sağa kaydırılmış parçalar"
-
-#: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the left"
-msgstr "Zamanı sola kaydırılmış parçalar"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Zaman kaydırması"
-
-#: src/menus/ClipMenus.cpp
 msgid "clip not moved"
 msgstr "parça taşınmadı"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-msgid "Clip B&oundaries"
-msgstr "&Parça sınırları"
 
 #: src/menus/ClipMenus.cpp
 msgid "Pre&vious Clip Boundary to Cursor"
@@ -11265,28 +8242,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "Silindi %.2f saniye t=%.2f zamanında"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "Bir iz türünden diğerine yapıştırma yapamazsınız."
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "Çift kanallı ses tek kanallı ize kopyalanamaz."
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "Çoğaltıldı"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "Çoğalt"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "Panoya ayır ve kes"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "Ayır ve kes"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -11384,16 +8345,6 @@ msgstr "Ç&oğalt"
 msgid "R&emove Special"
 msgstr "Ö&zel kaldır"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "&Böl ve kes"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "&Ayır ve sil"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -11421,14 +8372,6 @@ msgstr "Ka&t"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "Sessi&zliklerde çıkar"
-
-#: src/menus/EditMenus.cpp
-msgid "&Metadata..."
-msgstr "Üst &veri..."
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "A&yarlar..."
 
 #: src/menus/EditMenus.cpp
 msgid "&Delete Key"
@@ -11462,10 +8405,6 @@ msgstr "&Ses sunucusunu değiştir..."
 msgid "Change Recording Cha&nnels..."
 msgstr "Kayıt ka&nallarını değiştir..."
 
-#: src/menus/ExtraMenus.cpp
-msgid "&Full Screen (on/off)"
-msgstr "&Tam ekran (aç/kapat)"
-
 #: src/menus/FileMenus.cpp
 #, c-format
 msgid ""
@@ -11474,10 +8413,6 @@ msgid ""
 msgstr ""
 "'%s' klasörü oluşturulamadı. \n"
 "Klasör olmayan aynı adlı bir dosya var"
-
-#: src/menus/FileMenus.cpp
-msgid "Export Selected Audio"
-msgstr "Seçilmiş sesi dışa aktar"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -11489,38 +8424,6 @@ msgid "There are no label tracks to export."
 msgstr "Dışa aktarılacak bir etiket izi bulunamadı."
 
 #: src/menus/FileMenus.cpp
-msgid "Please select only one Note Track at a time."
-msgstr "Lütfen aynı anda yalnız bir nota izi seçin."
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "Lütfen bir nota izi seçin."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "MIDI şu şekilde dışa aktar:"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI file"
-msgstr "MIDI dosyası"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro file"
-msgstr "Allegro dosyası"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"Tanımlanmamış bir dosya uzantısına sahip bir dosya adı seçtiniz.\n"
-"Devam etmek istiyor musunuz?"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "MIDI dışa aktar"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "Etiketler '%s' kaynağından içe aktarıldı"
@@ -11528,22 +8431,6 @@ msgstr "Etiketler '%s' kaynağından içe aktarıldı"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Etiketleri içe aktar"
-
-#: src/menus/FileMenus.cpp
-msgid "Select a MIDI file"
-msgstr "Bir MIDI dosyası seçin"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI and Allegro files"
-msgstr "MIDI ve Allegro dosyaları"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI files"
-msgstr "MIDI dosyaları"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro files"
-msgstr "Allegro dosyaları"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -11584,12 +8471,6 @@ msgid "Export as &WAV"
 msgstr "&WAV olarak dışa aktar"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-#| msgid "Export as &WAV"
-msgid "Export as &MKA"
-msgstr "&WAV olarak dışa aktar"
-
-#: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
 msgstr "&OGG olarak dışa aktar"
 
@@ -11606,14 +8487,6 @@ msgid "Export &Labels..."
 msgstr "&Etiketleri dışa aktar..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "Ç&oklu dışa aktar..."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MI&DI..."
-msgstr "&MIDI dışa aktar..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "&Ses..."
 
@@ -11622,30 +8495,8 @@ msgid "&Labels..."
 msgstr "&Etiketler..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "&Ham veri..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "&Sayfa düzeni..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "&Yazdır..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "Çı&kış"
-
-#: src/menus/FileMenus.cpp
-msgid "Hidden File Menu"
-msgstr "Gizli dosya menüsü"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11759,17 +8610,6 @@ msgstr "Etiketlenmiş ses aralıkları silindi"
 msgid "Delete Labeled Audio"
 msgstr "Etiketlenmiş sesi sil"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Etiketlenmiş ses aralıklarını ayırıp panoya kes"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut Labeled Audio"
-msgstr "Etiketlenmiş sesi ayırıp kes"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11839,10 +8679,6 @@ msgstr "Etiketlenmiş sesleri ayır"
 msgid "&Labels"
 msgstr "&Etiketler"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "&Etiketleri düzenle..."
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Add Label at &Selection"
 msgstr "&Seçime etiket ekle"
@@ -11856,10 +8692,6 @@ msgid "Paste Te&xt to New Label"
 msgstr "&Metni yeni etikete yapıştır"
 
 #: src/menus/LabelMenus.cpp
-msgid "&Type to Create a Label (on/off)"
-msgstr "&Yazmaya başlayınca etiket oluştur (aç/kapat)"
-
-#: src/menus/LabelMenus.cpp
 msgid "La&beled Audio"
 msgstr "E&tiketlenmiş ses"
 
@@ -11867,31 +8699,6 @@ msgstr "E&tiketlenmiş ses"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "&Kes"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "Etiketi kes"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "Etiketi sil"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "&Ayır ve kes"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "Etiketi ayır ve kes"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "&Böl ve sil"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "Etiketi ayır ve sil"
 
 #: src/menus/LabelMenus.cpp
 msgid "Silence &Audio"
@@ -11993,11 +8800,6 @@ msgid "&Repeat %s"
 msgstr "%s &yinele"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "%d - %d arasındaki uygulama eki"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "&Oluştur"
 
@@ -12026,16 +8828,8 @@ msgid "T&ools"
 msgstr "A&raçlar"
 
 #: src/menus/PluginMenus.cpp
-msgid "Manage Plug-ins..."
-msgstr "Uygulama eki ekle/kaldır..."
-
-#: src/menus/PluginMenus.cpp
 msgid "Repeat Last Tool"
 msgstr "Son aracı yinele"
-
-#: src/menus/PluginMenus.cpp
-msgid "&Macros..."
-msgstr "&Makrolar..."
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -12440,11 +9234,6 @@ msgstr "Oynatmada s&ağa doğru uzun tarama"
 msgid "&Toolbars"
 msgstr "&Araç çubukları"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-msgid "Edit &Mode (on/off)"
-msgstr "Düzenle &Modu (açık/kapalı)"
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "A&raç çubuklarını sıfırla"
@@ -12808,10 +9597,6 @@ msgid "Align &Together"
 msgstr "Birlik&te hizala"
 
 #: src/menus/TrackMenus.cpp
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "Seçimi izlerle &taşı (aç/kapat)"
-
-#: src/menus/TrackMenus.cpp
 msgid "Move Sele&ction and Tracks"
 msgstr "Seçimi ve i&zleri taşı"
 
@@ -12826,10 +9611,6 @@ msgstr "Başlangıç &zamanına göre"
 #: src/menus/TrackMenus.cpp
 msgid "By &Name"
 msgstr "&Ada göre"
-
-#: src/menus/TrackMenus.cpp
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "Eş ki&litlenmiş izler (aç/kapat)"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12870,10 +9651,6 @@ msgstr "&Odaklanılmış izi kıs/aç"
 #: src/menus/TrackMenus.cpp
 msgid "&Solo/Unsolo Focused Track"
 msgstr "Odaklanılmış izi &solo/birlikte oynat"
-
-#: src/menus/TrackMenus.cpp
-msgid "&Close Focused Track"
-msgstr "Odaklanılmış izi &kapat"
 
 #: src/menus/TrackMenus.cpp
 msgid "Move Focused Track U&p"
@@ -12986,10 +9763,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "Oynat/durdur ve i&mleci koy"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "Sürek&li oynat"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "&Duraklat"
 
@@ -13019,18 +9792,6 @@ msgid "Punch and Rol&l Record"
 msgstr "İşaret&le ve kaydı sürdür"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "Bölg&eyi çal"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "Ki&litle"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "Kili&di aç"
-
-#: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
 msgstr "S&es aygıtlarını yeniden tara"
 
@@ -13039,33 +9800,8 @@ msgid "Transport &Options"
 msgstr "&Hareket ayarları"
 
 #: src/menus/TransportMenus.cpp
-msgid "Sound Activation Le&vel..."
-msgstr "Kayıdı başlatacak s&es düzeyi..."
-
-#: src/menus/TransportMenus.cpp
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Sese &göre kayıt (aç/kapat)"
-
-#: src/menus/TransportMenus.cpp
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Sabitlenmiş oynatma/kayıt &kafası (açık/kapalı)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Overdub (on/off)"
-msgstr "&Bindirme (aç/kapat)"
-
-#: src/menus/TransportMenus.cpp
-msgid "So&ftware Playthrough (on/off)"
-msgstr "&Yazılımsal oynarken kaydet (aç/kapat)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "Ha&reketler"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "Oyn&at"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -13111,15 +9847,6 @@ msgstr "O&ynatma kesme ön izlemesi"
 #: src/menus/TransportMenus.cpp
 msgid "&Play-at-Speed"
 msgstr "Seçilmiş hızda &oynat"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "Norm&al seçilmiş hızda oynat"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Loop Play-at-Speed"
-msgstr "Ç&evrim oynatma hızı"
 
 #: src/menus/TransportMenus.cpp
 msgid "Play C&ut Preview-at-Speed"
@@ -13176,10 +9903,6 @@ msgid "Zoom &Toggle"
 msgstr "&Yakınlaştırmayı değiştir"
 
 #: src/menus/ViewMenus.cpp
-msgid "Advanced &Vertical Zooming"
-msgstr "Gelişmiş &dikey yakınlaştırma"
-
-#: src/menus/ViewMenus.cpp
 msgid "T&rack Size"
 msgstr "İ&z boyutu"
 
@@ -13215,44 +9938,6 @@ msgstr "Seçim başlangıcına atla"
 msgid "Skip to Selection End"
 msgstr "Seçim sonuna atla"
 
-#: src/menus/ViewMenus.cpp
-msgid "&Extra Menus (on/off)"
-msgstr "&Ek menüler (aç/kapat)"
-
-#: src/menus/ViewMenus.cpp
-msgid "Track &Name (on/off)"
-msgstr "İz &adı (aç/kapat)"
-
-#: src/menus/ViewMenus.cpp
-msgid "&Show Clipping (on/off)"
-msgstr "&Kırpılma görüntülensin (aç/kapat)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "Etki kabinini görüntüle"
-
-#: src/menus/WindowMenus.cpp
-msgid "&Window"
-msgstr "&Pencere"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make (the current
-#. * window) shrink to an icon on the dock
-#: src/menus/WindowMenus.cpp
-msgid "&Minimize"
-msgstr "&Küçült"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make all project
-#. * windows un-hidden
-#: src/menus/WindowMenus.cpp
-msgid "&Bring All to Front"
-msgstr "Tümünü öne &getir"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-msgid "Minimize All Projects"
-msgstr "Tüm projeleri küçült"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "Yığın"
@@ -13268,14 +9953,6 @@ msgstr "Davranışlar"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "&Yığın kipinde etkileri uygulama"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "Aygıtlar"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "Aygıt ayarları"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -13446,15 +10123,6 @@ msgstr "%s klasörü uygun değil (temizlenme riski var)"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "%s klasörü bulunamadı. Oluşturulsun mu?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Yeni geçici klasör"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "%s klasörü yazılabilir değil"
 
@@ -13471,77 +10139,8 @@ msgid "Preferences for Effects"
 msgstr "Etki ayarları"
 
 #: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Effect Name"
-msgstr "Etki adına göre sıralı"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Publisher and Effect Name"
-msgstr "Yayıncı ve etki adına göre sıralı"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Type and Effect Name"
-msgstr "Tür ve etki adına göre sıralı"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Publisher"
-msgstr "Yayıncıya göre gruplanmış"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Type"
-msgstr "Türe göre gruplanmış"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-msgid "&LADSPA"
-msgstr "&LADSPA"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-msgid "N&yquist"
-msgstr "N&yquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "Etkileri etkinleştir"
-
-#: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
 msgstr "Etki ayarları"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "S&ort or Group:"
-msgstr "Sı&rala ya da grupla:"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "&Bir gruptaki en fazla etki sayısı (0 devre dışı):"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Plugin Options"
-msgstr "Eklenti ayarları"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13608,17 +10207,6 @@ msgstr "Seçilmiş kuralı si&l"
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
 msgstr "Kullanılmayan süzgeçler:"
-
-#: src/prefs/ExtImportPrefs.cpp
-msgid ""
-"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
-"the items. They are likely to break the pattern matching. Unless you know "
-"what you are doing, it is recommended to trim spaces. Do you want Audacity "
-"to trim spaces for you?"
-msgstr ""
-"Ögelerden birinde boşluk karakterleri (boşluk, yeni satır, sekme ya da satır "
-"sonu) var. Bunlar düzen uydurmayı engelleyecek gibi. Ne yaptığınızdan emin "
-"değilseniz boşlukları budamanız önerilir. Audacity boşlukları budasın mı?"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13695,10 +10283,6 @@ msgid "&Language:"
 msgstr "Di&l:"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Location of &Manual:"
-msgstr "Kullanım kitabı &konumu:"
-
-#: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
 msgstr "Ölçer dB a&ralığı:"
 
@@ -13729,14 +10313,6 @@ msgid "Never use comma as decimal point"
 msgstr "Asla ondalık ayracı olarak virgül kullanmayın"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Show Timeline Tooltips"
-msgstr "Zaman akışı ipuçlarını görüntüle"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-msgid "Show Scrub Ruler"
-msgstr "Sarma cetvelini görüntüle"
-
-#: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
 msgstr "\"%s\" dili bilinmiyor"
@@ -13752,14 +10328,6 @@ msgstr "İçe/dışa aktarma"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "İçe/dışa aktarma ayarları"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Mix down to Stereo or Mono"
-msgstr "Çift ka&nallı ya da tek kanallıya karıştırılsın"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Use Advanced Mixing Options"
-msgstr "&Gelişmiş karıştırıcı ayarları kullanılsın"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "S&tandard"
@@ -13778,34 +10346,12 @@ msgid "&Beats"
 msgstr "&Vuruş"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "İzler bir ses dosyasına dışa aktarılırken"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "&Dışa aktarma işleminden önce üst veri etiketleri görüntülensin"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Ignore blank space at the beginning"
-msgstr "&Başlangıçtaki boşluk yok sayılsın"
-
-#: src/prefs/ImportExportPrefs.cpp
 msgid "Exported Label Style:"
 msgstr "Dışa aktarılan etiket biçemi:"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "Exported Allegro (.gro) files save time as:"
-msgstr "Dışa aktarılan Allegro (.gro) dosyalarının zamanı şu şekilde:"
 
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "İçe/dışa aktarma"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Tuş takımı"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Preferences for KeyConfig"
@@ -13996,38 +10542,6 @@ msgstr "Tuş yapılandırması"
 msgid "Preferences for Library"
 msgstr "Kitaplık ayarları"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "FFmpeg içe/dışa aktarma kitaplığı"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "Uyumlu FFmpeg kitaplığı bulunamadı"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg support is not compiled in"
-msgstr "FFmpeg desteği şununla derlenmemiş"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "FFmpeg kitaplığının sürümü:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "FFmpeg kitaplığı:"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "Konumunu &seç..."
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "İ&ndir"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Success"
-msgstr "Başarılı"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "Kitaplık"
@@ -14076,70 +10590,17 @@ msgstr "Modüller"
 msgid "Preferences for Module"
 msgstr "Modül ayarları"
 
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'New' means no choice has been made yet."
-msgstr " 'Yeni': Henüz bir seçim yapılmamış olduğu anlamına gelir."
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Ask"
-msgstr "Sor"
-
 #: src/prefs/ModulePrefs.cpp
 msgid "Failed"
 msgstr "Başarısız"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "No modules were found"
-msgstr "Herhangi bir modül bulunamadı"
 
 #: src/prefs/ModulePrefs.h
 msgid "Module"
 msgstr "Modül"
 
 #: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Fare"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Preferences for Mouse"
-msgstr "Fare ayarları"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Fare bağlantıları (varsayılan değerler, yapılandırılamaz)"
-
-#: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Araç"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Komut işlemi"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Düğmeler"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "Sol tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Seçim noktasını ayarla"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "Sol tuş ile sürükleme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Seçim aralığını ayarla"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -14147,169 +10608,6 @@ msgstr "Seçim aralığını ayarla"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Shift ile sol tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Seçim aralığını genişlet"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "Sol çift tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "Parçayı ya da tüm izi seç"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "Teker döndürme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change scrub speed"
-msgstr "Sarma hızını değiştir"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Noktayı yakınlaştır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Aralığı yakınlaştır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "sağ sürükleme ile aynı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "Sağ tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Bir adım uzaklaştır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "Sağ tuş ile sürükleme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "sol sürükleme ile aynı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Shift ile sürükleme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "Bir aralığı uzaklaştır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "Orta tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "Yakınlaştırma varsayılanı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip left/right or between tracks"
-msgstr "Parçayı izler arasında sola/sağa taşı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Shift ile sol tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move all clips in track left/right"
-msgstr "İzdeki tüm parçaları sola/sağa taşı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "-Sol-sürükleme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "Parçaları izler arasında yukarı/aşağı taşı"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "-Sol-sürükleme"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Ses yükseltme kılıfını değiştir"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Kurşun kalem"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Örneği değiştir"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt ile sol tıklama"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Örnekte düzelt"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Birkaç örneği değiştir"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Yalnız BİR örneği değiştir"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Çoklu"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "seçim aracı ile aynı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "yakınlaştırma aracı ile aynı"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Herhangi"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll tracks up or down"
-msgstr "İzleri aşağı ya da yukarı kaydır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Shift-teker-döndürme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll waveform"
-msgstr "Dalga şeklini kaydır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Wheel-Rotate"
-msgstr "-Teker-döndürme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "Dalga şeklini yakınlaştır ya da uzaklaştır"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Shift-Wheel-Rotate"
-msgstr "-Shift-teker-döndürme"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Dikey ölçek dalga şekli (dB) aralığı"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -14349,10 +10647,6 @@ msgid "Lo&ng period:"
 msgstr "Uzu&n aralık:"
 
 #: src/prefs/PlaybackPrefs.cpp
-msgid "&Vari-Speed Play"
-msgstr "&Değişken hızda oynatma"
-
-#: src/prefs/PlaybackPrefs.cpp
 msgid "&Micro-fades"
 msgstr "&Mikro kısmalar"
 
@@ -14386,14 +10680,6 @@ msgstr "%i Hz"
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "Diğer..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "Örnekleme"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "Varsayılan örnekleme &hızı:"
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
@@ -14430,16 +10716,8 @@ msgid "Preferences for Recording"
 msgstr "Kayıt ayarları"
 
 #: src/prefs/RecordingPrefs.cpp
-msgid "Play &other tracks while recording (overdub)"
-msgstr "Kayıt sırasında &diğer izler oynatılsın (overdub)"
-
-#: src/prefs/RecordingPrefs.cpp
 msgid "Use &hardware to play other tracks"
 msgstr "Diğer izleri oynatmak için d&onanım kullanılsın"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "&Yazılımsal giriş oynatma"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -14523,12 +10801,6 @@ msgstr "ERB (eşdeğer dikdörtgen bant genişliği)"
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Period"
 msgstr "Aralık"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "Renk (varsayılan)"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14648,10 +10920,6 @@ msgid "8 - most wideband"
 msgstr "8 - en genişbant"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - varsayılan"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14670,31 +10938,6 @@ msgstr "&Sıfır aralık çarpanı:"
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble Spectral Selection"
 msgstr "S&pektral seçim kullanılsın"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "&Y ekseni boyunca ızgara görüntülensin"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "FFT nota bulma"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "En küçük genlik (dB):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "En fazla nota sayısı (1..128):"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "&Notaları bul"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "Notaları &kuantala"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
@@ -14724,18 +10967,6 @@ msgstr "Aralık, pozitif bir tamsayı olmalı"
 msgid "The frequency gain must be an integer"
 msgstr "Frekans kazancı bir tamsayı olmalı"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "En küçük genlik (dB) bir tamsayı olmalı"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "En fazla nota sayısı bir tamsayı olmalı"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "En fazla nota sayısı 1 ile 128 aralığında olmalı"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14747,12 +10978,6 @@ msgstr "Tema"
 #: src/prefs/ThemePrefs.cpp
 msgid "Preferences for Theme"
 msgstr "Tema ayarları"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "&Settings"
-msgid "Theme Settings"
-msgstr "&Ayarlar"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Th&eme:"
@@ -14825,10 +11050,6 @@ msgid "Enable cut &lines"
 msgstr "Kesme çizgi&leri kullanılsın"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "Sürükleme seçimi &kenarları kullanılsın"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Editing a clip can &move other clips"
 msgstr "Bir parçayı düzenle&mek diğerlerini taşıyabilir"
 
@@ -14843,14 +11064,6 @@ msgstr "Yazarak e&tiket oluşturulabilsin"
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Use dialog for the &name of a new label"
 msgstr "Ye&ni bir etiketin adı için pencere kullanılsın"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "Sıfırın soluna &kaydırılabilsin"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Advanced &vertical zooming"
-msgstr "Gelişmiş &dikey yakınlaştırma"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Solo &Button:"
@@ -14946,10 +11159,6 @@ msgid "Auto-&fit track height"
 msgstr "İz &yüksekliği otomatik ayarlansın"
 
 #: src/prefs/TracksPrefs.cpp
-msgid "Sho&w track name as overlay"
-msgstr "İz adı kaplama olarak &görüntülensin"
-
-#: src/prefs/TracksPrefs.cpp
 msgid "Use &half-wave display when collapsed"
 msgstr "&Daraltıldığında yarım dalga görünümü kullanılsın"
 
@@ -14993,42 +11202,6 @@ msgstr "1. hazır ayar:"
 msgid "Preset 2:"
 msgstr "2. hazır ayar:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "Uyarılar"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Preferences for Warnings"
-msgstr "Uyarı ayarları"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "Aşağıdakiler için uyarı ve iletiler görüntülensin"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "Projeler &kaydedilirken"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "Boş projeler kayd&edilirken"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &mono during export"
-msgstr "Dışa aktarılırken &tek kanallıya indirgeniyorsa"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &stereo during export"
-msgstr "Dışa aktarılırken çift kanallıya indirgeniyor&sa"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "Dışa aktarılırken indirgeniyorsa (ö&zel FFmpeg ya da dış uygulama)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Missing file &name extension during export"
-msgstr "Dışa aktarılırken dosya adı &uzantısı eksikse"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 msgid "Waveforms"
@@ -15060,36 +11233,11 @@ msgstr "Sorun a&yıklama"
 msgid "Classic"
 msgstr "Klasik"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-msgid "Audacity"
-msgstr "Audacity"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "Koyu"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "Yüksek karşıtlık"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "Hafif"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "Araçlar"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Audacity"
-msgid "Saucedacity"
-msgstr "Audacity"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15098,19 +11246,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "Dosya yazılamadı: %s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr ""
-"Tema şuraya yazıldı:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15128,16 +11263,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "Dosya yazılamadı: %s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"Tema Cee koduyla şuraya yazıldı:\n"
-"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -15297,14 +11422,6 @@ msgid "Edit"
 msgstr "Düzenle"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "Seçimi kes"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "Seçimi Kopyala"
-
-#: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
 msgstr "Seçim dışındaki sesi buda"
 
@@ -15351,10 +11468,6 @@ msgstr "Seçimi genişliğe sığdır"
 msgid "Fit project to width"
 msgstr "Projeyi genişliğe sığdır"
 
-#: src/toolbars/EditToolBar.cpp
-msgid "Open Effects Rack"
-msgstr "Etki kabinini aç"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -15383,11 +11496,6 @@ msgstr "Kayıt ölçeri"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "Kayıt ölçeri"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "Oynatma ölçeri"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -15421,71 +11529,9 @@ msgstr "&Kayıt ölçüm çubuğu"
 msgid "&Playback Meter Toolbar"
 msgstr "&Oynatma ölçüm çubuğu"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "Sarma"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Seek"
-msgstr "Tarama"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub Ruler"
-msgstr "Sarma cetveli"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 msgid "Scrubbing"
 msgstr "Sarma"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Scrubbing"
-msgstr "Sarmayı durdur"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Scrubbing"
-msgstr "Sarmayı başlat"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Seeking"
-msgstr "Taramayı durdur"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Seeking"
-msgstr "Taramayı başlat"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Hide Scrub Ruler"
-msgstr "Sarma cetvelini gizle"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scru&b Toolbar"
-msgstr "Sar&ma çubuğu"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "Proje hızı (Hz)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Snap-To"
-msgstr "Şuna hizala"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -15512,10 +11558,6 @@ msgid "Show"
 msgstr "Görüntüle"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "Şuna uy"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "Uzunluk"
 
@@ -15524,26 +11566,6 @@ msgstr "Uzunluk"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Orta"
-
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Snap Clicks/Selections to %s"
-msgstr "Tıklamalar/seçimler %s ile hizalansın"
-
-#. i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated), to indicate that it will be
-#. calculated from other parameters.
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "%s - driven"
-msgstr "%s - sürülen"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr "Seçim %s.  %s değişmeyecek."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15615,10 +11637,6 @@ msgid "Envelope Tool"
 msgstr "Kılıf aracı"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Yakınlaştırma aracı"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Çizim aracı"
@@ -15646,10 +11664,6 @@ msgid "&Draw Tool"
 msgstr "Çi&zim aracı"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "&Yakınlaştırma aracı"
-
-#: src/toolbars/ToolsToolBar.cpp
 msgid "&Multi Tool"
 msgstr "Ç&oklu araç"
 
@@ -15672,10 +11686,6 @@ msgstr "Seçilmiş hızda oynat"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "Oynatma hızı"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Looped-Play-at-Speed"
-msgstr "Sürekli oynatma hızı"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15816,18 +11826,6 @@ msgstr "Esnetme"
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to expand, Right-Click to remove"
 msgstr "Genişletmek için sol, kaldırmak için sağ tıklayın"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Left-Click to merge clips"
-msgstr "Parçaları birleştirmek için sol tıklayın"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "Parçalar birleştirildi"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "Birleştir"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -16044,22 +12042,6 @@ msgstr "Çift kanallı izi a&yır"
 msgid "Split Stereo to Mo&no"
 msgstr "Çift ka&nallıyı tek kanallıya ayır"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Tek kanallı"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "Sol kanal"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "Sağ kanal"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Kanal"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -16095,26 +12077,6 @@ msgstr "'%s' çift kanallıdan tek kanallıya ayır"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "Tek kanallıya ayır"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "Çift kanallı, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "Tek kanallı, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "Sol, %dHz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "Sağ, %dHz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -16168,12 +12130,6 @@ msgstr "Parçayı ayarla"
 msgid "Mute/Unmute Track"
 msgstr "&Odaklanılmış izi kıs/aç"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "Yeniden adlandır..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -16185,14 +12141,6 @@ msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
 msgstr[0] "%s %d / %d"
 msgstr[1] "%s %d / %d"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "X 1/2 yakınlaştır"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "X 2 yakınlaştır"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -16214,22 +12162,6 @@ msgstr "%i enstrumanı"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 msgid "WaveColor Change"
 msgstr "Dalga rengini değiştir"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Alt hız sınırını (%) şuna değiştir:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Daha düşük hız sınırı"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Üst hız sınırını (%) şuna değiştir:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Daha yüksek hız sınırı"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -16281,13 +12213,6 @@ msgstr "A&ralık..."
 msgid "Logarithmic &Interpolation"
 msgstr "Logaritmik a&ra değerleme"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr ""
-"Bir klibi zamanda taşımak için tıklayın ve sürükleyin veya seçmek için "
-"tıklayın"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -16311,10 +12236,6 @@ msgstr "Etiket izi"
 #| msgid "&Export Audio..."
 msgid "Export Audio..."
 msgstr "Sesi &dışa aktar..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-msgid "&Name..."
-msgstr "&Ad..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -16482,18 +12403,6 @@ msgid "Collapse"
 msgstr "Daralt"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Command+Click to deselect"
-msgstr "Bırakmak için Command ile tıklayın"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "İz seçin"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Ctrl+Click to deselect"
-msgstr "Bırakmak için Ctrl ile tıklayın"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "Menüyü aç..."
 
@@ -16573,12 +12482,6 @@ msgstr "L"
 msgid "R"
 msgstr "R"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, c-format
-msgid "%.2fx"
-msgstr "%.2fx"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "&Temizle"
@@ -16602,30 +12505,6 @@ msgstr "Internetten yardım"
 #: src/widgets/KeyView.cpp
 msgid "Menu"
 msgstr "Menü"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "İzlemeye başlamak için tıklayın"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "İzlemek için tıklayın"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "Başlamak için tıklayın"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click"
-msgstr "Tıklayın"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "İzlemeyi durdur"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "İzlemeye başla"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16706,10 +12585,6 @@ msgstr " Kırpıldı "
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
 msgstr "Ayrıntılar için günlüğü görüntüle"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "Lütfen bir işlem seçin"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'

@@ -18,98 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default recording device number: %d"
-msgstr "Toevoertoestel"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Default playback device number: %d"
-msgstr "Terugspeel"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 #, fuzzy
 msgid "No devices found"
-msgstr "Terugspeel"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device info unavailable for: %d"
-msgstr "&Ontdoenvlakke beskikbaar"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device ID: %d"
-msgstr "Toestel:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Device name: %s"
-msgstr "Toestel:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Host name: %s"
-msgstr "Naam"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Recording channels: %d"
-msgstr "Regterkanaal"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Playback channels: %d"
-msgstr "Terugspeel"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Low Recording Latency: %g"
-msgstr "Opneem"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "High Recording Latency: %g"
-msgstr "Opneem"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-msgid "Supported Rates:"
-msgstr "Monsterfrekwensie:"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected recording device: %d - %s"
-msgstr "Toevoertoestel"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected playback device: %d - %s"
-msgstr "Terugspeel"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "No playback device found for '%s'."
-msgstr "Terugspeel"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "Wys afvoer"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "Toevoertoestel"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-msgid "Selected MIDI playback device: %d - %s"
 msgstr "Terugspeel"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
@@ -143,14 +55,6 @@ msgstr "(eksterne program)"
 #, fuzzy, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr "Kon nie '%s' skrap nie"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr "Audacity benodig die lêer %s op MP3's te skep."
 
 #: libraries/lib-files/FileException.h
 #, fuzzy
@@ -197,11 +101,6 @@ msgstr "MP3-lêers"
 #, fuzzy, c-format
 msgid "%s files"
 msgstr "MP3-lêers"
-
-#: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "Gids %s bestaan nie.  Skep?"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -366,16 +265,6 @@ msgstr "Kon nie lêer \"%s\" open nie."
 msgid "Could not parse XML"
 msgstr "Kon nie lêer open nie:"
 
-#: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
-msgid "1st Experimental Command..."
-msgstr "Kies opdrag"
-
-#: modules/mod-null/ModNullCallback.cpp
-#, fuzzy
-msgid "2nd Experimental Command"
-msgstr "Kies opdrag"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -434,30 +323,6 @@ msgstr "Nyquist-afvoer: "
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
 msgid "%s, web developer"
-msgstr "Omhulling"
-
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity founder and developer"
-msgstr "Omhulling"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity developer"
-msgstr "Omhulling"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, Tenacity web developer"
-msgstr "Omhulling"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-msgid "%s, lead Tenacity developer"
 msgstr "Omhulling"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
@@ -579,12 +444,6 @@ msgstr "Gidse"
 msgid "Sample rate conversion"
 msgstr "Monsterwysiging"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "MP3 Importing"
-msgstr "Fout met invoer"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -616,18 +475,8 @@ msgstr "Opstelling vir MP2-uitvoer"
 
 #: src/AboutDialog.cpp
 #, fuzzy
-msgid "Import via QuickTime"
-msgstr "Voer rou data in"
-
-#: src/AboutDialog.cpp
-#, fuzzy
 msgid "FFmpeg Import/Export"
 msgstr "LOF-fout"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Import via GStreamer"
-msgstr "Voer rou data in"
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -652,13 +501,6 @@ msgstr "GPL-lisensie"
 #, fuzzy
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "Klik en sleep om die relatiewe grootte van stereo bane te verstel."
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Record/Play head"
-msgstr "Opneem"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 #, fuzzy
@@ -730,16 +572,6 @@ msgstr " (gedeaktiveer)"
 msgid "Timeline Options"
 msgstr "Inprop 1 tot %i"
 
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Enable dragging selection"
-msgstr "Maak seleksie stil"
-
-#: src/AdornedRulerPanel.cpp
-#, fuzzy
-msgid "Pinned Play Head"
-msgstr "Opneem"
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "Kon nie enige oudiotoestelle vind nie.\n"
@@ -755,11 +587,6 @@ msgstr ""
 #: src/AudioIO.cpp
 #, fuzzy, c-format
 msgid "Error: %s"
-msgstr "Fout"
-
-#: src/AudioIO.cpp
-#, fuzzy
-msgid "PortAudio Error"
 msgstr "Fout"
 
 #: src/AudioIO.cpp
@@ -1182,13 +1009,6 @@ msgstr "Lengte"
 
 #: src/Benchmark.cpp
 #, fuzzy, c-format
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "Gelykstelling word toegepas"
-msgstr[1] "Gelykstelling word toegepas"
-
-#: src/Benchmark.cpp
-#, fuzzy, c-format
 msgid "Paste: %lld\n"
 msgstr "Plak"
 
@@ -1247,14 +1067,6 @@ msgstr "Pas toe op huidige &projek"
 msgid "Could not write to %s.\n"
 msgstr "Kon nie skryf na lêer nie:"
 
-#: src/DBConnection.cpp
-#, fuzzy, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr "Audacity benodig die lêer %s op MP3's te skep."
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1284,21 +1096,6 @@ msgstr "Kon nie '%s' skrap nie"
 #, fuzzy, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "Fout (lêer is dalk nie geskryf nie): %s"
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "Oudiodata word in projek in gekopieer..."
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "Oudiodata word in projek in gekopieer..."
-
-#: src/FileFormats.cpp
-#, fuzzy
-msgid "&Copy all audio into project (safest)"
-msgstr "Oudiodata word in projek in gekopieer..."
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1406,10 +1203,6 @@ msgstr "Aksie"
 #, fuzzy
 msgid "&Replot..."
 msgstr "Herhaling..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "Om die spektrum te teken moet alle bane die selfde monstertempo hê."
 
 #: src/FreqWindow.cpp
 #, fuzzy, c-format
@@ -1540,12 +1333,6 @@ msgstr "&Verwerp"
 #, fuzzy
 msgid "&Compact"
 msgstr "&Opdrag"
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "&Ontdoengeheue..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -1739,11 +1526,6 @@ msgid "Solo"
 msgstr "Solo"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "Versterkbalk geksuif"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 #, fuzzy
 msgid "Moved velocity slider"
@@ -1753,11 +1535,6 @@ msgstr "Versterkbalk geksuif"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "Balansbalk geskuif"
-
-#: src/MixerBoard.cpp
-#, fuzzy
-msgid "&Mixer Board..."
-msgstr "Mengbalk"
 
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
@@ -1844,72 +1621,10 @@ msgstr "Onbepaalbaar"
 msgid "Nyquist Prompt"
 msgstr "Nyquist-effek word toegepas..."
 
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Manage Plug-ins"
-msgstr "Onbepaalbaar"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "New"
-msgstr "&Nuwe"
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show:"
-msgstr "Geaktiveer"
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show all"
-msgstr "Geaktiveer"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "&Alles"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show disabled"
-msgstr " (gedeaktiveer)"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "D&isabled"
-msgstr "Gedeaktiveer"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show enabled"
-msgstr "Geaktiveer"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "E&nabled"
-msgstr "Geaktiveer"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "Show new"
-msgstr "Geaktiveer"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "&Select All"
-msgstr "Kies"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "C&lear All"
-msgstr "&Maak skoon"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
@@ -1918,40 +1633,11 @@ msgid "&Enable"
 msgstr "Geaktiveer"
 
 #: src/PluginRegistrationDialog.cpp
-#, fuzzy
-msgid "&Disable"
-msgstr "Gedeaktiveer"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr "\"%s\"-effek toegepas"
-
-#: src/PluginRegistrationDialog.cpp
-#, fuzzy, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr "\"%s\"-effek toegepas"
-
-#: src/PluginRegistrationDialog.cpp
 #, fuzzy, c-format
 msgid ""
 "Effect or Command at %s failed to register:\n"
 "%s"
 msgstr "Kon nie '%s' skrap nie"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "Daar was 'n probleem om te druk."
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "Druk"
 
 #: src/ProjectAudioManager.cpp src/effects/Effect.cpp
 #, fuzzy
@@ -2135,14 +1821,6 @@ msgid "Error Writing to File"
 msgstr "Kon nie skryf na lêer nie:"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr "Audacity benodig die lêer %s op MP3's te skep."
-
-#: src/ProjectFileIO.cpp
 #, fuzzy
 msgid "Compacting project"
 msgstr "Nuwe projek gemaak"
@@ -2191,11 +1869,6 @@ msgstr "Projek is herwin"
 #, fuzzy
 msgid "Projects cannot be saved to FAT drives."
 msgstr "Nuwe tydelike gids"
-
-#: src/ProjectFileManager.cpp
-#, fuzzy
-msgid "Warning - Empty Project"
-msgstr "&Stoor projek"
 
 #: src/ProjectFileManager.cpp
 #, fuzzy
@@ -2335,11 +2008,6 @@ msgstr "Horisontale stereo"
 msgid "Vertical Scrollbar"
 msgstr "Vertikale stereo"
 
-#: src/Snap.cpp
-#, fuzzy
-msgid "Nearest"
-msgstr "[Inskiet aan]"
-
 #: src/SoundActivatedRecord.cpp
 #, fuzzy
 msgid "Sound Activated Record"
@@ -2349,11 +2017,6 @@ msgstr "Opneem"
 #, fuzzy
 msgid "Activation level (dB):"
 msgstr "Versterking (dB):"
-
-#: src/SplashDialog.cpp
-#, fuzzy
-msgid "Tenacity Pre-Release"
-msgstr "Omhulling"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -2434,11 +2097,6 @@ msgid "Set De&fault"
 msgstr "&Verstekwaardes"
 
 #: src/Tags.cpp
-#, fuzzy
-msgid "Don't show this when exporting audio"
-msgstr "Moenie dié waarskuwing weer wys nie"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "Wysig genres"
 
@@ -2482,11 +2140,6 @@ msgstr "Fout met oopmaak van lêer"
 #, fuzzy, c-format
 msgid "Failed to remove %s"
 msgstr "Kon nie '%s' skrap nie"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-msgid "Reset Tenacity Preferences"
-msgstr "Voorkeure..."
 
 #. i18n-hint: (verb)
 #: src/TenacityApp.cpp src/menus/FileMenus.cpp
@@ -2797,11 +2450,6 @@ msgstr "Opneem"
 
 #: src/TimerRecordDialog.cpp
 #, fuzzy
-msgid "Exit Tenacity"
-msgstr "&Aangaande Audacity..."
-
-#: src/TimerRecordDialog.cpp
-#, fuzzy
 msgid "Recording duration:"
 msgstr "Opgeneemde oudio"
 
@@ -2831,11 +2479,6 @@ msgstr "Opneem"
 #, fuzzy
 msgid "Tenacity Timer Record - Waiting"
 msgstr "Opneem"
-
-#: src/TrackInfo.cpp
-#, fuzzy
-msgid "Stereo, 999999Hz"
-msgstr "Stereo, "
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -2916,11 +2559,6 @@ msgstr "Oudiobane verwyder"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "Verwyder baan"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "'%s'-baan verwyder."
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -3438,16 +3076,6 @@ msgstr "&Stoor projek"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
-msgid "Track Index:"
-msgstr "Baan %d"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
-msgid "Channel Index:"
-msgstr "Kanaal: %2d"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
 msgid "Set Track Status"
 msgstr "Baannaam"
 
@@ -3460,11 +3088,6 @@ msgstr "Pouseer"
 #, fuzzy
 msgid "Set Track Audio"
 msgstr "Stilte"
-
-#: src/commands/SetTrackInfoCommand.cpp
-#, fuzzy
-msgid "Gain:"
-msgstr "Versterking"
 
 #: src/commands/SetTrackInfoCommand.cpp
 #, fuzzy
@@ -3635,10 +3258,6 @@ msgstr "Wysig toonhoogte (tempo onveranderd)"
 msgid "High Quality Pitch Change"
 msgstr "Kwaliteit"
 
-#: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "Wysig toonhoogte (tempo onveranderd)"
-
 #. i18n-hint: (noun) Musical pitch.
 #: src/effects/ChangePitch.cpp
 #, fuzzy
@@ -3720,17 +3339,9 @@ msgid "n/a"
 msgstr "n.v.t."
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "Wysig spoed"
-
-#: src/effects/ChangeSpeed.cpp
 #, fuzzy
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "Wysig toonhoogte (tempo onveranderd)"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "Wysig spoed (verander tempo en toonhoogte)"
 
 #: src/effects/ChangeSpeed.cpp
 #, fuzzy
@@ -3784,10 +3395,6 @@ msgstr "Wysig tempo (toonhoogte onveranderd)"
 #, fuzzy
 msgid "High Quality Tempo Change"
 msgstr "Kwaliteit"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "Wysig tempo (toonhoogte onveranderd)"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
@@ -3932,117 +3539,10 @@ msgstr "Saamdruktyd: %.1f sek"
 msgid "Release Time %.1f secs"
 msgstr "Saamdruktyd: %.1f sek"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "peak amplitude"
-msgstr "Nuwe piekamplitude (dB):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Reduction"
-msgstr "Ruisverwydering"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Peak Reduction"
-msgstr "Ruisverwydering"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Analog Limiter"
-msgstr "Wys aftopping"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Dynamic Compressor"
-msgstr "Kompressor..."
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compressor step response"
-msgstr "Nuwe oudiobaan gemaak"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 #, fuzzy
 msgid "Algorithm"
 msgstr "Algoritme:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Envelope Algorithm:"
-msgstr "Algoritme:"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Compress based on:"
-msgstr "Nuwe oudiobaan gemaak"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Ratio:"
-msgstr "Duur"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Knee Width:"
-msgstr "Stereo"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain:"
-msgstr "Afvoerkanale: %2d"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Output Gain"
-msgstr "Afvoerkanale: %2d"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack:"
-msgstr "Saamdruktyd: "
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Attack"
-msgstr "Saamdruktyd: "
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release:"
-msgstr "Saamdruktyd: %.1f sek"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Release"
-msgstr "Saamdruktyd: %.1f sek"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time:"
-msgstr "Sorteer volgens tyd"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Lookahead Time"
-msgstr "Sorteer volgens tyd"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-msgid "Hold Time:"
-msgstr "Eindtyd"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "Eindtyd"
 
 #: src/effects/Contrast.cpp
 #, fuzzy
@@ -4495,11 +3995,6 @@ msgid "Applied effect: %s"
 msgstr "\"%s\"-effek toegepas"
 
 #: src/effects/EffectManager.cpp
-#, fuzzy, c-format
-msgid "Applied command: %s"
-msgstr "\"%s\"-effek toegepas"
-
-#: src/effects/EffectManager.cpp
 #, fuzzy
 msgid "Select Preset"
 msgstr "Kies"
@@ -4531,80 +4026,13 @@ msgstr "&Verstekwaardes"
 
 #: src/effects/EffectManager.cpp
 #, fuzzy
-msgid "Effect failed to initialize"
-msgstr "Seleksie tot einde"
-
-#: src/effects/EffectManager.cpp
-#, fuzzy
 msgid "Command failed to initialize"
 msgstr "Seleksie tot einde"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
-msgid "Effects Rack"
-msgstr "&Effek"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
 msgid "&Apply"
 msgstr "Pas '%s' toe"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Active State"
-msgstr "Belyn"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Up"
-msgstr "Skuif &op"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move effect up in the rack"
-msgstr "na einde van seleksie"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move Down"
-msgstr "Skuif &af"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Move effect down in the rack"
-msgstr "na einde van seleksie"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Remove effect from the rack"
-msgstr "na einde van seleksie"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Name of the effect"
-msgstr "Gee die nam vir die nuwe ketting"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Some Command"
-msgstr "Kies opdrag"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Manage"
-msgstr "Ontdoengeheue"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Start and stop playback"
-msgstr "Terugspeel"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Start &Playback"
-msgstr "Terugspeel"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -4615,31 +4043,6 @@ msgstr "&Voorskou"
 #, fuzzy
 msgid "&Preview"
 msgstr "&Voorskou"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "&Preview effect"
-msgstr "&Voorskou"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip backward"
-msgstr "Spring na begin"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip &Backward"
-msgstr "Spring na begin"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip forward"
-msgstr "Spring na begin"
-
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Skip &Forward"
-msgstr "Spring na begin"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -4728,13 +4131,6 @@ msgid ""
 "Replace?"
 msgstr "'n Lêer genaamd \"%s\" bestaan reeds.  Oorskryf?"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-#, fuzzy
-msgid "Stop &Playback"
-msgstr "Terugspeel"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -4787,11 +4183,6 @@ msgstr "Om die spektrum te teken moet alle bane die selfde monstertempo hê."
 #, fuzzy
 msgid "Track sample rate is too low for this effect."
 msgstr "Bane is te lank om seleksie te herhaal."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Effect Unavailable"
-msgstr "&Ontdoenvlakke beskikbaar"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -4865,33 +4256,8 @@ msgstr "-help (hierdie boodskap)"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
-msgid "&Processing: "
-msgstr "Notebaan"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "D&efault"
-msgstr "&Verstekwaardes"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "&Bench"
-msgstr "Laat loop &normtoets..."
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Error Loading EQ Curves"
-msgstr "\"%s\"-effek word toegepas"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
 msgid "Error Saving Equalization Curves"
 msgstr "Gelykstelling word toegepas"
-
-#: src/effects/Equalization.cpp
-#, fuzzy
-msgid "Curve not found"
-msgstr "Geen etikette om uit te voer nie"
 
 #: src/effects/Equalization.cpp
 #, fuzzy
@@ -5040,26 +4406,6 @@ msgstr "Klik en sleep om oudio te selekteer"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "Klik en sleep om oudio te selekteer"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Find Clicks"
-msgstr "Wys aftopping"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Clicks"
-msgstr "Links klik"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Right"
-msgstr "Links klik"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-msgid "Click Left"
-msgstr "Links klik"
-
 #: src/effects/FindClipping.cpp
 #, fuzzy
 msgid "Find Clipping"
@@ -5133,36 +4479,6 @@ msgstr "Groot greepvolorde (Big-endian, ongewoon)"
 #, fuzzy
 msgid "Second greatest"
 msgstr "millisekondes"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, none"
-msgstr "256 - standaard"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hann, Hann (default)"
-msgstr "256 - standaard"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Blackman, Hann"
-msgstr "256 - standaard"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, none"
-msgstr "256 - standaard"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Hann"
-msgstr "256 - standaard"
-
-#: src/effects/NoiseReduction.cpp
-#, fuzzy
-msgid "Hamming, Reciprocal Hamming"
-msgstr "256 - standaard"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 #, fuzzy
@@ -5327,50 +4643,6 @@ msgstr "2"
 #, fuzzy
 msgid "4 (default)"
 msgstr "256 - standaard"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "Ruisverwydering"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"Selekteer die oudio wat gefilter moet word,\n"
-"kies hoeveel ruis uitgefilter moet word, en \n"
-"klik 'Verwyder ruis'.\n"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Noise re&duction (dB):"
-msgstr "Vlak:"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "&Sensitivity (dB):"
-msgstr "Vlak:"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Fr&equency smoothing (Hz):"
-msgstr "Frekwensie (Hz):"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Attac&k/decay time (secs):"
-msgstr "Saamdruktyd: %.1f sek"
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Attack/decay time"
-msgstr "Saamdruktyd: "
-
-#: src/effects/NoiseRemoval.cpp
-#, fuzzy
-msgid "Re&move"
-msgstr "&Verwyder"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -5577,11 +4849,6 @@ msgstr "Afvoerkanale: %2d"
 msgid "Stereo Wid&th (%):"
 msgstr "Stereo"
 
-#: src/effects/Reverb.cpp
-#, fuzzy, c-format
-msgid "Reverb: %s"
-msgstr "Agteruit"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "Agteruit"
@@ -5717,16 +4984,6 @@ msgstr "Stilte"
 #, fuzzy
 msgid "Stereo To Mono"
 msgstr "&Stereo na mono"
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling left channel"
-msgstr "Herbemonster gedeaktiveer."
-
-#: src/effects/StereoToMono.cpp
-#, fuzzy
-msgid "Resampling right channel"
-msgstr "Herbemonster gedeaktiveer."
 
 #: src/effects/StereoToMono.cpp
 #, fuzzy
@@ -6003,16 +5260,6 @@ msgstr "&Genereer"
 msgid "Import Audio Unit Presets"
 msgstr "Voer lêer uit"
 
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Preset"
-msgstr "Eerste lêernaam:"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Location"
-msgstr "Aksie"
-
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Couldn't open \"%s\""
@@ -6094,16 +5341,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "Kon nie '%s' skrap nie"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to convert preset to internal format"
-msgstr "Kon nie '%s' skrap nie"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-msgid "Failed to create property list for preset"
-msgstr "Kon nie '%s' skrap nie"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "Kon nie toetslêer open/skep nie"
@@ -6152,16 +5389,6 @@ msgid "LV2 Effect Settings"
 msgstr "Effek-opstelling"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "Opneem"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, fuzzy, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "Opneem"
-
-#: src/effects/lv2/LV2Effect.cpp
 #, fuzzy
 msgid "Generator"
 msgstr "&Genereer"
@@ -6196,18 +5423,6 @@ msgstr "Nyquist-afvoer: "
 #, fuzzy
 msgid "Audio selection required."
 msgstr "Belyn met seleksie-einde"
-
-#: src/effects/nyquist/Nyquist.cpp
-#, fuzzy
-msgid "Nyquist Error"
-msgstr "Nyquist"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr ""
-"Jammer, kan nie effek toepas op stereo bane waar die individuele kanale van "
-"die baan nie ooreenstem nie."
 
 #: src/effects/nyquist/Nyquist.cpp
 #, fuzzy
@@ -6262,11 +5477,6 @@ msgstr "Geen oudio van Nyquist ontvang nie.\n"
 #, fuzzy
 msgid "Could not open file"
 msgstr "Kon nie lêer open nie:"
-
-#: src/effects/nyquist/Nyquist.cpp
-#, fuzzy
-msgid "Error in Nyquist code"
-msgstr "Opgeneemde oudio"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -6349,14 +5559,6 @@ msgid "Vamp Effects"
 msgstr "&Effek"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr ""
-"Jammer, Vamp-inproppe werk nie op stereo bane waar die individuele kanale "
-"van die baan nie ooreenstem nie."
-
-#: src/effects/vamp/VampEffect.cpp
 #, fuzzy
 msgid "Sorry, Vamp Plug-in failed to initialize."
 msgstr "Seleksie tot einde"
@@ -6398,63 +5600,12 @@ msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
 
 #: src/export/Export.cpp
 #, fuzzy, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "Wil u definitief die lêer stoor as \""
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"U wil 'n '%s'-lêer stoor met die naam \"%s\".\n"
-"\n"
-"Hierdie lêers eindig gewoonlik met \".%s\", en party programme maak nie "
-"lêers met niestandaard name oop nie.\n"
-"\n"
-"Wil u definitief die lêer met hierdie naam stoor?"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "Jammer, padname langer as 256 karakters word nie ondersteun nie."
-
-#: src/export/Export.cpp
-#, fuzzy, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "'n Lêer genaamd \"%s\" bestaan reeds.  Oorskryf?"
 
 #: src/export/Export.cpp
-#, fuzzy
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr ""
-"Die bane sal afgemeng word na twee stereo kanale in die uitgevoerde lêer."
-
-#: src/export/Export.cpp
-#, fuzzy
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr ""
-"Die bane sal afgemeng word na twee stereo kanale in die uitgevoerde lêer."
-
-#: src/export/Export.cpp
-#, fuzzy
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr ""
-"Die bane sal afgemeng word na twee stereo kanale in die uitgevoerde lêer."
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "Gevorderde mengkeuses"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Format Options"
-msgstr "Effek-opstelling"
 
 #: src/export/Export.cpp
 #, c-format
@@ -6499,81 +5650,18 @@ msgstr "Blaai..."
 msgid "Show output"
 msgstr "Wys afvoer"
 
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Executables"
-msgstr "Alle lêers (*)|*"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Find path to command"
-msgstr "Kies opdrag"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(eksterne program)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "Kan nie oudio na %s uitvoer nie"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "Uitvoer"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "Die seleksie word uitgevoer d.m.v. die opdraglyn enkodeerder"
-
-#: src/export/ExportCL.cpp
-#, fuzzy
-msgid "Exporting the audio using command-line encoder"
-msgstr "Die seleksie word uitgevoer d.m.v. die opdraglyn enkodeerder"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "Opdrag se afvoer"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "&Regso"
-
-#: src/export/ExportCL.cpp
-#, fuzzy, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-msgid "Export Options"
-msgstr "Effek-opstelling"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Cancel"
 msgstr "&Kanselleer"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg Error"
-msgstr "LOF-fout"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio as %s"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio as %s"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Invalid sample rate"
-msgstr "Monsterfrekwensie:"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
@@ -6581,596 +5669,20 @@ msgstr "Monsterfrekwensie:"
 msgid "Resample"
 msgstr "Monsterfrekwensie:"
 
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Sample Rates"
-msgstr "Monsterfrekwensie:"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "%d kbps"
-msgstr "kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "Bistempo:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Quality (kbps):"
-msgstr "Kwaliteit:"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "%.2f kbps"
-msgstr "kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "0"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "10"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "On"
-msgstr "&Open..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Constrained"
-msgstr "Konstant"
-
 #: src/export/ExportFFmpegDialogs.cpp
 #, fuzzy
 msgid "Audio"
 msgstr "&Oudio..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Low Delay"
-msgstr "Uitdoof"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mediumband"
-msgstr "Groot greepvolorde (Big-endian, ongewoon)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Fullband"
-msgstr " venster"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression"
-msgstr "Kompressor..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame Duration:"
-msgstr "Duur"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Application:"
-msgstr "Pas ketting toe"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Open custom FFmpeg format options"
-msgstr "LOF-fout"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Format:"
-msgstr "Pas toe op huidige &projek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Current Codec:"
-msgstr "Pas toe op huidige &projek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Error Saving FFmpeg Presets"
-msgstr "\"%s\"-effek word toegepas"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "Oorskryf bestaande lêers"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Confirm Overwrite"
-msgstr "Bevestig"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Please select format before saving a profile"
-msgstr "Nuwe oudiobaan gemaak"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Please select codec before saving a profile"
-msgstr "Nuwe oudiobaan gemaak"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Preset '%s' does not exist."
-msgstr "Gids %s bestaan nie.  Skep?"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Replace preset '%s'?"
-msgstr "'%s' hernoem na '%s'"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LC"
-msgstr "L"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LTP"
-msgstr "L"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Custom FFmpeg Export"
-msgstr "LOF-fout"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "2-level"
-msgstr "Vlak:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "4-level"
-msgstr "Vlak:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "8-level"
-msgstr "Vlak:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Configure custom FFmpeg options"
-msgstr "LOF-fout"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Preset:"
-msgstr "Eerste lêernaam:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Load Preset"
-msgstr "Eerste lêernaam:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Import Presets"
-msgstr "Voer etikette uit as:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Export Presets"
-msgstr "Voer etikette uit as:"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Codec:"
-msgstr "Pas toe op huidige &projek"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Show All Formats"
-msgstr "Geaktiveer"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Show All Codecs"
-msgstr "Geaktiveer"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "General Options"
-msgstr "Inprop 1 tot %i"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "Taal:"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "Kwaliteit:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Sample Rate:"
-msgstr "Monsterfrekwensie:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Profile:"
-msgstr "Alle lêers (*)|*"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "FLAC options"
-msgstr "Spesifiseer FLAC-keuses"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Compression:"
-msgstr "Kompressor..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Frame:"
-msgstr "Naam"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "LPC"
-msgstr "L"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "MPEG container options"
-msgstr "Seleksie tot einde"
-
-# frekwensie? bistempo?
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Mux Rate:"
-msgstr "Stel tempo"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Packet Size:"
-msgstr "Baan se titel"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "You can't delete a preset without name"
-msgstr "Kan nie oudio na %s uitvoer nie"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy, c-format
-msgid "Delete preset '%s'?"
-msgstr "'%s' hernoem na '%s'"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Select xml file with presets to import"
-msgstr "Kies lêer(s) vir bondelverwerking..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "No presets to export"
-msgstr "Geen etikette om uit te voer nie"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Select xml file to export presets into"
-msgstr "Kies lêer(s) vir bondelverwerking..."
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Failed to guess format"
-msgstr "Kon nie '%s' skrap nie"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
-msgid "Failed to find the codec"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16 bis"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24 bis"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (vinnigste)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (beste)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "Vlak:"
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "Bisdiepte:"
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "FLAC-lêers"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "Kon nie lêer \"%s\" open nie."
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr "Seleksie tot einde"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "Die seleksie word as FLAC uitgevoer"
-
-#: src/export/ExportFLAC.cpp
-#, fuzzy
-msgid "Exporting the audio as FLAC"
-msgstr "Die seleksie word as FLAC uitgevoer"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "MP2-lêers"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "Kan nie na MP2 uitvoer met hierdie monstertempo en bistempo nie"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "Kon nie teikenlêer vir skryf open nie."
-
-#: src/export/ExportMP2.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportMP2.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "200-250 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "170-210 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "155-195 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "145-185 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "110-150 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "95-135 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "80-120 kbps"
-msgstr "kbps"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "65-105 kbps"
-msgstr "kbps"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "Standaard"
 
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Medium"
-msgstr "Groot greepvolorde (Big-endian, ongewoon)"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Variable"
-msgstr "Gedeaktiveer"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "Gemiddeld"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "Konstant"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Joint Stereo"
-msgstr "Maak stereo baan"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "Stereo"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Bit Rate Mode:"
-msgstr "Bistempo:"
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "Kwaliteit"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Channel Mode:"
-msgstr "Kanaal: %2d"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Force export to mono"
-msgstr "Verwyder baan"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "MP3 Files"
-msgstr "MP2-lêers"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy
-msgid "Unable to initialize MP3 stream"
-msgstr "Kon nie genre-lêer stoor nie."
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "Voer lêer uit"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "Voer lêer uit"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportMP3.cpp
-#, fuzzy, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 16-bit"
-msgstr "16-bis-PCM"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "FLAC 24-bit"
-msgstr "24-bis-PCM"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "Etikette"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Matroska Audio Files"
-msgstr "Voer lêer uit"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "Die seleksie word as FLAC uitgevoer"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-msgid "Exporting the audio as MKA"
-msgstr "Die seleksie word as FLAC uitgevoer"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "Veelvuldige uitvoer"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Cannot Export Multiple"
-msgstr "Veelvuldige uitvoer"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Export files to:"
-msgstr "Ligging vir uitvoer:"
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "Kies..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "Skep"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Options:"
-msgstr "Keuses..."
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -7179,15 +5691,6 @@ msgstr "Verdeel lêers op grand van:"
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "Sluit oudio voor eerste etiket in"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "Eerste lêernaam:"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "First file name"
-msgstr "Eerste lêernaam:"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -7212,157 +5715,26 @@ msgid "File name prefix:"
 msgstr "Lêernaamvoorvoegsel:"
 
 #: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "File name prefix"
-msgstr "Lêernaamvoorvoegsel:"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "Oorskryf bestaande lêers"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "\"%s\" suksesvol geskep."
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
 msgstr "Kies 'n ligging vir die uitvoer van lêers"
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"\"%s\" bestaan nie.\n"
-"\n"
-"Wil u dit skep?"
-
-#: src/export/ExportMultiple.cpp
 #, fuzzy
 msgid "Continue to export remaining files?"
 msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportMultiple.cpp
-#, fuzzy
-msgid "Save As..."
-msgstr "%s gestoor"
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Ogg Vorbis-lêers"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - rate or quality problem"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with metadata"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem initialising"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem creating stream"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with packets"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Unable to export - problem with file"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportOGG.cpp
-#, fuzzy
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "Kop:"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "Karakterstel:"
 
-# compress: data / oudio?
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid "Other uncompressed files"
-msgstr "Kies enige oudiolêer wat nie saamepers is nie..."
-
-#: src/export/ExportPCM.cpp
-#, fuzzy
-msgid "Error Exporting"
-msgstr "Fout met invoer"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "Kan audio nie in dié formaat uitvoer nie."
-
-#: src/export/ExportPCM.cpp
-#, fuzzy, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "Die seleksie word as Ogg Vorbis uitgevoer"
-
 #: src/export/ExportPlugin.cpp
 #, fuzzy
 msgid "No format specific options"
 msgstr "Effek-opstelling"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid "FFmpeg library not found"
-msgstr "MP3-biblioteekweergawe:"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Location of '%s':"
-msgstr "Ligging van %s:"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "To find '%s', click here -->"
-msgstr "Om %s op te spoor, klik hier -->"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "Vir 'n gratis kopie van Lame, klik hier -->"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, fuzzy, c-format
-msgid "Where is '%s'?"
-msgstr "Waar is %s?"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-#, fuzzy
-msgid "FFmpeg not found"
-msgstr "MP3-biblioteekweergawe:"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-#, fuzzy
-msgid "Do not show this warning again"
-msgstr "Moenie dié waarskuwing weer wys nie"
 
 #: src/import/Import.cpp
 #, fuzzy
@@ -7386,322 +5758,13 @@ msgstr "Omhulling"
 
 #: src/import/ImportAUP.cpp
 #, fuzzy
-msgid "AUP project files (*.aup)"
-msgstr "Projekdatalêers word gestoor"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"Kon nie die effek '%s' se parameters\n"
-"stel na '%s' nie."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
 msgid "Import Project"
 msgstr "Voer etikette uit as:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'vpos' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'h' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'zoom' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel0' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'sel1' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selLow' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid project 'selHigh' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "Kon nie die projek se datagids, \"%s\" vind nie."
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Project Import"
-msgstr "na begin van seleksie"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to open %s"
-msgstr "Kon nie '%s' skrap nie"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/import/ImportAUP.cpp
-#, fuzzy, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "FLAC-lêers"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to add decoder to pipeline"
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "GStreamer Importer"
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to set stream state to paused."
-msgstr "Kon nie '%s' na '%s' hernoem nie"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy
-msgid "Unable to import file, state change failed."
-msgstr "Kon nie toetslêer open/skep nie"
-
-#: src/import/ImportGStreamer.cpp
-#, fuzzy, c-format
-msgid "GStreamer Error: %s"
-msgstr "Monsterfrekwensie:"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "Lêerlys in gewone teksformaat"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "Ongeldige vensterverplasing in LOF-lêer."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "LOF-fout"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "Ongeldige lengte in LOF-lêer."
-
-#: src/import/ImportLOF.cpp
-#, fuzzy
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr ""
-"MIDI-bane kan nie individueel verplaas word nie, slegs oudio-lêers kan."
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "Ongeldige baanverplasing in LOF-lêer."
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "MIDI uit '%s' ingevoer"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "Voer MIDI in"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "Kon nie lêer open nie:"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "Kon nie lêer open nie:"
-
-#: src/import/ImportMIDI.cpp
-#, fuzzy, c-format
-msgid "Could not open file %s."
-msgstr "Kon nie lêer \"%s\" open nie."
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "MP3-lêers"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-msgid "Matroska files"
-msgstr "MP3-lêers"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Ogg Vorbis-lêers"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "Media-leesfout"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "Nie 'n Ogg Vorbis-lêer nie"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Vorbis-weergawe-ongelykheid"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "Ongeldige Vorbis-bisstroom-kop"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "Interne logikafout"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV, AIFF en ander tipes sonder saampersing"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 8 bit PCM"
-msgstr "16-bis-PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 16 bit PCM"
-msgstr "16-bis-PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 24 bit PCM"
-msgstr "24-bis-PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Signed 32 bit PCM"
-msgstr "24-bis-PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "Unsigned 8 bit PCM"
-msgstr "16-bis-PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "32 bit float"
-msgstr "32-bis-dryfpunt"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "64 bit float"
-msgstr "32-bis-dryfpunt"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "12 bit DWVW"
-msgstr "16 bis"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DWVW"
-msgstr "16 bis"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "24 bit DWVW"
-msgstr "24 bis"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "16 bit DPCM"
-msgstr "16-bis-PCM"
-
-#: src/import/ImportPCM.cpp
-#, fuzzy
-msgid "8 bit DPCM"
-msgstr "16-bis-PCM"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, fuzzy, c-format
 msgid "Importing %s"
 msgstr "'%s' is ingevoer"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "QuickTime-lêers"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to start QuickTime extraction"
-msgstr "Kon nie genre-lêer stoor nie."
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime render quality"
-msgstr "Kon nie genre-lêer stoor nie."
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "Kon nie genre-lêer stoor nie."
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get QuickTime sample size property"
-msgstr "Kon nie genre-lêer stoor nie."
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to retrieve stream description"
-msgstr "Kon nie '%s' skrap nie"
-
-#: src/import/ImportQT.cpp
-#, fuzzy
-msgid "Unable to get fill buffer"
-msgstr "Kon nie genre-lêer stoor nie."
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -7789,18 +5852,6 @@ msgstr "Stilte word gegenereer"
 msgid "&Import"
 msgstr "Voer &in"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s left"
-msgstr "links"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-msgid "%s right"
-msgstr "regs"
-
 #: src/menus/ClipMenus.cpp
 #, fuzzy
 msgid "start"
@@ -7810,26 +5861,6 @@ msgstr "Begin"
 #, fuzzy
 msgid "end"
 msgstr "Einde"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the right"
-msgstr "Baan '%s' %s met %.02f sekondes verskuif"
-
-#: src/menus/ClipMenus.cpp
-#, fuzzy
-msgid "Time shifted clips to the left"
-msgstr "Baan '%s' %s met %.02f sekondes verskuif"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "Tydverskuiwing"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Clip B&oundaries"
-msgstr "Volgende gereedskapstuk"
 
 #: src/menus/ClipMenus.cpp
 #, fuzzy
@@ -7937,16 +5968,6 @@ msgid "Duplicate"
 msgstr "Duplikaat"
 
 #: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Split-cut to the clipboard"
-msgstr "Knip na knipbord"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Split Cut"
-msgstr "Etiket gewysig"
-
-#: src/menus/EditMenus.cpp
 #, fuzzy, c-format
 msgid "Split-deleted %.2f seconds at t=%.2f"
 msgstr "%.2f sekondes geskrap by t=%.2f"
@@ -8046,18 +6067,6 @@ msgstr "&Dupliseer"
 msgid "R&emove Special"
 msgstr "&Verwyder bane"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Spl&it Cut"
-msgstr "Etiket gewysig"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Split D&elete"
-msgstr "Plaas seleksiepunt"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -8089,16 +6098,6 @@ msgstr "&Voeg saam"
 #, fuzzy
 msgid "Detac&h at Silences"
 msgstr "Stilte word gegenereer"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "&Metadata..."
-msgstr "Wysig metadata"
-
-#: src/menus/EditMenus.cpp
-#, fuzzy
-msgid "Pre&ferences..."
-msgstr "&Voorkeure..."
 
 #: src/menus/EditMenus.cpp
 #, fuzzy
@@ -8135,11 +6134,6 @@ msgstr "Verander baan se naam na:"
 msgid "Change Recording Cha&nnels..."
 msgstr "Wysig toonhoogte"
 
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export Selected Audio"
-msgstr "&Voer seleksie uit..."
-
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
 msgid "labels.txt"
@@ -8150,36 +6144,6 @@ msgid "There are no label tracks to export."
 msgstr "Daar is geen etiketbane om uit te voer nie."
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select only one Note Track at a time."
-msgstr "Nuwe oudiobaan gemaak"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Please select a Note Track."
-msgstr "Nuwe oudiobaan gemaak"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MIDI As:"
-msgstr "&Voer uit..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI file"
-msgstr "Kies 'n MIDI-lêer"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro file"
-msgstr "Alle lêers (*)|*"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MIDI"
-msgstr "&Voer uit..."
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "Etikette ui '%s' ingevoer"
@@ -8187,26 +6151,6 @@ msgstr "Etikette ui '%s' ingevoer"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "Voer etikette in"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Select a MIDI file"
-msgstr "Kies 'n MIDI-lêer"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI and Allegro files"
-msgstr "Alle lêers (*)|*"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "MIDI files"
-msgstr "MP3-lêers"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Allegro files"
-msgstr "Alle lêers (*)|*"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -8255,11 +6199,6 @@ msgstr "Voer etikette uit as:"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
-msgid "Export as &MKA"
-msgstr "Voer etikette uit as:"
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
 msgid "Export as &OGG"
 msgstr "Uitvoer"
 
@@ -8278,15 +6217,6 @@ msgid "Export &Labels..."
 msgstr "Voer &etikette uit..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "&Veelvuldige uitvoer..."
-
-#: src/menus/FileMenus.cpp
-#, fuzzy
-msgid "Export MI&DI..."
-msgstr "&Voer uit..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "&Oudio..."
 
@@ -8295,26 +6225,8 @@ msgid "&Labels..."
 msgstr "&Etikette..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "&MIDI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "&Rou data..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "&Bladsyopstelling"
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "&Druk..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "Afsluit"
 
 #: src/menus/FileMenus.cpp
 #, fuzzy
@@ -8431,19 +6343,6 @@ msgstr "Verdeel by etikette"
 msgid "Delete Labeled Audio"
 msgstr "Verdeel by etikette"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "Verdeel by etikette"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Split Cut Labeled Audio"
-msgstr "Verdeel by etikette"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -8526,11 +6425,6 @@ msgstr "Maak seleksie stil"
 msgid "&Labels"
 msgstr "Etikette"
 
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "&Edit Labels..."
-msgstr "&Wysig etikette"
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 #, fuzzy
 msgid "Add Label at &Selection"
@@ -8555,37 +6449,6 @@ msgstr "Opgeneemde oudio"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "&Knip"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Cut"
-msgstr "Etiket gewysig"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Delete"
-msgstr "Skrap"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "&Split Cut"
-msgstr "Etiket gewysig"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Split Cut"
-msgstr "Etiket gewysig"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Sp&lit Delete"
-msgstr "Plaas seleksiepunt"
-
-#: src/menus/LabelMenus.cpp
-#, fuzzy
-msgid "Label Split Delete"
-msgstr "Skrap"
 
 #: src/menus/LabelMenus.cpp
 #, fuzzy
@@ -8683,11 +6546,6 @@ msgid "&Repeat %s"
 msgstr "Herhaal %s"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy, c-format
-msgid "Plug-in %d to %d"
-msgstr "Inprop %i tot %i"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "&Genereer"
 
@@ -8721,18 +6579,8 @@ msgstr "Funksieknop"
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
-msgid "Manage Plug-ins..."
-msgstr "Onbepaalbaar"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Tool"
 msgstr "Herhaal %s"
-
-#: src/menus/PluginMenus.cpp
-#, fuzzy
-msgid "&Macros..."
-msgstr "&Etikette..."
 
 #: src/menus/PluginMenus.cpp
 #, fuzzy
@@ -9567,11 +7415,6 @@ msgstr "Belyn bane saam"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "na einde van seleksie"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
 msgid "Move Sele&ction and Tracks"
 msgstr "na einde van seleksie"
 
@@ -9589,11 +7432,6 @@ msgstr "Begintyd"
 #, fuzzy
 msgid "By &Name"
 msgstr "Naam"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "&Bane"
 
 #: src/menus/TrackMenus.cpp
 #, fuzzy
@@ -9643,11 +7481,6 @@ msgstr "Skuif baan op"
 #: src/menus/TrackMenus.cpp
 #, fuzzy
 msgid "&Solo/Unsolo Focused Track"
-msgstr "Skuif baan op"
-
-#: src/menus/TrackMenus.cpp
-#, fuzzy
-msgid "&Close Focused Track"
 msgstr "Skuif baan op"
 
 #: src/menus/TrackMenus.cpp
@@ -9741,11 +7574,6 @@ msgstr "Speel"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
-msgid "&Loop Play"
-msgstr "Speel"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "&Pause"
 msgstr "Pouseer"
 
@@ -9792,29 +7620,8 @@ msgstr "Effek-opstelling"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
-msgid "Sound Activation Le&vel..."
-msgstr "Versterking (dB):"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "Opneem"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "Opneem"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "T&ransport"
 msgstr "Effek-opstelling"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Pl&ay"
-msgstr "Speel"
 
 #: src/menus/TransportMenus.cpp
 #, fuzzy
@@ -9864,17 +7671,6 @@ msgstr "&Voorskou"
 #: src/menus/TransportMenus.cpp
 #, fuzzy
 msgid "&Play-at-Speed"
-msgstr "Speel"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "Normal Pl&ay-at-Speed"
-msgstr "Speel"
-
-#: src/menus/TransportMenus.cpp
-#, fuzzy
-msgid "&Loop Play-at-Speed"
 msgstr "Speel"
 
 #: src/menus/TransportMenus.cpp
@@ -9941,11 +7737,6 @@ msgstr "Vergrootglas"
 
 #: src/menus/ViewMenus.cpp
 #, fuzzy
-msgid "Advanced &Vertical Zooming"
-msgstr "Gevorderde mengkeuses"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
 msgid "T&rack Size"
 msgstr "Baan se titel"
 
@@ -9989,26 +7780,6 @@ msgstr "na begin van seleksie"
 msgid "Skip to Selection End"
 msgstr "na einde van seleksie"
 
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "Track &Name (on/off)"
-msgstr "&Bane"
-
-#: src/menus/ViewMenus.cpp
-#, fuzzy
-msgid "&Show Clipping (on/off)"
-msgstr "Wys aftopping"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Show Effects Rack"
-msgstr "&Effek"
-
-#: src/menus/WindowMenus.cpp
-#, fuzzy
-msgid "&Window"
-msgstr " venster"
-
 #: src/prefs/BatchPrefs.cpp
 #, fuzzy
 msgid "Preferences for Batch"
@@ -10017,16 +7788,6 @@ msgstr "Voorkeure..."
 #: src/prefs/BatchPrefs.cpp src/prefs/TracksBehaviorsPrefs.cpp
 #, fuzzy
 msgid "Behaviors"
-msgstr "Voorkeure..."
-
-#: src/prefs/DevicePrefs.cpp
-#, fuzzy
-msgid "Devices"
-msgstr "Toestel:"
-
-#: src/prefs/DevicePrefs.cpp
-#, fuzzy
-msgid "Preferences for Device"
 msgstr "Voorkeure..."
 
 #. i18n-hint Software interface to audio devices
@@ -10181,15 +7942,6 @@ msgstr "&Kies opdrag"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "Gids %s bestaan nie.  Skep?"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "Nuwe tydelike gids"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "Gids %s is nie skryfbaar nie"
 
@@ -10210,50 +7962,8 @@ msgstr "Voorkeure..."
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
-msgid "Sorted by Effect Name"
-msgstr "Sorteer volgens naam"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Publisher and Effect Name"
-msgstr "Sorteer volgens naam"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Sorted by Type and Effect Name"
-msgstr "Sorteer volgens naam"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "&LADSPA"
-msgstr "&Effek"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "N&yquist"
-msgstr "Nyquist"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Enable Effects"
-msgstr "&Effek"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
 msgid "Effect Options"
 msgstr "Effek-opstelling"
-
-#: src/prefs/EffectsPrefs.cpp
-#, fuzzy
-msgid "Plugin Options"
-msgstr "Inprop 1 tot %i"
 
 #: src/prefs/EffectsPrefs.cpp
 #, fuzzy
@@ -10398,11 +8108,6 @@ msgstr "Taal:"
 
 #: src/prefs/GUIPrefs.cpp
 #, fuzzy
-msgid "Location of &Manual:"
-msgstr "Ligging van %s:"
-
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
 msgid "Meter dB &range:"
 msgstr "Golfvorm (dB)"
 
@@ -10410,16 +8115,6 @@ msgstr "Golfvorm (dB)"
 #, fuzzy
 msgid "Show e&xtra menus"
 msgstr "-help (hierdie boodskap)"
-
-#: src/prefs/GUIPrefs.cpp
-#, fuzzy
-msgid "Show Timeline Tooltips"
-msgstr "Inprop 1 tot %i"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Show Scrub Ruler"
-msgstr "Wysigbalk"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -10430,16 +8125,6 @@ msgstr "Voer etikette uit as:"
 #, fuzzy
 msgid "Preferences for ImportExport"
 msgstr "Voorkeure..."
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Mix down to Stereo or Mono"
-msgstr "&Stereo na mono"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "&Use Advanced Mixing Options"
-msgstr "Gevorderde mengkeuses"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
@@ -10463,23 +8148,8 @@ msgstr "Herhaal"
 
 #: src/prefs/ImportExportPrefs.cpp
 #, fuzzy
-msgid "When exporting tracks to an audio file"
-msgstr "Voer lêer uit"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
-msgid "S&how Metadata Tags editor before export"
-msgstr "Wysig metadata"
-
-#: src/prefs/ImportExportPrefs.cpp
-#, fuzzy
 msgid "Exported Label Style:"
 msgstr "Voer etikette uit as:"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "Sleutelbord"
 
 #: src/prefs/KeyConfigPrefs.cpp
 #, fuzzy
@@ -10583,31 +8253,6 @@ msgstr "Sleutelkombinasie"
 msgid "Preferences for Library"
 msgstr "Voorkeure..."
 
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg Import/Export Library"
-msgstr "LOF-fout"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "No compatible FFmpeg library was found"
-msgstr "MP3-biblioteekweergawe:"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg Library Version:"
-msgstr "MP3-biblioteekweergawe:"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "FFmpeg Library:"
-msgstr "LOF-fout"
-
-#: src/prefs/LibraryPrefs.cpp
-#, fuzzy
-msgid "Loca&te..."
-msgstr "&Stoor..."
-
 #: src/prefs/LibraryPrefs.h
 #, fuzzy
 msgid "Library"
@@ -10646,56 +8291,9 @@ msgstr "Die minimum frekwensie moet 'n heelgetal wees"
 msgid "Preferences for Module"
 msgstr "Voorkeure..."
 
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "Ask"
-msgstr "Vra my"
-
-#: src/prefs/ModulePrefs.cpp
-#, fuzzy
-msgid "No modules were found"
-msgstr "Terugspeel"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "Muis"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Preferences for Mouse"
-msgstr "Voorkeure..."
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "Muis-aksies (verstek waardes, nie verstelbaar nie)"
-
 #: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "Funksieknop"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "Aksie"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "Knoppies"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "Links klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "Plaas seleksiepunt"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "Links sleep"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "Stel seleksie-omvang"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -10703,186 +8301,6 @@ msgstr "Stel seleksie-omvang"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Shift-links-klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "Vergroot seleksie-omvang"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Left-Double-Click"
-msgstr "Alt+links-klik"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Select Clip or Entire Track"
-msgstr "Seleksie tot einde"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "Muiswielietjie"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Change scrub speed"
-msgstr "Wysig spoed"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "Zoem in op punt"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "Zoem in op gebied"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "same as right-drag"
-msgstr "Selfde as links sleep"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "Regs klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "Zoem een stap uit"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "Regs sleep"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "same as left-drag"
-msgstr "Selfde as links sleep"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Shift-Drag"
-msgstr "Links sleep"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Zoom out on a Range"
-msgstr "Zoem in op gebied"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Middle-Click"
-msgstr "Links klik"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Zoom default"
-msgstr "&Verstekwaardes"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move clip left/right or between tracks"
-msgstr "Skuif baan op"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Shift-Left-Drag"
-msgstr "Links sleep"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Left-Drag"
-msgstr "Links sleep"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Move clip up/down between tracks"
-msgstr "Skuif baan op"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Alt-Left-Drag"
-msgstr "Links sleep"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "Wysig versterkingomhulling"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "Potlood"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "Wysig monster"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt+links-klik"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "Maak by monster glad"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "Wysig meerdere monsters"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "Wysig slegs een monster"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "Verskeie"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "same as select tool"
-msgstr "Selfde as merker"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "same as zoom tool"
-msgstr "Selfde as zoemer"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "Almal"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll tracks up or down"
-msgstr "Rol op of af"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Shift-Wheel-Rotate"
-msgstr "Muiswielietjie"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Scroll waveform"
-msgstr "Golfvorm"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Wheel-Rotate"
-msgstr "Muiswielietjie"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Zoom waveform in or out"
-msgstr "Zoem in of uit"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "-Shift-Wheel-Rotate"
-msgstr "Muiswielietjie"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "Golfvorm (dB)"
 
 #: src/prefs/PlaybackPrefs.cpp
 #, fuzzy
@@ -10923,16 +8341,6 @@ msgstr "Voorkeure..."
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "Ander..."
-
-#: src/prefs/QualityPrefs.cpp
-#, fuzzy
-msgid "Sampling"
-msgstr "Monsterwysiging"
-
-#: src/prefs/QualityPrefs.cpp
-#, fuzzy
-msgid "Default Sample &Rate:"
-msgstr "Verstek monsterfrekwensie:"
 
 #: src/prefs/QualityPrefs.cpp
 #, fuzzy
@@ -11036,13 +8444,6 @@ msgstr "Notebaan"
 #, fuzzy
 msgid "Period"
 msgstr "Duur"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-#, fuzzy
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "256 - standaard"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -11161,11 +8562,6 @@ msgstr "64 - wyeband"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
-msgid "1024 - default"
-msgstr "256 - standaard"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
 msgid "32768 - most narrowband"
 msgstr "64 - wyeband"
 
@@ -11183,16 +8579,6 @@ msgstr "Dempingsfaktor:"
 #, fuzzy
 msgid "Ena&ble Spectral Selection"
 msgstr "Plaas seleksiepunt"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "Show a grid along the &Y-axis"
-msgstr "Geaktiveer"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "Minimum Amplitude (dB):"
-msgstr "Nuwe piekamplitude (dB):"
 
 #: src/prefs/SpectrumPrefs.cpp
 #, fuzzy
@@ -11227,21 +8613,6 @@ msgstr "Die maksimum frekwensie moet 'n heelgetal wees"
 msgid "The frequency gain must be an integer"
 msgstr "Die maksimum frekwensie moet 'n heelgetal wees"
 
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "Die minimum frekwensie moet 'n heelgetal wees"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The maximum number of notes must be an integer"
-msgstr "Die maksimum frekwensie moet 'n heelgetal wees"
-
-#: src/prefs/SpectrumPrefs.cpp
-#, fuzzy
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "Die maksimum frekwensie moet 'n heelgetal wees"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -11254,11 +8625,6 @@ msgstr "Tema"
 #, fuzzy
 msgid "Preferences for Theme"
 msgstr "Voorkeure..."
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-msgid "Theme Settings"
-msgstr "&Keuses..."
 
 #: src/prefs/ThemePrefs.cpp
 #, fuzzy
@@ -11307,16 +8673,6 @@ msgstr "Belyn met seleksie-einde"
 #, fuzzy
 msgid "Enable cut &lines"
 msgstr "Onbepaalbaar"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Enable &dragging selection edges"
-msgstr "Maak seleksie stil"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-#, fuzzy
-msgid "Advanced &vertical zooming"
-msgstr "Gevorderde mengkeuses"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 #, fuzzy
@@ -11448,41 +8804,6 @@ msgstr "Eerste lêernaam:"
 msgid "Preset 2:"
 msgstr "Eerste lêernaam:"
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-#, fuzzy
-msgid "Warnings"
-msgstr "Waarskuwing"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Preferences for Warnings"
-msgstr "Voorkeure..."
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Saving &projects"
-msgstr "&Stoor projek"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Saving &empty project"
-msgstr "&Stoor projek"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &mono during export"
-msgstr "&Stereo na mono"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Mixing down to &stereo during export"
-msgstr "&Stereo na mono"
-
-#: src/prefs/WarningsPrefs.cpp
-#, fuzzy
-msgid "Missing file &name extension during export"
-msgstr "&Stereo na mono"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 #, fuzzy
@@ -11521,33 +8842,12 @@ msgstr "&Ontfout"
 msgid "Classic"
 msgstr "&Laai lêer op..."
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Audacity"
-msgstr "Audacity-redigeerbalk"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 #, fuzzy
 msgid "High Contrast"
 msgstr "Skriftipe..."
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Light"
-msgstr "regs"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Pro Tools"
-msgstr "Funksieknop"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-msgid "Saucedacity"
-msgstr "Audacity-redigeerbalk"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -11722,16 +9022,6 @@ msgstr "&Redigeer"
 
 #: src/toolbars/EditToolBar.cpp
 #, fuzzy
-msgid "Cut selection"
-msgstr "Knip alles buite seleksie weg"
-
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Copy selection"
-msgstr "Maak seleksie stil"
-
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
 msgid "Trim audio outside selection"
 msgstr "Knip alles buite seleksie weg"
 
@@ -11783,11 +9073,6 @@ msgstr "Pas seleksie in venster"
 msgid "Fit project to width"
 msgstr "Pas projek in venster"
 
-#: src/toolbars/EditToolBar.cpp
-#, fuzzy
-msgid "Open Effects Rack"
-msgstr "&Effek"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -11822,12 +9107,6 @@ msgstr "Opneem"
 #, fuzzy
 msgid "Meter-Record"
 msgstr "Neem op"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-#, fuzzy
-msgid "Play Meter"
-msgstr "Terugspeel"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -11866,83 +9145,10 @@ msgstr "Meterbalk"
 msgid "&Playback Meter Toolbar"
 msgstr "Terugspeel"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub"
-msgstr "Wysigbalk"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Seek"
-msgstr "na einde van seleksie"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scrub Ruler"
-msgstr "Wysigbalk"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 #, fuzzy
 msgid "Scrubbing"
 msgstr "Nyquist-opdraglyn..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Scrubbing"
-msgstr "Nyquist-opdraglyn..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Scrubbing"
-msgstr "Nyquist-opdraglyn..."
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Stop Seeking"
-msgstr "na einde van seleksie"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Start Seeking"
-msgstr "na einde van seleksie"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Hide Scrub Ruler"
-msgstr "Wysigbalk"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-#, fuzzy
-msgid "Scru&b Toolbar"
-msgstr "Wysigbalk"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Project Rate (Hz)"
-msgstr "na begin van seleksie"
-
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Snap-To"
-msgstr "[Inskiet aan]"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 #, fuzzy
@@ -11975,11 +9181,6 @@ msgid "Show"
 msgstr "Geaktiveer"
 
 #: src/toolbars/SelectionBar.cpp
-#, fuzzy
-msgid "Snap To"
-msgstr "[Inskiet aan]"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "Lengte"
 
@@ -11989,13 +9190,6 @@ msgstr "Lengte"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "Middel"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, fuzzy, c-format
-msgid "Selection %s. %s won't change."
-msgstr "Kies 'n MIDI-lêer"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -12073,10 +9267,6 @@ msgid "Envelope Tool"
 msgstr "Omhullingtang"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "Vergrootglas"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "Tekenpen"
@@ -12110,11 +9300,6 @@ msgstr "Tekenpen"
 
 #: src/toolbars/ToolsToolBar.cpp
 #, fuzzy
-msgid "&Zoom Tool"
-msgstr "Vergrootglas"
-
-#: src/toolbars/ToolsToolBar.cpp
-#, fuzzy
 msgid "&Multi Tool"
 msgstr "Kombinasiewerktuig"
 
@@ -12142,11 +9327,6 @@ msgstr "Snelheid word aangepas"
 #, fuzzy
 msgid "Playback Speed"
 msgstr "Terugspeel"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-#, fuzzy
-msgid "Looped-Play-at-Speed"
-msgstr "Speel"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -12297,11 +9477,6 @@ msgstr "Notebaan"
 #, fuzzy
 msgid "Stretch"
 msgstr "Dempingsfaktor:"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-#, fuzzy
-msgid "Merged Clips"
-msgstr "Wys aftopping"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 #, fuzzy
@@ -12459,22 +9634,6 @@ msgstr "Verdeel stereo baan"
 msgid "Split Stereo to Mo&no"
 msgstr "&Stereo na mono"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "Mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "Linkerkanaal"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "Regterkanaal"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "Kanaal"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -12514,26 +9673,6 @@ msgstr "Stereo baan '%s' verdeel"
 #, fuzzy
 msgid "Split to Mono"
 msgstr "&Stereo na mono"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Stereo, %dHz"
-msgstr "Stereo, "
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Mono, %dHz"
-msgstr "Mono, "
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Left, %dHz"
-msgstr "Links, "
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
-msgid "Right, %dHz"
-msgstr "Regs, "
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -12587,21 +9726,6 @@ msgstr "Volgende gereedskapstuk"
 msgid "Mute/Unmute Track"
 msgstr "Skuif baan op"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-msgid "Rename clip..."
-msgstr "Her&noem"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
-msgid "Zoom x1/2"
-msgstr "Zoem in"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
-msgid "Zoom x2"
-msgstr "Zoem"
-
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 #, fuzzy
 msgid "Wa&veform"
@@ -12616,22 +9740,6 @@ msgstr "Golfvorm"
 #, fuzzy
 msgid "WaveColor Change"
 msgstr "Tempoverandering"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "Stel spoed se ondergrens (%) na:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "Spoed se ondergrens"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "Stel spoed se bogrens (%) na:"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "Spoed se bogrens"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -12673,12 +9781,6 @@ msgstr "Stel omvang..."
 msgid "Logarithmic &Interpolation"
 msgstr "Vinnige \"sinc\"-interpolasie"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-#, fuzzy
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "Klik en sleep om 'n baan in tyd te skuif."
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 msgid "Add Mono Track"
@@ -12699,11 +9801,6 @@ msgstr "Etiketbaan"
 #, fuzzy
 msgid "Export Audio..."
 msgstr "&Voer uit..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-#, fuzzy
-msgid "&Name..."
-msgstr "Naam..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 #, fuzzy
@@ -12886,21 +9983,6 @@ msgstr "Gekose bane stilgemaak vir %.2f sekonde vanaf %.2f"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
 #, fuzzy
-msgid "Command+Click to deselect"
-msgstr "&Opdrag"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Select track"
-msgstr "&Bane"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
-msgid "Ctrl+Click to deselect"
-msgstr "&Opdrag"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-#, fuzzy
 msgid "Open menu..."
 msgstr "&Open..."
 
@@ -12983,12 +10065,6 @@ msgstr "L"
 msgid "R"
 msgstr "R"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, fuzzy, c-format
-msgid "%.2fx"
-msgstr "Saamdruktyd: %.1f sek"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "&Maak skoon"
@@ -13005,36 +10081,6 @@ msgstr "Hulp op die Internet"
 #, fuzzy
 msgid "Menu"
 msgstr "Alle lêers (*)|*"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click to Start Monitoring"
-msgstr "Spring na begin"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click for Monitoring"
-msgstr "Spring na begin"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click to Start"
-msgstr "Spring na begin"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Click"
-msgstr "Links klik"
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Stop Monitoring"
-msgstr "Nyquist-opdraglyn..."
-
-#: src/widgets/MeterPanel.cpp
-#, fuzzy
-msgid "Start Monitoring"
-msgstr "Nyquist-opdraglyn..."
 
 #: src/widgets/MeterPanel.cpp
 #, fuzzy
@@ -13096,11 +10142,6 @@ msgstr "Belyn"
 #, fuzzy, c-format
 msgid " Peak %2.f dB"
 msgstr "Saamdruktyd: %.1f sek"
-
-#: src/widgets/MultiDialog.cpp
-#, fuzzy
-msgid "Please select an action"
-msgstr "Nuwe oudiobaan gemaak"
 
 #. i18n-hint: Name of time display format that shows time in hours, minutes
 #. * and seconds

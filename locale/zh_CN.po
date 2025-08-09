@@ -34,114 +34,10 @@ msgstr ""
 msgid "Stream is active ... unable to gather information.\n"
 msgstr "流活动中……不能获得信息。\n"
 
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Default recording device number: %d"
-msgstr "选择录制设备"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Default playback device number: %d"
-msgstr "选择播放设备"
-
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
 msgid "No devices found"
 msgstr "找不到设备"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Device information is not available."
-msgid "Device info unavailable for: %d"
-msgstr "设备信息不可用。"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "&Device:"
-msgid "Device ID: %d"
-msgstr "设备(&D)："
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Devices"
-msgid "Device name: %s"
-msgstr "设备"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Name: %s"
-msgid "Host name: %s"
-msgstr "名称：%s"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording Channels"
-msgid "Recording channels: %d"
-msgstr "录制声道数"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Playback Level"
-msgid "Playback channels: %d"
-msgstr "播放电平"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "Low Recording Latency: %g"
-msgstr "录制结束于："
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Recording end:"
-msgid "High Recording Latency: %g"
-msgstr "录制结束于："
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy
-#| msgid "Sample Rates"
-msgid "Supported Rates:"
-msgstr "采样率"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected recording device: %d - %s"
-msgstr "选择录制设备"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected playback device: %d - %s"
-msgstr "选择播放设备"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "No devices found"
-msgid "No playback device found for '%s'."
-msgstr "找不到设备"
-
-#. i18n-hint: Supported, meaning made available by the system
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Show output"
-msgid "Supports output: %d"
-msgstr "显示输出"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Recording Device"
-msgid "Selected MIDI recording device: %d - %s"
-msgstr "选择录制设备"
-
-#: libraries/lib-audio-devices/AudioIOBase.cpp
-#, fuzzy, c-format
-#| msgid "Select Playback Device"
-msgid "Selected MIDI playback device: %d - %s"
-msgstr "选择播放设备"
 
 #. i18n-hint: Name of time display format that shows time in samples (at the
 #. * current project sample rate).  For example the number of a sample at 1
@@ -178,21 +74,6 @@ msgstr "Audacity 无法写入文件： %s。"
 #| msgid "Audacity failed to write to a file in %s."
 msgid "Tenacity failed to read from a file in %s."
 msgstr "Audacity 无法写入文件： %s。"
-
-#: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write to a file.\n"
-"Perhaps %s is not writable or the disk is full.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"磁盘已满。\n"
-"%s\n"
-"点击帮助按钮可以获取有关释放空间的建议。"
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -241,11 +122,6 @@ msgstr "%s 文件"
 #, c-format
 msgid "(%s)"
 msgstr "(%s)"
-
-#: libraries/lib-files/FileNames.cpp
-#, c-format
-msgid "Directory %s does not have write permissions"
-msgstr "目录 %s 没有写入权限"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -482,14 +358,6 @@ msgstr "无法载入文件： \"%s\""
 msgid "Could not parse XML"
 msgstr "无法解析 XML"
 
-#: modules/mod-null/ModNullCallback.cpp
-msgid "1st Experimental Command..."
-msgstr "第一条实验命令..."
-
-#: modules/mod-null/ModNullCallback.cpp
-msgid "2nd Experimental Command"
-msgstr "第二条实验命令"
-
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, c-format
@@ -580,32 +448,6 @@ msgstr "%s，web 开发者"
 msgid "%s, graphics"
 msgstr "%s，图形"
 
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, co-founder and developer"
-msgid "%s, Tenacity founder and developer"
-msgstr "%s，Audacity 联合创始人和开发者"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, Tenacity developer"
-msgstr "%s，Tenacity 开发者"
-
-#. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, Tenacity developer"
-msgid "%s, Tenacity web developer"
-msgstr "%s，Tenacity 开发者"
-
-#. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
-#: src/AboutDialog.cpp
-#, c-format
-msgid "%s, lead Tenacity developer"
-msgstr "%s，Tenacity 主导开发者"
-
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
@@ -658,12 +500,6 @@ msgstr "%s 团队成员"
 #: src/AboutDialog.cpp
 msgid "Contributors"
 msgstr "贡献者"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Emeritus:"
-msgid "Emeritus"
-msgstr "Audacity 名誉成员："
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
@@ -760,11 +596,6 @@ msgstr "采样率转换器(&T)："
 msgid "File Format Support"
 msgstr "文件格式支持"
 
-#. i18n-hint: This is what the library (libmad) does - imports MP3 files
-#: src/AboutDialog.cpp
-msgid "MP3 Importing"
-msgstr "MP3 导入"
-
 #. i18n-hint: Ogg is the container format. Vorbis is the compression codec.
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
@@ -792,16 +623,8 @@ msgid "MP2 export"
 msgstr "MP2 导出"
 
 #: src/AboutDialog.cpp
-msgid "Import via QuickTime"
-msgstr "通过 QuickTime 导入"
-
-#: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
 msgstr "FFmpeg 导入／导出"
-
-#: src/AboutDialog.cpp
-msgid "Import via GStreamer"
-msgstr "通过 GStreamer 导入"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -830,12 +653,6 @@ msgstr "录制时时间线操作已禁用"
 #: src/AdornedRulerPanel.cpp
 msgid "Click and drag to adjust, double-click to reset"
 msgstr "单击并拖动以调整，双击以重置"
-
-#. i18n-hint: This text is a tooltip on the icon (of a pin) representing
-#. the temporal position in the audio.
-#: src/AdornedRulerPanel.cpp
-msgid "Record/Play head"
-msgstr "录制/播放头"
 
 #: src/AdornedRulerPanel.cpp src/prefs/GUIPrefs.cpp
 msgid "Timeline"
@@ -905,34 +722,6 @@ msgstr "快速播放已启用"
 msgid "Timeline Options"
 msgstr "时间线选项"
 
-#: src/AdornedRulerPanel.cpp
-msgid "Enable Quick-Play"
-msgstr "启用快速播放"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Enable dragging selection"
-msgstr "启用拖拽选区"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Update display while playing"
-msgstr "播放时更新显示"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Lock Play Region"
-msgstr "锁定播放区域"
-
-#: src/AdornedRulerPanel.cpp
-msgid "Pinned Play Head"
-msgstr "固定播放头"
-
-#: src/AdornedRulerPanel.cpp
-msgid ""
-"Cannot lock region beyond\n"
-"end of project."
-msgstr ""
-"不能锁定超出项目\n"
-"终点的区域。"
-
 #: src/AudioIO.cpp
 msgid "Could not find any audio devices.\n"
 msgstr "找不到音频设备。\n"
@@ -949,12 +738,6 @@ msgstr ""
 #, c-format
 msgid "Error: %s"
 msgstr "错误: %s"
-
-#: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Throw Error"
-msgid "PortAudio Error"
-msgstr "抛出错误"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -1423,13 +1206,6 @@ msgid "Expected len %lld, track len %lld.\n"
 msgstr "预期长度 %lld，轨道长度 %lld。\n"
 
 #: src/Benchmark.cpp
-#, fuzzy, c-format
-#| msgid "Performing Low-Pass Filter..."
-msgid "Performing %d edit...\n"
-msgid_plural "Performing %d edits...\n"
-msgstr[0] "正在执行低通滤波器......"
-
-#: src/Benchmark.cpp
 #, c-format
 msgid "Cut: %lld - %lld \n"
 msgstr "剪切：%lld - %lld \n"
@@ -1642,17 +1418,6 @@ msgstr "这可能需要几秒钟"
 msgid "Could not write to %s.\n"
 msgstr "无法写入文件：%s。\n"
 
-#: src/DBConnection.cpp
-#, c-format
-msgid ""
-"Disk is full.\n"
-"%s\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"磁盘已满。\n"
-"%s\n"
-"点击帮助按钮可以获取有关释放空间的建议。"
-
 #: src/DBConnection.cpp src/LogWindow.cpp src/ProjectFileIO.cpp
 #: src/ProjectHistory.cpp src/SqliteSampleBlock.cpp src/WaveClip.cpp
 #: src/WaveTrack.cpp src/export/Export.cpp src/export/ExportCL.cpp
@@ -1692,26 +1457,6 @@ msgstr "数据库错误。 抱歉，我们无法提供具体细节。"
 #, c-format
 msgid "Error (file may not have been written): %s"
 msgstr "错误（文件可能未被写入）： %s"
-
-#: src/FileFormats.cpp
-msgid "&Copy uncompressed files into the project (safer)"
-msgstr "将未压缩的文件复制到项目中（更安全）(&C)"
-
-#: src/FileFormats.cpp
-msgid "&Read uncompressed files from original location (faster)"
-msgstr "从原始位置直接读入未压缩文件（更快速）(&R)"
-
-#: src/FileFormats.cpp
-msgid "&Copy all audio into project (safest)"
-msgstr "总是把所有音频复制到项目（最安全）(&C)"
-
-#: src/FileFormats.cpp
-msgid "Do &not copy any audio"
-msgstr "不要复制任何音频(&N)"
-
-#: src/FileFormats.cpp
-msgid "As&k"
-msgstr "询问(&K)"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -1828,10 +1573,6 @@ msgstr "轴(&A)："
 #: src/FreqWindow.cpp
 msgid "&Replot..."
 msgstr "重绘(&R)..."
-
-#: src/FreqWindow.cpp
-msgid "To plot the spectrum, all selected tracks must be the same sample rate."
-msgstr "为了进行频谱分析，所有选定的轨道必须具有相同的采样率。"
 
 #: src/FreqWindow.cpp
 #, c-format
@@ -1990,21 +1731,6 @@ msgstr ""
 "audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| 音乐CD]]的曲"
 "目。"
 
-#: src/HelpText.cpp
-#, fuzzy
-#| msgid ""
-#| "The Manual does not appear to be installed. Please [[*URL*|view the "
-#| "Manual online]].<br><br>To always view the Manual online, change "
-#| "\"Location of Manual\" in Interface Preferences to \"From Internet\"."
-msgid ""
-"The Manual does not appear to be installed. Please [[*URL*|view the Manual "
-"online]] or [[https://codeberg.org/tenacityteam/tenacity-manual/releases| "
-"download the Manual]].<br><br>To always view the Manual online, change "
-"\"Location of Manual\" in Interface Preferences to \"From Internet\"."
-msgstr ""
-"使用手册似乎没有被安装。请[[*URL*|在线浏览使用手册]]。<br><br>若要始终在线浏"
-"览使用手册，请在界面偏好设置中将“使用手册的位置”更改为“从互联网”。"
-
 #: src/HistoryWindow.cpp
 msgid "History"
 msgstr "历史记录"
@@ -2054,12 +1780,6 @@ msgstr "压缩(&C)"
 #, c-format
 msgid "Compacting actually freed %s of disk space."
 msgstr "压缩实际释放了 %s 的磁盘空间。"
-
-#. i18n-hint: Clicking this menu item shows the various editing steps
-#. that have been taken.
-#: src/HistoryWindow.cpp
-msgid "&History..."
-msgstr "历史记录(&H)..."
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -2306,11 +2026,6 @@ msgid "Signal Level Meter"
 msgstr "信号电平指示"
 
 #: src/MixerBoard.cpp
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
-msgid "Moved gain slider"
-msgstr "已移动音量增强滑杆"
-
-#: src/MixerBoard.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackSliderHandles.cpp
 msgid "Moved velocity slider"
 msgstr "已移动速度滑杆"
@@ -2319,10 +2034,6 @@ msgstr "已移动速度滑杆"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 msgid "Moved pan slider"
 msgstr "已移动左右声道平衡滑杆"
-
-#: src/MixerBoard.cpp
-msgid "&Mixer Board..."
-msgstr "混音板(&M)..."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2569,109 +2280,19 @@ msgstr "启用新插件"
 msgid "Nyquist Prompt"
 msgstr "Nyquist 提示符"
 
-#: src/PluginRegistrationDialog.cpp
-msgid "Manage Plug-ins"
-msgstr "管理插件"
-
-#: src/PluginRegistrationDialog.cpp src/prefs/ModulePrefs.cpp
-msgid "New"
-msgstr "新建"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "Select effects, click the Enable or Disable button, then click OK."
-msgstr "选中效果器，点击启用或者禁用按钮，然后点确定。"
-
-#. i18n-hint: This is before radio buttons selecting which effects to show
-#: src/PluginRegistrationDialog.cpp
-msgid "Show:"
-msgstr "显示："
-
-#. i18n-hint: Radio button to show all effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show all"
-msgstr "显示所有"
-
 #. i18n-hint: Radio button to show all effects
 #: src/PluginRegistrationDialog.cpp src/menus/SelectMenus.cpp
 msgid "&All"
 msgstr "全部(&A)"
 
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show disabled"
-msgstr "显示禁用的"
-
-#. i18n-hint: Radio button to show just the currently disabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "D&isabled"
-msgstr "已禁用(&I)"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show enabled"
-msgstr "显示启用的"
-
-#. i18n-hint: Radio button to show just the currently enabled effects
-#: src/PluginRegistrationDialog.cpp
-msgid "E&nabled"
-msgstr "已启用(&N)"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Show new"
-msgstr "显示新增的"
-
-#. i18n-hint: Radio button to show just the newly discovered effects
-#: src/PluginRegistrationDialog.cpp
-msgid "Ne&w"
-msgstr "新的(&W)"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "State"
-msgstr "状态"
-
 #: src/PluginRegistrationDialog.cpp
 msgid "Path"
 msgstr "路径"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Select All"
-msgstr "选择所有(&S)"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "C&lear All"
-msgstr "清除所有(&L)"
 
 #: src/PluginRegistrationDialog.cpp src/effects/EffectUI.cpp
 #: src/prefs/RecordingPrefs.cpp
 msgid "&Enable"
 msgstr "启用(&E)"
-
-#: src/PluginRegistrationDialog.cpp
-msgid "&Disable"
-msgstr "禁用(&D)"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effects or commands:\n"
-"\n"
-"%s"
-msgstr ""
-"启用效果器或命令中：\n"
-"\n"
-"%s"
-
-#: src/PluginRegistrationDialog.cpp
-#, c-format
-msgid ""
-"Enabling effect or command:\n"
-"\n"
-"%s"
-msgstr ""
-"启用效果器或命令中：\n"
-"\n"
-"%s"
 
 #: src/PluginRegistrationDialog.cpp
 #, c-format
@@ -2681,14 +2302,6 @@ msgid ""
 msgstr ""
 "位于 %s 的效果器或命令注册失败：\n"
 "%s"
-
-#: src/Printing.cpp
-msgid "There was a problem printing."
-msgstr "打印时出错。"
-
-#: src/Printing.cpp
-msgid "Print"
-msgstr "打印"
 
 #: src/ProjectAudioManager.cpp
 #, c-format
@@ -2944,31 +2557,10 @@ msgstr "复制项目中"
 msgid "Error Writing to File"
 msgstr "写入文件出错"
 
-#: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Disk is full.\n"
-#| "%s\n"
-#| "For tips on freeing up space, click the help button."
-msgid ""
-"Tenacity failed to write file %s.\n"
-"The disk might be full or isn't writable.\n"
-"For tips on freeing up space, click the help button."
-msgstr ""
-"磁盘已满。\n"
-"%s\n"
-"点击帮助按钮可以获取有关释放空间的建议。"
-
 # i18n hint: Copy the original database to a new database while pruning unused sample blocks
 #: src/ProjectFileIO.cpp
 msgid "Compacting project"
 msgstr "正在压实项目"
-
-#. i18n-hint: The %02i is the project number, the %s is the project name.
-#: src/ProjectFileIO.cpp
-#, c-format
-msgid "[Project %02i] Audacity \"%s\""
-msgstr "[项目 %02i] Tenacity “%s”"
 
 #. i18n-hint: E.g this is recovered audio that had been lost.
 #: src/ProjectFileIO.cpp
@@ -3048,30 +2640,6 @@ msgid "Projects cannot be saved to FAT drives."
 msgstr "项目不能保存到使用 FAT 文件系统的驱动器。"
 
 #: src/ProjectFileManager.cpp
-msgid ""
-"Your project is now empty.\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Click 'No', Edit > Undo until all tracks\n"
-"are open, then File > Save Project.\n"
-"\n"
-"Save anyway?"
-msgstr ""
-"您的项目现在是空的。\n"
-"如果保存了，这个项目将没有轨道。\n"
-"\n"
-"要保存之前打开的轨道：\n"
-"取消，编辑 -> 撤销 到所有的轨道\n"
-"都打开，然后文件 -> 保存项目。\n"
-"\n"
-"仍然要保存吗？"
-
-#: src/ProjectFileManager.cpp
-msgid "Warning - Empty Project"
-msgstr "警告 - 空的项目"
-
-#: src/ProjectFileManager.cpp
 msgid "Insufficient Disk Space"
 msgstr "磁盘空间不足"
 
@@ -3109,14 +2677,6 @@ msgstr ""
 #, c-format
 msgid "%sSave Project \"%s\" As..."
 msgstr "%s将项目 \"%s\" 另存为..."
-
-#: src/ProjectFileManager.cpp
-msgid ""
-"'Save Project' is for an Audacity project, not an audio file.\n"
-"For an audio file that will open in other apps, use 'Export'.\n"
-msgstr ""
-"“保存项目”指的是保存 Tenacity 项目，而不是保存音频文件。\n"
-"如果您想要可以在其他应用中使用的音频文件，请使用“导出”。\n"
 
 #. i18n-hint: In each case, %s is the name
 #. of the file being overwritten.
@@ -3322,22 +2882,6 @@ msgid "Save project before closing?"
 msgstr "在关闭之前保存修改？"
 
 #: src/ProjectManager.cpp
-msgid ""
-"\n"
-"If saved, the project will have no tracks.\n"
-"\n"
-"To save any previously open tracks:\n"
-"Cancel, Edit > Undo until all tracks\n"
-"are open, then File > Save Project."
-msgstr ""
-"\n"
-"如果保存，这个项目将没有轨道。\n"
-"\n"
-"如要保存之前打开的轨道，请这样操作：\n"
-"点击取消，然后「编辑 -> 撤销」直到所有\n"
-"轨道全部打开，然后「文件 -> 保存项目」。"
-
-#: src/ProjectManager.cpp
 #, c-format
 msgid "Disk space remaining for recording: %s"
 msgstr "磁盘空间还够录制：%s"
@@ -3394,18 +2938,6 @@ msgstr ""
 msgid "Warning - Truncating Overlong Block File"
 msgstr "警告 - 截断过长的块文件"
 
-#: src/Snap.cpp src/export/ExportFFmpegDialogs.cpp
-msgid "Off"
-msgstr "关闭"
-
-#: src/Snap.cpp
-msgid "Nearest"
-msgstr "最近的"
-
-#: src/Snap.cpp
-msgid "Prior"
-msgstr "更重要的"
-
 #: src/SoundActivatedRecord.cpp
 msgid "Sound Activated Record"
 msgstr "声控录音"
@@ -3413,12 +2945,6 @@ msgstr "声控录音"
 #: src/SoundActivatedRecord.cpp
 msgid "Activation level (dB):"
 msgstr "激活电平（dB）："
-
-#: src/SplashDialog.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
-msgid "Tenacity Pre-Release"
-msgstr "%s，Tenacity 开发者"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
@@ -3501,10 +3027,6 @@ msgid "Set De&fault"
 msgstr "设置默认(&F)"
 
 #: src/Tags.cpp
-msgid "Don't show this when exporting audio"
-msgstr "下次导出音频时不再显示此对话框"
-
-#: src/Tags.cpp
 msgid "Edit Genres"
 msgstr "编辑流派"
 
@@ -3548,23 +3070,6 @@ msgstr "%s 移除失败"
 #: src/TenacityApp.cpp
 msgid "Failed!"
 msgstr "失败！"
-
-#: src/TenacityApp.cpp
-msgid ""
-"Reset Preferences?\n"
-"\n"
-"This is a one-time question, after an 'install' where you asked to have the "
-"Preferences reset."
-msgstr ""
-"重置偏好设置？\n"
-"\n"
-"此问题只会在软件安装结束后出现一次，且仅当你选择重置偏好设置。"
-
-#: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "&Use Preferences"
-msgid "Reset Tenacity Preferences"
-msgstr "使用偏好设置"
 
 #: src/TenacityApp.cpp
 #, c-format
@@ -4026,12 +3531,6 @@ msgid "Do nothing"
 msgstr "什么都不做"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "&About Tenacity..."
-msgid "Exit Tenacity"
-msgstr "关于 Tenacity(&A)…"
-
-#: src/TimerRecordDialog.cpp
 msgid "Restart system"
 msgstr "重启系统"
 
@@ -4078,10 +3577,6 @@ msgstr "录音已导出："
 #| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
 msgstr "定时录音"
-
-#: src/TrackInfo.cpp
-msgid "Stereo, 999999Hz"
-msgstr "立体声，999999 Hz"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -4158,11 +3653,6 @@ msgstr "删除音轨"
 #: src/TrackUtilities.cpp
 msgid "Remove Track"
 msgstr "删除轨道"
-
-#: src/TrackUtilities.cpp
-#, c-format
-msgid "Removed track '%s.'"
-msgstr "已删除轨道“%s”。"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
@@ -4551,12 +4041,6 @@ msgid "Builtin Commands"
 msgstr "内置命令"
 
 #: src/commands/LoadCommands.cpp
-#, fuzzy
-#| msgid "Unknown built-in command name"
-msgid "Provides builtin commands to Tenacity"
-msgstr "未知内置命令名称"
-
-#: src/commands/LoadCommands.cpp
 msgid "Unknown built-in command name"
 msgstr "未知内置命令名称"
 
@@ -4857,14 +4341,6 @@ msgid "Sets various values for a project."
 msgstr "设置项目的各个值。"
 
 #: src/commands/SetTrackInfoCommand.cpp
-msgid "Track Index:"
-msgstr "轨道索引："
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Channel Index:"
-msgstr "声道索引："
-
-#: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "设置轨道状态"
 
@@ -4879,10 +4355,6 @@ msgstr "已聚焦"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Audio"
 msgstr "设置轨道音频"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Gain:"
-msgstr "增强："
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Pan:"
@@ -4938,12 +4410,6 @@ msgstr "使用频谱偏好设置"
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Spectral Select"
 msgstr "频谱选择"
-
-#. i18n-hint Scheme refers to a color scheme for spectrogram colors
-#: src/commands/SetTrackInfoCommand.cpp src/prefs/SpectrumPrefs.cpp
-msgctxt "spectrum prefs"
-msgid "Sche&me"
-msgstr "样式(&M)"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track"
@@ -5109,10 +4575,6 @@ msgid "High Quality Pitch Change"
 msgstr "高质量的音高改变"
 
 #: src/effects/ChangePitch.cpp
-msgid "Change Pitch without Changing Tempo"
-msgstr "维持节奏不变，改变音高"
-
-#: src/effects/ChangePitch.cpp
 #, c-format
 msgid "Estimated Start Pitch: %s%d (%.3f Hz)"
 msgstr "开始音调：%s%d (%.3f Hz)"
@@ -5217,16 +4679,8 @@ msgid "n/a"
 msgstr "不可用"
 
 #: src/effects/ChangeSpeed.cpp
-msgid "Change Speed"
-msgstr "改变速率"
-
-#: src/effects/ChangeSpeed.cpp
 msgid "Changes the speed of a track, also changing its pitch"
 msgstr "改变轨道的速率，同时改变音高"
-
-#: src/effects/ChangeSpeed.cpp
-msgid "Change Speed, affecting both Tempo and Pitch"
-msgstr "改变速率(同时影响节奏和音高)"
 
 #: src/effects/ChangeSpeed.cpp
 msgid "&Speed Multiplier:"
@@ -5303,10 +4757,6 @@ msgstr "改变选区的节奏，不改变其音高"
 #: src/effects/ChangeTempo.cpp
 msgid "High Quality Tempo Change"
 msgstr "高质量速度改变"
-
-#: src/effects/ChangeTempo.cpp
-msgid "Change Tempo without Changing Pitch"
-msgstr "保持音高不变，改变节奏"
 
 #: src/effects/ChangeTempo.cpp
 msgid "Beats per minute"
@@ -5512,164 +4962,14 @@ msgstr "触发时间 %.2f 秒"
 msgid "Release Time %.1f secs"
 msgstr "释放时间 %.1f 秒"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Exponential Out"
-msgid "Exponential-Fit"
-msgstr "指数出"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Peak amplitude dB"
-msgid "peak amplitude"
-msgstr "峰值振幅（dB）"
-
 #: src/effects/Compressor2.cpp src/effects/Loudness.cpp
 #: src/widgets/MeterPanel.cpp
 msgid "RMS"
 msgstr "方均根"
 
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Dynamic Reduction"
-msgstr "降噪"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Noise Reduction"
-msgid "Peak Reduction"
-msgstr "降噪"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Limiter"
-msgid "Analog Limiter"
-msgstr "限幅器"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Compressor"
-msgid "Dynamic Compressor"
-msgstr "压缩器"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Sets the loudness of one or more tracks"
-msgid "Reduces the dynamic of one or more tracks"
-msgstr "设置一个或多个音轨的峰值振幅"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compressor step response"
-msgstr "基于峰值压缩(&O)"
-
 #: src/effects/Compressor2.cpp src/prefs/SpectrumPrefs.cpp
 msgid "Algorithm"
 msgstr "算法"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Algorithm:"
-msgid "Envelope Algorithm:"
-msgstr "算法(&A)："
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "C&ompress based on Peaks"
-msgid "Compress based on:"
-msgstr "基于峰值压缩(&O)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "N&ormalize stereo channels independently"
-msgid "Compress stereo channels independently"
-msgstr "分别标准化立体声的两个声道(&N)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Ratio:"
-msgid "Ratio:"
-msgstr "比率(&R):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "1"
-msgid ":1"
-msgstr "1"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width:"
-msgstr "宽度："
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Width:"
-msgid "Knee Width"
-msgstr "宽度："
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Output gain (dB):"
-msgid "Output Gain:"
-msgstr "输出增益 (dB)："
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Output gain (dB)"
-msgid "Output Gain"
-msgstr "输出增益 (dB)"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "&Attack Time:"
-msgid "Attack:"
-msgstr "建立时间(&A):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Attack Time"
-msgid "Attack"
-msgstr "建立时间"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "R&elease Time:"
-msgid "Release:"
-msgstr "释放时间(&E):"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Release Time"
-msgid "Release"
-msgstr "释放时间"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time:"
-msgid "Lookahead Time:"
-msgstr "平滑时间："
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "Smooth Time"
-msgid "Lookahead Time"
-msgstr "平滑时间"
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time:"
-msgid "Hold Time:"
-msgstr "结束时间："
-
-#: src/effects/Compressor2.cpp
-#, fuzzy
-#| msgid "End Time"
-msgid "Hold Time"
-msgstr "结束时间"
 
 #: src/effects/Contrast.cpp
 msgid "You can only measure one track at a time."
@@ -6329,11 +5629,6 @@ msgid "Applied effect: %s"
 msgstr "已应用效果：%s"
 
 #: src/effects/EffectManager.cpp
-#, c-format
-msgid "Applied command: %s"
-msgstr "已应用命令：%s"
-
-#: src/effects/EffectManager.cpp
 msgid "Select Preset"
 msgstr "选择预设"
 
@@ -6360,25 +5655,6 @@ msgstr "出厂设置"
 #: src/effects/EffectManager.cpp
 #, c-format
 msgid ""
-"Attempting to initialize the following effect failed:\n"
-"\n"
-"%s\n"
-"\n"
-"More information may be available in 'Help > Diagnostics > Show Log'"
-msgstr ""
-"尝试初始化下列效果器时失败：\n"
-"\n"
-"%s\n"
-"\n"
-"更多信息有可能可在 帮助 > 诊断 > 显示日志 中获取到"
-
-#: src/effects/EffectManager.cpp
-msgid "Effect failed to initialize"
-msgstr "效果器初始化失败"
-
-#: src/effects/EffectManager.cpp
-#, c-format
-msgid ""
 "Attempting to initialize the following command failed:\n"
 "\n"
 "%s\n"
@@ -6396,96 +5672,12 @@ msgid "Command failed to initialize"
 msgstr "命令初始化失败"
 
 #: src/effects/EffectUI.cpp
-msgid "Effects Rack"
-msgstr "效果组"
-
-#: src/effects/EffectUI.cpp
 msgid "&Apply"
 msgstr "应用(&A)"
 
 #: src/effects/EffectUI.cpp
-msgid "Latency: 0"
-msgstr "延迟：0"
-
-# 不确定但肯定不是 旁路
-#: src/effects/EffectUI.cpp
-msgid "&Bypass"
-msgstr "忽略(&B)"
-
-#: src/effects/EffectUI.cpp
-msgid "Active State"
-msgstr "活动状态"
-
-#: src/effects/EffectUI.cpp
-msgid "Set effect active state"
-msgstr "设置效果活动状态"
-
-#: src/effects/EffectUI.cpp
-msgid "Show/Hide Editor"
-msgstr "显示/隐藏编辑器"
-
-#: src/effects/EffectUI.cpp
-msgid "Open/close effect editor"
-msgstr "打开/关闭效果编辑器"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Up"
-msgstr "上移"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect up in the rack"
-msgstr "置顶"
-
-#: src/effects/EffectUI.cpp
-msgid "Move Down"
-msgstr "下移"
-
-#: src/effects/EffectUI.cpp
-msgid "Move effect down in the rack"
-msgstr "置底"
-
-#: src/effects/EffectUI.cpp
-msgid "Favorite"
-msgstr "喜爱"
-
-#: src/effects/EffectUI.cpp
-msgid "Mark effect as a favorite"
-msgstr "将效果标签为喜爱"
-
-#: src/effects/EffectUI.cpp
-msgid "Remove effect from the rack"
-msgstr "从组中移除效果"
-
-#: src/effects/EffectUI.cpp
-msgid "Name of the effect"
-msgstr "效果名"
-
-#: src/effects/EffectUI.cpp
-#, c-format
-msgid "Latency: %4d"
-msgstr "延迟： %4d"
-
-#: src/effects/EffectUI.cpp
-msgid "Some Command"
-msgstr "一些命令"
-
-#: src/effects/EffectUI.cpp
 msgid "Manage presets and options"
 msgstr "管理预设及选项"
-
-#: src/effects/EffectUI.cpp
-msgid "&Manage"
-msgstr "管理(&M)"
-
-#: src/effects/EffectUI.cpp
-msgid "Start and stop playback"
-msgstr "开始/停止播放"
-
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Start &Playback"
-msgstr "开始播放(&P)"
 
 #: src/effects/EffectUI.cpp
 msgid "Preview effect"
@@ -6494,26 +5686,6 @@ msgstr "预览效果"
 #: src/effects/EffectUI.cpp src/shuttle/ShuttleGui.cpp
 msgid "&Preview"
 msgstr "预览(&P)"
-
-#: src/effects/EffectUI.cpp
-msgid "&Preview effect"
-msgstr "预览效果(&P)"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip backward"
-msgstr "后退"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Backward"
-msgstr "后退(&B)"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip forward"
-msgstr "前进"
-
-#: src/effects/EffectUI.cpp
-msgid "Skip &Forward"
-msgstr "前进(&F)"
 
 #: src/effects/EffectUI.cpp
 msgid "Enable"
@@ -6599,12 +5771,6 @@ msgstr ""
 "\n"
 "是否替换？"
 
-#. i18n-hint: The access key "&P" should be the same in
-#. "Stop &Playback" and "Start &Playback"
-#: src/effects/EffectUI.cpp
-msgid "Stop &Playback"
-msgstr "停止播放(&P)"
-
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
 msgid "Stop"
@@ -6681,29 +5847,12 @@ msgstr "高音切除"
 
 #: src/effects/Equalization.cpp
 msgid ""
-"To use this filter curve in a macro, please choose a new name for it.\n"
-"Choose the 'Save/Manage Curves...' button and rename the 'unnamed' curve, "
-"then use that one."
-msgstr ""
-"为了在宏中使用这个过滤曲线，请为其选择一个新名称。\n"
-"点击“保存/管理曲线...”按钮并重命名“未命名”曲线，再使用它。"
-
-#: src/effects/Equalization.cpp
-msgid "Filter Curve EQ needs a different name"
-msgstr "滤波曲线均衡器需要一个不同的名称"
-
-#: src/effects/Equalization.cpp
-msgid ""
 "To apply Equalization, all selected tracks must have the same sample rate."
 msgstr "如果想应用均衡器，所有选择的轨道必须拥有相同的采样率。"
 
 #: src/effects/Equalization.cpp
 msgid "Track sample rate is too low for this effect."
 msgstr "跟踪采样率太低，这种效果。"
-
-#: src/effects/Equalization.cpp
-msgid "Effect Unavailable"
-msgstr "效果不可用"
 
 #: src/effects/Equalization.cpp src/effects/ScienFilter.cpp
 msgid "+ dB"
@@ -6806,34 +5955,6 @@ msgstr "显示网格线"
 msgid "Show g&rid lines"
 msgstr "显示网格线(&R)"
 
-#: src/effects/Equalization.cpp
-msgid "&Processing: "
-msgstr "处理中(&P): "
-
-#: src/effects/Equalization.cpp
-msgid "D&efault"
-msgstr "默认(&E)"
-
-#: src/effects/Equalization.cpp
-msgid "&SSE"
-msgstr "&SSE"
-
-#: src/effects/Equalization.cpp
-msgid "SSE &Threaded"
-msgstr "使用 SSE 线程(&T)"
-
-#: src/effects/Equalization.cpp
-msgid "A&VX"
-msgstr "高级矢量扩展指令集 (AVX)(&V)"
-
-#: src/effects/Equalization.cpp
-msgid "AV&X Threaded"
-msgstr "使用 AV&X 线程"
-
-#: src/effects/Equalization.cpp
-msgid "&Bench"
-msgstr "性能测试(&B)"
-
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
 msgid "unnamed"
@@ -6854,20 +5975,12 @@ msgstr ""
 "%s"
 
 #: src/effects/Equalization.cpp
-msgid "Error Loading EQ Curves"
-msgstr "导入均衡器曲线出错"
-
-#: src/effects/Equalization.cpp
 msgid "Error Saving Equalization Curves"
 msgstr "保存均衡曲线时出错"
 
 #: src/effects/Equalization.cpp
 msgid "Requested curve not found, using 'unnamed'"
 msgstr "请求的曲线图没有找到，正在使用“未命名”"
-
-#: src/effects/Equalization.cpp
-msgid "Curve not found"
-msgstr "曲线图没有找到"
 
 #: src/effects/Equalization.cpp
 msgid "Manage Curves List"
@@ -7033,36 +6146,6 @@ msgstr "为选区应用线性淡入"
 msgid "Applies a linear fade-out to the selected audio"
 msgstr "为选区应用线性淡出"
 
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Find Clipping"
-msgid "Find Clicks"
-msgstr "寻找截幅失真"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Creates labels where clipping is detected"
-msgid "Creates labels where clicks are detected"
-msgstr "检测到截幅失真时创建标签"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Clicks"
-msgstr "点击"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Right"
-msgstr "点击"
-
-#: src/effects/FindClicks.cpp
-#, fuzzy
-#| msgid "Click"
-msgid "Click Left"
-msgstr "点击"
-
 #: src/effects/FindClipping.cpp
 msgid "Find Clipping"
 msgstr "寻找截幅失真"
@@ -7200,34 +6283,6 @@ msgstr "次好"
 #: src/effects/NoiseReduction.cpp
 msgid "Old"
 msgstr "旧的"
-
-#: src/effects/NoiseReduction.cpp
-msgid "none, Hann (2.0.6 behavior)"
-msgstr "无，Hann（2.0.6 版本的行为）"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, none"
-msgstr "Hann，无"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hann, Hann (default)"
-msgstr "Hann，Hann（默认）"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Blackman, Hann"
-msgstr "Blackman，Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, none"
-msgstr "Hamming，无"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Hann"
-msgstr "Hamming，Hann"
-
-#: src/effects/NoiseReduction.cpp
-msgid "Hamming, Reciprocal Hamming"
-msgstr "Hamming，Reciprocal Hamming"
 
 #: src/effects/NoiseReduction.cpp src/menus/PluginMenus.cpp
 msgid "Noise Reduction"
@@ -7433,46 +6488,6 @@ msgstr "4（默认）"
 #: src/effects/NoiseReduction.cpp
 msgid "Discrimination &method:"
 msgstr "辨别方法(&M):"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise Removal"
-msgstr "降噪"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Removes constant background noise such as fans, tape noise, or hums"
-msgstr "移除连续的背景噪声，如风扇声，磁带噪音，嗡嗡声"
-
-#: src/effects/NoiseRemoval.cpp
-msgid ""
-"Select all of the audio you want filtered, choose how much noise you want\n"
-"filtered out, and then click 'OK' to remove noise.\n"
-msgstr ""
-"请选择所有要过滤的音频，再选择需要过滤掉多少噪音，\n"
-"然后点击“确定”来消除噪声。 \n"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Noise re&duction (dB):"
-msgstr "噪声抑制(dB) (&D)："
-
-#: src/effects/NoiseRemoval.cpp
-msgid "&Sensitivity (dB):"
-msgstr "灵敏度(dB) (&S)："
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Fr&equency smoothing (Hz):"
-msgstr "频率平滑 (Hz)(&E) ："
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attac&k/decay time (secs):"
-msgstr "上升/衰减时间（秒）(&K)："
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Attack/decay time"
-msgstr "上升/衰减时间"
-
-#: src/effects/NoiseRemoval.cpp
-msgid "Re&move"
-msgstr "移除(&M)"
 
 #: src/effects/Normalize.cpp
 msgid "Normalize"
@@ -7816,11 +6831,6 @@ msgstr "立体声宽度(%) (&T)："
 msgid "Wet O&nly"
 msgstr "仅湿(&N)"
 
-#: src/effects/Reverb.cpp
-#, c-format
-msgid "Reverb: %s"
-msgstr "混响: %s"
-
 #: src/effects/Reverse.cpp
 msgid "Reverse"
 msgstr "反向（时间）"
@@ -8018,14 +7028,6 @@ msgid "Converts stereo tracks to mono"
 msgstr "将立体声轨转换为单声道"
 
 #: src/effects/StereoToMono.cpp
-msgid "Resampling left channel"
-msgstr "正在重采样左声道"
-
-#: src/effects/StereoToMono.cpp
-msgid "Resampling right channel"
-msgstr "正在重采样右声道"
-
-#: src/effects/StereoToMono.cpp
 msgid "Mixing down to mono"
 msgstr "正在混合至单声道"
 
@@ -8176,15 +7178,6 @@ msgstr "分别独立地截断轨道"
 #: src/effects/VST/VSTEffect.cpp
 msgid "VST Effects"
 msgstr "VST效果器"
-
-#: src/effects/VST/VSTEffect.cpp
-msgid "Scanning Shell VST"
-msgstr "扫描 Shell VST 中"
-
-#: src/effects/VST/VSTEffect.cpp
-#, c-format
-msgid "Registering %d of %d: %-64.64s"
-msgstr "注册 %d / %d: %-64.64s 中"
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LoadLV2.cpp src/effects/vamp/LoadVamp.cpp
@@ -8400,18 +7393,6 @@ msgid "Import Audio Unit Presets"
 msgstr "导入 Audio Unit 预设"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Presets (may select multiple)"
-msgstr "预设 (可以多选)"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp src/export/ExportMP3.cpp
-msgid "Preset"
-msgstr "预设"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Location"
-msgstr "位置"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
 msgstr "无法打开文件 \"%s\""
@@ -8492,14 +7473,6 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "无法将 XML 预设写入 \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to convert preset to internal format"
-msgstr "无法将预设转换为内置格式"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
-msgid "Failed to create property list for preset"
-msgstr "无法为预设创建属性列表"
-
-#: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr "无法为 \"%s\" 预设设定类信息"
@@ -8568,16 +7541,6 @@ msgid "Couldn't instantiate effect"
 msgstr "无法实例化效果"
 
 #: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported feature %s\n"
-msgstr "%s 需要不受支持的功能 %s\n"
-
-#: src/effects/lv2/LV2Effect.cpp
-#, c-format
-msgid "%s requires unsupported option %s\n"
-msgstr "%s 需要不受支持的选项 %s\n"
-
-#: src/effects/lv2/LV2Effect.cpp
 msgid "Generator"
 msgstr "生成器"
 
@@ -8634,26 +7597,6 @@ msgstr "错误：在头部指定的文件“%s”未在插件路径下找到。\
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Audio selection required."
 msgstr "需要自动选择。"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Nyquist Error"
-msgstr "Nyquist 错误"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid ""
-"Sorry, cannot apply effect on stereo tracks where the tracks don't match."
-msgstr "抱歉，当立体声轨不匹配时，无法执行效果操作。"
-
-#: src/effects/nyquist/Nyquist.cpp
-#, c-format
-msgid ""
-"Selection too long for Nyquist code.\n"
-"Maximum allowed selection is %ld samples\n"
-"(about %.1f hours at 44100 Hz sample rate)."
-msgstr ""
-"选择了太多 Nyquist 代码。\n"
-"最大允许的选择是 %ld 样本\n"
-"(大约 44100hz 采样率 %.1f 小时 )。"
 
 #: src/effects/nyquist/Nyquist.cpp
 msgid "Debug Output: "
@@ -8737,10 +7680,6 @@ msgstr ""
 "对于 LISP 代码，请以左圆括号开始语句，例如：\n"
 "\t(mult s 0.1)\n"
 " 。"
-
-#: src/effects/nyquist/Nyquist.cpp
-msgid "Error in Nyquist code"
-msgstr "Nyquist 代码错误"
 
 #. i18n-hint: refers to programming "languages"
 #: src/effects/nyquist/Nyquist.cpp
@@ -8835,12 +7774,6 @@ msgid "Vamp Effects"
 msgstr "Vamp 效果器"
 
 #: src/effects/vamp/VampEffect.cpp
-msgid ""
-"Sorry, Vamp Plug-ins cannot be run on stereo tracks where the individual "
-"channels of the track do not match."
-msgstr "抱歉，当立体声轨不匹配时，Vamp插件无法执行操作。"
-
-#: src/effects/vamp/VampEffect.cpp
 msgid "Sorry, failed to load Vamp Plug-in."
 msgstr "抱歉，载入 Vamp 插件失败。"
 
@@ -8884,55 +7817,12 @@ msgstr "所有的音频被静音。"
 
 #: src/export/Export.cpp
 #, c-format
-msgid "Are you sure you want to export the file as \"%s\"?\n"
-msgstr "您确认要导出文件为“%s”？\n"
-
-#: src/export/Export.cpp
-#, c-format
-msgid ""
-"You are about to export a %s file with the name \"%s\".\n"
-"\n"
-"Normally these files end in \".%s\", and some programs will not open files "
-"with nonstandard extensions.\n"
-"\n"
-"Are you sure you want to export the file under this name?"
-msgstr ""
-"您要导出一个 %s 文件 并命名为 \"%s\"。\n"
-"\n"
-"一般这些文件以\".%s\"终点，某些程序可能无法打开非标准扩展名的文件。\n"
-"\n"
-"确定要以此名字保存此文件吗？"
-
-#: src/export/Export.cpp
-msgid "Sorry, pathnames longer than 256 characters not supported."
-msgstr "抱歉，路径名不能超过 256 个字符。"
-
-#: src/export/Export.cpp
-#, c-format
 msgid "A file named \"%s\" already exists. Replace?"
 msgstr "一个名叫\"%s\"的文件已经存在。替换吗？"
 
 #: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one mono file."
-msgstr "您的轨道将被合成并导出为一个单声道文件。"
-
-#: src/export/Export.cpp
-msgid "Your tracks will be mixed down and exported as one stereo file."
-msgstr "您的轨道将被合成并导出为一个立体声文件。"
-
-#: src/export/Export.cpp
-msgid ""
-"Your tracks will be mixed down to one exported file according to the encoder "
-"settings."
-msgstr "您的轨道将在导出文件中被合成为双声道立体声。"
-
-#: src/export/Export.cpp
 msgid "Advanced Mixing Options"
 msgstr "高级混音选项"
-
-#: src/export/Export.cpp src/export/ExportDialog.cpp
-msgid "Format Options"
-msgstr "格式选项"
 
 #: src/export/Export.cpp
 #, c-format
@@ -8978,1190 +7868,36 @@ msgstr "浏览..."
 msgid "Show output"
 msgstr "显示输出"
 
-#. i18n-hint: Some programmer-oriented terminology here:
-#. "Data" refers to the sound to be exported, "piped" means sent,
-#. and "standard in" means the default input stream that the external program,
-#. named by %f, will read.  And yes, it's %f, not %s -- this isn't actually used
-#. in the program as a format string.  Keep %f unchanged.
-#: src/export/ExportCL.cpp
-#, c-format
-msgid ""
-"Data will be piped to standard in. \"%f\" uses the file name in the export "
-"window."
-msgstr "数据会以管道传入标准输入。 \"%f\"使用文件名在导出窗口."
-
-#. i18n-hint files that can be run as programs
-#: src/export/ExportCL.cpp
-msgid "Executables"
-msgstr "可执行文件"
-
-#: src/export/ExportCL.cpp
-msgid "Find path to command"
-msgstr "查找命令路径"
-
-#: src/export/ExportCL.cpp
-msgid "(external program)"
-msgstr "(外部程序)"
-
-#: src/export/ExportCL.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Cannot export audio to %s"
-msgstr "无法将音频导出至 %s"
-
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
 msgstr "导出"
 
 #: src/export/ExportCL.cpp
-msgid "Exporting the selected audio using command-line encoder"
-msgstr "用命令行方式的编码器导出选择的音频"
-
-#: src/export/ExportCL.cpp
-msgid "Exporting the audio using command-line encoder"
-msgstr "用命令行方式的编码器导出音频"
-
-#: src/export/ExportCL.cpp
-msgid "Command Output"
-msgstr "命令行输出"
-
-#: src/export/ExportCL.cpp
 msgid "&OK"
 msgstr "确定(&O)"
-
-#: src/export/ExportCL.cpp
-msgid "You've specified a file name without an extension. Are you sure?"
-msgstr "您指定了一个无扩展名的文件名。确定吗？"
-
-#: src/export/ExportCL.cpp
-msgid "Program name appears to be missing."
-msgstr "程序名似乎丢失。"
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "\"%s\" couldn't be found."
-msgstr "找不到 \"%s\"。"
-
-#: src/export/ExportCL.cpp
-#, c-format
-msgid "Unable to locate \"%s\" in your path."
-msgstr "无法在路径中找到 \"%s\"。"
-
-#: src/export/ExportDialog.cpp
-#, fuzzy
-#| msgid "Format Options"
-msgid "Export Options"
-msgstr "格式选项"
 
 #: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
 msgid "Cancel"
 msgstr "取消"
-
-#: src/export/ExportFFmpeg.cpp
-msgid ""
-"Properly configured FFmpeg is required to proceed.\n"
-"You can configure it at Preferences > Libraries."
-msgstr ""
-"需要正确配置 FFmpeg 才能继续。\n"
-"您可以在 偏好设置 > 库 中配置它。"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't determine format description for file \"%s\"."
-msgstr "FFmpeg：错误 - 不能确定文件“%s”的格式描述。"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg Error"
-msgstr "FFmpeg 错误"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate output format context."
-msgstr "FFmpeg：错误 - 无法为输出格式上下文分配内存。"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgstr "FFmpeg：错误 - 无法将音频流添加到输出文件“%s”中。"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't open output file \"%s\" to write. Error code is %d."
-msgstr "FFmpeg：错误 - 无法打开输出文件“%s”以写入。错误代码： %d。"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg : ERROR - Can't write headers to output file \"%s\". Error code is %d."
-msgstr "FFmpeg：错误 - 无法为输出文件“%s”写入文件头。错误代码： %d。"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"FFmpeg cannot find audio codec 0x%x.\n"
-"Support for this codec is probably not compiled in."
-msgstr ""
-"FFmpeg找不到音频编码 0x%x。\n"
-"此编码的支持很可能没有被编译入。"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported a generic error (EPERM)"
-msgstr "编解码器报告了一个一般错误 (EPERM)"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "The codec reported an invalid parameter (EINVAL)"
-msgstr "编解码器报告了一个无效的参数 (EINVAL)"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Can't open audio codec \"%s\" (0x%x)\n"
-"\n"
-"%s"
-msgstr ""
-"无法打开音频编解码器 \"%s\" (0x%x)\n"
-"\n"
-"%s"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't allocate buffer to read into from audio FIFO."
-msgstr "FFmpeg：错误 - 无法从音频 FIFO 中分配要读取的缓存。"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy
-#| msgid "FFmpeg : ERROR - Can't add audio stream to output file \"%s\"."
-msgid "FFmpeg : ERROR - Couldn't write audio frame to output file."
-msgstr "FFmpeg：错误 - 无法将音频流添加到输出文件“%s”中。"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgstr "FFmpeg：错误 - 无法获取采样缓冲大小 (Could not get sample buffer size)"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Could not allocate bytes for samples buffer"
-msgstr ""
-"FFmpeg：错误 - 无法为采样缓存分配字节 (Could not allocate bytes for samples "
-"buffer)"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Could not get sample buffer size"
-msgid "FFmpeg : ERROR - Could not setup audio frame. Failed with error %d"
-msgstr "FFmpeg：错误 - 无法获取采样缓冲大小 (Could not get sample buffer size)"
-
-#: src/export/ExportFFmpeg.cpp
-#, fuzzy, c-format
-#| msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgid "FFmpeg : ERROR - encoding frame failed with error %d"
-msgstr "FFmpeg：错误 - 不能编码音频帧。"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Too much remaining data."
-msgstr "FFmpeg：错误 - 剩余数据太多。"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - nAudioFrameSizeOut too large."
-msgstr "FFmpeg：错误 - nAudioFrameSizeOut 过大。"
-
-#: src/export/ExportFFmpeg.cpp
-msgid "FFmpeg : ERROR - Can't encode audio frame."
-msgstr "FFmpeg：错误 - 不能编码音频帧。"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"Attempted to export %d channels, but maximum number of channels for selected "
-"output format is %d"
-msgstr "尝试导出 %d 个声道，但选择的输出格式支持的最大声道数是 %d"
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid "Exporting selected audio as %s"
-msgstr "正以 %s 导出选择的音频"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the audio as %s"
-msgstr "正以 %s 导出音频"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Invalid sample rate"
-msgstr "无效的采样率"
 
 #: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
 #: src/menus/TrackMenus.cpp
 msgid "Resample"
 msgstr "重采样"
 
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the current output\n"
-"file format. "
-msgstr ""
-"此项目的采样率（%d）不被当前的\n"
-"输出文件格式支持。 "
-
-#: src/export/ExportFFmpeg.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the current output file format. "
-msgstr ""
-"此项目的采样率（%d）和比特率（%d kbps）的组合\n"
-"不被当前的输出文件格式支持。 "
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "You may resample to one of the rates below."
-msgstr "您可以重采样到下述任一采样率。"
-
-#: src/export/ExportFFmpeg.cpp src/export/ExportMP3.cpp
-msgid "Sample Rates"
-msgstr "采样率"
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#. i18n-hint: kbps is the bitrate of the MP3 file, kilobits per second
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "%d kbps"
-msgstr "%d kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportMP2.cpp
-msgid "Bit Rate:"
-msgstr "比特率："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Quality (kbps):"
-msgstr "质量（kbps）："
-
-#. i18n-hint kbps abbreviates "thousands of bits per second"
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "%.2f kbps"
-msgstr "%.2f kbps"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "0"
-msgstr "0"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "1"
-msgstr "1"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "3"
-msgstr "3"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "4"
-msgstr "4"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "5"
-msgstr "5"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "6"
-msgstr "6"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportFLAC.cpp
-msgid "7"
-msgstr "7"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "9"
-msgstr "9"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10"
-msgstr "10"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "On"
-msgstr "打开"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Constrained"
-msgstr "受约束"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VOIP"
-msgstr "VOIP"
-
 #: src/export/ExportFFmpegDialogs.cpp
 msgid "Audio"
 msgstr "音频"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Low Delay"
-msgstr "低延迟"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2.5 ms"
-msgstr "2.5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "5 ms"
-msgstr "5 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "10 ms"
-msgstr "10 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "20 ms"
-msgstr "20 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "40 ms"
-msgstr "40 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "60 ms"
-msgstr "60 ms"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Narrowband"
-msgstr "窄频带"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mediumband"
-msgstr "中频带"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Wideband"
-msgstr "宽频带"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Super Wideband"
-msgstr "超宽频带"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Fullband"
-msgstr "全频带"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression"
-msgstr "压缩等级"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame Duration:"
-msgstr "帧持续时长:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Vbr Mode:"
-msgstr "Vbr 模式:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Application:"
-msgstr "应用类型:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Cutoff:"
-msgstr "截除:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Open custom FFmpeg format options"
-msgstr "打开自定义 FFmpeg 格式选项"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Format:"
-msgstr "当前格式:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Current Codec:"
-msgstr "当前编解码器:"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Error Saving FFmpeg Presets"
-msgstr "保存 VST 预设错误"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Overwrite preset '%s'?"
-msgstr "覆盖现有的预设“%s”？"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Confirm Overwrite"
-msgstr "确认覆盖"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select format before saving a profile"
-msgstr "请在保存配置前选择格式"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Please select codec before saving a profile"
-msgstr "请在保存配置前选择编码"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Preset '%s' does not exist."
-msgstr "预设“%s”不存在。"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Replace preset '%s'?"
-msgstr "替换预设“%s”？"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LC"
-msgstr "LC (低复杂度)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Main"
-msgstr "Main (主配置)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LTP"
-msgstr "LTP (长程预测)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "M4A (AAC) Files (FFmpeg)"
-msgstr "M4A (AAC) 文件 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AC3 Files (FFmpeg)"
-msgstr "AC3 文件 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "AMR (narrow band) Files (FFmpeg)"
-msgstr "AMR (窄频带) 文件 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Opus (OggOpus) Files (FFmpeg)"
-msgstr "Opus (OggOpus) 文件 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "WMA (version 2) Files (FFmpeg)"
-msgstr "WMA (v2) 文件 (FFmpeg)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Custom FFmpeg Export"
-msgstr "自定义 FFmpeg 导出"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Estimate"
-msgstr "估计"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "2-level"
-msgstr "2 级"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "4-level"
-msgstr "4 级"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "8-level"
-msgstr "8 级"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Full search"
-msgstr "完整搜索"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Log search"
-msgstr "日志搜索"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Configure custom FFmpeg options"
-msgstr "配置自定义 FFmpeg 选项"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Preset:"
-msgstr "预设："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Load Preset"
-msgstr "载人预设"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Import Presets"
-msgstr "导入预设"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Export Presets"
-msgstr "导出预设"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Codec:"
-msgstr "编码："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Not all formats and codecs are compatible. Nor are all option combinations "
-"compatible with all codecs."
-msgstr "并非所有的格式和编码都是兼容的，并非所有的选项组合与编码都兼容."
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Formats"
-msgstr "显示所有格式"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Show All Codecs"
-msgstr "显示所有编码"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "General Options"
-msgstr "通用选项"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"ISO 639 3-letter language code\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"ISO 639 3 字符语言编码\n"
-"可选\n"
-"空 - 自动"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Language:"
-msgstr "语言："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Bit Reservoir"
-msgstr "储位器"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "VBL"
-msgstr "VBL"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Codec tag (FOURCC)\n"
-"Optional\n"
-"empty - automatic"
-msgstr ""
-"编解码器标签 (FOURCC)\n"
-"可选的\n"
-"空 - 自动"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Tag:"
-msgstr "标签："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Bit Rate (bits/second) - influences the resulting file size and quality\n"
-"Some codecs may only accept specific values (128k, 192k, 256k etc)\n"
-"0 - automatic\n"
-"Recommended - 192000"
-msgstr ""
-"比特率 (bit/s) - 影响文件的大小和质量\n"
-"有些编码只接受特定的值 (128k, 192k, 256 等)\n"
-"0 - 自动\n"
-"建议 - 192000"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Overall quality, used differently by different codecs\n"
-"Required for vorbis\n"
-"0 - automatic\n"
-"-1 - off (use bitrate instead)"
-msgstr ""
-"总体质量，不同的编解码器使用的方式不同\n"
-"Vorbis 必需\n"
-"0 - 自动\n"
-"-1 - 关 (使用比特率代替)"
-
-#: src/export/ExportFFmpegDialogs.cpp src/export/ExportOGG.cpp
-msgid "Quality:"
-msgstr "质量："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Sample rate (Hz)\n"
-"0 - don't change sample rate"
-msgstr ""
-"采样率 (Hz)\n"
-"0 - 不改变采样率"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Sample Rate:"
-msgstr "采样率："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Audio cutoff bandwidth (Hz)\n"
-"Optional\n"
-"0 - automatic"
-msgstr ""
-"音频裁去带宽 (Hz)\n"
-"可选\n"
-"0 - 自动"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"AAC Profile\n"
-"Low Complexity - default\n"
-"Most players won't play anything other than LC"
-msgstr ""
-"AAC 配置\n"
-"低复杂度 - 默认\n"
-"多数播放器只能播放低复杂度的"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Profile:"
-msgstr "配置："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "FLAC options"
-msgstr "FLAC 选项"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Compression level\n"
-"Required for FLAC\n"
-"-1 - automatic\n"
-"min - 0 (fast encoding, large output file)\n"
-"max - 10 (slow encoding, small output file)"
-msgstr ""
-"压缩级\n"
-"FLAC 必需\n"
-"-1 - 自动\n"
-"最小 - 0 (快速编码，输出文件大)\n"
-"最大 - 10 (慢速编码，输出文件小)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Compression:"
-msgstr "压缩："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Frame size\n"
-"Optional\n"
-"0 - default\n"
-"min - 16\n"
-"max - 65535"
-msgstr ""
-"帧大小\n"
-"可选\n"
-"0 - 默认\n"
-"最小 - 16\n"
-"最大 - 65535"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Frame:"
-msgstr "帧："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"LPC coefficients precision\n"
-"Optional\n"
-"0 - default\n"
-"min - 1\n"
-"max - 15"
-msgstr ""
-"线性预测编码(LPC)系数精度\n"
-"可选\n"
-"0 - 默认\n"
-"最小 - 1\n"
-"最大 - 15"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "LPC"
-msgstr "LPC"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Prediction Order Method\n"
-"Estimate - fastest, lower compression\n"
-"Log search - slowest, best compression\n"
-"Full search - default"
-msgstr ""
-"预测序方法\n"
-"估计 - 最快，低压缩\n"
-"对数搜索 - 最慢，高压缩\n"
-"全搜索 - 默认"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "PdO Method:"
-msgstr "PdO方法："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"最小预测序\n"
-"可选\n"
-"-1 - 默认\n"
-"最小 - 0\n"
-"最大 - 32 (有 LPC) 或 4 (无 LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PdO"
-msgstr "最小 PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal prediction order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 32 (with LPC) or 4 (without LPC)"
-msgstr ""
-"最大预测序\n"
-"可选\n"
-"-1 - 默认\n"
-"最小 - 0\n"
-"最大 - 32 (有 LPC) 或 4 (无 LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PdO"
-msgstr "最大 PdO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Minimal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"最小分区序\n"
-"可选\n"
-"-1 - 默认\n"
-"最小 - 0\n"
-"最大 - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Min. PtO"
-msgstr "最小 PtO"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximal partition order\n"
-"Optional\n"
-"-1 - default\n"
-"min - 0\n"
-"max - 8"
-msgstr ""
-"最大分区序\n"
-"可选\n"
-"-1 - 默认\n"
-"最小 - 0\n"
-"最大 - 8"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Max. PtO"
-msgstr "最大 PtO"
-
-#. i18n-hint:  Abbreviates "Linear Predictive Coding",
-#. but this text needs to be kept very short
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Use LPC"
-msgstr "使用线性预测编码(LPC)"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "MPEG container options"
-msgstr "MPEG 容器选项"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Maximum bit rate of the multiplexed stream\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"多路流的最大比特率\n"
-"可选\n"
-"0 - 默认"
-
-#. i18n-hint: 'mux' is short for multiplexor, a device that selects between several inputs
-#. 'Mux Rate' is a parameter that has some bearing on compression ratio for MPEG
-#. it has a hard to predict effect on the degree of compression
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Mux Rate:"
-msgstr "多路复合率："
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid ""
-"Packet size\n"
-"Optional\n"
-"0 - default"
-msgstr ""
-"包大小\n"
-"可选\n"
-"0 - 默认"
-
-#. i18n-hint: 'Packet Size' is a parameter that has some bearing on compression ratio for MPEG
-#. compression.  It measures how big a chunk of audio is compressed in one piece.
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Packet Size:"
-msgstr "包大小："
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't delete a preset without name"
-msgstr "您不能删除一个没有名字的预设"
-
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Delete preset '%s'?"
-msgstr "删除预设“%s”？"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "You can't save a preset without a name"
-msgstr "您不能保存一个没有名字的预设"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file with presets to import"
-msgstr "选择有预设的 XML 文件进行导入"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "No presets to export"
-msgstr "没有可导出的预设"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Select xml file to export presets into"
-msgstr "选择将预设导出的 xml 文件"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-#, c-format
-msgid "Format %s is not compatible with codec %s."
-msgstr "格式 %s 不兼容解码器 %s。"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Incompatible format and codec"
-msgstr "不兼容的格式和解码器"
-
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to guess format"
-msgstr "猜测格式失败"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/export/ExportFFmpegDialogs.cpp
-msgid "Failed to find the codec"
-msgstr "寻找编码失败"
-
-#: src/export/ExportFLAC.cpp
-msgid "16 bit"
-msgstr "16 位"
-
-#: src/export/ExportFLAC.cpp
-msgid "24 bit"
-msgstr "24 位"
-
-#: src/export/ExportFLAC.cpp
-msgid "0 (fastest)"
-msgstr "0 (最快)"
-
-#: src/export/ExportFLAC.cpp
-msgid "8 (best)"
-msgstr "8 (最好)"
-
-#: src/export/ExportFLAC.cpp
-msgid "Level:"
-msgstr "压缩级别："
-
-#: src/export/ExportFLAC.cpp src/export/ExportMka.cpp
-msgid "Bit depth:"
-msgstr "位深度："
-
-#: src/export/ExportFLAC.cpp
-msgid "FLAC Files"
-msgstr "FLAC 文件"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid "FLAC export couldn't open %s"
-msgstr "FLAC 导出不能打开 %s"
-
-#: src/export/ExportFLAC.cpp
-#, c-format
-msgid ""
-"FLAC encoder failed to initialize\n"
-"Status: %d"
-msgstr ""
-"FLAC 编码器初始化失败\n"
-"状态： %d"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the selected audio as FLAC"
-msgstr "正把选中的音频导出为 FLAC 文件"
-
-#: src/export/ExportFLAC.cpp
-msgid "Exporting the audio as FLAC"
-msgstr "正在导出音频为 FLAC 格式"
-
-#: src/export/ExportMP2.cpp
-msgid "MP2 Files"
-msgstr "MP2 文件"
-
-#: src/export/ExportMP2.cpp
-msgid "Cannot export MP2 with this sample rate and bit rate"
-msgstr "不能使用此采样率和比特率组合导出 MP2"
-
-#: src/export/ExportMP2.cpp src/export/ExportMP3.cpp src/export/ExportOGG.cpp
-msgid "Unable to open target file for writing"
-msgstr "不能打开目标文件写入"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting selected audio at %ld kbps"
-msgstr "以 %ld kbps 导出选择的音频中"
-
-#: src/export/ExportMP2.cpp
-#, c-format
-msgid "Exporting the audio at %ld kbps"
-msgstr "以 %ld kbps 导出音频中"
-
-#: src/export/ExportMP3.cpp
-msgid "220-260 kbps (Best Quality)"
-msgstr "220-260 kbps (最佳质量)"
-
-#: src/export/ExportMP3.cpp
-msgid "200-250 kbps"
-msgstr "200-250 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "170-210 kbps"
-msgstr "170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "155-195 kbps"
-msgstr "155-195 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "145-185 kbps"
-msgstr "145-185 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "110-150 kbps"
-msgstr "110-150 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "95-135 kbps"
-msgstr "95-135 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "80-120 kbps"
-msgstr "80-120 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "65-105 kbps"
-msgstr "65-105 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "45-85 kbps (Smaller files)"
-msgstr "45-85 kbps (更小的文件)"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane, 320 kbps"
-msgstr "发狂，320 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme, 220-260 kbps"
-msgstr "极端，220-260 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Standard, 170-210 kbps"
-msgstr "标准，170-210 kbps"
-
-#: src/export/ExportMP3.cpp
-msgid "Medium, 145-185 kbps"
-msgstr "中等，145-185 kbps"
-
-#. i18n-hint: Slightly humorous - as in use an insane precision with MP3.
-#: src/export/ExportMP3.cpp
-msgid "Insane"
-msgstr "发狂"
-
-#: src/export/ExportMP3.cpp
-msgid "Extreme"
-msgstr "极端"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
 msgid "Standard"
 msgstr "标准"
 
-#: src/export/ExportMP3.cpp
-msgid "Medium"
-msgstr "中等"
-
-#: src/export/ExportMP3.cpp
-msgid "Variable"
-msgstr "可变"
-
-#: src/export/ExportMP3.cpp
-msgid "Average"
-msgstr "平均"
-
-#: src/export/ExportMP3.cpp
-msgid "Constant"
-msgstr "静态"
-
-#: src/export/ExportMP3.cpp
-msgid "Joint Stereo"
-msgstr "合并立体声"
-
-#: src/export/ExportMP3.cpp
-msgid "Stereo"
-msgstr "立体声"
-
-#: src/export/ExportMP3.cpp
-msgid "Bit Rate Mode:"
-msgstr "比特率模式："
-
 #. i18n-hint: meaning accuracy in reproduction of sounds
 #: src/export/ExportMP3.cpp src/prefs/QualityPrefs.cpp src/prefs/QualityPrefs.h
 msgid "Quality"
 msgstr "质量"
-
-#: src/export/ExportMP3.cpp
-msgid "Channel Mode:"
-msgstr "声道模式："
-
-#: src/export/ExportMP3.cpp
-msgid "Force export to mono"
-msgstr "强制输出到单声道"
-
-#: src/export/ExportMP3.cpp
-msgid "MP3 Files"
-msgstr "MP3 文件"
-
-#: src/export/ExportMP3.cpp
-msgid "Unable to initialize MP3 stream"
-msgstr "不能初始化 MP3 流"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with %s preset"
-msgstr "正用预设 %s 导出选择的音频"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with %s preset"
-msgstr "正用预设 %s 导出音频"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio with VBR quality %s"
-msgstr "正以 VBR(可变比特率) 质量 %s 导出选择的音频"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio with VBR quality %s"
-msgstr "正以 VBR(可变比特率) 质量 %s 导出音频"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting selected audio at %d Kbps"
-msgstr "正以 %d Kbps 导出选择的音频"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Exporting the audio at %d Kbps"
-msgstr "正以 %d Kbps 导出音频"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid "Error %ld returned from MP3 encoder"
-msgstr "错误，MP3 编码器返回 %ld"
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) is not supported by the MP3\n"
-"file format. "
-msgstr ""
-"项目的采样率（%d）不被 MP3\n"
-"文件格式支持。 "
-
-#: src/export/ExportMP3.cpp
-#, c-format
-msgid ""
-"The project sample rate (%d) and bit rate (%d kbps) combination is not\n"
-"supported by the MP3 file format. "
-msgstr ""
-"项目的采样率（%d）和比特率（%d kbps）的组合\n"
-"不被 MP3 文件格式支持。 "
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "16-bit"
-msgid "FLAC 16-bit"
-msgstr "16 位"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "24-bit"
-msgid "FLAC 24-bit"
-msgstr "24 位"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Labels"
-msgid "Keep Labels"
-msgstr "标签"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting an Audio File"
-msgid "Matroska Audio Files"
-msgstr "导入一个音频文件"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the selected audio as FLAC"
-msgid "Exporting the selected audio as MKA"
-msgstr "正把选中的音频导出为 FLAC 文件"
-
-#: src/export/ExportMka.cpp
-#, fuzzy
-#| msgid "Exporting the audio as FLAC"
-msgid "Exporting the audio as MKA"
-msgstr "正在导出音频为 FLAC 格式"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export Multiple"
-msgstr "导出多个文件"
-
-#: src/export/ExportMultiple.cpp
-msgid "Cannot Export Multiple"
-msgstr "不能导出多个"
-
-#: src/export/ExportMultiple.cpp
-msgid ""
-"You have no unmuted Audio Tracks and no applicable \n"
-"labels, so you cannot export to separate audio files."
-msgstr ""
-"您没有未静音的音轨和可用的标签\n"
-"因此您不能导出为多个拆分的音频文件。"
-
-#: src/export/ExportMultiple.cpp
-msgid "Export files to:"
-msgstr "导出文件到："
-
-#: src/export/ExportMultiple.cpp
-msgid "Folder:"
-msgstr "文件夹："
-
-#: src/export/ExportMultiple.cpp
-msgid "Choose..."
-msgstr "选择..."
-
-#: src/export/ExportMultiple.cpp
-msgid "Create"
-msgstr "新建"
-
-#: src/export/ExportMultiple.cpp
-msgid "Options:"
-msgstr "选项："
 
 #: src/export/ExportMultiple.cpp
 msgid "Split files based on:"
@@ -10170,14 +7906,6 @@ msgstr "分割文件，基于："
 #: src/export/ExportMultiple.cpp
 msgid "Include audio before first label"
 msgstr "包含在第一个标签之前的音频"
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name:"
-msgstr "第一个文件名："
-
-#: src/export/ExportMultiple.cpp
-msgid "First file name"
-msgstr "第一个文件名"
 
 #: src/export/ExportMultiple.cpp
 msgid "Name files:"
@@ -10200,17 +7928,8 @@ msgid "File name prefix:"
 msgstr "文件名前缀："
 
 #: src/export/ExportMultiple.cpp
-msgid "File name prefix"
-msgstr "文件名前缀"
-
-#: src/export/ExportMultiple.cpp
 msgid "Overwrite existing files"
 msgstr "覆盖现有的文件"
-
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid "\"%s\" successfully created."
-msgstr "\"%s\" 新建成功。"
 
 #: src/export/ExportMultiple.cpp
 msgid "Choose a location to save the exported files"
@@ -10242,200 +7961,16 @@ msgid "Something went really wrong after exporting the following %lld file(s)."
 msgstr "导出下列 %lld 文件之后出现严重错误。"
 
 #: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"\"%s\" doesn't exist.\n"
-"\n"
-"Would you like to create it?"
-msgstr ""
-"\"%s\"不存在。\n"
-"\n"
-"您想新建一个吗？"
-
-#: src/export/ExportMultiple.cpp
 msgid "Continue to export remaining files?"
 msgstr "继续导出剩余文件？"
-
-#. i18n-hint: The second %s gives some letters that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name.\n"
-"You cannot use any of these characters:\n"
-"\n"
-"%s\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"标签或轨道 \"%s\" 不是合法的文件名。\n"
-"您不能使用以下字符：\n"
-"\n"
-"%s\n"
-"\n"
-"可替代为："
-
-#. i18n-hint: The second %s gives a letter that can't be used.
-#: src/export/ExportMultiple.cpp
-#, c-format
-msgid ""
-"Label or track \"%s\" is not a legal file name. You cannot use \"%s\".\n"
-"\n"
-"Suggested replacement:"
-msgstr ""
-"标签或轨道 \"%s\" 不是合法的文件名。您不能使用 “%s”。\n"
-"\n"
-"可替代为："
-
-#: src/export/ExportMultiple.cpp
-msgid "Save As..."
-msgstr "保存为..."
-
-#: src/export/ExportOGG.cpp
-msgid "Ogg Vorbis Files"
-msgstr "Ogg Vorbis 文件"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - rate or quality problem"
-msgstr "无法导出 - 码率等问题"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with metadata"
-msgstr "无法导出 - 元数据问题"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem initialising"
-msgstr "无法导出 - 初始化问题"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem creating stream"
-msgstr "无法导出 - 流创建问题"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with packets"
-msgstr "无法导出 - 数据包问题"
-
-#: src/export/ExportOGG.cpp
-msgid "Unable to export - problem with file"
-msgstr "无法导出 - 文件的问题"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the selected audio as Ogg Vorbis"
-msgstr "将选定的音频导出为 Ogg Vorbis 文件"
-
-#: src/export/ExportOGG.cpp
-msgid "Exporting the audio as Ogg Vorbis"
-msgstr "将选定的音频导出为 Ogg Vorbis 格式"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "AIFF (Apple/SGI)"
-msgstr "AIFF (Apple/SGI)"
-
-#: src/export/ExportPCM.cpp src/import/ImportPCM.cpp
-msgid "WAV (Microsoft)"
-msgstr "WAV (Microsoft)"
-
-#: src/export/ExportPCM.cpp
-msgid "Header:"
-msgstr "数据头格式："
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
 msgstr "编码："
 
-#: src/export/ExportPCM.cpp
-msgid "Other uncompressed files"
-msgstr "其它无压缩音频文件"
-
-#: src/export/ExportPCM.cpp
-msgid "Error Exporting"
-msgstr "导出时出错"
-
-#: src/export/ExportPCM.cpp
-msgid "GSM 6.10 requires mono"
-msgstr "GSM 6.10 需要单声道"
-
-#: src/export/ExportPCM.cpp
-msgid "WAVEX and GSM 6.10 formats are not compatible"
-msgstr "WAVEX 和 GSM 6.10 格式不兼容"
-
-#: src/export/ExportPCM.cpp
-msgid "Cannot export audio in this format."
-msgstr "不能以这个格式导出音频。"
-
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid "Exporting the selected audio as %s"
-msgstr "输选中的音频为 %s"
-
-#. i18n-hint: %s will be the error message from libsndfile, which
-#. * is usually something unhelpful (and untranslated) like "system
-#. * error"
-#: src/export/ExportPCM.cpp
-#, c-format
-msgid ""
-"Error while writing %s file (disk full?).\n"
-"Libsndfile says \"%s\""
-msgstr ""
-"写%s 文件时出错 (磁盘可能)。\n"
-"Libsndfile 提示说 \"%s\""
-
 #: src/export/ExportPlugin.cpp
 msgid "No format specific options"
 msgstr "无格式指定选项"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg support not compiled in"
-msgstr "FFmpeg 支持未编译"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg startup failed"
-msgstr "FFmpeg 启动失败"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "FFmpeg library not found"
-msgstr "没有找到 FFmpeg 库"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Locate FFmpeg"
-msgstr "定位 FFmpeg"
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Location of '%s':"
-msgstr "“%s”的位置："
-
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "To find '%s', click here -->"
-msgstr "要寻找“%s”，请点击这里→"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "To get a free copy of FFmpeg, click here -->"
-msgstr "要得到一个免费的 FFmpeg 的副本，点击这里→"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Download"
-msgstr "下载"
-
-#: src/ffmpeg/FFmpeg.cpp
-msgid "Only avformat.dll"
-msgstr "仅 avformat.dll"
-
-#. i18n-hint: It's asking for the location of a file, for
-#. example, "Where is lame_enc.dll?" - you could translate
-#. "Where would I find the file '%s'?" instead if you want.
-#: src/ffmpeg/FFmpeg.cpp
-#, c-format
-msgid "Where is '%s'?"
-msgstr "“%s”在哪里？"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "FFmpeg not found"
-msgstr "FFmpeg没有找到"
-
-#: src/ffmpeg/FFmpegNotFoundDialog.cpp
-msgid "Do not show this warning again"
-msgstr "不要再显示这个警告了"
 
 #: src/import/Import.cpp
 msgid "All supported files"
@@ -10450,533 +7985,19 @@ msgstr "选择要导入的流"
 msgid "File \"%s\" not found."
 msgstr "未找到文件“%s”。"
 
-#: src/import/Import.cpp
-msgid ""
-"Try installing FFmpeg.\n"
-"\n"
-msgstr ""
-"请尝试安装 FFmpeg。\n"
-"\n"
-
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, c-format
 msgid "%s, %s"
 msgstr "%s，%s"
 
 #: src/import/ImportAUP.cpp
-msgid "AUP project files (*.aup)"
-msgstr "AUP 项目文件 (*.aup)"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Couldn't import the project:\n"
-"\n"
-"%s"
-msgstr ""
-"无法导入项目:\n"
-"\n"
-"%s"
-
-#: src/import/ImportAUP.cpp
 msgid "Import Project"
 msgstr "导入项目"
-
-#: src/import/ImportAUP.cpp
-msgid "Internal error in importer...tag not recognized"
-msgstr "导入器发生内部错误......无法识别标签"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'vpos' attribute."
-msgstr "无效的项目 'vpos' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'h' attribute."
-msgstr "无效的项目 'h' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'zoom' attribute."
-msgstr "无效的项目 'zoom' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel0' attribute."
-msgstr "无效的项目 'sel0' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'sel1' attribute."
-msgstr "无效的项目 'sel1' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selLow' attribute."
-msgstr "无效的项目 'selLow' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid project 'selHigh' attribute."
-msgstr "无效的项目 'selHigh' 属性。"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Couldn't find the project data folder: \"%s\""
-msgstr "找不到项目数据目录：\"%s\""
-
-#: src/import/ImportAUP.cpp
-msgid "Project Import"
-msgstr "项目导入"
-
-#: src/import/ImportAUP.cpp
-msgid ""
-"The active project already has a time track and one was encountered in the "
-"project being imported, bypassing imported time track."
-msgstr ""
-"活动项目已经具有时间轨道，并且在导入的项目中也遇到一个时间轨道，将会绕过导入"
-"的时间轨道 (不导入)。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'maxsamples' attribute."
-msgstr "无效的 'maxsamples' 序列属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'sampleformat' attribute."
-msgstr "无效的序列 'sampleformat' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Invalid sequence 'numsamples' attribute."
-msgstr "无效的 'numsamples' 序列属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Unable to parse the waveblock 'start' attribute"
-msgstr "无法解析波阻的 'start' 属性"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing project file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"项目文件 %s 丢失\n"
-"\n"
-"将插入静音片段取代。"
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid simpleblockfile 'len' attribute."
-msgstr "缺失或无效的 simpleblockfile 'len' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid silentblockfile 'len' attribute."
-msgstr "缺失或无效的 silentblockfile 'len' 属性。"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Missing alias file %s\n"
-"\n"
-"Inserting silence instead."
-msgstr ""
-"别名文件 %s 丢失\n"
-"\n"
-"将插入静音片段取代。"
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliasstart' attribute."
-msgstr "缺失或无效的 pcmaliasblockfile 'aliasstart' 属性。"
-
-#: src/import/ImportAUP.cpp
-msgid "Missing or invalid pcmaliasblockfile 'aliaslen' attribute."
-msgstr "缺失或无效的 pcmaliasblockfile 'aliaslen' 属性。"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid ""
-"Error while processing %s\n"
-"\n"
-"Inserting silence."
-msgstr ""
-"处理 %s 过程中发生错误\n"
-"\n"
-"将插入静音片段。"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to open %s"
-msgstr "无法打开 %s"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Failed to seek to position %lld in %s"
-msgstr "位置 %lld 无法在 %s 中找到"
-
-#: src/import/ImportAUP.cpp
-#, c-format
-msgid "Unable to read %lld samples from %s"
-msgstr "%lld 采样无法从 %s 读取"
-
-#: src/import/ImportFFmpeg.cpp
-msgid "FFmpeg-compatible files"
-msgstr "FFmpeg 兼容文件"
-
-#. i18n-hint: "codec" is short for a "coder-decoder" algorithm
-#: src/import/ImportFFmpeg.cpp
-#, c-format
-msgid ""
-"Index[%02x] Codec[%s], Language[%s], Bitrate[%s], Channels[%d], Duration[%d]"
-msgstr "索引[%02x] 编解码器[%s], 语言[%s], 比特率[%s], 声道数[%d], 时长[%d]"
-
-#: src/import/ImportFLAC.cpp
-msgid "FLAC files"
-msgstr "FLAC 文件"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer-compatible files"
-msgstr "GStreamer 兼容文件"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to add decoder to pipeline"
-msgstr "无法在加载解码器到管线"
-
-#: src/import/ImportGStreamer.cpp
-msgid "GStreamer Importer"
-msgstr "GStreamer 导入器"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to set stream state to paused."
-msgstr "不能设置流状态为暂停。"
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgstr "索引[%02d], 声道[%s], 声道[%d], 比率[%d]"
-
-#: src/import/ImportGStreamer.cpp
-msgid "File doesn't contain any audio streams."
-msgstr "文件不包含任何音频流。"
-
-#: src/import/ImportGStreamer.cpp
-msgid "Unable to import file, state change failed."
-msgstr "不能导入文件，状态更改失败。"
-
-#: src/import/ImportGStreamer.cpp
-#, c-format
-msgid "GStreamer Error: %s"
-msgstr "GStreamer 错误：%s"
-
-#: src/import/ImportLOF.cpp
-msgid "List of Files in basic text format"
-msgstr "基本文本格式的文件列表"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid window offset in LOF file."
-msgstr "LOF 文件中的窗口偏移无效。"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "LOF Error"
-msgstr "LOF 错误"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid duration in LOF file."
-msgstr "LOF 文件中的持续时间无效。"
-
-#: src/import/ImportLOF.cpp
-msgid "MIDI tracks cannot be offset individually, only audio files can be."
-msgstr "MIDI轨道不能单独偏移，只有音频文件才可以。"
-
-#. i18n-hint: You do not need to translate "LOF"
-#: src/import/ImportLOF.cpp
-msgid "Invalid track offset in LOF file."
-msgstr "LOF 文件中的轨道偏移无效。"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Imported MIDI from '%s'"
-msgstr "从“%s”中导入的 MIDI"
-
-#: src/import/ImportMIDI.cpp
-msgid "Import MIDI"
-msgstr "导入MIDI"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Filename too short."
-msgstr "无法打开文件 %s：文件名过短。"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s: Incorrect filetype."
-msgstr "无法打开文件 %s：文件类型错误。"
-
-#: src/import/ImportMIDI.cpp
-#, c-format
-msgid "Could not open file %s."
-msgstr "无法打开文件 %s。"
-
-#: src/import/ImportMP3.cpp
-msgid "MP3 files"
-msgstr "MP3文件"
-
-#: src/import/ImportMP3.cpp
-msgid ""
-"Import failed\n"
-"\n"
-"This is likely caused by a malformed MP3.\n"
-"\n"
-msgstr ""
-"导入失败\n"
-"\n"
-"这可能是由于畸形的 MP3 造成的。\n"
-"\n"
-
-#: src/import/ImportMka.cpp
-#, fuzzy
-#| msgid "%s files"
-msgid "Matroska files"
-msgstr "%s 文件"
-
-#: src/import/ImportMka.cpp
-#, fuzzy, c-format
-#| msgid "Index[%02d], Type[%s], Channels[%d], Rate[%d]"
-msgid "Index[%02zx] Track Number[%u], Codec[%s], Channels[%d], Rate[%.0f]"
-msgstr "索引[%02d], 声道[%s], 声道[%d], 比率[%d]"
-
-#: src/import/ImportOGG.cpp
-msgid "Ogg Vorbis files"
-msgstr "Ogg Vorbis 文件"
-
-#: src/import/ImportOGG.cpp
-#, c-format
-msgid "Index[%02x] Version[%d], Channels[%d], Rate[%ld]"
-msgstr "索引[%02x] 版本[%d], 声道[%d], 比率[%ld]"
-
-#: src/import/ImportOGG.cpp
-msgid "Media read error"
-msgstr "介质读取错误"
-
-#: src/import/ImportOGG.cpp
-msgid "Not an Ogg Vorbis file"
-msgstr "不是Ogg Vorbis文件"
-
-#: src/import/ImportOGG.cpp
-msgid "Vorbis version mismatch"
-msgstr "Vorbis版本不匹配"
-
-#: src/import/ImportOGG.cpp
-msgid "Invalid Vorbis bitstream header"
-msgstr "无效的 Vorbis 比特流头部"
-
-#: src/import/ImportOGG.cpp
-msgid "Internal logic fault"
-msgstr "内部处理错误"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV, AIFF, and other uncompressed types"
-msgstr "WAV、AIFF 及其它未压缩类型"
-
-#: src/import/ImportPCM.cpp
-msgid "AU (Sun/NeXT)"
-msgstr "AU (Sun/NeXT)"
-
-#: src/import/ImportPCM.cpp
-msgid "AVR (Audio Visual Research)"
-msgstr "AVR (Audio Visual Research)"
-
-#: src/import/ImportPCM.cpp
-msgid "CAF (Apple Core Audio File)"
-msgstr "CAF (Apple Core Audio File)"
-
-#: src/import/ImportPCM.cpp
-msgid "HTK (HMM Tool Kit)"
-msgstr "HTK (HMM Tool Kit)"
-
-#: src/import/ImportPCM.cpp
-msgid "IFF (Amiga IFF/SVX8/SV16)"
-msgstr "IFF (Amiga IFF/SVX8/SV16)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-msgstr "MAT4 (GNU Octave 2.0 / Matlab 4.2)"
-
-#: src/import/ImportPCM.cpp
-msgid "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-msgstr "MAT5 (GNU Octave 2.1 / Matlab 5.0)"
-
-#: src/import/ImportPCM.cpp
-msgid "MPC (Akai MPC 2k)"
-msgstr "MPC (Akai MPC 2k)"
-
-#: src/import/ImportPCM.cpp
-msgid "OGG (OGG Container format)"
-msgstr "OGG (OGG 容器格式)"
-
-#: src/import/ImportPCM.cpp
-msgid "PAF (Ensoniq PARIS)"
-msgstr "PAF (Ensoniq PARIS)"
-
-#: src/import/ImportPCM.cpp
-msgid "PVF (Portable Voice Format)"
-msgstr "PVF (Portable Voice Format)"
-
-#: src/import/ImportPCM.cpp
-msgid "RAW (header-less)"
-msgstr "RAW（无文件头）"
-
-#: src/import/ImportPCM.cpp
-msgid "RF64 (RIFF 64)"
-msgstr "RF64 (RIFF 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "SD2 (Sound Designer II)"
-msgstr "SD2 (Sound Designer II)"
-
-#: src/import/ImportPCM.cpp
-msgid "SDS (Midi Sample Dump Standard)"
-msgstr "SDS (Midi Sample Dump Standard)"
-
-#: src/import/ImportPCM.cpp
-msgid "SF (Berkeley/IRCAM/CARL)"
-msgstr "SF (Berkeley/IRCAM/CARL)"
-
-#: src/import/ImportPCM.cpp
-msgid "VOC (Creative Labs)"
-msgstr "VOC (Creative Labs)"
-
-#: src/import/ImportPCM.cpp
-msgid "W64 (SoundFoundry WAVE 64)"
-msgstr "W64 (SoundFoundry WAVE 64)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAV (NIST Sphere)"
-msgstr "WAV (NIST Sphere)"
-
-#: src/import/ImportPCM.cpp
-msgid "WAVEX (Microsoft)"
-msgstr "WAVEX (Microsoft)"
-
-#: src/import/ImportPCM.cpp
-msgid "WVE (Psion Series 3)"
-msgstr "WVE (Psion Series 3)"
-
-#: src/import/ImportPCM.cpp
-msgid "XI (FastTracker 2)"
-msgstr "XI (FastTracker 2)"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 8 bit PCM"
-msgstr "带符号的 8 位 PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 16 bit PCM"
-msgstr "带符号的 16 位 PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 24 bit PCM"
-msgstr "带符号的 24 位 PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Signed 32 bit PCM"
-msgstr "带符号的 32 位 PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Unsigned 8 bit PCM"
-msgstr "无符号 8 位 PCM"
-
-#: src/import/ImportPCM.cpp
-msgid "32 bit float"
-msgstr "32 位浮点"
-
-#: src/import/ImportPCM.cpp
-msgid "64 bit float"
-msgstr "64 位浮点"
-
-#: src/import/ImportPCM.cpp
-msgid "U-Law"
-msgstr "U-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "A-Law"
-msgstr "A-Law"
-
-#: src/import/ImportPCM.cpp
-msgid "IMA ADPCM"
-msgstr "IMA ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Microsoft ADPCM"
-msgstr "Microsoft ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "GSM 6.10"
-msgstr "GSM 6.10"
-
-#: src/import/ImportPCM.cpp
-msgid "32kbs G721 ADPCM"
-msgstr "32kbs G721 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "24kbs G723 ADPCM"
-msgstr "24kbs G723 ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "12 bit DWVW"
-msgstr "12 位 DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DWVW"
-msgstr "16 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "24 bit DWVW"
-msgstr "24 bit DWVW"
-
-#: src/import/ImportPCM.cpp
-msgid "VOX ADPCM"
-msgstr "VOX ADPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "16 bit DPCM"
-msgstr "16 bit DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "8 bit DPCM"
-msgstr "8 bit DPCM"
-
-#: src/import/ImportPCM.cpp
-msgid "Vorbis"
-msgstr "Vorbis"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
 msgstr "正在导入 %s"
-
-#: src/import/ImportQT.cpp
-msgid "QuickTime files"
-msgstr "QuickTime文件"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to start QuickTime extraction"
-msgstr "不能启动QuickTime抽出"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime render quality"
-msgstr "不能设置QuickTime渲染质量"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to set QuickTime discrete channels property"
-msgstr "不能设置QuickTime离散通道属性"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get QuickTime sample size property"
-msgstr "不能设置QuickTime采样大小属性"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to retrieve stream description"
-msgstr "不能取得流描述"
-
-#: src/import/ImportQT.cpp
-msgid "Unable to get fill buffer"
-msgstr "不能得到填充缓冲"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -11065,18 +8086,6 @@ msgstr "导入(&I)"
 msgid "Bad data size. Could not import audio"
 msgstr "数据大小无效。无法导入音频"
 
-#. i18n-hint: given the name of a track, specify its left channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s left"
-msgstr "%s 左"
-
-#. i18n-hint: given the name of a track, specify its right channel
-#: src/menus/ClipMenus.cpp
-#, c-format
-msgid "%s right"
-msgstr "%s 右"
-
 #. i18n-hint:
 #. First %s is replaced with the noun "start" or "end"
 #. identifying one end of a clip,
@@ -11116,25 +8125,8 @@ msgid_plural "%s, %d of %d clips %s"
 msgstr[0] "%s 第 %d 个，共 %d 个"
 
 #: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the right"
-msgstr "时间移动片段到右侧"
-
-#: src/menus/ClipMenus.cpp
-msgid "Time shifted clips to the left"
-msgstr "时间移动片段到左侧"
-
-#: src/menus/ClipMenus.cpp src/prefs/MousePrefs.cpp
-#: src/tracks/ui/TimeShiftHandle.cpp
-msgid "Time-Shift"
-msgstr "时间-移动(Time-Shift)"
-
-#: src/menus/ClipMenus.cpp
 msgid "clip not moved"
 msgstr "片段未移动"
-
-#: src/menus/ClipMenus.cpp src/menus/EditMenus.cpp
-msgid "Clip B&oundaries"
-msgstr "片段边界(&O)"
 
 #: src/menus/ClipMenus.cpp
 msgid "Pre&vious Clip Boundary to Cursor"
@@ -11220,28 +8212,12 @@ msgid "Deleted %.2f seconds at t=%.2f"
 msgstr "删除 %.2f 秒 (在 t=%.2f)"
 
 #: src/menus/EditMenus.cpp
-msgid "Pasting one type of track into another is not allowed."
-msgstr "不允许从一类轨道粘贴到另一类。"
-
-#: src/menus/EditMenus.cpp
-msgid "Copying stereo audio into a mono track is not allowed."
-msgstr "不允许复制立体声音频到单声轨道。"
-
-#: src/menus/EditMenus.cpp
 msgid "Duplicated"
 msgstr "已副本的"
 
 #: src/menus/EditMenus.cpp
 msgid "Duplicate"
 msgstr "创建副本"
-
-#: src/menus/EditMenus.cpp
-msgid "Split-cut to the clipboard"
-msgstr "分离并剪切到剪贴板"
-
-#: src/menus/EditMenus.cpp
-msgid "Split Cut"
-msgstr "分离并剪切"
 
 #: src/menus/EditMenus.cpp
 #, c-format
@@ -11339,16 +8315,6 @@ msgstr "创建副本(&A)"
 msgid "R&emove Special"
 msgstr "特殊移除(&E)"
 
-#. i18n-hint: (verb) Do a special kind of cut
-#: src/menus/EditMenus.cpp
-msgid "Spl&it Cut"
-msgstr "分离并剪切(&I)"
-
-#. i18n-hint: (verb) Do a special kind of DELETE
-#: src/menus/EditMenus.cpp
-msgid "Split D&elete"
-msgstr "分离并删除(&E)"
-
 #. i18n-hint: (verb)
 #: src/menus/EditMenus.cpp
 msgid "Silence Audi&o"
@@ -11376,14 +8342,6 @@ msgstr "连接(&J)"
 #: src/menus/EditMenus.cpp src/menus/LabelMenus.cpp
 msgid "Detac&h at Silences"
 msgstr "静音处分离(&H)"
-
-#: src/menus/EditMenus.cpp
-msgid "&Metadata..."
-msgstr "元数据(&M)..."
-
-#: src/menus/EditMenus.cpp
-msgid "Pre&ferences..."
-msgstr "偏好设置(&F)..."
 
 #: src/menus/EditMenus.cpp
 msgid "&Delete Key"
@@ -11417,10 +8375,6 @@ msgstr "改变音频主机(&H)..."
 msgid "Change Recording Cha&nnels..."
 msgstr "改变录制声道数(&N)..."
 
-#: src/menus/ExtraMenus.cpp
-msgid "&Full Screen (on/off)"
-msgstr "全屏幕开关(&F)"
-
 #: src/menus/FileMenus.cpp
 #, c-format
 msgid ""
@@ -11429,10 +8383,6 @@ msgid ""
 msgstr ""
 "无法创建目录“%s”。\n"
 "非目录文件已存在"
-
-#: src/menus/FileMenus.cpp
-msgid "Export Selected Audio"
-msgstr "导出选择的音频"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -11444,38 +8394,6 @@ msgid "There are no label tracks to export."
 msgstr "没有标签轨，无法导出。"
 
 #: src/menus/FileMenus.cpp
-msgid "Please select only one Note Track at a time."
-msgstr "请每次只选择一个音符轨。"
-
-#: src/menus/FileMenus.cpp
-msgid "Please select a Note Track."
-msgstr "请选择一个音符轨。"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI As:"
-msgstr "导出 MIDI 为："
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI file"
-msgstr "MIDI 文件"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro file"
-msgstr "Allegro 文件"
-
-#: src/menus/FileMenus.cpp
-msgid ""
-"You have selected a filename with an unrecognized file extension.\n"
-"Do you want to continue?"
-msgstr ""
-"您选择了一个未知扩展名的文件\n"
-"您想继续吗？"
-
-#: src/menus/FileMenus.cpp
-msgid "Export MIDI"
-msgstr "导出 MIDI"
-
-#: src/menus/FileMenus.cpp
 #, c-format
 msgid "Imported labels from '%s'"
 msgstr "从“%s”导入的标签"
@@ -11483,22 +8401,6 @@ msgstr "从“%s”导入的标签"
 #: src/menus/FileMenus.cpp
 msgid "Import Labels"
 msgstr "导入标签"
-
-#: src/menus/FileMenus.cpp
-msgid "Select a MIDI file"
-msgstr "选择一个 MIDI 文件"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI and Allegro files"
-msgstr "MIDI 和 Allegro 文件"
-
-#: src/menus/FileMenus.cpp
-msgid "MIDI files"
-msgstr "MIDI 文件"
-
-#: src/menus/FileMenus.cpp
-msgid "Allegro files"
-msgstr "Allegro 文件"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -11539,12 +8441,6 @@ msgid "Export as &WAV"
 msgstr "导出为 &WAV"
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
-#| msgid "Export as &WAV"
-msgid "Export as &MKA"
-msgstr "导出为 &WAV"
-
-#: src/menus/FileMenus.cpp
 msgid "Export as &OGG"
 msgstr "导出为 &OGG"
 
@@ -11561,14 +8457,6 @@ msgid "Export &Labels..."
 msgstr "导出标签(&L)..."
 
 #: src/menus/FileMenus.cpp
-msgid "Export &Multiple..."
-msgstr "导出多个文件(&M)..."
-
-#: src/menus/FileMenus.cpp
-msgid "Export MI&DI..."
-msgstr "导出 MI&DI..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Audio..."
 msgstr "音频(&A)..."
 
@@ -11577,30 +8465,8 @@ msgid "&Labels..."
 msgstr "标签(&L)..."
 
 #: src/menus/FileMenus.cpp
-msgid "&MIDI..."
-msgstr "MIDI(&M)..."
-
-#: src/menus/FileMenus.cpp
 msgid "&Raw Data..."
 msgstr "原始数据(&R)..."
-
-#: src/menus/FileMenus.cpp
-msgid "Pa&ge Setup..."
-msgstr "页面设置(&G)..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "&Print..."
-msgstr "打印(&P)..."
-
-#. i18n-hint: (verb) It's item on a menu.
-#: src/menus/FileMenus.cpp
-msgid "E&xit"
-msgstr "退出(&X)"
-
-#: src/menus/FileMenus.cpp
-msgid "Hidden File Menu"
-msgstr "隐藏的文件菜单"
 
 #: src/menus/FileMenus.cpp
 msgid "Export as FLAC"
@@ -11714,17 +8580,6 @@ msgstr "已经删除标签的音频区域"
 msgid "Delete Labeled Audio"
 msgstr "删除标签的音频"
 
-#. i18n-hint: (verb) Audacity has just split cut the labeled audio
-#. regions
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut labeled audio regions to clipboard"
-msgstr "分离并剪切已标签的音频到剪贴板"
-
-#. i18n-hint: (verb) Do a special kind of cut on the labels
-#: src/menus/LabelMenus.cpp
-msgid "Split Cut Labeled Audio"
-msgstr "分离并剪切已标签的音频"
-
 #. i18n-hint: (verb) Audacity has just done a special kind of DELETE on
 #. the labeled audio regions
 #: src/menus/LabelMenus.cpp
@@ -11794,10 +8649,6 @@ msgstr "分离标签的音频"
 msgid "&Labels"
 msgstr "标签(&L)"
 
-#: src/menus/LabelMenus.cpp
-msgid "&Edit Labels..."
-msgstr "编辑标签(&E)..."
-
 #: src/menus/LabelMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Add Label at &Selection"
 msgstr "为选区添加标签(&S)"
@@ -11811,10 +8662,6 @@ msgid "Paste Te&xt to New Label"
 msgstr "粘贴文本至新标签(&X)"
 
 #: src/menus/LabelMenus.cpp
-msgid "&Type to Create a Label (on/off)"
-msgstr "键入以创建标签（开/关）(&T)"
-
-#: src/menus/LabelMenus.cpp
 msgid "La&beled Audio"
 msgstr "已标签音频(&B)"
 
@@ -11822,31 +8669,6 @@ msgstr "已标签音频(&B)"
 #: src/menus/LabelMenus.cpp
 msgid "&Cut"
 msgstr "剪切(&C)"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Cut"
-msgstr "标签剪切"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Delete"
-msgstr "标签删除"
-
-#. i18n-hint: (verb) A special way to cut out a piece of audio
-#: src/menus/LabelMenus.cpp
-msgid "&Split Cut"
-msgstr "分离并剪切(&S)"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Cut"
-msgstr "分离并剪切标签"
-
-#: src/menus/LabelMenus.cpp
-msgid "Sp&lit Delete"
-msgstr "分离并删除(&L)"
-
-#: src/menus/LabelMenus.cpp
-msgid "Label Split Delete"
-msgstr "分离并删除标签"
 
 #: src/menus/LabelMenus.cpp
 msgid "Silence &Audio"
@@ -11948,11 +8770,6 @@ msgid "&Repeat %s"
 msgstr "重复%s(&R)"
 
 #: src/menus/PluginMenus.cpp
-#, c-format
-msgid "Plug-in %d to %d"
-msgstr "插件 %d 到 %d"
-
-#: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "生成(&G)"
 
@@ -11981,16 +8798,8 @@ msgid "T&ools"
 msgstr "工具(&O)"
 
 #: src/menus/PluginMenus.cpp
-msgid "Manage Plug-ins..."
-msgstr "添加/删除插件..."
-
-#: src/menus/PluginMenus.cpp
 msgid "Repeat Last Tool"
 msgstr "重复上个工具"
-
-#: src/menus/PluginMenus.cpp
-msgid "&Macros..."
-msgstr "宏(&M)..."
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -12395,11 +9204,6 @@ msgstr "播放时稍右定位(&H)"
 msgid "&Toolbars"
 msgstr "工具栏(&T)"
 
-#. i18n-hint: (verb)
-#: src/menus/ToolbarMenus.cpp
-msgid "Edit &Mode (on/off)"
-msgstr "编辑模式（开/关）(&M)"
-
 #: src/menus/ToolbarMenus.cpp
 msgid "Reset Toolb&ars"
 msgstr "重置工具栏(&A)"
@@ -12760,10 +9564,6 @@ msgid "Align &Together"
 msgstr "整体对齐(&T)"
 
 #: src/menus/TrackMenus.cpp
-msgid "&Move Selection with Tracks (on/off)"
-msgstr "和轨道移动选区（开/关）(&M)"
-
-#: src/menus/TrackMenus.cpp
 msgid "Move Sele&ction and Tracks"
 msgstr "移动选区和轨道(&C)"
 
@@ -12778,10 +9578,6 @@ msgstr "按开始时间(&S)"
 #: src/menus/TrackMenus.cpp
 msgid "By &Name"
 msgstr "按名称(&N)"
-
-#: src/menus/TrackMenus.cpp
-msgid "Sync-&Lock Tracks (on/off)"
-msgstr "同步锁定轨道（开/关）(&L)"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Track"
@@ -12822,10 +9618,6 @@ msgstr "静音/取消 选中音轨(&U)"
 #: src/menus/TrackMenus.cpp
 msgid "&Solo/Unsolo Focused Track"
 msgstr "(取消)独奏选中音轨(&S)"
-
-#: src/menus/TrackMenus.cpp
-msgid "&Close Focused Track"
-msgstr "关闭选中音轨(&C)"
 
 #: src/menus/TrackMenus.cpp
 msgid "Move Focused Track U&p"
@@ -12938,10 +9730,6 @@ msgid "Play/Stop and &Set Cursor"
 msgstr "播放/停止并设置光标位置(&S)"
 
 #: src/menus/TransportMenus.cpp
-msgid "&Loop Play"
-msgstr "重复播放(&L)"
-
-#: src/menus/TransportMenus.cpp
 msgid "&Pause"
 msgstr "暂停(&P)"
 
@@ -12971,18 +9759,6 @@ msgid "Punch and Rol&l Record"
 msgstr "插卷录制(&L)"
 
 #: src/menus/TransportMenus.cpp
-msgid "Pla&y Region"
-msgstr "播放选区(&Y)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Lock"
-msgstr "锁住(&L)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Unlock"
-msgstr "解锁(&U)"
-
-#: src/menus/TransportMenus.cpp
 msgid "R&escan Audio Devices"
 msgstr "重新扫描音频设备(&E)"
 
@@ -12991,33 +9767,8 @@ msgid "Transport &Options"
 msgstr "播录选项"
 
 #: src/menus/TransportMenus.cpp
-msgid "Sound Activation Le&vel..."
-msgstr "声控激活电平(&V)..."
-
-#: src/menus/TransportMenus.cpp
-msgid "Sound A&ctivated Recording (on/off)"
-msgstr "声控录音（开/关）(&C)"
-
-#: src/menus/TransportMenus.cpp
-msgid "Pinned Play/Record &Head (on/off)"
-msgstr "固定播放/录音头（开/关）"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Overdub (on/off)"
-msgstr "原带配音（开/关）(&O)"
-
-#: src/menus/TransportMenus.cpp
-msgid "So&ftware Playthrough (on/off)"
-msgstr "软件同步监听（开/关）(&F)"
-
-#: src/menus/TransportMenus.cpp
 msgid "T&ransport"
 msgstr "播录(&R)"
-
-#. i18n-hint: (verb) Start playing audio
-#: src/menus/TransportMenus.cpp
-msgid "Pl&ay"
-msgstr "播放(&A)"
 
 #. i18n-hint: (verb) Stop playing audio
 #: src/menus/TransportMenus.cpp
@@ -13063,15 +9814,6 @@ msgstr "播放剪切预览(&U)"
 #: src/menus/TransportMenus.cpp
 msgid "&Play-at-Speed"
 msgstr "以指定速度播放(&P)"
-
-#. i18n-hint: 'Normal Play-at-Speed' doesn't loop or cut preview.
-#: src/menus/TransportMenus.cpp
-msgid "Normal Pl&ay-at-Speed"
-msgstr "正常以指定速度播放(&A)"
-
-#: src/menus/TransportMenus.cpp
-msgid "&Loop Play-at-Speed"
-msgstr "以指定速度循环播放(&L)"
 
 #: src/menus/TransportMenus.cpp
 msgid "Play C&ut Preview-at-Speed"
@@ -13128,10 +9870,6 @@ msgid "Zoom &Toggle"
 msgstr "缩放开关(&T)"
 
 #: src/menus/ViewMenus.cpp
-msgid "Advanced &Vertical Zooming"
-msgstr "高级垂直缩放(&V)"
-
-#: src/menus/ViewMenus.cpp
 msgid "T&rack Size"
 msgstr "轨道大小(&R)"
 
@@ -13167,44 +9905,6 @@ msgstr "跳至选区起点"
 msgid "Skip to Selection End"
 msgstr "跳至选区终点"
 
-#: src/menus/ViewMenus.cpp
-msgid "&Extra Menus (on/off)"
-msgstr "原带配音（开/关）(&E)"
-
-#: src/menus/ViewMenus.cpp
-msgid "Track &Name (on/off)"
-msgstr "音轨名称（开/关）(&N)"
-
-#: src/menus/ViewMenus.cpp
-msgid "&Show Clipping (on/off)"
-msgstr "显示截幅失真/过载(&S)"
-
-#: src/menus/ViewMenus.cpp src/toolbars/EditToolBar.cpp
-msgid "Show Effects Rack"
-msgstr "显示效果栏"
-
-#: src/menus/WindowMenus.cpp
-msgid "&Window"
-msgstr "窗口(&W)"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make (the current
-#. * window) shrink to an icon on the dock
-#: src/menus/WindowMenus.cpp
-msgid "&Minimize"
-msgstr "最小化(&M)"
-
-#. i18n-hint: Standard Macintosh Window menu item:  Make all project
-#. * windows un-hidden
-#: src/menus/WindowMenus.cpp
-msgid "&Bring All to Front"
-msgstr "全部前置(&B)"
-
-#. i18n-hint: Shrink all project windows to icons on the Macintosh
-#. tooldock
-#: src/menus/WindowMenus.cpp
-msgid "Minimize All Projects"
-msgstr "最小化所有项目"
-
 #: src/prefs/BatchPrefs.cpp src/prefs/BatchPrefs.h
 msgid "Batch"
 msgstr "批处理"
@@ -13220,14 +9920,6 @@ msgstr "行为"
 #: src/prefs/BatchPrefs.cpp
 msgid "&Don't apply effects in batch mode"
 msgstr "不要在批处理模式应用效果(%D)"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Devices"
-msgstr "设备"
-
-#: src/prefs/DevicePrefs.cpp
-msgid "Preferences for Device"
-msgstr "设备偏好设置"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
@@ -13395,15 +10087,6 @@ msgstr "目录 %s 是不合适的（有被清理的可能）"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
-msgid "Directory %s does not exist. Create it?"
-msgstr "目录%s不存在。是否创建它？"
-
-#: src/prefs/DirectoriesPrefs.cpp
-msgid "New Temporary Directory"
-msgstr "新建临时目录"
-
-#: src/prefs/DirectoriesPrefs.cpp
-#, c-format
 msgid "Directory %s is not writable"
 msgstr "目录%s不可写"
 
@@ -13420,77 +10103,8 @@ msgid "Preferences for Effects"
 msgstr "效果偏好设置"
 
 #: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Effect Name"
-msgstr "按照效果名排序"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Publisher and Effect Name"
-msgstr "按照发布者以及效果名排序"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Sorted by Type and Effect Name"
-msgstr "按照类型以及效果名排序"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Publisher"
-msgstr "将同发布者划为一组"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Grouped by Type"
-msgstr "将同类型划为一组"
-
-#. i18n-hint: abbreviates "Linux Audio Developer's Simple Plugin API"
-#. (Application programming interface)
-#.
-#: src/prefs/EffectsPrefs.cpp
-msgid "&LADSPA"
-msgstr "&LADSPA"
-
-#. i18n-hint: abbreviates
-#. "Linux Audio Developer's Simple Plugin API (LADSPA) version 2"
-#: src/prefs/EffectsPrefs.cpp
-msgid "LV&2"
-msgstr "LV&2"
-
-#. i18n-hint: "Nyquist" is an embedded interpreted programming language in
-#. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
-#. In the translations of this and other strings, you may transliterate the
-#. name into another alphabet.
-#: src/prefs/EffectsPrefs.cpp
-msgid "N&yquist"
-msgstr "N&yquist"
-
-#. i18n-hint: Vamp is the proper name of a software protocol for sound analysis.
-#. It is not an abbreviation for anything.  See http://vamp-plugins.org
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Vamp"
-msgstr "&Vamp"
-
-#. i18n-hint: Abbreviates Virtual Studio Technology, an audio software protocol
-#. developed by Steinberg GmbH
-#: src/prefs/EffectsPrefs.cpp
-msgid "V&ST"
-msgstr "V&ST"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Enable Effects"
-msgstr "启用效果"
-
-#: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
 msgstr "效果选项"
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "S&ort or Group:"
-msgstr "排序或成组(&S)："
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "&Maximum effects per group (0 to disable):"
-msgstr "每组的最大效果数（0 表示禁用）："
-
-#: src/prefs/EffectsPrefs.cpp
-msgid "Plugin Options"
-msgstr "插件选项"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Instruction Set"
@@ -13557,16 +10171,6 @@ msgstr "删除选中的规则(&L)"
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Unused filters:"
 msgstr "未用到的过滤器："
-
-#: src/prefs/ExtImportPrefs.cpp
-msgid ""
-"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
-"the items. They are likely to break the pattern matching. Unless you know "
-"what you are doing, it is recommended to trim spaces. Do you want Audacity "
-"to trim spaces for you?"
-msgstr ""
-"在其中一项中发现空隔字符（空格、制表符或换行符），其可能阻碍模式匹配。建议删"
-"除首尾的空隔字符，除非你确实需要保留它们。是否需要 Tenacity 为您删除它们？"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Spaces detected"
@@ -13643,10 +10247,6 @@ msgid "&Language:"
 msgstr "语言(&L)："
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Location of &Manual:"
-msgstr "使用手册的位置(&M)："
-
-#: src/prefs/GUIPrefs.cpp
 msgid "Meter dB &range:"
 msgstr "仪表分贝范围(&R)："
 
@@ -13676,14 +10276,6 @@ msgid "Never use comma as decimal point"
 msgstr "切勿使用逗号作为小数点"
 
 #: src/prefs/GUIPrefs.cpp
-msgid "Show Timeline Tooltips"
-msgstr "显示时间线工具提示"
-
-#: src/prefs/GUIPrefs.cpp src/toolbars/ScrubbingToolBar.cpp
-msgid "Show Scrub Ruler"
-msgstr "显示跟随播放标尺"
-
-#: src/prefs/GUIPrefs.cpp
 #, c-format
 msgid "Language \"%s\" is unknown"
 msgstr "语言“%s”未知"
@@ -13699,14 +10291,6 @@ msgstr "导入/导出"
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
 msgstr "导入/导出偏好设置"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Mix down to Stereo or Mono"
-msgstr "导出时混合到立体声(&S)"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Use Advanced Mixing Options"
-msgstr "使用高级混音选项(&U)"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "S&tandard"
@@ -13725,34 +10309,12 @@ msgid "&Beats"
 msgstr "拍数(&B)"
 
 #: src/prefs/ImportExportPrefs.cpp
-msgid "When exporting tracks to an audio file"
-msgstr "当导出轨道到音频文件时"
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "S&how Metadata Tags editor before export"
-msgstr "导出时显示元信息编辑器(&H)"
-
-#. i18n-hint 'blank space' is space on the tracks with no audio in it
-#: src/prefs/ImportExportPrefs.cpp
-msgid "&Ignore blank space at the beginning"
-msgstr "忽略开始和结束位置的静音(&I)"
-
-#: src/prefs/ImportExportPrefs.cpp
 msgid "Exported Label Style:"
 msgstr "标签导出样式："
-
-#: src/prefs/ImportExportPrefs.cpp
-msgid "Exported Allegro (.gro) files save time as:"
-msgstr "导出的 Allegro (.gro) 文件保存时间为："
 
 #: src/prefs/ImportExportPrefs.h
 msgid "IMPORT EXPORT"
 msgstr "导入 导出"
-
-#. i18n-hint: as in computer keyboard (not musical!)
-#: src/prefs/KeyConfigPrefs.cpp
-msgid "Keyboard"
-msgstr "键盘"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Preferences for KeyConfig"
@@ -13942,38 +10504,6 @@ msgstr "按键组合"
 msgid "Preferences for Library"
 msgstr "库偏好设置"
 
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Import/Export Library"
-msgstr "FFmpeg 导入/导出库"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "No compatible FFmpeg library was found"
-msgstr "没有找到兼容的 FFmpeg 库"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg support is not compiled in"
-msgstr "FFmpeg 支持没有被编译进来"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library Version:"
-msgstr "FFmpeg 库的版本："
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "FFmpeg Library:"
-msgstr "FFmpeg 库："
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Loca&te..."
-msgstr "定位(&T)..."
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Dow&nload"
-msgstr "下载(&N)"
-
-#: src/prefs/LibraryPrefs.cpp
-msgid "Success"
-msgstr "成功"
-
 #: src/prefs/LibraryPrefs.h
 msgid "Library"
 msgstr "库"
@@ -14022,70 +10552,17 @@ msgstr "模块"
 msgid "Preferences for Module"
 msgstr "模块偏好设置"
 
-#. i18n-hint preserve the leading spaces
-#: src/prefs/ModulePrefs.cpp
-msgid "  'New' means no choice has been made yet."
-msgstr "  “新建” 表示尚未作出任何选择。"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "Ask"
-msgstr "询问"
-
 #: src/prefs/ModulePrefs.cpp
 msgid "Failed"
 msgstr "失败"
-
-#: src/prefs/ModulePrefs.cpp
-msgid "No modules were found"
-msgstr "未找到模块"
 
 #: src/prefs/ModulePrefs.h
 msgid "Module"
 msgstr "模块"
 
 #: src/prefs/MousePrefs.cpp
-msgid "Ctrl"
-msgstr "Ctrl"
-
-#: src/prefs/MousePrefs.cpp src/prefs/MousePrefs.h
-msgid "Mouse"
-msgstr "鼠标"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Preferences for Mouse"
-msgstr "鼠标偏好设置"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Mouse Bindings (default values, not configurable)"
-msgstr "鼠标绑定 (默认值， 不可更改)"
-
-#: src/prefs/MousePrefs.cpp
 msgid "Tool"
 msgstr "工具"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Command Action"
-msgstr "命令动作"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Buttons"
-msgstr "按钮"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Click"
-msgstr "左击"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Point"
-msgstr "设置选区位置"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Drag"
-msgstr "按住左键-拖拽"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Set Selection Range"
-msgstr "设置选区范围"
 
 #: src/prefs/MousePrefs.cpp
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
@@ -14093,169 +10570,6 @@ msgstr "设置选区范围"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Shift-Left-Click"
 msgstr "Shift 键-左键双击"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Extend Selection Range"
-msgstr "扩展选区范围"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Left-Double-Click"
-msgstr "左键双击"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Select Clip or Entire Track"
-msgstr "选择片段或整个轨道"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Wheel-Rotate"
-msgstr "滚轮"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change scrub speed"
-msgstr "改变跟随播放速度"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on Point"
-msgstr "点放大"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom in on a Range"
-msgstr "范围放大"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as right-drag"
-msgstr "同右键-拖拽"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Click"
-msgstr "右击"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out one step"
-msgstr "缩小一级"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Right-Drag"
-msgstr "右键-拖拽"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as left-drag"
-msgstr "同左键-拖拽"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Drag"
-msgstr "Shift 键-拖拽"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom out on a Range"
-msgstr "范围缩小"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Middle-Click"
-msgstr "中击"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom default"
-msgstr "默认缩放"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip left/right or between tracks"
-msgstr "左右或在轨道间移动片段"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Left-Drag"
-msgstr "Shift 键-左键拖拽"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move all clips in track left/right"
-msgstr "左右移动轨道内的全部片段"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Left-Drag"
-msgstr "-左键拖动"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Move clip up/down between tracks"
-msgstr "在轨道间上下移动剪辑"
-
-#: src/prefs/MousePrefs.cpp
-#, fuzzy
-#| msgid "-Left-Drag"
-msgid "Alt-Left-Drag"
-msgstr "-左键拖动"
-
-#. i18n-hint: The envelope is a curve that controls the audio loudness.
-#: src/prefs/MousePrefs.cpp
-msgid "Change Amplification Envelope"
-msgstr "改变增益包络"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Pencil"
-msgstr "铅笔"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Sample"
-msgstr "变更采样"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Alt-Left-Click"
-msgstr "Alt 键-左键单击"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Smooth at Sample"
-msgstr "平滑采样"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change Several Samples"
-msgstr "修改若干采样"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Change ONE Sample only"
-msgstr "仅修改一处采样点"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Multi"
-msgstr "多功能"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as select tool"
-msgstr "同选择工具"
-
-#: src/prefs/MousePrefs.cpp
-msgid "same as zoom tool"
-msgstr "同缩放工具"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Any"
-msgstr "(任一)"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll tracks up or down"
-msgstr "上下滚动轨道"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Shift-Wheel-Rotate"
-msgstr "Shift键-滚轮"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Scroll waveform"
-msgstr "滚动波形"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Wheel-Rotate"
-msgstr "-滚轮转动"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Zoom waveform in or out"
-msgstr "缩放波形"
-
-#: src/prefs/MousePrefs.cpp
-msgid "-Shift-Wheel-Rotate"
-msgstr "Shift键-滚轮"
-
-#: src/prefs/MousePrefs.cpp
-msgid "Vertical Scale Waveform (dB) range"
-msgstr "纵向缩放波形 (dB) 范围"
 
 #: src/prefs/PlaybackPrefs.cpp
 msgid "Preferences for Playback"
@@ -14295,10 +10609,6 @@ msgid "Lo&ng period:"
 msgstr "长时间段(&N)："
 
 #: src/prefs/PlaybackPrefs.cpp
-msgid "&Vari-Speed Play"
-msgstr "变速播放(&V)"
-
-#: src/prefs/PlaybackPrefs.cpp
 msgid "&Micro-fades"
 msgstr "微渐变"
 
@@ -14332,14 +10642,6 @@ msgstr "%i Hz"
 #: src/prefs/QualityPrefs.cpp
 msgid "Other..."
 msgstr "其它..."
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Sampling"
-msgstr "采样"
-
-#: src/prefs/QualityPrefs.cpp
-msgid "Default Sample &Rate:"
-msgstr "默认采样率(&R)："
 
 #: src/prefs/QualityPrefs.cpp
 msgid "Default Sample &Format:"
@@ -14376,16 +10678,8 @@ msgid "Preferences for Recording"
 msgstr "录制偏好设置"
 
 #: src/prefs/RecordingPrefs.cpp
-msgid "Play &other tracks while recording (overdub)"
-msgstr "录制时播放其他轨道（加录）(&O)"
-
-#: src/prefs/RecordingPrefs.cpp
 msgid "Use &hardware to play other tracks"
 msgstr "使用硬件播放其他轨道(&H)"
-
-#: src/prefs/RecordingPrefs.cpp
-msgid "&Software playthrough of input"
-msgstr "软件同步监听(&S)"
 
 #: src/prefs/RecordingPrefs.cpp
 msgid "Record on a new track"
@@ -14469,12 +10763,6 @@ msgstr "ERB"
 #: src/prefs/SpectrogramSettings.cpp
 msgid "Period"
 msgstr "周期"
-
-#. i18n-hint: New color scheme for spectrograms
-#: src/prefs/SpectrogramSettings.cpp
-msgctxt "spectrum prefs"
-msgid "Color (default)"
-msgstr "彩色（默认）"
 
 #. i18n-hint: Classic color scheme(from theme) for spectrograms
 #: src/prefs/SpectrogramSettings.cpp
@@ -14594,10 +10882,6 @@ msgid "8 - most wideband"
 msgstr "8 - 最宽频带"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "1024 - default"
-msgstr "1024 - 默认"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "2048"
 msgstr "2048"
 
@@ -14616,31 +10900,6 @@ msgstr "零填充因子(&Z):"
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Ena&ble Spectral Selection"
 msgstr "启用频谱选区(&B)"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Show a grid along the &Y-axis"
-msgstr "显示沿 Y 轴的网格(&Y)"
-
-#. i18n-hint: FFT stands for Fast Fourier Transform and probably shouldn't be translated
-#: src/prefs/SpectrumPrefs.cpp
-msgid "FFT Find Notes"
-msgstr "FFT(快速傅立叶变换) 寻找音符"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Minimum Amplitude (dB):"
-msgstr "最小振幅 (dB)："
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "Max. Number of Notes (1..128):"
-msgstr "最大音符数(1..128)："
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Find Notes"
-msgstr "寻找音符(&F)"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "&Quantize Notes"
-msgstr "量化音符(&Q)"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Global settings"
@@ -14670,18 +10929,6 @@ msgstr "范围必须是一个正整数"
 msgid "The frequency gain must be an integer"
 msgstr "频率增益必须是一个整数"
 
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The minimum amplitude (dB) must be an integer"
-msgstr "最小振幅(dB) 必须是整数"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be an integer"
-msgstr "最大音符数必须是整数"
-
-#: src/prefs/SpectrumPrefs.cpp
-msgid "The maximum number of notes must be in the range 1..128"
-msgstr "最大音符数必须在 1~128 直接"
-
 #. i18n-hint: A theme is a consistent visual style across an application's
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
@@ -14693,12 +10940,6 @@ msgstr "主题"
 #: src/prefs/ThemePrefs.cpp
 msgid "Preferences for Theme"
 msgstr "主题偏好设置"
-
-#: src/prefs/ThemePrefs.cpp
-#, fuzzy
-#| msgid "&Settings"
-msgid "Theme Settings"
-msgstr "设置(S)"
 
 #: src/prefs/ThemePrefs.cpp
 msgid "Th&eme:"
@@ -14770,10 +11011,6 @@ msgid "Enable cut &lines"
 msgstr "打开剪切线(&:)"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable &dragging selection edges"
-msgstr "启用拖拽选区边缘(&D)"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Editing a clip can &move other clips"
 msgstr "编辑一段会移动 其它片段(&M)"
 
@@ -14788,14 +11025,6 @@ msgstr "键入以创建标签(&T)"
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Use dialog for the &name of a new label"
 msgstr "使用新标签名的对话框"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Enable scrolling left of &zero"
-msgstr "可以滑动到零点左侧(&Z)"
-
-#: src/prefs/TracksBehaviorsPrefs.cpp
-msgid "Advanced &vertical zooming"
-msgstr "高级垂直缩放(&V)"
 
 #: src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Solo &Button:"
@@ -14891,10 +11120,6 @@ msgid "Auto-&fit track height"
 msgstr "自动贴合轨道高度(&F)"
 
 #: src/prefs/TracksPrefs.cpp
-msgid "Sho&w track name as overlay"
-msgstr "将曲目名称显示为叠加层(&W)"
-
-#: src/prefs/TracksPrefs.cpp
 msgid "Use &half-wave display when collapsed"
 msgstr "折叠时使用半波显示(&H)"
 
@@ -14938,42 +11163,6 @@ msgstr "预设 1："
 msgid "Preset 2:"
 msgstr "预设 2："
 
-#: src/prefs/WarningsPrefs.cpp src/prefs/WarningsPrefs.h
-msgid "Warnings"
-msgstr "警告"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Preferences for Warnings"
-msgstr "警告偏好设置"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Show Warnings/Prompts for"
-msgstr "以下情况显示警告/提示"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &projects"
-msgstr "保存项目时(&P)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Saving &empty project"
-msgstr "保存空项目时(&E)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &mono during export"
-msgstr "导出过程中混音成单声道时(&M)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down to &stereo during export"
-msgstr "导出过程中混音成立体声时(&S)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Mixing down on export (&Custom FFmpeg or external program)"
-msgstr "混音导出时(自定义 FFmpeg 或外部程序) (&C)"
-
-#: src/prefs/WarningsPrefs.cpp
-msgid "Missing file &name extension during export"
-msgstr "导出期间缺少文件名和扩展名时"
-
 #. i18n-hint: A waveform is a visual representation of vibration
 #: src/prefs/WaveformPrefs.cpp
 msgid "Waveforms"
@@ -15005,36 +11194,11 @@ msgstr "调试(&G)"
 msgid "Classic"
 msgstr "经典"
 
-#: src/theme/AudacityThemeAsCeeCode.cpp
-msgid "Audacity"
-msgstr "Tenacity"
-
-#: src/theme/DarkThemeAsCeeCode.cpp
-msgid "Dark"
-msgstr "深色"
-
 #. i18n-hint: greater difference between foreground and
 #. background colors
 #: src/theme/HiContrastThemeAsCeeCode.cpp
 msgid "High Contrast"
 msgstr "高对比度"
-
-#. i18n-hint: Light meaning opposite of dark
-#: src/theme/LightThemeAsCeeCode.cpp
-msgid "Light"
-msgstr "浅色"
-
-#: src/theme/ProToolsThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Tools"
-msgid "Pro Tools"
-msgstr "工具"
-
-#: src/theme/SaucedacityThemeAsCeeCode.cpp
-#, fuzzy
-#| msgid "Audacity"
-msgid "Saucedacity"
-msgstr "Tenacity"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15043,19 +11207,6 @@ msgid ""
 "Tenacity could not write file:\n"
 "  %s."
 msgstr "无法写入文件：%s"
-
-#. i18n-hint: A theme is a consistent visual style across an application's
-#. graphical user interface, including choices of colors, and similarity of images
-#. such as those on button controls.  Audacity can load and save alternative
-#. themes.
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme written to:\n"
-"  %s."
-msgstr ""
-"主题已保存到：\n"
-"  %s。"
 
 #: src/theme/Theme.cpp
 #, fuzzy, c-format
@@ -15073,16 +11224,6 @@ msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
 msgstr "无法写入文件：%s"
-
-#. i18n-hint "Cee" means the C computer programming language
-#: src/theme/Theme.cpp
-#, c-format
-msgid ""
-"Theme as Cee code written to:\n"
-"  %s."
-msgstr ""
-"主题以 Cee 代码写入：\n"
-" %s。"
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -15242,14 +11383,6 @@ msgid "Edit"
 msgstr "编辑"
 
 #: src/toolbars/EditToolBar.cpp
-msgid "Cut selection"
-msgstr "剪切选区"
-
-#: src/toolbars/EditToolBar.cpp
-msgid "Copy selection"
-msgstr "复制选区"
-
-#: src/toolbars/EditToolBar.cpp
 msgid "Trim audio outside selection"
 msgstr "修剪选定外的音频"
 
@@ -15296,10 +11429,6 @@ msgstr "选区填充窗口宽度"
 msgid "Fit project to width"
 msgstr "项目填充窗口宽度"
 
-#: src/toolbars/EditToolBar.cpp
-msgid "Open Effects Rack"
-msgstr "打开效果栏"
-
 #. i18n-hint: Clicking this menu item shows the toolbar for editing
 #: src/toolbars/EditToolBar.cpp
 msgid "&Edit Toolbar"
@@ -15328,11 +11457,6 @@ msgstr "录制指示"
 #: src/toolbars/MeterToolBar.cpp
 msgid "Meter-Record"
 msgstr "指示-录制"
-
-#. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
-#: src/toolbars/MeterToolBar.cpp
-msgid "Play Meter"
-msgstr "播放指示"
 
 #. i18n-hint: (noun) The meter that shows the loudness of the audio playing.
 #. This is the name used in screen reader software, where having 'Meter' first
@@ -15366,71 +11490,9 @@ msgstr "录音仪表栏(&R)"
 msgid "&Playback Meter Toolbar"
 msgstr "播放仪表栏(&P)"
 
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub"
-msgstr "跟随播放"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Seek"
-msgstr "定位"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scrub Ruler"
-msgstr "跟随播放标尺"
-
 #: src/toolbars/ScrubbingToolBar.cpp src/tracks/ui/Scrubbing.cpp
 msgid "Scrubbing"
 msgstr "跟随播放"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Scrubbing"
-msgstr "停止跟随播放"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Scrubbing"
-msgstr "启动跟随播放"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Stop Seeking"
-msgstr "停止定位播放"
-
-#. i18n-hint: These commands assist the user in finding a sound by ear. ...
-#. "Scrubbing" is variable-speed playback, ...
-#. "Seeking" is normal speed playback but with skips
-#.
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Start Seeking"
-msgstr "开始定位播放"
-
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Hide Scrub Ruler"
-msgstr "隐藏跟随播放标尺"
-
-#. i18n-hint: Clicking this menu item shows the toolbar
-#. that enables Scrub or Seek playback and Scrub Ruler
-#: src/toolbars/ScrubbingToolBar.cpp
-msgid "Scru&b Toolbar"
-msgstr "跟随播放工具栏(&B)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Project Rate (Hz)"
-msgstr "项目采样率 (Hz)"
-
-#: src/toolbars/SelectionBar.cpp
-msgid "Snap-To"
-msgstr "吸附到"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/TimeToolBar.cpp
 msgid "Audio Position"
@@ -15457,10 +11519,6 @@ msgid "Show"
 msgstr "显示"
 
 #: src/toolbars/SelectionBar.cpp
-msgid "Snap To"
-msgstr "吸附到"
-
-#: src/toolbars/SelectionBar.cpp
 msgid "Length"
 msgstr "长度"
 
@@ -15469,26 +11527,6 @@ msgstr "长度"
 #: src/widgets/ASlider.cpp
 msgid "Center"
 msgstr "中央"
-
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Snap Clicks/Selections to %s"
-msgstr "吸附位置/选区到 %s"
-
-#. i18n-hint: %s is replaced e.g by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated), to indicate that it will be
-#. calculated from other parameters.
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "%s - driven"
-msgstr "%s - 驱动"
-
-#. i18n-hint: each string is replaced by one of 'Length', 'Center',
-#. 'Start', or 'End' (translated)
-#: src/toolbars/SelectionBar.cpp
-#, c-format
-msgid "Selection %s. %s won't change."
-msgstr "选区 %s。 %s 不将改变。"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for selecting a time range of audio
@@ -15560,10 +11598,6 @@ msgid "Envelope Tool"
 msgstr "包络工具"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "Zoom Tool"
-msgstr "缩放工具"
-
-#: src/toolbars/ToolsToolBar.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Draw Tool"
 msgstr "绘制工具"
@@ -15591,10 +11625,6 @@ msgid "&Draw Tool"
 msgstr "绘制工具(&D)"
 
 #: src/toolbars/ToolsToolBar.cpp
-msgid "&Zoom Tool"
-msgstr "缩放工具(&Z)"
-
-#: src/toolbars/ToolsToolBar.cpp
 msgid "&Multi Tool"
 msgstr "多功能工具(&M)"
 
@@ -15617,10 +11647,6 @@ msgstr "以选定的速度播放"
 #: src/toolbars/TranscriptionToolBar.cpp
 msgid "Playback Speed"
 msgstr "重放速度"
-
-#: src/toolbars/TranscriptionToolBar.cpp
-msgid "Looped-Play-at-Speed"
-msgstr "以指定速度循环播放"
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. for transcription (currently just vary play speed)
@@ -15759,18 +11785,6 @@ msgstr "拉伸"
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Left-Click to expand, Right-Click to remove"
 msgstr "左键单击扩展，右键单击删除"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Left-Click to merge clips"
-msgstr "左键单击合并片段"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merged Clips"
-msgstr "已合并的剪辑"
-
-#: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
-msgid "Merge"
-msgstr "合并"
 
 #: src/tracks/playabletrack/wavetrack/ui/CutlineHandle.cpp
 msgid "Expanded Cut Line"
@@ -15987,22 +12001,6 @@ msgstr "分离立体声轨(&I)"
 msgid "Split Stereo to Mo&no"
 msgstr "分离立体声到单声道(&N)"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Mono"
-msgstr "单声道"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Left Channel"
-msgstr "左声道"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Right Channel"
-msgstr "右声道"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-msgid "Channel"
-msgstr "声道"
-
 #. i18n-hint: The string names a track
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #, c-format
@@ -16038,26 +12036,6 @@ msgstr "分离立体声到单声道“%s”"
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Split to Mono"
 msgstr "分离为单声道"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Stereo, %dHz"
-msgstr "立体声，%d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Mono, %dHz"
-msgstr "单声道，%d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Left, %dHz"
-msgstr "左，%d Hz"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, c-format
-msgid "Right, %dHz"
-msgstr "右，%d Hz"
 
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -16109,12 +12087,6 @@ msgstr "设置片段"
 msgid "Mute/Unmute Track"
 msgstr "静音/取消 选中音轨(&U)"
 
-#: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Rename..."
-msgid "Rename clip..."
-msgstr "重命名..."
-
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
@@ -16125,14 +12097,6 @@ msgstr "重命名..."
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
 msgstr[0] "%s 第 %d 个，共 %d 个"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x1/2"
-msgstr "缩放 x1/2"
-
-#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-msgid "Zoom x2"
-msgstr "缩放 x2"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -16154,22 +12118,6 @@ msgstr "乐器 %i"
 #: src/tracks/playabletrack/wavetrack/ui/WaveformView.cpp
 msgid "WaveColor Change"
 msgstr "波形颜色改变"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change lower speed limit (%) to:"
-msgstr "最低速率限制(%)改为："
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Lower speed limit"
-msgstr "最低速率限制"
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Change upper speed limit (%) to:"
-msgstr "最高速率限制(%)改为："
-
-#: src/tracks/timetrack/ui/TimeTrackControls.cpp
-msgid "Upper speed limit"
-msgstr "最高速率限制"
 
 #: src/tracks/timetrack/ui/TimeTrackControls.cpp
 #, c-format
@@ -16221,11 +12169,6 @@ msgstr "范围(&R)..."
 msgid "Logarithmic &Interpolation"
 msgstr "对数插值(&I)"
 
-#. i18n-hint Appears on hovering mouse over clip affordance
-#: src/tracks/ui/AffordanceHandle.cpp
-msgid "Click and drag to move a clip in time, or click to select"
-msgstr "单击并拖动以移动在时间范围内的片段，单击以选择"
-
 #: src/tracks/ui/BackgroundCell.cpp
 #, fuzzy
 #| msgid "&Mono Track"
@@ -16249,10 +12192,6 @@ msgstr "标签轨"
 #| msgid "&Export Audio..."
 msgid "Export Audio..."
 msgstr "导出音频(&E)..."
-
-#: src/tracks/ui/CommonTrackControls.cpp
-msgid "&Name..."
-msgstr "名称(&N)..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -16420,18 +12359,6 @@ msgid "Collapse"
 msgstr "折叠"
 
 #: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Command+Click to deselect"
-msgstr "Command+单击 以反选"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Select track"
-msgstr "选择轨道"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
-msgid "Ctrl+Click to deselect"
-msgstr "Ctrl+单击 以反选"
-
-#: src/tracks/ui/TrackButtonHandles.cpp
 msgid "Open menu..."
 msgstr "打开菜单..."
 
@@ -16508,12 +12435,6 @@ msgstr "左"
 msgid "R"
 msgstr "右"
 
-#. i18n-hint: "x" suggests a multiplicative factor
-#: src/widgets/ASlider.cpp
-#, c-format
-msgid "%.2fx"
-msgstr "%.2fx"
-
 #: src/widgets/FileHistory.cpp
 msgid "&Clear"
 msgstr "清除(&C)"
@@ -16537,30 +12458,6 @@ msgstr "互联网上的帮助"
 #: src/widgets/KeyView.cpp
 msgid "Menu"
 msgstr "菜单"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start Monitoring"
-msgstr "点击开始监视"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click for Monitoring"
-msgstr "点击监视"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click to Start"
-msgstr "点击开始"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Click"
-msgstr "点击"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Stop Monitoring"
-msgstr "停止监视"
-
-#: src/widgets/MeterPanel.cpp
-msgid "Start Monitoring"
-msgstr "开始监视"
 
 #: src/widgets/MeterPanel.cpp
 msgid "Recording Meter Options"
@@ -16641,10 +12538,6 @@ msgstr " 已修剪的 "
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
 msgstr "打开日志显示详情"
-
-#: src/widgets/MultiDialog.cpp
-msgid "Please select an action"
-msgstr "请选择一个动作"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'
