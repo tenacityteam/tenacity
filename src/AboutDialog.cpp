@@ -406,7 +406,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
       << wxT("</h3>")
 
       << wxT("<h4>")
-      << XO("Teancity Credits")
+      << XO("Tenacity Credits")
       << wxT("</h4>")
 
       // Tenacity team members
