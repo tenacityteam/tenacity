@@ -3,14 +3,16 @@
 ;   License: GPL v2.  See License.txt.
 ;
 ;   tenacity.iss
-#define AppExe "@TENACITY_EXE_LOCATION@"
-#define AppMajor ""
-#define AppMinor ""
-#define AppRev ""
-#define AppBuild ""
-#define FullVersion GetVersionComponents(AppExe, AppMajor, AppMinor, AppRev, AppBuild)
-#define AppVersion Str(AppMajor) + "." + Str(AppMinor) + "." + Str(AppRev)
-#define AppName GetStringFileInfo(AppExe, PRODUCT_NAME)
+#define AppExe        "@TENACITY_EXE_LOCATION@"
+#define AppMajor      ""
+#define AppMinor      ""
+#define AppRev        ""
+#define AppBuild      ""
+#define FullVersion   GetVersionComponents(AppExe, AppMajor, AppMinor, AppRev, AppBuild)
+#define AppVersion    Str(AppMajor) + "." + Str(AppMinor) + "." + Str(AppRev)
+#define AppName       GetStringFileInfo(AppExe, PRODUCT_NAME)
+#define AppSupportURL "https://tenacityaudio.org/"
+#define AppAuthor     "Tenacity Team"
 
 [UninstallRun]
 ; Uninstall prior installations.
@@ -25,17 +27,25 @@ WizardSmallImageFile=".\tenacity_InnoWizardSmallImage_100.bmp"
 
 ; App/Version information
 AppName={#AppName}
-AppVerName=Tenacity {#AppVersion}
 AppVersion={#AppVersion}
-AppPublisher="Tenacity Team"
-AppPublisherURL=https://tenacityaudio.org/
-AppSupportURL=https://tenacityaudio.org/
-AppUpdatesURL=https://tenacityaudio.org/
+AppVerName={#AppName} {#AppVersion}
+AppPublisher={#AppAuthor}
+AppPublisherURL={#AppSupportURL}
+AppSupportURL={#AppSupportURL}
+AppUpdatesURL={#AppSupportURL}
 VersionInfoProductName={#AppName}
 VersionInfoProductTextVersion={#GetFileProductVersion(AppExe)}
-VersionInfoDescription={#AppName + " " + AppVersion + " Setup"}
+VersionInfoDescription={#AppName + " " + AppVersion + " Installer"}
 VersionInfoVersion={#GetVersionNumbersString(AppExe)}
 VersionInfoCopyright={#GetFileCopyright(AppExe)}
+
+; UI setting
+WizardStyle=modern
+
+; Language dialog setting
+ShowLanguageDialog=yes
+UsePreviousLanguage=no
+LanguageDetectionMethod=uilanguage
 
 ; Default install location
 DefaultDirName={autopf}\Tenacity
@@ -363,7 +373,7 @@ hr.ResetPrefs=Resetirati Postavke?
 ;hu.ResetPrefs=Alapra állítja a beállításokat?
 hy.ResetPrefs=Վերափոխե՞լ կարգավորումները:
 id.ResetPrefs=Reset Preferences
-it.ResetPrefs=Ripristino Preferenze?
+it.ResetPrefs=Vuoi ripristinare le impostazioni?
 ja.ResetPrefs=環境設定をリセットする
 ka.ResetPrefs=Reset Preferences
 km.ResetPrefs=Reset Preferences
