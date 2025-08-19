@@ -18,13 +18,14 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Massimo Pissarello <mapi68@gmail.com>, 2023, 2024.
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2023.
+# bovirus <roberto.boriotti@canon.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2024-01-18 00:38+0000\n"
-"Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
+"PO-Revision-Date: 2025-08-19 09:02+0000\n"
+"Last-Translator: bovirus <roberto.boriotti@canon.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/it/>\n"
 "Language: it\n"
@@ -32,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -93,7 +94,7 @@ msgstr "Tutti i file"
 #. files that can be reopened to resume the session later
 #: libraries/lib-files/FileNames.cpp
 msgid "AUP3 project files"
-msgstr "File di progetto AUP3"
+msgstr "File progetto AUP3"
 
 #: libraries/lib-files/FileNames.cpp
 msgid "Dynamically Linked Libraries"
@@ -544,7 +545,7 @@ msgstr "Sito web di %s: "
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
-msgstr "Informazioni sulla versione"
+msgstr "Info versione"
 
 #: src/AboutDialog.cpp src/PluginRegistrationDialog.cpp
 #: src/prefs/ModulePrefs.cpp
@@ -602,31 +603,29 @@ msgstr "Supporto formato file"
 #. * Both are proper nouns and shouldn't be translated
 #: src/AboutDialog.cpp
 msgid "Ogg Vorbis Import and Export"
-msgstr "Importazione ed esportazione Ogg Vorbis"
+msgstr "Importazione/esportazione Ogg Vorbis"
 
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Supporto tag ID3"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "FLAC import and export"
 msgid "Matroska import and export"
-msgstr "Importazione ed esportazione FLAC"
+msgstr "Importazione/esportazione FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
 #: src/AboutDialog.cpp
 msgid "FLAC import and export"
-msgstr "Importazione ed esportazione FLAC"
+msgstr "Importazione/esportazione FLAC"
 
 #: src/AboutDialog.cpp
 msgid "MP2 export"
-msgstr "Esportazione MP2"
+msgstr "Esporta MP2"
 
 #: src/AboutDialog.cpp
 msgid "FFmpeg Import/Export"
-msgstr "Importazione/esportazione FFmpeg"
+msgstr "Importa/esporta FFmpeg"
 
 #: src/AboutDialog.cpp
 msgid "Features"
@@ -740,7 +739,7 @@ msgstr ""
 #: src/AudioIO.cpp
 #, c-format
 msgid "Error: %s"
-msgstr "Error: %s"
+msgstr "Errore: %s"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -791,10 +790,8 @@ msgid "Name"
 msgstr "Nome"
 
 #: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
-#, fuzzy
-#| msgid "&About Tenacity..."
 msgid "&Quit Tenacity"
-msgstr "&A proposito di Tenacity…"
+msgstr "&Esci da Tenacity"
 
 #: src/AutoRecoveryDialog.cpp
 msgid "&Discard Selected"
@@ -1144,11 +1141,11 @@ msgstr "Seme casuale:"
 
 #: src/Benchmark.cpp
 msgid "Show detailed info about each block file"
-msgstr "Mostra informazioni dettagliate su ciascun file di blocco"
+msgstr "Visualizza info dettagliate su ciascun file blocco"
 
 #: src/Benchmark.cpp
 msgid "Show detailed info about each editing operation"
-msgstr "Mostra informazioni dettagliate su ciascuna operazione di modifica"
+msgstr "Visualizza info dettagliate su ciascuna operazione di modifica"
 
 #. i18n-hint noun
 #: src/Benchmark.cpp src/effects/BassTreble.cpp
@@ -1658,7 +1655,7 @@ msgstr "Ritardo (secondi)\tFrequenza (Hz)\tLivello"
 
 #: src/FreqWindow.cpp
 msgid "Plot Spectrum..."
-msgstr "Mostra spettro..."
+msgstr "Visualizza spettro..."
 
 #: src/HelpText.cpp
 msgid "Welcome!"
@@ -1702,7 +1699,7 @@ msgstr "Esportazione di un file audio"
 #. i18n-hint: Title for a topic.
 #: src/HelpText.cpp
 msgid "Saving an Audacity Project"
-msgstr "Salvataggio di un progetto Tenacity"
+msgstr "Salvataggio progetto Tenacity"
 
 #. i18n-hint: Title for a topic.
 #: src/HelpText.cpp
@@ -1892,7 +1889,7 @@ msgstr "Conferma"
 
 #: src/Legacy.cpp
 msgid "Error Converting Legacy Project File"
-msgstr "Errore nella conversione del file di progetto precedente"
+msgstr "Errore nella conversione del file progetto precedente"
 
 #: src/Legacy.cpp
 #, c-format
@@ -1900,12 +1897,12 @@ msgid ""
 "Converted a 1.0 project file to the new format.\n"
 "The old file has been saved as '%s'"
 msgstr ""
-"Un file di progetto 1.0 è stato convertito nel nuovo formato.\n"
+"Un file progetto 1.0 è stato convertito nel nuovo formato.\n"
 "Il vecchio file è stato salvato come '%s'"
 
 #: src/Legacy.cpp
 msgid "Opening Audacity Project"
-msgstr "Apertura progetto di Tenacity"
+msgstr "Apertura progetto Tenacity"
 
 #: src/LogWindow.cpp src/Tags.cpp
 msgid "&Save..."
@@ -2412,7 +2409,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Non è stato possibile eseguire un comando di file del progetto:\n"
+"Non è stato possibile eseguire un comando file progetto:\n"
 "\n"
 "%s"
 
@@ -2427,7 +2424,7 @@ msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "This is not an Audacity project file"
-msgstr "Questo non è un file di progetto di Tenacity"
+msgstr "Questo non è un file progetto Tenacity"
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to initialize the project file"
@@ -2532,7 +2529,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Non è stato possibile preparare il comando di file del progetto:\n"
+"Non è stato possibile preparare il comando file progetto:\n"
 "\n"
 "%s"
 
@@ -2554,8 +2551,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Non è stato possibile aggiornare il file di progetto\n"
-"Il comando seguente è fallito:\n"
+"Non è stato possibile aggiornare il file progetto\n"
+"Il seguento comando è fallito:\n"
 "\n"
 "%s"
 
@@ -2588,7 +2585,7 @@ msgstr "Impossibile aprire il file del progetto"
 msgid "Failed to remove the autosave information from the project file."
 msgstr ""
 "Non è stato possibile rimuovere l'informazione di salvataggio automatico dal "
-"file del progetto."
+"file progetto."
 
 #: src/ProjectFileIO.cpp
 msgid "Unable to bind to blob"
@@ -2646,7 +2643,7 @@ msgstr ""
 
 #: src/ProjectFileIO.cpp
 msgid "Backing up project"
-msgstr "Copia di backup del progetto in corso"
+msgstr "Backup del progetto"
 
 #: src/ProjectFileManager.cpp
 msgid "Project Recovered"
@@ -2676,7 +2673,7 @@ msgid ""
 "The project exceeds the maximum size of 4GB when writing to a FAT32 "
 "formatted filesystem."
 msgstr ""
-"Il progetto supera la dimensione massima di 4GB quando si scrive su un file "
+"Il progetto supera la dimensione massima di 4GB quando si scrive in un file "
 "system formattato in formato FAT32."
 
 #: src/ProjectFileManager.cpp
@@ -2690,9 +2687,9 @@ msgid ""
 "another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Il progetto non è stato salvato poiché il nome di file fornito "
+"Il progetto non è stato salvato poiché il nome del file fornito "
 "sovrascriverebbe un altro progetto.\n"
-"Riprovare selezionando un nome originale."
+"Riprova selezionando un nome file non in uso."
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2731,7 +2728,7 @@ msgid ""
 msgstr ""
 "Il progetto non è stato salvato poiché il progetto selezionato è aperto in "
 "un'altra finestra.\n"
-"Riprovare selezionando un nome di file non in uso."
+"Riprova selezionando un nome file non in uso."
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2773,7 +2770,7 @@ msgstr ""
 "Si sta cercando di aprire un file di backup creato automaticamente.\n"
 "In questo modo si può avere una grave perdita di dati.\n"
 "\n"
-"Aprire invece il vero file di progetto di Tenacity."
+"Apri invece il vero file progetto Tenacity."
 
 #: src/ProjectFileManager.cpp
 msgid "Warning - Backup File Detected"
@@ -2839,7 +2836,7 @@ msgstr "Importazione del progetto fallita"
 
 #: src/ProjectFileManager.cpp
 msgid "Error Importing"
-msgstr "Errore d'importazione"
+msgstr "Errore importazione"
 
 #: src/ProjectFileManager.cpp
 msgid "Cannot import AUP3 format.  Use File > Open instead"
@@ -2863,19 +2860,19 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 "La compressione di questo progetto libererà spazio disco rimuovendo i byte "
-"del file non usati.\n"
+"non usati del file.\n"
 "\n"
-"Il disco ha %s di spazio libero e questo progetto sta attualmente usando "
-"%s.\n"
+"Il disco ha %s di spazio libero e questo progetto sta attualmente usando %s."
 "\n"
-"Se si procede, lo storico Annulla/Ripristina attuale e il contenuto degli "
+"\n"
+"Se si procede, la cronologia Annulla/Ripristina attuale e il contenuto degli "
 "appunti verranno scartati e si libereranno circa %s di spazio disco.\n"
 "\n"
-"Proseguire?"
+"Vuoi proseguire?"
 
 #: src/ProjectFileManager.cpp
 msgid "Compacted project file"
-msgstr "File di progetto compresso"
+msgstr "File progetto compresso"
 
 #: src/ProjectFileManager.cpp
 msgid "Compact"
@@ -2971,7 +2968,7 @@ msgstr "Livello attivazione (dB):"
 
 #: src/SplashDialog.cpp
 msgid "Don't show this again at start up"
-msgstr "Non mostrare più all'avvio"
+msgstr "Non visualizzare più all'avvio del programma"
 
 #: src/SqliteSampleBlock.cpp
 msgid "Connection to project file is null"
@@ -3126,7 +3123,7 @@ msgstr "Apri &recenti..."
 
 #: src/TenacityApp.cpp src/menus/HelpMenus.cpp
 msgid "&About Tenacity..."
-msgstr "&A proposito di Tenacity…"
+msgstr "&Info su Tenacity…"
 
 #: src/TenacityApp.cpp
 msgid "&Preferences..."
@@ -3259,7 +3256,7 @@ msgstr "nome file audio o progetto"
 
 #: src/TenacityApp.cpp
 msgid "Audacity Project Files"
-msgstr "File di progetto di Tenacity"
+msgstr "File progetto Tenacity"
 
 #: src/TenacityFileConfig.cpp
 #, fuzzy
@@ -3315,9 +3312,9 @@ msgid ""
 "for Timer Recording because it would overwrite another project.\n"
 "Please try again and select an original name."
 msgstr ""
-"Il nome di file selezionato non può essere usato\n"
+"Il nome file selezionato non può essere usato\n"
 "per la registrazione programmata poiché sovrascriverebbe un altro progetto.\n"
-"Riprovare selezionando un nome originale."
+"Riprova selezionando un nome file non in uso."
 
 #: src/TimerRecordDialog.cpp
 msgid "Error Saving Timer Recording Project"
@@ -3537,7 +3534,7 @@ msgstr "Esportazione automatica"
 
 #: src/TimerRecordDialog.cpp
 msgid "Enable Automatic &Export?"
-msgstr "Abilitare l'&esportazione automatica?"
+msgstr "Vuoi abilitare l'&esportazione automatica?"
 
 #: src/TimerRecordDialog.cpp
 msgid "Export Project As:"
@@ -5703,7 +5700,7 @@ msgstr ""
 "%s\n"
 "\n"
 "Ulteriori informazioni potrebbero essere disponibili in 'Aiuto> Diagnostica "
-"> Mostra registro'"
+"> Visualizza registro'"
 
 #: src/effects/EffectManager.cpp
 msgid "Command failed to initialize"
@@ -5991,11 +5988,11 @@ msgstr "&Inverti"
 
 #: src/effects/Equalization.cpp
 msgid "Show grid lines"
-msgstr "Mostra linee griglia"
+msgstr "Visualizza linee griglia"
 
 #: src/effects/Equalization.cpp
 msgid "Show g&rid lines"
-msgstr "Mostra linee g&riglia"
+msgstr "Visualizza linee g&riglia"
 
 #. i18n-hint: name of the 'unnamed' custom curve
 #: src/effects/Equalization.cpp
@@ -6062,7 +6059,7 @@ msgstr ""
 
 #: src/effects/Equalization.cpp
 msgid "'unnamed' always stays at the bottom of the list"
-msgstr "'senza nome' viene sempre mostrato alla fine della lista"
+msgstr "'senza nome' viene sempre visualizzato alla fine dell'elenco"
 
 #: src/effects/Equalization.cpp
 msgid "'unnamed' is special"
@@ -7465,12 +7462,12 @@ msgstr "Esporta combinazioni unità audio"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Couldn't open \"%s\""
-msgstr "Non è stato possibile aprire \"%s\""
+msgstr "Impossibile aprire \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Unable to read the preset from \"%s\""
-msgstr "Non è stato possibile le combinazioni da \"%s\""
+msgstr "Impossibile leggere le combinazioni da \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -7524,7 +7521,7 @@ msgstr "Importa combinazione Audio Unit come %s:"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to set preset name"
-msgstr "Non è stato possibile impostare il nome della combinazione"
+msgstr "Impossibile impostare il nome della combinazione"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Failed to retrieve preset content"
@@ -7541,14 +7538,13 @@ msgstr "I dati XML sono vuoti dopo la conversione"
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to write XML preset to \"%s\""
-msgstr "Non è stato possibile scrivere la combinazione XML in \"%s\""
+msgstr "Impossibile scrivere la combinazione XML in \"%s\""
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
 msgid "Failed to set class info for \"%s\" preset"
 msgstr ""
-"Non è stato impossibile impostare le informazioni della classe per la "
-"combinazione \"%s\""
+"Impossibile impostare le informazioni della classe per la combinazione \"%s\""
 
 #. i18n-hint: the name of an Apple audio software protocol
 #. i18n-hint: Audio Unit is the name of an Apple audio software protocol
@@ -7946,7 +7942,7 @@ msgstr "Sfoglia..."
 
 #: src/export/ExportCL.cpp
 msgid "Show output"
-msgstr "Mostra output"
+msgstr "Visualizza output"
 
 #: src/export/ExportCL.cpp src/export/ExportMultiple.cpp
 msgid "Export"
@@ -8023,7 +8019,7 @@ msgstr "Sono stati esportati con successo i seguenti %lld file."
 #: src/export/ExportMultiple.cpp
 #, c-format
 msgid "Something went wrong after exporting the following %lld file(s)."
-msgstr "Qualcosa è andato storto dopo l'esportazione dei seguenti %lld file."
+msgstr "Si è verificato un errore dopo l'esportazione dei seguenti %lld file."
 
 #: src/export/ExportMultiple.cpp
 #, c-format
@@ -8038,12 +8034,11 @@ msgstr "Esportazione interrotta dopo l'esportazione dei seguenti %lld file."
 #: src/export/ExportMultiple.cpp
 #, c-format
 msgid "Something went really wrong after exporting the following %lld file(s)."
-msgstr ""
-"Qualcosa è andato davvero storto dopo l'esportazione dei seguenti %lld file."
+msgstr "Si è verificato un errore dopo l'esportazione dei seguenti %lld file."
 
 #: src/export/ExportMultiple.cpp
 msgid "Continue to export remaining files?"
-msgstr "Proseguire con l'esportazione dei file rimanenti?"
+msgstr "Vuoi proseguire con l'esportazione dei file rimanenti?"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
@@ -8078,7 +8073,7 @@ msgstr "Importa progetto"
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
 msgid "Importing %s"
-msgstr "Importazione in corso di %s"
+msgstr "Importazione di %s"
 
 #. i18n-hint: 'Raw' means 'unprocessed' here and should usually be translated.
 #: src/import/ImportRaw.cpp
@@ -8509,7 +8504,7 @@ msgstr "S&alva progetto con nome..."
 
 #: src/menus/FileMenus.cpp
 msgid "&Backup Project..."
-msgstr "Copia di &backup del progetto..."
+msgstr "&Backup progetto..."
 
 #: src/menus/FileMenus.cpp
 msgid "&Export"
@@ -8603,11 +8598,11 @@ msgstr "Risolto"
 
 #: src/menus/HelpMenus.cpp
 msgid "Audio Device Info"
-msgstr "Informazioni sui dispositivi audio"
+msgstr "Info dispositivi audio"
 
 #: src/menus/HelpMenus.cpp
 msgid "MIDI Device Info"
-msgstr "Informazioni sui dispositivi MIDI"
+msgstr "Info dispositivi MIDI"
 
 #: src/menus/HelpMenus.cpp
 msgid "&Quick Help..."
@@ -8623,15 +8618,15 @@ msgstr "&Diagnostica"
 
 #: src/menus/HelpMenus.cpp
 msgid "Au&dio Device Info..."
-msgstr "Informazioni sui dispositivi au&dio..."
+msgstr "Info dispositivi au&dio..."
 
 #: src/menus/HelpMenus.cpp
 msgid "&MIDI Device Info..."
-msgstr "Informazioni sui dispositivi &MIDI..."
+msgstr "Info dispositivi &MIDI..."
 
 #: src/menus/HelpMenus.cpp src/widgets/ErrorDialog.cpp
 msgid "Show &Log..."
-msgstr "Mostra &registro..."
+msgstr "Visualizza &registro..."
 
 #: src/menus/LabelMenus.cpp src/toolbars/TranscriptionToolBar.cpp
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
@@ -10219,7 +10214,7 @@ msgstr "Priorità al fil&tro della finestra di dialogo di apertura dei file"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Rules to choose import filters"
-msgstr "Regole per selezionare i filtri di importazione"
+msgstr "Regole selezione filtri importazione"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "File extensions"
@@ -10231,7 +10226,7 @@ msgstr "Tipi mime"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Importer order"
-msgstr "Ordine di importazione"
+msgstr "Ordine importazione"
 
 #: src/prefs/ExtImportPrefs.cpp
 msgid "Move rule &up"
@@ -10341,11 +10336,11 @@ msgstr "Inte&rvallo del monitor in dB:"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show 'How to Get &Help' at launch"
-msgstr "Mostra 'Come ottenere &aiuto' all'avvio"
+msgstr "Visualizza 'Come ottenere &aiuto' all'avvio del programma"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "Show e&xtra menus"
-msgstr "Mostra al&tri menu"
+msgstr "Visualizza al&tri menu"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "&Beep on completion of longer activities"
@@ -10375,7 +10370,7 @@ msgstr "GUI"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Import / Export"
-msgstr "Importazione / esportazione"
+msgstr "Importa/esporta"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
@@ -10427,7 +10422,7 @@ msgstr "Associazioni dei tasti"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "View by:"
-msgstr "Mostra per:"
+msgstr "Visualizza per:"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "&Tree"
@@ -11240,7 +11235,7 @@ msgstr "Scala predinita forma d'onda:"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Display &samples:"
-msgstr "Mostra &campioni:"
+msgstr "Visualizza &campioni:"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
@@ -11465,7 +11460,7 @@ msgstr "Seleziona canali di registrazione"
 
 #: src/toolbars/DeviceToolBar.cpp
 msgid "Device information is not available."
-msgstr "Informazioni sul dispositivo non disponibili."
+msgstr "Info dispositivo non disponibili."
 
 #. i18n-hint: Clicking this menu item shows the toolbar
 #. that manages devices
@@ -11611,7 +11606,7 @@ msgstr "Lunghezza e centro della selezione"
 
 #: src/toolbars/SelectionBar.cpp src/toolbars/SpectralSelectionBar.cpp
 msgid "Show"
-msgstr "Mostra"
+msgstr "Visualizza"
 
 #: src/toolbars/SelectionBar.cpp
 msgid "Length"
@@ -11903,7 +11898,7 @@ msgstr "Fare clic e trascinare per modificare i campioni"
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "To use Draw, zoom in further until you can see the individual samples."
 msgstr ""
-"Per disegnare, aumentare lo zoom finché non vengono mostrati i singoli "
+"Per disegnare, aumenta lo zoom finché non vengono Visualizzati i singoli "
 "campioni."
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
@@ -12651,7 +12646,7 @@ msgstr " Troncato "
 
 #: src/widgets/MultiDialog.cpp
 msgid "Show Log for Details"
-msgstr "Mostra registro per dettagli"
+msgstr "Visualizza registro per dettagli"
 
 #. i18n-hint: Format string for displaying time in seconds. Change the comma
 #. * in the middle to the 1000s separator for your locale, and the 'seconds'
@@ -13048,7 +13043,7 @@ msgstr "Preferenze > Cartelle"
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
-msgstr "Non mostrare più questo avviso"
+msgstr "Non visualizzare più questo avviso"
 
 #: src/widgets/numformatter.cpp
 msgid "NaN"
@@ -14334,7 +14329,7 @@ msgstr "Ampiezza (0-1)"
 
 #: plug-ins/sample-data-export.ny
 msgid "Sample Data Export"
-msgstr "Esportazione dati campione"
+msgstr "Esporta dati campione"
 
 #: plug-ins/sample-data-export.ny
 msgid "Analyzing..."
@@ -14408,7 +14403,7 @@ msgstr "Prima canale Sx"
 
 #: plug-ins/sample-data-export.ny
 msgid "Show messages"
-msgstr "Mostra messaggi"
+msgstr "Visualizza messaggi"
 
 #: plug-ins/sample-data-export.ny
 msgid "Errors Only"
@@ -14614,7 +14609,7 @@ msgstr "Errore.~%\"~a\" non può essere scritto."
 
 #: plug-ins/sample-data-import.ny
 msgid "Sample Data Import"
-msgstr "Importazione dati campione"
+msgstr "Importaazione dati campione"
 
 #: plug-ins/sample-data-import.ny
 msgid "Reading and rendering samples..."
@@ -15517,23 +15512,6 @@ msgstr "Errore.~%Richiesta traccia stereo."
 #~ "Se si procede il progetto non verrà salvato su disco. Si è sicuri di "
 #~ "voler procedere?"
 
-#~ msgid ""
-#~ "Your project is self-contained; it does not depend on any external audio "
-#~ "files. \n"
-#~ "\n"
-#~ "Some older Audacity projects may not be self-contained, and care \n"
-#~ "is needed to keep their external dependencies in the right place.\n"
-#~ "New projects will be self-contained and are less risky."
-#~ msgstr ""
-#~ "Il progetto è attualmente auto-contenuto: non dipende da file audio "
-#~ "esterni. \n"
-#~ "\n"
-#~ "Alcuni progetti di Tenacity più vecchi potrebbero non essere auto-"
-#~ "contenuti,\n"
-#~ "ed è necessario mantenerene le dipendenze esterne nella corretta "
-#~ "posizione.\n"
-#~ "I nuovi progetti saranno auto-contenuti e meno rischiosi."
-
 #~ msgid "Dependency Check"
 #~ msgstr "Controlla dipendenze"
 
@@ -15969,3 +15947,30 @@ msgstr "Errore.~%Richiesta traccia stereo."
 
 #~ msgid "Can't open new empty project"
 #~ msgstr "Impossibile aprire un nuovo progetto vuoto"
+
+#: src/AudacityApp.cpp
+msgid ""
+"Audacity project (.aup3) files are not currently \n"
+"associated with Tenacity. \n"
+"\n"
+"Associate them, so they open on double-click?"
+msgstr ""
+"I file progetto Audacity (.AUP3) non sono attualmente\n"
+"associati a Tenacity.\n"
+"\n"
+"Vuoi associare i file, in modo da porteli aprire con doppio clic?"
+
+#: src/Dependencies.cpp
+msgid ""
+"Your project is self-contained; it does not depend on any external audio "
+"files. \n"
+"\n"
+"Some older Audacity projects may not be self-contained, and care \n"
+"is needed to keep their external dependencies in the right place.\n"
+"New projects will be self-contained and are less risky."
+msgstr ""
+"Il progetto è autonomo e non dipende da alcun file audio esterno. \n"
+"\n"
+"Alcuni progetti Auidacity più vecchi potrebbero non essere autonomi ed è \n"
+"necessario per mantenere le loro dipendenze esterne nel posto giusto.\n"
+"I nuovi progetti saranno autonomi e sono meno rischiosi."
