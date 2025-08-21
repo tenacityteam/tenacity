@@ -25,6 +25,8 @@ set( SOURCES
    DtmfBase.h
    DistortionBase.cpp
    DistortionBase.h
+   DynamicCompressorBase.cpp
+   DynamicCompressorBase.h
    EchoBase.cpp
    EchoBase.h
    EqualizationBase.cpp
