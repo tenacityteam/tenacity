@@ -68,7 +68,7 @@ found on Alpine's `community` repository. On Alpine Linux 3.17 or later, install
 the dependencies with this command:
 
 ```
-sudo apk add cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets rapidjson
+sudo apk add alpine-sdk cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets-dev rapidjson-dev libzip-dev libmatroska-dev
 ```
 
 For older versions of Alpine (i.e., 3.16 and below), please refer to the
