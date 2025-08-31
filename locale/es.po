@@ -8,13 +8,14 @@
 # Iago <translate@delthia.com>, 2023.
 # emma peel <emma.peel@riseup.net>, 2024.
 # andee SANXCEH <maestronoov324953@gmail.com>, 2025.
+# Héctor Ruz Yebra <hector.principal@tutanota.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-05-20 18:59+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2025-08-31 22:01+0000\n"
+"Last-Translator: Héctor Ruz Yebra <hector.principal@tutanota.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/es/>\n"
 "Language: es\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -15102,9 +15103,6 @@ msgstr "Error.~%Se necesita una pista estéreo."
 #~ msgid "Show alternative &styling (Mac vs PC)"
 #~ msgstr "Mostrar e&stilos alternativos (Mac vs PC)"
 
-#~ msgid "No devices found\n"
-#~ msgstr "No se han encontrado dispositivos\n"
-
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "Mesa de trabajo &Nyquist..."
 
@@ -19420,3 +19418,51 @@ msgstr "Error.~%Se necesita una pista estéreo."
 
 #~ msgid "&Redo\tCtrl+Y"
 #~ msgstr "&Rehacer\tCtrl+Y"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"Este complemento no se ha podido cargar.\n"
+"Es probable que se haya eliminado."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "Error de complemento"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "Dispositivo de grabación por defecto: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "No se encontraron dispositivos\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "Sin información de dispositivo disponible para:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "ID de dispositivo: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "Nombre de dispositivo:%s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "Canales de grabación:%d\n"
