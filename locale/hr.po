@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-02-20 22:06+0000\n"
+"PO-Revision-Date: 2025-09-02 18:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/hr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
@@ -36,7 +36,7 @@ msgstr "obični uzorci"
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/RecordingPrefs.cpp src/widgets/NumericTextCtrl.cpp
 msgid "milliseconds"
-msgstr "milisekunda"
+msgstr "milisekunde"
 
 #: libraries/lib-basic-ui/BasicUI.cpp
 #: libraries/lib-exceptions/TenacityException.h src/commands/MessageCommand.cpp
@@ -3669,7 +3669,7 @@ msgstr "Jačina spuštanja:"
 #: src/prefs/PlaybackPrefs.cpp src/prefs/RecordingPrefs.cpp
 #: src/widgets/NumericTextCtrl.cpp
 msgid "seconds"
-msgstr "sekunda"
+msgstr "sekunde"
 
 #: src/effects/AutoDuck.cpp
 #, fuzzy
@@ -9843,7 +9843,7 @@ msgstr "Logaritamska"
 
 #: src/prefs/TracksPrefs.cpp src/prefs/WaveformPrefs.h
 msgid "Waveform"
-msgstr "Valni oblik"
+msgstr "Oblik valova"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Spectrogram"
@@ -9855,19 +9855,16 @@ msgid "Stem plot"
 msgstr "Prenacrtaj"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
-#, fuzzy
 msgid "Fit to Width"
-msgstr "Prilag&odi prozoru"
+msgstr "Prilagodi na širinu"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
-#, fuzzy
 msgid "Zoom to Selection"
-msgstr "&Povećaj na izbor"
+msgstr "Uvećaj na odabir"
 
 #: src/prefs/TracksPrefs.cpp
-#, fuzzy
 msgid "Zoom Default"
-msgstr "Predzadano povećanje"
+msgstr "Zadano uvećanje"
 
 #: src/prefs/TracksPrefs.cpp plug-ins/sample-data-export.ny
 #, fuzzy
@@ -11432,7 +11429,7 @@ msgstr "hh:mm:ss"
 #. * locale
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s"
-msgstr "0100 h 060 m 060 s"
+msgstr "0100 h 060 min 060 s"
 
 #. i18n-hint: Name of time display format that shows time in days, hours,
 #. * minutes and seconds
@@ -11447,7 +11444,7 @@ msgstr "dd:hh:mm:ss"
 #. * 24 hours in a day in your locale
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 days 024 h 060 m 060 s"
-msgstr "0100 dana 024 h 060 m 060 s"
+msgstr "0100 dana 024 h 060 min 060 s"
 
 #. i18n-hint: Name of time display format that shows time in hours,
 #. * minutes, seconds and hundredths of a second (1/100 second)
@@ -11464,7 +11461,7 @@ msgstr "hh:mm:ss + stotinke"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060>0100 s"
-msgstr "0100 h 060 m 060>0100 s"
+msgstr "0100 h 060 min 060>0100 s"
 
 #. i18n-hint: Name of time display format that shows time in hours,
 #. * minutes, seconds and milliseconds (1/1000 second)
@@ -11481,7 +11478,7 @@ msgstr "hh:mm:ss + milisekunde"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060>01000 s"
-msgstr "0100 h 060 m 060>01000 s"
+msgstr "0100 h 060 min 060>01000 s"
 
 #. i18n-hint: Name of time display format that shows time in hours,
 #. * minutes, seconds and samples (at the current project sample rate)
@@ -11498,7 +11495,7 @@ msgstr "hh:mm:ss + uzorci"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+># samples"
-msgstr "0100 h 060 m 060 s+># uzoraka"
+msgstr "0100 h 060 min 060 s+>broj uzoraka"
 
 #. i18n-hint: Format string for displaying time in samples (lots of samples).
 #. * Change the ',' to the 1000s separator for your locale, and translate
@@ -11523,7 +11520,7 @@ msgstr "hh:mm:ss + filmski uzorci (24/s)"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+>24 frames"
-msgstr "0100 h 060 m 060 s+>24 uzoraka"
+msgstr "0100 h 060 min 060 s+>24 uzoraka"
 
 #. i18n-hint: Name of time display format that shows time in frames (lots of
 #. * frames) at 24 frames per second (commonly used for films)
@@ -11554,7 +11551,7 @@ msgstr "hh:mm:ss + uzorci NTSC (30/s)"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+>30 frames|N"
-msgstr "0100 h 060 m 060 s+>30 uzoraka|N"
+msgstr "0100 h 060 min 060 s+>30 uzoraka|N"
 
 #. i18n-hint: Name of time display format that shows time in hours, minutes,
 #. * seconds and frames at NTSC TV non-drop-frame rate (used for American /
@@ -11572,7 +11569,7 @@ msgstr "hh:mm:ss + uzorci NTSC (29,97/s)"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+>030 frames| .999000999"
-msgstr "0100 h 060 m 060 s+>030 uzoraka| .999000999"
+msgstr "0100 h 060 min 060 s+>030 uzoraka| .999000999"
 
 #. i18n-hint: Name of time display format that shows time in frames at NTSC
 #. * TV frame rate (used for American / Japanese TV
@@ -11603,7 +11600,7 @@ msgstr "hh:mm:ss + uzorci PAL (25/s)"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+>25 frames"
-msgstr "0100 h 060 m 060 s+>25 uzoraka"
+msgstr "0100 h 060 min 060 s+>25 uzoraka"
 
 #. i18n-hint: Name of time display format that shows time in frames at PAL
 #. * TV frame rate (used for European TV)
@@ -11633,7 +11630,7 @@ msgstr "hh:mm:ss + uzorci CDDA (75/s)"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "0100 h 060 m 060 s+>75 frames"
-msgstr "0100 h 060 m 060 s+>75 uzoraka"
+msgstr "0100 h 060 min 060 s+>75 uzoraka"
 
 #. i18n-hint: Name of time display format that shows time in frames at CD
 #. * Audio frame rate (75 frames per second)
@@ -11654,9 +11651,8 @@ msgstr "01000,01000 uzoraka|75"
 #. * The decimal separator is specified using '<' if your language uses a ',' or
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "010,01000>0100 Hz"
-msgstr "0100 h 060 m 060>0100 s"
+msgstr "010,01000>0100 Hz"
 
 #. i18n-hint: Name of display format that shows frequency in kilohertz
 #: src/widgets/NumericTextCtrl.cpp
@@ -11668,25 +11664,22 @@ msgstr "kHz"
 #. * The decimal separator is specified using '<' if your language uses a ',' or
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "01000>01000 kHz|0.001"
-msgstr "0100 h 060 m 060>0100 s"
+msgstr "01000>01000 kHz|0.001"
 
 #. i18n-hint: Name of display format that shows log of frequency
 #. * in octaves
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "octaves"
-msgstr "u oktavu"
+msgstr "oktave"
 
 #. i18n-hint: Format string for displaying log of frequency in octaves.
 #. * Change the decimal points for your locale. Don't change the numbers.
 #. * The decimal separator is specified using '<' if your language uses a ',' or
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "100>01000 octaves|1.442695041"
-msgstr "01000,01000 uzoraka|24"
+msgstr "100>01000 oktave|1.442695041"
 
 #. i18n-hint: Name of display format that shows log of frequency
 #. * in semitones and cents
@@ -16846,3 +16839,22 @@ msgstr "Nepoznato ime ugrađenog efekta"
 #: src/effects/Loudness.cpp
 msgid "Loudness Normalization"
 msgstr "Normalizacija glasnoće"
+
+#: src/prefs/TracksPrefs.cpp
+msgid "Minutes"
+msgstr "Minute"
+
+#. i18n-hint: Name of time display format that shows time in seconds
+#. * and milliseconds (1/1000 second)
+#: libraries/lib-numeric-formats/formatters/ParsedNumericConverterFormatter.cpp
+msgid "seconds + milliseconds"
+msgstr "sekunde + millisekunde"
+
+#: libraries/lib-numeric-formats/formatters/ParsedNumericConverterFormatter.cpp
+msgid "hertz"
+msgstr "herca"
+
+#. i18n-hint: an octave is a doubling of frequency
+#: libraries/lib-numeric-formats/formatters/ParsedNumericConverterFormatter.cpp
+msgid "thousandths of octaves"
+msgstr "tisućinke oktava"
