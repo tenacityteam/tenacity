@@ -1709,7 +1709,9 @@ bool AudacityApp::CreateSingleInstanceChecker(const wxString &dir)
 {
    mIPCServ.reset();
 
-   bool isServer = false;
+   // Volatile because GCC likes to optimize this out in our Flatpak for some
+   // reason...
+   volatile bool isServer = false;
    wxIPV4address addr;
    addr.LocalHost();
 
