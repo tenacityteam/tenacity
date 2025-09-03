@@ -51,7 +51,7 @@ std::unique_ptr<EffectEditor> EffectAutoDuck::PopulateOrExchange(
          mDuckAmountDbBox = S.Validator<FloatingPointValidator<double>>(
                1, &mDuckAmountDb, NumValidatorStyle::NO_TRAILING_ZEROES,
                DuckAmountDb.min, DuckAmountDb.max )
-            .NameSuffix(XO("db"))
+            .NameSuffix(XO("dB"))
             .AddTextBox(XXO("Duck &amount:"), wxT(""), 10);
          S.AddUnits(XO("dB"));
 
@@ -97,7 +97,7 @@ std::unique_ptr<EffectEditor> EffectAutoDuck::PopulateOrExchange(
          mThresholdDbBox = S.Validator<FloatingPointValidator<double>>(
                2, &mThresholdDb, NumValidatorStyle::NO_TRAILING_ZEROES,
                ThresholdDb.min, ThresholdDb.max )
-            .NameSuffix(XO("db"))
+            .NameSuffix(XO("dB"))
             .AddTextBox(XXO("&Threshold:"), wxT(""), 10);
          S.AddUnits(XO("dB"));
       }

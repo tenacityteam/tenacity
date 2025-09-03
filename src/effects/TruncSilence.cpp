@@ -46,7 +46,7 @@ std::unique_ptr<EffectEditor> EffectTruncSilence::PopulateOrExchange(
             .Validator<FloatingPointValidator<double>>(
                3, &mThresholdDB, NumValidatorStyle::NO_TRAILING_ZEROES,
                Threshold.min, Threshold.max )
-            .NameSuffix(XO("db"))
+            .NameSuffix(XO("dB"))
             .AddTextBox(XXO("&Threshold:"), wxT(""), 0);
          S.AddUnits(XO("dB"));
 
