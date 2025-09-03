@@ -715,7 +715,7 @@ bool Importer::Import(
       if (extension.IsSameAs(wxT("cda"), false)) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is an audio CD track. \nTenacity cannot open audio CDs directly. \nExtract (rip) the CD tracks to an audio format that \nAudacity can import, such as WAV or AIFF.")
+"\"%s\" is an audio CD track. \nTenacity cannot open audio CDs directly. \nExtract (rip) the CD tracks to an audio format that \nTenacity can import, such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -748,7 +748,7 @@ bool Importer::Import(
       if ((extension.IsSameAs(wxT("m4p"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is an encrypted audio file. \nThese typically are from an online music store. \nTenacity cannot open this type of file due to the encryption. \nTry recording the file into Audacity, or burn it to audio CD then \nextract the CD track to a supported audio format such as WAV or AIFF.")
+"\"%s\" is an encrypted audio file. \nThese typically are from an online music store. \nTenacity cannot open this type of file due to the encryption. \nTry recording the file into Tenacity, or burn it to audio CD then \nextract the CD track to a supported audio format such as WAV or AIFF.")
             .Format( fName );
          return false;
       }
@@ -765,7 +765,7 @@ bool Importer::Import(
       if ((extension.IsSameAs(wxT("kar"), false))||(extension.IsSameAs(wxT("mod"), false))||(extension.IsSameAs(wxT("rmi"), false))) {
          errorMessage = XO(
 /* i18n-hint: %s will be the filename */
-"\"%s\" is a notes-based file, not an audio file. \nTenacity cannot open this type of file. \nTry converting it to an audio file such as WAV or AIFF and \nthen import it, or record it into Audacity.")
+"\"%s\" is a notes-based file, not an audio file. \nTenacity cannot open this type of file. \nTry converting it to an audio file such as WAV or AIFF and \nthen import it, or record it into Tenacity.")
             .Format( fName );
          return false;
       }

@@ -557,10 +557,10 @@ bool ProjectFileManager::SaveAs(bool allowOverwrite /* = false */)
          if (mayOverwrite > 0) {
             /* i18n-hint: In each case, %s is the name
              of the file being overwritten.*/
-            auto Message = XO("\
-   Do you want to overwrite the project:\n\"%s\"?\n\n\
-   If you select \"Yes\" the project\n\"%s\"\n\
-   will be irreversibly overwritten.").Format( fName, fName );
+            auto Message = XO(
+               "Do you want to overwrite the project:\n\"%s\"?\n\n"
+               "If you select \"Yes\" the project will be irreversibly overwritten."
+            ).Format(fName);
 
             // For safety, there should NOT be an option to hide this warning.
             int result = AudacityMessageBox(
