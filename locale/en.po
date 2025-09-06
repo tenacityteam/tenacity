@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2025-08-02 16:22-0700\n"
+"POT-Creation-Date: 2025-09-06 08:40-0700\n"
 "PO-Revision-Date: 2025-08-02 16:23-0700\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
 "Language-Team: English <https://hosted.weblate.org/projects/tenacity/"
@@ -1835,12 +1835,12 @@ msgstr "This version of Tenacity was not compiled with %s support."
 
 #. i18n-hint: %s will be the filename
 #: libraries/lib-import-export/Import.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\"%s\" is an audio CD track. \n"
 "Tenacity cannot open audio CDs directly. \n"
 "Extract (rip) the CD tracks to an audio format that \n"
-"Audacity can import, such as WAV or AIFF."
+"Tenacity can import, such as WAV or AIFF."
 msgstr ""
 "\"%s\" is an audio CD track. \n"
 "Tenacity cannot open audio CDs directly. \n"
@@ -1893,12 +1893,12 @@ msgstr ""
 
 #. i18n-hint: %s will be the filename
 #: libraries/lib-import-export/Import.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\"%s\" is an encrypted audio file. \n"
 "These typically are from an online music store. \n"
 "Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Audacity, or burn it to audio CD then \n"
+"Try recording the file into Tenacity, or burn it to audio CD then \n"
 "extract the CD track to a supported audio format such as WAV or AIFF."
 msgstr ""
 "\"%s\" is an encrypted audio file. \n"
@@ -1921,12 +1921,12 @@ msgstr ""
 
 #. i18n-hint: %s will be the filename
 #: libraries/lib-import-export/Import.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\"%s\" is a notes-based file, not an audio file. \n"
 "Tenacity cannot open this type of file. \n"
 "Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Audacity."
+"then import it, or record it into Tenacity."
 msgstr ""
 "\"%s\" is a notes-based file, not an audio file. \n"
 "Tenacity cannot open this type of file. \n"
@@ -4784,7 +4784,8 @@ msgid "Credits"
 msgstr "Credits"
 
 #: src/AboutDialog.cpp
-msgid "Teancity Credits"
+#, fuzzy
+msgid "Tenacity Credits"
 msgstr "Teancity Credits"
 
 #. i18n-hint: The program's name substitutes for %s
@@ -5182,9 +5183,10 @@ msgid "&File"
 msgstr "&File"
 
 #: src/AudacityApp.cpp
+#, fuzzy
 msgid ""
 "Tenacity could not find a safe place to store temporary files.\n"
-"Audacity needs a place where automatic cleanup programs won't delete the "
+"Tenacity needs a place where automatic cleanup programs won't delete the "
 "temporary files.\n"
 "Please enter an appropriate directory in the preferences dialog."
 msgstr ""
@@ -7207,17 +7209,13 @@ msgstr ""
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sSave Project \"%s\" As..."
 
-#. i18n-hint: In each case, %s is the name
-#. of the file being overwritten.
 #: src/ProjectFileManager.cpp
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"   Do you want to overwrite the project:\n"
+"Do you want to overwrite the project:\n"
 "\"%s\"?\n"
 "\n"
-"   If you select \"Yes\" the project\n"
-"\"%s\"\n"
-"   will be irreversibly overwritten."
+"If you select \"Yes\" the project will be irreversibly overwritten."
 msgstr ""
 "   Do you want to overwrite the project:\n"
 "\"%s\"?\n"
@@ -9153,10 +9151,6 @@ msgstr "&New Peak Amplitude (dB):"
 #: src/effects/Amplify.cpp
 msgid "Allo&w clipping"
 msgstr "Allo&w clipping"
-
-#: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
-msgid "db"
-msgstr "db"
 
 #: src/effects/AutoDuck.cpp
 msgid "Duck &amount:"
@@ -18703,6 +18697,9 @@ msgstr "Frequency of Radar Needles (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "Error.~%Stereo track required."
+
+#~ msgid "db"
+#~ msgstr "db"
 
 #~ msgid "1st Experimental Command..."
 #~ msgstr "1st Experimental Command..."

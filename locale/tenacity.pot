@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.4\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2025-08-02 16:22-0700\n"
+"POT-Creation-Date: 2025-09-06 08:40-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1704,7 +1704,7 @@ msgid ""
 "\"%s\" is an audio CD track. \n"
 "Tenacity cannot open audio CDs directly. \n"
 "Extract (rip) the CD tracks to an audio format that \n"
-"Audacity can import, such as WAV or AIFF."
+"Tenacity can import, such as WAV or AIFF."
 msgstr ""
 
 #. i18n-hint: %s will be the filename
@@ -1741,7 +1741,7 @@ msgid ""
 "\"%s\" is an encrypted audio file. \n"
 "These typically are from an online music store. \n"
 "Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Audacity, or burn it to audio CD then \n"
+"Try recording the file into Tenacity, or burn it to audio CD then \n"
 "extract the CD track to a supported audio format such as WAV or AIFF."
 msgstr ""
 
@@ -1761,7 +1761,7 @@ msgid ""
 "\"%s\" is a notes-based file, not an audio file. \n"
 "Tenacity cannot open this type of file. \n"
 "Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Audacity."
+"then import it, or record it into Tenacity."
 msgstr ""
 
 #. i18n-hint: %s will be the filename
@@ -4412,7 +4412,7 @@ msgid "Credits"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Teancity Credits"
+msgid "Tenacity Credits"
 msgstr ""
 
 #. i18n-hint: The program's name substitutes for %s
@@ -4809,7 +4809,7 @@ msgstr ""
 #: src/AudacityApp.cpp
 msgid ""
 "Tenacity could not find a safe place to store temporary files.\n"
-"Audacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
+"Tenacity needs a place where automatic cleanup programs won't delete the temporary files.\n"
 "Please enter an appropriate directory in the preferences dialog."
 msgstr ""
 
@@ -6599,17 +6599,13 @@ msgstr ""
 msgid "%sSave Project \"%s\" As..."
 msgstr ""
 
-#. i18n-hint: In each case, %s is the name
-#. of the file being overwritten.
 #: src/ProjectFileManager.cpp
 #, c-format
 msgid ""
-"   Do you want to overwrite the project:\n"
+"Do you want to overwrite the project:\n"
 "\"%s\"?\n"
 "\n"
-"   If you select \"Yes\" the project\n"
-"\"%s\"\n"
-"   will be irreversibly overwritten."
+"If you select \"Yes\" the project will be irreversibly overwritten."
 msgstr ""
 
 #. i18n-hint: Heading: A warning that a project is about to be overwritten.
@@ -8454,10 +8450,6 @@ msgstr ""
 
 #: src/effects/Amplify.cpp
 msgid "Allo&w clipping"
-msgstr ""
-
-#: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
-msgid "db"
 msgstr ""
 
 #: src/effects/AutoDuck.cpp
