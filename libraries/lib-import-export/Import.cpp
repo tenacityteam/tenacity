@@ -779,24 +779,6 @@ bool Importer::Import(
          return false;
       }
 
-      // WavPack files
-      if ((extension.IsSameAs(wxT("wv"), false))||(extension.IsSameAs(wxT("wvc"), false))) {
-         errorMessage = XO(
-/* i18n-hint: %s will be the filename */
-"\"%s\" is a Wavpack audio file. \nTenacity cannot open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
-            .Format( fName );
-         return false;
-      }
-
-      // AC3 files
-      if ((extension.IsSameAs(wxT("ac3"), false))) {
-         errorMessage = XO(
-/* i18n-hint: %s will be the filename */
-"\"%s\" is a Dolby Digital audio file. \nTenacity cannot currently open this type of file. \nYou need to convert it to a supported audio format, such as WAV or AIFF.")
-            .Format( fName );
-         return false;
-      }
-
       // Speex files
       if ((extension.IsSameAs(wxT("spx"), false))) {
          errorMessage = XO(
