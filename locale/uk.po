@@ -2657,25 +2657,6 @@ msgstr ""
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sЗберегти проєкт «%s» як…"
 
-#. i18n-hint: In each case, %s is the name
-#. of the file being overwritten.
-#: src/ProjectFileManager.cpp
-#, c-format
-msgid ""
-"   Do you want to overwrite the project:\n"
-"\"%s\"?\n"
-"\n"
-"   If you select \"Yes\" the project\n"
-"\"%s\"\n"
-"   will be irreversibly overwritten."
-msgstr ""
-"   Хочете перезаписати проєкт:\n"
-"«%s»?\n"
-"\n"
-"   Якщо ви виберете варіант «Так», проєкт\n"
-"«%s»\n"
-"   буде перезаписано без можливості відновлення."
-
 #. i18n-hint: Heading: A warning that a project is about to be overwritten.
 #: src/ProjectFileManager.cpp
 msgid "Overwrite Project Warning"
@@ -4444,10 +4425,6 @@ msgid ""
 msgstr ""
 "Для ефекту приглушення музики потрібна контрольна доріжка, яка має бути "
 "розташована під вибраними доріжками."
-
-#: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
-msgid "db"
-msgstr "дБ"
 
 #: src/effects/AutoDuck.cpp
 msgid "Duck &amount:"
@@ -16511,50 +16488,6 @@ msgstr "Імпорт %s..."
 msgid "Operation was canceled by user"
 msgstr "Операцію скасовано користувачем"
 
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an audio CD track. \n"
-"Tenacity cannot open audio CDs directly. \n"
-"Extract (rip) the CD tracks to an audio format that \n"
-"Audacity can import, such as WAV or AIFF."
-msgstr ""
-"\"%s\" – це аудіодоріжка компакт-диска. \n"
-"Tenacity не може відкривати аудіокомпакт-диски безпосередньо.\n"
-" Витягніть (скопіюйте) доріжки компакт-диска в аудіоформат, який \n"
-"Audacity може імпортувати, наприклад, WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an encrypted audio file. \n"
-"These typically are from an online music store. \n"
-"Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Audacity, or burn it to audio CD then \n"
-"extract the CD track to a supported audio format such as WAV or AIFF."
-msgstr ""
-"\"%s\" – це зашифрований аудіофайл.\n"
-"Зазвичай вони з онлайн-магазину музики.\n"
-"Tenacity не може відкрити цей тип файлу через шифрування.\n"
-"Спробуйте записати файл в Audacity або записати його на аудіо CD, а потім\n"
-"витягніть трек CD у підтримуваний аудіоформат, такий як WAV або AIFF."
-
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a notes-based file, not an audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Audacity."
-msgstr ""
-"«%s» – це файл на основі нотаток, а не аудіофайл.\n"
-"Tenacity не може відкрити цей тип файлу.\n"
-"Спробуйте конвертувати його в аудіофайл,\n"
-"такий як WAV або AIFF, а потім імпортувати його або записати в Audacity."
-
 #: libraries/lib-label-track/LabelTrack.cpp
 msgid "SubRip text file"
 msgstr "Текстовий файл SubRip"
@@ -17201,10 +17134,6 @@ msgstr ""
 "запису та редагування звуків."
 
 #: src/AboutDialog.cpp
-msgid "Teancity Credits"
-msgstr "Кредити Teancity"
-
-#: src/AboutDialog.cpp
 msgid "Contributors:"
 msgstr "Автори:"
 
@@ -17308,18 +17237,6 @@ msgstr "Безперервне прокручування"
 msgid "SQLite library failed to initialize.  Tenacity cannot continue."
 msgstr ""
 "Не вдалося ініціалізувати бібліотеку SQLite. Tenacity не може продовжитися."
-
-#: src/AudacityApp.cpp
-msgid ""
-"Tenacity could not find a safe place to store temporary files.\n"
-"Audacity needs a place where automatic cleanup programs won't delete the "
-"temporary files.\n"
-"Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-"Tenacity не вдалося знайти безпечне місце для зберігання тимчасових файлів.\n"
-"Audacity потрібне місце, де програми автоматичного очищення не видалятимуть "
-"тимчасові файли.\n"
-"Будь ласка, введіть відповідний каталог у діалоговому вікні налаштувань."
 
 #: src/AudacityApp.cpp
 msgid ""

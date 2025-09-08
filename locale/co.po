@@ -2642,25 +2642,6 @@ msgstr ""
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sArregistrà u prughjettu « %s » cù u nome…"
 
-#. i18n-hint: In each case, %s is the name
-#. of the file being overwritten.
-#: src/ProjectFileManager.cpp
-#, c-format
-msgid ""
-"   Do you want to overwrite the project:\n"
-"\"%s\"?\n"
-"\n"
-"   If you select \"Yes\" the project\n"
-"\"%s\"\n"
-"   will be irreversibly overwritten."
-msgstr ""
-"   Vulete rimpiazzà u prughjettu :\n"
-"« %s » ?\n"
-"\n"
-"   S’è vò sciglite « Sì » u prughjettu\n"
-"« %s »\n"
-"   serà rimpiazzatu ab’eternu."
-
 #. i18n-hint: Heading: A warning that a project is about to be overwritten.
 #: src/ProjectFileManager.cpp
 msgid "Overwrite Project Warning"
@@ -4411,10 +4392,6 @@ msgid ""
 msgstr ""
 "A riduzzione autumatica di vulume hà bisognu d’una traccia di cuntrollu chì "
 "deve esse piazzata sottu a(e) traccia(e) selezziunata(e)."
-
-#: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
-msgid "db"
-msgstr "dB"
 
 #: src/effects/AutoDuck.cpp
 msgid "Duck &amount:"
@@ -16514,51 +16491,6 @@ msgstr "Impurtazione di %s…"
 msgid "Operation was canceled by user"
 msgstr "L’operazione hè stata abbandunata da l’utilizatore"
 
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an audio CD track. \n"
-"Tenacity cannot open audio CDs directly. \n"
-"Extract (rip) the CD tracks to an audio format that \n"
-"Audacity can import, such as WAV or AIFF."
-msgstr ""
-"« %s » hè una traccia di CD audio. \n"
-"Tenacity ùn pò micca apre direttamente di CD audio. \n"
-"Estrae (cunversione « rip ») e traccie di CD in un\n"
-"furmatu chì Audacity possa impurtà, cum’è WAV o AIFF."
-
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an encrypted audio file. \n"
-"These typically are from an online music store. \n"
-"Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Audacity, or burn it to audio CD then \n"
-"extract the CD track to a supported audio format such as WAV or AIFF."
-msgstr ""
-"« %s » hè un schedariu audio cifratu. \n"
-"Di quelli chì sò vinduti da e butteghe di musica in linea. \n"
-"Tenacity ùn pò micca apre stu tipu di schedariu per via di a cifratura. \n"
-"Pruvate d’arregistrà u schedariu cù Audacity, o impruntatelu nant’à un CD "
-"audio,\n"
-"eppoi estraite a traccia CD in un furmatu audio accettatu, cum’è WAV o AIFF."
-
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a notes-based file, not an audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Audacity."
-msgstr ""
-"« %s » hè un schedariu di note, è micca un schedariu audio. \n"
-"Tenacity ùn pò micca apre stu tipu di schedariu. \n"
-"Pruvate di cunvertiscelu in un furmatu audio, cum’è WAV o AIFF,\n"
-"è impurtatelu o arregistratelu cù Audacity."
-
 #: libraries/lib-label-track/LabelTrack.cpp
 msgid "SubRip text file"
 msgstr "Schedariu di testu SubRip"
@@ -17207,10 +17139,6 @@ msgstr ""
 "parechje piattaforme, per l’arregistramentu è a mudificazione di soni."
 
 #: src/AboutDialog.cpp
-msgid "Teancity Credits"
-msgstr "Distinzioni Tenacity"
-
-#: src/AboutDialog.cpp
 msgid "Contributors:"
 msgstr "Cuntribuenti :"
 
@@ -17314,20 +17242,6 @@ msgstr "Sfilarata di cuntinuu"
 #: src/AudacityApp.cpp
 msgid "SQLite library failed to initialize.  Tenacity cannot continue."
 msgstr "Iniziu fiascu di a bibliuteca SQLite.  Tenacity ùn pò micca cuntinuà."
-
-#: src/AudacityApp.cpp
-msgid ""
-"Tenacity could not find a safe place to store temporary files.\n"
-"Audacity needs a place where automatic cleanup programs won't delete the "
-"temporary files.\n"
-"Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-"Tenacity ùn pò micca truvà un locu sicuru per piazzà i schedarii timpurarii."
-"\n"
-"Audacity hà bisognu d’un locu induve i prugrammi di nettata autumatica ùn "
-"squasseranu micca i schedarii timpurarii.\n"
-"Ci vole à stampittà u nome di cartulare fattu apposta in u dialogu di e "
-"preferenze."
 
 #: src/AudacityApp.cpp
 msgid ""

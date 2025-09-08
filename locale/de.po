@@ -2674,25 +2674,6 @@ msgstr ""
 msgid "%sSave Project \"%s\" As..."
 msgstr "%sProjekt „%s“ speichern unter …"
 
-#. i18n-hint: In each case, %s is the name
-#. of the file being overwritten.
-#: src/ProjectFileManager.cpp
-#, c-format
-msgid ""
-"   Do you want to overwrite the project:\n"
-"\"%s\"?\n"
-"\n"
-"   If you select \"Yes\" the project\n"
-"\"%s\"\n"
-"   will be irreversibly overwritten."
-msgstr ""
-"   Möchten Sie das Projekt überschreiben:\n"
-"„%s“?\n"
-"\n"
-"   Wenn Sie „Ja“ wählen, wird das Projekt\n"
-"„%s“\n"
-"   unwiderruflich überschrieben."
-
 #. i18n-hint: Heading: A warning that a project is about to be overwritten.
 #: src/ProjectFileManager.cpp
 msgid "Overwrite Project Warning"
@@ -4460,10 +4441,6 @@ msgid ""
 msgstr ""
 "Auto-Duck benötigt eine Steuerspur, die unter der/den ausgewählten Spur(en) "
 "liegen muss."
-
-#: src/effects/AutoDuck.cpp src/effects/TruncSilence.cpp
-msgid "db"
-msgstr "db"
 
 #: src/effects/AutoDuck.cpp
 msgid "Duck &amount:"
@@ -15793,52 +15770,6 @@ msgstr "Importieren von %s …"
 msgid "Operation was canceled by user"
 msgstr "Operation wurde vom Benutzer abgebrochen"
 
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an audio CD track. \n"
-"Tenacity cannot open audio CDs directly. \n"
-"Extract (rip) the CD tracks to an audio format that \n"
-"Audacity can import, such as WAV or AIFF."
-msgstr ""
-"„%s“ ist eine Audio-CD-Spur. \n"
-"Tenacity kann Audio-CDs nicht direkt öffnen. \n"
-"Extrahieren (rippen) Sie die CD-Spuren in ein Audioformat, dass \n"
-"Audacity importieren kann, wie WAV oder AIFF."
-
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is an encrypted audio file. \n"
-"These typically are from an online music store. \n"
-"Tenacity cannot open this type of file due to the encryption. \n"
-"Try recording the file into Audacity, or burn it to audio CD then \n"
-"extract the CD track to a supported audio format such as WAV or AIFF."
-msgstr ""
-"„%s“ ist eine verschlüsselte Audiodatei \n"
-"Diese kommen typischerweise aus einem Online-Musikladen. \n"
-"Tenacity kann diesen Typ Datei aufgrund der Verschlüsselung nicht öffnen. \n"
-"Probieren Sie, die Datei in Audacity aufzunehmen, oder brennen Sie sie auf "
-"eine Audio-CD, dann \n"
-"extrahieren Sie die CD-Spur in ein unterstütztes Audioformat wie WAV oder "
-"AIFF."
-
-#. i18n-hint: %s will be the filename
-#: libraries/lib-import-export/Import.cpp
-#, c-format
-msgid ""
-"\"%s\" is a notes-based file, not an audio file. \n"
-"Tenacity cannot open this type of file. \n"
-"Try converting it to an audio file such as WAV or AIFF and \n"
-"then import it, or record it into Audacity."
-msgstr ""
-"„%s“ ist eine notenbasierte Datei, keine Audiodatei. \n"
-"Tenacity kann diesen Typ Datei nicht öffnen. \n"
-"Versuchen Sie, sie in eine Audiodatei wie WAV oder AIFF zu konvertieren, \n"
-"dann importieren Sie sie, oder nehmen Sie sie in Audacity auf."
-
 #: libraries/lib-label-track/LabelTrack.cpp
 msgid "SubRip text file"
 msgstr "SubRip-Textdatei"
@@ -16443,10 +16374,6 @@ msgstr ""
 "und Bearbeitung von Tönen."
 
 #: src/AboutDialog.cpp
-msgid "Teancity Credits"
-msgstr "Tenacity-Mitwirkende"
-
-#: src/AboutDialog.cpp
 msgid "Audacity Credits"
 msgstr "Audacity-Mitwirkende"
 
@@ -16754,18 +16681,6 @@ msgstr "Wiederholung auf Auswahl festlegen"
 #: src/AdornedRulerPanel.cpp
 msgid "Continuous scrolling"
 msgstr "Durchgehend Scrollen"
-
-#: src/AudacityApp.cpp
-msgid ""
-"Tenacity could not find a safe place to store temporary files.\n"
-"Audacity needs a place where automatic cleanup programs won't delete the "
-"temporary files.\n"
-"Please enter an appropriate directory in the preferences dialog."
-msgstr ""
-"Tenacity konnte keinen sicheren Ort finden, um temporäre Dateien zu finden.\n"
-"Audacity braucht einen Ort, wo automatische Aufräumprogramme die temporären "
-"Dateien nicht löscht.\n"
-"Bitte geben Sie ein geeignetes Verzeichnis im Einstellungsdialog an."
 
 #: src/AudacityApp.cpp
 msgid ""
