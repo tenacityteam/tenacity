@@ -18,13 +18,14 @@
 # Evgeniy Khramov <thejenjagamertjg@gmail.com>, 2023.
 # Maksim_220 Кабанов <law820314@gmail.com>, 2025.
 # MrSliv69 <mrsliv6969@gmail.com>, 2025.
+# Alex Nadzharov <anadjarov@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-09-02 18:02+0000\n"
-"Last-Translator: MrSliv69 <mrsliv6969@gmail.com>\n"
+"PO-Revision-Date: 2025-09-08 22:02+0000\n"
+"Last-Translator: Alex Nadzharov <anadjarov@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/ru/>\n"
 "Language: ru\n"
@@ -33,7 +34,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13.1-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -3612,7 +3613,7 @@ msgstr "Удалить трек"
 
 #: src/TrackUtilities.cpp
 msgid "Track Remove"
-msgstr "Удалить трек"
+msgstr "Удаление трека"
 
 #. i18n-hint: Past tense of 'to move', as in 'moved audio track up'.
 #: src/TrackUtilities.cpp
@@ -11867,7 +11868,7 @@ msgstr "Редактирование имени клипа"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
 msgid "Rename Clip..."
-msgstr "Изменить название клипа..."
+msgstr "Изменить название клипа ..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -12068,7 +12069,7 @@ msgstr "Закрыть подвид"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 msgid "Split Clip"
-msgstr "Разделение клипов"
+msgstr "Разделить клип"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 msgid "Mute/Unmute Track"
@@ -15329,3 +15330,251 @@ msgstr "Недоступны данные устройства для: %d\n"
 #, c-format
 msgid "Device ID: %d\n"
 msgstr "ID устройства: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "Имя устройства: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "Количество каналов записи: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "Количество каналов воспроизведения: %d\n"
+
+#: src/widgets/MissingPluginsErrorDialog.cpp
+msgid "Learn more"
+msgstr "Узнать больше"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+msgid "Join Clips"
+msgstr "Объединить клип"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+msgid "Pitch and Speed..."
+msgstr "Высота тона и скорость ..."
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "Выбранное устройство записи: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "Не найдено устройство для '%s'.\n"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Get more effects..."
+msgstr "Больше эффектов..."
+
+#: src/RealtimeEffectPanel.cpp
+msgid "No Effect"
+msgstr "Нет эффекта"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Replace effect"
+msgstr "Заменить эффект"
+
+#. i18n-hint: master channel display name
+#: src/RealtimeEffectPanel.cpp
+msgid "Master"
+msgstr "Мастер"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Add effect"
+msgstr "Добавить эффект"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Realtime effects"
+msgstr "Эффекты в реальном времени"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Master Effects"
+msgstr "Мастер эффекты"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Watch video"
+msgstr "Посмотреть видео"
+
+#: src/SpectralDataDialog.cpp
+msgid "Spectral Brush"
+msgstr "Спектральная кисть"
+
+#: src/effects/DynamicRangeProcessorEditor.cpp
+msgid "Smoothing"
+msgstr "Сглаживание"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "&Threshold (dB)"
+msgstr "&Порог (dB)"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by type"
+msgstr "Сгруппировать по типу"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by category"
+msgstr "Сгруппировать по категории"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by type and publisher"
+msgstr "Сгруппировать по типу и издателю"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Effect menu &organization:"
+msgstr "&Организация меню эффектов:"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Open Plugin &Manager"
+msgstr "Открыть Менеджер плагинов"
+
+#: src/prefs/ImportExportPrefs.cpp
+msgid "Do &nothing"
+msgstr "Ничего не дела&ть"
+
+#: src/prefs/ModulePrefs.cpp
+msgid "Always ask"
+msgstr "Всегда спрашивать"
+
+#: src/prefs/ModulePrefs.cpp
+msgid "No choice made"
+msgstr "Выбор не был сделан"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "0 means endless"
+msgstr "0 обозначает бесконечный"
+
+#. i18n-hint: Audio setup button text, keep as short as possible
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "Audio Setup"
+msgstr "Настройки Аудио"
+
+#. i18n-hint: Audio setup menu
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Host"
+msgstr "&Хост"
+
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Audio Settings..."
+msgstr "&Аудио Настройки..."
+
+#: src/toolbars/ControlToolBar.cpp
+msgid "Play Once"
+msgstr "Воспроизвести один раз"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "Mi&xer"
+msgstr "Ми&ксер"
+
+#: src/toolbars/SelectionBar.cpp
+msgid "Selection Toolbar Setup"
+msgstr "Настройки панели выбора"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Time Signature"
+msgstr "Размер (такта)"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Tempo"
+msgstr "Темп"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Upper Time Signature"
+msgstr "Размер такта - числитель"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Lower Time Signature"
+msgstr "Размер такта - знаменатель"
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Not enough space"
+msgstr "Недостаточно места"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "Pitch and Speed"
+msgstr "Высота тона и скорость"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "se&mitones:"
+msgstr "по&лутона:"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "&cents:"
+msgstr "&центы:"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "General"
+msgstr "Основное"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+msgid "Render Pitch and Speed"
+msgstr "Высота тона и скорость рендеринга"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+msgid "Pitch Shift"
+msgstr "Сдвиг высоты тона"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
+msgid "Combine mono to stereo"
+msgstr "Объединить моно в стерео"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
+msgid "Unknown!"
+msgstr "Неизвестно!"
+
+#: src/tracks/timetrack/ui/TimeTrackControls.cpp
+msgid "Lower Speed Limit"
+msgstr "Нижняя граница скорости"
+
+#: src/tracks/timetrack/ui/TimeTrackControls.cpp
+msgid "Upper Speed Limit"
+msgstr "Верхняя граница скорости"
+
+#: src/tracks/ui/BrushHandle.cpp
+msgid "Erased selected area"
+msgstr "Удаленный выбранный фрагмент"
+
+#: src/tracks/ui/TrackButtonHandles.cpp
+msgid "Delete Track"
+msgstr "Стереть трек"
+
+#. i18n-hint: whether a button is pressed or not pressed
+#: src/widgets/AButton.cpp
+msgid "pressed"
+msgstr "нажато"
+
+#: src/widgets/AButton.cpp
+msgid "not pressed"
+msgstr "не нажато"
+
+#: src/widgets/MissingPluginsErrorDialog.cpp
+msgid "Missing Plugins"
+msgstr "Отсутствующие плагины"
+
+#: src/RealtimeEffectPanel.cpp src/effects/EffectUI.cpp
+msgid "Power"
+msgstr "Энергия"
+
+#. i18n-hint: undo history record
+#. first parameter - realtime effect name
+#: src/RealtimeEffectPanel.cpp
+#, c-format
+msgid "Remove %s"
+msgstr "Удалить %s"
+
+#. i18n-hint: undo history record
+#. first parameter - realtime effect name
+#: src/RealtimeEffectPanel.cpp
+#, c-format
+msgid "Replace %s"
+msgstr "Заменить %s"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Change effect order"
+msgstr "Поменять последовательность эффектов"
