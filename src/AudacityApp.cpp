@@ -767,7 +767,7 @@ void AudacityApp::OnTimer(wxTimerEvent& WXUNUSED(event))
 #define WL(lang,sublang)
 #endif
 
-#if wxCHECK_VERSION(3, 0, 1) && !wxCHECK_VERSION(3, 1, 6)
+#if !wxCHECK_VERSION(3, 1, 6)
 wxLanguageInfo userLangs[] =
 {
    // Included upstream in version 3.1.6
@@ -1073,7 +1073,7 @@ bool AudacityApp::OnInit()
    //
    // TODO:  The whole Language initialization really need to be reworked.
    //        It's all over the place.
-#if wxCHECK_VERSION(3, 0, 1) && !wxCHECK_VERSION(3, 1, 6)
+#if !wxCHECK_VERSION(3, 1, 6)
    for (size_t i = 0, cnt = WXSIZEOF(userLangs); i < cnt; i++)
    {
       wxLocale::AddLanguage(userLangs[i]);

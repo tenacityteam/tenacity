@@ -497,10 +497,6 @@ void EffectUIHost::OnInitDialog(wxInitDialogEvent & evt)
    // Do default handling
    wxDialogWrapper::OnInitDialog(evt);
 
-#if wxCHECK_VERSION(3, 0, 0)
-   //#warning "check to see if this still needed in wx3"
-#endif
-
    // Pure hackage coming down the pike...
    //
    // I have no idea why, but if a wxTextCtrl is the first control in the
@@ -508,6 +504,9 @@ void EffectUIHost::OnInitDialog(wxInitDialogEvent & evt)
    // dialog is displayed.
    //
    // So, we do the selection manually.
+   //
+   // GP: Check to see if this is still needed. (This comes from a previous
+   // comment).
    wxTextCtrl *focused = wxDynamicCast(FindFocus(), wxTextCtrl);
    if (focused)
    {

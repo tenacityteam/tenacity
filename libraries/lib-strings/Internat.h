@@ -157,9 +157,4 @@ private:
 #define UTF8CTOWX(X) wxString((X), wxConvUTF8)
 #define LAT1CTOWX(X) wxString((X), wxConvISO8859_1)
 
-// Whether disambiguationg contexts are supported
-// If not, then the program builds and runs, but strings in the catalog with
-// contexts will fail to translate
-#define HAS_I18N_CONTEXTS wxCHECK_VERSION(3, 1, 1)
-
 #endif

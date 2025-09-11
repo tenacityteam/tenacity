@@ -630,7 +630,7 @@ bool AudioIO::StartPortAudioStream(const AudioIOStartStreamOptions &options,
       std::this_thread::sleep_for(1s);
    }
 
-#if (defined(__WXMAC__) || defined(__WXMSW__)) && wxCHECK_VERSION(3,1,0)
+#if (defined(__WXMAC__) || defined(__WXMSW__))
    // Don't want the system to sleep while audio I/O is active
    if (mPortStreamV19 != NULL && mLastPaError == paNoError) {
       wxPowerResource::Acquire(wxPOWER_RESOURCE_SCREEN, _("Tenacity Audio"));
@@ -1337,7 +1337,7 @@ void AudioIO::StopStream()
       return;
    */
 
-#if (defined(__WXMAC__) || defined(__WXMSW__)) && wxCHECK_VERSION(3,1,0)
+#if (defined(__WXMAC__) || defined(__WXMSW__))
    // Re-enable system sleep
    wxPowerResource::Release(wxPOWER_RESOURCE_SCREEN);
 #endif

@@ -2859,26 +2859,17 @@ wxString NyquistBase::ToTimeFormat(double t)
 static LVAL gettext()
 {
    auto string = UTF8CTOWX(getstring(xlgastring()));
-#if !HAS_I18N_CONTEXTS
-   // allow ignored context argument
-   if (moreargs())
-      nextarg();
-#endif
    xllastarg();
    return cvstring(GetCustomTranslation(string).mb_str(wxConvUTF8));
 }
 
 static LVAL gettextc()
 {
-#if HAS_I18N_CONTEXTS
    auto string = UTF8CTOWX(getstring(xlgastring()));
    auto context = UTF8CTOWX(getstring(xlgastring()));
    xllastarg();
    return cvstring(
       wxGetTranslation(string, "", 0, "", context).mb_str(wxConvUTF8));
-#else
-   return gettext();
-#endif
 }
 
 static LVAL ngettext()
@@ -2886,11 +2877,6 @@ static LVAL ngettext()
    auto string1 = UTF8CTOWX(getstring(xlgastring()));
    auto string2 = UTF8CTOWX(getstring(xlgastring()));
    auto number = getfixnum(xlgafixnum());
-#if !HAS_I18N_CONTEXTS
-   // allow ignored context argument
-   if (moreargs())
-      nextarg();
-#endif
    xllastarg();
    return cvstring(
       wxGetTranslation(string1, string2, number).mb_str(wxConvUTF8));
@@ -2898,7 +2884,6 @@ static LVAL ngettext()
 
 static LVAL ngettextc()
 {
-#if HAS_I18N_CONTEXTS
    auto string1 = UTF8CTOWX(getstring(xlgastring()));
    auto string2 = UTF8CTOWX(getstring(xlgastring()));
    auto number = getfixnum(xlgafixnum());
@@ -2906,9 +2891,6 @@ static LVAL ngettextc()
    xllastarg();
    return cvstring(wxGetTranslation(string1, string2, number, "", context)
                       .mb_str(wxConvUTF8));
-#else
-   return ngettext();
-#endif
 }
 
 void* nyq_make_opaque_string(int size, unsigned char* src)
