@@ -338,6 +338,8 @@ set( SOURCES
         effects/Distortion.h
         effects/DtmfGen.cpp
         effects/DtmfGen.h
+        effects/DynamicCompressor.cpp
+        effects/DynamicCompressor.h
         effects/DynamicRangeProcessorDummyOutputs.h
         effects/DynamicRangeProcessorEditor.cpp
         effects/DynamicRangeProcessorEditor.h
