@@ -29,7 +29,8 @@
 Plot::Plot(wxWindow *parent, wxWindowID winid,
     float x_min, float x_max, float y_min, float y_max,
     const TranslatableString& xlabel, const TranslatableString& ylabel,
-    int xformat, int yformat, int count,
+    const RulerUpdater& xupdater, const RulerFormat& xformat,
+    const RulerUpdater& yupdater, const RulerFormat& yformat, int count,
     const wxPoint& pos, const wxSize& size, long style)
     :
     wxPanelWrapper(parent, winid, pos, size, style),
@@ -41,12 +42,12 @@ Plot::Plot(wxWindow *parent, wxWindowID winid,
         Refresh(false);
     });
 
-    m_xruler = std::make_unique<Ruler>(LinearUpdater::Instance(), LinearDBFormat::Instance());
+    m_xruler = std::make_unique<Ruler>(xupdater, xformat);
     m_xruler->SetOrientation(wxHORIZONTAL);
     m_xruler->SetUnits(xlabel);
     m_xruler->SetFlip(true);
 
-    m_yruler = std::make_unique<Ruler>(LinearUpdater::Instance(), LinearDBFormat::Instance());
+    m_yruler = std::make_unique<Ruler>(yupdater, yformat);
     m_yruler->SetOrientation(wxVERTICAL);
     m_yruler->SetUnits(ylabel);
 }

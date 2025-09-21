@@ -12,6 +12,9 @@
 
 #pragma once
 
+#include "RulerFormat.h"
+#include "RealFormat.h"
+#include "LinearUpdater.h"
 #include "wxPanelWrapper.h" // to inherit
 
 #include "MemoryX.h"
@@ -31,7 +34,10 @@ class Plot : public wxPanelWrapper
         Plot(wxWindow *parent, wxWindowID winid,
             float x_min, float x_max, float y_min, float y_max,
             const TranslatableString& xlabel, const TranslatableString& ylabel,
-            int xformat = 1, int yformat = 1, //Ruler::RealFormat
+            const RulerUpdater& xupdater = LinearUpdater::Instance(),
+            const RulerFormat& xformat = RealFormat::LinearInstance(),
+            const RulerUpdater& yupdater = LinearUpdater::Instance(),
+            const RulerFormat& yformat = RealFormat::LinearInstance(),
             int count = 1, const wxPoint& pos = wxDefaultPosition,
             const wxSize& size = wxDefaultSize,
             long style = wxTAB_TRAVERSAL | wxNO_BORDER);
