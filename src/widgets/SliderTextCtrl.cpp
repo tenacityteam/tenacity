@@ -27,7 +27,8 @@ wxDEFINE_EVENT(cEVT_SLIDERTEXT, wxCommandEvent);
 
 SliderTextCtrl::SliderTextCtrl(wxWindow *parent, wxWindowID winid,
     double value, double min, double max, int precision, double scale,
-    const wxPoint& pos, const wxSize& size, long style, double* varValue)
+    double offset, const wxPoint& pos, const wxSize& size, long style,
+    double* varValue)
     : wxPanelWrapper(parent, winid, pos, size, wxWS_EX_VALIDATE_RECURSIVELY)
 {
     m_log = style & LOG;
@@ -36,6 +37,7 @@ SliderTextCtrl::SliderTextCtrl(wxWindow *parent, wxWindowID winid,
     m_min = min;
     m_max = max;
     m_zero = -std::numeric_limits<double>::infinity();
+    m_offset = offset;
 
     if(m_int)
     {
@@ -63,7 +65,7 @@ SliderTextCtrl::SliderTextCtrl(wxWindow *parent, wxWindowID winid,
         }
         else
         {
-            min = log10(min);
+            min = log10(min + m_offset);
         }
 
         if(value <= 0.0)
@@ -71,9 +73,9 @@ SliderTextCtrl::SliderTextCtrl(wxWindow *parent, wxWindowID winid,
             value = m_zero;
         } else
         {
-            value = log10(value);
+            value = log10(value + m_offset);
         }
-        max = log10(max);
+        max = log10(max + m_offset);
     }
 
     m_sizer = safenew wxBoxSizer(
@@ -125,7 +127,7 @@ void SliderTextCtrl::OnTextChange(wxCommandEvent& event)
             value = m_zero;
         } else
         {
-            value = log10(m_value);
+            value = log10(m_value + m_offset);
         }
     }
     m_slider->SetValue(round(value * m_scale));
@@ -144,7 +146,7 @@ void SliderTextCtrl::OnSlider(wxCommandEvent& event)
         }
         else
         {
-            m_value = pow(10.0, m_value);
+            m_value = pow(10.0, m_value) - m_offset;
             m_value = std::max(m_min, m_value);
             m_value = std::min(m_max, m_value);
         }
