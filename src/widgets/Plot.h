@@ -12,14 +12,13 @@
 
 #pragma once
 
+#include "Ruler.h"
 #include "RulerFormat.h"
 #include "RealFormat.h"
 #include "LinearUpdater.h"
 #include "wxPanelWrapper.h" // to inherit
 
 #include "MemoryX.h"
-
-class Ruler;
 
 struct PlotData
 {
