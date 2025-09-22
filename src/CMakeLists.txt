@@ -887,8 +887,6 @@ set( SOURCES
         widgets/RulerPanel.h
         widgets/RulerUpdater.cpp
         widgets/RulerUpdater.h
-        widgets/SliderTextCtrl.cpp
-        widgets/SliderTextCtrl.h
         widgets/TimeFormat.cpp
         widgets/TimeFormat.h
         widgets/UnwritableLocationErrorDialog.cpp

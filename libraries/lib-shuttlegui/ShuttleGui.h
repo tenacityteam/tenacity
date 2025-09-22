@@ -20,6 +20,7 @@
 
 #include "Internat.h"
 #include "Prefs.h"
+#include "SliderTextCtrl.h"
 #include "WrappedType.h"
 #include "ComponentInterfaceSymbol.h"
 
@@ -265,6 +266,10 @@ public:
       const wxSize& size, const TranslatableString& Prompt, double Value,
       double Max, double Min);
    wxTreeCtrl * AddTree();
+
+   SliderTextCtrl* AddSliderTextCtrl(
+      const TranslatableString &Prompt, double pos, double Max, double Min = 0,
+      int precision = 2, double* value = NULL, double scale = 0, double offset = 0);
 
    // Pass the same initValue to the sequence of calls to AddRadioButton and
    // AddRadioButtonToGroup.

@@ -29,6 +29,8 @@ set( SOURCES
    ReadOnlyText.h
    ShuttleGui.cpp
    ShuttleGui.h
+   SliderTextCtrl.cpp
+   SliderTextCtrl.h
    wxTextCtrlWrapper.h
 )
 set( LIBRARIES
