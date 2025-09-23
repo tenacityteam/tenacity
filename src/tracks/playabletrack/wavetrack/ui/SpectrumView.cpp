@@ -383,6 +383,13 @@ void DrawClipSpectrum(TrackPanelDrawingContext &context,
    const double &leftOffset = params.leftOffset;
    const wxRect &mid = params.mid;
 
+   // The "mid" rect contains the part of the display actually
+   // containing the waveform. If it's empty, we're done.
+   if (mid.width <= 0)
+   {
+      return;
+   }
+
    double freqLo = SelectedRegion::UndefinedFrequency;
    double freqHi = SelectedRegion::UndefinedFrequency;
    freqLo = selectedRegion.f0();
