@@ -475,22 +475,6 @@ function(make_interface_library
       INTERFACE_LINK_LIBRARIES)
 endfunction()
 
-function(fix_bundle target_name)
-   if (NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
-      return()
-   endif()
-
-   add_custom_command(
-      TARGET ${target_name}
-      POST_BUILD
-      COMMAND
-         ${PYTHON}
-         ${CMAKE_SOURCE_DIR}/scripts/build/macOS/fix_bundle.py
-         $<TARGET_FILE:${target_name}>
-	 -config=$<CONFIG>
-   )
-endfunction()
-
 # Copy named properties from one target to another
 function(copy_target_properties
   src  # target

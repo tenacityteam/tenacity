@@ -1100,8 +1100,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
             "-framework CoreAudioKit"
     )
 
-    fix_bundle( ${TARGET} )
-
     # Because the wrapper is copied into the bundle, we need to
     # re-sing the bundle as the last post build step.
     # This is only required when using the Xcode generator with
