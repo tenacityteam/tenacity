@@ -47,10 +47,9 @@ else # Linux & others
             libglib2.0-dev
             libgtk-3-dev
             libid3tag0-dev
-            libjack-dev
-            libjsoncpp-dev
+            libjack-jackd2-dev
             liblilv-dev
-            libmad0-dev
+            libmpg123-dev
             libmp3lame-dev
             libogg-dev
             libpng-dev
@@ -72,13 +71,14 @@ else # Linux & others
             libtiff-dev
             liblzma-dev
             libsqlite3-dev
-            libwxgtk3.2-dev
             libzip-dev
-            wx-common
-            wx3.2-headers
             zipcmp
             zipmerge
             ziptool
+            rapidjson-dev
+            wx-common
+            wx3.2-headers
+            libwxgtk3.2-dev
         )
 
         sudo apt-get update -y
