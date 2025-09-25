@@ -1,9 +1,3 @@
-**We are currently undergoing a major rebase off Audacity 3.7.1. See PR https://codeberg.org/tenacityteam/tenacity/pulls/527 for progress. During this time, the default branch will be `audacity-3.7-rebase` instead. If you had a PR previously planned, please rebase it off that branch.**
-
-For more information on the situation, please see https://fosstodon.org/@tenacity/113731514298404501. We are still accepting contributions elsewhere. We resume accepting contributions when the rebase is complete. Thank you for your understanding.
-
----
-
 [![Tenacity](https://codeberg.org/tenacityteam/assets/raw/branch/master/PNG/tenacity-logo-dark-readme.png)](https://tenacityaudio.org)
 
 [![Chat on IRC](https://badgen.net/badge/irc/%23tenacity/green)](https://web.libera.chat/gamja/?channels=#tenacity)

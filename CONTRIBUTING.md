@@ -4,19 +4,6 @@ Thanks for showing your interest to contribute, your contribution is very
 valuable to us as people like **you** help us build Tenacity. Some guidelines
 have been put in place in an effort to keep the codebase clean.
 
-**At this time, pull requests must be made against the `audacity-3.7` branch.
-If you had previously planned to open a pull request against `main`, please
-rebase it against the `audacity-3.7-rebase` branch. See
-https://codeberg.org/tenacityteam/tenacity/pulls/527 for progress on the
-rebase**.
-
-**Contribution policies and procedures remain unchanged throughout the rebase.
-Since the default branch is temporarily `audacity-3.7-rebase`, please replace
-any references to `main` with `audacity-3.7-rebase` for the time being.**
-
-**This notice (in bold) is temporary. Once the rebase is finished, this notice
-will be removed entirely.**
-
 ## The Use of LLMs and AI in Contributions
 **Please read this section IN FULL before continuing with your contribution.
 We reserve the right to close or ignore any issue, feature request, or
