@@ -11,6 +11,9 @@
 #ifndef AUDACITY_VSTCONTROLMSW_H
 #define AUDACITY_VSTCONTROLMSW_H
 
+// Needed due to a redefinition of SOCKADDR
+#define WIN32_LEAN_AND_MEAN
+
 #include <Windows.h>
 
 #include "VSTControl.h"
