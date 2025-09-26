@@ -528,7 +528,7 @@ if( Python3_FOUND )
 endif()
 
 find_package(RapidJSON REQUIRED)
-find_package(libzip REQUIRED)
+find_package(libzip 1.7.0 REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(EXPAT REQUIRED)
 find_package(mp3lame REQUIRED)
