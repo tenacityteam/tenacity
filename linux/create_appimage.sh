@@ -44,6 +44,7 @@ function download_linuxdeploy_component()
 {
     local -r component="$1" tag="$2"
     download_appimage_release "linuxdeploy/$1" "$1" "$2"
+    rm linuxdeploy*.AppDir/usr/bin/strip
 }
 
 function create_path()
@@ -73,6 +74,7 @@ if create_path "linuxdeploy"; then
 (
     cd "linuxdeploy"
     download_linuxdeploy_component linuxdeploy continuous
+    cd linuxdeploy*.AppDir/usr/bin/
     wget -q https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
     chmod +x linuxdeploy-plugin-gtk.sh
 )
