@@ -84,10 +84,6 @@ if (USE_MIDI)
    list(APPEND LIBRARIES lib-note-track)
 endif()
 
-if ( ${_OPT}has_url_schemes_support )
-   list( APPEND LIBRARIES lib-url-schemes)
-endif()
-
 if ( USE_NYQUIST )
    list( APPEND LIBRARIES lib-nyquist-effects )
 endif()

@@ -94,9 +94,6 @@ class AudacityApp final
     void MacOpenFile(const wxString &fileName)  override;
     void MacPrintFile(const wxString &fileName)  override;
     void MacNewFile()  override;
-   #ifdef HAS_CUSTOM_URL_HANDLING
-    void MacOpenURL(const wxString &url) override;
-   #endif
    #endif
 
    #if defined(__WXMSW__) && !defined(__WXUNIVERSAL__) && !defined(__CYGWIN__)
