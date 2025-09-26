@@ -10,7 +10,6 @@ if [[ "${OSTYPE}" == darwin* ]]; then # macOS
     brew_packages=(
         bash # macOS ships with Bash v3 for licensing reasons so upgrade it now
         ccache
-        ninja
 
         # needed to build ffmpeg
         nasm
