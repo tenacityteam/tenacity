@@ -424,21 +424,21 @@ bool MkaExportProcessor::Initialize(
     context.t1 = t1;
     context.numChannels = channels;
 
-    if (context.bitDepthPref == wxT("24"))
+    if (context.bitDepthPref == "24")
     {
         context.codecID = "A_PCM/INT/LIT";
         context.format = int24Sample;
         context.bytesPerSample = 3 * channels;
         context.outInterleaved = true;
     }
-    else if (context.bitDepthPref == wxT("16"))
+    else if (context.bitDepthPref == "16")
     {
         context.codecID = "A_PCM/INT/LIT";
         context.format = int16Sample;
         context.bytesPerSample = 2 * channels;
         context.outInterleaved = true;
     }
-    else if (context.bitDepthPref == wxT("f32"))
+    else if (context.bitDepthPref == "f32")
     {
         context.codecID = "A_PCM/FLOAT/IEEE";
         context.format = floatSample;
@@ -446,14 +446,14 @@ bool MkaExportProcessor::Initialize(
         context.outInterleaved = true;
     }
     #ifdef USE_LIBFLAC
-    else if (context.bitDepthPref == wxT("flac16"))
+    else if (context.bitDepthPref == "flac16")
     {
         context.codecID = "A_FLAC";
         context.format = int16Sample;
         context.bytesPerSample = 2 * channels;
         context.outInterleaved = false;
     }
-    else if (context.bitDepthPref == wxT("flac24"))
+    else if (context.bitDepthPref == "flac24")
     {
         context.codecID = "A_FLAC";
         context.format = int24Sample;
@@ -565,7 +565,7 @@ bool MkaExportProcessor::Initialize(
 
     // If FLAC support is enabled, and the user wants a FLAC export, setup the FLAC encoder
     #ifdef USE_LIBFLAC
-    if (context.bitDepthPref == wxT("flac16") || context.bitDepthPref == wxT("flac24"))
+    if (context.bitDepthPref == "flac16" || context.bitDepthPref == "flac24")
     {
         context.flacEncoder.reset(new MkaFLACEncoder);
 
