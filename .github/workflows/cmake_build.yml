@@ -31,8 +31,9 @@ jobs:
           generator: Ninja
           cc: cc
           cxx: c++
+          compiler_caching: ON
           compiler_cache: ccache
-          compiler_cache_path: ~/.ccache
+          compiler_cache_path: ~/.cache/ccache
           use_vcpkg: ON
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-linux-dynamic
@@ -43,6 +44,7 @@ jobs:
           generator: Ninja
           cc: cc
           cxx: c++
+          compiler_caching: ON
           compiler_cache: ccache
           compiler_cache_path: ~/Library/Caches/ccache
           use_vcpkg: ON
@@ -56,6 +58,7 @@ jobs:
           generator: Ninja
           cc: cc
           cxx: c++
+          compiler_caching: ON
           compiler_cache: ccache
           compiler_cache_path: ~/Library/Caches/ccache
           use_vcpkg: ON
@@ -70,8 +73,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          compiler_caching: OFF
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
@@ -85,8 +87,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          compiler_caching: OFF
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x64-windows
@@ -99,8 +100,7 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          compiler_caching: OFF
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: arm64-windows
@@ -168,8 +168,11 @@ jobs:
           ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-
           ${{ matrix.config.name }}-
 
+    # Compiler caching on Windows currently doesn't work, so don't setup the
+    # cache on Windows.
     - name: "Set up compiler cache"
       uses: actions/cache@v4
+      if: runner.os != 'Windows'
       with:
         path: ${{ matrix.config.compiler_cache_path }}
         key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-${{ github.run_number }}
@@ -183,6 +186,7 @@ jobs:
         -G "${{ matrix.config.generator }}"
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
+        -D CCACHE=${{ matrix.config.compiler_caching }}
         -D VCPKG=${{ matrix.config.use_vcpkg }}
         -D SBSMS=ON
         -S .
@@ -200,6 +204,7 @@ jobs:
       run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }}
 
     - name: "Print compiler cache stats"
+      if: runner.os != 'Windows'
       run: ${{ matrix.config.compiler_cache }} -s
 
     - name: Install
