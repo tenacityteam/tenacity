@@ -10,7 +10,6 @@ set( LIBRARIES
    lib-string-utils
    lib-strings
    lib-utility
-   # lib-uuid
    lib-components
    lib-basic-ui
    lib-exceptions
