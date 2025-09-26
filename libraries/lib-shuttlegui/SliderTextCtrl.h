@@ -18,12 +18,12 @@ class wxSizer;
 class wxSlider;
 class wxTextCtrl;
 
-wxDECLARE_EVENT(cEVT_SLIDERTEXT, wxCommandEvent);
+wxDECLARE_EXPORTED_EVENT(SHUTTLEGUI_API, cEVT_SLIDERTEXT, wxCommandEvent);
 
 #define EVT_SLIDERTEXT(winid, func) wx__DECLARE_EVT1( \
     cEVT_SLIDERTEXT, winid, wxCommandEventHandler(func))
 
-class SliderTextCtrl : public wxPanelWrapper
+class SHUTTLEGUI_API SliderTextCtrl : public wxPanelWrapper
 {
     public:
         enum Styles

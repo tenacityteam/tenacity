@@ -24,7 +24,7 @@
 
 //// Utility Classes //////////////////////////////////////////////////////////
 
-class SamplePreprocessor
+class BUILTIN_EFFECTS_API SamplePreprocessor
 {
     public:
         virtual ~SamplePreprocessor() = default;
@@ -34,7 +34,7 @@ class SamplePreprocessor
         virtual void SetWindowSize(size_t windowSize) = 0;
 };
 
-class SlidingRmsPreprocessor : public SamplePreprocessor
+class BUILTIN_EFFECTS_API SlidingRmsPreprocessor : public SamplePreprocessor
 {
     public:
         SlidingRmsPreprocessor(size_t windowSize, float gain = 2.0);
@@ -57,7 +57,7 @@ class SlidingRmsPreprocessor : public SamplePreprocessor
         void Refresh();
 };
 
-class SlidingMaxPreprocessor : public SamplePreprocessor
+class BUILTIN_EFFECTS_API SlidingMaxPreprocessor : public SamplePreprocessor
 {
     public:
         SlidingMaxPreprocessor(size_t windowSize);
@@ -75,7 +75,7 @@ class SlidingMaxPreprocessor : public SamplePreprocessor
         inline float DoProcessSample(float value);
 };
 
-class EnvelopeDetector
+class BUILTIN_EFFECTS_API EnvelopeDetector
 {
     public:
         EnvelopeDetector(size_t buffer_size);
@@ -107,7 +107,7 @@ class EnvelopeDetector
         virtual void Follow() = 0;
 };
 
-class ExpFitEnvelopeDetector : public EnvelopeDetector
+class BUILTIN_EFFECTS_API ExpFitEnvelopeDetector : public EnvelopeDetector
 {
     public:
         ExpFitEnvelopeDetector(float rate, float attackTime, float releaseTime,
@@ -124,7 +124,7 @@ class ExpFitEnvelopeDetector : public EnvelopeDetector
         virtual void Follow();
 };
 
-class Pt1EnvelopeDetector : public EnvelopeDetector
+class BUILTIN_EFFECTS_API Pt1EnvelopeDetector : public EnvelopeDetector
 {
     public:
         Pt1EnvelopeDetector(float rate, float attackTime, float releaseTime,
@@ -146,7 +146,7 @@ class Pt1EnvelopeDetector : public EnvelopeDetector
         virtual void Follow();
 };
 
-class PipelineBuffer
+class BUILTIN_EFFECTS_API PipelineBuffer
 {
     public:
         sampleCount trackPos;
