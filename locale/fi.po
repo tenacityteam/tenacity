@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-02-16 00:19+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-09-27 14:02+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/fi/>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -52,16 +52,9 @@ msgid "Internal Error"
 msgstr "Sisäinen virhe"
 
 #: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Failed to open database file:\n"
-#| "\n"
-#| "%s"
+#, c-format
 msgid "Tenacity failed to open a file in %s."
-msgstr ""
-"Ei voitu avata tietokantatiedostoa:\n"
-"\n"
-"%s"
+msgstr "Tenacity epäonnistui avaamaan tiedostoa %s:ssa."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -312,10 +305,8 @@ msgid "System"
 msgstr "Järjestelmä"
 
 #: libraries/lib-track/Track.cpp
-#, fuzzy
-#| msgid "Generic"
 msgid "Generic Track"
-msgstr "Yleinen"
+msgstr "Yleinen raita"
 
 #. i18n-hint: The default name for an audio track.
 #: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
@@ -323,10 +314,8 @@ msgid "Audio Track"
 msgstr "Ääniraita"
 
 #: libraries/lib-track/Track.cpp
-#, fuzzy
-#| msgid "Playback"
 msgid "Playable Track"
-msgstr "Toisto"
+msgstr "Toistettava raita"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -738,10 +727,8 @@ msgstr ""
 "\n"
 
 #: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Trim Audio"
 msgid "Tenacity Audio"
-msgstr "Rajaa ääni"
+msgstr "Tenacity Audio"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -2036,17 +2023,13 @@ msgstr ""
 "Sitä ei ladata."
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "The module \"%s\" does not provide a version string.\n"
-#| "\n"
-#| "It will not be loaded."
+#, c-format
 msgid ""
 "The module \"%s\" is matched with Tenacity version \"%s\".\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"Moduuli \"%s\" ei tarjoa versiomerkkijonoa.\n"
+"Moduuli \"%s\" vastaa Tenacityn versiota \"%s\".\n"
 "\n"
 "Sitä ei ladata."
 
@@ -2087,10 +2070,8 @@ msgid "No"
 msgstr "Ei"
 
 #: src/ModuleManager.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
 msgid "Tenacity Module Loader"
-msgstr "%s, Tenacity-kehittäjä"
+msgstr "Tenacity-moduulin lataaja"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2334,10 +2315,9 @@ msgid "<untitled>"
 msgstr "<nimetön>"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid "[Project %02i] Audacity \"%s\""
+#, c-format
 msgid "[Project %02i] "
-msgstr "[Projekti %02i] Audacity \"%s\""
+msgstr "[Project %02i] "
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -3729,9 +3709,8 @@ msgstr "Leikkauslinjan laajentamiseksi ei ole tarpeeksi tilaa"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
-#, fuzzy
 msgid "Tenacity"
-msgstr "Audacityn loki"
+msgstr "Tenacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -7339,10 +7318,8 @@ msgid "Audio Unit Effects"
 msgstr "Audio Units -tehosteet"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-#| msgid "Audio Unit Effect Options"
 msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Audio Units -tehostevalinnat"
+msgstr "Tarjoaa Tenacitylle ääniyksikkötehosteiden tuen"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -11212,29 +11189,33 @@ msgid "High Contrast"
 msgstr "Suuri kontrasti"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write file:\n"
 "  %s."
-msgstr "Tiedostoon ei voitu kirjoittaa: %s"
+msgstr ""
+"Tenacity ei voinut kirjoittaa tiedostoa:\n"
+"%s."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Unable to open target file for writing"
+#, c-format
 msgid ""
 "Tenacity could not open file:\n"
 "  %s\n"
 "for writing."
-msgstr "Kohdetiedostoa ei kyetty avaamaan kirjoitusta varten"
+msgstr ""
+"Tenacity ei voinut avata tiedostoa\n"
+"  %s\n"
+"kirjoittamista varten."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
-msgstr "Tiedostoon ei voitu kirjoittaa: %s"
+msgstr ""
+"Tenacity ei voinut kirjoittaa kuvia tiedostoon:\n"
+" %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -11268,12 +11249,13 @@ msgstr ""
 "olivat jo mukana. Korvataanko?"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Could not open file: %s"
+#, c-format
 msgid ""
 "Tenacity could not save file:\n"
 "  %s"
-msgstr "Tiedostoa ei voitu avata: %s"
+msgstr ""
+"Tenacity ei voinut tallentaa tiedostoa:\n"
+" %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
