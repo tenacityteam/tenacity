@@ -406,17 +406,8 @@ elseif( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
         set(HAVE_SSE4 ON )
     endif()
 
-    # required for sccache
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-        string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
-        string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
-    elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-        string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
-        string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
-    elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-        string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-        string(REPLACE "/Zi" "/Z7" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
-    endif()
+    # Required for (s)ccache
+    set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<$<CONFIG:Debug,RelWithDebInfo>:Embedded>")
 endif()
 
 if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
