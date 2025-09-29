@@ -1547,10 +1547,17 @@ void ProjectFileIO::SetProjectTitle(int number)
                  name.empty() ? XO("<untitled>") : Verbatim((const char *)name))
          .Translation();
    }
-   // If we are not showing numbers, then <untitled> shows as 'Audacity'.
+   // If we are not showing numbers, then <untitled> shows as 'Tenacity'.
+   // (There are slight variations for beta and nightly builds).
    else if (name.empty())
    {
+      #if defined(IS_ALPHA)
+      name = XO("Tenacity (Nightly)").Translation();
+      #elif defined(IS_BETA)
+      name = XO("Tenacity (Beta)").Translation();
+      #else
       name = _TS("Tenacity");
+      #endif
    }
 
    if (mRecovered)

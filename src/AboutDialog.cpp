@@ -65,7 +65,13 @@ hold information about one contributor to Audacity.
 // To substitute into many other translatable strings
 static const auto ProgramName =
    //XO("Tenacity");
+   #if defined(IS_ALPHA)
+   XO("Tenacity (Nightly)");
+   #elif defined(IS_BETA)
+   XO("Tenacity (Beta)");
+   #else
    Verbatim("Tenacity");
+   #endif
 
 void AboutDialog::CreateCreditsList()
 {
