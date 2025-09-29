@@ -8,7 +8,6 @@ set( SOURCES
       ExportMP3.cpp
       ExportMP3.h
       MP3.cpp
-      MP3Prefs.cpp
 )
 
 set( LIBRARIES
