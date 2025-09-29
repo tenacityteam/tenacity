@@ -66,7 +66,6 @@ jobs:
         - name: Windows_32bit
           os: windows-latest
           arch: x86
-          # FIXME: Ninja is broken on Windows, so use Visual Studio for now
           generator: Visual Studio 17 2022
           # required so CMake uses MSVC rather than MinGW
           cc: cl
@@ -82,7 +81,6 @@ jobs:
         - name: Windows_64bit
           os: windows-latest
           arch: amd64
-          # FIXME: Ninja is broken on Windows, so use Visual Studio for now
           generator: Visual Studio 17 2022
           # required so CMake uses MSVC rather than MinGW
           cc: cl
@@ -97,7 +95,6 @@ jobs:
         - name: Windows_ARM
           os: windows-11-arm
           arch: arm
-          # FIXME: Ninja is broken on Windows, so use Visual Studio for now
           generator: Visual Studio 17 2022
           # required so CMake uses MSVC rather than MinGW
           cc: cl
