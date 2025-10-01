@@ -1172,10 +1172,6 @@ else()
     # Create the desktop file
     configure_file( ${APP_NAME}.desktop.in ${_INTDIR}/${APP_NAME}.desktop )
     
-    if(${_OPT}has_url_schemes_support)
-        configure_file( audacity-url-handler.desktop.in ${_INTDIR}/audacity-url-handler.desktop )
-    endif()
-
     if( CMAKE_SYSTEM_NAME MATCHES "Linux" )
         add_executable(findlib ../linux/findlib.c)
         target_link_libraries(findlib ${CMAKE_DL_LIBS})
@@ -1262,12 +1258,6 @@ if (USE_AUDIO_UNITS AND wxIS_MAC)
     list(APPEND TENACITY_LIBRARIES lib-audio-unit-interface)
 endif()
 
-if( ${_OPT}has_url_schemes_support )
-    list( APPEND TENACITY_LIBRARIES
-        lib-url-schemes-interface
-    )
-endif()
-
 if( USE_NYQUIST )
     list( APPEND TENACITY_LIBRARIES
         lib-nyquist-effects-interface
@@ -1337,11 +1327,6 @@ else()
         install( FILES "${_INTDIR}/${APP_NAME}.desktop"
                  DESTINATION "${_DATADIR}/applications" )
 
-        if(${_OPT}has_url_schemes_support)
-            install( FILES "${_INTDIR}/audacity-url-handler.desktop"
-                     DESTINATION "${_DATADIR}/applications" )
-        endif()
-                
         install( FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_SOURCE_DIR}/README.md"
                  DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
         install( FILES "${_SRCDIR}/audacity.xml"
