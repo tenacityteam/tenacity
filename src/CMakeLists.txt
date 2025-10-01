@@ -935,7 +935,6 @@ set( RESOURCES
 set( DEFINES
     PRIVATE
         BUILDING_AUDACITY
-        WXUSINGDLL
         CMAKE
         $<$<BOOL:${HAVE_LRINT}>:
             HAVE_LRINT
