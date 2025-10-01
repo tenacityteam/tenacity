@@ -958,7 +958,7 @@ set( DEFINES
 
 # We now use precompiled headers regardless, but only if ccache is not
 # available and the user hasn't disabled it.
-if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
+if( NOT CCACHE AND NOT SCCACHE )
     option(
         PCH
         "Use precompiled headers [yes, no]"
