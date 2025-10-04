@@ -16,7 +16,6 @@
 
 #include <wx/wxcrtvararg.h>
 
-#if defined(USE_MIDI)
 #include "WrapAllegro.h"
 
 #include <sstream>
@@ -990,4 +989,3 @@ StringSetting MIDIPlaybackDevice{ L"/MidiIO/PlaybackDevice", L"" };
 StringSetting MIDIRecordingDevice{ L"/MidiIO/RecordingDevice", L"" };
 IntSetting MIDISynthLatency_ms{ L"/MidiIO/SynthLatency", 5 };
 
-#endif // USE_MIDI

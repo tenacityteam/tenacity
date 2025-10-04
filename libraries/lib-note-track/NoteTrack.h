@@ -17,8 +17,6 @@
 #include "Prefs.h"
 #include "PlayableTrack.h"
 
-#if defined(USE_MIDI)
-
 // define this switch to play MIDI during redisplay to sonify run times
 // Note that if SONIFY is defined, the default MIDI device will be opened
 // and may block normal MIDI playback.
@@ -223,7 +221,6 @@ extern NOTE_TRACK_API IntSetting MIDISynthLatency_ms;
 
 ENUMERATE_TRACK_TYPE(NoteTrack);
 
-#endif // USE_MIDI
 
 #ifndef SONIFY
 // no-ops:

@@ -8,9 +8,6 @@ Paul Licameli split from TrackPanel.cpp
 
 **********************************************************************/
 
-
-
-#ifdef USE_MIDI
 #include "NoteTrackButtonHandle.h"
 
 #include "../../../../HitTestResult.h"
@@ -152,5 +149,3 @@ UIHandle::Result NoteTrackButtonHandle::Cancel(AudacityProject *)
 {
    return RefreshCode::RefreshNone;
 }
-
-#endif

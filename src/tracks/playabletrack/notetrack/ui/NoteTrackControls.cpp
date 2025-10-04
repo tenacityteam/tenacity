@@ -8,8 +8,6 @@ Paul Licameli split from TrackPanel.cpp
 
 **********************************************************************/
 
-
-#ifdef USE_MIDI
 #include "NoteTrackControls.h"
 #include "NoteTrackDisplayData.h"
 #include "AColor.h"
@@ -142,13 +140,11 @@ PopupMenuTable *NoteTrackControls::GetMenuExtension(Track *)
 
 using TCPLine = TrackInfo::TCPLine;
 
-#ifdef USE_MIDI
 enum : int {
    // PRL:  was it correct to include the margin?
    kMidiCellWidth = ( ( kTrackInfoWidth  - CommonTrackInfo::Margin * 2) / 4),
    kMidiCellHeight = kTrackInfoBtnSize
 };
-#endif
 
 #include "NoteTrackButtonHandle.h"
 #include "NoteTrackSliderHandles.h"
@@ -407,5 +403,3 @@ DEFINE_ATTACHED_VIRTUAL_OVERRIDE(GetDefaultNoteTrackHeight) {
       return NoteTrackControls::DefaultNoteTrackHeight();
    };
 }
-
-#endif
