@@ -182,41 +182,47 @@ include( CMakeDependentOption )
 
 project( Tenacity )
 
-# Use ccache if available
-find_program( CCACHE_PROGRAM ccache )
-mark_as_advanced( FORCE CCACHE_PROGRAM )
+# Use ccache or sccache if available
+# Note: compiler caching only works when using the Ninja or one of the Makefile
+# generators. Other generators, such as Visual Studio, do NOT support it.
+if (CMAKE_GENERATOR MATCHES "Ninja|Make")
+    find_program( CCACHE_PROGRAM ccache )
+    mark_as_advanced( FORCE CCACHE_PROGRAM )
 
-find_program( SCCACHE_PROGRAM sccache )
-mark_as_advanced( FORCE SCCACHE_PROGRAM )
+    find_program( SCCACHE_PROGRAM sccache )
+    mark_as_advanced( FORCE SCCACHE_PROGRAM )
 
-if( CCACHE_PROGRAM )
-    message( STATUS "Found ccache: ${CCACHE_PROGRAM}" )
-elseif( SCCACHE_PROGRAM )
-    message( STATUS "Found sccache: ${SCCACHE_PROGRAM}" )
+    if( CCACHE_PROGRAM )
+        message( STATUS "Found ccache: ${CCACHE_PROGRAM}" )
+    elseif( SCCACHE_PROGRAM )
+        message( STATUS "Found sccache: ${SCCACHE_PROGRAM}" )
+    else()
+        message( STATUS "Could NOT find ccache nor sccache, no compiler caching enabled" )
+    endif()
+
+    if(NOT "${SCCACHE_PROGRAM}" STREQUAL "SCCACHE_PROGRAM-NOTFOUND")
+        option(SCCACHE "Use sccache for compiler caching to speed up rebuilds." ON)
+    endif()
+
+    if(NOT "${CCACHE_PROGRAM}" STREQUAL "CCACHE_PROGRAM-NOTFOUND")
+        option(CCACHE "Use ccache for compiler caching to speed up rebuilds." ON)
+    endif()
+
+    # Prefer sccache if both ccache and sccache are found because Windows users may have
+    # ccache installed with MinGW which would not work with MSVC.
+    if(SCCACHE)
+        message( STATUS "Using sccache for compiler caching to speed up rebuilds" )
+        set( CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
+        set( CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
+    elseif(CCACHE)
+        message( STATUS "Using ccache for compiler caching to speed up rebuilds" )
+        set( CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
+        set( CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
+    else()
+        message( STATUS "No compiler caching enabled. Install sccache or ccache to enable compiler caching." )
+    endif()
 else()
-    message( STATUS "Could NOT find ccache nor sccache, no compiler caching enabled" )
-endif()
-
-if(NOT "${SCCACHE_PROGRAM}" STREQUAL "SCCACHE_PROGRAM-NOTFOUND")
-    option(SCCACHE "Use sccache for compiler caching to speed up rebuilds." ON)
-endif()
-
-if(NOT "${CCACHE_PROGRAM}" STREQUAL "CCACHE_PROGRAM-NOTFOUND")
-    option(CCACHE "Use ccache for compiler caching to speed up rebuilds." ON)
-endif()
-
-# Prefer sccache if both ccache and sccache are found because Windows users may have
-# ccache installed with MinGW which would not work with MSVC.
-if(SCCACHE)
-    message( STATUS "Using sccache for compiler caching to speed up rebuilds" )
-    set( CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
-    set( CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}" )
-elseif(CCACHE)
-    message( STATUS "Using ccache for compiler caching to speed up rebuilds" )
-    set( CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
-    set( CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" )
-else()
-    message( STATUS "No compiler caching enabled. Install sccache or ccache to enable compiler caching." )
+    message(STATUS "No compiler caching enabled. Use either the Ninja generator or one of the Makefile CMake generators to enable compiler caching.")
 endif()
 
 # Load our functions/macros
