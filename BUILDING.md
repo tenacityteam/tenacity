@@ -153,6 +153,10 @@ do so:
 > scoop install sccache
 ```
 
+**Note**: Compiler caching is only supported when using the Ninja generator on
+Windows. Using the Visual Studio generator will disable any compiler caching
+for Tenacity as it's unsupported by CMake.
+
 Alternatively, you can use a different package manager such as Chocolatey or
 winget. You may even use a package manager for a different language, such as
 Cargo, if that works for you. However, they might not contain all the build
@@ -403,10 +407,16 @@ cmake --install build
   * **VCPKG_ROOT** (file path): path to vcpkg Git repository, defaults to
     using the vcpkg submodule in the Tenacity repository
   * **SCCACHE** (ON|OFF): whether to use sccache for compiler caching to
-    speed up rebuilds. ON by default if sccache is installed.
+    speed up rebuilds. ON by default if sccache is installed. Requires either
+    the Ninja CMake generator or
+    [one of the Makefile CMake generators](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#makefile-generators)
+    to be used.
   * **CCACHE** (ON|OFF): whether to use ccache for compiler caching to speed
     up rebuilds. ON by default if ccache is installed. If sccache and ccache
-    are both installed, sccache will be prefered.
+    are both installed, sccache will be prefered. Requires either the Ninja
+    CMake generator or
+    [one of the Makefile CMake generators](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#makefile-generators)
+    to be used.
   * **PCH** (ON|OFF): Enables the use of precompiled headers. ON by default if
     either ccache or sccache was not found or was disabled.
   * **PERFORM_CODESIGN** (ON|OFF): Performs codesigning during the install step.
