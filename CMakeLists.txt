@@ -712,7 +712,7 @@ endif()
 # Handle Audio Units option
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
     option(AUDIO_UNITS "Enable Audio Units plugin support." ON)
-    set(USE_AUDIO_UNITS ${use_audio_units})
+    set(USE_AUDIO_UNITS ${AUDIO_UNITS})
     if (AUDIO_UNITS)
         message(STATUS "Audio Units support enabled.")
     else()
