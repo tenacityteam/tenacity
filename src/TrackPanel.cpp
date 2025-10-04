@@ -710,6 +710,22 @@ void TrackPanel::OnKeyDown(wxKeyEvent & event)
 
 void TrackPanel::OnMouseEvent(wxMouseEvent & event)
 {
+   if (event.MiddleDown()) {
+      mIsPanning = true;
+      mLastPanX = event.GetX();
+      CaptureMouse();
+   }
+   else if (event.MiddleUp()) {
+      mIsPanning = false;
+      ReleaseMouse();
+   }
+   else if (event.Dragging() && mIsPanning) {
+      int dx = event.GetX() - mLastPanX;
+      mLastPanX = event.GetX();
+
+      Viewport::Get(*GetProject()).ScrollHorizontalByPixels(-dx);
+   }
+
    if (event.ButtonUp()) {
       // Stop the timer if it's running and audio isn't currently active
       if (mTimer.IsRunning() && !IsAudioActive()) {
