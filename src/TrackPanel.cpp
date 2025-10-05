@@ -299,9 +299,6 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
 
    mTimeCount = 0;
    mTimer.parent = this;
-   // Timer is started after the window is visible
-   ProjectWindow::Get( *GetProject() ).Bind(wxEVT_IDLE,
-      &TrackPanel::OnIdle, this);
 
    // Register for tracklist updates
    mTrackListSubscription = PendingTracks::Get(*GetProject())
@@ -349,7 +346,10 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
 
 TrackPanel::~TrackPanel()
 {
-   mTimer.Stop();
+   if (mTimer.IsRunning())
+   {
+      mTimer.Stop();
+   }
 
    // This can happen if a label is being edited and the user presses
    // ALT+F4 or Command+Q
@@ -388,26 +388,6 @@ void TrackPanel::OnSize( wxSizeEvent &evt )
    const auto &size = evt.GetSize();
    mViewInfo->SetWidth( size.GetWidth() );
    mViewInfo->SetHeight( size.GetHeight() );
-}
-
-void TrackPanel::OnIdle(wxIdleEvent& event)
-{
-   event.Skip();
-   // The window must be ready when the timer fires (#1401)
-   if (IsShownOnScreen())
-   {
-      mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), FALSE);
-
-      // Timer is started, we don't need the event anymore
-      GetProjectFrame( *GetProject() ).Unbind(wxEVT_IDLE,
-         &TrackPanel::OnIdle, this);
-   }
-   else
-   {
-      // Get another idle event, wx only guarantees we get one
-      // event after "some other normal events occur"
-      event.RequestMore();
-   }
 }
 
 /// AS: This gets called on our wx timer events.
@@ -730,17 +710,6 @@ void TrackPanel::OnKeyDown(wxKeyEvent & event)
 
 void TrackPanel::OnMouseEvent(wxMouseEvent & event)
 {
-   if (event.LeftDown()) {
-      // wxTimers seem to be a little unreliable, so this
-      // "primes" it to make sure it keeps going for a while...
-
-      // When this timer fires, we call TrackPanel::OnTimer and
-      // possibly update the screen for offscreen scrolling.
-      mTimer.Stop();
-      mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), FALSE);
-   }
-
-
    if (event.ButtonUp()) {
       //ShowTrack should be called after processing the up-click.
       this->CallAfter( [this, event]{
@@ -823,8 +792,34 @@ void TrackPanel::Refresh(bool eraseBackground /* = TRUE */,
 
 void TrackPanel::OnAudioIO(AudioIOEvent evt)
 {
-   if (evt.type == AudioIOEvent::MONITOR || evt.type == AudioIOEvent::PAUSE)
+   if (evt.type == AudioIOEvent::MONITOR)
+   {
+      // Ignore monitor events. Any updates that do result while monitoring are
+      // already event driven, so there's no need for a timer.
       return;
+   } else if ((evt.on && (evt.type == AudioIOEvent::PLAYBACK || evt.type == AudioIOEvent::CAPTURE)) ||
+              !evt.on && evt.type == AudioIOEvent::PAUSE)
+   {
+      // If playback or capture was started OR pause was stopped (i.e.,
+      // playback resumes), start the timer.
+      //
+      // Note: it appears that AudioIOEvent::on indicates whether or not the
+      // current event type was either activated or deactivated. For example,
+      // if the user resumed playback from a paused state, then, in this case,
+      // evt.type would be AudioIOEvent::PAUSE and evt.on would be false.
+      if (!mTimer.IsRunning())
+      {
+         mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), false);
+      }
+   } else
+   {
+      // Otherwise, stop the timer and do one final pass to update any overlays
+      // (This fixes an issue when using one of the skip buttons and the
+      // playhead and cursor are still shown on screen)
+      mTimer.Stop();
+      mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), true);
+   }
+
    // Some hit tests want to change their cursor to and from the ban symbol
    CallAfter( [this]{ CellularPanel::HandleCursorForPresentMouseState(); } );
 }

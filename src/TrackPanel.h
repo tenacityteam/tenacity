@@ -92,7 +92,6 @@ class TENACITY_DLL_API TrackPanel final
    double GetMostRecentXPos();
 
    void OnSize( wxSizeEvent & );
-   void OnIdle(wxIdleEvent & event);
    void OnTimer(wxTimerEvent& event);
    void OnSyncLockChange(struct SyncLockChangeMessage);
    void OnTrackFocusChange(struct TrackFocusChangeMessage);
