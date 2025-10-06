@@ -27,6 +27,7 @@
 
 #include "SyncLock.h"
 #include "LabelTrack.h"
+#include "PlayableTrack.h"
 #include "TimeTrack.h"
 #include "Viewport.h"
 
