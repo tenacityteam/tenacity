@@ -205,12 +205,7 @@ jobs:
     - name: Install
       run: cmake --install build --config ${{ env.CMAKE_BUILD_TYPE }} --verbose
 
-    - name: "[Windows] Package"
-      if: runner.os == 'Windows'
-      run: cmake --build build --target innosetup --config ${{ env.CMAKE_BUILD_TYPE }}
-
     - name: "[Ubuntu/macOS] Package"
-      if: runner.os != 'Windows'
       working-directory: build
       run: >-
         cpack
@@ -218,9 +213,6 @@ jobs:
         -D CPACK_COMMAND_HDIUTIL=${{ github.workspace }}/scripts/ci/macos/repeat_hdiutil.sh
         --verbose
         && rm -r package/_CPack_Packages
-      env:
-        # VCPKG_LIB_PATH is the location that vcpkg stores its libs once built
-        VCPKG_LIB_PATH: ""
 
     - name: Upload package artifact
       uses: actions/upload-artifact@v4
