@@ -38,32 +38,39 @@ jobs:
           vcpkg_binary_cache: ~/.cache/vcpkg
           vcpkg_triplet: x64-linux-dynamic
 
-        - name: macOS_Intel
-          os: macos-latest
-          arch: Intel # as reported by Apple menu > About This Mac
-          generator: Ninja
-          cc: cc
-          cxx: c++
-          compiler_caching: ON
-          compiler_cache: ccache
-          compiler_cache_path: ~/Library/Caches/ccache
-          use_vcpkg: ON
-          vcpkg_binary_cache: ~/.cache/vcpkg
-          vcpkg_triplet: x64-osx-dynamic
-          additional_cmake_flags: -DCMAKE_APPLE_SILICON_PROCESSOR="x86_64"
+        # macOS runners are currently disabled due to a theme-system related
+        # issue. Currently, we are awaiting a theme system rewrite, and thus we
+        # will not be fixing the build for macOS at this time.
+        #
+        # When the theme system rewrite is complete, these runners will be
+        # re-enabled and any other macOS build issues will be fixed.
+        #
+        #- name: macOS_Intel
+        #  os: macos-latest
+        #  arch: Intel # as reported by Apple menu > About This Mac
+        #  generator: Ninja
+        #  cc: cc
+        #  cxx: c++
+        #  compiler_caching: ON
+        #  compiler_cache: ccache
+        #  compiler_cache_path: ~/Library/Caches/ccache
+        #  use_vcpkg: ON
+        #  vcpkg_binary_cache: ~/.cache/vcpkg
+        #  vcpkg_triplet: x64-osx-dynamic
+        #  additional_cmake_flags: -DCMAKE_APPLE_SILICON_PROCESSOR="x86_64"
 
-        - name: macOS_Apple_Silicon
-          os: macos-latest
-          arch: Apple Silicon # as reported by Apple menu > About This Mac
-          generator: Ninja
-          cc: cc
-          cxx: c++
-          compiler_caching: ON
-          compiler_cache: ccache
-          compiler_cache_path: ~/Library/Caches/ccache
-          use_vcpkg: ON
-          vcpkg_binary_cache: ~/.cache/vcpkg
-          vcpkg_triplet: arm64-osx-dynamic
+        #- name: macOS_Apple_Silicon
+        #  os: macos-latest
+        #  arch: Apple Silicon # as reported by Apple menu > About This Mac
+        #  generator: Ninja
+        #  cc: cc
+        #  cxx: c++
+        #  compiler_caching: ON
+        #  compiler_cache: ccache
+        #  compiler_cache_path: ~/Library/Caches/ccache
+        #  use_vcpkg: ON
+        #  vcpkg_binary_cache: ~/.cache/vcpkg
+        #  vcpkg_triplet: arm64-osx-dynamic
 
           # Windows (x86) config
         - name: Windows_32bit
