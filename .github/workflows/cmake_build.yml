@@ -229,6 +229,7 @@ jobs:
         path: |
           build/package/*
           !build/package/_CPack_Packages
+          !build/package/*.json*
         if-no-files-found: error
 
     - name: Upload artifact of vcpkg build logs
