@@ -72,9 +72,7 @@ elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
    if (CPACK_TENACITY_INNO_SETUP_COMPILER)
       set(CPACK_GENERATOR "External")
       set(CPACK_EXTERNAL_ENABLE_STAGING TRUE) # Required for the Inno Setup CPack script
-      if (CMAKE_CONFIGURATION_TYPES)
-         set(CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG "$<CONFIG>")
-      else()
+      if (NOT CMAKE_CONFIGURATION_TYPES)
          set(CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG "${CMAKE_BUILD_TYPE}")
       endif()
 
