@@ -9,8 +9,9 @@
 #
 # Require variables:
 #   * CPACK_TENACITY_INNO_SETUP_COMPILER - The INNO_SETUP compiler executable
-#   * CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG - The current build config (FIXME:
-#     find a better way to get the build config if possible).
+#   * CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG - The current build config if
+#     using a single-config generator. For multi-config generators, the script
+#     sets this to CPACK_BUILD_CONFIG.
 #
 # Optional parameters:
 #   * CPACK_TENACITY_INNO_SETUP_SIGN - Whether or not to sign the installer.
@@ -26,6 +27,10 @@ cmake_policy( SET CMP0057 NEW )
 
 if (NOT CPACK_EXTERNAL_ENABLE_STAGING)
     message(FATAL_ERROR "CPack external staging is not enabled. This is a build bug")
+endif()
+
+if (NOT CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG)
+    set(CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG ${CPACK_BUILD_CONFIG})
 endif()
 
 set(OUTPUT_DIR "${CPACK_TEMPORARY_DIRECTORY}")
