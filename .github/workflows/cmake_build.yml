@@ -212,7 +212,7 @@ jobs:
     - name: Install
       run: cmake --install build --config ${{ env.CMAKE_BUILD_TYPE }} --verbose
 
-    - name: "[Ubuntu/macOS] Package"
+    - name: "Package"
       working-directory: build
       run: >-
         cpack
