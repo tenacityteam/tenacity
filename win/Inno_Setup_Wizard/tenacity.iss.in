@@ -254,6 +254,17 @@ Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Tenacity}"; Flag
     : Exec("powershell", "echo 'Downloading: " + URL + "'; $wc = new-object System.Net.WebClient; $wc.DownloadFile('" + URLBase + URL + "', '" + Local[0] + "')", '.\', , SW_NORMAL)), \
   Local[0]
 
+#define OfficialUrlBase "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/"
+
+; Same as Get() but instead downloads an official language
+; (This is to preserve compatibility with older Inno Setup versions)
+#define GetOfficial(URL) \
+  Local[0] = ".\Languages\unofficial\" + Copy(URL, RPos("/", URL) + 1), \
+  Local[1] = (FileExists(Local[0]) \
+    ? "alreadyexists" \
+    : Exec("powershell", "echo 'Downloading: " + URL + "'; $wc = new-object System.Net.WebClient; $wc.DownloadFile('" + OfficialUrlBase + URL + "', '" + Local[0] + "')", '.\', , SW_NORMAL)), \
+  Local[0]
+
 ; This macro will define a dummy translation based on the Defaults.isl
 #define Dummy(NAME, ID) \
   Local[0] = ".\Languages\dummy\", \
@@ -267,7 +278,7 @@ Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Tenacity}"; Flag
   Local[1]
 
 Name: "af"; MessagesFile: "{#Get('Afrikaans.isl')}"
-Name: "ar"; MessagesFile: "compiler:Languages\Arabic.isl"
+Name: "ar"; MessagesFile: "{#GetOfficial('Arabic.isl')}"
 Name: "be"; MessagesFile: "{#Get('Belarusian.isl')}"
 Name: "bg"; MessagesFile: "compiler:Languages\Bulgarian.isl"
 Name: "bn"; MessagesFile: "{#Get('Bengali.islu')}"
