@@ -63,7 +63,7 @@ InfoBeforeFile=".\tenacity_InnoWizard_InfoBefore.rtf"
 ; Directives using information passed by CMake
 @INSTALLER_X64_MODE@
 @SIGN_TOOL@
-OutputBaseFilename=tenacity-win-{#AppVersion}-@INSTALLER_SUFFIX@
+OutputBaseFilename=@CPACK_PACKAGE_FILE_NAME@
 
 ; Allow installation in non-administrative mode
 PrivilegesRequiredOverridesAllowed=dialog
