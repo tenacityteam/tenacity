@@ -21,6 +21,8 @@ endif()
 set(CPACK_PACKAGE_FILE_NAME "tenacity-${os}-${CPACK_PACKAGE_VERSION}")
 set(zsync_name "tenacity-${os}-*") # '*' is wildcard (here it means any version)
 
+# Used primarily in CI
+# TODO: Drop TENACITY_ARCH_LABEL. We can do the detection ourselves instead.
 if(DEFINED TENACITY_ARCH_LABEL)
    # tenacity-linux-X.Y.Z-alpha-1337-gdeadbee-x86_64
    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-${TENACITY_ARCH_LABEL}")
