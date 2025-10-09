@@ -156,6 +156,7 @@ unwanted_files=(
   lib/libQt5Core.so.5
   lib/libQt5Gui.so.5
   lib/libQt5Widgets.so.5
+  lib/libmount.so.1
 )
 
 fallback_libraries=(
