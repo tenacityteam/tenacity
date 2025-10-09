@@ -31,7 +31,6 @@ jobs:
           generator: Ninja
           cc: cc
           cxx: c++
-          compiler_caching: ON
           compiler_cache: ccache
           compiler_cache_path: ~/.cache/ccache
           use_vcpkg: OFF
@@ -51,7 +50,6 @@ jobs:
         #  generator: Ninja
         #  cc: cc
         #  cxx: c++
-        #  compiler_caching: ON
         #  compiler_cache: ccache
         #  compiler_cache_path: ~/Library/Caches/ccache
         #  use_vcpkg: ON
@@ -65,7 +63,6 @@ jobs:
         #  generator: Ninja
         #  cc: cc
         #  cxx: c++
-        #  compiler_caching: ON
         #  compiler_cache: ccache
         #  compiler_cache_path: ~/Library/Caches/ccache
         #  use_vcpkg: ON
@@ -80,7 +77,6 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_caching: OFF
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
@@ -95,7 +91,6 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_caching: OFF
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x64-windows
@@ -108,7 +103,6 @@ jobs:
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_caching: OFF
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: arm64-windows
@@ -188,7 +182,6 @@ jobs:
         -G "${{ matrix.config.generator }}"
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
-        -D CCACHE=${{ matrix.config.compiler_caching }}
         -D VCPKG=${{ matrix.config.use_vcpkg }}
         -D SBSMS=ON
         -S .
