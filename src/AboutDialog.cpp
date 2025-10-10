@@ -548,9 +548,6 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
       << XO("This Build")
       << wxT("</h3>\n<table>"); // start build info table
 
-   // Current date
-   AddBuildinfoRow(&informationStr, XO("Program build date:"), __TDATE__);
-
    if constexpr (BuildInfo::IsDebugBuild())
    {
       AddBuildinfoRow(&informationStr, XO("Commit Id:"), BuildInfo::GetRevisionIdentifier());
