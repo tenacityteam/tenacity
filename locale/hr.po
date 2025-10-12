@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-10-12 15:38+0000\n"
+"PO-Revision-Date: 2025-10-12 16:45+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/hr/>\n"
@@ -703,9 +703,8 @@ msgid "&Edit Parameters"
 msgstr "&Uredi parametre"
 
 #: src/BatchCommandDialog.cpp
-#, fuzzy
 msgid "&Use Preset"
-msgstr "Spremi predzadanost"
+msgstr "&Koristi predefiniranu postavku"
 
 #: src/BatchCommandDialog.cpp
 msgid "&Parameters"
@@ -4489,13 +4488,12 @@ msgid "Repeats the selected audio again and again"
 msgstr "Izvoz izabranoga zvuka kao %s"
 
 #: src/effects/Echo.cpp
-#, fuzzy
 msgid "&Delay time (seconds):"
-msgstr "Odgoda (s):"
+msgstr "&Vrijeme kašnjenja (u sekundama):"
 
 #: src/effects/Echo.cpp
 msgid "D&ecay factor:"
-msgstr "&Faktor slabljenja:"
+msgstr "&Faktor opadanja:"
 
 #: src/effects/Effect.cpp
 #, fuzzy
@@ -4504,7 +4502,7 @@ msgstr "Učinci zvučne jedinice"
 
 #: src/effects/Effect.cpp
 msgid "Presets"
-msgstr "Unaprijed postavljene postavke"
+msgstr "Predefinirane postavke"
 
 #: src/effects/Effect.cpp
 msgid "Export Effect Parameters"
@@ -4512,7 +4510,7 @@ msgstr "Izvoz parametara efekta"
 
 #: src/effects/Effect.cpp src/effects/VST/VSTEffect.cpp
 msgid "Error Saving Effect Presets"
-msgstr "Greška pri spremanju postavki efekta"
+msgstr "Greška pri spremanju predefiniranih postavki efekta"
 
 #: src/effects/Effect.cpp src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -4527,15 +4525,15 @@ msgstr "Uvoz parametara efekta"
 #: src/effects/Effect.cpp
 #, c-format
 msgid "%s: is not a valid presets file.\n"
-msgstr "%s: nije valjana datoteka s unaprijed postavljenim postavkama.\n"
+msgstr "%s: nije valjana datoteka predefiniranih postavki.\n"
 
 #: src/effects/Effect.cpp
 msgid "Preparing preview"
-msgstr "Priprema pretposlušanja"
+msgstr "Pripremanje pregleda"
 
 #: src/effects/Effect.cpp
 msgid "Previewing"
-msgstr "Pretposlušanje"
+msgstr "Pregledavanje"
 
 #. i18n-hint: "Nyquist" is an embedded interpreted programming language in
 #. Audacity, named in honor of the Swedish-American Harry Nyquist (or Nyqvist).
@@ -4552,32 +4550,27 @@ msgstr "Dodan učinak: %s"
 
 #: src/effects/EffectManager.cpp
 msgid "Select Preset"
-msgstr "Odaberi unaprijed postavljenu postavku"
+msgstr "Odaberi predefiniranu postavku"
 
 #: src/effects/EffectManager.cpp
-#, fuzzy
 msgid "&Preset:"
-msgstr "Predzadanost:"
+msgstr "&Predefinirana postavka:"
 
 #: src/effects/EffectManager.cpp src/effects/EffectUI.cpp
-#, fuzzy
 msgid "User Presets"
-msgstr "Predzadanost"
+msgstr "Predefinirane postavke korisnika"
 
 #: src/effects/EffectManager.cpp src/effects/EffectUI.cpp
-#, fuzzy
 msgid "Factory Presets"
-msgstr "Uvezi predzadanosti"
+msgstr "Tvorničke predefinirane postavke"
 
 #: src/effects/EffectManager.cpp
-#, fuzzy
 msgid "Current Settings"
-msgstr "Postavke učinka"
+msgstr "Trenutačne postavke"
 
 #: src/effects/EffectManager.cpp
-#, fuzzy
 msgid "Factory Defaults"
-msgstr "Obnovi predzadanosti"
+msgstr "Tvorničke postavke"
 
 #: src/effects/EffectManager.cpp
 #, fuzzy
@@ -4604,13 +4597,12 @@ msgid "Enable"
 msgstr "Aktiviraj"
 
 #: src/effects/EffectUI.cpp
-#, fuzzy
 msgid "Save Preset..."
-msgstr "Spremi predzadanost"
+msgstr "Spremi predefiniranu postavku …"
 
 #: src/effects/EffectUI.cpp src/export/ExportFFmpegDialogs.cpp
 msgid "Delete Preset"
-msgstr "Izbriši unaprijed postavljenu postavku"
+msgstr "Izbriši predefiniranu postavku"
 
 #: src/effects/EffectUI.cpp
 msgid "Defaults"
@@ -4660,12 +4652,11 @@ msgstr "Želite li sigurno izbrisati %s?"
 
 #: src/effects/EffectUI.cpp src/export/ExportFFmpegDialogs.cpp
 msgid "Save Preset"
-msgstr "Spremi predzadanost"
+msgstr "Spremi predefiniranu postavku"
 
 #: src/effects/EffectUI.cpp
-#, fuzzy
 msgid "Preset name:"
-msgstr "Predzadanost:"
+msgstr "Ime predefinirane postavke:"
 
 #: src/effects/EffectUI.cpp
 #, fuzzy
@@ -4673,12 +4664,14 @@ msgid "You must specify a name"
 msgstr "Prvo izaberite neki zapis."
 
 #: src/effects/EffectUI.cpp
-#, fuzzy
 msgid ""
 "Preset already exists.\n"
 "\n"
 "Replace?"
-msgstr "Datoteka imena \"%s\" već postoji. Prekopisati?"
+msgstr ""
+"Predefinirana postavka već postoji.\n"
+"\n"
+"Zamijeniti?"
 
 #: src/effects/EffectUI.cpp src/toolbars/ControlToolBar.cpp
 #: src/widgets/ProgressDialog.cpp
@@ -5882,7 +5875,7 @@ msgstr "Zvučna jedinica"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Save VST Preset As:"
-msgstr "Spremi VST postavke kao:"
+msgstr "Spremi VST predefiniranu postavku kao:"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
@@ -5895,9 +5888,8 @@ msgid "Standard VST program file"
 msgstr "Učitaj program VST:"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "Tenacity VST preset file"
-msgstr "Izaberite datoteku MIDI..."
+msgstr "Tenacity VST datoteka predefinirane postavke"
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy
@@ -5906,26 +5898,23 @@ msgstr "Nastavak imena datoteke"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Error Saving VST Presets"
-msgstr "Greška pri spremanju VST postavki"
+msgstr "Greška pri spremanju VST predefiniranih postavki"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "Load VST Preset:"
-msgstr "Učitaj predzadanost"
+msgstr "Učitaj VST predefiniranu postavku:"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "VST preset files"
-msgstr "Izaberite datoteku MIDI..."
+msgstr "VST datoteke predefinirane postavke"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Error Loading VST Presets"
 msgstr "Greška pri učitavanju VST postavki"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "Unable to load presets file."
-msgstr "Nemoguće otvoriti/stvoriti pokusne datoteke."
+msgstr "Nije moguće učitati datoteke predefiniranih postavki."
 
 #: src/effects/VST/VSTEffect.cpp src/effects/ladspa/LadspaEffect.cpp
 #: src/effects/lv2/LV2Effect.cpp
@@ -5933,14 +5922,14 @@ msgid "Effect Settings"
 msgstr "Postavke efekata"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "Unable to allocate memory when loading presets file."
-msgstr "Nemoguće otvoriti/stvoriti pokusne datoteke."
+msgstr ""
+"Nije moguće dodijeliti memoriju prilikom učitavanja datoteke predefiniranih "
+"postavki."
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "Unable to read presets file."
-msgstr "Nemoguće otvoriti/stvoriti pokusne datoteke."
+msgstr "Nije moguće čitati datoteku predefiniranih postavki."
 
 #: src/effects/VST/VSTEffect.cpp
 #, fuzzy, c-format
@@ -6018,9 +6007,8 @@ msgid "Generic"
 msgstr "&Stvori"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
 msgid "Import Audio Unit Presets"
-msgstr "Uvezi predzadanosti"
+msgstr "Uvezi predefinirane postavke Audio Unit-a"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, c-format
@@ -6042,54 +6030,52 @@ msgid "Unable to store preset in config file"
 msgstr "Nije moguće spremiti predefiniranu postavku u konfiguracijsku datoteku"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not import \"%s\" preset\n"
 "\n"
 "%s"
 msgstr ""
-"Parametre učinka %s nije moguće postaviti\n"
-" na %s."
+"Nije bilo moguće uvesti predefiniranu postavku od „%s”\n"
+"\n"
+"%s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Export Audio Unit Preset As %s:"
-msgstr "Izvezi predzadanosti"
+msgstr "Izvezi Audio Unit predefiniranu postavku kao %s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
 msgid "Standard Audio Unit preset file"
-msgstr "Izvezi predzadanosti"
+msgstr "Standardna datoteka predefinirane postavke za Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not export \"%s\" preset\n"
 "\n"
 "%s"
 msgstr ""
-"Parametre učinka %s nije moguće postaviti\n"
-" na %s."
+"Nije bilo mogće izvesti predefiniranu postavku od „%s”\n"
+"\n"
+"%s"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
 msgid "Export Audio Unit Presets"
-msgstr "Izvezi predzadanosti"
+msgstr "Izvezi predefinirane postavke Audio Unit-a"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Import Audio Unit Preset As %s:"
-msgstr "Uvezi predzadanosti"
+msgstr "Uvezi predefinirane postavke Audio Unit-a kao %s:"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
 msgid "Failed to set preset name"
-msgstr "Nemoguće otvoriti/stvoriti pokusne datoteke."
+msgstr "Neuspjelo postavljanje imena predefinirane postavke"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
 msgid "Failed to retrieve preset content"
-msgstr "Opis toka nedostupan"
+msgstr "Neuspjelo dohvaćanje sadržaja predefinirane postavke"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy
@@ -6107,9 +6093,11 @@ msgid "Failed to write XML preset to \"%s\""
 msgstr "Neuspjelo zapisivanje XML predefinirane postavke u „%s”"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set class info for \"%s\" preset"
-msgstr "Nemoguće otvoriti/stvoriti pokusne datoteke."
+msgstr ""
+"Neuspjelo postavljanje informacije o klasama za predefiniranu postavku od "
+"„%s”"
 
 #. i18n-hint: the name of an Apple audio software protocol
 #. i18n-hint: Audio Unit is the name of an Apple audio software protocol
@@ -9650,9 +9638,8 @@ msgid "Zoom Toggle"
 msgstr "Povećalo"
 
 #: src/prefs/TracksPrefs.cpp
-#, fuzzy
 msgid "Preset 1:"
-msgstr "Predzadanost:"
+msgstr "Predefinirana postavka 1:"
 
 #: src/prefs/TracksPrefs.cpp
 #, fuzzy
@@ -16847,7 +16834,7 @@ msgstr "− dB"
 #: src/AboutDialog.cpp
 #, c-format
 msgid "%s, effects presets"
-msgstr "%s, predlošci efekata"
+msgstr "%s, predefinirane postavke efekata"
 
 #: src/AboutDialog.cpp
 #, c-format
@@ -17593,3 +17580,66 @@ msgstr "Predefinirane postavke i postavke"
 #, c-format
 msgid "Failed to decode \"%s\" preset"
 msgstr "Neuspjelo kodiranje predefinirane postavke od „%s”"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to convert \"%s\" preset to internal format"
+msgstr "Neuspjelo konvertiranje predefinirane postavke od „%s” u interni format"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to create property list for \"%s\" preset"
+msgstr "Neuspjelo stvaranje popisa svojstva za predefiniranu postavku od „%s”"
+
+#: libraries/lib-vst3/VST3Wrapper.cpp
+#, c-format
+msgid "Unable to apply VST3 preset file %s"
+msgstr "Nije moguće primijeniti VST3 datoteku predefinirane postavke %s"
+
+#: libraries/lib-vst3/VST3Wrapper.cpp
+msgid "Failed to save VST3 preset to file"
+msgstr "Neuspjelo spremanje VST3 predefinirane postavke u datoteku"
+
+#: src/effects/EffectUI.cpp
+msgid "Manage presets and options"
+msgstr "Upravljaj predefiniranim postavkama i opcijama"
+
+#: src/effects/DynamicRangeProcessorHistoryPanel.cpp
+msgid "awaiting playback"
+msgstr "čeka se reprodukcija"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "Attac&k (ms)"
+msgstr "&Napad (ms)"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "&Release (ms)"
+msgstr "&Otpuštanje (ms)"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "&Lookahead (ms)"
+msgstr "Pred&viđanje (ms)"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "&Make-up gain (dB)"
+msgstr "&Nadoknadno pojačanje (dB)"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "&Make-up target (dB)"
+msgstr "&Ciljno nadoknadno pojačanje (dB)"
+
+#: src/effects/DynamicRangeProcessorEditor.h
+msgid "Knee &width (dB)"
+msgstr "Širina prijela&za (dB)"
+
+#: src/effects/VST3/VST3Effect.cpp
+msgid "Save VST3 Preset As:"
+msgstr "Spremi VST3 predefiniranu postavku kao:"
+
+#: src/effects/VST3/VST3Effect.cpp
+msgid "VST3 preset file"
+msgstr "VST3 datoteka predefinirane postavke"
+
+#: src/effects/VST3/VST3Effect.cpp
+msgid "Load VST3 preset:"
+msgstr "Učitaj VST3 predefiniranu postavku:"
