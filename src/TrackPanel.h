@@ -82,7 +82,6 @@ class TENACITY_DLL_API TrackPanel final
    void OnAudioIO(AudioIOEvent);
 
    void OnPaint(wxPaintEvent & event);
-   void OnMouseEvent(wxMouseEvent & event);
    void OnKeyDown(wxKeyEvent & event);
 
    void OnTrackListResizing(const TrackListEvent &event);
