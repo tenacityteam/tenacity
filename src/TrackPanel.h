@@ -16,6 +16,8 @@
 
 #include <wx/setup.h> // for wxUSE_* macros
 #include <wx/timer.h> // to inherit
+#include <wx/window.h>
+#include <wx/windowptr.h>
 
 #include "HitTestResult.h"
 #include "Prefs.h"
@@ -26,6 +28,7 @@
 #include "Observer.h"
 
 #include "commands/CommandManagerWindowClasses.h"
+#include "newtracks/TrackControlPanel.h"
 
 
 class wxRect;
@@ -191,6 +194,7 @@ protected:
    AdornedRulerPanel *mRuler;
 
    std::unique_ptr<TrackArtist> mTrackArtist;
+   std::vector<wxWindowPtr<TrackControlPanel>> mControlPanels;
 
    class TENACITY_DLL_API AudacityTimer final : public wxTimer {
    public:
