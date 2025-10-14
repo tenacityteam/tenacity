@@ -27,6 +27,8 @@ class TrackControlPanel : public wxPanelWrapper
         AudacityProject& mProject;
         std::shared_ptr<Track> mTrack;
 
+        void OnClose(wxCommandEvent&);
+
     public:
         TrackControlPanel(
             wxWindow* parent,
@@ -39,5 +41,5 @@ class TrackControlPanel : public wxPanelWrapper
          * This is useful when, for example, @ref TrackPanel needs to remove a
          * track.
          */
-        const Track& GetTrack() const;
+        const std::shared_ptr<Track>& GetTrack() const;
 };
