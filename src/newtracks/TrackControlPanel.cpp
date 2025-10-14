@@ -19,6 +19,11 @@
 #include <wx/button.h>
 #include <wx/sizer.h>
 
+// Event IDs
+enum {
+    CloseButtonID = 1000
+};
+
 TrackControlPanel::TrackControlPanel(
     wxWindow* parent,
     AudacityProject& project,
@@ -53,4 +58,17 @@ TrackControlPanel::TrackControlPanel(
 
     SetSizer(sizer);
     Layout();
+
+    // Setup our events
+    closeButton->Bind(wxEVT_BUTTON, &TrackControlPanel::OnClose, this);
+}
+
+const std::shared_ptr<Track>& TrackControlPanel::GetTrack() const
+{
+    return mTrack;
+}
+
+void TrackControlPanel::OnClose(wxCommandEvent&)
+{
+    TrackUtilities::DoRemoveTrack(mProject, *mTrack);
 }
