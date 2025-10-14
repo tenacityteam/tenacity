@@ -579,6 +579,11 @@ set( SOURCES
         menus/TransportMenus.cpp
         menus/ViewMenus.cpp
 
+        # New track panel implementation
+
+        newtracks/TrackControlPanel.cpp
+        newtracks/TrackControlPanel.h
+
         # Preferences
 
         prefs/BatchPrefs.cpp
