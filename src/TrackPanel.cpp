@@ -173,7 +173,10 @@ template < class A, class B, class DIST > bool within(A a, B b, DIST d)
 }
 
 BEGIN_EVENT_TABLE(TrackPanel, CellularPanel)
-    EVT_MOUSE_EVENTS(TrackPanel::OnMouseEvent)
+    // TODO: Handle context menu events
+    // They may not be handled here, but we need to restore the context menu
+    // somewhere.
+
     EVT_KEY_DOWN(TrackPanel::OnKeyDown)
 
     EVT_PAINT(TrackPanel::OnPaint)
@@ -461,51 +464,6 @@ void TrackPanel::OnUndoReset(UndoRedoMessage message)
 ///  completing a repaint operation.
 void TrackPanel::OnPaint(wxPaintEvent & /* event */)
 {
-   // If the selected region changes - we must repaint the tracks, because the
-   // selection is baked into track image
-   if (mLastDrawnSelectedRegion != mViewInfo->selectedRegion)
-   {
-      mRefreshBacking = true;
-      mLastDrawnSelectedRegion = mViewInfo->selectedRegion;
-   }
-
-   auto sw =
-      FrameStatistics::CreateStopwatch(FrameStatistics::SectionID::TrackPanel);
-
-   {
-      wxPaintDC dc(this);
-
-      // Retrieve the damage rectangle
-      wxRect box = GetUpdateRegion().GetBox();
-
-      // Recreate the backing bitmap if we have a full refresh
-      // (See TrackPanel::Refresh())
-      if (mRefreshBacking || (box == GetRect()))
-      {
-         // Reset (should a mutex be used???)
-         mRefreshBacking = false;
-
-         // Redraw the backing bitmap
-         DrawTracks(&GetBackingDCForRepaint());
-
-         // Copy it to the display
-         DisplayBitmap(dc);
-      }
-      else
-      {
-         // Copy full, possibly clipped, damage rectangle
-         RepairBitmap(dc, box.x, box.y, box.width, box.height);
-      }
-
-      // Done with the clipped DC
-
-      // Drawing now goes directly to the client area.
-      // DrawOverlays() may need to draw outside the clipped region.
-      // (Used to make a NEW, separate wxClientDC, but that risks flashing
-      // problems on Mac.)
-      dc.DestroyClippingRegion();
-      DrawOverlays(true, &dc);
-   }
 }
 
 void TrackPanel::MakeParentRedrawScrollbars()
@@ -706,25 +664,6 @@ void TrackPanel::OnKeyDown(wxKeyEvent & event)
       // fall through to base class handler
       event.Skip();
    }
-}
-
-void TrackPanel::OnMouseEvent(wxMouseEvent & event)
-{
-   if (event.ButtonUp()) {
-      //ShowTrack should be called after processing the up-click.
-      this->CallAfter( [this, event]{
-         const auto foundCell = FindCell(event.m_x, event.m_y);
-         const auto t = FindTrack( foundCell.pCell.get() );
-         if (t) {
-            auto &focus = TrackFocus::Get(*GetProject());
-            focus.Set(t.get());
-            Viewport::Get(*GetProject()).ShowTrack(*t);
-         }
-      } );
-   }
-
-   // Must also fall through to base class handler
-   event.Skip();
 }
 
 double TrackPanel::GetMostRecentXPos()
