@@ -88,7 +88,7 @@ class TENACITY_DLL_API TrackPanel final
    void OnKeyDown(wxKeyEvent & event);
 
    void OnTrackListResizing(const TrackListEvent &event);
-   void OnTrackListDeletion();
+   void OnTrackListDeletion(const std::shared_ptr<Track>& track);
    void UpdateViewIfNoTracks(); // Call this to update mViewInfo, etc, after track(s) removal, before Refresh().
 
    double GetMostRecentXPos();

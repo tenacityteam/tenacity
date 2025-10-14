@@ -318,7 +318,11 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
       case TrackListEvent::ADDITION:
          OnTrackListResizing(event); break;
       case TrackListEvent::DELETION:
-         OnTrackListDeletion(); break;
+      {
+         const auto track = event.mpTrack.lock();
+         OnTrackListDeletion(track);
+      }
+      break;
       default:
          break;
       }
@@ -644,19 +648,29 @@ void TrackPanel::OnTrackListResizing(const TrackListEvent &e)
 }
 
 // Tracks have been removed from the list.
-void TrackPanel::OnTrackListDeletion()
+void TrackPanel::OnTrackListDeletion(const std::shared_ptr<Track>& track)
 {
-   // copy shared_ptr for safety, as in HandleClick
-   auto handle = Target();
-   if (handle) {
-      handle->OnProjectChange(GetProject());
-   }
-
    // If the focused track disappeared but there are still other tracks,
    // this reassigns focus.
    TrackFocus( *GetProject() ).Get();
 
-   UpdateVRulerSize();
+   // Find the associated track control panel and destroy and remove it.
+   auto controlPanel = std::find_if(
+      mControlPanels.begin(), mControlPanels.end(),
+      [&track](wxWindowPtr<TrackControlPanel>& tcp) {
+         return tcp->GetTrack() == track;
+      }
+   );
+
+   // If the control panel was found (it should, this is a sanity check),
+   // delete it and the track it's associated with. Also update the layout
+   // too.
+   if (controlPanel != mControlPanels.end())
+   {
+      mControlPanels.erase(controlPanel);
+      Layout();
+      UpdateVRulerSize();
+   }
 }
 
 void TrackPanel::OnKeyDown(wxKeyEvent & event)
