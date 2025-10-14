@@ -50,6 +50,7 @@ is time to refresh some aspect of the screen.
 #include <wx/setup.h> // for wxUSE_* macros
 
 #include "AdornedRulerPanel.h"
+#include "newtracks/TrackControlPanel.h"
 #include "tracks/ui/CommonTrackPanelCell.h"
 #include "KeyboardCapture.h"
 #include "PendingTracks.h"
@@ -97,6 +98,7 @@ is time to refresh some aspect of the screen.
 #include <wx/dc.h>
 #include <wx/dcclient.h>
 #include <wx/graphics.h>
+#include <wx/sizer.h>
 
 #include "RealtimeEffectManager.h"
 
@@ -297,6 +299,9 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
       focus.SetCallbacks(std::make_unique<TrackPanelAx::Adapter>(pAx));
    }
 #endif
+
+   // Setup our sizer
+   SetSizer(new wxBoxSizer(wxVERTICAL));
 
    mTrackArtist = std::make_unique<TrackArtist>( this );
 
@@ -620,14 +625,20 @@ void TrackPanel::UpdateViewIfNoTracks()
 // ruler size for the track that triggered the event.
 void TrackPanel::OnTrackListResizing(const TrackListEvent &e)
 {
-   auto t = e.mpTrack.lock();
-   // A deleted track can trigger the event.  In which case do nothing here.
-   // A deleted track can have a valid pointer but no owner, bug 2060
-   if( t && t->HasOwner() )
-      UpdateVRuler(t.get());
+   if (e.mType == TrackListEvent::ADDITION)
+   {
+      auto track = e.mpTrack.lock();
+      auto& newControlPanel = mControlPanels.emplace_back(
+         new TrackControlPanel(
+            this, *GetProject(), track
+         )
+      );
 
-   // fix for bug 2477
-   MakeParentRedrawScrollbars();
+      GetSizer()->Add(newControlPanel.get(), 0, wxEXPAND | wxALL);
+      Layout();
+   }
+
+   // TODO: Handle track reordering
 }
 
 // Tracks have been removed from the list.
