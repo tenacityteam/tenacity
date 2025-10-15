@@ -25,6 +25,7 @@ Paul Licameli split from TrackControls.cpp
 #include <wx/textdlg.h>
 #include "../../commands/AudacityCommand.h"
 #include "CommandManager.h"
+#include "../../commands/SetTrackNameCommand.h"
 #include "ShuttleGui.h"
 #include "Track.h"
 #include "../../widgets/PopupMenuTable.h"
@@ -172,46 +173,6 @@ BEGIN_POPUP_MENU(TrackMenuTable)
          POPUP_MENU_FN( OnMoveTrack ), enableIfCanMove(false) );
    EndSection();
 END_POPUP_MENU()
-
-
-
-
-// An example of using an AudacityCommand simply to create a dialog.
-// We can add additional functions later, if we want to make it
-// available to scripting.
-// However there is no reason to, as SetTrackStatus is already provided.
-class SetTrackNameCommand : public AudacityCommand
-{
-public:
-   static const ComponentInterfaceSymbol Symbol;
-
-   // ComponentInterface overrides
-   ComponentInterfaceSymbol GetSymbol() const override
-   { return Symbol; }
-   //TranslatableString GetDescription() override {return XO("Sets the track name.");};
-   //bool VisitSettings( SettingsVisitor & S ) override;
-   void PopulateOrExchange(ShuttleGui & S) override;
-   //bool Apply(const CommandContext & context) override;
-
-   // Provide an override, if we want the help button.
-   // ManualPageID ManualPage() override {return {};}
-public:
-   wxString mName;
-};
-
-const ComponentInterfaceSymbol SetTrackNameCommand::Symbol
-{ XO("Set Track Name") };
-
-void SetTrackNameCommand::PopulateOrExchange(ShuttleGui & S)
-{
-   S.AddSpace(0, 5);
-
-   S.StartMultiColumn(2, wxALIGN_CENTER);
-   {
-      S.TieTextBox(XXO("Name:"),mName,60);
-   }
-   S.EndMultiColumn();
-}
 
 void TrackMenuTable::OnSetName(wxCommandEvent &)
 {
