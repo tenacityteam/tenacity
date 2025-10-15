@@ -306,6 +306,8 @@ set( SOURCES
         commands/SetProjectCommand.h
         commands/SetTrackInfoCommand.cpp
         commands/SetTrackInfoCommand.h
+        commands/SetTrackNameCommand.cpp
+        commands/SetTrackNameCommand.h
         commands/Validators.h
         commands/wxCommandTargets.cpp
         commands/wxCommandTargets.h
