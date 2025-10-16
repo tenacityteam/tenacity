@@ -1034,6 +1034,12 @@ bool AudacityApp::OnInit()
 
    OnInit0();
 
+   // Enable dark mode on Windows and use it if it is currently enabled
+   #if defined(__WXMSW__) && wxCHECK_VERSION(3, 3, 0)
+   MSWEnableDarkMode();
+   SetAppearance(Appearance::System);
+   #endif
+
    FileNames::InitializePathList();
 
    // Define languages for which we have translations, but that are not yet
