@@ -35,8 +35,6 @@
 #include "Cursors32/StretchRightCursor.xpm"
 #endif
 #include "Cursors32/SubViewsCursor.xpm"
-#include "Cursors32/ArrowLeftCursor.xpm"
-#include "Cursors32/ArrowRightCursor.xpm"
 #include "Cursors32/DrawToolSmoothing.xpm"
 
 TENACITY_DLL_API
