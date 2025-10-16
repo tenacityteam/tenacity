@@ -13,6 +13,7 @@
 #include "AllThemeResources.h"
 #include "ProjectHistory.h"
 #include "ThemeLegacy.h"
+#include "Track.h"
 #include "TrackUtilities.h"
 
 #include "../commands/SetTrackNameCommand.h"
@@ -21,6 +22,7 @@
 
 #include <wx/button.h>
 #include <wx/gdicmn.h>
+#include <wx/log.h>
 #include <wx/sizer.h>
 
 // Event IDs
@@ -30,7 +32,11 @@ enum {
 };
 
 enum {
-    TrackRenameID = 2000
+    TrackRenameID = 2000,
+    TrackMoveUpID,
+    TrackMoveDownID,
+    TrackMoveTopID,
+    TrackMoveBottomID
 };
 
 TrackControlPanel::TrackControlPanel(
@@ -106,32 +112,25 @@ TrackControlPanel::TrackControlPanel(
     );
 
     AddOptionsSeparator();
+
     AddOption(
-        XO("Move Track Up"),
-        [](wxCommandEvent& event){
-            event.Skip();
-        }
+        XO("Move Track Up"), &TrackControlPanel::OnTrackMove,
+        this, TrackMoveUpID
     );
 
     AddOption(
-        XO("Move Track Down"),
-        [](wxCommandEvent& event){
-            event.Skip();
-        }
+        XO("Move Track Down"), &TrackControlPanel::OnTrackMove,
+        this, TrackMoveDownID
     );
 
     AddOption(
-        XO("Move Track to Top"),
-        [](wxCommandEvent& event){
-            event.Skip();
-        }
+        XO("Move Track to Top"), &TrackControlPanel::OnTrackMove,
+        this, TrackMoveTopID
     );
 
     AddOption(
-        XO("Move Track to Bottom"),
-        [](wxCommandEvent& event){
-            event.Skip();
-        }
+        XO("Move Track to Bottom"), &TrackControlPanel::OnTrackMove,
+        this, TrackMoveBottomID
     );
 
     // Setup our events
@@ -159,4 +158,31 @@ void TrackControlPanel::OnClose(wxCommandEvent&)
 void TrackControlPanel::OnTrackOptionsDropdown(wxCommandEvent&)
 {
     PopupMenu(&mTrackOptionsMenu);
+}
+
+void TrackControlPanel::OnTrackMove(wxCommandEvent& event)
+{
+    TrackUtilities::MoveChoice choice;
+    switch (event.GetId()) {
+        case TrackMoveUpID:
+            choice = TrackUtilities::OnMoveUpID;
+            break;
+        case TrackMoveDownID:
+            choice = TrackUtilities::OnMoveDownID;
+            break;
+        case TrackMoveTopID:
+            choice = TrackUtilities::OnMoveTopID;
+            break;
+        case TrackMoveBottomID:
+            choice = TrackUtilities::OnMoveBottomID;
+            break;
+        default:
+            // If, for some reason, we reach here, log it and don't perform any
+            // track move.
+            wxLogError("Invalid track ID. This is likely a bug");
+            return;
+    }
+
+    TrackUtilities::DoMoveTrack(mProject, *mTrack, choice);
+    // event.Skip();
 }
