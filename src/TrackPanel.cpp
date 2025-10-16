@@ -314,6 +314,7 @@ TrackPanel::TrackPanel(wxWindow * parent, wxWindowID id,
       switch (event.mType) {
       case TrackListEvent::RESIZING:
       case TrackListEvent::ADDITION:
+      case TrackListEvent::PERMUTED:
          OnTrackListResizing(event); break;
       case TrackListEvent::DELETION:
       {
@@ -629,9 +630,10 @@ void TrackPanel::UpdateViewIfNoTracks()
 // ruler size for the track that triggered the event.
 void TrackPanel::OnTrackListResizing(const TrackListEvent &e)
 {
+   auto track = e.mpTrack.lock();
+
    if (e.mType == TrackListEvent::ADDITION)
    {
-      auto track = e.mpTrack.lock();
       auto& newControlPanel = mControlPanels.emplace_back(
          new TrackControlPanel(
             this, *GetProject(), track
@@ -639,10 +641,67 @@ void TrackPanel::OnTrackListResizing(const TrackListEvent &e)
       );
 
       GetSizer()->Add(newControlPanel.get(), 0, wxEXPAND | wxALL);
-      Layout();
    }
 
-   // TODO: Handle track reordering
+   // Handle track reordering
+   else if (e.mType == TrackListEvent::PERMUTED)
+   {
+      // First, find where the new track is. This index is where we'll move the
+      // control panel associated with this track at
+      auto& trackList = TrackList::Get(*GetProject());
+      size_t newTrackIndex = 0; // The index of the new track position
+
+      for (Track* potentialTrack : trackList)
+      {
+         if (potentialTrack == track.get())
+         {
+            break;
+         }
+
+         newTrackIndex++;
+      }
+
+      // Next, find the track control panel associated with the track that was
+      // moved (our target track).
+      size_t oldTrackIndex = 0; // The index of the old track position
+      for (auto& controlPanel : mControlPanels)
+      {
+         if (controlPanel->GetTrack() == track)
+         {
+            break;
+         }
+
+         oldTrackIndex++;
+      }
+
+      // Edge case: if, for some reason, both the new and old track indexes are
+      // the same, silently fail. This happens for some reason, maybe
+      // unintentional or (more unlikely) maybe unintentional.
+      if (newTrackIndex == oldTrackIndex)
+      {
+         return;
+      }
+
+      // Then, swap the control panels in mControlPanels (mControlPanels should
+      // maintain the same order tracks are in)
+      std::swap(mControlPanels[oldTrackIndex], mControlPanels[newTrackIndex]);
+
+      // Finally, rebuild the sizer
+      // FIXME: There needs to be a better way than this. However, this is the
+      // only way that didn't give asserts, crashes, or even both during
+      // testing, so this way it is.
+      GetSizer()->Clear();
+      wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+      for (auto& controlPanel : mControlPanels)
+      {
+         sizer->Add(controlPanel.get(), 0, wxEXPAND | wxALL);
+      }
+
+      SetSizer(sizer);
+   }
+
+   // In any case, our layout was likely modified, so update the layout
+   Layout();
 }
 
 // Tracks have been removed from the list.
