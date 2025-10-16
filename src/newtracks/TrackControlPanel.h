@@ -32,6 +32,7 @@ class TrackControlPanel : public wxPanelWrapper
 
         void OnClose(wxCommandEvent&);
         void OnTrackOptionsDropdown(wxCommandEvent&);
+        void OnTrackMove(wxCommandEvent& event);
 
     public:
         TrackControlPanel(
