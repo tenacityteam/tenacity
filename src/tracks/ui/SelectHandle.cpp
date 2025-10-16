@@ -295,9 +295,9 @@ namespace
    {
 
       static auto adjustLeftSelectionCursor =
-         ::MakeCursor(wxCURSOR_POINT_LEFT, SelectionLeftXpm, 16, 16);
+         ::MakeCursor(wxCURSOR_POINT_LEFT, SelectionLeftXpm, 6, 16);
       static auto adjustRightSelectionCursor =
-         ::MakeCursor(wxCURSOR_POINT_RIGHT, SelectionRightXpm, 16, 16);
+         ::MakeCursor(wxCURSOR_POINT_RIGHT, SelectionRightXpm, 27, 16);
       static auto bottomFrequencyCursor =
          ::MakeCursor(wxCURSOR_ARROW, BottomFrequencyCursorXpm, 16, 16);
       static auto topFrequencyCursor =
