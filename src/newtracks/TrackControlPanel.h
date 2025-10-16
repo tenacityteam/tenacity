@@ -32,6 +32,7 @@ class TrackControlPanel : public wxPanelWrapper
 
         void OnClose(wxCommandEvent&);
         void OnTrackOptionsDropdown(wxCommandEvent&);
+        void OnTrackMove(wxCommandEvent& event);
 
     public:
         TrackControlPanel(
@@ -70,6 +71,9 @@ class TrackControlPanel : public wxPanelWrapper
          */
         template<class Action>
         void AddOption(TranslatableString name, Action action, int id = wxID_ANY);
+
+        template<typename Class, typename EventArg, typename Handler>
+        void AddOption(TranslatableString name, void(Class::*memberFunction)(EventArg&), Handler* handler, int id);
 
         /// Adds a separator in the track options menu.
         void AddOptionsSeparator();
