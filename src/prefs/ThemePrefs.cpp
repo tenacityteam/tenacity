@@ -32,12 +32,20 @@ Provides:
 #include "ThemePrefs.h"
 
 #include <wx/app.h>
+#include <wx/button.h>
 #include <wx/wxprec.h>
+#include "AudacityMessageBox.h"
 #include "Prefs.h"
+#include "FileNames.h"
+#include "ThemePackage.h"
+#include "exceptions/ArchiveError.h"
+#include "exceptions/IncompatibleTheme.h"
 #include "ThemeLegacy.h"
 #include "ShuttleGui.h"
 #include "AColor.h"
 #include "BasicUI.h"
+
+using namespace ThemeExceptions;
 
 enum eThemePrefsIds {
    idLoadThemeCache=7000,
@@ -45,7 +53,8 @@ enum eThemePrefsIds {
    idLoadThemeComponents,
    idSaveThemeComponents,
    idReadThemeInternal,
-   idSaveThemeAsCode
+   idSaveThemeAsCode,
+   idLoadThemePackage
 };
 
 BEGIN_EVENT_TABLE(ThemePrefs, PrefsPanel)
@@ -55,6 +64,7 @@ BEGIN_EVENT_TABLE(ThemePrefs, PrefsPanel)
    EVT_BUTTON(idSaveThemeComponents, ThemePrefs::OnSaveThemeComponents)
    EVT_BUTTON(idReadThemeInternal,   ThemePrefs::OnReadThemeInternal)
    EVT_BUTTON(idSaveThemeAsCode,     ThemePrefs::OnSaveThemeAsCode)
+   EVT_BUTTON(idLoadThemePackage,    ThemePrefs::OnLoadThemePackage)
 END_EVENT_TABLE()
 
 static bool ConfirmSave()
@@ -181,8 +191,68 @@ void ThemePrefs::PopulateOrExchange(ShuttleGui & S)
       S.EndHorizontalLay();
    }
    S.EndStatic();
+
+   S.StartStatic(XO("Experimental - Theme Packages"));
+   {
+      S.StartHorizontalLay(wxALIGN_LEFT);
+      {
+         S.Id(idLoadThemePackage).AddButton(XO("Load Theme Package"));
+      }
+      S.EndHorizontalLay();
+   }
+   S.EndStatic();
+
    S.EndScroller();
 
+}
+
+void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
+{
+   FileDialogWrapper fileDialog(
+      nullptr,
+      XO("Load Theme"),
+      wxEmptyString,
+      wxEmptyString,
+      { FileNames::AllFiles }
+   );
+
+   if (fileDialog.ShowModal() == wxID_CANCEL)
+   {
+      return;
+   }
+
+   wxString path = fileDialog.GetPath();
+   ThemePackage theme;
+
+   try
+   {
+      theme.OpenPackage(path.ToStdString(wxConvUTF8));
+      theme.ParsePackage();
+      AudacityMessageBox(XO("Package OK!"), XO("Success!"), wxOK);
+   } catch (std::invalid_argument& e)
+   {
+      AudacityMessageBox(XO("Error: %s").Format(e.what()), XO("Invalid theme"), wxOK);
+   } catch (std::bad_alloc& e)
+   {
+      AudacityMessageBox(XO("Cannot allocate memory"), XO("Memory error"), wxOK);
+   } catch (ThemeExceptions::IncompatibleTheme& ite)
+   {
+      AudacityMessageBox(XO("Theme package incompatible with this version of Tenacity"), XO("Incompatible theme"), wxOK);
+   } catch (ThemeExceptions::ArchiveError& aee)
+   {
+      switch (aee.GetErrorType())
+      {
+         case ArchiveError::Type::Invalid:
+         case ArchiveError::Type::ResourceNotFound:
+         case ArchiveError::Type::MissingRequiredResource:
+         case ArchiveError::Type::MissingRequiredAttribute:
+            AudacityMessageBox(XO("Theme package invalid"), XO("Invalid archive"), wxOK);
+            break;
+         case ArchiveError::Type::OperationalError:
+            AudacityMessageBox(XO("Error while working on archive"), XO("Operational error"), wxOK);
+            break;
+      }
+   }
 }
 
 /// Load Theme from multiple png files.
