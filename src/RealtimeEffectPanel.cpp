@@ -1482,18 +1482,8 @@ void RealtimeEffectPanel::MakeTrackEffectPane()
       //Workaround: text is set in the OnSizeChange
       addEffectHint->SetForegroundColorIndex(clrTrackPanelText);
 
-      auto addEffectTutorialLink = safenew ThemedWindowWrapper<wxHyperlinkCtrl>(
-         footer, wxID_ANY, _("Watch video"),
-         "https://www.audacityteam.org/realtime-video", wxDefaultPosition,
-         wxDefaultSize, wxHL_ALIGN_LEFT | wxHL_CONTEXTMENU);
-
-      addEffectTutorialLink->Bind(
-         wxEVT_HYPERLINK, [](wxHyperlinkEvent& event)
-         { BasicUI::OpenInDefaultBrowser(event.GetURL()); });
-
       auto footerSizer = std::make_unique<wxBoxSizer>(wxVERTICAL);
       footerSizer->Add(addEffectHint, 0, wxLEFT | wxRIGHT | wxBOTTOM | wxEXPAND, 20);
-      footerSizer->Add(addEffectTutorialLink, 0, wxLEFT | wxRIGHT | wxEXPAND, 20);
       footer->SetSizer(footerSizer.release());
 
       footer->Bind(wxEVT_SIZE, [=](wxSizeEvent& event)
