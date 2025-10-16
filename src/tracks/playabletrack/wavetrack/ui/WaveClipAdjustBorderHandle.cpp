@@ -311,17 +311,14 @@ HitTestPreview WaveClipAdjustBorderHandle::HitPreviewTrim(const AudacityProject*
 {
    static auto disabledCursor =
       MakeCursor(wxCURSOR_NO_ENTRY, DisabledCursorXpm, 16, 16);
-   static auto trimCursorLeft =
-      MakeCursor(wxCURSOR_SIZEWE, ClipTrimLeftXpm , 16, 16);
-   static auto trimCursorRight =
-      MakeCursor(wxCURSOR_SIZEWE, ClipTrimRightXpm, 16, 16);
+   static auto trimCursor = MakeCursor(wxCURSOR_SIZEWE, TimeCursorXpm, 16, 16);
    auto message = XO("Click and drag to move clip boundary in time");
 
    return {
       message,
       (unsafe
          ? &*disabledCursor
-         : &*(isLeftBorder ? trimCursorLeft : trimCursorRight))
+         : &*trimCursor)
    };
 }
 
