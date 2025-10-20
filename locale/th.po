@@ -7,11 +7,283 @@ msgstr ""
 "Project-Id-Version: tenacity 1.4\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2025-09-06 08:40-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-10-20 04:50+0000\n"
+"Last-Translator: achia7098becb0ee6754ec3 <phonlathornchi@hotmail.com>\n"
+"Language-Team: Thai <https://hosted.weblate.org/projects/tenacity/tenacity/"
+"th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14-dev\n"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"ไม่สามารถโหลดปลั๊กอินนี้ได้\n"
+"อาจถูกลบไปแล้ว"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "ข้อผิดพลาดของปลั๊กอิน"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#, c-format
+msgid "Applied effect: %s"
+msgstr "เอฟเฟกที่นำมาใช้: %s"
+
+#. i18n-hint: %s will be the name of the effect which will be
+#. * repeated if this menu item is chosen
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: libraries/lib-menus/CommandManager.cpp src/BatchProcessDialog.cpp
+#: src/menus/PluginMenus.cpp
+#, c-format
+msgid "Repeat %s"
+msgstr "ใช้ %s ซ้ำ"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr "สตรีมยังทำงานอยู่...ไม่สามารถเก็บข้อมูลได้\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "เลขอุปกรณ์บันทึกเริ่มต้น: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default playback device number: %d\n"
+msgstr "เลขอุปกรณ์เล่นเริ่มต้น: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "ไม่พบอุปกรณ์\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "ข้อมูลอุปกรณ์ไม่พร้อมใช้งานสำหรับ: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "ID อุปกรณ์: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "ชื่ออุปกรณ์: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Host name: %s\n"
+msgstr "ชื่อโฮสต์: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "ช่องบันทึก: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "ช่องเล่นเสียง: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "ความหน่วงในการบันทึกต่ำ: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "ความหน่วงในการเล่นต่ำ: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "ความหน่วงในการบันทึกสูง: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "ความหน่วงในการเล่นสูง: %g\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Playback Rates:\n"
+msgstr "อัตราการเล่นที่รองรับ:\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Capture Rates:\n"
+msgstr "อัตราการจับที่รองรับ:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "อุปกรณ์บันทึกที่เลือก: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "ไม่พบอุปกรณ์บันทึกสำหรับ '%s'\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "อุปกรณ์เล่นที่เลือก: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "ไม่พบอุปกรณ์เล่นสำหรับ '%s'\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "อัตราที่รองรับ:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr "ไม่สามารถตรวจสอบอัตราการสุ่มตัวอย่างร่วมกันได้หากไม่มีอุปกรณ์ทั้งสอง\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Could not find any audio devices.\n"
+msgstr "ไมพบอุปกรณ์เสียงใด ๆ\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"You will not be able to play or record audio.\n"
+"\n"
+msgstr ""
+"คุณจะไม่สามรถเล่นหรือบันทึกเสียง\n"
+"\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp libraries/lib-note-track/MIDIPlay.cpp
+#, c-format
+msgid "Error: %s"
+msgstr "ข้อผิดพลาด: %s"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "ข้อผิดพลาดในการเริ่มเสียง"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Tenacity Audio"
+msgstr "เสียง Tenacity"
+
+#: libraries/lib-audio-io/AudioIO.cpp src/ProjectAudioManager.cpp
+#, c-format
+msgid ""
+"Error opening recording device.\n"
+"Error code: %s"
+msgstr ""
+"ข้อผิดพลาดในการเปิดอุปกรณ์บันทึก\n"
+"รหัสข้อผิดพลาด: %s"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#: libraries/lib-builtin-effects/PlotSpectrumBase.cpp
+#: libraries/lib-files/FileNames.cpp libraries/lib-vst3/VST3Wrapper.cpp
+#: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
+#: src/effects/EffectPreview.cpp src/effects/nyquist/Nyquist.cpp
+#: src/menus/SelectMenus.cpp src/menus/TrackMenus.cpp
+#: src/menus/TransportMenus.cpp src/prefs/DirectoriesPrefs.cpp
+#: src/prefs/KeyConfigPrefs.cpp
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "ไม่เหลือหน่วยความจำ"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too high."
+msgstr ""
+"การปรับระดับการบันทึกอัตโนมัติหยุดแล้ว ไม่สามารถปรับให้เหมาะสมกว่านี้ได้ ยังสูงเกินไป"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr "การปรับระดับการบันทึกอัตโนมัติลดเสียงให้เหลือ %f"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too low."
+msgstr ""
+"การปรับระดับการบันทึกอัตโนมัติหยุดแล้ว ไม่สามารถปรับให้เหมาะสมกว่านี้ได้ ยังต่ำเกินไป"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr "การปรับระดับการบันทึกอัตโนมัติเพิ่มเสียงให้เป็น %.2f"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too high."
+msgstr ""
+"การปรับระดับการบันทึกอัตโนมัติหยุดแล้ว "
+"จำนวนการวิเคราะห์ทั้งหมดเกินขีดจำกัดโดยไม่พบปริมาณที่ยอมรับได้ ยังสูงเกินไป"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too low."
+msgstr ""
+"การปรับระดับการบันทึกอัตโนมัติหยุดแล้ว "
+"จำนวนการวิเคราะห์ทั้งหมดเกินขีดจำกัดโดยไม่พบปริมาณที่ยอมรับได้ ยังต่ำเกินไป"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid ""
+"Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+"volume."
+msgstr ""
+"การปรับระดับการบันทึกอัตโนมัติหยุดแล้ว %.2f ดูเหมือนจะเป็นปริมาณเสียงที่ยอมรับได้"
+
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+#, c-format
+msgid "Failed to encode preset from \"%s\""
+msgstr "ไม่สามารถเข้ารหัสค่าที่ตั้งไว้ล่วงหน้าจาก \"%s\" ได้"
+
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+msgid "Unable to store preset in config file"
+msgstr "ไม่สามารถจัดเก็บค่าที่ตั้งไว้ล่วงหน้าในไฟล์ config ได้"
+
+#. i18n-hint: Can mean "not available," "not applicable," "no answer"
+#. i18n-hint: n/a is an English abbreviation meaning "not applicable".
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+#: libraries/lib-lv2/LV2EffectBase.cpp
+#: libraries/lib-nyquist-effects/NyquistBase.cpp src/effects/ChangeSpeed.cpp
+#: src/effects/EffectUI.cpp
+msgid "n/a"
+msgstr "ไม่พร้อมใช้งาน"
+
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+#, c-format
+msgid "Couldn't open \"%s\""
+msgstr "ไม่สามารถเปิด \"%s\" ได้"
+
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+#, c-format
+msgid "Failed to write XML preset to \"%s\""
+msgstr "ไม่สามารถเขียนค่าที่ตั้งไว้ล่วงหน้าของ XML ไปที่ \"%s\" ได้"
