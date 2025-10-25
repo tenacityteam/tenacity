@@ -56,6 +56,7 @@ Paul Licameli split from AudacityProject.cpp
 #include "UndoTracks.h"
 #include "UserException.h"
 #include "ViewInfo.h"
+#include "Viewport.h"
 #include "WaveClip.h"
 #include "WaveTrack.h"
 #include "WaveTrackUtilities.h"
@@ -1011,7 +1012,18 @@ AudacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
             return nullptr;
          }
 #endif
+
          auto &project = chooser(false);
+
+         if (fileName.AfterLast('.').IsSameAs(wxT("txt"), false)) {
+            // Import as labels
+            if (Get(project).ImportLabelsFromFile(fileName)) {
+               return &project;
+            } else {
+               return nullptr;
+            }
+         }
+
          // Undo history is incremented inside this:
          if (Get(project).Import(fileName))
          {
@@ -1036,6 +1048,40 @@ AudacityProject *ProjectFileManager::OpenFile( const ProjectChooserFn &chooser,
 
    auto &project = chooser(true);
    return Get(project).OpenProjectFile(fileName, addtohistory);
+}
+
+bool ProjectFileManager::ImportLabelsFromFile(const wxString &fileName)
+{
+   auto &project = mProject;
+   auto &trackFactory = WaveTrackFactory::Get( project );
+   auto &tracks = TrackList::Get( project );
+
+   wxTextFile f;
+
+   f.Open(fileName);
+   if (!f.IsOpened()) {
+      AudacityMessageBox(
+         XO("Could not open file: %s").Format( fileName ) );
+      return false;
+   }
+
+   auto newTrack = std::make_shared<LabelTrack>();
+   wxString sTrackName;
+   wxFileName::SplitPath(fileName, NULL, NULL, &sTrackName, NULL);
+   newTrack->SetName(sTrackName);
+
+   newTrack->Import(f, LabelFormat::TEXT);
+
+   SelectUtilities::SelectNone( project );
+   newTrack->SetSelected(true);
+   tracks.Add( newTrack );
+
+   ProjectHistory::Get( project ).PushState(
+      XO("Imported labels from '%s'").Format( fileName ),
+         XO("Import Labels"));
+
+   Viewport::Get(project).ZoomFitHorizontallyAndShowTrack(nullptr);
+   return true;
 }
 
 void ProjectFileManager::FixTracks(TrackList& tracks,
