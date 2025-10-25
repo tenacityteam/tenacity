@@ -41,6 +41,8 @@ class TrackControlPanel : public wxPanelWrapper
             std::shared_ptr<Track>& track
         );
 
+        virtual ~TrackControlPanel() = default;
+
         /** @brief Returns the track associated to the control panel.
          *
          * This is useful when, for example, @ref TrackPanel needs to remove a
