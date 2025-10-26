@@ -14,6 +14,7 @@ Paul Licameli split from TenacityProject.cpp
 #include <sqlite3.h>
 #include <optional>
 #include <cstring>
+#include <chrono>
 
 #include <wx/app.h>
 #include <wx/crt.h>

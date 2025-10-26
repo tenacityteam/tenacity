@@ -25,6 +25,8 @@ Paul Licameli -- split from ProjectFileIO.cpp
 
 #include "Project.h"
 
+#include <chrono>
+
 // Configuration to provide "safe" connections
 static const char *SafeConfig =
    "PRAGMA <schema>.busy_timeout = 5000;"
