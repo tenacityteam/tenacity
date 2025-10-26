@@ -10,6 +10,7 @@ on:
     branches:
       - main
       - tenacity-*
+      - ci-* # Allow CI test PRs
       - 1.3
 
 defaults:
@@ -31,61 +32,87 @@ jobs:
           cc: cc
           cxx: c++
           compiler_cache: ccache
-          compiler_cache_path: ~/.ccache
+          compiler_cache_path: ~/.cache/ccache
+          use_vcpkg: OFF
           vcpkg_binary_cache: ~/.cache/vcpkg
-          vcpkg_triplet: x64-linux
+          vcpkg_triplet: x64-linux-dynamic
 
-        - name: macOS_Intel
-          os: macos-latest
-          arch: Intel # as reported by Apple menu > About This Mac
-          generator: Ninja
-          cc: cc
-          cxx: c++
-          compiler_cache: ccache
-          compiler_cache_path: ~/Library/Caches/ccache
-          vcpkg_binary_cache: ~/.cache/vcpkg
-          vcpkg_triplet: x64-osx-10.12min
-
-        #- name: macOS_ARM
+        # macOS runners are currently disabled due to a theme-system related
+        # issue. Currently, we are awaiting a theme system rewrite, and thus we
+        # will not be fixing the build for macOS at this time.
+        #
+        # When the theme system rewrite is complete, these runners will be
+        # re-enabled and any other macOS build issues will be fixed.
+        #
+        #- name: macOS_Intel
         #  os: macos-latest
-        #  arch: aarch64
-        #  generator: Xcode
+        #  arch: Intel # as reported by Apple menu > About This Mac
+        #  generator: Ninja
+        #  cc: cc
+        #  cxx: c++
+        #  compiler_cache: ccache
+        #  compiler_cache_path: ~/Library/Caches/ccache
+        #  use_vcpkg: ON
+        #  vcpkg_binary_cache: ~/.cache/vcpkg
+        #  vcpkg_triplet: x64-osx-dynamic
+        #  additional_cmake_flags: -DCMAKE_APPLE_SILICON_PROCESSOR="x86_64"
+
+        #- name: macOS_Apple_Silicon
+        #  os: macos-latest
+        #  arch: Apple Silicon # as reported by Apple menu > About This Mac
+        #  generator: Ninja
+        #  cc: cc
+        #  cxx: c++
+        #  compiler_cache: ccache
+        #  compiler_cache_path: ~/Library/Caches/ccache
+        #  use_vcpkg: ON
+        #  vcpkg_binary_cache: ~/.cache/vcpkg
+        #  vcpkg_triplet: arm64-osx-dynamic
 
           # Windows (x86) config
         - name: Windows_32bit
           os: windows-latest
           arch: x86
-          # FIXME: Ninja is broken on Windows, so use Visual Studio for now
           generator: Visual Studio 17 2022
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
           exe_suffix: .exe
+          additional_cmake_flags: -A Win32
 
           # Windows (x64) config
         - name: Windows_64bit
           os: windows-latest
-          arch: amd64
-          # FIXME: Ninja is broken on Windows, so use Visual Studio for now
+          arch: x86_64
           generator: Visual Studio 17 2022
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
-          compiler_cache: sccache
-          compiler_cache_path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x64-windows
           exe_suffix: .exe
 
+        - name: Windows_ARM
+          os: windows-11-arm
+          arch: arm
+          generator: Visual Studio 17 2022
+          # required so CMake uses MSVC rather than MinGW
+          cc: cl
+          cxx: cl
+          use_vcpkg: ON
+          vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
+          vcpkg_triplet: arm64-windows
+          exe_suffix: .exe
+
     env:
-      CMAKE_BUILD_TYPE: RelWithDebInfo
+      CMAKE_BUILD_TYPE: Release
       CMAKE_C_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
       CMAKE_CXX_COMPILER_LAUNCHER: ${{ matrix.config.os.compiler_cache }}
-      MACOSX_DEPLOYMENT_TARGET: 10.12
+      MACOSX_DEPLOYMENT_TARGET: 11
 
       VCPKG_DISABLE_METRICS: true
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.config.vcpkg_triplet }}
@@ -111,14 +138,7 @@ jobs:
 
     - name: "[Windows] Install dependencies"
       if: runner.os == 'Windows'
-      shell: pwsh
-      env:
-        # Install path of scoop
-        SCOOP: C:\Scoop\
-      run: |
-        echo "C:\Scoop\shims" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-        iex "& {$(iwr -useb get.scoop.sh)} -RunAsAdmin"
-        scoop install sccache
+      run: choco install innosetup
 
     - name: Install Apple codesigning certificates
       uses: apple-actions/import-codesign-certs@v1
@@ -127,18 +147,12 @@ jobs:
         p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
         p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
 
-    # required for CMake to find Ninja
-    - name: "[Windows] Set up MSVC Developer Command Prompt"
-      if: runner.os == 'Windows'
-      uses: seanmiddleditch/gha-setup-vsdevenv@v4
-      with:
-        arch: ${{ matrix.config.arch }}
-
     - name: Get Git commit of vcpkg submodule
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
 
     - name: Setup vcpkg cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
+      if: runner.os != 'Linux'
       with:
         # cache the vcpkg executable to avoid having to bootstrap vcpkg every time
         path: |
@@ -150,8 +164,11 @@ jobs:
           ${{ matrix.config.name }}-${{ hashFiles(' **/vcpkg.json') }}-
           ${{ matrix.config.name }}-
 
+    # Compiler caching on Windows currently doesn't work, so don't setup the
+    # cache on Windows.
     - name: "Set up compiler cache"
-      uses: actions/cache@v3
+      uses: actions/cache@v4
+      if: runner.os != 'Windows'
       with:
         path: ${{ matrix.config.compiler_cache_path }}
         key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-${{ github.run_number }}
@@ -165,10 +182,11 @@ jobs:
         -G "${{ matrix.config.generator }}"
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
-        -D VCPKG=ON
+        -D VCPKG=${{ matrix.config.use_vcpkg }}
         -D SBSMS=ON
         -S .
         -B build
+        "${{ matrix.config.additional_cmake_flags }}"
       env:
         # Apple code signing
         APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
@@ -181,17 +199,13 @@ jobs:
       run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }}
 
     - name: "Print compiler cache stats"
+      if: runner.os != 'Windows'
       run: ${{ matrix.config.compiler_cache }} -s
 
     - name: Install
       run: cmake --install build --config ${{ env.CMAKE_BUILD_TYPE }} --verbose
 
-    - name: "[Windows] Package"
-      if: runner.os == 'Windows'
-      run: cmake --build build --target innosetup --config ${{ env.CMAKE_BUILD_TYPE }}
-
-    - name: "[Ubuntu/macOS] Package"
-      if: runner.os != 'Windows'
+    - name: "Package"
       working-directory: build
       run: >-
         cpack
@@ -199,22 +213,20 @@ jobs:
         -D CPACK_COMMAND_HDIUTIL=${{ github.workspace }}/scripts/ci/macos/repeat_hdiutil.sh
         --verbose
         && rm -r package/_CPack_Packages
-      env:
-        # VCPKG_LIB_PATH is the location that vcpkg stores its libs once built
-        VCPKG_LIB_PATH: ${{ github.workspace }}/build/vcpkg_installed/x64-linux-dynamic/debug/lib
 
     - name: Upload package artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tenacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
         path: |
           build/package/*
           !build/package/_CPack_Packages
+          !build/package/*.json*
         if-no-files-found: error
 
     - name: Upload artifact of vcpkg build logs
-      if: always()
-      uses: actions/upload-artifact@v3
+      if: runner.os != 'Linux'
+      uses: actions/upload-artifact@v4
       with:
-        name: vcpkg-logs-${{ runner.os }}
+        name: vcpkg-logs-${{ runner.os }}-${{ matrix.config.arch }}
         path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log

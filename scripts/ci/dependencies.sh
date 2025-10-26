@@ -10,7 +10,6 @@ if [[ "${OSTYPE}" == darwin* ]]; then # macOS
     brew_packages=(
         bash # macOS ships with Bash v3 for licensing reasons so upgrade it now
         ccache
-        ninja
 
         # needed to build ffmpeg
         nasm
@@ -47,15 +46,17 @@ else # Linux & others
             libglib2.0-dev
             libgtk-3-dev
             libid3tag0-dev
-            libjack-dev
+            libjack-jackd2-dev
             liblilv-dev
             libmad0-dev
+            libmatroska-dev
             libmp3lame-dev
             libogg-dev
             libpng-dev
             portaudio19-dev
             libportmidi-dev
             libportsmf-dev
+            libsbsms-dev
             libserd-dev
             libsndfile1-dev
             libsord-dev
@@ -71,6 +72,14 @@ else # Linux & others
             libtiff-dev
             liblzma-dev
             libsqlite3-dev
+            libzip-dev
+            zipcmp
+            zipmerge
+            ziptool
+            rapidjson-dev
+            wx-common
+            wx3.2-headers
+            libwxgtk3.2-dev
         )
 
         sudo apt-get update -y
