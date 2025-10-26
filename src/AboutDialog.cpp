@@ -551,7 +551,7 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
    // Current date
    AddBuildinfoRow(&informationStr, XO("Program build date:"), __TDATE__);
 
-   if constexpr (BuildInfo::IsDebugBuild())\
+   if constexpr (BuildInfo::IsDebugBuild())
    {
       AddBuildinfoRow(&informationStr, XO("Commit Id:"), BuildInfo::GetRevisionIdentifier());
    }
