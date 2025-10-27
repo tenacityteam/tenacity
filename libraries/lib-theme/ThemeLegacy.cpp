@@ -327,6 +327,7 @@ void ThemeBase::RecolourTheme()
    if( d  > 120 )
       return;
 
+   // Blend the medium-level color
    Colour( clrMedium ) = To;
    RecolourBitmap( bmpUpButtonLarge, From, To );
    RecolourBitmap( bmpDownButtonLarge, From, To );
@@ -335,8 +336,12 @@ void ThemeBase::RecolourTheme()
    RecolourBitmap( bmpDownButtonSmall, From, To );
    RecolourBitmap( bmpHiliteButtonSmall, From, To );
 
+   // Blend the track info color
    Colour( clrTrackInfo ) = To;
    RecolourBitmap( bmpUpButtonExpand, From, To );
+
+   // Blend the ruler panel
+   Colour( clrTimelineRulerBackground );
 }
 
 wxImage ThemeBase::MaskedImage( char const ** pXpm, char const ** pMask )
