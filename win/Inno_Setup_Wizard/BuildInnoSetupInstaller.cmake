@@ -71,7 +71,7 @@ endif()
 # Prepare the output directory
 # This is all set in the staging directory, but it's the same files from the
 # normal build directory, so it shouldn't matter.
-set(TENACITY_BUILD_DIR "${OUTPUT_DIR}/${CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG}")
+set(TENACITY_BUILD_DIR "${OUTPUT_DIR}")
 set(TENACITY_EXE_LOCATION "${TENACITY_BUILD_DIR}/Tenacity.exe")
 
 file(COPY "${CPACK_TENACITY_SOURCE_DIR}/win/Inno_Setup_Wizard/" DESTINATION "${OUTPUT_DIR}")
@@ -79,7 +79,7 @@ configure_file("${OUTPUT_DIR}/tenacity.iss.in" "${OUTPUT_DIR}/tenacity.iss")
 
 # Copy additional files
 
-file(COPY "${CPACK_TENACITY_SOURCE_DIR}/resources" DESTINATION "${OUTPUT_DIR}/Additional")
+file(COPY "${CPACK_TENACITY_SOURCE_DIR}/presets" DESTINATION "${OUTPUT_DIR}/Additional")
 
 file(COPY
         "${CPACK_TENACITY_SOURCE_DIR}/LICENSE.txt"
