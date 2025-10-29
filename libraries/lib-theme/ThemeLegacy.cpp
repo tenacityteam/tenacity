@@ -341,7 +341,7 @@ void ThemeBase::RecolourTheme()
    RecolourBitmap( bmpUpButtonExpand, From, To );
 
    // Blend the ruler panel
-   Colour( clrTimelineRulerBackground );
+   Colour( clrTimelineRulerBackground ) = To;
 }
 
 wxImage ThemeBase::MaskedImage( char const ** pXpm, char const ** pMask )
