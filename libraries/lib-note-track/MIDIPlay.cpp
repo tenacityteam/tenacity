@@ -631,7 +631,7 @@ Iterator::Iterator(
    // below to add ALL Alg_seq's.
    // Iterator not yet initialized, must add each track...
    for (auto &t : midiPlaybackTracks) {
-      Alg_seq_ptr seq = &t->GetSeq();
+      Alg_seq* seq = &t->GetSeq();
       // mark sequence tracks as "in use" since we're handing this
       // off to another thread and want to make sure nothing happens
       // to the data until playback finishes. This is just a sanity check.
@@ -769,7 +769,7 @@ void MIDIPlay::StopOtherStream()
       int nTracks = mMidiPlaybackTracks.size();
       for (int i = 0; i < nTracks; i++) {
          const auto t = mMidiPlaybackTracks[i].get();
-         Alg_seq_ptr seq = &t->GetSeq();
+         Alg_seq* seq = &t->GetSeq();
          seq->set_in_use(false);
       }
    }
@@ -906,7 +906,7 @@ bool Iterator::OutputEvent(double pauseTime, bool midiStateOnly, bool hasSolo)
       } else if (mNextEvent->is_update()) {
          // this code is based on allegrosmfwr.cpp -- it could be improved
          // by comparing attribute pointers instead of string compares
-         Alg_update_ptr update = static_cast<Alg_update_ptr>(mNextEvent);
+         Alg_update* update = static_cast<Alg_update*>(mNextEvent);
          const char *name = update->get_attribute();
 
          if (!strcmp(name, "programi")) {

@@ -141,9 +141,9 @@ and optional attributes as follows:
 
 // returns NULL if note is not a shape,
 // returns atom (string) value of note if note is a shape
-const char *IsShape(Alg_note_ptr note)
+const char *IsShape(Alg_note* note)
 {
-  Alg_parameters_ptr parameters = note->parameters;
+  Alg_parameters* parameters = note->parameters;
   while (parameters) {
     if (strcmp(parameters->parm.attr_name(), "shapea") == 0) {
       return parameters->parm.a;
@@ -154,9 +154,9 @@ const char *IsShape(Alg_note_ptr note)
 }
 
 // returns value of attr, or default if not found
-double LookupRealAttribute(Alg_note_ptr note, Alg_attribute attr, double def)
+double LookupRealAttribute(Alg_note* note, Alg_attribute attr, double def)
 {
-  Alg_parameters_ptr parameters = note->parameters;
+  Alg_parameters* parameters = note->parameters;
   while (parameters) {
     if (parameters->parm.attr_name() == attr + 1 &&
         parameters->parm.attr_type() == 'r') {
@@ -168,9 +168,9 @@ double LookupRealAttribute(Alg_note_ptr note, Alg_attribute attr, double def)
 }
 
 // returns value of attr, or default if not found
-long LookupIntAttribute(Alg_note_ptr note, Alg_attribute attr, long def)
+long LookupIntAttribute(Alg_note* note, Alg_attribute attr, long def)
 {
-  Alg_parameters_ptr parameters = note->parameters;
+  Alg_parameters* parameters = note->parameters;
   while (parameters) {
     if (parameters->parm.attr_name() == attr + 1 &&
         parameters->parm.attr_type() == 'i') {
@@ -182,9 +182,9 @@ long LookupIntAttribute(Alg_note_ptr note, Alg_attribute attr, long def)
 }
 
 // returns value of attr, or default if not found
-bool LookupLogicalAttribute(Alg_note_ptr note, Alg_attribute attr, bool def)
+bool LookupLogicalAttribute(Alg_note* note, Alg_attribute attr, bool def)
 {
-  Alg_parameters_ptr parameters = note->parameters;
+  Alg_parameters* parameters = note->parameters;
   while (parameters) {
     if (parameters->parm.attr_name() == attr + 1 &&
         parameters->parm.attr_type() == 'l') {
@@ -196,9 +196,9 @@ bool LookupLogicalAttribute(Alg_note_ptr note, Alg_attribute attr, bool def)
 }
 
 // returns value of attr, or default if not found
-const char *LookupStringAttribute(Alg_note_ptr note, Alg_attribute attr, const char *def)
+const char *LookupStringAttribute(Alg_note* note, Alg_attribute attr, const char *def)
 {
-  Alg_parameters_ptr parameters = note->parameters;
+  Alg_parameters* parameters = note->parameters;
   while (parameters) {
     if (parameters->parm.attr_name() == attr + 1 &&
         parameters->parm.attr_type() == 's') {
@@ -210,9 +210,9 @@ const char *LookupStringAttribute(Alg_note_ptr note, Alg_attribute attr, const c
 }
 
 // returns value of attr, or default if not found
-const char *LookupAtomAttribute(Alg_note_ptr note, Alg_attribute attr, char *def)
+const char *LookupAtomAttribute(Alg_note* note, Alg_attribute attr, char *def)
 {
-  Alg_parameters_ptr parameters = note->parameters;
+  Alg_parameters* parameters = note->parameters;
   while (parameters) {
     if (parameters->parm.attr_name() == attr + 1 &&
         parameters->parm.attr_type() == 'a') {
@@ -317,7 +317,7 @@ void DrawNoteBackground(TrackPanelDrawingContext &context,
    }
 
    // draw bar lines
-   Alg_seq_ptr seq = &track.GetSeq();
+   Alg_seq* seq = &track.GetSeq();
    // We assume that sliding a NoteTrack around slides the barlines
    // along with the notes. This means that when we write out a track
    // as Allegro or MIDI without the offset, we'll need to insert an
@@ -370,7 +370,7 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
    const double h = X_TO_TIME(rect.x);
    const double h1 = X_TO_TIME(rect.x + rect.width);
 
-   Alg_seq_ptr seq = &track.GetSeq();
+   Alg_seq* seq = &track.GetSeq();
 
    if (!track.GetSelected())
       sel0 = sel1 = 0.0;
@@ -465,10 +465,10 @@ void DrawNoteTrack(TrackPanelDrawingContext &context,
    Alg_iterator iterator(seq, false);
    iterator.begin();
    //for every event
-   Alg_event_ptr evt;
+   Alg_event* evt;
    while (0 != (evt = iterator.next())) {
       if (evt->get_type() == 'n') { // 'n' means a note
-         Alg_note_ptr note = (Alg_note_ptr) evt;
+         Alg_note* note = (Alg_note*) evt;
          // if the note's channel is visible
          if (track.IsVisibleChan(evt->chan)) {
             double xx = note->time + track.GetStartTime();
