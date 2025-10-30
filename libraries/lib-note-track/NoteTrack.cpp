@@ -237,7 +237,7 @@ void NoteTrack::WarpAndTransposeNotes(double t0, double t1,
    }
    Alg_iterator iter(mSeq.get(), false);
    iter.begin();
-   Alg_event_ptr event;
+   Alg_event* event;
    while (0 != (event = iter.next()) && event->time < t1) {
       if (event->is_note() && event->time >= t0) {
          event->set_pitch(event->get_pitch() + semitones);
@@ -246,7 +246,7 @@ void NoteTrack::WarpAndTransposeNotes(double t0, double t1,
    iter.end();
    // now, use warper to warp the tempo map
    seq.convert_to_beats(); // beats remain the same
-   Alg_time_map_ptr map = seq.get_time_map();
+   Alg_time_map* map = seq.get_time_map();
    map->insert_beat(t0, map->time_to_beat(t0));
    map->insert_beat(t1, map->time_to_beat(t1));
    int i, len = map->length();
@@ -278,36 +278,36 @@ void NoteTrack::PrintSequence()
       while(i < mSeq->length()) {
          wxFprintf(debugOutput, "--\n");
          wxFprintf(debugOutput, "type: %c\n",
-            ((Alg_event_ptr)mSeq->track_list.tracks[i])->get_type());
+            ((Alg_event*)mSeq->track_list.tracks[i])->get_type());
          wxFprintf(debugOutput, "time: %f\n",
-            ((Alg_event_ptr)mSeq->track_list.tracks[i])->time);
+            ((Alg_event*)mSeq->track_list.tracks[i])->time);
          wxFprintf(debugOutput, "channel: %li\n",
-            ((Alg_event_ptr)mSeq->track_list.tracks[i])->chan);
+            ((Alg_event*)mSeq->track_list.tracks[i])->chan);
 
-         if(((Alg_event_ptr)mSeq->track_list.tracks[i])->get_type() == wxT('n'))
+         if(((Alg_event*)mSeq->track_list.tracks[i])->get_type() == wxT('n'))
          {
             wxFprintf(debugOutput, "pitch: %f\n",
-               ((Alg_note_ptr)mSeq->track_list.tracks[i])->pitch);
+               ((Alg_note*)mSeq->track_list.tracks[i])->pitch);
             wxFprintf(debugOutput, "duration: %f\n",
-               ((Alg_note_ptr)mSeq->track_list.tracks[i])->dur);
+               ((Alg_note*)mSeq->track_list.tracks[i])->dur);
             wxFprintf(debugOutput, "velocity: %f\n",
-               ((Alg_note_ptr)mSeq->track_list.tracks[i])->loud);
+               ((Alg_note*)mSeq->track_list.tracks[i])->loud);
          }
-         else if(((Alg_event_ptr)mSeq->track_list.tracks[i])->get_type() == wxT('n'))
+         else if(((Alg_event*)mSeq->track_list.tracks[i])->get_type() == wxT('n'))
          {
-            wxFprintf(debugOutput, "key: %li\n", ((Alg_update_ptr)mSeq->track_list.tracks[i])->get_identifier());
-            wxFprintf(debugOutput, "attribute type: %c\n", ((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.attr_type());
-            wxFprintf(debugOutput, "attribute: %s\n", ((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.attr_name());
+            wxFprintf(debugOutput, "key: %li\n", ((Alg_update*)mSeq->track_list.tracks[i])->get_identifier());
+            wxFprintf(debugOutput, "attribute type: %c\n", ((Alg_update*)mSeq->track_list.tracks[i])->parameter.attr_type());
+            wxFprintf(debugOutput, "attribute: %s\n", ((Alg_update*)mSeq->track_list.tracks[i])->parameter.attr_name());
 
-            if(((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.attr_type() == wxT('r'))
+            if(((Alg_update*)mSeq->track_list.tracks[i])->parameter.attr_type() == wxT('r'))
             {
-               wxFprintf(debugOutput, "value: %f\n", ((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.r);
+               wxFprintf(debugOutput, "value: %f\n", ((Alg_update*)mSeq->track_list.tracks[i])->parameter.r);
             }
-            else if(((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.attr_type() == wxT('i')) {
-               wxFprintf(debugOutput, "value: %li\n", ((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.i);
+            else if(((Alg_update*)mSeq->track_list.tracks[i])->parameter.attr_type() == wxT('i')) {
+               wxFprintf(debugOutput, "value: %li\n", ((Alg_update*)mSeq->track_list.tracks[i])->parameter.i);
             }
-            else if(((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.attr_type() == wxT('s')) {
-               wxFprintf(debugOutput, "value: %s\n", ((Alg_update_ptr)mSeq->track_list.tracks[i])->parameter.s);
+            else if(((Alg_update*)mSeq->track_list.tracks[i])->parameter.attr_type() == wxT('s')) {
+               wxFprintf(debugOutput, "value: %s\n", ((Alg_update*)mSeq->track_list.tracks[i])->parameter.s);
             }
             else {}
          }
@@ -663,7 +663,7 @@ Alg_seq *NoteTrack::MakeExportableSeq(std::unique_ptr<Alg_seq> &cleanup) const
       // now shift events by offset. This must be done with an integer
       // number of measures, so first, find the beats-per-measure
       double beats_per_measure = 4.0;
-      Alg_time_sig_ptr tsp = NULL;
+      Alg_time_sig* tsp = NULL;
       if (seq->time_sig.length() > 0 && seq->time_sig[0].beat < ALG_EPS) {
          // there is an initial time signature
          tsp = &(seq->time_sig[0]);
@@ -671,8 +671,8 @@ Alg_seq *NoteTrack::MakeExportableSeq(std::unique_ptr<Alg_seq> &cleanup) const
       }
       // also need the initial tempo
       double bps = ALG_DEFAULT_BPM / 60;
-      Alg_time_map_ptr map = seq->get_time_map();
-      Alg_beat_ptr bp = &(map->beats[0]);
+      Alg_time_map* map = seq->get_time_map();
+      Alg_beat* bp = &(map->beats[0]);
       if (bp->time < ALG_EPS) { // tempo change at time 0
          if (map->beats.len > 1) { // compute slope to get tempo
             bps = (map->beats[1].beat - map->beats[0].beat) /
@@ -738,7 +738,7 @@ Alg_seq *NoteTrack::MakeExportableSeq(std::unique_ptr<Alg_seq> &cleanup) const
       // Case 3: i-1 must be the effective time sig position
       } else {
          i -= 1; // index the time signature in effect at beat
-         Alg_time_sig_ptr tsp = &(mySeq.time_sig[i]);
+         Alg_time_sig* tsp = &(mySeq.time_sig[i]);
          double beats_per_measure = (tsp->num * 4) / tsp->den;
          double measures = (beat - tsp->beat) / beats_per_measure;
          int imeasures = ROUND(measures);

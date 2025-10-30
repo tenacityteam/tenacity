@@ -121,7 +121,7 @@ void NoteTrackRange::ZoomAllNotes(Alg_seq *pSeq)
 {
    Alg_iterator iterator(pSeq, false);
    iterator.begin();
-   Alg_event_ptr evt;
+   Alg_event* evt;
 
    // Go through all of the notes, finding the minimum and maximum value pitches.
    bool hasNotes = false;
