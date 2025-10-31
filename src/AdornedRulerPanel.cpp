@@ -149,7 +149,20 @@ protected:
    Result Click(
       const TrackPanelMouseEvent &event, AudacityProject *) override
    {
-      mClicked = event.event.LeftIsDown() ? Button::Left : Button::Right;
+      switch (event.event.GetButton())
+      {
+         case wxMOUSE_BTN_LEFT:
+            mClicked = Button::Left;
+            break;
+         case wxMOUSE_BTN_MIDDLE:
+            mClicked = Button::Middle;
+            break;
+         case wxMOUSE_BTN_RIGHT:
+         default:
+            mClicked = Button::Right;
+            break;
+      }
+
       mClickedX = event.event.GetX();
       return RefreshCode::DrawOverlays;
    }
@@ -209,7 +222,7 @@ protected:
 
    MenuChoice mChoice;
 
-   enum class Button { None, Left, Right };
+   enum class Button { None, Left, Middle, Right };
    Button mClicked{ Button::None };
 };
 
