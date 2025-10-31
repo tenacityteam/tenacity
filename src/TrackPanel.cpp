@@ -807,10 +807,7 @@ void TrackPanel::OnAudioIO(AudioIOEvent evt)
       // current event type was either activated or deactivated. For example,
       // if the user resumed playback from a paused state, then, in this case,
       // evt.type would be AudioIOEvent::PAUSE and evt.on would be false.
-      if (!mTimer.IsRunning())
-      {
-         mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), false);
-      }
+      mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), false);
    } else
    {
       // Otherwise, stop the timer and do one final pass to update any overlays
