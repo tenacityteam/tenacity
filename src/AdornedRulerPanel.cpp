@@ -680,10 +680,14 @@ void AdornedRulerPanel::TrackPanelGuidelineOverlay::Draw(
             : AColor::Light(&dc, false);
 
       // Draw the NEW indicator in its NEW location
+      // GP: For some reason, there's a bug where if we use rect.GetTop(), the
+      // cursor won't start all the way from the top. Since we're drawing
+      // over the entire track panel, we can start with a first y coordinate
+      // point as 0 irrespective of whatever the track panel's rectangle is.
       auto rect = panel.GetRect();
       AColor::Line(dc,
          mOldQPIndicatorPos,
-         rect.GetTop(),
+         0,
          mOldQPIndicatorPos,
          rect.GetBottom());
    }
