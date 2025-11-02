@@ -4,25 +4,50 @@
 
 ### Linux
 
-Not all distros package the right versions of Tenacity's dependencies, if at
-all. For example, wxWidgets 3.1.5 or later is required for building Tenacity,
-but some (mostly older) distributions only package wxWidgets 3.0.
-[PortMidi](https://github.com/portmidi/portmidi) and
-[PortSMF](https://codeberg.org/tenacityteam/portsmf) are required for MIDI support
-but some distributions do not package PortSMF (Tenacity can still build without
-MIDI support). [libsbsms](https://github.com/claytonotey/libsbsms) is an
-optional dependency used for time stretching that is not available in many Linux
-distribution package managers either. Optionally,
-[vcpkg can be used](#vcpkg-on-Linux) to build dependencies from source which
-may be helpful if your distribution is missing some packages. Note that we use our
-own fork of vcpkg for the time being, which is required for some features such as
-high-quality stretching (libsbsms), MP2 support (TwoLAME), and recording desktop
-audio on Windows. However, you may be able to use the latest vcpkg upstream,
-although the features mentioned prior will be unavailable and your build might not
-succeed.
+Most modern Linux distributions, including Debian 12 or later, Ubuntu 22.10 or
+later, RHEL 9 or later, and their respective derivatives package all of
+Tenacity's dependencies. On older distributions, you may be required to either
+use vcpkg or build your own dependencies from source.
 
-Installing ccache and ninja-build is highly recommended for faster builds but
-not required. CMake will automatically use ccache if it is installed.
+Even with all of the right dependencies, Tenacity's features still vary due to
+missing packages. For example, not all distributions package PortSMF, a
+required dependency for MIDI support. Tenacity will still work without these
+features, and during the build process, they will automatically be disabled by
+default.
+
+If you find yourself in a situation where your distribution either does not
+package a required dependency or packages the wrong version, there are two
+options: either build the missing dependency (or dependencies) yourself or use
+vcpkg. Most likely you will be dealing with the wrong version of wxWidgets
+(i.e., your distribution only packages wxWidgets 3.0 instead of 3.1.5 or later)
+than anything. In this case, we recommend building wxWidgets yourself instead
+of using vcpkg. If multiple required dependencies are missing, it may be more
+beneficial to use vcpkg instead.
+
+**Note**: If you use vcpkg, you should use
+[our fork](https://codeberg.org/tenacityteam/vcpkg) to get Tenacity's full
+feature set. It is automatically included as a Git submodule in the repository,
+and later in the build process, it will automatically be setup for you. You can
+always use upstream vcpkg, but you will miss out on features like MP2 support
+and destructive high-quality.
+
+Here is a list of so-called "problematic dependencies" where your mileage may
+vary across different distributions:
+
+- **wxWidgets**: Historically, some distributions packaged 3.1.x while others
+  packaged 3.0.x. Currently, Tenacity requires 3.1.5, but most modern
+  distributions packages 3.2 or later, which works.
+- **PortSMF**: Not all distributions package this required dependency. If it is
+  packaged, it is often a very outdated version (which will still work).
+- **libsbsms**: Similar to wxWidgets, except this library has no version
+  information. Nowadays, Tenacity uses another high-quality pitch shifting and
+  time stretching algorithm for non-destructive pitch shifting and stretching
+  that does not rely on any external dependency, so this isn't as much as an
+  issue unlike in prior versions.
+
+Outside of dependencies, we recommend installing ccache and ninja-build for
+faster builds, but they are not required. CMake will automatically use ccache
+if it is installed.
 
 #### Debian, Ubuntu, and derived distributions
 
