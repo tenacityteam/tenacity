@@ -71,8 +71,8 @@ set( SOURCES
         ActiveProject.h
         AboutDialog.cpp
         AboutDialog.h
-        $<$<NOT:$<BOOL:${${_OPT}bundle_gplv3}>>:AboutDialogGPLv2Text.cpp>
-        $<$<BOOL:${${_OPT}bundle_gplv3}>:AboutDialogGPLv3Text.cpp>
+        $<$<NOT:$<BOOL:${USE_GPL3}>>:AboutDialogGPLv2Text.cpp>
+        $<$<BOOL:${USE_GPL3}>:AboutDialogGPLv3Text.cpp>
         AdornedRulerPanel.cpp
         AdornedRulerPanel.h
         AnalyzedWaveClip.cpp

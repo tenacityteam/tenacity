@@ -710,6 +710,11 @@ endif()
 #endif()
 set(VST3 OFF)
 
+option(GPL3 "Use the GPL v3 or later for builds" ON)
+if (GPL3)
+    set(USE_GPL3 ON)
+endif()
+
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
     find_package(GLIB REQUIRED)
     find_package(GTK 3.0 REQUIRED)
