@@ -585,6 +585,8 @@ set( SOURCES
 
         newtracks/TrackControlPanel.cpp
         newtracks/TrackControlPanel.h
+        newtracks/labeltrack/LabelTrackControlPanel.cpp
+        newtracks/labeltrack/LabelTrackControlPanel.h
 
         # Preferences
 
