@@ -45,12 +45,14 @@ is time to refresh some aspect of the screen.
 
 
 #include "TrackPanel.h"
+#include "LabelTrack.h"
 #include "TrackPanelConstants.h"
 
 #include <wx/setup.h> // for wxUSE_* macros
 
 #include "AdornedRulerPanel.h"
 #include "newtracks/TrackControlPanel.h"
+#include "newtracks/labeltrack/LabelTrackControlPanel.h"
 #include "tracks/ui/CommonTrackPanelCell.h"
 #include "KeyboardCapture.h"
 #include "PendingTracks.h"
@@ -634,9 +636,16 @@ void TrackPanel::OnTrackListResizing(const TrackListEvent &e)
 
    if (e.mType == TrackListEvent::ADDITION)
    {
-      auto& newControlPanel = mControlPanels.emplace_back(
-         new TrackControlPanel(
-            this, *GetProject(), track
+      auto newControlPanel = mControlPanels.emplace_back(
+         track->TypeSwitch<TrackControlPanel*>(
+            [this](LabelTrack& track) {
+               auto sharedTrack = track.SharedPointer();
+               return new LabelTrackControlPanel(this, *GetProject(), sharedTrack);
+            },
+            [this](Track& track) {
+               auto sharedTrack = track.SharedPointer();
+               return new TrackControlPanel(this, *GetProject(), sharedTrack);
+            }
          )
       );
 
