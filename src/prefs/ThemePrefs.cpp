@@ -74,7 +74,7 @@ static bool ConfirmSave()
 
    using namespace BasicUI;
    const auto message = Verbatim(
-"\"Blend system and TEnacity theme\" in Interface Preferences was on.\n"
+"\"Blend system and Tenacity theme\" in Interface Preferences was on.\n"
 "This may cause images to to be re-saved with slight changes of color."
    );
 
