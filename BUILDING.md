@@ -271,12 +271,15 @@ xcode-select --install
 Click "Install" on the software update popup window that will appear and wait
 for the download and installation to finish.
 
-You will also need to install a few build tools and dependencies, which can be
-installed from [Homebrew](https://brew.sh/):
+You will also need to install a few build tools, which can be installed from
+[Homebrew](https://brew.sh/):
 
 ```
-brew install cmake ccache ninja nasm wxwidgets
+brew install cmake ccache ninja nasm
 ```
+
+Note that Homebrew isn't strictly required. As long as you have CMake and Ninja
+installed, you will be good to go.
 
 The rest of the dependencies will be built automatically with vcpkg when
 configuring CMake. You turn off vcpkg by passing `-DVCPKG=OFF` to the CMake
