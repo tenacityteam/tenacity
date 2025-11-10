@@ -1360,17 +1360,16 @@ if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
    endif()
 endif()
 
-if (CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
    install(
       DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/"
       DESTINATION "."
       USE_SOURCE_PERMISSIONS
       PATTERN "*.pdb" EXCLUDE
       PATTERN "*.ilk" EXCLUDE
-      PATTERN "*.dSYM" EXCLUDE
    )
 else()
-   if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
+    if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
       install( TARGETS ${TARGET}
                DESTINATION "."
                RESOURCE DESTINATION "${_APPDIR}/Resources" )
