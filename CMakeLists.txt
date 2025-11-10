@@ -672,7 +672,7 @@ if(NOT TARGET wxWidgets::wxWidgets)
   target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
 endif()
 
-add_subdirectory(lib-src/libnyquist)
+add_subdirectory(lib-src/libnyquist EXCLUDE_FROM_ALL)
 set(USE_NYQUIST ON)
 
 # Manual Packaging
