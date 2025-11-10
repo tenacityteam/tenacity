@@ -51,9 +51,9 @@ class THEME_API ThemePackage final
 {
     private:
         zip_t* mPackageArchive;
-        rapidjson::Value mInfo;
-        rapidjson::Value mColors;
-        rapidjson::Value mCurrentSubthemeInfo;
+        rapidjson::Document mInfo;
+        rapidjson::Document mColors;
+        rapidjson::Document mCurrentSubthemeInfo;
         std::string mSelectedSubtheme;
         bool mIsMultiThemePackage;
 

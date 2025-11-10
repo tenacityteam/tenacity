@@ -82,7 +82,7 @@ std::vector<char> ThemePackage::ReadFileFromArchive(const std::string& name)
     }
 
     // Allocate our data buffer to the file's size
-    fileData.reserve(fileInfo.size);
+    fileData.resize(fileInfo.size);
 
     // Open the file
     file = zip_fopen(mPackageArchive, name.c_str(), 0);
@@ -153,9 +153,7 @@ void ThemePackage::OpenPackage(const std::string& path)
     error = 0;
 
     // Read info.json from the archive all into memory.
-    rapidjson::Document doc = GetParsedJsonData("info.json");
-
-    mInfo = doc.GetObject();
+    mInfo = GetParsedJsonData("info.json");
 
     // Check if the theme package contains a "subthemes" element. If it does, it
     // contains multiple subthemes.
@@ -294,9 +292,9 @@ void ThemePackage::ClosePackage()
 
     mPackageArchive = nullptr;
 
-    mInfo = rapidjson::Value(rapidjson::kNullType);
-    mColors = rapidjson::Value(rapidjson::kNullType);
-    mCurrentSubthemeInfo = rapidjson::Value(rapidjson::kNullType);
+    mInfo = rapidjson::Document(rapidjson::kNullType);
+    mColors = rapidjson::Document(rapidjson::kNullType);
+    mCurrentSubthemeInfo = rapidjson::Document(rapidjson::kNullType);
     mSelectedSubtheme.clear();
 }
 
@@ -347,13 +345,11 @@ void ThemePackage::LoadTheme(const std::string& theme)
     // with a multi-theme package.
     if (mIsMultiThemePackage)
     {
-        currentJsonDoc = GetParsedJsonData(theme + "info.json");
-        mCurrentSubthemeInfo = currentJsonDoc.GetObject();
+        mCurrentSubthemeInfo = GetParsedJsonData(theme + "info.json");
     }
 
     // Parse colors.json from the archive all into memory.
-    currentJsonDoc = GetParsedJsonData(theme + "colors.json");
-    mColors = currentJsonDoc.GetObject();
+    mColors = GetParsedJsonData(theme + "colors.json");
 
     // Check for the images/ subdir
     zip_stat_t imageDir;
