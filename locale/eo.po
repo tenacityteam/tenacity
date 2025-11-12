@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.4\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2025-09-06 08:40-0700\n"
-"PO-Revision-Date: 2025-11-10 20:51+0000\n"
+"PO-Revision-Date: 2025-11-12 09:51+0000\n"
 "Last-Translator: Jakub Szafranek13 Fabijan <jakubfabijan@tuta.io>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/eo/>\n"
@@ -106,3 +106,157 @@ msgstr ""
 #, c-format
 msgid "Error: %s"
 msgstr "Eraro: %s"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "Eraris pravalorizante sonon"
+
+#: libraries/lib-audio-io/AudioIO.cpp src/ProjectAudioManager.cpp
+#, c-format
+msgid ""
+"Error opening recording device.\n"
+"Error code: %s"
+msgstr ""
+"Eraris malfermante registradan aparaton.\n"
+"Erara kodo: %s"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#: libraries/lib-builtin-effects/PlotSpectrumBase.cpp
+#: libraries/lib-files/FileNames.cpp libraries/lib-vst3/VST3Wrapper.cpp
+#: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
+#: src/effects/EffectPreview.cpp src/effects/nyquist/Nyquist.cpp
+#: src/menus/SelectMenus.cpp src/menus/TrackMenus.cpp
+#: src/menus/TransportMenus.cpp src/prefs/DirectoriesPrefs.cpp
+#: src/prefs/KeyConfigPrefs.cpp
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "Error"
+msgstr "Eraro"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "Memormanko!"
+
+#. i18n-hint: Can mean "not available," "not applicable," "no answer"
+#. i18n-hint: n/a is an English abbreviation meaning "not applicable".
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+#: libraries/lib-lv2/LV2EffectBase.cpp
+#: libraries/lib-nyquist-effects/NyquistBase.cpp src/effects/ChangeSpeed.cpp
+#: src/effects/EffectUI.cpp
+msgid "n/a"
+msgstr "neaplikebla"
+
+#: libraries/lib-audio-unit/AudioUnitEffectBase.cpp
+#, c-format
+msgid "Couldn't open \"%s\""
+msgstr "Ne eblis malfermi \"%s\""
+
+#: libraries/lib-audio-unit/AudioUnitEffectsModule.cpp
+#: libraries/lib-effects/LoadEffects.cpp src/effects/vamp/LoadVamp.cpp
+msgid "The Tenacity Team and contributors"
+msgstr "La teamo kaj kontribuantoj de Tenacity"
+
+#: libraries/lib-audio-unit/AudioUnitEffectsModule.cpp
+msgid "Could not find component"
+msgstr "Ne eblis trovi komponanton"
+
+#: libraries/lib-audio-unit/AudioUnitEffectsModule.cpp
+msgid "Could not initialize component"
+msgstr "Ne eblis pravalorizi komponanton"
+
+#: libraries/lib-basic-ui/BasicUI.cpp
+#: libraries/lib-exceptions/AudacityException.h
+#: libraries/lib-wx-init/AudacityMessageBox.h src/commands/MessageCommand.cpp
+msgid "Message"
+msgstr "Mesaĝo"
+
+#: libraries/lib-builtin-effects/AmplifyBase.cpp
+msgid "Amplify"
+msgstr "Amplifi"
+
+#: libraries/lib-builtin-effects/AutoDuckBase.cpp
+msgid ""
+"Reduces (ducks) the volume of one or more tracks whenever the volume of a "
+"specified \"control\" track reaches a particular level"
+msgstr ""
+"Reduktas la laŭtecon de unu aŭ pli trakoj, kiam la laŭteco de specifita "
+"\"kontrola\" trako atingas specifan nivelon"
+
+#: libraries/lib-builtin-effects/BassTrebleBase.cpp
+msgid "Simple tone control effect"
+msgstr "Efekto de simpla tona regado"
+
+#: libraries/lib-builtin-effects/ChangePitchBase.cpp
+msgid "Change Pitch"
+msgstr "Ŝanĝi tonalton"
+
+#: libraries/lib-builtin-effects/ChangePitchBase.cpp
+msgid "Changes the pitch of a track without changing its tempo"
+msgstr "Ŝanĝas tonalton de trako neŝanĝante ĝian rapidon"
+
+#: libraries/lib-builtin-effects/ChangePitchBase.cpp
+msgid "High Quality Pitch Change"
+msgstr "Altkvalita ŝanĝo de tonalto"
+
+#: libraries/lib-builtin-effects/ChangeSpeedBase.cpp
+msgid "Change Speed and Pitch"
+msgstr "Ŝanĝi rapidon kaj tonalton"
+
+#: libraries/lib-builtin-effects/ChangeSpeedBase.cpp
+msgid "Changes the speed of a track, also changing its pitch"
+msgstr "Ŝanĝas rapidon de trako ankaŭ ŝanĝante ĝian tonalton"
+
+#: libraries/lib-builtin-effects/ContrastBase.cpp
+msgid "Please select an audio track."
+msgstr "Bonvolu elekti sontrakon."
+
+#: libraries/lib-builtin-effects/ContrastBase.cpp
+msgid ""
+"Invalid audio selection.\n"
+"Please ensure that audio is selected."
+msgstr ""
+"Nevalida sona elekto.\n"
+"Bonvolu certiĝi, ke sono estas elektita."
+
+#: libraries/lib-builtin-effects/DistortionBase.cpp
+msgid "Expand and Compress"
+msgstr "Etendi kaj densigi"
+
+#: libraries/lib-builtin-effects/DistortionBase.cpp
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "Walkie-talkie"
+msgstr "Radivokilo"
+
+#: libraries/lib-builtin-effects/EchoBase.cpp
+msgid "Echo"
+msgstr "Eĥo"
+
+#: libraries/lib-builtin-effects/EchoBase.cpp
+msgid "Repeats the selected audio again and again"
+msgstr "Ripetas la elektitan sonon denove kaj denove"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "AM Radio"
+msgstr "AM-radio"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "RIAA"
+msgstr "RIAA"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "Telephone"
+msgstr "Telefono"
+
+#. i18n-hint: name of the 'unnamed' custom curve
+#: libraries/lib-builtin-effects/EqualizationCurves.cpp
+msgid "unnamed"
+msgstr "nenomita"
+
+#: libraries/lib-builtin-effects/EqualizationParameters.cpp
+msgid "Cosine"
+msgstr "Kosinusa"
+
+#: libraries/lib-builtin-effects/EqualizationParameters.cpp
+msgid "Cubic"
+msgstr "Kuba"
