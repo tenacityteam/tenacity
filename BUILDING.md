@@ -2,24 +2,42 @@
 
 ## Prerequisites
 
+### General Requirements
+
+Tenacity requires that you use CMake 3.25 or later for building. Additionally,
+you need to have a compiler that supports C++17, but we strongly recommend
+using a compiler that supports newer standards than C++17. For example,
+Tenacity requires at least GCC 6 to build, but we strongly recommend using a
+modern version of GCC instead of GCC 6.
+
+Generally, on Windows and macOS, dependencies shouldn't be an issue as you can
+always install the latest ones manually. On other systems, including Linux,
+BSD, and Haiku, you may need a more recent version of your system to build
+Tenacity.
+
 ### Linux
 
-Not all distros package the right versions of Tenacity's dependencies, if at
-all. For example, wxWidgets 3.1.5 or later is required for building Tenacity,
-but some (mostly older) distributions only package wxWidgets 3.0.
-[PortMidi](https://github.com/portmidi/portmidi) and
-[PortSMF](https://codeberg.org/tenacityteam/portsmf) are required for MIDI support
-but some distributions do not package PortSMF (Tenacity can still build without
-MIDI support). [libsbsms](https://github.com/claytonotey/libsbsms) is an
-optional dependency used for time stretching that is not available in many Linux
-distribution package managers either. Optionally,
-[vcpkg can be used](#vcpkg-on-Linux) to build dependencies from source which
-may be helpful if your distribution is missing some packages. Note that we use our
-own fork of vcpkg for the time being, which is required for some features such as
-high-quality stretching (libsbsms), MP2 support (TwoLAME), and recording desktop
-audio on Windows. However, you may be able to use the latest vcpkg upstream,
-although the features mentioned prior will be unavailable and your build might not
-succeed.
+Tenacity primarily targets distributions like Debian 12, RHEL 9, any later
+version of those distributions and/or their derivatives, and any equivalent
+distribution. Consequently, you should use one of those versions of the
+aforementioned distributions or their derivatives for building also. Older
+distributions are unsupported because they lack the appropriate dependencies.
+
+Even on a supported distribution, not all distributions package all of
+Tenacity's dependencies. Consequently, this may mean that some features will
+be disabled (which will be done automatically by the build system). For
+example, [PortMidi](https://github.com/portmidi/portmidi) and
+[PortSMF](https://github.com/portsmf/portsmf) are required for MIDI support,
+but some distributions don't package PortSMF. Consequently, Tenacity will not
+feature MIDI support. [libsbsms](https://github.com/claytonotey/libsbsms) is
+required for high-quality destructive stretching support, but not all
+distributions package it.
+
+If you want a fully featured build but are on a distribution that packages all
+of Tenacity's dependencies, you can [use vcpkg](#vcpkg-on-Linux) to build
+dependencies from source. However, you must use our fork for MP2 support as
+upstream vcpkg doesn't contain a twolame package. There are also other reasons
+for the for, but none apply to Linux specifically.
 
 Installing ccache and ninja-build is highly recommended for faster builds but
 not required. CMake will automatically use ccache if it is installed.
