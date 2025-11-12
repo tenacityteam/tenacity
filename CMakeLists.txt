@@ -1,6 +1,6 @@
-# Minimum required is 3.16 due to use of multiple values in
-# generator expressions and the use of precompiled headers
-cmake_minimum_required( VERSION 3.16 )
+# Minimum required is 3.25 for proper MSVC compiler caching support and usage
+# of the 'LINUX' and 'BSD' variables.
+cmake_minimum_required( VERSION 3.25 )
 
 find_package(Git)
 
@@ -130,10 +130,8 @@ cmake_policy( SET CMP0072 NEW )
 # Include file check macros honor ``CMAKE_REQUIRED_LIBRARIES``.
 cmake_policy( SET CMP0075 NEW )
 
-if(CMAKE_VERSION VERSION_GREATER "3.21")
-    # ``cmake_dependent_option()`` supports full :ref:`Condition Syntax`.
-    cmake_policy( SET CMP0127 NEW )
-endif()
+# ``cmake_dependent_option()`` supports full :ref:`Condition Syntax`.
+cmake_policy( SET CMP0127 NEW )
 
 # Definitions that must happen before the project() command
 if( APPLE )
