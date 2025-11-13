@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.4\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2025-09-06 08:40-0700\n"
-"PO-Revision-Date: 2025-11-12 09:51+0000\n"
+"PO-Revision-Date: 2025-11-13 08:02+0000\n"
 "Last-Translator: Jakub Szafranek13 Fabijan <jakubfabijan@tuta.io>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/eo/>\n"
@@ -260,3 +260,88 @@ msgstr "Kosinusa"
 #: libraries/lib-builtin-effects/EqualizationParameters.cpp
 msgid "Cubic"
 msgstr "Kuba"
+
+#: libraries/lib-builtin-effects/DistortionBase.cpp
+msgid "Distortion"
+msgstr "Distordado"
+
+#. i18n-hint: Two numbers are substituted; the second is the
+#. size of a set, the first is the size of a subset, and not
+#. understood as an ordinal (i.e., not meaning "first", or
+#. "second", etc.)
+#.
+#: libraries/lib-builtin-effects/FindClippingBase.cpp
+#, c-format
+msgctxt "find clipping"
+msgid "%lld of %lld"
+msgstr "%lld el %lld"
+
+#: libraries/lib-builtin-effects/Generator.cpp
+msgid "There is not enough room available to generate the audio"
+msgstr "Ne disponeblas sufiĉa spaco por generi la sonon"
+
+#: libraries/lib-builtin-effects/Invert.cpp
+msgid "Invert"
+msgstr "Inversigi"
+
+#: libraries/lib-builtin-effects/LegacyCompressorBase.cpp
+msgid "Legacy Compressor"
+msgstr "Malmoderna densigilo"
+
+#: libraries/lib-builtin-effects/LoudnessBase.cpp
+msgid "Loudness Normalization"
+msgstr "Laŭteca normigo"
+
+#: libraries/lib-builtin-effects/LoudnessBase.cpp
+msgid "Sets the loudness of one or more tracks"
+msgstr "Agordas laŭtecon de unu aŭ pli trakoj"
+
+#: libraries/lib-builtin-effects/LoudnessBase.cpp
+msgid "Normalizing Loudness...\n"
+msgstr "Normigado de laŭteco...\n"
+
+#: libraries/lib-builtin-effects/LoudnessBase.cpp
+#: libraries/lib-builtin-effects/NormalizeBase.cpp
+#, c-format
+msgid "Analyzing: %s"
+msgstr "Analizado: %s"
+
+#: libraries/lib-builtin-effects/LoudnessBase.cpp
+#: libraries/lib-builtin-effects/NormalizeBase.cpp
+#, c-format
+msgid "Processing: %s"
+msgstr "Pritraktado: %s"
+
+#. i18n-hint: not a color, but "white noise" having a uniform spectrum
+#: libraries/lib-builtin-effects/NoiseBase.cpp
+msgctxt "noise"
+msgid "White"
+msgstr "Blanka"
+
+#. i18n-hint: not a color, but "pink noise" having a spectrum with more power
+#. in low frequencies
+#: libraries/lib-builtin-effects/NoiseBase.cpp
+msgctxt "noise"
+msgid "Pink"
+msgstr "Rozkolora"
+
+#: libraries/lib-builtin-effects/NoiseBase.cpp
+msgid "Noise"
+msgstr "Bruo"
+
+#: libraries/lib-builtin-effects/NoiseBase.cpp
+msgid "Generates one of three different types of noise"
+msgstr "Generas unu el tri diferencaj tipoj de bruo"
+
+#: libraries/lib-builtin-effects/NoiseReductionBase.cpp
+msgid "Median"
+msgstr "Mediano"
+
+#: libraries/lib-builtin-effects/NoiseReductionBase.cpp
+#: src/effects/NoiseReduction.cpp src/menus/MenuHelper.cpp
+msgid "Noise Reduction"
+msgstr "Brureduktado"
+
+#: libraries/lib-builtin-effects/NoiseReductionBase.cpp
+msgid "Removes background noise such as fans, tape noise, or hums"
+msgstr "Forigas fonan bruon kiaj ventoliloj, bruo de bendo aŭ zumado"
