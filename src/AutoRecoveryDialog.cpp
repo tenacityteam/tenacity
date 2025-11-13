@@ -462,11 +462,6 @@ bool ShowAutoRecoveryDialogIfNeeded(AudacityProject *&pproj, bool *didRecoverAny
    //
    // Yielding seems to allow the initialization to complete.
    //
-   // Additionally, it also corrects a sizing issue in the dialog
-   // related to wxWidgets bug:
-   //
-   //    http://trac.wxwidgets.org/ticket/16440
-   //
    // This must be done before "dlg" is declared.
    wxEventLoopBase::GetActive()->YieldFor(wxEVT_CATEGORY_UI | wxEVT_CATEGORY_USER_INPUT);
 
