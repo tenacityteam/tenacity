@@ -806,8 +806,8 @@ void TrackPanel::OnAudioIO(AudioIOEvent evt)
    } else
    {
       // Otherwise, stop the timer and do one final pass to update any overlays
-      // (This fixes an issue when using one of the skip buttons and the
-      // playhead and cursor are still shown on screen)
+      // (The latter fixes an issue when using one of the skip buttons and the
+      // playhead and cursor are still shown on screen).
       mTimer.Stop();
       mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count(), true);
    }
